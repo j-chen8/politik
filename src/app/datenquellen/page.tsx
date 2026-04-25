@@ -69,6 +69,13 @@ export default function DatenquellenPage() {
             description="Politiker-Fotos, persönliche Homepages, Twitter-Handles, Instagram-Handles."
           />
           <SourceCard
+            title="Wikipedia (deutsch)"
+            href="https://de.wikipedia.org/"
+            license="CC BY-SA 4.0"
+            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
+            description="Einleitungsabsatz aus dem Wikipedia-Artikel als Bio-Beschreibung. Auf jedem Profil ist die Quell-URL des Artikels verlinkt."
+          />
+          <SourceCard
             title="Bundestag DIP API"
             href="https://dip.bundestag.de"
             license="Open Data — kostenfreie Nachnutzung"

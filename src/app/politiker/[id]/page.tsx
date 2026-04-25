@@ -233,6 +233,29 @@ export default async function PolitikerPage({ params }: Props) {
         </div>
       </div>
 
+      {/* Bio aus Wikipedia */}
+      {politician.bio_summary && (
+        <div className="bg-white rounded-2xl border border-border p-6 mb-6">
+          <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-line">
+            {politician.bio_summary}
+          </p>
+          {politician.bio_url && (
+            <p className="text-xs text-muted mt-3">
+              Quelle:{" "}
+              <a
+                href={politician.bio_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Wikipedia (deutsch)
+              </a>{" "}
+              · CC BY-SA
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Sonderfälle / Notes */}
       {notes.length > 0 && (
         <div className="bg-amber-50 rounded-2xl border border-amber-200 p-6 mb-6">

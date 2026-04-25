@@ -148,6 +148,9 @@ export interface PoliticianRow {
   homepage_url: string | null;
   twitter_handle: string | null;
   instagram_handle: string | null;
+  bio_summary: string | null;
+  bio_url: string | null;
+  bio_source: string | null;
 }
 
 export interface MandateRow {
