@@ -1,19 +1,15 @@
 import {
   getPoliticianDb,
   getMandatesForPoliticianDb,
-  getActivitiesForPolitician,
-  getActivityStatsForPolitician,
-  getActivityCountForPolitician,
   getSpeechSummaryInfo,
-} from "@/lib/db";
-import {
-  getVotesForMandate,
-  getSidejobsForMandate,
-  getCommitteeMembershipsForMandate,
-  computeVoteStats,
+  getVotesForPoliticianDb,
+  getSidejobsForPoliticianDb,
+  getCommitteeMembershipsForPoliticianDb,
+  computeVoteStatsDb,
   getIncomeRange,
-  type Vote,
-} from "@/lib/api";
+  getParlamentarischeArbeit,
+  getNotesForPolitician,
+} from "@/lib/db";
 import { StatCard } from "@/components/StatCard";
 import { Badge } from "@/components/Badge";
 import { BarChart } from "@/components/BarChart";
@@ -50,8 +46,8 @@ function getActivityLevel(rate: number): { label: string; variant: "green" | "ye
   return { label: "Niedrig", variant: "red", status: "red" };
 }
 
-function computeFactionLoyalty(votes: Vote[]): { loyal: number; rebel: number; total: number; rate: number } {
-  const factionVotes = votes.filter((v) => v.fraction && v.vote !== "no_show");
+function computeFactionLoyalty(votes: { vote: string; fraction_label: string | null }[]): { loyal: number; rebel: number; total: number; rate: number } {
+  const factionVotes = votes.filter((v) => v.fraction_label && v.vote !== "no_show");
   const loyal = Math.round(factionVotes.length * 0.88);
   const rebel = factionVotes.length - loyal;
   return {
@@ -93,18 +89,22 @@ export default async function PolitikerPage({ params }: Props) {
   // Only for mandates we have an API mandate ID for
   const mandateId = primaryMandate?.id;
 
-  // Load DIP activities from local DB
-  const dipActivities = getActivitiesForPolitician(politicianId, 30);
-  const activityStats = getActivityStatsForPolitician(politicianId);
-  const activityCount = getActivityCountForPolitician(politicianId);
+  // Notes / Sonderfälle
+  const notes = getNotesForPolitician(politicianId);
 
-  const [votes, sidejobs, committees] = await Promise.all([
-    mandateId ? getVotesForMandate(mandateId, 200).catch(() => []) : Promise.resolve([]),
-    mandateId ? getSidejobsForMandate(mandateId).catch(() => []) : Promise.resolve([]),
-    mandateId ? getCommitteeMembershipsForMandate(mandateId).catch(() => []) : Promise.resolve([]),
-  ]);
+  // Combined parliamentary work (DIP + Plenar)
+  const speechInfo = getSpeechSummaryInfo(politician.last_name, politician.title);
+  const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
+    politicianId,
+    speechInfo?.speaker ?? null,
+    500
+  );
 
-  const voteStats = computeVoteStats(votes);
+  const votes = getVotesForPoliticianDb(politicianId);
+  const sidejobs = getSidejobsForPoliticianDb(politicianId);
+  const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
+
+  const voteStats = computeVoteStatsDb(votes);
   const hasVoteData = voteStats.totalPolls > 0;
   const activity = hasVoteData ? getActivityLevel(voteStats.attendanceRate) : null;
   const factionLoyalty = computeFactionLoyalty(votes);
@@ -116,9 +116,6 @@ export default async function PolitikerPage({ params }: Props) {
   const constituency = primaryMandate?.constituency;
 
   const totalSidejobIncome = sidejobs.reduce((sum, s) => sum + (s.income || 0), 0);
-
-  // Check for speech summaries
-  const speechInfo = getSpeechSummaryInfo(politician.last_name, politician.title);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 fade-in">
@@ -180,7 +177,7 @@ export default async function PolitikerPage({ params }: Props) {
                   className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline font-medium"
                 >
                   <Mic className="w-3 h-3" />
-                  {speechInfo.count} Reden im Plenum ansehen
+                  {speechInfo.count} Plenarbeiträge ansehen
                 </a>
               )}
               {politician.abgeordnetenwatch_url && (
@@ -198,6 +195,30 @@ export default async function PolitikerPage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Sonderfälle / Notes */}
+      {notes.length > 0 && (
+        <div className="bg-amber-50 rounded-2xl border border-amber-200 p-6 mb-6">
+          {notes.map((note) => (
+            <div key={note.id}>
+              <h2 className="text-lg font-bold mb-2 flex items-center gap-2 text-amber-800">
+                <FileText className="w-5 h-5" />
+                {note.titel}
+              </h2>
+              <div className="text-sm text-amber-900 leading-relaxed whitespace-pre-line">
+                {note.inhalt}
+              </div>
+              {(note.datum_von || note.datum_bis) && (
+                <p className="text-xs text-amber-600 mt-3">
+                  {note.datum_von && `Seit ${new Date(note.datum_von + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
+                  {note.datum_von && note.datum_bis && " — "}
+                  {note.datum_bis && `bis ${new Date(note.datum_bis + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Mandate Overview */}
       <div className="bg-white rounded-2xl border border-border p-6 mb-6">
@@ -236,87 +257,144 @@ export default async function PolitikerPage({ params }: Props) {
         </div>
       </div>
 
-      {/* DIP Aktivitäten */}
-      {activityCount > 0 && (
+      {/* Parlamentarische Arbeit (DIP + Plenar kombiniert) */}
+      {parlArbeit.length > 0 && (
         <div className="bg-white rounded-2xl border border-border p-6 mb-6">
           <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
             <Activity className="w-5 h-5 text-primary" />
-            Parlamentarische Aktivitäten
-            <Badge variant="blue">{activityCount}</Badge>
+            Parlamentarische Arbeit
+            <Badge variant="blue">{parlArbeit.length}</Badge>
           </h2>
 
-          {/* Activity type breakdown */}
+          {/* Category breakdown */}
           <div className="flex flex-wrap gap-2 mb-4">
-            {activityStats.map((s) => (
-              <div
-                key={s.art}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs"
-              >
-                {s.art.includes("Anfrage") || s.art === "Frage" || s.art === "Antwort" ? (
-                  <MessageSquare className="w-3 h-3 text-primary" />
-                ) : s.art === "Rede" || s.art === "Kurzintervention" || s.art === "Erwiderung" ? (
-                  <Mic className="w-3 h-3 text-green" />
-                ) : s.art === "Antrag" || s.art === "Gesetzentwurf" ? (
-                  <Scale className="w-3 h-3 text-accent" />
-                ) : (
-                  <FileText className="w-3 h-3 text-muted" />
-                )}
-                <span className="font-medium text-foreground">{s.count}</span>
-                <span className="text-muted">{s.art}</span>
+            {parlStats.rede && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <Mic className="w-3 h-3 text-green" />
+                <span className="font-medium text-foreground">{parlStats.rede}</span>
+                <span className="text-muted">Reden</span>
               </div>
-            ))}
+            )}
+            {parlStats.frage && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <MessageSquare className="w-3 h-3 text-primary" />
+                <span className="font-medium text-foreground">{parlStats.frage}</span>
+                <span className="text-muted">Fragen & Antworten</span>
+              </div>
+            )}
+            {parlStats.debattenbeitrag && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <MessageSquare className="w-3 h-3 text-muted" />
+                <span className="font-medium text-foreground">{parlStats.debattenbeitrag}</span>
+                <span className="text-muted">Debattenbeiträge</span>
+              </div>
+            )}
+            {parlStats.erklaerung && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <FileText className="w-3 h-3 text-accent" />
+                <span className="font-medium text-foreground">{parlStats.erklaerung}</span>
+                <span className="text-muted">Erklärungen</span>
+              </div>
+            )}
+            {parlStats.gesetzgebung && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <Scale className="w-3 h-3 text-yellow" />
+                <span className="font-medium text-foreground">{parlStats.gesetzgebung}</span>
+                <span className="text-muted">Gesetzgebung</span>
+              </div>
+            )}
+            {parlStats.bericht && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background border border-border/50 text-xs">
+                <FileText className="w-3 h-3 text-muted" />
+                <span className="font-medium text-foreground">{parlStats.bericht}</span>
+                <span className="text-muted">Berichte</span>
+              </div>
+            )}
           </div>
 
-          {/* Recent activities list */}
-          <div className="space-y-2 max-h-96 overflow-y-auto">
-            {dipActivities.map((a) => (
+          {/* Combined activity list */}
+          <div className="space-y-2 max-h-[600px] overflow-y-auto">
+            {parlArbeit.map((item) => (
               <div
-                key={a.id}
-                className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border/50"
+                key={item.id}
+                className={`flex items-start gap-3 p-3 rounded-xl border ${
+                  item.quelle === "kombiniert"
+                    ? "bg-green-50 border-green-200"
+                    : "bg-background border-border/50"
+                }`}
               >
-                <Badge
-                  variant={
-                    a.aktivitaetsart === "Rede" || a.aktivitaetsart === "Kurzintervention"
-                      ? "green"
-                      : a.aktivitaetsart.includes("Anfrage") || a.aktivitaetsart === "Frage"
-                      ? "blue"
-                      : a.aktivitaetsart === "Antrag" || a.aktivitaetsart === "Gesetzentwurf"
-                      ? "yellow"
-                      : "gray"
-                  }
-                >
-                  {a.aktivitaetsart}
-                </Badge>
+                <div className="flex flex-col items-center gap-1 shrink-0">
+                  <Badge
+                    variant={
+                      item.kategorie === "rede" ? "green"
+                        : item.kategorie === "frage" ? "blue"
+                        : item.kategorie === "gesetzgebung" ? "yellow"
+                        : "gray"
+                    }
+                  >
+                    {item.typ}
+                  </Badge>
+                  <span className="text-[10px] text-muted">
+                    {item.quelle === "kombiniert" ? "DIP + Plenar"
+                      : item.quelle === "plenar" ? "Plenar"
+                      : "DIP"}
+                  </span>
+                </div>
                 <div className="flex-1 min-w-0">
-                  {a.thema && (
-                    <p className="text-sm text-foreground line-clamp-2 mb-1">{a.thema}</p>
+                  {item.thema && (
+                    <p className="text-sm text-foreground line-clamp-2 mb-1">{item.thema}</p>
+                  )}
+                  {item.zusammenfassung && (
+                    <p className="text-sm text-muted leading-relaxed mb-1.5">
+                      {item.zusammenfassung}
+                    </p>
                   )}
                   <div className="flex items-center gap-2 text-xs text-muted flex-wrap">
-                    {a.datum && (
+                    {item.datum && (
                       <span>
-                        {new Date(a.datum).toLocaleDateString("de-DE", {
+                        {new Date(item.datum + "T00:00:00").toLocaleDateString("de-DE", {
                           day: "2-digit",
                           month: "2-digit",
                           year: "numeric",
                         })}
                       </span>
                     )}
-                    {a.drucksache_nr && (
+                    {item.sitzung && (
                       <>
                         <span className="text-border">·</span>
-                        {a.pdf_url ? (
+                        <span>Sitzung {item.sitzung}</span>
+                      </>
+                    )}
+                    {item.drucksache_nr && (
+                      <>
+                        <span className="text-border">·</span>
+                        {item.pdf_url ? (
                           <a
-                            href={a.pdf_url}
+                            href={item.pdf_url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary hover:underline inline-flex items-center gap-1"
                           >
-                            {a.herausgeber}-Drucksache {a.drucksache_nr}
+                            Drucksache {item.drucksache_nr}
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         ) : (
-                          <span>{a.herausgeber}-Drucksache {a.drucksache_nr}</span>
+                          <span>Drucksache {item.drucksache_nr}</span>
                         )}
+                      </>
+                    )}
+                    {item.source_url && (
+                      <>
+                        <span className="text-border">·</span>
+                        <a
+                          href={item.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline inline-flex items-center gap-1"
+                        >
+                          Protokoll-PDF
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
                       </>
                     )}
                   </div>
@@ -420,8 +498,8 @@ export default async function PolitikerPage({ params }: Props) {
                     {s.label}
                   </p>
                   <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-                    {s.sidejob_organization && (
-                      <span>{s.sidejob_organization.label}</span>
+                    {s.organization && (
+                      <span>{s.organization}</span>
                     )}
                     {s.income_level && (
                       <>
@@ -469,7 +547,7 @@ export default async function PolitikerPage({ params }: Props) {
                   <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-foreground">
-                      {c.committee.label}
+                      {c.committee_label}
                     </p>
                     <p className="text-xs text-muted capitalize">
                       {c.committee_role === "chairperson"
@@ -527,10 +605,10 @@ export default async function PolitikerPage({ params }: Props) {
                     : "Abwesend"}
                 </Badge>
                 <span className="text-sm text-foreground flex-1 truncate">
-                  {v.poll.label}
+                  {v.poll_label}
                 </span>
                 <a
-                  href={v.poll.abgeordnetenwatch_url}
+                  href={v.poll_url ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted hover:text-primary transition-colors shrink-0"

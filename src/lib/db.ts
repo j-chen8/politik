@@ -77,6 +77,52 @@ export function initDb() {
     CREATE INDEX IF NOT EXISTS idx_mandates_period ON mandates(parliament_period_id);
     CREATE INDEX IF NOT EXISTS idx_politicians_party ON politicians(party_id);
     CREATE INDEX IF NOT EXISTS idx_politicians_name ON politicians(last_name, first_name);
+
+    -- Votes (from Abgeordnetenwatch API)
+    CREATE TABLE IF NOT EXISTS votes (
+      id INTEGER PRIMARY KEY,
+      mandate_id INTEGER NOT NULL REFERENCES mandates(id),
+      politician_id INTEGER NOT NULL REFERENCES politicians(id),
+      poll_id INTEGER NOT NULL,
+      poll_label TEXT,
+      poll_url TEXT,
+      poll_date TEXT,
+      vote TEXT NOT NULL,
+      reason_no_show TEXT,
+      fraction_id INTEGER,
+      fraction_label TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_votes_politician ON votes(politician_id);
+    CREATE INDEX IF NOT EXISTS idx_votes_poll ON votes(poll_id);
+
+    -- Sidejobs (from Abgeordnetenwatch API)
+    CREATE TABLE IF NOT EXISTS sidejobs (
+      id INTEGER PRIMARY KEY,
+      mandate_id INTEGER NOT NULL REFERENCES mandates(id),
+      politician_id INTEGER NOT NULL REFERENCES politicians(id),
+      label TEXT NOT NULL,
+      income_level TEXT,
+      income INTEGER,
+      income_total INTEGER,
+      interval TEXT,
+      created INTEGER,
+      organization TEXT,
+      additional_information TEXT,
+      category TEXT,
+      data_change_date TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_sidejobs_politician ON sidejobs(politician_id);
+
+    -- Committee Memberships (from Abgeordnetenwatch API)
+    CREATE TABLE IF NOT EXISTS committee_memberships (
+      id INTEGER PRIMARY KEY,
+      mandate_id INTEGER NOT NULL REFERENCES mandates(id),
+      politician_id INTEGER NOT NULL REFERENCES politicians(id),
+      committee_id INTEGER NOT NULL,
+      committee_label TEXT NOT NULL,
+      committee_role TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_committee_memberships_politician ON committee_memberships(politician_id);
   `);
 
   return db;
@@ -348,6 +394,280 @@ export interface ActivityWithPolitician extends ActivityRow {
   pol_party: string | null;
 }
 
+// ── Votes, Sidejobs, Committees (local DB) ──
+
+export interface VoteRow {
+  id: number;
+  mandate_id: number;
+  politician_id: number;
+  poll_id: number;
+  poll_label: string | null;
+  poll_url: string | null;
+  poll_date: string | null;
+  vote: string;
+  reason_no_show: string | null;
+  fraction_id: number | null;
+  fraction_label: string | null;
+}
+
+export function getVotesForPoliticianDb(politicianId: number, limit = 200): VoteRow[] {
+  const db = getDb();
+  return db.prepare(
+    `SELECT * FROM votes WHERE politician_id = ? ORDER BY poll_date DESC LIMIT ?`
+  ).all(politicianId, limit) as VoteRow[];
+}
+
+export interface VoteStats {
+  totalPolls: number;
+  attended: number;
+  attendanceRate: number;
+  votedYes: number;
+  votedNo: number;
+  abstained: number;
+  noShow: number;
+}
+
+export function computeVoteStatsDb(votes: VoteRow[]): VoteStats {
+  const totalPolls = votes.length;
+  const attended = votes.filter((v) => v.vote !== "no_show").length;
+  return {
+    totalPolls,
+    attended,
+    attendanceRate: totalPolls > 0 ? (attended / totalPolls) * 100 : 0,
+    votedYes: votes.filter((v) => v.vote === "yes").length,
+    votedNo: votes.filter((v) => v.vote === "no").length,
+    abstained: votes.filter((v) => v.vote === "abstain").length,
+    noShow: votes.filter((v) => v.vote === "no_show").length,
+  };
+}
+
+export interface SidejobRow {
+  id: number;
+  mandate_id: number;
+  politician_id: number;
+  label: string;
+  income_level: string | null;
+  income: number | null;
+  income_total: number | null;
+  interval: string | null;
+  created: number;
+  organization: string | null;
+  additional_information: string | null;
+  category: string | null;
+  data_change_date: string | null;
+}
+
+export function getSidejobsForPoliticianDb(politicianId: number): SidejobRow[] {
+  const db = getDb();
+  return db.prepare(
+    `SELECT * FROM sidejobs WHERE politician_id = ? ORDER BY created DESC`
+  ).all(politicianId) as SidejobRow[];
+}
+
+export interface CommitteeMembershipRow {
+  id: number;
+  mandate_id: number;
+  politician_id: number;
+  committee_id: number;
+  committee_label: string;
+  committee_role: string | null;
+}
+
+export function getCommitteeMembershipsForPoliticianDb(politicianId: number): CommitteeMembershipRow[] {
+  const db = getDb();
+  return db.prepare(
+    `SELECT * FROM committee_memberships WHERE politician_id = ? ORDER BY committee_label`
+  ).all(politicianId) as CommitteeMembershipRow[];
+}
+
+export function getIncomeRange(level: string | null): string {
+  const levels: Record<string, string> = {
+    "1": "1.000 – 3.500 €",
+    "2": "3.500 – 7.000 €",
+    "3": "7.000 – 15.000 €",
+    "4": "15.000 – 30.000 €",
+    "5": "30.000 – 75.000 €",
+    "6": "75.000 – 100.000 €",
+    "7": "100.000 – 150.000 €",
+    "8": "150.000 – 250.000 €",
+    "9": "über 250.000 €",
+    "10": "unter 1.000 €",
+  };
+  return levels[level || ""] || "Keine Angabe";
+}
+
+// ── Combined Parliamentary Work (DIP + Plenar merged) ──
+
+export interface ParlamentarischeArbeit {
+  id: string;
+  quelle: "dip" | "plenar" | "kombiniert";
+  datum: string | null;
+  typ: string;              // Unified type label
+  kategorie: string;        // For filtering: "rede" | "frage" | "debattenbeitrag" | "erklaerung" | "gesetzgebung" | "bericht"
+  thema: string | null;     // DIP thema or Plenar kontext
+  zusammenfassung: string | null;  // Only from Plenar
+  drucksache_nr: string | null;
+  pdf_url: string | null;
+  source_url: string | null;       // Plenar PDF
+  sitzung: number | null;
+}
+
+function kategorieForDip(art: string): string {
+  if (art === "Rede" || art === "Rede (zu Protokoll gegeben)") return "rede";
+  if (art.includes("Anfrage") || art === "Frage" || art === "Zusatzfrage") return "frage";
+  if (art === "Antwort" || art === "Einleitende Ausführungen und Beantwortung") return "frage";
+  if (art === "Kurzintervention" || art === "Zwischenfrage" || art === "Erwiderung" || art === "Zur Geschäftsordnung BT") return "debattenbeitrag";
+  if (art.includes("Erklärung")) return "erklaerung";
+  if (art === "Antrag" || art === "Gesetzentwurf" || art === "Änderungsantrag" || art === "Entschließungsantrag") return "gesetzgebung";
+  if (art === "Berichterstattung") return "bericht";
+  return "sonstige";
+}
+
+function kategorieForPlenar(typ: string): string {
+  if (typ === "debatte" || typ === "regierungserklaerung") return "rede";
+  if (typ === "fragestunde_frage" || typ === "fragestunde_antwort") return "frage";
+  if (typ === "zwischenfrage" || typ === "kurzintervention") return "debattenbeitrag";
+  if (typ === "erklaerung") return "erklaerung";
+  return "rede";
+}
+
+function typLabelForPlenar(typ: string): string {
+  const map: Record<string, string> = {
+    debatte: "Rede",
+    regierungserklaerung: "Regierungserklärung",
+    fragestunde_frage: "Frage (Fragestunde)",
+    fragestunde_antwort: "Antwort (Fragestunde)",
+    zwischenfrage: "Zwischenfrage",
+    kurzintervention: "Kurzintervention",
+    erklaerung: "Erklärung",
+  };
+  return map[typ] || "Rede";
+}
+
+export function getParlamentarischeArbeit(
+  politicianId: number,
+  speakerName: string | null,
+  limit = 200
+): { items: ParlamentarischeArbeit[]; stats: Record<string, number> } {
+  const db = getDb();
+
+  // 1. Load DIP activities
+  const dipRows = db.prepare(
+    `SELECT * FROM activities WHERE politician_id = ? ORDER BY datum DESC LIMIT ?`
+  ).all(politicianId, limit) as ActivityRow[];
+
+  // 2. Load Plenar summaries
+  type PlenarRow = SpeechSummary & { speaker: string; speech_text_preview: string };
+  let plenarRows: PlenarRow[] = [];
+  if (speakerName) {
+    plenarRows = db.prepare(`
+      SELECT * FROM speech_summaries
+      WHERE speaker = ?
+        AND zusammenfassung NOT LIKE '%lediglich%'
+        AND zusammenfassung NOT LIKE '%nicht möglich%'
+        AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
+        AND zusammenfassung NOT LIKE '%nicht erkennbar%'
+        AND zusammenfassung NOT LIKE '%nicht feststellbar%'
+        AND zusammenfassung NOT LIKE '%nicht ableitbar%'
+        AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+      ORDER BY sitzung DESC, speech_index ASC
+      LIMIT ?
+    `).all(speakerName, limit) as PlenarRow[];
+  }
+
+  // 3. Index plenar rows by date+kategorie for matching
+  const plenarByDateKat = new Map<string, PlenarRow[]>();
+  for (const p of plenarRows) {
+    if (!p.datum) continue;
+    const key = `${p.datum}|${kategorieForPlenar(p.typ)}`;
+    if (!plenarByDateKat.has(key)) plenarByDateKat.set(key, []);
+    plenarByDateKat.get(key)!.push(p);
+  }
+  const matchedPlenarIds = new Set<number>();
+
+  // 4. Build items — merge DIP with matching Plenar
+  const items: ParlamentarischeArbeit[] = [];
+
+  for (const a of dipRows) {
+    const dipKat = kategorieForDip(a.aktivitaetsart);
+    const key = a.datum ? `${a.datum}|${dipKat}` : null;
+    const matchingPlenar = key ? plenarByDateKat.get(key) : undefined;
+
+    if (matchingPlenar && matchingPlenar.length > 0) {
+      // Take first unmatched plenar entry for this date+kategorie
+      const plenar = matchingPlenar.find(p => !matchedPlenarIds.has(p.id)) || null;
+      if (plenar) {
+        matchedPlenarIds.add(plenar.id);
+        items.push({
+          id: `kombi-${a.id}-${plenar.id}`,
+          quelle: "kombiniert",
+          datum: a.datum,
+          typ: a.aktivitaetsart,
+          kategorie: dipKat,
+          thema: a.thema || plenar.kontext,
+          zusammenfassung: plenar.zusammenfassung,
+          drucksache_nr: a.drucksache_nr,
+          pdf_url: a.pdf_url,
+          source_url: plenar.source_url,
+          sitzung: plenar.sitzung,
+        });
+        continue;
+      }
+    }
+
+    // No match — DIP only
+    items.push({
+      id: `dip-${a.id}`,
+      quelle: "dip",
+      datum: a.datum,
+      typ: a.aktivitaetsart,
+      kategorie: dipKat,
+      thema: a.thema,
+      zusammenfassung: null,
+      drucksache_nr: a.drucksache_nr,
+      pdf_url: a.pdf_url,
+      source_url: null,
+      sitzung: null,
+    });
+  }
+
+  // 5. Add unmatched Plenar entries (no DIP counterpart)
+  for (const p of plenarRows) {
+    if (matchedPlenarIds.has(p.id)) continue;
+    items.push({
+      id: `plenar-${p.id}`,
+      quelle: "plenar",
+      datum: p.datum,
+      typ: typLabelForPlenar(p.typ),
+      kategorie: kategorieForPlenar(p.typ),
+      thema: p.kontext,
+      zusammenfassung: p.zusammenfassung,
+      drucksache_nr: null,
+      pdf_url: null,
+      source_url: p.source_url,
+      sitzung: p.sitzung,
+    });
+  }
+
+  // 6. Sort chronologically (newest first)
+  items.sort((a, b) => {
+    const da = a.datum || "0000";
+    const db2 = b.datum || "0000";
+    if (da !== db2) return db2.localeCompare(da);
+    // Combined first, then DIP, then Plenar
+    const order = { kombiniert: 0, dip: 1, plenar: 2 };
+    return (order[a.quelle] ?? 1) - (order[b.quelle] ?? 1);
+  });
+
+  // 7. Compute stats
+  const stats: Record<string, number> = {};
+  for (const item of items) {
+    stats[item.kategorie] = (stats[item.kategorie] || 0) + 1;
+  }
+
+  return { items, stats };
+}
+
 export interface ActivityListParams {
   query?: string;
   art?: string;
@@ -394,6 +714,26 @@ export function getActivityTypes(): { art: string; count: number }[] {
   return db.prepare(
     `SELECT aktivitaetsart as art, COUNT(*) as count FROM activities GROUP BY aktivitaetsart ORDER BY count DESC`
   ).all() as { art: string; count: number }[];
+}
+
+// ── Politician Notes (Sonderfälle) ──
+
+export interface PoliticianNote {
+  id: number;
+  politician_id: number | null;
+  speaker_name: string | null;
+  kategorie: string;
+  titel: string;
+  inhalt: string;
+  datum_von: string | null;
+  datum_bis: string | null;
+}
+
+export function getNotesForPolitician(politicianId: number): PoliticianNote[] {
+  const db = getDb();
+  return db.prepare(
+    `SELECT * FROM politician_notes WHERE politician_id = ? ORDER BY datum_von DESC`
+  ).all(politicianId) as PoliticianNote[];
 }
 
 // ── Plenar-Protokolle ──

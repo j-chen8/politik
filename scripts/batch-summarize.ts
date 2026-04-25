@@ -15,11 +15,23 @@
 
 const { execSync } = require("child_process");
 const Database = require("better-sqlite3");
+const fs = require("fs");
+const path = require("path");
 
 const letters = process.argv.slice(2).map((l: string) => l.toUpperCase());
 if (letters.length === 0) {
   console.log("Usage: npx tsx scripts/batch-summarize.ts <Buchstabe(n)>");
   process.exit(1);
+}
+
+// Reset model state at batch start — new batch = fresh start with best model
+const stateFile = path.join(__dirname, "..", ".groq-model-state");
+if (fs.existsSync(stateFile)) {
+  const state = JSON.parse(fs.readFileSync(stateFile, "utf-8"));
+  if (state.reason === "tpd") {
+    console.log(`⚠ Letzter Lauf hat TPD-Limit erreicht (${state.timestamp}).`);
+    console.log(`  Starte mit Fallback-Modell. State-Datei löschen für Reset: rm ${stateFile}\n`);
+  }
 }
 
 // Run health check once by calling extract-speeches-xml with a dummy that returns 0 speeches
@@ -49,12 +61,44 @@ for (const letter of letters) {
     db.prepare("SELECT DISTINCT speaker FROM speech_summaries").all().map((r: any) => r.speaker)
   );
 
-  // Extract last name (last word) and filter by letter
-  interface SpeakerInfo { fullName: string; lastName: string; }
+  // Extract last name and resolve overrides for XML matching
+  // Import the same override map used by extract-speeches-xml.ts
+  const NAME_OVERRIDES: Record<string, { lastName: string; fullName: string }> = {
+    "Carsten Müller (Braunschweig)": { lastName: "Müller", fullName: "Carsten Müller" },
+    "Dagmar Schmidt (Wetzlar)": { lastName: "Schmidt", fullName: "Dagmar Schmidt" },
+    "Hubertus Heil (Peine)": { lastName: "Heil", fullName: "Hubertus Heil" },
+    "Claudia Roth (Augsburg)": { lastName: "Roth", fullName: "Claudia Roth" },
+    "Michael Brand (Fulda)": { lastName: "Brand", fullName: "Michael Brand" },
+    "Mahmut Özdemir (Duisburg)": { lastName: "Özdemir", fullName: "Mahmut Özdemir" },
+    "Stephan Mayer (Altötting)": { lastName: "Mayer", fullName: "Stephan Mayer" },
+    "Beatrix von Storch": { lastName: "Storch", fullName: "Beatrix von Storch" },
+    "Dr. Konstantin von Notz": { lastName: "Notz", fullName: "Dr. Konstantin von Notz" },
+    "Ulrich von Zons": { lastName: "Zons", fullName: "Ulrich von Zons" },
+    "Jan van Aken": { lastName: "Aken", fullName: "Jan van Aken" },
+    "Sascha van Beek": { lastName: "Beek", fullName: "Sascha van Beek" },
+    "Christoph de Vries": { lastName: "Vries", fullName: "Christoph de Vries" },
+    "Catarina dos Santos-Wintz": { lastName: "Santos-Wintz", fullName: "Catarina dos Santos-Wintz" },
+    "Reem Alabali Radovan": { lastName: "Alabali-Radovan", fullName: "Reem Alabali-Radovan" },
+    "LisaSimone Fischer": { lastName: "Fischer", fullName: "Lisa-Simone Fischer" },
+    "Aydan Özoğuz": { lastName: "Özoğuz", fullName: "Aydan Özoğuz" },
+    "Cansu Özdemir": { lastName: "Özdemir", fullName: "Cansu Özdemir" },
+    "Mahmut Özdemir": { lastName: "Özdemir", fullName: "Mahmut Özdemir" },
+    "Kassem Taher Saleh": { lastName: "Taher Saleh", fullName: "Kassem Taher Saleh" },
+    "Maximilain Kneller": { lastName: "Kneller", fullName: "Maximilian Kneller" },
+    "Mareike Lotte Wulf": { lastName: "Wulf", fullName: "Mareike Lotte Wulf" },
+    "Sara Gambir": { lastName: "Gambir", fullName: "Sara Gambir" },
+    "Andrew Mitchell": { lastName: "Mitchell", fullName: "Andrew Mitchell" },
+  };
+
+  interface SpeakerInfo { fullName: string; lastName: string; xmlFullName: string; }
   const speakers: SpeakerInfo[] = allSpeakers
     .map((r: any) => {
+      const override = NAME_OVERRIDES[r.speaker];
+      if (override) {
+        return { fullName: r.speaker, lastName: override.lastName, xmlFullName: override.fullName };
+      }
       const parts = r.speaker.split(" ");
-      return { fullName: r.speaker, lastName: parts[parts.length - 1] };
+      return { fullName: r.speaker, lastName: parts[parts.length - 1], xmlFullName: r.speaker };
     })
     .filter((s: SpeakerInfo) => s.lastName.toUpperCase().startsWith(letter));
 
@@ -70,11 +114,11 @@ for (const letter of letters) {
     console.log("─".repeat(50));
     try {
       execSync(
-        `npx tsx scripts/extract-speeches-xml.ts "${s.lastName}" "${s.fullName}"`,
+        `npx tsx scripts/extract-speeches-xml.ts "${s.lastName}" "${s.xmlFullName}"`,
         {
           stdio: "inherit",
           cwd: process.cwd(),
-          env: { ...process.env, SKIP_HEALTHCHECK: "1" },
+          env: { ...process.env, SKIP_HEALTHCHECK: "1", ORIGINAL_SPEAKER: s.fullName },
         }
       );
     } catch (e: any) {
