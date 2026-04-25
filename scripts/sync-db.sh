@@ -17,7 +17,8 @@ cd "$(dirname "$0")/.."
 # ── Helpers ──
 
 dev_server_running() {
-  pgrep -f "next dev" > /dev/null 2>&1
+  # [n] regex trick verhindert dass pgrep sich selbst matched
+  pgrep -f "[n]ext dev" > /dev/null 2>&1
 }
 
 check_no_dev_server() {
