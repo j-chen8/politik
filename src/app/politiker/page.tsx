@@ -1,13 +1,11 @@
 import { listPoliticians, getAllParliaments, getAllParties } from "@/lib/db";
 import { PolitikerFilters } from "@/components/PolitikerFilters";
 import { Badge } from "@/components/Badge";
+import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import Link from "next/link";
 import {
   ChevronLeft,
   ChevronRight,
-  UserCircle,
-  MapPin,
-  Briefcase,
 } from "lucide-react";
 
 interface Props {
@@ -95,9 +93,13 @@ export default async function PolitikerListPage({ searchParams }: Props) {
                       href={`/politiker/${p.id}`}
                       className="flex items-center gap-3 group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
-                        <UserCircle className="w-4 h-4 text-primary" />
-                      </div>
+                      <PoliticianAvatar
+                        photoUrl={p.photo_url}
+                        firstName={p.first_name}
+                        lastName={p.last_name}
+                        party={p.party_label}
+                        size="sm"
+                      />
                       <div className="min-w-0">
                         <span className="font-medium text-foreground group-hover:text-primary transition-colors block truncate">
                           {p.title ? `${p.title} ` : ""}

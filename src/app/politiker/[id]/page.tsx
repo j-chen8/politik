@@ -14,8 +14,8 @@ import { StatCard } from "@/components/StatCard";
 import { Badge } from "@/components/Badge";
 import { BarChart } from "@/components/BarChart";
 import { ComparisonBar } from "@/components/ComparisonBar";
+import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import {
-  UserCircle,
   TrendingUp,
   Vote as VoteIcon,
   HandCoins,
@@ -122,9 +122,13 @@ export default async function PolitikerPage({ params }: Props) {
       {/* Profile Header */}
       <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 mb-6">
         <div className="flex flex-col sm:flex-row gap-6">
-          <div className="w-20 h-20 rounded-2xl bg-primary-light flex items-center justify-center shrink-0">
-            <UserCircle className="w-10 h-10 text-primary" />
-          </div>
+          <PoliticianAvatar
+            photoUrl={politician.photo_url}
+            firstName={politician.first_name}
+            lastName={politician.last_name}
+            party={politician.party_label}
+            size="lg"
+          />
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3 mb-2">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">

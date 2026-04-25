@@ -47,6 +47,9 @@ next-env.d.ts
 *.db.backup-*
 .politik-db-sync-state
 
+# generated assets (regeneratable via scripts/seed-photos-wikidata.ts)
+/public/photos/
+
 # playwright mcp temp
 .playwright-mcp/
 
