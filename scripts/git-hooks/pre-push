@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# pre-push hook: pusht politik.db nach R2 bevor Code nach GitHub geht.
+#
+# Logik im sync-db.sh:
+#  - keine lokalen DB-Änderungen → silent skip, git push läuft normal weiter
+#  - lokal neuer als Remote     → DB-Push, dann git push
+#  - Remote neuer (Konflikt)    → Abbruch mit Anleitung; Code-Push wird verhindert
+#
+# Bypass: git push --no-verify
+
+set -e
+echo "── DB-Sync (pre-push) ──"
+./scripts/sync-db.sh push

@@ -44,6 +44,8 @@ next-env.d.ts
 *.db
 *.db-wal
 *.db-shm
+*.db.backup-*
+.politik-db-sync-state
 
 # playwright mcp temp
 .playwright-mcp/

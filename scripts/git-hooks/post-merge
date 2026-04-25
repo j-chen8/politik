@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# post-merge hook: pullt politik.db von R2 nach erfolgreichem git pull/merge.
+#
+# Feuert auch bei normalen `git merge` Operationen, nicht nur bei `git pull`.
+# Das ist ok — der Pull skipt wenn nichts Neues auf R2 liegt.
+#
+# Bei Fehler nicht hart abbrechen — der Merge ist bereits passiert,
+# wir können ihn nicht mehr rückgängig machen.
+
+echo "── DB-Sync (post-merge) ──"
+./scripts/sync-db.sh pull || {
+  echo "⚠️  DB-Pull fehlgeschlagen — du arbeitest evtl. auf altem DB-Stand."
+  echo "    Manuell prüfen: ./scripts/sync-db.sh status"
+}
