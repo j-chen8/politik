@@ -80,26 +80,16 @@ export default function RootLayout({
         </header>
         <main className="flex-1">{children}</main>
         <footer className="border-t border-border py-6 text-center text-xs text-muted">
-          <div className="max-w-6xl mx-auto px-4">
-            Daten von{" "}
-            <a
-              href="https://www.abgeordnetenwatch.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              abgeordnetenwatch.de
-            </a>{" "}
-            &{" "}
-            <a
-              href="https://dip.bundestag.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              DIP Bundestag
-            </a>{" "}
-            · Keine offizielle Regierungsseite
+          <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            <span>Keine offizielle Regierungsseite</span>
+            <span aria-hidden>·</span>
+            <Link href="/datenquellen" className="text-primary hover:underline">
+              Datenquellen &amp; Credits
+            </Link>
+            <span aria-hidden>·</span>
+            <Link href="/impressum" className="text-primary hover:underline">
+              Impressum
+            </Link>
           </div>
         </footer>
       </body>
