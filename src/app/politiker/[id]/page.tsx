@@ -184,15 +184,48 @@ export default async function PolitikerPage({ params }: Props) {
                   {speechInfo.count} Plenarbeiträge ansehen
                 </a>
               )}
-              {politician.abgeordnetenwatch_url && (
+              {politician.homepage_url && (
                 <a
-                  href={politician.abgeordnetenwatch_url}
+                  href={politician.homepage_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
                 >
                   <ExternalLink className="w-3 h-3" />
-                  abgeordnetenwatch.de
+                  {new URL(politician.homepage_url).hostname.replace(/^www\./, "")}
+                </a>
+              )}
+              {politician.twitter_handle && (
+                <a
+                  href={`https://twitter.com/${politician.twitter_handle}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  @{politician.twitter_handle}
+                </a>
+              )}
+              {politician.instagram_handle && (
+                <a
+                  href={`https://instagram.com/${politician.instagram_handle}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  Instagram
+                </a>
+              )}
+              {politician.abgeordnetenwatch_url && (
+                <a
+                  href={politician.abgeordnetenwatch_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-primary hover:underline"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  abgeordnetenwatch
                 </a>
               )}
             </div>

@@ -144,6 +144,10 @@ export interface PoliticianRow {
   party_id: number | null;
   party_label: string | null;
   abgeordnetenwatch_url: string | null;
+  qid_wikidata: string | null;
+  homepage_url: string | null;
+  twitter_handle: string | null;
+  instagram_handle: string | null;
 }
 
 export interface MandateRow {
