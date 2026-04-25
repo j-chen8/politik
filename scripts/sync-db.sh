@@ -53,6 +53,18 @@ file_mtime_epoch() {
   stat -c %Y "$1" 2>/dev/null || stat -f %m "$1"
 }
 
+# Effektive DB-mtime: max(politik.db, politik.db-wal). Bei SQLite WAL-Mode
+# landen frische Writes erstmal nur im -wal File; ohne diesen Check würde
+# unsere Smart-Logik denken "lokal unverändert" obwohl es Änderungen gibt.
+db_mtime_epoch() {
+  local main wal=0
+  main=$(file_mtime_epoch "$1")
+  if [[ -f "${1}-wal" ]]; then
+    wal=$(file_mtime_epoch "${1}-wal")
+  fi
+  if (( wal > main )); then echo "$wal"; else echo "$main"; fi
+}
+
 file_mtime_human() {
   stat -c %y "$1" 2>/dev/null || stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" "$1"
 }
@@ -89,7 +101,7 @@ remote_meta_raw() {
 #   REMOTE_CHANGED — "1" wenn Remote nach LAST_SYNC_EP gepusht
 compute_status() {
   if [[ -f "$DB_FILE" ]]; then
-    LOCAL_EPOCH=$(file_mtime_epoch "$DB_FILE")
+    LOCAL_EPOCH=$(db_mtime_epoch "$DB_FILE")
   else
     LOCAL_EPOCH=0
   fi
