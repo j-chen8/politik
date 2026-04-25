@@ -29,7 +29,24 @@ check_no_dev_server() {
 }
 
 human_size() {
-  numfmt --to=iec --suffix=B "$1" 2>/dev/null || echo "${1}B"
+  numfmt --to=iec --suffix=B "$1" 2>/dev/null || {
+    local b=$1
+    if (( b >= 1073741824 )); then echo "$(( b / 1073741824 ))GiB"
+    elif (( b >= 1048576 )); then echo "$(( b / 1048576 ))MiB"
+    elif (( b >= 1024 )); then echo "$(( b / 1024 ))KiB"
+    else echo "${b}B"
+    fi
+  }
+}
+
+file_size() {
+  if stat -c %s "$1" 2>/dev/null; then return; fi
+  stat -f %z "$1"
+}
+
+file_mtime() {
+  if stat -c %y "$1" 2>/dev/null; then return; fi
+  stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" "$1"
 }
 
 # ── Commands ──
@@ -46,14 +63,14 @@ cmd_push() {
   sqlite3 "$DB_FILE" "PRAGMA wal_checkpoint(TRUNCATE);" > /dev/null
 
   local size
-  size=$(stat -c %s "$DB_FILE")
+  size=$(file_size "$DB_FILE")
   echo "→ Upload nach $REMOTE/$DB_REMOTE_NAME ($(human_size "$size"))…"
   rclone copyto "$DB_FILE" "$REMOTE/$DB_REMOTE_NAME" --progress --s3-no-check-bucket
 
   # Marker mit Timestamp + Hostname für Konfliktdetektion
   local marker
   marker=$(printf '{"host":"%s","time":"%s","size":%d}' \
-    "$(hostname)" "$(date -Iseconds)" "$size")
+    "$(hostname)" "$(date -u +%Y-%m-%dT%H:%M:%S%z 2>/dev/null || date -Iseconds)" "$size")
   echo "$marker" | rclone rcat "$REMOTE/${DB_REMOTE_NAME}.meta" --s3-no-check-bucket
 
   echo "✓ Push fertig"
@@ -81,8 +98,8 @@ cmd_status() {
   echo "── Lokal ──"
   if [[ -f "$DB_FILE" ]]; then
     local lsize lmod
-    lsize=$(stat -c %s "$DB_FILE")
-    lmod=$(stat -c %y "$DB_FILE")
+    lsize=$(file_size "$DB_FILE")
+    lmod=$(file_mtime "$DB_FILE")
     echo "  Größe:    $(human_size "$lsize")"
     echo "  Modified: $lmod"
   else
