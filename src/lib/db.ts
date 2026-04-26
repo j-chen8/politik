@@ -151,6 +151,9 @@ export interface PoliticianRow {
   bio_summary: string | null;
   bio_url: string | null;
   bio_source: string | null;
+  cv_json: string | null;
+  cv_source: string | null;
+  cv_generated_at: string | null;
 }
 
 export interface MandateRow {

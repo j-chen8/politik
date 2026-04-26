@@ -90,6 +90,13 @@ export default function DatenquellenPage() {
             description="XML-Plenarprotokolle des aktuellen Bundestags. Reden werden mit Hilfe von KI (Groq, Google Gemini) automatisch zusammengefasst."
           />
           <SourceCard
+            title="KI-generierte Lebensläufe (Groq Llama 3.3)"
+            href="https://groq.com"
+            license="Eigene Verarbeitung von Wikipedia-Inhalten"
+            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
+            description="Die strukturierten Lebenslauf-Stichpunkte werden vom Llama-3.3-70b-Modell aus dem deutschen Wikipedia-Artikel extrahiert. Können Lücken oder Ungenauigkeiten enthalten — verbindlich ist immer der Wikipedia-Artikel selbst."
+          />
+          <SourceCard
             title="Bundestag Ausschuss-Protokolle"
             href="https://www.bundestag.de/dokumente/protokolle/"
             license="Öffentliche Kurzprotokolle"

@@ -15,6 +15,7 @@ import { Badge } from "@/components/Badge";
 import { BarChart } from "@/components/BarChart";
 import { ComparisonBar } from "@/components/ComparisonBar";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
+import { PoliticianCV, type CV } from "@/components/PoliticianCV";
 import {
   TrendingUp,
   Vote as VoteIcon,
@@ -255,6 +256,16 @@ export default async function PolitikerPage({ params }: Props) {
           )}
         </div>
       )}
+
+      {/* Strukturierter Lebenslauf */}
+      {politician.cv_json && (() => {
+        try {
+          const cv = JSON.parse(politician.cv_json) as CV;
+          return <PoliticianCV cv={cv} />;
+        } catch {
+          return null;
+        }
+      })()}
 
       {/* Sonderfälle / Notes */}
       {notes.length > 0 && (

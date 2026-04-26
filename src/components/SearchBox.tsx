@@ -10,19 +10,23 @@ export function SearchBox() {
   const router = useRouter();
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
     if (!query.trim()) return;
+    e.preventDefault();
     startTransition(() => {
       router.push(`/suche?q=${encodeURIComponent(query.trim())}`);
     });
   }
 
+  // Native action="/suche" method="get" als Fallback, falls JS noch nicht
+  // hydratiert ist (z.B. über langsame Verbindung). Dann funktioniert es
+  // wie ein normales HTML-Form: Browser navigiert zu /suche?q=...
   return (
-    <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto w-full">
+    <form action="/suche" method="get" onSubmit={handleSubmit} className="relative max-w-lg mx-auto w-full">
       <div className="relative">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
         <input
           type="text"
+          name="q"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Name eingeben, z.B. &quot;Friedrich Merz&quot;"
