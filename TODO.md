@@ -1,8 +1,36 @@
 # Politik — Ideas & Roadmap
 
-## Now
-<!-- Current focus / next thing to build -->
+## Now (Stand 2026-04-27, Laptop)
 
+### CV-Pipeline: 622/629 Bundestag-MdBs haben einen CV (98.9%)
+
+**Quellen:**
+- `cv_json` (Wikipedia via Groq): 446 MdBs
+- `cv_homepage_json` (Homepage-Scraping via Groq): 423 MdBs
+- Überlappung: viele haben beide Quellen
+
+**Noch fehlend (6 + 1 Sonderfall):**
+
+| Name | Grund | Nächster Schritt |
+|------|-------|------------------|
+| Peter Boehringer | Wikipedia 413 + Homepage nicht geprüft | Wikipedia-Retry mit 8k Trim oder Homepage manuell checken |
+| Franziska Brantner | Homepage `/ueber-mich/` hatte zu wenig Text | Nochmal versuchen oder Wikipedia-Fallback |
+| Markus Frohnmaier | Homepage-Fetch fehlgeschlagen | Später nochmal versuchen |
+| Mark Helfrich | Homepage `/ueber-mich2/` hatte zu wenig Text | Wikipedia-Fallback |
+| Friedrich Merz | Cloudflare blockiert Scraper | Wikipedia-Fallback mit 8k Trim |
+| Sören Pellmann | Homepage-Fetch fehlgeschlagen | Später nochmal versuchen |
+| Carsten Träger | **Verstorben** — Homepage zeigt nur Trauerbekundung | Überspringen |
+
+**Scripts:**
+- `scripts/seed-cv.ts` — Wikipedia → Groq → `cv_json` (Batch)
+- `scripts/seed-cv-homepage.ts` — Homepage scrapen → Groq → `cv_homepage_json` (Batch, mit Link-Scan)
+- `scripts/seed-cv-manual.ts` — Gezielter Scraper für manuell gefundene Bio-URLs
+
+### Was als nächstes zu tun ist
+- [ ] Die 5 fehlenden CVs fixen (Wikipedia-Retry mit 8k Trim)
+- [ ] CV-Zusammenfassungen generieren (aus cv_json/cv_homepage_json eine lesbare Bio für die UI)
+- [ ] CV-Daten in der Politiker-Detailseite anzeigen (PoliticianCV Komponente existiert bereits)
+- [ ] Homepage-URLs korrigieren: Hülya Düber → `huelyadueber.de`, Katja Mast → `katja-mast.de`
 
 ## Next Up
 <!-- Prioritized ideas ready to build -->
@@ -138,3 +166,4 @@ Keine zentrale API — kreative Datenquellen nötig.
 - Lokale Spiegelung von Votes/Sidejobs/Committees aus Abgeordnetenwatch
 - Politiker-Fotos: Stufe 1 — Wikidata-Seed mit Initialen-Fallback (PoliticianAvatar)
 - DB-Sync zwischen Rechnern via Cloudflare R2 (sync-db.sh + Git-Hooks)
+- CV-Pipeline Bundestag: 622/629 MdBs haben strukturierten CV (Wikipedia + Homepage-Scraping, 2026-04-27)
