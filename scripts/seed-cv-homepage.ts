@@ -158,29 +158,94 @@ const ABOUT_PATHS = [
   "/wer-bin-ich/", "/wer-bin-ich",
 ];
 
+// Keywords to match in link href or text when scanning the homepage
+const ABOUT_KEYWORDS = /(?:ueber[_-]?mich|über[_-]?mich|zur[_-]?person|lebenslauf|vita|biogra(?:fie|phie)|steckbrief|person|about[_-]?me|profil|wer[_-]bin[_-]ich|mein[_-]weg|werdegang)/i;
+
 interface PageHit { url: string; text: string }
+
+/** Extract all <a href="..."> from HTML, return absolute URLs */
+function extractLinks(html: string, baseUrl: string): { href: string; text: string }[] {
+  const links: { href: string; text: string }[] = [];
+  const re = /<a\s[^>]*href\s*=\s*["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html)) !== null) {
+    const rawHref = m[1].trim();
+    const linkText = m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    if (!rawHref || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) continue;
+    try {
+      const abs = new URL(rawHref, baseUrl).href;
+      links.push({ href: abs, text: linkText });
+    } catch { /* skip invalid URLs */ }
+  }
+  return links;
+}
+
+async function tryFetchAboutPage(url: string): Promise<PageHit | null> {
+  if (!(await isAllowed(url))) return null;
+  const res = await politeFetch(url);
+  if (!res?.ok) return null;
+  const ct = res.headers.get("content-type") ?? "";
+  if (!ct.includes("text/html")) return null;
+  const html = await res.text();
+  const text = htmlToText(html);
+  if (text.length < 300) return null;
+  return { url, text };
+}
 
 async function findAboutPage(homepageUrl: string): Promise<PageHit | null> {
   let origin: string;
   try { origin = new URL(homepageUrl).origin; }
   catch { return null; }
 
+  // Strategy 1: Try standard paths first (fast, no extra fetches)
   let best: PageHit | null = null;
   for (const p of ABOUT_PATHS) {
     const tryUrl = origin + p;
-    if (!(await isAllowed(tryUrl))) continue;
-    const res = await politeFetch(tryUrl);
-    if (!res?.ok) continue;
-    const ct = res.headers.get("content-type") ?? "";
-    if (!ct.includes("text/html")) continue;
-    const html = await res.text();
-    const text = htmlToText(html);
-    if (text.length < 300) continue;
-    if (!best || text.length > best.text.length) {
-      best = { url: tryUrl, text };
-    }
-    if (text.length > 2000) break; // good enough
+    const hit = await tryFetchAboutPage(tryUrl);
+    if (!hit) continue;
+    if (!best || hit.text.length > best.text.length) best = hit;
+    if (hit.text.length > 2000) return best; // good enough
   }
+  if (best) return best;
+
+  // Strategy 2: Fetch homepage, scan for links with about-keywords
+  const homeRes = await politeFetch(homepageUrl);
+  if (!homeRes?.ok) return null;
+  const homeCt = homeRes.headers.get("content-type") ?? "";
+  if (!homeCt.includes("text/html")) return null;
+  const homeHtml = await homeRes.text();
+
+  const links = extractLinks(homeHtml, homepageUrl);
+  const seen = new Set<string>();
+  const candidates: string[] = [];
+
+  for (const link of links) {
+    // Match keyword in href path or link text
+    const urlPath = new URL(link.href).pathname;
+    if (ABOUT_KEYWORDS.test(urlPath) || ABOUT_KEYWORDS.test(link.text)) {
+      // Only follow same-origin links
+      if (link.href.startsWith(origin) && !seen.has(link.href)) {
+        seen.add(link.href);
+        candidates.push(link.href);
+      }
+    }
+  }
+
+  for (const url of candidates.slice(0, 5)) {
+    const hit = await tryFetchAboutPage(url);
+    if (!hit) continue;
+    if (!best || hit.text.length > best.text.length) best = hit;
+    if (hit.text.length > 2000) return best;
+  }
+
+  // Strategy 3: If still nothing, use the homepage itself if it has enough bio-like content
+  if (!best) {
+    const homeText = htmlToText(homeHtml);
+    if (homeText.length > 500 && ABOUT_KEYWORDS.test(homeText.slice(0, 3000))) {
+      best = { url: homepageUrl, text: homeText };
+    }
+  }
+
   return best;
 }
 

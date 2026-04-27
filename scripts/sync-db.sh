@@ -164,7 +164,7 @@ cmd_push() {
   size=$(file_size "$DB_FILE")
   now=$(now_epoch)
 
-  echo "→ Upload nach $REMOTE/$DB_REMOTE_NAME ($(human_size "$size"))…"
+  echo "-> Upload nach $REMOTE/$DB_REMOTE_NAME ($(human_size "$size"))..."
   rclone copyto "$DB_FILE" "$REMOTE/$DB_REMOTE_NAME" --progress --s3-no-check-bucket
 
   local marker
@@ -202,11 +202,11 @@ cmd_pull() {
 
   if [[ -f "$DB_FILE" ]]; then
     local backup="${DB_FILE}.backup-$(date +%Y%m%d-%H%M%S)"
-    echo "→ Backup lokaler DB nach $backup…"
+    echo "-> Backup lokaler DB nach ${backup}..."
     cp "$DB_FILE" "$backup"
   fi
 
-  echo "→ Download von $REMOTE/$DB_REMOTE_NAME…"
+  echo "-> Download von $REMOTE/$DB_REMOTE_NAME..."
   rclone copyto "$REMOTE/$DB_REMOTE_NAME" "$DB_FILE" --progress --s3-no-check-bucket
   rm -f "${DB_FILE}-wal" "${DB_FILE}-shm"
 
