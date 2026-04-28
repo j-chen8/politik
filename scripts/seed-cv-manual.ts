@@ -152,23 +152,28 @@ async function fetchWikipediaText(name: string, db: Database.Database): Promise<
 
 const SYSTEM_PROMPT = `Du extrahierst aus dem Text einer Politiker-Webseite einen strukturierten Lebenslauf in deutschem JSON.
 
-Antworte AUSSCHLIESSLICH mit gültigem JSON in folgendem Schema:
+SCHEMA (alle vier Felder Pflicht, leeres Array [] wenn nichts dazu im Text steht):
 {
-  "ausbildung": [{"jahr": "2003-2007", "text": "Studium der Rechtswissenschaft an der Universität Köln, Diplom-Jurist"}],
-  "beruflicher_werdegang": [{"jahr": "2010-2014", "text": "Wissenschaftlicher Mitarbeiter am Lehrstuhl für Verfassungsrecht, Universität Bonn"}],
-  "politische_stationen": [{"jahr": "seit 2017", "text": "Mitglied der SPD, ab 2019 Vorsitzender des Ortsvereins Köln-Mülheim"}],
-  "sonstiges": [{"jahr": "2019", "text": "Buchautor: 'Titel des Buches' (Suhrkamp)"}]
+  "ausbildung":            [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "beruflicher_werdegang": [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "politische_stationen":  [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "sonstiges":             [ { "jahr": "<string>", "text": "<string>" }, ... ]
 }
 
-Strikte Regeln:
-- Nur Fakten aus dem gelieferten Text. Keine Vermutungen, keine Erfindungen.
+ABSOLUT VERBOTEN:
+- Erfinden von Universitäten, Abschlüssen, Verlagen, Buchtiteln, Jahreszahlen oder anderen Fakten, die nicht WÖRTLICH im gelieferten Text stehen.
+- Übernehmen von Beispiel-Inhalten aus Demo-Schemata. Wenn der Text keine Universität nennt, schreibst du KEINE Universität.
+- Buchtitel oder Verlage erfinden. Wenn nicht im Text → "sonstiges": [].
+
+REGELN:
+- Nur Fakten aus dem gelieferten Text. Im Zweifel weglassen.
 - Chronologisch sortiert (älteste zuerst).
-- jahr als String mit Format "YYYY", "YYYY-YYYY", "seit YYYY", "bis YYYY".
-- Bei Ausbildung: WENN im Text genannt, IMMER Universität/Schule UND erreichten Abschluss/Titel mitnennen.
-- Bei Berufen: Position + Arbeitgeber/Firma falls genannt.
+- jahr als String, exakt im Format wie im Text: "YYYY", "YYYY-YYYY", "seit YYYY", "bis YYYY", "YYYY-heute" oder "" wenn keine Jahresangabe vorhanden.
+- Bei Ausbildung: NUR die Schule/Uni nennen die im Text steht. Wenn nur "Studium der Jura" steht → text: "Studium der Jura" (ohne Uni).
+- Bei Berufen: Position genauso wie im Text. Arbeitgeber nur wenn genannt.
 - text präzise (max ~200 Zeichen, ein Satz).
-- Wenn ein Bereich keine Einträge hat: leeres Array [].
-- Antworte NUR mit dem JSON-Objekt, kein Markdown.`;
+- "sonstiges" ist für Hobbys, Ehrenämter, Auszeichnungen, Veröffentlichungen — NUR wenn im Text genannt.
+- Antworte NUR mit dem JSON-Objekt, kein Markdown, keine Erklärung.`;
 
 async function generateCv(name: string, text: string): Promise<any | null> {
   const trimmed = text.slice(0, 8000);
@@ -212,8 +217,9 @@ async function main() {
   if (!cols.has("cv_homepage_json")) db.exec("ALTER TABLE politicians ADD COLUMN cv_homepage_json TEXT");
   if (!cols.has("cv_homepage_url")) db.exec("ALTER TABLE politicians ADD COLUMN cv_homepage_url TEXT");
   if (!cols.has("cv_homepage_generated_at")) db.exec("ALTER TABLE politicians ADD COLUMN cv_homepage_generated_at TEXT");
+  if (!cols.has("cv_homepage_text")) db.exec("ALTER TABLE politicians ADD COLUMN cv_homepage_text TEXT");
 
-  const updateHomepage = db.prepare("UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ? WHERE first_name || ' ' || last_name = ?");
+  const updateHomepage = db.prepare("UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ?, cv_homepage_text = ? WHERE first_name || ' ' || last_name = ?");
   const updateWiki = db.prepare("UPDATE politicians SET cv_json = ?, cv_source = 'wikipedia_de+groq:llama-3.1-8b-instant', cv_generated_at = ? WHERE first_name || ' ' || last_name = ?");
 
   let ok = 0, fail = 0, skipped = 0;
@@ -278,7 +284,7 @@ async function main() {
       }
       const cv = await generateCv(entry.name, allText);
       if (!cv) { fail++; continue; }
-      updateHomepage.run(JSON.stringify(cv), sourceUrl, new Date().toISOString(), entry.name);
+      updateHomepage.run(JSON.stringify(cv), sourceUrl, new Date().toISOString(), allText, entry.name);
       console.log(`    ✓ (${sourceUrl})`);
       ok++;
     } catch (e: any) {

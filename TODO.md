@@ -1,36 +1,40 @@
 # Politik — Ideas & Roadmap
 
-## Now (Stand 2026-04-27, Laptop)
+## Now (Stand 2026-04-28, Laptop)
 
-### CV-Pipeline: 622/629 Bundestag-MdBs haben einen CV (98.9%)
+### CV-Pipeline: 628/629 Bundestag-MdBs haben einen CV (99.8%) ✅
 
-**Quellen:**
-- `cv_json` (Wikipedia via Groq): 446 MdBs
-- `cv_homepage_json` (Homepage-Scraping via Groq): 423 MdBs
+**Quellen (Stand DB):**
+- `cv_json` (Wikipedia via Groq): ~455 MdBs
+- `cv_homepage_json` (Homepage-Scraping via Groq): ~454 MdBs
+- `cv_homepage_text` (Roh-Text der Homepage, NEU seit 2026-04-28): 436 MdBs
 - Überlappung: viele haben beide Quellen
 
-**Noch fehlend (6 + 1 Sonderfall):**
+**Nur noch 1 Sonderfall:**
 
-| Name | Grund | Nächster Schritt |
-|------|-------|------------------|
-| Peter Boehringer | Wikipedia 413 + Homepage nicht geprüft | Wikipedia-Retry mit 8k Trim oder Homepage manuell checken |
-| Franziska Brantner | Homepage `/ueber-mich/` hatte zu wenig Text | Nochmal versuchen oder Wikipedia-Fallback |
-| Markus Frohnmaier | Homepage-Fetch fehlgeschlagen | Später nochmal versuchen |
-| Mark Helfrich | Homepage `/ueber-mich2/` hatte zu wenig Text | Wikipedia-Fallback |
-| Friedrich Merz | Cloudflare blockiert Scraper | Wikipedia-Fallback mit 8k Trim |
-| Sören Pellmann | Homepage-Fetch fehlgeschlagen | Später nochmal versuchen |
-| Carsten Träger | **Verstorben** — Homepage zeigt nur Trauerbekundung | Überspringen |
+| Name | Grund | Status |
+|------|-------|--------|
+| Carsten Träger | **Verstorben** — Homepage zeigt nur Trauerbekundung | Übersprungen |
 
 **Scripts:**
 - `scripts/seed-cv.ts` — Wikipedia → Groq → `cv_json` (Batch)
-- `scripts/seed-cv-homepage.ts` — Homepage scrapen → Groq → `cv_homepage_json` (Batch, mit Link-Scan)
+- `scripts/seed-cv-homepage.ts` — Homepage scrapen → Groq → `cv_homepage_json` (Batch, mit Link-Scan), speichert auch Roh-Text
 - `scripts/seed-cv-manual.ts` — Gezielter Scraper für manuell gefundene Bio-URLs
+- `scripts/seed-cv-from-paste.ts` — **NEU**: nimmt manuell gepasteten Bio-Text aus Stdin
+- `scripts/refix-hallucinated-cvs.ts` — **NEU**: refetcht und regeneriert Einträge mit bekannten LLM-Halluzinationen
+
+### Wichtige Lessons (2026-04-28)
+
+**LLM-Halluzinationen aus Beispiel-Inhalten im Prompt:** Der ursprüngliche System-Prompt enthielt konkrete Beispiele wie `"sonstiges": [{"jahr": "2019", "text": "Buchautor: 'Titel des Buches' (Suhrkamp)"}]` und `"Universität Köln, Diplom-Jurist"`. Das Llama-8b-Modell hat diese Beispiele bei ~17% der Einträge als FAKTEN übernommen, obwohl sie im Quelltext nicht vorkamen. Fix: Beispiele durch Schema-Platzhalter (`<string>`) ersetzt + explizites Verbot von Beispiel-Übernahme im Prompt. Alle 86 betroffenen Einträge wurden refixed.
+
+**Roh-Text-Speicherung:** Vor 2026-04-28 wurde nur das LLM-JSON gespeichert, nicht der Quelltext → keine nachträgliche Korrektur ohne Re-Scraping möglich. Jetzt: `cv_homepage_text` Spalte speichert den Roh-Text → erlaubt späteres Re-Processing mit besseren LLMs / Multi-LLM-Konsens-System (siehe Idee #4).
 
 ### Was als nächstes zu tun ist
-- [ ] Die 5 fehlenden CVs fixen (Wikipedia-Retry mit 8k Trim)
 - [ ] CV-Zusammenfassungen generieren (aus cv_json/cv_homepage_json eine lesbare Bio für die UI)
 - [ ] CV-Daten in der Politiker-Detailseite anzeigen (PoliticianCV Komponente existiert bereits)
 - [ ] Homepage-URLs korrigieren: Hülya Düber → `huelyadueber.de`, Katja Mast → `katja-mast.de`
+- [ ] Roh-Text auch für die ~190 MdBs nachholen, die nur cv_homepage_json haben aber kein cv_homepage_text (Discovery hat About-Page nicht mehr gefunden — bekannte URL aus cv_homepage_url direkt re-fetchen)
+- [ ] Multi-LLM-Konsens-System auf den 436 vorhandenen Roh-Texten testen (siehe Idee #4)
 
 ## Next Up
 <!-- Prioritized ideas ready to build -->
@@ -122,7 +126,35 @@ Geldflüsse sichtbar machen.
 - _Komplexität: Hoch — Datenquellen unklar, evtl. manuelle Recherche + Scraping nötig_
 - _Datenquellen: Nebeneinkünfte (abgeordnetenwatch), Lobbyregister, Bundesrechnungshof_
 
-### 4. Mitarbeiter-Transparenz
+### 4. Multi-LLM Konsens-System (Neutralitäts-Garantie)
+Schutz gegen den Vorwurf "ein einzelnes LLM analysiert parteiisch".
+
+**Konzept:** Jede Textpassage (Reden, Anträge, CV-Bios, Ausschuss-Protokolle) wird parallel von mehreren **unabhängigen** LLMs unterschiedlicher Anbieter analysiert. Ergebnisse werden auf semantische Übereinstimmung verglichen — bei Divergenz wird ein Diskussions-/Reconciliation-Schritt angestoßen, bis Konsens erreicht ist (oder die Divergenz selbst transparent dokumentiert wird).
+
+**Warum:**
+- Einzel-LLM-Bias (Trainingsdaten-Schlagseite, RLHF-Tendenzen) ist ein angreifbarer Punkt der Plattform
+- Bei politisch sensiblen Texten muss die Analyse auch dann verteidigbar sein, wenn jemand "warum hat eure KI das so formuliert?" fragt
+- Cross-Vendor-Konsens (z. B. Anthropic + OpenAI + Google + Open-Source) ist methodisch weit stärker als Single-Provider
+
+**Architektur-Skizze:**
+- Pro Text: N parallele LLM-Calls (z. B. Claude, GPT, Gemini, Llama via Groq)
+- Strukturierter Output (JSON) — Themen, Tonalität, Forderungen, Fakten
+- Vergleichs-Layer: semantische Diff über die Outputs (Embedding-Distanz / strukturierter Compare)
+- Bei Divergenz > Threshold: Moderator-LLM bekommt alle N Antworten + Originaltext, erzeugt Synthese ODER markiert "uneinig" mit Begründung
+- Konsens + Disagreement-Score wird gespeichert und in der UI ausgewiesen ("3/4 LLMs einig, 1 abweichend — siehe Begründung")
+
+**Anwendungen im Projekt:**
+- `speech_summaries` (aktuell single Groq) → Konsens-Pipeline
+- CV-Bio-Zusammenfassungen
+- Themen-Klassifikation von Anträgen/Drucksachen
+- Tonalität/Sentiment von Reden
+- Conflict-of-Interest-Bewertung von Sidejobs
+
+**Komplexität: Hoch** — Multi-Vendor-Keys, Kosten-Management, Caching kritisch, Diff-Heuristik nicht-trivial.
+
+**Datenquellen:** Anthropic API, OpenAI API, Google Gemini, Groq (Llama/Mixtral). Mindestens 3 unabhängige Anbieter für aussagekräftigen Konsens.
+
+### 5. Mitarbeiter-Transparenz
 Keine zentrale API — kreative Datenquellen nötig.
 
 **Datenlage:**

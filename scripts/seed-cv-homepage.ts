@@ -56,7 +56,7 @@ function sleep(ms: number) { return new Promise((r) => setTimeout(r, ms)); }
 function ensureColumns(db: Database.Database) {
   const cols = db.prepare("PRAGMA table_info(politicians)").all() as { name: string }[];
   const have = new Set(cols.map((c) => c.name));
-  for (const col of ["cv_homepage_json", "cv_homepage_url", "cv_homepage_generated_at"]) {
+  for (const col of ["cv_homepage_json", "cv_homepage_url", "cv_homepage_generated_at", "cv_homepage_text"]) {
     if (!have.has(col)) {
       db.exec(`ALTER TABLE politicians ADD COLUMN ${col} TEXT`);
       console.log(`→ ${col} Spalte angelegt`);
@@ -253,23 +253,28 @@ async function findAboutPage(homepageUrl: string): Promise<PageHit | null> {
 
 const SYSTEM_PROMPT = `Du extrahierst aus dem Text einer Politiker-Homepage einen strukturierten Lebenslauf in deutschem JSON.
 
-Antworte AUSSCHLIESSLICH mit gültigem JSON in folgendem Schema:
+SCHEMA (alle vier Felder Pflicht, leeres Array [] wenn nichts dazu im Text steht):
 {
-  "ausbildung": [{"jahr": "2003-2007", "text": "Studium der Rechtswissenschaft an der Universität Köln, Diplom-Jurist"}],
-  "beruflicher_werdegang": [{"jahr": "2010-2014", "text": "Wissenschaftlicher Mitarbeiter am Lehrstuhl für Verfassungsrecht, Universität Bonn"}],
-  "politische_stationen": [{"jahr": "seit 2017", "text": "Mitglied der SPD, ab 2019 Vorsitzender des Ortsvereins Köln-Mülheim"}],
-  "sonstiges": [{"jahr": "2019", "text": "Buchautor: 'Titel des Buches' (Suhrkamp)"}]
+  "ausbildung":            [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "beruflicher_werdegang": [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "politische_stationen":  [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "sonstiges":             [ { "jahr": "<string>", "text": "<string>" }, ... ]
 }
 
-Strikte Regeln:
-- Nur Fakten aus dem gelieferten Text. Keine Vermutungen, keine Erfindungen.
+ABSOLUT VERBOTEN:
+- Erfinden von Universitäten, Abschlüssen, Verlagen, Buchtiteln, Jahreszahlen oder anderen Fakten, die nicht WÖRTLICH im gelieferten Text stehen.
+- Übernehmen von Beispiel-Inhalten aus Demo-Schemata. Wenn der Text keine Universität nennt, schreibst du KEINE Universität.
+- Buchtitel oder Verlage erfinden. Wenn nicht im Text → "sonstiges": [].
+
+REGELN:
+- Nur Fakten aus dem gelieferten Text. Im Zweifel weglassen.
 - Chronologisch sortiert (älteste zuerst).
-- jahr als String mit Format "YYYY", "YYYY-YYYY", "seit YYYY", "bis YYYY" — wie im Text.
-- Bei Ausbildung: WENN im Text genannt, IMMER Universität/Schule UND erreichten Abschluss/Titel mitnennen.
-- Bei Berufen: Position + Arbeitgeber/Firma falls genannt.
+- jahr als String, exakt im Format wie im Text: "YYYY", "YYYY-YYYY", "seit YYYY", "bis YYYY", "YYYY-heute" oder "" wenn keine Jahresangabe vorhanden.
+- Bei Ausbildung: NUR die Schule/Uni nennen die im Text steht. Wenn nur "Studium der Jura" steht → text: "Studium der Jura" (ohne Uni).
+- Bei Berufen: Position genauso wie im Text. Arbeitgeber nur wenn genannt.
 - text präzise (max ~200 Zeichen, ein Satz).
-- Wenn ein Bereich keine Einträge hat: leeres Array [].
-- Antworte NUR mit dem JSON-Objekt, kein Markdown.`;
+- "sonstiges" ist für Hobbys, Ehrenämter, Auszeichnungen, Veröffentlichungen — NUR wenn im Text genannt.
+- Antworte NUR mit dem JSON-Objekt, kein Markdown, keine Erklärung.`;
 
 interface CV {
   ausbildung: { jahr: string; text: string }[];
@@ -335,7 +340,7 @@ async function main() {
   if (rows.length === 0) { db.close(); return; }
 
   const update = db.prepare(
-    `UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ? WHERE id = ?`
+    `UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ?, cv_homepage_text = ? WHERE id = ?`
   );
 
   let foundPage = 0, llmOk = 0, llmFail = 0, noPage = 0, done = 0;
@@ -349,7 +354,7 @@ async function main() {
       foundPage++;
       const cv = await generateCv(name, hit.text);
       if (!cv) { llmFail++; return; }
-      update.run(JSON.stringify(cv), hit.url, new Date().toISOString(), p.id);
+      update.run(JSON.stringify(cv), hit.url, new Date().toISOString(), hit.text, p.id);
       llmOk++;
     } catch (e: any) {
       llmFail++;
