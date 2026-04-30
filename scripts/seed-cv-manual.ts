@@ -58,7 +58,7 @@ const MANUAL_ENTRIES: ManualEntry[] = [
   { name: "Philip Hoffmann", urls: ["https://philip-hoffmann.de/uber-mich/"] },
   { name: "Lamya Kaddor", urls: ["https://www.lamya-kaddor.de/%C3%BCber-mich"] },
   { name: "Karl Lauterbach", urls: ["https://karllauterbach.de/prof_karl_lauterbach/"] },
-  { name: "Katja Mast", urls: ["https://www.katja-mast.de/de/topic/4777.%C3%BCber-mich.html"] },
+  { name: "Katja Mast", urls: ["https://www.katja-mast.de/de/topic/4800.meine-biographie.html"] },
   { name: "Volker Mayer-Lay", urls: ["https://mayerlay.live-website.com/portfolio-item/privat-und-beruf/", "https://mayerlay.live-website.com/portfolio-item/politik/"] },
   { name: "Jan Metzler", urls: ["https://www.janmetzler.de/pers%C3%B6nliches/%C3%BCber-mich/"] },
   { name: "Matthias Moosdorf", urls: ["https://matthiasmoosdorf.de/ueber"] },
@@ -99,18 +99,12 @@ const MANUAL_ENTRIES: ManualEntry[] = [
   { name: "Carsten Träger", urls: [], skip: true, note: "Verstorben" },
 ];
 
-// ── HTML → Plain Text ──
+// ── HTML → Plain Text (shared cleaner) ──
+
+import { cleanBioHtml } from "./_lib/html-clean";
 
 function htmlToText(html: string): string {
-  let t = html.replace(/<script[\s\S]*?<\/script>/gi, " ");
-  t = t.replace(/<style[\s\S]*?<\/style>/gi, " ");
-  t = t.replace(/<noscript[\s\S]*?<\/noscript>/gi, " ");
-  t = t.replace(/<nav[\s\S]*?<\/nav>/gi, " ");
-  t = t.replace(/<footer[\s\S]*?<\/footer>/gi, " ");
-  t = t.replace(/<[^>]+>/g, " ");
-  t = t.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d));
-  t = t.replace(/\s+/g, " ").trim();
-  return t;
+  return cleanBioHtml(html).text;
 }
 
 // ── Fetch ──

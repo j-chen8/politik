@@ -202,12 +202,20 @@ export default async function RednerPage({
                     {sessionSummaries.map((sum, idx) => {
                       const typConfig =
                         TYP_CONFIG[sum.typ] || TYP_CONFIG.debatte;
+                      // Build deep-link to PDF page if available
+                      const pdfDeepLink =
+                        sum.source_url && sum.page_start
+                          ? `${sum.source_url}#page=${sum.page_start}`
+                          : sum.source_url;
+                      const pageLabel = sum.page_start
+                        ? `S. ${sum.page_start}${sum.page_section ?? ""}`
+                        : null;
                       return (
                         <div
                           key={idx}
                           className="rounded-xl bg-gray-50 px-4 py-3 text-sm"
                         >
-                          <div className="flex items-center gap-2 mb-1.5">
+                          <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                             <span
                               className="px-2 py-0.5 rounded-md text-[11px] font-semibold text-white"
                               style={{
@@ -221,11 +229,120 @@ export default async function RednerPage({
                                 {sum.kontext}
                               </span>
                             )}
+                            {/* KI-Marker — Transparenz */}
+                            <span
+                              className="ml-auto text-[10px] uppercase tracking-wider text-muted/70 font-semibold"
+                              title={
+                                sum.model
+                                  ? `Generiert mit ${sum.model}`
+                                  : "KI-Zusammenfassung"
+                              }
+                            >
+                              KI · überprüfbar
+                            </span>
                           </div>
                           {sum.zusammenfassung && (
                             <p className="text-foreground leading-relaxed">
                               {sum.zusammenfassung}
                             </p>
+                          )}
+
+                          {/* Quellen-Block */}
+                          {(sum.original_text || pdfDeepLink) && (
+                            <div className="mt-3 pt-2 border-t border-gray-200">
+                              <div className="flex items-center gap-3 flex-wrap text-xs">
+                                {pdfDeepLink && (
+                                  <a
+                                    href={pdfDeepLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-primary hover:underline"
+                                  >
+                                    Im Plenarprotokoll PDF nachlesen
+                                    {pageLabel && ` (${pageLabel})`}
+                                    <ExternalLink className="w-3 h-3" />
+                                  </a>
+                                )}
+                                {sum.rede_id && (
+                                  <span
+                                    className="text-[10px] text-muted/70 font-mono"
+                                    title="Eindeutige Bundestags-XML-Rede-ID"
+                                  >
+                                    {sum.rede_id}
+                                  </span>
+                                )}
+                              </div>
+
+                              {sum.original_text && (
+                                <details className="mt-2 group">
+                                  <summary className="cursor-pointer text-xs text-muted hover:text-primary transition-colors select-none list-none">
+                                    <span className="inline-flex items-center gap-1">
+                                      <span className="group-open:hidden">▶</span>
+                                      <span className="hidden group-open:inline">▼</span>
+                                      <span className="group-open:hidden">
+                                        Originalrede einblenden
+                                      </span>
+                                      <span className="hidden group-open:inline">
+                                        Originalrede ausblenden
+                                      </span>
+                                    </span>
+                                  </summary>
+                                  <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-white border border-gray-200 px-4 py-3 text-[13px] leading-[1.65] text-foreground/85 font-serif">
+                                    {sum.original_text
+                                      .split("\n")
+                                      .map((p) => p.trim())
+                                      .filter(Boolean)
+                                      .map((para, i) => {
+                                        // Fragestunde-Marker `[ID21...]` als Sektion-Header
+                                        if (/^\[ID\d+\]$/.test(para)) {
+                                          return (
+                                            <div
+                                              key={i}
+                                              className="mt-4 mb-1 text-[10px] font-mono text-muted/70 first:mt-0"
+                                            >
+                                              {para}
+                                            </div>
+                                          );
+                                        }
+                                        // Trenner für Fragestunde-Aggregate
+                                        if (para === "---") {
+                                          return (
+                                            <hr
+                                              key={i}
+                                              className="my-3 border-gray-200"
+                                            />
+                                          );
+                                        }
+                                        return (
+                                          <p
+                                            key={i}
+                                            className="mb-3 last:mb-0 hyphens-auto text-justify"
+                                            lang="de"
+                                          >
+                                            {para}
+                                          </p>
+                                        );
+                                      })}
+                                  </div>
+                                  {sum.model && (
+                                    <p className="mt-1.5 text-[10px] text-muted/60">
+                                      Methode: KI-Modell{" "}
+                                      <span className="font-mono">
+                                        {sum.model}
+                                      </span>
+                                      {sum.prompt_version && (
+                                        <>
+                                          {" · Prompt-Version "}
+                                          <span className="font-mono">
+                                            {sum.prompt_version}
+                                          </span>
+                                        </>
+                                      )}
+                                    </p>
+                                  )}
+                                </details>
+                              )}
+                            </div>
                           )}
                         </div>
                       );

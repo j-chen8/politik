@@ -2,8 +2,18 @@ import { searchPoliticiansDb, type PoliticianRow } from "@/lib/db";
 import { SearchBox } from "@/components/SearchBox";
 import { Badge } from "@/components/Badge";
 import Link from "next/link";
-import { UserCircle, ArrowRight, SearchX } from "lucide-react";
+import { UserCircle, ArrowRight, SearchX, Sparkles } from "lucide-react";
 import { getDb } from "@/lib/db";
+
+// Vorschläge wenn Suchfeld leer ist
+const SUGGESTIONS = [
+  "Friedrich Merz",
+  "Katherina Reiche",
+  "Sahra Wagenknecht",
+  "Alice Weidel",
+  "Robert Habeck",
+  "Bärbel Bas",
+];
 
 interface Props {
   searchParams: Promise<{ q?: string }>;
@@ -54,6 +64,30 @@ export default async function SuchePage({ searchParams }: Props) {
           <SearchX className="w-12 h-12 text-muted/40 mx-auto mb-4" />
           <p className="text-muted">
             Keine Abgeordneten gefunden. Versuchen Sie einen anderen Namen.
+          </p>
+        </div>
+      )}
+
+      {/* Leerzustand: Beispiel-Vorschläge */}
+      {!query && (
+        <div className="mt-2">
+          <div className="flex items-center gap-2 text-xs text-muted mb-3 uppercase tracking-wider font-semibold">
+            <Sparkles className="w-3.5 h-3.5" />
+            Beliebte Suchen
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {SUGGESTIONS.map((s) => (
+              <Link
+                key={s}
+                href={`/suche?q=${encodeURIComponent(s)}`}
+                className="px-4 py-2 rounded-full bg-white border border-border text-sm hover:border-primary hover:text-primary transition-colors"
+              >
+                {s}
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-muted mt-6">
+            Oder gib oben einen Namen ein und drücke <kbd className="px-1.5 py-0.5 rounded bg-gray-100 border border-border text-[10px] font-mono">Enter</kbd>.
           </p>
         </div>
       )}

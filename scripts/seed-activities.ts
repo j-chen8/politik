@@ -11,7 +11,22 @@ import Database from "better-sqlite3";
 import path from "path";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
-const DIP_API_KEY = "SbGXhWA.3cpnNdb8rkht7iWpvSgTP8XIG88LoCrGd4";
+
+// Load .env if present
+const envPath = path.join(process.cwd(), ".env");
+const fs = require("fs");
+if (fs.existsSync(envPath)) {
+  for (const line of fs.readFileSync(envPath, "utf-8").split("\n")) {
+    const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
+
+const DIP_API_KEY = process.env.DIP_API_KEY ?? "";
+if (!DIP_API_KEY) {
+  console.error("DIP_API_KEY missing — set in .env (Bundestag DIP-API)");
+  process.exit(1);
+}
 const SEARCH_BASE = "https://search.dip.bundestag.de/search-api/v1/default/search";
 const ROWS_PER_REQUEST = 200;
 const DELAY_MS = 250;

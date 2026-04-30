@@ -1,4 +1,7 @@
-const DIP_API_KEY = "SbGXhWA.3cpnNdb8rkht7iWpvSgTP8XIG88LoCrGd4";
+const DIP_API_KEY = process.env.DIP_API_KEY ?? "";
+if (!DIP_API_KEY) {
+  throw new Error("DIP_API_KEY missing — set in .env (Bundestag DIP-API)");
+}
 const SEARCH_BASE = "https://search.dip.bundestag.de/search-api/v1/default/search";
 
 export interface DipActivity {

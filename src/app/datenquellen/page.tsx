@@ -69,11 +69,39 @@ export default function DatenquellenPage() {
             description="Politiker-Fotos, persönliche Homepages, Twitter-Handles, Instagram-Handles."
           />
           <SourceCard
-            title="Wikipedia (deutsch)"
+            title="Wikipedia (deutsch) — Einleitung"
             href="https://de.wikipedia.org/"
             license="CC BY-SA 4.0"
             licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            description="Einleitungsabsatz aus dem Wikipedia-Artikel als Bio-Beschreibung. Auf jedem Profil ist die Quell-URL des Artikels verlinkt."
+            description="Einleitungsabsatz aus dem Wikipedia-Artikel als Bio-Beschreibung (politicians.bio_summary). Auf jedem Profil ist die Quell-URL des Artikels verlinkt."
+          />
+          <SourceCard
+            title="Wikipedia (deutsch) — Volltext"
+            href="https://de.wikipedia.org/api/rest_v1/"
+            license="CC BY-SA 4.0"
+            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
+            description="Vollständiger Wikipedia-Artikel als Plain Text (politicians.bio_full_text), gespeichert für Multi-LLM-Konsens-Verifikation der CV-Daten. Quelle: Wikipedia REST API (action=query, prop=extracts, explaintext=true)."
+          />
+          <SourceCard
+            title="Bundestag — offizielle Biografien"
+            href="https://www.bundestag.de/abgeordnete/biografien"
+            license="Open Data Bundestag"
+            licenseHref="https://www.bundestag.de/services/opendata"
+            description="Offizielle Biografie-Seiten des Deutschen Bundestags — strukturierte Bio mit Werdegang, Mandaten, Ausschuss-Mitgliedschaften (politicians.bundestag_bio_text + bundestag_bio_url). Wird zur Cross-Verifikation der CV-Daten genutzt. Coverage: 629/629 echten MdBs."
+          />
+          <SourceCard
+            title="Bundesregierung — Kabinett-Profile"
+            href="https://www.bundesregierung.de/breg-de/bundesregierung/bundeskabinett"
+            license="Open Data — kostenfreie Nachnutzung"
+            licenseHref="https://www.bundesregierung.de/breg-de/service/impressum-1620850"
+            description="Offizielle Biografien der Bundeskabinett-Mitglieder mit detailliertem Lebenslauf (politicians.bundesregierung_bio_text + bundesregierung_bio_url). Wird genutzt für die Quereinsteiger-Minister, die kein eigenes Bundestags-Mandat haben (z.B. Reiche, Prien, Hubig)."
+          />
+          <SourceCard
+            title="Politiker-Homepages"
+            href="https://en.wikipedia.org/wiki/Robots_exclusion_standard"
+            license="robots.txt-konform"
+            licenseHref="https://en.wikipedia.org/wiki/Robots_exclusion_standard"
+            description={`Roh-Text der "Über mich"-/Vita-Seiten von den persönlichen Homepages der Abgeordneten (politicians.cv_homepage_text + cv_homepage_url). Wird mit User-Agent-Header gescraped, robots.txt wird respektiert, max. 1 Request/Sekunde pro Domain. Coverage: 561/640.`}
           />
           <SourceCard
             title="Bundestag DIP API"
@@ -103,6 +131,29 @@ export default function DatenquellenPage() {
             licenseHref="https://www.bundestag.de/dokumente/protokolle/"
             description="Sitzungs-Metadaten, Anwesenheitslisten und Tagesordnungen der Ausschüsse."
           />
+        </div>
+      </section>
+
+      {/* Methodik-Verweis */}
+      <section className="mb-12">
+        <div className="bg-primary-light/40 rounded-2xl border border-primary/20 p-5 flex items-start gap-4">
+          <Database className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <div>
+            <h3 className="font-bold mb-1">
+              Methodik &amp; Wirksamkeit auf eigener Seite
+            </h3>
+            <p className="text-sm text-foreground/85 leading-relaxed mb-2">
+              Wie die strukturierten Lebenslauf-Daten durch ein Multi-LLM-Konsens-Verfahren
+              mit fünf unabhängigen Modell-Familien geprüft werden — inklusive konkreter
+              Wirksamkeits-Statistik, Audit-Trail und Reproduzierbarkeits-Anleitung.
+            </p>
+            <Link
+              href="/methodik"
+              className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
+            >
+              Zur Methodik-Seite →
+            </Link>
+          </div>
         </div>
       </section>
 

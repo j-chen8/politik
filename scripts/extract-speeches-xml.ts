@@ -382,7 +382,9 @@ function extractSpeechesForSpeaker(xmlPath: string, lastName: string, fullName?:
 
 // ── Summarize (provider-agnostic) ──
 
-async function summarize(speechText: string, sitzung: number, datum: string, speakerName: string, retries = 2): Promise<any> {
+const PROMPT_VERSION = "extract-speeches-xml-v1";
+
+async function summarize(speechText: string, sitzung: number, datum: string, speakerName: string, retries = 2): Promise<{ parsed: any; raw: string; model: string }> {
   const key = getKey();
 
   const prompt = `Analysiere den folgenden Redebeitrag von ${speakerName} im Deutschen Bundestag.
@@ -449,7 +451,8 @@ ${speechText}`;
     const data = await res.json();
     const content = config.parseResponse(data);
     if (!content) throw new Error("Empty");
-    return JSON.parse(content);
+    const usedModel = PROVIDER === "groq" ? `groq:${currentGroqModel}` : `gemini:${config.model}`;
+    return { parsed: JSON.parse(content), raw: content, model: usedModel };
   } catch (e: any) {
     if (retries > 0) { await sleep(3000); return summarize(speechText, sitzung, datum, speakerName, retries - 1); }
     throw e;
@@ -518,8 +521,13 @@ async function main() {
   );
 
   const insert = db.prepare(`
-    INSERT INTO speech_summaries (speaker, sitzung, datum, speech_index, speech_text_preview, zusammenfassung, kontext, typ, source_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO speech_summaries (
+      speaker, sitzung, datum, speech_index, speech_text_preview,
+      zusammenfassung, kontext, typ, source_url,
+      rede_id, rede_ids, redner_id, page_start, page_section,
+      original_text, xml_source, model, prompt_version, raw_llm_response, generated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   // Group by session for Fragestunde detection
@@ -545,13 +553,19 @@ async function main() {
 
     process.stdout.write(`  Sitzung ${sitzung} (${datum}): ${speeches.length} Reden... `);
 
+    const xmlSource = `data/plenarprotokolle_xml/21${padded}.xml`;
+
     // Fragestunde: > 10 speeches in one session
     if (speeches.length > 10) {
+      const allRedeIds = speeches.map(s => s.redeId).join(",");
+      const fullText = speeches.map(s => `[${s.redeId}]\n${s.text}`).join("\n\n---\n\n");
       insert.run(originalSpeaker, sitzung, datum, 0,
         speeches[0].text.substring(0, 200),
         `Befragung der Bundesregierung / Fragestunde mit ${speeches.length} Beiträgen.`,
         "Regierungsbefragung / Fragestunde",
-        "fragestunde_antwort", sourceUrl);
+        "fragestunde_antwort", sourceUrl,
+        null, allRedeIds, speeches[0].rednerId, null, null,
+        fullText, xmlSource, `groq:${currentGroqModel}`, PROMPT_VERSION, null, new Date().toISOString());
       console.log("Fragestunde → 1 Zusammenfassung");
       totalSummaries++;
       continue;
@@ -562,11 +576,14 @@ async function main() {
     for (let idx = 0; idx < speeches.length; idx++) {
       const speech = speeches[idx];
       try {
-        const summary = await summarize(speech.text, sitzung, datum, speakerFullName);
+        const summaryResult = await summarize(speech.text, sitzung, datum, speakerFullName);
+        const s = summaryResult.parsed;
         insert.run(originalSpeaker, sitzung, datum, idx,
           speech.text.substring(0, 200),
-          summary.zusammenfassung, summary.kontext, summary.typ || "debatte",
-          sourceUrl);
+          s.zusammenfassung, s.kontext, s.typ || "debatte",
+          sourceUrl,
+          speech.redeId, null, speech.rednerId, null, null,
+          speech.text, xmlSource, summaryResult.model, PROMPT_VERSION, summaryResult.raw, new Date().toISOString());
         count++;
         totalSummaries++;
         await sleep(config.sleepMs);

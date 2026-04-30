@@ -25,7 +25,17 @@ if (fs.existsSync(ENV_PATH)) {
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 const USER_AGENT = "politik-radar/1.0 (https://github.com/opoi1/politik)";
-const MODEL = "llama-3.1-8b-instant";  // 5× höheres TPD als 70b, für Fakten-Extraktion ausreichend
+
+// Tiered Model-Auswahl: kurze Texte → 8b (schnell), lange → llama-4-scout (128k Kontext, 500k TPD)
+const MODEL_FAST = "llama-3.1-8b-instant";              // 8k Kontext — fits ca. 8000 Zeichen
+const MODEL_LONG = "meta-llama/llama-4-scout-17b-16e-instruct"; // 128k Kontext, viel Reserve
+const PROMPT_VERSION = "seed-cv-v2-tiered";
+
+function pickModel(textChars: number): string {
+  // 8b kann ~8k Token verarbeiten (~8000 Zeichen Input + System-Prompt + Output)
+  // Bei mehr → auf scout ausweichen
+  return textChars > 6000 ? MODEL_LONG : MODEL_FAST;
+}
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const REQUEST_DELAY_MS = 250;
 const CONCURRENCY = 3;          // 4 Keys × 30 RPM = 120 RPM Limit, 3 parallel passt
@@ -84,13 +94,18 @@ function titleFromBioUrl(url: string): string {
 
 const SYSTEM_PROMPT = `Du bist ein Assistent, der aus Wikipedia-Artikeln über Politiker einen strukturierten Lebenslauf in deutschem JSON extrahiert.
 
-Antworte AUSSCHLIESSLICH mit gültigem JSON in folgendem Schema:
+Antworte AUSSCHLIESSLICH mit gültigem JSON. SCHEMA (alle vier Felder Pflicht, leeres Array [] wenn nichts dazu im Text steht):
 {
-  "ausbildung": [{"jahr": "2003-2007", "text": "Studium der Rechtswissenschaft an der Universität Köln (1. Staatsexamen)"}],
-  "beruflicher_werdegang": [{"jahr": "2010-2014", "text": "Wissenschaftlicher Mitarbeiter am Lehrstuhl für Verfassungsrecht, Universität Bonn"}],
-  "politische_stationen": [{"jahr": "seit 2017", "text": "Mitglied der SPD, ab 2019 Vorsitzender des Ortsvereins Köln-Mülheim"}],
-  "sonstiges": [{"jahr": "2019", "text": "Buchautor: 'Titel des Buches' (Suhrkamp)"}]
+  "ausbildung":            [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "beruflicher_werdegang": [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "politische_stationen":  [ { "jahr": "<string>", "text": "<string>" }, ... ],
+  "sonstiges":             [ { "jahr": "<string>", "text": "<string>" }, ... ]
 }
+
+ABSOLUT VERBOTEN:
+- Beispiele/Demo-Inhalte aus diesem Schema als Fakten übernehmen. Die Platzhalter <string> sind KEINE Werte.
+- Erfinden von Universitäten, Abschlüssen, Verlagen, Buchtiteln, Jahreszahlen oder anderen Fakten, die nicht WÖRTLICH im gelieferten Text stehen.
+- Wenn der Text z.B. keine Bücher nennt: "sonstiges" bleibt leer. Niemals "Buchautor: 'Titel des Buches' (Suhrkamp)" oder ähnliches erfinden.
 
 Strikte Regeln:
 - Nur Fakten aus dem gelieferten Text. Keine Vermutungen, keine Erfindungen.
@@ -109,9 +124,11 @@ interface CV {
   sonstiges: { jahr: string; text: string }[];
 }
 
-async function generateCv(politicianName: string, wikipediaText: string): Promise<CV | null> {
+async function generateCv(politicianName: string, wikipediaText: string): Promise<{ cv: CV; raw: string; model: string } | null> {
   // Trim very long articles to first 25k chars (saves tokens, lead is the relevant part)
-  const text = wikipediaText.slice(0, 25000);
+  // bis zu 50k chars — der scout-Modell-Kontext ist groß genug
+  const text = wikipediaText.slice(0, 50000);
+  const model = pickModel(text.length);
 
   for (let attempt = 0; attempt < GROQ_KEYS.length * 2; attempt++) {
     const key = nextKey();
@@ -123,7 +140,7 @@ async function generateCv(politicianName: string, wikipediaText: string): Promis
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: MODEL,
+          model,
           messages: [
             { role: "system", content: SYSTEM_PROMPT },
             { role: "user", content: `Politiker: ${politicianName}\n\nWikipedia-Artikel:\n${text}` },
@@ -145,7 +162,7 @@ async function generateCv(politicianName: string, wikipediaText: string): Promis
       const data = (await res.json()) as any;
       const content = data?.choices?.[0]?.message?.content;
       if (!content) return null;
-      return JSON.parse(content) as CV;
+      return { cv: JSON.parse(content) as CV, raw: content, model };
     } catch (e: any) {
       if (attempt === GROQ_KEYS.length * 2 - 1) throw e;
       await sleep(1000);
@@ -161,19 +178,22 @@ async function main() {
   db.pragma("journal_mode = WAL");
   ensureColumns(db);
 
-  const where = ALL ? `` : `AND par.type = 'bundestag'`;
   const skipExisting = REFRESH ? "" : "AND p.cv_json IS NULL";
 
-  const rows = db
-    .prepare(
-      `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_url
+  // Mit --all: ALLE Politiker mit bio_url (auch ohne Mandat — z.B. Quereinsteiger-Minister).
+  // Ohne --all: nur Bundestags-MdBs (Mandate-Join).
+  const sql = ALL
+    ? `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_url
+       FROM politicians p
+       WHERE p.bio_url IS NOT NULL ${skipExisting}`
+    : `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_url
        FROM politicians p
        JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
        JOIN parliament_periods pp ON m.parliament_period_id = pp.id
        JOIN parliaments par ON pp.parliament_id = par.id
-       WHERE p.bio_url IS NOT NULL ${where} ${skipExisting}`
-    )
-    .all() as { id: number; first_name: string; last_name: string; bio_url: string }[];
+       WHERE p.bio_url IS NOT NULL AND par.type = 'bundestag' ${skipExisting}`;
+
+  const rows = db.prepare(sql).all() as { id: number; first_name: string; last_name: string; bio_url: string }[];
 
   console.log(`\n${rows.length} Politiker zu verarbeiten`);
   if (rows.length === 0) {
@@ -183,7 +203,8 @@ async function main() {
   }
 
   const update = db.prepare(
-    `UPDATE politicians SET cv_json = ?, cv_source = 'wikipedia_de+groq:${MODEL}', cv_generated_at = ? WHERE id = ?`
+    `UPDATE politicians SET cv_json = ?, cv_source = ?, cv_generated_at = ?,
+     cv_model = ?, cv_prompt_version = ?, cv_raw_llm_response = ? WHERE id = ?`
   );
 
   let ok = 0, fail = 0, done = 0;
@@ -198,12 +219,18 @@ async function main() {
         fail++;
         return;
       }
-      const cv = await generateCv(name, wpText);
-      if (!cv) {
+      const result = await generateCv(name, wpText);
+      if (!result) {
         fail++;
         return;
       }
-      update.run(JSON.stringify(cv), new Date().toISOString(), p.id);
+      update.run(
+        JSON.stringify(result.cv),
+        `wikipedia_de+groq:${result.model}`,
+        new Date().toISOString(),
+        `groq:${result.model}`, PROMPT_VERSION, result.raw,
+        p.id
+      );
       ok++;
     } catch (e: any) {
       fail++;

@@ -10,9 +10,10 @@ interface Props {
   activeParliament?: string;
   activeParty?: string;
   query?: string;
+  basePath?: string;
 }
 
-export function PolitikerFilters({ parliaments, parties, activeParliament, activeParty, query }: Props) {
+export function PolitikerFilters({ parliaments, parties, activeParliament, activeParty, query, basePath = "/politiker" }: Props) {
   const [searchQuery, setSearchQuery] = useState(query || "");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -29,7 +30,7 @@ export function PolitikerFilters({ parliaments, parties, activeParliament, activ
       if (v) params.set(k, v);
     });
     startTransition(() => {
-      router.push(`/politiker?${params.toString()}`);
+      router.push(`${basePath}?${params.toString()}`);
     });
   }
 

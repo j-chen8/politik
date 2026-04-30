@@ -2,12 +2,13 @@
 
 ## Now (Stand 2026-04-28, Laptop)
 
-### CV-Pipeline: 628/629 Bundestag-MdBs haben einen CV (99.8%) ✅
+### CV-Pipeline: 628/629 Bundestag-MdBs haben einen CV + lesbare Bio (99.8%) ✅
 
 **Quellen (Stand DB):**
 - `cv_json` (Wikipedia via Groq): ~455 MdBs
 - `cv_homepage_json` (Homepage-Scraping via Groq): ~454 MdBs
-- `cv_homepage_text` (Roh-Text der Homepage, NEU seit 2026-04-28): 436 MdBs
+- `cv_homepage_text` (Roh-Text der Homepage): 458 MdBs (22 nachgeholt 2026-04-28)
+- `cv_summary` (lesbare 2–3-Satz-Bio aus den JSON-Daten, NEU 2026-04-28): 628 MdBs ✅
 - Überlappung: viele haben beide Quellen
 
 **Nur noch 1 Sonderfall:**
@@ -16,12 +17,16 @@
 |------|-------|--------|
 | Carsten Träger | **Verstorben** — Homepage zeigt nur Trauerbekundung | Übersprungen |
 
+**Refetch-Fails (Server down):** Frauke Heiligenstadt, Matthias Moosdorf — haben aber `cv_homepage_json`, also nicht kritisch.
+
 **Scripts:**
 - `scripts/seed-cv.ts` — Wikipedia → Groq → `cv_json` (Batch)
 - `scripts/seed-cv-homepage.ts` — Homepage scrapen → Groq → `cv_homepage_json` (Batch, mit Link-Scan), speichert auch Roh-Text
 - `scripts/seed-cv-manual.ts` — Gezielter Scraper für manuell gefundene Bio-URLs
-- `scripts/seed-cv-from-paste.ts` — **NEU**: nimmt manuell gepasteten Bio-Text aus Stdin
-- `scripts/refix-hallucinated-cvs.ts` — **NEU**: refetcht und regeneriert Einträge mit bekannten LLM-Halluzinationen
+- `scripts/seed-cv-from-paste.ts` — nimmt manuell gepasteten Bio-Text aus Stdin
+- `scripts/refix-hallucinated-cvs.ts` — refetcht und regeneriert Einträge mit bekannten LLM-Halluzinationen
+- `scripts/refetch-cv-homepage-text.ts` — **NEU**: holt fehlenden Roh-Text aus bekannter `cv_homepage_url` nach (kein LLM)
+- `scripts/generate-cv-summary.ts` — **NEU**: erzeugt aus `cv_json`+`cv_homepage_json` eine 2–3-Satz-Bio in `cv_summary`. Concurrency=2 wegen Groq RPM-Limit (8b-instant)
 
 ### Wichtige Lessons (2026-04-28)
 
@@ -29,12 +34,28 @@
 
 **Roh-Text-Speicherung:** Vor 2026-04-28 wurde nur das LLM-JSON gespeichert, nicht der Quelltext → keine nachträgliche Korrektur ohne Re-Scraping möglich. Jetzt: `cv_homepage_text` Spalte speichert den Roh-Text → erlaubt späteres Re-Processing mit besseren LLMs / Multi-LLM-Konsens-System (siehe Idee #4).
 
-### Was als nächstes zu tun ist
-- [ ] CV-Zusammenfassungen generieren (aus cv_json/cv_homepage_json eine lesbare Bio für die UI)
-- [ ] CV-Daten in der Politiker-Detailseite anzeigen (PoliticianCV Komponente existiert bereits)
+### Was als nächstes zu tun ist (Stand 2026-04-29)
+
+**MORGEN ZUERST** (Datenqualitäts-Endspurt — siehe `NEXT-SESSION.md`):
+- [ ] `npx tsx scripts/tiebreak-conflicts.ts` für 463 Konflikte (~20 Min, NVIDIA NIM Phi-4-mini)
+- [ ] `tiebreak-report.md` durchsehen, Llama-Halluzinationen extrahieren
+- [ ] `apply-tiebreak-patches.ts` mit den ~30 echten Korrekturen erweitern + ausführen
+- [ ] Final Health-Check + Snapshot
+
+**Danach offen:**
+- [ ] `cv_summary` in der Politiker-Detailseite anzeigen (PoliticianCV Komponente existiert bereits)
 - [ ] Homepage-URLs korrigieren: Hülya Düber → `huelyadueber.de`, Katja Mast → `katja-mast.de`
-- [ ] Roh-Text auch für die ~190 MdBs nachholen, die nur cv_homepage_json haben aber kein cv_homepage_text (Discovery hat About-Page nicht mehr gefunden — bekannte URL aus cv_homepage_url direkt re-fetchen)
-- [ ] Multi-LLM-Konsens-System auf den 436 vorhandenen Roh-Texten testen (siehe Idee #4)
+- [ ] **2 noch fehlende Refetch-Fails** (Heiligenstadt + Moosdorf — Server damals down): nochmal versuchen
+- [ ] Sync-Skript `scripts/sync-all.sh` für regelmäßige Aktualisierungen
+- [ ] LLM-Routing-Modul (`src/lib/llm.ts`) in `seed-cv*.ts` integrieren (DRY)
+- [ ] Phase 3: Ausschuss-Quellenpointer (analog zu Reden)
+- [ ] **Mini-Modus / Profi-Modus Umschalter pro Profil:**
+  - **Mini (Default für Bürger):** nur die wichtigen Eckpunkte — höchster Bildungsabschluss, letzte/aktuelle Arbeitsstelle, Eintritt in Partei, aktuelles Amt + 1-2 vorherige
+  - **Profi (alles):** Schullaufbahn, jede Studienstation, jede Berufsstation, jede politische Position, Aufsichtsräte, Hobbys, Mitgliedschaften
+  - UI: Toggle oben im Lebenslauf-Block, Default = Mini, User kann auf "Alle Daten anzeigen" klicken
+  - Heuristik für Mini: jüngster Eintrag pro Sektion + alle Einträge mit "Abschluss"/"Examen"/"Diplom"/"Bundeskanzler"/"Minister"/"Vorsitz" Keywords; Schule wird komplett ausgeblendet
+  - Persistenz: in localStorage, sodass Auswahl seitenübergreifend bleibt
+  - **Implementierungs-Hinweis:** Filter-Logik in `PoliticianCV.tsx` lokalisieren — die Komponente hat bereits die merged-Section-Struktur (Wikipedia + Homepage), der Filter ist nur ein zusätzlicher Pre-Render-Schritt. Toggle als kleine Client-Component daneben (`'use client'` für localStorage-Read/Write).
 
 ## Next Up
 <!-- Prioritized ideas ready to build -->
@@ -83,6 +104,7 @@ Analyse: viel Rohdaten in der DB, vergleichsweise wenig davon in der UI. Sortier
 - **Wahlergebnisse** — Erst-/Zweitstimmen pro Wahlkreis.
 - **Reden-Volltext** — aktuell nur Preview + Summary, nicht der ganze Text. Wäre durchsuchbar wertvoll.
 - **MdB-Homepage-URLs** — können aus abgeordnetenwatch übernommen + verlinkt werden (sicher), evtl. og:image scrapen für noch fehlende Fotos. Rechtliche Lage ist freundlich solange nur Linking + leichtes Meta-Scraping, keine Volltexte/Fotos rehosten.
+- **Frühere Wahlperioden / komplette Mandats-Historie** — Aktuell zeigen wir pro MdB nur das aktuelle Mandat (21. Wahlperiode 2025-2029). Viele Abgeordnete waren auch in früheren Bundestagen Mitglied (z.B. Friedrich Merz: 1994-2009 + seit 2021). Brauchen wir, um auf der Profilseite eine vollständige Mandats-Timeline zu zeigen ("Mitglied 14.+15.+16. WP, 20.+21. WP"). Quellen: Bundestag DIP API hat historische Wahlperioden (`wahlperiode_id` 14 ff.), abgeordnetenwatch hat alle alten Mandate. Auch interessant: Vergleich von Reden-Volumen / Anwesenheit über mehrere Perioden hinweg, frühere Ausschuss-Mitgliedschaften, alte Sidejobs.
 
 ### Photo-Coverage erweitern
 
@@ -178,6 +200,40 @@ Keine zentrale API — kreative Datenquellen nötig.
 - Crowdsourcing als Ergänzung
 
 - _Komplexität: Hoch — Web-Scraping, NLP für Name-Extraction, rechtliche Prüfung (Datenschutz)_
+
+### 6. Personen-Dossier-Bot („Crawl-Agent")
+Eingabe: Name. Ausgabe: ein strukturiertes, quellenbelegtes Dossier zur Person.
+
+**Konzept:** Multi-Source-Crawler, der pro Person aus offenen Quellen ein Dossier zusammenstellt — Werdegang, Reden/Interviews, Mandate/Jobs, öffentlich dokumentierte Kontroversen, formale Beziehungen (Aufsichtsräte, Co-Autoren, Stiftungs-Verbindungen). **Kein Boulevard-Scraper** — jede Aussage mit Quellen-Pointer + Confidence-Score.
+
+**Sektionen (parametrisierbar):**
+- **Person/Werdegang** — Geburtsdatum, Bildung, Karriere (Wikipedia/Wikidata/Homepage)
+- **Reden & Interviews** — Bundestag-DIP-Reden + Top-N Interviews aus etablierten Medien
+- **Jobs & Mandate** — Sidejobs (abgeordnetenwatch), Aufsichtsräte (CV), Lobbyregister-Einträge
+- **Öffentlich dokumentierte Kontroversen** — *nur* aus Whitelist-Quellen (FAZ/SZ/Spiegel/Zeit/taz/dpa/Tagesschau/Welt/Handelsblatt) mit klarem Sachverhalt-Zitat. Keine Boulevard-/Aktivisten-/Verschwörungs-Quellen.
+- **Formale Verbindungen** — gemeinsame Vorstände, Co-Antragstellung im Bundestag, Stiftungs-Boards, gemeinsame Auftritte mit Beleg
+- **Reine Vermutungen explizit weglassen** — „Freundschaften" ohne öffentlichen Beleg gehen nicht rein
+
+**Architektur:**
+1. Quellen-Pull pro Sektion (parallel): Brave Search Top-30 + strukturierte APIs (DIP, abgeordnetenwatch, Lobbyregister, Wikidata)
+2. Whitelist-Filter pro Sektion (nur Domains aus erlaubter Liste für „Kontroversen")
+3. Pro Quelle: LLM extrahiert strukturierte Claims (Was, Wann, Quelle, wörtliches Zitat) — **immer mit Original-URL + Snippet**
+4. **Multi-LLM-Verifikation** (siehe Idee 4) für jeden Claim — nur Claims mit Konsens kommen ins Dossier
+5. Persistierung mit Source-Pointer pro Fact → später jederzeit rückprüfbar
+6. UI: Dossier mit ausklappbaren Quellen pro Aussage, Confidence-Badge, Datum des Crawls
+
+**Machbarkeit:**
+- ✅ Infrastruktur fast komplett vorhanden: Brave Search, DIP, Wikipedia, Multi-LLM-Pipeline (siehe Idee 4 + aktueller Tiebreak-Lauf), Lobbyregister-API
+- ⚠️ „Skandale/Verstrickungen" technisch machbar, aber **rechtlich der heikelste Teil** — Persönlichkeitsrecht, Verleumdungs-Risiko. Lösung: harte Whitelist-Quellen, immer wörtliches Zitat aus Originalartikel, nie LLM-Paraphrase als Behauptung
+- ⚠️ Nicht-MdBs (Privatpersonen) haben deutlich engere rechtliche Grenzen als Personen des öffentlichen Lebens → Scope vorerst auf Politiker:innen + öffentlich erkennbare Personen (CEOs, Funktionäre) beschränken
+- ⚠️ Hallu-Risiko: Selbst mit Whitelist-Quellen hat Llama im aktuellen Lauf ~5% falsch zugeordnet — Multi-LLM-Konsens ist *Pflicht*, nicht Kür
+- ⚠️ Kosten/Latenz: Pro Person ~50-100 LLM-Calls bei sauberem Setup — Caching kritisch
+
+**Komplexität: Sehr hoch** — Hauptaufwand sind Whitelist/Source-Scoring + rechtliche Guardrails, weniger das Crawlen selbst.
+
+**Datenquellen:** Brave Search, Wikipedia/Wikidata, Bundestag DIP, abgeordnetenwatch, Lobbyregister, Whitelist-Medien-RSS/Search, eigene DB.
+
+**Realistischer Einstieg:** MVP nur für die 629 MdBs, da für die alle Quellen bereits angebunden sind. „Beliebige Person" als V2.
 
 ## Someday / Maybe
 <!-- Cool but not urgent -->

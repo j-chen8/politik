@@ -1,6 +1,7 @@
 import { SearchBox } from "@/components/SearchBox";
 import { getDbStats } from "@/lib/db";
-import { TrendingUp, Users, BarChart3, Shield, Landmark, Globe } from "lucide-react";
+import { TrendingUp, Users, BarChart3, Shield, Landmark, Globe, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const stats = getDbStats();
@@ -74,6 +75,52 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Multi-LLM-Konsens — Transparenz durch KI (jetzt unter den Features, dezenter platziert) */}
+      <section className="w-full max-w-5xl mx-auto px-4 pb-20 fade-in">
+        <div className="bg-gradient-to-br from-primary-light/40 via-white to-purple-50/50 border border-border rounded-2xl p-6 sm:p-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">
+              Transparenz durch KI
+            </span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-2">
+            Multi-LLM-Konsens-System für mehr Verlässlichkeit
+          </h2>
+          <p className="text-sm text-foreground/85 leading-relaxed mb-5 max-w-2xl">
+            Politiker-Lebensläufe werden nicht von einer einzelnen KI erzeugt und blind
+            übernommen. Jede Aussage durchläuft ein Konsens-Verfahren mit{" "}
+            <strong>fünf unabhängigen Modell-Familien</strong> — gegen
+            Trainingsdaten-Bias, gegen Halluzinationen, mit wörtlichem Quellenbeleg pro Eintrag.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
+            <ModelChip n="①" name="Llama" role="Generator" />
+            <ModelChip n="②" name="Mistral" role="Cross-Check" />
+            <ModelChip n="③" name="Nemotron" role="Tiebreaker" />
+            <ModelChip n="④" name="Claude Haiku 4.5" role="Tiebreaker v2" />
+            <ModelChip n="⑤" name="gpt-oss-120b" role="Source-Coherence" />
+          </div>
+          <Link
+            href="/methodik"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+          >
+            Methodik &amp; Wirksamkeits-Statistik ansehen →
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ModelChip({ n, name, role }: { n: string; name: string; role: string }) {
+  return (
+    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-border">
+      <span className="text-primary font-mono text-base">{n}</span>
+      <div className="min-w-0">
+        <div className="text-sm font-semibold text-foreground truncate">{name}</div>
+        <div className="text-[11px] text-muted">{role}</div>
+      </div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ import { Badge } from "@/components/Badge";
 import { BarChart } from "@/components/BarChart";
 import { ComparisonBar } from "@/components/ComparisonBar";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
-import { PoliticianCV, type CV } from "@/components/PoliticianCV";
+import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
 import {
   TrendingUp,
   Vote as VoteIcon,
@@ -63,6 +63,22 @@ function getParliamentBadgeVariant(type: string): "blue" | "green" | "yellow" {
   if (type === "bundestag") return "blue";
   if (type === "eu") return "green";
   return "yellow";
+}
+
+/**
+ * Kürzt sehr lange Aktivitäts-Typen für die Badge-Anzeige.
+ * Vermeidet Überlauf in der schmalen Badge-Spalte.
+ */
+function shortenTyp(typ: string): string {
+  const map: Record<string, string> = {
+    "Regierungserklärung": "Reg.-Erklärung",
+    "Berichterstattung": "Bericht",
+    "Entschließungsantrag": "Entschl.-Antrag",
+    "Änderungsantrag": "Änd.-Antrag",
+    "Kurzintervention": "Kurzinterv.",
+    "Zwischenfrage": "Zwischenfr.",
+  };
+  return map[typ] || typ;
 }
 
 function getParliamentEmoji(type: string): string {
@@ -257,14 +273,48 @@ export default async function PolitikerPage({ params }: Props) {
         </div>
       )}
 
-      {/* Strukturierter Lebenslauf */}
-      {politician.cv_json && (() => {
-        try {
-          const cv = JSON.parse(politician.cv_json) as CV;
-          return <PoliticianCV cv={cv} />;
-        } catch {
-          return null;
-        }
+      {/* Strukturierter Lebenslauf — merged aus Homepage + Wikipedia */}
+      {(() => {
+        const tryParse = (s: string | null): CV | null => {
+          if (!s) return null;
+          try { return JSON.parse(s) as CV; } catch { return null; }
+        };
+        const tryParseConflicts = (s: string | null): SourceConflict[] | null => {
+          if (!s) return null;
+          try {
+            const parsed = JSON.parse(s);
+            return Array.isArray(parsed) ? (parsed as SourceConflict[]) : null;
+          } catch { return null; }
+        };
+        const cvWiki = tryParse(politician.cv_json);
+        const cvHome = tryParse(politician.cv_homepage_json);
+        const conflicts = tryParseConflicts(politician.source_conflicts);
+        if (!politician.cv_summary && !cvWiki && !cvHome) return null;
+        return (
+          <PoliticianCV
+            summary={politician.cv_summary}
+            summaryMeta={{
+              model: politician.cv_summary_model,
+              promptVersion: politician.cv_summary_prompt_version,
+              generatedAt: politician.cv_summary_generated_at,
+            }}
+            cvWikipedia={cvWiki}
+            wikipediaMeta={{
+              model: politician.cv_model,
+              promptVersion: politician.cv_prompt_version,
+              generatedAt: politician.cv_generated_at,
+            }}
+            wikipediaUrl={politician.bio_url}
+            cvHomepage={cvHome}
+            homepageMeta={{
+              model: politician.cv_homepage_model,
+              promptVersion: politician.cv_homepage_prompt_version,
+              generatedAt: politician.cv_homepage_generated_at,
+            }}
+            homepageUrl={politician.cv_homepage_url ?? politician.homepage_url}
+            sourceConflicts={conflicts}
+          />
+        );
       })()}
 
       {/* Sonderfälle / Notes */}
@@ -394,18 +444,19 @@ export default async function PolitikerPage({ params }: Props) {
                     : "bg-background border-border/50"
                 }`}
               >
-                <div className="flex flex-col items-center gap-1 shrink-0">
-                  <Badge
-                    variant={
-                      item.kategorie === "rede" ? "green"
-                        : item.kategorie === "frage" ? "blue"
-                        : item.kategorie === "gesetzgebung" ? "yellow"
-                        : "gray"
+                <div className="flex flex-col items-stretch gap-1 shrink-0 w-24">
+                  <span
+                    className={
+                      "inline-block px-2 py-1 rounded-lg text-[11px] font-semibold text-center break-words leading-tight " +
+                      (item.kategorie === "rede" ? "bg-green-light text-green"
+                        : item.kategorie === "frage" ? "bg-primary-light text-primary"
+                        : item.kategorie === "gesetzgebung" ? "bg-yellow-light text-yellow"
+                        : "bg-gray-100 text-muted")
                     }
                   >
-                    {item.typ}
-                  </Badge>
-                  <span className="text-[10px] text-muted">
+                    {shortenTyp(item.typ)}
+                  </span>
+                  <span className="text-[10px] text-muted text-center">
                     {item.quelle === "kombiniert" ? "DIP + Plenar"
                       : item.quelle === "plenar" ? "Plenar"
                       : "DIP"}

@@ -15,9 +15,10 @@ const filters = [
 interface Props {
   activeTyp?: string;
   query?: string;
+  basePath?: string;
 }
 
-export function ActivityFilters({ activeTyp, query }: Props) {
+export function ActivityFilters({ activeTyp, query, basePath = "/aktivitaeten" }: Props) {
   const [searchQuery, setSearchQuery] = useState(query || "");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -27,7 +28,7 @@ export function ActivityFilters({ activeTyp, query }: Props) {
     if (typ) params.set("typ", typ);
     if (q) params.set("q", q);
     startTransition(() => {
-      router.push(`/aktivitaeten?${params.toString()}`);
+      router.push(`${basePath}?${params.toString()}`);
     });
   }
 

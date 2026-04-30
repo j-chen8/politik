@@ -128,6 +128,37 @@ export function initDb() {
   return db;
 }
 
+// ── Sichtbarkeits-Filter ──
+//
+// Aktuell zeigen wir nur Bundestags-MdBs + Quereinsteiger-Minister im Kabinett
+// (id >= 900000). Landtage und EU-Parlament sind in der DB enthalten, aber bis
+// auf weiteres ausgeblendet — sie werden später aktiviert.
+//
+// Um sie wieder anzuzeigen, einfach VISIBLE_TYPES erweitern oder den Filter
+// abschalten (siehe IS_POLITICIAN_VISIBLE_SQL).
+export const VISIBLE_PARLIAMENT_TYPES: readonly string[] = ["bundestag"];
+
+/**
+ * SQL-Fragment für die WHERE-Klausel. Erwartet Alias `p` für politicians-Tabelle.
+ *
+ * Politiker:in ist sichtbar wenn:
+ *   - mindestens ein Mandat in einem sichtbaren Parlament-Typ existiert, ODER
+ *   - es ein Quereinsteiger-Minister ist (id >= 900000, kein Mandat).
+ */
+export const IS_POLITICIAN_VISIBLE_SQL = `(
+  p.id >= 900000
+  OR EXISTS (
+    SELECT 1 FROM mandates m_vis
+    JOIN parliament_periods pp_vis ON m_vis.parliament_period_id = pp_vis.id
+    JOIN parliaments par_vis ON pp_vis.parliament_id = par_vis.id
+    WHERE m_vis.politician_id = p.id AND m_vis.type = 'mandate'
+      AND par_vis.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+  )
+)`;
+
+/** Werte für die Platzhalter in IS_POLITICIAN_VISIBLE_SQL. */
+export const VISIBLE_PARLIAMENT_TYPE_VALUES = [...VISIBLE_PARLIAMENT_TYPES];
+
 // ── Query helpers ──
 
 export interface PoliticianRow {
@@ -154,6 +185,21 @@ export interface PoliticianRow {
   cv_json: string | null;
   cv_source: string | null;
   cv_generated_at: string | null;
+  cv_homepage_json: string | null;
+  cv_homepage_url: string | null;
+  cv_homepage_text: string | null;
+  cv_homepage_generated_at: string | null;
+  cv_summary: string | null;
+  cv_summary_generated_at: string | null;
+  cv_model: string | null;
+  cv_prompt_version: string | null;
+  cv_homepage_model: string | null;
+  cv_homepage_prompt_version: string | null;
+  cv_summary_model: string | null;
+  cv_summary_prompt_version: string | null;
+  homepage_source: string | null;
+  source_conflicts: string | null;
+  source_coherence_checked_at: string | null;
 }
 
 export interface MandateRow {
@@ -179,12 +225,13 @@ export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] 
       `SELECT p.*, pa.label as party_label
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
-       WHERE p.last_name LIKE ? OR p.first_name LIKE ?
-         OR (p.first_name || ' ' || p.last_name) LIKE ?
+       WHERE (p.last_name LIKE ? OR p.first_name LIKE ?
+         OR (p.first_name || ' ' || p.last_name) LIKE ?)
+         AND ${IS_POLITICIAN_VISIBLE_SQL}
        ORDER BY p.last_name, p.first_name
        LIMIT ?`
     )
-    .all(term, term, term, limit) as PoliticianRow[];
+    .all(term, term, term, ...VISIBLE_PARLIAMENT_TYPE_VALUES, limit) as PoliticianRow[];
 }
 
 export function getPoliticianDb(id: number): PoliticianRow | undefined {
@@ -194,9 +241,9 @@ export function getPoliticianDb(id: number): PoliticianRow | undefined {
       `SELECT p.*, pa.label as party_label
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
-       WHERE p.id = ?`
+       WHERE p.id = ? AND ${IS_POLITICIAN_VISIBLE_SQL}`
     )
-    .get(id) as PoliticianRow | undefined;
+    .get(id, ...VISIBLE_PARLIAMENT_TYPE_VALUES) as PoliticianRow | undefined;
 }
 
 export function getMandatesForPoliticianDb(politicianId: number): MandateRow[] {
@@ -235,11 +282,23 @@ export function getPoliticiansByParliament(parliamentId: number, periodId?: numb
 
 export function getDbStats(): { politicians: number; mandates: number; parliaments: number; parties: number } {
   const db = getDb();
+  const polCount = db.prepare(
+    `SELECT COUNT(*) as c FROM politicians p WHERE ${IS_POLITICIAN_VISIBLE_SQL}`
+  ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number };
   return {
-    politicians: (db.prepare("SELECT COUNT(*) as c FROM politicians").get() as { c: number }).c,
-    mandates: (db.prepare("SELECT COUNT(*) as c FROM mandates").get() as { c: number }).c,
-    parliaments: (db.prepare("SELECT COUNT(*) as c FROM parliaments").get() as { c: number }).c,
-    parties: (db.prepare("SELECT COUNT(DISTINCT id) as c FROM parties").get() as { c: number }).c,
+    politicians: polCount.c,
+    mandates: (db.prepare(
+      `SELECT COUNT(*) as c FROM mandates m
+       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+       JOIN parliaments par ON pp.parliament_id = par.id
+       WHERE par.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})`
+    ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c,
+    parliaments: VISIBLE_PARLIAMENT_TYPES.length,
+    parties: (db.prepare(
+      `SELECT COUNT(DISTINCT pa.id) as c FROM parties pa
+       JOIN politicians p ON p.party_id = pa.id
+       WHERE ${IS_POLITICIAN_VISIBLE_SQL}`
+    ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c,
   };
 }
 
@@ -280,56 +339,77 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
     args.push(params.partyId);
   }
 
-  const where = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
+  // Sichtbarkeits-Filter zusätzlich zu User-Filtern
+  conditions.push(IS_POLITICIAN_VISIBLE_SQL);
+  args.push(...VISIBLE_PARLIAMENT_TYPE_VALUES);
+
+  const where = `WHERE ${conditions.join(" AND ")}`;
   const limit = params.limit ?? 50;
   const offset = params.offset ?? 0;
+
+  // Pro Politiker:in nur das Mandat eines sichtbaren Parlament-Typs anzeigen
+  // (sonst erscheinen MdBs mit zusätzlichen Landtags-Mandaten doppelt — siehe
+  // Carsten Becker: Bundestag + Saarland).
+  const visibleTypesPlaceholders = VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ");
+  const visibleMandateJoin = `
+    LEFT JOIN (
+      SELECT m_v.politician_id, m_v.fraction, m_v.constituency,
+             par_v.id AS parliament_id, par_v.label AS parliament_label, par_v.type AS parliament_type
+      FROM mandates m_v
+      JOIN parliament_periods pp_v ON m_v.parliament_period_id = pp_v.id
+      JOIN parliaments par_v ON pp_v.parliament_id = par_v.id
+      WHERE m_v.type = 'mandate' AND par_v.type IN (${visibleTypesPlaceholders})
+      GROUP BY m_v.politician_id
+    ) vm ON vm.politician_id = p.id
+  `;
 
   const countSql = `
     SELECT COUNT(DISTINCT p.id) as c
     FROM politicians p
     LEFT JOIN parties pa ON p.party_id = pa.id
-    LEFT JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
-    LEFT JOIN parliament_periods pp ON m.parliament_period_id = pp.id
-    LEFT JOIN parliaments par ON pp.parliament_id = par.id
-    ${where}
+    ${visibleMandateJoin}
+    ${where.replace(/\bm\.fraction\b/g, "vm.fraction").replace(/\bpar\.id\b/g, "vm.parliament_id")}
   `;
-  const total = (db.prepare(countSql).get(...args) as { c: number }).c;
+  const total = (db.prepare(countSql).get(...VISIBLE_PARLIAMENT_TYPE_VALUES, ...args) as { c: number }).c;
 
   const dataSql = `
-    SELECT DISTINCT p.*, pa.label as party_label,
-      par.label as parliament_label, par.type as parliament_type,
-      m.fraction, m.constituency,
+    SELECT p.*, pa.label as party_label,
+      vm.parliament_label, vm.parliament_type,
+      vm.fraction, vm.constituency,
       (SELECT COUNT(*) FROM activities act WHERE act.politician_id = p.id) as activity_count
     FROM politicians p
     LEFT JOIN parties pa ON p.party_id = pa.id
-    LEFT JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
-    LEFT JOIN parliament_periods pp ON m.parliament_period_id = pp.id
-    LEFT JOIN parliaments par ON pp.parliament_id = par.id
-    ${where}
+    ${visibleMandateJoin}
+    ${where.replace(/\bm\.fraction\b/g, "vm.fraction").replace(/\bpar\.id\b/g, "vm.parliament_id")}
     ORDER BY p.last_name, p.first_name
     LIMIT ? OFFSET ?
   `;
-  const rows = db.prepare(dataSql).all(...args, limit, offset) as PoliticianListRow[];
+  const rows = db.prepare(dataSql).all(...VISIBLE_PARLIAMENT_TYPE_VALUES, ...args, limit, offset) as PoliticianListRow[];
 
   return { rows, total };
 }
 
 export function getAllParliaments(): { id: number; label: string; type: string }[] {
   const db = getDb();
-  return db.prepare("SELECT id, label, type FROM parliaments ORDER BY type, label").all() as { id: number; label: string; type: string }[];
+  return db.prepare(
+    `SELECT id, label, type FROM parliaments
+     WHERE type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+     ORDER BY type, label`
+  ).all(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { id: number; label: string; type: string }[];
 }
 
 export function getAllParties(): { id: number; label: string; count: number }[] {
   const db = getDb();
   return db
     .prepare(
-      `SELECT pa.id, pa.label, COUNT(p.id) as count
+      `SELECT pa.id, pa.label, COUNT(DISTINCT p.id) as count
        FROM parties pa
        JOIN politicians p ON p.party_id = pa.id
+       WHERE ${IS_POLITICIAN_VISIBLE_SQL}
        GROUP BY pa.id
        ORDER BY count DESC`
     )
-    .all() as { id: number; label: string; count: number }[];
+    .all(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { id: number; label: string; count: number }[];
 }
 
 // ── Activities ──
@@ -974,6 +1054,15 @@ export interface SpeechSummary {
   kontext: string | null;
   typ: string;
   source_url: string | null;
+  // Quellen-Pointer (gefüllt seit 2026-04-28)
+  rede_id: string | null;
+  rede_ids: string | null;
+  page_start: number | null;
+  page_section: string | null;
+  original_text: string | null;
+  model: string | null;
+  prompt_version: string | null;
+  generated_at: string | null;
 }
 
 export function getSpeechSummaries(speakerName: string): SpeechSummary[] {

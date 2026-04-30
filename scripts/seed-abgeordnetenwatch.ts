@@ -145,9 +145,11 @@ async function main() {
       // Insert in a transaction for speed
       const insertAll = db.transaction(() => {
         for (const v of (votesRes.data || [])) {
+          // Achtung: /votes liefert poll nur reduziert (kein field_poll_date).
+          // Datum wird in scripts/backfill-vote-dates.ts pro poll_id nachgeholt.
           insertVote.run(
             v.id, m.id, m.politician_id,
-            v.poll?.id ?? null, v.poll?.label ?? null, v.poll?.abgeordnetenwatch_url ?? null, v.poll?.field_poll_date ?? null,
+            v.poll?.id ?? null, v.poll?.label ?? null, v.poll?.abgeordnetenwatch_url ?? null, null,
             v.vote, v.reason_no_show ?? null,
             v.fraction?.id ?? null, v.fraction?.label ?? null
           );
@@ -155,9 +157,14 @@ async function main() {
         }
 
         for (const s of (sidejobsRes.data || [])) {
+          // income_total ist in der API ein Objekt {date, value} bei manchen Sidejobs.
+          // Better-sqlite3 wirft "Too few parameter values" wenn ein Objekt durchgereicht wird.
+          const incomeTotal = (typeof s.income_total === "object" && s.income_total !== null)
+            ? Number(s.income_total.value) || null
+            : (s.income_total ?? null);
           insertSidejob.run(
             s.id, m.id, m.politician_id,
-            s.label ?? "", s.income_level ?? null, s.income ?? null, s.income_total ?? null,
+            s.label ?? "", s.income_level ?? null, s.income ?? null, incomeTotal,
             s.interval ?? null, s.created ?? null,
             s.sidejob_organization?.label ?? null,
             s.additional_information ?? null, s.category ?? null, s.data_change_date ?? null

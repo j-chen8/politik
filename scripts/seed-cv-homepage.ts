@@ -26,6 +26,7 @@ if (fs.existsSync(ENV_PATH)) {
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 const MODEL = "llama-3.1-8b-instant";
+const PROMPT_VERSION = "seed-cv-homepage-v2-2026-04-28";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 const PER_DOMAIN_DELAY_MS = 1000;
@@ -128,38 +129,45 @@ async function isAllowed(url: string): Promise<boolean> {
 
 // ── HTML → Plain Text ──
 
+import { cleanBioHtml } from "./_lib/html-clean";
+
 function htmlToText(html: string): string {
-  let t = html.replace(/<script[\s\S]*?<\/script>/gi, " ");
-  t = t.replace(/<style[\s\S]*?<\/style>/gi, " ");
-  t = t.replace(/<noscript[\s\S]*?<\/noscript>/gi, " ");
-  t = t.replace(/<nav[\s\S]*?<\/nav>/gi, " ");
-  t = t.replace(/<footer[\s\S]*?<\/footer>/gi, " ");
-  t = t.replace(/<header[\s\S]*?<\/header>/gi, " ");
-  t = t.replace(/<[^>]+>/g, " ");
-  t = t.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d));
-  t = t.replace(/\s+/g, " ").trim();
-  return t;
+  return cleanBioHtml(html).text;
 }
 
 // ── Find best "about" page ──
 
-const ABOUT_PATHS = [
-  "/ueber-mich/", "/ueber-mich",
-  "/zur-person/", "/zur-person",
-  "/lebenslauf/", "/lebenslauf",
-  "/vita/", "/vita",
-  "/biografie/", "/biografie", "/biographie/", "/biographie",
-  "/steckbrief/", "/steckbrief",
-  "/person/", "/person",
-  "/about/", "/about",
-  "/profil/", "/profil",
-  "/mein-profil/", "/mein-profil",
-  "/mein-lebenslauf/", "/mein-lebenslauf",
-  "/wer-bin-ich/", "/wer-bin-ich",
-];
+// Pfad-Liste basierend auf einer Auswertung der bereits erfolgreichen cv_homepage_url.
+// Jede Variante einmal mit und einmal ohne Trailing Slash.
+const ABOUT_PATHS = (() => {
+  const stems = [
+    // Häufigste Treffer (>5 in DB)
+    "ueber-mich", "uebermich", "uber-mich", "ueber_mich",
+    "person", "persoenlich", "persönlich", "persoenliches", "persönliches",
+    "lebenslauf", "mein-lebenslauf", "vita", "zur-person",
+    "about", "about-me", "biografie", "biographie",
+    // Mittel (2-5)
+    "steckbrief", "profil", "mein-profil", "wer-bin-ich", "wer-ich-bin",
+    "ueber-meine-person", "ueber-mein-person", "uber-meine-person",
+    "zu-meiner-person", "zur-meiner-person",
+    "über-mich", "ueber",
+    "das-bin-ich", "abgeordnete", "abgeordneter",
+    // Niedrig, aber lohnt
+    "portrait", "porträt", "werdegang", "beruflicher-werdegang",
+    "cv", "biografisches", "biografische-angaben", "biographische-angaben",
+    "ueber-uns", "über-uns",
+    // Suffix-Varianten (manche WP-Themes hängen "-1" an)
+    "ueber-mich-1", "lebenslauf-1",
+  ];
+  const paths: string[] = [];
+  for (const s of stems) {
+    paths.push(`/${s}/`, `/${s}`);
+  }
+  return paths;
+})();
 
 // Keywords to match in link href or text when scanning the homepage
-const ABOUT_KEYWORDS = /(?:ueber[_-]?mich|über[_-]?mich|zur[_-]?person|lebenslauf|vita|biogra(?:fie|phie)|steckbrief|person|about[_-]?me|profil|wer[_-]bin[_-]ich|mein[_-]weg|werdegang)/i;
+const ABOUT_KEYWORDS = /(?:ueber[_-]?mich|über[_-]?mich|uebermich|übermich|uber[_-]?mich|zur[_-]?person|zu[_-]?meiner[_-]?person|ueber[_-]?meine?[_-]?person|lebenslauf|vita|biogra(?:fie|phie|fisch|phisch)|steckbrief|persönlich|persoenlich|^persoen|^persön|person(?!al)|about[_-]?me|^about$|portrait|porträt|profil|wer[_-]?bin[_-]?ich|wer[_-]?ich[_-]?bin|mein[_-]?weg|werdegang|das[_-]?bin[_-]?ich|abgeordnete[rn]?|^cv$|hintergrund|biografisch|biographisch)/i;
 
 interface PageHit { url: string; text: string }
 
@@ -197,51 +205,83 @@ async function findAboutPage(homepageUrl: string): Promise<PageHit | null> {
   try { origin = new URL(homepageUrl).origin; }
   catch { return null; }
 
-  // Strategy 1: Try standard paths first (fast, no extra fetches)
   let best: PageHit | null = null;
+
+  // Strategy 1: Fetch homepage first — wir brauchen es für Strategy 2 + 4 sowieso.
+  const homeRes = await politeFetch(homepageUrl);
+  let homeHtml: string | null = null;
+  if (homeRes?.ok) {
+    const homeCt = homeRes.headers.get("content-type") ?? "";
+    if (homeCt.includes("text/html")) {
+      homeHtml = await homeRes.text();
+    }
+  }
+
+  // Strategy 2: Scan homepage for links matching about-keywords
+  // (zuerst, weil das die echten Pfade der Site liefert — auch TYPO3-_p_NN.html, eigene Slugs etc.)
+  if (homeHtml) {
+    const links = extractLinks(homeHtml, homepageUrl);
+    const seen = new Set<string>();
+    const candidates: string[] = [];
+    for (const link of links) {
+      let urlPath = "";
+      try { urlPath = decodeURIComponent(new URL(link.href).pathname); } catch { continue; }
+      if (ABOUT_KEYWORDS.test(urlPath) || ABOUT_KEYWORDS.test(link.text)) {
+        if (link.href.startsWith(origin) && !seen.has(link.href)) {
+          seen.add(link.href);
+          candidates.push(link.href);
+        }
+      }
+    }
+    for (const url of candidates.slice(0, 8)) {
+      const hit = await tryFetchAboutPage(url);
+      if (!hit) continue;
+      if (!best || hit.text.length > best.text.length) best = hit;
+      if (hit.text.length > 2000) return best;
+    }
+    if (best) return best;
+  }
+
+  // Strategy 3: Standard-Pfade durchprobieren (Brute-Force-Fallback)
   for (const p of ABOUT_PATHS) {
     const tryUrl = origin + p;
     const hit = await tryFetchAboutPage(tryUrl);
     if (!hit) continue;
     if (!best || hit.text.length > best.text.length) best = hit;
-    if (hit.text.length > 2000) return best; // good enough
+    if (hit.text.length > 2000) return best;
   }
   if (best) return best;
 
-  // Strategy 2: Fetch homepage, scan for links with about-keywords
-  const homeRes = await politeFetch(homepageUrl);
-  if (!homeRes?.ok) return null;
-  const homeCt = homeRes.headers.get("content-type") ?? "";
-  if (!homeCt.includes("text/html")) return null;
-  const homeHtml = await homeRes.text();
-
-  const links = extractLinks(homeHtml, homepageUrl);
-  const seen = new Set<string>();
-  const candidates: string[] = [];
-
-  for (const link of links) {
-    // Match keyword in href path or link text
-    const urlPath = new URL(link.href).pathname;
-    if (ABOUT_KEYWORDS.test(urlPath) || ABOUT_KEYWORDS.test(link.text)) {
-      // Only follow same-origin links
-      if (link.href.startsWith(origin) && !seen.has(link.href)) {
-        seen.add(link.href);
-        candidates.push(link.href);
-      }
+  // Strategy 4: Sitemap.xml versuchen
+  for (const sitemapPath of ["/sitemap.xml", "/sitemap_index.xml", "/wp-sitemap.xml"]) {
+    const smRes = await politeFetch(origin + sitemapPath, 6000);
+    if (!smRes?.ok) continue;
+    const smText = await smRes.text();
+    const urls: string[] = [];
+    const reLoc = /<loc>([^<]+)<\/loc>/gi;
+    let m: RegExpExecArray | null;
+    while ((m = reLoc.exec(smText)) !== null) {
+      const u = m[1].trim();
+      try {
+        const path = decodeURIComponent(new URL(u).pathname);
+        if (ABOUT_KEYWORDS.test(path)) urls.push(u);
+      } catch { /* skip */ }
     }
+    for (const url of urls.slice(0, 5)) {
+      const hit = await tryFetchAboutPage(url);
+      if (!hit) continue;
+      if (!best || hit.text.length > best.text.length) best = hit;
+      if (hit.text.length > 2000) return best;
+    }
+    if (best) break;
   }
+  if (best) return best;
 
-  for (const url of candidates.slice(0, 5)) {
-    const hit = await tryFetchAboutPage(url);
-    if (!hit) continue;
-    if (!best || hit.text.length > best.text.length) best = hit;
-    if (hit.text.length > 2000) return best;
-  }
-
-  // Strategy 3: If still nothing, use the homepage itself if it has enough bio-like content
-  if (!best) {
+  // Strategy 5: One-Pager-Fallback — Homepage selbst nehmen wenn substanziell.
+  // (auch ohne Bio-Keywords im Content; viele Personal-Sites packen den Lebenslauf direkt auf /)
+  if (homeHtml) {
     const homeText = htmlToText(homeHtml);
-    if (homeText.length > 500 && ABOUT_KEYWORDS.test(homeText.slice(0, 3000))) {
+    if (homeText.length > 800) {
       best = { url: homepageUrl, text: homeText };
     }
   }
@@ -283,7 +323,7 @@ interface CV {
   sonstiges: { jahr: string; text: string }[];
 }
 
-async function generateCv(name: string, text: string): Promise<CV | null> {
+async function generateCv(name: string, text: string): Promise<{ cv: CV; raw: string } | null> {
   const trimmed = text.slice(0, MAX_TEXT_CHARS);
   for (let attempt = 0; attempt < GROQ_KEYS.length * 2; attempt++) {
     const key = nextKey();
@@ -305,7 +345,7 @@ async function generateCv(name: string, text: string): Promise<CV | null> {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as any;
       const content = data?.choices?.[0]?.message?.content;
-      return content ? (JSON.parse(content) as CV) : null;
+      return content ? { cv: JSON.parse(content) as CV, raw: content } : null;
     } catch (e: any) {
       if (attempt === GROQ_KEYS.length * 2 - 1) throw e;
       await sleep(1000);
@@ -321,26 +361,30 @@ async function main() {
   db.pragma("journal_mode = WAL");
   ensureColumns(db);
 
-  const where = ALL ? `` : `AND par.type = 'bundestag'`;
   const skipExisting = REFRESH ? "" : "AND p.cv_homepage_json IS NULL";
 
-  let rows = db
-    .prepare(
-      `SELECT DISTINCT p.id, p.first_name, p.last_name, p.homepage_url
+  // Mit --all: ALLE Politiker mit homepage_url (auch ohne Mandat).
+  const sql = ALL
+    ? `SELECT DISTINCT p.id, p.first_name, p.last_name, p.homepage_url
+       FROM politicians p
+       WHERE p.homepage_url IS NOT NULL ${skipExisting}`
+    : `SELECT DISTINCT p.id, p.first_name, p.last_name, p.homepage_url
        FROM politicians p
        JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
        JOIN parliament_periods pp ON m.parliament_period_id = pp.id
        JOIN parliaments par ON pp.parliament_id = par.id
-       WHERE p.homepage_url IS NOT NULL ${where} ${skipExisting}`
-    )
-    .all() as { id: number; first_name: string; last_name: string; homepage_url: string }[];
+       WHERE p.homepage_url IS NOT NULL AND par.type = 'bundestag' ${skipExisting}`;
+
+  let rows = db.prepare(sql).all() as { id: number; first_name: string; last_name: string; homepage_url: string }[];
 
   if (LIMIT > 0) rows = rows.slice(0, LIMIT);
   console.log(`\n${rows.length} Politiker mit homepage_url zu verarbeiten`);
   if (rows.length === 0) { db.close(); return; }
 
   const update = db.prepare(
-    `UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ?, cv_homepage_text = ? WHERE id = ?`
+    `UPDATE politicians SET cv_homepage_json = ?, cv_homepage_url = ?, cv_homepage_generated_at = ?,
+     cv_homepage_text = ?, cv_homepage_model = ?, cv_homepage_prompt_version = ?,
+     cv_homepage_raw_llm_response = ? WHERE id = ?`
   );
 
   let foundPage = 0, llmOk = 0, llmFail = 0, noPage = 0, done = 0;
@@ -352,9 +396,13 @@ async function main() {
       const hit = await findAboutPage(p.homepage_url);
       if (!hit) { noPage++; return; }
       foundPage++;
-      const cv = await generateCv(name, hit.text);
-      if (!cv) { llmFail++; return; }
-      update.run(JSON.stringify(cv), hit.url, new Date().toISOString(), hit.text, p.id);
+      const result = await generateCv(name, hit.text);
+      if (!result) { llmFail++; return; }
+      update.run(
+        JSON.stringify(result.cv), hit.url, new Date().toISOString(), hit.text,
+        `groq:${MODEL}`, PROMPT_VERSION, result.raw,
+        p.id
+      );
       llmOk++;
     } catch (e: any) {
       llmFail++;
