@@ -41,13 +41,73 @@ Score: 6/9 prüfbar sauber  |  3/9 prüfbar mit Fehlern  |  1/10 nicht prüfbar 
 
 → **TODO:** Prüfen wie viele MdBs einen Wikipedia-Artikel haben. Spalte `cv_source: "wikipedia"|"bundestag"|"wikidata"` einführen, um Audit-Trail ehrlich zu machen.
 
-### Empfehlung — eine der zwei Optionen:
+### Empfehlung — REVIDIERT nach Diskussion: Prompt-Engineering vor Modell-Upgrade
 
-**Option A (kleinerer Aufwand):** Stage 1 (`scripts/seed-cv.ts`) auf `llama-3.3-70b-versatile` hochziehen, alle 640 CVs neu extrahieren, Pipeline neu durchlaufen. Wahrscheinlich fängt das die Mihalic/Korell/Fehre-Klasse direkt beim ersten Pass.
+**Wichtige Erkenntnis aus Reality-Check:** 4 von 5 Fehlern sind **Datum-Probleme**, nicht Inhalts-Halluzinationen. Llama weiß WAS und WO, scheitert beim WANN. Das ist primär ein **Prompt-Engineering-Problem**, nicht (nur) ein Modell-Größen-Problem.
 
-**Option B (methodisch sauberer):** Neue Stufe **Stage 6 — Self-Consistency-Check** bauen. Pro CV-Aussage mit Llama 3.3 70B fragen: *„Steht das wörtlich oder sinngemäß im Quelltext?"* — fängt auch Halluzinationen die kein Cross-Check entdecken kann.
+#### Hebel 1 — Prompt-Engineering für Date-Precision (MACHEN ZUERST)
 
-Mein Tipp: **A zuerst** (1 Stunde Arbeit, kostet null), dann eventuell B als Phase-2.
+**`scripts/seed-cv.ts` Prompt erweitern** mit explizitem Daten-Regelblock + Few-Shot-Examples:
+
+```
+WICHTIG — REGELN FÜR ZEITANGABEN:
+- Steht "seit YYYY" → schreibe exakt "seit YYYY" (offenes Ende)
+- Steht "ab YYYY" → schreibe "ab YYYY"
+- Steht "von YYYY bis YYYY" → schreibe "YYYY-YYYY"
+- Wird NUR ein Anfangsjahr genannt → "seit YYYY", NIEMALS "YYYY-YYYY"
+- Erfinde NIEMALS ein Endjahr aus dem Kontext
+- Bei mehreren Daten in einem Satz: ordne jedes Datum dem RICHTIGEN Ereignis zu
+
+BEISPIELE:
+Quelltext: "Sie ist seit 2013 Mitglied des Bundestages."
+✓ {"jahr": "seit 2013", "text": "Mitglied des Bundestages"}
+✗ {"jahr": "2013-2017", ...} ← KEIN Endjahr im Quelltext genannt!
+
+Quelltext: "Ab 2007 war sie beim Polizeipräsidium Köln tätig."
+✓ {"jahr": "ab 2007", "text": "Polizeipräsidium Köln"}
+✗ {"jahr": "1993-2007", ...} ← Reihenfolge umgekehrt!
+
+Quelltext: "Sie trat 2016 der AfD bei. Seit 2019 ist sie Stadträtin."
+✓ {"jahr": "2016", "text": "Eintritt in die AfD"}
+  {"jahr": "seit 2019", "text": "Stadträtin"}
+✗ {"jahr": "2016", "text": "Stadträtin"} ← Datum vom AfD-Eintritt fälschlich übertragen!
+```
+
+**Aufwand:** 30 Min Code-Edit + Re-Run. **Kosten:** $0. **Erwartung:** 50-70% der Date-Fehler weg.
+
+#### Hebel 2 — Stage 2 als gezielter Daten-Verifier umbauen
+
+Aktuell: Mistral macht Voll-Extraktion → Cross-Check via Konflikte. Problem: wenn beide LLMs dieselbe Date-Halluzination haben → kein Konflikt → durchgerutscht (bei Mihalic exakt das passiert).
+
+**Besser:** Mistral als fokussierter Daten-Validator:
+
+```
+Pass 1 (Llama): Voll-Extraktion → cv_json
+Pass 2 (Mistral): Für jeden Eintrag in cv_json:
+   "Quelltext: [...]
+    Eintrag: jahr=X, text=Y
+    Frage: Steht jahr=X im Quelltext explizit für genau diese Aussage?
+    Antworte: 'korrekt' / 'falsch (richtig wäre Z)' / 'unklar'"
+```
+
+→ Findet auch Fehler die Mistral selbst machen würde, weil es jetzt VERIFIKATION statt EXTRAKTION ist.
+
+**Aufwand:** 1-2h (neues Skript). **Kosten:** $0 (Mistral Free Tier). **Erwartung:** weitere 20-30% Fehler gefangen.
+
+#### Hebel 3 — Modell-Upgrade (nur wenn Hebel 1+2 nicht reichen)
+
+- **Llama 4 Scout (Groq, $0):** schon im Stack als MODEL_LONG. MGSM 90.6% (multilingual, fast identisch zu 70B-91.1%). Halben MMLU-Sprung vom 8B.
+- **Llama 3.3 70B via DeepInfra Turbo FP8 ($0.10/$0.32 = ~$9 pro Vollauf):** stärkstes Modell, aber paid.
+- **NICHT Groq Paid für 70B** ($0.59/$0.79) — du zahlst für Speed (315 TPS) den du beim Bulk nicht brauchst.
+
+#### Reihenfolge morgen:
+
+1. **Prompt-Engineering Stage 1** (Daten-Regeln + Few-Shot) — 30 Min
+2. **Test-Lauf nur für die 3 Problem-MdBs** (Mihalic 79129, Korell 175003, Fehre 183487) — sind die Fehler weg?
+3. **Wenn ja:** voller Re-Run mit verbessertem Prompt. Stage 2-5.5 läuft normal drauf.
+4. **Wenn nein:** Stage 2 zum Daten-Verifier umbauen ODER Modell hochziehen (Llama 4 Scout zuerst, dann ggf. 70B via DeepInfra).
+
+**Wichtig:** Methodik-Seite kommunizieren wenn die Pipeline stark verändert wird — Audit-Trail bleibt sonst inkonsistent zwischen alter und neuer Version.
 
 ### Geschätzte Halluzinations-Rate aktuell:
 - **Pro MdB:** ~30-35% haben mindestens einen falschen Eintrag
