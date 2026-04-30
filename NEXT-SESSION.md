@@ -1,6 +1,61 @@
-# Next Session — Pickup-Kontext (Stand: 2026-04-30, ~02:30 nachts)
+# Next Session — Pickup-Kontext (Stand: 2026-04-30, ~03:50 nachts)
 
 > User geht schlafen. Morgen direkt mit dem Plan unten loslegen.
+
+## 🔥 WICHTIGER REALITY-CHECK (vor Schlafengehen, gegen Wikipedia getestet)
+
+**10 zufällige MdBs gegen Wikipedia geprüft — Halluzinations-Rate ist real und höher als gedacht:**
+
+```
+Score: 6/9 prüfbar sauber  |  3/9 prüfbar mit Fehlern  |  1/10 nicht prüfbar (kein Wikipedia)
+```
+
+### Die 3 gefundenen Fehler-Cases:
+
+**1. Micha Fehre (AfD, ID 183487) — Halluzination from scratch**
+- cv_json sagt: *„vor 2021: beruflich tätig im niedersächsischen Landtag"*
+- Wikipedia sagt: kein Berufs-/Studienabschluss, Selbstauskunft Unternehmer
+- **Llama hat „Beisitzer im Landesvorstand" → „im Landtag tätig" verwechselt**
+
+**2. Thomas Korell (AfD, ID 175003) — Date-Conflation**
+- cv_json sagt: *„2016: Fraktionsvorsitzender Stadtrat Klötze"*
+- Wikipedia sagt: AfD-Beitritt 2016, Stadtrat Klötze SEIT 2019
+- **Llama hat AfD-Beitrittsjahr mit Stadtrats-Wahljahr zusammengezogen**
+
+**3. Irene Mihalic (Grüne, ID 79129) — DREIFACH-FEHLER**
+- Grünen-Endjahr halluziniert: cv_json *„2006-2013"* statt *„seit 2006"*
+- Bundestag-Mandat falsch strukturiert: suggeriert Pause 2017 wo keine war
+- Polizei-Köln-Daten gespiegelt: cv_json *„1993-2007 Köln"* statt *„ab 2007 Köln"*
+
+### Pattern-Analyse:
+**Llama 3.1 8B versagt systematisch bei:**
+- zeitlichen Übergängen („ab 2007" vs. „bis 2007")
+- Mandats-Strukturierung über mehrere Wahlperioden
+- Date-Conflation bei mehreren parallelen Ereignissen im selben Jahr
+
+**Stage 5.5 fängt diese Klasse NICHT** — weil cv_homepage_json bei den betroffenen MdBs oft leer/dünn → kein Inter-Source-Konflikt → durchgerutscht.
+
+### Methodik-Schwachstelle gefunden:
+
+**Bastian Ernst** (CDU, ID 182825) hat **keinen Wikipedia-Artikel**, aber `cv_json` ist gut gefüllt. Heißt: die „Wikipedia-Extraktion" greift heimlich auf andere Quellen zurück (Bundestag-Bio / Wikidata). Das ist eine versteckte Inkonsistenz im Audit-Trail — die Methodik-Seite suggeriert *„cv_json = aus Wikipedia"*, das stimmt aber nicht für alle MdBs.
+
+→ **TODO:** Prüfen wie viele MdBs einen Wikipedia-Artikel haben. Spalte `cv_source: "wikipedia"|"bundestag"|"wikidata"` einführen, um Audit-Trail ehrlich zu machen.
+
+### Empfehlung — eine der zwei Optionen:
+
+**Option A (kleinerer Aufwand):** Stage 1 (`scripts/seed-cv.ts`) auf `llama-3.3-70b-versatile` hochziehen, alle 640 CVs neu extrahieren, Pipeline neu durchlaufen. Wahrscheinlich fängt das die Mihalic/Korell/Fehre-Klasse direkt beim ersten Pass.
+
+**Option B (methodisch sauberer):** Neue Stufe **Stage 6 — Self-Consistency-Check** bauen. Pro CV-Aussage mit Llama 3.3 70B fragen: *„Steht das wörtlich oder sinngemäß im Quelltext?"* — fängt auch Halluzinationen die kein Cross-Check entdecken kann.
+
+Mein Tipp: **A zuerst** (1 Stunde Arbeit, kostet null), dann eventuell B als Phase-2.
+
+### Geschätzte Halluzinations-Rate aktuell:
+- **Pro MdB:** ~30-35% haben mindestens einen falschen Eintrag
+- **Pro Aussage:** ~5-15% (weil pro MdB mehrere Aussagen, nicht alle falsch)
+
+Bei 14.347 Aussagen wären das **700-2000 falsche Fakten** unter Politiker-Namen veröffentlicht. Das ist nicht trivial.
+
+---
 
 ## ⚡ ZUERST MORGEN: Stage 5 fertig laufen lassen
 
