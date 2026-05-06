@@ -469,6 +469,144 @@ Die Llama-vs-Haiku-Confusion-Matrix zeigt empirisch, dass die Modell-Wahl bei Ve
 
 ---
 
+## Phase 8 — Sonstiges-Cleanup-Pipeline (6. Mai 2026)
+
+**Kontext:**
+Spot-Check eines Bundesministerinnen-Profils (Reem Alabali Radovan) zeigte, dass die Sektion `sonstiges` der Homepage-CVs systematisch verschmutzt war: 12 Einträge, davon nur 4 echte Mitgliedschaften — der Rest waren Blog-Post-Titel des „Aktuelles"-Blocks ihrer Webseite („Stadtbild-Debatte", „75 Jahre THW", „Meine Reise in den Nahen Osten"). Diagnose über alle 392 MdBs mit `cv_homepage_json.sonstiges`-Einträgen ergab **1.421 Items insgesamt, 86 % ohne Jahresangabe** — verdächtig CV-untypisch.
+
+**Stichproben-Inspektion (50 MdBs mit den meisten Sonstiges-Items):**
+Sechs Verschmutzungs-Klassen identifiziert:
+
+1. **Hobbies / Sport-Aktivitäten** — „Wandern", „Tanzen", „Skifahren", „Yoga"
+2. **Lieblings-X** — „Sonnenblume", „Henning Mankell", „Whoopy Goldberg", „Mineralwasser (mit Sprudel!)" (Schmidt: 8 davon)
+3. **News-/Blog-Posts** — Veranstaltungs-Notizen, Pressemitteilungen, Statement-Slogans
+4. **Header-Pseudo-Items** — „Mitgliedschaft in Ausschüssen und Gremien" als alleiniger Eintrag
+5. **Persönliche Lebensgeschichten** — „Verheiratet, zwei Kinder", „am 15. Mai geboren", „Pizza-Ausfahrer in der Goldenen Taverne"
+6. **HTML-Encoding-Bugs** — „B&uuml;rgerdialoge" (nicht entkodiert)
+
+Nicht alle Hobbies sollten raus — formal sind Hobbies CV-relevant. Aber **Lieblings-X (Steckbrief-Schnickschnack), News-Posts, Header-Items und HTML-Bugs eindeutig nicht**.
+
+**3-Stufen-Pipeline (`scripts/cleanup-sonstiges.ts`):**
+
+```
+Stufe 1: HTML-Entity-Decode (deterministisch)
+  → fixt &uuml; → ü, &auml; → ä, &szlig; → ß etc.
+  → 7 Items im Vollauf gefixt
+
+Stufe 2: Whitelist-Heuristik (deterministisch, KEEP_AUTO ohne LLM)
+  Items mit "e.V.", "Mitglied", "Vorsitz", "Stiftung", "Kuratorium",
+  "Ausschuss", "Beirat", "Parlamentariergruppe", "Stipendiat",
+  "Freiwillige Feuerwehr", "Förderverein", "ver.di", "DLRG", "AWO" etc.
+  → 781 von 1.421 Items (55 %) erkannt
+  → spart ~55 % LLM-Calls
+
+Stufe 3: Haiku-4.5-Klassifikator für die übrigen 640 Items (7 Klassen)
+  KEEP-Klassen: KEEP_MITGLIEDSCHAFT, KEEP_HOBBY, KEEP_PUBLIKATION, KEEP_AUSZEICHNUNG
+  DROP-Klassen: DROP_LIEBLINGS_X, DROP_NEWS_BLOG, DROP_HEADER
+  Konservativer Default: bei Unsicherheit KEEP
+  → 451 KEEP, 189 DROP
+```
+
+**Empirische Resultate (Vollauf 6. Mai 2026):**
+
+| Metrik | Wert |
+|---|---:|
+| Items inspiziert | 1.421 |
+| KEPT | 1.232 (87 %) |
+| **DROPPED** | **189 (13 %)** |
+| HTML-fixed | 7 |
+| MdBs mit Veränderung | 108 |
+| Audit-Einträge in `cv_repair_log` | 300 |
+| LLM-Calls | 640 |
+| Cost | **$0.94** |
+
+**Drop-Klassen-Verteilung:**
+- DROP_NEWS_BLOG: 109 (z.B. Reem 11×, Faeser 4×, Limbacher 4×)
+- DROP_HEADER: 71 (Pseudo-Sektions-Header, leere Strings, Familienstand-Notizen)
+- DROP_LIEBLINGS_X: 9
+
+**Prompt-Anpassungs-Iteration:**
+Erster Dry-Run auf 50 MdBs zeigte 4 Falsch-Drops (Mega-Listen, politische Funktionen, Promotion-Eintrag, „Urlaub im Wohnwagen"). Prompt um explizite KEEP-Regeln erweitert:
+- „Mitgliedschaften: X, Y, Z" mit echten Vereinen → KEEP_MITGLIEDSCHAFT (Mega-Liste, nicht splitten/droppen)
+- „Direktkandidat", „MdB", „Stadtrat" → KEEP_MITGLIEDSCHAFT
+- „Promotion", „Diplom", „Habilitation" allein → KEEP_MITGLIEDSCHAFT (auch wenn besser in `ausbildung`-Sektion)
+- „Urlaub im Wohnwagen" / „Reisen mit Familie" → KEEP_HOBBY
+
+Zweiter Dry-Run: 15 Drops (statt 19), alle defensible.
+
+**Audit-Trail:** Jeder Drop in `cv_repair_log` mit `repair_version='homepage-sonstiges-cleanup-v1'`, action `drop_text` oder `set_text` (für HTML-Fixes), `original_entry` als JSON-Kopie. Vollständig reversibel über Snapshot `politik.db.snapshot-pre-cleanup-sonstiges-20260505-231913`.
+
+**Folge-Schritt:** `cv_summary` (2-3-Satz-Bio) für 157 betroffene MdBs regeneriert (Groq Free Tier, $0). Verhindert UI-Self-Contradict, dass Summary noch alte News-Posts referenziert.
+
+**Architektur-Lehre:**
+- **Hybride Pipelines (Heuristik + LLM) sparen Kosten ohne Qualitätsverlust:** Whitelist greift bei klaren Mustern (Vereinsmitgliedschaften), LLM nur für Edge-Cases. ~55 % weniger LLM-Calls bei gleicher Genauigkeit.
+- **Prompt-Iteration über Stichproben:** erst kleines Dry-Run, dann Falsch-Drops klassifizieren, dann Prompt verschärfen. Vermeidet teure False-Drops im Vollauf.
+- **Konservativer Default ist Hygiene:** „bei Unsicherheit KEEP" macht False-Drop schwerer als False-Keep — bei Daten-Cleanup ist das die richtige Asymmetrie.
+
+---
+
+## Phase 9 — UI-Render-Hygiene (6. Mai 2026)
+
+**Kontext:**
+Während Spot-Checks der korrigierten MdBs (Brandner als Beispiel) traten drei UI-Render-Bugs in `PoliticianCV.tsx` auf, die den Eindruck von Datenqualitäts-Problemen verursachten — obwohl die DB-Daten selbst sauber waren.
+
+**Bug 1: Dedup zwischen Wikipedia-mit-Jahr und Homepage-ohne-Jahr**
+Brandner-Beispiel:
+- Wikipedia: `1987 / Abitur am Städtischen Gymnasium Herten`
+- Homepage: `(leer) / Abitur am Städtischen Gymnasium Herten`
+
+Beide wurden in der UI doppelt angezeigt, weil die Dedup-Schlüssel (`normalize(jahr+text)`) unterschiedlich waren. Der bestehende Fallback-Pfad (Year-Match + Substring-Check) griff nur, wenn beide Einträge ein Jahr hatten.
+
+**Fix:** Dedup-Heuristik erweitert um Text-Ähnlichkeits-Pass über alle bestehenden Einträge:
+- Jahre kompatibel (gleiches Jahr oder eines fehlt) UND
+- Text-Substring-Match auf normalisierten ersten 25 Zeichen
+→ Wikipedia-Eintrag mit Jahr gewinnt, Homepage-Eintrag ohne Jahr wird gemergt (mit Source-Badge)
+
+**Bug 2: Items ohne Jahr nicht visuell von datierten Items getrennt**
+Bei Brandner enthielt `politische_stationen`:
+```
+2021 / Gewinn des Direktmandats...
+(leer) / Jugendlicher: Mitglied der Jungen Union (JU)
+(leer) / Während Studium und Ausbildung in Bayern: Mitglied der CSU
+(leer) / Austritt aus der CDU
+```
+
+User-Beobachtung: „macht keinen sinn, wie jugendlicher im jahre 2021" — die jahrlose Items wurden visuell als zum vorherigen Jahr (2021) gehörig gelesen.
+
+**Fix:** Jahres-Spalte zeigt jetzt `—` (gedimmt + Tooltip „Kein Datum in den Quellen angegeben") für Items ohne Jahr — klar als „undatiert" erkennbar.
+
+**Bug 3: Sortier-Tiebreaker bei gleichem Startjahr unintuitive**
+Brandner-Beispiel:
+- `1990-1994 / Studium der Rechtswissenschaft an der Universität Regensburg`
+- `1990 / Ausbildung zum Industriekaufmann ... abgeschlossen`
+
+Standard-Sort produzierte `1990-1994` vor `1990` (gleicher Start, alphabetische Reihenfolge im Tiebreak). User-Logik: ein Punkt-Datum (1990) ist *innerhalb* des Jahres 1990, ein Zeitraum (1990-1994) erstreckt sich darüber hinaus → Punkt zuerst.
+
+**Fix:** Sortier-Tiebreaker: bei gleichem Startjahr Punkt-Daten vor Zeitraum-Daten. Hilfsfunktion `isYearRange()` erkennt mehrere 4-stellige Jahre, „seit", „bis", „ab".
+
+**Bug 4: Jahrlose Items am Ende statt am Anfang der Sektion**
+Original-Sortier-Verhalten: Items ohne Jahr werden ans Ende sortiert. User-Wunsch: am Anfang — oft frühe Lebens-Phasen („Jugendlicher: Mitglied JU") oder andauernde Mitgliedschaften ohne klares Startdatum.
+
+**Fix:** Sort-Direction für `null`-Jahre umgedreht — undatierte Items zuerst, dann chronologisch.
+
+**Wirkung:**
+Alle vier Fixes wirken auf jeden Politiker auf beiden UI-Designs (`/` und `/design/linear`), weil `PoliticianCV.tsx` die geteilte Komponente ist. Stichprobe nach Fix:
+
+| MdB | jahrlose Items mit „—" |
+|---|---:|
+| Anja Weisgerber | 1 |
+| Silke Launert | 9 |
+| Reem Alabali Radovan | 17 (vor Sonstiges-Cleanup; nach Cleanup: 4) |
+| Karl Lauterbach | 0 |
+| Stephan Brandner | 7 |
+
+**Architektur-Lehre:**
+- **UI-Render-Bugs können wie Daten-Bugs aussehen:** Brandner-Beobachtung war ursprünglich „Daten doppelt-gemoppelt", war aber Render-Verhalten. Vor Daten-Cleanup immer UI-Layer prüfen.
+- **„—" als expliziter Marker statt leerer Spalte:** kostet 5 Code-Zeilen, eliminiert eine ganze Klasse von Lese-Fallen.
+- **Tiebreaker-Sortierung muss menschlicher Lese-Logik folgen:** bei gleichem Startjahr ist Punkt-vor-Zeitraum intuitiv, alphabetisch nicht.
+
+---
+
 ## Kosten-Bilanz
 
 | Phase | Generator-Cost | Annotation |
@@ -476,8 +614,10 @@ Die Llama-vs-Haiku-Confusion-Matrix zeigt empirisch, dass die Modell-Wahl bei Ve
 | 1 Naiv (Llama 8B) | $0 | aber ~30% Halluzinations-Rate = unbrauchbar für Bürger-Information |
 | 2 Multi-LLM-Konsens | $0 (alles Free Tier) | + ~$0.50 für Stage 4 V2-Tiebreaker (Haiku) |
 | 4-6 Specialist-Cascade | ~$8 (Generator) + $0 (alles andere) | für Production-reife Datenqualität |
+| 7 Source-Coherence Verifier-Cascade | $0 Stage 5 (Groq Free) + $0.06 Haiku-Verifier (39 Cases) | + Opus 4.7 manuelle Review als Ground Truth |
+| 8 Sonstiges-Cleanup-Pipeline | $0.94 Haiku-Klassifikator (640 Calls) | 189 Drops aus 1.421 Items, 108 MdBs |
 
-**Gesamt für 629 Bundestag-MdBs CVs: ~$8** — extrem günstig für 5 unabhängige Validierungs-Schichten.
+**Gesamt für 629 Bundestag-MdBs CVs: ~$9** — extrem günstig für 7 unabhängige Validierungs-Schichten + Source-Coherence-Verifikation + Sonstiges-Cleanup.
 
 ---
 
