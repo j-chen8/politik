@@ -1,6 +1,6 @@
 # Methodik-Evolution: Politik-Datenextraktion
 
-**Stand:** 2026-04-30
+**Stand:** 2026-05-06
 **Status:** lebendes Dokument, wird mit jeder Phase ergänzt
 
 Dieses Dokument beschreibt die Evolution der Datenextraktions-Methodik für das Projekt — von einem naiven Single-LLM-Setup hin zu einer Specialist-Cascade-Architektur. Es ist eine ehrliche Chronik mit empirischen Befunden, Fehlentscheidungen und Lerneffekten.
@@ -10,6 +10,48 @@ Zweck:
 - **Förder-Transparenz** — wie wurde die aktuelle Methodik begründet?
 - **Wiederverwendbare Lehren** für künftige Pipelines (Reden, Sidejobs, Drucksachen)
 - **Schutz gegen Second-Guessing** — „warum nicht Modell X?" hat dokumentierte Antworten
+
+---
+
+## Executive Summary
+
+### Was wir machen
+
+Strukturierte politische Daten — Lebensläufe, Reden, Aktivitäten — werden aus offenen Quellen (Wikipedia, persönliche Webseiten, Bundestag-OpenData, abgeordnetenwatch) mit einer **Specialist-Cascade-LLM-Pipeline** extrahiert. Jede Aussage durchläuft 3+ unabhängige Modell-Familien zur Validierung; das Ergebnis ist pro Eintrag mit Audit-Trail und Originalquelle rückverfolgbar.
+
+### Empirische Headline-Zahlen (Stand 6. Mai 2026)
+
+| Metrik | Wert | Kontext |
+|---|---:|---|
+| Bundestags-MdB-Profile mit strukturiertem CV | **629/629 (100 %)** | Wikipedia + persönliche Homepage |
+| Halluzinationsrate nach Specialist-Cascade | **1,24 %** | empirisch gemessen über 13.510 Verdicts (vs. ~30 % Single-Llama-Baseline → 24× Reduktion) |
+| Reden mit strukturierter Tool-Use-Analyse | **9.913** | Forderungen, wörtliche Zitate, Frame-Marker, Tonalität |
+| Quellen-Diskrepanzen offengelegt | **14 ECHT / 14 PRAEZ / 11 FP** | Wikipedia × Homepage Source-Coherence-Check, Verifier-Cascade-validiert |
+| Modell-Familien aktiv | **5** | Anthropic, Meta, Mistral, NVIDIA, OpenAI-OSS |
+| **Total-Cost** | **~$9 + $42 (Reden-Batch)** | für 629 MdBs CVs + 9.913 Reden, alle Validierungs-Schichten |
+| Audit-Trail-Einträge in DB | **300+ in cv_repair_log** | pro Korrektur Original + Neu + Begründung + Modell-Version |
+
+### Methodische Differenzierung gegenüber Single-LLM-Plattformen
+
+1. **Specialist-Cascade statt Multi-LLM-Konsens.** Ein starker Generator (Claude Haiku 4.5) produziert strukturierte Daten, dann fahren *spezialisierte* Inspector-Modelle (Mistral Small für Datums-Match, Llama 3.3 70B für Reasoning-Verifikation, gpt-oss-120b für Source-Coherence) gezielt einzelne Fehler-Klassen ab. Effizienter und schärfer als parallele Voll-Extraktion.
+
+2. **Bias-Resistenz durch Modell-Familien-Diversität.** Jede Aussage wird durch mindestens 3 unabhängige Modell-Familien geprüft (verschiedene Trainingsdaten, verschiedene Architekturen — inkl. einem Nicht-Transformer-Modell, NVIDIA Nemotron-Nano mit Mamba-Architektur). Trainingsdaten-Schlagseiten einzelner Anbieter werden so neutralisiert.
+
+3. **Empirische Verifier-Auswahl, nicht Free-Tier-Default.** In Phase 7 (Source-Coherence) haben wir Llama 3.3 70B und Claude Haiku 4.5 mit identischem Prompt verglichen: Llama 70B fängt nur 38 % der echten Widersprüche, Haiku 4.5 fängt 69 %. Lehre: für semantische Reasoning-Aufgaben mit Welt-Wissen ist Free-Tier-Llama nicht ausreichend — die Modell-Wahl ist nicht beliebig.
+
+4. **Transparente Quellen-Konflikte statt Daten-Schönfärbung.** Wo Wikipedia und persönliche Homepage sich widersprechen, machen wir die Diskrepanz auf der Politiker-Detailseite sichtbar (mit beiden Originalquellen + KI-Begründung), statt sie zu verschleiern. Datenqualität wird als Eigenschaft der Plattform offengelegt, nicht versteckt.
+
+### Audit-Trail (Reproduzierbarkeit)
+
+- Pro Aussage in der Datenbank: `model`, `prompt_version`, `generated_at`, `raw_llm_response`, `source_url`
+- Pro Korrektur: Eintrag in `cv_repair_log` mit `repair_version`, `original_entry`, `new_entry`, `reason`
+- Pro Pipeline-Lauf: persistente JSONL-Resume-Caches (`*-verdicts-source-coherence.jsonl` etc.)
+- Roh-Texte (Wikipedia-Volltext, Homepage-Text, Plenarprotokoll-XMLs) in der DB persistiert
+- Alle Skripte im GitHub-Repository [opoi1/politik](https://github.com/opoi1/politik) — Pipeline ist von einer fremden Person reproduzierbar
+
+### Status (Stand 6. Mai 2026)
+
+CV-Pipeline für Bundestag abgeschlossen mit 1,24 % Halluzinationsrate. Reden-Pipeline (9.913 Reden via Smart-Haiku-Cascade) abgeschlossen, 90,9 % Quote-Validation. Source-Coherence-Pipeline live mit 14 echten Diskrepanzen ausgewiesen. Geplant: Reden-Themen-Klassifikation, Synopse Aussage-vs-Vote (Killer-Feature), Landtage + EU-Parlament als zweite Skalierungs-Stufe.
 
 ---
 
