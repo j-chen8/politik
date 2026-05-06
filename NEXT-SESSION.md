@@ -1,276 +1,169 @@
-# Next Session — Pickup-Kontext (Stand: 2026-04-30, ~03:50 nachts)
+# Next Session — Pickup-Kontext (Stand: 2026-05-01 ~14:30)
 
-> User geht schlafen. Morgen direkt mit dem Plan unten loslegen.
+> **Reden-Batch ist live bei Anthropic.** Asynchron, max 24h Laufzeit.
+> Erste Aktion morgen: Status-Check, dann Retrieve.
 
-## 🔥 WICHTIGER REALITY-CHECK (vor Schlafengehen, gegen Wikipedia getestet)
+## ⚡ TL;DR — was zuerst zu tun ist
 
-**10 zufällige MdBs gegen Wikipedia geprüft — Halluzinations-Rate ist real und höher als gedacht:**
+```bash
+# 1. Status checken (sicher, kostet nichts)
+npx tsx scripts/batch-retrieve-reden.ts
 
-```
-Score: 6/9 prüfbar sauber  |  3/9 prüfbar mit Fehlern  |  1/10 nicht prüfbar (kein Wikipedia)
-```
+# 2. Wenn alle Batches "ended": Resultate in DB schreiben
+npx tsx scripts/batch-retrieve-reden.ts --apply
 
-### Die 3 gefundenen Fehler-Cases:
-
-**1. Micha Fehre (AfD, ID 183487) — Halluzination from scratch**
-- cv_json sagt: *„vor 2021: beruflich tätig im niedersächsischen Landtag"*
-- Wikipedia sagt: kein Berufs-/Studienabschluss, Selbstauskunft Unternehmer
-- **Llama hat „Beisitzer im Landesvorstand" → „im Landtag tätig" verwechselt**
-
-**2. Thomas Korell (AfD, ID 175003) — Date-Conflation**
-- cv_json sagt: *„2016: Fraktionsvorsitzender Stadtrat Klötze"*
-- Wikipedia sagt: AfD-Beitritt 2016, Stadtrat Klötze SEIT 2019
-- **Llama hat AfD-Beitrittsjahr mit Stadtrats-Wahljahr zusammengezogen**
-
-**3. Irene Mihalic (Grüne, ID 79129) — DREIFACH-FEHLER**
-- Grünen-Endjahr halluziniert: cv_json *„2006-2013"* statt *„seit 2006"*
-- Bundestag-Mandat falsch strukturiert: suggeriert Pause 2017 wo keine war
-- Polizei-Köln-Daten gespiegelt: cv_json *„1993-2007 Köln"* statt *„ab 2007 Köln"*
-
-### Pattern-Analyse:
-**Llama 3.1 8B versagt systematisch bei:**
-- zeitlichen Übergängen („ab 2007" vs. „bis 2007")
-- Mandats-Strukturierung über mehrere Wahlperioden
-- Date-Conflation bei mehreren parallelen Ereignissen im selben Jahr
-
-**Stage 5.5 fängt diese Klasse NICHT** — weil cv_homepage_json bei den betroffenen MdBs oft leer/dünn → kein Inter-Source-Konflikt → durchgerutscht.
-
-### Methodik-Schwachstelle gefunden:
-
-**Bastian Ernst** (CDU, ID 182825) hat **keinen Wikipedia-Artikel**, aber `cv_json` ist gut gefüllt. Heißt: die „Wikipedia-Extraktion" greift heimlich auf andere Quellen zurück (Bundestag-Bio / Wikidata). Das ist eine versteckte Inkonsistenz im Audit-Trail — die Methodik-Seite suggeriert *„cv_json = aus Wikipedia"*, das stimmt aber nicht für alle MdBs.
-
-→ **TODO:** Prüfen wie viele MdBs einen Wikipedia-Artikel haben. Spalte `cv_source: "wikipedia"|"bundestag"|"wikidata"` einführen, um Audit-Trail ehrlich zu machen.
-
-### Empfehlung — REVIDIERT nach Diskussion: Prompt-Engineering vor Modell-Upgrade
-
-**Wichtige Erkenntnis aus Reality-Check:** 4 von 5 Fehlern sind **Datum-Probleme**, nicht Inhalts-Halluzinationen. Llama weiß WAS und WO, scheitert beim WANN. Das ist primär ein **Prompt-Engineering-Problem**, nicht (nur) ein Modell-Größen-Problem.
-
-#### Hebel 1 — Prompt-Engineering für Date-Precision (MACHEN ZUERST)
-
-**`scripts/seed-cv.ts` Prompt erweitern** mit explizitem Daten-Regelblock + Few-Shot-Examples:
-
-```
-WICHTIG — REGELN FÜR ZEITANGABEN:
-- Steht "seit YYYY" → schreibe exakt "seit YYYY" (offenes Ende)
-- Steht "ab YYYY" → schreibe "ab YYYY"
-- Steht "von YYYY bis YYYY" → schreibe "YYYY-YYYY"
-- Wird NUR ein Anfangsjahr genannt → "seit YYYY", NIEMALS "YYYY-YYYY"
-- Erfinde NIEMALS ein Endjahr aus dem Kontext
-- Bei mehreren Daten in einem Satz: ordne jedes Datum dem RICHTIGEN Ereignis zu
-
-BEISPIELE:
-Quelltext: "Sie ist seit 2013 Mitglied des Bundestages."
-✓ {"jahr": "seit 2013", "text": "Mitglied des Bundestages"}
-✗ {"jahr": "2013-2017", ...} ← KEIN Endjahr im Quelltext genannt!
-
-Quelltext: "Ab 2007 war sie beim Polizeipräsidium Köln tätig."
-✓ {"jahr": "ab 2007", "text": "Polizeipräsidium Köln"}
-✗ {"jahr": "1993-2007", ...} ← Reihenfolge umgekehrt!
-
-Quelltext: "Sie trat 2016 der AfD bei. Seit 2019 ist sie Stadträtin."
-✓ {"jahr": "2016", "text": "Eintritt in die AfD"}
-  {"jahr": "seit 2019", "text": "Stadträtin"}
-✗ {"jahr": "2016", "text": "Stadträtin"} ← Datum vom AfD-Eintritt fälschlich übertragen!
+# 3. Wenn noch "in_progress": einfach später nochmal aufrufen
 ```
 
-**Aufwand:** 30 Min Code-Edit + Re-Run. **Kosten:** $0. **Erwartung:** 50-70% der Date-Fehler weg.
-
-#### Hebel 2 — Stage 2 als gezielter Daten-Verifier umbauen
-
-Aktuell: Mistral macht Voll-Extraktion → Cross-Check via Konflikte. Problem: wenn beide LLMs dieselbe Date-Halluzination haben → kein Konflikt → durchgerutscht (bei Mihalic exakt das passiert).
-
-**Besser:** Mistral als fokussierter Daten-Validator:
-
-```
-Pass 1 (Llama): Voll-Extraktion → cv_json
-Pass 2 (Mistral): Für jeden Eintrag in cv_json:
-   "Quelltext: [...]
-    Eintrag: jahr=X, text=Y
-    Frage: Steht jahr=X im Quelltext explizit für genau diese Aussage?
-    Antworte: 'korrekt' / 'falsch (richtig wäre Z)' / 'unklar'"
-```
-
-→ Findet auch Fehler die Mistral selbst machen würde, weil es jetzt VERIFIKATION statt EXTRAKTION ist.
-
-**Aufwand:** 1-2h (neues Skript). **Kosten:** $0 (Mistral Free Tier). **Erwartung:** weitere 20-30% Fehler gefangen.
-
-#### Hebel 3 — Modell-Upgrade (nur wenn Hebel 1+2 nicht reichen)
-
-- **Llama 4 Scout (Groq, $0):** schon im Stack als MODEL_LONG. MGSM 90.6% (multilingual, fast identisch zu 70B-91.1%). Halben MMLU-Sprung vom 8B.
-- **Llama 3.3 70B via DeepInfra Turbo FP8 ($0.10/$0.32 = ~$9 pro Vollauf):** stärkstes Modell, aber paid.
-- **NICHT Groq Paid für 70B** ($0.59/$0.79) — du zahlst für Speed (315 TPS) den du beim Bulk nicht brauchst.
-
-#### Reihenfolge morgen:
-
-1. **Prompt-Engineering Stage 1** (Daten-Regeln + Few-Shot) — 30 Min
-2. **Test-Lauf nur für die 3 Problem-MdBs** (Mihalic 79129, Korell 175003, Fehre 183487) — sind die Fehler weg?
-3. **Wenn ja:** voller Re-Run mit verbessertem Prompt. Stage 2-5.5 läuft normal drauf.
-4. **Wenn nein:** Stage 2 zum Daten-Verifier umbauen ODER Modell hochziehen (Llama 4 Scout zuerst, dann ggf. 70B via DeepInfra).
-
-**Wichtig:** Methodik-Seite kommunizieren wenn die Pipeline stark verändert wird — Audit-Trail bleibt sonst inkonsistent zwischen alter und neuer Version.
-
-### Geschätzte Halluzinations-Rate aktuell:
-- **Pro MdB:** ~30-35% haben mindestens einen falschen Eintrag
-- **Pro Aussage:** ~5-15% (weil pro MdB mehrere Aussagen, nicht alle falsch)
-
-Bei 14.347 Aussagen wären das **700-2000 falsche Fakten** unter Politiker-Namen veröffentlicht. Das ist nicht trivial.
+Wenn beim Status-Check unerwartete Errors stehen (z.B. `errored` > 0), zuerst die Fehlermeldungen ansehen bevor `--apply`. Bei Bedarf Retry-Pfad fahren statt blind anwenden.
 
 ---
 
-## ⚡ ZUERST MORGEN: Stage 5 fertig laufen lassen
+## 🎯 Was heute (2026-05-01) gelaufen ist
 
-**Status:** 519/563 MdBs durch (92%). Verbleibend: **44 MdBs** (Task #14 sagt 62 — das war eine ältere Schätzung, der echte Wert ist 44).
+### Smoke-Test Phase (Vormittag)
 
-**Warum es nicht heute fertig wurde:** `gpt-oss-120b` auf Groq hat ein **Tokens-per-Day-Limit von 200.000**, das erreicht haben. Reset ~12 Uhr Mittag.
+**Test 1 — Methodology-Validation auf 20 Reden:**
+- Smart-Haiku-Cascade gegen 20 stratifizierte Reden (9 Reality-Check + 11 nach Partei)
+- 17/20 erfolgreich, 91.3 % Quote-Validation
+- Alle 4 PRIO-1-Erfolgskriterien erfüllt: Bloch H1 ✓, Kleinschmidt H2 ✓, Hardt H4 (9 Forderungen) ✓, Reden-Typ-Klassifikation ✓
+- Cost: $0.19
 
-```bash
-# Nach dem TPD-Reset (etwa 12:00 Uhr):
-npx tsx scripts/source-coherence-check.ts
-```
+**Test 2 — Stabilität invented Tonalitäten (Cluster-Analyse):**
+- 10 zusätzliche Reden gezielt gewichtet auf „sachliche" Klassen
+- Kernergebnis: invented Modifier sind NICHT stabil — 6 verschiedene `sachlich_X` / `konfrontativ_X` über 30 Reden, 3 erstmals im Extension-Run aufgetaucht
+- → Enum-Erweiterung wäre Whack-a-Mole. Lösung: Tool-Use mit hartem Enum erzwingen.
+- Cost: $0.09
 
-Resume-fähig — macht die letzten 44 MdBs, sollte in ~10 Min durch sein.
+**Test 3 — Engineering-Fix-Validation auf 10 Problem-Reden:**
+- Tool-Use mit ASCII-Keys (`tonalitaet`, `woertliche_zitate`) + Mapping zurück auf deutsche Keys
+- Tool-Use mit `tool_choice: {type: "tool", name: ...}` + JSON-Schema-Enum-Validierung
+- 10/10 erfolgreich (vorher 7/10), 0 erfundene Tonalitäten, 0 JSON-Failures
+- Cost: $0.11
 
-**Danach:** wenn neue Diskrepanz-Kandidaten gefunden werden, Stage 5.5 nochmal:
+**Smoke-Test-Total: $0.39 / 40 Reden, alle Kernfragen beantwortet.**
 
-```bash
-npx tsx scripts/verify-source-conflicts.ts
-```
+### Submit Phase (frühe Nachmittag)
 
-Auch resume-fähig (Llama 3.3 70B hat eigenes Quota, freier).
+**`scripts/batch-submit-reden.ts` gebaut + ausgeführt:**
+- Filter: `original_text >= 200 Zeichen` → 9.913 von 10.053 Reden
+- Identische Tool-Schema + Methodology-System-Prompt wie im Smoke-Test
+- Anthropic-Limit: 256 MB pro Batch → automatisch in 2 Sub-Batches gesplittet:
+  - `msgbatch_014Sgrh6ocBNF1VeEHS21ZGi` (5.916 Reden, 210 MB)
+  - `msgbatch_01YSdWFdMs5gWvcKRLhfsM3A` (3.997 Reden, 139 MB)
+- Beide submitted, Status `in_progress`
+- batch_ids + Metadaten persistiert in `.batch-state.json`
+- Cost-Estimate Batch-API: **~$42** (Live-Rate wäre $84)
 
-**Falls Halluzinationen identifiziert:** Reparatur:
+### Retrieve Phase (heute Nachmittag — Skript fertig)
 
-```bash
-npx tsx scripts/fix-hallucinated-cv-entries.ts
-```
+**`scripts/batch-retrieve-reden.ts` gebaut, noch nicht ausgeführt:**
+- Liest `.batch-state.json`, zeigt Status pro Sub-Batch
+- Mit `--apply`: holt alle Resultate, validiert Quotes per Substring, schreibt in neue Tabelle `speech_analyses_v2`
+- UPSERT-Logik via `ON CONFLICT (rede_id, segment_index) DO UPDATE`, also re-applyable
 
-Anschließend ggf. cv_summary für die neu reparierten regenerieren (siehe „cv_summary regenerieren" weiter unten).
+**Schema `speech_analyses_v2`** (wird beim ersten `--apply` erstellt):
+- Identifikation: `rede_id`, `segment_index`, `speech_id` (FK)
+- Inhalt: `reden_typ`, `tonalitaet`, `zusammenfassung_2_saetze`
+- Strukturiert als JSON: `forderungen_json`, `woertliche_zitate_json`, `framing_marker_json`, `rhetorische_mittel_json`, `konkrete_zahlen_json`, `anti_hallucination_flags_json`
+- Validation: `quote_valid_count`, `quote_total_count`
+- Audit: `raw_tool_input_json`, `model`, `methodology_sha`, `batch_id`, Token-Counts (input/cache_read/cache_write/output), `stop_reason`, `error_type`/`error_message`
+- UNIQUE (rede_id, segment_index)
 
-## Was heute gelaufen ist
+---
 
-### Pipeline-Ausbau
+## 📋 Tomorrow Workflow
 
-- **Stage 4 Modell-Wechsel:** GPT-4o-mini (war rate-limited auf GitHub Models) → **Claude Haiku 4.5 via Anthropic SDK** mit JSON-Schema-Validation. Setup in `scripts/tiebreak-v2-uncertain.ts`. `ANTHROPIC_API_KEY` ist in `.env`. Restguthaben Anthropic ~$3.50.
-- **V2-Lauf abgeschlossen:** 64/64 unscharfe Konflikte aufgelöst, 0 Fehler dank Schema-Validation. Kosten ~$0.50.
-- **56 Patches angewendet** (`scripts/apply-tiebreak-patches-auto.ts --apply --include-shaky`) → 27 in cv_json + 29 in cv_homepage_json.
-- **cv_summary regeneriert** für 98 betroffene MdBs (`generate-cv-summary.ts` nach NULL-set per SQL).
-
-### Stage 5 + Stage 5.5 + Reparatur (NEU heute komplett gebaut)
-
-- **Stage 5 Source-Coherence:** läuft mit `gpt-oss-120b` auf Groq, Pipeline `scripts/source-coherence-check.ts`. Status: **519 von 563 MdBs durch (92%)**, dann Groq-TPD-Limit erreicht. Reset ~12 Uhr Mittag.
-- **Stage 5.5 NEU gebaut:** `scripts/verify-source-conflicts.ts` mit Llama 3.3 70B auf Groq. Klassifiziert Stage-5-Findings in echte Diskrepanz vs. Extraktions-Fehler.
-- **Stage-5.5-Ergebnis:** 38 Konflikte verifiziert, **alle 38 = Llama-Halluzinationen** (0 echte Diskrepanzen). Methodisch wichtigstes Ergebnis des Tages — fängt Halluzinations-Klasse die Stage 2-4 systematisch verpasst.
-- **Halluzinations-Reparatur NEU gebaut:** `scripts/fix-hallucinated-cv-entries.ts` mit Llama 3.3 70B → 33 Einträge ersetzt, 1 gelöscht (alle 34 fehlerhaften Einträge bereinigt). 7 waren schon nicht mehr im cv_json (vermutlich aus früheren Patches).
-
-### Methodik-Seite komplett umgestaltet
-
-- **Per-Datenart-Strukturierung:** Drei einklappbare Top-Level-Blöcke
-  - 📋 *„Verfahren für Lebensläufe"* — abgeschlossen, default geöffnet, enthält Quick-Stats + alle 5+ Stufen + Detail-Statistiken + Audit-Trail
-  - 🎤 *„Verfahren für Reden (Plenarprotokolle)"* — in Vorbereitung, mit Beschreibung was kommt
-  - 📄 *„Verfahren für Drucksachen, Anfragen, Sidejobs"* — geplant, Platzhalter
-- **Stage 5.5 in Pipeline-Übersicht** integriert mit Click-to-Scroll-Anchors
-- **Beispiele pro Verdict-Klasse** (klick-und-aufklappbar) in allen Detail-Tabellen — 15+ Beispiele dynamisch aus Audit-Files geladen
-- **Tiebreaker-Naming komplett konsistent:**
-  - Stufe 3 = *„Tiebreaker — Inter-LLM-Konflikt"* (Llama vs. Mistral)
-  - Stufe 4 = *„Tiebreaker v2 — Inter-LLM (4 Quellen)"* (Haiku 4.5 mit allen Quellen)
-  - Stufe 5.5 = *„Tiebreaker — Inter-Source-Konflikt"* (Wikipedia vs. Homepage)
-- **Audit-Trail jetzt pro Datenart** statt global
-
-### UI Source-Conflicts in Profil
-
-- **`PoliticianCV.tsx`** zeigt Quellen-Diskrepanzen mit Filter: nur `verification.classification === "echte_diskrepanz"` werden angezeigt, alles andere (Extraktions-Fehler) ausgeblendet. Aktuell: 0 echte Diskrepanzen → Banner erscheint nirgends.
-
-### Cloudflare Tunnel
-
-- **Aktive URL beim Schlafengehen:** https://giant-bali-ecological-dense.trycloudflare.com (instabil, neue URL bei jedem Tunnel-Restart)
-- Tunnel-Prozess läuft im Hintergrund
-
-## Zustand wichtiger Files
-
-- `politik.db` — 94 MB, post-Reparatur, **NICHT zu R2 gesynct** (warten auf Stage-5-Restlauf morgen)
-- `politik.db.snapshot-post-haiku-tiebreak-20260429-234443` — Backup vor Patches
-- `tiebreak.partial.jsonl` — 676 v1-Verdikte
-- `tiebreak-v2.partial.jsonl` — 64 v2-Verdikte (Haiku, schema-validiert)
-- `source-coherence.partial.jsonl` — **519 MdBs durch** (44 fehlen)
-- `verify-source-conflicts.partial.jsonl` — 38 Stage-5.5-Verifikationen
-- `fix-hallucinated-cv-report.md` — alle 34 Reparatur-Schritte protokolliert
-
-## Audit-Trail-Vollständigkeit
-
-- DB-Spalten: `cv_model`, `cv_prompt_version`, `cv_raw_llm_response`, `source_conflicts`, `source_coherence_checked_at` — alle befüllt
-- Skripte: alle in `scripts/`, alle reproduzierbar
-- Methodik-Seite listet ALLE Audit-Files pro Datenart auf
-
-## Nach dem Stage-5-Restlauf morgen
-
-### R2-Sync (Production-Update)
+### Phase 1: Retrieve (5–15 Min)
 
 ```bash
-# Dev-Server stoppen
-pkill -f "next dev"
-sleep 2
+npx tsx scripts/batch-retrieve-reden.ts
+# erwartete Ausgabe wenn fertig:
+#   [1/2] msgbatch_014Sgrh6ocBNF1VeEHS21ZGi · ended · 0/5916/0/0/0
+#   [2/2] msgbatch_01YSdWFdMs5gWvcKRLhfsM3A · ended · 0/3997/0/0/0
+#   Alle Batches ended.
 
-# DB pushen
-./scripts/sync-db.sh push
-
-# Dev-Server neu starten (im Hintergrund)
-npm run dev &
-
-# Tunnel URL prüfen — sollte gleich bleiben falls cloudflared lief
-curl -sI https://giant-bali-ecological-dense.trycloudflare.com
+npx tsx scripts/batch-retrieve-reden.ts --apply
+# erwartete Ausgabe: 9.700+ ok / wenige errors / tatsächliche Cost ausgegeben
 ```
 
-### cv_summary für neu reparierte MdBs (falls Reparatur gelaufen ist)
+### Phase 2: Sanity-Check (15 Min)
 
 ```bash
-# IDs aus tiebreak/v2 Partials extrahieren wo verdict = mistral
-# Siehe Skript-Pattern aus heute (extract-patched-ids in /tmp)
-# NULL die cv_summary für die betroffenen IDs
-# Dann generate-cv-summary.ts laufen lassen
+# Tonalität-Verteilung — sollten nur die 11 Enum-Werte sein
+sqlite3 politik.db "SELECT tonalitaet, COUNT(*) FROM speech_analyses_v2 GROUP BY tonalitaet ORDER BY 2 DESC;"
+
+# Reden-Typ-Verteilung
+sqlite3 politik.db "SELECT reden_typ, COUNT(*) FROM speech_analyses_v2 GROUP BY reden_typ ORDER BY 2 DESC LIMIT 20;"
+
+# Quote-Validation-Stats global
+sqlite3 politik.db "SELECT SUM(quote_valid_count), SUM(quote_total_count), 1.0*SUM(quote_valid_count)/SUM(quote_total_count) AS pct_valid FROM speech_analyses_v2;"
+
+# Errors (bei 9913 erwarten wir ~10–50 als Worst Case)
+sqlite3 politik.db "SELECT error_type, COUNT(*) FROM speech_analyses_v2 WHERE error_type IS NOT NULL GROUP BY error_type;"
+
+# Spot-Check 5 zufällige Reden gegen Original
+sqlite3 politik.db "SELECT rede_id, reden_typ, tonalitaet, zusammenfassung_2_saetze FROM speech_analyses_v2 ORDER BY RANDOM() LIMIT 5;"
 ```
 
-## Offene Tech-Schulden / Optionen
+### Phase 3: Inspector / Cascade-Layer (offen)
 
-### Pipeline-Methodik
-- **Llama-fixt-Llama** im Reparatur-Schritt ist methodisch suboptimal aber pragmatisch ok (Kostenargument). Eventuell für eine V2 mit Mistral oder Anthropic gegen-validieren.
-- **Stage 5 könnte langfristig in 5.5 aufgehen** wenn 0/X-Pattern sich hält.
+Nach erfolgreichem Apply ist die Frage: brauchen wir einen Halluzinations-Inspektor (Mistral / Nemotron-Nano) auf die Outputs? Smoke-Test zeigte 91 % Quote-Validation — wenn das im Vollauf hält, ist der Inspector erstmal optional. Erst Stats anschauen, dann entscheiden.
 
-### Frontend / UX
-- **Linear-Methodik-Seite** hat Stage 5.5 noch nicht (nur Stage 3-5). Aktuell nur klassische Methodik-Seite vollständig. Kann nachgezogen werden wenn Linear-Design weiterhin parallel gepflegt wird.
-- **Beispiele in den Tabellen zeigen das chronologisch ERSTE Vorkommen** — nicht handgewählt. Für Förder-Demo wäre kuratiertes Vorzeige-Beispiel pro Klasse besser.
-- **Bodo Ramelow als Vorzeige-Beispiel** für die Halluzinations-Detection: Wikipedia-Volltext sagt „PDS", Llama hat „Linken" extrahiert, Stage 5.5 hat's gefangen, Reparatur hat's gefixt. Perfektes Demo-Narrativ.
+---
 
-### Was Gemini noch vorgeschlagen hat (siehe heutige Diskussion)
-- **Konfidenz-Levels pro Aussage** als UX-Element auf Profilseiten — wäre Phase-2-Ergänzung, nicht jetzt nötig
+## 🔧 Open Architecture Decisions (für nach Retrieve)
 
-### Förderfähigkeit (aus heutigen Diskussionen)
-- Solo-Dev bleibt strukturelle Schwäche
-- DSGVO-Memo (2 Seiten) wäre prä-emptive Stärkung
-- GitHub-Repo öffentlich machen + Lizenz wählen (MIT/AGPL)
-- Akademischer Co-Autor (WZB / GESIS / Hertie School) würde 10× Glaubwürdigkeit bringen
-- Erste journalistische Story (Correctiv / netzpolitik / Übermedien) wäre Game-Changer
-- **Aber:** Förderung ist nicht Priorität jetzt — Bauen ist Priorität (eigener Workflow-Lernpfad)
+1. **Inspector-Pass nötig?** Bei <85 % Quote-Validation oder >5 % Errors: Mistral / Nemotron-Nano über die Resultate jagen für Confidence-Flags. Bei guten Stats: skippen, direkt zum Killer-Feature.
+2. **Sonnet-Fallback für Errors?** Wenn die ~30–100 Errors einer Klasse zuordenbar sind (z.B. besonders lange Reden): gezielter Sonnet-Lauf nur für diese (geschätzt $5–15).
+3. **Topic-Klassifikation als nächste Layer:** Multi-Label (Innen/Außen/Wirtschaft/Soziales/Umwelt/etc.) — separater Llama-4-Scout-Pass ODER in nächster Methodology-Iteration mit Haiku.
+4. **Synopse Aussage-vs-Vote (das Killer-Feature):** sobald `speech_analyses_v2` + Vote-Daten beide vorliegen, neutral-darstellbarer Vergleich pro MdB.
 
-## Längerfristige Roadmap
+---
 
-1. **Reden-Pipeline aufbauen** (das eigentliche Make-or-Break-Feature):
-   - Reden-Summaries durchs Konsens-Verfahren validieren
-   - Themen-Klassifikation
-   - Tonalitäts-Analyse
-   - „Synopse Aussage vs. Vote" als neutrale Cross-Check-Sicht
-2. **Conflict-of-Interest-Matrix** (Sidejobs × Ausschuss-Memberships) als Killer-Feature
-3. **Echte Faction Loyalty** (statt hardcoded 88%)
-4. **Mini/Profi-Modus-Toggle** im CV (TODO.md hat detaillierte Implementierungs-Anleitung)
+## 📂 Wichtige Dateien (für Pickup)
 
-## Worauf der User gerade Wert legt (aus Diskussion heute)
+| Datei | Zweck |
+|---|---|
+| **`.batch-state.json`** | Persistente batch_ids + Methodology-SHA + Cost-Estimate |
+| `scripts/batch-submit-reden.ts` | Submit-Skript (bereits ausgeführt, NICHT erneut ausführen ohne State-Reset) |
+| **`scripts/batch-retrieve-reden.ts`** | Retrieve-Skript — DAS Skript für morgen |
+| `scripts/smoketest-smart-haiku.ts` | Smoke-Test (3 Modi via `SMOKETEST_MODE`: leer/`extension`/`problem`) |
+| **`docs/summarization-methodology.md`** | Der eigentliche Prompt-Asset, gecached pro Batch-Request |
+| `docs/plan-haiku-opus-cascade.md` | Architektur-Plan |
+| `smoketest-haiku-report.md` | 20-Reden Hauptlauf-Output |
+| `smoketest-extension-report.md` | 10-Reden Extension-Output (Cluster-Analyse) |
+| `smoketest-problem-report.md` | 10-Reden Fix-Validation |
+| `haiku-calibration-report.md` | Original-Kalibrierung Llama-vs-Haiku 30.04. |
+| `reden-reality-check-report.md` | Phase-1 Reality-Check (Bollmann-Bug-Detection) |
 
-- **Daten-Provider-Position** (nicht investigative Journalist) — neutrale Aggregation mit Quell-Verlinkung, kein Editorial. Sprache: *„Synopse"* statt *„Widerspruch"*, *„Kontext-Ansicht"* statt *„Interessenkonflikt"*.
-- **Methodik-Seite ist für techies/Reviewer**, Profilseiten für Bürger — bewusste Audience-Trennung. „Inter-Source-Konflikt"-Jargon ist daher OK auf der Methodik-Seite.
-- **Workflow-Lernen** ist gerade wichtiger als Production-Polish — Komplexität in Kauf nehmen
-- **Reden-Pipeline ist Make-or-Break** — wenn die nicht klappt, klappt das ganze Projekt nicht (User-Aussage). Daher als nächste Priorität nach den Pipeline-Resten.
+---
 
-## Aktive Background-Prozesse beim Schlafengehen
+## 💡 Hinweise / Caveats
 
-- `cloudflared tunnel --url http://localhost:3000` — falls noch lebt, gleiche URL nutzbar
-- `npm run dev` (next dev auf Port 3000)
-- KEINE Pipeline-Skripte aktiv (Stage 5 wegen TPD-Limit gestoppt, Rest fertig)
+- **Anthropic Push-Notification gibt's nicht** — Batch-Fertigstellung kommt nicht aktiv rein, du musst proaktiv `retrieve` aufrufen.
+- **Cache-TTL Standard 5m** — sollte bei Anthropics Batch-Verarbeitung in Bursts trotzdem hohe Cache-Hit-Rate ergeben. Falls Cache-Read deutlich unter 90 % liegt, beim nächsten Batch `ttl: "1h"` mit beta-header `extended-cache-ttl-2025-04-11` setzen.
+- **Tatsächliche Cost** wird im Retrieve-Output ausgegeben (basiert auf realen Token-Counts statt Schätzung). Wenn deutlich anders als $42 → in `.batch-state.json` notieren für Förderer-Transparenz.
+- **Externe Validierung** vor Förder-Antrag: 5–10 schwierige Reden blind durch Politikwissenschaftler / Journalisten bewerten — Opus-Bias-Risiko ist real.
+- **Nächste BT-Sitzung:** Sitzung 76 am 06.05.2026 — danach `fetch-plenar-xmls.ts` + `extract-all-speeches.ts` re-runnen, neue Reden via Retrieve-Skript-Logik in dasselbe Schema schreiben.
+
+---
+
+## 🔄 Falls Batch fehlschlägt
+
+Wenn der Status `expired` oder viele `errored` enthält:
+1. **Nicht panik** — `.batch-state.json` ist da, Resultate (auch teilweise) können gezogen werden
+2. `npx tsx scripts/batch-retrieve-reden.ts --apply` schreibt erfolgreiche Reden trotzdem in DB, fehlerhafte als `error_type`-Zeilen
+3. Fehlerhafte gezielt re-submitten via separat anzupassendem Skript (Pattern: nur die error-rede_ids als TEST_REDE_IDS in smoketest-Modus)
+
+---
+
+## 🔗 Memory-Pointer
+
+- `~/.claude/projects/-home-jk-politik/memory/project_reden_pipeline_status.md` — Reden-Pipeline Stand 2026-05-01 mit voller Cluster-Analyse
+- `~/.claude/projects/-home-jk-politik/memory/project_specialist_cascade_methodik.md` — Specialist-Cascade-Pattern, Modell-Wahl-Richtlinien
+- `NEXT-SESSION-cv-pipeline.md` — CV-Pipeline-Reste (167 Repair-Aktionen warten auf `--apply`, separater Track)
+
+---
+
+Schlaf gut. Morgen einfach diese Datei lesen + Retrieve-Skript starten.

@@ -1,16 +1,22 @@
 /**
- * Generiert für jeden Politiker mit Wikipedia-Bio einen strukturierten
- * Lebenslauf via Groq LLM (llama-3.3-70b, JSON-Mode).
+ * Generiert für jeden Bundestags-MdB einen strukturierten Lebenslauf
+ * via Anthropic Claude Haiku 4.5 mit JSON-Schema-Validation.
  *
- * Pipeline: politicians.bio_url → Wikipedia full text → LLM → cv_json
+ * Pipeline: politicians.bio_full_text → Haiku → cv_json
+ * (bio_full_text ist Wikipedia-Volltext, in DB gecacht)
  *
- * Schreibt nach politicians.{cv_json, cv_source, cv_generated_at}.
+ * Schreibt nach politicians.{cv_json, cv_source, cv_generated_at,
+ *                            cv_model, cv_prompt_version, cv_raw_llm_response}.
  *
- * Run: npx tsx scripts/seed-cv.ts [--all] [--refresh]
- *      --all     : nicht nur Bundestag
- *      --refresh : auch Politiker mit existierendem cv_json überschreiben
+ * Run:
+ *   npx tsx scripts/seed-cv.ts                        # nur fehlende
+ *   npx tsx scripts/seed-cv.ts --refresh              # ALLE neu
+ *   npx tsx scripts/seed-cv.ts --ids 79129,175003     # nur bestimmte IDs (überschreibt immer)
+ *   npx tsx scripts/seed-cv.ts --all                  # auch Nicht-Bundestags-Politiker
+ *   npx tsx scripts/seed-cv.ts --refresh-old-version  # nur die mit alter prompt_version
  */
 
+import Anthropic from "@anthropic-ai/sdk";
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
@@ -23,99 +29,139 @@ if (fs.existsSync(ENV_PATH)) {
   }
 }
 
-const DB_PATH = path.join(process.cwd(), "politik.db");
-const USER_AGENT = "politik-radar/1.0 (https://github.com/opoi1/politik)";
-
-// Tiered Model-Auswahl: kurze Texte → 8b (schnell), lange → llama-4-scout (128k Kontext, 500k TPD)
-const MODEL_FAST = "llama-3.1-8b-instant";              // 8k Kontext — fits ca. 8000 Zeichen
-const MODEL_LONG = "meta-llama/llama-4-scout-17b-16e-instruct"; // 128k Kontext, viel Reserve
-const PROMPT_VERSION = "seed-cv-v2-tiered";
-
-function pickModel(textChars: number): string {
-  // 8b kann ~8k Token verarbeiten (~8000 Zeichen Input + System-Prompt + Output)
-  // Bei mehr → auf scout ausweichen
-  return textChars > 6000 ? MODEL_LONG : MODEL_FAST;
-}
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const REQUEST_DELAY_MS = 250;
-const CONCURRENCY = 3;          // 4 Keys × 30 RPM = 120 RPM Limit, 3 parallel passt
-
-const ALL = process.argv.includes("--all");
-const REFRESH = process.argv.includes("--refresh");
-
-const GROQ_KEYS = Object.entries(process.env)
-  .filter(([k, v]) => k.startsWith("GROQ_API_KEY") && v)
-  .map(([, v]) => v as string);
-
-if (GROQ_KEYS.length === 0) {
-  console.error("Keine GROQ_API_KEY* in .env gefunden");
+const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
+if (!ANTHROPIC_KEY) {
+  console.error("ANTHROPIC_API_KEY in .env fehlt");
   process.exit(1);
 }
 
-console.log(`${GROQ_KEYS.length} Groq-Key(s) verfügbar`);
+const client = new Anthropic({ apiKey: ANTHROPIC_KEY });
+const MODEL = "claude-haiku-4-5";
+const PROMPT_VERSION = "seed-cv-v5-haiku";
 
-let keyIdx = 0;
-function nextKey() {
-  const k = GROQ_KEYS[keyIdx % GROQ_KEYS.length];
-  keyIdx++;
-  return k;
-}
+// Tier-1: 50 RPM aber ITPM 50K. Bei ~5K Input/Call ~10 RPM safe.
+// 6500ms Sleep = ~9 RPM, sicher unter Limit. Ggf. später anpassen wenn Tier-1 mehr ITPM bekommt.
+const SLEEP_MS = 6500;
 
-function sleep(ms: number) { return new Promise((r) => setTimeout(r, ms)); }
+const DB_PATH = path.join(process.cwd(), "politik.db");
 
-// ── Schema ──
+// CLI flags
+const ALL = process.argv.includes("--all");
+const REFRESH = process.argv.includes("--refresh");
+const REFRESH_OLD = process.argv.includes("--refresh-old-version");
+const IDS_ARG = process.argv.find((a) => a.startsWith("--ids="));
+const ONLY_IDS = IDS_ARG
+  ? IDS_ARG.replace("--ids=", "").split(",").map((s) => parseInt(s.trim(), 10)).filter((n) => !Number.isNaN(n))
+  : null;
 
-function ensureColumns(db: Database.Database) {
-  const cols = db.prepare("PRAGMA table_info(politicians)").all() as { name: string }[];
-  const have = new Set(cols.map((c) => c.name));
-  if (!have.has("cv_json")) db.exec("ALTER TABLE politicians ADD COLUMN cv_json TEXT");
-  if (!have.has("cv_source")) db.exec("ALTER TABLE politicians ADD COLUMN cv_source TEXT");
-  if (!have.has("cv_generated_at")) db.exec("ALTER TABLE politicians ADD COLUMN cv_generated_at TEXT");
-}
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-// ── Wikipedia full text ──
-
-async function fetchWikipediaText(title: string): Promise<string | null> {
-  const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&explaintext=true&titles=${encodeURIComponent(title)}`;
-  const res = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
-  if (!res.ok) return null;
-  const data = (await res.json()) as any;
-  const pages = data?.query?.pages ?? {};
-  const first = Object.values<any>(pages)[0];
-  return first?.extract ?? null;
-}
-
-function titleFromBioUrl(url: string): string {
-  const m = url.match(/\/wiki\/([^?#]+)/);
-  return m ? decodeURIComponent(m[1]).replace(/_/g, " ") : "";
-}
-
-// ── Groq Call ──
+// ── v5 PROMPT (v4 + REGEL 10 Datums-Konsolidierung + REGEL 11 Privates strenger) ──
 
 const SYSTEM_PROMPT = `Du bist ein Assistent, der aus Wikipedia-Artikeln über Politiker einen strukturierten Lebenslauf in deutschem JSON extrahiert.
 
-Antworte AUSSCHLIESSLICH mit gültigem JSON. SCHEMA (alle vier Felder Pflicht, leeres Array [] wenn nichts dazu im Text steht):
-{
-  "ausbildung":            [ { "jahr": "<string>", "text": "<string>" }, ... ],
-  "beruflicher_werdegang": [ { "jahr": "<string>", "text": "<string>" }, ... ],
-  "politische_stationen":  [ { "jahr": "<string>", "text": "<string>" }, ... ],
-  "sonstiges":             [ { "jahr": "<string>", "text": "<string>" }, ... ]
-}
+═══════════════════════════════════════════════════════════════════
+KLASSIFIKATIONS-REGELN — was gehört in welche Sektion?
+═══════════════════════════════════════════════════════════════════
+
+ausbildung:
+  - Schule, Abitur, Berufsausbildung, Lehre, Studium, Diplom, M.A., B.A., Promotion, Habilitation
+  - NICHT: Berufstätigkeit nach dem Abschluss
+
+beruflicher_werdegang:
+  - Anstellung, Selbstständigkeit, Berufstätigkeit, Geschäftsführung, Wehrdienst
+  - NICHT: politische Mandate oder Ämter (auch nicht "hauptberuflich Abgeordnete")
+
+politische_stationen:
+  - Parteimitgliedschaft, Parteiämter (Vorsitz, Vorstand, Beisitzer)
+  - Mandate (Stadtrat, Kreistag, Landtag, Bundestag, Europaparlament)
+  - Ausschuss-Mitgliedschaften (Innenausschuss, Untersuchungsausschüsse, Gremien)
+  - Fraktions-Funktionen (Sprecher:in, Obfrau, Geschäftsführer:in, Fraktionsvorsitz)
+  - Regierungs-Ämter (Minister:in, Staatssekretär:in)
+
+sonstiges:
+  - Bücher, Dissertationen (als Veröffentlichung), Aufsätze, Auszeichnungen, Ehrungen
+  - Kandidaturen, die NICHT zur Wahl führten (z.B. erfolglose Listenplatz-Bewerbung)
+  - Vereins-Engagement, Ehrenämter außerhalb der Politik
+  - NICHT: aktuelle politische Mandate oder Ausschuss-Posten
 
 ABSOLUT VERBOTEN:
-- Beispiele/Demo-Inhalte aus diesem Schema als Fakten übernehmen. Die Platzhalter <string> sind KEINE Werte.
 - Erfinden von Universitäten, Abschlüssen, Verlagen, Buchtiteln, Jahreszahlen oder anderen Fakten, die nicht WÖRTLICH im gelieferten Text stehen.
-- Wenn der Text z.B. keine Bücher nennt: "sonstiges" bleibt leer. Niemals "Buchautor: 'Titel des Buches' (Suhrkamp)" oder ähnliches erfinden.
+- Wenn der Text z.B. keine Bücher nennt: "sonstiges" bleibt leer (für Bücher-Einträge).
 
-Strikte Regeln:
+═══════════════════════════════════════════════════════════════════
+WICHTIG — REGELN FÜR ZEITANGABEN (häufige Fehlerquelle!):
+═══════════════════════════════════════════════════════════════════
+
+⚠️ REGEL 0 — DIE WICHTIGSTE: KEIN JAHR IM TEXT → KEIN JAHR IM OUTPUT!
+Wenn der Quelltext für ein Ereignis KEIN Jahr/Datum nennt → schreibe "jahr": "" (LEERER String).
+NIEMALS ein Jahr "plausibel" ableiten, schätzen, oder aus dem Kontext erfinden.
+
+  ✓ "Hoffmann arbeitete 9,5 Jahre bei Union Investment." → jahr: ""  (KEIN Jahr genannt!)
+  ✗ FALSCH: "2015-2024" oder "2013-2022" — solche Bereiche sind ERFUNDEN
+
+  ✓ "Nach der Schule absolvierte sie eine Ausbildung zur Verwaltungsfachangestellten." → jahr: ""
+  ✗ FALSCH: "1998-2002" — KEIN Jahr im Text!
+
+REGEL 1 — EINZELJAHR:
+Steht nur EIN Jahr im Text → schreibe "YYYY".
+  ✓ "2016 trat sie der AfD bei" → jahr: "2016"
+
+⚠️ REGEL 2 — "seit YYYY" / "ab YYYY" WÖRTLICH ERHALTEN:
+Steht "seit YYYY" / "ab YYYY" / "seither" / "bis heute" im Text → schreibe EXAKT "seit YYYY" bzw. "ab YYYY".
+NIEMALS zu nur "YYYY" verkürzen.
+
+  ✓ "Sie ist seit 2013 Mitglied des Bundestages." → jahr: "seit 2013"
+  ✗ FALSCH: "2013" (verliert das "seit"!) oder "2013-2017"
+
+REGEL 3 — ZEITRAUM nur wenn BEIDE Daten WÖRTLICH im Text stehen:
+  ✓ "Von 2005 bis 2009 war er Bürgermeister." → jahr: "2005-2009"
+  ✗ "Sie ist seit 2007 bei der Polizei Köln." → KEIN "1993-2007"
+
+REGEL 4 — REIHENFOLGE NICHT UMDREHEN:
+"Ab YYYY" / "seit YYYY" markiert den ANFANG, nicht das Ende.
+  ✓ "Ab 2007 war sie beim Polizeipräsidium Köln tätig." → jahr: "ab 2007"
+  ✗ FALSCH: "1993-2007"
+
+REGEL 5 — DATEN-ZUORDNUNG bei mehreren Ereignissen:
+Wenn mehrere Daten im selben Satz stehen, ordne JEDES Datum dem RICHTIGEN Ereignis zu.
+  Quelltext: "Sie trat 2016 der AfD bei. Seit 2019 ist sie Stadträtin in Klötze."
+  ✓ {"jahr": "2016", "text": "Eintritt in die AfD"}
+  ✓ {"jahr": "seit 2019", "text": "Stadträtin in Klötze"}
+
+REGEL 6 — KEINE EXTRAPOLATION:
+Wenn nur ein Anfangsjahr ohne Endjahr genannt ist → "seit YYYY", NIE Endjahr erfinden.
+
+REGEL 7 — MANDATS-KONTINUITÄT:
+"seit 2013 Mitglied" ist EIN Eintrag, KEINE Pausen zwischen Wahlperioden konstruieren.
+
+REGEL 8 — KEINE QUELLEN-VERWECHSLUNG:
+"Beisitzer im Landesvorstand der Partei X" NICHT zu "tätig im Landtag" umdeuten.
+
+REGEL 9 — KEINE DOPPELUNGEN:
+Ein Ereignis darf NUR EINMAL im Output erscheinen.
+
+⚠️ REGEL 10 — DATUMS-KONSOLIDIERUNG (gegen Redundanz):
+Wenn mehrere Sub-Aussagen dasselbe Datum teilen, mache EINEN Eintrag der diese zusammenfasst, nicht mehrere mit gleichem Datum.
+
+  Quelltext: "Seit März 2025 ist er Mitglied im Finanzausschuss, im Ausschuss für wirtschaftliche Zusammenarbeit und ständiger Vertreter im Haushaltsausschuss."
+  ✓ {"jahr": "seit März 2025", "text": "Mitglied im Finanzausschuss, Ausschuss für wirtschaftliche Zusammenarbeit, ständiger Vertreter im Haushaltsausschuss"}
+  ✗ FALSCH: 3 separate Einträge mit "seit März 2025"
+
+⚠️ REGEL 11 — PRIVATES NUR WENN POLITISCH RELEVANT:
+Familienstand, Wohnort, Anzahl Kinder NUR übernehmen, wenn der Text sie als explizit relevant für das politische Profil markiert (z.B. "Mutter dreier Kinder, daher Engagement für Familienpolitik").
+Reine Privatleben-Aufzählungen ("verheiratet, zwei Kinder, wohnt in X") WEGLASSEN.
+
+═══════════════════════════════════════════════════════════════════
+
+Weitere Regeln:
 - Nur Fakten aus dem gelieferten Text. Keine Vermutungen, keine Erfindungen.
 - Chronologisch sortiert (älteste zuerst).
-- jahr als String mit Format "YYYY", "YYYY-YYYY", "seit YYYY", "bis YYYY" — wie im Text.
-- Bei Ausbildung: WENN im Text genannt, IMMER Universität/Schule UND erreichten Abschluss/Titel mitnennen (z.B. "Studium der BWL an der LMU München, Diplom-Kaufmann"). Wenn nicht im Text, dann nicht erfinden.
+- jahr-Format: "YYYY", "YYYY-YYYY", "seit YYYY", "ab YYYY", "bis YYYY" — wie im Text. Leerer String "" wenn kein Datum genannt.
+- Bei Ausbildung: WENN im Text genannt, IMMER Universität/Schule UND Abschluss/Titel mitnennen.
 - Bei Berufen: Position + Arbeitgeber/Firma falls genannt.
-- text präzise und vollständig zur Information (max ~200 Zeichen, ein Satz, keine Aufzählungs-Striche im Text).
-- Wenn ein Bereich keine Einträge hat: leeres Array [].
-- Antworte NUR mit dem JSON-Objekt, kein Markdown, keine Kommentare.`;
+- text präzise und vollständig (max ~250 Zeichen, ein Satz).
+- Wenn ein Bereich keine Einträge hat: leeres Array [].`;
 
 interface CV {
   ausbildung: { jahr: string; text: string }[];
@@ -124,78 +170,100 @@ interface CV {
   sonstiges: { jahr: string; text: string }[];
 }
 
-async function generateCv(politicianName: string, wikipediaText: string): Promise<{ cv: CV; raw: string; model: string } | null> {
-  // Trim very long articles to first 25k chars (saves tokens, lead is the relevant part)
-  // bis zu 50k chars — der scout-Modell-Kontext ist groß genug
-  const text = wikipediaText.slice(0, 50000);
-  const model = pickModel(text.length);
+const CV_SCHEMA = {
+  type: "object",
+  properties: {
+    ausbildung: { type: "array", items: { type: "object",
+      properties: { jahr: { type: "string" }, text: { type: "string" } },
+      required: ["jahr", "text"], additionalProperties: false } },
+    beruflicher_werdegang: { type: "array", items: { type: "object",
+      properties: { jahr: { type: "string" }, text: { type: "string" } },
+      required: ["jahr", "text"], additionalProperties: false } },
+    politische_stationen: { type: "array", items: { type: "object",
+      properties: { jahr: { type: "string" }, text: { type: "string" } },
+      required: ["jahr", "text"], additionalProperties: false } },
+    sonstiges: { type: "array", items: { type: "object",
+      properties: { jahr: { type: "string" }, text: { type: "string" } },
+      required: ["jahr", "text"], additionalProperties: false } },
+  },
+  required: ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"],
+  additionalProperties: false,
+} as const;
 
-  for (let attempt = 0; attempt < GROQ_KEYS.length * 2; attempt++) {
-    const key = nextKey();
-    try {
-      const res = await fetch(GROQ_URL, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${key}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model,
-          messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            { role: "user", content: `Politiker: ${politicianName}\n\nWikipedia-Artikel:\n${text}` },
-          ],
-          response_format: { type: "json_object" },
-          temperature: 0.1,
-        }),
-      });
-
-      if (res.status === 429) {
-        // Rate-limited — try next key after short pause
-        await sleep(2000);
-        continue;
-      }
-      if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(`HTTP ${res.status}: ${errText.slice(0, 200)}`);
-      }
-      const data = (await res.json()) as any;
-      const content = data?.choices?.[0]?.message?.content;
-      if (!content) return null;
-      return { cv: JSON.parse(content) as CV, raw: content, model };
-    } catch (e: any) {
-      if (attempt === GROQ_KEYS.length * 2 - 1) throw e;
-      await sleep(1000);
-    }
-  }
-  return null;
+function ensureColumns(db: Database.Database) {
+  const cols = db.prepare("PRAGMA table_info(politicians)").all() as { name: string }[];
+  const have = new Set(cols.map((c) => c.name));
+  if (!have.has("cv_json")) db.exec("ALTER TABLE politicians ADD COLUMN cv_json TEXT");
+  if (!have.has("cv_source")) db.exec("ALTER TABLE politicians ADD COLUMN cv_source TEXT");
+  if (!have.has("cv_generated_at")) db.exec("ALTER TABLE politicians ADD COLUMN cv_generated_at TEXT");
+  if (!have.has("cv_model")) db.exec("ALTER TABLE politicians ADD COLUMN cv_model TEXT");
+  if (!have.has("cv_prompt_version")) db.exec("ALTER TABLE politicians ADD COLUMN cv_prompt_version TEXT");
+  if (!have.has("cv_raw_llm_response")) db.exec("ALTER TABLE politicians ADD COLUMN cv_raw_llm_response TEXT");
 }
 
-// ── Main ──
+async function generateCv(name: string, wikipediaText: string): Promise<{ cv: CV; raw: string; usage: any }> {
+  const text = wikipediaText.slice(0, 50000);
+  const userPrompt = `Politiker: ${name}\n\nWikipedia-Artikel:\n${text}`;
+
+  const response = await client.messages.create({
+    model: MODEL,
+    max_tokens: 8192,  // erhöht von 4096 — Truncation bei langjährigen MdBs (z.B. Kiesewetter)
+    system: SYSTEM_PROMPT,
+    messages: [{ role: "user", content: userPrompt }],
+    output_config: { format: { type: "json_schema", schema: CV_SCHEMA } },
+  });
+
+  const textBlock = response.content.find((b) => b.type === "text");
+  if (!textBlock || textBlock.type !== "text") throw new Error("Kein text-Block in Response");
+
+  let raw = textBlock.text.trim();
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+  if (fenced) raw = fenced[1];
+
+  return { cv: JSON.parse(raw) as CV, raw, usage: response.usage };
+}
 
 async function main() {
   const db = new Database(DB_PATH);
   db.pragma("journal_mode = WAL");
   ensureColumns(db);
 
-  const skipExisting = REFRESH ? "" : "AND p.cv_json IS NULL";
+  // Query-Strategie:
+  // - --ids=…: nur diese, immer überschreiben
+  // - --refresh: alle Bundestags-MdBs (oder --all), überschreiben
+  // - --refresh-old-version: nur die mit alter prompt_version
+  // - default: nur die ohne cv_json
+  let sql: string;
+  if (ONLY_IDS) {
+    sql = `SELECT id, first_name, last_name, bio_full_text
+           FROM politicians WHERE id IN (${ONLY_IDS.join(",")})
+             AND bio_full_text IS NOT NULL AND length(bio_full_text) > 200`;
+  } else {
+    const baseSelect = `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_full_text
+                        FROM politicians p`;
+    const mandateJoin = ALL ? "" : `
+      JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
+      JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+      JOIN parliaments par ON pp.parliament_id = par.id`;
+    const mandateWhere = ALL ? "" : "AND par.type = 'bundestag'";
 
-  // Mit --all: ALLE Politiker mit bio_url (auch ohne Mandat — z.B. Quereinsteiger-Minister).
-  // Ohne --all: nur Bundestags-MdBs (Mandate-Join).
-  const sql = ALL
-    ? `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_url
-       FROM politicians p
-       WHERE p.bio_url IS NOT NULL ${skipExisting}`
-    : `SELECT DISTINCT p.id, p.first_name, p.last_name, p.bio_url
-       FROM politicians p
-       JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
-       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
-       JOIN parliaments par ON pp.parliament_id = par.id
-       WHERE p.bio_url IS NOT NULL AND par.type = 'bundestag' ${skipExisting}`;
+    let filterClause: string;
+    if (REFRESH) filterClause = "";
+    else if (REFRESH_OLD) filterClause = `AND (p.cv_prompt_version IS NULL OR p.cv_prompt_version != '${PROMPT_VERSION}')`;
+    else filterClause = "AND p.cv_json IS NULL";
 
-  const rows = db.prepare(sql).all() as { id: number; first_name: string; last_name: string; bio_url: string }[];
+    sql = `${baseSelect}${mandateJoin}
+           WHERE p.bio_full_text IS NOT NULL AND length(p.bio_full_text) > 200
+             ${mandateWhere} ${filterClause}
+           ORDER BY p.id`;
+  }
 
-  console.log(`\n${rows.length} Politiker zu verarbeiten`);
+  const rows = db.prepare(sql).all() as { id: number; first_name: string; last_name: string; bio_full_text: string }[];
+
+  console.log(`\nModell:          ${MODEL}`);
+  console.log(`Prompt-Version:  ${PROMPT_VERSION}`);
+  console.log(`Sleep:           ${SLEEP_MS}ms (~${(60000 / SLEEP_MS).toFixed(1)} RPM)`);
+  console.log(`MdBs zu verarbeiten: ${rows.length}\n`);
   if (rows.length === 0) {
     console.log("Nichts zu tun.");
     db.close();
@@ -207,58 +275,43 @@ async function main() {
      cv_model = ?, cv_prompt_version = ?, cv_raw_llm_response = ? WHERE id = ?`
   );
 
-  let ok = 0, fail = 0, done = 0;
+  let ok = 0, fail = 0, totalIn = 0, totalOut = 0;
   const start = Date.now();
 
-  async function processOne(p: typeof rows[0]) {
+  for (let i = 0; i < rows.length; i++) {
+    const p = rows[i];
     const name = `${p.first_name} ${p.last_name}`;
-    const title = titleFromBioUrl(p.bio_url);
     try {
-      const wpText = await fetchWikipediaText(title);
-      if (!wpText || wpText.length < 200) {
-        fail++;
-        return;
-      }
-      const result = await generateCv(name, wpText);
-      if (!result) {
-        fail++;
-        return;
-      }
+      const { cv, raw, usage } = await generateCv(name, p.bio_full_text);
+      totalIn += usage.input_tokens; totalOut += usage.output_tokens;
       update.run(
-        JSON.stringify(result.cv),
-        `wikipedia_de+groq:${result.model}`,
+        JSON.stringify(cv),
+        `wikipedia_de+anthropic:${MODEL}`,
         new Date().toISOString(),
-        `groq:${result.model}`, PROMPT_VERSION, result.raw,
+        `anthropic:${MODEL}`, PROMPT_VERSION, raw,
         p.id
       );
       ok++;
     } catch (e: any) {
       fail++;
-      console.log(`\n  ✗ ${name}: ${e.message?.slice(0, 100)}`);
-    } finally {
-      done++;
-      const elapsed = (Date.now() - start) / 1000;
-      const rate = done / elapsed;
-      const eta = Math.round((rows.length - done) / Math.max(rate, 0.01));
-      process.stdout.write(`\r  [${done}/${rows.length}] ok=${ok} fail=${fail} ${rate.toFixed(1)}/s ETA ${eta}s    `);
+      console.log(`\n  ✗ ${p.id} ${name}: ${e.message?.slice(0, 150)}`);
     }
+    const elapsed = (Date.now() - start) / 1000;
+    const rate = (i + 1) / elapsed;
+    const eta = Math.round((rows.length - i - 1) / Math.max(rate, 0.001));
+    const etaMin = Math.floor(eta / 60), etaSec = eta % 60;
+    const cost = (totalIn / 1_000_000) * 1.0 + (totalOut / 1_000_000) * 5.0;
+    process.stdout.write(`\r  [${i + 1}/${rows.length}] ok=${ok} fail=${fail}  ETA ${etaMin}m${etaSec}s  cost=$${cost.toFixed(3)}      `);
+    if (i < rows.length - 1) await sleep(SLEEP_MS);
   }
-
-  // Worker-Pool
-  let nextIdx = 0;
-  async function worker() {
-    while (nextIdx < rows.length) {
-      const i = nextIdx++;
-      await processOne(rows[i]);
-      await sleep(REQUEST_DELAY_MS);
-    }
-  }
-  await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
   process.stdout.write("\n");
 
+  const cost = (totalIn / 1_000_000) * 1.0 + (totalOut / 1_000_000) * 5.0;
   console.log(`\n=== Fertig ===`);
   console.log(`  CVs generiert: ${ok}`);
   console.log(`  Fehler:        ${fail}`);
+  console.log(`  Tokens:        in ${totalIn.toLocaleString()}  /  out ${totalOut.toLocaleString()}`);
+  console.log(`  Kosten:        $${cost.toFixed(4)}`);
 
   db.close();
 }

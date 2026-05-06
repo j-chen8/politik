@@ -395,6 +395,43 @@ export default async function PolitikerPage({ params }: Props) {
                         {item.zusammenfassung}
                       </p>
                     )}
+                    {item.tonalitaet && (
+                      <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                        {(() => {
+                          const tonMap: Record<string, { label: string; color: string; bg: string }> = {
+                            sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
+                            polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
+                            polemisch_sachlich: { label: "polemisch-sachlich", color: "#9a3412", bg: "#ffedd5" },
+                            emotional_persoenlich: { label: "emotional-persönlich", color: "#7c3aed", bg: "#ede9fe" },
+                            konfrontativ_belegend: { label: "konfrontativ-belegend", color: "#1d4ed8", bg: "#dbeafe" },
+                            ironisch_jugendlich: { label: "ironisch", color: "#a16207", bg: "#fef3c7" },
+                            bilanzierend_werbend: { label: "bilanzierend", color: "#15803d", bg: "#dcfce7" },
+                            staatsmaennisch: { label: "staatsmännisch", color: "#1e40af", bg: "#dbeafe" },
+                            defensiv_pragmatisch: { label: "defensiv-pragmatisch", color: "#475569", bg: "#f1f5f9" },
+                            sozial_anklagend: { label: "sozial-anklagend", color: "#be185d", bg: "#fce7f3" },
+                            mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
+                          };
+                          const cfg = tonMap[item.tonalitaet!];
+                          return cfg ? (
+                            <span
+                              className="px-1.5 py-0.5 rounded text-[10px] font-semibold"
+                              style={{ color: cfg.color, backgroundColor: cfg.bg }}
+                              title={`Tonalität: ${cfg.label} (Methodologie v2.1)`}
+                            >
+                              {cfg.label}
+                            </span>
+                          ) : null;
+                        })()}
+                        {item.has_correction && (
+                          <span
+                            className="text-[9px] uppercase tracking-wider text-zinc-400 font-semibold"
+                            title="Bias-Audit: korrigiert (siehe Methodik)"
+                          >
+                            v2.1
+                          </span>
+                        )}
+                      </div>
+                    )}
                     <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
                       {item.datum && (
                         <span>

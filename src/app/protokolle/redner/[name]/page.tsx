@@ -1,15 +1,19 @@
-import { getSpeakerDetail, getSpeechSummaries } from "@/lib/db";
+import {
+  getSpeakerDetail,
+  getSpeechSummaries,
+  getSpeechAnalysesBySpeaker,
+} from "@/lib/db";
 import Link from "next/link";
 import {
   ArrowLeft,
   ExternalLink,
   Mic,
   CalendarDays,
-  MessageSquare,
   HelpCircle,
   Megaphone,
 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { SpeechAnalysisDetails } from "@/components/SpeechAnalysisDetails";
 
 const PARTY_COLORS: Record<string, string> = {
   "CDU/CSU": "#000000",
@@ -44,6 +48,7 @@ export default async function RednerPage({
   if (!detail) notFound();
 
   const summaries = getSpeechSummaries(decodedName);
+  const analyses = getSpeechAnalysesBySpeaker(decodedName);
   const summaryMap = new Map<number, typeof summaries>();
   for (const s of summaries) {
     if (!summaryMap.has(s.sitzung)) summaryMap.set(s.sitzung, []);
@@ -241,11 +246,36 @@ export default async function RednerPage({
                               KI · überprüfbar
                             </span>
                           </div>
-                          {sum.zusammenfassung && (
-                            <p className="text-foreground leading-relaxed">
-                              {sum.zusammenfassung}
-                            </p>
-                          )}
+                          {(() => {
+                            // v2.1-Analyse via rede_id matchen
+                            // (rede_ids kann Komma-Liste bei Fragestunde-Aggregaten sein)
+                            const ids = (sum.rede_ids || sum.rede_id || "")
+                              .split(",")
+                              .map((s) => s.trim())
+                              .filter(Boolean);
+                            // Suche alle Segmente für diese rede_ids
+                            const matched = [];
+                            for (const id of ids) {
+                              for (let seg = 0; seg < 10; seg++) {
+                                const a = analyses.get(`${id}_${seg}`);
+                                if (a) matched.push(a);
+                                else if (seg > 0) break;
+                              }
+                            }
+                            const v21 = matched[0] ?? null;
+                            const displayText =
+                              v21?.zusammenfassung_neutral ?? sum.zusammenfassung;
+                            return (
+                              <>
+                                {displayText && (
+                                  <p className="text-foreground leading-relaxed">
+                                    {displayText}
+                                  </p>
+                                )}
+                                {v21 && <SpeechAnalysisDetails analysis={v21} />}
+                              </>
+                            );
+                          })()}
 
                           {/* Quellen-Block */}
                           {(sum.original_text || pdfDeepLink) && (

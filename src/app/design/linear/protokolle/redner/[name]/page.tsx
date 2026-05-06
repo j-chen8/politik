@@ -1,4 +1,9 @@
-import { getSpeakerDetail, getSpeechSummaries } from "@/lib/db";
+import {
+  getSpeakerDetail,
+  getSpeechSummaries,
+  getSpeechAnalysesBySpeaker,
+} from "@/lib/db";
+import { SpeechAnalysisDetails } from "@/components/SpeechAnalysisDetails";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -25,6 +30,7 @@ export default async function RednerPage({
   if (!detail) notFound();
 
   const summaries = getSpeechSummaries(decodedName);
+  const analyses = getSpeechAnalysesBySpeaker(decodedName);
   const summaryMap = new Map<number, typeof summaries>();
   for (const s of summaries) {
     if (!summaryMap.has(s.sitzung)) summaryMap.set(s.sitzung, []);
@@ -190,11 +196,33 @@ export default async function RednerPage({
                                 KI · überprüfbar
                               </span>
                             </div>
-                            {sum.zusammenfassung && (
-                              <p className="text-[14px] text-zinc-700 leading-relaxed">
-                                {sum.zusammenfassung}
-                              </p>
-                            )}
+                            {(() => {
+                              const ids = (sum.rede_ids || sum.rede_id || "")
+                                .split(",")
+                                .map((s) => s.trim())
+                                .filter(Boolean);
+                              const matched = [];
+                              for (const id of ids) {
+                                for (let seg = 0; seg < 10; seg++) {
+                                  const a = analyses.get(`${id}_${seg}`);
+                                  if (a) matched.push(a);
+                                  else if (seg > 0) break;
+                                }
+                              }
+                              const v21 = matched[0] ?? null;
+                              const displayText =
+                                v21?.zusammenfassung_neutral ?? sum.zusammenfassung;
+                              return (
+                                <>
+                                  {displayText && (
+                                    <p className="text-[14px] text-zinc-700 leading-relaxed">
+                                      {displayText}
+                                    </p>
+                                  )}
+                                  {v21 && <SpeechAnalysisDetails analysis={v21} />}
+                                </>
+                              );
+                            })()}
 
                             {(sum.original_text || pdfDeepLink) && (
                               <div className="mt-3 pt-3 border-t border-zinc-100">
