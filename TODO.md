@@ -42,11 +42,17 @@
 - [ ] `apply-tiebreak-patches.ts` mit den ~30 echten Korrekturen erweitern + ausführen
 - [ ] Final Health-Check + Snapshot
 
+**Source-Coherence-Reaktion (Stand 2026-05-05):**
+- [ ] **Stufe 1 — Transparenz-Anzeige:** Badge "Quellen-Diskrepanz erkannt" auf Politiker-Detailseite (Filter: `source_conflicts.final_verdict = ECHT`). Siehe `docs/source-coherence-echt-fehler.md`. ~1-2 h
+- [ ] **Stufe 2 — Selektive Korrekturen:** 5 eindeutig korrigierbare Fälle (Hardt, Nacke, Merz, Pantazis, Behrens) nach Faktenrecherche fixen, Audit-Trail in `cv_repair_log`. ~1 h
+- [ ] **Stufe 3 — Cron:** Source-Coherence quartalsweise via `/schedule` oder externer Cron — fängt neue Wikipedia-/Homepage-Drifts auf
+
 **Danach offen:**
 - [ ] `cv_summary` in der Politiker-Detailseite anzeigen (PoliticianCV Komponente existiert bereits)
 - [ ] Homepage-URLs korrigieren: Hülya Düber → `huelyadueber.de`, Katja Mast → `katja-mast.de`
 - [ ] **2 noch fehlende Refetch-Fails** (Heiligenstadt + Moosdorf — Server damals down): nochmal versuchen
 - [ ] Sync-Skript `scripts/sync-all.sh` für regelmäßige Aktualisierungen
+- [ ] **Auto-Fetcher für Plenar-XMLs automatisieren:** `scripts/fetch-plenar-xmls.ts` ist gebaut und idempotent (nutzt bundestag.de-Filterlist `1058442-1058442` für WP21). Wöchentlich am Wochenende laufen lassen (`/schedule` oder cron), damit nach jeder Sitzungswoche die neuen XMLs automatisch landen. Nach jedem Lauf muss anschließend der Reden-Rebuild (Block 2 = `extract-all-speeches.ts`) durchlaufen, um die neuen Reden zu integrieren.
 - [ ] LLM-Routing-Modul (`src/lib/llm.ts`) in `seed-cv*.ts` integrieren (DRY)
 - [ ] Phase 3: Ausschuss-Quellenpointer (analog zu Reden)
 - [ ] **Mini-Modus / Profi-Modus Umschalter pro Profil:**
@@ -59,6 +65,30 @@
 
 ## Next Up
 <!-- Prioritized ideas ready to build -->
+
+### 🎯 Reden-Re-Generation mit Smart-Haiku-Cascade (Stand 2026-04-30)
+
+**Voller Plan:** [`docs/plan-haiku-opus-cascade.md`](docs/plan-haiku-opus-cascade.md)
+
+**Kontext:** 3-Wege-Vergleich Llama 70B / Haiku 4.5 / Opus 4.7 auf 9 Reality-Check-Reden zeigte, dass Opus klar gewinnt bei Tonalitäts-Erhalt (Kleinschmidt AfD-Polemik), Halluzinations-Vermeidung (Bloch erfundene Investitions-Forderungen), wörtlichen Zitaten und Frame-Detection. Aber Opus ist 15× teurer als Haiku ($390 vs $26 für 10k Segmente).
+
+**Idee — Smart Haiku Cascade:** ~90 % der Opus-Qualität für ~Haiku-Preis durch architektonische Tricks statt teurere Modelle:
+1. **XML-Tonalitäts-Marker** programmatisch aus `<kommentar>`-Tags extrahieren (Beifall/Zwischenrufe nach Partei) und in den Prompt injizieren — kostet $0
+2. **Schema-erzwungener JSON-Output** mit Pflichtfeldern `forderungen[]`, `wörtliche_zitate[]`, `framing_marker[]`, `tonalität` — strukturell verhindert Auslassungen
+3. **Prompt Caching** für langen System-Block mit Few-Shots + Frame-Glossar — drückt Input-Cost um ~80 %
+
+**Erwartete Kosten:** $30-35 für 10k Segmente (vs. $26 pure Haiku, vs. $390 pure Opus)
+**Erwartete Qualität:** 90-92 % von Opus
+
+**Optionaler Joker — Distillation:** ~$25 einmalig mit Opus „Gold Library" (300-500 schwere Fälle) generieren, dann Smart Haiku zieht via Embedding-Similarity passende Beispiele als Few-Shot → dauerhaft Opus-Qualität für Haiku-Preis.
+
+**Hängt zusammen mit Idea #4 (Multi-LLM-Konsens-System) weiter unten** — dies ist eine konkrete, kostenoptimierte Realisierung des Cascade-Patterns.
+
+**Erste Schritte (Smoke-Test):**
+- [ ] Smart-Haiku-Architektur auf den GLEICHEN 9 Reality-Check-Reden testen (Bloch, Kleinschmidt, Kreiser etc.) — ~$0,03, 5 Min
+- [ ] Wenn ≥7/9 der Opus-Qualität: grünes Licht für volle 10k-Pipeline
+- [ ] `scripts/regenerate-summaries-smart-haiku.ts` mit Persist+Resume bauen
+- [ ] **Vor Förder-Antrag:** externe Validierung der 9 Vergleichs-Reden durch Politikwissenschaftler/Journalisten (blind, anonymisiert) — gegen Bias-Vorwurf „die AI sagt selbst, sie sei besser"
 
 
 ## Auswertungs-Ideen (Stand 2026-04-25)

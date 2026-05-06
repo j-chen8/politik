@@ -27,7 +27,11 @@ export interface SourceConflict {
   wikipedia: string;
   homepage: string;
   reason: string;
-  /** Optional: Stage-5.5-Verifikation gegen die Roh-Quelltexte. */
+  /** Stage-5.5/6 Manual-Review Klassifikation (Opus 4.7 nach Verifier-Cascade). */
+  final_verdict?: "ECHT" | "PRAEZISIERUNG" | "FALSE_POSITIVE" | "UNKLAR";
+  final_reason?: string;
+  verdict_method?: string;
+  /** Optional: Stage-5.5-Verifikation gegen die Roh-Quelltexte (älteres Feld). */
   verification?: {
     classification:
       | "echte_diskrepanz"
@@ -43,16 +47,18 @@ export interface SourceConflict {
 
 /**
  * Filtert Konflikte für die UI:
- * - Mit Verifikation: nur "echte_diskrepanz" zeigen
- * - Ohne Verifikation (Stage 5.5 noch nicht gelaufen): alle zeigen (Fallback)
+ * - Mit final_verdict (Opus-Review): nur "ECHT" zeigen
+ * - Mit altem verification-Feld: nur "echte_diskrepanz" zeigen
+ * - Ohne beides: alle zeigen (Fallback)
  */
 function filterUserVisibleConflicts(
   conflicts: SourceConflict[] | null | undefined,
 ): SourceConflict[] {
   if (!conflicts) return [];
   return conflicts.filter((c) => {
-    if (!c.verification) return true; // noch nicht verifiziert → zeigen (graceful fallback)
-    return c.verification.classification === "echte_diskrepanz";
+    if (c.final_verdict) return c.final_verdict === "ECHT";
+    if (c.verification) return c.verification.classification === "echte_diskrepanz";
+    return true; // graceful fallback
   });
 }
 
@@ -116,38 +122,57 @@ function mergeSection(
       if (!result[idx].sources.includes("wikipedia")) result[idx].sources.push("wikipedia");
       continue;
     }
-    // Heuristic: Wenn nur das Jahr matcht, aber Text ähnlich → mergen statt duplizieren
-    const yearOnly = normalize(e.jahr);
+    // Ähnlichkeits-Dedup über alle bestehenden Einträge:
+    //   - Wikipedia mit Jahr + Homepage ohne Jahr (gleicher Sachverhalt) → mergen, Wikipedia-Datierung gewinnt
+    //   - Gleiches Jahr, ähnlicher Text → mergen
+    const newTextNorm = normalize(e.text);
+    const newYear = parseFirstYear(e.jahr);
     let merged = false;
-    if (yearOnly) {
-      for (const [k, idx] of seen) {
-        if (k.startsWith(yearOnly) && result[idx].text.length > 0) {
-          // Gleiches Jahr — nehmen wir den Homepage-Eintrag (bereits drin) und
-          // markieren ihn als auch in Wikipedia gefunden (wenn die Texte ähnlich sind)
-          const existingNorm = normalize(result[idx].text);
-          const newNorm = normalize(e.text);
-          // Sehr grobe Ähnlichkeit: einer ist Substring des anderen, oder ≥ 60 % gemeinsame Zeichen
-          if (existingNorm.includes(newNorm.slice(0, 30)) || newNorm.includes(existingNorm.slice(0, 30))) {
-            if (!result[idx].sources.includes("wikipedia")) result[idx].sources.push("wikipedia");
-            merged = true;
-            break;
-          }
-        }
+    for (let idx = 0; idx < result.length; idx++) {
+      const existing = result[idx];
+      const existingTextNorm = normalize(existing.text);
+      const existingYear = parseFirstYear(existing.jahr);
+      const yearsCompatible =
+        newYear === null || existingYear === null || newYear === existingYear;
+      if (!yearsCompatible) continue;
+      // Text-Ähnlichkeit: einer ist Substring des anderen (mind. 25 normierte Zeichen)
+      const minLen = Math.min(existingTextNorm.length, newTextNorm.length);
+      if (minLen < 25) continue;
+      const overlap =
+        existingTextNorm.includes(newTextNorm.slice(0, 25)) ||
+        newTextNorm.includes(existingTextNorm.slice(0, 25));
+      if (!overlap) continue;
+      // Match — Wikipedia-Eintrag mergen
+      if (!existing.sources.includes("wikipedia")) existing.sources.push("wikipedia");
+      // Wenn Wikipedia ein Jahr hat und der bestehende Eintrag nicht: Wikipedia-Daten gewinnen
+      // (genauere Datierung; präzisere Formulierung)
+      if (newYear !== null && existingYear === null) {
+        result[idx] = { jahr: e.jahr, text: e.text, sources: existing.sources };
       }
+      merged = true;
+      break;
     }
     if (merged) continue;
     seen.set(key, result.length);
     result.push({ jahr: e.jahr, text: e.text, sources: ["wikipedia"] });
   }
 
-  // Chronologisch sortieren (älteste zuerst); Einträge ohne Jahr ans Ende
+  // Chronologisch sortieren (älteste zuerst); Einträge ohne Jahr an den Anfang
+  // (oft frühe Lebens-Phasen wie "Jugendlicher: Mitglied JU" oder andauernde
+  // Mitgliedschaften ohne klares Startdatum).
+  // Tiebreaker bei gleichem Startjahr: Punkt-Daten vor Zeitraum-Daten
+  // (z.B. "1990 Ausbildung abgeschlossen" vor "1990-1994 Studium").
   result.sort((a, b) => {
     const ya = parseFirstYear(a.jahr);
     const yb = parseFirstYear(b.jahr);
     if (ya === null && yb === null) return 0;
-    if (ya === null) return 1;
-    if (yb === null) return -1;
-    return ya - yb;
+    if (ya === null) return -1;
+    if (yb === null) return 1;
+    if (ya !== yb) return ya - yb;
+    const aRange = isYearRange(a.jahr);
+    const bRange = isYearRange(b.jahr);
+    if (aRange === bRange) return 0;
+    return aRange ? 1 : -1;
   });
 
   return result;
@@ -156,6 +181,15 @@ function mergeSection(
 function parseFirstYear(jahr: string): number | null {
   const m = jahr.match(/\d{4}/);
   return m ? parseInt(m[0], 10) : null;
+}
+
+/** True wenn die Jahres-Angabe einen Zeitraum/offen-endig beschreibt (vs. ein Punkt-Datum). */
+function isYearRange(jahr: string): boolean {
+  if ((jahr.match(/\d{4}/g) ?? []).length > 1) return true;  // "1990-1994", "2014–2017"
+  if (/\bseit\b/i.test(jahr)) return true;                    // "seit 2018"
+  if (/\bbis\b/i.test(jahr)) return true;                     // "bis 2020"
+  if (/\bab\b/i.test(jahr)) return true;                      // "ab 2014"
+  return false;
 }
 
 function formatDate(iso: string | null | undefined): string | null {
@@ -262,8 +296,11 @@ export function PoliticianCV(props: PoliticianCVProps) {
                   const conflict = conflictIdx.get(`${key}|${entry.jahr}`);
                   return (
                     <li key={i} className="flex gap-3 text-sm">
-                      <span className="font-mono text-xs text-muted shrink-0 w-20 pt-0.5">
-                        {entry.jahr}
+                      <span
+                        className={`font-mono text-xs shrink-0 w-20 pt-0.5 ${entry.jahr ? "text-muted" : "text-muted/40"}`}
+                        title={entry.jahr ? undefined : "Kein Datum in den Quellen angegeben"}
+                      >
+                        {entry.jahr || "—"}
                       </span>
                       <span className="text-foreground/90 leading-snug flex-1">
                         {entry.text}
@@ -290,9 +327,9 @@ export function PoliticianCV(props: PoliticianCVProps) {
                                 <span className="font-semibold">Homepage:</span>{" "}
                                 {conflict.homepage}
                               </div>
-                              {conflict.reason && (
+                              {(conflict.final_reason || conflict.reason) && (
                                 <div className="text-[11px] text-amber-800/80 italic pt-1 border-t border-amber-200/60">
-                                  Hinweis der Prüfung: {conflict.reason}
+                                  Hinweis der Prüfung: {conflict.final_reason ?? conflict.reason}
                                 </div>
                               )}
                             </div>
