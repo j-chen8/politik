@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# Politik-Radar pre-commit: blockiert API-Keys & andere Secrets in Commits.
+# Setup: gitleaks installiert in PATH (z.B. ~/.local/bin/gitleaks)
+# Override (Notfall): commit mit --no-verify
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  if [ -x "$HOME/.local/bin/gitleaks" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+  else
+    echo "⚠ gitleaks nicht gefunden — installiere von https://github.com/gitleaks/gitleaks"
+    echo "  Schnellinstallation: curl -sL <release-url>.tar.gz | tar xz -C ~/.local/bin gitleaks"
+    exit 1
+  fi
+fi
+
+gitleaks git --staged --redact --no-banner --verbose
+status=$?
+if [ $status -ne 0 ]; then
+  echo
+  echo "❌ Secret im Commit gefunden — Commit BLOCKIERT."
+  echo "   Schritte: 1) Secret aus Datei entfernen 2) in .env legen 3) erneut committen"
+  echo "   Override (nur wenn sicher): git commit --no-verify"
+  exit $status
+fi

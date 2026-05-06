@@ -45,7 +45,17 @@ next-env.d.ts
 *.db-wal
 *.db-shm
 *.db.backup-*
+*.db.snapshot-*
+politik.db.snapshot-*
 .politik-db-sync-state
+
+# pipeline state (resume-caches, batch state, large XML sources)
+*.partial.jsonl
+*.partial.*.jsonl
+*.partial.jsonl.backup-*
+.batch-state*.json
+/data/plenarprotokolle_xml/*.xml
+/data/stammdaten/
 
 # generated assets (regeneratable via scripts/seed-photos-wikidata.ts)
 /public/photos/
