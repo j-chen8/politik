@@ -231,6 +231,96 @@ function pickStage5_5Examples(dbPath: string): Record<string, VerifExample> {
   return examples;
 }
 
+interface VerifierCascadeStats {
+  total: number;
+  llamaAgreement: number;
+  haikuAgreement: number;
+  llamaEchtPrecision: number;
+  llamaEchtRecall: number;
+  haikuEchtPrecision: number;
+  haikuEchtRecall: number;
+  finalEcht: number;
+  finalPraez: number;
+  finalFp: number;
+}
+
+interface MissExample {
+  name: string;
+  section: string;
+  jahr: string;
+  finalReason: string;
+  llamaReason: string;
+  haikuReason: string;
+}
+
+function readVerifierCascadeStats(rootPath: string): { stats: VerifierCascadeStats; missExamples: MissExample[] } {
+  const empty: VerifierCascadeStats = {
+    total: 0,
+    llamaAgreement: 0, haikuAgreement: 0,
+    llamaEchtPrecision: 0, llamaEchtRecall: 0,
+    haikuEchtPrecision: 0, haikuEchtRecall: 0,
+    finalEcht: 0, finalPraez: 0, finalFp: 0,
+  };
+  try {
+    const finalLines = fs.readFileSync(path.join(rootPath, "final-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+    const llamaLines = fs.readFileSync(path.join(rootPath, "llama-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+    const haikuLines = fs.readFileSync(path.join(rootPath, "haiku-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+
+    const finalMap = new Map<number, any>();
+    for (const l of finalLines) { const o = JSON.parse(l); finalMap.set(o.id, o); }
+    const llamaMap = new Map<number, any>();
+    for (const l of llamaLines) { const o = JSON.parse(l); llamaMap.set(o.id, o); }
+    const haikuMap = new Map<number, any>();
+    for (const l of haikuLines) { const o = JSON.parse(l); haikuMap.set(o.id, o); }
+
+    let llamaAgree = 0, haikuAgree = 0;
+    let llamaTP = 0, llamaFP = 0, llamaFN = 0;
+    let haikuTP = 0, haikuFP = 0, haikuFN = 0;
+    const missExamples: MissExample[] = [];
+
+    for (const [id, f] of finalMap) {
+      const l = llamaMap.get(id);
+      const h = haikuMap.get(id);
+      if (l && f.final_verdict === l.llama_verdict) llamaAgree += 1;
+      if (h && f.final_verdict === h.haiku_verdict) haikuAgree += 1;
+
+      if (f.final_verdict === "ECHT") {
+        if (l?.llama_verdict === "ECHT") llamaTP += 1; else llamaFN += 1;
+        if (h?.haiku_verdict === "ECHT") haikuTP += 1; else haikuFN += 1;
+        // Sammle ECHT-Misses für Beispiele (Llama miss, Haiku miss)
+        if (l?.llama_verdict !== "ECHT" && h?.haiku_verdict !== "ECHT" && missExamples.length < 3) {
+          missExamples.push({
+            name: f.name, section: f.section, jahr: f.jahr,
+            finalReason: f.final_reason ?? "",
+            llamaReason: l?.llama_reason ?? "",
+            haikuReason: h?.haiku_reason ?? "",
+          });
+        }
+      } else {
+        if (l?.llama_verdict === "ECHT") llamaFP += 1;
+        if (h?.haiku_verdict === "ECHT") haikuFP += 1;
+      }
+
+      const fv = f.final_verdict;
+      if (fv === "ECHT") empty.finalEcht += 1;
+      else if (fv === "PRAEZISIERUNG") empty.finalPraez += 1;
+      else if (fv === "FALSE_POSITIVE") empty.finalFp += 1;
+    }
+
+    empty.total = finalMap.size;
+    empty.llamaAgreement = llamaAgree;
+    empty.haikuAgreement = haikuAgree;
+    empty.llamaEchtPrecision = llamaTP / Math.max(1, llamaTP + llamaFP);
+    empty.llamaEchtRecall = llamaTP / Math.max(1, llamaTP + llamaFN);
+    empty.haikuEchtPrecision = haikuTP / Math.max(1, haikuTP + haikuFP);
+    empty.haikuEchtRecall = haikuTP / Math.max(1, haikuTP + haikuFN);
+
+    return { stats: empty, missExamples };
+  } catch {
+    return { stats: empty, missExamples: [] };
+  }
+}
+
 function readReparaturStats(reportPath: string): ReparaturStats {
   const stats: ReparaturStats = { replaced: 0, deleted: 0, total: 0 };
   try {
@@ -260,6 +350,7 @@ export default function MethodikPage() {
   const v2Examples = pickVerdictExamples(path.join(root, "tiebreak-v2.partial.jsonl"), "v2");
   const stage5Example = pickStage5Example(path.join(root, "source-coherence.partial.jsonl"));
   const stage5_5Examples = pickStage5_5Examples(path.join(root, "politik.db"));
+  const { stats: verifierCascade, missExamples: verifierMissExamples } = readVerifierCascadeStats(root);
 
   // Effektiv-Zahlen
   const totalDiscrepancies = v1.total;
@@ -691,6 +782,133 @@ export default function MethodikPage() {
           Llama 3.1 8B. Das Re-Extraktions-Modell halluziniert deutlich seltener. Wenn
           es trotzdem mal danebenliegt, fällt das beim nächsten Pipeline-Lauf wieder in
           Stufe 5.5 auf — der Audit-Trail bleibt vollständig.
+        </p>
+      </section>
+
+      {/* Phase 7: Verifier-Cascade-Auswahl (5. Mai 2026) */}
+      <section id="phase-7-detail" className="mb-10 scroll-mt-6">
+        <h2 className="text-lg font-bold mb-2">Phase 7 — Verifier-Cascade-Auswahl (5. Mai 2026)</h2>
+        <p className="text-sm text-muted mb-4">
+          Nach dem Stage-5-Vollauf (gpt-oss-120b) hatten wir {verifierCascade.total} potenzielle
+          Quellen-Konflikte. Frage: welches Modell taugt als Verifier-Layer, der die echten
+          Widersprüche von Falsch-Positiven trennt? Wir haben Llama 3.3 70B (Free Tier) und
+          Claude Haiku 4.5 mit identischem Prompt empirisch verglichen — und Opus 4.7 manuell
+          als Ground Truth genutzt.
+        </p>
+
+        <div className="bg-white border border-border rounded-2xl overflow-hidden mb-4">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50 text-xs uppercase tracking-wider text-muted">
+              <tr>
+                <th className="px-4 py-3 text-left">Verifier-Modell</th>
+                <th className="px-4 py-3 text-right">Agreement</th>
+                <th className="px-4 py-3 text-right">ECHT-Recall</th>
+                <th className="px-4 py-3 text-right">ECHT-Precision</th>
+                <th className="px-4 py-3 text-left">Befund</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/50">
+              <tr>
+                <td className="px-4 py-3 font-medium align-top">
+                  <span className="mr-2">🟦</span>
+                  Llama 3.3 70B (Groq Free)
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {pct(verifierCascade.llamaAgreement, verifierCascade.total)}
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {(verifierCascade.llamaEchtRecall * 100).toFixed(1)}%
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {(verifierCascade.llamaEchtPrecision * 100).toFixed(1)}%
+                </td>
+                <td className="px-4 py-3 text-xs text-muted align-top">
+                  Konflikt-Vermeidungs-Bias: tendiert zu „Sachverhalte können parallel sein", auch wenn
+                  logisch ausgeschlossen — würde 62 % der echten Widersprüche durchwinken
+                </td>
+              </tr>
+              <tr className="bg-primary-light/30">
+                <td className="px-4 py-3 font-medium align-top">
+                  <span className="mr-2">🟩</span>
+                  Claude Haiku 4.5 (Anthropic)
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {pct(verifierCascade.haikuAgreement, verifierCascade.total)}
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {(verifierCascade.haikuEchtRecall * 100).toFixed(1)}%
+                </td>
+                <td className="px-4 py-3 text-right font-mono align-top">
+                  {(verifierCascade.haikuEchtPrecision * 100).toFixed(1)}%
+                </td>
+                <td className="px-4 py-3 text-xs text-muted align-top">
+                  Deutlich besseres Reasoning bei semantischen Welt-Wissens-Aufgaben — fängt fast doppelt
+                  so viele echte Widersprüche wie Llama 70B, bei ~$0.06 für {verifierCascade.total} Cases
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-sm text-foreground/80 leading-relaxed mb-4">
+          <strong>Architektur-Lehre:</strong> Source-Coherence-Verifikation ist eine
+          semantische Reasoning-Aufgabe mit Welt-Wissens-Anteil — und damit grundverschieden
+          von Schema-Match-Tasks (Stage 4: „steht Datum X im Quelltext?"). Llama 3.3 70B reicht
+          für Schema-Match, ist aber für Reasoning-Tasks über kompatible-vs-widersprüchliche
+          Aussagen zu mild. <strong>Haiku 4.5 ist hier der angemessene Verifier-Layer.</strong>
+        </p>
+
+        {verifierMissExamples.length > 0 && (
+          <details className="bg-amber-50/50 border border-amber-200 rounded-xl p-4 mb-4">
+            <summary className="cursor-pointer text-sm font-semibold text-amber-900 select-none">
+              Beispiele für ECHT-Konflikte, die beide Verifier (Llama + Haiku) übersehen haben — Mensch-Final-Check ist Pflicht
+            </summary>
+            <div className="mt-3 space-y-3 text-[13px]">
+              {verifierMissExamples.map((m, i) => (
+                <div key={i} className="rounded-md bg-white border border-amber-200 p-3">
+                  <div className="font-semibold text-amber-900 mb-1.5">
+                    {m.name} — {m.section} / {m.jahr}
+                  </div>
+                  <div className="text-amber-950/85">
+                    <strong>Korrekt (Opus 4.7 + User-Recherche):</strong> {m.finalReason.slice(0, 250)}
+                  </div>
+                  <div className="text-amber-800/80 italic mt-1.5 text-[12px]">
+                    Llama-Miss: „{m.llamaReason.slice(0, 150)}"
+                  </div>
+                  <div className="text-amber-800/80 italic text-[12px]">
+                    Haiku-Miss: „{m.haikuReason.slice(0, 150)}"
+                  </div>
+                </div>
+              ))}
+            </div>
+          </details>
+        )}
+
+        <div className="grid grid-cols-3 gap-3 mb-4">
+          <BigStat
+            value={verifierCascade.finalEcht.toString()}
+            label="ECHT (final)"
+            sub="echte Quellen-Widersprüche"
+            highlight
+          />
+          <BigStat
+            value={verifierCascade.finalPraez.toString()}
+            label="Präzisierung"
+            sub="kein echter Widerspruch"
+          />
+          <BigStat
+            value={verifierCascade.finalFp.toString()}
+            label="False Positive"
+            sub="Stage-5 hat falsch geflaggt"
+          />
+        </div>
+
+        <p className="text-sm text-foreground/80 leading-relaxed">
+          Resultat-Pipeline: Stage 5 (gpt-oss-120b) → Haiku 4.5 als Verifier → Opus 4.7
+          + Mensch als Last-Check. Final-Stand:{" "}
+          <Link href="/quellen-diskrepanzen" className="text-primary hover:underline font-semibold">
+            Vollständige Liste der {verifierCascade.finalEcht} echten Diskrepanzen →
+          </Link>
         </p>
       </section>
 

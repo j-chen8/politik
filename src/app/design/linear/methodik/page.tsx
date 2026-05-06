@@ -110,6 +110,72 @@ function readReparaturStats(reportPath: string): ReparaturStats {
   return stats;
 }
 
+interface VerifierCascadeStats {
+  total: number;
+  llamaAgreement: number;
+  haikuAgreement: number;
+  llamaEchtPrecision: number;
+  llamaEchtRecall: number;
+  haikuEchtPrecision: number;
+  haikuEchtRecall: number;
+  finalEcht: number;
+  finalPraez: number;
+  finalFp: number;
+}
+
+function readVerifierCascadeStats(rootPath: string): VerifierCascadeStats {
+  const stats: VerifierCascadeStats = {
+    total: 0,
+    llamaAgreement: 0, haikuAgreement: 0,
+    llamaEchtPrecision: 0, llamaEchtRecall: 0,
+    haikuEchtPrecision: 0, haikuEchtRecall: 0,
+    finalEcht: 0, finalPraez: 0, finalFp: 0,
+  };
+  try {
+    const finalLines = fs.readFileSync(path.join(rootPath, "final-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+    const llamaLines = fs.readFileSync(path.join(rootPath, "llama-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+    const haikuLines = fs.readFileSync(path.join(rootPath, "haiku-verdicts-source-coherence.jsonl"), "utf-8").split("\n").filter(l => l.trim());
+
+    const finalMap = new Map<number, any>();
+    for (const l of finalLines) { const o = JSON.parse(l); finalMap.set(o.id, o); }
+    const llamaMap = new Map<number, any>();
+    for (const l of llamaLines) { const o = JSON.parse(l); llamaMap.set(o.id, o); }
+    const haikuMap = new Map<number, any>();
+    for (const l of haikuLines) { const o = JSON.parse(l); haikuMap.set(o.id, o); }
+
+    let llamaAgree = 0, haikuAgree = 0;
+    let llamaTP = 0, llamaFP = 0, llamaFN = 0;
+    let haikuTP = 0, haikuFP = 0, haikuFN = 0;
+
+    for (const [id, f] of finalMap) {
+      const l = llamaMap.get(id);
+      const h = haikuMap.get(id);
+      if (l && f.final_verdict === l.llama_verdict) llamaAgree += 1;
+      if (h && f.final_verdict === h.haiku_verdict) haikuAgree += 1;
+      if (f.final_verdict === "ECHT") {
+        if (l?.llama_verdict === "ECHT") llamaTP += 1; else llamaFN += 1;
+        if (h?.haiku_verdict === "ECHT") haikuTP += 1; else haikuFN += 1;
+      } else {
+        if (l?.llama_verdict === "ECHT") llamaFP += 1;
+        if (h?.haiku_verdict === "ECHT") haikuFP += 1;
+      }
+      const fv = f.final_verdict;
+      if (fv === "ECHT") stats.finalEcht += 1;
+      else if (fv === "PRAEZISIERUNG") stats.finalPraez += 1;
+      else if (fv === "FALSE_POSITIVE") stats.finalFp += 1;
+    }
+
+    stats.total = finalMap.size;
+    stats.llamaAgreement = llamaAgree;
+    stats.haikuAgreement = haikuAgree;
+    stats.llamaEchtPrecision = llamaTP / Math.max(1, llamaTP + llamaFP);
+    stats.llamaEchtRecall = llamaTP / Math.max(1, llamaTP + llamaFN);
+    stats.haikuEchtPrecision = haikuTP / Math.max(1, haikuTP + haikuFP);
+    stats.haikuEchtRecall = haikuTP / Math.max(1, haikuTP + haikuFN);
+  } catch {}
+  return stats;
+}
+
 function pct(n: number, d: number): string {
   if (d === 0) return "—";
   return `${((n / d) * 100).toFixed(1)}%`;
@@ -122,6 +188,7 @@ export default function LinearMethodikPage() {
   const stage5 = readStage5Stats(path.join(root, "source-coherence.partial.jsonl"));
   const stage5_5 = readStage5_5Stats(path.join(root, "verify-source-conflicts.partial.jsonl"));
   const reparatur = readReparaturStats(path.join(root, "fix-hallucinated-cv-report.md"));
+  const verifierCascade = readVerifierCascadeStats(root);
 
   const llamaHallucinations = v1.mistral + v2.mistral;
   const v1Unclear = v1.keiner + v1.unklar;
@@ -321,6 +388,60 @@ export default function LinearMethodikPage() {
             <BigStat value={reparatur.deleted.toString()} label="Gelöscht" sub="nicht im Quelltext belegt" />
             <BigStat value={reparatur.total.toString()} label="Total korrigiert" sub={`von ${stage5_5Halluzinationen} markiert`} />
           </div>
+        </section>
+
+        {/* Phase 7 — Verifier-Cascade-Auswahl (5. Mai 2026) */}
+        <section className="mb-10">
+          <h2 className="text-[15px] font-semibold text-zinc-950 mb-1">Phase 7 — Verifier-Cascade-Auswahl</h2>
+          <p className="text-[13px] text-zinc-500 mb-4">
+            Nach Stage-5-Vollauf: {verifierCascade.total} Konflikt-Kandidaten. Welches Modell taugt
+            als Verifier-Layer? Llama 3.3 70B (Free Tier) und Claude Haiku 4.5 mit identischem Prompt
+            empirisch verglichen — Opus 4.7 manuell als Ground Truth.
+          </p>
+          <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden mb-4">
+            <table className="w-full text-[14px]">
+              <thead className="bg-zinc-50 text-[11px] uppercase tracking-wider text-zinc-500">
+                <tr>
+                  <th className="px-4 py-3 text-left">Verifier-Modell</th>
+                  <th className="px-4 py-3 text-right">Agreement</th>
+                  <th className="px-4 py-3 text-right">ECHT-Recall</th>
+                  <th className="px-4 py-3 text-right">ECHT-Precision</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-100">
+                <tr>
+                  <td className="px-4 py-2.5">🟦 Llama 3.3 70B (Groq Free)</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{pct(verifierCascade.llamaAgreement, verifierCascade.total)}</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{(verifierCascade.llamaEchtRecall * 100).toFixed(1)}%</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{(verifierCascade.llamaEchtPrecision * 100).toFixed(1)}%</td>
+                </tr>
+                <tr className="bg-emerald-50/40">
+                  <td className="px-4 py-2.5">🟩 Claude Haiku 4.5</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{pct(verifierCascade.haikuAgreement, verifierCascade.total)}</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{(verifierCascade.haikuEchtRecall * 100).toFixed(1)}%</td>
+                  <td className="px-4 py-2.5 text-right font-mono">{(verifierCascade.haikuEchtPrecision * 100).toFixed(1)}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[14px] text-zinc-700 leading-relaxed mb-4">
+            <span className="font-medium text-zinc-950">Architektur-Lehre:</span>{" "}
+            Source-Coherence ist semantische Reasoning-Aufgabe mit Welt-Wissens-Anteil — verschieden von
+            Schema-Match-Tasks. Llama 3.3 70B reicht für Schema-Match („steht Datum X im Quelltext?"),
+            ist aber für „kompatibel-vs-widersprüchlich"-Reasoning zu mild. Haiku 4.5 ist hier der
+            angemessene Verifier-Layer (ca. $1.50/1000 Cases).
+          </p>
+          <div className="grid grid-cols-3 divide-x divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden mb-3">
+            <BigStat value={verifierCascade.finalEcht.toString()} label="ECHT (final)" sub="echte Quellen-Widersprüche" highlight />
+            <BigStat value={verifierCascade.finalPraez.toString()} label="Präzisierung" sub="kein echter Widerspruch" />
+            <BigStat value={verifierCascade.finalFp.toString()} label="False Positive" sub="Stage-5 hat falsch geflaggt" />
+          </div>
+          <p className="text-[13px] text-zinc-600">
+            Pipeline final: Stage 5 (gpt-oss-120b) → Haiku 4.5 Verifier → Opus 4.7 + Mensch Last-Check.{" "}
+            <Link href="/design/linear/quellen-diskrepanzen" className="text-zinc-950 font-medium underline hover:no-underline">
+              Vollständige Liste der {verifierCascade.finalEcht} echten Diskrepanzen →
+            </Link>
+          </p>
         </section>
 
         {/* Audit-Trail */}

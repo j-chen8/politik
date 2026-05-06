@@ -302,6 +302,76 @@ export function getDbStats(): { politicians: number; mandates: number; parliamen
   };
 }
 
+export interface SourceCoherenceStats {
+  checked: number;
+  politiciansWithEchtConflicts: number;
+  totalEchtConflicts: number;
+}
+
+export interface SourceCoherenceConflictRow {
+  politicianId: number;
+  firstName: string;
+  lastName: string;
+  party: string | null;
+  conflicts: Array<{
+    section: string;
+    jahr: string;
+    wikipedia: string;
+    homepage: string;
+    final_reason: string;
+  }>;
+}
+
+export function listSourceCoherenceConflicts(): SourceCoherenceConflictRow[] {
+  const db = getDb();
+  const rows = db.prepare(
+    `SELECT p.id, p.first_name, p.last_name, parties.label AS party, p.source_conflicts
+     FROM politicians p
+     LEFT JOIN parties ON parties.id = p.party_id
+     WHERE p.source_conflicts IS NOT NULL AND p.source_conflicts != '[]'
+     ORDER BY p.last_name, p.first_name`
+  ).all() as Array<{ id: number; first_name: string; last_name: string; party: string | null; source_conflicts: string }>;
+
+  const result: SourceCoherenceConflictRow[] = [];
+  for (const r of rows) {
+    const all = JSON.parse(r.source_conflicts) as Array<Record<string, any>>;
+    const echt = all.filter(c => c.final_verdict === "ECHT");
+    if (echt.length === 0) continue;
+    result.push({
+      politicianId: r.id,
+      firstName: r.first_name,
+      lastName: r.last_name,
+      party: r.party,
+      conflicts: echt.map(c => ({
+        section: c.section,
+        jahr: c.jahr,
+        wikipedia: c.wikipedia,
+        homepage: c.homepage,
+        final_reason: c.final_reason ?? c.reason,
+      })),
+    });
+  }
+  return result;
+}
+
+export function getSourceCoherenceStats(): SourceCoherenceStats {
+  const db = getDb();
+  const checked = (db.prepare(
+    `SELECT COUNT(*) as c FROM politicians WHERE source_coherence_checked_at IS NOT NULL`
+  ).get() as { c: number }).c;
+  const echtRow = db.prepare(
+    `SELECT COUNT(DISTINCT p.id) AS politicians, COUNT(*) AS conflicts
+     FROM politicians p, JSON_EACH(p.source_conflicts)
+     WHERE p.source_conflicts IS NOT NULL
+       AND JSON_EXTRACT(value, '$.final_verdict') = 'ECHT'`
+  ).get() as { politicians: number; conflicts: number };
+  return {
+    checked,
+    politiciansWithEchtConflicts: echtRow.politicians,
+    totalEchtConflicts: echtRow.conflicts,
+  };
+}
+
 // ── For Politiker-Tabelle ──
 
 export interface PoliticianListRow extends PoliticianRow {
@@ -595,11 +665,15 @@ export interface ParlamentarischeArbeit {
   typ: string;              // Unified type label
   kategorie: string;        // For filtering: "rede" | "frage" | "debattenbeitrag" | "erklaerung" | "gesetzgebung" | "bericht"
   thema: string | null;     // DIP thema or Plenar kontext
-  zusammenfassung: string | null;  // Only from Plenar
+  zusammenfassung: string | null;  // From Plenar (mit v2.1-Fallback bei NULL)
   drucksache_nr: string | null;
   pdf_url: string | null;
   source_url: string | null;       // Plenar PDF
   sitzung: number | null;
+  // v2.1 Reden-Analyse (optional, falls in speech_analyses_v2 verfügbar)
+  tonalitaet: string | null;
+  reden_typ: string | null;
+  has_correction: boolean;
 }
 
 function kategorieForDip(art: string): string {
@@ -646,23 +720,46 @@ export function getParlamentarischeArbeit(
     `SELECT * FROM activities WHERE politician_id = ? ORDER BY datum DESC LIMIT ?`
   ).all(politicianId, limit) as ActivityRow[];
 
-  // 2. Load Plenar summaries
+  // 2. Load Plenar summaries (NULL-zusammenfassung jetzt durchgelassen — v2.1-Fallback)
   type PlenarRow = SpeechSummary & { speaker: string; speech_text_preview: string };
   let plenarRows: PlenarRow[] = [];
+  let analysesMap = new Map<string, SpeechAnalysisV2>();
   if (speakerName) {
     plenarRows = db.prepare(`
       SELECT * FROM speech_summaries
       WHERE speaker = ?
-        AND zusammenfassung NOT LIKE '%lediglich%'
-        AND zusammenfassung NOT LIKE '%nicht möglich%'
-        AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
-        AND zusammenfassung NOT LIKE '%nicht erkennbar%'
-        AND zusammenfassung NOT LIKE '%nicht feststellbar%'
-        AND zusammenfassung NOT LIKE '%nicht ableitbar%'
-        AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+        AND (
+          zusammenfassung IS NULL
+          OR (
+            zusammenfassung NOT LIKE '%lediglich%'
+            AND zusammenfassung NOT LIKE '%nicht möglich%'
+            AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
+            AND zusammenfassung NOT LIKE '%nicht erkennbar%'
+            AND zusammenfassung NOT LIKE '%nicht feststellbar%'
+            AND zusammenfassung NOT LIKE '%nicht ableitbar%'
+            AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+          )
+        )
       ORDER BY sitzung DESC, speech_index ASC
       LIMIT ?
     `).all(speakerName, limit) as PlenarRow[];
+    analysesMap = getSpeechAnalysesBySpeaker(speakerName);
+  }
+
+  // Helper: matche Plenar-Row gegen v2.1-Analysen (rede_id + segment_index)
+  function findV21(p: PlenarRow): SpeechAnalysisV2 | null {
+    const ids = (p.rede_ids || p.rede_id || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    for (const id of ids) {
+      for (let seg = 0; seg < 10; seg++) {
+        const a = analysesMap.get(`${id}_${seg}`);
+        if (a) return a;
+        if (seg > 0) break;
+      }
+    }
+    return null;
   }
 
   // 3. Index plenar rows by date+kategorie for matching
@@ -688,6 +785,7 @@ export function getParlamentarischeArbeit(
       const plenar = matchingPlenar.find(p => !matchedPlenarIds.has(p.id)) || null;
       if (plenar) {
         matchedPlenarIds.add(plenar.id);
+        const v21 = findV21(plenar);
         items.push({
           id: `kombi-${a.id}-${plenar.id}`,
           quelle: "kombiniert",
@@ -695,11 +793,14 @@ export function getParlamentarischeArbeit(
           typ: a.aktivitaetsart,
           kategorie: dipKat,
           thema: a.thema || plenar.kontext,
-          zusammenfassung: plenar.zusammenfassung,
+          zusammenfassung: v21?.zusammenfassung_neutral ?? plenar.zusammenfassung,
           drucksache_nr: a.drucksache_nr,
           pdf_url: a.pdf_url,
           source_url: plenar.source_url,
           sitzung: plenar.sitzung,
+          tonalitaet: v21?.tonalitaet ?? null,
+          reden_typ: v21?.reden_typ ?? null,
+          has_correction: v21?.has_correction ?? false,
         });
         continue;
       }
@@ -718,12 +819,16 @@ export function getParlamentarischeArbeit(
       pdf_url: a.pdf_url,
       source_url: null,
       sitzung: null,
+      tonalitaet: null,
+      reden_typ: null,
+      has_correction: false,
     });
   }
 
   // 5. Add unmatched Plenar entries (no DIP counterpart)
   for (const p of plenarRows) {
     if (matchedPlenarIds.has(p.id)) continue;
+    const v21 = findV21(p);
     items.push({
       id: `plenar-${p.id}`,
       quelle: "plenar",
@@ -731,11 +836,14 @@ export function getParlamentarischeArbeit(
       typ: typLabelForPlenar(p.typ),
       kategorie: kategorieForPlenar(p.typ),
       thema: p.kontext,
-      zusammenfassung: p.zusammenfassung,
+      zusammenfassung: v21?.zusammenfassung_neutral ?? p.zusammenfassung,
       drucksache_nr: null,
       pdf_url: null,
       source_url: p.source_url,
       sitzung: p.sitzung,
+      tonalitaet: v21?.tonalitaet ?? null,
+      reden_typ: v21?.reden_typ ?? null,
+      has_correction: v21?.has_correction ?? false,
     });
   }
 
@@ -1068,21 +1176,161 @@ export interface SpeechSummary {
 export function getSpeechSummaries(speakerName: string): SpeechSummary[] {
   const db = getDb();
   try {
+    // NULL/leere zusammenfassung NICHT filtern — die v2.1-Analyse-Pipeline
+    // (speech_analyses_v2) hat Coverage für alle Sitzungen 1-75; die alte
+    // Llama-3.3-70B-Pipeline (speech_summaries.zusammenfassung) lief nur
+    // bis Sitzung 64. Für Sitzungen 65+ ist zusammenfassung NULL — die UI
+    // fällt dann auf v2.1-Daten zurück (zusammenfassung_neutral).
     return db.prepare(`
       SELECT * FROM speech_summaries
       WHERE speaker = ?
-        AND zusammenfassung NOT LIKE '%lediglich%'
-        AND zusammenfassung NOT LIKE '%nicht möglich%'
-        AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
-        AND zusammenfassung NOT LIKE '%nicht erkennbar%'
-        AND zusammenfassung NOT LIKE '%nicht feststellbar%'
-        AND zusammenfassung NOT LIKE '%nicht ableitbar%'
-        AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+        AND (
+          zusammenfassung IS NULL
+          OR (
+            zusammenfassung NOT LIKE '%lediglich%'
+            AND zusammenfassung NOT LIKE '%nicht möglich%'
+            AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
+            AND zusammenfassung NOT LIKE '%nicht erkennbar%'
+            AND zusammenfassung NOT LIKE '%nicht feststellbar%'
+            AND zusammenfassung NOT LIKE '%nicht ableitbar%'
+            AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+          )
+        )
       ORDER BY sitzung DESC, speech_index ASC
     `).all(speakerName) as SpeechSummary[];
   } catch {
     return [];
   }
+}
+
+// ============================================================
+// Strukturierte Reden-Analysen (speech_analyses_v2 + corrections)
+// Pipeline: Haiku 4.5 mit neutralisierter v2.1-Methodology, Quote-validation
+// COALESCE-Pattern: final (manuell korrigiert) → v2.1 (Re-Batch) → v2 (Original)
+// ============================================================
+
+export interface SpeechAnalysisV2 {
+  rede_id: string;
+  segment_index: number;
+  reden_typ: string | null;
+  tonalitaet: string | null;
+  forderungen: string[];
+  woertliche_zitate: string[];
+  framing_marker: string[];
+  rhetorische_mittel: string[];
+  konkrete_zahlen: string[];
+  zusammenfassung_neutral: string | null;
+  quote_valid_count: number;
+  quote_total_count: number;
+  fix_source: string | null; // null | 'mapping' | 'manual_override'
+  has_correction: boolean;
+}
+
+function safeJsonArray(s: string | null): string[] {
+  if (!s) return [];
+  try {
+    const parsed = JSON.parse(s);
+    if (Array.isArray(parsed)) return parsed.filter((x) => typeof x === "string");
+    // Double-encoded JSON-Bug bei ~90 Reden — versuche zweites Parsen
+    if (typeof parsed === "string") {
+      try {
+        const inner = JSON.parse(parsed);
+        if (Array.isArray(inner)) return inner.filter((x) => typeof x === "string");
+      } catch {}
+    }
+    return [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Bereinigt Tool-Use-Tag-Lecks am Ende der zusammenfassung_2_saetze.
+ * Bei einigen v2.1-Outputs hat Haiku XML-artige Tags an die Summary angehängt.
+ */
+function stripTagLeak(s: string | null): string | null {
+  if (!s) return s;
+  let r = s;
+  // /s-Flag nicht überall verfügbar → [\s\S] als Workaround
+  r = r.replace(/<\/zusammenfassung_2_saetze>[\s\S]*$/, "");
+  r = r.replace(/<parameter\s+name=[\s\S]*$/, "");
+  r = r.replace(/<\/invoke>[\s\S]*$/, "");
+  r = r.replace(/<\/answer>[\s\S]*$/, "");
+  return r.trim();
+}
+
+/**
+ * Liefert strukturierte Reden-Analysen für einen Sprecher, gemapped per
+ * `${rede_id}_${segment_index}`. UI verwendet die COALESCE-Logik:
+ * final-corrigiert > v2.1-rebatch > v2-original.
+ */
+export function getSpeechAnalysesBySpeaker(
+  speakerName: string,
+): Map<string, SpeechAnalysisV2> {
+  const db = getDb();
+  const map = new Map<string, SpeechAnalysisV2>();
+  try {
+    const rows = db
+      .prepare(
+        `
+      SELECT
+        v2.rede_id, v2.segment_index, v2.reden_typ, v2.tonalitaet,
+        v2.forderungen_json, v2.woertliche_zitate_json, v2.framing_marker_json,
+        v2.rhetorische_mittel_json, v2.konkrete_zahlen_json,
+        v2.quote_valid_count, v2.quote_total_count,
+        COALESCE(
+          c.zusammenfassung_2_saetze_final,
+          c.zusammenfassung_2_saetze,
+          v2.zusammenfassung_2_saetze
+        ) AS zusammenfassung_neutral,
+        c.fix_source,
+        c.id AS correction_id
+      FROM speech_analyses_v2 v2
+      JOIN plenar_speeches ps ON v2.speech_id = ps.id
+      LEFT JOIN speech_analyses_v2_corrections c
+        ON c.rede_id = v2.rede_id AND c.segment_index = v2.segment_index
+      WHERE ps.speaker = ?
+    `,
+      )
+      .all(speakerName) as Array<{
+      rede_id: string;
+      segment_index: number;
+      reden_typ: string | null;
+      tonalitaet: string | null;
+      forderungen_json: string | null;
+      woertliche_zitate_json: string | null;
+      framing_marker_json: string | null;
+      rhetorische_mittel_json: string | null;
+      konkrete_zahlen_json: string | null;
+      quote_valid_count: number;
+      quote_total_count: number;
+      zusammenfassung_neutral: string | null;
+      fix_source: string | null;
+      correction_id: number | null;
+    }>;
+
+    for (const r of rows) {
+      map.set(`${r.rede_id}_${r.segment_index}`, {
+        rede_id: r.rede_id,
+        segment_index: r.segment_index,
+        reden_typ: r.reden_typ,
+        tonalitaet: r.tonalitaet,
+        forderungen: safeJsonArray(r.forderungen_json),
+        woertliche_zitate: safeJsonArray(r.woertliche_zitate_json),
+        framing_marker: safeJsonArray(r.framing_marker_json),
+        rhetorische_mittel: safeJsonArray(r.rhetorische_mittel_json),
+        konkrete_zahlen: safeJsonArray(r.konkrete_zahlen_json),
+        zusammenfassung_neutral: stripTagLeak(r.zusammenfassung_neutral),
+        quote_valid_count: r.quote_valid_count ?? 0,
+        quote_total_count: r.quote_total_count ?? 0,
+        fix_source: r.fix_source,
+        has_correction: r.correction_id !== null,
+      });
+    }
+  } catch {
+    // Tabellen existieren noch nicht → empty
+  }
+  return map;
 }
 
 export function getAllSpeakersWithSummaries(): { speaker: string; party: string | null; count: number; sessions: number }[] {

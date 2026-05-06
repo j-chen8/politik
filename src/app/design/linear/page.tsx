@@ -1,10 +1,11 @@
 import { SearchBox } from "@/components/SearchBox";
-import { getDbStats } from "@/lib/db";
-import { ArrowRight, Users, FileText, Gavel, Wallet, Sparkles } from "lucide-react";
+import { getDbStats, getSourceCoherenceStats } from "@/lib/db";
+import { ArrowRight, Users, FileText, Gavel, Wallet, Sparkles, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
 export default function LinearLanding() {
   const stats = getDbStats();
+  const coherence = getSourceCoherenceStats();
 
   return (
     <div className="page-wash">
@@ -109,10 +110,10 @@ export default function LinearLanding() {
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-y sm:divide-y-0 divide-zinc-100">
-            <LinearModelCell n="①" name="Llama" role="Generator" />
-            <LinearModelCell n="②" name="Mistral" role="Cross-Check" />
-            <LinearModelCell n="③" name="Nemotron" role="Tiebreaker" />
-            <LinearModelCell n="④" name="Claude Haiku 4.5" role="Tiebreaker v2" />
+            <LinearModelCell n="①" name="Claude Haiku 4.5" role="Generator" />
+            <LinearModelCell n="②" name="Mistral Small" role="Inspector" />
+            <LinearModelCell n="③" name="Llama 3.3 70B" role="Verifier" />
+            <LinearModelCell n="④" name="Nemotron-Nano" role="Mamba-Diversität" />
             <LinearModelCell n="⑤" name="gpt-oss-120b" role="Source-Coherence" />
           </div>
           <div className="px-6 py-3 bg-zinc-50 border-t border-zinc-100">
@@ -126,6 +127,66 @@ export default function LinearLanding() {
           </div>
         </div>
       </section>
+
+      {/* Quellen-Diskrepanzen offengelegt — konkrete Source-Coherence-Resultate */}
+      <section className="w-full max-w-5xl mx-auto px-5 pb-24 fade-in-up fade-in-up-4">
+        <div className="border border-amber-200/70 rounded-2xl bg-amber-50/40 overflow-hidden">
+          <div className="px-6 py-5 border-b border-amber-100">
+            <div className="flex items-center gap-2 mb-2">
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-700" strokeWidth={2.25} />
+              <span className="text-[11px] font-medium uppercase tracking-wider text-amber-800">
+                Quellen-Diskrepanzen offengelegt
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-zinc-950 mb-2">
+              Wir prüfen Wikipedia gegen die Politiker-Homepages
+            </h2>
+            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Lebensläufe aus zwei unabhängigen Quellen — Wikipedia und persönliche
+              Webseiten — automatisch gegeneinander geprüft. Bei{" "}
+              <span className="text-zinc-950 font-medium">
+                {coherence.politiciansWithEchtConflicts} von {coherence.checked.toLocaleString("de-DE")} MdBs
+              </span>{" "}
+              echte Quellen-Konflikte gefunden: falsche Schul-Orte, ungenaue
+              Funktionsangaben, veraltete Berufs-Stände. Transparent statt verschleiert.
+            </p>
+          </div>
+          <div className="grid grid-cols-3 divide-x divide-amber-100">
+            <LinearStat n={coherence.checked} label="Profile geprüft" />
+            <LinearStat n={coherence.totalEchtConflicts} label="Konflikte entdeckt" />
+            <LinearStat n={coherence.politiciansWithEchtConflicts} label="MdBs betroffen" />
+          </div>
+          <div className="px-6 py-3 bg-amber-100/40 border-t border-amber-100 flex flex-wrap gap-x-5 gap-y-1.5">
+            <Link
+              href="/design/linear/quellen-diskrepanzen"
+              className="inline-flex items-center gap-1 text-[12px] font-medium text-amber-900 hover:text-amber-950 transition-colors"
+            >
+              Vollständige Liste der Diskrepanzen
+              <ArrowRight className="w-3 h-3" strokeWidth={2.25} />
+            </Link>
+            <Link
+              href="/design/linear/methodik"
+              className="inline-flex items-center gap-1 text-[12px] font-medium text-amber-900 hover:text-amber-950 transition-colors"
+            >
+              Wie wir Konflikte erkennen
+              <ArrowRight className="w-3 h-3" strokeWidth={2.25} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function LinearStat({ n, label }: { n: number; label: string }) {
+  return (
+    <div className="px-5 py-5">
+      <div className="num text-3xl font-semibold tracking-tight text-amber-900">
+        {n.toLocaleString("de-DE")}
+      </div>
+      <div className="text-[11px] font-medium uppercase tracking-wider text-amber-700/80 mt-0.5">
+        {label}
+      </div>
     </div>
   );
 }
