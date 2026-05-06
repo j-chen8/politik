@@ -3,6 +3,8 @@
 > Sitzung 76 (06.05.2026) sollte stattgefunden haben — XMLs holen, Reden extrahieren, mit v2.1-Methodology batchen.
 >
 > **Letzter Stand:** Reden-Pipeline live (9.913 Reden), Bias-Audit komplett, UI-Integration in beiden Designs (Standard + Linear). Tag-Log: `docs/dev-log/2026-05-05-reden-pipeline.md`.
+>
+> 🪟 **Zweites Fenster (CV-/Source-Coherence-Track):** wenn du parallel das zweite Fenster aufmachst, dort `NEXT-SESSION-pickup-2026-05-06.md` lesen. Dort steht der CV-Pickup-Plan (Methodik-Seite verifizieren, Stage-5-Recall-Stichprobe, PRAEZ-Toggle, …). Beide Tracks teilen sich `politik.db` — Koordinations-Regeln bei DB-Writes (Bescheid geben, dann erst schreiben) wie gestern.
 
 ## ⚡ TL;DR — Sitzung 76 nachziehen
 
