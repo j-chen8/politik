@@ -179,9 +179,13 @@ export interface PoliticianRow {
   homepage_url: string | null;
   twitter_handle: string | null;
   instagram_handle: string | null;
+  facebook_handle: string | null;
+  tiktok_handle: string | null;
   bio_summary: string | null;
   bio_url: string | null;
   bio_source: string | null;
+  bundestag_bio_url: string | null;
+  bundesregierung_bio_url: string | null;
   cv_json: string | null;
   cv_source: string | null;
   cv_generated_at: string | null;

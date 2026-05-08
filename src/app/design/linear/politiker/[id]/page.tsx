@@ -91,13 +91,20 @@ export default async function PolitikerPage({ params }: Props) {
         {/* Profile Header */}
         <div className="mb-12">
           <div className="flex flex-col sm:flex-row gap-6 items-start">
-            <PoliticianAvatar
-              photoUrl={politician.photo_url}
-              firstName={politician.first_name}
-              lastName={politician.last_name}
-              party={politician.party_label}
-              size="lg"
-            />
+            <div className="flex flex-col items-center sm:items-start gap-1.5">
+              <PoliticianAvatar
+                photoUrl={politician.photo_url}
+                firstName={politician.first_name}
+                lastName={politician.last_name}
+                party={politician.party_label}
+                size="lg"
+              />
+              {!politician.photo_url && (
+                <p className="text-[10px] leading-tight text-zinc-500 max-w-[120px] text-center sm:text-left">
+                  Kein Foto – keine eindeutige Bildlizenz
+                </p>
+              )}
+            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-baseline gap-3 mb-1 flex-wrap">
                 <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
@@ -147,6 +154,28 @@ export default async function PolitikerPage({ params }: Props) {
                     {new URL(politician.homepage_url).hostname.replace(/^www\./, "")}
                   </a>
                 )}
+                {politician.bundestag_bio_url && (
+                  <a
+                    href={politician.bundestag_bio_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                    bundestag.de
+                  </a>
+                )}
+                {politician.bundesregierung_bio_url && (
+                  <a
+                    href={politician.bundesregierung_bio_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                    bundesregierung.de
+                  </a>
+                )}
                 {politician.twitter_handle && (
                   <a
                     href={`https://twitter.com/${politician.twitter_handle}`}
@@ -167,6 +196,28 @@ export default async function PolitikerPage({ params }: Props) {
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     Instagram
+                  </a>
+                )}
+                {politician.facebook_handle && (
+                  <a
+                    href={`https://facebook.com/${politician.facebook_handle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                    Facebook
+                  </a>
+                )}
+                {politician.tiktok_handle && (
+                  <a
+                    href={`https://tiktok.com/@${politician.tiktok_handle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                    TikTok
                   </a>
                 )}
                 {politician.abgeordnetenwatch_url && (

@@ -58,7 +58,8 @@ export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = 
     <div
       className={`${s.wrap} ${s.rounded} flex items-center justify-center shrink-0 font-bold tracking-tight`}
       style={{ backgroundColor: bg, color: fg }}
-      aria-label={`${firstName} ${lastName}`}
+      aria-label={`${firstName} ${lastName} – kein Foto verfügbar, da keine eindeutige Bildlizenz vorliegt`}
+      title="Kein Foto verfügbar – keine eindeutige Bildlizenz"
     >
       {initials}
     </div>
