@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Pop-Hero MVP — 4 Varianten</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .num { font-variant-numeric: tabular-nums; }
+  .variant-label {
+    position: sticky; top: 0; z-index: 10;
+    background: linear-gradient(180deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.95) 80%, rgba(248,250,252,0) 100%);
+    padding: 24px 0 12px;
+  }
+</style>
+</head>
+<body class="bg-zinc-50">
+
+<div class="max-w-3xl mx-auto py-16 px-5 space-y-24">
+
+  <!-- Header -->
+  <header class="text-center pb-8 border-b border-zinc-200">
+    <h1 class="text-3xl font-semibold tracking-tight text-zinc-950 mb-2">Pop-Hero MVP — 4 Varianten</h1>
+    <p class="text-zinc-500 text-sm">Mockup mit echten Daten aus 50 Polls. Position: zwischen Hero und Stats Strip auf Landing Page.</p>
+    <p class="text-zinc-400 text-xs mt-2">Auswahl: 5 knappste Polls, sortiert nach Distanz zu 50:50 — deterministisch + symmetrisch.</p>
+  </header>
+
+
+  <!-- =========================================
+       VARIANT A — Linear Compact List
+       ========================================= -->
+  <section>
+    <div class="variant-label">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">Variante A</div>
+      <h2 class="text-2xl font-semibold text-zinc-950 tracking-tight">Linear Compact List</h2>
+      <p class="text-sm text-zinc-500 mt-1">Dense, klassische Liste, 5 Polls. Stacked-Bar inline.</p>
+    </div>
+
+    <div class="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
+      <div class="px-6 pt-6 pb-3 border-b border-zinc-100 flex items-center justify-between">
+        <div>
+          <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-0.5">Diese Woche knapp</div>
+          <h3 class="text-lg font-semibold text-zinc-950 tracking-tight">Hauchdünne Mehrheiten im Plenum</h3>
+        </div>
+        <a href="#" class="text-[12px] text-zinc-500 hover:text-zinc-900">Methodik →</a>
+      </div>
+      <div class="divide-y divide-zinc-100">
+
+        <a href="/abstimmungen/6498" class="block px-6 py-4 hover:bg-zinc-50 transition-colors">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="text-[14px] font-medium text-zinc-900 truncate">Änderung des Stromsteuergesetzes</div>
+              <div class="text-[11px] text-zinc-400 num">24. April 2026</div>
+            </div>
+            <div class="text-[12px] text-zinc-500 num shrink-0">3,4 % von Pari</div>
+          </div>
+          <div class="flex items-center gap-3 text-[12px] num">
+            <span class="text-emerald-700 font-medium w-12 text-right">270</span>
+            <div class="flex-1 h-2 rounded-full overflow-hidden bg-zinc-100 flex">
+              <div class="bg-emerald-500" style="width: 46.6%"></div>
+              <div class="bg-rose-400" style="width: 53.4%"></div>
+            </div>
+            <span class="text-rose-700 font-medium w-12">310</span>
+          </div>
+        </a>
+
+        <a href="/abstimmungen/6250" class="block px-6 py-4 hover:bg-zinc-50 transition-colors">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="text-[14px] font-medium text-zinc-900 truncate">Etat von Bundeskanzler und Bundeskanzleramt 2025</div>
+              <div class="text-[11px] text-zinc-400 num">17. September 2025</div>
+            </div>
+            <div class="text-[12px] text-zinc-500 num shrink-0">4,1 % von Pari</div>
+          </div>
+          <div class="flex items-center gap-3 text-[12px] num">
+            <span class="text-emerald-700 font-medium w-12 text-right">322</span>
+            <div class="flex-1 h-2 rounded-full overflow-hidden bg-zinc-100 flex">
+              <div class="bg-emerald-500" style="width: 54.1%"></div>
+              <div class="bg-rose-400" style="width: 45.9%"></div>
+            </div>
+            <span class="text-rose-700 font-medium w-12">273</span>
+          </div>
+        </a>
+
+        <a href="/abstimmungen/6346" class="block px-6 py-4 hover:bg-zinc-50 transition-colors">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="text-[14px] font-medium text-zinc-900 truncate">Etat von Bundeskanzler und Bundeskanzleramt 2026</div>
+              <div class="text-[11px] text-zinc-400 num">26. November 2025</div>
+            </div>
+            <div class="text-[12px] text-zinc-500 num shrink-0">4,2 % von Pari</div>
+          </div>
+          <div class="flex items-center gap-3 text-[12px] num">
+            <span class="text-emerald-700 font-medium w-12 text-right">324</span>
+            <div class="flex-1 h-2 rounded-full overflow-hidden bg-zinc-100 flex">
+              <div class="bg-emerald-500" style="width: 54.2%"></div>
+              <div class="bg-rose-400" style="width: 45.8%"></div>
+            </div>
+            <span class="text-rose-700 font-medium w-12">274</span>
+          </div>
+        </a>
+
+        <a href="/abstimmungen/6359" class="block px-6 py-4 hover:bg-zinc-50 transition-colors">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="text-[14px] font-medium text-zinc-900 truncate">Modernisierung des Wehrdienstes</div>
+              <div class="text-[11px] text-zinc-400 num">5. Dezember 2025</div>
+            </div>
+            <div class="text-[12px] text-zinc-500 num shrink-0">4,3 % von Pari</div>
+          </div>
+          <div class="flex items-center gap-3 text-[12px] num">
+            <span class="text-emerald-700 font-medium w-12 text-right">323</span>
+            <div class="flex-1 h-2 rounded-full overflow-hidden bg-zinc-100 flex">
+              <div class="bg-emerald-500" style="width: 54.3%"></div>
+              <div class="bg-rose-400" style="width: 45.7%"></div>
+            </div>
+            <span class="text-rose-700 font-medium w-12">272</span>
+          </div>
+        </a>
+
+        <a href="/abstimmungen/6419" class="block px-6 py-4 hover:bg-zinc-50 transition-colors">
+          <div class="flex items-baseline justify-between gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="text-[14px] font-medium text-zinc-900 truncate">Anpassung an Reform des Gemeinsamen Europäischen Asylsystems</div>
+              <div class="text-[11px] text-zinc-400 num">27. Februar 2026</div>
+            </div>
+            <div class="text-[12px] text-zinc-500 num shrink-0">4,3 % von Pari</div>
+          </div>
+          <div class="flex items-center gap-3 text-[12px] num">
+            <span class="text-emerald-700 font-medium w-12 text-right">309</span>
+            <div class="flex-1 h-2 rounded-full overflow-hidden bg-zinc-100 flex">
+              <div class="bg-emerald-500" style="width: 54.3%"></div>
+              <div class="bg-rose-400" style="width: 45.7%"></div>
+            </div>
+            <span class="text-rose-700 font-medium w-12">260</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       VARIANT B — 3-Card Grid
+       ========================================= -->
+  <section>
+    <div class="variant-label">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">Variante B</div>
+      <h2 class="text-2xl font-semibold text-zinc-950 tracking-tight">3-Card Grid</h2>
+      <p class="text-sm text-zinc-500 mt-1">Drei Polls als gleichwertige Cards, mehr visuelles Gewicht pro Eintrag.</p>
+    </div>
+
+    <div class="mb-4">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-0.5">Diese Woche knapp</div>
+      <h3 class="text-lg font-semibold text-zinc-950 tracking-tight">Drei Abstimmungen mit hauchdünner Mehrheit</h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+      <a href="/abstimmungen/6498" class="block bg-white border border-zinc-200/70 rounded-2xl p-5 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-2">24. April 2026</div>
+        <div class="text-[13.5px] font-medium text-zinc-900 leading-snug mb-3 min-h-[40px]">Änderung des Stromsteuergesetzes</div>
+        <div class="flex items-baseline gap-2 mb-2">
+          <span class="text-2xl font-semibold text-zinc-950 num">46,6 %</span>
+          <span class="text-[11px] text-zinc-500">Ja-Anteil</span>
+        </div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex">
+          <div class="bg-emerald-500" style="width: 46.6%"></div>
+          <div class="bg-rose-400" style="width: 53.4%"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-zinc-500 num mt-1.5">
+          <span>270 Ja</span>
+          <span>310 Nein</span>
+        </div>
+      </a>
+
+      <a href="/abstimmungen/6250" class="block bg-white border border-zinc-200/70 rounded-2xl p-5 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-2">17. September 2025</div>
+        <div class="text-[13.5px] font-medium text-zinc-900 leading-snug mb-3 min-h-[40px]">Etat Bundeskanzler 2025</div>
+        <div class="flex items-baseline gap-2 mb-2">
+          <span class="text-2xl font-semibold text-zinc-950 num">54,1 %</span>
+          <span class="text-[11px] text-zinc-500">Ja-Anteil</span>
+        </div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex">
+          <div class="bg-emerald-500" style="width: 54.1%"></div>
+          <div class="bg-rose-400" style="width: 45.9%"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-zinc-500 num mt-1.5">
+          <span>322 Ja</span>
+          <span>273 Nein</span>
+        </div>
+      </a>
+
+      <a href="/abstimmungen/6359" class="block bg-white border border-zinc-200/70 rounded-2xl p-5 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-2">5. Dezember 2025</div>
+        <div class="text-[13.5px] font-medium text-zinc-900 leading-snug mb-3 min-h-[40px]">Modernisierung des Wehrdienstes</div>
+        <div class="flex items-baseline gap-2 mb-2">
+          <span class="text-2xl font-semibold text-zinc-950 num">54,3 %</span>
+          <span class="text-[11px] text-zinc-500">Ja-Anteil</span>
+        </div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex">
+          <div class="bg-emerald-500" style="width: 54.3%"></div>
+          <div class="bg-rose-400" style="width: 45.7%"></div>
+        </div>
+        <div class="flex justify-between text-[11px] text-zinc-500 num mt-1.5">
+          <span>323 Ja</span>
+          <span>272 Nein</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/abstimmungen" class="text-[12px] text-zinc-500 hover:text-zinc-900">Alle 50 Abstimmungen →</a>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       VARIANT C — Hero-First (1 big + 3 small)
+       ========================================= -->
+  <section>
+    <div class="variant-label">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">Variante C</div>
+      <h2 class="text-2xl font-semibold text-zinc-950 tracking-tight">Hero-First</h2>
+      <p class="text-sm text-zinc-500 mt-1">Ein dominantes Poll oben, 3 kleinere darunter. Zeigt das knappste prominent.</p>
+    </div>
+
+    <div class="mb-4">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-0.5">Diese Woche knapp</div>
+      <h3 class="text-lg font-semibold text-zinc-950 tracking-tight">Engste Abstimmungen im Plenum</h3>
+    </div>
+
+    <!-- Hero poll -->
+    <a href="/abstimmungen/6498" class="block bg-white border border-zinc-200/70 rounded-2xl p-7 hover:border-zinc-400 transition-colors mb-3">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="inline-flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-rose-700 bg-rose-50 border border-rose-200/70 rounded-full px-2 py-0.5">
+          ENGSTES POLL
+        </span>
+        <span class="text-[11px] text-zinc-400 num">24. April 2026</span>
+      </div>
+      <div class="text-[18px] font-semibold text-zinc-950 leading-snug mb-4">Änderung des Stromsteuergesetzes und weiterer Vorschriften</div>
+
+      <div class="flex items-center gap-3 mb-1.5">
+        <span class="text-[16px] font-semibold text-emerald-700 num w-14 text-right">270</span>
+        <div class="flex-1 h-3 rounded-full overflow-hidden bg-zinc-100 flex">
+          <div class="bg-emerald-500" style="width: 46.6%"></div>
+          <div class="bg-rose-400" style="width: 53.4%"></div>
+        </div>
+        <span class="text-[16px] font-semibold text-rose-700 num w-14">310</span>
+      </div>
+      <div class="flex justify-between text-[11px] text-zinc-500 num">
+        <span>46,6 % Ja</span>
+        <span>3,4 % von Pari · Antrag abgelehnt</span>
+        <span>53,4 % Nein</span>
+      </div>
+    </a>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+      <a href="/abstimmungen/6250" class="block bg-white border border-zinc-200/70 rounded-2xl p-4 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-1.5">17. Sep 2025</div>
+        <div class="text-[12.5px] font-medium text-zinc-900 leading-tight mb-3 line-clamp-2 min-h-[32px]">Etat Bundeskanzler 2025</div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1">
+          <div class="bg-emerald-500" style="width: 54.1%"></div>
+          <div class="bg-rose-400" style="width: 45.9%"></div>
+        </div>
+        <div class="text-[11px] text-zinc-500 num">322 / 273</div>
+      </a>
+
+      <a href="/abstimmungen/6359" class="block bg-white border border-zinc-200/70 rounded-2xl p-4 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-1.5">5. Dez 2025</div>
+        <div class="text-[12.5px] font-medium text-zinc-900 leading-tight mb-3 line-clamp-2 min-h-[32px]">Wehrdienst-Modernisierung</div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1">
+          <div class="bg-emerald-500" style="width: 54.3%"></div>
+          <div class="bg-rose-400" style="width: 45.7%"></div>
+        </div>
+        <div class="text-[11px] text-zinc-500 num">323 / 272</div>
+      </a>
+
+      <a href="/abstimmungen/6422" class="block bg-white border border-zinc-200/70 rounded-2xl p-4 hover:border-zinc-400 transition-colors">
+        <div class="text-[11px] text-zinc-400 num mb-1.5">5. März 2026</div>
+        <div class="text-[12.5px] font-medium text-zinc-900 leading-tight mb-3 line-clamp-2 min-h-[32px]">Bürgergeld → Grundsicherung</div>
+        <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1">
+          <div class="bg-emerald-500" style="width: 54.4%"></div>
+          <div class="bg-rose-400" style="width: 45.6%"></div>
+        </div>
+        <div class="text-[11px] text-zinc-500 num">320 / 268</div>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/abstimmungen" class="text-[12px] text-zinc-500 hover:text-zinc-900">Alle 50 Abstimmungen →</a>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       VARIANT D — Minimal Subtle Strip
+       ========================================= -->
+  <section>
+    <div class="variant-label">
+      <div class="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">Variante D</div>
+      <h2 class="text-2xl font-semibold text-zinc-950 tracking-tight">Minimal Strip</h2>
+      <p class="text-sm text-zinc-500 mt-1">Sehr subtil, schmal — bricht das Layout nicht. Interaktion durch Hover-Tooltip / Klick.</p>
+    </div>
+
+    <div class="bg-white/50 backdrop-blur border border-zinc-200/70 rounded-xl px-5 py-3.5">
+      <div class="flex items-center gap-3 text-[12px] mb-2">
+        <span class="text-zinc-500">Diese Woche knapp:</span>
+        <span class="text-zinc-300">|</span>
+        <span class="text-zinc-400">5 Abstimmungen mit ≤ 5 % Vorsprung</span>
+        <span class="ml-auto"><a href="/abstimmungen" class="text-zinc-500 hover:text-zinc-900">Alle 50 Polls →</a></span>
+      </div>
+
+      <div class="grid grid-cols-5 gap-1.5">
+        <a href="/abstimmungen/6498" class="group block">
+          <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1.5">
+            <div class="bg-emerald-500" style="width: 46.6%"></div>
+            <div class="bg-rose-400" style="width: 53.4%"></div>
+          </div>
+          <div class="text-[10.5px] text-zinc-700 font-medium leading-tight line-clamp-2 group-hover:text-zinc-950">Stromsteuer</div>
+          <div class="text-[10px] text-zinc-400 num mt-0.5">270/310 · 46,6 %</div>
+        </a>
+
+        <a href="/abstimmungen/6250" class="group block">
+          <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1.5">
+            <div class="bg-emerald-500" style="width: 54.1%"></div>
+            <div class="bg-rose-400" style="width: 45.9%"></div>
+          </div>
+          <div class="text-[10.5px] text-zinc-700 font-medium leading-tight line-clamp-2 group-hover:text-zinc-950">Kanzler-Etat 2025</div>
+          <div class="text-[10px] text-zinc-400 num mt-0.5">322/273 · 54,1 %</div>
+        </a>
+
+        <a href="/abstimmungen/6346" class="group block">
+          <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1.5">
+            <div class="bg-emerald-500" style="width: 54.2%"></div>
+            <div class="bg-rose-400" style="width: 45.8%"></div>
+          </div>
+          <div class="text-[10.5px] text-zinc-700 font-medium leading-tight line-clamp-2 group-hover:text-zinc-950">Kanzler-Etat 2026</div>
+          <div class="text-[10px] text-zinc-400 num mt-0.5">324/274 · 54,2 %</div>
+        </a>
+
+        <a href="/abstimmungen/6359" class="group block">
+          <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1.5">
+            <div class="bg-emerald-500" style="width: 54.3%"></div>
+            <div class="bg-rose-400" style="width: 45.7%"></div>
+          </div>
+          <div class="text-[10.5px] text-zinc-700 font-medium leading-tight line-clamp-2 group-hover:text-zinc-950">Wehrdienst</div>
+          <div class="text-[10px] text-zinc-400 num mt-0.5">323/272 · 54,3 %</div>
+        </a>
+
+        <a href="/abstimmungen/6419" class="group block">
+          <div class="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex mb-1.5">
+            <div class="bg-emerald-500" style="width: 54.3%"></div>
+            <div class="bg-rose-400" style="width: 45.7%"></div>
+          </div>
+          <div class="text-[10.5px] text-zinc-700 font-medium leading-tight line-clamp-2 group-hover:text-zinc-950">EU-Asylsystem</div>
+          <div class="text-[10px] text-zinc-400 num mt-0.5">309/260 · 54,3 %</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Comparison summary -->
+  <section class="border-t border-zinc-200 pt-12">
+    <h2 class="text-2xl font-semibold text-zinc-950 tracking-tight mb-6">Vergleich</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div class="bg-white border border-zinc-200/70 rounded-xl p-5">
+        <div class="font-semibold text-zinc-950 mb-2">A — Linear Compact</div>
+        <div class="text-zinc-600 mb-3 text-[13px]">5 Polls, dichte Liste mit Stacked-Bar inline.</div>
+        <div class="text-[12px] space-y-1">
+          <div class="text-emerald-700">+ Mehr Polls sichtbar (5)</div>
+          <div class="text-emerald-700">+ Dichte Information</div>
+          <div class="text-rose-700">− Visuell etwas „Tabelle"</div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-zinc-200/70 rounded-xl p-5">
+        <div class="font-semibold text-zinc-950 mb-2">B — 3-Card Grid</div>
+        <div class="text-zinc-600 mb-3 text-[13px]">Drei Cards in Reihe, jede mit großem Prozent-Wert.</div>
+        <div class="text-[12px] space-y-1">
+          <div class="text-emerald-700">+ Visuell ausgewogen</div>
+          <div class="text-emerald-700">+ Klare Klick-Affordanz</div>
+          <div class="text-rose-700">− Nur 3 Polls, weniger Info</div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-zinc-200/70 rounded-xl p-5">
+        <div class="font-semibold text-zinc-950 mb-2">C — Hero-First</div>
+        <div class="text-zinc-600 mb-3 text-[13px]">Ein großes Poll oben, drei kleine darunter.</div>
+        <div class="text-[12px] space-y-1">
+          <div class="text-emerald-700">+ Stärkster Aha-Effekt (knappestes Poll prominent)</div>
+          <div class="text-emerald-700">+ Hierarchisch klar</div>
+          <div class="text-rose-700">− Risiko „Headline-haftig" wenn Top-Poll dramatisch</div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-zinc-200/70 rounded-xl p-5">
+        <div class="font-semibold text-zinc-950 mb-2">D — Minimal Strip</div>
+        <div class="text-zinc-600 mb-3 text-[13px]">Schmaler Streifen mit 5 Mini-Bars.</div>
+        <div class="text-[12px] space-y-1">
+          <div class="text-emerald-700">+ Bricht Landing-Layout nicht</div>
+          <div class="text-emerald-700">+ „Beweis statt Banner"</div>
+          <div class="text-rose-700">− Wenig Pop-Effekt für Casual-Visitor</div>
+          <div class="text-rose-700">− Klein/leicht zu übersehen</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 bg-amber-50/50 border border-amber-200/70 rounded-xl p-5 text-[13px] text-zinc-700">
+      <div class="font-semibold text-zinc-950 mb-2">Anti-Boulevard-Test (alle Varianten):</div>
+      <ul class="space-y-1 list-disc list-inside">
+        <li>✅ Daten zeigen, nicht werten — nur Zahlen + Stacked-Bar, keine Wertungs-Wörter</li>
+        <li>✅ Symmetrisch — Auswahl-Algorithmus (engste 5 Polls) ist neutral nach Inhalt</li>
+        <li>✅ Tiefen-Pfad — jeder Eintrag verlinkt auf <code class="text-xs bg-white px-1 py-0.5 rounded">/abstimmungen/{id}</code></li>
+        <li>✅ Methodik-Link — separater Link „Methodik →"</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
