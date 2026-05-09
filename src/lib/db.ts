@@ -187,12 +187,15 @@ export interface PoliticianRow {
   bundestag_bio_url: string | null;
   bundesregierung_bio_url: string | null;
   cv_json: string | null;
+  cv_json_dedup: string | null;
   cv_source: string | null;
   cv_generated_at: string | null;
   cv_homepage_json: string | null;
+  cv_homepage_json_dedup: string | null;
   cv_homepage_url: string | null;
   cv_homepage_text: string | null;
   cv_homepage_generated_at: string | null;
+  cv_dedup_at: string | null;
   cv_summary: string | null;
   cv_summary_generated_at: string | null;
   cv_model: string | null;
@@ -642,6 +645,28 @@ export function getCommitteeMembershipsForPoliticianDb(politicianId: number): Co
   return db.prepare(
     `SELECT * FROM committee_memberships WHERE politician_id = ? ORDER BY committee_label`
   ).all(politicianId) as CommitteeMembershipRow[];
+}
+
+export interface CVMergeDropRow {
+  section: string;
+  dropped_source: "wikipedia" | "homepage";
+  dropped_jahr: string | null;
+  dropped_text: string | null;
+  kept_jahr: string | null;
+  kept_text: string | null;
+}
+
+export function getCVMergeDropsForPolitician(politicianId: number): CVMergeDropRow[] {
+  const db = getDb();
+  // Tabelle existiert evtl. noch nicht (vor erstem Lauf des Dedup-Skripts)
+  try {
+    return db.prepare(
+      `SELECT section, dropped_source, dropped_jahr, dropped_text, kept_jahr, kept_text
+       FROM cv_merge_drops WHERE politician_id = ? ORDER BY section, id`
+    ).all(politicianId) as CVMergeDropRow[];
+  } catch {
+    return [];
+  }
 }
 
 export function getIncomeRange(level: string | null): string {

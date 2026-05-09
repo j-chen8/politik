@@ -62,6 +62,15 @@ function filterUserVisibleConflicts(
   });
 }
 
+export interface CVMergeDrop {
+  section: string;
+  dropped_source: "wikipedia" | "homepage";
+  dropped_jahr: string | null;
+  dropped_text: string | null;
+  kept_jahr: string | null;
+  kept_text: string | null;
+}
+
 export interface PoliticianCVProps {
   /** Lesbarer 2–3-Satz-Bio-Text */
   summary?: string | null;
@@ -79,6 +88,9 @@ export interface PoliticianCVProps {
 
   /** Quellen-Diskrepanzen aus Stage 5 (Source-Coherence-Check). */
   sourceConflicts?: SourceConflict[] | null;
+
+  /** Audit-Trail: Einträge die als Duplikate ausgeblendet wurden (cv_merge_drops). */
+  mergeDrops?: CVMergeDrop[] | null;
 }
 
 const SECTIONS = [
@@ -228,7 +240,15 @@ export function PoliticianCV(props: PoliticianCVProps) {
     homepageMeta,
     homepageUrl,
     sourceConflicts,
+    mergeDrops,
   } = props;
+
+  // Drops nach Sektion gruppieren für die "X Duplikate ausgeblendet"-Anzeige
+  const dropsBySection = new Map<string, CVMergeDrop[]>();
+  for (const d of mergeDrops ?? []) {
+    if (!dropsBySection.has(d.section)) dropsBySection.set(d.section, []);
+    dropsBySection.get(d.section)!.push(d);
+  }
 
   const visibleConflicts = filterUserVisibleConflicts(sourceConflicts);
   const conflictIdx = indexConflicts(visibleConflicts);
@@ -285,7 +305,9 @@ export function PoliticianCV(props: PoliticianCVProps) {
       {/* Strukturierte Listen */}
       {nonEmpty.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-          {nonEmpty.map(({ key, label, icon: Icon, color }) => (
+          {nonEmpty.map(({ key, label, icon: Icon, color }) => {
+            const sectionDrops = dropsBySection.get(key) ?? [];
+            return (
             <div key={key}>
               <h3 className={`text-sm font-semibold mb-3 flex items-center gap-2 ${color}`}>
                 <Icon className="w-4 h-4" />
@@ -340,8 +362,47 @@ export function PoliticianCV(props: PoliticianCVProps) {
                   );
                 })}
               </ul>
+              {sectionDrops.length > 0 && (
+                <details className="mt-3 text-[12px] rounded-md border border-gray-200 bg-gray-50/70 px-2.5 py-2">
+                  <summary className="cursor-pointer text-muted hover:text-foreground font-medium select-none list-none flex items-center gap-1">
+                    <Info className="w-3 h-3" aria-hidden />
+                    {sectionDrops.length === 1
+                      ? "1 Eintrag als Duplikat ausgeblendet — Vergleich anzeigen"
+                      : `${sectionDrops.length} Einträge als Duplikate ausgeblendet — Vergleich anzeigen`}
+                  </summary>
+                  <ul className="mt-2.5 space-y-3 text-foreground/80">
+                    {sectionDrops.map((d, di) => {
+                      const droppedSrc = d.dropped_source === "wikipedia" ? "Wikipedia" : "Homepage";
+                      const keptSrc = d.dropped_source === "wikipedia" ? "Homepage" : "Wikipedia";
+                      return (
+                        <li key={di} className="border-l-2 border-gray-300 pl-2.5 space-y-1 leading-snug">
+                          <div className="flex gap-2">
+                            <span className="text-[10px] uppercase tracking-wider text-muted/70 shrink-0 w-20 pt-0.5">
+                              {droppedSrc} (weg)
+                            </span>
+                            <span className="flex-1 text-muted line-through decoration-gray-400/50">
+                              <span className="font-mono text-[11px] mr-1.5">[{d.dropped_jahr || "—"}]</span>
+                              {d.dropped_text}
+                            </span>
+                          </div>
+                          <div className="flex gap-2">
+                            <span className="text-[10px] uppercase tracking-wider text-emerald-700/70 shrink-0 w-20 pt-0.5">
+                              {keptSrc} (bleibt)
+                            </span>
+                            <span className="flex-1">
+                              <span className="font-mono text-[11px] mr-1.5 text-muted">[{d.kept_jahr || "—"}]</span>
+                              {d.kept_text}
+                            </span>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </details>
+              )}
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -438,36 +499,50 @@ export function PoliticianCV(props: PoliticianCVProps) {
           <div className="mt-2 pt-3 border-t border-gray-200/70">
             <strong className="text-foreground/80">Mehrfach-Verifikation für mehr Verlässlichkeit:</strong>
             <p className="mt-1">
-              Jeder strukturierte Eintrag wurde durch ein Multi-LLM-Konsens-Verfahren mit{" "}
-              <strong className="text-foreground/80">vier unabhängigen Modell-Familien</strong> geprüft:
+              Jeder strukturierte Eintrag durchläuft eine Specialist-Cascade aus{" "}
+              <strong className="text-foreground/80">vier unabhängigen Modell-Familien</strong>{" "}
+              (Anthropic, Meta/Llama, Mistral, NVIDIA) — gegen Trainingsdaten-Bias, gegen
+              Halluzinationen, mit wörtlichem Quellenbeleg pro Eintrag.
             </p>
             <ul className="mt-1.5 ml-3 space-y-0.5 list-none">
               <li>
                 <span className="text-foreground/70">①</span>{" "}
-                <span className="font-mono">Llama (Groq)</span> — extrahiert die Daten aus
-                Wikipedia und der Homepage als JSON-CV
+                <span className="font-mono">Anthropic Haiku 4.5</span> — Generator (Wikipedia):
+                extrahiert die strukturierten CV-Daten aus dem Wikipedia-Volltext als JSON
               </li>
               <li>
                 <span className="text-foreground/70">②</span>{" "}
-                <span className="font-mono">Mistral Small</span> — Cross-Check, extrahiert
-                unabhängig zum Vergleich
+                <span className="font-mono">Anthropic Haiku 4.5</span> — Generator (Homepage):
+                extrahiert unabhängig die Homepage-Vita als zweite Quelle
               </li>
               <li>
                 <span className="text-foreground/70">③</span>{" "}
-                <span className="font-mono">Nemotron-Nano-12b (NVIDIA)</span> — Tiebreaker
-                bei Konflikten zwischen ① und ②
+                <span className="font-mono">Mistral Small</span> — Datums-Inspektor: prüft jede
+                Jahresangabe gegen den Originaltext auf Halluzination
               </li>
               <li>
                 <span className="text-foreground/70">④</span>{" "}
-                <span className="font-mono">GPT-4o-mini (GitHub Models)</span> — zweite Runde
-                für unscharfe Fälle, prüft gegen <strong>vier Roh-Text-Quellen</strong> (Wikipedia-Volltext, Bundestag-Profil, Homepage, Bundesregierung)
+                <span className="font-mono">Groq Llama-3.3-70b</span> — Verifier-Cascade:
+                prüft Mistrals Datums-Verdikte mit einer unabhängigen Modell-Familie nach
+                (filtert ~60% False-Positives)
+              </li>
+              <li>
+                <span className="text-foreground/70">⑤</span>{" "}
+                <span className="font-mono">NVIDIA Nemotron-Nano-12b</span> — Tiebreaker bei
+                Inter-LLM-Konflikten zwischen Quelle ① und ②
+              </li>
+              <li>
+                <span className="text-foreground/70">⑥</span>{" "}
+                <span className="font-mono">Anthropic Opus 4.7 + Haiku 4.5 + Llama-70b</span> —
+                Source-Coherence-Verifier-Cascade: drei parallele Modelle bewerten, ob ein
+                erkannter Wikipedia↔Homepage-Konflikt echt oder ein Extraktions-Artefakt ist
               </li>
             </ul>
             <p className="mt-2">
-              Identifizierte Halluzinationen wurden mit den Cross-Check-Aussagen ersetzt — mit
+              Identifizierte Halluzinationen werden mit den Cross-Check-Aussagen ersetzt — mit
               wörtlichem Quellenbeleg. Details siehe{" "}
-              <a href="/datenquellen" className="text-primary hover:underline">
-                Datenquellen &amp; Methodik
+              <a href="/design/linear/methodik" className="text-primary hover:underline">
+                Methodik &amp; Datenquellen
               </a>.
             </p>
           </div>

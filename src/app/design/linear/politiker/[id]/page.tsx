@@ -9,6 +9,7 @@ import {
   getIncomeRange,
   getParlamentarischeArbeit,
   getNotesForPolitician,
+  getCVMergeDropsForPolitician,
 } from "@/lib/db";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
@@ -22,6 +23,7 @@ import Link from "next/link";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<{ orig?: string }>;
 }
 
 function getActivityLabel(rate: number): string {
@@ -52,7 +54,9 @@ function computeFactionLoyalty(votes: { vote: string; fraction_label: string | n
   };
 }
 
-export default async function PolitikerPage({ params }: Props) {
+export default async function PolitikerPage({ params, searchParams }: Props) {
+  const sp = (await searchParams) ?? {};
+  const showOriginal = sp.orig === "1";
   const { id } = await params;
   const politicianId = parseInt(id, 10);
 
@@ -74,6 +78,8 @@ export default async function PolitikerPage({ params }: Props) {
   const votes = getVotesForPoliticianDb(politicianId);
   const sidejobs = getSidejobsForPoliticianDb(politicianId);
   const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
+  // Audit-Trail: welche Einträge wurden vom Dedup-Skript ausgeblendet (nur sichtbar wenn !showOriginal)
+  const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
   const voteStats = computeVoteStatsDb(votes);
   const hasVoteData = voteStats.totalPolls > 0;
@@ -304,8 +310,9 @@ export default async function PolitikerPage({ params }: Props) {
               return Array.isArray(parsed) ? (parsed as SourceConflict[]) : null;
             } catch { return null; }
           };
-          const cvWiki = tryParse(politician.cv_json);
-          const cvHome = tryParse(politician.cv_homepage_json);
+          // ?orig=1 erzwingt die ursprünglichen JSONs (für Vorher/Nachher-Vergleich)
+          const cvWiki = tryParse(showOriginal ? politician.cv_json : (politician.cv_json_dedup ?? politician.cv_json));
+          const cvHome = tryParse(showOriginal ? politician.cv_homepage_json : (politician.cv_homepage_json_dedup ?? politician.cv_homepage_json));
           const conflicts = tryParseConflicts(politician.source_conflicts);
           if (!politician.cv_summary && !cvWiki && !cvHome) return null;
           return (
@@ -332,6 +339,7 @@ export default async function PolitikerPage({ params }: Props) {
                 }}
                 homepageUrl={politician.cv_homepage_url ?? politician.homepage_url}
                 sourceConflicts={conflicts}
+                mergeDrops={cvMergeDrops}
               />
             </div>
           );
