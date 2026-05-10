@@ -1,5 +1,115 @@
 # Politik — Ideas & Roadmap
 
+## 🌟 Vision / Nordstern (Stand 2026-05-09)
+
+**Ziel:** Wenn du wissen willst, was in der Politik abgeht, gehst du auf unsere Seite.
+**DIE Seite für Politik. Maximale Transparenz.**
+
+Das ist deutlich breiter als „MdB-Transparenz im Bundestag" — der aktuelle Code-Stand
+ist nur ein Teil davon. Das Mission-Statement bestimmt zukünftig die Roadmap-Priorisierung.
+
+### Stand heute relativ zur Mission
+
+**Stark abgedeckt:**
+- MdB-Transparenz im Bundestag (CVs, Reden, Votes, Sidejobs, Ausschüsse)
+- Source-Coherence + Methodik-Audit (Wikipedia ↔ Homepage, 39 Konflikte)
+- Pop-Hero V1 mit knappsten Abstimmungen
+- KI-Pipelines für Reden-Analyse, CV-Strukturierung, Vote-Topic-Mapping
+
+### Lücken-Audit für „DIE Seite" (10 Posten)
+
+1. **Aktualitäts-Anker** — kein Live-Feed, kein „Was ist heute/diese Woche das Top-Thema?".
+   Pop-Hero zeigt Polls, aber keinen laufenden Debatten-Puls. Wer reinschaut, sieht keinen
+   tagesaktuellen Stand.
+2. **Bundesregierung / Kabinett** — Minister:innen-Stammdaten sind drin, aber keine Agenda
+   („Was hat die Regierung diese Woche beschlossen?"). Kabinettssitzungen, Pressekonferenzen,
+   Bundeskanzler-Aktivität.
+3. **Drucksachen-Browser** — alle aktuellen Anträge/Gesetzentwürfe mit Verfahrens-Stand.
+   Aktuell nur als Aktivitäts-Feed pro MdB sichtbar, keine vorgangs-zentrierte Sicht.
+4. **Bundesrat** — komplett unsichtbar. Zweite Kammer fehlt.
+5. **Bundesländer / Landtage** — Stammdaten der 16 Landtage da, aber keine Aktivitäten,
+   Votes, Sidejobs.
+6. **EU-Ebene** — gar nicht. ~96 deutsche MEPs + relevante EU-Gesetzgebung fehlt.
+7. **Wahlen / Umfragen / Wahltermine** — Wahlergebnisse pro Wahlkreis, aktuelle Umfragen,
+   anstehende Wahltermine — alles nicht abgedeckt.
+8. **News-Kontext** — die Plattform existiert isoliert. Bürger:in liest morgens „Streit um
+   Stromsteuer" in Zeitung → findet das Vote, aber keinen redaktionellen Kontext (welche
+   Medien berichten was, wie ordnen Kommentator:innen ein).
+9. **Bürger-Anker „Mein Wahlkreis / Meine MdBs"** — Wahlkreis-Karte mit MdB-Hover,
+   „was tut deine Abgeordnete für dich"-Sicht. Aktuell muss man Namen suchen.
+10. **Themen-Sicht** — heute alles personen- und vote-zentriert. Eine Topic-Sicht
+    „Was läuft gerade zu Klima/Migration/Wirtschaft?" fehlt (Topic-Klassifikation hängt
+    darüber, siehe `docs/topic-classification-design-questions.md`).
+
+### Drei strategische Wege Richtung Mission
+
+**A) Aktualitäts-Anker bauen.** News-Feed-Aggregation und/oder „Diese Woche im Plenum" aus
+DIP-API. Adressiert Lücke #1 und #3 direkt. Ist in Idea #7 unten schon durchdacht
+inklusive Anti-Boulevard-Regeln. Großer Schritt Richtung Mission.
+
+**B) Drucksachen-Browser MVP.** Eigene `/drucksachen`-Seite, alle aktuellen Vorgänge
+listbar/filterbar. Aus bestehender DB direkt, kein neuer Daten-Track. ~3–5 h. Ergänzt
+MdB-Sicht um Vorgangs-Sicht. Adressiert Lücke #3.
+
+**C) Topic-Klassifikation für Reden.** Die 7 offenen Design-Fragen in
+`docs/topic-classification-design-questions.md` durchgehen. Voraussetzung für
+Themen-Sicht (Lücke #10) und für „Synopse Aussage-vs-Vote"-Killer-Feature. Mehrere
+Sessions, aber öffnet viele Folge-Features.
+
+### Kalender im Mission-Licht
+
+Reines Sitzungs-Termin-Widget (manuelles JSON) wäre Pseudo-Mission — bundestag.de hat
+das, jede Tageszeitung hat das, kein einzigartiger Datenpunkt. **Sinnvoll wird Kalender
+nur als Teil von (A)/(B):** automatische DIP-API-Anbindung mit Sitzungswochen +
+Drucksachen-Lesungen + verlinkten Vorgängen. Statisches Termin-Widget bewusst nicht.
+
+### 🤖 LLM-Sitzungs-Summary (deferred, Stand 2026-05-09)
+
+**Hintergrund:** Test-Seite `/design/linear/plenar-aktuell` zeigt aktuell eine
+Daten-Summary („6 TOPs · 87 Reden · 4 Abstimmungen"). Inhaltliche Verstehbarkeit
+(„worum ging's politisch") fehlt — würde aber zur Mission „DIE Seite für Politik"
+besser passen.
+
+**Methodischer Rückenwind:**
+- 87 validierte `zusammenfassung_2_saetze` pro Rede in `speech_analyses_v2` als Input
+  → niedrigeres Halluzinationsrisiko als Generierung aus Roh-Reden
+- Specialist-Cascade-Pattern (Memory `project_specialist_cascade.md`) ist etabliert
+- Cost: ~$0,01/Sitzung × 75 WP21-Sessions = <$1 einmalig
+
+**Vor dem Bau zu klären — 5 Design-Fragen:**
+1. **Länge:** 3 Sätze oder Block mit Schwerpunkt-Liste?
+2. **Schwerpunkt-Auswahl:** Heuristik (TOPs ≥10 Reden ∪ Vote-Polls) oder LLM-Wahl (riskant)?
+3. **Tonalität-Erwähnung:** „Debatte war polemisch/sachlich" rein? Daten dafür sind in `speech_analyses_v2.tonalitaet`.
+4. **Audit-Trail:** neue Spalten `plenar_sessions.summary`, `summary_model`,
+   `summary_methodology_sha`, `summary_generated_at` — analog zu speech_analyses_v2.
+5. **Re-Generation:** manuell oder automatisch via methodology_sha-Vergleich?
+
+**Risiken:**
+- Halluzinations-Restrisiko bei kontroversen Themen (Llama hatte in CV-Pipeline 5%, Haiku besser aber nie 0)
+- Neutralitäts-Falle bei „was ist Schwerpunkt"
+- Verstärkt das „Plattform-erzählt-uns-was-wichtig-war"-Pattern (vgl. Memory `feedback_no_gotcha_framing`)
+
+**Vorgehen wenn aktiviert:**
+1. Proof-Sitzung (z.B. Sitzung 75) — manuell gegen Realität validieren
+2. Wenn ok: Batch über alle WP21-Sessions, einmalig
+3. DB-Migration + UI-Integration in Plenar-Aktuell-Seite + ggf. Detail-Seiten
+
+**Status:** Idee dokumentiert, nicht gebaut. Aktivieren erst wenn Test-Seiten-Phase
+abgeschlossen ist und entschieden wurde, dass Plenar-Aktuell wirklich produktiv wird.
+
+### Mission-Spannungsfelder (vorab benannt, damit nicht später überraschen)
+
+- **Neutralitäts-Pflicht vs News-Aggregation** — sobald News dazukommen, ist die
+  Quellenauswahl politisch (welche Medien? in welcher Reihenfolge? wie gewichtet?).
+  Anti-Boulevard-Regeln aus Idea #7 sind hierfür der Anker.
+- **Scope-Kontrolle** — „DIE Seite" verlockt zur Featuritis. Förder-Pitch hängt
+  weiterhin an Tiefe der einzelnen Linie (Source-Coherence-Methodik), nicht an Breite.
+  Roadmap muss beide Achsen tragen.
+- **Aktualität kostet Pflege** — Live-Daten brauchen Sync-Skripte + Monitoring + Cron.
+  Kein „set and forget".
+
+---
+
 ## Now (Stand 2026-04-28, Laptop)
 
 ### CV-Pipeline: 628/629 Bundestag-MdBs haben einen CV + lesbare Bio (99.8%) ✅
@@ -24,8 +134,7 @@
 - `scripts/seed-cv-homepage.ts` — Homepage scrapen → Groq → `cv_homepage_json` (Batch, mit Link-Scan), speichert auch Roh-Text
 - `scripts/seed-cv-manual.ts` — Gezielter Scraper für manuell gefundene Bio-URLs
 - `scripts/seed-cv-from-paste.ts` — nimmt manuell gepasteten Bio-Text aus Stdin
-- `scripts/refix-hallucinated-cvs.ts` — refetcht und regeneriert Einträge mit bekannten LLM-Halluzinationen
-- `scripts/refetch-cv-homepage-text.ts` — **NEU**: holt fehlenden Roh-Text aus bekannter `cv_homepage_url` nach (kein LLM)
+- `scripts/refetch-cv-homepage-text.ts` — holt fehlenden Roh-Text aus bekannter `cv_homepage_url` nach (kein LLM)
 - `scripts/generate-cv-summary.ts` — **NEU**: erzeugt aus `cv_json`+`cv_homepage_json` eine 2–3-Satz-Bio in `cv_summary`. Concurrency=2 wegen Groq RPM-Limit (8b-instant)
 
 ### Wichtige Lessons (2026-04-28)
@@ -178,6 +287,21 @@ Geldflüsse sichtbar machen.
 - _Komplexität: Hoch — Datenquellen unklar, evtl. manuelle Recherche + Scraping nötig_
 - _Datenquellen: Nebeneinkünfte (abgeordnetenwatch), Lobbyregister, Bundesrechnungshof_
 
+#### Lobbypedia/LobbyControl als Quelle prüfen (Stand 2026-05-08)
+
+Lobbypedia (lobbypedia.de, betrieben von LobbyControl) dokumentiert Lobby-Verflechtungen, Drehtür-Fälle, Aufsichtsratsmandate und Karenzzeit-Debatten gut belegt mit Fußnoten. **Anlassfall**: Katherina Reiche (Bundestag 1998–2015 → VKU/BvöD → Westenergie → Wirtschaftsministerin 2025) ist klassischer Drehtür-Fall — diese Daten stehen in Wikipedia nur teilweise.
+
+**Symmetrie-Auflage** (Memory `feedback_neutralitaet.md` + `feedback_no_gotcha_framing.md`): Lobbypedia ist als Quelle **nur akzeptabel, wenn symmetrisch angewendet** — also für alle ~640 Politiker:innen wo verfügbar, nicht für Einzelfälle. Sonst entsteht Selektions-Bias.
+
+**Wenn implementiert, dann so:**
+- **NICHT** in `cv_summary` einfließen lassen — würde Bias in die kompakte Bio bringen
+- Sondern: eigene UI-Sektion „Drehtür / Aufsichtsräte / Lobby-Bezüge" auf Profilseiten
+- Idealerweise **als parallele Source-Coherence-Quelle** (analog zur bestehenden Wiki↔Homepage-Pipeline mit 39 Konflikten): Lobbypedia ↔ Wikipedia, Konflikte werden mensch-validiert markiert
+- Datenkategorie: `lobbypedia_url`, `lobbypedia_extracted_json`, `lobbypedia_text` (analog zu cv_homepage_*)
+- Auto-Discovery: für jeden Politiker `https://lobbypedia.de/wiki/{Vorname_Nachname}` probieren (HTTP 200 vs 404 als Existenz-Check)
+
+**Komplexität:** mittel-hoch. Pflicht: rechtliche Prüfung (Lobbypedia steht unter Creative-Commons CC BY-SA 4.0 — nutzbar mit Attribution). Plus: Lobbypedia-Inhalte sind oft länger als Wikipedia → eigene Extraktions-Pipeline mit Haiku 4.5.
+
 ### 4. Multi-LLM Konsens-System (Neutralitäts-Garantie)
 Schutz gegen den Vorwurf "ein einzelnes LLM analysiert parteiisch".
 
@@ -264,6 +388,88 @@ Eingabe: Name. Ausgabe: ein strukturiertes, quellenbelegtes Dossier zur Person.
 **Datenquellen:** Brave Search, Wikipedia/Wikidata, Bundestag DIP, abgeordnetenwatch, Lobbyregister, Whitelist-Medien-RSS/Search, eigene DB.
 
 **Realistischer Einstieg:** MVP nur für die 629 MdBs, da für die alle Quellen bereits angebunden sind. „Beliebige Person" als V2.
+
+### 7. Echtzeit-Puls + Homepage-Catcher (Stand 2026-05-08)
+
+Die Plattform hat starke Daten, aber die Hauptseite catcht niemanden. Wer reinkommt soll **sofort sehen, was die Menschen bewegt** — nicht nur trockene Stats wie „630 Politiker · 18 Parlamente". Idee: ein **Echtzeit-Puls** der die kontroversesten Themen, Reden und Abstimmungen prominent zeigt, gespeist aus eigenen Daten + Social-Media-/News-Trend-Signalen.
+
+**Hauptseiten-Hero (statt Stats):**
+- **„Diese Woche kontrovers"-Block** — die 3-5 polarisierendsten Themen mit konkreten Pollen/Reden:
+  - Polls mit eng aufeinanderliegendem Ja/Nein-Verhältnis (≤55:45)
+  - Reden mit hoher polemischer Tonalität in heiß-debattierten Topics
+  - Abweichler-Rate: MdBs die gegen die eigene Fraktion stimmen
+- **„Aktuell diskutiert"-Block** — Trend-Topics aus externen Quellen:
+  - Was wird auf Twitter/Bluesky in der politischen Bubble diskutiert? (Hashtag-Frequenz)
+  - Was schreiben Datenjournalist:innen + Multiplikatoren?
+  - News-Aggregatoren (Tagesschau-Mail, RND, Zeit, etc.) für aktuelle Themen-Headlines
+- **„Versprochen vs. Abgestimmt"-Block** — wo redet jemand A und stimmt B?
+  - Die stärksten Aussage-vs-Vote-Diskrepanzen aus unserer Pipeline
+  - Rolle: Aha-Effekt-Trigger für die ersten 30 Sekunden des Besuchs
+
+**Datenquellen extern (neu zu integrieren):**
+- **Twitter/X-API v2** — Listen-basiert (politische Bubble: MdBs + Journalist:innen) statt firehose, Token-Cost niedrig
+- **Bluesky AT-Protocol** — kostenlos, gut für linke/grüne Bubble, AT-protocol kostenlos
+- **News-RSS-Feeds** — Tagesschau, Spiegel-Politik, Zeit-Politik, taz, FAZ — RSS aggregieren + Topic-Tagging
+- **Google-Trends-API** für Politik-Suchbegriffe (legitime Bürger-Sicht)
+
+**Datenquellen intern (haben wir schon):**
+- 50 Vote-Polls mit Topic-Mapping (88% HIGH-Confidence)
+- 8.245 KI-analysierte Reden mit Tonalität + Forderungen + Zitaten
+- Source-Coherence-Konflikte (Wikipedia↔Homepage)
+- Voting-Statistiken pro MdB
+
+**Realistische Stufen:**
+- **MVP (1 Woche)**: nur interne Daten — „Kontroverse Polls" + „Polarisierte Reden" + „Versprochen vs. Abgestimmt". Keine externe API. Trifft schon den 80%-Punkt.
+- **V2 (2-4 Wochen)**: News-RSS + Bluesky + Twitter-Listen. Trend-Begriffe extrahieren + auf eigene Topic-Klassifikation mappen.
+- **V3**: KI-Stimmungs-Analyse der Social-Media-Posts → „Was empfindet die Online-Politik-Bubble bei diesem Thema?"
+
+**UI-Prinzip:** drei klare Karten auf der Hauptseite, jede mit 1 Kontext-Satz und 3-5 konkreten Beispielen + Klick-Tiefe. KEINE Statistik-Walls. Mensch-orientiert, nicht Daten-orientiert.
+
+**Risiken:**
+- Twitter/X-API ist teuer → Bluesky + News-RSS reichen vermutlich für 90% Signal
+- „Kontrovers" muss neutral definiert sein — sonst Filterblase. Symmetrie-Test: zeigen wir AfD-Polemik genauso wie Linke-Polemik?
+- Echtzeit-Updates kosten Server-Last → 1× pro Stunde reicht völlig
+
+_Komplexität: Hoch — neue Datenquellen, neue UI, neue Topic-Klassifikation_
+_Abhängigkeit: profitiert massiv von der Topic-Klassifikation aus den 7 offenen Design-Fragen (`docs/topic-classification-design-questions.md`)_
+
+#### Konkretisierung: 3-Schichten-Modell + Anti-Boulevard-Regeln (Stand 2026-05-08)
+
+Hintergrund: User-Diagnose ist richtig — die Hauptseite ist zu steril für TikTok/Reels-Generation. Aber „krasser Inhalt" hat eine Boulevard-Falle: wenn die Plattform anfängt nach „Skandal" zu suchen statt nach „Daten", verbrennt sie genau die Glaubwürdigkeit, die der Datenjournalismus-Schwerpunkt aufbauen soll. Lösung: **Pop muss aus echten Daten kommen, nicht aus emotionaler Sprache.**
+
+**3-Schichten-Aufbau (nicht ersetzen, addieren):**
+
+| Schicht | Zielgruppe | Aufenthalt | Inhalt |
+|---|---|---|---|
+| **1. Pop-Hero** (oben) | TikTok-Hirne, Casual-Visitors | 5 Sek | „Diese Woche bewegt" — 3 kontroverse Polls als Mini-Stacked-Bars, 1 polemischste Rede mit Zitat, 1 Aussage-vs-Vote-Mismatch |
+| **2. Such- & Profil-Layer** (Mitte) | Interessierte | 30 Sek | Bestehender Content: SearchBox, „Wie arbeitet Ihr Abgeordneter?", Profile, Voting-Stats |
+| **3. Methodik-Layer** (Tiefe) | Datenjournalist:innen, Förder-Reviewer | 5 Min | Bestehende Methodik-Seite, Datenquellen, Audit-Trail |
+
+**Drei Anti-Boulevard-Regeln (kritisch — sonst Glaubwürdigkeits-Tod):**
+
+1. **Daten zeigen, nicht werten.** „51:49" — nicht „skandalös knapp". „Diese Rede enthält 7 Wertungs-Wörter laut KI-Analyse" — nicht „polemischer Auftritt". Die Daten sprechen für sich, wenn man sie gut visualisiert.
+
+2. **Symmetrie-Test pflicht.** Jede Pop-Karte muss in alle politische Richtungen funktionieren. Wenn diese Woche nur Linke + Grüne im Pop-Hero auftauchen → fehlerhafte Auswahl. Wenn nur AfD → genauso. **Auswahlkriterium muss neutral-strukturell sein** (z.B. „polemischster Tonalitäts-Score der Woche" — fällt auf wen es fällt), nicht inhaltlich.
+
+3. **Tiefen-Pfad immer da.** Jeder Pop-Block hat einen „→ Methodik dahinter"-Link. Wer wissen will WIE wir „kontrovers" definieren, kann das nachlesen. Pop-Karte = Tür, nicht Endprodukt.
+
+**Beispiel-Test (gut vs. schlecht):**
+- ✅ „Hauchdünne Mehrheit: Stromsteuer 51:49 verabschiedet" + Klick zum Vote-Detail
+- ❌ „Skandal: Stromsteuer-Beschluss durchgepresst!" — wertend, parteiisch
+- ✅ „Merz' Tonalitäts-Score: 0.71 sachlich (KI-Analyse, 12 Reden)" + Klick zur Methodik
+- ❌ „Merz redet wie ein Buchhalter" — Wertung, Personalisierung
+- ✅ „Diese 5 MdBs stimmten gegen die eigene Fraktion" + Bar-Chart Abweichungen
+- ❌ „Geheim-Aufstand! 5 Abweichler gegen Merz!" — Boulevard-Frame
+
+**Abgrenzung — woran erkennen wir, ob's gut wird?**
+- Vergleich gegen **Correctiv / ZDFmagazin Royale** = Daten + Verständlichkeit + journalistische Sorgfalt → richtig
+- Vergleich gegen **BILD / Picdumb / Outrage-Kanal** = Schlagzeile vor Substanz → falsch
+- Selbst-Test: würde ein Politikwissenschaftler:in beim Anschauen denken „interessant"? Oder „peinlich vereinfacht"? Wenn zweiteres → Pivot.
+
+**Implementations-Hinweise:**
+- Auswahl-Algorithmus für Pop-Karten muss **deterministisch + auditierbar** sein (z.B. „top-3 Polls dieser Woche nach |0.5 - vote_ratio|"), nicht eine handgepickte Liste
+- Updates **1× pro Tag** reichen — keine Echtzeit-Komplexität nötig
+- Empfehlung: **MVP-Pop-Hero zuerst NUR aus internen Daten** (interne Kontroversen-Auswahl). Externe News-/Social-Media-Quellen sind V2 — sonst zu viele Variablen gleichzeitig
 
 ## Someday / Maybe
 <!-- Cool but not urgent -->
