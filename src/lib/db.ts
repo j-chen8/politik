@@ -139,14 +139,20 @@ export function initDb() {
 export const VISIBLE_PARLIAMENT_TYPES: readonly string[] = ["bundestag"];
 
 /**
- * SQL-Fragment für die WHERE-Klausel. Erwartet Alias `p` für politicians-Tabelle.
+ * Loose Visibility — für DETAIL-Seiten und Speaker-/Vote-Auflösung.
+ * Erlaubt auch ehemalige MdBs (z. B. Habeck nach Niederlegung): wer einmal Daten
+ * in der DB hat, behält ein Profil.
  *
  * Politiker:in ist sichtbar wenn:
- *   - mindestens ein Mandat in einem sichtbaren Parlament-Typ existiert, ODER
- *   - es ein Quereinsteiger-Minister ist (id >= 900000, kein Mandat).
+ *   - id >= 900000 mit nicht-Land-Amt (Bundes-Quereinsteiger oder Stammdaten-MdB), ODER
+ *   - irgendein historisches Bundestags-Mandat existiert.
+ *
+ * Land-Minister:innen (amt LIKE 'Land:%', z. B. Eder/RLP) bleiben grundsätzlich
+ * gefiltert — sie sind über die Bundesrats-Stammdaten reingerutscht, ihre
+ * Bundesrats-Reden bleiben über speaker-Match auflösbar.
  */
 export const IS_POLITICIAN_VISIBLE_SQL = `(
-  p.id >= 900000
+  (p.id >= 900000 AND (p.amt IS NULL OR p.amt NOT LIKE 'Land:%'))
   OR EXISTS (
     SELECT 1 FROM mandates m_vis
     JOIN parliament_periods pp_vis ON m_vis.parliament_period_id = pp_vis.id
@@ -156,7 +162,40 @@ export const IS_POLITICIAN_VISIBLE_SQL = `(
   )
 )`;
 
-/** Werte für die Platzhalter in IS_POLITICIAN_VISIBLE_SQL. */
+/**
+ * Strict Active — für LISTEN, COUNTS, FILTER-Dropdowns.
+ * Nur aktuell aktive Politiker:innen — verstorbene/ausgeschiedene MdBs raus.
+ *
+ * Politiker:in ist aktiv wenn:
+ *   - id >= 900000 mit Bundes-Amt (Bundesminister:in, immer aktiv solange amt gesetzt), ODER
+ *   - id >= 900000 ohne Amt mit gueltig_bis NULL/leer/zukünftig (aktiver Stammdaten-MdB), ODER
+ *   - mindestens ein Bundestags-Mandat mit end_date NULL/leer/zukünftig.
+ *
+ * Damit:
+ *   - Reiche/Prien/Wildberger/Weimer/Hubig → sichtbar (Bundesminister mit amt)
+ *   - Stein/Mandrella → sichtbar (aktive MdBs ohne abgeordnetenwatch-Eintrag)
+ *   - Habeck/Baerbock/Otte/Foullong → ausgeblendet (gueltig_bis in Vergangenheit)
+ *   - Träger ✝ → ausgeblendet (Mandat hat end_date in Vergangenheit)
+ */
+export const IS_POLITICIAN_ACTIVE_SQL = `(
+  (p.id >= 900000
+    AND (p.amt IS NULL OR p.amt NOT LIKE 'Land:%')
+    AND (
+      (p.amt IS NOT NULL AND p.amt != '')
+      OR (p.gueltig_bis IS NULL OR p.gueltig_bis = '' OR p.gueltig_bis > date('now'))
+    )
+  )
+  OR EXISTS (
+    SELECT 1 FROM mandates m_act
+    JOIN parliament_periods pp_act ON m_act.parliament_period_id = pp_act.id
+    JOIN parliaments par_act ON pp_act.parliament_id = par_act.id
+    WHERE m_act.politician_id = p.id AND m_act.type = 'mandate'
+      AND par_act.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+      AND (m_act.end_date IS NULL OR m_act.end_date = '' OR m_act.end_date > date('now'))
+  )
+)`;
+
+/** Werte für die Platzhalter in IS_POLITICIAN_VISIBLE_SQL und IS_POLITICIAN_ACTIVE_SQL. */
 export const VISIBLE_PARLIAMENT_TYPE_VALUES = [...VISIBLE_PARLIAMENT_TYPES];
 
 // ── Query helpers ──
@@ -207,6 +246,12 @@ export interface PoliticianRow {
   homepage_source: string | null;
   source_conflicts: string | null;
   source_coherence_checked_at: string | null;
+  // Stammdaten-Felder (für Quereinsteiger-Bundesminister:innen + Stammdaten-MdBs, id ≥ 900000)
+  rolle: string | null;
+  amt: string | null;
+  gueltig_ab: string | null;
+  gueltig_bis: string | null;
+  bt_redner_id: string | null;
 }
 
 export interface MandateRow {
@@ -234,7 +279,7 @@ export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] 
        LEFT JOIN parties pa ON p.party_id = pa.id
        WHERE (p.last_name LIKE ? OR p.first_name LIKE ?
          OR (p.first_name || ' ' || p.last_name) LIKE ?)
-         AND ${IS_POLITICIAN_VISIBLE_SQL}
+         AND ${IS_POLITICIAN_ACTIVE_SQL}
        ORDER BY p.last_name, p.first_name
        LIMIT ?`
     )
@@ -287,24 +332,46 @@ export function getPoliticiansByParliament(parliamentId: number, periodId?: numb
   return (periodId ? db.prepare(sql).all(parliamentId, periodId) : db.prepare(sql).all(parliamentId)) as PoliticianRow[];
 }
 
-export function getDbStats(): { politicians: number; mandates: number; parliaments: number; parties: number } {
+export function getDbStats(): {
+  politicians: number;
+  mdbs: number;
+  cabinetQuereinsteiger: number;
+  mandates: number;
+  parliaments: number;
+  parties: number;
+} {
   const db = getDb();
   const polCount = db.prepare(
-    `SELECT COUNT(*) as c FROM politicians p WHERE ${IS_POLITICIAN_VISIBLE_SQL}`
+    `SELECT COUNT(*) as c FROM politicians p WHERE ${IS_POLITICIAN_ACTIVE_SQL}`
   ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number };
+
+  // Aktive MdBs = Politiker:innen mit aktivem Bundestags-Mandat
+  const mdbCount = (db.prepare(
+    `SELECT COUNT(DISTINCT m.politician_id) as c FROM mandates m
+     JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+     JOIN parliaments par ON pp.parliament_id = par.id
+     WHERE par.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+       AND m.type = 'mandate'
+       AND (m.end_date IS NULL OR m.end_date = '' OR m.end_date > date('now'))`
+  ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c;
+
   return {
     politicians: polCount.c,
+    mdbs: mdbCount,
+    cabinetQuereinsteiger: polCount.c - mdbCount,
     mandates: (db.prepare(
       `SELECT COUNT(*) as c FROM mandates m
        JOIN parliament_periods pp ON m.parliament_period_id = pp.id
        JOIN parliaments par ON pp.parliament_id = par.id
-       WHERE par.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})`
+       WHERE par.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+         AND m.type = 'mandate'
+         AND (m.end_date IS NULL OR m.end_date = '' OR m.end_date > date('now'))`
     ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c,
     parliaments: VISIBLE_PARLIAMENT_TYPES.length,
     parties: (db.prepare(
       `SELECT COUNT(DISTINCT pa.id) as c FROM parties pa
        JOIN politicians p ON p.party_id = pa.id
-       WHERE ${IS_POLITICIAN_VISIBLE_SQL}`
+       WHERE ${IS_POLITICIAN_ACTIVE_SQL}`
     ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c,
   };
 }
@@ -416,17 +483,18 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
     args.push(params.partyId);
   }
 
-  // Sichtbarkeits-Filter zusätzlich zu User-Filtern
-  conditions.push(IS_POLITICIAN_VISIBLE_SQL);
+  // Aktiv-Filter (nicht ausgeschieden, nicht verstorben) zusätzlich zu User-Filtern
+  conditions.push(IS_POLITICIAN_ACTIVE_SQL);
   args.push(...VISIBLE_PARLIAMENT_TYPE_VALUES);
 
   const where = `WHERE ${conditions.join(" AND ")}`;
   const limit = params.limit ?? 50;
   const offset = params.offset ?? 0;
 
-  // Pro Politiker:in nur das Mandat eines sichtbaren Parlament-Typs anzeigen
+  // Pro Politiker:in nur das aktive Mandat eines sichtbaren Parlament-Typs anzeigen
   // (sonst erscheinen MdBs mit zusätzlichen Landtags-Mandaten doppelt — siehe
-  // Carsten Becker: Bundestag + Saarland).
+  // Carsten Becker: Bundestag + Saarland). end_date-Filter blendet beendete
+  // Mandate aus (z. B. ✝ Träger).
   const visibleTypesPlaceholders = VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ");
   const visibleMandateJoin = `
     LEFT JOIN (
@@ -436,6 +504,7 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
       JOIN parliament_periods pp_v ON m_v.parliament_period_id = pp_v.id
       JOIN parliaments par_v ON pp_v.parliament_id = par_v.id
       WHERE m_v.type = 'mandate' AND par_v.type IN (${visibleTypesPlaceholders})
+        AND (m_v.end_date IS NULL OR m_v.end_date = '' OR m_v.end_date > date('now'))
       GROUP BY m_v.politician_id
     ) vm ON vm.politician_id = p.id
   `;
@@ -482,7 +551,7 @@ export function getAllParties(): { id: number; label: string; count: number }[] 
       `SELECT pa.id, pa.label, COUNT(DISTINCT p.id) as count
        FROM parties pa
        JOIN politicians p ON p.party_id = pa.id
-       WHERE ${IS_POLITICIAN_VISIBLE_SQL}
+       WHERE ${IS_POLITICIAN_ACTIVE_SQL}
        GROUP BY pa.id
        ORDER BY count DESC`
     )
@@ -539,16 +608,17 @@ export function getActivityCountForPolitician(politicianId: number): number {
   return (db.prepare("SELECT COUNT(*) as c FROM activities WHERE politician_id = ?").get(politicianId) as { c: number }).c;
 }
 
-export function getSpeechSummaryInfo(lastName: string, title?: string | null): { speaker: string; count: number } | null {
+export function getSpeechSummaryInfo(politicianId: number): { speaker: string; count: number } | null {
   const db = getDb();
   try {
-    // Try exact last name match, with optional title prefix
-    const pattern = title
-      ? `${title}%${lastName}`
-      : `%${lastName}`;
+    // Strikt via politician_id (seit Backfill 2026-05-07 100 % Coverage).
+    // Vorher: LIKE '%lastname' — Bug: „Stein" matchte „Wallstein"/„Bernstein",
+    // ORDER BY count DESC LIMIT 1 nahm den falschen Treffer.
     const row = db.prepare(
-      "SELECT speaker, COUNT(*) as count FROM speech_summaries WHERE speaker LIKE ? GROUP BY speaker ORDER BY count DESC LIMIT 1"
-    ).get(pattern) as { speaker: string; count: number } | undefined;
+      `SELECT speaker, COUNT(*) AS count FROM speech_summaries
+       WHERE politician_id = ?
+       GROUP BY speaker ORDER BY count DESC LIMIT 1`
+    ).get(politicianId) as { speaker: string; count: number } | undefined;
     return row && row.count > 0 ? row : null;
   } catch {
     return null;
@@ -692,13 +762,15 @@ export interface ParlamentarischeArbeit {
   quelle: "dip" | "plenar" | "kombiniert";
   datum: string | null;
   typ: string;              // Unified type label
-  kategorie: string;        // For filtering: "rede" | "frage" | "debattenbeitrag" | "erklaerung" | "gesetzgebung" | "bericht"
+  kategorie: string;        // For filtering: "rede" | "regierungserklaerung" | "frage" | "antwort" | "debattenbeitrag" | "erklaerung" | "gesetzgebung" | "bericht"
   thema: string | null;     // DIP thema or Plenar kontext
   zusammenfassung: string | null;  // From Plenar (mit v2.1-Fallback bei NULL)
   drucksache_nr: string | null;
   pdf_url: string | null;
   source_url: string | null;       // Plenar PDF
   sitzung: number | null;
+  page_start: number | null;       // Plenarprotokoll-Seite (aus speech_summaries)
+  page_section: string | null;     // Spaltenkennung A/B/C/D
   // v2.1 Reden-Analyse (optional, falls in speech_analyses_v2 verfügbar)
   tonalitaet: string | null;
   reden_typ: string | null;
@@ -707,8 +779,9 @@ export interface ParlamentarischeArbeit {
 
 function kategorieForDip(art: string): string {
   if (art === "Rede" || art === "Rede (zu Protokoll gegeben)") return "rede";
+  if (art === "Regierungserklärung") return "regierungserklaerung";
   if (art.includes("Anfrage") || art === "Frage" || art === "Zusatzfrage") return "frage";
-  if (art === "Antwort" || art === "Einleitende Ausführungen und Beantwortung") return "frage";
+  if (art === "Antwort" || art === "Einleitende Ausführungen und Beantwortung") return "antwort";
   if (art === "Kurzintervention" || art === "Zwischenfrage" || art === "Erwiderung" || art === "Zur Geschäftsordnung BT") return "debattenbeitrag";
   if (art.includes("Erklärung")) return "erklaerung";
   if (art === "Antrag" || art === "Gesetzentwurf" || art === "Änderungsantrag" || art === "Entschließungsantrag") return "gesetzgebung";
@@ -717,11 +790,22 @@ function kategorieForDip(art: string): string {
 }
 
 function kategorieForPlenar(typ: string): string {
-  if (typ === "debatte" || typ === "regierungserklaerung") return "rede";
-  if (typ === "fragestunde_frage" || typ === "fragestunde_antwort") return "frage";
+  if (typ === "debatte") return "rede";
+  if (typ === "regierungserklaerung") return "regierungserklaerung";
+  if (typ === "fragestunde_frage") return "frage";
+  if (typ === "fragestunde_antwort") return "antwort";
   if (typ === "zwischenfrage" || typ === "kurzintervention") return "debattenbeitrag";
   if (typ === "erklaerung") return "erklaerung";
   return "rede";
+}
+
+// Joint buckets für DIP↔Plenar-Matching (DIP API trennt Regierungserklärung
+// nicht von Rede; Fragestunde-Antwort wird unter "Antwort"/Frage geführt).
+// Display-Kategorien sind feiner — daher diese Mapping-Schicht für reine Match-Zwecke.
+function matchBucket(kat: string): string {
+  if (kat === "regierungserklaerung") return "rede";
+  if (kat === "antwort") return "frage";
+  return kat;
 }
 
 function typLabelForPlenar(typ: string): string {
@@ -749,30 +833,38 @@ export function getParlamentarischeArbeit(
     `SELECT * FROM activities WHERE politician_id = ? ORDER BY datum DESC LIMIT ?`
   ).all(politicianId, limit) as ActivityRow[];
 
-  // 2. Load Plenar summaries (NULL-zusammenfassung jetzt durchgelassen — v2.1-Fallback)
+  // 2. Load Plenar summaries via politician_id (zuverlässig, seit Backfill 2026-05-07
+  // 100 % Coverage). Vorher wurde via speaker LIKE '%lastname' gematcht — Bug:
+  // „Stein" matchte „Wallstein", „Bernstein" etc. → ORDER BY count nahm den
+  // höchsten und Sandra Stein bekam Maja Wallsteins Reden zugeordnet.
   type PlenarRow = SpeechSummary & { speaker: string; speech_text_preview: string };
-  let plenarRows: PlenarRow[] = [];
-  let analysesMap = new Map<string, SpeechAnalysisV2>();
-  if (speakerName) {
-    plenarRows = db.prepare(`
-      SELECT * FROM speech_summaries
-      WHERE speaker = ?
-        AND (
-          zusammenfassung IS NULL
-          OR (
-            zusammenfassung NOT LIKE '%lediglich%'
-            AND zusammenfassung NOT LIKE '%nicht möglich%'
-            AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
-            AND zusammenfassung NOT LIKE '%nicht erkennbar%'
-            AND zusammenfassung NOT LIKE '%nicht feststellbar%'
-            AND zusammenfassung NOT LIKE '%nicht ableitbar%'
-            AND zusammenfassung NOT LIKE '%keine inhaltliche%'
-          )
+  const plenarRows = db.prepare(`
+    SELECT * FROM speech_summaries
+    WHERE politician_id = ?
+      AND (
+        zusammenfassung IS NULL
+        OR (
+          zusammenfassung NOT LIKE '%lediglich%'
+          AND zusammenfassung NOT LIKE '%nicht möglich%'
+          AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
+          AND zusammenfassung NOT LIKE '%nicht erkennbar%'
+          AND zusammenfassung NOT LIKE '%nicht feststellbar%'
+          AND zusammenfassung NOT LIKE '%nicht ableitbar%'
+          AND zusammenfassung NOT LIKE '%keine inhaltliche%'
         )
-      ORDER BY sitzung DESC, speech_index ASC
-      LIMIT ?
-    `).all(speakerName, limit) as PlenarRow[];
-    analysesMap = getSpeechAnalysesBySpeaker(speakerName);
+      )
+    ORDER BY sitzung DESC, speech_index ASC
+    LIMIT ?
+  `).all(politicianId, limit) as PlenarRow[];
+
+  // Analyses-Map: alle Speaker-Varianten dieser Person aggregieren (für v2.1-Match)
+  const speakerVariants = db.prepare(
+    `SELECT DISTINCT speaker FROM speech_summaries WHERE politician_id = ?`
+  ).all(politicianId) as { speaker: string }[];
+  const analysesMap = new Map<string, SpeechAnalysisV2>();
+  for (const sv of speakerVariants) {
+    const m = getSpeechAnalysesBySpeaker(sv.speaker);
+    for (const [k, v] of m.entries()) analysesMap.set(k, v);
   }
 
   // Helper: matche Plenar-Row gegen v2.1-Analysen (rede_id + segment_index)
@@ -791,11 +883,11 @@ export function getParlamentarischeArbeit(
     return null;
   }
 
-  // 3. Index plenar rows by date+kategorie for matching
+  // 3. Index plenar rows by date+match-bucket for matching against DIP
   const plenarByDateKat = new Map<string, PlenarRow[]>();
   for (const p of plenarRows) {
     if (!p.datum) continue;
-    const key = `${p.datum}|${kategorieForPlenar(p.typ)}`;
+    const key = `${p.datum}|${matchBucket(kategorieForPlenar(p.typ))}`;
     if (!plenarByDateKat.has(key)) plenarByDateKat.set(key, []);
     plenarByDateKat.get(key)!.push(p);
   }
@@ -806,27 +898,31 @@ export function getParlamentarischeArbeit(
 
   for (const a of dipRows) {
     const dipKat = kategorieForDip(a.aktivitaetsart);
-    const key = a.datum ? `${a.datum}|${dipKat}` : null;
+    const key = a.datum ? `${a.datum}|${matchBucket(dipKat)}` : null;
     const matchingPlenar = key ? plenarByDateKat.get(key) : undefined;
 
     if (matchingPlenar && matchingPlenar.length > 0) {
-      // Take first unmatched plenar entry for this date+kategorie
+      // Take first unmatched plenar entry for this date+match-bucket
       const plenar = matchingPlenar.find(p => !matchedPlenarIds.has(p.id)) || null;
       if (plenar) {
         matchedPlenarIds.add(plenar.id);
         const v21 = findV21(plenar);
+        // Plenar-Typ ist präziser (kennt Regierungserklärung vs. Rede etc.) — Display-Kategorie übernehmen
+        const plenarKat = kategorieForPlenar(plenar.typ);
         items.push({
           id: `kombi-${a.id}-${plenar.id}`,
           quelle: "kombiniert",
           datum: a.datum,
-          typ: a.aktivitaetsart,
-          kategorie: dipKat,
+          typ: typLabelForPlenar(plenar.typ),
+          kategorie: plenarKat,
           thema: a.thema || plenar.kontext,
           zusammenfassung: v21?.zusammenfassung_neutral ?? plenar.zusammenfassung,
           drucksache_nr: a.drucksache_nr,
           pdf_url: a.pdf_url,
           source_url: plenar.source_url,
           sitzung: plenar.sitzung,
+          page_start: plenar.page_start,
+          page_section: plenar.page_section,
           tonalitaet: v21?.tonalitaet ?? null,
           reden_typ: v21?.reden_typ ?? null,
           has_correction: v21?.has_correction ?? false,
@@ -848,6 +944,8 @@ export function getParlamentarischeArbeit(
       pdf_url: a.pdf_url,
       source_url: null,
       sitzung: null,
+      page_start: null,
+      page_section: null,
       tonalitaet: null,
       reden_typ: null,
       has_correction: false,
@@ -870,6 +968,8 @@ export function getParlamentarischeArbeit(
       pdf_url: null,
       source_url: p.source_url,
       sitzung: p.sitzung,
+      page_start: p.page_start,
+      page_section: p.page_section,
       tonalitaet: v21?.tonalitaet ?? null,
       reden_typ: v21?.reden_typ ?? null,
       has_correction: v21?.has_correction ?? false,
@@ -970,6 +1070,7 @@ export interface PlenarSessionRow {
   wahlperiode: number;
   sitzung: number;
   datum: string | null;
+  source_url: string | null;
   speech_count: number;
   speaker_count: number;
 }
@@ -977,7 +1078,7 @@ export interface PlenarSessionRow {
 export function getPlenarSessions(): PlenarSessionRow[] {
   const db = getDb();
   return db.prepare(`
-    SELECT s.*,
+    SELECT s.id, s.wahlperiode, s.sitzung, s.datum, s.source_url,
       COUNT(sp.id) as speech_count,
       COUNT(DISTINCT sp.speaker) as speaker_count
     FROM plenar_sessions s
@@ -1013,6 +1114,143 @@ export function getPlenarPartyStats(): { party: string; count: number }[] {
   `).all() as any[];
 }
 
+// Returns one row per Fraktion with total contribution count and breakdown by Plenarbeitrag-Typ-Slug.
+// Source: speech_summaries → politicians → parties (so Fraktionen are clean & joined to politicians).
+// Typ-strings are normalized via TYP_TO_SLUG below before grouping.
+export function getPartyContributionMatrix(): {
+  fraktion: string;
+  total: number;
+  byTyp: Record<string, number>;
+}[] {
+  const db = getDb();
+  let rows: { fraktion: string | null; typ: string | null; c: number }[] = [];
+  try {
+    rows = db.prepare(`
+      SELECT p.label AS fraktion, ss.typ AS typ, COUNT(*) AS c
+      FROM speech_summaries ss
+      LEFT JOIN politicians po ON po.id = ss.politician_id
+      LEFT JOIN parties p ON p.id = po.party_id
+      WHERE p.label IS NOT NULL AND ss.typ IS NOT NULL AND ss.typ != ''
+      GROUP BY p.label, ss.typ
+    `).all() as any[];
+  } catch {
+    return [];
+  }
+
+  const FRAKTION_GROUPS: Record<string, string> = {
+    "CDU": "CDU/CSU",
+    "CSU": "CDU/CSU",
+  };
+  const norm = (s: string) => s.replace(/ /g, " ").replace(/­/g, "").trim();
+
+  const map = new Map<string, { total: number; byTyp: Record<string, number> }>();
+  for (const r of rows) {
+    if (!r.fraktion || !r.typ) continue;
+    const cleaned = norm(r.fraktion);
+    const key = FRAKTION_GROUPS[cleaned] || cleaned;
+    const slug = TYP_TO_SLUG[r.typ.toLowerCase().trim()];
+    if (!slug) continue; // skip unknown / variant casings
+    if (!map.has(key)) map.set(key, { total: 0, byTyp: {} });
+    const entry = map.get(key)!;
+    entry.total += r.c;
+    entry.byTyp[slug] = (entry.byTyp[slug] || 0) + r.c;
+  }
+
+  return Array.from(map.entries())
+    .map(([fraktion, v]) => ({ fraktion, total: v.total, byTyp: v.byTyp }))
+    .sort((a, b) => b.total - a.total);
+}
+
+// Speakers with per-Typ breakdown. Pass `limit = 0` to get all.
+export function getTopSpeakersWithBreakdown(limit = 15): {
+  speaker: string;
+  fraktion: string | null;
+  total: number;
+  byTyp: Record<string, number>;
+}[] {
+  const db = getDb();
+  // Group by politician_id when available — multiple speaker-string variants
+  // (e.g. "Dr. Johann David Wadephul" + "Dr. Johann Wadephul") map to the
+  // same person. Fall back to speaker string for rows without politician_id.
+  let rows: {
+    politician_id: number | null;
+    canonical_name: string | null;
+    speaker: string;
+    fraktion: string | null;
+    typ: string | null;
+    c: number;
+  }[] = [];
+  try {
+    rows = db.prepare(`
+      SELECT
+        ss.politician_id AS politician_id,
+        TRIM(COALESCE(po.title || ' ', '') || COALESCE(po.first_name, '') || ' ' || COALESCE(po.last_name, '')) AS canonical_name,
+        ss.speaker AS speaker,
+        p.label AS fraktion,
+        ss.typ AS typ,
+        COUNT(*) AS c
+      FROM speech_summaries ss
+      LEFT JOIN politicians po ON po.id = ss.politician_id
+      LEFT JOIN parties p ON p.id = po.party_id
+      WHERE ss.speaker IS NOT NULL AND ss.typ IS NOT NULL AND ss.typ != ''
+      GROUP BY ss.politician_id, ss.speaker, p.label, ss.typ
+    `).all() as any[];
+  } catch {
+    return [];
+  }
+
+  const FRAKTION_GROUPS: Record<string, string> = {
+    "CDU": "CDU/CSU",
+    "CSU": "CDU/CSU",
+  };
+  const norm = (s: string) => s.replace(/ /g, " ").replace(/­/g, "").trim();
+
+  const map = new Map<string, { displayName: string; fraktion: string | null; total: number; byTyp: Record<string, number> }>();
+  for (const r of rows) {
+    if (!r.speaker || !r.typ) continue;
+    const slug = TYP_TO_SLUG[r.typ.toLowerCase().trim()];
+    if (!slug) continue;
+    const cleanedFr = r.fraktion ? norm(r.fraktion) : null;
+    const fr = cleanedFr ? (FRAKTION_GROUPS[cleanedFr] || cleanedFr) : null;
+    const key = r.politician_id != null ? `pid:${r.politician_id}` : `name:${r.speaker}`;
+    const display = r.politician_id != null && r.canonical_name ? r.canonical_name : r.speaker;
+    if (!map.has(key)) map.set(key, { displayName: display, fraktion: fr, total: 0, byTyp: {} });
+    const entry = map.get(key)!;
+    entry.total += r.c;
+    entry.byTyp[slug] = (entry.byTyp[slug] || 0) + r.c;
+    if (!entry.fraktion && fr) entry.fraktion = fr;
+  }
+
+  // Ergänze aktive MdBs ohne Plenarbeiträge mit total=0 — Transparenz darüber,
+  // wer noch keinen Beitrag hatte. Quelle: Politiker mit aktivem Mandat (ACTIVE-Filter).
+  // IS_POLITICIAN_ACTIVE_SQL nutzt Alias `p` — daher hier auch `p` für politicians.
+  const activeMdbsWithoutSpeech = db.prepare(`
+    SELECT p.id AS politician_id,
+      TRIM(COALESCE(p.title || ' ', '') || COALESCE(p.first_name, '') || ' ' || COALESCE(p.last_name, '')) AS canonical_name,
+      pa.label AS fraktion
+    FROM politicians p
+    LEFT JOIN parties pa ON pa.id = p.party_id
+    WHERE ${IS_POLITICIAN_ACTIVE_SQL}
+      AND p.id NOT IN (
+        SELECT DISTINCT politician_id FROM speech_summaries WHERE politician_id IS NOT NULL
+      )
+  `).all(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { politician_id: number; canonical_name: string; fraktion: string | null }[];
+
+  for (const m of activeMdbsWithoutSpeech) {
+    const cleanedFr = m.fraktion ? norm(m.fraktion) : null;
+    const fr = cleanedFr ? (FRAKTION_GROUPS[cleanedFr] || cleanedFr) : null;
+    const key = `pid:${m.politician_id}`;
+    if (!map.has(key)) {
+      map.set(key, { displayName: m.canonical_name || "Unbekannt", fraktion: fr, total: 0, byTyp: {} });
+    }
+  }
+
+  const all = Array.from(map.values())
+    .map((v) => ({ speaker: v.displayName, fraktion: v.fraktion, total: v.total, byTyp: v.byTyp }))
+    .sort((a, b) => b.total - a.total);
+  return limit > 0 ? all.slice(0, limit) : all;
+}
+
 // ── Ausschuss-Protokolle ──
 
 export interface AusschussSessionRow {
@@ -1039,32 +1277,207 @@ export function getAusschussSessions(): AusschussSessionRow[] {
   `).all() as AusschussSessionRow[];
 }
 
+// Canonical mapping: source_file top-level folder → official Ausschuss name.
+// The PDF text-headers are unreliable (cut at line breaks, duplicated, mixed
+// with adjacent committee headers), but the data/ausschuss_protokolle/<folder>
+// structure is curated and trustworthy.
+const AUSSCHUSS_FOLDER_MAP: Record<string, string> = {
+  "a07_finanzen": "Finanzausschuss",
+  "a09_wirtschaft": "Wirtschaft und Energie",
+  "a10_landwirtschaft": "Landwirtschaft, Ernährung, Heimat",
+  "a11_arbeit_soziales": "Arbeit und Soziales",
+  "a13_Bildung-Familie-Senioren-Frauen-und-Jugend": "Bildung, Familie, Senioren, Frauen und Jugend",
+  "a13_Bildung-Familie-Senioren-Frauen-und-Jugend_kiko": "Kinderkommission (KiKo)",
+  "a17_menschenrechte": "Menschenrechte und humanitäre Hilfe",
+  "a20_tourismus": "Tourismus",
+  "a22_kultur": "Kultur und Medien",
+  "a23_digitales_staatsmodernisierung": "Digitales und Staatsmodernisierung",
+  "a24_wohnen": "Wohnen, Stadtentwicklung, Bauwesen und Kommunen",
+  "gesundheit": "Gesundheit",
+  "recht-verbraucherschutz": "Recht und Verbraucherschutz",
+  "sport_und_ehrenamt": "Sport und Ehrenamt",
+  "verkehr": "Verkehr",
+};
+
+// SQL fragment shared across queries: folder = top-level dir of source_file,
+// excluding Anlagenkonvolute (those are PDF attachments, not real sessions).
+const AUSSCHUSS_REAL_SESSION_WHERE = `
+  ausschuss != 'Unbekannt'
+  AND source_file IS NOT NULL
+  AND source_file NOT LIKE '%Anlagenkonvolut%'
+`;
+const AUSSCHUSS_FOLDER_EXPR = `
+  CASE
+    WHEN source_file LIKE '%/%' THEN substr(source_file, 1, instr(source_file, '/') - 1)
+    ELSE NULL
+  END
+`;
+
 export function getAusschussStats(): { ausschuss: string; sitzungen: number; anwesende: number }[] {
   const db = getDb();
-  return db.prepare(`
-    SELECT ausschuss,
-      COUNT(*) as sitzungen,
-      SUM((SELECT COUNT(*) FROM ausschuss_attendees WHERE session_id = s.id)) as anwesende
+  const rows = db.prepare(`
+    SELECT
+      ${AUSSCHUSS_FOLDER_EXPR} AS folder,
+      COUNT(*) AS sitzungen,
+      SUM((SELECT COUNT(*) FROM ausschuss_attendees WHERE session_id = s.id)) AS anwesende
     FROM ausschuss_sessions s
-    WHERE ausschuss != 'Unbekannt'
-    GROUP BY ausschuss
-    ORDER BY sitzungen DESC
-  `).all() as any[];
+    WHERE ${AUSSCHUSS_REAL_SESSION_WHERE}
+    GROUP BY folder
+  `).all() as { folder: string | null; sitzungen: number; anwesende: number | null }[];
+
+  return rows
+    .map((r) => ({
+      ausschuss: (r.folder && AUSSCHUSS_FOLDER_MAP[r.folder]) || r.folder || "Unbekannt",
+      sitzungen: r.sitzungen,
+      anwesende: r.anwesende || 0,
+    }))
+    .sort((a, b) => b.sitzungen - a.sitzungen);
 }
 
-export function getTopAusschussAttendees(limit = 20): { name: string; fraktion: string | null; sitzungen: number; ausschuesse: string }[] {
+// Cleans a PDF-parser-extracted attendee name. Hauptsächlich Whitespace-Norm.
+// Die Anwesenheits-Marker-Stripping (ja|nein) ist im neuen Parser erledigt;
+// hier nicht mehr versuchen, sonst werden echte Namen wie "Sonja", "Anja",
+// "Tanja", "Maja" fälschlich gekürzt.
+function cleanAttendeeName(raw: string): string {
+  let s = raw.trim().replace(/\s+/g, " ");
+  // CamelCase boundary nur defensiv falls in alten Daten noch "AlaaBeck" lauert.
+  s = s.replace(/([a-zäöüß])([A-ZÄÖÜ])/g, "$1 $2");
+  return s.replace(/\s+/g, " ").trim();
+}
+
+function stripTitles(name: string): string {
+  return name
+    .replace(/\b(Dr\.?|Prof\.?|Frhr\.?|Frfr\.?|MdB)\s*/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function foldDiacritics(s: string): string {
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+
+// Loose fraktion-equivalence check (attendees write "CDU/CSU", politicians table has "CDU" + "CSU" separately).
+function fraktionMatches(attendee: string | null, party: string | null): boolean {
+  if (!attendee || !party) return true; // missing info → don't reject
+  const a = attendee.toLowerCase().replace(/[\s/­]/g, "");
+  const p = party.toLowerCase().replace(/[\s/­]/g, "");
+  if (a === p) return true;
+  // Cross-mapping: "CDU/CSU" ↔ "CDU" or "CSU"
+  if (a.includes("cducsu") && (p === "cdu" || p === "csu")) return true;
+  // "Bündnis 90/Die Grünen" forms
+  if (a.includes("grün") && p.includes("grün")) return true;
+  if (a.includes("linke") && p.includes("linke")) return true;
+  if (a.includes("spd") && p === "spd") return true;
+  if (a.includes("afd") && p === "afd") return true;
+  return false;
+}
+
+// Returns ALL Ausschuss-attendees with attendance count + politician_id when
+// the name can be resolved. Names are cleaned of common parser artifacts and
+// matched against `politicians` with multiple strategies + fraktion-check
+// to avoid false positives (e.g. SPD-attendee → Grünen-MdB with same last name).
+export function getTopAusschussAttendees(
+  limit = 20,
+): { name: string; original_name: string; fraktion: string | null; sitzungen: number; ausschuesse: string; politician_id: number | null }[] {
   const db = getDb();
-  return db.prepare(`
-    SELECT a.name, a.fraktion,
-      COUNT(DISTINCT a.session_id) as sitzungen,
-      GROUP_CONCAT(DISTINCT s.ausschuss) as ausschuesse
+  const rawRows = db.prepare(`
+    SELECT a.name AS original_name,
+      a.fraktion,
+      COUNT(DISTINCT a.session_id) AS sitzungen,
+      GROUP_CONCAT(DISTINCT s.ausschuss) AS ausschuesse
     FROM ausschuss_attendees a
     JOIN ausschuss_sessions s ON a.session_id = s.id
     WHERE s.ausschuss != 'Unbekannt'
     GROUP BY a.name
     ORDER BY sitzungen DESC
-    LIMIT ?
-  `).all(limit) as any[];
+  `).all() as { original_name: string; fraktion: string | null; sitzungen: number; ausschuesse: string }[];
+
+  // Pull all politicians once + build folded lookup tables in JS for fuzzy matching.
+  const allPoliticians = db.prepare(`
+    SELECT po.id, po.first_name, po.last_name, po.title, p.label AS party_label
+    FROM politicians po
+    LEFT JOIN parties p ON p.id = po.party_id
+  `).all() as { id: number; first_name: string; last_name: string; title: string | null; party_label: string | null }[];
+
+  // Index by folded full-name (with and without title) and by folded last_name.
+  const byFullName = new Map<string, { id: number; party_label: string | null }[]>();
+  const byLastName = new Map<string, { id: number; party_label: string | null }[]>();
+  for (const p of allPoliticians) {
+    const full = `${p.first_name} ${p.last_name}`.trim();
+    const fullWithTitle = `${p.title ? p.title + " " : ""}${full}`.trim();
+    for (const variant of [full, fullWithTitle]) {
+      const k = foldDiacritics(variant.toLowerCase());
+      if (!byFullName.has(k)) byFullName.set(k, []);
+      byFullName.get(k)!.push({ id: p.id, party_label: p.party_label });
+    }
+    const lastK = foldDiacritics(p.last_name.toLowerCase());
+    if (!byLastName.has(lastK)) byLastName.set(lastK, []);
+    byLastName.get(lastK)!.push({ id: p.id, party_label: p.party_label });
+  }
+
+  function lookupFullName(name: string, fraktion: string | null): number | null {
+    const k = foldDiacritics(name.toLowerCase());
+    const cands = byFullName.get(k) || [];
+    const inFraktion = cands.filter((c) => fraktionMatches(fraktion, c.party_label));
+    if (inFraktion.length === 1) return inFraktion[0].id;
+    if (inFraktion.length > 1) return inFraktion[0].id; // identical names + fraktion → take first
+    return null;
+  }
+
+  function lookupLastName(last: string, fraktion: string | null): number | null {
+    const k = foldDiacritics(last.toLowerCase());
+    const cands = byLastName.get(k) || [];
+    const inFraktion = cands.filter((c) => fraktionMatches(fraktion, c.party_label));
+    if (inFraktion.length === 1) return inFraktion[0].id;
+    return null;
+  }
+
+  const out = rawRows.map((r) => {
+    const cleaned = cleanAttendeeName(r.original_name);
+    const stripped = stripTitles(cleaned);
+    const tokens = cleaned.split(" ");
+    const strippedTokens = stripped.split(" ");
+
+    let politician_id: number | null = null;
+
+    // Strategy 1: try multiple variants of the full name.
+    const fullCandidates = [cleaned, stripped];
+    if (tokens.length === 3 && /^[A-ZÄÖÜ]$/.test(tokens[1])) {
+      fullCandidates.push(`${tokens[0]} ${tokens[2]}`);
+    }
+    if (strippedTokens.length > 2) {
+      fullCandidates.push(`${strippedTokens[0]} ${strippedTokens[strippedTokens.length - 1]}`);
+      // Multi-word last names: "Christian Frhr. von Stetten" → first + "von Stetten"
+      fullCandidates.push(
+        `${strippedTokens[0]} ${strippedTokens.slice(1).join(" ")}`,
+      );
+    }
+    for (const cand of fullCandidates) {
+      const id = lookupFullName(cand, r.fraktion);
+      if (id) { politician_id = id; break; }
+    }
+
+    // Strategy 2: last-name-only fallback (handles "Dr <Last>" cases).
+    if (!politician_id && strippedTokens.length > 0) {
+      // Try last token, then last two tokens (for "von Stetten").
+      const lastSingle = strippedTokens[strippedTokens.length - 1];
+      const lastDouble = strippedTokens.length >= 2 ? strippedTokens.slice(-2).join(" ") : null;
+      politician_id =
+        lookupLastName(lastSingle, r.fraktion) ||
+        (lastDouble ? lookupLastName(lastDouble, r.fraktion) : null);
+    }
+
+    return {
+      name: cleaned,
+      original_name: r.original_name,
+      fraktion: r.fraktion,
+      sitzungen: r.sitzungen,
+      ausschuesse: r.ausschuesse,
+      politician_id,
+    };
+  });
+
+  return limit > 0 ? out.slice(0, limit) : out;
 }
 
 export function getProtokollOverview() {
@@ -1073,9 +1486,43 @@ export function getProtokollOverview() {
     plenarSessions: (db.prepare("SELECT COUNT(*) as c FROM plenar_sessions").get() as any).c,
     plenarSpeeches: (db.prepare("SELECT COUNT(*) as c FROM plenar_speeches").get() as any).c,
     plenarSpeakers: (db.prepare("SELECT COUNT(DISTINCT speaker) as c FROM plenar_speeches").get() as any).c,
-    ausschussSessions: (db.prepare("SELECT COUNT(*) as c FROM ausschuss_sessions WHERE ausschuss != 'Unbekannt'").get() as any).c,
+    ausschussSessions: (db.prepare(`SELECT COUNT(*) as c FROM ausschuss_sessions WHERE ${AUSSCHUSS_REAL_SESSION_WHERE}`).get() as any).c,
     ausschussAttendees: (db.prepare("SELECT COUNT(*) as c FROM ausschuss_attendees").get() as any).c,
     ausschussTopics: (db.prepare("SELECT COUNT(*) as c FROM ausschuss_topics").get() as any).c,
+  };
+}
+
+// Coverage-Stats für den Disclaimer auf /protokolle:
+// Nutzt dieselbe fuzzy-Match-Logik wie getTopAusschussAttendees (Diacritics-Fold,
+// Title-Strip, Multi-Word-Last-Names), damit die "Linked"-Zahl exakt mit der
+// angezeigten Liste übereinstimmt.
+export function getAusschussCoverage(): {
+  mdbsLinked: number;
+  mdbsTotal: number;
+  ausschuesseCovered: number;
+} {
+  const db = getDb();
+  const matched = getTopAusschussAttendees(0);
+  const distinctIds = new Set<number>();
+  for (const a of matched) {
+    if (a.politician_id) distinctIds.add(a.politician_id);
+  }
+  const total = db.prepare(`
+    SELECT COUNT(DISTINCT m.politician_id) AS c FROM mandates m
+    JOIN parliament_periods pp ON pp.id = m.parliament_period_id
+    JOIN parliaments par ON par.id = pp.parliament_id
+    WHERE par.label = 'Bundestag' AND pp.label LIKE '%2025%'
+  `).get() as { c: number };
+  const folders = db.prepare(`
+    SELECT COUNT(DISTINCT folder) AS c FROM (
+      SELECT ${AUSSCHUSS_FOLDER_EXPR} AS folder
+      FROM ausschuss_sessions WHERE ${AUSSCHUSS_REAL_SESSION_WHERE}
+    )
+  `).get() as { c: number };
+  return {
+    mdbsLinked: distinctIds.size,
+    mdbsTotal: total.c,
+    ausschuesseCovered: folders.c,
   };
 }
 
@@ -1200,6 +1647,71 @@ export interface SpeechSummary {
   model: string | null;
   prompt_version: string | null;
   generated_at: string | null;
+}
+
+// Resolve a speaker name (which may be a canonical or a variant) to the
+// underlying politician + ALL speaker-string variants used in speech_summaries.
+// Returns null for speakers with no politician_id (Sitzungsleitung etc.).
+export function getPoliticianFromSpeakerName(name: string): {
+  politician_id: number;
+  canonical_name: string;
+  first_name: string | null;
+  last_name: string | null;
+  photo_url: string | null;
+  party_label: string | null;
+  variants: string[];
+} | null {
+  const db = getDb();
+
+  let row = db.prepare(`
+    SELECT DISTINCT politician_id FROM speech_summaries
+    WHERE speaker = ? AND politician_id IS NOT NULL LIMIT 1
+  `).get(name) as { politician_id: number } | undefined;
+
+  if (!row) {
+    const polRow = db.prepare(`
+      SELECT id FROM politicians
+      WHERE TRIM(COALESCE(title || ' ', '') || COALESCE(first_name, '') || ' ' || COALESCE(last_name, '')) = ?
+      LIMIT 1
+    `).get(name) as { id: number } | undefined;
+    if (!polRow) return null;
+    row = { politician_id: polRow.id };
+  }
+
+  const detail = db.prepare(`
+    SELECT
+      TRIM(COALESCE(title || ' ', '') || COALESCE(first_name, '') || ' ' || COALESCE(last_name, '')) AS canonical_name,
+      first_name,
+      last_name,
+      photo_url,
+      party_id
+    FROM politicians WHERE id = ?
+  `).get(row.politician_id) as {
+    canonical_name: string;
+    first_name: string | null;
+    last_name: string | null;
+    photo_url: string | null;
+    party_id: number | null;
+  } | undefined;
+  if (!detail) return null;
+
+  const party = detail.party_id
+    ? (db.prepare(`SELECT label FROM parties WHERE id = ?`).get(detail.party_id) as { label: string } | undefined)
+    : null;
+
+  const variants = db.prepare(
+    `SELECT DISTINCT speaker FROM speech_summaries WHERE politician_id = ?`,
+  ).all(row.politician_id) as { speaker: string }[];
+
+  return {
+    politician_id: row.politician_id,
+    canonical_name: detail.canonical_name,
+    first_name: detail.first_name,
+    last_name: detail.last_name,
+    photo_url: detail.photo_url,
+    party_label: party?.label || null,
+    variants: variants.map((v) => v.speaker),
+  };
 }
 
 export function getSpeechSummaries(speakerName: string): SpeechSummary[] {
@@ -1362,6 +1874,99 @@ export function getSpeechAnalysesBySpeaker(
   return map;
 }
 
+// Plenarbeitrag-Typen, gleiche Bezeichnungen wie auf /methodik (Live-Pipeline → Block C)
+export const PLENAR_TYPE_LABELS: Record<string, string> = {
+  debatte: "Reden",
+  regierungserklaerung: "Regierungserklärungen",
+  fragestunde_frage: "Fragen",
+  fragestunde_antwort: "Antworten",
+  zwischenfrage: "Debattenbeiträge", // gemerged
+  kurzintervention: "Debattenbeiträge",
+  erklaerung: "Erklärungen",
+};
+
+// Slug-Buckets fürs Routing (mehrere typ-Werte können in einen Slug fallen)
+export const PLENAR_TYPE_SLUGS: Record<string, string[]> = {
+  reden: ["debatte"],
+  regierungserklaerungen: ["regierungserklaerung"],
+  fragen: ["fragestunde_frage"],
+  antworten: ["fragestunde_antwort"],
+  debattenbeitraege: ["zwischenfrage", "kurzintervention"],
+  erklaerungen: ["erklaerung"],
+};
+
+export const PLENAR_TYPE_SLUG_LABEL: Record<string, string> = {
+  reden: "Reden",
+  regierungserklaerungen: "Regierungserklärungen",
+  fragen: "Fragen",
+  antworten: "Antworten",
+  debattenbeitraege: "Debattenbeiträge",
+  erklaerungen: "Erklärungen",
+};
+
+// Reverse map: typ-string (lowercased) → slug. Built once from PLENAR_TYPE_SLUGS.
+export const TYP_TO_SLUG: Record<string, string> = Object.fromEntries(
+  Object.entries(PLENAR_TYPE_SLUGS).flatMap(([slug, typs]) =>
+    typs.map((t) => [t.toLowerCase().trim(), slug] as const),
+  ),
+);
+
+export function getPlenarTypeStats(): { slug: string; label: string; count: number }[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT typ, COUNT(*) AS c FROM speech_summaries
+      WHERE typ IS NOT NULL AND typ != '' GROUP BY typ
+    `).all() as { typ: string; c: number }[];
+    const byTyp = new Map<string, number>();
+    for (const r of rows) byTyp.set(r.typ.toLowerCase().trim(), r.c);
+
+    return Object.entries(PLENAR_TYPE_SLUGS).map(([slug, typs]) => ({
+      slug,
+      label: PLENAR_TYPE_SLUG_LABEL[slug],
+      count: typs.reduce((sum, t) => sum + (byTyp.get(t) || 0), 0),
+    })).filter((s) => s.count > 0).sort((a, b) => b.count - a.count);
+  } catch {
+    return [];
+  }
+}
+
+export interface PlenarSpeechByTypeRow {
+  rede_id: string | null;
+  speaker: string;
+  party: string | null;
+  typ: string;
+  sitzung: number | null;
+  datum: string | null;
+  kontext: string | null;
+  zusammenfassung: string | null;
+  speech_index: number | null;
+}
+
+export function listPlenarSpeechesByType(slug: string, limit = 100, offset = 0): { rows: PlenarSpeechByTypeRow[]; total: number } {
+  const db = getDb();
+  const typs = PLENAR_TYPE_SLUGS[slug] ?? [];
+  if (typs.length === 0) return { rows: [], total: 0 };
+
+  try {
+    const placeholders = typs.map(() => "?").join(",");
+    const total = (db.prepare(`SELECT COUNT(*) AS c FROM speech_summaries WHERE typ IN (${placeholders})`).get(...typs) as { c: number }).c;
+    const rows = db.prepare(`
+      SELECT ss.rede_id, ss.speaker, p.label AS party, ss.typ, ss.sitzung, ss.datum, ss.kontext, ss.zusammenfassung, ss.speech_index
+      FROM speech_summaries ss
+      LEFT JOIN politicians po ON po.id = ss.politician_id
+      LEFT JOIN parties p ON p.id = po.party_id
+      WHERE ss.typ IN (${placeholders})
+      ORDER BY ss.sitzung DESC, ss.speech_index ASC
+      LIMIT ? OFFSET ?
+    `).all(...typs, limit, offset) as PlenarSpeechByTypeRow[];
+    return { rows, total };
+  } catch (e) {
+    console.error("listPlenarSpeechesByType error:", e);
+    return { rows: [], total: 0 };
+  }
+}
+
 export function getAllSpeakersWithSummaries(): { speaker: string; party: string | null; count: number; sessions: number }[] {
   const db = getDb();
   try {
@@ -1399,4 +2004,229 @@ export function getPlenarSessionDetail(sitzung: number) {
   `).all(session.id) as any[];
 
   return { ...session, topics, speeches };
+}
+
+// ============================================================
+// Vote-Detail (für /abstimmungen/[poll_id])
+// ============================================================
+
+export interface VoteDetail {
+  poll_id: number;
+  poll_label: string | null;
+  poll_url: string | null;
+  poll_date: string | null;
+  topics: { id: number; topic_number: string; title: string; confidence: string }[];
+  byFraction: { fraction: string; yes: number; no: number; abstain: number; no_show: number; total: number }[];
+  totals: { yes: number; no: number; abstain: number; no_show: number; total: number };
+  speeches: VoteSpeechRow[];
+  relatedPolls: { poll_id: number; poll_label: string | null; poll_date: string | null }[];
+}
+
+export interface VoteSpeechRow {
+  speech_id: number;
+  speaker: string;
+  party: string | null;
+  politician_id: number | null;
+  topic_id: number;
+  topic_number: string;
+  vote: string | null; // yes | no | abstain | no_show | null (nicht in votes-Tabelle)
+  tonalitaet: string | null;
+  zusammenfassung: string | null;
+  forderungen: string[];
+  woertliche_zitate: string[];
+  reden_typ: string | null;
+  original_text: string | null;
+  page_ref: string | null;
+}
+
+export function getVoteDetail(pollId: number): VoteDetail | null {
+  const db = getDb();
+
+  const head = db.prepare(`
+    SELECT poll_id, poll_label, poll_url, poll_date
+    FROM votes
+    WHERE poll_id = ?
+    LIMIT 1
+  `).get(pollId) as { poll_id: number; poll_label: string | null; poll_url: string | null; poll_date: string | null } | undefined;
+  if (!head) return null;
+
+  const topics = db.prepare(`
+    SELECT pt.id, pt.topic_number, pt.title, vtl.confidence, vtl.is_primary
+    FROM vote_topic_links vtl
+    JOIN plenar_topics pt ON pt.id = vtl.topic_id
+    WHERE vtl.poll_id = ? AND vtl.topic_id != 0
+    ORDER BY vtl.is_primary DESC, pt.topic_number
+  `).all(pollId) as { id: number; topic_number: string; title: string; confidence: string; is_primary: number }[];
+
+  const fracRows = db.prepare(`
+    SELECT fraction_label AS fraction,
+      SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
+      SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no,
+      SUM(CASE WHEN vote = 'abstain' THEN 1 ELSE 0 END) AS abstain,
+      SUM(CASE WHEN vote = 'no_show' THEN 1 ELSE 0 END) AS no_show,
+      COUNT(*) AS total
+    FROM votes
+    WHERE poll_id = ?
+    GROUP BY fraction_label
+    ORDER BY total DESC
+  `).all(pollId) as { fraction: string | null; yes: number; no: number; abstain: number; no_show: number; total: number }[];
+
+  const totals = fracRows.reduce(
+    (acc, r) => ({
+      yes: acc.yes + r.yes,
+      no: acc.no + r.no,
+      abstain: acc.abstain + r.abstain,
+      no_show: acc.no_show + r.no_show,
+      total: acc.total + r.total,
+    }),
+    { yes: 0, no: 0, abstain: 0, no_show: 0, total: 0 }
+  );
+
+  const topicIds = topics.map((t) => t.id);
+  let speeches: VoteSpeechRow[] = [];
+  if (topicIds.length > 0) {
+    const placeholders = topicIds.map(() => "?").join(",");
+    const speechRows = db.prepare(`
+      SELECT psp.id AS speech_id, psp.speaker, psp.party, psp.topic_id,
+        pt.topic_number,
+        psp.original_text, psp.page_ref,
+        p.id AS politician_id,
+        v.vote AS vote,
+        sa.tonalitaet, sa.zusammenfassung_2_saetze AS zusammenfassung,
+        sa.forderungen_json, sa.woertliche_zitate_json, sa.reden_typ
+      FROM plenar_speeches psp
+      JOIN plenar_topics pt ON pt.id = psp.topic_id
+      LEFT JOIN politicians p ON p.bt_redner_id = psp.redner_id
+      LEFT JOIN votes v ON v.poll_id = ? AND v.politician_id = p.id
+      LEFT JOIN speech_analyses_v2 sa ON sa.speech_id = psp.id
+      WHERE psp.topic_id IN (${placeholders})
+      ORDER BY psp.id
+    `).all(pollId, ...topicIds) as any[];
+    speeches = speechRows.map((r) => ({
+      speech_id: r.speech_id,
+      speaker: r.speaker,
+      party: r.party,
+      politician_id: r.politician_id,
+      topic_id: r.topic_id,
+      topic_number: r.topic_number,
+      vote: r.vote,
+      tonalitaet: r.tonalitaet,
+      zusammenfassung: stripTagLeak(r.zusammenfassung),
+      forderungen: safeJsonArray(r.forderungen_json),
+      woertliche_zitate: safeJsonArray(r.woertliche_zitate_json),
+      reden_typ: r.reden_typ,
+      original_text: r.original_text,
+      page_ref: r.page_ref,
+    }));
+  }
+
+  // Andere Polls, die mit demselben TOP verlinkt sind (verbundene Debatte)
+  let relatedPolls: { poll_id: number; poll_label: string | null; poll_date: string | null }[] = [];
+  if (topicIds.length > 0) {
+    const placeholders = topicIds.map(() => "?").join(",");
+    relatedPolls = db.prepare(`
+      SELECT v.poll_id,
+        MIN(v.poll_label) AS poll_label,
+        MIN(v.poll_date)  AS poll_date
+      FROM vote_topic_links vtl
+      JOIN votes v ON v.poll_id = vtl.poll_id
+      WHERE vtl.topic_id IN (${placeholders})
+        AND vtl.poll_id != ?
+      GROUP BY v.poll_id
+      ORDER BY poll_date, v.poll_id
+    `).all(...topicIds, pollId) as { poll_id: number; poll_label: string | null; poll_date: string | null }[];
+  }
+
+  return {
+    poll_id: head.poll_id,
+    poll_label: head.poll_label,
+    poll_url: head.poll_url,
+    poll_date: head.poll_date,
+    topics: topics.map((t) => ({ id: t.id, topic_number: t.topic_number, title: t.title, confidence: t.confidence })),
+    byFraction: fracRows.map((r) => ({ fraction: r.fraction ?? "(ohne Fraktion)", yes: r.yes, no: r.no, abstain: r.abstain, no_show: r.no_show, total: r.total })),
+    totals,
+    speeches,
+    relatedPolls,
+  };
+}
+
+export interface PollIndexRow {
+  poll_id: number;
+  poll_label: string | null;
+  poll_date: string | null;
+  yes: number;
+  no: number;
+  abstain: number;
+  no_show: number;
+  total: number;
+  has_topic_match: 0 | 1;
+  match_confidence: string | null; // 'high' | 'medium' | 'low' | 'none' | null
+  speech_count: number;
+}
+
+export function listAllPollsForIndex(): PollIndexRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT
+      v.poll_id,
+      v.poll_label,
+      v.poll_date,
+      SUM(CASE WHEN v.vote = 'yes' THEN 1 ELSE 0 END) AS yes,
+      SUM(CASE WHEN v.vote = 'no' THEN 1 ELSE 0 END) AS no,
+      SUM(CASE WHEN v.vote = 'abstain' THEN 1 ELSE 0 END) AS abstain,
+      SUM(CASE WHEN v.vote = 'no_show' THEN 1 ELSE 0 END) AS no_show,
+      COUNT(*) AS total,
+      CASE WHEN MAX(vtl.topic_id) IS NOT NULL AND MAX(vtl.topic_id) != 0 THEN 1 ELSE 0 END AS has_topic_match,
+      MAX(CASE WHEN vtl.is_primary = 1 THEN vtl.confidence END) AS match_confidence,
+      COALESCE((
+        SELECT COUNT(*) FROM plenar_speeches psp
+        WHERE psp.topic_id IN (
+          SELECT topic_id FROM vote_topic_links
+          WHERE poll_id = v.poll_id AND topic_id != 0
+        )
+      ), 0) AS speech_count
+    FROM votes v
+    LEFT JOIN vote_topic_links vtl ON vtl.poll_id = v.poll_id
+    GROUP BY v.poll_id, v.poll_label, v.poll_date
+    ORDER BY v.poll_date DESC, v.poll_id DESC
+  `).all() as PollIndexRow[];
+}
+
+// ============================================================
+// Pop-Hero: knappste Polls für Landing-Page
+// ============================================================
+
+export interface ClosestPollRow {
+  poll_id: number;
+  poll_label: string;
+  poll_date: string | null;
+  yes: number;
+  no: number;
+  yes_ratio: number;        // 0-1
+  distance_to_pari: number; // 0-0.5
+}
+
+export function getClosestPolls(limit: number = 3): ClosestPollRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT
+      poll_id,
+      poll_label,
+      poll_date,
+      SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
+      SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no,
+      CAST(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS REAL) /
+        NULLIF(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
+               SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END), 0) AS yes_ratio,
+      ABS(0.5 - CAST(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS REAL) /
+        NULLIF(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
+               SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END), 0)) AS distance_to_pari
+    FROM votes
+    WHERE poll_label IS NOT NULL
+    GROUP BY poll_id, poll_label, poll_date
+    HAVING SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
+           SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) > 0
+    ORDER BY distance_to_pari ASC
+    LIMIT ?
+  `).all(limit) as ClosestPollRow[];
 }
