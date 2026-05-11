@@ -1,4 +1,5 @@
 import { getDb, searchPoliticiansDb } from "@/lib/db";
+import { expandQuery } from "@/lib/synonyms";
 
 export type SearchHitType = "politician" | "speech" | "topic" | "vote" | "drucksache";
 
@@ -6,7 +7,10 @@ export interface PoliticianHit {
   type: "politician";
   id: number;
   name: string;
+  first_name: string;
+  last_name: string;
   party: string | null;
+  photo_url: string | null;
   subtitle: string;
 }
 
@@ -18,6 +22,7 @@ export interface SpeechHit {
   speech_date: string | null;
   topic_title: string | null;
   snippet: string;
+  tonalitaet: string | null;
 }
 
 export interface TopicHit {
@@ -48,6 +53,14 @@ export interface DrucksacheHit {
 
 export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit;
 
+export interface SearchTotals {
+  politicians: number;
+  speeches: number;
+  topics: number;
+  votes: number;
+  drucksachen: number;
+}
+
 export interface SearchResults {
   query: string;
   politicians: PoliticianHit[];
@@ -56,9 +69,36 @@ export interface SearchResults {
   votes: VoteHit[];
   drucksachen: DrucksacheHit[];
   total: number;
+  /** Anzahl ALLER Treffer pro Typ (nicht nur die zurückgegebenen PER_TYPE_LIMIT) */
+  totals: SearchTotals;
+  /** Pro Typ: wieviele Treffer matchten NUR den Original-Begriff (ohne Synonym-Match). */
+  totalsOriginal: SearchTotals;
+  /** Synonym-Terms, die zur Erweiterung beigetragen haben (ohne Original) */
+  expansions: string[];
+  /** Labels der gematchten Synonym-Cluster — für UI-Chip-Anzeige */
+  matchedClusters: string[];
 }
 
 const PER_TYPE_LIMIT = 6;
+
+/**
+ * SQLite's eingebautes LOWER() ist ASCII-only — `LOWER('ÖPNV')` ergibt `'ÖPNV'`, nicht `'öpnv'`.
+ * Für die Suche bedeutet das: `%öpnv%` matched `'ÖPNV-Reform'` nicht. Workaround:
+ * eigene Unicode-aware-Funktion registrieren (JS String#toLowerCase respektiert Umlaute).
+ */
+let lowerDeRegistered = false;
+function ensureLowerDe(db: ReturnType<typeof getDb>) {
+  if (lowerDeRegistered) return;
+  db.function("lower_de", { deterministic: true }, (s: unknown) =>
+    typeof s === "string" ? s.toLowerCase() : null
+  );
+  lowerDeRegistered = true;
+}
+
+/** Baut "lower_de(col) LIKE ? OR lower_de(col) LIKE ? OR ..." mit n Platzhaltern */
+function likeOr(column: string, n: number): string {
+  return Array.from({ length: n }, () => `lower_de(${column}) LIKE ?`).join(" OR ");
+}
 
 export function search(rawQuery: string): SearchResults {
   const query = rawQuery.trim();
@@ -70,20 +110,38 @@ export function search(rawQuery: string): SearchResults {
     votes: [],
     drucksachen: [],
     total: 0,
+    totals: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
+    totalsOriginal: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
+    expansions: [],
+    matchedClusters: [],
   };
   if (query.length < 2) return empty;
 
-  const like = `%${query}%`;
-  const db = getDb();
+  const { expansions, matchedClusters } = expandQuery(query);
+  // Original-Pattern zuerst, dann Cluster-Synonyme — für Reden/Topics/Votes/Drucksachen.
+  // Lowercase, weil die SQL-WHERE-Clause `lower_de(col) LIKE ?` matched.
+  const patterns = [query, ...expansions].map((t) => `%${t.toLowerCase()}%`);
+  const hasExpansions = expansions.length > 0;
+  const originalPatterns = [patterns[0]];
 
-  // 1. Personen via existierender Visibility-Logik
-  const politicians: PoliticianHit[] = searchPoliticiansDb(query, PER_TYPE_LIMIT).map((p) => ({
+  const db = getDb();
+  ensureLowerDe(db);
+
+  // 1. Personen — KEINE Synonym-Erweiterung (Namen sind Eigennamen)
+  // High-limit + slice, weil searchPoliticiansDb keinen separaten COUNT-Pfad exportiert
+  // (Track-Isolation: db.ts nicht anfassen).
+  const allPoliticians = searchPoliticiansDb(query, 1000);
+  const politicians: PoliticianHit[] = allPoliticians.slice(0, PER_TYPE_LIMIT).map((p) => ({
     type: "politician",
     id: p.id,
     name: `${p.first_name} ${p.last_name}`.trim(),
+    first_name: p.first_name,
+    last_name: p.last_name,
     party: p.party_label,
+    photo_url: p.photo_url,
     subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
   }));
+  const totalPoliticians = allPoliticians.length;
 
   // 2. Themen aus plenar_topics (TOP-Titel)
   const topics = db
@@ -92,11 +150,11 @@ export function search(rawQuery: string): SearchResults {
               (SELECT COUNT(*) FROM plenar_speeches WHERE topic_id = pt.id) as speech_count
        FROM plenar_topics pt
        JOIN plenar_sessions ps ON pt.session_id = ps.id
-       WHERE pt.title LIKE ?
+       WHERE ${likeOr("pt.title", patterns.length)}
        ORDER BY ps.datum DESC, pt.topic_number
        LIMIT ?`
     )
-    .all(like, PER_TYPE_LIMIT) as {
+    .all(...patterns, PER_TYPE_LIMIT) as {
     id: number;
     topic_number: string;
     title: string;
@@ -115,30 +173,40 @@ export function search(rawQuery: string): SearchResults {
     speech_count: t.speech_count,
   }));
 
+  const totalTopics = (db
+    .prepare(`SELECT COUNT(*) as n FROM plenar_topics pt WHERE ${likeOr("pt.title", patterns.length)}`)
+    .get(...patterns) as { n: number }).n;
+  const totalTopicsOriginal = hasExpansions
+    ? (db
+        .prepare(`SELECT COUNT(*) as n FROM plenar_topics pt WHERE ${likeOr("pt.title", 1)}`)
+        .get(...originalPatterns) as { n: number }).n
+    : totalTopics;
+
   // 3. Reden via speech_analyses_v2.zusammenfassung_2_saetze
-  // Join mit plenar_speeches + plenar_sessions für Speaker/Datum
   const speeches = db
     .prepare(
       `SELECT sa.rede_id,
               ps.speaker, ps.party,
               sess.datum as speech_date,
               pt.title as topic_title,
-              sa.zusammenfassung_2_saetze as snippet
+              sa.zusammenfassung_2_saetze as snippet,
+              sa.tonalitaet
        FROM speech_analyses_v2 sa
        LEFT JOIN plenar_speeches ps ON sa.speech_id = ps.id
        LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
        LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
-       WHERE sa.zusammenfassung_2_saetze LIKE ?
+       WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}
        ORDER BY sess.datum DESC
        LIMIT ?`
     )
-    .all(like, PER_TYPE_LIMIT) as {
+    .all(...patterns, PER_TYPE_LIMIT) as {
     rede_id: string;
     speaker: string | null;
     party: string | null;
     speech_date: string | null;
     topic_title: string | null;
     snippet: string;
+    tonalitaet: string | null;
   }[];
 
   const speechHits: SpeechHit[] = speeches.map((s) => ({
@@ -149,18 +217,34 @@ export function search(rawQuery: string): SearchResults {
     speech_date: s.speech_date,
     topic_title: s.topic_title,
     snippet: s.snippet,
+    tonalitaet: s.tonalitaet,
   }));
+
+  const totalSpeeches = (db
+    .prepare(
+      `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
+       WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}`
+    )
+    .get(...patterns) as { n: number }).n;
+  const totalSpeechesOriginal = hasExpansions
+    ? (db
+        .prepare(
+          `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
+           WHERE ${likeOr("sa.zusammenfassung_2_saetze", 1)}`
+        )
+        .get(...originalPatterns) as { n: number }).n
+    : totalSpeeches;
 
   // 4. Votes via poll_label
   const votes = db
     .prepare(
       `SELECT DISTINCT poll_id, poll_label, poll_date
        FROM votes
-       WHERE poll_label LIKE ?
+       WHERE ${likeOr("poll_label", patterns.length)}
        ORDER BY poll_date DESC
        LIMIT ?`
     )
-    .all(like, PER_TYPE_LIMIT) as {
+    .all(...patterns, PER_TYPE_LIMIT) as {
     poll_id: number;
     poll_label: string;
     poll_date: string | null;
@@ -173,16 +257,27 @@ export function search(rawQuery: string): SearchResults {
     poll_date: v.poll_date,
   }));
 
+  const totalVotes = (db
+    .prepare(
+      `SELECT COUNT(DISTINCT poll_id) as n FROM votes WHERE ${likeOr("poll_label", patterns.length)}`
+    )
+    .get(...patterns) as { n: number }).n;
+  const totalVotesOriginal = hasExpansions
+    ? (db
+        .prepare(`SELECT COUNT(DISTINCT poll_id) as n FROM votes WHERE ${likeOr("poll_label", 1)}`)
+        .get(...originalPatterns) as { n: number }).n
+    : totalVotes;
+
   // 5. Drucksachen via activities.titel
   const drucksachen = db
     .prepare(
       `SELECT id, titel, drucksache_nr, vorgangstyp, datum
        FROM activities
-       WHERE titel LIKE ? AND drucksache_nr IS NOT NULL
+       WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL
        ORDER BY datum DESC
        LIMIT ?`
     )
-    .all(like, PER_TYPE_LIMIT) as {
+    .all(...patterns, PER_TYPE_LIMIT) as {
     id: string;
     titel: string;
     drucksache_nr: string | null;
@@ -199,6 +294,21 @@ export function search(rawQuery: string): SearchResults {
     date: d.datum,
   }));
 
+  const totalDrucksachen = (db
+    .prepare(
+      `SELECT COUNT(*) as n FROM activities
+       WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL`
+    )
+    .get(...patterns) as { n: number }).n;
+  const totalDrucksachenOriginal = hasExpansions
+    ? (db
+        .prepare(
+          `SELECT COUNT(*) as n FROM activities
+           WHERE (${likeOr("titel", 1)}) AND drucksache_nr IS NOT NULL`
+        )
+        .get(...originalPatterns) as { n: number }).n
+    : totalDrucksachen;
+
   return {
     query,
     politicians,
@@ -212,5 +322,259 @@ export function search(rawQuery: string): SearchResults {
       topicHits.length +
       voteHits.length +
       drucksacheHits.length,
+    totals: {
+      politicians: totalPoliticians,
+      speeches: totalSpeeches,
+      topics: totalTopics,
+      votes: totalVotes,
+      drucksachen: totalDrucksachen,
+    },
+    totalsOriginal: {
+      // Personen-Suche kennt keine Synonym-Erweiterung → original == total
+      politicians: totalPoliticians,
+      speeches: totalSpeechesOriginal,
+      topics: totalTopicsOriginal,
+      votes: totalVotesOriginal,
+      drucksachen: totalDrucksachenOriginal,
+    },
+    expansions,
+    matchedClusters,
   };
+}
+
+export type SearchType = "politicians" | "speeches" | "topics" | "votes" | "drucksachen";
+
+export interface SearchByTypeResult {
+  query: string;
+  type: SearchType;
+  page: number;
+  pageSize: number;
+  total: number;
+  /** Anzahl Treffer, die den Original-Begriff direkt enthalten (ohne Synonym-Match). */
+  totalOriginal: number;
+  items: SearchHit[];
+  expansions: string[];
+  matchedClusters: string[];
+}
+
+export function searchByType(
+  rawQuery: string,
+  type: SearchType,
+  page: number = 1,
+  pageSize: number = 50
+): SearchByTypeResult {
+  const query = rawQuery.trim();
+  const safePage = Math.max(1, Math.floor(page));
+  const safePageSize = Math.max(1, Math.min(200, Math.floor(pageSize)));
+  const offset = (safePage - 1) * safePageSize;
+
+  const empty: SearchByTypeResult = {
+    query,
+    type,
+    page: safePage,
+    pageSize: safePageSize,
+    total: 0,
+    totalOriginal: 0,
+    items: [],
+    expansions: [],
+    matchedClusters: [],
+  };
+  if (query.length < 2) return empty;
+
+  const { expansions, matchedClusters } = expandQuery(query);
+  const patterns = [query, ...expansions].map((t) => `%${t.toLowerCase()}%`);
+  const hasExpansions = expansions.length > 0;
+  const originalPatterns = [patterns[0]];
+
+  const db = getDb();
+  ensureLowerDe(db);
+
+  switch (type) {
+    case "politicians": {
+      // Personen ohne Synonym-Erweiterung
+      const all = searchPoliticiansDb(query, 10000);
+      const slice = all.slice(offset, offset + safePageSize);
+      const items: PoliticianHit[] = slice.map((p) => ({
+        type: "politician",
+        id: p.id,
+        name: `${p.first_name} ${p.last_name}`.trim(),
+        first_name: p.first_name,
+        last_name: p.last_name,
+        party: p.party_label,
+        photo_url: p.photo_url,
+        subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+      }));
+      return {
+        ...empty,
+        total: all.length,
+        totalOriginal: all.length, // Personen kennen keine Synonym-Expansion
+        items,
+        expansions,
+        matchedClusters,
+      };
+    }
+    case "topics": {
+      const total = (db
+        .prepare(`SELECT COUNT(*) as n FROM plenar_topics pt WHERE ${likeOr("pt.title", patterns.length)}`)
+        .get(...patterns) as { n: number }).n;
+      const totalOriginal = hasExpansions
+        ? (db
+            .prepare(`SELECT COUNT(*) as n FROM plenar_topics pt WHERE ${likeOr("pt.title", 1)}`)
+            .get(...originalPatterns) as { n: number }).n
+        : total;
+      const rows = db
+        .prepare(
+          `SELECT pt.id, pt.topic_number, pt.title, pt.session_id, ps.datum,
+                  (SELECT COUNT(*) FROM plenar_speeches WHERE topic_id = pt.id) as speech_count
+           FROM plenar_topics pt
+           JOIN plenar_sessions ps ON pt.session_id = ps.id
+           WHERE ${likeOr("pt.title", patterns.length)}
+           ORDER BY ps.datum DESC, pt.topic_number
+           LIMIT ? OFFSET ?`
+        )
+        .all(...patterns, safePageSize, offset) as {
+        id: number;
+        topic_number: string;
+        title: string;
+        session_id: number;
+        datum: string | null;
+        speech_count: number;
+      }[];
+      const items: TopicHit[] = rows.map((t) => ({
+        type: "topic",
+        topic_id: t.id,
+        topic_number: t.topic_number,
+        title: t.title,
+        session_id: t.session_id,
+        session_date: t.datum,
+        speech_count: t.speech_count,
+      }));
+      return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
+    }
+    case "speeches": {
+      const total = (db
+        .prepare(
+          `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
+           WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}`
+        )
+        .get(...patterns) as { n: number }).n;
+      const totalOriginal = hasExpansions
+        ? (db
+            .prepare(
+              `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
+               WHERE ${likeOr("sa.zusammenfassung_2_saetze", 1)}`
+            )
+            .get(...originalPatterns) as { n: number }).n
+        : total;
+      const rows = db
+        .prepare(
+          `SELECT sa.rede_id, ps.speaker, ps.party,
+                  sess.datum as speech_date,
+                  pt.title as topic_title,
+                  sa.zusammenfassung_2_saetze as snippet,
+                  sa.tonalitaet
+           FROM speech_analyses_v2 sa
+           LEFT JOIN plenar_speeches ps ON sa.speech_id = ps.id
+           LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
+           LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
+           WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}
+           ORDER BY sess.datum DESC
+           LIMIT ? OFFSET ?`
+        )
+        .all(...patterns, safePageSize, offset) as {
+        rede_id: string;
+        speaker: string | null;
+        party: string | null;
+        speech_date: string | null;
+        topic_title: string | null;
+        snippet: string;
+        tonalitaet: string | null;
+      }[];
+      const items: SpeechHit[] = rows.map((s) => ({
+        type: "speech",
+        rede_id: s.rede_id,
+        speaker: s.speaker ?? "Unbekannt",
+        party: s.party,
+        speech_date: s.speech_date,
+        topic_title: s.topic_title,
+        snippet: s.snippet,
+        tonalitaet: s.tonalitaet,
+      }));
+      return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
+    }
+    case "votes": {
+      const total = (db
+        .prepare(
+          `SELECT COUNT(DISTINCT poll_id) as n FROM votes WHERE ${likeOr("poll_label", patterns.length)}`
+        )
+        .get(...patterns) as { n: number }).n;
+      const totalOriginal = hasExpansions
+        ? (db
+            .prepare(
+              `SELECT COUNT(DISTINCT poll_id) as n FROM votes WHERE ${likeOr("poll_label", 1)}`
+            )
+            .get(...originalPatterns) as { n: number }).n
+        : total;
+      const rows = db
+        .prepare(
+          `SELECT DISTINCT poll_id, poll_label, poll_date
+           FROM votes
+           WHERE ${likeOr("poll_label", patterns.length)}
+           ORDER BY poll_date DESC
+           LIMIT ? OFFSET ?`
+        )
+        .all(...patterns, safePageSize, offset) as {
+        poll_id: number;
+        poll_label: string;
+        poll_date: string | null;
+      }[];
+      const items: VoteHit[] = rows.map((v) => ({
+        type: "vote",
+        poll_id: v.poll_id,
+        label: v.poll_label,
+        poll_date: v.poll_date,
+      }));
+      return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
+    }
+    case "drucksachen": {
+      const total = (db
+        .prepare(
+          `SELECT COUNT(*) as n FROM activities
+           WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL`
+        )
+        .get(...patterns) as { n: number }).n;
+      const totalOriginal = hasExpansions
+        ? (db
+            .prepare(
+              `SELECT COUNT(*) as n FROM activities
+               WHERE (${likeOr("titel", 1)}) AND drucksache_nr IS NOT NULL`
+            )
+            .get(...originalPatterns) as { n: number }).n
+        : total;
+      const rows = db
+        .prepare(
+          `SELECT id, titel, drucksache_nr, vorgangstyp, datum
+           FROM activities
+           WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL
+           ORDER BY datum DESC
+           LIMIT ? OFFSET ?`
+        )
+        .all(...patterns, safePageSize, offset) as {
+        id: string;
+        titel: string;
+        drucksache_nr: string | null;
+        vorgangstyp: string | null;
+        datum: string | null;
+      }[];
+      const items: DrucksacheHit[] = rows.map((d) => ({
+        type: "drucksache",
+        id: d.id,
+        title: d.titel,
+        drucksache_nr: d.drucksache_nr,
+        vorgangstyp: d.vorgangstyp,
+        date: d.datum,
+      }));
+      return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
+    }
+  }
 }

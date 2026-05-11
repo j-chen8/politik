@@ -4,16 +4,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Search,
-  User,
   MessageSquare,
   ListTree,
   Vote as VoteIcon,
   FileText,
   Loader2,
 } from "lucide-react";
+import { PoliticianAvatar } from "@/components/PoliticianAvatar";
+import { highlight } from "@/lib/highlight";
 import type {
   SearchHit,
   SearchResults,
+  SearchType,
   PoliticianHit,
   SpeechHit,
   TopicHit,
@@ -35,6 +37,9 @@ const EMPTY: SearchResults = {
   votes: [],
   drucksachen: [],
   total: 0,
+  totals: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
+  expansions: [],
+  matchedClusters: [],
 };
 
 function flatten(results: SearchResults): FlatHit[] {
@@ -85,42 +90,81 @@ const PARTY_DOT: Record<string, string> = {
   fraktionslos: "bg-zinc-400",
 };
 
+const SECTION_TOTAL_KEY: Record<string, SearchType> = {
+  Personen: "politicians",
+  Tagesordnungspunkte: "topics",
+  Reden: "speeches",
+  Abstimmungen: "votes",
+  Drucksachen: "drucksachen",
+};
+
+/** Wenn total ≤ INLINE_THRESHOLD, lädt "Mehr"-Klick alle in den Modal; sonst gibt's nur den Vollliste-Link. */
+const INLINE_THRESHOLD = 36;
+
 export function CommandPalette({
   open,
   onClose,
+  initialQuery,
 }: {
   open: boolean;
   onClose: () => void;
+  /** Optional: Prefill bei Open (z.B. aus ?q= URL-Param oder Click auf Beispiel-Chip) */
+  initialQuery?: string;
 }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResults>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // Inline-expanded items pro Section (Set bei "Mehr laden")
+  const [expandedItems, setExpandedItems] = useState<Partial<Record<SearchType, SearchHit[]>>>({});
+  const [expandingType, setExpandingType] = useState<SearchType | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const flatHits = useMemo(() => flatten(results), [results]);
+  // Effektive Results — mit ggf. expanded items pro Typ
+  const effectiveResults = useMemo<SearchResults>(() => {
+    if (Object.keys(expandedItems).length === 0) return results;
+    return {
+      ...results,
+      politicians:
+        (expandedItems.politicians as PoliticianHit[] | undefined) ?? results.politicians,
+      speeches: (expandedItems.speeches as SpeechHit[] | undefined) ?? results.speeches,
+      topics: (expandedItems.topics as TopicHit[] | undefined) ?? results.topics,
+      votes: (expandedItems.votes as VoteHit[] | undefined) ?? results.votes,
+      drucksachen:
+        (expandedItems.drucksachen as DrucksacheHit[] | undefined) ?? results.drucksachen,
+    };
+  }, [results, expandedItems]);
 
-  // Reset on open
+  const flatHits = useMemo(() => flatten(effectiveResults), [effectiveResults]);
+  const highlightTerms = useMemo(
+    () => [results.query, ...results.expansions].filter((t) => t && t.length >= 2),
+    [results.query, results.expansions]
+  );
+
+  // Reset on open (mit optional initialQuery)
   useEffect(() => {
     if (open) {
-      setQuery("");
+      setQuery(initialQuery ?? "");
       setResults(EMPTY);
       setSelectedIndex(0);
+      setExpandedItems({});
       setTimeout(() => inputRef.current?.focus(), 10);
     }
-  }, [open]);
+  }, [open, initialQuery]);
 
-  // Debounced fetch
+  // Debounced fetch — bei Query-Change Expanded-State invalidieren
   useEffect(() => {
     if (!open) return;
     if (query.trim().length < 2) {
       setResults(EMPTY);
       setLoading(false);
+      setExpandedItems({});
       return;
     }
     setLoading(true);
+    setExpandedItems({});
     const handle = setTimeout(async () => {
       try {
         const res = await fetch(`/api/suche?q=${encodeURIComponent(query)}`);
@@ -135,6 +179,27 @@ export function CommandPalette({
     }, 150);
     return () => clearTimeout(handle);
   }, [query, open]);
+
+  async function loadMore(type: SearchType) {
+    setExpandingType(type);
+    try {
+      // Bei Inline-Expand: lade alle (capped bei INLINE_THRESHOLD, weil dieser Pfad nur für total ≤ threshold gezeigt wird)
+      const res = await fetch(
+        `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=1&pageSize=${INLINE_THRESHOLD}`
+      );
+      const data = await res.json();
+      setExpandedItems((prev) => ({ ...prev, [type]: data.items }));
+    } catch {
+      // silent fail
+    } finally {
+      setExpandingType(null);
+    }
+  }
+
+  function goToFullList(type: SearchType) {
+    onClose();
+    router.push(`/design/linear/suche?q=${encodeURIComponent(query)}&type=${type}`);
+  }
 
   // Keyboard navigation
   const navigateTo = useCallback(
@@ -191,7 +256,7 @@ export function CommandPalette({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center pt-[12vh] px-4 bg-zinc-950/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-start justify-center pt-4 sm:pt-[12vh] px-4 bg-zinc-950/40 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -212,12 +277,40 @@ export function CommandPalette({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="MdBs, Themen, Reden, Abstimmungen, Drucksachen…"
-            className="flex-1 bg-transparent border-0 outline-none text-[15px] text-zinc-900 placeholder:text-zinc-400"
+            className="flex-1 bg-transparent border-0 outline-none text-base sm:text-[15px] text-zinc-900 placeholder:text-zinc-400"
           />
           <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 border border-zinc-200 rounded">
             ESC
           </kbd>
         </div>
+
+        {/* Synonym-Expansion-Strip: zeigt mit welchen verwandten Begriffen mitgesucht wurde */}
+        {results.matchedClusters.length > 0 && results.expansions.length > 0 && (
+          <div className="border-b border-zinc-100 bg-zinc-50/60">
+            <div className="px-4 pt-2 pb-1 text-[11px] text-zinc-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+              <span className="text-zinc-400">auch gesucht über:</span>
+              {results.expansions.slice(0, 12).map((term) => (
+                <button
+                  key={term}
+                  type="button"
+                  onClick={() => setQuery(term)}
+                  className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600 hover:border-zinc-400 hover:text-zinc-900 hover:bg-zinc-50 transition-colors cursor-pointer"
+                  title={`Stattdessen nach "${term}" suchen`}
+                >
+                  {term}
+                </button>
+              ))}
+              {results.expansions.length > 12 && (
+                <span className="text-zinc-400">+{results.expansions.length - 12}</span>
+              )}
+            </div>
+            <MatchBreakdown
+              totals={results.totals}
+              totalsOriginal={results.totalsOriginal}
+              query={results.query}
+            />
+          </div>
+        )}
 
         {/* Results */}
         <div ref={listRef} className="max-h-[60vh] overflow-y-auto py-2">
@@ -242,10 +335,24 @@ export function CommandPalette({
               Keine Treffer für „{query}".
             </div>
           )}
-          {grouped.map((section) => (
+          {grouped.map((section) => {
+            const totalKey = SECTION_TOTAL_KEY[section.label];
+            const total = totalKey ? results.totals[totalKey] : section.items.length;
+            return (
             <div key={section.label} className="mb-1">
-              <div className="px-4 pt-2 pb-1 text-[10px] font-medium uppercase tracking-wider text-zinc-400">
-                {section.label}
+              <div className="px-4 pt-2 pb-1 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-zinc-400">
+                <span>{section.label}</span>
+                <span className="text-zinc-400 tabular-nums normal-case tracking-normal">
+                  {total > section.items.length ? (
+                    <>
+                      <span className="text-zinc-900">{section.items.length}</span>
+                      <span className="text-zinc-300"> / </span>
+                      <span>{total}</span>
+                    </>
+                  ) : (
+                    <span>{total}</span>
+                  )}
+                </span>
               </div>
               {section.items.map(({ hit, idx }) => (
                 <ResultRow
@@ -255,14 +362,48 @@ export function CommandPalette({
                   selected={idx === selectedIndex}
                   onHover={() => setSelectedIndex(idx)}
                   onClick={() => navigateTo(hit.href)}
+                  terms={highlightTerms}
                 />
               ))}
+              {totalKey && total > section.items.length && (() => {
+                const useInline = total <= INLINE_THRESHOLD && !expandedItems[totalKey];
+                return (
+                  <div className="px-4 pt-1.5 pb-2 flex items-center text-[11.5px] border-t border-zinc-100 mt-1">
+                    {useInline ? (
+                      <button
+                        type="button"
+                        onClick={() => loadMore(totalKey)}
+                        disabled={expandingType === totalKey}
+                        className="inline-flex items-center gap-1.5 text-zinc-600 hover:text-zinc-950 disabled:text-zinc-400 transition-colors"
+                      >
+                        {expandingType === totalKey ? (
+                          <>
+                            <Loader2 className="w-3 h-3 animate-spin" strokeWidth={2.25} />
+                            lädt…
+                          </>
+                        ) : (
+                          <>+{total - section.items.length} im Modal laden</>
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => goToFullList(totalKey)}
+                        className="inline-flex items-center gap-1 text-zinc-600 hover:text-zinc-950 transition-colors"
+                      >
+                        Alle <span className="tabular-nums">{total}</span> anzeigen →
+                      </button>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-zinc-100 flex items-center gap-4 text-[11px] text-zinc-400">
+        <div className="hidden sm:flex px-4 py-2 border-t border-zinc-100 items-center gap-4 text-[11px] text-zinc-400">
           <span className="flex items-center gap-1">
             <kbd className="font-mono px-1 py-0.5 border border-zinc-200 rounded text-[10px]">↑↓</kbd>
             navigieren
@@ -281,18 +422,53 @@ export function CommandPalette({
   );
 }
 
+function MatchBreakdown({
+  totals,
+  totalsOriginal,
+  query,
+}: {
+  totals: SearchResults["totals"];
+  totalsOriginal: SearchResults["totalsOriginal"];
+  query: string;
+}) {
+  const types: { key: keyof SearchResults["totals"]; label: string }[] = [
+    { key: "speeches", label: "Reden" },
+    { key: "topics", label: "TOPs" },
+    { key: "votes", label: "Votes" },
+    { key: "drucksachen", label: "Drucksachen" },
+  ];
+  const parts: string[] = [];
+  for (const { key, label } of types) {
+    const total = totals[key];
+    if (total === 0) continue;
+    const original = totalsOriginal[key];
+    parts.push(`${label} ${original}/${total}`);
+  }
+  if (parts.length === 0) return null;
+  return (
+    <div
+      className="px-4 pb-2 text-[10.5px] text-zinc-400 leading-snug"
+      title="Wieviele Treffer enthalten den Original-Begriff im Text direkt — der Rest kam über die Synonyme oben."
+    >
+      direkt „{query}": <span className="tabular-nums">{parts.join(" · ")}</span>
+    </div>
+  );
+}
+
 function ResultRow({
   flat,
   idx,
   selected,
   onHover,
   onClick,
+  terms,
 }: {
   flat: FlatHit;
   idx: number;
   selected: boolean;
   onHover: () => void;
   onClick: () => void;
+  terms: string[];
 }) {
   const cls = `flex items-center gap-3 px-4 py-2 cursor-pointer ${
     selected ? "bg-zinc-100" : ""
@@ -300,34 +476,38 @@ function ResultRow({
 
   return (
     <div data-idx={idx} className={cls} onMouseEnter={onHover} onClick={onClick}>
-      {renderHit(flat.hit)}
+      {renderHit(flat.hit, terms)}
     </div>
   );
 }
 
-function renderHit(hit: SearchHit) {
+function renderHit(hit: SearchHit, terms: string[]) {
   switch (hit.type) {
     case "politician":
-      return <PoliticianRow hit={hit} />;
+      return <PoliticianRow hit={hit} terms={terms} />;
     case "topic":
-      return <TopicRow hit={hit} />;
+      return <TopicRow hit={hit} terms={terms} />;
     case "speech":
-      return <SpeechRow hit={hit} />;
+      return <SpeechRow hit={hit} terms={terms} />;
     case "vote":
-      return <VoteRow hit={hit} />;
+      return <VoteRow hit={hit} terms={terms} />;
     case "drucksache":
-      return <DrucksacheRow hit={hit} />;
+      return <DrucksacheRow hit={hit} terms={terms} />;
   }
 }
 
-function PoliticianRow({ hit }: { hit: PoliticianHit }) {
+function PoliticianRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) {
   return (
     <>
-      <div className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center shrink-0">
-        <User className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
-      </div>
+      <PoliticianAvatar
+        photoUrl={hit.photo_url}
+        firstName={hit.first_name}
+        lastName={hit.last_name}
+        party={hit.party}
+        size="sm"
+      />
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{hit.name}</div>
+        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.name, terms)}</div>
         {hit.subtitle && (
           <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 truncate">
             {hit.party && (
@@ -343,14 +523,14 @@ function PoliticianRow({ hit }: { hit: PoliticianHit }) {
   );
 }
 
-function TopicRow({ hit }: { hit: TopicHit }) {
+function TopicRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   return (
     <>
       <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
         <ListTree className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{hit.title}</div>
+        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.title, terms)}</div>
         <div className="text-[11.5px] text-zinc-500 truncate">
           TOP {hit.topic_number} · {hit.speech_count} Reden
           {hit.session_date && ` · ${formatGermanDate(hit.session_date)}`}
@@ -360,14 +540,30 @@ function TopicRow({ hit }: { hit: TopicHit }) {
   );
 }
 
-function SpeechRow({ hit }: { hit: SpeechHit }) {
+function formatTonalitaet(raw: string | null): string | null {
+  if (!raw) return null;
+  return raw.replace(/_/g, " ");
+}
+
+function SpeechRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
+  const ton = formatTonalitaet(hit.tonalitaet);
   return (
     <>
       <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
         <MessageSquare className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{hit.snippet}</div>
+        <div className="flex items-center gap-2">
+          <div className="text-[13.5px] text-zinc-900 truncate flex-1 min-w-0">{highlight(hit.snippet, terms)}</div>
+          {ton && (
+            <span
+              className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
+              title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /design/linear/methodik)"
+            >
+              {ton}
+            </span>
+          )}
+        </div>
         <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 truncate">
           {hit.party && (
             <span
@@ -384,14 +580,14 @@ function SpeechRow({ hit }: { hit: SpeechHit }) {
   );
 }
 
-function VoteRow({ hit }: { hit: VoteHit }) {
+function VoteRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   return (
     <>
       <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
         <VoteIcon className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{hit.label}</div>
+        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.label, terms)}</div>
         {hit.poll_date && (
           <div className="text-[11.5px] text-zinc-500">
             Abstimmung · {formatGermanDate(hit.poll_date)}
@@ -402,14 +598,14 @@ function VoteRow({ hit }: { hit: VoteHit }) {
   );
 }
 
-function DrucksacheRow({ hit }: { hit: DrucksacheHit }) {
+function DrucksacheRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) {
   return (
     <>
       <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
         <FileText className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{hit.title}</div>
+        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.title, terms)}</div>
         <div className="text-[11.5px] text-zinc-500 truncate">
           {hit.vorgangstyp ?? "Drucksache"}
           {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
