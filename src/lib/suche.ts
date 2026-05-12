@@ -1,5 +1,6 @@
 import { getDb, searchPoliticiansDb } from "@/lib/db";
 import { expandQuery } from "@/lib/synonyms";
+import { ensureSearchFTS, ftsMatchClause, FTS_TABLES } from "@/lib/search-fts";
 
 export type SearchHitType = "politician" | "speech" | "topic" | "vote" | "drucksache";
 
@@ -49,6 +50,8 @@ export interface DrucksacheHit {
   drucksache_nr: string | null;
   vorgangstyp: string | null;
   date: string | null;
+  snippet: string | null;       // Erste ~120 Zeichen der Zusammenfassung
+  batch_class: string | null;   // klein/mittel/gross/antwort/regierung
 }
 
 export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit;
@@ -126,6 +129,11 @@ export function search(rawQuery: string): SearchResults {
 
   const db = getDb();
   ensureLowerDe(db);
+  ensureSearchFTS(db);
+
+  // FTS5-Match-Strings (für speeches + activities)
+  const ftsAllTerms = ftsMatchClause([query, ...expansions]);
+  const ftsOriginalOnly = ftsMatchClause([query]);
 
   // 1. Personen — KEINE Synonym-Erweiterung (Namen sind Eigennamen)
   // High-limit + slice, weil searchPoliticiansDb keinen separaten COUNT-Pfad exportiert
@@ -182,32 +190,35 @@ export function search(rawQuery: string): SearchResults {
         .get(...originalPatterns) as { n: number }).n
     : totalTopics;
 
-  // 3. Reden via speech_analyses_v2.zusammenfassung_2_saetze
-  const speeches = db
-    .prepare(
-      `SELECT sa.rede_id,
-              ps.speaker, ps.party,
-              sess.datum as speech_date,
-              pt.title as topic_title,
-              sa.zusammenfassung_2_saetze as snippet,
-              sa.tonalitaet
-       FROM speech_analyses_v2 sa
-       LEFT JOIN plenar_speeches ps ON sa.speech_id = ps.id
-       LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
-       LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
-       WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}
-       ORDER BY sess.datum DESC
-       LIMIT ?`
-    )
-    .all(...patterns, PER_TYPE_LIMIT) as {
-    rede_id: string;
-    speaker: string | null;
-    party: string | null;
-    speech_date: string | null;
-    topic_title: string | null;
-    snippet: string;
-    tonalitaet: string | null;
-  }[];
+  // 3. Reden — FTS5 statt LIKE (vorher ~3s, jetzt <100ms)
+  const speeches = ftsAllTerms
+    ? (db
+        .prepare(
+          `SELECT sa.rede_id,
+                  ps.speaker, ps.party,
+                  sess.datum as speech_date,
+                  pt.title as topic_title,
+                  sa.zusammenfassung_2_saetze as snippet,
+                  sa.tonalitaet
+           FROM ${FTS_TABLES.speeches} fts
+           JOIN speech_analyses_v2 sa ON sa.speech_id = fts.speech_id
+           LEFT JOIN plenar_speeches ps ON sa.speech_id = ps.id
+           LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
+           LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
+           WHERE fts.snippet MATCH ?
+           ORDER BY sess.datum DESC
+           LIMIT ?`
+        )
+        .all(ftsAllTerms, PER_TYPE_LIMIT) as {
+        rede_id: string;
+        speaker: string | null;
+        party: string | null;
+        speech_date: string | null;
+        topic_title: string | null;
+        snippet: string;
+        tonalitaet: string | null;
+      }[])
+    : [];
 
   const speechHits: SpeechHit[] = speeches.map((s) => ({
     type: "speech",
@@ -220,20 +231,17 @@ export function search(rawQuery: string): SearchResults {
     tonalitaet: s.tonalitaet,
   }));
 
-  const totalSpeeches = (db
-    .prepare(
-      `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
-       WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}`
-    )
-    .get(...patterns) as { n: number }).n;
-  const totalSpeechesOriginal = hasExpansions
+  const totalSpeeches = ftsAllTerms
     ? (db
-        .prepare(
-          `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
-           WHERE ${likeOr("sa.zusammenfassung_2_saetze", 1)}`
-        )
-        .get(...originalPatterns) as { n: number }).n
-    : totalSpeeches;
+        .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?`)
+        .get(ftsAllTerms) as { n: number }).n
+    : 0;
+  const totalSpeechesOriginal =
+    hasExpansions && ftsOriginalOnly
+      ? (db
+          .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?`)
+          .get(ftsOriginalOnly) as { n: number }).n
+      : totalSpeeches;
 
   // 4. Votes via poll_label
   const votes = db
@@ -268,46 +276,64 @@ export function search(rawQuery: string): SearchResults {
         .get(...originalPatterns) as { n: number }).n
     : totalVotes;
 
-  // 5. Drucksachen via activities.titel
-  const drucksachen = db
-    .prepare(
-      `SELECT id, titel, drucksache_nr, vorgangstyp, datum
-       FROM activities
-       WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL
-       ORDER BY datum DESC
-       LIMIT ?`
-    )
-    .all(...patterns, PER_TYPE_LIMIT) as {
-    id: string;
-    titel: string;
-    drucksache_nr: string | null;
-    vorgangstyp: string | null;
-    datum: string | null;
-  }[];
-
-  const drucksacheHits: DrucksacheHit[] = drucksachen.map((d) => ({
-    type: "drucksache",
-    id: d.id,
-    title: d.titel,
-    drucksache_nr: d.drucksache_nr,
-    vorgangstyp: d.vorgangstyp,
-    date: d.datum,
-  }));
-
-  const totalDrucksachen = (db
-    .prepare(
-      `SELECT COUNT(*) as n FROM activities
-       WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL`
-    )
-    .get(...patterns) as { n: number }).n;
-  const totalDrucksachenOriginal = hasExpansions
+  // 5. Drucksachen — neue FTS5-Tabelle drucksachen_fts mit titel (= echter DS-Titel
+  // aus activities.thema) + zusammenfassung + kerninhalt + thema_tags.
+  // Ein Hit pro Drucksache (dedup'd auf drucksache_nr-Ebene).
+  const drucksachen = ftsAllTerms
     ? (db
         .prepare(
-          `SELECT COUNT(*) as n FROM activities
-           WHERE (${likeOr("titel", 1)}) AND drucksache_nr IS NOT NULL`
+          `SELECT fts.drucksache_nr, fts.titel, fts.zusammenfassung,
+                  an.batch_class,
+                  COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=fts.drucksache_nr LIMIT 1)) AS datum
+           FROM ${FTS_TABLES.drucksachen} fts
+           LEFT JOIN drucksache_analyses an ON an.drucksache_nr = fts.drucksache_nr
+           LEFT JOIN drucksache_texts t ON t.drucksache_nr = fts.drucksache_nr
+           WHERE ${FTS_TABLES.drucksachen} MATCH ?
+           ORDER BY datum DESC
+           LIMIT ?`
         )
-        .get(...originalPatterns) as { n: number }).n
-    : totalDrucksachen;
+        .all(ftsAllTerms, PER_TYPE_LIMIT) as {
+        drucksache_nr: string;
+        titel: string;
+        zusammenfassung: string;
+        batch_class: string | null;
+        datum: string | null;
+      }[])
+    : [];
+
+  const drucksacheHits: DrucksacheHit[] = drucksachen.map((d) => {
+    const fullSummary = d.zusammenfassung ?? "";
+    const snippet = fullSummary.length > 140 ? fullSummary.slice(0, 137) + "…" : fullSummary;
+    return {
+      type: "drucksache",
+      id: d.drucksache_nr,
+      title: d.titel || `Drucksache ${d.drucksache_nr}`,
+      drucksache_nr: d.drucksache_nr,
+      vorgangstyp: null,
+      date: d.datum,
+      snippet: snippet || null,
+      batch_class: d.batch_class,
+    };
+  });
+
+  const totalDrucksachen = ftsAllTerms
+    ? (db
+        .prepare(
+          `SELECT COUNT(*) as n FROM ${FTS_TABLES.drucksachen}
+           WHERE ${FTS_TABLES.drucksachen} MATCH ?`
+        )
+        .get(ftsAllTerms) as { n: number }).n
+    : 0;
+  const totalDrucksachenOriginal =
+    hasExpansions && ftsOriginalOnly
+      ? (db
+          .prepare(
+            `SELECT COUNT(*) as n FROM ${FTS_TABLES.activities} fts
+             JOIN activities a ON a.id = fts.activity_id
+             WHERE fts.titel MATCH ? AND a.drucksache_nr IS NOT NULL`
+          )
+          .get(ftsOriginalOnly) as { n: number }).n
+      : totalDrucksachen;
 
   return {
     query,
@@ -388,6 +414,10 @@ export function searchByType(
 
   const db = getDb();
   ensureLowerDe(db);
+  ensureSearchFTS(db);
+
+  const ftsAllTerms = ftsMatchClause([query, ...expansions]);
+  const ftsOriginalOnly = ftsMatchClause([query]);
 
   switch (type) {
     case "politicians": {
@@ -452,20 +482,16 @@ export function searchByType(
       return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
     }
     case "speeches": {
+      if (!ftsAllTerms) return empty;
       const total = (db
-        .prepare(
-          `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
-           WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}`
-        )
-        .get(...patterns) as { n: number }).n;
-      const totalOriginal = hasExpansions
-        ? (db
-            .prepare(
-              `SELECT COUNT(*) as n FROM speech_analyses_v2 sa
-               WHERE ${likeOr("sa.zusammenfassung_2_saetze", 1)}`
-            )
-            .get(...originalPatterns) as { n: number }).n
-        : total;
+        .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?`)
+        .get(ftsAllTerms) as { n: number }).n;
+      const totalOriginal =
+        hasExpansions && ftsOriginalOnly
+          ? (db
+              .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?`)
+              .get(ftsOriginalOnly) as { n: number }).n
+          : total;
       const rows = db
         .prepare(
           `SELECT sa.rede_id, ps.speaker, ps.party,
@@ -473,15 +499,16 @@ export function searchByType(
                   pt.title as topic_title,
                   sa.zusammenfassung_2_saetze as snippet,
                   sa.tonalitaet
-           FROM speech_analyses_v2 sa
+           FROM ${FTS_TABLES.speeches} fts
+           JOIN speech_analyses_v2 sa ON sa.speech_id = fts.speech_id
            LEFT JOIN plenar_speeches ps ON sa.speech_id = ps.id
            LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
            LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
-           WHERE ${likeOr("sa.zusammenfassung_2_saetze", patterns.length)}
+           WHERE fts.snippet MATCH ?
            ORDER BY sess.datum DESC
            LIMIT ? OFFSET ?`
         )
-        .all(...patterns, safePageSize, offset) as {
+        .all(ftsAllTerms, safePageSize, offset) as {
         rede_id: string;
         speaker: string | null;
         party: string | null;
@@ -537,43 +564,55 @@ export function searchByType(
       return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
     }
     case "drucksachen": {
+      if (!ftsAllTerms) return empty;
       const total = (db
         .prepare(
-          `SELECT COUNT(*) as n FROM activities
-           WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL`
+          `SELECT COUNT(*) as n FROM ${FTS_TABLES.drucksachen}
+           WHERE ${FTS_TABLES.drucksachen} MATCH ?`
         )
-        .get(...patterns) as { n: number }).n;
-      const totalOriginal = hasExpansions
-        ? (db
-            .prepare(
-              `SELECT COUNT(*) as n FROM activities
-               WHERE (${likeOr("titel", 1)}) AND drucksache_nr IS NOT NULL`
-            )
-            .get(...originalPatterns) as { n: number }).n
-        : total;
+        .get(ftsAllTerms) as { n: number }).n;
+      const totalOriginal =
+        hasExpansions && ftsOriginalOnly
+          ? (db
+              .prepare(
+                `SELECT COUNT(*) as n FROM ${FTS_TABLES.drucksachen}
+                 WHERE ${FTS_TABLES.drucksachen} MATCH ?`
+              )
+              .get(ftsOriginalOnly) as { n: number }).n
+          : total;
       const rows = db
         .prepare(
-          `SELECT id, titel, drucksache_nr, vorgangstyp, datum
-           FROM activities
-           WHERE (${likeOr("titel", patterns.length)}) AND drucksache_nr IS NOT NULL
+          `SELECT fts.drucksache_nr, fts.titel, fts.zusammenfassung,
+                  an.batch_class,
+                  COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=fts.drucksache_nr LIMIT 1)) AS datum
+           FROM ${FTS_TABLES.drucksachen} fts
+           LEFT JOIN drucksache_analyses an ON an.drucksache_nr = fts.drucksache_nr
+           LEFT JOIN drucksache_texts t ON t.drucksache_nr = fts.drucksache_nr
+           WHERE ${FTS_TABLES.drucksachen} MATCH ?
            ORDER BY datum DESC
            LIMIT ? OFFSET ?`
         )
-        .all(...patterns, safePageSize, offset) as {
-        id: string;
+        .all(ftsAllTerms, safePageSize, offset) as {
+        drucksache_nr: string;
         titel: string;
-        drucksache_nr: string | null;
-        vorgangstyp: string | null;
+        zusammenfassung: string;
+        batch_class: string | null;
         datum: string | null;
       }[];
-      const items: DrucksacheHit[] = rows.map((d) => ({
-        type: "drucksache",
-        id: d.id,
-        title: d.titel,
-        drucksache_nr: d.drucksache_nr,
-        vorgangstyp: d.vorgangstyp,
-        date: d.datum,
-      }));
+      const items: DrucksacheHit[] = rows.map((d) => {
+        const fullSummary = d.zusammenfassung ?? "";
+        const snippet = fullSummary.length > 140 ? fullSummary.slice(0, 137) + "…" : fullSummary;
+        return {
+          type: "drucksache",
+          id: d.drucksache_nr,
+          title: d.titel || `Drucksache ${d.drucksache_nr}`,
+          drucksache_nr: d.drucksache_nr,
+          vorgangstyp: null,
+          date: d.datum,
+          snippet: snippet || null,
+          batch_class: d.batch_class,
+        };
+      });
       return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
     }
   }

@@ -50,7 +50,7 @@ function flatten(results: SearchResults): FlatHit[] {
   results.topics.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/protokolle`,
+      href: `/design/linear/protokolle/top/${h.topic_id}`,
       sectionLabel: "Tagesordnungspunkte",
     })
   );
@@ -69,7 +69,13 @@ function flatten(results: SearchResults): FlatHit[] {
     })
   );
   results.drucksachen.forEach((h) =>
-    flat.push({ hit: h, href: `/design/linear/protokolle`, sectionLabel: "Drucksachen" })
+    flat.push({
+      hit: h,
+      href: h.drucksache_nr
+        ? `/design/linear/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
+        : `/design/linear/protokolle`,
+      sectionLabel: "Drucksachen",
+    })
   );
   return flat;
 }
@@ -598,16 +604,31 @@ function VoteRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   );
 }
 
+const dsKlasseShort: Record<string, string> = {
+  klein: "Kl. Anfrage",
+  mittel: "Bericht",
+  gross: "Gesetzentwurf",
+  antwort: "BReg-Antwort",
+  regierung: "Reg.-Vorlage",
+  administrativ: "Verwaltung",
+};
+
 function DrucksacheRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) {
+  const klasseLabel = hit.batch_class ? dsKlasseShort[hit.batch_class] ?? hit.batch_class : "Drucksache";
   return (
     <>
       <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
         <FileText className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.title, terms)}</div>
-        <div className="text-[11.5px] text-zinc-500 truncate">
-          {hit.vorgangstyp ?? "Drucksache"}
+        <div className="text-[13.5px] text-zinc-900 truncate font-medium">{highlight(hit.title, terms)}</div>
+        {hit.snippet && (
+          <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
+            {highlight(hit.snippet, terms)}
+          </div>
+        )}
+        <div className="text-[10.5px] text-zinc-500 truncate mt-0.5">
+          {klasseLabel}
           {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
           {hit.date && ` · ${formatGermanDate(hit.date)}`}
         </div>
