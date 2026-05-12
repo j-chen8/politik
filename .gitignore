@@ -57,11 +57,18 @@ politik.db.snapshot-*
 /data/plenarprotokolle_xml/*.xml
 /data/stammdaten/
 
+# CSV-Exports (reproduzierbar via scripts/export-tables-csv.ts)
+/data/exports/
+
 # generated assets (regeneratable via scripts/seed-photos-wikidata.ts)
 /public/photos/
+
+# Drucksachen-PDFs (reproduzierbar via scripts/download-missing-drucksachen.sh, 1.8 GB)
+/data/drucksachen/
 
 # playwright mcp temp
 .playwright-mcp/
 
 # screenshots
 *.png
+.groq-rate-state.json
