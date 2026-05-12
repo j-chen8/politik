@@ -2230,3 +2230,334 @@ export function getClosestPolls(limit: number = 3): ClosestPollRow[] {
     LIMIT ?
   `).all(limit) as ClosestPollRow[];
 }
+// ============================================================
+// Drucksachen-Detail (für Letterboxd-Style Detail-Page)
+// ============================================================
+
+export interface DrucksacheDetail {
+  drucksache_nr: string;
+  batch_class: string;
+  pages: number | null;
+  tokens_estimate: number | null;
+  pdf_url: string | null;
+  // analyse
+  zusammenfassung: string | null;
+  kerninhalt: string[] | null;  // parsed JSON array
+  thema: string[];               // from thema CSV
+  tonalitaet: string | null;
+  betroffene_gruppen: string | null;
+  fraktion: string | null;
+  dokumenttyp: string | null;
+  regelung: string | null;
+  begruendung: string | null;
+  auswirkung: string | null;
+  topic_drift_audit: string[] | null;
+  model: string | null;
+  prompt_version: string | null;
+  generated_at: string | null;
+  // header (Titel + Datum aus activities)
+  titel: string | null;
+  datum: string | null;
+  drucksache_typ: string | null;
+}
+
+export interface MitzeichnerRow {
+  politician_id: number;
+  first_name: string;
+  last_name: string;
+  party_label: string | null;
+  photo_url: string | null;
+  aktivitaetsart: string;
+  urheber: string | null;
+}
+
+export interface RelatedSpeechRow {
+  politician_id: number;
+  first_name: string;
+  last_name: string;
+  party_label: string | null;
+  datum: string | null;
+  aktivitaetsart: string;
+  typ: string | null;
+  titel: string | null;
+}
+
+export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
+  const db = getDb();
+  const row = db.prepare(`
+    SELECT
+      a.drucksache_nr, a.batch_class,
+      t.pages, t.tokens_estimate,
+      a.zusammenfassung, a.kerninhalt, a.thema, a.tonalitaet,
+      a.betroffene_gruppen, a.fraktion, a.dokumenttyp,
+      a.regelung, a.begruendung, a.auswirkung, a.topic_drift_audit,
+      a.model, a.prompt_version, a.generated_at,
+      (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+      (SELECT drucksache_typ FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS drucksache_typ,
+      (SELECT pdf_url FROM activities WHERE drucksache_nr=a.drucksache_nr AND pdf_url IS NOT NULL LIMIT 1) AS pdf_url
+    FROM drucksache_analyses a
+    JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+    WHERE a.drucksache_nr = ? AND a.analyze_error IS NULL
+  `).get(nr) as any;
+  if (!row) return null;
+
+  let kerninhaltParsed: string[] | null = null;
+  if (row.kerninhalt) {
+    try {
+      const v = JSON.parse(row.kerninhalt);
+      if (Array.isArray(v)) kerninhaltParsed = v.map(String);
+    } catch {}
+  }
+  let driftParsed: string[] | null = null;
+  if (row.topic_drift_audit) {
+    try {
+      const v = JSON.parse(row.topic_drift_audit);
+      if (Array.isArray(v)) driftParsed = v.map(String);
+    } catch {}
+  }
+  const themaArr = (row.thema ?? "").split(",").map((s: string) => s.trim()).filter(Boolean);
+
+  return {
+    drucksache_nr: row.drucksache_nr,
+    batch_class: row.batch_class,
+    pages: row.pages,
+    tokens_estimate: row.tokens_estimate,
+    pdf_url: row.pdf_url,
+    zusammenfassung: row.zusammenfassung,
+    kerninhalt: kerninhaltParsed,
+    thema: themaArr,
+    tonalitaet: row.tonalitaet,
+    betroffene_gruppen: row.betroffene_gruppen,
+    fraktion: row.fraktion,
+    dokumenttyp: row.dokumenttyp,
+    regelung: row.regelung,
+    begruendung: row.begruendung,
+    auswirkung: row.auswirkung,
+    topic_drift_audit: driftParsed,
+    model: row.model,
+    prompt_version: row.prompt_version,
+    generated_at: row.generated_at,
+    titel: row.titel,
+    datum: row.datum,
+    drucksache_typ: row.drucksache_typ,
+  };
+}
+
+export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
+  const db = getDb();
+  // Nur die Initiierenden / Mit-Einreichenden — keine Plenarbeiträge
+  return db.prepare(`
+    SELECT DISTINCT a.politician_id, a.aktivitaetsart, a.urheber,
+           p.first_name, p.last_name, p.photo_url,
+           pa.label AS party_label
+    FROM activities a
+    JOIN politicians p ON p.id = a.politician_id
+    LEFT JOIN parties pa ON pa.id = p.party_id
+    WHERE a.drucksache_nr = ?
+      AND a.aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')
+    ORDER BY p.last_name, p.first_name
+  `).all(nr) as MitzeichnerRow[];
+}
+
+export function getRelatedSpeechesForDrucksache(nr: string, limit: number = 20): RelatedSpeechRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT a.politician_id, a.aktivitaetsart, a.typ, a.titel, a.datum,
+           p.first_name, p.last_name,
+           pa.label AS party_label
+    FROM activities a
+    JOIN politicians p ON p.id = a.politician_id
+    LEFT JOIN parties pa ON pa.id = p.party_id
+    WHERE a.drucksache_nr = ?
+      AND a.aktivitaetsart IN ('Rede','Kurzintervention','Zwischenfrage','Erwiderung','Frage','Antwort')
+    ORDER BY a.datum DESC, p.last_name
+    LIMIT ?
+  `).all(nr, limit) as RelatedSpeechRow[];
+}
+
+// ============================================================
+// Drucksachen-Related (Verfahrens-Zusammenhang + Themen-Ähnliche)
+// ============================================================
+
+export interface RelatedDsRow {
+  drucksache_nr: string;
+  titel: string | null;
+  batch_class: string;
+  datum: string | null;
+  tonalitaet: string | null;
+  zusammenfassung: string | null;
+  fraktion: string | null;
+  thema: string | null;
+}
+
+export function getDrucksacheVerfahren(nr: string): {
+  parent: RelatedDsRow | null;     // Wenn diese DS eine Antwort ist: die zugehörige Anfrage
+  children: RelatedDsRow[];        // Wenn diese DS eine Anfrage ist: die Antworten
+} {
+  const db = getDb();
+
+  // Parent: was hat DIESE DS referenziert?
+  const parentNrRow = db.prepare(`SELECT referenced_drucksache_nr FROM drucksache_texts WHERE drucksache_nr=?`).get(nr) as { referenced_drucksache_nr: string | null } | undefined;
+  const parentNr = parentNrRow?.referenced_drucksache_nr ?? null;
+
+  let parent: RelatedDsRow | null = null;
+  if (parentNr) {
+    parent = (db.prepare(`
+      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+             (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+             COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+      FROM drucksache_analyses a
+      JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+      WHERE a.drucksache_nr=? AND a.analyze_error IS NULL
+    `).get(parentNr) as RelatedDsRow | undefined) ?? null;
+  }
+
+  // Children: welche DS referenzieren DIESE?
+  const children = db.prepare(`
+    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+    FROM drucksache_analyses a
+    JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+    WHERE t.referenced_drucksache_nr = ? AND a.analyze_error IS NULL
+    ORDER BY datum DESC
+  `).all(nr) as RelatedDsRow[];
+
+  return { parent, children };
+}
+
+export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
+  const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
+  if (themas.length === 0) return [];
+
+  const db = getDb();
+  // Für jeden Thema-Tag: finde DS die diesen Tag enthalten. Scoring per Anzahl Overlap.
+  const likeClauses = themas.map(() => `(a.thema LIKE '%' || ? || '%')`).join(" + ");
+  const params: any[] = themas.slice();
+  params.push(nr);
+  params.push(limit);
+
+  return db.prepare(`
+    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+           (${likeClauses}) AS overlap_score
+    FROM drucksache_analyses a
+    JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+    WHERE a.analyze_error IS NULL
+      AND a.drucksache_nr != ?
+      AND (${themas.map(() => `a.thema LIKE '%' || ? || '%'`).join(" OR ")})
+    GROUP BY a.drucksache_nr
+    ORDER BY overlap_score DESC, datum DESC
+    LIMIT ?
+  `).all(
+    ...themas,                                  // overlap_score CASEs
+    nr,                                          // != nr
+    ...themas,                                   // OR clauses
+    limit,
+  ) as RelatedDsRow[];
+}
+
+// ============================================================
+// Drucksachen einer Politiker:in (für Profilseite-Section)
+// ============================================================
+
+export interface PoliticianDrucksacheRow {
+  drucksache_nr: string;
+  batch_class: string;
+  titel: string | null;
+  zusammenfassung: string | null;
+  thema: string;
+  tonalitaet: string | null;
+  fraktion: string | null;
+  dokumenttyp: string | null;
+  datum: string | null;
+  aktivitaetsart: string;     // wie diese:r MdB beteiligt war
+  // Aggregat: wie viele Mitzeichner insgesamt?
+  total_mitzeichner: number;
+}
+
+/**
+ * Findet alle Drucksachen (klein/gross/etc.), bei denen der/die Politiker:in
+ * als Einbringer:in oder Mitzeichner:in beteiligt war.
+ * Plenarbeiträge (Reden/Fragen) sind in `parlArbeit` schon abgedeckt.
+ */
+export function getDrucksachenForPolitician(politicianId: number, limit: number = 50): PoliticianDrucksacheRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT DISTINCT
+      a.drucksache_nr,
+      an.batch_class,
+      (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      an.zusammenfassung,
+      an.thema,
+      an.tonalitaet,
+      an.fraktion,
+      an.dokumenttyp,
+      COALESCE(t.publication_date, a.datum) AS datum,
+      a.aktivitaetsart,
+      (SELECT COUNT(DISTINCT politician_id) FROM activities
+        WHERE drucksache_nr=a.drucksache_nr
+          AND aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')) AS total_mitzeichner
+    FROM activities a
+    JOIN drucksache_analyses an ON an.drucksache_nr = a.drucksache_nr
+    JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+    WHERE a.politician_id = ?
+      AND an.analyze_error IS NULL
+      AND a.aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')
+    ORDER BY datum DESC NULLS LAST
+    LIMIT ?
+  `).all(politicianId, limit) as PoliticianDrucksacheRow[];
+}
+
+// ============================================================
+// DS ↔ Vote-Verknüpfung (für Detail-Page Section)
+// ============================================================
+
+export interface DsPollRow {
+  poll_id: number;
+  poll_label: string;
+  poll_date: string;
+  poll_url: string | null;
+  match_score: number;
+  yes: number;
+  no: number;
+  abstain: number;
+  noShow: number;
+  total: number;
+}
+
+export function getPollsForDrucksache(nr: string): DsPollRow[] {
+  const db = getDb();
+  // Tabelle könnte fehlen wenn matcher nicht gelaufen — graceful
+  try {
+    return db.prepare(`
+      SELECT
+        dp.poll_id,
+        v.poll_label,
+        v.poll_date,
+        v.poll_url,
+        dp.match_score,
+        SUM(CASE WHEN v.vote='yes' THEN 1 ELSE 0 END) AS yes,
+        SUM(CASE WHEN v.vote='no' THEN 1 ELSE 0 END) AS no,
+        SUM(CASE WHEN v.vote='abstain' THEN 1 ELSE 0 END) AS abstain,
+        SUM(CASE WHEN v.vote='no_show' THEN 1 ELSE 0 END) AS noShow,
+        COUNT(*) AS total
+      FROM drucksache_polls dp
+      JOIN votes v ON v.poll_id = dp.poll_id
+      WHERE dp.drucksache_nr = ?
+      GROUP BY dp.poll_id, v.poll_label, v.poll_date, v.poll_url, dp.match_score
+      ORDER BY v.poll_date DESC
+    `).all(nr) as DsPollRow[];
+  } catch { return []; }
+}
+
+export function getDrucksachenForPoll(pollId: number): { drucksache_nr: string; match_score: number }[] {
+  const db = getDb();
+  try {
+    return db.prepare(`
+      SELECT drucksache_nr, match_score FROM drucksache_polls WHERE poll_id=? ORDER BY match_score DESC
+    `).all(pollId) as { drucksache_nr: string; match_score: number }[];
+  } catch { return []; }
+}
