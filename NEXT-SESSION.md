@@ -1,111 +1,113 @@
-# Next Session — Pickup-Kontext (Stand: 2026-05-13)
+# Next Session — Pickup-Kontext (Stand: 2026-05-13, später Abend)
 
 > **Erste Anlaufstelle:** Diese Datei. Cross-Track-Landkarte → `docs/OPEN-TRACKS.md`.
 
 ---
 
-## 🎯 Drucksachen-Track: HEUTE FERTIG (10 Commits)
+## ✅ Heute fertig: Legal-Pages + Landing/Methodik-Polish (2 Commits)
 
 ```
-e53eb50 OPEN-TRACKS.md: Drucksachen-Track vollendet
-9976f6f Drucksachen-Detail: „Weitere Drucksachen der Fraktion" Section
-c8e54f9 Drucksachen in Cmd+K-Suche: FTS5-Index + Detail-Page-Link
-7e9140c OPEN-TRACKS.md: zentrale Cross-Track-Landkarte
-5b2b857 Politik-Glossar (25 Begriffe) + Wikipedia-Style Hover-Component
-6568ce7 Drucksachen-Detail-Page (Letterboxd-Style) + DB-Queries
-8f65a32 Drucksachen-Verlinkung: Antwort↔Anfrage + Publication-Date + Poll-Match
-85fb53f Drucksachen v1.1: Tiered-Rerun für 209 heavy-truncated (50→700 W)
-7250e59 Drucksachen Topic-Drift-Mapping: 1.143→7 unaufgelöste Drift-Tags
-bb0e81b Drucksachen-Pipeline-Polish: XML-Tool-Call-Leakage repariert
-cdff8a5 Drucksachen-LLM-Pipeline Foundation: 6 batch_class + Tiered-Prompts
+46a3418 Landing + Methodik: Polish für externe Reviewer
+bec9f07 Impressum + Datenschutz: c/o COCENTER + Proton statt Privatdaten
 ```
 
-**Stand der Drucksachen-Schicht:**
-- 5.183 LLM-Analysen sauber (0 XML-Leaks, 0 Errors, 99,7 % konkretes Thema)
-- Detail-Page `/design/linear/aktivitaeten/[ds-nr]` mit 8 Sections (Hero, Zusammenfassung, Kerninhalt, Details, Mitzeichner+Fraktionsverteilung, Plenum, Polls, Verfahren, Fraktions-DS, Ähnliche)
-- 3 Navigations-Kreise (Anfrage↔Antwort, DS↔Vote, Fraktions-DS)
-- Politik-Glossar (`/glossar` + Hover-Component)
-- Cmd+K-Suche mit FTS5 auf LLM-Output (Snippet + Klassen-Label, Link auf Detail-Page)
+### Legal-Pages-Stack (`bec9f07`)
+- **Impressum-Adresse:** [alte Privatadresse] → **c/o COCENTER, Koppoldstr. 1, 86551 Aichach** (Anschrift.net gebucht, ~6,70 €/Monat, scan-only, jederzeit kündbar). Geändert in §5 DDG, §18 MStV und in der Datenschutz-„Verantwortliche Stelle".
+- **Email:** `[alte Privat-Email]` → **`hallo@jinsheng-chen.de`** (Proton Mail Free, 0 €). Geändert an 8 Stellen in Impressum + Datenschutz.
+- **Default-Impressum gelöscht** (`src/app/impressum/`); `SiteChrome.tsx`-Footer-Link zeigt jetzt auf Linear-Impressum.
 
-**Kosten heute:** ~$11 (Tiered-Rerun-Batch ~$10,50 + LLM-Matches + Smoke-Tests)
+### Landing-Polish (`46a3418`, Teil 1)
+- **Methodik als 6. Top-Nav-Eintrag** in Linear-Header (`BookOpen`-Icon, zwischen Protokolle und Suche). Vorher nur im Footer = praktisch unsichtbar.
+- **Trust-Pitch live aus DB:** `641 CVs · 9.272 Reden · 5.183 Drucksachen` KI-aufbereitet, jede Zahl mit eigenem Mikro-„Methodik"-Link. Konsistent zu den Wirksamkeit-Stats auf der Methodik-Page selbst.
+- **LatestActivityStrip** zwischen Hero und Pop-Hero — 3 Live-Karten (Plenarsitzung 75, Energiesteuer-Poll, Drucksache 21/5640) mit „Letzter Datenstand: 28. April 2026" oben rechts. Signalisiert dass die Seite lebt.
+
+### Methodik-Cleanup (`46a3418`, Teil 2)
+Agent-Audit hatte ergeben: 6 WRONG / 11 STALE / 4 DEAD / 5 BLOAT. Alles adressiert:
+- **DEAD:** Stufe 3 / Stufe 4 / Stufe 5.5 / Halluzinations-Reparatur **komplett gelöscht** — das war historische Phase-0–6-Llama-vs-Mistral-Cascade, längst durch Haiku-4.5-Single-Pass ersetzt. Plus tote Helper (readVerdicts, VerdictTable etc.).
+- **WRONG:** Mandrella-Backfill-Notiz raus (war längst gefüllt). Llama-3.1-8B-Fallback raus (gibt's nicht). Plenarbeitrag-Typen-Tabelle live (war 10× falsch — z.B. fragestunde_antwort 39 → tatsächlich 1.822). 14.347 → 13.722 CV-Aussagen. Framing-Marker als „seit 2026-05-12 nicht im UI" markiert (35 % Halluzinations-Quote). Bias-Korrektur ehrlich: 400 generiert, nur 51 ans Frontend gemerged.
+- **STALE:** 11 Zahlen jetzt live aus DB via neuem `getMethodikCounts()`-Helper.
+- **BLOAT:** „Warum Cascade"-Box 5→2 Bullets, „Warum Reden-Pipeline anders"-Box 5→2 Bullets, Halluzinations-Rate von ~60 auf ~25 ehrliche Zeilen umgeschrieben („wir haben keine veröffentlichungsreife Lower-Bound für die aktuelle Pipeline").
+- **NEU:** „Bekannte Pipeline-Pathologien" in `#coverage-bias` — 5 dokumentierte Limitationen (Bareiß-stale-page, leere AfD-Profile, Multi-Page-Biographien nicht traversiert, Source-Coherence-Recall ~13 %, Tonalitäts-Drift).
 
 ---
 
-## ⚡ Sofort-Start morgen — Demo-Launch (Hosting + Domain)
+## ⚠️ Beim Aufwachen — Lage prüfen
 
-Per `docs/OPEN-TRACKS.md` ist der **aktive Track** der Demo-Launch (Hosting + Domain für externe Validierung). Vorbereitung läuft, nächste Schritte:
+Dev-Server lief beim Schlafengehen im Hintergrund **auf Port 3000** (im LAN als `http://192.168.178.170:3000`). Wenn er noch lebt: kurze Smoke-Tests reichen, kein Neustart nötig. Sonst:
 
-### Reihenfolge (laut OPEN-TRACKS.md)
+```bash
+ps aux | grep "next dev" | grep -v grep | awk '{print $2}' | xargs -r kill
+rm -rf .next && npm run dev
+```
+
+**Was die Smoke-Tests zeigen sollten:**
+- `/design/linear` → Methodik im Top-Nav, Trust-Pitch zeigt 641/9.272/5.183, LatestActivityStrip mit 3 Karten
+- `/design/linear/methodik` → Wirksamkeit-Stats live, kein „Stufe 3/4/5.5" mehr in der Seitenleiste, neuer Block „Bekannte Pipeline-Pathologien" am Ende der Coverage-Bias-Sektion
+- `/design/linear/impressum` → c/o COCENTER Aichach + hallo@jinsheng-chen.de
+- `/design/linear/datenschutz` → dito
+
+---
+
+## 🎯 Sofort-Start morgen — Demo-Launch (Hosting + Domain)
+
+> Per `docs/OPEN-TRACKS.md` ist der aktive Track unverändert **Demo-Launch**. Impressum + Datenschutz + Polish sind jetzt aber **erledigt**, nicht mehr blocker. Direkt zur Hosting-Schicht.
+
+### Reihenfolge
 
 1. **Fly.io-Account anlegen** (fly.io, Email + Karten-Verify)
-2. **`npm run build` lokal testen** — Prod-Mode ist 10-400× schneller als Dev (siehe Memory `feedback_dev_vs_prod_performance`)
+2. **`npm run build` lokal testen** — Prod ist 10–400× schneller als Dev. Erst hier ehrlich messen, wo's hakt.
 3. **`Dockerfile` + `fly.toml` schreiben** — Volume für `politik.db` (1 GB Spielraum)
 4. **`fly deploy`** → URL kommt zurück
-5. **Pre-Versand-Polish-Check:** Landing-Page sauber? Methodik-Page erreichbar? Glossar-Hover auf Mobile? Cmd+K via Tunnel/Prod testen.
-6. **Domain wählen + registrieren** (INWX/Porkbun ~10 €/Jahr) — 5 Kandidaten:
+5. **Pre-Versand-Polish-Check** via Prod-URL:
+   - Landing sauber?
+   - Methodik-Page-Anker funktionieren (`#cascade`, `#reden-pipeline`, `#coverage-bias`)?
+   - Glossar-Hover auf Mobile?
+   - Cmd+K-Suche?
+6. **Domain wählen + registrieren** (INWX/Porkbun ~10 €/Jahr) — 5 Kandidaten unverändert:
    - `politik-puls.de`
    - `plenarpuls.de`
    - `wer-stimmt-wie.de`
    - `politikradar.de`
    - `bundes.tag`
-7. **Anschreiben an Journalisten** — verbunden mit Role-Model-Track
 
-### Status zum Aufwachen
+   **Hinweis:** Wenn Domain steht, Proton-Mail-Setup updaten — `kontakt@<domain>.de` kostet bei Proton allerdings Mail-Plus (~4 €/Mo). Alternative: Cloudflare-Email-Routing direkt vom Domain-Registrar an die bestehende `hallo@jinsheng-chen.de` weiterleiten (kostenlos).
 
-- **Cloudflare Quick-Tunnel war heute Abend live** auf `https://sub-gaps-tab-lat.trycloudflare.com` im Background-Task `bpwf867d5`. **Ephemeral** — wenn der Laptop schlief, ist die URL weg. Nur zum eigenen Vorab-Testen, NICHT an Journalisten verschicken.
-- **`next.config.ts` wurde geändert**: `allowedDevOrigins` enthält jetzt `*.trycloudflare.com`. Dev-Server-Restart ist pending — `next dev` (PID 1190115) lief noch mit alter Config beim Schlafengehen.
-- **Search-Bug via Tunnel** war kein Code-Bug — API liefert sauber, Frontend wurde nur vom HMR-Origin-Block lahmgelegt. Nach Restart sollte's funktionieren.
+7. **Anschreiben** an erste:n Journalist:in aus `docs/cold-email-targets.md`.
+
+### 🎯 Die eine wichtige Sache (Erinnerung — unverändert)
+
+> *„Ich schreib die Email, wenn mein Impressum fertig ist."*
+
+Impressum **mit echter c/o-Adresse + non-private Mail** ist jetzt fertig. Methodik-Page sieht journalistisch belastbar aus. Die nächste Aktion ist: **eine Email schreiben.** Vier Sätze. Eine Person. Modus 1 muss nicht wow sein, muss informativ sein.
 
 ---
 
-## ⚠️ Working-Tree-Drift (302 uncommitted files)
+## ⚠️ Working-Tree-Drift (unverändert ~300 Files)
 
-Was NICHT von Drucksachen-Track ist und in der Working-Tree liegt:
-
-- `src/app/design/linear/politiker/[id]/page.tsx` — Drucksachen-Section drin, mit fremden Refactor-Edits verwoben (`getActivityLabel` entfernt, `computeFactionLoyalty` weg, neue Funktions-Tier-Logik)
-- `src/lib/db.ts` — `getDataFreshness`-Function + PoliticianRow photo-Spalten von anderem Track
-- `next.config.ts` — `allowedDevOrigins` für LAN-Zugriff + heute neu `*.trycloudflare.com` für Tunnel
-- `data/ausschuss_protokolle/*.json`, `data/cv-*.json`, `data/photos/*` — Pipeline-Output anderer Tracks
-- ~5184 `data/drucksachen/*.pdf` — in .gitignore aufgenommen, werden nicht committet
-- diverse weitere `scripts/*.ts`, `src/app/*` aus anderen Tracks
-
-**Backup-Reset-Routine empfohlen** wenn andere Tracks weiterbearbeitet werden.
+Andere Tracks (Reden-Pipeline-Skripte, Foto-Track, CV-Cleanup-Outputs, Drucksachen-PDFs in `.gitignore`) liegen weiter in der Working-Tree, nicht committet. Wenn du an einem dieser Tracks weiterarbeiten willst, Backup-Reset-Routine wie immer.
 
 ---
 
 ## 📋 Quick-Commands
 
-**Dev-Server starten (mit Tunnel-Config):**
+**Dev-Server starten:**
 ```bash
 npm run dev
-# → http://192.168.178.170:3000/
+# → http://localhost:3000 (oder LAN: http://192.168.178.170:3000)
 ```
 
-**Prod-Build testen (Vorbereitung Demo-Deploy):**
+**Prod-Build testen (Vorbereitung Fly.io):**
 ```bash
 npm run build && npm start
-# Prod ist 10-400× schneller als Dev — Pages-Performance erst hier ehrlich messbar
+# Prod ist 10-400× schneller als Dev — Pages-Performance hier ehrlich
 ```
 
-**Status-Checks:**
+**Methodik-Live-Counts gegenchecken:**
 ```bash
-# DS-Pipeline OK?
-sqlite3 politik.db "SELECT COUNT(*) FROM drucksache_analyses WHERE analyze_error IS NULL"
-# → soll 5.183 zeigen
-
-# FTS-Index aktuell?
-sqlite3 politik.db "SELECT COUNT(*) FROM drucksachen_fts"
-# → soll 5.183 zeigen
+sqlite3 politik.db "SELECT COUNT(*) FROM politicians WHERE cv_summary IS NOT NULL"  # → 641
+sqlite3 politik.db "SELECT COUNT(DISTINCT rede_id) FROM speech_analyses_v2"          # → 9.272
+sqlite3 politik.db "SELECT COUNT(*) FROM drucksache_analyses WHERE analyze_error IS NULL"  # → 5.183
 ```
-
-**Wichtige Routen zum Vorab-Test (auch via Tunnel):**
-- `/` — Landing-Page (sauber für Versand?)
-- `/design/linear` — Übersicht
-- `/design/linear/aktivitaeten/21-3250` — Demo-DS Armutsbericht (massive-Tier, 600+ Wörter Summary mit Zahlen)
-- `/design/linear/aktivitaeten/21-477` — Demo-DS mit Verfahrens-Link auf Antwort 21/726
-- `/design/linear/aktivitaeten/21-1827` — Demo-DS Haushaltsgesetz mit namentlicher Abstimmung
-- `/design/linear/glossar` — 25 Begriffe, GitHub-Style-TOC
-- `/design/linear/methodik` — Trust-Anker für Externe
 
 ---
 
@@ -113,25 +115,9 @@ sqlite3 politik.db "SELECT COUNT(*) FROM drucksachen_fts"
 
 Für die komplette Landkarte aller offenen Tracks: **`docs/OPEN-TRACKS.md`**
 
-Dort dokumentiert nach Status:
-- 🟢 Aktiv: Demo-Launch (oben)
-- 🟡 Pausiert: Reden-Pipeline, CV-Pipeline, Foto-Track, Topic-Klassifikation, Vote-Topic-UI, Search-Phase-2, Landing-Page-Phase-2, Role-Model
-- 🔵 Phase-2-Backlog: PDF-Cover, Glossar breit, AI-Assist, Bundesrats-DS, etc.
-- 📐 Methodische Schulden: Quote-Validation 9 % Lücke, Source-Coherence 13 % Recall
+Status:
+- 🟢 Aktiv: **Demo-Launch** (Fly.io + Domain + erste Cold-Email)
+- 🟡 Pausiert: Reden-Pipeline, CV-Pipeline, Foto-Track, Topic-Klassifikation, Vote-Topic-UI, Search-Phase-2, Role-Model
+- 🔵 Phase-2-Backlog: PDF-Cover, Glossar breit, AI-Assist, Bundesrats-DS
+- 📐 Methodische Schulden: Two-Pass-Verifier für Framing-Marker, IAA-Studie für Tonalität, Ground-Truth-Sampling CV
 - 🚫 NICHT auf Agenda: PDF-Embedding, AI-Erklärer, volle Verfahrens-Pipeline
-
----
-
-## 🎯 Empfehlung erste Aktion morgen früh
-
-**Dev-Server-Restart**, damit `*.trycloudflare.com`-Config greift und Tunnel-Tests funktionieren:
-```bash
-# Alte Instanz killen
-ps aux | grep "next dev" | grep -v grep | awk '{print $2}' | xargs -r kill
-# Cache + neu starten
-rm -rf .next && npm run dev
-```
-
-**Dann:** Fly.io-Account anlegen + `npm run build` Prod-Test. Wenn alles grün, Dockerfile schreiben.
-
-Falls du erstmal ankommen willst: **5 Min Status-Check** der Demo-Routen oben — schauen ob alles funktioniert wie gestern Abend.

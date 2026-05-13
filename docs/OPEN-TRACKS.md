@@ -19,15 +19,237 @@
 
 **Verbleibender Rest (niedrige Priorität):**
 - Politiker-Profilseite-Edit (Drucksachen-Section) ist in der Working-Tree, mit fremden Track-Edits verwoben — uncommittet. Cherry-pick wenn andere Tracks sortiert sind.
-- 5 ungematchte Polls (Luxusflüge, CO2-Bepreisung-Abschaffung, Wahleinsprüche, Verbraucherrechte-Digital, Politikerbeleidigung-Streichung). Echte Edge-Cases.
+- ~~5 ungematchte Polls~~ → **gelöst durch Vote-↔-Drucksache Cross-Source-Audit am 2026-05-13** (siehe unten).
 - 13 Records mit `thema='Sonstiges'` (echte Long-Tail-Singletons).
 **Per-Track-Doc:** `docs/drucksachen-pipeline.md`
 
 ---
 
+## ✅ Parallel-Track 2026-05-13 (Pre-Launch-Tier-1-4-Sweep + Vote-DS-Cross-Audit)
+
+> Wurde parallel zum Drucksachen-Track gefahren. Eigene Working-Tree-Edits, eigene Commit-Geschichte. Die meisten Änderungen sind in der Working-Tree, nicht committet.
+
+### Vote-↔-Drucksache Cross-Source-Audit gegen Bundestag.de (Krone der Session)
+
+**Trigger:** User-Frage *„Macht das Bundestag.de nicht schon?"* + spezifisch: zu Vote-id=982 fehlte DS-Verknüpfung.
+
+**Pipeline aufgebaut:**
+- `scripts/audit-vote-drucksache-mapping.ts` — Crawler für Bundestag.de-Abstimmungs-Pages (IDs 900-1020), parst Datum + Topic + Drucksachen aus `<span class="a-link__label">…</span>` und `<span class="bt-date">…</span>`.
+- `audit_bundestag_polls` (neue DB-Tabelle) — Cache der 101 gescrapten Pages.
+- `scripts/auto-classify-vote-mapping.ts` — Klassifizierung CONFIRMED/EXTENDED/DS_MISSING/AMBIGUOUS via LCS-Topic-Matching.
+- `scripts/build-vote-mapping-review.ts` — Generiert manuellen Review-Bogen (`docs/vote-mapping-review.md`, kann archiviert werden).
+- `scripts/apply-vote-bundestag-audit.ts` — Apply der 50 manuell verifizierten Poll → Bundestag-ID-Mappings.
+
+**Befund nach manueller 50-Poll-Verifikation:**
+- 33 CONFIRMED (unsere DS in BT-Liste, BT hat zusätzliche)
+- 1 PARTIAL (Poll 6286 Verbrenner — `21/1593` korrigiert zu `21/225`)
+- 16 REPLACE (unsere Heuristik hatte falsche DS — z. B. spätere-WP-Nummern, ähnlich klingende Themen)
+
+**Apply-Ergebnis:**
+- `drucksache_polls` komplett neu geschrieben: **270 DS-Links über 50 Polls** (vorher 57 Links über 45). `matched_via='bundestag_de_audit'`, `match_score=1.0`.
+- Alte 57 Mappings archiviert in `drucksache_polls_pre_bt_audit`.
+- 3 DB-Snapshots erstellt (foto-license, drucksache-polls-backfill, bt-audit-apply).
+
+**UI-Integration:**
+- `getVoteDetail()` in `src/lib/db.ts` erweitert um `drucksachen`-Feld.
+- `src/app/design/linear/abstimmungen/[poll_id]/page.tsx` rendert neue Sektion „Drucksachen zur Abstimmung" zwischen TOP und Verbundene-Debatte.
+- ⚠️ **Dev-Server hat das `db.ts`-Update nicht hot-reloaded** — alle `/abstimmungen/<poll_id>` werfen aktuell 500. **Server-Restart fixt das** (in `NEXT-SESSION.md` markiert als Sofort-Task).
+
+**Audit-Output:** `docs/vote-drucksache-cross-audit.md`
+
+### Pre-Launch-Tier-1-4-Sweep (15 Red-Flag-Punkte adressiert)
+
+**Tier 1 — Rechtlich:**
+- ✅ URHG-Wording bei Roh-Texten entschärft (`/datenquellen` Zitatrecht-Framing)
+- ✅ Pro-CV-Eintrag-Attribution mit § 51 UrhG-Hinweis (`PoliticianCV.tsx`)
+- ✅ **Foto-Lizenz-Backfill** — 453/453 Fotos via Wikimedia-Commons-API (Author + Lizenz + URL). UI-Caption unter Foto + angereicherte `/datenquellen`-Liste. Skript: `scripts/backfill-photo-licenses.ts`.
+- ✅ Pre-Launch Indexing-Schutz: `noindex/nofollow/nocache` in `layout.tsx` + `app/robots.ts` mit `Disallow: /`.
+- ✅ Impressum komplett: § 5 DDG, § 18 MStV, Korrektur-SLA 14 Tage, § 36 VSBG.
+- ✅ Datenschutzerklärung neu (`/datenschutz`): DSGVO-konform, Aufsichtsbehörde Berlin verlinkt.
+- ✅ LICENSE-Datei (MIT für Code, Daten-Lizenz-Pointer-Block).
+
+**Tier 2 — Methodisch:**
+- ✅ Coverage-Bias-Analyse (`scripts/analyze-coverage-bias.ts` + `docs/coverage-bias.md`) — Befund: AfD 69,3 %, Linke 57,8 % Homepage-Coverage. 38 institutionelle URLs identifiziert (Open-Item siehe unten).
+- ✅ Tonalitäts-Disclaimer + Verteilungs-Tabelle je Fraktion (`docs/tonalitaet-distribution.md`). 3 Caveats: Segment vs Rede, Topic-Confound, Speaker-Identity-Confound.
+- ✅ Halluzinationsrate als **Lower Bound** präzisiert (Methodik-Section). Verifier-Recall ~69 % als Indikator.
+- ✅ Manueller 20-Sample-Reden-Audit (`docs/rede-audit-findings.md`). Trefferquoten: Zitate 100 %, Forderungen 90 %, Summary 90 %, Tonalität 85 %, Framing-Marker 65 %.
+- ✅ **Framing-Marker UI-Demotion** (`SpeechAnalysisDetails.tsx`) — Sektion auskommentiert, DB-Daten bleiben. Two-Pass-Verifier-Repair als Folgearbeit (siehe unten).
+- ✅ Konsistenz-Sweep Summary ↔ konkrete_zahlen — 5 echte Mieves-Typ-Größenordnungs-Verwechslungen über 11.101 Segmente (~0,07 %).
+- ✅ Anti-Gotcha-Block auf `/quellen-diskrepanzen` — 5 Ursachenklassen, „Datenqualitäts-Map, keine Skandalliste".
+
+**Tier 3 — Resilienz + Reproduzierbarkeit:**
+- ✅ RESEARCHER.md im Repo-Root (DB-Schema-Walkthrough, Stichproben-Queries, Cost-Schätzung).
+- ✅ Daten-Aktualitäts-Anzeige live auf `/datenquellen` (5 Quellen).
+- ✅ Hosting-Optionen dokumentiert: `docs/hosting-deployment.md` (Named Cloudflare Tunnel als kostenlose Pre-Launch-Lösung — wird durch Demo-Launch-Track via Fly.io ersetzt).
+- ✅ CSV-Export für Wissenschaftler:innen (`scripts/export-tables-csv.ts`, 7 Tabellen, RFC-4180).
+- ✅ Foto-UI vergrößert (`size="lg"` → `size="xl"`, klickbar zu Commons, dezentere Caption).
+
+**Tier 4 — Brand + Identity:**
+- ✅ About-Seite gebaut (`/ueber`) — persönliche Ich-Form, Mission, Pragmatiker-Standpunkt, Beta-Status, Feedback-Bitte.
+- ✅ GitHub Repo umbenannt: `opoi1` → `j-chen8`, 13 Source-Dateien per sed aktualisiert.
+- ✅ GitHub Repo aufgeräumt: 4 alte/leere Public-Repos gelöscht.
+
+**Email:** `hallo@jinsheng-chen.de` (Proton Mail Free). Migration **erledigt am 2026-05-13 abends** (siehe Polish-Session unten + Commit `bec9f07`).
+
+---
+
+## ✅ Polish-Session 2026-05-13 abends (Legal-Pages + Landing/Methodik)
+
+Zwei Commits, ~2 h reine Arbeitszeit.
+
+### `bec9f07` — Legal-Pages: Privatdaten raus
+
+- **Adresse:** [alte Privatadresse] → `c/o COCENTER, Koppoldstr. 1, 86551 Aichach` (Anschrift.net Bayern, ~6,70 €/Mo, scan-only, jederzeit kündbar). Geändert in `linear/impressum/page.tsx` (§5 DDG + §18 MStV) und `linear/datenschutz/page.tsx` (Verantwortliche Stelle).
+- **Email:** `[alte Privat-Email]` → `hallo@jinsheng-chen.de` (Proton Mail Free, 0 €/Mo). 8 Code-Stellen.
+- **Default-Impressum gelöscht** (`src/app/impressum/`). `SiteChrome.tsx`-Default-Footer-Link auf Linear-Impressum umgebogen (Landing nutzt noch Default-Chrome).
+
+### `46a3418` — Landing + Methodik-Polish für externe Reviewer
+
+**Landing (`src/app/design/linear/page.tsx`):**
+- Methodik in Top-Nav (6. Eintrag, `BookOpen`-Icon)
+- Trust-Pitch zeigt jetzt `641 CVs · 9.272 Reden · 5.183 Drucksachen` live via `getLlmPipelineCounts()`, jede Zahl mit Mikro-„Methodik"-Link
+- Neue `LatestActivityStrip` (Plenarsitzung 75 + Energiesteuer-Poll + Drucksache 21/5640) mit „Letzter Datenstand"
+
+**Methodik (`src/app/design/linear/methodik/page.tsx`):** vorher 1.385 Zeilen, jetzt deutlich schlanker.
+- Audit via delegierter Agent: **6 WRONG / 11 STALE / 4 DEAD / 5 BLOAT** identifiziert. Methodik in `feedback_audit_via_subagent.md`.
+- **DEAD raus:** Stufe 3 / Stufe 4 / Stufe 5.5 / Halluzinations-Reparatur (Phase-0–6 historisch, durch Haiku-Single-Pass ersetzt). Tote Helper auch raus (`readVerdicts`, `readStage5_5Stats`, `VerdictTable`).
+- **WRONG fixed:** Mandrella-Backfill-Notiz raus, Llama-3.1-8B-Fallback raus (existiert nicht), Plenarbeitrag-Typen-Tabelle live (war 10× off — fragestunde_antwort: 39 → tatsächlich 1.822), 14.347 → 13.722 CV-Aussagen, **Framing-Marker als „seit 2026-05-12 nicht im UI angezeigt — 35 % Halluzinations-Quote" markiert**, Bias-Korrektur ehrlich: 400 generiert / 51 angewendet.
+- **STALE live:** Neuer `getMethodikCounts()`-Helper in `db.ts` (CV-Aussagen-Sum, Quote-Validation-Ratios, Poll-Counts, Plenarbeitrag-Typen).
+- **BLOAT compressed:** „Warum Cascade"-Box 5→2 Bullets, „Warum Reden-Pipeline anders"-Box 5→2 Bullets, Halluzinations-Rate-Sektion ~60 → ~25 ehrliche Zeilen.
+- **NEU:** „Bekannte Pipeline-Pathologien" in `#coverage-bias` — 5 dokumentierte Limitationen (Bareiß-stale-page, leere AfD-Profile, Multi-Page-Biographien, Source-Coherence-Recall ~13 %, Tonalitäts-Drift).
+
+---
+
+## 🟡 Neue Open-Items aus 2026-05-13-Sweep
+
+### A — Methodik-Seite-Section für Vote-↔-Drucksache-Cross-Source-Audit
+**Status:** Apply ist durch, aber Methodik-Seite zeigt das noch nicht.
+**Aufwand:** ~20 Min — Section mit Bilanz (33 confirmed, 17 korrigiert, 270 DS-Links), Methodik (BT-Crawl + manuelle Verifikation), Link zu noch zu schreibendem Doc.
+
+### B — Methodology-Doc für Vote-↔-Drucksache-Audit
+**Aufwand:** ~30 Min. Soll `docs/vote-drucksache-mapping-methodology.md` heißen, analog zu `docs/vote-topic-mapping-methodology.md`.
+
+### C — DB-Cleanup für 38 institutionelle Homepage-URLs (Task #12 aus Tier-2-Sweep)
+**Status:** Coverage-Bias-Analyse hat 38 URLs als institutionelle Listings (statt persönliche Vitas) identifiziert: 28 AfD (`afdbundestag.de/person/`), 5 Linke (`linksfraktion.de/abgeordnete/profil/…`), 1 CDU, 4 weitere.
+**Aufwand:** ~30-45 Min. Set `cv_homepage_url = NULL` für diese Fälle plus `cv_homepage_text` und `cv_homepage_json` (potenziell aus generischen Listing-Seiten extrahiert = Müll). Audit-Trail in `cv_repair_log`.
+**Trigger:** Nach Modus-1-Outreach. Kein Blocker, aber Datenqualität.
+**Detail:** `scripts/audit-homepage-urls.ts` listet alle Fälle.
+
+### D — Two-Pass-Verifier für Framing-Marker (Task #19)
+**Status:** UI-Demotion ist durch. Pipeline-Reparatur als mittelfristige Folgearbeit.
+**Aufwand:** ~4-5 h + ~$30 LLM-Cost.
+- Pass 1 (Generator, bestehend) — Marker vorschlagen
+- Pass 2 (Verifier, NEU) — zweiter LLM aus anderer Modell-Familie prüft pro Marker „Beleg im Text vorhanden?"
+- Filter: nur Marker mit Beleg behalten
+- Test auf 20-Sample-Audit-Polls, dann Voll-Run für 11.101 Segmente
+- Bei Trefferquote > 90 % → UI-Sektion reaktivieren
+**Detail-Plan:** `docs/rede-audit-findings.md` (Abschnitt „Priorisierte Folgearbeit")
+
+### ~~E — Email-Migration (Privat → Custom)~~ ✅ **Erledigt 2026-05-13 abends** (Commit `bec9f07`)
+**Stand:** B-Pfad gefahren — `hallo@jinsheng-chen.de` an 8 Stellen ersetzt (Impressum 4×, Datenschutz 4×). Adresse parallel auf c/o COCENTER Aichach via Anschrift.net (~6,70 €/Mo, scan-only) umgestellt. Default-Impressum gelöscht; SiteChrome-Footer auf Linear-Impressum umgebogen.
+**Optionaler C-Pfad:** wenn Domain steht, `kontakt@<domain>.de` via Cloudflare-Email-Routing kostenlos an Proton weiterleiten (kein Proton-Plus-Upgrade nötig).
+
+### F — IAA-Studie für Tonalität
+**Status:** Methodik-Seite hat den expliziten Caveat „IAA fehlt". Methodisch nicht blockierend für Modus 1.
+**Aufwand:** Mehrere Wochen — braucht 2+ unabhängige menschliche Codierer:innen + Codebook + Cohen's Kappa. Ggf. erst nach Förderung-Antrag.
+
+---
+
+## ⚠️ Working-Tree-Drift 2026-05-13 (Parallel-Track-Anteil)
+
+Diese Dateien wurden im heutigen Parallel-Track modifiziert/erstellt und sind aktuell uncommittet — der Drucksachen-Track-Working-Tree hat zusätzlich seine eigenen Edits, die getrennt werden müssen.
+
+**Neue Files:**
+```
+LICENSE                                       (MIT + Daten-Lizenz-Pointer)
+RESEARCHER.md                                 (Forscher-Walkthrough)
+
+docs/coverage-bias.md
+docs/hosting-deployment.md
+docs/rede-audit-findings.md
+docs/rede-audit-samples.md
+docs/tonalitaet-distribution.md
+docs/vote-drucksache-cross-audit.md
+docs/vote-mapping-review.md
+
+scripts/analyze-coverage-bias.ts
+scripts/analyze-tonalitaet-distribution.ts
+scripts/apply-vote-bundestag-audit.ts
+scripts/audit-homepage-urls.ts
+scripts/audit-vote-drucksache-mapping.ts
+scripts/audit-zahl-konsistenz.ts
+scripts/auto-classify-vote-mapping.ts
+scripts/backfill-drucksache-polls-bundestag.ts
+scripts/backfill-photo-licenses.ts
+scripts/build-vote-mapping-review.ts
+scripts/dump-rede-audit-samples.ts
+scripts/export-tables-csv.ts
+
+src/app/design/linear/ueber/page.tsx
+src/app/design/linear/datenschutz/page.tsx
+src/app/robots.ts
+```
+
+**Modifizierte Files:**
+```
+.gitignore                                        (data/exports, data/drucksachen)
+src/app/design/linear/datenquellen/page.tsx       (Wording-Entschärfung, Daten-Stand, Foto-Credits)
+src/app/design/linear/impressum/page.tsx          (komplett neu)
+src/app/design/linear/methodik/page.tsx           (5 neue Sections)
+src/app/design/linear/abstimmungen/[poll_id]/page.tsx  (Drucksachen-Sektion)
+src/app/design/linear/politiker/[id]/page.tsx     (Foto-Caption + xl-Avatar)
+src/app/design/linear/quellen-diskrepanzen/page.tsx  (Anti-Gotcha-Block)
+src/app/layout.tsx                                 (noindex/robots)
+src/lib/db.ts                                      (getDataFreshness, photo_*, VoteDetail.drucksachen, VoteDrucksacheRow)
+src/components/SiteChrome.tsx                      (Über + Datenschutz im Footer)
+src/components/PoliticianAvatar.tsx                (xl-Größe)
+src/components/PoliticianCV.tsx                    (§ 51 UrhG-Hinweis)
+src/components/SpeechAnalysisDetails.tsx           (Framing-Marker auskommentiert)
+```
+
+**DB-Änderungen:**
+- Neue Spalten: `politicians.photo_author`, `photo_license`, `photo_license_url`, `photo_license_backfilled_at`
+- Neue Tabellen: `audit_bundestag_polls`, `drucksache_polls_pre_bt_audit`
+- 453 Fotos mit Author + Lizenz angereichert
+- `drucksache_polls` komplett ersetzt: 57 → 270 Links
+
+**Empfohlener Commit-Split (für später):**
+1. Foto-Lizenz-Track (`backfill-photo-licenses.ts`, photo_*-Spalten, PoliticianAvatar xl, photo-credit-line, datenquellen-Liste)
+2. Pre-Launch-Schutz (noindex, robots, LICENSE, RESEARCHER.md)
+3. Impressum + Datenschutz + About
+4. Methodik-Audits (coverage-bias, tonalität-disclaimer, halluzinations-bound, rede-audit, konsistenz-sweep)
+5. Anti-Gotcha-Frame (`/quellen-diskrepanzen`)
+6. Daten-Aktualität + CSV-Export
+7. Vote-↔-Drucksache Cross-Source-Audit (audit-Skripte, DB-Tabellen, apply, UI-Sektion)
+8. GitHub-Rename in 13 Files
+
+---
+
 ## 🟢 Aktiv / als Nächstes
 
-_(keiner momentan — Drucksachen-Track ist abgeschlossen, neuer Track als Pickup wählen)_
+### Demo-Launch (Hosting + Domain für externe Validierung)
+**Ziel:** Öffentlicher, erinnerbarer Link zum Versand an 10–20 Journalisten/Politikwissenschaftler. 1–2 Wochen Demo-Fenster, danach Re-Evaluierung.
+
+**Entscheidungen Stand 2026-05-13 (Abend):**
+- **Hosting:** Fly.io. Grund: 432 MB SQLite braucht persistentes Volume (Vercel scheidet aus — 50 MB Bundle-Limit). EU-Region Frankfurt, free trial deckt 1–2 Wochen, danach ~3 €/Monat.
+- **Domain:** noch offen. 5 Vorschläge im Gespräch: `politik-puls.de` · `plenarpuls.de` · `wer-stimmt-wie.de` · `politikradar.de` · `bundes.tag`. Verfügbarkeit nicht geprüft. Projekt hat aktuell keinen festen Namen.
+- **Reihenfolge:** Zuerst Fly.io-Deploy mit `xxx.fly.dev`-Subdomain (kostenlos, lokal testen). Domain registrieren erst wenn Name sicher und Versand kurz bevorsteht — DNS-Wechsel später = 5 Min.
+
+**Pickup-Schritte (Reihenfolge):**
+1. Fly.io-Account anlegen (`fly.io`, Email + Karten-Verify).
+2. `npm run build` lokal testen — Prod-Mode ist 10–400× schneller als Dev (siehe Memory `feedback_dev_vs_prod_performance`).
+3. `Dockerfile` + `fly.toml` schreiben. Volume für `politik.db` (1 GB reicht, Spielraum für Wachstum).
+4. `fly deploy` → URL kommt zurück.
+5. **Pre-Versand-Polish-Check:** Landing-Page sauber? Methodik-Page erreichbar? Glossar-Hover auf Mobile? Cmd+K via Tunnel/Prod testen.
+6. Domain wählen + registrieren (INWX/Porkbun ~10 €/Jahr) → DNS auf Fly.io zeigen.
+7. Anschreiben an Journalisten — verlinkt mit dem Role-Model-Track (`Externe Validierung Outreach`, siehe unten).
+
+**Aktueller Zwischenstand (für morgen früh):**
+- Cloudflare Quick-Tunnel `https://sub-gaps-tab-lat.trycloudflare.com` lief am Abend im Background-Task `bpwf867d5`. **Ephemeral** — Laptop schläft = Tunnel weg, URL ändert sich pro Neustart. Nur zum eigenen Vorab-Testen, **nicht** an Journalisten verschicken.
+- `next.config.ts` wurde geändert: `allowedDevOrigins` enthält jetzt `*.trycloudflare.com` (vorher hat Next.js Dev Tunnel-Requests mit „Unauthorized" geblockt → Such-Hydration ging nicht). **Dev-Server-Restart ist pending** — `next dev` (PID 1190115) noch mit alter Config.
+- Search-Bug via Tunnel war kein Code-Bug — API liefert sauber, Frontend wurde nur vom HMR-Origin-Block lahmgelegt. Nach Restart sollte's funktionieren.
+
+**Per-Track-Doc:** _(noch keiner — bei Bedarf `docs/demo-launch.md` anlegen)_
 
 ---
 
