@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search, Radio, Activity, Users, Gavel, Palette } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote } from "lucide-react";
 
 /**
  * SiteChrome wraps every page with the matching header & footer for the active
@@ -74,7 +74,6 @@ function DefaultHeader() {
           </Link>
         </nav>
       </div>
-      <DesignSwitcher current="default" />
     </header>
   );
 }
@@ -93,7 +92,7 @@ function DefaultFooter() {
           Datenquellen &amp; Credits
         </Link>
         <span aria-hidden>·</span>
-        <Link href="/impressum" className="text-primary hover:underline">
+        <Link href="/design/linear/impressum" className="text-primary hover:underline">
           Impressum
         </Link>
       </div>
@@ -105,6 +104,7 @@ function DefaultFooter() {
 
 const LINEAR_NAV = [
   { href: "/design/linear/politiker", icon: Users, label: "Politiker" },
+  { href: "/design/linear/abstimmungen", icon: Vote, label: "Abstimmungen" },
   { href: "/design/linear/aktivitaeten", icon: Activity, label: "Aktivitäten" },
   { href: "/design/linear/protokolle", icon: Gavel, label: "Protokolle" },
   { href: "/design/linear/suche", icon: Search, label: "Suche" },
@@ -140,7 +140,6 @@ function LinearHeader() {
           ))}
         </nav>
       </div>
-      <DesignSwitcher current="linear" />
     </header>
   );
 }
@@ -154,6 +153,9 @@ function LinearFooter() {
         </p>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
           <span>Keine offizielle Regierungsseite</span>
+          <Link href="/design/linear/ueber" className="hover:text-foreground transition-colors">
+            Über
+          </Link>
           <Link href="/design/linear/methodik" className="hover:text-foreground transition-colors">
             Methodik
           </Link>
@@ -166,44 +168,12 @@ function LinearFooter() {
           <Link href="/design/linear/impressum" className="hover:text-foreground transition-colors">
             Impressum
           </Link>
+          <Link href="/design/linear/datenschutz" className="hover:text-foreground transition-colors">
+            Datenschutz
+          </Link>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ── Design switcher (sticky kleiner Banner) ────────────────── */
-
-const DESIGNS = [
-  { key: "default", label: "Default", href: "/" },
-  { key: "linear", label: "Linear", href: "/design/linear" },
-];
-
-function DesignSwitcher({ current }: { current: string }) {
-  return (
-    <div className="border-t border-border-soft bg-zinc-50/60 backdrop-blur">
-      <div className="max-w-6xl mx-auto px-5 h-8 flex items-center justify-between text-[11px]">
-        <div className="flex items-center gap-1.5 text-muted">
-          <Palette className="w-3 h-3" />
-          <span className="font-medium uppercase tracking-wider">Design-Vergleich</span>
-        </div>
-        <div className="flex items-center gap-0.5">
-          {DESIGNS.map((d) => (
-            <Link
-              key={d.key}
-              href={d.href}
-              className={
-                "px-2 py-0.5 rounded-md font-medium transition-colors " +
-                (d.key === current
-                  ? "bg-foreground text-white"
-                  : "text-muted hover:text-foreground hover:bg-white")
-              }
-            >
-              {d.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
