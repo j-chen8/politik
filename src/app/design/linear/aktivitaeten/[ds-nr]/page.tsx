@@ -4,6 +4,7 @@ import {
   getRelatedSpeechesForDrucksache,
   getDrucksacheVerfahren,
   getDrucksacheThemenAehnliche,
+  getDrucksachenSameFraktion,
   getPollsForDrucksache,
   type DrucksacheDetail,
   type MitzeichnerRow,
@@ -178,6 +179,11 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const verfahren = getDrucksacheVerfahren(dsNr);
   const themenAehnliche = getDrucksacheThemenAehnliche(dsNr, ds.thema.join(", "), 6);
   const polls = getPollsForDrucksache(dsNr);
+  // Nur Parteien zählen — "Bundesregierung" und null ausschließen, sonst macht "andere DS der Fraktion" keinen Sinn
+  const isParty = ds.fraktion && ds.fraktion !== "Bundesregierung";
+  const sameFraktion = isParty
+    ? getDrucksachenSameFraktion(dsNr, ds.fraktion!, ds.thema.join(", "), 6)
+    : [];
 
   // Mitzeichner: Fraktionsverteilung
   const fraktionCounts = new Map<string, number>();
@@ -599,6 +605,24 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                   prefix={c.batch_class === "antwort" ? "Antwort der Bundesregierung →" : "Folge-Drucksache →"}
                   ownDatum={ds.datum}
                 />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ANDERE DS DER FRAKTION */}
+        {sameFraktion.length > 0 && (
+          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <div className="flex items-baseline justify-between mb-5">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 inline-flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full" style={{ background: partyColor(ds.fraktion) }} />
+                Weitere Drucksachen der {ds.fraktion}
+              </h2>
+              <span className="num text-[11px] text-zinc-400">{sameFraktion.length}</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {sameFraktion.map((c) => (
+                <RelatedDsCard key={c.drucksache_nr} ds={c} compact />
               ))}
             </div>
           </section>

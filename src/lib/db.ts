@@ -2561,3 +2561,57 @@ export function getDrucksachenForPoll(pollId: number): { drucksache_nr: string; 
     `).all(pollId) as { drucksache_nr: string; match_score: number }[];
   } catch { return []; }
 }
+
+// ============================================================
+// Andere DS derselben Fraktion (für Detail-Page Section)
+// ============================================================
+
+/**
+ * Findet weitere DS derselben einbringenden Fraktion, die thematisch
+ * überlappen. Hilft für Navigations-Kreis „Was hat diese Fraktion sonst
+ * noch zum Thema gemacht?".
+ *
+ * Wichtig: Nur sinnvoll wenn die einbringende Fraktion eine Partei ist
+ * (NICHT „Bundesregierung", da das keine Fraktion ist).
+ */
+export function getDrucksachenSameFraktion(
+  nr: string,
+  fraktion: string,
+  themaCsv: string,
+  limit: number = 6,
+): RelatedDsRow[] {
+  const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
+  const db = getDb();
+
+  if (themas.length === 0) {
+    // Ohne Thema-Filter: einfach letzte DS der Fraktion
+    return db.prepare(`
+      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+             (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+             COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+      FROM drucksache_analyses a
+      JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+      WHERE a.analyze_error IS NULL
+        AND a.drucksache_nr != ?
+        AND a.fraktion = ?
+      ORDER BY datum DESC
+      LIMIT ?
+    `).all(nr, fraktion, limit) as RelatedDsRow[];
+  }
+
+  // Mit Thema-Overlap-Scoring
+  const likeClauses = themas.map(() => `(a.thema LIKE '%' || ? || '%')`).join(" + ");
+  return db.prepare(`
+    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+           (${likeClauses}) AS overlap_score
+    FROM drucksache_analyses a
+    JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
+    WHERE a.analyze_error IS NULL
+      AND a.drucksache_nr != ?
+      AND a.fraktion = ?
+    ORDER BY overlap_score DESC, datum DESC
+    LIMIT ?
+  `).all(...themas, nr, fraktion, limit) as RelatedDsRow[];
+}
