@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search, Radio, Activity, Users, Gavel, Vote } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen } from "lucide-react";
 
 /**
  * SiteChrome wraps every page with the matching header & footer for the active
@@ -107,6 +107,7 @@ const LINEAR_NAV = [
   { href: "/design/linear/abstimmungen", icon: Vote, label: "Abstimmungen" },
   { href: "/design/linear/aktivitaeten", icon: Activity, label: "Aktivitäten" },
   { href: "/design/linear/protokolle", icon: Gavel, label: "Protokolle" },
+  { href: "/design/linear/methodik", icon: BookOpen, label: "Methodik" },
   { href: "/design/linear/suche", icon: Search, label: "Suche" },
 ];
 

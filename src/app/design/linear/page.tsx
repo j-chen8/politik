@@ -1,11 +1,14 @@
 import { SearchBox } from "@/components/SearchBox";
 import { PopHeroPolls } from "@/components/PopHeroPolls";
-import { getDbStats } from "@/lib/db";
+import { LatestActivityStrip } from "@/components/LatestActivityStrip";
+import { getDbStats, getLlmPipelineCounts } from "@/lib/db";
 import { ArrowRight, Users, FileText, Gavel, Vote } from "lucide-react";
 import Link from "next/link";
 
 export default function LinearLanding() {
   const stats = getDbStats();
+  const pipeline = getLlmPipelineCounts();
+  const fmt = (n: number) => n.toLocaleString("de-DE");
 
   return (
     <div className="page-wash">
@@ -34,13 +37,18 @@ export default function LinearLanding() {
         </div>
       </section>
 
-      {/* Pop-Hero: Knappste Abstimmungen */}
+      {/* Latest-Activity-Strip: zeigt dass die Daten leben */}
       <div className="fade-in-up fade-in-up-2">
+        <LatestActivityStrip />
+      </div>
+
+      {/* Pop-Hero: Knappste Abstimmungen */}
+      <div className="fade-in-up fade-in-up-3">
         <PopHeroPolls />
       </div>
 
       {/* Feature cards */}
-      <section className="w-full max-w-5xl mx-auto px-5 pb-24 pt-12 fade-in-up fade-in-up-3">
+      <section className="w-full max-w-5xl mx-auto px-5 pb-24 pt-12 fade-in-up fade-in-up-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <FeatureCard
             href="/design/linear/politiker"
@@ -70,7 +78,7 @@ export default function LinearLanding() {
       </section>
 
       {/* So entstehen die Daten — Audit-Trail-Versprechen, kein Marketing */}
-      <section className="w-full max-w-5xl mx-auto px-5 pb-24 fade-in-up fade-in-up-4">
+      <section className="w-full max-w-5xl mx-auto px-5 pb-24 fade-in-up fade-in-up-5">
         <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
           <div className="px-6 py-6">
             <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
@@ -78,14 +86,45 @@ export default function LinearLanding() {
             </h2>
             <p className="text-[14px] text-zinc-600 leading-relaxed max-w-2xl">
               Roh-Daten (Abstimmungen, Drucksachen, Nebeneinkünfte) kommen 1:1 aus
-              offiziellen Quellen. Wo KI hilft — Lebenslauf-Strukturierung,
-              Reden-Zusammenfassungen — durchläuft jede Aussage mehrere unabhängige
-              Prüfschritte mit Modellen verschiedener Familien. Jede Entscheidung
-              dokumentiert, jede Quelle verlinkbar.
+              offiziellen Quellen. Wo KI hilft, durchläuft jede Aussage mehrere
+              unabhängige Prüfschritte mit Modellen verschiedener Familien — jede
+              Entscheidung dokumentiert, jede Quelle verlinkbar:
             </p>
+            <ul className="mt-4 space-y-2 text-[14px] text-zinc-700">
+              <li className="flex items-baseline gap-2">
+                <span className="num font-semibold text-zinc-950">{fmt(pipeline.cvSummaries)}</span>
+                <span>Lebensläufe KI-strukturiert</span>
+                <Link
+                  href="/design/linear/methodik"
+                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                >
+                  Methodik
+                </Link>
+              </li>
+              <li className="flex items-baseline gap-2">
+                <span className="num font-semibold text-zinc-950">{fmt(pipeline.speechAnalyses)}</span>
+                <span>Reden KI-analysiert</span>
+                <Link
+                  href="/design/linear/methodik#reden-pipeline"
+                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                >
+                  Methodik
+                </Link>
+              </li>
+              <li className="flex items-baseline gap-2">
+                <span className="num font-semibold text-zinc-950">{fmt(pipeline.drucksacheAnalyses)}</span>
+                <span>Drucksachen KI-zusammengefasst</span>
+                <Link
+                  href="/design/linear/methodik"
+                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                >
+                  Methodik
+                </Link>
+              </li>
+            </ul>
             <Link
               href="/design/linear/methodik"
-              className="inline-flex items-center gap-1 text-[12px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors mt-4"
+              className="inline-flex items-center gap-1 text-[12px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors mt-5"
             >
               Pipeline, Modelle, bekannte Limitationen
               <ArrowRight className="w-3 h-3" strokeWidth={2.25} />

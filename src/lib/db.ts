@@ -211,6 +211,11 @@ export interface PoliticianRow {
   occupation: string | null;
   residence: string | null;
   photo_url: string | null;
+  photo_source: string | null;
+  photo_attribution: string | null;
+  photo_author: string | null;
+  photo_license: string | null;
+  photo_license_url: string | null;
   party_id: number | null;
   party_label: string | null;
   abgeordnetenwatch_url: string | null;
@@ -267,6 +272,33 @@ export interface MandateRow {
   end_date: string | null;
   constituency: string | null;
   fraction: string | null;
+}
+
+export interface DataFreshness {
+  plenarsitzungen: string | null;
+  abstimmungen: string | null;
+  aktivitaeten: string | null;
+  drucksachen_analyse: string | null;
+  reden_analyse: string | null;
+}
+
+export function getDataFreshness(): DataFreshness {
+  const db = getDb();
+  const q = (sql: string): string | null => {
+    try {
+      const r = db.prepare(sql).get() as { x: string | null };
+      return r?.x ?? null;
+    } catch {
+      return null;
+    }
+  };
+  return {
+    plenarsitzungen: q(`SELECT MAX(datum) AS x FROM plenar_sessions`),
+    abstimmungen: q(`SELECT MAX(poll_date) AS x FROM votes`),
+    aktivitaeten: q(`SELECT MAX(datum) AS x FROM activities`),
+    drucksachen_analyse: q(`SELECT MAX(generated_at) AS x FROM drucksache_analyses`),
+    reden_analyse: q(`SELECT MAX(created_at) AS x FROM speech_analyses_v2`),
+  };
 }
 
 export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] {
@@ -373,6 +405,165 @@ export function getDbStats(): {
        JOIN politicians p ON p.party_id = pa.id
        WHERE ${IS_POLITICIAN_ACTIVE_SQL}`
     ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c,
+  };
+}
+
+export interface LatestActivityHighlights {
+  latestSession: { wahlperiode: number; sitzung: number; datum: string; speechCount: number } | null;
+  latestPoll: { pollId: number; label: string; date: string } | null;
+  latestDrucksache: { drucksacheNr: string; thema: string; datum: string } | null;
+}
+
+export function getLatestActivityHighlights(): LatestActivityHighlights {
+  const db = getDb();
+
+  const session = db.prepare(
+    `SELECT id, wahlperiode, sitzung, datum FROM plenar_sessions
+     WHERE datum IS NOT NULL AND datum != ''
+     ORDER BY datum DESC LIMIT 1`
+  ).get() as { id: number; wahlperiode: number; sitzung: number; datum: string } | undefined;
+
+  const speechCount = session
+    ? (db.prepare(
+        `SELECT COUNT(DISTINCT rede_id) AS c FROM plenar_speeches WHERE session_id = ?`
+      ).get(session.id) as { c: number }).c
+    : 0;
+
+  const poll = db.prepare(
+    `SELECT DISTINCT poll_id, poll_label, poll_date FROM votes
+     WHERE poll_label IS NOT NULL AND poll_date IS NOT NULL AND poll_date != ''
+     ORDER BY poll_date DESC, poll_id DESC LIMIT 1`
+  ).get() as { poll_id: number; poll_label: string; poll_date: string } | undefined;
+
+  const drucksache = db.prepare(
+    `SELECT a.drucksache_nr, MIN(a.thema) AS thema, MAX(a.datum) AS datum
+     FROM activities a
+     WHERE a.drucksache_nr IS NOT NULL AND a.drucksache_nr != ''
+       AND a.thema IS NOT NULL AND a.thema != ''
+       AND a.datum IS NOT NULL AND a.datum != ''
+     GROUP BY a.drucksache_nr
+     ORDER BY MAX(a.datum) DESC LIMIT 1`
+  ).get() as { drucksache_nr: string; thema: string; datum: string } | undefined;
+
+  return {
+    latestSession: session
+      ? { wahlperiode: session.wahlperiode, sitzung: session.sitzung, datum: session.datum, speechCount }
+      : null,
+    latestPoll: poll
+      ? { pollId: poll.poll_id, label: poll.poll_label, date: poll.poll_date }
+      : null,
+    latestDrucksache: drucksache
+      ? { drucksacheNr: drucksache.drucksache_nr, thema: drucksache.thema, datum: drucksache.datum }
+      : null,
+  };
+}
+
+export function getLlmPipelineCounts(): {
+  cvSummaries: number;
+  speechAnalyses: number;
+  drucksacheAnalyses: number;
+} {
+  const db = getDb();
+  return {
+    cvSummaries: (db.prepare(
+      `SELECT COUNT(*) AS c FROM politicians
+       WHERE cv_summary IS NOT NULL AND cv_summary != ''`
+    ).get() as { c: number }).c,
+    speechAnalyses: (db.prepare(
+      `SELECT COUNT(DISTINCT rede_id) AS c FROM speech_analyses_v2`
+    ).get() as { c: number }).c,
+    drucksacheAnalyses: (db.prepare(
+      `SELECT COUNT(*) AS c FROM drucksache_analyses WHERE analyze_error IS NULL`
+    ).get() as { c: number }).c,
+  };
+}
+
+export interface MethodikCounts {
+  mdbsCvJson: number;
+  mdbsCvHomepage: number;
+  mdbsCvSummary: number;
+  cvStatementsTotal: number;
+  sourceCoherenceChecked: number;
+  plenarSpeechesCount: number;
+  speechSegments: number;
+  speechDistinctReden: number;
+  quoteValidCount: number;
+  quoteTotalCount: number;
+  redenWithVerifiedQuote: number;
+  biasCorrectionsTotal: number;
+  biasCorrectionsApplied: number;
+  tonalitatsDriftRepaired: number;
+  pollsCount: number;
+  bundestagAuditPagesCount: number;
+  drucksachePollsCount: number;
+  sonstigesDrops: number;
+  sonstigesFixes: number;
+  speechTypeCounts: { typ: string; count: number }[];
+}
+
+export function getMethodikCounts(): MethodikCounts {
+  const db = getDb();
+  const one = (sql: string, ...params: unknown[]) =>
+    (db.prepare(sql).get(...params) as { c: number } | undefined)?.c ?? 0;
+
+  const speechTypeRaw = db.prepare(
+    `SELECT LOWER(TRIM(typ)) AS typ, COUNT(*) AS c FROM speech_summaries
+     WHERE typ IS NOT NULL AND typ != ''
+     GROUP BY LOWER(TRIM(typ))`
+  ).all() as { typ: string; c: number }[];
+
+  // Merge legacy spellings (erklärung → erklaerung, Rede → debatte, etc.)
+  const normalize = (t: string): string => {
+    const x = t.toLowerCase();
+    if (x === "erklärung" || x === "erklaerung") return "erklaerung";
+    if (x === "regierungserklärung" || x === "regierungserklaerung") return "regierungserklaerung";
+    if (x === "kurzintervention") return "zwischenfrage_kurzintervention";
+    if (x === "zwischenfrage") return "zwischenfrage_kurzintervention";
+    if (x === "rede" || x === "debatte") return "debatte";
+    return x;
+  };
+  const merged = new Map<string, number>();
+  for (const row of speechTypeRaw) merged.set(normalize(row.typ), (merged.get(normalize(row.typ)) ?? 0) + row.c);
+  const speechTypeCounts = [...merged.entries()]
+    .map(([typ, count]) => ({ typ, count }))
+    .sort((a, b) => b.count - a.count);
+
+  return {
+    mdbsCvJson: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_json IS NOT NULL AND cv_json != ''`),
+    mdbsCvHomepage: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_homepage_json IS NOT NULL AND cv_homepage_json != ''`),
+    mdbsCvSummary: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_summary IS NOT NULL AND cv_summary != ''`),
+    cvStatementsTotal: one(
+      `SELECT SUM(
+         json_array_length(COALESCE(json_extract(cv_json, '$.ausbildung'), '[]'))
+         + json_array_length(COALESCE(json_extract(cv_json, '$.beruflicher_werdegang'), '[]'))
+         + json_array_length(COALESCE(json_extract(cv_json, '$.politische_stationen'), '[]'))
+         + json_array_length(COALESCE(json_extract(cv_json, '$.sonstiges'), '[]'))
+       ) AS c FROM politicians WHERE cv_json IS NOT NULL`
+    ),
+    sourceCoherenceChecked: one(`SELECT COUNT(*) AS c FROM politicians WHERE source_coherence_checked_at IS NOT NULL`),
+    plenarSpeechesCount: one(`SELECT COUNT(DISTINCT rede_id) AS c FROM plenar_speeches WHERE rede_id IS NOT NULL`),
+    speechSegments: one(`SELECT COUNT(*) AS c FROM speech_analyses_v2`),
+    speechDistinctReden: one(`SELECT COUNT(DISTINCT rede_id) AS c FROM speech_analyses_v2`),
+    quoteValidCount: one(`SELECT COALESCE(SUM(quote_valid_count), 0) AS c FROM speech_analyses_v2`),
+    quoteTotalCount: one(`SELECT COALESCE(SUM(quote_total_count), 0) AS c FROM speech_analyses_v2`),
+    redenWithVerifiedQuote: one(
+      `SELECT COUNT(DISTINCT rede_id) AS c FROM speech_analyses_v2 WHERE quote_valid_count > 0`
+    ),
+    biasCorrectionsTotal: one(`SELECT COUNT(*) AS c FROM speech_analyses_v2_corrections`),
+    biasCorrectionsApplied: one(
+      `SELECT COUNT(*) AS c FROM speech_analyses_v2_corrections WHERE zusammenfassung_2_saetze_final IS NOT NULL`
+    ),
+    tonalitatsDriftRepaired: one(`SELECT COUNT(*) AS c FROM speech_analyses_v2 WHERE tonalitaet_original IS NOT NULL`),
+    pollsCount: one(`SELECT COUNT(DISTINCT poll_id) AS c FROM votes WHERE poll_id IS NOT NULL`),
+    bundestagAuditPagesCount: one(`SELECT COUNT(*) AS c FROM audit_bundestag_polls`),
+    drucksachePollsCount: one(`SELECT COUNT(*) AS c FROM drucksache_polls`),
+    sonstigesDrops: one(
+      `SELECT COUNT(*) AS c FROM cv_repair_log WHERE repair_version = 'homepage-sonstiges-cleanup-v1' AND action = 'drop_text'`
+    ),
+    sonstigesFixes: one(
+      `SELECT COUNT(*) AS c FROM cv_repair_log WHERE repair_version = 'homepage-sonstiges-cleanup-v1' AND action = 'set_text'`
+    ),
+    speechTypeCounts,
   };
 }
 
@@ -2020,6 +2211,16 @@ export interface VoteDetail {
   totals: { yes: number; no: number; abstain: number; no_show: number; total: number };
   speeches: VoteSpeechRow[];
   relatedPolls: { poll_id: number; poll_label: string | null; poll_date: string | null }[];
+  drucksachen: VoteDrucksacheRow[];
+}
+
+export interface VoteDrucksacheRow {
+  drucksache_nr: string;
+  thema: string | null;
+  zusammenfassung: string | null;
+  titel: string | null;
+  datum: string | null;
+  drucksache_typ: string | null;
 }
 
 export interface VoteSpeechRow {
@@ -2137,6 +2338,21 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     `).all(...topicIds, pollId) as { poll_id: number; poll_label: string | null; poll_date: string | null }[];
   }
 
+  // Drucksachen zu diesem Poll (autoritativ via Bundestag.de-Audit 2026-05-13)
+  const drucksachen = db.prepare(`
+    SELECT
+      dp.drucksache_nr,
+      a.thema,
+      a.zusammenfassung,
+      (SELECT titel FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS titel,
+      (SELECT datum FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS datum,
+      (SELECT drucksache_typ FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS drucksache_typ
+    FROM drucksache_polls dp
+    LEFT JOIN drucksache_analyses a ON a.drucksache_nr = dp.drucksache_nr AND a.analyze_error IS NULL
+    WHERE dp.poll_id = ?
+    ORDER BY dp.match_score DESC, dp.drucksache_nr
+  `).all(pollId) as VoteDrucksacheRow[];
+
   return {
     poll_id: head.poll_id,
     poll_label: head.poll_label,
@@ -2147,6 +2363,7 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     totals,
     speeches,
     relatedPolls,
+    drucksachen,
   };
 }
 
@@ -2230,6 +2447,7 @@ export function getClosestPolls(limit: number = 3): ClosestPollRow[] {
     LIMIT ?
   `).all(limit) as ClosestPollRow[];
 }
+
 // ============================================================
 // Drucksachen-Detail (für Letterboxd-Style Detail-Page)
 // ============================================================
