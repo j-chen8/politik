@@ -3,20 +3,31 @@
 > **Zweck:** Single Source für alles was über alle Tracks offen ist. Wird beim Aufräumen am Ende einer Session gepflegt.
 > Tagesfrische Pickup-Notizen für „morgen früh anfangen" → `NEXT-SESSION.md`. Pipeline-Inventar → `docs/PIPELINE.md`. Per-Track-Detail → `docs/<track>-*.md`.
 >
-> **Stand:** 2026-05-12 (nach Drucksachen-UI-Session)
+> **Stand:** 2026-05-13 (nach Drucksachen-Cmd+K-Session)
 > **Format:** 🟢 aktiv · 🟡 pausiert mit konkretem Pickup · 🔵 Phase-2-Backlog · 📐 methodische Schulden
 
 ---
 
-## 🟢 Aktiv / kurz vor Abschluss
+## ✅ Drucksachen-Track: Heute vollendet (10 Commits)
 
-### Drucksachen-Detail-Page (UI-Track)
-**Status:** Letterboxd-Style Detail-Page live unter `/design/linear/aktivitaeten/[ds-nr]`. 5.183 LLM-Analysen sauber. 7 Sections (Hero, Zusammenfassung, Kerninhalt, Details, Mitzeichner, Plenum, Verfahren, Themen-Ähnliche, Polls). Glossar integriert.
-**Offen:**
-- Politiker-Profilseite-Edit (Drucksachen-Section + DrucksachenList-Helper) ist in der Working-Tree, mit fremden Track-Edits verwoben — uncommittet. Cherry-pick wenn andere Tracks sortiert sind.
-- 5 ungematchte Polls (Luxusflüge, CO2-Bepreisung-Abschaffung, Wahleinsprüche, Verbraucherrechte-Digital, Politikerbeleidigung-Streichung). Edge-Cases — niedrige Priorität.
+**Was alles steht:**
+- 5.183 LLM-Analysen sauber (0 XML-Leaks, 0 Errors, 99,7 % mit konkretem Thema)
+- Letterboxd-Style Detail-Page `/design/linear/aktivitaeten/[ds-nr]` mit 8 Sections (Hero, Zusammenfassung, Kerninhalt, Details, Mitzeichner+Fraktionsverteilung, Plenum, Polls, Verfahren, Fraktions-DS, Ähnliche)
+- Drei Navigations-Kreise geschlossen: Anfrage↔Antwort, DS↔Vote, DS↔Andere DS der Fraktion
+- Politik-Glossar (25 Begriffe) + Wikipedia-Style Hover-Component
+- Cmd+K-Suche mit FTS5 auf LLM-Output, Snippet + Klassen-Label, Link auf Detail-Page
+
+**Verbleibender Rest (niedrige Priorität):**
+- Politiker-Profilseite-Edit (Drucksachen-Section) ist in der Working-Tree, mit fremden Track-Edits verwoben — uncommittet. Cherry-pick wenn andere Tracks sortiert sind.
+- 5 ungematchte Polls (Luxusflüge, CO2-Bepreisung-Abschaffung, Wahleinsprüche, Verbraucherrechte-Digital, Politikerbeleidigung-Streichung). Echte Edge-Cases.
 - 13 Records mit `thema='Sonstiges'` (echte Long-Tail-Singletons).
 **Per-Track-Doc:** `docs/drucksachen-pipeline.md`
+
+---
+
+## 🟢 Aktiv / als Nächstes
+
+_(keiner momentan — Drucksachen-Track ist abgeschlossen, neuer Track als Pickup wählen)_
 
 ---
 
