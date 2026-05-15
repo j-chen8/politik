@@ -251,7 +251,7 @@ export default function LinearMethodikPage() {
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was als nächstes nötig ist</div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <strong className="text-zinc-950">Ground-Truth-Sampling</strong>: ≥ 200 zufällige CV-Aussagen durch menschliche Annotator:innen mit direkter Quellen-Verifikation. Liefert die echte Rate, nicht eine Lower Bound.</li>
-                <li>· <strong className="text-zinc-950">Recall-Messung für die aktuelle Pipeline</strong>: Verifier-Recall-Test mit Opus 4.7 oder Mensch als Ground Truth, analog zur Phase-7-Methodik unten.</li>
+                <li>· <strong className="text-zinc-950">Recall-Messung für die aktuelle Pipeline</strong>: Verifier-Recall-Test mit Opus 4.7 (manuell, als Annotations-Assistenz) oder Mensch als Ground Truth, analog zur Phase-7-Methodik unten.</li>
                 <li>· <strong className="text-zinc-950">Externe Validierung</strong>: 1–2 Politikwissenschaftler:innen oder Datenjournalist:innen über eine zufällige Stichprobe drüberlesen lassen, bevor öffentlich zitiert wird.</li>
               </ul>
             </div>
@@ -304,11 +304,11 @@ export default function LinearMethodikPage() {
             />
             <Step
               n="④"
-              title="Doubletten-Inspektor"
-              model="deterministischer Vorfilter + Llama 3.3 70B als Verifier"
-              family="Meta"
-              desc="Vorfilter findet syntaktisch ähnliche Einträge im selben CV; Llama 70B prüft semantisch: derselbe Sachverhalt? Wenn ja, mit Merge-Empfehlung. Output: confirm-duplicates.partial.jsonl."
-              why="Semantische Doubletten-Erkennung mit gegebenem Quelltext ist Schema-Match (kein offenes Reasoning) — Llama 70B reicht. Andere Modell-Familie als Generator → Bias-Schutz. Pre-Filter spart Cost: nur Verdachts-Pärchen gehen an den LLM."
+              title="Doubletten-Cascade"
+              model="deterministischer Vorfilter → Llama 3.3 70B (first-pass) → Haiku 4.5 (Verifier)"
+              family="Meta / Anthropic"
+              desc="Pre-Filter (kein LLM) findet syntaktisch ähnliche Einträge im selben CV. Llama 3.3 70B macht den großzügigen ersten Pass (hohe Recall); jeder Llama-DUPLIKAT-Fall wird von Haiku 4.5 als zweiter, fremder Modell-Familie gegengeprüft. Konsens → Merge, Disagreement → beide Einträge bleiben sichtbar als verwandter Eintrag."
+              why="Llama 70B als günstiger First-Pass mit hoher Recall; Haiku 4.5 als konservativer Cross-Vendor-Verifier (andere Familie → Bias-Schutz). Pre-Filter spart Cost: nur Verdachts-Pärchen gehen an die LLMs."
             />
 
             <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-950 mt-6 mb-0">
@@ -331,7 +331,7 @@ export default function LinearMethodikPage() {
               model="Haiku 4.5 (Anthropic) · Repair: Llama 3.3 70B (Meta)"
               family="Anthropic / Meta"
               desc={`Klassifiziert jede Stufe-⑤-Diskrepanz gegen die Roh-Quelltexte: echte Quellen-Diskrepanz, Präzisierung, oder False-Positive? Bei "Extraktions-Fehler" folgt fokussierte Re-Extraktion durch Llama 70B aus dem Roh-Quelltext — Eintrag wird ersetzt oder gelöscht.`}
-              why="Empirisch validiert in Phase 7: Llama 70B als Verifier 37 % ECHT-Recall, Haiku 4.5 erreicht 69 % — deutlich besseres Reasoning bei semantischen Welt-Wissens-Aufgaben. Repair durch andere Modell-Familie (Llama 70B) — fokussierte Single-Entry-Re-Extraktion ist Schema-Match, dafür reicht das größere Llama-Modell."
+              why={`Empirisch validiert in Phase 7: Llama 70B als Verifier ${(verifierCascade.llamaEchtRecall * 100).toFixed(0)} % ECHT-Recall, Haiku 4.5 erreicht ${(verifierCascade.haikuEchtRecall * 100).toFixed(0)} % — deutlich besseres Reasoning bei semantischen Welt-Wissens-Aufgaben. Repair durch andere Modell-Familie (Llama 70B) — fokussierte Single-Entry-Re-Extraktion ist Schema-Match, dafür reicht das größere Llama-Modell.`}
             />
             <Step
               n="⊕"
@@ -416,7 +416,7 @@ export default function LinearMethodikPage() {
             <BigStat value={verifierCascade.finalFp.toString()} label="False Positive" sub="Stage-5 hat falsch geflaggt" />
           </div>
           <p className="text-[13px] text-zinc-600">
-            Pipeline final: Stage 5 (gpt-oss-120b) → Haiku 4.5 Verifier → Opus 4.7 + Mensch Last-Check.{" "}
+            Pipeline final: Stage 5 (gpt-oss-120b) → Haiku 4.5 Verifier → manueller Mensch-Last-Check (Opus 4.7 nur als Reasoning-Assistenz des Menschen, kein automatisierter Modell-Pass).{" "}
             <Link href="/design/linear/quellen-diskrepanzen" className="text-zinc-950 font-medium underline hover:no-underline">
               Vollständige Liste der {verifierCascade.finalEcht} echten Diskrepanzen →
             </Link>
@@ -936,8 +936,8 @@ export default function LinearMethodikPage() {
               </div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">cv-consistency-report.md</code> — Stammdaten-Konsistenz-Check: Widersprüche LLM-CV vs. Wikidata/abgeordnetenwatch</li>
-                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">inspect-dates.partial.jsonl</code> — Datums-Inspektor-Verdikte für 13.510 Aussagen aus 629 MdBs</li>
-                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">detect-duplicates.partial.jsonl</code> + <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">confirm-duplicates.partial.jsonl</code> — Doubletten-Vorfilter + LLM-Verifikation mit Merge-Empfehlungen</li>
+                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">inspect-dates.partial.jsonl</code> — Datums-Inspektor-Verdikte für 13.542 Aussagen aus 631 MdBs</li>
+                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">detect-duplicates.partial.jsonl</code> + <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">verify-duplicates.partial.jsonl</code> — Doubletten-Vorfilter + LLM-Verifikation mit Merge-Empfehlungen</li>
                 <li>· DB-Tabelle <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">cv_repair_log</code> — jeder angewandte Patch mit Originaltext, neuem Text, Modell-Audit, Zeitstempel</li>
               </ul>
             </div>

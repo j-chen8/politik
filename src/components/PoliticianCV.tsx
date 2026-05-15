@@ -500,33 +500,18 @@ export function PoliticianCV(props: PoliticianCVProps) {
           <div className="mt-2 pt-3 border-t border-gray-200/70">
             <strong className="text-foreground/80">Mehrfach-Verifikation für mehr Verlässlichkeit:</strong>
             <p className="mt-1">
-              Jeder strukturierte Eintrag wird aus zwei unabhängigen Quellen erzeugt und
-              anschließend durch eine Specialist-Cascade aus{" "}
-              <strong className="text-foreground/80">zwei unabhängigen Modell-Familien</strong>{" "}
-              (Anthropic, Meta/Llama) geprüft — gegen Trainingsdaten-Bias, gegen
-              Halluzinationen, mit wörtlichem Quellenbeleg pro Eintrag.
+              Jeder strukturierte Eintrag wird aus{" "}
+              <strong className="text-foreground/80">zwei unabhängigen Quellen</strong>{" "}
+              (Wikipedia + offizielle bzw. Homepage-Vita) erzeugt und anschließend
+              mehrfach gegengeprüft: durch unabhängige Modelle{" "}
+              <strong className="text-foreground/80">verschiedener Anbieter-Familien</strong>{" "}
+              auf Quellen-Konflikte, durch einen separaten Datums-Validierungs-Lauf,
+              und bei bestätigten Problemen durch manuelle Kontrolle. Jeder Eintrag
+              trägt einen wörtlichen Quellenbeleg.
             </p>
-            <ul className="mt-1.5 ml-3 space-y-0.5 list-none">
-              <li>
-                <span className="text-foreground/70">①</span>{" "}
-                <span className="font-mono">Anthropic Haiku 4.5</span> — Generator (Wikipedia):
-                extrahiert die strukturierten CV-Daten aus dem Wikipedia-Volltext als JSON
-              </li>
-              <li>
-                <span className="text-foreground/70">②</span>{" "}
-                <span className="font-mono">Groq Llama 3.1 8B</span> — Generator (Homepage):
-                extrahiert unabhängig die Homepage-Vita als zweite Quelle
-              </li>
-              <li>
-                <span className="text-foreground/70">③</span>{" "}
-                <span className="font-mono">Anthropic Opus 4.7 + Haiku 4.5 + Groq Llama-3.3-70b</span> —
-                Source-Coherence-Verifier-Cascade: drei parallele Modelle bewerten, ob ein
-                erkannter Wikipedia↔Homepage-Konflikt echt oder ein Extraktions-Artefakt ist
-              </li>
-            </ul>
             <p className="mt-2">
-              Identifizierte Halluzinationen werden mit den Cross-Check-Aussagen ersetzt — mit
-              wörtlichem Quellenbeleg. Details siehe{" "}
+              Welche Modelle genau in welchem Schritt — inklusive Versionsständen —
+              steht transparent in{" "}
               <a href="/design/linear/methodik" className="text-primary hover:underline">
                 Methodik &amp; Datenquellen
               </a>.
