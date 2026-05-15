@@ -80,6 +80,7 @@ STRIKTE REGELN:
 - Wenn die bereitgestellten Quellen den Gegenstand nicht hergeben (z.B. Drucksache nicht analysiert / zu umfangreich): setze ist_fallback=true und schreibe in worum_geht_es nur, was der bundestag.de-Titel + Datenlage sicher hergibt, plus den Hinweis, dass keine Volltext-Zusammenfassung vorliegt. NICHT spekulieren.
 - worum_geht_es: 2–5 Sätze.
 - Gib die Felder AUSSCHLIESSLICH über das Tool zurück. Schreibe NIEMALS XML/Markup oder Tag-Marker (</…>, <parameter …>, </invoke>, </antml…>) in einen Textwert. worum_geht_es und block_hinweis sind reiner Fließtext OHNE Tags; subjekt_drucksachen ist ein echtes Array.
+- Die Drucksachen-Quelltexte stammen aus PDF-Extraktion und enthalten teils offensichtliche Trennfehler (verklebte Wörter ohne Leerzeichen, z.B. „wiederin Betrieb", oder fehlerhafte Bindestrich-Umbrüche). Korrigiere solche offensichtlichen Whitespace-/Trennartefakte in deiner Formulierung zu korrektem Deutsch — ohne den Inhalt zu verändern.
 
 Nutze ausschließlich das Antwort-Tool.`;
 
