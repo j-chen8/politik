@@ -17,16 +17,16 @@ const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: str
   {
     label: "Lebensläufe (CV-Daten)",
     items: [
-      { id: "cascade", label: "Specialist-Cascade", sub: "Block A + B" },
-      { id: "stufe-5", label: "Stufe 5 — Source-Coherence" },
-      { id: "phase-7", label: "Phase 7 — Verifier-Cascade" },
+      { id: "cascade", label: "Specialist-Cascade", sub: "CV-Extraktion + Prüfung" },
+      { id: "stufe-5", label: "Source-Coherence-Check" },
+      { id: "phase-7", label: "Verifier-Modell-Wahl" },
     ],
   },
   {
     label: "Plenarbeiträge (Reden-Daten)",
     items: [
       { id: "plenarbeitrag-typen", label: "Was zählt als was?", sub: "Taxonomie" },
-      { id: "reden-pipeline", label: "Reden-Pipeline", sub: "Block C + D" },
+      { id: "reden-pipeline", label: "Reden-Pipeline", sub: "Reden + Vote-Topic" },
       { id: "glossar-tonalitaet", label: "Glossar — Tonalitäten" },
       { id: "tonalitaet-verteilung", label: "Tonalitäts-Verteilung", sub: "je Fraktion" },
       { id: "rede-audit", label: "Audit Rede-Analysen", sub: "20-Sample-Stichprobe" },
@@ -251,7 +251,7 @@ export default function LinearMethodikPage() {
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was als nächstes nötig ist</div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <strong className="text-zinc-950">Ground-Truth-Sampling</strong>: ≥ 200 zufällige CV-Aussagen durch menschliche Annotator:innen mit direkter Quellen-Verifikation. Liefert die echte Rate, nicht eine Lower Bound.</li>
-                <li>· <strong className="text-zinc-950">Recall-Messung für die aktuelle Pipeline</strong>: Verifier-Recall-Test mit Opus 4.7 (manuell, als Annotations-Assistenz) oder Mensch als Ground Truth, analog zur Phase-7-Methodik unten.</li>
+                <li>· <strong className="text-zinc-950">Recall-Messung für die aktuelle Pipeline</strong>: Verifier-Recall-Test mit Opus 4.7 (manuell, als Annotations-Assistenz) oder Mensch als Ground Truth, analog zum empirischen Verifier-Vergleich unten.</li>
                 <li>· <strong className="text-zinc-950">Externe Validierung</strong>: 1–2 Politikwissenschaftler:innen oder Datenjournalist:innen über eine zufällige Stichprobe drüberlesen lassen, bevor öffentlich zitiert wird.</li>
               </ul>
             </div>
@@ -273,7 +273,7 @@ export default function LinearMethodikPage() {
 
           <div className="space-y-2">
             <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-950 mt-2 mb-0">
-              Block A — CV-Qualitäts-Pipeline (pro CV)
+              CV-Qualitäts-Pipeline (pro CV)
             </div>
             <p className="text-[12px] text-zinc-500 mb-1">
               Antwortet auf die Frage: Stimmt der extrahierte CV mit seiner Quelle überein?
@@ -283,7 +283,7 @@ export default function LinearMethodikPage() {
               title="Generator"
               model="Haiku 4.5 (Anthropic)"
               family="Anthropic"
-              desc={`Extrahiert aus Wikipedia-Volltext einen strukturierten JSON-CV mit Tool-Use-Schema — derzeit ${counts.mdbsCvJson} MdB-Profile. Bei verfügbarer Homepage-Vita zusätzliche Zweit-Extraktion mit identischem Modell (${counts.mdbsCvHomepage} MdBs). Beide Quellen werden in Block B gegen einander geprüft.`}
+              desc={`Extrahiert aus Wikipedia-Volltext einen strukturierten JSON-CV mit Tool-Use-Schema — derzeit ${counts.mdbsCvJson} MdB-Profile. Bei verfügbarer Homepage-Vita zusätzliche Zweit-Extraktion mit identischem Modell (${counts.mdbsCvHomepage} MdBs). Beide Quellen werden in der Source-Coherence-Pipeline gegen einander geprüft.`}
               why="Strukturierte Extraktion mit vielen Feldern parallel ist eine breite Aufgabe — der Generator-Pass ist die einzige Stelle, an der das stärkere Modell sich lohnt. Identisches Modell für beide Quellen, damit der spätere Vergleich nicht von Modell-Unterschieden überlagert wird."
             />
             <Step
@@ -312,7 +312,7 @@ export default function LinearMethodikPage() {
             />
 
             <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-950 mt-6 mb-0">
-              Block B — Source-Coherence-Pipeline (Wikipedia ↔ Homepage)
+              Source-Coherence-Pipeline (Wikipedia ↔ Homepage)
             </div>
             <p className="text-[12px] text-zinc-500 mb-1">
               Antwortet auf die andere Frage: Sagen zwei unabhängige Quellen dasselbe?
@@ -331,7 +331,7 @@ export default function LinearMethodikPage() {
               model="Haiku 4.5 (Anthropic) · Repair: Llama 3.3 70B (Meta)"
               family="Anthropic / Meta"
               desc={`Klassifiziert jede Stufe-⑤-Diskrepanz gegen die Roh-Quelltexte: echte Quellen-Diskrepanz, Präzisierung, oder False-Positive? Bei "Extraktions-Fehler" folgt fokussierte Re-Extraktion durch Llama 70B aus dem Roh-Quelltext — Eintrag wird ersetzt oder gelöscht.`}
-              why={`Empirisch validiert in Phase 7: Llama 70B als Verifier ${(verifierCascade.llamaEchtRecall * 100).toFixed(0)} % ECHT-Recall, Haiku 4.5 erreicht ${(verifierCascade.haikuEchtRecall * 100).toFixed(0)} % — deutlich besseres Reasoning bei semantischen Welt-Wissens-Aufgaben. Repair durch andere Modell-Familie (Llama 70B) — fokussierte Single-Entry-Re-Extraktion ist Schema-Match, dafür reicht das größere Llama-Modell.`}
+              why={`Empirisch validiert im Verifier-Vergleich unten: Llama 70B als Verifier ${(verifierCascade.llamaEchtRecall * 100).toFixed(0)} % ECHT-Recall, Haiku 4.5 erreicht ${(verifierCascade.haikuEchtRecall * 100).toFixed(0)} % — deutlich besseres Reasoning bei semantischen Welt-Wissens-Aufgaben. Repair durch andere Modell-Familie (Llama 70B) — fokussierte Single-Entry-Re-Extraktion ist Schema-Match, dafür reicht das größere Llama-Modell.`}
             />
             <Step
               n="⊕"
@@ -339,7 +339,7 @@ export default function LinearMethodikPage() {
               model="Opus 4.7 + User-Recherche"
               family="Mensch + Anthropic"
               desc="Bei den Stufe-⑥-Konflikten prüft ein Mensch jede Klassifikation gegen die Quellen, mit Opus 4.7 als Reasoning-Hilfe. Final-Verdict (ECHT / Präzisierung / False-Positive) landet öffentlich auf der Profilseite."
-              why="Quellen-Diskrepanzen sind die folgenreichste Aussage der Plattform — keine Aussage ohne Mensch-Verifikation. Auch der beste Verifier-Cascade übersieht Einzelfälle (siehe Phase-7-Empirie unten)."
+              why="Quellen-Diskrepanzen sind die folgenreichste Aussage der Plattform — keine Aussage ohne Mensch-Verifikation. Auch der beste Verifier-Cascade übersieht Einzelfälle (siehe Verifier-Vergleich unten)."
             />
           </div>
 
@@ -349,17 +349,17 @@ export default function LinearMethodikPage() {
             </h3>
             <ul className="space-y-1.5 text-[12.5px] text-zinc-600 leading-relaxed">
               <li><strong className="text-zinc-950">Modell-Familien-Diversität als Bias-Schutz.</strong> Generator und Inspektoren aus unterschiedlichen Familien (Anthropic, Mistral AI, Meta, OpenAI). Ein Inspektor aus anderer Familie detektiert eher die Fehler, die der Generator selbst übersieht.</li>
-              <li><strong className="text-zinc-950">Empirie-getriebene Modell-Wahl pro Stufe.</strong> Siehe Phase 7 unten — Llama 70B vs Haiku 4.5 mit Opus als Ground Truth getestet.</li>
+              <li><strong className="text-zinc-950">Empirie-getriebene Modell-Wahl pro Stufe.</strong> Siehe Verifier-Vergleich unten — Llama 70B vs Haiku 4.5 mit Opus als Ground Truth getestet.</li>
             </ul>
           </div>
         </section>
 
         {/* Detail Stufe 5 */}
         <section id="stufe-5" className="mb-10 scroll-mt-20">
-          <h2 className="text-[15px] font-semibold text-zinc-950 mb-1">Stufe 5 — Source-Coherence-Check</h2>
+          <h2 className="text-[15px] font-semibold text-zinc-950 mb-1">Source-Coherence-Check</h2>
           <p className="text-[13px] text-zinc-500 mb-4">
             Wikipedia-CV ↔ Homepage-CV pro Politiker:in verglichen. Diskrepanz-Kandidaten
-            werden in Phase 7 mit einem Verifier-Modell gegen die Roh-Quelltexte geprüft.
+            werden anschließend mit einem Verifier-Modell gegen die Roh-Quelltexte geprüft.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
             <BigStat value={stage5.politiciansChecked.toString()} label="Politiker:innen geprüft" sub={`von ${counts.mdbsCvHomepage} mit beiden Quellen (${pct(stage5.politiciansChecked, counts.mdbsCvHomepage)})`} />
@@ -369,9 +369,9 @@ export default function LinearMethodikPage() {
           </div>
         </section>
 
-        {/* Phase 7 — Verifier-Cascade-Auswahl */}
+        {/* Verifier-Modell-Wahl — empirischer Vergleich */}
         <section id="phase-7" className="mb-10 scroll-mt-20">
-          <h2 className="text-[15px] font-semibold text-zinc-950 mb-1">Phase 7 — Verifier-Cascade-Auswahl</h2>
+          <h2 className="text-[15px] font-semibold text-zinc-950 mb-1">Verifier-Modell-Wahl — empirischer Vergleich</h2>
           <p className="text-[13px] text-zinc-500 mb-4">
             Nach Stage-5-Vollauf: {verifierCascade.total} Konflikt-Kandidaten. Welches Modell taugt
             als Verifier-Layer? Llama 3.3 70B (Free Tier) und Claude Haiku 4.5 mit identischem Prompt
@@ -535,7 +535,7 @@ export default function LinearMethodikPage() {
 
           <div className="space-y-2">
             <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-950 mt-2 mb-0">
-              Block C — Reden-Analyse (pro Plenarrede)
+              Reden-Analyse (pro Plenarrede)
             </div>
             <p className="text-[12px] text-zinc-500 mb-1">
               Antwortet auf die Frage: Was sagt diese Rede inhaltlich, wie ist die Tonalität, welche Forderungen werden aufgestellt — partei-neutral?
@@ -590,7 +590,7 @@ export default function LinearMethodikPage() {
             />
 
             <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-950 mt-6 mb-0">
-              Block D — Vote-Topic-Mapping (pro namentlicher Abstimmung)
+              Vote-Topic-Mapping (pro namentlicher Abstimmung)
             </div>
             <p className="text-[12px] text-zinc-500 mb-1">
               Antwortet auf die Frage: Welche Reden gehören zu welcher Bundestags-Abstimmung — damit Aussage und Stimmverhalten nebeneinander zeigbar werden?
@@ -932,7 +932,7 @@ export default function LinearMethodikPage() {
 
             <div>
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
-                Block A — CV-Qualitäts-Pipeline
+                CV-Qualitäts-Pipeline
               </div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">cv-consistency-report.md</code> — Stammdaten-Konsistenz-Check: Widersprüche LLM-CV vs. Wikidata/abgeordnetenwatch</li>
@@ -944,7 +944,7 @@ export default function LinearMethodikPage() {
 
             <div>
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
-                Block B — Source-Coherence-Pipeline
+                Source-Coherence-Pipeline
               </div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">source-coherence.partial.jsonl</code> — alle Stufe-⑤-Vergleiche Wikipedia-CV ↔ Homepage-CV ({counts.sourceCoherenceChecked} Politiker:innen)</li>
