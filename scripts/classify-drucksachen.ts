@@ -74,7 +74,11 @@ function classifyFromPdfHeader(text: string): string {
   if (/^Deutscher Bundestag Drucksache.*\s*Wahlvorschl[aä]g/is.test(head)
       || /Wahlvorschl[aä]g.{0,200}\s*der Fraktion/is.test(head)) return "administrativ";
   if (/Sammelübersicht/i.test(head)) return "administrativ";
-  if (/Beschlussempfehlung/i.test(head)) return "administrativ";
+  // HINWEIS: Beschlussempfehlung NICHT mehr administrativ — siehe unten
+  // ("Berichte"). administrativ = nur Regex-Boilerplate ohne echte
+  // Zusammenfassung; eine Beschlussempfehlung+Bericht ist aber die
+  // zentrale "was wurde empfohlen / worum geht es"-Quelle für Votes.
+  // Wahlvorschlag/Sammelübersicht bleiben administrativ (echt formal).
 
   // Antwort der Bundesregierung
   if (/Antwort\s+der Bundesregierung/i.test(head)) return "antwort";
@@ -87,7 +91,9 @@ function classifyFromPdfHeader(text: string): string {
   if (/Kleine Anfrage/i.test(head)) return "klein";
   if (/^\s*Antrag\s*\n/m.test(head)) return "klein";
 
-  // Berichte + Unterrichtungen
+  // Berichte + Unterrichtungen + Beschlussempfehlungen (inhaltsreich,
+  // vote-relevant → echte LLM-Zusammenfassung statt administrativ-Stub)
+  if (/Beschlussempfehlung/i.test(head)) return "mittel";
   if (/^Unterrichtung/im.test(head)) return "mittel";
   if (/Unterrichtung\s+durch/i.test(head)) return "mittel";
   if (/^Bericht/im.test(head)) return "mittel";
