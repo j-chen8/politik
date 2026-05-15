@@ -6,9 +6,15 @@
  *   --poll <batch_id>    Poll Status + Results und schreibt in DB
  *   --resume             Übernimmt einen offenen Batch aus drucksache_batch_runs
  *   --classes klein,gross  Nur bestimmte Klassen (default: alle außer skip/administrativ)
+ *   --force | --reanalyze  Idempotenz ignorieren — bewusster Voll-Re-Run am
+ *                          aktuellen PROMPT_VERSION (für absichtliche Prompt-Upgrades)
  *
- * Idempotenz: DS mit drucksache_analyses.prompt_version = 'v1' AND raw_llm_response IS NOT NULL
- * werden übersprungen.
+ * Idempotenz (Fix B): DS gilt als erledigt, sobald IRGENDEINE gültige LLM-Analyse
+ * existiert (raw_llm_response gesetzt, kein analyze_error) — UNABHÄNGIG von
+ * prompt_version. Verhindert, dass ein v1-gepinnter Lauf tiered v1.1-Analysen
+ * als "todo" wertet und mit schlechterem v1-Prompt überschreibt (Regressions-
+ * Mine). Gültige Versionen sind v1 UND v1.1 (so sehen es cleanup-/topic-drift-
+ * Skripte bereits). Bewusste Re-Runs nur explizit via --force.
  *
  * Caching: System-Prompt + Tool-Schema werden als ephemeral cache_control markiert.
  * Drift-Audit: Topic-Tags außerhalb der Enum landen in topic_drift_audit.
@@ -40,6 +46,7 @@ const SUBMIT = argv.includes("--submit");
 const POLL_IDX = argv.indexOf("--poll");
 const POLL_ID = POLL_IDX >= 0 ? argv[POLL_IDX + 1] : null;
 const RESUME = argv.includes("--resume");
+const FORCE = argv.includes("--force") || argv.includes("--reanalyze");
 const CLASSES_IDX = argv.indexOf("--classes");
 const CLASSES_FILTER: string[] | null = CLASSES_IDX >= 0 ? argv[CLASSES_IDX + 1].split(",") : null;
 
@@ -93,12 +100,18 @@ function buildRequest(row: Row) {
 function selectTodos(): Row[] {
   const classes: BatchClass[] = (CLASSES_FILTER ?? ["klein", "mittel", "gross", "antwort", "regierung"]) as BatchClass[];
   const placeholders = classes.map(() => "?").join(",");
+  // Idempotenz (Fix B): "erledigt" = es existiert eine gültige LLM-Analyse
+  // (raw_llm_response gesetzt, kein analyze_error) — UNABHÄNGIG von
+  // prompt_version (v1 UND v1.1 gelten). --force matcht nie → alles todo.
+  const idempotency = FORCE
+    ? "AND 1 = 0"
+    : "AND a.raw_llm_response IS NOT NULL AND a.analyze_error IS NULL";
   return db
     .prepare(
       `SELECT t.drucksache_nr, t.batch_class, t.full_text, t.tokens_estimate
        FROM drucksache_texts t
        LEFT JOIN drucksache_analyses a
-         ON a.drucksache_nr = t.drucksache_nr AND a.prompt_version = '${PROMPT_VERSION}' AND a.raw_llm_response IS NOT NULL
+         ON a.drucksache_nr = t.drucksache_nr ${idempotency}
        WHERE t.batch_class IN (${placeholders})
          AND t.parse_error IS NULL
          AND t.full_text IS NOT NULL
@@ -268,7 +281,7 @@ async function main() {
   console.log(`Geschätzte Kosten (Haiku 4.5 Batch + Caching, Input+Output): ~$${((tokSum / 1e6) * 0.30 + 3).toFixed(2)}`);
 
   if (rows.length === 0) {
-    console.log(`\nNichts zu tun. (Idempotenz greift — alle prompt_version=${PROMPT_VERSION} mit gültigem Output.)`);
+    console.log(`\nNichts zu tun. (Idempotenz: alle Kandidaten haben bereits eine gültige Analyse. Bewusster Re-Run: --force.)`);
     return;
   }
 
