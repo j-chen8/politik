@@ -15,7 +15,9 @@ export default async function VoteDetailPage({
   const detail = getVoteDetail(pollId);
   if (!detail) notFound();
 
-  const { poll_label, poll_url, poll_date, topics, byFraction, totals, speeches, relatedPolls } = detail;
+  const { poll_label, poll_url, poll_date, topics, byFraction, totals, speeches, relatedPolls, voteContext } = detail;
+  // Defensiv: drucksachen-Liste ist neu (BT-Audit 2026-05-13), Schutz vor stale-cache
+  const drucksachen: typeof detail.drucksachen = Array.isArray(detail.drucksachen) ? detail.drucksachen : [];
 
   // Sortierung: Reden mit Stimm-Info zuerst, dann nach Fraktion, dann nach speech_id
   const orderedSpeeches = [...speeches].sort((a, b) => {
@@ -65,6 +67,55 @@ export default async function VoteDetailPage({
             </Link>
           )}
         </div>
+
+        {/* Worum geht es? — grounded, neutral, quellenbelegt */}
+        {voteContext && (
+          <section className="mb-10 fade-in-up fade-in-up-2">
+            <SectionHeader label="Worum geht es?" />
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5">
+              <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-line">
+                {voteContext.worum_geht_es}
+              </p>
+              {voteContext.block_hinweis && (
+                <p className="mt-3 text-[12.5px] text-zinc-500 leading-relaxed">
+                  <span className="font-medium text-zinc-600">Hinweis: </span>
+                  {voteContext.block_hinweis}
+                </p>
+              )}
+              {voteContext.subjekt_drucksachen.length > 0 && (
+                <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mr-1">
+                    Gestützt auf
+                  </span>
+                  {voteContext.subjekt_drucksachen.map((nr) => (
+                    <Link
+                      key={nr}
+                      href={`/design/linear/aktivitaeten/${nr.replace(/\//g, "-")}`}
+                      className="inline-flex items-center rounded-md border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[11px] font-mono text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 transition-colors"
+                    >
+                      {nr}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              <div className="mt-4 pt-3 border-t border-zinc-100 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-zinc-400">
+                {voteContext.bt_topic && (
+                  <span>Gegenstand laut bundestag.de: <span className="text-zinc-500">{voteContext.bt_topic}</span></span>
+                )}
+                {voteContext.ist_fallback && (
+                  <>
+                    <span className="text-zinc-300">·</span>
+                    <span className="text-amber-700/80">eingeschränkte Datenlage — Zusammenfassung beruht nur auf Titel/Metadaten</span>
+                  </>
+                )}
+                <span className="text-zinc-300">·</span>
+                <Link href="/design/linear/methodik" className="hover:text-zinc-600 transition-colors underline decoration-zinc-300">
+                  Methodik
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Stimm-Ergebnis */}
         <section className="mb-10 fade-in-up fade-in-up-2">
@@ -122,6 +173,62 @@ export default async function VoteDetailPage({
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* Drucksachen (autoritativ via Bundestag.de-Audit) */}
+        {drucksachen.length > 0 && (
+          <section className="mb-10 fade-in-up fade-in-up-3">
+            <SectionHeader
+              label={`${drucksachen.length === 1 ? "Drucksache zur Abstimmung" : `${drucksachen.length} Drucksachen zur Abstimmung`}`}
+            />
+            <div className="space-y-2">
+              {drucksachen.map((d) => (
+                <Link
+                  key={d.drucksache_nr}
+                  href={`/design/linear/aktivitaeten/${d.drucksache_nr.replace(/\//g, "-")}`}
+                  className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:border-zinc-300 transition-colors group"
+                >
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="text-[11px] font-mono uppercase text-zinc-500">{d.drucksache_nr}</span>
+                    {d.drucksache_typ && (
+                      <>
+                        <span className="text-zinc-300">·</span>
+                        <span className="text-[11px] text-zinc-500">{d.drucksache_typ}</span>
+                      </>
+                    )}
+                    {d.thema && (
+                      <>
+                        <span className="text-zinc-300">·</span>
+                        <span className="text-[11px] text-zinc-500">{d.thema}</span>
+                      </>
+                    )}
+                  </div>
+                  {d.titel && (
+                    <p className="text-[13.5px] text-zinc-800 leading-snug mb-1 group-hover:text-zinc-950 transition-colors">
+                      {d.titel}
+                    </p>
+                  )}
+                  {d.zusammenfassung && (
+                    <p className="text-[12.5px] text-zinc-600 leading-relaxed line-clamp-2">
+                      {d.zusammenfassung}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-2">
+              Drucksachen-Verknüpfung autoritativ aus{" "}
+              <a
+                href={poll_url ? poll_url.replace(/abgeordnetenwatch\.de.*/, "bundestag.de/parlament/plenum/abstimmung") : "https://www.bundestag.de"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-700 transition-colors"
+              >
+                Bundestag.de
+              </a>{" "}
+              bezogen (Cross-Source-Audit 2026-05-13).
+            </p>
           </section>
         )}
 

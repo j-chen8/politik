@@ -611,6 +611,14 @@ export default function LinearMethodikPage() {
               desc={`Pro Vote werden alle TOPs der Session als Kandidaten geladen + die ersten 1-2 Reden-Zusammenfassungen pro TOP als Disambiguierungs-Kontext. Das LLM wählt einen oder zwei TOPs mit Confidence-Tag (high / medium / low / none). Cost ~$0,05 für 50 Polls. Endergebnis nach manuellem Vollspotcheck (2026-05-07): 90 % HIGH (45/50, 3 LLM-Fehler manuell korrigiert), 10 % NONE (5 Beschlussempfehlungen ohne Aussprache in derselben Session — strukturell nicht mappbar). Manuelle Korrekturen tragen audit-Tag „manual-opus-4.7-spotcheck-2026-05-07".`}
               why={`TOP-Titel sind oft formal-identisch (z.B. drei Bundeswehr-Mandate desselben Tages tragen alle den Titel „Beschlussempfehlung des Auswärtigen Ausschusses"). Reden-Summary-Kontext disambiguiert zuverlässig. Empirisch: erste Iteration ohne Kontext erreichte 0 % HIGH; mit 1-2 Reden-Summaries als Kontext 88 % HIGH. Bekannte Restschwäche: bei verbundenen Debatten (mehrere Anträge unter einem Aussprache-TOP, separat abgestimmt) wird der LLM manchmal von beiläufigen Erwähnungen in Reden in die Irre geleitet — daher hat ein Mensch alle 50 Mappings nachgeprüft und 3 Fehler korrigiert.`}
             />
+            <Step
+              n="③"
+              title="Vote-Kontext-Zusammenfassung — Worum geht es?"
+              model="Haiku 4.5 (Anthropic) · Tool-Use-Schema · strikt grounded"
+              family="Anthropic"
+              desc={`Pro Abstimmung eine neutrale 2–5-Sätze-Antwort auf „worüber wurde abgestimmt?". Grounding ausschließlich aus dem autoritativen bundestag.de-Abstimmungstitel + den Analysen der verknüpften Drucksachen (zuvor bereinigt: Beschlussempfehlungen erhalten echte statt Boilerplate-Zusammenfassung; fehlende/dünne Drucksachen-Analysen nachgezogen). Das Modell schält den tatsächlichen Gegenstand heraus, zitiert die Subjekt-Drucksache(n) und kennzeichnet Block-Beiwerk. Provenance je Eintrag (model/prompt_version/raw) in vote_context. Vollauf: 50/50 ohne Fehler, 0 Fallback.`}
+              why={`bundestag.de listet unter EINER namentlichen Abstimmung oft den ganzen TOP-/Sitzungsblock — bei Finanz-Sammelabstimmungen 15+ thematisch unverbundene Drucksachen. Die rohe Drucksachen-Liste ist quellentreu, für Leser aber irreführend („was wurde hier eigentlich entschieden?"). Eine grounded Synthese aus bundestag.de-Titel + bereinigten Analysen beantwortet das, ohne neue Halluzinationsfläche: kein Web-/Modellwissen, zugeschriebene neutrale Sprache, ehrlicher „eingeschränkte Datenlage"-Fallback statt Spekulation wenn der Gegenstand nicht aus Volltext-Analysen grounded werden kann (z.B. Bundeshaushalt — Drucksache zu umfangreich). XML-Tool-Call-Leakage durch Retry + Sanitize abgefangen (Muster aus der Drucksachen-Pipeline).`}
+            />
           </div>
 
           <div className="mt-5 rounded-xl border border-zinc-200/70 bg-zinc-50/50 p-4">

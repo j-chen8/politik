@@ -410,7 +410,7 @@ export function getDbStats(): {
 
 export interface LatestActivityHighlights {
   latestSession: { wahlperiode: number; sitzung: number; datum: string; speechCount: number } | null;
-  latestPoll: { pollId: number; label: string; date: string } | null;
+  latestPoll: { pollId: number; label: string; date: string; yes: number; no: number; yesRatio: number } | null;
   latestDrucksache: { drucksacheNr: string; thema: string; datum: string } | null;
 }
 
@@ -430,10 +430,14 @@ export function getLatestActivityHighlights(): LatestActivityHighlights {
     : 0;
 
   const poll = db.prepare(
-    `SELECT DISTINCT poll_id, poll_label, poll_date FROM votes
+    `SELECT poll_id, poll_label, poll_date,
+       SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
+       SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no
+     FROM votes
      WHERE poll_label IS NOT NULL AND poll_date IS NOT NULL AND poll_date != ''
+     GROUP BY poll_id, poll_label, poll_date
      ORDER BY poll_date DESC, poll_id DESC LIMIT 1`
-  ).get() as { poll_id: number; poll_label: string; poll_date: string } | undefined;
+  ).get() as { poll_id: number; poll_label: string; poll_date: string; yes: number; no: number } | undefined;
 
   const drucksache = db.prepare(
     `SELECT a.drucksache_nr, MIN(a.thema) AS thema, MAX(a.datum) AS datum
@@ -450,7 +454,14 @@ export function getLatestActivityHighlights(): LatestActivityHighlights {
       ? { wahlperiode: session.wahlperiode, sitzung: session.sitzung, datum: session.datum, speechCount }
       : null,
     latestPoll: poll
-      ? { pollId: poll.poll_id, label: poll.poll_label, date: poll.poll_date }
+      ? {
+          pollId: poll.poll_id,
+          label: poll.poll_label,
+          date: poll.poll_date,
+          yes: poll.yes,
+          no: poll.no,
+          yesRatio: poll.yes + poll.no > 0 ? poll.yes / (poll.yes + poll.no) : 0,
+        }
       : null,
     latestDrucksache: drucksache
       ? { drucksacheNr: drucksache.drucksache_nr, thema: drucksache.thema, datum: drucksache.datum }
@@ -814,6 +825,74 @@ export function getSpeechSummaryInfo(politicianId: number): { speaker: string; c
   } catch {
     return null;
   }
+}
+
+export interface ShowcasePolitician {
+  id: number;
+  title: string | null;
+  firstName: string;
+  lastName: string;
+  photoUrl: string | null;
+  partyLabel: string | null;
+  speechCount: number;
+  activityCount: number;
+  /** Namentliche Abstimmungen, an denen tatsächlich teilgenommen wurde (kein no_show). */
+  votesParticipated: number;
+}
+
+/**
+ * Zufälliges, fraktionsübergreifendes Beispiel-Profil für die Landing-Page.
+ *
+ * Neutral per Konstruktion: keine redaktionelle Auswahl, sondern `ORDER BY
+ * RANDOM()` über alle aktiven MdBs. Die Mindest-Schwellen (Foto + je ≥ 5 Reden
+ * und Aktivitäten + ≥ 1 Abstimmung) garantieren nur, dass die Karte nie leer
+ * wirkt — sie gewichten keine Person. Rotiert pro Request, weil die
+ * Landing-Page `force-dynamic` ist.
+ */
+export function getShowcasePolitician(): ShowcasePolitician | null {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT p.id, p.title, p.first_name, p.last_name, p.photo_url,
+              pa.label AS party_label,
+              (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id) AS speech_count,
+              (SELECT COUNT(*) FROM activities a WHERE a.politician_id = p.id) AS activity_count,
+              (SELECT COUNT(*) FROM votes v WHERE v.politician_id = p.id AND v.vote != 'no_show') AS votes_participated
+       FROM politicians p
+       LEFT JOIN parties pa ON p.party_id = pa.id
+       WHERE ${IS_POLITICIAN_ACTIVE_SQL}
+         AND p.photo_url IS NOT NULL AND p.photo_url != ''
+         AND (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id) >= 5
+         AND (SELECT COUNT(*) FROM activities a WHERE a.politician_id = p.id) >= 5
+         AND (SELECT COUNT(*) FROM votes v WHERE v.politician_id = p.id AND v.vote != 'no_show') >= 1
+       ORDER BY RANDOM()
+       LIMIT 1`
+    )
+    .get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as
+    | {
+        id: number;
+        title: string | null;
+        first_name: string;
+        last_name: string;
+        photo_url: string | null;
+        party_label: string | null;
+        speech_count: number;
+        activity_count: number;
+        votes_participated: number;
+      }
+    | undefined;
+  if (!row) return null;
+  return {
+    id: row.id,
+    title: row.title,
+    firstName: row.first_name,
+    lastName: row.last_name,
+    photoUrl: row.photo_url,
+    partyLabel: row.party_label,
+    speechCount: row.speech_count,
+    activityCount: row.activity_count,
+    votesParticipated: row.votes_participated,
+  };
 }
 
 export interface ActivityWithPolitician extends ActivityRow {
@@ -2212,6 +2291,13 @@ export interface VoteDetail {
   speeches: VoteSpeechRow[];
   relatedPolls: { poll_id: number; poll_label: string | null; poll_date: string | null }[];
   drucksachen: VoteDrucksacheRow[];
+  voteContext: {
+    worum_geht_es: string;
+    subjekt_drucksachen: string[];
+    block_hinweis: string | null;
+    bt_topic: string | null;
+    ist_fallback: boolean;
+  } | null;
 }
 
 export interface VoteDrucksacheRow {
@@ -2353,6 +2439,28 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     ORDER BY dp.match_score DESC, dp.drucksache_nr
   `).all(pollId) as VoteDrucksacheRow[];
 
+  // Vote-Kontext ("Worum geht es?", grounded, neutral) — optional
+  let voteContext: VoteDetail["voteContext"] = null;
+  try {
+    const vc = db.prepare(`
+      SELECT worum_geht_es, subjekt_drucksachen, block_hinweis, bt_topic, ist_fallback
+      FROM vote_context WHERE poll_id = ?
+    `).get(pollId) as
+      | { worum_geht_es: string | null; subjekt_drucksachen: string | null; block_hinweis: string | null; bt_topic: string | null; ist_fallback: number }
+      | undefined;
+    if (vc?.worum_geht_es) {
+      let subj: string[] = [];
+      try { const a = JSON.parse(vc.subjekt_drucksachen ?? "[]"); if (Array.isArray(a)) subj = a.filter((x) => typeof x === "string"); } catch {}
+      voteContext = {
+        worum_geht_es: vc.worum_geht_es,
+        subjekt_drucksachen: subj,
+        block_hinweis: vc.block_hinweis,
+        bt_topic: vc.bt_topic,
+        ist_fallback: vc.ist_fallback === 1,
+      };
+    }
+  } catch { /* vote_context-Tabelle ggf. nicht vorhanden — graceful null */ }
+
   return {
     poll_id: head.poll_id,
     poll_label: head.poll_label,
@@ -2364,6 +2472,7 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     speeches,
     relatedPolls,
     drucksachen,
+    voteContext,
   };
 }
 
@@ -2407,45 +2516,6 @@ export function listAllPollsForIndex(): PollIndexRow[] {
     GROUP BY v.poll_id, v.poll_label, v.poll_date
     ORDER BY v.poll_date DESC, v.poll_id DESC
   `).all() as PollIndexRow[];
-}
-
-// ============================================================
-// Pop-Hero: knappste Polls für Landing-Page
-// ============================================================
-
-export interface ClosestPollRow {
-  poll_id: number;
-  poll_label: string;
-  poll_date: string | null;
-  yes: number;
-  no: number;
-  yes_ratio: number;        // 0-1
-  distance_to_pari: number; // 0-0.5
-}
-
-export function getClosestPolls(limit: number = 3): ClosestPollRow[] {
-  const db = getDb();
-  return db.prepare(`
-    SELECT
-      poll_id,
-      poll_label,
-      poll_date,
-      SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
-      SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no,
-      CAST(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS REAL) /
-        NULLIF(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
-               SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END), 0) AS yes_ratio,
-      ABS(0.5 - CAST(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS REAL) /
-        NULLIF(SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
-               SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END), 0)) AS distance_to_pari
-    FROM votes
-    WHERE poll_label IS NOT NULL
-    GROUP BY poll_id, poll_label, poll_date
-    HAVING SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) +
-           SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) > 0
-    ORDER BY distance_to_pari ASC
-    LIMIT ?
-  `).all(limit) as ClosestPollRow[];
 }
 
 // ============================================================
