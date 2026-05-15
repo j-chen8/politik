@@ -26,6 +26,10 @@ export function LatestActivityStrip() {
 
   const newestDate = mostRecent(latestSession?.datum, latestPoll?.date, latestDrucksache?.datum);
 
+  const pollHasResult = !!latestPoll && latestPoll.yes + latestPoll.no > 0;
+  const pollYesPct = pollHasResult ? latestPoll.yesRatio * 100 : 0;
+  const pollYesLabel = pollYesPct.toFixed(1).replace(".", ",");
+
   return (
     <section className="w-full max-w-5xl mx-auto px-5 pb-8 pt-2">
       <div className="mb-4 flex items-baseline justify-between gap-4">
@@ -76,9 +80,25 @@ export function LatestActivityStrip() {
               <Vote className="w-3 h-3" strokeWidth={2.25} />
               Abstimmung
             </div>
-            <div className="text-[13.5px] font-medium text-zinc-900 leading-snug mb-3 line-clamp-3 min-h-[60px]">
+            <div className="text-[13.5px] font-medium text-zinc-900 leading-snug mb-3 line-clamp-2 min-h-[40px]">
               {latestPoll.label}
             </div>
+            {pollHasResult && (
+              <div className="mb-3">
+                <div className="flex items-baseline gap-1.5 mb-1.5">
+                  <span className="text-base font-semibold text-zinc-950 num">{pollYesLabel} %</span>
+                  <span className="text-[11px] text-zinc-500">Ja-Anteil</span>
+                </div>
+                <div className="h-1.5 rounded-full overflow-hidden bg-zinc-100 flex">
+                  <div className="bg-emerald-500" style={{ width: `${pollYesPct}%` }} />
+                  <div className="bg-rose-400" style={{ width: `${100 - pollYesPct}%` }} />
+                </div>
+                <div className="flex justify-between text-[11px] text-zinc-500 num mt-1.5">
+                  <span>{latestPoll.yes} Ja</span>
+                  <span>{latestPoll.no} Nein</span>
+                </div>
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-zinc-400 num">{formatGermanDate(latestPoll.date)}</span>
               <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all" strokeWidth={2.25} />
@@ -104,6 +124,27 @@ export function LatestActivityStrip() {
             </div>
           </Link>
         )}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-center">
+        <Link
+          href="/design/linear/protokolle"
+          className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
+        >
+          Mehr Plenarsitzungen →
+        </Link>
+        <Link
+          href="/design/linear/abstimmungen"
+          className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
+        >
+          Mehr Abstimmungen →
+        </Link>
+        <Link
+          href="/design/linear/aktivitaeten"
+          className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
+        >
+          Mehr Drucksachen →
+        </Link>
       </div>
     </section>
   );

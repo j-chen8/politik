@@ -387,10 +387,31 @@ export function getDbStats(): {
        AND (m.end_date IS NULL OR m.end_date = '' OR m.end_date > date('now'))`
   ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c;
 
+  // Quereinsteiger-Bundesminister:innen = Bundeskabinettsmitglieder OHNE
+  // Bundestagsmandat. GEZIELT zählen (rolle = Bundes-/Staatsminister, amt
+  // gesetzt & kein 'Land:%', kein aktives Mandat) — NICHT als Differenz
+  // politicians − mdbs: in dieser Differenz steckten sonst auch
+  // Staatssekretär:innen, Regierungssprecher, Botschafter und Stammdaten-MdBs
+  // ohne mandates-Zeile (→ Bug: zeigte 26 statt 5).
+  const cabinetQuereinsteiger = (db.prepare(
+    `SELECT COUNT(*) as c FROM politicians p
+     WHERE p.id >= 900000
+       AND p.rolle IN ('Bundesminister', 'Staatsminister')
+       AND p.amt IS NOT NULL AND p.amt != '' AND p.amt NOT LIKE 'Land:%'
+       AND NOT EXISTS (
+         SELECT 1 FROM mandates m
+         JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+         JOIN parliaments par ON pp.parliament_id = par.id
+         WHERE m.politician_id = p.id AND m.type = 'mandate'
+           AND par.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+           AND (m.end_date IS NULL OR m.end_date = '' OR m.end_date > date('now'))
+       )`
+  ).get(...VISIBLE_PARLIAMENT_TYPE_VALUES) as { c: number }).c;
+
   return {
     politicians: polCount.c,
     mdbs: mdbCount,
-    cabinetQuereinsteiger: polCount.c - mdbCount,
+    cabinetQuereinsteiger,
     mandates: (db.prepare(
       `SELECT COUNT(*) as c FROM mandates m
        JOIN parliament_periods pp ON m.parliament_period_id = pp.id

@@ -1,4 +1,4 @@
-import { listPoliticians, getAllParliaments, getAllParties } from "@/lib/db";
+import { listPoliticians, getAllParliaments, getAllParties, getDbStats } from "@/lib/db";
 import { PolitikerFilters } from "@/components/PolitikerFilters";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import Link from "next/link";
@@ -22,6 +22,7 @@ export default async function PolitikerListPage({ searchParams }: Props) {
 
   const parliaments = getAllParliaments();
   const parties = getAllParties();
+  const stats = getDbStats();
 
   const { rows, total } = listPoliticians({
     query: q || undefined,
@@ -50,7 +51,13 @@ export default async function PolitikerListPage({ searchParams }: Props) {
               {total.toLocaleString("de-DE")}
             </span>
             <span className="text-[13px] text-zinc-500">
-              Abgeordnete in {parliaments.length} Parlamenten
+              {partei || q
+                ? "Treffer"
+                : `Politiker:innen (${stats.mdbs.toLocaleString("de-DE")} Bundestagsabgeordnete${
+                    stats.cabinetQuereinsteiger > 0
+                      ? ` + ${stats.cabinetQuereinsteiger} Quereinsteiger-Bundesminister:innen`
+                      : ""
+                  })`}
             </span>
           </div>
         </div>
