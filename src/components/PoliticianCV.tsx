@@ -451,6 +451,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
               ) : (
                 "URL unbekannt"
               )}
+              {" "}· strukturierter Auszug mit Quellenangabe (§ 51 UrhG)
               {homepageMeta?.model && (
                 <>
                   {" "}· extrahiert mit{" "}
@@ -499,9 +500,10 @@ export function PoliticianCV(props: PoliticianCVProps) {
           <div className="mt-2 pt-3 border-t border-gray-200/70">
             <strong className="text-foreground/80">Mehrfach-Verifikation für mehr Verlässlichkeit:</strong>
             <p className="mt-1">
-              Jeder strukturierte Eintrag durchläuft eine Specialist-Cascade aus{" "}
-              <strong className="text-foreground/80">vier unabhängigen Modell-Familien</strong>{" "}
-              (Anthropic, Meta/Llama, Mistral, NVIDIA) — gegen Trainingsdaten-Bias, gegen
+              Jeder strukturierte Eintrag wird aus zwei unabhängigen Quellen erzeugt und
+              anschließend durch eine Specialist-Cascade aus{" "}
+              <strong className="text-foreground/80">zwei unabhängigen Modell-Familien</strong>{" "}
+              (Anthropic, Meta/Llama) geprüft — gegen Trainingsdaten-Bias, gegen
               Halluzinationen, mit wörtlichem Quellenbeleg pro Eintrag.
             </p>
             <ul className="mt-1.5 ml-3 space-y-0.5 list-none">
@@ -512,28 +514,12 @@ export function PoliticianCV(props: PoliticianCVProps) {
               </li>
               <li>
                 <span className="text-foreground/70">②</span>{" "}
-                <span className="font-mono">Anthropic Haiku 4.5</span> — Generator (Homepage):
+                <span className="font-mono">Groq Llama 3.1 8B</span> — Generator (Homepage):
                 extrahiert unabhängig die Homepage-Vita als zweite Quelle
               </li>
               <li>
                 <span className="text-foreground/70">③</span>{" "}
-                <span className="font-mono">Mistral Small</span> — Datums-Inspektor: prüft jede
-                Jahresangabe gegen den Originaltext auf Halluzination
-              </li>
-              <li>
-                <span className="text-foreground/70">④</span>{" "}
-                <span className="font-mono">Groq Llama-3.3-70b</span> — Verifier-Cascade:
-                prüft Mistrals Datums-Verdikte mit einer unabhängigen Modell-Familie nach
-                (filtert ~60% False-Positives)
-              </li>
-              <li>
-                <span className="text-foreground/70">⑤</span>{" "}
-                <span className="font-mono">NVIDIA Nemotron-Nano-12b</span> — Tiebreaker bei
-                Inter-LLM-Konflikten zwischen Quelle ① und ②
-              </li>
-              <li>
-                <span className="text-foreground/70">⑥</span>{" "}
-                <span className="font-mono">Anthropic Opus 4.7 + Haiku 4.5 + Llama-70b</span> —
+                <span className="font-mono">Anthropic Opus 4.7 + Haiku 4.5 + Groq Llama-3.3-70b</span> —
                 Source-Coherence-Verifier-Cascade: drei parallele Modelle bewerten, ob ein
                 erkannter Wikipedia↔Homepage-Konflikt echt oder ein Extraktions-Artefakt ist
               </li>
