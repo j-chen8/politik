@@ -86,15 +86,15 @@ Caveats.
 
 ---
 
-## 1. Gap-Status (Snapshot **nach Refresh 2026-05-19** — via Check-Skript regenerierbar)
+## 1. Gap-Status (Snapshot **nach Refresh 2026-05-20** — via Check-Skript regenerierbar)
 
 | Quelle | Status | Stand nach Refresh | Notiz |
 |---|---|---|---|
 | Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 78 (2026-05-08) | 76/77/78 ingestiert |
-| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | 9.272 → **9.689** Reden | 509 analysiert ($2,22), Neutralitäts-Spotcheck bestanden |
-| Activities (DIP) | 🟢 aktuell | 62.840 → **66.185** | bis 2026-05-19 |
-| Drucksachen-PDF | 🟢 aktuell | max → **21/6001** | +167 Texte, alle klassifiziert |
-| Drucksachen-LLM | 🟢 erledigt | 5.185 → **5.358** | 202 analysiert ($3,22), Spotcheck bestanden |
+| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **9.689** Reden | 0 Pre-Flight-Requests am 20.05. (alle aktuell seit 19.05.-Lauf) |
+| Activities (DIP) | 🟢 aktuell | 66.185 → **66.759** | +574 am 20.05., bis 2026-05-20 |
+| Drucksachen-PDF | 🟢 aktuell | 21/6001 → **21/6034** | +33 am 20.05., alle klassifiziert |
+| Drucksachen-LLM | 🟢 erledigt | 5.358 → **5.387** | 29 am 20.05. ($3,03), Spotcheck bestanden (zugeschriebene Sprache, sachlich) |
 | Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 50 → **51 Polls** (6511, 630 Votes, datiert 2026-05-08) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~11 T — Datenlage-Decke (kein neuerer Poll existiert)** |
 | Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.901→**3.969**, Committees ~1.73k | mit aw-Run aktualisiert |
 | Ausschuss-Protokolle | 🟡 Drift | 254 JSON vs 226 DB | nicht Teil von „update" (destruktiver Reimport) |
