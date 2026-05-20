@@ -1355,6 +1355,192 @@ export function getActivityTypes(): { art: string; count: number }[] {
   ).all() as { art: string; count: number }[];
 }
 
+/**
+ * Aktivitäten-Typen, bei denen mehrere Personen typischerweise GEMEINSAM eine
+ * Drucksache einbringen (Mit-Initiierende) oder formal benannt werden
+ * (Berichterstattung). Bei diesen wird in der Listen-Ansicht NACH
+ * (drucksache_nr, aktivitaetsart) gruppiert, damit nicht 24× die identische
+ * Karte erscheint. Reden/Antworten/Fragen sind individuell pro Person.
+ */
+const GROUPED_AKTIVITAETSARTEN = [
+  "Antrag",
+  "Änderungsantrag",
+  "Entschließungsantrag",
+  "Gesetzentwurf",
+  "Kleine Anfrage",
+  "Große Anfrage",
+  "Berichterstattung",
+] as const;
+const GROUPED_AKTIVITAETSARTEN_PLACEHOLDERS = GROUPED_AKTIVITAETSARTEN.map(() => "?").join(",");
+
+export interface ActivityListGroupedItem {
+  kind: "individual" | "grouped";
+  /** activities.id (individual) oder drucksache_nr|aktivitaetsart (grouped) — Key für React */
+  key: string;
+  drucksache_nr: string | null;
+  aktivitaetsart: string;
+  datum: string | null;
+  titel: string;
+  thema: string | null;
+  herausgeber: string | null;
+  pdf_url: string | null;
+  urheber: string | null;
+  /** Bei individual: einzelner Politiker. Bei grouped: null. */
+  politician_id: number | null;
+  pol_first_name: string | null;
+  pol_last_name: string | null;
+  pol_party: string | null;
+  /** Bei grouped: Anzahl distinct Mitzeichner:innen. Bei individual: 1. */
+  person_count: number;
+  /** Bei grouped: alphabetische Liste der distinct Fraktionen (z.B. ["GRÜNE"] oder ["AfD","CSU","GRÜNE",…]). Bei individual: null. */
+  party_set: string[] | null;
+}
+
+export function listActivitiesGrouped(params: ActivityListParams): {
+  rows: ActivityListGroupedItem[];
+  total: number;
+  totalGrouped: number;
+  totalIndividual: number;
+} {
+  const db = getDb();
+  const conditions: string[] = [];
+  const args: (string | number)[] = [];
+
+  if (params.query) {
+    conditions.push(`(a.thema LIKE ? OR a.titel LIKE ?)`);
+    const term = `%${params.query}%`;
+    args.push(term, term);
+  }
+  if (params.art) {
+    conditions.push(`a.aktivitaetsart = ?`);
+    args.push(params.art);
+  }
+  const userWhere = conditions.length > 0 ? `AND ${conditions.join(" AND ")}` : "";
+
+  // Counts (vor UNION) — nur für UI-Header, nicht für Pagination-Math
+  const totalGrouped = (db.prepare(
+    `SELECT COUNT(*) as c FROM (
+       SELECT 1 FROM activities a
+       WHERE a.drucksache_nr IS NOT NULL
+         AND a.aktivitaetsart IN (${GROUPED_AKTIVITAETSARTEN_PLACEHOLDERS})
+         ${userWhere}
+       GROUP BY a.drucksache_nr, a.aktivitaetsart
+     )`
+  ).get(...GROUPED_AKTIVITAETSARTEN, ...args) as { c: number }).c;
+
+  const totalIndividual = (db.prepare(
+    `SELECT COUNT(*) as c FROM activities a
+     WHERE (a.drucksache_nr IS NULL
+        OR a.aktivitaetsart NOT IN (${GROUPED_AKTIVITAETSARTEN_PLACEHOLDERS}))
+       ${userWhere}`
+  ).get(...GROUPED_AKTIVITAETSARTEN, ...args) as { c: number }).c;
+
+  const total = totalGrouped + totalIndividual;
+
+  const limit = params.limit ?? 30;
+  const offset = params.offset ?? 0;
+
+  // UNION ALL — beide Quellen, dann sortiert+paginiert
+  const rawRows = db.prepare(
+    `SELECT * FROM (
+       SELECT
+         'grouped' AS kind,
+         (a.drucksache_nr || '|' || a.aktivitaetsart) AS key,
+         a.drucksache_nr AS drucksache_nr,
+         a.aktivitaetsart AS aktivitaetsart,
+         MAX(a.datum) AS datum,
+         MAX(a.titel) AS titel,
+         MAX(a.thema) AS thema,
+         MAX(a.herausgeber) AS herausgeber,
+         MAX(a.pdf_url) AS pdf_url,
+         MAX(a.urheber) AS urheber,
+         NULL AS politician_id,
+         NULL AS pol_first_name,
+         NULL AS pol_last_name,
+         NULL AS pol_party,
+         COUNT(DISTINCT a.politician_id) AS person_count,
+         GROUP_CONCAT(DISTINCT COALESCE(pa.label, 'fraktionslos')) AS party_set
+       FROM activities a
+       LEFT JOIN politicians p ON p.id = a.politician_id
+       LEFT JOIN parties pa ON pa.id = p.party_id
+       WHERE a.drucksache_nr IS NOT NULL
+         AND a.aktivitaetsart IN (${GROUPED_AKTIVITAETSARTEN_PLACEHOLDERS})
+         ${userWhere}
+       GROUP BY a.drucksache_nr, a.aktivitaetsart
+
+       UNION ALL
+
+       SELECT
+         'individual' AS kind,
+         CAST(a.id AS TEXT) AS key,
+         a.drucksache_nr,
+         a.aktivitaetsart,
+         a.datum,
+         a.titel,
+         a.thema,
+         a.herausgeber,
+         a.pdf_url,
+         a.urheber,
+         a.politician_id,
+         p.first_name AS pol_first_name,
+         p.last_name AS pol_last_name,
+         pa.label AS pol_party,
+         1 AS person_count,
+         NULL AS party_set
+       FROM activities a
+       LEFT JOIN politicians p ON p.id = a.politician_id
+       LEFT JOIN parties pa ON pa.id = p.party_id
+       WHERE (a.drucksache_nr IS NULL
+          OR a.aktivitaetsart NOT IN (${GROUPED_AKTIVITAETSARTEN_PLACEHOLDERS}))
+         ${userWhere}
+     )
+     ORDER BY datum IS NULL, datum DESC
+     LIMIT ? OFFSET ?`
+  ).all(
+    ...GROUPED_AKTIVITAETSARTEN, ...args,
+    ...GROUPED_AKTIVITAETSARTEN, ...args,
+    limit, offset
+  ) as Array<{
+    kind: "grouped" | "individual";
+    key: string;
+    drucksache_nr: string | null;
+    aktivitaetsart: string;
+    datum: string | null;
+    titel: string;
+    thema: string | null;
+    herausgeber: string | null;
+    pdf_url: string | null;
+    urheber: string | null;
+    politician_id: number | null;
+    pol_first_name: string | null;
+    pol_last_name: string | null;
+    pol_party: string | null;
+    person_count: number;
+    party_set: string | null;
+  }>;
+
+  const rows: ActivityListGroupedItem[] = rawRows.map((r) => ({
+    kind: r.kind,
+    key: r.key,
+    drucksache_nr: r.drucksache_nr,
+    aktivitaetsart: r.aktivitaetsart,
+    datum: r.datum,
+    titel: r.titel,
+    thema: r.thema,
+    herausgeber: r.herausgeber,
+    pdf_url: r.pdf_url,
+    urheber: r.urheber,
+    politician_id: r.politician_id,
+    pol_first_name: r.pol_first_name,
+    pol_last_name: r.pol_last_name,
+    pol_party: r.pol_party,
+    person_count: r.person_count,
+    party_set: r.party_set ? r.party_set.split(",").sort() : null,
+  }));
+
+  return { rows, total, totalGrouped, totalIndividual };
+}
+
 // ── Politician Notes (Sonderfälle) ──
 
 export interface PoliticianNote {
