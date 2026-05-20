@@ -1,6 +1,7 @@
 import {
   getDrucksacheDetail,
   getMitzeichnerForDrucksache,
+  getBerichterstatterForDrucksache,
   getRelatedSpeechesForDrucksache,
   getDrucksacheVerfahren,
   getDrucksacheThemenAehnliche,
@@ -175,6 +176,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   if (!ds) notFound();
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
+  const berichterstatter = getBerichterstatterForDrucksache(dsNr);
   const relatedSpeeches = getRelatedSpeechesForDrucksache(dsNr);
   const verfahren = getDrucksacheVerfahren(dsNr);
   const themenAehnliche = getDrucksacheThemenAehnliche(dsNr, ds.thema.join(", "), 6);
@@ -475,6 +477,22 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
             {/* Mitzeichner-Grid */}
             <MitzeichnerGrid mitz={mitzeichner} />
+          </section>
+        )}
+
+        {/* BERICHTERSTATTER:INNEN — formale Ausschuss-Rolle, KEINE inhaltliche Mit-Trägerschaft */}
+        {berichterstatter.length > 0 && (
+          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <div className="flex items-baseline justify-between mb-2">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                <GlossarTerm slug="berichterstatter">Berichterstatter:innen</GlossarTerm>
+              </h2>
+              <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
+            </div>
+            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+              Vom Ausschuss benannt — typischerweise 1 pro Fraktion. Diese Liste zeigt KEINE inhaltliche Zustimmung; die genannten Fraktionen können in der namentlichen Abstimmung sehr wohl dagegen stimmen.
+            </p>
+            <MitzeichnerGrid mitz={berichterstatter} />
           </section>
         )}
 

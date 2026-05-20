@@ -81,6 +81,14 @@ export const POLITIK_GLOSSAR: PolitikGlossarEntry[] = [
     related: ["antrag", "kleine-anfrage"],
     category: "personen",
   },
+  {
+    slug: "berichterstatter",
+    term: "Berichterstatter:in",
+    short: "Vom Ausschuss benannte Abgeordnete, die dem Bundestag die Beratungen und die Beschlussempfehlung des Ausschusses präsentieren. Üblicherweise stellt jede Fraktion eine:n Berichterstatter:in — die Rolle ist eine formale Aufgabe der parlamentarischen Arbeit, KEINE inhaltliche Zustimmung zur Empfehlung. Berichterstatter:innen können in der nachfolgenden Abstimmung sehr wohl gegen die Empfehlung ihres eigenen Ausschusses stimmen.",
+    example: "Eine Beschlussempfehlung des Landwirtschaftsausschusses zur Ablehnung eines Antrags der Grünen wird auch von einem grünen Berichterstatter mit-präsentiert — die Grüne Fraktion stimmt in der Abstimmung trotzdem dagegen, weil sie die Ablehnung ihres eigenen Antrags ablehnt.",
+    related: ["beschlussempfehlung", "ausschuss", "bericht"],
+    category: "personen",
+  },
 
   // Dokumente
   {

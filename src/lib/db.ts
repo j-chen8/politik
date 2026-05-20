@@ -2666,7 +2666,9 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
 
 export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
   const db = getDb();
-  // Nur die Initiierenden / Mit-Einreichenden — keine Plenarbeiträge
+  // Nur die Initiierenden / Mit-Einreichenden (inhaltliche Träger).
+  // Berichterstattung ist eine formale Ausschuss-Rolle, KEINE Mitzeichnung —
+  // siehe getBerichterstatterForDrucksache.
   return db.prepare(`
     SELECT DISTINCT a.politician_id, a.aktivitaetsart, a.urheber,
            p.first_name, p.last_name, p.photo_url,
@@ -2675,8 +2677,29 @@ export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
     JOIN politicians p ON p.id = a.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
     WHERE a.drucksache_nr = ?
-      AND a.aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')
+      AND a.aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf')
     ORDER BY p.last_name, p.first_name
+  `).all(nr) as MitzeichnerRow[];
+}
+
+/**
+ * Berichterstatter:innen einer Drucksache — formal vom Ausschuss benannt,
+ * präsentieren die Beratung. Typischerweise 1 pro Fraktion → die Liste sagt
+ * NICHT, dass diese Fraktionen inhaltlich mit der Beschlussempfehlung
+ * übereinstimmen (sie können in der namentlichen Abstimmung dagegen stimmen).
+ */
+export function getBerichterstatterForDrucksache(nr: string): MitzeichnerRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT DISTINCT a.politician_id, a.aktivitaetsart, a.urheber,
+           p.first_name, p.last_name, p.photo_url,
+           pa.label AS party_label
+    FROM activities a
+    JOIN politicians p ON p.id = a.politician_id
+    LEFT JOIN parties pa ON pa.id = p.party_id
+    WHERE a.drucksache_nr = ?
+      AND a.aktivitaetsart = 'Berichterstattung'
+    ORDER BY pa.label, p.last_name, p.first_name
   `).all(nr) as MitzeichnerRow[];
 }
 
