@@ -2642,7 +2642,8 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     `).all(...topicIds, pollId) as { poll_id: number; poll_label: string | null; poll_date: string | null }[];
   }
 
-  // Drucksachen zu diesem Poll (autoritativ via Bundestag.de-Audit 2026-05-13)
+  // Drucksachen zu diesem Poll — präzise Subjekt-DS aus bundestag.de-
+  // Filterlist (siehe scripts/map-vote-drucksache-bundestag.ts).
   const drucksachen = db.prepare(`
     SELECT
       dp.drucksache_nr,

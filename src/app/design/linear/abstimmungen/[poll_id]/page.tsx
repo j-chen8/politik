@@ -17,6 +17,14 @@ const VOTE_TYPE_COLOR: Record<string, string> = {
   no_show: "text-zinc-700 bg-zinc-50 border-zinc-200",
 };
 
+// „CDU/CSU (Bundestag 2025 - 2029)" → „CDU/CSU". Wahlperioden-Suffix bleibt
+// in DB + URL-Param (sonst bricht der voters-Lookup), wird aber nirgends im
+// UI gezeigt.
+function shortenFraktion(label: string | null | undefined): string {
+  if (!label) return "—";
+  return label.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim();
+}
+
 export default async function VoteDetailPage({
   params,
   searchParams,
@@ -37,11 +45,9 @@ export default async function VoteDetailPage({
     drillFraktion && drillVote && VOTE_TYPE_LABEL[drillVote]
       ? getVotersForPollByFraktionVote(pollId, drillFraktion, drillVote)
       : null;
-  // Header-Label: „AfD (Bundestag 2025 - 2029)" → „AfD" (Wahlperioden-Suffix
-  // ist Datenbank-Detail, im UI nicht hilfreich).
-  const drillFraktionShort = drillFraktion?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim();
+  const drillFraktionShort = drillFraktion ? shortenFraktion(drillFraktion) : undefined;
 
-  const { poll_label, poll_url, poll_date, topics, byFraction, totals, speeches, relatedPolls, voteContext } = detail;
+  const { poll_label, poll_url, poll_date, byFraction, totals, speeches, relatedPolls, voteContext } = detail;
   // Defensiv: drucksachen-Liste ist neu (BT-Audit 2026-05-13), Schutz vor stale-cache
   const drucksachen: typeof detail.drucksachen = Array.isArray(detail.drucksachen) ? detail.drucksachen : [];
 
@@ -170,7 +176,7 @@ export default async function VoteDetailPage({
                 <tbody className="divide-y divide-zinc-100">
                   {byFraction.map((f) => (
                     <tr key={f.fraction}>
-                      <td className="px-4 py-2.5 text-zinc-900 font-medium">{f.fraction}</td>
+                      <td className="px-4 py-2.5 text-zinc-900 font-medium">{shortenFraktion(f.fraction)}</td>
                       <DrillCell value={f.yes} fraction={f.fraction} voteType="yes" pollId={pollId} colorClass="text-emerald-800" />
                       <DrillCell value={f.no} fraction={f.fraction} voteType="no" pollId={pollId} colorClass="text-rose-800" />
                       <DrillCell value={f.abstain} fraction={f.fraction} voteType="abstain" pollId={pollId} colorClass="text-amber-800" />
@@ -225,25 +231,7 @@ export default async function VoteDetailPage({
           </div>
         </section>
 
-        {/* Debattierter TOP */}
-        {topics.length > 0 && (
-          <section className="mb-10 fade-in-up fade-in-up-3">
-            <SectionHeader label={topics.length === 1 ? "Debattierter Tagesordnungspunkt" : "Debattierte Tagesordnungspunkte"} />
-            <div className="space-y-2">
-              {topics.map((t) => (
-                <div key={t.id} className="border border-zinc-200/70 rounded-xl bg-white px-5 py-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[11px] font-mono uppercase text-zinc-500">TOP {t.topic_number}</span>
-                    <ConfidenceBadge confidence={t.confidence} />
-                  </div>
-                  <p className="text-[13.5px] text-zinc-800 leading-relaxed">{t.title}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Drucksachen (autoritativ via Bundestag.de-Audit) */}
+        {/* Drucksachen (präzise Subjekt-DS aus bundestag.de-Filterlist) */}
         {drucksachen.length > 0 && (
           <section className="mb-10 fade-in-up fade-in-up-3">
             <SectionHeader
@@ -285,7 +273,7 @@ export default async function VoteDetailPage({
               ))}
             </div>
             <p className="text-[11px] text-zinc-400 mt-2">
-              Drucksachen-Verknüpfung autoritativ aus{" "}
+              Drucksachen-Verknüpfung präzise pro Roll-Call aus{" "}
               <a
                 href={poll_url ? poll_url.replace(/abgeordnetenwatch\.de.*/, "bundestag.de/parlament/plenum/abstimmung") : "https://www.bundestag.de"}
                 target="_blank"
@@ -294,7 +282,7 @@ export default async function VoteDetailPage({
               >
                 Bundestag.de
               </a>{" "}
-              bezogen (Cross-Source-Audit 2026-05-13).
+              -Filterlist bezogen.
             </p>
           </section>
         )}
@@ -382,19 +370,6 @@ function TotalCell({ label, value, color }: { label: string; value: number; colo
       <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{label}</span>
       <span className={`num text-3xl font-semibold tracking-tight ${color}`}>{value.toLocaleString("de-DE")}</span>
     </div>
-  );
-}
-
-function ConfidenceBadge({ confidence }: { confidence: string }) {
-  const cfg: Record<string, { label: string; cls: string }> = {
-    high: { label: "Match: hoch", cls: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-    medium: { label: "Match: mittel", cls: "bg-amber-50 text-amber-700 border-amber-200" },
-    low: { label: "Match: niedrig", cls: "bg-zinc-50 text-zinc-700 border-zinc-200" },
-    none: { label: "kein Match", cls: "bg-zinc-50 text-zinc-500 border-zinc-200" },
-  };
-  const c = cfg[confidence] ?? cfg.none;
-  return (
-    <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded border ${c.cls}`}>{c.label}</span>
   );
 }
 

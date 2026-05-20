@@ -361,19 +361,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 {ds.zusammenfassung}
               </p>
             </div>
-            {/* Methodik-Credit (Photo-Credit-Style) */}
-            <div className="mt-6 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400 leading-relaxed">
-              Erstellt mit {ds.model ?? "Claude"} · Prompt {ds.prompt_version ?? "v1"}
-              {ds.generated_at && (
-                <>
-                  {" · "}
-                  <span className="num">
-                    {new Date(ds.generated_at).toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
-                  </span>
-                </>
-              )}
-              {" · "}
-              <Link href="/design/linear/methodik" className="text-zinc-600 hover:text-zinc-950 underline-offset-2 hover:underline">
+            <div className="mt-6 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400">
+              <Link href="/design/linear/methodik" className="hover:text-zinc-950 underline-offset-2 hover:underline">
                 Methodik öffnen →
               </Link>
             </div>
@@ -563,41 +552,38 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 return (
                   <div key={p.poll_id}>
                     <div className="flex items-baseline justify-between gap-3 mb-2 flex-wrap">
-                      <a
-                        href={p.poll_url ?? `https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[13.5px] font-medium text-zinc-950 hover:underline underline-offset-2 inline-flex items-center gap-1.5"
+                      <Link
+                        href={`/design/linear/abstimmungen/${p.poll_id}`}
+                        className="text-[13.5px] font-medium text-zinc-950 hover:underline underline-offset-2"
                       >
                         {p.poll_label}
-                        <ExternalLink className="w-3 h-3 text-zinc-400" strokeWidth={2.25} />
-                      </a>
+                      </Link>
                       <span className="text-[11px] text-zinc-400 num">
                         {new Date(p.poll_date + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}
                       </span>
                     </div>
-                    <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 mb-2">
+                    <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 mb-2.5">
                       <div className="bg-emerald-500" style={{ width: pct(p.yes) }} title={`Ja: ${p.yes}`} />
                       <div className="bg-red-500" style={{ width: pct(p.no) }} title={`Nein: ${p.no}`} />
                       <div className="bg-amber-500" style={{ width: pct(p.abstain) }} title={`Enthaltung: ${p.abstain}`} />
                       <div className="bg-zinc-400" style={{ width: pct(p.noShow) }} title={`Abwesend: ${p.noShow}`} />
                     </div>
-                    <div className="grid grid-cols-4 gap-x-4 gap-y-1 text-[11.5px] num">
+                    <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[11.5px] num">
                       <span className="inline-flex items-center gap-1.5 text-zinc-600">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Ja <span className="text-zinc-950 font-medium ml-auto">{p.yes}</span>
+                        Ja <span className="text-zinc-950 font-medium">{p.yes}</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5 text-zinc-600">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                        Nein <span className="text-zinc-950 font-medium ml-auto">{p.no}</span>
+                        Nein <span className="text-zinc-950 font-medium">{p.no}</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5 text-zinc-600">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        Enthaltung <span className="text-zinc-950 font-medium ml-auto">{p.abstain}</span>
+                        Enthaltung <span className="text-zinc-950 font-medium">{p.abstain}</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5 text-zinc-600">
                         <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-                        Abwesend <span className="text-zinc-950 font-medium ml-auto">{p.noShow}</span>
+                        Abwesend <span className="text-zinc-950 font-medium">{p.noShow}</span>
                       </span>
                     </div>
                     {p.match_score < 0.5 && (
