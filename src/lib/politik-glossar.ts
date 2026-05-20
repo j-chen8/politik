@@ -175,8 +175,22 @@ export const POLITIK_GLOSSAR: PolitikGlossarEntry[] = [
   {
     slug: "namentliche-abstimmung",
     term: "Namentliche Abstimmung",
-    short: "Abstimmung im Plenum, bei der jede:r Abgeordnete einzeln namentlich erfasst wird (Ja / Nein / Enthaltung). Ermöglicht öffentliche Nachvollziehbarkeit des Stimmverhaltens.",
-    related: ["plenum", "gesetzentwurf"],
+    short: "Abstimmung im Plenum, bei der jede:r Abgeordnete einzeln namentlich erfasst wird (Ja / Nein / Enthaltung / nicht teilgenommen). Pro Wahlperiode finden nur einige Dutzend statt — auf Antrag einer Fraktion oder von 5 % der MdB, meist bei politisch wichtigen oder kontroversen Entscheidungen. Ermöglicht öffentliche Nachvollziehbarkeit des Stimmverhaltens.",
+    related: ["plenum", "gesetzentwurf", "handzeichen-abstimmung"],
+    category: "verfahren",
+  },
+  {
+    slug: "handzeichen-abstimmung",
+    term: "Abstimmung per Handzeichen",
+    short: "Standard-Abstimmungsverfahren im Plenum: Bundestagspräsident:in ruft auf, MdB heben für Ja / Nein / Enthaltung die Hand. Das Präsidium ermittelt das Aggregat-Ergebnis — wer wie gestimmt hat, wird NICHT protokolliert. Wird für die große Mehrheit aller Beschlüsse verwendet; nur bei besonders bedeutenden Themen verlangt eine Fraktion eine namentliche Abstimmung.",
+    related: ["namentliche-abstimmung", "plenum"],
+    category: "verfahren",
+  },
+  {
+    slug: "ueberweisung",
+    term: "Überweisung",
+    short: "Verfahrensschritt, bei dem eine Drucksache nach der ersten Lesung im Plenum an einen oder mehrere Ausschüsse zur detaillierten Beratung weitergegeben wird. Eine überwiesene Drucksache ist NICHT entschieden — sie wartet noch auf die Ausschuss-Beratung und die spätere Schlussabstimmung im Plenum.",
+    related: ["ausschuss", "beschlussempfehlung", "lesung"],
     category: "verfahren",
   },
 ];
