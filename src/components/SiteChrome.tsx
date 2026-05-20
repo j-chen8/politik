@@ -119,11 +119,11 @@ function LinearHeader() {
           <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center transition-transform group-hover:scale-105">
             <Radio className="w-4 h-4 text-white" strokeWidth={2.5} />
           </div>
-          <div className="flex items-baseline gap-2">
+          <div className="hidden sm:flex items-baseline gap-2">
             <span className="text-[15px] font-semibold tracking-tight text-foreground">
               Politik-Radar
             </span>
-            <span className="hidden sm:inline text-[11px] text-muted font-medium uppercase tracking-wider">
+            <span className="text-[11px] text-muted font-medium uppercase tracking-wider">
               Bundestag
             </span>
           </div>
@@ -133,9 +133,10 @@ function LinearHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-foreground transition-colors px-2.5 py-1.5 rounded-md hover:bg-zinc-100"
+              aria-label={item.label}
+              className="flex items-center justify-center sm:justify-start gap-1.5 text-[13px] font-medium text-muted hover:text-foreground transition-colors min-w-[40px] min-h-[40px] sm:min-w-0 sm:min-h-0 sm:px-2.5 sm:py-1.5 rounded-md hover:bg-zinc-100"
             >
-              <item.icon className="w-3.5 h-3.5" strokeWidth={2.25} />
+              <item.icon className="w-4 h-4 sm:w-3.5 sm:h-3.5" strokeWidth={2.25} />
               <span className="hidden sm:inline">{item.label}</span>
             </Link>
           ))}

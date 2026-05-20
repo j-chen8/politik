@@ -377,7 +377,7 @@ export default function LinearMethodikPage() {
             als Verifier-Layer? Llama 3.3 70B (Free Tier) und Claude Haiku 4.5 mit identischem Prompt
             empirisch verglichen — Opus 4.7 manuell als Ground Truth.
           </p>
-          <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden mb-4">
+          <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-x-auto mb-4">
             <table className="w-full text-[14px]">
               <thead className="bg-zinc-50 text-[11px] uppercase tracking-wider text-zinc-500">
                 <tr>
@@ -403,6 +403,7 @@ export default function LinearMethodikPage() {
               </tbody>
             </table>
           </div>
+          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
           <p className="text-[14px] text-zinc-700 leading-relaxed mb-4">
             <span className="font-medium text-zinc-950">Architektur-Lehre:</span>{" "}
             Source-Coherence ist semantische Reasoning-Aufgabe mit Welt-Wissens-Anteil — verschieden von
@@ -504,6 +505,7 @@ export default function LinearMethodikPage() {
               </tbody>
             </table>
           </div>
+          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
 
           <div className="mt-5 rounded-xl border border-zinc-200/70 bg-zinc-50/50 p-4">
             <h3 className="text-[12px] font-semibold text-zinc-950 mb-2">
@@ -719,6 +721,7 @@ export default function LinearMethodikPage() {
             </table>
             <p className="text-[11px] text-zinc-400 mt-2">Tonalitäten <em>emotional-persönlich</em> und <em>ironisch-jugendlich</em> mit jeweils &lt; 3 % in allen Fraktionen weggelassen — siehe <a href="/design/linear/methodik#glossar-tonalitaet" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">Glossar</a> für alle 11 Werte.</p>
           </div>
+          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
 
           <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 space-y-3 text-[14px] text-zinc-700 leading-relaxed">
             <div>
@@ -927,6 +930,13 @@ export default function LinearMethodikPage() {
                 <li>· DB-Tabellen: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">audit_bundestag_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls_pre_bt_audit</code></li>
               </ul>
             </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Stimm-Zahlen: Abgleich mit dem offiziellen Protokoll</div>
+              <p className="text-[13.5px]">
+                Die angezeigten Stimm-Zahlen (Ja / Nein / Enthaltung / nicht abgegeben) stammen aus <strong className="text-zinc-950">abgeordnetenwatch</strong> und werden 1:1 gespiegelt. Eine Stichprobe gegen das autoritative Primär-Original — den Stenografischen Bericht des Deutschen Bundestages — bestätigte sie: Beispiel 08.05.2026, Beschlussempfehlung zum Grünen-Antrag „LEADER-Programm sichern" (Plenarprotokoll 21/78, TOP 7d): offiziell verkündet <strong className="text-zinc-950">417 Ja · 73 Nein · 53 Enthaltungen</strong> (543 abgegebene Stimmkarten) — exakt deckungsgleich mit unseren Daten. <span className="text-zinc-500">Hinweis zur Sorgfalt: pro Vorgang finden an einem Sitzungstag oft mehrere namentliche Abstimmungen statt (z. B. zu mehreren Beschlussempfehlungen). Maßgeblich ist immer das im Plenarprotokoll verkündete Ergebnis der konkreten Abstimmung, nicht zusammenfassende Listen-Ansichten. Methodik intern: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">docs/DATA-SOURCES.md §2.13</code>.</span>
+              </p>
+            </div>
           </div>
         </section>
 
@@ -1026,6 +1036,7 @@ export default function LinearMethodikPage() {
                 </tbody>
               </table>
             </div>
+            <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
 
             <div>
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Befund</div>

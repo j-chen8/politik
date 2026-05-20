@@ -282,7 +282,7 @@ export function CommandPalette({
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="MdBs, Themen, Reden, Abstimmungen, Drucksachen…"
+            placeholder="MdB, Thema, Rede, Vote…"
             className="flex-1 bg-transparent border-0 outline-none text-base sm:text-[15px] text-zinc-900 placeholder:text-zinc-400"
           />
           <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 border border-zinc-200 rounded">

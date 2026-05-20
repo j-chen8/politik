@@ -50,7 +50,7 @@ export function ShowcasePolitician() {
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="text-[18px] font-semibold text-zinc-950 tracking-tight truncate">
+            <div className="text-[18px] font-semibold text-zinc-950 tracking-tight leading-tight">
               {p.title ? `${p.title} ` : ""}
               {p.firstName} {p.lastName}
             </div>
