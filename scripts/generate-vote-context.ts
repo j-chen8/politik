@@ -36,7 +36,7 @@ if (fs.existsSync(ENV_PATH)) {
 }
 
 const MODEL = "claude-haiku-4-5-20251001";
-const PROMPT_VERSION = "vote-context-v1";
+const PROMPT_VERSION = "vote-context-v1.1";
 
 const argv = process.argv.slice(2);
 const POLL_IDX = argv.indexOf("--poll");
@@ -76,7 +76,7 @@ STRIKTE REGELN:
 - Zugeschriebene Sprache: "Der Gesetzentwurf sieht vor …", "Die Fraktion X fordert …", "laut Drucksache …". Übernimm die Stimme der Vorlage, bewerte sie nicht.
 - Der bundestag.de-Titel benennt den TATSÄCHLICHEN Gegenstand der Abstimmung. bundestag.de listet oft den GANZEN Sitzungsblock (mehrere thematisch unverbundene Drucksachen) unter einer Abstimmung. Schäle den tatsächlichen Gegenstand anhand des bundestag.de-Titels heraus; behandle thematisch nicht passende Drucksachen NICHT als Hauptgegenstand.
 - "subjekt_drucksachen": nur die Drucksache(n), die den tatsächlichen Gegenstand bilden (per bundestag.de-Titel). Wenn mehrere Vorlagen denselben Gegenstand betreffen (z.B. Gesetzentwurf + Beschlussempfehlung dazu), alle nennen.
-- "block_hinweis": kurzer Satz NUR wenn die Abstimmung Teil eines Sitzungsblocks mit weiteren, thematisch anderen Vorlagen war; sonst leer lassen.
+- "block_hinweis": kurzer Satz NUR wenn die Abstimmung Teil eines Sitzungsblocks mit weiteren, thematisch anderen Vorlagen war; sonst leer lassen. Wenn gesetzt, MUSS er die konkreten Drucksachen-Nummern der Block-Beiwerk-Vorlagen nennen (also der verknüpften DS, die NICHT in subjekt_drucksachen sind) — mit kurzer thematischer Kennzeichnung. Bei vielen Block-DS: 2–4 prägnante Beispiele („u. a. 21/4550, 21/4753 zur Modernisierung des Steuerberatungsgesetzes; 21/5326 zu Energiepreisen") statt erschöpfender Aufzählung. Generische Formulierungen wie „weitere Anträge" oder „weitere Vorlagen unterschiedlicher Thematik" ohne DS-Nrn sind unzulässig, wenn DS-Nrn aus den Quellen verfügbar sind.
 - Wenn die bereitgestellten Quellen den Gegenstand nicht hergeben (z.B. Drucksache nicht analysiert / zu umfangreich): setze ist_fallback=true und schreibe in worum_geht_es nur, was der bundestag.de-Titel + Datenlage sicher hergibt, plus den Hinweis, dass keine Volltext-Zusammenfassung vorliegt. NICHT spekulieren.
 - worum_geht_es: 2–5 Sätze.
 - Gib die Felder AUSSCHLIESSLICH über das Tool zurück. Schreibe NIEMALS XML/Markup oder Tag-Marker (</…>, <parameter …>, </invoke>, </antml…>) in einen Textwert. worum_geht_es und block_hinweis sind reiner Fließtext OHNE Tags; subjekt_drucksachen ist ein echtes Array.
