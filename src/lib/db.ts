@@ -3,6 +3,17 @@ import path from "path";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 
+function decodeHtmlEntities(s: string): string {
+  return s
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+}
+
 let _db: Database.Database | null = null;
 
 export function getDb(): Database.Database {
@@ -2476,7 +2487,7 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
         worum_geht_es: vc.worum_geht_es,
         subjekt_drucksachen: subj,
         block_hinweis: vc.block_hinweis,
-        bt_topic: vc.bt_topic,
+        bt_topic: vc.bt_topic ? decodeHtmlEntities(vc.bt_topic) : null,
         ist_fallback: vc.ist_fallback === 1,
       };
     }
