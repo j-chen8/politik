@@ -209,6 +209,26 @@ export const IS_POLITICIAN_ACTIVE_SQL = `(
 /** Werte für die Platzhalter in IS_POLITICIAN_VISIBLE_SQL und IS_POLITICIAN_ACTIVE_SQL. */
 export const VISIBLE_PARLIAMENT_TYPE_VALUES = [...VISIBLE_PARLIAMENT_TYPES];
 
+/**
+ * Filter für „low-content" Llama-Zusammenfassungen — Phrasen, die der LLM
+ * ausgibt wenn er keine sinnvolle Aussage extrahieren konnte. NULL-Zeilen
+ * werden durchgelassen (für Sitzungen > 64 ist `zusammenfassung` NULL und
+ * v2.1-Daten greifen). Wird sowohl beim Count (Speaker-Übersicht) als auch
+ * beim Detail-Rendering angewendet, damit beide Pages die gleiche Zahl zeigen.
+ */
+export const SPEECH_SUMMARY_QUALITY_FILTER_SQL = `(
+  zusammenfassung IS NULL
+  OR (
+    zusammenfassung NOT LIKE '%lediglich%'
+    AND zusammenfassung NOT LIKE '%nicht möglich%'
+    AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
+    AND zusammenfassung NOT LIKE '%nicht erkennbar%'
+    AND zusammenfassung NOT LIKE '%nicht feststellbar%'
+    AND zusammenfassung NOT LIKE '%nicht ableitbar%'
+    AND zusammenfassung NOT LIKE '%keine inhaltliche%'
+  )
+)`;
+
 // ── Query helpers ──
 
 export interface PoliticianRow {
@@ -851,6 +871,7 @@ export function getSpeechSummaryInfo(politicianId: number): { speaker: string; c
     const row = db.prepare(
       `SELECT speaker, COUNT(*) AS count FROM speech_summaries
        WHERE politician_id = ?
+         AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL}
        GROUP BY speaker ORDER BY count DESC LIMIT 1`
     ).get(politicianId) as { speaker: string; count: number } | undefined;
     return row && row.count > 0 ? row : null;
@@ -887,14 +908,14 @@ export function getShowcasePolitician(): ShowcasePolitician | null {
     .prepare(
       `SELECT p.id, p.title, p.first_name, p.last_name, p.photo_url,
               pa.label AS party_label,
-              (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id) AS speech_count,
+              (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL.replace(/zusammenfassung/g, "ss.zusammenfassung")}) AS speech_count,
               (SELECT COUNT(*) FROM activities a WHERE a.politician_id = p.id) AS activity_count,
               (SELECT COUNT(*) FROM votes v WHERE v.politician_id = p.id AND v.vote != 'no_show') AS votes_participated
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
        WHERE ${IS_POLITICIAN_ACTIVE_SQL}
          AND p.photo_url IS NOT NULL AND p.photo_url != ''
-         AND (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id) >= 5
+         AND (SELECT COUNT(*) FROM speech_summaries ss WHERE ss.politician_id = p.id AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL.replace(/zusammenfassung/g, "ss.zusammenfassung")}) >= 5
          AND (SELECT COUNT(*) FROM activities a WHERE a.politician_id = p.id) >= 5
          AND (SELECT COUNT(*) FROM votes v WHERE v.politician_id = p.id AND v.vote != 'no_show') >= 1
        ORDER BY RANDOM()
@@ -1143,18 +1164,7 @@ export function getParlamentarischeArbeit(
   const plenarRows = db.prepare(`
     SELECT * FROM speech_summaries
     WHERE politician_id = ?
-      AND (
-        zusammenfassung IS NULL
-        OR (
-          zusammenfassung NOT LIKE '%lediglich%'
-          AND zusammenfassung NOT LIKE '%nicht möglich%'
-          AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
-          AND zusammenfassung NOT LIKE '%nicht erkennbar%'
-          AND zusammenfassung NOT LIKE '%nicht feststellbar%'
-          AND zusammenfassung NOT LIKE '%nicht ableitbar%'
-          AND zusammenfassung NOT LIKE '%keine inhaltliche%'
-        )
-      )
+      AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL}
     ORDER BY sitzung DESC, speech_index ASC
     LIMIT ?
   `).all(politicianId, limit) as PlenarRow[];
@@ -1495,6 +1505,7 @@ export function getTopSpeakersWithBreakdown(limit = 15): {
       LEFT JOIN politicians po ON po.id = ss.politician_id
       LEFT JOIN parties p ON p.id = po.party_id
       WHERE ss.speaker IS NOT NULL AND ss.typ IS NOT NULL AND ss.typ != ''
+        AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL.replace(/zusammenfassung/g, "ss.zusammenfassung")}
       GROUP BY ss.politician_id, ss.speaker, p.label, ss.typ
     `).all() as any[];
   } catch {
@@ -2027,18 +2038,7 @@ export function getSpeechSummaries(speakerName: string): SpeechSummary[] {
     return db.prepare(`
       SELECT * FROM speech_summaries
       WHERE speaker = ?
-        AND (
-          zusammenfassung IS NULL
-          OR (
-            zusammenfassung NOT LIKE '%lediglich%'
-            AND zusammenfassung NOT LIKE '%nicht möglich%'
-            AND zusammenfassung NOT LIKE '%nicht zu entnehmen%'
-            AND zusammenfassung NOT LIKE '%nicht erkennbar%'
-            AND zusammenfassung NOT LIKE '%nicht feststellbar%'
-            AND zusammenfassung NOT LIKE '%nicht ableitbar%'
-            AND zusammenfassung NOT LIKE '%keine inhaltliche%'
-          )
-        )
+        AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL}
       ORDER BY sitzung DESC, speech_index ASC
     `).all(speakerName) as SpeechSummary[];
   } catch {
