@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Mic,
   AlertCircle,
+  ChevronDown,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -68,7 +69,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const primaryMandate = bundestagMandate || dbMandates[0];
 
   const notes = getNotesForPolitician(politicianId);
-  const speechInfo = getSpeechSummaryInfo(politician.last_name, politician.title);
+  const speechInfo = getSpeechSummaryInfo(politicianId);
   const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
     politicianId,
     speechInfo?.speaker ?? null,
@@ -372,8 +373,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
         )}
 
         {/* Mandate */}
-        <Card className="mb-6">
-          <SectionHeader label="Mandate" count={dbMandates.length} />
+        <CollapsibleCard title="Mandate" count={dbMandates.length} className="mb-6">
           <div className="space-y-1">
             {dbMandates.map((m) => (
               <div
@@ -397,12 +397,11 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               </div>
             ))}
           </div>
-        </Card>
+        </CollapsibleCard>
 
         {/* Parlamentarische Arbeit */}
         {parlArbeit.length > 0 && (
-          <Card className="mb-6">
-            <SectionHeader label="Parlamentarische Arbeit" count={parlArbeit.length} />
+          <CollapsibleCard title="Parlamentarische Arbeit" count={parlArbeit.length} className="mb-6">
 
             {/* Stats strip */}
             <div className="flex flex-wrap gap-x-5 gap-y-1.5 mb-5 text-[12px]">
@@ -544,14 +543,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 </article>
               ))}
             </div>
-          </Card>
+          </CollapsibleCard>
         )}
 
         {/* Voting Bar */}
         {hasVoteData && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-            <Card>
-              <SectionHeader label="Abstimmungsverhalten" />
+            <CollapsibleCard title="Abstimmungsverhalten">
               <VotingBar
                 yes={voteStats.votedYes}
                 no={voteStats.votedNo}
@@ -559,9 +557,8 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 noShow={voteStats.noShow}
                 total={voteStats.totalPolls}
               />
-            </Card>
-            <Card>
-              <SectionHeader label="Anwesenheit vs. Durchschnitt" />
+            </CollapsibleCard>
+            <CollapsibleCard title="Anwesenheit vs. Durchschnitt">
               <ComparisonRow
                 label="Diese:r MdB"
                 value={voteStats.attendanceRate}
@@ -572,14 +569,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 value={avgAttendance}
                 color="bg-zinc-300"
               />
-            </Card>
+            </CollapsibleCard>
           </div>
         )}
 
         {/* Sidejobs + Committees */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-          <Card>
-            <SectionHeader label="Nebeneinkünfte" count={sidejobs.length || undefined} />
+          <CollapsibleCard title="Nebeneinkünfte" count={sidejobs.length || undefined}>
             {sidejobs.length > 0 ? (
               <div className="space-y-1.5 max-h-80 overflow-y-auto pr-1">
                 {sidejobs.map((s) => (
@@ -615,10 +611,9 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 Keine Nebeneinkünfte gemeldet.
               </p>
             )}
-          </Card>
+          </CollapsibleCard>
 
-          <Card>
-            <SectionHeader label="Ausschüsse" count={committees.length || undefined} />
+          <CollapsibleCard title="Ausschüsse" count={committees.length || undefined}>
             {committees.length > 0 ? (
               <div className="space-y-1 max-h-80 overflow-y-auto pr-1">
                 {committees.map((c) => (
@@ -644,13 +639,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 Keine Ausschuss-Mitgliedschaften gefunden.
               </p>
             )}
-          </Card>
+          </CollapsibleCard>
         </div>
 
         {/* Recent Votes */}
         {votes.length > 0 && (
-          <Card>
-            <SectionHeader label="Letzte Abstimmungen" />
+          <CollapsibleCard title="Letzte Abstimmungen">
             <div className="space-y-1 max-h-96 overflow-y-auto pr-1">
               {votes.slice(0, 20).map((v) => (
                 <div
@@ -687,7 +681,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 </div>
               ))}
             </div>
-          </Card>
+          </CollapsibleCard>
         )}
       </div>
     </div>
@@ -731,6 +725,43 @@ function SectionHeader({ label, count }: { label: string; count?: number }) {
         <span className="num text-[11px] text-zinc-400">{count}</span>
       )}
     </div>
+  );
+}
+
+/**
+ * Karte mit Klapp-Toggle. Native <details> — kein JS, kein Hydration, kein
+ * State. Per Page-Reload immer offen.
+ */
+function CollapsibleCard({
+  title,
+  count,
+  children,
+  className = "",
+}: {
+  title: string;
+  count?: number;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={`bg-white rounded-2xl border border-zinc-200/70 ${className}`}>
+      <details open className="group/details">
+        <summary className="list-none cursor-pointer flex items-baseline justify-between px-6 pt-6 pb-5 hover:bg-zinc-50/40 rounded-2xl transition-colors select-none">
+          <div className="flex items-baseline gap-3">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{title}</h2>
+            {count !== undefined && (
+              <span className="num text-[11px] text-zinc-400">{count}</span>
+            )}
+          </div>
+          <ChevronDown
+            className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/details:rotate-0 -rotate-90"
+            strokeWidth={2.5}
+            aria-hidden
+          />
+        </summary>
+        <div className="px-6 pb-6 -mt-1">{children}</div>
+      </details>
+    </section>
   );
 }
 

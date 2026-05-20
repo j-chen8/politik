@@ -5,6 +5,7 @@ import {
   Star,
   ExternalLink,
   Info,
+  ChevronDown,
 } from "lucide-react";
 
 export interface CV {
@@ -276,13 +277,22 @@ export function PoliticianCV(props: PoliticianCVProps) {
   const hasWikipedia = !!cvWikipedia && Object.values(cvWikipedia).some((arr) => arr?.length > 0);
 
   return (
-    <div className="bg-white rounded-2xl border border-border p-6 mb-6">
-      <div className="flex items-baseline justify-between mb-4 gap-3 flex-wrap">
-        <h2 className="text-lg font-bold">Lebenslauf</h2>
-        <span className="text-[10px] uppercase tracking-wider text-muted/70 font-semibold">
-          KI · überprüfbar
-        </span>
-      </div>
+    <div className="bg-white rounded-2xl border border-border mb-6">
+      <details open className="group/details">
+        <summary className="list-none cursor-pointer flex items-baseline justify-between gap-3 flex-wrap px-6 pt-6 pb-4 hover:bg-zinc-50/40 rounded-2xl transition-colors select-none">
+          <div className="flex items-baseline gap-3">
+            <h2 className="text-lg font-bold">Lebenslauf</h2>
+            <span className="text-[10px] uppercase tracking-wider text-muted/70 font-semibold">
+              KI · überprüfbar
+            </span>
+          </div>
+          <ChevronDown
+            className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/details:rotate-0 -rotate-90"
+            strokeWidth={2.5}
+            aria-hidden
+          />
+        </summary>
+        <div className="px-6 pb-6 -mt-1">
 
       {/* Bio-Lead */}
       {summary && (
@@ -521,6 +531,8 @@ export function PoliticianCV(props: PoliticianCVProps) {
             ✓✓ markiert Einträge, die in beiden Quellen unabhängig vorkommen.
             Werden trotzdem Erfindungen oder Fehler entdeckt, bitte als Korrektur melden.
           </p>
+        </div>
+      </details>
         </div>
       </details>
     </div>
