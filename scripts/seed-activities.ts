@@ -9,6 +9,7 @@
 
 import Database from "better-sqlite3";
 import path from "path";
+import { parseDipTitle, normalizeName } from "../src/lib/german-name-parser";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 
@@ -96,23 +97,6 @@ async function fetchActivities(start: number, rows: number, dateFrom?: string, d
   throw new Error(`DIP API failed after ${MAX_RETRIES} retries`);
 }
 
-function parseDipTitle(titel: string): { firstName: string; lastName: string } {
-  const name = titel.split(",")[0].trim();
-  const cleaned = name
-    .replace(/^(Prof\.\s*)?Dr\.\s*/i, "")
-    .replace(/^Freiherr\s+/i, "")
-    .replace(/^Freifrau\s+/i, "")
-    .trim();
-
-  const parts = cleaned.split(/\s+/);
-  if (parts.length <= 1) return { firstName: "", lastName: parts[0] || "" };
-
-  return {
-    firstName: parts.slice(0, -1).join(" "),
-    lastName: parts[parts.length - 1],
-  };
-}
-
 // Generate month ranges from Bundestag start to now
 function getMonthRanges(): string[] {
   const ranges: string[] = [];
@@ -164,6 +148,7 @@ async function main() {
     CREATE INDEX IF NOT EXISTS idx_activities_politician ON activities(politician_id);
     CREATE INDEX IF NOT EXISTS idx_activities_datum ON activities(datum);
     CREATE INDEX IF NOT EXISTS idx_activities_art ON activities(aktivitaetsart);
+    CREATE INDEX IF NOT EXISTS idx_activities_ds_nr ON activities(drucksache_nr);
   `);
 
   db.exec("DELETE FROM activities");
@@ -178,11 +163,20 @@ async function main() {
     )
     .all() as { id: number; first_name: string; last_name: string; field_title: string | null; party: string | null }[];
 
-  const byLastName = new Map<string, typeof allPoliticians>();
+  // Normalisierter Index (ß↔ss, ä↔ae, ö↔oe, ü↔ue, Diakritika): fängt
+  // Spelling-Drift zwischen DIP-Quelle und politicians-Tabelle ab. Zusätzlich
+  // letztes Wort des Nachnamens indizieren, damit Doppelnamen wie
+  // „Labitzke Rathert" auf „Rathert" matchen.
+  const byNormLastWord = new Map<string, typeof allPoliticians>();
   for (const p of allPoliticians) {
-    const key = p.last_name.toLowerCase();
-    if (!byLastName.has(key)) byLastName.set(key, []);
-    byLastName.get(key)!.push(p);
+    const tokens = p.last_name.split(/\s+/);
+    const keys = new Set<string>();
+    keys.add(normalizeName(p.last_name));
+    keys.add(normalizeName(tokens[tokens.length - 1]));
+    for (const k of keys) {
+      if (!byNormLastWord.has(k)) byNormLastWord.set(k, []);
+      byNormLastWord.get(k)!.push(p);
+    }
   }
   console.log(`   ${allPoliticians.length} Politiker indexiert`);
 
@@ -190,14 +184,14 @@ async function main() {
     const parsed = parseDipTitle(titel);
     if (!parsed.lastName) return null;
 
-    const candidates = byLastName.get(parsed.lastName.toLowerCase());
+    const candidates = byNormLastWord.get(normalizeName(parsed.lastName));
     if (!candidates || candidates.length === 0) return null;
     if (candidates.length === 1) return candidates[0].id;
 
     if (parsed.firstName) {
-      const fnLower = parsed.firstName.toLowerCase();
+      const fnLower = normalizeName(parsed.firstName);
       const match = candidates.find((c) => {
-        const cfn = c.first_name.toLowerCase();
+        const cfn = normalizeName(c.first_name);
         return cfn === fnLower || cfn.startsWith(fnLower) || fnLower.startsWith(cfn);
       });
       if (match) return match.id;
@@ -211,7 +205,11 @@ async function main() {
       if (partyMatch) return partyMatch.id;
     }
 
-    return candidates[0].id;
+    // Lieber NULL als Falsch-Match: kein Vorname- und kein Partei-Match heißt,
+    // wir wissen nicht, welche der namensgleichen Personen gemeint ist. Der
+    // vorherige `candidates[0].id`-Fallback hat z.B. 193 Aktivitäten von
+    // Rainer Groß auf Jennifer Groß umgehängt.
+    return null;
   }
 
   const insertActivity = db.prepare(
