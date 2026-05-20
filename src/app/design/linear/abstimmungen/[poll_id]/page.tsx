@@ -1,19 +1,45 @@
-import { getVoteDetail, type VoteSpeechRow } from "@/lib/db";
-import { ArrowLeft, ExternalLink, MessageSquareQuote } from "lucide-react";
+import { getVoteDetail, getVotersForPollByFraktionVote, type VoteSpeechRow } from "@/lib/db";
+import { ArrowLeft, ExternalLink, MessageSquareQuote, X } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+const VOTE_TYPE_LABEL: Record<string, string> = {
+  yes: "Ja",
+  no: "Nein",
+  abstain: "Enthaltung",
+  no_show: "Nicht teilgenommen",
+};
+
+const VOTE_TYPE_COLOR: Record<string, string> = {
+  yes: "text-emerald-700 bg-emerald-50 border-emerald-200",
+  no: "text-rose-700 bg-rose-50 border-rose-200",
+  abstain: "text-amber-700 bg-amber-50 border-amber-200",
+  no_show: "text-zinc-700 bg-zinc-50 border-zinc-200",
+};
+
 export default async function VoteDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ poll_id: string }>;
+  searchParams: Promise<{ fraktion?: string; vote?: string }>;
 }) {
   const { poll_id } = await params;
+  const { fraktion: drillFraktion, vote: drillVote } = await searchParams;
   const pollId = parseInt(poll_id, 10);
   if (Number.isNaN(pollId)) notFound();
 
   const detail = getVoteDetail(pollId);
   if (!detail) notFound();
+
+  // Drilldown-Daten nur wenn beide Params gesetzt UND valider Vote-Typ
+  const drillVoters =
+    drillFraktion && drillVote && VOTE_TYPE_LABEL[drillVote]
+      ? getVotersForPollByFraktionVote(pollId, drillFraktion, drillVote)
+      : null;
+  // Header-Label: „AfD (Bundestag 2025 - 2029)" → „AfD" (Wahlperioden-Suffix
+  // ist Datenbank-Detail, im UI nicht hilfreich).
+  const drillFraktionShort = drillFraktion?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim();
 
   const { poll_label, poll_url, poll_date, topics, byFraction, totals, speeches, relatedPolls, voteContext } = detail;
   // Defensiv: drucksachen-Liste ist neu (BT-Audit 2026-05-13), Schutz vor stale-cache
@@ -145,16 +171,57 @@ export default async function VoteDetailPage({
                   {byFraction.map((f) => (
                     <tr key={f.fraction}>
                       <td className="px-4 py-2.5 text-zinc-900 font-medium">{f.fraction}</td>
-                      <td className="text-right px-2 py-2.5 num text-emerald-800">{f.yes || ""}</td>
-                      <td className="text-right px-2 py-2.5 num text-rose-800">{f.no || ""}</td>
-                      <td className="text-right px-2 py-2.5 num text-amber-800">{f.abstain || ""}</td>
-                      <td className="text-right px-2 py-2.5 num text-zinc-500">{f.no_show || ""}</td>
+                      <DrillCell value={f.yes} fraction={f.fraction} voteType="yes" pollId={pollId} colorClass="text-emerald-800" />
+                      <DrillCell value={f.no} fraction={f.fraction} voteType="no" pollId={pollId} colorClass="text-rose-800" />
+                      <DrillCell value={f.abstain} fraction={f.fraction} voteType="abstain" pollId={pollId} colorClass="text-amber-800" />
+                      <DrillCell value={f.no_show} fraction={f.fraction} voteType="no_show" pollId={pollId} colorClass="text-zinc-500" />
                       <td className="text-right px-4 py-2.5 num text-zinc-700">{f.total}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+
+            {/* Drilldown-Panel: wenn fraktion+vote in URL gesetzt, alle Namen zeigen */}
+            {drillVoters && drillFraktion && drillVote && (
+              <div id="stimmen-drilldown" className="border-t border-zinc-100 p-5 bg-zinc-50/40 scroll-mt-16">
+                <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="text-[12px] font-semibold uppercase tracking-wider text-zinc-700">{drillFraktionShort}</span>
+                    <span className="text-zinc-300">·</span>
+                    <span className={`text-[11px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-md border ${VOTE_TYPE_COLOR[drillVote]}`}>
+                      {VOTE_TYPE_LABEL[drillVote]}
+                    </span>
+                    <span className="text-zinc-300">·</span>
+                    <span className="text-[12px] text-zinc-500 num">{drillVoters.length} Abgeordnete</span>
+                  </div>
+                  <Link
+                    href={`/design/linear/abstimmungen/${pollId}`}
+                    className="inline-flex items-center gap-1 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" strokeWidth={2.25} />
+                    Schließen
+                  </Link>
+                </div>
+                {drillVoters.length === 0 ? (
+                  <p className="text-[13px] text-zinc-500 italic">Keine Abgeordneten in dieser Kategorie.</p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1.5">
+                    {drillVoters.map((v, idx) => (
+                      <div key={`${v.politician_id ?? "x"}-${idx}`} className="text-[13px]">
+                        {v.politician_id ? (
+                          <Link href={`/design/linear/politiker/${v.politician_id}`} className="text-zinc-900 hover:underline">
+                            {v.first_name} {v.last_name}
+                          </Link>
+                        ) : (
+                          <span className="text-zinc-500">{v.first_name} {v.last_name}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
 
@@ -476,4 +543,32 @@ function formatDate(iso: string): string {
   const [y, m, d] = iso.split("-");
   if (!y || !m || !d) return iso;
   return `${d}.${m}.${y}`;
+}
+
+function DrillCell({
+  value,
+  fraction,
+  voteType,
+  pollId,
+  colorClass,
+}: {
+  value: number;
+  fraction: string;
+  voteType: "yes" | "no" | "abstain" | "no_show";
+  pollId: number;
+  colorClass: string;
+}) {
+  if (!value) return <td className="text-right px-2 py-2.5 num text-zinc-300">—</td>;
+  const href = `/design/linear/abstimmungen/${pollId}?fraktion=${encodeURIComponent(fraction)}&vote=${voteType}#stimmen-drilldown`;
+  return (
+    <td className="text-right px-2 py-2.5 num">
+      <Link
+        href={href}
+        className={`${colorClass} hover:underline decoration-current decoration-dotted underline-offset-2`}
+        title={`${value} Abgeordnete in dieser Kategorie anzeigen`}
+      >
+        {value}
+      </Link>
+    </td>
+  );
 }

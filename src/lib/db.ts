@@ -2648,7 +2648,7 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
       dp.drucksache_nr,
       a.thema,
       a.zusammenfassung,
-      (SELECT titel FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS titel,
+      (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS titel,
       (SELECT datum FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS datum,
       (SELECT drucksache_typ FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS drucksache_typ
     FROM drucksache_polls dp
@@ -2692,6 +2692,39 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
     drucksachen,
     voteContext,
   };
+}
+
+/**
+ * Voters einer EINZELNEN Fraktion mit EINEM Stimm-Typ für eine Abstimmung.
+ * Dient dem Fraktions-Drilldown auf der Vote-Detail-Page („wer hat in X
+ * abweichend gestimmt?"). Sortiert nach Nachname.
+ */
+export interface VoterRow {
+  politician_id: number | null;
+  first_name: string | null;
+  last_name: string | null;
+  party_label: string | null;
+  photo_url: string | null;
+}
+
+export function getVotersForPollByFraktionVote(
+  pollId: number,
+  fraktion: string,
+  vote: string,
+): VoterRow[] {
+  const db = getDb();
+  return db.prepare(`
+    SELECT v.politician_id,
+           p.first_name, p.last_name, p.photo_url,
+           pa.label AS party_label
+    FROM votes v
+    LEFT JOIN politicians p ON p.id = v.politician_id
+    LEFT JOIN parties pa ON pa.id = p.party_id
+    WHERE v.poll_id = ?
+      AND COALESCE(v.fraction_label, '(ohne Fraktion)') = ?
+      AND v.vote = ?
+    ORDER BY p.last_name, p.first_name
+  `).all(pollId, fraktion, vote) as VoterRow[];
 }
 
 export interface PollIndexRow {
