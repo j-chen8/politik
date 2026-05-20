@@ -6,11 +6,17 @@
  *  - scripts/apply-vote-bundestag-audit.ts  (poll↔Drucksache-Verknüpfung)
  *  - scripts/generate-vote-context.ts       (Vote-Kontext-Zusammenfassung)
  *
- * Manuell gepflegt: pro namentlicher Abstimmung wurde die zugehörige
- * bundestag.de-Abstimmungsseite identifiziert. Datums-Kommentare =
- * abstimmung_date der bundestag.de-Seite.
+ * Zwei Methodiken (Hybrid, Entscheidung 2026-05-19):
+ *  - bt_id ≤ 1020: manuell gegen bundestag.de-Abstimmungsseite verifiziert
+ *    (Block-Modell). Datums-Kommentare = abstimmung_date der bundestag.de-Seite.
+ *  - bt_id == poll_id (≥ 6000): DIP-prozedural gemappt (Scraper tot, SPA).
+ *    Surrogat-ID = poll_id; audit_bundestag_polls[poll_id] befüllt von
+ *    scripts/map-vote-drucksache-dip.ts (DIP-Vorgang: Antrag+Beschlussempf.).
  */
 export const POLL_TO_BT_ID: Record<number, number> = {
+  // 2026-05-08 (Filterlist-Apply 2026-05-20: bundestag_id=6511 hat
+  // jetzt den präzisen Roll-Call-Eintrag mit 2 Subjekt-DS)
+  6511: 6511,
   // 2026-04-24
   6495: 999, 6496: 1002, 6497: 1001, 6498: 1000,
   // 2026-03-26
