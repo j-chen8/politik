@@ -1,5 +1,6 @@
 import {
   getDrucksacheDetail,
+  getDrucksacheSkeleton,
   getMitzeichnerForDrucksache,
   getBerichterstatterForDrucksache,
   getRelatedSpeechesForDrucksache,
@@ -173,7 +174,16 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const { "ds-nr": slug } = await params;
   const dsNr = slugToDsNr(slug);
   const ds = getDrucksacheDetail(dsNr);
-  if (!ds) notFound();
+  if (!ds) {
+    // Fallback: DS ist in `activities` (DIP), aber Drucksachen-Pipeline noch
+    // nicht durch (PDF kam später, oder Analyse pending). Minimal-Page mit
+    // dem rendern was wir haben — verhindert 404 für frische DS-Nrn.
+    const skeleton = getDrucksacheSkeleton(dsNr);
+    if (!skeleton) notFound();
+    const mitzeichner = getMitzeichnerForDrucksache(dsNr);
+    const berichterstatter = getBerichterstatterForDrucksache(dsNr);
+    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter);
+  }
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
   const berichterstatter = getBerichterstatterForDrucksache(dsNr);
@@ -671,6 +681,120 @@ export default async function DrucksacheDetailPage({ params }: Props) {
             Weitere unaufgenommene Themen-Tags (Audit):{" "}
             <span className="text-zinc-500">{ds.topic_drift_audit.join(" · ")}</span>
           </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+function renderSkeletonPage(
+  skeleton: import("@/lib/db").DrucksacheSkeleton,
+  mitzeichner: MitzeichnerRow[],
+  berichterstatter: MitzeichnerRow[],
+) {
+  const datumFormatted = formatDate(skeleton.datum);
+  const fraktionCounts = new Map<string, number>();
+  for (const m of mitzeichner) {
+    const k = m.party_label ?? "fraktionslos";
+    fraktionCounts.set(k, (fraktionCounts.get(k) ?? 0) + 1);
+  }
+  const fraktionList = Array.from(fraktionCounts.entries()).sort((a, b) => b[1] - a[1]);
+
+  return (
+    <main className="page-wash min-h-screen">
+      <div className="max-w-5xl mx-auto px-5 py-8">
+        <Link
+          href="/design/linear/aktivitaeten"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-zinc-950 transition-colors mb-6"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
+          Alle Aktivitäten
+        </Link>
+
+        <header className="mb-7">
+          <div className="flex items-baseline gap-2 flex-wrap mb-2 text-[11px] uppercase tracking-wider font-medium text-zinc-500">
+            <span>{skeleton.aktivitaetsart}</span>
+            {skeleton.urheber && (
+              <>
+                <span className="text-zinc-300">·</span>
+                <span>{skeleton.urheber}</span>
+              </>
+            )}
+            <span className="text-zinc-300">·</span>
+            <span className="num">{skeleton.drucksache_nr}</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-950 tracking-tight leading-tight">
+            {skeleton.titel}
+          </h1>
+          {datumFormatted && (
+            <p className="mt-2 text-[13px] text-zinc-500 num">{datumFormatted}</p>
+          )}
+        </header>
+
+        <section className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-6">
+          <h2 className="text-[12px] font-semibold text-amber-900 uppercase tracking-wide mb-2">
+            Analyse pending
+          </h2>
+          <p className="text-[14px] text-amber-900 leading-relaxed">
+            Diese Drucksache ist aus der DIP-Aktivitätsliste bekannt, aber das offizielle
+            PDF auf dserver.bundestag.de wurde noch nicht durch unsere Analyse-Pipeline
+            verarbeitet. Beim nächsten Daten-Refresh wird die KI-Zusammenfassung,
+            Tonalitäts-Analyse und thematische Einordnung ergänzt.
+            {skeleton.pdf_url && (
+              <>
+                {" "}Bis dahin: direkt auf bundestag.de lesen via{" "}
+                <a
+                  href={skeleton.pdf_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-amber-400 hover:decoration-amber-900 font-medium inline-flex items-center gap-1"
+                >
+                  Original-PDF
+                  <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                </a>
+                .
+              </>
+            )}
+          </p>
+        </section>
+
+        {mitzeichner.length > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <div className="flex items-baseline justify-between mb-5">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                <GlossarTerm slug="mitzeichner">Mitgezeichnet</GlossarTerm>
+              </h2>
+              <span className="num text-[11px] text-zinc-400">{mitzeichner.length}</span>
+            </div>
+            {fraktionList.length > 1 && (
+              <div className="mb-5">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] num">
+                  {fraktionList.map(([party, n]) => (
+                    <span key={party} className="inline-flex items-center gap-1.5 text-zinc-600">
+                      <span>{party}</span>
+                      <span className="text-zinc-950 font-medium">{n}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <MitzeichnerGrid mitz={mitzeichner} />
+          </section>
+        )}
+
+        {berichterstatter.length > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <div className="flex items-baseline justify-between mb-2">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                <GlossarTerm slug="berichterstatter">Berichterstatter:innen</GlossarTerm>
+              </h2>
+              <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
+            </div>
+            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+              Vom Ausschuss benannt — typischerweise 1 pro Fraktion. Diese Liste zeigt KEINE inhaltliche Zustimmung; die genannten Fraktionen können in der namentlichen Abstimmung sehr wohl dagegen stimmen.
+            </p>
+            <MitzeichnerGrid mitz={berichterstatter} />
+          </section>
         )}
       </div>
     </main>

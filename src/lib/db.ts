@@ -2850,6 +2850,46 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
   };
 }
 
+/**
+ * Minimal-Info zu einer Drucksache aus `activities` alleine — Fallback, wenn
+ * die Drucksachen-LLM-Pipeline noch nicht durchgelaufen ist (PDF kam später
+ * als das DIP-Aktivitäts-Update). Verhindert 404s in der UI für DS-Nrn,
+ * die zwar aus DIP bekannt sind, aber noch kein `drucksache_analyses`-
+ * Eintrag haben. Wird vom nächsten `update` automatisch hochgezogen.
+ */
+export interface DrucksacheSkeleton {
+  drucksache_nr: string;
+  titel: string;
+  datum: string | null;
+  urheber: string | null;
+  aktivitaetsart: string;
+  drucksache_typ: string | null;
+  pdf_url: string | null;
+  herausgeber: string | null;
+}
+
+export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
+  const db = getDb();
+  // ACHTUNG: `activities.titel` ist der Politiker-Name ("X, MdB, Fraktion"),
+  // das echte DS-Thema steht in `activities.thema`. Fallback auf titel nur
+  // falls thema NULL ist (sollte praktisch nie passieren).
+  const row = db.prepare(`
+    SELECT
+      drucksache_nr,
+      COALESCE(MAX(thema), MAX(titel)) AS titel,
+      MAX(datum) AS datum,
+      MAX(urheber) AS urheber,
+      MIN(aktivitaetsart) AS aktivitaetsart,
+      MAX(drucksache_typ) AS drucksache_typ,
+      MAX(pdf_url) AS pdf_url,
+      MAX(herausgeber) AS herausgeber
+    FROM activities
+    WHERE drucksache_nr = ?
+    GROUP BY drucksache_nr
+  `).get(nr) as DrucksacheSkeleton | undefined;
+  return row ?? null;
+}
+
 export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
   const db = getDb();
   // Nur die Initiierenden / Mit-Einreichenden (inhaltliche Träger).
