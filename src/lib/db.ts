@@ -547,6 +547,11 @@ export interface MethodikCounts {
   mdbsCvSummary: number;
   cvStatementsTotal: number;
   sourceCoherenceChecked: number;
+  /** ECHT-Konflikte, die nach manueller Verifikation tatsächlich ins
+   *  Frontend (politicians.source_conflicts) übernommen wurden. Kleiner
+   *  als die Pipeline-Rohzahl (final-verdicts-jsonl) — nur belastbare
+   *  Fälle werden gemergt. */
+  sourceCoherenceEcht: number;
   plenarSpeechesCount: number;
   speechSegments: number;
   speechDistinctReden: number;
@@ -604,6 +609,11 @@ export function getMethodikCounts(): MethodikCounts {
        ) AS c FROM politicians WHERE cv_json IS NOT NULL`
     ),
     sourceCoherenceChecked: one(`SELECT COUNT(*) AS c FROM politicians WHERE source_coherence_checked_at IS NOT NULL`),
+    sourceCoherenceEcht: one(
+      `SELECT COUNT(*) AS c FROM politicians p, JSON_EACH(p.source_conflicts)
+       WHERE p.source_conflicts IS NOT NULL
+         AND JSON_EXTRACT(value, '$.final_verdict') = 'ECHT'`
+    ),
     plenarSpeechesCount: one(`SELECT COUNT(DISTINCT rede_id) AS c FROM plenar_speeches WHERE rede_id IS NOT NULL`),
     speechSegments: one(`SELECT COUNT(*) AS c FROM speech_analyses_v2`),
     speechDistinctReden: one(`SELECT COUNT(DISTINCT rede_id) AS c FROM speech_analyses_v2`),

@@ -196,12 +196,13 @@ export default function LinearMethodikPage() {
             <span className="text-zinc-950 font-medium num">{counts.cvStatementsTotal.toLocaleString("de-DE")} strukturierte
             Lebenslauf-Aussagen</span> extrahiert — Ausbildung, Berufsstationen, politische Stationen, weitere
             Funktionen. Zusätzlich liefen <span className="num">{counts.sourceCoherenceChecked}</span> MdB-Profile
-            durch eine Source-Coherence-Pipeline, die Wikipedia gegen die Politiker-Homepage abgleicht — daraus
-            haben sich nach manueller Verifikation{" "}
+            durch eine Source-Coherence-Pipeline, die Wikipedia gegen die Politiker-Homepage abgleicht. Die
+            Pipeline markierte <span className="num">{verifierCascade.finalEcht}</span> Konflikt-Kandidaten als
+            potenziell echt; nach manueller Verifikation wurden{" "}
             <Link href="/design/linear/quellen-diskrepanzen" className="text-zinc-950 font-medium underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors">
-              {verifierCascade.finalEcht} echte Quellen-Diskrepanzen
+              {counts.sourceCoherenceEcht} belastbare Quellen-Diskrepanzen
             </Link>{" "}
-            bestätigt. Parallel sind <span className="num">{counts.speechDistinctReden.toLocaleString("de-DE")}</span> Reden
+            ins Profil übernommen. Parallel sind <span className="num">{counts.speechDistinctReden.toLocaleString("de-DE")}</span> Reden
             KI-analysiert und <span className="num">{Math.round((counts.quoteValidCount / Math.max(counts.quoteTotalCount, 1)) * 1000) / 10}%</span> der
             wörtlichen Zitate gegen den Roh-Text validiert.
           </p>
@@ -216,7 +217,7 @@ export default function LinearMethodikPage() {
             <BigStat value={counts.mdbsCvJson.toString()} label="MdB-Profile" sub="mit strukturiertem Lebenslauf" />
             <BigStat value={counts.cvStatementsTotal.toLocaleString("de-DE")} label="CV-Aussagen" sub="aus 4 Sektionen, einzeln auditierbar" />
             <BigStat value={counts.speechDistinctReden.toLocaleString("de-DE")} label="Reden KI-analysiert" sub={`${counts.speechSegments.toLocaleString("de-DE")} Segmente, Tonalität + Zitate + Forderungen`} />
-            <BigStat value={verifierCascade.finalEcht.toString()} label="echte Quellen-Diskrepanzen" sub="Wikipedia ↔ Homepage" highlight />
+            <BigStat value={counts.sourceCoherenceEcht.toString()} label="echte Quellen-Diskrepanzen" sub="im Profil sichtbar · Wikipedia ↔ Homepage" highlight />
           </div>
         </section>
 
