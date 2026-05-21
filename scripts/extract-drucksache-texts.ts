@@ -45,6 +45,11 @@ db.exec(`
   );
   CREATE INDEX IF NOT EXISTS idx_drucksache_texts_error ON drucksache_texts(parse_error)
     WHERE parse_error IS NOT NULL;
+  -- Index für Antwort→Anfrage-Lookup (genutzt in getDrucksachenForPolitician,
+  -- ohne den scannt der Antwort-Badge-Subquery linear durch alle Antwort-DS
+  -- pro Politiker-Profil → 2,5 s statt 13 ms).
+  CREATE INDEX IF NOT EXISTS idx_drucksache_texts_referenced ON drucksache_texts(referenced_drucksache_nr)
+    WHERE referenced_drucksache_nr IS NOT NULL;
 `);
 
 const upsert = db.prepare(`
