@@ -16,6 +16,7 @@ import {
 } from "@/lib/db";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
+import { TagInfoPopover } from "@/components/TagInfoPopover";
 import {
   ExternalLink,
   Mic,
@@ -30,12 +31,6 @@ interface Props {
   searchParams?: Promise<{ orig?: string }>;
 }
 
-function getActivityLabel(rate: number): string {
-  if (rate >= 75) return "Hohe Aktivität";
-  if (rate >= 50) return "Mittlere Aktivität";
-  return "Niedrige Aktivität";
-}
-
 function shortenTyp(typ: string): string {
   const map: Record<string, string> = {
     "Regierungserklärung": "Reg.-Erklärung",
@@ -46,16 +41,6 @@ function shortenTyp(typ: string): string {
     "Zwischenfrage": "Zwischenfr.",
   };
   return map[typ] || typ;
-}
-
-function computeFactionLoyalty(votes: { vote: string; fraction_label: string | null }[]) {
-  const factionVotes = votes.filter((v) => v.fraction_label && v.vote !== "no_show");
-  const loyal = Math.round(factionVotes.length * 0.88);
-  return {
-    loyal,
-    total: factionVotes.length,
-    rate: factionVotes.length > 0 ? (loyal / factionVotes.length) * 100 : 0,
-  };
 }
 
 export default async function PolitikerPage({ params, searchParams }: Props) {
@@ -87,33 +72,141 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
   const voteStats = computeVoteStatsDb(votes);
-  const hasVoteData = voteStats.totalPolls > 0;
   const fractionDev = getFractionDeviationsForPolitician(politicianId);
-  const factionLoyalty = computeFactionLoyalty(votes);
-  const avgAttendance = 78;
+  const hasVoteData = voteStats.totalPolls > 0;
 
   const partyLabel = politician.party_label || "Parteilos";
-  const fractionLabel = primaryMandate?.fraction || partyLabel;
   const constituency = primaryMandate?.constituency;
-  const totalSidejobIncome = sidejobs.reduce((sum, s) => sum + (s.income || 0), 0);
 
+  // ── Funktionen mit Tier-Klassifikation (Chips neben dem Namen oben im Header) ──
+  function shortenFunktionTitel(t: string): string {
+    let s = t
+      // Tier 1
+      .replace(/^Bundesminister:in für /, "BM ")
+      .replace(/^Bundestagspräsident(in)?$/i, "BT-Präsidentin")
+      // Tier 2 / Bundestag
+      .replace(/^Vizepräsident(:in)?(?:in)? des Bundestages.*/i, "BT-Vizepräs.")
+      // Fraktionen
+      .replace(/^Erste:?r? Stv\. Fraktionsvorsitzender CDU\/CSU.*/i, "1. Stv. Fraktionsvors. CDU/CSU")
+      .replace(/^Stv\. Fraktionsvorsitzende[rn]?:?r? /i, "Stv. Fraktionsvors. ")
+      .replace(/^Fraktionsvorsitzende[rn]?:?r? /i, "Fraktionsvors. ")
+      .replace(/^Erste:?r? Parlamentarische:?r? Geschäftsführer(:?in)?(?:in)? /i, "1. PGF ")
+      .replace(/^Parlamentarische:?r? Geschäftsführer(?:in)? /i, "PGF ")
+      // Partei
+      .replace(/^Parteivorsitzende[rn]?:?r? /i, "Parteivors. ")
+      // Regierung — Staatsminister:innen
+      .replace(/^Staatsminister(?:in)? (für|im) /i, "StM ")
+      .replace(/^Staatsminister(?:in)?(\s+\+\s+.+)$/i, "StM$1")
+      // PStS — alle Varianten
+      .replace(/^Parlamentarische[rn]?\s+Staatssekretär(?:in)?\s+im\s+/i, "PStS ")
+      .replace(/^Parlamentarische[rn]?\s+Staatssekretär(?:in)?\s+(\+\s+.+)$/i, "PStS $1")
+      // Beauftragte
+      .replace(/^Beauftragte:?r? der Bundesregierung für /i, "Beauftragt. ")
+      .replace(/^Beauftragte:?r? für /i, "Beauftragt. ")
+      // Ausschussvorsitz — Komitee-Name komplett raus, Detail kommt im Popover
+      .replace(/^Vorsitz: Ausschuss für .*$/, "Ausschussvorsitz")
+      .replace(/^Vorsitz: (.+)$/, "Vorsitz")
+      .replace(/^Stv\. Vorsitz: .*$/, "Stv. Ausschussvorsitz");
+
+    // Häufige Wort-Verkürzungen für Tail-Reste
+    s = s
+      .replace(/\bAntiziganismus-Beauftragter\b/gi, "Antiziganismus-Beauftr.")
+      .replace(/\bBeauftragte für Mittelstand\b/gi, "Mittelstands-Beauftr.")
+      .replace(/\bBeauftragte für Ostdeutschland\b/gi, "Ost-Beauftr.")
+      .replace(/\bBeauftragte für Migration[^+]*$/gi, "Migrations-Beauftr.")
+      .replace(/\bBund-Länder-Zusammenarbeit\b/gi, "Bund-Länder")
+      .replace(/\bSport und Ehrenamt\b/gi, "Sport & Ehrenamt")
+      .replace(/\bfür Europa.*$/, "Europa");
+    return s;
+  }
+  type Funktion = { key: string; titel: string; inhalt?: string; tier: 1 | 2 | 3 };
+  function classifyFunktion(titel: string): 1 | 2 | 3 {
+    if (/^bundeskanzler|^vizekanzler|^bundestagspräsident/i.test(titel)) return 1;
+    if (/^stv\.|^erste:?r? parlamentarische:?r? geschäftsführer|^parlamentarische:?r? geschäftsführer/i.test(titel)) return 3;
+    if (/^vizepräsident|^fraktionsvorsitzend|^parteivorsitzend|^staatsminister|staatssekretär|^beauftragt|landesgruppe/i.test(titel)) return 2;
+    return 3;
+  }
+  const funktionen: Funktion[] = notes
+    .filter((n) => n.kategorie === "funktion")
+    .map((n) => ({ key: `n${n.id}`, titel: n.titel, inhalt: n.inhalt, tier: classifyFunktion(n.titel) }));
+  const hasAmtForFn = !!politician.amt && politician.amt.trim() !== "" && politician.amt !== "Bundeskanzleramt";
+  if (hasAmtForFn) {
+    funktionen.unshift({ key: "amt", titel: `Bundesminister:in für ${politician.amt}`, tier: 1 });
+  }
+  for (const c of committees) {
+    if (c.committee_role === "chairperson") {
+      funktionen.push({ key: `comm-chair-${c.id}`, titel: `Vorsitz: ${c.committee_label}`, inhalt: "Ausschussvorsitz", tier: 2 });
+    } else if (c.committee_role === "vice_chairperson" || c.committee_role === "deputy_chairperson") {
+      funktionen.push({ key: `comm-vice-${c.id}`, titel: `Stv. Vorsitz: ${c.committee_label}`, inhalt: "Stellvertretender Ausschussvorsitz", tier: 3 });
+    }
+  }
+  funktionen.sort((a, b) => a.tier - b.tier);
+  const fnT1 = funktionen.filter((f) => f.tier === 1);
+  const fnT2 = funktionen.filter((f) => f.tier === 2);
+  const fnT3 = funktionen.filter((f) => f.tier === 3);
+  const hasAnyFunktion = funktionen.length > 0;
   return (
     <div className="page-wash min-h-screen">
       <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
         {/* Profile Header */}
         <div className="mb-12">
           <div className="flex flex-col sm:flex-row gap-6 items-start">
-            <div className="flex flex-col items-center sm:items-start gap-1.5">
-              <PoliticianAvatar
-                photoUrl={politician.photo_url}
-                firstName={politician.first_name}
-                lastName={politician.last_name}
-                party={politician.party_label}
-                size="lg"
-              />
+            <div className="flex flex-col items-center sm:items-start gap-2">
+              {(() => {
+                // Commons-Link aus photo_attribution rekonstruieren (für klickbares Foto)
+                const commonsUrl = (() => {
+                  if (!politician.photo_attribution) return null;
+                  const m = politician.photo_attribution.match(/^Wikimedia Commons:\s*(.+?)\s*$/) ||
+                            politician.photo_attribution.match(/^Bild:\s*(.+?)\s+via Wikimedia Commons/);
+                  if (!m) return null;
+                  return `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(m[1].trim())}`;
+                })();
+                const avatar = (
+                  <PoliticianAvatar
+                    photoUrl={politician.photo_url}
+                    firstName={politician.first_name}
+                    lastName={politician.last_name}
+                    party={politician.party_label}
+                    size="xl"
+                  />
+                );
+                return politician.photo_url && commonsUrl ? (
+                  <a
+                    href={commonsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Original-Datei auf Wikimedia Commons öffnen"
+                    className="block transition-opacity hover:opacity-90"
+                  >
+                    {avatar}
+                  </a>
+                ) : avatar;
+              })()}
               {!politician.photo_url && (
-                <p className="text-[10px] leading-tight text-zinc-500 max-w-[120px] text-center sm:text-left">
+                <p className="text-[10px] leading-tight text-zinc-500 max-w-[128px] text-center sm:text-left">
                   Kein Foto – keine eindeutige Bildlizenz
+                </p>
+              )}
+              {politician.photo_url && (politician.photo_author || politician.photo_license) && (
+                <p className="text-[10px] leading-tight text-zinc-400 max-w-[140px] text-center sm:text-left">
+                  © {politician.photo_author ?? "unbekannt"}
+                  {politician.photo_license && (
+                    <>
+                      {" · "}
+                      {politician.photo_license_url ? (
+                        <a
+                          href={politician.photo_license_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-zinc-700 hover:underline transition-colors"
+                        >
+                          {politician.photo_license}
+                        </a>
+                      ) : (
+                        politician.photo_license
+                      )}
+                    </>
+                  )}
                 </p>
               )}
             </div>
@@ -125,16 +218,51 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 {hasVoteData && (
                   <>
                     <span className="text-zinc-300">·</span>
-                    <span className="text-[12px] text-zinc-500">
-                      {getActivityLabel(voteStats.attendanceRate)}
+                    <span
+                      className="text-[12px] text-zinc-500 cursor-help underline decoration-dotted decoration-zinc-300 underline-offset-4"
+                      title="Anteil an namentlichen Bundestags-Abstimmungen, bei denen Stimme abgegeben wurde (Ja/Nein/Enthaltung). Plenaranwesenheit allgemein wird nicht erfasst."
+                    >
+                      Namentliche Abstimmungen{" "}
+                      <span className="num font-semibold text-zinc-950">
+                        {voteStats.attendanceRate.toFixed(0)} %
+                      </span>{" "}
+                      <span className="num text-zinc-400">
+                        · {voteStats.attended} / {voteStats.totalPolls}
+                      </span>
                     </span>
                   </>
                 )}
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] mb-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] mb-3">
                 {politician.title ? `${politician.title} ` : ""}
                 {politician.first_name} {politician.last_name}
               </h1>
+
+              {/* Funktion-Chips — kompakt neben dem Namen, Klick öffnet Popover mit Beschreibung */}
+              {hasAnyFunktion && (
+                <div className="flex flex-wrap items-center gap-1.5 mb-4">
+                  {funktionen.map((f) => {
+                    const label = shortenFunktionTitel(f.titel);
+                    const def = f.inhalt || f.titel;
+                    const styles =
+                      f.tier === 1
+                        ? { color: "#ffffff", bg: "#18181b" }
+                        : f.tier === 2
+                        ? { color: "#27272a", bg: "#f4f4f5" }
+                        : { color: "#71717a", bg: "#ffffff" };
+                    return (
+                      <TagInfoPopover
+                        key={f.key}
+                        label={label}
+                        definition={def}
+                        color={styles.color}
+                        bg={styles.bg}
+                        variant="tonalitaet"
+                      />
+                    );
+                  })}
+                </div>
+              )}
 
               <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-zinc-500 mb-4">
                 {politician.occupation && <span>{politician.occupation}</span>}
@@ -164,6 +292,18 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     {new URL(politician.homepage_url).hostname.replace(/^www\./, "")}
+                  </a>
+                )}
+                {politician.bio_url && (
+                  <a
+                    href={politician.bio_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    title="Wikipedia (deutsch) · CC BY-SA"
+                  >
+                    <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                    Wikipedia
                   </a>
                 )}
                 {politician.bundestag_bio_url && (
@@ -248,61 +388,6 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           </div>
         </div>
 
-        {/* Stats Grid */}
-        {hasVoteData && (
-          <section className="mb-10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-              <Stat
-                label="Anwesenheit"
-                value={`${voteStats.attendanceRate.toFixed(0)}%`}
-                sub={`${voteStats.attended} / ${voteStats.totalPolls}`}
-              />
-              <Stat
-                label="Abstimmungen"
-                value={voteStats.totalPolls.toString()}
-                sub={`${voteStats.votedYes} Ja · ${voteStats.votedNo} Nein`}
-              />
-              <Stat
-                label="Fraktionstreue"
-                value={`~${factionLoyalty.rate.toFixed(0)}%`}
-                sub={fractionLabel}
-              />
-              <Stat
-                label="Nebeneinkünfte"
-                value={sidejobs.length > 0 ? sidejobs.length.toString() : "—"}
-                sub={
-                  totalSidejobIncome > 0
-                    ? `${totalSidejobIncome.toLocaleString("de-DE")} €`
-                    : "Keine"
-                }
-              />
-            </div>
-          </section>
-        )}
-
-        {/* Bio */}
-        {politician.bio_summary && (
-          <Card className="mb-6">
-            <p className="text-[14.5px] text-zinc-700 leading-relaxed whitespace-pre-line">
-              {politician.bio_summary}
-            </p>
-            {politician.bio_url && (
-              <p className="text-[11px] text-zinc-400 mt-3">
-                Quelle:{" "}
-                <a
-                  href={politician.bio_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-zinc-700 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
-                >
-                  Wikipedia (deutsch)
-                </a>{" "}
-                · CC BY-SA
-              </p>
-            )}
-          </Card>
-        )}
-
         {/* CV — nutzen die existierende Komponente */}
         {(() => {
           const tryParse = (s: string | null): CV | null => {
@@ -351,58 +436,33 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           );
         })()}
 
-        {/* Notes */}
-        {notes.length > 0 && (
+        {/* Prominente Notes (rolle / sonderfall) — oben mit Amber-Highlight */}
+        {notes.filter((n) => n.kategorie !== "sonstiges" && n.kategorie !== "funktion").length > 0 && (
           <Card className="mb-6 border-amber-200/70 bg-amber-50/40">
-            {notes.map((note) => (
-              <div key={note.id}>
-                <div className="flex items-center gap-2 mb-2">
-                  <AlertCircle className="w-4 h-4 text-amber-600" strokeWidth={2.25} />
-                  <h2 className="text-[13px] font-semibold text-amber-900 uppercase tracking-wider">
-                    {note.titel}
-                  </h2>
+            {notes
+              .filter((n) => n.kategorie !== "sonstiges" && n.kategorie !== "funktion")
+              .map((note) => (
+                <div key={note.id}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <AlertCircle className="w-4 h-4 text-amber-600" strokeWidth={2.25} />
+                    <h2 className="text-[13px] font-semibold text-amber-900 uppercase tracking-wider">
+                      {note.titel}
+                    </h2>
+                  </div>
+                  <div className="text-[14px] text-amber-900 leading-relaxed whitespace-pre-line">
+                    {note.inhalt}
+                  </div>
+                  {(note.datum_von || note.datum_bis) && (
+                    <p className="text-[11px] text-amber-700/70 mt-2 num">
+                      {note.datum_von && `Seit ${new Date(note.datum_von + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
+                      {note.datum_von && note.datum_bis && " — "}
+                      {note.datum_bis && `bis ${new Date(note.datum_bis + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
+                    </p>
+                  )}
                 </div>
-                <div className="text-[14px] text-amber-900 leading-relaxed whitespace-pre-line">
-                  {note.inhalt}
-                </div>
-                {(note.datum_von || note.datum_bis) && (
-                  <p className="text-[11px] text-amber-700/70 mt-2 num">
-                    {note.datum_von && `Seit ${new Date(note.datum_von + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
-                    {note.datum_von && note.datum_bis && " — "}
-                    {note.datum_bis && `bis ${new Date(note.datum_bis + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
-                  </p>
-                )}
-              </div>
-            ))}
+              ))}
           </Card>
         )}
-
-        {/* Mandate */}
-        <CollapsibleCard title="Mandate" count={dbMandates.length} className="mb-6">
-          <div className="space-y-1">
-            {dbMandates.map((m) => (
-              <div
-                key={m.id}
-                className="flex items-baseline gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 transition-colors"
-              >
-                <span className="text-[13.5px] font-medium text-zinc-950">
-                  {m.period_label}
-                </span>
-                <span className="text-[11px] text-zinc-500 uppercase tracking-wider font-medium">
-                  {m.parliament_label}
-                </span>
-                {m.fraction && (
-                  <span className="text-[11px] text-zinc-400">{m.fraction}</span>
-                )}
-                {m.constituency && (
-                  <span className="text-[11px] text-zinc-400 ml-auto">
-                    WK {m.constituency}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </CollapsibleCard>
 
         {/* Parlamentarische Arbeit */}
         {parlArbeit.length > 0 && (
@@ -511,6 +571,15 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           <span>Sitzung {item.sitzung}</span>
                         </>
                       )}
+                      {item.page_start !== null && (
+                        <>
+                          <span className="text-zinc-200">·</span>
+                          <span title="Plenarprotokoll-Seite (Spalte A–D)">
+                            S. {item.page_start}
+                            {item.page_section ? ` (${item.page_section})` : ""}
+                          </span>
+                        </>
+                      )}
                       {item.drucksache_nr && (
                         <>
                           <span className="text-zinc-200">·</span>
@@ -558,25 +627,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           </CollapsibleCard>
         )}
 
-        {/* Voting Bar */}
-        {hasVoteData && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-            <CollapsibleCard title="Abstimmungsverhalten">
-              <FractionDeviations data={fractionDev} />
-            </CollapsibleCard>
-            <CollapsibleCard title="Anwesenheit vs. Durchschnitt">
-              <ComparisonRow
-                label="Diese:r MdB"
-                value={voteStats.attendanceRate}
-                color="bg-zinc-900"
-              />
-              <ComparisonRow
-                label="Durchschnitt"
-                value={avgAttendance}
-                color="bg-zinc-300"
-              />
-            </CollapsibleCard>
-          </div>
+        {/* Fraktions-Abweichungen — einzige Person-spezifische Aussage über
+            das Stimmverhalten. Aggregat-Ja/Nein-Quote wäre nur Fraktions-Echo. */}
+        {fractionDev.total_namentlich > 0 && (
+          <CollapsibleCard title="Abstimmungsverhalten" className="mb-6">
+            <FractionDeviations data={fractionDev} />
+          </CollapsibleCard>
         )}
 
         {/* Sidejobs + Committees */}
@@ -642,7 +698,9 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               </div>
             ) : (
               <p className="text-[13px] text-zinc-400 py-6 text-center">
-                Keine Ausschuss-Mitgliedschaften gefunden.
+                {hasAnyFunktion
+                  ? "Keine Ausschuss-Mitgliedschaften — Schwerpunkt liegt auf der oben genannten Funktion."
+                  : "Keine Ausschuss-Mitgliedschaften gefunden."}
               </p>
             )}
           </CollapsibleCard>
@@ -671,14 +729,18 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       : v.vote === "abstain" ? "Enthaltung"
                       : "Abwesend"}
                   </span>
-                  <span className="text-[13px] text-zinc-700 flex-1 truncate">
+                  <Link
+                    href={`/design/linear/abstimmungen/${v.poll_id}`}
+                    className="text-[13px] text-zinc-700 flex-1 truncate hover:text-zinc-950 hover:underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                  >
                     {v.poll_label}
-                  </span>
+                  </Link>
                   {v.poll_url && (
                     <a
                       href={v.poll_url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      title="Quelle (Bundestag.de)"
                       className="text-zinc-400 hover:text-zinc-950 transition-colors shrink-0"
                     >
                       <ExternalLink className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -690,16 +752,6 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           </CollapsibleCard>
         )}
       </div>
-    </div>
-  );
-}
-
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="px-5 py-5 flex flex-col gap-0.5">
-      <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{label}</span>
-      <span className="num text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-950">{value}</span>
-      {sub && <span className="text-[11px] text-zinc-400 num">{sub}</span>}
     </div>
   );
 }
@@ -803,14 +855,12 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
     );
   }
 
-  const fractionShort = data.fraction_label?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim();
-
   return (
     <div>
       <p className="text-[13.5px] text-zinc-700 leading-relaxed mb-4">
         In <span className="num font-medium text-zinc-950">{data.deviations.length}</span> von{" "}
         <span className="num font-medium text-zinc-950">{N}</span> aktiven namentlichen Abstimmungen
-        anders als die <span className="font-medium">{fractionShort}</span>-Fraktion gestimmt:
+        anders als die <span className="font-medium">{data.fraction_label?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim()}</span>-Fraktion gestimmt:
       </p>
       <ul className="space-y-1.5 max-h-[480px] overflow-y-auto pr-1">
         {data.deviations.map((d) => (
@@ -840,25 +890,6 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
           </li>
         ))}
       </ul>
-    </div>
-  );
-}
-
-function ComparisonRow({ label, value, color }: { label: string; value: number; color: string }) {
-  return (
-    <div className="mb-3 last:mb-0">
-      <div className="flex items-baseline justify-between mb-1.5">
-        <span className="text-[12.5px] text-zinc-500">{label}</span>
-        <span className="num text-[13px] font-semibold text-zinc-950">
-          {value.toFixed(0)}%
-        </span>
-      </div>
-      <div className="h-1.5 rounded-full bg-zinc-100 overflow-hidden">
-        <div
-          className={`h-full rounded-full ${color}`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
     </div>
   );
 }

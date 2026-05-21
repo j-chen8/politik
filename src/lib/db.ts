@@ -987,9 +987,23 @@ export interface VoteStats {
   noShow: number;
 }
 
+export function computeVoteStatsDb(votes: VoteRow[]): VoteStats {
+  const totalPolls = votes.length;
+  const attended = votes.filter((v) => v.vote !== "no_show").length;
+  return {
+    totalPolls,
+    attended,
+    attendanceRate: totalPolls > 0 ? (attended / totalPolls) * 100 : 0,
+    votedYes: votes.filter((v) => v.vote === "yes").length,
+    votedNo: votes.filter((v) => v.vote === "no").length,
+    abstained: votes.filter((v) => v.vote === "abstain").length,
+    noShow: votes.filter((v) => v.vote === "no_show").length,
+  };
+}
+
 // ============================================================
 // Fraktions-Abweichungen — einzige inhaltliche Aussage auf Person-Ebene,
-// die aus den ~50 namentlichen Abstimmungen ableitbar ist. „Hat in N von M
+// die aus den 51 namentlichen Abstimmungen ableitbar ist. „Hat in N von M
 // anders als Fraktion gestimmt" — bei 90 % der MdB ist N=0 (Disziplin),
 // die übrigen ~65 zeigen reale Abweichungen.
 // ============================================================
@@ -1003,10 +1017,10 @@ export interface FractionDeviationRow {
 }
 
 export interface FractionDeviationResult {
-  fraction_label: string | null;
+  fraction_label: string | null;     // null = fraktionslos / unbekannt
   is_fractionless: boolean;
-  total_namentlich: number;
-  active_polls: number;
+  total_namentlich: number;          // alle Polls in denen MdB stimmen konnte
+  active_polls: number;              // davon nicht-Abwesend (yes/no/abstain)
   deviations: FractionDeviationRow[];
 }
 
@@ -1025,6 +1039,7 @@ export function getFractionDeviationsForPolitician(politicianId: number): Fracti
 
   const fractionLabel = fracRow?.fraction_label ?? null;
   const isFractionless = fractionLabel === null
+    || /^fraktionslos\b/i.test(fractionLabel)
     || /\bfraktionslos\b/i.test(fractionLabel);
 
   const counts = db.prepare(`
@@ -1044,7 +1059,7 @@ export function getFractionDeviationsForPolitician(politicianId: number): Fracti
     };
   }
 
-  // Pro Poll: Mehrheits-Vote dieser Fraktion (Ja/Nein/Enthaltung, keine
+  // Pro Poll: Mehrheits-Vote dieser Fraktion (Ja/Nein/Enthaltung — keine
   // no_shows). Dann Person-Vote dagegen halten.
   const deviations = db.prepare(`
     WITH fraction_majority AS (
@@ -1072,20 +1087,6 @@ export function getFractionDeviationsForPolitician(politicianId: number): Fracti
     total_namentlich: counts.total,
     active_polls: counts.active,
     deviations,
-  };
-}
-
-export function computeVoteStatsDb(votes: VoteRow[]): VoteStats {
-  const totalPolls = votes.length;
-  const attended = votes.filter((v) => v.vote !== "no_show").length;
-  return {
-    totalPolls,
-    attended,
-    attendanceRate: totalPolls > 0 ? (attended / totalPolls) * 100 : 0,
-    votedYes: votes.filter((v) => v.vote === "yes").length,
-    votedNo: votes.filter((v) => v.vote === "no").length,
-    abstained: votes.filter((v) => v.vote === "abstain").length,
-    noShow: votes.filter((v) => v.vote === "no_show").length,
   };
 }
 
