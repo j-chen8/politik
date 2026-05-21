@@ -31,6 +31,31 @@ interface Props {
   searchParams?: Promise<{ orig?: string }>;
 }
 
+/**
+ * Wikimedia Commons liefert das `author`-Feld manchmal als Freiform-Reuse-
+ * Hinweis (z.B. C.Suthorn-Bilder: 723 Zeichen Lizenz-Belehrung). Für die
+ * Caption unter dem Foto reicht der Kern-Author bis zum ersten Satz-Ende
+ * oder ~80 Zeichen — der vollständige Text bleibt als `title`-Tooltip
+ * verfügbar.
+ */
+function truncateAuthor(raw: string): { short: string; full: string; wasTruncated: boolean } {
+  const trimmed = raw.trim();
+  if (trimmed.length <= 70) return { short: trimmed, full: trimmed, wasTruncated: false };
+  // Erster Satz: bis zum ersten ". " oder ! oder ?
+  const sentenceEnd = trimmed.search(/[.!?]\s/);
+  if (sentenceEnd > 0 && sentenceEnd <= 80) {
+    return { short: trimmed.slice(0, sentenceEnd), full: trimmed, wasTruncated: true };
+  }
+  // Hart bei ~70 Zeichen, am letzten Wort-Grenze schneiden
+  const cut = trimmed.slice(0, 70);
+  const lastSpace = cut.lastIndexOf(" ");
+  return {
+    short: (lastSpace > 30 ? cut.slice(0, lastSpace) : cut) + "…",
+    full: trimmed,
+    wasTruncated: true,
+  };
+}
+
 function shortenTyp(typ: string): string {
   const map: Record<string, string> = {
     "Regierungserklärung": "Reg.-Erklärung",
@@ -189,7 +214,11 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               )}
               {politician.photo_url && (politician.photo_author || politician.photo_license) && (
                 <p className="text-[10px] leading-tight text-zinc-400 max-w-[140px] text-center sm:text-left">
-                  © {politician.photo_author ?? "unbekannt"}
+                  © {(() => {
+                    if (!politician.photo_author) return "unbekannt";
+                    const t = truncateAuthor(politician.photo_author);
+                    return t.wasTruncated ? <span title={t.full}>{t.short}</span> : t.short;
+                  })()}
                   {politician.photo_license && (
                     <>
                       {" · "}
