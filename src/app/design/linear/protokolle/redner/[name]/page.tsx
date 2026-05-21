@@ -2,11 +2,12 @@ import {
   getSpeakerDetail,
   getSpeechSummaries,
   getSpeechAnalysesBySpeaker,
+  getPoliticianIdByDisplayName,
 } from "@/lib/db";
 import { SpeechAnalysisDetails } from "@/components/SpeechAnalysisDetails";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 const TYP_LABEL: Record<string, string> = {
   debatte: "Debatte",
@@ -27,7 +28,22 @@ export default async function RednerPage({
   const decodedName = decodeURIComponent(name);
   const detail = getSpeakerDetail(decodedName);
 
-  if (!detail) notFound();
+  if (!detail) {
+    // Sprecher hat keine Reden in speech_summaries — bei MdB ohne
+    // Redebeitrag (z.B. wenn SpeakerExplorer „Wenigste zuerst" sortiert
+    // und 0-Treffer-Politiker auftauchen) zum Politiker-Profil redirecten,
+    // statt 404 zu werfen.
+    const politicianId = getPoliticianIdByDisplayName(decodedName);
+    if (politicianId) {
+      redirect(`/design/linear/politiker/${politicianId}`);
+    }
+    notFound();
+  }
+
+  // Politiker-Profil-Link nur wenn dieser Sprecher einem Politiker
+  // zugeordnet werden kann (Sitzungsleitung/Sachverständige ohne Profil
+  // bekommen keinen Link, sind aber weiterhin als Sprecher sichtbar).
+  const speakerPoliticianId = getPoliticianIdByDisplayName(decodedName);
 
   const summaries = getSpeechSummaries(decodedName);
   const analyses = getSpeechAnalysesBySpeaker(decodedName);
@@ -70,9 +86,18 @@ export default async function RednerPage({
               </>
             )}
           </div>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-6">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-3">
             {detail.speaker}
           </h1>
+          {speakerPoliticianId && (
+            <Link
+              href={`/design/linear/politiker/${speakerPoliticianId}`}
+              className="inline-flex items-center gap-1 text-[13px] text-zinc-600 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors mb-6"
+            >
+              Profil ansehen
+              <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+            </Link>
+          )}
 
           {/* Stats */}
           <div className="flex items-baseline gap-8 text-zinc-500 text-[13px]">

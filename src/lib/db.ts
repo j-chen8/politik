@@ -2071,6 +2071,49 @@ export interface SpeakerDetail {
   }[];
 }
 
+/**
+ * Resolve a free-form speaker name (typ. „Vorname Nachname", evtl. mit
+ * Titel) auf einen Politiker-Row, OHNE auf `speech_summaries` zu schauen.
+ * Wird auf der Redner-Detail-Seite als Fallback genutzt: wenn jemand
+ * in SpeakerExplorer als Sprecher mit 0 Reden erscheint (z.B. Sitzungs-
+ * leitung, jemand der nur in Anwesenheitslisten auftaucht), redirecten
+ * wir zum Politiker-Profil statt 404 zu werfen.
+ *
+ * Match-Heuristik: alle Tokens aus dem Eingabe-Namen werden gegen
+ * first_name + last_name (zusammen) geprüft. Trefferprio: exact match
+ * vor partial. Titel (Dr./Prof. etc.) und Klammer-Zusätze werden vor
+ * Match entfernt.
+ */
+export function getPoliticianIdByDisplayName(name: string): number | null {
+  const db = getDb();
+  const cleaned = name
+    .replace(/\(.*?\)/g, " ")
+    .replace(/^(Dr\.|Prof\.|Prof\. Dr\.)\s+/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return null;
+
+  // Versuche exact match auf "first_name + ' ' + last_name"
+  const exact = db.prepare(`
+    SELECT id FROM politicians
+    WHERE TRIM(COALESCE(first_name,'') || ' ' || COALESCE(last_name,'')) = ?
+    LIMIT 1
+  `).get(cleaned) as { id: number } | undefined;
+  if (exact) return exact.id;
+
+  // Fallback: last token = last_name, alles davor = first_name
+  const tokens = cleaned.split(" ");
+  if (tokens.length >= 2) {
+    const last = tokens[tokens.length - 1];
+    const first = tokens.slice(0, -1).join(" ");
+    const partial = db.prepare(`
+      SELECT id FROM politicians WHERE last_name = ? AND first_name LIKE ? || '%' LIMIT 1
+    `).get(last, first) as { id: number } | undefined;
+    if (partial) return partial.id;
+  }
+  return null;
+}
+
 export function getSpeakerDetail(name: string): SpeakerDetail | null {
   const db = getDb();
 
