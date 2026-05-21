@@ -3110,6 +3110,10 @@ export interface PoliticianDrucksacheRow {
   aktivitaetsart: string;     // wie diese:r MdB beteiligt war
   // Aggregat: wie viele Mitzeichner insgesamt?
   total_mitzeichner: number;
+  // Bei Kleinen/Großen Anfragen: die DS-Nr der Antwort, falls in unserer
+  // DB ingestiert. NULL bei Nicht-Anfrage-DS oder wenn (noch) keine Antwort
+  // gefunden (kein „ausstehend"-Claim — wir wissen es schlicht nicht).
+  answer_drucksache_nr: string | null;
 }
 
 /**
@@ -3133,7 +3137,10 @@ export function getDrucksachenForPolitician(politicianId: number, limit: number 
       a.aktivitaetsart,
       (SELECT COUNT(DISTINCT politician_id) FROM activities
         WHERE drucksache_nr=a.drucksache_nr
-          AND aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')) AS total_mitzeichner
+          AND aktivitaetsart IN ('Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag','Entschließungsantrag','Gesetzentwurf','Berichterstattung')) AS total_mitzeichner,
+      (SELECT ans.drucksache_nr FROM drucksache_texts ans
+        WHERE ans.batch_class='antwort' AND ans.referenced_drucksache_nr=a.drucksache_nr
+        LIMIT 1) AS answer_drucksache_nr
     FROM activities a
     JOIN drucksache_analyses an ON an.drucksache_nr = a.drucksache_nr
     JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr

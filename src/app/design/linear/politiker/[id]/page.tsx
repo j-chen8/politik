@@ -969,13 +969,21 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
                   {it.zusammenfassung}
                 </p>
               )}
-              {themen.length > 0 && (
+              {(themen.length > 0 || it.answer_drucksache_nr) && (
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {themen.map((t) => (
                     <span key={t} className="text-[10.5px] text-zinc-500 bg-zinc-100 px-1.5 py-0.5 rounded">
                       {t}
                     </span>
                   ))}
+                  {it.answer_drucksache_nr && (
+                    <span
+                      className="text-[10.5px] text-emerald-800 bg-emerald-50 border border-emerald-200/70 px-1.5 py-0.5 rounded font-medium normal-case tracking-normal"
+                      title="Antwort der Bundesregierung in unserer DB — siehe Detail-Seite"
+                    >
+                      ✓ Antwort <span className="font-mono num">{it.answer_drucksache_nr}</span>
+                    </span>
+                  )}
                 </div>
               )}
             </a>
