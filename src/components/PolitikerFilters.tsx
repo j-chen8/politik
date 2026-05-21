@@ -48,12 +48,12 @@ export function PolitikerFilters({ parliaments, parties, activeParliament, activ
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Name suchen..."
-          className="w-full pl-10 pr-24 py-3 rounded-xl border border-border bg-white text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+          className="w-full pl-10 pr-24 py-3 rounded-xl border border-border bg-white text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
         />
         <button
           type="submit"
           disabled={isPending}
-          className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary/90 disabled:opacity-40 transition-all flex items-center gap-1.5"
+          className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-zinc-900 text-white rounded-lg text-sm font-semibold hover:bg-zinc-800 disabled:opacity-40 transition-all flex items-center gap-1.5"
         >
           {isPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Suchen"}
         </button>
@@ -65,7 +65,7 @@ export function PolitikerFilters({ parliaments, parties, activeParliament, activ
           <select
             value={activeParliament || ""}
             onChange={(e) => navigate({ parlament: e.target.value || undefined, seite: undefined })}
-            className="w-full px-3 py-2 rounded-xl border border-border bg-white text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+            className="w-full px-3 py-2 rounded-xl border border-border bg-white text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400"
           >
             <option value="">Alle Parlamente</option>
             {parliaments.map((p) => (
@@ -80,7 +80,7 @@ export function PolitikerFilters({ parliaments, parties, activeParliament, activ
           <select
             value={activeParty || ""}
             onChange={(e) => navigate({ partei: e.target.value || undefined, seite: undefined })}
-            className="w-full px-3 py-2 rounded-xl border border-border bg-white text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+            className="w-full px-3 py-2 rounded-xl border border-border bg-white text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400"
           >
             <option value="">Alle Parteien</option>
             {parties.map((p) => (

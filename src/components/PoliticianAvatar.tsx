@@ -40,7 +40,7 @@ export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = 
 
   if (photoUrl) {
     return (
-      <div className={`${s.wrap} ${s.rounded} overflow-hidden shrink-0 bg-primary-light`}>
+      <div className={`${s.wrap} ${s.rounded} overflow-hidden shrink-0 bg-zinc-100`}>
         <Image
           src={photoUrl}
           alt={`${firstName} ${lastName}`}
