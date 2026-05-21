@@ -2873,6 +2873,22 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
   `).get(nr) as any;
   if (!row) return null;
 
+  // Antwort-DS (und andere Regierungs-Drucksachen) haben keinen MdB-Urheber,
+  // landen also nicht in `activities` und haben daher keine pdf_url von dort.
+  // Aus der DS-Nr eine bundestag.de-URL rekonstruieren — Standard-Schema
+  // `btd/<WP>/<floor(nr/100)-padded3>/<WP-padded-4-digit>.pdf`, z.B.
+  // 21/3023 → btd/21/030/2103023.pdf
+  if (!row.pdf_url) {
+    const m = /^(\d+)\/(\d+)$/.exec(row.drucksache_nr);
+    if (m) {
+      const wp = m[1];
+      const ds = parseInt(m[2], 10);
+      const folder = String(Math.floor(ds / 100)).padStart(3, "0");
+      const fullDs = wp.padStart(2, "0") + String(ds).padStart(5, "0");
+      row.pdf_url = `https://dserver.bundestag.de/btd/${wp}/${folder}/${fullDs}.pdf`;
+    }
+  }
+
   let kerninhaltParsed: string[] | null = null;
   if (row.kerninhalt) {
     try {
