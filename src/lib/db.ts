@@ -562,6 +562,7 @@ export interface MethodikCounts {
   biasCorrectionsApplied: number;
   tonalitatsDriftRepaired: number;
   pollsCount: number;
+  drucksacheAnalyses: number;
   bundestagAuditPagesCount: number;
   drucksachePollsCount: number;
   sonstigesDrops: number;
@@ -628,6 +629,7 @@ export function getMethodikCounts(): MethodikCounts {
     ),
     tonalitatsDriftRepaired: one(`SELECT COUNT(*) AS c FROM speech_analyses_v2 WHERE tonalitaet_original IS NOT NULL`),
     pollsCount: one(`SELECT COUNT(DISTINCT poll_id) AS c FROM votes WHERE poll_id IS NOT NULL`),
+    drucksacheAnalyses: one(`SELECT COUNT(*) AS c FROM drucksache_analyses WHERE analyze_error IS NULL`),
     bundestagAuditPagesCount: one(`SELECT COUNT(*) AS c FROM audit_bundestag_polls`),
     drucksachePollsCount: one(`SELECT COUNT(*) AS c FROM drucksache_polls`),
     sonstigesDrops: one(
