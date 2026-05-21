@@ -2907,7 +2907,7 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
       a.regelung, a.begruendung, a.auswirkung, a.topic_drift_audit,
       a.model, a.prompt_version, a.generated_at,
       (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-      COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+      COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
       (SELECT drucksache_typ FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS drucksache_typ,
       (SELECT pdf_url FROM activities WHERE drucksache_nr=a.drucksache_nr AND pdf_url IS NOT NULL LIMIT 1) AS pdf_url
     FROM drucksache_analyses a
@@ -3099,7 +3099,7 @@ export function getDrucksacheVerfahren(nr: string): {
     parent = (db.prepare(`
       SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
              (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-             COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+             COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
       FROM drucksache_analyses a
       JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
       WHERE a.drucksache_nr=? AND a.analyze_error IS NULL
@@ -3110,7 +3110,7 @@ export function getDrucksacheVerfahren(nr: string): {
   const children = db.prepare(`
     SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+           COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
     FROM drucksache_analyses a
     JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
     WHERE t.referenced_drucksache_nr = ? AND a.analyze_error IS NULL
@@ -3134,7 +3134,7 @@ export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit
   return db.prepare(`
     SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+           COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
            (${likeClauses}) AS overlap_score
     FROM drucksache_analyses a
     JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
@@ -3288,7 +3288,7 @@ export function getDrucksachenSameFraktion(
     return db.prepare(`
       SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
              (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-             COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum
+             COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
       FROM drucksache_analyses a
       JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
       WHERE a.analyze_error IS NULL
@@ -3304,7 +3304,7 @@ export function getDrucksachenSameFraktion(
   return db.prepare(`
     SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
-           COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)) AS datum,
+           COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
            (${likeClauses}) AS overlap_score
     FROM drucksache_analyses a
     JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
