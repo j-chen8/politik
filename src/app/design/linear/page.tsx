@@ -1,12 +1,8 @@
 import { SearchBox } from "@/components/SearchBox";
 import { LatestActivityStrip } from "@/components/LatestActivityStrip";
-import { ShowcasePolitician } from "@/components/ShowcasePolitician";
 import { getDbStats, getLlmPipelineCounts } from "@/lib/db";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-// Beispiel-Profil rotiert pro Aufruf → Seite muss request-time gerendert werden.
-export const dynamic = "force-dynamic";
 
 export default function LinearLanding() {
   const stats = getDbStats();
@@ -45,13 +41,8 @@ export default function LinearLanding() {
         <LatestActivityStrip />
       </div>
 
-      {/* Beispiel-Profil — zufällig, fraktionsübergreifend, rotiert pro Aufruf */}
-      <div className="pt-12 fade-in-up fade-in-up-3">
-        <ShowcasePolitician />
-      </div>
-
       {/* So entstehen die Daten — Audit-Trail-Versprechen, kein Marketing */}
-      <section className="w-full max-w-5xl mx-auto px-5 pb-24 fade-in-up fade-in-up-4">
+      <section className="w-full max-w-5xl mx-auto pt-12 px-5 pb-24 fade-in-up fade-in-up-3">
         <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
           <div className="px-6 py-6">
             <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
