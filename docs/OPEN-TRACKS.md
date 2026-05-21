@@ -3,7 +3,9 @@
 > **Zweck:** Single Source für alles was über alle Tracks offen ist. Wird beim Aufräumen am Ende einer Session gepflegt.
 > Tagesfrische Pickup-Notizen für „morgen früh anfangen" → `NEXT-SESSION.md`. Pipeline-Inventar → `docs/PIPELINE.md`. Per-Track-Detail → `docs/<track>-*.md`.
 >
-> **Stand:** 2026-05-13 (nach Drucksachen-Cmd+K-Session)
+> **Stand:** 2026-05-13 (nach Drucksachen-Cmd+K-Session). Spätere Punktupdates
+> per `Update YYYY-MM-DD`-Block inline ergänzt — letzte: **2026-05-20**
+> (Vote↔Drucksache-Pipeline auf Filterlist umgestellt).
 > **Format:** 🟢 aktiv · 🟡 pausiert mit konkretem Pickup · 🔵 Phase-2-Backlog · 📐 methodische Schulden
 
 ---
@@ -31,14 +33,21 @@
 
 ### Vote-↔-Drucksache Cross-Source-Audit gegen Bundestag.de (Krone der Session)
 
+> **Update 2026-05-20:** Diese Block-Modell-Pipeline wurde durch
+> `scripts/map-vote-drucksache-bundestag.ts --apply` (Filterlist-basiert,
+> autoritativ pro Roll-Call) abgelöst. `apply-vote-bundestag-audit.ts` und
+> `audit-vote-drucksache-mapping.ts` sind gelöscht / tot, siehe
+> `docs/DATA-SOURCES.md` §2.13 für die aktuelle SoT. Die History unten bleibt
+> als Audit-Trail.
+
 **Trigger:** User-Frage *„Macht das Bundestag.de nicht schon?"* + spezifisch: zu Vote-id=982 fehlte DS-Verknüpfung.
 
-**Pipeline aufgebaut:**
-- `scripts/audit-vote-drucksache-mapping.ts` — Crawler für Bundestag.de-Abstimmungs-Pages (IDs 900-1020), parst Datum + Topic + Drucksachen aus `<span class="a-link__label">…</span>` und `<span class="bt-date">…</span>`.
+**Pipeline aufgebaut (historisch, 2026-05-13 — heute alle Alt-Skripte gelöscht/tot):**
+- `scripts/audit-vote-drucksache-mapping.ts` — Crawler für Bundestag.de-Abstimmungs-Pages (IDs 900-1020), parst Datum + Topic + Drucksachen aus `<span class="a-link__label">…</span>` und `<span class="bt-date">…</span>`.  *(tot, gelöscht)*
 - `audit_bundestag_polls` (neue DB-Tabelle) — Cache der 101 gescrapten Pages.
 - `scripts/auto-classify-vote-mapping.ts` — Klassifizierung CONFIRMED/EXTENDED/DS_MISSING/AMBIGUOUS via LCS-Topic-Matching.
 - `scripts/build-vote-mapping-review.ts` — Generiert manuellen Review-Bogen (`docs/vote-mapping-review.md`, kann archiviert werden).
-- `scripts/apply-vote-bundestag-audit.ts` — Apply der 50 manuell verifizierten Poll → Bundestag-ID-Mappings.
+- `scripts/apply-vote-bundestag-audit.ts` — Apply der 50 manuell verifizierten Poll → Bundestag-ID-Mappings.  *(am 2026-05-20 gelöscht, durch `map-vote-drucksache-bundestag.ts --apply` ersetzt)*
 
 **Befund nach manueller 50-Poll-Verifikation:**
 - 33 CONFIRMED (unsere DS in BT-Liste, BT hat zusätzliche)
@@ -123,11 +132,18 @@ Zwei Commits, ~2 h reine Arbeitszeit.
 ## 🟡 Neue Open-Items aus 2026-05-13-Sweep
 
 ### A — Methodik-Seite-Section für Vote-↔-Drucksache-Cross-Source-Audit
-**Status:** Apply ist durch, aber Methodik-Seite zeigt das noch nicht.
-**Aufwand:** ~20 Min — Section mit Bilanz (33 confirmed, 17 korrigiert, 270 DS-Links), Methodik (BT-Crawl + manuelle Verifikation), Link zu noch zu schreibendem Doc.
+**Status (2026-05-20):** Block-Modell-Apply ist Geschichte; neue SoT ist
+Filterlist-Apply (`map-vote-drucksache-bundestag.ts`, siehe DATA-SOURCES §2.13).
+Methodik-Seite zeigt das noch nicht.
+**Aufwand:** ~20 Min — Section mit aktueller Bilanz (13 EXAKT · 38 DIFF · 0
+UNMATCHED über 51 Polls), Methodik (Filterlist + 1:1-Optimal-Assignment +
+Title-Token-Match), Link zu `docs/vote-drucksache-mapping-methodology.md`.
 
 ### B — Methodology-Doc für Vote-↔-Drucksache-Audit
-**Aufwand:** ~30 Min. Soll `docs/vote-drucksache-mapping-methodology.md` heißen, analog zu `docs/vote-topic-mapping-methodology.md`.
+**Status (2026-05-20):** `docs/vote-drucksache-mapping-methodology.md` existiert
+(Block-Modell-Doku vom 2026-05-13). Soll um Filterlist-Apply-Abschnitt
+ergänzt werden — alter Teil als Historie markieren.
+**Aufwand:** ~30 Min.
 
 ### C — DB-Cleanup für 38 institutionelle Homepage-URLs (Task #12 aus Tier-2-Sweep)
 **Status:** Coverage-Bias-Analyse hat 38 URLs als institutionelle Listings (statt persönliche Vitas) identifiziert: 28 AfD (`afdbundestag.de/person/`), 5 Linke (`linksfraktion.de/abgeordnete/profil/…`), 1 CDU, 4 weitere.
@@ -174,9 +190,9 @@ docs/vote-mapping-review.md
 
 scripts/analyze-coverage-bias.ts
 scripts/analyze-tonalitaet-distribution.ts
-scripts/apply-vote-bundestag-audit.ts
+scripts/apply-vote-bundestag-audit.ts          (am 2026-05-20 gelöscht — abgelöst durch map-vote-drucksache-bundestag.ts)
 scripts/audit-homepage-urls.ts
-scripts/audit-vote-drucksache-mapping.ts
+scripts/audit-vote-drucksache-mapping.ts       (tot per DATA-SOURCES §2.13 — Alt-Skript, nicht mehr nutzen)
 scripts/audit-zahl-konsistenz.ts
 scripts/auto-classify-vote-mapping.ts
 scripts/backfill-drucksache-polls-bundestag.ts
@@ -227,27 +243,38 @@ src/components/SpeechAnalysisDetails.tsx           (Framing-Marker auskommentier
 
 ## 🟢 Aktiv / als Nächstes
 
-### Demo-Launch (Hosting + Domain für externe Validierung)
+### Demo-Launch (Mini-PC + Cloudflare Tunnel)
 **Ziel:** Öffentlicher, erinnerbarer Link zum Versand an 10–20 Journalisten/Politikwissenschaftler. 1–2 Wochen Demo-Fenster, danach Re-Evaluierung.
 
-**Entscheidungen Stand 2026-05-13 (Abend):**
-- **Hosting:** Fly.io. Grund: 432 MB SQLite braucht persistentes Volume (Vercel scheidet aus — 50 MB Bundle-Limit). EU-Region Frankfurt, free trial deckt 1–2 Wochen, danach ~3 €/Monat.
-- **Domain:** noch offen. 5 Vorschläge im Gespräch: `politik-puls.de` · `plenarpuls.de` · `wer-stimmt-wie.de` · `politikradar.de` · `bundes.tag`. Verfügbarkeit nicht geprüft. Projekt hat aktuell keinen festen Namen.
-- **Reihenfolge:** Zuerst Fly.io-Deploy mit `xxx.fly.dev`-Subdomain (kostenlos, lokal testen). Domain registrieren erst wenn Name sicher und Versand kurz bevorsteht — DNS-Wechsel später = 5 Min.
+**Entscheidungen Stand 2026-05-13 (Nachtmodus, Session 2):**
+- **Pivot von Fly.io → Mini-PC + Cloudflare Tunnel.** Gründe: 0 €/Monat statt 3 €, keine Karten-Verify, keine C/O-Hürde für Hosting, DSGVO-Plus (Daten bleiben physisch zuhause), kein IP-Exposure (Tunnel outbound-only).
+- **Mini-PC-Specs:** Ubuntu 26.04 LTS, Node 20.20.2, 8 GB RAM (4.9 GB frei), 51 Mbit Up / 105 Mbit Down / 16 ms zu CF-Frankfurt. Always-on.
+- **Domain:** `jinsheng-chen.de` bei INWX bestellt — Personal-Reuse-Domain statt Wegwerf-Placeholder. Demo-URL: `https://politik.jinsheng-chen.de`. Wenn das Projekt später eigenen Brand bekommt, bleibt die Personal-Domain für Blog/Portfolio/Experimente. (3 h Acronym-Wanderlust heute: PARAT, AKTA, FAKT, PERFA, PROFI, PALFA, AURA — alle verworfen. AURA scheiterte an PwC-Audit-Tool gleichen Namens.)
+- **systemd user-mode** (kein root für Services, Linger=yes), beide Service-Files unter `~/.config/systemd/user/`.
 
-**Pickup-Schritte (Reihenfolge):**
-1. Fly.io-Account anlegen (`fly.io`, Email + Karten-Verify).
-2. `npm run build` lokal testen — Prod-Mode ist 10–400× schneller als Dev (siehe Memory `feedback_dev_vs_prod_performance`).
-3. `Dockerfile` + `fly.toml` schreiben. Volume für `politik.db` (1 GB reicht, Spielraum für Wachstum).
-4. `fly deploy` → URL kommt zurück.
-5. **Pre-Versand-Polish-Check:** Landing-Page sauber? Methodik-Page erreichbar? Glossar-Hover auf Mobile? Cmd+K via Tunnel/Prod testen.
-6. Domain wählen + registrieren (INWX/Porkbun ~10 €/Jahr) → DNS auf Fly.io zeigen.
-7. Anschreiben an Journalisten — verlinkt mit dem Role-Model-Track (`Externe Validierung Outreach`, siehe unten).
+**Erledigt heute (Session 2):**
+- Domain `jinsheng-chen.de` bei INWX bestellt (STID 06878bb8-aa69-4863-bb64-b8a87b6589af)
+- Cloudflare-Zone hinzugefügt, INWX-Parking-A-Records gelöscht
+- Nameserver bei INWX umgestellt auf `evangeline.ns.cloudflare.com` + `sterling.ns.cloudflare.com`
+- `~/.config/systemd/user/politik-web.service` angelegt, Syntax-validiert, getestet (90 MB RAM, statische Pages 7–11 ms, dynamische 300–1700 ms cold)
+- `~/.config/systemd/user/cloudflared-politik.service` Template angelegt
+- `loginctl enable-linger jinsheng` aktiviert
+- 2 TS-Build-Blocker gefixt (`page.tsx:70` toter party-Fallback + `CommandPalette.tsx:32` fehlendes `totalsOriginal`)
+- `npm run build` durchgelaufen, sauberer .next-Output
 
-**Aktueller Zwischenstand (für morgen früh):**
-- Cloudflare Quick-Tunnel `https://sub-gaps-tab-lat.trycloudflare.com` lief am Abend im Background-Task `bpwf867d5`. **Ephemeral** — Laptop schläft = Tunnel weg, URL ändert sich pro Neustart. Nur zum eigenen Vorab-Testen, **nicht** an Journalisten verschicken.
-- `next.config.ts` wurde geändert: `allowedDevOrigins` enthält jetzt `*.trycloudflare.com` (vorher hat Next.js Dev Tunnel-Requests mit „Unauthorized" geblockt → Such-Hydration ging nicht). **Dev-Server-Restart ist pending** — `next dev` (PID 1190115) noch mit alter Config.
-- Search-Bug via Tunnel war kein Code-Bug — API liefert sauber, Frontend wurde nur vom HMR-Origin-Block lahmgelegt. Nach Restart sollte's funktionieren.
+**Wartet auf:**
+- DENIC-Propagation der Nameserver-Änderung → CF-Dashboard zeigt „Active"
+- Realistisch 30–60 Min, max 24 h. Check mit `dig +short jinsheng-chen.de NS`.
+
+**Pickup-Schritte morgen früh:**
+1. `dig +short jinsheng-chen.de NS` — wenn CF-NS zurückkommt → weiter
+2. `cloudflared tunnel login` (Browser-URL in Laptop autorisieren)
+3. `cloudflared tunnel create politik` → UUID notieren
+4. `cloudflared tunnel route dns politik politik.jinsheng-chen.de`
+5. `~/.cloudflared/config.yml` schreiben (Routing-Regel zu localhost:3000)
+6. `pkill -f "next dev"` + `systemctl --user enable --now politik-web cloudflared-politik`
+7. Smoke-Test: `curl -I https://politik.jinsheng-chen.de` + Handy-Test
+8. Erste Cold-Email an eine Person aus `docs/cold-email-targets.md`
 
 **Per-Track-Doc:** _(noch keiner — bei Bedarf `docs/demo-launch.md` anlegen)_
 

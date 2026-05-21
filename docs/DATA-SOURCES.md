@@ -12,6 +12,9 @@
 > `NEXT-SESSION.md` (tagesfrischer Pickup), `docs/OPEN-TRACKS.md` (Track-Landkarte).
 >
 > **Letzte verifizierte Inventur:** 2026-05-19 (alle Endpoints live geprüft).
+> **Letzte methodische Änderung:** 2026-05-20 — Vote↔Drucksache jetzt via
+> bundestag.de-Open-Data-Filterlist (`map-vote-drucksache-bundestag.ts --apply`)
+> als Single Source of Truth, siehe §2.13.
 
 ---
 
@@ -45,18 +48,17 @@
 4. **Retrieve unbeaufsichtigt:** Drucksachen `--poll <id>` blockiert+ingestiert
    selbst; Reden `batch-retrieve-reden.ts --apply` im Retry-Loop bis offene
    Reden < 60. Beides als ein Hintergrund-Orchestrator (retry-fest).
-4b. **Vote-Kontext für neue Polls (DIP-Hybrid, ~$0,01/Poll):**
+4b. **Vote-Kontext für neue Polls (Filterlist + Generate, ~$0,01/Poll LLM):**
    Ohne diesen Schritt zeigen Abstimmungs-Detail-Seiten neuer Polls keinen
    „Worum geht es?"-Block. Reihenfolge:
    - Identifizieren: `sqlite3 politik.db "SELECT v.poll_id FROM (SELECT DISTINCT poll_id FROM votes) v LEFT JOIN vote_context vc ON vc.poll_id=v.poll_id WHERE vc.poll_id IS NULL ORDER BY v.poll_id"`
-   - DIP-Mapping holen: `npx tsx scripts/map-vote-drucksache-dip.ts --new --write`
-   - `src/lib/poll-bt-mapping.ts` ergänzen — pro neuem Poll eine Zeile in
-     `POLL_TO_BT_ID` (vom Skript-Output ablesen, manuell ins TypeScript einfügen)
+   - Drucksachen-Mapping aus Filterlist holen:
+     `npx tsx scripts/map-vote-drucksache-bundestag.ts --apply`
+     (idempotent — neue Polls werden ergänzt, bestehende mit DIFF aktualisiert,
+     siehe §2.13 für Matcher-Logik und Backup-Tabelle)
    - Kontext generieren: `npx tsx scripts/generate-vote-context.ts --poll <id> --write`
      pro neuem Poll
    - Neutralitäts-Spotcheck (siehe Schritt 5) gilt auch für `vote_context.block_hinweis`
-   - Verifizierte Block-Modell-Polls (`bt_id ≤ 1020`, siehe §2.13) bleiben
-     unangetastet — DIP-Pipeline nur für neue Polls (`bt_id == poll_id ≥ 6000`)
 5. **Neutralitäts-Disziplin (NICHT verhandelbar):** NIE Prompt/Methodik/Modell
    ändern — nur die identische validierte Pipeline auf neuen Daten. Nach dem
    Apply **Neutralitäts-Spotcheck**: Sample neuer `speech_analyses_v2` +
@@ -66,9 +68,10 @@
 6. **Ehrlich berichten — Pflicht-Caveats immer nennen:**
    - abgeordnetenwatch lagt ~11 Tage → „alle Votings" ist nie 100 % frisch.
      **Datenlage-Decke, kein Aufwandsmangel.** Nicht als unsere Lücke framen.
-   - DIP-`--audit` (read-only, mit aw-Backoff) lief voll: 14 EXAKT · 18
-     DIP⊆Block · 1 Edge (6324) · 10 LIMITATION ehrlich geflaggt · 8 transiente
-     Fehler — **0 stille Fehlmappings**.
+   - Filterlist-Apply (2026-05-20, 51 Polls): 13 EXAKT · 38 DIFF · 0 UNMATCHED.
+     18 Stichproben: 16/18 sauber, 2 Grenzfälle ehrlich geflaggt (6170 Corona-U-
+     Ausschuss BE-thematisch verschoben; 6451 Iran-Energiepreis hat angeklebte
+     BE). Subjekt-DS pro Roll-Call jetzt aus autoritativer Open-Data-Filterlist.
 7. **Abschluss:** §1-Snapshot-Tabelle aktualisieren, kurze Notiz in
    `NEXT-SESSION-data-refresh.md` (dedizierte Track-Datei — **nicht**
    `NEXT-SESSION.md`, die hat fremde Track-Drift; Track-Isolation), ehrlicher
@@ -100,7 +103,7 @@ Caveats.
 | Ausschuss-Protokolle | 🟡 Drift | 254 JSON vs 226 DB | nicht Teil von „update" (destruktiver Reimport) |
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
 | Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download |
-| Vote↔DS-Cross-Check | 🟢 DIP-Hybrid | vote_context **51/51**, 0 Fallback | `map-vote-drucksache-dip.ts` (DIP-Vorgang); 50 verifizierte unangetastet; Voll-Audit 51/51: 32 konsistent · 1 Edge · 10 ehrlich geflaggt · 0 stille Fehler |
+| Vote↔DS-Cross-Check | 🟡 Filterlist-Apply (38 vote_contexts stale) | drucksache_polls 51/51 frisch; vote_context **51/51** befüllt, **38 stale** seit 2026-05-20-Apply | `map-vote-drucksache-bundestag.ts --apply` (Filterlist als SoT); Bilanz: 13 EXAKT · 38 DIFF · 0 UNMATCHED. Re-Gen für 38 stale `block_hinweis` offen (Schritt C im Pickup) |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
@@ -192,15 +195,46 @@ Kein Upstream-„latest" — Skripte laufen nur für **neue/leere** Politiker-Ro
 ### 2.12 Bundeskabinett
 - **Skript:** `scripts/seed-bundeskabinett.ts` — **hardcoded `KABINETT[]`** (Merz-Kabinett 2025/2026), kein Upstream, kein Frische-Check. Bei Kabinettswechsel manuell editieren.
 
-### 2.13 Vote↔Drucksache Cross-Check (DIP-Hybrid seit 2026-05-19)
-- **Aktiv:** `scripts/map-vote-drucksache-dip.ts` (`--poll <id>` | `--new` | `--audit` | `--write`)
-- **Quelle:** abgeordnetenwatch `/polls/<id>.field_intro` (dserver-Link → Subjekt-DS) + DIP-API `/drucksache` → `vorgangsbezug` → `/vorgangsposition?f.vorgang=<id>` (offiziell, `search.dip.bundestag.de`, Header `Origin/Referer` Pflicht)
-- **Hybrid-Methodik (User-Entscheidung):** Manuell gegen bundestag.de verifizierte Polls (`POLL_TO_BT_ID`, bt_id ≤ 1020, **Block-Modell**) bleiben unangetastet. Neue Polls (bt_id == poll_id ≥ 6000) → **DIP-prozedural** (Vorgang = Antrag + Beschlussempfehlung). `--audit` = read-only DIP-vs-bestehend (Transparenz).
+### 2.13 Vote↔Drucksache Cross-Check (Filterlist-Apply seit 2026-05-20)
+- **Aktiv:** `scripts/map-vote-drucksache-bundestag.ts` (`--diff` | `--apply`)
+- **Quelle (autoritativ):** bundestag.de Open-Data-Filterlist `484422-484422` —
+  pro Roll-Call die explizite Subjekt-Drucksachen-Liste (typisch 2 DS: Antrag +
+  Beschlussempfehlung). Ablöst sowohl das alte Block-Modell (DS-Liste vom
+  ganzen Plenartag) als auch DIP-Hybrid (Vorgangsbezug aus DIP-API).
+- **Matcher-Logik (substantial gefixt 2026-05-20):**
+  1. Themengebiet-Prefix stripping (`"Finanzen Ablehnung…"` → `"Ablehnung…"`)
+  2. Umlaut-Normalisierung im Title-Token-Vergleich
+  3. **1:1-Optimal-Assignment per Permutation pro Tag** — verhindert
+     kreuzweise Vertauschungen (6451↔6455, 6496↔6497)
+  4. Title-Score dominant (Faktor 1000), Tally + DS-Overlap nur als Tiebreaker
+  5. Multi-DS-Fallback (≥2 gemeinsame DS) rettet Edge-Cases wie 6511 (bt-Title
+     sagt „MFR", aw-Label „LEADER", DS-Set identisch)
+- **Bilanz nach Apply (2026-05-20, 51 Polls):** 13 EXAKT · 38 DIFF · 0 UNMATCHED.
+  18 Stichproben quer geprüft: 16/18 sauber, 2 Grenzfälle (6170 Corona-U-
+  Ausschuss BE-thematisch verschoben; 6451 Energiepreis Iran hat angeklebte BE).
+- **Backup:** `drucksache_polls_pre_bt_filterlist` (vor dem 2026-05-20-Apply).
 - **DB-Watermark:** `SELECT poll_id FROM (SELECT DISTINCT poll_id FROM votes) v LEFT JOIN vote_context vc ON vc.poll_id=v.poll_id WHERE vc.poll_id IS NULL` (leer = alle Polls haben Kontext)
-- **Pipeline ($~0,01/Poll LLM):** `map-vote-drucksache-dip.ts --new --write` → `poll-bt-mapping.ts` ergänzen (Ausgabe-Zeile) → `generate-vote-context.ts --poll <id> --write` (validierter Prompt `vote-context-v1`, dann Neutralitäts-Spotcheck)
-- **Alt-Skript tot:** `audit-vote-drucksache-mapping.ts` (bundestag.de-HTML-SPA → Regex zog nur leere Rows). Durch obiges ersetzt; nicht mehr nutzen.
-- **bundestag.de-Filterlist-Rebuild (2026-05-19) geprüft & VERWORFEN:** Open-Data-Filterlist `484422-484422` (Titel+DS+Ergebnis-Teaser pro Roll-Call); `scripts/map-vote-drucksache-bundestag.ts` baut read-only Diff. Befund: 31/51 Stimm-Vektor-Abweichung — **Ursache aufgeklärt, KEIN echter Quell-Konflikt:** Der **Filterlist-Teaser** (Sekundär-Widget) zeigte für den LEADER-Eintrag 449/136/0/45; das **autoritative Primär-Original (Stenografischer Bericht, Plenarprotokoll 21/78, TOP 7d)** verkündet aber **417 Ja / 73 Nein / 53 Enth (543 abgegeben)** = abgeordnetenwatch = unsere DB **exakt**. Am selben Tag mehrere LEADER-Beschlussempfehlungen (TOP 7d+7e) → Teaser-Fehlpaarung, zusätzlich verschärft durch den fehleranfälligen Filterlist-Parser. Datum+DS-Join damit unzuverlässig (Teaser-Rauschen, nicht Quell-Divergenz). **Rebuild nicht durchgeführt, 0 Writes.** `map-vote-drucksache-bundestag.ts` bleibt read-only Diagnose, **nie `--apply`**. Stand bleibt DIP-Hybrid + verifizierte 50.
-- **Stimm-Zahlen-Validierung:** Stichprobe gegen das offizielle Plenarprotokoll bestätigt unsere aw-gespiegelten Zahlen (LEADER 21/78 TOP 7d: 417/73/53 deckungsgleich). Frühere Annahme „aw weicht von bundestag.de ab" war ein Teaser-/Join-Artefakt, **widerlegt**. Maßgeblich ist stets das im Plenarprotokoll verkündete Ergebnis der konkreten Abstimmung.
+- **Pipeline für neue Polls ($~0,01/Poll LLM):**
+  `map-vote-drucksache-bundestag.ts --apply` (alle Polls, inkl. nachgezogene
+  Roll-Calls) → `generate-vote-context.ts --poll <id> --write` für Polls mit
+  geänderter DS-Liste (validierter Prompt `vote-context-v1`, dann
+  Neutralitäts-Spotcheck).
+- **Stale-Context-Watermark (offen, 2026-05-20):** 38 Polls haben durch
+  Filterlist-Apply geänderte DS-Listen — `vote_context.block_hinweis` für diese
+  Polls wurde aus alten DS-Listen generiert und ist teilweise outdated.
+  Skript-Lauf für diese 38 Polls steht aus (ein paar € LLM-Cost).
+- **Alt-Skripte tot:**
+  - `audit-vote-drucksache-mapping.ts` (bundestag.de-HTML-SPA, Parser-bust)
+  - `apply-vote-bundestag-audit.ts` (manuelle 50-Mappings + Block-Modell-Apply;
+    am 2026-05-20 gelöscht, durch Filterlist-Apply ersetzt)
+  - `map-vote-drucksache-dip.ts` bleibt verfügbar für DIP-Vorgangs-Lookup
+    (`--audit`), wird aber nicht mehr produktiv zum Schreiben genutzt
+- **Stimm-Zahlen-Validierung (unverändert valide):** Stichprobe gegen das
+  offizielle Plenarprotokoll bestätigt unsere aw-gespiegelten Zahlen (LEADER
+  21/78 TOP 7d: 417/73/53 deckungsgleich). Frühere Annahme „aw weicht von
+  bundestag.de ab" war ein Teaser-/Join-Artefakt, **widerlegt**. Maßgeblich
+  ist stets das im Plenarprotokoll verkündete Ergebnis der konkreten
+  Abstimmung.
 
 ---
 
@@ -224,7 +258,12 @@ verspätet, das ist normal und keine Lücke unsererseits).
 
 ## 4. Bekannte kaputte / manuelle Quellen (Backlog)
 
-1. **~~`audit-vote-drucksache-mapping.ts` Parser~~** — ✅ **gelöst 2026-05-19** durch DIP-Hybrid (`map-vote-drucksache-dip.ts`, §2.13). Alt-Skript tot, nicht mehr nutzen. Voll-Audit 51/51 (mit aw-Backoff) abgeschlossen: 14 EXAKT · 18 DIP⊆Block · 1 Edge (6324: prozedural-vs-Block, 5/6 Match, verifizierte Daten unangetastet) · 10 LIMITATION ehrlich geflaggt (4 Haushalt: DIP-Granularität ≠ Einzelplan; 6 unsichere Vorgang-Wahl) · 8 transiente fetch-Fehler. **0 stille Fehlmappings.** Heuristik gehärtet (Haushalt-Guard, Multi-DS-Vorgang-Pick, Backoff). Rest-Trivial-Follow-up: die 8 fetch-Fehler-Polls re-auditieren (read-only, niedrigster Wert, verifizierte 50 ohnehin unangetastet).
+1. **~~`audit-vote-drucksache-mapping.ts` / `apply-vote-bundestag-audit.ts`~~** —
+   ✅ **gelöst 2026-05-20** durch Filterlist-Apply (`map-vote-drucksache-bundestag.ts`,
+   §2.13). Beide Alt-Skripte tot. Bilanz: 13 EXAKT · 38 DIFF · 0 UNMATCHED über
+   51 Polls. Backup `drucksache_polls_pre_bt_filterlist`. **Follow-up offen:**
+   `vote_context.block_hinweis` für die 38 DIFF-Polls neu generieren
+   (`generate-vote-context.ts --poll <id> --write`, paar € LLM-Cost).
 2. **`download-drucksachen.sh` + `scrape-ausschuesse.sh`** — hartkodierte tote `/home/jk/`-Pfade. Funktionierende Alternativen: `download-missing-drucksachen.sh` (DS) / `parse-ausschuss.ts` (Ausschuss). Skripte fixen oder löschen.
 3. **MDB_STAMMDATEN.XML** — manueller Download, kein Auto-Fetch. Bei Nachrückern leicht zu vergessen.
 4. **Bundeskabinett** — hardcoded Liste, kein Frische-Check. Bei Kabinettswechsel still veraltend.
