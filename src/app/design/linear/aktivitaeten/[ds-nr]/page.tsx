@@ -227,14 +227,14 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           Aktivitäten
         </Link>
 
-        {/* HERO — Cover + Title-Block */}
-        <div className="fade-in-up grid grid-cols-[180px_1fr] gap-8 mb-10">
+        {/* HERO — Cover + Title-Block. Auf Mobile stacked, ab sm side-by-side. */}
+        <div className="fade-in-up flex flex-col sm:grid sm:grid-cols-[180px_1fr] gap-6 sm:gap-8 mb-10">
           {/* Stylized Document-Type Cover */}
           {(() => {
             const cover = coverHeadline(ds.batch_class, ds.dokumenttyp, tragendeFraktion);
             return (
               <div
-                className="rounded-xl border-2 border-zinc-900 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50"
+                className="rounded-xl border-2 border-zinc-900 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
                 style={{
                   background: `linear-gradient(135deg, ${partyColor(tragendeFraktion)} 0%, ${partyColor(tragendeFraktion)}cc 60%, #18181b 100%)`,
                 }}
@@ -259,7 +259,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           })()}
 
           {/* Title + Properties */}
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-0">
             <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2 flex items-baseline gap-1.5 flex-wrap">
               <GlossarTerm slug="bundestag">Bundestag</GlossarTerm>
               <span className="text-zinc-300">·</span>
@@ -285,7 +285,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               )}
             </div>
 
-            <h1 className="text-[28px] sm:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 leading-[1.15] mb-4">
+            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 leading-[1.15] mb-4 break-words hyphens-auto">
               {ds.titel ?? klasseLabel}
             </h1>
 
@@ -357,7 +357,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               Was die Drucksache sagt
             </h2>
             <div className="prose-zinc max-w-none">
-              <p className="text-[15px] text-zinc-800 leading-relaxed whitespace-pre-wrap">
+              <p className="text-[15px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">
                 {ds.zusammenfassung}
               </p>
             </div>
@@ -406,7 +406,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                   <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
                     Regelung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap">{ds.regelung}</p>
+                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.regelung}</p>
                 </div>
               )}
               {ds.begruendung && (
@@ -414,7 +414,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                   <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
                     Begründung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap">{ds.begruendung}</p>
+                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.begruendung}</p>
                 </div>
               )}
               {ds.auswirkung && (
@@ -422,7 +422,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                   <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
                     Auswirkung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap">{ds.auswirkung}</p>
+                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.auswirkung}</p>
                 </div>
               )}
               {ds.betroffene_gruppen && (
