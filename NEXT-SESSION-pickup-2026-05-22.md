@@ -88,6 +88,13 @@ Privatadresse, alte E-Mails). Das hat funktioniert — aber filter-repo
 behalten werden soll → früh committen. Memory `feedback_track_isolation_
 commits` hat das vorgeschlagen; heute haben wir's schmerzhaft gelernt.
 
+**Zweite Lehre:** Heute liefen **zwei Claude-Code-Sessions parallel im
+selben Working-Tree** (UI-Track + Outreach-Track). Das hat den filter-repo-
+Schaden verstärkt — die eine Session committete, während die andere
+uncommittete Edits hatte. Künftig: entweder **eine Session zur Zeit**, oder
+`git worktree add ../politik-track2 -b track2` für echte Datei-Isolation
+bei gemeinsamer History.
+
 **Repo-Status jetzt:**
 - GitHub `j-chen8/politik` ist **public**
 - History sauber (0 Treffer für alte Privatdaten)
@@ -128,6 +135,41 @@ gegenchecken, falls Zeit.
 `git branch -D backup-pre-filter-2026-05-21` — wenn nach der
 History-Bereinigung nichts mehr auffällt.
 
+### E. Methodik-Drift nachziehen (vom filter-repo gewischt)
+
+Zwei Drift-Fixes aus der Outreach-Session wurden vom filter-repo-Reset
+verschluckt und sind wieder hartkodiert:
+- `methodik/page.tsx` ~Z.697: Fraktions-Tabellen-Caption `11.101 / 9.272`
+  → dynamisch `counts.speechSegments` / `counts.speechDistinctReden`
+- `methodik/page.tsx` ~Z.329: `563 MdBs` → `counts.mdbsCvHomepage` (live 569)
+- Datums-Stempel „Mai 2026" an historische Audit-Snapshots (Z.302/816/957),
+  damit sie nicht als Live-Zahlen missverstanden werden.
+- `DATA-SOURCES.md §0` Schritt 8 (Methodik-Konsistenz-Check) wurde ebenfalls
+  verschluckt — neu anwenden.
+
+### F. Fraktions-Tonalitäts-Tabellen dynamisch (User-Wunsch)
+
+Auf `/methodik`:
+- bestehende **Reden**-Tonalitäts-Tabelle dynamisch machen (statt hartkodiertem
+  Snapshot Stand 13.05.) → neue DB-Funktion `getRedenTonalitaetByFraktion()`:
+  Join `speech_analyses_v2` × `plenar_speeches` über `speech_id` (NICHT nur
+  rede_id — sonst Kartesisches Produkt!), Party-Normalisierung, 11 Tonalitäten
+  + Prozente
+- neue **Drucksachen**-Tonalitäts-Tabelle für Kleine Anfragen →
+  `getDrucksacheTonalitaetByFraktion()`: 4 Kategorien (fordernd/kritisch/
+  sachlich/informierend), Fraktion-Normalisierung
+- Neutralitäts-Disclaimer wie bei der Reden-Tabelle. „fordernd" bei Opposition
+  ist fast tautologisch — im Begleittext klarstellen.
+- DB-Funktionen sind reine Additionen (zero Risiko); JSX-Umbau ~1 h.
+  Verbindet sich mit der Hofmann-Konversation (siehe `NEXT-SESSION-outreach.md`).
+
+### G. Methodik: historische-WP-Limitation dokumentieren
+
+Hofmann (Outreach-Track) fragte nach einem Mehr-Wahlperioden-Trend. Antwort:
+nur WP21-Daten (seit 31.03.2025), 14 Monate. Sollte transparent unter
+„Bekannte Pipeline-Pathologien" auf `/methodik` stehen, bevor der nächste
+Reviewer dieselbe Lücke findet.
+
 ---
 
 ## 🛠️ Server-Status
@@ -141,11 +183,21 @@ Demo-URL `politik.jinsheng-chen.de` zeigt aktuellen Stand.
 npm run build && systemctl --user restart politik-web.service
 ```
 
+**Hinweis (Nacht 21.05.):** `.next` war zwischenzeitlich korrupt — nur
+partieller Build ohne `BUILD_ID`, Server crash-loopte (502 Bad Gateway,
+Restart-Counter 59). Vermutlich filter-repo- oder Parallel-Build-Folge.
+Fix: `rm -rf .next && npm run build` + `systemctl --user reset-failed
+politik-web.service`. Mögliche Härtung: `ExecStartPre` im systemd-Unit,
+der `.next/BUILD_ID` prüft, bevor `next start` läuft.
+
 ---
 
 ## ✅ Demo-/Outreach-Status
 
 - Repo public, Methodik-Seite journalistisch belastbar
-- Cold-Mails: siehe `NEXT-SESSION-outreach.md`
+- Cold-Mails: siehe `NEXT-SESSION-outreach.md` — 12 versendet, Hofmann (WZB)
+  hat 2× geantwortet, Konversation läuft
 - Alle heute gemeldeten UI-Bugs gefixt (Buttons, Mobile-Overflow,
-  Datum, Performance, Methodik-Zahlen)
+  Datum, Performance)
+- ⚠️ Methodik-Drift teilweise wieder offen (filter-repo-Reset — siehe
+  Pipeline E), muss morgen nachgezogen werden
