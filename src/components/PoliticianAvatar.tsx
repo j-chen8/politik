@@ -5,13 +5,14 @@ interface Props {
   firstName: string;
   lastName: string;
   party: string | null;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 const SIZES = {
   sm: { wrap: "w-8 h-8 text-[10px]", img: 32, rounded: "rounded-lg" },
   md: { wrap: "w-12 h-12 text-sm", img: 48, rounded: "rounded-xl" },
   lg: { wrap: "w-20 h-20 text-xl", img: 80, rounded: "rounded-2xl" },
+  xl: { wrap: "w-28 h-28 text-2xl", img: 112, rounded: "rounded-2xl" },
 } as const;
 
 // Parteifarben für Initialen-Avatar (Hex damit unabhängig vom Tailwind-Theme).

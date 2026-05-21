@@ -38,6 +38,7 @@ const EMPTY: SearchResults = {
   drucksachen: [],
   total: 0,
   totals: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
+  totalsOriginal: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
   expansions: [],
   matchedClusters: [],
 };

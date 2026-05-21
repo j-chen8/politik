@@ -110,7 +110,7 @@ export default async function PolitikerPage({ params }: Props) {
   const notes = getNotesForPolitician(politicianId);
 
   // Combined parliamentary work (DIP + Plenar)
-  const speechInfo = getSpeechSummaryInfo(politician.last_name, politician.title);
+  const speechInfo = getSpeechSummaryInfo(politicianId);
   const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
     politicianId,
     speechInfo?.speaker ?? null,
