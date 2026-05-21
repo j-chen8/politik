@@ -1239,9 +1239,19 @@ export function getParlamentarischeArbeit(
 ): { items: ParlamentarischeArbeit[]; stats: Record<string, number> } {
   const db = getDb();
 
-  // 1. Load DIP activities
+  // 1. Load DIP activities — nur mündliche Plenar-Auftritte. Schriftliche
+  // Drucksachen-Akte (Antrag/Gesetzentwurf/Anfrage/Berichterstattung etc.)
+  // landen separat in der Drucksachen-Sektion via getDrucksachenForPolitician,
+  // mit reicheren Daten (Thema, Zusammenfassung, Tonalität).
   const dipRows = db.prepare(
-    `SELECT * FROM activities WHERE politician_id = ? ORDER BY datum DESC LIMIT ?`
+    `SELECT * FROM activities
+     WHERE politician_id = ?
+       AND aktivitaetsart NOT IN (
+         'Kleine Anfrage','Große Anfrage','Antrag','Änderungsantrag',
+         'Entschließungsantrag','Gesetzentwurf','Berichterstattung',
+         'Berichterstattung (zu Protokoll gegeben)'
+       )
+     ORDER BY datum DESC LIMIT ?`
   ).all(politicianId, limit) as ActivityRow[];
 
   // 2. Load Plenar summaries via politician_id (zuverlässig, seit Backfill 2026-05-07

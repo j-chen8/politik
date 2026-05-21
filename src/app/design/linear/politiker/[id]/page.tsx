@@ -11,6 +11,8 @@ import {
   getParlamentarischeArbeit,
   getNotesForPolitician,
   getCVMergeDropsForPolitician,
+  getDrucksachenForPolitician,
+  type PoliticianDrucksacheRow,
 } from "@/lib/db";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
@@ -80,6 +82,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const votes = getVotesForPoliticianDb(politicianId);
   const sidejobs = getSidejobsForPoliticianDb(politicianId);
   const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
+  const drucksachen = getDrucksachenForPolitician(politicianId, 100);
   // Audit-Trail: welche Einträge wurden vom Dedup-Skript ausgeblendet (nur sichtbar wenn !showOriginal)
   const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
@@ -410,20 +413,20 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               {parlStats.rede ? (
                 <Stat2 label="Reden" value={parlStats.rede} />
               ) : null}
+              {parlStats.regierungserklaerung ? (
+                <Stat2 label="Regierungserklärungen" value={parlStats.regierungserklaerung} />
+              ) : null}
               {parlStats.frage ? (
-                <Stat2 label="Fragen & Antworten" value={parlStats.frage} />
+                <Stat2 label="Fragen" value={parlStats.frage} />
+              ) : null}
+              {parlStats.antwort ? (
+                <Stat2 label="Antworten" value={parlStats.antwort} />
               ) : null}
               {parlStats.debattenbeitrag ? (
                 <Stat2 label="Debattenbeiträge" value={parlStats.debattenbeitrag} />
               ) : null}
               {parlStats.erklaerung ? (
                 <Stat2 label="Erklärungen" value={parlStats.erklaerung} />
-              ) : null}
-              {parlStats.gesetzgebung ? (
-                <Stat2 label="Gesetzgebung" value={parlStats.gesetzgebung} />
-              ) : null}
-              {parlStats.bericht ? (
-                <Stat2 label="Berichte" value={parlStats.bericht} />
               ) : null}
             </div>
 
@@ -545,6 +548,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 </article>
               ))}
             </div>
+          </CollapsibleCard>
+        )}
+
+        {/* Drucksachen */}
+        {drucksachen.length > 0 && (
+          <CollapsibleCard title="Drucksachen" count={drucksachen.length} className="mb-6">
+            <DrucksachenList items={drucksachen} />
           </CollapsibleCard>
         )}
 
@@ -850,5 +860,97 @@ function ComparisonRow({ label, value, color }: { label: string; value: number; 
         />
       </div>
     </div>
+  );
+}
+
+
+const dsTonMap: Record<string, { label: string; color: string; bg: string }> = {
+  sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
+  fordernd: { label: "fordernd", color: "#9a3412", bg: "#ffedd5" },
+  kritisch: { label: "kritisch", color: "#b91c1c", bg: "#fee2e2" },
+  informierend: { label: "informierend", color: "#1e40af", bg: "#dbeafe" },
+  mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
+  substantiell: { label: "substantiell", color: "#15803d", bg: "#dcfce7" },
+  teilantwortend: { label: "teilantwortend", color: "#475569", bg: "#f1f5f9" },
+  ausweichend: { label: "ausweichend", color: "#a16207", bg: "#fef3c7" },
+};
+
+const dsKlasseShort: Record<string, string> = {
+  klein: "KL. ANFRAGE",
+  mittel: "BERICHT",
+  gross: "GESETZENTWURF",
+  antwort: "ANTWORT",
+  regierung: "VORLAGE",
+};
+
+function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
+  return (
+    <ul className="space-y-2.5 max-h-[600px] overflow-y-auto pr-1">
+      {items.map((it) => {
+        const slug = it.drucksache_nr.replace("/", "-");
+        const tonCfg = it.tonalitaet ? dsTonMap[it.tonalitaet] : null;
+        const klasseShort = dsKlasseShort[it.batch_class] ?? it.batch_class.toUpperCase();
+        const themen = it.thema.split(",").map((s) => s.trim()).filter(Boolean).slice(0, 3);
+        const datumF = it.datum
+          ? new Date(it.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })
+          : null;
+
+        return (
+          <li key={`${it.drucksache_nr}-${it.aktivitaetsart}`}>
+            <a
+              href={`/design/linear/aktivitaeten/${slug}`}
+              className="block rounded-lg border border-zinc-200/70 bg-white hover:bg-zinc-50/50 hover:border-zinc-300 transition-colors px-4 py-3 group"
+            >
+              <div className="flex items-baseline gap-2 mb-1 flex-wrap text-[10.5px] uppercase tracking-wider font-medium text-zinc-500">
+                <span className="font-mono text-zinc-950 num">{it.drucksache_nr}</span>
+                <span className="text-zinc-300">·</span>
+                <span>{klasseShort}</span>
+                {datumF && (
+                  <>
+                    <span className="text-zinc-300">·</span>
+                    <span className="num normal-case font-normal tracking-normal text-zinc-500">{datumF}</span>
+                  </>
+                )}
+                {it.total_mitzeichner > 1 && (
+                  <>
+                    <span className="text-zinc-300">·</span>
+                    <span className="normal-case font-normal tracking-normal text-zinc-500">
+                      mit <span className="num font-medium text-zinc-700">{it.total_mitzeichner - 1}</span> weiteren
+                    </span>
+                  </>
+                )}
+                {tonCfg && (
+                  <span
+                    className="ml-auto px-1.5 py-0.5 rounded text-[9.5px] font-semibold normal-case tracking-normal"
+                    style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
+                  >
+                    {tonCfg.label}
+                  </span>
+                )}
+              </div>
+              {it.titel && (
+                <p className="text-[13.5px] text-zinc-950 leading-snug font-medium line-clamp-2 mb-1 group-hover:underline underline-offset-2">
+                  {it.titel}
+                </p>
+              )}
+              {it.zusammenfassung && (
+                <p className="text-[12.5px] text-zinc-500 leading-relaxed line-clamp-2 mb-1.5">
+                  {it.zusammenfassung}
+                </p>
+              )}
+              {themen.length > 0 && (
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {themen.map((t) => (
+                    <span key={t} className="text-[10.5px] text-zinc-500 bg-zinc-100 px-1.5 py-0.5 rounded">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
