@@ -3,6 +3,7 @@ import {
   getMandatesForPoliticianDb,
   getSpeechSummaryInfo,
   getVotesForPoliticianDb,
+  getFractionDeviationsForPolitician,
   getSidejobsForPoliticianDb,
   getCommitteeMembershipsForPoliticianDb,
   computeVoteStatsDb,
@@ -84,6 +85,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
 
   const voteStats = computeVoteStatsDb(votes);
   const hasVoteData = voteStats.totalPolls > 0;
+  const fractionDev = getFractionDeviationsForPolitician(politicianId);
   const factionLoyalty = computeFactionLoyalty(votes);
   const avgAttendance = 78;
 
@@ -550,13 +552,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
         {hasVoteData && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
             <CollapsibleCard title="Abstimmungsverhalten">
-              <VotingBar
-                yes={voteStats.votedYes}
-                no={voteStats.votedNo}
-                abstain={voteStats.abstained}
-                noShow={voteStats.noShow}
-                total={voteStats.totalPolls}
-              />
+              <FractionDeviations data={fractionDev} />
             </CollapsibleCard>
             <CollapsibleCard title="Anwesenheit vs. Durchschnitt">
               <ComparisonRow
@@ -765,37 +761,75 @@ function CollapsibleCard({
   );
 }
 
-function VotingBar({
-  yes, no, abstain, noShow, total,
-}: {
-  yes: number; no: number; abstain: number; noShow: number; total: number;
-}) {
-  if (total === 0) return null;
-  const pct = (n: number) => `${(n / total) * 100}%`;
+const voteLabel: Record<string, string> = {
+  yes: "Ja",
+  no: "Nein",
+  abstain: "Enthaltung",
+};
+
+const voteColor: Record<string, string> = {
+  yes: "text-emerald-700 bg-emerald-50 border-emerald-200",
+  no: "text-rose-700 bg-rose-50 border-rose-200",
+  abstain: "text-amber-700 bg-amber-50 border-amber-200",
+};
+
+function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviationResult }) {
+  if (data.is_fractionless) {
+    return (
+      <p className="text-[13.5px] text-zinc-600 leading-relaxed">
+        Fraktionslos — Abweichungen vom Fraktionskonsens nicht messbar.
+      </p>
+    );
+  }
+
+  const N = data.active_polls;
+
+  if (data.deviations.length === 0) {
+    return (
+      <p className="text-[13.5px] text-zinc-700 leading-relaxed">
+        Folgte in <span className="font-medium text-zinc-950">allen {N}</span>{" "}
+        aktiven namentlichen Abstimmungen der Fraktionslinie.
+      </p>
+    );
+  }
+
+  const fractionShort = data.fraction_label?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim();
+
   return (
     <div>
-      <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 mb-4">
-        <div className="bg-emerald-500" style={{ width: pct(yes) }} />
-        <div className="bg-red-500" style={{ width: pct(no) }} />
-        <div className="bg-amber-500" style={{ width: pct(abstain) }} />
-        <div className="bg-zinc-400" style={{ width: pct(noShow) }} />
-      </div>
-      <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[12.5px]">
-        <Legend dot="bg-emerald-500" label="Ja" value={yes} />
-        <Legend dot="bg-red-500" label="Nein" value={no} />
-        <Legend dot="bg-amber-500" label="Enthaltung" value={abstain} />
-        <Legend dot="bg-zinc-400" label="Abwesend" value={noShow} />
-      </div>
-    </div>
-  );
-}
-
-function Legend({ dot, label, value }: { dot: string; label: string; value: number }) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className={`w-1.5 h-1.5 rounded-full ${dot}`} />
-      <span className="text-zinc-500">{label}</span>
-      <span className="num font-medium text-zinc-950 ml-auto">{value}</span>
+      <p className="text-[13.5px] text-zinc-700 leading-relaxed mb-4">
+        In <span className="num font-medium text-zinc-950">{data.deviations.length}</span> von{" "}
+        <span className="num font-medium text-zinc-950">{N}</span> aktiven namentlichen Abstimmungen
+        anders als die <span className="font-medium">{fractionShort}</span>-Fraktion gestimmt:
+      </p>
+      <ul className="space-y-1.5 max-h-[480px] overflow-y-auto pr-1">
+        {data.deviations.map((d) => (
+          <li key={d.poll_id} className="flex items-start gap-3 px-3 py-2 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors">
+            <div className="flex-1 min-w-0">
+              <Link
+                href={`/design/linear/abstimmungen/${d.poll_id}`}
+                className="block text-[13px] font-medium text-zinc-950 hover:underline underline-offset-2 leading-snug line-clamp-2"
+              >
+                {d.poll_label ?? `Abstimmung #${d.poll_id}`}
+              </Link>
+              {d.poll_date && (
+                <p className="text-[11px] text-zinc-400 num mt-0.5">
+                  {new Date(d.poll_date + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0 mt-0.5">
+              <span className={`inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded border ${voteColor[d.majority_vote] ?? ""}`} title={`Fraktions-Mehrheit: ${voteLabel[d.majority_vote]}`}>
+                Frakt. {voteLabel[d.majority_vote]}
+              </span>
+              <span className="text-zinc-300 text-[10px]">→</span>
+              <span className={`inline-flex items-center text-[10px] font-semibold px-1.5 py-0.5 rounded border ${voteColor[d.personal_vote] ?? ""}`} title={`Persönlicher Vote: ${voteLabel[d.personal_vote]}`}>
+                MdB {voteLabel[d.personal_vote]}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

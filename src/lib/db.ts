@@ -987,6 +987,94 @@ export interface VoteStats {
   noShow: number;
 }
 
+// ============================================================
+// Fraktions-Abweichungen — einzige inhaltliche Aussage auf Person-Ebene,
+// die aus den ~50 namentlichen Abstimmungen ableitbar ist. „Hat in N von M
+// anders als Fraktion gestimmt" — bei 90 % der MdB ist N=0 (Disziplin),
+// die übrigen ~65 zeigen reale Abweichungen.
+// ============================================================
+
+export interface FractionDeviationRow {
+  poll_id: number;
+  poll_label: string | null;
+  poll_date: string | null;
+  majority_vote: "yes" | "no" | "abstain";
+  personal_vote: "yes" | "no" | "abstain";
+}
+
+export interface FractionDeviationResult {
+  fraction_label: string | null;
+  is_fractionless: boolean;
+  total_namentlich: number;
+  active_polls: number;
+  deviations: FractionDeviationRow[];
+}
+
+export function getFractionDeviationsForPolitician(politicianId: number): FractionDeviationResult {
+  const db = getDb();
+
+  // Häufigste Fraktion dieses MdB (manche MdB haben mehrere fraction_labels über
+  // verschiedene Polls — z.B. wenn sie ausgetreten sind. Wir nehmen die häufigste).
+  const fracRow = db.prepare(`
+    SELECT fraction_label, COUNT(*) AS n
+    FROM votes
+    WHERE politician_id = ? AND fraction_label IS NOT NULL
+    GROUP BY fraction_label
+    ORDER BY n DESC LIMIT 1
+  `).get(politicianId) as { fraction_label: string; n: number } | undefined;
+
+  const fractionLabel = fracRow?.fraction_label ?? null;
+  const isFractionless = fractionLabel === null
+    || /\bfraktionslos\b/i.test(fractionLabel);
+
+  const counts = db.prepare(`
+    SELECT
+      COUNT(*) AS total,
+      SUM(CASE WHEN vote IN ('yes','no','abstain') THEN 1 ELSE 0 END) AS active
+    FROM votes WHERE politician_id = ?
+  `).get(politicianId) as { total: number; active: number };
+
+  if (isFractionless || !fractionLabel) {
+    return {
+      fraction_label: fractionLabel,
+      is_fractionless: true,
+      total_namentlich: counts.total,
+      active_polls: counts.active,
+      deviations: [],
+    };
+  }
+
+  // Pro Poll: Mehrheits-Vote dieser Fraktion (Ja/Nein/Enthaltung, keine
+  // no_shows). Dann Person-Vote dagegen halten.
+  const deviations = db.prepare(`
+    WITH fraction_majority AS (
+      SELECT poll_id, vote, COUNT(*) AS n,
+             ROW_NUMBER() OVER (PARTITION BY poll_id ORDER BY COUNT(*) DESC) AS rn
+      FROM votes
+      WHERE fraction_label = ? AND vote IN ('yes','no','abstain')
+      GROUP BY poll_id, vote
+    ),
+    majority AS (
+      SELECT poll_id, vote AS majority_vote FROM fraction_majority WHERE rn = 1
+    )
+    SELECT v.poll_id, v.poll_label, v.poll_date, m.majority_vote, v.vote AS personal_vote
+    FROM votes v
+    JOIN majority m ON m.poll_id = v.poll_id
+    WHERE v.politician_id = ?
+      AND v.vote IN ('yes','no','abstain')
+      AND v.vote != m.majority_vote
+    ORDER BY v.poll_date DESC
+  `).all(fractionLabel, politicianId) as FractionDeviationRow[];
+
+  return {
+    fraction_label: fractionLabel,
+    is_fractionless: false,
+    total_namentlich: counts.total,
+    active_polls: counts.active,
+    deviations,
+  };
+}
+
 export function computeVoteStatsDb(votes: VoteRow[]): VoteStats {
   const totalPolls = votes.length;
   const attended = votes.filter((v) => v.vote !== "no_show").length;
