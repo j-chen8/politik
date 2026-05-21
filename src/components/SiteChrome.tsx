@@ -11,7 +11,9 @@ import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen } from "lucide-re
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || "/";
-  const variant = pathname.startsWith("/design/linear")
+  // `/` wird via next.config.ts-Rewrite intern auf /design/linear gemappt,
+  // bleibt aber als sichtbare URL `/` — daher hier explizit zu Linear-Chrome routen.
+  const variant = pathname.startsWith("/design/linear") || pathname === "/"
     ? "linear"
     : pathname.startsWith("/design/")
     ? "default"
@@ -150,9 +152,6 @@ function LinearFooter() {
   return (
     <footer className="border-t border-border-soft bg-zinc-50 py-10">
       <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm font-medium tracking-tight text-foreground">
-          Von einem Bürger — für alle Bürger.
-        </p>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
           <span>Keine offizielle Regierungsseite</span>
           <Link href="/design/linear/ueber" className="hover:text-foreground transition-colors">
