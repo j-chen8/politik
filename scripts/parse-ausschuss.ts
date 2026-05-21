@@ -48,33 +48,60 @@ interface ParsedCommitteeProtocol {
 
 // ── PDF → Lines ──
 
-async function extractLines(filepath: string): Promise<{ lines: string[]; pages: number }> {
+interface StructuredItem { x: number; w: number; str: string }
+type StructuredLine = StructuredItem[];
+
+function joinItemsWithGaps(items: StructuredItem[]): string {
+  // Join with gap-aware whitespace: any visible horizontal gap → insert space.
+  // Prevents table-column data being glued ("Stephanja" instead of "Stephan ja").
+  let text = "";
+  let prevEndX = -Infinity;
+  for (const it of items) {
+    const gap = it.x - prevEndX;
+    if (text && gap > 1 && !/\s$/.test(text) && !/^\s/.test(it.str)) {
+      text += " ";
+    }
+    text += it.str;
+    prevEndX = it.x + it.w;
+  }
+  return text.replace(/\s+/g, " ").trim();
+}
+
+async function extractLines(
+  filepath: string,
+): Promise<{ lines: string[]; structured: (StructuredLine | null)[]; pages: number }> {
   const data = new Uint8Array(fs.readFileSync(filepath));
   const doc = await pdfjsLib.getDocument({ data }).promise;
   const allLines: string[] = [];
+  const allStructured: (StructuredLine | null)[] = [];
 
   for (let p = 1; p <= doc.numPages; p++) {
     const page = await doc.getPage(p);
     const content = await page.getTextContent();
-    const lineMap = new Map<number, { x: number; str: string }[]>();
+    const lineMap = new Map<number, StructuredItem[]>();
 
     for (const item of content.items as any[]) {
       if (!item.str) continue;
       const y = Math.round(item.transform[5]);
       const x = Math.round(item.transform[4]);
+      const w = typeof item.width === "number" ? item.width : 0;
       if (!lineMap.has(y)) lineMap.set(y, []);
-      lineMap.get(y)!.push({ x, str: item.str });
+      lineMap.get(y)!.push({ x, w, str: item.str });
     }
 
     for (const y of [...lineMap.keys()].sort((a, b) => b - a)) {
       const items = lineMap.get(y)!.sort((a, b) => a.x - b.x);
-      const text = items.map((i) => i.str).join("").trim();
-      if (text) allLines.push(text);
+      const text = joinItemsWithGaps(items);
+      if (text) {
+        allLines.push(text);
+        allStructured.push(items);
+      }
     }
     allLines.push("---PAGEBREAK---");
+    allStructured.push(null);
   }
 
-  return { lines: allLines, pages: doc.numPages };
+  return { lines: allLines, structured: allStructured, pages: doc.numPages };
 }
 
 // ── Parsers ──
@@ -130,60 +157,162 @@ function parseHeader(lines: string[]): CommitteeSession {
   return { protokollNr, wahlperiode, sitzungNr, ausschuss, typ, datum, ort: "Berlin", vorsitz, seiten: 0 };
 }
 
-function parseAttendance(lines: string[]): Attendee[] {
+// Column-aware Attendance-Parser. The PDF has a fixed-column table:
+//   Fraktion (x ≈ 60-130) | Ordentliche (x ≈ 149-310) | Anwesenheit | Stellvertretende (x ≈ 362-510) | Anwesenheit
+// Column thresholds are detected from the header row "Fraktion | Ordentliche … | Stellvertretende …".
+// Single global currentFraktion does NOT work because:
+//   (a) Multi-line Fraktion-Labels: "BÜNDNIS 90/" + "DIE GRÜNEN" auf zwei Zeilen
+//   (b) Names from BOTH columns (Ordentliche + Stellvertretende) get tagged with the same Fraktion correctly.
+function parseAttendance(structured: (StructuredLine | null)[], lines: string[]): Attendee[] {
   const attendees: Attendee[] = [];
+  const seen = new Set<string>(); // dedupe across both columns
 
-  // Find the attendance section
   let inAttendance = false;
   let currentFraktion = "";
+  let pendingFraktionPrefix = ""; // for "BÜNDNIS 90/" → wait for "DIE GRÜNEN"
 
-  const fraktionRegex = /^(CDU\/CSU|AfD|SPD|BÜNDNIS\s*90\/\s*DIE|GRÜNEN|FDP|Die Linke|BSW|fraktionslos)/;
-  const attendanceStart = /(?:Anwesenheit|Teilnehmende\s+Mitglieder|Mitglieder\s+des\s+Ausschusses|Ausschussmitglieder)/i;
-  const attendanceEnd = /(?:^Tagesordnung|^Tagesordnungspunkt|^Einziger\s+Tagesordnungspunkt|---PAGEBREAK---)/;
+  // Auto-detected column boundaries (set when header row is encountered).
+  // Defaults match observed Bildung-Familie layout; will be overridden per-PDF.
+  let colOrdMinX = 130;
+  let colOrdMaxX = 310;
+  let colStellvMinX = 350;
+  let colStellvMaxX = 510;
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+  const attendanceStart = /(?:Mitglieder\s+des\s+Ausschusses|Anwesenheit|Teilnehmende\s+Mitglieder|Ausschussmitglieder)/i;
 
-    if (attendanceStart.test(line)) {
-      inAttendance = true;
+  for (let i = 0; i < structured.length; i++) {
+    const line = structured[i];
+    if (!line) {
+      // PAGEBREAK — keep going if we're still in attendance section (continues across pages)
+      continue;
+    }
+    const flat = lines[Math.min(i, lines.length - 1)] ?? joinItemsWithGaps(line);
+
+    if (!inAttendance) {
+      if (attendanceStart.test(flat)) inAttendance = true;
       continue;
     }
 
-    if (inAttendance && attendanceEnd.test(line)) {
-      break;
+    // End markers — typical sections that follow the Mitglieder-Tabelle.
+    if (/^(Tagesordnung|Tagesordnungspunkt\b|Einziger\s+Tagesordnungspunkt|Mitglieder\s+der\s+Bundesregierung|Bundesregierung\b|Sachverständige|Berichterstatter\b|Ministerium\s+bzw|Dienststelle\b|Amtsbezeichnung\b|Beratungsgegenstand|Anhörungsgegenstand|Sitzungsverlauf)/i.test(flat)) break;
+
+    // Header row — detect column positions from "Ordentliche Mitglieder" / "Stellvertretende Mitglieder"
+    const ordHeader = line.find((it) => /^Ordentliche/.test(it.str));
+    const stellvHeader = line.find((it) => /^Stellvertretende/.test(it.str));
+    if (ordHeader && stellvHeader) {
+      colOrdMinX = ordHeader.x - 5;
+      colOrdMaxX = stellvHeader.x - 20;
+      colStellvMinX = stellvHeader.x - 5;
+      colStellvMaxX = stellvHeader.x + 200; // generous right bound
+      continue; // header row itself doesn't contain names
     }
 
-    if (!inAttendance) continue;
+    // Skip page-footer / Wahlperiode / "Seite x von y"
+    if (/^(Seite\s+\d+|\d+\.\s*Wahlperiode|Protokoll der \d+\.)/i.test(flat)) continue;
 
-    // Skip header lines
-    if (line.match(/^(Fraktion|Ordentliche|Stellvertretende|Fraktionen)\b/)) continue;
-    if (line.match(/^\d+\.\s*Wahlperiode/)) continue;
-    if (line.match(/^Seite\s+\d+/)) continue;
-
-    // Detect fraktion
-    const fMatch = line.match(fraktionRegex);
-    if (fMatch) {
-      const raw = fMatch[1];
-      if (raw.includes("CDU")) currentFraktion = "CDU/CSU";
-      else if (raw.includes("BÜNDNIS") || raw.includes("GRÜNEN")) currentFraktion = "BÜNDNIS 90/DIE GRÜNEN";
-      else currentFraktion = raw;
-
-      // Names might be on the same line after the fraktion
-      const rest = line.replace(fraktionRegex, "").trim();
-      if (rest) {
-        // Could be "Name, LastnameOtherName, Lastname" (columns merged)
-        extractNames(rest, currentFraktion, attendees);
+    // 1) Fraktion-cell: items with x < colOrdMinX (i.e. left of "Ordentliche" column)
+    const fraktionItems = line.filter((it) => it.x < colOrdMinX);
+    if (fraktionItems.length > 0) {
+      const fStr = joinItemsWithGaps(fraktionItems);
+      if (fStr) {
+        // BÜNDNIS-90-Erkennung: jeder Bestandteil ("BÜNDNIS 90/", "BÜNDNIS 90/DIE",
+        // "DIE GRÜNEN", "GRÜNEN") landet in derselben Fraktion. Sofort setzen,
+        // damit Namen auf der ersten Zeile (mit nur "BÜNDNIS 90/DIE" als Label)
+        // korrekt zugeordnet werden.
+        if (/(?:BÜNDNIS|GRÜNEN)/i.test(fStr)) {
+          currentFraktion = "BÜNDNIS 90/DIE GRÜNEN";
+          pendingFraktionPrefix = "";
+        } else {
+          const m = fStr.match(/^(CDU\/CSU|AfD|SPD|FDP|Die Linke|BSW|fraktionslos)/i);
+          if (m) {
+            const raw = m[1];
+            if (/CDU/i.test(raw)) currentFraktion = "CDU/CSU";
+            else currentFraktion = raw;
+            pendingFraktionPrefix = "";
+          }
+        }
       }
-      continue;
     }
 
-    // Regular name lines
-    if (currentFraktion && line.length > 2 && !line.match(/^(Nur|Dieser|Protokoll)/)) {
-      extractNames(line, currentFraktion, attendees);
+    if (!currentFraktion) continue;
+
+    // 2) Ordentliches-Mitglied — exclude pure-symbol items (☒/☐) from the column.
+    const ordItems = line.filter(
+      (it) => it.x >= colOrdMinX && it.x < colOrdMaxX && !/^[☒☐■□✓✗\s]+$/u.test(it.str),
+    );
+    if (ordItems.length > 0) {
+      const nameText = joinItemsWithGaps(ordItems);
+      addAttendeeIfValid(nameText, currentFraktion, attendees, seen, "ordentlich");
+    }
+
+    // 3) Stellvertretendes-Mitglied
+    const stellvItems = line.filter(
+      (it) => it.x >= colStellvMinX && it.x < colStellvMaxX && !/^[☒☐■□✓✗\s]+$/u.test(it.str),
+    );
+    if (stellvItems.length > 0) {
+      const nameText = joinItemsWithGaps(stellvItems);
+      addAttendeeIfValid(nameText, currentFraktion, attendees, seen, "stellvertretend");
     }
   }
 
   return attendees;
+}
+
+// Add an attendee if the text looks like a real name. Drops known table-noise
+// like "ja", "nein", "-", "N. N.", and dedupes across rows.
+function addAttendeeIfValid(
+  raw: string,
+  fraktion: string,
+  attendees: Attendee[],
+  seen: Set<string>,
+  typ: Attendee["typ"],
+): void {
+  let s = raw.trim();
+  // Strip Unicode-Kästchen / Häkchen die die Anwesenheits-Spalte markieren
+  s = s.replace(/[☒☐■□✓✗]/gu, " ").replace(/\s+/g, " ").trim();
+  // Strip Asterisks/Sterne/Klammer-Marker die der Parser durchschleust
+  // (z.B. "Oliver* Kaczmarek", "Josephine** Ortleb")
+  s = s.replace(/[*†‡§¶]+/g, " ").replace(/\s+/g, " ").trim();
+  s = s.replace(/\s+(ja|nein)\s*$/i, "").trim();
+  s = s.replace(/^[•\-–—\s]+/, "").trim();
+  if (!s || s.length < 4) return;
+  if (/^N\.?\s*N\.?$/i.test(s)) return;
+  if (/^(ja|nein)$/i.test(s)) return;
+
+  // "LastName, FirstName"-Pattern: nach dem Komma muss ein Großbuchstabe stehen.
+  if (!/^\p{Lu}[\p{L}\-']+(?:\s+(?:von|van|de|zu|Frhr\.?))?\s*,\s*\p{Lu}/u.test(s)) return;
+
+  // Reject prose-fragments that bleed in from Anhörungs-/Beratungs-Texten:
+  // "Violetta Bock, weiterer Abgeordneter und Bünger"
+  // "Kommunistischen Partei Vietnams Becker"
+  // Ein echter MdB-Name enthält keine niedergeschriebenen Funktions- oder
+  // Sachgebietsbegriffe.
+  const PROSE_RX = /\b(weitere[rn]?|Abgeordnete[rnm]?|Mitglied(er)?|Stellvertret\w+|Fraktion(en)?|Politik|Heilkunde|Stabilität|Republik|Partei|Hoteliers?|Fluglinien|Vorsitz\w*|Präsiden\w*|Vietnam(s)?|Singapur|Italien\w*|Amerikan\w*|Drucksache|Heimat|Stadtentwicklung\b(?!.*,))/iu;
+  if (PROSE_RX.test(s)) return;
+
+  // Convert "LastName, FirstName" → "FirstName LastName"
+  let display = s;
+  const m = s.match(/^([\p{Lu}][\p{L}\-']+(?:\s+(?:von|van|de|zu|Frhr\.?))?)\s*,\s*(.+)$/u);
+  if (m) {
+    const last = m[1].trim();
+    const first = m[2].trim();
+    display = `${first} ${last}`;
+  }
+
+  // Final structural check: 2-5 tokens, jeder Token beginnt mit Großbuchstaben
+  // (Ausnahme: deutsche Adelspartikel "von", "van", "de", "zu").
+  const tokens = display.split(/\s+/);
+  if (tokens.length < 2 || tokens.length > 5) return;
+  for (const t of tokens) {
+    if (!t) return;
+    if (/[*\[\]()0-9]/.test(t)) return;
+    if (/^(von|van|de|zu|Frhr\.?|Frfr\.?)$/i.test(t)) continue;
+    if (!/^\p{Lu}/u.test(t)) return;
+  }
+
+  if (seen.has(display)) return;
+  seen.add(display);
+  attendees.push({ name: display, fraktion, typ });
 }
 
 function extractNames(text: string, fraktion: string, attendees: Attendee[]) {
@@ -273,12 +402,12 @@ function parseSpeakersFromBody(lines: string[]): Record<string, CommitteeSpeaker
 // ── Main ──
 
 async function parseCommitteeProtocol(filepath: string): Promise<ParsedCommitteeProtocol> {
-  const { lines, pages } = await extractLines(filepath);
+  const { lines, structured, pages } = await extractLines(filepath);
 
   const session = parseHeader(lines);
   session.seiten = pages;
 
-  const attendees = parseAttendance(lines);
+  const attendees = parseAttendance(structured, lines);
   const topics = parseTopics(lines);
   const speakers = parseSpeakersFromBody(lines);
 
