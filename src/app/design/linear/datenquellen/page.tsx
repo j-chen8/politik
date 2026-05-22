@@ -105,7 +105,7 @@ export default function DatenquellenPage() {
               title="Bundestag Plenarprotokolle"
               href="https://www.bundestag.de/services/opendata"
               license="Open Data Bundestag"
-              description="XML-Plenarprotokolle. Reden werden mit KI (Groq, Google Gemini) automatisch zusammengefasst."
+              description="XML-Plenarprotokolle. Reden wurden mit KI (Groq, Google Gemini) automatisch zusammengefasst."
             />
             <Source
               title="KI-generierte Lebensläufe"

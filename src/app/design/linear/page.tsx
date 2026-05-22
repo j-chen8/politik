@@ -1,13 +1,26 @@
 import { SearchBox } from "@/components/SearchBox";
 import { LatestActivityStrip } from "@/components/LatestActivityStrip";
-import { getLlmPipelineCounts } from "@/lib/db";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-export default function LinearLanding() {
-  const pipeline = getLlmPipelineCounts();
-  const fmt = (n: number) => n.toLocaleString("de-DE");
+const DATEN_SCHRITTE = [
+  {
+    titel: "Offizielle Rohdaten",
+    text: "Die Daten kommen 1:1 aus offiziellen Quellen — Bundestag und abgeordnetenwatch, unverändert übernommen.",
+  },
+  {
+    titel: "KI-Aufbereitung",
+    text: "Umfangreiche Originaltexte wie Reden oder Drucksachen fasst KI zusammen und strukturiert sie — damit sie durchsuchbar und vergleichbar werden.",
+  },
+  {
+    titel: "Nachvollziehbar",
+    text: "Die Daten lassen sich bis zur offiziellen Originalquelle zurückverfolgen. Die KI-Analysen sind stichprobenartig auditiert und ihre Grenzen offen dokumentiert.",
+  },
+];
 
+const SUCH_BEISPIELE = ["Bürgergeld", "Heizungsgesetz", "Friedrich Merz", "Klimaschutz"];
+
+export default function LinearLanding() {
   return (
     <div className="page-wash">
       {/* Hero */}
@@ -28,6 +41,18 @@ export default function LinearLanding() {
         <div className="max-w-xl mx-auto">
           <SearchBox />
         </div>
+
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {SUCH_BEISPIELE.map((term) => (
+            <Link
+              key={term}
+              href={`/design/linear/suche?q=${encodeURIComponent(term)}`}
+              className="rounded-full border border-zinc-200 bg-white/70 px-3.5 py-2 text-[13px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
+            >
+              {term}
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Latest-Activity-Strip: zeigt dass die Daten leben */}
@@ -35,54 +60,30 @@ export default function LinearLanding() {
         <LatestActivityStrip />
       </div>
 
-      {/* So entstehen die Daten — Audit-Trail-Versprechen, kein Marketing */}
+      {/* So entstehen die Daten — Prozess in drei Schritten */}
       <section className="w-full max-w-5xl mx-auto pt-12 px-5 pb-24 fade-in-up fade-in-up-3">
         <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
           <div className="px-6 py-6">
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-6">
               So entstehen die Daten
             </h2>
-            <p className="text-[14px] text-zinc-600 leading-relaxed max-w-2xl">
-              Roh-Daten (Abstimmungen, Drucksachen, Nebeneinkünfte) kommen 1:1 aus
-              offiziellen Quellen. Wo KI hilft, durchläuft jede Aussage mehrere
-              unabhängige Prüfschritte mit Modellen verschiedener Familien — jede
-              Entscheidung dokumentiert, jede Quelle verlinkbar:
-            </p>
-            <ul className="mt-4 space-y-2 text-[14px] text-zinc-700">
-              <li className="flex items-baseline gap-2">
-                <span className="num font-semibold text-zinc-950">{fmt(pipeline.cvSummaries)}</span>
-                <span>Lebensläufe KI-strukturiert</span>
-                <Link
-                  href="/design/linear/methodik"
-                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
-                >
-                  Methodik
-                </Link>
-              </li>
-              <li className="flex items-baseline gap-2">
-                <span className="num font-semibold text-zinc-950">{fmt(pipeline.speechAnalyses)}</span>
-                <span>Reden KI-analysiert</span>
-                <Link
-                  href="/design/linear/methodik#reden-pipeline"
-                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
-                >
-                  Methodik
-                </Link>
-              </li>
-              <li className="flex items-baseline gap-2">
-                <span className="num font-semibold text-zinc-950">{fmt(pipeline.drucksacheAnalyses)}</span>
-                <span>Drucksachen KI-zusammengefasst</span>
-                <Link
-                  href="/design/linear/methodik"
-                  className="text-[12px] text-zinc-500 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
-                >
-                  Methodik
-                </Link>
-              </li>
-            </ul>
+            <ol className="space-y-5">
+              {DATEN_SCHRITTE.map((schritt, i) => (
+                <li key={schritt.titel} className="flex gap-3.5">
+                  <span className="shrink-0 mt-0.5 w-6 h-6 rounded-full border border-zinc-300 text-zinc-500 text-[12px] font-medium flex items-center justify-center">
+                    {i + 1}
+                  </span>
+                  <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+                    <span className="font-semibold text-zinc-950">{schritt.titel}</span>
+                    {" — "}
+                    {schritt.text}
+                  </p>
+                </li>
+              ))}
+            </ol>
             <Link
               href="/design/linear/methodik"
-              className="inline-flex items-center gap-1 text-[12px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors mt-5"
+              className="inline-flex items-center gap-1 text-[12px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors mt-7"
             >
               Pipeline, Modelle, bekannte Limitationen
               <ArrowRight className="w-3 h-3" strokeWidth={2.25} />

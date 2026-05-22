@@ -64,8 +64,12 @@ function shortenTyp(typ: string): string {
     "Änderungsantrag": "Änd.-Antrag",
     "Kurzintervention": "Kurzinterv.",
     "Zwischenfrage": "Zwischenfr.",
+    "Rede (zu Protokoll gegeben)": "Rede (z. Prot.)",
   };
-  return map[typ] || typ;
+  if (map[typ]) return map[typ];
+  // Lange Varianten wie "Schriftliche Erklärung gem. § 31 Geschäftsordnung BT"
+  if (/^Schriftliche Erklärung/i.test(typ)) return "Schriftl. Erklärung";
+  return typ;
 }
 
 export default async function PolitikerPage({ params, searchParams }: Props) {
@@ -524,18 +528,11 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               {parlArbeit.map((item) => (
                 <article
                   key={item.id}
-                  className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                  className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
                 >
-                  <div className="flex flex-col items-start gap-0.5 shrink-0 w-24">
-                    <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
-                      {shortenTyp(item.typ)}
-                    </span>
-                    <span className="text-[10px] text-zinc-400">
-                      {item.quelle === "kombiniert" ? "DIP+Plenar"
-                        : item.quelle === "plenar" ? "Plenar"
-                        : "DIP"}
-                    </span>
-                  </div>
+                  <span className="shrink-0 sm:w-24 text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                    {shortenTyp(item.typ)}
+                  </span>
                   <div className="flex-1 min-w-0">
                     {item.thema && (
                       <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">

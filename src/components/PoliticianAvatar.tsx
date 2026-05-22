@@ -1,11 +1,14 @@
 import Image from "next/image";
+import { partyColors } from "@/lib/party-colors";
 
 interface Props {
   photoUrl: string | null;
   firstName: string;
   lastName: string;
   party: string | null;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "md" | "lg" | "xl" | "card";
+  /** No-Foto-Fallback: "party" = Partei-Farbblock, "muted" = ruhiges Grau. */
+  fallback?: "party" | "muted";
 }
 
 const SIZES = {
@@ -13,29 +16,15 @@ const SIZES = {
   md: { wrap: "w-12 h-12 text-sm", img: 48, rounded: "rounded-xl" },
   lg: { wrap: "w-20 h-20 text-xl", img: 80, rounded: "rounded-2xl" },
   xl: { wrap: "w-28 h-28 text-2xl", img: 112, rounded: "rounded-2xl" },
+  // Responsive Karten-Größe: klein auf Handy, groß ab Desktop.
+  card: {
+    wrap: "w-16 h-16 text-base lg:w-28 lg:h-28 lg:text-2xl",
+    img: 112,
+    rounded: "rounded-xl lg:rounded-2xl",
+  },
 } as const;
 
-// Parteifarben für Initialen-Avatar (Hex damit unabhängig vom Tailwind-Theme).
-function partyColors(party: string | null): { bg: string; fg: string } {
-  const p = (party ?? "").toLowerCase();
-  if (p.includes("spd")) return { bg: "#e3000f", fg: "#fff" };
-  if (p === "cdu" || p.includes("christlich demo")) return { bg: "#000", fg: "#fff" };
-  if (p === "csu") return { bg: "#0080c8", fg: "#fff" };
-  if (p.includes("grün")) return { bg: "#1aa037", fg: "#fff" };
-  if (p === "fdp" || p.includes("freie demo")) return { bg: "#ffed00", fg: "#000" };
-  if (p === "afd") return { bg: "#009ee0", fg: "#fff" };
-  if (p.includes("linke")) return { bg: "#bd2c80", fg: "#fff" };
-  if (p === "bsw" || p.includes("wagenknecht")) return { bg: "#7d2972", fg: "#fff" };
-  if (p.includes("freie wähler")) return { bg: "#0f4778", fg: "#fff" };
-  if (p === "ssw") return { bg: "#003d8f", fg: "#fff" };
-  if (p === "volt") return { bg: "#562883", fg: "#fff" };
-  if (p === "ödp") return { bg: "#ed8b00", fg: "#fff" };
-  if (p.includes("tierschutz")) return { bg: "#005d23", fg: "#fff" };
-  if (p === "die partei") return { bg: "#b80000", fg: "#fff" };
-  return { bg: "#9ca3af", fg: "#fff" }; // parteilos / unbekannt → grau
-}
-
-export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = "md" }: Props) {
+export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = "md", fallback = "party" }: Props) {
   const s = SIZES[size];
 
   if (photoUrl) {
@@ -54,12 +43,26 @@ export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = 
   }
 
   const initials = `${firstName?.[0] ?? ""}${lastName?.[0] ?? ""}`.toUpperCase();
+  const noPhotoLabel = `${firstName} ${lastName} – kein Foto verfügbar, da keine eindeutige Bildlizenz vorliegt`;
+
+  if (fallback === "muted") {
+    return (
+      <div
+        className={`${s.wrap} ${s.rounded} flex items-center justify-center shrink-0 font-semibold tracking-tight bg-zinc-100 text-zinc-400`}
+        aria-label={noPhotoLabel}
+        title="Kein Foto verfügbar – keine eindeutige Bildlizenz"
+      >
+        {initials}
+      </div>
+    );
+  }
+
   const { bg, fg } = partyColors(party);
   return (
     <div
       className={`${s.wrap} ${s.rounded} flex items-center justify-center shrink-0 font-bold tracking-tight`}
       style={{ backgroundColor: bg, color: fg }}
-      aria-label={`${firstName} ${lastName} – kein Foto verfügbar, da keine eindeutige Bildlizenz vorliegt`}
+      aria-label={noPhotoLabel}
       title="Kein Foto verfügbar – keine eindeutige Bildlizenz"
     >
       {initials}
