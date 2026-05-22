@@ -45,7 +45,7 @@ export function SearchBox() {
           name="q"
           defaultValue={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Name eingeben, z.B. "Friedrich Merz"'
+          placeholder='Name oder Thema – z.B. „Bürgergeld"'
           className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-white text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all text-base shadow-sm"
         />
         <button

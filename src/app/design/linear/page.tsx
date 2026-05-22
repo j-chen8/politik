@@ -1,11 +1,10 @@
 import { SearchBox } from "@/components/SearchBox";
 import { LatestActivityStrip } from "@/components/LatestActivityStrip";
-import { getDbStats, getLlmPipelineCounts } from "@/lib/db";
+import { getLlmPipelineCounts } from "@/lib/db";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function LinearLanding() {
-  const stats = getDbStats();
   const pipeline = getLlmPipelineCounts();
   const fmt = (n: number) => n.toLocaleString("de-DE");
 
@@ -18,17 +17,12 @@ export default function LinearLanding() {
           Wie arbeitet
           <br />
           <span className="bg-gradient-to-br from-zinc-900 via-zinc-700 to-zinc-400 bg-clip-text text-transparent">
-            Ihr Abgeordneter?
+            der Bundestag?
           </span>
         </h1>
 
         <p className="text-center text-[17px] text-zinc-500 max-w-xl mx-auto mb-10 leading-relaxed">
-          Alle <span className="num text-zinc-900 font-medium">{stats.mdbs.toLocaleString("de-DE")}</span> Bundestagsabgeordneten
-          {stats.cabinetQuereinsteiger > 0 && (
-            <>
-              {" "}+ <span className="num text-zinc-900 font-medium">{stats.cabinetQuereinsteiger}</span> Quereinsteiger-Bundesminister:innen
-            </>
-          )}.
+          Abstimmungen, Reden und Drucksachen — und die Lebensläufe aller Abgeordneten dahinter.
         </p>
 
         <div className="max-w-xl mx-auto">
