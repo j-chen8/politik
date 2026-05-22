@@ -79,6 +79,8 @@ db.exec(`
   -- Indexes
   CREATE INDEX IF NOT EXISTS idx_plenar_speeches_speaker ON plenar_speeches(speaker);
   CREATE INDEX IF NOT EXISTS idx_plenar_speeches_session ON plenar_speeches(session_id);
+  -- Covering-Index: Sitzungs-Übersicht zählt Reden + DISTINCT Redner ohne Tabellen-Zugriff
+  CREATE INDEX IF NOT EXISTS idx_plenar_speeches_session_speaker ON plenar_speeches(session_id, speaker);
   CREATE INDEX IF NOT EXISTS idx_plenar_speeches_party ON plenar_speeches(party);
   CREATE INDEX IF NOT EXISTS idx_ausschuss_attendees_session ON ausschuss_attendees(session_id);
   CREATE INDEX IF NOT EXISTS idx_ausschuss_attendees_name ON ausschuss_attendees(name);

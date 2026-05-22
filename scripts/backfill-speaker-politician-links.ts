@@ -124,6 +124,8 @@ function main() {
   }
   // Index für schnelle Abfragen
   db.exec("CREATE INDEX IF NOT EXISTS idx_speech_summaries_politician ON speech_summaries(politician_id)");
+  // Covering-Index: Partei-Beitragsmatrix aggregiert (politician_id, typ) ohne Tabellen-Zugriff
+  db.exec("CREATE INDEX IF NOT EXISTS idx_speech_summaries_pol_typ ON speech_summaries(politician_id, typ)");
 
   const pols = db.prepare("SELECT id, first_name, last_name FROM politicians").all() as Pol[];
   const match = buildMatcher(pols);
