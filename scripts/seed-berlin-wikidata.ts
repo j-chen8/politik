@@ -124,7 +124,12 @@ async function fetchMembers(): Promise<Member[]> {
     if (!first || !last) continue;
 
     const datei = row.match(/\[\[(?:Datei|File):([^|\]]+)/i);
-    const imageFile = datei ? datei[1].trim() : null;
+    let imageFile = datei ? datei[1].trim() : null;
+    // Generische Platzhalter-Bilder ("Placeholder staff photo.svg" o. Ä.) sind
+    // KEIN echtes Foto — sonst bekämen alle Foto-losen MdL dasselbe Bild.
+    if (imageFile && /platzhalter|placeholder|no[_ ]?image|kein[_ ]?bild/i.test(imageFile)) {
+      imageFile = null;
+    }
 
     // Zelle direkt nach PersonZelle = Lebensdaten → Geburtsjahr
     const after = row.slice(row.indexOf(pz[0]) + pz[0].length).split("||")[1] ?? "";

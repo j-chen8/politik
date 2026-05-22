@@ -12,7 +12,9 @@ import {
   getNotesForPolitician,
   getCVMergeDropsForPolitician,
   getDrucksachenForPolitician,
+  getBerlinParlamentarischeArbeit,
   type PoliticianDrucksacheRow,
+  type BerlinParlItem,
 } from "@/lib/db";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
@@ -68,6 +70,30 @@ function shortenTyp(typ: string): string {
   return map[typ] || typ;
 }
 
+/** Ausschuss-Rolle → deutsches Label (deckt abgeordnetenwatch- + Berlin-Werte ab). */
+function committeeRoleLabel(role: string | null): string {
+  switch (role) {
+    case "chairperson": return "Vorsitz";
+    case "vice_chairperson":
+    case "deputy_chairperson": return "Stv. Vorsitz";
+    case "schriftfuehrer": return "Schriftführung";
+    case "spokesperson": return "Sprecher:in";
+    case "foreperson": return "Obfrau/Obmann";
+    case "regular_member":
+    case "member": return "Mitglied";
+    case "alternate_member": return "Stv. Mitglied";
+    default: return role ? role.replace(/_/g, " ") : "Mitglied";
+  }
+}
+
+/** Kurz-Label für eine Berlin-PARDOK-Position (Reden / Anfragen / Anträge). */
+function berlinKatLabel(it: BerlinParlItem): string {
+  if (it.kategorie === "rede") return "Rede";
+  if (it.kategorie === "anfrage") return it.dokTyp?.startsWith("Mündl") ? "Mdl. Anfrage" : "Schr. Anfrage";
+  if (it.kategorie === "antrag") return "Antrag";
+  return it.dokTyp ?? "Drucksache";
+}
+
 export default async function PolitikerPage({ params, searchParams }: Props) {
   const sp = (await searchParams) ?? {};
   const showOriginal = sp.orig === "1";
@@ -93,6 +119,8 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const sidejobs = getSidejobsForPoliticianDb(politicianId);
   const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
   const drucksachen = getDrucksachenForPolitician(politicianId, 100);
+  // Berlin-Pilot: parlamentarische Arbeit aus den PARDOK-Daten (Reden, Anfragen, Anträge)
+  const berlinArbeit = getBerlinParlamentarischeArbeit(politicianId);
   // Audit-Trail: welche Einträge wurden vom Dedup-Skript ausgeblendet (nur sichtbar wenn !showOriginal)
   const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
@@ -101,7 +129,10 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const hasVoteData = voteStats.totalPolls > 0;
 
   const partyLabel = politician.party_label || "Parteilos";
-  const constituency = primaryMandate?.constituency;
+  // Wahlkreis ohne den Wahlperioden-Anhang ("… (Berlin 2021 - 2026)")
+  const constituency = primaryMandate?.constituency
+    ?.replace(/\s*\([^)]*\d{4}\s*[-–]\s*\d{4}\)\s*$/, "")
+    .trim();
 
   // ── Funktionen mit Tier-Klassifikation (Chips neben dem Namen oben im Header) ──
   function shortenFunktionTitel(t: string): string {
@@ -465,6 +496,95 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           );
         })()}
 
+        {/* Berlin-Pilot: Parlamentarische Arbeit aus den PARDOK-Daten.
+            Eigener Titel — kollidiert sonst bei den 5 Senator-MdL mit der
+            generischen "Parlamentarische Arbeit"-Karte (deren Bundesrats-Reden). */}
+        {berlinArbeit.total > 0 && (
+          <CollapsibleCard
+            title="Parlamentarische Arbeit im Abgeordnetenhaus"
+            count={berlinArbeit.total}
+            className="mb-6"
+          >
+            <div className="space-y-6 max-h-[640px] overflow-y-auto pr-1">
+              {berlinArbeit.groups.map((g) => (
+                <div key={g.kategorie}>
+                  <div className="flex items-baseline gap-2 mb-2.5">
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
+                      {g.label}
+                    </h3>
+                    <span className="num text-[11px] text-zinc-400">{g.total}</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {g.items.map((it, i) => (
+                      <article
+                        key={`${it.dbid}-${i}`}
+                        className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                      >
+                        <div className="flex flex-col items-start gap-0.5 shrink-0 w-24">
+                          <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                            {berlinKatLabel(it)}
+                          </span>
+                          {it.datum && (
+                            <span className="num text-[10px] text-zinc-400">
+                              {new Date(it.datum + "T00:00:00").toLocaleDateString("de-DE", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                              })}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          {it.titel && (
+                            <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
+                              {it.titel}
+                            </p>
+                          )}
+                          <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
+                            {it.kategorie === "rede" ? (
+                              <span>
+                                Plenarprotokoll {it.dokNr}
+                                {it.seitenbereich ? ` · S. ${it.seitenbereich}` : ""}
+                              </span>
+                            ) : it.dokNr ? (
+                              <span>Drucksache {it.dokNr}</span>
+                            ) : null}
+                            {it.sachgebiet && (
+                              <>
+                                <span className="text-zinc-200">·</span>
+                                <span className="normal-case">{it.sachgebiet}</span>
+                              </>
+                            )}
+                            {it.lokUrl && (
+                              <>
+                                <span className="text-zinc-200">·</span>
+                                <a
+                                  href={it.lokUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                                >
+                                  PDF
+                                  <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                                </a>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                  {g.total > g.items.length && (
+                    <p className="text-[11px] text-zinc-400 mt-2">
+                      + {(g.total - g.items.length).toLocaleString("de-DE")} weitere
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CollapsibleCard>
+        )}
+
         {/* Prominente Notes (rolle / sonderfall) — oben mit Amber-Highlight */}
         {notes.filter((n) => n.kategorie !== "sonstiges" && n.kategorie !== "funktion").length > 0 && (
           <Card className="mb-6 border-amber-200/70 bg-amber-50/40">
@@ -716,11 +836,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {c.committee_label}
                     </span>
                     <span className="text-[11px] text-zinc-400 uppercase tracking-wider">
-                      {c.committee_role === "chairperson" ? "Vorsitz"
-                        : c.committee_role === "deputy_chairperson" ? "Stv. Vorsitz"
-                        : c.committee_role === "regular_member" ? "Ord. Mitglied"
-                        : c.committee_role === "alternate_member" ? "Stv. Mitglied"
-                        : c.committee_role?.replace(/_/g, " ") || "Mitglied"}
+                      {committeeRoleLabel(c.committee_role)}
                     </span>
                   </div>
                 ))}

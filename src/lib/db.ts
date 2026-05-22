@@ -149,6 +149,13 @@ export function initDb() {
 // abschalten (siehe IS_POLITICIAN_VISIBLE_SQL).
 export const VISIBLE_PARLIAMENT_TYPES: readonly string[] = ["bundestag"];
 
+// Berlin-Pilot: das Abgeordnetenhaus von Berlin (parliament_id 2) wird
+// schrittweise freigeschaltet. Detail-Seiten sind bereits per Direkt-URL
+// erreichbar (Berlin-Klausel in IS_POLITICIAN_VISIBLE_SQL); Listen, Suche und
+// Counts bleiben bis zum offiziellen Live-Schalten Bundestag-only
+// (IS_POLITICIAN_ACTIVE_SQL unverändert).
+export const BERLIN_PILOT_PARLIAMENT_ID = 2;
+
 /**
  * Loose Visibility — für DETAIL-Seiten und Speaker-/Vote-Auflösung.
  * Erlaubt auch ehemalige MdBs (z. B. Habeck nach Niederlegung): wer einmal Daten
@@ -170,6 +177,12 @@ export const IS_POLITICIAN_VISIBLE_SQL = `(
     JOIN parliaments par_vis ON pp_vis.parliament_id = par_vis.id
     WHERE m_vis.politician_id = p.id AND m_vis.type = 'mandate'
       AND par_vis.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})
+  )
+  OR EXISTS (
+    SELECT 1 FROM mandates m_bln
+    JOIN parliament_periods pp_bln ON m_bln.parliament_period_id = pp_bln.id
+    WHERE m_bln.politician_id = p.id AND m_bln.type = 'mandate'
+      AND pp_bln.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID}
   )
 )`;
 
@@ -3326,4 +3339,108 @@ export function getDrucksachenSameFraktion(
     ORDER BY overlap_score DESC, datum DESC
     LIMIT ?
   `).all(...themas, nr, fraktion, limit) as RelatedDsRow[];
+}
+
+// ============================================================
+// Berlin-Pilot — Parlamentarische Arbeit aus den PARDOK-Daten
+// (berlin_documents / berlin_document_persons / berlin_vorgaenge).
+// Reden, Schriftliche/Mündliche Anfragen und Anträge der 19. WP,
+// rein aus der PARDOK-XML — ohne PDF, ohne LLM.
+// ============================================================
+
+export interface BerlinParlItem {
+  dbid: string;
+  kategorie: "rede" | "anfrage" | "antrag" | "sonstige";
+  dokArt: string | null;
+  dokTyp: string | null;
+  dokNr: string | null;
+  titel: string | null;
+  datum: string | null;
+  lokUrl: string | null;
+  seitenbereich: string | null;
+  sachgebiet: string | null;
+}
+
+export interface BerlinParlGroup {
+  kategorie: BerlinParlItem["kategorie"];
+  label: string;
+  total: number;
+  items: BerlinParlItem[]; // neueste zuerst, auf perGroup gekappt
+}
+
+export interface BerlinParlamentarischeArbeit {
+  groups: BerlinParlGroup[];
+  total: number;
+}
+
+const BERLIN_PARL_GROUP_LABEL: Record<BerlinParlItem["kategorie"], string> = {
+  rede: "Reden",
+  anfrage: "Schriftliche & Mündliche Anfragen",
+  antrag: "Anträge & Gesetzentwürfe",
+  sonstige: "Weitere Drucksachen",
+};
+
+export function getBerlinParlamentarischeArbeit(
+  politicianId: number,
+  perGroup = 50
+): BerlinParlamentarischeArbeit {
+  const db = getDb();
+  let rows: Array<{
+    dbid: string; dok_art_label: string | null; dok_typ_label: string | null;
+    dok_nr: string | null; dok_datum: string | null; lok_url: string | null;
+    seitenbereich: string | null; doc_titel: string | null; vorgang_titel: string | null;
+    vsys_label: string | null; role: string;
+  }>;
+  try {
+    rows = db.prepare(`
+      SELECT d.dbid, d.dok_art_label, d.dok_typ_label, d.dok_nr, d.dok_datum,
+             d.lok_url, d.seitenbereich, d.titel AS doc_titel,
+             v.titel AS vorgang_titel, v.vsys_label, bdp.role
+      FROM berlin_document_persons bdp
+      JOIN berlin_documents d ON d.dbid = bdp.dbid
+      LEFT JOIN berlin_vorgaenge v ON v.vid = d.vorgang_id
+      WHERE bdp.politician_id = ?
+      ORDER BY d.dok_datum DESC, d.dbid DESC
+    `).all(politicianId) as typeof rows;
+  } catch {
+    return { groups: [], total: 0 }; // berlin_*-Tabellen noch nicht angelegt
+  }
+
+  const categorize = (role: string, typ: string | null): BerlinParlItem["kategorie"] => {
+    if (role === "redner") return "rede";
+    const t = typ ?? "";
+    if (t.includes("Anfrage")) return "anfrage";
+    if (t.includes("Antrag") || t.includes("Gesetz")) return "antrag";
+    return "sonstige";
+  };
+
+  const buckets: Record<BerlinParlItem["kategorie"], BerlinParlItem[]> = {
+    rede: [], anfrage: [], antrag: [], sonstige: [],
+  };
+  for (const r of rows) {
+    const kategorie = categorize(r.role, r.dok_typ_label);
+    buckets[kategorie].push({
+      dbid: r.dbid,
+      kategorie,
+      dokArt: r.dok_art_label,
+      dokTyp: r.dok_typ_label,
+      dokNr: r.dok_nr,
+      titel: r.doc_titel || r.vorgang_titel || null,
+      datum: r.dok_datum,
+      lokUrl: r.lok_url,
+      seitenbereich: r.seitenbereich,
+      sachgebiet: r.vsys_label,
+    });
+  }
+
+  const order: BerlinParlItem["kategorie"][] = ["rede", "anfrage", "antrag", "sonstige"];
+  const groups: BerlinParlGroup[] = order
+    .filter((k) => buckets[k].length > 0)
+    .map((k) => ({
+      kategorie: k,
+      label: BERLIN_PARL_GROUP_LABEL[k],
+      total: buckets[k].length,
+      items: buckets[k].slice(0, perGroup),
+    }));
+  return { groups, total: rows.length };
 }

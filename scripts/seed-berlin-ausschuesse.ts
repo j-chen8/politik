@@ -88,12 +88,13 @@ async function fetchHtml(url: string): Promise<string> {
 
 // ── Rollen-Klassifikation ──
 
-const ROLE_PRIO = ["chairperson", "vice_chairperson", "foreperson", "spokesperson", "member"];
+const ROLE_PRIO = ["chairperson", "vice_chairperson", "schriftfuehrer", "spokesperson", "member"];
 
 function classifyPosition(pos: string): string | null {
   const p = pos.toLowerCase();
   if (/vorsitzend/.test(p)) return /stellv|stv\.?/.test(p) ? "vice_chairperson" : "chairperson";
-  if (/schriftführer/.test(p)) return "foreperson";
+  // eigener Wert (NICHT abgeordnetenwatchs "foreperson" = Obmann/Obfrau)
+  if (/schriftführer/.test(p)) return "schriftfuehrer";
   if (/sprecher/.test(p)) return "spokesperson";
   return null;
 }
