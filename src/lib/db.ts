@@ -745,6 +745,9 @@ export interface ListParams {
 
 export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]; total: number } {
   const db = getDb();
+  // Berlin-Pilot: nur im eigenen Filter (?parlament=2) sichtbar — Default-Liste,
+  // globale Counts und Suche bleiben Bundestag.
+  const berlinScope = params.parliamentId === BERLIN_PILOT_PARLIAMENT_ID;
   const conditions: string[] = [];
   const args: (string | number)[] = [];
 
@@ -762,19 +765,30 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
     args.push(params.partyId);
   }
 
-  // Aktiv-Filter (nicht ausgeschieden, nicht verstorben) zusätzlich zu User-Filtern
-  conditions.push(IS_POLITICIAN_ACTIVE_SQL);
-  args.push(...VISIBLE_PARLIAMENT_TYPE_VALUES);
+  // Aktiv-/Sichtbarkeits-Filter — Bundestag-typisiert oder Berlin-Pilot-gescopt
+  if (berlinScope) {
+    conditions.push(`EXISTS (
+      SELECT 1 FROM mandates m_act
+      JOIN parliament_periods pp_act ON m_act.parliament_period_id = pp_act.id
+      WHERE m_act.politician_id = p.id AND m_act.type = 'mandate'
+        AND pp_act.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID})`);
+  } else {
+    conditions.push(IS_POLITICIAN_ACTIVE_SQL);
+    args.push(...VISIBLE_PARLIAMENT_TYPE_VALUES);
+  }
 
   const where = `WHERE ${conditions.join(" AND ")}`;
   const limit = params.limit ?? 50;
   const offset = params.offset ?? 0;
 
-  // Pro Politiker:in nur das aktive Mandat eines sichtbaren Parlament-Typs anzeigen
+  // Pro Politiker:in nur das aktive Mandat des relevanten Scopes anzeigen
   // (sonst erscheinen MdBs mit zusätzlichen Landtags-Mandaten doppelt — siehe
   // Carsten Becker: Bundestag + Saarland). end_date-Filter blendet beendete
   // Mandate aus (z. B. ✝ Träger).
-  const visibleTypesPlaceholders = VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ");
+  const mandateScope = berlinScope
+    ? `par_v.id = ${BERLIN_PILOT_PARLIAMENT_ID}`
+    : `par_v.type IN (${VISIBLE_PARLIAMENT_TYPES.map(() => "?").join(", ")})`;
+  const joinArgs: string[] = berlinScope ? [] : [...VISIBLE_PARLIAMENT_TYPE_VALUES];
   const visibleMandateJoin = `
     LEFT JOIN (
       SELECT m_v.politician_id, m_v.fraction, m_v.constituency,
@@ -782,20 +796,24 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
       FROM mandates m_v
       JOIN parliament_periods pp_v ON m_v.parliament_period_id = pp_v.id
       JOIN parliaments par_v ON pp_v.parliament_id = par_v.id
-      WHERE m_v.type = 'mandate' AND par_v.type IN (${visibleTypesPlaceholders})
+      WHERE m_v.type = 'mandate' AND ${mandateScope}
         AND (m_v.end_date IS NULL OR m_v.end_date = '' OR m_v.end_date > date('now'))
       GROUP BY m_v.politician_id
     ) vm ON vm.politician_id = p.id
   `;
+
+  const whereSql = where
+    .replace(/\bm\.fraction\b/g, "vm.fraction")
+    .replace(/\bpar\.id\b/g, "vm.parliament_id");
 
   const countSql = `
     SELECT COUNT(DISTINCT p.id) as c
     FROM politicians p
     LEFT JOIN parties pa ON p.party_id = pa.id
     ${visibleMandateJoin}
-    ${where.replace(/\bm\.fraction\b/g, "vm.fraction").replace(/\bpar\.id\b/g, "vm.parliament_id")}
+    ${whereSql}
   `;
-  const total = (db.prepare(countSql).get(...VISIBLE_PARLIAMENT_TYPE_VALUES, ...args) as { c: number }).c;
+  const total = (db.prepare(countSql).get(...joinArgs, ...args) as { c: number }).c;
 
   const dataSql = `
     SELECT p.*, pa.label as party_label,
@@ -805,11 +823,11 @@ export function listPoliticians(params: ListParams): { rows: PoliticianListRow[]
     FROM politicians p
     LEFT JOIN parties pa ON p.party_id = pa.id
     ${visibleMandateJoin}
-    ${where.replace(/\bm\.fraction\b/g, "vm.fraction").replace(/\bpar\.id\b/g, "vm.parliament_id")}
+    ${whereSql}
     ORDER BY p.last_name, p.first_name
     LIMIT ? OFFSET ?
   `;
-  const rows = db.prepare(dataSql).all(...VISIBLE_PARLIAMENT_TYPE_VALUES, ...args, limit, offset) as PoliticianListRow[];
+  const rows = db.prepare(dataSql).all(...joinArgs, ...args, limit, offset) as PoliticianListRow[];
 
   return { rows, total };
 }
@@ -3443,4 +3461,104 @@ export function getBerlinParlamentarischeArbeit(
       items: buckets[k].slice(0, perGroup),
     }));
   return { groups, total: rows.length };
+}
+
+// ============================================================
+// Parlaments-Hub — Übersicht aller Parlamente (Bund, Länder, EU)
+// für die skalierbare Hub-/Landing-Navigation.
+// ============================================================
+
+export interface ParliamentOverview {
+  id: number;
+  label: string;
+  type: string; // bundestag | landtag | eu
+  memberCount: number;
+  /** Abdeckungstiefe — bestimmt Badge + ob die Kachel verlinkt ist. */
+  tier: "voll" | "pilot" | "stammdaten";
+}
+
+export function getParliamentsOverview(): ParliamentOverview[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT par.id, par.label, par.type,
+           COUNT(DISTINCT m.politician_id) AS members
+    FROM parliaments par
+    LEFT JOIN parliament_periods pp ON pp.parliament_id = par.id
+    LEFT JOIN mandates m ON m.parliament_period_id = pp.id AND m.type = 'mandate'
+    GROUP BY par.id
+  `).all() as { id: number; label: string; type: string; members: number }[];
+
+  return rows.map((r) => ({
+    id: r.id,
+    label: r.label,
+    type: r.type,
+    memberCount: r.members,
+    tier:
+      r.type === "bundestag" ? "voll"
+      : r.id === BERLIN_PILOT_PARLIAMENT_ID ? "pilot"
+      : "stammdaten",
+  }));
+}
+
+// ============================================================
+// Berlin-Übersichtsseite — Snapshot fürs „Aktuelles aus dem
+// Abgeordnetenhaus" (analog zur Bundestag-Landing, aber aus PARDOK).
+// ============================================================
+
+export interface BerlinSnapshot {
+  memberCount: number;
+  anfragenCount: number;
+  redenCount: number;
+  ausschussCount: number;
+  cvCount: number;
+  latestPlenum: { dokNr: string; datum: string } | null;
+  latestAnfragen: { titel: string; datum: string; dokNr: string; lokUrl: string | null }[];
+}
+
+export function getBerlinSnapshot(): BerlinSnapshot {
+  const db = getDb();
+  const one = (sql: string, ...p: unknown[]) =>
+    ((db.prepare(sql).get(...p) as { c: number } | undefined)?.c ?? 0);
+
+  const memberCount = one(
+    `SELECT COUNT(DISTINCT m.politician_id) AS c FROM mandates m
+     JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+     WHERE pp.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID} AND m.type = 'mandate'`
+  );
+  const cvCount = one(
+    `SELECT COUNT(*) AS c FROM politicians p
+     JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
+     JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+     WHERE pp.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID} AND p.cv_summary IS NOT NULL`
+  );
+
+  let anfragenCount = 0, redenCount = 0, ausschussCount = 0;
+  let latestPlenum: BerlinSnapshot["latestPlenum"] = null;
+  let latestAnfragen: BerlinSnapshot["latestAnfragen"] = [];
+  try {
+    anfragenCount = one(`SELECT COUNT(*) AS c FROM berlin_documents WHERE dok_typ_label LIKE '%Anfrage%'`);
+    redenCount = one(`SELECT COUNT(*) AS c FROM berlin_document_persons WHERE role = 'redner'`);
+    ausschussCount = one(`SELECT COUNT(*) AS c FROM committee_memberships WHERE committee_id >= 92000`);
+    const pl = db.prepare(
+      `SELECT dok_nr, dok_datum FROM berlin_documents
+       WHERE dok_art_label = 'Plenarprotokoll' AND dok_datum IS NOT NULL AND dok_datum != ''
+       ORDER BY dok_datum DESC LIMIT 1`
+    ).get() as { dok_nr: string; dok_datum: string } | undefined;
+    if (pl) latestPlenum = { dokNr: pl.dok_nr, datum: pl.dok_datum };
+    latestAnfragen = (db.prepare(
+      `SELECT titel, dok_datum, dok_nr, lok_url FROM berlin_documents
+       WHERE dok_typ_label = 'Schriftliche Anfrage'
+         AND titel IS NOT NULL AND titel != '' AND dok_datum IS NOT NULL AND dok_datum != ''
+       ORDER BY dok_datum DESC LIMIT 5`
+    ).all() as { titel: string; dok_datum: string; dok_nr: string; lok_url: string | null }[]).map((r) => ({
+      titel: r.titel,
+      datum: r.dok_datum,
+      dokNr: r.dok_nr,
+      lokUrl: r.lok_url,
+    }));
+  } catch {
+    // berlin_*-Tabellen noch nicht angelegt
+  }
+
+  return { memberCount, anfragenCount, redenCount, ausschussCount, cvCount, latestPlenum, latestAnfragen };
 }

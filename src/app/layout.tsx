@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
+import { getParliamentsOverview } from "@/lib/db";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const parliaments = getParliamentsOverview();
   return (
     <html
       lang="de"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome parliaments={parliaments}>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -53,6 +53,8 @@ export default async function PolitikerListPage({ searchParams }: Props) {
             <span className="text-[13px] text-zinc-500">
               {partei || q
                 ? "Treffer"
+                : parlament === "2"
+                ? "Abgeordnete des Abgeordnetenhauses von Berlin"
                 : `Politiker:innen (${stats.mdbs.toLocaleString("de-DE")} Bundestagsabgeordnete${
                     stats.cabinetQuereinsteiger > 0
                       ? ` + ${stats.cabinetQuereinsteiger} Quereinsteiger-Bundesminister:innen`

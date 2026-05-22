@@ -3,13 +3,21 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen } from "lucide-react";
+import { ParliamentSwitcher } from "./ParliamentSwitcher";
+import type { ParliamentOverview } from "@/lib/db";
 
 /**
  * SiteChrome wraps every page with the matching header & footer for the active
  * design variant. Default routes get the original chrome; routes under
  * /design/<variant> get a per-variant chrome.
  */
-export function SiteChrome({ children }: { children: React.ReactNode }) {
+export function SiteChrome({
+  children,
+  parliaments,
+}: {
+  children: React.ReactNode;
+  parliaments: ParliamentOverview[];
+}) {
   const pathname = usePathname() || "/";
   // `/` wird via next.config.ts-Rewrite intern auf /design/linear gemappt,
   // bleibt aber als sichtbare URL `/` — daher hier explizit zu Linear-Chrome routen.
@@ -22,7 +30,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   if (variant === "linear") {
     return (
       <div className="design-linear flex flex-col min-h-full">
-        <LinearHeader />
+        <LinearHeader parliaments={parliaments} />
         <main className="flex-1">{children}</main>
         <LinearFooter />
       </div>
@@ -113,23 +121,23 @@ const LINEAR_NAV = [
   { href: "/design/linear/suche", icon: Search, label: "Suche" },
 ];
 
-function LinearHeader() {
+function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
   return (
     <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border-soft">
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
-        <Link href="/design/linear" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center transition-transform group-hover:scale-105">
-            <Radio className="w-4 h-4 text-white" strokeWidth={2.5} />
-          </div>
-          <div className="hidden sm:flex items-baseline gap-2">
-            <span className="text-[15px] font-semibold tracking-tight text-foreground">
+        <div className="flex items-center gap-2.5">
+          <Link href="/design/linear" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center transition-transform group-hover:scale-105">
+              <Radio className="w-4 h-4 text-white" strokeWidth={2.5} />
+            </div>
+            <span className="hidden sm:inline text-[15px] font-semibold tracking-tight text-foreground">
               Politik-Radar
             </span>
-            <span className="text-[11px] text-muted font-medium uppercase tracking-wider">
-              Bundestag
-            </span>
+          </Link>
+          <div className="hidden sm:block">
+            <ParliamentSwitcher parliaments={parliaments} />
           </div>
-        </Link>
+        </div>
         <nav className="flex items-center gap-0.5">
           {LINEAR_NAV.map((item) => (
             <Link
