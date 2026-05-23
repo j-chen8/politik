@@ -3464,6 +3464,143 @@ export function getBerlinParlamentarischeArbeit(
 }
 
 // ============================================================
+// Berlin-Pilot: Reden eines:r MdL aus berlin_speeches.
+// Liefert Volltexte + TOP-Kontext + Interruption-Counts, OHNE LLM-Felder
+// (Berlin-Reden sind noch nicht KI-zusammengefasst — explizit als
+// Limitation in UI markieren).
+// ============================================================
+
+export interface BerlinSpeechItem {
+  speech_id: string;
+  wp: number;
+  sitzung_nr: number;
+  datum: string | null;
+  pdf_filename: string;
+  lok_url: string;
+  speaker_role: string | null;        // null = MdL
+  speaker_ressort: string | null;
+  top_marker: string | null;
+  top_titel: string | null;
+  drucksache_nrn: string[];
+  speech_type: string | null;
+  text_chars: number;
+  text_preview: string;               // erste ~200 Zeichen ohne Grußformel
+  interruption_count: number;         // Anzahl [Beifall|Zwischenruf|...] in der Rede
+}
+
+export interface BerlinSpeechStats {
+  total: number;                      // Gesamt-Reden (ohne Präsidium)
+  debatte: number;
+  fragestunde_antwort: number;
+  fragestunde_frage: number;
+  persoenliche_erklaerung: number;
+  uncategorized: number;              // speech_type IS NULL
+}
+
+export interface BerlinSpeechesByPolitician {
+  items: BerlinSpeechItem[];          // chronologisch absteigend, auf limit gekappt
+  stats: BerlinSpeechStats;
+  total_chars: number;                // Σ Wortlaut-Zeichen über alle Reden
+}
+
+/** Entfernt typische Grußformel am Anfang für eine aussagekräftige Vorschau. */
+function speechPreview(text: string, maxLen = 200): string {
+  // pdf-parse Bindestriche: "Wort- \nWort" zusammenfügen
+  let t = text.replace(/-\n([a-zäöüß])/g, "$1").replace(/\s+/g, " ").trim();
+  // Strip Standard-Grußformeln (greedy, max 1 Match)
+  t = t.replace(
+    /^(?:Herr|Frau|Sehr geehrte[rs]?|Liebe[rs]?)[^!.?]{0,120}[!.?]\s*(?:[A-ZÄÖÜ][^!.?]{0,120}[!.?]\s*)?/,
+    ""
+  );
+  if (t.length <= maxLen) return t;
+  // Auf letztem Whitespace innerhalb maxLen schneiden
+  const cut = t.lastIndexOf(" ", maxLen);
+  return (cut > maxLen * 0.6 ? t.slice(0, cut) : t.slice(0, maxLen)) + "…";
+}
+
+export function getBerlinSpeechesByPolitician(
+  politicianId: number,
+  limit = 100
+): BerlinSpeechesByPolitician {
+  const db = getDb();
+  let rows: Array<{
+    speech_id: string; wp: number; sitzung_nr: number; datum: string | null;
+    pdf_filename: string; lok_url: string;
+    speaker_role: string | null; speaker_ressort: string | null;
+    top_marker: string | null; top_titel: string | null; drucksache_nrn: string | null;
+    speech_type: string | null;
+    text: string; text_chars: number; interruptions: string | null;
+  }>;
+  try {
+    rows = db.prepare(`
+      SELECT speech_id, wp, sitzung_nr, datum, pdf_filename, lok_url,
+             speaker_role, speaker_ressort, top_marker, top_titel, drucksache_nrn,
+             speech_type, text, text_chars, interruptions
+        FROM berlin_speeches
+       WHERE politician_id = ?
+         AND is_praesidium = 0
+       ORDER BY datum DESC, sitzung_nr DESC, order_in_session DESC
+    `).all(politicianId) as typeof rows;
+  } catch {
+    return {
+      items: [],
+      stats: { total: 0, debatte: 0, fragestunde_antwort: 0, fragestunde_frage: 0, persoenliche_erklaerung: 0, uncategorized: 0 },
+      total_chars: 0,
+    }; // berlin_speeches-Tabelle existiert nicht
+  }
+
+  const stats: BerlinSpeechStats = {
+    total: rows.length,
+    debatte: 0,
+    fragestunde_antwort: 0,
+    fragestunde_frage: 0,
+    persoenliche_erklaerung: 0,
+    uncategorized: 0,
+  };
+  let totalChars = 0;
+  for (const r of rows) {
+    totalChars += r.text_chars ?? 0;
+    switch (r.speech_type) {
+      case "debatte": stats.debatte++; break;
+      case "fragestunde_antwort": stats.fragestunde_antwort++; break;
+      case "fragestunde_frage": stats.fragestunde_frage++; break;
+      case "persoenliche_erklaerung": stats.persoenliche_erklaerung++; break;
+      default: stats.uncategorized++;
+    }
+  }
+
+  const items: BerlinSpeechItem[] = rows.slice(0, limit).map((r) => {
+    let interruptionCount = 0;
+    if (r.interruptions) {
+      try { interruptionCount = (JSON.parse(r.interruptions) as unknown[]).length; } catch { /* keep 0 */ }
+    }
+    let drsNrn: string[] = [];
+    if (r.drucksache_nrn) {
+      try { drsNrn = JSON.parse(r.drucksache_nrn) as string[]; } catch { /* keep [] */ }
+    }
+    return {
+      speech_id: r.speech_id,
+      wp: r.wp,
+      sitzung_nr: r.sitzung_nr,
+      datum: r.datum,
+      pdf_filename: r.pdf_filename,
+      lok_url: r.lok_url,
+      speaker_role: r.speaker_role,
+      speaker_ressort: r.speaker_ressort,
+      top_marker: r.top_marker,
+      top_titel: r.top_titel,
+      drucksache_nrn: drsNrn,
+      speech_type: r.speech_type,
+      text_chars: r.text_chars ?? 0,
+      text_preview: speechPreview(r.text ?? ""),
+      interruption_count: interruptionCount,
+    };
+  });
+
+  return { items, stats, total_chars: totalChars };
+}
+
+// ============================================================
 // Parlaments-Hub — Übersicht aller Parlamente (Bund, Länder, EU)
 // für die skalierbare Hub-/Landing-Navigation.
 // ============================================================

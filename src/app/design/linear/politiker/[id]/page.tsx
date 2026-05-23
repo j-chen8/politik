@@ -13,6 +13,7 @@ import {
   getCVMergeDropsForPolitician,
   getDrucksachenForPolitician,
   getBerlinParlamentarischeArbeit,
+  getBerlinSpeechesByPolitician,
   type PoliticianDrucksacheRow,
   type BerlinParlItem,
 } from "@/lib/db";
@@ -86,12 +87,24 @@ function committeeRoleLabel(role: string | null): string {
   }
 }
 
-/** Kurz-Label für eine Berlin-PARDOK-Position (Reden / Anfragen / Anträge). */
+/** Kurz-Label für eine Berlin-PARDOK-Position (Anfragen / Anträge — Reden separat). */
 function berlinKatLabel(it: BerlinParlItem): string {
   if (it.kategorie === "rede") return "Rede";
   if (it.kategorie === "anfrage") return it.dokTyp?.startsWith("Mündl") ? "Mdl. Anfrage" : "Schr. Anfrage";
   if (it.kategorie === "antrag") return "Antrag";
   return it.dokTyp ?? "Drucksache";
+}
+
+/** Speech-Type-Label für Berlin-Reden (aus berlin_speeches.speech_type). */
+function berlinSpeechTypeLabel(t: string | null): string {
+  switch (t) {
+    case "debatte": return "Debatte";
+    case "fragestunde_antwort": return "Antwort";
+    case "fragestunde_frage": return "Frage";
+    case "persoenliche_erklaerung": return "Pers. Erkl.";
+    case "praesidium": return "Präsidium";
+    default: return "Beitrag";
+  }
 }
 
 export default async function PolitikerPage({ params, searchParams }: Props) {
@@ -119,8 +132,10 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const sidejobs = getSidejobsForPoliticianDb(politicianId);
   const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
   const drucksachen = getDrucksachenForPolitician(politicianId, 100);
-  // Berlin-Pilot: parlamentarische Arbeit aus den PARDOK-Daten (Reden, Anfragen, Anträge)
+  // Berlin-Pilot: parlamentarische Arbeit aus den PARDOK-Daten (Anfragen, Anträge)
+  // — der "Rede"-Bucket wird unten als eigene Sektion aus berlin_speeches gerendert.
   const berlinArbeit = getBerlinParlamentarischeArbeit(politicianId);
+  const berlinReden = getBerlinSpeechesByPolitician(politicianId, 100);
   // Audit-Trail: welche Einträge wurden vom Dedup-Skript ausgeblendet (nur sichtbar wenn !showOriginal)
   const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
@@ -496,17 +511,129 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           );
         })()}
 
-        {/* Berlin-Pilot: Parlamentarische Arbeit aus den PARDOK-Daten.
-            Eigener Titel — kollidiert sonst bei den 5 Senator-MdL mit der
-            generischen "Parlamentarische Arbeit"-Karte (deren Bundesrats-Reden). */}
-        {berlinArbeit.total > 0 && (
+        {/* Berlin-Pilot: Reden im Abgeordnetenhaus aus berlin_speeches (mit Volltext-Preview).
+            Eigene Karte vor der PARDOK-Übersicht, weil sie reicheren Kontext bietet
+            (TOP, speech_type, Interruptions, gekürzter Text). */}
+        {berlinReden.stats.total > 0 && (
           <CollapsibleCard
-            title="Parlamentarische Arbeit im Abgeordnetenhaus"
-            count={berlinArbeit.total}
+            title="Reden im Abgeordnetenhaus"
+            count={berlinReden.stats.total}
+            className="mb-6"
+          >
+            {/* Stats-Strip */}
+            <div className="flex flex-wrap gap-x-5 gap-y-1.5 mb-3 text-[12px]">
+              {berlinReden.stats.debatte > 0 && (
+                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.debatte}</span> Debatten</span>
+              )}
+              {berlinReden.stats.fragestunde_frage > 0 && (
+                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.fragestunde_frage}</span> Fragen</span>
+              )}
+              {berlinReden.stats.fragestunde_antwort > 0 && (
+                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.fragestunde_antwort}</span> Antworten</span>
+              )}
+              {berlinReden.stats.persoenliche_erklaerung > 0 && (
+                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.persoenliche_erklaerung}</span> Pers. Erkl.</span>
+              )}
+              <span className="text-zinc-400 num">
+                Ø {Math.round(berlinReden.total_chars / berlinReden.stats.total).toLocaleString("de-DE")} Z./Rede
+              </span>
+            </div>
+            {/* Transparenz-Hinweis: Berlin-Reden sind noch nicht KI-zusammengefasst */}
+            <p className="text-[11px] text-zinc-500 mb-4 italic">
+              Volltexte direkt aus den PDF-Plenarprotokollen — noch keine KI-Zusammenfassung wie bei Bundestags-Reden.
+              Vorschau zeigt den Anfang nach Grußformel.
+            </p>
+            <div className="space-y-1.5 max-h-[640px] overflow-y-auto pr-1">
+              {berlinReden.items.map((it) => {
+                const drsShort = it.drucksache_nrn.slice(0, 3);
+                const drsExtra = it.drucksache_nrn.length - drsShort.length;
+                return (
+                  <article
+                    key={it.speech_id}
+                    className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                  >
+                    <div className="flex flex-col items-start gap-0.5 shrink-0 w-24">
+                      <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                        {berlinSpeechTypeLabel(it.speech_type)}
+                      </span>
+                      {it.datum && (
+                        <span className="num text-[10px] text-zinc-400">
+                          {new Date(it.datum + "T00:00:00").toLocaleDateString("de-DE", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          })}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {it.top_titel && (
+                        <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
+                          {it.top_marker ? `${it.top_marker} ` : ""}{it.top_titel}
+                        </p>
+                      )}
+                      {it.text_preview && (
+                        <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-1.5 line-clamp-2">
+                          {it.text_preview}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
+                        <span>Sitzung {it.sitzung_nr}</span>
+                        <span className="text-zinc-200">·</span>
+                        <span title={`${it.text_chars.toLocaleString("de-DE")} Zeichen`}>
+                          {it.text_chars >= 1000 ? `${(it.text_chars / 1000).toFixed(1)}k Z.` : `${it.text_chars} Z.`}
+                        </span>
+                        {it.interruption_count > 0 && (
+                          <>
+                            <span className="text-zinc-200">·</span>
+                            <span title="Beifall, Zwischenrufe und sonstige Reaktionen">
+                              {`${it.interruption_count} Reaktion${it.interruption_count === 1 ? "" : "en"}`}
+                            </span>
+                          </>
+                        )}
+                        {drsShort.length > 0 && (
+                          <>
+                            <span className="text-zinc-200">·</span>
+                            <span title={it.drucksache_nrn.join(", ")}>
+                              Drs. {drsShort.join(", ")}{drsExtra > 0 ? ` (+${drsExtra})` : ""}
+                            </span>
+                          </>
+                        )}
+                        <span className="text-zinc-200">·</span>
+                        <a
+                          href={it.lok_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                        >
+                          PDF
+                          <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+              {berlinReden.stats.total > berlinReden.items.length && (
+                <p className="text-[11px] text-zinc-400 italic px-3 py-2">
+                  + {berlinReden.stats.total - berlinReden.items.length} weitere Reden (nicht angezeigt)
+                </p>
+              )}
+            </div>
+          </CollapsibleCard>
+        )}
+
+        {/* Berlin-Pilot: Anfragen & Anträge aus den PARDOK-Daten.
+            Reden werden oben separat aus berlin_speeches gerendert — hier nur noch
+            der Rest der Dokument-Aktivitäten (anfrage/antrag/sonstige). */}
+        {berlinArbeit.groups.filter((g) => g.kategorie !== "rede").length > 0 && (
+          <CollapsibleCard
+            title="Anfragen & Anträge im Abgeordnetenhaus"
+            count={berlinArbeit.groups.filter((g) => g.kategorie !== "rede").reduce((a, g) => a + g.total, 0)}
             className="mb-6"
           >
             <div className="space-y-6 max-h-[640px] overflow-y-auto pr-1">
-              {berlinArbeit.groups.map((g) => (
+              {berlinArbeit.groups.filter((g) => g.kategorie !== "rede").map((g) => (
                 <div key={g.kategorie}>
                   <div className="flex items-baseline gap-2 mb-2.5">
                     <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
