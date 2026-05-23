@@ -11,7 +11,7 @@ const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: str
     items: [
       { id: "wirksamkeit", label: "Wirksamkeit auf einen Blick" },
       { id: "halluzinations-rate", label: "Was die Rate bedeutet", sub: "Lower Bound" },
-      { id: "coverage-bias", label: "Coverage-Bias", sub: "Quellen-Asymmetrie" },
+      { id: "limitationen", label: "Bekannte Limitationen", sub: "Pipeline-Pathologien" },
     ],
   },
   {
@@ -28,22 +28,23 @@ const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: str
       { id: "plenarbeitrag-typen", label: "Was zählt als was?", sub: "Taxonomie" },
       { id: "reden-pipeline", label: "Reden-Pipeline", sub: "Reden + Vote-Topic" },
       { id: "glossar-tonalitaet", label: "Glossar — Tonalitäten" },
+      { id: "glossar-redentyp", label: "Glossar — Reden-Typen" },
       { id: "tonalitaet-verteilung", label: "Tonalitäts-Verteilung", sub: "je Fraktion" },
       { id: "rede-audit", label: "Audit Rede-Analysen", sub: "20-Sample-Stichprobe" },
-      { id: "glossar-redentyp", label: "Glossar — Reden-Typen" },
     ],
   },
   {
     label: "Voting + Drucksachen",
     items: [
-      { id: "vote-drucksache-audit", label: "Vote-↔-Drucksache", sub: "Cross-Source-Audit" },
       { id: "tonalitaet-drucksachen", label: "Tonalität Kleiner Anfragen", sub: "je Fraktion" },
+      { id: "vote-drucksache-audit", label: "Vote-↔-Drucksache", sub: "Cross-Source-Audit" },
     ],
   },
   {
     label: "Audit & Ehrlichkeit",
     items: [
       { id: "audit-trail", label: "Audit-Trail" },
+      { id: "coverage-bias", label: "Coverage-Bias", sub: "Quellen-Asymmetrie" },
       { id: "ehrlichkeit", label: "Ehrlicher Hinweis" },
     ],
   },
@@ -314,6 +315,29 @@ export default function LinearMethodikPage() {
               </ul>
             </div>
 
+          </div>
+        </section>
+
+        {/* Bekannte Limitationen + Pipeline-Pathologien */}
+        <section id="limitationen" className="mb-14 scroll-mt-20">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+            Bekannte Limitationen
+          </h2>
+          <p className="text-[13.5px] text-zinc-600 leading-relaxed mb-4 max-w-2xl">
+            Was die Pipelines können <em>und was nicht</em> — sechs konkrete Schwächen, die
+            wir aktiv tracken. Die Liste steht bewusst <strong className="text-zinc-950">vor</strong>{" "}
+            den Pipeline-Beschreibungen, damit kein Reviewer erst 1000 Zeilen Methodik liest, bevor
+            die Grenzen sichtbar werden. Coverage-Bias der Quellen wird separat unten dokumentiert.
+          </p>
+          <div className="rounded-2xl border border-amber-200/70 bg-amber-50/40 p-5">
+            <ul className="space-y-2 ml-1 text-[13.5px] text-zinc-700 leading-relaxed">
+              <li>· <strong className="text-zinc-950">Stale-Page-Scraping (Orphan-URLs):</strong> bei mind. einem Fall (Bareiß) hat der Scraper eine alte Wahlkampf-Webseite gefolgt, die zum Scraping-Zeitpunkt noch unter der bekannten URL erreichbar war. Folge: gescrapte Vita-Sektionen referenzieren ein längst ausgelaufenes Mandat. Wir re-scrapen diese Fälle <em>nicht</em> automatisch; stattdessen sind sie mit cv_homepage_status markiert und im Profil-Display als „Datenstand" datiert.</li>
+              <li>· <strong className="text-zinc-950">Leere oder Standard-Profil-Seiten:</strong> einige Homepage-URLs (insbesondere AfD-Standard-Layouts) liefern Stub-Seiten ohne strukturierten Vita-Block. Die Extraktion erzeugt dann ein leeres cv_homepage_json — wird im Source-Coherence-Vergleich übersprungen, aber als „2-Quellen-Vergleich nicht möglich" gekennzeichnet.</li>
+              <li>· <strong className="text-zinc-950">Multi-Page-Biographien werden nicht traversiert:</strong> wenn eine Homepage einen Hub-Page mit Links zu Unter-Seiten („Werdegang", „Politische Stationen", „Engagements") betreibt, fetcht der Scraper nur den Hub. Folge: Teile der Vita gehen verloren oder das LLM extrahiert aus dem Hub-Layout halluzinierte Felder. Mindestens 1 dokumentierter Fall (Heiligenstadt: Hub + 3 Themen-Seiten).</li>
+              <li>· <strong className="text-zinc-950">Source-Coherence-Recall ist niedrig:</strong> auf einer Bewertungsstichprobe lag der Recall des Wikipedia↔Homepage-Konflikt-Detectors bei ~13 %. Die Pipeline findet damit nur eine Minderheit der echten Diskrepanzen. Die hier öffentlich gezeigten Konflikte sind dokumentierte Treffer, nicht „die Gesamtmenge aller Diskrepanzen in der DB".</li>
+              <li>· <strong className="text-zinc-950">Tonalitäts-Enum-Drift:</strong> trotz JSON-Schema-Enum gibt das LLM in ~{counts.tonalitatsDriftRepaired} Fällen Tonalitäts-Werte ausserhalb der erlaubten 11 Klassen aus. Wird deterministisch in den nächstgelegenen Enum-Wert gemappt (siehe Reden-Pipeline Step ⊕), Original bleibt als tonalitaet_original erhalten.</li>
+              <li>· <strong className="text-zinc-950">Datenreihe nur 21. Wahlperiode:</strong> alle Plenar-, Drucksachen- und Aktivitäts-Daten beginnen mit dem konstituierenden Tag der 21. WP am <strong>31.03.2025</strong>. Historische Trends über mehrere Wahlperioden hinweg (z.B. „Verschiebung von Sach- zu Skandalisierungsanfragen seit der 19. WP") lassen sich aus diesem Datenstand nicht belegen. Lebensläufe enthalten dagegen Stationen vor der 21. WP, weil sie aus Wikipedia/Bundestag-Bio extrahiert werden. Eine rückwirkende Erfassung früherer Wahlperioden ist möglich (DIP-API stellt sie bereit), aber bisher nicht ingestiert.</li>
+            </ul>
           </div>
         </section>
 
@@ -726,6 +750,43 @@ export default function LinearMethodikPage() {
           </div>
         </section>
 
+        {/* Glossar — Reden-Typen */}
+        <section id="glossar-redentyp" className="mb-14 scroll-mt-20">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            Glossar — Reden-Typen (A–K)
+          </h2>
+          <p className="text-[14px] text-zinc-600 leading-relaxed mb-3 max-w-3xl">
+            Ergänzend zur Tonalität klassifizieren wir den <em>Funktionstyp</em>{" "}
+            jeder Rede. Eine einzelne Rede kann mehreren Typen zugeordnet sein
+            (notiert als <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">A+B</code>).
+          </p>
+          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
+            <p className="text-[12.5px] text-amber-900 leading-relaxed">
+              Auch hier gilt: die Typen beschreiben die <em>rhetorische Funktion</em>{" "}
+              einer Rede, nicht ihre Qualität oder inhaltliche Richtigkeit. Etiketten
+              wie „polemisch" oder „bilanzierend" sind deskriptiv gemeint —
+              keine Bewertung der politischen Position.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {REDEN_TYP_DEFS.map((d) => (
+              <div
+                key={d.code}
+                id={`glossar-redentyp-${d.code}`}
+                className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
+              >
+                <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">
+                  <span className="font-mono text-zinc-500 mr-2">{d.code}</span>
+                  {d.label}
+                </h3>
+                <p className="text-[13px] text-zinc-700 leading-relaxed">
+                  {d.long}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Tonalitäts-Verteilung je Fraktion */}
         <section id="tonalitaet-verteilung" className="mb-14 scroll-mt-20">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
@@ -917,110 +978,6 @@ export default function LinearMethodikPage() {
           </div>
         </section>
 
-        {/* Glossar — Reden-Typen */}
-        <section id="glossar-redentyp" className="mb-14 scroll-mt-20">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
-            Glossar — Reden-Typen (A–K)
-          </h2>
-          <p className="text-[14px] text-zinc-600 leading-relaxed mb-3 max-w-3xl">
-            Ergänzend zur Tonalität klassifizieren wir den <em>Funktionstyp</em>{" "}
-            jeder Rede. Eine einzelne Rede kann mehreren Typen zugeordnet sein
-            (notiert als <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">A+B</code>).
-          </p>
-          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
-            <p className="text-[12.5px] text-amber-900 leading-relaxed">
-              Auch hier gilt: die Typen beschreiben die <em>rhetorische Funktion</em>{" "}
-              einer Rede, nicht ihre Qualität oder inhaltliche Richtigkeit. Etiketten
-              wie „polemisch" oder „bilanzierend" sind deskriptiv gemeint —
-              keine Bewertung der politischen Position.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {REDEN_TYP_DEFS.map((d) => (
-              <div
-                key={d.code}
-                id={`glossar-redentyp-${d.code}`}
-                className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
-              >
-                <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">
-                  <span className="font-mono text-zinc-500 mr-2">{d.code}</span>
-                  {d.label}
-                </h3>
-                <p className="text-[13px] text-zinc-700 leading-relaxed">
-                  {d.long}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Vote-↔-Drucksache Cross-Source-Audit (2026-05-13) */}
-        <section id="vote-drucksache-audit" className="mb-14 scroll-mt-20">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
-            Vote-↔-Drucksache — Cross-Source-Audit gegen Bundestag.de
-          </h2>
-
-          <p className="text-[15px] text-zinc-600 leading-relaxed mb-5 max-w-3xl">
-            Welcher Antrag, welche Beschlussempfehlung gehört zu welcher namentlichen
-            Abstimmung? Statt auf eine Heuristik zu vertrauen, ist die Zuordnung
-            <strong className="text-zinc-950"> gegen Bundestag.de — die offizielle Quelle — verifiziert</strong>.
-            Pipeline und Ergebnis-Tabellen sind dokumentiert in{" "}
-            <code className="text-[12.5px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">docs/vote-drucksache-mapping-methodology.md</code>.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden mb-5">
-            <BigStat value={`${counts.pollsCount}/${counts.pollsCount}`} label="Polls verifiziert" sub="100 % Coverage" />
-            <BigStat value="121" label="Bundestag-Pages" sub="gecrawled (IDs 900-1020)" />
-            <BigStat value="270" label="Drucksachen-Links" sub="vorher 57 (~5×)" highlight />
-            <BigStat value="16" label="Korrektur-Fälle" sub="alte Heuristik daneben" />
-          </div>
-
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-6 space-y-4 text-[14px] text-zinc-700 leading-relaxed">
-            <div>
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Vorgehen</div>
-              <ol className="space-y-1.5 ml-1 text-[13.5px] list-decimal list-inside">
-                <li><strong className="text-zinc-950">Crawl</strong> — {counts.bundestagAuditPagesCount} Bundestag.de-Abstimmungs-Pages parsen (Datum, Topic, Drucksachen aus <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">a-link__label</code>-Spans).</li>
-                <li><strong className="text-zinc-950">Klassifikation</strong> — Topic-Match via Longest-Common-Substring (robust gegen deutsche Komposita) gegen unsere Polls.</li>
-                <li><strong className="text-zinc-950">Manuelle Verifikation</strong> — pro Poll Topic-Lesung + Plausibilitäts-Check, gerade bei Bündel-Abstimmungen (mehrere Polls am gleichen Tag).</li>
-                <li><strong className="text-zinc-950">Apply</strong> — alte 57 Mappings archiviert in <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls_pre_bt_audit</code>, neue Bundestag-Liste mit <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">matched_via=&apos;bundestag_de_audit&apos;</code> eingefügt.</li>
-              </ol>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was der Audit aufgedeckt hat</div>
-              <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· <strong className="text-zinc-950">33 / 50</strong> Polls: alte Heuristik hatte die richtige Drucksache (Bundestag hat zusätzliche Begleit-Drucksachen → übernommen).</li>
-                <li>· <strong className="text-amber-900">16 / 50</strong> Polls: alte Heuristik hatte eine <em>falsche</em> Drucksache zugeordnet (typisch: spätere-WP-Nummern oder thematisch ähnliche Anträge). Bundestag-Liste hat diese korrigiert.</li>
-                <li>· <strong className="text-zinc-950">1 / 50</strong> Polls: partielle Korrektur (eine DS ersetzt — Poll 6286 Verbrenner-Verbot, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">21/1593</code> → <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">21/225</code>).</li>
-              </ul>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Konsequenz für die UI</div>
-              <p className="text-[13.5px]">
-                Auf jeder Vote-Detail-Seite (<code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">/abstimmungen/&lt;poll_id&gt;</code>) erscheint die Sektion „Drucksachen zur Abstimmung" mit dem expliziten Hinweis, dass die Verknüpfung autoritativ aus Bundestag.de stammt. Die Plattform versteht sich als Analyse- und Aufbereitungs-Schicht über offiziellen Quellen — nicht als alternative Datenquelle.
-              </p>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Reproduzierbarkeit</div>
-              <ul className="space-y-1 ml-1 text-[13px]">
-                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/audit-vote-drucksache-mapping.ts</code> — Crawler + Auto-Klassifikation</li>
-                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/auto-classify-vote-mapping.ts</code> — LCS-basiertes Topic-Matching</li>
-                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/apply-vote-bundestag-audit.ts</code> — Apply mit manuell verifiziertem 50-Poll-Mapping</li>
-                <li>· DB-Tabellen: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">audit_bundestag_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls_pre_bt_audit</code></li>
-              </ul>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Stimm-Zahlen: Abgleich mit dem offiziellen Protokoll</div>
-              <p className="text-[13.5px]">
-                Die angezeigten Stimm-Zahlen (Ja / Nein / Enthaltung / nicht abgegeben) stammen aus <strong className="text-zinc-950">abgeordnetenwatch</strong> und werden 1:1 gespiegelt. Eine Stichprobe gegen das autoritative Primär-Original — den Stenografischen Bericht des Deutschen Bundestages — bestätigte sie: Beispiel 08.05.2026, Beschlussempfehlung zum Grünen-Antrag „LEADER-Programm sichern" (Plenarprotokoll 21/78, TOP 7d): offiziell verkündet <strong className="text-zinc-950">417 Ja · 73 Nein · 53 Enthaltungen</strong> (543 abgegebene Stimmkarten) — exakt deckungsgleich mit unseren Daten. <span className="text-zinc-500">Hinweis zur Sorgfalt: pro Vorgang finden an einem Sitzungstag oft mehrere namentliche Abstimmungen statt (z. B. zu mehreren Beschlussempfehlungen). Maßgeblich ist immer das im Plenarprotokoll verkündete Ergebnis der konkreten Abstimmung, nicht zusammenfassende Listen-Ansichten. Methodik intern: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">docs/DATA-SOURCES.md §2.13</code>.</span>
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Tonalität Kleiner Anfragen je Fraktion */}
         <section id="tonalitaet-drucksachen" className="mb-14 scroll-mt-20">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
@@ -1104,6 +1061,73 @@ export default function LinearMethodikPage() {
                 <li>· „fordernd" ist nicht parteiisch — alle drei Oppositions­fraktionen liegen zwischen ~49 % und ~59 % fordernd. Die Tabelle zeigt damit kein Werturteil, sondern bestätigt, dass das parlamentarische Kontroll­instrument seine Funktion erfüllt.</li>
                 <li>· Keine Inter-Annotator-Agreement-Studie — wie bei der Reden-Tonalität ist die Klassifikator-Konsistenz nicht extern validiert.</li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Vote-↔-Drucksache Cross-Source-Audit (2026-05-13) */}
+        <section id="vote-drucksache-audit" className="mb-14 scroll-mt-20">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+            Vote-↔-Drucksache — Cross-Source-Audit gegen Bundestag.de
+          </h2>
+
+          <p className="text-[15px] text-zinc-600 leading-relaxed mb-5 max-w-3xl">
+            Welcher Antrag, welche Beschlussempfehlung gehört zu welcher namentlichen
+            Abstimmung? Statt auf eine Heuristik zu vertrauen, ist die Zuordnung
+            <strong className="text-zinc-950"> gegen Bundestag.de — die offizielle Quelle — verifiziert</strong>.
+            Pipeline und Ergebnis-Tabellen sind dokumentiert in{" "}
+            <code className="text-[12.5px] font-mono bg-zinc-100 px-1.5 py-0.5 rounded">docs/vote-drucksache-mapping-methodology.md</code>.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden mb-5">
+            <BigStat value={`${counts.pollsCount}/${counts.pollsCount}`} label="Polls verifiziert" sub="100 % Coverage" />
+            <BigStat value="121" label="Bundestag-Pages" sub="gecrawled (IDs 900-1020)" />
+            <BigStat value="270" label="Drucksachen-Links" sub="vorher 57 (~5×)" highlight />
+            <BigStat value="16" label="Korrektur-Fälle" sub="alte Heuristik daneben" />
+          </div>
+
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-6 space-y-4 text-[14px] text-zinc-700 leading-relaxed">
+            <div>
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Vorgehen</div>
+              <ol className="space-y-1.5 ml-1 text-[13.5px] list-decimal list-inside">
+                <li><strong className="text-zinc-950">Crawl</strong> — {counts.bundestagAuditPagesCount} Bundestag.de-Abstimmungs-Pages parsen (Datum, Topic, Drucksachen aus <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">a-link__label</code>-Spans).</li>
+                <li><strong className="text-zinc-950">Klassifikation</strong> — Topic-Match via Longest-Common-Substring (robust gegen deutsche Komposita) gegen unsere Polls.</li>
+                <li><strong className="text-zinc-950">Manuelle Verifikation</strong> — pro Poll Topic-Lesung + Plausibilitäts-Check, gerade bei Bündel-Abstimmungen (mehrere Polls am gleichen Tag).</li>
+                <li><strong className="text-zinc-950">Apply</strong> — alte 57 Mappings archiviert in <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls_pre_bt_audit</code>, neue Bundestag-Liste mit <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">matched_via=&apos;bundestag_de_audit&apos;</code> eingefügt.</li>
+              </ol>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was der Audit aufgedeckt hat</div>
+              <ul className="space-y-1.5 ml-1 text-[13.5px]">
+                <li>· <strong className="text-zinc-950">33 / 50</strong> Polls: alte Heuristik hatte die richtige Drucksache (Bundestag hat zusätzliche Begleit-Drucksachen → übernommen).</li>
+                <li>· <strong className="text-amber-900">16 / 50</strong> Polls: alte Heuristik hatte eine <em>falsche</em> Drucksache zugeordnet (typisch: spätere-WP-Nummern oder thematisch ähnliche Anträge). Bundestag-Liste hat diese korrigiert.</li>
+                <li>· <strong className="text-zinc-950">1 / 50</strong> Polls: partielle Korrektur (eine DS ersetzt — Poll 6286 Verbrenner-Verbot, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">21/1593</code> → <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">21/225</code>).</li>
+              </ul>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Konsequenz für die UI</div>
+              <p className="text-[13.5px]">
+                Auf jeder Vote-Detail-Seite (<code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">/abstimmungen/&lt;poll_id&gt;</code>) erscheint die Sektion „Drucksachen zur Abstimmung" mit dem expliziten Hinweis, dass die Verknüpfung autoritativ aus Bundestag.de stammt. Die Plattform versteht sich als Analyse- und Aufbereitungs-Schicht über offiziellen Quellen — nicht als alternative Datenquelle.
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Reproduzierbarkeit</div>
+              <ul className="space-y-1 ml-1 text-[13px]">
+                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/audit-vote-drucksache-mapping.ts</code> — Crawler + Auto-Klassifikation</li>
+                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/auto-classify-vote-mapping.ts</code> — LCS-basiertes Topic-Matching</li>
+                <li>· <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">scripts/apply-vote-bundestag-audit.ts</code> — Apply mit manuell verifiziertem 50-Poll-Mapping</li>
+                <li>· DB-Tabellen: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">audit_bundestag_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls</code>, <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">drucksache_polls_pre_bt_audit</code></li>
+              </ul>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Stimm-Zahlen: Abgleich mit dem offiziellen Protokoll</div>
+              <p className="text-[13.5px]">
+                Die angezeigten Stimm-Zahlen (Ja / Nein / Enthaltung / nicht abgegeben) stammen aus <strong className="text-zinc-950">abgeordnetenwatch</strong> und werden 1:1 gespiegelt. Eine Stichprobe gegen das autoritative Primär-Original — den Stenografischen Bericht des Deutschen Bundestages — bestätigte sie: Beispiel 08.05.2026, Beschlussempfehlung zum Grünen-Antrag „LEADER-Programm sichern" (Plenarprotokoll 21/78, TOP 7d): offiziell verkündet <strong className="text-zinc-950">417 Ja · 73 Nein · 53 Enthaltungen</strong> (543 abgegebene Stimmkarten) — exakt deckungsgleich mit unseren Daten. <span className="text-zinc-500">Hinweis zur Sorgfalt: pro Vorgang finden an einem Sitzungstag oft mehrere namentliche Abstimmungen statt (z. B. zu mehreren Beschlussempfehlungen). Maßgeblich ist immer das im Plenarprotokoll verkündete Ergebnis der konkreten Abstimmung, nicht zusammenfassende Listen-Ansichten. Methodik intern: <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">docs/DATA-SOURCES.md §2.13</code>.</span>
+              </p>
             </div>
           </div>
         </section>
@@ -1225,19 +1249,6 @@ export default function LinearMethodikPage() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-amber-200/70 bg-amber-50/40 p-4">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-amber-900 mb-2">
-                Bekannte Pipeline-Pathologien
-              </div>
-              <ul className="space-y-1.5 ml-1 text-[13px] text-zinc-700 leading-relaxed">
-                <li>· <strong className="text-zinc-950">Stale-Page-Scraping (Orphan-URLs):</strong> bei mind. einem Fall (Bareiß) hat der Scraper eine alte Wahlkampf-Webseite gefolgt, die zum Scraping-Zeitpunkt noch unter der bekannten URL erreichbar war. Folge: gescrapte Vita-Sektionen referenzieren ein längst ausgelaufenes Mandat. Wir re-scrapen diese Fälle <em>nicht</em> automatisch; stattdessen sind sie mit cv_homepage_status markiert und im Profil-Display als „Datenstand" datiert.</li>
-                <li>· <strong className="text-zinc-950">Leere oder Standard-Profil-Seiten:</strong> einige Homepage-URLs (insbesondere AfD-Standard-Layouts) liefern Stub-Seiten ohne strukturierten Vita-Block. Die Extraktion erzeugt dann ein leeres cv_homepage_json — wird im Source-Coherence-Vergleich übersprungen, aber als „2-Quellen-Vergleich nicht möglich" gekennzeichnet.</li>
-                <li>· <strong className="text-zinc-950">Multi-Page-Biographien werden nicht traversiert:</strong> wenn eine Homepage einen Hub-Page mit Links zu Unter-Seiten („Werdegang", „Politische Stationen", „Engagements") betreibt, fetcht der Scraper nur den Hub. Folge: Teile der Vita gehen verloren oder das LLM extrahiert aus dem Hub-Layout halluzinierte Felder. Mindestens 1 dokumentierter Fall (Heiligenstadt: Hub + 3 Themen-Seiten).</li>
-                <li>· <strong className="text-zinc-950">Source-Coherence-Recall ist niedrig:</strong> auf einer Bewertungsstichprobe lag der Recall des Wikipedia↔Homepage-Konflikt-Detectors bei ~13 %. Die Pipeline findet damit nur eine Minderheit der echten Diskrepanzen. Die hier öffentlich gezeigten Konflikte sind dokumentierte Treffer, nicht „die Gesamtmenge aller Diskrepanzen in der DB".</li>
-                <li>· <strong className="text-zinc-950">Tonalitäts-Enum-Drift:</strong> trotz JSON-Schema-Enum gibt das LLM in ~{counts.tonalitatsDriftRepaired} Fällen Tonalitäts-Werte ausserhalb der erlaubten 11 Klassen aus. Wird deterministisch in den nächstgelegenen Enum-Wert gemappt (siehe Reden-Pipeline Step ⊕), Original bleibt als tonalitaet_original erhalten.</li>
-                <li>· <strong className="text-zinc-950">Datenreihe nur 21. Wahlperiode:</strong> alle Plenar-, Drucksachen- und Aktivitäts-Daten beginnen mit dem konstituierenden Tag der 21. WP am <strong>31.03.2025</strong>. Historische Trends über mehrere Wahlperioden hinweg (z.B. „Verschiebung von Sach- zu Skandalisierungsanfragen seit der 19. WP") lassen sich aus diesem Datenstand nicht belegen. Lebensläufe enthalten dagegen Stationen vor der 21. WP, weil sie aus Wikipedia/Bundestag-Bio extrahiert werden. Eine rückwirkende Erfassung früherer Wahlperioden ist möglich (DIP-API stellt sie bereit), aber bisher nicht ingestiert.</li>
-              </ul>
-            </div>
           </div>
         </section>
 
