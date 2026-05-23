@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // NEXT_DIST_DIR steuert das Build-Output-Verzeichnis. Default `.next`
+  // (Live-Build, Port 3000, CF-Tunnel). Staging-Service setzt
+  // `.next-staging` (Port 3001, LAN-only) — so kann gegen Live getestet
+  // werden ohne sie zu überschreiben.
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
   serverExternalPackages: ["better-sqlite3"],
   // Root-URL `/` rendert intern das Linear-Design, damit Cold-Mail-Empfänger
   // nicht auf der alten Default-UI landen. SiteChrome erkennt sowohl

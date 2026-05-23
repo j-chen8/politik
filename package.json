@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:staging": "NEXT_DIST_DIR=.next-staging next build",
     "start": "next start",
+    "start:staging": "NEXT_DIST_DIR=.next-staging next start -p 3001",
     "lint": "eslint",
     "prepare": "husky"
   },
