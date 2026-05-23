@@ -1,0 +1,902 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=UltuRRg_7LU",
+    "video_id": "UltuRRg_7LU",
+    "politician": "Steffi Lemke",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "4060680f5356fbdd",
+    "transcript_chars": 116008,
+    "caption_lines": 3143,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 39568,
+    "tokens_out": 20795,
+    "cost_usd": 0.0574172,
+    "quote_validation": {
+      "valid_exact": 41,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 13,
+      "substantielle_position": 9
+    },
+    "generated_at": "2026-05-23T19:14:12.442Z",
+    "batch_id": "msgbatch_011B29vvC6bLy8VSXs9QAQC3"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Steffi Lemke, Bundesumweltministerin, zieht eine kritisch-selbstreflektive Bilanz ihrer dreieinhalb Jahre in der Ampelregierung. Sie wirkt konzentriert und verantwortungsvoll, verteidigt erreichte Erfolge in Naturschutz und Energiewende, räumt gleichzeitig ein, dass in Bereichen wie Pestizidreduktion und Klimasubventionen zu wenig geschehen ist. Der Ton ist sachlich, teilweise defensiv angesichts wiederholter Kritik zu „too little, too late\".",
+    "themes": [
+      {
+        "title": "Überraschung über CDU-Zusammenarbeit mit AfD",
+        "timestamp_range": "00:01:08 - 00:04:12",
+        "theme_description": "Lemke reagiert mit Sorge und Überraschung auf Friedrich Merzʼ Ankündigung, Migrationsanträge auch mit AfD und BSW zu beschließen.",
+        "question_asked": "Überrascht dich das, dass Merz den Kurs der CDU radikal verändert und Kooperation mit AfD in Kauf nimmt?",
+        "question_intent": "Das Interview führt auf die Kernfrage, ob Lemke diese Wendung angesichts ihrer früheren Position gegen Koalitionen mit der AfD als überraschend oder als logische Fortsetzung bewertet.",
+        "position": "Lemke betont, dass dies eine krasse Veränderung darstellt, die dem Versprechen Merzʼ zuwiderläuft, nicht mit der AfD zusammenzuarbeiten. Sie sieht ein Dilemma: Merz könne die Anträge entweder nicht durchsetzen oder sein Versprechen aufgeben. Sie hofft auf einen Ausweg und betont, dass die AfD in mehreren Landesverbänden als rechtsextrem eingestuft ist — eine Entwicklung, die seit ihrem Interview 2020 eingetreten ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die politische Dimension der Frage (Versprechen vs. Realität), thematisiert aber stärker die grundsätzliche demokratische Problematik der AfD-Kooperation, statt direkt zu sagen, ob sie selbst überrascht ist. Sie weicht teilweise zu einer Meta-Aussage über die Konsistenz von Merz aus.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "das ist meine Sorge dass wir das gegenwärtig im Bund erleben die AFD ist jetzt in mehreren Landesverbänden als gesichert rechtsextrem eingestuft",
+            "timestamp": "00:02:09",
+            "context": "Auf Jungs Frage, ob die Ankündigung der CDU-AfD-Kooperation ihn überrascht, antwortet Lemke mit ihrer eigenen Sorge."
+          },
+          {
+            "text": "er hat quasi sein persönliches Schicksal daran geknüpft nicht mit der AFD zusammenzuarbeiten überrascht mich das",
+            "timestamp": "00:03:11",
+            "context": "Lemke reflektiert über Merzʼ frühere Position und dessen aktuelle Volte."
+          },
+          {
+            "text": "das ist das was wir in dieser Woche im Deutschen Bundestag miteinander verhandeln und ich hoffe nach wie vor dass es dazu nicht kommt",
+            "timestamp": "00:03:42",
+            "context": "Lemke nennt die aktuelle Woche die Kristallisationsstelle für diese Frage."
+          }
+        ],
+        "concrete_statements": [
+          "Die AfD ist in mehreren Landesverbänden als rechtsextrem eingestuft",
+          "Das wäre eine krasse Veränderung seit dem Zweiten Weltkrieg",
+          "Merz kann die Anträge nicht beschließen oder sein Versprechen muss aufgeben"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Kooperationen auf Länderebene",
+          "CDU-Kurs in Migrationspolitik",
+          "Verfassungsschutz und Rechtsextremismus"
+        ]
+      },
+      {
+        "title": "Persönlicher Lebensstil und Work-Life-Balance als Ministerin",
+        "timestamp_range": "00:04:42 - 00:06:13",
+        "theme_description": "Lemke wird zu ihrem Leben als Ministerin zwischen Dessau und Berlin gefragt.",
+        "question_asked": "Du warst immer Pendlerin zwischen Dessau und Berlin. Ist das als Ministerin noch möglich?",
+        "question_intent": "Jung möchte wissen, wie Lemke ihr Privatleben mit dem Job als Ministerin vereinbart.",
+        "position": "Lemke beantwortet: Sie pendelt noch immer zwischen Dessau und Berlin. Ihr privater Lebensmittelpunkt ist Dessau geblieben. Als Ministerin hat sie weniger Zeit für Freizeit und Freunde — ‚deutlich weniger'. Sie hatte früher Zeit zum Paddeln auf der Elbe, aber als Ministerin nicht. Sie sagt: Im letzten Jahr ‚gar nicht unterwegs oder noch mal kurz mit Standup.' Sie nutzt Social Media, um mit Freunden in Kontakt zu bleiben, auch wenn sie nicht an Treffen teilnimmt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke antwortet direkt auf die Frage nach ihrer Work-Life-Balance: Sie pendelt noch, hat aber deutlich weniger Zeit für Privatleben.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "mein privater Lebensmittelpunkt ist in Dessau geblieben ich pemmle weiter zwischen desser und Berlin hin und her wirklich",
+            "timestamp": "00:04:42",
+            "context": "Lemke beschreibt ihre aktuelle Pendel-Situation."
+          },
+          {
+            "text": "wenn du als Ministerin auf die Wochenenden schaust hast du entweder Termin und bist unterwegs oder musst halt deine Akten machen",
+            "timestamp": "00:04:42",
+            "context": "Lemke erklärt, dass Wochenenden auch voller Arbeit sind."
+          }
+        ],
+        "concrete_statements": [
+          "Pendelt noch zwischen Dessau und Berlin",
+          "Privater Lebensmittelpunkt: Dessau",
+          "Weniger Zeit für Freunde und Freizeit",
+          "Paddeln auf der Elbe: nicht realisierbar als Ministerin"
+        ],
+        "related_bundestag_topics": [
+          "Ministerium und Privatleben",
+          "Politiker-Lebensstil"
+        ]
+      },
+      {
+        "title": "Persönliche Entscheidung zur Übernahme des Umweltministeriums",
+        "timestamp_range": "00:09:24 - 00:11:26",
+        "theme_description": "Lemke erklärt, warum sie als langjährige Kritikerin von Regierungsämtern 2021 Umweltministerin wurde.",
+        "question_asked": "Du hast 2020 gesagt: ‚Ich bin Parlamentarierin, ich will nie Regierungsamt bekleiden.' Warum bist du 2021 Ministerin geworden?",
+        "question_intent": "Jung möchte verstehen, was Lemke zum Umdenken bewogen hat und ob dies ein echtes Rollenverständnis-Update war oder pragmatischer Opportunismus.",
+        "position": "Lemke begründet die Entscheidung mit einem Moment-Dilemma in den Koalitionsverhandlungen: Hätte sie abgelehnt, hätten die Grünen möglicherweise das Umweltministerium nicht erhalten. Sie argumentiert, dass dies falsch gewesen wäre, weil unter Grüner Führung mehr für Umwelt und Naturschutz erreicht werden konnte — insbesondere beim Atomausstieg. Sie betont, dass sie nicht im Kernteam der Koalitionsverhandlungen war und dies als Realpolitik verstand. Später präzisiert sie, dass die Rolle als Ministerin andere, verantwortungsvollere repräsentative Aufgaben mit sich bringt als die als Abgeordnete.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke beantwortet die Kernfrage nach ihrem Rollenwechsel durch eine konkretes situatives Dilemma-Szenario und erklärt ihre realpolitische Logik. Sie gibt auch zu, dass ihre früheren Vorbehalte gegen Regierungsämter sich teilweise aufgelöst haben.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "weil mich jemand gefragt hat ob ich das Amt der Umweltministerin übernehmen möchte und zu dem Zeitpunkt ähm tatsächlich in Frage stand wenn ich dazu nein sage dass die Grünen da nicht auf das Umweltministerium zugreifen",
+            "timestamp": "00:09:54",
+            "context": "Lemke erklärt das Dilemma-Szenario, das zu ihrer Umstrukturierung führte."
+          },
+          {
+            "text": "weil ich ansonsten mitverantwortet hätte dass die Grünen das Umweltministerium nicht genommen hätten und das halte ich für falsch",
+            "timestamp": "00:10:26",
+            "context": "Lemke begründet ihre Entscheidung mit realpolitischen Konsequenzen."
+          },
+          {
+            "text": "das ist eine andere Form von Repräsentanz als wenn du als Abgeordneter dort mit hinfährst",
+            "timestamp": "00:12:27",
+            "context": "Lemke differenziert zwischen den repräsentativen Rollen von Abgeordnete und Ministerin."
+          }
+        ],
+        "concrete_statements": [
+          "Die Grünen hätten das Umweltministerium nicht erhalten, wenn ich abgesagt hätte",
+          "Das wäre falsch gewesen, weil weniger bei Umwelt und Naturschutz erreicht worden wäre",
+          "Als Ministerin nimmt man verantwortungsvollere repräsentative Aufgaben wahr"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbildung 2021",
+          "Ressortverteilung",
+          "Grüne Regierungsbeteiligung"
+        ]
+      },
+      {
+        "title": "Pestizideinsatz und Agrarwende nicht umgesetzt",
+        "timestamp_range": "00:17:07 - 00:20:41",
+        "theme_description": "Lemke räumt ein, dass sie 2020 Pestizidreduktion gefordert hatte, aber unter ihrer Amtszeit wenig Fortschritt erreicht wurde.",
+        "question_asked": "2020 hast du gesagt, Pestizide müssen vom Markt. Jetzt lässt du mich recherchieren: Es ist viel zu wenig passiert. Warum?",
+        "question_intent": "Jung möchte Lemke mit ihren eigenen früheren Forderungen konfrontieren und herausfinden, ob der Mangel an Umsetzung strukturell liegt oder ob sie die Priorität nicht hatte.",
+        "position": "Lemke gibt zu: ‚In dem Bereich ist viel zu wenig passiert in dieser Legislaturperiode, das kann man mit Fug und Recht als Kritik an dieser Regierung auch von mir aus an den Grünen Ministern festmachen.' Sie führt jedoch mehrere Gründe an: (1) Der Ukrainekrieg habe die politischen Voraussetzungen komplett verändert, (2) europäische Agrarminister hätten sich gegen Ökologisierung gestellt und Pestizidreduktions-Ziele zurückgefahren, (3) ihr Kollege (Agrarminister) habe oft allein gestanden, (4) Bauernproteste hätten politische Mehrheiten verschoben. Sie betont, dass dies nicht allein an der Frage hänge, wer Agrarminister ist, und dass Kriegsfolgen die hauptsächliche Erklärung seien.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage durch Kontextualisierung (Krieg, europäische Mehrheiten) statt durch direkten Hinweis auf eigene Versäumnisse. Sie benennt das Manko, weicht aber dann zu Erklärungen aus, die Verantwortung diffundieren lassen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "in dem Bereich ist viel zu wenig passiert in dieser Legislaturperiode das das kann man mit Fug und Recht als Kritik an dieser Regierung auch von mir aus an den Grünen Ministern festmachen",
+            "timestamp": "00:17:38",
+            "context": "Lemke gibt offen zu, dass zu wenig passiert ist."
+          },
+          {
+            "text": "das hat viel damit zu tun dass ich durch den Krieg Russland gegen die Ukraine ab dem Frühjahr 22 die politischen Voraussetzung ja komplett verändert hatten",
+            "timestamp": "00:18:08",
+            "context": "Lemke verlinkt Inaktivität mit Kriegsfolgen."
+          },
+          {
+            "text": "es ist auf europäischer Ebene ist ja Gesetzgebung zurückgedreht worden sind ja gute Pläne was pestizidreduktion anbetrifft von den europäischen Agrarministern zurückgenommen worden",
+            "timestamp": "00:19:40",
+            "context": "Lemke zeigt auf europäische Blockaden hin."
+          }
+        ],
+        "concrete_statements": [
+          "Viel zu wenig Fortschritt bei Pestizidreduktion unter der Ampel",
+          "Europäische Agrarminister haben Pestizidreduktions-Ziele zurückgefahren",
+          "Der Agrarminister (Grüner) stand oft allein auf weiter Flur",
+          "Der Krieg hat politische Voraussetzungen komplett verändert"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Agrarpolitik",
+          "Pestizidregulation",
+          "Landwirtschaft und Ökologie"
+        ]
+      },
+      {
+        "title": "Grüner Kollege Cem Özdemir und europäische Pestizid-Blockade",
+        "timestamp_range": "00:19:40 - 00:20:11",
+        "theme_description": "Lemke lobt ihren grünen Agrarminister-Kollegen, der in Europa für Pestizidreduktion eintrat, obwohl andere blockierten.",
+        "question_asked": "Dein grüner Kollege Cem Özdemir hat auch für weniger Pestizide gestimmt — allein auf weiter Flur. Warum hat er nicht durchgesetzt?",
+        "question_intent": "Jung möchte wissen, warum trotz Grünem Agrarminister die Pestizidreduktion nicht erfolgte.",
+        "position": "Lemke verteidigt ihren Kollegen Cem Özdemir: Er ‚stand da allein auf weiter Flur' auch bei ÖkoRegelungen-Rücknahmen. Sie betont, dass die Mehrheiten auf europäischer Ebene komplett umgekippt sind. Sie erklärt, dass Bauernproteste und Druck wegen Einkommen-Rückgängen die Mehrheiten verschoben haben. Sie betont, dass ein einzelner Agrarminister nicht gegen alle Mehrheiten ankommt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage korrekt: Özdemir war für Pestizidreduktion, die europäische Mehrheit dagegen. Das ist eine Erklärung für Scheitern.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "als die ökoregelungen für Biodiversität zurückgenommen worden sind stand der in Europa ziemlich allein auf weiter Flur",
+            "timestamp": "00:20:11",
+            "context": "Lemke verteidigte Özdemirs isolierte Pro-Umwelt-Position."
+          },
+          {
+            "text": "das ist Mainstream gewesen das ist politische Mehrheit gewesen zu diesem Zeitpunkt",
+            "timestamp": "00:20:41",
+            "context": "Lemke erklärte die europäischen Mehrheiten."
+          }
+        ],
+        "concrete_statements": [
+          "Grüner Agrarminister Özdemir stand für Pestizidreduktion allein",
+          "Europäische Mehrheiten wollten das nicht",
+          "Bauernproteste und Einkommen-Druck verschoben Mehrheiten",
+          "Einzelne Minister können gegen europäische Mehrheiten nicht durchsetzen"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Agrarpolitik",
+          "Pestizidregulation",
+          "Koalition und Agrarpolitik"
+        ]
+      },
+      {
+        "title": "Nitratbelastung und CDU-Blockade",
+        "timestamp_range": "00:24:13 - 00:27:17",
+        "theme_description": "Lemke verteidigt die gemeinsame Nitrat-Regelung mit dem Agrarminister, die die EU-Klage abwenden sollte, aber von der CDU im Bundesrat blockiert wird.",
+        "question_asked": "Du hast 2020 geprangert, dass Klöckner die Nitratrichtlinie nicht umsetzt. Hat dein Nachfolger das gemacht? Aber die Werte sind nicht runter.",
+        "question_intent": "Jung möchte wissen, ob die Bundesregierung das Nitrat-Problem tatsächlich gelöst hat oder ob es nur auf dem Papier passiert ist.",
+        "position": "Lemke argumentiert, dass sie und der Agrarminister eine Regelung gefunden haben, um die EU-Klage abzuwenden — ein echter Erfolg. Sie räumt ein, dass die Umsetzung bisher gescheitert ist, weil die CDU im Bundesrat blockiert. Sie erklärt: Nitrat im Grundwasser ist ein echtes Gesundheitsproblem, die Regelung ist sinnvoll, aber EU-Recht wird durch Bundesrat-Blockade nicht umgesetzt. Sie kritisiert implizit die CDU-Länder für Obstruktion ohne nachvollziehbare Gründe, kann aber selbst nicht erklären, was die CDU-Motivation ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage nach Erfolg korrekt (Regelung gefunden), aber weicht aus bei der Frage, warum trotz Regelung die Nitrat-Werte nicht sinken. Sie schiebt dies auf CDU-Blockade, was zwar wahr ist, aber nicht vollständig beantwortet, warum die Grünen diese Blockade nicht durchbrechen konnten.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "natürlich nicht weil die Regelung auch nicht umgesetzt ist bisher weil sie von der CDU im Bundesrat blockiert wird",
+            "timestamp": "00:24:45",
+            "context": "Lemke erklärt die nicht gesunkenen Werte."
+          },
+          {
+            "text": "wir haben das hinbekommen das war nicht leicht aber es ist an der CDU bisher gescheitert",
+            "timestamp": "00:25:16",
+            "context": "Lemke benennt Erfolg, weist Verantwortung aber zurück."
+          },
+          {
+            "text": "ich kann echt nicht beantworten was wonach die CDU ihre Politik im Umweltbereich ausrichtet",
+            "timestamp": "00:25:46",
+            "context": "Lemke gibt zu, nicht nachzuvollziehen, warum CDU blockiert."
+          }
+        ],
+        "concrete_statements": [
+          "Wir haben mit dem Agrarminister eine Regelung gefunden, um EU-Klage abzuwenden",
+          "CDU blockiert Umsetzung im Bundesrat",
+          "Nitrat im Grundwasser ist ein echtes Gesundheitsproblem",
+          "Zukünftiger Agrarminister muss diese Aufgabe noch lösen"
+        ],
+        "related_bundestag_topics": [
+          "Wasserschutz-Richtlinie EU",
+          "Bundesrat-Blockade",
+          "Landwirtschaftliche Regelungen"
+        ]
+      },
+      {
+        "title": "Elbeausbau und Staustufen",
+        "timestamp_range": "00:27:49 - 00:28:50",
+        "theme_description": "Lemke verteidigt ihre Position gegen Staustufen an der Elbe und behauptet, diese Schlacht sei in Deutschland gewonnen.",
+        "question_asked": "2020 hast du kritisiert, dass es eine Bau- und Verkehrslobby gibt, die den Elbeausbau vorantreibt. Was hast du gefunden?",
+        "question_intent": "Jung möchte überprüfen, ob die Elbeausbau-Debatte unter Lemke noch aktiv ist oder ob dieses Problem gelöst wurde.",
+        "position": "Lemke behauptet, dass die Schlacht um Staustufen in Deutschland gewonnen ist. Sie argumentiert, dass gesundes Menschenverstand nicht mehr zulässt, Staustufen zu bauen, angesichts von extremen Hochwassern (Silvester Hochwasser, Jahrhundert-Hochwasser) und Niedrigwasser-Zeiten. Sie betont, dass die Elbe eine wertvolle Naturlandschaft ist und unter bestimmten Bedingungen ein Fernreservat. Sie räumt ein, dass es noch Diskussionen über andere ökologische Probleme an der Elbe gibt, aber das Thema Staustufen sei beendet.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke beantwortet die Frage direkt: Sie hat nachgefragt (gefunden: Nachrichten von verschiedenen Seiten), und kommt zu dem Schluss, dass Staustufen nicht mehr ernsthaft geplant werden. Sie adressiert damit sowohl die historische Lobbyarbeit als auch den aktuellen Status.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "dass man einen solchen Fluss der wie gesagt auch noch eine sehr sehr wertvolle Naturlandschaft ist fernreservat dass man den noch mit Staustufen bepflastert das wird nicht passieren da bin ich mir sicher",
+            "timestamp": "00:28:20",
+            "context": "Lemke beurteilt die gegenwärtige Wahrscheinlichkeit von Staustufen."
+          },
+          {
+            "text": "ich glaube die Schlacht mit Staustufen ist in Deutschland gewonnen",
+            "timestamp": "00:28:50",
+            "context": "Lemke zieht ein Fazit zum Thema Staustufen."
+          }
+        ],
+        "concrete_statements": [
+          "Staustufen werden in Deutschland nicht mehr ernsthaft geplant",
+          "Katastrophale Hochwasser und Niedrigwasser sprechen dagegen",
+          "Die Elbe ist ein Fernreservat und wertvolle Naturlandschaft",
+          "In Tschechien gibt es noch eine Staustufe"
+        ],
+        "related_bundestag_topics": [
+          "Hochwasserschutz",
+          "Naturschutz Elbe",
+          "Wasserwirtschaft"
+        ]
+      },
+      {
+        "title": "Erfolgsbilanz Naturschutz und Finanzierung",
+        "timestamp_range": "00:30:21 - 00:38:02",
+        "theme_description": "Lemke präsentiert ihre Erfolgsbilanz in Naturschutz, insbesondere durch das ‚Aktionsprogramm Natürlicher Klimaschutz' mit 3,5 Milliarden Euro.",
+        "question_asked": "Du sagst, du bist stolz auf deine Erfolge. Was sind denn die konkreten Erfolge?",
+        "question_intent": "Jung möchte eine konkrete Auflistung von Lemkes Erfolgen als Umweltministerin.",
+        "position": "Lemke zählt eine umfassende Liste auf: (1) Aktionsprogramm Natürlicher Klimaschutz mit 3,5 Mrd. Euro (größtes Naturschutzprogramm Deutschlands), (2) Renaturierung (Auen, alte Wälder mit Holzeinschlagsstopp), (3) Meeresschutz mit 400 Mio. Euro Stiftung, (4) EU-Restoration-Law, (5) Klimaanpassungsgesetz und -strategie, (6) Kreislaufwirtschaftsstrategie, (7) Wasserstrategie, (8) Kommunalabwasserrichtlinie, (9) Weltnaturschutzabkommen Montreal (30% Schutz), (10) Atomausstieg vollended, (11) Wasserstoffabteilung im Ministerium neu aufgebaut, (12) Umweltdatenportal Umwelt.info. Sie betont, dass sie nur die ‚Big Shots' aufzählt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke listet eine breite, detaillierte Erfolgsbilanz auf, die konkrete Maßnahmen und Finanzierungsvolumen benennt. Sie adressiert damit die Frage sehr substantiell.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "wir haben die Finanzierung von Naturschutz in Deutschland auf vollkommen neue Füße gestellt das heißt mit dem Aktionsprogramm natürlicher Klimaschutz das hat dreieinhalb Milliarden Euro für die nächsten Jahre",
+            "timestamp": "00:30:21",
+            "context": "Lemke eröffnet ihre Erfolgsbilanz mit dem Flagship-Programm."
+          },
+          {
+            "text": "das ist das Größte naturschutzprogramm was es in Deutschland jemals gegeben hat",
+            "timestamp": "00:30:21",
+            "context": "Lemke bewertet das Programm in historischem Kontext."
+          },
+          {
+            "text": "wir haben den Atomausstieg vollendet nachdem wir die AKWs dreieinhalb Monate länger haben laufen lassen",
+            "timestamp": "00:37:30",
+            "context": "Lemke nennt Atomausstieg als Erfolg."
+          }
+        ],
+        "concrete_statements": [
+          "Aktionsprogramm Natürlicher Klimaschutz: 3,5 Mrd. Euro",
+          "Meeresschutz-Stiftung: 400 Mio. Euro",
+          "9.000 Projekte unter Aktionsprogramm gestartet",
+          "Atomausstieg vollendet",
+          "Klimaanpassungsgesetz verabschiedet",
+          "Weltnaturschutzabkommen Montreal unterzeichnet (30% Schutz)"
+        ],
+        "related_bundestag_topics": [
+          "Naturschutzfinanzierung",
+          "Atomausstieg",
+          "Internationale Umweltabkommen"
+        ]
+      },
+      {
+        "title": "Waldumbau und Baumpflanz-Missverständnis",
+        "timestamp_range": "00:38:02 - 00:41:06",
+        "theme_description": "Lemke klärt, dass ‚Natürlicher Klimaschutz' nicht einfach Baumpflanzen bedeutet, sondern Waldumbau zu stabilen Mischwäldern.",
+        "question_asked": "Das Programm heißt ‚Natürlicher Klimaschutz' — aber 2020 hast du mir gesagt: Baumpflanzen ist kein Naturschutz. Stimmt das noch?",
+        "question_intent": "Jung möchte verstehen, ob Lemke tatsächlich nur Baumpflanzen fördert oder ob es um echte Ökosystem-Restauration geht.",
+        "position": "Lemke präzisiert: ‚Natürlicher Klimaschutz' bedeutet, Ökosysteme zu nutzen, um Kohlenstoff zu speichern. Im Wald heißt das: alte Buchenwälder nicht abholzen (wo der Bund Wald besitzt), nicht neue Monokulturen pflanzen. Sie erwähnt Waldumbau von alten Kulturen zu stabilen Mischwäldern. In Kommunen können kleinere Maßnahmen wie Hecken, Blühwiesen, Grünflächen sinnvoll sein. Sie kritisiert immer noch das Pflanzen von Monokulturen, die sich als ‚Naturwald' ausgeben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage präzise durch Differenzierung: Was ist echte Renaturierung vs. Greenwashing. Sie erklärt auch, warum Baumpflanzen in bestimmten Kontexten (Städte, Klimaanpassung) sinnvoll sein kann.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "das Programm heißt natürlicher Klimaschutz das heißt an der Stelle geht es sehr starkum die Ökosysteme zu nutzen um ein Beitrag zum Klimaschutz zu leisten",
+            "timestamp": "00:38:33",
+            "context": "Lemke definiert den Begriff neu."
+          },
+          {
+            "text": "ich schaue weiter kritisch drauf und kannst du auf die Erfolgsliste dann noch mit dazu schreiben dass wir beim Waldumbau viele Schritte vorangekommen sind",
+            "timestamp": "00:40:35",
+            "context": "Lemke betont Waldumbau statt Monokultur-Pflanzungen."
+          }
+        ],
+        "concrete_statements": [
+          "Natürlicher Klimaschutz bedeutet Ökosystem-Nutzung für CO2-Speicherung",
+          "Bundseigene Buchenwälder nicht abholzen (Holzeinschlagsstopp)",
+          "Waldumbau zu stabilen Mischwäldern, nicht Monokulturen",
+          "Stadtgrün und Blühwiesen unterstützen Klimaanpassung"
+        ],
+        "related_bundestag_topics": [
+          "Waldmanagement",
+          "Klimaschutz-Sektor LULUCF",
+          "Biodiversität und Forstwirtschaft"
+        ]
+      },
+      {
+        "title": "Moorbewirtschaftung und Renaturierung",
+        "timestamp_range": "00:44:43 - 00:48:17",
+        "theme_description": "Lemke wird zu Moorrenaturierung gefragt und räumt ein, dass mehr Flächen ausgegraben als vernässt werden.",
+        "question_asked": "Über 95% der Moorflächen in Deutschland sind für Landwirtschaft ausgetrocknet. Wie viele Moorflächen konntest du renaturieren?",
+        "question_intent": "Jung möchte wissen, ob unter Lemke mehr Moore renaturiert oder zerstört wurden.",
+        "position": "Lemke gibt zu, die genaue Hektarzahl nicht parat zu haben. Sie betont, dass sie keine Moore ‚unter ihrer Regentschaft ausgetrocknet' hat, sondern dass Moore über Jahrhunderte trockengelegt wurden. Sie räumt ein, dass es noch immer Autobahnprojekte gibt, die Moore trocenlegen. Sie betont aber, dass es ‚kein Verbot für Straßenbau in Deutschland' gibt, das sie nicht geschafft hat. Sie sagt, dass sie mehrere Moore-Renaturierungsprojekte mit Bundesländern angefangen hat und über das Aktionsprogramm eine Förderrichtlinie aufgelegt hat. Sie verspricht, die genauen Zahlen nachzuliefern.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage durch Verweis auf Projekten und Förderprogramme, weicht aber der direkten Frage aus, ob mehr Moore renaturiert oder zerstört wurden (bilanz). Sie sagt, sie hätte die Zahl nicht im Kopf.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "ich habe keine mohre unter meiner Regentschaft ausgetrocknet sondern wir leben in einem Land in dem über Jahrhunderte MoH trocken",
+            "timestamp": "00:45:13",
+            "context": "Lemke präzisiert, dass Sie Moore nicht zerstört hat, sondern mit historischen Verhältnissen arbeitet."
+          },
+          {
+            "text": "wir haben mit mehreren Bundesländern und Mo renaturierungsprojekten zum einen Modellprojekte auf dem Weg gebracht",
+            "timestamp": "00:47:16",
+            "context": "Lemke nennt Projekte."
+          },
+          {
+            "text": "die hektarzahl könnte ich dir nur nachliefern",
+            "timestamp": "00:47:16",
+            "context": "Lemke gibt zu, keine genauen Zahlen zu haben."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Moore unter meiner Regentschaft ausgetrocknet",
+          "Mehrere Moore-Renaturierungsprojekte mit Bundesländern",
+          "Förderprogramm für Moore-angepasste Bewirtschaftung",
+          "Es gibt noch immer Autobahnprojekte mit Moore-Trockenlegung",
+          "Kein Verbot für Straßenbau durchgesetzt"
+        ],
+        "related_bundestag_topics": [
+          "Moreschutz",
+          "Bundesverkehrswegeplan",
+          "Landwirtschaft und Naturschutz"
+        ]
+      },
+      {
+        "title": "Flächenversiegelung und Entsiegelung",
+        "timestamp_range": "00:49:19 - 00:50:51",
+        "theme_description": "Lemke diskutiert die Differenz zwischen Forderung nach Entsiegelung (2020) und Koalitionsvertrag-Realität (nur Reduktion).",
+        "question_asked": "2020 hast du gefordert: Flächenversiegelung muss gestoppt werden, sogar Flächen entsiegelt. Im Koalitionsvertrag stand dann nur: Reduktion. Wieso?",
+        "question_intent": "Jung möchte herausfinden, ob Lemke ihre ambitionierten Ziele aus Idealismo aufgegeben hat oder ob Koalitionsrealität das erforderte.",
+        "position": "Lemke räumt ein, dass der Koalitionsvertrag weniger ambitiös ist (Reduktion statt Stop/Entsiegelung). Sie begründet dies damit, dass es ‚keine Alleinregierung gewesen' ist und mehrere Akteure beim Verfassen des Koalitionsvertrages beteiligt waren. Sie betont aber: Im ‚Aktionsprogramm Natürlicher Klimaschutz' haben sie Entsieglungsmaßnahmen angefangen zu fördern. Sie argumentiert, dass trotz weiterhin mehr Flächenversiegelung als Entsiegelung die Wagschale ‚anders austariert' wurde — weniger reine Zerstörung, mehr Schutz und Reparatur.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert das Koalitions-Realitäts-Argument, weicht aber aus bei der Frage, warum die Grünen nicht selbst diese ambitioniertere Position im Koalitionsvertrag verteidigt haben. Sie reagiert defensiv auf die Kritik.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "ist halt keine Alleinregierung gewesen ne also hat halt nicht alles ähm ist halt nicht der Koalitionsvertrag wie ich ihn aufgeschrieben hätte",
+            "timestamp": "00:49:51",
+            "context": "Lemke erklärt Koalitionskom promisse."
+          },
+          {
+            "text": "wir fördern damit entsieglungsmaßnahmen aber werden in Deutschland auch jetzt seit der Ampel nicht immer noch mehr Flächen versiegelt als endsiegel",
+            "timestamp": "00:50:21",
+            "context": "Lemke verweist auf das Aktionsprogramm."
+          }
+        ],
+        "concrete_statements": [
+          "Koalitionsvertrag war weniger ambitiös als Lemkes Position",
+          "Im Aktionsprogramm werden Entsieglungsmaßnahmen gefördert",
+          "Immer noch werden mehr Flächen versiegelt als entsiegelt",
+          "Wagschale wurde zugunsten von Schutz/Reparatur anders austariert"
+        ],
+        "related_bundestag_topics": [
+          "Flächenschutz",
+          "Bundesverkehrswegeplan",
+          "Versiegelung und Renaturierung"
+        ]
+      },
+      {
+        "title": "Sektorenziele CO2-Emissionen abgeschafft",
+        "timestamp_range": "00:51:21 - 00:52:56",
+        "theme_description": "Lemke wird gefragt, ob die Abschaffung der Sektorenziele unter der Ampel eine Misserfolg ist.",
+        "question_asked": "Gehört es zur Misserfolgsliste, dass die Sektorenziele bei CO2-Emissionen verschwunden sind?",
+        "question_intent": "Jung möchte wissen, ob Lemke die Abschaffung der Sektorenziele als eigenen Fehler oder als Entscheidung des Kabinetts verbucht.",
+        "position": "Lemke ordnet die Abschaffung der Sektorenziele als ‚Misserfolgsliste' ein, betont aber, dass dies eine Kabinett-Entscheidung war, nicht ihren Vorschlag. Sie sagt, dass für sie entscheidender ist, ‚was in der Realität passiert', nicht ‚welche Ziele wir aufschreiben, um sie hinterher nicht zu erreichen'. Sie stellt die Gegenfrage: War das Klimaschutzgesetz überhaupt eine echte Selbstverpflichtung oder nur Wahlkampf-Gesetz? Sie erwähnt ein OVG-Urteil im Lulucf-Sektor (natürliche Senken), das jetzt umgesetzt werden muss.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert zwar, dass die Sektorenziele abgeschafft wurden, weicht aber zu einer philosophischen Frage aus (Ziele vs. Realität), statt diese Entscheidung als Policy-Fehler zu analysieren.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "das ist misserfolgsliste aber ehrlich gesagt ich habe das eben schon mal so ein bisschen angedeutet für mich ist entscheidender was in der Realität passiert",
+            "timestamp": "00:51:21",
+            "context": "Lemke ordnet Sektorenziel-Abschaffung als Misserfolg ein, relativiert dann aber."
+          },
+          {
+            "text": "ich habe mich ohne das beantworten zu können zwischenzeitlich ähm doch durchaus gefragt ob das eigentlich ein reines wahlkampfgesetz gewesen ist",
+            "timestamp": "00:51:53",
+            "context": "Lemke stellt Frage zur Echtheid des Klimaschutzgesetzes."
+          }
+        ],
+        "concrete_statements": [
+          "Sektorenziele-Abschaffung ist Misserfolg",
+          "War Kabinett-Entscheidung, nicht mein Vorschlag",
+          "Entscheidender ist, was in Realität passiert",
+          "OVG-Urteil im Lulucf-Sektor muss jetzt umgesetzt werden"
+        ],
+        "related_bundestag_topics": [
+          "Klimaschutzgesetz",
+          "Sektorenziele",
+          "Bundesverfassungsgericht-Urteil"
+        ]
+      },
+      {
+        "title": "Elektromobilität ab 2035 und Tempolimit",
+        "timestamp_range": "00:53:56 - 00:55:26",
+        "theme_description": "Lemke verteidigt die Verhandlung auf EU-Ebene für Ausstieg aus Verbrenner-Pkw ab 2035.",
+        "question_asked": "Du hast 2020 Inlandsflüge abschaffen, Bahnpreise reduzieren, weniger Auto-Fahren gefordert. Was ist davon umgesetzt worden?",
+        "question_intent": "Jung möchte Bilanz zu Verkehrspolitik machen und Lemkes Rolle bei fehlender Umsetzung bewerten.",
+        "position": "Lemke antwortet zunächst realistisch: Inlandsflüge nicht abgeschafft, weniger geflogen wurde nicht. Aber: 9-€-Ticket (später 49-€-Ticket) eingeführt. Sie betont, dass der wichtigste Beitrag die Verhandlung auf EU-Ebene war: ab 2035 nur noch Elektro-Pkw-Neuzulassungen. Sie sagt, das war ‚ein harter Kampf', und dass die FDP und SPD es durchgesetzt haben (mit FDP-Zustimmung). Sie kritisiert, dass die CDU jetzt versucht, dies zu kippen, obwohl sie es vor 3 Jahren auch unterschrieben hat. Sie erwähnt auch Tempolimit, das gescheitert ist: ‚An der FDP gescheitert.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Verkehrsfragen teilweise: Sie gibt zu, dass Inlandsflug-Abschaffung und weniger Flügen nicht passiert ist. Sie betont aber die E-Mobilität-Regelung als Erfolg. Bei Tempolimit weicht sie aus (‚war aber sehr oft und sehr offen diskutiert').",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Inlandsflüge haben wir nicht abgeschafft weniger geflogen wurde auch nicht",
+            "timestamp": "00:53:56",
+            "context": "Lemke gibt offen zu, dass zwei Forderungen nicht umgesetzt wurden."
+          },
+          {
+            "text": "der wichtigste Beitrag ist da dass wir gesagt haben ab 2035 in Europa nur noch elektrische Pkw neu zulassenm",
+            "timestamp": "00:54:56",
+            "context": "Lemke nennt E-Mobilität als Haupterfolg."
+          },
+          {
+            "text": "Tempolimit wovon viele jetzt nichts mehr wissen wollen Tempolimit wolltest du auch ist ein nicht möglich mit der FDP und SPD",
+            "timestamp": "00:55:26",
+            "context": "Lemke erklärt, warum Tempolimit gescheitert ist."
+          }
+        ],
+        "concrete_statements": [
+          "Inlandsflüge nicht abgeschafft",
+          "Weniger Flügen nicht erreicht",
+          "9-€-Ticket → 49-€-Ticket eingeführt",
+          "Ab 2035 nur E-Pkw-Neuzulassungen in EU",
+          "Tempolimit an FDP gescheitert",
+          "CDU versucht jetzt, E-Mobilität-Regelung zu kippen"
+        ],
+        "related_bundestag_topics": [
+          "Verkehrswende",
+          "Elektromobilität",
+          "Klimaschutzmaßnahmen Verkehr"
+        ]
+      },
+      {
+        "title": "1,5-Grad-Ziel gerissen und Realismus",
+        "timestamp_range": "00:56:27 - 01:01:09",
+        "theme_description": "Lemke diskutiert mit Jung, ob das 1,5-Grad-Ziel faktisch gerissen ist und wie damit umzugehen ist.",
+        "question_asked": "Laut Kopernikus sind wir über 1,5° hinaus. Ist das 1,5-Grad-Ziel jetzt nur noch ein ‚Richtungsziel'?",
+        "question_intent": "Jung möchte verstehen, wie Lemke mit der neuen Realität umgeht, dass ein zentrales Ziel faktisch verfehlt wurde.",
+        "position": "Lemke räumt ein, dass wir wahrscheinlich über 1,5° sind (Kopernikus-Aussage), aber: Das 1,5-Grad-Ziel bleibt als ‚Rückkommens-Ziel' bestehen. Die Frage ist nicht ‚Game Over', sondern wie wir schnellstmöglich Emissionen reduzieren. Sie betont, dass die Kernfrage ist: ‚Erweitern wir den Raum des Möglichen wieder?' Sie kritisiert implizit den Ton von ‚Too Little, Too Late', weil dieser zu Resignation führt. Sie argumentiert, dass man Erfolge aufzeigen muss, um Menschen zu motivieren weiterzukämpfen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke beantwortet die Frage direkt: Ja, 1,5° ist wahrscheinlich vorbei, aber das ist nicht das Ende, sondern der Anfang von intensiverem Klimaschutz. Sie adressiert sowohl die faktische Situation als auch die psychologische/politische Dimension.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "ich würde mal sagen man muss davon ausgehen dass die internationale Staatengemeinschaft dieses Versprechen von Paris nicht mehr wird einhalten können das heißt jetzt aber nicht dass man sagt okay Game Over",
+            "timestamp": "00:56:59",
+            "context": "Lemke ordnet das 1,5-Grad-Ziel neu ein."
+          },
+          {
+            "text": "die Kernfrage die ich ansprechen möchte weil dein äh dein dein Tenor zu wenig erreicht der der ist ja durchaus Berech dem will ich auch gar nicht widersprechen dass wir gemessen an dem was notwendig wäre nicht genug geschafft haben",
+            "timestamp": "00:57:32",
+            "context": "Lemke greift Jungs Kritik auf, widerspricht ihr aber nachfolgend."
+          },
+          {
+            "text": "wie erweitern wir den Bereich des Möglichen wieder wenn wir den nicht erweitert bekommen wird er kleiner werden",
+            "timestamp": "00:58:04",
+            "context": "Lemke formuliert die zentrale politische Frage nach dem 1,5-Grad-Ziel."
+          }
+        ],
+        "concrete_statements": [
+          "1,5-Grad-Ziel ist wahrscheinlich verfehlt",
+          "Aber: 1,5-Grad-Ziel bleibt als ‚Rückkommens-Ziel'",
+          "Frage ist: Erweitern wir Raum des Möglichen?",
+          "Resignation hilft nicht; Erfolge aufzeigen ist wichtig",
+          "Deutschland: 1,75° Erwärmung ist noch im ‚Bereich des Möglichen'"
+        ],
+        "related_bundestag_topics": [
+          "Paris-Abkommen",
+          "Klimaziele Deutschland",
+          "Globale Klimapolitik"
+        ]
+      },
+      {
+        "title": "Erneuerbare Energien als Hauptsäule der Erfolgsbilanz",
+        "timestamp_range": "01:01:40 - 01:02:11",
+        "theme_description": "Lemke betont, dass der Ausbau erneuerbarer Energien die große Leistung der Ampel-Regierung in Klimaschutz ist.",
+        "question_asked": "Was ist für dich die Hauptleistung der Ampel im Klimaschutzbereich?",
+        "question_intent": "Jung möchte herausfinden, auf welche Erfolge Lemke am meisten stolz ist.",
+        "position": "Lemke nennt klar: ‚Wir haben so viel erneuerbare Energien im Netz wie nie zuvor das ist die große Leistung im klimaschutzbereich.' Sie betont riesige Schritte bei Windkraft, PV und Speichertechnologie. Sie betont weiter, dass der Umstieg auf E-Mobilität ab 2035 ‚den Fahrt gelegt' hat für Elektrifizierung. Sie sagt, dass diese Weichenstellen fortbestehen, ‚es sei denn wird abgeschafft' — ein Hinweis darauf, dass sie CDU-Rückabwicklung befürchtet.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke beantwortet die Frage klar: Erneuerbare Energien sind die Hauptleistung. Sie benennt auch E-Mobilität als zweite wichtige Weichenstellung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "wir haben so viel erneuerbare Energien im Netz wie nie zuvor das ist die große Leistung im klimaschutzbereich",
+            "timestamp": "01:01:40",
+            "context": "Lemke nennt Hauptleistung."
+          },
+          {
+            "text": "riesenschrutte vorangekommen sind wenn du die Erfolgsbilanz fortführst wäre das wichtig das damit aufzuschreiben",
+            "timestamp": "01:01:40",
+            "context": "Lemke betont, dass Erneuerbare zur Erfolgsbilanz gehören."
+          }
+        ],
+        "concrete_statements": [
+          "Erneuerbare Energien: größte Leistung im Klimaschutz",
+          "Windkraft, PV, Speichertechnologie mit riesigen Schritten vorangekommen",
+          "E-Mobilität ab 2035: wichtige Weichenstellung",
+          "Diese Erfolge durch CDU in Gefahr"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Erneuerbare Energien Ausbau",
+          "Klimaschutzgesetz"
+        ]
+      },
+      {
+        "title": "Kritik an eigener Bilanz vs. Realitätsorientierung",
+        "timestamp_range": "01:07:50 - 01:09:21",
+        "theme_description": "Lemke wird zu ihrem Verhältnis zu Kritik an ihrer Regierungsbilanz gefragt.",
+        "question_asked": "Du hast 2020 gesagt: ‚Too Little, Too Late ist kein Erfolg.' Jetzt sagst du: ‚Aber schau auf das Positive.' Ist das Widerspruch oder Entwicklung?",
+        "question_intent": "Jung möchte verstehen, ob Lemke sich selbst widerspricht oder ob sie ihre Perspektive grundsätzlich geändert hat.",
+        "position": "Lemke antwortet, dass sie sich ‚ganz ehrlich schon bevor ich hergekommen bin relativ sicher gewesen' sei, dass sie Jung nicht von seiner Kritik ‚Too Little, Too Late' überzeugen werde. Sie betont, dass sie nicht versucht, Kritik zu leugnen: ‚ich kann dir sagen was ich gemacht habe in meiner Verantwortung in den drei Jahren als Ministerin.' Sie argumentiert, dass in diesen Zeiten das Scheinwerferlicht auf das gelegt werden sollte, was positiv ist — nicht aus Eigenlob, sondern weil Gesellschaft sonst in Resignation verfällt. Sie betont: ‚Wenn das die Grundhaltung ist es ist alles Mist und es ist alles to little und to late dann werden wir diese werden diese Auseinandersetzung verlieren.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Spannung zwischen Kritik und Optimismus, weicht aber aus bei der Frage, ob ihr eigenes Statement 2020 (zu wenig ist nicht genug) mit ihrer gegenwärtigen Position (schauen wir auf Erfolge) kompatibel ist.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "ich bin mir aber ehrlich gesagt schon bevor ich hergekommen bin relativ sicher gewesen dass ich dich auch nach zwei Stunden nicht von irgendwas anderem überzeugt haben werde als dass wir zu wenig gemacht haben",
+            "timestamp": "01:08:20",
+            "context": "Lemke gibt offen zu, dass sie Jung nicht überzeugen wird."
+          },
+          {
+            "text": "wenn das die Grundhaltung ist es ist alles Mist und es ist alles to little und to late dann werden wir diese werden diese Auseinandersetzung verlieren",
+            "timestamp": "01:08:51",
+            "context": "Lemke warnt vor Resignation als politische Strategie."
+          },
+          {
+            "text": "ich treffe viele Menschen die sagen warum machst du überhaupt noch naturschutzpolitik ist doch sinnlos",
+            "timestamp": "01:52:05",
+            "context": "Lemke beschreibt die Resignation, die sie bekämpfen möchte."
+          }
+        ],
+        "concrete_statements": [
+          "Ich gebe zu, dass zu wenig erreicht wurde",
+          "Aber: Resignation hilft nicht",
+          "Scheinwerferlicht sollte auf Erfolge fallen, um Menschen zu motivieren",
+          "Wer nur ‚Too Little, Too Late' sagt, wird den Kampf verlieren"
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik Bilanz",
+          "Gesellschaftliche Motivation",
+          "Klimakommunikation"
+        ]
+      },
+      {
+        "title": "Klimaschädliche Subventionen: Abbau vs. Realität",
+        "timestamp_range": "01:13:58 - 01:24:19",
+        "theme_description": "Lemke wird kritisiert, dass sie trotz Zusage im Koalitionsvertrag kaum klimaschädliche Subventionen abbaut.",
+        "question_asked": "Im Koalitionsvertrag stand: Überflüssige, unwirksame, Umwelt- und klimaschädliche Subventionen abbauen. Wie viele habt ihr abgeschafft?",
+        "question_intent": "Jung möchte herausfinden, ob die Grünen bei diesem zentralen Punkt versagt haben.",
+        "position": "Lemke antwortet: ‚Wenig und Jain und zu wenig.' Sie gibt zu, dass das ein Manko ist. Sie rechtfertigt dies aber durch Hinweis auf Koalitions-Realität: SPD und FDP wollten das nicht. Sie nennt Beispiele von Vorhaben, die gescheitert sind (Dienstwagenprivileg, Dieselprivileg, Plastiksteuer). Sie erwähnt aber auch das Agrardiesel-Dilemma: Nach dem Verfassungsgerichtsurteil versuchten sie, Subventionen abzubauen, aber Bauernproteste führten zu Rücknahmen. Sie betont, dass die ‚entscheidende Stellschraube' nicht Subventionsabbau ist, sondern die E-Mobilität-Regelung ab 2035. Sie argumentiert, dass man ohne FDP-Blockade und Verfassungsgerichtsurteil mehr hätte tun können.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Frage durch Schuldverweis auf FDP, SPD und äußere Zwänge (Verfassungsgerichturteil). Sie gibt zu, dass zu wenig passiert ist, aber ‚entscheidender' sind angeblich andere Faktoren. Das wirkt wie Ablenkung.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Wenig und Jain und zu wenig",
+            "timestamp": "01:14:03",
+            "context": "Lemke gibt offen zu, dass Subventionsabbau gescheitert ist."
+          },
+          {
+            "text": "trotzdem dass wir an vielen Stellen versucht worden hatten Einsparungen vorzunehmen subvensionen abzubauen",
+            "timestamp": "01:23:18",
+            "context": "Lemke beschreibt Bemühungen ohne durchschlagenden Erfolg."
+          },
+          {
+            "text": "ich finde unsere Gesellschaft war zu dem Zeitpunkt in der Situation wo sowas tringend nötig gewesen ist deshalb finde ich eine solche Entscheidung das temporär zu machen wo wo teilweise wirklich Angst geherrscht hat",
+            "timestamp": "01:16:34",
+            "context": "Lemke rechtfertigt Tankrabatt-Subvention als Krisenmassnahme."
+          }
+        ],
+        "concrete_statements": [
+          "Wenig und Jain und zu wenig klimaschädliche Subventionen abgebaut",
+          "FDP, SPD wollten das nicht",
+          "Dienstwagenprivileg, Dieselprivileg nicht abgebaut",
+          "Plastiksteuer nicht umgesetzt",
+          "Agrardiesel: Hälfte der Kürzung später rückgängig gemacht",
+          "Entscheidendere Stellschraube: E-Mobilität ab 2035"
+        ],
+        "related_bundestag_topics": [
+          "Subventionsabbau",
+          "Klimafinanzierung",
+          "Verfassungsgericht und Haushalt"
+        ]
+      },
+      {
+        "title": "9-Euro-Ticket nicht durchhalten trotz Erfolg",
+        "timestamp_range": "01:21:46 - 01:22:47",
+        "theme_description": "Lemke wird gefragt, warum das 9-Euro-Ticket, das großer Erfolg war, nicht fortgesetzt wurde.",
+        "question_asked": "Das 9-€-Ticket war absoluter Win. Es ging nur um 1–2 Milliarden Euro im Bundeshaushalt. Warum ist es jetzt 49 €?",
+        "question_intent": "Jung möchte wissen, warum bei einer günstigen Maßnahme mit hohem Impact Kürzungen gemacht wurden.",
+        "position": "Lemke bestätigt den Erfolg: Das 9-€-Ticket war ‚absoluter win'. Sie erklärt aber, dass die Finanzierung in der Zeit des Verfassungsgerichtsurteil-Urteils schwierig wurde. Sie sagt, dass der Bund 1–2 Milliarden hätte übernehmen können, wenn die Kofinanzierung-Verpflichtung der Länder wegfiel. Sie argumentiert, dass dies im Kontext von Haushaltszwängen (nach dem VG-Urteil) nicht möglich war. Sie betont aber, dass das 49-€-Ticket immer noch ein Erfolg ist und hoffentlich erhalten bleibt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Kostenfrage korrekt (1–2 Mrd.), erklärt aber nicht, warum nicht einfach die Landeszuschüsse übernommen wurden. Sie weicht zu einer Haushalts-Debatte aus.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "das 9 € Ticket sollte da unbedingt mit auf die erfolgsbilanzliste drauf",
+            "timestamp": "01:53:56",
+            "context": "Lemke bekräftigt den Erfolg des 9-€-Tickets."
+          },
+          {
+            "text": "wenn wenn man sich mit teilt eine Milliarde wenn man es selber gemacht hte 2 Milliarden das war das wäre möglich",
+            "timestamp": "01:22:47",
+            "context": "Lemke räumt ein, dass Finanzierung möglich gewesen wäre."
+          }
+        ],
+        "concrete_statements": [
+          "9-€-Ticket war absoluter Erfolg",
+          "Finanzierung wäre mit 1–2 Mrd. möglich gewesen",
+          "Wurde teuer wegen Haushaltszwängen nach VG-Urteil",
+          "49-€-Ticket ist immer noch Erfolg"
+        ],
+        "related_bundestag_topics": [
+          "Öffentliche Verkehrsfinanzierung",
+          "Haushalt und Klimamassnahmen",
+          "Bundesverkehrswesen"
+        ]
+      },
+      {
+        "title": "Ikea Urwaldholz und Palmöl-Importe",
+        "timestamp_range": "01:27:54 - 01:31:00",
+        "theme_description": "Lemke wird gefragt, warum deutsche Konzerne wie Ikea weiterhin Urwaldholz aus Rumänien importieren.",
+        "question_asked": "Du hast 2020 kritisiert, dass Urwälder in Rumänien abgeholzt werden. Ikea lässt das weiterhin zu, und das Holz landet bei uns.",
+        "question_intent": "Jung möchte wissen, ob Lemke unter ihrer Amtszeit dieses Problem gelöst hat.",
+        "position": "Lemke antwortet: Ja, das finde ich auch ‚scheiße' und ‚katastrophal'. Sie betont, dass sie beim Heizungsgesetz Regulierungen vorgenommen hat (mit technischen Anforderungen), um zu verhindern, dass noch mehr Urwaldholz für Heizung verheizt wird. Sie sagt, dass aber die FDP und CSU diese Regelungen ‚zerstört' haben. Sie argumentiert, dass man mit Regulierungen ‚nicht noch mehr Holz aus Urwäldern verheizt wird', aber nicht komplett das Problem lösen kann. Sie rahmt dies als ein Problem, das man mit CDU/CSU diskutieren sollte, die es ausgebremst haben — nicht mit ihr.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert das Urwaldholz-Problem, weicht aber aus bei der Frage, warum Ikea unter ihrer Amtszeit nicht reguliert wurde. Sie schiebt Verantwortung auf FDP/CSU.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "ich finde das auch immer noch schlecht und eine Katastrophe dass das passiert",
+            "timestamp": "01:28:26",
+            "context": "Lemke stimmt Jungs Kritik zu."
+          },
+          {
+            "text": "das andere Beispiel was dich aufgeregt hat war dass wir Palmöl aus Indonesien importieren",
+            "timestamp": "01:28:56",
+            "context": "Lemke benennt das zweite Problem."
+          },
+          {
+            "text": "das solltest du nicht mit der Umweltministerin die das schlecht findet und Regulierung dafür vorbereitet hatte und auch über die ersten Hürden gehoben hatte bis es dann ausgebremst worden ist diskutieren sondern mit denen die es ausgebremst haben",
+            "timestamp": "01:28:56",
+            "context": "Lemke weist Verantwortung auf andere hin."
+          }
+        ],
+        "concrete_statements": [
+          "Urwaldholz-Import ist katastrophal",
+          "Heizungsgesetz mit technischen Anforderungen gegen Urwaldholz-Verbrennung",
+          "FDP und CSU haben Regelungen ausgebremst",
+          "Palmöl-Importe auch problematisch"
+        ],
+        "related_bundestag_topics": [
+          "Waldschutz international",
+          "Heizungsgesetz",
+          "Biokraftstoffe und Palmöl"
+        ]
+      },
+      {
+        "title": "Wolf und Schutzstatus-Herabstufung",
+        "timestamp_range": "01:31:30 - 01:36:11",
+        "theme_description": "Lemke verteidigt ihre Entscheidung, den Schutzstatus des Wolfs in der Berner Konvention herabzustufen.",
+        "question_asked": "2020 sagtest du: Wolf = Freund des Waldes, Abschuss nicht nötig, nur Geld für Schafhaltung. Du stimmst jetzt dafür ab, dass Abschuss erleichtert wird. Warum?",
+        "question_intent": "Jung möchte aufzeigen, dass Lemke ihre Position zum Wolf geändert hat.",
+        "position": "Lemke präzisiert: Sie hat nicht dafür gestimmt, den Wolf abzuschießen, sondern dafür, dass Deutschland der Änderung der Berner Konvention zustimmt, die den Schutzstatus ‚von streng geschützt' zu ‚geschützt' reduziert. Es gibt weiterhin kein ‚anlassloses Bejagen' des Wolfs. Sie argumentiert: In den letzten 5 Jahren sind Wolfsbestände angestiegen, Probleme für Weidetierhaltung größer geworden. Sie betont, dass Weidetier-Haltung für biologische Vielfalt genauso wichtig ist wie der Wolf. Sie führt ein ‚kluges Management' an und räumt ein, dass ein Naturschützer ihr gesagt hat, dass die Existenz von so vielen Wölfen, dass Regulierung nötig ist, ein ‚großer Erfolg des Naturschutzes' ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert die Herabstufung korrekt, argumentiert aber mit Wolfsbestand-Anstieg statt mit ihrer grundsätzlicher Position-Änderung. Sie weicht aus bei der Frage, warum der strenge Schutz notwendig für Monitoring war.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "ich habe initiiert dass Deutschland der Änderung der bernerkonvention zustimmt genau da wird mit der Schutzstatus reduziert",
+            "timestamp": "01:32:31",
+            "context": "Lemke erklärt ihre Initiative zur Schutzstatus-Reduktion."
+          },
+          {
+            "text": "ein Naturschützer zu mir sehr energisch es ist ein großer Erfolg des Naturschutzes dass wir in Deutschland wieder so viel Wölfe haben dass wir sie regulieren müssen",
+            "timestamp": "01:32:00",
+            "context": "Lemke zitiert positive Bewertung der Wolfsrückkehr."
+          },
+          {
+            "text": "da wo Wölfe viele Schafe reißen Zäune überspringen und wir wissen inzwischen dass sie auch richtig hohe Zäune teilweise überspringen bin ich dafür dass sie geschossen werden",
+            "timestamp": "01:33:04",
+            "context": "Lemke begründet Abschuss in Einzelfällen."
+          }
+        ],
+        "concrete_statements": [
+          "Schutzstatus von ‚streng geschützt' zu ‚geschützt' herabgestuft",
+          "Kein anlassloses Bejagen des Wolfs",
+          "Schnellabschussregelung für schadenstiftende Wölfe",
+          "Wolfsbestände in 5 Jahren stark angestiegen",
+          "Weidetier-Haltung genauso wichtig wie Wolf"
+        ],
+        "related_bundestag_topics": [
+          "Artenschutz Wolf",
+          "Weidetier-Haltung",
+          "Berner Konvention"
+        ]
+      },
+      {
+        "title": "Kapitalismus und Wirtschaftswachstum überwinden",
+        "timestamp_range": "01:37:12 - 01:45:56",
+        "theme_description": "Jung stellt Lemke mit ihren eigenen Aussagen von 2020 konfrontiert: Kapitalismus ist nicht zukunftsfähig, wir müssen zwei Drittel Ressourcen einsparen.",
+        "question_asked": "2020 hast du gesagt: ‚Dieser Kapitalismus ist nicht zukunftsfähig.' Jetzt sagt deine Partei immer noch ‚Wirtschaftswachstum.' Warum wollt ihr nicht ehrlich sagen: Das System muss sich ändern?",
+        "question_intent": "Jung möchte herausfinden, ob Lemke ihre grundsätzliche Kritik am Kapitalismus aufgegeben hat oder ob sie realpolitisch handelt.",
+        "position": "Lemke bestätigt, dass sie damals so etwas ähnliches gesagt hat, aber: ‚Ich rede lieber mit Menschen und verlasse mich auf Gesundmenschenverstand als KI.' Sie argumentiert, dass die ‚soziale Marktwirtschaft' in Deutschland zu Wohlstand für mehr Menschen geführt hat als zuvor. Sie betont, dass Wachstum in bestimmten Sektoren (Erneuerbare, E-Mobilität, Wärmepumpen) notwendig ist. Sie sagt, dass die Frage nicht ist ‚Kapitalismus abschaffen', sondern ‚wie schaffen wir es, globale Missstände zu überwinden und dafür gesellschaftliche Mehrheiten zu organisieren?' Sie argumentiert weiter, dass man nicht zu afrikanischen Ministerkollegen sagen kann: ‚Ihr dürft kein Wachstum haben', aber dass der Westen aufhören muss, überproportional zu konsumieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lemke adressiert Jungs Vorwurf, dass die Grünen nicht radikal genug sind, weicht aber zu einer Debatte über realistische vs. idealistische Politik aus. Sie antwortet nicht direkt auf die Frage, warum die Grünen ‚Wirtschaftswachstum' im Wahlprogramm-Titel haben.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "das ist zumindest die Frage die ich der KI gestellt habe ich geb dir zu ich rede lieber mit Menschen",
+            "timestamp": "01:39:16",
+            "context": "Lemke weicht zu einer methodischen Kritik an Künstlicher Intelligenz aus."
+          },
+          {
+            "text": "wir haben soziale Marktwirtschaft die zu einem großen Wohlstand in Deutschland geführt hat",
+            "timestamp": "01:39:48",
+            "context": "Lemke verteidigt das deutsche Wirtschaftsmodell."
+          },
+          {
+            "text": "wie schaffen wir es diese globalen Missstände diese globalen Entwicklungen die zu einer Katastrophe mit Ansage führen wie schaffen wir es das zu überwinden",
+            "timestamp": "01:40:19",
+            "context": "Lemke formuliert das ‚Wie' statt das ‚Warum'."
+          }
+        ],
+        "concrete_statements": [
+          "Damals habe ich auch ähnliches zur Zukunftsfähigkeit des Kapitalismus gesagt",
+          "Wachstum in bestimmten Sektoren ist notwendig (Erneuerbare, E-Mobilität)",
+          "Soziale Marktwirtschaft hat Wohlstand für mehr Menschen gebracht",
+          "Kernfrage: Wie organisieren wir Mehrheiten für Klimaschutz?",
+          "Der Westen muss aufhören, überproportional zu konsumieren"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftssystem und Nachhaltigkeit",
+          "Wohlfahrtsstaat Deutschland",
+          "Globale Gerechtigkeit und Entwicklung"
+        ]
+      },
+      {
+        "title": "AfD-Verbot und demokratische Gefährdung",
+        "timestamp_range": "02:03:59 - 02:05:31",
+        "theme_description": "Lemke wird gefragt, ob sie einem AfD-Verbotsantrag zustimmen würde.",
+        "question_asked": "Es gibt einen Abstimmung über einen AfD-Verbotsantrag im Bundestag. Wie wirst du stimmen?",
+        "question_intent": "Jung möchte Lemkes Position zu einem konkreten demokratischen Schritt wissen.",
+        "position": "Lemke antwortet: Sie weiß nicht, ob der Antrag schon aufgesetzt ist, wird das in der Fraktionssitzung klären. Sie betont, dass eine Partei, die als rechtsextremistisch erkannt ist und unsere Demokratie gefährdet, ein Verbot braucht. Sie sagt, dass es nicht allein mit einem Verbot getan ist — es braucht gesellschaftliche Transformation, um den Diskurs zurückzukämpfen. Sie erwähnt die Unregierbarkeit in Sachsen und die Probleme mit Fake News und Gewalt-Fantasien.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lemke antwortet substantiell auf die konkrete Frage: Ja, sie würde dem Verbotsantrag zustimmen. Sie ergänzt aber auch, dass ein Verbot nicht ausreichend ist.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "eine Partei die anerkannt rechtsextremistisch in verschiedenen Landesverbänden ist und unsere Demokratie und Freiheit so gefährdet wie die AFD dass man dann ein Verbot brauchen wird",
+            "timestamp": "02:04:00",
+            "context": "Lemke begründet ihre Pro-Verbot-Position."
+          },
+          {
+            "text": "dass es mit dem Verbot nicht getan ist das ist das ist eine gesellschaftliche Veränderung die viel zu lange schon ähm andauert",
+            "timestamp": "02:04:29",
+            "context": "Lemke ergänzt, dass Verbot nicht ausreicht."
+          }
+        ],
+        "concrete_statements": [
+          "Würde dem AfD-Verbotsantrag zustimmen (grundsätzlich ja)",
+          "AfD ist rechtsextremistisch in mehreren Landesverbänden",
+          "Gefährdet Demokratie und Freiheit",
+          "Verbot allein ist nicht ausreichend — gesellschaftliche Transformation nötig"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Verbot",
+          "Verfassungsschutz",
+          "Rechtsextremismus"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die AfD ist in mehreren Landesverbänden als gesichert rechtsextrem eingestuft",
+        "timestamp": "00:02:09"
+      },
+      {
+        "claim": "Das Aktionsprogramm Natürlicher Klimaschutz hat 3,5 Milliarden Euro für die nächsten Jahre",
+        "timestamp": "00:30:21"
+      },
+      {
+        "claim": "Etwa 95% der Moorflächen in Deutschland sind für Landwirtschaft und Besiedlung ausgetrocknet",
+        "timestamp": "00:44:43"
+      },
+      {
+        "claim": "Laut Umweltbundesamt betragen klimaschädliche Subventionen etwa 60 Milliarden Euro pro Jahr",
+        "timestamp": "01:21:15"
+      },
+      {
+        "claim": "Ab 2035 dürfen in Europa nur noch elektrische Pkw neu zugelassen werden",
+        "timestamp": "00:54:56"
+      },
+      {
+        "claim": "Das 9-€-Ticket hätte dem Bund 1–2 Milliarden Euro gekostet",
+        "timestamp": "01:22:47"
+      },
+      {
+        "claim": "Unter Lemke wurden über 9.000 Projekte im Aktionsprogramm Natürlicher Klimaschutz angefangen",
+        "timestamp": "00:48:49"
+      },
+      {
+        "claim": "Im Neubau in Sachsen-Anhalt wurden über 80% Wärmepumpen verkauft und eingebaut",
+        "timestamp": "01:04:13"
+      },
+      {
+        "claim": "Die Meeresschutz-Stiftung erhielt 400 Millionen Euro",
+        "timestamp": "00:31:53"
+      },
+      {
+        "claim": "Beim Weltnaturschutzabkommen Montreal wurde festgelegt, dass 30% der Fläche auf Land und See unter Schutz gestellt werden müssen",
+        "timestamp": "00:36:28"
+      }
+    ]
+  }
+}
