@@ -9,6 +9,10 @@ import {
   type MediaAppearanceIndexEntry,
 } from "@/lib/media-appearances";
 import { MediaThemesList } from "@/components/MediaThemesList";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
+import { AppearanceToC } from "@/components/AppearanceToC";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { BackToTopButton } from "@/components/BackToTopButton";
 
 const FORMAT_ICONS: Record<MediaAppearanceIndexEntry["format"], typeof Mic> = {
   podcast: Mic,
@@ -60,7 +64,12 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-4xl mx-auto px-5 py-12 fade-in-up">
+      <ReadingProgress />
+      <BackToTopButton />
+      {/* fade-in-up bewusst nicht verwendet: dessen `transform` würde
+          position:sticky der ToC-Bar brechen (sticky degeneriert dann zu
+          relative, weil ein transformed-Ancestor der containing block wird). */}
+      <div className="max-w-6xl mx-auto px-5 py-12">
         {/* Breadcrumb */}
         <Link
           href={`/design/linear/politiker/${politicianId}`}
@@ -69,6 +78,10 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zu {politicianName || "Profil"}
         </Link>
+
+        <div className="lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+          <AppearanceToC themes={themes} />
+          <main className="min-w-0">
 
         {/* Header */}
         <div className="mb-8">
@@ -98,23 +111,24 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
           </a>
         </div>
 
-        {/* Methodik-Disclaimer */}
-        <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-6 text-[12.5px] text-amber-900 leading-relaxed">
-          <div className="flex items-start gap-2">
-            <Info className="w-4 h-4 mt-0.5 shrink-0" strokeWidth={2.25} />
-            <div>
-              <strong>Wie diese Analyse zustande kommt:</strong> {detail._methodology.transcript_source}.{" "}
-              {detail._methodology.transcript_caveat} Die Klassifikation der Antwort-Typen
-              („Substantielle Antwort", „Antwort zu anderem Bezugspunkt" usw.) ist eine
-              LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema.
-              Ohne Inter-Annotator-Agreement-Studie. Zitate ohne Garantie auf wortgenaue
-              Übereinstimmung — Original beim Podcast prüfen.
-            </div>
+        {/* YouTube-Embed (Click-to-Load) — nur für YouTube-Auftritte */}
+        {entry.video_id && entry.format !== "tv" && (
+          <div className="mb-6">
+            <YouTubeEmbed videoId={entry.video_id} title={entry.title} />
           </div>
+        )}
+
+        {/* Kompakter Methodik-Hinweis — Volltext am Footer */}
+        <div className="mb-6 flex items-center gap-1.5 text-[11.5px] text-zinc-500">
+          <Info className="w-3.5 h-3.5" strokeWidth={2.25} />
+          <span>KI-gestützte Analyse · </span>
+          <a href="#methodik" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">
+            Methodik &amp; Caveats unten
+          </a>
         </div>
 
         {/* Overall Summary */}
-        <section className="mb-8">
+        <section id="ueberblick" className="mb-8 scroll-mt-28">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
             Überblick
           </h2>
@@ -125,37 +139,24 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Statistik */}
-        <section className="mb-8">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
-            Aussagen-Statistik
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-            <div className="p-5">
-              <div className="text-3xl font-semibold num text-zinc-950">{themes.length}</div>
-              <div className="text-[11.5px] text-zinc-500 mt-1">Themen insgesamt</div>
-            </div>
-            <div className="p-5">
-              <div className="text-3xl font-semibold num text-zinc-950">{substantielle}</div>
-              <div className="text-[11.5px] text-zinc-500 mt-1">substantielle Antworten</div>
-            </div>
-            <div className="p-5">
-              <div className={`text-3xl font-semibold num ${ausweichend > 0 ? "text-amber-800" : "text-zinc-950"}`}>
-                {ausweichend}
-              </div>
-              <div className="text-[11.5px] text-zinc-500 mt-1">ausweichend / pivotierend</div>
-            </div>
-            <div className="p-5">
-              <div className="text-3xl font-semibold num text-zinc-950">{factualClaims.length}</div>
-              <div className="text-[11.5px] text-zinc-500 mt-1">Fakten-Behauptungen</div>
-            </div>
-          </div>
+        {/* Statistik — kompakte Einzeile statt Big-Boxes (n ist meist klein) */}
+        <div className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[12.5px] text-zinc-600 pb-4 border-b border-zinc-200/70">
+          <span><strong className="text-zinc-950 num">{themes.length}</strong> Themen</span>
+          <span className="text-zinc-300">·</span>
+          <span><strong className="text-zinc-950 num">{substantielle}</strong> substantiell</span>
           {ausweichend > 0 && (
-            <p className="text-[11.5px] text-zinc-500 mt-2 italic">
-              „Ausweichend" / „pivotierend" beschreibt rhetorische Muster, kein Werturteil. Das vollständige Zitat + die zugrundeliegende Frage sind bei jedem Thema dokumentiert — bilde dir selbst ein Urteil.
-            </p>
+            <>
+              <span className="text-zinc-300">·</span>
+              <span><strong className="text-amber-800 num">{ausweichend}</strong> ausweichend / pivotierend</span>
+            </>
           )}
-        </section>
+          {factualClaims.length > 0 && (
+            <>
+              <span className="text-zinc-300">·</span>
+              <span><strong className="text-zinc-950 num">{factualClaims.length}</strong> Faktenbehauptungen</span>
+            </>
+          )}
+        </div>
 
         {/* Themen — Toggle Kompakt / Vollständig */}
         <section className="mb-8">
@@ -168,7 +169,7 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
 
         {/* Fakten-Behauptungen */}
         {factualClaims.length > 0 && (
-          <section className="mb-10">
+          <section id="fakten" className="mb-10 scroll-mt-28">
             <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
               Überprüfbare Fakten-Behauptungen
             </h2>
@@ -195,9 +196,38 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Footer: Tech-Meta */}
-        <section className="border-t border-zinc-200 pt-6 mt-10">
-          <details className="text-[12px] text-zinc-500">
+        {/* Methodik & Caveats — am Footer, prominent sichtbar */}
+        <section id="methodik" className="border-t border-zinc-200 pt-6 mt-10 scroll-mt-28">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+            Wie diese Analyse zustande kommt
+          </h2>
+          <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-5 text-[13px] text-zinc-700 leading-relaxed space-y-3">
+            <p>
+              <strong className="text-amber-900">Quelle:</strong> {detail._methodology.transcript_source}. {detail._methodology.transcript_caveat}
+            </p>
+            <p>
+              <strong className="text-amber-900">Klassifikation:</strong> Die Antwort-Typen
+              („Substantielle Antwort", „Antwort zu anderem Bezugspunkt" usw.) sind eine
+              LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Ohne
+              Inter-Annotator-Agreement-Studie. Bei jeder Bewertung sind Frage, Position
+              und Begründung sichtbar — bilde dir selbst ein Urteil.
+            </p>
+            <p>
+              <strong className="text-amber-900">Zitate:</strong> Wortgenaue Übereinstimmung
+              wird per Substring-Match validiert (Quote-Validation: {detail._meta.quote_validation.valid_pct} % gültig).
+              Trotzdem: bei wichtigen Aussagen immer Original beim Anbieter prüfen — Auto-
+              Captions enthalten gelegentlich Übertragungs-Fehler.
+            </p>
+            <p>
+              <strong className="text-amber-900">Neutralität:</strong> Wir behandeln alle
+              Politiker:innen unabhängig von Partei mit demselben Prompt. Unterschiede in den
+              Daten reflektieren Politiker-Stil + Format der Sendung, nicht eine Bewertung
+              durch die Plattform.
+            </p>
+          </div>
+
+          {/* Tech-Audit collapsible */}
+          <details className="text-[12px] text-zinc-500 mt-4">
             <summary className="cursor-pointer hover:text-zinc-700 transition-colors">
               Technische Audit-Informationen
             </summary>
@@ -217,6 +247,9 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
             </dl>
           </details>
         </section>
+
+          </main>
+        </div>
       </div>
     </div>
   );

@@ -130,7 +130,7 @@ function ThemeCard({
     return (
       <details
         id={`theme-${idx}`}
-        className={`group bg-white border rounded-xl overflow-hidden scroll-mt-20 ${
+        className={`group bg-white border rounded-xl overflow-hidden scroll-mt-28 ${
           isAmber ? "border-amber-200/70" : "border-zinc-200/70"
         }`}
       >
@@ -312,7 +312,7 @@ function ThemeCard({
   return (
     <article
       id={`theme-${idx}`}
-      className={`bg-white border rounded-2xl overflow-hidden scroll-mt-20 ${
+      className={`bg-white border rounded-2xl overflow-hidden scroll-mt-28 ${
         isAmber ? "border-amber-200/70" : "border-zinc-200/70"
       }`}
     >
