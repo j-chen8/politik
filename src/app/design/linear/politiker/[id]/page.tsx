@@ -17,6 +17,8 @@ import {
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
 import { TagInfoPopover } from "@/components/TagInfoPopover";
+import { MediaAppearancesList } from "@/components/MediaAppearancesList";
+import { getMediaAppearancesForPolitician } from "@/lib/media-appearances";
 import {
   ExternalLink,
   Mic,
@@ -97,6 +99,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const sidejobs = getSidejobsForPoliticianDb(politicianId);
   const committees = getCommitteeMembershipsForPoliticianDb(politicianId);
   const drucksachen = getDrucksachenForPolitician(politicianId, 100);
+  const mediaAppearances = getMediaAppearancesForPolitician(politicianId);
   // Audit-Trail: welche Einträge wurden vom Dedup-Skript ausgeblendet (nur sichtbar wenn !showOriginal)
   const cvMergeDrops = showOriginal ? [] : getCVMergeDropsForPolitician(politicianId);
 
@@ -650,6 +653,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
         {drucksachen.length > 0 && (
           <CollapsibleCard title="Drucksachen" count={drucksachen.length} className="mb-6">
             <DrucksachenList items={drucksachen} />
+          </CollapsibleCard>
+        )}
+
+        {/* Medien & Interviews */}
+        {mediaAppearances.length > 0 && (
+          <CollapsibleCard title="Medien & Interviews" count={mediaAppearances.length} className="mb-6">
+            <MediaAppearancesList items={mediaAppearances} politicianId={politicianId} />
           </CollapsibleCard>
         )}
 
