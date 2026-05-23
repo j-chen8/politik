@@ -1709,6 +1709,116 @@ export function getPartyContributionMatrix(): {
     .sort((a, b) => b.total - a.total);
 }
 
+// Tonalitäts-Verteilung pro Fraktion über alle KI-analysierten Rede-Segmente.
+// Quelle: speech_analyses_v2 × plenar_speeches via speech_id (kein Kartesisches
+// Produkt — speech_id ist FK, jeder Segment-Row hat genau einen Speaker).
+export function getRedenTonalitaetByFraktion(): {
+  fraktion: string;
+  total: number;
+  byTonalitaet: Record<string, number>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT
+      COALESCE(NULLIF(TRIM(ps.party), ''), '__none__') AS party,
+      sa.tonalitaet AS tonalitaet,
+      COUNT(*) AS c
+    FROM speech_analyses_v2 sa
+    JOIN plenar_speeches ps ON ps.id = sa.speech_id
+    WHERE sa.tonalitaet IS NOT NULL
+    GROUP BY party, sa.tonalitaet
+  `).all() as { party: string; tonalitaet: string; c: number }[];
+
+  // Fraktions-Label-Normalisierung (UI-Schreibweise)
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+    "fraktionslos": "fraktionslos",
+    "__none__": "Präsidium / o. Partei",
+  };
+
+  // Tonalitäts-Slug-Repair für seltene Drift-Werte, die nicht durch den
+  // deterministischen Repair-Pass abgedeckt sind.
+  const TONALITAET_REPAIR: Record<string, string> = {
+    "defensive_pragmatisch": "defensiv_pragmatisch",
+  };
+
+  // Roh-Strings enthalten teilweise NBSP (U+00A0, z.B. „BÜNDNIS␣90") und
+  // Soft-Hyphens. Normalisieren bevor wir gegen FRAKTION_LABEL lookupen.
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+
+  const map = new Map<string, { total: number; byTonalitaet: Record<string, number> }>();
+  for (const r of rows) {
+    const fraktion = FRAKTION_LABEL[normalize(r.party)] ?? normalize(r.party);
+    const tonalitaet = TONALITAET_REPAIR[r.tonalitaet] ?? r.tonalitaet;
+    if (!map.has(fraktion)) map.set(fraktion, { total: 0, byTonalitaet: {} });
+    const entry = map.get(fraktion)!;
+    entry.total += r.c;
+    entry.byTonalitaet[tonalitaet] = (entry.byTonalitaet[tonalitaet] ?? 0) + r.c;
+  }
+
+  return Array.from(map.entries())
+    .map(([fraktion, v]) => ({ fraktion, total: v.total, byTonalitaet: v.byTonalitaet }))
+    .sort((a, b) => b.total - a.total);
+}
+
+// Tonalitäts-Verteilung der Kleinen Anfragen pro Fraktion. Filter:
+// nur batch_class='klein' (separate Tonalitäts-Skala als für Anträge/Gesetze),
+// nur Einzel-Fraktionen mit ≥10 Anfragen (joint/Bundesregierung ausgeschlossen).
+export function getDrucksacheTonalitaetByFraktion(): {
+  fraktion: string;
+  total: number;
+  byTonalitaet: Record<string, number>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT
+      TRIM(REPLACE(REPLACE(fraktion, char(10), ''), char(13), '')) AS fraktion,
+      TRIM(REPLACE(REPLACE(tonalitaet, char(10), ''), char(13), '')) AS tonalitaet,
+      COUNT(*) AS c
+    FROM drucksache_analyses
+    WHERE batch_class = 'klein'
+      AND tonalitaet IS NOT NULL
+      AND fraktion IS NOT NULL
+      AND fraktion != ''
+    GROUP BY fraktion, tonalitaet
+  `).all() as { fraktion: string; tonalitaet: string; c: number }[];
+
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "BÜNDNIS 90/Die GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+    "fraktionslos": "fraktionslos",
+  };
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+  // Joint-Fraktionen, Bundesregierung, Ministerien, Einzelabgeordnete: nicht
+  // einer Fraktion zurechenbar — ausschließen.
+  const isJointOrInstitution = (s: string) =>
+    /,|\bund\b|überparteilich|Bundes(regierung|ministerium|tag)|\(Einzelabgeordnete/i.test(s);
+
+  const map = new Map<string, { total: number; byTonalitaet: Record<string, number> }>();
+  for (const r of rows) {
+    const cleaned = normalize(r.fraktion);
+    if (isJointOrInstitution(cleaned)) continue;
+    const fraktion = FRAKTION_LABEL[cleaned] ?? cleaned;
+    if (!map.has(fraktion)) map.set(fraktion, { total: 0, byTonalitaet: {} });
+    const entry = map.get(fraktion)!;
+    entry.total += r.c;
+    entry.byTonalitaet[r.tonalitaet] = (entry.byTonalitaet[r.tonalitaet] ?? 0) + r.c;
+  }
+
+  return Array.from(map.entries())
+    .filter(([, v]) => v.total >= 10)
+    .map(([fraktion, v]) => ({ fraktion, total: v.total, byTonalitaet: v.byTonalitaet }))
+    .sort((a, b) => b.total - a.total);
+}
+
 // Speakers with per-Typ breakdown. Pass `limit = 0` to get all.
 export function getTopSpeakersWithBreakdown(limit = 15): {
   speaker: string;

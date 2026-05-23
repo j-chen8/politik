@@ -3,7 +3,7 @@ import fs from "fs";
 import Link from "next/link";
 import { ExternalLink, ArrowLeft, ListTree } from "lucide-react";
 import { TONALITAET_DEFS, REDEN_TYP_DEFS } from "@/lib/glossar";
-import { getMethodikCounts } from "@/lib/db";
+import { getMethodikCounts, getRedenTonalitaetByFraktion, getDrucksacheTonalitaetByFraktion } from "@/lib/db";
 
 const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: string }[] }[] = [
   {
@@ -37,6 +37,7 @@ const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: str
     label: "Voting + Drucksachen",
     items: [
       { id: "vote-drucksache-audit", label: "Vote-↔-Drucksache", sub: "Cross-Source-Audit" },
+      { id: "tonalitaet-drucksachen", label: "Tonalität Kleiner Anfragen", sub: "je Fraktion" },
     ],
   },
   {
@@ -158,6 +159,59 @@ export default function LinearMethodikPage() {
   const counts = getMethodikCounts();
   const typByKey = new Map(counts.speechTypeCounts.map(t => [t.typ, t.count]));
   const sayTyp = (key: string) => (typByKey.get(key) ?? 0).toLocaleString("de-DE");
+
+  // Tonalitäts-Verteilung pro Fraktion (dynamisch aus speech_analyses_v2).
+  // Fraktionen mit politischer Bedeutung zuerst (Sitze in Bundestag, desc),
+  // dann Sonstige (Präsidium, fraktionslos) am Ende.
+  const tonalitaetRaw = getRedenTonalitaetByFraktion();
+  const FRAKTION_ORDER = ["CDU/CSU", "AfD", "SPD", "Grüne", "Linke"];
+  const SONSTIGE_FRAKTIONEN = new Set(["Präsidium / o. Partei", "fraktionslos"]);
+  const tonalitaetByFraktion = [
+    ...FRAKTION_ORDER.map(f => tonalitaetRaw.find(r => r.fraktion === f)).filter(Boolean) as typeof tonalitaetRaw,
+    ...tonalitaetRaw.filter(r => SONSTIGE_FRAKTIONEN.has(r.fraktion)).sort((a, b) => b.total - a.total),
+  ];
+  // Spalten: alle Tonalitäten in Glossar-Reihenfolge, die in min. einer
+  // Fraktion ≥3 % erreichen. Sonst weggelassen (Note unter der Tabelle).
+  const SPALTEN_THRESHOLD = 0.03;
+  const tonalitaetSpalten = TONALITAET_DEFS.filter(def =>
+    tonalitaetByFraktion.some(row =>
+      row.total > 0 && (row.byTonalitaet[def.slug] ?? 0) / row.total >= SPALTEN_THRESHOLD
+    )
+  );
+  const tonalitaetWeggelassen = TONALITAET_DEFS.filter(def =>
+    !tonalitaetSpalten.includes(def)
+  );
+  const tonalitaetTotalSegments = tonalitaetByFraktion.reduce((sum, r) => sum + r.total, 0);
+  const pct = (n: number, total: number) => total === 0 ? "0,0 %" : `${(n / total * 100).toFixed(1).replace(".", ",")} %`;
+
+  // Insights-Zahlen für den Befund-Block (gleicher Datenstand wie die Tabelle).
+  const tonalitaetFor = (fraktion: string, slug: string): number => {
+    const row = tonalitaetByFraktion.find(r => r.fraktion === fraktion);
+    if (!row || row.total === 0) return 0;
+    return (row.byTonalitaet[slug] ?? 0) / row.total;
+  };
+  const insightPct = (share: number) => `${(share * 100).toFixed(1).replace(".", ",")} %`;
+  const insights = {
+    afdPolemischCombined: insightPct(tonalitaetFor("AfD", "polemisch") + tonalitaetFor("AfD", "polemisch_sachlich")),
+    afdSachlich: insightPct(tonalitaetFor("AfD", "sachlich")),
+    cduSachlich: insightPct(tonalitaetFor("CDU/CSU", "sachlich")),
+    spdSachlich: insightPct(tonalitaetFor("SPD", "sachlich")),
+    linkeSozialAnklag: insightPct(tonalitaetFor("Linke", "sozial_anklagend")),
+    linkeKonfront: insightPct(tonalitaetFor("Linke", "konfrontativ_belegend")),
+    grueneKonfront: insightPct(tonalitaetFor("Grüne", "konfrontativ_belegend")),
+    praesidiumDefensiv: insightPct(tonalitaetFor("Präsidium / o. Partei", "defensiv_pragmatisch")),
+  };
+
+  // Drucksachen-Tonalität: nur Kleine Anfragen, nur 3 große Oppositions-
+  // fraktionen mit ≥10 Anfragen (siehe getDrucksacheTonalitaetByFraktion).
+  const dsTonalitaet = getDrucksacheTonalitaetByFraktion();
+  const DS_TONALITAET_DEFS: { slug: string; label: string; short: string }[] = [
+    { slug: "fordernd", label: "fordernd", short: "Klare Forderungen / Handlungsaufrufe an die Bundesregierung." },
+    { slug: "kritisch", label: "kritisch", short: "Vorwürfe, Missstands-Schilderungen, kritische Hinterfragung von Regierungshandeln." },
+    { slug: "sachlich", label: "sachlich", short: "Reine Informations- / Faktenfrage ohne klare Forderung oder Kritik." },
+    { slug: "informierend", label: "informierend", short: "Anfrage stellt eigenes Wissen voran, fordert Bestätigung oder Ergänzung." },
+  ];
+  const dsTotalAnfragen = dsTonalitaet.reduce((s, r) => s + r.total, 0);
 
   return (
     <div className="page-wash min-h-screen">
@@ -694,7 +748,10 @@ export default function LinearMethodikPage() {
           <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 mb-4 overflow-x-auto">
             <p className="text-[13px] text-zinc-600 mb-3">
               Anteil der jeweiligen Tonalität innerhalb der Fraktion. Basis:{" "}
-              <strong className="text-zinc-950">11.101 Rede-Segmente aus 9.272 unterschiedlichen Plenar-Reden</strong>{" "}
+              <strong className="text-zinc-950">
+                {tonalitaetTotalSegments.toLocaleString("de-DE")} Rede-Segmente aus{" "}
+                {counts.speechDistinctReden.toLocaleString("de-DE")} unterschiedlichen Plenar-Reden
+              </strong>{" "}
               (eine Rede besteht aus 1–N inhaltlichen Segmenten, jedes mit eigener Tonalitäts-Klassifikation) in{" "}
               <code className="text-[11.5px] font-mono bg-zinc-100 px-1 rounded">speech_analyses_v2</code>.
             </p>
@@ -703,27 +760,47 @@ export default function LinearMethodikPage() {
                 <tr className="text-left text-[10.5px] uppercase tracking-wider text-zinc-500 border-b border-zinc-200">
                   <th className="py-2 px-1.5 font-medium">Fraktion</th>
                   <th className="py-2 px-1.5 font-medium text-right">Segmente</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Sachlich</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Konfront.-bel.</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Polem.-sachl.</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Polemisch</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Defensiv-pragm.</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Bilanzierend</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Staatsmänn.</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Sozial-anklag.</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Mahnend</th>
+                  {tonalitaetSpalten.map(def => (
+                    <th key={def.slug} className="py-2 px-1.5 font-medium text-right">{def.label}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 num">
-                <tr><td className="py-1.5 px-1.5">CDU/CSU</td><td className="py-1.5 px-1.5 text-right">2.394</td><td className="py-1.5 px-1.5 text-right">26,7 %</td><td className="py-1.5 px-1.5 text-right">21,8 %</td><td className="py-1.5 px-1.5 text-right">0,8 %</td><td className="py-1.5 px-1.5 text-right">0,3 %</td><td className="py-1.5 px-1.5 text-right">13,1 %</td><td className="py-1.5 px-1.5 text-right">25,2 %</td><td className="py-1.5 px-1.5 text-right">10,4 %</td><td className="py-1.5 px-1.5 text-right">0,0 %</td><td className="py-1.5 px-1.5 text-right">1,1 %</td></tr>
-                <tr className="bg-amber-50/40"><td className="py-1.5 px-1.5">AfD</td><td className="py-1.5 px-1.5 text-right">2.341</td><td className="py-1.5 px-1.5 text-right">8,8 %</td><td className="py-1.5 px-1.5 text-right">10,9 %</td><td className="py-1.5 px-1.5 text-right font-semibold text-amber-900">27,6 %</td><td className="py-1.5 px-1.5 text-right font-semibold text-amber-900">46,9 %</td><td className="py-1.5 px-1.5 text-right">3,9 %</td><td className="py-1.5 px-1.5 text-right">0,0 %</td><td className="py-1.5 px-1.5 text-right">0,3 %</td><td className="py-1.5 px-1.5 text-right">0,2 %</td><td className="py-1.5 px-1.5 text-right">0,2 %</td></tr>
-                <tr><td className="py-1.5 px-1.5">SPD</td><td className="py-1.5 px-1.5 text-right">1.478</td><td className="py-1.5 px-1.5 text-right">24,0 %</td><td className="py-1.5 px-1.5 text-right">25,1 %</td><td className="py-1.5 px-1.5 text-right">0,2 %</td><td className="py-1.5 px-1.5 text-right">0,1 %</td><td className="py-1.5 px-1.5 text-right">10,7 %</td><td className="py-1.5 px-1.5 text-right">23,0 %</td><td className="py-1.5 px-1.5 text-right">9,4 %</td><td className="py-1.5 px-1.5 text-right">1,7 %</td><td className="py-1.5 px-1.5 text-right">3,0 %</td></tr>
-                <tr><td className="py-1.5 px-1.5">Grüne</td><td className="py-1.5 px-1.5 text-right">1.684</td><td className="py-1.5 px-1.5 text-right">21,2 %</td><td className="py-1.5 px-1.5 text-right font-semibold">57,6 %</td><td className="py-1.5 px-1.5 text-right">0,6 %</td><td className="py-1.5 px-1.5 text-right">0,7 %</td><td className="py-1.5 px-1.5 text-right">4,2 %</td><td className="py-1.5 px-1.5 text-right">0,7 %</td><td className="py-1.5 px-1.5 text-right">5,6 %</td><td className="py-1.5 px-1.5 text-right">3,0 %</td><td className="py-1.5 px-1.5 text-right">5,0 %</td></tr>
-                <tr><td className="py-1.5 px-1.5">Linke</td><td className="py-1.5 px-1.5 text-right">1.142</td><td className="py-1.5 px-1.5 text-right">9,5 %</td><td className="py-1.5 px-1.5 text-right">32,5 %</td><td className="py-1.5 px-1.5 text-right">0,2 %</td><td className="py-1.5 px-1.5 text-right">0,5 %</td><td className="py-1.5 px-1.5 text-right">2,6 %</td><td className="py-1.5 px-1.5 text-right">0,1 %</td><td className="py-1.5 px-1.5 text-right">0,2 %</td><td className="py-1.5 px-1.5 text-right font-semibold">50,2 %</td><td className="py-1.5 px-1.5 text-right">2,6 %</td></tr>
-                <tr><td className="py-1.5 px-1.5 text-zinc-500">Präsidium / o. Partei</td><td className="py-1.5 px-1.5 text-right">2.015</td><td className="py-1.5 px-1.5 text-right">26,9 %</td><td className="py-1.5 px-1.5 text-right">0,7 %</td><td className="py-1.5 px-1.5 text-right">0,0 %</td><td className="py-1.5 px-1.5 text-right">0,0 %</td><td className="py-1.5 px-1.5 text-right">57,8 %</td><td className="py-1.5 px-1.5 text-right">4,4 %</td><td className="py-1.5 px-1.5 text-right">9,3 %</td><td className="py-1.5 px-1.5 text-right">0,0 %</td><td className="py-1.5 px-1.5 text-right">0,5 %</td></tr>
+                {tonalitaetByFraktion.map(row => {
+                  const isSonstige = SONSTIGE_FRAKTIONEN.has(row.fraktion);
+                  return (
+                    <tr key={row.fraktion}>
+                      <td className={`py-1.5 px-1.5${isSonstige ? " text-zinc-500" : ""}`}>{row.fraktion}</td>
+                      <td className="py-1.5 px-1.5 text-right">{row.total.toLocaleString("de-DE")}</td>
+                      {tonalitaetSpalten.map(def => {
+                        const n = row.byTonalitaet[def.slug] ?? 0;
+                        const share = row.total > 0 ? n / row.total : 0;
+                        const highlight = share >= 0.40;
+                        return (
+                          <td
+                            key={def.slug}
+                            className={`py-1.5 px-1.5 text-right${highlight ? " font-semibold text-amber-900" : ""}`}
+                          >{pct(n, row.total)}</td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
-            <p className="text-[11px] text-zinc-400 mt-2">Tonalitäten <em>emotional-persönlich</em> und <em>ironisch-jugendlich</em> mit jeweils &lt; 3 % in allen Fraktionen weggelassen — siehe <a href="/design/linear/methodik#glossar-tonalitaet" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">Glossar</a> für alle 11 Werte.</p>
+            {tonalitaetWeggelassen.length > 0 && (
+              <p className="text-[11px] text-zinc-400 mt-2">
+                Tonalitäten{" "}
+                {tonalitaetWeggelassen.map((def, i) => (
+                  <span key={def.slug}>
+                    <em>{def.label}</em>{i < tonalitaetWeggelassen.length - 1 ? ", " : ""}
+                  </span>
+                ))}{" "}
+                mit jeweils &lt; 3 % in allen Fraktionen weggelassen — siehe{" "}
+                <a href="/design/linear/methodik#glossar-tonalitaet" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">Glossar</a>{" "}
+                für alle {TONALITAET_DEFS.length} Werte.
+              </p>
+            )}
           </div>
           <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
 
@@ -731,11 +808,11 @@ export default function LinearMethodikPage() {
             <div>
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen zeigen</div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· <strong className="text-zinc-950">AfD:</strong> Kombiniert 74,5 % polemisch / polemisch-sachlich; sachlich nur 8,8 % vs. 24-27 % bei CDU/SPD.</li>
-                <li>· <strong className="text-zinc-950">Linke:</strong> 50,2 % sozial-anklagend dominiert (in keiner anderen Fraktion &gt; 3 %); zusätzlich 32,5 % konfrontativ-belegend.</li>
-                <li>· <strong className="text-zinc-950">Grüne:</strong> 57,6 % konfrontativ-belegend dominiert.</li>
+                <li>· <strong className="text-zinc-950">AfD:</strong> Kombiniert {insights.afdPolemischCombined} polemisch / polemisch-sachlich; sachlich nur {insights.afdSachlich} vs. {insights.cduSachlich} bei CDU/CSU und {insights.spdSachlich} bei SPD.</li>
+                <li>· <strong className="text-zinc-950">Linke:</strong> {insights.linkeSozialAnklag} sozial-anklagend dominiert (in keiner anderen Fraktion &gt; 3 %); zusätzlich {insights.linkeKonfront} konfrontativ-belegend.</li>
+                <li>· <strong className="text-zinc-950">Grüne:</strong> {insights.grueneKonfront} konfrontativ-belegend dominiert.</li>
                 <li>· <strong className="text-zinc-950">CDU/CSU + SPD:</strong> ähnliche Verteilung über sachlich / konfrontativ-belegend / bilanzierend-werbend / defensiv-pragmatisch — Regierungs-Mitte-Muster.</li>
-                <li>· <strong className="text-zinc-950">Präsidium / Reden ohne Fraktion:</strong> 57,8 % defensiv-pragmatisch (Sitzungsleitung, Regierungsbänke).</li>
+                <li>· <strong className="text-zinc-950">Präsidium / Reden ohne Fraktion:</strong> {insights.praesidiumDefensiv} defensiv-pragmatisch (Sitzungsleitung, Regierungsbänke).</li>
               </ul>
             </div>
 
@@ -758,7 +835,7 @@ export default function LinearMethodikPage() {
                 <li>· Cross-Validation gegen ein Modell anderer Familie (Sanity-Check, kein IAA-Ersatz).</li>
                 <li>· <strong className="text-zinc-950">Themen-kontrollierte Auswertung</strong> (Tonalitäts-Verteilung <em>innerhalb desselben Topics</em>, getrennt nach Fraktion) zur Trennung von Themen-Confound und Rhetorik-Confound.</li>
                 <li>· <strong className="text-zinc-950">Speaker-blind-Sanity-Check</strong>: Stichprobe von Reden ohne Fraktions-Information durch dasselbe Modell laufen lassen; Klassifikations-Stabilität messen.</li>
-                <li>· Stichproben-Audit der AfD-Polemisch-Klassifikationen (74,5 %) auf Plausibilität pro Rede.</li>
+                <li>· Stichproben-Audit der AfD-Polemisch-Klassifikationen ({insights.afdPolemischCombined}) auf Plausibilität pro Rede.</li>
               </ul>
             </div>
           </div>
@@ -944,6 +1021,93 @@ export default function LinearMethodikPage() {
           </div>
         </section>
 
+        {/* Tonalität Kleiner Anfragen je Fraktion */}
+        <section id="tonalitaet-drucksachen" className="mb-14 scroll-mt-20">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+            Tonalität Kleiner Anfragen je Fraktion
+          </h2>
+
+          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
+            <p className="text-[12.5px] text-amber-900 leading-relaxed">
+              <strong>Methodische Limitation vorab:</strong> Kleine Anfragen werden
+              fast ausschließlich von <em>Oppositions­fraktionen</em> gestellt — sie
+              sind ein parlamentarisches Kontrollinstrument der Minderheit gegenüber
+              der Regierung. Eine als <em>fordernd</em> oder <em>kritisch</em>{" "}
+              klassifizierte Anfrage ist also weitgehend tautologisch: Opposition
+              fordert oder kritisiert, weil Opposition das tut. Aussagekräftiger als
+              die Anteile <em>zwischen</em> Fraktionen sind die <em>internen
+              Mischungs­verhältnisse</em> — etwa wie viel Sachfrage vs. wie viel
+              Anklage eine Fraktion in ihren Anfragen bündelt.
+            </p>
+          </div>
+
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 mb-4 overflow-x-auto">
+            <p className="text-[13px] text-zinc-600 mb-3">
+              Anteil der jeweiligen Tonalität innerhalb der Fraktion. Basis:{" "}
+              <strong className="text-zinc-950">
+                {dsTotalAnfragen.toLocaleString("de-DE")} Kleine Anfragen
+              </strong>{" "}
+              aus den drei Oppositions­fraktionen mit jeweils ≥10 Anfragen in{" "}
+              <code className="text-[11.5px] font-mono bg-zinc-100 px-1 rounded">drucksache_analyses</code>{" "}
+              (batch_class = klein). Koalitions­anträge und Joint-Anfragen mehrerer
+              Fraktionen sind ausgenommen, weil sie nicht eindeutig einer Fraktion
+              zurechenbar sind.
+            </p>
+            <table className="text-[12px] w-full">
+              <thead>
+                <tr className="text-left text-[10.5px] uppercase tracking-wider text-zinc-500 border-b border-zinc-200">
+                  <th className="py-2 px-1.5 font-medium">Fraktion</th>
+                  <th className="py-2 px-1.5 font-medium text-right">Anfragen</th>
+                  {DS_TONALITAET_DEFS.map(def => (
+                    <th key={def.slug} className="py-2 px-1.5 font-medium text-right">{def.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-100 num">
+                {dsTonalitaet.map(row => (
+                  <tr key={row.fraktion}>
+                    <td className="py-1.5 px-1.5">{row.fraktion}</td>
+                    <td className="py-1.5 px-1.5 text-right">{row.total.toLocaleString("de-DE")}</td>
+                    {DS_TONALITAET_DEFS.map(def => {
+                      const n = row.byTonalitaet[def.slug] ?? 0;
+                      const share = row.total > 0 ? n / row.total : 0;
+                      const highlight = share >= 0.40;
+                      return (
+                        <td
+                          key={def.slug}
+                          className={`py-1.5 px-1.5 text-right${highlight ? " font-semibold text-amber-900" : ""}`}
+                        >{pct(n, row.total)}</td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
+
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 space-y-3 text-[14px] text-zinc-700 leading-relaxed">
+            <div>
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Glossar — 4 Tonalitäten Kleiner Anfragen</div>
+              <ul className="space-y-1.5 ml-1 text-[13.5px]">
+                {DS_TONALITAET_DEFS.map(def => (
+                  <li key={def.slug}>· <strong className="text-zinc-950">{def.label}:</strong> {def.short}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-2 border-t border-zinc-100">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen nicht zeigen</div>
+              <ul className="space-y-1.5 ml-1 text-[13.5px]">
+                <li>· Kein Vergleich mit Koalitions­fraktionen — CDU/CSU und SPD stellen Kleine Anfragen praktisch nicht (sie steuern stattdessen über Regierungskontakt). Diese Tabelle vergleicht damit nur <em>Oppositions-Stile untereinander</em>.</li>
+                <li>· Antworten der Bundesregierung haben eine eigene Tonalitäts-Skala (substantiell / teilantwortend / ausweichend) und sind in einer separaten Analyse erfasst, nicht hier.</li>
+                <li>· „fordernd" ist nicht parteiisch — alle drei Oppositions­fraktionen liegen zwischen ~49 % und ~59 % fordernd. Die Tabelle zeigt damit kein Werturteil, sondern bestätigt, dass das parlamentarische Kontroll­instrument seine Funktion erfüllt.</li>
+                <li>· Keine Inter-Annotator-Agreement-Studie — wie bei der Reden-Tonalität ist die Klassifikator-Konsistenz nicht extern validiert.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Audit-Trail */}
         <section id="audit-trail" className="mb-10 scroll-mt-20">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
@@ -1071,6 +1235,7 @@ export default function LinearMethodikPage() {
                 <li>· <strong className="text-zinc-950">Multi-Page-Biographien werden nicht traversiert:</strong> wenn eine Homepage einen Hub-Page mit Links zu Unter-Seiten („Werdegang", „Politische Stationen", „Engagements") betreibt, fetcht der Scraper nur den Hub. Folge: Teile der Vita gehen verloren oder das LLM extrahiert aus dem Hub-Layout halluzinierte Felder. Mindestens 1 dokumentierter Fall (Heiligenstadt: Hub + 3 Themen-Seiten).</li>
                 <li>· <strong className="text-zinc-950">Source-Coherence-Recall ist niedrig:</strong> auf einer Bewertungsstichprobe lag der Recall des Wikipedia↔Homepage-Konflikt-Detectors bei ~13 %. Die Pipeline findet damit nur eine Minderheit der echten Diskrepanzen. Die hier öffentlich gezeigten Konflikte sind dokumentierte Treffer, nicht „die Gesamtmenge aller Diskrepanzen in der DB".</li>
                 <li>· <strong className="text-zinc-950">Tonalitäts-Enum-Drift:</strong> trotz JSON-Schema-Enum gibt das LLM in ~{counts.tonalitatsDriftRepaired} Fällen Tonalitäts-Werte ausserhalb der erlaubten 11 Klassen aus. Wird deterministisch in den nächstgelegenen Enum-Wert gemappt (siehe Reden-Pipeline Step ⊕), Original bleibt als tonalitaet_original erhalten.</li>
+                <li>· <strong className="text-zinc-950">Datenreihe nur 21. Wahlperiode:</strong> alle Plenar-, Drucksachen- und Aktivitäts-Daten beginnen mit dem konstituierenden Tag der 21. WP am <strong>31.03.2025</strong>. Historische Trends über mehrere Wahlperioden hinweg (z.B. „Verschiebung von Sach- zu Skandalisierungsanfragen seit der 19. WP") lassen sich aus diesem Datenstand nicht belegen. Lebensläufe enthalten dagegen Stationen vor der 21. WP, weil sie aus Wikipedia/Bundestag-Bio extrahiert werden. Eine rückwirkende Erfassung früherer Wahlperioden ist möglich (DIP-API stellt sie bereit), aber bisher nicht ingestiert.</li>
               </ul>
             </div>
           </div>
