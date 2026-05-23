@@ -3486,6 +3486,17 @@ export interface BerlinSpeechItem {
   text_chars: number;
   text_preview: string;               // erste ~200 Zeichen ohne Grußformel
   interruption_count: number;         // Anzahl [Beifall|Zwischenruf|...] in der Rede
+  // LLM-Analyse (aus berlin_speech_analyses, optional)
+  analysis: {
+    reden_typ: string | null;          // A-K, L (Berlin-NEU)
+    tonalitaet: string | null;         // 11-Enum
+    zusammenfassung: string | null;    // 2-3 Sätze
+    forderungen_count: number;         // Anzahl Forderungen (für UI-Stats)
+    framing_marker: string[];          // Berlin-Glossar-Frames
+    quote_valid: number;               // Wieviele Zitate substring-valid
+    quote_total: number;
+    self_check_konfidenz: string | null; // hoch | mittel | niedrig
+  } | null;
 }
 
 export interface BerlinSpeechStats {
@@ -3530,16 +3541,33 @@ export function getBerlinSpeechesByPolitician(
     top_marker: string | null; top_titel: string | null; drucksache_nrn: string | null;
     speech_type: string | null;
     text: string; text_chars: number; interruptions: string | null;
+    analysis_reden_typ: string | null;
+    analysis_tonalitaet: string | null;
+    analysis_zusammenfassung: string | null;
+    analysis_forderungen_json: string | null;
+    analysis_framing_marker_json: string | null;
+    analysis_quote_valid: number | null;
+    analysis_quote_total: number | null;
+    analysis_self_check_json: string | null;
   }>;
   try {
     rows = db.prepare(`
-      SELECT speech_id, wp, sitzung_nr, datum, pdf_filename, lok_url,
-             speaker_role, speaker_ressort, top_marker, top_titel, drucksache_nrn,
-             speech_type, text, text_chars, interruptions
-        FROM berlin_speeches
-       WHERE politician_id = ?
-         AND is_praesidium = 0
-       ORDER BY datum DESC, sitzung_nr DESC, order_in_session DESC
+      SELECT bs.speech_id, bs.wp, bs.sitzung_nr, bs.datum, bs.pdf_filename, bs.lok_url,
+             bs.speaker_role, bs.speaker_ressort, bs.top_marker, bs.top_titel, bs.drucksache_nrn,
+             bs.speech_type, bs.text, bs.text_chars, bs.interruptions,
+             bsa.reden_typ AS analysis_reden_typ,
+             bsa.tonalitaet AS analysis_tonalitaet,
+             bsa.zusammenfassung_2_saetze AS analysis_zusammenfassung,
+             bsa.forderungen_json AS analysis_forderungen_json,
+             bsa.framing_marker_json AS analysis_framing_marker_json,
+             bsa.quote_valid_count AS analysis_quote_valid,
+             bsa.quote_total_count AS analysis_quote_total,
+             bsa.neutralitaets_self_check_json AS analysis_self_check_json
+        FROM berlin_speeches bs
+        LEFT JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
+       WHERE bs.politician_id = ?
+         AND bs.is_praesidium = 0
+       ORDER BY bs.datum DESC, bs.sitzung_nr DESC, bs.order_in_session DESC
     `).all(politicianId) as typeof rows;
   } catch {
     return {
@@ -3578,6 +3606,41 @@ export function getBerlinSpeechesByPolitician(
     if (r.drucksache_nrn) {
       try { drsNrn = JSON.parse(r.drucksache_nrn) as string[]; } catch { /* keep [] */ }
     }
+    // LLM-Analyse parsen (falls vorhanden)
+    let analysis: BerlinSpeechItem["analysis"] = null;
+    if (r.analysis_tonalitaet || r.analysis_zusammenfassung) {
+      let forderungenCount = 0;
+      if (r.analysis_forderungen_json) {
+        try {
+          const arr = JSON.parse(r.analysis_forderungen_json);
+          if (Array.isArray(arr)) forderungenCount = arr.length;
+        } catch { /* keep 0 */ }
+      }
+      let framingMarker: string[] = [];
+      if (r.analysis_framing_marker_json) {
+        try {
+          const arr = JSON.parse(r.analysis_framing_marker_json);
+          if (Array.isArray(arr)) framingMarker = arr.filter((x: unknown) => typeof x === "string") as string[];
+        } catch { /* keep [] */ }
+      }
+      let selfCheckKonfidenz: string | null = null;
+      if (r.analysis_self_check_json) {
+        try {
+          const obj = JSON.parse(r.analysis_self_check_json);
+          if (obj && typeof obj.konfidenz === "string") selfCheckKonfidenz = obj.konfidenz;
+        } catch { /* keep null */ }
+      }
+      analysis = {
+        reden_typ: r.analysis_reden_typ,
+        tonalitaet: r.analysis_tonalitaet,
+        zusammenfassung: r.analysis_zusammenfassung,
+        forderungen_count: forderungenCount,
+        framing_marker: framingMarker,
+        quote_valid: r.analysis_quote_valid ?? 0,
+        quote_total: r.analysis_quote_total ?? 0,
+        self_check_konfidenz: selfCheckKonfidenz,
+      };
+    }
     return {
       speech_id: r.speech_id,
       wp: r.wp,
@@ -3594,6 +3657,7 @@ export function getBerlinSpeechesByPolitician(
       text_chars: r.text_chars ?? 0,
       text_preview: speechPreview(r.text ?? ""),
       interruption_count: interruptionCount,
+      analysis,
     };
   });
 

@@ -107,6 +107,21 @@ function berlinSpeechTypeLabel(t: string | null): string {
   }
 }
 
+/** Tonalitäts-Badge-Konfig (identisch zur Bundes-Methodology v2.1). */
+const TONALITAET_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
+  sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
+  polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
+  polemisch_sachlich: { label: "polemisch-sachlich", color: "#9a3412", bg: "#ffedd5" },
+  emotional_persoenlich: { label: "emotional-persönlich", color: "#7c3aed", bg: "#ede9fe" },
+  konfrontativ_belegend: { label: "konfrontativ-belegend", color: "#1d4ed8", bg: "#dbeafe" },
+  ironisch_jugendlich: { label: "ironisch", color: "#a16207", bg: "#fef3c7" },
+  bilanzierend_werbend: { label: "bilanzierend", color: "#15803d", bg: "#dcfce7" },
+  staatsmaennisch: { label: "staatsmännisch", color: "#1e40af", bg: "#dbeafe" },
+  defensiv_pragmatisch: { label: "defensiv-pragmatisch", color: "#475569", bg: "#f1f5f9" },
+  sozial_anklagend: { label: "sozial-anklagend", color: "#be185d", bg: "#fce7f3" },
+  mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
+};
+
 export default async function PolitikerPage({ params, searchParams }: Props) {
   const sp = (await searchParams) ?? {};
   const showOriginal = sp.orig === "1";
@@ -538,10 +553,10 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 Ø {Math.round(berlinReden.total_chars / berlinReden.stats.total).toLocaleString("de-DE")} Z./Rede
               </span>
             </div>
-            {/* Transparenz-Hinweis: Berlin-Reden sind noch nicht KI-zusammengefasst */}
+            {/* Transparenz-Hinweis: KI-Analyse-Status */}
             <p className="text-[11px] text-zinc-500 mb-4 italic">
-              Volltexte direkt aus den PDF-Plenarprotokollen — noch keine KI-Zusammenfassung wie bei Bundestags-Reden.
-              Vorschau zeigt den Anfang nach Grußformel.
+              KI-Zusammenfassung + Tonalität via Haiku 4.5 (Methodologie Berlin-v1, Stand 2026-05-23).
+              Wo Analyse fehlt: Volltext-Vorschau aus dem PDF.
             </p>
             <div className="space-y-1.5 max-h-[640px] overflow-y-auto pr-1">
               {berlinReden.items.map((it) => {
@@ -572,10 +587,45 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           {it.top_marker ? `${it.top_marker} ` : ""}{it.top_titel}
                         </p>
                       )}
-                      {it.text_preview && (
+                      {/* Bevorzugt KI-Zusammenfassung; Fallback Volltext-Preview */}
+                      {it.analysis?.zusammenfassung ? (
+                        <p className="text-[12.5px] text-zinc-700 leading-relaxed mb-1.5 line-clamp-3">
+                          {it.analysis.zusammenfassung}
+                        </p>
+                      ) : it.text_preview ? (
                         <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-1.5 line-clamp-2">
                           {it.text_preview}
                         </p>
+                      ) : null}
+                      {/* Tonalität-Badge wenn vorhanden */}
+                      {it.analysis?.tonalitaet && TONALITAET_CONFIG[it.analysis.tonalitaet] && (
+                        <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                          {(() => {
+                            const cfg = TONALITAET_CONFIG[it.analysis.tonalitaet];
+                            return (
+                              <span
+                                className="px-1.5 py-0.5 rounded text-[10px] font-semibold"
+                                style={{ color: cfg.color, backgroundColor: cfg.bg }}
+                                title={`Tonalität: ${cfg.label} (Berlin-Methodology v1, Stand 2026-05-23)`}
+                              >
+                                {cfg.label}
+                              </span>
+                            );
+                          })()}
+                          {it.analysis.forderungen_count > 0 && (
+                            <span className="text-[10px] text-zinc-500" title="Anzahl der vom LLM erfassten Forderungen / Positionen">
+                              {`${it.analysis.forderungen_count} Forderung${it.analysis.forderungen_count === 1 ? "" : "en"}`}
+                            </span>
+                          )}
+                          {it.analysis.self_check_konfidenz && it.analysis.self_check_konfidenz !== "hoch" && (
+                            <span
+                              className="text-[9px] uppercase tracking-wider text-zinc-400 font-semibold"
+                              title={`LLM-Selbst-Konfidenz: ${it.analysis.self_check_konfidenz}`}
+                            >
+                              {it.analysis.self_check_konfidenz}-Konfidenz
+                            </span>
+                          )}
+                        </div>
                       )}
                       <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
                         <span>Sitzung {it.sitzung_nr}</span>
