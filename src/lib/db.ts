@@ -602,11 +602,18 @@ export function getMethodikCounts(): MethodikCounts {
     mdbsCvHomepage: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_homepage_json IS NOT NULL AND cv_homepage_json != ''`),
     mdbsCvSummary: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_summary IS NOT NULL AND cv_summary != ''`),
     cvStatementsTotal: one(
+      // CASE WHEN/json_type schützt vor cv_json-Rows, deren CV-Sektion als String
+      // statt Array gespeichert ist (~15 Rows aus der Berlin-Pipeline) — sonst wirft
+      // json_array_length "malformed JSON" und der Prod-Build crasht.
       `SELECT SUM(
-         json_array_length(COALESCE(json_extract(cv_json, '$.ausbildung'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.beruflicher_werdegang'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.politische_stationen'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.sonstiges'), '[]'))
+         CASE WHEN json_type(cv_json, '$.ausbildung') = 'array'
+              THEN json_array_length(json_extract(cv_json, '$.ausbildung')) ELSE 0 END
+         + CASE WHEN json_type(cv_json, '$.beruflicher_werdegang') = 'array'
+                THEN json_array_length(json_extract(cv_json, '$.beruflicher_werdegang')) ELSE 0 END
+         + CASE WHEN json_type(cv_json, '$.politische_stationen') = 'array'
+                THEN json_array_length(json_extract(cv_json, '$.politische_stationen')) ELSE 0 END
+         + CASE WHEN json_type(cv_json, '$.sonstiges') = 'array'
+                THEN json_array_length(json_extract(cv_json, '$.sonstiges')) ELSE 0 END
        ) AS c FROM politicians WHERE cv_json IS NOT NULL`
     ),
     sourceCoherenceChecked: one(`SELECT COUNT(*) AS c FROM politicians WHERE source_coherence_checked_at IS NOT NULL`),
