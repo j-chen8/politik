@@ -1,5 +1,6 @@
 import { SearchBox } from "@/components/SearchBox";
 import { LatestActivityStrip } from "@/components/LatestActivityStrip";
+import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -60,8 +61,13 @@ export default function LinearLanding() {
         <LatestActivityStrip />
       </div>
 
+      {/* Aktuelle Interview-Analysen — Showcase der Medien-Pipeline */}
+      <div className="fade-in-up fade-in-up-3">
+        <RecentMediaAnalysesStrip />
+      </div>
+
       {/* So entstehen die Daten — Prozess in drei Schritten */}
-      <section className="w-full max-w-5xl mx-auto pt-12 px-5 pb-24 fade-in-up fade-in-up-3">
+      <section className="w-full max-w-5xl mx-auto pt-12 px-5 pb-24 fade-in-up fade-in-up-4">
         <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
           <div className="px-6 py-6">
             <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-6">
