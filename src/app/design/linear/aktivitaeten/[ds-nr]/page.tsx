@@ -8,6 +8,7 @@ import {
   getDrucksacheThemenAehnliche,
   getDrucksachenSameFraktion,
   getPollsForDrucksache,
+  getBundestagDsHandzeichenVotes,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
@@ -191,6 +192,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const verfahren = getDrucksacheVerfahren(dsNr);
   const themenAehnliche = getDrucksacheThemenAehnliche(dsNr, ds.thema.join(", "), 6);
   const polls = getPollsForDrucksache(dsNr);
+  const handzeichenVotes = getBundestagDsHandzeichenVotes(dsNr);
   // Nur Parteien zählen — "Bundesregierung" und null ausschließen, sonst macht "andere DS der Fraktion" keinen Sinn
   const isParty = ds.fraktion && ds.fraktion !== "Bundesregierung";
   const sameFraktion = isParty
@@ -589,6 +591,77 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                     {p.match_score < 0.5 && (
                       <p className="text-[10.5px] text-zinc-400 mt-2">
                         Verknüpfung automatisch erkannt (Confidence niedrig — bitte prüfen)
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* HANDZEICHEN-ABSTIMMUNG IM PLENUM (Fraktions-Level, wenn keine namentliche Abstimmung) */}
+        {handzeichenVotes.length > 0 && (
+          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-5">
+              Plenums-Abstimmung{handzeichenVotes.length > 1 ? "en" : ""} (Fraktions-Ebene)
+            </h2>
+            <div className="space-y-4">
+              {handzeichenVotes.map((v) => {
+                const outcomeCfg: Record<string, { label: string; tone: string }> = {
+                  annahme:           { label: "angenommen", tone: "text-emerald-700" },
+                  annahme_geaendert: { label: "in geänderter Fassung angenommen", tone: "text-emerald-700" },
+                  ablehnung:         { label: "abgelehnt", tone: "text-red-700" },
+                  vertagung:         { label: "vertagt", tone: "text-amber-700" },
+                  ueberweisung:      { label: "an Ausschuss überwiesen", tone: "text-blue-700" },
+                  kein_vote:         { label: "kein Vote", tone: "text-zinc-500" },
+                };
+                const oc = outcomeCfg[v.outcome] ?? { label: v.outcome, tone: "text-zinc-700" };
+                const datumLabel = v.datum ? new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" }) : null;
+                const fraktionsOrder = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"] as const;
+                const pillStyle = (vote: string): string => {
+                  if (vote === "ja") return "bg-emerald-50 border-emerald-200 text-emerald-800";
+                  if (vote === "nein") return "bg-red-50 border-red-200 text-red-800";
+                  if (vote === "enthaltung") return "bg-yellow-50 border-yellow-200 text-yellow-800";
+                  return "bg-zinc-50 border-zinc-200 text-zinc-500";
+                };
+                const voteIcon = (vote: string): string => vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
+                const voteLabel = (vote: string): string => vote === "ja" ? "ja" : vote === "nein" ? "nein" : vote === "enthaltung" ? "enth." : "?";
+                return (
+                  <div key={v.voteId} className="border border-zinc-100 rounded-lg p-4">
+                    <div className="flex items-baseline gap-2 mb-3 flex-wrap text-[11px]">
+                      <span className={`font-semibold ${oc.tone}`}>{oc.label}</span>
+                      {v.modus && <><span className="text-zinc-300">·</span><span className="text-zinc-500">{v.modus}</span></>}
+                      {v.voteType !== "handzeichen" && v.voteType !== "unklar" && (
+                        <><span className="text-zinc-300">·</span><span className="text-zinc-500">{v.voteType}</span></>
+                      )}
+                      {datumLabel && <><span className="text-zinc-300">·</span><span className="text-zinc-400 num">{datumLabel}</span></>}
+                      {v.sitzungNr && <span className="text-zinc-400 num">Sitzung {v.sitzungNr}</span>}
+                    </div>
+                    {v.fraktionVotes && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {fraktionsOrder.map((f) => {
+                          const vote = v.fraktionVotes?.[f] ?? "unbekannt";
+                          return (
+                            <span key={f} className={`inline-flex items-center gap-1 px-2 py-1 rounded-md border text-[11px] font-medium ${pillStyle(vote)}`} title={`${f}: ${vote}`}>
+                              <span className="font-semibold">{f}</span>
+                              <span>{voteIcon(vote)}</span>
+                              <span className="text-[10px]">{voteLabel(vote)}</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+                    {v.stimmenZahlen && (
+                      <div className="mt-3 flex gap-4 text-[11px] text-zinc-600 num">
+                        <span>Ja: <span className="font-semibold text-emerald-700">{v.stimmenZahlen.ja}</span></span>
+                        <span>Nein: <span className="font-semibold text-red-700">{v.stimmenZahlen.nein}</span></span>
+                        <span>Enthaltung: <span className="font-semibold text-yellow-700">{v.stimmenZahlen.enthaltungen}</span></span>
+                      </div>
+                    )}
+                    {v.drucksacheNrn.length > 1 && (
+                      <p className="mt-3 text-[11px] text-zinc-400">
+                        Block-Abstimmung über {v.drucksacheNrn.length} Drucksachen: <span className="font-mono">{v.drucksacheNrn.join(", ")}</span>
                       </p>
                     )}
                   </div>

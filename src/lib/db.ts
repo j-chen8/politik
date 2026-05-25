@@ -3930,6 +3930,65 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
 }
 
 // ============================================================
+// Bundestag-Votes: Plenum-Handzeichen-Abstimmungen pro DS
+// (ergänzt die individuelle namentliche-Abstimmungs-Tabelle `votes`)
+// ============================================================
+
+export interface BundestagDsHandzeichenVote {
+  voteId: number;
+  sitzungNr: number | null;
+  wahlperiode: number | null;
+  datum: string | null;
+  voteType: string;
+  outcome: string;
+  modus: string | null;
+  fraktionVotes: Record<string, string> | null;
+  stimmenZahlen: { ja: number; nein: number; enthaltungen: number } | null;
+  drucksacheNrn: string[];
+  xmlSource: string;
+}
+
+/** Holt alle Handzeichen-Vote-Events die diese Bundestags-DS referenzieren.
+ *  JOIN über drucksache_nrn_json. */
+export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzeichenVote[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.vote_type, bv.outcome, bv.modus,
+             bv.fraktion_votes_json, bv.stimmen_zahlen_json,
+             bv.drucksache_nrn_json, bv.xml_source
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dsNr) as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null; datum: string | null;
+      vote_type: string; outcome: string; modus: string | null;
+      fraktion_votes_json: string | null; stimmen_zahlen_json: string | null;
+      drucksache_nrn_json: string | null; xml_source: string;
+    }>;
+    const parse = <T,>(s: string | null): T | null => {
+      if (!s) return null;
+      try { return JSON.parse(s) as T; } catch { return null; }
+    };
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      wahlperiode: r.wahlperiode,
+      datum: r.datum,
+      voteType: r.vote_type,
+      outcome: r.outcome,
+      modus: r.modus,
+      fraktionVotes: parse<Record<string, string>>(r.fraktion_votes_json),
+      stimmenZahlen: parse<{ ja: number; nein: number; enthaltungen: number }>(r.stimmen_zahlen_json),
+      drucksacheNrn: parse<string[]>(r.drucksache_nrn_json) ?? [],
+      xmlSource: r.xml_source,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+// ============================================================
 // Berlin-Votes: Plenum-Abstimmungs-Events pro DS
 // ============================================================
 
