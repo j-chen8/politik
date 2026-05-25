@@ -550,8 +550,11 @@ export function cleanTagDrift(value: string | null | undefined): string | null {
     if (idx >= 0) return value.slice(0, idx).trim();
   }
   // Generisch: irgendein closing-Tag gefolgt von neuem <parameter name=…>
-  const m = value.match(/^([\s\S]*?)<\/[a-z_]+>\s*<parameter\s+name=/i);
-  if (m) return m[1].trim();
+  const m1 = value.match(/^([\s\S]*?)<\/[a-z_]+>\s*<parameter\s+name=/i);
+  if (m1) return m1[1].trim();
+  // Generisch: closing-Tag + <invoke>/<\/invoke> (LLM zitiert fremdes Schema)
+  const m2 = value.match(/^([\s\S]*?)<\/[a-z_]+>\s*<\/?invoke/i);
+  if (m2) return m2[1].trim();
   return value;
 }
 
