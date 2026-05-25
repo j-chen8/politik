@@ -47,7 +47,7 @@ const DB_PATH = path.join(process.cwd(), "politik.db");
 const METHOD_PATH = path.join(process.cwd(), "docs/summarization-methodology-berlin-drucksachen.md");
 const STATE_DIR = path.join(process.cwd(), ".batch-state-berlin-ds");
 const MIN_CHARS = 500;
-const MAX_TOKENS = 2048;
+const MAX_TOKENS = 3000; // v1.4: war 2048, in Stage 1 trat ein abgeschnittener fraktion-String auf
 const MODEL = "claude-haiku-4-5";
 
 // Kumulative Targets (analog Reden-Pipeline)

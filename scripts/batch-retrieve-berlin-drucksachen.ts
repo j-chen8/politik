@@ -27,6 +27,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   BerlinBatchClass,
   validateTonalitaet, validateThemen, safeParseArray, normalizeFraktion,
+  extractHeaderMeta,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -111,6 +112,24 @@ async function main() {
   const db = new Database(DB_PATH);
   db.pragma("journal_mode = WAL");
   db.pragma("busy_timeout = 30000");
+
+  // Fallback-Query: full_text + titel für Header-Re-Extract, falls LLM die Fraktion
+  // trotz Header-Hint im Schema-Feld leer gelassen hat (v1.2-Empirie: ~3 % Aussetzer).
+  const fetchTextStmt = db.prepare(`
+    SELECT t.full_text, d.titel FROM berlin_documents d
+    JOIN berlin_pdf_texts t ON d.lok_url = t.lok_url
+    WHERE d.dbid = ?
+  `);
+  let fraktionFallbackHits = 0;
+  function rescueFraktion(dbid: string, klasse: BerlinBatchClass, llmFraktion: string | null): string | null {
+    if (llmFraktion) return llmFraktion;
+    if (klasse !== "anfrage_antwort" && klasse !== "antrag") return null;
+    const row = fetchTextStmt.get(dbid) as { full_text: string; titel: string | null } | undefined;
+    if (!row) return null;
+    const meta = extractHeaderMeta(row.full_text, row.titel);
+    if (meta.fraktion) fraktionFallbackHits++;
+    return meta.fraktion;
+  }
 
   const insertStmt = db.prepare(`
     INSERT OR REPLACE INTO berlin_drucksachen_analyses (
@@ -231,8 +250,8 @@ async function main() {
       // anfrage_antwort spez
       antwort_charakter: klasse === "anfrage_antwort" ? tVal.value : null,
       bezirk_bezug: klasse === "anfrage_antwort" ? strOrNull(analysis.bezirk_bezug) : null,
-      // antrag/gesetzentwurf/anfrage_antwort — auf Short-Enum (GRÜNE/LINKE/...) normalisieren
-      fraktion: normalizeFraktion(strOrNull(analysis.fraktion)),
+      // antrag/gesetzentwurf/anfrage_antwort — normalisieren + Regex-Fallback wenn LLM-Aussetzer
+      fraktion: rescueFraktion(dbid, klasse, normalizeFraktion(strOrNull(analysis.fraktion))),
       adressat: klasse === "antrag" ? strOrNull(analysis.adressat) : null,
       // gesetzentwurf spez
       regelung: klasse === "gesetzentwurf" ? strOrNull(analysis.regelung) : null,
@@ -277,6 +296,7 @@ async function main() {
   console.log(`  Tonality-Drift:   ${tonalDriftPct.toFixed(2)}%     ${fmt(tonalDriftPct <= 1)}`);
   console.log(`  Themen-Drift:     ${themenDriftPct.toFixed(1)}%     ${fmt(themenDriftPct <= 10)}`);
   console.log(`  Array-Bugs:       ${arrayBugCount}        ${fmt(arrayBugCount === 0)}`);
+  console.log(`  Fraktion-Rescue:  ${fraktionFallbackHits}        (Regex-Fallback wo LLM-Output leer war)`);
 
   // Drift-Tags-Histogramm
   if (themenDriftBag.length) {

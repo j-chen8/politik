@@ -1,6 +1,6 @@
 # Summarization-Methodologie für Berlin-Drucksachen
 
-**Stand:** 2026-05-25 (v1.2 — Stage-1-Review: Header-Meta-Pre-Extract + Plenarprotokoll-Routing-Fix + Fraktions-Normalisierung)
+**Stand:** 2026-05-25 (v1.4 — Stage-1-v1.3-Validierung: System-Prompt auf 2.337 Tokens für Haiku-Cache, Strict-Whitelist-Fraktion, „und"-Multi-Fraktion-Split, max_tokens 3000)
 **Erstellt von:** Claude Opus 4.7 + manuelle Kuration (analog zu `summarization-methodology-berlin.md` für Reden)
 **Zweck:** Direkt einsetzbarer Methodology-System-Prompt für Haiku 4.5 zur partei-neutralen Analyse von Drucksachen des Berliner Abgeordnetenhauses (19. Wahlperiode).
 
@@ -272,6 +272,25 @@ OUTPUT-DISZIPLIN — SEHR WICHTIG:
   - Projektion Stage 4: rettet ~8.300 Fraktion-Werte (für Aggregation Fraktion × Topic × Zeit notwendig).
 - **Fraktions-Normalisierung** (`normalizeFraktion`): Long-Form (`Bündnis 90/Die Grünen`) → Short-Enum (`GRÜNE`), Multi-Fraktion via `+` join. Konsistenz zwischen Anträgen (Long-Form-Tendenz) und Anfragen (Short-Form).
 - **Plenarprotokoll-Routing-Fix** in `classifyBerlinDoc`: `dok_art_label !== 'Drucksache'` → `skip`. 767 'Antwort'+'Plenarprotokoll'-DS sind Mündliche-Anfragen-Antworten und gehören in die Reden-Pipeline, nicht hierhin.
+
+**v1.3 — 2026-05-25 (nach v1.2-Re-Submit-Validierung, 100 DS):**
+- **System-Prompt-Strecken** auf ≥1024 Tokens (Anthropic-Haiku-Cache-Minimum). v1.2-Empirie: Cache-Hit-Rate 0 %, real-cost +56 % über Estimate. Neue Blöcke (inhaltlich nützlich, kein Filler):
+  - `TOPIC_GLOSSAR_BLOCK`: alle 47 Tags kategorisiert (verstärkt Anti-Drift)
+  - `BERLIN_VOKABULAR_BLOCK`: Senat/Senatsverwaltung/Abgeordnetenhaus/Bezirke-Vokabular + Fraktions-Short-Form-Präferenz
+  - `ANTI_HALLUZINATION_BLOCK`: H1-H6 (kompakt aus Methodologie übernommen)
+  - `STRUKT_META_HINWEIS`: explizite Instruktion wie mit dem User-Message-Header-Block umzugehen ist
+  - Gesamt-System-Prompt: ~1.413 Tokens (statt 526). Projektion Stage 4 Cost-Senkung: $50-60 (Cache-Hit-Rate ≥90 % erwartet).
+- **Fraktion-Regex-Fallback im Retrieve** (`rescueFraktion`): wenn LLM-Output `fraktion` leer ist (v1.2-Empirie: 1/28 ≈ 3,6 % Aussetzer), wird `extractHeaderMeta` direkt im Retrieve aufgerufen und das Regex-Ergebnis als Fallback eingesetzt. Closing-the-loop-Defense.
+
+**v1.4 — 2026-05-25 (nach v1.3-Re-Submit-Validierung, 100 DS):**
+- **System-Prompt erneut gestreckt** auf 2.337 Tokens (war 1.413). v1.3-Empirie: Cache-Hit-Rate immer noch 0 % — Haiku-4.5-Threshold liegt offenbar bei 2048 Tokens, nicht 1024. Neue Blöcke:
+  - `FRAKTION_DISZIPLIN_BLOCK`: Whitelist-Werte + Beispiele KORREKT/FALSCH; Fokus auf „kein Datum/Adresse ins fraktion-Feld" (LLM hatte halluziniertes Datum geschrieben)
+  - `BEZIRKS_DISZIPLIN_BLOCK`: 12-Bezirke-Whitelist + Stadtteil→Bezirk-Mapping-Regel
+  - `ZUSAMMENFASSUNG_QUALITAETSKRITERIEN`: 7 Self-Check-Punkte vor dem Schreiben
+  - `FEWSHOT_BEISPIELE`: 2 voll ausgearbeitete Klassen-Beispiele (anfrage_antwort + antrag) für Format-Kalibrierung
+- **Strict-Whitelist-Fraktion** in `normalizeFraktion`: nur erlaubte Werte (CDU/SPD/GRÜNE/LINKE/AfD/FDP/fraktionslos/parteilos + Multi-Combos) — alles andere → null. Filtert halluzinierte Datumstrings.
+- **„und"-Multi-Fraktion-Split** zusätzlich zum Komma-Split.
+- **MAX_TOKENS 2048 → 3000**: v1.3-Empirie hatte einen abgeschnittenen fraktion-String („…+ der Frak-") bei einem Multi-Koalition-Antrag.
 
 ---
 

@@ -16,7 +16,7 @@
  *  - TOPIC_TAGS als geschlossenes Enum (Anti-Drift)
  */
 
-export const PROMPT_VERSION = "berlin-v1.2";
+export const PROMPT_VERSION = "berlin-v1.4";
 
 const NEUTRALITY_BLOCK = `STRIKTE REGELN:
 - Antworte ausschließlich auf Deutsch.
@@ -90,8 +90,89 @@ const KERNINHALT_VS_ZUS = `ABGRENZUNG zusammenfassung ↔ kerninhalt:
 - kerninhalt = DISKRETE Liste konkreter Forderungen / Befunde / Antworten als Quick-Reference.
 - Die kerninhalt-Bullets sollen KEINE Paraphrase der zusammenfassung sein, sondern atomare Einzelpositionen liefern.`;
 
+const ANTI_HALLUZINATION_BLOCK = `ANTI-HALLUZINATIONS-HEURISTIKEN (H1-H6) — bei Konflikt mit Eleganz immer Treue wählen:
+H1: Erfinde KEINE konstruktiven Forderungen die nicht in der DS stehen. Wenn eine Fraktion kritisiert ohne Alternative zu bieten, schreibe das so — kein „bietet stattdessen X" wenn X nicht da ist.
+H2: Behalte Polemik im Original-Wortlaut wenn relevant („Abzocke", „Skandal" — wörtlich zugeschrieben), sanitisiere nicht zu „Bedenken" oder „Kritik".
+H3: Multi-Punkt-Vollständigkeit — bei Anträgen mit 8 Forderungen alle 8 in kerninhalt, nicht nur die ersten 3.
+H4: Ausweichende Antworten sind eine Position — wenn der Senat verweist statt antwortet, halte das fest („verweist auf Bezirksamt", „Verfahren läuft noch"). Erfinde keine konkrete Antwort wo keine ist.
+H5: „Wir werden tun"-Rhetorik des Senats: kennzeichne als Vorhaben, nicht als getätigte Maßnahme.
+H6: Konkrete Zahlen sind Anker. Wenn die DS Statistiken nennt, übernimm sie in zusammenfassung/kerninhalt mit der Original-Zahl, nicht „mehrere" oder „einige".`;
+
+const BERLIN_VOKABULAR_BLOCK = `BERLIN-AKTEURE-VOKABULAR (Berliner Politik hat eigene Begriffe, NICHT mit Bundes-Vokabular vermischen):
+- „der Senat von Berlin" / „der Senat" (Berliner Landesregierung — NICHT „die Bundesregierung")
+- „die Senatsverwaltung für X" / „SenX" (Berliner Ministerien — NICHT „das Bundesministerium")
+- „das Abgeordnetenhaus von Berlin" (Landesparlament — NICHT „der Bundestag")
+- „das Bezirksamt Y" / „Bezirksverwaltung Y" (12 Berliner Bezirke als handelnde Stelle)
+- „die Regierende Bürgermeisterin / der Regierende Bürgermeister"
+- Fraktionen im Abgeordnetenhaus: CDU, SPD, GRÜNE, LINKE, AfD, FDP (Short-Form bevorzugen, NICHT „Bündnis 90/Die Grünen" oder „Die Linke" ausschreiben)
+- Bezirke: Mitte, Friedrichshain-Kreuzberg, Pankow, Charlottenburg-Wilmersdorf, Spandau, Steglitz-Zehlendorf, Tempelhof-Schöneberg, Neukölln, Treptow-Köpenick, Marzahn-Hellersdorf, Lichtenberg, Reinickendorf`;
+
+const TOPIC_GLOSSAR_BLOCK = `BERLIN-TOPIC-GLOSSAR (47 Tags, geschlossenes Enum — KEINE neuen Tags erfinden):
+- Wohnen / Stadtentwicklung: Wohnen, Stadtentwicklung, Liegenschaften, Bauplanung, Denkmalschutz
+- Mobilität / Verkehr: Mobilität, ÖPNV, Radverkehr, Verkehrssicherheit
+- Bildung / Wissenschaft: Bildung, Hochschulen, Familie
+- Polizei / Justiz / Sicherheit: Polizei, Justiz, Gewaltprävention
+- Sozial / Gesundheit: Soziale Infrastruktur, Gesundheit, Pflege, Wohnungslosigkeit, Inklusion
+- Wirtschaft / Arbeit: Wirtschaft, Arbeitsmarkt, Tourismus
+- Klima / Umwelt: Klimaschutz, Energie, Tierschutz
+- Verwaltung / Bezirke: Verwaltung, Bezirke, Digitalisierung, Bürokratie, Transparenz
+- Demokratie / Bürgerrechte: Demokratie, Wahlrecht, Partizipation, Datenschutz, Antidiskriminierung, Geschlechtergerechtigkeit, Extremismus
+- Finanzen / Haushalt: Finanzen, Haushalt, Steuern
+- Kultur / Sport: Kultur, Sport
+- Migration / Integration: Migration, Integration, Geflüchtete
+- Catch-all (sparsam verwenden!): Sonstiges
+Wähle 1-3 Tags pro DS. Wenn das thematische Cluster nicht passt, lieber „Sonstiges" als ein erfundenes Tag.`;
+
+const STRUKT_META_HINWEIS = `WICHTIG bei STRUKTURIERTE METADATEN-Block in der User-Message:
+Wenn der Block am Anfang der User-Message Felder vorgibt (Fraktion, Senatsverwaltung, Datum, Bezirk-Hint), VERWENDE diese Werte in deinen Output-Feldern statt sie im Boilerplate-gestrippten Text zu suchen — der Strip schneidet den DS-Header weg, der Header-Block hat die Info schon extrahiert.
+Wenn der Block leer ist oder ein Feld nicht enthält, extrahiere selbst aus dem Volltext.
+Bezirks-Hint ist ein KANDIDAT — übernimm ihn als bezirk_bezug nur wenn der DS-Volltext den Bezug bestätigt.`;
+
+const FRAKTION_DISZIPLIN_BLOCK = `FRAKTION-FELD-DISZIPLIN — sehr wichtig:
+- Erlaubte Werte: ausschließlich CDU, SPD, GRÜNE, LINKE, AfD, FDP, "fraktionslos", "parteilos" — KEINE Long-Form ("Bündnis 90/Die Grünen" → schreibe "GRÜNE", "Die Linke" → schreibe "LINKE").
+- Bei Koalitions-/Multi-Fraktions-Anträgen: mit " + " zusammenführen, kurze Schreibweise, z.B. "CDU + SPD" oder "GRÜNE + LINKE".
+- Wenn die DS keine Fraktion erkennbar enthält (z.B. fraktionsloser Abgeordneter ohne Fraktions-Klammer im Header): lass das Feld LEER. Erfinde NIEMALS einen Wert. Schreibe insbesondere keine Daten, Adressen oder Namen ins fraktion-Feld.
+- Beispiel KORREKT: "GRÜNE"     |     "CDU + SPD + FDP"     |     ""     |     "fraktionslos"
+- Beispiel FALSCH:  "Bündnis 90/Die Grünen"   |   "Fraktion CDU"   |   "Eingang beim Abgeordnetenhaus am DATUM"   |   "AfD-Fraktion"`;
+
+const BEZIRKS_DISZIPLIN_BLOCK = `BEZIRKS-FELD-DISZIPLIN (nur für anfrage_antwort):
+- Nur befüllen, wenn die Anfrage einen KONKRETEN Berliner Bezirk thematisch betrifft (z.B. "Schulen in Reinickendorf"). Berlin-weite Anfragen → Feld LEER.
+- Erlaubte Werte: exakt einer der 12 Bezirke (Mitte, Friedrichshain-Kreuzberg, Pankow, Charlottenburg-Wilmersdorf, Spandau, Steglitz-Zehlendorf, Tempelhof-Schöneberg, Neukölln, Treptow-Köpenick, Marzahn-Hellersdorf, Lichtenberg, Reinickendorf). Multi-Bezirks-Anfragen → Komma-Liste.
+- Wenn der STRUKTURIERTE-METADATEN-Block einen Bezirks-Hint vorgibt, übernimm ihn NUR, wenn der DS-Volltext den Bezug auch wirklich bestätigt (nicht jede Erwähnung eines Stadtteils = primärer Bezug).
+- Stadtteile (z.B. "Kreuzberg") → übergeordneter Bezirk verwenden ("Friedrichshain-Kreuzberg").`;
+
+const ZUSAMMENFASSUNG_QUALITAETSKRITERIEN = `ZUSAMMENFASSUNGS-QUALITÄT — vor dem Schreiben prüfen:
+- Nennt konkrete Zahlen / Bezirke / Beträge, wenn die DS welche liefert? (Treue vor Eleganz, H6)
+- Vermeidet Floskeln ("der Senat plant Maßnahmen zur Verbesserung der Lage")?
+- Identifiziert beide Seiten klar: WER (Fraktion / Senat) sagt WAS?
+- Bei anfrage_antwort: Ist klar, ob der Senat substanziell, teilantwortend oder ausweichend geantwortet hat?
+- Bei Anträgen: Ist die zentrale Forderung in den ersten 1-2 Sätzen?
+- Bei Gesetzentwürfen: Ist die Regelung in den ersten 2 Sätzen, die Begründung danach?
+- Keine Bewertung — nur Wiedergabe. Nicht "der Senat schiebt sich vor der Antwort", sondern "der Senat verweist auf bezirkliche Zuständigkeit".`;
+
+const FEWSHOT_BEISPIELE = `FEW-SHOT-BEISPIELE — Format-Kalibrierung:
+
+Beispiel 1 — anfrage_antwort, Senat antwortet substantiell:
+  zusammenfassung: "Die SPD-Fraktion fragte nach Zugriffszahlen, Registrierungen und Barrierefreiheit des Kita-Navigators. Der Senat antwortete substantiell mit konkreten Statistiken (Ø 370 tägliche Zugriffe 2021, 210.000 Anfragen seit Start 2019) und erklärte Datenpflege-Verpflichtungen der Träger. Die Behebung der Barrierefreiheits-Mängel ist für H1 2022 angekündigt."
+  thema: ["Bildung","Digitalisierung","Familie"]
+  antwort_charakter: "substantiell"
+  fraktion: "SPD"
+  senatsverwaltung: "Bildung, Jugend und Familie"
+  bezirk_bezug: ""  // berlin-weit
+
+Beispiel 2 — antrag, fordernde Tonalität, Multi-Koalition:
+  zusammenfassung: "Die CDU/SPD-Koalition fordert den Senat auf, eine Berliner Mobilitätsoffensive 2030 aufzulegen mit Fokus auf Tram-Netz-Ausbau in den Außenbezirken, Modernisierung der S-Bahn-Knoten und Erhöhung der Radwegekapazität auf Hauptverkehrsstraßen. Konkret werden 12 neue Tram-Strecken bis 2030 und 200 km zusätzliche Radwege verlangt."
+  kerninhalt: ["12 neue Tram-Strecken bis 2030 in den Außenbezirken", "Modernisierung S-Bahn-Knoten Spandau, Hauptbahnhof, Ostkreuz", "200 km zusätzliche Radwege auf Hauptverkehrsstraßen"]
+  thema: ["Mobilität","ÖPNV","Radverkehr"]
+  tonalitaet: "fordernd"
+  fraktion: "CDU + SPD"
+  adressat: "Senat"`;
+
 // Klassen-unabhängiger System-Prompt — derselbe für alle 4 LLM-Klassen, damit
 // ein einziger ephemeral-Cache-Eintrag genügt (v1.1-Refactor; spart ~3× cache_creation Tokens).
+// v1.3: Auf ≥1024 Tokens gestreckt (Anthropic-Haiku-Cache-Minimum) durch
+// inhaltlich nützliche Blöcke (Glossar/Anti-Halluzination/Berlin-Vokabular/Meta-Hint),
+// nicht durch Filler. Stage-1-v1.2-Empirie: ohne diese Länge fiel cache_read auf 0 %.
 export function buildSystemPrompt(): string {
   return `Du analysierst eine Berlin-Drucksache (Abgeordnetenhaus, 19. Wahlperiode) für eine politische Transparenz-Plattform.
 
@@ -105,6 +186,22 @@ LÄNGEN-VORGABEN (strikt einhalten):
 ${SCHEMA_DISCIPLIN_BLOCK}
 
 ${KERNINHALT_VS_ZUS}
+
+${BERLIN_VOKABULAR_BLOCK}
+
+${TOPIC_GLOSSAR_BLOCK}
+
+${ANTI_HALLUZINATION_BLOCK}
+
+${FRAKTION_DISZIPLIN_BLOCK}
+
+${BEZIRKS_DISZIPLIN_BLOCK}
+
+${ZUSAMMENFASSUNG_QUALITAETSKRITERIEN}
+
+${FEWSHOT_BEISPIELE}
+
+${STRUKT_META_HINWEIS}
 
 Verwende die Antwort-Tools — keine Erklärungen außerhalb des Tool-Aufrufs.`;
 }
@@ -473,19 +570,28 @@ const FRAKTION_NORMALIZE: Record<string, string> = {
   "fdp": "FDP",
 };
 
-/** Normalisiert Fraktions-String auf Short-Form-Enum. Liefert Multi-Fraktion mit " + " getrennt. */
+// Strict-Whitelist: nur diese Werte (plus Multi-Fraktion-Combos) dürfen in die fraktion-Spalte.
+// LLM hat in v1.3-Empirie bei fraktionslosen Abgeordneten ein Datum als Fraktion halluziniert
+// ("Eingang beim Abgeordnetenhaus am 22. Februar 2024"). Pass-Through ohne Filter ließ das durch.
+const FRAKTION_WHITELIST = new Set(["CDU", "SPD", "GRÜNE", "LINKE", "AfD", "FDP", "fraktionslos", "parteilos"]);
+
+/** Normalisiert Fraktions-String auf Short-Form-Enum. Strict: nicht-erkannte Werte → null.
+ *  Multi-Fraktion via " und " oder "," → " + "-getrennt. */
 export function normalizeFraktion(raw: string | null | undefined): string | null {
   if (!raw) return null;
   const trimmed = raw.replace(/\s+/g, " ").trim();
-  if (!trimmed || /^[<\-—]+|unknown$/i.test(trimmed)) return null;
+  if (!trimmed || /^[<\-—]+$|^unknown$/i.test(trimmed)) return null;
   const lower = trimmed.toLowerCase();
   if (FRAKTION_NORMALIZE[lower]) return FRAKTION_NORMALIZE[lower];
-  if (trimmed.includes(",")) {
-    const parts = trimmed.split(",").map((p) => normalizeFraktion(p)).filter((p): p is string => !!p);
-    if (parts.length > 1) return [...new Set(parts)].join(" + ");
-    if (parts.length === 1) return parts[0];
+  if (FRAKTION_WHITELIST.has(trimmed)) return trimmed;
+  // Multi-Fraktion: split auf " und " / "," / " + " — Koalitions-/Mehr-Fraktions-Anträge
+  // LLM gibt nach v1.4-Prompt "GRÜNE + LINKE" zurück — Plus-Splitter sonst → null
+  if (/\s+und\s+|,|\s+\+\s+/.test(trimmed)) {
+    const parts = trimmed.split(/\s+und\s+|,|\s+\+\s+/).map((p) => normalizeFraktion(p)).filter((p): p is string => !!p);
+    if (parts.length >= 1) return [...new Set(parts)].join(" + ");
   }
-  return trimmed;
+  // Strict: alles andere wird gefiltert (z.B. halluzinierte Datumstrings)
+  return null;
 }
 
 // ─── Header-Meta-Extraktion (Pre-Strip) ──────────────────────
