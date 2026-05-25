@@ -289,8 +289,9 @@ OUTPUT-DISZIPLIN — SEHR WICHTIG:
   - `ZUSAMMENFASSUNG_QUALITAETSKRITERIEN`: 7 Self-Check-Punkte vor dem Schreiben
   - `FEWSHOT_BEISPIELE`: 2 voll ausgearbeitete Klassen-Beispiele (anfrage_antwort + antrag) für Format-Kalibrierung
 - **Strict-Whitelist-Fraktion** in `normalizeFraktion`: nur erlaubte Werte (CDU/SPD/GRÜNE/LINKE/AfD/FDP/fraktionslos/parteilos + Multi-Combos) — alles andere → null. Filtert halluzinierte Datumstrings.
-- **„und"-Multi-Fraktion-Split** zusätzlich zum Komma-Split.
+- **„und"-Multi-Fraktion-Split** + **„ + "-Multi-Fraktion-Split** zusätzlich zum Komma-Split.
 - **MAX_TOKENS 2048 → 3000**: v1.3-Empirie hatte einen abgeschnittenen fraktion-String („…+ der Frak-") bei einem Multi-Koalition-Antrag.
+- **XML-Tag-Drift-Postprocessor** (`applyTagDriftFix`) in retrieve + reprocess: 50-Sample-Audit zeigte ~10 % der antrag/gesetzentwurf/vorlage_senat-Outputs mit `</fieldname>\n<parameter name="next">`-Suffix im Text-Feld (LLM streamt nächstes Tool-Use-Argument in den Vorgänger-String). Postprocessor schneidet Suffix ab und rekonstruiert das Folge-Feld. Stage-1-Reprocess hat **15 Felder gecleant + 21 Folge-Felder gerettet** (z. B. `kerninhalt` aus zerschossenem `zusammenfassung`-Suffix), null neue API-Kosten.
 
 ---
 

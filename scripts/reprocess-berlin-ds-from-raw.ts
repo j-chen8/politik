@@ -13,6 +13,7 @@ import path from "path";
 import {
   BerlinBatchClass,
   validateTonalitaet, validateThemen, safeParseArray, normalizeFraktion,
+  applyTagDriftFix,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
@@ -39,15 +40,26 @@ const rows = (stage !== null
 console.log(`Re-Process ${rows.length} Rows ${stage !== null ? `(stage=${stage})` : "(alle)"} ${DRY_RUN ? "[DRY-RUN]" : ""}`);
 
 let changedTonal = 0, changedTopic = 0, fixedArray = 0, hardBugs = 0;
+let xmlDriftCleaned = 0, xmlDriftRescued = 0;
 
 const update = db.prepare(`
   UPDATE berlin_drucksachen_analyses SET
+    zusammenfassung = @zusammenfassung,
     thema_json = @thema_json,
     tonalitaet = @tonalitaet,
     antwort_charakter = @antwort_charakter,
     kerninhalt_json = @kerninhalt_json,
     kerninhalt_frage_json = @kerninhalt_frage_json,
     kerninhalt_antwort_json = @kerninhalt_antwort_json,
+    regelung = @regelung,
+    begruendung = @begruendung,
+    auswirkung = @auswirkung,
+    betroffene_gruppen = @betroffene_gruppen,
+    einbringer = @einbringer,
+    dokumenttyp = @dokumenttyp,
+    senatsverwaltung = @senatsverwaltung,
+    bezirk_bezug = @bezirk_bezug,
+    adressat = @adressat,
     topic_drift_json = @topic_drift_json,
     tonalitaet_drift = @tonalitaet_drift,
     fraktion = @fraktion
@@ -58,6 +70,12 @@ const tx = db.transaction(() => {
   for (const r of rows) {
     let analysis: Record<string, unknown>;
     try { analysis = JSON.parse(r.raw_tool_input_json); } catch { continue; }
+
+    // XML-Tag-Drift-Fix: schneidet "</field>\n<parameter name=...>"-Suffixe ab
+    // und rekonstruiert verlorene Folge-Felder aus dem Suffix.
+    const drift = applyTagDriftFix(analysis);
+    xmlDriftCleaned += drift.cleaned;
+    xmlDriftRescued += drift.rescued;
 
     const tVal = validateTonalitaet(r.klasse, analysis);
     const thVal = validateThemen(analysis);
@@ -78,12 +96,22 @@ const tx = db.transaction(() => {
 
     update.run({
       dbid: r.dbid,
+      zusammenfassung: strOrNull(analysis.zusammenfassung),
       thema_json: thVal.themen.length ? JSON.stringify(thVal.themen) : null,
       tonalitaet: tVal.value,
       antwort_charakter: r.klasse === "anfrage_antwort" ? tVal.value : null,
       kerninhalt_json: r.klasse !== "anfrage_antwort" && ki.items.length ? JSON.stringify(ki.items) : null,
       kerninhalt_frage_json: r.klasse === "anfrage_antwort" && kif.items.length ? JSON.stringify(kif.items) : null,
       kerninhalt_antwort_json: r.klasse === "anfrage_antwort" && kia.items.length ? JSON.stringify(kia.items) : null,
+      regelung: r.klasse === "gesetzentwurf" ? strOrNull(analysis.regelung) : null,
+      begruendung: r.klasse === "gesetzentwurf" ? strOrNull(analysis.begruendung) : null,
+      auswirkung: r.klasse === "gesetzentwurf" ? strOrNull(analysis.auswirkung) : null,
+      betroffene_gruppen: r.klasse === "gesetzentwurf" ? strOrNull(analysis.betroffene_gruppen) : null,
+      einbringer: r.klasse === "gesetzentwurf" ? strOrNull(analysis.einbringer) : null,
+      dokumenttyp: r.klasse === "vorlage_senat" ? strOrNull(analysis.dokumenttyp) : null,
+      senatsverwaltung: (r.klasse === "vorlage_senat" || r.klasse === "anfrage_antwort") ? strOrNull(analysis.senatsverwaltung) : null,
+      bezirk_bezug: r.klasse === "anfrage_antwort" ? strOrNull(analysis.bezirk_bezug) : null,
+      adressat: r.klasse === "antrag" ? strOrNull(analysis.adressat) : null,
       topic_drift_json: thVal.drift.length ? JSON.stringify(thVal.drift) : null,
       tonalitaet_drift: tVal.drift,
       fraktion: normalizeFraktion(typeof analysis.fraktion === "string" ? analysis.fraktion : null),
@@ -98,5 +126,7 @@ console.log(`\nDiff vs bisherige DB-Werte:`);
 console.log(`  Tonalitaet verändert: ${changedTonal}`);
 console.log(`  Topic-Drift verändert: ${changedTopic}`);
 console.log(`  Stringified-Arrays gerettet: ${fixedArray}`);
+console.log(`  XML-Tag-Drift gecleant: ${xmlDriftCleaned} Felder`);
+console.log(`  XML-Tag-Drift Folge-Feld gerettet: ${xmlDriftRescued} Felder`);
 console.log(`  Echte Hard-Bugs (nicht reparierbar): ${hardBugs}`);
 console.log(DRY_RUN ? "\n(DRY-RUN — keine Updates geschrieben)" : "\n✓ Updates geschrieben");

@@ -525,6 +525,86 @@ export function validateThemen(
   return { themen, drift };
 }
 
+// ─── XML-Tag-Drift-Cleanup ──────────────────────────────────
+// Stage-1-v1.4-Empirie: ~10 % der antrag/gesetzentwurf/vorlage_senat haben einen
+// "</fieldname>\n<parameter name=...>"-Suffix in einem Text-Output-Feld. Der LLM
+// streamt das nächste Tool-Use-Argument als XML in den Vorgänger-String.
+// Folgen: Suffix-Müll im Text-Feld + Folge-Feld bleibt leer.
+// Fix: Suffix abschneiden + Folge-Feld aus dem Suffix rekonstruieren.
+const DS_OUTPUT_FIELDS = [
+  "zusammenfassung", "kerninhalt", "kerninhalt_frage", "kerninhalt_antwort",
+  "regelung", "begruendung", "auswirkung", "betroffene_gruppen",
+  "thema", "tonalitaet", "antwort_charakter",
+  "fraktion", "adressat", "senatsverwaltung", "bezirk_bezug",
+  "dokumenttyp", "einbringer",
+] as const;
+
+/** Schneidet ein "</fieldname>...."-Suffix ab, falls fieldname ein bekanntes Output-Feld ist.
+ *  Liefert den Vor-Tag-Wert (trimmed) oder unverändert wenn kein Drift. */
+export function cleanTagDrift(value: string | null | undefined): string | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value !== "string") return null;
+  for (const f of DS_OUTPUT_FIELDS) {
+    const tag = `</${f}>`;
+    const idx = value.indexOf(tag);
+    if (idx >= 0) return value.slice(0, idx).trim();
+  }
+  // Generisch: irgendein closing-Tag gefolgt von neuem <parameter name=…>
+  const m = value.match(/^([\s\S]*?)<\/[a-z_]+>\s*<parameter\s+name=/i);
+  if (m) return m[1].trim();
+  return value;
+}
+
+/** Extrahiert ein durch XML-Drift weggespültes Folge-Feld aus dem Sister-Field-String.
+ *  Pattern: "...</zusammenfassung>\n<parameter name=\"kerninhalt\">[...]"
+ *  Liefert den geparsten Wert (Array für JSON-Listen, String sonst) oder null. */
+export function extractDriftedField(value: string | null | undefined, targetField: string): unknown {
+  if (!value || typeof value !== "string") return null;
+  const re = new RegExp(`<parameter\\s+name=["']${targetField}["']\\s*>\\s*([\\s\\S]*?)(?:</parameter>|<\\/?[a-z_]+>|$)`, "i");
+  const m = value.match(re);
+  if (!m) return null;
+  const content = m[1].trim();
+  if (content.startsWith("[")) {
+    try { return JSON.parse(content); } catch { /* fall through */ }
+  }
+  return content || null;
+}
+
+/** Wendet cleanTagDrift + extractDriftedField auf eine komplette LLM-Analysis-Struktur an.
+ *  In-place-Mutation: gedriftete Felder werden gecleant, fehlende Felder aus Drift-Suffixen rekonstruiert.
+ *  Liefert Anzahl reparierter Felder (zur Telemetrie). */
+export function applyTagDriftFix(analysis: Record<string, unknown>): { cleaned: number; rescued: number } {
+  let cleaned = 0, rescued = 0;
+  // Pass 1: Folge-Felder rekonstruieren BEVOR die Suffixe gecleant werden
+  for (const f of DS_OUTPUT_FIELDS) {
+    const cur = analysis[f];
+    if (cur !== null && cur !== undefined && cur !== "") continue;
+    // Suche in anderen Feldern nach <parameter name="f">-Suffix
+    for (const other of DS_OUTPUT_FIELDS) {
+      if (other === f) continue;
+      const otherVal = analysis[other];
+      if (typeof otherVal !== "string") continue;
+      const rescuedVal = extractDriftedField(otherVal, f);
+      if (rescuedVal !== null && rescuedVal !== "" && !(Array.isArray(rescuedVal) && rescuedVal.length === 0)) {
+        analysis[f] = rescuedVal;
+        rescued++;
+        break;
+      }
+    }
+  }
+  // Pass 2: Suffixe abschneiden
+  for (const f of DS_OUTPUT_FIELDS) {
+    const cur = analysis[f];
+    if (typeof cur !== "string") continue;
+    const cleanedVal = cleanTagDrift(cur);
+    if (cleanedVal !== cur) {
+      analysis[f] = cleanedVal;
+      cleaned++;
+    }
+  }
+  return { cleaned, rescued };
+}
+
 /** SQL-Helper: einmaliger Pre-Pass über alle Antwort-DS, liefert eine Map dbid → AntwortMeta.
  *  Wird vom Batch-Builder verwendet, um den Edge-Case-Fix anzuwenden.
  *  Liefert nur Einträge für 'Antwort'-DS (16.660 Rows, in-memory ~1 MB). */

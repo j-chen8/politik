@@ -27,7 +27,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   BerlinBatchClass,
   validateTonalitaet, validateThemen, safeParseArray, normalizeFraktion,
-  extractHeaderMeta,
+  extractHeaderMeta, applyTagDriftFix,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -163,6 +163,7 @@ async function main() {
 
   let nInserted = 0, nErrored = 0;
   let tonalDriftCount = 0, themenDriftCount = 0, arrayBugCount = 0;
+  let xmlDriftCleanedTotal = 0, xmlDriftRescuedTotal = 0;
   const themenDriftBag: string[] = [];
   const klasseTally = new Map<string, number>();
   const tonTally = new Map<string, number>();
@@ -204,6 +205,12 @@ async function main() {
       nErrored++;
       continue;
     }
+
+    // XML-Tag-Drift-Fix: ~10 % der antrag/gesetzentwurf/vorlage_senat-Outputs
+    // haben "</field>\n<parameter name=...>"-Suffix; Folge-Feld bleibt sonst leer.
+    const drift = applyTagDriftFix(analysis);
+    xmlDriftCleanedTotal += drift.cleaned;
+    xmlDriftRescuedTotal += drift.rescued;
 
     // Validation
     const tVal = validateTonalitaet(klasse, analysis);
@@ -297,6 +304,7 @@ async function main() {
   console.log(`  Themen-Drift:     ${themenDriftPct.toFixed(1)}%     ${fmt(themenDriftPct <= 10)}`);
   console.log(`  Array-Bugs:       ${arrayBugCount}        ${fmt(arrayBugCount === 0)}`);
   console.log(`  Fraktion-Rescue:  ${fraktionFallbackHits}        (Regex-Fallback wo LLM-Output leer war)`);
+  console.log(`  XML-Tag-Drift:    cleaned=${xmlDriftCleanedTotal}, rescued=${xmlDriftRescuedTotal} (LLM-Suffix-Aufräumung)`);
 
   // Drift-Tags-Histogramm
   if (themenDriftBag.length) {
