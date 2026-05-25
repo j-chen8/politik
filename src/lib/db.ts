@@ -2906,6 +2906,152 @@ export function listAllPollsForIndex(): PollIndexRow[] {
 }
 
 // ============================================================
+// Kombinierter Vote-Index: namentliche Abstimmungen + Handzeichen-
+// Fraktions-Votes (Bundestag + Berlin) in einer einheitlichen Liste.
+// ============================================================
+
+export interface VoteIndexEntry {
+  // Identität + Routing
+  id: string;                                 // "poll:6147" | "btv:42" | "blv:103"
+  type: "namentlich" | "handzeichen_bundestag" | "handzeichen_berlin";
+  detail_url: string;                         // Link wohin der Card-Klick führt
+  // Anzeige
+  label: string | null;                       // Poll-Label oder DS-Titel
+  date: string | null;                        // ISO
+  outcome: "angenommen" | "abgelehnt" | "vertagt" | "ueberwiesen" | "unklar";
+  outcome_label: string;
+  // Stats — bei namentlich: Stimmen-Counts; bei Handzeichen: Fraktions-Map
+  yes: number | null;
+  no: number | null;
+  abstain: number | null;
+  fraktion_votes: Record<string, string> | null;
+  // Kontext
+  drucksache_nrn: string[];
+  parliament: "Bundestag" | "Berlin";
+}
+
+export function listAllVotesForIndex(): VoteIndexEntry[] {
+  const db = getDb();
+  const entries: VoteIndexEntry[] = [];
+
+  // 1. Bundestag namentliche Abstimmungen
+  const namentlich = db.prepare(`
+    SELECT v.poll_id, v.poll_label, v.poll_date,
+      SUM(CASE WHEN v.vote='yes' THEN 1 ELSE 0 END) AS yes,
+      SUM(CASE WHEN v.vote='no' THEN 1 ELSE 0 END) AS no,
+      SUM(CASE WHEN v.vote='abstain' THEN 1 ELSE 0 END) AS abstain
+    FROM votes v
+    GROUP BY v.poll_id, v.poll_label, v.poll_date
+  `).all() as Array<{ poll_id: number; poll_label: string | null; poll_date: string | null; yes: number; no: number; abstain: number }>;
+  for (const p of namentlich) {
+    const passed = p.yes > p.no;
+    entries.push({
+      id: `poll:${p.poll_id}`,
+      type: "namentlich",
+      detail_url: `/design/linear/abstimmungen/${p.poll_id}`,
+      label: p.poll_label,
+      date: p.poll_date,
+      outcome: passed ? "angenommen" : "abgelehnt",
+      outcome_label: passed ? "angenommen" : "abgelehnt",
+      yes: p.yes, no: p.no, abstain: p.abstain,
+      fraktion_votes: null,
+      drucksache_nrn: [],
+      parliament: "Bundestag",
+    });
+  }
+
+  // 2. Bundestag Handzeichen-Votes (mit DS-Title als Label)
+  try {
+    const btv = db.prepare(`
+      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json
+      FROM bundestag_votes bv
+      WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
+    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null }>;
+    for (const v of btv) {
+      const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
+      // Titel/Label: erste DS-Zusammenfassung
+      let label: string | null = null;
+      if (dsNrn.length > 0) {
+        const row = db.prepare(`SELECT substr(zusammenfassung, 1, 120) AS s FROM drucksache_analyses WHERE drucksache_nr=?`).get(dsNrn[0]) as { s: string | null } | undefined;
+        if (row?.s) label = row.s;
+        if (!label) label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
+      }
+      const outcomeMap: Record<string, { o: VoteIndexEntry["outcome"]; l: string }> = {
+        annahme:           { o: "angenommen", l: "angenommen" },
+        annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
+        ablehnung:         { o: "abgelehnt",  l: "abgelehnt" },
+        vertagung:         { o: "vertagt",    l: "vertagt" },
+        ueberweisung:      { o: "ueberwiesen", l: "an Ausschuss überwiesen" },
+      };
+      const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
+      const detail_url = dsNrn.length > 0
+        ? `/design/linear/aktivitaeten/${dsNrn[0].replace("/", "-")}`
+        : `/design/linear/abstimmungen`; // Fallback
+      entries.push({
+        id: `btv:${v.vote_id}`,
+        type: "handzeichen_bundestag",
+        detail_url,
+        label,
+        date: v.datum,
+        outcome: oc.o,
+        outcome_label: oc.l,
+        yes: null, no: null, abstain: null,
+        fraktion_votes: v.fraktion_votes_json ? (() => { try { return JSON.parse(v.fraktion_votes_json) as Record<string, string>; } catch { return null; } })() : null,
+        drucksache_nrn: dsNrn,
+        parliament: "Bundestag",
+      });
+    }
+  } catch { /* table evt. noch leer */ }
+
+  // 3. Berlin Handzeichen-Votes
+  try {
+    const blv = db.prepare(`
+      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json, bv.drucksache_dbids_json
+      FROM berlin_votes bv
+      WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
+    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null; drucksache_dbids_json: string | null }>;
+    for (const v of blv) {
+      const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
+      const dbids: string[] = v.drucksache_dbids_json ? (() => { try { return JSON.parse(v.drucksache_dbids_json); } catch { return []; } })() : [];
+      // Titel: erstes DS' Titel
+      let label: string | null = null;
+      if (dbids.length > 0) {
+        const row = db.prepare(`SELECT titel FROM berlin_documents WHERE dbid=?`).get(dbids[0]) as { titel: string | null } | undefined;
+        if (row?.titel) label = row.titel;
+      }
+      if (!label && dsNrn.length > 0) label = `Berlin-Drucksache ${dsNrn.join(", ")}`;
+      const outcomeMap: Record<string, { o: VoteIndexEntry["outcome"]; l: string }> = {
+        annahme:           { o: "angenommen", l: "angenommen" },
+        annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
+        ablehnung:         { o: "abgelehnt",  l: "abgelehnt" },
+        vertagung:         { o: "vertagt",    l: "vertagt" },
+        ueberweisung:      { o: "ueberwiesen", l: "an Ausschuss überwiesen" },
+      };
+      const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
+      const detail_url = dbids.length > 0
+        ? `/design/linear/parlamente/berlin/drucksache/${dbids[0]}`
+        : `/design/linear/parlamente/berlin`;
+      entries.push({
+        id: `blv:${v.vote_id}`,
+        type: "handzeichen_berlin",
+        detail_url,
+        label,
+        date: v.datum,
+        outcome: oc.o,
+        outcome_label: oc.l,
+        yes: null, no: null, abstain: null,
+        fraktion_votes: v.fraktion_votes_json ? (() => { try { return JSON.parse(v.fraktion_votes_json) as Record<string, string>; } catch { return null; } })() : null,
+        drucksache_nrn: dsNrn,
+        parliament: "Berlin",
+      });
+    }
+  } catch { /* table evt. noch leer */ }
+
+  entries.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+  return entries;
+}
+
+// ============================================================
 // Drucksachen-Detail (für Letterboxd-Style Detail-Page)
 // ============================================================
 
