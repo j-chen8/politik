@@ -614,14 +614,32 @@ export function getMethodikCounts(): MethodikCounts {
     mdbsCvJson: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_json IS NOT NULL AND cv_json != ''`),
     mdbsCvHomepage: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_homepage_json IS NOT NULL AND cv_homepage_json != ''`),
     mdbsCvSummary: one(`SELECT COUNT(*) AS c FROM politicians WHERE cv_summary IS NOT NULL AND cv_summary != ''`),
-    cvStatementsTotal: one(
-      `SELECT SUM(
-         json_array_length(COALESCE(json_extract(cv_json, '$.ausbildung'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.beruflicher_werdegang'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.politische_stationen'), '[]'))
-         + json_array_length(COALESCE(json_extract(cv_json, '$.sonstiges'), '[]'))
-       ) AS c FROM politicians WHERE cv_json IS NOT NULL`
-    ),
+    cvStatementsTotal: (() => {
+      // SQL-json_extract scheitert bei einzelnen legacy-Einträgen mit malformed
+      // Inner-Escapes (z.B. Geisel id=119641 hat `\"` Unicode-Mix im ausbildung-
+      // Sub-Wert). Statt SQL-Loop in TS iterieren mit try-catch.
+      try {
+        const rows = db.prepare(`SELECT cv_json FROM politicians WHERE cv_json IS NOT NULL AND cv_json != ''`).all() as { cv_json: string }[];
+        let total = 0;
+        for (const r of rows) {
+          try {
+            const cv = JSON.parse(r.cv_json);
+            for (const key of ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"]) {
+              const v = cv?.[key];
+              if (Array.isArray(v)) total += v.length;
+              else if (typeof v === "string") {
+                // Legacy stringified array — versuchen zu parsen
+                try {
+                  const parsed = JSON.parse(v);
+                  if (Array.isArray(parsed)) total += parsed.length;
+                } catch { /* skip */ }
+              }
+            }
+          } catch { /* skip malformed row */ }
+        }
+        return total;
+      } catch { return 0; }
+    })(),
     sourceCoherenceChecked: one(`SELECT COUNT(*) AS c FROM politicians WHERE source_coherence_checked_at IS NOT NULL`),
     sourceCoherenceEcht: one(
       `SELECT COUNT(*) AS c FROM politicians p, JSON_EACH(p.source_conflicts)
@@ -3909,6 +3927,68 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
     promptVersion: row.prompt_version,
     model: row.model,
   };
+}
+
+// ============================================================
+// Berlin-Votes: Plenum-Abstimmungs-Events pro DS
+// ============================================================
+
+export interface BerlinDsVote {
+  voteId: number;
+  sitzungNr: number | null;
+  datum: string | null;
+  voteType: string;          // handzeichen | namentlich | hammelsprung | unklar
+  outcome: string;           // annahme | annahme_geaendert | ablehnung | vertagung | ueberweisung | kein_vote
+  modus: string | null;      // einstimmig | mehrheitlich | knapp | unklar
+  fraktionVotes: Record<string, string> | null; // {CDU:"ja", SPD:"ja", ...}
+  stimmenZahlen: { ja: number; nein: number; enthaltungen: number } | null;
+  drucksacheNrn: string[];   // ["19/0234"]
+  drucksacheDbids: string[]; // ["D-XXX", "D-YYY"] (resolved)
+  plprLokUrl: string;
+  rawSnippet: string | null;
+}
+
+/** Holt alle Vote-Events die diese Berlin-DS referenzieren.
+ *  JOIN über drucksache_dbids_json (json_each-able). */
+export function getBerlinDsVotes(dbid: string): BerlinDsVote[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.datum, bv.vote_type, bv.outcome, bv.modus,
+             bv.fraktion_votes_json, bv.stimmen_zahlen_json,
+             bv.drucksache_nrn_json, bv.drucksache_dbids_json,
+             bv.plpr_lok_url, bv.raw_snippet
+      FROM berlin_votes bv, json_each(bv.drucksache_dbids_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dbid) as Array<{
+      vote_id: number; sitzung_nr: number | null; datum: string | null;
+      vote_type: string; outcome: string; modus: string | null;
+      fraktion_votes_json: string | null; stimmen_zahlen_json: string | null;
+      drucksache_nrn_json: string | null; drucksache_dbids_json: string | null;
+      plpr_lok_url: string; raw_snippet: string | null;
+    }>;
+    const parse = <T,>(s: string | null): T | null => {
+      if (!s) return null;
+      try { return JSON.parse(s) as T; } catch { return null; }
+    };
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      datum: r.datum,
+      voteType: r.vote_type,
+      outcome: r.outcome,
+      modus: r.modus,
+      fraktionVotes: parse<Record<string, string>>(r.fraktion_votes_json),
+      stimmenZahlen: parse<{ ja: number; nein: number; enthaltungen: number }>(r.stimmen_zahlen_json),
+      drucksacheNrn: parse<string[]>(r.drucksache_nrn_json) ?? [],
+      drucksacheDbids: parse<string[]>(r.drucksache_dbids_json) ?? [],
+      plprLokUrl: r.plpr_lok_url,
+      rawSnippet: r.raw_snippet,
+    }));
+  } catch {
+    return []; // berlin_votes-Tabelle evt. noch nicht angelegt
+  }
 }
 
 /** Mitzeichner / Urheber einer Berlin-Drucksache aus berlin_document_persons. */

@@ -1,7 +1,7 @@
-import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner } from "@/lib/db";
+import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner, getBerlinDsVotes } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Check, X, Minus, HelpCircle } from "lucide-react";
 
 interface Props {
   params: Promise<{ dbid: string }>;
@@ -55,6 +55,29 @@ function formatDate(s: string | null): string | null {
   } catch { return s; }
 }
 
+// Vote-Pill-Styles für die 6 Fraktionen
+const VOTE_PILL_STYLES: Record<string, { bg: string; text: string; icon: typeof Check }> = {
+  ja:         { bg: "bg-emerald-50 border-emerald-200", text: "text-emerald-800", icon: Check },
+  nein:       { bg: "bg-red-50 border-red-200",         text: "text-red-800",     icon: X },
+  enthaltung: { bg: "bg-yellow-50 border-yellow-200",   text: "text-yellow-800",  icon: Minus },
+  unbekannt:  { bg: "bg-zinc-50 border-zinc-200",       text: "text-zinc-500",    icon: HelpCircle },
+};
+
+const VOTE_LABEL: Record<string, string> = {
+  ja: "ja", nein: "nein", enthaltung: "enth.", unbekannt: "?",
+};
+
+const OUTCOME_LABEL: Record<string, { label: string; tone: string }> = {
+  annahme:           { label: "angenommen",           tone: "text-emerald-700" },
+  annahme_geaendert: { label: "in geänderter Fassung angenommen", tone: "text-emerald-700" },
+  ablehnung:         { label: "abgelehnt",            tone: "text-red-700" },
+  vertagung:         { label: "vertagt",              tone: "text-amber-700" },
+  ueberweisung:      { label: "an Ausschuss überwiesen", tone: "text-blue-700" },
+  kein_vote:         { label: "kein Vote",            tone: "text-zinc-500" },
+};
+
+const FRAKTIONS_ORDER = ["CDU", "SPD", "GRÜNE", "LINKE", "AfD", "FDP"] as const;
+
 function fraktionColor(f: string | null): string {
   if (!f) return "bg-zinc-100 text-zinc-700";
   if (f.includes("CDU")) return "bg-zinc-100 text-zinc-900";
@@ -72,6 +95,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
   if (!ds) notFound();
 
   const mitzeichner = getBerlinDsMitzeichner(dbid);
+  const votes = getBerlinDsVotes(dbid);
   const klasseLabel = KLASSE_LABEL[ds.klasse] ?? ds.klasse;
   const tonValue = ds.antwortCharakter ?? ds.tonalitaet;
   const tonCfg = tonValue ? TON_MAP[tonValue] : null;
@@ -286,6 +310,89 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                   {t}
                 </span>
               ))}
+            </div>
+          </section>
+        )}
+
+        {/* Plenum-Abstimmungen */}
+        {votes.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+              Abstimmung{votes.length > 1 ? "en" : ""} im Plenum
+            </h2>
+            <div className="space-y-4">
+              {votes.map((v) => {
+                const outcomeCfg = OUTCOME_LABEL[v.outcome] ?? { label: v.outcome, tone: "text-zinc-700" };
+                const datumLabel = formatDate(v.datum);
+                return (
+                  <div key={v.voteId} className="border border-zinc-100 rounded-lg p-4">
+                    <div className="flex items-baseline gap-2 mb-3 flex-wrap text-[11px]">
+                      <span className={`font-semibold ${outcomeCfg.tone}`}>
+                        {outcomeCfg.label}
+                      </span>
+                      {v.modus && (
+                        <>
+                          <span className="text-zinc-300">·</span>
+                          <span className="text-zinc-500">{v.modus}</span>
+                        </>
+                      )}
+                      {v.voteType !== "handzeichen" && v.voteType !== "unklar" && (
+                        <>
+                          <span className="text-zinc-300">·</span>
+                          <span className="text-zinc-500">{v.voteType === "namentlich" ? "namentliche Abstimmung" : "Hammelsprung"}</span>
+                        </>
+                      )}
+                      {datumLabel && (
+                        <>
+                          <span className="text-zinc-300">·</span>
+                          <span className="text-zinc-400 num">{datumLabel}</span>
+                        </>
+                      )}
+                      {v.sitzungNr && (
+                        <span className="text-zinc-400 num">Sitzung {v.sitzungNr}</span>
+                      )}
+                    </div>
+
+                    {/* Fraktions-Vote-Pills */}
+                    {v.fraktionVotes && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {FRAKTIONS_ORDER.map((f) => {
+                          const vote = v.fraktionVotes?.[f] ?? "unbekannt";
+                          const cfg = VOTE_PILL_STYLES[vote] ?? VOTE_PILL_STYLES.unbekannt;
+                          const Icon = cfg.icon;
+                          return (
+                            <span
+                              key={f}
+                              className={`inline-flex items-center gap-1 px-2 py-1 rounded-md border text-[11px] font-medium ${cfg.bg} ${cfg.text}`}
+                              title={`${f}: ${vote}`}
+                            >
+                              <span className="font-semibold">{f}</span>
+                              <Icon className="w-3 h-3" strokeWidth={2.5} />
+                              <span className="text-[10px]">{VOTE_LABEL[vote]}</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Bei namentlicher Abstimmung: aggregierte Zahlen */}
+                    {v.stimmenZahlen && (
+                      <div className="mt-3 flex gap-4 text-[11px] text-zinc-600 num">
+                        <span>Ja: <span className="font-semibold text-emerald-700">{v.stimmenZahlen.ja}</span></span>
+                        <span>Nein: <span className="font-semibold text-red-700">{v.stimmenZahlen.nein}</span></span>
+                        <span>Enthaltung: <span className="font-semibold text-yellow-700">{v.stimmenZahlen.enthaltungen}</span></span>
+                      </div>
+                    )}
+
+                    {/* Block-Vote-Hinweis */}
+                    {v.drucksacheNrn.length > 1 && (
+                      <p className="mt-3 text-[11px] text-zinc-400">
+                        Block-Abstimmung über {v.drucksacheNrn.length} Drucksachen: <span className="font-mono">{v.drucksacheNrn.join(", ")}</span>
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </section>
         )}
