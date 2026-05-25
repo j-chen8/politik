@@ -1,6 +1,6 @@
 # Summarization-Methodologie für Berlin-Drucksachen
 
-**Stand:** 2026-05-23 (v1.1 — Smoke-Test-Iteration: Schema-Disziplin + Topic-Tag-Discovery)
+**Stand:** 2026-05-25 (v1.2 — Stage-1-Review: Header-Meta-Pre-Extract + Plenarprotokoll-Routing-Fix + Fraktions-Normalisierung)
 **Erstellt von:** Claude Opus 4.7 + manuelle Kuration (analog zu `summarization-methodology-berlin.md` für Reden)
 **Zweck:** Direkt einsetzbarer Methodology-System-Prompt für Haiku 4.5 zur partei-neutralen Analyse von Drucksachen des Berliner Abgeordnetenhauses (19. Wahlperiode).
 
@@ -265,6 +265,13 @@ OUTPUT-DISZIPLIN — SEHR WICHTIG:
 - Schema-Disziplin-Block im System-Prompt (Anti-XML-Drift)
 - Array-Beispiele in Tool-Schema-`description`
 - `minItems: 1` für kerninhalt-Arrays (verhindert leere Arrays)
+
+**v1.2 — 2026-05-25 (nach Stage-1-Stichproben-Review, 100 DS):**
+- **Header-Meta-Pre-Extract** (`extractHeaderMeta`): Vor Boilerplate-Strip Fraktion, Abgeordnete:r, Senatsverwaltung und DS-Datum aus dem ersten 2,5k-Block per Regex ziehen und dem LLM als `STRUKTURIERTE METADATEN`-Block in der User-Message mitgeben.
+  - **Grund**: Stage-1-Empirie 52 % Fraktion-Miss bei Schriftlichen Anfragen — der Strip-Anker `Im Namen des Senats…` schneidet bei Pos ~700 alles davor weg, inklusive Fraktion-Header (`des Abgeordneten X (PARTEI)`). LLM bekam Info also nie zu sehen.
+  - Projektion Stage 4: rettet ~8.300 Fraktion-Werte (für Aggregation Fraktion × Topic × Zeit notwendig).
+- **Fraktions-Normalisierung** (`normalizeFraktion`): Long-Form (`Bündnis 90/Die Grünen`) → Short-Enum (`GRÜNE`), Multi-Fraktion via `+` join. Konsistenz zwischen Anträgen (Long-Form-Tendenz) und Anfragen (Short-Form).
+- **Plenarprotokoll-Routing-Fix** in `classifyBerlinDoc`: `dok_art_label !== 'Drucksache'` → `skip`. 767 'Antwort'+'Plenarprotokoll'-DS sind Mündliche-Anfragen-Antworten und gehören in die Reden-Pipeline, nicht hierhin.
 
 ---
 

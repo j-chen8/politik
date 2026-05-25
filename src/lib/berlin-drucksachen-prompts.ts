@@ -16,7 +16,7 @@
  *  - TOPIC_TAGS als geschlossenes Enum (Anti-Drift)
  */
 
-export const PROMPT_VERSION = "berlin-v1.1";
+export const PROMPT_VERSION = "berlin-v1.2";
 
 const NEUTRALITY_BLOCK = `STRIKTE REGELN:
 - Antworte ausschließlich auf Deutsch.
@@ -297,12 +297,17 @@ export interface AntwortMeta {
 
 /** Klassifikation: welche Klasse passt zu einem Doc-Typ-Label?
  *  Für dok_typ_label='Antwort' kann optional antwortMeta mitgegeben werden,
- *  um orphan / längen-Mismatch korrekt zu routen statt blind zu skippen. */
+ *  um orphan / längen-Mismatch korrekt zu routen statt blind zu skippen.
+ *  dok_art_label='Plenarprotokoll' / 'Ausschussprotokoll' → immer skip
+ *  (Stage-1-Empirie: 767 'Antwort'+'Plenarprotokoll'-DS sind Mündliche-Anfragen-
+ *   Antworten und gehören in die Reden-Pipeline, nicht in die DS-LLM-Pipeline). */
 export function classifyBerlinDoc(
   dok_typ_label: string | null,
+  dok_art_label?: string | null,
   antwortMeta?: AntwortMeta,
 ): BerlinBatchClass | "beschlussempfehlung_skip" | "skip" {
   if (!dok_typ_label) return "skip";
+  if (dok_art_label && dok_art_label !== "Drucksache") return "skip";
   const t = dok_typ_label;
   if (t === "Schriftliche Anfrage") return "anfrage_antwort";
   if (t === "Antwort") {
@@ -449,4 +454,150 @@ export function buildAntwortMetaMap(db: import("better-sqlite3").Database): Map<
     });
   }
   return map;
+}
+
+// ─── Fraktions-Normalisierung ────────────────────────────────
+// Stage-1-Empirie: Anträge enthalten Fraktionen in Long-Form ("Bündnis 90/Die Grünen"),
+// Anfragen in Short-Form ("GRÜNE"). Auf gemeinsame Schreibweise zwingen, sonst sind
+// Aggregationen über Fraktion × Topic × Zeit (Hofmann-Frage) durch Drift verzerrt.
+const FRAKTION_NORMALIZE: Record<string, string> = {
+  "bündnis 90/die grünen": "GRÜNE",
+  "bündnis 90 / die grünen": "GRÜNE",
+  "die grünen": "GRÜNE",
+  "grüne": "GRÜNE",
+  "die linke": "LINKE",
+  "linke": "LINKE",
+  "spd": "SPD",
+  "cdu": "CDU",
+  "afd": "AfD",
+  "fdp": "FDP",
+};
+
+/** Normalisiert Fraktions-String auf Short-Form-Enum. Liefert Multi-Fraktion mit " + " getrennt. */
+export function normalizeFraktion(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  const trimmed = raw.replace(/\s+/g, " ").trim();
+  if (!trimmed || /^[<\-—]+|unknown$/i.test(trimmed)) return null;
+  const lower = trimmed.toLowerCase();
+  if (FRAKTION_NORMALIZE[lower]) return FRAKTION_NORMALIZE[lower];
+  if (trimmed.includes(",")) {
+    const parts = trimmed.split(",").map((p) => normalizeFraktion(p)).filter((p): p is string => !!p);
+    if (parts.length > 1) return [...new Set(parts)].join(" + ");
+    if (parts.length === 1) return parts[0];
+  }
+  return trimmed;
+}
+
+// ─── Header-Meta-Extraktion (Pre-Strip) ──────────────────────
+// Stage-1-Empirie: stripBoilerplate schneidet bei "Im Namen des Senats…" (Pos ~700)
+// alles davor weg — inkl. Fraktion-Header. Resultat: 52 % Fraktion-Miss bei
+// Schriftlichen Anfragen. Fix: Meta VOR Strip extrahieren, dem LLM als strukturierten
+// Block mitgeben.
+export interface HeaderMeta {
+  fraktion: string | null;
+  abgeordnete: string | null;
+  senatsverwaltung: string | null;
+  datum_anfrage: string | null;
+  bezirk_hint: string | null;
+}
+
+// 12 Berliner Bezirke (offizielle Schreibweise) — für Titel-Match
+const BEZIRKE = [
+  "Mitte",
+  "Friedrichshain-Kreuzberg",
+  "Pankow",
+  "Charlottenburg-Wilmersdorf",
+  "Spandau",
+  "Steglitz-Zehlendorf",
+  "Tempelhof-Schöneberg",
+  "Neukölln",
+  "Treptow-Köpenick",
+  "Marzahn-Hellersdorf",
+  "Lichtenberg",
+  "Reinickendorf",
+] as const;
+
+/** Sucht einen offiziellen Bezirks-Namen in einem Titel/Header. Liefert kanonische Schreibweise. */
+export function extractBezirkFromTitel(text: string | null | undefined): string | null {
+  if (!text) return null;
+  for (const b of BEZIRKE) {
+    const re = new RegExp(`\\b${b.replace(/-/g, "[ -]")}\\b`, "i");
+    if (re.test(text)) return b;
+  }
+  // Häufige Stadtteile als Bezirks-Aliase
+  const STADTTEILE: Record<string, string> = {
+    "kreuzberg": "Friedrichshain-Kreuzberg",
+    "friedrichshain": "Friedrichshain-Kreuzberg",
+    "charlottenburg": "Charlottenburg-Wilmersdorf",
+    "wilmersdorf": "Charlottenburg-Wilmersdorf",
+    "steglitz": "Steglitz-Zehlendorf",
+    "zehlendorf": "Steglitz-Zehlendorf",
+    "tempelhof": "Tempelhof-Schöneberg",
+    "schöneberg": "Tempelhof-Schöneberg",
+    "treptow": "Treptow-Köpenick",
+    "köpenick": "Treptow-Köpenick",
+    "marzahn": "Marzahn-Hellersdorf",
+    "hellersdorf": "Marzahn-Hellersdorf",
+    "prenzlauer berg": "Pankow",
+    "weißensee": "Pankow",
+    "wedding": "Mitte",
+    "moabit": "Mitte",
+  };
+  const lower = text.toLowerCase();
+  for (const [needle, bezirk] of Object.entries(STADTTEILE)) {
+    if (lower.includes(needle)) return bezirk;
+  }
+  return null;
+}
+
+export function extractHeaderMeta(fullText: string, titel?: string | null): HeaderMeta {
+  const head = fullText.slice(0, 2500);
+
+  // "des/der Abgeordneten <NAMEN> (FRAKTION)" — Newlines im Namens-Teil tolerieren
+  // (PDFs brechen lange Namens-Listen mit \n: "X, Y und\nZ (AfD)").
+  let fraktion: string | null = null;
+  let abgeordnete: string | null = null;
+  const mAbg = head.match(/(?:des|der)\s+Abgeordneten?\s+([^()]{3,200}?)\s*\(([^()\n]{2,80})\)/);
+  if (mAbg) {
+    abgeordnete = mAbg[1].replace(/\s+/g, " ").trim();
+    fraktion = normalizeFraktion(mAbg[2]);
+  }
+  // Fallback für Anträge: "Antrag der Fraktion(en) X" oder "der X-Fraktion"
+  if (!fraktion) {
+    const mAntr = head.match(/Antrag\s+der\s+Fraktion(?:en)?\s+([^\n.]{3,150}?)(?=\s+(?:Drucksache|vom|über|zum)|\n)/i);
+    if (mAntr) fraktion = normalizeFraktion(mAntr[1]);
+  }
+  if (!fraktion) {
+    // "der AfD-Fraktion" / "der CDU-Fraktion" / "der SPD-Fraktion"
+    const mAntrBindestrich = head.match(/\b(?:der|den|die)\s+(AfD|SPD|CDU|FDP|LINKE|GRÜNE|Linke|Grüne)-Fraktion\b/i);
+    if (mAntrBindestrich) fraktion = normalizeFraktion(mAntrBindestrich[1]);
+  }
+
+  // "Senatsverwaltung für X" — Multi-Zeile bis nächster Header-Marker
+  let senatsverwaltung: string | null = null;
+  const mSv = head.match(/Senatsverwaltung\s+für\s+([\s\S]{3,200}?)(?=\n\s*(?:Herrn|Frau|über|den\s+Präsident|die\s+Präsident|A\s*n\s*t\s*w\s*o\s*r\s*t\b|Antwort\b))/);
+  if (mSv) senatsverwaltung = mSv[1].replace(/\s+/g, " ").trim();
+
+  // Datum: "vom <D>. <Monat> <YYYY>"
+  let datum_anfrage: string | null = null;
+  const mDat = head.match(/\bvom\s+(\d{1,2}\.?\s*[A-Za-zäöüÄÖÜ]+\s+\d{4})/);
+  if (mDat) datum_anfrage = mDat[1].trim();
+
+  // Bezirks-Hint: zuerst aus Titel (am robustesten), sonst aus Header-Block
+  const bezirk_hint = extractBezirkFromTitel(titel ?? null) ?? extractBezirkFromTitel(head);
+
+  return { fraktion, abgeordnete, senatsverwaltung, datum_anfrage, bezirk_hint };
+}
+
+/** Formatiert HeaderMeta als prompt-tauglichen Block für die User-Message.
+ *  Leerer String, wenn nichts extrahiert wurde (sonst frisst der Block Tokens für nichts). */
+export function formatHeaderMetaBlock(meta: HeaderMeta): string {
+  const lines: string[] = [];
+  if (meta.fraktion) lines.push(`- Fraktion: ${meta.fraktion}`);
+  if (meta.abgeordnete) lines.push(`- Abgeordnete:r: ${meta.abgeordnete}`);
+  if (meta.senatsverwaltung) lines.push(`- Senatsverwaltung: ${meta.senatsverwaltung}`);
+  if (meta.datum_anfrage) lines.push(`- Datum Anfrage: ${meta.datum_anfrage}`);
+  if (meta.bezirk_hint) lines.push(`- Mögliche Bezirks-Referenz: ${meta.bezirk_hint}`);
+  if (lines.length === 0) return "";
+  return `STRUKTURIERTE METADATEN (aus DS-Header extrahiert — vor Boilerplate-Strip):\n${lines.join("\n")}\n\n`;
 }

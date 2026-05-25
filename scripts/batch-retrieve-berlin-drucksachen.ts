@@ -26,7 +26,7 @@ import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import {
   BerlinBatchClass,
-  validateTonalitaet, validateThemen, safeParseArray,
+  validateTonalitaet, validateThemen, safeParseArray, normalizeFraktion,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -231,8 +231,8 @@ async function main() {
       // anfrage_antwort spez
       antwort_charakter: klasse === "anfrage_antwort" ? tVal.value : null,
       bezirk_bezug: klasse === "anfrage_antwort" ? strOrNull(analysis.bezirk_bezug) : null,
-      // antrag/gesetzentwurf/anfrage_antwort
-      fraktion: strOrNull(analysis.fraktion),
+      // antrag/gesetzentwurf/anfrage_antwort — auf Short-Enum (GRÜNE/LINKE/...) normalisieren
+      fraktion: normalizeFraktion(strOrNull(analysis.fraktion)),
       adressat: klasse === "antrag" ? strOrNull(analysis.adressat) : null,
       // gesetzentwurf spez
       regelung: klasse === "gesetzentwurf" ? strOrNull(analysis.regelung) : null,

@@ -32,6 +32,7 @@ import {
   PROMPTS_BY_CLASS, PROMPT_VERSION, BerlinBatchClass,
   buildSystemPrompt, stripBoilerplate, capText,
   classifyBerlinDoc, buildAntwortMetaMap,
+  extractHeaderMeta, formatHeaderMetaBlock,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -62,6 +63,7 @@ interface DSCandidate {
   dbid: string;
   vorgang_id: string | null;
   dok_typ_label: string;
+  dok_art_label: string | null;
   titel: string | null;
   full_text: string;
   chars: number;
@@ -77,6 +79,7 @@ interface DSMeta {
   dbid: string;
   vorgang_id: string | null;
   dok_typ_label: string;
+  dok_art_label: string | null;
   titel: string | null;
   chars: number;
   klasse: BerlinBatchClass;
@@ -96,7 +99,7 @@ function selectCandidatesStratified(db: Database.Database, batchStage: number): 
 
   // Phase 1: NUR Meta laden (ohne full_text) — Heap-Sparsam
   const metaRows = db.prepare(`
-    SELECT d.dbid, d.vorgang_id, d.dok_typ_label, d.titel, t.chars
+    SELECT d.dbid, d.vorgang_id, d.dok_typ_label, d.dok_art_label, d.titel, t.chars
       FROM berlin_documents d
       JOIN berlin_pdf_texts t ON d.lok_url = t.lok_url
      WHERE t.chars >= ?
@@ -106,7 +109,7 @@ function selectCandidatesStratified(db: Database.Database, batchStage: number): 
   const eligible: DSMeta[] = [];
   for (const r of metaRows) {
     const meta = r.dok_typ_label === "Antwort" ? antwortMeta.get(r.dbid) : undefined;
-    const cls = classifyBerlinDoc(r.dok_typ_label, meta);
+    const cls = classifyBerlinDoc(r.dok_typ_label, r.dok_art_label, meta);
     if (cls === "skip" || cls === "beschlussempfehlung_skip") continue;
     if (alreadyDone.has(r.dbid)) continue;
     eligible.push({ ...r, klasse: cls });
@@ -256,10 +259,13 @@ async function main() {
   // Build Requests
   const requests = candidates.map((c) => {
     const cfg = PROMPTS_BY_CLASS[c.klasse];
+    // Header-Meta VOR Strip extrahieren (sonst killt Strip die Fraktion).
+    // Titel zusätzlich für Bezirks-Hint (oft im Titel, nicht im Body).
+    const headerMetaBlock = formatHeaderMetaBlock(extractHeaderMeta(c.full_text, c.titel));
     const stripped = stripBoilerplate(c.full_text);
     const { text, truncated } = capText(stripped, cfg.cap_chars);
     const systemPrompt = buildSystemPrompt();
-    const userContent = `${cfg.instruction}\n\nDRUCKSACHEN-TEXT (Doc-Typ: ${c.dok_typ_label}${truncated ? `, gekürzt auf ${cfg.cap_chars} Z.` : ""}):\n\n${text}`;
+    const userContent = `${cfg.instruction}\n\n${headerMetaBlock}DRUCKSACHEN-TEXT (Doc-Typ: ${c.dok_typ_label}${truncated ? `, gekürzt auf ${cfg.cap_chars} Z.` : ""}):\n\n${text}`;
     return {
       _meta: { dbid: c.dbid, klasse: c.klasse, chars_in: text.length },
       custom_id: customId(c.dbid),

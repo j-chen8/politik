@@ -12,7 +12,7 @@ import Database from "better-sqlite3";
 import path from "path";
 import {
   BerlinBatchClass,
-  validateTonalitaet, validateThemen, safeParseArray,
+  validateTonalitaet, validateThemen, safeParseArray, normalizeFraktion,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
@@ -49,7 +49,8 @@ const update = db.prepare(`
     kerninhalt_frage_json = @kerninhalt_frage_json,
     kerninhalt_antwort_json = @kerninhalt_antwort_json,
     topic_drift_json = @topic_drift_json,
-    tonalitaet_drift = @tonalitaet_drift
+    tonalitaet_drift = @tonalitaet_drift,
+    fraktion = @fraktion
   WHERE dbid = @dbid
 `);
 
@@ -85,6 +86,7 @@ const tx = db.transaction(() => {
       kerninhalt_antwort_json: r.klasse === "anfrage_antwort" && kia.items.length ? JSON.stringify(kia.items) : null,
       topic_drift_json: thVal.drift.length ? JSON.stringify(thVal.drift) : null,
       tonalitaet_drift: tVal.drift,
+      fraktion: normalizeFraktion(typeof analysis.fraktion === "string" ? analysis.fraktion : null),
     });
   }
 });

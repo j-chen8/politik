@@ -17,6 +17,7 @@ import {
   PROMPTS_BY_CLASS, PROMPT_VERSION, BerlinBatchClass, BERLIN_TOPIC_TAGS,
   buildSystemPrompt, stripBoilerplate, capText,
   classifyBerlinDoc,
+  extractHeaderMeta, formatHeaderMetaBlock,
 } from "../src/lib/berlin-drucksachen-prompts";
 
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -81,10 +82,11 @@ async function main() {
   // Build Batch-Requests mit Boilerplate-Strip + Cap. v1.1: kein Tier mehr, 1 System-Prompt pro Klasse für Cache-Hit.
   const requests = sample.map((s) => {
     const cfg = PROMPTS_BY_CLASS[s.klasse];
+    const headerMetaBlock = formatHeaderMetaBlock(extractHeaderMeta(s.full_text, s.titel));
     const stripped = stripBoilerplate(s.full_text);
     const { text, truncated } = capText(stripped, cfg.cap_chars);
     const systemPrompt = buildSystemPrompt();
-    const userContent = `${cfg.instruction}\n\nDRUCKSACHEN-TEXT (Doc-Typ: ${s.dok_typ_label}${truncated ? `, gekürzt auf ${cfg.cap_chars} Z.` : ""}):\n\n${text}`;
+    const userContent = `${cfg.instruction}\n\n${headerMetaBlock}DRUCKSACHEN-TEXT (Doc-Typ: ${s.dok_typ_label}${truncated ? `, gekürzt auf ${cfg.cap_chars} Z.` : ""}):\n\n${text}`;
     return {
       custom_id: s.dbid.replace(/[^a-zA-Z0-9_-]/g, "_"),
       _meta: { dbid: s.dbid, klasse: s.klasse, chars_after_strip: stripped.length, chars_after_cap: text.length, truncated },
