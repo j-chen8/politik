@@ -540,15 +540,18 @@ const DS_OUTPUT_FIELDS = [
 ] as const;
 
 /** Schneidet ein "</fieldname>...."-Suffix ab, falls fieldname ein bekanntes Output-Feld ist.
+ *  Findet den FRÜHESTEN Closing-Tag (sonst würde z.B. der zweite `</auswirkung>` nach einem
+ *  ersten `</betroffene_gruppen>` matchen, weil Auswirkung in DS_OUTPUT_FIELDS vor betroffene_gruppen kommt).
  *  Liefert den Vor-Tag-Wert (trimmed) oder unverändert wenn kein Drift. */
 export function cleanTagDrift(value: string | null | undefined): string | null {
   if (value === null || value === undefined) return null;
   if (typeof value !== "string") return null;
+  let earliestIdx = -1;
   for (const f of DS_OUTPUT_FIELDS) {
-    const tag = `</${f}>`;
-    const idx = value.indexOf(tag);
-    if (idx >= 0) return value.slice(0, idx).trim();
+    const idx = value.indexOf(`</${f}>`);
+    if (idx >= 0 && (earliestIdx < 0 || idx < earliestIdx)) earliestIdx = idx;
   }
+  if (earliestIdx >= 0) return value.slice(0, earliestIdx).trim();
   // Generisch: irgendein closing-Tag gefolgt von neuem <parameter name=…>
   const m1 = value.match(/^([\s\S]*?)<\/[a-z_]+>\s*<parameter\s+name=/i);
   if (m1) return m1[1].trim();
