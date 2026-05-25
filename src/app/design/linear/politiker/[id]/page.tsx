@@ -713,9 +713,18 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         </div>
                         <div className="flex-1 min-w-0">
                           {it.titel && (
-                            <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
-                              {it.titel}
-                            </p>
+                            it.kategorie !== "rede" ? (
+                              <Link
+                                href={`/design/linear/parlamente/berlin/drucksache/${it.dbid}`}
+                                className="block text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug hover:text-blue-700 transition-colors"
+                              >
+                                {it.titel}
+                              </Link>
+                            ) : (
+                              <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
+                                {it.titel}
+                              </p>
+                            )
                           )}
                           <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
                             {it.kategorie === "rede" ? (

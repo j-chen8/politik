@@ -3763,3 +3763,183 @@ export function getBerlinSnapshot(): BerlinSnapshot {
 
   return { memberCount, anfragenCount, redenCount, ausschussCount, cvCount, latestPlenum, latestAnfragen };
 }
+
+// ============================================================
+// Berlin-Drucksachen-Detail: JOIN berlin_documents ↔ berlin_pdf_texts
+// ↔ berlin_drucksachen_analyses. Liefert alle für die UI relevanten
+// Felder, inkl. Mitzeichner aus berlin_document_persons.
+// ============================================================
+
+export interface BerlinDrucksacheDetail {
+  // Identität
+  dbid: string;
+  klasse: string; // anfrage_antwort | antrag | gesetzentwurf | vorlage_senat | beschlussempfehlung_regex
+  dokTypLabel: string | null;
+  dokArtLabel: string | null;
+  dokNr: string | null;
+  datum: string | null;
+  titel: string | null;
+  vorgangId: string | null;
+  vorgangTitel: string | null;
+  lokUrl: string | null;
+  seitenbereich: string | null;
+  sachgebiet: string | null;
+  pages: number | null;
+  chars: number | null;
+  // LLM-Output (Common)
+  zusammenfassung: string | null;
+  thema: string[];
+  tonalitaet: string | null;
+  antwortCharakter: string | null;
+  // Klassen-spezifisch
+  kerninhalt: string[] | null;        // antrag / vorlage_senat
+  kerninhaltFrage: string[] | null;   // anfrage_antwort
+  kerninhaltAntwort: string[] | null; // anfrage_antwort
+  regelung: string | null;            // gesetzentwurf
+  begruendung: string | null;         // gesetzentwurf
+  auswirkung: string | null;          // gesetzentwurf
+  betroffeneGruppen: string | null;   // gesetzentwurf
+  einbringer: string | null;          // gesetzentwurf
+  dokumenttyp: string | null;         // vorlage_senat
+  // Aktoren
+  fraktion: string | null;
+  adressat: string | null;            // antrag
+  senatsverwaltung: string | null;
+  bezirkBezug: string | null;
+  // Beschlussempfehlung-Regex
+  regexLabel: string | null;
+  // Drift-Audit
+  topicDrift: string[] | null;
+  tonalitaetDrift: string | null;
+  // Audit-Trail
+  promptVersion: string | null;
+  model: string | null;
+}
+
+export interface BerlinDsMitzeichner {
+  politicianId: number;
+  firstName: string;
+  lastName: string;
+  partyLabel: string | null;
+  role: string; // urheber, mitunterzeichner, redner, etc.
+}
+
+export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail | null {
+  const db = getDb();
+  let row: {
+    dbid: string; klasse: string; dok_typ_label: string | null; dok_art_label: string | null;
+    dok_nr: string | null; dok_datum: string | null; titel: string | null; vorgang_id: string | null;
+    vorgang_titel: string | null; lok_url: string | null; seitenbereich: string | null; sachgebiet: string | null;
+    pages: number | null; chars: number | null;
+    zusammenfassung: string | null; thema_json: string | null; tonalitaet: string | null; antwort_charakter: string | null;
+    kerninhalt_json: string | null; kerninhalt_frage_json: string | null; kerninhalt_antwort_json: string | null;
+    regelung: string | null; begruendung: string | null; auswirkung: string | null;
+    betroffene_gruppen: string | null; einbringer: string | null; dokumenttyp: string | null;
+    fraktion: string | null; adressat: string | null; senatsverwaltung: string | null; bezirk_bezug: string | null;
+    regex_label: string | null; topic_drift_json: string | null; tonalitaet_drift: string | null;
+    prompt_version: string | null; model: string | null;
+  } | undefined;
+  try {
+    row = db.prepare(`
+      SELECT
+        d.dbid, a.klasse, d.dok_typ_label, d.dok_art_label, d.dok_nr, d.dok_datum AS dok_datum,
+        d.titel, d.vorgang_id, v.titel AS vorgang_titel, d.lok_url, d.seitenbereich, v.vsys_label AS sachgebiet,
+        t.pages, t.chars,
+        a.zusammenfassung, a.thema_json, a.tonalitaet, a.antwort_charakter,
+        a.kerninhalt_json, a.kerninhalt_frage_json, a.kerninhalt_antwort_json,
+        a.regelung, a.begruendung, a.auswirkung, a.betroffene_gruppen, a.einbringer, a.dokumenttyp,
+        a.fraktion, a.adressat, a.senatsverwaltung, a.bezirk_bezug,
+        a.regex_label, a.topic_drift_json, a.tonalitaet_drift, a.prompt_version, a.model
+      FROM berlin_documents d
+      LEFT JOIN berlin_pdf_texts t ON d.lok_url = t.lok_url
+      LEFT JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      LEFT JOIN berlin_vorgaenge v ON v.vid = d.vorgang_id
+      WHERE d.dbid = ?
+    `).get(dbid) as typeof row;
+  } catch {
+    return null; // Tabellen fehlen
+  }
+  if (!row) return null;
+
+  const parseArr = (s: string | null): string[] | null => {
+    if (!s) return null;
+    try {
+      const v = JSON.parse(s);
+      return Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : null;
+    } catch { return null; }
+  };
+  const themen = parseArr(row.thema_json) ?? [];
+  const topic_drift = parseArr(row.topic_drift_json);
+
+  return {
+    dbid: row.dbid,
+    klasse: row.klasse ?? "skip",
+    dokTypLabel: row.dok_typ_label,
+    dokArtLabel: row.dok_art_label,
+    dokNr: row.dok_nr,
+    datum: row.dok_datum,
+    titel: row.titel,
+    vorgangId: row.vorgang_id,
+    vorgangTitel: row.vorgang_titel,
+    lokUrl: row.lok_url,
+    seitenbereich: row.seitenbereich,
+    sachgebiet: row.sachgebiet,
+    pages: row.pages,
+    chars: row.chars,
+    zusammenfassung: row.zusammenfassung,
+    thema: themen,
+    tonalitaet: row.tonalitaet,
+    antwortCharakter: row.antwort_charakter,
+    kerninhalt: parseArr(row.kerninhalt_json),
+    kerninhaltFrage: parseArr(row.kerninhalt_frage_json),
+    kerninhaltAntwort: parseArr(row.kerninhalt_antwort_json),
+    regelung: row.regelung,
+    begruendung: row.begruendung,
+    auswirkung: row.auswirkung,
+    betroffeneGruppen: row.betroffene_gruppen,
+    einbringer: row.einbringer,
+    dokumenttyp: row.dokumenttyp,
+    fraktion: row.fraktion,
+    adressat: row.adressat,
+    senatsverwaltung: row.senatsverwaltung,
+    bezirkBezug: row.bezirk_bezug,
+    regexLabel: row.regex_label,
+    topicDrift: topic_drift,
+    tonalitaetDrift: row.tonalitaet_drift,
+    promptVersion: row.prompt_version,
+    model: row.model,
+  };
+}
+
+/** Mitzeichner / Urheber einer Berlin-Drucksache aus berlin_document_persons. */
+export function getBerlinDsMitzeichner(dbid: string): BerlinDsMitzeichner[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bdp.politician_id, p.first_name, p.last_name, p.party_label, bdp.role
+      FROM berlin_document_persons bdp
+      JOIN politicians p ON p.id = bdp.politician_id
+      WHERE bdp.dbid = ?
+      ORDER BY
+        CASE bdp.role
+          WHEN 'urheber' THEN 0
+          WHEN 'mitunterzeichner' THEN 1
+          WHEN 'redner' THEN 2
+          ELSE 3
+        END,
+        p.last_name, p.first_name
+    `).all(dbid) as Array<{
+      politician_id: number; first_name: string; last_name: string;
+      party_label: string | null; role: string;
+    }>;
+    return rows.map((r) => ({
+      politicianId: r.politician_id,
+      firstName: r.first_name,
+      lastName: r.last_name,
+      partyLabel: r.party_label,
+      role: r.role,
+    }));
+  } catch {
+    return [];
+  }
+}
