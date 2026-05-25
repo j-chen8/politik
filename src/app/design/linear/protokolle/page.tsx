@@ -10,7 +10,7 @@ import {
   getAusschussCoverage,
   PLENAR_TYPE_SLUG_LABEL,
 } from "@/lib/db";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SpeakerExplorer } from "./SpeakerExplorer";
 
 const PARTY_SHORT: Record<string, string> = {
@@ -73,7 +73,11 @@ export default function ProtokollePage() {
         {/* Overview strip */}
         <section className="mb-12">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-            <Stat label="Plenar-Sitzungen" value={overview.plenarSessions.toString()} />
+            <Stat
+              label="Plenar-Sitzungen"
+              value={overview.plenarSessions.toString()}
+              href="/design/linear/protokolle/sitzungen"
+            />
             <Stat label="Beiträge" value={overview.plenarSpeeches.toLocaleString("de-DE")} />
             <Stat label="Sprecher" value={overview.plenarSpeakers.toString()} />
             <Stat label="Ausschuss-Sitzungen" value={overview.ausschussSessions.toString()} />
@@ -258,64 +262,27 @@ export default function ProtokollePage() {
           </div>
         </Card>
 
-        {/* Recent Plenar Sessions */}
-        <Card className="mb-12">
-          <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
-            <SectionLabel className="mb-0">Plenar-Sitzungen</SectionLabel>
-            <span className="text-[11px] text-zinc-400">
-              Alle <span className="num">{sessions.length}</span> Sitzungen der 21. WP — scrollbar
-            </span>
+        {/* Link to dedicated sessions list */}
+        <Link
+          href="/design/linear/protokolle/sitzungen"
+          className="card-hover group block mb-12 rounded-2xl border border-zinc-200/70 bg-white p-5 hover:border-zinc-300 transition-colors"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <SectionLabel className="mb-1">Plenar-Sitzungen</SectionLabel>
+              <div className="text-[15px] font-semibold text-zinc-950">
+                Alle <span className="num">{sessions.length}</span> Sitzungen der 21. WP
+              </div>
+              <div className="mt-1 text-[12.5px] text-zinc-500">
+                Übersicht aller Sitzungen mit Reden, TOPs, Abstimmungen und PDF-Protokollen
+              </div>
+            </div>
+            <ArrowRight
+              className="w-5 h-5 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all shrink-0"
+              strokeWidth={2.25}
+            />
           </div>
-          <div className="max-h-[480px] overflow-y-auto pr-1">
-            <table className="w-full text-[13px]">
-              <thead className="sticky top-0 bg-white z-[1]">
-                <tr className="border-b border-zinc-200">
-                  <th className="text-left py-2 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-500">Nr.</th>
-                  <th className="text-left py-2 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-500">Datum</th>
-                  <th className="text-right py-2 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-500">Sprecher</th>
-                  <th className="text-right py-2 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-500">Beiträge</th>
-                  <th className="text-right py-2 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-500">Protokoll</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sessions.map((s) => (
-                  <tr
-                    key={s.sitzung}
-                    className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
-                  >
-                    <td className="py-2 px-2 num font-medium text-zinc-950">
-                      {s.sitzung}
-                    </td>
-                    <td className="py-2 px-2 text-zinc-500 num">
-                      {s.datum || "—"}
-                    </td>
-                    <td className="py-2 px-2 text-right num text-zinc-700">
-                      {s.speaker_count}
-                    </td>
-                    <td className="py-2 px-2 text-right num font-semibold text-zinc-950">
-                      {s.speech_count}
-                    </td>
-                    <td className="py-2 px-2 text-right">
-                      {s.source_url ? (
-                        <a
-                          href={s.source_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] text-zinc-700 hover:text-zinc-950 px-2 py-1 rounded-md hover:bg-zinc-100 transition-colors"
-                        >
-                          PDF
-                          <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
-                        </a>
-                      ) : (
-                        <span className="text-[11px] text-zinc-400">—</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+        </Link>
       </div>
     </div>
   );
@@ -384,13 +351,30 @@ function TypLegend({ className = "" }: { className?: string }) {
   );
 }
 
-function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
-  return (
-    <div className="px-4 py-5 flex flex-col gap-0.5" title={hint}>
-      <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 leading-tight">
+function Stat({ label, value, hint, href }: { label: string; value: string; hint?: string; href?: string }) {
+  const inner = (
+    <>
+      <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 leading-tight inline-flex items-center gap-1">
         {label}
+        {href && <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" strokeWidth={2.25} />}
       </span>
       <span className="num text-xl font-semibold tracking-tight text-zinc-950">{value}</span>
+    </>
+  );
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className="group px-4 py-5 flex flex-col gap-0.5 hover:bg-zinc-50 transition-colors"
+        title={hint}
+      >
+        {inner}
+      </Link>
+    );
+  }
+  return (
+    <div className="px-4 py-5 flex flex-col gap-0.5" title={hint}>
+      {inner}
     </div>
   );
 }

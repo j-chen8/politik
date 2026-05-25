@@ -1,6 +1,18 @@
 import { getLatestActivityHighlights } from "@/lib/db";
 import Link from "next/link";
 import { ArrowRight, Gavel, Vote, FileText } from "lucide-react";
+import fs from "fs";
+import path from "path";
+
+function readRefreshDate(): string | null {
+  try {
+    const p = path.join(process.cwd(), "data", "last-refresh.txt");
+    const raw = fs.readFileSync(p, "utf-8").trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw : null;
+  } catch {
+    return null;
+  }
+}
 
 function formatGermanDate(iso: string | null): string {
   if (!iso) return "";
@@ -24,7 +36,10 @@ export function LatestActivityStrip() {
   const { latestSession, latestPoll, latestDrucksache } = getLatestActivityHighlights();
   if (!latestSession && !latestPoll && !latestDrucksache) return null;
 
-  const newestDate = mostRecent(latestSession?.datum, latestPoll?.date, latestDrucksache?.datum);
+  // Refresh-Datum (geschrieben am Ende des `update`-Runbooks).
+  // Fallback: jüngstes Event-Datum, damit ältere Demo-Builds nicht leer bleiben.
+  const refreshDate = readRefreshDate();
+  const newestDate = refreshDate ?? mostRecent(latestSession?.datum, latestPoll?.date, latestDrucksache?.datum);
 
   const pollHasResult = !!latestPoll && latestPoll.yes + latestPoll.no > 0;
   const pollYesPct = pollHasResult ? latestPoll.yesRatio * 100 : 0;
@@ -52,7 +67,7 @@ export function LatestActivityStrip() {
         {latestSession && (
           <>
             <Link
-              href="/design/linear/protokolle"
+              href={`/design/linear/protokolle/sitzung/${latestSession.sitzung}`}
               className="card-hover group block bg-white border border-zinc-200/70 rounded-2xl p-5 sm:row-start-1 sm:col-start-1"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
@@ -71,7 +86,7 @@ export function LatestActivityStrip() {
               </div>
             </Link>
             <Link
-              href="/design/linear/protokolle"
+              href="/design/linear/protokolle/sitzungen"
               className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors text-center pb-2 sm:pb-0 sm:row-start-2 sm:col-start-1"
             >
               Mehr Plenarsitzungen →

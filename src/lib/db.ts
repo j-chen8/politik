@@ -1621,6 +1621,8 @@ export interface PlenarSessionRow {
   source_url: string | null;
   speech_count: number;
   speaker_count: number;
+  topic_count: number;
+  vote_count: number;
 }
 
 export function getPlenarSessions(): PlenarSessionRow[] {
@@ -1628,7 +1630,9 @@ export function getPlenarSessions(): PlenarSessionRow[] {
   return db.prepare(`
     SELECT s.id, s.wahlperiode, s.sitzung, s.datum, s.source_url,
       COUNT(sp.id) as speech_count,
-      COUNT(DISTINCT sp.speaker) as speaker_count
+      COUNT(DISTINCT sp.speaker) as speaker_count,
+      (SELECT COUNT(*) FROM plenar_topics pt WHERE pt.session_id = s.id) as topic_count,
+      (SELECT COUNT(DISTINCT v.poll_id) FROM votes v WHERE v.poll_date = s.datum) as vote_count
     FROM plenar_sessions s
     LEFT JOIN plenar_speeches sp ON sp.session_id = s.id
     GROUP BY s.id
@@ -3443,4 +3447,187 @@ export function getDrucksachenSameFraktion(
     ORDER BY overlap_score DESC, datum DESC
     LIMIT ?
   `).all(...themas, nr, fraktion, limit) as RelatedDsRow[];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sitzungs-Detail-Seite (/protokolle/sitzung/[nummer])
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface SitzungDetail {
+  sessionId: number;
+  wahlperiode: number;
+  sitzung: number;
+  datum: string | null;
+  sourceUrl: string | null;
+  stats: {
+    speechCount: number;
+    topicCount: number;
+    voteCount: number;
+    speakerCount: number;
+  };
+  topics: Array<{
+    topicId: number;
+    topicNumber: string;
+    title: string;
+    speechCount: number;
+    parties: string[];
+  }>;
+  tonalitaetVerteilung: Array<{ tonalitaet: string; count: number }>;
+  partyVerteilung: Array<{ party: string; count: number }>;
+  drucksachen: Array<{
+    drucksacheNr: string;
+    thema: string | null;
+    refCount: number;
+  }>;
+  abstimmungen: Array<{
+    pollId: number;
+    label: string;
+    yes: number;
+    no: number;
+    abstain: number;
+    yesRatio: number;
+  }>;
+}
+
+export function getSitzungDetail(sitzungNr: number): SitzungDetail | null {
+  const db = getDb();
+  const session = db.prepare(
+    `SELECT id, wahlperiode, sitzung, datum, source_url
+     FROM plenar_sessions WHERE sitzung = ? LIMIT 1`
+  ).get(sitzungNr) as
+    | { id: number; wahlperiode: number; sitzung: number; datum: string | null; source_url: string | null }
+    | undefined;
+  if (!session) return null;
+
+  const stats = db.prepare(
+    `SELECT
+       (SELECT COUNT(DISTINCT rede_id) FROM plenar_speeches WHERE session_id = ?) AS speech_count,
+       (SELECT COUNT(*) FROM plenar_topics WHERE session_id = ?) AS topic_count,
+       (SELECT COUNT(DISTINCT speaker) FROM plenar_speeches WHERE session_id = ?) AS speaker_count`
+  ).get(session.id, session.id, session.id) as
+    | { speech_count: number; topic_count: number; speaker_count: number }
+    | undefined;
+
+  const voteCount = session.datum
+    ? (db.prepare(
+        `SELECT COUNT(DISTINCT poll_id) AS n FROM votes WHERE poll_date = ?`
+      ).get(session.datum) as { n: number }).n
+    : 0;
+
+  // Rolle/Partei in ein einheitliches Label umrechnen:
+  // - echte Partei wenn gesetzt
+  // - sonst aus role: Bundesminister/-kanzler/Staatssekretär:in → "Bundesregierung",
+  //   Präsident:in/Vizepräsident:in → "Präsidium", Rest → "ohne Fraktion"
+  const PARTY_LABEL_SQL = `CASE
+    WHEN ps.party IS NOT NULL AND ps.party != '' THEN ps.party
+    WHEN ps.role LIKE 'Bundesminister%' OR ps.role LIKE 'Bundeskanzler%'
+      OR ps.role LIKE 'Staatssekret%' OR ps.role LIKE 'Staatsminister%'
+      OR ps.role LIKE 'Parl. Staatssekret%' THEN 'Bundesregierung'
+    WHEN ps.role LIKE '%Präsident%' OR ps.role LIKE 'Vizepräsident%' THEN 'Präsidium'
+    ELSE 'ohne Fraktion'
+  END`;
+
+  const topics = db.prepare(
+    `SELECT pt.id AS topic_id, pt.topic_number, pt.title,
+            COUNT(DISTINCT ps.rede_id) AS speech_count,
+            GROUP_CONCAT(DISTINCT ${PARTY_LABEL_SQL}) AS parties
+     FROM plenar_topics pt
+     LEFT JOIN plenar_speeches ps ON ps.topic_id = pt.id
+     WHERE pt.session_id = ?
+     GROUP BY pt.id
+     ORDER BY
+       CASE WHEN pt.topic_number GLOB '[0-9]*' THEN CAST(pt.topic_number AS INTEGER) ELSE 9999 END,
+       pt.topic_number`
+  ).all(session.id) as Array<{
+    topic_id: number;
+    topic_number: string;
+    title: string;
+    speech_count: number;
+    parties: string | null;
+  }>;
+
+  const tonalitaetRows = db.prepare(
+    `SELECT v2.tonalitaet, COUNT(*) AS n
+     FROM speech_analyses_v2 v2
+     JOIN plenar_speeches ps ON ps.rede_id = v2.rede_id AND ps.segment_index = v2.segment_index
+     WHERE ps.session_id = ? AND v2.tonalitaet IS NOT NULL
+     GROUP BY v2.tonalitaet
+     ORDER BY n DESC`
+  ).all(session.id) as Array<{ tonalitaet: string; n: number }>;
+
+  const partyRows = db.prepare(
+    `SELECT ${PARTY_LABEL_SQL} AS party, COUNT(DISTINCT rede_id) AS n
+     FROM plenar_speeches ps WHERE session_id = ?
+     GROUP BY ${PARTY_LABEL_SQL}
+     ORDER BY n DESC`
+  ).all(session.id) as Array<{ party: string; n: number }>;
+
+  const drucksachenRows = session.datum
+    ? (db.prepare(
+        `SELECT a.drucksache_nr, MIN(a.thema) AS thema, COUNT(*) AS ref_count
+         FROM activities a
+         WHERE a.datum = ? AND a.drucksache_nr IS NOT NULL AND a.drucksache_nr != ''
+         GROUP BY a.drucksache_nr
+         ORDER BY ref_count DESC
+         LIMIT 12`
+      ).all(session.datum) as Array<{ drucksache_nr: string; thema: string | null; ref_count: number }>)
+    : [];
+
+  const abstimmungenRows = session.datum
+    ? (db.prepare(
+        `SELECT poll_id, MAX(poll_label) AS poll_label,
+                SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
+                SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no,
+                SUM(CASE WHEN vote = 'abstain' THEN 1 ELSE 0 END) AS abstain
+         FROM votes
+         WHERE poll_date = ? AND poll_label IS NOT NULL
+         GROUP BY poll_id
+         ORDER BY poll_id`
+      ).all(session.datum) as Array<{
+        poll_id: number;
+        poll_label: string;
+        yes: number;
+        no: number;
+        abstain: number;
+      }>)
+    : [];
+
+  return {
+    sessionId: session.id,
+    wahlperiode: session.wahlperiode,
+    sitzung: session.sitzung,
+    datum: session.datum,
+    sourceUrl: session.source_url,
+    stats: {
+      speechCount: stats?.speech_count ?? 0,
+      topicCount: stats?.topic_count ?? 0,
+      voteCount,
+      speakerCount: stats?.speaker_count ?? 0,
+    },
+    topics: topics.map((t) => ({
+      topicId: t.topic_id,
+      topicNumber: t.topic_number,
+      title: t.title,
+      speechCount: t.speech_count,
+      parties: (t.parties ?? "").split(",").filter((p) => p && p !== ""),
+    })),
+    tonalitaetVerteilung: tonalitaetRows.map((r) => ({ tonalitaet: r.tonalitaet, count: r.n })),
+    partyVerteilung: partyRows.map((r) => ({ party: r.party, count: r.n })),
+    drucksachen: drucksachenRows.map((r) => ({
+      drucksacheNr: r.drucksache_nr,
+      thema: r.thema,
+      refCount: r.ref_count,
+    })),
+    abstimmungen: abstimmungenRows.map((r) => {
+      const total = r.yes + r.no + r.abstain;
+      return {
+        pollId: r.poll_id,
+        label: r.poll_label,
+        yes: r.yes,
+        no: r.no,
+        abstain: r.abstain,
+        yesRatio: total > 0 ? r.yes / (r.yes + r.no) : 0,
+      };
+    }),
+  };
 }

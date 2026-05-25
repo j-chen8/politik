@@ -82,8 +82,11 @@
      BE). Subjekt-DS pro Roll-Call jetzt aus autoritativer Open-Data-Filterlist.
 7. **Abschluss:** §1-Snapshot-Tabelle aktualisieren, kurze Notiz in
    `NEXT-SESSION-data-refresh.md` (dedizierte Track-Datei — **nicht**
-   `NEXT-SESSION.md`, die hat fremde Track-Drift; Track-Isolation), ehrlicher
-   Statusbericht (was geholt, Kosten, Caveats, Spotcheck-Ergebnis).
+   `NEXT-SESSION.md`, die hat fremde Track-Drift; Track-Isolation),
+   **Refresh-Datum schreiben** (`date +%Y-%m-%d > data/last-refresh.txt` —
+   wird vom Landing-Strip „Letzter Datenstand" gelesen, damit Besucher die
+   Frische sehen), ehrlicher Statusbericht (was geholt, Kosten, Caveats,
+   Spotcheck-Ergebnis).
 
 **Vom „update" ausgeschlossen (manuell/separat — nur melden, nicht auto-tun):**
 Stammdaten-XML (manueller Download), Bundeskabinett (hardcoded), Ausschuss-
