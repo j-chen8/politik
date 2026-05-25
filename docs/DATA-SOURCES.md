@@ -50,8 +50,16 @@
    Reden < 60. Beides als ein Hintergrund-Orchestrator (retry-fest).
 4b. **Vote-Kontext für neue Polls (Filterlist + Generate, ~$0,01/Poll LLM):**
    Ohne diesen Schritt zeigen Abstimmungs-Detail-Seiten neuer Polls keinen
-   „Worum geht es?"-Block. Reihenfolge:
+   „Worum geht es?"-Block. **Reihenfolge ist verbindlich** (Chicken-and-Egg
+   beim `drucksache_analyses`-Filter im Map-Script, siehe Caveat unten):
+   - **MUSS nach Schritt 4 laufen** (Drucksachen-Batch muss retrieved+applied
+     sein, sonst werden neue DS in der Filterlist ausgesiebt — `map-vote-
+     drucksache-bundestag.ts` filtert per `EXISTS (drucksache_analyses ...)`).
    - Identifizieren: `sqlite3 politik.db "SELECT v.poll_id FROM (SELECT DISTINCT poll_id FROM votes) v LEFT JOIN vote_context vc ON vc.poll_id=v.poll_id WHERE vc.poll_id IS NULL ORDER BY v.poll_id"`
+   - Neue Poll-IDs nach 2026-05-25-Konvention zu `src/lib/poll-bt-mapping.ts`
+     hinzufügen (bt_id == poll_id für ≥ 6000). Ohne diesen Eintrag findet
+     `generate-vote-context.ts --poll <id>` den Poll nicht (`POLL_TO_BT_ID`-
+     Filter), siehe §2.13.
    - Drucksachen-Mapping aus Filterlist holen:
      `npx tsx scripts/map-vote-drucksache-bundestag.ts --apply`
      (idempotent — neue Polls werden ergänzt, bestehende mit DIFF aktualisiert,
@@ -89,21 +97,21 @@ Caveats.
 
 ---
 
-## 1. Gap-Status (Snapshot **nach Refresh 2026-05-20** — via Check-Skript regenerierbar)
+## 1. Gap-Status (Snapshot **nach Refresh 2026-05-25** — via Check-Skript regenerierbar)
 
 | Quelle | Status | Stand nach Refresh | Notiz |
 |---|---|---|---|
-| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 78 (2026-05-08) | 76/77/78 ingestiert |
-| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **9.689** Reden | 0 Pre-Flight-Requests am 20.05. (alle aktuell seit 19.05.-Lauf) |
-| Activities (DIP) | 🟢 aktuell | 66.185 → **66.759** | +574 am 20.05., bis 2026-05-20 |
-| Drucksachen-PDF | 🟢 aktuell | 21/6001 → **21/6034** | +33 am 20.05., alle klassifiziert |
-| Drucksachen-LLM | 🟢 erledigt | 5.358 → **5.387** | 29 am 20.05. ($3,03), Spotcheck bestanden (zugeschriebene Sprache, sachlich) |
-| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 50 → **51 Polls** (6511, 630 Votes, datiert 2026-05-08) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~11 T — Datenlage-Decke (kein neuerer Poll existiert)** |
-| Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.901→**3.969**, Committees ~1.73k | mit aw-Run aktualisiert |
+| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 80 (2026-05-21) | 79+80 neu ingestiert (+328 Reden) |
+| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **11.953** Reden | +343 am 25.05. (Sitzung 79+80 + 15 Drift), Cost $1,54 Batch, Quote-Validation 86,0 % |
+| Activities (DIP) | 🟢 aktuell | 66.759 → **67.863** | +1.104 am 25.05., bis 2026-05-22 |
+| Drucksachen-PDF | 🟢 aktuell | 21/6034 → **21/6127** (53 neu) | +53 PDFs, alle klassifiziert |
+| Drucksachen-LLM | 🟢 erledigt | 5.387 → **5.440** | 53 am 25.05. ($3,06), Spotcheck bestanden (zugeschriebene Sprache, sachlich), 5/53 Topic-Drift (1 davon Tippfehler) |
+| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 51 → **52 Polls** (6528, +636 Votes, datiert 2026-05-22) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~3 T — neuester Poll 6528 vom 22.05.; spätere Sitzungs-Abstimmungen evtl. noch nicht da** |
+| Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.969→**4.008**, Committees ~2.154 | mit aw-Run aktualisiert |
 | Ausschuss-Protokolle | 🟡 Drift | 254 JSON vs 226 DB | nicht Teil von „update" (destruktiver Reimport) |
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
-| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download |
-| Vote↔DS-Cross-Check | 🟡 Filterlist-Apply (38 vote_contexts stale) | drucksache_polls 51/51 frisch; vote_context **51/51** befüllt, **38 stale** seit 2026-05-20-Apply | `map-vote-drucksache-bundestag.ts --apply` (Filterlist als SoT); Bilanz: 13 EXAKT · 38 DIFF · 0 UNMATCHED. Re-Gen für 38 stale `block_hinweis` offen (Schritt C im Pickup) |
+| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (25 Tage alt) |
+| Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
