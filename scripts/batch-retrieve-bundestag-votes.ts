@@ -68,14 +68,14 @@ async function main() {
     INSERT OR REPLACE INTO bundestag_votes (
       xml_source, snippet_offset, sitzung_nr, wahlperiode, datum,
       drucksache_nrn_json,
-      vote_type, outcome, modus, fraktion_votes_json, stimmen_zahlen_json,
+      vote_type, vote_subtype, outcome, modus, fraktion_votes_json, stimmen_zahlen_json,
       raw_snippet, raw_tool_input_json, model, prompt_version, batch_id,
       input_tokens, cache_read_input_tokens, cache_creation_input_tokens, output_tokens,
       stop_reason, error_type, error_message
     ) VALUES (
       @xml_source, @snippet_offset, @sitzung_nr, @wahlperiode, @datum,
       @drucksache_nrn_json,
-      @vote_type, @outcome, @modus, @fraktion_votes_json, @stimmen_zahlen_json,
+      @vote_type, @vote_subtype, @outcome, @modus, @fraktion_votes_json, @stimmen_zahlen_json,
       @raw_snippet, @raw_tool_input_json, @model, @prompt_version, @batch_id,
       @input_tokens, @cache_read_input_tokens, @cache_creation_input_tokens, @output_tokens,
       @stop_reason, @error_type, @error_message
@@ -95,7 +95,7 @@ async function main() {
         xml_source: meta.xml_source, snippet_offset: meta.offset,
         sitzung_nr: meta.sitzung_nr, wahlperiode: meta.wahlperiode, datum: meta.datum,
         drucksache_nrn_json: null,
-        vote_type: "unklar", outcome: "kein_vote", modus: null,
+        vote_type: "unklar", vote_subtype: null, outcome: "kein_vote", modus: null,
         fraktion_votes_json: null, stimmen_zahlen_json: null,
         raw_snippet: meta.snippet, raw_tool_input_json: null,
         model: null, prompt_version: state.prompt_version, batch_id: state.batch_id,
@@ -120,11 +120,17 @@ async function main() {
     cacheReadTotal += cr; cacheWriteTotal += cw;
     costReal += inp * 0.5e-6 + cr * 0.025e-6 + cw * 0.625e-6 + out * 2.5e-6;
 
+    // Subtype-Classification per Snippet-Heuristik (Petition / Personenwahl / Gesetz)
+    const subtype = /Sammelübersicht/.test(meta.snippet) ? "petition"
+      : /Wahlvorschlag|Wahl von Mitgliedern/.test(meta.snippet) ? "personenwahl"
+      : "gesetz";
+
     insert.run({
       xml_source: meta.xml_source, snippet_offset: meta.offset,
       sitzung_nr: meta.sitzung_nr, wahlperiode: meta.wahlperiode, datum: meta.datum,
       drucksache_nrn_json: drucksache_nrn.length ? JSON.stringify(drucksache_nrn) : null,
       vote_type: typeof analysis.vote_type === "string" ? analysis.vote_type : "unklar",
+      vote_subtype: subtype,
       outcome,
       modus: typeof analysis.modus === "string" ? analysis.modus : null,
       fraktion_votes_json: asJson(analysis.fraktion_votes),

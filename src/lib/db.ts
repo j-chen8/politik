@@ -2914,13 +2914,14 @@ export interface VoteIndexEntry {
   // Identität + Routing
   id: string;                                 // "poll:6147" | "btv:42" | "blv:103"
   type: "namentlich" | "handzeichen_bundestag" | "handzeichen_berlin";
-  detail_url: string;                         // Link wohin der Card-Klick führt
+  subtype: "gesetz" | "petition" | "personenwahl" | "unbekannt"; // für Default-Filter
+  detail_url: string;
   // Anzeige
-  label: string | null;                       // Poll-Label oder DS-Titel
-  date: string | null;                        // ISO
+  label: string | null;
+  date: string | null;
   outcome: "angenommen" | "abgelehnt" | "vertagt" | "ueberwiesen" | "unklar";
   outcome_label: string;
-  // Stats — bei namentlich: Stimmen-Counts; bei Handzeichen: Fraktions-Map
+  // Stats
   yes: number | null;
   no: number | null;
   abstain: number | null;
@@ -2945,9 +2946,11 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
   `).all() as Array<{ poll_id: number; poll_label: string | null; poll_date: string | null; yes: number; no: number; abstain: number }>;
   for (const p of namentlich) {
     const passed = p.yes > p.no;
+    // Namentliche Abstimmungen sind fast immer echte Gesetzes-/Antrags-Voten
     entries.push({
       id: `poll:${p.poll_id}`,
       type: "namentlich",
+      subtype: "gesetz",
       detail_url: `/design/linear/abstimmungen/${p.poll_id}`,
       label: p.poll_label,
       date: p.poll_date,
@@ -2963,10 +2966,10 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
   // 2. Bundestag Handzeichen-Votes (mit DS-Title als Label)
   try {
     const btv = db.prepare(`
-      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json
+      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json, bv.vote_subtype
       FROM bundestag_votes bv
       WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
-    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null }>;
+    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null; vote_subtype: string | null }>;
     for (const v of btv) {
       const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
       // Titel/Label: erste DS-Zusammenfassung
@@ -2987,9 +2990,11 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       const detail_url = dsNrn.length > 0
         ? `/design/linear/aktivitaeten/${dsNrn[0].replace("/", "-")}`
         : `/design/linear/abstimmungen`; // Fallback
+      const subtype = (v.vote_subtype as "gesetz" | "petition" | "personenwahl" | null) ?? "unbekannt";
       entries.push({
         id: `btv:${v.vote_id}`,
         type: "handzeichen_bundestag",
+        subtype,
         detail_url,
         label,
         date: v.datum,
@@ -3006,10 +3011,10 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
   // 3. Berlin Handzeichen-Votes
   try {
     const blv = db.prepare(`
-      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json, bv.drucksache_dbids_json
+      SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json, bv.drucksache_dbids_json, bv.vote_subtype
       FROM berlin_votes bv
       WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
-    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null; drucksache_dbids_json: string | null }>;
+    `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null; drucksache_dbids_json: string | null; vote_subtype: string | null }>;
     for (const v of blv) {
       const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
       const dbids: string[] = v.drucksache_dbids_json ? (() => { try { return JSON.parse(v.drucksache_dbids_json); } catch { return []; } })() : [];
@@ -3031,9 +3036,11 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       const detail_url = dbids.length > 0
         ? `/design/linear/parlamente/berlin/drucksache/${dbids[0]}`
         : `/design/linear/parlamente/berlin`;
+      const subtype = (v.vote_subtype as "gesetz" | "petition" | "personenwahl" | null) ?? "unbekannt";
       entries.push({
         id: `blv:${v.vote_id}`,
         type: "handzeichen_berlin",
+        subtype,
         detail_url,
         label,
         date: v.datum,

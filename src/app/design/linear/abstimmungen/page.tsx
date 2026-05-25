@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function AbstimmungenIndex({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; year?: string; type?: string; parlament?: string }>;
+  searchParams: Promise<{ q?: string; year?: string; type?: string; parlament?: string; show?: string }>;
 }) {
   return <AbstimmungenIndexInner searchParams={searchParams} />;
 }
@@ -13,16 +13,26 @@ export default function AbstimmungenIndex({
 async function AbstimmungenIndexInner({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; year?: string; type?: string; parlament?: string }>;
+  searchParams: Promise<{ q?: string; year?: string; type?: string; parlament?: string; show?: string }>;
 }) {
-  const { q = "", year = "", type = "", parlament = "" } = await searchParams;
+  const { q = "", year = "", type = "", parlament = "", show = "" } = await searchParams;
   const all = listAllVotesForIndex();
 
+  // Default-View: nur Gesetze/Anträge. Petitionen + Personen-Wahlen nur wenn show explizit.
+  const showPetitionen = show === "petitionen" || show === "alle";
+  const showPersonenwahl = show === "personenwahl" || show === "alle";
+
+  const baseFiltered = all.filter((p) => {
+    if (p.subtype === "petition" && !showPetitionen) return false;
+    if (p.subtype === "personenwahl" && !showPersonenwahl) return false;
+    return true;
+  });
+
   const years = Array.from(
-    new Set(all.map((p) => p.date?.slice(0, 4)).filter(Boolean) as string[])
+    new Set(baseFiltered.map((p) => p.date?.slice(0, 4)).filter(Boolean) as string[])
   ).sort((a, b) => b.localeCompare(a));
 
-  const filtered = all.filter((p) => {
+  const filtered = baseFiltered.filter((p) => {
     if (year && p.date?.slice(0, 4) !== year) return false;
     if (type) {
       if (type === "namentlich" && p.type !== "namentlich") return false;
@@ -37,9 +47,11 @@ async function AbstimmungenIndexInner({
   });
 
   const counts = {
-    namentlich: all.filter((p) => p.type === "namentlich").length,
-    handzeichenBundestag: all.filter((p) => p.type === "handzeichen_bundestag").length,
-    handzeichenBerlin: all.filter((p) => p.type === "handzeichen_berlin").length,
+    namentlich: baseFiltered.filter((p) => p.type === "namentlich").length,
+    handzeichenBundestag: baseFiltered.filter((p) => p.type === "handzeichen_bundestag").length,
+    handzeichenBerlin: baseFiltered.filter((p) => p.type === "handzeichen_berlin").length,
+    petitionen: all.filter((p) => p.subtype === "petition").length,
+    personenwahl: all.filter((p) => p.subtype === "personenwahl").length,
   };
 
   return (
@@ -64,18 +76,32 @@ async function AbstimmungenIndexInner({
         </div>
 
         {/* Filters */}
-        <div className="mb-6 fade-in-up fade-in-up-2 flex flex-wrap gap-2 text-[12px]">
-          <FilterPill href={`?`} active={!type && !parlament}>
-            Alle ({all.length})
+        <div className="mb-3 fade-in-up fade-in-up-2 flex flex-wrap gap-2 text-[12px]">
+          <FilterPill href={`?${show ? `show=${show}` : ""}`} active={!type && !parlament}>
+            Alle ({baseFiltered.length})
           </FilterPill>
-          <FilterPill href={`?type=namentlich`} active={type === "namentlich"}>
+          <FilterPill href={`?type=namentlich${show ? `&show=${show}` : ""}`} active={type === "namentlich"}>
             Namentlich ({counts.namentlich})
           </FilterPill>
-          <FilterPill href={`?type=handzeichen&parlament=Bundestag`} active={type === "handzeichen" && parlament === "Bundestag"}>
+          <FilterPill href={`?type=handzeichen&parlament=Bundestag${show ? `&show=${show}` : ""}`} active={type === "handzeichen" && parlament === "Bundestag"}>
             Bundestag · Handzeichen ({counts.handzeichenBundestag})
           </FilterPill>
-          <FilterPill href={`?type=handzeichen&parlament=Berlin`} active={type === "handzeichen" && parlament === "Berlin"}>
+          <FilterPill href={`?type=handzeichen&parlament=Berlin${show ? `&show=${show}` : ""}`} active={type === "handzeichen" && parlament === "Berlin"}>
             Berlin · Handzeichen ({counts.handzeichenBerlin})
+          </FilterPill>
+        </div>
+
+        {/* Subtype-Filter */}
+        <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
+          <span className="text-zinc-400 self-center mr-1">Auch zeigen:</span>
+          <FilterPill href={`?${type ? `type=${type}&` : ""}${parlament ? `parlament=${parlament}&` : ""}${show === "petitionen" ? "" : "show=petitionen"}`} active={showPetitionen}>
+            Petitions-Sammelübersichten ({counts.petitionen})
+          </FilterPill>
+          <FilterPill href={`?${type ? `type=${type}&` : ""}${parlament ? `parlament=${parlament}&` : ""}${show === "personenwahl" ? "" : "show=personenwahl"}`} active={showPersonenwahl}>
+            Personen-Wahlen ({counts.personenwahl})
+          </FilterPill>
+          <FilterPill href={`?${type ? `type=${type}&` : ""}${parlament ? `parlament=${parlament}&` : ""}show=alle`} active={show === "alle"}>
+            beides
           </FilterPill>
         </div>
 

@@ -82,14 +82,14 @@ async function main() {
     INSERT OR REPLACE INTO berlin_votes (
       plpr_lok_url, snippet_offset, sitzung_nr, datum,
       drucksache_nrn_json, drucksache_dbids_json,
-      vote_type, outcome, modus, fraktion_votes_json, stimmen_zahlen_json,
+      vote_type, vote_subtype, outcome, modus, fraktion_votes_json, stimmen_zahlen_json,
       raw_snippet, raw_tool_input_json, model, prompt_version, batch_id,
       input_tokens, cache_read_input_tokens, cache_creation_input_tokens, output_tokens,
       stop_reason, error_type, error_message
     ) VALUES (
       @plpr_lok_url, @snippet_offset, @sitzung_nr, @datum,
       @drucksache_nrn_json, @drucksache_dbids_json,
-      @vote_type, @outcome, @modus, @fraktion_votes_json, @stimmen_zahlen_json,
+      @vote_type, @vote_subtype, @outcome, @modus, @fraktion_votes_json, @stimmen_zahlen_json,
       @raw_snippet, @raw_tool_input_json, @model, @prompt_version, @batch_id,
       @input_tokens, @cache_read_input_tokens, @cache_creation_input_tokens, @output_tokens,
       @stop_reason, @error_type, @error_message
@@ -112,7 +112,7 @@ async function main() {
         plpr_lok_url: meta.plpr_lok_url, snippet_offset: meta.offset,
         sitzung_nr: meta.sitzung_nr, datum: meta.datum,
         drucksache_nrn_json: null, drucksache_dbids_json: null,
-        vote_type: "unklar", outcome: "kein_vote", modus: null,
+        vote_type: "unklar", vote_subtype: null, outcome: "kein_vote", modus: null,
         fraktion_votes_json: null, stimmen_zahlen_json: null,
         raw_snippet: meta.snippet, raw_tool_input_json: null,
         model: null, prompt_version: state.prompt_version, batch_id: state.batch_id,
@@ -144,12 +144,15 @@ async function main() {
     cacheWriteTotal += cw;
     costReal += inp * 0.5e-6 + cr * 0.025e-6 + cw * 0.625e-6 + out * 2.5e-6;
 
+    // Subtype: nur Personenwahl bei Berlin häufig, Petitionen sind separater Workflow
+    const subtype = /Wahlvorschlag|Wahl der|Wahl von/.test(meta.snippet) ? "personenwahl" : "gesetz";
+
     insert.run({
       plpr_lok_url: meta.plpr_lok_url, snippet_offset: meta.offset,
       sitzung_nr: meta.sitzung_nr, datum: meta.datum,
       drucksache_nrn_json: drucksache_nrn.length ? JSON.stringify(drucksache_nrn) : null,
       drucksache_dbids_json: drucksache_dbids.length ? JSON.stringify(drucksache_dbids) : null,
-      vote_type: voteType, outcome, modus,
+      vote_type: voteType, vote_subtype: subtype, outcome, modus,
       fraktion_votes_json: asJson(analysis.fraktion_votes),
       stimmen_zahlen_json: asJson(analysis.stimmen_zahlen),
       raw_snippet: meta.snippet, raw_tool_input_json: JSON.stringify(analysis),
