@@ -537,6 +537,8 @@ const DS_OUTPUT_FIELDS = [
   "thema", "tonalitaet", "antwort_charakter",
   "fraktion", "adressat", "senatsverwaltung", "bezirk_bezug",
   "dokumenttyp", "einbringer",
+  // LLM-Halluzinationen / Tag-Synonyme (Stage-4-Empirie):
+  "antwort",   // LLM-Kurzform von antwort_charakter (2/10745 Fälle)
 ] as const;
 
 /** Schneidet ein "</fieldname>...."-Suffix ab, falls fieldname ein bekanntes Output-Feld ist.
@@ -549,7 +551,11 @@ export function cleanTagDrift(value: string | null | undefined): string | null {
   if (typeof value !== "string") return null;
   let earliestIdx = -1;
   for (const f of DS_OUTPUT_FIELDS) {
-    for (const tag of [`</${f}>`, `</${f}">`]) {
+    // Drei Varianten beobachtet in Stage-1-4-Empirie:
+    //   </field>      — Standard
+    //   </field">     — LLM-Quote vor > (Stage 3)
+    //   </field: "..." — YAML-Mix nach abgebrochenem Tag (Stage 4)
+    for (const tag of [`</${f}>`, `</${f}">`, `</${f}:`]) {
       const idx = value.indexOf(tag);
       if (idx >= 0 && (earliestIdx < 0 || idx < earliestIdx)) earliestIdx = idx;
     }
