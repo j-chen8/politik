@@ -123,7 +123,7 @@ export default async function VoteDetailPage({
                     <Link
                       key={nr}
                       href={`/design/linear/aktivitaeten/${nr.replace(/\//g, "-")}`}
-                      className="inline-flex items-center rounded-md border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[11px] font-mono text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 transition-colors"
+                      className="inline-flex items-center rounded-md border border-[#1a3e72]/25 bg-[#1a3e72]/5 px-2 py-0.5 text-[11px] font-mono text-[#1a3e72] hover:bg-[#1a3e72]/10 hover:text-[#0f2a52] hover:border-[#1a3e72]/40 transition-colors"
                     >
                       {nr}
                     </Link>
@@ -278,7 +278,7 @@ export default async function VoteDetailPage({
                 href={poll_url ? poll_url.replace(/abgeordnetenwatch\.de.*/, "bundestag.de/parlament/plenum/abstimmung") : "https://www.bundestag.de"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-700 transition-colors"
+                className="underline decoration-[#1a3e72]/40 text-[#1a3e72] hover:decoration-[#1a3e72] hover:text-[#0f2a52] transition-colors"
               >
                 Bundestag.de
               </a>{" "}
@@ -400,7 +400,7 @@ function TonalitaetBadge({ ton }: { ton: string | null }) {
     polemisch: { label: "polemisch", cls: "bg-rose-50 text-rose-700" },
     polemisch_sachlich: { label: "polemisch-sachlich", cls: "bg-orange-50 text-orange-700" },
     emotional_persoenlich: { label: "emotional-persönlich", cls: "bg-violet-50 text-violet-700" },
-    konfrontativ_belegend: { label: "konfrontativ-belegend", cls: "bg-blue-50 text-blue-700" },
+    konfrontativ_faktenrhetorisch: { label: "konfrontativ-faktenrhetorisch", cls: "bg-blue-50 text-blue-700" },
     ironisch_jugendlich: { label: "ironisch", cls: "bg-yellow-50 text-yellow-800" },
     bilanzierend_werbend: { label: "bilanzierend", cls: "bg-emerald-50 text-emerald-700" },
     staatsmaennisch: { label: "staatsmännisch", cls: "bg-blue-50 text-blue-800" },

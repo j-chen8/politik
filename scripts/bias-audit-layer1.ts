@@ -264,7 +264,7 @@ function main() {
   console.log('   Verwendung: Anomalien für Schicht 2 stratifizieren.');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
-  const tonValues = ['polemisch', 'polemisch_sachlich', 'konfrontativ_belegend', 'sachlich',
+  const tonValues = ['polemisch', 'polemisch_sachlich', 'konfrontativ_faktenrhetorisch', 'sachlich',
     'defensiv_pragmatisch', 'bilanzierend_werbend', 'staatsmaennisch', 'sozial_anklagend',
     'mahnend', 'emotional_persoenlich', 'ironisch_jugendlich'];
 

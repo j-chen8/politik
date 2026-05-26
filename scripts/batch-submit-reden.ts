@@ -35,7 +35,7 @@ const MODEL = "claude-haiku-4-5";
 // Identisch zum Smoke-Test: Tool-Use mit ASCII-Keys, harter Tonalitäts-Enum
 const TONALITAET_ENUM = [
   "sachlich", "polemisch", "polemisch_sachlich", "emotional_persoenlich",
-  "konfrontativ_belegend", "ironisch_jugendlich", "bilanzierend_werbend",
+  "konfrontativ_faktenrhetorisch", "ironisch_jugendlich", "bilanzierend_werbend",
   "staatsmaennisch", "defensiv_pragmatisch", "sozial_anklagend", "mahnend",
 ];
 

@@ -90,6 +90,9 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
               Aktivitäten{artFilter ? ` · ${artFilter}` : ""} · 21. Wahlperiode
             </span>
           </div>
+          <p className="mt-1.5 text-[11.5px] text-zinc-400">
+            Datenstand: WP21 ab 31.03.2025 — historische Daten (WP18–20) noch nicht eingespielt, daher keine Trend-Aussagen über Wahlperioden hinweg möglich. Mehr in der <a href="/design/linear/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
+          </p>
         </div>
 
         <ActivityFilters activeTyp={typ} query={q} basePath="/design/linear/aktivitaeten" />
@@ -231,7 +234,7 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
                               href={a.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                              className="text-[#1a3e72] hover:text-[#0f2a52] inline-flex items-center gap-1 transition-colors"
                             >
                               {a.herausgeber}-Drucksache {a.drucksache_nr}
                               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />

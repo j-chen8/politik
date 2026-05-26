@@ -20,8 +20,8 @@ const TONALITAET_CONFIG: Record<
     color: "#7c3aed",
     bg: "#ede9fe",
   },
-  konfrontativ_belegend: {
-    label: "konfrontativ-belegend",
+  konfrontativ_faktenrhetorisch: {
+    label: "konfrontativ-faktenrhetorisch",
     color: "#1d4ed8",
     bg: "#dbeafe",
   },
@@ -57,7 +57,7 @@ const REDEN_TYP_LABELS: Record<string, string> = {
   A: "Polemische Opposition",
   B: "Sachlich-fachliche Opposition",
   C: "Persönliche Anekdotenrede",
-  D: "Konfrontativ-belegend",
+  D: "Konfrontativ-faktenrhetorisch",
   E: "Bilanz-/Erfolgs-Rede",
   F: "Sachlich-technisch",
   G: "Sozialgerechtigkeits-Rede",

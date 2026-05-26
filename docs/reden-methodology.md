@@ -29,6 +29,26 @@ Das Projekt-Prinzip ist explizit: **100% Fakten, partei-neutral**. Schieflage in
 
 ---
 
+## 0a. Grundprinzip: Stil markieren, nicht Substanz bewerten
+
+Die Tonalitäts-Klassifikation beschreibt den **rhetorischen Grundton** einer Rede — nicht die Wahrheit, Belastbarkeit oder politische Berechtigung der enthaltenen Aussagen. Diese Trennung ist absichtlich und durchgehend:
+
+- Eine Rede kann als `konfrontativ_faktenrhetorisch` klassifiziert werden, ohne dass die zitierten Belege fachlich tragen. Das Label markiert das **Stilmittel** „bringt konkrete Zahlen/Studien/Namen ins Argument", nicht das Urteil „die Belege sind korrekt".
+- Eine Rede kann als `sachlich` klassifiziert werden, ohne dass der Sprecher in der Sache recht hat. `sachlich` heißt: neutraler Ton, fokussiert auf Beschreibung — nicht: faktisch korrekt.
+- Eine Rede kann als `polemisch` klassifiziert werden, ohne dass die polemisch vorgebrachten Inhalte falsch wären. `polemisch` ist Stilmerkmal, nicht Wahrheitsurteil.
+
+Wer aus dem Stil-Label inhaltliche Urteile ableitet, missbraucht das Etikett. Konsequenz für die UI: Definitionen sollten *Anti-Definitionen* mitliefern („Was es NICHT bedeutet"), damit diese Grenze auch bei flüchtiger Nutzung sichtbar bleibt.
+
+### Bewusster Verzicht auf normative Etiketten
+
+Es gibt **keine** Kategorie wie `skandalisierend`, `demagogisch`, `desinformierend`, `verschwörungstheoretisch` — und es wird auch keine eingeführt.
+
+Begründung: Solche Etiketten setzen eine plattform-interne Operationalisierung von Wert-Urteilen voraus. Selbst sorgfältige Definitionen bleiben in der Anwendung über Tausende Reden nicht konsistent — und das Risiko, dass dieselbe Sprache je nach Fraktion unterschiedlich klassifiziert wird, ist real (v1-Bias-Befunde unten dokumentieren genau das). Der Plattform-Auftrag ist Datenaufbereitung, nicht Meinungsbildung.
+
+Externe Operationalisierungen (z.B. Loaded Language, Unterstellungs-Fragen, Vorbemerkung-vs.-Fragenliste-Diskrepanz bei Drucksachen — vorgeschlagen in der Validierungs-Diskussion 2026-05-26) können als zusätzliche Forschungs-Layer mit Quellen-Attribution integriert werden, sind aber explizit nicht Teil des plattform-eigenen Klassifikations-Schemas.
+
+---
+
 ## 1. Pipeline-Architektur — Smart Haiku Cascade
 
 Architektur-Plan: `docs/plan-haiku-opus-cascade.md`. Kurz-Beschreibung:
@@ -73,8 +93,8 @@ Architektur-Plan: `docs/plan-haiku-opus-cascade.md`. Kurz-Beschreibung:
 Nach Audit (siehe Sektion 3) komplett neutralisiert. Unter v2 wurden noch keine Reden re-batched (User-Entscheidung: $42 nicht erneut ausgeben). v2 wird ab Sitzung 76 (06.05.2026 ff.) für neue Batches aktiv.
 
 **Konkret geändert (v1 → v2):**
-- Reden-Typen-Namen: `Anti-AfD-Konfrontations-Rede` → `Konfrontativ-belegende Auseinandersetzung`; `Linke-Sozialgerechtigkeits-Rede` → `Sozialgerechtigkeits-/Anklage-Rede`; etc.
-- Tonalitäten: `polemisch_sachlich` (war „Fakten plus AfD-Frames") → „Fakten plus deutliche ideologische Frames jeglicher Richtung"; `konfrontativ_belegend` (war „Anti-AfD-Konfrontation") → „Belegte Konfrontation mit der Position eines anderen, partei-unabhängig"
+- Reden-Typen-Namen: `Anti-AfD-Konfrontations-Rede` → `Konfrontativ-faktenrhetorische Auseinandersetzung`; `Linke-Sozialgerechtigkeits-Rede` → `Sozialgerechtigkeits-/Anklage-Rede`; etc.
+- Tonalitäten: `polemisch_sachlich` (war „Fakten plus AfD-Frames") → „Fakten plus deutliche ideologische Frames jeglicher Richtung"; `konfrontativ_faktenrhetorisch` (war „Anti-AfD-Konfrontation") → „Belegte Konfrontation mit der Position eines anderen, partei-unabhängig"
 - Beispiel-Sprecher in Tonalitäts-Tabelle auf cross-party-Verteilung erweitert
 - Neue Heuristik H9: keine eigene Bewertung in der Summary
 - Grundprinzip 6 + 7 hinzugefügt (Partei-neutrale Klassifikation; Beschreiben, nicht bewerten)
@@ -92,13 +112,13 @@ Im Vollauf-Batch (v1-Methodology) sind 33 Reden mit invented Tonalitäten durchg
 - 18 Typo/Schreibvarianten (`defensive_pragmatisch`, `social_anklagend`, `staatsmännisch` etc.) — deterministisch korrigierbar
 - 13 invented Modifier (`pointiert_*`-Familie, `nachfragend`, `konstruktiv_kritisch` etc.) — pro Rede manuell auf Inhalt geprüft
 
-**Erklärung:** Methodology-v1 hatte Partei-Anker in `polemisch_sachlich` (AfD-spezifisch) und `konfrontativ_belegend` (Anti-AfD). Reden, die nicht in diese Prototypen passten (z.B. Demuth/CDU gegen AfD, Piechotta/Grüne gegen CDU), bekamen vom Modell keine passende Klasse — der Drift in `pointiert_*` ist die direkte Konsequenz dieses Bias.
+**Erklärung:** Methodology-v1 hatte Partei-Anker in `polemisch_sachlich` (AfD-spezifisch) und `konfrontativ_faktenrhetorisch` (Anti-AfD). Reden, die nicht in diese Prototypen passten (z.B. Demuth/CDU gegen AfD, Piechotta/Grüne gegen CDU), bekamen vom Modell keine passende Klasse — der Drift in `pointiert_*` ist die direkte Konsequenz dieses Bias.
 
 **Fix:** Skript `scripts/fix-tonalitaet-drift.ts` mit:
 - DB-Snapshot vor Lauf
 - Spalte `tonalitaet_original` für Rollback (NULL für unveränderte 9.880 Reden)
 - JSONL-Audit (`tonalitaet-drift-fix-2026-05-05.jsonl`) mit Begründung pro Rede
-- Mapping-Logik nach v2-Methodology (Paul/AfD bekommt `konfrontativ_belegend`, da neutrale Definition der Klasse das zulässt)
+- Mapping-Logik nach v2-Methodology (Paul/AfD bekommt `konfrontativ_faktenrhetorisch`, da neutrale Definition der Klasse das zulässt)
 
 **Resultat:** 31 Reden gemappt, 0 Drift-Werte übrig, 100% in den 11 Enum-Werten.
 

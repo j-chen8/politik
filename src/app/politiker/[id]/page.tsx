@@ -530,7 +530,7 @@ export default async function PolitikerPage({ params }: Props) {
                           polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
                           polemisch_sachlich: { label: "polemisch-sachlich", color: "#9a3412", bg: "#ffedd5" },
                           emotional_persoenlich: { label: "emotional-persönlich", color: "#7c3aed", bg: "#ede9fe" },
-                          konfrontativ_belegend: { label: "konfrontativ-belegend", color: "#1d4ed8", bg: "#dbeafe" },
+                          konfrontativ_faktenrhetorisch: { label: "konfrontativ-faktenrhetorisch", color: "#1d4ed8", bg: "#dbeafe" },
                           ironisch_jugendlich: { label: "ironisch", color: "#a16207", bg: "#fef3c7" },
                           bilanzierend_werbend: { label: "bilanzierend", color: "#15803d", bg: "#dcfce7" },
                           staatsmaennisch: { label: "staatsmännisch", color: "#1e40af", bg: "#dbeafe" },

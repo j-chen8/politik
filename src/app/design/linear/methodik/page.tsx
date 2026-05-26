@@ -198,8 +198,8 @@ export default function LinearMethodikPage() {
     cduSachlich: insightPct(tonalitaetFor("CDU/CSU", "sachlich")),
     spdSachlich: insightPct(tonalitaetFor("SPD", "sachlich")),
     linkeSozialAnklag: insightPct(tonalitaetFor("Linke", "sozial_anklagend")),
-    linkeKonfront: insightPct(tonalitaetFor("Linke", "konfrontativ_belegend")),
-    grueneKonfront: insightPct(tonalitaetFor("Grüne", "konfrontativ_belegend")),
+    linkeKonfront: insightPct(tonalitaetFor("Linke", "konfrontativ_faktenrhetorisch")),
+    grueneKonfront: insightPct(tonalitaetFor("Grüne", "konfrontativ_faktenrhetorisch")),
     praesidiumDefensiv: insightPct(tonalitaetFor("Präsidium / o. Partei", "defensiv_pragmatisch")),
   };
 
@@ -745,6 +745,16 @@ export default function LinearMethodikPage() {
                 <p className="text-[13px] text-zinc-700 leading-relaxed">
                   {d.long}
                 </p>
+                {d.notMeaning && (
+                  <div className="mt-2.5 pt-2.5 border-t border-zinc-100">
+                    <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
+                      Was es nicht bedeutet
+                    </div>
+                    <p className="text-[12.5px] text-zinc-600 leading-relaxed">
+                      {d.notMeaning}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -870,9 +880,9 @@ export default function LinearMethodikPage() {
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen zeigen</div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
                 <li>· <strong className="text-zinc-950">AfD:</strong> Kombiniert {insights.afdPolemischCombined} polemisch / polemisch-sachlich; sachlich nur {insights.afdSachlich} vs. {insights.cduSachlich} bei CDU/CSU und {insights.spdSachlich} bei SPD.</li>
-                <li>· <strong className="text-zinc-950">Linke:</strong> {insights.linkeSozialAnklag} sozial-anklagend dominiert (in keiner anderen Fraktion &gt; 3 %); zusätzlich {insights.linkeKonfront} konfrontativ-belegend.</li>
-                <li>· <strong className="text-zinc-950">Grüne:</strong> {insights.grueneKonfront} konfrontativ-belegend dominiert.</li>
-                <li>· <strong className="text-zinc-950">CDU/CSU + SPD:</strong> ähnliche Verteilung über sachlich / konfrontativ-belegend / bilanzierend-werbend / defensiv-pragmatisch — Regierungs-Mitte-Muster.</li>
+                <li>· <strong className="text-zinc-950">Linke:</strong> {insights.linkeSozialAnklag} sozial-anklagend dominiert (in keiner anderen Fraktion &gt; 3 %); zusätzlich {insights.linkeKonfront} konfrontativ-faktenrhetorisch.</li>
+                <li>· <strong className="text-zinc-950">Grüne:</strong> {insights.grueneKonfront} konfrontativ-faktenrhetorisch dominiert.</li>
+                <li>· <strong className="text-zinc-950">CDU/CSU + SPD:</strong> ähnliche Verteilung über sachlich / konfrontativ-faktenrhetorisch / bilanzierend-werbend / defensiv-pragmatisch — Regierungs-Mitte-Muster.</li>
                 <li>· <strong className="text-zinc-950">Präsidium / Reden ohne Fraktion:</strong> {insights.praesidiumDefensiv} defensiv-pragmatisch (Sitzungsleitung, Regierungsbänke).</li>
               </ul>
             </div>

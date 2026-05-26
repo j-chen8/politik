@@ -347,7 +347,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.bundestag_bio_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     bundestag.de
@@ -555,7 +555,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                             polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
                             polemisch_sachlich: { label: "polemisch-sachlich", color: "#9a3412", bg: "#ffedd5" },
                             emotional_persoenlich: { label: "emotional-persönlich", color: "#7c3aed", bg: "#ede9fe" },
-                            konfrontativ_belegend: { label: "konfrontativ-belegend", color: "#1d4ed8", bg: "#dbeafe" },
+                            konfrontativ_faktenrhetorisch: { label: "konfrontativ-faktenrhetorisch", color: "#1d4ed8", bg: "#dbeafe" },
                             ironisch_jugendlich: { label: "ironisch", color: "#a16207", bg: "#fef3c7" },
                             bilanzierend_werbend: { label: "bilanzierend", color: "#15803d", bg: "#dcfce7" },
                             staatsmaennisch: { label: "staatsmännisch", color: "#1e40af", bg: "#dbeafe" },
