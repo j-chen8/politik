@@ -211,3 +211,25 @@ Vorteil: alle Daten in DB, kein Re-Run nötig, User entscheidet selbst.
 - `src/app/design/linear/aktivitaeten/[ds-nr]/page.tsx` (Bundes-DS, erweitert)
 - `src/app/design/linear/abstimmungen/page.tsx` (kombinierte Übersicht)
 - `src/lib/db.ts` (neue Funktionen: `getBerlinDrucksacheDetail`, `getBerlinDsVotes`, `getBerlinDsMitzeichner`, `getBundestagDsHandzeichenVotes`, `listAllVotesForIndex`)
+
+---
+
+## Nachtrag 2026-05-26 (Nacht): Berlin-Suche scope-getrennt
+
+User-Anliegen am Ende des Tages: „Suche wird überladen" wenn man Berlin-Daten in die Bundes-Suche reinmischt. Lösung gebaut während er schlief:
+
+**Architektur-Entscheidung:** eigene FTS5-Tabellen pro Parlament + separate Suche-Page statt globalem Scope-Filter.
+
+- `berlin_speeches_fts` (23.206 Reden) + `berlin_drucksachen_fts` (19.449 DS) parallel zu den Bundes-FTS-Tabellen
+- Auto-Sync via Triggers, Initial-Build via `scripts/build-berlin-fts.ts`
+- Neue Page `/design/linear/parlamente/berlin/suche` mit Tab-Bar + Synonym-Layer + Highlight-Snippets
+- Berlin-Übersicht: Link „Drucksachen + Reden durchsuchen" prominent
+- Bundes-Suche bleibt unverändert (Track-Isolation)
+
+**Vorteile dieses Patterns für künftige Landtage:**
+- Jedes Parlament bekommt eigene FTS5-Tabellen + Such-Page
+- Keine Refactoring von bestehender Bundes-Suche nötig
+- Performance: kleinere Indices = schnellere Queries
+- UX: User wechselt explizit per Switcher, sieht nur scope-relevante Treffer
+
+**Empirie:** Klima → 2.788 DS + 1.441 Reden in Berlin (Synonym-Cluster greift). Mieten/Wohnen liefern identische 2.812 DS — Synonym-Layer funktioniert auf Berlin-Daten wie auf Bundes-Daten.
