@@ -1,91 +1,11 @@
 import type { SpeechAnalysisV2 } from "@/lib/db";
-
-/**
- * Tonalitäts-Klassen-Beschriftung (Methodologie v2.1, partei-neutral).
- * Farben: cool/neutral für sachlich-deskriptive, warm für konfrontative.
- */
-const TONALITAET_CONFIG: Record<
-  string,
-  { label: string; color: string; bg: string }
-> = {
-  sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
-  polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
-  polemisch_sachlich: {
-    label: "polemisch-sachlich",
-    color: "#9a3412",
-    bg: "#ffedd5",
-  },
-  emotional_persoenlich: {
-    label: "emotional-persönlich",
-    color: "#7c3aed",
-    bg: "#ede9fe",
-  },
-  konfrontativ_faktenrhetorisch: {
-    label: "konfrontativ-faktenrhetorisch",
-    color: "#1d4ed8",
-    bg: "#dbeafe",
-  },
-  ironisch_jugendlich: {
-    label: "ironisch",
-    color: "#a16207",
-    bg: "#fef3c7",
-  },
-  bilanzierend_werbend: {
-    label: "bilanzierend",
-    color: "#15803d",
-    bg: "#dcfce7",
-  },
-  staatsmaennisch: {
-    label: "staatsmännisch",
-    color: "#1e40af",
-    bg: "#dbeafe",
-  },
-  defensiv_pragmatisch: {
-    label: "defensiv-pragmatisch",
-    color: "#475569",
-    bg: "#f1f5f9",
-  },
-  sozial_anklagend: {
-    label: "sozial-anklagend",
-    color: "#be185d",
-    bg: "#fce7f3",
-  },
-  mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
-};
-
-const REDEN_TYP_LABELS: Record<string, string> = {
-  A: "Polemische Opposition",
-  B: "Sachlich-fachliche Opposition",
-  C: "Persönliche Anekdotenrede",
-  D: "Konfrontativ-faktenrhetorisch",
-  E: "Bilanz-/Erfolgs-Rede",
-  F: "Sachlich-technisch",
-  G: "Sozialgerechtigkeits-Rede",
-  H: "Regierungserklärung",
-  I: "Fragestunde-Antwort",
-  J: "Zwischenfrage",
-  K: "Außenpolitik",
-};
-
-function formatRedenTyp(typ: string | null): string | null {
-  if (!typ) return null;
-  // "A+B" → "Polemische Opposition + Sachlich-fachliche Opposition"
-  return typ
-    .split("+")
-    .map((t) => REDEN_TYP_LABELS[t.trim()] ?? t.trim())
-    .join(" + ");
-}
+import { TonalityBadge, RedenTypBadge } from "@/components/TonalityBadge";
 
 interface Props {
   analysis: SpeechAnalysisV2;
 }
 
 export function SpeechAnalysisDetails({ analysis }: Props) {
-  const tonConfig = analysis.tonalitaet
-    ? TONALITAET_CONFIG[analysis.tonalitaet]
-    : null;
-  const typLabel = formatRedenTyp(analysis.reden_typ);
-
   const hasContent =
     analysis.forderungen.length > 0 ||
     analysis.woertliche_zitate.length > 0 ||
@@ -95,28 +15,10 @@ export function SpeechAnalysisDetails({ analysis }: Props) {
   return (
     <div className="mt-2.5 space-y-2">
       {/* Tags-Reihe: Tonalität + Reden-Typ */}
-      {(tonConfig || typLabel) && (
+      {(analysis.tonalitaet || analysis.reden_typ) && (
         <div className="flex items-center gap-1.5 flex-wrap">
-          {tonConfig && (
-            <span
-              className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
-              style={{
-                color: tonConfig.color,
-                backgroundColor: tonConfig.bg,
-              }}
-              title={`Tonalität: ${tonConfig.label} (Klassifikation gemäß Methodologie v2.1)`}
-            >
-              {tonConfig.label}
-            </span>
-          )}
-          {typLabel && (
-            <span
-              className="px-2 py-0.5 rounded-md text-[11px] font-medium text-muted bg-gray-100"
-              title="Reden-Typ"
-            >
-              {typLabel}
-            </span>
-          )}
+          <TonalityBadge slug={analysis.tonalitaet} />
+          <RedenTypBadge code={analysis.reden_typ} />
           {analysis.has_correction && (
             <span
               className="ml-auto text-[10px] uppercase tracking-wider text-muted/60 font-semibold"

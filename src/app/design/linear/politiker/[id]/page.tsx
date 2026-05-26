@@ -17,6 +17,7 @@ import {
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
 import { TagInfoPopover } from "@/components/TagInfoPopover";
+import { TonalityBadge, DrucksacheTonalityBadge } from "@/components/TonalityBadge";
 import { MediaAppearancesList } from "@/components/MediaAppearancesList";
 import { getMediaAppearancesForPolitician } from "@/lib/media-appearances";
 import {
@@ -549,31 +550,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     )}
                     {item.tonalitaet && (
                       <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
-                        {(() => {
-                          const tonMap: Record<string, { label: string; color: string; bg: string }> = {
-                            sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
-                            polemisch: { label: "polemisch", color: "#b91c1c", bg: "#fee2e2" },
-                            polemisch_sachlich: { label: "polemisch-sachlich", color: "#9a3412", bg: "#ffedd5" },
-                            emotional_persoenlich: { label: "emotional-persönlich", color: "#7c3aed", bg: "#ede9fe" },
-                            konfrontativ_faktenrhetorisch: { label: "konfrontativ-faktenrhetorisch", color: "#1d4ed8", bg: "#dbeafe" },
-                            ironisch_jugendlich: { label: "ironisch", color: "#a16207", bg: "#fef3c7" },
-                            bilanzierend_werbend: { label: "bilanzierend", color: "#15803d", bg: "#dcfce7" },
-                            staatsmaennisch: { label: "staatsmännisch", color: "#1e40af", bg: "#dbeafe" },
-                            defensiv_pragmatisch: { label: "defensiv-pragmatisch", color: "#475569", bg: "#f1f5f9" },
-                            sozial_anklagend: { label: "sozial-anklagend", color: "#be185d", bg: "#fce7f3" },
-                            mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
-                          };
-                          const cfg = tonMap[item.tonalitaet!];
-                          return cfg ? (
-                            <span
-                              className="px-1.5 py-0.5 rounded text-[10px] font-semibold"
-                              style={{ color: cfg.color, backgroundColor: cfg.bg }}
-                              title={`Tonalität: ${cfg.label} (Methodologie v2.1)`}
-                            >
-                              {cfg.label}
-                            </span>
-                          ) : null;
-                        })()}
+                        <TonalityBadge slug={item.tonalitaet} />
                         {item.has_correction && (
                           <span
                             className="text-[9px] uppercase tracking-wider text-zinc-400 font-semibold"
@@ -931,17 +908,6 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
 }
 
 
-const dsTonMap: Record<string, { label: string; color: string; bg: string }> = {
-  sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6" },
-  fordernd: { label: "fordernd", color: "#9a3412", bg: "#ffedd5" },
-  kritisch: { label: "kritisch", color: "#b91c1c", bg: "#fee2e2" },
-  informierend: { label: "informierend", color: "#1e40af", bg: "#dbeafe" },
-  mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3" },
-  substantiell: { label: "substantiell", color: "#15803d", bg: "#dcfce7" },
-  teilantwortend: { label: "teilantwortend", color: "#475569", bg: "#f1f5f9" },
-  ausweichend: { label: "ausweichend", color: "#a16207", bg: "#fef3c7" },
-};
-
 const dsKlasseShort: Record<string, string> = {
   klein: "KL. ANFRAGE",
   mittel: "BERICHT",
@@ -955,7 +921,6 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
     <ul className="space-y-2.5 max-h-[600px] overflow-y-auto pr-1">
       {items.map((it) => {
         const slug = it.drucksache_nr.replace("/", "-");
-        const tonCfg = it.tonalitaet ? dsTonMap[it.tonalitaet] : null;
         const klasseShort = dsKlasseShort[it.batch_class] ?? it.batch_class.toUpperCase();
         const themen = it.thema.split(",").map((s) => s.trim()).filter(Boolean).slice(0, 3);
         const datumF = it.datum
@@ -986,12 +951,9 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
                     </span>
                   </>
                 )}
-                {tonCfg && (
-                  <span
-                    className="ml-auto px-1.5 py-0.5 rounded text-[9.5px] font-semibold normal-case tracking-normal"
-                    style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
-                  >
-                    {tonCfg.label}
+                {it.tonalitaet && (
+                  <span className="ml-auto normal-case tracking-normal">
+                    <DrucksacheTonalityBadge slug={it.tonalitaet} />
                   </span>
                 )}
               </div>

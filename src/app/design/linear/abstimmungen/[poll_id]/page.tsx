@@ -1,4 +1,5 @@
 import { getVoteDetail, getVotersForPollByFraktionVote, type VoteSpeechRow } from "@/lib/db";
+import { TonalityBadge } from "@/components/TonalityBadge";
 import { ArrowLeft, ExternalLink, MessageSquareQuote, X } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -393,26 +394,6 @@ function VoteBadge({ vote }: { vote: string | null }) {
   );
 }
 
-function TonalitaetBadge({ ton }: { ton: string | null }) {
-  if (!ton) return null;
-  const cfg: Record<string, { label: string; cls: string }> = {
-    sachlich: { label: "sachlich", cls: "bg-zinc-100 text-zinc-700" },
-    polemisch: { label: "polemisch", cls: "bg-rose-50 text-rose-700" },
-    polemisch_sachlich: { label: "polemisch-sachlich", cls: "bg-orange-50 text-orange-700" },
-    emotional_persoenlich: { label: "emotional-persönlich", cls: "bg-violet-50 text-violet-700" },
-    konfrontativ_faktenrhetorisch: { label: "konfrontativ-faktenrhetorisch", cls: "bg-blue-50 text-blue-700" },
-    ironisch_jugendlich: { label: "ironisch", cls: "bg-yellow-50 text-yellow-800" },
-    bilanzierend_werbend: { label: "bilanzierend", cls: "bg-emerald-50 text-emerald-700" },
-    staatsmaennisch: { label: "staatsmännisch", cls: "bg-blue-50 text-blue-800" },
-    defensiv_pragmatisch: { label: "defensiv-pragmatisch", cls: "bg-slate-100 text-slate-700" },
-    sozial_anklagend: { label: "sozial-anklagend", cls: "bg-pink-50 text-pink-700" },
-    mahnend: { label: "mahnend", cls: "bg-stone-100 text-stone-700" },
-  };
-  const c = cfg[ton] ?? { label: ton, cls: "bg-zinc-100 text-zinc-700" };
-  return (
-    <span className={`text-[10.5px] font-medium px-1.5 py-0.5 rounded ${c.cls}`}>{c.label}</span>
-  );
-}
 
 function SpeechCard({ speech }: { speech: VoteSpeechRow }) {
   const speakerLink = speech.politician_id
@@ -436,7 +417,7 @@ function SpeechCard({ speech }: { speech: VoteSpeechRow }) {
           {speech.party && (
             <span className="text-[11.5px] text-zinc-500 font-medium">{speech.party}</span>
           )}
-          <TonalitaetBadge ton={speech.tonalitaet} />
+          <TonalityBadge slug={speech.tonalitaet} />
         </div>
         <VoteBadge vote={speech.vote} />
       </div>

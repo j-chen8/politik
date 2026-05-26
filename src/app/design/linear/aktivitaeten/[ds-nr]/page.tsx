@@ -18,6 +18,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, FileText, Mic, MessageSquare } from "lucide-react";
 import { GlossarTerm } from "@/components/GlossarTerm";
+import { DrucksacheTonalityBadge } from "@/components/TonalityBadge";
 
 interface Props {
   params: Promise<{ "ds-nr": string }>;
@@ -30,17 +31,6 @@ function slugToDsNr(slug: string): string {
   return slug.slice(0, idx) + "/" + slug.slice(idx + 1);
 }
 
-// Tonalitäts-Color-Map für Drucksachen-Enums
-const tonMap: Record<string, { label: string; color: string; bg: string; desc: string }> = {
-  sachlich: { label: "sachlich", color: "#374151", bg: "#f3f4f6", desc: "Neutrale Darstellung ohne wertende Sprache" },
-  fordernd: { label: "fordernd", color: "#9a3412", bg: "#ffedd5", desc: "Klare Forderungen / Handlungsaufrufe an die Bundesregierung" },
-  kritisch: { label: "kritisch", color: "#b91c1c", bg: "#fee2e2", desc: "Kritisierende Sprache, Hinterfragen von Praktiken / Entscheidungen" },
-  informierend: { label: "informierend", color: "#1e40af", bg: "#dbeafe", desc: "Sach-Information / Verfahrenshinweise" },
-  mahnend: { label: "mahnend", color: "#854d0e", bg: "#fef9c3", desc: "Eindringliche Hinweise / Warnungen" },
-  substantiell: { label: "substantiell", color: "#15803d", bg: "#dcfce7", desc: "Antwort mit konkreten Zahlen / Fakten" },
-  teilantwortend: { label: "teilantwortend", color: "#475569", bg: "#f1f5f9", desc: "Teils geantwortet, teils auf andere Stellen verwiesen" },
-  ausweichend: { label: "ausweichend", color: "#a16207", bg: "#fef3c7", desc: "Antwort verweist überwiegend auf Geheimhaltung / Datenlücken / andere Quellen" },
-};
 
 const klasseLabelMap: Record<string, string> = {
   klein: "Kleine Anfrage",
@@ -206,7 +196,6 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const fraktionList = Array.from(fraktionCounts.entries()).sort((a, b) => b[1] - a[1]);
   const mitzTotal = mitzeichner.length;
 
-  const tonCfg = ds.tonalitaet ? tonMap[ds.tonalitaet] : null;
   const klasseLabel = klasseLabelMap[ds.batch_class] ?? ds.batch_class;
   const datumFormatted = formatDate(ds.datum);
   const dsNrPart1 = dsNr.split("/")[0];
@@ -315,15 +304,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
             {/* Tonalität + Themen */}
             <div className="flex items-center gap-2 flex-wrap">
-              {tonCfg && (
-                <span
-                  className="px-2 py-1 rounded text-[11px] font-semibold"
-                  style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
-                  title={`Tonalität: ${tonCfg.label} — ${tonCfg.desc}`}
-                >
-                  {tonCfg.label}
-                </span>
-              )}
+              <DrucksacheTonalityBadge slug={ds.tonalitaet} />
               {ds.thema.map((t) => (
                 <span
                   key={t}
@@ -808,7 +789,6 @@ function RelatedDsCard({
   ownDatum?: string | null;     // Datum der "Quelldrucksache" für Diff-Anzeige
 }) {
   const slug = ds.drucksache_nr.replace("/", "-");
-  const tonCfg = ds.tonalitaet ? tonMap[ds.tonalitaet] : null;
   const klasseLabel = klasseLabelMap[ds.batch_class] ?? ds.batch_class;
   const datumF = formatDate(ds.datum);
   const dayDiff = ownDatum ? daysBetween(ownDatum, ds.datum) : null;
@@ -841,12 +821,9 @@ function RelatedDsCard({
             <span className="text-[10.5px] text-zinc-400 num">{datumF}</span>
           </>
         )}
-        {tonCfg && (
-          <span
-            className="ml-auto px-1.5 py-0.5 rounded text-[10px] font-semibold"
-            style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
-          >
-            {tonCfg.label}
+        {ds.tonalitaet && (
+          <span className="ml-auto">
+            <DrucksacheTonalityBadge slug={ds.tonalitaet} />
           </span>
         )}
       </div>
