@@ -66,12 +66,20 @@ export default function BerlinOverview() {
           </div>
         </form>
 
-        <div className="flex justify-center mt-5">
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-5 text-[13px]">
           <Link
             href="/design/linear/politiker?parlament=2"
-            className="inline-flex items-center gap-1.5 text-[13px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors"
+            className="inline-flex items-center gap-1.5 font-medium text-zinc-700 hover:text-zinc-950 transition-colors"
           >
             Alle {fmt(s.memberCount)} Abgeordneten ansehen
+            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+          </Link>
+          <span className="text-zinc-300">·</span>
+          <Link
+            href="/design/linear/parlamente/berlin/suche?type=drucksachen"
+            className="inline-flex items-center gap-1.5 font-medium text-zinc-700 hover:text-zinc-950 transition-colors"
+          >
+            Drucksachen + Reden durchsuchen
             <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
           </Link>
         </div>

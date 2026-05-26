@@ -52,6 +52,19 @@ export interface DrucksacheHit {
   date: string | null;
   snippet: string | null;       // Erste ~120 Zeichen der Zusammenfassung
   batch_class: string | null;   // klein/mittel/gross/antwort/regierung
+  /** Bei Berlin-Suche: Detail-URL führt via dbid auf Berlin-DS-Page. */
+  detail_url?: string;
+  parliament?: "bundestag" | "berlin";
+}
+
+/** Berlin-spezifischer Speech-Hit: andere Detail-URL (speech_id) + Politiker-Verknüpfung. */
+export interface BerlinSpeechHit {
+  type: "speech";
+  speech_id: string;
+  politician_id: number | null;
+  speech_date: string | null;
+  snippet: string;
+  parliament: "berlin";
 }
 
 export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit;
@@ -616,4 +629,120 @@ export function searchByType(
       return { ...empty, total, totalOriginal, items, expansions, matchedClusters };
     }
   }
+}
+
+// ============================================================
+// Berlin-Pilot: scope-getrennte Suche über berlin_speeches_fts +
+// berlin_drucksachen_fts. Eigene Funktion statt Scope-Param, damit
+// Bundes-Pfad track-isoliert bleibt.
+// ============================================================
+
+export type BerlinSearchType = "speeches" | "drucksachen" | "politicians";
+
+export interface BerlinSearchResult {
+  query: string;
+  type: BerlinSearchType;
+  page: number;
+  pageSize: number;
+  total: number;
+  items: Array<DrucksacheHit | BerlinSpeechHit | PoliticianHit>;
+  expansions: string[];
+  matchedClusters: string[];
+}
+
+export function searchBerlinByType(
+  rawQuery: string,
+  type: BerlinSearchType,
+  page = 1,
+  pageSize = 50
+): BerlinSearchResult {
+  const query = rawQuery.trim();
+  const safePage = Math.max(1, Math.floor(page));
+  const safePageSize = Math.max(1, Math.min(200, Math.floor(pageSize)));
+  const offset = (safePage - 1) * safePageSize;
+  const empty: BerlinSearchResult = {
+    query, type, page: safePage, pageSize: safePageSize,
+    total: 0, items: [], expansions: [], matchedClusters: [],
+  };
+  if (query.length < 2) return empty;
+
+  const { expansions, matchedClusters } = expandQuery(query);
+  const db = getDb();
+  ensureSearchFTS(db);
+  const ftsAllTerms = ftsMatchClause([query, ...expansions]);
+  if (!ftsAllTerms && type !== "politicians") return empty;
+
+  if (type === "politicians") {
+    // Berlin-MdL = nur Politicians mit parlament Berlin in der DB.
+    // Wir filtern nicht — wir zeigen alle Politicians, weil Cross-Parlament-Personen
+    // (Bundeswehr/Berlin-Wechsler) gibt es. Synonym-Expansion entfällt für Personen.
+    const all = searchPoliticiansDb(query, 10000);
+    const items: PoliticianHit[] = all.slice(offset, offset + safePageSize).map((p) => ({
+      type: "politician", id: p.id,
+      name: `${p.first_name} ${p.last_name}`.trim(),
+      first_name: p.first_name, last_name: p.last_name,
+      party: p.party_label, photo_url: p.photo_url,
+      subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+    }));
+    return { ...empty, total: all.length, items, expansions, matchedClusters };
+  }
+
+  if (type === "speeches") {
+    const total = (db
+      .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinSpeeches} WHERE snippet MATCH ?`)
+      .get(ftsAllTerms!) as { n: number }).n;
+    const rows = db
+      .prepare(
+        `SELECT fts.speech_id, fts.politician_id, fts.datum, snippet(${FTS_TABLES.berlinSpeeches}, 0, '<mark>', '</mark>', '…', 32) AS snippet_text
+         FROM ${FTS_TABLES.berlinSpeeches} fts
+         WHERE ${FTS_TABLES.berlinSpeeches} MATCH ?
+         ORDER BY fts.datum DESC
+         LIMIT ? OFFSET ?`
+      )
+      .all(ftsAllTerms!, safePageSize, offset) as Array<{ speech_id: string; politician_id: number | null; datum: string | null; snippet_text: string }>;
+    const items: BerlinSpeechHit[] = rows.map((r) => ({
+      type: "speech",
+      speech_id: r.speech_id,
+      politician_id: r.politician_id,
+      speech_date: r.datum,
+      snippet: r.snippet_text,
+      parliament: "berlin",
+    }));
+    return { ...empty, total, items, expansions, matchedClusters };
+  }
+
+  // type === "drucksachen"
+  const total = (db
+    .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?`)
+    .get(ftsAllTerms!) as { n: number }).n;
+  const rows = db
+    .prepare(
+      `SELECT fts.dbid, fts.klasse, fts.titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
+       FROM ${FTS_TABLES.berlinDrucksachen} fts
+       LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
+       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?
+       ORDER BY bd.dok_datum DESC
+       LIMIT ? OFFSET ?`
+    )
+    .all(ftsAllTerms!, safePageSize, offset) as Array<{
+    dbid: string; klasse: string; titel: string | null; zusammenfassung: string;
+    dok_nr: string | null; dok_datum: string | null;
+  }>;
+  const items: DrucksacheHit[] = rows.map((d) => {
+    const fullSummary = d.zusammenfassung ?? "";
+    const snippet = fullSummary.length > 140 ? fullSummary.slice(0, 137) + "…" : fullSummary;
+    return {
+      type: "drucksache",
+      id: d.dbid,
+      title: d.titel || `Berlin-Drucksache ${d.dok_nr ?? d.dbid}`,
+      drucksache_nr: d.dok_nr,
+      vorgangstyp: d.klasse,
+      date: d.dok_datum,
+      snippet: snippet || null,
+      batch_class: d.klasse,
+      detail_url: `/design/linear/parlamente/berlin/drucksache/${d.dbid}`,
+      parliament: "berlin",
+    };
+  });
+  return { ...empty, total, items, expansions, matchedClusters };
 }

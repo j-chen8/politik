@@ -5,6 +5,9 @@ type Db = ReturnType<typeof getDb>;
 const SPEECH_FTS_TABLE = "speeches_fts";
 const ACTIVITIES_FTS_TABLE = "activities_fts";
 const DRUCKSACHEN_FTS_TABLE = "drucksachen_fts";
+// Berlin-Pilot: eigene FTS5-Tabellen für scope-trennende Suche.
+const BERLIN_SPEECH_FTS_TABLE = "berlin_speeches_fts";
+const BERLIN_DRUCKSACHEN_FTS_TABLE = "berlin_drucksachen_fts";
 
 /**
  * FTS5-Virtuelle-Tabellen für speech_analyses_v2.zusammenfassung_2_saetze und
@@ -39,6 +42,22 @@ export function ensureSearchFTS(db: Db): void {
       thema_tags,
       tokenize = 'unicode61 remove_diacritics 2'
     );
+    CREATE VIRTUAL TABLE IF NOT EXISTS ${BERLIN_SPEECH_FTS_TABLE} USING fts5(
+      snippet,
+      speech_id UNINDEXED,
+      politician_id UNINDEXED,
+      datum UNINDEXED,
+      tokenize = 'unicode61 remove_diacritics 2'
+    );
+    CREATE VIRTUAL TABLE IF NOT EXISTS ${BERLIN_DRUCKSACHEN_FTS_TABLE} USING fts5(
+      dbid UNINDEXED,
+      klasse UNINDEXED,
+      titel,
+      zusammenfassung,
+      kerninhalt,
+      thema_tags,
+      tokenize = 'unicode61 remove_diacritics 2'
+    );
   `);
 
   const speechCount = (db.prepare(`SELECT COUNT(*) as n FROM ${SPEECH_FTS_TABLE}`).get() as {
@@ -55,6 +74,20 @@ export function ensureSearchFTS(db: Db): void {
     .prepare(`SELECT COUNT(*) as n FROM ${DRUCKSACHEN_FTS_TABLE}`)
     .get() as { n: number }).n;
   if (drucksachenCount === 0) buildDrucksachenFTS(db);
+
+  // Berlin-Pilot
+  try {
+    const berlinSpeechCount = (db
+      .prepare(`SELECT COUNT(*) as n FROM ${BERLIN_SPEECH_FTS_TABLE}`)
+      .get() as { n: number }).n;
+    if (berlinSpeechCount === 0) buildBerlinSpeechFTS(db);
+  } catch { /* berlin_speeches evtl. nicht da */ }
+  try {
+    const berlinDsCount = (db
+      .prepare(`SELECT COUNT(*) as n FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE}`)
+      .get() as { n: number }).n;
+    if (berlinDsCount === 0) buildBerlinDrucksachenFTS(db);
+  } catch { /* berlin_drucksachen_analyses evtl. nicht da */ }
 
   // Auto-Sync via Triggers — persistent in DB, läuft auch nach Server-Restart.
   // Bei INSERT/UPDATE/DELETE in den Source-Tabellen wird FTS automatisch aktuell gehalten.
@@ -148,6 +181,72 @@ function ensureSyncTriggers(db: Db): void {
     BEGIN
       DELETE FROM ${DRUCKSACHEN_FTS_TABLE} WHERE drucksache_nr = old.drucksache_nr;
     END;
+
+    -- berlin_speech_analyses → berlin_speeches_fts
+
+    CREATE TRIGGER IF NOT EXISTS berlin_speech_analyses_ai
+    AFTER INSERT ON berlin_speech_analyses
+    BEGIN
+      DELETE FROM ${BERLIN_SPEECH_FTS_TABLE} WHERE speech_id = new.speech_id;
+      INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
+      SELECT
+        COALESCE(new.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+        bs.speech_id,
+        bs.politician_id,
+        bs.datum
+      FROM berlin_speeches bs
+      WHERE bs.speech_id = new.speech_id;
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS berlin_speech_analyses_au
+    AFTER UPDATE OF zusammenfassung ON berlin_speech_analyses
+    BEGIN
+      DELETE FROM ${BERLIN_SPEECH_FTS_TABLE} WHERE speech_id = new.speech_id;
+      INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
+      SELECT
+        COALESCE(new.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+        bs.speech_id,
+        bs.politician_id,
+        bs.datum
+      FROM berlin_speeches bs
+      WHERE bs.speech_id = new.speech_id;
+    END;
+
+    -- berlin_drucksachen_analyses → berlin_drucksachen_fts
+
+    CREATE TRIGGER IF NOT EXISTS berlin_drucksachen_analyses_ai
+    AFTER INSERT ON berlin_drucksachen_analyses
+    BEGIN
+      DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = new.dbid;
+      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+      SELECT
+        new.dbid, new.klasse,
+        COALESCE((SELECT titel FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE(new.zusammenfassung, ''),
+        COALESCE(REPLACE(REPLACE(REPLACE(COALESCE(new.kerninhalt_json, '') || ' · ' || COALESCE(new.kerninhalt_frage_json, '') || ' · ' || COALESCE(new.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '), ''),
+        COALESCE(REPLACE(REPLACE(REPLACE(new.thema_json, '[', ''), ']', ''), '","', ' · '), '')
+      WHERE new.error_type IS NULL;
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS berlin_drucksachen_analyses_au
+    AFTER UPDATE OF zusammenfassung, kerninhalt_json, kerninhalt_frage_json, kerninhalt_antwort_json, thema_json, error_type ON berlin_drucksachen_analyses
+    BEGIN
+      DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = new.dbid;
+      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+      SELECT
+        new.dbid, new.klasse,
+        COALESCE((SELECT titel FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE(new.zusammenfassung, ''),
+        COALESCE(REPLACE(REPLACE(REPLACE(COALESCE(new.kerninhalt_json, '') || ' · ' || COALESCE(new.kerninhalt_frage_json, '') || ' · ' || COALESCE(new.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '), ''),
+        COALESCE(REPLACE(REPLACE(REPLACE(new.thema_json, '[', ''), ']', ''), '","', ' · '), '')
+      WHERE new.error_type IS NULL;
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS berlin_drucksachen_analyses_ad
+    AFTER DELETE ON berlin_drucksachen_analyses
+    BEGIN
+      DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = old.dbid;
+    END;
   `);
 }
 
@@ -184,6 +283,42 @@ function buildDrucksachenFTS(db: Db): void {
   `);
 }
 
+function buildBerlinSpeechFTS(db: Db): void {
+  // Berlin-Reden: zusammenfassung aus berlin_speech_analyses (LLM-Output) joined mit politician_id
+  db.exec(`
+    INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
+    SELECT
+      COALESCE(bsa.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+      bs.speech_id,
+      bs.politician_id,
+      bs.datum
+    FROM berlin_speeches bs
+    LEFT JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
+    WHERE (bsa.zusammenfassung_2_saetze IS NOT NULL AND bsa.zusammenfassung_2_saetze != '')
+       OR (bs.text IS NOT NULL AND bs.text != '')
+  `);
+}
+
+function buildBerlinDrucksachenFTS(db: Db): void {
+  // Berlin-DS: kombiniert kerninhalt_json + kerninhalt_frage_json + kerninhalt_antwort_json
+  db.exec(`
+    INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+    SELECT
+      bda.dbid,
+      bda.klasse,
+      COALESCE(bd.titel, ''),
+      COALESCE(bda.zusammenfassung, ''),
+      COALESCE(
+        REPLACE(REPLACE(REPLACE(COALESCE(bda.kerninhalt_json, '') || ' · ' || COALESCE(bda.kerninhalt_frage_json, '') || ' · ' || COALESCE(bda.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '),
+        ''
+      ),
+      COALESCE(REPLACE(REPLACE(REPLACE(bda.thema_json, '[', ''), ']', ''), '","', ' · '), '')
+    FROM berlin_drucksachen_analyses bda
+    LEFT JOIN berlin_documents bd ON bd.dbid = bda.dbid
+    WHERE bda.error_type IS NULL
+  `);
+}
+
 /**
  * Drops und rebuilds beide FTS-Tabellen. Nach Reden- oder Drucksachen-
  * Pipeline-Runs aufrufen. Idempotent.
@@ -193,6 +328,8 @@ export function rebuildSearchFTS(db: Db): void {
     DROP TABLE IF EXISTS ${SPEECH_FTS_TABLE};
     DROP TABLE IF EXISTS ${ACTIVITIES_FTS_TABLE};
     DROP TABLE IF EXISTS ${DRUCKSACHEN_FTS_TABLE};
+    DROP TABLE IF EXISTS ${BERLIN_SPEECH_FTS_TABLE};
+    DROP TABLE IF EXISTS ${BERLIN_DRUCKSACHEN_FTS_TABLE};
   `);
   ensureSearchFTS(db);
 }
@@ -230,4 +367,6 @@ export const FTS_TABLES = {
   speeches: SPEECH_FTS_TABLE,
   activities: ACTIVITIES_FTS_TABLE,
   drucksachen: DRUCKSACHEN_FTS_TABLE,
+  berlinSpeeches: BERLIN_SPEECH_FTS_TABLE,
+  berlinDrucksachen: BERLIN_DRUCKSACHEN_FTS_TABLE,
 } as const;
