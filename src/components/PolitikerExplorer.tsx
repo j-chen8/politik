@@ -97,7 +97,7 @@ export function PolitikerExplorer({ politicians }: { politicians: ExplorerPoliti
             Politiker:innen
           </p>
           <p className="mt-1.5 text-[11.5px] text-zinc-400">
-            Stand: 21. Wahlperiode (ab 31.03.2025) — Aktivitäten + Reden + Lebensläufe + Mediathek-Auftritte aktuell für diese Periode aggregiert. Mehr in der <a href="/design/linear/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
+            Datenstand: 21. Wahlperiode (ab 31.03.2025) — Aktivitäten, Reden, Lebensläufe und Mediathek-Auftritte aggregieren ausschließlich diese Periode. Mehr in der <a href="/design/linear/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
           </p>
         </div>
 

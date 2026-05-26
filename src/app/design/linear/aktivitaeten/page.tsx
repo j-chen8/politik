@@ -91,7 +91,7 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
             </span>
           </div>
           <p className="mt-1.5 text-[11.5px] text-zinc-400">
-            Datenstand: WP21 ab 31.03.2025 — historische Daten (WP18–20) noch nicht eingespielt, daher keine Trend-Aussagen über Wahlperioden hinweg möglich. Mehr in der <a href="/design/linear/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
+            Datenstand: 21. Wahlperiode (ab 31.03.2025) — frühere Wahlperioden (WP18–20) noch nicht eingespielt, keine wahlperioden-übergreifenden Trends. Mehr in der <a href="/design/linear/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
           </p>
         </div>
 
