@@ -25,9 +25,6 @@ export default function LinearLanding() {
           >
             zur Methodik →
           </Link>
-          <p className="mt-2 text-[11.5px] text-zinc-400">
-            Datenstand: 21. Wahlperiode (ab 31.03.2025) — frühere Wahlperioden noch nicht eingespielt, keine wahlperioden-übergreifenden Trends.
-          </p>
         </div>
 
         <div className="max-w-xl mx-auto">
