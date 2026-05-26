@@ -1138,6 +1138,12 @@ export interface ParlamentarischeArbeit {
   tonalitaet: string | null;
   reden_typ: string | null;
   has_correction: boolean;
+  // Phase 3b: Drill-Down zu Detail-Ansicht + Evidenz-Counts (falls v2.1 verfügbar)
+  rede_id: string | null;
+  speaker_variant: string | null;  // exakter Name aus plenar_speeches.speaker für Redner-URL
+  forderungen_count: number;
+  zitate_count: number;
+  zahlen_count: number;
 }
 
 function kategorieForDip(art: string): string {
@@ -1288,6 +1294,11 @@ export function getParlamentarischeArbeit(
           tonalitaet: v21?.tonalitaet ?? null,
           reden_typ: v21?.reden_typ ?? null,
           has_correction: v21?.has_correction ?? false,
+          rede_id: plenar.rede_id,
+          speaker_variant: plenar.speaker,
+          forderungen_count: v21?.forderungen?.length ?? 0,
+          zitate_count: v21?.woertliche_zitate?.length ?? 0,
+          zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
         });
         continue;
       }
@@ -1311,6 +1322,11 @@ export function getParlamentarischeArbeit(
       tonalitaet: null,
       reden_typ: null,
       has_correction: false,
+      rede_id: null,
+      speaker_variant: null,
+      forderungen_count: 0,
+      zitate_count: 0,
+      zahlen_count: 0,
     });
   }
 
@@ -1335,6 +1351,11 @@ export function getParlamentarischeArbeit(
       tonalitaet: v21?.tonalitaet ?? null,
       reden_typ: v21?.reden_typ ?? null,
       has_correction: v21?.has_correction ?? false,
+      rede_id: p.rede_id,
+      speaker_variant: p.speaker,
+      forderungen_count: v21?.forderungen?.length ?? 0,
+      zitate_count: v21?.woertliche_zitate?.length ?? 0,
+      zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
     });
   }
 

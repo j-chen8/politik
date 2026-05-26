@@ -201,7 +201,11 @@ export default async function RednerPage({
                           : null;
 
                         return (
-                          <div key={idx} className="px-5 py-4">
+                          <div
+                            key={idx}
+                            id={sum.rede_id ? `speech-${sum.rede_id}` : undefined}
+                            className="px-5 py-4 scroll-mt-24 [&:target]:bg-amber-100/70 [&:target]:ring-2 [&:target]:ring-amber-400 [&:target]:rounded-lg transition-all"
+                          >
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
                               <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
                                 {TYP_LABEL[sum.typ] || sum.typ}

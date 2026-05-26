@@ -561,6 +561,32 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         )}
                       </div>
                     )}
+                    {item.rede_id && item.speaker_variant &&
+                     (item.forderungen_count + item.zitate_count + item.zahlen_count) > 0 && (() => {
+                      const parts: string[] = [];
+                      if (item.forderungen_count > 0)
+                        parts.push(`${item.forderungen_count} ${item.forderungen_count === 1 ? "Forderung" : "Forderungen"}`);
+                      if (item.zitate_count > 0)
+                        parts.push(`${item.zitate_count} ${item.zitate_count === 1 ? "Zitat" : "Zitate"}`);
+                      if (item.zahlen_count > 0)
+                        parts.push(`${item.zahlen_count} ${item.zahlen_count === 1 ? "Zahl" : "Zahlen"}`);
+                      const drillUrl = `/design/linear/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`;
+                      return (
+                        <p className="text-[11.5px] text-zinc-500 mb-1.5 leading-relaxed">
+                          <span className="text-zinc-400">Belege:</span>{" "}
+                          {parts.join(" · ")}
+                          {" — "}
+                          {/* Plain <a> statt Next.js <Link>, damit :target-Highlight
+                              auf der Redner-Page beim Anker-Sprung greift. */}
+                          <a
+                            href={drillUrl}
+                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                          >
+                            Details & Modell-Lesart →
+                          </a>
+                        </p>
+                      );
+                    })()}
                     <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
                       {item.datum && (
                         <span>
