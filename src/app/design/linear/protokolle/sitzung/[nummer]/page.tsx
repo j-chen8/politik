@@ -122,7 +122,7 @@ export default async function SitzungDetailPage({
                 href={detail.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[12px] text-zinc-700 hover:text-zinc-950 px-2.5 py-1 rounded-md border border-zinc-200 hover:bg-zinc-50 transition-colors"
+                className="inline-flex items-center gap-1.5 text-[12px] text-[#1a3e72] hover:text-[#0f2a52] px-2.5 py-1 rounded-md border border-[#1a3e72]/25 hover:border-[#1a3e72]/40 bg-[#1a3e72]/5 hover:bg-[#1a3e72]/10 transition-colors"
               >
                 Offizielles PDF-Protokoll
                 <ExternalLink className="w-3 h-3" strokeWidth={2.25} />

@@ -340,7 +340,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 href={ds.pdf_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-zinc-600 hover:text-zinc-950 transition-colors w-fit"
+                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-[#1a3e72] hover:text-[#0f2a52] px-2.5 py-1 rounded-md border border-[#1a3e72]/25 hover:border-[#1a3e72]/40 bg-[#1a3e72]/5 hover:bg-[#1a3e72]/10 transition-colors w-fit"
               >
                 <FileText className="w-3.5 h-3.5" strokeWidth={2.25} />
                 Original-PDF auf bundestag.de

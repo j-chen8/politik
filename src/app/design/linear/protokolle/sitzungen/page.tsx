@@ -145,7 +145,7 @@ function SessionRow({ session }: { session: ReturnType<typeof getPlenarSessions>
           href={session.source_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 flex items-center px-3 text-[11px] text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100 border-l border-zinc-100 transition-colors"
+          className="shrink-0 flex items-center px-3 text-[11px] text-[#1a3e72] hover:text-[#0f2a52] hover:bg-[#1a3e72]/10 border-l border-zinc-100 transition-colors"
           title="Offizielles PDF-Protokoll"
         >
           PDF

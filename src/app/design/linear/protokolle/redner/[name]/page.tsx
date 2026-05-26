@@ -179,7 +179,7 @@ export default async function RednerPage({
                           href={s.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] text-zinc-700 hover:text-zinc-950 px-2 py-1 rounded-md hover:bg-zinc-100 transition-colors"
+                          className="inline-flex items-center gap-1 text-[11px] text-[#1a3e72] hover:text-[#0f2a52] px-2 py-1 rounded-md border border-[#1a3e72]/25 hover:border-[#1a3e72]/40 bg-[#1a3e72]/5 hover:bg-[#1a3e72]/10 transition-colors"
                         >
                           PDF
                           <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -257,7 +257,7 @@ export default async function RednerPage({
                                       href={pdfDeepLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-zinc-700 hover:text-zinc-950 transition-colors"
+                                      className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
                                     >
                                       Im PDF nachlesen{pageLabel && ` (${pageLabel})`}
                                       <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
