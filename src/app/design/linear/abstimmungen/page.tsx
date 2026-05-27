@@ -273,7 +273,7 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
             {v.topics.length > 4 && (
               <span className="text-[11px] text-zinc-400">+{v.topics.length - 4}</span>
             )}
-            {v.drucksache_nrn.length > 0 && (
+            {v.drucksache_nrn.length > 0 && !labelMentionsDs(v.label, v.drucksache_nrn) && (
               <span className="text-[10.5px] num text-zinc-400 normal-case tracking-normal ml-auto">
                 Drs.{" "}
                 {v.drucksache_nrn.slice(0, 3).join(", ")}
@@ -368,6 +368,13 @@ function NamentlichStats({ yes, no, abstain }: { yes: number; no: number; abstai
       </div>
     </div>
   );
+}
+
+/** Wenn das Label bereits eine der DS-Nummern enthält ("Antrag · Drucksache
+ *  21/0563"), ist der separate Drs.-Meta-Tag redundant — dann nicht rendern. */
+function labelMentionsDs(label: string | null, dsNrn: string[]): boolean {
+  if (!label) return false;
+  return dsNrn.some((nr) => label.includes(nr));
 }
 
 function formatDate(iso: string | null): string {

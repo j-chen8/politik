@@ -3290,6 +3290,14 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         if (row?.thema) {
           topics = row.thema.split(",").map((s) => s.trim()).filter(Boolean);
         }
+        // 4) Falls keine Analyse: DIP-Titel als Fallback (z.B. für
+        //    Wahlvorschläge, Petitions-Sammelübersichten, Verfahrens-Anträge).
+        if (!label) {
+          const dip = db.prepare(
+            `SELECT titel FROM dip_ds_titles WHERE drucksache_nr=?`
+          ).get(dsNrn[0]) as { titel: string | null } | undefined;
+          if (dip?.titel) label = dip.titel.trim();
+        }
       }
       // Einzelplan-Hint hat Priorität als Label, weil sonst alle Haushalts-Voten
       // gleich heißen. Kerninhalt nur als Suffix wenn er etwas Spezifisches
