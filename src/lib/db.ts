@@ -3019,22 +3019,24 @@ export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
 /** Extrahiert einen Disambiguierungs-Hinweis aus dem raw_snippet einer Vote —
  *  vor allem für Haushalts-Abstimmungen, die alle dieselbe übergeordnete DS
  *  (21/1064) referenzieren, sich aber pro Einzelplan unterscheiden.
- *  Beispiel-Match: "Einzelplan 08 – Bundesministerium der Finanzen" */
+ *  Beispiel-Match: "Einzelplan 08 – Bundesministerium der Finanzen" →
+ *  "Bundeshaushalt — Einzelplan 08: Bundesministerium der Finanzen" */
 function extractEinzelplanHint(snippet: string | null): string | null {
   if (!snippet) return null;
-  // Match "Einzelplan XX" + optional Dash + Name (bis zu "in" oder "Drucksache" oder neuem Satz)
   const m = snippet.match(
     /Einzelplan\s+(\d+)\s*[–—-]?\s*(Bundesministerium[^.,;]{0,80}|Bundes\w[^.,;]{0,80}|[A-ZÄÖÜ][^.,;]{0,80})?/,
   );
   if (!m) return null;
   const num = m[1];
   const name = (m[2] ?? "").trim().replace(/\s+/g, " ");
-  // Bereinige Trailing-Wörter die typisch nicht zum Ministeriumsnamen gehören.
+  // Trailing-Wörter die typisch nicht zum Ministeriumsnamen gehören sowie
+  // Trailing-Dashes/Whitespace strippen.
   const cleaned = name
     .replace(/\s+(in\s+der\s+Ausschussfassung|Drucksache|gemäß|mit\s+den).*$/i, "")
+    .replace(/[\s–—-]+$/g, "")
     .trim();
-  if (!cleaned) return `Einzelplan ${num}`;
-  return `Einzelplan ${num} — ${cleaned}`;
+  if (!cleaned) return `Bundeshaushalt — Einzelplan ${num}`;
+  return `Bundeshaushalt — Einzelplan ${num}: ${cleaned}`;
 }
 
 /** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen, damit
@@ -3233,12 +3235,15 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
           ? `${einzelplanHint} · ${label}`
           : einzelplanHint;
       }
-      // Letzte Stufe: nur DS-Nummer (falls weder kerninhalt noch zusammenfassung
-      // noch Einzelplan-Hint griffen).
+      // Broken-Data-Skip: Wenn weder valide DS-Refs noch Einzelplan-Hint noch
+      // ein Label vorliegen, hat der Eintrag nichts zum Anzeigen — wir
+      // überspringen statt einer kontext-losen "Vote #N"-Karte.
+      if (!label && dsNrn.length === 0) {
+        continue;
+      }
+      // Letzte Stufe: nur DS-Nummer (DS-Ref liegt vor, aber Analyse fehlt).
       if (!label) {
-        label = dsNrn.length > 0
-          ? `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`
-          : `Vote #${v.vote_id}`;
+        label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
       }
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
