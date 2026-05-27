@@ -3016,6 +3016,27 @@ export function getVotersForPollByFraktionVote(
 
 export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
 
+/** Extrahiert einen Disambiguierungs-Hinweis aus dem raw_snippet einer Vote —
+ *  vor allem für Haushalts-Abstimmungen, die alle dieselbe übergeordnete DS
+ *  (21/1064) referenzieren, sich aber pro Einzelplan unterscheiden.
+ *  Beispiel-Match: "Einzelplan 08 – Bundesministerium der Finanzen" */
+function extractEinzelplanHint(snippet: string | null): string | null {
+  if (!snippet) return null;
+  // Match "Einzelplan XX" + optional Dash + Name (bis zu "in" oder "Drucksache" oder neuem Satz)
+  const m = snippet.match(
+    /Einzelplan\s+(\d+)\s*[–—-]?\s*(Bundesministerium[^.,;]{0,80}|Bundes\w[^.,;]{0,80}|[A-ZÄÖÜ][^.,;]{0,80})?/,
+  );
+  if (!m) return null;
+  const num = m[1];
+  const name = (m[2] ?? "").trim().replace(/\s+/g, " ");
+  // Bereinige Trailing-Wörter die typisch nicht zum Ministeriumsnamen gehören.
+  const cleaned = name
+    .replace(/\s+(in\s+der\s+Ausschussfassung|Drucksache|gemäß|mit\s+den).*$/i, "")
+    .trim();
+  if (!cleaned) return `Einzelplan ${num}`;
+  return `Einzelplan ${num} — ${cleaned}`;
+}
+
 /** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen, damit
  *  Vote-Labels nicht mit "Die Fraktion XYZ fordert…" starten. Wird nur als
  *  Fallback verwendet, wenn `kerninhalt` (LLM-extrahierte party-freie Bullets)
@@ -3151,7 +3172,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
   try {
     const btv = db.prepare(`
       SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.outcome,
-             bv.vote_type, bv.vote_subtype, bv.modus, bv.fraktion_votes_json, bv.drucksache_nrn_json
+             bv.vote_type, bv.vote_subtype, bv.modus, bv.fraktion_votes_json,
+             bv.drucksache_nrn_json, bv.raw_snippet
       FROM bundestag_votes bv
       WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
     `).all() as Array<{
@@ -3159,6 +3181,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       datum: string | null; outcome: string; vote_type: string; vote_subtype: string | null;
       modus: string | null;
       fraktion_votes_json: string | null; drucksache_nrn_json: string | null;
+      raw_snippet: string | null;
     }>;
 
     const outcomeMap: Record<string, { o: HandzeichenVoteIndexEntry["outcome"]; l: string }> = {
@@ -3170,11 +3193,17 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
     };
 
     for (const v of btv) {
-      const dsNrn: string[] = v.drucksache_nrn_json
+      // DS-Refs: invalide Platzhalter (z.B. "21/XXXX") aus LLM-Halluzinationen filtern.
+      const dsNrnRaw: string[] = v.drucksache_nrn_json
         ? (() => { try { return JSON.parse(v.drucksache_nrn_json!) as string[]; } catch { return []; } })()
         : [];
+      const dsNrn = dsNrnRaw.filter((nr) => /^\d{1,3}\/\d{3,}$/.test(nr));
       let label: string | null = null;
       let topics: string[] = [];
+      // Disambiguierungs-Hinweis aus dem PlPr-Snippet (vor allem "Einzelplan XX —
+      // Bundesministerium für …" bei Haushalts-Abstimmungen, die alle dieselbe
+      // übergeordnete DS referenzieren).
+      const einzelplanHint = extractEinzelplanHint(v.raw_snippet);
       if (dsNrn.length > 0) {
         const row = db.prepare(
           `SELECT kerninhalt, zusammenfassung, thema FROM drucksache_analyses WHERE drucksache_nr=?`
@@ -3192,12 +3221,24 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         if (!label && row?.zusammenfassung) {
           label = stripPartyPrefix(row.zusammenfassung).slice(0, 180);
         }
-        // 3) Letzte Stufe: nur DS-Nummer.
-        if (!label) label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
-        // Topics aus dem CSV-Feld `thema` (z.B. "Finanzen, Verteidigung, Digitalisierung").
+        // 3) Topics aus dem CSV-Feld `thema` (z.B. "Finanzen, Verteidigung").
         if (row?.thema) {
           topics = row.thema.split(",").map((s) => s.trim()).filter(Boolean);
         }
+      }
+      // Einzelplan-Hint hat Priorität als Label, weil sonst alle Haushalts-Voten
+      // gleich heißen. Generischen Kerninhalt-Text als Ergänzung dahinter.
+      if (einzelplanHint) {
+        label = label && !label.toLowerCase().startsWith("haushaltsausschuss")
+          ? `${einzelplanHint} · ${label}`
+          : einzelplanHint;
+      }
+      // Letzte Stufe: nur DS-Nummer (falls weder kerninhalt noch zusammenfassung
+      // noch Einzelplan-Hint griffen).
+      if (!label) {
+        label = dsNrn.length > 0
+          ? `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`
+          : `Vote #${v.vote_id}`;
       }
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
