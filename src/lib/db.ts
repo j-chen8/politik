@@ -3657,6 +3657,44 @@ export function getBerichterstatterForDrucksache(nr: string): MitzeichnerRow[] {
   `).all(nr) as MitzeichnerRow[];
 }
 
+/** Holt alle Handzeichen-Vote-Events, die diese Drucksache referenzieren —
+ *  schlanke Variante von getBundestagDsHandzeichenVotes() ohne Fraktions-Matrix,
+ *  nur Identität + Sitzung + Outcome. Wird auf der DIP-only Stub-Seite genutzt,
+ *  um zu zeigen "abgestimmt in Sitzung X am DD.MM.YYYY". */
+export interface DsVoteSummary {
+  voteId: number;
+  sitzungNr: number | null;
+  wahlperiode: number | null;
+  datum: string | null;
+  outcome: string;
+  voteType: string;
+}
+
+export function getVotesReferencingDs(dsNr: string): DsVoteSummary[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.outcome, bv.vote_type
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dsNr) as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; outcome: string; vote_type: string;
+    }>;
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      wahlperiode: r.wahlperiode,
+      datum: r.datum,
+      outcome: r.outcome,
+      voteType: r.vote_type,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 export function getRelatedSpeechesForDrucksache(nr: string, limit: number = 20): RelatedSpeechRow[] {
   const db = getDb();
   return db.prepare(`

@@ -9,12 +9,14 @@ import {
   getDrucksachenSameFraktion,
   getPollsForDrucksache,
   getBundestagDsHandzeichenVotes,
+  getVotesReferencingDs,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
   type RelatedDsRow,
   type DsPollRow,
   type BundestagDsHandzeichenVote,
+  type DsVoteSummary,
 } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -151,7 +153,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
     if (!skeleton) notFound();
     const mitzeichner = getMitzeichnerForDrucksache(dsNr);
     const berichterstatter = getBerichterstatterForDrucksache(dsNr);
-    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter);
+    const referencingVotes = getVotesReferencingDs(dsNr);
+    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes);
   }
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
@@ -630,6 +633,7 @@ function renderSkeletonPage(
   skeleton: import("@/lib/db").DrucksacheSkeleton,
   mitzeichner: MitzeichnerRow[],
   berichterstatter: MitzeichnerRow[],
+  referencingVotes: DsVoteSummary[] = [],
 ) {
   const datumFormatted = formatDate(skeleton.datum);
   const fraktionCounts = new Map<string, number>();
@@ -696,6 +700,65 @@ function renderSkeletonPage(
             )}
           </p>
         </section>
+
+        {referencingVotes.length > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+              Wo diese Drucksache abgestimmt wurde
+            </h2>
+            <ul className="space-y-3">
+              {referencingVotes.map((v) => {
+                const dateStr = v.datum
+                  ? new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", {
+                      day: "2-digit", month: "long", year: "numeric",
+                    })
+                  : "Datum unbekannt";
+                const outcomeLabel =
+                  v.outcome === "annahme"
+                    ? "angenommen"
+                    : v.outcome === "annahme_geaendert"
+                      ? "in geänderter Fassung angenommen"
+                      : v.outcome === "ablehnung"
+                        ? "abgelehnt"
+                        : v.outcome === "vertagung"
+                          ? "vertagt"
+                          : v.outcome === "ueberweisung"
+                            ? "an Ausschuss überwiesen"
+                            : v.outcome;
+                const outcomeClasses =
+                  v.outcome === "annahme" || v.outcome === "annahme_geaendert"
+                    ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                    : v.outcome === "ablehnung"
+                      ? "bg-rose-50 text-rose-800 border-rose-200"
+                      : "bg-zinc-100 text-zinc-700 border-zinc-300";
+                return (
+                  <li key={v.voteId} className="flex items-baseline gap-3 flex-wrap">
+                    <span
+                      className={`inline-flex items-center text-[10.5px] font-semibold px-2 py-0.5 rounded border ${outcomeClasses}`}
+                    >
+                      {outcomeLabel}
+                    </span>
+                    <span className="text-[13px] text-zinc-700">
+                      {v.voteType === "handzeichen" ? "Handzeichen" : v.voteType} ·{" "}
+                      <span className="num">{dateStr}</span>
+                      {v.sitzungNr && (
+                        <>
+                          {" "}·{" "}
+                          {v.wahlperiode ? `WP ${v.wahlperiode}, ` : ""}
+                          {v.sitzungNr}. Sitzung
+                        </>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="text-[11.5px] text-zinc-400 mt-3 leading-relaxed">
+              Diese Verbindung kommt aus dem Plenarprotokoll der Sitzung — wir scannen
+              alle PlPr-XMLs auf Abstimmungs-Snippets und ordnen sie der Drucksache zu.
+            </p>
+          </section>
+        )}
 
         {mitzeichner.length > 0 && (
           <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
