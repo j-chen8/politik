@@ -12,7 +12,7 @@ export default function LinearLanding() {
       <section className="w-full max-w-3xl mx-auto px-5 pt-32 pb-20 fade-in-up">
         {/* Headline */}
         <h1 className="text-center text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 mb-3">
-          Wie arbeitet der Bundestag?
+          Woran arbeitet der Bundestag?
         </h1>
 
         <p className="text-center text-xl text-zinc-500 mx-auto mb-2 leading-relaxed">
