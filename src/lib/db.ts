@@ -3267,8 +3267,12 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       let topics: string[] = [];
       // Disambiguierungs-Hinweis aus dem PlPr-Snippet (vor allem "Einzelplan XX —
       // Bundesministerium für …" bei Haushalts-Abstimmungen, die alle dieselbe
-      // übergeordnete DS referenzieren).
-      const einzelplanHint = extractEinzelplanHint(v.raw_snippet);
+      // übergeordnete DS referenzieren). NUR für Gesetz-Subtype — bei Petition/
+      // Personenwahl-Votes im selben Snippet-Block würde sonst der Hint aus
+      // einem benachbarten Haushalts-Vote fälschlich übernommen.
+      const einzelplanHint = v.vote_subtype === "gesetz"
+        ? extractEinzelplanHint(v.raw_snippet)
+        : null;
       if (dsNrn.length > 0) {
         const row = db.prepare(
           `SELECT kerninhalt, zusammenfassung, thema FROM drucksache_analyses WHERE drucksache_nr=?`
