@@ -3016,27 +3016,90 @@ export function getVotersForPollByFraktionVote(
 
 export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
 
-/** Extrahiert einen Disambiguierungs-Hinweis aus dem raw_snippet einer Vote —
- *  vor allem für Haushalts-Abstimmungen, die alle dieselbe übergeordnete DS
- *  (21/1064) referenzieren, sich aber pro Einzelplan unterscheiden.
- *  Beispiel-Match: "Einzelplan 08 – Bundesministerium der Finanzen" →
- *  "Bundeshaushalt — Einzelplan 08: Bundesministerium der Finanzen" */
+/** Was finanziert jeder Einzelplan? Kuratierte Liste, bürgerverständliche
+ *  Themen-Klammer nach dem Ministeriumsnamen. Ziel: User soll verstehen,
+ *  worum es bei einer Einzelplan-Abstimmung inhaltlich geht. */
+const EINZELPLAN_INHALT: Record<string, { ministerium: string; themen: string }> = {
+  "01": { ministerium: "Bundespräsident", themen: "Amtsführung, Bundespräsidialamt" },
+  "02": { ministerium: "Bundestag", themen: "Parlamentsbetrieb, Verwaltung des Bundestags" },
+  "03": { ministerium: "Bundesrat", themen: "Verwaltung des Bundesrats" },
+  "04": { ministerium: "Bundeskanzleramt", themen: "Bundesnachrichtendienst, Kultur, Migrations-Beauftragte" },
+  "05": { ministerium: "Auswärtiges Amt", themen: "Diplomatie, internationale Beiträge, Auslandsvertretungen" },
+  "06": { ministerium: "Bundesministerium des Innern", themen: "Bundespolizei, BKA, Verfassungsschutz, Sport" },
+  "07": { ministerium: "Bundesministerium der Justiz und für Verbraucherschutz", themen: "Justiz, Bundesgerichte, Verbraucherschutz" },
+  "08": { ministerium: "Bundesministerium der Finanzen", themen: "Steuerverwaltung, Zoll, Bundesschuld, BaFin" },
+  "09": { ministerium: "Bundesministerium für Wirtschaft und Energie", themen: "Wirtschaftsförderung, Außenhandel, Energie" },
+  "10": { ministerium: "Bundesministerium für Landwirtschaft", themen: "Landwirtschaft, Ernährung, Forsten" },
+  "11": { ministerium: "Bundesministerium für Arbeit und Soziales", themen: "Bundesagentur für Arbeit, Rente, Pflege, Bürgergeld" },
+  "12": { ministerium: "Bundesministerium für Verkehr", themen: "Straßen, Bahn, Wasserwege, ÖPNV" },
+  "14": { ministerium: "Bundesministerium der Verteidigung", themen: "Bundeswehr, Rüstung, Auslandseinsätze" },
+  "15": { ministerium: "Bundesministerium für Gesundheit", themen: "GKV-Bundeszuschuss, BfArM, RKI, Pflege" },
+  "16": { ministerium: "Bundesministerium für Umwelt", themen: "Klimaschutz, Naturschutz, Reaktorsicherheit" },
+  "17": { ministerium: "Bundesministerium für Familie, Senioren, Frauen und Jugend", themen: "Familienleistungen, Senioren, Frauen, Jugend" },
+  "19": { ministerium: "Bundesverfassungsgericht", themen: "Verfassungsgericht" },
+  "20": { ministerium: "Bundesrechnungshof", themen: "Rechnungsprüfung" },
+  "23": { ministerium: "Bundesministerium für wirtschaftliche Zusammenarbeit und Entwicklung", themen: "Entwicklungshilfe, Klimafinanzierung" },
+  "24": { ministerium: "Bundesministerium für Digitales und Staatsmodernisierung", themen: "Verwaltungsdigitalisierung, KI, Staatsmodernisierung" },
+  "25": { ministerium: "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen", themen: "Wohnungsbau, Städtebau, Bauwesen" },
+  "30": { ministerium: "Bundesministerium für Forschung", themen: "Forschungsförderung, Hochschulen, Bildung" },
+  "32": { ministerium: "Bundesschuld", themen: "Zinsen und Tilgung der Staatsschulden" },
+  "60": { ministerium: "Allgemeine Finanzverwaltung", themen: "Steuereinnahmen, Länder-Finanzausgleich, EU-Beiträge" },
+};
+
+/** Extrahiert eine Einzelplan-Nummer aus dem raw_snippet und mappt sie auf
+ *  einen bürgerverständlichen Etat-Titel inkl. Themen-Klammer.
+ *  Beispiel: "Einzelplan 08 – Bundesministerium der Finanzen" →
+ *  "Etat des Bundesministeriums der Finanzen — Steuern, Zoll, Bundesschuld, BaFin" */
 function extractEinzelplanHint(snippet: string | null): string | null {
   if (!snippet) return null;
-  const m = snippet.match(
-    /Einzelplan\s+(\d+)\s*[–—-]?\s*(Bundesministerium[^.,;]{0,80}|Bundes\w[^.,;]{0,80}|[A-ZÄÖÜ][^.,;]{0,80})?/,
-  );
+  const m = snippet.match(/Einzelplan\s+(\d+)/);
   if (!m) return null;
-  const num = m[1];
-  const name = (m[2] ?? "").trim().replace(/\s+/g, " ");
-  // Trailing-Wörter die typisch nicht zum Ministeriumsnamen gehören sowie
-  // Trailing-Dashes/Whitespace strippen.
-  const cleaned = name
+  const num = m[1].padStart(2, "0");
+  const known = EINZELPLAN_INHALT[num];
+  if (known) {
+    return `Etat: ${known.ministerium} — ${known.themen}`;
+  }
+  // Fallback: aus Snippet den Namen ziehen, ohne kuratierte Themen.
+  const nameM = snippet.match(
+    /Einzelplan\s+\d+\s*[–—-]?\s*(Bundesministerium[^.,;]{0,80}|Bundes\w[^.,;]{0,80}|[A-ZÄÖÜ][^.,;]{0,80})/,
+  );
+  const name = (nameM?.[1] ?? "")
+    .trim()
     .replace(/\s+(in\s+der\s+Ausschussfassung|Drucksache|gemäß|mit\s+den).*$/i, "")
     .replace(/[\s–—-]+$/g, "")
+    .replace(/\s+/g, " ")
     .trim();
-  if (!cleaned) return `Bundeshaushalt — Einzelplan ${num}`;
-  return `Bundeshaushalt — Einzelplan ${num}: ${cleaned}`;
+  if (name) return `Etat: ${name} (Einzelplan ${num})`;
+  return `Etat (Einzelplan ${num})`;
+}
+
+/** Erkennt generische kerninhalt-Suffixe, die nach dem Einzelplan-Hint nichts
+ *  Informatives mehr beitragen ("Die Drucksache ist eine Ergänzung zu den
+ *  Beschlussempfehlungen…", "Haushaltsausschuss empfiehlt…"). */
+function isGenericKerninhalt(text: string): boolean {
+  const s = text.toLowerCase().trim();
+  return (
+    s.startsWith("die drucksache ist eine ergänzung") ||
+    s.startsWith("haushaltsausschuss empfiehlt") ||
+    s.startsWith("der haushaltsausschuss empfiehlt") ||
+    s.startsWith("ergänzungsdrucksache") ||
+    s.startsWith("einzelplan ")
+  );
+}
+
+/** Rät aus dem PlPr-Snippet den Dokumenttyp einer Vote (Gesetzentwurf,
+ *  Entschließungsantrag etc.) — als letztes Fallback wenn weder DS-Analyse
+ *  noch Einzelplan-Hint einen sprechenden Titel liefern. */
+function inferDocTypeFromSnippet(snippet: string | null): string {
+  if (!snippet) return "Abstimmung";
+  const s = snippet.toLowerCase();
+  if (s.includes("entschließungsantrag")) return "Entschließungsantrag";
+  if (s.includes("änderungsantrag")) return "Änderungsantrag";
+  if (s.includes("gesetzentwurf")) return "Gesetzentwurf";
+  if (s.includes("beschlussempfehlung")) return "Beschlussempfehlung";
+  if (s.includes("entwurf eines gesetzes")) return "Gesetzentwurf";
+  if (s.includes("antrag")) return "Antrag";
+  return "Abstimmung";
 }
 
 /** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen, damit
@@ -3229,21 +3292,29 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         }
       }
       // Einzelplan-Hint hat Priorität als Label, weil sonst alle Haushalts-Voten
-      // gleich heißen. Generischen Kerninhalt-Text als Ergänzung dahinter.
+      // gleich heißen. Kerninhalt nur als Suffix wenn er etwas Spezifisches
+      // hinzufügt (nicht "Die Drucksache ist eine Ergänzung…" etc.).
       if (einzelplanHint) {
-        label = label && !label.toLowerCase().startsWith("haushaltsausschuss")
+        label = label && !isGenericKerninhalt(label)
           ? `${einzelplanHint} · ${label}`
           : einzelplanHint;
       }
-      // Broken-Data-Skip: Wenn weder valide DS-Refs noch Einzelplan-Hint noch
-      // ein Label vorliegen, hat der Eintrag nichts zum Anzeigen — wir
-      // überspringen statt einer kontext-losen "Vote #N"-Karte.
-      if (!label && dsNrn.length === 0) {
-        continue;
-      }
-      // Letzte Stufe: nur DS-Nummer (DS-Ref liegt vor, aber Analyse fehlt).
+      // Fallback wenn nichts gegriffen hat: Datum + Dokumenttyp aus snippet.
+      // Beispiel: "Gesetzentwurf · 24. April 2026". Lieber das anzeigen als
+      // den Vote ganz weglassen — auch ohne klares Thema ist das
+      // Abstimmungsverhalten der Fraktionen wertvoll.
       if (!label) {
-        label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
+        const docType = inferDocTypeFromSnippet(v.raw_snippet);
+        const dateStr = v.datum
+          ? new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", {
+              day: "2-digit", month: "long", year: "numeric",
+            })
+          : "Datum unbekannt";
+        if (dsNrn.length > 0) {
+          label = `${docType} · Drucksache ${dsNrn.join(", ")}`;
+        } else {
+          label = `${docType} vom ${dateStr}`;
+        }
       }
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
