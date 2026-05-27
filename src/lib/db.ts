@@ -3657,6 +3657,136 @@ export function getBerichterstatterForDrucksache(nr: string): MitzeichnerRow[] {
   `).all(nr) as MitzeichnerRow[];
 }
 
+/** Extrahiert sinnvolle Such-Token aus einem DIP-Drucksachen-Titel —
+ *  Substantive ab 5 Zeichen, Stopwords entfernt, Bindestriche behalten.
+ *  Wird genutzt um Aussprache-Reden via Volltext-Match zu finden. */
+function extractTitleKeywords(title: string): string[] {
+  const STOPWORDS = new Set([
+    "Programm","Beratung","Antrag","Anträge","Entwurf","Gesetzes","Bundestag",
+    "Abgeordneten","Fraktion","Fraktionen","Drucksache","Wahlperiode","Bundesregierung",
+    "Bericht","Berichts","Beschlussempfehlung","Sammelübersicht","Petitionen",
+    "Deutschland","Deutscher","Deutschen","Bundesrepublik","Grundgesetzes","Artikel",
+    "Wahlvorschlag","Mitglieder","Mitglied",
+  ]);
+  return Array.from(
+    new Set(
+      title
+        .split(/[\s,.\-–—:;()\/]+/)
+        .map((w) => w.trim())
+        .filter((w) => w.length >= 5)
+        .filter((w) => /^[A-ZÄÖÜ]/.test(w)) // nur groß-geschriebene (Substantive/Eigennamen)
+        .filter((w) => !STOPWORDS.has(w))
+        .slice(0, 6),
+    ),
+  );
+}
+
+/** Findet die Plenardebatte zu einer Drucksache: für jede Vote-Sitzung, in der
+ *  diese DS abgestimmt wurde, suche TOPs deren Reden Schlüsselbegriffe aus dem
+ *  DIP-Titel erwähnen. Liefert die wahrscheinlichste Aussprache pro Sitzung —
+ *  inklusive Liste der Reden (Speaker, Partei, Vote-Outcome-Datum). */
+export interface DsPlenarContext {
+  sitzungNr: number | null;
+  datum: string | null;
+  topNumber: string;
+  topTitle: string;
+  speeches: Array<{
+    speechId: number;
+    speaker: string;
+    party: string | null;
+    politicianId: number | null;
+    speechIndex: number | null;
+  }>;
+}
+
+export function getPlenarContextForDs(dsNr: string, dipTitle: string | null): DsPlenarContext[] {
+  if (!dipTitle) return [];
+  // Skip-Pattern: Routine-Verwaltungsakte ohne politische Aussprache.
+  // Sammelübersichten + Wahlvorschläge + Anpassungsverfahren werden ohne
+  // Debatte direkt abgestimmt; die generischen Schlüsselwörter ("Petitions-
+  // ausschuss", "Wahl") matchen sonst jede Rede über das Thema und liefern
+  // falsche Verbindungen.
+  const ROUTINE_PATTERNS = [
+    /^Sammelübersicht\s+\d+/i,
+    /^Wahlvorschlag/i,
+    /^Wahl\s+der?\s+(Vertreter|Mitglieder|Mitglied)/i,
+    /^Anpassungsverfahren/i,
+    /^Einsetzung\s+(des|eines)\s+(Gremiums|Parlamentarischen|Vertrauens)/i,
+  ];
+  if (ROUTINE_PATTERNS.some((re) => re.test(dipTitle))) return [];
+  const keywords = extractTitleKeywords(dipTitle);
+  if (keywords.length === 0) return [];
+  const db = getDb();
+
+  try {
+    // 1. Alle Sitzungen, in denen die DS gevoted wurde.
+    const votes = db.prepare(`
+      SELECT DISTINCT xml_source, sitzung_nr, datum
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+    `).all(dsNr) as Array<{ xml_source: string; sitzung_nr: number | null; datum: string | null }>;
+
+    const results: DsPlenarContext[] = [];
+    for (const v of votes) {
+      // 2. Volltext-OR-Match: Reden in dieser Sitzung, deren original_text
+      //    mindestens einen Keyword enthält. Wir trauen dem ersten 5-Zeichen+
+      //    Substantiv aus dem Titel — primitiv aber pragmatisch.
+      const likeClauses = keywords.map(() => "ps.original_text LIKE ?").join(" OR ");
+      const likeArgs = keywords.map((k) => `%${k}%`);
+
+      // Gruppiere nach TOP — nimm den TOP mit der höchsten Trefferzahl.
+      // Schwellwert: mindestens 3 Reden im TOP müssen Schlüsselbegriffe
+      // erwähnen, sonst ist es ein zufälliger Wort-Match (z.B. Verfahrens-
+      // Anträge ohne echte Aussprache).
+      const rows = db.prepare(`
+        SELECT ps.topic_id, ps.topic_number, ps.topic_title, COUNT(*) AS hits
+        FROM plenar_speeches ps
+        WHERE ps.xml_source = ? AND (${likeClauses})
+        GROUP BY ps.topic_id, ps.topic_number, ps.topic_title
+        HAVING hits >= 3
+        ORDER BY hits DESC
+        LIMIT 1
+      `).all(v.xml_source, ...likeArgs) as Array<{
+        topic_id: number | null; topic_number: string | null; topic_title: string | null; hits: number;
+      }>;
+      const topMatch = rows[0];
+      if (!topMatch || !topMatch.topic_id) continue;
+
+      // 3. Lade alle Reden dieses TOPs.
+      const speeches = db.prepare(`
+        SELECT ps.id, ps.speaker, ps.party, ps.speech_index,
+               pol.id AS politician_id
+        FROM plenar_speeches ps
+        LEFT JOIN politicians pol ON pol.id = (
+          SELECT politician_id FROM activities a WHERE a.id = ps.rede_id LIMIT 1
+        )
+        WHERE ps.topic_id = ?
+        ORDER BY ps.speech_index ASC
+      `).all(topMatch.topic_id) as Array<{
+        id: number; speaker: string; party: string | null;
+        speech_index: number | null; politician_id: number | null;
+      }>;
+
+      results.push({
+        sitzungNr: v.sitzung_nr,
+        datum: v.datum,
+        topNumber: topMatch.topic_number ?? "?",
+        topTitle: topMatch.topic_title ?? "",
+        speeches: speeches.map((s) => ({
+          speechId: s.id,
+          speaker: s.speaker,
+          party: s.party,
+          politicianId: s.politician_id,
+          speechIndex: s.speech_index,
+        })),
+      });
+    }
+    return results;
+  } catch {
+    return [];
+  }
+}
+
 /** Holt alle Handzeichen-Vote-Events, die diese Drucksache referenzieren —
  *  schlanke Variante von getBundestagDsHandzeichenVotes() ohne Fraktions-Matrix,
  *  nur Identität + Sitzung + Outcome. Wird auf der DIP-only Stub-Seite genutzt,

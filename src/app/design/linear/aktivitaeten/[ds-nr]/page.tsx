@@ -10,6 +10,7 @@ import {
   getPollsForDrucksache,
   getBundestagDsHandzeichenVotes,
   getVotesReferencingDs,
+  getPlenarContextForDs,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
@@ -17,6 +18,7 @@ import {
   type DsPollRow,
   type BundestagDsHandzeichenVote,
   type DsVoteSummary,
+  type DsPlenarContext,
 } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -154,7 +156,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
     const mitzeichner = getMitzeichnerForDrucksache(dsNr);
     const berichterstatter = getBerichterstatterForDrucksache(dsNr);
     const referencingVotes = getVotesReferencingDs(dsNr);
-    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes);
+    const plenarContext = getPlenarContextForDs(dsNr, skeleton.titel);
+    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes, plenarContext);
   }
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
@@ -634,6 +637,7 @@ function renderSkeletonPage(
   mitzeichner: MitzeichnerRow[],
   berichterstatter: MitzeichnerRow[],
   referencingVotes: DsVoteSummary[] = [],
+  plenarContext: DsPlenarContext[] = [],
 ) {
   const datumFormatted = formatDate(skeleton.datum);
   const fraktionCounts = new Map<string, number>();
@@ -756,6 +760,67 @@ function renderSkeletonPage(
             <p className="text-[11.5px] text-zinc-400 mt-3 leading-relaxed">
               Diese Verbindung kommt aus dem Plenarprotokoll der Sitzung — wir scannen
               alle PlPr-XMLs auf Abstimmungs-Snippets und ordnen sie der Drucksache zu.
+            </p>
+          </section>
+        )}
+
+        {plenarContext.length > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+              Aussprache zu dieser Drucksache
+            </h2>
+            <div className="space-y-5">
+              {plenarContext.map((ctx) => (
+                <div key={`${ctx.sitzungNr}-${ctx.topNumber}`}>
+                  <div className="flex items-baseline gap-2 flex-wrap mb-3">
+                    <span className="num text-[11px] font-semibold text-zinc-500">
+                      TOP {ctx.topNumber}
+                    </span>
+                    {ctx.sitzungNr && (
+                      <span className="text-[11px] text-zinc-400 num">
+                        · {ctx.sitzungNr}. Sitzung
+                      </span>
+                    )}
+                    {ctx.datum && (
+                      <span className="text-[11px] text-zinc-400 num">
+                        · {new Date(ctx.datum + "T00:00:00").toLocaleDateString("de-DE", {
+                          day: "2-digit", month: "long", year: "numeric",
+                        })}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[13.5px] text-zinc-800 leading-relaxed mb-3">
+                    {ctx.topTitle}
+                  </p>
+                  <ul className="space-y-1.5">
+                    {ctx.speeches.slice(0, 12).map((sp) => (
+                      <li
+                        key={sp.speechId}
+                        className="flex items-baseline gap-2 text-[13px] text-zinc-700"
+                      >
+                        <span className="num text-[11px] text-zinc-400 shrink-0 w-6">
+                          {sp.speechIndex ?? ""}
+                        </span>
+                        <span className="font-medium text-zinc-950">{sp.speaker}</span>
+                        {sp.party && (
+                          <span className="text-[11px] text-zinc-500">({sp.party})</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                  {ctx.speeches.length > 12 && (
+                    <p className="text-[11.5px] text-zinc-400 mt-2">
+                      + {ctx.speeches.length - 12} weitere Reden
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-[11.5px] text-zinc-400 mt-4 leading-relaxed">
+              Aussprache automatisch gefunden via Volltext-Match auf Schlüsselbegriffen aus
+              dem Drucksachen-Titel gegen das Plenarprotokoll. Bei Verfahrens-Anträgen
+              (z.B. Wahlvorschläge, Petitions-Sammelübersichten) gibt es oft keine Aussprache —
+              dann wird diese Sektion nicht angezeigt.
             </p>
           </section>
         )}
