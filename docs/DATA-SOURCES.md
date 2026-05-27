@@ -67,6 +67,15 @@
    - Kontext generieren: `npx tsx scripts/generate-vote-context.ts --poll <id> --write`
      pro neuem Poll
    - Neutralitäts-Spotcheck (siehe Schritt 5) gilt auch für `vote_context.block_hinweis`
+4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
+   Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
+   wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
+   **Vorbedingung:** XMLs aus Schritt 2 müssen ins landtag-Worktree gespiegelt sein
+   (`cp /home/jinsheng/politik/data/plenarprotokolle_xml/21*.xml /home/jinsheng/politik-landtag/data/plenarprotokolle_xml/`).
+   - Pre-Flight: `cd /home/jinsheng/politik-landtag && npx tsx scripts/batch-submit-bundestag-votes.ts`
+   - Submit (≤ 15 € Freigabe gilt): `... --confirm` → `batch_id` notieren
+   - Retrieve: `npx tsx scripts/batch-retrieve-bundestag-votes.ts` (wartet auf Abschluss + apply)
+   - Idempotenz: per `(xml_source, snippet_offset)` — neuer Run überspringt bereits Analysiertes
 5. **Neutralitäts-Disziplin (NICHT verhandelbar):** NIE Prompt/Methodik/Modell
    ändern — nur die identische validierte Pipeline auf neuen Daten. Nach dem
    Apply **Neutralitäts-Spotcheck**: Sample neuer `speech_analyses_v2` +
@@ -115,6 +124,7 @@ Caveats.
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
 | Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (25 Tage alt) |
 | Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
+| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,06). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
@@ -246,6 +256,32 @@ Kein Upstream-„latest" — Skripte laufen nur für **neue/leere** Politiker-Ro
   bundestag.de ab" war ein Teaser-/Join-Artefakt, **widerlegt**. Maßgeblich
   ist stets das im Plenarprotokoll verkündete Ergebnis der konkreten
   Abstimmung.
+
+### 2.14 Bundestag-Handzeichen-Votes (`bundestag_votes`)
+
+LLM-Extraktion aller Abstimmungs-Events aus den Plenar-XMLs — sowohl namentliche
+als auch die deutlich häufigeren **per Handzeichen** durchgeführten Voten.
+Letztere liefern nur Fraktions-Ebene (ja/nein/enthaltung je Fraktion), keine
+per-MdB-Stimmen. Zusätzlich `vote_subtype` (gesetz | petition | personenwahl) für
+UI-Filter.
+
+- **Pipeline-Heimat:** **`/home/jinsheng/politik-landtag/scripts/`** (historisch
+  dort als Bundestag-+-Berlin-Parallelspur entwickelt). Skripte:
+  - `batch-submit-bundestag-votes.ts` (Pre-Flight ohne, Submit mit `--confirm`)
+  - `batch-retrieve-bundestag-votes.ts` (wartet auf Batch-Ende + apply)
+  - Prompts in `src/lib/bundestag-votes-prompts.ts` (`PROMPT_VERSION=bundestag-votes-v1`)
+- **Modell:** Claude Haiku 4.5 mit Tool-Use (`VOTE_TOOL`) + System-Prompt-Cache.
+- **Idempotenz:** `(xml_source, snippet_offset)`-Key, schon analysierte Events
+  überspringen.
+- **XML-Sync (kritisch):** Worktree-`data/plenarprotokolle_xml/` sind NICHT
+  symlinkt. Vor Pipeline-Lauf neue Master-XMLs ins landtag-Worktree spiegeln:
+  `cp /home/jinsheng/politik/data/plenarprotokolle_xml/21*.xml /home/jinsheng/politik-landtag/data/plenarprotokolle_xml/`
+- **Kosten:** Pro Refresh typisch < $0,10 (Batch). 86 neue Events vom 27.05.
+  haben $0,06 gekostet.
+- **DB-Watermark:** `SELECT MAX(datum) FROM bundestag_votes WHERE error_type IS NULL`
+  vs. `SELECT MAX(datum) FROM plenar_sessions`. Bei Drift → Pipeline-Lauf fällig.
+- **UI-Konsumenten** (Master-Worktree): `listAllVotesForIndex()` (Abstimmungs-
+  Index) + `getBundestagDsHandzeichenVotes(dsNr)` (Drucksachen-Detail-Seite).
 
 ---
 

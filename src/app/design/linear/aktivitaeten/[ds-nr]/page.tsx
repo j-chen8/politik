@@ -8,11 +8,13 @@ import {
   getDrucksacheThemenAehnliche,
   getDrucksachenSameFraktion,
   getPollsForDrucksache,
+  getBundestagDsHandzeichenVotes,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
   type RelatedDsRow,
   type DsPollRow,
+  type BundestagDsHandzeichenVote,
 } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -158,6 +160,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const verfahren = getDrucksacheVerfahren(dsNr);
   const themenAehnliche = getDrucksacheThemenAehnliche(dsNr, ds.thema.join(", "), 6);
   const polls = getPollsForDrucksache(dsNr);
+  const handzeichenVotes = getBundestagDsHandzeichenVotes(dsNr);
   // Nur Parteien zählen — "Bundesregierung" und null ausschließen, sonst macht "andere DS der Fraktion" keinen Sinn
   const isParty = ds.fraktion && ds.fraktion !== "Bundesregierung";
   const sameFraktion = isParty
@@ -543,6 +546,11 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
+        {/* HANDZEICHEN-VOTES (Plenum, Fraktions-Ebene) */}
+        {handzeichenVotes.length > 0 && (
+          <HandzeichenVotesSection votes={handzeichenVotes} />
+        )}
+
         {/* VERFAHRENS-ZUSAMMENHANG (Antwort↔Anfrage) */}
         {(verfahren.parent || verfahren.children.length > 0) && (
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
@@ -833,5 +841,113 @@ function MitzeichnerGrid({ mitz }: { mitz: MitzeichnerRow[] }) {
         </div>
       )}
     </div>
+  );
+}
+
+const HZ_FRAKTIONS_ORDER = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"] as const;
+
+const HZ_OUTCOME_META: Record<string, { label: string; classes: string }> = {
+  annahme: { label: "angenommen", classes: "bg-emerald-50 text-emerald-800 border-emerald-200" },
+  annahme_geaendert: {
+    label: "in geänderter Fassung angenommen",
+    classes: "bg-emerald-50 text-emerald-800 border-emerald-200",
+  },
+  ablehnung: { label: "abgelehnt", classes: "bg-rose-50 text-rose-800 border-rose-200" },
+  vertagung: { label: "vertagt", classes: "bg-amber-50 text-amber-800 border-amber-200" },
+  ueberweisung: { label: "an Ausschuss überwiesen", classes: "bg-zinc-100 text-zinc-700 border-zinc-300" },
+};
+
+function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[] }) {
+  return (
+    <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+      <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+        Abstimmung{votes.length > 1 ? "en" : ""} im Plenum{" "}
+        <span className="text-zinc-400 normal-case font-normal tracking-normal">
+          · Handzeichen, Fraktions-Ebene
+        </span>
+      </h2>
+      <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-5 max-w-2xl">
+        Diese Abstimmung wurde nicht namentlich durchgeführt; das Plenum hat per Handzeichen
+        entschieden. Es liegen daher keine individuellen MdB-Stimmen vor, nur das Abstimmungs-Verhalten
+        je Fraktion.
+      </p>
+      <div className="space-y-5">
+        {votes.map((v) => {
+          const oc = HZ_OUTCOME_META[v.outcome] ?? {
+            label: v.outcome,
+            classes: "bg-zinc-100 text-zinc-700 border-zinc-300",
+          };
+          return (
+            <div key={v.voteId}>
+              <div className="flex items-baseline justify-between gap-3 mb-2 flex-wrap">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span
+                    className={`inline-flex items-center text-[10.5px] font-semibold px-2 py-0.5 rounded border ${oc.classes}`}
+                  >
+                    {oc.label}
+                  </span>
+                  {v.modus && (
+                    <span className="text-[11px] text-zinc-500">
+                      {v.modus === "einstimmig"
+                        ? "einstimmig"
+                        : v.modus === "knapp"
+                          ? "knappe Mehrheit"
+                          : v.modus === "mehrheitlich"
+                            ? "mehrheitlich"
+                            : v.modus}
+                    </span>
+                  )}
+                  {v.sitzungNr && (
+                    <span className="text-[11px] text-zinc-400 num">
+                      {v.wahlperiode ? `WP ${v.wahlperiode} · ` : ""}Sitzung {v.sitzungNr}
+                    </span>
+                  )}
+                </div>
+                {v.datum && (
+                  <span className="text-[11px] text-zinc-400 num">
+                    {new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                )}
+              </div>
+              {v.fraktionVotes ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {HZ_FRAKTIONS_ORDER.map((f) => {
+                    const vote = v.fraktionVotes?.[f] ?? "unbekannt";
+                    const cls =
+                      vote === "ja"
+                        ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                        : vote === "nein"
+                          ? "bg-rose-50 text-rose-800 border-rose-200"
+                          : vote === "enthaltung"
+                            ? "bg-amber-50 text-amber-800 border-amber-200"
+                            : "bg-zinc-50 text-zinc-500 border-zinc-200";
+                    const icon =
+                      vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
+                    return (
+                      <span
+                        key={f}
+                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-medium ${cls}`}
+                        title={`${f}: ${vote}`}
+                      >
+                        <span className="font-semibold">{f}</span>
+                        <span>{icon}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-[11.5px] text-zinc-400 italic">
+                  Fraktions-Voten nicht erfasst
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }

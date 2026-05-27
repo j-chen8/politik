@@ -3014,23 +3014,56 @@ export function getVotersForPollByFraktionVote(
   `).all(pollId, fraktion, vote) as VoterRow[];
 }
 
-export interface PollIndexRow {
+export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
+
+export interface NamentlicheVoteIndexEntry {
+  type: "namentlich";
+  subtype: VoteSubtype;
+  id: string;
+  detail_url: string;
+  label: string | null;
+  date: string | null;
+  outcome: "angenommen" | "abgelehnt";
+  outcome_label: string;
+  drucksache_nrn: string[];
   poll_id: number;
-  poll_label: string | null;
-  poll_date: string | null;
   yes: number;
   no: number;
   abstain: number;
   no_show: number;
   total: number;
   has_topic_match: 0 | 1;
-  match_confidence: string | null; // 'high' | 'medium' | 'low' | 'none' | null
+  match_confidence: string | null;
   speech_count: number;
 }
 
-export function listAllPollsForIndex(): PollIndexRow[] {
+export interface HandzeichenVoteIndexEntry {
+  type: "handzeichen" | "hammelsprung" | "unklar";
+  subtype: VoteSubtype;
+  id: string;
+  detail_url: string;
+  label: string | null;
+  date: string | null;
+  outcome: "angenommen" | "abgelehnt" | "vertagt" | "ueberwiesen" | "unklar";
+  outcome_label: string;
+  drucksache_nrn: string[];
+  vote_id: number;
+  modus: string | null;
+  fraktion_votes: Record<string, string> | null;
+  sitzung_nr: number | null;
+  wahlperiode: number | null;
+}
+
+export type VoteIndexEntry = NamentlicheVoteIndexEntry | HandzeichenVoteIndexEntry;
+
+/** Vereint die alten namentlichen Abstimmungen mit den per Handzeichen
+ *  bekannten Vote-Events (aus bundestag_votes). Sortierung: neueste zuerst. */
+export function listAllVotesForIndex(): VoteIndexEntry[] {
   const db = getDb();
-  return db.prepare(`
+  const entries: VoteIndexEntry[] = [];
+
+  // 1. Namentliche Abstimmungen aus `votes` (mit Topic-Match + Reden-Count).
+  const namentlich = db.prepare(`
     SELECT
       v.poll_id,
       v.poll_label,
@@ -3052,8 +3085,155 @@ export function listAllPollsForIndex(): PollIndexRow[] {
     FROM votes v
     LEFT JOIN vote_topic_links vtl ON vtl.poll_id = v.poll_id
     GROUP BY v.poll_id, v.poll_label, v.poll_date
-    ORDER BY v.poll_date DESC, v.poll_id DESC
-  `).all() as PollIndexRow[];
+  `).all() as Array<{
+    poll_id: number; poll_label: string | null; poll_date: string | null;
+    yes: number; no: number; abstain: number; no_show: number; total: number;
+    has_topic_match: 0 | 1; match_confidence: string | null; speech_count: number;
+  }>;
+
+  for (const p of namentlich) {
+    const passed = p.yes > p.no;
+    entries.push({
+      type: "namentlich",
+      subtype: "gesetz", // namentliche Abstimmungen sind fast immer Gesetze/Anträge
+      id: `poll:${p.poll_id}`,
+      detail_url: `/design/linear/abstimmungen/${p.poll_id}`,
+      label: p.poll_label,
+      date: p.poll_date,
+      outcome: passed ? "angenommen" : "abgelehnt",
+      outcome_label: passed ? "angenommen" : "abgelehnt",
+      drucksache_nrn: [],
+      poll_id: p.poll_id,
+      yes: p.yes, no: p.no, abstain: p.abstain, no_show: p.no_show, total: p.total,
+      has_topic_match: p.has_topic_match,
+      match_confidence: p.match_confidence,
+      speech_count: p.speech_count,
+    });
+  }
+
+  // 2. Handzeichen/Hammelsprung-Votes aus `bundestag_votes` — keine
+  //    per-MdB-Daten, Label = Drucksachen-Zusammenfassung, Detail-Link
+  //    auf DS-Seite.
+  try {
+    const btv = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.outcome,
+             bv.vote_type, bv.vote_subtype, bv.modus, bv.fraktion_votes_json, bv.drucksache_nrn_json
+      FROM bundestag_votes bv
+      WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
+    `).all() as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; outcome: string; vote_type: string; vote_subtype: string | null;
+      modus: string | null;
+      fraktion_votes_json: string | null; drucksache_nrn_json: string | null;
+    }>;
+
+    const outcomeMap: Record<string, { o: HandzeichenVoteIndexEntry["outcome"]; l: string }> = {
+      annahme: { o: "angenommen", l: "angenommen" },
+      annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
+      ablehnung: { o: "abgelehnt", l: "abgelehnt" },
+      vertagung: { o: "vertagt", l: "vertagt" },
+      ueberweisung: { o: "ueberwiesen", l: "an Ausschuss überwiesen" },
+    };
+
+    for (const v of btv) {
+      const dsNrn: string[] = v.drucksache_nrn_json
+        ? (() => { try { return JSON.parse(v.drucksache_nrn_json!) as string[]; } catch { return []; } })()
+        : [];
+      let label: string | null = null;
+      if (dsNrn.length > 0) {
+        const row = db.prepare(
+          `SELECT substr(zusammenfassung, 1, 120) AS s FROM drucksache_analyses WHERE drucksache_nr=?`
+        ).get(dsNrn[0]) as { s: string | null } | undefined;
+        if (row?.s) label = row.s;
+        if (!label) label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
+      }
+      const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
+      const detail_url = dsNrn.length > 0
+        ? `/design/linear/aktivitaeten/${dsNrn[0].replace("/", "-")}`
+        : `/design/linear/abstimmungen`;
+      const type: HandzeichenVoteIndexEntry["type"] =
+        v.vote_type === "handzeichen" || v.vote_type === "hammelsprung"
+          ? v.vote_type
+          : "unklar";
+      const fraktion_votes: Record<string, string> | null = v.fraktion_votes_json
+        ? (() => { try { return JSON.parse(v.fraktion_votes_json!) as Record<string, string>; } catch { return null; } })()
+        : null;
+      const subtype: VoteSubtype =
+        v.vote_subtype === "gesetz" || v.vote_subtype === "petition" || v.vote_subtype === "personenwahl"
+          ? v.vote_subtype
+          : "unbekannt";
+      entries.push({
+        type,
+        subtype,
+        id: `btv:${v.vote_id}`,
+        detail_url,
+        label,
+        date: v.datum,
+        outcome: oc.o,
+        outcome_label: oc.l,
+        drucksache_nrn: dsNrn,
+        vote_id: v.vote_id,
+        modus: v.modus,
+        fraktion_votes,
+        sitzung_nr: v.sitzung_nr,
+        wahlperiode: v.wahlperiode,
+      });
+    }
+  } catch { /* table evt. noch leer */ }
+
+  entries.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+  return entries;
+}
+
+// Handzeichen-Vote-Events für eine konkrete Bundestags-Drucksache —
+// gefiltert via JSON-each über drucksache_nrn_json.
+export interface BundestagDsHandzeichenVote {
+  voteId: number;
+  sitzungNr: number | null;
+  wahlperiode: number | null;
+  datum: string | null;
+  voteType: string;
+  outcome: string;
+  modus: string | null;
+  fraktionVotes: Record<string, string> | null;
+  drucksacheNrn: string[];
+  xmlSource: string;
+}
+
+export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzeichenVote[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.vote_type, bv.outcome, bv.modus,
+             bv.fraktion_votes_json,
+             bv.drucksache_nrn_json, bv.xml_source
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dsNr) as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; vote_type: string; outcome: string; modus: string | null;
+      fraktion_votes_json: string | null; drucksache_nrn_json: string | null; xml_source: string;
+    }>;
+    const parseObj = <T,>(s: string | null): T | null => {
+      if (!s) return null;
+      try { return JSON.parse(s) as T; } catch { return null; }
+    };
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      wahlperiode: r.wahlperiode,
+      datum: r.datum,
+      voteType: r.vote_type,
+      outcome: r.outcome,
+      modus: r.modus,
+      fraktionVotes: parseObj<Record<string, string>>(r.fraktion_votes_json),
+      drucksacheNrn: parseObj<string[]>(r.drucksache_nrn_json) ?? [],
+      xmlSource: r.xml_source,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 // ============================================================
