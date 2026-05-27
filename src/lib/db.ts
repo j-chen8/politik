@@ -3562,6 +3562,21 @@ export interface DrucksacheSkeleton {
   herausgeber: string | null;
 }
 
+/** Konstruiert die bundestag.de-PDF-URL für eine Drucksache aus ihrer Nummer.
+ *  Format: https://dserver.bundestag.de/btd/{WP}/{ordner}/{wp}{nr_padded5}.pdf
+ *  Ordner-Regel: erste 3 Stellen der auf 5 Stellen mit Null aufgefüllten Nr.
+ *  Beispiele: 21/0563 → /btd/21/005/2100563.pdf
+ *             21/2902 → /btd/21/029/2102902.pdf
+ *             21/1064 → /btd/21/010/2101064.pdf */
+function buildDsPdfUrl(dsNr: string): string | null {
+  const m = dsNr.match(/^(\d+)\/0*(\d+)$/);
+  if (!m) return null;
+  const wp = m[1];
+  const nr5 = m[2].padStart(5, "0");
+  const ordner = nr5.slice(0, 3);
+  return `https://dserver.bundestag.de/btd/${wp}/${ordner}/${wp}${nr5}.pdf`;
+}
+
 export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
   const db = getDb();
   // ACHTUNG: `activities.titel` ist der Politiker-Name ("X, MdB, Fraktion"),
@@ -3581,7 +3596,26 @@ export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
     WHERE drucksache_nr = ?
     GROUP BY drucksache_nr
   `).get(nr) as DrucksacheSkeleton | undefined;
-  return row ?? null;
+  if (row) return row;
+  // DIP-only Fallback: Drucksachen, die wir nur über die DIP-Titel-Tabelle
+  // kennen (Wahlvorschläge, Petitions-Sammelübersichten, Verfahrens-Anträge —
+  // nicht in unserer activities-Tabelle, nicht in drucksache_analyses).
+  // Liefert Skeleton mit DIP-Titel + konstruierter PDF-URL, damit die
+  // Drucksachen-Detail-Seite zumindest auf die Original-Quelle verlinken kann.
+  const dip = db.prepare(
+    `SELECT titel, drucksachetyp, vorgangstyp FROM dip_ds_titles WHERE drucksache_nr = ?`
+  ).get(nr) as { titel: string | null; drucksachetyp: string | null; vorgangstyp: string | null } | undefined;
+  if (!dip?.titel) return null;
+  return {
+    drucksache_nr: nr,
+    titel: dip.titel,
+    datum: null,
+    urheber: null,
+    aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
+    drucksache_typ: dip.drucksachetyp,
+    pdf_url: buildDsPdfUrl(nr),
+    herausgeber: "Deutscher Bundestag",
+  };
 }
 
 export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
