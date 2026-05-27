@@ -73,6 +73,19 @@
    schreiben. Script filtert auf Polls die noch nicht in `poll_aw_topics` stehen.
    Rate-Limit-Handling (429-Backoff) ist eingebaut. UI-Konsumenten:
    `listAllVotesForIndex()` (Topic-Chips neben Vote-Titel).
+4b3. **DIP-Titel für fehlende Drucksachen** (gratis, idempotent):
+   `npx tsx scripts/fetch-missing-ds-titles.ts` — Drucksachen die in
+   `bundestag_votes` referenziert sind, aber weder in `drucksache_analyses`
+   noch in `dip_ds_titles` stehen (typischerweise Petitions-Sammelübersichten,
+   Wahlvorschläge, Verfahrens-Anträge). Holt für jede den Titel + Dokumenttyp
+   aus der DIP-API. Beim ersten Run wegen Rate-Limit oft nur Teil-Coverage —
+   Script ist idempotent, bei Re-Run werden nur fehlende geholt. UI-Konsument:
+   Stub-Seite `/aktivitaeten/[ds-nr]`. Coverage-Watermark:
+   `SELECT COUNT(*) FROM bundestag_votes WHERE error_type IS NULL AND outcome != 'kein_vote'
+    AND NOT EXISTS (SELECT 1 FROM drucksache_analyses WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))
+    AND NOT EXISTS (SELECT 1 FROM dip_ds_titles WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))`.
+   Bei einstelligem Rest-Count: das sind LLM-Extraktions-Fehler (DS-Ref leer
+   oder halluziniert) — separater Track.
 4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
    Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
    wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
@@ -132,6 +145,7 @@ Caveats.
 | Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
 | Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,34 real / $0,06 estimate). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
 | aw-Poll-Topics (`poll_aw_topics`) | 🟢 erledigt | 52/52 Polls mit `field_topics` + `field_committees` | Gratis (aw-API), 27.05. initial geseedet. Re-Run nur für neue Polls (idempotent per `INSERT NOT IN`-Filter im Script) |
+| DIP-Titel für DS-Stubs (`dip_ds_titles`) | 🟢 erledigt | 74 DS mit DIP-Titel | Gratis (DIP-API), 27.05. zweimal gelaufen (Rate-Limit-Recovery). Coverage 99,3% — 3 LLM-Extraktions-Edge-Cases verbleiben |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
