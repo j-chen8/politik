@@ -240,10 +240,10 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
 
         {/* Label + Stats */}
         <div className="flex-1 min-w-0">
-          {/* Type-Badge */}
-          <div className="flex items-center gap-2 mb-1.5 text-[10px] uppercase tracking-wider">
+          {/* Type-Badge + Topic-Chips */}
+          <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
             <span
-              className={`px-1.5 py-0.5 rounded font-medium ${
+              className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium ${
                 v.type === "namentlich"
                   ? "bg-violet-50 text-violet-700"
                   : "bg-blue-50 text-blue-700"
@@ -252,17 +252,29 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
               {v.type === "namentlich" ? "Namentlich" : "Handzeichen"}
             </span>
             {v.subtype === "petition" && (
-              <span className="px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
                 Petition
               </span>
             )}
             {v.subtype === "personenwahl" && (
-              <span className="px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
                 Personenwahl
               </span>
             )}
+            {/* Topic-Chips — aw `field_topics` für namentliche, DS.thema für Handzeichen */}
+            {v.topics.slice(0, 4).map((t) => (
+              <span
+                key={t}
+                className="text-[11px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 font-medium"
+              >
+                {t}
+              </span>
+            ))}
+            {v.topics.length > 4 && (
+              <span className="text-[11px] text-zinc-400">+{v.topics.length - 4}</span>
+            )}
             {v.drucksache_nrn.length > 0 && (
-              <span className="text-[10.5px] num text-zinc-400 normal-case tracking-normal">
+              <span className="text-[10.5px] num text-zinc-400 normal-case tracking-normal ml-auto">
                 Drs.{" "}
                 {v.drucksache_nrn.slice(0, 3).join(", ")}
                 {v.drucksache_nrn.length > 3 && ` +${v.drucksache_nrn.length - 3}`}

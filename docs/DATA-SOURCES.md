@@ -67,6 +67,12 @@
    - Kontext generieren: `npx tsx scripts/generate-vote-context.ts --poll <id> --write`
      pro neuem Poll
    - Neutralitäts-Spotcheck (siehe Schritt 5) gilt auch für `vote_context.block_hinweis`
+4b2. **aw-Poll-Topics nachholen** (gratis, idempotent):
+   `npx tsx scripts/fetch-poll-aw-topics.ts` — pro neuem Poll-ID die
+   `field_topics` + `field_committees` aus der aw-API in `poll_aw_topics`-Tabelle
+   schreiben. Script filtert auf Polls die noch nicht in `poll_aw_topics` stehen.
+   Rate-Limit-Handling (429-Backoff) ist eingebaut. UI-Konsumenten:
+   `listAllVotesForIndex()` (Topic-Chips neben Vote-Titel).
 4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
    Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
    wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
@@ -124,7 +130,8 @@ Caveats.
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
 | Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (25 Tage alt) |
 | Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
-| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,06). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
+| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,34 real / $0,06 estimate). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
+| aw-Poll-Topics (`poll_aw_topics`) | 🟢 erledigt | 52/52 Polls mit `field_topics` + `field_committees` | Gratis (aw-API), 27.05. initial geseedet. Re-Run nur für neue Polls (idempotent per `INSERT NOT IN`-Filter im Script) |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 

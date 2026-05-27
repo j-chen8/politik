@@ -3016,6 +3016,31 @@ export function getVotersForPollByFraktionVote(
 
 export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
 
+/** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen, damit
+ *  Vote-Labels nicht mit "Die Fraktion XYZ fordert…" starten. Wird nur als
+ *  Fallback verwendet, wenn `kerninhalt` (LLM-extrahierte party-freie Bullets)
+ *  nicht verfügbar ist. */
+function stripPartyPrefix(s: string): string {
+  // Match: "Die {Party}-Fraktion <verb>, " / "Die Fraktion {Party} <verb>, "
+  // / "{Party} <verb>, " — Verb-Liste empirisch aus den Daten abgeleitet.
+  const VERBS = "(fordert|kritisiert|beantragt|begrüßt|bringt|möchte|bestreitet|will|verlangt|legt)";
+  const PARTY = "(AfD|CDU/CSU|SPD|BÜNDNIS\\s*90/DIE\\s*GRÜNEN|GRÜNEN|Linke|FDP)";
+  const patterns = [
+    new RegExp(`^Die\\s+${PARTY}-Fraktion\\s+${VERBS}[^.]+\\.\\s*`, "i"),
+    new RegExp(`^Die\\s+Fraktion\\s+${PARTY}\\s+${VERBS}[^.]+\\.\\s*`, "i"),
+    new RegExp(`^Der\\s+(Entschließungsantrag|Antrag|Gesetzentwurf)\\s+der\\s+${PARTY}-Fraktion\\s+${VERBS}[^.]+\\.\\s*`, "i"),
+  ];
+  let result = s.trim();
+  for (const re of patterns) {
+    result = result.replace(re, "");
+  }
+  // Erstes Zeichen groß schreiben falls nötig.
+  if (result.length > 0 && result[0] !== result[0].toUpperCase()) {
+    result = result[0].toUpperCase() + result.slice(1);
+  }
+  return result.trim();
+}
+
 export interface NamentlicheVoteIndexEntry {
   type: "namentlich";
   subtype: VoteSubtype;
@@ -3026,6 +3051,7 @@ export interface NamentlicheVoteIndexEntry {
   outcome: "angenommen" | "abgelehnt";
   outcome_label: string;
   drucksache_nrn: string[];
+  topics: string[];
   poll_id: number;
   yes: number;
   no: number;
@@ -3047,6 +3073,7 @@ export interface HandzeichenVoteIndexEntry {
   outcome: "angenommen" | "abgelehnt" | "vertagt" | "ueberwiesen" | "unklar";
   outcome_label: string;
   drucksache_nrn: string[];
+  topics: string[];
   vote_id: number;
   modus: string | null;
   fraktion_votes: Record<string, string> | null;
@@ -3062,7 +3089,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
   const db = getDb();
   const entries: VoteIndexEntry[] = [];
 
-  // 1. Namentliche Abstimmungen aus `votes` (mit Topic-Match + Reden-Count).
+  // 1. Namentliche Abstimmungen aus `votes` (mit Topic-Match + Reden-Count
+  //    + aw-Topics aus poll_aw_topics).
   const namentlich = db.prepare(`
     SELECT
       v.poll_id,
@@ -3081,7 +3109,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
           SELECT topic_id FROM vote_topic_links
           WHERE poll_id = v.poll_id AND topic_id != 0
         )
-      ), 0) AS speech_count
+      ), 0) AS speech_count,
+      (SELECT topics_json FROM poll_aw_topics WHERE poll_id = v.poll_id) AS aw_topics_json
     FROM votes v
     LEFT JOIN vote_topic_links vtl ON vtl.poll_id = v.poll_id
     GROUP BY v.poll_id, v.poll_label, v.poll_date
@@ -3089,10 +3118,14 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
     poll_id: number; poll_label: string | null; poll_date: string | null;
     yes: number; no: number; abstain: number; no_show: number; total: number;
     has_topic_match: 0 | 1; match_confidence: string | null; speech_count: number;
+    aw_topics_json: string | null;
   }>;
 
   for (const p of namentlich) {
     const passed = p.yes > p.no;
+    const topics: string[] = p.aw_topics_json
+      ? (() => { try { return JSON.parse(p.aw_topics_json!) as string[]; } catch { return []; } })()
+      : [];
     entries.push({
       type: "namentlich",
       subtype: "gesetz", // namentliche Abstimmungen sind fast immer Gesetze/Anträge
@@ -3103,6 +3136,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       outcome: passed ? "angenommen" : "abgelehnt",
       outcome_label: passed ? "angenommen" : "abgelehnt",
       drucksache_nrn: [],
+      topics,
       poll_id: p.poll_id,
       yes: p.yes, no: p.no, abstain: p.abstain, no_show: p.no_show, total: p.total,
       has_topic_match: p.has_topic_match,
@@ -3140,12 +3174,30 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         ? (() => { try { return JSON.parse(v.drucksache_nrn_json!) as string[]; } catch { return []; } })()
         : [];
       let label: string | null = null;
+      let topics: string[] = [];
       if (dsNrn.length > 0) {
         const row = db.prepare(
-          `SELECT substr(zusammenfassung, 1, 120) AS s FROM drucksache_analyses WHERE drucksache_nr=?`
-        ).get(dsNrn[0]) as { s: string | null } | undefined;
-        if (row?.s) label = row.s;
+          `SELECT kerninhalt, zusammenfassung, thema FROM drucksache_analyses WHERE drucksache_nr=?`
+        ).get(dsNrn[0]) as { kerninhalt: string | null; zusammenfassung: string | null; thema: string | null } | undefined;
+        // 1) Bevorzugt: erste Bullet aus kerninhalt — party-frei, inhaltsfokussiert.
+        if (row?.kerninhalt) {
+          try {
+            const arr = JSON.parse(row.kerninhalt) as string[];
+            if (Array.isArray(arr) && arr.length > 0 && typeof arr[0] === "string") {
+              label = arr[0].trim();
+            }
+          } catch { /* fall through */ }
+        }
+        // 2) Fallback: zusammenfassung, Party-Prefix strippen.
+        if (!label && row?.zusammenfassung) {
+          label = stripPartyPrefix(row.zusammenfassung).slice(0, 180);
+        }
+        // 3) Letzte Stufe: nur DS-Nummer.
         if (!label) label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
+        // Topics aus dem CSV-Feld `thema` (z.B. "Finanzen, Verteidigung, Digitalisierung").
+        if (row?.thema) {
+          topics = row.thema.split(",").map((s) => s.trim()).filter(Boolean);
+        }
       }
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
@@ -3172,6 +3224,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         outcome: oc.o,
         outcome_label: oc.l,
         drucksache_nrn: dsNrn,
+        topics,
         vote_id: v.vote_id,
         modus: v.modus,
         fraktion_votes,
