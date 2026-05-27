@@ -17,7 +17,6 @@ import {
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, FileText, Mic, MessageSquare } from "lucide-react";
-import { GlossarTerm } from "@/components/GlossarTerm";
 import { DrucksacheTonalityBadge } from "@/components/TonalityBadge";
 
 interface Props {
@@ -107,28 +106,6 @@ const partyColorMap: Record<string, string> = {
 function partyColor(label: string | null | undefined): string {
   if (!label) return "#71717a";
   return partyColorMap[label] ?? "#71717a";
-}
-
-/**
- * Mappt dokumenttyp-Freitext oder batch_class auf einen Glossar-Slug.
- */
-function dokumentSlug(batchClass: string, dokumenttyp: string | null): string | null {
-  const t = (dokumenttyp ?? "").toLowerCase();
-  if (t.includes("kleine anfrage")) return "kleine-anfrage";
-  if (t.includes("große anfrage") || t.includes("grosse anfrage")) return "grosse-anfrage";
-  if (t.includes("entschließung") || t.includes("entschliessung")) return "entschliessungsantrag";
-  if (t.includes("antrag")) return "antrag";
-  if (t.includes("gesetzentwurf") || t.includes("gesetz")) return "gesetzentwurf";
-  if (t.includes("unterrichtung")) return "unterrichtung";
-  if (t.includes("bericht")) return "bericht";
-  if (t.includes("empfehlung") || t.includes("beschluss")) return "beschlussempfehlung";
-  if (t.includes("antwort")) return "antwort-bundesregierung";
-  // Fallback per batch_class
-  if (batchClass === "klein") return "kleine-anfrage";
-  if (batchClass === "gross") return "gesetzentwurf";
-  if (batchClass === "antwort") return "antwort-bundesregierung";
-  if (batchClass === "mittel") return "bericht";
-  return null;
 }
 
 // Kerninhalt-Bullet-Type-Annotation (heuristisch, klassen-aware)
@@ -250,19 +227,14 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           {/* Title + Properties */}
           <div className="flex flex-col min-w-0">
             <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2 flex items-baseline gap-1.5 flex-wrap">
-              <GlossarTerm slug="bundestag">Bundestag</GlossarTerm>
+              Bundestag
               <span className="text-zinc-300">·</span>
-              <span>
-                <GlossarTerm slug="wahlperiode">Wahlperiode</GlossarTerm> {dsNrPart1}
-              </span>
+              <span>Wahlperiode {dsNrPart1}</span>
               {ds.dokumenttyp && (
                 <>
                   <span className="text-zinc-300">·</span>
                   <span className="text-zinc-700 normal-case font-normal tracking-normal">
-                    {(() => {
-                      const slug = dokumentSlug(ds.batch_class, ds.dokumenttyp);
-                      return slug ? <GlossarTerm slug={slug}>{ds.dokumenttyp}</GlossarTerm> : ds.dokumenttyp;
-                    })()}
+                    {ds.dokumenttyp}
                   </span>
                 </>
               )}
@@ -286,15 +258,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                     className="inline-block w-2.5 h-2.5 rounded-full"
                     style={{ background: partyColor(tragendeFraktion) }}
                   />
-                  {tragendeFraktion === "Bundesregierung" ? (
-                    <GlossarTerm slug="bundesregierung">
-                      <span className="font-medium">{tragendeFraktion}</span>
-                    </GlossarTerm>
-                  ) : (
-                    <GlossarTerm slug="fraktion">
-                      <span className="font-medium">{tragendeFraktion}</span>
-                    </GlossarTerm>
-                  )}
+                  <span className="font-medium">{tragendeFraktion}</span>
                   <span className="text-zinc-400">
                     {ds.batch_class === "antwort" ? "antwortet" : "eingebracht"}
                   </span>
@@ -423,7 +387,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                <GlossarTerm slug="mitzeichner">Mitgezeichnet</GlossarTerm>
+                Mitgezeichnet
               </h2>
               <span className="num text-[11px] text-zinc-400">{mitzTotal}</span>
             </div>
@@ -465,7 +429,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-2">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                <GlossarTerm slug="berichterstatter">Berichterstatter:innen</GlossarTerm>
+                Berichterstatter:innen
               </h2>
               <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
             </div>
@@ -481,7 +445,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                Im <GlossarTerm slug="plenum">Plenum</GlossarTerm>
+                Im Plenum
               </h2>
               <span className="num text-[11px] text-zinc-400">{relatedSpeeches.length}</span>
             </div>
@@ -729,7 +693,7 @@ function renderSkeletonPage(
           <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                <GlossarTerm slug="mitzeichner">Mitgezeichnet</GlossarTerm>
+                Mitgezeichnet
               </h2>
               <span className="num text-[11px] text-zinc-400">{mitzeichner.length}</span>
             </div>
@@ -753,7 +717,7 @@ function renderSkeletonPage(
           <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-2">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                <GlossarTerm slug="berichterstatter">Berichterstatter:innen</GlossarTerm>
+                Berichterstatter:innen
               </h2>
               <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
             </div>

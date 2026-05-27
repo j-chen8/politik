@@ -2,8 +2,7 @@ import path from "path";
 import fs from "fs";
 import Link from "next/link";
 import { ExternalLink, ArrowLeft, ListTree } from "lucide-react";
-import { TONALITAET_DEFS, REDEN_TYP_DEFS } from "@/lib/glossar";
-import { getMethodikCounts, getRedenTonalitaetByFraktion, getDrucksacheTonalitaetByFraktion } from "@/lib/db";
+import { getMethodikCounts } from "@/lib/db";
 
 const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: string }[] }[] = [
   {
@@ -27,16 +26,13 @@ const TOC_GROUPS: { label: string; items: { id: string; label: string; sub?: str
     items: [
       { id: "plenarbeitrag-typen", label: "Was zählt als was?", sub: "Taxonomie" },
       { id: "reden-pipeline", label: "Reden-Pipeline", sub: "Reden + Vote-Topic" },
-      { id: "glossar-tonalitaet", label: "Glossar — Tonalitäten" },
-      { id: "glossar-redentyp", label: "Glossar — Reden-Typen" },
-      { id: "tonalitaet-verteilung", label: "Tonalitäts-Verteilung", sub: "je Fraktion" },
+      { id: "tonalitaet-caveats", label: "Tonalitäts-Klassifikation", sub: "Grenzen & offene Arbeit" },
       { id: "rede-audit", label: "Audit Rede-Analysen", sub: "20-Sample-Stichprobe" },
     ],
   },
   {
     label: "Voting + Drucksachen",
     items: [
-      { id: "tonalitaet-drucksachen", label: "Tonalität Kleiner Anfragen", sub: "je Fraktion" },
       { id: "vote-drucksache-audit", label: "Vote-↔-Drucksache", sub: "Cross-Source-Audit" },
     ],
   },
@@ -160,59 +156,6 @@ export default function LinearMethodikPage() {
   const counts = getMethodikCounts();
   const typByKey = new Map(counts.speechTypeCounts.map(t => [t.typ, t.count]));
   const sayTyp = (key: string) => (typByKey.get(key) ?? 0).toLocaleString("de-DE");
-
-  // Tonalitäts-Verteilung pro Fraktion (dynamisch aus speech_analyses_v2).
-  // Fraktionen mit politischer Bedeutung zuerst (Sitze in Bundestag, desc),
-  // dann Sonstige (Präsidium, fraktionslos) am Ende.
-  const tonalitaetRaw = getRedenTonalitaetByFraktion();
-  const FRAKTION_ORDER = ["CDU/CSU", "AfD", "SPD", "Grüne", "Linke"];
-  const SONSTIGE_FRAKTIONEN = new Set(["Präsidium / o. Partei", "fraktionslos"]);
-  const tonalitaetByFraktion = [
-    ...FRAKTION_ORDER.map(f => tonalitaetRaw.find(r => r.fraktion === f)).filter(Boolean) as typeof tonalitaetRaw,
-    ...tonalitaetRaw.filter(r => SONSTIGE_FRAKTIONEN.has(r.fraktion)).sort((a, b) => b.total - a.total),
-  ];
-  // Spalten: alle Tonalitäten in Glossar-Reihenfolge, die in min. einer
-  // Fraktion ≥3 % erreichen. Sonst weggelassen (Note unter der Tabelle).
-  const SPALTEN_THRESHOLD = 0.03;
-  const tonalitaetSpalten = TONALITAET_DEFS.filter(def =>
-    tonalitaetByFraktion.some(row =>
-      row.total > 0 && (row.byTonalitaet[def.slug] ?? 0) / row.total >= SPALTEN_THRESHOLD
-    )
-  );
-  const tonalitaetWeggelassen = TONALITAET_DEFS.filter(def =>
-    !tonalitaetSpalten.includes(def)
-  );
-  const tonalitaetTotalSegments = tonalitaetByFraktion.reduce((sum, r) => sum + r.total, 0);
-  const pct = (n: number, total: number) => total === 0 ? "0,0 %" : `${(n / total * 100).toFixed(1).replace(".", ",")} %`;
-
-  // Insights-Zahlen für den Befund-Block (gleicher Datenstand wie die Tabelle).
-  const tonalitaetFor = (fraktion: string, slug: string): number => {
-    const row = tonalitaetByFraktion.find(r => r.fraktion === fraktion);
-    if (!row || row.total === 0) return 0;
-    return (row.byTonalitaet[slug] ?? 0) / row.total;
-  };
-  const insightPct = (share: number) => `${(share * 100).toFixed(1).replace(".", ",")} %`;
-  const insights = {
-    afdPolemischCombined: insightPct(tonalitaetFor("AfD", "polemisch") + tonalitaetFor("AfD", "polemisch_sachlich")),
-    afdSachlich: insightPct(tonalitaetFor("AfD", "sachlich")),
-    cduSachlich: insightPct(tonalitaetFor("CDU/CSU", "sachlich")),
-    spdSachlich: insightPct(tonalitaetFor("SPD", "sachlich")),
-    linkeSozialAnklag: insightPct(tonalitaetFor("Linke", "sozial_anklagend")),
-    linkeKonfront: insightPct(tonalitaetFor("Linke", "konfrontativ_faktenrhetorisch")),
-    grueneKonfront: insightPct(tonalitaetFor("Grüne", "konfrontativ_faktenrhetorisch")),
-    praesidiumDefensiv: insightPct(tonalitaetFor("Präsidium / o. Partei", "defensiv_pragmatisch")),
-  };
-
-  // Drucksachen-Tonalität: nur Kleine Anfragen, nur 3 große Oppositions-
-  // fraktionen mit ≥10 Anfragen (siehe getDrucksacheTonalitaetByFraktion).
-  const dsTonalitaet = getDrucksacheTonalitaetByFraktion();
-  const DS_TONALITAET_DEFS: { slug: string; label: string; short: string }[] = [
-    { slug: "fordernd", label: "fordernd", short: "Klare Forderungen / Handlungsaufrufe an die Bundesregierung." },
-    { slug: "kritisch", label: "kritisch", short: "Vorwürfe, Missstands-Schilderungen, kritische Hinterfragung von Regierungshandeln." },
-    { slug: "sachlich", label: "sachlich", short: "Reine Informations- / Faktenfrage ohne klare Forderung oder Kritik." },
-    { slug: "informierend", label: "informierend", short: "Anfrage stellt eigenes Wissen voran, fordert Bestätigung oder Ergänzung." },
-  ];
-  const dsTotalAnfragen = dsTonalitaet.reduce((s, r) => s + r.total, 0);
 
   return (
     <div className="page-wash min-h-screen">
@@ -716,197 +659,109 @@ export default function LinearMethodikPage() {
           </div>
         </section>
 
-        {/* Glossar — Tonalitäten */}
-        <section id="glossar-tonalitaet" className="mb-14 scroll-mt-20">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
-            Glossar — Tonalitäten
-          </h2>
-          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
-            <p className="text-[12.5px] text-amber-900 leading-relaxed">
-              <strong>Wichtig — was diese Klassifikation bedeutet:</strong> Die
-              Tonalitäten beschreiben die <em>rhetorische Form</em> einer Rede,
-              nicht ihre inhaltliche Berechtigung. „Polemisch" ist keine
-              Wertung der Position; „sachlich" ist keine Bestätigung der Inhalte.
-              Eine polemische Rede kann politisch begründet sein, eine sachliche
-              Rede inhaltlich falsch. Das Label klassifiziert <em>wie</em>{" "}
-              gesprochen wird, nicht <em>was</em> richtig ist.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {TONALITAET_DEFS.map((d) => (
-              <div
-                key={d.slug}
-                id={`glossar-tonalitaet-${d.slug.replace(/_/g, "-")}`}
-                className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
-              >
-                <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">
-                  {d.label}
-                </h3>
-                <p className="text-[13px] text-zinc-700 leading-relaxed">
-                  {d.long}
-                </p>
-                {d.notMeaning && (
-                  <div className="mt-2.5 pt-2.5 border-t border-zinc-100">
-                    <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
-                      Was es nicht bedeutet
-                    </div>
-                    <p className="text-[12.5px] text-zinc-600 leading-relaxed">
-                      {d.notMeaning}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Glossar — Reden-Typen */}
-        <section id="glossar-redentyp" className="mb-14 scroll-mt-20">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
-            Glossar — Reden-Typen (A–K)
-          </h2>
-          <p className="text-[14px] text-zinc-600 leading-relaxed mb-3 max-w-3xl">
-            Ergänzend zur Tonalität klassifizieren wir den <em>Funktionstyp</em>{" "}
-            jeder Rede. Eine einzelne Rede kann mehreren Typen zugeordnet sein
-            (notiert als <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">A+B</code>).
-          </p>
-          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
-            <p className="text-[12.5px] text-amber-900 leading-relaxed">
-              Auch hier gilt: die Typen beschreiben die <em>rhetorische Funktion</em>{" "}
-              einer Rede, nicht ihre Qualität oder inhaltliche Richtigkeit. Etiketten
-              wie „polemisch" oder „bilanzierend" sind deskriptiv gemeint —
-              keine Bewertung der politischen Position.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {REDEN_TYP_DEFS.map((d) => (
-              <div
-                key={d.code}
-                id={`glossar-redentyp-${d.code}`}
-                className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
-              >
-                <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">
-                  <span className="font-mono text-zinc-500 mr-2">{d.code}</span>
-                  {d.label}
-                </h3>
-                <p className="text-[13px] text-zinc-700 leading-relaxed">
-                  {d.long}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Tonalitäts-Verteilung je Fraktion */}
-        <section id="tonalitaet-verteilung" className="mb-14 scroll-mt-20">
+        {/* Tonalitäts-Klassifikation — methodische Grenzen */}
+        <section id="tonalitaet-caveats" className="mb-14 scroll-mt-20">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
-            Tonalitäts-Verteilung je Fraktion
+            Tonalitäts-Klassifikation — Grenzen und offene Arbeit
           </h2>
+          <p className="text-[14px] text-zinc-600 leading-relaxed mb-4 max-w-3xl">
+            Die Definitionen der einzelnen Tonalitäts-Labels stehen im{" "}
+            <Link
+              href="/design/linear/glossar#tonalitaeten-reden"
+              className="text-[#1a3e72] hover:underline underline-offset-2"
+            >
+              Glossar
+            </Link>
+            . Was die Klassifikation empirisch zeigt, steht auf der{" "}
+            <Link
+              href="/design/linear/analyse"
+              className="text-[#1a3e72] hover:underline underline-offset-2"
+            >
+              Analyse-Seite
+            </Link>
+            . Diese Sektion dokumentiert nur, was die Tonalitäts-Klassifikation methodisch{" "}
+            <em>nicht</em> leistet — und welche Folgearbeit ausstehend ist.
+          </p>
 
           <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
             <p className="text-[12.5px] text-amber-900 leading-relaxed">
               <strong>Methodische Limitation vorab:</strong> Die Tonalitäten sind ein
-              LLM-pragmatisches Schema, kein etabliertes politikwissenschaftliches
-              Coding-System (anders als z.B. CMP/Manifesto-Project). Eine
-              <em> Inter-Annotator-Agreement-Studie</em> mit mindestens zwei
-              unabhängigen menschlichen Codierer:innen liegt nicht vor — sie ist
-              offene Folgearbeit. Die folgende Tabelle zeigt, wie <em>dieses Modell</em>{" "}
-              die Reden klassifiziert, nicht, wie sie objektiv einzustufen wären.
-              Konsistenz ist nicht Neutralität.
+              LLM-pragmatisches Schema, kein etabliertes politikwissenschaftliches Coding-System
+              (anders als z.B. CMP/Manifesto-Project). Eine{" "}
+              <em>Inter-Annotator-Agreement-Studie</em> mit mindestens zwei unabhängigen
+              menschlichen Codierer:innen liegt nicht vor — sie ist offene Folgearbeit. Die
+              Klassifikation zeigt, wie <em>dieses Modell</em> die Reden einsortiert, nicht, wie
+              sie objektiv einzustufen wären. Konsistenz ist nicht Neutralität.
             </p>
           </div>
-
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 mb-4 overflow-x-auto">
-            <p className="text-[13px] text-zinc-600 mb-3">
-              Anteil der jeweiligen Tonalität innerhalb der Fraktion. Basis:{" "}
-              <strong className="text-zinc-950">
-                {tonalitaetTotalSegments.toLocaleString("de-DE")} Rede-Segmente aus{" "}
-                {counts.speechDistinctReden.toLocaleString("de-DE")} unterschiedlichen Plenar-Reden
-              </strong>{" "}
-              (eine Rede besteht aus 1–N inhaltlichen Segmenten, jedes mit eigener Tonalitäts-Klassifikation) in{" "}
-              <code className="text-[11.5px] font-mono bg-zinc-100 px-1 rounded">speech_analyses_v2</code>.
-            </p>
-            <table className="text-[12px] w-full">
-              <thead>
-                <tr className="text-left text-[10.5px] uppercase tracking-wider text-zinc-500 border-b border-zinc-200">
-                  <th className="py-2 px-1.5 font-medium">Fraktion</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Segmente</th>
-                  {tonalitaetSpalten.map(def => (
-                    <th key={def.slug} className="py-2 px-1.5 font-medium text-right">{def.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-100 num">
-                {tonalitaetByFraktion.map(row => {
-                  const isSonstige = SONSTIGE_FRAKTIONEN.has(row.fraktion);
-                  return (
-                    <tr key={row.fraktion}>
-                      <td className={`py-1.5 px-1.5${isSonstige ? " text-zinc-500" : ""}`}>{row.fraktion}</td>
-                      <td className="py-1.5 px-1.5 text-right">{row.total.toLocaleString("de-DE")}</td>
-                      {tonalitaetSpalten.map(def => {
-                        const n = row.byTonalitaet[def.slug] ?? 0;
-                        const share = row.total > 0 ? n / row.total : 0;
-                        const highlight = share >= 0.40;
-                        return (
-                          <td
-                            key={def.slug}
-                            className={`py-1.5 px-1.5 text-right${highlight ? " font-semibold text-amber-900" : ""}`}
-                          >{pct(n, row.total)}</td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            {tonalitaetWeggelassen.length > 0 && (
-              <p className="text-[11px] text-zinc-400 mt-2">
-                Tonalitäten{" "}
-                {tonalitaetWeggelassen.map((def, i) => (
-                  <span key={def.slug}>
-                    <em>{def.label}</em>{i < tonalitaetWeggelassen.length - 1 ? ", " : ""}
-                  </span>
-                ))}{" "}
-                mit jeweils &lt; 3 % in allen Fraktionen weggelassen — siehe{" "}
-                <a href="/design/linear/methodik#glossar-tonalitaet" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">Glossar</a>{" "}
-                für alle {TONALITAET_DEFS.length} Werte.
-              </p>
-            )}
-          </div>
-          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
 
           <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 space-y-3 text-[14px] text-zinc-700 leading-relaxed">
             <div>
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen zeigen</div>
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+                Was die Klassifikation nicht zeigt
+              </div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· <strong className="text-zinc-950">AfD:</strong> Kombiniert {insights.afdPolemischCombined} polemisch / polemisch-sachlich; sachlich nur {insights.afdSachlich} vs. {insights.cduSachlich} bei CDU/CSU und {insights.spdSachlich} bei SPD.</li>
-                <li>· <strong className="text-zinc-950">Linke:</strong> {insights.linkeSozialAnklag} sozial-anklagend dominiert (in keiner anderen Fraktion &gt; 3 %); zusätzlich {insights.linkeKonfront} konfrontativ-faktenrhetorisch.</li>
-                <li>· <strong className="text-zinc-950">Grüne:</strong> {insights.grueneKonfront} konfrontativ-faktenrhetorisch dominiert.</li>
-                <li>· <strong className="text-zinc-950">CDU/CSU + SPD:</strong> ähnliche Verteilung über sachlich / konfrontativ-faktenrhetorisch / bilanzierend-werbend / defensiv-pragmatisch — Regierungs-Mitte-Muster.</li>
-                <li>· <strong className="text-zinc-950">Präsidium / Reden ohne Fraktion:</strong> {insights.praesidiumDefensiv} defensiv-pragmatisch (Sitzungsleitung, Regierungsbänke).</li>
-              </ul>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen nicht zeigen</div>
-              <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· Keine Aussage <em>„X % der AfD-Reden sind objektiv polemisch"</em> — nur: <em>„... werden von diesem Modell als polemisch klassifiziert"</em>. Konsistente Vergabe ≠ unbestreitbare Codierung.</li>
-                <li>· Keine Validität gegen ein etabliertes politikwissenschaftliches Coding-Schema (z.B. CMP).</li>
+                <li>
+                  · Keine Aussage <em>„X % der AfD-Reden sind objektiv polemisch"</em> — nur:{" "}
+                  <em>„... werden von diesem Modell als polemisch klassifiziert"</em>. Konsistente
+                  Vergabe ≠ unbestreitbare Codierung.
+                </li>
+                <li>
+                  · Keine Validität gegen ein etabliertes politikwissenschaftliches Coding-Schema
+                  (z.B. CMP).
+                </li>
                 <li>· Keine Inter-Annotator-Agreement-Studie — Cohen's Kappa unbekannt.</li>
-                <li>· <strong className="text-zinc-950">Topic-Confound:</strong> Die Verteilung reflektiert teilweise den <em>Themen-Mix</em> der Fraktion. Wenn eine Fraktion überproportional zu Themen spricht, die das Modell systematisch in eine bestimmte Tonalitäts-Kategorie einordnet (z.B. Migration → polemisch, soziale Ungleichheit → sozial-anklagend), misst die Tabelle teilweise <em>was</em> die Fraktion bespricht, nicht nur <em>wie</em>. Eine themen-kontrollierte Auswertung steht aus.</li>
-                <li>· <strong className="text-zinc-950">Speaker-Identity-Confound:</strong> Es ist unklar, in welchem Maße die Klassifikation die <em>Rhetorik der Rede selbst</em> reflektiert oder die <em>Vorerwartung des Modells an die Sprecher:in</em>. Beispiel: würde dieselbe Rede mit anderem Fraktions-Label anders klassifiziert? Ein Speaker-blind-Sanity-Check (Rede ohne Sprecher-Information durchs Modell) ist offene Folgearbeit.</li>
-                <li>· Klassifikator-Bias möglich: ein auf öffentlichen Daten trainiertes LLM kann systematische Wahrnehmungs-Schiefen reproduzieren.</li>
+                <li>
+                  · <strong className="text-zinc-950">Topic-Confound:</strong> Die Verteilung
+                  reflektiert teilweise den <em>Themen-Mix</em> der Fraktion. Wenn eine Fraktion
+                  überproportional zu Themen spricht, die das Modell systematisch in eine bestimmte
+                  Tonalitäts-Kategorie einordnet (z.B. Migration → polemisch, soziale
+                  Ungleichheit → sozial-anklagend), misst die Klassifikation teilweise{" "}
+                  <em>was</em> die Fraktion bespricht, nicht nur <em>wie</em>. Eine
+                  themen-kontrollierte Auswertung steht aus.
+                </li>
+                <li>
+                  · <strong className="text-zinc-950">Speaker-Identity-Confound:</strong> Es ist
+                  unklar, in welchem Maße die Klassifikation die <em>Rhetorik der Rede selbst</em>{" "}
+                  reflektiert oder die <em>Vorerwartung des Modells an die Sprecher:in</em>.
+                  Beispiel: würde dieselbe Rede mit anderem Fraktions-Label anders klassifiziert?
+                  Ein Speaker-blind-Sanity-Check (Rede ohne Sprecher-Information durchs Modell)
+                  ist offene Folgearbeit.
+                </li>
+                <li>
+                  · Klassifikator-Bias möglich: ein auf öffentlichen Daten trainiertes LLM kann
+                  systematische Wahrnehmungs-Schiefen reproduzieren.
+                </li>
               </ul>
             </div>
 
             <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Offene Folgearbeit</div>
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+                Offene Folgearbeit
+              </div>
               <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· IAA-Studie mit mindestens zwei unabhängigen menschlichen Codierer:innen (Cohen's Kappa).</li>
-                <li>· Cross-Validation gegen ein Modell anderer Familie (Sanity-Check, kein IAA-Ersatz).</li>
-                <li>· <strong className="text-zinc-950">Themen-kontrollierte Auswertung</strong> (Tonalitäts-Verteilung <em>innerhalb desselben Topics</em>, getrennt nach Fraktion) zur Trennung von Themen-Confound und Rhetorik-Confound.</li>
-                <li>· <strong className="text-zinc-950">Speaker-blind-Sanity-Check</strong>: Stichprobe von Reden ohne Fraktions-Information durch dasselbe Modell laufen lassen; Klassifikations-Stabilität messen.</li>
-                <li>· Stichproben-Audit der AfD-Polemisch-Klassifikationen ({insights.afdPolemischCombined}) auf Plausibilität pro Rede.</li>
+                <li>
+                  · IAA-Studie mit mindestens zwei unabhängigen menschlichen Codierer:innen
+                  (Cohen's Kappa).
+                </li>
+                <li>
+                  · Cross-Validation gegen ein Modell anderer Familie (Sanity-Check, kein
+                  IAA-Ersatz).
+                </li>
+                <li>
+                  · <strong className="text-zinc-950">Themen-kontrollierte Auswertung</strong>{" "}
+                  (Tonalitäts-Verteilung <em>innerhalb desselben Topics</em>, getrennt nach
+                  Fraktion) zur Trennung von Themen-Confound und Rhetorik-Confound.
+                </li>
+                <li>
+                  · <strong className="text-zinc-950">Speaker-blind-Sanity-Check</strong>:
+                  Stichprobe von Reden ohne Fraktions-Information durch dasselbe Modell laufen
+                  lassen; Klassifikations-Stabilität messen.
+                </li>
+                <li>
+                  · Stichproben-Audit der polemisch-Klassifikationen mit hohem Volumen auf
+                  Plausibilität pro Rede.
+                </li>
               </ul>
             </div>
           </div>
@@ -989,92 +844,6 @@ export default function LinearMethodikPage() {
         </section>
 
         {/* Tonalität Kleiner Anfragen je Fraktion */}
-        <section id="tonalitaet-drucksachen" className="mb-14 scroll-mt-20">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
-            Tonalität Kleiner Anfragen je Fraktion
-          </h2>
-
-          <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5 max-w-3xl">
-            <p className="text-[12.5px] text-amber-900 leading-relaxed">
-              <strong>Methodische Limitation vorab:</strong> Kleine Anfragen werden
-              fast ausschließlich von <em>Oppositions­fraktionen</em> gestellt — sie
-              sind ein parlamentarisches Kontrollinstrument der Minderheit gegenüber
-              der Regierung. Eine als <em>fordernd</em> oder <em>kritisch</em>{" "}
-              klassifizierte Anfrage ist also weitgehend tautologisch: Opposition
-              fordert oder kritisiert, weil Opposition das tut. Aussagekräftiger als
-              die Anteile <em>zwischen</em> Fraktionen sind die <em>internen
-              Mischungs­verhältnisse</em> — etwa wie viel Sachfrage vs. wie viel
-              Anklage eine Fraktion in ihren Anfragen bündelt.
-            </p>
-          </div>
-
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 mb-4 overflow-x-auto">
-            <p className="text-[13px] text-zinc-600 mb-3">
-              Anteil der jeweiligen Tonalität innerhalb der Fraktion. Basis:{" "}
-              <strong className="text-zinc-950">
-                {dsTotalAnfragen.toLocaleString("de-DE")} Kleine Anfragen
-              </strong>{" "}
-              aus den drei Oppositions­fraktionen mit jeweils ≥10 Anfragen in{" "}
-              <code className="text-[11.5px] font-mono bg-zinc-100 px-1 rounded">drucksache_analyses</code>{" "}
-              (batch_class = klein). Koalitions­anträge und Joint-Anfragen mehrerer
-              Fraktionen sind ausgenommen, weil sie nicht eindeutig einer Fraktion
-              zurechenbar sind.
-            </p>
-            <table className="text-[12px] w-full">
-              <thead>
-                <tr className="text-left text-[10.5px] uppercase tracking-wider text-zinc-500 border-b border-zinc-200">
-                  <th className="py-2 px-1.5 font-medium">Fraktion</th>
-                  <th className="py-2 px-1.5 font-medium text-right">Anfragen</th>
-                  {DS_TONALITAET_DEFS.map(def => (
-                    <th key={def.slug} className="py-2 px-1.5 font-medium text-right">{def.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-100 num">
-                {dsTonalitaet.map(row => (
-                  <tr key={row.fraktion}>
-                    <td className="py-1.5 px-1.5">{row.fraktion}</td>
-                    <td className="py-1.5 px-1.5 text-right">{row.total.toLocaleString("de-DE")}</td>
-                    {DS_TONALITAET_DEFS.map(def => {
-                      const n = row.byTonalitaet[def.slug] ?? 0;
-                      const share = row.total > 0 ? n / row.total : 0;
-                      const highlight = share >= 0.40;
-                      return (
-                        <td
-                          key={def.slug}
-                          className={`py-1.5 px-1.5 text-right${highlight ? " font-semibold text-amber-900" : ""}`}
-                        >{pct(n, row.total)}</td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="sm:hidden text-[10.5px] text-zinc-400 italic text-right mt-1 mb-3 pr-1">↔ Tabelle horizontal scrollen</p>
-
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 space-y-3 text-[14px] text-zinc-700 leading-relaxed">
-            <div>
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Glossar — 4 Tonalitäten Kleiner Anfragen</div>
-              <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                {DS_TONALITAET_DEFS.map(def => (
-                  <li key={def.slug}>· <strong className="text-zinc-950">{def.label}:</strong> {def.short}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="pt-2 border-t border-zinc-100">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Was die Zahlen nicht zeigen</div>
-              <ul className="space-y-1.5 ml-1 text-[13.5px]">
-                <li>· Kein Vergleich mit Koalitions­fraktionen — CDU/CSU und SPD stellen Kleine Anfragen praktisch nicht (sie steuern stattdessen über Regierungskontakt). Diese Tabelle vergleicht damit nur <em>Oppositions-Stile untereinander</em>.</li>
-                <li>· Antworten der Bundesregierung haben eine eigene Tonalitäts-Skala (substantiell / teilantwortend / ausweichend) und sind in einer separaten Analyse erfasst, nicht hier.</li>
-                <li>· „fordernd" ist nicht parteiisch — alle drei Oppositions­fraktionen liegen zwischen ~49 % und ~59 % fordernd. Die Tabelle zeigt damit kein Werturteil, sondern bestätigt, dass das parlamentarische Kontroll­instrument seine Funktion erfüllt.</li>
-                <li>· Keine Inter-Annotator-Agreement-Studie — wie bei der Reden-Tonalität ist die Klassifikator-Konsistenz nicht extern validiert.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Vote-↔-Drucksache Cross-Source-Audit (2026-05-13) */}
         <section id="vote-drucksache-audit" className="mb-14 scroll-mt-20">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">

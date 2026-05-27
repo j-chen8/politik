@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library } from "lucide-react";
 
 /**
  * SiteChrome wraps every page with the matching header & footer for the active
@@ -113,7 +113,9 @@ const PRIMARY_NAV = [
 ];
 
 const MORE_NAV = [
+  { href: "/design/linear/analyse", icon: BarChart3, label: "Analyse" },
   { href: "/design/linear/methodik", icon: BookOpen, label: "Methodik" },
+  { href: "/design/linear/glossar", icon: Library, label: "Glossar" },
   { href: "/design/linear/ueber", icon: Info, label: "Über" },
 ];
 

@@ -1844,6 +1844,64 @@ export function getDrucksacheTonalitaetByFraktion(): {
     .sort((a, b) => b.total - a.total);
 }
 
+// Monats-Trend für Kleine Anfragen pro Hauptsteller-Fraktion. Verwendet
+// MIN(datum) pro Drucksache aus `activities` (da activities mehrere Rows
+// pro Drucksache hat — eine pro Signator:in). Liefert pro Monat den
+// konfrontativ-Anteil (fordernd+kritisch) und das absolute Volumen.
+export function getDrucksacheMonthlyTrend(): {
+  monat: string;
+  byFraktion: Record<string, { ka_n: number; konfront_pct: number; sachlich_pct: number }>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    WITH first_dates AS (
+      SELECT drucksache_nr, MIN(datum) AS datum
+      FROM activities WHERE datum IS NOT NULL
+      GROUP BY drucksache_nr
+    )
+    SELECT
+      substr(fd.datum, 1, 7) AS monat,
+      TRIM(REPLACE(REPLACE(da.fraktion, char(10), ''), char(13), '')) AS fraktion,
+      SUM(CASE WHEN da.tonalitaet IN ('fordernd','kritisch') THEN 1 ELSE 0 END) AS konfront,
+      SUM(CASE WHEN da.tonalitaet = 'sachlich' THEN 1 ELSE 0 END) AS sachlich,
+      COUNT(*) AS ka_n
+    FROM drucksache_analyses da
+    JOIN first_dates fd ON fd.drucksache_nr = da.drucksache_nr
+    WHERE da.batch_class = 'klein' AND da.tonalitaet IS NOT NULL
+      AND da.fraktion IS NOT NULL AND da.fraktion != ''
+    GROUP BY monat, fraktion
+    ORDER BY monat
+  `).all() as { monat: string; fraktion: string; konfront: number; sachlich: number; ka_n: number }[];
+
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "BÜNDNIS 90/Die GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+  };
+  const ALLOWED = new Set(["CDU/CSU", "AfD", "SPD", "Grüne", "Linke"]);
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+
+  const byMonat = new Map<string, Record<string, { ka_n: number; konfront_pct: number; sachlich_pct: number }>>();
+  for (const r of rows) {
+    const cleaned = normalize(r.fraktion);
+    const fraktion = FRAKTION_LABEL[cleaned];
+    if (!fraktion || !ALLOWED.has(fraktion)) continue;
+    if (!byMonat.has(r.monat)) byMonat.set(r.monat, {});
+    byMonat.get(r.monat)![fraktion] = {
+      ka_n: r.ka_n,
+      konfront_pct: r.ka_n > 0 ? (r.konfront / r.ka_n) * 100 : 0,
+      sachlich_pct: r.ka_n > 0 ? (r.sachlich / r.ka_n) * 100 : 0,
+    };
+  }
+
+  return Array.from(byMonat.entries())
+    .map(([monat, byFraktion]) => ({ monat, byFraktion }))
+    .sort((a, b) => a.monat.localeCompare(b.monat));
+}
+
 // Speakers with per-Typ breakdown. Pass `limit = 0` to get all.
 export function getTopSpeakersWithBreakdown(limit = 15): {
   speaker: string;

@@ -33,7 +33,7 @@ export function TonalityBadge({ slug }: TonalityBadgeProps) {
       notMeaning={def.notMeaning}
       color={colors.color}
       bg={colors.bg}
-      glossarAnchor={`/design/linear/methodik#glossar-tonalitaet-${slug.replace(/_/g, "-")}`}
+      glossarAnchor={`/design/linear/glossar#tonalitaeten-reden-${slug.replace(/_/g, "-")}`}
       variant="tonalitaet"
     />
   );
@@ -71,7 +71,7 @@ export function RedenTypBadge({ code }: RedenTypBadgeProps) {
       definition={definition}
       color="#52525b"
       bg="#f4f4f5"
-      glossarAnchor={primary ? `/design/linear/methodik#glossar-redentyp-${primary}` : undefined}
+      glossarAnchor={primary ? `/design/linear/glossar#reden-typen-${primary}` : undefined}
       variant="redentyp"
     />
   );
@@ -103,7 +103,7 @@ export function DrucksacheTonalityBadge({ slug }: DrucksacheTonalityBadgeProps) 
       notMeaning={def.notMeaning}
       color={colors.color}
       bg={colors.bg}
-      glossarAnchor="/design/linear/methodik#tonalitaet-drucksachen"
+      glossarAnchor={`/design/linear/glossar#tonalitaeten-drucksachen-${slug}`}
       variant="tonalitaet"
     />
   );

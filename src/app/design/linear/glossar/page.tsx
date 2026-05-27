@@ -1,33 +1,69 @@
 import Link from "next/link";
 import { ArrowLeft, ListTree } from "lucide-react";
-import { POLITIK_GLOSSAR, POLITIK_GLOSSAR_MAP, type PolitikGlossarEntry } from "@/lib/politik-glossar";
+import { TONALITAET_DEFS, REDEN_TYP_DEFS } from "@/lib/glossar";
 
-const categoryMeta: Record<PolitikGlossarEntry["category"], { label: string; eyebrow: string }> = {
-  struktur: { label: "Strukturen", eyebrow: "Wo Politik passiert" },
-  personen: { label: "Personen", eyebrow: "Wer Politik macht" },
-  dokument: { label: "Dokumente", eyebrow: "Was Politik produziert" },
-  verfahren: { label: "Verfahren", eyebrow: "Wie Politik abläuft" },
-};
+// Drucksachen-Tonalitäten (separates Schema vs. Reden-Tonalitäten).
+interface DrucksacheTonDef {
+  slug: string;
+  label: string;
+  long: string;
+  notMeaning?: string;
+}
 
-const categoryOrder: PolitikGlossarEntry["category"][] = ["struktur", "personen", "dokument", "verfahren"];
+const DRUCKSACHEN_TONALITAETEN: DrucksacheTonDef[] = [
+  {
+    slug: "fordernd",
+    label: "fordernd",
+    long:
+      "Die Anfrage enthält klare Forderungen oder Handlungsaufrufe an die Bundesregierung. Die Fragestellung verlangt explizit eine Reaktion, Maßnahme oder Positionierung.",
+    notMeaning:
+      "Bedeutet nicht „berechtigte Forderung“. Das Label markiert die Form der Fragestellung, nicht die politische Plausibilität des Anliegens.",
+  },
+  {
+    slug: "kritisch",
+    label: "kritisch",
+    long:
+      "Die Anfrage enthält Vorwürfe, Missstands-Schilderungen oder eine kritische Hinterfragung von Regierungshandeln. Die Vorbemerkung oder die Fragestellung selbst signalisieren eine deutliche Skepsis gegenüber dem Regierungs-Vorgehen.",
+    notMeaning:
+      "Bedeutet nicht „die Kritik trifft zu“. Das Label markiert die kritische Stoßrichtung, nicht die Berechtigung der Kritik.",
+  },
+  {
+    slug: "sachlich",
+    label: "sachlich",
+    long:
+      "Reine Informations- oder Faktenfrage ohne klare Forderung oder Kritik. Die Anfrage stellt offene Fragen zu Daten, Sachverhalten oder Zuständigkeiten, ohne eine eigene Bewertung vorzunehmen.",
+    notMeaning:
+      "Bedeutet nicht „politisch neutral“ oder „ohne Anliegen“. Die Themenwahl einer sachlichen Anfrage kann politisch motiviert sein — das Label bewertet nur die Formulierung, nicht den Themen-Hintergrund.",
+  },
+  {
+    slug: "informierend",
+    label: "informierend",
+    long:
+      "Die Anfrage stellt eigenes Wissen voran (z. B. eine Beobachtung, eine vorliegende Statistik, einen Bericht) und fordert Bestätigung, Ergänzung oder Stellungnahme von der Bundesregierung.",
+    notMeaning:
+      "Bedeutet nicht „die vorangestellten Informationen sind korrekt“. Das Label markiert die Frageform (eigenes Wissen + Rückfrage), nicht die Verlässlichkeit des vorgebrachten Inhalts.",
+  },
+];
 
-// Gruppieren für TOC
-const grouped = POLITIK_GLOSSAR.reduce<Record<string, PolitikGlossarEntry[]>>((acc, e) => {
-  (acc[e.category] = acc[e.category] || []).push(e);
-  return acc;
-}, {});
-
-const TOC_GROUPS = categoryOrder
-  .filter((c) => grouped[c] && grouped[c].length > 0)
-  .map((c) => ({
-    label: categoryMeta[c].label,
-    anchor: `cat-${c}`,
-    items: grouped[c].map((e) => ({ id: e.slug, label: e.term })),
-  }));
+const TOC_GROUPS = [
+  {
+    label: "Klassifikations-Labels",
+    anchor: "klassifikation",
+    items: [
+      { id: "tonalitaeten-reden", label: `Tonalitäten — Plenarreden (${TONALITAET_DEFS.length})` },
+      { id: "reden-typen", label: `Reden-Typen (${REDEN_TYP_DEFS.length})` },
+      {
+        id: "tonalitaeten-drucksachen",
+        label: `Tonalitäten — Kleine Anfragen (${DRUCKSACHEN_TONALITAETEN.length})`,
+      },
+    ],
+  },
+];
 
 export const metadata = {
-  title: "Glossar — Politik in 25 Begriffen | Politik-Radar",
-  description: "Bürgerverständliche Erklärungen zu allem, was in einer politischen Drucksache vorkommen kann.",
+  title: "Glossar — Klassifikations-Labels | Politik-Radar",
+  description:
+    "Definitionen der Klassifikations-Labels, mit denen die Plattform Plenarreden und Kleine Anfragen einsortiert.",
 };
 
 export default function GlossarPage() {
@@ -58,75 +94,157 @@ export default function GlossarPage() {
             {/* Hero */}
             <div className="mb-12">
               <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
-                Bürgerverständlich
+                Klassifikations-Labels
               </span>
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mt-2 mb-4">
-                Politik in {POLITIK_GLOSSAR.length} Begriffen.
+                Glossar
               </h1>
               <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
-                Wenn dir auf einer Drucksachen-Seite ein Begriff begegnet, den du nicht kennst —
-                schau hier nach. Bürgerverständliche Erklärungen zu allem, was in einer politischen
-                Drucksache vorkommen kann. Verwandte Begriffe sind verlinkt.
+                Definitionen der Labels, mit denen die Plattform Plenarreden und Kleine Anfragen
+                einsortiert: Tonalitäten und Reden-Typen. Jede Definition wird ergänzt um einen{" "}
+                <em>Was es nicht bedeutet</em>-Hinweis — die Labels sind Stil- oder
+                Funktions-Beschreibungen, keine Wahrheits- oder Wertungs-Urteile.
+              </p>
+              <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
+                Wie zuverlässig die Klassifikation ist — siehe{" "}
+                <Link
+                  href="/design/linear/methodik"
+                  className="text-[#1a3e72] hover:underline underline-offset-2"
+                >
+                  Methodik
+                </Link>
+                . Was die Daten unter diesen Labels zeigen — siehe{" "}
+                <Link
+                  href="/design/linear/analyse"
+                  className="text-[#1a3e72] hover:underline underline-offset-2"
+                >
+                  Analyse
+                </Link>
+                .
               </p>
             </div>
 
-            {/* Kategorien */}
-            {categoryOrder.map((cat) => {
-              const items = grouped[cat];
-              if (!items || items.length === 0) return null;
-              return (
-                <section key={cat} id={`cat-${cat}`} className="mb-14 scroll-mt-20">
-                  <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
-                    {categoryMeta[cat].eyebrow}
-                  </div>
-                  <h2 className="text-[24px] font-semibold tracking-[-0.025em] text-zinc-950 mb-7">
-                    {categoryMeta[cat].label}
-                  </h2>
-                  <div className="space-y-7">
-                    {items.map((e) => (
-                      <article key={e.slug} id={e.slug} className="scroll-mt-20">
-                        <h3 className="text-[18px] font-semibold text-zinc-950 mb-2">
-                          {e.term}
-                        </h3>
-                        <p className="text-[14.5px] text-zinc-700 leading-relaxed mb-2.5">
-                          {e.short}
+            {/* Tonalitäten Reden */}
+            <section id="tonalitaeten-reden" className="mb-14 scroll-mt-20">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+                Tonalitäten — Plenarreden ({TONALITAET_DEFS.length})
+              </h2>
+              <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5">
+                <p className="text-[12.5px] text-amber-900 leading-relaxed">
+                  <strong>Wichtig:</strong> Die Tonalitäten beschreiben die{" "}
+                  <em>rhetorische Form</em> einer Rede, nicht ihre inhaltliche Berechtigung.
+                  „Polemisch" ist keine Wertung der Position; „sachlich" ist keine Bestätigung der
+                  Inhalte. Das Label klassifiziert <em>wie</em> gesprochen wird, nicht{" "}
+                  <em>was</em> richtig ist.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {TONALITAET_DEFS.map((d) => (
+                  <div
+                    key={d.slug}
+                    id={`tonalitaeten-reden-${d.slug.replace(/_/g, "-")}`}
+                    className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
+                  >
+                    <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">{d.label}</h3>
+                    <p className="text-[13px] text-zinc-700 leading-relaxed">{d.long}</p>
+                    {d.notMeaning && (
+                      <div className="mt-2.5 pt-2.5 border-t border-zinc-100">
+                        <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
+                          Was es nicht bedeutet
+                        </div>
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed">
+                          {d.notMeaning}
                         </p>
-                        {e.example && (
-                          <p className="text-[13px] text-zinc-500 border-l-2 border-zinc-200 pl-3 italic mb-2.5">
-                            {e.example}
-                          </p>
-                        )}
-                        {e.related && e.related.length > 0 && (
-                          <div className="text-[11.5px] text-zinc-400">
-                            Verwandt:{" "}
-                            {e.related.map((relSlug, idx) => {
-                              const rel = POLITIK_GLOSSAR_MAP[relSlug];
-                              if (!rel) return null;
-                              return (
-                                <span key={relSlug}>
-                                  {idx > 0 && <span className="text-zinc-300"> · </span>}
-                                  <a
-                                    href={`#${rel.slug}`}
-                                    className="text-zinc-500 hover:text-zinc-950 underline underline-offset-2 decoration-zinc-300 hover:decoration-zinc-700"
-                                  >
-                                    {rel.term}
-                                  </a>
-                                </span>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </article>
-                    ))}
+                      </div>
+                    )}
                   </div>
-                </section>
-              );
-            })}
+                ))}
+              </div>
+            </section>
+
+            {/* Reden-Typen */}
+            <section id="reden-typen" className="mb-14 scroll-mt-20">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+                Reden-Typen (A–K)
+              </h2>
+              <p className="text-[14px] text-zinc-600 leading-relaxed mb-3 max-w-3xl">
+                Ergänzend zur Tonalität klassifizieren wir den <em>Funktionstyp</em> jeder Rede.
+                Eine einzelne Rede kann mehreren Typen zugeordnet sein (notiert als{" "}
+                <code className="text-[12px] font-mono bg-zinc-100 px-1 rounded">A+B</code>).
+              </p>
+              <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-5">
+                <p className="text-[12.5px] text-amber-900 leading-relaxed">
+                  Auch hier gilt: die Typen beschreiben die <em>rhetorische Funktion</em> einer
+                  Rede, nicht ihre Qualität oder inhaltliche Richtigkeit.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {REDEN_TYP_DEFS.map((d) => (
+                  <div
+                    key={d.code}
+                    id={`reden-typen-${d.code}`}
+                    className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
+                  >
+                    <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">
+                      <span className="font-mono text-zinc-500 mr-2">{d.code}</span>
+                      {d.label}
+                    </h3>
+                    <p className="text-[13px] text-zinc-700 leading-relaxed">{d.long}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Tonalitäten Drucksachen */}
+            <section id="tonalitaeten-drucksachen" className="mb-14 scroll-mt-20">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+                Tonalitäten — Kleine Anfragen ({DRUCKSACHEN_TONALITAETEN.length})
+              </h2>
+              <p className="text-[14px] text-zinc-600 leading-relaxed mb-3 max-w-3xl">
+                Für Kleine Anfragen verwendet die Plattform ein eigenes, schlankeres Schema (vier
+                Klassen), weil ihre rhetorische Form deutlich strukturierter ist als bei
+                Plenarreden. Die Tonalität bezieht sich auf die{" "}
+                <em>Formulierung der Anfrage</em>, nicht auf das angefragte Thema.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {DRUCKSACHEN_TONALITAETEN.map((d) => (
+                  <div
+                    key={d.slug}
+                    id={`tonalitaeten-drucksachen-${d.slug}`}
+                    className="bg-white border border-zinc-200/70 rounded-xl p-4 scroll-mt-24 [&:target]:ring-2 [&:target]:ring-zinc-900 [&:target]:border-zinc-900 transition-all"
+                  >
+                    <h3 className="text-[13px] font-semibold text-zinc-950 mb-1.5">{d.label}</h3>
+                    <p className="text-[13px] text-zinc-700 leading-relaxed">{d.long}</p>
+                    {d.notMeaning && (
+                      <div className="mt-2.5 pt-2.5 border-t border-zinc-100">
+                        <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
+                          Was es nicht bedeutet
+                        </div>
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed">
+                          {d.notMeaning}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Berlin-Hinweis */}
+            <div className="text-[12.5px] text-zinc-500 leading-relaxed border-t border-zinc-200 pt-6 mt-8">
+              <strong className="text-zinc-700">Berliner Abgeordnetenhaus:</strong> Der Berliner
+              Landtags-Bereich nutzt ein eigenes, empirisch entwickeltes Tonalitäts- und
+              Typ-Schema (11 Tonalitäten + Typ L). Die Definitionen dafür stehen aktuell in{" "}
+              <code className="text-[11.5px] font-mono bg-zinc-100 px-1 rounded">
+                docs/methodology-berlin.md
+              </code>
+              ; eine eigene UI-Glossar-Sektion für Berlin folgt separat.
+            </div>
 
             {/* Footer */}
             <div className="text-[11.5px] text-zinc-400 leading-relaxed border-t border-zinc-200 pt-6 mt-8">
-              Alle Erklärungen sind bürgerverständlich formuliert und zielen auf eine erste Orientierung.
-              Für rechtliche Detailfragen sind die Geschäftsordnung des Bundestages und das Grundgesetz maßgeblich.
+              Klassifikations-Labels sind Stil- und Funktions-Beschreibungen aus der LLM-gestützten
+              Analyse — siehe Methodik für Grenzen.
             </div>
           </main>
 
