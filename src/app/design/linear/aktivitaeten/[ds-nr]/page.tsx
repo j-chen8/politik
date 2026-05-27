@@ -11,6 +11,7 @@ import {
   getBundestagDsHandzeichenVotes,
   getVotesReferencingDs,
   getPlenarContextForDs,
+  getDsParsedDetails,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
@@ -19,6 +20,7 @@ import {
   type BundestagDsHandzeichenVote,
   type DsVoteSummary,
   type DsPlenarContext,
+  type DsParsedDetails,
 } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -157,7 +159,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
     const berichterstatter = getBerichterstatterForDrucksache(dsNr);
     const referencingVotes = getVotesReferencingDs(dsNr);
     const plenarContext = getPlenarContextForDs(dsNr, skeleton.titel);
-    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes, plenarContext);
+    const parsedDetails = getDsParsedDetails(dsNr);
+    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes, plenarContext, parsedDetails);
   }
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
@@ -638,6 +641,7 @@ function renderSkeletonPage(
   berichterstatter: MitzeichnerRow[],
   referencingVotes: DsVoteSummary[] = [],
   plenarContext: DsPlenarContext[] = [],
+  parsedDetails: DsParsedDetails | null = null,
 ) {
   const datumFormatted = formatDate(skeleton.datum);
   const fraktionCounts = new Map<string, number>();
@@ -761,6 +765,134 @@ function renderSkeletonPage(
               Diese Verbindung kommt aus dem Plenarprotokoll der Sitzung — wir scannen
               alle PlPr-XMLs auf Abstimmungs-Snippets und ordnen sie der Drucksache zu.
             </p>
+          </section>
+        )}
+
+        {parsedDetails?.pattern === "sammeluebersicht" && parsedDetails.total_petitionen > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+              Petitions-Sammelübersicht {parsedDetails.nummer}
+            </h2>
+            <p className="text-[14px] text-zinc-800 leading-relaxed mb-4">
+              <span className="num font-medium text-zinc-950">{parsedDetails.total_petitionen}</span>{" "}
+              Bürger-Petitionen — vom Petitionsausschuss in dieser Sammelübersicht behandelt.
+            </p>
+
+            {parsedDetails.top_themen.length > 0 && (
+              <div className="mb-5">
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+                  Top-Themen
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {parsedDetails.top_themen.map((t) => (
+                    <span
+                      key={t.thema}
+                      className="inline-flex items-center gap-1 text-[12px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-700"
+                    >
+                      <span>{t.thema}</span>
+                      <span className="num text-zinc-500">×{t.count}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div>
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+                Beschlussempfehlungen
+              </div>
+              <ul className="space-y-3">
+                {parsedDetails.beschlussempfehlungen.map((be) => (
+                  <li
+                    key={be.nummer}
+                    className="border-l-2 border-zinc-200 pl-3 py-1"
+                  >
+                    <div className="text-[12.5px] text-zinc-700 leading-relaxed mb-1.5">
+                      <span className="font-semibold text-zinc-950">BE {be.nummer}:</span>{" "}
+                      {be.aktion}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                      <span className="text-zinc-500 num">
+                        {be.petitionen_count}{" "}
+                        {be.petitionen_count === 1 ? "Petition" : "Petitionen"}
+                      </span>
+                      {be.themen.slice(0, 4).map((t) => (
+                        <span
+                          key={t.thema}
+                          className="inline-flex items-center gap-0.5 text-[11px] text-zinc-600"
+                        >
+                          ·{" "}
+                          <span>{t.thema}</span>
+                          {t.count > 1 && (
+                            <span className="num text-zinc-400">×{t.count}</span>
+                          )}
+                        </span>
+                      ))}
+                      {be.themen.length > 4 && (
+                        <span className="text-[11px] text-zinc-400">
+                          + {be.themen.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="text-[11.5px] text-zinc-400 mt-4 leading-relaxed">
+              Themen automatisch aus dem PDF extrahiert (deterministischer
+              Parser). Bei Themen die über zwei Zeilen umgebrochen sind, kann
+              die Zuordnung leicht unscharf werden — Original-Tabelle siehe PDF.
+            </p>
+          </section>
+        )}
+
+        {parsedDetails?.pattern === "verfahren" && (parsedDetails.beschluss_klausel || parsedDetails.antragsteller.length > 0) && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+              Beschluss-Vorschlag
+            </h2>
+            {parsedDetails.beschluss_klausel && (
+              <blockquote className="text-[14px] text-zinc-800 leading-relaxed border-l-2 border-zinc-300 pl-4 mb-4">
+                {parsedDetails.beschluss_klausel}
+              </blockquote>
+            )}
+            {parsedDetails.antragsteller.length > 0 && (
+              <div>
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+                  Eingebracht von
+                </div>
+                <ul className="space-y-0.5 text-[13px] text-zinc-700">
+                  {parsedDetails.antragsteller.map((a) => (
+                    <li key={a}>· {a}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
+        {parsedDetails?.pattern === "wahlvorschlag" && parsedDetails.total_mitglieder > 0 && (
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+              Vorgeschlagene Sitzverteilung
+            </h2>
+            <p className="text-[13px] text-zinc-700 mb-3">
+              <span className="num font-medium text-zinc-950">{parsedDetails.total_mitglieder}</span>{" "}
+              Personen über{" "}
+              <span className="num font-medium text-zinc-950">{parsedDetails.fraktion_sitze.length}</span>{" "}
+              Fraktion{parsedDetails.fraktion_sitze.length === 1 ? "" : "en"}.
+            </p>
+            <ul className="space-y-1.5">
+              {parsedDetails.fraktion_sitze.map((f) => (
+                <li
+                  key={f.fraktion}
+                  className="flex items-baseline justify-between gap-3 text-[13px]"
+                >
+                  <span className="text-zinc-800">{f.fraktion}</span>
+                  <span className="num font-medium text-zinc-950">{f.mitglieder}</span>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 

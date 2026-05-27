@@ -3685,6 +3685,47 @@ function extractTitleKeywords(title: string): string[] {
   );
 }
 
+/** Strukturierte PDF-Parser-Ergebnisse aus `dip_ds_details` für eine DS.
+ *  Wird auf der Stub-Detail-Seite gerendert (Sammelübersicht-Themen,
+ *  Verfahrens-Beschluss-Klausel etc.). */
+export type DsParsedDetails =
+  | {
+      pattern: "sammeluebersicht";
+      nummer: number;
+      total_petitionen: number;
+      top_themen: Array<{ thema: string; count: number }>;
+      beschlussempfehlungen: Array<{
+        nummer: number;
+        aktion: string;
+        petitionen_count: number;
+        themen: Array<{ thema: string; count: number }>;
+      }>;
+    }
+  | {
+      pattern: "verfahren";
+      beschluss_klausel: string;
+      antragsteller: string[];
+    }
+  | {
+      pattern: "wahlvorschlag";
+      total_mitglieder: number;
+      fraktion_sitze: Array<{ fraktion: string; mitglieder: number }>;
+    }
+  | { pattern: "substantiell" | "unknown" };
+
+export function getDsParsedDetails(dsNr: string): DsParsedDetails | null {
+  const db = getDb();
+  try {
+    const row = db.prepare(
+      `SELECT details_json FROM dip_ds_details WHERE drucksache_nr = ?`,
+    ).get(dsNr) as { details_json: string } | undefined;
+    if (!row) return null;
+    return JSON.parse(row.details_json) as DsParsedDetails;
+  } catch {
+    return null;
+  }
+}
+
 /** Findet die Plenardebatte zu einer Drucksache: für jede Vote-Sitzung, in der
  *  diese DS abgestimmt wurde, suche TOPs deren Reden Schlüsselbegriffe aus dem
  *  DIP-Titel erwähnen. Liefert die wahrscheinlichste Aussprache pro Sitzung —
