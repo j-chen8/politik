@@ -411,16 +411,29 @@ async function main() {
   const limitIdx = argv.indexOf("--limit");
   const limit = limitIdx >= 0 ? parseInt(argv[limitIdx + 1], 10) : Infinity;
 
+  // Worklist: alle DS die in bundestag_votes referenziert sind UND noch keine
+  // parsed_details haben. Das umfasst:
+  //  (a) DIP-only DS (aus dip_ds_titles)
+  //  (b) DS mit Boilerplate-Analyse ("Sammelübersicht N des Petitionsausschusses
+  //      mit X behandelten Petitionen") — diese sind in drucksache_analyses,
+  //      aber der Inhalt der bisherigen LLM-Pipeline ist nichtssagend.
   const targets = db.prepare(`
-    SELECT drucksache_nr FROM dip_ds_titles
-    WHERE drucksache_nr NOT IN (SELECT drucksache_nr FROM dip_ds_details)
-    ORDER BY drucksache_nr
-  `).all() as Array<{ drucksache_nr: string }>;
+    SELECT DISTINCT ds FROM (
+      SELECT drucksache_nr AS ds FROM dip_ds_titles
+      UNION ALL
+      SELECT drucksache_nr AS ds FROM drucksache_analyses
+        WHERE zusammenfassung LIKE 'Sammelübersicht%des Petitionsausschusses%'
+    )
+    WHERE ds NOT IN (SELECT drucksache_nr FROM dip_ds_details)
+    ORDER BY ds
+  `).all() as Array<{ ds: string }>;
 
-  console.log(`=== Parse ${Math.min(targets.length, limit)} von ${targets.length} DIP-only DS ===\n`);
+  const normalized = targets.map((t) => ({ drucksache_nr: t.ds }));
+
+  console.log(`=== Parse ${Math.min(normalized.length, limit)} von ${normalized.length} DS (DIP-only + Boilerplate-Petitionen) ===\n`);
 
   let ok = 0, miss = 0;
-  for (const t of targets.slice(0, limit)) {
+  for (const t of normalized.slice(0, limit)) {
     const buf = await fetchPdf(t.drucksache_nr);
     if (!buf) {
       console.log(`  ${t.drucksache_nr}: PDF nicht erreichbar`);
