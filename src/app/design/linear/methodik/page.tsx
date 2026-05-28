@@ -707,6 +707,20 @@ export default function LinearMethodikPage() {
                   Vergabe ≠ unbestreitbare Codierung.
                 </li>
                 <li>
+                  · <strong className="text-zinc-950">Nur Text, keine Prosodie:</strong> Die
+                  Tonalität wird allein aus dem geschriebenen Wortlaut abgeleitet — Betonung,
+                  Lautstärke, Ironie und Sprechtempo der tatsächlich gehaltenen Rede fließen nicht
+                  ein, obwohl sie einen großen Teil der real wahrgenommenen „Tonalität" ausmachen.
+                </li>
+                <li>
+                  · <strong className="text-zinc-950">Geglättetes Protokoll:</strong> Das
+                  stenografische Protokoll ist kein wörtliches Transkript — Abgeordnete können ihren
+                  Redebeitrag vor der Veröffentlichung redaktionell „glätten". Die Klassifikation
+                  bezieht sich also auf die <em>nachbearbeitete schriftliche Fassung</em>, nicht
+                  zwingend auf das exakt Gesprochene. Diese Validitätslücke besteht bereits{" "}
+                  <em>vor</em> der LLM-Einordnung.
+                </li>
+                <li>
                   · Keine Validität gegen ein etabliertes politikwissenschaftliches Coding-Schema
                   (z.B. CMP).
                 </li>
