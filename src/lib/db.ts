@@ -376,6 +376,137 @@ export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] 
     .all(term, term, term, ...VISIBLE_PARLIAMENT_TYPE_VALUES, limit) as PoliticianRow[];
 }
 
+export interface BundestagLandingSnapshot {
+  latestSitzung: {
+    sitzung: number;
+    datum: string;
+    redenCount: number;
+    plpr: string;
+  } | null;
+  latestVotes: VoteIndexEntry[];
+  /** Drucksachen-Zusammenfassung je Vote (key = VoteIndexEntry.id), wo verfügbar. */
+  voteSummaries: Record<string, string | null>;
+  latestGesetzentwuerfe: {
+    drucksacheNr: string;
+    titel: string;
+    zusammenfassung: string | null;
+    datum: string | null;
+    einbringer: string | null;
+  }[];
+  latestAnfragen: {
+    drucksacheNr: string;
+    titel: string;
+    zusammenfassung: string | null;
+    datum: string | null;
+    fraktion: string | null;
+  }[];
+}
+
+/**
+ * Landing-Snapshot für die Bundestag-Hauptseite — symmetrisch zu getBerlinSnapshot:
+ * letzte Plenarsitzung + aktuelle Abstimmungen + Gesetzentwürfe + Kleine Anfragen.
+ */
+export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
+  const db = getDb();
+
+  // 1. Letzte Plenarsitzung
+  const sess = db
+    .prepare(
+      `SELECT id, wahlperiode, sitzung, datum FROM plenar_sessions
+       WHERE datum IS NOT NULL AND datum != '' ORDER BY datum DESC, sitzung DESC LIMIT 1`
+    )
+    .get() as { id: number; wahlperiode: number; sitzung: number; datum: string } | undefined;
+  let latestSitzung: BundestagLandingSnapshot["latestSitzung"] = null;
+  if (sess) {
+    const redenCount = (db
+      .prepare(`SELECT COUNT(*) AS c FROM plenar_speeches WHERE session_id = ?`)
+      .get(sess.id) as { c: number }).c;
+    latestSitzung = {
+      sitzung: sess.sitzung,
+      datum: sess.datum,
+      redenCount,
+      plpr: `${sess.wahlperiode}/${sess.sitzung}`,
+    };
+  }
+
+  // 2. Aktuelle Abstimmungen — GLEICHE Quelle wie /abstimmungen: listAllVotesForIndex
+  //    vereint namentliche (Tabelle votes) + Handzeichen (bundestag_votes), nach Datum
+  //    sortiert. Petition/Personenwahl wie auf der Liste per Default raus. Top-5 =
+  //    exakt die obersten der Abstimmungs-Liste (Konsistenz Landing ↔ /abstimmungen).
+  const latestVotes = listAllVotesForIndex()
+    .filter((v) => v.subtype !== "petition" && v.subtype !== "personenwahl")
+    .slice(0, 5);
+  // Zusammenfassung je Vote — füllt die Karte. Bevorzugt der Abstimmungs-Kontext
+  // „Worum geht es?" (vote_context, nur namentliche Polls), sonst die Zusammenfassung
+  // der verknüpften Drucksache (für Handzeichen-Votes).
+  const voteSummaries: Record<string, string | null> = {};
+  for (const v of latestVotes) {
+    let summ: string | null = null;
+    if (v.type === "namentlich") {
+      summ = (db
+        .prepare(`SELECT worum_geht_es FROM vote_context WHERE poll_id = ? LIMIT 1`)
+        .get(v.poll_id) as { worum_geht_es: string | null } | undefined)?.worum_geht_es ?? null;
+    }
+    if (!summ) {
+      const nr = v.drucksache_nrn[0];
+      summ = nr
+        ? (db
+            .prepare(`SELECT zusammenfassung FROM drucksache_analyses WHERE drucksache_nr=? LIMIT 1`)
+            .get(nr) as { zusammenfassung: string | null } | undefined)?.zusammenfassung ?? null
+        : null;
+    }
+    voteSummaries[v.id] = summ;
+  }
+
+  // 3+4. Drucksachen pro Klasse (gross = Gesetzentwurf, klein = Kleine Anfrage)
+  const drucksByKlasse = (klasse: string) =>
+    (db
+      .prepare(
+        `SELECT da.drucksache_nr, da.zusammenfassung, da.fraktion,
+                COALESCE(
+                  (SELECT thema FROM activities WHERE drucksache_nr=da.drucksache_nr AND thema IS NOT NULL LIMIT 1),
+                  (SELECT titel FROM activities WHERE drucksache_nr=da.drucksache_nr AND titel IS NOT NULL LIMIT 1)
+                ) AS titel,
+                (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
+         FROM drucksache_analyses da
+         WHERE da.batch_class = ? AND da.analyze_error IS NULL
+         ORDER BY datum DESC LIMIT 5`
+      )
+      .all(klasse) as {
+      drucksache_nr: string;
+      zusammenfassung: string | null;
+      fraktion: string | null;
+      titel: string | null;
+      datum: string | null;
+    }[])
+      .filter((r) => r.titel && r.datum)
+      .map((r) => ({
+        drucksacheNr: r.drucksache_nr,
+        titel: r.titel as string,
+        zusammenfassung: r.zusammenfassung,
+        datum: r.datum,
+        fraktion: r.fraktion,
+        einbringer: r.fraktion,
+      }));
+
+  const latestGesetzentwuerfe = drucksByKlasse("gross").map((r) => ({
+    drucksacheNr: r.drucksacheNr,
+    titel: r.titel,
+    zusammenfassung: r.zusammenfassung,
+    datum: r.datum,
+    einbringer: r.einbringer,
+  }));
+  const latestAnfragen = drucksByKlasse("klein").map((r) => ({
+    drucksacheNr: r.drucksacheNr,
+    titel: r.titel,
+    zusammenfassung: r.zusammenfassung,
+    datum: r.datum,
+    fraktion: r.fraktion,
+  }));
+
+  return { latestSitzung, latestVotes, voteSummaries, latestGesetzentwuerfe, latestAnfragen };
+}
+
 export function getPoliticianDb(id: number): PoliticianRow | undefined {
   const db = getDb();
   return db
