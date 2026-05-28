@@ -3093,32 +3093,62 @@ function isGenericKerninhalt(text: string): boolean {
 function inferDocTypeFromSnippet(snippet: string | null): string {
   if (!snippet) return "Abstimmung";
   const s = snippet.toLowerCase();
+  // GO-Verfahrens-Votes (oft ohne DS): Einspruch gegen Ordnungsmaßnahmen,
+  // Geschäftsordnungsanträge, Überweisungen, Wahlgang-Eröffnungen.
+  if (s.includes("einspruch gegen eine ordnungsmaßnahme") || s.includes("ordnungsmaßnahme gemäß § 39")) {
+    return "Einspruch gegen Ordnungsmaßnahme (§ 39 GO)";
+  }
+  if (s.includes("geschäftsordnungsantrag")) return "Geschäftsordnungs-Antrag";
+  if (s.includes("zweiten wahlgang")) return "Antrag auf zweiten Wahlgang";
+  if (s.includes("feststellung der tagesordnung")) return "Feststellung der Tagesordnung";
+  if (s.includes("überweisung")) return "Überweisungs-Antrag";
+  // Substantielle Dokumente:
   if (s.includes("entschließungsantrag")) return "Entschließungsantrag";
   if (s.includes("änderungsantrag")) return "Änderungsantrag";
-  if (s.includes("gesetzentwurf")) return "Gesetzentwurf";
+  if (s.includes("gesetzentwurf") || s.includes("entwurf eines gesetzes")) return "Gesetzentwurf";
   if (s.includes("beschlussempfehlung")) return "Beschlussempfehlung";
-  if (s.includes("entwurf eines gesetzes")) return "Gesetzentwurf";
   if (s.includes("antrag")) return "Antrag";
   return "Abstimmung";
 }
 
-/** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen, damit
- *  Vote-Labels nicht mit "Die Fraktion XYZ fordert…" starten. Wird nur als
- *  Fallback verwendet, wenn `kerninhalt` (LLM-extrahierte party-freie Bullets)
- *  nicht verfügbar ist. */
+/** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen UND
+ *  Kerninhalt-Bullets, damit Vote-Labels nicht mit "Die Fraktion XYZ fordert…"
+ *  oder "BÜNDNIS 90/DIE GRÜNEN fordert…" starten. Im Titel ist die einbringende
+ *  Partei irrelevant — nur das Anliegen zählt. */
 function stripPartyPrefix(s: string): string {
-  // Match: "Die {Party}-Fraktion <verb>, " / "Die Fraktion {Party} <verb>, "
-  // / "{Party} <verb>, " — Verb-Liste empirisch aus den Daten abgeleitet.
-  const VERBS = "(fordert|kritisiert|beantragt|begrüßt|bringt|möchte|bestreitet|will|verlangt|legt)";
-  const PARTY = "(AfD|CDU/CSU|SPD|BÜNDNIS\\s*90/DIE\\s*GRÜNEN|GRÜNEN|Linke|FDP)";
+  // Verben die typisch nach einer Partei-Nennung kommen.
+  const VERBS = "(fordert|fordern|kritisiert|kritisieren|beantragt|beantragen|begrüßt|begrüßen|bringt|bringen|möchte|möchten|bestreitet|will|wollen|verlangt|verlangen|legt|legen|schlägt vor|schlagen vor|plädiert|plädieren|setzt sich ein|setzen sich ein|argumentiert|argumentieren)";
+  const PARTY = "(AfD|CDU/CSU|SPD|BÜNDNIS\\s*90/DIE\\s*GRÜNEN|BÜNDNIS\\s*90/Die\\s*GRÜNEN|GRÜNE|GRÜNEN|Grüne|Grünen|Die\\s+Linke|LINKE|Linke|FDP|Antragsteller|Antragstellende)";
+  // Trennzeichen nach dem Verb: Leerzeichen ODER Doppelpunkt ODER Komma.
+  const SEP = "[\\s:,;.]+";
   const patterns = [
-    new RegExp(`^Die\\s+${PARTY}-Fraktion\\s+${VERBS}[^.]+\\.\\s*`, "i"),
-    new RegExp(`^Die\\s+Fraktion\\s+${PARTY}\\s+${VERBS}[^.]+\\.\\s*`, "i"),
-    new RegExp(`^Der\\s+(Entschließungsantrag|Antrag|Gesetzentwurf)\\s+der\\s+${PARTY}-Fraktion\\s+${VERBS}[^.]+\\.\\s*`, "i"),
+    // "(Die) Fraktion {Party} (-Fraktion)? VERB [:|space|,] …" — Prefix strippen
+    new RegExp(`^Die\\s+${PARTY}-Fraktion\\s+${VERBS}${SEP}`, "i"),
+    new RegExp(`^Die\\s+Fraktion\\s+(?:der|des|von)\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    new RegExp(`^Die\\s+Fraktion\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Fraktion Die Linke fordert …" (ohne führendes "Die"; "Die" gehört zur Partei)
+    new RegExp(`^Fraktion\\s+(?:Die\\s+)?${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Die {Party} VERB …" (z.B. "Die AfD fordert", ohne -Fraktion)
+    new RegExp(`^Die\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Antrag der {Party}-Fraktion auf …" / "Antrag der Fraktion {Party} …"
+    new RegExp(`^(?:Der\\s+|Die\\s+)?(?:Entschließungsantrag|Änderungsantrag|Antrag|Gesetzentwurf|Beschlussempfehlung)\\s+der\\s+(?:${PARTY}-Fraktion|Fraktion\\s+${PARTY})\\s+(?:auf|zur?|über|zum?)?\\s*`, "i"),
+    // "Antrag von {Party} zu/zum/zur einem X. " — strip bis nach dem ersten Punkt (oft einleitender Satz vor dem eigentlichen Inhalt)
+    new RegExp(`^(?:Der\\s+|Die\\s+)?(?:Entschließungsantrag|Änderungsantrag|Antrag|Gesetzentwurf|Beschlussempfehlung)\\s+von\\s+(?:der\\s+)?${PARTY}\\s+(?:zu|zur?|zum|über|auf)[^.]+\\.\\s*`, "i"),
+    // "{Party} VERB [:|space|,] …"  (häufigster Kerninhalt-Fall, ohne "Die")
+    new RegExp(`^${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Antragsteller fordern …"
+    new RegExp(`^Antragstellende?\\s+${VERBS}${SEP}`, "i"),
   ];
+  // Mehrere Pässe (fixpoint): wenn ein Pattern einen einleitenden Satz strippt
+  // ("Antrag von X zu Y."), kann ein anderes Pattern noch im Rest greifen
+  // ("Die Y fordert Z" → "Z"). Maximal 3 Pässe für Sicherheit.
   let result = s.trim();
-  for (const re of patterns) {
-    result = result.replace(re, "");
+  for (let pass = 0; pass < 3; pass++) {
+    const before = result;
+    for (const re of patterns) {
+      result = result.replace(re, "");
+    }
+    if (result === before) break;
   }
   // Erstes Zeichen groß schreiben falls nötig.
   if (result.length > 0 && result[0] !== result[0].toUpperCase()) {
@@ -3277,12 +3307,14 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         const row = db.prepare(
           `SELECT kerninhalt, zusammenfassung, thema FROM drucksache_analyses WHERE drucksache_nr=?`
         ).get(dsNrn[0]) as { kerninhalt: string | null; zusammenfassung: string | null; thema: string | null } | undefined;
-        // 1) Bevorzugt: erste Bullet aus kerninhalt — party-frei, inhaltsfokussiert.
+        // 1) Bevorzugt: erste Bullet aus kerninhalt — LLM sollte party-frei sein,
+        //    aber wir strippen safety-halber nochmal Party-Prefixe (kommt bei
+        //    Anträgen mit "Grüne fordern X" oder "BÜNDNIS 90/DIE GRÜNEN ..." vor).
         if (row?.kerninhalt) {
           try {
             const arr = JSON.parse(row.kerninhalt) as string[];
             if (Array.isArray(arr) && arr.length > 0 && typeof arr[0] === "string") {
-              label = arr[0].trim();
+              label = stripPartyPrefix(arr[0]).trim();
             }
           } catch { /* fall through */ }
         }
@@ -3699,6 +3731,13 @@ export type DsParsedDetails =
         aktion: string;
         petitionen_count: number;
         themen: Array<{ thema: string; count: number }>;
+        petitionen?: Array<{
+          lfd_nr: number;
+          aktenzeichen: string;
+          plz: string | null;
+          ort: string;
+          sachgebiet: string;
+        }>;
       }>;
     }
   | {

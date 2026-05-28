@@ -368,13 +368,13 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
                 Beschlussempfehlungen
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {parsedDetails.beschlussempfehlungen.map((be) => (
                   <li key={be.nummer} className="border-l-2 border-zinc-200 pl-3 py-1">
                     <div className="text-[13px] text-zinc-700 leading-relaxed mb-1.5">
                       <span className="font-semibold text-zinc-950">BE {be.nummer}:</span> {be.aktion}
                     </div>
-                    <div className="flex flex-wrap items-center gap-1.5 text-[11.5px]">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] mb-2">
                       <span className="text-zinc-500 num">
                         {be.petitionen_count}{" "}
                         {be.petitionen_count === 1 ? "Petition" : "Petitionen"}
@@ -389,14 +389,49 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                         <span className="text-zinc-400">+ {be.themen.length - 4}</span>
                       )}
                     </div>
+                    {be.petitionen && be.petitionen.length > 0 && (
+                      <details className="group mt-1">
+                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1">
+                          <span className="text-zinc-400 group-open:hidden">▶</span>
+                          <span className="text-zinc-400 hidden group-open:inline">▼</span>
+                          Einzelne Petitionen anzeigen
+                        </summary>
+                        <div className="mt-2 overflow-x-auto">
+                          <table className="w-full text-[12px] text-zinc-700">
+                            <thead>
+                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 border-b border-zinc-100">
+                                <th className="text-left py-1 pr-2 font-medium">Nr</th>
+                                <th className="text-left py-1 pr-2 font-medium">Aktenzeichen</th>
+                                <th className="text-left py-1 pr-2 font-medium">Wohnort</th>
+                                <th className="text-left py-1 font-medium">Sachgebiet</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {be.petitionen.map((p) => (
+                                <tr key={p.lfd_nr} className="border-b border-zinc-50 last:border-0">
+                                  <td className="py-1.5 pr-2 num text-zinc-500">{p.lfd_nr}</td>
+                                  <td className="py-1.5 pr-2 num text-zinc-600 whitespace-nowrap">{p.aktenzeichen}</td>
+                                  <td className="py-1.5 pr-2 text-zinc-700">
+                                    {p.plz && <span className="num text-zinc-500 mr-1">{p.plz}</span>}
+                                    {p.ort}
+                                  </td>
+                                  <td className="py-1.5 text-zinc-800">{p.sachgebiet || "—"}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </details>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
-            <p className="text-[11.5px] text-zinc-400 mt-4 leading-relaxed">
-              Themen automatisch aus dem PDF extrahiert (deterministischer
-              Parser). Bei Themen die über zwei Zeilen umgebrochen sind, kann
-              die Zuordnung leicht unscharf werden — Original-Tabelle im PDF.
+            <p className="text-[11.5px] text-zinc-400 mt-5 leading-relaxed">
+              Aktenzeichen, Wohnort und Sachgebiet werden deterministisch aus
+              der PDF-Tabelle des Petitionsausschusses extrahiert. Der
+              Petitions-Volltext einzelner Bürger:innen-Eingaben ist aus
+              Datenschutzgründen nicht öffentlich.
             </p>
           </section>
         )}
@@ -923,7 +958,7 @@ function renderSkeletonPage(
               <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
                 Beschlussempfehlungen
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {parsedDetails.beschlussempfehlungen.map((be) => (
                   <li
                     key={be.nummer}
@@ -933,7 +968,7 @@ function renderSkeletonPage(
                       <span className="font-semibold text-zinc-950">BE {be.nummer}:</span>{" "}
                       {be.aktion}
                     </div>
-                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px] mb-2">
                       <span className="text-zinc-500 num">
                         {be.petitionen_count}{" "}
                         {be.petitionen_count === 1 ? "Petition" : "Petitionen"}
@@ -956,14 +991,49 @@ function renderSkeletonPage(
                         </span>
                       )}
                     </div>
+                    {be.petitionen && be.petitionen.length > 0 && (
+                      <details className="group mt-1">
+                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1">
+                          <span className="text-zinc-400 group-open:hidden">▶</span>
+                          <span className="text-zinc-400 hidden group-open:inline">▼</span>
+                          Einzelne Petitionen anzeigen
+                        </summary>
+                        <div className="mt-2 overflow-x-auto">
+                          <table className="w-full text-[12px] text-zinc-700">
+                            <thead>
+                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 border-b border-zinc-100">
+                                <th className="text-left py-1 pr-2 font-medium">Nr</th>
+                                <th className="text-left py-1 pr-2 font-medium">Aktenzeichen</th>
+                                <th className="text-left py-1 pr-2 font-medium">Wohnort</th>
+                                <th className="text-left py-1 font-medium">Sachgebiet</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {be.petitionen.map((p) => (
+                                <tr key={p.lfd_nr} className="border-b border-zinc-50 last:border-0">
+                                  <td className="py-1.5 pr-2 num text-zinc-500">{p.lfd_nr}</td>
+                                  <td className="py-1.5 pr-2 num text-zinc-600 whitespace-nowrap">{p.aktenzeichen}</td>
+                                  <td className="py-1.5 pr-2 text-zinc-700">
+                                    {p.plz && <span className="num text-zinc-500 mr-1">{p.plz}</span>}
+                                    {p.ort}
+                                  </td>
+                                  <td className="py-1.5 text-zinc-800">{p.sachgebiet || "—"}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </details>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
-            <p className="text-[11.5px] text-zinc-400 mt-4 leading-relaxed">
-              Themen automatisch aus dem PDF extrahiert (deterministischer
-              Parser). Bei Themen die über zwei Zeilen umgebrochen sind, kann
-              die Zuordnung leicht unscharf werden — Original-Tabelle siehe PDF.
+            <p className="text-[11.5px] text-zinc-400 mt-5 leading-relaxed">
+              Aktenzeichen, Wohnort und Sachgebiet werden deterministisch aus
+              der PDF-Tabelle des Petitionsausschusses extrahiert. Der
+              Petitions-Volltext einzelner Bürger:innen-Eingaben ist aus
+              Datenschutzgründen nicht öffentlich.
             </p>
           </section>
         )}
