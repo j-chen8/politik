@@ -219,11 +219,12 @@ function customId(sitzung: number, marker: string): string {
 }
 
 function listSitzungenWithReden(): number[] {
+  // KEIN berlin_pdf_texts-Blob-JOIN: mit idx_bspeech_sitzung_top_titel kippte der
+  // Planner auf SCAN bs × SCAN t (full_text) → Hang. loadTops liest ohnehin nur
+  // berlin_speeches (kein PDF nötig); TOPs ohne Reden liefern einfach 0 Requests.
   const rows = db.prepare(
-    `SELECT DISTINCT bs.sitzung_nr AS nr FROM berlin_speeches bs
-     JOIN berlin_pdf_texts t ON t.pdf_filename LIKE '%p19-' || printf('%03d', bs.sitzung_nr) || '-wp%'
-     WHERE bs.sitzung_nr IS NOT NULL AND t.full_text IS NOT NULL
-     ORDER BY bs.sitzung_nr`,
+    `SELECT DISTINCT sitzung_nr AS nr FROM berlin_speeches
+     WHERE sitzung_nr IS NOT NULL ORDER BY sitzung_nr`,
   ).all() as { nr: number }[];
   return rows.map((r) => r.nr);
 }
