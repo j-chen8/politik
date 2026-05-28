@@ -583,6 +583,50 @@ export interface MethodikCounts {
   speechTypeCounts: { typ: string; count: number }[];
 }
 
+export interface BerlinMethodikCounts {
+  redenTotal: number;
+  redenNichtPraesidium: number;
+  redenAnalysiert: number;
+  sitzungen: number;
+  quoteValid: number;
+  quoteTotal: number;
+  dsAnalysen: number;
+  dsByKlasse: { klasse: string; count: number }[];
+  votesTotal: number;
+  votesEcht: number;
+  votesByOutcome: { outcome: string; count: number }[];
+  topSummaries: number;
+  politiker: number;
+  politikerMitCv: number;
+  politikerMitHomepage: number;
+  politikerMitFoto: number;
+}
+
+/** Live-Zahlen für die Berlin-Methodik-Seite. Alle aus berlin_*-Tabellen. */
+export function getBerlinMethodikCounts(): BerlinMethodikCounts {
+  const db = getDb();
+  const one = (sql: string) => (db.prepare(sql).get() as { c: number } | undefined)?.c ?? 0;
+  const bp = `WITH bp AS (SELECT DISTINCT politician_id AS id FROM berlin_speeches WHERE politician_id IS NOT NULL)`;
+  return {
+    redenTotal: one(`SELECT COUNT(*) c FROM berlin_speeches`),
+    redenNichtPraesidium: one(`SELECT COUNT(*) c FROM berlin_speeches WHERE is_praesidium=0`),
+    redenAnalysiert: one(`SELECT COUNT(*) c FROM berlin_speech_analyses`),
+    sitzungen: one(`SELECT COUNT(DISTINCT sitzung_nr) c FROM berlin_speeches WHERE sitzung_nr IS NOT NULL`),
+    quoteValid: one(`SELECT COALESCE(SUM(quote_valid_count),0) c FROM berlin_speech_analyses WHERE quote_total_count>0`),
+    quoteTotal: one(`SELECT COALESCE(SUM(quote_total_count),0) c FROM berlin_speech_analyses WHERE quote_total_count>0`),
+    dsAnalysen: one(`SELECT COUNT(*) c FROM berlin_drucksachen_analyses`),
+    dsByKlasse: db.prepare(`SELECT klasse, COUNT(*) AS count FROM berlin_drucksachen_analyses GROUP BY klasse ORDER BY COUNT(*) DESC`).all() as { klasse: string; count: number }[],
+    votesTotal: one(`SELECT COUNT(*) c FROM berlin_votes`),
+    votesEcht: one(`SELECT COUNT(*) c FROM berlin_votes WHERE outcome!='kein_vote'`),
+    votesByOutcome: db.prepare(`SELECT outcome, COUNT(*) AS count FROM berlin_votes WHERE outcome!='kein_vote' GROUP BY outcome ORDER BY COUNT(*) DESC`).all() as { outcome: string; count: number }[],
+    topSummaries: one(`SELECT COUNT(*) c FROM berlin_top_summaries`),
+    politiker: one(`${bp} SELECT COUNT(*) c FROM bp`),
+    politikerMitCv: one(`${bp} SELECT COUNT(*) c FROM bp JOIN politicians p ON p.id=bp.id WHERE p.cv_json IS NOT NULL AND p.cv_json!=''`),
+    politikerMitHomepage: one(`${bp} SELECT COUNT(*) c FROM bp JOIN politicians p ON p.id=bp.id WHERE p.cv_homepage_json IS NOT NULL AND p.cv_homepage_json!=''`),
+    politikerMitFoto: one(`${bp} SELECT COUNT(*) c FROM bp JOIN politicians p ON p.id=bp.id WHERE p.photo_url IS NOT NULL AND p.photo_url!=''`),
+  };
+}
+
 export function getMethodikCounts(): MethodikCounts {
   const db = getDb();
   const one = (sql: string, ...params: unknown[]) =>
