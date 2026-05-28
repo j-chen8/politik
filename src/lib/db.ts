@@ -4665,6 +4665,84 @@ export interface BerlinDsMitzeichner {
   role: string; // urheber, mitunterzeichner, redner, etc.
 }
 
+export interface BerlinDsIndexEntry {
+  dbid: string;
+  dokNr: string | null;
+  titel: string | null;
+  datum: string | null;
+  klasse: string;
+  fraktion: string | null;
+  einbringer: string | null;
+  zusammenfassung: string | null;
+  tonalitaet: string | null;
+  antwortCharakter: string | null;
+}
+
+export interface BerlinDsIndexResult {
+  rows: BerlinDsIndexEntry[];
+  total: number;
+  klasseFacets: { klasse: string; count: number }[];
+  years: string[];
+}
+
+/** Berlin-Drucksachen-Index: paginierte Liste + Klassen-/Jahr-Facetten (Pendant zu /aktivitaeten). */
+export function listBerlinDrucksachenForIndex(opts: {
+  klasse?: string;
+  year?: string;
+  offset?: number;
+  limit?: number;
+}): BerlinDsIndexResult {
+  const db = getDb();
+  const { klasse, year, offset = 0, limit = 50 } = opts;
+  try {
+    const yearCond = year ? "AND substr(d.dok_datum,1,4) = @year" : "";
+    const klasseCond = klasse ? "AND a.klasse = @klasse" : "";
+    const whereParams: Record<string, string> = {};
+    if (year) whereParams.year = year;
+    if (klasse) whereParams.klasse = klasse;
+
+    const rows = db.prepare(`
+      SELECT d.dbid, d.dok_nr AS dokNr, d.titel, d.dok_datum AS datum,
+             a.klasse, a.fraktion, a.einbringer, a.zusammenfassung,
+             a.tonalitaet, a.antwort_charakter AS antwortCharakter
+      FROM berlin_documents d
+      JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond}
+      ORDER BY d.dok_datum DESC, d.dbid DESC
+      LIMIT @limit OFFSET @offset
+    `).all({ ...whereParams, offset, limit }) as BerlinDsIndexEntry[];
+
+    const total = (db.prepare(`
+      SELECT COUNT(*) c
+      FROM berlin_documents d
+      JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond}
+    `).get(whereParams) as { c: number }).c;
+
+    const klasseFacets = db.prepare(`
+      SELECT a.klasse, COUNT(*) count
+      FROM berlin_documents d
+      JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE a.klasse IS NOT NULL ${yearCond}
+      GROUP BY a.klasse ORDER BY count DESC
+    `).all(year ? { year } : {}) as { klasse: string; count: number }[];
+
+    const years = (db.prepare(`
+      SELECT DISTINCT substr(d.dok_datum,1,4) y
+      FROM berlin_documents d
+      JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond}
+      ORDER BY y DESC
+    `).all(klasse ? { klasse } : {}) as { y: string }[])
+      .map((r) => r.y)
+      .filter((y) => y && y.length === 4);
+
+    return { rows, total, klasseFacets, years };
+  } catch {
+    return { rows: [], total: 0, klasseFacets: [], years: [] };
+  }
+}
+
 export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail | null {
   const db = getDb();
   let row: {
