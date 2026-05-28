@@ -4450,6 +4450,9 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
       if (!t) return true;
       const trimmed = t.trim();
       if (trimmed.length < 12) return true;
+      // Querverweis-Abstracts wie „zu Drucksache 19/2933-3" sind kein echter Titel
+      // (Beschlussempfehlungen verweisen nur auf die Basis-DS) → Vorgangs-Fallback.
+      if (/^zu[rm]?\s+Drucksache\s/i.test(trimmed)) return true;
       return /^(Beschlussempfehlung|Mitteilung zur Kenntnisnahme|Vorlage|Antrag|Drucksache|Gesetzentwurf)(\s|$)/i.test(trimmed);
     }
     for (const dbid of drsDbids) {
