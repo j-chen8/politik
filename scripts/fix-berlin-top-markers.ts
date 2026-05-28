@@ -230,14 +230,15 @@ function findFirstBodyLine(lines: string[]): number {
   return Math.floor(lines.length * 0.15); // Fallback
 }
 
-function processSitzung(sitzungNr: number, write: boolean, verbose = true): { updated: number; skipped: number; ok: boolean } {
+type DsChange = { sitzung: number; marker: string; titel: string; oldCount: number; newCount: number };
+function processSitzung(sitzungNr: number, write: boolean, verbose = true): { updated: number; skipped: number; ok: boolean; dsChanges: DsChange[] } {
   const pdf = db.prepare(
     `SELECT full_text, pdf_filename FROM berlin_pdf_texts WHERE pdf_filename LIKE ?`,
   ).get(`%p19-${sitzungNr.toString().padStart(3, "0")}-wp%`) as { full_text: string; pdf_filename: string } | undefined;
 
   if (!pdf || !pdf.full_text) {
     if (verbose) console.log(`Sitzung ${sitzungNr}: kein PDF/full_text in DB — skip`);
-    return { updated: 0, skipped: 0, ok: false };
+    return { updated: 0, skipped: 0, ok: false, dsChanges: [] };
   }
 
   const rawLines = pdf.full_text.split(/\r?\n/);
@@ -250,9 +251,9 @@ function processSitzung(sitzungNr: number, write: boolean, verbose = true): { up
     console.log(`${lines.length} lines, firstBody=${firstBody}, ${headers.length} TOP-Header`);
   }
 
-  type Speech = { speech_id: string; start_line: number; current_marker: string | null; current_titel: string | null };
+  type Speech = { speech_id: string; start_line: number; current_marker: string | null; current_titel: string | null; current_drucksachen: string | null };
   const speeches = db.prepare(
-    `SELECT speech_id, start_line, top_marker AS current_marker, top_titel AS current_titel
+    `SELECT speech_id, start_line, top_marker AS current_marker, top_titel AS current_titel, drucksache_nrn AS current_drucksachen
      FROM berlin_speeches WHERE sitzung_nr = ? ORDER BY start_line`,
   ).all(sitzungNr) as Speech[];
 
@@ -265,7 +266,16 @@ function processSitzung(sitzungNr: number, write: boolean, verbose = true): { up
     return last;
   }
 
+  // Normalisierter DS-Set-Vergleich (Reihenfolge-unabhängig, dedup).
+  const normDs = (raw: string[] | string | null): string => {
+    let arr: string[] = [];
+    if (Array.isArray(raw)) arr = raw;
+    else if (typeof raw === "string" && raw.trim()) { try { arr = JSON.parse(raw); } catch { arr = []; } }
+    return Array.from(new Set(arr)).sort().join(",");
+  };
+
   const updates: Array<{ speech_id: string; marker: string; titel: string; drucksachen: string[] }> = [];
+  const dsChangeMap = new Map<string, { sitzung: number; marker: string; titel: string; oldCount: number; newCount: number }>();
   let unchanged = 0;
   let noHeader = 0;
   for (const sp of speeches) {
@@ -273,11 +283,24 @@ function processSitzung(sitzungNr: number, write: boolean, verbose = true): { up
     if (!h) { noHeader++; continue; }
     const oldKey = `${sp.current_marker ?? "-"} · ${sp.current_titel ?? "-"}`;
     const newKey = `${h.marker} · ${h.titel}`;
-    if (oldKey === newKey) { unchanged++; continue; }
+    const markerTitelChanged = oldKey !== newKey;
+    const curDsNorm = normDs(sp.current_drucksachen);
+    const newDsNorm = normDs(h.drucksachen);
+    const dsChanged = curDsNorm !== newDsNorm;
+    if (!markerTitelChanged && !dsChanged) { unchanged++; continue; }
     updates.push({ speech_id: sp.speech_id, marker: h.marker, titel: h.titel, drucksachen: h.drucksachen });
+    if (dsChanged) {
+      const k = `${h.marker}::${h.titel}`;
+      if (!dsChangeMap.has(k)) {
+        const oldCount = curDsNorm ? curDsNorm.split(",").length : 0;
+        const newCount = newDsNorm ? newDsNorm.split(",").length : 0;
+        dsChangeMap.set(k, { sitzung: sitzungNr, marker: h.marker, titel: h.titel, oldCount, newCount });
+      }
+    }
   }
+  const dsChanges = Array.from(dsChangeMap.values());
 
-  if (verbose) console.log(`${speeches.length} Reden · ${updates.length} updates · ${unchanged} unchanged · ${noHeader} no-header`);
+  if (verbose) console.log(`${speeches.length} Reden · ${updates.length} updates · ${unchanged} unchanged · ${noHeader} no-header · ${dsChanges.length} TOP-DS-Änderungen`);
 
   if (write && updates.length > 0) {
     const stmt = db.prepare(
@@ -291,7 +314,7 @@ function processSitzung(sitzungNr: number, write: boolean, verbose = true): { up
     });
     tx();
   }
-  return { updated: write ? updates.length : 0, skipped: unchanged, ok: true };
+  return { updated: write ? updates.length : 0, skipped: unchanged, ok: true, dsChanges };
 }
 
 // ── Run ──
@@ -309,10 +332,30 @@ if (SITZUNG_ARG) {
 
   console.log(`\n${sitzungen.length} Sitzungen mit verfügbarem PDF\n`);
   let totalUpdates = 0, totalOk = 0, totalFail = 0;
+  const allDsChanges: DsChange[] = [];
   for (const s of sitzungen) {
-    const res = processSitzung(s.nr, WRITE, true);
-    if (res.ok) { totalOk++; totalUpdates += res.updated; }
+    const res = processSitzung(s.nr, WRITE, false);
+    if (res.ok) { totalOk++; totalUpdates += res.updated; allDsChanges.push(...res.dsChanges); }
     else totalFail++;
   }
-  console.log(`\n${WRITE ? "✓" : "DRY-RUN"} Total: ${totalOk} OK, ${totalFail} skip, ${totalUpdates} updates`);
+  console.log(`${WRITE ? "✓" : "DRY-RUN"} Total: ${totalOk} OK, ${totalFail} skip, ${totalUpdates} Reden-updates`);
+
+  // ── DS-Änderungs-Report (pro TOP) ──
+  const reductions = allDsChanges.filter((c) => c.newCount < c.oldCount && c.newCount > 0).sort((a, b) => (b.oldCount - b.newCount) - (a.oldCount - a.newCount));
+  const zeroOuts = allDsChanges.filter((c) => c.newCount === 0 && c.oldCount > 0).sort((a, b) => b.oldCount - a.oldCount);
+  const additions = allDsChanges.filter((c) => c.newCount > c.oldCount);
+  console.log(`\n=== DS-Änderungen pro TOP: ${allDsChanges.length} ===`);
+  console.log(`  Reduktionen (aufgebläht→korrekt): ${reductions.length} | Zero-Outs (WARNUNG): ${zeroOuts.length} | Additionen: ${additions.length}`);
+  if (reductions.length) {
+    console.log(`\n  Top-Reduktionen:`);
+    for (const c of reductions.slice(0, 20)) console.log(`    S${c.sitzung} TOP${c.marker} ${c.oldCount}→${c.newCount} DS · ${c.titel.slice(0, 45)}`);
+  }
+  if (zeroOuts.length) {
+    console.log(`\n  ⚠ ZERO-OUTS (Fenster fand keine DS — würde DS auf NULL setzen, bitte prüfen):`);
+    for (const c of zeroOuts) console.log(`    S${c.sitzung} TOP${c.marker} ${c.oldCount}→0 · ${c.titel.slice(0, 50)}`);
+  }
+  if (additions.length) {
+    console.log(`\n  Additionen (Fenster fand MEHR):`);
+    for (const c of additions.slice(0, 15)) console.log(`    S${c.sitzung} TOP${c.marker} ${c.oldCount}→${c.newCount} · ${c.titel.slice(0, 45)}`);
+  }
 }
