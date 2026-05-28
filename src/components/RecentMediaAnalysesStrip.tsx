@@ -23,7 +23,7 @@ export function RecentMediaAnalysesStrip() {
     <section className="w-full border-y border-zinc-200/70 bg-[#1a3e72]/[0.025] py-14">
       <div className="max-w-6xl mx-auto px-5">
         <div className="flex items-end justify-between mb-6 flex-wrap gap-3">
-          <div>
+          <div className="pl-5">
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#1a3e72]" />
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1a3e72]">
