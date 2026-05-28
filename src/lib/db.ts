@@ -2931,6 +2931,45 @@ export interface VoteIndexEntry {
   parliament: "Bundestag" | "Berlin";
 }
 
+/** Robuste Berlin-DS-Titel-Auflösung: beste betitelte dbid (titel→abstract→desk)
+ *  + Vorgangs-Fallback bei generischen/„zu Drucksache"-Querverweis-Titeln.
+ *  Spiegelt die Inline-Logik in getBerlinSitzungDetail — hier für den Vote-Index,
+ *  damit beide Oberflächen identisch auflösen (kein „dbids[0].titel"-Fallback mehr). */
+function resolveBerlinDsTitle(db: ReturnType<typeof getDb>, dbids: string[]): string | null {
+  const isGeneric = (t: string | null): boolean => {
+    if (!t) return true;
+    const s = t.trim();
+    if (s.length < 12) return true;
+    if (/^zu[rm]?\s+Drucksache\s/i.test(s)) return true;
+    return /^(Beschlussempfehlung|Mitteilung zur Kenntnisnahme|Vorlage|Antrag|Drucksache|Gesetzentwurf)(\s|$)/i.test(s);
+  };
+  const titelStmt = db.prepare(
+    `SELECT COALESCE(NULLIF(titel,''),NULLIF(abstract,''),NULLIF(desk,'')) AS titel, vorgang_id
+     FROM berlin_documents WHERE dbid=?`,
+  );
+  const vorgangStmt = db.prepare(
+    `SELECT COALESCE(NULLIF(titel,''),NULLIF(abstract,'')) AS titel FROM berlin_documents
+     WHERE vorgang_id=? AND (dok_typ_label LIKE '%Antrag%' OR dok_typ_label LIKE '%Gesetzentwurf%' OR dok_typ_label LIKE '%Vorlage%')
+       AND COALESCE(NULLIF(titel,''),NULLIF(abstract,'')) IS NOT NULL
+     ORDER BY CASE WHEN dok_typ_label LIKE '%Antrag%' THEN 1 WHEN dok_typ_label LIKE '%Gesetzentwurf%' THEN 2 ELSE 3 END LIMIT 1`,
+  );
+  for (const dbid of dbids) {
+    const t = titelStmt.get(dbid) as { titel: string | null; vorgang_id: string | null } | undefined;
+    let eff = t?.titel ?? null;
+    if (isGeneric(eff) && t?.vorgang_id) {
+      const vt = vorgangStmt.get(t.vorgang_id) as { titel: string | null } | undefined;
+      if (vt?.titel?.trim()) eff = vt.titel;
+    }
+    if (eff && eff.trim() && !isGeneric(eff)) return eff;
+  }
+  // Letzter Fallback: erste dbid mit irgendeinem nicht-leeren Titel.
+  for (const dbid of dbids) {
+    const t = titelStmt.get(dbid) as { titel: string | null } | undefined;
+    if (t?.titel?.trim()) return t.titel;
+  }
+  return null;
+}
+
 export function listAllVotesForIndex(): VoteIndexEntry[] {
   const db = getDb();
   const entries: VoteIndexEntry[] = [];
@@ -3019,12 +3058,9 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
     for (const v of blv) {
       const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
       const dbids: string[] = v.drucksache_dbids_json ? (() => { try { return JSON.parse(v.drucksache_dbids_json); } catch { return []; } })() : [];
-      // Titel: erstes DS' Titel
-      let label: string | null = null;
-      if (dbids.length > 0) {
-        const row = db.prepare(`SELECT titel FROM berlin_documents WHERE dbid=?`).get(dbids[0]) as { titel: string | null } | undefined;
-        if (row?.titel) label = row.titel;
-      }
+      // Titel: robuste Auflösung (best-titled dbid + abstract + Vorgangs-Fallback),
+      // identisch zur Sitzungs-Seite. Fallback nur wenn gar kein Titel auffindbar.
+      let label: string | null = resolveBerlinDsTitle(db, dbids);
       if (!label && dsNrn.length > 0) label = `Berlin-Drucksache ${dsNrn.join(", ")}`;
       const outcomeMap: Record<string, { o: VoteIndexEntry["outcome"]; l: string }> = {
         annahme:           { o: "angenommen", l: "angenommen" },
