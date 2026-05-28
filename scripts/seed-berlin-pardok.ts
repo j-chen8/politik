@@ -125,6 +125,9 @@ function ensureSchema(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_berlin_docs_vorgang ON berlin_documents(vorgang_id);
     CREATE INDEX IF NOT EXISTS idx_berlin_docs_art ON berlin_documents(dok_art);
     CREATE INDEX IF NOT EXISTS idx_berlin_docs_datum ON berlin_documents(dok_datum);
+    -- dok_nr-Lookup (DS-Nr → dbid Auflösung in Reden/Votes): ohne Index Full-Scan
+    -- über ~47k Rows pro Auflösung. getSitzungDetail löst dutzende DS pro Seite auf.
+    CREATE INDEX IF NOT EXISTS idx_berlin_docs_dok_nr ON berlin_documents(dok_nr);
     CREATE TABLE IF NOT EXISTS berlin_document_persons (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       dbid TEXT NOT NULL,

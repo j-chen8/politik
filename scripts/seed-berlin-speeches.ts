@@ -119,6 +119,9 @@ function ensureSchema(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_bspeech_sitzung    ON berlin_speeches(wp, sitzung_nr);
     CREATE INDEX IF NOT EXISTS idx_bspeech_politician ON berlin_speeches(politician_id);
     CREATE INDEX IF NOT EXISTS idx_bspeech_top        ON berlin_speeches(wp, sitzung_nr, top_marker);
+    -- Seek auf sitzung_nr OHNE wp: getSitzungDetail filtert nur sitzung_nr (+ top),
+    -- idx_bspeech_top beginnt aber mit wp → Leftmost-Prefix verhindert Seek.
+    CREATE INDEX IF NOT EXISTS idx_bspeech_sitzung_top_titel ON berlin_speeches(sitzung_nr, top_marker, top_titel);
     CREATE INDEX IF NOT EXISTS idx_bspeech_party      ON berlin_speeches(speaker_party);
     CREATE INDEX IF NOT EXISTS idx_bspeech_datum      ON berlin_speeches(datum);
     CREATE INDEX IF NOT EXISTS idx_bspeech_type       ON berlin_speeches(speech_type);
