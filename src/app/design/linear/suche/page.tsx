@@ -23,6 +23,7 @@ function SuchePageInner() {
   const initialQuery = searchParams.get("q") ?? "";
   const typeParam = searchParams.get("type");
   const pageParam = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
+  const expandParam = searchParams.get("expand") === "1";
   const isFullListMode =
     typeParam !== null &&
     (VALID_TYPES as string[]).includes(typeParam) &&
@@ -65,6 +66,7 @@ function SuchePageInner() {
         query={initialQuery}
         type={typeParam as SearchType}
         page={pageParam}
+        expand={expandParam}
       />
     );
   }
@@ -77,8 +79,9 @@ function SuchePageInner() {
             Eine Suche für alles.
           </h1>
           <p className="text-[15px] text-zinc-500 leading-relaxed max-w-xl">
-            Personen, Themen, Reden, Abstimmungen, Drucksachen — in einer Palette. Verwandte
-            Begriffe werden mitgesucht: „Asyl" findet auch Reden über Migration und Geflüchtete.
+            Personen, Themen, Reden, Abstimmungen, Drucksachen — in einer Palette. Standardmäßig
+            wird exakt gesucht; verwandte Begriffe lassen sich auf Wunsch einbeziehen („Asyl" →
+            auch Migration und Geflüchtete).
           </p>
         </div>
 
@@ -122,14 +125,14 @@ function SuchePageInner() {
           </div>
           <p className="text-[13px] text-zinc-600 leading-relaxed mb-3">
             Volltextsuche über fünf Datenquellen gleichzeitig: Politiker:innen-Namen, TOP-Titel,
-            Reden-Zusammenfassungen, Abstimmungs-Bezeichnungen und Drucksachen-Titel. Pro
-            Treffer-Typ maximal sechs Treffer, sortiert nach Datum.
+            Reden-Zusammenfassungen, Abstimmungs-Bezeichnungen und Drucksachen-Titel. Nach Typ
+            filterbar; Treffer mit dem Original-Begriff zuerst.
           </p>
           <p className="text-[13px] text-zinc-600 leading-relaxed">
-            <span className="font-medium text-zinc-700">Synonym-Erweiterung:</span> 40 Themen-Cluster
-            (Migration, Klima &amp; Energie, Soziales, Innere Sicherheit, …) werden gemeinsam
-            durchsucht. Welche Begriffe konkret mitgesucht wurden, zeigt die Palette transparent
-            über den Treffern.
+            <span className="font-medium text-zinc-700">Exakt zuerst, Synonyme optional:</span>{" "}
+            standardmäßig wird genau der eingegebene Begriff gesucht. Auf Wunsch lassen sich 40
+            Themen-Cluster (Migration, Klima &amp; Energie, Innere Sicherheit, …) als verwandte
+            Begriffe einbeziehen — sichtbar über den „Verwandte Themen einbeziehen"-Schalter.
           </p>
         </div>
       </div>

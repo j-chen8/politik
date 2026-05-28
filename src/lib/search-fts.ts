@@ -199,15 +199,23 @@ export function rebuildSearchFTS(db: Db): void {
 
 /**
  * Baut einen FTS5-MATCH-String aus einer Term-Liste mit Prefix-Matching:
- * jedes Token wird gequotet UND mit `*` versehen, sodass „bundeswehr"
- * auch „bundeswehrnachschub" findet — damit kommen wir näher an die
+ * längere Tokens werden mit `*` versehen, sodass „bundeswehr" auch
+ * „bundeswehrnachschub" findet — damit kommen wir näher an die
  * Substring-Semantik des alten LIKE-Pfads heran.
+ *
+ * Prefix-`*` NUR ab 4 Zeichen. Kurze Tokens (z.B. „ki", „ai", „eu", „co2")
+ * werden exakt gematcht — sonst matcht `"ki"*` jedes Wort, das mit „ki"
+ * beginnt (Kind, Kita, der Name „Kiesewetter" …) und flutet die Treffer:
+ * eine „deepfakes"-Suche expandiert über das KI-Cluster zu „ki" und lieferte
+ * so 1.318 statt ~340 Reden, viele thematisch völlig unverwandt.
  *
  * FTS5-Syntax: `"phrase"*` ist legal (Prefix-Phrase). Bei einzelnen
  * Tokens entspricht das `token*`.
  *
  * Leere oder zu kurze Terms (<2 Zeichen) werden gefiltert.
  */
+const FTS_PREFIX_MIN_LEN = 4;
+
 export function ftsMatchClause(terms: string[]): string | null {
   const cleaned = Array.from(
     new Set(
@@ -221,7 +229,7 @@ export function ftsMatchClause(terms: string[]): string | null {
     .map((t) => {
       // FTS5: " innerhalb von Phrase muss doppelt sein
       const safe = t.replace(/"/g, '""');
-      return `"${safe}"*`;
+      return t.length >= FTS_PREFIX_MIN_LEN ? `"${safe}"*` : `"${safe}"`;
     })
     .join(" OR ");
 }

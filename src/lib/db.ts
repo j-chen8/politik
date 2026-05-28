@@ -21,8 +21,34 @@ export function getDb(): Database.Database {
     _db = new Database(DB_PATH);
     _db.pragma("journal_mode = WAL");
     _db.pragma("foreign_keys = ON");
+    registerSearchFunctions(_db);
   }
   return _db;
+}
+
+// Unicode-aware Such-Helfer, einmalig an der Connection registriert (genutzt von der
+// Politiker-, Reden-, Drucksachen- und Topic-Suche):
+//  - lower_de: Umlaut-korrektes LOWER (SQLite-LOWER ist ASCII-only).
+//  - word_match(text, term): 1, wenn `term` am ANFANG EINES WORTES in `text` vorkommt
+//    (Wortgrenze davor), sonst 0. Ersetzt die alte %term%-Substring-Suche, damit „ai"
+//    nicht mehr mittendrin „FrohnmAIer"/„UkrAIne" matcht (Wortgrenze: Nicht-Buchstabe/Ziffer).
+function registerSearchFunctions(db: Database.Database) {
+  db.function("lower_de", { deterministic: true }, (s: unknown) =>
+    typeof s === "string" ? s.toLowerCase() : null
+  );
+  db.function("word_match", { deterministic: true }, (text: unknown, term: unknown) => {
+    if (typeof text !== "string" || typeof term !== "string" || term.length === 0) return 0;
+    const h = text.toLowerCase();
+    const n = term.toLowerCase();
+    let from = 0;
+    for (;;) {
+      const idx = h.indexOf(n, from);
+      if (idx === -1) return 0;
+      const prev = idx === 0 ? "" : h[idx - 1];
+      if (idx === 0 || !/[\p{L}\p{N}]/u.test(prev)) return 1; // Wortgrenze davor
+      from = idx + 1;
+    }
+  });
 }
 
 export function initDb() {
@@ -334,14 +360,15 @@ export function getDataFreshness(): DataFreshness {
 
 export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] {
   const db = getDb();
-  const term = `%${query}%`;
+  // Wortanfang-Match (kein %substring%) — „ai" matcht keine Namen wie „FrohnmAIer".
+  const term = query.trim();
   return db
     .prepare(
       `SELECT p.*, pa.label as party_label
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
-       WHERE (p.last_name LIKE ? OR p.first_name LIKE ?
-         OR (p.first_name || ' ' || p.last_name) LIKE ?)
+       WHERE (word_match(p.last_name, ?) OR word_match(p.first_name, ?)
+         OR word_match(p.first_name || ' ' || p.last_name, ?))
          AND ${IS_POLITICIAN_ACTIVE_SQL}
        ORDER BY p.last_name, p.first_name
        LIMIT ?`
