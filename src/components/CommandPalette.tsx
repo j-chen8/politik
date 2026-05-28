@@ -45,10 +45,20 @@ const EMPTY: SearchResults = {
   expand: false,
   expansions: [],
   matchedClusters: [],
+  directHit: null,
 };
 
 function flatten(results: SearchResults): FlatHit[] {
   const flat: FlatHit[] = [];
+  if (results.directHit) {
+    flat.push({
+      hit: results.directHit,
+      href: results.directHit.drucksache_nr
+        ? `/design/linear/aktivitaeten/${results.directHit.drucksache_nr.replace("/", "-")}`
+        : `/design/linear/protokolle`,
+      sectionLabel: "Direkter Treffer",
+    });
+  }
   results.politicians.forEach((h) =>
     flat.push({ hit: h, href: `/design/linear/politiker/${h.id}`, sectionLabel: "Personen" })
   );

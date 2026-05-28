@@ -84,6 +84,8 @@ export interface SearchResults {
   expansions: string[];
   /** Labels der gematchten Synonym-Cluster — für UI-Chip-Anzeige */
   matchedClusters: string[];
+  /** Exakter Treffer per Drucksachen-Nummer (z.B. „21/1350") — gepinnt über den Sektionen. */
+  directHit: DrucksacheHit | null;
 }
 
 const PER_TYPE_LIMIT = 6;
@@ -93,6 +95,56 @@ const PER_TYPE_LIMIT = 6;
 /** Baut "word_match(col, ?) OR word_match(col, ?) ..." mit n Platzhaltern (Wortanfang-Match). */
 function wordMatchOr(column: string, n: number): string {
   return Array.from({ length: n }, () => `word_match(${column}, ?)`).join(" OR ");
+}
+
+/**
+ * Erkennt eine Bundestags-Drucksachen-Nummer (WP/laufnummer, z.B. „21/1350") in der Query.
+ * Toleriert Präfixe wie „BT-Drs.", „Drs.", „Drucksache" und Leerzeichen um den Slash.
+ * Gibt die normalisierte Nummer „WP/nr" zurück oder null.
+ */
+function extractDrucksacheNr(query: string): string | null {
+  const m = query.match(/\b(\d{1,2})\s*\/\s*(\d{1,6})\b/);
+  return m ? `${m[1]}/${m[2]}` : null;
+}
+
+/** Direkter Lookup einer Drucksache per Nummer (Equality, keine Volltextsuche). */
+function lookupDrucksacheByNr(
+  db: ReturnType<typeof getDb>,
+  nr: string
+): DrucksacheHit | null {
+  const row = db
+    .prepare(
+      `SELECT fts.drucksache_nr, fts.titel, fts.zusammenfassung,
+              an.batch_class,
+              COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=fts.drucksache_nr LIMIT 1)) AS datum
+       FROM ${FTS_TABLES.drucksachen} fts
+       LEFT JOIN drucksache_analyses an ON an.drucksache_nr = fts.drucksache_nr
+       LEFT JOIN drucksache_texts t ON t.drucksache_nr = fts.drucksache_nr
+       WHERE fts.drucksache_nr = ?
+       LIMIT 1`
+    )
+    .get(nr) as
+    | {
+        drucksache_nr: string;
+        titel: string;
+        zusammenfassung: string;
+        batch_class: string | null;
+        datum: string | null;
+      }
+    | undefined;
+  if (!row) return null;
+  const fullSummary = row.zusammenfassung ?? "";
+  const snippet = fullSummary.length > 140 ? fullSummary.slice(0, 137) + "…" : fullSummary;
+  return {
+    type: "drucksache",
+    id: row.drucksache_nr,
+    title: row.titel || `Drucksache ${row.drucksache_nr}`,
+    drucksache_nr: row.drucksache_nr,
+    vorgangstyp: null,
+    date: row.datum,
+    snippet: snippet || null,
+    batch_class: row.batch_class,
+  };
 }
 
 export function search(rawQuery: string, expand: boolean = false): SearchResults {
@@ -112,6 +164,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     expand,
     expansions: [],
     matchedClusters: [],
+    directHit: null,
   };
   if (query.length < 2) return empty;
 
@@ -135,6 +188,10 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
   // Ranking-Tier: im Erweitert-Modus Reden/Drucksachen mit ORIGINAL-Begriff zuerst,
   // dann die nur über Synonyme gematchten. Im Exakt-Modus sind ohnehin alle Tier 0.
   const ftsTierMatch = ftsOriginalOnly ?? ftsActive;
+
+  // Exakter Drucksachen-Nummer-Treffer (gepinnt über den Sektionen) — z.B. „21/1350".
+  const dsNr = extractDrucksacheNr(query);
+  const directHit = dsNr ? lookupDrucksacheByNr(db, dsNr) : null;
 
   // 1. Personen — KEINE Synonym-Erweiterung (Namen sind Eigennamen)
   // High-limit + slice, weil searchPoliticiansDb keinen separaten COUNT-Pfad exportiert
@@ -351,25 +408,32 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     drucksachen: totalDrucksachenExpanded,
   };
 
+  // Den gepinnten Direkt-Treffer aus der normalen DS-Liste entfernen (kein Doppel).
+  const drucksachenOut = directHit
+    ? drucksacheHits.filter((d) => d.drucksache_nr !== directHit.drucksache_nr)
+    : drucksacheHits;
+
   return {
     query,
     politicians,
     speeches: speechHits,
     topics: topicHits,
     votes: voteHits,
-    drucksachen: drucksacheHits,
+    drucksachen: drucksachenOut,
     total:
+      (directHit ? 1 : 0) +
       politicians.length +
       speechHits.length +
       topicHits.length +
       voteHits.length +
-      drucksacheHits.length,
+      drucksachenOut.length,
     totals: expand ? totalsExpanded : totalsOriginal,
     totalsOriginal,
     totalsExpanded,
     expand,
     expansions,
     matchedClusters,
+    directHit,
   };
 }
 
