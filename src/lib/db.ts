@@ -4312,6 +4312,55 @@ const BERLIN_BOILERPLATE_TOPS = new Set([
   "Mündliche Anfragen",
 ]);
 
+export interface BerlinSitzungListEntry {
+  nr: number;
+  datum: string | null;
+  reden: number;
+  tops: number;
+  votes: number;
+  topSummaries: number;
+}
+
+/** Alle Berliner Plenarsitzungen mit Glance-Kennzahlen, neueste zuerst. */
+export function listBerlinSitzungen(): BerlinSitzungListEntry[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(
+      `SELECT sitzung_nr AS nr,
+              MAX(NULLIF(datum,'')) AS datum,
+              SUM(CASE WHEN is_praesidium = 0 THEN 1 ELSE 0 END) AS reden,
+              COUNT(DISTINCT NULLIF(top_marker,'')) AS tops
+       FROM berlin_speeches
+       WHERE sitzung_nr IS NOT NULL
+       GROUP BY sitzung_nr`,
+    ).all() as { nr: number; datum: string | null; reden: number; tops: number }[];
+
+    const voteRows = db.prepare(
+      `SELECT sitzung_nr AS nr, COUNT(*) AS c FROM berlin_votes
+       WHERE outcome != 'kein_vote' AND sitzung_nr IS NOT NULL GROUP BY sitzung_nr`,
+    ).all() as { nr: number; c: number }[];
+    const sumRows = db.prepare(
+      `SELECT sitzung_nr AS nr, COUNT(*) AS c FROM berlin_top_summaries
+       WHERE sitzung_nr IS NOT NULL GROUP BY sitzung_nr`,
+    ).all() as { nr: number; c: number }[];
+    const vMap = new Map(voteRows.map((r) => [r.nr, r.c]));
+    const sMap = new Map(sumRows.map((r) => [r.nr, r.c]));
+
+    return rows
+      .map((r) => ({
+        nr: r.nr,
+        datum: r.datum,
+        reden: r.reden,
+        tops: r.tops,
+        votes: vMap.get(r.nr) ?? 0,
+        topSummaries: sMap.get(r.nr) ?? 0,
+      }))
+      .sort((a, b) => b.nr - a.nr);
+  } catch {
+    return [];
+  }
+}
+
 export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail | null {
   const db = getDb();
 
