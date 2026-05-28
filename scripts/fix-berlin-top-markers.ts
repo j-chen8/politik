@@ -120,7 +120,10 @@ function parseBodyTopHeaders(lines: string[], firstBody: number): BodyTopHeader[
 
     // Titel: erste 4 Zeilen nach lfd.Nr / Tagesordnungspunkt bis zum Stop-Pattern.
     // Stop-Pattern fängt Body-Text + Sub-TOP-Aufrufe + organisatorische Hinweise ab.
-    const STOP_RE = /^(Antrag|Beschlussempfehlung|Drucksache|Vorlage|Konsensliste|Erste\s+Lesung|Zweite\s+Lesung|Dritte\s+Lesung|Ich\s+eröffne|Ich\s+rufe|In\s+der\s+Beratung|hierzu\s+Änderungsantrag|Wahlvorschlag|Wahlvorschläge|Gemeinsame\s+Beratung|Antragstext|der\s+Senatsverwaltung|Für\s+die\s+Besprechung|Nun\s+können|Hierzu\s+hat|Beginn:|Wir\s+kommen)/;
+    // „Antrag der/des …" = Metadaten (stop), aber „Antrag auf Einleitung des
+    // Volksbegehrens …" IST der Titel (Volksbegehren-Vorlagen) → NICHT stoppen.
+    // „Mitteilung des Ausschusses …" ist Metadaten nach dem Titel → stop.
+    const STOP_RE = /^(Antrag\s+(?:der|des|vom)\b|Beschlussempfehlung|Mitteilung|Drucksache|Vorlage|Konsensliste|Erste\s+Lesung|Zweite\s+Lesung|Dritte\s+Lesung|Ich\s+eröffne|Ich\s+rufe|In\s+der\s+Beratung|hierzu\s+Änderungsantrag|Wahlvorschlag|Wahlvorschläge|Gemeinsame\s+Beratung|Antragstext|der\s+Senatsverwaltung|Für\s+die\s+Besprechung|Nun\s+können|Hierzu\s+hat|Beginn:|Wir\s+kommen)/;
     let titel = "";
     let titelLines = 0;
     for (let j = i + 1; j < Math.min(i + 12, lines.length); j++) {
@@ -322,12 +325,12 @@ if (SITZUNG_ARG) {
   processSitzung(SITZUNG_ARG, WRITE);
   console.log(WRITE ? "\n✓ Fertig (Sitzung " + SITZUNG_ARG + ")" : "\nDRY-RUN — mit --write tatsächlich UPDATEN");
 } else if (ALL) {
-  // Alle Sitzungen mit Reden + verfügbarem full_text
+  // Alle Sitzungen mit Reden. PDF-Existenz prüft processSitzung selbst (skip bei
+  // fehlendem PDF). KEIN full_text-Blob-JOIN hier: mit idx_bspeech_sitzung_top_titel
+  // kippte der Planner auf SCAN bs × SCAN t (full_text-Blob) = ~490 Mio. Reads → Hang.
   const sitzungen = db.prepare(
-    `SELECT DISTINCT bs.sitzung_nr AS nr FROM berlin_speeches bs
-     JOIN berlin_pdf_texts t ON t.pdf_filename LIKE '%p19-' || printf('%03d', bs.sitzung_nr) || '%'
-     WHERE bs.sitzung_nr IS NOT NULL AND t.full_text IS NOT NULL AND t.full_text != ''
-     ORDER BY bs.sitzung_nr`,
+    `SELECT DISTINCT sitzung_nr AS nr FROM berlin_speeches
+     WHERE sitzung_nr IS NOT NULL ORDER BY sitzung_nr`,
   ).all() as { nr: number }[];
 
   console.log(`\n${sitzungen.length} Sitzungen mit verfügbarem PDF\n`);
