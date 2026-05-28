@@ -4126,9 +4126,9 @@ export interface BerlinSitzungSpeech {
   zusammenfassung: string | null;
   konkreteZahlen: string[];
   forderungen: string[];
-  /** Voller Rede-Text aus PDF-Extraktion. Wird per Default in der UI eingeklappt
-   *  via <details>, nur bei Klick „Originalrede einblenden" sichtbar. */
-  originalText: string;
+  /** Voller Rede-Text wird NICHT mehr mitgeliefert (Payload-Reduktion ~58%) —
+   *  per <BerlinOriginalSpeech> on-demand über /api/berlin/speech-text geladen.
+   *  `textChars` zeigt an, ob es überhaupt einen Text zum Aufklappen gibt. */
   /** Drucksachen, die diese Rede referenziert. dbid kann null sein wenn die
    *  DS-Nummer in berlin_documents (noch) nicht aufgelöst werden konnte. */
   drucksachen: { nr: string; dbid: string | null }[];
@@ -4310,7 +4310,7 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
                 END
               ) AS party,
               bs.speaker_role, bs.speaker_ressort, bs.speech_type, bs.text_chars,
-              bs.interruptions, bs.politician_id, bs.text AS original_text,
+              bs.interruptions, bs.politician_id,
               bs.drucksache_nrn,
               bsa.tonalitaet, bsa.zusammenfassung_2_saetze AS zusammenfassung,
               bsa.konkrete_zahlen_json, bsa.forderungen_json
@@ -4325,7 +4325,7 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
       speech_id: string; speaker: string | null; party: string | null;
       speaker_role: string | null; speaker_ressort: string | null;
       speech_type: string | null; text_chars: number; interruptions: string | null;
-      politician_id: number | null; original_text: string;
+      politician_id: number | null;
       drucksache_nrn: string | null;
       tonalitaet: string | null; zusammenfassung: string | null;
       konkrete_zahlen_json: string | null; forderungen_json: string | null;
@@ -4362,7 +4362,6 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
         zusammenfassung: s.zusammenfassung,
         konkreteZahlen: safeJsonArray(s.konkrete_zahlen_json),
         forderungen: safeJsonArray(s.forderungen_json),
-        originalText: s.original_text,
         drucksachen,
       };
     });

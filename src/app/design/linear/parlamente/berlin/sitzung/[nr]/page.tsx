@@ -1,4 +1,5 @@
 import { getBerlinSitzungDetail, getBerlinSitzungNeighbors, type BerlinSitzungTop, type KeyFact } from "@/lib/db";
+import { BerlinOriginalSpeech } from "@/components/BerlinOriginalSpeech";
 import { resolveBerlinTonality } from "@/lib/berlin-reden-tonality";
 import { getClaudeGold, type ClaudeGoldEntry } from "@/lib/berlin-top-gold-claude";
 import { notFound } from "next/navigation";
@@ -854,27 +855,8 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                             {sp.zusammenfassung}
                           </p>
                         )}
-                        {sp.originalText && sp.originalText.length > 50 && (
-                          <details className="mt-2 group/orig">
-                            <summary className="list-none cursor-pointer text-[11px] text-zinc-500 hover:text-zinc-950 transition-colors select-none">
-                              <span className="inline-flex items-center gap-1">
-                                <span className="text-zinc-400 group-open/orig:rotate-90 transition-transform inline-block">▶</span>
-                                <span className="group-open/orig:hidden">Originalrede einblenden</span>
-                                <span className="hidden group-open/orig:inline">Originalrede ausblenden</span>
-                              </span>
-                            </summary>
-                            <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-zinc-50 border border-zinc-200 px-4 py-3 text-[12.5px] leading-[1.65] text-zinc-800 font-serif">
-                              {sp.originalText
-                                .split(/\n+/)
-                                .map((p) => p.trim())
-                                .filter(Boolean)
-                                .map((para, i) => (
-                                  <p key={i} className="mb-3 last:mb-0 hyphens-auto text-justify" lang="de">
-                                    {para}
-                                  </p>
-                                ))}
-                            </div>
-                          </details>
+                        {sp.textChars > 50 && (
+                          <BerlinOriginalSpeech speechId={sp.speechId} />
                         )}
                       </li>
                     ))}
