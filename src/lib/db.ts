@@ -3404,7 +3404,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       type: "namentlich",
       subtype: "gesetz", // namentliche Abstimmungen sind fast immer Gesetze/Anträge
       id: `poll:${p.poll_id}`,
-      detail_url: `/design/linear/abstimmungen/${p.poll_id}`,
+      detail_url: `/abstimmungen/${p.poll_id}`,
       label: p.poll_label,
       date: p.poll_date,
       outcome: passed ? "angenommen" : "abgelehnt",
@@ -3520,8 +3520,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       }
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
-        ? `/design/linear/aktivitaeten/${dsNrn[0].replace("/", "-")}`
-        : `/design/linear/abstimmungen`;
+        ? `/aktivitaeten/${dsNrn[0].replace("/", "-")}`
+        : `/abstimmungen`;
       const type: HandzeichenVoteIndexEntry["type"] =
         v.vote_type === "handzeichen" || v.vote_type === "hammelsprung"
           ? v.vote_type

@@ -526,7 +526,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
             <p className="mt-2">
               Welche Modelle genau in welchem Schritt — inklusive Versionsständen —
               steht transparent in{" "}
-              <a href="/design/linear/methodik" className="text-primary hover:underline">
+              <a href="/methodik" className="text-primary hover:underline">
                 Methodik &amp; Datenquellen
               </a>.
             </p>

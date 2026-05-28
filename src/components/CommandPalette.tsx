@@ -54,32 +54,32 @@ function flatten(results: SearchResults): FlatHit[] {
     flat.push({
       hit: results.directHit,
       href: results.directHit.drucksache_nr
-        ? `/design/linear/aktivitaeten/${results.directHit.drucksache_nr.replace("/", "-")}`
-        : `/design/linear/protokolle`,
+        ? `/aktivitaeten/${results.directHit.drucksache_nr.replace("/", "-")}`
+        : `/protokolle`,
       sectionLabel: "Direkter Treffer",
     });
   }
   results.politicians.forEach((h) =>
-    flat.push({ hit: h, href: `/design/linear/politiker/${h.id}`, sectionLabel: "Personen" })
+    flat.push({ hit: h, href: `/politiker/${h.id}`, sectionLabel: "Personen" })
   );
   results.topics.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/protokolle/top/${h.topic_id}`,
+      href: `/protokolle/top/${h.topic_id}`,
       sectionLabel: "Tagesordnungspunkte",
     })
   );
   results.speeches.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/protokolle/redner/${encodeURIComponent(h.speaker)}`,
+      href: `/protokolle/redner/${encodeURIComponent(h.speaker)}`,
       sectionLabel: "Reden",
     })
   );
   results.votes.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/abstimmungen/${h.poll_id}`,
+      href: `/abstimmungen/${h.poll_id}`,
       sectionLabel: "Abstimmungen",
     })
   );
@@ -87,8 +87,8 @@ function flatten(results: SearchResults): FlatHit[] {
     flat.push({
       hit: h,
       href: h.drucksache_nr
-        ? `/design/linear/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
-        : `/design/linear/protokolle`,
+        ? `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
+        : `/protokolle`,
       sectionLabel: "Drucksachen",
     })
   );
@@ -261,7 +261,7 @@ export function CommandPalette({
   function goToFullList(type: SearchType) {
     onClose();
     const expandParam = results.expand ? "&expand=1" : "";
-    router.push(`/design/linear/suche?q=${encodeURIComponent(query)}&type=${type}${expandParam}`);
+    router.push(`/suche?q=${encodeURIComponent(query)}&type=${type}${expandParam}`);
   }
 
   // Keyboard navigation
@@ -668,7 +668,7 @@ function SpeechRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
           {ton && (
             <span
               className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
-              title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /design/linear/methodik)"
+              title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /methodik)"
             >
               {ton}
             </span>

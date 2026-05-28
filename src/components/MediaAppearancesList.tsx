@@ -37,7 +37,7 @@ export function MediaAppearancesList({
         const { Icon, label: formatLabel } = FORMAT_META[a.format];
         const stats = a.analysis_file ? getMediaAppearanceStats(a.id) : null;
         const hasDetail = !!stats;
-        const detailHref = `/design/linear/politiker/${politicianId}/medien/${a.id}`;
+        const detailHref = `/politiker/${politicianId}/medien/${a.id}`;
 
         return (
           <article

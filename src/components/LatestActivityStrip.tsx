@@ -67,7 +67,7 @@ export function LatestActivityStrip() {
         {latestSession && (
           <>
             <Link
-              href={`/design/linear/protokolle/sitzung/${latestSession.sitzung}`}
+              href={`/protokolle/sitzung/${latestSession.sitzung}`}
               className="card-hover group block bg-white border border-zinc-200/70 rounded-2xl p-5 sm:row-start-1 sm:col-start-1"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
@@ -86,7 +86,7 @@ export function LatestActivityStrip() {
               </div>
             </Link>
             <Link
-              href="/design/linear/protokolle/sitzungen"
+              href="/protokolle/sitzungen"
               className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors text-center pb-2 sm:pb-0 sm:row-start-2 sm:col-start-1"
             >
               Mehr Plenarsitzungen →
@@ -97,7 +97,7 @@ export function LatestActivityStrip() {
         {latestPoll && (
           <>
             <Link
-              href={`/design/linear/abstimmungen/${latestPoll.pollId}`}
+              href={`/abstimmungen/${latestPoll.pollId}`}
               className="card-hover group block bg-white border border-zinc-200/70 rounded-2xl p-5 sm:row-start-1 sm:col-start-2"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
@@ -129,7 +129,7 @@ export function LatestActivityStrip() {
               </div>
             </Link>
             <Link
-              href="/design/linear/abstimmungen"
+              href="/abstimmungen"
               className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors text-center pb-2 sm:pb-0 sm:row-start-2 sm:col-start-2"
             >
               Mehr Abstimmungen →
@@ -140,7 +140,7 @@ export function LatestActivityStrip() {
         {latestDrucksache && (
           <>
             <Link
-              href={`/design/linear/aktivitaeten/${latestDrucksache.drucksacheNr.replace("/", "-")}`}
+              href={`/aktivitaeten/${latestDrucksache.drucksacheNr.replace("/", "-")}`}
               className="card-hover group block bg-white border border-zinc-200/70 rounded-2xl p-5 sm:row-start-1 sm:col-start-3"
             >
               <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
@@ -156,7 +156,7 @@ export function LatestActivityStrip() {
               </div>
             </Link>
             <Link
-              href="/design/linear/aktivitaeten"
+              href="/aktivitaeten"
               className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors text-center pb-2 sm:pb-0 sm:row-start-2 sm:col-start-3"
             >
               Mehr Drucksachen →

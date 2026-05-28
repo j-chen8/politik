@@ -73,7 +73,7 @@ interface Props {
 export function SearchFullList({ query, type, page, expand, sort = "date", klasse = null, embedded = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname() || "/design/linear/suche";
+  const pathname = usePathname() || "/suche";
   const [data, setData] = useState<SearchByTypeResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -117,7 +117,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
 
   function backToModal() {
     // Immer zurück zur einfachen Suche (Palette), egal ob von Vollliste oder Detail-Suche.
-    router.push(`/design/linear/suche?q=${encodeURIComponent(query)}`);
+    router.push(`/suche?q=${encodeURIComponent(query)}`);
   }
 
   function toggleExpand(on: boolean) {
@@ -348,7 +348,7 @@ function ResultRow({ hit, terms }: { hit: SearchHit; terms: string[] }) {
 function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/politiker/${hit.id}`}
+      href={`/politiker/${hit.id}`}
       className="flex items-center gap-3 px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <PoliticianAvatar
@@ -380,7 +380,7 @@ function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[]
 function TopicFullRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/protokolle/top/${hit.topic_id}`}
+      href={`/protokolle/top/${hit.topic_id}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.title, terms)}</div>
@@ -396,7 +396,7 @@ function SpeechFullRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
   const ton = formatTonalitaet(hit.tonalitaet);
   return (
     <Link
-      href={`/design/linear/protokolle/redner/${encodeURIComponent(hit.speaker)}`}
+      href={`/protokolle/redner/${encodeURIComponent(hit.speaker)}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="flex items-start gap-2">
@@ -432,7 +432,7 @@ function SpeechFullRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
 function VoteFullRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/abstimmungen/${hit.poll_id}`}
+      href={`/abstimmungen/${hit.poll_id}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.label, terms)}</div>
@@ -450,8 +450,8 @@ function DrucksacheFullRow({ hit, terms }: { hit: DrucksacheHit; terms: string[]
     ? dsKlasseShort[hit.batch_class] ?? hit.batch_class
     : "Drucksache";
   const href = hit.drucksache_nr
-    ? `/design/linear/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`
-    : "/design/linear/protokolle";
+    ? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`
+    : "/protokolle";
   return (
     <Link
       href={href}

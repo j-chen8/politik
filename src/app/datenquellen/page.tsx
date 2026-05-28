@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getDb } from "@/lib/db";
-import { Database, Camera, Image as ImageIcon, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 interface PhotoCredit {
   id: number;
@@ -37,230 +37,214 @@ export default function DatenquellenPage() {
   const credits = getPhotoCredits();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 fade-in">
-      <h1 className="text-3xl font-extrabold tracking-tight mb-2">
-        Datenquellen &amp; Credits
-      </h1>
-      <p className="text-muted mb-10">
-        Politik-Radar aggregiert öffentlich verfügbare Daten aus mehreren
-        Quellen. Hier findest du alle Quellen mit Lizenz-Hinweisen sowie
-        Credits für jedes verwendete Foto.
-      </p>
-
-      {/* Datenquellen */}
-      <section className="mb-12">
-        <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
-          <Database className="w-5 h-5 text-primary" />
+    <div className="page-wash min-h-screen">
+      <div className="max-w-3xl mx-auto px-5 py-16 fade-in-up">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-3">
           Datenquellen
-        </h2>
-        <div className="space-y-4">
-          <SourceCard
-            title="abgeordnetenwatch.de"
-            href="https://www.abgeordnetenwatch.de/api"
-            license="CC0 1.0 (Public Domain)"
-            licenseHref="https://creativecommons.org/publicdomain/zero/1.0/deed.de"
-            description="Stammdaten aller Politiker (Name, Partei, Wahlkreis, Nebeneinkünfte, Abstimmungen, Ausschuss-Mitgliedschaften, Wikidata-QIDs)."
-          />
-          <SourceCard
-            title="Wikidata / Wikimedia Commons"
-            href="https://www.wikidata.org/"
-            license="Daten: CC0 · Fotos: meist CC-BY-SA oder CC0 (siehe Foto-Credits unten)"
-            licenseHref="https://creativecommons.org/publicdomain/zero/1.0/deed.de"
-            description="Politiker-Fotos, persönliche Homepages, Twitter-Handles, Instagram-Handles."
-          />
-          <SourceCard
-            title="Wikipedia (deutsch) — Einleitung"
-            href="https://de.wikipedia.org/"
-            license="CC BY-SA 4.0"
-            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            description="Einleitungsabsatz aus dem Wikipedia-Artikel als Bio-Beschreibung (politicians.bio_summary). Auf jedem Profil ist die Quell-URL des Artikels verlinkt."
-          />
-          <SourceCard
-            title="Wikipedia (deutsch) — Volltext"
-            href="https://de.wikipedia.org/api/rest_v1/"
-            license="CC BY-SA 4.0"
-            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            description="Vollständiger Wikipedia-Artikel als Plain Text (politicians.bio_full_text), gespeichert für Multi-LLM-Konsens-Verifikation der CV-Daten. Quelle: Wikipedia REST API (action=query, prop=extracts, explaintext=true)."
-          />
-          <SourceCard
-            title="Bundestag — offizielle Biografien"
-            href="https://www.bundestag.de/abgeordnete/biografien"
-            license="Open Data Bundestag"
-            licenseHref="https://www.bundestag.de/services/opendata"
-            description="Offizielle Biografie-Seiten des Deutschen Bundestags — strukturierte Bio mit Werdegang, Mandaten, Ausschuss-Mitgliedschaften (politicians.bundestag_bio_text + bundestag_bio_url). Wird zur Cross-Verifikation der CV-Daten genutzt. Coverage: 629/629 echten MdBs."
-          />
-          <SourceCard
-            title="Bundesregierung — Kabinett-Profile"
-            href="https://www.bundesregierung.de/breg-de/bundesregierung/bundeskabinett"
-            license="Open Data — kostenfreie Nachnutzung"
-            licenseHref="https://www.bundesregierung.de/breg-de/service/impressum-1620850"
-            description="Offizielle Biografien der Bundeskabinett-Mitglieder mit detailliertem Lebenslauf (politicians.bundesregierung_bio_text + bundesregierung_bio_url). Wird genutzt für die Quereinsteiger-Minister, die kein eigenes Bundestags-Mandat haben (z.B. Reiche, Prien, Hubig)."
-          />
-          <SourceCard
-            title="Politiker-Homepages"
-            href="https://en.wikipedia.org/wiki/Robots_exclusion_standard"
-            license="robots.txt-konform"
-            licenseHref="https://en.wikipedia.org/wiki/Robots_exclusion_standard"
-            description={`Roh-Text der "Über mich"-/Vita-Seiten von den persönlichen Homepages der Abgeordneten (politicians.cv_homepage_text + cv_homepage_url). Wird mit User-Agent-Header gescraped, robots.txt wird respektiert, max. 1 Request/Sekunde pro Domain. Coverage: 561/640.`}
-          />
-          <SourceCard
-            title="Bundestag DIP API"
-            href="https://dip.bundestag.de"
-            license="Open Data — kostenfreie Nachnutzung"
-            licenseHref="https://www.bundestag.de/services/opendata"
-            description="Parlamentarische Aktivitäten: Reden, Anfragen, Anträge, Gesetzentwürfe, Drucksachen."
-          />
-          <SourceCard
-            title="Bundestag Plenarprotokolle"
-            href="https://www.bundestag.de/services/opendata"
-            license="Open Data Bundestag"
-            licenseHref="https://www.bundestag.de/services/opendata"
-            description="XML-Plenarprotokolle des aktuellen Bundestags. Reden werden mit Hilfe von KI (Groq, Google Gemini) automatisch zusammengefasst."
-          />
-          <SourceCard
-            title="KI-generierte Lebensläufe (Groq Llama 3.3)"
-            href="https://groq.com"
-            license="Eigene Verarbeitung von Wikipedia-Inhalten"
-            licenseHref="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            description="Die strukturierten Lebenslauf-Stichpunkte werden vom Llama-3.3-70b-Modell aus dem deutschen Wikipedia-Artikel extrahiert. Können Lücken oder Ungenauigkeiten enthalten — verbindlich ist immer der Wikipedia-Artikel selbst."
-          />
-          <SourceCard
-            title="Bundestag Ausschuss-Protokolle"
-            href="https://www.bundestag.de/dokumente/protokolle/"
-            license="Öffentliche Kurzprotokolle"
-            licenseHref="https://www.bundestag.de/dokumente/protokolle/"
-            description="Sitzungs-Metadaten, Anwesenheitslisten und Tagesordnungen der Ausschüsse."
-          />
-        </div>
-      </section>
+        </h1>
+        <p className="text-[15px] text-zinc-500 mb-12 max-w-xl">
+          Politik-Radar aggregiert öffentlich verfügbare Daten aus mehreren
+          Quellen. Alle Quellen, Lizenzen und Foto-Credits stehen hier offen.
+        </p>
 
-      {/* Methodik-Verweis */}
-      <section className="mb-12">
-        <div className="bg-primary-light/40 rounded-2xl border border-primary/20 p-5 flex items-start gap-4">
-          <Database className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-          <div>
-            <h3 className="font-bold mb-1">
+        {/* Datenquellen */}
+        <section className="mb-16">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+            Quellen
+          </h2>
+          <div className="space-y-1.5">
+            <Source
+              title="abgeordnetenwatch.de"
+              href="https://www.abgeordnetenwatch.de/api"
+              license="CC0 1.0"
+              description="Stammdaten aller Politiker (Name, Partei, Wahlkreis, Nebeneinkünfte, Abstimmungen, Ausschuss-Mitgliedschaften, Wikidata-QIDs)."
+            />
+            <Source
+              title="Wikidata / Wikimedia Commons"
+              href="https://www.wikidata.org/"
+              license="CC0 / CC-BY-SA"
+              description="Politiker-Fotos, persönliche Homepages, Twitter-Handles, Instagram-Handles."
+            />
+            <Source
+              title="Wikipedia (deutsch) — Einleitung"
+              href="https://de.wikipedia.org/"
+              license="CC BY-SA 4.0"
+              description="Einleitungsabsatz aus dem Wikipedia-Artikel als kurze Bio-Beschreibung (politicians.bio_summary). Quell-URL pro Profil verlinkt."
+            />
+            <Source
+              title="Wikipedia (deutsch) — Volltext"
+              href="https://de.wikipedia.org/api/rest_v1/"
+              license="CC BY-SA 4.0"
+              description="Vollständiger Wikipedia-Artikel als Plain Text (politicians.bio_full_text). Wird für Multi-LLM-Konsens-Verifikation der CV-Daten genutzt. Coverage: 640/640."
+            />
+            <Source
+              title="Bundestag — offizielle Biografien"
+              href="https://www.bundestag.de/abgeordnete/biografien"
+              license="Open Data Bundestag"
+              description="Offizielle Biografie-Seiten des Deutschen Bundestags mit strukturiertem Werdegang, Mandaten und Ausschuss-Mitgliedschaften (politicians.bundestag_bio_text + bundestag_bio_url). Coverage: 629/629 echten MdBs."
+            />
+            <Source
+              title="Bundesregierung — Kabinett-Profile"
+              href="https://www.bundesregierung.de/breg-de/bundesregierung/bundeskabinett"
+              license="Open Data — kostenfreie Nachnutzung"
+              description="Offizielle Biografien der Bundeskabinett-Mitglieder mit detailliertem Lebenslauf (politicians.bundesregierung_bio_text). Wird für Quereinsteiger-Minister ohne eigenes MdB-Mandat genutzt."
+            />
+            <Source
+              title="Politiker-Homepages"
+              href="https://en.wikipedia.org/wiki/Robots_exclusion_standard"
+              license="robots.txt-konform"
+              description={`Roh-Text der "Über mich"-/Vita-Seiten der Abgeordneten-Homepages (politicians.cv_homepage_text). Browser-UA, max. 1 Request/Sekunde pro Domain, robots.txt wird respektiert. Coverage: 561/640.`}
+            />
+            <Source
+              title="Bundestag DIP API"
+              href="https://dip.bundestag.de"
+              license="Open Data"
+              description="Parlamentarische Aktivitäten: Reden, Anfragen, Anträge, Gesetzentwürfe, Drucksachen."
+            />
+            <Source
+              title="Bundestag Plenarprotokolle"
+              href="https://www.bundestag.de/services/opendata"
+              license="Open Data Bundestag"
+              description="XML-Plenarprotokolle. Reden wurden mit KI (Groq, Google Gemini) automatisch zusammengefasst."
+            />
+            <Source
+              title="KI-generierte Lebensläufe"
+              href="https://groq.com"
+              license="Verarbeitung von Wikipedia"
+              description="Strukturierte Lebenslauf-Stichpunkte werden via Llama-3.3-70b aus dem deutschen Wikipedia-Artikel extrahiert. Können Lücken enthalten — verbindlich bleibt der Wikipedia-Artikel."
+            />
+            <Source
+              title="Bundestag Ausschuss-Protokolle"
+              href="https://www.bundestag.de/dokumente/protokolle/"
+              license="Öffentliche Kurzprotokolle"
+              description="Sitzungs-Metadaten, Anwesenheitslisten und Tagesordnungen der Ausschüsse."
+            />
+          </div>
+        </section>
+
+        {/* Methodik-Verweis */}
+        <section className="mb-16">
+          <div className="rounded-2xl border border-zinc-200/70 bg-white p-5">
+            <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
               Methodik &amp; Wirksamkeit auf eigener Seite
             </h3>
-            <p className="text-sm text-foreground/85 leading-relaxed mb-2">
+            <p className="text-[14px] text-zinc-700 leading-relaxed mb-3">
               Wie die strukturierten Lebenslauf-Daten durch ein Multi-LLM-Konsens-Verfahren
               mit fünf unabhängigen Modell-Familien geprüft werden — inklusive konkreter
               Wirksamkeits-Statistik, Audit-Trail und Reproduzierbarkeits-Anleitung.
             </p>
             <Link
               href="/methodik"
-              className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
+              className="text-[13px] font-medium text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
             >
               Zur Methodik-Seite →
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Hinweis Eigene Auswertungen */}
-      <section className="mb-12 bg-primary-light/40 rounded-2xl p-5 text-sm leading-relaxed">
-        <h3 className="font-semibold mb-1 flex items-center gap-2">
-          <ImageIcon className="w-4 h-4 text-primary" />
-          Hinweis zu eigenen Auswertungen
-        </h3>
-        <p className="text-foreground/80">
-          Statistiken, Rankings, Aggregationen, Anwesenheitsraten und
-          KI-generierte Zusammenfassungen werden aus den oben genannten
-          Roh-Daten berechnet bzw. generiert. Sie unterliegen keiner
-          eigenen Lizenz, basieren aber auf den Lizenzen der Quellen.
-        </p>
-      </section>
+        {/* Hinweis */}
+        <section className="mb-16 rounded-2xl border border-zinc-200/70 bg-white p-6">
+          <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            Eigene Auswertungen
+          </h3>
+          <p className="text-[14px] text-zinc-700 leading-relaxed">
+            Statistiken, Rankings, Aggregationen, Anwesenheitsraten und
+            KI-generierte Zusammenfassungen werden aus den oben genannten
+            Roh-Daten berechnet bzw. generiert. Sie unterliegen keiner
+            eigenen Lizenz, basieren aber auf den Lizenzen der Quellen.
+          </p>
+        </section>
 
-      {/* Foto-Credits */}
-      <section>
-        <h2 className="text-xl font-bold flex items-center gap-2 mb-2">
-          <Camera className="w-5 h-5 text-primary" />
-          Foto-Credits
-        </h2>
-        <p className="text-sm text-muted mb-4">
-          Alle Politiker-Fotos stammen von{" "}
-          <a
-            href="https://commons.wikimedia.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            Wikimedia Commons
-          </a>
-          . Klick auf einen Eintrag öffnet die Originaldatei mit
-          Fotografen-Name und Lizenz-Bedingungen ({credits.length} Fotos).
-        </p>
-
-        <div className="bg-white rounded-2xl border border-border overflow-hidden">
-          <div className="max-h-[600px] overflow-y-auto">
-            <ul className="divide-y divide-border text-sm">
-              {credits.map((c) => (
-                <li key={c.id} className="px-4 py-2 flex items-center justify-between gap-3 hover:bg-primary-light/20">
-                  <Link
-                    href={`/politiker/${c.id}`}
-                    className="font-medium text-foreground hover:text-primary truncate"
-                  >
-                    {c.first_name} {c.last_name}
-                  </Link>
-                  <a
-                    href={`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.filename)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs text-muted hover:text-primary truncate max-w-[55%]"
-                    title={c.filename}
-                  >
-                    <ExternalLink className="w-3 h-3 shrink-0" />
-                    <span className="truncate">{c.filename}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+        {/* Foto-Credits */}
+        <section>
+          <div className="flex items-baseline justify-between mb-3">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              Foto-Credits
+            </h2>
+            <span className="num text-[11px] text-zinc-400">
+              {credits.length} Fotos
+            </span>
           </div>
-        </div>
-        <p className="text-xs text-muted mt-3">
-          Politiker ohne Foto werden mit einem farbigen Initialen-Avatar
-          (Parteifarbe) dargestellt — keine Bildquelle nötig.
-        </p>
-      </section>
+          <p className="text-[14px] text-zinc-700 mb-5 leading-relaxed">
+            Alle Politiker-Fotos stammen von{" "}
+            <a
+              href="https://commons.wikimedia.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+            >
+              Wikimedia Commons
+            </a>
+            . Klick auf einen Eintrag öffnet die Originaldatei mit
+            Fotografen-Name und Lizenz-Bedingungen.
+          </p>
+
+          <div className="rounded-2xl border border-zinc-200/70 bg-white overflow-hidden">
+            <div className="max-h-[600px] overflow-y-auto">
+              <ul className="divide-y divide-zinc-100 text-[13px]">
+                {credits.map((c) => (
+                  <li
+                    key={c.id}
+                    className="px-4 py-2.5 flex items-center justify-between gap-3 hover:bg-zinc-50 transition-colors"
+                  >
+                    <Link
+                      href={`/politiker/${c.id}`}
+                      className="font-medium text-zinc-950 hover:underline truncate"
+                    >
+                      {c.first_name} {c.last_name}
+                    </Link>
+                    <a
+                      href={`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.filename)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-950 truncate max-w-[55%] transition-colors"
+                      title={c.filename}
+                    >
+                      <ExternalLink className="w-3 h-3 shrink-0" strokeWidth={2.25} />
+                      <span className="truncate">{c.filename}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-[12px] text-zinc-400 mt-3">
+            Politiker ohne Foto werden mit einem Initialen-Avatar dargestellt.
+          </p>
+        </section>
+      </div>
     </div>
   );
 }
 
-function SourceCard({
+function Source({
   title,
   href,
   license,
-  licenseHref,
   description,
 }: {
   title: string;
   href: string;
   license: string;
-  licenseHref: string;
   description: string;
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-border p-5">
-      <div className="flex items-start justify-between gap-4 mb-2">
+    <div className="card-hover bg-white rounded-xl border border-zinc-200/70 p-4">
+      <div className="flex items-start justify-between gap-4 mb-1">
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-foreground hover:text-primary inline-flex items-center gap-1.5"
+          className="font-semibold text-[14.5px] text-zinc-950 inline-flex items-center gap-1.5 hover:underline"
         >
           {title}
-          <ExternalLink className="w-3.5 h-3.5" />
+          <ExternalLink className="w-3 h-3 text-zinc-400" strokeWidth={2.25} />
         </a>
-        <a
-          href={licenseHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-muted hover:text-primary shrink-0"
-        >
+        <span className="text-[11px] text-zinc-400 font-medium uppercase tracking-wider shrink-0">
           {license}
-        </a>
+        </span>
       </div>
-      <p className="text-sm text-foreground/80">{description}</p>
+      <p className="text-[13px] text-zinc-500 leading-relaxed">{description}</p>
     </div>
   );
 }

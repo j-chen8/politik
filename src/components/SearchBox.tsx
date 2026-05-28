@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Search, Loader2 } from "lucide-react";
 
 export function SearchBox() {
   const [query, setQuery] = useState("");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  const pathname = usePathname() || "/";
-  // Im Linear-Design auf /design/linear/suche routen, sonst Default
-  const searchPath = pathname.startsWith("/design/linear") ? "/design/linear/suche" : "/suche";
+  const searchPath = "/suche";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     // Aktuellen Wert direkt aus dem DOM holen — robuster bei nicht voll-hydrierter Seite

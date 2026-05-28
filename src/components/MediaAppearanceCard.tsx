@@ -86,7 +86,7 @@ interface Props {
 export function MediaAppearanceCard({ appearance: a, politician }: Props) {
   const pol = politician !== undefined ? politician : loadPolitician(a.politician_id);
   const detail = getMediaAppearanceDetail(a.id);
-  const detailHref = `/design/linear/politiker/${a.politician_id}/medien/${a.id}`;
+  const detailHref = `/politiker/${a.politician_id}/medien/${a.id}`;
   const Icon = FORMAT_ICONS[a.format];
   const polName = pol ? `${pol.first_name} ${pol.last_name}` : a.politician_display;
   const party = partyShort(pol?.party_label ?? null);

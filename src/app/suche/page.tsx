@@ -1,139 +1,164 @@
-import { searchPoliticiansDb, type PoliticianRow } from "@/lib/db";
-import { SearchBox } from "@/components/SearchBox";
-import { Badge } from "@/components/Badge";
-import Link from "next/link";
-import { UserCircle, ArrowRight, SearchX, Sparkles } from "lucide-react";
-import { getDb } from "@/lib/db";
+"use client";
 
-// Vorschläge wenn Suchfeld leer ist
-const SUGGESTIONS = [
-  "Friedrich Merz",
-  "Katherina Reiche",
-  "Sahra Wagenknecht",
-  "Alice Weidel",
-  "Robert Habeck",
-  "Bärbel Bas",
+import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Search, CornerDownRight } from "lucide-react";
+import { CommandPalette } from "@/components/CommandPalette";
+import { SearchFullList } from "@/components/SearchFullList";
+import type { SearchType } from "@/lib/suche";
+
+const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen"];
+
+const BEISPIELE: { q: string; hint: string }[] = [
+  { q: "Asyl", hint: "auch Migration · Geflüchtete" },
+  { q: "Klima", hint: "auch Energiewende · CO₂" },
+  { q: "Bürgergeld", hint: "auch Sozialleistungen" },
+  { q: "Bundeswehr", hint: "auch Verteidigung · Wehrdienst" },
+  { q: "Wohnen", hint: "auch Mieten · Wohnungsbau" },
+  { q: "Merz", hint: "Person + Reden" },
 ];
 
-interface Props {
-  searchParams: Promise<{ q?: string }>;
-}
+function SuchePageInner() {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
+  const typeParam = searchParams.get("type");
+  const pageParam = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
+  const expandParam = searchParams.get("expand") === "1";
+  const isFullListMode =
+    typeParam !== null &&
+    (VALID_TYPES as string[]).includes(typeParam) &&
+    initialQuery.trim().length >= 2;
 
-function getParliamentForPolitician(politicianId: number): { label: string; type: string } | null {
-  const db = getDb();
-  const row = db
-    .prepare(
-      `SELECT par.label, par.type
-       FROM mandates m
-       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
-       JOIN parliaments par ON pp.parliament_id = par.id
-       WHERE m.politician_id = ? AND m.type = 'mandate'
-       ORDER BY pp.start_date DESC
-       LIMIT 1`
-    )
-    .get(politicianId) as { label: string; type: string } | undefined;
-  return row || null;
-}
+  const [open, setOpen] = useState(false);
+  const [paletteQuery, setPaletteQuery] = useState<string>("");
 
-function getParliamentBadgeVariant(type: string): "blue" | "green" | "yellow" {
-  if (type === "bundestag") return "blue";
-  if (type === "eu") return "green";
-  return "yellow";
-}
+  // ?q=... in URL (ohne ?type) → Palette gleich öffnen mit Prefill
+  useEffect(() => {
+    if (!isFullListMode && initialQuery.trim().length >= 2) {
+      setPaletteQuery(initialQuery);
+      setOpen(true);
+    }
+  }, [initialQuery, isFullListMode]);
 
-export default async function SuchePage({ searchParams }: Props) {
-  const { q } = await searchParams;
-  const query = q || "";
-  const politicians = query ? searchPoliticiansDb(query) : [];
+  // Cmd+K / Ctrl+K Shortcut
+  useEffect(() => {
+    function handler(e: KeyboardEvent) {
+      const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k";
+      if (isCmdK) {
+        e.preventDefault();
+        setPaletteQuery("");
+        setOpen((v) => !v);
+      }
+    }
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  function openWith(q: string) {
+    setPaletteQuery(q);
+    setOpen(true);
+  }
+
+  // Vollliste-Mode: ?q=...&type=... → eigene Page-View statt Hero
+  if (isFullListMode) {
+    return (
+      <SearchFullList
+        query={initialQuery}
+        type={typeParam as SearchType}
+        page={pageParam}
+        expand={expandParam}
+      />
+    );
+  }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12 fade-in">
-      <div className="mb-8">
-        <SearchBox />
-      </div>
-
-      {query && (
-        <p className="text-sm text-muted mb-6">
-          {politicians.length} Ergebnis{politicians.length !== 1 ? "se" : ""} für{" "}
-          <span className="font-semibold text-foreground">&quot;{query}&quot;</span>
-        </p>
-      )}
-
-      {query && politicians.length === 0 && (
-        <div className="text-center py-16">
-          <SearchX className="w-12 h-12 text-muted/40 mx-auto mb-4" />
-          <p className="text-muted">
-            Keine Abgeordneten gefunden. Versuchen Sie einen anderen Namen.
+    <div className="page-wash min-h-screen">
+      <div className="max-w-3xl mx-auto px-5 py-12 fade-in-up">
+        <div className="mb-12">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 mb-3">
+            Eine Suche für alles.
+          </h1>
+          <p className="text-[15px] text-zinc-500 leading-relaxed max-w-xl">
+            Personen, Themen, Reden, Abstimmungen, Drucksachen — in einer Palette. Standardmäßig
+            wird exakt gesucht; verwandte Begriffe lassen sich auf Wunsch einbeziehen („Asyl" →
+            auch Migration und Geflüchtete).
           </p>
         </div>
-      )}
 
-      {/* Leerzustand: Beispiel-Vorschläge */}
-      {!query && (
-        <div className="mt-2">
-          <div className="flex items-center gap-2 text-xs text-muted mb-3 uppercase tracking-wider font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            Beliebte Suchen
+        <button
+          onClick={() => openWith("")}
+          className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-left hover:border-zinc-400 transition-colors mb-4 group"
+        >
+          <Search
+            className="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 transition-colors"
+            strokeWidth={2.25}
+          />
+          <span className="flex-1 text-[14px] text-zinc-400 group-hover:text-zinc-700 transition-colors">
+            Suche öffnen…
+          </span>
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-mono text-zinc-500 border border-zinc-200 rounded">
+            <span className="text-[10px]">⌘</span>K
+          </kbd>
+        </button>
+
+        <Link
+          href="/suche/detail"
+          className="inline-flex items-center gap-2 ml-1 text-[14px] font-medium text-[#1a3e72] hover:underline underline-offset-4 decoration-[#1a3e72]/40 mb-8"
+        >
+          <CornerDownRight className="w-4 h-4 shrink-0 -mt-1 text-[#1a3e72]/70" strokeWidth={2.25} />
+          Detaillierte Suche — nach Typ filtern, sortieren, eingrenzen
+        </Link>
+
+        <div className="mb-12">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+            Probier mal
           </div>
-          <div className="flex flex-wrap gap-2">
-            {SUGGESTIONS.map((s) => (
-              <Link
-                key={s}
-                href={`/suche?q=${encodeURIComponent(s)}`}
-                className="px-4 py-2 rounded-full bg-white border border-border text-sm hover:border-primary hover:text-primary transition-colors"
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {BEISPIELE.map((item) => (
+              <button
+                key={item.q}
+                onClick={() => openWith(item.q)}
+                className="px-3 py-2 bg-white border border-zinc-200 rounded-lg text-left hover:border-zinc-400 transition-colors"
               >
-                {s}
-              </Link>
+                <div className="text-[13px] font-medium text-zinc-900">{item.q}</div>
+                <div className="text-[11px] text-zinc-500">{item.hint}</div>
+              </button>
             ))}
           </div>
-          <p className="text-xs text-muted mt-6">
-            Oder gib oben einen Namen ein und drücke <kbd className="px-1.5 py-0.5 rounded bg-gray-100 border border-border text-[10px] font-mono">Enter</kbd>.
+        </div>
+
+        <div className="border border-zinc-200 rounded-xl p-5 bg-white">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            Was passiert hier
+          </div>
+          <p className="text-[13px] text-zinc-600 leading-relaxed mb-3">
+            Volltextsuche über fünf Datenquellen gleichzeitig: Politiker:innen-Namen, TOP-Titel,
+            Reden-Zusammenfassungen, Abstimmungs-Bezeichnungen und Drucksachen-Titel. Nach Typ
+            filterbar; Treffer mit dem Original-Begriff zuerst.
+          </p>
+          <p className="text-[13px] text-zinc-600 leading-relaxed">
+            <span className="font-medium text-zinc-700">Exakt zuerst, Synonyme optional:</span>{" "}
+            standardmäßig wird genau der eingegebene Begriff gesucht. Auf Wunsch lassen sich 40
+            Themen-Cluster (Migration, Klima &amp; Energie, Innere Sicherheit, …) als verwandte
+            Begriffe einbeziehen — sichtbar über den „Verwandte Themen einbeziehen"-Schalter.
           </p>
         </div>
-      )}
-
-      <div className="space-y-3">
-        {politicians.map((p) => {
-          const parliament = getParliamentForPolitician(p.id);
-          return (
-            <Link
-              key={p.id}
-              href={`/politiker/${p.id}`}
-              className="flex items-center gap-4 bg-white rounded-2xl border border-border p-4 hover:shadow-md hover:border-primary/30 transition-all group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center shrink-0">
-                <UserCircle className="w-6 h-6 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                  <span className="font-semibold text-foreground truncate">
-                    {p.title ? `${p.title} ` : ""}
-                    {p.first_name} {p.last_name}
-                  </span>
-                  {p.party_label && (
-                    <Badge variant="blue">{p.party_label}</Badge>
-                  )}
-                  {parliament && (
-                    <Badge variant={getParliamentBadgeVariant(parliament.type)}>
-                      {parliament.label}
-                    </Badge>
-                  )}
-                </div>
-                <div className="flex items-center gap-3 text-xs text-muted">
-                  {p.occupation && <span className="truncate">{p.occupation}</span>}
-                  {p.residence && (
-                    <>
-                      <span className="text-border">·</span>
-                      <span>{p.residence}</span>
-                    </>
-                  )}
-                </div>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted group-hover:text-primary transition-colors shrink-0" />
-            </Link>
-          );
-        })}
       </div>
+
+      <CommandPalette
+        open={open}
+        onClose={() => setOpen(false)}
+        initialQuery={paletteQuery}
+      />
     </div>
+  );
+}
+
+export default function SuchePage() {
+  return (
+    <Suspense fallback={null}>
+      <SuchePageInner />
+    </Suspense>
   );
 }

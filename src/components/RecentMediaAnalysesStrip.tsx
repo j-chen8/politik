@@ -39,7 +39,7 @@ export function RecentMediaAnalysesStrip() {
             </p>
           </div>
           <Link
-            href="/design/linear/medien"
+            href="/medien"
             className="shrink-0 text-[12.5px] font-medium text-zinc-500 hover:text-zinc-950 transition-colors inline-flex items-center gap-1"
           >
             Alle Auftritte

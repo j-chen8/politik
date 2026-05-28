@@ -7,19 +7,13 @@ const nextConfig: NextConfig = {
   // werden ohne sie zu überschreiben.
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
   serverExternalPackages: ["better-sqlite3"],
-  // Root-URL `/` rendert intern das Linear-Design, damit Cold-Mail-Empfänger
-  // nicht auf der alten Default-UI landen. SiteChrome erkennt sowohl
-  // `/design/linear*` als auch `/` als Linear-Variante (siehe `variant`-Logik).
-  async rewrites() {
-    // `beforeFiles` greift VOR dem Filesystem-Check — sonst würde die
-    // existierende src/app/page.tsx (alte Default-UI) gewinnen.
-    return {
-      beforeFiles: [
-        { source: "/", destination: "/design/linear" },
-      ],
-      afterFiles: [],
-      fallback: [],
-    };
+  // Das frühere /design/linear-Design ist jetzt das Root-Design. Alte Demo-Links
+  // (vor der Migration geteilt) per Dauer-Redirect auf die neuen Root-Pfade leiten.
+  async redirects() {
+    return [
+      { source: "/design/linear", destination: "/", permanent: true },
+      { source: "/design/linear/:path*", destination: "/:path*", permanent: true },
+    ];
   },
 };
 
