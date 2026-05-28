@@ -451,6 +451,8 @@ export interface SearchByTypeResult {
   totalExpanded: number;
   /** Ob die Synonym-Erweiterung aktiv war. */
   expand: boolean;
+  /** Sortierung: nach Datum (neueste zuerst) oder nach Relevanz (bm25). */
+  sort: "date" | "relevance";
   items: SearchHit[];
   expansions: string[];
   matchedClusters: string[];
@@ -461,7 +463,9 @@ export function searchByType(
   type: SearchType,
   page: number = 1,
   pageSize: number = 50,
-  expand: boolean = false
+  expand: boolean = false,
+  sort: "date" | "relevance" = "date",
+  klasse: string | null = null
 ): SearchByTypeResult {
   const query = rawQuery.trim();
   const safePage = Math.max(1, Math.floor(page));
@@ -477,6 +481,7 @@ export function searchByType(
     totalOriginal: 0,
     totalExpanded: 0,
     expand,
+    sort,
     items: [],
     expansions: [],
     matchedClusters: [],
@@ -592,7 +597,7 @@ export function searchByType(
            LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
            LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
            WHERE fts.snippet MATCH ?
-           ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?) THEN 0 ELSE 1 END), sess.datum DESC
+           ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.speeches} WHERE snippet MATCH ?) THEN 0 ELSE 1 END), ${sort === "relevance" ? `bm25(${FTS_TABLES.speeches}), ` : ""}sess.datum DESC
            LIMIT ? OFFSET ?`
         )
         .all(ftsActive, ftsTierMatch, safePageSize, offset) as {
@@ -653,24 +658,25 @@ export function searchByType(
     }
     case "drucksachen": {
       if (!ftsActive) return empty;
-      const totalOriginal = ftsOriginalOnly
-        ? (db
-            .prepare(
-              `SELECT COUNT(*) as n FROM ${FTS_TABLES.drucksachen}
-               WHERE ${FTS_TABLES.drucksachen} MATCH ?`
-            )
-            .get(ftsOriginalOnly) as { n: number }).n
-        : 0;
+      // Optionaler Klasse-Filter (Drucksachen-Typ: gross=Gesetzentwurf, klein=Kleine Anfrage, …).
+      const klFilter = klasse ? " AND an.batch_class = ?" : "";
+      const klFrom = klasse
+        ? `${FTS_TABLES.drucksachen} fts LEFT JOIN drucksache_analyses an ON an.drucksache_nr = fts.drucksache_nr`
+        : FTS_TABLES.drucksachen;
+      const dsCount = (matchClause: string): number => {
+        const sql = `SELECT COUNT(*) as n FROM ${klFrom} WHERE ${FTS_TABLES.drucksachen} MATCH ?${klFilter}`;
+        const params = klasse ? [matchClause, klasse] : [matchClause];
+        return (db.prepare(sql).get(...params) as { n: number }).n;
+      };
+      const totalOriginal = ftsOriginalOnly ? dsCount(ftsOriginalOnly) : 0;
       const totalExpanded =
-        hasExpansions && ftsAllTerms
-          ? (db
-              .prepare(
-                `SELECT COUNT(*) as n FROM ${FTS_TABLES.drucksachen}
-                 WHERE ${FTS_TABLES.drucksachen} MATCH ?`
-              )
-              .get(ftsAllTerms) as { n: number }).n
-          : totalOriginal;
+        hasExpansions && ftsAllTerms ? dsCount(ftsAllTerms) : totalOriginal;
       const total = expand ? totalExpanded : totalOriginal;
+      // Sortierung: relevance = bm25 (Titel-Gewicht 4, Zus. 2, Kern 1, Tags 2) als Tiebreaker nach Tier; sonst Datum.
+      const dsOrder = `(CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.drucksachen} WHERE ${FTS_TABLES.drucksachen} MATCH ?) THEN 0 ELSE 1 END), ${sort === "relevance" ? `bm25(${FTS_TABLES.drucksachen}, 0.0, 4.0, 2.0, 1.0, 2.0), ` : ""}datum DESC`;
+      const itemParams: (string | number | null)[] = klasse
+        ? [ftsActive, klasse, ftsTierMatch, safePageSize, offset]
+        : [ftsActive, ftsTierMatch, safePageSize, offset];
       const rows = db
         .prepare(
           `SELECT fts.drucksache_nr, fts.titel, fts.zusammenfassung,
@@ -679,11 +685,11 @@ export function searchByType(
            FROM ${FTS_TABLES.drucksachen} fts
            LEFT JOIN drucksache_analyses an ON an.drucksache_nr = fts.drucksache_nr
            LEFT JOIN drucksache_texts t ON t.drucksache_nr = fts.drucksache_nr
-           WHERE ${FTS_TABLES.drucksachen} MATCH ?
-           ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.drucksachen} WHERE ${FTS_TABLES.drucksachen} MATCH ?) THEN 0 ELSE 1 END), datum DESC
+           WHERE ${FTS_TABLES.drucksachen} MATCH ?${klFilter}
+           ORDER BY ${dsOrder}
            LIMIT ? OFFSET ?`
         )
-        .all(ftsActive, ftsTierMatch, safePageSize, offset) as {
+        .all(...itemParams) as {
         drucksache_nr: string;
         titel: string;
         zusammenfassung: string;

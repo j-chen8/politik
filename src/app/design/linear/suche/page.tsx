@@ -1,8 +1,9 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, CornerDownRight } from "lucide-react";
 import { CommandPalette } from "@/components/CommandPalette";
 import { SearchFullList } from "@/components/SearchFullList";
 import type { SearchType } from "@/lib/suche";
@@ -87,7 +88,7 @@ function SuchePageInner() {
 
         <button
           onClick={() => openWith("")}
-          className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-left hover:border-zinc-400 transition-colors mb-8 group"
+          className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-left hover:border-zinc-400 transition-colors mb-4 group"
         >
           <Search
             className="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 transition-colors"
@@ -100,6 +101,14 @@ function SuchePageInner() {
             <span className="text-[10px]">⌘</span>K
           </kbd>
         </button>
+
+        <Link
+          href="/design/linear/suche/detail"
+          className="inline-flex items-center gap-2 ml-1 text-[14px] font-medium text-[#1a3e72] hover:underline underline-offset-4 decoration-[#1a3e72]/40 mb-8"
+        >
+          <CornerDownRight className="w-4 h-4 shrink-0 -mt-1 text-[#1a3e72]/70" strokeWidth={2.25} />
+          Detaillierte Suche — nach Typ filtern, sortieren, eingrenzen
+        </Link>
 
         <div className="mb-12">
           <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
