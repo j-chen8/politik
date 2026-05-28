@@ -4255,7 +4255,7 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
 
   const uniqueSpeakers = (db.prepare(
     `SELECT COUNT(DISTINCT speaker_name) AS c FROM berlin_speeches
-     WHERE sitzung_nr = ? AND speech_type != 'praesidium' AND speaker_name IS NOT NULL`,
+     WHERE sitzung_nr = ? AND is_praesidium = 0 AND speaker_name IS NOT NULL`,
   ).get(sitzungNr) as { c: number } | undefined)?.c ?? 0;
 
   // TOPs gruppieren — sortiert nach chronologischer Reihenfolge (PDF-Position des
@@ -4319,7 +4319,7 @@ export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail |
        LEFT JOIN politicians p ON p.id = bs.politician_id
        LEFT JOIN parties pa ON pa.id = p.party_id
        WHERE bs.sitzung_nr = ? AND bs.top_marker = ? AND bs.top_titel = ?
-         AND bs.speech_type != 'praesidium'
+         AND bs.is_praesidium = 0
        ORDER BY bs.order_in_session`,
     ).all(sitzungNr, t.top_marker, t.top_titel) as {
       speech_id: string; speaker: string | null; party: string | null;
@@ -4779,7 +4779,7 @@ export function getBerlinDsPlenarbehandlungen(dbid: string): BerlinDsPlenarbehan
               COUNT(*) AS reden_count
        FROM berlin_speeches bs, json_each(bs.drucksache_nrn) j
        WHERE j.value = ?
-         AND bs.speech_type != 'praesidium'
+         AND bs.is_praesidium = 0
        GROUP BY bs.sitzung_nr, bs.top_marker
        ORDER BY datum DESC, bs.sitzung_nr DESC`,
     ).all(dokNr) as Array<{ sitzung_nr: number; datum: string; top_marker: string; top_titel: string; reden_count: number }>;
