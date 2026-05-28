@@ -7,7 +7,7 @@
  *  - XML-Tags: <p klasse="O"> für Ordnungs-Text, <kommentar> für Beifall/Zwischenrufe
  */
 
-export const PROMPT_VERSION = "bundestag-votes-v1";
+export const PROMPT_VERSION = "bundestag-votes-v2";
 export const MODEL = "claude-haiku-4-5";
 
 const SYSTEM_PROMPT = `Du extrahierst die Fraktions-Abstimmungsergebnisse aus einem Snippet eines Plenarprotokolls des Deutschen Bundestags (21. Wahlperiode, seit März 2025).
@@ -176,10 +176,20 @@ export interface VoteEvent {
   drucksache_nrn_prefiltered: string[];
 }
 
-/** Vote-Pattern: Bundestag verwendet kürzere Formulierung als Berlin —
- *  "Wer stimmt dafür?" (307 Treffer über 64 XML-Files der 21. WP). */
+/** Vote-Pattern: Bundestag verwendet je nach Sitzungsleitung verschiedene
+ *  Formulierungen. Manuelle Audit-Analyse (alle 64 PlPrs WP21):
+ *    - "Wer stimmt dafür"  → Klöckner (Präsidentin), ~210 Vorkommen
+ *    - "Wer stimmt für"    → Ramelow + Lindholz (Vize), ~310 Vorkommen
+ *    - "Wer ist dafür"     → seltene Variante, ~6 Vorkommen
+ *    - "Wer ist für"       → seltene Variante, ~5 Vorkommen
+ *  Pipeline-v1 (alt) hat nur "Wer stimmt dafür" gescannt → Coverage 46%.
+ *
+ *  Dedup-Threshold von 100→500 Zeichen weil im selben Vote-Block manchmal
+ *  Trigger UND Outcome-Statement beide das Pattern enthalten (z.B.
+ *  "Wer stimmt dafür? – Dafür stimmen X. Wer stimmt für die Enthaltung?").
+ */
 export function extractVoteEvents(fullText: string): VoteEvent[] {
-  const re = /Wer stimmt dafür/g;
+  const re = /Wer (?:stimmt|ist)\s+(?:da)?für\b/g;
   const allOffsets: number[] = [];
   let m: RegExpExecArray | null;
   while ((m = re.exec(fullText)) !== null) allOffsets.push(m.index);
@@ -188,7 +198,7 @@ export function extractVoteEvents(fullText: string): VoteEvent[] {
   const dedup: number[] = [];
   for (const o of allOffsets) {
     const last = dedup[dedup.length - 1];
-    if (last === undefined || o - last > 100) dedup.push(o);
+    if (last === undefined || o - last > 500) dedup.push(o);
   }
 
   const dsNrRe = /\bDrucksache(?:n)?\s+(\d{2})\s*\/\s*(\d{1,6})/gi;

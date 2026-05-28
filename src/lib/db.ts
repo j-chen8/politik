@@ -3877,6 +3877,35 @@ export function getParliamentsOverview(): ParliamentOverview[] {
 // Abgeordnetenhaus" (analog zur Bundestag-Landing, aber aus PARDOK).
 // ============================================================
 
+export interface BerlinLatestVote {
+  voteId: number;
+  sitzungNr: number;
+  datum: string;
+  outcome: string;
+  modus: string | null;
+  fraktionVotes: Record<string, string>;
+  drucksacheNrn: string[];
+  primaryTitel: string | null;
+  primaryDbid: string | null;
+  primaryZusammenfassung: string | null;
+  /** Vorgangs-ID der primary-Drucksache. Wird im Sitzungs-View zur Gruppierung
+   *  mehrerer Votes derselben Drucksachen-Folge verwendet (Antrag + Beschluss-
+   *  empfehlung + Schlussabstimmung haben oft denselben Vorgang). */
+  primaryVorgangId: string | null;
+  /** Regex-Label aus raw_snippet: "Einzelplan 06 – Justiz", "Auflagen-Paket".
+   *  NULL wenn kein Pattern matcht — dann nur primaryTitel + DS-Nr in UI. */
+  voteLabel: string | null;
+}
+
+export interface BerlinLatestGesetz {
+  dbid: string;
+  dokNr: string | null;
+  titel: string | null;
+  datum: string;
+  einbringer: string | null;
+  zusammenfassung: string | null;
+}
+
 export interface BerlinSnapshot {
   memberCount: number;
   anfragenCount: number;
@@ -3884,7 +3913,27 @@ export interface BerlinSnapshot {
   ausschussCount: number;
   cvCount: number;
   latestPlenum: { dokNr: string; datum: string } | null;
-  latestAnfragen: { titel: string; datum: string; dokNr: string; lokUrl: string | null }[];
+  latestSitzung:
+    | {
+        sitzungNr: number;
+        datum: string;
+        debattenCount: number;
+        plprDokNr: string;
+        topItems: { marker: string; titel: string; redenCount: number }[];
+      }
+    | null;
+  latestAnfragen: {
+    dbid: string;
+    titel: string;
+    datum: string;
+    dokNr: string;
+    lokUrl: string | null;
+    zusammenfassung: string | null;
+    antwortCharakter: string | null;
+    fraktion: string | null;
+  }[];
+  latestVotes: BerlinLatestVote[];
+  latestGesetzentwuerfe: BerlinLatestGesetz[];
 }
 
 export function getBerlinSnapshot(): BerlinSnapshot {
@@ -3906,7 +3955,10 @@ export function getBerlinSnapshot(): BerlinSnapshot {
 
   let anfragenCount = 0, redenCount = 0, ausschussCount = 0;
   let latestPlenum: BerlinSnapshot["latestPlenum"] = null;
+  let latestSitzung: BerlinSnapshot["latestSitzung"] = null;
   let latestAnfragen: BerlinSnapshot["latestAnfragen"] = [];
+  let latestVotes: BerlinSnapshot["latestVotes"] = [];
+  let latestGesetzentwuerfe: BerlinSnapshot["latestGesetzentwuerfe"] = [];
   try {
     anfragenCount = one(`SELECT COUNT(*) AS c FROM berlin_documents WHERE dok_typ_label LIKE '%Anfrage%'`);
     redenCount = one(`SELECT COUNT(*) AS c FROM berlin_document_persons WHERE role = 'redner'`);
@@ -3917,22 +3969,556 @@ export function getBerlinSnapshot(): BerlinSnapshot {
        ORDER BY dok_datum DESC LIMIT 1`
     ).get() as { dok_nr: string; dok_datum: string } | undefined;
     if (pl) latestPlenum = { dokNr: pl.dok_nr, datum: pl.dok_datum };
+
+    // Letzte Sitzung: höchste sitzung_nr in berlin_speeches mit substantieller TOPs-Übersicht.
+    // Boilerplate-TOPs (Aktuelle Stunde, Fragestunde, Prioritäten) sind administrative Slots
+    // und sagen wenig über den Sitzungs-Inhalt — daher rausgefiltert.
+    const sit = db.prepare(
+      `SELECT sitzung_nr, MAX(datum) AS datum, COUNT(*) AS debatten
+       FROM berlin_speeches
+       WHERE speech_type = 'debatte' AND sitzung_nr IS NOT NULL
+       GROUP BY sitzung_nr
+       ORDER BY datum DESC LIMIT 1`
+    ).get() as { sitzung_nr: number; datum: string; debatten: number } | undefined;
+    if (sit) {
+      const tops = (db.prepare(
+        `SELECT top_marker, top_titel, COUNT(*) AS reden
+         FROM berlin_speeches
+         WHERE sitzung_nr = ? AND top_titel IS NOT NULL AND top_titel != ''
+           AND top_marker IS NOT NULL AND top_marker != ''
+           AND top_titel NOT IN ('Aktuelle Stunde', 'Fragestunde', 'Prioritäten', 'Mündliche Anfragen')
+         GROUP BY top_marker, top_titel
+         ORDER BY CAST(top_marker AS INTEGER)
+         LIMIT 8`
+      ).all(sit.sitzung_nr) as { top_marker: string; top_titel: string; reden: number }[]);
+      latestSitzung = {
+        sitzungNr: sit.sitzung_nr,
+        datum: sit.datum,
+        debattenCount: sit.debatten,
+        // PlPr-Nummer wird aus der Sitzungs-Nr abgeleitet, weil neuere PlPr-Dokumente
+        // in berlin_documents existieren können, deren Reden noch nicht eingelesen sind.
+        plprDokNr: `19/${sit.sitzung_nr}`,
+        topItems: tops.map((r) => ({ marker: r.top_marker, titel: r.top_titel, redenCount: r.reden })),
+      };
+    }
+
     latestAnfragen = (db.prepare(
-      `SELECT titel, dok_datum, dok_nr, lok_url FROM berlin_documents
-       WHERE dok_typ_label = 'Schriftliche Anfrage'
-         AND titel IS NOT NULL AND titel != '' AND dok_datum IS NOT NULL AND dok_datum != ''
-       ORDER BY dok_datum DESC LIMIT 5`
-    ).all() as { titel: string; dok_datum: string; dok_nr: string; lok_url: string | null }[]).map((r) => ({
+      `SELECT bd.dbid, bd.titel, bd.dok_datum, bd.dok_nr, bd.lok_url,
+              bda.zusammenfassung, bda.antwort_charakter, bda.fraktion
+       FROM berlin_documents bd
+       LEFT JOIN berlin_drucksachen_analyses bda
+         ON bda.dbid = bd.dbid AND bda.klasse = 'anfrage_antwort'
+       WHERE bd.dok_typ_label = 'Schriftliche Anfrage'
+         AND bd.titel IS NOT NULL AND bd.titel != ''
+         AND bd.dok_datum IS NOT NULL AND bd.dok_datum != ''
+       ORDER BY bd.dok_datum DESC LIMIT 5`
+    ).all() as {
+      dbid: string; titel: string; dok_datum: string; dok_nr: string; lok_url: string | null;
+      zusammenfassung: string | null; antwort_charakter: string | null; fraktion: string | null;
+    }[]).map((r) => ({
+      dbid: r.dbid,
       titel: r.titel,
       datum: r.dok_datum,
       dokNr: r.dok_nr,
       lokUrl: r.lok_url,
+      zusammenfassung: r.zusammenfassung,
+      antwortCharakter: r.antwort_charakter,
+      fraktion: r.fraktion,
+    }));
+
+    // Letzte Abstimmungen (nur Plenum-Votes mit echtem Outcome, kein 'kein_vote')
+    latestVotes = (db.prepare(
+      `SELECT vote_id, sitzung_nr, datum, outcome, modus,
+              fraktion_votes_json, drucksache_nrn_json, drucksache_dbids_json, vote_label
+       FROM berlin_votes
+       WHERE outcome NOT IN ('kein_vote', 'unklar')
+         AND fraktion_votes_json IS NOT NULL AND fraktion_votes_json != ''
+       ORDER BY datum DESC, vote_id DESC
+       LIMIT 5`
+    ).all() as {
+      vote_id: number; sitzung_nr: number; datum: string;
+      outcome: string; modus: string | null;
+      fraktion_votes_json: string; drucksache_nrn_json: string | null;
+      drucksache_dbids_json: string | null; vote_label: string | null;
+    }[]).map((r) => {
+      const drsNrn: string[] = r.drucksache_nrn_json ? safeParseStringArray(r.drucksache_nrn_json) : [];
+      const drsDbids: string[] = r.drucksache_dbids_json ? safeParseStringArray(r.drucksache_dbids_json) : [];
+      const primaryDbid = drsDbids[0] ?? null;
+      let primaryTitel: string | null = null;
+      let primaryZusammenfassung: string | null = null;
+      if (primaryDbid) {
+        const t = db.prepare(
+          `SELECT bd.titel, bda.zusammenfassung
+           FROM berlin_documents bd
+           LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = bd.dbid
+           WHERE bd.dbid = ?`,
+        ).get(primaryDbid) as { titel: string | null; zusammenfassung: string | null } | undefined;
+        primaryTitel = t?.titel ?? null;
+        primaryZusammenfassung = t?.zusammenfassung ?? null;
+      }
+      let fraktionVotes: Record<string, string> = {};
+      try {
+        fraktionVotes = JSON.parse(r.fraktion_votes_json) as Record<string, string>;
+      } catch {
+        fraktionVotes = {};
+      }
+      return {
+        voteId: r.vote_id,
+        sitzungNr: r.sitzung_nr,
+        datum: r.datum,
+        outcome: r.outcome,
+        modus: r.modus,
+        fraktionVotes,
+        drucksacheNrn: drsNrn,
+        primaryTitel,
+        primaryDbid,
+        primaryZusammenfassung,
+        primaryVorgangId: null,
+        voteLabel: r.vote_label,
+      };
+    });
+
+    // Letzte Gesetzentwürfe (nur 'Vorlage zur Beschlussfassung (Gesetzentwurf)' — keine Bebauungspläne)
+    latestGesetzentwuerfe = (db.prepare(
+      `SELECT bd.dbid, bd.dok_nr, bd.titel, bd.dok_datum, bda.einbringer, bda.zusammenfassung
+       FROM berlin_documents bd
+       JOIN berlin_drucksachen_analyses bda ON bda.dbid = bd.dbid
+       WHERE bda.klasse = 'gesetzentwurf'
+         AND bd.dok_typ_label = 'Vorlage zur Beschlussfassung (Gesetzentwurf)'
+         AND bd.titel IS NOT NULL AND bd.titel != ''
+         AND bd.dok_datum IS NOT NULL AND bd.dok_datum != ''
+         AND bd.titel NOT LIKE 'Entwurf des Bebauungsplans%'
+       ORDER BY bd.dok_datum DESC LIMIT 5`
+    ).all() as {
+      dbid: string; dok_nr: string | null; titel: string | null;
+      dok_datum: string; einbringer: string | null; zusammenfassung: string | null;
+    }[]).map((r) => ({
+      dbid: r.dbid,
+      dokNr: r.dok_nr,
+      titel: r.titel,
+      datum: r.dok_datum,
+      einbringer: r.einbringer,
+      zusammenfassung: r.zusammenfassung,
     }));
   } catch {
     // berlin_*-Tabellen noch nicht angelegt
   }
 
-  return { memberCount, anfragenCount, redenCount, ausschussCount, cvCount, latestPlenum, latestAnfragen };
+  return {
+    memberCount, anfragenCount, redenCount, ausschussCount, cvCount,
+    latestPlenum, latestSitzung, latestAnfragen, latestVotes, latestGesetzentwuerfe,
+  };
+}
+
+export interface BerlinSitzungSpeech {
+  speechId: string;
+  speakerName: string;
+  speakerParty: string | null;
+  speakerRole: string | null;
+  speakerRessort: string | null;
+  politicianId: number | null;
+  speechType: string | null;
+  textChars: number;
+  interruptionCount: number;
+  tonalitaet: string | null;
+  zusammenfassung: string | null;
+  konkreteZahlen: string[];
+  forderungen: string[];
+  /** Voller Rede-Text aus PDF-Extraktion. Wird per Default in der UI eingeklappt
+   *  via <details>, nur bei Klick „Originalrede einblenden" sichtbar. */
+  originalText: string;
+  /** Drucksachen, die diese Rede referenziert. dbid kann null sein wenn die
+   *  DS-Nummer in berlin_documents (noch) nicht aufgelöst werden konnte. */
+  drucksachen: { nr: string; dbid: string | null }[];
+}
+
+export interface KeyFact {
+  text: string;
+  /** 1-based Indizes in die gefilterte Reden-Liste (Reden mit `zusammenfassung_2_saetze`).
+   *  Wikipedia-style Belegquellen — 1-3 refs üblich, leer wenn LLM keine ausgewählt. */
+  refs: number[];
+}
+
+export interface BerlinSitzungTop {
+  marker: string;
+  titel: string;
+  isBoilerplate: boolean;
+  redenCount: number;
+  /** v3-Legacy: Kompakter Kern-Lead (eigenständig lesbar).
+   *  null bei v4+ (key_facts statt lead) oder wenn noch keine Synthese existiert. */
+  summaryLead: string | null;
+  /** v3+: Optionale vertiefende Synthese. v4 ist Bullet-only und füllt body=null. */
+  summaryBody: string | null;
+  /** v4+: 2-8 eigenständig lesbare Fakt-Bullets mit optionalen Reden-Refs.
+   *  null bei v3-Legacy oder fehlender Synthese. */
+  summaryKeyFacts: KeyFact[] | null;
+  /** Aggregierte Drucksachen aller Reden in diesem TOP. Dedup'd. */
+  drucksachen: { nr: string; dbid: string | null }[];
+  speeches: BerlinSitzungSpeech[];
+}
+
+export interface BerlinSitzungDetail {
+  sitzungNr: number;
+  plprDokNr: string;
+  datum: string;
+  plprLokUrl: string | null;
+  redenTotal: number;
+  redenByType: Record<string, number>;
+  uniqueSpeakers: number;
+  tops: BerlinSitzungTop[];
+  votes: BerlinLatestVote[];
+}
+
+/** Parst `key_facts_json` aus berlin_top_summaries in den kanonischen KeyFact[]-Shape.
+ *  Akzeptiert sowohl Legacy-`string[]` (frühe v4-Runs ohne refs) als auch das v4-Format
+ *  `Array<{ text, refs }>`. Liefert null wenn leer/ungültig. */
+function parseKeyFacts(raw: string | null): KeyFact[] | null {
+  if (!raw) return null;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(parsed) || parsed.length === 0) return null;
+  const out: KeyFact[] = [];
+  for (const item of parsed) {
+    if (typeof item === "string") {
+      out.push({ text: item, refs: [] });
+    } else if (item && typeof item === "object" && typeof (item as { text?: unknown }).text === "string") {
+      const refsRaw = (item as { refs?: unknown }).refs;
+      const refs = Array.isArray(refsRaw)
+        ? refsRaw.filter((n): n is number => typeof n === "number" && Number.isInteger(n) && n > 0)
+        : [];
+      out.push({ text: (item as { text: string }).text, refs });
+    }
+  }
+  return out.length > 0 ? out : null;
+}
+
+/** Vorherige + nächste Berliner Sitzung (mit Datum) für Navigation in der Detail-View.
+ *  Berücksichtigt nur Sitzungen mit substantiellen Reden (>5), um Konstituierungs-
+ *  Sitzungen und kaputte PDFs auszublenden. */
+export function getBerlinSitzungNeighbors(sitzungNr: number): {
+  prev: { nr: number; datum: string | null } | null;
+  next: { nr: number; datum: string | null } | null;
+} {
+  const db = getDb();
+  try {
+    const prev = db.prepare(
+      `SELECT sitzung_nr AS nr, MAX(datum) AS datum
+       FROM berlin_speeches WHERE sitzung_nr < ?
+       GROUP BY sitzung_nr HAVING COUNT(*) > 5
+       ORDER BY sitzung_nr DESC LIMIT 1`,
+    ).get(sitzungNr) as { nr: number; datum: string | null } | undefined;
+    const next = db.prepare(
+      `SELECT sitzung_nr AS nr, MAX(datum) AS datum
+       FROM berlin_speeches WHERE sitzung_nr > ?
+       GROUP BY sitzung_nr HAVING COUNT(*) > 5
+       ORDER BY sitzung_nr ASC LIMIT 1`,
+    ).get(sitzungNr) as { nr: number; datum: string | null } | undefined;
+    return { prev: prev ?? null, next: next ?? null };
+  } catch {
+    return { prev: null, next: null };
+  }
+}
+
+const BERLIN_BOILERPLATE_TOPS = new Set([
+  "Aktuelle Stunde",
+  "Fragestunde",
+  "Prioritäten",
+  "Mündliche Anfragen",
+]);
+
+export function getBerlinSitzungDetail(sitzungNr: number): BerlinSitzungDetail | null {
+  const db = getDb();
+
+  // Header-Stats
+  const header = db.prepare(
+    `SELECT MAX(datum) AS datum, MAX(lok_url) AS lok_url, COUNT(*) AS reden
+     FROM berlin_speeches WHERE sitzung_nr = ?`,
+  ).get(sitzungNr) as { datum: string | null; lok_url: string | null; reden: number } | undefined;
+  // datum kann leer sein (manche alte PDF-Headers wurden vom Scraper nicht erfasst —
+  // separater Datenqualitäts-Track). Trotzdem Detail-Seite zeigen wenn Reden da sind.
+  if (!header || header.reden === 0) return null;
+
+  const byType = db.prepare(
+    `SELECT speech_type, COUNT(*) AS c FROM berlin_speeches
+     WHERE sitzung_nr = ? GROUP BY speech_type`,
+  ).all(sitzungNr) as { speech_type: string | null; c: number }[];
+  const redenByType: Record<string, number> = {};
+  for (const r of byType) {
+    if (r.speech_type) redenByType[r.speech_type] = r.c;
+  }
+
+  const uniqueSpeakers = (db.prepare(
+    `SELECT COUNT(DISTINCT speaker_name) AS c FROM berlin_speeches
+     WHERE sitzung_nr = ? AND speech_type != 'praesidium' AND speaker_name IS NOT NULL`,
+  ).get(sitzungNr) as { c: number } | undefined)?.c ?? 0;
+
+  // TOPs gruppieren — sortiert nach chronologischer Reihenfolge (PDF-Position des
+  // ersten zugehörigen Wortbeitrags), NICHT nach Marker. In ca. 24 Berliner
+  // Sitzungen wurden TOPs umsortiert (vorgezogen / zurückgestellt).
+  const topRows = db.prepare(
+    `SELECT top_marker, top_titel, COUNT(*) AS reden, MIN(start_line) AS first_line
+     FROM berlin_speeches
+     WHERE sitzung_nr = ?
+       AND top_titel IS NOT NULL AND top_titel != ''
+       AND top_marker IS NOT NULL AND top_marker != ''
+     GROUP BY top_marker, top_titel
+     ORDER BY first_line`,
+  ).all(sitzungNr) as { top_marker: string; top_titel: string; reden: number; first_line: number }[];
+
+  // Cached TOP-Summaries (KI-Synthese aus berlin_top_summaries) optional pro TOP laden.
+  // v4+ schreibt in `key_facts_json`/`body` (lead=NULL).
+  // v3 schreibt in `lead`/`body`. v1/v2-Legacy steht in `zusammenfassung` → fallback in lead.
+  const summaryRow = db.prepare(
+    `SELECT lead, body, zusammenfassung, key_facts_json FROM berlin_top_summaries
+     WHERE sitzung_nr = ? AND top_marker = ? AND top_titel = ?`,
+  );
+
+  // Pre-resolve dok_nr → dbid für alle Drucksachen, die in dieser Sitzung in
+  // Reden referenziert werden. Single query, dann pro Rede aus der Map ziehen.
+  const dsNrToDbid = new Map<string, string | null>();
+  try {
+    const dsRows = db.prepare(
+      `SELECT DISTINCT j.value AS nr, bd.dbid
+       FROM berlin_speeches bs, json_each(bs.drucksache_nrn) j
+       LEFT JOIN berlin_documents bd ON bd.dok_nr = j.value
+       WHERE bs.sitzung_nr = ? AND bs.drucksache_nrn IS NOT NULL`,
+    ).all(sitzungNr) as { nr: string; dbid: string | null }[];
+    for (const r of dsRows) dsNrToDbid.set(r.nr, r.dbid);
+  } catch {
+    // berlin_documents oder json_each evt. nicht verfügbar — leer lassen
+  }
+
+  const tops: BerlinSitzungTop[] = topRows.map((t) => {
+    // Partei aus berlin_speeches.speaker_party; falls leer (gilt für Senatsmitglieder
+    // wie Wegner, Giffey, Spranger und für das Präsidium), aus politicians-Tabelle holen.
+    // parties.label nutzt Langform (BÜNDNIS 90/DIE GRÜNEN, Die Linke), die UI-Konvention
+    // ist die Kurzform aus speaker_party (GRÜNE, LINKE) — daher Mapping per CASE.
+    const speeches = db.prepare(
+      `SELECT bs.speech_id, bs.speaker_name AS speaker,
+              COALESCE(
+                NULLIF(bs.speaker_party, ''),
+                CASE
+                  WHEN pa.label LIKE 'BÜNDNIS%' THEN 'GRÜNE'
+                  WHEN pa.label = 'Die Linke' THEN 'LINKE'
+                  ELSE pa.label
+                END
+              ) AS party,
+              bs.speaker_role, bs.speaker_ressort, bs.speech_type, bs.text_chars,
+              bs.interruptions, bs.politician_id, bs.text AS original_text,
+              bs.drucksache_nrn,
+              bsa.tonalitaet, bsa.zusammenfassung_2_saetze AS zusammenfassung,
+              bsa.konkrete_zahlen_json, bsa.forderungen_json
+       FROM berlin_speeches bs
+       LEFT JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
+       LEFT JOIN politicians p ON p.id = bs.politician_id
+       LEFT JOIN parties pa ON pa.id = p.party_id
+       WHERE bs.sitzung_nr = ? AND bs.top_marker = ? AND bs.top_titel = ?
+         AND bs.speech_type != 'praesidium'
+       ORDER BY bs.order_in_session`,
+    ).all(sitzungNr, t.top_marker, t.top_titel) as {
+      speech_id: string; speaker: string | null; party: string | null;
+      speaker_role: string | null; speaker_ressort: string | null;
+      speech_type: string | null; text_chars: number; interruptions: string | null;
+      politician_id: number | null; original_text: string;
+      drucksache_nrn: string | null;
+      tonalitaet: string | null; zusammenfassung: string | null;
+      konkrete_zahlen_json: string | null; forderungen_json: string | null;
+    }[];
+
+    const sum = summaryRow.get(sitzungNr, t.top_marker, t.top_titel) as
+      | { lead: string | null; body: string | null; zusammenfassung: string | null; key_facts_json: string | null }
+      | undefined;
+    const keyFacts = parseKeyFacts(sum?.key_facts_json ?? null);
+
+    const speechesOut: BerlinSitzungSpeech[] = speeches.map((s) => {
+      let interruptionCount = 0;
+      if (s.interruptions) {
+        try {
+          const parsed = JSON.parse(s.interruptions);
+          interruptionCount = Array.isArray(parsed) ? parsed.length : 0;
+        } catch {
+          interruptionCount = 0;
+        }
+      }
+      const dsNrs = safeJsonArray(s.drucksache_nrn);
+      const drucksachen = dsNrs.map((nr) => ({ nr, dbid: dsNrToDbid.get(nr) ?? null }));
+      return {
+        speechId: s.speech_id,
+        speakerName: s.speaker ?? "Unbekannt",
+        speakerParty: s.party,
+        speakerRole: s.speaker_role,
+        speakerRessort: s.speaker_ressort,
+        politicianId: s.politician_id,
+        speechType: s.speech_type,
+        textChars: s.text_chars,
+        interruptionCount,
+        tonalitaet: s.tonalitaet,
+        zusammenfassung: s.zusammenfassung,
+        konkreteZahlen: safeJsonArray(s.konkrete_zahlen_json),
+        forderungen: safeJsonArray(s.forderungen_json),
+        originalText: s.original_text,
+        drucksachen,
+      };
+    });
+
+    // Aggregate TOP-Drucksachen aus Reden (dedup auf nr)
+    const topDsMap = new Map<string, string | null>();
+    for (const sp of speechesOut) {
+      for (const d of sp.drucksachen) {
+        if (!topDsMap.has(d.nr)) topDsMap.set(d.nr, d.dbid);
+      }
+    }
+    const topDrucksachen = Array.from(topDsMap.entries()).map(([nr, dbid]) => ({ nr, dbid }));
+
+    return {
+      marker: t.top_marker,
+      titel: t.top_titel,
+      isBoilerplate: BERLIN_BOILERPLATE_TOPS.has(t.top_titel),
+      redenCount: t.reden,
+      summaryLead: sum?.lead ?? sum?.zusammenfassung ?? null,
+      summaryBody: sum?.body ?? null,
+      summaryKeyFacts: keyFacts,
+      drucksachen: topDrucksachen,
+      speeches: speechesOut,
+    };
+  });
+
+  // Votes der Sitzung — reuse derselben Struktur wie in latestVotes
+  const voteRows = db.prepare(
+    `SELECT vote_id, sitzung_nr, datum, outcome, modus,
+            fraktion_votes_json, drucksache_nrn_json, drucksache_dbids_json, vote_label
+     FROM berlin_votes
+     WHERE sitzung_nr = ?
+     ORDER BY vote_id`,
+  ).all(sitzungNr) as {
+    vote_id: number; sitzung_nr: number; datum: string;
+    outcome: string; modus: string | null;
+    fraktion_votes_json: string | null; drucksache_nrn_json: string | null;
+    drucksache_dbids_json: string | null; vote_label: string | null;
+  }[];
+
+  const votes: BerlinLatestVote[] = voteRows.map((r) => {
+    const drsNrn = r.drucksache_nrn_json ? safeParseStringArray(r.drucksache_nrn_json) : [];
+    const drsDbids = r.drucksache_dbids_json ? safeParseStringArray(r.drucksache_dbids_json) : [];
+    // Bei Vote-Pakets (Antrag + Beschlussempfehlung): wähle die DS mit nicht-
+    // leerem Titel als primary, damit die UI nie eine titellose Karte zeigt.
+    // Bei Berliner Anträgen ist oft die alte Antrag-DS (PARDOK-Mitteilung)
+    // ohne Titel — die Beschlussempfehlung hat dann den aussagekräftigen Titel.
+    let primaryDbid: string | null = null;
+    let primaryTitel: string | null = null;
+    let primaryZusammenfassung: string | null = null;
+    let primaryVorgangId: string | null = null;
+    // Titel-Quellen-Hierarchie für Berliner Drucksachen:
+    // 1. `titel` (Antrag / Gesetzentwurf — meist gut gefüllt)
+    // 2. `abstract` (Beschlussempfehlungen + Mitteilungen — Titel landet hier)
+    // 3. `desk` (selten, manche alten Vorlagen)
+    // 4. Vorgangs-Fallback: bei Beschlussempfehlungen ohne Titel den Original-
+    //    Antrag oder Gesetzentwurf via vorgang_id-Lookup nehmen — der hat den
+    //    aussagekräftigen Titel.
+    // Letzter Fallback: erste DBID auch wenn alle Title-Spalten leer.
+    const titelStmt = db.prepare(
+      `SELECT COALESCE(NULLIF(bd.titel,''), NULLIF(bd.abstract,''), NULLIF(bd.desk,'')) AS titel,
+              bd.vorgang_id AS vorgang_id,
+              bd.dok_typ_label AS dok_typ_label,
+              bda.zusammenfassung
+       FROM berlin_documents bd
+       LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = bd.dbid
+       WHERE bd.dbid = ?`,
+    );
+    const vorgangsAntragStmt = db.prepare(
+      `SELECT COALESCE(NULLIF(bd.titel,''), NULLIF(bd.abstract,'')) AS titel
+       FROM berlin_documents bd
+       WHERE bd.vorgang_id = ?
+         AND (bd.dok_typ_label LIKE '%Antrag%' OR bd.dok_typ_label LIKE '%Gesetzentwurf%' OR bd.dok_typ_label LIKE '%Vorlage%')
+         AND (COALESCE(bd.titel,'') != '' OR COALESCE(bd.abstract,'') != '')
+       ORDER BY CASE
+         WHEN bd.dok_typ_label LIKE '%Antrag%' THEN 1
+         WHEN bd.dok_typ_label LIKE '%Gesetzentwurf%' THEN 2
+         ELSE 3
+       END
+       LIMIT 1`,
+    );
+    /** Generischer Title-Marker — meist Beschlussempfehlung/Mitteilung mit
+     *  nur dem dok_typ_label als „Titel". Wenn solcher gefunden, lieber
+     *  Vorgangs-Fallback nutzen. */
+    function isGenericTitle(t: string | null): boolean {
+      if (!t) return true;
+      const trimmed = t.trim();
+      if (trimmed.length < 12) return true;
+      return /^(Beschlussempfehlung|Mitteilung zur Kenntnisnahme|Vorlage|Antrag|Drucksache|Gesetzentwurf)(\s|$)/i.test(trimmed);
+    }
+    for (const dbid of drsDbids) {
+      const t = titelStmt.get(dbid) as { titel: string | null; vorgang_id: string | null; dok_typ_label: string | null; zusammenfassung: string | null } | undefined;
+      let effectiveTitel = t?.titel ?? null;
+      // Vorgangs-Fallback wenn Titel generisch oder leer
+      if (isGenericTitle(effectiveTitel) && t?.vorgang_id) {
+        const vorgangTitel = vorgangsAntragStmt.get(t.vorgang_id) as { titel: string | null } | undefined;
+        if (vorgangTitel?.titel && vorgangTitel.titel.trim().length > 0) {
+          effectiveTitel = vorgangTitel.titel;
+        }
+      }
+      if (effectiveTitel && effectiveTitel.trim().length > 0) {
+        primaryDbid = dbid;
+        primaryTitel = effectiveTitel;
+        primaryZusammenfassung = t?.zusammenfassung ?? null;
+        primaryVorgangId = t?.vorgang_id ?? null;
+        break;
+      }
+    }
+    // Fallback: kein DS mit Titel → erste DBID nehmen (Link funktioniert wenigstens)
+    if (!primaryDbid && drsDbids.length > 0) {
+      primaryDbid = drsDbids[0];
+      const fb = titelStmt.get(primaryDbid) as { vorgang_id: string | null } | undefined;
+      primaryVorgangId = fb?.vorgang_id ?? null;
+    }
+    let fraktionVotes: Record<string, string> = {};
+    if (r.fraktion_votes_json) {
+      try {
+        fraktionVotes = JSON.parse(r.fraktion_votes_json) as Record<string, string>;
+      } catch {
+        fraktionVotes = {};
+      }
+    }
+    return {
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      datum: r.datum,
+      outcome: r.outcome,
+      modus: r.modus,
+      fraktionVotes,
+      drucksacheNrn: drsNrn,
+      primaryTitel,
+      primaryDbid,
+      primaryZusammenfassung,
+      primaryVorgangId,
+      voteLabel: r.vote_label,
+    };
+  });
+
+  return {
+    sitzungNr,
+    plprDokNr: `19/${sitzungNr}`,
+    datum: header.datum ?? "",
+    plprLokUrl: header.lok_url,
+    redenTotal: header.reden,
+    redenByType,
+    uniqueSpeakers,
+    tops,
+    votes,
+  };
+}
+
+function safeParseStringArray(json: string): string[] {
+  try {
+    const parsed = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === "string") : [];
+  } catch {
+    return [];
+  }
 }
 
 // ============================================================
@@ -4158,6 +4744,52 @@ export interface BerlinDsVote {
   drucksacheDbids: string[]; // ["D-XXX", "D-YYY"] (resolved)
   plprLokUrl: string;
   rawSnippet: string | null;
+  voteLabel: string | null;  // Regex-Label aus raw_snippet: "Einzelplan 06 – Justiz", "Auflagen-Paket", etc.
+}
+
+export interface BerlinDsPlenarbehandlung {
+  sitzungNr: number;
+  datum: string;
+  topMarker: string;
+  topTitel: string;
+  redenCount: number;
+  /** Phase, falls aus speech_type oder Kontext ableitbar: 'erste_lesung' | 'zweite_lesung' | 'fragestunde' | 'priorität' | null. */
+  phase: string | null;
+}
+
+/** Reverse-Lookup: in welchen Sitzungen + TOPs wurde diese Drucksache verhandelt?
+ *  Aggregiert über berlin_speeches.drucksache_nrn (JSON-Array).
+ *  Liefert chronologisch absteigend (neueste zuerst). */
+export function getBerlinDsPlenarbehandlungen(dbid: string): BerlinDsPlenarbehandlung[] {
+  const db = getDb();
+  // 1. dok_nr für dbid holen
+  const doc = db.prepare(`SELECT dok_nr FROM berlin_documents WHERE dbid = ?`).get(dbid) as { dok_nr: string | null } | undefined;
+  if (!doc?.dok_nr) return [];
+  const dokNr = doc.dok_nr;
+  try {
+    const rows = db.prepare(
+      `SELECT bs.sitzung_nr AS sitzung_nr,
+              MAX(bs.datum) AS datum,
+              bs.top_marker AS top_marker,
+              MAX(bs.top_titel) AS top_titel,
+              COUNT(*) AS reden_count
+       FROM berlin_speeches bs, json_each(bs.drucksache_nrn) j
+       WHERE j.value = ?
+         AND bs.speech_type != 'praesidium'
+       GROUP BY bs.sitzung_nr, bs.top_marker
+       ORDER BY datum DESC, bs.sitzung_nr DESC`,
+    ).all(dokNr) as Array<{ sitzung_nr: number; datum: string; top_marker: string; top_titel: string; reden_count: number }>;
+    return rows.map((r) => ({
+      sitzungNr: r.sitzung_nr,
+      datum: r.datum,
+      topMarker: r.top_marker,
+      topTitel: r.top_titel,
+      redenCount: r.reden_count,
+      phase: r.top_titel?.includes("Priorität") ? "priorität" : null, // simple heuristic
+    }));
+  } catch {
+    return [];
+  }
 }
 
 /** Holt alle Vote-Events die diese Berlin-DS referenzieren.
@@ -4169,7 +4801,7 @@ export function getBerlinDsVotes(dbid: string): BerlinDsVote[] {
       SELECT bv.vote_id, bv.sitzung_nr, bv.datum, bv.vote_type, bv.outcome, bv.modus,
              bv.fraktion_votes_json, bv.stimmen_zahlen_json,
              bv.drucksache_nrn_json, bv.drucksache_dbids_json,
-             bv.plpr_lok_url, bv.raw_snippet
+             bv.plpr_lok_url, bv.raw_snippet, bv.vote_label
       FROM berlin_votes bv, json_each(bv.drucksache_dbids_json) AS j
       WHERE j.value = ? AND bv.error_type IS NULL
       ORDER BY bv.datum DESC, bv.snippet_offset ASC
@@ -4178,7 +4810,7 @@ export function getBerlinDsVotes(dbid: string): BerlinDsVote[] {
       vote_type: string; outcome: string; modus: string | null;
       fraktion_votes_json: string | null; stimmen_zahlen_json: string | null;
       drucksache_nrn_json: string | null; drucksache_dbids_json: string | null;
-      plpr_lok_url: string; raw_snippet: string | null;
+      plpr_lok_url: string; raw_snippet: string | null; vote_label: string | null;
     }>;
     const parse = <T,>(s: string | null): T | null => {
       if (!s) return null;
@@ -4197,6 +4829,7 @@ export function getBerlinDsVotes(dbid: string): BerlinDsVote[] {
       drucksacheDbids: parse<string[]>(r.drucksache_dbids_json) ?? [],
       plprLokUrl: r.plpr_lok_url,
       rawSnippet: r.raw_snippet,
+      voteLabel: r.vote_label,
     }));
   } catch {
     return []; // berlin_votes-Tabelle evt. noch nicht angelegt

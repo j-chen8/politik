@@ -95,10 +95,10 @@ export interface PoliticianCVProps {
 }
 
 const SECTIONS = [
-  { key: "ausbildung", label: "Ausbildung", icon: GraduationCap, color: "text-blue-600" },
-  { key: "beruflicher_werdegang", label: "Beruflicher Werdegang", icon: Briefcase, color: "text-amber-600" },
-  { key: "politische_stationen", label: "Politische Stationen", icon: Landmark, color: "text-purple-600" },
-  { key: "sonstiges", label: "Sonstiges", icon: Star, color: "text-emerald-600" },
+  { key: "ausbildung", label: "Ausbildung", icon: GraduationCap },
+  { key: "beruflicher_werdegang", label: "Beruflicher Werdegang", icon: Briefcase },
+  { key: "politische_stationen", label: "Politische Stationen", icon: Landmark },
+  { key: "sonstiges", label: "Sonstiges", icon: Star },
 ] as const;
 
 type SectionKey = (typeof SECTIONS)[number]["key"];
@@ -282,9 +282,6 @@ export function PoliticianCV(props: PoliticianCVProps) {
         <summary className="list-none cursor-pointer flex items-baseline justify-between gap-3 flex-wrap px-6 pt-6 pb-4 hover:bg-zinc-50/40 rounded-2xl transition-colors select-none">
           <div className="flex items-baseline gap-3">
             <h2 className="text-lg font-bold">Lebenslauf</h2>
-            <span className="text-[10px] uppercase tracking-wider text-muted/70 font-semibold">
-              KI · überprüfbar
-            </span>
           </div>
           <ChevronDown
             className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/details:rotate-0 -rotate-90"
@@ -296,7 +293,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
 
       {/* Bio-Lead */}
       {summary && (
-        <p className="text-base leading-relaxed text-foreground/90 mb-5 first-letter:text-2xl first-letter:font-bold first-letter:text-primary first-letter:mr-0.5">
+        <p className="text-base leading-relaxed text-foreground/90 mb-5">
           {summary}
         </p>
       )}
@@ -312,105 +309,112 @@ export function PoliticianCV(props: PoliticianCVProps) {
         </div>
       )}
 
-      {/* Strukturierte Listen */}
+      {/* Strukturierte Listen — pro Kategorie einklappbar, standardmäßig zu */}
       {nonEmpty.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-          {nonEmpty.map(({ key, label, icon: Icon, color }) => {
+        <div className="space-y-2">
+          {nonEmpty.map(({ key, label, icon: Icon }) => {
             const sectionDrops = dropsBySection.get(key) ?? [];
             return (
-            <div key={key}>
-              <h3 className={`text-sm font-semibold mb-3 flex items-center gap-2 ${color}`}>
-                <Icon className="w-4 h-4" />
-                {label}
-              </h3>
-              <ul className="space-y-2">
-                {merged[key].map((entry, i) => {
-                  const conflict = conflictIdx.get(`${key}|${entry.jahr}`);
-                  return (
-                    <li key={i} className="flex gap-3 text-sm">
-                      <span
-                        className={`font-mono text-xs shrink-0 w-20 pt-0.5 ${entry.jahr ? "text-muted" : "text-muted/40"}`}
-                        title={entry.jahr ? undefined : "Kein Datum in den Quellen angegeben"}
-                      >
-                        {entry.jahr || "—"}
-                      </span>
-                      <span className="text-foreground/90 leading-snug flex-1">
-                        {entry.text}
-                        {entry.sources.length === 2 && !conflict && (
-                          <span
-                            className="ml-1.5 text-[10px] text-emerald-600 font-semibold"
-                            title="In Wikipedia und auf der persönlichen Homepage übereinstimmend belegt"
-                          >
-                            ✓✓
-                          </span>
-                        )}
-                        {conflict && (
-                          <details className="mt-1.5 text-[12px] rounded-md border border-amber-200 bg-amber-50/60 px-2.5 py-1.5">
-                            <summary className="cursor-pointer text-amber-800 font-medium select-none list-none flex items-center gap-1">
-                              <Info className="w-3 h-3" aria-hidden />
-                              Quellen-Diskrepanz · zum Aufklappen
-                            </summary>
-                            <div className="mt-2 space-y-1.5 text-amber-900/90 leading-snug">
-                              <div>
-                                <span className="font-semibold">Wikipedia:</span>{" "}
-                                {conflict.wikipedia}
-                              </div>
-                              <div>
-                                <span className="font-semibold">Homepage:</span>{" "}
-                                {conflict.homepage}
-                              </div>
-                              {(conflict.final_reason || conflict.reason) && (
-                                <div className="text-[11px] text-amber-800/80 italic pt-1 border-t border-amber-200/60">
-                                  Hinweis der Prüfung: {conflict.final_reason ?? conflict.reason}
-                                </div>
-                              )}
-                            </div>
-                          </details>
-                        )}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-              {sectionDrops.length > 0 && (
-                <details className="mt-3 text-[12px] rounded-md border border-gray-200 bg-gray-50/70 px-2.5 py-2">
-                  <summary className="cursor-pointer text-muted hover:text-foreground font-medium select-none list-none flex items-center gap-1">
-                    <Info className="w-3 h-3" aria-hidden />
-                    {sectionDrops.length === 1
-                      ? "1 Eintrag als Duplikat ausgeblendet — Vergleich anzeigen"
-                      : `${sectionDrops.length} Einträge als Duplikate ausgeblendet — Vergleich anzeigen`}
-                  </summary>
-                  <ul className="mt-2.5 space-y-3 text-foreground/80">
-                    {sectionDrops.map((d, di) => {
-                      const droppedSrc = d.dropped_source === "wikipedia" ? "Wikipedia" : "Homepage";
-                      const keptSrc = d.dropped_source === "wikipedia" ? "Homepage" : "Wikipedia";
+              <details key={key} className="group/sec rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors">
+                <summary className="list-none cursor-pointer flex items-center gap-2.5 px-3 py-2.5 select-none rounded-lg hover:bg-zinc-50/60 transition-colors">
+                  <Icon className="w-4 h-4 text-zinc-400 shrink-0" strokeWidth={2} aria-hidden />
+                  <span className="flex-1 text-sm font-semibold text-zinc-700">{label}</span>
+                  <ChevronDown
+                    className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/sec:rotate-180"
+                    strokeWidth={2.25}
+                    aria-hidden
+                  />
+                </summary>
+                <div className="px-3 pb-3 pt-1">
+                  <ul className="space-y-2">
+                    {merged[key].map((entry, i) => {
+                      const conflict = conflictIdx.get(`${key}|${entry.jahr}`);
                       return (
-                        <li key={di} className="border-l-2 border-gray-300 pl-2.5 space-y-1 leading-snug">
-                          <div className="flex gap-2">
-                            <span className="text-[10px] uppercase tracking-wider text-muted/70 shrink-0 w-20 pt-0.5">
-                              {droppedSrc} (weg)
-                            </span>
-                            <span className="flex-1 text-muted line-through decoration-gray-400/50">
-                              <span className="font-mono text-[11px] mr-1.5">[{d.dropped_jahr || "—"}]</span>
-                              {d.dropped_text}
-                            </span>
-                          </div>
-                          <div className="flex gap-2">
-                            <span className="text-[10px] uppercase tracking-wider text-emerald-700/70 shrink-0 w-20 pt-0.5">
-                              {keptSrc} (bleibt)
-                            </span>
-                            <span className="flex-1">
-                              <span className="font-mono text-[11px] mr-1.5 text-muted">[{d.kept_jahr || "—"}]</span>
-                              {d.kept_text}
-                            </span>
-                          </div>
+                        <li key={i} className="flex gap-3 text-sm">
+                          <span
+                            className={`font-mono text-xs shrink-0 w-20 pt-0.5 ${entry.jahr ? "text-muted" : "text-muted/40"}`}
+                            title={entry.jahr ? undefined : "Kein Datum in den Quellen angegeben"}
+                          >
+                            {entry.jahr || "—"}
+                          </span>
+                          <span className="text-foreground/90 leading-snug flex-1">
+                            {entry.text}
+                            {entry.sources.length === 2 && !conflict && (
+                              <span
+                                className="ml-1.5 text-[10px] text-emerald-600 font-semibold"
+                                title="In Wikipedia und auf der persönlichen Homepage übereinstimmend belegt"
+                              >
+                                ✓✓
+                              </span>
+                            )}
+                            {conflict && (
+                              <details className="mt-1.5 text-[12px] rounded-md border border-amber-200 bg-amber-50/60 px-2.5 py-1.5">
+                                <summary className="cursor-pointer text-amber-800 font-medium select-none list-none flex items-center gap-1">
+                                  <Info className="w-3 h-3" aria-hidden />
+                                  Quellen-Diskrepanz · zum Aufklappen
+                                </summary>
+                                <div className="mt-2 space-y-1.5 text-amber-900/90 leading-snug">
+                                  <div>
+                                    <span className="font-semibold">Wikipedia:</span>{" "}
+                                    {conflict.wikipedia}
+                                  </div>
+                                  <div>
+                                    <span className="font-semibold">Homepage:</span>{" "}
+                                    {conflict.homepage}
+                                  </div>
+                                  {(conflict.final_reason || conflict.reason) && (
+                                    <div className="text-[11px] text-amber-800/80 italic pt-1 border-t border-amber-200/60">
+                                      Hinweis der Prüfung: {conflict.final_reason ?? conflict.reason}
+                                    </div>
+                                  )}
+                                </div>
+                              </details>
+                            )}
+                          </span>
                         </li>
                       );
                     })}
                   </ul>
-                </details>
-              )}
-            </div>
+                  {sectionDrops.length > 0 && (
+                    <details className="mt-3 text-[12px] rounded-md border border-gray-200 bg-gray-50/70 px-2.5 py-2">
+                      <summary className="cursor-pointer text-muted hover:text-foreground font-medium select-none list-none flex items-center gap-1">
+                        <Info className="w-3 h-3" aria-hidden />
+                        {sectionDrops.length === 1
+                          ? "1 Eintrag als Duplikat ausgeblendet — Vergleich anzeigen"
+                          : `${sectionDrops.length} Einträge als Duplikate ausgeblendet — Vergleich anzeigen`}
+                      </summary>
+                      <ul className="mt-2.5 space-y-3 text-foreground/80">
+                        {sectionDrops.map((d, di) => {
+                          const droppedSrc = d.dropped_source === "wikipedia" ? "Wikipedia" : "Homepage";
+                          const keptSrc = d.dropped_source === "wikipedia" ? "Homepage" : "Wikipedia";
+                          return (
+                            <li key={di} className="border-l-2 border-gray-300 pl-2.5 space-y-1 leading-snug">
+                              <div className="flex gap-2">
+                                <span className="text-[10px] uppercase tracking-wider text-muted/70 shrink-0 w-20 pt-0.5">
+                                  {droppedSrc} (weg)
+                                </span>
+                                <span className="flex-1 text-muted line-through decoration-gray-400/50">
+                                  <span className="font-mono text-[11px] mr-1.5">[{d.dropped_jahr || "—"}]</span>
+                                  {d.dropped_text}
+                                </span>
+                              </div>
+                              <div className="flex gap-2">
+                                <span className="text-[10px] uppercase tracking-wider text-emerald-700/70 shrink-0 w-20 pt-0.5">
+                                  {keptSrc} (bleibt)
+                                </span>
+                                <span className="flex-1">
+                                  <span className="font-mono text-[11px] mr-1.5 text-muted">[{d.kept_jahr || "—"}]</span>
+                                  {d.kept_text}
+                                </span>
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </details>
+                  )}
+                </div>
+              </details>
             );
           })}
         </div>

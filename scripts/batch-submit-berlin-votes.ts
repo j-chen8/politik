@@ -61,12 +61,16 @@ async function main() {
   }
 
   const db = new Database(DB_PATH, { readonly: true });
+  // Quelle: direkt aus berlin_pdf_texts (vorher: JOIN berlin_documents — gefährdete
+  // 5 nachträglich geseedete Sitzungen 11/17/46/47/52, die in berlin_documents fehlen).
   const plpr = db.prepare(`
-    SELECT DISTINCT t.lok_url, t.full_text
-    FROM berlin_pdf_texts t JOIN berlin_documents d ON t.lok_url=d.lok_url
-    WHERE d.dok_art_label='Plenarprotokoll'
+    SELECT DISTINCT t.lok_url, t.full_text, t.pdf_filename
+    FROM berlin_pdf_texts t
+    WHERE t.dok_art = 'Plenarprotokoll'
+      AND t.pdf_filename LIKE '%-wp.pdf'
+      AND t.full_text IS NOT NULL AND t.full_text != ''
     ORDER BY t.lok_url
-  `).all() as Array<{ lok_url: string; full_text: string }>;
+  `).all() as Array<{ lok_url: string; full_text: string; pdf_filename: string }>;
 
   // Existing votes: skip wenn schon analysiert
   const alreadyDone = new Set<string>();

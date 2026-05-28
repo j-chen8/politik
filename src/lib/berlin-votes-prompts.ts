@@ -39,6 +39,7 @@ KONSERVATIVE ABLEITUNGS-REGELN:
 3. Wenn das Snippet nur eine Tagesordnungs-Ankündigung ohne tatsächliche Abstimmung enthält, oder eine Personen-Wahl (Präsident, Vize-Präsident, Senator), oder eine reine Beratungs-Sequenz: setze outcome="kein_vote" und alle Fraktions-Votes auf "unbekannt".
 
 4. Wenn das Snippet einen Block-Vote enthält ("Wer den Anträgen auf den Drucksachen 19/X und 19/Y zustimmen möchte"): alle DS-Nrn ins drucksache_nrn-Array.
+4a. Wenn der Vote eine Beschlussempfehlung referenziert ("gemäß den Beschlussempfehlungen auf Drucksache 19/Z" + Vote auf "Antrag auf Drucksache 19/Y"): BEIDE Nummern (19/Y und 19/Z) ins drucksache_nrn-Array. Die Beschlussempfehlung gehört konstitutiv zur Abstimmung, auch wenn der formale Vote-Gegenstand der Antrag ist.
 
 DRUCKSACHEN-ZUORDNUNG:
 
@@ -144,7 +145,7 @@ export const VOTE_TOOL = {
       drucksache_nrn: {
         type: "array",
         items: { type: "string" },
-        description: 'JSON-Array von Drucksachen-Nummern im Format "19/XXXX". Leer wenn keine DS referenziert (z.B. Geschäftsordnungsantrag).',
+        description: 'JSON-Array ALLER Drucksachen-Nummern, die TEIL DIESES VOTES sind, im Format "19/XXXX". Pflicht-Inklusion: (a) der Vote-Gegenstand-Antrag (z.B. "auf Drucksache 19/0924"), (b) eine zitierte Beschlussempfehlung in dieser Abstimmung (z.B. "gemäß Beschlussempfehlung 19/3132"), (c) bei Block-Votes alle DS-Nrn. Format "19/XXXX" (führende Null erhalten). NICHT inkludieren: DS aus vorherigen Debatten im Snippet-Kontext.',
       },
       vote_type: {
         type: "string",
@@ -193,8 +194,11 @@ export function buildSystemPrompt(): string {
 // Berlin-Handzeichen-Abstimmung ist "bitte ich ... um das Handzeichen". 634 Treffer
 // über 124 Plenarprotokolle. Eröffnungs-Phrasen ("Wer dem/Wer diesem/Wer den") sind
 // zu variabel und matchen weniger als 5 % der echten Abstimmungen.
+// `\s+` für die Whitespace-Stellen — im PDF brechen Zeilen oft an Wort-Grenzen
+// (z. B. "bitte ich jetzt um das\nHandzeichen") und ein literal Space matcht
+// kein Newline. Vorher: nur 4/17 echte Triggers in Sitzung 85 wurden gefunden.
 export const VOTE_PATTERNS: ReadonlyArray<RegExp> = [
-  /bitte ich(?:[^.]{0,30})um das Handzeichen/g,
+  /bitte\s+ich(?:[^.]{0,30})um\s+das\s+Handzeichen/g,
 ] as const;
 
 export const ROLLCALL_PATTERN = /Abgegebene Stimmen:\s*(\d+)[\s\S]{0,200}?Ja-Stimmen:\s*(\d+)[\s\S]{0,200}?Nein-Stimmen:\s*(\d+)[\s\S]{0,200}?Enthaltungen:\s*(\d+)/;
@@ -253,10 +257,16 @@ export function extractVoteEvents(fullText: string): VoteEvent[] {
   return events;
 }
 
-/** Versucht Sitzungs-Nr (z.B. 83) aus dem PlPr-Header zu extrahieren. */
-export function extractSitzungNr(fullText: string): number | null {
-  const m = fullText.slice(0, 3000).match(/(\d{1,3})\.\s*Sitzung/);
-  return m ? parseInt(m[1], 10) : null;
+/** Versucht Sitzungs-Nr (z.B. 83) zu extrahieren.
+ *  Robuste Variante: nimmt entweder Body-Text ODER PDF-Filename (z. B.
+ *  "PlenarPr_p19-085-wp.pdf" → 85). Filename hat Priorität, weil sicherer. */
+export function extractSitzungNr(textOrFilename: string): number | null {
+  // 1. Filename-Pattern: p19-NNN(-wp).pdf
+  const fnMatch = textOrFilename.match(/p\d{2}-(\d{3})/);
+  if (fnMatch) return parseInt(fnMatch[1], 10);
+  // 2. Body-Pattern: "85. Sitzung"
+  const bodyMatch = textOrFilename.slice(0, 3000).match(/(\d{1,3})\.\s*Sitzung/);
+  return bodyMatch ? parseInt(bodyMatch[1], 10) : null;
 }
 
 /** Versucht das Sitzungs-Datum (z.B. "26. März 2026") aus dem PlPr-Header zu extrahieren. */

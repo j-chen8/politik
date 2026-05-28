@@ -16,7 +16,7 @@
  *  - TOPIC_TAGS als geschlossenes Enum (Anti-Drift)
  */
 
-export const PROMPT_VERSION = "berlin-v1.4";
+export const PROMPT_VERSION = "berlin-v1.5";
 
 const NEUTRALITY_BLOCK = `STRIKTE REGELN:
 - Antworte ausschließlich auf Deutsch.
@@ -347,12 +347,57 @@ export const VORLAGE_SENAT_TOOL = {
   },
 };
 
+// ─── BESCHLUSSEMPFEHLUNG (Ausschuss-Empfehlungen an Plenum) ────────────────
+// v1.5: Bis Stage 4 nur Regex-Label (Outcome aus „wird abgelehnt/angenommen"-Phrasen).
+// LLM-Track für Inhaltliche Synthese — wichtig bei großen Empfehlungen wie Haushalt-Auflagen.
+// Längenverteilung Empirie (Stand 2026-05-28):
+//   709 Stempel-DS (<1k Z., reines „Antrag X abgelehnt")
+//   199 mit 1-5 Änderungs-Bullets
+//    24 mit echtem Empfehlungs-Text
+//     3 Haushalt-Monster (380k Z. mit dutzenden Auflagen)
+// Cap auf 120k chars wie vorlage_senat — die 3 Monster werden gekürzt, der Anfang
+// enthält aber typischerweise die übergreifende Empfehlung + erste Auflagen.
+export const BESCHLUSSEMPFEHLUNG_USER_INSTRUCTION = `Analysiere diese Berliner Beschlussempfehlung eines Fachausschusses. Bürger:innen sollen verstehen: ZU WELCHEM Antrag/Gesetzentwurf ist die Empfehlung, WAS empfiehlt der Ausschuss (annehmen, ändern, ablehnen), welche konkreten Modifikationen werden vorgeschlagen.
+
+WICHTIG: Der erste Satz der zusammenfassung MUSS die Vorgangs-Referenz nennen ("Der Ausschuss [Name] empfiehlt zum Antrag/Gesetz X der Y-Fraktion: ..."). Die Referenz steht typischerweise in den ersten 300 Zeichen des Texts (z.B. "zum Antrag der AfD-Fraktion Drucksache 19/0011 — Trennung von Amt und Mandat").
+
+Bei Stempel-DS ohne inhaltliche Änderungen: kerninhalt = 1 Bullet ("Antrag 1:1 zur Ablehnung empfohlen — keine inhaltlichen Modifikationen") + ausschuss_haltung = empfehlung_ablehnung oder empfehlung_unveraendert_annahme.`;
+
+export const BESCHLUSSEMPFEHLUNG_TOOL = {
+  name: "analyse_berlin_beschlussempfehlung",
+  description: "Analyse einer Berliner Beschlussempfehlung eines Fachausschusses an das Plenum.",
+  input_schema: {
+    type: "object" as const,
+    required: ["zusammenfassung", "kerninhalt", "thema", "ausschuss_haltung"],
+    properties: {
+      zusammenfassung: {
+        type: "string",
+        description: "3-4 neutrale Sätze. ERSTER SATZ MUSS Vorgangs-Referenz enthalten: 'Der [Ausschuss-Name] empfiehlt zum Antrag/Gesetz [DS-Nr] der [Fraktion] (Titel) …'. Dann: Kernempfehlung + wichtigste Änderungen."
+      },
+      kerninhalt: {
+        type: "array",
+        items: { type: "string" },
+        minItems: 1,
+        maxItems: 8,
+        description: 'JSON-Array von 1-8 Strings. Konkrete vorgeschlagene Änderungen oder Auflagen. Bei reiner Annahme/Ablehnung ohne Modifikation: 1 Bullet mit Begründung des Ausschusses (falls genannt) oder „1:1 empfohlen". KEIN XML, KEINE Newlines im String.'
+      },
+      thema: COMMON_FIELDS.thema,
+      ausschuss_haltung: {
+        type: "string",
+        enum: ["empfehlung_unveraendert_annahme", "empfehlung_mit_aenderungen_annahme", "empfehlung_ablehnung", "kenntnisnahme"],
+        description: "empfehlung_unveraendert_annahme = Vorlage 1:1 annehmen; empfehlung_mit_aenderungen_annahme = mit Änderungen annehmen; empfehlung_ablehnung = Ablehnung; kenntnisnahme = nur zur Kenntnisnahme empfohlen ohne Beschluss."
+      },
+    },
+  },
+};
+
 // ─── REGISTRY ────────────────────────────────────────
 export const PROMPTS_BY_CLASS = {
-  anfrage_antwort: { instruction: ANFRAGE_ANTWORT_USER_INSTRUCTION, tool: ANFRAGE_ANTWORT_TOOL, cap_chars: 60000 },  // ~15k tokens
-  antrag:          { instruction: ANTRAG_USER_INSTRUCTION,          tool: ANTRAG_TOOL,          cap_chars: 24000 },  // ~6k tokens
-  gesetzentwurf:   { instruction: GESETZENTWURF_USER_INSTRUCTION,   tool: GESETZENTWURF_TOOL,   cap_chars: 120000 }, // ~30k tokens
-  vorlage_senat:   { instruction: VORLAGE_SENAT_USER_INSTRUCTION,   tool: VORLAGE_SENAT_TOOL,   cap_chars: 120000 }, // ~30k tokens
+  anfrage_antwort:     { instruction: ANFRAGE_ANTWORT_USER_INSTRUCTION,     tool: ANFRAGE_ANTWORT_TOOL,     cap_chars: 60000 },  // ~15k tokens
+  antrag:              { instruction: ANTRAG_USER_INSTRUCTION,              tool: ANTRAG_TOOL,              cap_chars: 24000 },  // ~6k tokens
+  gesetzentwurf:       { instruction: GESETZENTWURF_USER_INSTRUCTION,       tool: GESETZENTWURF_TOOL,       cap_chars: 120000 }, // ~30k tokens
+  vorlage_senat:       { instruction: VORLAGE_SENAT_USER_INSTRUCTION,       tool: VORLAGE_SENAT_TOOL,       cap_chars: 120000 }, // ~30k tokens
+  beschlussempfehlung: { instruction: BESCHLUSSEMPFEHLUNG_USER_INSTRUCTION, tool: BESCHLUSSEMPFEHLUNG_TOOL, cap_chars: 120000 }, // ~30k tokens
 } as const;
 
 export type BerlinBatchClass = keyof typeof PROMPTS_BY_CLASS;
@@ -420,7 +465,7 @@ export function classifyBerlinDoc(
   if (t === "Vorlage zur Kenntnisnahme" || t === "Verordnung" || t === "Mitteilung zur Kenntnisnahme" ||
       t === "Mitteilung zur Kenntnisnahme (Zwischenbericht)" || t === "Mitteilung zur Kenntnisnahme (Schlussbericht)" ||
       t === "Unterrichtung") return "vorlage_senat";
-  if (t === "Beschlussempfehlung") return "beschlussempfehlung_skip"; // Regex-Label, kein LLM
+  if (t === "Beschlussempfehlung") return "beschlussempfehlung"; // v1.5: LLM-Analyse statt nur Regex-Label
   if (t === "Wahlvorschlag") return "skip"; // Administrativ
   return "skip";
 }
@@ -430,10 +475,11 @@ export function classifyBerlinDoc(
 // Bundes-Reden-Lehre: trotz JSON-Schema-Enum entstanden ~0,3 % Drift bei Tool-Use.
 // Daher: im Retrieve gegen diese Enums prüfen und Drift in tonalitaet_drift speichern.
 export const TONALITY_ENUMS_BY_CLASS = {
-  anfrage_antwort: { field: "antwort_charakter", allowed: ["substantiell", "teilantwortend", "ausweichend"] as const },
-  antrag:          { field: "tonalitaet",        allowed: ["sachlich", "fordernd", "kritisch", "informierend"] as const },
-  gesetzentwurf:   { field: "tonalitaet",        allowed: ["sachlich", "fordernd", "kritisch"] as const },
-  vorlage_senat:   { field: "tonalitaet",        allowed: ["sachlich", "informierend"] as const },
+  anfrage_antwort:     { field: "antwort_charakter",  allowed: ["substantiell", "teilantwortend", "ausweichend"] as const },
+  antrag:              { field: "tonalitaet",         allowed: ["sachlich", "fordernd", "kritisch", "informierend"] as const },
+  gesetzentwurf:       { field: "tonalitaet",         allowed: ["sachlich", "fordernd", "kritisch"] as const },
+  vorlage_senat:       { field: "tonalitaet",         allowed: ["sachlich", "informierend"] as const },
+  beschlussempfehlung: { field: "ausschuss_haltung",  allowed: ["empfehlung_unveraendert_annahme", "empfehlung_mit_aenderungen_annahme", "empfehlung_ablehnung", "kenntnisnahme"] as const },
 } as const;
 
 // Kuratierte Tippfehler-Korrekturen aus Stage-1-Empirie.
@@ -537,6 +583,8 @@ const DS_OUTPUT_FIELDS = [
   "thema", "tonalitaet", "antwort_charakter",
   "fraktion", "adressat", "senatsverwaltung", "bezirk_bezug",
   "dokumenttyp", "einbringer",
+  // v1.5 Beschlussempfehlung:
+  "ausschuss_haltung",
   // LLM-Halluzinationen / Tag-Synonyme (Stage-4-Empirie):
   "antwort",   // LLM-Kurzform von antwort_charakter (2/10745 Fälle)
 ] as const;

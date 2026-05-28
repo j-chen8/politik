@@ -41,6 +41,7 @@ const BATCH_SIZES: Record<number, number> = {
   2: 1000,
   3: 3700,
   4: 10414, // = max sinnvoll, wird durch MIN_CHAR_LEN-Filter und bereits-analysiert-Skip kleiner
+  5: 12000, // Delta-Stage: nachträglich geseedete Sitzungen (11/17/46/47/52)
 };
 
 const TONALITAET_ENUM = [

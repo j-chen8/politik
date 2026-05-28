@@ -1,7 +1,7 @@
-import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner, getBerlinDsVotes } from "@/lib/db";
+import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner, getBerlinDsVotes, getBerlinDsPlenarbehandlungen } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, FileText, Check, X, Minus, HelpCircle } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Check, X, Minus, HelpCircle, MessageCircle } from "lucide-react";
 
 interface Props {
   params: Promise<{ dbid: string }>;
@@ -13,7 +13,16 @@ const KLASSE_LABEL: Record<string, string> = {
   antrag: "Antrag",
   gesetzentwurf: "Gesetzentwurf",
   vorlage_senat: "Senats-Vorlage",
+  beschlussempfehlung: "Beschlussempfehlung",
   beschlussempfehlung_regex: "Beschlussempfehlung",
+};
+
+// Ausschuss-Haltung (Beschlussempfehlung-LLM v1.5)
+const HALTUNG_MAP: Record<string, { label: string; color: string; bg: string; desc: string }> = {
+  empfehlung_unveraendert_annahme:    { label: "Annahme empfohlen",           color: "#15803d", bg: "#dcfce7", desc: "Ausschuss empfiehlt die Vorlage unverändert anzunehmen" },
+  empfehlung_mit_aenderungen_annahme: { label: "Annahme mit Änderungen",      color: "#9a3412", bg: "#ffedd5", desc: "Ausschuss empfiehlt Annahme mit konkreten Modifikationen" },
+  empfehlung_ablehnung:               { label: "Ablehnung empfohlen",         color: "#b91c1c", bg: "#fee2e2", desc: "Ausschuss empfiehlt die Vorlage abzulehnen" },
+  kenntnisnahme:                      { label: "Zur Kenntnisnahme",           color: "#475569", bg: "#f1f5f9", desc: "Ausschuss empfiehlt nur Kenntnisnahme, kein Beschluss" },
 };
 
 // Tonality- & antwort_charakter-Map mit Farben (kompatibel mit Bundes-DS-Page)
@@ -96,6 +105,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
   const mitzeichner = getBerlinDsMitzeichner(dbid);
   const votes = getBerlinDsVotes(dbid);
+  const plenarbehandlungen = getBerlinDsPlenarbehandlungen(dbid);
   const klasseLabel = KLASSE_LABEL[ds.klasse] ?? ds.klasse;
   const tonValue = ds.antwortCharakter ?? ds.tonalitaet;
   const tonCfg = tonValue ? TON_MAP[tonValue] : null;
@@ -246,11 +256,13 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* Kerninhalt — antrag / vorlage_senat */}
+        {/* Kerninhalt — antrag / vorlage_senat / beschlussempfehlung */}
         {ds.klasse !== "anfrage_antwort" && ds.kerninhalt && ds.kerninhalt.length > 0 && (
           <section className="mb-8">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-              {ds.klasse === "antrag" ? "Konkrete Forderungen" : "Kerninhalt"}
+              {ds.klasse === "antrag" ? "Konkrete Forderungen"
+                : ds.klasse === "beschlussempfehlung" ? "Empfohlene Änderungen / Auflagen"
+                : "Kerninhalt"}
             </h2>
             <ul className="space-y-2.5">
               {ds.kerninhalt.map((b, i) => (
@@ -314,6 +326,46 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
+        {/* Plenarbehandlungen — wann + wo wurde diese Drucksache debattiert? */}
+        {plenarbehandlungen.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+              <MessageCircle className="w-3 h-3" strokeWidth={2.25} />
+              Plenarbehandlung{plenarbehandlungen.length > 1 ? "en" : ""}
+            </h2>
+            <ul className="space-y-2">
+              {plenarbehandlungen.map((p) => (
+                <li key={`${p.sitzungNr}-${p.topMarker}`} className="border border-zinc-100 rounded-lg p-3 bg-white">
+                  <div className="flex items-baseline gap-2 flex-wrap text-[12px]">
+                    <Link
+                      href={`/design/linear/parlamente/berlin/sitzung/${p.sitzungNr}#top-${p.topMarker}`}
+                      className="font-medium text-zinc-950 hover:text-blue-700 transition-colors"
+                    >
+                      Sitzung {p.sitzungNr}
+                    </Link>
+                    <span className="text-zinc-400 num">·</span>
+                    <span className="text-zinc-600 num">
+                      {new Date(p.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}
+                    </span>
+                    <span className="text-zinc-400">·</span>
+                    <span className="num text-zinc-500">TOP {p.topMarker}</span>
+                    <span className="text-zinc-400">·</span>
+                    <span className="text-zinc-500">{p.redenCount} Reden</span>
+                    {p.phase === "priorität" && (
+                      <span className="ml-auto text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">
+                        Priorität
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[12.5px] text-zinc-600 leading-snug mt-1">
+                    {p.topTitel}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {/* Plenum-Abstimmungen */}
         {votes.length > 0 && (
           <section className="mb-8">
@@ -326,6 +378,11 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 const datumLabel = formatDate(v.datum);
                 return (
                   <div key={v.voteId} className="border border-zinc-100 rounded-lg p-4">
+                    {v.voteLabel && (
+                      <div className="mb-1.5 text-[12.5px] font-medium text-zinc-900">
+                        {v.voteLabel}
+                      </div>
+                    )}
                     <div className="flex items-baseline gap-2 mb-3 flex-wrap text-[11px]">
                       <span className={`font-semibold ${outcomeCfg.tone}`}>
                         {outcomeCfg.label}
@@ -384,11 +441,26 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                       </div>
                     )}
 
-                    {/* Block-Vote-Hinweis */}
+                    {/* Block-Vote-Hinweis: alle DS klickbar verlinkt */}
                     {v.drucksacheNrn.length > 1 && (
-                      <p className="mt-3 text-[11px] text-zinc-400">
-                        Block-Abstimmung über {v.drucksacheNrn.length} Drucksachen: <span className="font-mono">{v.drucksacheNrn.join(", ")}</span>
-                      </p>
+                      <div className="mt-3 text-[11px] text-zinc-500 flex flex-wrap items-baseline gap-1.5">
+                        <span>Block-Abstimmung über {v.drucksacheNrn.length} Drucksachen:</span>
+                        {v.drucksacheNrn.map((nr, i) => {
+                          const linkedDbid = v.drucksacheDbids[i] ?? null;
+                          if (!linkedDbid) {
+                            return <span key={nr} className="font-mono text-zinc-700">{nr}</span>;
+                          }
+                          return (
+                            <Link
+                              key={nr}
+                              href={`/design/linear/parlamente/berlin/drucksache/${linkedDbid}`}
+                              className="font-mono text-blue-700 hover:text-blue-900 transition-colors"
+                            >
+                              {nr}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     )}
                   </div>
                 );
@@ -437,7 +509,37 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* Beschlussempfehlung-Regex (kein LLM-Output, regex_label) */}
+        {/* Beschlussempfehlung — LLM-Klasse mit Ausschuss-Haltung-Pill */}
+        {ds.klasse === "beschlussempfehlung" && ds.tonalitaet && (
+          <section className="mb-8">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+              Ausschuss-Empfehlung
+            </h2>
+            {(() => {
+              const h = HALTUNG_MAP[ds.tonalitaet];
+              if (!h) return <span className="text-[14px] text-zinc-700">{ds.tonalitaet}</span>;
+              return (
+                <div>
+                  <span
+                    className="inline-flex items-center px-3 py-1.5 rounded text-[14px] font-medium"
+                    style={{ color: h.color, backgroundColor: h.bg }}
+                    title={h.desc}
+                  >
+                    {h.label}
+                  </span>
+                  <p className="mt-1.5 text-[11.5px] text-zinc-500">{h.desc}</p>
+                </div>
+              );
+            })()}
+            {ds.regexLabel && (
+              <p className="mt-3 text-[11px] text-zinc-400">
+                Outcome aus Plenum (Regex): <span className="font-mono">{ds.regexLabel}</span>
+              </p>
+            )}
+          </section>
+        )}
+
+        {/* Beschlussempfehlung-Regex Legacy (kein LLM-Output) — Fallback bis Batch durch ist */}
         {ds.klasse === "beschlussempfehlung_regex" && (
           <section className="mb-8">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">

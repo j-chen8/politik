@@ -1,6 +1,7 @@
 import { getBerlinSnapshot } from "@/lib/db";
 import Link from "next/link";
-import { Search, ArrowRight, ExternalLink } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
+import { RotatingDeck } from "@/components/RotatingDeck";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,10 +11,17 @@ export const metadata: Metadata = {
 
 /**
  * Berlin-Übersicht — symmetrisch zur Bundestag-Landing (Hero + Suche +
- * Aktuelles), aber mit Berlin-Daten aus PARDOK. Der dritte Abschnitt der
- * Landing (KI-Pipeline-Zahlen) lässt sich nicht übertragen — Berlin hat die
- * Analyse-Schicht nicht — daher hier ein ehrlicher Abdeckungs-Block.
+ * Aktuelles), mit Berlin-Daten aus PARDOK.
  */
+/** Schneidet Text auf max. Zeichen am Wort-Boundary, hängt … an wenn gekürzt. */
+function truncate(text: string | null, max: number): string | null {
+  if (!text) return null;
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > max - 60 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
+}
+
 export default function BerlinOverview() {
   const s = getBerlinSnapshot();
   const fmt = (n: number) => n.toLocaleString("de-DE");
@@ -85,91 +93,242 @@ export default function BerlinOverview() {
         </div>
       </section>
 
-      {/* Aktuelles aus dem Abgeordnetenhaus */}
-      <section className="w-full max-w-5xl mx-auto px-5 pb-6 fade-in-up fade-in-up-2">
-        <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-          <div className="px-6 py-6">
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-1">
-              Aktuelles aus dem Abgeordnetenhaus
-            </h2>
-            {s.latestPlenum && (
-              <p className="text-[13px] text-zinc-500 mb-5">
-                Letzte erfasste Plenarsitzung:{" "}
-                <span className="text-zinc-800 font-medium">Plenarprotokoll {s.latestPlenum.dokNr}</span>{" "}
-                <span className="num">· {formatDate(s.latestPlenum.datum)}</span>
+      {/* Letzte Plenarsitzung — schlanker Banner (klickbar zur Detail-Page) */}
+      {s.latestSitzung && (
+        <section className="w-full max-w-6xl mx-auto px-5 pb-5 fade-in-up fade-in-up-2">
+          <Link
+            href={`/design/linear/parlamente/berlin/sitzung/${s.latestSitzung.sitzungNr}`}
+            className="group block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:border-zinc-300 hover:bg-zinc-50/30 transition-colors"
+          >
+            <div className="flex items-baseline gap-x-4 gap-y-2 flex-wrap">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 shrink-0">
+                Letzte Plenarsitzung
+              </span>
+              <span className="text-[12.5px] text-zinc-600 num">
+                Plenarprotokoll {s.latestSitzung.plprDokNr} · {formatDate(s.latestSitzung.datum)} · {s.latestSitzung.debattenCount} Debattenbeiträge
+              </span>
+              <span className="ml-auto text-[12px] text-zinc-400 group-hover:text-zinc-700 inline-flex items-center gap-1 transition-colors">
+                Übersicht öffnen
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+              </span>
+            </div>
+            {s.latestSitzung.topItems.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap mt-3">
+                <span className="text-[11px] text-zinc-400">
+                  Inhaltliche Debatte{s.latestSitzung.topItems.length === 1 ? "" : "n"}:
+                </span>
+                {s.latestSitzung.topItems.map((t) => (
+                  <span
+                    key={t.marker}
+                    className="inline-flex items-baseline gap-2 px-2.5 py-1 rounded-md border border-zinc-100 bg-zinc-50/60"
+                  >
+                    <span className="num text-[10px] font-semibold text-zinc-500">
+                      TOP {t.marker}
+                    </span>
+                    <span className="text-[12.5px] text-zinc-950 leading-snug">
+                      {t.titel}
+                    </span>
+                    <span className="num text-[10px] text-zinc-400">
+                      {t.redenCount} {t.redenCount === 1 ? "Rede" : "Reden"}
+                    </span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </Link>
+        </section>
+      )}
+
+      {/* 3-Spalten-Grid: Abstimmungen + Gesetzentwürfe + Schriftliche Anfragen */}
+      <section className="w-full max-w-6xl mx-auto px-5 pb-24 fade-in-up fade-in-up-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {/* Spalte 1: Aktuelle Abstimmungen — Rotating Deck */}
+          {s.latestVotes.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-1">
+                Aktuelle Abstimmungen
+              </h3>
+              <p className="text-[12px] text-zinc-500 mb-4">
+                Fraktions-Handzeichen im Plenum
               </p>
-            )}
-
-            {s.latestAnfragen.length > 0 && (
-              <>
-                <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2.5">
-                  Jüngste Schriftliche Anfragen
-                </h3>
-                <ul className="space-y-1.5">
-                  {s.latestAnfragen.map((a) => (
-                    <li
-                      key={a.dokNr}
-                      className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100"
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestVotes.map((v) => (
+                    <article
+                      key={v.voteId}
+                      className="rounded-lg border border-zinc-100 px-4 py-4 h-[320px] flex flex-col gap-2.5 overflow-hidden"
                     >
-                      <span className="num text-[11px] text-zinc-400 shrink-0 w-20">
-                        {formatDate(a.datum)}
-                      </span>
-                      <span className="flex-1 min-w-0 text-[13.5px] text-zinc-950 leading-snug">
-                        {a.titel}
-                      </span>
-                      {a.lokUrl && (
-                        <a
-                          href={a.lokUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 text-zinc-400 hover:text-zinc-950 transition-colors"
-                          title={`Drucksache ${a.dokNr}`}
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span
+                          className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                            v.outcome === "annahme" || v.outcome === "annahme_geaendert"
+                              ? "text-emerald-700 bg-emerald-50"
+                              : v.outcome === "ablehnung"
+                              ? "text-red-700 bg-red-50"
+                              : "text-zinc-600 bg-zinc-100"
+                          }`}
                         >
-                          <ExternalLink className="w-3.5 h-3.5" strokeWidth={2.25} />
-                        </a>
+                          {(v.outcome === "annahme" || v.outcome === "annahme_geaendert") ? "Angenommen"
+                            : v.outcome === "ablehnung" ? "Abgelehnt"
+                            : v.outcome === "vertagung" ? "Vertagt"
+                            : v.outcome === "ueberweisung" ? "Überwiesen"
+                            : v.outcome}
+                        </span>
+                        {v.modus && (
+                          <span className="text-[10px] text-zinc-400 italic">{v.modus}</span>
+                        )}
+                      </div>
+                      {v.primaryTitel && (
+                        v.primaryDbid ? (
+                          <Link
+                            href={`/design/linear/parlamente/berlin/drucksache/${v.primaryDbid}`}
+                            className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
+                          >
+                            {v.primaryTitel}
+                          </Link>
+                        ) : (
+                          <p className="text-[14px] font-semibold text-zinc-950 leading-snug">
+                            {v.primaryTitel}
+                          </p>
+                        )
                       )}
-                    </li>
+                      {v.primaryZusammenfassung && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed flex-1 overflow-hidden">
+                          {truncate(v.primaryZusammenfassung, 240)}
+                        </p>
+                      )}
+                      <div className={v.primaryZusammenfassung ? "" : "flex-1 flex items-end"}>
+                        <div className="flex flex-wrap gap-1 w-full">
+                          {Object.entries(v.fraktionVotes).map(([frak, vote]) => (
+                            <span
+                              key={frak}
+                              className={`text-[10.5px] font-medium px-2 py-0.5 rounded ${
+                                vote === "ja"
+                                  ? "text-emerald-800 bg-emerald-50 border border-emerald-200/60"
+                                  : vote === "nein"
+                                  ? "text-red-800 bg-red-50 border border-red-200/60"
+                                  : vote === "enthaltung"
+                                  ? "text-amber-800 bg-amber-50 border border-amber-200/60"
+                                  : "text-zinc-500 bg-zinc-50 border border-zinc-200/60"
+                              }`}
+                              title={`${frak}: ${vote}`}
+                            >
+                              {frak}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-[10.5px] text-zinc-400 num pt-1">
+                        Sitzung {v.sitzungNr} · {formatDate(v.datum)}
+                        {v.drucksacheNrn.length > 0 && (
+                          <> · Drs. {v.drucksacheNrn.slice(0, 2).join(", ")}{v.drucksacheNrn.length > 2 ? ` (+${v.drucksacheNrn.length - 2})` : ""}</>
+                        )}
+                      </p>
+                    </article>
                   ))}
-                </ul>
-              </>
-            )}
-          </div>
+                </RotatingDeck>
+              </div>
+            </div>
+          )}
+
+          {/* Spalte 2: Aktuelle Gesetzentwürfe — Rotating Deck */}
+          {s.latestGesetzentwuerfe.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-1">
+                Aktuelle Gesetzentwürfe
+              </h3>
+              <p className="text-[12px] text-zinc-500 mb-4">
+                Berliner Landesgesetzgebung im Verfahren
+              </p>
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestGesetzentwuerfe.map((g) => (
+                    <article
+                      key={g.dbid}
+                      className="rounded-lg border border-zinc-100 px-4 py-4 h-[320px] flex flex-col gap-2.5 overflow-hidden"
+                    >
+                      {g.titel && (
+                        <Link
+                          href={`/design/linear/parlamente/berlin/drucksache/${g.dbid}`}
+                          className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
+                        >
+                          {g.titel}
+                        </Link>
+                      )}
+                      {g.zusammenfassung && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed flex-1 overflow-hidden">
+                          {truncate(g.zusammenfassung, 320)}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+                        <span>{formatDate(g.datum)}</span>
+                        {g.dokNr && (
+                          <>
+                            <span className="text-zinc-300">·</span>
+                            <span>Drs. {g.dokNr}</span>
+                          </>
+                        )}
+                        {g.einbringer && (
+                          <>
+                            <span className="text-zinc-300">·</span>
+                            <span className="normal-case">{g.einbringer}</span>
+                          </>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </RotatingDeck>
+              </div>
+            </div>
+          )}
+
+          {/* Spalte 3: Schriftliche Anfragen — Rotating Deck */}
+          {s.latestAnfragen.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-1">
+                Schriftliche Anfragen
+              </h3>
+              <p className="text-[12px] text-zinc-500 mb-4">
+                Kontroll-Instrument der Abgeordneten
+              </p>
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestAnfragen.map((a) => (
+                    <article
+                      key={a.dokNr}
+                      className="rounded-lg border border-zinc-100 px-4 py-4 h-[320px] flex flex-col gap-2.5 overflow-hidden"
+                    >
+                      <Link
+                        href={`/design/linear/parlamente/berlin/drucksache/${a.dbid}`}
+                        className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
+                      >
+                        {a.titel}
+                      </Link>
+                      {a.zusammenfassung && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed flex-1 overflow-hidden">
+                          {truncate(a.zusammenfassung, 320)}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+                        <span>{formatDate(a.datum)}</span>
+                        <span className="text-zinc-300">·</span>
+                        <span>Drs. {a.dokNr}</span>
+                        {a.fraktion && (
+                          <>
+                            <span className="text-zinc-300">·</span>
+                            <span className="normal-case">{a.fraktion}</span>
+                          </>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </RotatingDeck>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Was diese Seite zeigt — ehrlicher Pilot-Abdeckungs-Block */}
-      <section className="w-full max-w-5xl mx-auto px-5 pb-24 fade-in-up fade-in-up-3">
-        <div className="border border-zinc-200/70 rounded-2xl bg-white px-6 py-6">
-          <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
-            Was diese Seite zeigt
-          </h2>
-          <p className="text-[14px] text-zinc-600 leading-relaxed max-w-2xl mb-4">
-            Berlin ist ein <span className="font-medium text-zinc-900">Pilot</span> — das
-            Profil-Fundament steht, die KI-Analyse-Schicht des Bundestags gibt es hier noch nicht:
-          </p>
-          <ul className="space-y-2 text-[14px] text-zinc-700">
-            <li className="flex items-baseline gap-2">
-              <span className="num font-semibold text-zinc-950">{fmt(s.cvCount)}</span>
-              <span>Lebensläufe aus Wikipedia, KI-strukturiert</span>
-            </li>
-            <li className="flex items-baseline gap-2">
-              <span className="num font-semibold text-zinc-950">{fmt(s.ausschussCount)}</span>
-              <span>Ausschuss-Mitgliedschaften</span>
-            </li>
-            <li className="flex items-baseline gap-2">
-              <span className="num font-semibold text-zinc-950">{fmt(s.redenCount)}</span>
-              <span>Redebeiträge &amp;</span>
-              <span className="num font-semibold text-zinc-950">{fmt(s.anfragenCount)}</span>
-              <span>Anfragen — aus den amtlichen Parlamentsdokumenten</span>
-            </li>
-          </ul>
-          <p className="text-[13px] text-zinc-500 leading-relaxed max-w-2xl mt-4">
-            <span className="font-medium text-zinc-700">Im Aufbau:</span> Tonalitäts- und
-            Bias-Analyse der Reden sowie KI-Zusammenfassungen der Drucksachen — wie beim
-            Bundestag — folgen für Berlin erst später.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

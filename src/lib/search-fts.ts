@@ -199,7 +199,7 @@ function ensureSyncTriggers(db: Db): void {
     END;
 
     CREATE TRIGGER IF NOT EXISTS berlin_speech_analyses_au
-    AFTER UPDATE OF zusammenfassung ON berlin_speech_analyses
+    AFTER UPDATE OF zusammenfassung_2_saetze ON berlin_speech_analyses
     BEGIN
       DELETE FROM ${BERLIN_SPEECH_FTS_TABLE} WHERE speech_id = new.speech_id;
       INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
@@ -324,7 +324,24 @@ function buildBerlinDrucksachenFTS(db: Db): void {
  * Pipeline-Runs aufrufen. Idempotent.
  */
 export function rebuildSearchFTS(db: Db): void {
+  // Trigger mitdroppen: sie werden mit CREATE TRIGGER IF NOT EXISTS angelegt,
+  // d.h. ohne Drop würde ein geänderter Trigger-Body (z.B. Spaltenname) eine
+  // bereits existierende, veraltete Definition nie ersetzen.
   db.exec(`
+    DROP TRIGGER IF EXISTS speech_analyses_v2_ai;
+    DROP TRIGGER IF EXISTS speech_analyses_v2_au;
+    DROP TRIGGER IF EXISTS speech_analyses_v2_ad;
+    DROP TRIGGER IF EXISTS activities_ai;
+    DROP TRIGGER IF EXISTS activities_au;
+    DROP TRIGGER IF EXISTS activities_ad;
+    DROP TRIGGER IF EXISTS drucksache_analyses_ai;
+    DROP TRIGGER IF EXISTS drucksache_analyses_au;
+    DROP TRIGGER IF EXISTS drucksache_analyses_ad;
+    DROP TRIGGER IF EXISTS berlin_speech_analyses_ai;
+    DROP TRIGGER IF EXISTS berlin_speech_analyses_au;
+    DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_ai;
+    DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_au;
+    DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_ad;
     DROP TABLE IF EXISTS ${SPEECH_FTS_TABLE};
     DROP TABLE IF EXISTS ${ACTIVITIES_FTS_TABLE};
     DROP TABLE IF EXISTS ${DRUCKSACHEN_FTS_TABLE};
