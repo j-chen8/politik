@@ -162,72 +162,30 @@ function VoteCard({ vote, compact = false, additionalVotes = 0 }: { vote: VoteFo
   );
 }
 
-type TopCategory = "standard" | "prioritaet" | "gesetz" | "antrag";
-
-/** Heuristik: kategorisiere einen TOP anhand des Titels, damit das TOC sinnvoll
- *  gruppiert werden kann. Prioritäten-Aufrufe gewinnen vor Gesetz-Erwähnung,
- *  weil sie verfahrenstechnisch zuerst kategorisieren. */
-function categorizeTop(top: BerlinSitzungTop): TopCategory {
-  const t = top.titel.toLowerCase();
-  if (t.startsWith("aktuelle stunde") || t.startsWith("fragestunde") || t.startsWith("prioritäten")) {
-    return "standard";
-  }
-  if (t.startsWith("priorität")) return "prioritaet";
-  if (/^(?:erstes\s+|zweites\s+|drittes\s+|viertes\s+|fünftes\s+|sechstes\s+|siebtes\s+)?gesetz\b/.test(t)) {
-    return "gesetz";
-  }
-  return "antrag";
-}
-
-const CATEGORY_META: Record<TopCategory, { label: string; description: string }> = {
-  standard: { label: "Standard-Tagesordnung", description: "Aktuelle Stunde, Fragestunde, Prioritäten" },
-  prioritaet: { label: "Prioritäten", description: "Aus der Tagesordnung vorgezogene Drucksachen" },
-  gesetz: { label: "Gesetzentwürfe", description: "Erste/Zweite Lesung von Gesetzen" },
-  antrag: { label: "Anträge & Beschlüsse", description: "Anträge, Beschlussempfehlungen, sonstige Vorlagen" },
-};
-const CATEGORY_ORDER: TopCategory[] = ["standard", "prioritaet", "gesetz", "antrag"];
-
 function TopsTOC({ insights }: { insights: TopInsight[] }) {
-  // Gruppieren nach Kategorie, Reihenfolge innerhalb der Gruppe bleibt chronologisch
-  const grouped = new Map<TopCategory, TopInsight[]>();
-  for (const ins of insights) {
-    const cat = categorizeTop(ins.top);
-    if (!grouped.has(cat)) grouped.set(cat, []);
-    grouped.get(cat)!.push(ins);
-  }
+  // Chronologische Reihenfolge (start_line von sit.tops) — IDENTISCH zur Abfolge
+  // der TOP-Sektionen im Body. Keine Kategorie-Gruppierung mehr: sonst stünde ein
+  // vorgezogener TOP (z.B. „17 A", oben im Body) im Verzeichnis unten.
   return (
-    <nav className="space-y-3 text-[12.5px]">
-      {CATEGORY_ORDER.map((cat) => {
-        const items = grouped.get(cat);
-        if (!items || items.length === 0) return null;
-        const meta = CATEGORY_META[cat];
-        return (
-          <div key={cat}>
-            <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 mb-1">
-              {meta.label}
-              <span className="text-zinc-300 num ml-1.5">({items.length})</span>
-            </div>
-            <ul className="border-l border-zinc-200">
-              {items.map((ins) => {
-                const t = ins.top;
-                return (
-                  <li key={`${t.marker}-${t.titel}`}>
-                    <a
-                      href={`#top-${t.marker}`}
-                      className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-0.5 leading-snug transition-colors"
-                    >
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="num text-[10px] text-zinc-400 shrink-0 min-w-[20px]">{t.marker}</span>
-                        <span className="font-medium line-clamp-1" title={t.titel}>{t.titel}</span>
-                      </div>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
+    <nav className="text-[12.5px]">
+      <ul className="border-l border-zinc-200">
+        {insights.map((ins) => {
+          const t = ins.top;
+          return (
+            <li key={`${t.marker}-${t.titel}`}>
+              <a
+                href={`#top-${t.marker}`}
+                className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-0.5 leading-snug transition-colors"
+              >
+                <div className="flex items-baseline gap-1.5">
+                  <span className="num text-[10px] text-zinc-400 shrink-0 min-w-[20px]">{t.marker}</span>
+                  <span className="font-medium line-clamp-1" title={t.titel}>{t.titel}</span>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 }
