@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Abgeordnetenhaus von Berlin — Politik-Radar",
-  description: "Die 159 Abgeordneten des Berliner Abgeordnetenhauses, 19. Wahlperiode.",
+  description: "Die Abgeordneten des Berliner Abgeordnetenhauses, 19. Wahlperiode — Reden, Drucksachen und Abstimmungen.",
 };
 
 /**
@@ -93,7 +93,7 @@ export default function BerlinOverview() {
             href="/design/linear/politiker?parlament=2"
             icon={Users}
             title="Abgeordnete"
-            sub={`${fmt(s.memberCount)} Mitglieder · 19. WP`}
+            sub={`${fmt(s.memberCount)} · 19. Wahlperiode`}
           />
           <NavCard
             href="/design/linear/parlamente/berlin/sitzungen"
