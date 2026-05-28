@@ -3014,6 +3014,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       SELECT bv.vote_id, bv.datum, bv.outcome, bv.fraktion_votes_json, bv.drucksache_nrn_json, bv.drucksache_dbids_json, bv.vote_subtype
       FROM berlin_votes bv
       WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
+        AND bv.drucksache_dbids_json IS NOT NULL AND bv.drucksache_dbids_json NOT IN ('', '[]')
     `).all() as Array<{ vote_id: number; datum: string | null; outcome: string; fraktion_votes_json: string | null; drucksache_nrn_json: string | null; drucksache_dbids_json: string | null; vote_subtype: string | null }>;
     for (const v of blv) {
       const dsNrn: string[] = v.drucksache_nrn_json ? (() => { try { return JSON.parse(v.drucksache_nrn_json); } catch { return []; } })() : [];
@@ -4033,6 +4034,7 @@ export function getBerlinSnapshot(): BerlinSnapshot {
        FROM berlin_votes
        WHERE outcome NOT IN ('kein_vote', 'unklar')
          AND fraktion_votes_json IS NOT NULL AND fraktion_votes_json != ''
+         AND drucksache_dbids_json IS NOT NULL AND drucksache_dbids_json NOT IN ('', '[]')
        ORDER BY datum DESC, vote_id DESC
        LIMIT 5`
     ).all() as {

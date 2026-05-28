@@ -597,10 +597,13 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
     .map(([nr, dbid]) => ({ nr, dbid }))
     .sort((a, b) => a.nr.localeCompare(b.nr, undefined, { numeric: true }));
 
-  // Filtere `kein_vote`-Rows aus dem Display — das sind Personenwahlen
-  // ("Wahl mittels einfacher Abstimmung durch Handaufheben"), keine Drucksachen-
-  // Abstimmungen. Für Audit bleiben sie in der DB; UI-seitig wegfiltern.
-  const filteredVotes = sit.votes.filter((v) => v.outcome !== "kein_vote");
+  // Filtere `kein_vote`-Rows + Votes ohne Drucksachen-Verlinkung aus dem Display.
+  // `kein_vote` = Personenwahlen ("Wahl mittels einfacher Abstimmung durch
+  // Handaufheben"). Votes ohne `primaryDbid` sind reine Verfahrens-Abstimmungen
+  // (Aktuelle-Stunde-Themenwahl, Dringlichkeit, Zitierung, Einspruch gegen
+  // Ordnungsruf) ohne Drucksache — sie würden sonst als titelloses „Drucksache"
+  // ohne Link erscheinen. Für Audit bleiben beide in der DB; UI-seitig wegfiltern.
+  const filteredVotes = sit.votes.filter((v) => v.outcome !== "kein_vote" && v.primaryDbid !== null);
 
   // Gruppiere nach primary DS-Nr und behalte nur die letzte Abstimmung pro DS
   // (= Schlussabstimmung). Bei einem Gesetz mit 3 Votes (Änderungsantrag,
