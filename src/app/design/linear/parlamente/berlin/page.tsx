@@ -92,6 +92,14 @@ export default function BerlinOverview() {
           </Link>
           <span className="text-zinc-300">·</span>
           <Link
+            href="/design/linear/parlamente/berlin/abstimmungen"
+            className="inline-flex items-center gap-1.5 font-medium text-zinc-700 hover:text-zinc-950 transition-colors"
+          >
+            Abstimmungen
+            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+          </Link>
+          <span className="text-zinc-300">·</span>
+          <Link
             href="/design/linear/parlamente/berlin/methodik"
             className="inline-flex items-center gap-1.5 font-medium text-zinc-700 hover:text-zinc-950 transition-colors"
           >
