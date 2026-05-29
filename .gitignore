@@ -57,6 +57,11 @@ politik.db.snapshot-*
 .batch-state*.json
 /data/plenarprotokolle_xml/*.xml
 /data/stammdaten/
+scripts/state/
+
+# scratch: throwaway debug/inspection scripts + editor backups
+scripts/_*.ts
+*.bak
 
 # CSV-Exports (reproduzierbar via scripts/export-tables-csv.ts)
 /data/exports/
