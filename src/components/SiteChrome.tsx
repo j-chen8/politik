@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Landmark, FileText } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
 import type { ParliamentOverview } from "@/lib/db";
 
@@ -121,7 +121,21 @@ const LINEAR_NAV = [
   { href: "/design/linear/suche", icon: Search, label: "Suche" },
 ];
 
+// Berlin-scoped Navigation — greift unter /parlamente/berlin/*, sodass die Nav-Bar
+// dort die Berlin-Unterseiten statt der Bundestag-Sektionen zeigt.
+const BERLIN_BASE = "/design/linear/parlamente/berlin";
+const BERLIN_NAV = [
+  { href: "/design/linear/politiker?parlament=2", icon: Users, label: "Abgeordnete" },
+  { href: `${BERLIN_BASE}/sitzungen`, icon: Landmark, label: "Sitzungen" },
+  { href: `${BERLIN_BASE}/drucksachen`, icon: FileText, label: "Drucksachen" },
+  { href: `${BERLIN_BASE}/abstimmungen`, icon: Vote, label: "Abstimmungen" },
+  { href: `${BERLIN_BASE}/suche`, icon: Search, label: "Suche" },
+  { href: `${BERLIN_BASE}/methodik`, icon: BookOpen, label: "Methodik" },
+];
+
 function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
+  const pathname = usePathname() || "/";
+  const nav = pathname.startsWith(BERLIN_BASE) ? BERLIN_NAV : LINEAR_NAV;
   return (
     <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border-soft">
       <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
@@ -139,7 +153,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
           </div>
         </div>
         <nav className="flex items-center gap-0.5">
-          {LINEAR_NAV.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}

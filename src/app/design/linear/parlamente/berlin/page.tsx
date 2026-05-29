@@ -1,6 +1,6 @@
-import { getBerlinSnapshot, getBerlinMethodikCounts } from "@/lib/db";
+import { getBerlinSnapshot } from "@/lib/db";
 import Link from "next/link";
-import { Search, ArrowRight, Users, Landmark, FileText, Vote, BookOpen } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { RotatingDeck } from "@/components/RotatingDeck";
 import type { Metadata } from "next";
 
@@ -24,7 +24,6 @@ function truncate(text: string | null, max: number): string | null {
 
 export default function BerlinOverview() {
   const s = getBerlinSnapshot();
-  const c = getBerlinMethodikCounts();
   const fmt = (n: number) => n.toLocaleString("de-DE");
   const formatDate = (d: string) =>
     new Date(d + "T00:00:00").toLocaleDateString("de-DE", {
@@ -75,57 +74,6 @@ export default function BerlinOverview() {
           </div>
         </form>
 
-        <div className="flex justify-center mt-5">
-          <Link
-            href="/design/linear/parlamente/berlin/methodik"
-            className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-950 transition-colors"
-          >
-            Wie diese Daten entstehen — Methodik
-            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Sektions-Navigation — der Hub zu allen Berlin-Ansichten, mit Kennzahlen */}
-      <section className="w-full max-w-6xl mx-auto px-5 pb-8 fade-in-up fade-in-up-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <NavCard
-            href="/design/linear/politiker?parlament=2"
-            icon={Users}
-            title="Abgeordnete"
-            sub={`${fmt(s.memberCount)} · 19. Wahlperiode`}
-          />
-          <NavCard
-            href="/design/linear/parlamente/berlin/sitzungen"
-            icon={Landmark}
-            title="Plenarsitzungen"
-            sub={`${fmt(c.sitzungen)} Sitzungen mit Protokoll`}
-          />
-          <NavCard
-            href="/design/linear/parlamente/berlin/drucksachen"
-            icon={FileText}
-            title="Drucksachen"
-            sub={`${fmt(c.dsAnalysen)} analysiert`}
-          />
-          <NavCard
-            href="/design/linear/parlamente/berlin/abstimmungen"
-            icon={Vote}
-            title="Abstimmungen"
-            sub={`${fmt(c.votesEcht)} Handzeichen-Voten`}
-          />
-          <NavCard
-            href="/design/linear/parlamente/berlin/suche?type=drucksachen"
-            icon={Search}
-            title="Volltext-Suche"
-            sub="Reden + Drucksachen"
-          />
-          <NavCard
-            href="/design/linear/parlamente/berlin/methodik"
-            icon={BookOpen}
-            title="Methodik"
-            sub="Wie die Daten entstehen"
-          />
-        </div>
       </section>
 
       {/* Letzte Plenarsitzung — schlanker Banner (klickbar zur Detail-Page) */}
@@ -365,33 +313,5 @@ export default function BerlinOverview() {
       </section>
 
     </div>
-  );
-}
-
-function NavCard({
-  href,
-  icon: Icon,
-  title,
-  sub,
-}: {
-  href: string;
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  title: string;
-  sub: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center gap-3.5 border border-zinc-200/70 rounded-2xl bg-white px-4 py-3.5 hover:border-zinc-300 hover:bg-zinc-50/40 transition-colors"
-    >
-      <span className="shrink-0 w-9 h-9 rounded-xl bg-zinc-100 group-hover:bg-zinc-900 flex items-center justify-center transition-colors">
-        <Icon className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" strokeWidth={2} />
-      </span>
-      <span className="flex-1 min-w-0">
-        <span className="block text-[14px] font-semibold text-zinc-950 leading-tight">{title}</span>
-        <span className="block text-[12px] text-zinc-500 leading-tight mt-0.5 num">{sub}</span>
-      </span>
-      <ArrowRight className="w-4 h-4 text-zinc-300 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all shrink-0" strokeWidth={2.25} />
-    </Link>
   );
 }
