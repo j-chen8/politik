@@ -27,10 +27,20 @@ const QSTART = /\n(\d{1,3})\.\s+Abgeordnete[r]?\s*\n/g;
 // Antwort-Intro: "Antwort des/der <Rolle+Name (ggf. umgebrochen)> vom <Datum>" —
 // Steller + Datum sauber abgreifen, damit sie NICHT in den Antworttext leaken.
 const ANSWER = /\nAntwort\s+(?:des|der|von)\s+([\s\S]{3,90}?)\s+vom\s+([^\n]{6,45}?)\s*\n/;
-// Seiten-Footer / Kopfzeilen, die im Fließtext stören:
-const FOOTER = /(Deutscher Bundestag\s*[–-]\s*21\.\s*Wahlperiode[^\n]*|Drucksache 21\/\d+[^\n]*|--\s*\d+ of \d+\s*--)/g;
-
-const clean = (s: string) => s.replace(FOOTER, " ").replace(/-\n/g, "").replace(/\s+/g, " ").trim();
+// Seiten-Footer / Kopfzeilen, die im Fließtext stören (Footer wandert bei
+// Fragen, die über einen Seitenumbruch gehen, mitten in den Text).
+function clean(s: string): string {
+  let t = s.replace(/-\n/g, "").replace(/\s+/g, " ").trim();
+  // Footer strippen — BEIDE Seiten-Layouts. "Drucksache 21/X" NUR entfernen,
+  // wenn es direkt am Bundestag-Footer klebt (sonst sind es echte Querverweise!).
+  const DG = "[–—-]"; // Gedankenstrich-Varianten
+  t = t
+    .replace(new RegExp(`(Drucksache\\s*21\\/\\d+\\s*${DG}\\s*\\d+\\s*${DG}\\s*)?Deutscher Bundestag\\s*${DG}\\s*21\\.\\s*Wahlperiode(\\s*${DG}\\s*\\d+(\\s*${DG}\\s*Drucksache\\s*21\\/\\d+)?)?`, "g"), " ")
+    .replace(/-{1,2}\s*\d+\s*of\s*\d+\s*-{1,2}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return t;
+}
 
 interface QA { idx: number; name: string; party: string | null; antwortSteller: string | null; antwortDatum: string | null; frage: string; antwort: string; }
 
