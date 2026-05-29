@@ -623,14 +623,25 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {item.drucksache_nr && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          {/* Intern auf die Drucksachen-Detailseite (mit Analyse +
-                              Original-PDF), statt direkt aufs externe PDF. */}
+                          {/* "Drucksache" → interne Detailseite (mit Analyse),
+                              daneben "PDF" → direkter Original-PDF-Link. */}
                           <Link
                             href={`/aktivitaeten/${item.drucksache_nr.replace(/\//g, "-")}`}
                             className="text-zinc-700 hover:text-zinc-950 transition-colors"
                           >
                             Drucksache {item.drucksache_nr}
                           </Link>
+                          {item.pdf_url && (
+                            <a
+                              href={item.pdf_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                            >
+                              PDF
+                              <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                            </a>
+                          )}
                         </>
                       )}
                       {item.source_url && (
