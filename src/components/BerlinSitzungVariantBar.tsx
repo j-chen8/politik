@@ -10,7 +10,7 @@ const VARIANTS: { key: Variant; label: string; sub: string }[] = [
 ];
 
 function pathFor(nr: number, v: Variant): string {
-  const base = `/design/linear/parlamente/berlin/sitzung/${nr}`;
+  const base = `/parlamente/berlin/sitzung/${nr}`;
   return v === "original" ? base : `${base}/${v}`;
 }
 

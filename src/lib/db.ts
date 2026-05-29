@@ -3700,7 +3700,7 @@ export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzei
 // Fraktions-Votes (Bundestag + Berlin) in einer einheitlichen Liste.
 // ============================================================
 
-export interface VoteIndexEntry {
+export interface BerlinVoteIndexEntry {
   // Identität + Routing
   id: string;                                 // "poll:6147" | "btv:42" | "blv:103"
   type: "namentlich" | "handzeichen_bundestag" | "handzeichen_berlin";
@@ -3760,9 +3760,9 @@ function resolveBerlinDsTitle(db: ReturnType<typeof getDb>, dbids: string[]): st
   return null;
 }
 
-export function listAllVotesForIndex(): VoteIndexEntry[] {
+export function listBerlinVotesForIndex(): BerlinVoteIndexEntry[] {
   const db = getDb();
-  const entries: VoteIndexEntry[] = [];
+  const entries: BerlinVoteIndexEntry[] = [];
 
   // 1. Bundestag namentliche Abstimmungen
   const namentlich = db.prepare(`
@@ -3780,7 +3780,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       id: `poll:${p.poll_id}`,
       type: "namentlich",
       subtype: "gesetz",
-      detail_url: `/design/linear/abstimmungen/${p.poll_id}`,
+      detail_url: `/abstimmungen/${p.poll_id}`,
       label: p.poll_label,
       date: p.poll_date,
       outcome: passed ? "angenommen" : "abgelehnt",
@@ -3808,7 +3808,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         if (row?.s) label = row.s;
         if (!label) label = `Drucksache${dsNrn.length > 1 ? "n" : ""} ${dsNrn.join(", ")}`;
       }
-      const outcomeMap: Record<string, { o: VoteIndexEntry["outcome"]; l: string }> = {
+      const outcomeMap: Record<string, { o: BerlinVoteIndexEntry["outcome"]; l: string }> = {
         annahme:           { o: "angenommen", l: "angenommen" },
         annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
         ablehnung:         { o: "abgelehnt",  l: "abgelehnt" },
@@ -3817,8 +3817,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       };
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
-        ? `/design/linear/aktivitaeten/${dsNrn[0].replace("/", "-")}`
-        : `/design/linear/abstimmungen`; // Fallback
+        ? `/aktivitaeten/${dsNrn[0].replace("/", "-")}`
+        : `/abstimmungen`; // Fallback
       const subtype = (v.vote_subtype as "gesetz" | "petition" | "personenwahl" | null) ?? "unbekannt";
       entries.push({
         id: `btv:${v.vote_id}`,
@@ -3852,7 +3852,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       // identisch zur Sitzungs-Seite. Fallback nur wenn gar kein Titel auffindbar.
       let label: string | null = resolveBerlinDsTitle(db, dbids);
       if (!label && dsNrn.length > 0) label = `Berlin-Drucksache ${dsNrn.join(", ")}`;
-      const outcomeMap: Record<string, { o: VoteIndexEntry["outcome"]; l: string }> = {
+      const outcomeMap: Record<string, { o: BerlinVoteIndexEntry["outcome"]; l: string }> = {
         annahme:           { o: "angenommen", l: "angenommen" },
         annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
         ablehnung:         { o: "abgelehnt",  l: "abgelehnt" },
@@ -3861,8 +3861,8 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       };
       const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dbids.length > 0
-        ? `/design/linear/parlamente/berlin/drucksache/${dbids[0]}`
-        : `/design/linear/parlamente/berlin`;
+        ? `/parlamente/berlin/drucksache/${dbids[0]}`
+        : `/parlamente/berlin`;
       const subtype = (v.vote_subtype as "gesetz" | "petition" | "personenwahl" | null) ?? "unbekannt";
       entries.push({
         id: `blv:${v.vote_id}`,
@@ -5875,64 +5875,6 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
   };
 }
 
-// ============================================================
-// Bundestag-Votes: Plenum-Handzeichen-Abstimmungen pro DS
-// (ergänzt die individuelle namentliche-Abstimmungs-Tabelle `votes`)
-// ============================================================
-
-export interface BundestagDsHandzeichenVote {
-  voteId: number;
-  sitzungNr: number | null;
-  wahlperiode: number | null;
-  datum: string | null;
-  voteType: string;
-  outcome: string;
-  modus: string | null;
-  fraktionVotes: Record<string, string> | null;
-  stimmenZahlen: { ja: number; nein: number; enthaltungen: number } | null;
-  drucksacheNrn: string[];
-  xmlSource: string;
-}
-
-/** Holt alle Handzeichen-Vote-Events die diese Bundestags-DS referenzieren.
- *  JOIN über drucksache_nrn_json. */
-export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzeichenVote[] {
-  const db = getDb();
-  try {
-    const rows = db.prepare(`
-      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.vote_type, bv.outcome, bv.modus,
-             bv.fraktion_votes_json, bv.stimmen_zahlen_json,
-             bv.drucksache_nrn_json, bv.xml_source
-      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
-      WHERE j.value = ? AND bv.error_type IS NULL
-      ORDER BY bv.datum DESC, bv.snippet_offset ASC
-    `).all(dsNr) as Array<{
-      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null; datum: string | null;
-      vote_type: string; outcome: string; modus: string | null;
-      fraktion_votes_json: string | null; stimmen_zahlen_json: string | null;
-      drucksache_nrn_json: string | null; xml_source: string;
-    }>;
-    const parse = <T,>(s: string | null): T | null => {
-      if (!s) return null;
-      try { return JSON.parse(s) as T; } catch { return null; }
-    };
-    return rows.map((r) => ({
-      voteId: r.vote_id,
-      sitzungNr: r.sitzung_nr,
-      wahlperiode: r.wahlperiode,
-      datum: r.datum,
-      voteType: r.vote_type,
-      outcome: r.outcome,
-      modus: r.modus,
-      fraktionVotes: parse<Record<string, string>>(r.fraktion_votes_json),
-      stimmenZahlen: parse<{ ja: number; nein: number; enthaltungen: number }>(r.stimmen_zahlen_json),
-      drucksacheNrn: parse<string[]>(r.drucksache_nrn_json) ?? [],
-      xmlSource: r.xml_source,
-    }));
-  } catch {
-    return [];
-  }
-}
 
 // ============================================================
 // Berlin-Votes: Plenum-Abstimmungs-Events pro DS

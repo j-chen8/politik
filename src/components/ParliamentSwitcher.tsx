@@ -20,9 +20,9 @@ const TIER_BADGE: Record<ParliamentOverview["tier"], { label: string; cls: strin
 
 /** Ziel je Parlament: dessen Übersichtsseite (Bundestag = die Landing). */
 function overviewHref(p: ParliamentOverview): string {
-  if (p.type === "bundestag") return "/design/linear";
-  if (p.id === 2) return "/design/linear/parlamente/berlin";
-  return `/design/linear/politiker?parlament=${p.id}`;
+  if (p.type === "bundestag") return "/";
+  if (p.id === 2) return "/parlamente/berlin";
+  return `/politiker?parlament=${p.id}`;
 }
 
 function Group({
@@ -118,7 +118,7 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
   const eu = active.filter((p) => p.type === "eu");
 
   // Aktuelles Parlament aus dem Pfad — Default Bundestag, Berlin unter /parlamente/berlin.
-  const isBerlin = pathname.startsWith("/design/linear/parlamente/berlin");
+  const isBerlin = pathname.startsWith("/parlamente/berlin");
   const current = (isBerlin ? active.find((p) => p.id === 2) : undefined) ?? bund[0];
   const currentLabel = current?.label ?? "Bundestag";
   const currentId = current?.id ?? 0;

@@ -122,7 +122,7 @@ function VoteCard({ vote, compact = false, additionalVotes = 0 }: { vote: VoteFo
           )}
           {vote.primaryDbid ? (
             <Link
-              href={`/design/linear/parlamente/berlin/drucksache/${vote.primaryDbid}`}
+              href={`/parlamente/berlin/drucksache/${vote.primaryDbid}`}
               className="block text-[13px] text-zinc-950 leading-snug hover:text-blue-700 line-clamp-1 transition-colors"
             >
               {titel}
@@ -239,7 +239,7 @@ function DsPill({ nr, dbid, className = "" }: { nr: string; dbid: string | null;
   if (dbid) {
     return (
       <Link
-        href={`/design/linear/parlamente/berlin/drucksache/${dbid}`}
+        href={`/parlamente/berlin/drucksache/${dbid}`}
         className={`${baseCls} text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors ${className}`}
         title={`Drucksache ${nr} öffnen`}
       >
@@ -503,7 +503,7 @@ function SitzungNav({
     <div className="flex items-center gap-1.5">
       {neighbors.prev ? (
         <Link
-          href={`/design/linear/parlamente/berlin/sitzung/${neighbors.prev.nr}`}
+          href={`/parlamente/berlin/sitzung/${neighbors.prev.nr}`}
           className={linkCls}
           title={`Zur vorherigen Sitzung (${neighbors.prev.nr})`}
         >
@@ -523,7 +523,7 @@ function SitzungNav({
       )}
       {neighbors.next ? (
         <Link
-          href={`/design/linear/parlamente/berlin/sitzung/${neighbors.next.nr}`}
+          href={`/parlamente/berlin/sitzung/${neighbors.next.nr}`}
           className={linkCls}
           title={`Zur nächsten Sitzung (${neighbors.next.nr})`}
         >
@@ -655,7 +655,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
       <div className="w-full max-w-6xl mx-auto px-5 pt-10 pb-24">
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
-            href="/design/linear/parlamente/berlin"
+            href="/parlamente/berlin"
             className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -818,7 +818,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                           <span className="num text-[10px] text-zinc-400 shrink-0">{idx + 1}</span>
                           {sp.politicianId ? (
                             <Link
-                              href={`/design/linear/politiker/${sp.politicianId}`}
+                              href={`/politiker/${sp.politicianId}`}
                               className="text-[13.5px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
                             >
                               {sp.speakerName}

@@ -1,4 +1,4 @@
-import { listAllVotesForIndex, type VoteIndexEntry } from "@/lib/db";
+import { listBerlinVotesForIndex, type BerlinVoteIndexEntry } from "@/lib/db";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -20,7 +20,7 @@ export default function BerlinAbstimmungen({
 
 async function Inner({ searchParams }: { searchParams: Promise<{ year?: string; show?: string }> }) {
   const { year = "", show = "" } = await searchParams;
-  const berlin = listAllVotesForIndex().filter((p) => p.parliament === "Berlin");
+  const berlin = listBerlinVotesForIndex().filter((p) => p.parliament === "Berlin");
 
   const showPersonenwahl = show === "personenwahl" || show === "alle";
   const base = berlin.filter((p) => (p.subtype === "personenwahl" ? showPersonenwahl : true));
@@ -41,7 +41,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ year?: string; 
   return (
     <div className="page-wash">
       <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
-        <Link href="/design/linear/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
+        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin
         </Link>
@@ -52,7 +52,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ year?: string; 
           <p className="text-[15px] text-zinc-600 leading-relaxed max-w-2xl">
             <span className="num font-medium text-zinc-900">{filtered.length}</span> Plenums-Abstimmungen per Handzeichen, aus den
             Protokollen extrahiert und auf Fraktions-Ebene aufgeschlüsselt. Reine Verfahrens-Abstimmungen sind ausgeblendet
-            (siehe <Link href="/design/linear/parlamente/berlin/methodik#votes-pipeline" className="text-blue-700 hover:text-blue-900 underline">Methodik</Link>).
+            (siehe <Link href="/parlamente/berlin/methodik#votes-pipeline" className="text-blue-700 hover:text-blue-900 underline">Methodik</Link>).
           </p>
         </div>
 
@@ -112,7 +112,7 @@ function formatDate(iso: string | null): string {
   return y && m && d ? `${d}.${m}.${y.slice(2)}` : iso;
 }
 
-function VoteCard({ v }: { v: VoteIndexEntry }) {
+function VoteCard({ v }: { v: BerlinVoteIndexEntry }) {
   const passed = v.outcome === "angenommen";
   return (
     <Link href={v.detail_url} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">

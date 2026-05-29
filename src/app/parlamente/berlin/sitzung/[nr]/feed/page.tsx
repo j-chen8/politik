@@ -39,7 +39,7 @@ export default async function BerlinSitzungFeedPage({ params }: Props) {
     <div className="page-wash">
       <div className="w-full max-w-3xl mx-auto px-5 pt-10 pb-24">
         <Link
-          href="/design/linear/parlamente/berlin"
+          href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />

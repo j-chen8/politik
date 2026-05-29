@@ -67,7 +67,7 @@ function ParliamentTile({ p, featured = false }: { p: ParliamentOverview; featur
   const base = `rounded-xl border p-4 ${featured ? "sm:p-5" : ""}`;
   return active ? (
     <Link
-      href={`/design/linear/politiker?parlament=${p.id}`}
+      href={`/politiker?parlament=${p.id}`}
       className={`${base} block border-zinc-200/70 bg-white hover:border-zinc-300 hover:shadow-sm transition-all`}
     >
       {body}

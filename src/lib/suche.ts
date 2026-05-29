@@ -837,7 +837,7 @@ export function searchBerlinByType(
       date: d.dok_datum,
       snippet: snippet || null,
       batch_class: d.klasse,
-      detail_url: `/design/linear/parlamente/berlin/drucksache/${d.dbid}`,
+      detail_url: `/parlamente/berlin/drucksache/${d.dbid}`,
       parliament: "berlin",
     };
   });

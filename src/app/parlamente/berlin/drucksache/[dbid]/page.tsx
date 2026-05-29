@@ -124,7 +124,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
       <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Back-Link */}
         <Link
-          href="/design/linear/parlamente/berlin"
+          href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -338,7 +338,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 <li key={`${p.sitzungNr}-${p.topMarker}`} className="border border-zinc-100 rounded-lg p-3 bg-white">
                   <div className="flex items-baseline gap-2 flex-wrap text-[12px]">
                     <Link
-                      href={`/design/linear/parlamente/berlin/sitzung/${p.sitzungNr}#top-${p.topMarker}`}
+                      href={`/parlamente/berlin/sitzung/${p.sitzungNr}#top-${p.topMarker}`}
                       className="font-medium text-zinc-950 hover:text-blue-700 transition-colors"
                     >
                       Sitzung {p.sitzungNr}
@@ -453,7 +453,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                           return (
                             <Link
                               key={nr}
-                              href={`/design/linear/parlamente/berlin/drucksache/${linkedDbid}`}
+                              href={`/parlamente/berlin/drucksache/${linkedDbid}`}
                               className="font-mono text-blue-700 hover:text-blue-900 transition-colors"
                             >
                               {nr}
@@ -489,7 +489,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
               {mitzeichner.slice(0, 25).map((m) => (
                 <li key={`${m.politicianId}-${m.role}`} className="flex items-baseline gap-2 text-[13px]">
                   <Link
-                    href={`/design/linear/politiker/${m.politicianId}`}
+                    href={`/politiker/${m.politicianId}`}
                     className="text-zinc-900 hover:text-blue-700 transition-colors"
                   >
                     {m.firstName} {m.lastName}

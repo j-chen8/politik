@@ -38,7 +38,7 @@ export default function BerlinSitzungenPage() {
   return (
     <div className="page-wash">
       <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
-        <Link href="/design/linear/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
+        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin
         </Link>
@@ -101,7 +101,7 @@ function formatDate(iso: string | null): string | null {
 function SitzungCard({ s }: { s: BerlinSitzungListEntry }) {
   const datum = formatDate(s.datum);
   return (
-    <Link href={`/design/linear/parlamente/berlin/sitzung/${s.nr}`} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">
+    <Link href={`/parlamente/berlin/sitzung/${s.nr}`} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">
       <div className="flex items-center gap-4">
         <div className="shrink-0 w-14 text-center">
           <div className="text-2xl font-semibold tracking-[-0.02em] num leading-none">{s.nr}</div>

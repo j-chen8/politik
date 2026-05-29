@@ -54,7 +54,7 @@ export default function BerlinOverview() {
         </p>
 
         {/* Suche — serverseitiges Formular, fest auf Berlin gescoped */}
-        <form action="/design/linear/politiker" method="GET" className="max-w-xl mx-auto">
+        <form action="/politiker" method="GET" className="max-w-xl mx-auto">
           <input type="hidden" name="parlament" value="2" />
           <div className="flex items-center gap-2 bg-white rounded-full border border-zinc-200/80 shadow-sm pl-5 pr-2 py-2 focus-within:border-zinc-400 transition-colors">
             <Search className="w-4 h-4 text-zinc-400 shrink-0" strokeWidth={2.25} />
@@ -80,7 +80,7 @@ export default function BerlinOverview() {
       {s.latestSitzung && (
         <section className="w-full max-w-6xl mx-auto px-5 pb-5 fade-in-up fade-in-up-2">
           <Link
-            href={`/design/linear/parlamente/berlin/sitzung/${s.latestSitzung.sitzungNr}`}
+            href={`/parlamente/berlin/sitzung/${s.latestSitzung.sitzungNr}`}
             className="group block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:border-zinc-300 hover:bg-zinc-50/30 transition-colors"
           >
             <div className="flex items-baseline gap-x-4 gap-y-2 flex-wrap">
@@ -164,7 +164,7 @@ export default function BerlinOverview() {
                       {v.primaryTitel && (
                         v.primaryDbid ? (
                           <Link
-                            href={`/design/linear/parlamente/berlin/drucksache/${v.primaryDbid}`}
+                            href={`/parlamente/berlin/drucksache/${v.primaryDbid}`}
                             className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
                           >
                             {v.primaryTitel}
@@ -232,7 +232,7 @@ export default function BerlinOverview() {
                     >
                       {g.titel && (
                         <Link
-                          href={`/design/linear/parlamente/berlin/drucksache/${g.dbid}`}
+                          href={`/parlamente/berlin/drucksache/${g.dbid}`}
                           className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
                         >
                           {g.titel}
@@ -282,7 +282,7 @@ export default function BerlinOverview() {
                       className="rounded-lg border border-zinc-100 px-4 py-4 h-[320px] flex flex-col gap-2.5 overflow-hidden"
                     >
                       <Link
-                        href={`/design/linear/parlamente/berlin/drucksache/${a.dbid}`}
+                        href={`/parlamente/berlin/drucksache/${a.dbid}`}
                         className="block text-[14px] font-semibold text-zinc-950 leading-snug hover:text-blue-700 transition-colors"
                       >
                         {a.titel}

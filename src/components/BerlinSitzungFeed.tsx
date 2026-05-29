@@ -247,7 +247,7 @@ export function BerlinSitzungFeed({ sit }: Props) {
                 </div>
                 {v.primaryTitel && v.primaryDbid ? (
                   <Link
-                    href={`/design/linear/parlamente/berlin/drucksache/${v.primaryDbid}`}
+                    href={`/parlamente/berlin/drucksache/${v.primaryDbid}`}
                     className="block text-[13.5px] text-zinc-950 leading-snug hover:text-blue-700 transition-colors mb-1.5"
                   >
                     {v.primaryTitel}
@@ -290,7 +290,7 @@ export function BerlinSitzungFeed({ sit }: Props) {
                 </span>
                 {sp.politicianId ? (
                   <Link
-                    href={`/design/linear/politiker/${sp.politicianId}`}
+                    href={`/politiker/${sp.politicianId}`}
                     className="text-[13px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
                   >
                     {sp.speakerName}

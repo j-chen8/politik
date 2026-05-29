@@ -111,7 +111,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
     <div className="page-wash">
       <div className="w-full max-w-4xl mx-auto px-5 pt-10 pb-24">
         <Link
-          href="/design/linear/parlamente/berlin"
+          href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -221,7 +221,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
                     <div className="flex items-baseline gap-2 flex-wrap mb-1">
                       {sp.politicianId ? (
                         <Link
-                          href={`/design/linear/politiker/${sp.politicianId}`}
+                          href={`/politiker/${sp.politicianId}`}
                           className="text-[13.5px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
                         >
                           {sp.speakerName}
@@ -275,7 +275,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
                   </span>
                   {v.primaryTitel && v.primaryDbid ? (
                     <Link
-                      href={`/design/linear/parlamente/berlin/drucksache/${v.primaryDbid}`}
+                      href={`/parlamente/berlin/drucksache/${v.primaryDbid}`}
                       className="flex-1 text-[13px] text-zinc-950 leading-snug hover:text-blue-700 line-clamp-1 transition-colors"
                     >
                       {v.primaryTitel}
@@ -347,7 +347,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
                         <div className="flex items-baseline gap-2 flex-wrap mb-1">
                           {sp.politicianId ? (
                             <Link
-                              href={`/design/linear/politiker/${sp.politicianId}`}
+                              href={`/politiker/${sp.politicianId}`}
                               className="text-[13px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
                             >
                               {sp.speakerName}

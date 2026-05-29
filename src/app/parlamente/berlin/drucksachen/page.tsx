@@ -67,7 +67,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
   return (
     <div className="page-wash">
       <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
-        <Link href="/design/linear/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
+        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin
         </Link>
@@ -78,8 +78,8 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
           <p className="text-[15px] text-zinc-600 leading-relaxed max-w-2xl">
             <span className="num font-medium text-zinc-900">{allKlassenTotal.toLocaleString("de-DE")}</span> analysierte Drucksachen —
             Schriftliche Anfragen, Anträge, Gesetzentwürfe, Senats-Vorlagen und Beschlussempfehlungen. Jede mit LLM-Zusammenfassung
-            und Themen-Einordnung (siehe <Link href="/design/linear/parlamente/berlin/methodik" className="text-blue-700 hover:text-blue-900 underline">Methodik</Link>).
-            Volltext-Suche über die <Link href="/design/linear/parlamente/berlin/suche" className="text-blue-700 hover:text-blue-900 underline">Berlin-Suche</Link>.
+            und Themen-Einordnung (siehe <Link href="/parlamente/berlin/methodik" className="text-blue-700 hover:text-blue-900 underline">Methodik</Link>).
+            Volltext-Suche über die <Link href="/parlamente/berlin/suche" className="text-blue-700 hover:text-blue-900 underline">Berlin-Suche</Link>.
           </p>
         </div>
 
@@ -164,7 +164,7 @@ function DsCard({ d }: { d: import("@/lib/db").BerlinDsIndexEntry }) {
   const urheber = d.fraktion || d.einbringer;
   const snippet = d.zusammenfassung?.replace(/\s+/g, " ").trim();
   return (
-    <Link href={`/design/linear/parlamente/berlin/drucksache/${encodeURIComponent(d.dbid)}`} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">
+    <Link href={`/parlamente/berlin/drucksache/${encodeURIComponent(d.dbid)}`} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">
       <div className="flex items-start gap-4">
         <FileText className="w-4 h-4 text-zinc-300 group-hover:text-zinc-500 transition-colors shrink-0 mt-0.5" strokeWidth={2} />
         <div className="flex-1 min-w-0">

@@ -4,7 +4,7 @@
  * Eigene Page statt Refactor der Bundes-Suche, damit Track-Isolation gewahrt bleibt.
  * Nutzt berlin_speeches_fts + berlin_drucksachen_fts via searchBerlinByType.
  *
- * URL: /design/linear/parlamente/berlin/suche?q=Klima&type=drucksachen
+ * URL: /parlamente/berlin/suche?q=Klima&type=drucksachen
  */
 import { searchBerlinByType, type BerlinSearchType, type DrucksacheHit, type BerlinSpeechHit, type PoliticianHit } from "@/lib/suche";
 import Link from "next/link";
@@ -35,7 +35,7 @@ export default async function BerlinSuchePage({ searchParams }: Props) {
     <main className="page-wash min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-8">
         <Link
-          href="/design/linear/parlamente/berlin"
+          href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -56,7 +56,7 @@ export default async function BerlinSuchePage({ searchParams }: Props) {
         </div>
 
         {/* Such-Form */}
-        <form method="GET" action="/design/linear/parlamente/berlin/suche" className="mb-6">
+        <form method="GET" action="/parlamente/berlin/suche" className="mb-6">
           <div className="flex items-center gap-2 bg-white border border-zinc-200 rounded-xl px-4 py-3 focus-within:border-zinc-400 transition-colors">
             <Search className="w-4 h-4 text-zinc-400" strokeWidth={2.25} />
             <input
@@ -193,7 +193,7 @@ function ResultCard({ item, query, expansions }: { item: SearchItem; query: stri
     const s = item;
     return (
       <Link
-        href={s.politician_id ? `/design/linear/politiker/${s.politician_id}` : "#"}
+        href={s.politician_id ? `/politiker/${s.politician_id}` : "#"}
         className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group"
       >
         <div className="flex items-baseline gap-2 mb-1 text-[11px]">
@@ -211,7 +211,7 @@ function ResultCard({ item, query, expansions }: { item: SearchItem; query: stri
     const p = item;
     return (
       <Link
-        href={`/design/linear/politiker/${p.id}`}
+        href={`/politiker/${p.id}`}
         className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors"
       >
         <div className="text-[14px] font-medium text-zinc-950">{highlight(p.name, terms)}</div>

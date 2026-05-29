@@ -77,7 +77,7 @@ export default function BerlinMethodikPage() {
   return (
     <div className="page-wash min-h-screen">
       <div className="max-w-6xl mx-auto px-5 py-12 fade-in-up">
-        <Link href="/design/linear/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
+        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin
         </Link>
@@ -112,7 +112,7 @@ export default function BerlinMethodikPage() {
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">Pilot-Hinweis: Was gleich ist, was fehlt</h2>
               <Amber>
                 <p><strong className="text-zinc-950">Die Analyse-Methodik ist identisch zum Bundestag.</strong> Reden, Drucksachen und Abstimmungen laufen über dieselbe Pipeline: ein Generator-Modell (Claude Haiku 4.5) extrahiert strukturiert, anschließend prüft eine <em>deterministische</em> Zitat-Validierung (Substring gegen den Originaltext, hier {quotePct} %) plus dieselben Anti-Halluzinations-Heuristiken (H1–H10) wie beim Bundestag. Für „ist dieses Zitat wirklich in der Rede?" ist das die richtige Prüfung — kein zweites LLM.</p>
-                <p><strong className="text-zinc-950">Was beim Bundestag mehr ist:</strong> Die dortige <Link href="/design/linear/methodik" className="text-blue-700 hover:text-blue-900 underline">Specialist-Cascade</Link> (Verifier aus anderen Modellfamilien, Quellenkohärenz-Check) prüft <em>Lebensläufe</em> gegen mehrere Quellen. Sie braucht zwei unabhängige Quellen pro Person — die hat Berlin (noch) nicht (siehe <a href="#cv-limitation" className="text-blue-700 hover:text-blue-900 underline">Lebensläufe</a>). Die Cascade betrifft also nur die CV-Daten, nicht die Reden-/Drucksachen-Analyse.</p>
+                <p><strong className="text-zinc-950">Was beim Bundestag mehr ist:</strong> Die dortige <Link href="/methodik" className="text-blue-700 hover:text-blue-900 underline">Specialist-Cascade</Link> (Verifier aus anderen Modellfamilien, Quellenkohärenz-Check) prüft <em>Lebensläufe</em> gegen mehrere Quellen. Sie braucht zwei unabhängige Quellen pro Person — die hat Berlin (noch) nicht (siehe <a href="#cv-limitation" className="text-blue-700 hover:text-blue-900 underline">Lebensläufe</a>). Die Cascade betrifft also nur die CV-Daten, nicht die Reden-/Drucksachen-Analyse.</p>
               </Amber>
             </section>
 
@@ -140,7 +140,7 @@ export default function BerlinMethodikPage() {
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">Plenarbeitrag-Typen & Tonalität</h2>
               <p className="text-[13px] text-zinc-600 leading-relaxed">
                 Die Reden-Typ-Taxonomie (A–K) und die elf Tonalitäten sind aus der Bundestags-Methodik übernommen, die Akteure an Berlin angepasst (Senat statt Bundesregierung, zwölf Bezirke). <strong className="text-zinc-950">Neu für Berlin: Typ L</strong> — die mündliche Frage in der Fragestunde, die es so im Bundestag nicht gibt.
-                {" "}Die vollständigen Definitionen stehen im <Link href="/design/linear/methodik#glossar-tonalitaet" className="text-blue-700 hover:text-blue-900 underline">gemeinsamen Glossar</Link>.
+                {" "}Die vollständigen Definitionen stehen im <Link href="/methodik#glossar-tonalitaet" className="text-blue-700 hover:text-blue-900 underline">gemeinsamen Glossar</Link>.
                 Die Framing-Marker (~30 empirisch über die Berliner Reden entdeckte Frames) sind ein <em>experimentelles</em> Feature — sie sind interpretativ, keine harten Fakten.
               </p>
             </section>
