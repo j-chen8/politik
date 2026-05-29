@@ -494,7 +494,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         )}
 
         {/* FRAGE & ANTWORT (Phase C: Kleine/Große Anfrage — getrennte Kerninhalte) */}
-        {((ds.kerninhaltFrage?.length ?? 0) > 0 || (ds.kerninhaltAntwort?.length ?? 0) > 0) && (
+        {((ds.kerninhaltFrage?.length ?? 0) > 0 || (ds.kerninhaltAntwort?.length ?? 0) > 0) && qaPaare.length === 0 && (
           <section className="fade-in-up-3 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline gap-3 mb-5 flex-wrap">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Frage &amp; Antwort</h2>
@@ -654,25 +654,26 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         {/* FRAGEN & ANTWORTEN — extrahierte Einzel-Q&A aus Sammeldrucksachen */}
         {qaPaare.length > 0 && (
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <div className="flex items-baseline justify-between mb-1">
+            <div className="flex items-baseline gap-3 mb-1 flex-wrap">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Fragen & Antworten</h2>
               <span className="num text-[11px] text-zinc-400">{qaPaare.length}</span>
+              {ds.antwortCharakter && <DrucksacheTonalityBadge slug={ds.antwortCharakter} />}
             </div>
             <p className="text-[12px] text-zinc-500 leading-snug mb-5">
-              Einzeln aus der Drucksache extrahiert (Frage der/des Abgeordneten + Antwort der Bundesregierung).
+              Jede Einzelfrage mit der zugeordneten Antwort der Bundesregierung, aus der Drucksache extrahiert.
             </p>
             <ul className="space-y-4">
               {qaPaare.map((qa) => (
                 <li key={qa.paarIndex} className="border-l-2 border-zinc-200 pl-4">
                   <div className="flex items-baseline gap-2 flex-wrap mb-1">
                     <span className="num text-[10px] text-zinc-400 shrink-0">{qa.paarIndex}</span>
-                    {qa.fragestellerPoliticianId ? (
+                    {qa.fragestellerName && (qa.fragestellerPoliticianId ? (
                       <Link href={`/politiker/${qa.fragestellerPoliticianId}`} className="text-[13px] font-medium text-zinc-950 hover:text-[#1a3e72] transition-colors">
                         {qa.fragestellerName}
                       </Link>
                     ) : (
                       <span className="text-[13px] font-medium text-zinc-700">{qa.fragestellerName}</span>
-                    )}
+                    ))}
                     {qa.fragestellerParty && <span className="text-[11px] text-zinc-400">{qa.fragestellerParty}</span>}
                   </div>
                   {qa.frageText && <p className="text-[13.5px] text-zinc-800 leading-snug mb-1.5">{qa.frageText}</p>}
