@@ -4362,6 +4362,8 @@ export interface SitzungStoryTop {
   keyFacts: { text: string; refs: number[] }[] | null;
   /** Diesem TOP zugeordnete Abstimmungen (per DS-Überschneidung), Sprung-Anker in den Überblick. */
   voteRefs: { anchorId: string; label: string; accepted: boolean | null }[];
+  /** Drucksachen dieses TOP (aus den T_Drs des Protokolls), für Pills mit Link zur DS-Seite. */
+  drucksachen: { nr: string; titel: string | null }[];
 }
 
 export interface SitzungHandzeichenVote {
@@ -4506,6 +4508,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
       speeches: byTopic.get(t.topic_id) ?? [],
       keyFacts: keyFactsByTopic.get(t.topic_id) ?? null,
       voteRefs: [] as { anchorId: string; label: string; accepted: boolean | null }[],
+      drucksachen: [] as { nr: string; titel: string | null }[],
     }))
     .filter((t) => t.speeches.length > 0);
 
@@ -4614,6 +4617,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
   // TOP→DS aus plenar_topic_drucksachen (T_Drs), Vote→DS namentlich via
   // drucksache_polls, Handzeichen via drucksache_nrn_json. Treffer → Badge am TOP.
   const dsToTopics = new Map<string, number[]>();
+  const topicDsList = new Map<number, string[]>();
   try {
     const ptdRows = db
       .prepare(
@@ -4624,9 +4628,16 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
     for (const r of ptdRows) {
       if (!dsToTopics.has(r.drucksache_nr)) dsToTopics.set(r.drucksache_nr, []);
       dsToTopics.get(r.drucksache_nr)!.push(r.topic_id);
+      if (!topicDsList.has(r.topic_id)) topicDsList.set(r.topic_id, []);
+      topicDsList.get(r.topic_id)!.push(r.drucksache_nr);
     }
   } catch {
     /* plenar_topic_drucksachen noch nicht angelegt */
+  }
+  // Per-TOP-Drucksachen an die TOPs hängen (mit Titel-Lookup für Tooltip).
+  for (const t of tops) {
+    const ds = topicDsList.get(t.topicId);
+    if (ds && ds.length > 0) t.drucksachen = ds.map((nr) => ({ nr, titel: lookupDsTitle([nr]) }));
   }
   if (dsToTopics.size > 0) {
     const topById = new Map(tops.map((t) => [t.topicId, t]));

@@ -594,6 +594,20 @@ export default async function BundestagSitzungPage({ params }: Props) {
                           ))}
                         </div>
                       )}
+                      {t.drucksachen.length > 0 && (
+                        <div className="flex flex-wrap gap-1 items-center mb-2">
+                          {t.drucksachen.map((d) => (
+                            <Link
+                              key={d.nr}
+                              href={`/aktivitaeten/${d.nr.replace("/", "-")}`}
+                              title={d.titel ?? `Drucksache ${d.nr}`}
+                              className="inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded num text-[#1a3e72] bg-blue-50 hover:bg-blue-100 transition-colors"
+                            >
+                              {d.nr}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                       {t.keyFacts && t.keyFacts.length > 0 ? (
                         <KeyFactsCard facts={t.keyFacts} topicId={t.topicId} redenCount={reden.length} />
                       ) : (
