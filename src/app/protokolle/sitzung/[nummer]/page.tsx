@@ -416,6 +416,9 @@ function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; ind
         )}
         <TonalityBadge slug={speech.tonalitaet} />
       </div>
+      {speech.antwortAufSpeaker && (
+        <p className="text-[11px] text-zinc-400 mb-1">↳ Antwort auf die Frage von {speech.antwortAufSpeaker}</p>
+      )}
       {speech.zusammenfassung ? (
         <p className="text-[12.5px] text-zinc-600 leading-relaxed">{speech.zusammenfassung}</p>
       ) : (

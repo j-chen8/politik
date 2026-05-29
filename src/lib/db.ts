@@ -4447,6 +4447,7 @@ export interface SitzungStorySpeech {
   originalText: string | null;
   mediathekFvid: string | null;
   mediathekConfidence: string | null;
+  antwortAufSpeaker: string | null;  // Phase D: bei Fragestunde-Antworten die beantwortete Frage-Person
 }
 
 export interface SitzungStoryTop {
@@ -4537,6 +4538,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
       `SELECT s.id AS speech_id, s.rede_id, s.segment_index, s.topic_id, s.speaker,
               s.party AS raw_party, ${PARTY_LABEL_SQL} AS party_label, s.original_text,
               s.mediathek_fvid, s.mediathek_confidence,
+              (SELECT q.speaker FROM plenar_speeches q WHERE q.id = s.antwort_auf_speech_id) AS antwort_auf_speaker,
               sa.zusammenfassung_2_saetze AS zus, sa.tonalitaet,
               sa.forderungen_json, sa.konkrete_zahlen_json
        FROM plenar_speeches s
@@ -4555,6 +4557,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
     original_text: string | null;
     mediathek_fvid: string | null;
     mediathek_confidence: string | null;
+    antwort_auf_speaker: string | null;
     zus: string | null;
     tonalitaet: string | null;
     forderungen_json: string | null;
@@ -4579,6 +4582,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
       originalText: r.original_text,
       mediathekFvid: r.mediathek_fvid,
       mediathekConfidence: r.mediathek_confidence,
+      antwortAufSpeaker: r.antwort_auf_speaker,
     });
   }
 
