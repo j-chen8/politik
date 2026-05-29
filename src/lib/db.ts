@@ -4177,6 +4177,83 @@ export function getDrucksacheQaPaare(nr: string): DrucksacheQaPaar[] {
   }
 }
 
+export interface PoliticianQaPaar {
+  drucksacheNr: string;
+  paarIndex: number;
+  frageText: string | null;
+  antwortText: string | null;
+  antwortSteller: string | null;
+  datum: string | null;
+}
+
+/** Schriftliche Einzelfragen + Antworten DIESER Abgeordneten (Rückwärts-Link). */
+export function getQaPaareForPolitician(politicianId: number, limit = 200): PoliticianQaPaar[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT qa.drucksache_nr, qa.paar_index, qa.frage_text, qa.antwort_text, qa.antwort_steller,
+             (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+      FROM drucksache_qa_paare qa
+      WHERE qa.fragesteller_politician_id = ?
+      ORDER BY qa.drucksache_nr DESC, qa.paar_index
+      LIMIT ?
+    `).all(politicianId, limit) as any[];
+    return rows.map((r) => ({
+      drucksacheNr: r.drucksache_nr,
+      paarIndex: r.paar_index,
+      frageText: r.frage_text,
+      antwortText: r.antwort_text,
+      antwortSteller: r.antwort_steller,
+      datum: r.datum,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export interface QaPaarListItem {
+  drucksacheNr: string;
+  paarIndex: number;
+  fragestellerName: string | null;
+  fragestellerParty: string | null;
+  fragestellerPoliticianId: number | null;
+  antwortSteller: string | null;
+  datum: string | null;
+  frageText: string | null;
+  antwortText: string | null;
+}
+
+/** Durchsuchbare, paginierte Liste aller Schriftliche-Fragen-Q&A-Paare (für /fragen). */
+export function getQaPaareList(q: string, page: number, perPage = 50): { items: QaPaarListItem[]; total: number } {
+  const db = getDb();
+  try {
+    const where = q ? `WHERE (qa.frage_text LIKE @like OR qa.antwort_text LIKE @like OR qa.fragesteller_name LIKE @like)` : "";
+    const like = `%${q.replace(/[%_]/g, "")}%`;
+    const total = (db.prepare(`SELECT COUNT(*) AS c FROM drucksache_qa_paare qa ${where}`).get(q ? { like } : {}) as { c: number }).c;
+    const params: Record<string, unknown> = { lim: perPage, off: (page - 1) * perPage };
+    if (q) params.like = like;
+    const rows = db.prepare(`
+      SELECT qa.drucksache_nr, qa.paar_index, qa.fragesteller_name, qa.fragesteller_party,
+             qa.fragesteller_politician_id, qa.antwort_steller, qa.frage_text, qa.antwort_text,
+             (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+      FROM drucksache_qa_paare qa ${where}
+      ORDER BY qa.drucksache_nr DESC, qa.paar_index
+      LIMIT @lim OFFSET @off
+    `).all(params) as any[];
+    return {
+      total,
+      items: rows.map((r) => ({
+        drucksacheNr: r.drucksache_nr, paarIndex: r.paar_index,
+        fragestellerName: r.fragesteller_name, fragestellerParty: r.fragesteller_party,
+        fragestellerPoliticianId: r.fragesteller_politician_id, antwortSteller: r.antwort_steller,
+        datum: r.datum, frageText: r.frage_text, antwortText: r.antwort_text,
+      })),
+    };
+  } catch {
+    return { items: [], total: 0 };
+  }
+}
+
 // ============================================================
 // Drucksachen-Related (Verfahrens-Zusammenhang + Themen-Ähnliche)
 // ============================================================

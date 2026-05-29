@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote } from "lucide-react";
 
 /**
  * SiteChrome wraps every page with the site header & footer.
@@ -29,6 +29,7 @@ const PRIMARY_NAV = [
 
 const MORE_NAV = [
   { href: "/protokolle/sitzungen", icon: CalendarDays, label: "Plenarsitzungen" },
+  { href: "/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
   { href: "/analyse", icon: BarChart3, label: "Analyse" },
   { href: "/methodik", icon: BookOpen, label: "Methodik" },
   { href: "/glossar", icon: Library, label: "Glossar" },
