@@ -1379,6 +1379,10 @@ export function getParlamentarischeArbeit(
          'Entschließungsantrag','Gesetzentwurf','Berichterstattung',
          'Berichterstattung (zu Protokoll gegeben)'
        )
+       -- Schriftliche Fragen (Drucksache) haben eine eigene, reichere Sektion
+       -- ("Schriftliche Fragen" mit Antwort-Text) → hier raus, um Dopplung zu
+       -- vermeiden. Mündliche Fragen (Plenarprotokoll) bleiben.
+       AND NOT (aktivitaetsart = 'Frage' AND dokumentart = 'Drucksache')
      ORDER BY datum DESC LIMIT ?`
   ).all(politicianId, limit) as ActivityRow[];
 
