@@ -14,6 +14,9 @@
  *    scripts/map-vote-drucksache-dip.ts (DIP-Vorgang: Antrag+Beschlussempf.).
  */
 export const POLL_TO_BT_ID: Record<number, number> = {
+  // 2026-05-22 (Filterlist-Apply 2026-05-25: 2 Subjekt-DS, eine davon
+  // im laufenden Drucksachen-Batch)
+  6528: 6528,
   // 2026-05-08 (Filterlist-Apply 2026-05-20: bundestag_id=6511 hat
   // jetzt den präzisen Roll-Call-Eintrag mit 2 Subjekt-DS)
   6511: 6511,

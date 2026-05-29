@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { ArrowLeft, ChevronLeft, ChevronRight, Loader2, Plus } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { highlight } from "@/lib/highlight";
 import type {
@@ -36,6 +36,15 @@ const PARTY_DOT: Record<string, string> = {
 
 const PAGE_SIZE = 50;
 
+const dsKlasseShort: Record<string, string> = {
+  klein: "Kl. Anfrage",
+  mittel: "Bericht",
+  gross: "Gesetzentwurf",
+  antwort: "BReg-Antwort",
+  regierung: "Reg.-Vorlage",
+  administrativ: "Verwaltung",
+};
+
 function formatGermanDate(iso: string | null): string {
   if (!iso) return "";
   const [y, m, d] = iso.split("-");
@@ -52,11 +61,19 @@ interface Props {
   query: string;
   type: SearchType;
   page: number;
+  expand: boolean;
+  /** Sortierung (nur Detail-Suche; Palette-Vollliste nutzt Default „date"). */
+  sort?: "date" | "relevance";
+  /** Drucksachen-Typ-Filter (nur Detail-Suche), z.B. „gross" für Gesetzentwürfe. */
+  klasse?: string | null;
+  /** In Detail-Suche eingebettet → eigenen „Zurück"-Button ausblenden (Seite hat eigene Navigation). */
+  embedded?: boolean;
 }
 
-export function SearchFullList({ query, type, page }: Props) {
+export function SearchFullList({ query, type, page, expand, sort = "date", klasse = null, embedded = false }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname() || "/suche";
   const [data, setData] = useState<SearchByTypeResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -65,8 +82,9 @@ export function SearchFullList({ query, type, page }: Props) {
     let cancelled = false;
     setLoading(true);
     setError(null);
+    const klasseParam = klasse ? `&klasse=${encodeURIComponent(klasse)}` : "";
     fetch(
-      `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=${page}&pageSize=${PAGE_SIZE}`
+      `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=${page}&pageSize=${PAGE_SIZE}&expand=${expand ? 1 : 0}&sort=${sort}${klasseParam}`
     )
       .then((r) => r.json())
       .then((d: SearchByTypeResult) => {
@@ -84,7 +102,7 @@ export function SearchFullList({ query, type, page }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [query, type, page]);
+  }, [query, type, page, expand, sort, klasse]);
 
   const totalPages = useMemo(() => {
     if (!data) return 1;
@@ -94,11 +112,20 @@ export function SearchFullList({ query, type, page }: Props) {
   function gotoPage(p: number) {
     const next = new URLSearchParams(searchParams.toString());
     next.set("page", String(p));
-    router.push(`/design/linear/suche?${next.toString()}`);
+    router.push(`${pathname}?${next.toString()}`);
   }
 
   function backToModal() {
-    router.push(`/design/linear/suche?q=${encodeURIComponent(query)}`);
+    // Immer zurück zur einfachen Suche (Palette), egal ob von Vollliste oder Detail-Suche.
+    router.push(`/suche?q=${encodeURIComponent(query)}`);
+  }
+
+  function toggleExpand(on: boolean) {
+    const next = new URLSearchParams(searchParams.toString());
+    if (on) next.set("expand", "1");
+    else next.delete("expand");
+    next.set("page", "1");
+    router.push(`${pathname}?${next.toString()}`);
   }
 
   const typeLabel = TYPE_LABELS[type];
@@ -106,14 +133,16 @@ export function SearchFullList({ query, type, page }: Props) {
   return (
     <div className="page-wash min-h-screen">
       <div className="max-w-3xl mx-auto px-5 py-8 fade-in-up">
-        {/* Breadcrumb + Back */}
-        <button
-          onClick={backToModal}
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
-          Zurück zur Suche
-        </button>
+        {/* Breadcrumb + Back (in Detail-Suche ausgeblendet — Seite hat eigene Navigation) */}
+        {!embedded && (
+          <button
+            onClick={backToModal}
+            className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
+            Zurück zur Suche
+          </button>
+        )}
 
         {/* Header */}
         <div className="mb-8 flex items-baseline justify-between gap-4 flex-wrap">
@@ -141,32 +170,55 @@ export function SearchFullList({ query, type, page }: Props) {
           )}
         </div>
 
-        {/* Synonym-Strip */}
-        {data && data.matchedClusters.length > 0 && data.expansions.length > 0 && (
+        {/* Exakt-Default vs. Erweitern */}
+        {data && data.matchedClusters.length > 0 && (
           <div className="mb-6 p-3 rounded-lg border border-zinc-200 bg-zinc-50/60 text-[12px] text-zinc-500">
-            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
-              <span className="text-zinc-400">auch gesucht über:</span>
-              {data.expansions.map((term) => (
-                <Link
-                  key={term}
-                  href={`/design/linear/suche?q=${encodeURIComponent(term)}&type=${type}`}
-                  className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600 hover:border-zinc-400 hover:text-zinc-900 transition-colors"
-                >
-                  {term}
-                </Link>
-              ))}
-            </div>
-            <div
-              className="mt-1.5 text-[11px] text-zinc-400 leading-snug"
-              title="Wieviele Treffer enthalten den Original-Begriff im Text direkt — der Rest kam über die Synonyme oben."
-            >
-              direkt „{data.query}":{" "}
-              <span className="tabular-nums">
-                {data.totalOriginal} / {data.total}
-              </span>{" "}
-              · davon{" "}
-              <span className="tabular-nums">{data.total - data.totalOriginal}</span> via Synonymen
-            </div>
+            {data.expand ? (
+              <>
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                  <span className="text-zinc-400">verwandte Begriffe mitgesucht:</span>
+                  {data.expansions.map((term) => (
+                    <span
+                      key={term}
+                      className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600"
+                    >
+                      {term}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-1.5 flex items-center justify-between gap-3 text-[11px] text-zinc-400 leading-snug">
+                  <span>
+                    direkt „{data.query}": <span className="tabular-nums">{data.totalOriginal}</span>{" "}
+                    · via Synonymen{" "}
+                    <span className="tabular-nums">{Math.max(0, data.total - data.totalOriginal)}</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => toggleExpand(false)}
+                    className="shrink-0 text-zinc-600 hover:text-zinc-950 underline underline-offset-2"
+                  >
+                    nur exakte Treffer
+                  </button>
+                </div>
+              </>
+            ) : data.totalExpanded > data.totalOriginal ? (
+              <button
+                type="button"
+                onClick={() => toggleExpand(true)}
+                className="w-full flex items-center gap-2 text-left text-zinc-600 hover:text-zinc-950 transition-colors"
+                title="Verwandte Themen über Synonym-Cluster einbeziehen"
+              >
+                <Plus className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} />
+                <span>
+                  Verwandte Themen einbeziehen{" "}
+                  <span className="text-zinc-400">({data.matchedClusters.join(", ")})</span> —{" "}
+                  <span className="tabular-nums font-medium text-zinc-900">
+                    +{data.totalExpanded - data.totalOriginal}
+                  </span>{" "}
+                  Treffer
+                </span>
+              </button>
+            ) : null}
           </div>
         )}
 
@@ -192,7 +244,7 @@ export function SearchFullList({ query, type, page }: Props) {
               <ResultRow
                 key={`${hit.type}-${i}`}
                 hit={hit}
-                terms={[data.query, ...data.expansions]}
+                terms={[data.query, ...(data.expand ? data.expansions : [])]}
               />
             ))}
           </div>
@@ -296,7 +348,7 @@ function ResultRow({ hit, terms }: { hit: SearchHit; terms: string[] }) {
 function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/politiker/${hit.id}`}
+      href={`/politiker/${hit.id}`}
       className="flex items-center gap-3 px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <PoliticianAvatar
@@ -328,7 +380,7 @@ function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[]
 function TopicFullRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/protokolle/top/${hit.topic_id}`}
+      href={`/protokolle/top/${hit.topic_id}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.title, terms)}</div>
@@ -344,7 +396,7 @@ function SpeechFullRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
   const ton = formatTonalitaet(hit.tonalitaet);
   return (
     <Link
-      href={`/design/linear/protokolle/redner/${encodeURIComponent(hit.speaker)}`}
+      href={`/protokolle/redner/${encodeURIComponent(hit.speaker)}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="flex items-start gap-2">
@@ -380,7 +432,7 @@ function SpeechFullRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
 function VoteFullRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   return (
     <Link
-      href={`/design/linear/abstimmungen/${hit.poll_id}`}
+      href={`/abstimmungen/${hit.poll_id}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.label, terms)}</div>
@@ -394,14 +446,28 @@ function VoteFullRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
 }
 
 function DrucksacheFullRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) {
+  const klasseLabel = hit.batch_class
+    ? dsKlasseShort[hit.batch_class] ?? hit.batch_class
+    : "Drucksache";
+  const href = hit.drucksache_nr
+    ? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`
+    : "/protokolle";
   return (
-    <div className="block px-4 py-3 border-b border-zinc-100 last:border-0">
-      <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.title, terms)}</div>
+    <Link
+      href={href}
+      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+    >
+      <div className="text-[14px] text-zinc-900 leading-snug font-medium">{highlight(hit.title, terms)}</div>
+      {hit.snippet && (
+        <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
+          {highlight(hit.snippet, terms)}
+        </div>
+      )}
       <div className="text-[12px] text-zinc-500 mt-0.5">
-        {hit.vorgangstyp ?? "Drucksache"}
+        {klasseLabel}
         {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
         {hit.date && ` · ${formatGermanDate(hit.date)}`}
       </div>
-    </div>
+    </Link>
   );
 }

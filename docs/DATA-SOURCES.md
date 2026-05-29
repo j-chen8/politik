@@ -50,8 +50,16 @@
    Reden < 60. Beides als ein Hintergrund-Orchestrator (retry-fest).
 4b. **Vote-Kontext für neue Polls (Filterlist + Generate, ~$0,01/Poll LLM):**
    Ohne diesen Schritt zeigen Abstimmungs-Detail-Seiten neuer Polls keinen
-   „Worum geht es?"-Block. Reihenfolge:
+   „Worum geht es?"-Block. **Reihenfolge ist verbindlich** (Chicken-and-Egg
+   beim `drucksache_analyses`-Filter im Map-Script, siehe Caveat unten):
+   - **MUSS nach Schritt 4 laufen** (Drucksachen-Batch muss retrieved+applied
+     sein, sonst werden neue DS in der Filterlist ausgesiebt — `map-vote-
+     drucksache-bundestag.ts` filtert per `EXISTS (drucksache_analyses ...)`).
    - Identifizieren: `sqlite3 politik.db "SELECT v.poll_id FROM (SELECT DISTINCT poll_id FROM votes) v LEFT JOIN vote_context vc ON vc.poll_id=v.poll_id WHERE vc.poll_id IS NULL ORDER BY v.poll_id"`
+   - Neue Poll-IDs nach 2026-05-25-Konvention zu `src/lib/poll-bt-mapping.ts`
+     hinzufügen (bt_id == poll_id für ≥ 6000). Ohne diesen Eintrag findet
+     `generate-vote-context.ts --poll <id>` den Poll nicht (`POLL_TO_BT_ID`-
+     Filter), siehe §2.13.
    - Drucksachen-Mapping aus Filterlist holen:
      `npx tsx scripts/map-vote-drucksache-bundestag.ts --apply`
      (idempotent — neue Polls werden ergänzt, bestehende mit DIFF aktualisiert,
@@ -59,6 +67,34 @@
    - Kontext generieren: `npx tsx scripts/generate-vote-context.ts --poll <id> --write`
      pro neuem Poll
    - Neutralitäts-Spotcheck (siehe Schritt 5) gilt auch für `vote_context.block_hinweis`
+4b2. **aw-Poll-Topics nachholen** (gratis, idempotent):
+   `npx tsx scripts/fetch-poll-aw-topics.ts` — pro neuem Poll-ID die
+   `field_topics` + `field_committees` aus der aw-API in `poll_aw_topics`-Tabelle
+   schreiben. Script filtert auf Polls die noch nicht in `poll_aw_topics` stehen.
+   Rate-Limit-Handling (429-Backoff) ist eingebaut. UI-Konsumenten:
+   `listAllVotesForIndex()` (Topic-Chips neben Vote-Titel).
+4b3. **DIP-Titel für fehlende Drucksachen** (gratis, idempotent):
+   `npx tsx scripts/fetch-missing-ds-titles.ts` — Drucksachen die in
+   `bundestag_votes` referenziert sind, aber weder in `drucksache_analyses`
+   noch in `dip_ds_titles` stehen (typischerweise Petitions-Sammelübersichten,
+   Wahlvorschläge, Verfahrens-Anträge). Holt für jede den Titel + Dokumenttyp
+   aus der DIP-API. Beim ersten Run wegen Rate-Limit oft nur Teil-Coverage —
+   Script ist idempotent, bei Re-Run werden nur fehlende geholt. UI-Konsument:
+   Stub-Seite `/aktivitaeten/[ds-nr]`. Coverage-Watermark:
+   `SELECT COUNT(*) FROM bundestag_votes WHERE error_type IS NULL AND outcome != 'kein_vote'
+    AND NOT EXISTS (SELECT 1 FROM drucksache_analyses WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))
+    AND NOT EXISTS (SELECT 1 FROM dip_ds_titles WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))`.
+   Bei einstelligem Rest-Count: das sind LLM-Extraktions-Fehler (DS-Ref leer
+   oder halluziniert) — separater Track.
+4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
+   Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
+   wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
+   **Vorbedingung:** XMLs aus Schritt 2 müssen ins landtag-Worktree gespiegelt sein
+   (`cp /home/jinsheng/politik/data/plenarprotokolle_xml/21*.xml /home/jinsheng/politik-landtag/data/plenarprotokolle_xml/`).
+   - Pre-Flight: `cd /home/jinsheng/politik-landtag && npx tsx scripts/batch-submit-bundestag-votes.ts`
+   - Submit (≤ 15 € Freigabe gilt): `... --confirm` → `batch_id` notieren
+   - Retrieve: `npx tsx scripts/batch-retrieve-bundestag-votes.ts` (wartet auf Abschluss + apply)
+   - Idempotenz: per `(xml_source, snippet_offset)` — neuer Run überspringt bereits Analysiertes
 5. **Neutralitäts-Disziplin (NICHT verhandelbar):** NIE Prompt/Methodik/Modell
    ändern — nur die identische validierte Pipeline auf neuen Daten. Nach dem
    Apply **Neutralitäts-Spotcheck**: Sample neuer `speech_analyses_v2` +
@@ -74,8 +110,11 @@
      BE). Subjekt-DS pro Roll-Call jetzt aus autoritativer Open-Data-Filterlist.
 7. **Abschluss:** §1-Snapshot-Tabelle aktualisieren, kurze Notiz in
    `NEXT-SESSION-data-refresh.md` (dedizierte Track-Datei — **nicht**
-   `NEXT-SESSION.md`, die hat fremde Track-Drift; Track-Isolation), ehrlicher
-   Statusbericht (was geholt, Kosten, Caveats, Spotcheck-Ergebnis).
+   `NEXT-SESSION.md`, die hat fremde Track-Drift; Track-Isolation),
+   **Refresh-Datum schreiben** (`date +%Y-%m-%d > data/last-refresh.txt` —
+   wird vom Landing-Strip „Letzter Datenstand" gelesen, damit Besucher die
+   Frische sehen), ehrlicher Statusbericht (was geholt, Kosten, Caveats,
+   Spotcheck-Ergebnis).
 
 **Vom „update" ausgeschlossen (manuell/separat — nur melden, nicht auto-tun):**
 Stammdaten-XML (manueller Download), Bundeskabinett (hardcoded), Ausschuss-
@@ -89,21 +128,24 @@ Caveats.
 
 ---
 
-## 1. Gap-Status (Snapshot **nach Refresh 2026-05-20** — via Check-Skript regenerierbar)
+## 1. Gap-Status (Snapshot **nach Refresh 2026-05-25** — via Check-Skript regenerierbar)
 
 | Quelle | Status | Stand nach Refresh | Notiz |
 |---|---|---|---|
-| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 78 (2026-05-08) | 76/77/78 ingestiert |
-| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **9.689** Reden | 0 Pre-Flight-Requests am 20.05. (alle aktuell seit 19.05.-Lauf) |
-| Activities (DIP) | 🟢 aktuell | 66.185 → **66.759** | +574 am 20.05., bis 2026-05-20 |
-| Drucksachen-PDF | 🟢 aktuell | 21/6001 → **21/6034** | +33 am 20.05., alle klassifiziert |
-| Drucksachen-LLM | 🟢 erledigt | 5.358 → **5.387** | 29 am 20.05. ($3,03), Spotcheck bestanden (zugeschriebene Sprache, sachlich) |
-| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 50 → **51 Polls** (6511, 630 Votes, datiert 2026-05-08) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~11 T — Datenlage-Decke (kein neuerer Poll existiert)** |
-| Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.901→**3.969**, Committees ~1.73k | mit aw-Run aktualisiert |
+| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 80 (2026-05-21) | 79+80 neu ingestiert (+328 Reden) |
+| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **11.953** Reden | +343 am 25.05. (Sitzung 79+80 + 15 Drift), Cost $1,54 Batch, Quote-Validation 86,0 % |
+| Activities (DIP) | 🟢 aktuell | 66.759 → **67.863** | +1.104 am 25.05., bis 2026-05-22 |
+| Drucksachen-PDF | 🟢 aktuell | 21/6034 → **21/6127** (53 neu) | +53 PDFs, alle klassifiziert |
+| Drucksachen-LLM | 🟢 erledigt | 5.387 → **5.440** | 53 am 25.05. ($3,06), Spotcheck bestanden (zugeschriebene Sprache, sachlich), 5/53 Topic-Drift (1 davon Tippfehler) |
+| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 51 → **52 Polls** (6528, +636 Votes, datiert 2026-05-22) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~3 T — neuester Poll 6528 vom 22.05.; spätere Sitzungs-Abstimmungen evtl. noch nicht da** |
+| Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.969→**4.008**, Committees ~2.154 | mit aw-Run aktualisiert |
 | Ausschuss-Protokolle | 🟡 Drift | 254 JSON vs 226 DB | nicht Teil von „update" (destruktiver Reimport) |
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
-| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download |
-| Vote↔DS-Cross-Check | 🟡 Filterlist-Apply (38 vote_contexts stale) | drucksache_polls 51/51 frisch; vote_context **51/51** befüllt, **38 stale** seit 2026-05-20-Apply | `map-vote-drucksache-bundestag.ts --apply` (Filterlist als SoT); Bilanz: 13 EXAKT · 38 DIFF · 0 UNMATCHED. Re-Gen für 38 stale `block_hinweis` offen (Schritt C im Pickup) |
+| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (25 Tage alt) |
+| Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
+| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,34 real / $0,06 estimate). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
+| aw-Poll-Topics (`poll_aw_topics`) | 🟢 erledigt | 52/52 Polls mit `field_topics` + `field_committees` | Gratis (aw-API), 27.05. initial geseedet. Re-Run nur für neue Polls (idempotent per `INSERT NOT IN`-Filter im Script) |
+| DIP-Titel für DS-Stubs (`dip_ds_titles`) | 🟢 erledigt | 74 DS mit DIP-Titel | Gratis (DIP-API), 27.05. zweimal gelaufen (Rate-Limit-Recovery). Coverage 99,3% — 3 LLM-Extraktions-Edge-Cases verbleiben |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
@@ -235,6 +277,32 @@ Kein Upstream-„latest" — Skripte laufen nur für **neue/leere** Politiker-Ro
   bundestag.de ab" war ein Teaser-/Join-Artefakt, **widerlegt**. Maßgeblich
   ist stets das im Plenarprotokoll verkündete Ergebnis der konkreten
   Abstimmung.
+
+### 2.14 Bundestag-Handzeichen-Votes (`bundestag_votes`)
+
+LLM-Extraktion aller Abstimmungs-Events aus den Plenar-XMLs — sowohl namentliche
+als auch die deutlich häufigeren **per Handzeichen** durchgeführten Voten.
+Letztere liefern nur Fraktions-Ebene (ja/nein/enthaltung je Fraktion), keine
+per-MdB-Stimmen. Zusätzlich `vote_subtype` (gesetz | petition | personenwahl) für
+UI-Filter.
+
+- **Pipeline-Heimat:** **`/home/jinsheng/politik-landtag/scripts/`** (historisch
+  dort als Bundestag-+-Berlin-Parallelspur entwickelt). Skripte:
+  - `batch-submit-bundestag-votes.ts` (Pre-Flight ohne, Submit mit `--confirm`)
+  - `batch-retrieve-bundestag-votes.ts` (wartet auf Batch-Ende + apply)
+  - Prompts in `src/lib/bundestag-votes-prompts.ts` (`PROMPT_VERSION=bundestag-votes-v1`)
+- **Modell:** Claude Haiku 4.5 mit Tool-Use (`VOTE_TOOL`) + System-Prompt-Cache.
+- **Idempotenz:** `(xml_source, snippet_offset)`-Key, schon analysierte Events
+  überspringen.
+- **XML-Sync (kritisch):** Worktree-`data/plenarprotokolle_xml/` sind NICHT
+  symlinkt. Vor Pipeline-Lauf neue Master-XMLs ins landtag-Worktree spiegeln:
+  `cp /home/jinsheng/politik/data/plenarprotokolle_xml/21*.xml /home/jinsheng/politik-landtag/data/plenarprotokolle_xml/`
+- **Kosten:** Pro Refresh typisch < $0,10 (Batch). 86 neue Events vom 27.05.
+  haben $0,06 gekostet.
+- **DB-Watermark:** `SELECT MAX(datum) FROM bundestag_votes WHERE error_type IS NULL`
+  vs. `SELECT MAX(datum) FROM plenar_sessions`. Bei Drift → Pipeline-Lauf fällig.
+- **UI-Konsumenten** (Master-Worktree): `listAllVotesForIndex()` (Abstimmungs-
+  Index) + `getBundestagDsHandzeichenVotes(dsNr)` (Drucksachen-Detail-Seite).
 
 ---
 

@@ -1,0 +1,702 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=kfQQb8m48xQ",
+    "video_id": "kfQQb8m48xQ",
+    "politician": "Anna Aeikens",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "3ad6a588dbe1b6c6",
+    "transcript_chars": 159655,
+    "caption_lines": 4621,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 57374,
+    "tokens_out": 13978,
+    "cost_usd": 0.0509056,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 0,
+      "invalid": 0,
+      "valid_pct": "n/a"
+    },
+    "answer_type_distribution": {
+      "unknown": 37789
+    },
+    "generated_at": "2026-05-23T19:14:12.595Z",
+    "batch_id": "msgbatch_011B29vvC6bLy8VSXs9QAQC3"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Anna Aeikens, 27-jährige CDU-Abgeordnete aus Sachsen-Anhalt, diskutiert in diesem ausführlichen Interview mit Tilo Jung zentrale Themen ihrer politischen Arbeit: Vertrauensverlust in etablierte Parteien und Aufstieg der AfD, Brandmauer-Politik, Renten- und Rentenpolitik, sowie Landwirtschaft und Klimaschutz. Sie wirkt durchweg reflektiert und bedacht, betont ihre Lernbereitschaft und ihr Unbehagen mit pauschalen Urteilen, weicht aber teilweise bei konkreten Forderungen aus und verlegt sich auf prozessuale Antworten.",
+    "themes": [
+      {
+        "title": "Politische Karriere und Hintergrund",
+        "timestamp_range": "00:00:38 - 00:02:09",
+        "theme_description": "Anna Aeikens erklärt ihre Politisierung aus einem politischen Haushalt heraus, ihre CDU-Mitgliedschaft seit 18 Jahren und ihren Einzug in den Bundestag über die Landesliste nach Verlust der Direktmandate.",
+        "question_asked": "Tilo fragt, warum sie im Bundestag ist und wie sie dort hingekommen ist.",
+        "question_intent": "Verstehen, welche persönliche Motivation und welche strukturellen Faktoren zu ihrer Kandidatur und ihrem Einzug führten.",
+        "position": "Aeikens betont, dass Verantwortung für sie immer Thema war, sie mit 18 Jahren in die CDU und Junge Union eintrat, sich in Partei einbrachte und sich schließlich als Kandidatin durchsetzte. Sie verlor den Direktwahlkreis gegen Jan Wenzel Schmidt (AfD) mit 21-22% zu 43%, zog aber über Platz 2 der Landesliste in den Bundestag ein. Sie sieht dies als Glücksfall, betont aber auch die Bedeutung von Vertrauensverlust in etablierte Parteien als Erklärung für das Wahlergebnis.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie antwortet direkt auf beide Fragen – warum im Bundestag (Verantwortung, Wille zur Veränderung) und wie sie dort hin kam (18 Jahre CDU, Kandidatur, Listenplatz nach Direktwahl-Niederlage).",
+        "quotes": [
+          {
+            "text": "Weil Verantwortung übernehmen wichtig ist",
+            "timestamp": "00:00:45",
+            "context": "Antwort auf Frage, warum sie im Bundestag ist"
+          },
+          {
+            "text": "ich komme aus dem politischen Haushalt und für uns war, also wir haben schon immer über Politik gesprochen",
+            "timestamp": "00:01:09",
+            "context": "Erklärung ihrer frühen Politisierung"
+          },
+          {
+            "text": "Der hatte 43%, ich hatte irgendwie 21 22 und die Hälfte.",
+            "timestamp": "00:02:09",
+            "context": "Wahlergebnis im Direktwahlkreis gegen AfD-Kandidat"
+          }
+        ],
+        "concrete_statements": [
+          "Mit 18 Jahren in CDU und Junge Union eingetreten",
+          "Nach sorgfältigem Überlegen Hut in den Ring geworfen",
+          "Direktmandat gegen Jan Wenzel Schmidt (AfD) verloren",
+          "Über Platz 2 der Liste in Bundestag eingezogen"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Wahlkampf",
+          "Parteienlandschaft",
+          "Neue Abgeordnete"
+        ]
+      },
+      {
+        "title": "Vertrauensverlust in etablierte Parteien",
+        "timestamp_range": "00:02:39 - 00:04:10",
+        "theme_description": "Aeikels analysiert, warum in Sachsen-Anhalt über 40% für die AfD stimmen: Vertrauensverlust in etablierte Parteien, fehlende Reformfähigkeit und Kompromisszwänge.",
+        "question_asked": "Tilo fragt, wie es sein kann, dass über 40% im Wahlkreis für die AfD stimmen, und warum so viele Sachsen-Anhalts für AfD stimmen.",
+        "question_intent": "Verstehen, welche Faktoren zum hohen AfD-Anteil in der Region führen und wie Aeikens dies erklärt.",
+        "position": "Aeikens sieht Hauptfaktoren: (1) Vertrauensverlust in etablierte Parteien, (2) Wahrnehmung, dass diese nicht reformfähig genug sind. Sie beschreibt auch, dass Bürger erzählen, sie wählten CDU/SPD, aber durch Koalitionspartner würde progressive Politik blockiert. Sie betont, dass Politik immer Kompromiss sei (außer bei absoluter Mehrheit), und daher gute Kommunikation wichtig sei. Sie sieht den Vertrauensverlust aber als „berechtigt“ an, da Reformbedarf in unterschiedlichen Bereichen aufgeschoben wurde.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie adressiert die Frage zur AfD-Wählerbasis, gibt aber eher allgemeine Faktoren (Vertrauensverlust) als konkrete, messbare Analyse. Sie erkennt an, dass der Vertrauensverlust gegenüber ihrer Partei berechtigt sein könnte, weicht aber aus, klare eigene Verantwortung zu übernehmen.",
+        "quotes": [
+          {
+            "text": "Vertrauensverlust in etablierte Parteien, also wie gesagt ähm durch die Bank weg",
+            "timestamp": "00:03:09",
+            "context": "Erklärung für hohen AfD-Stimmenanteil"
+          },
+          {
+            "text": "man wählt euch dann oder man will euch wählen und dann äh regiert ihr irgendwie wieder mit irgendeinem Partner, den wir irgendwie doof finden",
+            "timestamp": "00:04:10",
+            "context": "Bürgerkritik, die sie in Sprechstunden hört"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Vertrauen in Institutionen",
+          "Wahlverhalten"
+        ]
+      },
+      {
+        "title": "AfD-Bewertung und Parteiverbot",
+        "timestamp_range": "00:09:18 - 00:15:23",
+        "theme_description": "Aeikels wird mehrfach zu ihrer Bewertung der AfD als rechtsextremistisch befragt und zu deren möglichem Verbot; sie vermeidet klare Einordnung und lehnt Parteiverbotsverfahren ab.",
+        "question_asked": "Tilo fragt zunächst, ob beide Extreme (Linke und AfD) gleichwertig sind, später ob die AfD als Partei rechtsextremistisch ist, und schließlich, ob ein Parteiverbotsverfahren sinnvoll wäre.",
+        "question_intent": "Herausfinden, ob Aeikels die AfD als verfassungsfeindliche Partei einordnet und wie sie zum aktuellen Parteiverbotsverfahren steht.",
+        "position": "Aeikels erklärt, dass bei der AfD (Landesverband und Bundesverband) vom Verfassungsschutz als Verdachtsfall eingestuft, bei einigen Abgeordneten extremistische Züge sieht, aber insgesamt sagt: \"Ich glaube nicht, dass jeder AfD Abgeordneter ein Rechtsextremist ist, sondern nur Rechtsradikal oder in einer Partei Mitglied ist, die das duldet und toleriert, was ja das Problem ist.\" Sie lehnt Parteiverbotsverfahren aus prinzipiellen Gründen ab – weil dies zu langen Verfahren führe, mediale Aufmerksamkeit bringe und das Demokratieverständnis gefährde (Signal an Wähler, die Vertrauen verloren haben).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie adressiert die Frage technisch, aber weicht bei der zentralen Einordnung aus: Sie bestätigt die Verfassungsschutz-Einstufung, lehnt aber klare eigene Bewertung ab. Zum Parteiverbot antwortet sie mit prozessualen Bedenken statt sich substantiell zu positionieren.",
+        "quotes": [
+          {
+            "text": "Ich glaube nicht, dass jeder AfD Abgeordneter ein Rechtsextremist ist, sondern nur Rechtsradikal oder in einer Partei Mitglied ist, die das duldet und toleriert",
+            "timestamp": "00:10:18",
+            "context": "Versuch, zwischen Partei und Mitgliedern zu differenzieren"
+          },
+          {
+            "text": "ich persönlich halte nichts von einem Parteiverbot Parteiverbotsverfahren",
+            "timestamp": "00:11:49",
+            "context": "Ablehnungshaltung zu Parteiverboten"
+          },
+          {
+            "text": "welches Signal sendet das den Leuten, die Vertrauen verloren haben",
+            "timestamp": "00:14:52",
+            "context": "Begründung gegen Parteiverbot"
+          }
+        ],
+        "concrete_statements": [
+          "Lehnt Parteiverbotsverfahren ab",
+          "Keine gute Idee wegen zu langer Verfahren und medialer Aufmerksamkeit",
+          "Sorge um Signal an Wähler mit Vertrauensverlust"
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Verfassungsschutz",
+          "Parteiverbot"
+        ]
+      },
+      {
+        "title": "Brandmauer und Koalitionsausschluss",
+        "timestamp_range": "00:17:00 - 00:20:02",
+        "theme_description": "Aeikels wird zur Brandmauer-Politik und zum Koalitionsausschluss der AfD und Linken befragt; sie lehnt den Begriff ab, erklärt aber ihre Positionierung dazu.",
+        "question_asked": "Tilo fragt mehrfach: Ist die Brandmauer noch relevant? Schließt du die AfD und Linken kategorisch aus?",
+        "question_intent": "Verstehen, ob die Brandmauer-Rhetorik noch trägt und wie feststehend der Koalitionsausschluss ist.",
+        "position": "Aeikels sagt, dass sie den Begriff \"Brandmauer\" inflationär findet und sich lieber \"argumentativ\" positioniert. Sie erklärt, dass CDU aus programmatischen Gründen (Wertefundament, politische Ansichten) nicht mit AfD oder Linken koalitioniert, nicht aus Prinzip. Sie schließt für ihre Karriere aus, mit der AfD \"jetzt\" zusammenzuarbeiten (offene Formulierung). Bei den Linken sagt sie ähnlich, aber betont historische Aufarbeitungsfragen und externe Diskussionen (Israel/Gaza).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie adressiert die inhaltliche Frage (programmatische Unterschiede), weicht aber bei der Frage aus, ob der Ausschluss kategorisch ist ('jetzt', 'in dieser Form').",
+        "quotes": [
+          {
+            "text": "wenn wir uns hinter solchen Begriffen verstecken, wir müssen ja den Leuten in der Argumentation klar machen",
+            "timestamp": "00:17:58",
+            "context": "Kritik am Brandmauer-Begriff"
+          },
+          {
+            "text": "Ich schließe für meine politische Karriere aus mit der AfD, so wie sie jetzt ist",
+            "timestamp": "00:20:02",
+            "context": "Koalitionsausschluss"
+          }
+        ],
+        "concrete_statements": [
+          "Lehnt Begriff 'Brandmauer' als zu inflationär ab",
+          "Koalitionsausschluss mit AfD 'jetzt' und 'in dieser Form'",
+          "Basis sind programmatische, nicht prinzipielle Unterschiede"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Brandmauer"
+        ]
+      },
+      {
+        "title": "Renten und Altersarmut",
+        "timestamp_range": "00:45:16 - 00:51:54",
+        "theme_description": "Aeikels wird detailliert zu Rentenpolitik, Altersarmut und ihrer Position zur Rentenerhöhung befragt; sie antwortet prozessual statt substantiell.",
+        "question_asked": "Tilo fragt konkret: Bist du dafür, dass Renten erhöht werden müssen? Jeder fünfte Rentner ist in Armut.",
+        "question_intent": "Herausfinden, ob sie sich konkret zu höheren Renten bekennt und wie sie Altersarmut bekämpfen will.",
+        "position": "Aeikels sagt, sie könne fachlich nicht beurteilen, ob \"Renten zu hoch oder zu niedrig\" sind. Sie betont stattdessen, es gehe um Finanzierung des Generationsvertrags. Sie erklärt das Rentenkommissionsmodell aus Koalitionsvertrag. Sie spricht über Automatismen und Sozialhilfe-Abschöpfung, hat aber selbst einige Vorschläge gemacht (z.B. Rentenautomat, aber technische Fragen unklar). Sie wirft ein, sie sei nicht Rentenspezialistin und müsse sich auf Kollegen verlassen.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Sie weicht vor der direkten Ja/Nein-Frage aus, indem sie sagt, sie könne das \"fachlich nicht beurteilen\". Sie verschiebt auf Koalitionsvertrag und Kommissionslogik, statt eigene Position zu offenbaren.",
+        "quotes": [
+          {
+            "text": "Das ist eine einfache Frage. Ja, aber das kann ich ja so fachlich jetzt nicht beurteilen",
+            "timestamp": "00:51:54",
+            "context": "Ausweichmanöver bei Frage zu höheren Renten"
+          },
+          {
+            "text": "Es geht uns nicht darum zu sagen, irgendwas ist zu hoch oder zu niedrig. Es geht darum zu fragen finanzier",
+            "timestamp": "00:51:23",
+            "context": "Umleitung auf Finanzierungsfrage"
+          }
+        ],
+        "concrete_statements": [
+          "Setzt auf Rentenkommission (Koalitionsvertrag)",
+          "Gedacht über Automatismus bei Rentenautomat",
+          "Möchte Sozialhilfe-Doppelleistung vermeiden"
+        ],
+        "answer_type": "themenwechsel",
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Altersarmut",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Steuergerechtigkeit und Bürgergeld",
+        "timestamp_range": "00:54:27 - 01:01:04",
+        "theme_description": "Tilo kritisiert, dass CDU/Koalition viel Zeit für Bürgergeld-Debatte aufwendet, aber nicht gegen 100-Milliarden-Steuerlücken vorgeht.",
+        "question_asked": "Tilo stellt fest: 100 Milliarden jährlich gehen über Steuermodelle verloren (Konzerne, Reiche), aber die Koalition debattiert hauptsächlich über Bürgergeld (60 Millionen Missbrauch). Warum?",
+        "question_intent": "Verstehen, warum die Koalition Prioritäten anders setzt und nicht gegen Steuerhinterziehung angeht.",
+        "position": "Aeikels sagt, es gebe 100 wichtige Themen, verschiedene Leute bearbeiten verschiedenes. Sie persönlich konzentriere sich auf ihre Themen (Landwirtschaft, Bodenmarkt). Sie wehrt sich dagegen, dass sie bei jedem Thema Lösungen haben muss. Sie akzeptiert, dass Medien mehr über Bürgergeld berichten als über Steuerschlupflöcher. Sie sagt, morgen werde sie nachfragen, warum die Koalition da nicht tätig wird, beantwortet die Frage aber nicht substantiell.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie adressiert die Prioritätenfrage, weicht aber aus, indem sie sagt, jeder bearbeite andere Themen. Sie räumt die Ungerechtigkeit ein (100 Mrd. vs. 60 Mio.), erklärt diese aber nicht.",
+        "quotes": [
+          {
+            "text": "Es gibt 100 wichtige Themen, die von unterschiedlichsten Leuten bearbeitet werden",
+            "timestamp": "00:57:01",
+            "context": "Reaktion auf Kritik an Prioritätensetzung"
+          },
+          {
+            "text": "Muss mal nachfragen, warum wir da nichts machen",
+            "timestamp": "00:55:59",
+            "context": "Versprechen, sich mit Kollegen auszutauschen"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Fleischkonsum und Klimaschutz",
+        "timestamp_range": "01:20:23 - 01:29:41",
+        "theme_description": "Tilo fordert konkrete Maßnahmen zur Reduktion des Fleischkonsums um zwei Drittel aufgrund von Klimaverpflichtungen; Aeikels bleibt vage.",
+        "question_asked": "Wie soll der Fleischkonsum massiv gesenkt werden? Welche Maßnahmen schlägst du vor?",
+        "question_intent": "Erfahren, welche politischen Instrumente Aeikels zur Umsetzung der wissenschaftlichen Vorgaben (2/3 weniger Nutztiere) hat.",
+        "position": "Aeikels sagt, sie lehne verpflichtete Stillegungsprämien ab. Sie möchte stattdessen Betriebsstrukturen erhalten, diverse kleinere Betriebe stärken, und \"natürliche Ausscheidung\" von Betrieben durch sinkende Nachfrage akzeptieren. Sie warnt vor Skalierungseffekten zu noch größeren Betrieben. Sie betont globale Kontexte und dass andere Länder auch Verantwortung haben (Braindrain, China-Märkte). Sie sagt, Politik müsse ganzheitlich denken.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie nennt ein negatives Beispiel (gegen Stillegungsprämien), aber keine konkreten positiven Maßnahmen. Sie betont Betriebsstruktur und globale Kontexte, antwortet aber nicht auf die Frage nach Fleischkonsum-Reduktion (Steuern, Labeling, Werbeverbot?).",
+        "quotes": [
+          {
+            "text": "Ich halte nichts davon Betriebe verpflichtend Stüle zu legen",
+            "timestamp": "01:21:54",
+            "context": "Ablehnung von Stillegungsprämien"
+          },
+          {
+            "text": "Meine persönliche Befürchtung ist ja aber, dass aufgrund von Skalende Effekten wir so den Hang haben zu großen Betrieben",
+            "timestamp": "01:24:32",
+            "context": "Sorge um Strukturveränderung"
+          }
+        ],
+        "concrete_statements": [
+          "Lehnt Stillegungsprämien ab",
+          "Will kleine diverse Betriebsstrukturen stärken",
+          "Setzt auf 'natürliche' Reduktion durch sinkende Nachfrage"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Klimaschutz",
+          "Landwirtschaft",
+          "Tierschutz"
+        ]
+      },
+      {
+        "title": "EU-Direktzahlungen und Agrarstruktur",
+        "timestamp_range": "01:38:24 - 01:45:34",
+        "theme_description": "Aeikels wird zu ihrer Haltung gegenüber EU-Direktzahlungen und zum Bodenmarktproblem (Fremdinvestoren) befragt.",
+        "question_asked": "Wie verteidigst du, dass die obersten 1% aller Betriebe 20% der EU-Gelder bekommen, während die unteren 50% unter 10% bekommen? Wie verhindert man, dass Fremdinvestoren (z.B. Igneo aus Australien) Ackerland aufkaufen?",
+        "question_intent": "Verstehen, ob Aeikels diese Ungerechtigkeit anerkennt und welche Lösungsansätze sie hat.",
+        "position": "Aeikels gibt zu, dass die Verteilung nicht gerecht ist. Sie befürwortet das Modell der Direktzahlung pro Hektar, aber fragt: \"Wer ist Landwirt?\" Sie arbeitet an Agrarstrukturgesetzen (Vergleich bestehender Gesetze in Bundesländern) und am Bodenmarkt-Thema, um zu regeln, wer Betriebe bewirtschaftet und wer Eigentümer ist. Sie warnt vor Fremdinvestoren, aber sagt, \"rückgängig machen\" sei juristisch schwierig. Sie will Leitfaden für Bundesländer erarbeiten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie erkennt das Problem an und nennt Arbeitsthemen (Agrarstrukturgesetz, Bodenmarkt), aber liefert keine konkreten Lösungsvorschläge für die aktuelle Ungerechtigkeit.",
+        "quotes": [
+          {
+            "text": "Nein, das finde ich nicht gerecht",
+            "timestamp": "01:39:57",
+            "context": "Bewertung der Direktzahlungsverteilung"
+          },
+          {
+            "text": "Das ist genau das, weswegen ich an den Thema Agrarstrukturgesetz arbeite",
+            "timestamp": "01:45:03",
+            "context": "Reaktion auf Igneo-Fall"
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitet an Agrarstrukturgesetzen",
+          "Vergleicht bestehende Gesetze in Bundesländern",
+          "Will Leitfaden für alle Bundesländer erarbeiten"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Agrarpolitik",
+          "Landwirtschaftliche Strukturen"
+        ]
+      },
+      {
+        "title": "Massentierhaltung und Tierschutz",
+        "timestamp_range": "01:33:15 - 01:36:50",
+        "theme_description": "Tilo fragt, ob Aeikels gegen Massentierhaltung ist; sie bejaht dies nicht und verteidigt gute Tierschutzstandards.",
+        "question_asked": "Bist du gegen Massentierhaltung? Sollte es artgerechte Haltung geben?",
+        "question_intent": "Erfahren, wie konsequent Aeikels bei Tierschutz und Nachhaltigkeitszielen ist.",
+        "position": "Aeikels sagt, sie sei nicht gegen Massentierhaltung, weil \"Angebot und Nachfrage\" und \"wir haben sehr gute Tierschutzstandards in Deutschland\". Sie argumentiert, dass ohne hohe Standards keine Massentierhaltung möglich wäre. Sie betont, dass Landwirte Lebensmittel produzieren und dass das legitim ist. Sie spricht von artgerechter Haltung, aber: \"Kann es eine artgerechte Massentierhaltung geben?\" bleibt offen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie antwortet, lehnt aber ab und argumentiert mit Standards, nicht mit Reduktion. Sie weicht der Zentral-Frage \"artgerechte Massentierhaltung\" aus.",
+        "quotes": [
+          {
+            "text": "Nee, bin ich nicht. Warum auch? Wie gesagt, wir haben, also warum bin ich nicht gegen Massentierhaltung? Ähm es ist eine Frage von Angebot und Nachfrage.",
+            "timestamp": "01:33:15",
+            "context": "Verneinung der Gegnerschaft zu Massentierhaltung"
+          }
+        ],
+        "concrete_statements": [
+          "Nicht gegen Massentierhaltung",
+          "Vertraut auf deutsche Tierschutzstandards",
+          "Betont Legitimitä von Lebensmittelproduktion"
+        ],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Tierschutz",
+          "Nachhaltigkeit"
+        ]
+      },
+      {
+        "title": "Glyphosat-Einsatz in der Landwirtschaft",
+        "timestamp_range": "01:48:05 - 01:49:40",
+        "theme_description": "Tilo fragt nach Aeikels Position zu Glyphosatverbot; sie wehrt sich gegen die Charakterisierung.",
+        "question_asked": "Bist du für oder gegen Glyphosat-Verbot?",
+        "question_intent": "Verstehen, wie ökologisch-orientiert oder pragmatisch-landwirtschaftlich ihre Position ist.",
+        "position": "Aeikels sagt, es gebe europäische Zulassungsverfahren und Prüfprozesse, die wichtig seien. Sie betont, dass kein Landwirt Interesse daran habe, seinen Boden zu zerstören. Sie nennt das Schweiz-Beispiel (Kennzeichnung bestimmter Produkte). Sie sagt nicht explizit, ob sie für oder gegen Glyphosatverbot ist, sondern verweist auf Verfahren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie weicht aus und verweist auf Verfahren, statt eine eigene Position zu nehmen.",
+        "quotes": [
+          {
+            "text": "Es geht um das, also das ist ja die Frage vom Designexeriment... es gibt ja auch Studien zu und es gibt Prüfverfahren zu",
+            "timestamp": "01:48:35",
+            "context": "Verweis auf Prozesse"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Landwirtschaft",
+          "Pflanzenschutz"
+        ]
+      },
+      {
+        "title": "Migration und Fachkräftegewinnung",
+        "timestamp_range": "01:50:10 - 01:59:52",
+        "theme_description": "Tilo kritisiert Aeikels Position zu Migration als \"Menschen sind nur nützlich oder unnützlich\"; Aeikels wehrt sich und erklärt ihre Position zu Erwerbsmigration.",
+        "question_asked": "Du hast gesagt, Deutschland soll gezielt qualifizierte Fachkräfte ins Land lassen. Ist das mit Menschenwürde vereinbar?",
+        "question_intent": "Herausfinden, ob Aeikels eine selektive, marktwirtschaftliche Migrationspolitik verfolgt oder ob es mehr gibt.",
+        "position": "Aeikels sagt, sie wolle nicht Menschen in \"nützlich\" und \"unnützlich\" einordnen. Sie betont, es gehe um Erwerbsmigration (nicht Asyl). Sie spricht von schnellerer Integration in Arbeitsmarkt, Vereinfachung von Anerkennung von Abschlüssen, Ausbildungsmodelle vor Ort oder in Deutschland. Sie würdigt Braindrain-Probleme (Fachkräfte aus ärmeren Ländern abziehen), betont aber auch, dass andere Länder ihre Hausaufgaben machen müssen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie korrigiert die Fehlcharakterisierung (nicht \"nützlich/unnützlich\"), erklärt aber nicht ausführlich, wie sie Integration von unqualifizierten Migranten handhaben würde.",
+        "quotes": [
+          {
+            "text": "Ich glaube nicht, dass er Menschen nützlich und unnützlich einordnen soll. Auf gar keinen Fall.",
+            "timestamp": "01:52:42",
+            "context": "Abwehr der \"nützlich/unnützlich\"-Kritik"
+          },
+          {
+            "text": "Das ist nicht meine Aufgabe zu sagen, äh äh wir reduzieren den Fleischkonsum",
+            "timestamp": "01:22:24",
+            "context": "Generelles Muster: Verzicht auf normative Aussagen"
+          }
+        ],
+        "concrete_statements": [
+          "Unterscheidung zwischen Erwerbsmigration und Asylrecht",
+          "Vereinfachung von Anerkennungsverfahren",
+          "Ausbildungsmodelle in Deutschland oder vor Ort"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Migration",
+          "Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Nepotismus und familärer Einfluss",
+        "timestamp_range": "01:05:06 - 01:07:38",
+        "theme_description": "Tilo fragt, ob Aeikels Karriere von ihrem Vater (ehemaliger Minister) geprofitiert hat; sie bejaht indirekt.",
+        "question_asked": "Würdest du ohne deinen Vater (7 Jahre Minister) im Bundestag sein? Hat sein Einfluss geholfen?",
+        "question_intent": "Verstehen, in welchem Maße Familienname und Netzwerk ihre Karriere begünstigt haben.",
+        "position": "Aeikels sagt zuerst, sie glaube, von den Mitgliedern gewählt worden zu sein. Dann räumt sie ein, dass der \"leichtere Zugang\" zu Menschen in der Landwirtschaft geholfen hat, betont aber \"saubere Trennung\". Ihr Vater ist nicht mehr Parteimitglied und nicht mehr im Amt (seit 2016). Sie hofft, dass sie sich durch ihren Auftritt selbst bewährt hat.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie gibt zu, dass der Name geholfen hat (\"leichterer Zugang\"), weicht aber der direkten Antwort aus, ob sie ohne Vater gewählt worden wäre.",
+        "quotes": [
+          {
+            "text": "Nee, das glaube ich nicht",
+            "timestamp": "01:06:06",
+            "context": "Verneinung, dass der Vater direkt lobbyiert hat"
+          },
+          {
+            "text": "ich will natürlich nicht verkennen, dass bei dem beim Wahlkampf oder generell äh man zwar einen leichteren Zugang oder so zu den Menschen der landwirtschaftlichen Ziele beispielsweise dann bekommen hatte",
+            "timestamp": "01:07:06",
+            "context": "Eingeständnis des indirekten Vorteils"
+          }
+        ],
+        "concrete_statements": [
+          "Name hat \"leichteren Zugang\" gebracht",
+          "Betont \"saubere Trennung\""
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Nachwuchspolitiker",
+          "Repräsentation"
+        ]
+      },
+      {
+        "title": "Agrarökonomie und Konsumverhalten",
+        "timestamp_range": "01:13:46 - 01:18:50",
+        "theme_description": "Aeikels stellt ihre Masterarbeit zu Konsumverhalten beim Fleischkauf vor und diskutiert, wie visuelle Reize Kaufentscheidungen beeinflussen.",
+        "question_asked": "Worum ging es in deiner Masterarbeit zum Fleischkauf?",
+        "question_intent": "Verstehen, wie tiefgreifend ihre fachliche Beschäftigung mit Nachhaltigkeit ist.",
+        "position": "Aeikels erklärt eine Fake-Food-Buffet-Studie mit über 300 Probanden, bei der verschiedene Bildvarianten (keine Bilder, farbige Tierbilder, schwarz-weiß) getestet wurden. Ergebnis: kein signifikanter Einfluss der Bilder auf Kaufverhalten. Sie begründet die Design-Entscheidung damit, dass man Schlachtbilder bewusst aussparte, um Vergleichbarkeit zu anderen Studien und Realismus (Restaurants labeln nicht mit Schockbildern) zu bewahren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie antwortet detailliert und sachlich auf die Frage zur Masterarbeit.",
+        "quotes": [
+          {
+            "text": "Es ging um das, die Frage war quasi, ob der visuelle Einsatz von Bildern von Tieren, das Entscheidungsverhalten von ähm den Leuten am Buffet, also den Probanden, beeinflusst",
+            "timestamp": "01:13:46",
+            "context": "Zusammenfassung der Forschungsfrage"
+          },
+          {
+            "text": "Er hat leider keinen Einfluss",
+            "timestamp": "01:15:47",
+            "context": "Forschungsergebnis"
+          }
+        ],
+        "concrete_statements": [
+          "Über 300 Probanden",
+          "Fake-Food-Buffet-Methode",
+          "Keine signifikante Wirkung von Tierbildern"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Wissenschaft",
+          "Verbraucherschutz"
+        ]
+      },
+      {
+        "title": "Rolle als junge Abgeordnete",
+        "timestamp_range": "02:18:22 - 02:19:55",
+        "theme_description": "Aeikels wird gefragt, was die Union jungen Menschen (unter 50) bietet; sie betont Renten und Generationengerechtigkeit.",
+        "question_asked": "Was bietet die Union jungen Leuten? Es wirkt, als würde nur für Ältere Politik gemacht.",
+        "question_intent": "Verstehen, wie Aeikels ihre Partei als attraktiv für jüngere Wähler darstellt.",
+        "position": "Aeikels sagt, dass die junge Gruppe (Junge Union) sich mit Generationengerechtigkeit und Renten auseinandersetzt. Sie erklärt, dass \"Wirtschaft geht es gut\" auch jungen Menschen hilft. Sie betont, dass sich die junge Gruppe mit Fragen auseinandersetzt, die Junge beschäftigen (Arbeitsplätze, Altersversorgung).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie nennt die Junge Union und Rentenpolitik, gibt aber keine konkreten Angebote für Junge (Klimapolitik, Wohnungsbau, Bildung?).",
+        "quotes": [
+          {
+            "text": "ich glaube, dass wir als junge Gruppe beispielsweise mit dem, was wir jetzt gerade auch in dem ganzen Bereich Rente tun zeigen, wie wichtig es ist",
+            "timestamp": "02:18:22",
+            "context": "Beispiel für junge Themen"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Jugendpolitik",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Unterscheidung zwischen AfD und Linken",
+        "timestamp_range": "00:09:48 - 00:27:17",
+        "theme_description": "Tilo kritisiert, dass Aeikels Linke und AfD gleichzeitig mit Brandmauer behandelt, obwohl Linke in Deutschland regiert hat.",
+        "question_asked": "Warum behandelt ihr Linke und AfD gleich? Linke haben schon regiert. Wo macht dir die Linke Angst?",
+        "question_intent": "Verstehen, ob die CDU-Position \"gleicher Abstand\" sachlich gerechtfertigt ist oder rein strategisch.",
+        "position": "Aeikels erklärt, dass sie Linke nicht als extremistische Partei sieht, aber \"extremistische Züge\" und problematische Außenpolitik (Israel-Debatten) kritisiert. Sie sagt, die Linke habe das \"Staatsverständnis\", das sie nicht teile, aber das sei nicht extremistisch. Sie setzt das gleich mit AfD-Unterschieden. Sie zittert dabei, dass Programmatik (nicht Extremismus) das Problem ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie erklärt ihre Position, weicht aber der zentralen Kritik aus: Warum \"gleicher Abstand\" wenn eine Partei bereits regiert hat und keine Demokratie abgeschafft hat?",
+        "quotes": [
+          {
+            "text": "Die Linke eine extremistische Partei? Nee, aber ich glaube, dass die Linke auch äh Leute dabei hat, äh die auf jeden Fall extrem ist",
+            "timestamp": "00:22:06",
+            "context": "Differenzierung AfD/Linke"
+          },
+          {
+            "text": "das ist ja ähnlich, was ich auch schon vorher bei der AfD gesagt hatte, mit der Programmatik",
+            "timestamp": "00:23:39",
+            "context": "Versuch der Parallelsetzung"
+          }
+        ],
+        "concrete_statements": [
+          "Linke nicht extremistisch als Partei",
+          "Aber problematische Außenpolitik (Israel)",
+          "Unterschiedliche Programmaitk ist Grund"
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Koalitionen",
+          "Parteienlandschaft"
+        ]
+      },
+      {
+        "title": "Geschlechter-Sicherheit und Stadtbild-Debatte",
+        "timestamp_range": "02:12:42 - 02:14:44",
+        "theme_description": "Aeikels wird auf die Stadtbild-Debatte angesprochen und ihre persönliche Erfahrung als Frau mit Sicherheit.",
+        "question_asked": "Friedrich Merz hat die 'Stadtbild'-Debatte angestoßen. Was hältst du als Frau dazu?",
+        "question_intent": "Verstehen, wie Aeikels die Migrationskritik, gerahmt als Sicherheitsbedenken von Frauen, bewertet.",
+        "position": "Aeikels sagt, dass sie als 98er-Jährin aufgewachsen ist mit Ratschlägen, nicht allein durch Parks zu gehen und bestimmte Bahnhofsviertel zu meiden – das hatte mit Migration nichts zu tun. Sie kritisiert, dass diese echte Sicherheitsfrage jetzt mit Migration vermengt wird. Sie sagt, die Debatte sei künstlich hochgepusht worden.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie kritisiert die Verknüpfung von Sicherheit und Migration, räumt aber ein, dass Merz' erste Äußerung vage war und erst später präzisiert wurde.",
+        "quotes": [
+          {
+            "text": "Ich wurde bin auch groß geworden äh immer mit dem Satz, du darfst nie irgendwie alleine durch Parks gehen",
+            "timestamp": "02:12:42",
+            "context": "Persönliche Erfahrung"
+          },
+          {
+            "text": "wir haben so viel andere Sachen die passieren auch so viel andere wichtige Sachen",
+            "timestamp": "02:14:13",
+            "context": "Kritik an Fokussierung der Debatte"
+          }
+        ],
+        "concrete_statements": [
+          "Sicherheit ist echtes Thema",
+          "Aber nicht primär Migration",
+          "Debatte wurde hochgepusht"
+        ],
+        "answer_type": "teil_adressiert",
+        "related_bundestag_topics": [
+          "Migration",
+          "Frauen und Sicherheit"
+        ]
+      },
+      {
+        "title": "Fraktionsvorsitzender Spahn und Maskendeal",
+        "timestamp_range": "02:16:17 - 02:17:17",
+        "theme_description": "Tilo fragt, ob Jens Spahn als Fraktionsvorsitzender kompetent ist und ob der Maskendeal nicht zu Vertrauensverlust beiträgt.",
+        "question_asked": "Ist Jens Spahn ein kompetenter Politiker? Was ist mit der Verantwortung für den Maskendeal?",
+        "question_intent": "Verstehen, ob Aeikels Spahn kritisiert und wie sie mit moralischen Fragen in der Partei umgeht.",
+        "position": "Aeikels sagt, Spahn suche konstruktiven Austausch mit neuen Abgeordneten und nehme Meinungen ernst. Sie sagt, er \"hat den Maskendeal im Rucksack\", aber verweist auf Aufarbeitung. Sie sagt, die Fraktion habe ihn gewählt und stehe hinter ihm.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie weicht der direkten Kritik aus, indem sie seine guten Seiten betont und auf Aufarbeitung verweist. Sie fragt nicht nach, ob er Fehler zugeben würde.",
+        "quotes": [
+          {
+            "text": "Nee, aber ich habe auch nicht nachgefragt",
+            "timestamp": "02:17:51",
+            "context": "Admission, dass sie nicht nachgebohrt hat"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Parteiführung",
+          "Skandale"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und verpflichtendes Gesellschaftsjahr",
+        "timestamp_range": "02:11:08 - 02:12:11",
+        "theme_description": "Aeikels wird zu ihrer Position auf Wehrpflicht und verpflichtendes Gesellschaftsjahr befragt.",
+        "question_asked": "Sollte es eine Wehrpflicht geben oder ein verpflichtendes Gesellschaftsjahr?",
+        "question_intent": "Verstehen, wie sie zur Wehrpflicht und Gemeinschaftsdiensten steht.",
+        "position": "Aeikels sagt, Deutschland brauche eine starke Bundeswehr. Sie habe das Konzept \"Verpflichtendes Gesellschaftsjahr\" von der Jungen Union übernommen und finde es persönlich gut (auch für sich selbst rückblickend). Sie sei dafür, ob Bundeswehr oder Vereine.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie antwortet direkt und substanziell zu beiden Fragen.",
+        "quotes": [
+          {
+            "text": "Ich finde die Idee von dem verpflichtenden Gesellschaftsjahr, das war ja auch oder ist eine Forderung der Junge Union gewesen ursprünglich, äh finde ich persönlich eine sehr gute",
+            "timestamp": "02:11:39",
+            "context": "Befürwortung"
+          }
+        ],
+        "concrete_statements": [
+          "Starke Bundeswehr nötig",
+          "Verpflichtendes Gesellschaftsjahr (Junge Union Forderung)",
+          "Unabhängig von Bereich (Bundeswehr oder Vereine)"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Gesellschaftlicher Zusammenhalt"
+        ]
+      },
+      {
+        "title": "Persönliches Verhältnis zu Angela Merkel",
+        "timestamp_range": "02:27:01 - 02:28:33",
+        "theme_description": "Aeikels wird gefragt, ob sie lieber unter Merkel oder März arbeiten würde.",
+        "question_asked": "Würdest du lieber unter Angela Merkel als Kanzlerin arbeiten?",
+        "question_intent": "Verstehen, wie sie zu ihrer Parteigeschichte steht und ob sie sich als Merkelist oder März-Unterstützerin sieht.",
+        "position": "Aeikels sagt, sie sei froh, dass März Kanzler ist. Sie hätte großen Respekt vor Merkel und würde sich gerne mit ihr austauschen. Sie sagt aber, sie wisse nicht, ob sie lieber unter Merkel arbeiten würde. Sie betont, dass es \"Lager\" in der Union gebe, aber sie sich weigert, sich einordnen zu lassen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie beantwortet die direkte Frage (froh über März), weicht aber aus, ob sie lieber unter Merkel wäre.",
+        "quotes": [
+          {
+            "text": "Ich bin froh, dass es März ist. Ja, Punkt.",
+            "timestamp": "02:27:33",
+            "context": "Direkte Antwort zur Präferenz"
+          },
+          {
+            "text": "fragen sie frag mich nicht in welchem Lager ich bin",
+            "timestamp": "02:28:33",
+            "context": "Weigerung, sich in Parteiflügel einzuordnen"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Parteiführung",
+          "Union-Flügel"
+        ]
+      },
+      {
+        "title": "Kontrollaufgabe des Parlamentariers",
+        "timestamp_range": "01:03:04 - 01:04:35",
+        "theme_description": "Tilo erklärt, dass Abgeordnete Kontrollaufgabe haben und kleine Anfragen stellen sollten; Aeikels antwortet defensiv.",
+        "question_asked": "Du stellst kaum kleine Anfragen. Ist das nicht deine Aufgabe als Abgeordnete – die Regierung zu kontrollieren?",
+        "question_intent": "Verstehen, wie aktiv sie ihre Kontrollfunktion wahrnimmt.",
+        "position": "Aeikels sagt, es gebe verschiedene Wege der Kontrolle (direkter Austausch, kurzer Dienstweg). Sie hätte bislang keine kleine Anfrage für nötig gefunden, weil sie über direkte Arbeit kontrolliere. Sie betont Arbeitsteilung und konstruktive inhaltliche Mitarbeit.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie erklärt ihre Approach, weicht aber der impliziten Kritik aus, dass kleine Anfragen öffentliche Kontrolle sind.",
+        "quotes": [
+          {
+            "text": "Da gibt's aber verschiedene Wege, wie man das machen kann",
+            "timestamp": "01:03:04",
+            "context": "Verteidigung eigener Approach"
+          }
+        ],
+        "concrete_statements": [],
+        "answer_type": "floskel_generisch",
+        "related_bundestag_topics": [
+          "Parlamentarische Kontrolle",
+          "Kleine Anfragen"
+        ]
+      },
+      {
+        "title": "Hinterbänkler-Status und Sichtbarkeit",
+        "timestamp_range": "01:04:44 - 01:05:16",
+        "theme_description": "Tilo fragt, ob Aeikels sich als Hinterbänklerin sieht und ob sie sich genug einbringt.",
+        "question_asked": "Siehst du dich als Hinterbänklerin? Hast du dich bei Gesetzen eingebracht?",
+        "question_intent": "Verstehen, wie aktiv und sichtbar sie als neue Abgeordnete ist.",
+        "position": "Aeikels sagt, sie mache ihre Berichterstattungen, arbeite Konzepte aus, bring sich bei größeren Themen ein (z.B. Rente-Veto). Sie sagt, dass politische Arbeit verschiedene Formen hat und dass Erfolg nicht einfach quantifizierbar ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie nennt Beispiele (Rente), erklärt aber nicht, warum sie keine Anfragen stellt.",
+        "quotes": [
+          {
+            "text": "Wir haben, also das Renthema ist ja jetzt das, was äh sowieso auf aufgeflammt ist",
+            "timestamp": "01:04:44",
+            "context": "Beispiel für Einbringung"
+          }
+        ],
+        "concrete_statements": [
+          "Macht Berichterstattungen",
+          "Arbeitet Konzepte aus",
+          "Hat Veto bei Rentenvorhaben eingereicht"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Abgeordnetentätigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Jan Wenzel Schmidt von der AfD erhielt 43% der Erststimmen, Anna Aeikels 21-22%",
+        "timestamp": "00:02:09"
+      },
+      {
+        "claim": "Anna Aeikels ist 27 Jahre alt",
+        "timestamp": "00:00:38"
+      },
+      {
+        "claim": "Ihr Vater war 7 Jahre Minister in Sachsen-Anhalt",
+        "timestamp": "01:06:06"
+      },
+      {
+        "claim": "Aeikels hat Agrarökonomie in Göttingen studiert",
+        "timestamp": "01:09:40"
+      },
+      {
+        "claim": "Der Verfassungsschutz hat den AfD-Bundesverband als Verdachtsfall eingestuft",
+        "timestamp": "00:10:18"
+      },
+      {
+        "claim": "Die obersten 1% aller Landwirtschaftsbetriebe erhalten 20% aller EU-Direktzahlungen",
+        "timestamp": "01:39:27"
+      },
+      {
+        "claim": "100 Milliarden Euro werden jährlich durch Steuermodelle von Konzernen und Reichen abgezweigt",
+        "timestamp": "00:55:28"
+      },
+      {
+        "claim": "60 Millionen Euro Missbrauch bei Bürgergeld pro Jahr",
+        "timestamp": "00:55:28"
+      },
+      {
+        "claim": "Das deutsche Rentenniveau liegt bei 48% im Vergleich zu europäischen Ländern",
+        "timestamp": "00:48:51"
+      },
+      {
+        "claim": "Friedrich Merz ist am Tag des Interviews 70 Jahre alt geworden",
+        "timestamp": "00:33:25"
+      }
+    ]
+  }
+}

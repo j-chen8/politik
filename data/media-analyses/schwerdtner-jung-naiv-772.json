@@ -1,0 +1,837 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=Jyrk6_drMKo",
+    "video_id": "Jyrk6_drMKo",
+    "politician": "Ines Schwerdtner",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "3e4b1d161a6f6abb",
+    "transcript_chars": 202900,
+    "caption_lines": 5835,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 71113,
+    "tokens_out": 23176,
+    "cost_usd": 0.0747972,
+    "quote_validation": {
+      "valid_exact": 15,
+      "valid_fuzzy": 25,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 15,
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 6
+    },
+    "generated_at": "2026-05-23T19:14:12.379Z",
+    "batch_id": "msgbatch_011B29vvC6bLy8VSXs9QAQC3"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ines Schwerdtner, Parteivorsitzende der Linken und Bundestagsabgeordnete aus Berlin-Lichtenberg, präsentiert sich als reflektierte, pragmatische Sozialistin im Aufbau einer erneuerten Partei. Sie argumentiert substanziell zu Sozialpolitik, Klassenbewusstsein und strategischen Fragen der Linken, geht aber bei komplexen außenpolitischen Themen wie europäischer Sicherheitsarchitektur offensiv zu, dass sie noch „in Lernprozessen\" steckt. Ton: offen, selbstkritisch, manchmal defensiv, aber grundsätzlich kohärent in ihrer Haltung.",
+    "themes": [
+      {
+        "title": "Weg in Parteiführung und Parteienrettung",
+        "timestamp_range": "00:01:13 - 00:04:15",
+        "theme_description": "Schwerdtner erklärt ihre Übernahme der Parteivorsitzenden-Position gemeinsam mit Jan van Aken nach Krise und Abspaltung der Linken, sowie den schnellen Übergang zur Bundestagswahl.",
+        "question_asked": "Warum bist du Bundestagsabgeordnete und Linke Parteichefin? Hast du dir die Aufgabe gestellt oder wurde sie dir gestellt?",
+        "question_intent": "Der Interviewer möchte verstehen, ob Schwerdtner aktiv Verantwortung suchte oder unter Druck in die Position gedrängt wurde.",
+        "position": "Schwerdtner beschreibt es als Beides: Die Partei stand klar in einer Krise, und sie und Jan van Aken entschieden sich aktiv einzusteigen. Sie betont, dass zwei Wochen nach ihrer Wahl die Ampelkoalition auseinanderbrach und sofort Wahlkampf begann – schneller als erwartet. Sie sieht im Nachhinein Vorteile in dieser Beschleunigung: Sie elektrisierte die Partei und erzeugte Dynamik, die sonst nicht möglich gewesen wäre.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner beantwortet beide Aspekte der Frage explizit: Sie und Jan van Aken suchten die Aufgabe eigenverantwortlich, diese lag aber auch objektiv auf der Hand. Die Krisendiagnose wird unterstützt durch den Kontext der Abspaltung und schlechte Europawahl-Ergebnisse.",
+        "quotes": [
+          {
+            "text": "ich habe in Lichtenberg den Wahlkreis direkt gewonnen, zum Glück gegen Beatrix von Storch. Ja. Und damit bin ich in den Bundestag eingezogen direkt. Und du bist Parteichefin? Und ich bin Parteichefin und als solche war es meine Aufgabe auch die Partei mit vielen anderen zu retten und auch mit in den Bundestag zu bringen.",
+            "timestamp": "00:00:43",
+            "context": "Schwerdtner stellt ihr Engagement dar als notwendig für Parteirettung nach Krise."
+          },
+          {
+            "text": "Also, sie lag ja klar auf der Hand, dass die Linke in einer Krise ist und dann haben Jan und ich, also ich mache das ja gemeinsam mit Jan von Aken, gesagt, okay, wir machen es, ohne zu wissen, dass zwei Wochen nach der Wahl direkt ähm die Ampel auseinanderbrechen würde und Wahlkampf losgehen würde.",
+            "timestamp": "00:01:43",
+            "context": "Sie beschreibt die Entscheidung als bewusste Reaktion auf Krisensituation, aber mit unerwarteter Beschleunigung."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Parteirettung war notwendig nach Europawahl-Debakel und Abspaltung",
+          "Zwei-Wochen-Beschleunigung durch Ampel-Bruch war überraschend, aber retrospektiv vorteilhaft",
+          "Ganze Partei wurde elektrisiert, 680.000 Haustüren statt geplanter 100.000",
+          "Team-Ansatz mit Jan van Aken, Heidi Reichenbach und Sören Pellmann war bewusst geplant"
+        ],
+        "related_bundestag_topics": [
+          "Parteistruktur und Innendemokratie der Linken",
+          "Wahlkampfstrategie 2021",
+          "Koalitionsregierungen und Partei-Regierungsbeteiligung"
+        ]
+      },
+      {
+        "title": "Erfolgreiche Haustürkampagne und Wahlkampfstrategie",
+        "timestamp_range": "00:05:46 - 00:06:47",
+        "theme_description": "Schwerdtner erläutert die operative Strategie hinter dem überraschend guten Wahlergebnis der Linken: massive Haustürbesuche (680.000), Social-Media-Strategie und klarer Themenfokus auf Mieten und Preise.",
+        "question_asked": "Habt ihr schon verstanden, warum ihr am Ende deutlich über die 5% gekommen seid? Lagst das an den anderen, an Schwäche der anderen, an Fehlern der anderen oder an eurer Stärke?",
+        "question_intent": "Der Interviewer fragt, ob der Erfolg extern (Fehler/Schwäche anderer) oder intern (linke Kompetenz) bedingt ist.",
+        "position": "Schwerdtner argumentiert, es war eine Mischung: Interne Faktoren waren Team-Geschlossenheit, Haustürkampagne, klarer Themenfokus auf soziale Themen (Mieten, Preise), starke Social-Media-Präsenz und neue attraktive Gesichter (besonders Heidi Reichenbach). Externe Faktoren waren Fehler anderer Parteien (besonders die CDU-Brandmauer-Risse unter Merz) und BSW-Neuerscheinung, die die Linke delegitimierte.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner beantwortet das Mischungs-Argument, vergisst aber nicht die tiefer liegende Strukturfrage nach Stärken vs. Schwächen zu thematisieren. Sie betont Eigenleis zu Recht, weist aber auch externe Faktoren nicht ab – bleibt dabei aber eher allgemein.",
+        "quotes": [
+          {
+            "text": "Ich glaube, es war eine Mischung. Also zunächst einmal war schon total wichtig, dass wir gesagt haben, wir treten jetzt als Team gemeinsam auf... Dann kam eben noch die Silberlocken dazu und dann war klar, das Team ist vielleicht bisschen weird, aber es ist ein Team.",
+            "timestamp": "00:04:45",
+            "context": "Schwerdtner erklärt Teamgeschlossenheit als Kernfaktor."
+          },
+          {
+            "text": "aus 100.000 Haustüren wurden dann über 680.000 Haustüren, was auch einfach ja alle Rekorde gebrochen hat und auch alle Erwartungen übertroffen hat, die wir uns gesetzt haben.",
+            "timestamp": "00:05:46",
+            "context": "Sie hebt die operative Leistung der Massenmobilisierung hervor."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Team-Zusammenhalt war zentrale Voraussetzung für Wahlsieg",
+          "680.000 Haustürbesuche (7x die ursprüngliche Planung)",
+          "Klarer Fokus auf wenige Themen (Mieten, Preise) basierend auf Haustürbefragungen",
+          "Neue Gesichter (Heidi Reichenbach) wurden zum Shooting Star",
+          "Erfolg bei Social Media (erste Partei dort)"
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampffinanzierung und Parteiorganisation",
+          "Innere Parteidemokratie",
+          "Agenda und Kommunikationsstrategie"
+        ]
+      },
+      {
+        "title": "Direkt-Mandat in Lichtenberg und Vor-Ort-Präsenz",
+        "timestamp_range": "00:07:17 - 00:09:49",
+        "theme_description": "Schwerdtner erklärt, warum sie das Direkt-Mandat gegen Beatrix von Storch (AfD) in ihrem Kiez gewinnen musste und wie sie Parteivorsitz mit lokalen Sozialsprechstunden verbindet.",
+        "question_asked": "Du meinst gerade Avengers – welche Rolle hast du da übernommen? Was ist dein Superheld?",
+        "question_intent": "Der Interviewer fragt spielerisch nach Schwerdtners Rolle im Team, worauf sie strategisch antwortet.",
+        "position": "Schwerdtner betont, ihre primäre Aufgabe war, das Direkt-Mandat in Lichtenberg zu gewinnen – als ehemaliger Hochburg der Linken und kritische Ressource für den Parlamentseinzug. Sie sieht das als strategischer Beitrag an der Partei. Parallel führt sie kontinuierlich Sozialsprechstunden (alle zwei Wochen Rote Tafel mit Essensausgabe, Heizkostenchecks, Rechtshilfe) durch, um nicht nur im Plenum zu sitzen, sondern konkrete Kontakte zu Lebenswirklichkeit zu bewahren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner weicht der Marvel-Analogie geschickt aus und antwortet stattdessen strategisch auf tiefere Frage: Ihre Rolle ist Direkt-Mandate sichern + Basis-Präsenz. Das ist kohärent und reflektiert.",
+        "quotes": [
+          {
+            "text": "für mich war klar, ich muss das Direktmandat gewinnen, weil ich tatsächlich auch noch im Dezember sehr sehr sicher war, wir können da über die Direktmandate gewinnen. Und Lenberg als eines derjenigen, die immer die rettenden Direktmandate waren, habe ich so für mich gedacht, mein Dienst an der Partei ist eines dieser Direktmandate zu sichern.",
+            "timestamp": "00:07:17",
+            "context": "Sie begründet ihre strategische Entscheidung als bewusster Einsatz für Parteirettung."
+          },
+          {
+            "text": "ich sitze nicht nur im Plenum rum und unterhalte mich nicht nur mit Journalisten, sondern ich unterhalte mich mit Leuten, die wirklich gerade ein Problem haben und eine Rechnung nicht bezahlen können.",
+            "timestamp": "00:12:54",
+            "context": "Sie präzisiert ihre Verständnis von Parteivorsitz als nicht-abgehobene Arbeit."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Direktmandat in Lichtenberg war strategisch notwendig für Partei-Parlamentseinzug",
+          "Symbolisiert Glaube an Gewinnung alter Hochburgen",
+          "Rote Tafel alle zwei Wochen mit Essensausgabe und Sprechstunde",
+          "Heizkostenchecks für Mieter (über 1000x durchgeführt)",
+          "Juristen-unterstützte Sozialsprechstunden für Jobcenter/Behördenfragen"
+        ],
+        "related_bundestag_topics": [
+          "Abgeordneter-Bezug zur Wahlkreis-Realität",
+          "Bürgerbeteiligung und -beschwerden",
+          "Lokale vs. nationale Politik"
+        ]
+      },
+      {
+        "title": "Sozialpolitische Sprechstunden und Hilfe im Einzelfall",
+        "timestamp_range": "00:11:21 - 00:17:28",
+        "theme_description": "Schwerdtner beschreibt ihre praktische Arbeit in Sozialsprechstunden: Heizkostenchecks, Zahnarztrechnungen, Rechtsberatung, und wie sie dabei hilft, ohne Karitative sondern als Rechtshilfe zu arbeiten.",
+        "question_asked": "Aber kann man den Leuten kann man den Leuten wirklich helfen oder nimmst du quasi nur das auf deren Probleme?",
+        "question_intent": "Der Interviewer fragt, ob Schwerdtners Hilfe wirklich lösungsorientiert ist oder nur Beschwerdenverwaltung.",
+        "position": "Schwerdtner antwortet, dass sie in den meisten Fällen konkret helfen kann: Mit juristischem Beistand Widersprüche beim Jobcenter einreichen, Heizkostenabrechnungen prüfen, bei Notfällen persönlich Zahnarztrechnungen oder Sprachkurse bezahlen (aus einem Sozialfond, den sie aus ihrem gedeckelten Gehalt speist). Sie betont aber auch Grenzen: Sie kann nicht 1 Million Menschen in Lichtenberg helfen; das ist Systemkritik, nicht Ersatz für Sozialstaat. Wichtig: Sie vermittelt auch weiter (Mieterverein, Caritas), wenn andere Stellen besser helfen können.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner antwortet konkret auf die Frage nach praktischer Hilfe vs. Aufnahme: Sie macht beides und ist realistisch über Limits. Sie zeigt auch Differenzierung zwischen ihrer persönlicher Einschätzung und strukturellen Problemen.",
+        "quotes": [
+          {
+            "text": "also in den meisten Fällen können wir was tun. Ich mache die Sprechstunde gemeinsam mit einem Juristen, was also hilfreich ist, ist kein Muss. [...] Das sind alles äh Techniken, die jeder lernen kann und die auch sinnvoll sind zu lernen.",
+            "timestamp": "00:13:24",
+            "context": "Sie erläutert konkrete Hilfsmechanismen."
+          },
+          {
+            "text": "Ich kann jetzt nicht für Leute jeden Monat die Miete überweisen, sondern es geht wirklich darum, wenn Menschen in Notsituation sind und sie kommen zu mir, [...] dann haben sie meistens schon verschiedene Ämter durch, dann haben sie meistens schon verschiedene Beratungsangebote durch.",
+            "timestamp": "00:17:28",
+            "context": "Sie präzisiert realistische Grenzen ihrer Hilfe."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Juristen-gestützte Sprechstunden für Widersprüche und Rechtsberatung",
+          "Heizkostenchecks (1000+ durchgeführt)",
+          "Persönliche finanzielle Hilfe in Notfällen (aus gedeckeltem Gehalt)",
+          "Gezielt Weitervermittlung zu spezialisierteren Stellen",
+          "Bildung, dass Leute wissen, welche Rechte sie haben",
+          "Grenze bewusst: kann nicht Millionen helfen, System muss sich ändern"
+        ],
+        "related_bundestag_topics": [
+          "Sozialhilfe und Armutsbekämpfung",
+          "Abgeordnete-Bürgernähe",
+          "Rechtsberatung und Partizipation"
+        ]
+      },
+      {
+        "title": "Bürgergeld, Beamtendeutsch und strukturelle Ausgrenzung",
+        "timestamp_range": "00:13:24 - 00:21:34",
+        "theme_description": "Schwerdtner analysiert, warum Bedürftige Sozialleistungen nicht abrufen: Beamtendeutsch, Digitalisiertung, Bürokratie-Schikanen und die Analyse, dass dies teilweise intentional ist.",
+        "question_asked": "Warum können die Leute das nicht verstehen? (Beamtendeutsch im Jobcenter) Es ist verdammt schwer. [...] Warum ist das so, dass den Leuten dann offenbar weniger geholfen werden soll, indem sie weniger verstehen, indem sie immer mehr Papierkram machen?",
+        "question_intent": "Der Interviewer fragt nach der Ursache von Bürokratie-Komplexität und impliziert, dass das zur Ausgrenzung dient.",
+        "position": "Schwerdtner sieht strukturelles System: Beamtendeutsch, fehlende Ansprechpersonen, digitale Anforderungen, mehrsprachige Infos-Mangel wirken als Barrieren. Sie deutet an, dass dies teilweise unbeabsichtigt (Unkenntnis von Politikern, dass Probleme existieren), teilweise aber bewusst ist – als Klassenkampf von oben, um Bedürftige klein zu halten. Sie unterscheidet aber: Einzelne Jobcenter-Mitarbeiter:innen sind nicht schuld, das System ist strukturell. Die Lösung: Automatische Auszahlung statt Antragstellung + Vereinfachung (wie geplante Kindergrundsicherung).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner beantwortet beide Ebenen: die praktische (warum verstehen es Leute nicht) und die politische (warum ist das so strukturiert). Sie differenziert zwischen Unkenntnis und Intentionalität und weist auf Systemebene hin.",
+        "quotes": [
+          {
+            "text": "Ich glaube, es ist zum Teil Unkenntnis, also auch wirklich von vielen Politikern, dass sie nicht wissen, dass diese Probleme existieren, glaube ich tatsächlich. Also und es ist aber auch mindestens ein Machtinstrument, um auch die Leute klein zu halten.",
+            "timestamp": "00:19:00",
+            "context": "Sie unterscheidet Unkenntnis von intentionaler Ausgrenzung."
+          },
+          {
+            "text": "ich glaube schon. dass dieses System von HZ4 zum Bürgergeld war schon Teil eines auch Umbaus des Staates hinzu mehr drangsalieren und mehr sanktionieren",
+            "timestamp": "00:20:02",
+            "context": "Sie deutet Hartz IV → Bürgergeld als part of intentional Machtsystem."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Beamtendeutsch und Komplexität als strukturelle Barriere",
+          "Fehlende Ansprechpersonen im Jobcenter",
+          "Digitalisierung benachteiligt Menschen ohne PC/Internet",
+          "Nur ~33% der anspruchsberechtigten Familien rufen Kinderleistungen ab",
+          "System ist zum Teil unbewusste Unkenntnis, zum Teil bewusste Machtkontrolle",
+          "Lösung: Automatische Auszahlung statt Antrag, Vereinfachung, Bündelung (wie Kindergrundsicherung)"
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld und Jobcenter-Reform",
+          "Soziale Gerechtigkeit und Armut",
+          "Vereinfachung von Sozialleistungen",
+          "Digitale Teilhabe"
+        ]
+      },
+      {
+        "title": "Gehaltsdeckel und Mandatsträger-Ethik",
+        "timestamp_range": "00:15:26 - 00:16:27",
+        "theme_description": "Schwerdtner und Jan van Aken deckeln ihre Diäten und Gehälter auf deutschen Durchschnitt (2.850€), geben Rest an Partei und Sozialfond.",
+        "question_asked": "Ist traurig, aber es ist so. Und wir haben ja noch die Besonderheit ähm, dass Jan und ich ja auch unser Gehalt deckeln und dass wir Teile des Gehalts ja auch in diesen Sozialformen geben und dass ich dann auch Rechnung übernehme, wenn es gar nicht mehr anders geht. Also wenn das so wohl habend, dass ihr euch das leisten könnt.",
+        "question_intent": "Der Interviewer fragt, ob Schwerdtner und van Aken sich den Gehaltsdeckel finanziell leisten können oder ob das unbehagliche Leerstelle ist.",
+        "position": "Schwerdtner erklärt: Die Diäten für Bundestagsabgeordnete sind bekannt und hoch; sie und van Aken deckeln auf 2.850€ (dt. Durchschnitt), geben Rest an Partei (wie alle Mandatsträger Beiträge zahlen) und zusätzlich in Sozialfond für Einzelfallhilfe. Das ist möglich, weil die Diäten eben höher sind. Sie betont aber: Das ist keine Großmacht-Geste, sie machen das verantwortungsvoll und bewusst, nicht als Ablenkung von Systemkritik.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner beantwortet die zugrundeliegende Skepsis direkt: Ja, sie können sich das leisten, weil ihre Gehälter höher sind. Sie ist auch nicht defensiv, sondern behandelt es als konsistent mit ihrer Kritik am Kapitalismus.",
+        "quotes": [
+          {
+            "text": "Na ja, also die Diäten für Bundestagsabgeordnete sind ja bekannt. Vorher hatten wir ein Gehalt als Parteivorsitzende, was auch ähm hoch war und wo wir auch schon Teil abgegeben haben. Also wir deckeln unser Gehalt auf den deutschen Durchschnittsgehalt auf 2850 €",
+            "timestamp": "00:15:26",
+            "context": "Sie erklärt die Mechanik des Gehaltsdeckels."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Gehalt gedeckelt auf 2.850€ (deutscher Durchschnitt)",
+          "Rest an Partei als Mandatsträger-Beitrag",
+          "Zusätzlicher Teil in Sozialfonds für Einzelfallhilfe",
+          "Nicht alle Leute wollen Geldunterstützung (Scham), aber Beratung ist oft wichtiger"
+        ],
+        "related_bundestag_topics": [
+          "Mandatsträger-Ethik und Diäten",
+          "Parteienfinanzierung",
+          "Interessenskonflikte in der Politike"
+        ]
+      },
+      {
+        "title": "Haushaltsausschuss und ökonomische Herrschaftssprache",
+        "timestamp_range": "00:25:39 - 00:30:12",
+        "theme_description": "Schwerdtner sitzt im Haushaltsausschuss und beschreibt, wie Budgetsprache (z.B. ‚Konsolidierung' statt ‚Kürzungen') Transparenz und Verständnis blockiert.",
+        "question_asked": "Es ist nicht zu verstehen. Also kein nicht mein normaler Abgeordneter mit Mitarbeitern kriegt so ein 1000 Seiten Batzen Haushalt hingelegt, dann noch 500 Seiten Einzelpläne jeweils, also die kann man dann durcharbeiten. Ja, das ist doch eure Aufgabe, das zu verstehen.",
+        "question_intent": "Der Interviewer fordert Schwerdtner heraus: Ist es nicht eure Job, den Haushalt zu verstehen, wenn dieser so komplex ist?",
+        "position": "Schwerdtner stimmt zu, dass es ihre Aufgabe ist, aber betont auch: Das ist strukturell unmöglich für 4 Linke im Ausschuss mit je 6-7 Einzelplänen + 1000-Seiten Hauptbudget. Parallel analysiert sie die ‚ökonomische Herrschaftssprache': Finanzminister Lindner sagt ‚Konsolidierung' (klingt vernünftig), was bedeutet ‚Kürzungen im Sozialbereich'. Das ist bewusstes Verschleiern von Machtverhältnissen. Ihre Strategie: Übersetzen in Alltagssprache, z.B. ‚Das Deutschlandticket kostet 9€ mehr', und das Außen kommunizieren, auch wenn Inline Abstimmungen ohnehin verloren sind.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner antwortet auf beide Ebenen: ja, wir versuchen es zu verstehen (zeitlich unmöglich), und nein, das System ist strukturell gegen Transparenz designt. Sie weicht aber etwas aus, indem sie Struktur-Schuld betont statt zu sagen, wie sie persönlich damit umgeht.",
+        "quotes": [
+          {
+            "text": "also das ist erstmal lang ganz viele Phrasen hintereinander, bis man dann die Sätze hört, die eigentlich entscheidend sind und dann sagt er eben ähm investieren, okay, toll, damit meint er die Sondervermögen und konsolidieren. Und dann reden alle halt über das Konsolidieren.",
+            "timestamp": "00:28:42",
+            "context": "Sie illustriert, wie Sprachvernebelung funktioniert."
+          },
+          {
+            "text": "das ist tatsächlich auch eben so eine Form von Herrschaftsinstrument, so ähnlich wie das Kleinhalten bei den Ämtern, das das natürlich netter klingt, wenn sich Lars Klingball dann von von der Kamera stellt und sagt, wir müssen den Haushalt konsolidieren und dann sagen alle: Ja, klar, klingt total vernünftig, aber wenn du das übersetzen würdest und sagen wir das Deutschlandticket wird jetzt 9 € teurer, dann ist für die Menschen schon ganz anders klar, was das eigentlich bedeutet.",
+            "timestamp": "00:29:12",
+            "context": "Sie zeigt die Herrschaftsfunktion von Sprachverschleierung."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "4 Linke im Haushaltsausschuss können 1000-Seiten-Budget + 500-Seiten-Einzelpläne nicht vollständig durcharbeiten",
+          "‚Konsolidierung' = bewusster Euphemismus für Sozialkürzungen",
+          "Ziel: bis September (Haushaltswochen) fit genug sein, um zu verstehen",
+          "Interventionsmöglichkeiten sind bei rascher Abstimmung minimal",
+          "Strategie: Übersetzen in Alltagssprache und außen kommunizieren, auch wenn Inline verloren"
+        ],
+        "related_bundestag_topics": [
+          "Haushaltsverabschiedung und Budgetprozess",
+          "Oppositions-Handlungsspielraum",
+          "Parlamentarische Transparenz"
+        ]
+      },
+      {
+        "title": "Untersuchungsausschuss zu Jens Spahn und Sondervermögen",
+        "timestamp_range": "00:31:43 - 00:44:02",
+        "theme_description": "Schwerdtner diskutiert, warum die Linke keinen Untersuchungsausschuss zu Jens Spahn (Masken-Deals) einsetzen will, trotz Skandal – wegen Brandmauer-Prinzip gegenüber AfD.",
+        "question_asked": "Aber ist das jetzt nicht gerade z.B. bei beim Thema Spar Maskenaffäre nicht ein Dilemma? Also ihr könntet einen Untersuchungsausschuss ihren sparen, sage ich jetzt mal ins Leben rufen. Ja, aber dafür müsstet ihr dann mit den Grünen und Teilen der AfD und das ist dann das ist nicht wert.",
+        "question_intent": "Der Interviewer zeigt das Dilemma: Linke könnte Spahn untersuchen (wichtig), aber müsste dafür mit AfD kooperieren (brandmauer-Bruch).",
+        "position": "Schwerdtner erklärt: Ein Untersuchungsausschuss braucht 25% der Abgeordneten; die Linke allein hat nicht genug. Sie könnten nur mit Grünen + Teilen der AfD kommen. Aber: Sie haben sich bewusst gegen U-Ausschuss-Antrag entschieden, weil das Einreißen der Brandmauer gegen Rechts (symbolisiert durch Heidi Reichenbachs März-Rede) eine größere Frage ist als Spahn. Persönlich bereut sie das nicht, aber weiß, es ist defensiv. Objektiv: Spahn hat sachlich viele Fragen offen (Masken-Geschäfte unter CDU-Abgeordneten, Verbindung zu Sebastian Kurz, Peter Thiel). Das reicht ohne U-Ausschuss aber auch nicht aus, um ihn zu ‚stürzen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner adressiert die Frage, aber weicht bei der persönlichen Verantwortung aus: Sie sagt, sie bereut es nicht, aber das ist eher Defensivposition. Sie argumentiert aber kohärent mit ihrer Brandmauer-Strategie. Die sachliche Kritik an Spahn wird korrekt skizziert, aber nicht klar, ob Schwerdtner das ausreichend findet.",
+        "quotes": [
+          {
+            "text": "Also es kann nicht sein, dass nicht auch mal Regierungsmitglieder in der Zahl 9, also neun aufrechte Sozialdemokraten oder Christdemokraten, mal einem Untersuchungsausschuss zustimmen, äh der auch ihre eigene Arbeit mit untersuchen würde.",
+            "timestamp": "00:33:15",
+            "context": "Sie kritisiert die Verweigerungshaltung von SPD/CDU, selbst im Ausschuss zuzustimmen."
+          },
+          {
+            "text": "wir sind hier die Brandmauer, weil Heidi sich dahingestellt hat und gesagt hat, auf März ist kein Verlass, die machen, die verlassen sich ja auf Zufallsmehrheiten und die nehmen auch in Kauf, wenn das mit AfD Stimmen zustande kommt. Und wenn man man kann nicht im Februar noch ganz groß tönen und sagen, ja übrigens, wir sind hier die einzige Brandmauer.",
+            "timestamp": "00:34:47",
+            "context": "Sie begründet die Prinzipien-Entscheidung gegen Spahn-U-Ausschuss mit Brandmauer-Credibility."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Linke wollte U-Ausschuss zu Spahn ursprünglich nicht (Brandmauer-Prinzip)",
+          "Spahn sachlich: Masken-Geschäfte, Kurz-Verbindung, Thiel-Anrufe sind nicht geklärt",
+          "Aber: Wer Brandmauer predigt (gegen Rechts), kann nicht dann mit AfD abstimmen",
+          "Alternative Aufdeckung: investigativer Journalismus könnte das leisten",
+          "Nachträgliche Reue minimal, aber Dilemma erkannt"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Kontrolle und Untersuchungsausschüsse",
+          "Maskendeals und Korruptionsbekämpfung",
+          "Brandmauer gegen Rechtsextremismus"
+        ]
+      },
+      {
+        "title": "Sondervermögen für Aufrüstung und Bundesrat-Abstimmung",
+        "timestamp_range": "00:38:23 - 00:43:31",
+        "theme_description": "Schwerdtner erklärt den Konflikt zwischen Linker Bundestag-Opposition zum 100-Mrd.-Aufrüstungspaket und Bundesrat-Zustimmung durch linke Landesregierungen (MV, Bremen).",
+        "question_asked": "Die Leute haben sich hier massig äh gemeldet und meinten äh die Linke, du seit gegen dieses Sondervermögen, Grundgesetzänderung gewesen, äh jetzt Aufrüstung, alles mögliche und gleichzeitig da, wo die Linke an der Macht ist in Meelburg Vorpmann und Bremen, die haben im Bundesrat dafür gestimmt. Erklär uns das mal.",
+        "question_intent": "Der Interviewer fragt nach Glaubwürdigkeitsproblem: Linke sagt Nein zu Aufrüstung, macht es aber in Landesregierungen.",
+        "position": "Schwerdtner erklärt das Dilemma: Im Bundestag stimmte die Linke gegen das Gesamtpaket (500-Mrd. Sondervermögen + 100-Mrd. Grüne-Bonbon + Schuldenbremse-Öffnung nur für Verteidigung), weil sie nicht für die Aufrüstung stimmen konnte. Aber die Länder standen vor Haushaltskrise: Ohne die 100 Mrd. Länder-Kompensation wären Schulen/Kindergärten zusammengebrochen. Das war ein ‚vergiftetes Geschenk' (nur als Paket erhältlich). Schwerdtner sagt: Sie hätten im Bundesrat auch abstimmen sollen – das war der Fehler. Aber sie versteht die Notlage der Länder-Vorsitzenden. Sie bekennt sich zur Fehlerbeurteilung, sagt aber auch: Die Stimmen der Länder waren nicht ausschlaggebend (Bundesrat hätte Paket sowieso angenommen).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner erklärt das Dilemma, gibt aber eine defensive Antwort: Sie sagt, es war falsch, versteht aber die Länder-Logik. Das ist ein Kompromiss zwischen Verantwortung und Verständnis, der nicht vollständig überzeugt.",
+        "quotes": [
+          {
+            "text": "Wir haben versucht, das Paket auch zu öffnen, weil wir gesagt haben, ist ganz ganz klar, für die Aufrüstung, für die Öffnung der Schuldenbremse stimmen wir nicht. Aber natürlich stimmen wir auch für 500 Milliarden Sondervermögen, weil wir das schon immer gefordert haben.",
+            "timestamp": "00:39:53",
+            "context": "Sie erklärt die logische Spannung: Sondervermögen gut, Aufrüstung schlecht, aber als Paket."
+          },
+          {
+            "text": "Ich halte es auch für falsch. Also, ich fand das eine falsche Entscheidung und trotzdem verstehe ich die Logik der Länder zu sagen, wir brauchen das Geld, sonst müssen wir bei uns ja alles zumachen.",
+            "timestamp": "00:40:26",
+            "context": "Sie gesteht Fehler der Länder-Linken, versteht sie aber."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Linke hat gegen Gesamtpaket (Aufrüstung + Sondervermögen) im Bundestag gestimmt – korrekt",
+          "Bundesrat-Zustimmung war Fehler, aber unter Haushaltsdruck verständlich",
+          "Paket war bewusst ‚vergiftet': nur zusammen, nicht einzeln",
+          "Länder-Stimmen waren nicht ausschlaggebend (Mehrheit ohnehin da)",
+          "Nachträglicher Glaubwürdigkeits-Schaden für Partei"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse-Reform",
+          "Rüstungsausgaben und Militärbudgets",
+          "Föderalismus und Interessenskonflikte",
+          "Bundesrat-Verfahren"
+        ]
+      },
+      {
+        "title": "Opposition gegen Aufrüstung und europäische Sicherheitsarchitektur",
+        "timestamp_range": "00:44:29 - 02:02:59",
+        "theme_description": "Schwerdtner erklärt Linke Position gegen Aufrüstung, stattdessen für europäische Sicherheitsarchitektur und friedliche Konfliktlösung, insbesondere zur Ukraine.",
+        "question_asked": "Seid ihr Trump da eigentlich dankbar? Weil jetzt im Grunde ist die NATO klinisch tot [...] Ihr seid gegen die Aufrüstung der Bundeswehr. Mhm. Das heißt, die Bundeswehr soll nichts Neues bekommen, soll nicht mehr Soldaten bekommen, soll nicht gut ausgerüstet sein. Ist das so pauschal zu sagen?",
+        "question_intent": "Der Interviewer prüft, ob Schwerdtner wirklich gegen jede Rüstung ist oder nur gegen Überrüstung, und ob sie Trump-Abzug als Vorteil sieht.",
+        "position": "Schwerdtner differenziert: Nicht ‚keine Rüstung überhaupt', sondern: (1) Strukturell nicht angriffsfähig, nur Verteidigungswaffen; (2) Kein Überrüstungs-Wettrüsten nötig, weil Europa + NATO schon deutlich stärker ist als Russland; (3) Beschaffungsverschwendung (Preise verdoppeln sich); (4) Statt Aufrüstung: europäische Sicherheitsarchitektur + Verhandlungen. Sie sieht Trump-Abzug als Realitäts-Check (NATO war ohnehin schon in Auflösung), nicht als Gewinn, aber auch nicht als Argument für Unlimited Rüstung. Zur Ukraine: Sie argumentiert gegen Waffen-Lieferungen als Strategie, weil sie Verhandlungen nicht näherbrachten, sondern nur mehr Menschen sterben ließ.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner erklärt ihre Position differenziert, aber beim Trump-Punkt wird sie etwas defensiv (sagt, sie ist nicht für NATO-Austritt am nächsten Tag, sondern europäische Unabhängigkeit). Bei Ukraine-Frage wird sie philosophisch statt politisch konkret.",
+        "quotes": [
+          {
+            "text": "wir sagen ja auch, dass die Bundeswehr verteidigungsfähig sein sollte, also das ein Verteidigungsarmee geben sollte und dann ist halt zu prüfen, muss sie da muss sie deswegen nicht aufgerüstet werden.",
+            "timestamp": "00:45:00",
+            "context": "Sie präzisiert: Nicht Anti-Rüstung generell, nur gegen Über-Rüstung."
+          },
+          {
+            "text": "Es sind Panzer brauchen wir nicht mehr, weil das sind ja ein Chriss. Ja, wir brauchen keine Panzer mehr in Deutschland. Also ich bin keine Militärexpertin, die dir jetzt genau sagen kann, welche Waffentypen wir brauchen oder nicht",
+            "timestamp": "00:57:18",
+            "context": "Sie gibt Beispiel ohne Expertise zu beanspruchen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Strukturell nicht angriffsfähig, nur Verteidigungswaffen",
+          "Europas NATO-Rüstung schon deutlich > Russlands",
+          "Keine Notwendigkeit für Verdopplung/Verdreifachung",
+          "Beschaffungsverschwendung (Rheinmetall-Profite verdoppelt sich)",
+          "Alternative: europäische Sicherheitsarchitektur + Verhandlungen mit Russland/Brics",
+          "Ukraine: Waffen haben nicht zu Verhandlungen geführt, nur mehr Tote"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsausgaben und Wehretat",
+          "NATO-Bündnis und Verteidigungspolitik",
+          "Ukraine-Konflikt und Waffenlieferungen",
+          "Europäische Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Biographie: Aufwachsen im Osten und Hamburg",
+        "timestamp_range": "00:49:39 - 01:04:01",
+        "theme_description": "Schwerdtner erzählt ihre Kindheit in Werdau (Sachsen) und Emigration nach Hamburg wegen Treuhand-Deindustrialisierung, ihre Eltern verloren Jobs.",
+        "question_asked": "Warum musstet ihr nach Hamburg hin? Na ja, eben, weil da weil die keinen Job mehr hatten.",
+        "question_intent": "Der Interviewer fragt nach materiellen Gründen für Familien-Migration.",
+        "position": "Schwerdtner beschreibt: Ihr Vater war Schiffskoch (in Rostock), ihre Mutter Spinnerin (in Werdau). Nach Mauerfall verloren beide Jobs – nicht weil persönliche Inkompetenz, sondern weil Fabriken abgebaut wurden (Treuhand-Systematik). Sie mussten nach Hamburg, wo ein Onkel ihnen half. Sie betont: Das war nicht Einzelschicksal, sondern Millionen. Später verstand sie die systematische Treuhand-Zerstörung. Ihre Eltern blieben unpolitisiert, später sogar desinteressiert an Wahlen (Enttäuschung). Sie und ihre Schwester passten sich an, verloren Sächsisch-Akzent.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner antwortet ausführlich mit konkretem Beispiel (Eltern-Jobs) und kontextualisiert mit Treuhand-Struktur. Sie zeigt auch Bewusstseinsentwicklung (anfangs Einzelschicksal, später Systemverständnis).",
+        "quotes": [
+          {
+            "text": "Also meine Mutter war Spinnerin in Werdau eben. Das hat sie gesponnen. [...] Aber der DDR hat sie Spinnerei gelernt oder Spinnerei. Ja, genau. Und das ist auch so eine Geschichte wie bei Millionen anderen, dass es dann ihren Job halt auch nicht mehr gab.",
+            "timestamp": "00:51:41",
+            "context": "Sie zeigt Beruf-Zerstörung durch Deindustrialisierung."
+          },
+          {
+            "text": "Das heißt, sie musste wirklich so komplett inen, also ohne eben Ausbildung zur Altenpflegerin war sie es dann einfach. Und mein Vater hatte eine Ausbildung zum Schiffskoch",
+            "timestamp": "00:52:13",
+            "context": "Sie zeigt Zwang zu Umschulung/Neuorientierung."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Vater Schiffskoch (Rostock), Mutter Spinnerin (Werdau)",
+          "Beide verloren Jobs durch Treuhand-Deindustrialisierung, nicht Inkompetenz",
+          "Migration nach Hamburg notwendig (Onkel half)",
+          "Millionen-Erfahrung, nicht Einzelfall",
+          "Eltern wurden später politisch desinteressiert (Wahl-Burnout)",
+          "Schwerdtner verstand später Systematik der Zerstörung"
+        ],
+        "related_bundestag_topics": [
+          "Deutsche Wiedervereinigung und Treuhand",
+          "Arbeitsmarktpolitik und Arbeitsplatzverluste",
+          "Regionale Ungleichheit Ost-West"
+        ]
+      },
+      {
+        "title": "Politisches Erwachen und linke Sozialisierung",
+        "timestamp_range": "01:11:36 - 01:20:19",
+        "theme_description": "Schwerdtner beschreibt, wie sie sich als Kind für Politik interessierte (Phoenix, Bundestagsdebatten), und später Rosa Luxemburg las, was ihr Weltbild klärte.",
+        "question_asked": "Warst du gut in der Schule? Ja. Oh, also ich war interessiert und es fiel mir leicht, aber ich war jetzt nicht übertrieben gut. [...] Hast du hast du eine politische Superkraft, die die anderen nicht haben?",
+        "question_intent": "Der Interviewer fragt nach akademischer Leistung und politischer Neigung.",
+        "position": "Schwerdtner war gut, aber nicht übertrieben begabt. Sie guckte sehr viel Fernsehen (RTL2, Animes), aber ab ~1998 interessierte sie sich für Bundestagsdebatten (Phoenix). Das war der Turning Point. Sie las später Marx (Kapitallesekreis), aber Rosa Luxemburg ‚Sozialreform oder Revolution' faszinierte sie am meisten: ‚Alles, was ich schon immer gefühlt habe, bekam plötzlich eine Ordnung.' Diese Kombination (Ungerechtigkeitsempfinden + gute Lehrer + Luxemburg) machte sie zur Sozialistin.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner erzählt ausführlich ihre politische Sozialisierung von Kind (Maus-Sendung) bis Student (Luxemburg-Seminar). Sie ist transparent über Einflüsse.",
+        "quotes": [
+          {
+            "text": "Das muss halt 1998 gewesen sein mit Rot-Grün. Habe ich angefangen mich dafür zu interessieren, weil ich habe Sendung mit der Maus geguckt und dachte so, what the Ähm, Bundestagswahl, Rotgrün, Gerrt Schröder, wer ist der Typ?",
+            "timestamp": "01:12:39",
+            "context": "Sie zeigt, wie Zufall (Maus-Sendung) politische Neugier weckte."
+          },
+          {
+            "text": "alles was ich schon immer gefühlt und gedacht habe, hat jetzt plötzlich eine Ordnung bekommen und ist auf dem Begriff gekommen. Also das hat mir, das Luxemburgseminar hat mich eigentlich noch mehr fasziniert als dann später Kapitallesekreise",
+            "timestamp": "01:17:45",
+            "context": "Sie beschreibt intellectuelle Klärung durch Luxemburg."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Gute Schülerin, aber nicht überragend",
+          "Viel TV-Konsum (RTL2, Animes) bis Turning Point 1998 (Phoenix-Bundestagsdebatten)",
+          "Phönix-Gucken während Schulzeit",
+          "Studium Politik/Englisch auf Lehramt (NC-Grund)",
+          "Kapitallesekreis in Rosa-Luxemburg-Stiftung zentral",
+          "Luxemburg-Text ‚Sozialreform oder Revolution' zentral für Weltanschauung",
+          "Gute linke Lehrer in Gesamtschule wichtig"
+        ],
+        "related_bundestag_topics": [
+          "Politische Bildung und Sozialisierung",
+          "Marxistische Theorie und linke Tradition",
+          "Universitäre Ausbildung von Politikern"
+        ]
+      },
+      {
+        "title": "Vergesellschaftung und Revolution im 21. Jahrhundert",
+        "timestamp_range": "01:20:49 - 01:25:59",
+        "theme_description": "Schwerdtner wird gefragt, wie konkrete Vergesellschaftung aussieht (z.B. Wohnung) und ob sie Revolution anstrebt, und differenziert zwischen reformistisch vs. revolutionär.",
+        "question_asked": "Was sind denn Ines revolutionäre Gedanken? Gib mal gib mal ein paar konkrete revolutionäre Sachen, die nicht Reform sind. [...] Aber sind dein Vorstellung von Revolution dann willst du in den bewaffneten we ich nicht Widerstand gehen.",
+        "question_intent": "Der Interviewer prüft, ob Schwerdtner konkrete revolutionäre Ziele hat oder nur reformistische Rhetorik.",
+        "position": "Schwerdtner nennt konkrete ‚Revolutionäres' nach heutigem Maßstab: Volksentscheid Deutsche Wohnen Enteignen tatsächlich umsetzten (Artikel 15 Grundgesetz). Das wäre ‚Rücktritt von 35 Jahren Neoliberalismus'. Sie sind aber nicht für bewaffnete Revolution, weil: (1) Deutschland/BRD ist nicht in revolutionärer Situation; (2) Rosa Luxemburg selbst sagte, Westeuropas bürgerliche Apparate sind zu stark für Staatsstreich; (3) Friedliche Revolution DDR zeigt Alternative; (4) Aufgabe ist jetzt, Bedingungen für Möglichkeitsfenster vorbereiten, falls es kommt (durch Krisen/Katastrophen).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner antwortet auf beide Ebenen: konkrete Ziele (Enteignung) + Vorstellung von Revolution (eher strukturelle als bewaffnete). Sie ist kohärent in ihrer Lesart von Rosa Luxemburg.",
+        "quotes": [
+          {
+            "text": "ich glaube revolutionär nach unserem heutigen Maßstäben wäre sowas wie den Volksentscheid deutsche Wohn und Coenteignen umzusetzen in dem Sinne, dass dann wirklich 35 Jahre Neoliberalismus zurückgedreht werden",
+            "timestamp": "01:21:54",
+            "context": "Sie nennt Enteignung als ‚revolutionär' nach heutigem Maßstab."
+          },
+          {
+            "text": "unsere Aufgabe ist jetzt alles dafür zu tun, die Bedingung dafür zu schaffen, dass wenn es so ein Möglichkeitsfenster gibt. Also sei sei es durch Krisen oder Katastrophen, wie gesagt, das würde ich mir nicht wünschen, aber dass wenn es so eine Möglichkeit gibt, dass wir dann darauf vorbereitet sind",
+            "timestamp": "01:24:30",
+            "context": "Sie definiert strategische Aufgabe als Vorbereitung auf Bruchmomente."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Volksentscheid Deutsche-Wohnen-Enteignung actual implementation wäre ‚revolutionär'",
+          "Keine bewaffnete Revolution angestrebt",
+          "Westeuropäische bürgerliche Apparate zu stark für Coup",
+          "Friedliche Revolution DDR als Modell, nicht Winterpalast",
+          "Aufgabe: Vorbereiten auf Möglichkeitsfenster (Krisen)",
+          "Massenstreiks als zentral für Klassenkampf"
+        ],
+        "related_bundestag_topics": [
+          "Enteignung und Artikel 15 Grundgesetz",
+          "Wohnungspolitik und Immobilienwirtschaft",
+          "Systemkritik und Reformpolitik",
+          "Revolutionstheorie und Strategie"
+        ]
+      },
+      {
+        "title": "Faschismus, AfD und Parallelen zu 1930er Jahren",
+        "timestamp_range": "01:22:56 - 01:37:06",
+        "theme_description": "Schwerdtner analysiert Fehler der Linken vor 100 Jahren (zu sehr auf Destabilisierung, nicht auf Faschismus-Kampf) und zieht Parallelen zur aktuellen AfD-Situation.",
+        "question_asked": "Aber es gibt zumindest ja schon mal Ansätze und ich kann also auch nur aus diesem jetzt kleinen Erfahrungsschatz aus der Bundestagswahl in Lichtenberg sagen und ich bin ja angetreten gegen Beatrix von Storch und es war ja genau dieser Kampf links gegen rechts. [...] Was ist mit Massenstreiks und Generalstreiks? Ab wann würdest du sagen als Parteiorsitzend der Linken? Mhm. Also ihr seid am glaubwürdigsten Sachen Antifaschismus. Mm. Wann ruft ihr zum Generalstreik oder Massen, also wirklich Massenprotesten auf, um das Land Land lah zulegen, damit diese entweder faschistische Regierung oder teilifaschistische Regierung das Handwerk gelegt werden muss.",
+        "question_intent": "Der Interviewer fordert Schwerdtner auf, konkrete rote Linien zu nennen, unter denen Linke Generalstreik ausruft.",
+        "position": "Schwerdtner differentiert: (1) Historische Fehler: Linke vor 100 Jahren konzentrierte sich zu sehr auf Destabilisierung des Kapitalismus, nicht auf Faschismus-Bekämpfung; (2) Konservative unterschätzen immer Rechts (wie heute März/Söder/Wüst); (3) Parallele: Antikommunismus damals = Antigrün/Anti-Linke heute als Priorität vor Antifaschismus; (4) Konsequenz: CDU wird eher mit AfD kooperieren als mit Linken. Zu Generalstreik: Sie hat noch keinen konkreten Plan, sieht aber Sachsen-Anhalt-Wahl (2025) als Test-Moment – wenn AfD stärkste Kraft wird, erwartet sie massive Proteste und wird dann konkrete Strategie entwickeln.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner benennt das historische Dilemma korrekt, weicht aber bei der konkrete Antwort zu Generalstreik aus: Sie sagt ‚noch keinen Plan, aber Sachsen-Anhalt wird zeigen'. Das ist eher Verzögerung als Antwort.",
+        "quotes": [
+          {
+            "text": "Also ist so ein bisschen das Revolutionsmodell, das wirklich auf krasse Krisen und Katastrophen setzt. Das wäre, glaube ich, nicht so klug. Ähm und da kann man auch lange drauf warten.",
+            "timestamp": "01:23:58",
+            "context": "Sie erklärt, warum sie nicht auf Katastrophen hofft."
+          },
+          {
+            "text": "ich glaube, dass viele zumindest mal keinen Bock haben auf sowas wie eine Vermögenssteuer. Das würde sich schon ein bisschen jucken, aber am Ende nur jucken.",
+            "timestamp": "01:37:50",
+            "context": "Sie beurteilt, dass Bourgeoisie keine echte Angst vor Vermögenssteuer hat."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Historische Parallele: Linke vor 100 Jahren unterschätzte Faschismus",
+          "Heutige Fehler: CDU kooperiert lieber mit AfD als mit Linken",
+          "Antikommunismus damals = Antigrün/Anti-Linke heute",
+          "Konkrete rote Linie nicht benannt, aber Sachsen-Anhalt-Wahl 2025 als Test",
+          "Wenn AfD stärkste Kraft, dann massive Proteste zu erwarten",
+          "Keine konkrete Generalstreik-Strategie vorgebracht"
+        ],
+        "related_bundestag_topics": [
+          "Faschismus und Antifaschismus",
+          "AfD und Rechtsextremismus",
+          "Koalitions-Optionen und Brandmauer",
+          "Massenproteste und Streikbewegungen"
+        ]
+      },
+      {
+        "title": "Gaza-Demo Verschiebung und Solidarität mit Palästina",
+        "timestamp_range": "02:03:59 - 02:10:47",
+        "theme_description": "Schwerdtner erklärt, warum geplante Gazademo verschoben wurde, obwohl Linke Solidarität mit Palästina zeigen will.",
+        "question_asked": "Ihr habt am 14. Juni noch äh als Parteivorstand, da bist du ja quasi als Parteivorsitzende ganz vorne dran äh angekündigt, ihr werdet im Juli eine Gasademo organisieren. Unter anderem die deutsche Öffentlichkeit kann nicht länger wegsehen, hast du glaube ich sogar gesagt. Mhm. Jetzt habt ihr die Demo verschoben, also kann die deutsche Öffentlichkeit doch ein bisschen länger wegsehen?",
+        "question_intent": "Der Interviewer kritisiert Schwerdtner: Ankündigung der Gaza-Demo, dann Verschiebung = Glaubwürdigkeitsproblem.",
+        "position": "Schwerdtner: Die Demo ist nicht abgesagt, sondern verschoben. Grund: Sie wollten es ‚ordentlich' machen, nicht schnell schlecht. Unter 100.000 Mitgliedern gibt es Erwartungen. Sie als Vorsitzende entscheiden nicht allein, sondern mit Bündnis-Partnern. Sie wollen großen Konsens (keine Hamas-Fahnen, keine Antisemitismus) + breite Demo (progressives Lager mitnehmend). Das braucht Zeit. In der Sommerpause war das unrealistisch. Aber: Sie verstehen Ungeduld (‚Kinder in Gaza haben keine Sommerpause'). Ihre Verantwortung: parlamentarische Aktionen (Anträge, Anfragen, aktuelle Stunde) + Straße. Beides zusammen macht Druck.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner erklärt, warum verschoben, und differenziert zwischen Verantwortung (ordentlich machen) und Ungeduld (legitim). Sie weicht aber etwas aus, indem sie sagt, dass kein konkretes Datum mehr genannt wird.",
+        "quotes": [
+          {
+            "text": "Wir wollen den Leuten zu ihrem Recht verhelfen. Also es geht nicht darum, dass wir jetzt die Caritas ersetzen, weil das können wir wie gesagt gar nicht. Wir sind auch nicht die Volksolidarität.",
+            "timestamp": "02:21:34",
+            "context": "Sie differenziert zwischen Hilfsbasis und Rechtsanwaltschaft."
+          },
+          {
+            "text": "es ist total wichtig, den ersten Schritt vor dem zweiten zu gehen. Also du stellst ja hypothetische Fragen und trotzdem ist es so weit weg gerade, dass wir es überhaupt erstmal schaffen, das weiter zu skandalisieren",
+            "timestamp": "02:02:59",
+            "context": "Sie erklärt Schritt-für-Schritt-Logik."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Demo nicht abgesagt, sondern verschoben",
+          "Grund: ordentlich machen mit Bündnis, breitem Konsens",
+          "Parallel: parlamentarische Aktionen (Anträge, aktuelle Stunde)",
+          "Wollen progressives Lager mitnehmend (Palästina-Fahnen ja, Hamas-Fahnen nein)",
+          "Verstehen Ungeduld, aber: Sommerpause + Vorbereitung nötig",
+          "Ziel: großer, breiter Druck auf Bundesregierung re Gaza-Kriegsverbrechen"
+        ],
+        "related_bundestag_topics": [
+          "Gaza-Konflikt und deutsche Außenpolitik",
+          "Israel-Palästina-Frage",
+          "Demonstrationsrecht und Organisierung",
+          "Antisemitismus-Vorwürfe gegen Linke"
+        ]
+      },
+      {
+        "title": "Journalismus zur Politik: Vom Argument zu Jacobin",
+        "timestamp_range": "02:11:17 - 02:16:58",
+        "theme_description": "Schwerdtner arbeitete bei Argument (marxistische Zeitschrift), gründete Jacobin Deutschland, war freie Autorin, dann 2023 Sprung in Parteiführung.",
+        "question_asked": "Wie bist du im Journalismus gelandet? [...] Aber dann muss ja irgendwann der Punkt gekommen sein, okay, du lässt das Schreiben sein und wirst nicht nur aktivistisch, sondern politisch. Das vor zwei Jahren.",
+        "question_intent": "Der Interviewer fragt nach Transition von kritischer Distanz (Journalismus) zu Verantwortung (Politik).",
+        "position": "Schwerdtner: Beim Argument gelernt, wie man linke Texte lesbar macht. Mit anderen gründete sie Jacobin Deutschland (linke Zeitung aus USA). Sie schrieb auch für Freitag etc. Aber: Nach Jahren von ‚außen kritisieren' merkte sie, das reicht nicht. 2023, als Linke zu scheitern drohte (Sarah Wagenknecht verließ Partei), dachte sie: Ich kann nicht mehr. Ein Genosse sagte: ‚Wenn es mit uns abgeht, musst du dir die Hände schmutzig machen.' Das überzeugte sie. Sie gab Chefredakteursposten bei Jacobin auf, weil sie die Partei retten wollte.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner erklärt ihren Weg von Journalismus zu Politik: nicht Opportunismus, sondern bewusste Entscheidung unter Krisenbedingungen. Sie ist transparent über Kosten (Jacobin-Posten) und Risiken.",
+        "quotes": [
+          {
+            "text": "ich war ja trotzdem, ich hatte das ja beschäftigt, wie viele andere auch, dass ich irgendwann halt schon gemerkt habe, das reicht einfach nicht. Also das ist an so einem entscheidenden politischen Punkt. Ich kann es mit mir als Sozialistin nicht vereinbaren, dass es keine linke Partei mehr in Deutschland gibt.",
+            "timestamp": "02:15:24",
+            "context": "Sie zeigt inneren Druck, der sie zur Politikerin machte."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Argument: gelernt, linke Texte lesbar zu machen",
+          "Jacobin Deutschland gegründet (mit anderen)",
+          "Freie Journalistin (Freitag, etc.)",
+          "2023: Erkannt, Journalismus reicht nicht",
+          "Gab Chefredakteursposten auf für Parteirettung",
+          "Europawahl 2024: Listenplatz 5, Ergebnis 2,7% – ‚Himmelfahrtskommando'",
+          "Aber: Osttour + Vor-Ort-Arbeit baute Kredibilität auf"
+        ],
+        "related_bundestag_topics": [
+          "Politische Kommunikation und Medien",
+          "Linke Zeitschriften und Publizistik",
+          "Übergang von Kritik zu Verantwortung"
+        ]
+      },
+      {
+        "title": "Aufstieg trotz Europawahl-Niederlage und keine Vitamin-B",
+        "timestamp_range": "02:16:26 - 02:24:13",
+        "theme_description": "Schwerdtner erklärt, wie sie von Europawahl-Niederlage (2,7%) zur Parteivorsitzenden wurde, ohne etablierte Netzwerke.",
+        "question_asked": "Warum warum hast du nach immer das war eine krasse Niederlage bei der Europawahl für euch, du hast es auch nicht reingeschafft. Ja. Wie hast du es denn trotzdem geschafft quasi in in den anderinhalb Jahren Mhm. von dem Nobody glaube jetzt publicistisch nicht, aber Nobody eine Partei ohne wirklich Vitamin B.",
+        "question_intent": "Der Interviewer fragt, wie Schwerdtner trotz Europawahl-Scheitern und ohne etablierte Seilschaften Vorsitzende wurde.",
+        "position": "Schwerdtner: Sie verband Europawahl-Kandidatur mit Osttour – fuhr durch jeden Kreisverband (besonders Osten) mit Deutschlandticket, lernte Partei kennen, zeigte Engagement. Das war nicht Vita-B-Netzwerk, sondern Feldarbeit. Sie lernte Partei-Realität (warum Sonneberg AfD wählte, etc.). Das schuf Credibilität. Sie war auch nicht aus etabliertem Flügel. Parallel gründete sie ‚Linke Hilf' mit anderen, um Ansatz (KPÖ-Modell) zu zeigen. Das war organisch + dezentral, nicht Machtkampf.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner zeigt transparente Aufstieg: nicht Vitamin B, sondern Feldarbeit + Authentizität + Dezentrale Basis-Organisierung. Sie weist auch auf Zentralismus-Grenzen hin (‚zentristische Position').",
+        "quotes": [
+          {
+            "text": "Ich habe das ja verbunden mit einer Osttour und habe ja für mich in Anspruch genommen zu sagen, ich möchte jetzt die Partei kennenlernen. Also ich kannte sie schon, aber im Sinne von ich fahre jetzt durch jeden scheiß Kreisverband im Osten, also überall was ich konnte",
+            "timestamp": "02:18:29",
+            "context": "Sie zeigt systematische Feldarbeit statt Netzwerk."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Osttour statt Vitamin-B-Netzwerk",
+          "Jeder Kreisverband besucht (mit Deutschlandticket)",
+          "Lernte Partei-Realität (Sonneberg, etc.)",
+          "Gründete ‚Linke Hilf' als Basis-Organisierung",
+          "Zentrische Position (nicht aus einem Flügel) half bei Konsens",
+          "Bodo Ramelo als Kandidat-Wunsch von anderen, dann pairing mit Schwerdtner"
+        ],
+        "related_bundestag_topics": [
+          "Partei-Demokratie und Basisdemokratie",
+          "Macht-Strukturen in Parteien",
+          "Dezentralisierung und Partizipation"
+        ]
+      },
+      {
+        "title": "Zusammenhalt durch ‚revolutionäre Freundlichkeit'",
+        "timestamp_range": "02:24:43 - 02:26:15",
+        "theme_description": "Schwerdtner erklärt, wie sie Partei-Einheit nicht durch Repression sondern durch ‚revolutionäre Freundlichkeit' erreichen will – offene Konflikte statt Hinterzimmer.",
+        "question_asked": "Wie verhinderst du, dass dir irgendwer bei den linken nicht irgendwann mal das Messer in den Rücken haut und sagt das muss weg? Ja. GLB gibt diesen Spruch, ne? Also wie verhinderst du, dass dir irgendwer bei den linken nicht irgendwann mal das Messer in den Rücken haut?",
+        "question_intent": "Der Interviewer prüft, ob Schwerdtner sich vor Partei-Machtkämpfen schützt.",
+        "position": "Schwerdtner antwortet: Man kann es nicht verhindern, aber mit Kulturwandel. Statt Hinterzimmer-Deals oder knappen Abstimmungen auf Parteitagen will sie: Offene Konflikte, direkt ansprechen, nicht über Presse. Das nennt sie ‚revolutionäre Freundlichkeit'. Sie gibt Fehler zu (z.B. Antisemitismus-Beschluss in Letzter Minute, nicht richtig diskutiert). Ziel: Große Themen müssen breiten Konsens haben, nicht Kampfabstimmungen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner benennt Ideal (‚revolutionäre Freundlichkeit'), gibt aber zu, dass Umsetzung schwierig ist. Sie ist eher defensiv bei der Frage, ob das wirklich funktioniert.",
+        "quotes": [
+          {
+            "text": "Also muss ein Kulturwandel einhergehen. Also genau diese denke zu sagen beim nächsten bei beim nächsten Fehltritt oder bei der nächsten weiß ich nicht irgendwas was bei der nächsten Wahl setzen wir dann die Leute ab, weil sie uns nicht mehr passen, sondern wir sind ja auch angetreten ähm mit dem Versprechen oder dem Anliegen zu sagen, revolutionärer Freundlichkeit",
+            "timestamp": "02:24:43",
+            "context": "Sie definiert Kulturwandel-Ansatz."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "‚Revolutionäre Freundlichkeit' statt Hinterzimmer-Politik",
+          "Offene Konflikte, nicht über Presse",
+          "Fehler eingestehen (z.B. Antisemitismus-Beschluss zu schnell)",
+          "Wichtige Themen brauchen breiten Konsens, nicht Kampfabstimmungen",
+          "Großen Probleme mit Partei-Sektiererei (‚sektiererisch alle, die mir nicht passen, rauswerfen')"
+        ],
+        "related_bundestag_topics": [
+          "Partei-Interne Demokratie",
+          "Konfliktkulturen in Organisationen",
+          "Pluralismus in der Linken"
+        ]
+      },
+      {
+        "title": "Sozialismusverständnis und kostenlose Grundversorgung",
+        "timestamp_range": "02:30:23 - 02:35:34",
+        "theme_description": "Schwerdtner wird gefragt, wie sie Sozialismus konkret definiert und ob Grundversorgung (Essen, Wohnung) kostenlos sein soll.",
+        "question_asked": "Wie würde sich denn das linke Rentenmodell konkret finanzieren? [...] Gibt mal gib mal ein paar konkrete revolutionäre Sachen, die nicht Reform sind. [...] Was ist dein Elevator Pitch, warum Deutschland Sozialismus braucht?",
+        "question_intent": "Der Interviewer prüft, ob Schwerdtner konkrete Positionen zu Sozialismus-Definition hat.",
+        "position": "Schwerdtner: Sozialismus = dass nicht mehr alles Profit untergeordnet ist. Konkret: Wohnen, Pflege, Bildung, Rente, Gesundheit müssen raus aus Profitlogik. Wie? Demokratische Kontrolle, Vergesellschaftung. Zur Rente: Alle zahlen ein (statt nur Erwerbstätige), Umlageprinzip bleibt. Zu Lebensmitteln kostenlos: Sie hat das spontan nicht durchdacht, aber akzeptiert die Logik ‚Schule ist kostenlos, warum nicht Nahrung?' Lösung müsste aber auch Supermärkte vergesellschaften.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner antwortet konzeptuell auf Sozialismus (Profit raus), aber bei konkreten Modellen (kostenlose Nahrung) ist sie spontan unsicher. Sie ist transparent darüber.",
+        "quotes": [
+          {
+            "text": "Das heißt, dass nicht mehr alle Lebensbereiche dem Profit untergeordnet sind. Welche Welche soll weiterhin profitabel sein? Du, das klären wir dann, wenn wir wenn wir die Staatsmacht haben.",
+            "timestamp": "02:31:24",
+            "context": "Sie zeigt Pragmatismus bei Detailplanung."
+          },
+          {
+            "text": "Noin, warum nicht kostenlos? Wir schicken die Kinder ja auch auf die Schule. Äh kostet nichts. Ja, habe ich ehrlich gesagt noch nicht drüber nachgedacht. Nimmst du mal mit, also spontan? Genau. Spontan würde ich sagen, ja, da müssen wir aber auch die Supermarkt die Supermarktketten auch vergesellschaften.",
+            "timestamp": "02:34:03",
+            "context": "Sie zeigt aufrichtige Überraschung und schnelle logische Verfolgung."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Sozialismus = Profit-Logik aus Lebensbereichen herausnehmen",
+          "Konkret: Wohnen, Pflege, Bildung, Rente, Gesundheit",
+          "Demokratische Kontrolle + Vergesellschaftung",
+          "Renten-Modell: Alle zahlen ein (nicht nur Erwerbstätige), Umlageprinzip",
+          "Kostenlose Nahrung: spontan nicht durchdacht, aber logisch möglich (müsste Supermärkte vergesellschaften)",
+          "Positive Vision: ‚freie Entfaltung ohne materielle Sorgen'"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Daseinsvorsorge und öffentliche Güter",
+          "Vergesellschaftung und Enteignung"
+        ]
+      },
+      {
+        "title": "Selbstverteidigung, Gewalt und Schutz von Genossen",
+        "timestamp_range": "02:38:38 - 02:40:40",
+        "theme_description": "Schwerdtner diskutiert legitime Selbstverteidigung gegen Staatsgewalt und Faschisten, ohne zu gewaltigen Protesten aufzurufen.",
+        "question_asked": "Wie steht ihr zu Gewalt? Gewaltbereiten Widerstand? [...] die Leute werden irgendwann Massenproteste anzetteln. Was sollen sie denn machen, wenn die Staatsgewalt sie niederknüppelt und Gewalt anwendet?",
+        "question_intent": "Der Interviewer prüft, ob Linke Selbstverteidigung gegen Staatgewalt legitimiert.",
+        "position": "Schwerdtner antwortet: Sie ruft nicht zu Gewalt in Protesten auf, aber sie sieht Selbstverteidigung als legitim an – Lehre aus Bürgerrechtsbewegungen. Sie betont: Antimilitaristin sein ≠ absolute Pazifistin. Konkret: Sie organisiert Schutzräume für Genossen (z.B. in Bautzen, wo Linke niedergeknüppelt werden). Das ist ihre Verantwortung als Vorsitzende.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner antwortet nuanciert, weicht aber bei konkreter Grenzziehung etwas aus. Sie legitimiert Selbstverteidigung, sagt aber nicht, wann der Punkt ist, wo Schutzräume → Bewaffnung wird.",
+        "quotes": [
+          {
+            "text": "ich finde es legitim, ähm, wenn bereit macht, sich verteidigen zu können. Das heißt, das heißt, ich werde jetzt nicht in deiner Sendung zu ähm gewalten Protesten aufrufen, aber ich wie gesagt, ich finde es legitim darüber nachzudenken, wenn man angegriffen wird",
+            "timestamp": "02:38:38",
+            "context": "Sie unterscheidet zwischen Selbstverteidigung und Offensive-Gewalt."
+          },
+          {
+            "text": "wir müssen unsere Genossinnen und Genossen schützen. Dafür müssen wir uns was überlegen.",
+            "timestamp": "02:40:40",
+            "context": "Sie benennt konkrete Aufgabe als Vorsitzende."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Selbstverteidigung gegen Gewalt ist legitim",
+          "Antimilitarismus ≠ absolute Gewaltlosigkeit",
+          "Keine Aufrufe zu Offensiv-Gewalt in Protesten",
+          "Schutzräume für Genossen organisieren (Bautzen-Erfahrung)",
+          "Konkrete Planung für Schutz notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Innere Sicherheit und Protestbewegungen",
+          "Antifaschistische Organisierung",
+          "Linksextremismus-Debatten"
+        ]
+      },
+      {
+        "title": "Regierungsbeteiligung und konkrete Bedingungen",
+        "timestamp_range": "02:45:03 - 02:52:26",
+        "theme_description": "Schwerdtner erklärt, unter welchen Bedingungen Linke in Bundesregierung gehen würde, und lehnt abstrakte Positionen (‚nie' oder ‚immer') ab.",
+        "question_asked": "Ich meine Thüringen ist der beste Beispiel. Da war ihr sogar äh die Partei, die den Ministerpräsident gestellt hat. Kannst du mir irgendwelche Beispiele nennen, was da quasi linke tatsächlich linke Politik in in Thüringen war?",
+        "question_intent": "Der Interviewer fragt, ob Thüringen-Erfahrung zeigt, dass linke Regierungsbeteiligung zu Kompromissen führt.",
+        "position": "Schwerdtner ist weder für ‚nie in Regierung' noch für ‚sofort, wenn möglich'. Sie argumentiert konkret: Bodo Ramelow hat 1000 Lehrer eingestellt + Kindergärten ausgebaut (statt Kürzung) in Minderheitsregierung. Das ist real Erfolg. Aber auch problematisch: langfristiges Kompromissdenken. Schwerdtner sagt: Man muss sich klar machen unter welchen Bedingungen (tragfähige Mehrheit, welche Stärke, welche Kernanliegen nicht-verhandelbar). Und: Regierung ist kein Selbstzweck; wenn nicht funktioniert, muss man auch rausgehen. Zu 2029: Sie wird das konkret mit Jan van Aken besprechen, nicht abstrakt ankündigen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner weicht teilweise aus (‚werden konkret mit van Aken besprechen'), antwortet aber substantiell auf die Grundfrage Bodo: Minderheitsregierung mit echte Erfolgen (Lehrer, Kindergärten), aber auch Kosten.",
+        "quotes": [
+          {
+            "text": "ich bin weder ähm komplett dafür oder dagegen. Ich glaube, es kann man auch so abstrakt nicht sagen. Man kann nicht sagen, wir gehen niemals in Regierung. Oder man kann auch nicht sagen, geil, sobald Rotrutgrün möglich ist, machen wir das sofort.",
+            "timestamp": "02:45:03",
+            "context": "Sie lehnt Abstraktion ab."
+          },
+          {
+            "text": "Was ist deine Haltung? Also, ich bin weder ähm komplett dafür oder dagegen. [...] regieren ist kein Selbstweg.",
+            "timestamp": "02:45:35",
+            "context": "Sie betont Pragmatismus."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Keine abstrakte Anti- oder Pro-Regierungs-Position",
+          "Konkrete Bedingungen müssen geprüft werden (tragfähige Mehrheit, Stärke, Kernforderungen)",
+          "Bodo Ramelow: 1000 Lehrer eingestellt, Kindergärten ausgebaut (positiv)",
+          "Aber auch: Kompromisse, lange Durststrecken",
+          "Glaubwürdigkeit gegenüber Mitgliedern und Wähler:innen zentral",
+          "Rausgehen aus Regierung möglich, wenn nicht funktioniert"
+        ],
+        "related_bundestag_topics": [
+          "Koalitions-Optionen Bundesebene",
+          "Länder-Regierungen (Thüringen, Bremen, MV)",
+          "Linke Regierungspraxis und Kompromisse"
+        ]
+      },
+      {
+        "title": "Deutsches Wirtschaftsmodell in Krise und europäische Neuausrichtung",
+        "timestamp_range": "03:05:47 - 03:08:22",
+        "theme_description": "Schwerdtner analysiert, dass Deutschlands Exportmodell (billige Energie, billige Arbeit) kollabiert ist und plädiert für europäische Umstrukturierung statt einfacher Wiederaufbau.",
+        "question_asked": "Wie sollen die Menschen, die da jetzt noch arbeiten, vielleicht auch nicht mehr so. [...] was ist die Perspektive für die stattdessen? Ja, also wir dürfen nicht so abhängig davon sein, dass die Autos eben irgendwo auf der Welt gekauft werden",
+        "question_intent": "Der Interviewer fragt, wie Linke Arbeitsplatz-Verluste durch Umstrukturierung verhindern will.",
+        "position": "Schwerdtner: Das deutsche Wirtschaftsmodell (Export-Abhängigkeit, billige russische Energie, niedrige Löhne) ist am Ende. Sie wollen es nicht ‚retten', sondern umstrukturieren – aber unter sozialen Bedingungen (Beschäftigte geschützt, demokratische Kontrolle). Konkret: Stärken europäischen Binnenmarkt (statt Exportüberschüsse). Wenn andere Länder andere spezialisieren (Frankreich Autos, andere Wärmepumpen), kann man Arbeitsplätze erhalten, aber zu anderen Bedingungen. Nicht Rückgang, aber Umstrukturierung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner skizziert das Dilemma (Modell kaputt, aber Beschäftigte schützen) und eine Strategie (europäische Umstrukturierung), aber bleibt vage bei konkreten Arbeitsplatz-Zahlen.",
+        "quotes": [
+          {
+            "text": "Also es geht nicht mehr um die Profite einzelne Konzerne, sondern es geht um die Mehrheit der Bevölkerung. Es geht um dich, deine Familie und es geht um die breite Mehrheit der Bevölkerung, für die wir das erkämpfen wollen.",
+            "timestamp": "02:30:53",
+            "context": "Sie erklärt Klassen-Umverteilung als Ziel."
+          },
+          {
+            "text": "Das deutsche Wirtschaftsmodell ist ein Auslaufmodell. Das äh muss man sich, glaube ich, schon einmal klar machen, dass immer darauf basierte Exportnation zu sein, günstige Energiepreise zu haben, hauptsächlich durch äh russisches Gas und günstige Arbeitskraft zu haben.",
+            "timestamp": "03:06:48",
+            "context": "Sie diagnostiziert Kern-Problem des deutschen Modells."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Deutsches Wirtschaftsmodell (Export + billige Energie + billige Arbeit) ist am Ende",
+          "Wollen es nicht ‚retten', sondern unter sozialen Bedingungen umstrukturieren",
+          "Stärken europäischen Binnenmarkt statt Exportüberschüsse",
+          "Spezialisierung statt Alleinproduktion (Frankreich Autos, andere Wärmepumpen)",
+          "Arbeitsplätze in neuer Form möglich, nicht Massenarbeitslosigkeit",
+          "Aber: Wohlstandsverlust muss ehrlich kommuniziert werden"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik und Industrie-Struktur",
+          "Arbeitsplatzpolitik",
+          "Europäische Integration",
+          "Globalisierung und Protektionismus"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Linke ist mit 2,7% bei der Europawahl 2024 gescheitert.",
+        "timestamp": "02:16:26"
+      },
+      {
+        "claim": "680.000 Haustüre wurden im Bundestagswahlkampf 2025 besucht (statt 100.000 geplant).",
+        "timestamp": "00:05:46"
+      },
+      {
+        "claim": "Nur etwa 33% der anspruchsberechtigten Familien rufen Kinderleistungen ab.",
+        "timestamp": "00:21:03"
+      },
+      {
+        "claim": "Rheinmetall-Aktien sind bei Ankündigung von Rüstungsausgaben signifikant gestiegen.",
+        "timestamp": "01:42:27"
+      },
+      {
+        "claim": "Die Bundeswehr hat 50 Milliarden im Haushalt, plus 100 Milliarden Sondervermögen.",
+        "timestamp": "01:45:00"
+      },
+      {
+        "claim": "Rosa Luxemburg starb 1919 und schrieb ‚Eure Ordnung ist auf Sand gebaut' kurz vor ihrem Tod.",
+        "timestamp": "01:19:50"
+      }
+    ]
+  }
+}

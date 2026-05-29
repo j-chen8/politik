@@ -21,8 +21,34 @@ export function getDb(): Database.Database {
     _db = new Database(DB_PATH);
     _db.pragma("journal_mode = WAL");
     _db.pragma("foreign_keys = ON");
+    registerSearchFunctions(_db);
   }
   return _db;
+}
+
+// Unicode-aware Such-Helfer, einmalig an der Connection registriert (genutzt von der
+// Politiker-, Reden-, Drucksachen- und Topic-Suche):
+//  - lower_de: Umlaut-korrektes LOWER (SQLite-LOWER ist ASCII-only).
+//  - word_match(text, term): 1, wenn `term` am ANFANG EINES WORTES in `text` vorkommt
+//    (Wortgrenze davor), sonst 0. Ersetzt die alte %term%-Substring-Suche, damit „ai"
+//    nicht mehr mittendrin „FrohnmAIer"/„UkrAIne" matcht (Wortgrenze: Nicht-Buchstabe/Ziffer).
+function registerSearchFunctions(db: Database.Database) {
+  db.function("lower_de", { deterministic: true }, (s: unknown) =>
+    typeof s === "string" ? s.toLowerCase() : null
+  );
+  db.function("word_match", { deterministic: true }, (text: unknown, term: unknown) => {
+    if (typeof text !== "string" || typeof term !== "string" || term.length === 0) return 0;
+    const h = text.toLowerCase();
+    const n = term.toLowerCase();
+    let from = 0;
+    for (;;) {
+      const idx = h.indexOf(n, from);
+      if (idx === -1) return 0;
+      const prev = idx === 0 ? "" : h[idx - 1];
+      if (idx === 0 || !/[\p{L}\p{N}]/u.test(prev)) return 1; // Wortgrenze davor
+      from = idx + 1;
+    }
+  });
 }
 
 export function initDb() {
@@ -347,19 +373,151 @@ export function getDataFreshness(): DataFreshness {
 
 export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] {
   const db = getDb();
-  const term = `%${query}%`;
+  // Wortanfang-Match (kein %substring%) — „ai" matcht keine Namen wie „FrohnmAIer".
+  const term = query.trim();
   return db
     .prepare(
       `SELECT p.*, pa.label as party_label
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
-       WHERE (p.last_name LIKE ? OR p.first_name LIKE ?
-         OR (p.first_name || ' ' || p.last_name) LIKE ?)
+       WHERE (word_match(p.last_name, ?) OR word_match(p.first_name, ?)
+         OR word_match(p.first_name || ' ' || p.last_name, ?))
          AND ${IS_POLITICIAN_ACTIVE_SQL}
        ORDER BY p.last_name, p.first_name
        LIMIT ?`
     )
     .all(term, term, term, ...VISIBLE_PARLIAMENT_TYPE_VALUES, limit) as PoliticianRow[];
+}
+
+export interface BundestagLandingSnapshot {
+  latestSitzung: {
+    sitzung: number;
+    datum: string;
+    redenCount: number;
+    plpr: string;
+  } | null;
+  latestVotes: VoteIndexEntry[];
+  /** Drucksachen-Zusammenfassung je Vote (key = VoteIndexEntry.id), wo verfügbar. */
+  voteSummaries: Record<string, string | null>;
+  latestGesetzentwuerfe: {
+    drucksacheNr: string;
+    titel: string;
+    zusammenfassung: string | null;
+    datum: string | null;
+    einbringer: string | null;
+  }[];
+  latestAnfragen: {
+    drucksacheNr: string;
+    titel: string;
+    zusammenfassung: string | null;
+    datum: string | null;
+    fraktion: string | null;
+  }[];
+}
+
+/**
+ * Landing-Snapshot für die Bundestag-Hauptseite — symmetrisch zu getBerlinSnapshot:
+ * letzte Plenarsitzung + aktuelle Abstimmungen + Gesetzentwürfe + Kleine Anfragen.
+ */
+export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
+  const db = getDb();
+
+  // 1. Letzte Plenarsitzung
+  const sess = db
+    .prepare(
+      `SELECT id, wahlperiode, sitzung, datum FROM plenar_sessions
+       WHERE datum IS NOT NULL AND datum != '' ORDER BY datum DESC, sitzung DESC LIMIT 1`
+    )
+    .get() as { id: number; wahlperiode: number; sitzung: number; datum: string } | undefined;
+  let latestSitzung: BundestagLandingSnapshot["latestSitzung"] = null;
+  if (sess) {
+    const redenCount = (db
+      .prepare(`SELECT COUNT(*) AS c FROM plenar_speeches WHERE session_id = ?`)
+      .get(sess.id) as { c: number }).c;
+    latestSitzung = {
+      sitzung: sess.sitzung,
+      datum: sess.datum,
+      redenCount,
+      plpr: `${sess.wahlperiode}/${sess.sitzung}`,
+    };
+  }
+
+  // 2. Aktuelle Abstimmungen — GLEICHE Quelle wie /abstimmungen: listAllVotesForIndex
+  //    vereint namentliche (Tabelle votes) + Handzeichen (bundestag_votes), nach Datum
+  //    sortiert. Petition/Personenwahl wie auf der Liste per Default raus. Top-5 =
+  //    exakt die obersten der Abstimmungs-Liste (Konsistenz Landing ↔ /abstimmungen).
+  const latestVotes = listAllVotesForIndex()
+    .filter((v) => v.subtype !== "petition" && v.subtype !== "personenwahl")
+    .slice(0, 5);
+  // Zusammenfassung je Vote — füllt die Karte. Bevorzugt der Abstimmungs-Kontext
+  // „Worum geht es?" (vote_context, nur namentliche Polls), sonst die Zusammenfassung
+  // der verknüpften Drucksache (für Handzeichen-Votes).
+  const voteSummaries: Record<string, string | null> = {};
+  for (const v of latestVotes) {
+    let summ: string | null = null;
+    if (v.type === "namentlich") {
+      summ = (db
+        .prepare(`SELECT worum_geht_es FROM vote_context WHERE poll_id = ? LIMIT 1`)
+        .get(v.poll_id) as { worum_geht_es: string | null } | undefined)?.worum_geht_es ?? null;
+    }
+    if (!summ) {
+      const nr = v.drucksache_nrn[0];
+      summ = nr
+        ? (db
+            .prepare(`SELECT zusammenfassung FROM drucksache_analyses WHERE drucksache_nr=? LIMIT 1`)
+            .get(nr) as { zusammenfassung: string | null } | undefined)?.zusammenfassung ?? null
+        : null;
+    }
+    voteSummaries[v.id] = summ;
+  }
+
+  // 3+4. Drucksachen pro Klasse (gross = Gesetzentwurf, klein = Kleine Anfrage)
+  const drucksByKlasse = (klasse: string) =>
+    (db
+      .prepare(
+        `SELECT da.drucksache_nr, da.zusammenfassung, da.fraktion,
+                COALESCE(
+                  (SELECT thema FROM activities WHERE drucksache_nr=da.drucksache_nr AND thema IS NOT NULL LIMIT 1),
+                  (SELECT titel FROM activities WHERE drucksache_nr=da.drucksache_nr AND titel IS NOT NULL LIMIT 1)
+                ) AS titel,
+                (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
+         FROM drucksache_analyses da
+         WHERE da.batch_class = ? AND da.analyze_error IS NULL
+         ORDER BY datum DESC LIMIT 5`
+      )
+      .all(klasse) as {
+      drucksache_nr: string;
+      zusammenfassung: string | null;
+      fraktion: string | null;
+      titel: string | null;
+      datum: string | null;
+    }[])
+      .filter((r) => r.titel && r.datum)
+      .map((r) => ({
+        drucksacheNr: r.drucksache_nr,
+        titel: r.titel as string,
+        zusammenfassung: r.zusammenfassung,
+        datum: r.datum,
+        fraktion: r.fraktion,
+        einbringer: r.fraktion,
+      }));
+
+  const latestGesetzentwuerfe = drucksByKlasse("gross").map((r) => ({
+    drucksacheNr: r.drucksacheNr,
+    titel: r.titel,
+    zusammenfassung: r.zusammenfassung,
+    datum: r.datum,
+    einbringer: r.einbringer,
+  }));
+  const latestAnfragen = drucksByKlasse("klein").map((r) => ({
+    drucksacheNr: r.drucksacheNr,
+    titel: r.titel,
+    zusammenfassung: r.zusammenfassung,
+    datum: r.datum,
+    fraktion: r.fraktion,
+  }));
+
+  return { latestSitzung, latestVotes, voteSummaries, latestGesetzentwuerfe, latestAnfragen };
 }
 
 export function getPoliticianDb(id: number): PoliticianRow | undefined {
@@ -661,7 +819,8 @@ export function getMethodikCounts(): MethodikCounts {
     cvStatementsTotal: (() => {
       // SQL-json_extract scheitert bei einzelnen legacy-Einträgen mit malformed
       // Inner-Escapes (z.B. Geisel id=119641 hat `\"` Unicode-Mix im ausbildung-
-      // Sub-Wert). Statt SQL-Loop in TS iterieren mit try-catch.
+      // Sub-Wert). Statt SQL-Loop in TS iterieren mit try-catch — robuster gegen
+      // die geteilte DB als die json_type-SQL-Variante (kann nicht crashen).
       try {
         const rows = db.prepare(`SELECT cv_json FROM politicians WHERE cv_json IS NOT NULL AND cv_json != ''`).all() as { cv_json: string }[];
         let total = 0;
@@ -1224,6 +1383,12 @@ export interface ParlamentarischeArbeit {
   tonalitaet: string | null;
   reden_typ: string | null;
   has_correction: boolean;
+  // Phase 3b: Drill-Down zu Detail-Ansicht + Evidenz-Counts (falls v2.1 verfügbar)
+  rede_id: string | null;
+  speaker_variant: string | null;  // exakter Name aus plenar_speeches.speaker für Redner-URL
+  forderungen_count: number;
+  zitate_count: number;
+  zahlen_count: number;
 }
 
 function kategorieForDip(art: string): string {
@@ -1374,6 +1539,11 @@ export function getParlamentarischeArbeit(
           tonalitaet: v21?.tonalitaet ?? null,
           reden_typ: v21?.reden_typ ?? null,
           has_correction: v21?.has_correction ?? false,
+          rede_id: plenar.rede_id,
+          speaker_variant: plenar.speaker,
+          forderungen_count: v21?.forderungen?.length ?? 0,
+          zitate_count: v21?.woertliche_zitate?.length ?? 0,
+          zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
         });
         continue;
       }
@@ -1397,6 +1567,11 @@ export function getParlamentarischeArbeit(
       tonalitaet: null,
       reden_typ: null,
       has_correction: false,
+      rede_id: null,
+      speaker_variant: null,
+      forderungen_count: 0,
+      zitate_count: 0,
+      zahlen_count: 0,
     });
   }
 
@@ -1421,6 +1596,11 @@ export function getParlamentarischeArbeit(
       tonalitaet: v21?.tonalitaet ?? null,
       reden_typ: v21?.reden_typ ?? null,
       has_correction: v21?.has_correction ?? false,
+      rede_id: p.rede_id,
+      speaker_variant: p.speaker,
+      forderungen_count: v21?.forderungen?.length ?? 0,
+      zitate_count: v21?.woertliche_zitate?.length ?? 0,
+      zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
     });
   }
 
@@ -1707,6 +1887,8 @@ export interface PlenarSessionRow {
   source_url: string | null;
   speech_count: number;
   speaker_count: number;
+  topic_count: number;
+  vote_count: number;
 }
 
 export function getPlenarSessions(): PlenarSessionRow[] {
@@ -1714,7 +1896,9 @@ export function getPlenarSessions(): PlenarSessionRow[] {
   return db.prepare(`
     SELECT s.id, s.wahlperiode, s.sitzung, s.datum, s.source_url,
       COUNT(sp.id) as speech_count,
-      COUNT(DISTINCT sp.speaker) as speaker_count
+      COUNT(DISTINCT sp.speaker) as speaker_count,
+      (SELECT COUNT(*) FROM plenar_topics pt WHERE pt.session_id = s.id) as topic_count,
+      (SELECT COUNT(DISTINCT v.poll_id) FROM votes v WHERE v.poll_date = s.datum) as vote_count
     FROM plenar_sessions s
     LEFT JOIN plenar_speeches sp ON sp.session_id = s.id
     GROUP BY s.id
@@ -1793,6 +1977,174 @@ export function getPartyContributionMatrix(): {
   return Array.from(map.entries())
     .map(([fraktion, v]) => ({ fraktion, total: v.total, byTyp: v.byTyp }))
     .sort((a, b) => b.total - a.total);
+}
+
+// Tonalitäts-Verteilung pro Fraktion über alle KI-analysierten Rede-Segmente.
+// Quelle: speech_analyses_v2 × plenar_speeches via speech_id (kein Kartesisches
+// Produkt — speech_id ist FK, jeder Segment-Row hat genau einen Speaker).
+export function getRedenTonalitaetByFraktion(): {
+  fraktion: string;
+  total: number;
+  byTonalitaet: Record<string, number>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT
+      COALESCE(NULLIF(TRIM(ps.party), ''), '__none__') AS party,
+      sa.tonalitaet AS tonalitaet,
+      COUNT(*) AS c
+    FROM speech_analyses_v2 sa
+    JOIN plenar_speeches ps ON ps.id = sa.speech_id
+    WHERE sa.tonalitaet IS NOT NULL
+    GROUP BY party, sa.tonalitaet
+  `).all() as { party: string; tonalitaet: string; c: number }[];
+
+  // Fraktions-Label-Normalisierung (UI-Schreibweise)
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+    "fraktionslos": "fraktionslos",
+    "__none__": "Präsidium / o. Partei",
+  };
+
+  // Tonalitäts-Slug-Repair für seltene Drift-Werte, die nicht durch den
+  // deterministischen Repair-Pass abgedeckt sind.
+  const TONALITAET_REPAIR: Record<string, string> = {
+    "defensive_pragmatisch": "defensiv_pragmatisch",
+  };
+
+  // Roh-Strings enthalten teilweise NBSP (U+00A0, z.B. „BÜNDNIS␣90") und
+  // Soft-Hyphens. Normalisieren bevor wir gegen FRAKTION_LABEL lookupen.
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+
+  const map = new Map<string, { total: number; byTonalitaet: Record<string, number> }>();
+  for (const r of rows) {
+    const fraktion = FRAKTION_LABEL[normalize(r.party)] ?? normalize(r.party);
+    const tonalitaet = TONALITAET_REPAIR[r.tonalitaet] ?? r.tonalitaet;
+    if (!map.has(fraktion)) map.set(fraktion, { total: 0, byTonalitaet: {} });
+    const entry = map.get(fraktion)!;
+    entry.total += r.c;
+    entry.byTonalitaet[tonalitaet] = (entry.byTonalitaet[tonalitaet] ?? 0) + r.c;
+  }
+
+  return Array.from(map.entries())
+    .map(([fraktion, v]) => ({ fraktion, total: v.total, byTonalitaet: v.byTonalitaet }))
+    .sort((a, b) => b.total - a.total);
+}
+
+// Tonalitäts-Verteilung der Kleinen Anfragen pro Fraktion. Filter:
+// nur batch_class='klein' (separate Tonalitäts-Skala als für Anträge/Gesetze),
+// nur Einzel-Fraktionen mit ≥10 Anfragen (joint/Bundesregierung ausgeschlossen).
+export function getDrucksacheTonalitaetByFraktion(): {
+  fraktion: string;
+  total: number;
+  byTonalitaet: Record<string, number>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT
+      TRIM(REPLACE(REPLACE(fraktion, char(10), ''), char(13), '')) AS fraktion,
+      TRIM(REPLACE(REPLACE(tonalitaet, char(10), ''), char(13), '')) AS tonalitaet,
+      COUNT(*) AS c
+    FROM drucksache_analyses
+    WHERE batch_class = 'klein'
+      AND tonalitaet IS NOT NULL
+      AND fraktion IS NOT NULL
+      AND fraktion != ''
+    GROUP BY fraktion, tonalitaet
+  `).all() as { fraktion: string; tonalitaet: string; c: number }[];
+
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "BÜNDNIS 90/Die GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+    "fraktionslos": "fraktionslos",
+  };
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+  // Joint-Fraktionen, Bundesregierung, Ministerien, Einzelabgeordnete: nicht
+  // einer Fraktion zurechenbar — ausschließen.
+  const isJointOrInstitution = (s: string) =>
+    /,|\bund\b|überparteilich|Bundes(regierung|ministerium|tag)|\(Einzelabgeordnete/i.test(s);
+
+  const map = new Map<string, { total: number; byTonalitaet: Record<string, number> }>();
+  for (const r of rows) {
+    const cleaned = normalize(r.fraktion);
+    if (isJointOrInstitution(cleaned)) continue;
+    const fraktion = FRAKTION_LABEL[cleaned] ?? cleaned;
+    if (!map.has(fraktion)) map.set(fraktion, { total: 0, byTonalitaet: {} });
+    const entry = map.get(fraktion)!;
+    entry.total += r.c;
+    entry.byTonalitaet[r.tonalitaet] = (entry.byTonalitaet[r.tonalitaet] ?? 0) + r.c;
+  }
+
+  return Array.from(map.entries())
+    .filter(([, v]) => v.total >= 10)
+    .map(([fraktion, v]) => ({ fraktion, total: v.total, byTonalitaet: v.byTonalitaet }))
+    .sort((a, b) => b.total - a.total);
+}
+
+// Monats-Trend für Kleine Anfragen pro Hauptsteller-Fraktion. Verwendet
+// MIN(datum) pro Drucksache aus `activities` (da activities mehrere Rows
+// pro Drucksache hat — eine pro Signator:in). Liefert pro Monat den
+// konfrontativ-Anteil (fordernd+kritisch) und das absolute Volumen.
+export function getDrucksacheMonthlyTrend(): {
+  monat: string;
+  byFraktion: Record<string, { ka_n: number; konfront_pct: number; sachlich_pct: number }>;
+}[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    WITH first_dates AS (
+      SELECT drucksache_nr, MIN(datum) AS datum
+      FROM activities WHERE datum IS NOT NULL
+      GROUP BY drucksache_nr
+    )
+    SELECT
+      substr(fd.datum, 1, 7) AS monat,
+      TRIM(REPLACE(REPLACE(da.fraktion, char(10), ''), char(13), '')) AS fraktion,
+      SUM(CASE WHEN da.tonalitaet IN ('fordernd','kritisch') THEN 1 ELSE 0 END) AS konfront,
+      SUM(CASE WHEN da.tonalitaet = 'sachlich' THEN 1 ELSE 0 END) AS sachlich,
+      COUNT(*) AS ka_n
+    FROM drucksache_analyses da
+    JOIN first_dates fd ON fd.drucksache_nr = da.drucksache_nr
+    WHERE da.batch_class = 'klein' AND da.tonalitaet IS NOT NULL
+      AND da.fraktion IS NOT NULL AND da.fraktion != ''
+    GROUP BY monat, fraktion
+    ORDER BY monat
+  `).all() as { monat: string; fraktion: string; konfront: number; sachlich: number; ka_n: number }[];
+
+  const FRAKTION_LABEL: Record<string, string> = {
+    "CDU/CSU": "CDU/CSU",
+    "AfD": "AfD",
+    "SPD": "SPD",
+    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "BÜNDNIS 90/Die GRÜNEN": "Grüne",
+    "Die Linke": "Linke",
+  };
+  const ALLOWED = new Set(["CDU/CSU", "AfD", "SPD", "Grüne", "Linke"]);
+  const normalize = (s: string) => s.replace(/ /g, " ").replace(/­/g, "");
+
+  const byMonat = new Map<string, Record<string, { ka_n: number; konfront_pct: number; sachlich_pct: number }>>();
+  for (const r of rows) {
+    const cleaned = normalize(r.fraktion);
+    const fraktion = FRAKTION_LABEL[cleaned];
+    if (!fraktion || !ALLOWED.has(fraktion)) continue;
+    if (!byMonat.has(r.monat)) byMonat.set(r.monat, {});
+    byMonat.get(r.monat)![fraktion] = {
+      ka_n: r.ka_n,
+      konfront_pct: r.ka_n > 0 ? (r.konfront / r.ka_n) * 100 : 0,
+      sachlich_pct: r.ka_n > 0 ? (r.sachlich / r.ka_n) * 100 : 0,
+    };
+  }
+
+  return Array.from(byMonat.entries())
+    .map(([monat, byFraktion]) => ({ monat, byFraktion }))
+    .sort((a, b) => a.monat.localeCompare(b.monat));
 }
 
 // Speakers with per-Typ breakdown. Pass `limit = 0` to get all.
@@ -2907,23 +3259,200 @@ export function getVotersForPollByFraktionVote(
   `).all(pollId, fraktion, vote) as VoterRow[];
 }
 
-export interface PollIndexRow {
+export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";
+
+/** Was finanziert jeder Einzelplan? Kuratierte Liste, bürgerverständliche
+ *  Themen-Klammer nach dem Ministeriumsnamen. Ziel: User soll verstehen,
+ *  worum es bei einer Einzelplan-Abstimmung inhaltlich geht. */
+const EINZELPLAN_INHALT: Record<string, { ministerium: string; themen: string }> = {
+  "01": { ministerium: "Bundespräsident", themen: "Amtsführung, Bundespräsidialamt" },
+  "02": { ministerium: "Bundestag", themen: "Parlamentsbetrieb, Verwaltung des Bundestags" },
+  "03": { ministerium: "Bundesrat", themen: "Verwaltung des Bundesrats" },
+  "04": { ministerium: "Bundeskanzleramt", themen: "Bundesnachrichtendienst, Kultur, Migrations-Beauftragte" },
+  "05": { ministerium: "Auswärtiges Amt", themen: "Diplomatie, internationale Beiträge, Auslandsvertretungen" },
+  "06": { ministerium: "Bundesministerium des Innern", themen: "Bundespolizei, BKA, Verfassungsschutz, Sport" },
+  "07": { ministerium: "Bundesministerium der Justiz und für Verbraucherschutz", themen: "Justiz, Bundesgerichte, Verbraucherschutz" },
+  "08": { ministerium: "Bundesministerium der Finanzen", themen: "Steuerverwaltung, Zoll, Bundesschuld, BaFin" },
+  "09": { ministerium: "Bundesministerium für Wirtschaft und Energie", themen: "Wirtschaftsförderung, Außenhandel, Energie" },
+  "10": { ministerium: "Bundesministerium für Landwirtschaft", themen: "Landwirtschaft, Ernährung, Forsten" },
+  "11": { ministerium: "Bundesministerium für Arbeit und Soziales", themen: "Bundesagentur für Arbeit, Rente, Pflege, Bürgergeld" },
+  "12": { ministerium: "Bundesministerium für Verkehr", themen: "Straßen, Bahn, Wasserwege, ÖPNV" },
+  "14": { ministerium: "Bundesministerium der Verteidigung", themen: "Bundeswehr, Rüstung, Auslandseinsätze" },
+  "15": { ministerium: "Bundesministerium für Gesundheit", themen: "GKV-Bundeszuschuss, BfArM, RKI, Pflege" },
+  "16": { ministerium: "Bundesministerium für Umwelt", themen: "Klimaschutz, Naturschutz, Reaktorsicherheit" },
+  "17": { ministerium: "Bundesministerium für Familie, Senioren, Frauen und Jugend", themen: "Familienleistungen, Senioren, Frauen, Jugend" },
+  "19": { ministerium: "Bundesverfassungsgericht", themen: "Verfassungsgericht" },
+  "20": { ministerium: "Bundesrechnungshof", themen: "Rechnungsprüfung" },
+  "23": { ministerium: "Bundesministerium für wirtschaftliche Zusammenarbeit und Entwicklung", themen: "Entwicklungshilfe, Klimafinanzierung" },
+  "24": { ministerium: "Bundesministerium für Digitales und Staatsmodernisierung", themen: "Verwaltungsdigitalisierung, KI, Staatsmodernisierung" },
+  "25": { ministerium: "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen", themen: "Wohnungsbau, Städtebau, Bauwesen" },
+  "30": { ministerium: "Bundesministerium für Forschung", themen: "Forschungsförderung, Hochschulen, Bildung" },
+  "32": { ministerium: "Bundesschuld", themen: "Zinsen und Tilgung der Staatsschulden" },
+  "60": { ministerium: "Allgemeine Finanzverwaltung", themen: "Steuereinnahmen, Länder-Finanzausgleich, EU-Beiträge" },
+};
+
+/** Extrahiert eine Einzelplan-Nummer aus dem raw_snippet und mappt sie auf
+ *  einen bürgerverständlichen Etat-Titel inkl. Themen-Klammer.
+ *  Beispiel: "Einzelplan 08 – Bundesministerium der Finanzen" →
+ *  "Etat des Bundesministeriums der Finanzen — Steuern, Zoll, Bundesschuld, BaFin" */
+function extractEinzelplanHint(snippet: string | null): string | null {
+  if (!snippet) return null;
+  const m = snippet.match(/Einzelplan\s+(\d+)/);
+  if (!m) return null;
+  const num = m[1].padStart(2, "0");
+  const known = EINZELPLAN_INHALT[num];
+  if (known) {
+    return `Etat: ${known.ministerium} — ${known.themen}`;
+  }
+  // Fallback: aus Snippet den Namen ziehen, ohne kuratierte Themen.
+  const nameM = snippet.match(
+    /Einzelplan\s+\d+\s*[–—-]?\s*(Bundesministerium[^.,;]{0,80}|Bundes\w[^.,;]{0,80}|[A-ZÄÖÜ][^.,;]{0,80})/,
+  );
+  const name = (nameM?.[1] ?? "")
+    .trim()
+    .replace(/\s+(in\s+der\s+Ausschussfassung|Drucksache|gemäß|mit\s+den).*$/i, "")
+    .replace(/[\s–—-]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (name) return `Etat: ${name} (Einzelplan ${num})`;
+  return `Etat (Einzelplan ${num})`;
+}
+
+/** Erkennt generische kerninhalt-Suffixe, die nach dem Einzelplan-Hint nichts
+ *  Informatives mehr beitragen ("Die Drucksache ist eine Ergänzung zu den
+ *  Beschlussempfehlungen…", "Haushaltsausschuss empfiehlt…"). */
+function isGenericKerninhalt(text: string): boolean {
+  const s = text.toLowerCase().trim();
+  return (
+    s.startsWith("die drucksache ist eine ergänzung") ||
+    s.startsWith("haushaltsausschuss empfiehlt") ||
+    s.startsWith("der haushaltsausschuss empfiehlt") ||
+    s.startsWith("ergänzungsdrucksache") ||
+    s.startsWith("einzelplan ")
+  );
+}
+
+/** Rät aus dem PlPr-Snippet den Dokumenttyp einer Vote (Gesetzentwurf,
+ *  Entschließungsantrag etc.) — als letztes Fallback wenn weder DS-Analyse
+ *  noch Einzelplan-Hint einen sprechenden Titel liefern. */
+function inferDocTypeFromSnippet(snippet: string | null): string {
+  if (!snippet) return "Abstimmung";
+  const s = snippet.toLowerCase();
+  // GO-Verfahrens-Votes (oft ohne DS): Einspruch gegen Ordnungsmaßnahmen,
+  // Geschäftsordnungsanträge, Überweisungen, Wahlgang-Eröffnungen.
+  if (s.includes("einspruch gegen eine ordnungsmaßnahme") || s.includes("ordnungsmaßnahme gemäß § 39")) {
+    return "Einspruch gegen Ordnungsmaßnahme (§ 39 GO)";
+  }
+  if (s.includes("geschäftsordnungsantrag")) return "Geschäftsordnungs-Antrag";
+  if (s.includes("zweiten wahlgang")) return "Antrag auf zweiten Wahlgang";
+  if (s.includes("feststellung der tagesordnung")) return "Feststellung der Tagesordnung";
+  if (s.includes("überweisung")) return "Überweisungs-Antrag";
+  // Substantielle Dokumente:
+  if (s.includes("entschließungsantrag")) return "Entschließungsantrag";
+  if (s.includes("änderungsantrag")) return "Änderungsantrag";
+  if (s.includes("gesetzentwurf") || s.includes("entwurf eines gesetzes")) return "Gesetzentwurf";
+  if (s.includes("beschlussempfehlung")) return "Beschlussempfehlung";
+  if (s.includes("antrag")) return "Antrag";
+  return "Abstimmung";
+}
+
+/** Strippt typische Party-Prefix-Sätze aus drucksache-Zusammenfassungen UND
+ *  Kerninhalt-Bullets, damit Vote-Labels nicht mit "Die Fraktion XYZ fordert…"
+ *  oder "BÜNDNIS 90/DIE GRÜNEN fordert…" starten. Im Titel ist die einbringende
+ *  Partei irrelevant — nur das Anliegen zählt. */
+function stripPartyPrefix(s: string): string {
+  // Verben die typisch nach einer Partei-Nennung kommen.
+  const VERBS = "(fordert|fordern|kritisiert|kritisieren|beantragt|beantragen|begrüßt|begrüßen|bringt|bringen|möchte|möchten|bestreitet|will|wollen|verlangt|verlangen|legt|legen|schlägt vor|schlagen vor|plädiert|plädieren|setzt sich ein|setzen sich ein|argumentiert|argumentieren)";
+  const PARTY = "(AfD|CDU/CSU|SPD|BÜNDNIS\\s*90/DIE\\s*GRÜNEN|BÜNDNIS\\s*90/Die\\s*GRÜNEN|GRÜNE|GRÜNEN|Grüne|Grünen|Die\\s+Linke|LINKE|Linke|FDP|Antragsteller|Antragstellende)";
+  // Trennzeichen nach dem Verb: Leerzeichen ODER Doppelpunkt ODER Komma.
+  const SEP = "[\\s:,;.]+";
+  const patterns = [
+    // "(Die) Fraktion {Party} (-Fraktion)? VERB [:|space|,] …" — Prefix strippen
+    new RegExp(`^Die\\s+${PARTY}-Fraktion\\s+${VERBS}${SEP}`, "i"),
+    new RegExp(`^Die\\s+Fraktion\\s+(?:der|des|von)\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    new RegExp(`^Die\\s+Fraktion\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Fraktion Die Linke fordert …" (ohne führendes "Die"; "Die" gehört zur Partei)
+    new RegExp(`^Fraktion\\s+(?:Die\\s+)?${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Die {Party} VERB …" (z.B. "Die AfD fordert", ohne -Fraktion)
+    new RegExp(`^Die\\s+${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Antrag der {Party}-Fraktion auf …" / "Antrag der Fraktion {Party} …"
+    new RegExp(`^(?:Der\\s+|Die\\s+)?(?:Entschließungsantrag|Änderungsantrag|Antrag|Gesetzentwurf|Beschlussempfehlung)\\s+der\\s+(?:${PARTY}-Fraktion|Fraktion\\s+${PARTY})\\s+(?:auf|zur?|über|zum?)?\\s*`, "i"),
+    // "Antrag von {Party} zu/zum/zur einem X. " — strip bis nach dem ersten Punkt (oft einleitender Satz vor dem eigentlichen Inhalt)
+    new RegExp(`^(?:Der\\s+|Die\\s+)?(?:Entschließungsantrag|Änderungsantrag|Antrag|Gesetzentwurf|Beschlussempfehlung)\\s+von\\s+(?:der\\s+)?${PARTY}\\s+(?:zu|zur?|zum|über|auf)[^.]+\\.\\s*`, "i"),
+    // "{Party} VERB [:|space|,] …"  (häufigster Kerninhalt-Fall, ohne "Die")
+    new RegExp(`^${PARTY}\\s+${VERBS}${SEP}`, "i"),
+    // "Antragsteller fordern …"
+    new RegExp(`^Antragstellende?\\s+${VERBS}${SEP}`, "i"),
+  ];
+  // Mehrere Pässe (fixpoint): wenn ein Pattern einen einleitenden Satz strippt
+  // ("Antrag von X zu Y."), kann ein anderes Pattern noch im Rest greifen
+  // ("Die Y fordert Z" → "Z"). Maximal 3 Pässe für Sicherheit.
+  let result = s.trim();
+  for (let pass = 0; pass < 3; pass++) {
+    const before = result;
+    for (const re of patterns) {
+      result = result.replace(re, "");
+    }
+    if (result === before) break;
+  }
+  // Erstes Zeichen groß schreiben falls nötig.
+  if (result.length > 0 && result[0] !== result[0].toUpperCase()) {
+    result = result[0].toUpperCase() + result.slice(1);
+  }
+  return result.trim();
+}
+
+export interface NamentlicheVoteIndexEntry {
+  type: "namentlich";
+  subtype: VoteSubtype;
+  id: string;
+  detail_url: string;
+  label: string | null;
+  date: string | null;
+  outcome: "angenommen" | "abgelehnt";
+  outcome_label: string;
+  drucksache_nrn: string[];
+  topics: string[];
   poll_id: number;
-  poll_label: string | null;
-  poll_date: string | null;
   yes: number;
   no: number;
   abstain: number;
   no_show: number;
   total: number;
   has_topic_match: 0 | 1;
-  match_confidence: string | null; // 'high' | 'medium' | 'low' | 'none' | null
+  match_confidence: string | null;
   speech_count: number;
 }
 
-export function listAllPollsForIndex(): PollIndexRow[] {
+export interface HandzeichenVoteIndexEntry {
+  type: "handzeichen" | "hammelsprung" | "unklar";
+  subtype: VoteSubtype;
+  id: string;
+  detail_url: string;
+  label: string | null;
+  date: string | null;
+  outcome: "angenommen" | "abgelehnt" | "vertagt" | "ueberwiesen" | "unklar";
+  outcome_label: string;
+  drucksache_nrn: string[];
+  topics: string[];
+  vote_id: number;
+  modus: string | null;
+  fraktion_votes: Record<string, string> | null;
+  sitzung_nr: number | null;
+  wahlperiode: number | null;
+}
+
+export type VoteIndexEntry = NamentlicheVoteIndexEntry | HandzeichenVoteIndexEntry;
+
+/** Vereint die alten namentlichen Abstimmungen mit den per Handzeichen
+ *  bekannten Vote-Events (aus bundestag_votes). Sortierung: neueste zuerst. */
+export function listAllVotesForIndex(): VoteIndexEntry[] {
   const db = getDb();
-  return db.prepare(`
+  const entries: VoteIndexEntry[] = [];
+
+  // 1. Namentliche Abstimmungen aus `votes` (mit Topic-Match + Reden-Count
+  //    + aw-Topics aus poll_aw_topics).
+  const namentlich = db.prepare(`
     SELECT
       v.poll_id,
       v.poll_label,
@@ -2941,12 +3470,229 @@ export function listAllPollsForIndex(): PollIndexRow[] {
           SELECT topic_id FROM vote_topic_links
           WHERE poll_id = v.poll_id AND topic_id != 0
         )
-      ), 0) AS speech_count
+      ), 0) AS speech_count,
+      (SELECT topics_json FROM poll_aw_topics WHERE poll_id = v.poll_id) AS aw_topics_json
     FROM votes v
     LEFT JOIN vote_topic_links vtl ON vtl.poll_id = v.poll_id
     GROUP BY v.poll_id, v.poll_label, v.poll_date
-    ORDER BY v.poll_date DESC, v.poll_id DESC
-  `).all() as PollIndexRow[];
+  `).all() as Array<{
+    poll_id: number; poll_label: string | null; poll_date: string | null;
+    yes: number; no: number; abstain: number; no_show: number; total: number;
+    has_topic_match: 0 | 1; match_confidence: string | null; speech_count: number;
+    aw_topics_json: string | null;
+  }>;
+
+  for (const p of namentlich) {
+    const passed = p.yes > p.no;
+    const topics: string[] = p.aw_topics_json
+      ? (() => { try { return JSON.parse(p.aw_topics_json!) as string[]; } catch { return []; } })()
+      : [];
+    entries.push({
+      type: "namentlich",
+      subtype: "gesetz", // namentliche Abstimmungen sind fast immer Gesetze/Anträge
+      id: `poll:${p.poll_id}`,
+      detail_url: `/abstimmungen/${p.poll_id}`,
+      label: p.poll_label,
+      date: p.poll_date,
+      outcome: passed ? "angenommen" : "abgelehnt",
+      outcome_label: passed ? "angenommen" : "abgelehnt",
+      drucksache_nrn: [],
+      topics,
+      poll_id: p.poll_id,
+      yes: p.yes, no: p.no, abstain: p.abstain, no_show: p.no_show, total: p.total,
+      has_topic_match: p.has_topic_match,
+      match_confidence: p.match_confidence,
+      speech_count: p.speech_count,
+    });
+  }
+
+  // 2. Handzeichen/Hammelsprung-Votes aus `bundestag_votes` — keine
+  //    per-MdB-Daten, Label = Drucksachen-Zusammenfassung, Detail-Link
+  //    auf DS-Seite.
+  try {
+    const btv = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.outcome,
+             bv.vote_type, bv.vote_subtype, bv.modus, bv.fraktion_votes_json,
+             bv.drucksache_nrn_json, bv.raw_snippet
+      FROM bundestag_votes bv
+      WHERE bv.outcome != 'kein_vote' AND bv.error_type IS NULL
+    `).all() as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; outcome: string; vote_type: string; vote_subtype: string | null;
+      modus: string | null;
+      fraktion_votes_json: string | null; drucksache_nrn_json: string | null;
+      raw_snippet: string | null;
+    }>;
+
+    const outcomeMap: Record<string, { o: HandzeichenVoteIndexEntry["outcome"]; l: string }> = {
+      annahme: { o: "angenommen", l: "angenommen" },
+      annahme_geaendert: { o: "angenommen", l: "in geänderter Fassung angenommen" },
+      ablehnung: { o: "abgelehnt", l: "abgelehnt" },
+      vertagung: { o: "vertagt", l: "vertagt" },
+      ueberweisung: { o: "ueberwiesen", l: "an Ausschuss überwiesen" },
+    };
+
+    for (const v of btv) {
+      // DS-Refs: invalide Platzhalter (z.B. "21/XXXX") aus LLM-Halluzinationen filtern.
+      const dsNrnRaw: string[] = v.drucksache_nrn_json
+        ? (() => { try { return JSON.parse(v.drucksache_nrn_json!) as string[]; } catch { return []; } })()
+        : [];
+      const dsNrn = dsNrnRaw.filter((nr) => /^\d{1,3}\/\d{3,}$/.test(nr));
+      let label: string | null = null;
+      let topics: string[] = [];
+      // Disambiguierungs-Hinweis aus dem PlPr-Snippet (vor allem "Einzelplan XX —
+      // Bundesministerium für …" bei Haushalts-Abstimmungen, die alle dieselbe
+      // übergeordnete DS referenzieren). NUR für Gesetz-Subtype — bei Petition/
+      // Personenwahl-Votes im selben Snippet-Block würde sonst der Hint aus
+      // einem benachbarten Haushalts-Vote fälschlich übernommen.
+      const einzelplanHint = v.vote_subtype === "gesetz"
+        ? extractEinzelplanHint(v.raw_snippet)
+        : null;
+      if (dsNrn.length > 0) {
+        const row = db.prepare(
+          `SELECT kerninhalt, zusammenfassung, thema FROM drucksache_analyses WHERE drucksache_nr=?`
+        ).get(dsNrn[0]) as { kerninhalt: string | null; zusammenfassung: string | null; thema: string | null } | undefined;
+        // 1) Bevorzugt: erste Bullet aus kerninhalt — LLM sollte party-frei sein,
+        //    aber wir strippen safety-halber nochmal Party-Prefixe (kommt bei
+        //    Anträgen mit "Grüne fordern X" oder "BÜNDNIS 90/DIE GRÜNEN ..." vor).
+        if (row?.kerninhalt) {
+          try {
+            const arr = JSON.parse(row.kerninhalt) as string[];
+            if (Array.isArray(arr) && arr.length > 0 && typeof arr[0] === "string") {
+              label = stripPartyPrefix(arr[0]).trim();
+            }
+          } catch { /* fall through */ }
+        }
+        // 2) Fallback: zusammenfassung, Party-Prefix strippen.
+        if (!label && row?.zusammenfassung) {
+          label = stripPartyPrefix(row.zusammenfassung).slice(0, 180);
+        }
+        // 3) Topics aus dem CSV-Feld `thema` (z.B. "Finanzen, Verteidigung").
+        if (row?.thema) {
+          topics = row.thema.split(",").map((s) => s.trim()).filter(Boolean);
+        }
+        // 4) Falls keine Analyse: DIP-Titel als Fallback (z.B. für
+        //    Wahlvorschläge, Petitions-Sammelübersichten, Verfahrens-Anträge).
+        if (!label) {
+          const dip = db.prepare(
+            `SELECT titel FROM dip_ds_titles WHERE drucksache_nr=?`
+          ).get(dsNrn[0]) as { titel: string | null } | undefined;
+          if (dip?.titel) label = dip.titel.trim();
+        }
+      }
+      // Einzelplan-Hint hat Priorität als Label, weil sonst alle Haushalts-Voten
+      // gleich heißen. Kerninhalt nur als Suffix wenn er etwas Spezifisches
+      // hinzufügt (nicht "Die Drucksache ist eine Ergänzung…" etc.).
+      if (einzelplanHint) {
+        label = label && !isGenericKerninhalt(label)
+          ? `${einzelplanHint} · ${label}`
+          : einzelplanHint;
+      }
+      // Fallback wenn nichts gegriffen hat: Datum + Dokumenttyp aus snippet.
+      // Beispiel: "Gesetzentwurf · 24. April 2026". Lieber das anzeigen als
+      // den Vote ganz weglassen — auch ohne klares Thema ist das
+      // Abstimmungsverhalten der Fraktionen wertvoll.
+      if (!label) {
+        const docType = inferDocTypeFromSnippet(v.raw_snippet);
+        const dateStr = v.datum
+          ? new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", {
+              day: "2-digit", month: "long", year: "numeric",
+            })
+          : "Datum unbekannt";
+        if (dsNrn.length > 0) {
+          label = `${docType} · Drucksache ${dsNrn.join(", ")}`;
+        } else {
+          label = `${docType} vom ${dateStr}`;
+        }
+      }
+      const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
+      const detail_url = dsNrn.length > 0
+        ? `/aktivitaeten/${dsNrn[0].replace("/", "-")}`
+        : `/abstimmungen`;
+      const type: HandzeichenVoteIndexEntry["type"] =
+        v.vote_type === "handzeichen" || v.vote_type === "hammelsprung"
+          ? v.vote_type
+          : "unklar";
+      const fraktion_votes: Record<string, string> | null = v.fraktion_votes_json
+        ? (() => { try { return JSON.parse(v.fraktion_votes_json!) as Record<string, string>; } catch { return null; } })()
+        : null;
+      const subtype: VoteSubtype =
+        v.vote_subtype === "gesetz" || v.vote_subtype === "petition" || v.vote_subtype === "personenwahl"
+          ? v.vote_subtype
+          : "unbekannt";
+      entries.push({
+        type,
+        subtype,
+        id: `btv:${v.vote_id}`,
+        detail_url,
+        label,
+        date: v.datum,
+        outcome: oc.o,
+        outcome_label: oc.l,
+        drucksache_nrn: dsNrn,
+        topics,
+        vote_id: v.vote_id,
+        modus: v.modus,
+        fraktion_votes,
+        sitzung_nr: v.sitzung_nr,
+        wahlperiode: v.wahlperiode,
+      });
+    }
+  } catch { /* table evt. noch leer */ }
+
+  entries.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+  return entries;
+}
+
+// Handzeichen-Vote-Events für eine konkrete Bundestags-Drucksache —
+// gefiltert via JSON-each über drucksache_nrn_json.
+export interface BundestagDsHandzeichenVote {
+  voteId: number;
+  sitzungNr: number | null;
+  wahlperiode: number | null;
+  datum: string | null;
+  voteType: string;
+  outcome: string;
+  modus: string | null;
+  fraktionVotes: Record<string, string> | null;
+  drucksacheNrn: string[];
+  xmlSource: string;
+}
+
+export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzeichenVote[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.vote_type, bv.outcome, bv.modus,
+             bv.fraktion_votes_json,
+             bv.drucksache_nrn_json, bv.xml_source
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dsNr) as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; vote_type: string; outcome: string; modus: string | null;
+      fraktion_votes_json: string | null; drucksache_nrn_json: string | null; xml_source: string;
+    }>;
+    const parseObj = <T,>(s: string | null): T | null => {
+      if (!s) return null;
+      try { return JSON.parse(s) as T; } catch { return null; }
+    };
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      wahlperiode: r.wahlperiode,
+      datum: r.datum,
+      voteType: r.vote_type,
+      outcome: r.outcome,
+      modus: r.modus,
+      fraktionVotes: parseObj<Record<string, string>>(r.fraktion_votes_json),
+      drucksacheNrn: parseObj<string[]>(r.drucksache_nrn_json) ?? [],
+      xmlSource: r.xml_source,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 // ============================================================
@@ -3287,6 +4033,21 @@ export interface DrucksacheSkeleton {
   herausgeber: string | null;
 }
 
+/** Konstruiert die bundestag.de-PDF-URL für eine Drucksache aus ihrer Nummer.
+ *  Format: https://dserver.bundestag.de/btd/{WP}/{ordner}/{wp}{nr_padded5}.pdf
+ *  Ordner-Regel: erste 3 Stellen der auf 5 Stellen mit Null aufgefüllten Nr.
+ *  Beispiele: 21/0563 → /btd/21/005/2100563.pdf
+ *             21/2902 → /btd/21/029/2102902.pdf
+ *             21/1064 → /btd/21/010/2101064.pdf */
+function buildDsPdfUrl(dsNr: string): string | null {
+  const m = dsNr.match(/^(\d+)\/0*(\d+)$/);
+  if (!m) return null;
+  const wp = m[1];
+  const nr5 = m[2].padStart(5, "0");
+  const ordner = nr5.slice(0, 3);
+  return `https://dserver.bundestag.de/btd/${wp}/${ordner}/${wp}${nr5}.pdf`;
+}
+
 export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
   const db = getDb();
   // ACHTUNG: `activities.titel` ist der Politiker-Name ("X, MdB, Fraktion"),
@@ -3306,7 +4067,26 @@ export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
     WHERE drucksache_nr = ?
     GROUP BY drucksache_nr
   `).get(nr) as DrucksacheSkeleton | undefined;
-  return row ?? null;
+  if (row) return row;
+  // DIP-only Fallback: Drucksachen, die wir nur über die DIP-Titel-Tabelle
+  // kennen (Wahlvorschläge, Petitions-Sammelübersichten, Verfahrens-Anträge —
+  // nicht in unserer activities-Tabelle, nicht in drucksache_analyses).
+  // Liefert Skeleton mit DIP-Titel + konstruierter PDF-URL, damit die
+  // Drucksachen-Detail-Seite zumindest auf die Original-Quelle verlinken kann.
+  const dip = db.prepare(
+    `SELECT titel, drucksachetyp, vorgangstyp FROM dip_ds_titles WHERE drucksache_nr = ?`
+  ).get(nr) as { titel: string | null; drucksachetyp: string | null; vorgangstyp: string | null } | undefined;
+  if (!dip?.titel) return null;
+  return {
+    drucksache_nr: nr,
+    titel: dip.titel,
+    datum: null,
+    urheber: null,
+    aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
+    drucksache_typ: dip.drucksachetyp,
+    pdf_url: buildDsPdfUrl(nr),
+    herausgeber: "Deutscher Bundestag",
+  };
 }
 
 export function getMitzeichnerForDrucksache(nr: string): MitzeichnerRow[] {
@@ -3346,6 +4126,222 @@ export function getBerichterstatterForDrucksache(nr: string): MitzeichnerRow[] {
       AND a.aktivitaetsart = 'Berichterstattung'
     ORDER BY pa.label, p.last_name, p.first_name
   `).all(nr) as MitzeichnerRow[];
+}
+
+/** Extrahiert sinnvolle Such-Token aus einem DIP-Drucksachen-Titel —
+ *  Substantive ab 5 Zeichen, Stopwords entfernt, Bindestriche behalten.
+ *  Wird genutzt um Aussprache-Reden via Volltext-Match zu finden. */
+function extractTitleKeywords(title: string): string[] {
+  const STOPWORDS = new Set([
+    "Programm","Beratung","Antrag","Anträge","Entwurf","Gesetzes","Bundestag",
+    "Abgeordneten","Fraktion","Fraktionen","Drucksache","Wahlperiode","Bundesregierung",
+    "Bericht","Berichts","Beschlussempfehlung","Sammelübersicht","Petitionen",
+    "Deutschland","Deutscher","Deutschen","Bundesrepublik","Grundgesetzes","Artikel",
+    "Wahlvorschlag","Mitglieder","Mitglied",
+  ]);
+  return Array.from(
+    new Set(
+      title
+        .split(/[\s,.\-–—:;()\/]+/)
+        .map((w) => w.trim())
+        .filter((w) => w.length >= 5)
+        .filter((w) => /^[A-ZÄÖÜ]/.test(w)) // nur groß-geschriebene (Substantive/Eigennamen)
+        .filter((w) => !STOPWORDS.has(w))
+        .slice(0, 6),
+    ),
+  );
+}
+
+/** Strukturierte PDF-Parser-Ergebnisse aus `dip_ds_details` für eine DS.
+ *  Wird auf der Stub-Detail-Seite gerendert (Sammelübersicht-Themen,
+ *  Verfahrens-Beschluss-Klausel etc.). */
+export type DsParsedDetails =
+  | {
+      pattern: "sammeluebersicht";
+      nummer: number;
+      total_petitionen: number;
+      top_themen: Array<{ thema: string; count: number }>;
+      beschlussempfehlungen: Array<{
+        nummer: number;
+        aktion: string;
+        petitionen_count: number;
+        themen: Array<{ thema: string; count: number }>;
+        petitionen?: Array<{
+          lfd_nr: number;
+          aktenzeichen: string;
+          plz: string | null;
+          ort: string;
+          sachgebiet: string;
+        }>;
+      }>;
+    }
+  | {
+      pattern: "verfahren";
+      beschluss_klausel: string;
+      antragsteller: string[];
+    }
+  | {
+      pattern: "wahlvorschlag";
+      total_mitglieder: number;
+      fraktion_sitze: Array<{ fraktion: string; mitglieder: number }>;
+    }
+  | { pattern: "substantiell" | "unknown" };
+
+export function getDsParsedDetails(dsNr: string): DsParsedDetails | null {
+  const db = getDb();
+  try {
+    const row = db.prepare(
+      `SELECT details_json FROM dip_ds_details WHERE drucksache_nr = ?`,
+    ).get(dsNr) as { details_json: string } | undefined;
+    if (!row) return null;
+    return JSON.parse(row.details_json) as DsParsedDetails;
+  } catch {
+    return null;
+  }
+}
+
+/** Findet die Plenardebatte zu einer Drucksache: für jede Vote-Sitzung, in der
+ *  diese DS abgestimmt wurde, suche TOPs deren Reden Schlüsselbegriffe aus dem
+ *  DIP-Titel erwähnen. Liefert die wahrscheinlichste Aussprache pro Sitzung —
+ *  inklusive Liste der Reden (Speaker, Partei, Vote-Outcome-Datum). */
+export interface DsPlenarContext {
+  sitzungNr: number | null;
+  datum: string | null;
+  topNumber: string;
+  topTitle: string;
+  speeches: Array<{
+    speechId: number;
+    speaker: string;
+    party: string | null;
+    politicianId: number | null;
+    speechIndex: number | null;
+  }>;
+}
+
+export function getPlenarContextForDs(dsNr: string, dipTitle: string | null): DsPlenarContext[] {
+  if (!dipTitle) return [];
+  // Skip-Pattern: Routine-Verwaltungsakte ohne politische Aussprache.
+  // Sammelübersichten + Wahlvorschläge + Anpassungsverfahren werden ohne
+  // Debatte direkt abgestimmt; die generischen Schlüsselwörter ("Petitions-
+  // ausschuss", "Wahl") matchen sonst jede Rede über das Thema und liefern
+  // falsche Verbindungen.
+  const ROUTINE_PATTERNS = [
+    /^Sammelübersicht\s+\d+/i,
+    /^Wahlvorschlag/i,
+    /^Wahl\s+der?\s+(Vertreter|Mitglieder|Mitglied)/i,
+    /^Anpassungsverfahren/i,
+    /^Einsetzung\s+(des|eines)\s+(Gremiums|Parlamentarischen|Vertrauens)/i,
+  ];
+  if (ROUTINE_PATTERNS.some((re) => re.test(dipTitle))) return [];
+  const keywords = extractTitleKeywords(dipTitle);
+  if (keywords.length === 0) return [];
+  const db = getDb();
+
+  try {
+    // 1. Alle Sitzungen, in denen die DS gevoted wurde.
+    const votes = db.prepare(`
+      SELECT DISTINCT xml_source, sitzung_nr, datum
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+    `).all(dsNr) as Array<{ xml_source: string; sitzung_nr: number | null; datum: string | null }>;
+
+    const results: DsPlenarContext[] = [];
+    for (const v of votes) {
+      // 2. Volltext-OR-Match: Reden in dieser Sitzung, deren original_text
+      //    mindestens einen Keyword enthält. Wir trauen dem ersten 5-Zeichen+
+      //    Substantiv aus dem Titel — primitiv aber pragmatisch.
+      const likeClauses = keywords.map(() => "ps.original_text LIKE ?").join(" OR ");
+      const likeArgs = keywords.map((k) => `%${k}%`);
+
+      // Gruppiere nach TOP — nimm den TOP mit der höchsten Trefferzahl.
+      // Schwellwert: mindestens 3 Reden im TOP müssen Schlüsselbegriffe
+      // erwähnen, sonst ist es ein zufälliger Wort-Match (z.B. Verfahrens-
+      // Anträge ohne echte Aussprache).
+      const rows = db.prepare(`
+        SELECT ps.topic_id, ps.topic_number, ps.topic_title, COUNT(*) AS hits
+        FROM plenar_speeches ps
+        WHERE ps.xml_source = ? AND (${likeClauses})
+        GROUP BY ps.topic_id, ps.topic_number, ps.topic_title
+        HAVING hits >= 3
+        ORDER BY hits DESC
+        LIMIT 1
+      `).all(v.xml_source, ...likeArgs) as Array<{
+        topic_id: number | null; topic_number: string | null; topic_title: string | null; hits: number;
+      }>;
+      const topMatch = rows[0];
+      if (!topMatch || !topMatch.topic_id) continue;
+
+      // 3. Lade alle Reden dieses TOPs.
+      const speeches = db.prepare(`
+        SELECT ps.id, ps.speaker, ps.party, ps.speech_index,
+               pol.id AS politician_id
+        FROM plenar_speeches ps
+        LEFT JOIN politicians pol ON pol.id = (
+          SELECT politician_id FROM activities a WHERE a.id = ps.rede_id LIMIT 1
+        )
+        WHERE ps.topic_id = ?
+        ORDER BY ps.speech_index ASC
+      `).all(topMatch.topic_id) as Array<{
+        id: number; speaker: string; party: string | null;
+        speech_index: number | null; politician_id: number | null;
+      }>;
+
+      results.push({
+        sitzungNr: v.sitzung_nr,
+        datum: v.datum,
+        topNumber: topMatch.topic_number ?? "?",
+        topTitle: topMatch.topic_title ?? "",
+        speeches: speeches.map((s) => ({
+          speechId: s.id,
+          speaker: s.speaker,
+          party: s.party,
+          politicianId: s.politician_id,
+          speechIndex: s.speech_index,
+        })),
+      });
+    }
+    return results;
+  } catch {
+    return [];
+  }
+}
+
+/** Holt alle Handzeichen-Vote-Events, die diese Drucksache referenzieren —
+ *  schlanke Variante von getBundestagDsHandzeichenVotes() ohne Fraktions-Matrix,
+ *  nur Identität + Sitzung + Outcome. Wird auf der DIP-only Stub-Seite genutzt,
+ *  um zu zeigen "abgestimmt in Sitzung X am DD.MM.YYYY". */
+export interface DsVoteSummary {
+  voteId: number;
+  sitzungNr: number | null;
+  wahlperiode: number | null;
+  datum: string | null;
+  outcome: string;
+  voteType: string;
+}
+
+export function getVotesReferencingDs(dsNr: string): DsVoteSummary[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.outcome, bv.vote_type
+      FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
+      ORDER BY bv.datum DESC, bv.snippet_offset ASC
+    `).all(dsNr) as Array<{
+      vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
+      datum: string | null; outcome: string; vote_type: string;
+    }>;
+    return rows.map((r) => ({
+      voteId: r.vote_id,
+      sitzungNr: r.sitzung_nr,
+      wahlperiode: r.wahlperiode,
+      datum: r.datum,
+      outcome: r.outcome,
+      voteType: r.vote_type,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export function getRelatedSpeechesForDrucksache(nr: string, limit: number = 20): RelatedSpeechRow[] {
@@ -5078,4 +6074,393 @@ export function getBerlinDsMitzeichner(dbid: string): BerlinDsMitzeichner[] {
   } catch {
     return [];
   }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sitzungs-Detail-Seite (/protokolle/sitzung/[nummer])
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Sitzungs-„Stories"-Detail: pro TOP verschachtelte Reden mit Analyse ──────
+// Liefert die Daten für die erzählerische Sitzungs-Detailseite (analog zur
+// Berlin-Variante): jeder TOP mit seinen Reden (Sprecher, Partei-Label,
+// Tonalität, 2-Satz-Zusammenfassung, extrahierte Forderungen/Zahlen, Original-
+// text) + Session-Abstimmungen (namentlich) + Drucksachen + Nachbar-Sitzungen.
+export interface SitzungStorySpeech {
+  speechId: number;
+  redeId: string | null;
+  segmentIndex: number;
+  speaker: string;
+  partyLabel: string;
+  rawParty: string | null;
+  tonalitaet: string | null;
+  zusammenfassung: string | null;
+  forderungen: string[];
+  konkreteZahlen: string[];
+  originalText: string | null;
+}
+
+export interface SitzungStoryTop {
+  topicId: number;
+  topicNumber: string;
+  title: string;
+  speeches: SitzungStorySpeech[];
+  /** KI-Synthese „Das Wichtigste" (key_facts mit refs in die with-summary-Reden), null wenn nicht generiert. */
+  keyFacts: { text: string; refs: number[] }[] | null;
+  /** Diesem TOP zugeordnete Abstimmungen (per DS-Überschneidung), Sprung-Anker in den Überblick. */
+  voteRefs: { anchorId: string; label: string; accepted: boolean | null }[];
+  /** Drucksachen dieses TOP (aus den T_Drs des Protokolls), für Pills mit Link zur DS-Seite. */
+  drucksachen: { nr: string; titel: string | null }[];
+}
+
+export interface SitzungHandzeichenVote {
+  voteId: number;
+  outcome: string;
+  modus: string | null;
+  subtype: string | null;
+  titel: string | null;
+  drucksacheNrn: string[];
+  fraktionVotes: Record<string, string>;
+}
+
+export interface SitzungStories {
+  wahlperiode: number;
+  sitzung: number;
+  datum: string | null;
+  sourceUrl: string | null;
+  stats: { speechCount: number; voteCount: number; speakerCount: number; topicCount: number };
+  tops: SitzungStoryTop[];
+  votes: Array<{ pollId: number; label: string; yes: number; no: number; abstain: number; yesRatio: number }>;
+  handzeichen: SitzungHandzeichenVote[];
+  drucksachen: Array<{ drucksacheNr: string; thema: string | null; refCount: number }>;
+  neighbors: {
+    prev: { sitzung: number; datum: string | null } | null;
+    next: { sitzung: number; datum: string | null } | null;
+  };
+}
+
+/** Tolerantes Parsen der LLM-JSON-Arrays (Haiku sendet selten Strings statt Arrays). */
+function safeStringArray(json: string | null): string[] {
+  if (!json) return [];
+  try {
+    const v = JSON.parse(json);
+    if (Array.isArray(v)) {
+      return v.filter((x): x is string => typeof x === "string" && x.trim().length > 0);
+    }
+  } catch {
+    /* defekte Zeile ignorieren */
+  }
+  return [];
+}
+
+export function getSitzungStories(sitzungNr: number): SitzungStories | null {
+  const db = getDb();
+  const session = db
+    .prepare(
+      `SELECT id, wahlperiode, sitzung, datum, source_url
+       FROM plenar_sessions WHERE sitzung = ? LIMIT 1`
+    )
+    .get(sitzungNr) as
+    | { id: number; wahlperiode: number; sitzung: number; datum: string | null; source_url: string | null }
+    | undefined;
+  if (!session) return null;
+
+  // Rolle/Partei → einheitliches Label (Minister:innen ohne party-Feld → Bundesregierung etc.)
+  const PARTY_LABEL_SQL = `CASE
+    WHEN s.party IS NOT NULL AND s.party != '' THEN s.party
+    WHEN s.role LIKE 'Bundesminister%' OR s.role LIKE 'Bundeskanzler%'
+      OR s.role LIKE 'Staatssekret%' OR s.role LIKE 'Staatsminister%'
+      OR s.role LIKE 'Parl. Staatssekret%' THEN 'Bundesregierung'
+    WHEN s.role LIKE '%Präsident%' OR s.role LIKE 'Vizepräsident%' THEN 'Präsidium'
+    ELSE 'ohne Fraktion'
+  END`;
+
+  const topics = db
+    .prepare(
+      `SELECT id AS topic_id, topic_number, title
+       FROM plenar_topics WHERE session_id = ?
+       ORDER BY CASE WHEN topic_number GLOB '[0-9]*' THEN CAST(topic_number AS INTEGER) ELSE 9999 END, topic_number`
+    )
+    .all(session.id) as Array<{ topic_id: number; topic_number: string; title: string }>;
+
+  const speechRows = db
+    .prepare(
+      `SELECT s.id AS speech_id, s.rede_id, s.segment_index, s.topic_id, s.speaker,
+              s.party AS raw_party, ${PARTY_LABEL_SQL} AS party_label, s.original_text,
+              sa.zusammenfassung_2_saetze AS zus, sa.tonalitaet,
+              sa.forderungen_json, sa.konkrete_zahlen_json
+       FROM plenar_speeches s
+       LEFT JOIN speech_analyses_v2 sa ON sa.speech_id = s.id
+       WHERE s.session_id = ?
+       ORDER BY s.speech_index, s.segment_index`
+    )
+    .all(session.id) as Array<{
+    speech_id: number;
+    rede_id: string | null;
+    segment_index: number;
+    topic_id: number | null;
+    speaker: string;
+    raw_party: string | null;
+    party_label: string;
+    original_text: string | null;
+    zus: string | null;
+    tonalitaet: string | null;
+    forderungen_json: string | null;
+    konkrete_zahlen_json: string | null;
+  }>;
+
+  const byTopic = new Map<number, SitzungStorySpeech[]>();
+  for (const r of speechRows) {
+    if (r.topic_id == null) continue;
+    if (!byTopic.has(r.topic_id)) byTopic.set(r.topic_id, []);
+    byTopic.get(r.topic_id)!.push({
+      speechId: r.speech_id,
+      redeId: r.rede_id,
+      segmentIndex: r.segment_index,
+      speaker: r.speaker,
+      partyLabel: r.party_label,
+      rawParty: r.raw_party,
+      tonalitaet: r.tonalitaet,
+      zusammenfassung: r.zus,
+      forderungen: safeStringArray(r.forderungen_json),
+      konkreteZahlen: safeStringArray(r.konkrete_zahlen_json),
+      originalText: r.original_text,
+    });
+  }
+
+  // KI-Synthese „Das Wichtigste" pro TOP (falls generiert). Tabelle existiert
+  // evtl. noch nicht (vor erstem Batch-Lauf) → tolerant.
+  const keyFactsByTopic = new Map<number, { text: string; refs: number[] }[]>();
+  try {
+    const kfRows = db
+      .prepare(`SELECT topic_id, key_facts_json FROM plenar_top_summaries WHERE sitzung_nr = ? AND key_facts_json IS NOT NULL`)
+      .all(session.sitzung) as { topic_id: number; key_facts_json: string }[];
+    for (const r of kfRows) {
+      try {
+        const kf = JSON.parse(r.key_facts_json);
+        if (Array.isArray(kf)) keyFactsByTopic.set(r.topic_id, kf);
+      } catch {
+        /* defekte Zeile ignorieren */
+      }
+    }
+  } catch {
+    /* plenar_top_summaries noch nicht angelegt */
+  }
+
+  const tops: SitzungStoryTop[] = topics
+    .map((t) => ({
+      topicId: t.topic_id,
+      topicNumber: t.topic_number,
+      title: t.title,
+      speeches: byTopic.get(t.topic_id) ?? [],
+      keyFacts: keyFactsByTopic.get(t.topic_id) ?? null,
+      voteRefs: [] as { anchorId: string; label: string; accepted: boolean | null }[],
+      drucksachen: [] as { nr: string; titel: string | null }[],
+    }))
+    .filter((t) => t.speeches.length > 0);
+
+  const stats = db
+    .prepare(
+      `SELECT (SELECT COUNT(DISTINCT rede_id) FROM plenar_speeches WHERE session_id = ?) AS speech_count,
+              (SELECT COUNT(DISTINCT speaker) FROM plenar_speeches WHERE session_id = ?) AS speaker_count`
+    )
+    .get(session.id, session.id) as { speech_count: number; speaker_count: number };
+
+  const voteRows = session.datum
+    ? (db
+        .prepare(
+          `SELECT poll_id, MAX(poll_label) AS poll_label,
+                  SUM(CASE WHEN vote='yes' THEN 1 ELSE 0 END) AS yes,
+                  SUM(CASE WHEN vote='no' THEN 1 ELSE 0 END) AS no,
+                  SUM(CASE WHEN vote='abstain' THEN 1 ELSE 0 END) AS abstain
+           FROM votes WHERE poll_date = ? AND poll_label IS NOT NULL
+           GROUP BY poll_id ORDER BY poll_id`
+        )
+        .all(session.datum) as Array<{ poll_id: number; poll_label: string; yes: number; no: number; abstain: number }>)
+    : [];
+
+  const drucksachenRows = session.datum
+    ? (db
+        .prepare(
+          `SELECT a.drucksache_nr, MIN(a.thema) AS thema, COUNT(*) AS ref_count
+           FROM activities a
+           WHERE a.datum = ? AND a.drucksache_nr IS NOT NULL AND a.drucksache_nr != ''
+           GROUP BY a.drucksache_nr ORDER BY ref_count DESC LIMIT 12`
+        )
+        .all(session.datum) as Array<{ drucksache_nr: string; thema: string | null; ref_count: number }>)
+    : [];
+
+  // Handzeichen-Abstimmungen (Fraktionsebene) — direkt über sitzung_nr verknüpft.
+  const titleByActivity = db.prepare(
+    `SELECT thema FROM activities WHERE drucksache_nr = ? AND thema IS NOT NULL AND thema != '' LIMIT 1`
+  );
+  const titleByDip = db.prepare(
+    `SELECT titel FROM dip_ds_titles WHERE drucksache_nr = ? AND titel IS NOT NULL AND titel != '' LIMIT 1`
+  );
+  // Generischer Titel = nur Dokumenttyp ("Beschlussempfehlung"/"Antrag" allein)
+  // oder < 12 Z. → als unbrauchbar behandeln (Berlin-Methodik), bessere Quelle suchen.
+  const isGenericDsTitle = (t: string | null | undefined): boolean => {
+    if (!t) return true;
+    const s = t.trim();
+    if (s.length < 12) return true;
+    // Nur das NACKTE Dokumenttyp-Wort ist generisch ("Beschlussempfehlung").
+    // "Bericht über …", "Antrag der Fraktion …" usw. sind echte Titel → behalten.
+    return /^(Beschlussempfehlung|Mitteilung|Unterrichtung|Bericht|Vorlage|Antrag|Drucksache|Gesetzentwurf|Entwurf)\s*$/i.test(s);
+  };
+  // Titel über ALLE Drucksachen-Nrn des Votes suchen (nicht nur die erste) —
+  // z.B. trägt bei Gesetzen oft die Beschlussempfehlung den Titel, nicht der GE.
+  // Quellen: activities.thema (offizieller Betreff) + dip_ds_titles.titel
+  // (DIP-Vorgang-Titel). Generische Treffer werden übersprungen.
+  const lookupDsTitle = (nrs: string[]): string | null => {
+    for (const nr of nrs) {
+      const a = titleByActivity.get(nr) as { thema: string } | undefined;
+      if (a?.thema && !isGenericDsTitle(a.thema)) return a.thema;
+      const b = titleByDip.get(nr) as { titel: string } | undefined;
+      if (b?.titel && !isGenericDsTitle(b.titel)) return b.titel;
+    }
+    return null;
+  };
+  const parseFraktionVotes = (json: string | null): Record<string, string> => {
+    if (!json) return {};
+    try {
+      const v = JSON.parse(json);
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        const out: Record<string, string> = {};
+        for (const [k, val] of Object.entries(v)) if (typeof val === "string") out[k] = val;
+        return out;
+      }
+    } catch {
+      /* defekte Zeile ignorieren */
+    }
+    return {};
+  };
+  const handzeichenRows = db
+    .prepare(
+      `SELECT vote_id, outcome, modus, vote_subtype, drucksache_nrn_json, fraktion_votes_json
+       FROM bundestag_votes WHERE sitzung_nr = ? ORDER BY vote_id`
+    )
+    .all(session.sitzung) as Array<{
+    vote_id: number;
+    outcome: string;
+    modus: string | null;
+    vote_subtype: string | null;
+    drucksache_nrn_json: string | null;
+    fraktion_votes_json: string | null;
+  }>;
+  const handzeichen: SitzungHandzeichenVote[] = handzeichenRows.map((r) => {
+    const drucksacheNrn = safeStringArray(r.drucksache_nrn_json);
+    return {
+      voteId: r.vote_id,
+      outcome: r.outcome,
+      modus: r.modus,
+      subtype: r.vote_subtype,
+      titel: lookupDsTitle(drucksacheNrn),
+      drucksacheNrn,
+      fraktionVotes: parseFraktionVotes(r.fraktion_votes_json),
+    };
+  });
+
+  // ── Votes den TOPs zuordnen (DS-Überschneidung, analog Berlin) ──
+  // TOP→DS aus plenar_topic_drucksachen (T_Drs), Vote→DS namentlich via
+  // drucksache_polls, Handzeichen via drucksache_nrn_json. Treffer → Badge am TOP.
+  const dsToTopics = new Map<string, number[]>();
+  const topicDsList = new Map<number, string[]>();
+  try {
+    const ptdRows = db
+      .prepare(
+        `SELECT ptd.topic_id, ptd.drucksache_nr FROM plenar_topic_drucksachen ptd
+         JOIN plenar_topics pt ON pt.id = ptd.topic_id WHERE pt.session_id = ?`
+      )
+      .all(session.id) as { topic_id: number; drucksache_nr: string }[];
+    for (const r of ptdRows) {
+      if (!dsToTopics.has(r.drucksache_nr)) dsToTopics.set(r.drucksache_nr, []);
+      dsToTopics.get(r.drucksache_nr)!.push(r.topic_id);
+      if (!topicDsList.has(r.topic_id)) topicDsList.set(r.topic_id, []);
+      topicDsList.get(r.topic_id)!.push(r.drucksache_nr);
+    }
+  } catch {
+    /* plenar_topic_drucksachen noch nicht angelegt */
+  }
+  // Per-TOP-Drucksachen an die TOPs hängen (mit Titel-Lookup für Tooltip).
+  for (const t of tops) {
+    const ds = topicDsList.get(t.topicId);
+    if (ds && ds.length > 0) t.drucksachen = ds.map((nr) => ({ nr, titel: lookupDsTitle([nr]) }));
+  }
+  if (dsToTopics.size > 0) {
+    const topById = new Map(tops.map((t) => [t.topicId, t]));
+    const pushRef = (dsList: string[], anchorId: string, label: string, accepted: boolean | null) => {
+      const seenTop = new Set<number>();
+      for (const nr of dsList) {
+        for (const tid of dsToTopics.get(nr) ?? []) {
+          if (seenTop.has(tid)) continue;
+          seenTop.add(tid);
+          const top = topById.get(tid);
+          if (top && !top.voteRefs.some((r) => r.anchorId === anchorId)) {
+            top.voteRefs.push({ anchorId, label, accepted });
+          }
+        }
+      }
+    };
+    // namentliche
+    const pollDsStmt = db.prepare(`SELECT drucksache_nr FROM drucksache_polls WHERE poll_id = ?`);
+    for (const v of voteRows) {
+      const ds = (pollDsStmt.all(v.poll_id) as { drucksache_nr: string }[]).map((r) => r.drucksache_nr);
+      if (ds.length === 0) continue;
+      const accepted = v.yes > v.no;
+      pushRef(ds, `vote-n-${v.poll_id}`, accepted ? "Angenommen" : "Abgelehnt", accepted);
+    }
+    // Handzeichen
+    for (const h of handzeichen) {
+      if (h.drucksacheNrn.length === 0) continue;
+      const accepted =
+        h.outcome === "annahme" || h.outcome === "annahme_geaendert"
+          ? true
+          : h.outcome === "ablehnung"
+          ? false
+          : null;
+      const label = accepted === true ? "Angenommen" : accepted === false ? "Abgelehnt" : h.outcome;
+      pushRef(h.drucksacheNrn, `vote-h-${h.voteId}`, label, accepted);
+    }
+  }
+
+  const prev = db
+    .prepare(`SELECT sitzung, datum FROM plenar_sessions WHERE sitzung < ? ORDER BY sitzung DESC LIMIT 1`)
+    .get(sitzungNr) as { sitzung: number; datum: string | null } | undefined;
+  const next = db
+    .prepare(`SELECT sitzung, datum FROM plenar_sessions WHERE sitzung > ? ORDER BY sitzung ASC LIMIT 1`)
+    .get(sitzungNr) as { sitzung: number; datum: string | null } | undefined;
+
+  return {
+    wahlperiode: session.wahlperiode,
+    sitzung: session.sitzung,
+    datum: session.datum,
+    sourceUrl: session.source_url,
+    stats: {
+      speechCount: stats?.speech_count ?? 0,
+      voteCount: voteRows.length,
+      speakerCount: stats?.speaker_count ?? 0,
+      topicCount: tops.length,
+    },
+    tops,
+    votes: voteRows.map((r) => {
+      const denom = r.yes + r.no;
+      return {
+        pollId: r.poll_id,
+        label: r.poll_label,
+        yes: r.yes,
+        no: r.no,
+        abstain: r.abstain,
+        yesRatio: denom > 0 ? r.yes / denom : 0,
+      };
+    }),
+    handzeichen,
+    drucksachen: drucksachenRows.map((r) => ({
+      drucksacheNr: r.drucksache_nr,
+      thema: r.thema,
+      refCount: r.ref_count,
+    })),
+    neighbors: {
+      prev: prev ? { sitzung: prev.sitzung, datum: prev.datum } : null,
+      next: next ? { sitzung: next.sitzung, datum: next.datum } : null,
+    },
+  };
 }

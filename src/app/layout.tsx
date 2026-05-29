@@ -4,6 +4,11 @@ import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
 import { getParliamentsOverview } from "@/lib/db";
 
+// Alle Seiten lesen SQLite live pro Request — kein SSG-Cache, sonst
+// hinkt die UI hinter `update`-Refreshs hinterher. Kaskadiert vom
+// Root-Layout in alle Routen.
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

@@ -6,6 +6,8 @@ export interface TonalitaetDef {
   label: string;
   short: string;
   long: string;
+  /** Anti-Definition: was das Label NICHT bedeutet. Schützt gegen „Stil = Wahrheitsurteil“-Fehllesart. */
+  notMeaning?: string;
 }
 
 export interface RedenTypDef {
@@ -23,6 +25,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Argumentation auf Basis von Fakten, Statistiken und Belegen, ohne starke wertende Sprache.",
     long:
       "Sachliche Tonalität: Die Rede stützt sich überwiegend auf nachprüfbare Fakten, Zahlen, Studien oder Gesetzestexte. Wertungen und Emotionen sind zurückgenommen. Persönliche Angriffe oder Polemik fehlen weitgehend. Typisch für Fachpolitiker:innen in technischen Debatten.",
+    notMeaning:
+      "Bedeutet nicht „faktisch korrekt“. Markiert wird der neutral-beschreibende Stil — ob die vorgebrachten Zahlen oder Bezüge inhaltlich tragen, ist davon unabhängig.",
   },
   {
     slug: "polemisch",
@@ -31,6 +35,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Konfrontativer Stil mit deutlich wertender Sprache, Etikettierungen oder zugespitzten Formulierungen gegen Andersdenkende.",
     long:
       "Polemische Tonalität: Konfrontativer Stil mit deutlich wertender Sprache, Etikettierungen oder zugespitzten Formulierungen gegen Andersdenkende. Sachargumente treten gegenüber dem rhetorischen Angriff zurück. Klassifiziert wird der rhetorische Stil, nicht die inhaltliche Position.",
+    notMeaning:
+      "Bedeutet nicht „inhaltlich falsch“ oder „demagogisch“. Eine polemische Rede kann in der Sache vollständig richtig liegen; das Label beschreibt allein die zugespitzte, wertende Sprachform.",
   },
   {
     slug: "polemisch_sachlich",
@@ -39,6 +45,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Mischung — sachliche Argumente, durchsetzt mit polemischen Spitzen oder zugespitzten Vorwürfen.",
     long:
       "Mischtonalität: Es werden inhaltliche Argumente vorgebracht, aber regelmäßig mit polemischen Wendungen, Spitzen oder pauschalen Vorwürfen verbunden. Häufig in Oppositionsreden, die Kritik mit emotionaler Aufladung verbinden.",
+    notMeaning:
+      "Bedeutet nicht „halb-wahr“ oder „teils belegt, teils erfunden“. Es geht um eine gemischte Stilform, nicht um aufgeteilte Wahrheitsgehalte der einzelnen Aussagen.",
   },
   {
     slug: "emotional_persoenlich",
@@ -47,14 +55,18 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Argumentation über persönliche Erfahrungen, Schicksale oder emotionale Appelle.",
     long:
       "Emotional-persönliche Tonalität: Die Rede stützt sich auf Schicksale, Bürger-Anekdoten oder persönliche Erlebnisse statt auf abstrakte Statistik. Appelliert an Mitgefühl, Sorge oder Betroffenheit.",
+    notMeaning:
+      "Bedeutet nicht „manipulativ“ oder „schwach argumentiert“. Persönliche Anekdoten sind als Belegform legitim; markiert wird nur die Wahl dieses Belegtyps statt Statistik.",
   },
   {
-    slug: "konfrontativ_belegend",
-    label: "konfrontativ-belegend",
+    slug: "konfrontativ_faktenrhetorisch",
+    label: "konfrontativ-faktenrhetorisch",
     short:
       "Direkter Angriff auf den politischen Gegner mit konkreten Belegen, Zitaten oder Statistiken.",
     long:
-      "Konfrontativ-belegende Tonalität: Scharfer Angriff auf eine andere Fraktion oder die Regierung — aber mit nachprüfbaren Belegen (wörtliche Zitate aus früheren Reden, Daten aus offiziellen Quellen, dokumentierte Aussagen). Konfrontativ im Stil, sachlich in der Substanz.",
+      "Konfrontativ-faktenrhetorische Tonalität: Scharfer Angriff auf eine andere Fraktion oder die Regierung — aber mit nachprüfbaren Belegen (wörtliche Zitate aus früheren Reden, Daten aus offiziellen Quellen, dokumentierte Aussagen). Konfrontativ im Stil, sachlich in der Substanz.",
+    notMeaning:
+      "Bedeutet nicht „die zitierten Belege tragen die Schlussfolgerung“. Das Label markiert das Stilmittel „bringt nachvollziehbare Quellen ins Argument“ — ob die Belege im Kontext fachlich überzeugen, prüft die Plattform nicht.",
   },
   {
     slug: "ironisch_jugendlich",
@@ -63,6 +75,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Spottend-distanziert, mit ironischen Wendungen oder satirischer Übertreibung.",
     long:
       "Ironische Tonalität: Indirekte Kritik durch Satire, Sarkasmus oder bewusste Übertreibung. Häufig auch generationelle Sprache (jugendlich oder pop-kulturell). Erfordert vom Hörer Decodieren — was sachlich gemeint ist und was ironisch.",
+    notMeaning:
+      "Bedeutet nicht „unseriös“ oder „nicht ernstzunehmen“. Ironie ist eine Stilwahl; die zugrunde liegende Kritik kann inhaltlich genauso berechtigt sein wie in einer sachlichen Rede.",
   },
   {
     slug: "bilanzierend_werbend",
@@ -71,6 +85,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Auflistung von Erfolgen oder Maßnahmen — oft im Werbe-Stil für die eigene Politik.",
     long:
       "Bilanzierend-werbende Tonalität: Es werden eigene Erfolge, beschlossene Maßnahmen oder Regierungs-Bilanz aufgezählt — typischerweise von der Regierungsseite. Tendiert zum positiven Framing der eigenen Arbeit.",
+    notMeaning:
+      "Bedeutet nicht „aufgeblähte“ oder „geschönte Bilanz“. Das Label markiert die Selbst-Präsentation als Stilform; ob die aufgezählten Erfolge tatsächlich erreicht wurden, ist davon getrennt.",
   },
   {
     slug: "staatsmaennisch",
@@ -79,6 +95,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Distanziert-amtlich, gefasste Diktion, Bezug auf Gemeinwohl und Verantwortung.",
     long:
       "Staatsmännische Tonalität: Würdevoll-amtlicher Ton, oft aus Regierungs- oder Präsidentinnen-Perspektive. Verweist auf historische Verantwortung, internationale Beziehungen oder das Gemeinwohl. Persönliche Polemik wird vermieden.",
+    notMeaning:
+      "Bedeutet nicht, dass die Sprecher:in „staatsmännisch“ als Person ist. Es geht um den gewählten Ton dieser einen Rede — nicht um eine Charakter- oder Eignungs-Zuschreibung.",
   },
   {
     slug: "defensiv_pragmatisch",
@@ -87,6 +105,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       'Verteidigend-rechtfertigend — oft mit "Es war notwendig"-Argumentation oder Sachzwängen.',
     long:
       "Defensiv-pragmatische Tonalität: Die eigene Politik oder vergangene Entscheidungen werden gerechtfertigt, oft mit Verweis auf Sachzwänge, äußere Umstände oder Alternativen-Mangel. Häufig in Reden, in denen Kompromisse oder unliebsame Entscheidungen erklärt werden.",
+    notMeaning:
+      "Bedeutet nicht „Ausreden“ oder „die Rechtfertigung trägt nicht“. Markiert wird die rechtfertigende Stilform — ob der angeführte Sachzwang real war, ist eine inhaltliche Frage außerhalb dieser Klassifikation.",
   },
   {
     slug: "sozial_anklagend",
@@ -95,6 +115,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
       "Anklage sozialer Missstände — oft mit moralischer Schuld-Zuweisung.",
     long:
       "Sozial-anklagende Tonalität: Soziale Ungerechtigkeiten, Armut oder strukturelle Benachteiligung werden in moralisch aufgeladener Sprache thematisiert. Verteilungsfragen stehen im Zentrum, oft mit Verantwortungs- oder Schuld-Zuweisung an konkrete Akteure.",
+    notMeaning:
+      "Bedeutet nicht, dass die angeprangerten Missstände real oder erfunden sind. Das Label markiert den moralisch-anklagenden Stil — die empirische Lage muss unabhängig davon geprüft werden.",
   },
   {
     slug: "mahnend",
@@ -102,6 +124,8 @@ export const TONALITAET_DEFS: TonalitaetDef[] = [
     short: "Warnung vor Gefahren, Aufruf zur Verantwortung — oft prophetisch-ernst.",
     long:
       "Mahnende Tonalität: Die Rede warnt vor zukünftigen Gefahren (Klimawandel, Demokratiekrise, gesellschaftliche Spaltung) und ruft zu kollektivem Handeln auf. Ernst, häufig mit historischen Bezügen.",
+    notMeaning:
+      "Bedeutet nicht „die gewarnte Gefahr ist real“ — oder umgekehrt „übertrieben“. Das Label markiert den warnend-appellativen Stil; die Bewertung der Risiko-Diagnose ist Sache externer Fact-Checking-Instanzen.",
   },
 ];
 
@@ -131,7 +155,7 @@ export const REDEN_TYP_DEFS: RedenTypDef[] = [
   },
   {
     code: "D",
-    label: "Konfrontativ-belegend",
+    label: "Konfrontativ-faktenrhetorisch",
     short: "Direkter Gegenangriff mit Zitaten, Statistiken und dokumentierten Aussagen.",
     long:
       "Typ D: Scharfer, aber inhaltlich belegter Angriff auf den politischen Gegner. Setzt Zitate aus früheren Reden, Statistiken oder dokumentierte Aussagen als Munition ein. Konfrontativ im Stil, faktenbasiert in der Substanz.",

@@ -7,6 +7,8 @@ import Link from "next/link";
 interface Props {
   label: string;
   definition: string;
+  /** Anti-Definition: was das Label NICHT bedeutet. Wird unter der Definition mit Trenner gerendert. */
+  notMeaning?: string;
   color: string;
   bg: string;
   glossarAnchor?: string;
@@ -18,6 +20,7 @@ const POPOVER_WIDTH = 288; // w-72
 export function TagInfoPopover({
   label,
   definition,
+  notMeaning,
   color,
   bg,
   glossarAnchor,
@@ -102,6 +105,16 @@ export function TagInfoPopover({
         {label}
       </p>
       <p>{definition}</p>
+      {notMeaning && (
+        <div className="mt-2 pt-2 border-t border-zinc-100">
+          <p className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-0.5">
+            Was es nicht bedeutet
+          </p>
+          <p className="text-[11.5px] text-zinc-600 leading-relaxed">
+            {notMeaning}
+          </p>
+        </div>
+      )}
       {glossarAnchor && (
         <Link
           href={glossarAnchor}

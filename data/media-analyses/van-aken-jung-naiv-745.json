@@ -1,0 +1,657 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=ls0tBHgy_xI",
+    "video_id": "ls0tBHgy_xI",
+    "politician": "Jan van Aken",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "dc8c2de71cd41eac",
+    "transcript_chars": 267148,
+    "caption_lines": 7131,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 86546,
+    "tokens_out": 16899,
+    "cost_usd": 0.0684164,
+    "quote_validation": {
+      "valid_exact": 16,
+      "valid_fuzzy": 17,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 16,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-05-23T19:14:12.685Z",
+    "batch_id": "msgbatch_011B29vvC6bLy8VSXs9QAQC3"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Co-Vorsitzender der Linken und Spitzenkandidat, präsentiert die Parteiposition zu außenpolitischen Fragen (Israel-Palästina, Ukraine, Syrien), Sozialpolitik (Mieten, Mindestlohn, Vermögen), Verteidigungspolitik und Wirtschaft in deutlich artikulierter, ausführlicher Form. Der Ton ist sachlich-politisch mit gelegentlichen persönlichen Anekdoten; van Aken wirkt engagiert und idealistisch, betont dabei aber auch „Realismus\" und Abgrenzung zu populistischen Positionen.",
+    "themes": [
+      {
+        "title": "Erlebnis des 7. Oktober in Tel Aviv",
+        "timestamp_range": "00:02:05 - 00:08:13",
+        "theme_description": "Van Aken berichtet von seinen persönlichen Erfahrungen während des Hamas-Anschlag am 7. Oktober 2023, als er als Rosa-Luxemburg-Stiftungs-Mitarbeiter in Tel Aviv war.",
+        "question_asked": "Wie hast du den 7. Oktober erlebt?",
+        "question_intent": "Verstehen, wie der Gast die traumatische Eskalation persönlich wahrgenommen hat und welche Erkenntnisse daraus gewonnen wurden.",
+        "position": "Van Aken schildert das Aufwachen durch Sirenen um 6:33 Uhr, die anfängliche Desorientierung, da Alarme regelmäßig (ca. einmal pro Jahr) vorkamen. Im Laufe des Vormittags wurde die Dimension des Anschlags durch Nachrichtenberichte und Austausch mit Kolleg:innen in Büro der Rosa-Luxemburg-Stiftung deutlich. Die Familie evakuierte sich zunächst zu Nachbarn mit Schutzraum, später verließ van Aken mit Familie nach Komplikationen mit Flugverkehr Israel über Jordanien. Er betont, dass der 7. Oktober \"die zentrale Erzählung des Staates Israel – sichere Heimstatt für alle Juden – zerstört\" habe und dass Israelis noch ein Jahr später \"im 7. Oktober leben\", aus einem Trauma nicht herauskommen und daraus \"so viel Hass\" entstehe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Die Frage zielte auf persönliche Erfahrung ab, van Aken liefert detaillierte Schilderung des Tagesablaufs, der Gefühlslage und reflektiert auch die gesellschaftliche Dimension. Die Antwort adressiert sowohl das persönliche Erlebnis als auch die politisch-psychologische Tragweite.",
+        "quotes": [
+          {
+            "text": "6:33 Uhr hörst du die Sirenen wirst du wach und denkst nicht im Ernst jetzt in Tel Aviv das waren die Raketen nee Sirenen du hörst sie reden erstmal nur ne",
+            "timestamp": "00:02:35",
+            "context": "Schilderung des Aufwachens beim Luftalarm am Morgen des 7. Oktober."
+          },
+          {
+            "text": "ihre ganze erzählung ih ganze Sicherheit ist weg und daraus kommt auch jetzt so viel Hass daraus kommt auch so viel Zerstörung",
+            "timestamp": "00:07:42",
+            "context": "Reflexion über die psychologische Wirkung des 7. Oktober auf die israelische Gesellschaft."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Familie verließ nach etwa 2–3 Tagen Israel über Jordanien",
+          "Kommunikation der deutschen Botschaft war verzögert und wenig hilfreich",
+          "Der 7. Oktober hat die Erzählung vom sicheren Staat zerstört"
+        ],
+        "related_bundestag_topics": [
+          "Deutsch-israelische Beziehungen",
+          "Sicherheitsgarantien",
+          "Nahostkonflikt"
+        ]
+      },
+      {
+        "title": "Zwei-Staaten-Lösung als gescheitert, neues Föderationsmodell",
+        "timestamp_range": "00:12:20 - 00:15:23",
+        "theme_description": "Van Aken erklärt, warum die klassische Zwei-Staaten-Lösung durch Siedlungspolitik illusorisch geworden ist und skizziert ein alternatives Modell.",
+        "question_asked": "Wie steht ihr zur Zwei-Staaten-Lösung, und ist sie noch realistisch?",
+        "question_intent": "Verstehen, ob die Linke an der klassischen Zwei-Staaten-Lösung festhält oder eine Alternative vertreten.",
+        "position": "Van Aken argumentiert, dass die Zwei-Staaten-Lösung de facto tot ist, weil über 500.000 jüdische Siedler:innen auf palästinensischem Gebiet leben und nach 30 Jahren Existenzen aufgebaut haben. Ein Rückzug würde Bürgerkrieg in Israel bedeuten, ein Verbleib zerstört Palästina als zusammenhängendes Gebiet. Er skizziert stattdessen ein Modell: \"ein Land mit zwei Staaten\", bei dem Siedler:innen als israelische Staatsbürger in Palästina wohnen können, mit gemeinsamen Strukturen (Menschenrechtsrat), freier Bewegungsfreiheit und vergleichbar föderalen Strukturen wie in Belgien. Das Konzept knüpft an das jüdische Konzept \"Eretz Israel\" (Land Israel) und das palästinensische \"from the river to the sea\" – beide würden nebeneinander existieren als ein Gebiet, zwei Nationen, zwei Staaten.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Van Aken adressiert direkt die Unlösbarkeit der klassischen Zwei-Staaten-Lösung und präsentiert ein konkretes Alternativmodell, das er durch Beispiele (Belgien, Zeitkonzept) illustriert. Er bezieht sich auf Friedensaktivisten in Israel/Palästina, mit denen er dieses Modell diskutiert hat.",
+        "quotes": [
+          {
+            "text": "es gibt ja sehr viele Siedlungen das liben über 500.000 jüdische Siedler und SiedlerInnen auf palästinensischen Gebiet die wohnen te seit 30 Jahren die haben eine Existenzen aufgebaut das sind Städte",
+            "timestamp": "00:12:51",
+            "context": "Erklärung, warum klassische Zwei-Staaten-Lösung nicht funktioniert."
+          },
+          {
+            "text": "die Siedler dürfen da bleiben wo sie sind ist bisschen so Föderation wie in Belgien ja geht in die Richtung und da gibt es jetzt verschiedene Modelle die ein sagen das ist im Grunde ein staatenlösung mit zwei starken Autonomiegebieten oder es sind zwei Staaten mit gemeinsamen Strukturen",
+            "timestamp": "00:13:52",
+            "context": "Beschreibung des alternativen Föderationsmodells."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Klassische Zwei-Staaten-Lösung ist praktisch unmöglich",
+          "Alternativmodell: gemeinsamer Raum mit zwei Nationen, freier Bewegungsfreiheit, föderale Strukturen",
+          "Existenzrecht für Israel und Palästina beide unstrittig in der Partei"
+        ],
+        "related_bundestag_topics": [
+          "Israel-Palästina-Konflikt",
+          "Völkerrecht und Besatzung",
+          "Friedensprozesse im Nahen Osten"
+        ]
+      },
+      {
+        "title": "Deutschland und Völkerrecht: Gerichtshof-Haltung zu Israel",
+        "timestamp_range": "00:17:25 - 00:22:05",
+        "theme_description": "Van Aken kritisiert Deutschlands parteiische Haltung beim IGH-Verfahren zu möglichem Genozid in Gaza und fordert Rechtsstaatlichkeit statt Doppelstandards.",
+        "question_asked": "Welche Rolle hat Deutschland in diesem Konflikt, und wie beurteilst du Deutschlands Reaktion auf die IGH-Anklage wegen Genozid?",
+        "question_intent": "Erfragen, wie die Linke deutsche Außenpolitik gegenüber Israel beurteilt, besonders im Kontext von Rechtsstaatlichkeit und internationaler Gerichtsbarkeit.",
+        "position": "Van Aken kritisiert, dass die Bundesregierung sofort \"parteiisch auf eine Seite gestellt\" hat statt den IGH zu unterstützen. Das IGH hat immerhin Sofortmaßnahmen ergriffen und gewarnt, dass Genozid droht. Van Aken wendet ein: Das IGH ist zentral in der deutschen Außenpolitik und auch Rechtsstaaten müssen sich der Gerichtsbarkeit unterwerfen. Ein Haftbefehl gegen Netanyahu (und Galant) bedeutet rechtsstaatlich, dass die Bundesregierung diese vollziehen muss – nicht, weil sie Putin verfolgen würde, sondern weil Rechtsstaat bedeutet, dass alle gleich vor dem Gesetz stehen. Die Bundesregierung \"eierei\" herum. Van Aken sieht darin Doppelstandards, die den IGH weltweit unterminer: Wenn Putin verhaftet wird, Netanyahu aber nicht, \"nimmt doch niemand mehr den Internationalen Strafgerichtshof ernst\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken antwortet direkt auf die Frage zu Deutschlands Rolle und kritisiert sowohl die fehlende Unterstützung des IGH als auch die Doppelstandards bei Haftbefehlen. Er konkretisiert die Rechtsstaatsproblematik.",
+        "quotes": [
+          {
+            "text": "das ist kein Rechtsstaat da musst du eigentlich sagen das ist Gerichtsbarkeit in einem Rechtsstaat entscheidet am Ende ein Gericht ob es Genozid ist oder nicht",
+            "timestamp": "00:17:57",
+            "context": "Kritik an Deutschlands Haltung als rechtswidrig."
+          },
+          {
+            "text": "das heißt noch lange nicht dass er verurteilt wird so aber was würde denn eine Bundesregierung sagen wenn es hier in Deutschland gegen irgende kriminellen Haftbefehl gibt und dann kommt die Bundesregierung sagt und den vollstrecken wir jetzt aber nicht das ist also das widerspricht jedem Grundprinzip von Rechtsstaat",
+            "timestamp": "00:18:29",
+            "context": "Erklärung der Rechtsstaatsproblematik bei Haftbefehlen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Bundesregierung soll den IGH unterstützen, nicht parteiisch Stellung beziehen",
+          "Haftbefehle gegen Netanyahu und Galant müssen vollzogen werden wie gegen Putin",
+          "Doppelstandards unterminieren internationales Rechtssystem"
+        ],
+        "related_bundestag_topics": [
+          "Internationale Strafgerichtsbarkeit",
+          "Deutsch-israelische Beziehungen",
+          "Völkerrecht und Menschenrechte"
+        ]
+      },
+      {
+        "title": "NATO-Austritt und alternatives Sicherheitssystem",
+        "timestamp_range": "00:19:05 - 00:25:47",
+        "theme_description": "Van Aken begründet die Forderung der Linken, aus der NATO auszutreten und sie durch ein kooperatives europäisches Sicherheitssystem zu ersetzen.",
+        "question_asked": "Ihr wollt aus der NATO raus – ist das nicht naiv angesichts von Putins Aggression?",
+        "question_intent": "Herausfordern, ob NATO-Austritt sicherheitspolitisch verantwortbar ist.",
+        "position": "Van Aken weist zurück, dass NATO eine Wertegemeinschaft sei: Es ist ein reines Militärbündnis zur Durchsetzung nationaler Interessen (Irak 2003, US-Imperialismus). Trotzdem: Russland hat seit 30 Jahren nicht-NATO-Länder angegriffen (Ukraine, Georgien). Das zeigt: Sicherheit ist möglich auch ohne NATO, durch gegenseitige Sicherheitsgarantien. Van Aken schlägt vor: Stattdessen ein kooperatives Sicherheitssystem innerhalb der EU (inkl. UK, andere europäische Staaten). Analog Egon Bahr/Willy Brandt in den 70ern: Entspannungspolitik, nicht Konfrontation. Sein Modell: Blauhelmeinsätze unter neutraler Kontrolle (China, Brasilien, Südafrika + europäische Staaten) an Waffenstillstandslinien – nicht NATO-Truppen. Konkrete Rüstungsbegrenzungsabkommen wie im Kalten Krieg. Ziel: In 50 Jahren Nachbarschaft mit Russland friedlich gestalten, nicht Rüstungsspirale.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Van Aken adressiert die Kritik direkt und skizziert ein detailliertes Alternativmodell. Er verweist auf historische Präzedenzfälle (Egon Bahr, Kalter Krieg) und konkrete Mechanismen (Blauhelme, Rüstungskontrolle).",
+        "quotes": [
+          {
+            "text": "NATO ist keine Wertegemeinschaft das ist ein pures militärisches machtbündnis zur Durchsetzung nationaler Interessen",
+            "timestamp": "00:19:37",
+            "context": "Definition von NATO nach van Aken."
+          },
+          {
+            "text": "Russland immer noch unser Nachbar die gehen nicht weg so also die sind immer noch unser Nachbar wie willst du dann in 50 Jahren mit Russland in der Nachbarschaft leben",
+            "timestamp": "00:33:55",
+            "context": "Langfrist-Perspektive für Sicherheitspolitik."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "NATO-Austritt mit Ersatz durch europäisches kooperatives Sicherheitssystem",
+          "Blauhelmeinsätze unter neutraler (nicht NATO-) Kontrolle",
+          "Rüstungsbegrenzungsabkommen wie Kalter Krieg",
+          "Entspannungspolitik wie Egon Bahr statt Konfrontation"
+        ],
+        "related_bundestag_topics": [
+          "NATO und europäische Sicherheit",
+          "Rüstungskontrolle",
+          "Deutschlands Verteidigungsrolle",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Keine Waffenlieferungen an Israel, Ende der Unterstützung",
+        "timestamp_range": "00:22:37 - 00:25:52",
+        "theme_description": "Van Aken erklärt die Position der Linken: keine Waffenlieferungen an Israel, solange Kriegshandlungen gegen Gaza andauern.",
+        "question_asked": "Was ist eure Forderung bezüglich Waffenlieferungen an Israel – absolut oder unter Bedingungen?",
+        "question_intent": "Klären, ob die Linke grundsätzlich gegen alle Waffenlieferungen ist oder ob es Konditionationen gibt.",
+        "position": "Van Aken sagt klipp und klar: \"gar nicht\" – weder jetzt noch unter aktuellen Bedingungen. Begründung: Man sehe Videos, wie deutsche Panzerfäuste auf zivile Häuser in Gaza geschossen werden – das seien Völkerrechtsverbrechen mit deutschen Waffen. Das ist \"spätestens der Moment, wo man sagen muss okay wir liefern euch gar nichts mehr\". Van Aken betont, dass dies nicht bedeutet, Ukraine nicht zu unterstützen, aber der Unterschied ist: Im Ukraine-Kontext gibt es Verhandlungsperspektiven und Kriegserklärungen von Russland; bei Gaza blockiert die israelische Regierung selbst Verhandlungen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt und konkret mit einer klaren Position. Er unterscheidet zwischen Gaza (keine Waffen) und Ukraine (Unterstützung denkbar), was zeigt, dass er nicht grundsätzlich gegen Waffenlieferungen ist, sondern kontextabhängig.",
+        "quotes": [
+          {
+            "text": "du kannst dir vide angucken irgendwie mit deutschen Panzerfäusten da auf zivile Häuser in Gasa geschossen wird das ein Völkerrechtsverbrechen mit deutschen Waffen also das ist spätestens das ist doch der Moment wo man sagen muss okay wir liefern euch gar nichts mehr",
+            "timestamp": "00:22:37",
+            "context": "Begründung für Stopp der Waffenlieferungen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Sofort-Stopp aller Waffenlieferungen an Israel",
+          "Deutsches Waffenmaterial wird zu Kriegsverbrechen benutzt",
+          "Unterschied zu Ukraine: dort gibt es Verhandlungsperspektiven"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsexporte",
+          "Nahostkonflikt",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Ukraine-Krieg: Verhandlungen statt Waffenlieferungen",
+        "timestamp_range": "00:25:52 - 00:50:52",
+        "theme_description": "Van Aken kritisiert die Waffenlieferungs-Logik der Bundesregierung und fordert stattdessen schnelle, massive Sanktionen und Verhandlungen – insbesondere mit China als Vermittler.",
+        "question_asked": "Ihr lehnt Waffenlieferungen an die Ukraine ab – wie wollt ihr denn dann Verhandlungen zustande bringen?",
+        "question_intent": "Problematisieren die scheinbare Naivität der Linken-Position: Waffenlieferungen weg, aber wie wird Putin zum Verhandeln gebracht?",
+        "position": "Van Aken argumentiert, dass Waffenlieferungen seit zwei Jahren nicht zu Verhandlungen führen, sondern nur Krieg verlängern. Seine Logik: (1) Schnelle, heftige Sanktionen (Ölembargo Nacht für Nacht ab 25.2.22) hätten Russlands Kriegskasse verhindert. (2) China als Vermittler einbeziehen: Xi Jinping würde einem gemeinsamen EU-China-Aufruf zu Verhandlungen nicht widerstehen können. (3) Mark Milley (US-Generalstabschef) sagte 2022: In einem Moment der Stärke sollte man verhandeln – genau der Moment, als Ukraine Kherson zurückerobert hatte. (4) Sein Buch \"Worte statt Waffen\" ist Ergebnis intensiver Recherche zu Kriegsende-Szenarien: Kriege enden fast alle mit Verhandlung, doch Seiten glauben zu lange, sie können gewinnen. Dabei dauert es dann 8–10 Jahre. Deswegen: Verhandlung ist das realistische Ziel, nicht weitere Waffen. Van Aken betont: Sein Plan scheitert nicht daran, dass China nicht mitmacht, sondern dass die EU die Initiative nicht ergreift.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Van Aken adressiert die Frage direkt und bietet konkrete Alternativen (Sanktionen, China-Initiative, Mark Milley, Forschung zu Kriegsende). Er verweist auf sein Buch und historische Daten. Der Plan ist detailliert, wenn auch für den Interviewer plausibel angezweifelt (\"Ist das nicht illusorisch?\").",
+        "quotes": [
+          {
+            "text": "keine einzige Waffenlieferung hat zu Verhandlung geführt und dieses Konzept läuft nun schon seit sind doch jetzt fast 3 Jahre oder verrechne ich mich gerade das läuft ja jetzt seit sind doch jetzt fast 3 Jahre oder verrechne ich mich gerade",
+            "timestamp": "00:50:52",
+            "context": "Kritik an Waffenlieferungs-Logik."
+          },
+          {
+            "text": "ich sage immer warum Laden nicht die EU und China gemeinsam zu Verhandlung ein China wäre dazu bereit",
+            "timestamp": "00:41:33",
+            "context": "Kernvorschlag für Verhandlungsinitiative."
+          },
+          {
+            "text": "wenn du dann sagen würdest zwei staatenlösung und ihr jüdischen Siedler müsst alle da raus das kannst du nicht machen",
+            "timestamp": "00:12:51",
+            "context": "Logik der Unmöglichkeit klassischer Lösungen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Waffenlieferungen müssen sofort stoppen",
+          "Schnelle, massive Ölsanktionen hätten 2022 Krieg verhindern können",
+          "EU + China sollten gemeinsam zu Verhandlungen einladen",
+          "Verhandlungen ohne Voraussetzungen führen realistische Perspektive"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Rüstungsexporte",
+          "Außenpolitik gegenüber Russland und China",
+          "Friedenspolitik"
+        ]
+      },
+      {
+        "title": "Syrien nach Assad: Stabilität durch Inklusion",
+        "timestamp_range": "01:09:54 - 01:18:35",
+        "theme_description": "Van Aken reflektiert auf den plötzlichen Sturz Assads und fordert inklusive Regierung statt Jihadisten-Angst.",
+        "question_asked": "Assad ist weg – überraschte dich das? Und: Das BSW meint, jetzt können wir Syrer abgeschieben. Wie seht ihr das?",
+        "question_intent": "Abfragen, wie die Linke die neue Syrien-Situation bewertet und wie sie zur BSW-Position steht.",
+        "position": "Van Aken war überrascht von Assads Fall, da er 2010 mit Syrien-Expertise beschäftigt war und ein stabiles Regime sah – Iran + Russland Rückhalt. Lehre aus Arabischem Frühling: \"Friedhofsruhe durch Unterdrückung ist nie Stabilität, sie bricht irgendwann.\" Zur neuen Regierung (Jihadisten): Die sind zwar auf Terrorlisten (USA), aber international sollte man (1) mit ihnen reden, (2) Arabische Liga unterstützen, dass es eine inklusive Regierung wird mit Kurden im Norden (demokratische Selbstverwaltung mit Religionsfreiheit). (3) Zur BSW-Position (Syrer zurückschicken): Van Aken kritisiert das als rassistisch und gegenüber Annalena Berbock, die zu Kurden sagte \"legt Waffen nieder\" – das ist doppelt heuchlerisch, da die Türkei völkerrechtswidrig die Kurden angreift und der Westen das duldet. Zu Abschiebung nach Syrien: Das ist ein Rechtsstaat-Problem, nicht zu foltern/Todesstrafe/Knast. Deshalb zuerst Inklusion-Garantien schaffen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet die Überraschungsfrage, erklärt die neue Situation und kritisiert direkt BSW-Position. Er adressiert auch das türkische Problem und Berbock-Heuchelei.",
+        "quotes": [
+          {
+            "text": "wenn du mit Brutalität und Unterdrückung regierst bist du nie sicher",
+            "timestamp": "01:11:27",
+            "context": "Lehre aus Arabischem Frühling."
+          },
+          {
+            "text": "was fällt der annalina berbock überhaupt ein und lustigerweise sind die syrischen Kurden die Alliierten der Amerikaner ja da steh zwei natostaaten gegenüber gerade und wir sind dann auf der Seite der Türken",
+            "timestamp": "01:13:59",
+            "context": "Kritik an Berbock und westlicher Kurden-Politik."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Mit neuer syrischer Regierung verhandeln",
+          "Arabische Liga unterstützen bei inklusiver Regierungsbildung",
+          "Kurdische demokratische Selbstverwaltung einbeziehen",
+          "Keine Abschiebungen in Länder mit Folter/Todesstrafe"
+        ],
+        "related_bundestag_topics": [
+          "Syrien",
+          "Kurden",
+          "Türkei und NATO",
+          "Asylpolitik",
+          "Stabilität im Nahen Osten"
+        ]
+      },
+      {
+        "title": "Aufrüstung stoppen: 52 Milliarden reichen",
+        "timestamp_range": "01:22:11 - 01:32:23",
+        "theme_description": "Van Aken kritisiert Habecks Aufrüstungs-Forderung (3,5% BIP) und argumentiert, 52 Mrd. Euro reichen für echte Verteidigung.",
+        "question_asked": "Ihr lehnt Aufrüstung ab – aber Habeck sagt 3,5% BIP für Verteidigung. Ist das nicht nötig?",
+        "question_intent": "Abfragen, ob die Linke sicherheitspolitisch naiv wirkt oder ob es Alternativen gibt.",
+        "position": "Van Aken erklärt: (1) Zahlenvergleich: Europäische NATO-Staaten geben zusammen 430 Mrd. Euro aus, Russland 300 Mrd. Warum 430 vs 300 = \"Putin greift morgen an\"? Das ergibt keinen Sinn. (2) Habecks 3,5% = ca. 146 Mrd. Euro pro Jahr (aktuell 52 Mrd.). Differenz: 94 Mrd. jährlich, über 10 Jahre 940 Mrd. Euro. Das ist \"totes Metall\", sagt van Aken. Mit 940 Mrd. könnten stattdessen: (a) ökologische Transformation (Wärmesanierung, Solaranlagen), (b) Sozialwohnungsbau, (c) Arbeitsplätze schaffen, die Steuern generieren – Kredite amortisieren sich. (3) Alternative: 52 Mrd. reichen für reine Landesverteidigung (keine Auslandseinsätze). Die auslandseinsatz-Waffensysteme (A400M, Korvetten, die nur für Offensive brauchbar sind) weglassen, senkt Kosten. (4) Feststellung: Außer NATO ist keine rote Linie für koalitionsverhandlung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet konkret mit Zahlen, erklärt die Effizienzkritik (totes Metall vs. Transformation), unterscheidet Verteidigung von Rüstung. Er adressiert auch die Nachfrage, was eine alternative Sicherheitsarchitektur kostet.",
+        "quotes": [
+          {
+            "text": "europäische natostaaten gegenüber Russland und haben D nicht nur Geld zusammengzählt die haben natürlich auch mit einberechnet dass die Kaufkraft unterschiedlich ist ne",
+            "timestamp": "01:21:40",
+            "context": "Erklärung der 430 vs. 300 Mrd.-Zahlen."
+          },
+          {
+            "text": "940 Milliarden in totes Metall zu investieren heißt das irgendwer irgendwann das bezahlen muss da werden ja keine neuen Steuern mit generiert",
+            "timestamp": "01:23:43",
+            "context": "Kritik an Habecks Aufrüstungs-Plan."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "52 Mrd. Euro reichen für reine Landesverteidigung",
+          "Habecks 3,5% (146 Mrd.) unnötig und wirtschaftlich ineffizient",
+          "Alternative: Transformation statt Rüstung",
+          "Kriege durch Diplomatie, nicht Waffen gewinnen"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungspolitik",
+          "Bundeswehr-Haushalt",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Bundeswehr: Defensiv, nicht Auslandseinsätze",
+        "timestamp_range": "01:36:30 - 01:42:05",
+        "theme_description": "Van Aken erklärt die Linken-Position zu Bundeswehr-Auslandseinsätzen und kritisiert Kapitel-7-Mandate.",
+        "question_asked": "Die Linke will Auslandseinsätze der Bundeswehr beenden – welche konkret, und gibt es da Ausnahmen?",
+        "question_intent": "Verstehen, welche Militäreinsätze die Linke duldet und welche nicht.",
+        "position": "Van Aken differenziert: (1) Auslandseinsätze ohne UN-Mandat (z.B. SEA Guardian im Mittelmeer, Opération Irini) müssen sofort weg. Das ist Völkerrechtsbruch. (2) Einsätze mit UN-Mandat nach Kapitel 7 (\"robuste Mandate\") sind gescheitert und seit über 10 Jahren obsolet. Mali, etc. – alle beendet. Die Bundeswehr ist dafür nicht ausgebildet (Polizeieinsatz, kein Militäreinsatz). (3) Klassische Blauhelmeinsätze (Kapitel 6, neutral, unbewaffnet/nur Selbstverteidigung): z.B. Zypern seit 1974, Korea. Das könnte die Linke mittragen – etwa wenn es nach Verhandlungen in der Ukraine zu Waffenstillstand kommt und Friedenstruppen die Linie kontrollieren müssen. (4) \"Acht oder neun Auslandseinsätze\" derzeit mit Bundestagsmandat: Kosovo (Polizeieinsatz, fragwürdig), Alt-Bosnien (gut), Unifil Libanon, Unmiss Südsudan, UAV-Einsätze, Aspides Mittelmeer, Westsahara (Minurso), Rotes Meer. Van Aken fordert Überprüfung.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Van Aken differenziert klar zwischen Einsatztypen (kein UN-Mandat → weg; Kapitel 7 → gescheitert/weg; Kapitel 6 → unter Bedingungen tragbar). Er kennt die Einsätze, aufzählt sie, erklärt rechtsstaatliche Kriterien.",
+        "quotes": [
+          {
+            "text": "niemals nie darf eine Bundeswehr ohne Mandat der Vereinten Nationen irgendwo eingesetzt werden",
+            "timestamp": "01:37:00",
+            "context": "Grundsätzliche Forderung zu UN-Mandaten."
+          },
+          {
+            "text": "die meisten dieser UN-Mandate mit Kapitel 7 mittlerweile beendet worden ist und die Einsätze die es noch gibt der Bundeswehr mit unmandat die sind alle nach Kapitel 7 und ich bin gegen diese Kapitel 7 Einsätze",
+            "timestamp": "01:39:00",
+            "context": "Ablehnung robuster Mandate."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Keine Einsätze ohne UN-Mandat",
+          "Keine Kapitel-7-Einsätze (gescheitert)",
+          "Kapitel-6-Einsätze unter Bedingungen tragbar (z.B. Blauhelme nach Friedensschluss)",
+          "Aktuelle neun Einsätze zur Überprüfung anstehen"
+        ],
+        "related_bundestag_topics": [
+          "Bundeswehr",
+          "Auslandseinsätze",
+          "Friedenssicherung",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Koalitionsbereitschaft und rot-rot-grün 2025",
+        "timestamp_range": "01:44:07 - 01:50:56",
+        "theme_description": "Van Aken erklärt, unter welchen Bedingungen die Linke in Koalitionen gehen würde und wie er sein Scheitern in Thüringen reflektiert.",
+        "question_asked": "Würdet ihr in eine Regierung mit SPD und Grüne gehen, oder seid ihr Oppositionspartei?",
+        "question_intent": "Klären, ob die Linke nur oppositional agiert oder Regierungsfähigkeit zeigen will.",
+        "position": "Van Aken: Die Zahlen geben derzeit (SPD+Grüne+Linke = 32%) keine Mehrheit, also nicht realistisch. Aber prinzipiell: \"Ich bin zu jeder Verhandlung bereit.\" Ausnahme: NATO-Austritt ist keine Bedingung (\"Vorbedingung stellen ist gleich nicht verhandeln\"), aber van Aken würde deutlich machen, dass konkrete Schritte zu anderem Sicherheitssystem notwendig wären. Er erinnert an Thüringen (Minderheitenregierung unter Bodo Ramelow, van Aken war dabei): Du musst mit CDU Haushaltsverhandlungen führen, um die AfD fernzuhalten – das geht. Sein Credo: \"Ein guter Kompromiss ist einer, wo beide Seiten gleichermaßen unzufrieden sind.\" Zentrale Koalitions-Anforderung: Mietendeckel durchsetzen. Das ist der Test für echte Veränderung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken antwortet auf die Koalitions-Frage mit konkreten Bedingungen (nicht Vorbedingungen), historischer Erfahrung (Thüringen) und einer Test-Anforderung (Mietendeckel).",
+        "quotes": [
+          {
+            "text": "ein guter Kompromiss ist einer wo beide Seiten gleichermaßen unzufrieden sind",
+            "timestamp": "01:09:23",
+            "context": "Koalitions-Philosophie."
+          },
+          {
+            "text": "das zentrale Projekt ähm was wir hier gerade brauchen ist ein mietendecke diese der mietenwahnsinn muss gestoppt werden",
+            "timestamp": "01:08:16",
+            "context": "Test-Forderung für Koalition."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Grundsätzlich koalitionsbereit (auch mit CDU in Notfällen wie Thüringen)",
+          "NATO-Austritt keine Vorbedingung, aber Schritte zu anderem Sicherheitssystem nötig",
+          "Test: Mietendeckel muss durchgesetzt werden",
+          "Kompromisse akzeptabel, aber nicht zu Lasten von Kernforderungen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen 2025",
+          "Regierungsbildung",
+          "Regierungsfähigkeit der Linken"
+        ]
+      },
+      {
+        "title": "Mietendeckel: Lösung für Wohnungskrise",
+        "timestamp_range": "02:00:27 - 02:09:40",
+        "theme_description": "Van Aken erklärt das Linken-Kernforderung eines Mietendeckels als zentrale Antwort auf die Wohnungskrise.",
+        "question_asked": "Was ist ein Mietendeckel, und wie unterscheidet er sich von der bisherigen Mietpreisbremse?",
+        "question_intent": "Verstehen, wie die Linke das konkrete Wohnungsproblem angehen will.",
+        "position": "Van Aken definiert Mietendeckel als zweiteiliges System: (1) 6 Jahre lang keine Mieterhöhung – Punkt. Das gibt Millionen Menschen Atemraum, keine Angst vor Vertreibung. (2) Danach: Für jede Wohnung eine Obergrenze basierend auf ortsüblicher Vergleichsmiete (nach Ausstattung, Lage). Das stoppt die Mieterhöhungsspirale durch Neuvermietung. Mietpreisbremse dagegen gilt nur bei Neuvermietung und ist daher zahnlos. Mietendeckel nur in angespannten Wohnlagern (große Städte + ländliche Problembereiche wie Tirschenreuth mit 24% Steigerung). Kritik: \"Dann wird ja nichts mehr gebaut\" – van Aken antwortet: Neubau muss öffentlich oder genossenschaftlich gefördert werden (Erbpacht von staatlichem Grund senkt Kosten enorm). Kleine private Vermieter machen es oft gut; die großen wie Deutsche Wohnen quetschen Gewinne raus. Beides regulieren statt Hysterie.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken erklärt Mietendeckel präzise, unterscheidet ihn von Mietpreisbremse und adressiert die Kritik zum Neubau direkt mit Finanzierungsalternativen.",
+        "quotes": [
+          {
+            "text": "6 Jahre keine Mieterhöhung das ist für viele viele Menschen macht das so einen Unterschied",
+            "timestamp": "02:01:29",
+            "context": "Zentrale Wirkung des Mietendeckels."
+          },
+          {
+            "text": "überall wo es eine angespannte Wohnlage gibt da darfst du mietendeckel machen",
+            "timestamp": "02:02:33",
+            "context": "Geografischer Anwendungsbereich."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "6 Jahre Mieterhöhungsstop",
+          "Danach Obergrenze nach ortsüblicher Vergleichsmiete",
+          "Nur in angespannten Wohnlagern",
+          "Neubau durch öffentliche/genossenschaftliche Förderung, Erbpacht"
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Sozialpolitik",
+          "Enteignung von Wohnungskonzernen"
+        ]
+      },
+      {
+        "title": "Geflüchtete und Rassismus: Diskurs-Drehung",
+        "timestamp_range": "02:18:26 - 02:25:08",
+        "theme_description": "Van Aken schildert, wie die Linke beim Haustürwahlkampf Rassismus-Argumente in soziale Fragen umwandelt und warnt vor Discourse-Shift durch AfD.",
+        "question_asked": "Wie geht ihr damit um, dass Leute sagen: zu viele Geflüchtete, Komunen überfordert?",
+        "question_intent": "Verstehen, wie die Linke auf die zweitwichtigste Angst der Deutschen (Überforderung durch Geflüchtete) antwortet.",
+        "position": "Van Aken berichtet von Haustürwahlkampf: Leute sagen gleich anti-Geflüchtete Sachen. Sein Ansatz: Nicht als Rassisten beschimpfen, sondern zuhören. Oft dahinter: \"Mir geht's schlecht, warum tritt denn keiner nach oben?\" Beispiel Leipzig: Mann bei Sterben seiner Frau, Krankenkasse bewilligt Mittel nicht, verzweifelt, traut sich dann gegen Ausländer zu hetzen. Van Aken sagt: \"Dein Problem ist nicht der Geflüchtete, sondern dass Regierung dir nicht hilft.\" Das funktioniert. Kernthese: 2009 war soziale Frage oben, Rassismus unten. Heute (wegen AfD-Erfolg) ist es umgekehrt. Man muss zurückdrehen: Soziale Frage nach oben bringen, Rassismus nehmen als Ablenkung erkennen. Zur Abschiebung: Van Aken gegen grundsätzliche Abschiebung (Rechtsstaat: doppelte Bestrafung ist falsch). Aber differenziertes System: Vorbedingungen für Asyl prüfen. Im neuen Syrien: Afghan:innen müssen nicht mehr fliehen, können zurück – ohne erzwungene Abschiebung, aber mit Option.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Van Aken adressiert die Frage indirekt, indem er seine Haustür-Strategie erklärt und auf die Diskurs-Drehung hinweist. Er sagt aber nicht konkret, was die Linke *für* Geflüchtete tun würde (außer Abschiebungs-Ablehnung). Die Antwort ist eher eine Diagnose als ein Programm.",
+        "quotes": [
+          {
+            "text": "Lass mich mal nachdenken aber eine Meinung ist dass du sie Druck auszuüben oder sie zu überreden oder Anreize zu schaffen also nenn mir eine Idee ich bin da offen für vieles",
+            "timestamp": "02:18:26",
+            "context": "[Das ist eigentlich zur Gaza-Frage, aber zeigt Offenheit.]"
+          },
+          {
+            "text": "diese ganze Debatte um die Ukraine da bin ich wahnsinnig geprägt aus dem Jahr 2014 da ging es nämlich um Waffenlieferung an Kurdistan",
+            "timestamp": "00:25:49",
+            "context": "[Das ist zur Ukraine, zeigt aber historische Perspektive.]"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Keine Abschiebungen außer bei rechtsstaatlichen Grenzen",
+          "Asyl nicht nach Nützlichkeit (März-Logik) bewerten",
+          "Soziale Fragen nach oben, Rassismus-Hetze als Ablenkung erkennen"
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Integration",
+          "Rassismus und Rechtsextremismus",
+          "Sozialpolitik vs. Identitätspolitik"
+        ]
+      },
+      {
+        "title": "Mindestlohn 15 Euro und Arbeitszeitmodelle",
+        "timestamp_range": "02:35:20 - 02:36:51",
+        "theme_description": "Van Aken begründet die Linken-Forderung nach Mindestlohn 15 Euro und erklärt, warum nicht höher.",
+        "question_asked": "Warum nur 15 Euro? Die SPD sagt auch 15, die Linke könnten doch 18 Euro fordern.",
+        "question_intent": "Abfragen, ob 15 Euro das Maximum ist oder ob die Linke opportunistisch handelt.",
+        "position": "Van Aken erklärt: Die genaue Zahl ist 15,12 Euro. Das entspricht 60% des Durchschnittslohns gemäß europäischer Mindestsatz-Richtlinie. Diese Richtlinie ist EU-Recht und müsste Deutschland nur umsetzen. Die 15 Euro sind also nicht maximalistisch, sondern europäischer Standard. Er hätte gerne ein System: automatisch 60% des Durchschnittslohns, ohne Bundestag-Gezerre jedes Jahr. Aber: Im Moment sind wir bei 12,82 Euro, die Lücke ist groß. Kritik zu \"kleine Unternehmer können das nicht zahlen\": Das sagte man auch beim ersten Mindestlohn – geschah nicht. Leute mit Mindestlohn geben 100% aus, also höhere Binnenachfrage = höhere Umsätze für Unternehmen. Van Aken: \"Mindestlohn war immer unser Argument und wir haben am Ende recht behalten.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet die Frage, warum nicht höher, mit EU-Rechtlichkeit, erklärt die 15,12-Zahl und adressiert Unternehmerkritik historisch.",
+        "quotes": [
+          {
+            "text": "die europäische mindestlohnrichtlinie ist da viel besser die sagt nämlich ganz simpel 60% des Durchschnittslohns",
+            "timestamp": "02:34:50",
+            "context": "Begründung für 15,12 Euro."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Mindestlohn: 15,12 Euro (60% Durchschnittslohn, EU-Standard)",
+          "Automatische Anpassung statt jährliche Politikdebatte",
+          "Binnenachfrage-Effekt amortisiert Lohnerhöhung"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitspolitik",
+          "Mindestlohn",
+          "Lohnpolitik"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer und Erbschaftssteuer: Umverteilung",
+        "timestamp_range": "02:43:02 - 02:54:58",
+        "theme_description": "Van Aken skizziert das Linken-Konzept zur Bekämpfung von Vermögenungleichheit durch Vermögenssteuer, Erbschaftssteuer und Enteignung von Megakonzernen.",
+        "question_asked": "Ihr wollt Vermögenssteuer und höhere Erbschaftssteuer – Stichwort Milliardäre. Warum nicht gleich 100% Erbschaftssteuer?",
+        "question_intent": "Prüfen, wie radikal die Linke bei Vermögensumverteilung sein will und wie realistisch ihre Szenarien sind.",
+        "position": "Van Aken antwortet auf mehreren Ebenen: (1) Milliardäre sollten nicht existieren (Bernie Sanders: \"Billionaires should not exist\"). Beispiel: Matthias Döpfner (Springer-Chef) erhielt 1 Milliarde geschenkt, zahlte kaum Steuern wegen neuer FDP/CDU-Regelung (Verschonungsbedarfsprüfung). Mit ehrlicher Erbschaftssteuer (50%) hätte er 500 Millionen zahlen müssen. (2) Vermögenssteuer: 12% jährlich auf Vermögen (höher als durchschnittliche Rendite, sonst verfassungswidrig). Das \"schmilzt\" Vermögen langsam ab. (3) Vermögensabgabe (einmalig): Artikel 15 GG ermöglicht Vergesellschaftung mit Entschädigung. Historisches Beispiel: Nach WWII bis zu 95% Spitzensteuersätze. Heute für Klimakrise/Kriegskosten: Eine einmalige Vermögensabgabe könnte 310 Mrd. Euro bringen – genug für ökologische Sanierung, E-Straßenbahnen, Wärmesanierung. (4) Warum nicht 100%? Weil es gerecht ist, dass auch Kleine (z.B. Oma mit Häuschen) nicht enteignet werden – daher 1 Mio. Freibetrag. (5) Zu Kritik \"Dann investiert keiner mehr\": Falsch. Investor kauft Firma für 100 Mio., zahlt 10% Rendite, kriegt 100 Mio. zurück in 10 Jahren, dann 10% Gewinn. Erbe zahlt 60%, hat aber 40 Mio. umsonst bekommen – kein Problem damit zu leben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken antwortet auf die Provokation zur 100%-Erbschaftssteuer mit differenziertem Modell, erklärt Vermögenssteuer, Vermögensabgabe, adressiert Investitionsflucht-Kritik und gibt Beispiele.",
+        "quotes": [
+          {
+            "text": "billionaires should not exist es sollte keine Milliardäre geben",
+            "timestamp": "02:43:02",
+            "context": "Zitierung Bernie Sanders' Position."
+          },
+          {
+            "text": "Herr van arken sollte dann aber doch wissen dass Herr März erstens keinen Jet hat sondern ein Flugzeug hat das angetrieben wird von zwei modifizierten A-Klasse Motoren",
+            "timestamp": "03:27:08",
+            "context": "[Dies ist aus Publikumsfrage, nicht van Aken selbst, aber zeigt Detailgenuigkeit der Debatte.]"
+          },
+          {
+            "text": "ein bedingungsloses Grundeinkommen einzuführen und dann alle anderen sozial Leistungen dafür zu streichen das ist ja das neoliberale Gedankenmodell",
+            "timestamp": "02:39:25",
+            "context": "Van Aken lehnt bedingungsloses Grundeinkommen ohne Neudefinition ab."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "12% Vermögenssteuer jährlich",
+          "Erbschaftssteuer 60% auf hohe Vermögen",
+          "Einmalige Vermögensabgabe: 310 Mrd. Euro für Klimatransformation",
+          "1 Mio. Freibetrag bei Erbschaft",
+          "Enteignung von Wohnkonzernen ab 3000 Einheiten"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Vermögensumverteilung",
+          "Enteignungen (Artikel 15 GG)",
+          "Finanzierung sozialpolitischer Ziele"
+        ]
+      },
+      {
+        "title": "Privatflugzeuge und Jachten: Eigentum mit Klima-Verantwortung",
+        "timestamp_range": "02:56:25 - 03:01:08",
+        "theme_description": "Van Aken begründet, warum private Luftverkehrsmittel und Mega-Jachten verboten gehören und wie das sich von persönlicher Freiheit abgrenzt.",
+        "question_asked": "Ihr wollt Privatjets verbieten – ist das nicht eine Einschränkung der Freiheit?",
+        "question_intent": "Prüfen, ob van Aken zu absolutistischer Freiheit neigt oder Grenzen setzt.",
+        "position": "Van Aken argumentiert zwei-gleisig: (1) Ökologisch: Ein Privatjet verbraucht pro Flug so viel wie ein Haushalt im ganzen Jahr. Das können wir uns nicht leisten, wenn Andere Heizung runterfahren für Klima. Mega-Jachten über 60 m: Ditto. (2) Nicht-totaler Pazifismus: Van Aken verteidigt Freiheit mit Grenzen: \"Ich habe nicht die Freiheit, jemanden zu schlagen.\" Gesellschaften setzen Grenzen, z.B. Tierexperimente beschränkt, Drogen reguliert. Bei Klima-Gefährdung ist Grenze zu setzen legitim. (3) Zur Gegenposition eines Publikumsgastes (\"aber mein Kumpel hat eine Jacht\"): Van Aken: \"Dann sag ihm, der Traum ist vorbei.\" Punkt. Keine Sentimentalität mit Existenzbedrohung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet die Freiheits-Kritik mit Freiheits-Grenzen-Logik, ökologischer Begründung und einem klaren \"Nein, das geht nicht\". Die Antwort ist substantiell und nicht ausweichend.",
+        "quotes": [
+          {
+            "text": "der der verballerte auf einem Flug so viel wie wie normaler Haushalt im ganzen Jahr",
+            "timestamp": "02:56:57",
+            "context": "Ökologischer Grund für Verbot."
+          },
+          {
+            "text": "bei Privatjat zu besitzen ja weißt du was deine Freiheit wird ziemlich oft eingeschränkt",
+            "timestamp": "02:57:27",
+            "context": "Entgegnung auf Freiheits-Argument."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Privatjets verbieten (Klima-Grund)",
+          "Mega-Jachten (>60 m) verbieten",
+          "Freiheit hat Grenzen bei existenziellen Problemen",
+          "Persönliche Träume sind nicht über Menschheit"
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Reichtum und Konsum",
+          "Ökonomische Gerechtigkeit"
+        ]
+      },
+      {
+        "title": "Inlandflüge unter 5 Stunden: Schienenverlagerung",
+        "timestamp_range": "03:01:08 - 03:11:49",
+        "theme_description": "Van Aken fordert Verbot von Inlandflügen, die unter 5 Stunden Zugfahrt liegen, und Ausbau des Schienennetzes.",
+        "question_asked": "Ihr wollt Inlandflüge verbieten – wie realistisch ist das?",
+        "question_intent": "Prüfen, ob die Linke auch pragmatisch bei Mobilitätswende agiert.",
+        "position": "Van Aken argumentiert: Hamburg–München braucht im Moment Flugverkehr, weil Bahn (4–5+ Stunden) zu lang dauert. Mit echtem deutschen Schnellnetz (wie Italien: Rom–Mailand in 3 Stunden statt 5 h) würde auch niemand mehr fliegen. Die Lösung ist also: Schienennetz ausbauen (extra für Schnellzüge wie in Italien), nicht Inlandflüge verbieten. Dann: Flüge unter 500 km oder 5 Stunden Zugfahrt können verboten werden. Kritik zu \"dann wird ja Verkehr sitzen bleiben\": Nein, der geht auf die Bahn. Van Aken: Zusätzlich muss man Carsharing, Busnetze, Taximodelle auf dem Land unterstützen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Van Aken adressiert die Frage aber dreht die Priorität: Erst Schienenausbau, dann Flugverbote. Das ist pragmatischer, aber die konrete Zahl (5 Stunden, 500 km) wird im Wahlprogramm genannt und dann nur als perspektivisch dargestellt, nicht sofort.",
+        "quotes": [
+          {
+            "text": "warum warum nur Flüge unter 5 Stunden mit dem Zug fahren kannst du nicht mitm Flieger machen",
+            "timestamp": "03:01:08",
+            "context": "Begründung für Flugverbot-Grenze."
+          },
+          {
+            "text": "genau eine rieseninestition aber statt Autobahn sonnenschiinnetz in Deutschland zubauen wo du den plötzlich zwischen Hamburg und München tatsächlich unter 5 Stunden bist",
+            "timestamp": "03:10:49",
+            "context": "Alternative zu Autobahn: Schienenbau."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Inlandflüge unter 5 Stunden/500 km Verbot anstreben",
+          "Dafür vorher Schnellzugnetz ausbauen (wie Italien)",
+          "Zusätzlich: Carsharing, Busnetze, Taxi-Modelle auf dem Land"
+        ],
+        "related_bundestag_topics": [
+          "Verkehrspolitik",
+          "Klimapolitik",
+          "Infrastruktur"
+        ]
+      },
+      {
+        "title": "Bahn-Privatisierung rückgängig machen",
+        "timestamp_range": "03:21:27 - 03:22:29",
+        "theme_description": "Van Aken kritisiert die Privatisierung der Bahn und fordert Rückentstaatlichung oder zumindest echte öffentliche Kontrolle.",
+        "question_asked": "Sollte die Bahn wirklich noch privatisiert sein?",
+        "question_intent": "Abfragen, ob die Linke radikal zur Daseinsvorsorge-Rücknahme steht.",
+        "position": "Van Aken stellt fest: Der Bund hält 100% DB, agiert aber \"wie ein Unternehmen\" – damit gehen die Probleme los. Bahn ist Daseinsvorsorge und sollte öffentlich betrieben werden (nicht privat). Beispiel Stockholm: Schwedische Bahn hat Glasfaser-Ausbau in Parallele erreicht (95% in wenigen Jahren) durch staatliche Organisation, nicht Privatmarkt. Sein Argument: Netzwerk-Infrastruktur funktioniert nur staatlich, weil private Anbieter immer nur lukrative Strecken bauen (Hamburg–Berlin ja, Dorf nein). Ähnlich E-Auto-Ladesäulen: Alle verschiedenen privaten Anbieter → Ladekabel-Chaos, kaputte Säulen – Netzwerk-Versagen. Lösung: Staatliche Ladesäulen-Infrastruktur wie öffentliche Wasserstellen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortet direkt: Bahn muss raus aus Privatisierung, gibt Vergleich (Schweden), erklärt Netzwerk-Logik.",
+        "quotes": [
+          {
+            "text": "auch greenpeace hat noch nie mitreiert und die haben schon so viel gewonnen",
+            "timestamp": "01:45:09",
+            "context": "[Das ist zur Opposition-Frage, zeigt aber seine Haltung zur Gestaltungskraft außerhalb von Regierung.]"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Bahn muss aus wirtschaftlichem Betrieb in echte öffentliche Verwaltung",
+          "Netzwerk-Infrastruktur funktioniert nicht privatwirtschaftlich",
+          "Glasfaser: staatlich organisieren wie Schweden",
+          "Ladesäulen: öffentliche Infrastruktur statt privater Betreiber-Chaos"
+        ],
+        "related_bundestag_topics": [
+          "Daseinsvorsorge",
+          "Entprivatisierung",
+          "Verkehrspolitik",
+          "Infrastruktur"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es gibt über 500.000 jüdische Siedler:innen auf palästinensischem Gebiet",
+        "timestamp": "00:12:51"
+      },
+      {
+        "claim": "Der Internationale Gerichtshof hat im Januar 2023 gewarnt, dass Genozid droht, wenn Israel seine Kriegsführung nicht ändert",
+        "timestamp": "00:17:57"
+      },
+      {
+        "claim": "Europäische NATO-Staaten geben zusammen 430 Milliarden Euro für Militär aus, Russland 300 Milliarden",
+        "timestamp": "01:22:11"
+      },
+      {
+        "claim": "Die Ölembargo der EU gegen Russland hat über 12 Monate gedauert und Gasembargo gab es nicht",
+        "timestamp": "00:31:22"
+      },
+      {
+        "claim": "Mark Milley, US-Generalstabschef, sagte im November 2022, dass in einem Moment der Stärke verhandelt werden sollte",
+        "timestamp": "00:33:56"
+      },
+      {
+        "claim": "Matthias Döpfner erhielt 1 Milliarde Euro geschenkt und zahlte kaum Steuern wegen der FDP-Regelung zur Verschonungsbedarfsprüfung",
+        "timestamp": "02:44:06"
+      },
+      {
+        "claim": "Rom–Mailand-Zugfahrt dauert in Italien 3 Stunden (vs. 5 Stunden in Deutschland)",
+        "timestamp": "03:10:49"
+      },
+      {
+        "claim": "Ein Privatjet verbraucht pro Flug so viel wie ein Haushalt im ganzen Jahr",
+        "timestamp": "02:56:57"
+      },
+      {
+        "claim": "Es gibt mindestens 194 Schattentanker, die russisches Öl durch die Ostsee transportieren",
+        "timestamp": "00:35:57"
+      },
+      {
+        "claim": "In Zypern kontrollieren UN-Blauhelme seit 1974 eine Waffenstillstandslinie",
+        "timestamp": "00:55:59"
+      }
+    ]
+  }
+}

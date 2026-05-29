@@ -85,7 +85,7 @@ Jede Plenarrede gehört zu einem (oder einer Mischung aus mehreren) der folgende
 
 **Empirische Anmerkung:** Cross-party in WP21 (SPD, Grüne, CDU, Linke); seltener AfD.
 
-### Typ D: Konfrontativ-belegende Auseinandersetzung
+### Typ D: Konfrontativ-faktenrhetorische Auseinandersetzung
 
 **Erkennungsmerkmale:**
 - Direkte Auseinandersetzung mit konkreter Behauptung/Antrag eines anderen Akteurs (Partei oder Person)
@@ -96,7 +96,7 @@ Jede Plenarrede gehört zu einem (oder einer Mischung aus mehreren) der folgende
 **Behandlungsregeln:**
 - Beide Positionen benennen (kritisierte Behauptung UND Gegenposition)
 - Konkrete Belege/Personen/Quellen aufnehmen wenn der Redner sie nennt
-- Tonalität: `konfrontativ_belegend`
+- Tonalität: `konfrontativ_faktenrhetorisch`
 
 **Beispiele (cross-party):**
 > Holger Mann (SPD) verteidigt den Deutschen Verlagspreis gegen den AfD-Antrag, der einer Kampagne des „Nius"-Portals folge. Er zeigt die Selektivität der AfD auf: während kleine Verlage als „linksextrem" etikettiert würden, fänden sich AfD-eigene Autoren wie Alexander Gauland im seit 2024 als „gesichert rechtsextrem" eingestuften Antaios-Verlag von Götz Kubitschek wieder. Sein Frame: ein „rechter Kulturkampf", der demokratische Stimmen zum Schweigen bringen soll.
@@ -215,7 +215,7 @@ Jede Plenarrede gehört zu einem (oder einer Mischung aus mehreren) der folgende
 **Behandlungsregeln:**
 - Kontext zur Hauptrede knapp herstellen
 - Pointe als Zentrum
-- Tonalität: je nach Inhalt — meist `sachlich`, `konfrontativ_belegend` (wenn mit Belegen), `polemisch` (bei rhetorischen Angriffen), oder `sozial_anklagend` (bei sozial-politischem Frame). „Pointiert" ist kein Tonalitäts-Wert, sondern ein Stilmerkmal — gehört in `rhetorische_mittel[]`.
+- Tonalität: je nach Inhalt — meist `sachlich`, `konfrontativ_faktenrhetorisch` (wenn mit Belegen), `polemisch` (bei rhetorischen Angriffen), oder `sozial_anklagend` (bei sozial-politischem Frame). „Pointiert" ist kein Tonalitäts-Wert, sondern ein Stilmerkmal — gehört in `rhetorische_mittel[]`.
 
 **Beispiel:**
 > In einer Zwischenfrage zur Olympia-Bewerbungs-Debatte attestiert Christian Görke (Linke) der Koalition, sie mache die „Rechnung ohne die Bürger" — Hamburg, Rheinland und Berlin zeigten breiten Widerstand. Er kritisiert das DOSB-Verfahren mit vier Bewerbungs-Regionen und drei vorab eingeplanten „Verlierern". Sein Schlusssatz: „Wenn Sie einen Trainingsplan brauchen: Den halten wir als Linke natürlich für Sie bereit."
@@ -388,7 +388,7 @@ Die Summary muss eine Tonalität klassifizieren — **exklusiv aus folgenden 11 
 | `polemisch` | Kampfsprache, Beleidigungen, Wahlaufrufe, persönliche Angriffe | Strauß (AfD/Mietbremse), Stephan (AfD/Rente), Gebhard (CDU/„abenteuerlich"), Demuth (CDU/SWR-Spitzen) |
 | `polemisch_sachlich` | Fakten kombiniert mit deutlichen ideologischen Frames jeglicher Richtung | Schmidt (AfD/Kernkraft), Scheurell (AfD/Schrott), Paul (AfD/Soldatenfrage) |
 | `emotional_persoenlich` | Eigene Lebensgeschichte, Anekdoten als Anker | Hostert (SPD/Srebrenica), Limbacher (SPD/Hochwasser) |
-| `konfrontativ_belegend` | Mit konkreten Belegen widerlegende Argumentation gegen die Position eines anderen — partei-unabhängig | Mann (SPD/Verlagspreis), Akbulut (Linke/Sicherheitsrat), Demuth (CDU/Triell), Piechotta (Grüne/Streichung), Slawik (Grüne/Deutschlandticket), Vriesema (Grüne/Diäten), Nanni (Grüne/Verteidigung), Kaminski (Linke/UN) |
+| `konfrontativ_faktenrhetorisch` | Mit konkreten Belegen widerlegende Argumentation gegen die Position eines anderen — partei-unabhängig | Mann (SPD/Verlagspreis), Akbulut (Linke/Sicherheitsrat), Demuth (CDU/Triell), Piechotta (Grüne/Streichung), Slawik (Grüne/Deutschlandticket), Vriesema (Grüne/Diäten), Nanni (Grüne/Verteidigung), Kaminski (Linke/UN) |
 | `ironisch_jugendlich` | Distinkter ironischer/sarkastischer Stil | Vollath (Linke/Aktivrente) |
 | `bilanzierend_werbend` | Selbstbewusste Bilanz der eigenen (meist Regierungs-) Politik | Sepp Müller (CDU), Jordan |
 | `staatsmaennisch` | Außenpolitik, ernst, mahnend | Lucks (Grüne/Ukraine), Hardt (CDU/Nahost), Wiese (SPD/EU), v. Notz (Grüne/Russland) |
@@ -618,8 +618,8 @@ Das Dokument ist menschlich lesbar, deshalb gut durch den Domain-Experten (Polit
 - Schema bleibt rückwärts-kompatibel — `neutralitaets_self_check` ist neues Pflichtfeld, andere Felder unverändert.
 
 **v2 — 2026-05-05 (Neutralitäts-Refactor):**
-- Reden-Typen-Namen partei-neutralisiert (Typ A: „Polemische Opposition (klassisch AfD)" → „Polemische Opposition"; Typ D: „Anti-AfD-Konfrontations-Rede" → „Konfrontativ-belegende Auseinandersetzung"; Typ G: „Linke-Sozialgerechtigkeits-Rede" → „Sozialgerechtigkeits-/Anklage-Rede"; Typ K: „Pro-Regierung-Außenpolitik (Grüne/SPD)" → „Außenpolitische Rede mit Bündnis-/Sicherheitsbezug")
-- Tonalitäten neutralisiert (`polemisch_sachlich`: AfD-Anker entfernt; `konfrontativ_belegend`: Anti-AfD-Anker entfernt; `ironisch_jugendlich`: Linke-Anker entfernt; `sozial_anklagend`: Linke-Anker entfernt)
+- Reden-Typen-Namen partei-neutralisiert (Typ A: „Polemische Opposition (klassisch AfD)" → „Polemische Opposition"; Typ D: „Anti-AfD-Konfrontations-Rede" → „Konfrontativ-faktenrhetorische Auseinandersetzung"; Typ G: „Linke-Sozialgerechtigkeits-Rede" → „Sozialgerechtigkeits-/Anklage-Rede"; Typ K: „Pro-Regierung-Außenpolitik (Grüne/SPD)" → „Außenpolitische Rede mit Bündnis-/Sicherheitsbezug")
+- Tonalitäten neutralisiert (`polemisch_sachlich`: AfD-Anker entfernt; `konfrontativ_faktenrhetorisch`: Anti-AfD-Anker entfernt; `ironisch_jugendlich`: Linke-Anker entfernt; `sozial_anklagend`: Linke-Anker entfernt)
 - Empirische Beispiel-Sprecher pro Tonalität auf cross-party-Verteilung erweitert
 - Frame-Glossar mit Hinweis versehen (deskriptiv, nicht erschöpfend, Asymmetrie reflektiert Empirie nicht Wertung)
 - Anti-Halluzinations-Heuristiken H1, H2, H3, H7 mit symmetrischer Anwendungs-Anmerkung versehen (Klassen-Bezeichnungen behielten ihre H-Nummern, Personen-Namen-Klassen entfernt)

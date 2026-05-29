@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Search, Loader2 } from "lucide-react";
 
 export function SearchBox() {
   const [query, setQuery] = useState("");
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  const pathname = usePathname() || "/";
-  // Im Linear-Design auf /design/linear/suche routen, sonst Default
-  const searchPath = pathname.startsWith("/design/linear") ? "/design/linear/suche" : "/suche";
+  const searchPath = "/suche";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     // Aktuellen Wert direkt aus dem DOM holen — robuster bei nicht voll-hydrierter Seite
@@ -45,7 +43,7 @@ export function SearchBox() {
           name="q"
           defaultValue={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Name eingeben, z.B. "Friedrich Merz"'
+          placeholder='Name oder Thema – z.B. „Bürgergeld"'
           className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-white text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all text-base shadow-sm"
         />
         <button

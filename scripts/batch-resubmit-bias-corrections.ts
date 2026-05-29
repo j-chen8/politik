@@ -37,7 +37,7 @@ const MODEL = "claude-haiku-4-5";
 
 const TONALITAET_ENUM = [
   "sachlich", "polemisch", "polemisch_sachlich", "emotional_persoenlich",
-  "konfrontativ_belegend", "ironisch_jugendlich", "bilanzierend_werbend",
+  "konfrontativ_faktenrhetorisch", "ironisch_jugendlich", "bilanzierend_werbend",
   "staatsmaennisch", "defensiv_pragmatisch", "sozial_anklagend", "mahnend",
 ];
 

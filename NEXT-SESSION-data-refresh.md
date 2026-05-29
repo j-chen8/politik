@@ -1,7 +1,76 @@
-# Next Session — Pickup: Daten-Refresh-Track (Stand: 2026-05-20, Abend)
+# Next Session — Pickup: Daten-Refresh-Track (Stand: 2026-05-25)
 
 > Dedizierte Track-Datei (Track-Isolation — `NEXT-SESSION.md` hat fremde Drift).
 > SoT für das ganze Vorgehen: **`docs/DATA-SOURCES.md`** (inkl. §0 »update«-Runbook).
+
+## Refresh 2026-05-25 (autonom, User-Trigger „update")
+
+### Was geholt
+
+| Quelle | Vorher | Nachher | Δ |
+|---|---:|---:|---:|
+| Plenar-XML / Reden-Rohtext | 78 Sitzungen | **80** | +2 (79: 2026-05-20, 80: 2026-05-21) |
+| Reden-LLM (`speech_analyses_v2`) | 11.610 | **11.953** | +343 |
+| Activities (DIP) | 66.759 | **67.863** | +1.104 |
+| Drucksachen-PDF (`drucksache_texts`) | 5.387 | **5.440** | +53 |
+| Drucksachen-LLM (`drucksache_analyses`) | 5.387 | **5.440** | +53 |
+| Votes (alle) | ~32.099 | **32.735** | +636 |
+| Polls (distinkt) | 51 | **52** | +1 (6528, 2026-05-22) |
+| Sidejobs | 3.969 | **4.008** | +39 |
+| Committees | ~1.73k | **2.154** | aw-Snapshot (kein Δ-Counter) |
+| Vote-Kontext re-generiert | — | 3 Polls | 6528 (neu) + 6251/6351 (DS-Liste geändert) |
+
+### Kosten (Anthropic Batch-API, Haiku 4.5)
+
+| Schritt | Geschätzt | Tatsächlich |
+|---|---:|---:|
+| Reden-Batch (343 Reden) | $1,51 | **$1,54** |
+| Drucksachen-Batch (53 DS) | $3,06 | ~$3,06 |
+| Vote-Kontext (3 Polls, Live-API) | $0,03 | ~$0,03 |
+| **Summe** | **~$4,60** | **~$4,63** |
+
+Unter 15 €-Schwelle → ohne Rückfrage submitted (per `feedback_update_trigger_runbook`).
+
+### Neutralitäts-Spotcheck (Schritt 5)
+
+- **3 zufällige Reden-Samples (79+80):** alle zugeschriebene Sprache („verteidigt", „betont", „nutzt Sarkasmus"). Keine bewertenden Adjektive.
+- **Tonalitäts-Drift (gegen 11er-Enum):** **0/343**. Memory `project_tonalitaet_drift` bleibt gültig (<0,4 %).
+- **Quote-Validation Reden:** 86,0 % (988/1149). Baseline war 90,9 % — leicht unter, aber im Rahmen der LLM-Schwankung bei kleinem Sample.
+- **3 zufällige Drucksachen-Samples (5440-Range):** neutral, akteurs-zugeschrieben („GRÜNE lehnen ab", „AfD-Fraktion erkundigt sich", „Haushaltsausschuss empfiehlt").
+- **Drucksachen Topic-Drift:** 5/53 (~9 %), 1 Tippfehler („Bürokatie"), 4 erfundene Themen außerhalb Enum. Memory `feedback_llm_array_drift` erwartet ~3 %, hier leicht drüber.
+- **Vote-Kontext 6528 / 6251 / 6351:** sachlich, zahlen-basiert, keine Wertung.
+
+→ **Spotcheck bestanden.**
+
+### Gemachte Fixes (Pipeline-Hygiene)
+
+1. **`scripts/batch-submit-reden.ts` — Watermark-Filter ergänzt** (Bug-Fix):
+   `NOT EXISTS (speech_analyses_v2 v2 WHERE v2.rede_id=ps.rede_id AND v2.segment_index=ps.segment_index)`
+   in die SELECT-Query. Vorher: Script hätte alle 11.812 Reden re-submittet
+   (Kosten $52 statt $1,51) und beim `JSON.stringify` aller Requests mit
+   `Invalid string length` (V8 ~512 MB-Limit) gecrasht. Watermark stimmt jetzt
+   mit `DATA-SOURCES.md §2.2` überein.
+2. **`src/lib/poll-bt-mapping.ts` — `6528: 6528` ergänzt** (Daten-Pflege):
+   Neuer Poll vom 22.05.; bt_id == poll_id-Konvention für DIP-prozedural
+   gemappte ≥ 6000.
+
+### Caveats
+
+- **aw-Lag:** abgeordnetenwatch publiziert namentliche Abstimmungen verzögert. 25.05. → neuester Poll 6528 vom 22.05. (~3 Tage Lag, geringer als die übliche ~11 Tage). Spätere Sitzungs-Abstimmungen evtl. noch nicht da.
+- **Quote-Validation 86 % statt 90,9 %:** kein Methodik-Wechsel — vermutlich Modell-Schwankung beim kleinen Sample (343 Reden). Bei nächstem Refresh beobachten.
+- **9,4 % Topic-Drift Drucksachen** vs. ~3 % Memory-Baseline: ebenfalls Sample-Größen-Effekt (5 von 53). Im `topic_drift_audit`-Spaltenwert dokumentiert.
+- **`drucksache_polls` Chicken-and-Egg:** `map-vote-drucksache-bundestag.ts --apply` filtert DS, die noch keine `drucksache_analyses`-Zeile haben (Sicherheits-Gate). 21/6076 musste deshalb in 2 Pässen verlinkt werden (vor + nach Drucksachen-Batch). Idempotenz hilft, aber für künftige `update`-Läufe Reihenfolge beachten: **Drucksachen-Batch retrieven BEVOR `map-vote-drucksache-bundestag.ts --apply` erneut laufen lassen**.
+
+### Definition of Done — ✅
+
+- Gratis-Gaps geschlossen ✓
+- LLM-Batches applied ✓
+- Vote-Kontext für alle Polls (52/52) ✓
+- Neutralitäts-Spotcheck bestanden ✓
+- `DATA-SOURCES.md §1`-Snapshot aktualisiert ✓
+- Diese Track-Datei geschrieben ✓
+
+---
 
 ## Refresh 2026-05-20 (Demo-Launch-Tag)
 

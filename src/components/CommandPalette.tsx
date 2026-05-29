@@ -9,6 +9,7 @@ import {
   Vote as VoteIcon,
   FileText,
   Loader2,
+  Plus,
 } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { highlight } from "@/lib/highlight";
@@ -29,6 +30,7 @@ interface FlatHit {
   sectionLabel: string;
 }
 
+const ZERO_TOTALS = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 };
 const EMPTY: SearchResults = {
   query: "",
   politicians: [],
@@ -37,35 +39,47 @@ const EMPTY: SearchResults = {
   votes: [],
   drucksachen: [],
   total: 0,
-  totals: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
-  totalsOriginal: { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 },
+  totals: { ...ZERO_TOTALS },
+  totalsOriginal: { ...ZERO_TOTALS },
+  totalsExpanded: { ...ZERO_TOTALS },
+  expand: false,
   expansions: [],
   matchedClusters: [],
+  directHit: null,
 };
 
 function flatten(results: SearchResults): FlatHit[] {
   const flat: FlatHit[] = [];
+  if (results.directHit) {
+    flat.push({
+      hit: results.directHit,
+      href: results.directHit.drucksache_nr
+        ? `/aktivitaeten/${results.directHit.drucksache_nr.replace("/", "-")}`
+        : `/protokolle`,
+      sectionLabel: "Direkter Treffer",
+    });
+  }
   results.politicians.forEach((h) =>
-    flat.push({ hit: h, href: `/design/linear/politiker/${h.id}`, sectionLabel: "Personen" })
+    flat.push({ hit: h, href: `/politiker/${h.id}`, sectionLabel: "Personen" })
   );
   results.topics.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/protokolle/top/${h.topic_id}`,
+      href: `/protokolle/top/${h.topic_id}`,
       sectionLabel: "Tagesordnungspunkte",
     })
   );
   results.speeches.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/protokolle/redner/${encodeURIComponent(h.speaker)}`,
+      href: `/protokolle/redner/${encodeURIComponent(h.speaker)}`,
       sectionLabel: "Reden",
     })
   );
   results.votes.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/design/linear/abstimmungen/${h.poll_id}`,
+      href: `/abstimmungen/${h.poll_id}`,
       sectionLabel: "Abstimmungen",
     })
   );
@@ -73,8 +87,8 @@ function flatten(results: SearchResults): FlatHit[] {
     flat.push({
       hit: h,
       href: h.drucksache_nr
-        ? `/design/linear/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
-        : `/design/linear/protokolle`,
+        ? `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
+        : `/protokolle`,
       sectionLabel: "Drucksachen",
     })
   );
@@ -105,6 +119,14 @@ const SECTION_TOTAL_KEY: Record<string, SearchType> = {
   Drucksachen: "drucksachen",
 };
 
+const TYPE_FILTERS: { key: SearchType; label: string }[] = [
+  { key: "politicians", label: "Personen" },
+  { key: "speeches", label: "Reden" },
+  { key: "topics", label: "TOPs" },
+  { key: "votes", label: "Abstimmungen" },
+  { key: "drucksachen", label: "Drucksachen" },
+];
+
 /** Wenn total ≤ INLINE_THRESHOLD, lädt "Mehr"-Klick alle in den Modal; sonst gibt's nur den Vollliste-Link. */
 const INLINE_THRESHOLD = 36;
 
@@ -123,6 +145,10 @@ export function CommandPalette({
   const [results, setResults] = useState<SearchResults>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // Synonym-Erweiterung ist opt-in: Default exakt, „erweitern" schaltet verwandte Themen dazu.
+  const [expand, setExpand] = useState(false);
+  // Typ-Filter (null = alle Typen)
+  const [activeType, setActiveType] = useState<SearchType | null>(null);
   // Inline-expanded items pro Section (Set bei "Mehr laden")
   const [expandedItems, setExpandedItems] = useState<Partial<Record<SearchType, SearchHit[]>>>({});
   const [expandingType, setExpandingType] = useState<SearchType | null>(null);
@@ -145,10 +171,29 @@ export function CommandPalette({
   }, [results, expandedItems]);
 
   const flatHits = useMemo(() => flatten(effectiveResults), [effectiveResults]);
-  const highlightTerms = useMemo(
-    () => [results.query, ...results.expansions].filter((t) => t && t.length >= 2),
-    [results.query, results.expansions]
+  // Typ-Filter: nur die gewählte Sektion zeigen (null = alle)
+  const displayHits = useMemo(
+    () =>
+      activeType
+        ? flatHits.filter((fh) => SECTION_TOTAL_KEY[fh.sectionLabel] === activeType)
+        : flatHits,
+    [flatHits, activeType]
   );
+  // Synonyme nur im Erweitert-Modus hervorheben (sonst exakt).
+  const highlightTerms = useMemo(
+    () =>
+      [results.query, ...(results.expand ? results.expansions : [])].filter(
+        (t) => t && t.length >= 2
+      ),
+    [results.query, results.expansions, results.expand]
+  );
+  // Wieviele zusätzliche Treffer gäbe es mit Synonym-Erweiterung (über alle Typen)?
+  const relatedExtra = useMemo(() => {
+    const sum = (t: SearchResults["totals"]) =>
+      t.speeches + t.topics + t.votes + t.drucksachen; // Personen kennen keine Synonyme
+    return Math.max(0, sum(results.totalsExpanded) - sum(results.totalsOriginal));
+  }, [results.totalsExpanded, results.totalsOriginal]);
+  const canExpand = results.matchedClusters.length > 0 && relatedExtra > 0;
 
   // Reset on open (mit optional initialQuery)
   useEffect(() => {
@@ -157,9 +202,17 @@ export function CommandPalette({
       setResults(EMPTY);
       setSelectedIndex(0);
       setExpandedItems({});
+      setExpand(false);
+      setActiveType(null);
       setTimeout(() => inputRef.current?.focus(), 10);
     }
   }, [open, initialQuery]);
+
+  // Neuer Suchbegriff → zurück auf Default: exakt + alle Typen.
+  useEffect(() => {
+    setExpand(false);
+    setActiveType(null);
+  }, [query]);
 
   // Debounced fetch — bei Query-Change Expanded-State invalidieren
   useEffect(() => {
@@ -174,7 +227,9 @@ export function CommandPalette({
     setExpandedItems({});
     const handle = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/suche?q=${encodeURIComponent(query)}`);
+        const res = await fetch(
+          `/api/suche?q=${encodeURIComponent(query)}&expand=${expand ? 1 : 0}`
+        );
         const data = (await res.json()) as SearchResults;
         setResults(data);
         setSelectedIndex(0);
@@ -185,14 +240,14 @@ export function CommandPalette({
       }
     }, 150);
     return () => clearTimeout(handle);
-  }, [query, open]);
+  }, [query, open, expand]);
 
   async function loadMore(type: SearchType) {
     setExpandingType(type);
     try {
       // Bei Inline-Expand: lade alle (capped bei INLINE_THRESHOLD, weil dieser Pfad nur für total ≤ threshold gezeigt wird)
       const res = await fetch(
-        `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=1&pageSize=${INLINE_THRESHOLD}`
+        `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=1&pageSize=${INLINE_THRESHOLD}&expand=${results.expand ? 1 : 0}`
       );
       const data = await res.json();
       setExpandedItems((prev) => ({ ...prev, [type]: data.items }));
@@ -205,7 +260,8 @@ export function CommandPalette({
 
   function goToFullList(type: SearchType) {
     onClose();
-    router.push(`/design/linear/suche?q=${encodeURIComponent(query)}&type=${type}`);
+    const expandParam = results.expand ? "&expand=1" : "";
+    router.push(`/suche?q=${encodeURIComponent(query)}&type=${type}${expandParam}`);
   }
 
   // Keyboard navigation
@@ -225,21 +281,21 @@ export function CommandPalette({
         onClose();
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedIndex((i) => (flatHits.length === 0 ? 0 : (i + 1) % flatHits.length));
+        setSelectedIndex((i) => (displayHits.length === 0 ? 0 : (i + 1) % displayHits.length));
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setSelectedIndex((i) =>
-          flatHits.length === 0 ? 0 : (i - 1 + flatHits.length) % flatHits.length
+          displayHits.length === 0 ? 0 : (i - 1 + displayHits.length) % displayHits.length
         );
       } else if (e.key === "Enter") {
         e.preventDefault();
-        const target = flatHits[selectedIndex];
+        const target = displayHits[selectedIndex];
         if (target) navigateTo(target.href);
       }
     }
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [open, flatHits, selectedIndex, navigateTo, onClose]);
+  }, [open, displayHits, selectedIndex, navigateTo, onClose]);
 
   // Scroll selected into view
   useEffect(() => {
@@ -252,7 +308,7 @@ export function CommandPalette({
 
   // Group flatHits by sectionLabel preserving order
   const grouped: { label: string; items: { hit: FlatHit; idx: number }[] }[] = [];
-  flatHits.forEach((fh, idx) => {
+  displayHits.forEach((fh, idx) => {
     let bucket = grouped.find((g) => g.label === fh.sectionLabel);
     if (!bucket) {
       bucket = { label: fh.sectionLabel, items: [] };
@@ -291,31 +347,85 @@ export function CommandPalette({
           </kbd>
         </div>
 
-        {/* Synonym-Expansion-Strip: zeigt mit welchen verwandten Begriffen mitgesucht wurde */}
-        {results.matchedClusters.length > 0 && results.expansions.length > 0 && (
-          <div className="border-b border-zinc-100 bg-zinc-50/60">
-            <div className="px-4 pt-2 pb-1 text-[11px] text-zinc-500 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-              <span className="text-zinc-400">auch gesucht über:</span>
-              {results.expansions.slice(0, 12).map((term) => (
-                <button
-                  key={term}
-                  type="button"
-                  onClick={() => setQuery(term)}
-                  className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600 hover:border-zinc-400 hover:text-zinc-900 hover:bg-zinc-50 transition-colors cursor-pointer"
-                  title={`Stattdessen nach "${term}" suchen`}
-                >
-                  {term}
-                </button>
-              ))}
-              {results.expansions.length > 12 && (
-                <span className="text-zinc-400">+{results.expansions.length - 12}</span>
-              )}
+        {/* Steuerleiste: Typ-Filter + Exakt/Erweitern */}
+        {query.trim().length >= 2 && results.total > 0 && (
+          <div className="border-b border-zinc-100 bg-zinc-50/60 px-4 py-2 space-y-2">
+            {/* Typ-Filter-Chips */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              <FilterChip
+                label="Alle"
+                count={
+                  results.totals.politicians +
+                  results.totals.speeches +
+                  results.totals.topics +
+                  results.totals.votes +
+                  results.totals.drucksachen
+                }
+                active={activeType === null}
+                onClick={() => {
+                  setActiveType(null);
+                  setSelectedIndex(0);
+                }}
+              />
+              {TYPE_FILTERS.map(({ key, label }) => {
+                const c = results.totals[key];
+                if (c === 0) return null;
+                return (
+                  <FilterChip
+                    key={key}
+                    label={label}
+                    count={c}
+                    active={activeType === key}
+                    onClick={() => {
+                      setActiveType(key);
+                      setSelectedIndex(0);
+                    }}
+                  />
+                );
+              })}
             </div>
-            <MatchBreakdown
-              totals={results.totals}
-              totalsOriginal={results.totalsOriginal}
-              query={results.query}
-            />
+
+            {/* Exakt-Default vs. Erweitern */}
+            {results.expand ? (
+              <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] text-zinc-500">
+                <span className="text-zinc-400">verwandte Begriffe:</span>
+                {results.expansions.slice(0, 10).map((term) => (
+                  <span
+                    key={term}
+                    className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600"
+                  >
+                    {term}
+                  </span>
+                ))}
+                {results.expansions.length > 10 && (
+                  <span className="text-zinc-400">+{results.expansions.length - 10}</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setExpand(false)}
+                  className="ml-auto shrink-0 text-zinc-600 hover:text-zinc-950 underline underline-offset-2"
+                >
+                  nur exakte Treffer
+                </button>
+              </div>
+            ) : canExpand ? (
+              <button
+                type="button"
+                onClick={() => setExpand(true)}
+                className="w-full flex items-center gap-2 text-[12px] text-left text-zinc-600 hover:text-zinc-950 transition-colors"
+                title="Verwandte Themen über Synonym-Cluster einbeziehen"
+              >
+                <Plus className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} />
+                <span>
+                  Verwandte Themen einbeziehen
+                  {results.matchedClusters.length > 0 && (
+                    <span className="text-zinc-400"> ({results.matchedClusters.join(", ")})</span>
+                  )}{" "}
+                  — <span className="tabular-nums font-medium text-zinc-900">+{relatedExtra}</span>{" "}
+                  Treffer
+                </span>
+              </button>
+            ) : null}
           </div>
         )}
 
@@ -429,36 +539,29 @@ export function CommandPalette({
   );
 }
 
-function MatchBreakdown({
-  totals,
-  totalsOriginal,
-  query,
+function FilterChip({
+  label,
+  count,
+  active,
+  onClick,
 }: {
-  totals: SearchResults["totals"];
-  totalsOriginal: SearchResults["totalsOriginal"];
-  query: string;
+  label: string;
+  count: number;
+  active: boolean;
+  onClick: () => void;
 }) {
-  const types: { key: keyof SearchResults["totals"]; label: string }[] = [
-    { key: "speeches", label: "Reden" },
-    { key: "topics", label: "TOPs" },
-    { key: "votes", label: "Votes" },
-    { key: "drucksachen", label: "Drucksachen" },
-  ];
-  const parts: string[] = [];
-  for (const { key, label } of types) {
-    const total = totals[key];
-    if (total === 0) continue;
-    const original = totalsOriginal[key];
-    parts.push(`${label} ${original}/${total}`);
-  }
-  if (parts.length === 0) return null;
   return (
-    <div
-      className="px-4 pb-2 text-[10.5px] text-zinc-400 leading-snug"
-      title="Wieviele Treffer enthalten den Original-Begriff im Text direkt — der Rest kam über die Synonyme oben."
+    <button
+      type="button"
+      onClick={onClick}
+      className={`px-2 py-0.5 rounded-full text-[11.5px] border transition-colors ${
+        active
+          ? "bg-zinc-900 text-white border-zinc-900"
+          : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-400 hover:text-zinc-900"
+      }`}
     >
-      direkt „{query}": <span className="tabular-nums">{parts.join(" · ")}</span>
-    </div>
+      {label} <span className={`tabular-nums ${active ? "opacity-70" : "text-zinc-400"}`}>{count}</span>
+    </button>
   );
 }
 
@@ -565,7 +668,7 @@ function SpeechRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
           {ton && (
             <span
               className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
-              title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /design/linear/methodik)"
+              title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /methodik)"
             >
               {ton}
             </span>

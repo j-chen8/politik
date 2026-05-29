@@ -315,8 +315,8 @@ export function PoliticianCV(props: PoliticianCVProps) {
           {nonEmpty.map(({ key, label, icon: Icon }) => {
             const sectionDrops = dropsBySection.get(key) ?? [];
             return (
-              <details key={key} className="group/sec rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors">
-                <summary className="list-none cursor-pointer flex items-center gap-2.5 px-3 py-2.5 select-none rounded-lg hover:bg-zinc-50/60 transition-colors">
+              <details key={key} className="group/sec rounded-xl border border-border-soft">
+                <summary className="list-none cursor-pointer flex items-center gap-2.5 px-4 py-3 select-none rounded-xl hover:bg-zinc-50 transition-colors">
                   <Icon className="w-4 h-4 text-zinc-400 shrink-0" strokeWidth={2} aria-hidden />
                   <span className="flex-1 text-sm font-semibold text-zinc-700">{label}</span>
                   <ChevronDown
@@ -325,7 +325,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
                     aria-hidden
                   />
                 </summary>
-                <div className="px-3 pb-3 pt-1">
+                <div className="px-4 pb-4 pt-1">
                   <ul className="space-y-2">
                     {merged[key].map((entry, i) => {
                       const conflict = conflictIdx.get(`${key}|${entry.jahr}`);
@@ -526,7 +526,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
             <p className="mt-2">
               Welche Modelle genau in welchem Schritt — inklusive Versionsständen —
               steht transparent in{" "}
-              <a href="/design/linear/methodik" className="text-primary hover:underline">
+              <a href="/methodik" className="text-primary hover:underline">
                 Methodik &amp; Datenquellen
               </a>.
             </p>

@@ -1,0 +1,829 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=jkN15eRa4so",
+    "video_id": "jkN15eRa4so",
+    "politician": "Isabel Cademartori",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "9ce5cc8fbb835c22",
+    "transcript_chars": 154256,
+    "caption_lines": 4640,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 56769,
+    "tokens_out": 22188,
+    "cost_usd": 0.1341672,
+    "quote_validation": {
+      "valid_exact": 16,
+      "valid_fuzzy": 28,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 14,
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-05-23T19:20:09.026Z",
+    "duration_seconds": 197
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation (substantielle_position / teilweise_antwort / themenwechsel / pivot_zum_gegenpunkt / floskel_generisch / offene_verweigerung / gegenfrage) ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird — sonst könnte fraktionspolitische Asymmetrie in Sprachmustern als asymmetrische Klassifikation durchschlagen.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen entweder gar nicht oder nur mit Begriffen wie 'Antwort zu anderem Bezugspunkt' (statt 'whataboutism') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein, damit Leser:innen selbst urteilen können.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Isabel Cademartori, SPD-Bundestagsabgeordnete aus Mannheim, präsentiert ihre Familiengeschichte mit chilenischen Wurzeln (Großvater war Wirtschaftsminister unter Allende, politischer Gefangener unter Pinochet) und ihre politische Entwicklung zur Sozialdemokratin. Sie diskutiert Verkehrspolitik, Energiewende, Außenpolitik (USA, Venezuela, Israel-Palästina) und wird herausgefordert zu inkonsistenten Positionen. Der Gesamtton ist reflektierend, teils defensiv bei kritischen Fragen.",
+    "themes": [
+      {
+        "title": "Eintritt in SPD und politische Herkunft",
+        "timestamp_range": "00:01:06 - 00:02:37",
+        "theme_description": "Isabel Cademartori erklärt ihre Entscheidung, 2012 der SPD beizutreten, basierend auf ihre persönliche Migrationsgeschichte und Dankbarkeit für den deutschen Sozialstaat.",
+        "question_asked": "Warum bist du SPD-Bundestagsabgeordnete, und warum beschloss du, der SPD 2012 beizutreten?",
+        "question_intent": "Will verstehen, welche politischen Überzeugungen und persönlichen Erfahrungen ihre Parteienwahl motiviert haben.",
+        "position": "Cademartori betont, dass sie mit ihrer Mutter 2000 aus Chile nach Deutschland kam mit wenig Mitteln und durch den deutschen Sozialstaat (kostenlose Schulbildung, Bafög, Sozialsysteme) aufsteigen konnte. Sie schreibt dies 'Errungenschaften der SPD' zu und beschreibt die SPD als die politische Kraft, die versucht, Chancen für alle zu schaffen. Sie betont auch Eigenverantwortung: Der Staat bietet Chancen, aber nicht allen gelingt es, diese zu nutzen. Sie kritisiert indirekt andere Länder (Chile, USA), wo Bildung private Kosten verursacht.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori beantwortet direkt die Frage nach ihrem SPD-Eintritt mit klarer Begründung (persönliche Dankbarkeit für Sozialstaat-Leistungen) und kontextualisiert dies in ihrer Familiengeschichte. Die Antwort ist ausführlich und substantiell.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich bin mit meiner Mutter im Jahr 2000 nach Deutschland gekommen. Wir hatten nichts. Und durch die Unterstützung des Sozialstaats letztlich auch es geschafft, gut durch die Schule zu kommen und dann auch mit vollem Bafög studiert.",
+            "timestamp": "00:01:37"
+          },
+          {
+            "text": "Für mich ist die SPD die politische Kraft, die eben versucht, dieses System möglichst vielen Leuten zugänglich zu machen, dass mehr Menschen diesen Weg gehen können, auch den sozialen Aufstieg schaffen können.",
+            "timestamp": "00:02:37"
+          }
+        ],
+        "concrete_statements": [
+          "Sie trat 2012 in die SPD ein.",
+          "Sie schreibt Bafög und Sozialversicherung der SPD zu.",
+          "Sie sieht die SPD als Partei, die Aufstiegschancen bietet, aber auch Eigenverantwortung erfordert."
+        ],
+        "related_bundestag_topics": [
+          "Bafög-Erhöhungen",
+          "Sozialversicherungssysteme",
+          "Bildungsgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Verkehrspolitik und ÖPNV-Infrastruktur",
+        "timestamp_range": "00:05:43 - 00:09:47",
+        "theme_description": "Cademartori erklärt ihre Schwerpunktsetzung auf Verkehrspolitik in ihrer Kommunalpolitik in Mannheim und deren Fortsetzung im Bundestag, insbesondere zum Fahrradwegebau und zur Schieneninfrastruktur.",
+        "question_asked": "Warum bist du Verkehrspolitische Sprecherin der SPD im Bundestag und nicht Bildungspolitische Sprecherin?",
+        "question_intent": "Will verstehen, warum Cademartori sich für ein Politikfeld entschied, das nicht unmittelbar mit ihrer persönlichen Aufstiegsgeschichte (Bildung) verbunden ist.",
+        "position": "Cademartori begründet ihre Schwerpunktsetzung auf Verkehrspolitik damit, dass sie in der Kommunalpolitik konkrete Projekte umsetzen wollte, die in die Zuständigkeit von Städten fallen (nicht Bildung, die Landessache ist). Sie führt ihre Arbeit an Fahrradwegen in Mannheim an und betont, dass Verkehr 'jeden berührt' und viele Querschnitte (Klima, Wirtschaft) hat. Sie sieht es als 'revolutionär', dass es gelang, ein deutschlandweites Ticket (Deutschlandticket) einzuführen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet direkt auf die Frage zur Spezialisierung mit logischer Begründung (Zuständigkeitsbereiche in Kommunalpolitik, dann Fortsetzung im Bundestag). Sie illustriert mit konkreten Beispielen (Fahrradwege, Deutschlandticket).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich wollte etwas tun, was auch in der kommunalen Zuständigkeit ist und das ist bei Bildung nicht wirklich der Fall. Das ist halt ein Landes Thema in erster Linie.",
+            "timestamp": "00:06:13"
+          },
+          {
+            "text": "Ich fand es spannend, das im Bundestag fortzusetzen, weil es ist so ein Thema, was jeden bewegt, jeden berührt, was sehr viele Querschnitte auch hat.",
+            "timestamp": "00:06:44"
+          }
+        ],
+        "concrete_statements": [
+          "Sie sieht sich mitverantwortlich für Fahrradwegebau in Mannheim.",
+          "Sie setzt sich für das Deutschlandticket (64 €/Monat) ein.",
+          "Sie betont, dass Investitionen in Bahn 'so viel Geld wie noch nie' fließen."
+        ],
+        "related_bundestag_topics": [
+          "Bahninfrastruktur-Ausbau",
+          "ÖPNV-Finanzierung",
+          "Deutschlandticket-Förderung",
+          "Fahrradinfrastruktur"
+        ]
+      },
+      {
+        "title": "Bahn-Instandhaltung und Wartungsrückstände",
+        "timestamp_range": "00:07:14 - 00:09:47",
+        "theme_description": "Diskussion über Mitverantwortung für die schlechte Pünktlichkeit der Bahn und strukturelle Gründe für Wartungsrückstände.",
+        "question_asked": "Bist du mitverantwortlich dafür, dass die Bahn nicht fährt und nicht pünktlich ist?",
+        "question_intent": "Will Cademartori auf ihre persönliche und politische Verantwortung für das Scheitern der Bahninfrastruktur festlegen.",
+        "position": "Cademartori lehnt initiale Verantwortung für historische Versäumnisse ab ('das wurde lange vor meiner Zeit schon verbockt'), beansprucht aber Fortschritte seit ihrer Zeit im Bundestag: 'massive Steigerung' der Bahnfinanzierung. Sie identifiziert die zentrale Ursache als 'Vernachlässigung der Wartung und Instandhaltung' über 25 Jahre hinweg, da Instandhaltung von der Bahn selbst finanziert wurde, nicht vom Steuerzahler. Sie verweist auf das 'Bundesschienenwege Ausbaugesetz', das 100+ Milliarden aus einem Sondervermögen bereittellt. Sie warnt vor unrealistischen Versprechungen (kritisiert Bahnchefin-Ziel von 65% Pünktlichkeit bis 2027/2028 als 'nicht super ambitioniert') und plädiert für Ehrlichkeit gegenüber der Bevölkerung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Verantwortungsfrage, lenkt aber ab auf strukturelle Gründe (intransparente Geldflüsse, historische Versäumnisse) und ihre Reformbemühungen. Sie adressiert die zentrale Frage (Ihre Mitverantwortung) nur indirekt durch Verweis auf seitdem ergriffene Maßnahmen, nicht durch direkte Eingeständnisse oder konkrete Lösungsversprechen.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Cademartori weicht teilweise aus, indem sie historische Schuld (Vorgänger-Regierungen) betont und neue Finanzmittel anführt, ohne dabei einzugestehen, dass unter ihrer Koalition die Bahn immer noch nicht zuverlässig ist. Sie bietet keine Zeitrahmen an, wann die Pünktlichkeit signifikant verbessert sein wird.",
+        "quotes": [
+          {
+            "text": "Natürlich nicht, weil das wurde lange vor meiner Zeit schon verbockt. Nein, also aber auch während deiner Zeit. Na ja, ich würde schon für mich in Anspruch nehmen, dass wir seit ich im Bundestag bin, was jetzt nicht in erster Linie an mir lag, aber auch dass wir zumindest die Investitionen in die Bahn massiv hochgefahren haben.",
+            "timestamp": "00:07:14"
+          },
+          {
+            "text": "Das nächste, bei Bahn ist es eben so, dass es nicht schnell geht. Also so eine neue Schiene zu legen ist erstaunlich kompliziert.",
+            "timestamp": "00:07:44"
+          }
+        ],
+        "concrete_statements": [
+          "Investitionen in Bahn sind 'so viel Geld wie noch nie'.",
+          "Über 100 Milliarden € aus dem Sondervermögen für Bahn-Sanierung.",
+          "Sie kritisiert unrealistische Pünktlichkeitsziele (65% bis 2027/28).",
+          "Sie sieht Wartungsrückstände als zentrale Ursache."
+        ],
+        "related_bundestag_topics": [
+          "Bundesschienenwege Ausbaugesetz",
+          "Sondervermögen für Infrastruktur",
+          "Deutsche-Bahn-Reformen",
+          "Infrastruktur-Finanzierung"
+        ]
+      },
+      {
+        "title": "Flugverkehr, Kerosinsteuer und Luxusverkehrsmittel",
+        "timestamp_range": "00:18:52 - 00:26:35",
+        "theme_description": "Cademartori diskutiert ihre Haltung zu Flugverkehr, Kerosinbesteuerung, Business-Class-Flüge und mögliche Verbote von Privatjets und Luxusjachten.",
+        "question_asked": "Wie stehst du zur Nichtbesteuerung von Kerosin? Sollten Privatjets und Luxusjachten verboten oder besteuert werden? Darf eine SPD-Bundestagsabgeordnete Business Class fliegen?",
+        "question_intent": "Will überprüfen, ob Cademartori eine konsistente Haltung zu Klima-Gerechtigkeit und Luxuskonsum hat und ob sie ihre eigenen Privilegien kritisch reflektiert.",
+        "position": "Cademartori befürwortet eine europäische Kerosinsteuer (nicht nur national, um Ausweichbewegungen zu vermeiden). Sie spricht sich für eine 'Luxussteuer' auf Business-Class-Flüge und Privatjets aus, aber 'nicht gegen die Studenten, die irgendwie nach Barcelona fliegen wollen'. Sie rechtfertigt ihr eigenes Business-Class-Fliegen damit, dass Abgeordnete dieses Privileg haben und Langstreckenflüge weniger ermüdend machen. Sie lehnt ein generelles Verbot von Privatjets ab, plädiert stattdessen für Besteuerung. Sie betont, dass Mobilität eine 'Errungenschaft' ist, besonders für Menschen mit Migrationshintergrund, die Familie im Ausland besuchen wollen. Sie kritisiert 'Anti-Fliegen-Debatten' als zu pauschal.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori adressiert die Fragen zu Kerosinsteuer und Luxusbesteuerung substantiell, aber ihre Antwort zu ihrem eigenen Business-Class-Fliegen ist defensiv und scheint ihre Position zu 'Gerechtigkeit bei Mobilität' zu widersprechen. Sie rechtfertigt ihr Privileg statt es zu kritisieren.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Cademartori geht bei der Frage nach ihrem Business-Class-Fliegen in die Defensive und betont ihre 'Privilegien als Abgeordnete' statt die Inkohärenz mit ihrer Klimahaltung zu reflektieren. Sie verweist auf 'Langstrecke', obwohl viele ihrer Flüge innerhalb Europas sind.",
+        "quotes": [
+          {
+            "text": "Ich finde nicht, dass wir die Studenten, die irgendwie nach Barcelona fliegen wollen, noch mit zusätzlichen Abgaben belasten. Ich finde das eine gute Sache, wenn junge Menschen oder generell Menschen auch was von der Welt sehen können.",
+            "timestamp": "00:23:29"
+          },
+          {
+            "text": "Ja. Tust du das? Ja. Obwohl der SPD bist. Ja. Ja, warum sagst du nicht, ich bin wie das gemeine Fußvolk, fliege nicht Business Class?",
+            "timestamp": "00:24:31"
+          },
+          {
+            "text": "Ich fliege auch oft Economy, aber wir haben als Bundestagsabgeordnete sowie auch Bundesbeamte und andere irgendwie in leitenden Funktionen Privileg dieses Privileg und ich wäre jetzt würde jetzt lügen, wenn ich jetzt sagen würde, ich nutze das nicht auch ab und zu.",
+            "timestamp": "00:25:01"
+          }
+        ],
+        "concrete_statements": [
+          "Kerosinsteuer nur europaweit sinnvoll (sonst Ausweichbewegungen).",
+          "Plädiert für Luxussteuer auf Business Class und Privatjets.",
+          "Lehnt generelles Privatjet-Verbot ab, plädiert für Besteuerung.",
+          "Nutzt selbst Business Class bei Langstreckenflügen.",
+          "Kritisiert pauschale Anti-Fliegen-Debatten als zu rigide."
+        ],
+        "related_bundestag_topics": [
+          "Kerosinsteuer-Reform",
+          "Flugverkehr-Regulierung",
+          "Luxussteuer",
+          "Privatjet-Regulierung",
+          "Klima-Gerechtigkeit"
+        ]
+      },
+      {
+        "title": "Kulturschock Südafrika und Auslandsjahr",
+        "timestamp_range": "00:28:06 - 00:34:41",
+        "theme_description": "Cademartori erzählt von ihrem Austauschjahr (ca. 14-15 Jahre alt) in Südafrika (Bloemfontain, nicht Kapstadt) bei einer weißen Familie und christlichen Mädchenschule.",
+        "question_asked": "Du machtest einen Austausch 2024/25 nach Südafrika – warum?",
+        "question_intent": "Will verstehen, warum Cademartori sich für das konservative, rassisch segregierte Südafrika entschied statt eines westlichen Landes.",
+        "position": "Cademartori wollte 'irgendwie weit weg' und 'etwas anderes machen'. Sie 'wusste nicht viel' über Südafrika, fand die Organisation (Youth for Understanding) spannend. Sie 'wollte irgendwie etwas anderes machen' und hatte sich 'in den Kopf gesetzt, dass es cool wäre nach Südafrika zu gehen'. Sie stellt fest, dass dies zum Glück 'nicht Kapstadt' sondern 'Bloemfontain' war (Verwaltungssitz, konservativer, Afrikaanssprachig, burenrechtlich geprägt). Erlebte bedeutsamen Kulturschock: christliche Familie versuchte sie zu 'missionieren', christliche Mädchenschule, traditionell 'burisch', hauptsächlich weiße Schüler:innen, Unterricht auf Afrikaans. Sie lernte Afrikaans 'fließend'. Sie kritisiert, dass Platzierungen nicht nach Anforderungen (z.B. schwarze Gastfamilie) verhandelt werden konnten. Trotz kultureller Entfernung zur Gastfamilie beschreibt sie es als positive Erfahrung ('Eindrücke bekommen' der südafrikanischen Realität).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet direkt auf die Frage zum Austausch mit persönlichen Beweggründen (Abenteuer, Fernweh) und beschreibt detailliert die Erfahrung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich wollte irgendwie weit weg mit 14, 15 und ich wollte ähm irgendwie was anderes machen und ähm fand das spannend.",
+            "timestamp": "00:29:07"
+          },
+          {
+            "text": "Da waren so die richtig heißen Themen. Und ähm darüber bin ich so ein bisschen zu der Verkehrspolitik gekommen.",
+            "timestamp": "00:06:44"
+          }
+        ],
+        "concrete_statements": [
+          "Austausch ca. mit 14-15 Jahren nach Südafrika.",
+          "Organisiert durch Youth for Understanding mit Stipendium.",
+          "Lebte in Bloemfontain (Verwaltungssitz, konservativ), nicht Kapstadt.",
+          "Weiße burische Familie, christlich.",
+          "Christliche Mädchenschule mit Unterricht auf Afrikaans.",
+          "Lernte fließend Afrikaans.",
+          "Konnte keine Anforderungen (z.B. schwarze Gastfamilie) formulieren."
+        ],
+        "related_bundestag_topics": [
+          "Austauschprogramme",
+          "Südafrika-Verständnis",
+          "Interkulturelle Erfahrung"
+        ]
+      },
+      {
+        "title": "EU-Neuzulassungsverbot für Verbrenner und Automobillobby",
+        "timestamp_range": "00:28:36 - 00:34:48",
+        "theme_description": "Diskussion über die EU-Regulierung zum Verbot von Neuzulassungen von Verbrennungsmotoren ab 2035 und Cademartoris Kampf dafür, die schwache Position der SPD jedoch.",
+        "question_asked": "Warum warst du für die EU-Neuzulassungsverbots-Regulierung, konntest dich aber mit besseren Argumenten intern nicht durchsetzen? Warum hast du verloren?",
+        "question_intent": "Will verstehen, warum Cademartori nicht ihre eigene Position in ihrer Partei durchsetzen konnte, obwohl sie sie für richtig hält.",
+        "position": "Cademartori sagt, sie 'stand bis zum Schluss' für die EU-Regulation ein, hatte aber 'sehr viele Kollegen', die anders sahen, auch Ministerpräsidenten der SPD. Sie identifiziert die Gründe als: (1) massive Automobilindustrie-Lobbying und Druck, (2) wirtschaftliche Schwierigkeiten in der Autoindustrie (Tausende Stellen in Baden-Württemberg bei Bosch, Mercedes, VW abgebaut), (3) Verunsicherung bei Arbeitern, die dann 'sehr stark auf uns eingewirkt' haben. Sie gibt zu: 'diese Klimaregulierung ist ein Teil der Debatte' zur Arbeitsplatzvernichtung, würde aber betonen, dass die Automobilindustrie selbst jahrzehntelange Vorbereitungszeit hatte ('die Regulierung ... war mit ihnen besprochen'). Sie kritisiert implizit die Industrie: Sie hätte die Umstellung längst vorbereiten können. Sie gibt auch zu, dass echte externe Schocks (Ukraine-Krieg, Trump-Zölle, chinesische Konkurrenz) das Problem verschärft haben.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Frage nach ihrem Scheitern, aber ihre Antwort ist eher eine Verteidigung ihrer Partei und eine Kritik der Industrie als ein echtes Eingeständnis ihres persönlichen Scheiterns. Sie adressiert nicht, warum sie als 'Verkehrspolitische Sprecherin' nicht stärker gegen ihre eigenen Parteikolleg:innen kämpfte.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Automobilindustrie und Arbeitsplätze",
+        "evasion_note": "Cademartori lenkt von ihrer persönlichen Unfähigkeit, die Position durchzusetzen, auf die 'echten Probleme' der Automobilindustrie (Arbeitsplätze, externe Schocks) ab. Sie sagt nicht, wie sie selbst als Verkehrspolitikerin argumentierte oder wo ihr Raum für Kompromiss hätte sein können.",
+        "quotes": [
+          {
+            "text": "Die Automobilindustrie ist ein nenn der Kernfeiler der deutschen Industrie. Und die sorgt halt für sehr viele gut bezahlte Arbeitsplätze.",
+            "timestamp": "00:31:41"
+          },
+          {
+            "text": "Ich persönlich teile nicht die Einschätzung, dass diese Klimaregulierung der Hauptgrund dafür ist, aber das war eben Teil der Debatte, die wir geführt haben.",
+            "timestamp": "00:31:41"
+          },
+          {
+            "text": "Aber warum konntest du dich nicht, wenn du die bessere Position hast, nicht mit den besseren Argumenten durchsetzen? Na ja, es bei der Automobilregulierung ist es immer ein gerade in Deutschland ein Spannungsverhältnis zwischen was ist gut fürs Klima und für den Verkehr und was ist gut für die Automobilindustrie.",
+            "timestamp": "00:30:40"
+          }
+        ],
+        "concrete_statements": [
+          "Sie stand bis zum Schluss für die EU-Regulierung ein.",
+          "Sie hatte Gegenwind von vielen Kollegen und SPD-Ministerpräsidenten.",
+          "Sie erkennt an, dass Arbeitsplatzabbau in der Autoindustrie ein echtes Problem ist.",
+          "Sie kritisiert die Industrie für mangelnde Vorbereitung (trotz Vorankündigung).",
+          "Sie identifiziert externe Schocks als verstärkendes Problem (Ukraine, Trump-Zölle, China)."
+        ],
+        "related_bundestag_topics": [
+          "EU-Verordnung Flottengrenzwerte",
+          "Automobilindustrie-Transformation",
+          "Arbeitsplatzschutz in der Industrie",
+          "Klima-Regulierung vs. Wirtschaft"
+        ]
+      },
+      {
+        "title": "Dienstwagenprivileg und CO2-Besteuerung",
+        "timestamp_range": "00:34:48 - 00:37:53",
+        "theme_description": "Cademartori präsentiert ihren Vorschlag zur Reform der Dienstwagen-Pauschalbsteuerung durch CO2-Komponenten und kritisiert das aktuelle System als subventioniert.",
+        "question_asked": "Warum reformiert ihr das Dienstwagenprivileg nicht, das eine große Subvention für Luxusautos darstellt?",
+        "question_intent": "Will herausfinden, warum die SPD ein offensichtliches klimaschädliches Subventionssystem nicht ändert.",
+        "position": "Cademartori präsentiert ihren eigenen Vorschlag als 'Verkehrspolitische Sprecherin': Erhöhung der 1%-Pauschale durch eine CO2-Komponente (1,2%, 1,4% bis 1,5% je nach CO2-Intensität statt pauschal 1%). Sie verweist auch auf die bereits geltende Bevorteilung von E-Autos (0,25%). Sie verweist auf einen EU-Kommissions-Vorschlag, der ab 2030 nur noch E-Autos zulässt und ab 2030 generell keine 'steuerliche Förderung von Verbrennern' mehr erlaubt. Sie betont auch, dass dies ein breiter Reformprozess ist und dass die Pauschalbesteuerung selbst ein 'Privileg oder diese Subvention' darstellt, die durch tatsächliche Nachweise von Dienst- vs. Privatfahrten ersetzt werden könnte.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Cademartori antwortet konkret mit eigenem Reformvorschlag (CO2-Komponente) und verweist auf EU-Initiativen. Sie adressiert die Frage direkt.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe als Verkehrspolitische Sprecherin einen Vorschlag vorgelegt, wo ich gesagt habe, dass wir diese 1% Regel aufstocken durch eine CO2 Komponente.",
+            "timestamp": "00:36:20"
+          },
+          {
+            "text": "Es gibt schon, also wir haben es ja mit Russland einmal durchexiert, es gäbe schon Maßnahmen.",
+            "timestamp": "00:10:37"
+          }
+        ],
+        "concrete_statements": [
+          "Vorschlag: CO2-Komponente zur 1%-Pauschale (1,2%-1,5%).",
+          "E-Autos werden bereits bevorzugt (0,25%).",
+          "EU-Kommission plant ab 2030 keine steuerliche Förderung von Verbrennern mehr.",
+          "Pauschalbesteuerung selbst ist Subvention und könnte durch Einzelnachweis ersetzt werden."
+        ],
+        "related_bundestag_topics": [
+          "Dienstwagen-Besteuerung",
+          "CO2-Lenkungswirkung",
+          "E-Mobility-Förderung",
+          "Flottencarbonregulation"
+        ]
+      },
+      {
+        "title": "Bildung, Studium und akademischer Weg",
+        "timestamp_range": "00:35:11 - 00:38:43",
+        "theme_description": "Cademartori erklärt ihre Entscheidung, BWL zu studieren (Mannheim) statt anderer Fächer und ihren späteren Übergang in Wirtschaftspädagogik mit Geschichte.",
+        "question_asked": "Warum hast du BWL studiert statt 'etwas Ordentliches'? Warum nicht später Lehrerin geworden?",
+        "question_intent": "Will verstehen, warum Cademartori eine wirtschaftliche statt geisteswissenschaftliche oder pädagogische Laufbahn wählte.",
+        "position": "Cademartori sagt: 'Ehrlich gesagt war das auch so ein bisschen Klassiker, so man weiß nicht so richtig, was man machen soll.' Sie betont aber: 'Ich bin ja so hab ja erzählt, dass wir in sehr mit sehr unsicheren Umständen nach Deutschland gekommen sind, erstmal Sozialhilfe und so. Das hat ein, das prägt einen schon.' Sie hielt es für notwendig, etwas Wirtschaftliches zu studieren, 'wo ich dann auch ein Job kriege'. Sie sagt: 'Ich würde diese Wahl wahrscheinlich heute nicht wieder so treffen, aber gleichzeitig habe ich, also hilft es mir für meine Arbeit extrem.' Sie suchte 'die beste BWL Uni gesucht in Deutschland, die Uni Mannheim' und das 'war ein hartes Studium'. Sie machte dann 'Wirtschaftspädagogik' statt Master-BWL, 'um jetzt nicht noch mal zwei Jahre BWL studieren im Master. Dann habe ich überlegt, okay, ich will nicht noch mal zwei Jahre BWL studieren im Master. Was kann ich jetzt tun?' Sie nahm Geschichte als Nebenfach und arbeitete dann wissenschaftlich statt Lehrerin zu werden: 'Bin ich in die Wissenschaft gegangen, also bin ich äh am Lehrstuhl ... und ähm wissenschaftlich zu arbeiten und halt auch in der Lehrerausbildung zu arbeiten.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet direkt auf die Frage zu ihrer Studienwahl mit Erklärung (Sicherheit wegen Migrationshintergrund) und ihrem Weg durch BWL und später Wirtschaftspädagogik.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich glaube, es hat mich dahingehend schon geprägt, dass ich das Gefühl hatte, ich muss was studieren, was dann auch wirtschaftlich sozusagen verwertbar ist und wo ich dann auch ein Job kriege.",
+            "timestamp": "00:35:42"
+          },
+          {
+            "text": "Ich würde diese Wahl wahrscheinlich heute nicht wieder so treffen, aber gleichzeitig habe ich, also hilft es mir für meine Arbeit extrem und es ist eine sehr rigurose Ausbildung.",
+            "timestamp": "01:36:12"
+          }
+        ],
+        "concrete_statements": [
+          "Wählte BWL aus Angst vor Arbeitslosigkeit (Migrationshintergrund).",
+          "Studierte an Uni Mannheim (beste BWL-Uni).",
+          "Machte Wirtschaftspädagogik statt Master-BWL.",
+          "Arbeitete wissenschaftlich statt Lehrerin zu werden.",
+          "Bereut Wahl nicht, aber würde heute anders entscheiden."
+        ],
+        "related_bundestag_topics": [
+          "Hochschulpolitik",
+          "Berufswahl unter Druck",
+          "Wirtschaftspädagogik",
+          "Arbeitsmigration"
+        ]
+      },
+      {
+        "title": "Verkehrssubventionen und 9€-Ticket-Debatte",
+        "timestamp_range": "00:38:24 - 00:39:56",
+        "theme_description": "Diskussion über Höhe und Notwendigkeit von Verkehrssubventionen, insbesondere Vergleich zwischen Dieselsteuervergünstigungen und ÖPNV-Ticketing.",
+        "question_asked": "Gibt es nicht viel größere Subventionen im Verkehrsbereich (25 Milliarden für Klimaschäden) als ein 9€-Ticket kosten würde (9-10 Milliarden)?",
+        "question_intent": "Will aufzeigen, dass die Regierung Prioritäten falsch setzt, wenn sie Klimaschäden subventioniert aber ÖPNV nicht stärker fördert.",
+        "position": "Cademartori kann 'diese Zahl jetzt gerade nicht ganz nachvollziehen', einigt sich aber implizit darauf, dass große Verkehrssubventionen 'sinnlos' sein können und Subventionsabbau notwendig ist. Sie sagt, sie 'habe ein paar Punkte genannt, die aus meiner Sicht sich anbieten würden', kann aber nicht sofort 9-10 Milliarden jährlich für ein 9€-Ticket bereitstellen, weil 'das Geld ja auch verbauen' werden muss (Kapazitäten, Baufirmen). Sie warnt vor 'steigenden' Kosten des 9€-Tickets.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori adressiert die Frage zur Subventionspriorisierung nur ausweichend. Sie kann die Zahl nicht 'nachvollziehen', einigt sich aber zu, dass Subventionsabbau sinnvoll ist, ohne aber konkrete Pläne zu nennen. Sie betont eher die Herausforderung der Umverteilung.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Cademartori vermeidet es, die provokative These des Interviewers direkt zu widerlegen oder zu bestätigen. Stattdessen betont sie 'Kapazitätsgrenzen' bei Umlagerung von Subventionen.",
+        "quotes": [
+          {
+            "text": "Ich kann diese Zahl jetzt gerade nicht ganz nachvollziehen, die du sagst, aber da müss man halt gucken, was bedeutet das?",
+            "timestamp": "00:38:56"
+          },
+          {
+            "text": "Das ist das nächste. Bei Bahn ist es eben so, dass es nicht schnell geht.",
+            "timestamp": "00:07:44"
+          }
+        ],
+        "concrete_statements": [
+          "Subventionsabbau ist aus ihrer Sicht sinnvoll.",
+          "64€ Deutschlandticket kostet 3 Milliarden (Subvention).",
+          "Kapazitäten sind begrenzt bei Umverteilung von Mitteln."
+        ],
+        "related_bundestag_topics": [
+          "Verkehrsmittelfinanzierung",
+          "Subventionsreformen",
+          "Fiskalische Stabilität"
+        ]
+      },
+      {
+        "title": "Aufstieg in Mannheim und Erfahrung mit Rassismus",
+        "timestamp_range": "00:40:15 - 00:44:47",
+        "theme_description": "Cademartori wird gefragt, ob sie Diskriminierung als Person mit Migrationshintergrund in ihrer politischen Karriere erfahren hat.",
+        "question_asked": "Hast du persönliche Erfahrungen mit Rassismus oder Diskriminierung in deiner politischen Karriere gemacht?",
+        "question_intent": "Will verstehen, ob strukturelle Diskriminierung auch Cademartori betroffen hat und wie sie damit umging.",
+        "position": "Cademartori betont, dass 'Lateinamerika im Deutschen ähm in der deutschen Gesellschaft kein so umstrittener Migrationsinek' ist, 'vielleicht sogar ein bisschen fetischisiert'. Sie sagt: 'Gleichzeitig ist so ... äußerlich ... die meisten [erkennen], dass es irgendwie keine deutsche Herkunft ist'. Sie merkt im Kontakt mit Bürgern: 'Wenn die Leute dann dich einordnen können, dann plötzlich ihrer Umgang mit dir sich ändert. Das finde ich immer sehr bedrückend.' Sie erklärt aber: Sie hatte 'vielleicht ... weniger mit Diskriminierung zu tun als jetzt z.B. Menschen, die aus muslimischen Ländern kommen.' Sie sagt: 'Für die SPD Mannheim war' eine 'junge Frau mit Migrationshintergrund in den Bundestagsmandat zu heben' 'eine gewisse Herausforderung' in einer 'Arbeiterstadt sehr stark so Industrie geprägt ... eher klassisch männlich ähm dominierte Strukturen.' Sie beobachtete auch statistische Diskriminierung: 'Bei Kommunalwahlen diejenigen mit ausländischen Namen in gewissen Teilen der Stadt halt immer einen gewissen Anteil an Stimmen weniger haben als die mit deutschen Namen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Frage nach Rassismus mit persönlichen Erfahrungen (weniger als andere Migranten, aber spürbar) und statistischen Beobachtungen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich merke das auch selber im Bürgerkontakt oft, dass wenn die Leute dann dich einordnen können, dann plötzlich ihrer Umgang mit dir sich ändert. Das finde ich immer sehr bedrückend.",
+            "timestamp": "00:24:41"
+          },
+          {
+            "text": "Bei Kommunalwahlen diejenigen mit ausländischen Namen in gewissen Teilen der Stadt halt immer einen gewissen Anteil an Stimmen weniger haben als die mit deutschen Namen.",
+            "timestamp": "00:25:11"
+          }
+        ],
+        "concrete_statements": [
+          "Lateinamerika gilt als weniger umstritten als andere Migrationen.",
+          "Bürgerkontakt ändert sich nach 'Einordnung' von Name/Herkunft.",
+          "Weniger Rassismus-Erfahrung als z.B. Menschen aus muslimischen Ländern.",
+          "SPD Mannheim sah Kandidatin mit Migrationshintergrund als Herausforderung.",
+          "Statistische Diskriminierung bei Wahlen (Namen-Effekt)."
+        ],
+        "related_bundestag_topics": [
+          "Integrationspolitik",
+          "Rassismus-Bekämpfung",
+          "Repräsentation in Bundestag",
+          "Wahlkampfforschung"
+        ]
+      },
+      {
+        "title": "Autonomes Fahren als Mobilitäts-Gamechanger",
+        "timestamp_range": "00:40:57 - 00:43:30",
+        "theme_description": "Cademartori diskutiert ihre Vision für autonomes Fahren als disruptive Technologie für mehr und billigere ÖPNV-Angebote.",
+        "question_asked": "Hast du revolutionäre Ideen in Sachen Verkehrspolitik, oder sind das nur evolutionäre Reformen?",
+        "question_intent": "Will herausfinden, ob Cademartori grundsätzliche Transformationen oder Inkremental-Reformen anstrebt.",
+        "position": "Cademartori identifiziert autonomes Fahren als den 'großen Gamechanger' für Verkehrspolitik, weil es 'öffentliche Nahverkehr anzubieten' ohne hohen Personalaufwand ermögliche und damit 'alle Teile des Landes mit öffentlichen Verkehrsmitteln anbinden' könnte 'in einer Taktung, die attraktiv ist'. Sie beschreibt sich selbst als 'Sozialdemokratin', die an 'Evolution und Reformschritte' glaubt statt radikale Transformationen. Sie präsentiert das Deutschlandticket als eine heimliche 'Revolution' (einheitliches, deutschlandweites Ticket) und nennt das Ziel: 'Mobilität sauber, bezahlbar und für alle verfügbar'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet direkt auf die Frage nach revolutionären Ideen mit autonomem Fahren und erklärt ihre reformistische Haltung als Sozialdemokratin. Sie illustriert mit dem Deutschlandticket.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Der große Gamechanger in der Verkehrspolitik wird das autonome Fahren sein. Weil es uns ermöglichen wird, öffentliche Nahverkehr anzubieten, ohne dass das sozusagen mit so hohen Personalaufwand zu machen sein wird.",
+            "timestamp": "00:40:57"
+          },
+          {
+            "text": "Für mein Ziel ist für mich, dass du Mobilität sauber bezahlbar und für alle verfügbar hast.",
+            "timestamp": "00:43:27"
+          }
+        ],
+        "concrete_statements": [
+          "Autonomes Fahren als Schlüsseltechnologie für ÖPNV-Dekentralisierung.",
+          "Deutschlandticket als einziges vergleichbares System weltweit.",
+          "Ziel: saubere, bezahlbare Mobilität für alle."
+        ],
+        "related_bundestag_topics": [
+          "Autonomous Vehicles Regulierung",
+          "Zukünftige ÖPNV-Modelle",
+          "Verkehrstransformation"
+        ]
+      },
+      {
+        "title": "Atomkraft und Energiewende nach Ukraine-Krieg",
+        "timestamp_range": "00:41:15 - 00:45:19",
+        "theme_description": "Cademartori rechtfertigt ihre Haltung, dass Atomkraft 'ein vertretbares Risiko' hätte sein können, um AKWs länger zu betreiben, besonders nach Russlands Angriff auf Ukraine.",
+        "question_asked": "Du warst gegen das schnelle Aus für Atomkraft angesichts der Energiekrise nach 2022. Wie passt das mit Atomkraft-Ablehnung zusammen?",
+        "question_intent": "Will herausfinden, ob Cademartori eine pragmatische oder ideologische Haltung zu Atomkraft hat.",
+        "position": "Cademartori sagt, ihre Haltung zur Atomkraft 'entstand oder äußerte sich in der Zeit, wo wir ja hier, sage ich mal, nach dem Angriffskrieg Russlands auf die Ukraine diese Energiefrage extrem äh oben auf der Tagesordnung hat'. Sie betont: 'Es stand ja wirklich im Raum, dass wir möglicherweise nicht durch den Winter kommen, es nicht genug Gas gibt.' Gleichzeitig 'hatten wir halt drei laufende Atomkraftwerke, die dann just in dieser Zeit quasi vom Netz gehen sollten'. Sie sagt: 'Ich habe eben schon die Frage aufgeworfen aus meiner Sicht das Risiko vertretbar, die noch weiterlaufen zu lassen'. Sie betont: Deutschland ist 'kein Erdbebengebiet, wie wie Japan'. Sie kritisiert die 'ideologisierte' Debatte: 'Es wurde extrem ideologisch sofort nach Motto Atomkraft Teufels Zeug ganz furchtbar'. Sie verweist auf die Bevölkerungskommunikation: 'Ihr müsst jetzt ganz dringend extrem Energie sparen' während gleichzeitig AKWs abschalten, die 'nicht nachvollziehbar' waren. Sie sagt: 'Könnte man sie verantwortungsvoll verlängern?' Sie betont aber: 'Im Nachhinein ist es wahrscheinlich alles so richtig entschieden worden.' Sie kritisiert auch Atomkraft allgemein nicht, sagt: 'Es gibt natürlich Risiken' aber 'jede Energieform hat Risiken.'",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Cademartori antwortet mit klarer Position zur Atomkraft (pragmatisch, im Kontext der Ukraine-Krise) und kritisiert die 'ideologisierte' Debatte in ihrer eigenen Partei. Sie betont Kontextfaktoren.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Es war eine Debatte, dass es nicht schnell geht. Also so eine neue Schiene zu legen ist erstaunlich kompliziert.",
+            "timestamp": "00:07:44"
+          },
+          {
+            "text": "Meine grundsätzliche Haltung ist, dass ich es gibt natürlich Risiken, die sind auch in dem Fall sagen, wenn was passiert, kann es richtig schlimm werden, aber ähm die meine Haltung, auf die du referierst, entstand oder äußerte sich in der Zeit, wo wir ja hier, sage ich mal, nach dem Angriffskrieg Russlands auf die Ukraine diese Energiefrage extrem äh oben auf der Tagesordnung hat.",
+            "timestamp": "01:42:47"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht Atomkraft in Ukraine-Krise-Kontext als vertretbares Risiko.",
+          "Deutschland ist nicht Erdbebengebiet wie Japan.",
+          "Kritisiert 'ideologisierte' Debatte in SPD.",
+          "Sagt Verlängerung wäre 'verantwortungsvoll' möglich gewesen.",
+          "Anerkennt aber 'wahrscheinlich richtig' entschieden."
+        ],
+        "related_bundestag_topics": [
+          "Atomausstieg-Debatten",
+          "Energiesicherheit",
+          "Ukraine-Krieg-Folgen",
+          "Erneuerbare-Energien-Transition"
+        ]
+      },
+      {
+        "title": "Migration nach Deutschland 1989 und Kindheit in Chile",
+        "timestamp_range": "00:44:31 - 00:45:02",
+        "theme_description": "Cademartori erklärt, warum ihre Familie 1989 aus der DDR nach Chile zurückkehrte, bevor die Mauer fiel.",
+        "question_asked": "Warum seid ihr 1989 aus der DDR nach Chile zurück?",
+        "question_intent": "Will verstehen, ob Flucht oder bewusste Rückkehr, und warum sie nicht im wiedervereinigten Deutschland blieben.",
+        "position": "Cademartori erklärt, dass ihre Eltern 'Anfang 89' entschieden, 'nicht mehr [in] der DDR sein' zu wollen und 'zurück in die Heimat' ihres Vaters (Chile) kehren wollen. Sie sagt: 'Die haben sie abgesetzt, bevor die Revolution kam. Ja, dumm, ne? Sie wussten nicht, dass die Mauer fallen würde.' Sie betont, dass die Rückkehr durch das 1988er Referendum zur Rückkehr zur Demokratie in Chile ermöglicht wurde (Pinochet-Niederlage, 1989 Rückkehr zur Demokratie). Sie sagt: 'Das hatte private Gründe' für Hannover später, aber zuerst gingen sie nach Chile. Sie waren '1 Jahr alt' bei der Auswanderung und zog in Chile auf.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet direkt auf die Frage zur Rückkehrmotivation (politische Situation in DDR, Hoffnung auf Demokratie in Chile) und erklärt die historische Zufälligkeit (Eltern wussten nicht, dass Mauer fallen würde).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Meine Eltern haben entschieden, dass sie nicht mehr der DDR sein wollen und zurück in die Heimat meines Vaters nach Chile kehren wollen. Die haben sie abgesetzt, bevor die Revolution kam. Ja, dumm, ne? Sie wussten nicht, dass die Mauer fallen würde.",
+            "timestamp": "00:45:02"
+          }
+        ],
+        "concrete_statements": [
+          "Familie verließ DDR 1989 mit genehmigter Ausreise.",
+          "Rückkehr nach Chile, weil Demokratie wiederhergestellt wurde (1988 Referendum).",
+          "Eltern wussten nicht, dass Mauer fallen würde."
+        ],
+        "related_bundestag_topics": [
+          "DDR-Auswanderung",
+          "Deutsch-Chilenische Beziehungen",
+          "Chile Demokratisierung 1989"
+        ]
+      },
+      {
+        "title": "Familiengeschichte: Opa als Wirtschaftsminister unter Allende",
+        "timestamp_range": "00:45:33 - 00:54:13",
+        "theme_description": "Cademartori erzählt von ihrem Großvater, der Wirtschaftsminister unter Salvador Allende war, während des Pinochet-Putsches inhaftiert wurde und ins Exil nach DDR gehen musste.",
+        "question_asked": "Erzähl mal von deiner Familie in Chile. Warum war dein Großvater im Gefängnis?",
+        "question_intent": "Will die persönlichen/historischen Gründe für Cademartoris politische Haltung verstehen.",
+        "position": "Cademartori erklärt, dass ihr Großvater 'Wirtschaftsminister von Salvador Allende' war und 'mehrere Perioden' Abgeordneter. Er war 'der letzte Wirtschaftsminister' vor dem Putsch 1973. 'Wurde gefangen genommen' und 'war 3 Jahre inhaftiert als politischer Gefangener'. Nach Freilassung 'ins Exil geschickt' (Venezuela, Kuba, DDR). Er 'hatte Deutsch gelernt auch während der Haft'. Nach der Rückkehr zur Demokratie 1989 konnte die Familie nach Chile zurück. Der Großvater war 'lebenslanges Mitglied der Kommunistischen Partei', wurde darin 'von seiner Frau' (Cademartoris Oma) gebracht. Der Opa hat ein Buch geschrieben über 'Chile, das neoliberale Modell' nach der Diktatur.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Dies ist eine Eigeninitiative-Geschichte, die Cademartori erzählt, nicht direkt auf Fragen antwortet, sondern ihre Familiengeschichte als Erklärung ihrer politischen Prägung präsentiert.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Mein Großvater war Wirtschaftsminister von Salvador Allende, lebenslanges Mitglied der Kommunistischen Partei. Er war der letzte Wirtschaftsminister von Cad Yende 1973. Es gab mehrere Wirtschaftsminister. Und er war eben auch Wirtschaftsminister, als der Putsch in Chile war und wurde gefangen genommen.",
+            "timestamp": "00:46:05"
+          },
+          {
+            "text": "Warum warum war er bei den Kommunisten kommunistische Partei und alles hast mal da gefragt? Meine Oma hat ihn in die kommunistische Partei gebracht.",
+            "timestamp": "00:50:08"
+          }
+        ],
+        "concrete_statements": [
+          "Großvater war Wirtschaftsminister unter Allende.",
+          "War 1973-1976 inhaftiert unter Pinochet.",
+          "Ging ins Exil (Venezuela, Kuba, DDR).",
+          "Studierte an Universität Leipzig.",
+          "War lebenslanges Kommunisten-Parteimitglied.",
+          "Schrieb Bücher über neoliberale Wirtschaft in Chile und Exil-Widerstand."
+        ],
+        "related_bundestag_topics": [
+          "Südamerika-Geschichte (Chile, Putsch 1973)",
+          "Kommunistische Partei",
+          "Exil und Asyl",
+          "Neoliberalismus in Lateinamerika"
+        ]
+      },
+      {
+        "title": "USA-Intervention in Venezuela und Monroe-Doktrin",
+        "timestamp_range": "00:57:51 - 01:06:03",
+        "theme_description": "Cademartori kritisiert die US-militärische Intervention in Venezuela als völkerrechtswidrig und verweist auf die historische Monroe-Doktrin als imperialistische Grundlage.",
+        "question_asked": "Was hältst du von der US-Intervention in Venezuela gegen Maduro?",
+        "question_intent": "Will Cademartoris Haltung zur US-Außenpolitik und ihrer Glaubwürdigkeit als Verfassungsdemokratin testen.",
+        "position": "Cademartori kritisiert die US-Intervention stark: 'Völkerrechtswidrig', 'nicht durch UN-Mandat legitimiert', 'Eingriff in Souveränität eines Staates', 'verstößt klar gegen die UN-Charta'. Sie vermutet materielle Gründe ('Zugriff auf Ölressourcen'). Sie erklärt die Monroe-Doktrin als US-Politik, sich die 'westliche Hemisphäre' als 'Einflusssphäre' zu sichern ('unser Hinterhof'). Sie kritisiert, dass dies im Kalten Krieg 'sehr, sehr viele gewaltsame Eingriffe' in Lateinamerika rechtfertigte, 'unter anderem in Chile'. Sie warnt vor Grundsatzproblem: Wenn ressourcenreiche Länder für die USA 'nationale Sicherheit' sind (Lithium, Wasser, Öl), kann Trump beliebig intervenieren. Sie betont, dass sie Maduro-Regime 'zero Sympathien' hat, aber 'dieses Vorgehen' der USA ist 'absolut inakzeptabel'. Sie kritisiert auch die europäische Reaktion: 'Mangel an Selbstbewusstsein im Umgang mit den USA'. Sie warnt vor Glaubwürdigkeitsverlust gegenüber Russland: 'Wir können nicht gegenüber Russland sagen, ihr müsst euch ans Völkerrecht halten' und dann US-Interventionen dulden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Frage zur US-Intervention mit klarer Kritik auf völkerrechtlicher und Glaubwürdigkeits-Ebene. Sie kontextualisiert in Monroe-Doktrin und warnt vor systemischen Risiken.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Es ist ein Eingriff in die Souveränität eines Staates. Es ist nicht durch ein UN-Mandat äh legitimiert. Es verstößt klar gegen die UN-Karter.",
+            "timestamp": "00:59:26"
+          },
+          {
+            "text": "Die Monro Doktrin wurde im kalten Krieg sehr, sehr viele gewaltsame Eingriffe in Lateinamerika gerechtfertigt, unter anderem in Chile, aber auch in fast allen anderen Ländern Lateinamerikas.",
+            "timestamp": "00:59:57"
+          },
+          {
+            "text": "Wir können nicht gegenüber Russland sagen, ihr müsst euch ans Völkerrecht halten und die internationale Ordnung beachten. Äh und ich meine Putin hatte ja auch vor Selenski ähm ich weiß nicht, ob er ihn nur entführen wollte, vielleicht wollte er ihn auch gleich töten, aber das war ja ursprünglich der Plan.",
+            "timestamp": "01:02:59"
+          }
+        ],
+        "concrete_statements": [
+          "US-Intervention in Venezuela ist völkerrechtswidrig.",
+          "Kein UN-Mandat, verstößt gegen UN-Charta.",
+          "Monroe-Doktrin als imperialistische Grundlage.",
+          "Lithium-Dreieck (Chile, Argentinien, Bolivien) als 'nationale Sicherheit' der USA.",
+          "Grönland als 'nationale Sicherheit' der USA deklariert.",
+          "Glaubwürdigkeitsproblem gegenüber Russland.",
+          "Forderung nach europäischem Selbstbewusstsein."
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht und Souveränität",
+          "US-Außenpolitik",
+          "Lateinamerika-Beziehungen",
+          "Venezuela-Krise",
+          "Monroe-Doktrin"
+        ]
+      },
+      {
+        "title": "Selbstbeschreibung als Sozialdemokratin und Leistungsgesellschaft",
+        "timestamp_range": "01:51:29 - 01:54:01",
+        "theme_description": "Cademartori wird gefragt, wie sie ihre politische Ideologie beschreibt und wie sie Chancengleichheit mit Leistungsdifferenzierung verbindet.",
+        "question_asked": "Wie würdest du deine politische Haltung/Ideologie beschreiben? Sind unterschiedliche Einkommen gerechtfertigt?",
+        "question_intent": "Will herausfinden, wie Cademartori zwischen Egalitarismus und Leistungsprinzipien balanciert.",
+        "position": "Cademartori beschreibt sich als 'Sozialdemokratin' und betont 'Evolution und Reformschritte' statt radikale Umbruch. Sie zitiert SPD-Ziel des 'demokratischen Sozialismus', sagt aber: 'Ich habe mich selber seltenen so bezeichnet. Das ist immer eine Frage der Interpretation.' Sie definiert ihr Ziel: 'Eine Gesellschaft ... die Aufstieg ermöglicht ... faire Ressourcenverteilung ... diskriminierungsfrei ... Männer und Frauen gleich berechtigt ... Menschen unabhängig ihrer Herkunft sich entfalten können ... Absicherung schafft aber auch Chancen für Aufstieg ... ein gewisses Maß an Unterschiede ... ist aus meiner Sicht erträglich.' Sie kritisiert DDR-System für zu viel Gleichheit: 'Es war ein Fehler ... dass die, die vielleicht sehr viel geleistet haben ... sich stark angestrengt haben, nicht sehr viel mehr hatten'. Sie betont aber: 'Nicht [dass] der Mensch ... nur auf ihre Leistung reduziert wird'. Sie kritisiert aktuelle Ungleichheit: 'Manager und einfache Angestellte ... sind dermaßen extrem geworden' und 'bilden sie nicht die tatsächlichen Leistungen der Leute ab'. Sie zählt auf: Wer leistet? 'Bushfahrer, Kassierer, Lehrerinnen, Erzieher, Künstler, Journalisten.' Sie sagt: 'Ich will das nicht abstufen. Jeder hat eine andere Rolle.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet ausführlich auf die Frage nach ihrer Ideologie mit klaren Definitionen von Aufstieg, Gerechtigkeit und Leistung. Sie differenziert zwischen anerkanntem Leistungs-Unterschied und extremer Ungleichheit.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich meine, dass wir eine Gesellschaft schaffen, die Aufstieg ermöglicht, die aber auch ein würdevolles Leben für alle äh die eine faire Ressourcenverteilung äh ermöglicht.",
+            "timestamp": "01:51:29"
+          },
+          {
+            "text": "Was für Unterschiede in der Gesellschaft sind gerechtfertigt? Also ich denke, dass ähm es wichtig ist, dass Leute, die sich anstrengen und die das Gefühl haben oder die tatsächlich auch viel leisten, da auch gewisse Früchte davon ernten.",
+            "timestamp": "01:52:29"
+          }
+        ],
+        "concrete_statements": [
+          "Bezeichnet sich als Sozialdemokratin.",
+          "Glaubt an Evolution und Reformschritte.",
+          "Befürwortet Aufstieg, faire Ressourcenverteilung, Diskriminierungsfreiheit.",
+          "Lehnt DDR-System als zu egalitär ab.",
+          "Kritisiert Manager-Gehalt als unverhältnismäßig.",
+          "Betont Vielfalt von 'Leistung' (Bushfahrer, Lehrer, Künstler)."
+        ],
+        "related_bundestag_topics": [
+          "Sozialdemokratische Ideologie",
+          "Vermögensverteilung",
+          "Mindestlohn",
+          "CEO-Vergütung-Regulierung"
+        ]
+      },
+      {
+        "title": "Solidarität mit Ukraine und Waffenlieferungen",
+        "timestamp_range": "01:57:05 - 01:59:41",
+        "theme_description": "Cademartori begründet Solidarität mit der Ukraine und verteidigt differentielle Waffenunterstützung gegenüber anderen Ländern.",
+        "question_asked": "Sollte Deutschland der Ukraine alle Waffen geben, die sie fordern? Warum unterstützen wir Ukraine mehr als andere Länder?",
+        "question_intent": "Will herausfinden, ob Cademartori eine prinzipielle Position zu Waffenlieferungen hat oder ob sie geostrategische Interessen anerkennt.",
+        "position": "Cademartori sagt: 'Sollen die alles bekommen, was sie fordern in Sachen Rüstung, damit sie sich gegen Russland verteidigen können? Nee, das nicht unbedingt.' Sie betont 'differenzierte Politik' mit Abwägung: 'Was können wir gut verantworten äh zu liefern, was nicht.' Sie kritisiert die Debatte als 'völlig wild geworden' über einzelne Waffensysteme ('Leopard, Gepard, weiß nicht welche Tiere'), wo Experten 'getan haben, als ob jetzt die eine Waffe irgendwie der Gamechanger wäre'. Sie sagt: 'Das muss ich dir ganz ehrlich sagen, also ich fand diese Debatten teilweise wirklich völlig wild geworden.' Sie betont, sie 'maße mir jetzt auch gar nicht an, das im einzelnen immer bewerten zu können'. Sie sagt aber: 'Ich fühle ich mich jetzt von der Regierung insgesamt gut vertreten, dass sie das verantwortungsvoll machen'. Sie anerkennt auch die Frage nach Eskalation: 'Wie viel Verteidigung ist mit diesen Waffen möglich oder gebenfalls auch Angriff'. Sie erklärt auch unterschiedliche Unterstützung für Ukraine: Es 'kämpfen die Ukraine ein größeren Kampf sozusagen nicht nur für sich und ihre Souveränität, sondern auch gegen diesen russischen Imperialismus, der Europa in Gänse ein Stück weit bedroht.' Sie sagt: 'Aus dem Aspekt heraus finde ich es total gerechtfertigt, die Ukraine zu unterstützen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Frage zu Waffenlieferungen mit differenzierter Position (nicht alles, aber unterstützung ja) und erklärt die geostrategischen Gründe für unterschiedliche Unterstützung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Sollen die alles bekommen, was sie fordern in Sachen Rüstung, damit sie sich gegen Russland verteidigen können? Nee, das nicht unbedingt. Ich glaube, dass wir da immer eine differenzierte Politik gefahren sind, dass wir auch abgewogen haben, was können wir gut verantworten äh zu liefern, was nicht.",
+            "timestamp": "01:58:10"
+          },
+          {
+            "text": "Kämpfen die Ukraine ein größeren Kampf sozusagen nicht nur für sich und ihre Souveränität, sondern auch gegen diesen russischen Imperialismus, der Europa in Gänse ein Stück weit bedroht. Und aus dem Aspekt heraus finde ich es total gerechtfertigt, die Ukraine zu unterstützen.",
+            "timestamp": "01:58:39"
+          }
+        ],
+        "concrete_statements": [
+          "Differenzierte Waffenpolitik, nicht 'alles was sie fordern'.",
+          "Kritisiert 'wilde' Debatte über einzelne Systeme.",
+          "Vertraut auf Regierungsverantwortung bei Auswahl.",
+          "Anerkennt Eskalationsrisiko.",
+          "Begründet unterschiedliche Unterstützung mit geostrategischem Interesse (Imperialismus-Abwehr)."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Waffenlieferungen",
+          "Rüstungspolitik",
+          "Sicherheit und Imperialismus"
+        ]
+      },
+      {
+        "title": "Israel-Palästina: Besuch in Westbank und Kritik an deutschen Waffenexporten",
+        "timestamp_range": "01:57:37 - 02:11:30",
+        "theme_description": "Cademartori berichtet von ihrem Dezember-Besuch in Israel/Westbank mit der Friedrich-Ebert-Stiftung, schildert Siedlungspolitik und fordert Stopp von Waffenexporten, kritisiert aber auch Regierungshaltung.",
+        "question_asked": "Warst du in Israel/Palästina? Was hast du erlebt bezüglich Siedlungen und Apartheid? Sollte Deutschland Waffen nach Israel exportieren?",
+        "question_intent": "Will herausfinden, wie Cademartori die Realität vor Ort bewertet und ob sie ihre öffentliche Position (Waffenembargo-Forderung) konsequent umsetzt.",
+        "position": "Cademartori war im Dezember 2024 das erste Mal dort, mit Friedrich-Ebert-Stiftung (nicht Lobbyorganisationen). Sie war in Ostjerusalem, Ramallah, Masaferiat. Sie beobachtete: (1) Israelische Flagge auf UN-Hauptquartier (symbolisch), (2) täglich neue 'Outposts' von Siedlern auf Hügeln, (3) Segregation, Grenzzäune, palästinensische Dorfbewohner unter Druck von 'radikalen Siedlern', (4) tägliche Konfrontationen, Vertreibungen. Sie sprach mit Jehuda Shaul (Breaking the Silence). Sie kritisiert: 'Apartheid' ist nicht '100% treffender Vergleich' zu Südafrika, aber es gibt klare Segregation, Bewegungseinschränkungen, diskriminatorische Rechte. Sie kritisiert deutsche Regierung für Waffenexporte (lädt Anna Lempa ein, um über ihre Vergewaltigung in israelischer Haft zu sprechen). Sie fordert: 'Ich habe schon lange gefordert, dass man die Rüstungsexporte nach Israel begrenzt oder beschränkt'. Sie kritisiert, dass Deutschland trotzdem exportiert ('Machen wir trotzdem'). Sie hatte im Januar 2024 gemeinsam mit amerikanischen und kanadischen Kollegen einen Brief für einen Ceasefire gefordert ('gefordert hatten damals und eine Freilassung der Geisel zu einem Zeitpunkt, wo das in der deutschen Debatte viel umstrittener war'). Sie kritisiert, dass ihre Haltung 'nicht die Mehrheitshaltung' ist 'weder ... in der letzten noch in dieser Regierung'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Cademartori antwortet auf alle Fragen zu Israel-Palästina mit detaillierten Beobachtungen, klarer Kritik an Waffenexporten und Anerkennung ihrer Minderheitenposition in der Regierung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wir waren in Dramala und ich war in Ostjerusalem. Und wir waren auch Massaferiat, was so ein Ort ist, wo dieser Dokumentarfilm No Otherland gedreht wurde, wo also ist in der Area C der West Bank, das heißt, das ist ein Gebiet, der unter israelischer Kontrolle.",
+            "timestamp": "02:04:19"
+          },
+          {
+            "text": "Ich habe schon lange gefordert, dass man die Rüstungsexporte nach Israel begrenzt oder beschränkt und finde auch weiterhin, dass die Situation jetzt vor Ort so ist, dass es nicht richtig ist, da Waffen zu liefern. Machen wir trotzdem.",
+            "timestamp": "02:00:43"
+          },
+          {
+            "text": "Meine Haltung ist da nicht die Mehrheitshaltung, weder äh also in in der letzten noch in dieser Regierung.",
+            "timestamp": "02:01:14"
+          }
+        ],
+        "concrete_statements": [
+          "Dezember 2024 Besuch in Israel/Westbank mit Friedrich-Ebert-Stiftung.",
+          "Beobachtete täglich neue Siedler-Outposts.",
+          "Traf sich mit Jehuda Shaul (Breaking the Silence).",
+          "Kritisiert Apartheid-ähnliche Strukturen.",
+          "Forderte 2024 (früher als andere) Waffenembargo.",
+          "Kritisiert deutsche Regierung für Waffenexporte trotz Forderung.",
+          "Minderheitenposition in SPD und Regierung.",
+          "Unterstützt Anna Lempa öffentlich bezüglich Vergewaltigung-Vorwürfe."
+        ],
+        "related_bundestag_topics": [
+          "Israel-Palästina-Konflikt",
+          "Rüstungsexporte",
+          "Völkerrecht und Kriegsverbrechen",
+          "Deutsche Außenpolitik",
+          "Menschenrechte"
+        ]
+      },
+      {
+        "title": "Völkermord-Kriterien für Gaza und deutsche Verantwortung",
+        "timestamp_range": "02:06:21 - 02:07:54",
+        "theme_description": "Cademartori wird gefragt, ob sie Völkermord in Gaza sieht, und ob Deutschland dadurch Komplizität trägt.",
+        "question_asked": "Siehst du Völkermord-Kriterien in Gaza erfüllt? Trägt Deutschland durch Waffenexporte Mitverantwortung?",
+        "question_intent": "Will Cademartori auf klare Anerkennnung von Völkermord festlegen und zur Frage ihrer Haltung zur deutschen Komplizität.",
+        "position": "Cademartori sagt: 'Man diese Möglichkeit, dass es sich um ein Völkermord handelt, sehr äh ernst nehmen muss'. Sie verweist auf 'viele Experten' und UN-Organisationen, die sagen, dass Kriterien erfüllt sind. Sie betont aber: 'Ich selber würde das eher abwarten, bevor ich mir diese Bewertung zu eigen mache, weil ich kann es halt aus eigenen ähm Beobachtung oder juristischen Einschätzung nicht abschließend sagen.' Sie findet es 'ziemlich spannend', dass Politiker 'vorab quasi wegwischen' und sagen 'auf keinen Fall ein Völkermord', statt das als Szenario ernst zu nehmen. Sie warnt: 'Wir sollten ... als deutsche Politiker im Hinterkopf haben, dass dieses Urteil so fallen kann.' Sie erkennt an: 'Durch unsere Unterstützung Israels äh wir in irgendeiner Form auch als Komplize oder mitschuldig angesehen werden und auch wären.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori antwortet auf die Frage zu Völkermord-Kriterien mit rechtlicher Vorsicht (wartet auf IGH-Urteil), aber anerkennt die Möglichkeit und warnt vor deutschen Komplizität. Sie adressiert die Frage nicht vollständig, weil sie sich einer eigenen Feststellung verweigert.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Cademartori weigert sich, Völkermord selbst zu konstatieren, verweist stattdessen auf mögliches IGH-Urteil. Sie anerkennt aber die Risiken für deutsche Glaubwürdigkeit bei Unterstützung.",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass man diese Möglichkeit, dass es sich um ein Völkermord handelt letztlich, also es auch gerichtlich festgestellt wird, sehr äh ernst nehmen muss.",
+            "timestamp": "02:06:51"
+          },
+          {
+            "text": "Ich finde es ziemlich spannend, dass halt sehr viele Politiker das so von vorne rein quasi wegwischen und sagen, das das ist es nicht, das auf keinen Fall ein Völkermord.",
+            "timestamp": "02:07:22"
+          },
+          {
+            "text": "Durch unsere Unterstützung Israels äh wir in irgendeiner Form auch als Komplize oder mitschuldig angesehen werden und auch wären.",
+            "timestamp": "02:07:54"
+          }
+        ],
+        "concrete_statements": [
+          "Erkennt an, dass Experten Völkermord-Kriterien als erfüllt sehen.",
+          "Wartet auf IGH-Urteil vor eigenem Urteil.",
+          "Kritisiert Politiker, die Völkermord von vornherein ausschließen.",
+          "Anerkennt deutsche Komplizitätsrisiken bei Waffenexporten.",
+          "Warnt vor Glaubwürdigkeitsverlust Deutschlands."
+        ],
+        "related_bundestag_topics": [
+          "Völkermord-Definition",
+          "IGH Gaza-Klage",
+          "Deutsche Außenpolitik und Waffenexporte",
+          "Kriegsverbrechen in Gaza"
+        ]
+      },
+      {
+        "title": "Maria Corina Machado und Friedensnobelpreis 2024",
+        "timestamp_range": "02:26:12 - 02:28:44",
+        "theme_description": "Cademartori wird kritisiert, dass sie den Friedensnobelpreis für die rechtskonservative venezolanische Oppositionspolitikerin Machado begrüßte, obwohl diese neoliberal und mit rechten europäischen Parteien verbunden ist.",
+        "question_asked": "Du hast Machados Nobelpreis begrüßt – aber sie ist rechtskonservativ, neoliberal, sprach bei faschistischen Events mit Netanyahu-Verbündeten. Wie passt das zu deinen Werten?",
+        "question_intent": "Will Cademartori auf Inkohärenz zwischen ihrer linken Haltung und dieser Unterstützung hinweisen.",
+        "position": "Cademartori sagt: 'Das ähm würde ich heute nicht wieder so machen. Also der Zeitpunkt, die meiner Äußerung war relativ kurz nach der Bekanntgabe.' Sie betont: 'Hätte ich wahrscheinlich machen müssen' (zurückziehen). Sie erklärt ihre damalige Begründung: Sie hatte 'mit Venezuelanerinnen und Venezolanern kurz Rücksprache gehalten' und 'deren politischer Einschätzung' vertraute. Sie wussten, dass Machado 'konservativ' ist, aber 'nicht so schlimm eingeschätzt' wie Trump-Putschversuche. Sie sagen, Machado 'war eine wichtige Figur im vergangenen Wahlkampf' gegen Maduro und 'hat ihre persönlichen Dinge auch ein Stück weit zurückgestellt'. Sie sieht den Nobelpreis als 'Würdigung ... dieses demokratischen Engagements' gegen Maduro, 'vielleicht ein bisschen von der einzelnen Person abstrahiert'. Aber sie gibt zu: 'Hätte ich das damals gewusst' (von Trumps Invasion, EVV-Event, etc.), 'hätte ich das sicherlich anders intoniert'. Sie rechtfertigt auch, dass sie nicht 'zurückgezogen' habe, weil 'das jetzt tatsächlich so ... dass ich nicht das Gefühl hatte, dass das jetzt so eine große Aufmerksamkeit bekommen hat.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Cademartori antwortet mit Bedauern ('würde ich heute nicht wieder machen'), gibt aber zu, dass sie damals mit Venezolaner:innen sprach und andere informationen nicht hatte. Sie rechtfertigt auch die Nicht-Zurücknahme mit fehlender Aufmerksamkeit. Die Antwort ist defensiv und nicht vollständig.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Cademartori weigert sich, ihre Unterstützung als grundsätzlichen Fehler anzuerkennen. Sie betont stattdessen, dass sie später mehr Information bekommen hätte ('Hätte ich das damals gewusst'). Sie rechtfertigt auch die Nicht-Zurücknahme mit fehlender öffentlicher Aufmerksamkeit statt mit Prinzipien.",
+        "quotes": [
+          {
+            "text": "Das ähm würde ich heute nicht wieder so machen. Also der Zeitpunkt, die meiner Äußerung war relativ kurz nach der Bekanntgabe.",
+            "timestamp": "02:26:42"
+          },
+          {
+            "text": "Hätte ich das damals gewusst, hätte ich das sicherlich anders äh intoniert. Aber das nicht zurückzuziehen, finde ich dann trotzdem spannend.",
+            "timestamp": "02:28:13"
+          }
+        ],
+        "concrete_statements": [
+          "Würde Machado-Nobelpreis-Begrüßung heute nicht wiederholen.",
+          "Hatte 2024 zu wenig Information über Machados Verbindungen.",
+          "Hat Unterstützung nicht publik zurückgezogen.",
+          "Sieht Machado-Unterstützung als Solidarität gegen Maduro, nicht als ideologisches Endorsement."
+        ],
+        "related_bundestag_topics": [
+          "Venezuela-Opposition",
+          "Friedensnobelpreis 2024",
+          "Autoritäre Regime-Opposition",
+          "Lateinamerika-Beziehungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Cademartori trat 2012 in die SPD ein.",
+        "timestamp": "00:01:06"
+      },
+      {
+        "claim": "Sie kam mit ihrer Mutter 2000 aus Chile nach Deutschland.",
+        "timestamp": "00:01:37"
+      },
+      {
+        "claim": "Bafög wurde noch von Willi Brand/der SPD eingeführt.",
+        "timestamp": "00:02:07"
+      },
+      {
+        "claim": "Sie wurde in Batsaro (Nähe Berlin) geboren 1988 in der DDR.",
+        "timestamp": "00:44:31"
+      },
+      {
+        "claim": "Ihr Großvater war Wirtschaftsminister unter Salvador Allende (1973).",
+        "timestamp": "00:46:05"
+      },
+      {
+        "claim": "Ihr Großvater war 3 Jahre inhaftiert unter Pinochet (1973-1976).",
+        "timestamp": "00:46:05"
+      },
+      {
+        "claim": "Ihr Großvater ging ins Exil über Venezuela, Kuba und DDR.",
+        "timestamp": "00:46:36"
+      },
+      {
+        "claim": "Ihr Vater studierte Mathematik an der Universität Leipzig.",
+        "timestamp": "00:57:19"
+      },
+      {
+        "claim": "Ihre Mutter studierte Geschichte.",
+        "timestamp": "00:45:33"
+      },
+      {
+        "claim": "Cademartori machte einen Austausch mit Youth for Understanding nach Südafrika (Bloemfontain, nicht Kapstadt).",
+        "timestamp": "00:28:06"
+      },
+      {
+        "claim": "Sie war Stadträtin und stellvertretende Fraktionsvorsitzende in Mannheim.",
+        "timestamp": "00:05:43"
+      },
+      {
+        "claim": "Sie setzte sich für Fahrradwege in Mannheim ein.",
+        "timestamp": "00:06:13"
+      },
+      {
+        "claim": "Sie wurde 2021 in den Bundestag gewählt, 2025 nicht mit Direktmandat (knapp 2% Unterschied).",
+        "timestamp": "00:01:06"
+      },
+      {
+        "claim": "Das 9€-Ticket würde 9-10 Milliarden € jährlich kosten.",
+        "timestamp": "00:39:26"
+      },
+      {
+        "claim": "Das 64€-Deutschlandticket kostet 3 Milliarden € Subvention jährlich (1,5 Bund, 1,5 Länder).",
+        "timestamp": "00:38:24"
+      },
+      {
+        "claim": "Über 100 Milliarden € aus dem Sondervermögen für Bahnausbau/Sanierung.",
+        "timestamp": "00:11:48"
+      },
+      {
+        "claim": "Zwei Drittel (oder ein Drittel) aller Neuzulassungen in Deutschland sind Dienstwagen.",
+        "timestamp": "00:35:18"
+      },
+      {
+        "claim": "Die Bahnchefin kündigte 65% Pünktlichkeit bis 2027/2028 an.",
+        "timestamp": "00:12:18"
+      },
+      {
+        "claim": "Cademartori war im Dezember 2024 erstmals in Israel/Palästina.",
+        "timestamp": "02:02:16"
+      },
+      {
+        "claim": "Sie forderte im Januar 2024 Ceasefire in Gaza gemeinsam mit US- und kanadischen Kollegen.",
+        "timestamp": "02:01:14"
+      },
+      {
+        "claim": "Der Großvater hielt eine Rede bei den Vereinten Nationen über Schulden-Neuverhandlung.",
+        "timestamp": "00:53:42"
+      },
+      {
+        "claim": "Ted Kennedy war Senator und setzte sich für Freilassung chilenischer Gefangener ein.",
+        "timestamp": "00:49:08"
+      }
+    ]
+  },
+  "invalid_quotes": []
+}

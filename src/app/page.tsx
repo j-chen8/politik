@@ -1,186 +1,266 @@
 import { SearchBox } from "@/components/SearchBox";
-import { getDbStats, getSourceCoherenceStats } from "@/lib/db";
-import { TrendingUp, Users, BarChart3, Shield, Landmark, Globe, Sparkles, AlertTriangle } from "lucide-react";
+import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip";
+import { RotatingDeck } from "@/components/RotatingDeck";
+import { getBundestagLandingSnapshot } from "@/lib/db";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import type { CSSProperties } from "react";
 
-export default function Home() {
-  const stats = getDbStats();
-  const coherence = getSourceCoherenceStats();
+// Mehrzeiliges Ellipsis-Clamp per Inline-Style — Tailwinds line-clamp-Utility
+// verliert unter Tailwind v4/lightningcss das nötige -webkit-box-orient, daher inline.
+const lineClamp = (lines: number): CSSProperties => ({
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: lines,
+  overflow: "hidden",
+});
+
+const SUCH_BEISPIELE = ["Bürgergeld", "Heizungsgesetz", "Friedrich Merz", "Klimaschutz"];
+
+function dsHref(nr: string): string {
+  return `/aktivitaeten/${nr.replace("/", "-")}`;
+}
+
+export default function LinearLanding() {
+  const s = getBundestagLandingSnapshot();
+  const formatDate = (d: string) =>
+    new Date(d + "T00:00:00").toLocaleDateString("de-DE", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="page-wash">
       {/* Hero */}
-      <section className="w-full max-w-3xl mx-auto px-4 pt-20 pb-16 text-center fade-in">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          {stats.politicians.toLocaleString("de-DE")} Politiker · {stats.parliaments} Parlamente
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-tight mb-4">
-          Wie arbeitet Ihr
-          <br />
-          <span className="text-primary">Abgeordneter?</span>
+      <section className="w-full max-w-3xl mx-auto px-5 pt-28 pb-12 fade-in-up">
+        <h1 className="text-center text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 mb-3">
+          Woran arbeitet der Bundestag?
         </h1>
-        <p className="text-muted text-lg max-w-xl mx-auto mb-10">
-          Bundestag, alle 16 Landtage und EU-Parlament – alle Daten auf einen
-          Blick. Radikal transparent und vergleichbar.
+
+        <p className="text-center text-xl text-zinc-500 mx-auto mb-2 leading-relaxed">
+          Debatten, Drucksachen, Abstimmungen, Interviews{" "}— transparent und lesbar.
         </p>
-
-        <SearchBox />
-      </section>
-
-      {/* Feature cards */}
-      <section className="w-full max-w-5xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            {
-              icon: Landmark,
-              title: "18 Parlamente",
-              desc: "Bundestag, alle 16 Landtage und EU-Parlament",
-              color: "text-primary",
-              bg: "bg-primary-light",
-            },
-            {
-              icon: Users,
-              title: `${stats.politicians.toLocaleString("de-DE")} Politiker`,
-              desc: `Aus ${stats.parties} Parteien mit vollständigen Profilen`,
-              color: "text-green",
-              bg: "bg-green-light",
-            },
-            {
-              icon: TrendingUp,
-              title: "Abstimmungen",
-              desc: "Anwesenheit und Stimmverhalten im Bundestag",
-              color: "text-accent",
-              bg: "bg-purple-100",
-            },
-            {
-              icon: Shield,
-              title: "Nebeneinkünfte",
-              desc: "Transparenz bei Zusatz-Einkommen",
-              color: "text-yellow",
-              bg: "bg-yellow-light",
-            },
-          ].map((f) => (
-            <div
-              key={f.title}
-              className="bg-white rounded-2xl border border-border p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <div
-                className={`w-10 h-10 rounded-xl ${f.bg} flex items-center justify-center mb-3`}
-              >
-                <f.icon className={`w-5 h-5 ${f.color}`} />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1">{f.title}</h3>
-              <p className="text-sm text-muted">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Multi-LLM-Konsens — Transparenz durch KI (jetzt unter den Features, dezenter platziert) */}
-      <section className="w-full max-w-5xl mx-auto px-4 pb-20 fade-in">
-        <div className="bg-gradient-to-br from-primary-light/40 via-white to-purple-50/50 border border-border rounded-2xl p-6 sm:p-8">
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">
-              Transparenz durch KI
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-2">
-            Multi-LLM-Konsens-System für mehr Verlässlichkeit
-          </h2>
-          <p className="text-sm text-foreground/85 leading-relaxed mb-5 max-w-2xl">
-            Politiker-Lebensläufe werden nicht von einer einzelnen KI erzeugt und blind
-            übernommen. Jede Aussage durchläuft ein Konsens-Verfahren mit{" "}
-            <strong>fünf unabhängigen Modell-Familien</strong> — gegen
-            Trainingsdaten-Bias, gegen Halluzinationen, mit wörtlichem Quellenbeleg pro Eintrag.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
-            <ModelChip n="①" name="Claude Haiku 4.5" role="Generator" />
-            <ModelChip n="②" name="Mistral Small" role="Inspector" />
-            <ModelChip n="③" name="Llama 3.3 70B" role="Verifier" />
-            <ModelChip n="④" name="Nemotron-Nano" role="Mamba-Diversität" />
-            <ModelChip n="⑤" name="gpt-oss-120b" role="Source-Coherence" />
-          </div>
+        <div className="text-center mb-10">
           <Link
             href="/methodik"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+            className="text-[13px] text-zinc-500 hover:text-zinc-900 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2 transition-colors"
           >
-            Methodik &amp; Wirksamkeits-Statistik ansehen →
+            zur Methodik →
           </Link>
         </div>
+
+        <div className="max-w-xl mx-auto">
+          <SearchBox />
+        </div>
+
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {SUCH_BEISPIELE.map((term) => (
+            <Link
+              key={term}
+              href={`/suche?q=${encodeURIComponent(term)}`}
+              className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-[12.5px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
+            >
+              {term}
+            </Link>
+          ))}
+        </div>
+
+        {/* Letzte Plenarsitzung — zentrierte Pille, gehört optisch zum Hero */}
+        {s.latestSitzung && (
+          <div className="mt-7 flex justify-center fade-in-up fade-in-up-2">
+            <Link
+              href={`/protokolle/sitzung/${s.latestSitzung.sitzung}`}
+              className="group inline-flex items-center gap-2 max-w-full rounded-full border border-zinc-200/80 bg-white/70 py-1.5 pl-3 pr-3 text-[12.5px] hover:border-zinc-300 hover:bg-white transition-colors"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1a3e72]" />
+              <span className="font-medium text-zinc-700 shrink-0">Letzte Plenarsitzung</span>
+              <span className="text-zinc-300 shrink-0">·</span>
+              <span className="num text-zinc-500 truncate">
+                {s.latestSitzung.plpr} · {formatDate(s.latestSitzung.datum)}
+                <span className="hidden sm:inline">
+                  {" "}· {s.latestSitzung.redenCount} Redebeiträge
+                </span>
+              </span>
+              <ArrowRight
+                className="w-3.5 h-3.5 shrink-0 text-zinc-400 group-hover:text-zinc-700 group-hover:translate-x-0.5 transition-all"
+                strokeWidth={2.25}
+              />
+            </Link>
+          </div>
+        )}
       </section>
 
-      {/* Quellen-Diskrepanz-Block: konkrete Statistik unserer Source-Coherence-Pipeline */}
-      <section className="w-full max-w-5xl mx-auto px-4 pb-20 fade-in">
-        <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-6 sm:p-8">
-          <div className="flex items-center gap-2 mb-3">
-            <AlertTriangle className="w-4 h-4 text-amber-700" />
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-800">
-              Quellen-Diskrepanzen offengelegt
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-2">
-            Wir prüfen Wikipedia gegen die Politiker-Homepages
-          </h2>
-          <p className="text-sm text-foreground/85 leading-relaxed mb-4 max-w-2xl">
-            Wir extrahieren Lebensläufe aus zwei unabhängigen Quellen — Wikipedia und
-            den persönlichen Webseiten — und vergleichen sie automatisch auf
-            Widersprüche. Bei{" "}
-            <strong>{coherence.politiciansWithEchtConflicts} von {coherence.checked.toLocaleString("de-DE")} geprüften MdBs</strong>{" "}
-            haben wir echte Quellen-Konflikte gefunden: falsche Schul-Orte,
-            ungenaue Funktionsangaben, veraltete Berufs-Stände. Diese Diskrepanzen
-            bleiben transparent in den Profilen sichtbar, statt verschleiert zu werden.
-          </p>
-          <div className="grid grid-cols-3 gap-3 max-w-md mb-4">
-            <Stat n={coherence.checked} label="Profile geprüft" />
-            <Stat n={coherence.totalEchtConflicts} label="Konflikte entdeckt" />
-            <Stat n={coherence.politiciansWithEchtConflicts} label="MdBs betroffen" />
-          </div>
-          <p className="text-[12px] text-foreground/70 leading-snug max-w-2xl mb-3">
-            Jeder Konflikt wird mit beiden Originalquellen + KI-Begründung in der jeweiligen
-            Politiker-Detailseite ausgewiesen. Quellen pro Eintrag: Wikipedia (Volltext zur Person),
-            persönliche Homepage (cv-Auszug der Selbstdarstellung), bei einzelnen Korrekturen zusätzlich:
-            bundestag.de-Bio, CDU-/SPD-Webarchive, NRW-Landtagsregister.
-          </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link
-              href="/quellen-diskrepanzen"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-amber-800 hover:underline"
-            >
-              Vollständige Liste der Diskrepanzen →
-            </Link>
-            <Link
-              href="/methodik"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-amber-800 hover:underline"
-            >
-              Wie wir Konflikte erkennen &amp; auflösen →
-            </Link>
-          </div>
+      {/* 3-Spalten-Grid: Abstimmungen + Gesetzentwürfe + Kleine Anfragen */}
+      <section className="w-full max-w-6xl mx-auto px-5 pb-12 fade-in-up fade-in-up-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {/* Spalte 1: Aktuelle Abstimmungen */}
+          {s.latestVotes.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-4">
+                Aktuelle Abstimmungen
+              </h3>
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestVotes.map((v) => (
+                    <article
+                      key={v.id}
+                      className="h-[150px] flex flex-col gap-2.5 overflow-hidden"
+                    >
+                      {v.label && (
+                        <Link
+                          href={v.detail_url}
+                          className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+                          style={lineClamp(2)}
+                        >
+                          {v.label}
+                        </Link>
+                      )}
+                      {s.voteSummaries[v.id] && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+                          {s.voteSummaries[v.id]}
+                        </p>
+                      )}
+                      <div className="mt-auto flex items-center gap-2 flex-wrap pt-1">
+                        <span
+                          className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                            v.outcome === "angenommen"
+                              ? "text-emerald-700 bg-emerald-50"
+                              : v.outcome === "abgelehnt"
+                              ? "text-red-700 bg-red-50"
+                              : "text-zinc-600 bg-zinc-100"
+                          }`}
+                        >
+                          {v.outcome_label}
+                        </span>
+                        <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500">
+                          {v.type === "namentlich" ? "Namentlich" : "Handzeichen"}
+                        </span>
+                        {v.date && (
+                          <span className="text-[10.5px] text-zinc-400 num ml-auto">
+                            {formatDate(v.date)}
+                          </span>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </RotatingDeck>
+              </div>
+              <Link
+                href="/abstimmungen"
+                className="mt-4 pt-3 border-t border-zinc-100 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#1a3e72] hover:gap-2 transition-all"
+              >
+                Alle Abstimmungen ansehen
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+              </Link>
+            </div>
+          )}
+
+          {/* Spalte 2: Aktuelle Gesetzentwürfe */}
+          {s.latestGesetzentwuerfe.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-4">
+                Aktuelle Gesetzentwürfe
+              </h3>
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestGesetzentwuerfe.map((g) => (
+                    <article
+                      key={g.drucksacheNr}
+                      className="h-[150px] flex flex-col gap-2.5 overflow-hidden"
+                    >
+                      <Link
+                        href={dsHref(g.drucksacheNr)}
+                        className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+                        style={lineClamp(2)}
+                      >
+                        {g.titel}
+                      </Link>
+                      {g.zusammenfassung && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+                          {g.zusammenfassung}
+                        </p>
+                      )}
+                      <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+                        {g.datum && <span>{formatDate(g.datum)}</span>}
+                        <span className="text-zinc-300">·</span>
+                        <span>Drs. {g.drucksacheNr}</span>
+                        {g.einbringer && (
+                          <>
+                            <span className="text-zinc-300">·</span>
+                            <span className="normal-case">{g.einbringer}</span>
+                          </>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </RotatingDeck>
+              </div>
+              <Link
+                href="/aktivitaeten?typ=gesetze"
+                className="mt-4 pt-3 border-t border-zinc-100 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#1a3e72] hover:gap-2 transition-all"
+              >
+                Alle Gesetzentwürfe ansehen
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+              </Link>
+            </div>
+          )}
+
+          {/* Spalte 3: Kleine Anfragen */}
+          {s.latestAnfragen.length > 0 && (
+            <div className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col">
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 mb-4">
+                Kleine Anfragen
+              </h3>
+              <div className="flex-1 flex flex-col">
+                <RotatingDeck>
+                  {s.latestAnfragen.map((a) => (
+                    <article
+                      key={a.drucksacheNr}
+                      className="h-[150px] flex flex-col gap-2.5 overflow-hidden"
+                    >
+                      <Link
+                        href={dsHref(a.drucksacheNr)}
+                        className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+                        style={lineClamp(2)}
+                      >
+                        {a.titel}
+                      </Link>
+                      {a.zusammenfassung && (
+                        <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+                          {a.zusammenfassung}
+                        </p>
+                      )}
+                      <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+                        {a.datum && <span>{formatDate(a.datum)}</span>}
+                        <span className="text-zinc-300">·</span>
+                        <span>Drs. {a.drucksacheNr}</span>
+                        {a.fraktion && (
+                          <>
+                            <span className="text-zinc-300">·</span>
+                            <span className="normal-case">{a.fraktion}</span>
+                          </>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </RotatingDeck>
+              </div>
+              <Link
+                href="/aktivitaeten?typ=fragen"
+                className="mt-4 pt-3 border-t border-zinc-100 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#1a3e72] hover:gap-2 transition-all"
+              >
+                Alle Kleinen Anfragen ansehen
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
-    </div>
-  );
-}
 
-function Stat({ n, label }: { n: number; label: string }) {
-  return (
-    <div className="bg-white border border-amber-200 rounded-xl px-3 py-2.5">
-      <div className="text-2xl font-extrabold tracking-tight text-amber-900">
-        {n.toLocaleString("de-DE")}
-      </div>
-      <div className="text-[11px] text-foreground/70 leading-snug">{label}</div>
-    </div>
-  );
-}
-
-function ModelChip({ n, name, role }: { n: string; name: string; role: string }) {
-  return (
-    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-border">
-      <span className="text-primary font-mono text-base">{n}</span>
-      <div className="min-w-0">
-        <div className="text-sm font-semibold text-foreground truncate">{name}</div>
-        <div className="text-[11px] text-muted">{role}</div>
+      {/* Aktuelle Interview-Analysen — Showcase der Medien-Pipeline */}
+      <div className="fade-in-up fade-in-up-3">
+        <RecentMediaAnalysesStrip />
       </div>
     </div>
   );

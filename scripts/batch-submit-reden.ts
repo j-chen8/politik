@@ -35,7 +35,7 @@ const MODEL = "claude-haiku-4-5";
 // Identisch zum Smoke-Test: Tool-Use mit ASCII-Keys, harter Tonalitäts-Enum
 const TONALITAET_ENUM = [
   "sachlich", "polemisch", "polemisch_sachlich", "emotional_persoenlich",
-  "konfrontativ_belegend", "ironisch_jugendlich", "bilanzierend_werbend",
+  "konfrontativ_faktenrhetorisch", "ironisch_jugendlich", "bilanzierend_werbend",
   "staatsmaennisch", "defensiv_pragmatisch", "sozial_anklagend", "mahnend",
 ];
 
@@ -142,6 +142,10 @@ Beachte außerdem:
        FROM plenar_speeches ps
        JOIN plenar_sessions ses ON ses.id = ps.session_id
        WHERE ps.original_text IS NOT NULL AND LENGTH(ps.original_text) >= ?
+         AND NOT EXISTS (
+           SELECT 1 FROM speech_analyses_v2 v2
+           WHERE v2.rede_id = ps.rede_id AND v2.segment_index = ps.segment_index
+         )
        ORDER BY ps.rede_id, ps.segment_index`,
     )
     .all(MIN_CHAR_LEN) as Speech[];

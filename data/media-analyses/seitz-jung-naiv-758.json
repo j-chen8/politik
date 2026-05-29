@@ -1,0 +1,824 @@
+{
+  "_meta": {
+    "url": "https://www.youtube.com/watch?v=A0UprRwW110",
+    "video_id": "A0UprRwW110",
+    "politician": "Nora Seitz",
+    "host": "Tilo Jung",
+    "publisher": "Jung & Naiv",
+    "transcript_sha": "c2ec30d40734d176",
+    "transcript_chars": 137088,
+    "caption_lines": 3659,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 50905,
+    "tokens_out": 18691,
+    "cost_usd": 0.057744000000000004,
+    "quote_validation": {
+      "valid_exact": 28,
+      "valid_fuzzy": 22,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 12,
+      "teilweise_antwort": 12,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-05-23T19:14:12.626Z",
+    "batch_id": "msgbatch_011B29vvC6bLy8VSXs9QAQC3"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Nora Seitz stellt sich als 40-jährige Fleischermeisterin vor, die als neue CDU-Abgeordnete in den Bundestag einzieht. Das Interview behandelt ihre unternehmerische Tätigkeit, ihre politischen Positionen zu Wirtschaft, Renten und Soziales, sowie ihre Perspektive auf ostdeutsche Entfremdung und AfD-Wahlergebnisse. Sie wirkt engagiert, selbstbewusst in ihrer Fachkompetenz zum Fleischerhandwerk, aber teilweise defensiv bei strukturellen wirtschaftspolitischen Fragen.",
+    "themes": [
+      {
+        "title": "Eintritt in den Bundestag und Motivation",
+        "timestamp_range": "00:00:34 - 00:01:35",
+        "theme_description": "Nora Seitz erklärt ihren Weg als Fleischermeisterin in das Parlament und die Kommunikationsprobleme zwischen Handwerk und politischen Rahmenbedingungen.",
+        "question_asked": "Wer bist du und was machst du beruflich? Und war die Wahl eine geplante Strategie oder Glück?",
+        "question_intent": "Der Moderator möchte verstehen, wer Nora Seitz ist, ihre Biografie und ob ihr Eintritt ins Parlament intentional oder zufällig war.",
+        "position": "Seitz ist 40-jährige Fleischermeisterin, die ursprünglich im Handwerk weitermachen wollte. Der Eintritt ins Parlament war nicht der ursprüngliche Plan, sondern ergab sich aus der Frustration über mangelnde Kommunikation zwischen dem Handwerk und der Politik bezüglich Rahmenbedingungen. Sie sagt: 'Es war auch ursprünglich nicht der Plan. Aber das Problem ist einfach die Kommunikation zwischen zwischen uns als Verband im Handwerk und den Rahmenbedingungen, die wir als Unternehmen vorfinden.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz beantwortet beide Teile der Frage substanziell: Sie stellt sich selbst vor und erläutert den Grund für ihren politischen Einstieg als nicht-geplant, sondern als Reaktion auf wahrgenommene Kommunikationsprobleme.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Es war auch ursprünglich nicht der Plan. Aber das Problem ist einfach die Kommunikation zwischen zwischen uns als Verband im Handwerk und den Rahmenbedingungen, die wir als Unternehmen vorfinden, sind einfach jetzt so, dass ich mir sagen muss, versuchen wir es mal was dran zu ändern.",
+            "timestamp": "00:01:05"
+          },
+          {
+            "text": "Ich werde definitiv, um mich selber auch zu erden und weil Wurst machen, was unheimlich meditatives hat in meinem in meinem Handwerk, ähm wä ich definitiv äh weiter im Fleischerhandwerk tätig sein.",
+            "timestamp": "00:01:35"
+          }
+        ],
+        "concrete_statements": [
+          "Wird definiv weiterhin im Fleischerhandwerk tätig sein",
+          "Sieht Politik als jetzt Hauptteil des Lebens an"
+        ],
+        "related_bundestag_topics": [
+          "Handwerkspolitik",
+          "Mittelstand und Wirtschaft",
+          "Rahmenbedingungen für Unternehmen"
+        ]
+      },
+      {
+        "title": "Trump-Wahl und politische Destabilisierung",
+        "timestamp_range": "00:02:36 - 00:03:38",
+        "theme_description": "Seitz reflektiert auf die Überraschung der Trump-Wahl und deren destabilisierende Auswirkungen auf Deutschland, insbesondere das Thema Abschreckung in Sicherheitspolitik.",
+        "question_asked": "Habt ihr mit der Trumpwahl nicht gerechnet? War das ein Schock? Und wer macht ihr jetzt schon das?",
+        "question_intent": "Der Moderator fragt nach der Überraschung durch Trumps Wahlsieg und welche praktischen Konsequenzen Deutschland bereits spürt.",
+        "position": "Seitz hatte gehofft, Kamala Harris würde gewinnen. Sie beschreibt Trumps Rückkehr als destabilisierenden Faktor, der ein 'Gefühl von Unsicherheit' schafft. Besonders kritisiert sie die häufigere Verwendung des Wortes 'Abschreckung' in der Sicherheitsdiskussion, was sie als Katastrophe empfindet, da sie in einem 'sicheren und friedlichen Deutschland' aufgewachsen ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet auf beide Teile der Frage: Sie bestätigt den Schock über Trump, erklärt ihre Hoffnung auf Harris und konkretisiert bereits spürbare Folgen (Unsicherheit, 'Abschreckungs'-Diskurs).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Schon ein bisschen. Also für mich war das, ich hatte immer noch so die Hoffnung, dass es am Ende für Camela Harris reicht.",
+            "timestamp": "00:02:36"
+          },
+          {
+            "text": "Wir merken ja jetzt schon so diesen diesen diesen destabilisierenden Faktor, den er hat. Ähm dieses Gefühl von Unsicherheit, was er bringt und natürlich auch ähm die Art, wie er in die Welt hinaus bläst. Ich finde z.B. dass wir jetzt das Wort Abschreckung so oft benutzen ist für mich eine Katastrophe.",
+            "timestamp": "00:03:08"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht Trumps Sicherheitspolitik und 'Abschreckungs'-Diskurs kritisch"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Ampel-Koalition Scheitern und Überraschung",
+        "timestamp_range": "00:03:38 - 00:04:38",
+        "theme_description": "Seitz äußert sich zum überraschenden Scheitern der Ampel-Koalition und deren destabilisierender Wirkung aus Unternehmersicht.",
+        "question_asked": "Hat dich das überrascht, dass Scholz plötzlich die Ampel auflöste?",
+        "question_intent": "Der Moderator fragt, ob die Auflösung der Ampel für Seitz überraschend war und welche Reaktion sie als Unternehmerin hatte.",
+        "position": "Seitz wurde überrascht vom Ampel-Aus. Aus Unternehmersicht kritisiert sie die Regierung nicht als besonders unternehmensfreundlich, sondern als Quelle großer Unsicherheit und Destabilisierung. Die plötzliche Abwesenheit einer Regierung erzeugte Verunsicherung: 'Es gibt eine Regierung, plötzlich gab es keine mehr. Zack, bum.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz beantwortet die Überraschungs-Frage direkt und verbindet sie mit ihrer Unternehmerperspektive auf Destabilisierung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ja. Ja, das hat mich das hat mich schon ein bisschen überrascht, aber als du Ul warst du bestimmt froh, dass es vorbei war. nicht unbedingt.",
+            "timestamp": "00:03:38"
+          },
+          {
+            "text": "Es gibt eine Regierung, plötzlich gab es keine mehr. Zack, bum. Und vor allen Dingen, es war natürlich auch das Konglomerat von allem, also Trump Sierungsverhandlung gescheitert und Ampel aus.",
+            "timestamp": "00:04:38"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht politische Unsicherheit als wirtschaftsschädigend"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbildung",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "BSW-Koalitionsverhandlungen in Sachsen",
+        "timestamp_range": "00:04:38 - 00:06:43",
+        "theme_description": "Seitz beschreibt ihre Rolle in gescheiterten Koalitionsverhandlungen zwischen CDU, SPD und BSW in Sachsen und erklärt, warum sie an den Verhandlungen beteiligt war.",
+        "question_asked": "Warst du für eine Zusammenarbeit mit der BSW? Und warum hat's ausgerechnet in Sachsen nicht geklappt, wenn es in Brandenburg und Thüringen funktioniert?",
+        "question_intent": "Der Moderator möchte verstehen, Seitzs persönliche Position zu BSW-Zusammenarbeit und die spezifischen Gründe für das Scheitern in Sachsen.",
+        "position": "Seitz kann sich zur eigenen Position zu BSW heute nicht äußern, da sie in einer 'Wirtschafts- und Landwirtschafts-Blase' steckte. Sie betont die fachliche Kompetenz von BSW in Landwirtschaftsfragen und kritisiert nicht ihre Arbeit. Das Scheitern führte sie auf die Friedenspräambel-Forderung zurück (Forderung, Waffenlieferungen auszuschließen). Sie sagt: 'Es scheiterte am Ende an der Friedenspräpel.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz antwortet auf die Koalitionsfrage eher ausweichend ('kann ich nicht sagen'), adressiert aber dann doch die Friedenspräambel als Scheitersgrund. Zur zweiten Frage (Vergleich Brandenburg/Thüringen) bietet sie keine überzeugende Erklärung.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ähm ob ich jetzt dafür war oder nicht, ähm kann ich kann ich heute nicht sagen, weil ich in diesem in dieser Blase drin gesteckt habe aus Wirtschaft und Landwirtschaft.",
+            "timestamp": "00:05:10"
+          },
+          {
+            "text": "Das wie gesagt, es scheiterte am Ende an der Friedenspräpel",
+            "timestamp": "00:06:10"
+          }
+        ],
+        "concrete_statements": [
+          "War Teil der Koalitionsverhandlungen als Vorsitzende der Mittelstands- und Wirtschaftsunion Sachsen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbildung",
+          "Friedenspolitik",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Weg zur Vorsitzenden der Mittelstands- und Wirtschaftsunion",
+        "timestamp_range": "00:06:43 - 00:07:14",
+        "theme_description": "Seitz erklärt, wie sie zur Vorsitzenden der Mittelstands- und Wirtschaftsunion in Sachsen wurde.",
+        "question_asked": "Warum warst du überhaupt Teil dieser Koalitionsverhandlung? Wie hast du das geschafft?",
+        "question_intent": "Der Moderator fragt nach ihrer Qualifikation und ihrem Weg zu dieser Rolle.",
+        "position": "Seitz wurde Vorsitzende der Mittelstands- und Wirtschaftsunion Sachsen, weil sie sich um den Posten bewarb (Oktober 2023). Sie sieht sich als von Idealismus getrieben, der sich für kleine handwerkliche Unternehmungen engagiert. Sachsen ist strukturell nicht mit großer Industrie gesegnet und besteht hauptsächlich aus kleinen Familienunternehmen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz erklärt klar, dass sie sich bewarb und erklärt ihre Motivation durch ihre Leidenschaft für kleine Handwerksbetriebe in Sachsen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe mich um den Posten beworben.",
+            "timestamp": "00:06:43"
+          },
+          {
+            "text": "Ich bin voll mit Idealismus und voll gepumpt mit Zuckerherzen und ähm wenn ich für eine Sache brenne und das sind nun mal gerade in Sachsen kleine handwerkliche Unternehmung.",
+            "timestamp": "00:06:43"
+          }
+        ],
+        "concrete_statements": [
+          "Wurde im Oktober 2023 Vorsitzende der Mittelstands- und Wirtschaftsunion Sachsen"
+        ],
+        "related_bundestag_topics": [
+          "Mittelstandspolitik",
+          "Handwerk",
+          "Wirtschaftsverbände"
+        ]
+      },
+      {
+        "title": "Neuling im Bundestag: Vorteile und Nachteile",
+        "timestamp_range": "00:07:14 - 00:08:46",
+        "theme_description": "Seitz reflektiert ihre Position als völliger Anfänger im Parlament mit 23 Jahren Unternehmererfahrung.",
+        "question_asked": "Hast du vorher irgendeine Abgeordnete Tätigkeit schon mal gemacht? Was sind Vor- und Nachteile deiner Neuheit?",
+        "question_intent": "Der Moderator möchte verstehen, wie unerfahren Seitz politisch ist und wie sie mit dieser Unerfahrenheit umgeht.",
+        "position": "Seitz ist 'völlig Anfänger' ohne vorherige Abgeordnetenerfahrung. Ihr Vorteil ist 23 Jahre unternehmerische Erfahrung und praktisches Wissen über Bürokratie. Sie kommt nicht aus dem 'vorpolitischen Raum' (Junge Union, CDA), sondern direkt aus der Wirtschaft. Nachteil: 'Wie ins kalte Wasser geworfen' - es ist extrem viel, und durch das vorgezogene Ampel-Aus fehlt ihr ein halbes Jahr Vorbereitung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet umfassend auf beide Teile: Sie benennt ihre fehlende Erfahrung und erläutert dann konkrete Vor- und Nachteile.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich was der große Vorteil ist, ich bringe 23 Jahre unternehmerische Tätigkeit mit. Ich glaube, das ist ein riesengroßer Vorteil, weil ich weiß was an Bürokratie anet.",
+            "timestamp": "00:07:46"
+          },
+          {
+            "text": "Der Nachteil ist vielleicht auch, es ist wie ins kalte Wasser geworfen zu werden und da wird's echt ein bisschen kalt gerade, weil sehr viel ist.",
+            "timestamp": "00:08:16"
+          }
+        ],
+        "concrete_statements": [
+          "Nutzte vorgezogene Abgeordnetenzeit ab November/Dezember zur Vorbereitung"
+        ],
+        "related_bundestag_topics": [
+          "Abgeordnetentätigkeit"
+        ]
+      },
+      {
+        "title": "Fraktionszwang und Gewissensfreiheit",
+        "timestamp_range": "00:09:18 - 00:10:21",
+        "theme_description": "Seitz äußert sich zur Spannung zwischen Fraktionszwang und ihrer Gewissensfreiheit als Abgeordnete.",
+        "question_asked": "Du bist frei in deinen Entscheidungen, nur deinem Gewissen unterstellt. Willst du das auch so wahrnehmen, oder wird es Fraktionsdruck geben, und würdest du dann auch gegen deine Fraktion abstimmen?",
+        "question_intent": "Der Moderator fragt, wie Seitz mit Konflikten zwischen Fraktionslinie und persönlichem Gewissen umgehen will.",
+        "position": "Seitz bekennt sich zunächst zur Gewissensfreiheit, betont aber, dass 'der Prozess des Redens vorher' wichtig ist, um Mehrheiten in der Fraktion zu finden. Falls dies nicht möglich ist, würde sie gegen die Fraktion abstimmen, wenn es ihr Gewissen erfordert. Beispiel: 'Wenn es um die Abschaffung des Fleischerhandwerks geht, dann würde ich mal kurz aufstehen und sagen, Freunde, habt ihr ein Knall?'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz beantwortet die Frage substanziell und zeigt eine differenzierte Sichtweise: Dialog zuerst, dann Abstimmung gegen Fraktion bei Gewissenskonflikten.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ähm, ich denke, der Prozess des Redens vorher, der ist ganz ganz wichtig. Vielleicht kann man dann auch noch Mehrheiten finden für seine Meinung innerhalb der Fraktion.",
+            "timestamp": "00:10:21"
+          },
+          {
+            "text": "Wenn nicht, dann würde ich auch durchaus sicherlich dagegen stimmen, wenn wenn ich es mit mir selber und meinem Gewissen nicht vereinbaren kann.",
+            "timestamp": "00:10:21"
+          }
+        ],
+        "concrete_statements": [
+          "Würde bei Gewissenskonflikten gegen Fraktion abstimmen",
+          "Betont Wichtigkeit vorheriger Diskussionen"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Regeln",
+          "Fraktionsdisziplin"
+        ]
+      },
+      {
+        "title": "Nebentätigkeiten und Interessenskonflikte",
+        "timestamp_range": "00:10:51 - 00:12:23",
+        "theme_description": "Seitz erklärt, wie sie ihre Nebenfunktionen (Mittelstands- und Wirtschaftsunion, Fleischerverband) handhaben will und ihre transparente Offenlegung von Interessenskonflikten.",
+        "question_asked": "Du machst ehrenamtlich in deinen Funktionen weiter. Erhältst du dafür Entschädigung? Wie sieht es mit deiner Firma aus? Willst du das transparent machen und dich mit Lobbyisten treffen?",
+        "question_intent": "Der Moderator prüft, ob Seitz Interessenskonflikte transparent offenlegen will.",
+        "position": "Seitz führt ihre Funktionen ehrenamtlich weiter, erhält dafür keine Entschädigung. Alle Positionen sind kommissarisch besetzt (andere führen sie aus). Ihre Mutter leitet die Fleischerei, das Miethaus ist hypothekarisch belastet. Seitz bekennt sich zur Transparenz: Sie veröffentlicht ihre Lobbyregister-Einträge und wird Treffen mit Interessenvertretern offenlegen. Sie konzentriert sich auf wenige Themen, um Lobbying nicht zu breit zu streuen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz beantwortet alle Teilfragen konkret: ehrenamtlich, keine Entschädigung, Mutter in der Firma, kommissarische Ämter, Transparenz ja, Konzentration auf Kernthemen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ähm, ich trage praktisch den Titel bis zur Wahl. Mhm. Und die Positionen werden aber kommissarisch von anderen Personen proaktiv ausgeführt. Ich bekomme dadurch keine Entschädigung, nichts um gar nichts, sondern bin einfach nur ehrenamtlich da.",
+            "timestamp": "00:10:51"
+          },
+          {
+            "text": "Aber ich denke, wir man darf sich auch als Abgeordneter nicht zu breit streuen. Ich finde, man muss sich Themen gegenüber verpflichten, weil wenn ich alles halb mach, kommt doch bloß die Hälfte bei raus.",
+            "timestamp": "00:12:23"
+          }
+        ],
+        "concrete_statements": [
+          "Funktionen kommissarisch besetzt, keine persönliche Entschädigung",
+          "Mutter leitet Fleischerei",
+          "Wird Interessenskonflikte transparent machen"
+        ],
+        "related_bundestag_topics": [
+          "Interessenskonflikte",
+          "Transparenz",
+          "Lobbyregister"
+        ]
+      },
+      {
+        "title": "Ausschussarbeit und Spezialisierung",
+        "timestamp_range": "00:12:54 - 00:14:25",
+        "theme_description": "Seitz erklärt ihre Ausschusswahl und warum sie sich bewusst nicht auf Landwirtschaft/Ernährung konzentriert, obwohl das ihre Fachkompetenz wäre.",
+        "question_asked": "In welchen Ausschüssen willst du arbeiten? Warum nicht im Ernährungs- oder Agrarausschuss, das ist doch dein Thema?",
+        "question_intent": "Der Moderator hält fest, dass Seitz ihre eigene Fachkompetenz nicht nutzt, und fragt, warum.",
+        "position": "Seitz meldet sich für Arbeit und Soziales an (Stellvertreter: Ernährung und Landwirtschaft, Wirtschaft). Sie begründet dies damit, dass KMUs und Kleinstunternehmen im Osten von Arbeits- und Sozialpolitik betroffen sind. Sie will nicht als Lobbyistin innerhalb des Parlaments wirken, obwohl sie sich informieren wird. Sie behält ihre Ämter kommissarisch und will keine volle Aufmerksamkeit auf Landwirtschaft legen, solange noch Wahlen in ihren Verbänden anstehen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz antwortet, warum nicht Ernährung (KMU-Fokus besser bei Arbeit und Soziales), aber ihre Begründung wirkt konstruiert - sie weicht dem Hauptthema aus und nutzt Lobbyismusbedenken als Grund.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich würde ich würde wahnsinnig gerne Arbeit und soziales machen. Ach nicht Ernährung oder so? Nein, weil also ich habe tatsächlich Ernährung und Landwirtschaft zwar als stellvertretenden Ausschuss angegeben",
+            "timestamp": "00:12:54"
+          },
+          {
+            "text": "Aber ähm Arbeit und Soziales ist was vor allen Dingen die kleinen KMUs und ähm Kleines Unternehmen im und Familienbetriebe im Osten echt umtreibt.",
+            "timestamp": "00:12:54"
+          }
+        ],
+        "concrete_statements": [
+          "Primäre Ausschusswahl: Arbeit und Soziales",
+          "Stellvertretend: Ernährung/Landwirtschaft und Wirtschaft"
+        ],
+        "related_bundestag_topics": [
+          "Ausschussarbeit",
+          "Arbeitnehmerrechte",
+          "Mittelstandspolitik"
+        ]
+      },
+      {
+        "title": "Vermietete Häuser und Mietpolitik",
+        "timestamp_range": "00:14:55 - 00:23:07",
+        "theme_description": "Seitz beschreibt ihre Rolle als Vermieterin von 17 Parteien im Chemnitzer Sonnenberg und ihre Philosophie zur Mieterverwaltung.",
+        "question_asked": "Du verdienst als Abgeordnete jetzt auch ein gutes Gehalt (Diät). Was machst du damit? Und bist du Vermieterin?",
+        "question_intent": "Der Moderator fragt nach Seitzs Einkommen und Vermögensstruktur.",
+        "position": "Seitz ist Vermieterin eines Familienhauses mit 17 Mietparteien im Sonnenberg (Chemnitz). Der Kredit wurde von ihren Großeltern aufgenommen und wird von ihr zurückgezahlt (bis Alter 60, noch ~20 Jahre). Sie mietet nicht nach maximalen Gewinnen, sondern zielt darauf ab, das Haus auf aktuellem Stand zu halten. Das Haus soll später an die Don-Bosco-Stiftung gehen. Sie schaut sich Mieter persönlich an ('Chemie muss stimmen'), hat sich aber schon zweimal geirrt. Sie ist offen für diverse Mieter (Rentner, Künstler, Flüchtlinge, Studierende in WGs).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet detailliert zu ihrer Vermietertätigkeit, Finanzierungsstruktur, Mieterverwaltung und langfristige Ziele.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Gott sei Dank habe ich eine große finanzielle Verpflichtung mit meinem Haus eingegangen. Mhm. Ähm in dem 17 Mietparteien wohnen, die auch ähm gerne gut und sicher wohnen",
+            "timestamp": "00:15:26"
+          },
+          {
+            "text": "Mir muss mir muss es warm ums Herz werden. Okay. Also wenn ich es ist es ist ein Gefühl. Man guckt sich die Leute an, man spricht mit ihnen und dann kriegt man ja doch so im zwischenmenschlichen miteinander kriegt man ja raus. Passt oder passt.",
+            "timestamp": "00:19:32"
+          },
+          {
+            "text": "Das Haus soll immer nach Möglichkeiten auf dem neuesten Stand sein... wird das Haus mal an die Don Bosco Stiftung in Kemnitz gehen.",
+            "timestamp": "00:21:36"
+          }
+        ],
+        "concrete_statements": [
+          "Vermieterin von 17 Mietparteien",
+          "Zahlungspflicht bis Alter 60",
+          "Plant Übergabe an Don-Bosco-Stiftung für benachteiligte Kinder",
+          "Bereits zwei Mietfehler gemacht"
+        ],
+        "related_bundestag_topics": [
+          "Mietpolitik",
+          "Wohnungswirtschaft",
+          "Soziale Verantwortung"
+        ]
+      },
+      {
+        "title": "Wohnsituation Berlin und Wahlkreisarbeit",
+        "timestamp_range": "00:23:38 - 00:25:40",
+        "theme_description": "Seitz erklärt ihre Berliner Wohnsituation und ihren Plan für die Balance zwischen Bundestag und Wahlkreis Chemnitz.",
+        "question_asked": "Du musst viel Zeit in Berlin verbringen. Hast du eine Wohnung gefunden? Wie oft bist du da?",
+        "question_intent": "Der Moderator fragt nach praktischen Arrangements für ihre Abgeordnetentätigkeit.",
+        "position": "Seitz nutzt ein familiales 'Erbstück' - eine Mietwohnung in Berlin-Friedrichshain (Galerienviertel/Franslauer Berg), die seit 1995 von Verwandten genutzt wird. Sie zieht jetzt ein. Sie wird nur während Sitzungswochen in Berlin sein, ansonsten im Wahlkreis Chemnitz. Ihre Aufgabe ist es, den Menschen im Wahlkreis ein 'Gefühl herzustellen, dass sich die Menschen wieder abgeholt und mitgenommen fühlen'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet konkret auf beide Fragen: Wohnsituation (Familienerbstück) und Aufenthaltsplanung (nur Sitzungswochen, Rest im Wahlkreis).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ja, wir haben ein Familienerbstück. Wir nennen das liebevoll Familienerbstück. Ähm die Wohnung gibt's tatsächlich in der Familienischen seit 1995 hier.",
+            "timestamp": "00:24:09"
+          },
+          {
+            "text": "Meine Aufgabe ist es in den nächsten vier Jahren ein Gefühl in meinem Wahlkreis für Berlin herzustellen, dass sich die Menschen wieder abgeholt fühlen und mitgenommen fühlen.",
+            "timestamp": "00:25:40"
+          }
+        ],
+        "concrete_statements": [
+          "Nutzt Familien-Mietwohnung in Berlin",
+          "Ist nur während Sitzungswochen in Berlin",
+          "Fokus liegt auf Wahlkreisarbeit in Chemnitz"
+        ],
+        "related_bundestag_topics": [
+          "Abgeordnetentätigkeit"
+        ]
+      },
+      {
+        "title": "Enttäuschung und Frust in Ostdeutschland nach der Wende",
+        "timestamp_range": "00:25:40 - 00:27:46",
+        "theme_description": "Seitz analysiert das tiefe Gefühl von Enttäuschung und Frust in Ostdeutschland seit der Wende und dessen Ursprünge.",
+        "question_asked": "Menschen im Wahlkreis fühlen sich nicht mitgenommen. Wovon sind sie tief enttäuscht und gefrustet?",
+        "question_intent": "Der Moderator fragt nach den Wurzeln der östlichen Desorientiertheit und Enttäuschung.",
+        "position": "Seitz führt Enttäuschung auf unerfüllte Hoffnungen nach der Wende zurück. Die Menschen erhofften sich 'mehr Freiheit, mehr Leben' in dem freien Deutschland, doch das ist 'nicht eingetreten'. Sie betont, dass die Wende nicht gestern angefangen hat, sondern die Frustration über Jahrzehnte angestaut ist. Corona habe im Osten etwas gemacht, das sie 'nicht wirklich greifen kann'. Sie verweist auf Grundrechtsbeschränkungen, Existenzängste und einen Wohlstandsverlust.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz benennt Enttäuschung nach Wende und Corona-Effekte, aber ihre Erklärung bleibt diffus ('weiß gar nicht wie man das beschreiben kann'). Sie gibt keine konkreten Ursachen an, sondern eher Symptome.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich glaube tatsächlich, das hat das hat schon seine Ursprünge mit in der Wende. Da sind viele Hoffnungen und sicherlich auch Wünsche damit ähm in Verbindung einhergegangen und ähm die sind einfach nicht erfüllt worden und die sind auch nicht die sind noch nicht gewachsen.",
+            "timestamp": "00:26:12"
+          },
+          {
+            "text": "Ich glaube auf auf eine generelle Änderung mehr Freiheit, mehr Leben, mehr vom Leben einfach denke ich mir und das ist einfach nicht eingetreten.",
+            "timestamp": "00:27:46"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht Wurzeln in Wende und unferfüllten Hoffnungen",
+          "Corona habe zusätzliche Unsicherheit erzeugt"
+        ],
+        "related_bundestag_topics": [
+          "Ostdeutsche Identität",
+          "Wende und Nachwirkungen",
+          "Regionalpolitik"
+        ]
+      },
+      {
+        "title": "Corona und dessen Auswirkungen auf Osten",
+        "timestamp_range": "00:28:16 - 00:29:49",
+        "theme_description": "Seitz reflektiert auf Corona-Maßnahmen und deren unterschiedliche Wahrnehmung und Wirkung im Osten.",
+        "question_asked": "Was hat Corona im Osten gemacht? Hatten Leute recht, dass Grundrechte genommen wurden?",
+        "question_intent": "Der Moderator prüft, ob Seitz Corona-Kritik teilt oder differenziert sieht.",
+        "position": "Seitz sagt, sie könne nicht behaupten, dass ihr ein Grundrecht 'genommen' wurde, da sie weiterarbeiten konnte. Aber andere bangten um ihre Existenz, was 'Angst und dieses Gefühl von Unsicherheit' erzeugt. Viele deuteten das als 'mir wird hier was weggenommen', was zu Wohlstandsverlustängsten führte. Seitz betont: 'Das erzeugt Angst, das erzeugt dieses Gefühl von Unsicherheit.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz differenziert zwischen persönlichem Erleben (kein Grundrechtentzug) und sozialen Effekten (Existenzangst), beantwortet die Frage aber eher aus ihrer Perspektive denn aus der der betroffenen Menschen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Na ja, ich meine, wir hatten ja im Grunde genommen ähm wir die Menschen reden ja auch immer davon, dass dass ihnen Grundrechte genommen wurden. Ich meine, ich kann nicht sagen, dass mir ein Grundrecht genommen wurde.",
+            "timestamp": "00:28:46"
+          },
+          {
+            "text": "Andere waren zu Hause und haben über um ihre Existenz gebankt und das macht was mit Menschen. Das erzeugt Angst, das erzeugt dieses Gefühl von Unsicherheit.",
+            "timestamp": "00:29:17"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht Corona als Verstärker von Existenzangst im Osten"
+        ],
+        "related_bundestag_topics": [
+          "Corona-Maßnahmen",
+          "Grundrechte",
+          "Krise und Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Politische Lösungen für Frust, Enttäuschung und Angst",
+        "timestamp_range": "00:29:49 - 00:31:22",
+        "theme_description": "Seitz wird konkret gefragt, welche politischen Mittel gegen Frust und Angst helfen könnten.",
+        "question_asked": "Welche politischen Mittel kann man gegen Frust, Enttäuschung und Angst einsetzen?",
+        "question_intent": "Der Moderator fordert Seitz auf, konkrete Policy-Vorschläge zu machen.",
+        "position": "Seitz betont 'ganz wichtig ist, dass wir wieder anfangen müssen mehr miteinander zu sprechen. Ich finde, dass Kommunikation eines der wichtigsten Dinge ist.' Sie sagt, Politik muss transparenter werden, Entscheidungen besser erklären. Aber sie gibt zu: 'Ob man dadurch sofort Frust abbaut, ist die Frage.' Und: 'Ich kann es im Moment noch nicht klar sagen, welche Hebel ich bedienen muss, weil ich ziehe ja erst in den deutschen Bundestag ein.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz nennt Kommunikation und Transparenz, aber gibt zu, dass dies nicht sofort Frust abbaut. Sie bietet keine konkreten Policies an und vertröstet auf die Zeit nach ihrem Eintritt.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich denke ganz wichtig ist, dass wir wieder anfangen müssen mehr miteinander zu sprechen. Ich finde, dass Kommunikation eines der wichtigsten Dinge ist.",
+            "timestamp": "00:29:49"
+          },
+          {
+            "text": "Ich kann es im Moment noch nicht klar sagen, welche Hebel ich bedienen muss, weil ich ziehe ja erst in den deutschen Bundestag ein.",
+            "timestamp": "00:31:22"
+          }
+        ],
+        "concrete_statements": [
+          "Setzt auf bessere Kommunikation und Transparenz",
+          "Verspricht konkrete Ideen nach Amtsantritt"
+        ],
+        "related_bundestag_topics": [
+          "Vertrauensdefizit",
+          "Politische Kommunikation"
+        ]
+      },
+      {
+        "title": "Rahmenbedingungen für Unternehmen und Fachkräftemangel",
+        "timestamp_range": "00:31:52 - 00:33:55",
+        "theme_description": "Seitz konkretisiert ihre politische Position: bessere Rahmenbedingungen für Unternehmen, um Fachkräfte zu halten und Ausbildung attraktiv zu machen.",
+        "question_asked": "Wenn Rahmenbedingungen für Unternehmen besser werden - wie hilft das gegen Frust? Was ist mit Rentnerinnen und Arbeitnehmerinnen?",
+        "question_intent": "Der Moderator fragt, wie Wirtschaftspolitik zur Lebensverbesserung für breite Schichten führt.",
+        "position": "Seitz sagt: Bessere Rahmenbedingungen (weniger Bürokratie, z.B. digitale Temperaturlisten statt handschriftliche) führen dazu, dass 'ich vielleicht mehr junge Menschen für eine Ausbildung im Handwerk entscheiden'. Das steigert Einkommenssicherheit für Arbeitnehmer. Arbeitnehmersicherheit (sichere Arbeitsplätze) hilft auch Rentnern (stabile Einzahlungen in Rentensysteme) und Kindern/Jugendlichen (Freizeitausgaben). Sie räumt ein: 'Das werde ich erst ab nächsten Dienstag herausfinden können.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz verbindet Unternehmensförderung mit Arbeitnehmer- und Rentnerinteressen logisch, bleibt aber vage bei konkreten Maßnahmen ('erst ab nächsten Dienstag').",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Wir müssen die Rahmen, also für mich sind ganz wichtig Rahmenbedingungen für Unternehmen Punkt.",
+            "timestamp": "00:31:52"
+          },
+          {
+            "text": "Wenn ich den Unternehmen endlich mal wieder Rahmenbedingungen verschaffe, in denen sie arbeiten können, sorgt das natürlich auch dafür, dass ich vielleicht mehr junge Menschen für eine Ausbildung im Handwerk entscheiden.",
+            "timestamp": "00:33:25"
+          }
+        ],
+        "concrete_statements": [
+          "Fordert Digitalisierung der Bürokratie",
+          "Sieht Unternehmertätigkeit als Schlüssel zu Ausbildungsplätzen"
+        ],
+        "related_bundestag_topics": [
+          "Handwerkspolitik",
+          "Fachkräftemangel",
+          "Ausbildung"
+        ]
+      },
+      {
+        "title": "Lohnpreisspirale und Mindestlohn-Kritik",
+        "timestamp_range": "00:33:55 - 00:48:45",
+        "theme_description": "Seitz kritisiert aus Unternehmersicht die Lohnpreisspirale und den Mindestlohn. Sie gibt detaillierte Beispiele aus ihrer Fleischerei.",
+        "question_asked": "Du sprichst von Lohnpreisspirale. Aber wird nicht eher durch höhere Unternehmensgewinne die Inflation getrieben, nicht durch Löhne?",
+        "question_intent": "Der Moderator hält gegen mit empirischen Daten (OECD-Studie) und fordert Seitz auf, ihre These zu überdenken.",
+        "position": "Seitz sagt, in ihrem Betrieb steigen mit Lohnerhöhungen die Kosten, daher muss sie Preise erhöhen. Beispiel: Fleckeintopf kostete 2020 5,50€, kostet jetzt 6,90€, wird nicht verkauft. Sie führt die Inflation auch auf Lohnkosten zurück. Der Moderator widerlegt dies mit OECD-Daten (Inflation 2021-22 zu >50% durch Gewinne getrieben), Seitz weicht aus und betont ihren 'Mikrokosmos' Sachsen mit 87% Klein- und Kleinstbetrieben. Sie sieht diese Betriebe als zu fragil für Lohnmindestlohn-Politik.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz beantwortet die Frage, weicht aber zu ihrer lokalen Erfahrung aus, statt sich mit der gesamtwirtschaftlichen These auseinanderzusetzen. Sie erkennt nicht an, dass ihre Preissteigerungen auch auf Gewinnemarginen zurückgehen könnten.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Seitz weicht zu Mikroebene aus und behauptet, für Sachsen-Kleinbetriebe gelten andere Regeln.",
+        "quotes": [
+          {
+            "text": "Wir haben über wie viel Preissteigerung. Na gut, aber man muss ja ehrlich sein, als der Mindestlohn vor über 10 Jahren eingeführt wurde, da war ja so von FDP und so, die haben ja behauptet, das killt Arbeitsplätze, es ist ja nicht eingetreten.",
+            "timestamp": "00:45:43"
+          },
+          {
+            "text": "Es würde sich von alleine entwickeln, das sage ich ganz ehrlich. Weil wenn ich noch mehr Luft hätte im Unternehmen, würde ich mein Mittels würde ich meinen Mittels automatisch mehr zahlen, aber ich kann nicht.",
+            "timestamp": "00:48:15"
+          }
+        ],
+        "concrete_statements": [
+          "Lehnt Mindestlohn als Lösung ab",
+          "Sieht Tarifvereinbarungen als bessere Alternative",
+          "Kritisiert Lohnsteuerbelastung"
+        ],
+        "related_bundestag_topics": [
+          "Mindestlohn",
+          "Lohnpolitik",
+          "Inflation"
+        ]
+      },
+      {
+        "title": "Rentensystem und Umlageprinzip",
+        "timestamp_range": "00:34:27 - 00:40:05",
+        "theme_description": "Seitz wird zu stabilen Renten und Finanzierung des Rentensystems befragt.",
+        "question_asked": "Du sprichst von stabilen Renten. Heißt das stabil niedrig? Und sollen Abgeordnete und Beamte ins Rentensystem einzahlen?",
+        "question_intent": "Der Moderator prüft, ob 'stabil' bedeutet, dass niedrige Renten stabil bleiben.",
+        "position": "Seitz sagt, das Rentensystem wird stark subventioniert. Sie befürwortet eine Reform mit höheren Renten, aber diese müsse holistic betrachtet werden (Löhne, Mindestlohn, Entlastungen). Sie würde es sich vorstellen können, dass Abgeordnete und Beamte ins Rentensystem einzahlen. Sie räumt ein, dass es 'unfair' ist, dass Abgeordnete nach 2 Legislaturperioden (8 Jahren) eine Pension auf Lebenszeit bekommen. Aber dann bricht die Diskussion ab.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz beantwortet einige Teile (holistic reform, Abgeordnete/Beamte), weicht aber zur breiteren 'Staatsreform'-Frage aus und vermeidet konkrete Rentenerhöhungszahlen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Im Moment subventionieren wir das Rentensystem enorm. Das müssen wir uns ja auch sagen, wir subventionieren ja im Moment gerade das Rentensystem aus dem aus dem Bundeshaushalt in nicht zu kleinem Maße.",
+            "timestamp": "00:34:58"
+          },
+          {
+            "text": "Wir müssen uns also Gedanken machen. Mhm. Und ähm ich finde zu zu einem zu einer gesunden Rente gehört natürlich der staatliche Anteil, aber wir müssen auch selber was machen.",
+            "timestamp": "00:34:58"
+          }
+        ],
+        "concrete_statements": [
+          "Befürwortet Rentenreform",
+          "Offen für Abgeordneten/Beamten-Beitragspflicht"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Sozialversicherung",
+          "Haushaltsfinanzierung"
+        ]
+      },
+      {
+        "title": "Diskounter vs. Handwerksfleischereien",
+        "timestamp_range": "00:54:22 - 01:01:01",
+        "theme_description": "Seitz argumentiert gegen Billig-Fleisch von Discountern und für handwerkliche Fleischereien, bleibt aber vage bei ordnungspolitischen Lösungen.",
+        "question_asked": "Sollte man Discountern verbieten, Fleisch zu verkaufen? Das wäre ordnungspolitisch durchsetzbar.",
+        "question_intent": "Der Moderator provoziert eine konkrete ordnungspolitische Antwort.",
+        "position": "Seitz lehnt radikale Verbote ab ('Wir haben eine freie Marktwirtschaft'), möchte aber bessere Rahmenbedingungen. Sie sieht das Sachsenglück-Modell (regionale, hochwertige Fleischerei) als Vorbild. Sie sagt, dass sich handwerkliche Fleischereien durch Qualität unterscheiden müssen. Aber bei der Frage nach ordnungspolitischem Handeln (z.B. Fleischverkauf nur bei Metzgereien, nicht im Supermarkt) weicht sie aus und verweist auf 'Marktwirtschaft' und Freiheit.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Seitz verschiebt die Diskussion von konkreten Maßnahmen zur grundsätzlichen Marktwirtschaftsdebatte. Der Moderator fragt nach Ordnungspolitik, sie antwortet mit Freier-Markt-Rhetorik.",
+        "answer_type": "themenwechsel",
+        "deflection_target": "Marktwirtschaftliche Prinzipien statt Ordnungspolitik",
+        "quotes": [
+          {
+            "text": "Das nennt man dann Marktwirtschaft oder wer das können wir auch Ordnungspolitik nennen. Wie gesagt, ich ziehe erst in den deutschen, also in den deutschen Bundestag ein.",
+            "timestamp": "00:57:26"
+          },
+          {
+            "text": "Aber das ist doch jetzt großartig, wenn eine junge Unternehmerin in diesen Bundestag einzieht, noch dazu aus dem Osten kommt und jetzt dort mal ähm für die Ideen wirbt, die so aus dem Osten raus.",
+            "timestamp": "01:32:33"
+          }
+        ],
+        "concrete_statements": [
+          "Fordert bessere Rahmenbedingungen statt Verbote",
+          "Sieht Sachsenglück als Vorbild für Regionalität"
+        ],
+        "related_bundestag_topics": [
+          "Ordnungspolitik",
+          "Einzelhandelspolitik",
+          "Verbraucherschutz"
+        ]
+      },
+      {
+        "title": "Lobbyarbeit für Fleischerverband",
+        "timestamp_range": "00:55:24 - 00:56:55",
+        "theme_description": "Seitz wird gefragt, warum sie als Fleischerverband-Lobbyistin nicht gegen Discounter vorgeht.",
+        "question_asked": "Du warst Lobbyistin für den Fleischerverband. Warum habt ihr da keine Position gegen Discounter?",
+        "question_intent": "Der Moderator fragt, warum die Lobby-Arbeit nicht in Strategien gegen Konkurrenz geflossen ist.",
+        "position": "Seitz räumt ein, dass sie im Lobbyregister als Lobbyistin eingetragen ist, betont aber, dass ihre Aufgabe 'im Bereich Aus und Weiterbildung' lag (Neuordnungsverfahren, Ausbildung), nicht Discounter-Bekämpfung. Sie sagt: 'Ich kann doch immer wieder auf irgendjemand auf irgendjemand draufhauen, aber wir wollen uns doch mit unserem eigenen Markenkern durchsetzen.' Sie will nicht 'ständig mit Finger auf andere zeigen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz erklärt ihren spezifischen Aufgabenbereich (Ausbildung), rechtfertigt aber nicht wirklich, warum der Verband insgesamt nicht gegen Discounter-Konkurrenz vorgegangen ist.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Nee, tatsächlich nicht. Okay. Warum? Warum? Das sind do eure Gegner im Prinzip. Ja, aber warum sollen wir jetzt mit Warum sollen wir die jetzt also ja, wir können jetzt drüber uns unterhalten, dass wir die schwächen können.",
+            "timestamp": "00:55:24"
+          }
+        ],
+        "concrete_statements": [
+          "Lobbyarbeit fokussierte auf Aus- und Weiterbildung",
+          "Nicht auf Discounter-Regulierung"
+        ],
+        "related_bundestag_topics": [
+          "Interessenverbände",
+          "Fleischerhandwerk"
+        ]
+      },
+      {
+        "title": "Ausbildungsweg und Schulverweigerer",
+        "timestamp_range": "01:03:04 - 01:05:06",
+        "theme_description": "Seitz erzählt ihre Biografie: Sie wollte ursprünglich Schauspielerin werden, verwarf aber diesen Plan und machte stattdessen eine Fleischer-Ausbildung.",
+        "question_asked": "Hast du ein Abitur gemacht? Warum hast du dich für Fleischer-Ausbildung entschieden?",
+        "question_intent": "Der Moderator fragt nach ihrem ungewöhnlichen Bildungsweg.",
+        "position": "Seitz sagt, sie wollte Schauspielerin werden und brauchte Abi für die Hochschule. Aber nach der Schule, als ihr Klassenlehrerin vorschlug, die 10. Klasse zu wiederholen, sagte Seitz 'Ihr könnt gesagt, ey Leute, leckt mich aber bitte nicht noch mal'. Sie fragte ihre Eltern stattdessen, ob sie eine Ausbildung machen könne. Der Vater (Chemiker) war überrascht, die Mutter unterstützte die Idee. Seitz machte Fleischer-Fachverkäuferin-Ausbildung im Familienbetrieb der Mutter. Das war eine 'knallharte Schule', aber sie entdeckte ihre 'Leidenschaft für meinen Beruf'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz erzählt ihre Geschichte detailliert und antwortet auf beide Teile der Frage (kein Abi, Grund für Ausbildung).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Nach dem Gespräch mit meiner Klassenlehrerin, wo es um die elf die zehnte Klasse wiederholen und dann elfte machen... habe ich das einfach so zerstört.",
+            "timestamp": "01:04:36"
+          },
+          {
+            "text": "Und mein Vater studiert Chemiker... hat sich dann so ganz langsam so gibt auch so in Film so Momente, wo sich so Köpfe ganz langsam drehen, so in Zeitlupe hat er sich zu mir umgedreht an der roten Ampel, gesagt, was willst du denn lernen?",
+            "timestamp": "01:05:37"
+          }
+        ],
+        "concrete_statements": [
+          "Verweigerte die Wiederholung der 10. Klasse",
+          "Machte Fleischer-Fachverkäuferin-Ausbildung im Familienbetrieb"
+        ],
+        "related_bundestag_topics": [
+          "Berufsausbildung",
+          "Handwerk"
+        ]
+      },
+      {
+        "title": "Fleischkonsum, Tierwohl und ethische Reflexion",
+        "timestamp_range": "01:07:11 - 01:12:18",
+        "theme_description": "Seitz wird auf die ethischen Fragen der Fleischproduktion und das Töten von Tieren gedrängt.",
+        "question_asked": "Fleisch ist das Töten von Tieren. Kannst du das moralisch vor dir selbst rechtfertigen?",
+        "question_intent": "Der Moderator fragt nach der moralischen Rechtfertigung von Tiertotem.",
+        "position": "Seitz sagt, sie kann das moralisch vor sich selbst rechtfertigen, da sie die 'Schöpfung' respektiert und die Tiere würdevoll behandelt. Sie zitiert ihren Großvater: 'Damals, als er dieses Ähm als er diesen Vorgang gesehen hat, hat er den Begriff der Schöpfung verstanden.' Sie betont 'Nose to Tail'-Verwendung und Tierwohl. Aber sie räumt ein: 'Wir töten halt Tiere, Nutztiere.' Die Moderatorin hält gegen: Das ist nur Absence of Cruelty, nicht Tierwohl. Seitz bleibt dabei: innerhalb des Systems, das es gibt, versucht sie verantwortungsvolle Fleischerei zu praktizieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz antwortet auf die ethische Frage mit einem religiösen/philosophischen Ansatz (Schöpfung), statt die Kritik wirklich zu adressieren. Die Moderatorin zeigt, dass 'Absence of Cruelty' nicht gleich 'Wohl' ist, Seitz geht darauf nicht ein.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Mein Großvater hat mit 16 sein erstes Kalb geschlachtet... als er diesen Vorgang gesehen hat, hat er den Begriff der Schöpfung verstanden.",
+            "timestamp": "01:10:15"
+          },
+          {
+            "text": "Aber ich bin der Meinung, es ist ein toller Rohstoff, mit dem man arbeiten kann, aber das können, aber wir töten halt Tiere.",
+            "timestamp": "01:09:45"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht Fleischerei als respektvolles Handwerk mit Tierwohlstandards",
+          "Betont regionale Herkunft und Nose-to-Tail"
+        ],
+        "related_bundestag_topics": [
+          "Tierschutz",
+          "Nachhaltigkeit",
+          "Ernährung"
+        ]
+      },
+      {
+        "title": "AfD-Wahlergebnisse und der Wechsel von CDUlern zur AfD",
+        "timestamp_range": "01:19:26 - 01:23:29",
+        "theme_description": "Seitz wird gefragt, warum die AfD in Chemnitz 32% erreichte (sie selbst 21%), und warum ehemalige CDUler zur AfD wechselten.",
+        "question_asked": "Die AfD hat 32% geholt, du 21%. Warum wählen Chemnitzer lieber einen Faschisten? Und warum sind Politiker wie Gauland von CDU zur AfD gegangen?",
+        "question_intent": "Der Moderator fragt nach den Gründen für AfD-Dominanz und dem Verrat von CDU-Größen.",
+        "position": "Seitz sagt ehrlich, sie versteht es 'nicht wirklich'. Sie betont, dass auch SPD nicht erfolgreich war. Sie kritisiert Gauland dafür, dass er nur einmal im Wahlkampf in Chemnitz war, obwohl er dort geboren ist. Zur Frage, warum CDUler zur AfD gingen, antwortet Seitz: 'Das Problem glaube ich die Flüchtlingswelle war.' Sie sagt, die CDU hätte damals mit Lucke und Petri noch gesprächsfähig sein können, aber die Partei habe sich 'wegradikalisiert'. Sie nennt Maximilian Kra als Beispiel, der über Anerkennungsbedürfnisse junger Männer in der AfD hoch kam. Seitz: 'Das ist eine Partei, die ich für mich am rechten Rand sehe.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz beantwortet die Frage eher autobiografisch ('ich verstehe es nicht') statt strukturell. Sie bietet die Flüchtlingskrise als Erklärung, aber keine analytische Tiefe.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Das ist eine gute Frage. Das ist wirklich eine gute Frage und der versuche ich in den nächsten vier Jahren wirklich auf dem Grund zu gehen.",
+            "timestamp": "01:19:56"
+          },
+          {
+            "text": "Das Problem glaube ich die Flüchtlingswelle war. Das Problem war wirklich damals die die ganze Flüchtlingsproblematik, dieses sogenannte Grenzenaufmachen.",
+            "timestamp": "01:22:28"
+          }
+        ],
+        "concrete_statements": [
+          "Sieht AfD als Rechtsextremisten",
+          "Führt Wechsel ehemaliger CDUler auf Flüchtlingsdebatte zurück"
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "Populismus",
+          "Migration"
+        ]
+      },
+      {
+        "title": "CDU-Mitgliedschaft und Norbert Lammert",
+        "timestamp_range": "01:23:29 - 01:26:02",
+        "theme_description": "Seitz erklärt, warum sie der CDU beigetreten ist: wegen Norbert Lammert (Bundestagspräsident).",
+        "question_asked": "Warum bist du der CDU beigetreten? War es wegen Merkel?",
+        "question_intent": "Der Moderator fragt nach ihren Gründen für die CDU-Mitgliedschaft.",
+        "position": "Seitz sagt, sie trat 2009 der CDU bei, wegen Norbert Lammert als Bundestagspräsident. Sie fand ihn 'als Persönlichkeit unheimlich spannend', immer bereit zu reden, Diskussion suchend. Nicht wegen Merkel - die stand ihr 'für zu wenig Wirtschaftspolitik'. Im Nachhinein findet sie, Merkel habe Stabilität gegeben, aber hätte vielleicht 'ein bisschen mehr weh tun müssen' in Investitionen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet konkret auf beide Teile: CDU wegen Lammert, nicht wegen Merkel, mit Begründungen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wegen Norbert Lambert, dem Bundestagspräsident... Ich fand Lammert äh als Persönlichkeit immer unheimlich spannend und ähm er war immer bereit zu reden, er hat immer die Diskussion gesucht.",
+            "timestamp": "01:23:29"
+          },
+          {
+            "text": "Merkel war mir Nee, Werkel stand mir für zu wenig Wirtschaftspolitik.",
+            "timestamp": "01:24:00"
+          }
+        ],
+        "concrete_statements": [
+          "Trat 2009 der CDU bei",
+          "Orientierung an Lammert als Gesprächspolitiker"
+        ],
+        "related_bundestag_topics": [
+          "Parteibindung",
+          "Parlamentarische Tradition"
+        ]
+      },
+      {
+        "title": "Politisches Weltbild und Werte",
+        "timestamp_range": "01:27:02 - 01:28:32",
+        "theme_description": "Seitz beschreibt ihre politischen Grundlagen und Wertanker.",
+        "question_asked": "Welches politische Weltbild hast du? Was sind deine Anker?",
+        "question_intent": "Der Moderator fragt nach Seitzs grundlegenden politischen Überzeugungen.",
+        "position": "Seitz nennt: 1. Wirtschaftspolitik, 2. Christliche Werte (die CDU vertreten), 3. Carsten Linemans Agenda 2030, 4. Mittelstandsunion als 'Heimat', 5. 'Christliches Menschenbild und Eigenverantwortung'. Sie sagt, sie sei kein 'Schwarz-Weiß-Maler'. In Konflikten zwischen Wirtschaft und Christentum müsse man den 'Kurs suchen'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Seitz antwortet mit einer Auflistung ihrer Werteankrer und bekennt sich zur Nicht-Schwarz-Weiß-Denken.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Das sind natürlich ähm gerade die ganzen Themen ähm im Bereich Wirtschaft. Ähm das sind das sind natürlich auch die christlichen Werte, die die CDU vertritt.",
+            "timestamp": "01:27:02"
+          },
+          {
+            "text": "Ähm, das liegt aber auch an meiner an meiner gesamten Prägung, die ich aus dem Handwerk mitbringe. Ich kann z.B. auch nicht sagen, dass ich nur Kapitalist bin.",
+            "timestamp": "01:28:32"
+          }
+        ],
+        "concrete_statements": [
+          "Setzt auf Wirtschaftspolitik, Mittelstand, Christliche Werte, Eigenverantwortung"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Christliche Demokratie",
+          "Mittelstand"
+        ]
+      },
+      {
+        "title": "Bürgergeld, Leistungsmissbrauch und Priorisierung",
+        "timestamp_range": "01:39:16 - 01:45:28",
+        "theme_description": "Seitz wird zu Bürgergeld-Leistungsmissbrauch vs. Steuerhinterziehung befragt und wo Prioritäten liegen.",
+        "question_asked": "272 Millionen Euro Leistungsmissbrauch bei Bürgergeld. Aber 100 Milliarden Euro Steuerhinterziehung. Warum liegt euer Fokus auf Bürgergeld statt Steuerhinterziehung?",
+        "question_intent": "Der Moderator zeigt, dass das 50-fache an Schaden durch Steuerhinterziehung entsteht, und fragt nach Prioritäten.",
+        "position": "Seitz gibt zu, dass 100 Milliarden > 272 Millionen. Aber: Das 10-Punkte-Programm für die ersten 100 Tage sei auf schnelle Maßnahmen fokussiert. Steuerhinterziehung erfordert Steuerreform, die nicht in 100 Tagen geht. Sie sagt: 'Aber der Punkt ist, wir haben ein zehn Punkteprogramm für die ersten 100 Tage geschrieben. Dort geht es um die Bürgergeldempfänger und nicht um die 100 Milliarden Euro.' Sie betont: 'Wir müssen parallel an beiden arbeiten.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Seitz räumt ein, dass Steuerhinterziehung größer ist, weicht aber zu Zeitrahmen und kurzfristigen Maßnahmen aus, statt die Priorisierung wirklich zu verteidigen.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Seitz weicht zur Zeithorizon-Frage aus, statt zu sagen: 'Ja, Steuerhinterziehung ist wichtiger, aber Bürgergeld ist schneller lösbar.'",
+        "quotes": [
+          {
+            "text": "Ja, weil ich finde ja nichts in eurem Programm... Hast du da Ideen als Unternehmer?",
+            "timestamp": "01:42:53"
+          },
+          {
+            "text": "Aber der Punkt ist, wir haben ein zehn Punkteprogramm für die ersten 100 Tage geschrieben. Dort geht es um die Bürgergeldempfänger und nicht um die 100 Milliarden Euro.",
+            "timestamp": "01:45:28"
+          }
+        ],
+        "concrete_statements": [
+          "Erkennt Steuerhinterziehung als größeres Problem an",
+          "Rechtfertigt Fokus auf Bürgergeld mit kurzfristiger Umsetzbarkeit"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Sozialhilfe",
+          "Staatshaushalt"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Nora Seitz ist 40 Jahre alt und Fleischermeisterin",
+        "timestamp": "00:00:34"
+      },
+      {
+        "claim": "Am 6. November ist die Ampel gescheitert",
+        "timestamp": "00:02:05"
+      },
+      {
+        "claim": "Trump ist Präsident geworden wieder [gemeint: im November 2024]",
+        "timestamp": "00:02:36"
+      },
+      {
+        "claim": "Sie wurde im Oktober 2023 Vorsitzende der Mittelstands- und Wirtschaftsunion Sachsen",
+        "timestamp": "00:06:43"
+      },
+      {
+        "claim": "Die CDU und SPD in Sachsen machen nun eine Minderheitsregierung ohne BSW",
+        "timestamp": "00:05:10"
+      },
+      {
+        "claim": "Alexander Gauland holte in Chemnitz 32%, Nora Seitz 21%",
+        "timestamp": "01:19:26"
+      },
+      {
+        "claim": "Es gab 2002 ca. 19.000 Fleischermeisterbetriebe in Deutschland, jetzt noch knapp 10.000",
+        "timestamp": "01:30:02"
+      },
+      {
+        "claim": "Der Fleischkonsum ist von ca. 60kg pro Person/Jahr (2018) auf 51,6 kg gesunken",
+        "timestamp": "01:11:46"
+      },
+      {
+        "claim": "Die Leistungsmissbrauch bei Bürgergeld beträgt 272 Millionen Euro pro Jahr",
+        "timestamp": "01:41:22"
+      },
+      {
+        "claim": "Steuerhinterziehung kostet den Staat ca. 100 Milliarden Euro pro Jahr",
+        "timestamp": "01:41:52"
+      }
+    ]
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-15-oktober-2025-100",
+    "video_id": "markus-lanz-vom-15-oktober-2025-100",
+    "politician": "Ines Schwerdtner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "88a310e50994dbc1",
+    "transcript_chars": 60795,
+    "caption_lines": 2922,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25085,
+    "tokens_out": 8479,
+    "cost_usd": 0.026992000000000002,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-05-23T19:52:46.887Z",
+    "batch_id": "msgbatch_01WDDY5DmrAdxL97WK2BiUNx"
+  },
+  "_methodology": {
+    "transcript_source": "YouTube Auto-Caption (de-orig)",
+    "transcript_caveat": "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ines Schwerdtner, Co-Vorsitzende der Linkspartei, sitzt der AfD-Politikerin Beatrix von Storch gegenüber in dieser Talkshow-Diskussion. Sie verteidigt ihre Verweigerung des Handschlags mit Verweis auf die Abschaffung der Demokratie durch die AfD, argumentiert gegen Wehrpflicht und Waffenlieferungen an die Ukraine aus prinzipiellen und fiskalischen Gründen, und kritisiert scharf sowohl konservative Kulturkampf-Positionen als auch die Rüstungsausgaben der Regierung. Ihr Ton wirkt kämpferisch und ideologisch konsistent, wird aber beim Ukraine-Thema von Moderator und Gästen vielfach in die Defensive gedrängt.",
+    "themes": [
+      {
+        "title": "Handschlag-Verweigerung und demokratische Grenzen",
+        "timestamp_range": "00:03:05 - 00:04:49",
+        "theme_description": "Ines Schwerdtner erklärt, warum sie der AfD-Politikerin Beatrix von Storch den Handschlag verweigert.",
+        "question_asked": "Der Moderator fragt, ob Schwerdtner auch heute wieder den Handschlag verweigert hat, nachdem zuvor erwähnt wurde, dass sie dies auf Schulpodien häufig tat.",
+        "question_intent": "Zu verstehen, ob Schwerdtner ihre Verweigerungshaltung in dieser Sendung fortsetzt und wie sie ihre Position rechtfertigt.",
+        "position": "Schwerdtner unterscheidet zwischen politischen Konkurrenten und Politik, die sie als 'menschenverachtend' empfindet. Sie predige 'Politik der revolutionären Freundlichkeit' und sei demonstrativ freundlich gegenüber allen Menschen, selbst wenn diese sie anschreien. Aber: 'Ich muss denjenigen die unsere Demokratie abschaffen wollen, da ist eine Grenze für mich. Die endet bei der AfD.' Sie verweigert damit den Handschlag nicht grundsätzlich aus Unhöflichkeit, sondern aus einer Grenzziehung zum Demokratie-abschaffenden Lager.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner beantwortet, warum sie den Handschlag verweigert (Grenze zur AfD als antidemokratisch), adressiert aber nicht direkt die Frage, ob sie es *heute* gerade getan hat oder nicht. Sie verbleibt im Grundsätzlichen, ohne zur aktuellen Situation Stellung zu nehmen.",
+        "quotes": [
+          {
+            "text": "Ich predige die Politik der revolutionären Freundlichkeit, demonstrativ freundlich sein zu allen. Selbst wenn mich Leute anschreien würde ich immer noch sagen schönen Tag. Ich muss denjenigen die unsere Demokratie abschaffen wollen, da ist eine Grenze für mich. Die endet bei der AfD.",
+            "timestamp": "00:03:57",
+            "context": "Schwerdtner reagiert auf die Frage des Moderators, warum sie den Handschlag verweigert."
+          }
+        ],
+        "concrete_statements": [
+          "Verweigert den Handschlag zur AfD",
+          "Begründung: AfD will Demokratie abschaffen",
+          "Unterscheidet zwischen politischem Wettbewerb und menschenverachtender Politik"
+        ],
+        "related_bundestag_topics": [
+          "Demokratieschutz",
+          "Parlamentarische Sitten",
+          "AfD-Verfassungsschutz"
+        ]
+      },
+      {
+        "title": "Abtreibungsrecht und Kulturkampf gegen Frauen",
+        "timestamp_range": "00:22:13 - 00:23:19",
+        "theme_description": "Schwerdtner kritisiert die AfD-Position zur Abtreibung und wirft ihr vor, aus ideologischen Gründen einen Kulturkampf zu führen statt sich mit realen Problemen von Frauen zu befassen.",
+        "question_asked": "Der Moderator weist auf die breiten Mehrheiten für Abtreibungsrechte hin und fragt implizit, ob es nicht übertrieben wirkt, wie die AfD darauf reagiert.",
+        "question_intent": "Zu klären, warum die AfD Abtreibungsrecht ein zentrales Kampfthema macht, wenn breite Mehrheiten das anders sehen.",
+        "position": "Schwerdtner betont, dass breite Mehrheiten für Abtreibungsrechte sind und wirft der AfD vor, diese nicht zu respektieren. Sie sagt: 'Es ist absolut unstrittig, es sind breite Mehrheiten die dafür sind.' Sie kritisiert, dass die AfD 'Leuten die diese Rechte haben, diese wieder absprechen' will. Stattdessen sollte man sich um reale Fragen kümmern: 'Wie sind die Frauenhäuser ausgestattet. Gibt es genug Ärzte die sowas vollziehen können. Wir haben so viele Probleme die Frauen betreffen.' Sie wertet die AfD-Position als destruktiv: 'Das einzige was sie machen ist das zu nutzen und einen Kulturkampf zu führen... Das ist wirklich zerstörerisch. Das zeigt dass sie weit weg sind von dem was der gesunde Menschenverstand ist.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet direkt und substanziell: Sie adressiert die Mehrheits-Realität, kritisiert die AfD-Position als undemokratisch und rechtswidrig, und kontrastiert dies mit konkreten Forderungen (Frauenhäuser, Ärzte). Sie erklärt auch, was ihr als 'gesunder Menschenverstand' erscheint.",
+        "quotes": [
+          {
+            "text": "Es ist absolut unstrittig, es sind breite Mehrheiten die dafür sind. Sie können nicht Leuten die diese Rechte haben diese wieder absprechen.",
+            "timestamp": "00:22:13",
+            "context": "Schwerdtner reagiert auf die Diskussion um Abtreibungsrechte und die Position der AfD."
+          },
+          {
+            "text": "Das einzige was sie machen ist das zu nutzen und einen Kulturkampf zu führen und eine Verfassungsrechtlerin abzuschießen, um ihre politische Agenda zu treiben. Das ist wirklich zerstörerisch.",
+            "timestamp": "00:22:44",
+            "context": "Sie kritisiert die AfD-Strategie beim Thema Abtreibung als destruktiv und von Machtinteressen geleitet."
+          }
+        ],
+        "concrete_statements": [
+          "Fordert Ausstattung der Frauenhäuser",
+          "Fordert Sicherstellung ausreichender Ärzte für Schwangerschaftsabbruch",
+          "Kritisiert Kulturkampf statt Fokus auf reale Frauenprobleme",
+          "Wirft AfD undemokratisches Verhalten vor"
+        ],
+        "related_bundestag_topics": [
+          "Paragrafen 218/219 StGB",
+          "Frauenrechte",
+          "Geschlechtergerechtigkeit"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und Wehrgerechtigkeit",
+        "timestamp_range": "00:42:01 - 00:44:43",
+        "theme_description": "Schwerdtner erklärt die Position der Linkspartei gegen Wehrpflicht und begründet dies sowohl verfassungsrechtlich als auch mit der ungleichen Lasten-Verteilung auf arme Bevölkerungsgruppen.",
+        "question_asked": "Der Moderator fragt, wo Schwerdtner zum Thema Wehrpflicht steht – dafür oder dagegen, oder lehnt sie das komplett ab?",
+        "question_intent": "Klare Positionierung zu erfragen, ob Die Linke grundsätzlich Wehrpflicht ablehnt oder nur die aktuelle Umsetzung kritisiert.",
+        "position": "Schwerdtner ist klar gegen Wehrpflicht und will sie aus dem Grundgesetz streichen. Sie argumentiert: 'Sie sie könnte per Verordnung wieder zurück ins Leben gerufen werden. Wir finden es braucht ein normales Verfahren darüber.' Sie nennt es 'ein zivilisatorischer Rückschritt'. Das Kernargument ist sozial: 'Das ist das zweite, dass die Bundeswehr unattraktiv ist.' Später kritisiert sie auch die Kostenfolgen: 'Das würde die Hälfte unseres Bundeshaushalts ausmachen.' Sie argumentiert außerdem, dass Wehrpflicht überproportional arme Menschen trifft: 'nach vorne geschickt werden die ärmsten Menschen... Es gibt ein Klassenunterschied zwischen denjenigen Die zu Führungskräften werden.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet klar und umfassend: Sie lehnt Wehrpflicht ab, begründet dies verfassungsrechtlich (Notwendigkeit eines normalen Verfahrens), mit Verweis auf Unattraktivität der Bundeswehr, fiskalischen Bedenken (5% NATO-Ziel), und sozialer Gerechtigkeit (überproportionale Belastung ärmerer Bevölkerungsgruppen).",
+        "quotes": [
+          {
+            "text": "Wir sind gegen die Wehrpflicht, wir wollen sie auch aus dem Grundgesetz streichen.",
+            "timestamp": "00:42:01",
+            "context": "Direkte Antwort auf die Frage zur Wehrpflicht."
+          },
+          {
+            "text": "Es ist eine Wehrpflicht durch die Hintertür. Eigentlich sagt man jetzt schon, es reicht nicht.",
+            "timestamp": "00:42:19",
+            "context": "Schwerdtner kritisiert die Versuche, Wehrpflicht durch Losverfahren einzuführen."
+          },
+          {
+            "text": "Das einzige was sie machen ist das zu nutzen und einen Kulturkampf zu führen und eine Verfassungsrechtlerin abzuschießen, um ihre politische Agenda zu treiben.",
+            "timestamp": "00:43:09",
+            "context": "Schwerdtner argumentiert gegen das 5% NATO-Ziel mit Verweis auf Budgetkosten."
+          }
+        ],
+        "concrete_statements": [
+          "Fordert Streichung der Wehrpflicht aus dem Grundgesetz",
+          "Kritisiert 5%-NATO-Ziel als unfinanzierbar (wäre 50% des Bundeshaushalts)",
+          "Warnt vor überproportionaler Belastung armer Bevölkerungsgruppen",
+          "Fordert Transparenz bei Rüstungsausgaben"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Wehrgerechtigkeit",
+          "Rüstungsausgaben",
+          "NATO-Ziele"
+        ]
+      },
+      {
+        "title": "NATO-Ziele und militärische Planung",
+        "timestamp_range": "00:44:02 - 00:45:29",
+        "theme_description": "Schwerdtner stellt die NATO-Ziele (5% Rüstungsbudget) infrage und fordert transparente Begründung für Rüstungsausgaben.",
+        "question_asked": "Claudia Major fragt Schwerdtner: 'Und was wäre Ihre Antwort darauf? Was bräuchte man da?' – in Bezug auf die Frage, wie viel für Landesverteidigung notwendig ist.",
+        "question_intent": "Zu verstehen, ob Schwerdtner eine Alternative zu NATO-Zielen hat oder ob sie diese nur generisch ablehnt.",
+        "position": "Schwerdtner antwortet kritisch-skeptisch: 'Das konnte mir noch niemand seriös beantworten. Die Milliarden gehen über Nacht über den Tisch. Und die Regierung winkt das alles durch.' Sie fordert Transparenz: 'Wir können als Opposition nicht prüfen welche Aufträge werden vergeben. Es gehörte transparent dazu dass wir diese Zahlen vorgelegt bekommen, das konnte bisher noch niemand sagen.' Sie betont auch: 'Sich einfach auf die NATO Ziele verlassen halte ich nicht für vertrauenswürdig. Ich möchte nicht dass unsere Bundeswehr daran hängt was Donald Trump macht.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner adressiert die Frage zu NATO-Zielen mit Kritik (fehlende Transparenz, politische Abhängigkeit), liefert aber keine eigene konstruktive Alternative oder ein konkretes Zahlengerüst für 'sinnvolle' Rüstung.",
+        "quotes": [
+          {
+            "text": "Das konnte mir noch niemand seriös beantworten. Die Milliarden gehen über Nacht über den Tisch. Und die Regierung winkt das alles durch.",
+            "timestamp": "00:44:08",
+            "context": "Schwerdtner kritisiert die fehlende Transparenz und Begründung bei Rüstungsausgaben."
+          },
+          {
+            "text": "Ich möchte nicht dass unsere Bundeswehr daran hängt was Donald Trump macht.",
+            "timestamp": "00:44:47",
+            "context": "Schwerdtner kritisiert die Abhängigkeit von US-Politik."
+          }
+        ],
+        "concrete_statements": [
+          "Fordert transparente Offenlegung und parlamentarische Kontrolle von Rüstungsausgaben",
+          "Kritisiert Abhängigkeit von NATO und US-Politik",
+          "Bestreitet Seriösität der NATO-Ziele"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsetat",
+          "NATO-Verpflichtungen",
+          "Parlamentarische Kontrolle",
+          "Militärische Planung"
+        ]
+      },
+      {
+        "title": "Kritik an Kulturkampf und fehlender Sachpolitik",
+        "timestamp_range": "00:56:05 - 00:56:40",
+        "theme_description": "Schwerdtner wirft der AfD vor, mit Kulturkampf-Themen von den echten politischen Problemen abzulenken, die Menschen betreffen.",
+        "question_asked": "Der Moderator hat gerade auf die Debatte um Pronomen und Geschlechtsidentität angesprochen; Schwerdtner wird implizit gefragt, wie sie das wertet.",
+        "question_intent": "Zu verstehen, wie Die Linke die aktuelle Debattenkultur einordnet und ob sie Kulturkampf-Themen für zentral hält.",
+        "position": "Schwerdtner kritisiert scharf: 'Sie haben keine sinnvolle friedenspolitische Position und das hat man es gesehen.' Sie wirft vor, dass Themen wie Pronomen und Geschlechtsidentität als Ablenkung dienen, während echte Probleme ungelöst bleiben. Sie betont sachlich-politische Prioritäten: 'Wie sind die Frauenhäuser ausgestattet. Gibt es genug Ärzte die sowas vollziehen können. Wir haben so viele Probleme die Frauen betreffen.' Generalisierend sagt sie zum Kulturkampf: 'Das einzige was sie machen ist das zu nutzen und einen Kulturkampf zu führen ... Das ist wirklich zerstörerisch.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner adressiert die Frage nach Kulturkampf-Priorisierung direkt: Sie kritisiert, dass diese Themen von der Sachpolitik ablenken und nennt konkrete Beispiele (Frauenhäuser, Ärzte), um zu zeigen, was stattdessen wichtig wäre.",
+        "quotes": [
+          {
+            "text": "Sie haben keine sinnvolle friedenspolitische Position und das hat man es gesehen.",
+            "timestamp": "00:56:05",
+            "context": "Schwerdtner kritisiert die Prioritäten der AfD."
+          }
+        ],
+        "concrete_statements": [
+          "Wirft AfD vor, Kulturkampf statt Sachpolitik zu betreiben",
+          "Fordert Fokus auf Frauenhäuser, Ärzte, soziale Probleme",
+          "Kritisiert mangelnde friedenspolitische Substanz"
+        ],
+        "related_bundestag_topics": [
+          "Geschlechteridentität",
+          "Selbstbestimmungsgesetz",
+          "Kulturkampf",
+          "Debattenkultur Bundestag"
+        ]
+      },
+      {
+        "title": "Bundeswehr-Rekrutierung und Chancenungleichheit",
+        "timestamp_range": "00:56:40 - 00:58:47",
+        "theme_description": "Schwerdtner kritisiert, dass die Bundeswehr überproportional junge Menschen mit wenig Perspektiven anzieht und dass Rekrutierung an Schulen diese Chancenungleichheit verschärft.",
+        "question_asked": "Der Moderator fragt, ob Schwerdtner meint, dass bei der Bundeswehr 'nur lauter Typen' sind, 'denen nichts besseres einfällt', oder ob sie das differenzierter sieht.",
+        "question_intent": "Zu klären, ob Schwerdtner ein pauschales Urteil über Bundeswehr-Personal fällt oder ein strukturelles Problem mit Rekrutierung kritisiert.",
+        "position": "Schwerdtner betont, dass sie das 'nicht abfällig' meint, sondern 'ganz im Ernst'. Sie erklärt: 'Viele Leute aus meiner Familie waren bei der Bundeswehr. Das sind Menschen die eine Perspektive wollen. Junge Menschen wo die Bundeswehr eine Perspektive ist.' Das zentrale Problem: 'Es geht um Leben und Krieg. Krieg kann auf Leben dramatisieren. Ich finde das muss man mit sagen und nicht einfach sagen es gibt noch ein Führerschein dazu.' Sie argumentiert mit internationalem Beispiel: 'in USA sind es die schwarzen Männer die sonst keine Perspektive haben.' Grundsätzlich: 'Es gibt ein Klassenunterschied zwischen denjenigen Die zu Führungskräften werden in allen Kriegen werden die ärmsten Menschen nach vorne geschickt.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet substantiell auf die implizite Frage, ob sie pauschalisiert: Sie klärt, dass es um strukturelle Chancenungleichheit geht, nicht um persönliche Kritik. Sie illustriert dies mit Familienbeispielen, internationalen Vergleichen und nennt das zentrale ethische Problem (junge Menschen aus benachteiligten Gruppen zu Kriegseinsätzen).",
+        "quotes": [
+          {
+            "text": "Ich meine das nicht abfällig sondern ganz im Ernst. Viele Leute aus meiner Familie waren bei der Bundeswehr. Das sind Menschen die eine Perspektive wollen.",
+            "timestamp": "00:57:57",
+            "context": "Schwerdtner antwortet auf die Frage, ob sie pauschal über Bundeswehr-Personal urteilt."
+          },
+          {
+            "text": "Es gibt ein Klassenunterschied zwischen denjenigen Die zu Führungskräften werden in allen Kriegen werden die ärmsten Menschen nach vorne geschickt.",
+            "timestamp": "00:58:47",
+            "context": "Schwerdtner erklärt das strukturelle Problem der Chancenungleichheit in Militärdiensten."
+          }
+        ],
+        "concrete_statements": [
+          "Kritisiert Rekrutierung von Bundeswehr an Schulen",
+          "Warnt vor überproportionaler Belastung sozial benachteiligter Jugendlicher",
+          "Fordert ehrliche Diskussion über Kriegsfolgen, nicht nur Anreize (Führerschein)"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Bundeswehr-Recruiting",
+          "Chancengleichheit",
+          "Jugendpolitik"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen an die Ukraine",
+        "timestamp_range": "00:59:35 - 01:08:54",
+        "theme_description": "Schwerdtner lehnt Waffenlieferungen an die Ukraine ab und argumentiert stattdessen für Diplomatie, Sanktionen und internationale Zusammenarbeit zur Kriegsbeendigung.",
+        "question_asked": "Der Moderator fragt mehrfach konkret: Würde Schwerdtner als Bundeskanzlerin Waffenlieferungen einstellen oder weiterführen? Welche Position vertritt sie grundsätzlich?",
+        "question_intent": "Zu klären, ob Die Linke eine absolute Position gegen Waffenlieferungen hat oder ob diese konditional ist.",
+        "position": "Schwerdtner ist gegen jede Waffenlieferung: 'Wir sind gegen jede Waffenlieferung.' Sie argumentiert, dass Diplomatie und internationale Koalitionen wichtiger sind: 'Ich würde in jedem Fall das Gespräch suchen' und 'Ich würde sofort diese diplomatischen Bemühungen stärker machen.' Sie kritisiert auch die fehlende Zielklarheit: 'Das war von Anfang an ein Problem, dass nicht klar ist was das Ziel der Europäer ist wenn sie Waffen liefern. Wollen Sie militärischen Druck ausüben? Soll man Russland besiegen?' Sie hält auch wirtschaftliche Sanktionen für nicht ausgeschöpft: 'ich stimme ja dazu, die wirtschaftlichen Sanktionen sind nicht ausgereizt.' Zu Trump meint sie: 'Ich glaube nicht dass Trump ein aufrichtiges Interesse an diesem Krieg hat.' Sie plädiert für Ende des Krieges: 'Der Krieg muss beendet werden, dass Sterben sehr viele Menschen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet klar und umfassend: Sie würde Waffenlieferungen einstellen (nicht fortführen), begründet dies mit der Präferenz für Diplomatie und Sanktionen, kritisiert die fehlende europäische Zielklarheit, und argumentiert, dass wirtschaftlicher Druck noch nicht ausgeschöpft ist.",
+        "quotes": [
+          {
+            "text": "Wir sind gegen jede Waffenlieferung. Die Frage ist was sollte Friedrich Merz tun? Er sollte eine offensivere Position einnehmen sowohl europäisch als auch international.",
+            "timestamp": "01:08:46",
+            "context": "Schwerdtner antwortet direkt auf die wiederholte Frage zur Waffenlieferung."
+          },
+          {
+            "text": "Das war von Anfang an ein Problem, dass nicht klar ist was das Ziel der Europäer ist wenn sie Waffen liefern. Wollen Sie militärischen Druck ausüben? Soll man Russland besiegen? Es war lange unausgesprochen.",
+            "timestamp": "01:09:37",
+            "context": "Schwerdtner kritisiert die fehlende Zielklarheit bei Waffenlieferungen."
+          }
+        ],
+        "concrete_statements": [
+          "Fordert sofortiges Ende von Waffenlieferungen",
+          "Fordert Intensivierung diplomatischer Bemühungen",
+          "Fordert weitreichendere wirtschaftliche Sanktionen",
+          "Kritisiert fehlende Zielklarheit europäischer Kriegspolitik"
+        ],
+        "related_bundestag_topics": [
+          "Kriegsfolgen Ukraine",
+          "Waffenlieferungen",
+          "Außenpolitik",
+          "Sanktionen Russland"
+        ]
+      },
+      {
+        "title": "Eskalationsargument vs. russische Rüstung",
+        "timestamp_range": "01:07:51 - 01:10:45",
+        "theme_description": "Schwerdtner argumentiert gegen Langstreckenwaffen als Eskalation, wird aber von Claudia Major darauf hingewiesen, dass Russland ähnliche Waffen bereits nutzt.",
+        "question_asked": "Der Moderator fragt, wo Schwerdtner zu Langstreckenraketen steht und ob sie prinzipiell gegen alle Waffenlieferungen ist.",
+        "question_intent": "Zu testen, ob Schwerdtners Eskalationsargument logisch konsistent ist oder ob sie willkürlich zwischen Waffentypen differenziert.",
+        "position": "Schwerdtner sagt: 'Das ist eine absolute Eskalation. Langstreckenraketen einzusetzen. Es wäre eine Eskalation.' Sie betont aber auch: 'Das Eskalationsargument ist Unsinn' (das sagt allerdings Claudia Major, nicht Schwerdtner). Schwerdtner selbst argumentiert eher prozessual: Sie würde 'in jedem Fall das Gespräch suchen' und 'sofort diese diplomatischen Bemühungen stärker machen.' Sie betont auch: 'So zu tun als ob es militärisch Gewinn bei ist, obwohl es eine Pattsituation gibt. Das war von Anfang an ein Problem.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner antwortet zur Eskalationsfrage, wird aber von Claudia Major sofort widersprochen, dass das Eskalationsargument fehlerhaft ist (Russland nutzt ähnliche Waffen seit Kriegsbeginn). Schwerdtner adressiert das Gegenargument nicht substantiell, sondern weicht zu ihrer Diplomatie-Position aus.",
+        "quotes": [
+          {
+            "text": "Das ist eine absolute Eskalation. Langstreckenraketen einzusetzen. Es wäre eine Eskalation.",
+            "timestamp": "01:07:51",
+            "context": "Schwerdtner antwortet auf die Frage zu Langstreckenwaffen."
+          }
+        ],
+        "concrete_statements": [
+          "Hält Langstreckenraketen für Eskalation",
+          "Kritisiert Pattsituation als militärischen Realität",
+          "Setzt auf Diplomatie statt militärische Lösungen"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Waffensysteme",
+          "Militärische Eskalation"
+        ]
+      },
+      {
+        "title": "Denunziation und Meinungsfreiheit in Bezug auf DSA",
+        "timestamp_range": "01:28:22 - 01:32:00",
+        "theme_description": "Der Moderator wirft vor, dass Ines Schwerdtner (über Beatrix von Storch) Namen von Befürwortern des Digital Services Act (DSA) geliefert haben könnte. Schwerdtner verteidigt ihre Gespräche mit US-Vertretern.",
+        "question_asked": "Der Moderator fragt direkt: 'Ist das Denunziantentum für Sie?' und verweist auf Schwerdtners angebliches Zitat, Namen von DSA-Befürwortern liefern zu wollen.",
+        "question_intent": "Zu klären, ob Schwerdtner/Die Linke bereit ist, Namen von politischen Gegnern an ausländische (US-)Vertreter zu liefern.",
+        "position": "Schwerdtner verteidigt ihre Position indirekt, indem sie auf von Storch reagiert (nicht direkt auf die Frage an sie selbst). Sie kritisiert AfD-Positionen scharf: 'Sie müssen sich nicht als Opfer darstellen. Es gibt Strafverfahren gegen ihre eigenen Abgeordneten. Sie suchen die Provokation, sie nehmen Spenden an die Arbeit mit Spionen und Lobbyisten. All das wird permanent gezeigt und sie zu stellen sich weiterhin als Opfer dar.' Sie positioniert Die Linke damit als diejenige, die systematischer gegen extremistische Tendenzen kämpft.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Schwerdtner antwortet nicht auf die Denunziations-Frage adressiert, sondern pivotiert zu einer Kritik an der AfD (Strafverfahren, Provokationen, Spionage-Verbindungen). Sie beantwortet die Frage nach ihrer eigenen Denunziations-Rolle nicht substanziell.",
+        "quotes": [
+          {
+            "text": "Sie müssen sich nicht als Opfer darstellen. Es gibt Strafverfahren gegen ihre eigenen Abgeordneten. Sie suchen die Provokation, sie nehmen Spenden an die Arbeit mit Spionen und Lobbyisten.",
+            "timestamp": "01:31:35",
+            "context": "Schwerdtner kritisiert die AfD statt auf die Denunziations-Frage zu antworten."
+          }
+        ],
+        "concrete_statements": [
+          "Wirft AfD Provokation, illegale Finanzierung, Spionage-Verbindungen vor",
+          "Positioniert Die Linke als konsequente Verteidigerin der Demokratie"
+        ],
+        "related_bundestag_topics": [
+          "Digital Services Act",
+          "Meinungsfreiheit",
+          "Regulierung sozialer Medien",
+          "Ausländische Einflussnahme"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das 5% NATO-Ziel würde etwa die Hälfte des Bundeshaushalts ausmachen",
+        "timestamp": "00:43:28"
+      },
+      {
+        "claim": "Die Bundeswehr soll von 183.000 auf 260.000 Personen wachsen, plus 200.000 Reserve",
+        "timestamp": "00:40:42"
+      },
+      {
+        "claim": "Der Bundeskanzler (Merz) hat gesagt, 'wir sind nicht mehr im Frieden'",
+        "timestamp": "00:47:51"
+      },
+      {
+        "claim": "Bei der AfD gibt es interne Differenzen zur Wehrpflicht, mit Ortsverbänden, die Sorge vor Missverständnis durch Russland haben",
+        "timestamp": "00:49:26"
+      },
+      {
+        "claim": "In der AfD-Mitgliederbefragung stimmten über 70% für Wehrpflicht",
+        "timestamp": "00:49:31"
+      }
+    ]
+  }
+}

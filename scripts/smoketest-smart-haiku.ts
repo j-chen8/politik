@@ -110,7 +110,7 @@ const TONALITAET_ENUM = [
   "polemisch",
   "polemisch_sachlich",
   "emotional_persoenlich",
-  "konfrontativ_belegend",
+  "konfrontativ_faktenrhetorisch",
   "ironisch_jugendlich",
   "bilanzierend_werbend",
   "staatsmaennisch",
