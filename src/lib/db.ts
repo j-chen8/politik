@@ -1299,6 +1299,7 @@ export interface ParlamentarischeArbeit {
   // Phase 3b: Drill-Down zu Detail-Ansicht + Evidenz-Counts (falls v2.1 verfügbar)
   rede_id: string | null;
   speaker_variant: string | null;  // exakter Name aus plenar_speeches.speaker für Redner-URL
+  mediathek_fvid: string | null;   // Bundestag-Mediathek-Video-ID (falls zugeordnet)
   forderungen_count: number;
   zitate_count: number;
   zahlen_count: number;
@@ -1333,6 +1334,17 @@ function matchBucket(kat: string): string {
   if (kat === "regierungserklaerung") return "rede";
   if (kat === "antwort") return "frage";
   return kat;
+}
+
+/** Präzisiert das nackte DIP-Label "Frage": die Quelle führt schriftliche
+ *  Einzelfragen (drucksache_typ "Schriftliche Fragen") und mündliche Fragen
+ *  (Plenarprotokoll, Fragestunde/Regierungsbefragung) beide nur als "Frage". */
+function typLabelForDip(art: string, dokumentart: string | null, drucksacheTyp: string | null): string {
+  if (art === "Frage") {
+    if (dokumentart === "Plenarprotokoll") return "Mündliche Frage (Fragestunde)";
+    if (drucksacheTyp === "Schriftliche Fragen" || drucksacheTyp === "Fragen") return "Schriftliche Frage";
+  }
+  return art;
 }
 
 function typLabelForPlenar(typ: string): string {
@@ -1376,10 +1388,13 @@ export function getParlamentarischeArbeit(
   // höchsten und Sandra Stein bekam Maja Wallsteins Reden zugeordnet.
   type PlenarRow = SpeechSummary & { speaker: string; speech_text_preview: string };
   const plenarRows = db.prepare(`
-    SELECT * FROM speech_summaries
-    WHERE politician_id = ?
+    SELECT s.*,
+      (SELECT ps.mediathek_fvid FROM plenar_speeches ps
+         WHERE ps.rede_id = s.rede_id AND ps.mediathek_fvid IS NOT NULL LIMIT 1) AS mediathek_fvid
+    FROM speech_summaries s
+    WHERE s.politician_id = ?
       AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL}
-    ORDER BY sitzung DESC, speech_index ASC
+    ORDER BY s.sitzung DESC, s.speech_index ASC
     LIMIT ?
   `).all(politicianId, limit) as PlenarRow[];
 
@@ -1454,6 +1469,7 @@ export function getParlamentarischeArbeit(
           has_correction: v21?.has_correction ?? false,
           rede_id: plenar.rede_id,
           speaker_variant: plenar.speaker,
+          mediathek_fvid: plenar.mediathek_fvid ?? null,
           forderungen_count: v21?.forderungen?.length ?? 0,
           zitate_count: v21?.woertliche_zitate?.length ?? 0,
           zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
@@ -1463,18 +1479,24 @@ export function getParlamentarischeArbeit(
     }
 
     // No match — DIP only
+    // Mündliche Frage (Fragestunde): dokumentart=Plenarprotokoll, drucksache_nr
+    // trägt die Protokoll-Nr "21/N" — und Protokoll-Nr == Sitzungs-Nr (verifiziert).
+    // → Sitzung ableiten + verlinkbar machen, NICHT als "Drucksache" fehllabeln.
+    const isMuendlicheFrage = a.aktivitaetsart === "Frage" && a.dokumentart === "Plenarprotokoll";
+    const protoSitzung = isMuendlicheFrage && a.drucksache_nr
+      ? Number(a.drucksache_nr.split("/")[1]) : NaN;
     items.push({
       id: `dip-${a.id}`,
       quelle: "dip",
       datum: a.datum,
-      typ: a.aktivitaetsart,
+      typ: typLabelForDip(a.aktivitaetsart, a.dokumentart, a.drucksache_typ),
       kategorie: dipKat,
       thema: a.thema,
       zusammenfassung: null,
-      drucksache_nr: a.drucksache_nr,
-      pdf_url: a.pdf_url,
-      source_url: null,
-      sitzung: null,
+      drucksache_nr: isMuendlicheFrage ? null : a.drucksache_nr,
+      pdf_url: isMuendlicheFrage ? null : a.pdf_url,
+      source_url: isMuendlicheFrage ? a.pdf_url : null,
+      sitzung: Number.isFinite(protoSitzung) ? protoSitzung : null,
       page_start: null,
       page_section: null,
       tonalitaet: null,
@@ -1482,6 +1504,7 @@ export function getParlamentarischeArbeit(
       has_correction: false,
       rede_id: null,
       speaker_variant: null,
+      mediathek_fvid: null,
       forderungen_count: 0,
       zitate_count: 0,
       zahlen_count: 0,
@@ -1511,6 +1534,7 @@ export function getParlamentarischeArbeit(
       has_correction: v21?.has_correction ?? false,
       rede_id: p.rede_id,
       speaker_variant: p.speaker,
+      mediathek_fvid: p.mediathek_fvid ?? null,
       forderungen_count: v21?.forderungen?.length ?? 0,
       zitate_count: v21?.woertliche_zitate?.length ?? 0,
       zahlen_count: v21?.konkrete_zahlen?.length ?? 0,
@@ -2590,6 +2614,8 @@ export interface SpeechSummary {
   model: string | null;
   prompt_version: string | null;
   generated_at: string | null;
+  mediathek_fvid: string | null;
+  mediathek_confidence: string | null;
 }
 
 // Resolve a speaker name (which may be a canonical or a variant) to the
@@ -2666,10 +2692,15 @@ export function getSpeechSummaries(speakerName: string): SpeechSummary[] {
     // bis Sitzung 64. Für Sitzungen 65+ ist zusammenfassung NULL — die UI
     // fällt dann auf v2.1-Daten zurück (zusammenfassung_neutral).
     return db.prepare(`
-      SELECT * FROM speech_summaries
-      WHERE speaker = ?
+      SELECT s.*,
+        (SELECT ps.mediathek_fvid FROM plenar_speeches ps
+           WHERE ps.rede_id = s.rede_id AND ps.mediathek_fvid IS NOT NULL LIMIT 1) AS mediathek_fvid,
+        (SELECT ps.mediathek_confidence FROM plenar_speeches ps
+           WHERE ps.rede_id = s.rede_id AND ps.mediathek_fvid IS NOT NULL LIMIT 1) AS mediathek_confidence
+      FROM speech_summaries s
+      WHERE s.speaker = ?
         AND ${SPEECH_SUMMARY_QUALITY_FILTER_SQL}
-      ORDER BY sitzung DESC, speech_index ASC
+      ORDER BY s.sitzung DESC, s.speech_index ASC
     `).all(speakerName) as SpeechSummary[];
   } catch {
     return [];
@@ -2969,6 +3000,7 @@ export interface VoteDrucksacheRow {
   titel: string | null;
   datum: string | null;
   drucksache_typ: string | null;
+  pdf_url: string | null;
 }
 
 export interface VoteSpeechRow {
@@ -3095,12 +3127,18 @@ export function getVoteDetail(pollId: number): VoteDetail | null {
       a.zusammenfassung,
       (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS titel,
       (SELECT datum FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS datum,
-      (SELECT drucksache_typ FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS drucksache_typ
+      (SELECT drucksache_typ FROM activities WHERE drucksache_nr = dp.drucksache_nr LIMIT 1) AS drucksache_typ,
+      (SELECT pdf_url FROM activities WHERE drucksache_nr = dp.drucksache_nr AND pdf_url IS NOT NULL LIMIT 1) AS pdf_url
     FROM drucksache_polls dp
     LEFT JOIN drucksache_analyses a ON a.drucksache_nr = dp.drucksache_nr AND a.analyze_error IS NULL
     WHERE dp.poll_id = ?
     ORDER BY dp.match_score DESC, dp.drucksache_nr
   `).all(pollId) as VoteDrucksacheRow[];
+  // pdf_url-Fallback: DS, die nicht in `activities` liegen, haben dort keine
+  // pdf_url — deterministisch aus der DS-Nummer rekonstruieren (wie Detail-Seite).
+  for (const d of drucksachen) {
+    if (!d.pdf_url) d.pdf_url = buildDsPdfUrl(d.drucksache_nr);
+  }
 
   // Vote-Kontext ("Worum geht es?", grounded, neutral) — optional
   let voteContext: VoteDetail["voteContext"] = null;
@@ -4351,6 +4389,8 @@ export interface SitzungStorySpeech {
   forderungen: string[];
   konkreteZahlen: string[];
   originalText: string | null;
+  mediathekFvid: string | null;
+  mediathekConfidence: string | null;
 }
 
 export interface SitzungStoryTop {
@@ -4440,6 +4480,7 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
     .prepare(
       `SELECT s.id AS speech_id, s.rede_id, s.segment_index, s.topic_id, s.speaker,
               s.party AS raw_party, ${PARTY_LABEL_SQL} AS party_label, s.original_text,
+              s.mediathek_fvid, s.mediathek_confidence,
               sa.zusammenfassung_2_saetze AS zus, sa.tonalitaet,
               sa.forderungen_json, sa.konkrete_zahlen_json
        FROM plenar_speeches s
@@ -4456,6 +4497,8 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
     raw_party: string | null;
     party_label: string;
     original_text: string | null;
+    mediathek_fvid: string | null;
+    mediathek_confidence: string | null;
     zus: string | null;
     tonalitaet: string | null;
     forderungen_json: string | null;
@@ -4478,6 +4521,8 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
       forderungen: safeStringArray(r.forderungen_json),
       konkreteZahlen: safeStringArray(r.konkrete_zahlen_json),
       originalText: r.original_text,
+      mediathekFvid: r.mediathek_fvid,
+      mediathekConfidence: r.mediathek_confidence,
     });
   }
 

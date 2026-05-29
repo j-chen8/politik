@@ -25,6 +25,7 @@ import {
   Mic,
   AlertCircle,
   ChevronDown,
+  PlayCircle,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -68,6 +69,8 @@ function shortenTyp(typ: string): string {
     "Kurzintervention": "Kurzinterv.",
     "Zwischenfrage": "Zwischenfr.",
     "Rede (zu Protokoll gegeben)": "Rede (z. Prot.)",
+    "Schriftliche Frage": "Schriftl. Frage",
+    "Mündliche Frage (Fragestunde)": "Mündl. Frage",
   };
   if (map[typ]) return map[typ];
   // Lange Varianten wie "Schriftliche Erklärung gem. § 31 Geschäftsordnung BT"
@@ -561,16 +564,30 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         )}
                       </div>
                     )}
-                    {item.rede_id && item.speaker_variant && (
-                      <p className="text-[11.5px] mb-1.5">
+                    {((item.rede_id && item.speaker_variant) || item.mediathek_fvid) && (
+                      <p className="text-[11.5px] mb-1.5 flex items-center gap-3 flex-wrap">
                         {/* Plain <a> statt Next.js <Link>, damit :target-Highlight
                             auf der Redner-Page beim Anker-Sprung greift. */}
-                        <a
-                          href={`/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`}
-                          className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
-                        >
-                          Volle Analyse →
-                        </a>
+                        {item.rede_id && item.speaker_variant && (
+                          <a
+                            href={`/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`}
+                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                          >
+                            Volle Analyse →
+                          </a>
+                        )}
+                        {item.mediathek_fvid && (
+                          <a
+                            href={`https://www.bundestag.de/mediathek?videoid=${item.mediathek_fvid}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                          >
+                            <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
+                            Video
+                            <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                          </a>
+                        )}
                       </p>
                     )}
                     <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
@@ -586,7 +603,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {item.sitzung && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          <span>Sitzung {item.sitzung}</span>
+                          <Link
+                            href={`/protokolle/sitzung/${item.sitzung}`}
+                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                          >
+                            Sitzung {item.sitzung}
+                          </Link>
                         </>
                       )}
                       {item.page_start !== null && (
@@ -601,19 +623,14 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {item.drucksache_nr && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          {item.pdf_url ? (
-                            <a
-                              href={item.pdf_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
-                            >
-                              Drucksache {item.drucksache_nr}
-                              <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
-                            </a>
-                          ) : (
-                            <span>Drucksache {item.drucksache_nr}</span>
-                          )}
+                          {/* Intern auf die Drucksachen-Detailseite (mit Analyse +
+                              Original-PDF), statt direkt aufs externe PDF. */}
+                          <Link
+                            href={`/aktivitaeten/${item.drucksache_nr.replace(/\//g, "-")}`}
+                            className="text-zinc-700 hover:text-zinc-950 transition-colors"
+                          >
+                            Drucksache {item.drucksache_nr}
+                          </Link>
                         </>
                       )}
                       {item.source_url && (

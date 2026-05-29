@@ -7,7 +7,7 @@ import {
 import { TonalityBadge } from "@/components/TonalityBadge";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, ListTree } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, ListTree, PlayCircle } from "lucide-react";
 import type { Metadata } from "next";
 
 interface Props {
@@ -432,6 +432,18 @@ function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; ind
             {speech.originalText}
           </p>
         </details>
+      )}
+      {speech.mediathekFvid && (
+        <a
+          href={`https://www.bundestag.de/mediathek?videoid=${speech.mediathekFvid}`}
+          target="_blank"
+          rel="noopener"
+          className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+        >
+          <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
+          Video in der Mediathek
+          <ExternalLink className="w-3 h-3" strokeWidth={2} />
+        </a>
       )}
     </li>
   );
