@@ -4334,181 +4334,376 @@ export function getDrucksachenSameFraktion(
 // Sitzungs-Detail-Seite (/protokolle/sitzung/[nummer])
 // ─────────────────────────────────────────────────────────────────────────────
 
-export interface SitzungDetail {
-  sessionId: number;
+// ── Sitzungs-„Stories"-Detail: pro TOP verschachtelte Reden mit Analyse ──────
+// Liefert die Daten für die erzählerische Sitzungs-Detailseite (analog zur
+// Berlin-Variante): jeder TOP mit seinen Reden (Sprecher, Partei-Label,
+// Tonalität, 2-Satz-Zusammenfassung, extrahierte Forderungen/Zahlen, Original-
+// text) + Session-Abstimmungen (namentlich) + Drucksachen + Nachbar-Sitzungen.
+export interface SitzungStorySpeech {
+  speechId: number;
+  redeId: string | null;
+  segmentIndex: number;
+  speaker: string;
+  partyLabel: string;
+  rawParty: string | null;
+  tonalitaet: string | null;
+  zusammenfassung: string | null;
+  forderungen: string[];
+  konkreteZahlen: string[];
+  originalText: string | null;
+}
+
+export interface SitzungStoryTop {
+  topicId: number;
+  topicNumber: string;
+  title: string;
+  speeches: SitzungStorySpeech[];
+  /** KI-Synthese „Das Wichtigste" (key_facts mit refs in die with-summary-Reden), null wenn nicht generiert. */
+  keyFacts: { text: string; refs: number[] }[] | null;
+  /** Diesem TOP zugeordnete Abstimmungen (per DS-Überschneidung), Sprung-Anker in den Überblick. */
+  voteRefs: { anchorId: string; label: string; accepted: boolean | null }[];
+}
+
+export interface SitzungHandzeichenVote {
+  voteId: number;
+  outcome: string;
+  modus: string | null;
+  subtype: string | null;
+  titel: string | null;
+  drucksacheNrn: string[];
+  fraktionVotes: Record<string, string>;
+}
+
+export interface SitzungStories {
   wahlperiode: number;
   sitzung: number;
   datum: string | null;
   sourceUrl: string | null;
-  stats: {
-    speechCount: number;
-    topicCount: number;
-    voteCount: number;
-    speakerCount: number;
+  stats: { speechCount: number; voteCount: number; speakerCount: number; topicCount: number };
+  tops: SitzungStoryTop[];
+  votes: Array<{ pollId: number; label: string; yes: number; no: number; abstain: number; yesRatio: number }>;
+  handzeichen: SitzungHandzeichenVote[];
+  drucksachen: Array<{ drucksacheNr: string; thema: string | null; refCount: number }>;
+  neighbors: {
+    prev: { sitzung: number; datum: string | null } | null;
+    next: { sitzung: number; datum: string | null } | null;
   };
-  topics: Array<{
-    topicId: number;
-    topicNumber: string;
-    title: string;
-    speechCount: number;
-    parties: string[];
-  }>;
-  tonalitaetVerteilung: Array<{ tonalitaet: string; count: number }>;
-  partyVerteilung: Array<{ party: string; count: number }>;
-  drucksachen: Array<{
-    drucksacheNr: string;
-    thema: string | null;
-    refCount: number;
-  }>;
-  abstimmungen: Array<{
-    pollId: number;
-    label: string;
-    yes: number;
-    no: number;
-    abstain: number;
-    yesRatio: number;
-  }>;
 }
 
-export function getSitzungDetail(sitzungNr: number): SitzungDetail | null {
+/** Tolerantes Parsen der LLM-JSON-Arrays (Haiku sendet selten Strings statt Arrays). */
+function safeStringArray(json: string | null): string[] {
+  if (!json) return [];
+  try {
+    const v = JSON.parse(json);
+    if (Array.isArray(v)) {
+      return v.filter((x): x is string => typeof x === "string" && x.trim().length > 0);
+    }
+  } catch {
+    /* defekte Zeile ignorieren */
+  }
+  return [];
+}
+
+export function getSitzungStories(sitzungNr: number): SitzungStories | null {
   const db = getDb();
-  const session = db.prepare(
-    `SELECT id, wahlperiode, sitzung, datum, source_url
-     FROM plenar_sessions WHERE sitzung = ? LIMIT 1`
-  ).get(sitzungNr) as
+  const session = db
+    .prepare(
+      `SELECT id, wahlperiode, sitzung, datum, source_url
+       FROM plenar_sessions WHERE sitzung = ? LIMIT 1`
+    )
+    .get(sitzungNr) as
     | { id: number; wahlperiode: number; sitzung: number; datum: string | null; source_url: string | null }
     | undefined;
   if (!session) return null;
 
-  const stats = db.prepare(
-    `SELECT
-       (SELECT COUNT(DISTINCT rede_id) FROM plenar_speeches WHERE session_id = ?) AS speech_count,
-       (SELECT COUNT(*) FROM plenar_topics WHERE session_id = ?) AS topic_count,
-       (SELECT COUNT(DISTINCT speaker) FROM plenar_speeches WHERE session_id = ?) AS speaker_count`
-  ).get(session.id, session.id, session.id) as
-    | { speech_count: number; topic_count: number; speaker_count: number }
-    | undefined;
-
-  const voteCount = session.datum
-    ? (db.prepare(
-        `SELECT COUNT(DISTINCT poll_id) AS n FROM votes WHERE poll_date = ?`
-      ).get(session.datum) as { n: number }).n
-    : 0;
-
-  // Rolle/Partei in ein einheitliches Label umrechnen:
-  // - echte Partei wenn gesetzt
-  // - sonst aus role: Bundesminister/-kanzler/Staatssekretär:in → "Bundesregierung",
-  //   Präsident:in/Vizepräsident:in → "Präsidium", Rest → "ohne Fraktion"
+  // Rolle/Partei → einheitliches Label (Minister:innen ohne party-Feld → Bundesregierung etc.)
   const PARTY_LABEL_SQL = `CASE
-    WHEN ps.party IS NOT NULL AND ps.party != '' THEN ps.party
-    WHEN ps.role LIKE 'Bundesminister%' OR ps.role LIKE 'Bundeskanzler%'
-      OR ps.role LIKE 'Staatssekret%' OR ps.role LIKE 'Staatsminister%'
-      OR ps.role LIKE 'Parl. Staatssekret%' THEN 'Bundesregierung'
-    WHEN ps.role LIKE '%Präsident%' OR ps.role LIKE 'Vizepräsident%' THEN 'Präsidium'
+    WHEN s.party IS NOT NULL AND s.party != '' THEN s.party
+    WHEN s.role LIKE 'Bundesminister%' OR s.role LIKE 'Bundeskanzler%'
+      OR s.role LIKE 'Staatssekret%' OR s.role LIKE 'Staatsminister%'
+      OR s.role LIKE 'Parl. Staatssekret%' THEN 'Bundesregierung'
+    WHEN s.role LIKE '%Präsident%' OR s.role LIKE 'Vizepräsident%' THEN 'Präsidium'
     ELSE 'ohne Fraktion'
   END`;
 
-  const topics = db.prepare(
-    `SELECT pt.id AS topic_id, pt.topic_number, pt.title,
-            COUNT(DISTINCT ps.rede_id) AS speech_count,
-            GROUP_CONCAT(DISTINCT ${PARTY_LABEL_SQL}) AS parties
-     FROM plenar_topics pt
-     LEFT JOIN plenar_speeches ps ON ps.topic_id = pt.id
-     WHERE pt.session_id = ?
-     GROUP BY pt.id
-     ORDER BY
-       CASE WHEN pt.topic_number GLOB '[0-9]*' THEN CAST(pt.topic_number AS INTEGER) ELSE 9999 END,
-       pt.topic_number`
-  ).all(session.id) as Array<{
-    topic_id: number;
-    topic_number: string;
-    title: string;
-    speech_count: number;
-    parties: string | null;
+  const topics = db
+    .prepare(
+      `SELECT id AS topic_id, topic_number, title
+       FROM plenar_topics WHERE session_id = ?
+       ORDER BY CASE WHEN topic_number GLOB '[0-9]*' THEN CAST(topic_number AS INTEGER) ELSE 9999 END, topic_number`
+    )
+    .all(session.id) as Array<{ topic_id: number; topic_number: string; title: string }>;
+
+  const speechRows = db
+    .prepare(
+      `SELECT s.id AS speech_id, s.rede_id, s.segment_index, s.topic_id, s.speaker,
+              s.party AS raw_party, ${PARTY_LABEL_SQL} AS party_label, s.original_text,
+              sa.zusammenfassung_2_saetze AS zus, sa.tonalitaet,
+              sa.forderungen_json, sa.konkrete_zahlen_json
+       FROM plenar_speeches s
+       LEFT JOIN speech_analyses_v2 sa ON sa.speech_id = s.id
+       WHERE s.session_id = ?
+       ORDER BY s.speech_index, s.segment_index`
+    )
+    .all(session.id) as Array<{
+    speech_id: number;
+    rede_id: string | null;
+    segment_index: number;
+    topic_id: number | null;
+    speaker: string;
+    raw_party: string | null;
+    party_label: string;
+    original_text: string | null;
+    zus: string | null;
+    tonalitaet: string | null;
+    forderungen_json: string | null;
+    konkrete_zahlen_json: string | null;
   }>;
 
-  const tonalitaetRows = db.prepare(
-    `SELECT v2.tonalitaet, COUNT(*) AS n
-     FROM speech_analyses_v2 v2
-     JOIN plenar_speeches ps ON ps.rede_id = v2.rede_id AND ps.segment_index = v2.segment_index
-     WHERE ps.session_id = ? AND v2.tonalitaet IS NOT NULL
-     GROUP BY v2.tonalitaet
-     ORDER BY n DESC`
-  ).all(session.id) as Array<{ tonalitaet: string; n: number }>;
+  const byTopic = new Map<number, SitzungStorySpeech[]>();
+  for (const r of speechRows) {
+    if (r.topic_id == null) continue;
+    if (!byTopic.has(r.topic_id)) byTopic.set(r.topic_id, []);
+    byTopic.get(r.topic_id)!.push({
+      speechId: r.speech_id,
+      redeId: r.rede_id,
+      segmentIndex: r.segment_index,
+      speaker: r.speaker,
+      partyLabel: r.party_label,
+      rawParty: r.raw_party,
+      tonalitaet: r.tonalitaet,
+      zusammenfassung: r.zus,
+      forderungen: safeStringArray(r.forderungen_json),
+      konkreteZahlen: safeStringArray(r.konkrete_zahlen_json),
+      originalText: r.original_text,
+    });
+  }
 
-  const partyRows = db.prepare(
-    `SELECT ${PARTY_LABEL_SQL} AS party, COUNT(DISTINCT rede_id) AS n
-     FROM plenar_speeches ps WHERE session_id = ?
-     GROUP BY ${PARTY_LABEL_SQL}
-     ORDER BY n DESC`
-  ).all(session.id) as Array<{ party: string; n: number }>;
+  // KI-Synthese „Das Wichtigste" pro TOP (falls generiert). Tabelle existiert
+  // evtl. noch nicht (vor erstem Batch-Lauf) → tolerant.
+  const keyFactsByTopic = new Map<number, { text: string; refs: number[] }[]>();
+  try {
+    const kfRows = db
+      .prepare(`SELECT topic_id, key_facts_json FROM plenar_top_summaries WHERE sitzung_nr = ? AND key_facts_json IS NOT NULL`)
+      .all(session.sitzung) as { topic_id: number; key_facts_json: string }[];
+    for (const r of kfRows) {
+      try {
+        const kf = JSON.parse(r.key_facts_json);
+        if (Array.isArray(kf)) keyFactsByTopic.set(r.topic_id, kf);
+      } catch {
+        /* defekte Zeile ignorieren */
+      }
+    }
+  } catch {
+    /* plenar_top_summaries noch nicht angelegt */
+  }
+
+  const tops: SitzungStoryTop[] = topics
+    .map((t) => ({
+      topicId: t.topic_id,
+      topicNumber: t.topic_number,
+      title: t.title,
+      speeches: byTopic.get(t.topic_id) ?? [],
+      keyFacts: keyFactsByTopic.get(t.topic_id) ?? null,
+      voteRefs: [] as { anchorId: string; label: string; accepted: boolean | null }[],
+    }))
+    .filter((t) => t.speeches.length > 0);
+
+  const stats = db
+    .prepare(
+      `SELECT (SELECT COUNT(DISTINCT rede_id) FROM plenar_speeches WHERE session_id = ?) AS speech_count,
+              (SELECT COUNT(DISTINCT speaker) FROM plenar_speeches WHERE session_id = ?) AS speaker_count`
+    )
+    .get(session.id, session.id) as { speech_count: number; speaker_count: number };
+
+  const voteRows = session.datum
+    ? (db
+        .prepare(
+          `SELECT poll_id, MAX(poll_label) AS poll_label,
+                  SUM(CASE WHEN vote='yes' THEN 1 ELSE 0 END) AS yes,
+                  SUM(CASE WHEN vote='no' THEN 1 ELSE 0 END) AS no,
+                  SUM(CASE WHEN vote='abstain' THEN 1 ELSE 0 END) AS abstain
+           FROM votes WHERE poll_date = ? AND poll_label IS NOT NULL
+           GROUP BY poll_id ORDER BY poll_id`
+        )
+        .all(session.datum) as Array<{ poll_id: number; poll_label: string; yes: number; no: number; abstain: number }>)
+    : [];
 
   const drucksachenRows = session.datum
-    ? (db.prepare(
-        `SELECT a.drucksache_nr, MIN(a.thema) AS thema, COUNT(*) AS ref_count
-         FROM activities a
-         WHERE a.datum = ? AND a.drucksache_nr IS NOT NULL AND a.drucksache_nr != ''
-         GROUP BY a.drucksache_nr
-         ORDER BY ref_count DESC
-         LIMIT 12`
-      ).all(session.datum) as Array<{ drucksache_nr: string; thema: string | null; ref_count: number }>)
+    ? (db
+        .prepare(
+          `SELECT a.drucksache_nr, MIN(a.thema) AS thema, COUNT(*) AS ref_count
+           FROM activities a
+           WHERE a.datum = ? AND a.drucksache_nr IS NOT NULL AND a.drucksache_nr != ''
+           GROUP BY a.drucksache_nr ORDER BY ref_count DESC LIMIT 12`
+        )
+        .all(session.datum) as Array<{ drucksache_nr: string; thema: string | null; ref_count: number }>)
     : [];
 
-  const abstimmungenRows = session.datum
-    ? (db.prepare(
-        `SELECT poll_id, MAX(poll_label) AS poll_label,
-                SUM(CASE WHEN vote = 'yes' THEN 1 ELSE 0 END) AS yes,
-                SUM(CASE WHEN vote = 'no' THEN 1 ELSE 0 END) AS no,
-                SUM(CASE WHEN vote = 'abstain' THEN 1 ELSE 0 END) AS abstain
-         FROM votes
-         WHERE poll_date = ? AND poll_label IS NOT NULL
-         GROUP BY poll_id
-         ORDER BY poll_id`
-      ).all(session.datum) as Array<{
-        poll_id: number;
-        poll_label: string;
-        yes: number;
-        no: number;
-        abstain: number;
-      }>)
-    : [];
+  // Handzeichen-Abstimmungen (Fraktionsebene) — direkt über sitzung_nr verknüpft.
+  const titleByActivity = db.prepare(
+    `SELECT thema FROM activities WHERE drucksache_nr = ? AND thema IS NOT NULL AND thema != '' LIMIT 1`
+  );
+  const titleByDip = db.prepare(
+    `SELECT titel FROM dip_ds_titles WHERE drucksache_nr = ? AND titel IS NOT NULL AND titel != '' LIMIT 1`
+  );
+  // Generischer Titel = nur Dokumenttyp ("Beschlussempfehlung"/"Antrag" allein)
+  // oder < 12 Z. → als unbrauchbar behandeln (Berlin-Methodik), bessere Quelle suchen.
+  const isGenericDsTitle = (t: string | null | undefined): boolean => {
+    if (!t) return true;
+    const s = t.trim();
+    if (s.length < 12) return true;
+    // Nur das NACKTE Dokumenttyp-Wort ist generisch ("Beschlussempfehlung").
+    // "Bericht über …", "Antrag der Fraktion …" usw. sind echte Titel → behalten.
+    return /^(Beschlussempfehlung|Mitteilung|Unterrichtung|Bericht|Vorlage|Antrag|Drucksache|Gesetzentwurf|Entwurf)\s*$/i.test(s);
+  };
+  // Titel über ALLE Drucksachen-Nrn des Votes suchen (nicht nur die erste) —
+  // z.B. trägt bei Gesetzen oft die Beschlussempfehlung den Titel, nicht der GE.
+  // Quellen: activities.thema (offizieller Betreff) + dip_ds_titles.titel
+  // (DIP-Vorgang-Titel). Generische Treffer werden übersprungen.
+  const lookupDsTitle = (nrs: string[]): string | null => {
+    for (const nr of nrs) {
+      const a = titleByActivity.get(nr) as { thema: string } | undefined;
+      if (a?.thema && !isGenericDsTitle(a.thema)) return a.thema;
+      const b = titleByDip.get(nr) as { titel: string } | undefined;
+      if (b?.titel && !isGenericDsTitle(b.titel)) return b.titel;
+    }
+    return null;
+  };
+  const parseFraktionVotes = (json: string | null): Record<string, string> => {
+    if (!json) return {};
+    try {
+      const v = JSON.parse(json);
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        const out: Record<string, string> = {};
+        for (const [k, val] of Object.entries(v)) if (typeof val === "string") out[k] = val;
+        return out;
+      }
+    } catch {
+      /* defekte Zeile ignorieren */
+    }
+    return {};
+  };
+  const handzeichenRows = db
+    .prepare(
+      `SELECT vote_id, outcome, modus, vote_subtype, drucksache_nrn_json, fraktion_votes_json
+       FROM bundestag_votes WHERE sitzung_nr = ? ORDER BY vote_id`
+    )
+    .all(session.sitzung) as Array<{
+    vote_id: number;
+    outcome: string;
+    modus: string | null;
+    vote_subtype: string | null;
+    drucksache_nrn_json: string | null;
+    fraktion_votes_json: string | null;
+  }>;
+  const handzeichen: SitzungHandzeichenVote[] = handzeichenRows.map((r) => {
+    const drucksacheNrn = safeStringArray(r.drucksache_nrn_json);
+    return {
+      voteId: r.vote_id,
+      outcome: r.outcome,
+      modus: r.modus,
+      subtype: r.vote_subtype,
+      titel: lookupDsTitle(drucksacheNrn),
+      drucksacheNrn,
+      fraktionVotes: parseFraktionVotes(r.fraktion_votes_json),
+    };
+  });
+
+  // ── Votes den TOPs zuordnen (DS-Überschneidung, analog Berlin) ──
+  // TOP→DS aus plenar_topic_drucksachen (T_Drs), Vote→DS namentlich via
+  // drucksache_polls, Handzeichen via drucksache_nrn_json. Treffer → Badge am TOP.
+  const dsToTopics = new Map<string, number[]>();
+  try {
+    const ptdRows = db
+      .prepare(
+        `SELECT ptd.topic_id, ptd.drucksache_nr FROM plenar_topic_drucksachen ptd
+         JOIN plenar_topics pt ON pt.id = ptd.topic_id WHERE pt.session_id = ?`
+      )
+      .all(session.id) as { topic_id: number; drucksache_nr: string }[];
+    for (const r of ptdRows) {
+      if (!dsToTopics.has(r.drucksache_nr)) dsToTopics.set(r.drucksache_nr, []);
+      dsToTopics.get(r.drucksache_nr)!.push(r.topic_id);
+    }
+  } catch {
+    /* plenar_topic_drucksachen noch nicht angelegt */
+  }
+  if (dsToTopics.size > 0) {
+    const topById = new Map(tops.map((t) => [t.topicId, t]));
+    const pushRef = (dsList: string[], anchorId: string, label: string, accepted: boolean | null) => {
+      const seenTop = new Set<number>();
+      for (const nr of dsList) {
+        for (const tid of dsToTopics.get(nr) ?? []) {
+          if (seenTop.has(tid)) continue;
+          seenTop.add(tid);
+          const top = topById.get(tid);
+          if (top && !top.voteRefs.some((r) => r.anchorId === anchorId)) {
+            top.voteRefs.push({ anchorId, label, accepted });
+          }
+        }
+      }
+    };
+    // namentliche
+    const pollDsStmt = db.prepare(`SELECT drucksache_nr FROM drucksache_polls WHERE poll_id = ?`);
+    for (const v of voteRows) {
+      const ds = (pollDsStmt.all(v.poll_id) as { drucksache_nr: string }[]).map((r) => r.drucksache_nr);
+      if (ds.length === 0) continue;
+      const accepted = v.yes > v.no;
+      pushRef(ds, `vote-n-${v.poll_id}`, accepted ? "Angenommen" : "Abgelehnt", accepted);
+    }
+    // Handzeichen
+    for (const h of handzeichen) {
+      if (h.drucksacheNrn.length === 0) continue;
+      const accepted =
+        h.outcome === "annahme" || h.outcome === "annahme_geaendert"
+          ? true
+          : h.outcome === "ablehnung"
+          ? false
+          : null;
+      const label = accepted === true ? "Angenommen" : accepted === false ? "Abgelehnt" : h.outcome;
+      pushRef(h.drucksacheNrn, `vote-h-${h.voteId}`, label, accepted);
+    }
+  }
+
+  const prev = db
+    .prepare(`SELECT sitzung, datum FROM plenar_sessions WHERE sitzung < ? ORDER BY sitzung DESC LIMIT 1`)
+    .get(sitzungNr) as { sitzung: number; datum: string | null } | undefined;
+  const next = db
+    .prepare(`SELECT sitzung, datum FROM plenar_sessions WHERE sitzung > ? ORDER BY sitzung ASC LIMIT 1`)
+    .get(sitzungNr) as { sitzung: number; datum: string | null } | undefined;
 
   return {
-    sessionId: session.id,
     wahlperiode: session.wahlperiode,
     sitzung: session.sitzung,
     datum: session.datum,
     sourceUrl: session.source_url,
     stats: {
       speechCount: stats?.speech_count ?? 0,
-      topicCount: stats?.topic_count ?? 0,
-      voteCount,
+      voteCount: voteRows.length,
       speakerCount: stats?.speaker_count ?? 0,
+      topicCount: tops.length,
     },
-    topics: topics.map((t) => ({
-      topicId: t.topic_id,
-      topicNumber: t.topic_number,
-      title: t.title,
-      speechCount: t.speech_count,
-      parties: (t.parties ?? "").split(",").filter((p) => p && p !== ""),
-    })),
-    tonalitaetVerteilung: tonalitaetRows.map((r) => ({ tonalitaet: r.tonalitaet, count: r.n })),
-    partyVerteilung: partyRows.map((r) => ({ party: r.party, count: r.n })),
-    drucksachen: drucksachenRows.map((r) => ({
-      drucksacheNr: r.drucksache_nr,
-      thema: r.thema,
-      refCount: r.ref_count,
-    })),
-    abstimmungen: abstimmungenRows.map((r) => {
-      const total = r.yes + r.no + r.abstain;
+    tops,
+    votes: voteRows.map((r) => {
+      const denom = r.yes + r.no;
       return {
         pollId: r.poll_id,
         label: r.poll_label,
         yes: r.yes,
         no: r.no,
         abstain: r.abstain,
-        yesRatio: total > 0 ? r.yes / (r.yes + r.no) : 0,
+        yesRatio: denom > 0 ? r.yes / denom : 0,
       };
     }),
+    handzeichen,
+    drucksachen: drucksachenRows.map((r) => ({
+      drucksacheNr: r.drucksache_nr,
+      thema: r.thema,
+      refCount: r.ref_count,
+    })),
+    neighbors: {
+      prev: prev ? { sitzung: prev.sitzung, datum: prev.datum } : null,
+      next: next ? { sitzung: next.sitzung, datum: next.datum } : null,
+    },
   };
 }

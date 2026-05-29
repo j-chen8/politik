@@ -77,15 +77,20 @@ async function main() {
     )
   `);
 
-  // Sammle alle DS aus bundestag_votes, die NICHT in drucksache_analyses sind UND
-  // noch nicht in dip_ds_titles.
+  // Sammle alle DS aus bundestag_votes OHNE echten lokalen Titel:
+  // weder ein brauchbarer activities.thema (≥12 Z.) noch ein dip_ds_titles-Eintrag.
+  // (drucksache_analyses zählt NICHT als Titel-Quelle — es hat nur Themen-
+  // Kategorien + Zusammenfassung, keinen Drucksachen-Titel.)
   const rows = db.prepare(`
     SELECT DISTINCT json_each.value AS ds
     FROM bundestag_votes, json_each(bundestag_votes.drucksache_nrn_json)
     WHERE bundestag_votes.error_type IS NULL
       AND json_each.value LIKE '21/%'
-      AND json_each.value NOT IN (SELECT drucksache_nr FROM drucksache_analyses)
       AND json_each.value NOT IN (SELECT drucksache_nr FROM dip_ds_titles)
+      AND json_each.value NOT IN (
+        SELECT drucksache_nr FROM activities
+        WHERE thema IS NOT NULL AND LENGTH(TRIM(thema)) >= 12
+      )
   `).all() as Array<{ ds: string }>;
 
   // Filter Halluzinationen (z.B. "21/XXXX").
