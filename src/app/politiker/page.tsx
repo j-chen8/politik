@@ -11,8 +11,15 @@ function cleanConstituency(c: string | null): string | null {
   return cleaned || null;
 }
 
-export default function PolitikerListPage() {
-  const { rows } = listPoliticians({ limit: 2000, offset: 0 });
+export default async function PolitikerListPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ parlament?: string }>;
+}) {
+  // ?parlament=2 → Berlin-Abgeordnete (sonst Default-Liste = Bundestag).
+  const { parlament } = await searchParams;
+  const parliamentId = parlament ? parseInt(parlament, 10) || undefined : undefined;
+  const { rows } = listPoliticians({ limit: 2000, offset: 0, parliamentId });
 
   const politicians: ExplorerPolitician[] = rows.map((p) => ({
     id: p.id,
