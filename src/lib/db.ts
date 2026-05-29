@@ -3696,6 +3696,9 @@ export interface RelatedSpeechRow {
   aktivitaetsart: string;
   typ: string | null;
   titel: string | null;
+  thema: string | null;        // Subjekt der Frage/des Beitrags (was es war)
+  typLabel: string;            // präzisiertes Label (Schriftl./Mündl. Frage etc.)
+  istSchriftlich: boolean;     // dokumentart=Drucksache → nicht "im Plenum"
 }
 
 export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
@@ -4107,8 +4110,9 @@ export function getVotesReferencingDs(dsNr: string): DsVoteSummary[] {
 
 export function getRelatedSpeechesForDrucksache(nr: string, limit: number = 20): RelatedSpeechRow[] {
   const db = getDb();
-  return db.prepare(`
+  const rows = db.prepare(`
     SELECT a.politician_id, a.aktivitaetsart, a.typ, a.titel, a.datum,
+           a.thema, a.dokumentart, a.drucksache_typ,
            p.first_name, p.last_name,
            pa.label AS party_label
     FROM activities a
@@ -4118,7 +4122,48 @@ export function getRelatedSpeechesForDrucksache(nr: string, limit: number = 20):
       AND a.aktivitaetsart IN ('Rede','Kurzintervention','Zwischenfrage','Erwiderung','Frage','Antwort')
     ORDER BY a.datum DESC, p.last_name
     LIMIT ?
-  `).all(nr, limit) as RelatedSpeechRow[];
+  `).all(nr, limit) as Array<RelatedSpeechRow & { dokumentart: string | null; drucksache_typ: string | null }>;
+  return rows.map((r) => ({
+    ...r,
+    typLabel: typLabelForDip(r.aktivitaetsart, r.dokumentart, r.drucksache_typ),
+    istSchriftlich: r.dokumentart === "Drucksache",
+  }));
+}
+
+export interface DrucksacheQaPaar {
+  paarIndex: number;
+  fragestellerName: string | null;
+  fragestellerParty: string | null;
+  fragestellerPoliticianId: number | null;
+  antwortSteller: string | null;
+  antwortDatum: string | null;
+  frageText: string | null;
+  antwortText: string | null;
+}
+
+/** Einzelne Frage→Antwort-Paare aus „Schriftliche Fragen"-Sammeldrucksachen
+ *  (deterministisch extrahiert, siehe scripts/extract-schriftliche-fragen-qa.ts). */
+export function getDrucksacheQaPaare(nr: string): DrucksacheQaPaar[] {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT paar_index, fragesteller_name, fragesteller_party, fragesteller_politician_id,
+             antwort_steller, antwort_datum, frage_text, antwort_text
+      FROM drucksache_qa_paare WHERE drucksache_nr = ? ORDER BY paar_index
+    `).all(nr) as any[];
+    return rows.map((r) => ({
+      paarIndex: r.paar_index,
+      fragestellerName: r.fragesteller_name,
+      fragestellerParty: r.fragesteller_party,
+      fragestellerPoliticianId: r.fragesteller_politician_id,
+      antwortSteller: r.antwort_steller,
+      antwortDatum: r.antwort_datum,
+      frageText: r.frage_text,
+      antwortText: r.antwort_text,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 // ============================================================

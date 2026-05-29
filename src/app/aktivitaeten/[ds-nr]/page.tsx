@@ -12,6 +12,7 @@ import {
   getVotesReferencingDs,
   getPlenarContextForDs,
   getDsParsedDetails,
+  getDrucksacheQaPaare,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
@@ -165,7 +166,16 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
   const berichterstatter = getBerichterstatterForDrucksache(dsNr);
-  const relatedSpeeches = getRelatedSpeechesForDrucksache(dsNr);
+  const qaPaare = getDrucksacheQaPaare(dsNr);
+  const relatedSpeechesRaw = getRelatedSpeechesForDrucksache(dsNr);
+  // Reine Schriftliche-Fragen-Sammeldrucksache: nur die Fragen sind als Einzel-
+  // Themen erfassbar; die Antwort-Texte liegen nur im Original-PDF. Antwort-
+  // Metadaten-Einträge (ohne Text) raus, damit der Titel nicht Antworten verspricht.
+  const relatedAllSchriftlich =
+    relatedSpeechesRaw.length > 0 && relatedSpeechesRaw.every((r) => r.istSchriftlich);
+  const relatedSpeeches = relatedAllSchriftlich
+    ? relatedSpeechesRaw.filter((r) => r.aktivitaetsart !== "Antwort")
+    : relatedSpeechesRaw;
   const verfahren = getDrucksacheVerfahren(dsNr);
   const themenAehnliche = getDrucksacheThemenAehnliche(dsNr, ds.thema.join(", "), 6);
   const polls = getPollsForDrucksache(dsNr);
@@ -609,38 +619,101 @@ export default async function DrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* PLENAR-BEITRÄGE */}
-        {relatedSpeeches.length > 0 && (
+        {/* FRAGEN & ANTWORTEN — extrahierte Einzel-Q&A aus Sammeldrucksachen */}
+        {qaPaare.length > 0 && (
+          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+            <div className="flex items-baseline justify-between mb-1">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Fragen & Antworten</h2>
+              <span className="num text-[11px] text-zinc-400">{qaPaare.length}</span>
+            </div>
+            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+              Einzeln aus der Drucksache extrahiert (Frage der/des Abgeordneten + Antwort der Bundesregierung).
+            </p>
+            <ul className="space-y-4">
+              {qaPaare.map((qa) => (
+                <li key={qa.paarIndex} className="border-l-2 border-zinc-200 pl-4">
+                  <div className="flex items-baseline gap-2 flex-wrap mb-1">
+                    <span className="num text-[10px] text-zinc-400 shrink-0">{qa.paarIndex}</span>
+                    {qa.fragestellerPoliticianId ? (
+                      <Link href={`/politiker/${qa.fragestellerPoliticianId}`} className="text-[13px] font-medium text-zinc-950 hover:text-[#1a3e72] transition-colors">
+                        {qa.fragestellerName}
+                      </Link>
+                    ) : (
+                      <span className="text-[13px] font-medium text-zinc-700">{qa.fragestellerName}</span>
+                    )}
+                    {qa.fragestellerParty && <span className="text-[11px] text-zinc-400">{qa.fragestellerParty}</span>}
+                  </div>
+                  {qa.frageText && <p className="text-[13.5px] text-zinc-800 leading-snug mb-1.5">{qa.frageText}</p>}
+                  {qa.antwortText && (
+                    <details className="group">
+                      <summary className="cursor-pointer text-[11.5px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
+                        <span className="group-open:hidden">▶ Antwort{qa.antwortSteller ? ` (${qa.antwortSteller})` : ""} anzeigen</span>
+                        <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
+                      </summary>
+                      <div className="mt-1.5 text-[12.5px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">
+                        {(qa.antwortSteller || qa.antwortDatum) && (
+                          <p className="text-[11px] text-zinc-400 mb-1">
+                            Antwort{qa.antwortSteller ? ` von ${qa.antwortSteller}` : ""}{qa.antwortDatum ? `, ${qa.antwortDatum}` : ""}
+                          </p>
+                        )}
+                        {qa.antwortText}
+                      </div>
+                    </details>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* BETEILIGTE BEITRÄGE / FRAGEN — schriftliche Fragen sind NICHT "im Plenum" */}
+        {relatedSpeeches.length > 0 && qaPaare.length === 0 && (
           <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-                Im Plenum
+                {relatedAllSchriftlich ? "Enthaltene Fragen" : "Im Plenum"}
               </h2>
               <span className="num text-[11px] text-zinc-400">{relatedSpeeches.length}</span>
             </div>
-            <ul className="space-y-2.5">
+            {relatedAllSchriftlich && (
+              <p className="text-[12px] text-zinc-500 leading-snug mb-5 -mt-2">
+                Die Antworten der Bundesregierung stehen im{" "}
+                {ds.pdf_url ? (
+                  <a href={ds.pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/40 underline-offset-2">Original-PDF</a>
+                ) : "Original-PDF"}
+                {["substantiell", "teilantwortend", "ausweichend"].includes(ds.tonalitaet ?? "")
+                  ? <>; ihre Substanz ist oben als „{ds.tonalitaet}" eingeordnet.</>
+                  : "."}
+              </p>
+            )}
+            <ul className="space-y-3">
               {relatedSpeeches.slice(0, 12).map((r, i) => {
                 const Icon = r.aktivitaetsart === "Rede" ? Mic : MessageSquare;
                 return (
-                  <li key={`${r.politician_id}-${i}`} className="flex items-baseline gap-3 text-[13px]">
-                    <Icon className="w-3.5 h-3.5 text-zinc-400 mt-0.5 shrink-0" strokeWidth={2} />
-                    <Link
-                      href={`/politiker/${r.politician_id}`}
-                      className="text-zinc-950 hover:underline underline-offset-2 font-medium"
-                    >
-                      {r.first_name} {r.last_name}
-                    </Link>
-                    <span className="text-zinc-400">·</span>
-                    <span className="text-zinc-500 text-[12px]">{r.aktivitaetsart}{r.typ ? ` (${r.typ})` : ""}</span>
-                    {r.party_label && (
-                      <span className="text-zinc-400 text-[11px]">
-                        {r.party_label}
-                      </span>
-                    )}
-                    {r.datum && (
-                      <span className="text-zinc-400 text-[11px] num ml-auto">
-                        {new Date(r.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
-                      </span>
+                  <li key={`${r.politician_id}-${i}`} className="text-[13px]">
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <Icon className="w-3.5 h-3.5 text-zinc-400 shrink-0 self-center" strokeWidth={2} />
+                      <Link
+                        href={`/politiker/${r.politician_id}`}
+                        className="text-zinc-950 hover:underline underline-offset-2 font-medium"
+                      >
+                        {r.first_name} {r.last_name}
+                      </Link>
+                      <span className="text-zinc-400">·</span>
+                      <span className="text-zinc-500 text-[12px]">{r.typLabel}</span>
+                      {r.party_label && (
+                        <span className="text-zinc-400 text-[11px]">{r.party_label}</span>
+                      )}
+                      {r.datum && (
+                        <span className="text-zinc-400 text-[11px] num ml-auto">
+                          {new Date(r.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
+                        </span>
+                      )}
+                    </div>
+                    {r.thema && (
+                      <p className="text-[12.5px] text-zinc-700 leading-snug mt-0.5 pl-[22px] line-clamp-2">
+                        {r.thema}
+                      </p>
                     )}
                   </li>
                 );
