@@ -14,6 +14,7 @@ import {
   getDrucksachenForPolitician,
   getBerlinParlamentarischeArbeit,
   getBerlinSpeechesByPolitician,
+  getQaPaareForPolitician,
   type PoliticianDrucksacheRow,
   type BerlinParlItem,
 } from "@/lib/db";
@@ -30,6 +31,7 @@ import {
   Mic,
   AlertCircle,
   ChevronDown,
+  PlayCircle,
 } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
@@ -73,6 +75,8 @@ function shortenTyp(typ: string): string {
     "Kurzintervention": "Kurzinterv.",
     "Zwischenfrage": "Zwischenfr.",
     "Rede (zu Protokoll gegeben)": "Rede (z. Prot.)",
+    "Schriftliche Frage": "Schriftl. Frage",
+    "Mündliche Frage (Fragestunde)": "Mündl. Frage",
   };
   if (map[typ]) return map[typ];
   // Lange Varianten wie "Schriftliche Erklärung gem. § 31 Geschäftsordnung BT"
@@ -140,6 +144,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   }
 
   const notes = getNotesForPolitician(politicianId);
+  const qaPaare = getQaPaareForPolitician(politicianId);
   const speechInfo = getSpeechSummaryInfo(politicianId);
   const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
     politicianId,
@@ -616,16 +621,30 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         )}
                       </div>
                     )}
-                    {item.rede_id && item.speaker_variant && (
-                      <p className="text-[11.5px] mb-1.5">
+                    {((item.rede_id && item.speaker_variant) || item.mediathek_fvid) && (
+                      <p className="text-[11.5px] mb-1.5 flex items-center gap-3 flex-wrap">
                         {/* Plain <a> statt Next.js <Link>, damit :target-Highlight
                             auf der Redner-Page beim Anker-Sprung greift. */}
-                        <a
-                          href={`/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`}
-                          className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
-                        >
-                          Volle Analyse →
-                        </a>
+                        {item.rede_id && item.speaker_variant && (
+                          <a
+                            href={`/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`}
+                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                          >
+                            Volle Analyse →
+                          </a>
+                        )}
+                        {item.mediathek_fvid && (
+                          <a
+                            href={`https://www.bundestag.de/mediathek?videoid=${item.mediathek_fvid}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                          >
+                            <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
+                            Video
+                            <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                          </a>
+                        )}
                       </p>
                     )}
                     <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
@@ -643,7 +662,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           <span className="text-zinc-200">·</span>
                           <Link
                             href={`/protokolle/sitzung/${item.sitzung}`}
-                            className="text-[#1a3e72] hover:underline underline-offset-2 transition-colors"
+                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
                           >
                             Sitzung {item.sitzung}
                           </Link>
@@ -661,18 +680,24 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {item.drucksache_nr && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          {item.pdf_url ? (
+                          {/* "Drucksache" → interne Detailseite (mit Analyse),
+                              daneben "PDF" → direkter Original-PDF-Link. */}
+                          <Link
+                            href={`/aktivitaeten/${item.drucksache_nr.replace(/\//g, "-")}`}
+                            className="text-zinc-700 hover:text-zinc-950 transition-colors"
+                          >
+                            Drucksache {item.drucksache_nr}
+                          </Link>
+                          {item.pdf_url && (
                             <a
                               href={item.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
                             >
-                              Drucksache {item.drucksache_nr}
+                              PDF
                               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                             </a>
-                          ) : (
-                            <span>Drucksache {item.drucksache_nr}</span>
                           )}
                         </>
                       )}
@@ -932,6 +957,34 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
             </CollapsibleCard>
           );
         })()}
+
+        {/* Schriftliche Fragen (Einzelfragen + Antworten der Bundesregierung) */}
+        {qaPaare.length > 0 && (
+          <CollapsibleCard title="Schriftliche Fragen" count={qaPaare.length} className="mb-6">
+            <ul className="space-y-3">
+              {qaPaare.map((qa) => (
+                <li key={`${qa.drucksacheNr}-${qa.paarIndex}`} className="border-l-2 border-zinc-200 pl-3">
+                  {qa.frageText && <p className="text-[13px] text-zinc-800 leading-snug">{qa.frageText}</p>}
+                  <div className="flex items-center gap-2 text-[11px] text-zinc-400 mt-0.5 flex-wrap">
+                    <Link href={`/aktivitaeten/${qa.drucksacheNr.replace(/\//g, "-")}`} className="text-[#1a3e72] hover:text-[#0f2a52] transition-colors">
+                      {qa.drucksacheNr}
+                    </Link>
+                    {qa.datum && <><span className="text-zinc-200">·</span><span className="num">{qa.datum}</span></>}
+                  </div>
+                  {qa.antwortText && (
+                    <details className="group mt-1">
+                      <summary className="cursor-pointer text-[11px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
+                        <span className="group-open:hidden">▶ Antwort der Bundesregierung</span>
+                        <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
+                      </summary>
+                      <p className="mt-1 text-[12px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">{qa.antwortText}</p>
+                    </details>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleCard>
+        )}
 
         {/* Drucksachen */}
         {drucksachen.length > 0 && (

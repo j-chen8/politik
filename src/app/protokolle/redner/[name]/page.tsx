@@ -6,7 +6,7 @@ import {
 } from "@/lib/db";
 import { SpeechAnalysisDetails } from "@/components/SpeechAnalysisDetails";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, PlayCircle } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 
 const TYP_LABEL: Record<string, string> = {
@@ -253,9 +253,21 @@ export default async function RednerPage({
                               );
                             })()}
 
-                            {(sum.original_text || pdfDeepLink) && (
+                            {(sum.original_text || pdfDeepLink || sum.mediathek_fvid) && (
                               <div className="mt-3 pt-3 border-t border-zinc-100">
                                 <div className="flex items-center gap-3 flex-wrap text-[11.5px]">
+                                  {sum.mediathek_fvid && (
+                                    <a
+                                      href={`https://www.bundestag.de/mediathek?videoid=${sum.mediathek_fvid}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                                    >
+                                      <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
+                                      Video in der Mediathek
+                                      <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+                                    </a>
+                                  )}
                                   {pdfDeepLink && (
                                     <a
                                       href={pdfDeepLink}

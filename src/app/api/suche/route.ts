@@ -8,7 +8,7 @@ import {
   type BerlinSearchType,
 } from "@/lib/suche";
 
-const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen"];
+const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen", "qa"];
 const VALID_BERLIN_TYPES: BerlinSearchType[] = ["speeches", "drucksachen", "politicians"];
 
 export async function GET(request: NextRequest) {

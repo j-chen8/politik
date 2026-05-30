@@ -9,6 +9,7 @@ import type { SearchType } from "@/lib/suche";
 
 const TYPES: { key: SearchType; label: string }[] = [
   { key: "drucksachen", label: "Drucksachen" },
+  { key: "qa", label: "Fragen & Antworten" },
   { key: "speeches", label: "Reden" },
   { key: "votes", label: "Abstimmungen" },
   { key: "topics", label: "Tagesordnungspunkte" },

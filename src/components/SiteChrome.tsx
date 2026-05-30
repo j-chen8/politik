@@ -40,6 +40,7 @@ const PRIMARY_NAV = [
 
 const MORE_NAV = [
   { href: "/protokolle/sitzungen", icon: CalendarDays, label: "Plenarsitzungen" },
+  { href: "/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
   { href: "/analyse", icon: BarChart3, label: "Analyse" },
   { href: "/methodik", icon: BookOpen, label: "Methodik" },
   { href: "/glossar", icon: Library, label: "Glossar" },

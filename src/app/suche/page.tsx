@@ -8,7 +8,7 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { SearchFullList } from "@/components/SearchFullList";
 import type { SearchType } from "@/lib/suche";
 
-const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen"];
+const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen", "qa"];
 
 const BEISPIELE: { q: string; hint: string }[] = [
   { q: "Asyl", hint: "auch Migration · Geflüchtete" },

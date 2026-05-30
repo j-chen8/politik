@@ -191,8 +191,9 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
 - **Domain:** `https://dserver.bundestag.de/btd/21/<3-stellig>/21<5-stellig>.pdf`
 - **Upstream-Check:** HTTP `HEAD` auf fortlaufende Nummern; 200 = existiert, 404 = noch nicht; >10 MB werden geskippt
 - **DB-Watermark:** `SELECT COUNT(*), MAX(drucksache_nr) FROM drucksache_texts;`
-- **Pipeline ($0):** `bash scripts/download-missing-drucksachen.sh` (DB-getrieben, korrekter Pfad) → `npx tsx scripts/extract-drucksache-texts.ts` (PDF→`drucksache_texts`) → **`npx tsx scripts/classify-drucksachen.ts`** (setzt `batch_class`, Regex/Activity-Vorrang) → **`npx tsx scripts/label-administrativ-drucksachen.ts`** (Regex-Labels für `administrativ`-Klasse) — alle idempotent
+- **Pipeline ($0):** `bash scripts/download-missing-drucksachen.sh` (DB-getrieben, korrekter Pfad) → `npx tsx scripts/extract-drucksache-texts.ts` (PDF→`drucksache_texts`) → **`npx tsx scripts/classify-drucksachen.ts`** (setzt `batch_class`, Regex/Activity-Vorrang) → **`npx tsx scripts/label-administrativ-drucksachen.ts`** (Regex-Labels für `administrativ`-Klasse) → **`npx tsx scripts/extract-drucksache-publication-date.ts`** (Datum aus PDF-Header → `publication_date`) — alle idempotent
 - **⚠️ Pflicht-Schritt:** Ohne `classify-drucksachen.ts` bleiben neue Texte `batch_class=NULL` und gelangen **nie** in den LLM-Batch (`run-drucksachen-batch.ts` filtert `batch_class IN (...)`). Dieser Schritt wurde initial in Doku+Check übersehen — Lehre: Text-Extraktion ≠ analysebereit.
+- **⚠️ Pflicht-Schritt:** Ohne `extract-drucksache-publication-date.ts` bleiben neue Texte `publication_date=NULL` → falsch/gar nicht datiert in der UI (Drucksachenseiten, /fragen-Sortierung, Q&A-Datum). Am 29.05. übersehen: 59 PDFs geladen+analysiert, aber undatiert; am 30.05. nachgezogen (783→468, Long-Tail ohne Header-Match bleibt). Gleiches Muster wie classify/vote-dates — Lehre: Seed ≠ vollständig.
 - **⚠️ NICHT** `scripts/download-drucksachen.sh` nutzen — hartkodierter toter Pfad `/home/jk/...` + veralteter Cookie
 
 ### 2.5 Drucksachen-LLM-Analyse

@@ -8,6 +8,7 @@ const DRUCKSACHEN_FTS_TABLE = "drucksachen_fts";
 // Berlin-Pilot: eigene FTS5-Tabellen für scope-trennende Suche.
 const BERLIN_SPEECH_FTS_TABLE = "berlin_speeches_fts";
 const BERLIN_DRUCKSACHEN_FTS_TABLE = "berlin_drucksachen_fts";
+const QA_FTS_TABLE = "qa_fts";
 
 /**
  * FTS5-Virtuelle-Tabellen für speech_analyses_v2.zusammenfassung_2_saetze und
@@ -59,6 +60,13 @@ export function ensureSearchFTS(db: Db): void {
       thema_tags,
       tokenize = 'unicode61 remove_diacritics 2'
     );
+    CREATE VIRTUAL TABLE IF NOT EXISTS ${QA_FTS_TABLE} USING fts5(
+      frage_text,
+      antwort_text,
+      fragesteller_name,
+      pair_id UNINDEXED,
+      tokenize = 'unicode61 remove_diacritics 2'
+    );
   `);
 
   const speechCount = (db.prepare(`SELECT COUNT(*) as n FROM ${SPEECH_FTS_TABLE}`).get() as {
@@ -89,6 +97,13 @@ export function ensureSearchFTS(db: Db): void {
       .get() as { n: number }).n;
     if (berlinDsCount === 0) buildBerlinDrucksachenFTS(db);
   } catch { /* berlin_drucksachen_analyses evtl. nicht da */ }
+
+  try {
+    const qaCount = (db
+      .prepare(`SELECT COUNT(*) as n FROM ${QA_FTS_TABLE}`)
+      .get() as { n: number }).n;
+    if (qaCount === 0) buildQaFTS(db);
+  } catch { /* qa_pairs evtl. nicht da */ }
 
   // Auto-Sync via Triggers — persistent in DB, läuft auch nach Server-Restart.
   // Bei INSERT/UPDATE/DELETE in den Source-Tabellen wird FTS automatisch aktuell gehalten.
@@ -267,6 +282,29 @@ function ensureSyncTriggers(db: Db): void {
     BEGIN
       DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = old.dbid;
     END;
+
+    -- drucksache_qa_paare → qa_fts (einzelne Schriftliche-Fragen-Q&A-Paare)
+
+    CREATE TRIGGER IF NOT EXISTS qa_paare_ai
+    AFTER INSERT ON drucksache_qa_paare
+    BEGIN
+      INSERT INTO ${QA_FTS_TABLE} (frage_text, antwort_text, fragesteller_name, pair_id)
+      VALUES (COALESCE(new.frage_text, ''), COALESCE(new.antwort_text, ''), COALESCE(new.fragesteller_name, ''), new.id);
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS qa_paare_au
+    AFTER UPDATE OF frage_text, antwort_text, fragesteller_name ON drucksache_qa_paare
+    BEGIN
+      DELETE FROM ${QA_FTS_TABLE} WHERE pair_id = old.id;
+      INSERT INTO ${QA_FTS_TABLE} (frage_text, antwort_text, fragesteller_name, pair_id)
+      VALUES (COALESCE(new.frage_text, ''), COALESCE(new.antwort_text, ''), COALESCE(new.fragesteller_name, ''), new.id);
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS qa_paare_ad
+    AFTER DELETE ON drucksache_qa_paare
+    BEGIN
+      DELETE FROM ${QA_FTS_TABLE} WHERE pair_id = old.id;
+    END;
   `);
 }
 
@@ -343,9 +381,17 @@ function buildBerlinDrucksachenFTS(db: Db): void {
   `);
 }
 
+function buildQaFTS(db: Db): void {
+  db.exec(`
+    INSERT INTO ${QA_FTS_TABLE} (frage_text, antwort_text, fragesteller_name, pair_id)
+    SELECT COALESCE(frage_text, ''), COALESCE(antwort_text, ''), COALESCE(fragesteller_name, ''), id
+    FROM drucksache_qa_paare
+  `);
+}
+
 /**
- * Drops und rebuilds beide FTS-Tabellen. Nach Reden- oder Drucksachen-
- * Pipeline-Runs aufrufen. Idempotent.
+ * Drops und rebuilds alle FTS-Tabellen. Nach Reden-, Drucksachen- oder
+ * Q&A-Pipeline-Runs aufrufen. Idempotent.
  */
 export function rebuildSearchFTS(db: Db): void {
   // Trigger mitdroppen: sie werden mit CREATE TRIGGER IF NOT EXISTS angelegt,
@@ -366,11 +412,15 @@ export function rebuildSearchFTS(db: Db): void {
     DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_ai;
     DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_au;
     DROP TRIGGER IF EXISTS berlin_drucksachen_analyses_ad;
+    DROP TRIGGER IF EXISTS qa_paare_ai;
+    DROP TRIGGER IF EXISTS qa_paare_au;
+    DROP TRIGGER IF EXISTS qa_paare_ad;
     DROP TABLE IF EXISTS ${SPEECH_FTS_TABLE};
     DROP TABLE IF EXISTS ${ACTIVITIES_FTS_TABLE};
     DROP TABLE IF EXISTS ${DRUCKSACHEN_FTS_TABLE};
     DROP TABLE IF EXISTS ${BERLIN_SPEECH_FTS_TABLE};
     DROP TABLE IF EXISTS ${BERLIN_DRUCKSACHEN_FTS_TABLE};
+    DROP TABLE IF EXISTS ${QA_FTS_TABLE};
   `);
   ensureSearchFTS(db);
 }
@@ -418,4 +468,5 @@ export const FTS_TABLES = {
   drucksachen: DRUCKSACHEN_FTS_TABLE,
   berlinSpeeches: BERLIN_SPEECH_FTS_TABLE,
   berlinDrucksachen: BERLIN_DRUCKSACHEN_FTS_TABLE,
+  qa: QA_FTS_TABLE,
 } as const;
