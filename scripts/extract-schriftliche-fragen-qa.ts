@@ -17,6 +17,7 @@
  */
 import Database from "better-sqlite3";
 import { parseGermanName, normalizeName } from "../src/lib/german-name-parser";
+import { parseAntwortDatumIso } from "./_lib/german-date";
 
 const DB = "politik.db";
 const args = process.argv.slice(2);
@@ -84,13 +85,20 @@ function parseDoc(fullText: string): QA[] {
 
 function main() {
   const db = new Database(DB, { readonly: !WRITE });
+  // antwort_datum_iso (sortierbares Antwortdatum) muss existieren — idempotent.
+  if (WRITE) {
+    const cols = db.prepare(`PRAGMA table_info(drucksache_qa_paare)`).all() as { name: string }[];
+    if (!cols.some((c) => c.name === "antwort_datum_iso")) {
+      db.exec(`ALTER TABLE drucksache_qa_paare ADD COLUMN antwort_datum_iso TEXT`);
+    }
+  }
   const docs = db.prepare(`
-    SELECT DISTINCT dt.drucksache_nr, dt.full_text
+    SELECT DISTINCT dt.drucksache_nr, dt.full_text, dt.publication_date
     FROM drucksache_texts dt JOIN activities a ON a.drucksache_nr = dt.drucksache_nr
     WHERE a.drucksache_typ = 'Schriftliche Fragen' AND dt.full_text IS NOT NULL
     ${ONE_DS ? "AND dt.drucksache_nr = ?" : ""}
     ORDER BY dt.drucksache_nr
-  `).all(...(ONE_DS ? [ONE_DS] : [])) as { drucksache_nr: string; full_text: string }[];
+  `).all(...(ONE_DS ? [ONE_DS] : [])) as { drucksache_nr: string; full_text: string; publication_date: string | null }[];
 
   // Politician-Match-Index (Nachname → Kandidaten)
   const pols = db.prepare(`SELECT id, first_name, last_name FROM politicians`).all() as { id: number; first_name: string; last_name: string }[];
@@ -111,12 +119,13 @@ function main() {
   let totalPairs = 0, withAnswer = 0, matched = 0, docsDone = 0;
   const ins = WRITE ? db.prepare(`
     INSERT INTO drucksache_qa_paare
-      (drucksache_nr, paar_index, fragesteller_name, fragesteller_party, fragesteller_politician_id, antwort_steller, antwort_datum, frage_text, antwort_text, extracted_at)
-    VALUES (?,?,?,?,?,?,?,?,?, datetime('now'))
+      (drucksache_nr, paar_index, fragesteller_name, fragesteller_party, fragesteller_politician_id, antwort_steller, antwort_datum, antwort_datum_iso, frage_text, antwort_text, extracted_at)
+    VALUES (?,?,?,?,?,?,?,?,?,?, datetime('now'))
     ON CONFLICT(drucksache_nr, paar_index) DO UPDATE SET
       fragesteller_name=excluded.fragesteller_name, fragesteller_party=excluded.fragesteller_party,
       fragesteller_politician_id=excluded.fragesteller_politician_id, antwort_steller=excluded.antwort_steller,
-      antwort_datum=excluded.antwort_datum, frage_text=excluded.frage_text, antwort_text=excluded.antwort_text
+      antwort_datum=excluded.antwort_datum, antwort_datum_iso=excluded.antwort_datum_iso,
+      frage_text=excluded.frage_text, antwort_text=excluded.antwort_text
   `) : null;
 
   for (const d of docs) {
@@ -124,7 +133,7 @@ function main() {
     for (const qa of qas) {
       const pid = matchPol(qa.name);
       totalPairs++; if (qa.antwort.length > 20) withAnswer++; if (pid) matched++;
-      if (WRITE && ins) ins.run(d.drucksache_nr, qa.idx, qa.name, qa.party, pid, qa.antwortSteller, qa.antwortDatum, qa.frage, qa.antwort);
+      if (WRITE && ins) ins.run(d.drucksache_nr, qa.idx, qa.name, qa.party, pid, qa.antwortSteller, qa.antwortDatum, parseAntwortDatumIso(qa.antwortDatum, d.publication_date), qa.frage, qa.antwort);
     }
     docsDone++;
     if (ONE_DS || docs.length <= 3) {

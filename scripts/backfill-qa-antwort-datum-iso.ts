@@ -10,27 +10,9 @@
  *   --apply      Spalte anlegen (falls fehlt) + backfillen
  */
 import Database from "better-sqlite3";
+import { parseGermanDate } from "./_lib/german-date";
 
 const APPLY = process.argv.includes("--apply");
-
-const MONTHS: Record<string, number> = {
-  januar: 1, februar: 2, "märz": 3, april: 4, mai: 5, juni: 6,
-  juli: 7, august: 8, september: 9, oktober: 10, november: 11, dezember: 12,
-};
-
-/** "29. Juli 2025" → "2025-07-29". Toleriert fehlenden Punkt/Leerzeichen. NULL bei fehlendem Jahr/OCR-Müll. */
-function parseGermanDate(raw: string | null): string | null {
-  if (!raw) return null;
-  let t = raw.trim().toLowerCase().replace(/\s+/g, " ");
-  t = t.replace(/([a-zä])(\d{4})/, "$1 $2"); // "november2025" → "november 2025"
-  const m = t.match(/^(\d{1,2})\.?\s+([a-zä]+)\s+(\d{4})$/);
-  if (!m) return null;
-  const day = parseInt(m[1], 10);
-  const mon = MONTHS[m[2]];
-  const year = parseInt(m[3], 10);
-  if (!mon || !year || year < 2020 || year > 2030 || day < 1 || day > 31) return null;
-  return `${year}-${String(mon).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-}
 
 const db = new Database("politik.db");
 
