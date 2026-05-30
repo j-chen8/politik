@@ -29,6 +29,11 @@ direkt darunter stehender Antwort. Eindeutige Marker erlauben verlustfreies Spli
 
 → **Ein Eintrag pro Frage-Antwort-Paar.** Skript: `scripts/extract-schriftliche-fragen-qa.ts`.
 
+**Sammelantworten:** „Die Fragen 4 bis 7 werden zusammen beantwortet." hängt den Antworttext nur
+an eine Frage (meist die letzte der Gruppe). `linkJointAnswers()` überträgt die Sammelantwort
+(inkl. Steller/Datum) auf die leeren Geschwister-Fragen — sonst stünden die anderen Fragen der
+Gruppe ohne Antwort da (war der Fall bis 2026-05-30: 140 leere Paare → 4 echte Edge-Cases).
+
 ### 1b. Kleine/Große Anfragen — LLM (deterministisch gescheitert)
 KA/GA sind anders gebaut: die Fraktion stellt einen Katalog nummerierter Fragen in **einem** Dokument,
 die Bundesregierung antwortet in einem **separaten** Antwort-Dokument, das auf das Frage-Dokument
