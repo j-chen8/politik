@@ -145,6 +145,10 @@ export const CV_SCHEMA = {
   additionalProperties: false,
 } as const;
 
-export function buildCvUserPrompt(name: string, wikipediaText: string): string {
-  return `Politiker: ${name}\n\nWikipedia-Artikel:\n${wikipediaText.slice(0, 50000)}`;
+export function buildCvUserPrompt(
+  name: string,
+  sourceText: string,
+  sourceLabel = "Wikipedia-Artikel",
+): string {
+  return `Politiker: ${name}\n\n${sourceLabel}:\n${sourceText.slice(0, 50000)}`;
 }
