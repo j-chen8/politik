@@ -500,28 +500,43 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Frage &amp; Antwort</h2>
               {ds.antwortCharakter && <DrucksacheTonalityBadge slug={ds.antwortCharakter} />}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {(ds.kerninhaltFrage?.length ?? 0) > 0 && (
-                <div>
-                  <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Was wurde gefragt?</h3>
-                  <ul className="space-y-2.5">
-                    {ds.kerninhaltFrage!.map((b, i) => (
-                      <li key={`f-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {(ds.kerninhaltAntwort?.length ?? 0) > 0 && (
-                <div>
-                  <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Wie hat die Bundesregierung geantwortet?</h3>
-                  <ul className="space-y-2.5">
-                    {ds.kerninhaltAntwort!.map((b, i) => (
-                      <li key={`a-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+            {(ds.kerninhaltQaPaare?.length ?? 0) > 0 ? (
+              /* Gepaart: jede Frage mit ihrer zugeordneten Antwort */
+              <ul className="space-y-3.5">
+                {ds.kerninhaltQaPaare!.map((p, i) => (
+                  <li key={`p-${i}`} className="border-l-2 border-zinc-200 pl-4">
+                    <p className="text-[13.5px] text-zinc-900 leading-snug font-medium">{p.frage}</p>
+                    <p className="text-[13px] text-zinc-600 leading-snug mt-0.5">
+                      <span className="text-zinc-400">↳ </span>{p.antwort || <span className="italic text-zinc-400">keine Antwort zugeordnet</span>}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              /* Fallback: zwei getrennte Listen (falls noch keine Paarung) */
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {(ds.kerninhaltFrage?.length ?? 0) > 0 && (
+                  <div>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Was wurde gefragt?</h3>
+                    <ul className="space-y-2.5">
+                      {ds.kerninhaltFrage!.map((b, i) => (
+                        <li key={`f-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {(ds.kerninhaltAntwort?.length ?? 0) > 0 && (
+                  <div>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Wie hat die Bundesregierung geantwortet?</h3>
+                    <ul className="space-y-2.5">
+                      {ds.kerninhaltAntwort!.map((b, i) => (
+                        <li key={`a-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
         )}
 

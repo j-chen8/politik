@@ -3665,6 +3665,7 @@ export interface DrucksacheDetail {
   kerninhalt: string[] | null;  // parsed JSON array
   kerninhaltFrage: string[] | null;   // Phase C: getrennte Frage-Bullets (Anfrage-Antwort)
   kerninhaltAntwort: string[] | null; // Phase C: getrennte Antwort-Bullets
+  kerninhaltQaPaare: { frage: string; antwort: string }[] | null; // gepaarte Q&A (bullet-pairing)
   antwortCharakter: string | null;    // substantiell | teilantwortend | ausweichend
   thema: string[];               // from thema CSV
   tonalitaet: string | null;
@@ -3715,7 +3716,7 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
       a.drucksache_nr, a.batch_class,
       t.pages, t.tokens_estimate,
       a.zusammenfassung, a.kerninhalt, a.thema, a.tonalitaet,
-      a.kerninhalt_frage_json, a.kerninhalt_antwort_json, a.antwort_charakter,
+      a.kerninhalt_frage_json, a.kerninhalt_antwort_json, a.kerninhalt_qa_paare_json, a.antwort_charakter,
       a.betroffene_gruppen, a.fraktion, a.dokumenttyp,
       a.regelung, a.begruendung, a.auswirkung, a.topic_drift_audit,
       a.model, a.prompt_version, a.generated_at,
@@ -3775,6 +3776,7 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
     kerninhalt: kerninhaltParsed,
     kerninhaltFrage: parseArr(row.kerninhalt_frage_json),
     kerninhaltAntwort: parseArr(row.kerninhalt_antwort_json),
+    kerninhaltQaPaare: (() => { try { const v = JSON.parse(row.kerninhalt_qa_paare_json || "null"); return Array.isArray(v) ? v : null; } catch { return null; } })(),
     antwortCharakter: row.antwort_charakter,
     thema: themaArr,
     tonalitaet: row.tonalitaet,
