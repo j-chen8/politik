@@ -27,7 +27,9 @@ const ONE_DS = args.includes("--ds") ? args[args.indexOf("--ds") + 1] : null;
 const QSTART = /\n(\d{1,3})\.\s+Abgeordnete[r]?\s*\n/g;
 // Antwort-Intro: "Antwort des/der <Rolle+Name (ggf. umgebrochen)> vom <Datum>" —
 // Steller + Datum sauber abgreifen, damit sie NICHT in den Antworttext leaken.
-const ANSWER = /\nAntwort\s+(?:des|der|von)\s+([\s\S]{3,90}?)\s+vom\s+([^\n]{6,45}?)\s*\n/;
+// `vo[nm]` toleriert den Quell-Typo "von 20. Januar 2026" (statt "vom"); das
+// Datum MUSS mit einer Ziffer beginnen, sonst würde "von <Ministerium>" matchen.
+const ANSWER = /\nAntwort\s+(?:des|der|von)\s+([\s\S]{3,90}?)\s+vo[nm]\s+(\d[^\n]{5,44}?)\s*\n/;
 // Seiten-Footer / Kopfzeilen, die im Fließtext stören (Footer wandert bei
 // Fragen, die über einen Seitenumbruch gehen, mitten in den Text).
 function clean(s: string): string {
@@ -59,22 +61,30 @@ function linkJointAnswers(qas: QA[]): void {
   const byIdx = new Map(qas.map((q) => [q.idx, q]));
   // „Die Fragen 4 bis 7 …", „Die Fragen 28 bis 30 …", „Die Fragen 6 und 7 …", „… 17, 18 und 19 …"
   const JOINT = /Die Fragen\s+\d{1,3}[\s\S]{0,90}?beantwortet/i;
+  // Numberless: „Die Fragen werden gemeinsam beantwortet." (ohne Nummern) —
+  // bezieht sich auf die unmittelbar vorhergehenden Fragen desselben Blocks.
+  const JOINT_NONUM = /Die Fragen\s+werden\s+[\s\S]{0,40}?beantwortet/i;
+  const copy = (sib: QA, q: QA) => { sib.antwort = q.antwort; sib.antwortSteller = q.antwortSteller; sib.antwortDatum = q.antwortDatum; };
   for (const q of qas) {
     if (!q.antwort || q.antwort.length < 20) continue;
     const head = q.antwort.slice(0, 160);
     const jm = head.match(JOINT);
-    if (!jm) continue;
-    const nums = (jm[0].match(/\d{1,3}/g) || []).map(Number).filter((n) => n >= 1 && n <= 999);
-    if (nums.length < 2) continue;
-    const lo = Math.min(...nums), hi = Math.max(...nums);
-    if (hi - lo > 30) continue; // Sicherheits-Cap gegen Fehl-Matches
-    for (let i = lo; i <= hi; i++) {
-      if (i === q.idx) continue;
-      const sib = byIdx.get(i);
-      if (sib && (!sib.antwort || sib.antwort.trim().length < 5)) {
-        sib.antwort = q.antwort;
-        sib.antwortSteller = q.antwortSteller;
-        sib.antwortDatum = q.antwortDatum;
+    if (jm) {
+      const nums = (jm[0].match(/\d{1,3}/g) || []).map(Number).filter((n) => n >= 1 && n <= 999);
+      if (nums.length < 2) continue;
+      const lo = Math.min(...nums), hi = Math.max(...nums);
+      if (hi - lo > 30) continue; // Sicherheits-Cap gegen Fehl-Matches
+      for (let i = lo; i <= hi; i++) {
+        if (i === q.idx) continue;
+        const sib = byIdx.get(i);
+        if (sib && (!sib.antwort || sib.antwort.trim().length < 5)) copy(sib, q);
+      }
+    } else if (JOINT_NONUM.test(head)) {
+      // rückwärts laufen, bis eine bereits beantwortete Frage (oder Lücke) kommt
+      for (let i = q.idx - 1, steps = 0; i >= 1 && steps < 15; i--, steps++) {
+        const sib = byIdx.get(i);
+        if (!sib || (sib.antwort && sib.antwort.trim().length >= 5)) break;
+        copy(sib, q);
       }
     }
   }
