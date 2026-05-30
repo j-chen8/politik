@@ -158,3 +158,31 @@ npx tsx scripts/batch-ka-pair-bullets.ts   --submit / --poll <id>    # Phase C+ 
 
 **Code-Änderungen** (UI/Suche) brauchen Build+Deploy; reine Daten-Updates sind via `force-dynamic`
 sofort live (gemeinsame `politik.db`). Prod-Deploy nur auf ausdrückliches „live".
+
+---
+
+## 8. Berlin (AGH) — Dokument-Korn statt Paar-Korn
+
+Berlin folgt demselben **Ergebnistyp-Muster** wie der Bundestag (eigener `qa`-Typ, eigene `/fragen`-Seite),
+aber bei **anderem Datenkorn** — und das ist Absicht, nicht Inkonsequenz (§1: „Methode richtet sich
+nach der Struktur").
+
+- **Struktur:** Eine Berliner `anfrage_antwort`-Drucksache ist **eine** zusammenhängende Anfrage **einer**
+  MdA (mit Unterfragen), nicht ein Bündel unabhängiger Fragen wie eine Bundestags-Sammeldrucksache.
+  → **Ein Q&A-Hit pro Dokument** (kein Paar-Split). Urheber = Fragesteller (`berlin_document_persons`
+  role='urheber'), Frage = erste `kerninhalt_frage_json`-Bullet (Fallback Zusammenfassung).
+- **Daten:** `berlin_drucksachen_analyses` Klasse `anfrage_antwort` (`kerninhalt_frage_json` +
+  `kerninhalt_antwort_json` + `antwort_charakter`). 15.929 Stück = **82 %** aller Berlin-DS.
+- **Suche:** kein eigener FTS — `berlin_drucksachen_fts WHERE klasse='anfrage_antwort'`, emittiert als
+  `QaHit` (mit `detail_url` → Berlin-DS-Seite, `parliament: "berlin"`). `searchBerlin` /
+  `searchBerlinByType` (`src/lib/suche.ts`, Helper `mapBerlinQaHits`). Die Berlin-**Drucksachen**-Sektion
+  schließt `anfrage_antwort` explizit aus (`AND klasse != 'anfrage_antwort'`) → kein Erschlagen der
+  legislativen DS, **ohne** Sortier-Hack. Datum: `bd.dok_datum`, NULLs via `dok_datum IS NULL` ans Ende.
+- **UI:** `/parlamente/berlin/fragen` (Liste, Partei-Filter `getBerlinQaParties`, Sort neu/alt,
+  `getBerlinQaList`); Berlin-DS-Detailseite zeigt Frage/Antwort; Detailsuche hat einen
+  „Fragen & Antworten"-Typ-Tab (anfrage_antwort ist **nicht** mehr im Drucksachen-Klasse-Filter).
+- **Datum-Sonderfall:** Split-Anfragen (`dok_typ='SchrAnfr'` + `'a'`, gleiche dok_nr) können dem
+  Frage-Dokument das `dok_datum` fehlen → manueller Quell-Backfill aus PARDOK-PDF; **Re-Seed
+  überschreibt wieder mit leer** → nach jedem `seed-berlin-pardok.ts` dateless `anfrage_antwort` prüfen.
+- **Berlin-Update-Runbook:** `seed-berlin-pardok.ts` → Datums-Lücken prüfen → DS-LLM-Batch (kostenpfl.,
+  vorher fragen) → `batch-berlin-ds-titles.ts` → `rebuild-berlin-drucksachen-fts.ts`.

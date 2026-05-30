@@ -83,6 +83,9 @@ export interface QaHit {
   frage: string | null;
   antwort_snippet: string | null;  // Erste ~140 Zeichen der Antwort
   date: string | null;
+  /** Bei Berlin: Detail-URL führt via dbid auf die Berlin-DS-Seite (statt /aktivitaeten). */
+  detail_url?: string;
+  parliament?: "bundestag" | "berlin";
 }
 
 export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit | QaHit;
@@ -871,7 +874,57 @@ export function searchByType(
 // Bundes-Pfad track-isoliert bleibt.
 // ============================================================
 
-export type BerlinSearchType = "speeches" | "drucksachen" | "politicians";
+export type BerlinSearchType = "speeches" | "drucksachen" | "politicians" | "qa";
+
+/** Erstes Element eines (ggf. LLM-stringifizierten) JSON-Arrays — für Q&A-Frage/Antwort-Snippets. */
+function firstBullet(json: string | null): string | null {
+  if (!json) return null;
+  try {
+    let v: unknown = JSON.parse(json);
+    if (typeof v === "string") v = JSON.parse(v); // doppelt-stringifiziert (LLM-Array-Drift)
+    if (Array.isArray(v) && v.length) return String(v[0]).trim() || null;
+  } catch { /* kein valides JSON → null */ }
+  return null;
+}
+
+type BerlinQaRow = {
+  dbid: string; dokNr: string | null; datum: string | null;
+  zusammenfassung: string | null; frageJson: string | null; antwortJson: string | null;
+};
+
+/**
+ * Berlin-Q&A als QaHit auf DOKUMENT-Korn: jede `anfrage_antwort`-Drucksache = ein Q&A-Hit
+ * (Urheber = Fragesteller, erste Frage-Bullet = Frage, Link → Berlin-DS-Seite). Anders als beim
+ * Bundestag (Paar-Korn) gibt es pro Berliner Anfrage genau einen Urheber, daher kein Paar-Split.
+ */
+function mapBerlinQaHits(db: ReturnType<typeof getDb>, rows: BerlinQaRow[]): QaHit[] {
+  const askerStmt = db.prepare(
+    `SELECT p.id AS pid, p.first_name, p.last_name, pa.label AS party
+     FROM berlin_document_persons bdp
+     JOIN politicians p ON p.id = bdp.politician_id
+     LEFT JOIN parties pa ON pa.id = p.party_id
+     WHERE bdp.dbid = ? AND bdp.role = 'urheber' LIMIT 1`
+  );
+  return rows.map((r) => {
+    const a = askerStmt.get(r.dbid) as { pid: number; first_name: string; last_name: string; party: string | null } | undefined;
+    const frage = firstBullet(r.frageJson) ?? r.zusammenfassung ?? null;
+    const ans = firstBullet(r.antwortJson);
+    return {
+      type: "qa" as const,
+      pair_id: 0,            // Berlin: kein Paar-Korn → kein pair_id
+      drucksache_nr: r.dokNr ?? r.dbid,
+      paar_index: 0,
+      fragesteller_name: a ? `${a.first_name} ${a.last_name}`.trim() : null,
+      fragesteller_party: a?.party ?? null,
+      fragesteller_politician_id: a?.pid ?? null,
+      frage,
+      antwort_snippet: ans ? (ans.length > 140 ? ans.slice(0, 137) + "…" : ans) : null,
+      date: r.datum,
+      detail_url: `/parlamente/berlin/drucksache/${r.dbid}`,
+      parliament: "berlin" as const,
+    };
+  });
+}
 
 /** Berlin-Vollliste: gleiche Shape wie searchByType, damit SearchFullList (scope=berlin) sie 1:1 rendert. */
 export function searchBerlinByType(
@@ -960,28 +1013,56 @@ export function searchBerlinByType(
     return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
   }
 
-  // type === "drucksachen" — optionaler Klasse-Filter (gesetzentwurf/anfrage_antwort/…) + Sortierung
+  if (type === "qa") {
+    // Berlin-Q&A (schriftliche Anfragen) als eigener Ergebnistyp — Dokument-Korn.
+    const qaCount = (fts: string | null) => fts
+      ? (db.prepare(
+          `SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen}
+           WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND klasse = 'anfrage_antwort'`
+        ).get(fts) as { n: number }).n
+      : 0;
+    const total = qaCount(ftsActive);
+    const totalOriginal = qaCount(ftsOriginalOnly);
+    const totalExpanded = hasExpansions ? qaCount(ftsExpandedAll) : totalOriginal;
+    // NULLs ans Ende in BEIDEN Sortier-Richtungen (wie Bundestag-Q&A).
+    const qaOrder = sort === "relevance"
+      ? `bm25(${FTS_TABLES.berlinDrucksachen})`
+      : "bd.dok_datum IS NULL, bd.dok_datum DESC";
+    const rows = db.prepare(
+      `SELECT fts.dbid, bd.dok_nr AS dokNr, bd.dok_datum AS datum,
+              a.zusammenfassung, a.kerninhalt_frage_json AS frageJson, a.kerninhalt_antwort_json AS antwortJson
+       FROM ${FTS_TABLES.berlinDrucksachen} fts
+       JOIN berlin_drucksachen_analyses a ON a.dbid = fts.dbid
+       LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
+       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND fts.klasse = 'anfrage_antwort'
+       ORDER BY ${qaOrder}
+       LIMIT ? OFFSET ?`
+    ).all(ftsActive!, safePageSize, offset) as BerlinQaRow[];
+    const items = mapBerlinQaHits(db, rows);
+    return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
+  }
+
+  // type === "drucksachen" — nur legislative DS (anfrage_antwort ist eigener qa-Typ),
+  // optionaler Klasse-Filter (gesetzentwurf/antrag/…) + Sortierung
   const dsCount = (fts: string | null) => fts
     ? (db.prepare(
         `SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen}
-         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?${klasse ? " AND klasse = ?" : ""}`
+         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND klasse != 'anfrage_antwort'${klasse ? " AND klasse = ?" : ""}`
       ).get(...(klasse ? [fts, klasse] : [fts])) as { n: number }).n
     : 0;
   const total = dsCount(ftsActive);
   const totalOriginal = dsCount(ftsOriginalOnly);
   const totalExpanded = hasExpansions ? dsCount(ftsExpandedAll) : totalOriginal;
-  // Q&A (schriftliche Anfragen) sind 82 % aller DS → bei „alle" ans Ende, damit
-  // legislative Drucksachen (Antrag/Gesetz/Senatsvorlage/Beschluss) zuerst erscheinen.
-  // Bei aktivem Klasse-Filter ist der Prio-Key konstant und damit wirkungslos.
-  const klassePrio = "(CASE WHEN fts.klasse = 'anfrage_antwort' THEN 1 ELSE 0 END), ";
-  const dsOrder = klassePrio + (sort === "relevance" ? `bm25(${FTS_TABLES.berlinDrucksachen})` : "bd.dok_datum DESC");
+  const dsOrder = sort === "relevance"
+    ? `bm25(${FTS_TABLES.berlinDrucksachen})`
+    : "bd.dok_datum IS NULL, bd.dok_datum DESC";
   const rows = db
     .prepare(
       `SELECT fts.dbid, fts.klasse, COALESCE(NULLIF(TRIM(fts.titel),''), bda.derived_titel) AS titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
        FROM ${FTS_TABLES.berlinDrucksachen} fts
        LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
        LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = fts.dbid
-       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?${klasse ? " AND fts.klasse = ?" : ""}
+       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND fts.klasse != 'anfrage_antwort'${klasse ? " AND fts.klasse = ?" : ""}
        ORDER BY ${dsOrder}
        LIMIT ? OFFSET ?`
     )
@@ -1081,16 +1162,15 @@ export function searchBerlin(rawQuery: string, expand: boolean = false): SearchR
   const totalSpeechesOriginal = countSpeeches(ftsOriginalOnly);
   const totalSpeechesExpanded = hasExpansions ? countSpeeches(ftsAllTerms) : totalSpeechesOriginal;
 
-  // 3. Drucksachen (berlin_drucksachen_fts)
+  // 3. Drucksachen (berlin_drucksachen_fts) — nur legislative DS; anfrage_antwort ist eigener qa-Typ (s. 4.)
   const drucksachen: DrucksacheHit[] = ftsActive
     ? (db.prepare(
         `SELECT fts.dbid, fts.klasse, COALESCE(NULLIF(TRIM(fts.titel),''), bda.derived_titel) AS titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
          FROM ${FTS_TABLES.berlinDrucksachen} fts
          LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
          LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = fts.dbid
-         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?
-         ORDER BY (CASE WHEN fts.klasse = 'anfrage_antwort' THEN 1 ELSE 0 END),
-                  (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?) THEN 0 ELSE 1 END), bd.dok_datum DESC
+         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND fts.klasse != 'anfrage_antwort'
+         ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?) THEN 0 ELSE 1 END), bd.dok_datum IS NULL, bd.dok_datum DESC
          LIMIT ?`
       ).all(ftsActive, ftsTierMatch, PER_TYPE_LIMIT) as Array<{
         dbid: string; klasse: string; titel: string | null; zusammenfassung: string;
@@ -1113,21 +1193,41 @@ export function searchBerlin(rawQuery: string, expand: boolean = false): SearchR
       })
     : [];
   const countDs = (fts: string | null) => fts
-    ? (db.prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?`).get(fts) as { n: number }).n
+    ? (db.prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND klasse != 'anfrage_antwort'`).get(fts) as { n: number }).n
     : 0;
   const totalDrucksachenOriginal = countDs(ftsOriginalOnly);
   const totalDrucksachenExpanded = hasExpansions ? countDs(ftsAllTerms) : totalDrucksachenOriginal;
 
+  // 4. Fragen & Antworten (berlin_drucksachen_fts, klasse='anfrage_antwort') — eigener qa-Typ, Dokument-Korn
+  const qaRows = ftsActive
+    ? (db.prepare(
+        `SELECT fts.dbid, bd.dok_nr AS dokNr, bd.dok_datum AS datum,
+                a.zusammenfassung, a.kerninhalt_frage_json AS frageJson, a.kerninhalt_antwort_json AS antwortJson
+         FROM ${FTS_TABLES.berlinDrucksachen} fts
+         JOIN berlin_drucksachen_analyses a ON a.dbid = fts.dbid
+         LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
+         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND fts.klasse = 'anfrage_antwort'
+         ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?) THEN 0 ELSE 1 END), bd.dok_datum IS NULL, bd.dok_datum DESC
+         LIMIT ?`
+      ).all(ftsActive, ftsTierMatch, PER_TYPE_LIMIT) as BerlinQaRow[])
+    : [];
+  const qaHits = mapBerlinQaHits(db, qaRows);
+  const countQa = (fts: string | null) => fts
+    ? (db.prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ? AND klasse = 'anfrage_antwort'`).get(fts) as { n: number }).n
+    : 0;
+  const totalQaOriginal = countQa(ftsOriginalOnly);
+  const totalQaExpanded = hasExpansions ? countQa(ftsAllTerms) : totalQaOriginal;
+
   const totalsOriginal: SearchTotals = {
-    politicians: totalPoliticians, speeches: totalSpeechesOriginal, topics: 0, votes: 0, drucksachen: totalDrucksachenOriginal, qa: 0,
+    politicians: totalPoliticians, speeches: totalSpeechesOriginal, topics: 0, votes: 0, drucksachen: totalDrucksachenOriginal, qa: totalQaOriginal,
   };
   const totalsExpanded: SearchTotals = {
-    politicians: totalPoliticians, speeches: totalSpeechesExpanded, topics: 0, votes: 0, drucksachen: totalDrucksachenExpanded, qa: 0,
+    politicians: totalPoliticians, speeches: totalSpeechesExpanded, topics: 0, votes: 0, drucksachen: totalDrucksachenExpanded, qa: totalQaExpanded,
   };
 
   return {
-    query, politicians, speeches, topics: [], votes: [], drucksachen, qa: [],
-    total: politicians.length + speeches.length + drucksachen.length,
+    query, politicians, speeches, topics: [], votes: [], drucksachen, qa: qaHits,
+    total: politicians.length + speeches.length + drucksachen.length + qaHits.length,
     totals: expand ? totalsExpanded : totalsOriginal,
     totalsOriginal, totalsExpanded,
     expand, expansions, matchedClusters, directHit: null,

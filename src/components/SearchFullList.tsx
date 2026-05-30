@@ -494,7 +494,7 @@ function DrucksacheFullRow({ hit, terms, scope }: { hit: DrucksacheHit; terms: s
 function QaFullRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
   return (
     <Link
-      href={`/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`}
+      href={hit.detail_url ?? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       {hit.frage && (
@@ -512,7 +512,7 @@ function QaFullRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
           />
         )}
         <span>
-          Schriftliche Frage
+          {hit.parliament === "berlin" ? "Schriftliche Anfrage" : "Schriftliche Frage"}
           {hit.fragesteller_name && ` · ${hit.fragesteller_name}`}
           {` · ${hit.drucksache_nr}`}
           {hit.date && ` · ${formatGermanDate(hit.date)}`}

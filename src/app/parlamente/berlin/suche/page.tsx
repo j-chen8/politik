@@ -95,7 +95,7 @@ function BerlinSuchePageInner() {
             Eine Suche für alles.
           </h1>
           <p className="text-[15px] text-zinc-500 leading-relaxed max-w-xl">
-            Personen, Reden und Drucksachen des Abgeordnetenhauses von Berlin — in einer Palette.
+            Personen, Reden, Drucksachen und Fragen &amp; Antworten des Abgeordnetenhauses von Berlin — in einer Palette.
             Standardmäßig wird exakt gesucht; verwandte Begriffe lassen sich auf Wunsch einbeziehen
             („Wohnen" → auch Mieten und Wohnungsbau).
           </p>

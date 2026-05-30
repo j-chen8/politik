@@ -9,7 +9,7 @@ import {
 } from "@/lib/suche";
 
 const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen", "qa"];
-const VALID_BERLIN_TYPES: BerlinSearchType[] = ["speeches", "drucksachen", "politicians"];
+const VALID_BERLIN_TYPES: BerlinSearchType[] = ["speeches", "drucksachen", "politicians", "qa"];
 
 export async function GET(request: NextRequest) {
   const sp = request.nextUrl.searchParams;

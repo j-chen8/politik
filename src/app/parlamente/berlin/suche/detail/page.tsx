@@ -15,15 +15,16 @@ import type { SearchType } from "@/lib/suche";
 
 const TYPES: { key: SearchType; label: string }[] = [
   { key: "drucksachen", label: "Drucksachen" },
+  { key: "qa", label: "Fragen & Antworten" },
   { key: "speeches", label: "Reden" },
   { key: "politicians", label: "Personen" },
 ];
 
-// Berlin-Drucksachen-Typen (berlin_drucksachen_analyses.klasse) für den Klasse-Filter
+// Berlin-Drucksachen-Typen (berlin_drucksachen_analyses.klasse) für den Klasse-Filter.
+// anfrage_antwort fehlt bewusst — die sind ein eigener Typ „Fragen & Antworten".
 const KLASSEN: { key: string; label: string }[] = [
   { key: "", label: "Alle Drucksachen-Typen" },
   { key: "gesetzentwurf", label: "Gesetzentwurf" },
-  { key: "anfrage_antwort", label: "Schriftliche Anfrage" },
   { key: "antrag", label: "Antrag" },
   { key: "vorlage_senat", label: "Senats-Vorlage" },
   { key: "beschlussempfehlung", label: "Beschlussempfehlung" },

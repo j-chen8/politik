@@ -107,7 +107,7 @@ function flatten(results: SearchResults, scope: SearchScope): FlatHit[] {
   results.qa.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`,
+      href: h.detail_url ?? `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`,
       sectionLabel: "Fragen & Antworten",
     })
   );
