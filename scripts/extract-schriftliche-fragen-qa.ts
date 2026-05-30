@@ -37,6 +37,9 @@ function clean(s: string): string {
   t = t
     .replace(new RegExp(`(Drucksache\\s*21\\/\\d+\\s*${DG}\\s*\\d+\\s*${DG}\\s*)?Deutscher Bundestag\\s*${DG}\\s*21\\.\\s*Wahlperiode(\\s*${DG}\\s*\\d+(\\s*${DG}\\s*Drucksache\\s*21\\/\\d+)?)?`, "g"), " ")
     .replace(/-{1,2}\s*\d+\s*of\s*\d+\s*-{1,2}/g, " ")
+    // PDF-Wasserzeichen vorläufiger Drucksachen (fixer String, nie echter Inhalt;
+    // sitzt an Seitenumbrüchen, oft mehrfach, teils mitten im Wort)
+    .replace(new RegExp(`Vorabfassung\\s*${DG}\\s*wird durch die lektorierte (?:Version|Fassung) ersetzt\\.?`, "g"), " ")
     .replace(/\s+/g, " ")
     .trim();
   return t;
