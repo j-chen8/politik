@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { search, searchByType, type SearchType } from "@/lib/suche";
 
-const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen"];
+const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen", "qa"];
 
 export async function GET(request: NextRequest) {
   const sp = request.nextUrl.searchParams;

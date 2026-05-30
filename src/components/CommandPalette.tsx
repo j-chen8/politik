@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   Search,
   MessageSquare,
+  MessageSquareQuote,
   ListTree,
   Vote as VoteIcon,
   FileText,
@@ -22,6 +23,7 @@ import type {
   TopicHit,
   VoteHit,
   DrucksacheHit,
+  QaHit,
 } from "@/lib/suche";
 
 interface FlatHit {
@@ -30,7 +32,7 @@ interface FlatHit {
   sectionLabel: string;
 }
 
-const ZERO_TOTALS = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 };
+const ZERO_TOTALS = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0, qa: 0 };
 const EMPTY: SearchResults = {
   query: "",
   politicians: [],
@@ -38,6 +40,7 @@ const EMPTY: SearchResults = {
   topics: [],
   votes: [],
   drucksachen: [],
+  qa: [],
   total: 0,
   totals: { ...ZERO_TOTALS },
   totalsOriginal: { ...ZERO_TOTALS },
@@ -92,6 +95,13 @@ function flatten(results: SearchResults): FlatHit[] {
       sectionLabel: "Drucksachen",
     })
   );
+  results.qa.forEach((h) =>
+    flat.push({
+      hit: h,
+      href: `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`,
+      sectionLabel: "Fragen & Antworten",
+    })
+  );
   return flat;
 }
 
@@ -117,6 +127,7 @@ const SECTION_TOTAL_KEY: Record<string, SearchType> = {
   Reden: "speeches",
   Abstimmungen: "votes",
   Drucksachen: "drucksachen",
+  "Fragen & Antworten": "qa",
 };
 
 const TYPE_FILTERS: { key: SearchType; label: string }[] = [
@@ -125,6 +136,7 @@ const TYPE_FILTERS: { key: SearchType; label: string }[] = [
   { key: "topics", label: "TOPs" },
   { key: "votes", label: "Abstimmungen" },
   { key: "drucksachen", label: "Drucksachen" },
+  { key: "qa", label: "Fragen" },
 ];
 
 /** Wenn total ≤ INLINE_THRESHOLD, lädt "Mehr"-Klick alle in den Modal; sonst gibt's nur den Vollliste-Link. */
@@ -167,6 +179,7 @@ export function CommandPalette({
       votes: (expandedItems.votes as VoteHit[] | undefined) ?? results.votes,
       drucksachen:
         (expandedItems.drucksachen as DrucksacheHit[] | undefined) ?? results.drucksachen,
+      qa: (expandedItems.qa as QaHit[] | undefined) ?? results.qa,
     };
   }, [results, expandedItems]);
 
@@ -190,7 +203,7 @@ export function CommandPalette({
   // Wieviele zusätzliche Treffer gäbe es mit Synonym-Erweiterung (über alle Typen)?
   const relatedExtra = useMemo(() => {
     const sum = (t: SearchResults["totals"]) =>
-      t.speeches + t.topics + t.votes + t.drucksachen; // Personen kennen keine Synonyme
+      t.speeches + t.topics + t.votes + t.drucksachen + t.qa; // Personen kennen keine Synonyme
     return Math.max(0, sum(results.totalsExpanded) - sum(results.totalsOriginal));
   }, [results.totalsExpanded, results.totalsOriginal]);
   const canExpand = results.matchedClusters.length > 0 && relatedExtra > 0;
@@ -359,7 +372,8 @@ export function CommandPalette({
                   results.totals.speeches +
                   results.totals.topics +
                   results.totals.votes +
-                  results.totals.drucksachen
+                  results.totals.drucksachen +
+                  results.totals.qa
                 }
                 active={activeType === null}
                 onClick={() => {
@@ -603,6 +617,8 @@ function renderHit(hit: SearchHit, terms: string[]) {
       return <VoteRow hit={hit} terms={terms} />;
     case "drucksache":
       return <DrucksacheRow hit={hit} terms={terms} />;
+    case "qa":
+      return <QaRow hit={hit} terms={terms} />;
   }
 }
 
@@ -735,6 +751,39 @@ function DrucksacheRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) 
           {klasseLabel}
           {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
           {hit.date && ` · ${formatGermanDate(hit.date)}`}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function QaRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
+  return (
+    <>
+      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
+        <MessageSquareQuote className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      </div>
+      <div className="flex-1 min-w-0">
+        {hit.frage && (
+          <div className="text-[13.5px] text-zinc-900 line-clamp-2 leading-snug">{highlight(hit.frage, terms)}</div>
+        )}
+        {hit.antwort_snippet && (
+          <div className="text-[12px] text-zinc-600 truncate leading-snug mt-0.5">
+            <span className="text-zinc-400">↳ </span>{highlight(hit.antwort_snippet, terms)}
+          </div>
+        )}
+        <div className="flex items-center gap-1.5 text-[10.5px] text-zinc-500 truncate mt-0.5">
+          {hit.fragesteller_party && (
+            <span
+              className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.fragesteller_party] ?? "bg-zinc-300"}`}
+            />
+          )}
+          <span className="truncate">
+            Frage
+            {hit.fragesteller_name && ` · ${hit.fragesteller_name}`}
+            {` · ${hit.drucksache_nr}`}
+            {hit.date && ` · ${formatGermanDate(hit.date)}`}
+          </span>
         </div>
       </div>
     </>

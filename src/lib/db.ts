@@ -4229,21 +4229,56 @@ export interface QaPaarListItem {
   antwortText: string | null;
 }
 
-/** Durchsuchbare, paginierte Liste aller Schriftliche-Fragen-Q&A-Paare (für /fragen). */
-export function getQaPaareList(q: string, page: number, perPage = 50): { items: QaPaarListItem[]; total: number } {
+/** Fraktionen mit nennenswerter Fragezahl — für den Partei-Filter auf /fragen (Rauschen <20 ausgeblendet). */
+export function getQaPaareParties(): { party: string; count: number }[] {
   const db = getDb();
   try {
-    const where = q ? `WHERE (qa.frage_text LIKE @like OR qa.antwort_text LIKE @like OR qa.fragesteller_name LIKE @like)` : "";
-    const like = `%${q.replace(/[%_]/g, "")}%`;
-    const total = (db.prepare(`SELECT COUNT(*) AS c FROM drucksache_qa_paare qa ${where}`).get(q ? { like } : {}) as { c: number }).c;
+    return db.prepare(`
+      SELECT fragesteller_party AS party, COUNT(*) AS count
+      FROM drucksache_qa_paare
+      WHERE fragesteller_party IS NOT NULL AND TRIM(fragesteller_party) <> ''
+      GROUP BY fragesteller_party
+      HAVING count >= 20
+      ORDER BY count DESC
+    `).all() as { party: string; count: number }[];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Durchsuchbare, paginierte Liste aller Schriftliche-Fragen-Q&A-Paare (für /fragen).
+ * Optional gefiltert nach Fragesteller-Partei und sortiert nach Datum (neu/alt).
+ */
+export function getQaPaareList(
+  q: string,
+  page: number,
+  perPage = 50,
+  party: string | null = null,
+  sort: "neu" | "alt" = "neu"
+): { items: QaPaarListItem[]; total: number } {
+  const db = getDb();
+  try {
+    const conds: string[] = [];
     const params: Record<string, unknown> = { lim: perPage, off: (page - 1) * perPage };
-    if (q) params.like = like;
+    if (q) {
+      conds.push(`(qa.frage_text LIKE @like OR qa.antwort_text LIKE @like OR qa.fragesteller_name LIKE @like)`);
+      params.like = `%${q.replace(/[%_]/g, "")}%`;
+    }
+    if (party) {
+      conds.push(`qa.fragesteller_party = @party`);
+      params.party = party;
+    }
+    const where = conds.length ? `WHERE ${conds.join(" AND ")}` : "";
+    const total = (db.prepare(`SELECT COUNT(*) AS c FROM drucksache_qa_paare qa ${where}`).get(params) as { c: number }).c;
+    // Datum aus drucksache_texts; NULLs sortieren bei DESC ans Ende, bei ASC an den Anfang (akzeptabel).
+    const dir = sort === "alt" ? "ASC" : "DESC";
     const rows = db.prepare(`
       SELECT qa.drucksache_nr, qa.paar_index, qa.fragesteller_name, qa.fragesteller_party,
              qa.fragesteller_politician_id, qa.antwort_steller, qa.frage_text, qa.antwort_text,
              (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
       FROM drucksache_qa_paare qa ${where}
-      ORDER BY qa.drucksache_nr DESC, qa.paar_index
+      ORDER BY datum ${dir}, qa.drucksache_nr ${dir}, qa.paar_index
       LIMIT @lim OFFSET @off
     `).all(params) as any[];
     return {

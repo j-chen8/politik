@@ -15,6 +15,7 @@ import type {
   TopicHit,
   VoteHit,
   DrucksacheHit,
+  QaHit,
 } from "@/lib/suche";
 
 const TYPE_LABELS: Record<SearchType, string> = {
@@ -23,6 +24,7 @@ const TYPE_LABELS: Record<SearchType, string> = {
   speeches: "Reden",
   votes: "Abstimmungen",
   drucksachen: "Drucksachen",
+  qa: "Fragen & Antworten",
 };
 
 const PARTY_DOT: Record<string, string> = {
@@ -342,6 +344,8 @@ function ResultRow({ hit, terms }: { hit: SearchHit; terms: string[] }) {
       return <VoteFullRow hit={hit} terms={terms} />;
     case "drucksache":
       return <DrucksacheFullRow hit={hit} terms={terms} />;
+    case "qa":
+      return <QaFullRow hit={hit} terms={terms} />;
   }
 }
 
@@ -467,6 +471,37 @@ function DrucksacheFullRow({ hit, terms }: { hit: DrucksacheHit; terms: string[]
         {klasseLabel}
         {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
         {hit.date && ` · ${formatGermanDate(hit.date)}`}
+      </div>
+    </Link>
+  );
+}
+
+function QaFullRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
+  return (
+    <Link
+      href={`/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`}
+      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+    >
+      {hit.frage && (
+        <div className="text-[14px] text-zinc-900 leading-snug font-medium">{highlight(hit.frage, terms)}</div>
+      )}
+      {hit.antwort_snippet && (
+        <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
+          <span className="text-zinc-400">↳ </span>{highlight(hit.antwort_snippet, terms)}
+        </div>
+      )}
+      <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 mt-1">
+        {hit.fragesteller_party && (
+          <span
+            className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.fragesteller_party] ?? "bg-zinc-300"}`}
+          />
+        )}
+        <span>
+          Schriftliche Frage
+          {hit.fragesteller_name && ` · ${hit.fragesteller_name}`}
+          {` · ${hit.drucksache_nr}`}
+          {hit.date && ` · ${formatGermanDate(hit.date)}`}
+        </span>
       </div>
     </Link>
   );

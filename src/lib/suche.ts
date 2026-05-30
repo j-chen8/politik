@@ -2,7 +2,7 @@ import { getDb, searchPoliticiansDb } from "@/lib/db";
 import { expandQuery } from "@/lib/synonyms";
 import { ensureSearchFTS, ftsMatchClause, FTS_TABLES } from "@/lib/search-fts";
 
-export type SearchHitType = "politician" | "speech" | "topic" | "vote" | "drucksache";
+export type SearchHitType = "politician" | "speech" | "topic" | "vote" | "drucksache" | "qa";
 
 export interface PoliticianHit {
   type: "politician";
@@ -54,7 +54,20 @@ export interface DrucksacheHit {
   batch_class: string | null;   // klein/mittel/gross/antwort/regierung
 }
 
-export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit;
+export interface QaHit {
+  type: "qa";
+  pair_id: number;
+  drucksache_nr: string;
+  paar_index: number;
+  fragesteller_name: string | null;
+  fragesteller_party: string | null;
+  fragesteller_politician_id: number | null;
+  frage: string | null;
+  antwort_snippet: string | null;  // Erste ~140 Zeichen der Antwort
+  date: string | null;
+}
+
+export type SearchHit = PoliticianHit | SpeechHit | TopicHit | VoteHit | DrucksacheHit | QaHit;
 
 export interface SearchTotals {
   politicians: number;
@@ -62,6 +75,7 @@ export interface SearchTotals {
   topics: number;
   votes: number;
   drucksachen: number;
+  qa: number;
 }
 
 export interface SearchResults {
@@ -71,6 +85,7 @@ export interface SearchResults {
   topics: TopicHit[];
   votes: VoteHit[];
   drucksachen: DrucksacheHit[];
+  qa: QaHit[];
   total: number;
   /** Anzahl ALLER Treffer pro Typ im AKTUELLEN Modus (exakt bzw. erweitert) */
   totals: SearchTotals;
@@ -149,7 +164,7 @@ function lookupDrucksacheByNr(
 
 export function search(rawQuery: string, expand: boolean = false): SearchResults {
   const query = rawQuery.trim();
-  const zero: SearchTotals = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 };
+  const zero: SearchTotals = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0, qa: 0 };
   const empty: SearchResults = {
     query,
     politicians: [],
@@ -157,6 +172,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     topics: [],
     votes: [],
     drucksachen: [],
+    qa: [],
     total: 0,
     totals: { ...zero },
     totalsOriginal: { ...zero },
@@ -392,6 +408,62 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
           .get(ftsAllTerms) as { n: number }).n
       : totalDrucksachenOriginal;
 
+  // 6. Fragen & Antworten — Schriftliche-Fragen-Einzelpaare (qa_fts über
+  // frage_text + antwort_text + fragesteller_name). Ein Hit pro Paar.
+  const qa = ftsActive
+    ? (db
+        .prepare(
+          `SELECT qa.id AS pair_id, qa.drucksache_nr, qa.paar_index,
+                  qa.fragesteller_name, qa.fragesteller_party, qa.fragesteller_politician_id,
+                  qa.frage_text, qa.antwort_text,
+                  (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+           FROM ${FTS_TABLES.qa} fts
+           JOIN drucksache_qa_paare qa ON qa.id = fts.pair_id
+           WHERE ${FTS_TABLES.qa} MATCH ?
+           ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?) THEN 0 ELSE 1 END), datum DESC
+           LIMIT ?`
+        )
+        .all(ftsActive, ftsTierMatch, PER_TYPE_LIMIT) as {
+        pair_id: number;
+        drucksache_nr: string;
+        paar_index: number;
+        fragesteller_name: string | null;
+        fragesteller_party: string | null;
+        fragesteller_politician_id: number | null;
+        frage_text: string | null;
+        antwort_text: string | null;
+        datum: string | null;
+      }[])
+    : [];
+
+  const qaHits: QaHit[] = qa.map((r) => {
+    const ans = r.antwort_text ?? "";
+    return {
+      type: "qa",
+      pair_id: r.pair_id,
+      drucksache_nr: r.drucksache_nr,
+      paar_index: r.paar_index,
+      fragesteller_name: r.fragesteller_name,
+      fragesteller_party: r.fragesteller_party,
+      fragesteller_politician_id: r.fragesteller_politician_id,
+      frage: r.frage_text,
+      antwort_snippet: ans ? (ans.length > 140 ? ans.slice(0, 137) + "…" : ans) : null,
+      date: r.datum,
+    };
+  });
+
+  const totalQaOriginal = ftsOriginalOnly
+    ? (db
+        .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?`)
+        .get(ftsOriginalOnly) as { n: number }).n
+    : 0;
+  const totalQaExpanded =
+    hasExpansions && ftsAllTerms
+      ? (db
+          .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?`)
+          .get(ftsAllTerms) as { n: number }).n
+      : totalQaOriginal;
+
   // Personen-Suche kennt keine Synonym-Erweiterung → original == expanded.
   const totalsOriginal: SearchTotals = {
     politicians: totalPoliticians,
@@ -399,6 +471,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     topics: totalTopicsOriginal,
     votes: totalVotesOriginal,
     drucksachen: totalDrucksachenOriginal,
+    qa: totalQaOriginal,
   };
   const totalsExpanded: SearchTotals = {
     politicians: totalPoliticians,
@@ -406,6 +479,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     topics: totalTopicsExpanded,
     votes: totalVotesExpanded,
     drucksachen: totalDrucksachenExpanded,
+    qa: totalQaExpanded,
   };
 
   // Den gepinnten Direkt-Treffer aus der normalen DS-Liste entfernen (kein Doppel).
@@ -420,13 +494,15 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     topics: topicHits,
     votes: voteHits,
     drucksachen: drucksachenOut,
+    qa: qaHits,
     total:
       (directHit ? 1 : 0) +
       politicians.length +
       speechHits.length +
       topicHits.length +
       voteHits.length +
-      drucksachenOut.length,
+      drucksachenOut.length +
+      qaHits.length,
     totals: expand ? totalsExpanded : totalsOriginal,
     totalsOriginal,
     totalsExpanded,
@@ -437,7 +513,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
   };
 }
 
-export type SearchType = "politicians" | "speeches" | "topics" | "votes" | "drucksachen";
+export type SearchType = "politicians" | "speeches" | "topics" | "votes" | "drucksachen" | "qa";
 
 export interface SearchByTypeResult {
   query: string;
@@ -708,6 +784,62 @@ export function searchByType(
           date: d.datum,
           snippet: snippet || null,
           batch_class: d.batch_class,
+        };
+      });
+      return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
+    }
+    case "qa": {
+      if (!ftsActive) return empty;
+      const totalOriginal = ftsOriginalOnly
+        ? (db
+            .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?`)
+            .get(ftsOriginalOnly) as { n: number }).n
+        : 0;
+      const totalExpanded =
+        hasExpansions && ftsAllTerms
+          ? (db
+              .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?`)
+              .get(ftsAllTerms) as { n: number }).n
+          : totalOriginal;
+      const total = expand ? totalExpanded : totalOriginal;
+      // Sortierung: relevance = bm25 (Frage 2, Antwort 1, Fragesteller 3) als Tiebreaker nach Tier; sonst Datum.
+      const qaOrder = `(CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.qa} WHERE ${FTS_TABLES.qa} MATCH ?) THEN 0 ELSE 1 END), ${sort === "relevance" ? `bm25(${FTS_TABLES.qa}, 2.0, 1.0, 3.0), ` : ""}datum DESC`;
+      const rows = db
+        .prepare(
+          `SELECT qa.id AS pair_id, qa.drucksache_nr, qa.paar_index,
+                  qa.fragesteller_name, qa.fragesteller_party, qa.fragesteller_politician_id,
+                  qa.frage_text, qa.antwort_text,
+                  (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+           FROM ${FTS_TABLES.qa} fts
+           JOIN drucksache_qa_paare qa ON qa.id = fts.pair_id
+           WHERE ${FTS_TABLES.qa} MATCH ?
+           ORDER BY ${qaOrder}
+           LIMIT ? OFFSET ?`
+        )
+        .all(ftsActive, ftsTierMatch, safePageSize, offset) as {
+        pair_id: number;
+        drucksache_nr: string;
+        paar_index: number;
+        fragesteller_name: string | null;
+        fragesteller_party: string | null;
+        fragesteller_politician_id: number | null;
+        frage_text: string | null;
+        antwort_text: string | null;
+        datum: string | null;
+      }[];
+      const items: QaHit[] = rows.map((r) => {
+        const ans = r.antwort_text ?? "";
+        return {
+          type: "qa",
+          pair_id: r.pair_id,
+          drucksache_nr: r.drucksache_nr,
+          paar_index: r.paar_index,
+          fragesteller_name: r.fragesteller_name,
+          fragesteller_party: r.fragesteller_party,
+          fragesteller_politician_id: r.fragesteller_politician_id,
+          frage: r.frage_text,
+          antwort_snippet: ans ? (ans.length > 140 ? ans.slice(0, 137) + "…" : ans) : null,
+          date: r.datum,
         };
       });
       return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
