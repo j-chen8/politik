@@ -61,12 +61,27 @@ interface CV {
   sonstiges: Entry[];
 }
 
+type CVSource = "wikipedia" | "homepage" | "agh";
+
+const SOURCE_LABEL: Record<CVSource, string> = {
+  wikipedia: "Wikipedia",
+  homepage: "persönliche Homepage",
+  agh: "Abgeordnetenhaus-Profil (Berlin)",
+};
+
 interface Conflict {
   section: string;
   jahr: string;
-  wikipedia: string;
-  homepage: string;
+  // Generische Paar-Felder (jede Kombination aus wikipedia/homepage/agh):
+  sourceA: CVSource;
+  textA: string;
+  sourceB: CVSource;
+  textB: string;
   reason: string;
+  // Legacy-Spiegel für die bestehende UI + Bundestag-Bestandsdaten: bei einem
+  // Wikipedia↔Homepage-Paar werden zusätzlich die alten Keys gesetzt.
+  wikipedia?: string;
+  homepage?: string;
 }
 
 interface PoliticianRow {
@@ -74,6 +89,7 @@ interface PoliticianRow {
   name: string;
   cv_json: string | null;
   cv_homepage_json: string | null;
+  cv_agh_json: string | null;
 }
 
 interface Result {
@@ -101,30 +117,33 @@ function loadCV(json: string | null): CV | null {
 
 const SECTIONS = ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"] as const;
 
+interface Candidate {
+  section: string; jahr: string;
+  sourceA: CVSource; textA: string;
+  sourceB: CVSource; textB: string;
+}
+
 /**
- * Findet pro Sektion + Jahr Paare, die beide Quellen haben — kandidaten für Widerspruchs-Prüfung.
- * Heuristik: gleiches `jahr` (oder überlappender Zeitraum), aber unterschiedlicher `text`.
+ * Findet pro Sektion + Jahr Paare zwischen zwei Quellen — Kandidaten für die
+ * Widerspruchs-Prüfung. Heuristik: gleiches `jahr` (oder gleicher Jahres-Beginn),
+ * aber unterschiedlicher `text`.
  */
-function findCandidates(cvWiki: CV, cvHome: CV): {
-  section: string; jahr: string; wikipedia: string; homepage: string;
-}[] {
-  const candidates: { section: string; jahr: string; wikipedia: string; homepage: string }[] = [];
+function findCandidatesPair(cvA: CV, cvB: CV, srcA: CVSource, srcB: CVSource): Candidate[] {
+  const candidates: Candidate[] = [];
   for (const sec of SECTIONS) {
-    const wikiEntries = cvWiki[sec] ?? [];
-    const homeEntries = cvHome[sec] ?? [];
-    for (const w of wikiEntries) {
-      for (const h of homeEntries) {
-        // Gleiches Jahr (oder „zumindest mit demselben Jahr beginnend")
-        if (!w.jahr || !h.jahr) continue;
-        const sameYear = w.jahr === h.jahr ||
-          (w.jahr.length >= 4 && h.jahr.length >= 4 && w.jahr.slice(0, 4) === h.jahr.slice(0, 4));
+    const aEntries = cvA[sec] ?? [];
+    const bEntries = cvB[sec] ?? [];
+    for (const a of aEntries) {
+      for (const b of bEntries) {
+        if (!a.jahr || !b.jahr) continue;
+        const sameYear = a.jahr === b.jahr ||
+          (a.jahr.length >= 4 && b.jahr.length >= 4 && a.jahr.slice(0, 4) === b.jahr.slice(0, 4));
         if (!sameYear) continue;
-        // Wenn die Texte fast identisch sind (z.B. Stem-Match), kein Konflikt-Kandidat
-        const wt = w.text.toLowerCase();
-        const ht = h.text.toLowerCase();
-        if (wt === ht) continue;
-        if (wt.includes(ht.slice(0, 30)) || ht.includes(wt.slice(0, 30))) continue;
-        candidates.push({ section: sec, jahr: w.jahr, wikipedia: w.text, homepage: h.text });
+        const at = a.text.toLowerCase();
+        const bt = b.text.toLowerCase();
+        if (at === bt) continue;
+        if (at.includes(bt.slice(0, 30)) || bt.includes(at.slice(0, 30))) continue;
+        candidates.push({ section: sec, jahr: a.jahr, sourceA: srcA, textA: a.text, sourceB: srcB, textB: b.text });
       }
     }
   }
@@ -136,16 +155,14 @@ interface LLMVerdict {
   begründung: string;
 }
 
-async function checkConflict(
-  cand: { section: string; jahr: string; wikipedia: string; homepage: string }
-): Promise<LLMVerdict> {
+async function checkConflict(cand: Candidate): Promise<LLMVerdict> {
   const prompt = `Du prüfst, ob zwei Quellen sich beim gleichen Sachverhalt widersprechen.
 
 SEKTION: ${cand.section}
 ZEITRAUM: ${cand.jahr}
 
-QUELLE A (Wikipedia): ${cand.wikipedia}
-QUELLE B (Homepage):  ${cand.homepage}
+QUELLE A (${SOURCE_LABEL[cand.sourceA]}): ${cand.textA}
+QUELLE B (${SOURCE_LABEL[cand.sourceB]}): ${cand.textB}
 
 Frage: Widersprechen sich die Quellen zum GLEICHEN Sachverhalt im gleichen Zeitraum?
 
@@ -231,15 +248,16 @@ async function main() {
                    JOIN parliaments par ON pp.parliament_id = par.id
                    WHERE par.type = 'bundestag'
                  ))`;
+  // Mindestens ZWEI der drei Quellen müssen vorhanden sein (sonst kein Vergleich).
   const sql = `SELECT p.id, p.first_name || ' ' || p.last_name AS name,
-                      p.cv_json, p.cv_homepage_json
+                      p.cv_json, p.cv_homepage_json, p.cv_agh_json
                FROM politicians p
-               WHERE p.cv_json IS NOT NULL AND p.cv_homepage_json IS NOT NULL
+               WHERE ((p.cv_json IS NOT NULL) + (p.cv_homepage_json IS NOT NULL) + (p.cv_agh_json IS NOT NULL)) >= 2
                  AND ${scope}
                ORDER BY p.id`;
   let rows = db.prepare(sql).all() as PoliticianRow[];
   if (LIMIT > 0) rows = rows.slice(0, LIMIT);
-  console.log(`${rows.length} Politiker mit beiden CVs zu prüfen\n`);
+  console.log(`${rows.length} Politiker mit ≥2 Quellen zu prüfen\n`);
 
   // Resume
   const cache = new Map<number, Result>();
@@ -270,18 +288,36 @@ async function main() {
     let result = cache.get(r.id);
 
     if (!result) {
-      const cvWiki = loadCV(r.cv_json);
-      const cvHome = loadCV(r.cv_homepage_json);
-      if (!cvWiki || !cvHome) {
+      // Verfügbare Quellen sammeln; alle Paare bilden (Wiki×Home, Wiki×AGH, Home×AGH).
+      const available: { src: CVSource; cv: CV }[] = [];
+      for (const [src, json] of [
+        ["wikipedia", r.cv_json], ["homepage", r.cv_homepage_json], ["agh", r.cv_agh_json],
+      ] as const) {
+        const cv = loadCV(json);
+        if (cv) available.push({ src, cv });
+      }
+      if (available.length < 2) {
         result = { politicianId: r.id, name: r.name, conflicts: [], totalChecked: 0 };
       } else {
-        const candidates = findCandidates(cvWiki, cvHome);
+        const candidates: Candidate[] = [];
+        for (let a = 0; a < available.length; a++) {
+          for (let b = a + 1; b < available.length; b++) {
+            candidates.push(...findCandidatesPair(available[a].cv, available[b].cv, available[a].src, available[b].src));
+          }
+        }
         const conflicts: Conflict[] = [];
         for (const c of candidates) {
           try {
             const v = await checkConflict(c);
             if (v.konflikt) {
-              conflicts.push({ ...c, reason: v.begründung });
+              const conflict: Conflict = { ...c, reason: v.begründung };
+              // Legacy-Spiegel für die UI, wenn das Paar Wikipedia↔Homepage ist.
+              if (c.sourceA === "wikipedia" && c.sourceB === "homepage") {
+                conflict.wikipedia = c.textA; conflict.homepage = c.textB;
+              } else if (c.sourceA === "homepage" && c.sourceB === "wikipedia") {
+                conflict.wikipedia = c.textB; conflict.homepage = c.textA;
+              }
+              conflicts.push(conflict);
             }
             await sleep(SLEEP_MS);
           } catch (e: any) {
@@ -318,7 +354,7 @@ async function main() {
   lines.push(`# Source-Coherence-Bericht (Stage 5)`);
   lines.push(`Stand: ${new Date().toISOString().slice(0, 10)} · Modell: ${MODEL} (Groq)\n`);
   lines.push(`## Übersicht`);
-  lines.push(`- ${rows.length} Politiker mit beiden CVs (Wikipedia + Homepage) geprüft`);
+  lines.push(`- ${rows.length} Politiker mit ≥2 Quellen (Wikipedia / Homepage / AGH-Profil) geprüft`);
   lines.push(`- ${totalCandidates} Aussage-Paare mit gleichem Jahr (Konflikt-Kandidaten)`);
   lines.push(`- **${totalConflicts} echte Quellen-Widersprüche** identifiziert`);
   lines.push(`- ${politiciansWithConflicts} Politiker:innen betroffen\n`);
@@ -329,8 +365,8 @@ async function main() {
     lines.push(`### ${r.name} (id ${r.politicianId})`);
     for (const c of r.conflicts) {
       lines.push(`- **${c.section}** · ${c.jahr}`);
-      lines.push(`  - Wikipedia: ${c.wikipedia.slice(0, 130)}`);
-      lines.push(`  - Homepage:  ${c.homepage.slice(0, 130)}`);
+      lines.push(`  - ${SOURCE_LABEL[c.sourceA]}: ${c.textA.slice(0, 130)}`);
+      lines.push(`  - ${SOURCE_LABEL[c.sourceB]}: ${c.textB.slice(0, 130)}`);
       lines.push(`  - **Widerspruch:** ${c.reason}`);
     }
     lines.push("");
