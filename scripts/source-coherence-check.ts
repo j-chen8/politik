@@ -49,6 +49,7 @@ const SLEEP_MS = 2500;
 
 const LIMIT_IDX = process.argv.indexOf("--limit");
 const LIMIT = LIMIT_IDX > -1 ? parseInt(process.argv[LIMIT_IDX + 1], 10) : 0;
+const BERLIN = process.argv.includes("--berlin");
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -216,17 +217,25 @@ async function main() {
   db.pragma("journal_mode = WAL");
   ensureColumn(db);
 
-  // Politiker: nur die mit beiden CVs (sonst kein Vergleich möglich)
-  const sql = `SELECT p.id, p.first_name || ' ' || p.last_name AS name,
-                      p.cv_json, p.cv_homepage_json
-               FROM politicians p
-               WHERE p.cv_json IS NOT NULL AND p.cv_homepage_json IS NOT NULL
-                 AND (p.id BETWEEN 900001 AND 900011 OR p.id IN (
+  // Politiker: nur die mit beiden CVs (sonst kein Vergleich möglich).
+  // --berlin: alle MdL des Abgeordnetenhauses (parliament_id = 2), inkl. der
+  //           ~178 mit abgeordnetenwatch-ids (<900000) — der alte
+  //           Hardcode-Range 900001..900011 verpasste die.
+  const scope = BERLIN
+    ? `p.id IN (SELECT DISTINCT m.politician_id FROM mandates m
+               JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+               WHERE pp.parliament_id = 2 AND m.type = 'mandate')`
+    : `(p.id BETWEEN 900001 AND 900011 OR p.id IN (
                    SELECT DISTINCT politician_id FROM mandates m
                    JOIN parliament_periods pp ON m.parliament_period_id = pp.id
                    JOIN parliaments par ON pp.parliament_id = par.id
                    WHERE par.type = 'bundestag'
-                 ))
+                 ))`;
+  const sql = `SELECT p.id, p.first_name || ' ' || p.last_name AS name,
+                      p.cv_json, p.cv_homepage_json
+               FROM politicians p
+               WHERE p.cv_json IS NOT NULL AND p.cv_homepage_json IS NOT NULL
+                 AND ${scope}
                ORDER BY p.id`;
   let rows = db.prepare(sql).all() as PoliticianRow[];
   if (LIMIT > 0) rows = rows.slice(0, LIMIT);

@@ -1,9 +1,26 @@
 /**
- * Versucht für jeden Politiker mit homepage_url eine "Über mich"/Vita-Seite
- * zu finden, scraped sie und extrahiert via LLM einen strukturierten CV.
+ * ⛔️ DEPRECATED — NICHT MEHR VERWENDEN für die CV-Generierung.
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Dieses Skript extrahiert den Homepage-CV mit Groq Llama 3.1 8b. Das ist NICHT
+ * unsere CV-Methodik: laut docs/PIPELINE.md (Block A) ist der Generator-Slot
+ * Haiku 4.5 (Anthropic) — wie bei Wikipedia-CVs (cv_json, A.1) und den bereits
+ * mit Haiku erzeugten Bundestag-Homepage-CVs (cv_homepage_model =
+ * 'anthropic:claude-haiku-4-5'). Llama-8b liefert spürbar schwächere Struktur.
+ *
+ * ➡️ Profile/Homepages analysieren? → Haiku-Batch nutzen:
+ *      Discovery + Text-Fetch (die Logik HIER, findAboutPage) liefert
+ *      cv_homepage_text; die JSON-Extraktion läuft über die geteilte
+ *      _lib/cv-prompt.ts (CV_MODEL = claude-haiku-4-5, CV_SCHEMA) im Batch —
+ *      analog scripts/batch-submit-cv.ts / batch-retrieve-cv.ts (Wikipedia).
+ *      Siehe docs/PIPELINE.md §A.2 und scripts/scrape-berlin-agh-profiles.ts.
+ *
+ * Die Vita-Discovery (Standard-Pfade, Link-Scan, Sitemap, One-Pager-Fallback)
+ * bleibt wertvoll und wird vom Haiku-Pfad WIEDERVERWENDET — nur der LLM-Call
+ * (generateCv → Groq) ist veraltet. Skript zu Doku-/Discovery-Zwecken behalten.
+ * ─────────────────────────────────────────────────────────────────────────────
  *
  * Pipeline: homepage_url → Standard-Pfade probieren → längster Treffer →
- *           HTML strippen → Groq Llama 3.1 8b → cv_homepage_json
+ *           HTML strippen → Groq Llama 3.1 8b → cv_homepage_json   ⛔️ (llama!)
  *
  * Schreibt nach politicians.{cv_homepage_json, cv_homepage_url, cv_homepage_generated_at}.
  *
@@ -37,6 +54,16 @@ const ALL = process.argv.includes("--all");
 const REFRESH = process.argv.includes("--refresh");
 const LIMIT_IDX = process.argv.indexOf("--limit");
 const LIMIT = LIMIT_IDX > -1 ? parseInt(process.argv[LIMIT_IDX + 1], 10) : 0;
+
+// ⛔️ DEPRECATED-Guard: llama-8b ist nicht unsere CV-Methodik (Haiku-Batch, s. Header).
+if (!process.argv.includes("--i-know-this-is-deprecated")) {
+  console.error(
+    "⛔️  seed-cv-homepage.ts ist DEPRECATED (llama-8b statt Haiku 4.5).\n" +
+      "    Für CV-Generierung den Haiku-Batch-Pfad nutzen — siehe Datei-Header & docs/PIPELINE.md §A.2.\n" +
+      "    Wenn du WIRKLICH den alten llama-Pfad willst: Flag --i-know-this-is-deprecated anhängen."
+  );
+  process.exit(1);
+}
 
 const GROQ_KEYS = Object.entries(process.env)
   .filter(([k, v]) => k.startsWith("GROQ_API_KEY") && v)
