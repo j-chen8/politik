@@ -48,6 +48,38 @@ function clean(s: string): string {
 
 interface QA { idx: number; name: string; party: string | null; antwortSteller: string | null; antwortDatum: string | null; frage: string; antwort: string; }
 
+/**
+ * Sammelbeantwortung: „Die Fragen 4 bis 7 werden zusammen beantwortet." hängt
+ * den Antworttext nur an EINE Frage (meist die letzte der Gruppe). Die anderen
+ * Fragen der Gruppe bleiben sonst ohne Antwort. Hier übertragen wir die
+ * Sammelantwort (inkl. Steller/Datum) auf die leeren Geschwister-Fragen — der
+ * Antworttext beginnt selbst mit „Die Fragen X bis Y …", ist also selbsterklärend.
+ */
+function linkJointAnswers(qas: QA[]): void {
+  const byIdx = new Map(qas.map((q) => [q.idx, q]));
+  // „Die Fragen 4 bis 7 …", „Die Fragen 28 bis 30 …", „Die Fragen 6 und 7 …", „… 17, 18 und 19 …"
+  const JOINT = /Die Fragen\s+\d{1,3}[\s\S]{0,90}?beantwortet/i;
+  for (const q of qas) {
+    if (!q.antwort || q.antwort.length < 20) continue;
+    const head = q.antwort.slice(0, 160);
+    const jm = head.match(JOINT);
+    if (!jm) continue;
+    const nums = (jm[0].match(/\d{1,3}/g) || []).map(Number).filter((n) => n >= 1 && n <= 999);
+    if (nums.length < 2) continue;
+    const lo = Math.min(...nums), hi = Math.max(...nums);
+    if (hi - lo > 30) continue; // Sicherheits-Cap gegen Fehl-Matches
+    for (let i = lo; i <= hi; i++) {
+      if (i === q.idx) continue;
+      const sib = byIdx.get(i);
+      if (sib && (!sib.antwort || sib.antwort.trim().length < 5)) {
+        sib.antwort = q.antwort;
+        sib.antwortSteller = q.antwortSteller;
+        sib.antwortDatum = q.antwortDatum;
+      }
+    }
+  }
+}
+
 function parseDoc(fullText: string): QA[] {
   const out: QA[] = [];
   const marks: { idx: number; pos: number }[] = [];
@@ -80,6 +112,7 @@ function parseDoc(fullText: string): QA[] {
     out.push({ idx: marks[i].idx, name, party, antwortSteller, antwortDatum, frage, antwort });
     void afterHead;
   }
+  linkJointAnswers(out);
   return out;
 }
 
