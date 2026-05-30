@@ -18,6 +18,9 @@ const TIER_BADGE: Record<ParliamentOverview["tier"], { label: string; cls: strin
   stammdaten: { label: "bald", cls: "text-zinc-400 bg-zinc-100" },
 };
 
+/** Parlamente, die als „Neu" hervorgehoben werden (rot). Berlin = id 2. Bei Bedarf hier ergänzen/leeren. */
+const NEW_PARLIAMENT_IDS = new Set<number>([2]);
+
 /** Ziel je Parlament: dessen Übersichtsseite (Bundestag = die Landing). */
 function overviewHref(p: ParliamentOverview): string {
   if (p.type === "bundestag") return "/";
@@ -56,10 +59,17 @@ function Group({
                 {p.label}
               </span>
             </span>
-            <span
-              className={`shrink-0 text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}
-            >
-              {badge.label}
+            <span className="flex items-center gap-1 shrink-0">
+              {NEW_PARLIAMENT_IDS.has(p.id) && (
+                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-red-600 text-white">
+                  Neu
+                </span>
+              )}
+              <span
+                className={`text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}
+              >
+                {badge.label}
+              </span>
             </span>
           </div>
         );
@@ -122,6 +132,9 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
   const current = (isBerlin ? active.find((p) => p.id === 2) : undefined) ?? bund[0];
   const currentLabel = current?.label ?? "Bundestag";
   const currentId = current?.id ?? 0;
+  // „Neu"-Hinweis am Trigger: nur wenn ein als neu markiertes Parlament verfügbar ist,
+  // das NICHT das aktuelle ist (man ist also z.B. auf Bundestag → Berlin entdecken).
+  const hasNewElsewhere = active.some((p) => NEW_PARLIAMENT_IDS.has(p.id) && p.id !== currentId);
 
   return (
     <div ref={ref} className="relative">
@@ -133,6 +146,11 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
         className="flex items-center gap-1 text-[11px] font-medium uppercase tracking-wider text-muted hover:text-foreground transition-colors"
       >
         {currentLabel}
+        {hasNewElsewhere && (
+          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-red-600 text-white leading-none">
+            Neu
+          </span>
+        )}
         <ChevronDown
           className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
           strokeWidth={2.5}
