@@ -3,8 +3,9 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
+import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
 /**
@@ -28,6 +29,8 @@ export function SiteChrome({
 
 /* ── Site chrome ────────────────────────────────────────────── */
 
+// Bundestag = Default; die Labels/Struktur bleiben parlament-agnostisch (wie der
+// User es will), nur die hrefs werden im Berlin-Kontext auf Berlin-Routen gemappt.
 const PRIMARY_NAV = [
   { href: "/politiker", icon: Users, label: "Politiker" },
   { href: "/abstimmungen", icon: Vote, label: "Abstimmungen" },
@@ -45,11 +48,40 @@ const MORE_NAV = [
 
 const SEARCH_LINK = { href: "/suche", label: "Suche" };
 
+// Berlin-Pendants. Politiker = geteilte Liste mit ?parlament=2; Aktivitäten =
+// Drucksachen-Feed; Protokolle/Plenarsitzungen = Sitzungsliste.
+// Analyse/Glossar/Über haben (noch) keine Berlin-Variante — sie bleiben EINE
+// geteilte Seite, bekommen aber ?parlament=2 angehängt, damit useIsBerlin den
+// Kontext erkennt und die Nav im Berlin-Modus bleibt (Berlin → Über → Berlin).
+const PRIMARY_NAV_BERLIN = [
+  { href: "/politiker?parlament=2", icon: Users, label: "Politiker" },
+  { href: "/parlamente/berlin/abstimmungen", icon: Vote, label: "Abstimmungen" },
+  { href: "/parlamente/berlin/drucksachen", icon: Activity, label: "Aktivitäten" },
+  { href: "/parlamente/berlin/sitzungen", icon: Gavel, label: "Protokolle" },
+];
+
+const MORE_NAV_BERLIN = [
+  { href: "/parlamente/berlin/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
+  { href: "/parlamente/berlin/sitzungen", icon: CalendarDays, label: "Plenarsitzungen" },
+  { href: "/analyse?parlament=2", icon: BarChart3, label: "Analyse" },
+  { href: "/parlamente/berlin/methodik", icon: BookOpen, label: "Methodik" },
+  { href: "/glossar?parlament=2", icon: Library, label: "Glossar" },
+  { href: "/ueber?parlament=2", icon: Info, label: "Über" },
+];
+
+const SEARCH_LINK_BERLIN = { href: "/parlamente/berlin/suche", label: "Suche" };
+
 const navLinkClass =
   "flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-foreground transition-colors px-2.5 py-1.5 rounded-md hover:bg-zinc-100";
 
 function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
   const pathname = usePathname() || "/";
+  const isBerlin = useIsBerlin();
+  const primaryNav = isBerlin ? PRIMARY_NAV_BERLIN : PRIMARY_NAV;
+  const moreNav = isBerlin ? MORE_NAV_BERLIN : MORE_NAV;
+  const searchLink = isBerlin ? SEARCH_LINK_BERLIN : SEARCH_LINK;
+  // Logo/Home führt im Berlin-Kontext zur Berlin-Landing, sonst zur Bundestag-Landing.
+  const homeHref = isBerlin ? "/parlamente/berlin" : "/";
   const [moreOpen, setMoreOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
@@ -93,7 +125,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           {/* Logo + Parlament-Switcher */}
           <div className="flex items-center gap-2.5">
-            <Link href="/" className="flex items-center gap-2.5 group">
+            <Link href={homeHref} className="flex items-center gap-2.5 group">
               <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center transition-transform group-hover:scale-105">
                 <Radio className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
@@ -108,7 +140,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
 
           {/* Desktop-Navigation (≥ sm) */}
           <nav aria-label="Hauptnavigation" className="hidden sm:flex items-center gap-0.5">
-            {PRIMARY_NAV.map((item) => (
+            {primaryNav.map((item) => (
               <Link key={item.href} href={item.href} className={navLinkClass}>
                 <item.icon className="w-3.5 h-3.5" strokeWidth={2.25} />
                 <span>{item.label}</span>
@@ -135,7 +167,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
                   role="menu"
                   className="absolute left-0 top-full mt-1.5 min-w-[170px] rounded-lg border border-border-soft bg-white shadow-lg py-1"
                 >
-                  {MORE_NAV.map((item) => (
+                  {moreNav.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -151,16 +183,16 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
             </div>
 
             {/* Suche — eigenständig */}
-            <Link href={SEARCH_LINK.href} className={navLinkClass}>
+            <Link href={searchLink.href} className={navLinkClass}>
               <Search className="w-3.5 h-3.5" strokeWidth={2.25} />
-              <span>{SEARCH_LINK.label}</span>
+              <span>{searchLink.label}</span>
             </Link>
           </nav>
 
           {/* Mobile-Steuerung (< sm) */}
           <div className="flex sm:hidden items-center gap-0.5">
             <Link
-              href={SEARCH_LINK.href}
+              href={searchLink.href}
               aria-label="Suche"
               className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 transition-colors"
             >
@@ -190,7 +222,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
           {/* Kopfzeile — Logo links, Schließen rechts */}
           <div className="h-14 px-5 flex items-center justify-between border-b border-border-soft shrink-0">
             <Link
-              href="/"
+              href={homeHref}
               onClick={() => setMobileOpen(false)}
               className="flex items-center gap-2.5"
             >
@@ -221,7 +253,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               <ParliamentSwitcher parliaments={parliaments} />
             </div>
             <div className="my-2 border-t border-border-soft" />
-            {PRIMARY_NAV.map((item) => (
+            {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -233,7 +265,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               </Link>
             ))}
             <div className="my-2 border-t border-border-soft" />
-            {MORE_NAV.map((item) => (
+            {moreNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -245,12 +277,12 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               </Link>
             ))}
             <Link
-              href={SEARCH_LINK.href}
+              href={searchLink.href}
               onClick={() => setMobileOpen(false)}
               className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 transition-colors"
             >
               <Search className="w-5 h-5 text-muted" strokeWidth={2.25} />
-              {SEARCH_LINK.label}
+              {searchLink.label}
             </Link>
           </nav>
         </div>
@@ -260,29 +292,28 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
 }
 
 function LinearFooter() {
+  const isBerlin = useIsBerlin();
+  // Methodik hat eine eigene Berlin-Quelle; die übrigen (rechtlich/allgemein) sind global,
+  // behalten aber im Berlin-Kontext den Param, damit Nav/Logo auf Berlin bleiben.
+  const ctx = isBerlin ? "?parlament=2" : "";
+  const footerLinks = [
+    { href: isBerlin ? "/parlamente/berlin/methodik" : "/methodik", label: "Methodik" },
+    { href: `/ueber${ctx}`, label: "Über" },
+    { href: `/datenquellen${ctx}`, label: "Datenquellen" },
+    { href: `/foerderung${ctx}`, label: "Förderung" },
+    { href: `/impressum${ctx}`, label: "Impressum" },
+    { href: `/datenschutz${ctx}`, label: "Datenschutz" },
+  ];
   return (
     <footer className="border-t border-border-soft bg-zinc-50 py-10">
       <div className="max-w-6xl mx-auto px-5 flex items-center justify-center gap-4">
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted">
           <span>Keine offizielle Regierungsseite</span>
-          <Link href="/ueber" className="hover:text-foreground transition-colors">
-            Über
-          </Link>
-          <Link href="/methodik" className="hover:text-foreground transition-colors">
-            Methodik
-          </Link>
-          <Link href="/datenquellen" className="hover:text-foreground transition-colors">
-            Datenquellen
-          </Link>
-          <Link href="/foerderung" className="hover:text-foreground transition-colors">
-            Förderung
-          </Link>
-          <Link href="/impressum" className="hover:text-foreground transition-colors">
-            Impressum
-          </Link>
-          <Link href="/datenschutz" className="hover:text-foreground transition-colors">
-            Datenschutz
-          </Link>
+          {footerLinks.map((l) => (
+            <Link key={l.label} href={l.href} className="hover:text-foreground transition-colors">
+              {l.label}
+            </Link>
+          ))}
         </div>
       </div>
     </footer>

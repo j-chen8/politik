@@ -1,5 +1,7 @@
 import { getBerlinSitzungDetail, getBerlinSitzungNeighbors, type BerlinSitzungTop, type KeyFact } from "@/lib/db";
 import { BerlinOriginalSpeech } from "@/components/BerlinOriginalSpeech";
+import { HashDetailsScroller } from "@/components/HashDetailsScroller";
+import { stripBerlinSpeakerLead } from "@/lib/berlin-summary";
 import { resolveBerlinTonality } from "@/lib/berlin-reden-tonality";
 import { getClaudeGold, type ClaudeGoldEntry } from "@/lib/berlin-top-gold-claude";
 import { notFound } from "next/navigation";
@@ -652,6 +654,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
 
   return (
     <div className="page-wash">
+      <HashDetailsScroller />
       <div className="w-full max-w-6xl mx-auto px-5 pt-10 pb-24">
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
@@ -814,18 +817,19 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                         id={`rede-${t.marker}-${idx + 1}`}
                         className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 transition-colors"
                       >
+                        {/* Stabiler speech_id-Anker für Deep-Links aus der Suche (zusätzlich zum
+                            positionsbasierten li-Anker, den die RefAnchors-Superscripts nutzen). */}
+                        <span id={`rede-s-${sp.speechId}`} className="block scroll-mt-16" aria-hidden="true" />
                         <div className="flex items-baseline gap-2 flex-wrap mb-1">
                           <span className="num text-[10px] text-zinc-400 shrink-0">{idx + 1}</span>
-                          {sp.politicianId ? (
-                            <Link
-                              href={`/politiker/${sp.politicianId}`}
-                              className="text-[13.5px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
-                            >
-                              {sp.speakerName}
-                            </Link>
-                          ) : (
-                            <span className="text-[13.5px] font-medium text-zinc-950">{sp.speakerName}</span>
-                          )}
+                          {/* Alle Redner → namensbasierte Redner-Seite (auch Senator:innen ohne
+                              Profil); konsistent mit der Bundestag-Sitzungsseite. */}
+                          <Link
+                            href={`/parlamente/berlin/redner/${encodeURIComponent(sp.speakerName)}`}
+                            className="text-[13.5px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
+                          >
+                            {sp.speakerName}
+                          </Link>
                           {sp.speakerParty && (
                             <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700">
                               <span className={`w-1.5 h-1.5 rounded-full ${PARTY_COLOR[sp.speakerParty] ?? "bg-zinc-400"}`} />
@@ -852,7 +856,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                         </div>
                         {sp.zusammenfassung && (
                           <p className="text-[12.5px] text-zinc-600 leading-relaxed">
-                            {sp.zusammenfassung}
+                            {stripBerlinSpeakerLead(sp.zusammenfassung)}
                           </p>
                         )}
                         {sp.textChars > 50 && (

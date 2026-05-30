@@ -4740,6 +4740,8 @@ export interface BerlinSpeechItem {
     tonalitaet: string | null;         // 11-Enum
     zusammenfassung: string | null;    // 2-3 Sätze
     forderungen_count: number;         // Anzahl Forderungen (für UI-Stats)
+    forderungen: string[];             // Forderungen/Positionen (Volltext)
+    woertliche_zitate: string[];       // wörtliche Zitate aus der Rede
     framing_marker: string[];          // Berlin-Glossar-Frames
     quote_valid: number;               // Wieviele Zitate substring-valid
     quote_total: number;
@@ -4777,29 +4779,35 @@ function speechPreview(text: string, maxLen = 200): string {
   return (cut > maxLen * 0.6 ? t.slice(0, cut) : t.slice(0, maxLen)) + "…";
 }
 
-export function getBerlinSpeechesByPolitician(
-  politicianId: number,
-  limit = 100
-): BerlinSpeechesByPolitician {
+type BerlinSpeechRowDb = {
+  speech_id: string; wp: number; sitzung_nr: number; datum: string | null;
+  pdf_filename: string; lok_url: string;
+  speaker_role: string | null; speaker_ressort: string | null;
+  top_marker: string | null; top_titel: string | null; drucksache_nrn: string | null;
+  speech_type: string | null;
+  text: string; text_chars: number; interruptions: string | null;
+  analysis_reden_typ: string | null;
+  analysis_tonalitaet: string | null;
+  analysis_zusammenfassung: string | null;
+  analysis_forderungen_json: string | null;
+  analysis_woertliche_zitate_json: string | null;
+  analysis_framing_marker_json: string | null;
+  analysis_quote_valid: number | null;
+  analysis_quote_total: number | null;
+  analysis_self_check_json: string | null;
+};
+
+const EMPTY_BERLIN_SPEECHES: BerlinSpeechesByPolitician = {
+  items: [],
+  stats: { total: 0, debatte: 0, fragestunde_antwort: 0, fragestunde_frage: 0, persoenliche_erklaerung: 0, uncategorized: 0 },
+  total_chars: 0,
+};
+
+/** Berlin-Reden-Rows nach einem berlin_speeches-Spaltenfilter (politician_id ODER speaker_name). */
+function runBerlinSpeechesQuery(whereCol: "politician_id" | "speaker_name", value: number | string): BerlinSpeechRowDb[] {
   const db = getDb();
-  let rows: Array<{
-    speech_id: string; wp: number; sitzung_nr: number; datum: string | null;
-    pdf_filename: string; lok_url: string;
-    speaker_role: string | null; speaker_ressort: string | null;
-    top_marker: string | null; top_titel: string | null; drucksache_nrn: string | null;
-    speech_type: string | null;
-    text: string; text_chars: number; interruptions: string | null;
-    analysis_reden_typ: string | null;
-    analysis_tonalitaet: string | null;
-    analysis_zusammenfassung: string | null;
-    analysis_forderungen_json: string | null;
-    analysis_framing_marker_json: string | null;
-    analysis_quote_valid: number | null;
-    analysis_quote_total: number | null;
-    analysis_self_check_json: string | null;
-  }>;
   try {
-    rows = db.prepare(`
+    return db.prepare(`
       SELECT bs.speech_id, bs.wp, bs.sitzung_nr, bs.datum, bs.pdf_filename, bs.lok_url,
              bs.speaker_role, bs.speaker_ressort, bs.top_marker, bs.top_titel, bs.drucksache_nrn,
              bs.speech_type, bs.text, bs.text_chars, bs.interruptions,
@@ -4807,23 +4815,86 @@ export function getBerlinSpeechesByPolitician(
              bsa.tonalitaet AS analysis_tonalitaet,
              bsa.zusammenfassung_2_saetze AS analysis_zusammenfassung,
              bsa.forderungen_json AS analysis_forderungen_json,
+             bsa.woertliche_zitate_json AS analysis_woertliche_zitate_json,
              bsa.framing_marker_json AS analysis_framing_marker_json,
              bsa.quote_valid_count AS analysis_quote_valid,
              bsa.quote_total_count AS analysis_quote_total,
              bsa.neutralitaets_self_check_json AS analysis_self_check_json
         FROM berlin_speeches bs
         LEFT JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
-       WHERE bs.politician_id = ?
+       WHERE bs.${whereCol} = ?
          AND bs.is_praesidium = 0
        ORDER BY bs.datum DESC, bs.sitzung_nr DESC, bs.order_in_session DESC
-    `).all(politicianId) as typeof rows;
+    `).all(value) as BerlinSpeechRowDb[];
   } catch {
-    return {
-      items: [],
-      stats: { total: 0, debatte: 0, fragestunde_antwort: 0, fragestunde_frage: 0, persoenliche_erklaerung: 0, uncategorized: 0 },
-      total_chars: 0,
-    }; // berlin_speeches-Tabelle existiert nicht
+    return []; // berlin_speeches-Tabelle existiert nicht
   }
+}
+
+export function getBerlinSpeechesByPolitician(
+  politicianId: number,
+  limit = 100
+): BerlinSpeechesByPolitician {
+  return buildBerlinSpeechesResult(runBerlinSpeechesQuery("politician_id", politicianId), limit);
+}
+
+/** Wie getBerlinSpeechesByPolitician, aber per Sprecher-Name — deckt auch Senator:innen/
+ *  Regierungsmitglieder ohne politician_id ab (Basis für die namensbasierte Redner-Seite). */
+export function getBerlinSpeechesBySpeakerName(
+  speakerName: string,
+  limit = 100
+): BerlinSpeechesByPolitician {
+  return buildBerlinSpeechesResult(runBerlinSpeechesQuery("speaker_name", speakerName), limit);
+}
+
+/** Mappt Berlin-Drucksachen-Nummern (dok_nr) auf eine dbid für Detail-Links. Erste dbid je Nummer. */
+export function resolveBerlinDbidsByNr(nrs: string[]): Record<string, string> {
+  const unique = Array.from(new Set(nrs.filter(Boolean)));
+  if (unique.length === 0) return {};
+  const db = getDb();
+  try {
+    const placeholders = unique.map(() => "?").join(",");
+    const rows = db.prepare(
+      `SELECT dok_nr, MIN(dbid) AS dbid FROM berlin_documents WHERE dok_nr IN (${placeholders}) GROUP BY dok_nr`
+    ).all(...unique) as { dok_nr: string; dbid: string }[];
+    const map: Record<string, string> = {};
+    for (const r of rows) map[r.dok_nr] = r.dbid;
+    return map;
+  } catch {
+    return {};
+  }
+}
+
+/** Kopf-Metadaten für die Berlin-Redner-Seite: Partei/Rolle/Ressort + ggf. verknüpftes Profil. */
+export function getBerlinSpeakerMeta(speakerName: string): {
+  speakerName: string; party: string | null; role: string | null; ressort: string | null;
+  politicianId: number | null; redenTotal: number;
+} | null {
+  const db = getDb();
+  try {
+    const row = db.prepare(`
+      SELECT speaker_name, speaker_party, speaker_role, speaker_ressort, politician_id
+        FROM berlin_speeches WHERE speaker_name = ? AND is_praesidium = 0
+       ORDER BY datum DESC LIMIT 1
+    `).get(speakerName) as {
+      speaker_name: string; speaker_party: string | null; speaker_role: string | null;
+      speaker_ressort: string | null; politician_id: number | null;
+    } | undefined;
+    if (!row) return null;
+    const total = (db.prepare(
+      `SELECT COUNT(*) c FROM berlin_speeches WHERE speaker_name = ? AND is_praesidium = 0`
+    ).get(speakerName) as { c: number }).c;
+    return {
+      speakerName: row.speaker_name, party: row.speaker_party, role: row.speaker_role,
+      ressort: row.speaker_ressort, politicianId: row.politician_id, redenTotal: total,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function buildBerlinSpeechesResult(rows: BerlinSpeechRowDb[], limit: number): BerlinSpeechesByPolitician {
+  if (rows.length === 0) return EMPTY_BERLIN_SPEECHES;
 
   const stats: BerlinSpeechStats = {
     total: rows.length,
@@ -4857,13 +4928,9 @@ export function getBerlinSpeechesByPolitician(
     // LLM-Analyse parsen (falls vorhanden)
     let analysis: BerlinSpeechItem["analysis"] = null;
     if (r.analysis_tonalitaet || r.analysis_zusammenfassung) {
-      let forderungenCount = 0;
-      if (r.analysis_forderungen_json) {
-        try {
-          const arr = JSON.parse(r.analysis_forderungen_json);
-          if (Array.isArray(arr)) forderungenCount = arr.length;
-        } catch { /* keep 0 */ }
-      }
+      const forderungen = safeJsonArray(r.analysis_forderungen_json);
+      const woertlicheZitate = safeJsonArray(r.analysis_woertliche_zitate_json);
+      const forderungenCount = forderungen.length;
       let framingMarker: string[] = [];
       if (r.analysis_framing_marker_json) {
         try {
@@ -4883,6 +4950,8 @@ export function getBerlinSpeechesByPolitician(
         tonalitaet: r.analysis_tonalitaet,
         zusammenfassung: r.analysis_zusammenfassung,
         forderungen_count: forderungenCount,
+        forderungen,
+        woertliche_zitate: woertlicheZitate,
         framing_marker: framingMarker,
         quote_valid: r.analysis_quote_valid ?? 0,
         quote_total: r.analysis_quote_total ?? 0,
@@ -5734,25 +5803,30 @@ export interface BerlinDsIndexResult {
 export function listBerlinDrucksachenForIndex(opts: {
   klasse?: string;
   year?: string;
+  fraktion?: string;
   offset?: number;
   limit?: number;
 }): BerlinDsIndexResult {
   const db = getDb();
-  const { klasse, year, offset = 0, limit = 50 } = opts;
+  const { klasse, year, fraktion, offset = 0, limit = 50 } = opts;
   try {
     const yearCond = year ? "AND substr(d.dok_datum,1,4) = @year" : "";
     const klasseCond = klasse ? "AND a.klasse = @klasse" : "";
+    const fraktionCond = fraktion ? "AND a.fraktion = @fraktion" : "";
     const whereParams: Record<string, string> = {};
     if (year) whereParams.year = year;
     if (klasse) whereParams.klasse = klasse;
+    if (fraktion) whereParams.fraktion = fraktion;
 
     const rows = db.prepare(`
-      SELECT d.dbid, d.dok_nr AS dokNr, d.titel, d.dok_datum AS datum,
+      SELECT d.dbid, d.dok_nr AS dokNr,
+             COALESCE(NULLIF(TRIM(d.titel),''), NULLIF(TRIM(d.abstract),''), a.derived_titel) AS titel,
+             d.dok_datum AS datum,
              a.klasse, a.fraktion, a.einbringer, a.zusammenfassung,
              a.tonalitaet, a.antwort_charakter AS antwortCharakter
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
       ORDER BY d.dok_datum DESC, d.dbid DESC
       LIMIT @limit OFFSET @offset
     `).all({ ...whereParams, offset, limit }) as BerlinDsIndexEntry[];
@@ -5761,30 +5835,143 @@ export function listBerlinDrucksachenForIndex(opts: {
       SELECT COUNT(*) c
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
     `).get(whereParams) as { c: number }).c;
 
     const klasseFacets = db.prepare(`
       SELECT a.klasse, COUNT(*) count
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond}
       GROUP BY a.klasse ORDER BY count DESC
-    `).all(year ? { year } : {}) as { klasse: string; count: number }[];
+    `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}) }) as { klasse: string; count: number }[];
 
     const years = (db.prepare(`
       SELECT DISTINCT substr(d.dok_datum,1,4) y
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond}
+      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond}
       ORDER BY y DESC
-    `).all(klasse ? { klasse } : {}) as { y: string }[])
+    `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}) }) as { y: string }[])
       .map((r) => r.y)
       .filter((y) => y && y.length === 4);
 
     return { rows, total, klasseFacets, years };
   } catch {
     return { rows: [], total: 0, klasseFacets: [], years: [] };
+  }
+}
+
+export interface BerlinQaItem {
+  dbid: string;
+  dokNr: string | null;
+  datum: string | null;
+  titel: string | null;
+  askerName: string | null;
+  askerParty: string | null;
+  askerPoliticianId: number | null;
+  askerMore: number;            // weitere Mit-Fragende (für „+N")
+  frage: string[];
+  antwort: string[];
+  zusammenfassung: string | null;
+}
+
+/**
+ * Schriftliche Anfragen Berlins als Frage→Antwort-Liste (paginiert, optional gesucht).
+ * Anders als beim Bundestag braucht es KEINE Extraktion: jede anfrage_antwort-Drucksache
+ * ist bereits ein Q&A-Dokument (Frage-Bullets + Senatsantwort-Bullets + Urheber:in).
+ */
+export function getBerlinQaList(
+  q: string,
+  page: number,
+  perPage = 30,
+  partei: string | null = null,
+  sort: "neu" | "alt" = "neu"
+): { items: BerlinQaItem[]; total: number } {
+  const db = getDb();
+  try {
+    const like = `%${q.replace(/[%_]/g, "")}%`;
+    const search = q
+      ? `AND (a.zusammenfassung LIKE @like OR a.kerninhalt_frage_json LIKE @like OR a.kerninhalt_antwort_json LIKE @like OR bd.dok_nr LIKE @like OR a.derived_titel LIKE @like OR bd.titel LIKE @like)`
+      : "";
+    // Partei-Filter: Dokument zählt, wenn eine:r der Urheber:innen dieser Partei angehört.
+    const parteiFilter = partei
+      ? `AND EXISTS (
+           SELECT 1 FROM berlin_document_persons bdp
+           JOIN politicians p ON p.id = bdp.politician_id
+           LEFT JOIN parties pa ON p.party_id = pa.id
+           WHERE bdp.dbid = a.dbid AND bdp.role = 'urheber' AND pa.label = @partei
+         )`
+      : "";
+    const baseWhere = `WHERE a.klasse='anfrage_antwort' AND a.error_type IS NULL ${search} ${parteiFilter}`;
+    const filterParams: Record<string, unknown> = {};
+    if (q) filterParams.like = like;
+    if (partei) filterParams.partei = partei;
+    const countStmt = db.prepare(
+      `SELECT COUNT(*) c FROM berlin_drucksachen_analyses a JOIN berlin_documents bd ON bd.dbid=a.dbid ${baseWhere}`
+    );
+    const total = ((Object.keys(filterParams).length ? countStmt.get(filterParams) : countStmt.get()) as { c: number }).c;
+
+    const dir = sort === "alt" ? "ASC" : "DESC";
+    const params: Record<string, unknown> = { ...filterParams, lim: perPage, off: (page - 1) * perPage };
+    const rows = db.prepare(`
+      SELECT a.dbid, bd.dok_nr AS dokNr, bd.dok_datum AS datum,
+             COALESCE(NULLIF(TRIM(bd.titel),''), a.derived_titel) AS titel,
+             a.kerninhalt_frage_json, a.kerninhalt_antwort_json, a.zusammenfassung
+      FROM berlin_drucksachen_analyses a
+      JOIN berlin_documents bd ON bd.dbid = a.dbid
+      ${baseWhere}
+      ORDER BY bd.dok_datum ${dir}, bd.dbid ${dir}
+      LIMIT @lim OFFSET @off
+    `).all(params) as Array<{
+      dbid: string; dokNr: string | null; datum: string | null; titel: string | null;
+      kerninhalt_frage_json: string | null; kerninhalt_antwort_json: string | null; zusammenfassung: string | null;
+    }>;
+
+    const askerStmt = db.prepare(`
+      SELECT bdp.politician_id, p.first_name, p.last_name, pa.label AS party_label
+      FROM berlin_document_persons bdp
+      JOIN politicians p ON p.id = bdp.politician_id
+      LEFT JOIN parties pa ON p.party_id = pa.id
+      WHERE bdp.dbid = ? AND bdp.role = 'urheber'
+    `);
+    const items: BerlinQaItem[] = rows.map((r) => {
+      const askers = askerStmt.all(r.dbid) as Array<{ politician_id: number; first_name: string; last_name: string; party_label: string | null }>;
+      const a0 = askers[0];
+      return {
+        dbid: r.dbid, dokNr: r.dokNr, datum: r.datum, titel: r.titel,
+        askerName: a0 ? `${a0.first_name} ${a0.last_name}`.trim() : null,
+        askerParty: a0?.party_label ?? null,
+        askerPoliticianId: a0?.politician_id ?? null,
+        askerMore: Math.max(0, askers.length - 1),
+        frage: safeJsonArray(r.kerninhalt_frage_json),
+        antwort: safeJsonArray(r.kerninhalt_antwort_json),
+        zusammenfassung: r.zusammenfassung,
+      };
+    });
+    return { items, total };
+  } catch {
+    return { items: [], total: 0 };
+  }
+}
+
+/** Partei-Optionen für den Filter auf /fragen (nur Parteien, die als Urheber:in von Anfragen auftreten). */
+export function getBerlinQaParties(): Array<{ party: string; count: number }> {
+  const db = getDb();
+  try {
+    return db.prepare(`
+      SELECT pa.label AS party, COUNT(DISTINCT a.dbid) AS count
+      FROM berlin_drucksachen_analyses a
+      JOIN berlin_document_persons bdp ON bdp.dbid = a.dbid AND bdp.role = 'urheber'
+      JOIN politicians p ON p.id = bdp.politician_id
+      JOIN parties pa ON p.party_id = pa.id
+      WHERE a.klasse = 'anfrage_antwort' AND a.error_type IS NULL
+        AND pa.label IS NOT NULL AND TRIM(pa.label) <> ''
+      GROUP BY pa.label
+      ORDER BY count DESC
+    `).all() as Array<{ party: string; count: number }>;
+  } catch {
+    return [];
   }
 }
 
@@ -5807,7 +5994,8 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
     row = db.prepare(`
       SELECT
         d.dbid, a.klasse, d.dok_typ_label, d.dok_art_label, d.dok_nr, d.dok_datum AS dok_datum,
-        d.titel, d.vorgang_id, v.titel AS vorgang_titel, d.lok_url, d.seitenbereich, v.vsys_label AS sachgebiet,
+        COALESCE(NULLIF(TRIM(d.titel),''), NULLIF(TRIM(d.abstract),''), a.derived_titel) AS titel,
+        d.vorgang_id, v.titel AS vorgang_titel, d.lok_url, d.seitenbereich, v.vsys_label AS sachgebiet,
         t.pages, t.chars,
         a.zusammenfassung, a.thema_json, a.tonalitaet, a.antwort_charakter,
         a.kerninhalt_json, a.kerninhalt_frage_json, a.kerninhalt_antwort_json,

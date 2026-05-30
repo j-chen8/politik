@@ -98,6 +98,28 @@ function fraktionColor(f: string | null): string {
   return "bg-zinc-100 text-zinc-700";
 }
 
+// Dunkle Hex-Farbe je Fraktion für den Dokument-Kachel-Gradienten (weiße Schrift lesbar).
+function berlinPartyColor(f: string | null | undefined): string {
+  if (!f) return "#1a3e72";
+  if (f.includes("CDU")) return "#18181b";
+  if (f.includes("SPD")) return "#c2102a";
+  if (f.includes("GRÜNE")) return "#15803d";
+  if (f.includes("LINKE")) return "#a3195b";
+  if (f.includes("AfD")) return "#0a4d8c";
+  if (f.includes("FDP")) return "#a16207";
+  return "#1a3e72";
+}
+
+// Zweizeilige Kachel-Überschrift je Drucksachen-Klasse.
+const COVER_LINES: Record<string, [string, string | undefined]> = {
+  anfrage_antwort: ["SCHRIFTL.", "ANFRAGE"],
+  antrag: ["ANTRAG", undefined],
+  gesetzentwurf: ["GESETZ-", "ENTWURF"],
+  vorlage_senat: ["SENATS-", "VORLAGE"],
+  beschlussempfehlung: ["BESCHLUSS-", "EMPFEHLUNG"],
+  beschlussempfehlung_regex: ["BESCHLUSS-", "EMPFEHLUNG"],
+};
+
 export default async function BerlinDrucksacheDetailPage({ params }: Props) {
   const { dbid } = await params;
   const ds = getBerlinDrucksacheDetail(dbid);
@@ -119,94 +141,122 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
   }
   const fraktionList = Array.from(fraktionCounts.entries()).sort((a, b) => b[1] - a[1]);
 
+  const cover = COVER_LINES[ds.klasse] ?? [klasseLabel.toUpperCase(), undefined];
+  const coverColor = berlinPartyColor(ds.fraktion);
+
   return (
     <main className="page-wash min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-5 py-8">
         {/* Back-Link */}
         <Link
-          href="/parlamente/berlin"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
+          href="/parlamente/berlin/drucksachen"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-zinc-950 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
-          Berlin-Übersicht
+          Aktivitäten
         </Link>
 
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-baseline gap-3 mb-3 flex-wrap">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
-              {klasseLabel}
-            </span>
-            {ds.dokNr && (
-              <span className="num text-[12px] text-zinc-400">Drucksache {ds.dokNr}</span>
-            )}
-            {datumFormatted && (
-              <span className="num text-[12px] text-zinc-400">· {datumFormatted}</span>
-            )}
+        {/* HERO — Dokument-Kachel + Titel-Block (wie Bundestag) */}
+        <div className="fade-in-up flex flex-col sm:grid sm:grid-cols-[170px_1fr] gap-6 sm:gap-8 mb-10">
+          {/* Stilisierte Dokument-Kachel */}
+          <div
+            className="rounded-xl border-2 border-zinc-900 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
+            style={{ background: `linear-gradient(135deg, ${coverColor} 0%, ${coverColor}cc 60%, #18181b 100%)` }}
+          >
+            <div className="font-bold uppercase tracking-tight leading-[0.95]">
+              <div className={cover[0].length > 10 ? "text-[15px]" : "text-[20px]"}>{cover[0]}</div>
+              {cover[1] && (
+                <div className={cover[1].length > 11 ? "text-[14px] mt-0.5" : "text-[19px] mt-0.5"}>{cover[1]}</div>
+              )}
+            </div>
+            <div className="num font-mono tracking-tight text-center">
+              <div className="text-[10px] font-medium uppercase tracking-wider opacity-70 mb-1">
+                <span title="Drucksachen-Nummer: offizielles Aktenzeichen (Wahlperiode/laufende Nummer).">Drs.</span>
+              </div>
+              <div className="text-[22px] font-bold leading-none">{ds.dokNr ?? "—"}</div>
+            </div>
+            <div className="text-[10px] font-medium uppercase tracking-wider opacity-80 text-right">
+              {ds.pages ? `${ds.pages} S.` : ""}
+            </div>
           </div>
 
-          {ds.titel && (
-            <h1 className="text-[24px] font-medium text-zinc-950 leading-tight mb-3">
-              {ds.titel}
+          {/* Titel + Eigenschaften */}
+          <div className="flex flex-col min-w-0">
+            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2 flex items-baseline gap-1.5 flex-wrap">
+              Abgeordnetenhaus Berlin
+              <span className="text-zinc-300">·</span>
+              <span>19. Wahlperiode</span>
+              <span className="text-zinc-300">·</span>
+              <span className="text-zinc-700 normal-case font-normal tracking-normal">{klasseLabel}</span>
+              {datumFormatted && (
+                <>
+                  <span className="text-zinc-300">·</span>
+                  <span className="text-zinc-700 normal-case font-normal tracking-normal num">{datumFormatted}</span>
+                </>
+              )}
+            </div>
+
+            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 leading-[1.15] mb-4 break-words hyphens-auto">
+              {ds.titel ?? klasseLabel}
             </h1>
-          )}
 
-          {/* Badges: Fraktion / Senatsverwaltung / Bezirk / Tonality */}
-          <div className="flex flex-wrap items-center gap-2 mt-4">
-            {ds.fraktion && (
-              <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-medium ${fraktionColor(ds.fraktion)}`}>
-                {ds.fraktion}
-              </span>
+            {/* Träger */}
+            {(ds.fraktion || ds.einbringer) && (
+              <div className="flex items-center gap-3 text-[13px] mb-4 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 text-zinc-700">
+                  <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: coverColor }} />
+                  <span className="font-medium">{ds.fraktion ?? ds.einbringer}</span>
+                  <span className="text-zinc-400">
+                    {ds.klasse === "anfrage_antwort" ? "fragt" : ds.klasse === "vorlage_senat" ? "vorgelegt" : "eingebracht"}
+                  </span>
+                </span>
+              </div>
             )}
-            {ds.einbringer && !ds.fraktion && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-medium bg-zinc-100 text-zinc-700">
-                Einbringer: {ds.einbringer}
-              </span>
-            )}
-            {ds.senatsverwaltung && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">
-                SenV {ds.senatsverwaltung}
-              </span>
-            )}
-            {ds.bezirkBezug && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">
-                Bezirk: {ds.bezirkBezug}
-              </span>
-            )}
-            {ds.adressat && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">
-                Adressat: {ds.adressat}
-              </span>
-            )}
-            {tonCfg && (
-              <span
-                className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-medium"
-                style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
-                title={tonCfg.desc}
+
+            {/* Chips: Tonalität + Senatsverwaltung / Bezirk / Adressat + Themen */}
+            <div className="flex items-center gap-2 flex-wrap">
+              {tonCfg && (
+                <span
+                  className="px-2 py-1 rounded text-[11px] font-medium"
+                  style={{ color: tonCfg.color, backgroundColor: tonCfg.bg }}
+                  title={tonCfg.desc}
+                >
+                  {tonCfg.label}
+                </span>
+              )}
+              {ds.senatsverwaltung && (
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">SenV {ds.senatsverwaltung}</span>
+              )}
+              {ds.bezirkBezug && (
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">Bezirk: {ds.bezirkBezug}</span>
+              )}
+              {ds.adressat && (
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">Adressat: {ds.adressat}</span>
+              )}
+              {ds.thema.map((t) => (
+                <span key={t} className="px-2 py-1 rounded text-[11px] font-medium text-zinc-700 bg-zinc-100">{t}</span>
+              ))}
+            </div>
+
+            {/* PDF-Link */}
+            {ds.lokUrl && (
+              <a
+                href={ds.lokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-blue-700 hover:text-blue-900 px-2.5 py-1 rounded-md border border-blue-200 hover:border-blue-300 bg-blue-50 hover:bg-blue-100 transition-colors w-fit"
               >
-                {tonCfg.label}
-              </span>
+                <FileText className="w-3.5 h-3.5" strokeWidth={2.25} />
+                Original-PDF{ds.pages ? ` (${ds.pages} S.)` : ""}
+                <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
+              </a>
             )}
           </div>
-
-          {/* PDF-Link */}
-          {ds.lokUrl && (
-            <a
-              href={ds.lokUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 mt-4 text-[12px] text-zinc-600 hover:text-zinc-950 transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" strokeWidth={2.25} />
-              Original-PDF{ds.pages ? ` (${ds.pages} S.)` : ""}
-              <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
-            </a>
-          )}
         </div>
 
         {/* Zusammenfassung */}
         {ds.zusammenfassung && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               Zusammenfassung
             </h2>
@@ -218,7 +268,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Kerninhalt — anfrage_antwort */}
         {ds.klasse === "anfrage_antwort" && (ds.kerninhaltFrage || ds.kerninhaltAntwort) && (
-          <section className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             {ds.kerninhaltFrage && ds.kerninhaltFrage.length > 0 && (
               <div>
                 <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
@@ -258,7 +308,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Kerninhalt — antrag / vorlage_senat / beschlussempfehlung */}
         {ds.klasse !== "anfrage_antwort" && ds.kerninhalt && ds.kerninhalt.length > 0 && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               {ds.klasse === "antrag" ? "Konkrete Forderungen"
                 : ds.klasse === "beschlussempfehlung" ? "Empfohlene Änderungen / Auflagen"
@@ -279,7 +329,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Gesetzentwurf-spezifisch: regelung / begruendung / auswirkung / betroffene */}
         {ds.klasse === "gesetzentwurf" && (
-          <section className="mb-8 space-y-6">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6 space-y-6">
             {ds.regelung && (
               <div>
                 <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">Was wird geregelt?</h2>
@@ -307,28 +357,9 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* Themen-Tags */}
-        {ds.thema.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-              Themen
-            </h2>
-            <div className="flex flex-wrap gap-1.5">
-              {ds.thema.map((t) => (
-                <span
-                  key={t}
-                  className="inline-flex items-center px-2 py-0.5 rounded text-[11px] text-zinc-700 bg-zinc-100"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* Plenarbehandlungen — wann + wo wurde diese Drucksache debattiert? */}
         {plenarbehandlungen.length > 0 && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
               <MessageCircle className="w-3 h-3" strokeWidth={2.25} />
               Plenarbehandlung{plenarbehandlungen.length > 1 ? "en" : ""}
@@ -368,7 +399,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Plenum-Abstimmungen */}
         {votes.length > 0 && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               Abstimmung{votes.length > 1 ? "en" : ""} im Plenum
             </h2>
@@ -471,7 +502,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Mitzeichner */}
         {mitzeichner.length > 0 && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               Beteiligte Abgeordnete ({mitzeichner.length})
             </h2>
@@ -511,7 +542,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Beschlussempfehlung — LLM-Klasse mit Ausschuss-Haltung-Pill */}
         {ds.klasse === "beschlussempfehlung" && ds.tonalitaet && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               Ausschuss-Empfehlung
             </h2>
@@ -541,7 +572,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Beschlussempfehlung-Regex Legacy (kein LLM-Output) — Fallback bis Batch durch ist */}
         {ds.klasse === "beschlussempfehlung_regex" && (
-          <section className="mb-8">
+          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
             <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
               Outcome (Regex-Label)
             </h2>

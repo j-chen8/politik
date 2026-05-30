@@ -20,6 +20,7 @@ import {
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
 import { resolveBerlinTonality } from "@/lib/berlin-reden-tonality";
+import { stripBerlinSpeakerLead } from "@/lib/berlin-summary";
 import { TagInfoPopover } from "@/components/TagInfoPopover";
 import { TonalityBadge, DrucksacheTonalityBadge } from "@/components/TonalityBadge";
 import { MediaAppearancesList } from "@/components/MediaAppearancesList";
@@ -30,12 +31,12 @@ import {
   AlertCircle,
   ChevronDown,
 } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 
 interface Props {
   params: Promise<{ id: string }>;
-  searchParams?: Promise<{ orig?: string }>;
+  searchParams?: Promise<{ orig?: string; parlament?: string }>;
 }
 
 /**
@@ -126,6 +127,17 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const dbMandates = getMandatesForPoliticianDb(politicianId);
   const bundestagMandate = dbMandates.find((m) => m.parliament_type === "bundestag");
   const primaryMandate = bundestagMandate || dbMandates[0];
+
+  // Geteilte Route /politiker/[id]: reine Berlin-MdL bekommen ?parlament=2, damit die
+  // Nav im Berlin-Kontext bleibt (sonst fällt useIsBerlin auf Bundestag zurück). Greift
+  // auch bei Direktaufruf; Loop-Schutz via Param-Check. Dual-Mandat (auch Bundestag) → Bundestag.
+  const isBerlinOnly = !bundestagMandate && dbMandates.some((m) => m.parliament_label === "Berlin");
+  if (isBerlinOnly && sp.parlament !== "2") {
+    const qs = new URLSearchParams();
+    if (showOriginal) qs.set("orig", "1");
+    qs.set("parlament", "2");
+    redirect(`/politiker/${politicianId}?${qs.toString()}`);
+  }
 
   const notes = getNotesForPolitician(politicianId);
   const speechInfo = getSpeechSummaryInfo(politicianId);
@@ -629,7 +641,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {item.sitzung && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          <span>Sitzung {item.sitzung}</span>
+                          <Link
+                            href={`/protokolle/sitzung/${item.sitzung}`}
+                            className="text-[#1a3e72] hover:underline underline-offset-2 transition-colors"
+                          >
+                            Sitzung {item.sitzung}
+                          </Link>
                         </>
                       )}
                       {item.page_start !== null && (
@@ -704,9 +721,6 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               {berlinReden.stats.persoenliche_erklaerung > 0 && (
                 <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.persoenliche_erklaerung}</span> Pers. Erkl.</span>
               )}
-              <span className="text-zinc-400 num">
-                Ø {Math.round(berlinReden.total_chars / berlinReden.stats.total).toLocaleString("de-DE")} Z./Rede
-              </span>
             </div>
             {/* Transparenz-Hinweis: KI-Analyse-Status */}
             <p className="text-[11px] text-zinc-500 mb-4 italic">
@@ -739,7 +753,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {/* Bevorzugt KI-Zusammenfassung; Fallback Volltext-Preview */}
                       {it.analysis?.zusammenfassung ? (
                         <p className="text-[12.5px] text-zinc-700 leading-relaxed mb-1.5 line-clamp-3">
-                          {it.analysis.zusammenfassung}
+                          {stripBerlinSpeakerLead(it.analysis.zusammenfassung)}
                         </p>
                       ) : it.text_preview ? (
                         <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-1.5 line-clamp-2">
@@ -789,19 +803,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                             <span className="text-zinc-200">·</span>
                           </>
                         )}
-                        <span>Sitzung {it.sitzung_nr}</span>
-                        <span className="text-zinc-200">·</span>
-                        <span title={`${it.text_chars.toLocaleString("de-DE")} Zeichen`}>
-                          {it.text_chars >= 1000 ? `${(it.text_chars / 1000).toFixed(1)}k Z.` : `${it.text_chars} Z.`}
-                        </span>
-                        {it.interruption_count > 0 && (
-                          <>
-                            <span className="text-zinc-200">·</span>
-                            <span title="Beifall, Zwischenrufe und sonstige Reaktionen">
-                              {`${it.interruption_count} Reaktion${it.interruption_count === 1 ? "" : "en"}`}
-                            </span>
-                          </>
-                        )}
+                        <Link
+                          href={`/parlamente/berlin/sitzung/${it.sitzung_nr}#rede-s-${it.speech_id}`}
+                          className="text-blue-700 hover:underline underline-offset-2 transition-colors"
+                        >
+                          Sitzung {it.sitzung_nr}
+                        </Link>
                         {drsShort.length > 0 && (
                           <>
                             <span className="text-zinc-200">·</span>

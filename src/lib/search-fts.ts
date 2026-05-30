@@ -52,6 +52,7 @@ export function ensureSearchFTS(db: Db): void {
     CREATE VIRTUAL TABLE IF NOT EXISTS ${BERLIN_DRUCKSACHEN_FTS_TABLE} USING fts5(
       dbid UNINDEXED,
       klasse UNINDEXED,
+      dok_nr,
       titel,
       zusammenfassung,
       kerninhalt,
@@ -92,6 +93,19 @@ export function ensureSearchFTS(db: Db): void {
   // Auto-Sync via Triggers — persistent in DB, läuft auch nach Server-Restart.
   // Bei INSERT/UPDATE/DELETE in den Source-Tabellen wird FTS automatisch aktuell gehalten.
   ensureSyncTriggers(db);
+}
+
+/**
+ * SQL-Ausdruck für die Berlin-Reden-FTS-snippet-Spalte: nutzt die KI-Zusammenfassung,
+ * strippt aber die führende Redner-Bezeichnung „<Name> (<Ressort/Partei>) " — sonst
+ * matchen Ressort-Titel (z.B. „Bauen und Wohnen" bei Senator Gaebler, „Umwelt, Verkehr,
+ * Klimaschutz" bei StS Tidow) fälschlich als Redeinhalt. Cut bis zum ersten „) " im
+ * ersten 90-Zeichen-Fenster.
+ */
+function berlinSnippetExpr(sumCol: string): string {
+  return `CASE WHEN instr(substr(${sumCol}, 1, 90), ') ') > 0
+             THEN ltrim(substr(${sumCol}, instr(${sumCol}, ') ') + 2), ' ,;:.-')
+             ELSE ${sumCol} END`;
 }
 
 function ensureSyncTriggers(db: Db): void {
@@ -190,12 +204,14 @@ function ensureSyncTriggers(db: Db): void {
       DELETE FROM ${BERLIN_SPEECH_FTS_TABLE} WHERE speech_id = new.speech_id;
       INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
       SELECT
-        COALESCE(new.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+        ${berlinSnippetExpr("new.zusammenfassung_2_saetze")},
         bs.speech_id,
         bs.politician_id,
         bs.datum
       FROM berlin_speeches bs
-      WHERE bs.speech_id = new.speech_id;
+      WHERE bs.speech_id = new.speech_id
+        AND bs.is_praesidium = 0
+        AND new.zusammenfassung_2_saetze IS NOT NULL AND new.zusammenfassung_2_saetze <> '';
     END;
 
     CREATE TRIGGER IF NOT EXISTS berlin_speech_analyses_au
@@ -204,12 +220,14 @@ function ensureSyncTriggers(db: Db): void {
       DELETE FROM ${BERLIN_SPEECH_FTS_TABLE} WHERE speech_id = new.speech_id;
       INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
       SELECT
-        COALESCE(new.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+        ${berlinSnippetExpr("new.zusammenfassung_2_saetze")},
         bs.speech_id,
         bs.politician_id,
         bs.datum
       FROM berlin_speeches bs
-      WHERE bs.speech_id = new.speech_id;
+      WHERE bs.speech_id = new.speech_id
+        AND bs.is_praesidium = 0
+        AND new.zusammenfassung_2_saetze IS NOT NULL AND new.zusammenfassung_2_saetze <> '';
     END;
 
     -- berlin_drucksachen_analyses → berlin_drucksachen_fts
@@ -218,10 +236,11 @@ function ensureSyncTriggers(db: Db): void {
     AFTER INSERT ON berlin_drucksachen_analyses
     BEGIN
       DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = new.dbid;
-      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, dok_nr, titel, zusammenfassung, kerninhalt, thema_tags)
       SELECT
         new.dbid, new.klasse,
-        COALESCE((SELECT titel FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE((SELECT dok_nr FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE(NULLIF(TRIM((SELECT titel FROM berlin_documents WHERE dbid=new.dbid)),''), new.derived_titel, ''),
         COALESCE(new.zusammenfassung, ''),
         COALESCE(REPLACE(REPLACE(REPLACE(COALESCE(new.kerninhalt_json, '') || ' · ' || COALESCE(new.kerninhalt_frage_json, '') || ' · ' || COALESCE(new.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '), ''),
         COALESCE(REPLACE(REPLACE(REPLACE(new.thema_json, '[', ''), ']', ''), '","', ' · '), '')
@@ -232,10 +251,11 @@ function ensureSyncTriggers(db: Db): void {
     AFTER UPDATE OF zusammenfassung, kerninhalt_json, kerninhalt_frage_json, kerninhalt_antwort_json, thema_json, error_type ON berlin_drucksachen_analyses
     BEGIN
       DELETE FROM ${BERLIN_DRUCKSACHEN_FTS_TABLE} WHERE dbid = new.dbid;
-      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+      INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, dok_nr, titel, zusammenfassung, kerninhalt, thema_tags)
       SELECT
         new.dbid, new.klasse,
-        COALESCE((SELECT titel FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE((SELECT dok_nr FROM berlin_documents WHERE dbid=new.dbid), ''),
+        COALESCE(NULLIF(TRIM((SELECT titel FROM berlin_documents WHERE dbid=new.dbid)),''), new.derived_titel, ''),
         COALESCE(new.zusammenfassung, ''),
         COALESCE(REPLACE(REPLACE(REPLACE(COALESCE(new.kerninhalt_json, '') || ' · ' || COALESCE(new.kerninhalt_frage_json, '') || ' · ' || COALESCE(new.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '), ''),
         COALESCE(REPLACE(REPLACE(REPLACE(new.thema_json, '[', ''), ']', ''), '","', ' · '), '')
@@ -286,27 +306,31 @@ function buildDrucksachenFTS(db: Db): void {
 function buildBerlinSpeechFTS(db: Db): void {
   // Berlin-Reden: zusammenfassung aus berlin_speech_analyses (LLM-Output) joined mit politician_id
   db.exec(`
+    -- Nur echte Inhalts-Reden: mit KI-Zusammenfassung UND kein Präsidium (Verfahren).
+    -- Genau die Reden, die die Sitzungs-Detailseite rendert → jeder Suchtreffer ist
+    -- ankerbar, und Präsidiums-Rauschen („Ich rufe TOP X auf", Überweisungen) fliegt raus.
     INSERT INTO ${BERLIN_SPEECH_FTS_TABLE} (snippet, speech_id, politician_id, datum)
     SELECT
-      COALESCE(bsa.zusammenfassung_2_saetze, substr(bs.text, 1, 400)),
+      ${berlinSnippetExpr("bsa.zusammenfassung_2_saetze")},
       bs.speech_id,
       bs.politician_id,
       bs.datum
     FROM berlin_speeches bs
-    LEFT JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
-    WHERE (bsa.zusammenfassung_2_saetze IS NOT NULL AND bsa.zusammenfassung_2_saetze != '')
-       OR (bs.text IS NOT NULL AND bs.text != '')
+    JOIN berlin_speech_analyses bsa ON bsa.speech_id = bs.speech_id
+    WHERE bs.is_praesidium = 0
+      AND bsa.zusammenfassung_2_saetze IS NOT NULL AND bsa.zusammenfassung_2_saetze != ''
   `);
 }
 
 function buildBerlinDrucksachenFTS(db: Db): void {
   // Berlin-DS: kombiniert kerninhalt_json + kerninhalt_frage_json + kerninhalt_antwort_json
   db.exec(`
-    INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, titel, zusammenfassung, kerninhalt, thema_tags)
+    INSERT INTO ${BERLIN_DRUCKSACHEN_FTS_TABLE} (dbid, klasse, dok_nr, titel, zusammenfassung, kerninhalt, thema_tags)
     SELECT
       bda.dbid,
       bda.klasse,
-      COALESCE(bd.titel, ''),
+      COALESCE(bd.dok_nr, ''),
+      COALESCE(NULLIF(TRIM(bd.titel),''), bda.derived_titel, ''),
       COALESCE(bda.zusammenfassung, ''),
       COALESCE(
         REPLACE(REPLACE(REPLACE(COALESCE(bda.kerninhalt_json, '') || ' · ' || COALESCE(bda.kerninhalt_frage_json, '') || ' · ' || COALESCE(bda.kerninhalt_antwort_json, ''), '[', ''), ']', ''), '","', ' · '),

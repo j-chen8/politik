@@ -24,6 +24,8 @@ import type {
   DrucksacheHit,
 } from "@/lib/suche";
 
+type SearchScope = "bundestag" | "berlin";
+
 interface FlatHit {
   hit: SearchHit;
   href: string;
@@ -48,14 +50,23 @@ const EMPTY: SearchResults = {
   directHit: null,
 };
 
-function flatten(results: SearchResults): FlatHit[] {
+function speechHref(h: SpeechHit, scope: SearchScope): string {
+  // Berlin hat keine Redner-Seite — Reden routen auf ihre Sitzungs-Seite.
+  if (scope === "berlin") return h.detail_url ?? "#";
+  return `/protokolle/redner/${encodeURIComponent(h.speaker)}`;
+}
+
+function drucksacheHref(h: DrucksacheHit, scope: SearchScope): string {
+  if (scope === "berlin") return h.detail_url ?? "#";
+  return h.drucksache_nr ? `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}` : `/protokolle`;
+}
+
+function flatten(results: SearchResults, scope: SearchScope): FlatHit[] {
   const flat: FlatHit[] = [];
   if (results.directHit) {
     flat.push({
       hit: results.directHit,
-      href: results.directHit.drucksache_nr
-        ? `/aktivitaeten/${results.directHit.drucksache_nr.replace("/", "-")}`
-        : `/protokolle`,
+      href: drucksacheHref(results.directHit, scope),
       sectionLabel: "Direkter Treffer",
     });
   }
@@ -72,7 +83,7 @@ function flatten(results: SearchResults): FlatHit[] {
   results.speeches.forEach((h) =>
     flat.push({
       hit: h,
-      href: `/protokolle/redner/${encodeURIComponent(h.speaker)}`,
+      href: speechHref(h, scope),
       sectionLabel: "Reden",
     })
   );
@@ -86,9 +97,7 @@ function flatten(results: SearchResults): FlatHit[] {
   results.drucksachen.forEach((h) =>
     flat.push({
       hit: h,
-      href: h.drucksache_nr
-        ? `/aktivitaeten/${h.drucksache_nr.replace("/", "-")}`
-        : `/protokolle`,
+      href: drucksacheHref(h, scope),
       sectionLabel: "Drucksachen",
     })
   );
@@ -134,13 +143,18 @@ export function CommandPalette({
   open,
   onClose,
   initialQuery,
+  scope = "bundestag",
 }: {
   open: boolean;
   onClose: () => void;
   /** Optional: Prefill bei Open (z.B. aus ?q= URL-Param oder Click auf Beispiel-Chip) */
   initialQuery?: string;
+  /** Daten-/Routing-Scope. "berlin" → Berlin-API + Berlin-Detail-Links. */
+  scope?: SearchScope;
 }) {
   const router = useRouter();
+  const apiScope = scope === "berlin" ? "&scope=berlin" : "";
+  const fullListPath = scope === "berlin" ? "/parlamente/berlin/suche" : "/suche";
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResults>(EMPTY);
   const [loading, setLoading] = useState(false);
@@ -170,7 +184,7 @@ export function CommandPalette({
     };
   }, [results, expandedItems]);
 
-  const flatHits = useMemo(() => flatten(effectiveResults), [effectiveResults]);
+  const flatHits = useMemo(() => flatten(effectiveResults, scope), [effectiveResults, scope]);
   // Typ-Filter: nur die gewählte Sektion zeigen (null = alle)
   const displayHits = useMemo(
     () =>
@@ -228,7 +242,7 @@ export function CommandPalette({
     const handle = setTimeout(async () => {
       try {
         const res = await fetch(
-          `/api/suche?q=${encodeURIComponent(query)}&expand=${expand ? 1 : 0}`
+          `/api/suche?q=${encodeURIComponent(query)}&expand=${expand ? 1 : 0}${apiScope}`
         );
         const data = (await res.json()) as SearchResults;
         setResults(data);
@@ -247,7 +261,7 @@ export function CommandPalette({
     try {
       // Bei Inline-Expand: lade alle (capped bei INLINE_THRESHOLD, weil dieser Pfad nur für total ≤ threshold gezeigt wird)
       const res = await fetch(
-        `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=1&pageSize=${INLINE_THRESHOLD}&expand=${results.expand ? 1 : 0}`
+        `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=1&pageSize=${INLINE_THRESHOLD}&expand=${results.expand ? 1 : 0}${apiScope}`
       );
       const data = await res.json();
       setExpandedItems((prev) => ({ ...prev, [type]: data.items }));
@@ -261,7 +275,7 @@ export function CommandPalette({
   function goToFullList(type: SearchType) {
     onClose();
     const expandParam = results.expand ? "&expand=1" : "";
-    router.push(`/suche?q=${encodeURIComponent(query)}&type=${type}${expandParam}`);
+    router.push(`${fullListPath}?q=${encodeURIComponent(query)}&type=${type}${expandParam}`);
   }
 
   // Keyboard navigation

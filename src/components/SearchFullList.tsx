@@ -17,6 +17,8 @@ import type {
   DrucksacheHit,
 } from "@/lib/suche";
 
+type SearchScope = "bundestag" | "berlin";
+
 const TYPE_LABELS: Record<SearchType, string> = {
   politicians: "Personen",
   topics: "Tagesordnungspunkte",
@@ -68,12 +70,16 @@ interface Props {
   klasse?: string | null;
   /** In Detail-Suche eingebettet → eigenen „Zurück"-Button ausblenden (Seite hat eigene Navigation). */
   embedded?: boolean;
+  /** Daten-/Routing-Scope. "berlin" → Berlin-API + Berlin-Detail-Links. */
+  scope?: SearchScope;
 }
 
-export function SearchFullList({ query, type, page, expand, sort = "date", klasse = null, embedded = false }: Props) {
+export function SearchFullList({ query, type, page, expand, sort = "date", klasse = null, embedded = false, scope = "bundestag" }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname() || "/suche";
+  const apiScope = scope === "berlin" ? "&scope=berlin" : "";
+  const backPath = scope === "berlin" ? "/parlamente/berlin/suche" : "/suche";
   const [data, setData] = useState<SearchByTypeResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -84,7 +90,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
     setError(null);
     const klasseParam = klasse ? `&klasse=${encodeURIComponent(klasse)}` : "";
     fetch(
-      `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=${page}&pageSize=${PAGE_SIZE}&expand=${expand ? 1 : 0}&sort=${sort}${klasseParam}`
+      `/api/suche?q=${encodeURIComponent(query)}&type=${type}&page=${page}&pageSize=${PAGE_SIZE}&expand=${expand ? 1 : 0}&sort=${sort}${klasseParam}${apiScope}`
     )
       .then((r) => r.json())
       .then((d: SearchByTypeResult) => {
@@ -117,7 +123,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
 
   function backToModal() {
     // Immer zurück zur einfachen Suche (Palette), egal ob von Vollliste oder Detail-Suche.
-    router.push(`/suche?q=${encodeURIComponent(query)}`);
+    router.push(`${backPath}?q=${encodeURIComponent(query)}`);
   }
 
   function toggleExpand(on: boolean) {
@@ -245,6 +251,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
                 key={`${hit.type}-${i}`}
                 hit={hit}
                 terms={[data.query, ...(data.expand ? data.expansions : [])]}
+                scope={scope}
               />
             ))}
           </div>
@@ -330,18 +337,18 @@ function PageNumbers({
   );
 }
 
-function ResultRow({ hit, terms }: { hit: SearchHit; terms: string[] }) {
+function ResultRow({ hit, terms, scope }: { hit: SearchHit; terms: string[]; scope: SearchScope }) {
   switch (hit.type) {
     case "politician":
       return <PoliticianFullRow hit={hit} terms={terms} />;
     case "topic":
       return <TopicFullRow hit={hit} terms={terms} />;
     case "speech":
-      return <SpeechFullRow hit={hit} terms={terms} />;
+      return <SpeechFullRow hit={hit} terms={terms} scope={scope} />;
     case "vote":
       return <VoteFullRow hit={hit} terms={terms} />;
     case "drucksache":
-      return <DrucksacheFullRow hit={hit} terms={terms} />;
+      return <DrucksacheFullRow hit={hit} terms={terms} scope={scope} />;
   }
 }
 
@@ -392,11 +399,16 @@ function TopicFullRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   );
 }
 
-function SpeechFullRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
+function SpeechFullRow({ hit, terms, scope }: { hit: SpeechHit; terms: string[]; scope: SearchScope }) {
   const ton = formatTonalitaet(hit.tonalitaet);
+  // Berlin hat keine Redner-Seite → auf die Sitzungs-Seite routen.
+  const href =
+    scope === "berlin"
+      ? hit.detail_url ?? "#"
+      : `/protokolle/redner/${encodeURIComponent(hit.speaker)}`;
   return (
     <Link
-      href={`/protokolle/redner/${encodeURIComponent(hit.speaker)}`}
+      href={href}
       className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
     >
       <div className="flex items-start gap-2">
@@ -445,13 +457,16 @@ function VoteFullRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   );
 }
 
-function DrucksacheFullRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) {
+function DrucksacheFullRow({ hit, terms, scope }: { hit: DrucksacheHit; terms: string[]; scope: SearchScope }) {
   const klasseLabel = hit.batch_class
     ? dsKlasseShort[hit.batch_class] ?? hit.batch_class
     : "Drucksache";
-  const href = hit.drucksache_nr
-    ? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`
-    : "/protokolle";
+  const href =
+    scope === "berlin"
+      ? hit.detail_url ?? "#"
+      : hit.drucksache_nr
+      ? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`
+      : "/protokolle";
   return (
     <Link
       href={href}

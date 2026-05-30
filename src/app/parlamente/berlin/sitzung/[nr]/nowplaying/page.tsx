@@ -1,5 +1,6 @@
 import { getBerlinSitzungDetail, type BerlinSitzungTop } from "@/lib/db";
 import { resolveBerlinTonality } from "@/lib/berlin-reden-tonality";
+import { stripBerlinSpeakerLead } from "@/lib/berlin-summary";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ChevronDown, ExternalLink } from "lucide-react";
@@ -237,7 +238,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
                       )}
                     </div>
                     {sp.zusammenfassung && (
-                      <p className="text-[12.5px] text-zinc-600 leading-relaxed">{sp.zusammenfassung}</p>
+                      <p className="text-[12.5px] text-zinc-600 leading-relaxed">{stripBerlinSpeakerLead(sp.zusammenfassung)}</p>
                     )}
                   </li>
                 ))}
@@ -363,7 +364,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
                           )}
                         </div>
                         {sp.zusammenfassung && (
-                          <p className="text-[12px] text-zinc-600 leading-relaxed">{sp.zusammenfassung}</p>
+                          <p className="text-[12px] text-zinc-600 leading-relaxed">{stripBerlinSpeakerLead(sp.zusammenfassung)}</p>
                         )}
                       </li>
                     ))}

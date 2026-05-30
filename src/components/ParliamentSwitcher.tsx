@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, Check } from "lucide-react";
+import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
 /**
@@ -88,7 +88,6 @@ function Group({
 }
 
 export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOverview[] }) {
-  const pathname = usePathname() || "/";
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -117,8 +116,9 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
     .sort((a, b) => a.label.localeCompare(b.label, "de"));
   const eu = active.filter((p) => p.type === "eu");
 
-  // Aktuelles Parlament aus dem Pfad — Default Bundestag, Berlin unter /parlamente/berlin.
-  const isBerlin = pathname.startsWith("/parlamente/berlin");
+  // Aktuelles Parlament — Default Bundestag, Berlin unter /parlamente/berlin ODER
+  // auf der geteilten Politiker-Liste mit ?parlament=2 (siehe useIsBerlin).
+  const isBerlin = useIsBerlin();
   const current = (isBerlin ? active.find((p) => p.id === 2) : undefined) ?? bund[0];
   const currentLabel = current?.label ?? "Bundestag";
   const currentId = current?.id ?? 0;

@@ -24,6 +24,11 @@ export interface SpeechHit {
   topic_title: string | null;
   snippet: string;
   tonalitaet: string | null;
+  /** Bei Berlin-Suche: Detail-URL führt auf die Sitzungs-Seite (Berlin hat keine Redner-Seite,
+   *  und Senator:innen/Präsidium haben kein Politiker-Profil). */
+  detail_url?: string;
+  politician_id?: number | null;
+  parliament?: "bundestag" | "berlin";
 }
 
 export interface TopicHit {
@@ -736,38 +741,36 @@ export function searchByType(
 
 export type BerlinSearchType = "speeches" | "drucksachen" | "politicians";
 
-export interface BerlinSearchResult {
-  query: string;
-  type: BerlinSearchType;
-  page: number;
-  pageSize: number;
-  total: number;
-  items: Array<DrucksacheHit | BerlinSpeechHit | PoliticianHit>;
-  expansions: string[];
-  matchedClusters: string[];
-}
-
+/** Berlin-Vollliste: gleiche Shape wie searchByType, damit SearchFullList (scope=berlin) sie 1:1 rendert. */
 export function searchBerlinByType(
   rawQuery: string,
   type: BerlinSearchType,
   page = 1,
-  pageSize = 50
-): BerlinSearchResult {
+  pageSize = 50,
+  expand = false,
+  sort: "date" | "relevance" = "date",
+  klasse: string | null = null
+): SearchByTypeResult {
   const query = rawQuery.trim();
   const safePage = Math.max(1, Math.floor(page));
   const safePageSize = Math.max(1, Math.min(200, Math.floor(pageSize)));
   const offset = (safePage - 1) * safePageSize;
-  const empty: BerlinSearchResult = {
+  const empty: SearchByTypeResult = {
     query, type, page: safePage, pageSize: safePageSize,
-    total: 0, items: [], expansions: [], matchedClusters: [],
+    total: 0, totalOriginal: 0, totalExpanded: 0, expand, sort,
+    items: [], expansions: [], matchedClusters: [],
   };
   if (query.length < 2) return empty;
 
   const { expansions, matchedClusters } = expandQuery(query);
+  const hasExpansions = expansions.length > 0;
   const db = getDb();
   ensureSearchFTS(db);
-  const ftsAllTerms = ftsMatchClause([query, ...expansions]);
-  if (!ftsAllTerms && type !== "politicians") return empty;
+  // Exakt-Default: nur der Original-Begriff; Synonyme nur bei expand=true (wie Bund).
+  const ftsActive = ftsMatchClause(expand ? [query, ...expansions] : [query]);
+  const ftsOriginalOnly = ftsMatchClause([query]);
+  const ftsExpandedAll = ftsMatchClause([query, ...expansions]);
+  if (!ftsActive && type !== "politicians") return empty;
 
   if (type === "politicians") {
     // Berlin-MdL = nur Politicians mit parlament Berlin in der DB.
@@ -781,47 +784,76 @@ export function searchBerlinByType(
       party: p.party_label, photo_url: p.photo_url,
       subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
     }));
-    return { ...empty, total: all.length, items, expansions, matchedClusters };
+    // Personen kennen keine Synonym-Expansion → alle drei Zähler gleich.
+    return { ...empty, total: all.length, totalOriginal: all.length, totalExpanded: all.length, items, expansions, matchedClusters };
   }
+
+  // Synonym-Zähler (exakt vs. erweitert) — gleiche Tabelle für beide Treffer-Typen.
+  const countBerlin = (table: string, fts: string | null) => fts
+    ? (db.prepare(`SELECT COUNT(*) as n FROM ${table} WHERE ${table} MATCH ?`).get(fts) as { n: number }).n
+    : 0;
 
   if (type === "speeches") {
-    const total = (db
-      .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinSpeeches} WHERE snippet MATCH ?`)
-      .get(ftsAllTerms!) as { n: number }).n;
+    const total = countBerlin(FTS_TABLES.berlinSpeeches, ftsActive);
+    const totalOriginal = countBerlin(FTS_TABLES.berlinSpeeches, ftsOriginalOnly);
+    const totalExpanded = hasExpansions ? countBerlin(FTS_TABLES.berlinSpeeches, ftsExpandedAll) : totalOriginal;
     const rows = db
       .prepare(
-        `SELECT fts.speech_id, fts.politician_id, fts.datum, snippet(${FTS_TABLES.berlinSpeeches}, 0, '<mark>', '</mark>', '…', 32) AS snippet_text
+        `SELECT fts.speech_id, fts.politician_id, fts.datum,
+                bs.speaker_name, bs.speaker_party, bs.sitzung_nr,
+                snippet(${FTS_TABLES.berlinSpeeches}, 0, '', '', '…', 32) AS snippet_text
          FROM ${FTS_TABLES.berlinSpeeches} fts
+         JOIN berlin_speeches bs ON bs.speech_id = fts.speech_id
          WHERE ${FTS_TABLES.berlinSpeeches} MATCH ?
-         ORDER BY fts.datum DESC
+         ORDER BY ${sort === "relevance" ? `bm25(${FTS_TABLES.berlinSpeeches})` : "fts.datum DESC"}
          LIMIT ? OFFSET ?`
       )
-      .all(ftsAllTerms!, safePageSize, offset) as Array<{ speech_id: string; politician_id: number | null; datum: string | null; snippet_text: string }>;
-    const items: BerlinSpeechHit[] = rows.map((r) => ({
+      .all(ftsActive!, safePageSize, offset) as Array<{
+        speech_id: string; politician_id: number | null; datum: string | null;
+        speaker_name: string; speaker_party: string | null; sitzung_nr: number; snippet_text: string;
+      }>;
+    const items: SpeechHit[] = rows.map((r) => ({
       type: "speech",
-      speech_id: r.speech_id,
-      politician_id: r.politician_id,
+      rede_id: r.speech_id,
+      speaker: r.speaker_name || "Unbekannt",
+      party: r.speaker_party || null,
       speech_date: r.datum,
+      topic_title: null,
       snippet: r.snippet_text,
+      tonalitaet: null,
+      detail_url: `/parlamente/berlin/redner/${encodeURIComponent(r.speaker_name)}`,
+      politician_id: r.politician_id,
       parliament: "berlin",
     }));
-    return { ...empty, total, items, expansions, matchedClusters };
+    return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
   }
 
-  // type === "drucksachen"
-  const total = (db
-    .prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?`)
-    .get(ftsAllTerms!) as { n: number }).n;
+  // type === "drucksachen" — optionaler Klasse-Filter (gesetzentwurf/anfrage_antwort/…) + Sortierung
+  const dsCount = (fts: string | null) => fts
+    ? (db.prepare(
+        `SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen}
+         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?${klasse ? " AND klasse = ?" : ""}`
+      ).get(...(klasse ? [fts, klasse] : [fts])) as { n: number }).n
+    : 0;
+  const total = dsCount(ftsActive);
+  const totalOriginal = dsCount(ftsOriginalOnly);
+  const totalExpanded = hasExpansions ? dsCount(ftsExpandedAll) : totalOriginal;
+  // Q&A (schriftliche Anfragen) sind 82 % aller DS → bei „alle" ans Ende, damit
+  // legislative Drucksachen (Antrag/Gesetz/Senatsvorlage/Beschluss) zuerst erscheinen.
+  // Bei aktivem Klasse-Filter ist der Prio-Key konstant und damit wirkungslos.
+  const klassePrio = "(CASE WHEN fts.klasse = 'anfrage_antwort' THEN 1 ELSE 0 END), ";
+  const dsOrder = klassePrio + (sort === "relevance" ? `bm25(${FTS_TABLES.berlinDrucksachen})` : "bd.dok_datum DESC");
   const rows = db
     .prepare(
-      `SELECT fts.dbid, fts.klasse, fts.titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
+      `SELECT fts.dbid, fts.klasse, COALESCE(NULLIF(TRIM(fts.titel),''), bda.derived_titel) AS titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
        FROM ${FTS_TABLES.berlinDrucksachen} fts
        LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
-       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?
-       ORDER BY bd.dok_datum DESC
+       LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = fts.dbid
+       WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?${klasse ? " AND fts.klasse = ?" : ""}
+       ORDER BY ${dsOrder}
        LIMIT ? OFFSET ?`
     )
-    .all(ftsAllTerms!, safePageSize, offset) as Array<{
+    .all(...(klasse ? [ftsActive!, klasse, safePageSize, offset] : [ftsActive!, safePageSize, offset])) as Array<{
     dbid: string; klasse: string; titel: string | null; zusammenfassung: string;
     dok_nr: string | null; dok_datum: string | null;
   }>;
@@ -841,5 +873,131 @@ export function searchBerlinByType(
       parliament: "berlin",
     };
   });
-  return { ...empty, total, items, expansions, matchedClusters };
+  return { ...empty, total, totalOriginal, totalExpanded, items, expansions, matchedClusters };
+}
+
+/**
+ * Kombinierte Berlin-Suche — SearchResults-kompatibel, damit dieselbe CommandPalette
+ * (scope="berlin") sie rendern kann. Berlin kennt nur 3 Typen: Personen, Reden,
+ * Drucksachen (topics/votes bleiben leer). Exakt-Default + Opt-in-Synonym wie Bund.
+ * Reden routen aufs Politiker-Profil (Berlin hat keine eigene Redner-Seite).
+ */
+export function searchBerlin(rawQuery: string, expand: boolean = false): SearchResults {
+  const query = rawQuery.trim();
+  const zero: SearchTotals = { politicians: 0, speeches: 0, topics: 0, votes: 0, drucksachen: 0 };
+  const empty: SearchResults = {
+    query, politicians: [], speeches: [], topics: [], votes: [], drucksachen: [],
+    total: 0, totals: { ...zero }, totalsOriginal: { ...zero }, totalsExpanded: { ...zero },
+    expand, expansions: [], matchedClusters: [], directHit: null,
+  };
+  if (query.length < 2) return empty;
+
+  const { expansions, matchedClusters } = expandQuery(query);
+  const hasExpansions = expansions.length > 0;
+  const activeTerms = expand ? [query, ...expansions] : [query];
+
+  const db = getDb();
+  ensureSearchFTS(db);
+
+  const ftsActive = ftsMatchClause(activeTerms);
+  const ftsOriginalOnly = ftsMatchClause([query]);
+  const ftsAllTerms = ftsMatchClause([query, ...expansions]);
+  const ftsTierMatch = ftsOriginalOnly ?? ftsActive;
+
+  // 1. Personen — keine Synonym-Erweiterung (Eigennamen)
+  const allPoliticians = searchPoliticiansDb(query, 1000);
+  const politicians: PoliticianHit[] = allPoliticians.slice(0, PER_TYPE_LIMIT).map((p) => ({
+    type: "politician", id: p.id,
+    name: `${p.first_name} ${p.last_name}`.trim(),
+    first_name: p.first_name, last_name: p.last_name,
+    party: p.party_label, photo_url: p.photo_url,
+    subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+  }));
+  const totalPoliticians = allPoliticians.length;
+
+  // 2. Reden (berlin_speeches_fts), Speaker via politicians-Join für SpeechHit-Shape
+  const speeches: SpeechHit[] = ftsActive
+    ? (db.prepare(
+        `SELECT fts.speech_id, fts.politician_id, fts.datum,
+                bs.speaker_name, bs.speaker_party, bs.sitzung_nr,
+                snippet(${FTS_TABLES.berlinSpeeches}, 0, '', '', '…', 32) AS snippet_text
+         FROM ${FTS_TABLES.berlinSpeeches} fts
+         JOIN berlin_speeches bs ON bs.speech_id = fts.speech_id
+         WHERE ${FTS_TABLES.berlinSpeeches} MATCH ?
+         ORDER BY (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.berlinSpeeches} WHERE ${FTS_TABLES.berlinSpeeches} MATCH ?) THEN 0 ELSE 1 END), fts.datum DESC
+         LIMIT ?`
+      ).all(ftsActive, ftsTierMatch, PER_TYPE_LIMIT) as Array<{
+        speech_id: string; politician_id: number | null; datum: string | null;
+        speaker_name: string; speaker_party: string | null; sitzung_nr: number; snippet_text: string;
+      }>).map((r) => ({
+        type: "speech" as const,
+        rede_id: r.speech_id,
+        speaker: r.speaker_name || "Unbekannt",
+        party: r.speaker_party || null,
+        speech_date: r.datum,
+        topic_title: null,
+        snippet: r.snippet_text,
+        tonalitaet: null,
+        detail_url: `/parlamente/berlin/redner/${encodeURIComponent(r.speaker_name)}`,
+        politician_id: r.politician_id,
+        parliament: "berlin" as const,
+      }))
+    : [];
+  const countSpeeches = (fts: string | null) => fts
+    ? (db.prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinSpeeches} WHERE ${FTS_TABLES.berlinSpeeches} MATCH ?`).get(fts) as { n: number }).n
+    : 0;
+  const totalSpeechesOriginal = countSpeeches(ftsOriginalOnly);
+  const totalSpeechesExpanded = hasExpansions ? countSpeeches(ftsAllTerms) : totalSpeechesOriginal;
+
+  // 3. Drucksachen (berlin_drucksachen_fts)
+  const drucksachen: DrucksacheHit[] = ftsActive
+    ? (db.prepare(
+        `SELECT fts.dbid, fts.klasse, COALESCE(NULLIF(TRIM(fts.titel),''), bda.derived_titel) AS titel, fts.zusammenfassung, bd.dok_nr, bd.dok_datum
+         FROM ${FTS_TABLES.berlinDrucksachen} fts
+         LEFT JOIN berlin_documents bd ON bd.dbid = fts.dbid
+         LEFT JOIN berlin_drucksachen_analyses bda ON bda.dbid = fts.dbid
+         WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?
+         ORDER BY (CASE WHEN fts.klasse = 'anfrage_antwort' THEN 1 ELSE 0 END),
+                  (CASE WHEN fts.rowid IN (SELECT rowid FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?) THEN 0 ELSE 1 END), bd.dok_datum DESC
+         LIMIT ?`
+      ).all(ftsActive, ftsTierMatch, PER_TYPE_LIMIT) as Array<{
+        dbid: string; klasse: string; titel: string | null; zusammenfassung: string;
+        dok_nr: string | null; dok_datum: string | null;
+      }>).map((d) => {
+        const full = d.zusammenfassung ?? "";
+        const snippet = full.length > 140 ? full.slice(0, 137) + "…" : full;
+        return {
+          type: "drucksache" as const,
+          id: d.dbid,
+          title: d.titel || `Berlin-Drucksache ${d.dok_nr ?? d.dbid}`,
+          drucksache_nr: d.dok_nr,
+          vorgangstyp: d.klasse,
+          date: d.dok_datum,
+          snippet: snippet || null,
+          batch_class: d.klasse,
+          detail_url: `/parlamente/berlin/drucksache/${d.dbid}`,
+          parliament: "berlin" as const,
+        };
+      })
+    : [];
+  const countDs = (fts: string | null) => fts
+    ? (db.prepare(`SELECT COUNT(*) as n FROM ${FTS_TABLES.berlinDrucksachen} WHERE ${FTS_TABLES.berlinDrucksachen} MATCH ?`).get(fts) as { n: number }).n
+    : 0;
+  const totalDrucksachenOriginal = countDs(ftsOriginalOnly);
+  const totalDrucksachenExpanded = hasExpansions ? countDs(ftsAllTerms) : totalDrucksachenOriginal;
+
+  const totalsOriginal: SearchTotals = {
+    politicians: totalPoliticians, speeches: totalSpeechesOriginal, topics: 0, votes: 0, drucksachen: totalDrucksachenOriginal,
+  };
+  const totalsExpanded: SearchTotals = {
+    politicians: totalPoliticians, speeches: totalSpeechesExpanded, topics: 0, votes: 0, drucksachen: totalDrucksachenExpanded,
+  };
+
+  return {
+    query, politicians, speeches, topics: [], votes: [], drucksachen,
+    total: politicians.length + speeches.length + drucksachen.length,
+    totals: expand ? totalsExpanded : totalsOriginal,
+    totalsOriginal, totalsExpanded,
+    expand, expansions, matchedClusters, directHit: null,
+  };
 }

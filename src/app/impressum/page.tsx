@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ContextualLink as Link } from "@/components/ContextualLink";
 
 export const metadata = {
   title: "Impressum | Politik-Radar",

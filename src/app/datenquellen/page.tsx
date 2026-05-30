@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ContextualLink as Link } from "@/components/ContextualLink";
 import { getDb } from "@/lib/db";
 import { ExternalLink } from "lucide-react";
 

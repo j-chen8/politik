@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ContextualLink as Link } from "@/components/ContextualLink";
 import { AlertTriangle, ExternalLink, ArrowLeft } from "lucide-react";
 import { listSourceCoherenceConflicts, getSourceCoherenceStats } from "@/lib/db";
 

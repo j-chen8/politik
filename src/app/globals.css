@@ -37,6 +37,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Scrollbar-Platz immer reservieren — sonst springt die zentrierte Header-Leiste
+   (max-w-6xl mx-auto) beim Wechsel zwischen unterschiedlich hohen Seiten um die
+   halbe Scrollbar-Breite (z.B. Bundestag mit Interview-Streifen vs. kürzere Seiten). */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

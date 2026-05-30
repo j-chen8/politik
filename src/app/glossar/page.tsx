@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowLeft, ListTree } from "lucide-react";
 import { TONALITAET_DEFS, REDEN_TYP_DEFS } from "@/lib/glossar";
 

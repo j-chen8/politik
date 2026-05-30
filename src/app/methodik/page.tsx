@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import Link from "next/link";
+import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ExternalLink, ArrowLeft, ListTree } from "lucide-react";
 import { getMethodikCounts } from "@/lib/db";
 

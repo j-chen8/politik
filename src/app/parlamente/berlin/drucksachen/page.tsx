@@ -33,21 +33,26 @@ const KLASSE_BADGE: Record<string, string> = {
 export default function BerlinDrucksachenPage({
   searchParams,
 }: {
-  searchParams: Promise<{ klasse?: string; year?: string; page?: string }>;
+  searchParams: Promise<{ klasse?: string; year?: string; page?: string; fraktion?: string }>;
 }) {
   return <Inner searchParams={searchParams} />;
 }
 
-async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string; year?: string; page?: string }> }) {
+// Hauptfraktionen im Berliner AGH (19. WP) — als Filter-Pills.
+const FRAKTIONEN = ["CDU", "SPD", "GRÜNE", "LINKE", "AfD", "FDP"];
+
+async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string; year?: string; page?: string; fraktion?: string }> }) {
   const sp = await searchParams;
   const klasse = sp.klasse ?? "";
   const year = sp.year ?? "";
+  const fraktion = sp.fraktion ?? "";
   const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
   const offset = (page - 1) * PAGE_SIZE;
 
   const { rows, total, klasseFacets, years } = listBerlinDrucksachenForIndex({
     klasse: klasse || undefined,
     year: year || undefined,
+    fraktion: fraktion || undefined,
     offset,
     limit: PAGE_SIZE,
   });
@@ -59,6 +64,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
     const params = new URLSearchParams();
     if (klasse && !("klasse" in extra)) params.set("klasse", klasse);
     if (year && !("year" in extra)) params.set("year", year);
+    if (fraktion && !("fraktion" in extra)) params.set("fraktion", fraktion);
     for (const [k, v] of Object.entries(extra)) if (v) params.set(k, v);
     const s = params.toString();
     return s ? `?${s}` : "";
@@ -101,7 +107,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
 
         {/* Jahr-Filter */}
         {years.length > 1 && (
-          <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
+          <div className="mb-3 flex flex-wrap gap-1.5 text-[11px]">
             <span className="text-zinc-400 self-center mr-1">Jahr:</span>
             <FilterPill href={qs({ year: "", page: "" })} active={!year}>alle</FilterPill>
             {years.map((y) => (
@@ -109,6 +115,19 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
             ))}
           </div>
         )}
+
+        {/* Fraktions-Filter (einbringende Fraktion) */}
+        <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
+          <span className="text-zinc-400 self-center mr-1">Fraktion:</span>
+          <FilterPill href={qs({ fraktion: "", page: "" })} active={!fraktion}>alle</FilterPill>
+          {FRAKTIONEN.map((f) => (
+            <FilterPill key={f} href={qs({ fraktion: f, page: "" })} active={fraktion === f}>{f}</FilterPill>
+          ))}
+          {/* aktiver Sonderwert (z.B. Koalitions-Kombi), der nicht in der Pill-Liste steht */}
+          {fraktion && !FRAKTIONEN.includes(fraktion) && (
+            <FilterPill href={qs({ fraktion, page: "" })} active>{fraktion}</FilterPill>
+          )}
+        </div>
 
         <div className="text-[12px] text-zinc-500 mb-4 num">
           {total.toLocaleString("de-DE")} Treffer{totalPages > 1 && ` · Seite ${page} / ${totalPages}`}

@@ -1,240 +1,180 @@
+"use client";
+
 /**
- * Berlin-Pilot: Suche scope-getrennt von der Bundes-Suche.
- *
- * Eigene Page statt Refactor der Bundes-Suche, damit Track-Isolation gewahrt bleibt.
- * Nutzt berlin_speeches_fts + berlin_drucksachen_fts via searchBerlinByType.
- *
- * URL: /parlamente/berlin/suche?q=Klima&type=drucksachen
+ * Berlin-Suche — gespiegelt zur Bundestag-/suche-Seite, nur scope="berlin".
+ * Live-Modal (CommandPalette) + Vollliste (SearchFullList) ziehen Berlin-Daten
+ * (Reden/Drucksachen/Personen) über /api/suche?scope=berlin.
  */
-import { searchBerlinByType, type BerlinSearchType, type DrucksacheHit, type BerlinSpeechHit, type PoliticianHit } from "@/lib/suche";
+
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Search } from "lucide-react";
-import { highlight } from "@/lib/highlight";
+import { useSearchParams } from "next/navigation";
+import { ArrowLeft, Search, CornerDownRight } from "lucide-react";
+import { CommandPalette } from "@/components/CommandPalette";
+import { SearchFullList } from "@/components/SearchFullList";
+import type { BerlinSearchType, SearchType } from "@/lib/suche";
 
 const VALID_TYPES: BerlinSearchType[] = ["speeches", "drucksachen", "politicians"];
 
-interface Props {
-  searchParams: Promise<{ q?: string; type?: string; page?: string }>;
-}
+const BEISPIELE: { q: string; hint: string }[] = [
+  { q: "Klima", hint: "auch Energiewende · CO₂" },
+  { q: "Wohnen", hint: "auch Mieten · Wohnungsbau" },
+  { q: "Verkehr", hint: "auch ÖPNV · Radwege" },
+  { q: "Schule", hint: "auch Bildung · Kita" },
+  { q: "Verwaltung", hint: "auch Bürgeramt · Digitalisierung" },
+  { q: "Wegner", hint: "Person + Reden" },
+];
 
-export default async function BerlinSuchePage({ searchParams }: Props) {
-  const { q = "", type = "drucksachen", page = "1" } = await searchParams;
-  const safeType: BerlinSearchType = (VALID_TYPES as string[]).includes(type) ? (type as BerlinSearchType) : "drucksachen";
-  const safePage = Math.max(1, parseInt(page, 10) || 1);
+function BerlinSuchePageInner() {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
+  const typeParam = searchParams.get("type");
+  const pageParam = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
+  const expandParam = searchParams.get("expand") === "1";
+  const isFullListMode =
+    typeParam !== null &&
+    (VALID_TYPES as string[]).includes(typeParam) &&
+    initialQuery.trim().length >= 2;
 
-  const result = q.trim().length >= 2 ? searchBerlinByType(q, safeType, safePage, 50) : null;
+  const [open, setOpen] = useState(false);
+  const [paletteQuery, setPaletteQuery] = useState<string>("");
 
-  // Counts pro Typ holen für Tab-Bar (nur wenn Query da)
-  const counts = q.trim().length >= 2 ? {
-    drucksachen: searchBerlinByType(q, "drucksachen", 1, 1).total,
-    speeches:    searchBerlinByType(q, "speeches", 1, 1).total,
-    politicians: searchBerlinByType(q, "politicians", 1, 1).total,
-  } : null;
+  // ?q=... in URL (ohne ?type) → Palette gleich öffnen mit Prefill
+  useEffect(() => {
+    if (!isFullListMode && initialQuery.trim().length >= 2) {
+      setPaletteQuery(initialQuery);
+      setOpen(true);
+    }
+  }, [initialQuery, isFullListMode]);
+
+  // Cmd+K / Ctrl+K Shortcut
+  useEffect(() => {
+    function handler(e: KeyboardEvent) {
+      const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k";
+      if (isCmdK) {
+        e.preventDefault();
+        setPaletteQuery("");
+        setOpen((v) => !v);
+      }
+    }
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  function openWith(q: string) {
+    setPaletteQuery(q);
+    setOpen(true);
+  }
+
+  // Vollliste-Mode: ?q=...&type=... → eigene Page-View statt Hero
+  if (isFullListMode) {
+    return (
+      <SearchFullList
+        query={initialQuery}
+        type={typeParam as SearchType}
+        page={pageParam}
+        expand={expandParam}
+        scope="berlin"
+      />
+    );
+  }
 
   return (
-    <main className="page-wash min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="page-wash min-h-screen">
+      <div className="max-w-3xl mx-auto px-5 py-12 fade-in-up">
         <Link
           href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
-          Berlin-Übersicht
+          Zurück zum Abgeordnetenhaus
         </Link>
 
-        <div className="mb-8">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
-            Berlin · Suche
-          </div>
-          <h1 className="text-[28px] font-semibold tracking-[-0.02em] text-zinc-950 leading-tight mb-3">
-            Was sucht das Berliner Abgeordnetenhaus?
+        <div className="mb-12">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 mb-3">
+            Eine Suche für alles.
           </h1>
-          <p className="text-[13px] text-zinc-500 leading-relaxed max-w-2xl">
-            18.514 Drucksachen + 23.206 Reden der 19. Wahlperiode. Suche mit Synonym-Erweiterung
-            (z. B. „Wohnen" findet auch „Mieten", „Wohnungsbau").
+          <p className="text-[15px] text-zinc-500 leading-relaxed max-w-xl">
+            Personen, Reden und Drucksachen des Abgeordnetenhauses von Berlin — in einer Palette.
+            Standardmäßig wird exakt gesucht; verwandte Begriffe lassen sich auf Wunsch einbeziehen
+            („Wohnen" → auch Mieten und Wohnungsbau).
           </p>
         </div>
 
-        {/* Such-Form */}
-        <form method="GET" action="/parlamente/berlin/suche" className="mb-6">
-          <div className="flex items-center gap-2 bg-white border border-zinc-200 rounded-xl px-4 py-3 focus-within:border-zinc-400 transition-colors">
-            <Search className="w-4 h-4 text-zinc-400" strokeWidth={2.25} />
-            <input
-              type="search"
-              name="q"
-              defaultValue={q}
-              placeholder="Suche in Berliner Drucksachen, Reden…"
-              className="flex-1 outline-none text-[14px] text-zinc-900 placeholder:text-zinc-400 bg-transparent"
-              autoFocus
-            />
-            <input type="hidden" name="type" value={safeType} />
-            <button type="submit" className="text-[12px] text-zinc-500 hover:text-zinc-900 px-2 py-1 border border-zinc-200 rounded">
-              Suchen
-            </button>
-          </div>
-        </form>
+        <button
+          onClick={() => openWith("")}
+          className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-left hover:border-zinc-400 transition-colors mb-4 group"
+        >
+          <Search
+            className="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 transition-colors"
+            strokeWidth={2.25}
+          />
+          <span className="flex-1 text-[14px] text-zinc-400 group-hover:text-zinc-700 transition-colors">
+            Suche öffnen…
+          </span>
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-mono text-zinc-500 border border-zinc-200 rounded">
+            <span className="text-[10px]">⌘</span>K
+          </kbd>
+        </button>
 
-        {/* Typ-Tabs */}
-        {counts && (
-          <div className="mb-6 flex flex-wrap gap-2 text-[12px]">
-            {(["drucksachen", "speeches", "politicians"] as const).map((t) => (
-              <Link
-                key={t}
-                href={`?q=${encodeURIComponent(q)}&type=${t}`}
-                className={`px-3 py-1.5 rounded-md border transition-colors ${
-                  safeType === t
-                    ? "bg-zinc-900 text-white border-zinc-900"
-                    : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400"
-                }`}
+        <Link
+          href="/parlamente/berlin/suche/detail"
+          className="inline-flex items-center gap-2 ml-1 text-[14px] font-medium text-blue-700 hover:underline underline-offset-4 decoration-blue-700/40 mb-8"
+        >
+          <CornerDownRight className="w-4 h-4 shrink-0 -mt-1 text-blue-700/70" strokeWidth={2.25} />
+          Detaillierte Suche — nach Typ filtern, sortieren, eingrenzen
+        </Link>
+
+        <div className="mb-12">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+            Probier mal
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {BEISPIELE.map((item) => (
+              <button
+                key={item.q}
+                onClick={() => openWith(item.q)}
+                className="px-3 py-2 bg-white border border-zinc-200 rounded-lg text-left hover:border-zinc-400 transition-colors"
               >
-                {t === "drucksachen" && `Drucksachen (${counts.drucksachen})`}
-                {t === "speeches" && `Reden (${counts.speeches})`}
-                {t === "politicians" && `Personen (${counts.politicians})`}
-              </Link>
+                <div className="text-[13px] font-medium text-zinc-900">{item.q}</div>
+                <div className="text-[11px] text-zinc-500">{item.hint}</div>
+              </button>
             ))}
           </div>
-        )}
+        </div>
 
-        {/* Beispiele wenn keine Query */}
-        {!q.trim() && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-12">
-            {[
-              { q: "Wohnen", hint: "+ Mieten · Wohnungsbau" },
-              { q: "Polizei", hint: "+ Gewaltprävention · Justiz" },
-              { q: "Klimaschutz", hint: "+ Energie · Tierschutz" },
-              { q: "Verkehr", hint: "+ ÖPNV · Radverkehr" },
-              { q: "Bezirke", hint: "12 Berliner Bezirke" },
-              { q: "Bildung", hint: "+ Hochschulen · Familie" },
-            ].map((b) => (
-              <Link
-                key={b.q}
-                href={`?q=${encodeURIComponent(b.q)}&type=drucksachen`}
-                className="block px-3 py-2 bg-white border border-zinc-200 rounded-lg hover:border-zinc-400 transition-colors"
-              >
-                <div className="text-[13px] font-medium text-zinc-900">{b.q}</div>
-                <div className="text-[11px] text-zinc-500">{b.hint}</div>
-              </Link>
-            ))}
+        <div className="border border-zinc-200 rounded-xl p-5 bg-white">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            Was passiert hier
           </div>
-        )}
-
-        {/* Ergebnisse */}
-        {result && (
-          <div className="mt-4">
-            <div className="text-[11px] text-zinc-500 mb-4 num">
-              {result.total.toLocaleString("de-DE")} {safeType === "drucksachen" ? "Drucksachen" : safeType === "speeches" ? "Reden" : "Personen"}
-              {result.expansions.length > 0 && (
-                <span className="ml-2">· auch: {result.expansions.slice(0, 5).join(", ")}{result.expansions.length > 5 ? ", …" : ""}</span>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              {result.items.map((item, i) => (
-                <ResultCard key={`${item.type}-${i}`} item={item} query={q} expansions={result.expansions} />
-              ))}
-              {result.items.length === 0 && (
-                <div className="text-center text-[13px] text-zinc-500 py-12 border border-dashed border-zinc-200 rounded-2xl">
-                  Keine Treffer für „{q}".
-                </div>
-              )}
-            </div>
-
-            {/* Pagination */}
-            {result.total > result.pageSize && (
-              <div className="mt-6 flex items-center justify-center gap-2 text-[12px]">
-                {safePage > 1 && (
-                  <Link href={`?q=${encodeURIComponent(q)}&type=${safeType}&page=${safePage - 1}`} className="px-3 py-1 border border-zinc-200 rounded hover:border-zinc-400">
-                    ← Zurück
-                  </Link>
-                )}
-                <span className="text-zinc-500 num">
-                  Seite {safePage} von {Math.ceil(result.total / result.pageSize)}
-                </span>
-                {safePage * result.pageSize < result.total && (
-                  <Link href={`?q=${encodeURIComponent(q)}&type=${safeType}&page=${safePage + 1}`} className="px-3 py-1 border border-zinc-200 rounded hover:border-zinc-400">
-                    Weiter →
-                  </Link>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+          <p className="text-[13px] text-zinc-600 leading-relaxed mb-3">
+            Volltextsuche über drei Berliner Datenquellen gleichzeitig: Abgeordneten-Namen,
+            Reden-Zusammenfassungen und Drucksachen-Titel. Nach Typ filterbar; Treffer mit dem
+            Original-Begriff zuerst.
+          </p>
+          <p className="text-[13px] text-zinc-600 leading-relaxed">
+            <span className="font-medium text-zinc-700">Exakt zuerst, Synonyme optional:</span>{" "}
+            standardmäßig wird genau der eingegebene Begriff gesucht. Auf Wunsch lassen sich
+            Themen-Cluster (Migration, Klima &amp; Energie, Wohnen, …) als verwandte Begriffe
+            einbeziehen — sichtbar über den „Verwandte Themen einbeziehen"-Schalter.
+          </p>
+        </div>
       </div>
-    </main>
+
+      <CommandPalette
+        open={open}
+        onClose={() => setOpen(false)}
+        initialQuery={paletteQuery}
+        scope="berlin"
+      />
+    </div>
   );
 }
 
-type SearchItem = DrucksacheHit | BerlinSpeechHit | PoliticianHit;
-
-function ResultCard({ item, query, expansions }: { item: SearchItem; query: string; expansions: string[] }) {
-  const terms = [query, ...expansions].filter((t) => t.length >= 2);
-  if (item.type === "drucksache") {
-    const d = item;
-    return (
-      <Link
-        href={d.detail_url ?? "#"}
-        className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group"
-      >
-        <div className="flex items-baseline gap-2 mb-1 flex-wrap text-[11px]">
-          <span className="text-zinc-500 uppercase tracking-wider font-medium">{klasseLabel(d.vorgangstyp)}</span>
-          {d.drucksache_nr && <span className="num text-zinc-400">{d.drucksache_nr}</span>}
-          {d.date && <span className="num text-zinc-400">· {formatDate(d.date)}</span>}
-        </div>
-        <div className="text-[14px] font-medium text-zinc-950 mb-1 group-hover:text-zinc-700 line-clamp-2">
-          {highlight(d.title, terms)}
-        </div>
-        {d.snippet && (
-          <div className="text-[12.5px] text-zinc-600 line-clamp-2">{highlight(d.snippet, terms)}</div>
-        )}
-      </Link>
-    );
-  }
-  if (item.type === "speech") {
-    const s = item;
-    return (
-      <Link
-        href={s.politician_id ? `/politiker/${s.politician_id}` : "#"}
-        className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group"
-      >
-        <div className="flex items-baseline gap-2 mb-1 text-[11px]">
-          <span className="text-zinc-500 uppercase tracking-wider font-medium">Rede</span>
-          {s.speech_date && <span className="num text-zinc-400">{formatDate(s.speech_date)}</span>}
-        </div>
-        <div
-          className="text-[13.5px] text-zinc-800 leading-snug line-clamp-3"
-          dangerouslySetInnerHTML={{ __html: s.snippet }}
-        />
-      </Link>
-    );
-  }
-  if (item.type === "politician") {
-    const p = item;
-    return (
-      <Link
-        href={`/politiker/${p.id}`}
-        className="block border border-zinc-200/70 rounded-xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors"
-      >
-        <div className="text-[14px] font-medium text-zinc-950">{highlight(p.name, terms)}</div>
-        <div className="text-[11.5px] text-zinc-500">{p.subtitle}</div>
-      </Link>
-    );
-  }
-  return null;
-}
-
-function klasseLabel(k: string | null): string {
-  switch (k) {
-    case "anfrage_antwort": return "Schriftliche Anfrage";
-    case "antrag": return "Antrag";
-    case "gesetzentwurf": return "Gesetzentwurf";
-    case "vorlage_senat": return "Senats-Vorlage";
-    case "beschlussempfehlung_regex": return "Beschlussempfehlung";
-    default: return k ?? "Drucksache";
-  }
-}
-
-function formatDate(iso: string): string {
-  try {
-    return new Date(iso + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
-  } catch { return iso; }
+export default function BerlinSuchePage() {
+  return (
+    <Suspense fallback={null}>
+      <BerlinSuchePageInner />
+    </Suspense>
+  );
 }
