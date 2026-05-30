@@ -134,7 +134,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
                 Politik-Radar
               </span>
             </Link>
-            <div className="hidden sm:block">
+            <div>
               <ParliamentSwitcher parliaments={parliaments} />
             </div>
           </div>
@@ -249,11 +249,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
             aria-label="Menü"
             className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-1"
           >
-            {/* Parlament-Auswahl auch mobil */}
-            <div className="px-2 pb-1 flex justify-center">
-              <ParliamentSwitcher parliaments={parliaments} />
-            </div>
-            <div className="my-2 border-t border-border-soft" />
+            {/* Parlament-Auswahl steht jetzt mobil neben dem Logo (Header), nicht mehr hier. */}
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
