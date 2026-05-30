@@ -4271,14 +4271,17 @@ export function getQaPaareList(
     }
     const where = conds.length ? `WHERE ${conds.join(" AND ")}` : "";
     const total = (db.prepare(`SELECT COUNT(*) AS c FROM drucksache_qa_paare qa ${where}`).get(params) as { c: number }).c;
-    // Datum aus drucksache_texts; NULLs sortieren bei DESC ans Ende, bei ASC an den Anfang (akzeptabel).
+    // Sortier-/Anzeige-Datum: pro-Paar-Antwortdatum (antwort_datum_iso, 98 % Coverage),
+    // sonst publication_date der Sammeldrucksache. NULLs landen via „datum IS NULL"
+    // in BEIDEN Richtungen ans Ende (sonst säßen die 4 dateless – und neuesten –
+    // Docs bei „alt→neu" oben).
     const dir = sort === "alt" ? "ASC" : "DESC";
     const rows = db.prepare(`
       SELECT qa.drucksache_nr, qa.paar_index, qa.fragesteller_name, qa.fragesteller_party,
              qa.fragesteller_politician_id, qa.antwort_steller, qa.frage_text, qa.antwort_text,
-             (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+             COALESCE(qa.antwort_datum_iso, (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr)) AS datum
       FROM drucksache_qa_paare qa ${where}
-      ORDER BY datum ${dir}, qa.drucksache_nr ${dir}, qa.paar_index
+      ORDER BY datum IS NULL, datum ${dir}, qa.drucksache_nr ${dir}, qa.paar_index
       LIMIT @lim OFFSET @off
     `).all(params) as any[];
     return {

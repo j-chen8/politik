@@ -8,6 +8,13 @@ type Props = { searchParams: Promise<{ q?: string; seite?: string; partei?: stri
 
 const PER_PAGE = 50;
 
+function formatGermanDate(iso: string | null): string {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  if (!y || !m || !d) return iso;
+  return `${parseInt(d, 10)}.${parseInt(m, 10)}.${y}`;
+}
+
 export default async function FragenPage({ searchParams }: Props) {
   const { q: qRaw, seite, partei: parteiRaw, sort: sortRaw } = await searchParams;
   const q = (qRaw ?? "").trim();
@@ -87,7 +94,7 @@ export default async function FragenPage({ searchParams }: Props) {
               {qa.fragestellerParty && <span className="text-zinc-400">{qa.fragestellerParty}</span>}
               <span className="text-zinc-200">·</span>
               <Link href={`/aktivitaeten/${qa.drucksacheNr.replace(/\//g, "-")}`} className="text-[#1a3e72] hover:text-[#0f2a52] num transition-colors">{qa.drucksacheNr}</Link>
-              {qa.datum && <span className="text-zinc-400 num">{qa.datum}</span>}
+              {qa.datum && <span className="text-zinc-400 num">{formatGermanDate(qa.datum)}</span>}
             </div>
             {qa.frageText && <p className="text-[13.5px] text-zinc-800 leading-snug mb-1.5">{qa.frageText}</p>}
             {qa.antwortText && (

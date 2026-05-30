@@ -416,7 +416,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
           `SELECT qa.id AS pair_id, qa.drucksache_nr, qa.paar_index,
                   qa.fragesteller_name, qa.fragesteller_party, qa.fragesteller_politician_id,
                   qa.frage_text, qa.antwort_text,
-                  (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+                  COALESCE(qa.antwort_datum_iso, (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr)) AS datum
            FROM ${FTS_TABLES.qa} fts
            JOIN drucksache_qa_paare qa ON qa.id = fts.pair_id
            WHERE ${FTS_TABLES.qa} MATCH ?
@@ -809,7 +809,7 @@ export function searchByType(
           `SELECT qa.id AS pair_id, qa.drucksache_nr, qa.paar_index,
                   qa.fragesteller_name, qa.fragesteller_party, qa.fragesteller_politician_id,
                   qa.frage_text, qa.antwort_text,
-                  (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
+                  COALESCE(qa.antwort_datum_iso, (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr)) AS datum
            FROM ${FTS_TABLES.qa} fts
            JOIN drucksache_qa_paare qa ON qa.id = fts.pair_id
            WHERE ${FTS_TABLES.qa} MATCH ?
