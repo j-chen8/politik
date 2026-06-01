@@ -75,6 +75,10 @@ scripts/_*.ts
 # Berlin-Pilot: PARDOK-XML + PDFs (reproduzierbar via parlament-berlin.de/opendata)
 /data/berlin/
 
+# Geodaten für PLZ→Wahlkreis-Verschnitt (reproduzierbar, Quellen + Download im
+# Header von scripts/seed-plz-wahlkreis.ts; ~12 MB, u.a. plz-5stellig.geojson)
+/data/geo/
+
 # playwright mcp temp
 .playwright-mcp/
 
