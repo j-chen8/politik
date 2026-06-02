@@ -15,6 +15,25 @@ import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
 import { parseVTT, captionsToProse, buildSystemPrompt, TOOL_SCHEMA } from "./_lib/media-analysis-shared";
+import { jsonrepair } from "jsonrepair";
+
+/** Extrahiert das erste balancierte Top-Level-Array (String-aware) — für den
+ *  Über-Capture-Fall, in dem themes nachfolgende Felder mit-stringifiziert hat. */
+function extractFirstArray(s: string): string | null {
+  const start = s.indexOf("[");
+  if (start < 0) return null;
+  let depth = 0, inStr = false, esc = false;
+  for (let i = start; i < s.length; i++) {
+    const c = s[i];
+    if (esc) { esc = false; continue; }
+    if (c === "\\") { esc = true; continue; }
+    if (c === '"') { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (c === "[") depth++;
+    else if (c === "]") { depth--; if (depth === 0) return s.slice(start, i + 1); }
+  }
+  return null;
+}
 
 // Load .env
 const ENV_PATH = path.join(process.cwd(), ".env");
@@ -33,9 +52,13 @@ const INCLUDE_IDX = args.indexOf("--include");
 const INCLUDE_IDS: Set<string> | null = INCLUDE_IDX >= 0 && args[INCLUDE_IDX + 1]
   ? new Set(args[INCLUDE_IDX + 1].split(","))
   : null;
+// --from <pfad>: Appearances aus JSON-Datei laden statt aus hardcoded APPEARANCES
+// (z.B. data/lanz-batch-appearances.json, erzeugt von build-lanz-batch-appearances.ts)
+const FROM_IDX = args.indexOf("--from");
+const FROM_PATH = FROM_IDX >= 0 ? args[FROM_IDX + 1] : null;
 
 if (!DO_SUBMIT && !DO_STATUS && !DO_APPLY) {
-  console.error("Usage: --submit | --status | --apply [--include id1,id2]");
+  console.error("Usage: --submit | --status | --apply [--include id1,id2] [--from file.json]");
   process.exit(1);
 }
 
@@ -304,10 +327,14 @@ async function submit() {
   const requests: any[] = [];
   const transcriptShas: Record<string, { sha: string; chars: number; lines: number }> = {};
 
+  // Quelle: --from-Datei (Dataset-Loader) oder hardcoded APPEARANCES
+  const source: Appearance[] = FROM_PATH
+    ? JSON.parse(fs.readFileSync(FROM_PATH, "utf-8"))
+    : APPEARANCES;
   // Filter: nur ausgewählte custom_ids submitten (wenn --include angegeben)
   const toSubmit = INCLUDE_IDS
-    ? APPEARANCES.filter(a => INCLUDE_IDS.has(a.custom_id))
-    : APPEARANCES;
+    ? source.filter(a => INCLUDE_IDS.has(a.custom_id))
+    : source;
   if (toSubmit.length === 0) {
     console.error(`Keine Appearances passen zu --include ${[...(INCLUDE_IDS ?? [])].join(",")}`);
     process.exit(1);
@@ -467,13 +494,48 @@ async function apply() {
       const tryParse = (input: string) => {
         try { return JSON.parse(input); } catch { return null; }
       };
+      // Bare-Parenthese-Drift: Modell hängt Anmerkungen NACH dem schließenden
+      // String-" an, vor dem , oder ] —  "...Zitat" (Merz, Aug. 2025),  → invalides JSON.
+      // Diese Klammer-Annotation zwischen "  und  Delimiter entfernen (iterativ).
+      const stripBareParens = (input: string) => {
+        let s = input, prev = "";
+        for (let i = 0; i < 50 && s !== prev; i++) {
+          prev = s;
+          s = s.replace(/"(\s*)\([^()]*\)(\s*[,\]}])/g, '"$1$2');
+        }
+        return s;
+      };
       // Versuch 1: direkt
       let parsed = tryParse(joined);
       // Versuch 2: German-Quote-Fix (ASCII " innerhalb deutscher „..."-Paare)
       if (!parsed) parsed = tryParse(joined.replace(/(„[^"„]*?)"/g, "$1“"));
+      // Versuch 3: Bare-Parenthese-Drift strippen
+      if (!parsed) parsed = tryParse(stripBareParens(joined));
+      // Versuch 4: beide kombiniert
+      if (!parsed) parsed = tryParse(stripBareParens(joined.replace(/(„[^"„]*?)"/g, "$1“")));
+      // Versuche 5/6: toleranter Reparierer (jsonrepair) als letzter Ausweg.
+      // WICHTIG: jsonrepair kann strukturell-valides aber inhaltlich-FALSCHES JSON
+      // produzieren (z.B. Über-Capture → Objekte mit numerischen Keys, leere Titel).
+      // Darum Struktur-Gate: jedes Theme MUSS ein nicht-leeres title-Feld haben.
+      if (!parsed) {
+        const valid = (x: any) =>
+          Array.isArray(x) && x.length > 0 &&
+          x.every((t: any) => t && typeof t === "object" && typeof t.title === "string" && t.title.length > 0)
+            ? x : null;
+        const safeRepair = (s: string | null) => {
+          if (!s) return null;
+          try { return valid(JSON.parse(jsonrepair(s))); } catch { return null; }
+        };
+        // Versuch 5: jsonrepair direkt
+        parsed = safeRepair(joined);
+        // Versuch 6: nur das erste balancierte Array extrahieren (Über-Capture-Fall:
+        //   themes hat factual_claims o.ä. mit-stringifiziert) + jsonrepair
+        if (!parsed) parsed = safeRepair(extractFirstArray(joined));
+        if (parsed) console.log(`  ⚠ ${result.custom_id}: themes via jsonrepair+Struktur-Gate geheilt`);
+      }
       if (parsed) {
         analysisResult.themes = parsed;
-        console.log(`  ⚠ ${result.custom_id}: themes war JSON-String/Char-Array, repariert (${parsed.length} Themen)`);
+        if (Array.isArray(parsed)) console.log(`  ⚠ ${result.custom_id}: themes war JSON-String/Char-Array, repariert (${parsed.length} Themen)`);
       } else {
         console.error(`  ✗ ${result.custom_id}: themes-JSON-String nicht parsbar — bleibt korrupt`);
       }
