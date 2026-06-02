@@ -153,6 +153,8 @@ ${speakerBlock}
 AUFGABE:
 Liefere eine strukturierte Themen-Analyse aus ${politician}s Sicht. Pro Thema bestehst du auf einer FRAGE-ANTWORT-PAARUNG: erst was wurde gefragt, dann was hat ${politician} darauf gesagt, dann wie gut hat die Antwort die Frage adressiert.
 
+MODERATOR-BENENNUNG: Nenne den Moderator/Interviewer IMMER beim Namen — "${host}" — sowohl im overall_summary als auch in question_asked, question_intent und match_reasoning. Schreibe NIE generisch "der Moderator" / "die Moderatorin".
+
 TIMESTAMP-REGEL (sehr wichtig — Bug-Schutz):
 - Jeder Block beginnt mit "[HH:MM:SS]" — das ist der echte Zeitstempel aus dem Untertitel.
 - Quote-Timestamps MÜSSEN dem Block-Anker des Blocks entsprechen, in dem das Zitat steht. Schätze NIE Timestamps zwischen den Anchors.
@@ -200,8 +202,8 @@ export const TOOL_SCHEMA = {
             title: { type: "string", description: "Präziser Themen-Titel (max 8 Wörter, REIN deskriptiv — KEINE wertenden Klammern)." },
             timestamp_range: { type: "string", description: "Format 'HH:MM:SS - HH:MM:SS' — Block-Anker des ersten und letzten Politiker-Blocks zu diesem Thema. NIE schätzen." },
             theme_description: { type: "string", description: "1 Satz neutrale Beschreibung des Themas." },
-            question_asked: { type: "string", description: "PFLICHT: was hat der Moderator gefragt (paraphrasiert 1-2 Sätze). Wenn keine direkte Frage: 'Eigeninitiative' oder 'Anlass: <was vorausging>'." },
-            question_intent: { type: "string", description: "PFLICHT: was wollte der Moderator wirklich wissen? (1 Satz)." },
+            question_asked: { type: "string", description: "PFLICHT: was hat der Moderator/Interviewer gefragt — beim NAMEN nennen, nicht generisch 'der Moderator' (paraphrasiert 1-2 Sätze). Wenn keine direkte Frage: 'Eigeninitiative' oder 'Anlass: <was vorausging>'." },
+            question_intent: { type: "string", description: "PFLICHT: was wollte der Moderator/Interviewer (beim Namen) wirklich wissen? (1 Satz)." },
             position: { type: "string", description: "3-5 Sätze: konkrete Position, neutral formuliert. Eigene Wortwahl des Gastes mit Anführungs-Markierung wenn übernommen." },
             answer_match: {
               type: "string",
