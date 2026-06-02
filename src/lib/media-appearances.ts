@@ -109,6 +109,19 @@ export function getMediaAppearanceDetail(id: string): MediaAppearanceDetail | nu
   const file = path.join(process.cwd(), "data", "media-analyses", entry.analysis_file);
   try {
     const detail = JSON.parse(fs.readFileSync(file, "utf-8")) as MediaAppearanceDetail;
+    // Defensiv: LLM-Array-Drift (ein Feld kommt als String statt Array) darf NIE die
+    // Seite crashen (.map). Array-Felder hart auf Arrays normalisieren — ein nicht
+    // reparierbares Feld degradiert zu [] statt 500.
+    const asArr = <T,>(x: unknown): T[] => (Array.isArray(x) ? (x as T[]) : []);
+    const a: any = detail.analysis ?? {};
+    a.themes = asArr<any>(a.themes).map((t: any) => ({
+      ...t,
+      quotes: asArr(t?.quotes),
+      concrete_statements: asArr(t?.concrete_statements),
+      related_bundestag_topics: asArr(t?.related_bundestag_topics),
+    }));
+    a.factual_claims_to_verify = asArr(a.factual_claims_to_verify);
+    detail.analysis = a;
     detailCache.set(id, detail);
     return detail;
   } catch {

@@ -35,6 +35,55 @@ function extractFirstArray(s: string): string | null {
   return null;
 }
 
+/**
+ * Heilt ein Feld, das der LLM manchmal als JSON-String (oder Char-Array) statt als
+ * echtes Array liefert (Tool-Use-Quirk, [[feedback_llm_array_drift]]).
+ * Kaskade: direkt → German-Quote-Fix → Bare-Annotation-Strip (() UND []) → kombiniert
+ *   → jsonrepair → erstes balanciertes Array + jsonrepair.
+ * Die jsonrepair-Stufen NUR mit Struktur-Gate (isValidItem) — jsonrepair erzeugt sonst
+ * strukturell-valides, inhaltlich FALSCHES JSON (numerische Keys, leere Felder).
+ * Gibt { ok, value, repaired } zurück; bei ok=false ist value [].
+ */
+function coerceStringifiedArray(value: any, isValidItem: (x: any) => boolean): { ok: boolean; value: any[]; repaired: boolean } {
+  const looksBug =
+    typeof value === "string" ||
+    (Array.isArray(value) && value.length > 0 && typeof value[0] === "string" && value[0].length === 1);
+  if (Array.isArray(value) && !looksBug) return { ok: true, value, repaired: false };
+  if (!looksBug) return { ok: false, value: [], repaired: false };
+
+  const joined = typeof value === "string" ? value : (value as string[]).join("");
+  // Bare-Annotation-Drift: Anmerkung NACH schließendem " vor dem Delimiter — () oder [].
+  //   "...Zitat" (Merz, Aug. 2025),   bzw.   "...aktiviert" [9/11-Angriff].",
+  const stripBareAnnot = (input: string) => {
+    let s = input, prev = "";
+    for (let i = 0; i < 50 && s !== prev; i++) {
+      prev = s;
+      // a) Annotation + Delimiter:   "(...)|[...] ,/]/}   →   " ,/]/}
+      s = s.replace(/"(\s*)[(\[][^()\[\]]*[)\]]\.?(\s*[,\]}])/g, '"$1$2');
+      // b) spurioses " VOR einer Annotation, die direkt von " gefolgt wird:
+      //    "text" [annot]."   →   "text [annot]."
+      s = s.replace(/"(\s*[(\[][^()\[\]]*[)\]]\.?\s*")/g, "$1");
+    }
+    return s;
+  };
+  const germanQuote = (s: string) => s.replace(/(„[^"„]*?)"/g, "$1“");
+  const tryParse = (s: string) => { try { return JSON.parse(s); } catch { return null; } };
+  const gate = (x: any) => (Array.isArray(x) && x.length > 0 && x.every(isValidItem)) ? x : null;
+
+  // Konservative String-Transforms (kein Gate nötig — können keine Struktur erfinden)
+  let parsed: any =
+    tryParse(joined) ??
+    tryParse(germanQuote(joined)) ??
+    tryParse(stripBareAnnot(joined)) ??
+    tryParse(stripBareAnnot(germanQuote(joined)));
+  // jsonrepair-Stufen — NUR mit Struktur-Gate
+  if (!parsed) {
+    const safe = (s: string | null) => { if (!s) return null; try { return gate(JSON.parse(jsonrepair(s))); } catch { return null; } };
+    parsed = safe(stripBareAnnot(joined)) ?? safe(joined) ?? safe(extractFirstArray(stripBareAnnot(joined))) ?? safe(extractFirstArray(joined));
+  }
+  return parsed ? { ok: true, value: parsed, repaired: true } : { ok: false, value: [], repaired: false };
+}
+
 // Load .env
 const ENV_PATH = path.join(process.cwd(), ".env");
 if (fs.existsSync(ENV_PATH)) {
@@ -483,63 +532,22 @@ async function apply() {
       continue;
     }
     const analysisResult: any = (toolUse as any).input;
-    // FIX: LLM gibt themes manchmal als JSON-String statt Array (Tool-Use-Quirk).
-    // Zwei Bug-Varianten:
-    // a) themes ist direkt ein String (Aeikens-Fall)
-    // b) themes ist Array<char> — der SDK hat den String char-by-char serialisiert
-    const themes = analysisResult.themes;
-    const isStringBug =
-      typeof themes === "string" ||
-      (Array.isArray(themes) && themes.length > 0 && typeof themes[0] === "string" && themes[0].length === 1);
-    if (isStringBug) {
-      const joined = typeof themes === "string" ? themes : themes.join("");
-      const tryParse = (input: string) => {
-        try { return JSON.parse(input); } catch { return null; }
-      };
-      // Bare-Parenthese-Drift: Modell hängt Anmerkungen NACH dem schließenden
-      // String-" an, vor dem , oder ] —  "...Zitat" (Merz, Aug. 2025),  → invalides JSON.
-      // Diese Klammer-Annotation zwischen "  und  Delimiter entfernen (iterativ).
-      const stripBareParens = (input: string) => {
-        let s = input, prev = "";
-        for (let i = 0; i < 50 && s !== prev; i++) {
-          prev = s;
-          s = s.replace(/"(\s*)\([^()]*\)(\s*[,\]}])/g, '"$1$2');
-        }
-        return s;
-      };
-      // Versuch 1: direkt
-      let parsed = tryParse(joined);
-      // Versuch 2: German-Quote-Fix (ASCII " innerhalb deutscher „..."-Paare)
-      if (!parsed) parsed = tryParse(joined.replace(/(„[^"„]*?)"/g, "$1“"));
-      // Versuch 3: Bare-Parenthese-Drift strippen
-      if (!parsed) parsed = tryParse(stripBareParens(joined));
-      // Versuch 4: beide kombiniert
-      if (!parsed) parsed = tryParse(stripBareParens(joined.replace(/(„[^"„]*?)"/g, "$1“")));
-      // Versuche 5/6: toleranter Reparierer (jsonrepair) als letzter Ausweg.
-      // WICHTIG: jsonrepair kann strukturell-valides aber inhaltlich-FALSCHES JSON
-      // produzieren (z.B. Über-Capture → Objekte mit numerischen Keys, leere Titel).
-      // Darum Struktur-Gate: jedes Theme MUSS ein nicht-leeres title-Feld haben.
-      if (!parsed) {
-        const valid = (x: any) =>
-          Array.isArray(x) && x.length > 0 &&
-          x.every((t: any) => t && typeof t === "object" && typeof t.title === "string" && t.title.length > 0)
-            ? x : null;
-        const safeRepair = (s: string | null) => {
-          if (!s) return null;
-          try { return valid(JSON.parse(jsonrepair(s))); } catch { return null; }
-        };
-        // Versuch 5: jsonrepair direkt
-        parsed = safeRepair(joined);
-        // Versuch 6: nur das erste balancierte Array extrahieren (Über-Capture-Fall:
-        //   themes hat factual_claims o.ä. mit-stringifiziert) + jsonrepair
-        if (!parsed) parsed = safeRepair(extractFirstArray(joined));
-        if (parsed) console.log(`  ⚠ ${result.custom_id}: themes via jsonrepair+Struktur-Gate geheilt`);
-      }
-      if (parsed) {
-        analysisResult.themes = parsed;
-        if (Array.isArray(parsed)) console.log(`  ⚠ ${result.custom_id}: themes war JSON-String/Char-Array, repariert (${parsed.length} Themen)`);
-      } else {
-        console.error(`  ✗ ${result.custom_id}: themes-JSON-String nicht parsbar — bleibt korrupt`);
+    // FIX: LLM gibt Array-Felder manchmal als JSON-String/Char-Array statt Array
+    // (Tool-Use-Quirk). Betrifft themes UND factual_claims_to_verify → beide durch
+    // dieselbe Repair-Kaskade (coerceStringifiedArray).
+    if (typeof analysisResult.themes === "string" ||
+        (Array.isArray(analysisResult.themes) && typeof analysisResult.themes[0] === "string" && analysisResult.themes[0]?.length === 1)) {
+      const r = coerceStringifiedArray(analysisResult.themes, (t) => t && typeof t === "object" && typeof t.title === "string" && t.title.length > 0);
+      if (r.ok) { analysisResult.themes = r.value; console.log(`  ⚠ ${result.custom_id}: themes-Drift repariert (${r.value.length} Themen)`); }
+      else { analysisResult.themes = []; console.error(`  ✗ ${result.custom_id}: themes nicht parsbar — auf [] gesetzt (statt Crash)`); }
+    }
+    {
+      const fc = analysisResult.factual_claims_to_verify;
+      if (typeof fc === "string" ||
+          (Array.isArray(fc) && typeof fc[0] === "string" && fc[0]?.length === 1)) {
+        const r = coerceStringifiedArray(fc, (x) => x && typeof x === "object" && typeof x.claim === "string" && x.claim.length > 0);
+        if (r.ok) { analysisResult.factual_claims_to_verify = r.value; console.log(`  ⚠ ${result.custom_id}: factual_claims-Drift repariert (${r.value.length} Claims)`); }
+        else { analysisResult.factual_claims_to_verify = []; console.error(`  ✗ ${result.custom_id}: factual_claims nicht parsbar — auf [] gesetzt`); }
       }
     }
     // Themen sortieren
