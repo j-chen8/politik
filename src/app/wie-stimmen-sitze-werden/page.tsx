@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Landmark } from "lucide-react";
 
 export const metadata = {
   title: "Wie aus deiner Stimme ein Sitz wird | Politik-Radar",
@@ -230,6 +230,20 @@ export default function WieStimmenSitzeWerdenPage() {
             <MapPin className="w-4 h-4 shrink-0" style={{ color: ACCENT }} strokeWidth={2.25} />
             <div className="text-[15px] font-medium text-zinc-950">
               Wer vertritt mich? Postleitzahl eingeben →
+            </div>
+          </div>
+          <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 transition-colors" strokeWidth={2.25} />
+        </Link>
+
+        {/* Querverweis: Berlin */}
+        <Link
+          href="/wie-stimmen-sitze-werden/berlin"
+          className="mt-3 flex items-center justify-between rounded-xl border border-zinc-200/70 bg-white px-4 py-3.5 hover:border-zinc-300 transition-colors group"
+        >
+          <div className="flex items-center gap-3">
+            <Landmark className="w-4 h-4 shrink-0" style={{ color: "#0f766e" }} strokeWidth={2.25} />
+            <div className="text-[15px] font-medium text-zinc-950">
+              Du wohnst in Berlin? So wird das Abgeordnetenhaus gewählt →
             </div>
           </div>
           <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 transition-colors" strokeWidth={2.25} />
