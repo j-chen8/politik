@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import {
   getBundestagWahlkreiseByPlz,
@@ -194,6 +195,24 @@ export default async function WahlkreisPage({
             </div>
           );
         })()}
+
+        <Link
+          href="/wie-stimmen-sitze-werden"
+          className="mt-2 flex items-center justify-between rounded-xl border border-zinc-200/70 bg-white px-4 py-3.5 hover:border-zinc-300 transition-colors group"
+        >
+          <div>
+            <div className="text-[14.5px] font-medium text-zinc-950">
+              Wie funktioniert der Bundestag?
+            </div>
+            <div className="text-[12.5px] text-zinc-500">
+              Wie aus deiner Stimme ein Sitz wird — einfach erklärt
+            </div>
+          </div>
+          <ArrowRight
+            className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-950 transition-colors"
+            strokeWidth={2.25}
+          />
+        </Link>
 
         <p className="text-[12px] text-zinc-400 leading-relaxed mt-12 border-t border-zinc-200 pt-6">
           PLZ→Wahlkreis-Zuordnung durch geometrischen Verschnitt der PLZ-Gebiete mit den

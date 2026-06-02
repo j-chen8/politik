@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote, MapPin } from "lucide-react";
+import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote, MapPin, PieChart } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
 import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
@@ -40,6 +40,7 @@ const PRIMARY_NAV = [
 
 const MORE_NAV = [
   { href: "/wahlkreis", icon: MapPin, label: "Mein Abgeordneter" },
+  { href: "/wie-stimmen-sitze-werden", icon: PieChart, label: "Wahlsystem erklärt" },
   { href: "/protokolle/sitzungen", icon: CalendarDays, label: "Plenarsitzungen" },
   { href: "/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
   { href: "/analyse", icon: BarChart3, label: "Analyse" },
