@@ -249,6 +249,51 @@ const APPEARANCES: Appearance[] = [
     other_speakers: "Sepp Müller (CDU, MdB, Wirtschaftspolitiker), Eva Quadbeck (Chefredakteurin Redaktionsnetzwerk Deutschland — Journalistin, kommentiert Politik), Sarah Tacke (ZDF-Reporterin — kommentiert ihre Bürgergeld-Dokumentation)",
     politician_desc: "Co-Vorsitzender Bündnis 90/Die Grünen seit 2024, MdB. Themen typisch: Ost-Wahlkämpfe 2025, AfD-Umgang, Bürgergeld-Reform aus Grünen-Perspektive. Spricht aus Opposition-Sicht, kritisch zur Merz-Regierung",
   },
+  // ─── TEST 2026-06-02: andere Talkshows, ARD-Pfad validieren ───
+  {
+    custom_id: "gysi-maischberger-2026-05-12",
+    politician_id: 79334,
+    politician: "Gregor Gysi",
+    host: "Sandra Maischberger",
+    publisher: "maischberger (ARD)",
+    episode_label: "Sendung vom 12.05.2026",
+    url: "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtMThhNWJiNzEtOWIwNS00YjkxLWI5YjgtZTc1N2NmNTk0YjI1",
+    video_id: "maischberger-2026-05-12",
+    published_at: "2026-05-12",
+    duration_label: "ca. 70 Min",
+    format: "tv",
+    other_speakers: "Thomas de Maizière (CDU, ehem. Bundesinnenminister) — diskutiert mit Gysi über Koalitionsstreit. Maischberger-Folgen haben mehrere getrennte Gesprächsblöcke; weitere Gäste können im Transkript vorkommen.",
+    politician_desc: "Gregor Gysi, Die Linke, MdB, Alterspräsident des Bundestags; langjährige Galionsfigur der Linken, außenpolitisch profiliert, oppositionelle Perspektive.",
+  },
+  {
+    custom_id: "kluessendorf-hartaberfair-2026-04-20",
+    politician_id: 175503,
+    politician: "Tim Klüssendorf",
+    host: "Louis Klamroth",
+    publisher: "hart aber fair (ARD)",
+    episode_label: "Sendung vom 20.04.2026",
+    url: "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtOTgxMDRlNjUtNGRhYi00ODEzLWIzNTYtM2QzMDAyZWM3YjEz",
+    video_id: "hart-aber-fair-2026-04-20",
+    published_at: "2026-04-20",
+    duration_label: "ca. 75 Min",
+    format: "tv",
+    other_speakers: "Panel zu Spritpreisen und Tankrabatt, u.a. eine Unternehmerin; weitere Diskutant:innen aus Wirtschaft/Verbänden möglich.",
+    politician_desc: "Tim Klüssendorf, SPD, MdB; Finanz- und Haushaltspolitiker. Vertritt die SPD-Position zu Energiepreisen und Entlastungen.",
+  },
+  {
+    custom_id: "merz-miosga-2026-05-03",
+    politician_id: 118559,
+    politician: "Friedrich Merz",
+    host: "Caren Miosga",
+    publisher: "Caren Miosga (ARD)",
+    episode_label: "Sendung vom 03.05.2026",
+    url: "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8zZGFlMGExZS01MGYwLTQyZTYtYTc3Yy00MmFlZTQzNzVjZDBfZ2FuemVTZW5kdW5n",
+    video_id: "caren-miosga-2026-05-03",
+    published_at: "2026-05-03",
+    duration_label: "ca. 45 Min",
+    format: "tv",
+    politician_desc: "Friedrich Merz, CDU, MdB, Bundeskanzler seit 2025. Einzelinterview (1-on-1) zum ersten Jahr seiner Kanzlerschaft.",
+  },
 ];
 
 /* ─── Submit ────────────────────────────────────────────────── */
@@ -271,7 +316,7 @@ async function submit() {
 
   for (const a of toSubmit) {
     // Untertitel: ZDF nutzt .deu., YouTube .de-orig.
-    const isZdf = /zdf\.de\//.test(a.url);
+    const isZdf = /zdf\.de\//.test(a.url) || /ardmediathek\.de\//.test(a.url);
     const subSuffix = isZdf ? ".deu.vtt" : ".de-orig.vtt";
     const vttPath = path.join(tmpDir, `${a.video_id}${subSuffix}`);
     if (!fs.existsSync(vttPath)) {
@@ -437,7 +482,7 @@ async function apply() {
     if (analysisResult.themes && Array.isArray(analysisResult.themes)) analysisResult.themes = sortThemesByStart(analysisResult.themes);
 
     // Transkript für Validation neu parsen
-    const isZdf = /zdf\.de\//.test(a.url);
+    const isZdf = /zdf\.de\//.test(a.url) || /ardmediathek\.de\//.test(a.url);
     const vttSuffix = isZdf ? ".deu.vtt" : ".de-orig.vtt";
     const vttPath = path.join(process.cwd(), ".tmp-media", `${a.video_id}${vttSuffix}`);
     const parsed = parseVTT(fs.readFileSync(vttPath, "utf-8"));
@@ -478,8 +523,12 @@ async function apply() {
         batch_id: state.batch_id,
       },
       _methodology: {
-        transcript_source: "YouTube Auto-Caption (de-orig)",
-        transcript_caveat: "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+        transcript_source: /ardmediathek\.de/.test(a.url) ? "ARD-Mediathek Redaktions-Untertitel (deu)"
+          : /zdf\.de/.test(a.url) ? "ZDF-Mediathek Redaktions-Untertitel (deu)"
+          : "YouTube Auto-Caption (de-orig)",
+        transcript_caveat: /youtube\.com|youtu\.be/.test(a.url)
+          ? "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert."
+          : "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
         classification_caveat: "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
         ui_display_hint: "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
         methodology_version: "v0.1-phase2",

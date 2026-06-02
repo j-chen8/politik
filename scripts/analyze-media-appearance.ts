@@ -63,14 +63,15 @@ function downloadVTT(url: string): VTTDownload {
   fs.mkdirSync(tmpDir, { recursive: true });
   // Quelle erkennen
   const isZdf = /zdf\.de\//.test(url);
+  const isArd = /ardmediathek\.de\//.test(url);
   const isYoutube = /youtube\.com|youtu\.be/.test(url);
   // Video-ID für Cache-Check
   let videoId: string | null = null;
   if (isYoutube) {
     const m = url.match(/[?&]v=([A-Za-z0-9_-]+)/) ?? url.match(/youtu\.be\/([A-Za-z0-9_-]+)/);
     videoId = m ? m[1] : null;
-  } else if (isZdf) {
-    // ZDF: nutze letzten Path-Segment-Slug als ID
+  } else if (isZdf || isArd) {
+    // ZDF/ARD: nutze letzten Path-Segment-Slug als ID
     const m = url.match(/\/([^/]+)(?:[?#]|$)/);
     videoId = m ? m[1] : null;
   }
@@ -82,8 +83,8 @@ function downloadVTT(url: string): VTTDownload {
     }
   }
   console.log(`[1/4] Lade VTT für ${url} ...`);
-  // ZDF hat redaktionelle Untertitel als "deu", YouTube hat Auto-Captions als "de-orig"
-  const subArgs = isZdf
+  // ZDF/ARD haben redaktionelle Untertitel als "deu", YouTube hat Auto-Captions als "de-orig"
+  const subArgs = (isZdf || isArd)
     ? `--write-subs --sub-langs "deu"`
     : `--write-auto-subs --sub-langs "de-orig"`;
   execSync(
@@ -548,8 +549,12 @@ function sortThemesByStart(themes: any[]): any[] {
       duration_seconds: Math.round((Date.now() - t0) / 1000),
     },
     _methodology: {
-      transcript_source: "YouTube Auto-Caption (de-orig)",
-      transcript_caveat: "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert.",
+      transcript_source: /ardmediathek\.de/.test(URL ?? "") ? "ARD-Mediathek Redaktions-Untertitel (deu)"
+        : /zdf\.de/.test(URL ?? "") ? "ZDF-Mediathek Redaktions-Untertitel (deu)"
+        : "YouTube Auto-Caption (de-orig)",
+      transcript_caveat: /youtube\.com|youtu\.be/.test(URL ?? "")
+        ? "Auto-generated, ~5-10 % Eigennamen-Fehler erwartet, vom LLM still korrigiert."
+        : "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
       classification_caveat: "Antwort-Typ-Klassifikation (substantielle_position / teilweise_antwort / themenwechsel / pivot_zum_gegenpunkt / floskel_generisch / offene_verweigerung / gegenfrage) ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird — sonst könnte fraktionspolitische Asymmetrie in Sprachmustern als asymmetrische Klassifikation durchschlagen.",
       ui_display_hint: "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen entweder gar nicht oder nur mit Begriffen wie 'Antwort zu anderem Bezugspunkt' (statt 'whataboutism') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein, damit Leser:innen selbst urteilen können.",
       methodology_version: "v0.1-phase2",

@@ -32,18 +32,23 @@ export function parseVTT(content: string): ParsedVTT {
     if (tsMatch) { pendingTime = tsMatch[1]; continue; }
     if (!line) continue;
     if (line.startsWith("WEBVTT") || line.startsWith("Kind:") || line.startsWith("Language:")) continue;
-    if (line.includes("<")) continue;
-    if (line === lastText) continue;
+    // ARD/WDR-Farb-Tags (<c.textBlue>…</c>) strippen, Text behalten.
+    // YouTube-Timing-Tags (<00:00:…>) bleiben übrig → Zeile fällt wie bisher raus.
+    const work = line.replace(/<\/?c[^>]*>/g, "").trim();
+    if (work.includes("<")) continue;
+    if (!work) continue;
+    if (/^\d+$/.test(work)) continue;  // VTT-Cue-Index (ARD nummeriert Cues)
+    if (work === lastText) continue;
 
-    const speakerMatch = line.match(/^([A-Z]{1,3}):\s*(.*)$/);
-    let cleanText = line;
+    const speakerMatch = work.match(/^([A-Z]{1,3}):\s*(.*)$/);
+    let cleanText = work;
     if (speakerMatch) {
       currentSpeaker = speakerMatch[1];
       cleanText = speakerMatch[2];
       speakerCounts[currentSpeaker] = (speakerCounts[currentSpeaker] ?? 0) + 1;
     }
     result.push({ time: pendingTime, text: cleanText, speaker: currentSpeaker });
-    lastText = line;
+    lastText = work;
   }
   return {
     lines: result,
