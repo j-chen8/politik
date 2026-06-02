@@ -116,10 +116,20 @@ async function callMistral(payload: object): Promise<any> {
   throw new Error("alle Mistral-Keys rate-limited");
 }
 
+/** Guard gegen LLM-Array-Drift: Haiku liefert Sektionen vereinzelt als
+ *  stringifiziertes Array statt Array. Sonst arr.forEach -> TypeError. */
+function asArray(v: any): any[] {
+  if (Array.isArray(v)) return v;
+  if (typeof v === "string") {
+    try { const p = JSON.parse(v); if (Array.isArray(p)) return p; } catch { /* kein Array */ }
+  }
+  return [];
+}
+
 function flattenCv(cv: any): Entry[] {
   const entries: Entry[] = [];
   for (const sec of ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"]) {
-    const arr = cv[sec] ?? [];
+    const arr = asArray(cv[sec]);
     arr.forEach((e: any, i: number) => entries.push({ section: sec, index: i, jahr: String(e.jahr ?? ""), text: String(e.text ?? "") }));
   }
   return entries;
