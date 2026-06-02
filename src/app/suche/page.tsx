@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Search, CornerDownRight } from "lucide-react";
 import { CommandPalette } from "@/components/CommandPalette";
 import { SearchFullList } from "@/components/SearchFullList";
@@ -33,13 +33,21 @@ function SuchePageInner() {
   const [open, setOpen] = useState(false);
   const [paletteQuery, setPaletteQuery] = useState<string>("");
 
-  // ?q=... in URL (ohne ?type) → Palette gleich öffnen mit Prefill
+  // Smarte PLZ-Erkennung: reine 5-stellige PLZ → direkt zum Wahlkreis-Finder (Bundestag).
+  // Fängt No-JS-Form-Fallback + Direktlinks /suche?q=10115 ab.
+  const router = useRouter();
+  const plzMatch = initialQuery.trim().match(/^\d{5}$/)?.[0] ?? null;
   useEffect(() => {
-    if (!isFullListMode && initialQuery.trim().length >= 2) {
+    if (plzMatch) router.replace(`/wahlkreis?plz=${plzMatch}`);
+  }, [plzMatch, router]);
+
+  // ?q=... in URL (ohne ?type) → Palette gleich öffnen mit Prefill (außer bei PLZ → Redirect)
+  useEffect(() => {
+    if (!plzMatch && !isFullListMode && initialQuery.trim().length >= 2) {
       setPaletteQuery(initialQuery);
       setOpen(true);
     }
-  }, [initialQuery, isFullListMode]);
+  }, [initialQuery, isFullListMode, plzMatch]);
 
   // Cmd+K / Ctrl+K Shortcut
   useEffect(() => {

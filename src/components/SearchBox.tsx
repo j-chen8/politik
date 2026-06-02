@@ -6,7 +6,7 @@ import { Search, Loader2 } from "lucide-react";
 
 export function SearchBox({
   searchPath = "/suche",
-  placeholder = 'Name oder Thema – z.B. „Bürgergeld"',
+  placeholder = 'Name, Thema oder deine PLZ – z.B. „10115"',
 }: {
   /** Zielseite der Suche — z.B. "/parlamente/berlin/suche" für Berlin-Scope. */
   searchPath?: string;
@@ -28,11 +28,19 @@ export function SearchBox({
     // Wenn JS gehydriert: client-side routing
     if (typeof window !== "undefined") {
       e.preventDefault();
+      // Smarte PLZ-Erkennung (nur Bundestag-Suche): reine 5-stellige Eingabe führt
+      // direkt zum Wahlkreis-Finder statt zur Volltextsuche. Berlin hat (noch) keine
+      // Wahlkreis-Geometrie → dort normal weitersuchen.
+      const isBundestag = searchPath === "/suche";
+      const target =
+        isBundestag && /^\d{5}$/.test(q)
+          ? `/wahlkreis?plz=${q}`
+          : `${searchPath}?q=${encodeURIComponent(q)}`;
       startTransition(() => {
-        router.push(`${searchPath}?q=${encodeURIComponent(q)}`);
+        router.push(target);
       });
     }
-    // Sonst übernimmt das Form-action als HTML-Fallback
+    // Sonst übernimmt das Form-action als HTML-Fallback (PLZ fängt /suche serverseitig ab)
   }
 
   return (

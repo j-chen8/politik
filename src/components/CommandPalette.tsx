@@ -11,6 +11,7 @@ import {
   FileText,
   Loader2,
   Plus,
+  MapPin,
 } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { highlight } from "@/lib/highlight";
@@ -222,6 +223,11 @@ export function CommandPalette({
   }, [results.totalsExpanded, results.totalsOriginal]);
   const canExpand = results.matchedClusters.length > 0 && relatedExtra > 0;
 
+  // Smarte PLZ-Erkennung (nur Bundestag): reine 5-stellige Eingabe → Wahlkreis-Finder.
+  // Berlin hat (noch) keine Wahlkreis-Geometrie → dort normal weitersuchen.
+  const plzMatch = scope === "bundestag" ? (query.trim().match(/^\d{5}$/)?.[0] ?? null) : null;
+  const plzHref = plzMatch ? `/wahlkreis?plz=${plzMatch}` : null;
+
   // Reset on open (mit optional initialQuery)
   useEffect(() => {
     if (open) {
@@ -316,13 +322,18 @@ export function CommandPalette({
         );
       } else if (e.key === "Enter") {
         e.preventDefault();
+        // Reine PLZ → direkt zum Wahlkreis-Finder, egal welche Trefferzeile markiert ist.
+        if (plzHref) {
+          navigateTo(plzHref);
+          return;
+        }
         const target = displayHits[selectedIndex];
         if (target) navigateTo(target.href);
       }
     }
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [open, displayHits, selectedIndex, navigateTo, onClose]);
+  }, [open, displayHits, selectedIndex, navigateTo, onClose, plzHref]);
 
   // Scroll selected into view
   useEffect(() => {
@@ -459,6 +470,23 @@ export function CommandPalette({
 
         {/* Results */}
         <div ref={listRef} className="max-h-[60vh] overflow-y-auto py-2">
+          {plzHref && (
+            <button
+              type="button"
+              onClick={() => navigateTo(plzHref)}
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-zinc-50 transition-colors border-b border-zinc-100"
+            >
+              <div className="w-7 h-7 rounded-md bg-[#1a3e72]/10 flex items-center justify-center shrink-0">
+                <MapPin className="w-3.5 h-3.5 text-[#1a3e72]" strokeWidth={2.25} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13.5px] text-zinc-900">
+                  Abgeordnete für PLZ <span className="font-medium">{plzMatch}</span> anzeigen
+                </div>
+                <div className="text-[11.5px] text-zinc-500">Wer dich im Bundestag vertritt — mit ↵</div>
+              </div>
+            </button>
+          )}
           {query.trim().length < 2 && (
             <div className="px-4 py-12 text-center text-[13px] text-zinc-400">
               Tippe mindestens 2 Zeichen, um zu suchen.
@@ -475,7 +503,7 @@ export function CommandPalette({
               </div>
             </div>
           )}
-          {query.trim().length >= 2 && results.total === 0 && !loading && (
+          {query.trim().length >= 2 && results.total === 0 && !loading && !plzHref && (
             <div className="px-4 py-12 text-center text-[13px] text-zinc-400">
               Keine Treffer für „{query}".
             </div>

@@ -3,7 +3,6 @@ import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip"
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
 import { getBundestagLandingSnapshot } from "@/lib/db";
 import Link from "next/link";
-import { MapPin, ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 
 // Mehrzeiliges Ellipsis-Clamp per Inline-Style — Tailwinds line-clamp-Utility
@@ -151,35 +150,17 @@ export default function LinearLanding() {
       methodikHref="/methodik"
       search={<SearchBox />}
       examples={
-        <>
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            {SUCH_BEISPIELE.map((term) => (
-              <Link
-                key={term}
-                href={`/suche?q=${encodeURIComponent(term)}`}
-                className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-[12.5px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
-              >
-                {term}
-              </Link>
-            ))}
-          </div>
-          {/* PLZ-Funnel: „Wer vertritt dich?" — eigenständiger CTA, nicht in den
-              grauen Such-Chips versteckt, damit der Einstieg klar erkennbar bleibt. */}
-          <div className="mt-5 flex justify-center">
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {SUCH_BEISPIELE.map((term) => (
             <Link
-              href="/wahlkreis"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#1a3e72]/25 bg-[#1a3e72]/[0.04] py-1.5 pl-3 pr-3 text-[12.5px] hover:border-[#1a3e72]/40 hover:bg-[#1a3e72]/[0.07] transition-colors"
+              key={term}
+              href={`/suche?q=${encodeURIComponent(term)}`}
+              className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-[12.5px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
             >
-              <MapPin className="w-3.5 h-3.5 shrink-0 text-[#1a3e72]" strokeWidth={2.25} />
-              <span className="font-medium text-zinc-700">Wer vertritt dich im Bundestag?</span>
-              <span className="text-zinc-400">Postleitzahl eingeben</span>
-              <ArrowRight
-                className="w-3.5 h-3.5 shrink-0 text-[#1a3e72] group-hover:translate-x-0.5 transition-transform"
-                strokeWidth={2.25}
-              />
+              {term}
             </Link>
-          </div>
-        </>
+          ))}
+        </div>
       }
       plenarPill={
         s.latestSitzung
