@@ -1,0 +1,374 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-27-februar-2025-100",
+    "video_id": "lanz-2025-02-27",
+    "politician": "Thorsten Frei",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c3489c697cf1039d",
+    "transcript_chars": 39304,
+    "caption_lines": 1948,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17375,
+    "tokens_out": 9100,
+    "cost_usd": 0.025150000000000002,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-02T16:33:28.801Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei (CDU, Bundesminister für besondere Aufgaben und Chef des Bundeskanzleramtes) diskutiert die Koalitionsverhandlungen mit SPD nach der Bundestagswahl. Er wirkt sachlich und verteidigend, lehnt Vorwürfe der Überheblichkeit ab und argumentiert für pragmatisches Verhalten der Union gegenüber der SPD, während er zugleich kritisiert, dass die SPD ihrer Verantwortung nicht nachkommt. Sein Ton ist konziliatorisch, aber mit deutlichen Positionierungen zu Kernthemen wie Schuldenbremse, Bürgergeld und der Bewertung extremistischer Parteien.",
+    "themes": [
+      {
+        "title": "Wahl ergebnis und Koalitionsnotwendigkeit mit SPD",
+        "timestamp_range": "00:03:26 - 00:04:56",
+        "theme_description": "Thorsten Frei reflektiert auf die Wahlresultate der Union und begründet die strategische Zusammenarbeit mit der SPD als einzige Option.",
+        "question_asked": "Wie bewerten Sie, dass die Union unter 30 % landete und die SPD die einzige Koalitionsoption darstellt?",
+        "question_intent": "Moderator will von Frei hören, ob er das Wahlergebnis oder die SPD-Abhängigkeit problematischer sieht.",
+        "position": "Frei betont, dass Wahlen keine Wunschkonzerte sind und die Union mehr Prozente gewünscht hätte. Die Partei sei mit dem Ziel angetreten, in wichtigen Politikbereichen eine Politikwende zu erreichen. Die aktuelle Situation erfordere eine gemeinsame Verantwortung: \"Es geht ums Land, und dann erst um die Parteien. In dritter Linie geht es um Personen.\" Diesen Satz zitiert Frei selbst aus dem Moderationstext.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert das Wahlergebnis realistisch und begründet die Notwendigkeit der SPD-Koalition mit dem Primat des Landes. Er weicht jedoch aus, konkrete Unwägbarkeiten einer erzwungenen Koalition zu benennen – der psychologische und operative Stress einer Regierung mit Partnern, die man vorher scharf attackiert hat.",
+        "quotes": [
+          {
+            "text": "Es geht ums Land, und dann erst um die Parteien. In dritter Linie geht es um Personen.",
+            "timestamp": "00:03:26",
+            "context": "Frei erklärt die Hierarchie der Verantwortung nach dem Wahlergebnis."
+          }
+        ],
+        "concrete_statements": [
+          "Union hätte sich mehr Prozente gewünscht",
+          "Wichtige Politikwende in Kernbereichen war Wahlziel",
+          "Gemeinsame Verantwortung ergibt sich aus der Situation"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Wahlergebnis 2025"
+        ]
+      },
+      {
+        "title": "Abstimmung zu Migrationsfragen und SPD-Verantwortung",
+        "timestamp_range": "00:07:22 - 00:08:31",
+        "theme_description": "Frei wirft der SPD vor, ihrer Verantwortung bei Migrationsvoten nicht nachgekommen zu sein, und kritisiert deren Blockadeverhalten bei gemeinsamen Lösungsansätzen.",
+        "question_asked": "Der Moderator bezieht sich auf Stegners Aussage, dass die Union die SPD ultimativ aufforderte, mitzustimmen oder anders abgestimmt würde. War das nicht ein Fehler der Union?",
+        "question_intent": "Moderator will von Frei hören, ob die Union ultimativ wirkte oder ob die SPD zu unflexibel war.",
+        "position": "Frei argumentiert, dass die SPD eine Verantwortung hatte, die sie sich entzog. Die Union habe einen Gesetzentwurf zur Abstimmung gebracht, den die SPD selbst beschlossen oder ins Wahlprogramm geschrieben hatte. Eine gemeinsame Lösung sei möglich gewesen: \"Wir hätten zur gemeinsamen Lösung kommen können. Aber Sie wollten nicht.\" Die SPD beklagt sich jetzt, dass die Union sich \"nichts vorschreiben lässt\". Frei deutet an, dass man zum Innenausschuss hätte gehen können, wenn die Entscheidung in der laufenden Periode garantiert wäre.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Frei antwortet auf die Frage nach Union-Ultimatismus, indem er das Blatt umdreht: Er wirft der SPD vor, ihre eigene Verantwortung nicht wahrgenommen zu haben. Das ist ein klassischer Gegenpunkt-Pivot – substantiell, aber umlenkend auf die Schuldfrage der anderen Seite statt zur Antwort auf das Moderator-Vorwurf.",
+        "quotes": [
+          {
+            "text": "Wir hätten zur gemeinsamen Lösung kommen können. Aber Sie wollten nicht, und jetzt beklagen sich, dass wir uns nichts vorschreiben lassen.",
+            "timestamp": "00:07:22",
+            "context": "Frei antwortet auf den Vorwurf, die Union hätte die SPD ultimativ behandelt."
+          }
+        ],
+        "concrete_statements": [
+          "SPD entzog sich ihrer Verantwortung",
+          "Gesetzentwurf basierte auf SPD-eigenem Wahlprogramm",
+          "Hätte zum Innenausschuss gehen können, wenn Entscheidung in laufender Periode sicher gewesen wäre"
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Innenpolitik",
+          "Parlamentarische Verfahren"
+        ]
+      },
+      {
+        "title": "500 Fragen an Omas gegen Rechts und parlamentarischer Prozess",
+        "timestamp_range": "00:24:28 - 00:28:52",
+        "theme_description": "Frei verteidigt die Union gegen den Vorwurf der Überheblichkeit und Rachsucht bei der Befragung von NGOs, insbesondere Omas gegen Rechts.",
+        "question_asked": "Ist es richtig, aus einer Situation der 'beleidigten Leberwurst' heraus 500 Fragen an NGOs zu stellen, wenn es eigentlich ums sachliche Anliegen gehen sollte? Und war das Timing nicht taktisch motiviert?",
+        "question_intent": "Moderator und Gäste kritisieren, dass die Union aus gekränkter Stimmung heraus unnötige Konfrontation sucht, anstatt konstruktiv zusammenzuarbeiten.",
+        "position": "Frei weist den Vorwurf der Überheblichkeit zurück und betont: \"Wir gehen da nicht überheblich an die Dinge dran.\" Er erklärt, dass Friedrich Merz auf einer Pressekonferenz am Montagnachmittag gefragt wurde und antwortete, darüber müsse er mit den anderen Parteien sprechen. Das sei \"dagegen nichts einzuwenden\". Für größere Entscheidungen brauche man qualifizierte Mehrheiten, die man nur gemeinsam organisieren könne: \"Und das schaffen wir entweder gemeinsam, oder wir schaffen es nicht.\" Frei argumentiert, dass niemand allein eine Regierung bilden kann und dass gegenseitiges Aufeinanderzugehen notwendig ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei antwortet auf die Frage nach Überheblichkeit mit einer Defensiv-Klarstellung. Er erklärt das Procedere, weist aber die zentrale Kritik (taktische, aus Kränkung motivierte Befragung) nicht direkt an. Er lenkt zu allgemeinen Aussagen über Koalitionslogik, ohne konkret zu erklären, warum diese Fragen gerade jetzt notwendig waren.",
+        "quotes": [
+          {
+            "text": "Wir gehen da nicht überheblich an die Dinge dran. Natürlich kann keiner von uns alleine eine Regierung bilden. Das gilt nur zusammen.",
+            "timestamp": "00:28:52",
+            "context": "Frei verteidigt sich gegen Vorwurf der Überheblichkeit bei NGO-Befragungen."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Überheblichkeit bei NGO-Befragungen",
+          "Merz antwortete auf Pressekonferenz-Frage, müsse mit anderen Parteien sprechen",
+          "Qualifizierte Mehrheiten nur gemeinsam organisierbar"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Parlamentarische Kommunikation",
+          "Zivilgesellschaftliche Beziehungen"
+        ]
+      },
+      {
+        "title": "Sondervermögen Bundeswehr und Zweidrittelmehrheit mit AfD",
+        "timestamp_range": "00:33:17 - 00:34:47",
+        "theme_description": "Frei warnt davor, dass für ein Sondervermögen Bundeswehr eine Verfassungsänderung nötig ist, die ohne AfD-Stimmen nicht machbar ist – ein kritisches demokratisches Dilemma.",
+        "question_asked": "Könnte man das Sondervermögen ohne AfD realisieren, oder würde man faktisch von deren Unterstützung abhängig?",
+        "question_intent": "Moderator will von Frei hören, ob und wie dieses verfassungsrechtliche Abhängigkeits-Problem gelöst werden kann.",
+        "position": "Frei erklärt die mathematische und verfassungsrechtliche Situation: Für ein Sondervermögen Bundeswehr müsse die Verfassung geändert werden. Eine Zweidrittelmehrheit kriege man nur mit der AfD. Die Linke werde nicht zustimmen, wenn es um 200 Milliarden für Ausrüstung gehe. Die AfD werde Alice Weidel zufolge dafür stimmen. \"Wenn es zu diesem Sondervermögen kommt, dann wird es dazu kommen mit den Stimmen der AfD.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei beantwortet die Frage direkt und vollständig: Er benennt das arithmetische Problem, die politischen Positionen der beteiligten Parteien und zieht die logische Konsequenz. Das ist eine substantielle, faktenbezogene Position ohne Ausweichmanöver.",
+        "quotes": [
+          {
+            "text": "Die Zweidrittelmehrheit bekommt man nur mit der AfD. Wenn zu diesem Sondervermögen kommt, dann wird es dazu kommen mit den Stimmen der AfD.",
+            "timestamp": "00:33:17",
+            "context": "Frei erklärt das verfassungsrechtliche Dilemma beim Sondervermögen Bundeswehr."
+          }
+        ],
+        "concrete_statements": [
+          "Verfassungsänderung notwendig für Sondervermögen Bundeswehr",
+          "Zweidrittelmehrheit nur mit AfD-Stimmen erreichbar",
+          "Linke wird bei 200 Mrd. Euro für Ausrüstung nicht zustimmen",
+          "AfD wird laut Weidel dafür stimmen"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsfinanzierung",
+          "Verfassungsrecht",
+          "NATO-Verpflichtungen",
+          "AfD-Sperrminorität"
+        ]
+      },
+      {
+        "title": "AfD-Wahlergebnisse im Osten und Ursachen",
+        "timestamp_range": "00:39:55 - 00:41:56",
+        "theme_description": "Frei analysiert die hohen AfD-Wahlergebnisse im Osten als Zeichen massiver Unzufriedenheit, weniger als ideologische Radikalisierung.",
+        "question_asked": "Markus Lanz weist auf die AfD-Dominanz im Osten hin. Wie erklären Sie sich diese Ergebnisse, und was sagt das über den Zustand der Demokratie aus?",
+        "question_intent": "Moderator will von Frei hören, ob er das als akute demokratische Gefahr oder als Protest-Symptom deutet.",
+        "position": "Frei betont zunächst das Erkenntnisinteresse: Man müsse verstehen, *warum* es passiert ist. \"Die vielen Wahlkreise im Osten Deutschlands, die sind nicht knapp gewonnen worden, sondern mit ganz erheblichen Mehrheiten.\" Auch in westlichen Städten wie Gelsenkirchen und Kaiserslautern hätten AfD-Kandidaten gewonnen. \"Wenn eine in Teilen extremistische Partei wie die AfD solche Ergebnisse erzielt, dann bedeutet es, dass die Leute eklatant unzufrieden sind.\" Frei fordert Selbstkritik: \"Man muss sich selbstkritisch, kritisch mit sich selbst damit auseinandersetzen, was ist der eigene Beitrag, dass es da hingekommen ist, und was ist der Beitrag, dass es sich wieder verändert.\" Das Fazit: Es ist \"mehr als ein blaues Auge\", eher ein Warnschuss, dass populistische Parteien ein Drittel des Bundestages stellen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei gibt eine detaillierte Analyse der Ursachen und Konsequenzen. Er vermeidet Verharmlosung, benennt aber auch die Protestwähler-Komponente. Er adressiert direkt die Frage nach Demokratie-Gefährdung, ohne auszuweichen.",
+        "quotes": [
+          {
+            "text": "Wenn eine in Teilen extremistische Partei wie die AfD solche Ergebnisse erzielt, dann bedeutet es, dass die Leute eklatant unzufrieden sind. Man muss sich selbstkritisch, kritisch mit sich selbst damit auseinandersetzen, was ist der eigene Beitrag, dass es da hingekommen ist.",
+            "timestamp": "00:39:55",
+            "context": "Frei analysiert die Ursachen der hohen AfD-Wahlergebnisse im Osten."
+          }
+        ],
+        "concrete_statements": [
+          "Wahlkreise im Osten nicht knapp, sondern mit erheblichen Mehrheiten gewonnen",
+          "AfD-Siege auch in Westdeutschland (Gelsenkirchen, Kaiserslautern)",
+          "Hohe Ergebnisse zeigen eklatante Unzufriedenheit der Bürger",
+          "Populistische Parteien stellen jetzt ein Drittel des Bundestages",
+          "Mehr als ein blaues Auge, eher Warnschuss"
+        ],
+        "related_bundestag_topics": [
+          "Wahlergebnis 2025",
+          "Rechtsextremismus",
+          "Ostdeutschland",
+          "Populismus"
+        ]
+      },
+      {
+        "title": "Außenpolitik und Verteidigungsausgaben",
+        "timestamp_range": "00:41:56 - 00:42:54",
+        "theme_description": "Frei betont die herausfordernde geopolitische Lage und fordert höhere deutsche Rüstungsausgaben über die NATO-2%-Quote hinaus.",
+        "question_asked": "Wie sollte Deutschland auf die außenpolitischen Herausforderungen (Trump, Putin) reagieren, und ist mehr Rüstungsausgaben die Antwort?",
+        "question_intent": "Moderator will von Frei hören, welche Konsequenzen er aus der geopolitischen Unsicherheit für deutsche Außen- und Sicherheitspolitik zieht.",
+        "position": "Frei warnt vor einer herausfordernden außenpolitischen Lage, insbesondere wegen Äußerungen, die Zweifel an der NATO-Sicherheit aufwerfen. \"Die Sicherheit beruht auf der NATO, die haben einige Äußerungen in den letzten Tagen gehört, wo man Zweifel haben muss, ob das auch für die Zukunft gilt.\" Deutschland, Frankreich, Polen und Großbritannien müssten sich der Frage stellen, ob sie ihre Verteidigung stärken können. UK-Premierminister Starmer wolle deutlich mehr für Verteidigung ausgeben – 5% des BIP. Deutschland habe sich bei der NATO auf 2% verpflichtet und habe ein Volumen von 51 Milliarden Euro. \"Dass es deutlich zu wenig.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei adressiert direkt die außenpolitische Frage und gibt konkrete Zahlen sowie eine klare Position (2% ist nicht genug). Er argumentiert geopolitisch substanziell.",
+        "quotes": [
+          {
+            "text": "Die Sicherheit beruht auf der NATO, die haben einige Äußerungen in den letzten Tagen gehört, wo man Zweifel haben muss, ob das auch für die Zukunft gilt. Wir haben eine Volumen von 51 Milliarden Euro gerade, dass es deutlich zu wenig.",
+            "timestamp": "00:41:56",
+            "context": "Frei warnt vor instabiler Nato-Lage und fordert höhere deutsche Verteidigungsausgaben."
+          }
+        ],
+        "concrete_statements": [
+          "NATO-Sicherheitsgarantie unter Druck durch Äußerungen von Trump",
+          "Deutschland verpflichtet sich zu 2% BIP-Rüstungsausgaben",
+          "Aktuelle 51 Milliarden Euro sind deutlich zu wenig",
+          "UK-Beispiel: 5% des BIP für Verteidigung"
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Außenpolitik",
+          "Verteidigungspolitik",
+          "Geopolitik"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Haushaltspolitik",
+        "timestamp_range": "00:43:47 - 00:49:59",
+        "theme_description": "Frei weigert sich, die Schuldenbremse aufzugeben, und kritisiert Pläne zur Umverteilung und explodierenden Sozialausgaben. Er sieht andere Lösungen ohne Reform der Verfassung.",
+        "question_asked": "Bleibt Ihre Position zur Schuldenbremse unverändert, oder könnte sie unter Druck reformiert werden? Muss Deutschland nicht endlich investieren?",
+        "question_intent": "Moderator will von Frei hören, ob Union die Schuldenbremse flexibilisieren würde, oder ob es dabei bleibt – und wie dann Investitionen finanziert werden.",
+        "position": "Frei antwortet klar: \"Ja, die bleibt.\" Deutschland nehme 1000 Milliarden Steuern ein und komme damit nicht zurecht. Es gebe zu viele Ausgaben für Dinge, die nicht notwendig seien. Über 50 Milliarden würden für neue Schulden ausgegeben. Frei betont, dass man \"vernünftige Ausstattung der Bundeswehr mit Mitteln\" braucht (auch Boris Pistorius fordere das), aber dies sei \"ein gewaltiger Unterschied\" zur Lösung der Schuldenbremse: \"Das würde bedeuten, dass wir unsere Probleme zulasten zukünftiger Generationen überlassen.\" Er argumentiert, dass \"wir nicht machen\" können: \"Wir können das nicht machen und weiter umverteilen.\" Frei kritisiert die bisherige Ampel-Politik implizit als Versuch, alle Probleme über Ausgaben zu lösen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei gibt eine klare Antwort zur Schuldenbremse (bleibt) und argumentiert, warum: Finanzierungsprobleme sind Ausgaben-, nicht Einnahmeproblem. Er adressiert direkt die Gegenposition, dass mehr Investitionen gebraucht werden, und differenziert zwischen legitimer Rüstungsfinanzierung und struktureller Haushaltslösung.",
+        "quotes": [
+          {
+            "text": "Ja, die bleibt. Wir nehmen 1000 Milliarden Steuern ein und wir kommen damit nicht zurecht, das kann es nicht sein. Das würde bedeuten, dass wir unsere Probleme zulasten zukünftiger Generationen überlassen.",
+            "timestamp": "00:43:47",
+            "context": "Frei antwortet auf Frage zur Schuldenbremse."
+          }
+        ],
+        "concrete_statements": [
+          "Schuldenbremse bleibt bestehen",
+          "Deutschland nimmt 1000 Milliarden Steuern ein",
+          "Probleme sind Ausgabenüberschuss, nicht Einnahmemangel",
+          "Über 50 Milliarden für Neuverschuldung",
+          "Unterschied zwischen Rüstungsfinanzierung und Haushaltslösung",
+          "Reform würde Probleme auf künftige Generationen abwälzen"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Haushaltspolitik",
+          "Fiskalpolitik",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Linke Partei und demokratische Grenzziehung",
+        "timestamp_range": "00:55:27 - 00:58:18",
+        "theme_description": "Frei verteidigt den Unvereinbarkeitsbeschluss gegenüber der Linken und grenzt sie von Koalitionsfähigkeit ab, während SPD und Moderator mehr Pragmatismus fordern.",
+        "question_asked": "Warum arbeitet die Union mit BSW zusammen auf Landesebene, aber nicht mit der Linken, obwohl diese nicht per se undemokratischer ist?",
+        "question_intent": "Gast will von Frei hören, warum die Union zu einem Unvereinbarkeitsbeschluss gegenüber der Linken festgehalten wird, wenn BSW akzeptabel ist.",
+        "position": "Frei antwortet: Der Unvereinbarkeitsbeschluss bleibt. \"Wenn ich mir die Linke anschaue, dann ist die nicht einfacher geworden. Die lagen kein Deut besser als das BSW.\" Auf Bundesebene komme Zusammenarbeit mit BSW nicht infrage. Er betont später, dass Union und Linke \"eine völlig andere Bewertung der Partei Die Linke\" haben. Im Gegensatz zu Stegner, der eine punktuelle Zusammenarbeit nicht ausschließen möchte, beharrt Frei: \"Wir müssen mit den leben und arbeiten, die im Deutschen Bundestag sind.\" Frei argumentiert mit dem Grundgesetz als Basis: Wenn man kurzfristig nicht die Verfassung ändern kann, \"dann steht nicht die Demokratie infrage, sondern unser Grundgesetz ist die Basis dafür, dass wir als Staat so erfolgreich sind. Wir können auch vier Jahre lang mit diesem Grundgesetz arbeiten.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei antwortet auf die Frage nach BSW-Zusammenarbeit versus Linken-Boykott, indem er behauptet, Linke seien nicht besser als BSW. Er weicht aber der tieferen Frage aus, warum die Union dann nicht auch mit der Linken arbeitet. Seine Grundgesetz-Argumentation ist elegant, adressiert aber nicht die Pragmatik-Forderung der Gegenseite.",
+        "quotes": [
+          {
+            "text": "Der bleibt. Wenn ich mir die Linke anschaue, dann ist die nicht einfacher geworden. Die lagen kein Deut besser als das BSW.",
+            "timestamp": "00:55:27",
+            "context": "Frei zur Frage, warum Union mit BSW zusammenarbeitet, aber nicht mit Linker."
+          },
+          {
+            "text": "Wir können auch vier Jahre lang mit diesem Grundgesetz arbeiten.",
+            "timestamp": "00:58:18",
+            "context": "Frei argumentiert, Grundgesetz reiche aus für vier Jahre Regierungsarbeit ohne Reform."
+          }
+        ],
+        "concrete_statements": [
+          "Unvereinbarkeitsbeschluss gegenüber Linker bleibt",
+          "Linke nicht besser als BSW",
+          "Auf Bundesebene keine Zusammenarbeit mit BSW",
+          "Union und SPD haben andere Bewertung der Linken als Stegner"
+        ],
+        "related_bundestag_topics": [
+          "Linke Partei",
+          "Koalitionsfähigkeit",
+          "Verfassungsrecht",
+          "Demokratische Grenzen"
+        ]
+      },
+      {
+        "title": "Bürgergeld und Arbeitsmarktintegration",
+        "timestamp_range": "01:06:49 - 01:12:46",
+        "theme_description": "Frei positioniert Union gegen Bürgergeld, plädiert für strikte Zumutbarkeitsregeln und Migration von Leistungsempfängern in Arbeit.",
+        "question_asked": "Können Union und SPD sich auf eine Reform des Bürgergeldes einigen? Wie gehen Sie damit um, dass viele Bürgergeld-Empfänger nicht arbeiten, obwohl sie könnten?",
+        "question_intent": "Moderator will von Frei hören, wo Kompromiss möglich ist – Abschaffung des Bürgergeldes vs. Reform des Systems.",
+        "position": "Frei erklärt: \"Wir möchten eine Grundsicherung für die Menschen, die ihren Lebensunterhalt nicht selbst finanzieren können. Für die Menschen, die durch Krankheit daran gehindert sind.\" Die Union möchte \"kein Bürgergeld\", sondern eine Sicherung. Von den 5,6 Millionen Bürgergeld-Empfängern seien 4 Millionen arbeitsfähig, davon arbeiten 2 Millionen nicht. Hier brauche man \"Arbeitsanreize schaffen und Zumutbarkeitsregeln ändern\". Frei begrüßt, dass die SPD die Grünen als \"problematischer\" empfand als bei bisherigen Koalitionen: \"Wenn ich mich an die Gespräche um den Vermittlungsausschuss erinnere, hatte ich das Gefühl, dass die Grünen problematischer waren als die SPD.\" Er argumentiert, dass die Wähler von SPD und Union ähnliche Interessen haben, \"auch in der Migrationspolitik, ein Großteil der SPD Wähler unterstützt den Kurs von Friedrich Merz.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei legt eine klare Position dar: Grundsicherung ja, aber Bürgergeld nein, mit strikteren Regeln. Er benennt die Zahlen (2 Mio. von 5,6 Mio. arbeiten nicht). Das adressiert die zentrale Frage direkt, auch wenn der Kompromissspielraum offen bleibt.",
+        "quotes": [
+          {
+            "text": "Wir möchten eine Grundsicherung für die Menschen, die ihren Lebensunterhalt nicht selbst finanzieren können. Für die Menschen, die durch Krankheit daran gehindert sind. Aber kein Bürgergeld.",
+            "timestamp": "01:06:49",
+            "context": "Frei erklärt die Union-Position zum Bürgergeld."
+          }
+        ],
+        "concrete_statements": [
+          "Grundsicherung ja, Bürgergeld nein",
+          "5,6 Millionen Bürgergeld-Empfänger, 4 Millionen arbeitsfähig",
+          "2 Millionen arbeiten nicht, obwohl sie könnten",
+          "Strikte Zumutbarkeitsregeln erforderlich",
+          "Arbeitsanreize schaffen"
+        ],
+        "related_bundestag_topics": [
+          "Soziale Sicherung",
+          "Arbeitsmarkt",
+          "Bürgergeld",
+          "Arbeitslosigkeit"
+        ]
+      },
+      {
+        "title": "Migration und Flüchtlingsintegration",
+        "timestamp_range": "01:09:24 - 01:11:31",
+        "theme_description": "Frei argumentiert für Unterscheidung zwischen Bürgerkriegs- und Kriegsflüchtlingen sowie für Zumutbarkeitsregeln, ohne massive Arbeitsrestriktionen für Migranten.",
+        "question_asked": "Warum dürfen ukrainische Flüchtlinge arbeiten, tun es aber nicht? Ist das nicht ein Zeichen, dass die Leistungen zu hoch sind?",
+        "question_intent": "Moderator will von Frei hören, wie Union das Problem der niedrigen Erwerbsbeteiligung von ukrainischen Flüchtlingen angehen würde.",
+        "position": "Frei erklärt: \"Was wir brauchen, wenn es um Bürgerkriegsflüchtlinge geht und Kriegsflüchtlinge, da muss man einen Mittelweg finden.\" Die Leistungen müssten sich am Asylbewerberleistungsgesetz orientieren: \"Brauchen kein Asylverfahren, man müsste Lösungen finden.\" Er deutet an, dass es nicht um bloßes Arbeitsverbot geht, sondern um ein differenziertes System, das Anreize setzt und faire Behandlung balanciert. Frei weist implizit auch ab, dass es nur um Leistungshöhe gehe – Stegner argumentiert, der Anteil der Nicht-Arbeiter sei klein, das Problem liege woanders.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei gibt eine differenzierte Position zur Flüchtlingsintegration, bleibt aber vage bei der Konkretisierung (\"Mittelweg\", \"Lösungen finden\"). Er adressiert die Frage nach ukrainischen Flüchtlingen nur indirekt.",
+        "quotes": [
+          {
+            "text": "Was wir brauchen, wenn es um Bürgerkriegsflüchtlinge geht und Kriegsflüchtlinge, da muss man einen Mittelweg finden. Die Leistungen müssen sich am Asylbewerberleistungsgesetz orientieren.",
+            "timestamp": "01:09:24",
+            "context": "Frei erklärt Union-Position zu Flüchtlingsintegration und Leistungen."
+          }
+        ],
+        "concrete_statements": [
+          "Unterscheidung zwischen Bürgerkriegs- und Kriegsflüchtlingen",
+          "Leistungen orientiert am Asylbewerberleistungsgesetz",
+          "Kein obligatorisches Asylverfahren für Kriegsflüchtlinge",
+          "Mittelweg zwischen Anreizen und fairer Behandlung"
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Flüchtlinge",
+          "Asylpolitik",
+          "Integration"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Von den 5,6 Millionen Bürgergeld-Empfängern sind 4 Millionen arbeitsfähig",
+        "timestamp": "01:06:49"
+      },
+      {
+        "claim": "Davon 2 Millionen arbeiten nicht",
+        "timestamp": "01:06:49"
+      },
+      {
+        "claim": "Deutschland hat ein Rüstungsbudget-Volumen von 51 Milliarden Euro",
+        "timestamp": "00:41:56"
+      },
+      {
+        "claim": "Deutschland hat sich bei der NATO auf 2 % BIP-Rüstungsausgaben verpflichtet",
+        "timestamp": "00:42:54"
+      },
+      {
+        "claim": "UK-Premierminister Starmer plant Rüstungsausgaben von 5 % des BIP",
+        "timestamp": "00:41:56"
+      },
+      {
+        "claim": "Populistische Parteien stellen ein Drittel des neu gewählten Bundestages",
+        "timestamp": "00:39:55"
+      },
+      {
+        "claim": "Friedrich Merz sagte, man kann über alles diskutieren, einschließlich Schuldenbremse",
+        "timestamp": "00:44:07"
+      }
+    ]
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-21-mai-2025-100",
+    "video_id": "lanz-2025-05-21",
+    "politician": "Matthias Miersch",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "95bbbc0ac908a889",
+    "transcript_chars": 50081,
+    "caption_lines": 2524,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20997,
+    "tokens_out": 8797,
+    "cost_usd": 0.025992799999999996,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "themenwechsel": 1,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.720Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Matthias Miersch, SPD-Fraktionschef, diskutiert in dieser Lanz-Sendung europäische Sicherheitspolitik, Rüstung und die Ukraine. Er wirkt konstruktiv, betont Allianzfähigkeit mit den USA trotz Trump-Unberechenbarkeit, verteidigt Scholz' Taurus-Ablehnung und verweigert öffentliche Details zu sensiblen Rüstungsfragen. Zur Innenpolitik nimmt er reflektive Haltung zu SPD-Wahldebakel und Mindestlohn ein.",
+    "themes": [
+      {
+        "title": "Trump-Unberechenbarkeit und europäische Allianzfähigkeit",
+        "timestamp_range": "00:04:06 - 00:09:31",
+        "theme_description": "Wie sollte Deutschland mit Trumps wechselhaften Aussagen zu Ukraine-Sanktionen und Waffenruhe umgehen, und kann Europa ohne US-Garantien handeln?",
+        "question_asked": "Moderator Lanz fragt zunächst naiv, ob es einen Plan B ohne Donald Trump gab bzw. gibt, als Reaktion auf Trumps Aussage, dass Europäer ihre Differenzen untereinander ausmachen sollen (Verzicht auf Sanktionsdrohungen).",
+        "question_intent": "Hatte die deutsche Regierung konkrete Alternativszenarien, falls die USA nicht wie versprochen sanktionierten, oder war die europäische Position leicht zu unterminieren?",
+        "position": "Miersch lehnt es ab, als Fraktionschef zu spekulieren, ob es Alternativszenarien gibt – das sei nicht seine Aufgabe. Er betont aber, dass trotz Trumps Unberechenbarkeit die Hoffnung besteht, dass Europäer und Amerikaner gemeinsam etwas erreichen können. Wichtig ist für ihn, dass der Druck auf Putin hochgehalten wird. Er akzeptiert, dass Meinungen sich bei Trump ändern, sieht das aber als Dynamik, aus der Europäer noch Vorteile ziehen könnten. Allerdings gesteht er ein: \"Es ist jetzt aber tatsächlich eine neue Lage\" – offenbar eine Zäsur durch Trumps Rückzieher.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert die Hoffnung auf westliche Allianzfähigkeit, weicht aber der Frage nach konkreten europäischen Alternativszenarien aus, indem er auf seine Rolle als Fraktionschef (nicht Staatschef) verweist. Er bestätigt indirekt, dass es eine neue, schwierigere Lage gibt, antwortet aber nicht auf die Kernfrage, ob konkrete Pläne B existierten.",
+        "concrete_statements": [
+          "Es ist eigentlich dringend notwendig, dass es eine Allianz zwischen den Europäern und zwischen den Amerikanern gibt.",
+          "Klar ist aber, dass alles getan werden muss, dass man den Druck auf Putin weiter hochhält.",
+          "Es ist jetzt aber tatsächlich eine neue Lage, ohne Frage."
+        ],
+        "quotes": [
+          {
+            "text": "Es zeigt jedenfalls den Ernst der Lage und, dass wir augenblicklich nicht auf die Amerikaner bauen können allerdings müssen wir sehen, wenn wir die letzten Wochen sehen und die Reaktionen des amerikanischen Präsidenten, die schwanken sehr.",
+            "timestamp": "00:04:06"
+          },
+          {
+            "text": "Ich glaube schon, dass alle, die da miteinander gesessen haben und telefoniert haben, Donald Trump hat etwas ganz anderes zugesagt, insofern glaube ich, müssen wir alle dazu lernen. Was das bedeutet, wenn eine Zusage des amerikanischen Präsidenten gibt.",
+            "timestamp": "00:09:07"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik/NATO",
+          "Ukraine-Unterstützung",
+          "Transatlantische Beziehungen",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Taurus-Lieferung und militärische Unterstützung Ukraine",
+        "timestamp_range": "00:16:44 - 00:25:37",
+        "theme_description": "Soll Deutschland Taurus-Marineflugkörper an die Ukraine liefern, um deren militärische Situation zu verbessern?",
+        "question_asked": "Nach Diskussion über die militärische Notwendigkeit von Taurus fragt Lanz, welche Gründe Scholz für Ablehnung hatte, und später provokativ, ob Miersch selbst gegen Lieferung ist und ob Merz' Entscheidung zur Lieferung Miersch zustimmen würde.",
+        "question_intent": "Will offenlegen, ob Miersch und die SPD faktisch gegen Taurus-Lieferung sind, und ob die öffentliche Schweigsamkeit dazu dient, nur Druck rauszunehmen.",
+        "position": "Miersch verteidigt Scholz' Entscheidung: Diese basierte nicht nur auf dem Grund \"nicht Kriegspartei werden\", sondern auf Dienst-Informationen, die nicht öffentlich diskutiert wurden. Das sei für Scholz ausschlaggebend gewesen. Er betont, dass die neue Koalition sich auf Geheimhaltung zu Waffensystem-Details verständigt hat, um Putin nicht zu Spekulationen zu geben. Er stellt klar: \"Gleichermaßen haben wir vereinbart, dass wir nicht über Waffensystem und Lieferungen öffentlicher diskutieren.\" Bei der direkten Frage, ob er Merz-Entscheidung zur Taurus-Lieferung zustimmen würde, antwortet er ausweichend: \"Ich gehe davon aus, dass es dazu nicht kommt.\"",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Statt direkt zur Kernfrage Ja/Nein zu Taurus zu antworten, lenkt Miersch auf den Koalitionsabspruch ab, nicht öffentlich zu diskutieren, und verweist auf Scholz' Geheimdienstinformationen. Er antwortet auf die Frage, ob er liefern würde, damit, dass er davon ausgeht, dass es nicht dazu kommt – weicht also aus.",
+        "deflection_target": "Koalitionsgeheimhaltungsabsprach zu Waffensystemen; Verweis auf Regierungsverantwortung und Vertrauensschutz",
+        "evasion_note": "Miersch hat mehrfach gesagt, die SPD lehne Taurus ab (laut Dunz' Recherche in der Sendung), antwortet aber nie direkt auf diese Frage. Stattdessen nutzt er Geheimhaltungsgebot und historische Scholz-Entscheidung als Schutzwall.",
+        "concrete_statements": [
+          "Das war für ihn ausschlaggebender Punkt, zu sagen, bei allen Berichten, die wir zur Kenntnis nehmen, dieses Risiko gehen wir nicht ein.",
+          "Gleichzeitig haben wir vereinbart, dass wir nicht über Waffensystem und Lieferungen öffentlicher diskutieren.",
+          "Ich gehe davon aus, dass es dazu nicht kommt."
+        ],
+        "quotes": [
+          {
+            "text": "Dieses Zitat ist von mir, wir haben auch erlebt, in letzten Jahren, dass diese Debatten über die einzelnen Waffen geführt wurden. Am Ende ist das dann so nicht eingetreten, wir haben eine Entscheidung unseres Bundeskanzlers von Olaf Scholz gehabt. Der hat aus unterschiedlichsten Gründen auch das Thema, nicht zur Kriegspartei zu werden, aber auch aufgrund von Dienst Informationen, dass nicht öffentlich darüber diskutiert worden ist. Das war für ihn ausschlaggebender Punkt, zu sagen, bei allen Berichten, die wir zur Kenntnis nehmen, dieses Risiko gehen wir nicht ein.",
+            "timestamp": "00:16:44"
+          },
+          {
+            "text": "Insofern sage ich Ihnen jetzt, in dieser Koalition haben wir uns darüber verständigt, öffentlich nicht darüber zu diskutieren. Das war vor der Koalitionsbildung, die Haltung der SPD habe ich dargestellt, das ist die Haltung, die wir im Moment haben.",
+            "timestamp": "00:18:19"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsexporte",
+          "Kriegsbeteiligung",
+          "Ukraine-Hilfe",
+          "Verteidigungspolitik"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben und NATO-Reaktion auf russische Bedrohung",
+        "timestamp_range": "00:40:15 - 00:44:58",
+        "theme_description": "Wie sollte Deutschland auf die russische Militärbedrohung reagieren, insbesondere durch Rüstungsinvestitionen und europäische Geschlossenheit?",
+        "question_asked": "Moderator Lanz möchte wissen, wie Miersch die deutsche Rüstungsausstattung einschätzt, speziell ob 600 Taurus (300 davon nicht einsatzbereit) ausreichen und ob Deutschland ausreichend aufrüstet angesichts der russischen Produktion.",
+        "question_intent": "Testet, ob Miersch zugibt, dass Deutschland unterrüstet ist und Vorbereitungen unzureichend waren.",
+        "position": "Miersch betont, dass mit dem russischen Angriffskrieg eine \"Zeitenwende\" ausgerufen wurde, die \"absolute Zäsur\" darstellt. Er verweist auf Verfassungsänderung, die Rüstungsinvestitionen ermöglicht wie \"noch nie\", und auf europäische Reaktionen. Er stellt klar: \"Wir wissen, dass wir im Zweifel auch die Bedrohungslage haben, die sich gegen uns richtet.\" Das signalisiert Ernst der Lage, ohne direkt zu den Zahlen Stellung zu nehmen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch antwortet auf die implizite Frage nach Reaktion und Ernst der Lage, weicht aber Zahlendiskussion zu Taurus-Verfügbarkeit aus. Er adressiert die Veränderung durch Zeitenwende, nicht aber konkrete Ausstattungslücken.",
+        "concrete_statements": [
+          "Wir haben jetzt eine Verfassungsänderung, dass wir in Rüstung zu investieren können, wie wir es noch nie gemacht haben.",
+          "Wir wissen, dass wir im Zweifel auch die Bedrohungslage haben, die sich gegen uns richtet."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben nicht umsonst seit dem russischen Angriffskrieg dieser Zeitenwende ausgerufen. Es ist eine absolute Zäsur. Wir haben jetzt eine Verfassungsänderung, dass wir in Rüstung zu investieren können, wie wir es noch nie gemacht haben.",
+            "timestamp": "00:40:15"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsausgaben",
+          "Wehrhaftigkeit",
+          "Verfassungsänderung (Schuldenbremse)",
+          "Europäische Sicherheit"
+        ]
+      },
+      {
+        "title": "NATO-Geschlossenheit und Trump-Abhängigkeit",
+        "timestamp_range": "00:44:06 - 00:44:58",
+        "theme_description": "Wie bedeutsam ist Trump-Risiko für NATO-Kohäsion, und wie können Europäer unabhängiger werden?",
+        "question_asked": "Moderator und Journalistin Dunz diskutieren, ob Putin wirklich einen NATO-Staat angreifen würde und ob die Fokussierung auf Trump-Unterstützung berechtigt ist oder europäische Hilflosigkeit signalisiert.",
+        "question_intent": "Hinterfragen, ob das deutsche Narrativ der Trump-Abhängigkeit übertrieben ist und ob europäische Geschlossenheit allein ausreichen könnte.",
+        "position": "Miersch stimmt zu, dass nicht die Frage ist, \"ob Putin irgendwann eine NATO-Staat angreift\", sondern: \"Das alarmierende ist, dass die NATO nicht mehr mit einer Stimme spricht.\" Er betont die Notwendigkeit europäischer Geschlossenheit (\"dringend notwendig, dass die Europäer das jetzt tun\"). Er verweist auf Koalitions-Entscheidungen zur Schuldenbremsen-Ausnahme und europäische Beschlüsse als Reaktion auf die Situation. Aber auch: \"Das immer noch die Hoffnung, dass man in irgendeiner Hoffnung mit ihm weitermachen kann.\" Seine Position ist optimistischer als die der Journalistin, er widerlegt nicht die Trump-Abhängigkeit, sondern sieht parallel europäische Eigenständigkeit möglich.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert die NATO-Geschlossenheitsfrage und unterstreicht europäische Anforderung, weicht aber aus, konkrete europäische Kapazitäten ohne USA zu benennen. Er betont eher Hoffnung auf Kooperation mit Trump als echte Unabhängigkeit.",
+        "concrete_statements": [
+          "Es ist nicht nur die Frage, ob Putin irgendwann eine NATO-Staat angreift. Das alarmierende ist, dass die NATO nicht mehr mit einer Stimme spricht.",
+          "Es ist dringend notwendig, dass die Europäer das jetzt tun."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist nicht nur die Frage, ob Putin irgendwann eine NATO-Staat angreift. Das alarmierende ist, dass die NATO nicht mehr mit einer Stimme spricht. Es ist dringend notwendig, dass die Europäer das jetzt tun.",
+            "timestamp": "00:44:06"
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Kohäsion",
+          "Sicherheitspolitik",
+          "USA-Beziehungen",
+          "Europäische Verteidigung"
+        ]
+      },
+      {
+        "title": "Verhältnis zu Friedrich Merz als neuer Bundeskanzler",
+        "timestamp_range": "00:45:38 - 00:47:01",
+        "theme_description": "Wie bewertet Miersch Merz persönlich und politisch, und kann die Koalition trotz früherer Kritik funktionieren?",
+        "question_asked": "Moderator weist Miersch auf frühere Zitate hin, in denen er Merz als \"unglaublichen Hitzkopf\" und die CDU als Partei, \"für die er nicht steht\" kritisierte. Lanz fragt: \"Ist das der richtige Kanzler für Deutschland?\"",
+        "question_intent": "Bloßstellung einer Unaufrichtigkeit: Hat Miersch seine harte Kritik an Merz fallen lassen und funktioniert das koalitionär?",
+        "position": "Miersch bekennt sich zu seinen früheren Zitaten (\"Sie haben gut meine ganzen Zitate der letzten Monate recherchiert.\"). Er sagt offen: \"Nein, das bin ich nicht\" – ein Fan von Merz. Aber: \"Ich kann aber sagen, dass die Gespräche auch bei mir darf zugeführt haben, dass sie belastbare Vertrauen von miteinander arbeiten können.\" Zur Frage, ob Merz der richtige Kanzler ist, antwortet er demokratisch: \"Das haben die Bürgerinnen und Bürger entschieden. Ich habe für einen anderen Wahlkampfkanzler gemacht.\" Er gesteht ein, dass es auch SPD-Abweichler geben dürfte und vergleicht mit Merkel-Zeiten (damals ~50 Abweichler). Sein Fazit: \"Alle haben jetzt aber den Schuss gehört\" – Verständnis für Koalitionszwang ist notwendig.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Miersch beantwortet die Frage direkt und ehrlich: Er ist kein Merz-Fan, akzeptiert aber die Bürgerwahl und die Koalitionserfordernisse. Er adressiert die Spannung zwischen persönlicher Kritik und politischer Kooperationsfähigkeit offen.",
+        "concrete_statements": [
+          "Nein, das bin ich nicht [Fan von Merz].",
+          "Ich kann aber sagen, dass die Gespräche auch bei mir darf zugeführt haben, dass sie belastbare Vertrauen von miteinander arbeiten können.",
+          "Das haben die Bürgerinnen und Bürger entschieden."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, das bin ich nicht. Ich kann aber sagen, dass die Gespräche auch bei mir darf zugeführt haben, dass sie belastbare Vertrauen von miteinander arbeiten können.",
+            "timestamp": "00:45:51"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "Parteienkompromiss",
+          "Regierungsbildung"
+        ]
+      },
+      {
+        "title": "Mindestlohn 15 Euro und Unabhängigkeit der Kommission",
+        "timestamp_range": "00:49:00 - 01:01:48",
+        "theme_description": "Sollte die Bundesregierung den Mindestlohn auf 15 Euro per Gesetz setzen oder die unabhängige Mindestlohnkommission entscheiden lassen?",
+        "question_asked": "Moderator und Ökonom Feld hinterfragen, ob die neue Koalition richtig handelt, indem sie sich dafür ausspricht, dass die Kommission 15 Euro finden werde, und droht damit die Unabhängigkeit der Kommission untergraben?",
+        "question_intent": "Wirft die SPD die Unabhängigkeit der Kommission über Bord, um ein Wahlversprechen zu erfüllen, oder wird die Kommission tatsächlich zu 15 Euro kommen?",
+        "position": "Miersch argumentiert, dass der Mindestlohn ein \"gesetzlicher Mindestlohn\" ist – das Wort \"Gesetz\" ist zentral. Wenn der Gesetzgeber der Meinung ist, dass die Kommission nicht ordnungsgemäß entschieden hat, kann er gesetzgeberisch tätig werden. Er verweist auf historisches Beispiel: Die Kommission habe sich damals blockiert, deshalb sei die SPD mit 12 Euro Mindestlohn tätig geworden. Aktuell sagt er: \"Wir reden hier aber nicht über irgendwas. Aus meiner festen Überzeugung ist der Mindestlohn etwas, was Würde gibt.\" Er wartet ab, wo die Kommission landet, und betont: \"Man kann Politik nicht betreiben, wenn man sich verkrampft.\" Die letzten Wochen mit Spahn (CDU-Fraktionsvorsitzender) seien konstruktiv gewesen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert das Würde-Argument und die historische Rechtfertigung, weicht aber der Kernfrage aus, ob 15 Euro ein sozialpolitisches Versprechen ist, das die Kommission-Unabhängigkeit aushebelt. Er sagt \"wir warten ab\", obwohl die Koalition bereits ankündigt, dass sie erwartet, dass die Kommission 15 Euro empfiehlt.",
+        "concrete_statements": [
+          "Der Mindestlohn ist etwas, was Würde gibt für jemanden, der in diesem Land arbeitet.",
+          "Ich gehe also davon aus, dass in dieser Kommission verhandelt wird. Dann warten wir ab wo Sie landen.",
+          "Man kann Politik nicht betreiben, wenn man sich verkrampft."
+        ],
+        "quotes": [
+          {
+            "text": "Ich will darauf hinweisen, wir haben einen gesetzlichen Mindestlohn. Da steckt das Wortgesetz drin. Insofern sieht es wegen des Konstrukteurs schon so aus, wenn der Gesetzgeber den Eindruck hat, dass hier an der Stelle nicht ordnungsgemäß entschieden wurde...",
+            "timestamp": "00:56:15"
+          },
+          {
+            "text": "Aus meiner festen Überzeugung ist der Mindestlohn etwas, was Würde gibt für jemanden, der in diesem Land arbeitet. Wenn sich die Kommission da blockiert, wie sie das damals gemacht hat, dann hat der Gesetzgeber das Recht diese würde zu ändern.",
+            "timestamp": "00:53:37"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Mindestlohn",
+          "Lohnpolitik",
+          "Arbeitsmarktpolitik",
+          "Unabhängige Institutionen"
+        ]
+      },
+      {
+        "title": "Kooperation mit CDU-Fraktionsvorsitzenden Jens Spahn",
+        "timestamp_range": "01:00:43 - 01:01:48",
+        "theme_description": "Wie werden Konflikte zwischen SPD und CDU/CSU in der Koalition gelöst, speziell zum Mindestlohn?",
+        "question_asked": "Moderator fragt humorvoll: \"Mögen Sie Jens Spahn?\", und Journalistin weist auf Konfliktpotential hin, speziell zwischen Mierschs Flügel (parlamentarische Linke SPD) und Spahns Flügel (konservative CDU).",
+        "question_intent": "Gibt es persönliche und sachliche Gräben, die die Koalition unterminieren könnten?",
+        "position": "Miersch antwortet differenziert: \"Als Menschen mag ich ihn. Ich denke, in der Politik müssen wir uns das bewahren.\" Er hatte in der Vergangenheit wenig Kontakt zu Spahn, aber die letzten zwei Wochen zeigten regelmäßige Kontakte. Zentral: \"Ich habe den Eindruck, dass alle wissen, dass wir den Streit, den wir fast täglich hatten, in dieser Koalition nicht wiederholen dürfen.\" Deshalb werden Konflikte besprochen und gelöst. Er verweist auch darauf, dass der Koalitionsvertrag bereits weitergeht und sagt, dass ein 15-Euro-Mindestlohn erreichbar ist. Sein Fazit: Die letzten Wochen waren konstruktiv, \"trotz allem Stress im Wahlkampf, wir sind jetzt dazu verdammt, vier Jahre eine gute Arbeit abzuliefern.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Miersch beantwortet direkt, wie er mit Spahn umgeht, und klärt sein Verständnis von Koalitionsfähigkeit: persönlich offen, sachlich konstruktiv, mit gegenseitigem Respekt vor den Grenzen des Streits.",
+        "concrete_statements": [
+          "Als Menschen mag ich ihn.",
+          "Ich habe den Eindruck, dass alle wissen, dass wir den Streit, den wir fast täglich hatten, in dieser Koalition nicht wiederholen dürfen.",
+          "Deshalb werden wir auch Konflikte miteinander besprechen und dann lösen."
+        ],
+        "quotes": [
+          {
+            "text": "Als Menschen mag ich ihn. Ich denke, in der Politik müssen wir uns das bewahren. In der Vergangenheit hatte ich nicht viele Berührungspunkte mit ihm. Wir haben die ersten zwei Wochen regelmäßig Kontakt gehabt. Ich habe den Eindruck, dass alle wissen, dass wir den Streit, den wir fast täglich hatten, in dieser Koalition nicht wiederholen dürfen.",
+            "timestamp": "01:00:51"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalition",
+          "Arbeitsverhältnis Koalitionspartner",
+          "Konfliktlösung"
+        ]
+      },
+      {
+        "title": "SPD-Wahldebakel und notwendige Aufarbeitung",
+        "timestamp_range": "01:02:18 - 01:06:42",
+        "theme_description": "Warum verlor die SPD so massiv bei der Wahl, und was muss die SPD ändern?",
+        "question_asked": "Moderator fragt: \"Sind Sie eigentlich zufrieden mit der Aufarbeitung des Wahldebakel?\" und später: \"Wo haben Sie Fehler gemacht?\"",
+        "question_intent": "Hat die SPD-Führung, speziell Miersch, die Gründe für den Wahl-Niedergang verstanden und angenommen?",
+        "position": "Miersch antwortet, dass die Aufarbeitung gerade angefangen hat und nicht nur auf Personen bezieht, sondern auf tiefere Probleme der Partei. Er nennt ein Beispiel: \"Ich glaube, dass wir an einigen Stellen zu sehr auf Zielgruppen geschaut haben.\" Das deutet auf Marketing-getriebene Strategie hin. Er sagt, die SPD brauche eine \"Grundbesinnung auf unsere Grundwerte\". Bei seiner persönlichen Verantwortung wird er detaillierter: Als stellvertretender Fraktionsvorsitzender musste er schnell einen Wahlkampf organisieren und konnte nicht die zentrale Frage beantworten: wie sich die SPD zur katastrophalen Ampel-Bilanz stellt. \"Da haben wir einen anderen Wahlkampf gebraucht.\" Er erwähnt auch positive Entwicklung in Hamburg (eine Woche nach Scholz-Rücktritt). Sein Fazit: Es geht um die drei P's – und das dritte ist Personal.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert strukturelle SPD-Probleme (Markenkern, Zielgruppen) und eigene Rolle (mangelnde Wahlkampfvorbereitung), versucht aber auch, die Hamburg-Wahlen als positive Gegenerzählung zu etablieren. Er wird bei konkreten persönlichen Fehlern ausweichend.",
+        "evasion_note": "Auf die direkte Frage 'Wo haben Sie persönlich Fehler gemacht?' antwortet Miersch nicht mit einer Antwort über sich selbst, sondern springt zur Ampel-Bilanz-Frage. Er weicht auch aus, konkret zu machen, was mit den 'drei P's' gemeint ist.",
+        "concrete_statements": [
+          "Das ist meines Erachtens nach angefangen. Das hat nichts mit Personen zu tun, die Probleme mit der SPD geht viel tiefer.",
+          "Ich glaube, dass wir an einigen Stellen zu sehr auf Zielgruppen geschaut haben. Und was ist eigentlich der Markenkern der SPD.",
+          "Die Frage, die wir nicht ausreichend beantwortet haben, das katastrophale Bild der Ampel, da haben wir einen anderen Wahlkampf gebraucht."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt mehrere Anhaltspunkte. Ich will mal ein Beispiel nennen, ich glaube, dass wir an einigen Stellen zu sehr auf Zielgruppen geschaut haben. Und was ist eigentlich der Markenkern der SPD.",
+            "timestamp": "01:03:03"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampf 2025",
+          "SPD-Strategie",
+          "Parteiidentität",
+          "Koalitionsbilanz"
+        ]
+      },
+      {
+        "title": "Rolle der SPD-Linken beim Ampel-Scheitern",
+        "timestamp_range": "01:04:41 - 01:06:42",
+        "theme_description": "Trug der linke SPD-Flügel wesentlich zum Bruch der Ampel-Koalition mit der FDP bei?",
+        "question_asked": "Moderator und Miersch diskutieren: Hat die SPD richtig gehandelt, die Ampel zu beenden, oder hätte sich die SPD eher der FDP zuwenden sollen (wie Kritik von rechts sagt)?",
+        "question_intent": "War der linke SPD-Flügel schuld am Ampel-Bruch, oder war die FDP der Ausstiegsplaner?",
+        "position": "Miersch sagt zunächst: \"Ich bin froh, dass wir den Schlussstrich gezogen haben.\" Er erklärt, dass die FDP bereits den Ausstieg geplant hatte (\"die FDP den Ausstieg geplant\"). Die SPD musste dann handeln. Der Vorteil des Bruchs war, dass man danach zwei Sondervermögen aufbaute, die es der jetzigen Regierung erlauben zu investieren und zu handeln – \"das hätte das Lindner Papier nicht beinhaltet.\" Sein Fazit: \"Das wäre gerade für die Bundesrepublik Deutschland nicht gut [gewesen, die Ampel zu retten].\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt die Vorwürfe des linken Flügels zu adressieren oder zu widersprechen, dreht Miersch den Spieß um und argumentiert, dass die FDP der Schuldige war und der Ampel-Bruch wirtschaftlich besser war (Sondervermögen). Er adressiert die implizite Kritik durch Gegenargument statt durch Selbstkritik.",
+        "concrete_statements": [
+          "Ich bin froh, dass wir den Schlussstrich gezogen haben.",
+          "Die FDP den Ausstieg geplant.",
+          "Wir haben zwei Sondervermögen aufgebaut und ermöglichen jetzt, dass wir jetzt handeln können, dass wir investieren können, das hätte das Lindner Papier nicht beinhaltet."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin froh, dass wir den Schlussstrich gezogen haben. Wir haben zwei Sondervermögen aufgebaut und ermöglichen jetzt, dass wir jetzt handeln können, dass wir investieren können, das hätte das Lindner Papier nicht beinhaltet.",
+            "timestamp": "01:06:15"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbruch",
+          "FDP-Austritt",
+          "Haushaltspolitik",
+          "Regierungsstabilität"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es gibt ungefähr 600 Taurus [Marineflugkörper], 300 davon sind nicht einsatzbereit.",
+        "timestamp": "00:40:49"
+      },
+      {
+        "claim": "Russland mobilisiert pro Monat 30.000 [Soldaten].",
+        "timestamp": "00:36:25"
+      },
+      {
+        "claim": "Russland produziert ca. 3000 Kleinbomben pro Monat.",
+        "timestamp": "00:38:36"
+      },
+      {
+        "claim": "Die Russen produzieren ca. zwei bis 5.000.000 Drohnen pro Jahr.",
+        "timestamp": "00:13:11"
+      },
+      {
+        "claim": "Bei Angela Merkel gab es Abweichler, die an die 50 betrugen.",
+        "timestamp": "00:46:22"
+      }
+    ]
+  }
+}

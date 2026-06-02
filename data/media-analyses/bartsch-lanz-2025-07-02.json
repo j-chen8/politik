@@ -1,0 +1,342 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-2-juli-2025-100",
+    "video_id": "lanz-2025-07-02",
+    "politician": "Dietmar Bartsch",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "2305ac7e24ccaa04",
+    "transcript_chars": 60037,
+    "caption_lines": 3010,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24956,
+    "tokens_out": 7004,
+    "cost_usd": 0.023990400000000002,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-02T16:33:28.753Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Dietmar Bartsch, ehemaliger Fraktionsvorsitzender der Linken, kritisiert in dieser Talkshow die deutsche Verteidigungspolitik und Außenpolitik unter Kanzler Merz. Er argumentiert für ein ausgewogeneres Verhältnis zwischen Rüstungsausgaben und sozialen Investitionen, warnt vor Unehrlichkeit in der Kriegsfinanzierungsdebatte und fordert diplomatische Lösungen aus einer Position der Stärke heraus. Sein Ton ist sachlich-kritisch, teilweise konfrontativ.",
+    "themes": [
+      {
+        "title": "Transparenz bei von der Leyens SMS-Vorwürfen",
+        "timestamp_range": "00:06:17 - 00:07:41",
+        "theme_description": "Frage zur Glaubwürdigkeit von Ursula von der Leyen angesichts fehlender SMS-Belege bei Rüstungsprojekten.",
+        "question_asked": "Der Moderator bezieht sich auf die Aussage von Eva Quadbeck, dass von der Leyens SMS während der Impfstoffbeschaffung nicht vorhanden sind, und fragt implizit, wie mit diesem Transparenzproblem umzugehen ist.",
+        "question_intent": "Sollte von der Leyen trotz des Transparenzproblems verteidigt oder kritisiert werden?",
+        "position": "Bartsch betont, dass es ähnliche SMS-Probleme bereits im Deutschen Bundestag bei Rüstungsprojekten gab, als von der Leyen Verteidigungsministerin war. Er argumentiert, dass nur \"klare Aufklärung\" und \"offener Umgang\" die Lösung sind. Er lehnt ab, dass Vorwürfe einfach \"mit Dreck geworfen\" werden, um etwas \"hängen zu bleiben\", und sieht das als gefährlich an. Gleichzeitig teilt er Webers Einschätzung, dass das Misstrauensvotum keine Erfolgschance hat.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Bartsch adressiert die Frage nach Transparenz und bestätigt ein historisches Muster, lehnt aber gleichzeitig instrumentelle Kritik ab. Er beantwortet die zugrundeliegende Frage nach dem Umgang mit dem Transparenzproblem (Aufklärung und Geradlinigkeit), ohne sich klar pro oder contra von der Leyen zu positionieren.",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass da nur transparent hilft... Nur Transparenz und Geradlinigkeit kann die Antwort sein.",
+            "timestamp": "00:06:17",
+            "context": "Bartsch reagiert auf die Frage nach dem Umgang mit fehlenden SMS-Belegen bei von der Leyen."
+          }
+        ],
+        "concrete_statements": [
+          "Es gab im Deutschen Bundestag schon SMS-Probleme bei Rüstungsprojekten unter von der Leyen.",
+          "Vorwürfe sollten nicht instrumentell gemacht werden; es darf nicht um 'Dreck werfen' gehen.",
+          "Aufklärung ist notwendig, um künftige Pandemien besser zu bewältigen."
+        ],
+        "related_bundestag_topics": [
+          "Transparenz",
+          "Rüstungsprojekte",
+          "Haushalt",
+          "Regierungsverantwortung"
+        ]
+      },
+      {
+        "title": "Instrumentalisierung von Misstrauensvoten gegen Institutionen",
+        "timestamp_range": "00:13:02 - 00:13:49",
+        "theme_description": "Kritik an der Nutzung von Misstrauensvoten als Machtinstrument durch extreme Parteien.",
+        "question_asked": "Der Moderator fragt (implizit über die bisherige Diskussion), ob instrumentelle Missbrauchsmechanismen von Institutionen ein strukturelles Problem darstellen.",
+        "question_intent": "Ist die instrumentelle Nutzung von parlamentarischen Mitteln durch Rechtsaußen-Parteien ein wachsendes Systemrisiko?",
+        "position": "Bartsch sieht ein übergreifendes Problem der Missachtung von Institutionen. Er argumentiert, dass es zwar viele legitime Gründe gebe, der Politik von von der Leyen zu misstrauen, aber dass instrumentelle Nutzung durch Rechtsaußen gefährlich ist. Er verbindet dies mit der Beobachtung, dass solche Techniken in Deutschland erfolgreich sind (siehe Wahlergebnisse) und warnt vor dem Widerhall in der Bevölkerung. Die Antwort ist Transparenz und Geradlinigkeit.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch identifiziert das übergreifende strukturelle Problem (Instrumentalisierung von Institutionen durch Rechtsaußen), verbindet es mit deutschen Wahlergebnissen und benennt klar die Antwort (Transparenz). Er adressiert die implizite Frage vollständig.",
+        "quotes": [
+          {
+            "text": "Das ist insbesondere, dass kenne ich aus dem Bundestag, genutzt wird von Rechtsaußen. Und es gibt natürlich leider einen Widerhall in der Bevölkerung.",
+            "timestamp": "00:13:02",
+            "context": "Bartsch warnt vor der Nutzung von Misstrauensvoten durch rechtsextreme Kräfte."
+          }
+        ],
+        "concrete_statements": [
+          "Misstrauen gegen von der Leyen kann legitim sein, aber nicht instrumental verwendet werden.",
+          "Rechtsaußen-Parteien nutzen diese Techniken erfolgreich – sichtbar in deutschen Wahlergebnissen.",
+          "Nur Transparenz und Geradlinigkeit können diese Gefahr eindämmen."
+        ],
+        "related_bundestag_topics": [
+          "Demokratische Institutionen",
+          "Rechtsextremismus",
+          "Parlamentarische Ordnung"
+        ]
+      },
+      {
+        "title": "Schuldenaufnahme für Verteidigungsausgaben und Willkür",
+        "timestamp_range": "00:20:04 - 00:21:49",
+        "theme_description": "Kritik an der FDP-Kehrtwende bei Schuldenbremse und an fehlendem Nachweis von Erfolgen bei Merz' Treffen mit Trump.",
+        "question_asked": "Der Moderator und Strack-Zimmermann diskutieren die FDP-Änderung ihrer Schuldenpolitik; Bartsch wird aufgefordert, sich zu äußern.",
+        "question_intent": "Ist die plötzliche Bereitschaft zur Schuldenaufnahme für Verteidigung glaubwürdig und mit Ergebnissen verbunden?",
+        "position": "Bartsch kritisiert, dass Merz vorher etwas anderes gesagt hat und jetzt 'die Leute hinter die Fichte führt'. Er betont, dass er Investitionen grundsätzlich befürwortet, aber Ergebnisse sehen möchte. Sein Kritikpunkt: Merz redete eine dreiviertel Stunde mit Trump, schwieg 40 Minuten, und sagte 5 Minuten lang nur, die Amerikaner hätten Deutschland befreit. Das sieht er als heuchlerisch an, wenn vorher Sparsamkeit gepredigt wurde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch greift die Inconsistenz in der Merz-Politik direkt an: Vorher gegen Schulden, nachher für Schulden, ohne Ergebnisse zu zeigen. Er adressiert die Glaubwürdigkeitsfrage vollständig und konkret mit Beispiel (Trump-Treffen).",
+        "quotes": [
+          {
+            "text": "Man kann doch nicht die Leute hinter die Fichte führen und sagen, wir machen keine Verschuldung.",
+            "timestamp": "00:20:43",
+            "context": "Bartsch kritisiert die Inkonsistenz von Merz bei der Schuldenpolitik."
+          },
+          {
+            "text": "40 Minuten hat er geschwiegen und 5 Minuten hat er gesagt, dass die Amerikaner Deutschland befreit haben.",
+            "timestamp": "00:20:43",
+            "context": "Bartsch beschreibt sein Verständnis vom Trump-Merz-Treffen als substanzlos."
+          }
+        ],
+        "concrete_statements": [
+          "Merz hat vorher andere Positionen zur Schuldenaufnahme vertreten.",
+          "Es gibt keinen Nachweis von Ergebnissen aus dem Trump-Treffen.",
+          "Eine Dreiviertelstunde Trump-Gespräch mit 5 Minuten Substanz ist unglaubwürdig."
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Schuldenbremse",
+          "Außenpolitik",
+          "USA-Beziehungen"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben versus soziale Investitionen",
+        "timestamp_range": "00:25:11 - 00:30:17",
+        "theme_description": "Kritik am einseitigen Fokus auf Verteidigungsetats ohne Berücksichtigung von Kinderarmut und sozialer Spaltung.",
+        "question_asked": "Der Moderator fragt, ob höhere Verteidigungsbudgets notwendig sind; Strack-Zimmermann argumentiert für diese Ausgaben.",
+        "question_intent": "Kann Deutschland Rüstung und Sozialausgaben nicht gleichermaßen priorisieren?",
+        "position": "Bartsch argumentiert, dass man zwar die neue Sicherheitslage anerkennen muss, aber nicht zulassen darf, dass Rüstung alles andere aus dem Budget verdrängt. Er warnt, dass in seinem Bundesland (Mecklenburg-Vorpommern) die AfD jede Wahl gewinnt – ein Zeichen für sozialen Zusammenhalt-Verlust. Seine Position: Man kann nicht bei Kinderarmut und Gesundheit sagen 'es ist kein Geld da' und gleichzeitig 500 Mrd. für Rüstung lockermachen. Das führt zu gesellschaftlicher Spaltung, die dann AfD wählt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch beantwortet die implizite Frage nach Priorisierung mit einer klaren Gegenposition: Nicht entweder-oder, sondern sowohl-als-auch. Er verbindet Rüstungskritik direkt mit Wahl-Daten aus seinem Bundesland und begründet sein Argument mit sozialer Kausalität.",
+        "quotes": [
+          {
+            "text": "Wir können nicht in unserem Land... zulassen, dass wir zum Beispiel bei der Schuldenbremse diesen Etat einfach rausnehmen. Und dann wundern wir uns wenn der Zusammenhalt in unserem Land auseinanderbricht.",
+            "timestamp": "00:28:19",
+            "context": "Bartsch kritisiert die einseitige Budgetpriorisierung und deren gesellschaftliche Folgen."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt eine neue Sicherheitslage, aber diese rechtfertigt nicht, Sozialausgaben zu streichen.",
+          "Kinderarmut, Gesundheit und andere Bereiche sollten nicht aus der Schuldenbremse-Ausnahme fallen.",
+          "Soziale Spaltung führt zu AfD-Wahlerfolgen – das ist ein Systemrisiko."
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Schuldenbremse",
+          "Soziale Gerechtigkeit",
+          "Extremismus",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Rüstungsbeschaffung: Verschwendung und Fehlgeschäfte",
+        "timestamp_range": "00:31:46 - 00:34:05",
+        "theme_description": "Kritik an historischen Beschaffungsvorhaben der Bundeswehr, die fehlgeschlagen sind.",
+        "question_asked": "Der Moderator fragt indirekt, ob mehr Rüstungsgelder zu besserer Ausstattung führen, wenn die historische Bilanz schlecht ist.",
+        "question_intent": "Macht es Sinn, Rüstungsbudgets massiv zu erhöhen, wenn die Vergangenheit Fehlentscheidungen bei Beschaffungen zeigt?",
+        "position": "Bartsch verweist auf historische Beispiele (Koblenz, Pakistan-Skandale), wo Milliarden versenkt wurden. Er sagt nicht, dass die neue Sicherheitslage nicht real ist, aber warnt davor, dass diese Art von Kritik bei neuen Projekten zu Problemen führt. Sein Punkt: Wenn man sich alte Beschaffungsvorhaben anschaut, gibt es 'so viele schlimme Dinge'. Das sollte man nicht ignorieren, nur weil jetzt Krieg ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Bartsch benennt das Problem (historische Fehlgeschäfte) und warnt vor Wiederholung, adressiert aber nicht vollständig die Frage, ob trotzdem mehr Geld nötig ist. Er wirkt eher warnend als lösungsorientiert.",
+        "quotes": [
+          {
+            "text": "Wenn man sich die Beschaffungsvorhaben der Bundeswehr der letzten Jahrzehnte anschauen, da gibt es so viele schlimme Dinge... Das sind Milliarden versenkt worden.",
+            "timestamp": "00:31:46",
+            "context": "Bartsch warnt vor fehlgeschlagenen Rüstungsprojekten der Vergangenheit."
+          }
+        ],
+        "concrete_statements": [
+          "Historische Beschaffungsprojekte (Koblenz, Pakistan) haben Milliarden gekostet ohne Erfolg.",
+          "Diese Probleme dürfen nicht wiederholt werden, nur weil eine neue Sicherheitslage besteht."
+        ],
+        "related_bundestag_topics": [
+          "Rüstungswirtschaft",
+          "Haushalt",
+          "Beschaffung",
+          "Kontrolle"
+        ]
+      },
+      {
+        "title": "Militärische Unterstützung der Ukraine und Mali-Einsatz",
+        "timestamp_range": "00:32:13 - 00:34:52",
+        "theme_description": "Kontroverse über angebliche Relativierung des Ukraine-Krieges durch Bartsch via Mali-Kritik.",
+        "question_asked": "Der Moderator und Strack-Zimmermann werfen Bartsch vor, dass er Ukraine-Probleme mit Mali-Vergleichen relativiert.",
+        "question_intent": "Ist Bartschs Kritik an früheren Einsätzen (Mali, Afghanistan) eine versteckte Relativierung des Ukraine-Krieges?",
+        "position": "Bartsch widerlegt die Vorwürfe: Er sagt explizit, dass er den Angriffskrieg gegen Ukraine nicht anzweifelt und dass Putin der Aggressor ist. Sein Punkt ist differenziert: (a) Deutschland war in Mali und Afghanistan, wo die Erfolge fragwürdig waren; (b) das heißt nicht, dass Ukraine egal ist, sondern dass man vorsichtig mit militärischen Lösungen sein sollte. Er betont auch, dass er medizinische Hilfe für Ukraine bringt, nicht nur Waffen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch adressiert den Vorwurf der Relativierung direkt und klar: Er unterscheidet zwischen 'Krieg verurteilen' und 'militärische Mittel kritisch bewerten'. Er benennt konkrete historische Vergleiche und erklärt seinen Standpunkt präzise.",
+        "quotes": [
+          {
+            "text": "Und dass Putin der Aggressor ist, ist unbestritten.",
+            "timestamp": "00:33:15",
+            "context": "Bartsch klarstellt, dass er den russischen Angriff nicht relativiert."
+          },
+          {
+            "text": "Ich finde furchtbar, was dort passiert.",
+            "timestamp": "00:33:00",
+            "context": "Bartsch bekräftigt seine Verurteilung des Ukraine-Krieges."
+          }
+        ],
+        "concrete_statements": [
+          "Putin ist der Aggressor – das ist unbestritten.",
+          "Frühere Einsätze (Mali, Afghanistan) zeigen, dass Militär allein nicht alle Probleme löst.",
+          "Medizinische und andere Hilfe ist genauso wichtig wie militärische Unterstützung.",
+          "Drogen sollten abgewehrt werden, aber nicht exklusiv durch Waffen."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Internationale Einsätze",
+          "Ukraine",
+          "Militär",
+          "Diplomatie"
+        ]
+      },
+      {
+        "title": "Krieg muss diplomatisch beendet werden",
+        "timestamp_range": "00:33:23 - 00:35:51",
+        "theme_description": "Bartsch argumentiert für Diplomatie zur Kriegsbeendigung; Strack-Zimmermann warnt vor unrealistischen Erwartungen.",
+        "question_asked": "Wie sollte der Ukraine-Krieg seiner Meinung nach gelöst werden?",
+        "question_intent": "Welche diplomatischen Wege sieht Bartsch, wenn militärische Lösungen unbefriedigend sind?",
+        "position": "Bartsch betont, dass Krieg 'diplomatisch beendet' werden muss, 'wie denn sonst?' Er verweist auf aktuell laufende Gefangenenaustausche und informelle Gespräche zwischen Ukraine und Russland. Er erklärt auch, dass es bestimmte nicht-angegriffene Ziele gibt (Kersch-Brücke, Eisenbahnlinien), was impliziert, dass inoffizielle Absprachen existieren. Strack-Zimmermann wirft ihm darauf vor, sensible Informationen auszuplaudern (er sitzt im Vertrauensgremium).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Bartsch benennt das Ziel (diplomatische Lösung) und gibt Beispiele für bestehende inoffizielle Kanäle, aber entwickelt kein detailliertes Lösungsszenario. Seine Antwort wirkt eher prinzipiell als konkret.",
+        "quotes": [
+          {
+            "text": "Dieser Krieg muss diplomatisch beendet werden, wie denn sonst?",
+            "timestamp": "00:33:32",
+            "context": "Bartsch fordert diplomatische Lösungen."
+          }
+        ],
+        "concrete_statements": [
+          "Diplomatie ist notwendig zur Kriegsbeendigung – es gibt keine andere Alternative.",
+          "Es gibt bereits inoffizielle Gesprächskanäle und Gefangenenaustausche.",
+          "Bestimmte militärische Ziele werden nicht angegriffen (impliziert inoffizielle Absprachen)."
+        ],
+        "related_bundestag_topics": [
+          "Diplomatie",
+          "Ukraine",
+          "Außenpolitik",
+          "Friedensprozesse"
+        ]
+      },
+      {
+        "title": "Unehrlichkeit bei Kriegsfinanzierung durch westliche Chips",
+        "timestamp_range": "00:59:14 - 01:00:51",
+        "theme_description": "Kritik, dass der Westen durch Schlupflöcher bei Sanktionen indirekt den Krieg finanziert.",
+        "question_asked": "Der Moderator fragt, ob es widersprüchlich ist, einerseits Sanktionen zu verhängen und andererseits Chips nach Russland zu lassen.",
+        "question_intent": "Ist die westliche Position gegenüber Sanktionen und Waffenlieferungen inhärent unehrlich?",
+        "position": "Bartsch kritisiert scharf: Der Westen verdient an beiden Seiten – Sanktionen sind nicht streng genug, und westliche Bauteile landen trotzdem in russischen Waffensystemen. Das ist zynisch. Er fordert: 'Entweder oder.' Entweder echte Sanktionen oder keine Waffenlieferungen, aber nicht beides gleichzeitig. Sein Punkt: Man kann nicht sagen 'wir liefern schneller' und gleichzeitig 'westliche Chips finden ihren Weg nach Russland'. Das ist unehrlich sich selbst und der Öffentlichkeit gegenüber.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch identifiziert das Widerspruch-Problem direkt und benennt eine klare Lösung (Entweder-oder). Er kritisiert die Unehrlichkeit scharf und kohärent.",
+        "quotes": [
+          {
+            "text": "Das Geld verdient wird von allen beiden, das ist das schlimme.",
+            "timestamp": "00:59:59",
+            "context": "Bartsch kritisiert, dass alle Seiten vom Krieg profitieren."
+          },
+          {
+            "text": "Wir müssen uns ehrlich machen. Entweder oder.",
+            "timestamp": "00:59:24",
+            "context": "Bartsch fordert eine eindeutige Position statt Doppelzüngigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Westliche Chips landen trotz Sanktionen in russischen Waffensystemen.",
+          "Der Westen verdient auf beiden Seiten des Krieges.",
+          "Das ist zynisch und unehrlich.",
+          "Entweder echte Sanktionen ODER Waffenlieferungen, aber nicht beides."
+        ],
+        "related_bundestag_topics": [
+          "Sanktionen",
+          "Exportkontrollen",
+          "Rüstungswirtschaft",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Merz' gescheiterte Verhandlungsinitiative mit USA",
+        "timestamp_range": "01:11:17 - 01:12:50",
+        "theme_description": "Kritik an Merz' Versprechen für Sanktionen vor der Wahl und deren Nichterfüllung nach der Wahl.",
+        "question_asked": "Hat Merz die Öffentlichkeit getäuscht, indem er vor der Wahl Sanktionen versprach und nach der Wahl nichts davon umsetzte?",
+        "question_intent": "Ist Merz' Verhalten eine Misstrauensperson-Taktik, die später zu Legitimitätsverlust führt?",
+        "position": "Bartsch kritisiert, dass Merz vor der Wahl bestimmte Positionen vertreten hat (zu Sanktionen, Verteidigungsausgaben) und dann das Gegenteil getan hat. Er betont, dass das nicht nur nach der Wahl geschah. Strack-Zimmermann stimmt ihm zu, dass Merz nach der Wahl seine Meinung erneut geändert hat. Bartsch sieht darin ein Glaubwürdigkeitsproblem. Eva Quadbeck argumentiert dagegen, dass Merz und Macron einen Versuch gemacht haben (mit Trump zu reden), der nicht funktioniert hat – das sei nicht moralisch verwerflich.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Bartsch identifiziert klar das Glaubwürdigkeitsproblem (Wahlversprechen vs. Taten) und kritisiert es direkt. Er wird von Strack-Zimmermann bestätigt, dass auch die Post-Wahl-Entwicklung problematisch war.",
+        "quotes": [
+          {
+            "text": "Vor den deutschen Bundestagswahlen sind Dinge erzählt worden... Aber vor der Wahl, was unser heutiger Kanzler da alles erzählt hat. Und was ist geblieben?",
+            "timestamp": "01:11:17",
+            "context": "Bartsch kritisiert Merz' Wahlversprechen."
+          }
+        ],
+        "concrete_statements": [
+          "Merz versprach Sanktionen und Positionen vor der Wahl.",
+          "Nach der Wahl hat er diese nicht erfüllt.",
+          "Das ist ein Glaubwürdigkeitsproblem.",
+          "Der Versuch, Trump zur Sanktionsverschärfung zu bewegen, ist gescheitert."
+        ],
+        "related_bundestag_topics": [
+          "Sanktionen",
+          "Außenpolitik",
+          "Regierungspolitik",
+          "Wahlen",
+          "USA-Beziehungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Russland hat im letzten Jahr 4000 Quadratkilometer Territorium hinzugewonnen.",
+        "timestamp": "00:36:52"
+      },
+      {
+        "claim": "Die ukrainische Armee hat ein Durchschnittsalter von fast 50 Jahren.",
+        "timestamp": "00:36:52"
+      },
+      {
+        "claim": "Die Ukraine hat letztes Jahr eine Million Drohnen hergestellt.",
+        "timestamp": "00:37:14"
+      },
+      {
+        "claim": "Putin verlangt Entmilitarisierung und Russisch als Amtssprache in der Ukraine.",
+        "timestamp": "00:44:08"
+      },
+      {
+        "claim": "Seit Februar 2022 hat Putin an die Europäer Flüssiggas im Gegenwert von 37,2 Milliarden Euro verkauft.",
+        "timestamp": "00:46:39"
+      }
+    ]
+  }
+}

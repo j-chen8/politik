@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-24-juni-2025-100",
+    "video_id": "lanz-2025-06-24",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3d122354cede7df4",
+    "transcript_chars": 50222,
+    "caption_lines": 2572,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20942,
+    "tokens_out": 8037,
+    "cost_usd": 0.0244508,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.373Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter, CDU/CSU-Verteidigungspolitiker und Oberst a.D., verteidigte in dieser Diskussion israelische Sicherheitsinteressen gegen den Iran und die Hamas, während er gleichzeitig kritische Punkte zur Gaza-Humanität ansprach. Er argumentierte, Israel handele in Selbstverteidigung gegen existenzielle Bedrohungen, lehnte aber pauschal die Kritik an „Täter-Opfer-Umkehr\" ab und forderte europäische Diplomatie statt militärische Intervention im Iran.",
+    "themes": [
+      {
+        "title": "Israels Angriff auf iranisches Atomprogramm als Sicherheitsdienst",
+        "timestamp_range": "00:14:28 - 00:14:59",
+        "theme_description": "Kiesewetter bewertet Israels Luftschlag gegen das iranische Atomprogramm als legitime Sicherheitsmaßnahme angesichts der existenziellen Bedrohung durch den Iran.",
+        "question_asked": "Kristin Helberg argumentierte, Netanyahu nutze das Atomprogramm als Instrument zur Rechtfertigung von Kriegen und Expansion. Wie antwortet Kiesewetter auf diese These der künstlichen Bedrohungsdarstellung?",
+        "question_intent": "Sollte Israel die angegebene iranische Bedrohung wirklich ernst nehmen, oder ist dies ein manipulatives Narrativ zur Durchsetzung eigener geostrategischer Ziele?",
+        "position": "Kiesewetter widerspricht der These, dass die Bedrohung durch den Iran erfunden sei. Er betont, dass die Hisbollah 1982 vom Iran aufgebaut wurde, den Staat Israel bedrohe und der 7. Oktober ein unmittelbarer Angriff auf Israel gewesen sei. Er charakterisiert den von Helberg beschriebenen Zustand als einen \"wünschenswerter[n]\" aber nicht als die gegenwärtige Wirklichkeit. Damit anerkennt er die reale Bedrohungslage, in der Israel operiert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Kernfrage, ob die iranische Bedrohung real ist, mit historischen Beispielen (Hisbollah 1982, 7. Oktober). Er widerlegt Helbergs These der Erfindung. Allerdings geht er nicht substantiell auf Helbergs spezifische Kritik ein, dass Netanyahu *seit 30 Jahren* vor einer unmittelbar bevorstehenden Bedrohung warnt, ohne dass diese eingetreten ist. Diese zeitliche Dimension der Glaubwürdigkeit bleibt unbeantwortet.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "die Hisbollah 1982 vom Iran aufgebaut worden. Sie drohen das Existenzrecht Israels. Der 7. Oktober ist ein unmittelbarer Angriff auf Israel gewesen, die Bilder sind furchtbar. Ich will damit sagen, aus meiner Sicht ist es ein wünschenswerter Zustand, den sie beschreiben. Es ist nicht die Wirklichkeit.",
+            "timestamp": "00:14:59",
+            "context": "Reaktion auf Kristin Helbergs Darstellung, dass Israel nicht von feindlichen Staaten umzingelt ist, sondern eine Hegemonialmacht mit militärischer Gewalt ihre Ziele durchsetzt."
+          }
+        ],
+        "concrete_statements": [
+          "Die Hisbollah wurde 1982 vom Iran aufgebaut und bedroht Israels Existenzrecht",
+          "Der 7. Oktober war ein unmittelbarer Angriff auf Israel",
+          "Der beschriebene wunschenswerte Zustand ist nicht die gegenwärtige Wirklichkeit"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Sicherheitspolitik Naher Osten",
+          "Israel-Palästina-Konflikt",
+          "Atomwaffenverbreitung"
+        ]
+      },
+      {
+        "title": "Glaubwürdigkeit Trumps in Friedensverhandlungen",
+        "timestamp_range": "00:14:28 - 00:16:06",
+        "theme_description": "Kiesewetter wird zur Rolle Trumps in der Eskalation und zu dessen Glaubwürdigkeit als Friedensvermittler befragt.",
+        "question_asked": "Der Moderator und die Gäste diskutieren, ob Trump einen überzeugenden Plan hat. Elmar Theveßen merkt an, dass Trump zwar gegen Bürgerkrieg im Iran fürchtet, aber keinen kohärenten Plan zur Deeskalation hat. Gibt es für Kiesewetter einen Plan?",
+        "question_intent": "Kann Trump ein glaubwürdiger Friedensvermittler sein, oder agiert er zu impulsiv und ohne strategische Planung?",
+        "position": "Kiesewetter bezieht sich indirekt auf Trump, wenn er sagt, Moderator Lanz hätte 'einen Punkt' — dass man verstehen könne, warum Theveßen frustriert sei. Kiesewetter argumentiert nicht direkt zu Trumps Glaubwürdigkeit, sondern betont, dass man die 'Ursache und Wirkung' anschauen müsse und dass Israel unter Druck steht. Er schlägt vor, Israel solle 'umschalten' — auf Geiselbefreiung statt Kampfmission. Das impliziert Kritik an bisheriger Strategie, ohne Trumps Rolle direkt zu bewerten.",
+        "answer_match": "teilweise adressiert",
+        "match_reasoning": "Die Frage zielt auf Trump und Plan/Glaubwürdigkeit. Kiesewetter antwortet mit Fokus auf Israels innere Strategie-Fehler (Prioritäten falsch gesetzt) statt auf Trumps Rolle zu urteilen. Das ist eine seitwärts-Antwort.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Als ich vor einem Jahr bei einem Treffen war, ist dieses gesprengt worden durch Familienangehörige, die sagten, ihr setzt die falschen Prioritäten. Man hätte zuerst auf die Geiselbefreiung und dann auf die Bekämpfung setzen müssen.",
+            "timestamp": "01:03:22",
+            "context": "Kiesewetter kritisiert indirekt Netanyahus Strategie, wobei Trump impliziert als schwache Kontrollinstanz fungiert."
+          }
+        ],
+        "concrete_statements": [
+          "Netanyahu setzt falsche Prioritäten",
+          "Geiselbefreiung sollte Vorrang vor Kampfmission haben",
+          "Israel steht unter militärischer Bedrohung, muss aber deeskalieren"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik USA",
+          "Nahost-Konflikt",
+          "Geiselnahmen und Verhandlungen"
+        ]
+      },
+      {
+        "title": "Netanyahus 30-jährige Warnungen vor iranischer Atombombe",
+        "timestamp_range": "00:29:39 - 00:31:26",
+        "theme_description": "Die Diskutanten konfrontieren Kiesewetter mit der Frage, ob Netanyahus Warnungen vor einer unmittelbar bevorstehenden iranischen Atomwaffe über 30 Jahre glaubwürdig sind, wenn die prophezeite Deadline sich immer wieder verschiebt.",
+        "question_asked": "Der Moderator zitiert Netanyahu-Reden aus verschiedenen Jahrzehnten, in denen er sagt, der Iran sei in 'wenigen Wochen' von der Atombombe entfernt. Dann werden diese Aussagen zeitlich aneinandergereiht, um zu zeigen, dass die Deadline über 30 Jahre andauert. Wie erklärt Kiesewetter diesen Widerspruch?",
+        "question_intent": "Hat Netanyahu mit konsistenten Warnungen vor einer realen, aber langsamer werdenden Bedrohung recht, oder nutzt er wiederholte, sich verschiebende Deadlines als politisches Instrument zur Kriegslegitimation?",
+        "position": "Kiesewetter reagiert zunächst defensiv, indem er sagt, Netanyahus \"rechtzeitige Warnungen\" seien berechtigt gewesen. Später differenziert er: Er widerlegt nicht die Beobachtung der sich verschiebenden Deadlines, sondern argumentiert stattdessen, dass \"wir Europäer blauäugig waren\", den JCPOA unterzeichnet und nicht mitgewirkt hätten. Die zentrale Position ist: Unabhängig von Netanyahus Rhetorik müsse der Iran das Existenzrecht Israels anerkennen, und Europa habe den Sanktionsmechanismus nicht durchgesetzt. Damit weicht Kiesewetter teilweise zum Thema Europäisches Versagen aus.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Kiesewetter wird direkt mit der Glaubwürdigkeitsfrage konfrontiert (30 Jahre, immer wieder 'wenige Wochen'). Anstatt diese zentrale Frage zur politischen Instrumentalisierung zu adressieren, verlagert er das Thema auf europäisches Versagen bei der Sanktionsdurchsetzung. Das ist ein rhetorisches Pivot: substanziell argumentiert (über Sanktionen), aber zur Verantwortung eines Dritten (Europa/USA) umgelenkt statt zu Netanyahus Glaubwürdigkeit.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "europäisches Versagen bei Sanktionsdurchsetzung; Forderung nach iranischer Anerkennung Israels",
+        "quotes": [
+          {
+            "text": "Netanjahu hat früh rechtzeitig gewarnt. Es geht noch weiter.",
+            "timestamp": "00:29:39",
+            "context": "Unmittelbare Reaktion auf die Montage von Netanyahus sich widersprechenden Warnungen über 30 Jahre."
+          },
+          {
+            "text": "Wir waren blauäugig, wir Europäer haben Zeit von 15 dem Vertrag zugestimmt, wir haben nicht mitgewirkt. Wir müssen alles tun, dass der Iran das Existenzrecht Israels anerkennt.",
+            "timestamp": "00:31:54",
+            "context": "Kiesewetter verlagert die Debatte von Netanyahus Glaubwürdigkeit zu europäischer Mitverantwortung."
+          }
+        ],
+        "concrete_statements": [
+          "Netanyahus Warnungen waren berechtigt und rechtzeitig",
+          "Europa war blauäugig in der Unterzeichnung des JCPOA ohne Mitgestaltung",
+          "Der Sanktionsmechanismus musste von Europa durchgesetzt werden",
+          "Der Iran muss das Existenzrecht Israels anerkennen"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "JCPOA / Atomabkommen",
+          "Europäische Sanktionspolitik",
+          "Proliferation nuklearer Waffen"
+        ]
+      },
+      {
+        "title": "Regime Change als europäische Antwort auf iranische Opposition",
+        "timestamp_range": "00:33:54 - 00:35:43",
+        "theme_description": "Kiesewetter wird gefragt, ob er einen Regime Change im Iran anstrebt; er antwortet stattdessen mit historischen Bezügen zur israelischen Staatsgründung und zur iranischen Frauenbewegung.",
+        "question_asked": "Moderator: 'Sollen wir das [Regime Change im Iran] anstreben?' — Kiesewetter wird direkt danach gefragt, ob er einen Regime Change im Iran für richtig hält.",
+        "question_intent": "Befürwortet Kiesewetter aktive externe Maßnahmen (militärisch oder anderweitig) zur Herbeiführung eines Regime Change im Iran?",
+        "position": "Kiesewetter antwortet nicht mit 'ja' oder 'nein' zur direkten Regime-Change-Frage, sondern umgeht sie durch einen historischen Rückgriff auf die Staatsgründung Israels 1948 und die Erinnerung an den Holocaust. Anschließend lenkt er auf die iranische Frauenbewegung ('Frauen, Frieden, Freiheit') ab und kritisiert, dass die deutsche Bundesregierung diese nicht in die Öffentlichkeit gebracht habe und der iranischen Opposition keine Möglichkeit eingeräumt worden sei. Seine implizite Position scheint zu sein: nicht direkte militärische Intervention, sondern Unterstützung der inneren Oppositionsbewegungen.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Die Frage ist eindeutig: Soll Regime Change angestrebt werden? Kiesewetter antwortet mit historischen Kontextualisierungen und Seitenbewegungen (Holocaust, Frauenbewegung), ohne die Kernfrage direkt zu beantworten. Er äußert sich später zu 'Frauen, Frieden, Freiheit', was eine Form der Unterstützung nahelegt, aber nicht explizit zum Regime Change Stellung nimmt.",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "Sie sind nicht in der Lage, einen Regimewechsel aus eigener Kraft herbeizuführen.",
+            "timestamp": "00:33:54",
+            "context": "Kiesewetter konstatiert eine Tatsache (iranische Opposition ist zu schwach), ohne zur politischen Frage zu antworten, ob externe Unterstützung/Regime Change angestrebt werden soll."
+          },
+          {
+            "text": "Frauen, Frieden, Freiheit, diese Bewegung halte ich für wichtig. Die hat die alte Bundesregierung nicht in die Öffentlichkeit gebracht. Wir haben der iranischen Opposition keine Möglichkeit dazu eingeräumt.",
+            "timestamp": "00:35:43",
+            "context": "Kiesewetter äußert Unterstützung für iranische Oppositionsbewegungen, bleibt aber zu externem Regime Change vage."
+          }
+        ],
+        "concrete_statements": [
+          "Iranische Opposition ist zu schwach für eigenständigen Regime Change",
+          "Die Frauenbewegung 'Frauen, Frieden, Freiheit' ist wichtig",
+          "Deutsche Bundesregierung hat iranische Opposition unzureichend unterstützt",
+          "Europäische Position muss europäisch, nicht von außen, geformt werden"
+        ],
+        "related_bundestag_topics": [
+          "Menschenrechte Iran",
+          "Außenpolitik Naher Osten",
+          "Unterstützung von Oppositionsbewegungen"
+        ]
+      },
+      {
+        "title": "Hamas-Angriff 7. Oktober als Rechtfertigung israelischer Gegenmaßnahmen",
+        "timestamp_range": "01:01:14 - 01:03:22",
+        "theme_description": "In der Diskussion über humanitäre Lage in Gaza argumentiert Kiesewetter, dass Israelis nicht Täter und Opfer umkehren dürfen; er betont, dass Hamas den Krieg begonnen habe und Israel reagiert, nicht agiert, habe.",
+        "question_asked": "Der Moderator wirft ein, dass der Bundeskanzler mahnt, Israel solle einen menschenwürdigen Umgang mit Menschen in Gaza gewährleisten — besonders für Frauen, Kinder, Ältere. Die Frage impliziert: Rechtfertigt dies die Art der israelischen Reaktion?",
+        "question_intent": "Kann und sollte Israel humanitäre Standards gegenüber Zivilisten einhalten, auch während es gegen Hamas kämpft?",
+        "position": "Kiesewetter lehnt die Prämisse der Frage ab: 'Wir haben keine Täter Opfer Umkehr. Ich akzeptiere ihre Frage nicht.' Er betont stattdessen, dass Netanyahu eine Lösung finden müsse, schafft es aber nicht, Siedlerbewegung einzudämmen, und dass Kritische Politiker/Journalisten keinen Zugang bekämen. Er fordert, Israel müsse Grenzen öffnen für Hilfsorganisationen. Später differenziert er: Israel habe überreagiert ('furchtbar reagiert'), aber reagiert — nicht agiert. Hamas habe den Krieg begonnen. Die Hamas sitzt in Kirchen, Krankenhäusern, Schulen und nutze die Bevölkerung in Geiselhaft. Er relativiert mit Vergleichen (Ukraine vs. Israel) und Behauptungen von 'Dutzenden israelischen Soldaten vor Gericht'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Humanitäts-Frage teilweise, indem er Forderungen an Netanyahu stellt (Öffnung für Hilfsorganisationen) und eine gewisse Kritik übt ('furchtbar reagiert'). Allerdings rahmt er die Antwort als Reaktion auf Hamas-Aggression ein und relativiert systematisch mit Gegenfragen (Täter-Opfer-Umkehr, Hamas-Provokation in Zivilgebäuden). Die zentrale humanitäre Kritik wird durch Kontextualisierung entkräftet.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Kiesewetter fragt zurück und lehnt Teile der Frage als Prämisse ab, statt direkt zu antworten, was humanitäre Standards in Gaza konkret bedeuten.",
+        "quotes": [
+          {
+            "text": "Wir haben keine Täter Opfer Umkehr. Ich akzeptiere ihre Frage nicht, Ich deutlich machen, dass die Regierung eine Lösung finden muss.",
+            "timestamp": "01:01:14",
+            "context": "Kiesewetter lehnt die Prämisse der Humanitäts-Frage grundsätzlich ab."
+          },
+          {
+            "text": "Die Hamas hat Israel angegriffen. Israel hat überreagiert, hat furchtbar reagiert. Aber sie haben reagiert. Sie haben nicht von sich aus den Angriff begonnen.",
+            "timestamp": "01:05:36",
+            "context": "Kiesewetter akzeptiert übertriebene Reaktion, ordnet sie aber als Reaktion auf Aggression ein."
+          },
+          {
+            "text": "Ich will ihr deutlich sagen, die Hamas provoziert diese Schäden, in dem sie in Kirchen, Krankenhäusern, Schulen ihre Hauptquartiere einrichtet. Sie nutzen bewusst Gewalt, die am Wasser etc., diese Bevölkerung in Geiselhaft zu nehmen.",
+            "timestamp": "01:07:41",
+            "context": "Kiesewetter erklärt Schäden mit Hamas-Provokation in Zivilgebäuden."
+          }
+        ],
+        "concrete_statements": [
+          "Netanyahu muss Lösung finden; scheitert bei Eindämmung von Siedlerbewegung",
+          "Kritischen Politikern und Journalisten wird Zugang zu Gaza verweigert",
+          "Israel sollte Grenzen für internationale Hilfsorganisationen öffnen",
+          "Hamas hat den Krieg begonnen; Israel reagierte",
+          "Israel überreagierte, aber nicht ohne Grund",
+          "Hamas nutzt Kirchen, Krankenhäuser, Schulen für Militär und Bevölkerung in Geiselhaft"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Israel",
+          "Humanitäres Völkerrecht",
+          "Kriegsverbrechen und Verhältnismäßigkeit",
+          "Gaza-Konflikt"
+        ]
+      },
+      {
+        "title": "Verhältnismäßigkeit israelischer Reaktion und Kriegsverbrechen",
+        "timestamp_range": "01:05:36 - 01:09:27",
+        "theme_description": "Kiesewetter wird mit Vorwürfen von Kriegsverbrechen und unverhältnismäßiger Gewalt in Gaza konfrontiert; er argumentiert, dass Israel ein Rechtsstaat sei, und betont Ursache-Wirkung-Verhältnisse.",
+        "question_asked": "Der Moderator konfrontiert Kiesewetter mit der Aussage, dass fast alle Völkerrechtler von Kriegsverbrechen sprechen, und es unmöglich ist, bei 30-40 Toten pro Hamaskämpfer noch von Verhältnismäßigkeit zu sprechen. Wie antwortet Kiesewetter?",
+        "question_intent": "Sind Israels Reaktionen in Gaza völkerrechtlich legitimate Selbstverteidigung oder systematische Kriegsverbrechen?",
+        "position": "Kiesewetter akzeptiert, dass es Kriegsverbrechen gibt, ordnet diese aber in ein Ursache-Wirkung-Narrativ ein: 'Es geht um Ursache und Wirkung.' Er stellt fest, dass Israel ein Rechtsstaat ist, 'Dutzende Soldaten' vor Gericht gestellt wurden (wegen Verhältnismäßigkeitsverstößen), und dass es mehrere 'Bilder' gibt, 'wo den Israelis Taten in die Schuhe geschoben werden'. Diese Einschränkung ('unterscheiden ist schwer') rahmt die Diskussion als Gewissensfrage, bei der er froh ist, dass der Bundeskanzler das Thema angesprochen habe. Er signalisiert damit: Es gibt ernsthafte Vorwürfe, aber Israel handelt im Rahmen von Rechtstaatlichkeit.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter anerkennt Kriegsverbrechen und den Vorwurf der Verhältnismäßigkeit, ordnet dies aber durch Ursache-Wirkung-Logik und durch Bezug auf Rechtstaatlichkeit in ein anderes Licht. Die zentrale Kritik an der Quote (30-40 Tote pro Hamaskämpfer) wird nicht direkt adressiert, sondern mit 'Dutzenden vor Gericht' relativiert.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Natürlich gibt es dort Kriegsverbrechen, es geht um Ursache und Wirkung. Israel ist ein Rechtsstaat, es gibt Dutzende Momente, es gibt Dutzende Soldaten, die vor Gericht gestellt werden, weil sie der Verhältnismäßigkeit nicht entsprochen haben.",
+            "timestamp": "01:07:41",
+            "context": "Kiesewetter antwortet auf den Vorwurf von systematischen Kriegsverbrechen und fehlender Verhältnismäßigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt Kriegsverbrechen in Gaza",
+          "Ursache und Wirkung sind zentral",
+          "Israel ist ein Rechtsstaat",
+          "Dutzende israelische Soldaten stehen vor Gericht wegen Verhältnismäßigkeitsverstößen",
+          "Mehrere Fälle, in denen Israel Taten zu Unrecht vorgeworfen werden",
+          "Unterscheidung zwischen Propaganda und Tatsachen ist schwer"
+        ],
+        "related_bundestag_topics": [
+          "Humanitäres Völkerrecht",
+          "Kriegsverbrechen",
+          "Internationale Gerichtsbarkeit",
+          "Gaza-Konflikt"
+        ]
+      },
+      {
+        "title": "Europäische Position und deutsche Verantwortung gegenüber Israel",
+        "timestamp_range": "01:16:06 - 01:17:45",
+        "theme_description": "Kiesewetter wird zur europäischen Strategie befragt und betont die Notwendigkeit einer europäischen Position, während er gleichzeitig warnt, nicht zur Spaltung Israels beizutragen.",
+        "question_asked": "Der Moderator verweist auf israelische Regierungsmitglieder, die Völkermord befürworten, und fragt, warum Außenpolitiker nur 'empört' reagieren statt stärkere Maßnahmen zu ergreifen. Er zitiert auch Kristin Helberg, die vorschlägt, die EU könnte das Assoziierungsabkommen aussetzen und Sanktionen gegen Regierungsvertreter verhängen.",
+        "question_intent": "Sollte Europa stärkere Sanktionsmaßnahmen gegen Israel ergreifen, um dessen Regierungspolitik zu ändern?",
+        "position": "Kiesewetter beginnt mit einer Sprachkritik: 'Immerhin haben wir eine neue Sprache gefunden.' Dann fordert er, dass 'wir eine europäische Position finden' und 'die Fehler ansprechen'. Er kritisiert, dass Netanyahu keine Kooperationspartner findet außer Ultraorthodoxen und Rechtsextremisten. Er merkt an, dass Netanyahu 'mit einem Fuß im Gefängnis' steht (Korruptionsverfahren) und dass Israel nach dem Krieg 'Bestandaufnahme' halten müsse — analogieweise wie Deutschland nach 1945. Er warnt: 'Wir dürfen nicht zur Spaltung des Landes beitragen.' Dies widerlegt implizit Helbergs Vorschlag von EU-Sanktionen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Der Moderator fragt, ob Europa stärkere Maßnahmen (Sanktionen, Assoziierungsabkommen-Aussetzung) ergreifen soll. Kiesewetter antwortet mit einer eigenen Position zu Netanyahus politischem Status (Gefängnis, Koalitionspartner) und zu Deutschlands historischer Verantwortung, ohne die konkrete Frage nach EU-Sanktionen zu beantworten. Stattdessen warnt er vor 'Spaltung des Landes' — ein Gegenpunkt zur Sanktions-Logik. Das ist ein substantieller Pivot.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Netanyahus politische Verantwortlichkeit und Risiko von Spaltung; deutsche/europäische historische Verantwortung statt Sanktionen",
+        "quotes": [
+          {
+            "text": "Immerhin haben wir eine neue Sprache gefunden. Entscheidend ist, dass wir eine europäische Position finden. Und, dass wir die Fehler ansprechen.",
+            "timestamp": "01:16:06",
+            "context": "Kiesewetter wird gefragt, warum Europa nicht stärkere Maßnahmen ergreift; er antwortet mit Forderung nach europäischer Position und Fehleranalyse."
+          },
+          {
+            "text": "Die Israelis haben eine Regierung gewählt, die keine anderen Partner gefunden hat als ultraorthodoxe, Rechtsextremisten. Benjamin Netanjahu steht mit einem Fuß im Gefängnis. Wenn er nicht im Amt ist, wird er ins Gefängnis gehen müssen. Israel ist ein Rechtsstaat.",
+            "timestamp": "01:16:55",
+            "context": "Kiesewetter erläutert Netanyahus politische Situation und Israels innere Zwänge."
+          },
+          {
+            "text": "Wir dürfen nicht zur Spaltung des Landes beitragen.",
+            "timestamp": "01:17:19",
+            "context": "Kiesewetter warnt vor EU-Sanktionen als Spaltungsinstrument."
+          }
+        ],
+        "concrete_statements": [
+          "Neue Sprache in der Israel-Kritik ist notwendig",
+          "Europa muss eine kohärente Position finden",
+          "Fehler müssen benannt werden",
+          "Netanyahu hat nur Koalitionspartner aus extremen Lagern",
+          "Netanyahu ist politisch durch Korruptionsverfahren unter Druck",
+          "Israel muss interne Aufarbeitung leisten (wie Deutschland nach 1945)",
+          "Deutschland darf nicht zur inneren Spaltung Israels beitragen"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Israel/Palästina",
+          "EU-Assoziierungsabkommen",
+          "Sanktionspolitik",
+          "Deutsch-israelische Beziehungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Hisbollah wurde 1982 vom Iran aufgebaut",
+        "timestamp": "00:14:59"
+      },
+      {
+        "claim": "Der 7. Oktober war ein unmittelbarer Angriff auf Israel",
+        "timestamp": "00:14:59"
+      },
+      {
+        "claim": "Netanyahu warnt seit 30 Jahren vor unmittelbar bevorstehender iranischer Atombombe",
+        "timestamp": "00:29:39"
+      },
+      {
+        "claim": "Dutzende israelische Soldaten stehen vor Gericht wegen Verhältnismäßigkeitsverstößen",
+        "timestamp": "01:07:41"
+      },
+      {
+        "claim": "Netanyahu steht mit einem Fuß im Gefängnis (Korruptionsverfahren)",
+        "timestamp": "01:16:55"
+      },
+      {
+        "claim": "Israel hat einen Sanktionsmechanismus gegen den Iran nicht durchgesetzt",
+        "timestamp": "00:31:54"
+      }
+    ]
+  }
+}

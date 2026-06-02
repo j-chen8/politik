@@ -1,0 +1,414 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-16-april-2025-100",
+    "video_id": "lanz-2025-04-16",
+    "politician": "Bärbel Bas",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "75ce79209a694fb0",
+    "transcript_chars": 33443,
+    "caption_lines": 1679,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15238,
+    "tokens_out": 9178,
+    "cost_usd": 0.0244512,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 18,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-02T16:33:28.954Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bärbel Bas, SPD-Politikerin und neue Bundesministerin für Arbeit und Soziales, diskutiert mit Markus Lanz über die Koalitionsregierung, Migrationspolitik und Sozialsysteme. Sie wirkt konstruktiv aber vorsichtig bei umstrittenen Themen, betont europäische Abstimmung und warnt vor einer Normalisierung der AfD, während sie gleichzeitig pragmatische Lösungen im Rahmen der Koalitionsvereinbarungen vertreten.",
+    "themes": [
+      {
+        "title": "Interpretation von Carsten Linnemanns Verzicht auf Ministerposten",
+        "timestamp_range": "00:05:10 - 00:05:44",
+        "theme_description": "Bärbel Bas bewertet Linnemanns Entscheidung, Generalsekretär zu bleiben statt Minister zu werden.",
+        "question_asked": "Markus Lanz fragt, wie Bärbel Bas Linnemanns Ankündigung liest, dass er lieber Generalsekretär bleibt, obwohl er ursprünglich mit einem Ministerposten gerechnet haben könnte.",
+        "question_intent": "Lanz möchte wissen, ob Bas glaubt, Linnemann wurde von Merz schlecht behandelt oder ob dies eine sinnvolle Entscheidung war.",
+        "position": "Bas deutet an, dass Linnemann durch seine Äußerung signalisiert hat, mit einem Ministerposten zu rechnen, ihn aber akzeptiert hat, dass es nicht dazu kam. Sie bescheinigt Linnemann Sozialpolitische Expertise bei den Koalitionsverhandlungen zu Gesundheit und Pflege. Sie hält es für eine gute Chance für ihn als Generalsekretär, in allen Themen mitwirken zu können, weiß aber nicht, ob er enttäuscht ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas antwortet auf die faktische Situation und bewertet Linnemanns mögliche neue Rolle, geht aber nicht vollständig auf die implizite Kritik des Moderators ein, dass Merz Linnemann möglicherweise unfair behandelt hat.",
+        "quotes": [
+          {
+            "text": "Er hat gesagt, das muss auch passen. Insofern hat er damit gespielt oder gerechnet, dass er Minister wird.",
+            "timestamp": "00:05:10"
+          },
+          {
+            "text": "Ich kann mir vorstellen, dass es für ihn eine gute Chance ist als Generalsekretär, kann er in allen Themen mitarbeiten.",
+            "timestamp": "00:05:10"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Linnemann ist ein Sozialpolitiker mit Expertise zu Gesundheit und Pflege",
+          "Als Generalsekretär kann Linnemann in allen Themen mitarbeiten"
+        ],
+        "related_bundestag_topics": [
+          "Kabinettsformationen",
+          "Koalitionsverhandlungen",
+          "CDU-Parteienamt"
+        ]
+      },
+      {
+        "title": "Umgang mit AfD in parlamentarischen Funktionen",
+        "timestamp_range": "00:12:49 - 00:14:09",
+        "theme_description": "Bärbel Bas warnt vor der Übernahme von Repräsentationsfunktionen durch AfD-Mitglieder und nennt Sicherheitsrisiken.",
+        "question_asked": "Markus Lanz fragt nach einem möglichen Szenario, das entstehen könnte, wenn AfD-Abgeordnete in Funktionen wie Ausschussvorsitzende kommen würden.",
+        "question_intent": "Lanz möchte verstehen, welche konkreten Gefahren Bas sieht und welche Probleme sich daraus ergeben könnten.",
+        "position": "Bas warnt konkret vor Geheimschutzgremien, in denen AfD-Abgeordnete Zugang zu sensiblen Daten zu äußerer und innerer Sicherheit hätten. Sie führt das Beispiel Thüringens an, wo ein Alterspräsident (Björn Höcke) seine Redezeit missbrauchte. Sie betont aus ihrer Erfahrung als Bundestagspräsidentin (3,5 Jahre), dass Sicherheitsrisiken entstehen, insbesondere mit Blick auf Verdachtsmomente bezüglich Spionage durch Russland. Sie kritisiert, dass solche Funktionen nicht im Sinne der Demokratie genutzt würden und verweist auf europäische Netzwerke von Rechtsextremen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Bas antwortet präzise auf die Frage nach Szenarien mit mehreren konkreten Beispielen: Geheimschutzgremien, Thüringen-Fall, Sicherheitsrisiken. Sie adressiert sowohl sicherheitspolitische als auch verfassungsschutzliche Bedenken und stützt ihre Warnung auf persönliche Erfahrung.",
+        "quotes": [
+          {
+            "text": "Wir haben sogenannte Geheimschutzgremien, wenn dort Abgeordnete Gesetzen hätten, wo sensible Daten zur äußeren und inneren Sicherheit betrachtet werden und es gibt Kolleginnen und Kollegen, die landesweit vom Verfassungsschutz beobachtet werden, das ist ein Sicherheitsrisiko.",
+            "timestamp": "00:12:49"
+          },
+          {
+            "text": "Ich mache das Beispiel Thüringen, wo ein Alterspräsident seine Rede missbraucht hat in dieser Funktion, es war nur ein Alterspräsident, der die Sitzung leiten sollte.",
+            "timestamp": "00:12:49"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Abgeordnete mit Verfassungsschutz-Beobachtung dürfen nicht in Geheimschutzgremien sitzen",
+          "Thüringen-Beispiel zeigt Missbrauchspotenzial von Repräsentationsfunktionen",
+          "Schutz der Institutionen des Bundestags vor innerer Unterwanderung ist erforderlich",
+          "Europäische rechtsextreme Netzwerke erfordern Vorsicht"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Umgang im Bundestag",
+          "Geschäftsordnung des Bundestags",
+          "Verfassungsschutz und Sicherheit",
+          "Geheimschutzgremien"
+        ]
+      },
+      {
+        "title": "Rhetorik und inhaltliche Debatte über AfD-Themen",
+        "timestamp_range": "00:23:16 - 00:24:46",
+        "theme_description": "Bärbel Bas äußert sich zum Problem eines Wettbewerbs mit der AfD um Migration und Sicherheitsthemen.",
+        "question_asked": "Markus Lanz fragt Bas, ob sie sein Misstrauen versteht, dass die Regierung die AfD normalisieren könnte.",
+        "question_intent": "Lanz möchte wissen, ob Bas erkennt, dass durch bestimmte Rhetorik und Themensetzung die AfD instrumentalisiert oder legitimiert werden könnte.",
+        "position": "Bas zeigt Verständnis für die Sorge vor Normalisierung der AfD, erkennt aber an, dass das Problem in der Debatte über AfD-Themen liegt. Sie warnt explizit davor, in einen Wettbewerb mit der AfD über deren Themen einzutreten, weil die Partei 'immer polarisiert'. Sie argumentiert, dass man nicht durch höhere Ausländerkritik konkurrieren kann, weil das der AfD nicht genügen würde. Stattdessen sollten Demokraten sich auf die tatsächliche Problemlösung konzentrieren, bei der die Menschen sie nicht mehr wählen, weil die Probleme nicht gelöst werden. Sie unterstützt Jens Spahn darin, dass eine Rhetorik-Konkurrenz mit der AfD ein Fehler ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Bas beantwortet die Frage direkt mit substantieller Kritik an der falschen Strategie. Sie identifiziert das zentrale Problem (Wettbewerb über Themen statt Lösungen) und erklärt die Logik dahinter.",
+        "quotes": [
+          {
+            "text": "Beginnen einen Wettbewerb der Themen mit der AfD, das ist ein Fehler, weil wir auch rhetorisch auf die Themen so annehmen wie die AfD sie selbst.",
+            "timestamp": "00:23:16"
+          },
+          {
+            "text": "Ich könnte auch alle Ausländer aus diesem Land verweisen, dann würde es der auf die immer noch nicht genug sein.",
+            "timestamp": "00:23:16"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wettbewerb mit AfD über deren Themen ist ein Fehler",
+          "AfD wird bei höheren Forderungen nicht zufrieden sein",
+          "Fokus sollte auf tatsächlicher Problemlösung liegen",
+          "Rhetorik-Ebene sollte nicht AfD-Framing übernehmen"
+        ],
+        "related_bundestag_topics": [
+          "Migration und Integration",
+          "AfD-Debatte",
+          "Innere Sicherheit",
+          "Wahlkampfkommunikation"
+        ]
+      },
+      {
+        "title": "Ton und Ordnungsrufe im Deutschen Bundestag",
+        "timestamp_range": "00:25:31 - 00:26:13",
+        "theme_description": "Bärbel Bas erteilt mehrere Ordnungsrufe für persönliche Beleidigungen und aggressive Rhetorik durch AfD-Abgeordnete.",
+        "question_asked": "Markus Lanz zeigt beispiele für aggressive Redebeiträge von AfD-Abgeordneten im Bundestag und fragt implizit, wie damit umzugehen ist.",
+        "question_intent": "Lanz möchte den neuen 'Sound' im Parlament dokumentieren und Bas' Reaktion als Parlamentarian erfahren.",
+        "position": "Bas handelt mit Ordnungsrufen konsequent gegen persönliche Beleidigungen (z.B. 'Lügenkanzler Scholz', 'Kriegskanzler Merz', 'dreckige Griffel'). Sie betont in ihrer Intervention: 'Da sie es immer noch nicht gelernt haben dass wir persönliche Beleidigungen nicht akzeptieren' und erteilt Ordnungsrufe sowie eine Verwarnung. Sie signalisiert damit Normalsetzung für das Parlament.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Bas antwortet nicht verbal, sondern durch Handlung – sie setzt die Geschäftsordnung konsequent durch und schafft damit Klarheit über Grenzen. Das ist eine substantielle Antwort auf die implizite Frage nach parlamentarischen Standards.",
+        "quotes": [
+          {
+            "text": "Da sie es immer noch nicht gelernt haben dass wir persönliche Beleidigungen nicht akzeptieren, da für ein Ordnungsruf.",
+            "timestamp": "00:25:31"
+          },
+          {
+            "text": "Noch sitze ich hier noch bin ich streng.",
+            "timestamp": "00:25:31"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Persönliche Beleidigungen werden mit Ordnungsrufen geahndet",
+          "Parlamentarische Geschäftsordnung wird konsequent durchgesetzt"
+        ],
+        "related_bundestag_topics": [
+          "Bundestags-Geschäftsordnung",
+          "Ordnungsrufe",
+          "Parlamentarische Ethik und Standards"
+        ]
+      },
+      {
+        "title": "Einkommenssteuer und finanzielle Spielräume",
+        "timestamp_range": "00:28:05 - 00:29:03",
+        "theme_description": "Bärbel Bas erläutert die Bedingungen für eine Senkung der Einkommenssteuer.",
+        "question_asked": "Markus Lanz fragt, wann die Einkommenssteuer gesenkt wird, und merkt an, dass Saskia Esken von einer klaren Verabredung spricht, Friedrich Merz aber sagt, es sei noch nicht fix.",
+        "question_intent": "Lanz möchte Klarheit, ob die Steuersenkung garantiert ist oder nur unter Bedingungen erfolgt.",
+        "position": "Bas erklärt, dass die Senkung unter 'Finanzierungsvorbehalt' steht. Sie betont das strukturelle Defizit und dass ein großes Sondervermögen für Investitionen geschaffen wurde. Sie anerkennt, dass die Einkommensschere auseinander geht und dass Entlastungen für kleine und mittlere Einkommen nötig sind. Sie sagt, dies 'muss uns in dieser Legislatur gelingen' und dass man sich 'diesen Spielraum finanziell erarbeiten' muss.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas beantwortet die Frage nach den Bedingungen, nicht nach einer konkreten Garantie. Sie erkennt zwar die Notwendigkeit an, macht aber die Umsetzung von wirtschaftlichen Bedingungen abhängig. Die Antwort ist ehrlich, aber nicht so klar wie die Frage impliziert.",
+        "quotes": [
+          {
+            "text": "Man kann sagen wenn man den einen Satz sieht, es steht unter Finanzierungsvorbehalt kann man sagen, das müssen wir Menschen scheinen wissen, das ist die Wahrheit, wir haben noch ein strukturelles Defizit.",
+            "timestamp": "00:28:05"
+          },
+          {
+            "text": "Wir müssen sie senken wenn es nach mir geht werden wir das tun, wir müssen uns diesen Spielraum finanziell erarbeiten.",
+            "timestamp": "00:28:05"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Einkommenssteuer-Senkung steht unter Finanzierungsvorbehalt",
+          "Strukturelles Defizit ist vorhanden",
+          "Sondervermögen für Investitionen wurde geschaffen",
+          "Entlastung von kleinen und mittleren Einkommen ist Ziel dieser Legislatur",
+          "Finanzielle Spielräume müssen durch Wachstum erarbeitet werden"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Koalitionsvertrag SPD/Union",
+          "Finanzpolitik und Haushalt",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Vermögensteuer und Erbschaftssteuer",
+        "timestamp_range": "00:29:34 - 00:30:32",
+        "theme_description": "Bärbel Bas äußert sich zur Möglichkeit einer Vermögens- oder Erbschaftssteuererhöhung.",
+        "question_asked": "Markus Lanz fragt explizit: 'Sind Sie sich auch sicher Frau Bas?' zur Frage, ob es eine Vermögensteuer geben wird (nachdem Jens Spahn ein klares Nein gesagt hat).",
+        "question_intent": "Lanz möchte wissen, ob die SPD die gleiche Position wie die Union vertritt oder ob hier noch Raum für Verhandlungen besteht.",
+        "position": "Bas sagt deutlich: 'Da bin ich mir nicht sicher.' Sie erklärt, dass niemand weiß, was in den nächsten vier Jahren auf Deutschland zukommt, auch international (z.B. Trumps Zollpolitik). Sie sagt, dass man über die Behandlung von Spitzeneinkommen nachdenken muss und dass sie das 'heute nicht ausschließen' kann. Sie verweist darauf, dass auch Friedrich Merz gesagt hat, er könne es nicht ausschließen. Auf die Frage nach Erbschaftssteuer-Erhöhung antwortet sie: 'Wir werden sehen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Bas antwortet direkt und ehrlich auf die Frage. Sie differenziert zwischen ihrer Position und der von Merz/Spahn und hält sich Optionen offen, was sachlich angemessen ist angesichts unbekannter Rahmenbedingungen.",
+        "quotes": [
+          {
+            "text": "Da bin ich mir nicht sicher. Wir wissen noch nicht was in den nächsten vier Jahren auf uns zukommen wird. Auch international. Wir wissen nicht was mit der Zollpolitik von Trump noch kommt.",
+            "timestamp": "00:29:34"
+          },
+          {
+            "text": "Ich kann das heute nicht ausschließen. Auf Friedrich Merz hat gesagt er kann es nicht ausschließen.",
+            "timestamp": "00:29:34"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Vermögensteuer wird nicht ausgeschlossen",
+          "Spitzeneinkommen müssen eventuell neu bewertet werden",
+          "Erbschaftssteuer-Erhöhung offen gelassen",
+          "Abhängig von wirtschaftlichen und internationalen Entwicklungen (Trump-Zollpolitik)"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Vermögensbesteuerung",
+          "SPD-Fiskalpolitik",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Aufnahmeprogramme aus Afghanistan und Syrien",
+        "timestamp_range": "00:31:14 - 00:33:11",
+        "theme_description": "Bärbel Bas erläutert die Position zu bestehenden und zukünftigen Aufnahmeprogrammen aus Krisenregionen.",
+        "question_asked": "Markus Lanz fragt konkret, ob die geplanten Abflüge (2.800 Leute) stattfinden und allgemeiner, ob es unter der neuen Regierung noch Aufnahmeprogramme geben wird.",
+        "question_intent": "Lanz möchte wissen, ob die Union ihre strikte Haltung gegen Aufnahmeprogramme durchgesetzt hat oder ob die SPD Ausnahmen bewahrt hat.",
+        "position": "Bas betont, dass es 'bestehende Verträge' gibt und dass die aktuelle Bundesregierung noch Verantwortung trägt. Sie weist auf rechtliche Bindungen hin – man könne nicht 'einfach alles abbrechen'. Sie erklärt, dass es mit Bündnispartnern rechtliche Absprachen gibt, die einzuhalten sind. Sie argumentiert, dass die SPD und sie die Notwendigkeit verstehen, Ortskräfte zu unterstützen (z.B. Dolmetscher, die mit Deutschland kooperiert haben), und dass dies 'nach wie vor richtig' ist. Deswegen könne man 'nichts ausschließen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas antwortet auf die Frage, macht aber deutlich, dass sie eher eine Vorsichtsposition einnimmt ('kann nicht ausschließen') statt eine klare Position zu beziehen. Sie adressiert rechtliche Zwänge, nicht die politische Frage, ob die SPD Aufnahmeprogramme will.",
+        "quotes": [
+          {
+            "text": "Es gibt bestehende Verträge und wir sind da zum Teil im Wort. Im man kann nicht so einfach ausschließen, es ist auch eine rechtliche Frage ob ich einfach alles abbrechen kann.",
+            "timestamp": "00:31:14"
+          },
+          {
+            "text": "Es gibt sicherlich auch mit unseren Bündnispartnern rechtliche Absprachen, die wir einzuhalten haben. Da wäre ich vorsichtig zu sagen, dass gar nichts mehr stattfindet.",
+            "timestamp": "00:31:14"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Bestehende Verträge müssen eingehalten werden",
+          "Ortskräfte sollten unterstützt werden",
+          "Rechtliche Bindungen mit Bündnispartnern bestehen",
+          "Keine neuen Aufnahmeprogramme im Koalitionsvertrag vereinbart, aber bestehende werden fortgesetzt"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Afghanistan und Syrien",
+          "Flüchtlingspolitik",
+          "Internationale Verpflichtungen"
+        ]
+      },
+      {
+        "title": "Grenzkontrollen und europäische Abstimmung",
+        "timestamp_range": "00:34:03 - 00:37:33",
+        "theme_description": "Bärbel Bas erläutert die Positon zu Zurückweisungen an Grenzen und betont europäische Koordination.",
+        "question_asked": "Markus Lanz fragt, ob jemand an der Grenze einfach zurückgewiesen wird, und später, was passiert, wenn es zu keiner europäischen Zustimmung kommt.",
+        "question_intent": "Lanz möchte verstehen, wie praktisch die Grenzkontrollen umgesetzt werden und ob Deutschland bei Uneinigkeit mit europäischen Partnern einseitig handelt.",
+        "position": "Bas betont durchgehend, dass alles 'in Abstimmung' mit europäischen Partnern erfolgen muss. Sie erklärt das Beispiel Schweiz: gemeinsame Kontrollen, und wenn jemand nicht nach Deutschland darf, macht die Schweiz das Asylverfahren. Sie sagt, dies muss 'immer in Abstimmung und nicht über deren Köpfe hinweg' geschehen. Sie definiert 'Abstimmung' explizit als 'nicht über die Köpfe hinweg'. Sie unterstreicht mehrfach: 'Wir brauchen Europa stärker als je zuvor' und 'Das kann nur in Zustimmung und Abstimmung funktionieren.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Bas beantwortet die Fragen mit konsistenter Betonung der europäischen Dimension. Sie differenziert ihre Position von der von Spahn (der von 'handlungsstarkem Deutschland' spricht) und macht deutlich, dass sie nationale Alleingänge ablehnt.",
+        "quotes": [
+          {
+            "text": "Das ist meine Auffassung, dass das nicht einfach nur gemacht wird, gesagt wird, das ist ein Unterschied, wir beide sind durchaus Europäer und sagen, wir brauchen Europa stärker als je zuvor, wenn wir uns untereinander an diesem Thema gemeinsame Grenzkontrollen streiten, das bringt uns nicht weiter.",
+            "timestamp": "00:35:27"
+          },
+          {
+            "text": "Für mich heißt Abstimmung nicht über die Köpfe hinweg.",
+            "timestamp": "00:35:27"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Grenzkontrollen müssen in Abstimmung mit europäischen Partnern erfolgen",
+          "Keine nationalen Alleingänge ohne Zustimmung der Nachbarländer",
+          "Beispiel Schweiz: gemeinsame Kontrollen und Asylverfahren",
+          "Europa braucht stärkere Zusammenarbeit als je zuvor",
+          "Deutschland darf sich nicht unilateral handeln"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Europäische Außengrenzen",
+          "Schengen-Abkommen",
+          "Europäische Koordination"
+        ]
+      },
+      {
+        "title": "Koalitionsvertrag und ,fast identische' Migration-Punkte",
+        "timestamp_range": "00:37:37 - 00:39:26",
+        "theme_description": "Bärbel Bas erklärt die Unterschiede zwischen Wahlkampf-Versprechen gegen Rechts und Koalitionsvertrag.",
+        "question_asked": "Markus Lanz kritisiert, dass Merz' Fünf-Punkte-Plan zu Migration fast identisch im Koalitionsvertrag steht, obwohl vorher ein großer Kampf gegen Rechts ausgerufen wurde.",
+        "question_intent": "Lanz fragt, warum der Kampf gegen Rechts nach der Wahl aus dem Koalitionsvertrag verschwunden ist und ob das nur Wahlkampfrhetorik war.",
+        "position": "Bas antwortet mit dem Satz 'Weniger' – sie widerspricht also, dass die Punkte fast identisch sind. Sie betont das Wort 'fast' als wichtig. Sie erklärt, dass Außengrenzen-Schutz 'wichtig' war und dass das Wort 'Abstimmung' bei Zurückweisungen eingebracht wurde. Sie betont, dass 'Wir brauchen Europa als starke Kraft auch zur Bekämpfung der irregulären Migration.' Sie erklärt, dass es 'ein schwieriges Thema für Sozialdemokraten' ist, aber sie 'sich auf die Union zubewegt' haben. Sie unterstreicht: 'Immer in Abstimmung in Europa und keine nationalen Alleingänge.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas antwortet auf die Kritik durch Unterscheidung der Details (Wort 'Abstimmung', europäische Dimension), aber sie geht nicht vollständig auf die grundsätzliche Frage ein, warum der Kampf gegen Rechts aus dem Vertrag verschwunden ist.",
+        "quotes": [
+          {
+            "text": "Sie sagen das wichtige Wort, fast. Und zwar wichtig, dass die Initiative, dass die Außengrenzen geschützt sind. Den Zurückweisungen an den Grenzen war uns wichtig, dieses Wort in Abstimmung.",
+            "timestamp": "00:38:13"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Koalitionsvertrag unterscheidet sich vom Wahlkampf durch Betonung von 'Abstimmung' statt einseitiger Maßnahmen",
+          "Europäische Lösung zentral für SPD-Position",
+          "Keine nationalen Alleingänge bei Migrationspolitik"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag SPD/Union",
+          "Migrationspolitik",
+          "Wahlkampf vs. Regierungsprogramm",
+          "Europäische Außengrenzen"
+        ]
+      },
+      {
+        "title": "Mindestlohn und 15-Euro-Ziel",
+        "timestamp_range": "00:40:08 - 00:40:39",
+        "theme_description": "Bärbel Bas erläutert die Strategie zur Erreichung eines Mindestlohns von 15 Euro.",
+        "question_asked": "Markus Lanz fragt, ob der Mindestlohn kommt, nachdem Jens Spahn erklärt hat, dass die Mindestlohnkommission entscheidet.",
+        "question_intent": "Lanz möchte konkrete Information über das 15-Euro-Ziel, das im Wahlkampf versprochen wurde.",
+        "position": "Bas sagt, dass 'es so vereinbart' ist, dass man 'davon ausgeht, dass er irgendwo bei 15 % liegen wird'. Sie nennt 2026 als Zielmarke. Sie erklärt, dass bei Lohnentwicklungen und Tarifentwicklungen 'der wahrscheinlich bei diesen 60 % in 26 die 15 erreichen' wird. (Anmerkung: Die Zahlen sind im Transkript möglicherweise fehlerhaft transkribiert.)",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas antwortet auf die Frage, bleibt aber vage mit Formulierungen wie 'davon ausgehen' und 'wahrscheinlich'. Sie nennt zwar ein Jahr (2026) als Ziel, macht aber deutlich, dass es von Tarifentwicklungen abhängt und nicht garantiert ist.",
+        "quotes": [
+          {
+            "text": "Es ist so vereinbart, wir gehen davon aus, dass er irgendwo bei 15 % liegen wird. 2026 ist das Ziel.",
+            "timestamp": "00:40:08"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Mindestlohn von 15 Euro ist Ziel für 2026",
+          "Abhängig von Tarifentwicklungen",
+          "Mindestlohnkommission entscheidet über konkrete Entwicklung"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Mindestlohn",
+          "Wahlkampfversprechen SPD",
+          "Tarifpolitik"
+        ]
+      },
+      {
+        "title": "Generationengerechtigkeit und Rentenreformen",
+        "timestamp_range": "00:43:13 - 00:44:45",
+        "theme_description": "Bärbel Bas erörtert Ansätze zur Sicherung der Rente und Generationengerechtigkeit.",
+        "question_asked": "Markus Lanz fragt, ob die SPD auch bereit ist, unpopuläre Maßnahmen bei Renten und Sozialsystemen zu treffen, nachdem Jens Spahn sagte, dass Beitragssätze nicht steigen können.",
+        "question_intent": "Lanz möchte wissen, ob die SPD die nötigen Reformen mittragen wird, auch wenn sie unpopulär sind.",
+        "position": "Bas betont, dass Menschen, die in Rente gehen, etwas bekommen müssen. Sie sagt, dass die gesetzliche Rente für viele das einzige ist, was am Ende eines Arbeitslebens bleibt. Sie sieht dies als 'generationenübergreifend'. Sie nennt konkrete Baustellen: Unterschiedliche Versorgungssysteme (nicht alle zahlen in ein System ein), Selbstständige, verschiedene Versorgungswerke. Sie hat Bedenken bei Riester-Rente und erklärt, dass private Zusatzbereiche nötig sind, aber Riester gezeigt hat, dass viele das nicht machen, weshalb die Lücke bleibt. Sie sagt, diese Fragen 'müssen bis zur Mitte der Legislaturperiode Ergebnissen kommen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Bas identifies multiple systemic problems and proposes structural reforms (unified system, broader contribution base), but she avoids concrete commitments on unpopular measures like benefit cuts or contribution increases. She emphasizes timelines rather than specific solutions.",
+        "quotes": [
+          {
+            "text": "Wir müssen schauen, dass die die in die Rente gehen was bekommen. Für Menschen ist die gesetzliche Rente das einzige was sie am Ende eines Arbeitslebens haben.",
+            "timestamp": "00:43:13"
+          },
+          {
+            "text": "Gleich zu anderen Ländern ist es so, dass wir immer noch diese zwei parallel Universum haben, nicht alle zahlen in ein System ein, das würde schon helfen.",
+            "timestamp": "00:43:13"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Garantie für Rentenniveau notwendig",
+          "Einheitliches Versorgungssystem für alle Erwerbstätigen angestrebt",
+          "Selbstständige sollten in gesetzliche Rente einzahlen",
+          "Riester-Rente müsse überprüft werden",
+          "Private Zusatzversorgung notwendig, aber ausbaufähig",
+          "Lösungen bis Mitte der Legislaturperiode erforderlich"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Generationengerechtigkeit",
+          "Sozialsysteme",
+          "Erwerbstätigenbeteiligung",
+          "Altersvorsorge"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Bärbel Bas war Bundestagspräsidentin für 3,5 Jahre",
+        "timestamp": "00:12:49"
+      },
+      {
+        "claim": "In Thüringen missbrauchte ein Alterspräsident seine Rede",
+        "timestamp": "00:12:49"
+      },
+      {
+        "claim": "Es gibt Abgeordnete, die landesweit vom Verfassungsschutz beobachtet werden",
+        "timestamp": "00:12:49"
+      },
+      {
+        "claim": "Der Koalitionsvertrag sieht eine Zielmarke von 15 Euro Mindestlohn für 2026 vor",
+        "timestamp": "00:40:08"
+      },
+      {
+        "claim": "Nicht alle Erwerbstätigen zahlen in die gesetzliche Rentenversicherung ein",
+        "timestamp": "00:43:13"
+      }
+    ]
+  }
+}

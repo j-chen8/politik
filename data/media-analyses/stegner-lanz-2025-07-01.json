@@ -1,0 +1,356 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-1-juli-2025-100",
+    "video_id": "lanz-2025-07-01",
+    "politician": "Ralf Stegner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "d40e18ebf90fb8d9",
+    "transcript_chars": 54878,
+    "caption_lines": 2724,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22586,
+    "tokens_out": 7964,
+    "cost_usd": 0.024962400000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.436Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner, SPD-Bundestagsabgeordneter und Vorsitzender des 1. Untersuchungsausschusses zum Afghanistan-Abzug, diskutiert mit kritischem Ton die Ergebnisse des SPD-Parteitags, die Konsequenzen der Wahlniederlage und das von ihm mitinitiierte Manifest zu Abrüstung und Diplomatie. Er argumentiert für offene innerparteiliche Debatten, kritisiert die fehlende Auseinandersetzung mit Wahlverlusten und plädiert für diplomatische Lösungen insbesondere gegenüber Russland, ohne die notwendige Wehrhaftigkeit abzulehnen.",
+    "themes": [
+      {
+        "title": "Abstimmungsverhalten beim SPD-Parteivorsitz",
+        "timestamp_range": "00:03:12 - 00:03:58",
+        "theme_description": "Ralf Stegners Rolle als beratender Delegierter beim Parteivorsitzendenwahl und seine Kritik an der mangelnden sachlichen Debatte.",
+        "question_asked": "Warum haben Sie Herr Klingbeil nicht Ihre Stimme gegeben?",
+        "question_intent": "Feststellung, ob Stegner sich von Klingbeil distanziert und worauf dies hindeutet.",
+        "position": "Stegner war als beratender Delegierter nicht abstimmungsberechtigt, hätte Klingbeil aber vermutlich seine Stimme gegeben. Er kritisiert, dass Kritik \"per Stimmzettel\" erfolgte statt \"an der Sache geübt\" zu werden. Er habe dem Parteivorsitzenden nicht persönlich attackiert, sondern sachlich kritisiert, was andere nicht getan haben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner beantwortet die direkte Frage zum Abstimmungsverhalten (er hätte Ja gestimmt), weicht aber auf die grundsätzliche Kritik an der Debattenkultur aus, statt die eigentliche Frage nach Distanzierung zu klären.",
+        "concrete_statements": [
+          "Ich war beratender Delegierter und habe mich an der Debatte beteiligt, ich habe nicht abgestimmt.",
+          "Ich hätte sie ihm vermutlich gegeben.",
+          "Ich habe dem Parteivorsitzenden nicht persönlich attackiert, sondern sachlich an der Sache Kritik geübt."
+        ],
+        "quotes": [
+          {
+            "text": "Ich war beratender Delegierter und habe mich an der Debatte beteiligt, ich habe nicht abgestimmt. Ich hätte sie ihm vermutlich gegeben.",
+            "timestamp": "00:03:12",
+            "context": "Antwort auf die direkte Frage, ob Stegner Klingbeil seine Stimme gab."
+          }
+        ],
+        "evasion_note": "Stegner lenkt von der Abstimmungsfrage zur Kritik an der Debattenkultur über, um seine Haltung kontextualisieren zu können.",
+        "related_bundestag_topics": [
+          "SPD-Parteivorsitz",
+          "Innerparteiliche Demokratie",
+          "Debattenkultur in Parteien"
+        ]
+      },
+      {
+        "title": "Konsequenzen aus der Wahlniederlage",
+        "timestamp_range": "00:07:23 - 00:12:50",
+        "theme_description": "Stegners Analyse der schlechtesten SPD-Wahlniederlage seit 110 Jahren und fehlende Konsequenzen aus der Wahlanalyse.",
+        "question_asked": "Hätten Sie Verständnis gehabt, wenn Klingbeil hingeworfen hätte?",
+        "question_intent": "Verständnis für mögliche Rücktritte von Führungspersonen nach Wahldesastern erfragen.",
+        "position": "Stegner hat Verständnis für mögliche Rücktritte angesichts des schlechtesten Wahlergebnisses seit 110 Jahren und der Platzierung hinter der AfD. Er kritisiert den Umgang der Parteiführung mit früheren Kandidaten (Martin Schulz, Andrea Nahles, Saskia Esken) und sieht darin einen Grund für das Wahlergebnis. Er fordert mehr Selbstkritik und sachliche Debatte ohne persönliche Attacken. Die entscheidende Konsequenz sollte sein, nicht Migration und Kriegspolitik kampflos der AfD zu überlassen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage direkt (Verständnis ja) und verbindet dies mit einer grundsätzlichen Analyse der Wahlniederlage, ihrer Ursachen und notwendigen Konsequenzen. Er adressiert die Kernfrage vollständig mit substanziellen Argumenten.",
+        "concrete_statements": [
+          "Gab das schlechteste Wahlergebnis seit 110 Jahren, wir sind hinter Rechtsradikalen gelandet.",
+          "Einer der Gründe warum die AfD so stark geworden ist und wir verloren haben, weil wir ihnen die Themen Migration und Kriegspolitik kampflos überlassen haben.",
+          "Ich habe deutlich Kritik geübt, aber habe nicht persönlich attackiert."
+        ],
+        "quotes": [
+          {
+            "text": "Einer der Gründe warum die AfD so stark geworden ist und wir verloren haben, weil wir Ihnen die Themen Migration und Kriegspolitik kampflos überlassen haben.",
+            "timestamp": "00:12:50",
+            "context": "Stegners Erklärung für die Wahlniederlage und Aufstieg der AfD."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundestagswahl 2025",
+          "SPD-Wahlkampf",
+          "AfD-Wähler",
+          "Migrations- und Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Volkspartei-Anspruch und Debattenkultur",
+        "timestamp_range": "00:18:09 - 00:19:00",
+        "theme_description": "Stegners Argumentation zur Notwendigkeit von leidenschaftlichen Debatten zur Erreichung verschiedener Wählermilieus.",
+        "question_asked": "Warum geht man Ihnen, wenn es um wichtige Posten geht, systematisch aus dem Weg? Hat das damit zu tun, dass Sie Freund offener Aussprachen sind?",
+        "question_intent": "Verstehen, ob Stegners Neigung zu offener Kritik sein Ausscheiden aus höheren Positionen erklärt.",
+        "position": "Stegner argumentiert, dass eine Volkspartei in verschiedene Milieus hineinwirken muss und dass leidenschaftliche Auseinandersetzungen auch in extreme Bereiche wirken können. Er sieht dies als notwendig, um Volkspartei zu sein, ohne in einen homogenen linken Kurs zu verfallen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet nicht direkt auf die Frage nach seinem systematischen Ausschluss von Positionen, sondern begründet allgemein, warum offene Debatten für Volksparteien wichtig sind. Er verschiebt das Thema auf die strategische Notwendigkeit von Debatten.",
+        "concrete_statements": [
+          "Wir müssen in verschiedene Milieus hineinwirken als Volkspartei.",
+          "Leidenschaftlicher Streit wirkt auch in die Extreme hinein."
+        ],
+        "quotes": [
+          {
+            "text": "Wir müssen in verschiedene Milieus hineinwirken als Volkspartei. Davon haben wir zu wenig. Leidenschaftlicher Streit liegt wirkt selbst in die Extreme hinein.",
+            "timestamp": "00:18:41",
+            "context": "Antwort auf die Frage, warum Stegner aus wichtigen Positionen ausgeschlossen wurde."
+          }
+        ],
+        "deflection_target": "Zur allgemeinen Notwendigkeit von Debattenkultur für Volksparteien",
+        "related_bundestag_topics": [
+          "Parteiinterne Demokratie",
+          "Politische Kultur",
+          "Debattenkultur"
+        ]
+      },
+      {
+        "title": "Beliebtheit von Kandidaten und Wahlergebnis",
+        "timestamp_range": "00:20:38 - 00:21:42",
+        "theme_description": "Diskussion über die begrenzte Aussagekraft von Beliebtheitswerten für Wahltrends.",
+        "question_asked": "Das waren in der Vergangenheit oft Debatten, dass beliebte Kandidaten nicht gewählt werden — wenn man den Kanzlerkandidaten kurz vorher ausgetauscht hätte, hätte das das Ergebnis verbessert?",
+        "question_intent": "Klärung, ob die Beliebtheit von Pistorius und Klingbeil ausreichend war, um das Wahlergebnis zu erklären.",
+        "position": "Stegner argumentiert, dass Beliebtheit nicht automatisch zu Wahlerfolgen führt und dass ein Kandidatenaustausch kurz vor der Wahl das Ergebnis wahrscheinlich noch verschlechtert hätte. Beliebtheit ist ein akademisches Thema, aber nicht die entscheidende Variable.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage direkt mit einem klaren Argument (Austausch hätte es verschlechtert) und erklärt die Logik dahinter. Er adressiert die Kernfrage vollständig.",
+        "concrete_statements": [
+          "Wenn man auf die Idee gekommen wäre, den Kanzlerkandidaten kurz vor Schluss auszuwechseln, dann wär das Ergebnis noch schlechter gewesen.",
+          "Das ist eine akademische Debatte."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man auf die Idee gekommen wäre, den Kanzlerkandidaten kurz vor Schluss auszuwechseln, dann wär das Ergebnis noch schlechter gewesen.",
+            "timestamp": "00:20:38",
+            "context": "Stegners Antwort auf die Frage zum Zeitpunkt eines möglichen Kandidatenaustausches."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampfstrategie",
+          "Kanzlerkandidaten-Auswahl",
+          "Wählerpräferenzen"
+        ]
+      },
+      {
+        "title": "Zahlenbasierte Wahlausgaben und Schönreden",
+        "timestamp_range": "00:26:35 - 00:27:59",
+        "theme_description": "Stegners Kritik an Versuchen, schlechte Wahlergebnisse durch Datenanalyse zu relativieren.",
+        "question_asked": "Sie sehen hier Zahlen und Daten zu Wahlkreisergebnissen — macht diese Analyse die Niederlage nicht doch ein Stück besser?",
+        "question_intent": "Verstehen, ob Stegner akzeptiert, dass differenzierte Analyse notwendig ist oder ob dies nur Schönrednerei darstellt.",
+        "position": "Stegner lehnt ab, dass solche Zahlenanalysen weiterhelfen. Der Punkt ist, dass die SPD in Bayern seit Jahrzehnten in der Opposition ist und die Anaylse nicht erklären kann, was zu ändern ist. Die Frage muss lauten: Welche Dinge müssen wir anders machen, um Stimmen zu gewinnen? Nicht: Wie begründen wir unsere bisherige Strategie neu.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet klar: Diese Analyse hilft nicht. Er erklärt seine Position sachlich und differenziert, ohne dabei persönlich gegen die Analystin zu werden.",
+        "concrete_statements": [
+          "Ich glaube nicht, dass das hilft.",
+          "Das kann nicht sein, wir machen das wie bisher und orientieren uns an den anderen.",
+          "Darum dass wir ein Stück Ehrlichkeit brauchen und dass wir uns fragen müssen, was sind die Dinge, die man anders machen muss um Stimmen zu gewinnen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube nicht, dass das hilft. Der Punkt ist, in Bayern sind wir seit Jahrzehnten in der Opposition. Mir geht es nicht um München, sondern darum dass wir ein Stück Ehrlichkeit brauchen.",
+            "timestamp": "00:26:35",
+            "context": "Stegners Ablehnung von Zahlenanalysen zur Relativierung der Wahlniederlage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlanalyse",
+          "Politische Strategie",
+          "Wahlkampf-Evaluation"
+        ]
+      },
+      {
+        "title": "Strategische Fehler und Migration/Kriegspolitik",
+        "timestamp_range": "00:28:16 - 00:25:04",
+        "theme_description": "Stegners Analyse, dass die SPD ihre Kompetenzen in Kernthemen aufgegeben und damit der AfD überlassen hat.",
+        "question_asked": "Wie kommen Sie dann zu dem Ergebnis, dass einzige was wir falsch gemacht haben ist, dass wir zu wenig an Haustüren waren, während Sie dieser Partei nicht sympathisch finden?",
+        "question_intent": "Überprüfung, ob Stegner selbst seinen eigenen Analysen vertraut oder sich in Widersprüchen bewegt.",
+        "position": "Stegner teilt die These nicht, dass nur Haustür-Wahlkampf das Problem ist. Er argumentiert, dass die SPD sich in der Mitte positionieren sollte (das macht die Union bereits), und dass die Stimmen zunehmend in Bereichen zu den Rändern gehen, wo sie nicht sein sollten. Die SPD sollte ihre Kernthemen (Migration, Kriegspolitik) nicht der AfD überlassen, sondern darin führen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage direkt und klar: Er widerlegt die These und erklärt seine Position zu den echten Gründen des Wahlverlausts. Keine Ausweichung, sondern substanzielle Argumentation.",
+        "concrete_statements": [
+          "Der Punkt geht eben nicht darin dass wir uns mittig aufdrücken müssen, so eine Union gibt es schon, da braucht es keine zweite.",
+          "Die Stimmen zunehmend in Bereichen, wo das nicht sein dürfte."
+        ],
+        "quotes": [
+          {
+            "text": "Der Punkt geht eben nicht darin dass wir uns mittig aufdrücken müssen, so eine Union gibt es schon, da braucht es keine zweite.",
+            "timestamp": "00:28:16",
+            "context": "Stegners Ablehnung einer Mitte-Positionierung der SPD."
+          }
+        ],
+        "related_bundestag_topics": [
+          "SPD-Strategie",
+          "Wahlprogramm",
+          "Politische Positionierung",
+          "Migration und Sicherheit"
+        ]
+      },
+      {
+        "title": "Manifest zu Abrüstung und Diplomatie",
+        "timestamp_range": "00:32:00 - 00:36:25",
+        "theme_description": "Stegners Verteidigung des von ihm mitinitierten Manifests gegen Vorwürfe der Realitätsferne und Unaufrichtigkeit.",
+        "question_asked": "Das Ralf Stegner mit initiiert hat, Herr Mütze nicht, Walter-Borjans auch dabei und viele andere. Wie kommt so etwas bei Ihnen an? Wie kommt so etwas in Russland an?",
+        "question_intent": "Bewertung des Manifests im Kontext seiner Wahrnehmung in Russland und Kritik an dessen Kohärenz.",
+        "position": "Stegner charakterisiert das Papier als Denkschrift und Diskussionsanstoß, nicht als Papier zu Putin. Er unterstreicht, dass der Angriffskrieg als völkerrechtswidrig benannt wird. Er argumentiert für eine Debatte über Mittelstreckenraketen und warnt vor einer massiven Aufrüstung, die humanitäre Hilfe und Entwicklung gefährdet. Am Ende müsse das Problem diplomatisch gelöst werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner verteidigt das Manifest sachlich, antwortet aber nicht auf die Spezifika der Kritik von Michael Thumann (fehlende Selbstkritik zu Kosovo etc.). Er verschiebt auf die Notwendigkeit der Debatte, ohne die Vorwürfe direkt zu entkräften.",
+        "concrete_statements": [
+          "Das ist kein Papier zu Putin. Das ist nicht Pflicht schuldig wenn wir sagen, das war ein völkerrechtswidriger Angriffskrieg.",
+          "Es ist eine Denkschrift im wesentlichen, es soll ein Diskussionsanstoß liefern.",
+          "Am Ende wird das diplomatisch gelöst werden müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist kein Papier zu Putin. Das ist nicht Pflicht schuldig wenn wir sagen, das war ein völkerrechtswidriger Angriffskrieg. Es ist eine Denkschrift im wesentlichen, es soll ein Diskussionsanstoß liefern.",
+            "timestamp": "00:36:25",
+            "context": "Stegners Verteidigung des Manifests gegen Vorwürfe der Realitätsferne."
+          }
+        ],
+        "evasion_note": "Stegner geht nicht auf den zentralen Kritikpunkt Thumanns ein (fehlende Aufarbeitung westlicher Fehler wie Kosovo), sondern betont die Notwendigkeit der Debatte.",
+        "related_bundestag_topics": [
+          "Rüstungskontrolle",
+          "Diplomatie mit Russland",
+          "Verteidigungspolitik",
+          "Abrüstung"
+        ]
+      },
+      {
+        "title": "Rüstungsausgaben und Aufrüstungsspirale",
+        "timestamp_range": "00:43:25 - 00:44:31",
+        "theme_description": "Debatte über die Höhe der Rüstungsausgaben und deren wirtschaftliche Auswirkungen.",
+        "question_asked": "Wie belastet die massive Steigerung der Verteidigungsausgaben andere Bereiche wie humanitäre Hilfe?",
+        "question_intent": "Klärung, ob Stegners Sorge vor Verdrängungseffekten begründet ist.",
+        "position": "Stegner argumentiert, dass Kinder in Gaza hungern, weil humanitäre Hilfe durch Rüstungsausgaben verdrängt wird. Er akzeptiert das Sondervermögen für Verteidigung, warnt aber vor einer Aufrüstung im unfassbar großen Ausmaß. Die Ausgabenzahlen seien: USA 1000 Mrd., China 300 Mrd., Russland 140 Mrd. Dollar pro Jahr.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf die implizite Kritik an Rüstungsausgaben, wird aber von Thumann korrigiert: Die Russland-Zahlen seien falsch (nicht transparent wegen Schattenhaushalte). Stegner behauptet dann, am Ende kämen 5 % statt 3,5 %, wird aber nicht widersprochen, sondern das Thema wechselt.",
+        "concrete_statements": [
+          "Ich habe auch für Sondervermögen gestimmt.",
+          "Am Ende hungern Kinder in Gaza, weil wir dann nichts mehr liefern können.",
+          "Wir sind bei den Amerikanern mit 1000 Milliarden, bei den Chinesen mit 300 Milliarden, bei den Russen mit 140 Milliarden Dollar pro Jahren."
+        ],
+        "quotes": [
+          {
+            "text": "Am Ende hungern Kinder in Gaza, weil wir dann nichts mehr liefern können.",
+            "timestamp": "00:37:39",
+            "context": "Stegners Argument über Verdrängungseffekte durch Rüstungsausgaben."
+          }
+        ],
+        "evasion_note": "Die faktischen Zahlen zu Russlands Rüstungsausgaben werden von Thumann angezweifelt; Stegner reagiert defensiv mit der Behauptung, am Ende kämen 5 %.",
+        "related_bundestag_topics": [
+          "Verteidigungshaushalt",
+          "Entwicklungshilfe",
+          "Humanitäre Hilfe",
+          "Haushaltsprioritäten"
+        ]
+      },
+      {
+        "title": "Sicherheit vor vs. mit Russland",
+        "timestamp_range": "00:54:04 - 00:56:57",
+        "theme_description": "Stegners Position zur mittelfristigen Notwendigkeit von Sicherheitsverhandlungen mit Russland.",
+        "question_asked": "Auf dem Parteitag, da war das erste Mal nicht das Reden von Sicherheit mit Russland, sondern vor Russland. Was meinen Sie damit?",
+        "question_intent": "Klärung, ob Stegner die deutsche Außenpolitik realistisch einschätzt oder sich Illusionen über Russland macht.",
+        "position": "Stegner argumentiert, dass Deutschland gerade Sicherheit VOR Russland braucht, aber auf lange Sicht wird es nur Sicherheit MIT Russland geben, weil Russland Teil der Geographie und Geschichte ist. Er zieht einen Vergleich zur Nachkriegszeit: Holland und Belgien haben die Deutschen nicht ewig gemieden, sondern später mit ihnen verhandelt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage direkt und klar: Es gibt eine zeitliche Unterscheidung zwischen gegenwärtigem und künftigem Sicherheitsdenken. Er entwickelt eine schlüssige Position mit historischen Beispielen.",
+        "concrete_statements": [
+          "Gerade Sicherheit vor Russland brauchen, auf Dauer wird es nur Sicherheit mit Russland geben, weil sie Teil der Geographie und Geschichte sind.",
+          "Die Niederländer, die Belgier, die alle überfallen wurden haben nicht gesagt, die Deutschen sind alle Nazis, mit denen machen wir nie wieder etwas."
+        ],
+        "quotes": [
+          {
+            "text": "Gerade Sicherheit vor Russland ja, aber es wird keine Lösung geben, wenn wir nicht mit ihnen reden.",
+            "timestamp": "00:54:55",
+            "context": "Stegners zentrale Position zu Sicherheit und Diplomatie mit Russland."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russland-Politik",
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Bipolare Weltordnung"
+        ]
+      },
+      {
+        "title": "NATO-Mittelstreckenraketen und Eskalationsspirale",
+        "timestamp_range": "00:59:47 - 01:00:44",
+        "theme_description": "Stegners Bedenken gegen die Stationierung von Mittelstreckenraketen als Sicherheitsmaßnahme.",
+        "question_asked": "Sie sagen, die Mittelstreckenraketen — ob uns das sicherer macht, müssen wir fragen?",
+        "question_intent": "Klärung, ob Stegner die NATO-Aufrüstung grundsätzlich für kontraproduktiv hält.",
+        "position": "Stegner akzeptiert, dass etwas getan werden muss, stimmt aber zu, dass es fragwürdig ist, ob Mittelstreckenraketen uns sicherer machen. Die NATO wird als Verteidigungsbündnis dargestellt, aber Russland argumentiert, dass deutsche Raketen jede russische Stadt erreichen können. Das schaffe einen Teufelskreis statt Sicherheit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner adressiert die Frage zur Sicherheitswirksamkeit, umgeht aber die tiefere Frage, ob die NATO-Stationierung strategisch sinnvoll ist. Er stellt das Problem dar, bietet aber keine Lösung an.",
+        "concrete_statements": [
+          "Ich stimme zu dass etwas getan werden muss.",
+          "Ob uns das sicherer macht, wir würden immer sagen, die NATO ist ein Verteidigungsbündnis."
+        ],
+        "quotes": [
+          {
+            "text": "Mit den Mittelstreckenraketen, weil das als Beispiel genannt wurde. Ob uns das sicherer macht, wir würden immer sagen, die NATO ist ein Verteidigungsbündnis.",
+            "timestamp": "00:59:47",
+            "context": "Stegners ambivalente Position zu NATO-Raketenstatinierung."
+          }
+        ],
+        "deflection_target": "Zur Darstellung des Sicherheitsproblems statt zu einer Lösung.",
+        "related_bundestag_topics": [
+          "NATO-Rüstung",
+          "Mittelstreckenraketen",
+          "Rüstungskontrolle",
+          "Europäische Sicherheit"
+        ]
+      },
+      {
+        "title": "Dialog mit Gesprächspartnern unterschiedlicher Meinungen",
+        "timestamp_range": "01:01:39 - 01:04:25",
+        "theme_description": "Stegners Rechtfertigung für Treffen mit russischen Intellektuellen und Vertreter:innen, deren Positionen er nicht teilt.",
+        "question_asked": "Sie waren in Baku, und da war Alexei Comico dabei... 'Durch bestehende Kanäle muss der Druck verstärkt werden, um die Angst deutscher Bürger vor einem möglichen Konflikt vor der NATO mit Russland zu schüren.' Das ist ein Zitat von ihm.",
+        "question_intent": "Überprüfung, ob Stegner unwissentlich bei russischer Desinformation mitwirkt oder bewusst mit propagandistischen Akteuren verhandelt.",
+        "position": "Stegner rechtfertigt den Dialog mit Gesprächspartnern, deren Meinungen er nicht teilt: Um Frieden zu schüren, muss man mit Feinden reden, nicht mit Freunden. Als Abgeordneter hat man die Freiheit und Pflicht, mit anderen zu reden und zu verstehen, was auf der anderen Seite passiert. Kennedy habe einen dritten Weltkrieg verhindert, indem er mit der Sowjetunion redete. Lanz unterstellt ihm unbewusst krumme Geschäfte; Stegner wehrt dies ab.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner beantwortet nicht direkt, ob das Zitat von Comico eine besorgniserregende Formulierung war oder ob Stegner damit unwissentlich bei Desinformation mitwirkt. Statt dessen pivotiert er zu einem Gegenpunkt: Dialog ist notwendig, und der Verdacht unbewusster Mitschuld ist falsch. Er adressiert die Frage, aber nicht deren Kern.",
+        "concrete_statements": [
+          "Wenn ich Frieden schüren will, dann muss ich nicht mit meinen Freunden reden, sondern mit meinen Feinden.",
+          "Als Abgeordneter kann man das, ich muss mir das nicht genehmigen lassen."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn ich Frieden schüren will, dann muss ich nicht meinen Freunden reden, sondern mit meinen Feinden. Ich teile davon nichts.",
+            "timestamp": "01:01:39",
+            "context": "Stegners Rechtfertigung für Dialog mit russischen Gesprächspartnern."
+          }
+        ],
+        "evasion_note": "Stegner geht nicht auf die potenzielle Desinformationsstrategie von Comico ein, sondern rechtfertigt allgemein die Notwendigkeit von Dialogen.",
+        "related_bundestag_topics": [
+          "Diplomatie",
+          "Russland-Kontakte",
+          "Verhandlungspolitik",
+          "Sicherheitspolitik"
+        ]
+      }
+    ]
+  }
+}

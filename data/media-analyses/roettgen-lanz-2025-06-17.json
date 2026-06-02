@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-17-juni-2025-100",
+    "video_id": "lanz-2025-06-17",
+    "politician": "Norbert Röttgen",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "949e361e6721885b",
+    "transcript_chars": 48128,
+    "caption_lines": 2363,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20076,
+    "tokens_out": 4924,
+    "cost_usd": 0.017878400000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.138Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen äußert sich in dieser Talkshow zu Israels Militärschlägen gegen den Iran und zur iranischen Atomfrage. Er argumentiert, dass das iranische Regime unumkehrbar entschlossen ist, Atommacht zu werden, und betont die Notwendigkeit, diese Entwicklung zu verhindern. Sein Ton ist sachlich-analytisch, teilweise konfrontativ gegenüber diplomatischen Lösungsvorschlägen.",
+    "themes": [
+      {
+        "title": "Iranische Atomfähigkeit und Unumkehrbarkeit",
+        "timestamp_range": "00:35:27 - 00:39:23",
+        "theme_description": "Diskussion über die technische und politische Dimension der iranischen Atomwaffenfähigkeit sowie die Frage der Unumkehrbarkeit.",
+        "question_asked": "Was bedeutet 'Unumkehrbarkeit' konkret im Kontext der iranischen Atomfähigkeit, und wann ist dieser Punkt erreicht?",
+        "question_intent": "Klärung, ob und wann es für Israel zu spät sein könnte, militärisch gegen das iranische Atomprogramm vorzugehen.",
+        "position": "Röttgen unterscheidet zwei Dimensionen: Technisch ist der Iran in der Lage, eine Atombombe zu bauen (60%-Anreicherung auf 90% ist nur eine Frage der Zeit). Israel steht vor dem Dilemma, dass es entweder jetzt handeln muss oder warten kann, bis es Klarheit hat – dann aber zu spät ist. Politisch ist Röttgen überzeugt, dass das iranische Regime 'unumkehrbar entschlossen ist, Atommacht zu werden'. Die völkerrechtliche Klarheit ist in diesen Zeiten sekundär. Der Faktor, der Israel jetzt handeln lässt, ist auch, dass ein amerikanischer Präsident vorhanden ist, der sich durchsetzen will und sagt, 'das macht er nicht'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen beantwortet direkt, was Unumkehrbarkeit bedeutet – sowohl technisch als auch politisch – und erklärt Israels Zeitdilemma präzise. Er adressiert beide Dimensionen, die der Diskutant Gerlach unterschied.",
+        "quotes": [
+          {
+            "text": "Zunächst ist Iran technisch unangreifbar in der Lage eine Atombombe zu haben. Da weiß keiner, wann ist der Zeitpunkt. Jeder weiß, es ist nur noch eine Frage der Zeit. Dass Iran das schafft. 60 % Anreicherungen, in hunderten von Kilogramm. 90-prozentige Anreicherung, es nur eine Frage der Zeit.",
+            "timestamp": "00:35:27",
+            "context": "Auf die Frage zur Unumkehrbarkeit unterscheidet Röttgen technische von politischer Dimension."
+          },
+          {
+            "text": "Für Israel wiederum ist es eine große Frage, muss ich jetzt warten, bis der Zeitpunkt der Unumkehrbarkeit da ist, dann habe ich zwar Klarheit, aber dann ist es zu spät.",
+            "timestamp": "00:35:27",
+            "context": "Röttgen erläutert das strategische Dilemma Israels."
+          }
+        ],
+        "concrete_statements": [
+          "Das iranische Regime ist unumkehrbar entschlossen, Atommacht zu werden.",
+          "Israel muss entweder jetzt handeln oder zu spät sein.",
+          "Eine amerikanischer Präsident, der sich durchsetzen will und sagt 'das macht er nicht', ist ein entscheidender Faktor."
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Nuklearpolitik",
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Nahost-Politik"
+        ]
+      },
+      {
+        "title": "Analyse des iranischen Atomwaffenprogramms",
+        "timestamp_range": "00:37:02 - 00:37:21",
+        "theme_description": "Überprüfung von Röttgens Aussage, dass amerikanische Geheimdienste das iranische Ziel zur Atomwaffenentwicklung anzweifeln, und der Frage nach Röttgens Quellen.",
+        "question_asked": "Auf welche Autoritäten und Quellen stützen Sie Ihre Analyse, dass das iranische Regime unumkehrbar entschlossen ist, Atommacht zu werden?",
+        "question_intent": "Infragestellung von Röttgens Position durch Verweis auf abweichende amerikanische Geheimdiensteinschätzungen und Forderung nach transparenter Quellenangabe.",
+        "position": "Röttgen beruft sich auf zehnjährige eigene Beschäftigung mit dem Thema, Gespräche mit verschiedenen iranischen Außenministern und Experten sowie die Analyse des Gesamtverhaltens des iranischen Regimes. Er verweist auf Dokumente der Internationalen Atomenergiebehörde (IAEO), die festgestellt haben, dass der Iran gegen den Nichtverbreitungsvertrag verstoßen hat, seine völkerrechtlichen Versprechen gebrochen hat und 'das Regime an der Nase rum führen' will.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf die Frage nach seinen Quellen und nennt konkrete Bezüge (10 Jahre Erfahrung, Gespräche mit iranischen Akteuren, IAEO-Berichte). Er adressiert jedoch nicht direkt, warum die amerikanischen Geheimdienste zu anderen Ergebnissen kommen, sondern wertet diese ab ('Das ist nicht so eine Autorität').",
+        "quotes": [
+          {
+            "text": "Aus 10-jähriger Beschäftigung, Gesprächen mit verschiedenen iranischen Außenministern, Experten, und aus der Analyse des Gesamtverhaltens des iranischen Regimes.",
+            "timestamp": "00:37:21",
+            "context": "Auf Frage nach den Quellen für seine Analyse."
+          }
+        ],
+        "concrete_statements": [
+          "Der Iran hat gegen den Nichtverbreitungsvertrag verstoßen.",
+          "Der Iran hat seine völkerrechtlichen Versprechen gebrochen.",
+          "Das iranische Regime will 'an der Nase rum führen'."
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Atomwaffenpolitik",
+          "Außenpolitik",
+          "Nichtverbreitungsvertrag"
+        ]
+      },
+      {
+        "title": "Globale Sicherheitsfolgen iranischer Atomwaffen",
+        "timestamp_range": "00:37:21 - 00:39:23",
+        "theme_description": "Analyse der globalen und regionalen Sicherheitskonsequenzen einer iranischen Atommacht.",
+        "question_asked": "Welche Konsequenzen hätte eine iranische Atommacht für die globale und regionale Sicherheit?",
+        "question_intent": "Verstehen der langfristigen geopolitischen Auswirkungen einer iranischen Nuklearisierung.",
+        "position": "Röttgen betont, dass die Atommacht nicht eingesetzt werden soll, sondern 'gehabt' werden will. Er führt das Beispiel Ukraine an: wenn die Ukraine Atommacht geblieben wäre, hätte Russland nicht angreifen können. Er warnt vor globaler terroristischer Aktivität unter dem Schutz einer iranischen Atommacht und betont, dass dies die Sicherheitslage regional für Israel und global grundlegend verändern würde. Schließlich argumentiert er, dass die Aktion deshalb 'gekommen' ist, weil sich einzelne Faktoren so verändert hatten, dass Israel seinen Destruktionsplan realisieren konnte – insbesondere mit einem amerikanischen Präsidenten, der sich durchsetzen will.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen adressiert direkt die globalen und regionalen Konsequenzen: Terrorismus unter Atomanschutz, regionales Machtgefüge, Vergleich mit der Ukraine. Er erklärt, warum die Aktion jetzt erfolgt.",
+        "quotes": [
+          {
+            "text": "Stellen Sie sich vor, UKRAINE wäre Atommacht geblieben. Aber auch globale terroristische Aktivität wäre unter dem Schutz Atommacht zu sein. Es würde regional für Israel sowieso, aber auch global die Sicherheitslage grundlegend verändern.",
+            "timestamp": "00:38:58",
+            "context": "Röttgen erläutert die globalen Konsequenzen iranischer Atomwaffen."
+          },
+          {
+            "text": "einer der Faktoren ist jedoch, dass diesmal eine amerikanischer Präsident da ist, der sich durchsetzen will, und sagt das macht er nicht. Im Gegensatz zu seinen Vorgängern.",
+            "timestamp": "00:39:23",
+            "context": "Röttgen erklärt, warum Israel jetzt handelt."
+          }
+        ],
+        "concrete_statements": [
+          "Iranische Atommacht würde globale Sicherheitslage grundlegend verändern.",
+          "Terroristische Aktivität könnte unter Atomanschutz stattfinden.",
+          "Ein amerikanischer Präsident, der sich durchsetzt, ist ein Schlüsselfaktor."
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Rüstungskontrolle"
+        ]
+      },
+      {
+        "title": "Deutsche Außenpolitik gegenüber dem Iran",
+        "timestamp_range": "00:56:35 - 00:59:47",
+        "theme_description": "Kritik an der deutschen Außenpolitik und Nahostpolitik der letzten zehn Jahre sowie Vorwürfe der Untätigkeit.",
+        "question_asked": "Wie sollte Deutschland seine Außenpolitik gegenüber dem Iran gestalten? Was hätte Deutschland tun sollen?",
+        "question_intent": "Konkrete Forderungen nach deutschen außenpolitischen Maßnahmen gegen das iranische Regime.",
+        "position": "Röttgen kritisiert die deutsche Außenpolitik scharf als 'Totalausfall'. Deutschland sei zu wenig präsent, gebe zwar völkerrechtliche Meinungen ab, sei aber kein Akteur, obwohl die deutschen Interessen massiv berührt sind. Er kritisiert besonders, dass eine 'damalige deutsche Außenministerin' sich auf die Protestbewegung der Frauen im Iran 'verzögert' hat und 'alles gesagt' hat. Röttgen fordert konkret: (1) Deutschland sollte sich alle Mühe geben, dass es nicht mehr der größte Handelspartner des Iran ist; (2) Druck machen und die Iranische Revolutionsgarde als Terrororganisation auf die Liste setzen; (3) Das Thema nicht aufgeben, sondern dranbleiben; (4) Über Hinrichtungen im Iran reden, nicht nur das Atomabkommen im Fokus behalten. Er betont, dass die Atombombe durch Verhandlung verhindert werden muss und es nur einen Weg gibt – nicht 'Politik und Militär' wie derzeit.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen beantwortet die Frage sehr konkret mit vier Forderungspunkten und erklärt sein Verständnis des deutschen politischen Versagens. Die Antwort ist substanziell und gut strukturiert.",
+        "quotes": [
+          {
+            "text": "unsere Nahostpolitik war eigentlich ein Totalausfall. Wir sind viel zu wenig präsent. Immer wenn irgend was ist, haben wir eine völkerrechtliche Meinung, aber wir sind kein Akteur.",
+            "timestamp": "00:56:35",
+            "context": "Röttgen fasst sein Urteil über deutsche Außenpolitik zusammen."
+          },
+          {
+            "text": "Dass Deutschland sich alle Mühe gibt, dass wir nicht mehr der größte Handelspartner des Irans sind. Das wird Druck gemacht hätten, und die iranischen Guarde als Terror Organisation auf die Liste gesetzt hätten.",
+            "timestamp": "00:58:05",
+            "context": "Konkrete Forderungen an deutsche Politik."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland sollte nicht mehr größter Handelspartner des Iran sein.",
+          "Druck auf das iranische Regime ausüben.",
+          "Iranische Revolutionsgarde als Terrororganisation einstufen.",
+          "Das Thema Atomfrage 'dranbleiben' und nicht aufgeben.",
+          "Über Hinrichtungen im Iran sprechen, nicht nur Atomabkommen fokussieren.",
+          "Verhandlung ist der einzige Weg zur Verhinderung der Atombombe."
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Handelspolitik",
+          "Menschenrechte",
+          "Sanktionspolitik"
+        ]
+      },
+      {
+        "title": "Iranisches Terrornetzwerk in der Region",
+        "timestamp_range": "01:09:39 - 01:11:40",
+        "theme_description": "Röttgens Gegenargument zur These, dass der Iran diplomatische Lösungsangebote macht, mit Fokus auf Irans Rolle in regionalen Konflikten.",
+        "question_asked": "Kann man mit dem Iran auf Basis von dessen Sicherheitskooperationsangeboten verhandeln, oder müssen die regionalen Aktivitäten des Irans kritischer bewertet werden?",
+        "question_intent": "Überprüfung, ob Diplomatie mit dem Iran angesichts seiner destabilisierenden Aktivitäten realistisch ist.",
+        "position": "Röttgen lehnt die Darstellung von Irans Sicherheitskooperationsangeboten ab. Der Iran habe während der Verhandlungen ein 'Terrornetz in der gesamten Region' etabliert: Die Hisbollah wäre nicht im Libanon ohne Iran, die Huthi-Sphären nicht im Jemen. Der Iran betreibt ein 'regionales bewusstgesteuertes Terrornetzwerk' nicht für Sicherheitskooperation, sondern zur Destabilisierung und eigenen Dominanz. Röttgen weist auch auf Irans Rolle im Krieg gegen die Ukraine hin (Waffen- und Drohnenlieferungen). Deshalb sei es aus seiner Sicht eine 'Friedensfrage'. Die Legitimation ergibt sich aus dem enormen möglichen Schaden und der hohen Eintrittswahrscheinlichkeit.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Röttgen antwortet substantiell zur Frage, aber lenkt sie ab: Statt die These von Diplomatiemöglichkeiten zu adressieren, konzentriert er sich darauf, Irans Destabilisierungsrolle zu dokumentieren. Das ist ein klassischer Pivot – er beantwortet die implizite Gegenfrage ('warum ist Diplomatie unmöglich?'), nicht die gestellte Frage ('können wir verhandeln?').",
+        "quotes": [
+          {
+            "text": "Der Iran hat während er mit uns verhandelt hat, ein Terrornetz in der gesamten Regierung etabliert. Die Hisbollah wären nicht in Libanon ohne Iran, die Huthi Sphären nicht im Jemen ohne den Iran.",
+            "timestamp": "01:09:39",
+            "context": "Röttgen widerlegt die These von Irans Sicherheitskooperationswillen mit Beispielen regionaler Aktivitäten."
+          },
+          {
+            "text": "Deshalb ist es aus meiner Sicht eine Friedensfrage. Darum stellt sich die Frage der Legitimität, wenn so viel auf dem Spiel steht. Risiko ist immer das Produkt aus dem möglichen Schaden und der Eintritts wahrscheinlichkeit. Der Schaden wäre enorm und die Eintrittswahrscheinlichkeit ist enorm hoch.",
+            "timestamp": "01:11:40",
+            "context": "Röttgen argumentiert, warum die Militäraktion aus einer Friedenslogik notwendig ist."
+          }
+        ],
+        "concrete_statements": [
+          "Der Iran betreibt ein bewusst gesteuertes Terrornetzwerk in der Region.",
+          "Die Hisbollah, Huthi-Sphären sind iranische Proxy-Strukturen.",
+          "Der Iran liefert Drohnen und Waffen im Ukraine-Krieg.",
+          "Das ist eine Friedensfrage, nicht nur eine Sicherheitsfrage."
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Terrorismusbekämpfung",
+          "Nahost-Politik",
+          "Ukraine-Krieg"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Iran hat 60% angereichtes Uran in hunderten von Kilogramm.",
+        "timestamp": "00:35:27"
+      },
+      {
+        "claim": "Die Internationale Atomenergiebehörde hat festgestellt, dass der Iran gegen den Nichtverbreitungsvertrag verstoßen hat.",
+        "timestamp": "00:37:21"
+      },
+      {
+        "claim": "Deutschland ist der größte Handelspartner des Iran in der EU.",
+        "timestamp": "00:58:05"
+      },
+      {
+        "claim": "Die Hisbollah wäre nicht im Libanon ohne Iran.",
+        "timestamp": "01:09:39"
+      },
+      {
+        "claim": "Der Iran liefert Drohnen und Waffen in Irans Krieg gegen die Ukraine.",
+        "timestamp": "01:09:39"
+      }
+    ]
+  }
+}

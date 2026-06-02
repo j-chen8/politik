@@ -1,0 +1,350 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-3-september-2024-100",
+    "video_id": "lanz-2024-09-03",
+    "politician": "Jan van Aken",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "6ce8b0c73463d562",
+    "transcript_chars": 53903,
+    "caption_lines": 2709,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22528,
+    "tokens_out": 9140,
+    "cost_usd": 0.0272912,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 2,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-02T16:33:29.027Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Vorsitzender der Linkspartei und Biowaffenexperte, diskutiert in dieser Sendung zentrale politische Fragen nach der Ostdeutschen Wahl: die Regierungsbildung in Thüringen unter Bedingungen der AfD-Stärke, Außenpolitik (Waffenlieferungen, Mittelstreckenraketen, Diplomatie mit Russland), und Migrationspolitik. Van Aken argumentiert durchgängig für pragmatische Koalitionen gegen rechts, für Diplomatie statt Aufrüstung und gegen restriktive Migrations- und Abschiebungspolitik, wobei er teils substantiell antwortet, teils Gegenpunkte setzt und in der Migrationsdebatte teilweise ausweichend wirkt.",
+    "themes": [
+      {
+        "title": "Regierungsbildung Thüringen und Unvereinbarkeitsbeschluss",
+        "timestamp_range": "00:15:16 - 00:27:18",
+        "theme_description": "Diskussion darüber, ob die CDU ihren Unvereinbarkeitsbeschluss mit Die Linke überdenken sollte und wie eine Regierung gegen die AfD gebildet werden kann.",
+        "question_asked": "Moderator fragt, ob die CDU mit ihrer Beschlussfestigkeit nicht in einer Falle sitzt – können CDU und Linke in Thüringen zusammenarbeiten, wenn Bodo Ramelow eine Minderheitsregierung anbietet?",
+        "question_intent": "Ist pragmatische Zusammenarbeit zwischen CDU und Linker realistisch, oder ist der Unvereinbarkeitsbeschluss nicht zu brechen?",
+        "position": "Van Aken argumentiert, dass die CDU eine 'schlechte Entscheidung' traf und es jetzt primär um die Abwehr des Faschismus gehen müsse. Er verweist darauf, dass Bodo Ramelow eine Minderheitsregierung fünf Jahre erfolgreich führte und bereit ist, 'egal wie' (Mitarbeit, Tolerierung, Duldung) gegen die AfD vorzugehen. Er betont, dass der Unvereinbarkeitsbeschluss nebensächlich sei: 'Es ist egal, welche Entscheidung die CDU einmal getroffen hat.' Van Aken sieht das BSW mit Wagenknecht als separates Problem, das auch innerhalb von Friedensverhandlungslogik besprochen werden könnte ('vielleicht werden wir wirklich überrascht').",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken antwortet auf die Frage nach Zusammenarbeit substantiell (Ramelow-Modell, Anti-Faschismus-Prämisse), aber weicht der kernigen Kritik aus, dass sein eigenes Unvereinbarkeitsbeschluss-Argument schwach ist – er nennt es bloß 'egal' statt es zu adressieren. Zur Frage der Glaubwürdigkeit von Wahlversprechen (Münstermann) antwortet er teilweise ausweichend ('Ich glaube, jeder Mensch in Thüringen wusste, dass es nicht funktioniert').",
+        "quotes": [
+          {
+            "text": "Dass die CDU eine so schlechte Entscheidung getroffen hat, sie hatten eine Zäsur, es ist eine Katastrophe passiert und es geht um einen Beschluss der CDU? Jetzt muss es doch alle zusammen gegen den Faschismus gehen.",
+            "timestamp": "00:15:16",
+            "context": "Van Aken antwortet auf Kritik, dass die CDU ihre Ablehnung der Linken nicht aufgeben kann und damit unregierbar macht."
+          },
+          {
+            "text": "Ich habe seit 30 Jahren einen Unvereinbarkeitsbeschluss mit der CDU. Aber wenn wir die AfD in die Nähe der Schalthebel der Macht lassen, dann regiert der Faschismus.",
+            "timestamp": "00:24:46",
+            "context": "Van Aken relativiert sein eigenes Unvereinbarkeitsverhältnis zur CDU angesichts der AfD-Bedrohung."
+          }
+        ],
+        "concrete_statements": [
+          "Bodo Ramelow hat gesagt, er wird alles dafür tun, egal wie er das macht, durch Mitarbeit, Tolerierung, Duldung – die einzige Losung an sein alle gemeinsam gegen den Faschismus.",
+          "Durch fünf Jahre Minderheitsregierung hat Bodo Ramelow Thüringen regiert.",
+          "Wir stehen vor einer zentralen Aufgabe, wir müssen die Probleme des Bundeslandes lösen. Wir müssen die AfD von jeglichen Hebeln der Macht weghalten."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung Sachsen/Thüringen",
+          "Unvereinbarkeitsbeschlüsse",
+          "Antifaschistische Abwehr"
+        ]
+      },
+      {
+        "title": "Finanzierbarkeit von Sozialleistungen und Wahlversprechen",
+        "timestamp_range": "00:27:52 - 00:31:09",
+        "theme_description": "Kontroverse über Wahlversprechen: verspricht Die Linke Sozialleistungen ohne realistische Deckung, oder ist die Kritik unbegründet?",
+        "question_asked": "Prien kritisiert, dass Die Linke 'Sozialleistungen ohne Ende' verspricht, 'die nicht finanzierbar sind'. Van Aken wird gefragt, welche konkrete Versprechung gemeint ist.",
+        "question_intent": "Kann die Linke ihre Sozialprogramme überhaupt finanzieren, oder ist das Wahlbetrug?",
+        "position": "Van Aken antwortet defensiv: 'Nennen Sie mir eine konkrete, wo wir als Linke gesagt hätten, wir versprechen, dass sie nach der Wahl soundsoviel weniger Miete zahlen. Das haben wir nicht versprochen, wir versprechen, dass wir versuchen, es mit den Menschen durchzusetzen.' Er betont: 'Das einzige, was ich Ihnen versprechen kann ist, dass wir hinterher bei den Menschen sind und sie unterstützen, gegen einen höheren Mieten, gegen andere Kämpfe.' Van Aken kritisiert dann Prien, dass die Union konkrete Dinge verspricht, die nicht finanzierbar sind: 'Sie versprechen ganz konkrete Dinge, die Sie nicht halten können.' Er zieht dann das Beispiel Gentechnik oder Genossenschaften-Verbot heran, wo Prien etwa 'nur an Genossenschaften abgeben' sagen könnte, aber 'nicht will'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken antwortet auf die Kritik mit einer Gegenkritik: Die Linke verspricht nicht konkrete Leistungsreduktionen, sondern Anstrengungen. Das ist nicht ganz eine Antwort auf Priens Punkt (dass Gesamtbudgets unrealistisch sind), sondern eine Umdefinition der Spielregeln. Er weicht nicht direkt zur Finanzierungsfrage aus, sondern kritisiert einfach Prien zurück.",
+        "quotes": [
+          {
+            "text": "Nennen Sie mir eine konkrete, wo wir als Linke gesagt hätten, wir versprechen, dass sie nach der Wahl soundsoviel weniger Miete zahlen. Das haben wir nicht versprochen, wir versprechen, dass wir versuchen, es mit den Menschen durchzusetzen.",
+            "timestamp": "00:28:37",
+            "context": "Van Aken wehrt sich gegen Priens Vorwurf unbezahlbarer Versprechen."
+          },
+          {
+            "text": "Das Problem ist, dass viel zu viele Parteien immer viel zu viel versprechen, was sie nicht halten können. Das einzige, was ich Ihnen versprechen kann ist, dass wir hinterher bei den Menschen sind und sie unterstützen.",
+            "timestamp": "00:27:52",
+            "context": "Van Aken differenziert zwischen konkreten Leistungsversprechen und Anstrengungsversprechen."
+          }
+        ],
+        "concrete_statements": [
+          "Das einzige, was ich Ihnen versprechen kann ist, dass wir hinterher bei den Menschen sind und sie unterstützen, gegen einen höheren Mieten, gegen andere Kämpfe.",
+          "Sie versprechen ganz konkrete Dinge, die Sie nicht halten können."
+        ],
+        "related_bundestag_topics": [
+          "Sozialpolitik",
+          "Wohnungswirtschaft",
+          "Haushaltspolitik",
+          "Vertrauensfrage in der Politik"
+        ]
+      },
+      {
+        "title": "Verbindung zwischen Zuwanderung und Wohnungsmarkt",
+        "timestamp_range": "00:28:47 - 00:31:09",
+        "theme_description": "Prien argumentiert, dass Migration und Wohnungsknappheit zusammenhängen; van Aken bestreitet oder relativiert diesen Zusammenhang.",
+        "question_asked": "Prien fragt: 'Wie passt das zu ihrer Aussage, wir werden niemals eine Obergrenze für Migration festlegen... genau da, wo unsere Klientel sitzt, um genau das steht und zwar bezahlbaren Wohnraum?'",
+        "question_intent": "Führt offene Migrationspolitik zu Wohnungsknappheit und höheren Mieten für arme Deutsche?",
+        "position": "Van Aken bestreitet die Kausalität: 'Wollen Sie mir sagen, dass die Schmieden in St. Pauli gestiegen sind, weil wir Migrationen haben? Es liegt daran, dass irgendwelche reichen Erben Geld herausholen wollen.' Er argumentiert, dass Spekulation, nicht Migration, der Grund für steigende Mieten sei. Van Aken verweist auf Sonneberg als Gegenbeispiel: Dort ist Migration wahrscheinlich nicht das Migration-Problem. Er verspottet Priems Ansatz als 'platt', wenn sie Migration mit Mieten kausal verknüpft, und bietet dagegen Genossenschaften-Eigentum.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Van Aken antwortet nicht auf die Frage, ob lokale Überlastung durch schnelle Zuwanderung ein Problem ist, sondern behauptet, das sei nicht das Thema – es gehe um Spekulation. Das ist ein klassischer Pivot: statt Prämisse zu verhandeln, wird eine Alternative-Erklärung angeboten. Prien hat aber recht, dass in hochmigrant-dichten Stadtteilen wie Kreuzberg oder Teilen Kölns Mieten stärker steigen als anderswo.",
+        "quotes": [
+          {
+            "text": "Wollen Sie mir sagen, dass die Schmieden in St. Pauli gestiegen sind, weil wir Migrationen haben? Es liegt daran, dass irgendwelche reichen Erben Geld herausholen wollen.",
+            "timestamp": "00:30:17",
+            "context": "Van Aken bestreitet die Migration-Miete-Verbindung und bietet Spekulation als Erklärung."
+          }
+        ],
+        "concrete_statements": [
+          "Es liegt daran, dass irgendwelche reichen Erben Geld herausholen wollen."
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsmarkt",
+          "Spekulation",
+          "Migration und Wohnungswirtschaft",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Pragmatismus in Koalitionen gegen Rechts und Friedensverhandlungslogik",
+        "timestamp_range": "00:37:45 - 00:39:30",
+        "theme_description": "Van Aken argumentiert, dass Koalitionen mit neuen Modellen funktionieren können, ähnlich wie Friedensverhandlungen – man weiß nicht von vornherein, was am Ende herauskommt.",
+        "question_asked": "Moderator Lanz fragt, wie das Modell mit Ramelow und Voigt konkret aussehen könnte; Sebastian Krumbiegel betont, dass man den Leuten vor Ort Zeit geben sollte, miteinander zu reden.",
+        "question_intent": "Können neue Koalitionsmodelle in Thüringen funktionieren, obwohl es inhaltliche Unterschiede gibt?",
+        "position": "Van Aken findet Krumbiegels Argument 'total klug' und berufst sich auf sein Buch: 'Dass man am Anfang noch nie weiß, was am Ende herauskommt. Natürlich, in Thüringen gibt es keine Friedensverhandlungen, aber vielleicht werden wir wirklich überrascht.' Er argumentiert, dass Mario Voigt und Bodo Ramelow 'seit Jahren jeden Tag miteinander' reden und sich kennen; vielleicht sehe man 'Punkte, die vorher keiner gesehen hat.' Van Aken betont: 'Ich habe einen inneren Unvereinbarkeitsbeschluss, aber in Thüringen muss es sein.' Mit dem BSW müsse man 'sehen, was passiert', aber auf Ramelow sei Verlass.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage substantiell und kohärent: Friedensverhandlungs-Logik + lokale Pragmatik + Vertrauen zu Ramelow = neues Modell könnte funktionieren. Er weicht nicht aus, sondern stellt ein Konzept dar.",
+        "quotes": [
+          {
+            "text": "Ich finde, das ist ein total kluger Punkt, ich habe hier ein Buch darüber geschrieben. Dass man am Anfang noch nie weiß, was am Ende herauskommt. Natürlich, in Thüringen gibt es keine Friedensverhandlungen, aber vielleicht werden wir wirklich überrascht.",
+            "timestamp": "00:37:45",
+            "context": "Van Aken verteidigt das offene Modell mit Verweis auf Friedensforschung."
+          }
+        ],
+        "concrete_statements": [
+          "Ich habe einen inneren Unvereinbarkeitsbeschluss, aber in Thüringen muss es sein, den ich dabei.",
+          "Mit dem BSW werden wir sehen, was passiert, aber Bodo Ramelow hat gesagt, ihm wird es nicht scheitern, und auf ihn ist Verlass."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Pragmatische Politik",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen Ukraine und Diplomatie",
+        "timestamp_range": "00:41:00 - 00:46:02",
+        "theme_description": "Debatte über die richtige Strategie zur Beendigung des Krieges in der Ukraine: Waffenlieferungen versus Diplomatie und internationale Vermittlung.",
+        "question_asked": "Moderator und Gast Krumbiegel kritisieren Wagenknechts Position, dass nur Diplomatie hilft; Lanz fragt van Aken, wie man Putin an den Verhandlungstisch bringt, wenn Waffen nötig sind.",
+        "question_intent": "Wie kann man einen Krieg beenden, in dem einer Seite Waffen vorenthält – oder sind Waffenlieferungen kontraproduktiv für Friedensverhandlungen?",
+        "position": "Van Aken widersprechen Krumbiegel ('Ich würde da widersprechen, ich würde das in anderen Tonfall sagen') und findet Wagenknechts Grundhaltung 'richtig': Diplomatie vor Waffen. Er ist selbst gegen Waffenlieferungen, betont aber, dass es keine einfache Lösung gibt – 'Wer jetzt aber keine Waffen an die Ukrainer liefert, wir brauchen eine andere Antwort, wie es dann einen gerechten Frieden für die Ukrainer gibt. Wenn Russland das Land einnimmt, das bringt nichts.' Van Aken beruft sich auf Friedensforschung: starke Verbündete müssen Druck auf beide Seiten ausüben ('Das Prinzip des großen Bruders'). Er nennt China als Schlüssel und kritisiert, dass Scholz mit China nicht redete und Russland von der Schweizer Friedenskonferenz ausgeschlossen war.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken beantwortet die Frage nach Diplomatie-Wegen substantiell (China, Druck durch Verbündete), weicht aber der kernigen Kritik aus: Wie geht man mit einem Gegner um, der nicht verhandeln will? Er differenziert zwar ('mit jemandem nicht verhandeln kann'), bietet aber keine konkrete Alternative, nur die abstraktere Friedensforschungs-Logik.",
+        "quotes": [
+          {
+            "text": "Ich würde da widersprechen, ich würde das in anderen Tonfall sagen. Ich würde das an das unterfüttern, ich bin auch gegen Waffenlieferungen, aber die Grundhaltung finde ich richtig.",
+            "timestamp": "00:41:06",
+            "context": "Van Aken verteidigt Wagenknechts Grundposition gegen Krumbiegel, der sie für populistisch hält."
+          },
+          {
+            "text": "Aus der Friedensforschung kennen wir das Prinzip des großen Bruders. D. h. starke Verbündete, die Einfluss auf die Kriegsparteien nehmen, damit sie verhandeln. Deshalb muss es westlichen Druck auf China geben, damit von da Druck auf Russland ausgeübt wird.",
+            "timestamp": "00:43:16",
+            "context": "Van Aken erläutert sein Modell für Friedensverhandlungen."
+          }
+        ],
+        "concrete_statements": [
+          "Ich bin auch gegen Waffenlieferungen.",
+          "Die Chinesen sind der Schlüssel.",
+          "Wenn diplomatische Lösungs versucht wurde mit Waffenlieferungen aufhören."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Krieg",
+          "Waffenlieferungen",
+          "Diplomatie und Friedensforschung"
+        ]
+      },
+      {
+        "title": "Stationierung US-Mittelstreckenraketen und Aufrüstungsspirale",
+        "timestamp_range": "00:46:26 - 00:51:22",
+        "theme_description": "Diskussion über die geplante Stationierung amerikanischer Mittelstreckenraketen in Deutschland und das Risiko einer neuen Aufrüstungsspirale zwischen USA und Russland.",
+        "question_asked": "Moderator Münstermann fragt van Aken, ob er die Stationierung von US-Mittelstreckenraketen gutheißen würde; Lanz wirft ein, dass die USA 2019 ausgestiegen sind, weil Russland bereits Raketen auf Europa gerichtet hatte.",
+        "question_intent": "Ist die Raketenstation notwendig zur Abschreckung Russlands, oder verschärft sie die militärische Eskalation?",
+        "position": "Van Aken lehnt die Stationierung ab und argumentiert mit der Aufrüstungsspirale aus dem Kalten Krieg: 'Das kann man machen, aber es ist falsch. Man erreicht nie den Punkt, wo alle zufrieden sind, jeder hat immer eine Sicherheitslücke.' Er warnt vor der 'Gefahr der Vernichtung der Menschheit' und will nicht wieder in diese Situation kommen. Van Aken bestreitet Lanz' Behauptung über 64 russische Raketen als 'belegt habe ich das nie gesehen' und kritisiert, dass die USA 2019 ausgestiegen sind, ohne substanziellen Beleg. Er stellt dar: 'Wer ist 2019 aus dem Vertrag ausgetreten? Das waren die Amerikaner, mit dem Argument, dass die Russen zuerst ausgetreten sind.' Außerdem verweist er auf China als Faktor in der Raketenlogik.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt auf die Frage (nein zur Stationierung), begründet sein Nein mit Aufrüstungsspirale und Friedensforschung, und adressiert auch Lanz' Einwand zur US-Begründung (weder zu vertrauen noch belegt). Er geht auf die China-Dimension ein, was die Frage kontextualisiert.",
+        "quotes": [
+          {
+            "text": "Das kann man machen, aber es ist falsch. Man erreicht nie den Punkt, wo alle zufrieden sind, jeder hat immer eine Sicherheitslücke. Wir hatten die Gefahr der Vernichtung der Menschheit und ich möchte nie wieder in diese Situation kommen. Deswegen bin ich gegen diese Stationierung.",
+            "timestamp": "00:46:42",
+            "context": "Van Aken begründet seine Ablehnung mit historischer Erfahrung und existenziellem Risiko."
+          },
+          {
+            "text": "Nur weil Amerikaner etwas behaupten, muss ich es nicht glauben. Es ist richtig, dass eine anfängt und eine daran schuld ist.",
+            "timestamp": "00:49:46",
+            "context": "Van Aken wehrt sich gegen Lanz' Vorwurf der Einseitigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Ich bin gegen diese Stationierung.",
+          "Ich kenne diese Rüstungsspirale aus dem kalten Krieg.",
+          "Diese Mittelstreckenraketen haben auch mit China zu tun."
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "NATO",
+          "Rüstungskontrolle",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Hetze gegen Migranten und Frauenbild von Sahra Wagenknecht",
+        "timestamp_range": "00:54:26 - 00:58:48",
+        "theme_description": "Debatte über Wagenknechts fremdenfeindlichen Diskurs und parallele Kritik an Friedrich Merz' Rhetorik (Pascha-Diskurs); Frage nach kulturellen Unterschieden in Geschlechterbildern.",
+        "question_asked": "Moderator fragt van Aken, woran er bei Wagenknechts Fähnchen-Wechsel denkt; Moderator/Prien diskutieren, ob Pascha-Diskurs und Migration-Kritik rassistisch sind oder legitim differenzierbar.",
+        "question_intent": "Ist Wagenknechts Migration-Kritik legitime Politik oder Hetze? Gibt es kulturelle Unterschiede in Frauenbildern, die man ansprechen darf?",
+        "position": "Van Aken kritisiert Wagenknecht scharf: Sie habe mit 'fremdenfeindlichem Diskurs' begonnen, 'da hetzt gegen Ausländer, da könnte ich im Strahl spucken, da hat sie früher ganz anders geredet.' Er würde 'schon Hetze sagen'. Dann differenziert er aber beim Thema Pascha-Diskurs: Es gebe Jungen 'deutscher Herkunft und nicht-deutscher Herkunft' mit problematischem Frauenbild, aber 'das hat nichts mit der Herkunft zu tun, die konnten komplett weiß oder schwarz oder dazwischen sein. Das spielt keine Rolle.' Er kritisiert Prien implizit, dass sie die Herkunft thematisiert: 'Da jetzt diesen Unterschied aufzumachen' – das sei problematisch, wenn es um Hetze gegen Migranten ziele.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken antwortet auf die Hetze-Frage klar (ja, van Aken würde sagen, es ist Hetze), weicht aber ab, wenn es um die kulturelle Differenzierung geht – er bietet gegen Prien ein Gegennarrativ, statt die berechtigte Frage zu beantworten, ob es kulturelle Unterschiede gibt, die man *sachlich* adressieren kann.",
+        "quotes": [
+          {
+            "text": "Ich würde da widersprechen, ich würde das in anderen Tonfall sagen... Sie hat auch mit diesem fremdenfeindlichen Diskurs begonnen, als sie hetzt gegen Ausländer, da könnte ich im Strahl spucken, da hat sie früher ganz anders geredet. Würden Sie das Wort Hetzen in den Mund nehmen? Ich würde schon Hetze sagen.",
+            "timestamp": "00:54:26",
+            "context": "Van Aken charakterisiert Wagenknechts Wandel zu Migration-Kritik als Hetze."
+          },
+          {
+            "text": "Es gibt Jungs deutscher Herkunft und nicht-deutscher Herkunft. Ich kenne das aus der Schule meiner Kinder, aber das hat nichts mit der Herkunft zu tun.",
+            "timestamp": "00:58:02",
+            "context": "Van Aken widerspricht dem Narrativ von kulturellen Unterschieden in Geschlechterbildern."
+          }
+        ],
+        "concrete_statements": [
+          "Ich würde schon Hetze sagen.",
+          "Das hat nichts mit der Herkunft zu tun."
+        ],
+        "related_bundestag_topics": [
+          "Migration und Integration",
+          "Geschlechterparität",
+          "Rassismus und Diskriminierung"
+        ]
+      },
+      {
+        "title": "Abschiebungen und Asylrecht",
+        "timestamp_range": "01:04:58 - 01:07:35",
+        "theme_description": "Diskussion darüber, ob Abschiebungen notwendig sind und wie das Asylrecht zu verstehen ist.",
+        "question_asked": "Moderator Münstermann fragt direkt: 'Sind Sie für oder gegen Abschiebungen?' und später: 'Würden Sie Straftäter abschieben?'",
+        "question_intent": "Wie konsequent lehnt die Linke Abschiebungen ab, auch im Fall von Straftätern oder Fehlverfahren?",
+        "position": "Van Aken antwortet kategorisch: 'Ich bin dagegen.' Er kritisiert dann Prien, dass sie 'nach Asien fährt, um Arbeitskräfte dort abzuwerben, die wir brauchen, dabei haben wir hier Menschen, warum lässt man die nicht arbeiten?' Van Aken behauptet, das Problem sei strukturell: Menschen kämen 'in die Sozialsysteme und dürfen nicht arbeiten' – das sei das eigentliche Hindernis. Bei Straftätern sagt er: Alle müssen 'nach deutschem Recht verurteilt werden'; wer dann nach Strafverbüßung abgeschoben wird, erlebe eine 'Doppelbestrafung', die 'gegen den Rechtsstaat' gehe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Abschiebungsfrage direkt und substantiell. Er differenziert: nicht generell gegen strafrechtliche Verfolgung, aber gegen Doppelbestrafung. Die Logik ist kohärent, wenn auch kontrovers.",
+        "quotes": [
+          {
+            "text": "Ich bin dagegen.",
+            "timestamp": "01:04:58",
+            "context": "Van Aken antwortet auf die direkte Frage nach Abschiebungen."
+          },
+          {
+            "text": "Wenn jemand seine Strafe abgesessen hat, und dann abgeschoben wird, dann ist es eine Doppelbestrafung, das geht auch gegen den Rechtsstaat.",
+            "timestamp": "01:07:00",
+            "context": "Van Aken lehnt Abschiebung nach Strafverbüßung ab."
+          }
+        ],
+        "concrete_statements": [
+          "Ich bin dagegen [Abschiebungen].",
+          "Das Problem ist, dass viel zu viele Parteien immer viel zu viel versprechen, was sie nicht halten können."
+        ],
+        "related_bundestag_topics": [
+          "Asylrecht",
+          "Rechtsstaat",
+          "Arbeitsmarktintegration"
+        ]
+      },
+      {
+        "title": "Migration als strategisches Ablenkungsthema von CDU/Ampel",
+        "timestamp_range": "01:11:19 - 01:14:07",
+        "theme_description": "Van Aken argumentiert, dass CDU und Ampel Migration instrumentalisieren, um von wichtigeren Problemen abzulenken, und dass dies nur der AfD nutzt.",
+        "question_asked": "Moderator Münstermann kritisiert, dass 'alle Parteien' Migration immer restriktiver handhaben und fragt, ob das eine bewusste Strategie ist.",
+        "question_intent": "Warum reden alle Parteien nur über Migration, und wen nutzt das wirklich?",
+        "position": "Van Aken behauptet: 'Ich glaube, es ist ein ganz bewusstes Manöver von CDU und Ampel, jetzt nur noch über Migration zu reden, um die anderen Themen totschweigen.' Er argumentiert, dass schärfere Migrationspolitik der Ampelparteien 'nur die AfD' profitieren lässt: 'das wissen auch alle, und trotzdem reden alle nur über Migration.' Van Aken will das Thema auf wirtschaftliche Ängste verschieben: Sonneberg geht es nicht um Migration, sondern um existenzielle Probleme wie Mieten und Mindestlohn. Die Fokussierung auf Migration sei eine Ablenkung.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Van Aken antwortet nicht substantiell auf die Frage, ob Migrationspolitik notwendig ist oder wie man Akzeptanz erhält, sondern pivotiert stattdessen zu einem Gegenpunkt: Das ganze Migrationsfokussieren sei ein bewusstes Ablenkungsmanöver von CDU/Ampel. Das ist ein klassischer Pivot – nicht Verhandlung der Prämisse, sondern Hinterfragung der Agenda.",
+        "quotes": [
+          {
+            "text": "Ich glaube, es ist ein ganz bewusstes Manöver von CDU und Ampel, jetzt nur noch über Migration zu reden, um die anderen Themen totschweigen.",
+            "timestamp": "01:14:07",
+            "context": "Van Aken charakterisiert die Migrationsdebatte als strategisches Manöver."
+          },
+          {
+            "text": "Dass die AfD die es geschafft hat, dass jetzt nur noch alle über Migration sprechen, das dürfen wir doch nicht einfach so lassen.",
+            "timestamp": "01:12:47",
+            "context": "Van Aken argumentiert, dass die AfD die Agenda gesetzt hat und alle folgen."
+          }
+        ],
+        "concrete_statements": [
+          "Das Problem ist, dass viel zu viele Parteien immer viel zu viel versprechen, was sie nicht halten können.",
+          "Es geht doch darum, über die Probleme zu reden, die viel schlimmer sind. Die vielmehr dazu führen, dass die Menschen die AfD wählen."
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "AfD-Wählermotive",
+          "Wirtschaftliche Sicherheit",
+          "Politische Agenda-Setting"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Bodo Ramelow hat Thüringen fünf Jahre als Minderheitsregierung regiert.",
+        "timestamp": "00:17:33"
+      },
+      {
+        "claim": "Die USA sind 2019 aus dem INF-Vertrag (Intermediate-Range Nuclear Forces Treaty) ausgetreten.",
+        "timestamp": "00:50:40"
+      },
+      {
+        "claim": "China hat in derselben Zeit unglaublich viele Mittelstreckenraketen angeschafft.",
+        "timestamp": "00:50:55"
+      },
+      {
+        "claim": "Die Schweizer Friedensverhandlungen zur Ukraine-Lage fanden ohne russische Beteiligung statt.",
+        "timestamp": "00:45:08"
+      },
+      {
+        "claim": "Sahra Wagenknecht war in der SED (Sozialistische Einheitspartei Deutschlands), Bodo Ramelow nicht.",
+        "timestamp": "00:12:29"
+      }
+    ]
+  }
+}

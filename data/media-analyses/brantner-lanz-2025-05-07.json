@@ -1,0 +1,419 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-7-mai-2025-100",
+    "video_id": "lanz-2025-05-07",
+    "politician": "Franziska Brantner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "5bacbf6fee4c274a",
+    "transcript_chars": 39723,
+    "caption_lines": 1926,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17817,
+    "tokens_out": 11072,
+    "cost_usd": 0.0292708,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 18,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 7,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.034Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, neu ernannte Parteivorsitzende der Grünen und bis Mai 2025 Parlamentarische Staatssekretärin, tritt der neuen CDU/CSU-geführten Regierung kritisch, aber sachlich entgegen. Sie kritisiert fehlende Demut der Union troach deren Abhängigkeit von grüner Unterstützung, verteidigt die Energiewende unter schwierigsten Bedingungen und bekämpft die rauhe Rhetorik der CSU mit pointierter Sachlichkeit.",
+    "themes": [
+      {
+        "title": "Friedrich Merz Wahl und Koalitionsverantwortung",
+        "timestamp_range": "00:01:39 - 00:03:21",
+        "theme_description": "Bewertung des gescheiterten ersten Wahlgangs zur Merz-Wahl und Frage nach der grünen Unterstützung im zweiten Wahlgang.",
+        "question_asked": "Markus Lanz fragt, ob Brantner ob sie mit Schadenfreude auf das Scheitern des ersten Wahlgangs blickt oder ob es um größere Sorgen geht.",
+        "question_intent": "Sollte man der Opposition Schadenfreude über das Versagen der neuen Regierungskoalition unterstellen?",
+        "position": "Franziska Brantner betont, dass sie keine Freude an der Situation hat, sondern eine handlungsfähige Regierung erwartet hatte. Sie sieht es als 'fatales Signal', dass die Koalition unter Merz, der der Ampel mangelnde Handlungsfähigkeit vorgeworfen hatte, bereits am ersten Tag scheitert. Sie hebt hervor, dass die Grünen Merz durch Unterstützung im zweiten Wahlgang 'gerettet' haben – ein Moment für gegenseitige Demut unter Demokraten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner antwortet auf die Frage der Schadenfreude korrekt mit 'überhaupt nicht', beantwortet aber die tiefere Frage nach der Einschätzung des Wahlgangs normativ (als 'fatal') statt analytisch. Sie nutzt die Frage als Anlass, ihre Erwartung an handlungsfähige Regierung zu artikulieren.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Irgendwie hat keiner geglaubt, dass Friedrich Merz und Lars Klingbeil das nicht hinbekommen.",
+          "Für mich war es schockierend zu sehen, dass eine Koalition im Deutschen Bundestag antritt, Friedrich Merz hatte Ampel immer gesagt, sie können es nicht. Jetzt ist die Koalition angetreten, um es besser zu machen und sind am ersten Tag gescheitert.",
+          "Dass ein fatales Signal nach außen und in unsere Bevölkerung hinein.",
+          "Wir haben wieder, erst zum zweiten Mal seit wir in der Opposition sind Merz gerettet. In dem wir einen zweiten Wahlgang gestern mit ermöglicht haben."
+        ],
+        "quotes": [
+          {
+            "text": "Für mich war es schockierend zu sehen, dass eine Koalition im Deutschen Bundestag antritt, Friedrich Merz hatte Ampel immer gesagt, sie können es nicht. Jetzt ist die Koalition angetreten, um es besser zu machen und sind am ersten Tag gescheitert.",
+            "timestamp": "00:02:20",
+            "context": "Auf Frage nach ihrer Reaktion auf den gescheiterten Wahlgang."
+          },
+          {
+            "text": "Irgendwie hat keiner geglaubt, dass Friedrich Merz und Lars Klingbeil Als nicht hinbekommen.",
+            "timestamp": "00:02:20",
+            "context": "Erläuterung der Überraschung über das Scheitern des ersten Wahlgangs."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundestag-Wahl",
+          "Koalitionsverhandlungen",
+          "Regierungsbildung"
+        ]
+      },
+      {
+        "title": "Ton und Rhetorik zwischen den Koalitionspartnern",
+        "timestamp_range": "00:03:27 - 00:05:50",
+        "theme_description": "Debatte über die Angemessenheit von politischer Rhetorik, insbesondere CSU-Kritik am grünen 'Angebot' und Frage nach Demut nach Wahlkampf.",
+        "question_asked": "Martin Huber verteidigt die Bezeichnung des grünen Angebots als 'Ramschware'. Brantner antwortet mit Kritik an dieser Rhetorik.",
+        "question_intent": "Ist die CSU-Kritik am grünen Angebot ('Ramschware') berechtigt und angemessen?",
+        "position": "Brantner wendet ein, dass es nicht um Empfindlichkeit geht, sondern darum, dass Menschen als Ramschware zu bezeichnen unter Demokraten nicht akzeptabel ist. Sie betont, dass die Grünen die Union 'zweimal geholfen' haben, seit diese regieren will, und fordert dafür Demut ein. Sie kritisiert, dass die CSU 'mit dicken Backen und breiten Beinen' nach dem Scheitern wieder angriffslustig wirkt, statt Zusammenarbeit anzustreben, um 'nicht nur die extremen gewinnen zu lassen'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner adressiert sowohl Hubers Verteidigung der Ramschware-Aussage als auch die tiefere Frage nach Ton und gegenseitiger Achtung direkt. Sie begründet ihre Position mit konkreten Beispielen grüner Hilfe und benennt konkrete Forderungen nach Demut.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das ist keine Frage der Empfindlichkeit, sondern wenn man andere Menschen als Ramschware bezeichnet...",
+          "Seit sie regieren wollen haben wir Ihnen zweimal geholfen und sie stellen sich immer noch hin und sagen, es ist alles o. k. und lustig.",
+          "Ich finde es wäre jetzt ein Moment für Demut. Vielleicht wäre es doch sinnvoll unter Demokraten zusammenzuarbeiten.",
+          "Vielleicht ist es auch mal wichtig, in einem Tor miteinander umzugehen, dass nicht nur die extremen gewinnen."
+        ],
+        "quotes": [
+          {
+            "text": "Seit sie regieren wollen haben wir Ihnen zweimal geholfen und sie stellen sich immer noch hin und sagen, es ist alles o. k. und lustig. Ich finde es wäre jetzt ein Moment für Demut. Vielleicht wäre es doch sinnvoll unter Demokraten zusammenzuarbeiten.",
+            "timestamp": "00:04:31",
+            "context": "Antwort auf Hubers Verteidigung der Ramschware-Aussage beim Aschermittwoch."
+          },
+          {
+            "text": "Das ist keine Frage der Empfindlichkeit, sondern wenn man andere Menschen als Ramschware bezeichnet...",
+            "timestamp": "00:04:10",
+            "context": "Kritik an Hubers Relativierung seiner Aschermittwochs-Äußerung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Parlamentarischer Diskurs",
+          "Demokratische Debattenkultur"
+        ]
+      },
+      {
+        "title": "Energiewende und Abhängigkeit von russischem Gas",
+        "timestamp_range": "00:10:56 - 00:12:32",
+        "theme_description": "Debatte über Verantwortung für Energiekrise, Rolle der Grünen bei Bewältigung und Vorwürfe zur Energiepolitik (Atomausstieg, Kohle).",
+        "question_asked": "Martin Huber kritisiert, dass nur Polen schmutzigeren Strom als Deutschland hat, und fragt, warum die Grünen Atomkraftwerke abschalten wollten, wenn Klimaschutz das Ziel ist.",
+        "question_intent": "Waren die grüne Energiepolitik (Atomausstieg, Kohlenutzung in der Krise) widersprüchlich und falsch?",
+        "position": "Brantner verdeutlicht, dass die Energiekrise aus Abhängigkeit von russischem Gas entstand, 'in die uns ihre konservativen Minister geführt haben'. Sie hebt hervor, dass die Grünen 'in einem rasanten Tempo' erneuerbare Energien ausgebaut haben, 'dass Deutschland noch nie hatte'. Sie räumt ein, dass in der Übergangszeit mehr Kohle verstromt wurde als vorgesehen, aber verteidigt dies als notwendig. Sie weist darauf hin, dass die Grünen auch die Atomkraftwerke länger laufen ließen als von der Union vorgesehen. Ihr Punkt: Die Union habe die 'schlechtesten Voraussetzungen' hinterlassen, aber die Grünen hätten das Land dennoch durch die Krise gebracht.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner antwortet sachlich und faktengestützt auf Hubers Kritik. Sie adressiert seine Vorwürfe zur Kohle und zum Atomausstieg direkt und kontert mit der Verantwortung der Union für die russische Gasabhängigkeit. Sie räumt Übergangsmassnahmen ein, kontextualisiert sie aber.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir waren in einer Energiekrise aufgrund der Abhängigkeiten von russischem Gas, in die uns ihre konservativen Minister geführt haben.",
+          "Wir haben dieser Fähigkeiten überkommen, in einem rasanten Tempo, dass Deutschland noch nie hatte.",
+          "Ja, wir hatten in der Übergangszeit mehr Kohle verströmt, als es vorgesehen war.",
+          "Wir haben die drei Atomkraftwerke länger laufen lassen, als Sie das vorgesehen hatten.",
+          "Wir haben uns durch diesen Winter gebracht, obwohl Sie die schlechtesten Voraussetzungen gelassen haben."
+        ],
+        "quotes": [
+          {
+            "text": "Wir waren in einer Energiekrise aufgrund der Abhängigkeiten von russischem Gas, in die uns ihre konservativen Minister geführt haben. Wir haben dieser Fähigkeiten überkommen, in einem rasanten Tempo, dass Deutschland noch nie hatte.",
+            "timestamp": "00:10:56",
+            "context": "Antwort auf Hubers Kritik am Atomausstieg und der Kohlenutzung."
+          },
+          {
+            "text": "Wir haben die drei Atomkraftwerke länger laufen lassen, als Sie das vorgesehen hatten.",
+            "timestamp": "00:10:56",
+            "context": "Klarstellung der grünen Flexibilität in der Energiepolitik unter Krisendruck."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Russland-Sanktionen",
+          "Energiesicherheit"
+        ]
+      },
+      {
+        "title": "Differenzen in der Energiepolitik und Bayern-Benachteiligung",
+        "timestamp_range": "00:12:45 - 00:13:24",
+        "theme_description": "Debatte über vermeintliche Benachteiligung Bayerns durch Habeck-Ampel und grüne Verteidigung gegen pauschale Vorwürfe.",
+        "question_asked": "Huber wirft vor, dass Habeck den Freistaat Bayern massiv benachteiligt hat, insbesondere bei Wasserstoff-Planungen und nach dem Hochwasser.",
+        "question_intent": "Hat die Ampel-Regierung Bayern bei Energiepolitik und Katastrophenhilfe benachteiligt?",
+        "position": "Brantner weist Hubers pauschale Vorwürfe zurück und zitiert Erwin Huber (CSU-Politiker), der das kritisiert hatte – um zu zeigen, dass selbst konservative Stimmen die Darstellung hinterfragen. Sie kritisiert, dass Huber Sachargumente ignoriert und 'nur den nächsten Angriff' macht, statt konstruktiv zu diskutieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner antwortet ausweichend auf die Frage zur konkreten Bayern-Benachteiligung, indem sie stattdessen auf Hubers Rhetorik hinweist. Sie zitiert zwar Erwin Huber, um einen CSU-internen Disput zu zeigen, beantwortet aber nicht substantiell, ob und wie Habeck Bayern benachteiligt hat.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Das hat nicht ist gesagt. Ich habe Erwin Huber zitiert, einen sehr relevanten CSU-Politiker. Und sie ignorieren das und machen nur den nächsten Angriff."
+        ],
+        "quotes": [
+          {
+            "text": "Das hat nicht ist gesagt. Ich habe Erwin Huber zitiert, einen sehr relevanten CSU-Politiker. Und sie ignorieren das und machen nur den nächsten Angriff.",
+            "timestamp": "00:12:45",
+            "context": "Reaktion auf Hubers Vorwurf der Bayern-Benachteiligung durch Habeck."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Bayern-Bund Beziehungen",
+          "Wasserstoffkernetz"
+        ]
+      },
+      {
+        "title": "Robert Habeck Bilanz und Würdigung seiner Arbeit",
+        "timestamp_range": "00:14:21 - 00:17:24",
+        "theme_description": "Bewertung von Habecks Leistung als Wirtschaftsminister und Verteidigung gegen dauerhafte Kritik der CSU.",
+        "question_asked": "Markus Lanz fragt, ob Habeck für Brantner 'immer noch der schlechteste Wirtschaftsminister aller Zeiten' ist (wie Huber ihn genannt hatte).",
+        "question_intent": "Kann die CSU ihre pauschale Verurteilung von Habeck halten, nachdem auch Katherina Reiche seine 'übermenschlichen Leistungen' gewürdigt hat?",
+        "position": "Brantner war im Raum, als Reiche Habeck würdigte. Sie hebt hervor, dass es stehenden Applaus minutenlang für Habeck gab. Sie begründet Reiches positive Bewertung damit, dass sie der 'Realität' entspricht – mit Blick auf die Krisenbewältigung in zwei Wintern, für die die Grünen nicht verantwortlich waren. Sie räumt ein, dass Kritik berechtigt ist, aber lenkt die Debatte auf den 'Umgang' ab. Sie sieht in Reiches Äußerungen eine Anerkennung von Maßnahmen, die vorher verteufelt wurden (Fonds, Investitionsbooster).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner antwortet nicht direkt auf die Frage, ob Habeck der schlechteste Minister war, sondern verweist auf Reiches Würdigung und den Applaus als Evidenz. Sie thematisiert den 'Umgang' statt die fachliche Bewertung und nutzt die Gelegenheit zu zeigen, dass CSU-Maßnahmen jetzt grüne Vorschläge kopieren.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gab übrigens auch stehenden Applaus minutenlang für Robert Habeck.",
+          "Die kam zu der Beurteilung, weil es der Realität entspricht, mit Blick auf das, was sie in zwei Wintern geleistet haben um unser Land durch diese Krise zu bekommen.",
+          "Die Frage bleibt aber beim Umgang. Frau Reichert hat heute eine Sache deutlich klargestellt. Das interessante für uns ist, dass die Dinge die verteufelt wurde wurden jetzt noch mal anders eingeordnet."
+        ],
+        "quotes": [
+          {
+            "text": "Ich war heute im Raum kommen mal sie das gesagt hat. Es gab übrigens auch stehenden Applaus minutenlang für Robert Habeck. Die kam zu der Beurteilung, weil es der Realität entspricht, mit Blick auf das, was sie in zwei Wintern geleistet haben um unser Land durch diese Krise zu bekommen.",
+            "timestamp": "00:16:22",
+            "context": "Beantwortung der Frage zu Reiche-Würdigung Habecks."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ressortministerium Wirtschaft",
+          "Energiekrise-Management"
+        ]
+      },
+      {
+        "title": "Investitionsprogramme und Kopieren grüner Politikvorschläge",
+        "timestamp_range": "00:17:24 - 00:20:05",
+        "theme_description": "Kritik an der CSU/Merz-Regierung, die grüne Vorschläge (Investitionsbooster, Stromsteuer) jetzt umsetzt, diese aber vorher abgelehnt hat.",
+        "question_asked": "Eigeninitiative: Brantner nutzt die Gelegenheit, um zu zeigen, dass die neue Regierung grüne Maßnahmen kopiert, die sie im Sommer vorgeschlagen haben.",
+        "question_intent": "Nicht direkt gestellte Frage, aber Brantner will dokumentieren, dass die CDU/CSU Gelegenheitsopportunisten sind, die ideologisch ablehnen, dann aber selbst umsetzen.",
+        "position": "Brantner argumentiert, dass die Regierung Merz 'aus parteitaktischen Gründen' grüne Investitionsprogramme (Investitionsprägungen für Unternehmen, jetzt 'Investitionsbooster') zurückwies, obwohl sie denselben Inhalt hatten. Sie hebt hervor, dass Habeck auch 'unbegrenzte' Mittel für Verteidigung vorgesehen hatte – später dann doch erhöht. Sie kritisiert, dass 'unsere Unternehmen ein halbes Jahr früher entlastet werden konnten'. Ihr Punkt: Die CSU macht inhaltlich dasselbe, unter neuem Namen, statt zuzugeben, dass die grünen Vorschläge richtig waren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner adressiert die Frage ihrer eigenen Einleitung vollständig: Sie belegt konkret, dass Maßnahmen, die unter neuem Namen jetzt von der Regierung umgesetzt werden, die grünen Vorschläge kopieren. Sie benennt konkrete Beispiele (Investitionsprägung → Investitionsbooster, Stromsteuer-Senkung) und das zeitliche Verzögerungsproblem.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir hatten eine Investitionsprägungen vorgeschlagen, schon letzten Sommer um Unternehmen zu entlasten wenn sie in ihr unternehmen investieren. Jetzt gibt es einen Investitionsbooster. Da ändert sich nichts, ausser der Name.",
+          "Das wurde alles aus parteitaktischen Gründen zurückgewiesen. Unsere Unternehmen hätten ein halbes Jahr früher entlastet werden können.",
+          "Es kommt genau das gleiche raus. Was vorher verteufelt wurde. Dann sag ich schon, vielleicht geht man dann doch an das miteinander um."
+        ],
+        "quotes": [
+          {
+            "text": "Wir hatten eine Investitionsprägungen vorgeschlagen, schon letzten Sommer um Unternehmen zu entlasten wenn sie in ihr unternehmen investieren. Jetzt gibt es einen Investitionsbooster. Da ändert sich nichts, ausser der Name.",
+            "timestamp": "00:17:24",
+            "context": "Beispiel für CSU-Übernahme grüner Vorschläge unter anderem Namen."
+          },
+          {
+            "text": "Das wurde alles aus parteitaktischen Gründen zurückgewiesen. Unsere Unternehmen hätten ein halbes Jahr früher entlastet werden können.",
+            "timestamp": "00:18:41",
+            "context": "Kritik an parteitaktischer Blockade von damals notwendigen Maßnahmen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Konjunkturpolitik",
+          "Unternehmensbesteuerung",
+          "Investitionsförderung"
+        ]
+      },
+      {
+        "title": "Wasserstoffstrategie und regionale Versorgung",
+        "timestamp_range": "00:25:14 - 00:27:55",
+        "theme_description": "Erläuterung der grünen Wasserstoff-Vision, Herkunftsregionen (Nordafrika, Südeuropa, Baltikum) und Pipeline-Planungen für Bayern.",
+        "question_asked": "Markus Lanz bittet Brantner, die große Vision für Wasserstoff zu erläutern: Woher kommt er, von welchen Ländern, welche Vision?",
+        "question_intent": "Wie soll grüner Wasserstoff Deutschland zukünftig versorgen, und wie ist die geopolitische Strategie?",
+        "position": "Brantner beschreibt die Vision, dass Gas durch nachhaltige Moleküle (grüner Wasserstoff aus Wind- und Sonnenenergie) ersetzt wird. Quellen sind Nordafrika, Spanien, Italien, Baltikum, Ostsee. Sie erläutert, dass es Pipeline-Planungen aus allen Richtungen gibt – Nord, Ost, Süd. Sie betont die Rolle bestehender Gas-Pipelines, die umgewidmet werden können, um Kosten zu sparen. Sie hebt ihre persönliche Rolle hervor: Sie war selbst in Algerien, um Kooperationen zu startegie. Sie widerlegt den Vorwurf, die Grünen hätten sich nicht um Bayern gekümmert ('Deshalb ist es nicht fair zu sein, werden uns nicht darum gekümmert'). Sie erwähnt, dass Wasserstoff-Projekte Jobs der Zukunft bedeuten und deutsche Technologie nutzen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner antwortet umfassend und substanziell auf die Frage zur Wasserstoff-Vision. Sie erklärt die Strategie, nennt Regionen, Pipelines und ihre eigene Rolle. Sie verbindet die Vision mit konkreten Maßnahmen (Diplomatie in Algerien) und wirtschaftlicher Bedeutung (Jobs).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die große Vision ist, dass das Gas andere Moleküle kommen und zwar nachhaltiger aus Wind und Sonnenenergie, wenn Form von grünem Wasserstoff.",
+          "Wo soll das herkommen, aus Regionen wo es mehr Wind und Sonne gibt als bei uns. Das ist Nordafrika, Spanien, Italien usw. Auch Ostsee und das Baltikum. Wir werden das aus allen Regionen bekommen, Norden, Osten, Süden.",
+          "Es gibt existierende Gasleistungen, die umgewidmet werden können, so das anderer Strom dadurch geleitet werden kann.",
+          "Ich war in Algerien selber vor Ort, Um da die Kooperation zu starten, damit Bayern Wasserstoff bekommt.",
+          "Das ist deutsche Technologie, die wir einsetzen. Wenn wir schaffen, diesen Markt für uns zu behalten und nicht ein zu stampfen und sage mir machen wieder Gas, dann sind das auch Jobs der Zukunft."
+        ],
+        "quotes": [
+          {
+            "text": "Die große Vision ist, dass das Gas andere Moleküle kommen und zwar nachhaltiger aus Wind und Sonnenenergie, wenn Form von grünem Wasserstoff. Wo soll das herkommen, aus Regionen wo es mehr Wind und Sonne gibt als bei uns. Das ist Nordafrika, Spanien, Italien usw.",
+            "timestamp": "00:25:14",
+            "context": "Erläuterung der grünen Wasserstoff-Vision."
+          },
+          {
+            "text": "Ich war in Algerien selber vor Ort, Um da die Kooperation zu starten, damit Bayern Wasserstoff bekommt. Deshalb ist es nicht fair zu sein, werden uns nicht darum gekümmert.",
+            "timestamp": "00:26:20",
+            "context": "Beispiel grüner Diplomatie für regionale Wasserstoffversorgung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wasserstoff-Strategie",
+          "Energiewende",
+          "Außenpolitik Ressourcensicherung"
+        ]
+      },
+      {
+        "title": "Gaskraftwerke und Kapazitätsausbau",
+        "timestamp_range": "00:29:30 - 00:30:36",
+        "theme_description": "Debatte über notwendige Gaskraftwerkskapazitäten für Übergangssicherung und Kritik an Merz-Plänen zur Verdopplung.",
+        "question_asked": "Martin Huber erklärt, dass in der Zukunft auch Gaskraftwerke notwendig sind und Bayern nicht benachteiligt werden darf. Brantner antwortet mit Kritik am Ausmaß.",
+        "question_intent": "Ist der Plan der neuen Regierung, Gaskraftwerkskapazitäten zu verdoppeln, wirtschaftlich sinnvoll oder Verschwendung?",
+        "position": "Brantner betont, dass die Grünen Gaskraftwerke selbst 'vorgesehen' hatten – 10 GW – als Übergangslösung für Chemie-, Glas- und Stahlindustrie. Sie kritisiert aber, dass die Regierung nun 'die Kapazitäten verdoppeln' will (später: 30 GW im Koalitionsvertrag). Sie warnt, dass Stimmen aus der Industrie sagen, dies sei 'Planwirtschaft', die 'neue Technologien wie Speicher etc.' blockiert. Sie deutet an, dass dies 'rausgeschmissenes Geld' ist und Innovation bremst.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner antwortet substantiell und kritisch auf die Gaskraftwerk-Frage. Sie räumt ein, dass Gaskraftwerke notwendig sind (Grünen-Position), kritisiert aber die Überdimensionierung und warnt vor Marktverzerrung und Innovationsbremse.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir haben um genau diese Ziele zu erreichen, dass wir unsere chemische Industrie, Glasindustrie, Stahl bei uns behalten können, haben wir Gaskraftwerke vorgesehen, 10 GB. Das war genau unser Plan.",
+          "Die Regierung will es jetzt Kapazitäten verdoppeln, die da verbaut werden sollen.",
+          "Da sind Stimmen aus der Industrie die sagen, dass es Planwirtschaft. Damit werden neue Technologien wie Speicher etc. gestoppt.",
+          "Das sind Energiestimmen, die sagen das ist Steuerung, das ist rausgeschmissenes Geld."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben um genau diese Ziele zu erreichen, dass wir unsere chemische Industrie, Glasindustrie, Stahl bei uns behalten können, haben wir Gaskraftwerke vorgesehen, 10 GB. Das war genau unser Plan. Die Regierung will es jetzt Kapazitäten verdoppeln.",
+            "timestamp": "00:29:30",
+            "context": "Kritik an Verdopplung von Gaskraftwerk-Kapazitäten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Industriepolitik",
+          "Stromwirtschaft"
+        ]
+      },
+      {
+        "title": "Vegetarischer Tag und Ernährungspolitik",
+        "timestamp_range": "00:35:00 - 00:36:47",
+        "theme_description": "Verteidigung gegen die Kritik an grüner Ernährungspolitik und Klarstellung von missverstandenen Vorschlägen.",
+        "question_asked": "Martin Huber und Markus Lanz fragen nach dem 'vegetarischen Tag', den die Grünen angeblich durchsetzen wollten, und ob dies eine 'Verbotspartei-Politik' darstellt.",
+        "question_intent": "Waren die Grünen paternalistisch in der Ernährungspolitik und wollten sie Fleischkonsum verbieten?",
+        "position": "Brantner klargestellt, dass der vegetarische Tag ein 'Vorschlag' war, keine 'Vorschrift'. Sie weist auf die Kluft zwischen grüner Intention und CSU-Misrepräsentation hin: 'Daraus wurde gemacht, die miesen Grünen wollen jetzt das Schnitzel verbieten.' Sie korrigiert auch die Geschichte der Kantine im Landwirtschaftsministerium: Die Ausschreibungen stammten vom 'vorherigen Ministerium' (Klöckner, CDU), nicht von den Grünen. Sie kritisiert, dass diese Geschichte 'schon zehnmal korrigiert' wurde, aber immer wieder zitiert wird.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner antwortet direkt auf die Vorwürfe zu vegetarischem Tag und Kantinen-Ausschreibungen. Sie klarstellt Missverständnisse (Vorschlag vs. Verbot) und korrigiert die Faktenbasis (Klöckner-Ausschreibungen). Sie adressiert die Frage zur 'Verbotspartei'-Wahrnehmung sachlich.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Sie haben ja nicht gesagt, jeder der Essen Wasser will, sondern sie haben sah es soll mehr Fleisch gegessen werden.",
+          "Die Ausschreibungen waren noch vom vorherigen Ministerium. Die Geschichte wurde schon zehnmal korrigiert. Das ist einfach eine falsche Geschichte. Wer war vorher, unsere Frau Klöckner?",
+          "Ich möchte einfach nur sagen, dass das nicht stimmt."
+        ],
+        "quotes": [
+          {
+            "text": "Die Ausschreibungen waren noch vom vorherigen Ministerium. Die Geschichte wurde schon zehnmal korrigiert. Das ist einfach eine falsche Geschichte.",
+            "timestamp": "00:36:26",
+            "context": "Klarstellung zur Kantinen-Ausschreibungs-Geschichte."
+          },
+          {
+            "text": "Sie haben ja nicht gesagt, jeder der Essen Wasser will, sondern sie haben sah es soll mehr Fleisch gegessen werden.",
+            "timestamp": "00:35:07",
+            "context": "Klarstellung zur Interpretation des Ernährungsvorschlags."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ernährungspolitik",
+          "Verbraucherschutz"
+        ]
+      },
+      {
+        "title": "Markus Söder, McDonald's und Lobbyismus-Vorwurf",
+        "timestamp_range": "00:40:12 - 00:41:45",
+        "theme_description": "Frage nach McDonald's-Präferenz von Söder und damit verbundenem Lobbyismus-Verdacht.",
+        "question_asked": "Markus Lanz fragt, ob Söders Affinität zu McDonald's ein Lobbyismus-Problem darstellt, zumal der Konzern-Sitz in München ist.",
+        "question_intent": "Gibt es einen Interessenkonflikt zwischen Söders öffentlichem McDonald's-Konsum und Lobby-Einfluss?",
+        "position": "Brantner äußert sich sehr kurz und eher ausweichend. Sie sagt nur: 'Ich frage mich, was war sonst noch macht.' Das klingt, als wolle sie sich nicht festlegen oder nicht tiefergehend kritisieren. Als Lanz später ein Vergleich zwischen Söder und Trump zieht (beide mit Hamburger), kritisiert Huber, dass dies 'Neid' auf Söders Social-Media-Reichweite ausdrücke. Brantner widerspricht vehement: 'Nein, also wirklich nicht. Ich habe das Thema noch nicht mal angesprochen, sondern Herr Lanz.' Sie weist Hubers Unterstellung zurück, dass sie neidisch auf Söders Social-Media-Präsenz sei.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner antwortet auf Lanz' Frage zur McDonald's-Frage sehr knapp ('Ich frage mich, was war sonst noch macht'), ohne substantiell auf den Lobbyismus-Vorwurf einzugehen. Sie wehrt sich aber vehement gegen Hubers Interpretation ihrer Haltung als Neid, was eine defensive Position ist.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Nein, also wirklich nicht. Ich habe das Thema noch nicht mal angesprochen, sondern Herr Lanz.",
+          "Daraus jetzt zu machen, dass ich irgend einen Neid gegenüber Herrn Söder wegen seiner Social Media Präsenz hätte. Das stimmt nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, also wirklich nicht. Ich habe das Thema noch nicht mal angesprochen, sondern Herr Lanz. Daraus jetzt zu machen, dass ich irgend einen Neid gegenüber Herrn Söder wegen seiner Social Media Präsenz hätte.",
+            "timestamp": "00:41:12",
+            "context": "Verteidigung gegen Hubers Vorwurf des Neids auf Söders Social-Media-Präsenz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Lobbyismus",
+          "Ethik in der Politik"
+        ]
+      },
+      {
+        "title": "Aufteilung des Wirtschaftsministeriums und Technologieverluste",
+        "timestamp_range": "00:42:39 - 00:44:20",
+        "theme_description": "Kritik an der Zersplitterung des grünen Wirtschaftsministeriums in der neuen CDU/CSU-geführten Regierung und Verlust von Zukunftstechnologien.",
+        "question_asked": "Eigeninitiative: Brantner kritisiert, dass Luft- und Raumfahrt, KI, Quanten und Klima aus dem Wirtschaftsministerium ausgegliedert wurden.",
+        "question_intent": "Ist die Neuverteilung von Ministerien und Fachbereichen sinnvoll, wenn Zukunftstechnologien aus der Wirtschaftspolitik herausgerissen werden?",
+        "position": "Brantner kritisiert, dass das Wirtschaftsministerium 'zersplittert und klein gemacht' wurde, 'von einer Partei die den Anspruch hatte, die Wirtschaftswende zu machen'. Sie sieht es als 'bedauernswert', dass 'dieses Ministerium, wo so viel Zukunft drinnen steckt', aufgegliedert wurde. Sie bedauert, dass 'alles relevante' aus dem Wirtschaftsministerium hinausging: Luft und Raumfahrt zu Forschung, KI und Quanten, Klima. Sie wünscht sich intensivere Investitionen, schnellere Verfahren und schnellere Umsetzung. Sie nutzt das Bild: 'Am Ende haben mir sehr viele Bäume gepflanzt. Die können jetzt blühen oder sie werden mit Ihnen zu Brennholz.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner antwortet substantiell auf ihre eigene Frage-Initiative. Sie kritisiert die Ministeriums-Zersplitterung konkret, benannt betroffene Bereiche (Luft/Raumfahrt, KI, Quanten, Klima) und drückt ihre Sorge um Kontinuität und Innovation aus.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Dieses Wirtschaftsministerium wurde auch an sich Zweifel ändert. Alle neuen Technologien sind rausgegangen. Luft und Raumfahrt es rausgegangen, dass es mehr als Forschung, das ist auch Wirtschaft. KI und Quanten, das ist alles rausgegangen, Klima auch.",
+          "Ich finde es wirklich bedauernswert, dass dieses Ministerium, wo so viel Zukunft drinnen steckt, so zersplittert und klein gemacht wurde, von einer Partei die den Anspruch hatte, die Wirtschaftswende zu machen.",
+          "Am Ende haben mir sehr viele Bäume gepflanzt. Die können jetzt blühen oder sie werden mit Ihnen zu Brennholz. Wir haben so viel angefangen und es ist beunruhigend zu sehen, wie viel davon jetzt wird's wieder kaputt gemacht wird."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde es wirklich bedauernswert, dass dieses Ministerium, wo so viel Zukunft drinnen steckt, so zersplittert und klein gemacht wurde, von einer Partei die den Anspruch hatte, die Wirtschaftswende zu machen.",
+            "timestamp": "00:42:39",
+            "context": "Kritik an der Ministeriums-Aufteilung unter der neuen Regierung."
+          },
+          {
+            "text": "Am Ende haben mir sehr viele Bäume gepflanzt. Die können jetzt blühen oder sie werden mit Ihnen zu Brennholz.",
+            "timestamp": "00:43:10",
+            "context": "Metapher für verlorene Kontinuität grüner Innovations-Politik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ressortverteilung",
+          "Innovationspolitik",
+          "Technologiepolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im ersten Wahlgang zur Wahl Friedrich Merz' zur Kanzler ist die Koalition gescheitert, nur im zweiten Wahlgang erfolgreich.",
+        "timestamp": "00:02:20"
+      },
+      {
+        "claim": "Die Grünen haben die CDU/CSU-Koalition bereits zweimal durch Unterstützung geholfen (Merz-Wahl und Schuldenbremsen-Votum).",
+        "timestamp": "00:07:02"
+      },
+      {
+        "claim": "In drei Jahren Ampel-Koalition hat sich die AfD verdoppelt (Vorwurf von Huber, nicht von Brantner).",
+        "timestamp": "00:07:26"
+      },
+      {
+        "claim": "Deutschland verbraucht 25 % des Energieverbrauchs der gesamten EU (Aussage von Huber, von Brantner nicht bestritten).",
+        "timestamp": "00:44:37"
+      },
+      {
+        "claim": "Die Regierung Merz plant Gaskraftwerkskapazitäten im Umfang von 30 GW, gegenüber 10 GW in der grünen Planung.",
+        "timestamp": "00:29:30"
+      },
+      {
+        "claim": "Robert Habeck wurde beim Übergang zur neuen Regierung stehend applaudiert und Katherina Reiche würdigte seine 'übermenschlichen Leistungen'.",
+        "timestamp": "00:16:22"
+      },
+      {
+        "claim": "Franziska Brantner war selbst in Algerien, um Wasserstoff-Kooperationen zu startegie.",
+        "timestamp": "00:26:20"
+      },
+      {
+        "claim": "Die Ausschreibungen für die Kantinen-Verpflegung im Landwirtschaftsministerium stammen vom vorherigen Ministerium (Klöckner, CDU) und nicht von den Grünen.",
+        "timestamp": "00:36:26"
+      }
+    ]
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-februar-2026-100",
+    "video_id": "lanz-2026-02-04",
+    "politician": "Norbert Röttgen",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "a7dee425e18b68ef",
+    "transcript_chars": 55402,
+    "caption_lines": 2807,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22722,
+    "tokens_out": 8161,
+    "cost_usd": 0.025410799999999997,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:28.784Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen tritt als Sicherheitspolitiker und außenpolitischer Fachmann der CDU/CSU auf. Er argumentiert realistisch gegen überzogene Hoffnungen auf amerikanische Garantien für die Ukraine, kritisiert fehlende europäische Handlungsfähigkeit und wendet sich gegen pessimistische Szenarien zur Koalitionsfähigkeit, setzt aber auf Mehrheitsbildung in Krisenzeiten.",
+    "themes": [
+      {
+        "title": "Sicherheitsgarantien für die Ukraine: Realistische Bewertung",
+        "timestamp_range": "00:33:32 - 00:36:47",
+        "theme_description": "Diskussion über die Glaubwürdigkeit und Machbarkeit von Sicherheitsgarantien für die Ukraine durch die Trump-Administration und europäische Staaten.",
+        "question_asked": "Moderator fragt, welche Art von Sicherheitsgarantien realistisch sind, wenn die Bundeswehr selbst weder die Kapazität noch die politische Vermittelbarkeit für einen Kriegseinsatz hätte.",
+        "question_intent": "Klären, ob und wie Europa die Ukraine verteidigen könnte, falls Russland einen Waffenstillstand bricht.",
+        "position": "Röttgen bewertet Sicherheitsgarantien durch die Trump-Administration als unrealistisch. Die USA hätten kein Interesse, für Europa Krieg zu führen. Russland mit mehr als 1 Million Soldaten könnte Deutschland nicht militärisch entgegentreten. Selbst wenn eine Waffenruhe vereinbart würde und Russland sie bricht, sieht Röttgen nicht, dass die Trump-Regierung militärisch eingreift. Außenminister Rubio bezeichnete europäische Truppenkontingente als \"irrelevant\" ohne amerikanische Garantie. Das zentrale Problem: Putin akzeptiert keine NATO-Truppen auf ukrainischem Territorium, und \"die Administration Trump im Sinn hat für Europa Krieg zu führen\" nicht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Röttgen adressiert die gestellte Frage direkt, indem er darlegt, warum Sicherheitsgarantien nicht funktionieren – zu wenig europäisches Potenzial, keine amerikanische Bereitschaft, russische Vetos. Er verweigert aber eine konstruktive Alternative und bleibt bei der Problembeschreibung stehen.",
+        "quotes": [
+          {
+            "text": "Ich halte es für ausgeschlossen, dass es in der Administration von Trump Sicherheitsgarantien sichergestellt werden.",
+            "timestamp": "00:33:32",
+            "context": "Antwort auf die Frage, ob die USA Garantien geben könnten."
+          },
+          {
+            "text": "Die Regierung Trump will mit Russland Geschäfte machen. Möchte Öl Geschäfte machen.",
+            "timestamp": "00:35:17",
+            "context": "Begründung, warum die USA nicht militärisch eingreifen werden."
+          }
+        ],
+        "concrete_statements": [
+          "Russland hat etwas mehr als 1 Million Soldaten im Feld – darum ist die Frage, was können wir überhaupt, und was wollen wir überhaupt?",
+          "Die Trump-Administration hat nicht im Sinn, für Europa Krieg zu führen.",
+          "Außenminister Rubio sagt, europäische Kräfte seien irrelevant ohne amerikanische Garantie.",
+          "Bestandsgarantien (Zusage, bei Kriegsbruch militärisch einzugreifen) sind nicht vermittelbar für die USA."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik und Sicherheitspolitik",
+          "NATO-Fähigkeiten",
+          "Deutsch-Amerikanische Sicherheitsbeziehungen",
+          "Ukraine-Unterstützung"
+        ]
+      },
+      {
+        "title": "Grenzen europäischer Macht und fehlender Wille",
+        "timestamp_range": "00:33:32 - 00:40:02",
+        "theme_description": "Analyse der Frage, warum Europa trotz vorhandener Ressourcen seine Macht nicht einsetzt.",
+        "question_asked": "Moderator verweist auf Röttgens Aussage, dass \"Europa der Wille zur Macht\" fehlt, und fragt, worin diese Macht konkret besteht und warum sie nicht eingesetzt wird.",
+        "question_intent": "Konkretisieren, was mit \"Wille zur Macht\" gemeint ist und welche Verantwortung Deutschland dafür trägt.",
+        "position": "Röttgen betont, dass die fehlende europäische Reaktion auf russische Eskalation der Gewalt gegen die Zivilbevölkerung eine \"strategische Schwäche\" darstellt, die dauerhaft nicht zu ertragen sei. Das Problem sei nicht primär fehlende Macht, sondern fehlender kollektiver Wille und klare Entscheidungen. Die europäischen Staaten müssen realistisch klären, was sie garantieren können und wollen – ohne Selbstbetrug.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Röttgen adressiert das Thema 'fehlende europäische Reaktion' direkt, konkretisiert es aber eher als Symptom (Unwille, fehlende Entscheidungen) als dass er europäische Machtquellen oder konkrete Einsatzmöglichkeiten benennt.",
+        "quotes": [
+          {
+            "text": "Dass wir jetzt als europäische Staaten nicht in der Lage sind, darauf zu antworten, das wird bei uns zu einer Reaktion führen. Das ist eine strategische Schwäche, die ich für bedeutend halte.",
+            "timestamp": "00:57:44",
+            "context": "Kritik an europäischer Untätigkeit angesichts russischer Eskalation."
+          }
+        ],
+        "concrete_statements": [
+          "Fehlende europäische Reaktion auf russische Eskalation ist eine strategische Schwäche.",
+          "Die Debatte ist geprägt von fehlender Klarheit über das, was Europa tatsächlich kann und will.",
+          "Europa muss bewusst entscheiden, wie es Macht einsetzen will – ohne Selbstbetrug."
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheitspolitik",
+          "Verteidigungsbudgets",
+          "Rolle Deutschlands in Europa",
+          "Außenpolitische Strategien"
+        ]
+      },
+      {
+        "title": "Europäische Handlungsfähigkeit und Selbstbetrug bei Sicherheitsgarantien",
+        "timestamp_range": "00:36:47 - 00:39:14",
+        "theme_description": "Kritische Einschätzung, ob europäische Sicherheitsgarantien ohne amerikanische Bereitschaft zum direkten Kriegseinsatz überhaupt sinnvoll sind.",
+        "question_asked": "Moderator fragt, was folgt daraus, wenn weder Europäer noch Amerikaner die Ukraine wirksam garantieren können – ist das nicht selbstbetrug?",
+        "question_intent": "Verstehen, ob die geplanten europäischen Truppenkontingente ohne US-Backing realistisch sein können.",
+        "position": "Röttgen sieht die europäische Debatte als geprägt von fehlender Realitätsprüfung. Man müsse klar zwischen europäischer Eigenverantwortung und Selbstbetrug unterscheiden: Wenn 5.000 europäische Soldaten zur Sicherheitsgarantie für die Ukraine eingesetzt werden sollen, müsse dies politisch geklärt sein – ohne solche klaren Entscheidungen drohe ein \"programmierter Krieg\", der erneut beginnt. Wichtig ist für Röttgen die offene Diskussion darüber, was realistisch ist, statt aufgetragener Hoffnungen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen beantwortet die Frage nach dem Verhältnis zwischen europäischem Angebot und realistischer Wirkung unmittelbar: Er warnt vor Selbstbetrug und fordert ehrliche politische Diskussion über das, was möglich und tragfähig ist.",
+        "quotes": [
+          {
+            "text": "Ist das politischere Frage erörtert worden? Ob wir das schon entschieden haben? in den Krieg zu ziehen mit 5000 Soldaten?",
+            "timestamp": "00:37:22",
+            "context": "Kritik an fehlender politischer Grundsatzklärung über europäische Truppeneinsätze."
+          },
+          {
+            "text": "Ist das nur ein Selbstbetrug, der dazu führt, dass der Krieg programmiert wieder anfängt.",
+            "timestamp": "00:39:14",
+            "context": "Warnung vor unrealistischen Sicherheitsgarantien ohne klare Kriegsbereitschaft."
+          }
+        ],
+        "concrete_statements": [
+          "Man muss nüchtern analysieren, was von Politikern gesagt wird.",
+          "Das Angebot von 5.000 europäischen Soldaten als Sicherheitsgarantie ist politisch nicht vorausgedacht.",
+          "Europäische Nachbarstaaten der NATO müssen selbst fragen, was realistische Garantien bedeuten – nicht nur hoffen."
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheitspolitik",
+          "Außenpolitische Entscheidungsfindung",
+          "Militärische Einsatzbefugnisse",
+          "NATO-Kooperation"
+        ]
+      },
+      {
+        "title": "Sanktionen und wirtschaftlicher Druck auf Russland",
+        "timestamp_range": "00:44:54 - 00:48:24",
+        "theme_description": "Einschätzung der Wirksamkeit von Sekundärsanktionen und wirtschaftlichem Druck durch die Trump-Administration.",
+        "question_asked": "Röttgen wird gefragt, ob die von Trump angedrohten Sekundärsanktionen gegen Russland realistisch umgesetzt werden oder nur Ankündigungen bleiben.",
+        "question_intent": "Bewerten, ob wirtschaftliche Instrumente gegen Russland realistische Wirkung haben.",
+        "position": "Röttgen stellt klar, dass die von Trump angedrohten Sanktionen in der Ölindustrie und Gasindustrie bis dahin nicht umgesetzt worden sind. Die Sekundärsanktionen wurden angekündigt – Trump sagte, es gebe einen Monat Aufschub, danach Sanktionen – aber diese Androhung ist nicht durchgesetzt worden. Der vermeintliche Deal mit Modi (kein indisches Öl mehr für Russland) ist laut Röttgen unwahrscheinlich oder nur eine Ankündigung. Öffentlich habe Trump niemals erklärt, militärisch gegen Russland zu kämpfen, wenn ein Waffenstillstand gebrochen wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen beantwortet präzise mit Faktenchecks: Welche Sanktionen angekündigt, welche nicht umgesetzt wurden. Er trennt Ankündigung von Realität und bewertet die Glaubwürdigkeit.",
+        "quotes": [
+          {
+            "text": "Die Sanktionen, die Trump angekündigt hat, in der Ölindustrie und einer Gasindustrie, sind nicht umgesetzt worden. Die Sekundärsanktionen sind angekündigt worden, Trump hat gesagt, ihr habt einen Monat Zeit.",
+            "timestamp": "00:44:54",
+            "context": "Detaillierte Bewertung von Trumps Sanktionsankündigungen."
+          },
+          {
+            "text": "Diese Androhung ist nicht umgesetzt. ... Es ist erst mal eine Ankündigung. Die anderen Ankündigungen sind nicht vollzogen worden.",
+            "timestamp": "00:46:54",
+            "context": "Skeptische Einschätzung der Umsetzung von Sanktionen."
+          }
+        ],
+        "concrete_statements": [
+          "Öl- und Gassanktionen sind angekündigt, aber nicht umgesetzt.",
+          "Der angedrohte Monat Aufschub für Sekundärsanktionen wurde nicht vollzogen.",
+          "Der Deal mit Modi (kein indisches Öl für Russland) ist hochgradig unwahrscheinlich oder nur Ankündigung.",
+          "Trump hat öffentlich niemals erklärt, militärisch gegen Russland einzugreifen, wenn ein Waffenstillstand gebrochen wird."
+        ],
+        "related_bundestag_topics": [
+          "Außenwirtschaftssanktionen",
+          "Energiesicherheit",
+          "Außenpolitik und Handelspolitik",
+          "Beziehungen zu Indien"
+        ]
+      },
+      {
+        "title": "Einfrieren der Vermögenswerte und europäische Initiative",
+        "timestamp_range": "00:51:12 - 00:55:05",
+        "theme_description": "Bewertung der Initiative, eingefrorene russische Vermögenswerte zur Ukraine-Unterstützung einzusetzen.",
+        "question_asked": "Moderator fragt, ob Friedrich Merz' Initiative, 90 Milliarden Euro aus eingefrorenen russischen Vermögen zu nutzen, ein Beispiel echter europäischer Macht sei.",
+        "question_intent": "Würdigen, ob dieser Schritt einen neuen Kurs in der europäischen Politik anzeigt.",
+        "position": "Röttgen wertet die Initiative des Bundeskanzlers Merz, 160 Milliarden Euro aus eingefrorenen russischen Staatsvermögen zur Ukraine-Unterstützung zu nutzen (statt nur 90 Milliarden), als ein Beispiel echter \"Sprache der Macht\". Dies sei symbolisch und praktisch bedeutsam: Den Russen zu sagen, dass Europa auf ihr Vermögen zugreift, um das Land zu unterstützen, das sie zerstören, sei eine starke Geste. Gleichzeitig kritisiert Röttgen, dass wichtige europäische Länder (Belgien, Italien, Frankreich) dagegen votiert haben und die \"existenzielle Dimension\" dieses Krieges nicht verstanden haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen beantwortet die Frage direkt und positiv: Ja, dies ist ein Beispiel europäischer Macht. Er konkretisiert das Urteil und benennt auch die internen europäischen Widerstände.",
+        "quotes": [
+          {
+            "text": "Das war die Sprache der Macht. Den Russen zu sagen, wir greifen auf euer Vermögen zu, um das Land zu unterstützen, was ihr zerstört.",
+            "timestamp": "00:54:26",
+            "context": "Bewertung der Initiative als Ausdruck europäischer Handlungsfähigkeit."
+          },
+          {
+            "text": "Das war eine enorme Initiative, die der Bundeskanzler gemacht hat. Es war eine zu starke Minderheit dagegen. Das ist die Traurigkeit darin, weil es ausdrückt, dass noch nicht alle in Europa die existenzielle Dimension verstanden haben.",
+            "timestamp": "00:54:35",
+            "context": "Würdigung mit gleichzeitiger Kritik an europäischen Partnern."
+          }
+        ],
+        "concrete_statements": [
+          "Die Initiative, 160 Milliarden Euro aus eingefrorenen russischen Vermögen zu nutzen, ist echte europäische Macht.",
+          "Dies ist bedeutsamer als das Zugeständnis der 90 Milliarden.",
+          "Belgien, Italien und Frankreich verstehen die existenzielle Bedrohung nicht ausreichend.",
+          "Dies zeigt, dass nicht alle europäischen Eliten bereit sind, die Konsequenzen zu tragen."
+        ],
+        "related_bundestag_topics": [
+          "Sanktionen gegen Russland",
+          "Finanzierung der Ukraine",
+          "Europäische Kooperation",
+          "Vermögenskontrollen"
+        ]
+      },
+      {
+        "title": "Taurus-Lieferungen und Grenzen deutscher Rüstungspolitik",
+        "timestamp_range": "00:53:02 - 00:57:44",
+        "theme_description": "Bewertung der Lieferung von Taurus-Marschflugkörpern an die Ukraine und der industriellen Kooperationsmöglichkeiten.",
+        "question_asked": "Moderator fragt, ob Röttgen weiterhin für die Lieferung von Taurus-Marschflugkörpern eintritt, angesichts der öffentlichen Vorbehalte in Deutschland.",
+        "question_intent": "Klären, ob ein Bundeskanzler Merz trotz Bevölkerungsvorbehalten für Taurus-Lieferungen entscheiden könnte.",
+        "position": "Röttgen bekräftigt seine Position für Taurus-Lieferungen. Er differenziert jedoch: Der Vorschlag einer industriellen Kooperation Deutschland-Ukraine zur Entwicklung eines eigenen ukrainischen Marschflugkörpers biete einen praktischen \"Ausweg\". Die Debatte sei anhaltend geprägt von Bundeskanzler Scholz' Angstkampagne gegen die Unterstützung. Röttgen anerkennt die Umfragewerte, die gegen Taurus sprechen, sieht aber auch fehlende europäische Reaktionsfähigkeit auf russische Eskalation als \"strategische Schwäche\". Die 90 Milliarden Euro und das eingefrorene russische Staatsvermögen seien hingegen Beispiele echter \"Sprache der Macht\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen antwortet direkt auf die Frage mit klarer Position (ja zu Taurus) und ergänzt diese um differentielle Argumente (industrielle Kooperation, Schuldigung Scholz' Erbe, Anerkennung der politischen Grenzen, aber Skepsis gegen bloße Verzichte).",
+        "quotes": [
+          {
+            "text": "Ja, ich war dafür, ich bin immer noch dafür.",
+            "timestamp": "00:53:02",
+            "context": "Klare Positionierung zu Taurus-Lieferungen trotz Widerstands."
+          },
+          {
+            "text": "Es war ein fataler Fehler von Scholz.",
+            "timestamp": "00:55:47",
+            "context": "Kritik an Scholz' Erklärung, dass Deutschland im Krieg sei, ohne entsprechende Waffentransfers zu unterstützen."
+          }
+        ],
+        "concrete_statements": [
+          "Die industrielle Kooperation Deutschland-Ukraine zur Entwicklung eines eigenen Marschflugkörpers ist ein praktischer Ausweg.",
+          "Die 90 Milliarden Euro aus eingefrorenen russischen Vermögen waren ein Beispiel echter europäischer Macht.",
+          "Scholz' Angstkampagne hat die öffentliche Meinung geprägt und wirkt bis heute nach.",
+          "Merz hätte als Bundeskanzler nicht allein in einer Koalition über Taurus entscheiden können."
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsexporte",
+          "Unterstützung der Ukraine",
+          "Regierungspolitik unter Merz",
+          "Waffensysteme und ihre Einsatzfähigkeit"
+        ]
+      },
+      {
+        "title": "Schuldigung und Traurigkeit über fehlende europäische Einigkeit",
+        "timestamp_range": "00:54:26 - 00:55:36",
+        "theme_description": "Emotionale und politische Reaktion auf die Tatsache, dass europäische Partner nicht die existenzielle Bedrohung verstanden haben.",
+        "question_asked": "Im Kontext der Initiative für 160 Milliarden Euro wird die mangelnde Unterstützung anderer europäischer Länder thematisiert.",
+        "question_intent": "Verstehen, wie Röttgen die fehlende europäische Solidarität bewertet.",
+        "position": "Röttgen drückt aus, dass die Ablehnung der Initiative durch Belgien, Italien und Frankreich (\"zu starke Minderheit\") ihn traurig stimmt, weil sie zeigt, dass nicht alle europäischen Partner die existenzielle Dimension des Krieges verstanden haben. Dies ist für Röttgen ein Zeichen mangelnder strategischer Einsicht und politischer Reife. Gleichzeitig relativiert er: Am Ende kamen immerhin 90 Milliarden zusammen, was nicht nichts ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen beantwortet die implizite Frage, wie er die fehlende europäische Einheit bewertet, durch eine differenzierte Mischung aus Kritik, Traurigkeit und pragmatischer Anerkennung dessen, was erreicht wurde.",
+        "quotes": [
+          {
+            "text": "Das ist die Traurigkeit darin, weil es ausdrückt, dass noch nicht alle in Europa die existenzielle Dimension verstanden haben. Sowohl der belgische Ministerpräsident, die italienische, unter französische um mal 3 zu nennen. Sie waren historisch auf der falschen Seite.",
+            "timestamp": "00:54:35",
+            "context": "Kritik an europäischen Ländern und deren Verständnis der Kriegslage."
+          }
+        ],
+        "concrete_statements": [
+          "Belgien, Italien und Frankreich verstehen die existenzielle Bedrohung nicht ausreichend.",
+          "Dies ist eine historische Fehlorientierung dieser Länder.",
+          "Trotzdem: 90 Milliarden Euro sind nicht nichts, wenn auch weniger als ursprünglich geplant."
+        ],
+        "related_bundestag_topics": [
+          "Europäische Solidarität",
+          "Finanzierung der Ukraine",
+          "Außenpolitische Positionierung Deutschlands"
+        ]
+      },
+      {
+        "title": "Fragmentierung und Koalitionsfähigkeit in Krisenzeiten",
+        "timestamp_range": "01:09:36 - 01:15:30",
+        "theme_description": "Diskussion über die Fragmentierung der politischen Landschaft und deren Auswirkungen auf Deutschlands Handlungsfähigkeit in Krisen.",
+        "question_asked": "Moderator und Bojan Pancevski sprechen über die Brandmauer und deren Wirkung auf Koalitionsfähigkeit; Röttgen wird gefragt, ob er diesen Pessimismus teilt.",
+        "question_intent": "Verstehen, ob die politische Polarisierung Deutschland handlungsunfähig macht.",
+        "position": "Röttgen teilt den Pessimismus ausdrücklich nicht. Zwar erkenne er die Fragmentierung und die Krise der Demokratie an, setze aber darauf, dass äußere und innere Bedrohungen – insbesondere im Zusammenhang mit äußerer Sicherheit – zu Mehrheitsbildung führen können. Er sagt, dass dies \"der entscheidende Kampf\" sei und er nicht bereit sei, mit pessimistischer Haltung in diesen Kampf zu gehen. Die Verbindung zwischen äußerer Gefährdung und innerer Stabilität sei das entscheidende Potenzial für Einigung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen beantwortet die Frage nach seinem Pessimismus direkt und nimmt eine bewusst gegenteilige Position ein: Er sieht in Krisenzeiten eine Chance für Mehrheitsbildung und formuliert eine normativ-strategische Position.",
+        "quotes": [
+          {
+            "text": "Das teile ich so nicht. ... dass gerade in der Verbindung zu dem, was wir zuerst diskutiert haben, die äußere und innere Bedrohung, dass es eine gute Chance gibt, zu sagen, wir müssen uns klarmachen, dass alles auf dem Spiel steht.",
+            "timestamp": "01:14:34",
+            "context": "Widerspruch gegen Pessimismus und Hoffnung auf Krisensolidarität."
+          },
+          {
+            "text": "Das ist der entscheidende Kampf und den bin ich nicht bereit mit einem pessimistischen Ansatz zu führen.",
+            "timestamp": "01:15:19",
+            "context": "Bewusste Ablehnung von pessimistischen Szenarien zur Koalitionsfähigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt Fragmentierung und Krise der Demokratie, aber Krisen können zu Mehrheitsbildung führen.",
+          "Die Verbindung zwischen äußerer Bedrohung und innerer Stabilität ist der Schlüssel.",
+          "Röttgen lehnt pessimistische Strategien ab und kämpft für Mehrheitsbildung in Krisenzeiten."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit der CDU",
+          "Brandmauer und AfD",
+          "Krisenmanagement",
+          "Verfassungsschutz und innere Sicherheit"
+        ]
+      },
+      {
+        "title": "AfD und Koalitionsfähigkeit: Konkrekte Szenarien",
+        "timestamp_range": "01:11:07 - 01:14:34",
+        "theme_description": "Einschätzung der Möglichkeit, mit der AfD zusammenzuarbeiten, um regierungsfähige Koalitionen zu bilden.",
+        "question_asked": "Moderator verweist auf JD Vance' These, dass die Brandmauer europäische Regierungen handlungsunfähig macht, und fragt, ob mit der AfD zusammenzuarbeiten ein Ausweg sei.",
+        "question_intent": "Klären, ob die AfD als Koalitionspartner eine praktikable Lösung für Deutschlands Regierungsfähigkeit darstellt.",
+        "position": "Röttgen lehnt die Vorstellung ab, dass es mit der AfD leichter werde. Die AfD sei bei Fragen wie Wehrpflicht und dem Umgang mit autoritären Regimen \"dermaßen zerstritten und unberechenbar\", dass tragfähige Lösungen nicht zustande kämen. Es gab zwar Überlegungen, aber keine ernsthaften Pläne (zumindest nicht auf der Ebene, die Röttgen kennt) für eine Zusammenarbeit. Allerdings gibt Röttgen zu, dass Friedrich Merz in einer abstimmung mit der AfD zusammen votiert hatte – \"sehenden Auges\" gelaufen. Die CDU habe mittlerweile jedoch neues Selbstbewusstsein gegenüber der AfD gewonnen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen antwortet klar: Nein, mit der AfD wird es nicht leichter. Er begründet dies konkret (Wehrpflicht, autoritäre Regime, Zerrissenheit) und diferenziert zwischen dem, was gesagt wird und was realistisch ist.",
+        "quotes": [
+          {
+            "text": "Die Vorstellung, dass es mit der AfD leichter wird, die halte ich für gewagt.",
+            "timestamp": "01:11:07",
+            "context": "Klare Ablehnung der AfD als Koalitionspartner."
+          },
+          {
+            "text": "Ich glaube nicht, dass die Brandmauer per se in Deutschland sondern die politischen Limitierung die der Anführer so einer Koalition hat dass sie unfähig sind etwas leisten.",
+            "timestamp": "01:10:34",
+            "context": "Verfeinerte Diagnose: nicht die Brandmauer selbst, sondern die Unfähigkeit der Koalitionsführer."
+          }
+        ],
+        "concrete_statements": [
+          "Die AfD ist bei Wehrpflicht und Umgang mit autoritären Regimen zu zerstritten und unberechenbar.",
+          "Mit der AfD lässt sich keine tragfähige Regierungspolitik aufbauen.",
+          "Friedrich Merz ist sehenden Auges in eine Abstimmung mit der AfD hineingelaufen.",
+          "Die CDU hat mittlerweile neues Selbstbewusstsein gegenüber der AfD gewonnen."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "Brandmauer und AfD",
+          "Regierungsprogramme der Union",
+          "Wehrpflicht und Verteidigungspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Russland hat etwas mehr als 1 Million Soldaten im Feld",
+        "timestamp": "00:33:32"
+      },
+      {
+        "claim": "Die Trump-Administration hat Sekundärsanktionen gegen Russland angekündigt, mit einem Monat Aufschub, aber nicht umgesetzt",
+        "timestamp": "00:44:54"
+      },
+      {
+        "claim": "Außenminister Rubio sagte im Kongress, europäische Truppenkontingente seien irrelevant ohne amerikanische Garantie",
+        "timestamp": "00:35:17"
+      },
+      {
+        "claim": "Die Initiative von Bundeskanzler Merz sah vor, 160 Milliarden Euro aus eingefrorenen russischen Vermögen zu nutzen",
+        "timestamp": "00:54:26"
+      },
+      {
+        "claim": "Belgien, Italien und Frankreich lehnten die Initiative zur Nutzung eingefrorener russischer Vermögen ab",
+        "timestamp": "00:54:35"
+      }
+    ]
+  }
+}

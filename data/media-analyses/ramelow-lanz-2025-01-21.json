@@ -1,0 +1,324 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-21-januar-2025-100",
+    "video_id": "lanz-2025-01-21",
+    "politician": "Bodo Ramelow",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "11895b63f3b01371",
+    "transcript_chars": 44060,
+    "caption_lines": 2267,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 18852,
+    "tokens_out": 7336,
+    "cost_usd": 0.022212799999999998,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-02T16:33:28.875Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bodo Ramelow, Bundestagsmitglied und Vize-Präsident des Bundestags (Die Linke), erörtert in der Markus-Lanz-Sendung seine Positionen zu Trumps Politikwechsel, zur Macht der Oligarchen, zur Datensicherheit und zur Situation der Linkspartei. Er argumentiert gewerkschaftsorientiert kritisch gegen die Entmachtung von Arbeitnehmerrechten durch Tech-Milliardäre und verteidigt die Linke gegen die Vorwürfe mangelnder Wählbarkeit.",
+    "themes": [
+      {
+        "title": "Trumps Oligarchen-Allianz und Arbeitsrechte",
+        "timestamp_range": "00:06:27 - 00:09:02",
+        "theme_description": "Ramelows Kritik an der Koalition zwischen Trump und den reichsten Männern der Welt sowie deren Einfluss auf Datenverwaltung und Arbeitnehmerrechte.",
+        "question_asked": "Wie beurteilt die Linke Trumps Wahl und die damit verbundenen gesellschaftlichen Ängste?",
+        "question_intent": "Der Moderator möchte wissen, wie die politische Linke die neuen Machtverhältnisse unter Trump einordnet und welche Konsequenzen sie für Deutschland hat.",
+        "position": "Ramelow argumentiert, dass Menschen berechtigte Ängste vor Arbeitslosigkeit haben, denen Trump eine neue Welt versprochen habe. Er kritisiert, dass die reichsten Männer bei Trumps Amtseinführung zusammensaßen – ein Zeichen, dass diejenigen, die früher als Gegner inszeniert wurden, nun zusammenarbeiten. Das zentrale Problem sieht er darin, dass Trump und seine Allianz versuchen, nationale Vermögen zu privatisieren (etwa durch Krypto-Münzen) und damit eine völlig neue Politik etablieren, in der es nur \"die gibt, die dazugehören und die, die nicht dazugehören\". Dies unterscheidet sich grundlegend von der freien Welt, auf die sich der Westen bisher bezog.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow antwortet auf die Frage, aber verschiebt den Fokus von persönlicher Angst auf die strukturelle Machtkonzentration der Oligarchen. Er nimmt Stellung zur Trump-Wahl, aber beantwortet nicht direkt, welche konkreten Maßnahmen die Linke zur Bekämpfung dieser Ängste vorschlägt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Die richest Männer der Welt begleiten Donald Trump",
+          "Trump privatisiert sein Abend zum Wohl seines eigenen Vermögens",
+          "Das ist eine völlig neue Politik als das, was wir früher als freie Welt bezeichneten"
+        ],
+        "quotes": [
+          {
+            "text": "es gefällt mir nicht, aber ich nehme zur Kenntnis, dass diejenigen, die uns immer gezwungen haben, Russland gegen USA und umgekehrt zu denken, jetzt sitzen die Mächtigen alle zusammen und begleiten Donald Trump auf seinem Weg.",
+            "timestamp": "00:06:27",
+            "context": "Ramelow erörtert die Doppelzüngigkeit der globalen Eliten, die früher als ideologische Gegner positioniert wurden."
+          },
+          {
+            "text": "es gibt die, die dazugehören und die, die nicht dazugehören.",
+            "timestamp": "00:09:02",
+            "context": "Ramelow beschreibt die zweigeteilte Gesellschaft unter Trumps neuer Politik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitnehmerrechte und Tarifverträge",
+          "Regulierung von Tech-Konzernen",
+          "Vermögenskonzentration",
+          "Datenschutz"
+        ]
+      },
+      {
+        "title": "Elon Musks Geste und Faschismus-Symbolik",
+        "timestamp_range": "00:40:45 - 00:42:51",
+        "theme_description": "Ramelows Interpretation von Elon Musks möglicherweise faschistischer Geste bei Trumps Amtseinführung und ihre Bedeutung für Demokratie und Rechtsstaat.",
+        "question_asked": "Wie interpretiert Ramelow Elon Musks Geste, die als Hitlergruß gedeutet wurde?",
+        "question_intent": "Der Moderator möchte von Ramelow als Gewerkschafter und Politiker der Linken erfahren, wie er die möglicherweise faschistische Symbolik der reichsten Person der Welt bewertet.",
+        "position": "Ramelow erklärt, dass er nicht die Geste als Hitlergruß interpretiert habe, sondern dass er sie im Kontext des amerikanischen Nazi-Grußes sehe, der sich vom klassischen Hitlergruß unterscheide, aber funktionsmäßig gleich ablaufe (Hand ans Herz, dann Arm nach oben). Er ordnet diese Geste in die politische Gruppierung ein, die auch das Kapitol gestürmt hat. Als Gewerkschafter beunruhigt ihn besonders, dass der reichste Mann der Welt sich nicht klar zu Demokratie und Rechtsstaatlichkeit bekennt und damit Arbeitnehmerrechte, Tarifverträge und Betriebsräte gefährdet, die Musk als \"überflüssige Regeln\" betrachtet.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage direkt und substantiell, klärt sein Verständnis der Geste und verbindet es mit konkreten gewerkschaftlichen Anliegen und der Gefahr für demokratische Institutionen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich war schockiert",
+          "Es ist eingeordnet in diese politische Gruppierung, die auch das Kapitol gestürmt haben",
+          "Wenn der reichste Mann der Welt eine solche Geste macht, nicht klarmacht, was Demokratie und Rechtsstaatlichkeit sind, bleibe ich als Gewerkschafter dabei"
+        ],
+        "quotes": [
+          {
+            "text": "Ich war schockiert, nicht weil ich es als Hitlergruß interpretiert habe, sondern weil ich den amerikanischen Gruß der Nazis kenne. Der unterscheidet sich vom Hitlergruß, und der funktioniert genauso, erst ans Herz fassen, dann der Arm nach oben.",
+            "timestamp": "00:41:01",
+            "context": "Ramelow erläutert seine Interpretation der Geste von Elon Musk."
+          },
+          {
+            "text": "Wenn der reichste Mann der Welt eine solche Geste macht, nicht klarmacht, was Demokratie und Rechtsstaatlichkeit sind, die Grundlage einer freien Welt, dann bleibe ich als Gewerkschafter dabei",
+            "timestamp": "00:42:51",
+            "context": "Ramelow erklärt seine Besorgnis aus gewerkschaftlicher Perspektive."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Extremismus und Verfassungsschutz",
+          "Arbeitnehmerrechte",
+          "Rechtsstaatlichkeit"
+        ]
+      },
+      {
+        "title": "Europäische Tech-Souveränität und Chipfertigung",
+        "timestamp_range": "00:50:55 - 00:55:30",
+        "theme_description": "Ramelows Sicht auf fehlende europäische Investitionen in Technologie-Startups und die Abhängigkeit von amerikanischen Konzernen bei KI und Chipfertigung.",
+        "question_asked": "Warum reden wir in Deutschland nicht darüber, dass junge Talente in die USA abwandern, und wie könnte man das ändern?",
+        "question_intent": "Der Moderator fragt, weshalb die deutsche Politik nicht aktiver gegen die Abhängigkeit von US-amerikanischer Technologie vorgehen und mehr in europäische Startups investieren.",
+        "position": "Ramelow argumentiert, dass es bereits Investitionsmöglichkeiten gibt, aber es einen Mangel an öffentlich-rechtlichem Anspruch gebe – stattdessen herrschten nur private Verträge vor. Er kritisiert, dass Deutschland Unternehmen wie Allianz verbietet, in bestimmte Risiken zu gehen, während die Amerikaner das nicht täten. Er verweist auf sein Beispiel aus Thüringen, wo Gelder für Innovation in Jena genutzt wurden. Das zentrale Problem sieht er darin, dass intelligente junge Menschen gezwungen sind zu gehen, wenn sie wachsen wollen. Europa verfüge über ähnliches Talent, müsse aber andere regulatorische Bedingungen schaffen. Konkret: 95 % aller Chipfabriken würden in Eindhoven gebaut, 300 deutsche Zulieferfirmen belieferten diese, aber Deutschland starte keine Offensive für eigene Produkte.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow liefert konkrete Beispiele und kritisiert die Regulierungshemmnisse, antwortet aber weniger auf die spezifische Frage zur Wahlkampf-Kommunikation über Tech-Abhängigkeit, sondern legt dar, welche Hebel es gibt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "95 % aller Chipfabriken werden in Eindhoven gebaut",
+          "Wir haben 300 Zulieferfirmen, die für diese Chipfabriken produzieren",
+          "Wir schaffen es nicht eine Offensive zu starten, um eigene Produkte zu entwickeln",
+          "Wir müssen mit KI neue Wege gehen"
+        ],
+        "quotes": [
+          {
+            "text": "Das gibt es längst als Investitionsmöglichkeiten. Es gibt gar keinen öffentlich rechtlichen Anspruch mehr. Es gibt nur private Verträge, die von den Inhabern beschlossen werden.",
+            "timestamp": "00:51:03",
+            "context": "Ramelow erklärt die fehlende öffentliche Struktur für Tech-Investitionen."
+          },
+          {
+            "text": "Wir haben genauso schlaue, junge Leute. Die müssen gehen, wenn sie wachsen wollen.",
+            "timestamp": "00:57:17",
+            "context": "Ramelow kritisiert, dass deutsche Talente abwandern, weil die Rahmenbedingungen nicht stimmen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Digitale Souveränität Europas",
+          "Forschungs- und Entwicklungsförderung",
+          "KI-Regulierung",
+          "Mittelstandsförderung"
+        ]
+      },
+      {
+        "title": "Rente und staatliche Vermögensanlage",
+        "timestamp_range": "00:57:17 - 00:59:22",
+        "theme_description": "Ramelows Position zur Rentensicherung durch staatliche Vermögensanlage statt Börsenabhängigkeit.",
+        "question_asked": "Was würde passieren, wenn jemand wie Ramelow in ein Startup wie Tesla investieren könnte?",
+        "question_intent": "Der Moderator fragt spekulativ, welche politischen Änderungen Ramelow an den Rahmenbedingungen für Startup-Investitionen vornehmen würde.",
+        "position": "Ramelow lehnt es kategorisch ab, die Rente an die Börse zu binden – das sei nicht sein Weg. Stattdessen möchte er eine moderne Bürgerversicherung einführen, um eine breitere Vermögensverteilung zu schaffen. Sein Gegenargument zu Trump: Diese Verteilungssysteme würde Trump als Kommunismus bezeichnen. Beim zweiten Teil betont er, dass Thüringen Fonds hält, deren Erträge speziell zur Förderung von Unternehmen wie in Jena genutzt werden – nicht in den allgemeinen Landeshaushalt. Zugleich kritisiert er, dass Unternehmen wie Allianz bestimmte Investitionsrisiken nicht eingehen dürfen, während die USA das täten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow antwortet direkt auf die hypothetische Frage und legt seine politische Position zur Altersvorsorge und zur Vermögensanlage klar dar.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Erst mal gehört die Rente gar nicht an die Börse",
+          "Ich würde eine moderne Bürgerversicherung einführen",
+          "Damit wir eine breite Verteilung kriegen",
+          "Das ist ein Verteilungssystem – ein Verteilungssystem in einer Gesellschaft würde Trump als Kommunismus bezeichnen"
+        ],
+        "quotes": [
+          {
+            "text": "Erst mal gehört die Rente gar nicht an die Börse. Das muss sich für Zuhörer gerne teilen. Da bin ich sehr empfindlich. Ich würde eine moderne Bürgerversicherung einführen. Damit wir eine breite Verteilung kriegen.",
+            "timestamp": "00:57:17",
+            "context": "Ramelow erklärt sein Verständnis von solidarischer Altersvorsorge."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentensicherung",
+          "Generationengerechtigkeitkeit",
+          "Staatliche Vermögensanlage",
+          "Vermögensverteilung"
+        ]
+      },
+      {
+        "title": "Linkspartei-Glaubwürdigkeit und Wagenknecht-Kritik",
+        "timestamp_range": "01:04:37 - 01:07:42",
+        "theme_description": "Ramelows Verteidigung der Linkspartei gegen Vorwürfe mangelnder Wählbarkeit und seine Kritik an Sahra Wagenknechts Einfluss auf die Spaltung.",
+        "question_asked": "Stimmt es, dass die Linke kaum noch jemand wählt und dass Ramelow selbst nur geringe Chancen hat?",
+        "question_intent": "Der Moderator stellt infrage, ob die Linkspartei noch relevant ist und ob Ramelows Optimismus zur \"Operation Silberlocke\" realistisch ist.",
+        "position": "Ramelow widerlegt die Aussage, dass \"kein Mensch die Linke wählt\": Im Wahlkreis Erfurt sei er mit 42 % der Stimmen gewählt worden – nur weil er auf dem Wahlzettel stand, und seine persönliche Zustimmung als Ministerpräsident-Kandidat habe 26 % betragen. Am 23. Februar wolle er den Wahlkreis gewinnen und könne direkt gewählt werden. Die Spaltung der Linken erklärt er durch Sahra Wagenknecht: Sie und Oskar Lafontaine hätten eine sozialdemokratische Partei hingerichtet. Wagenknechts BSW habe dazu geführt, dass Stimmen von der Linken zum BSW wanderten, nicht aber der AfD schadeten. Die Diskussion über den Krieg in der Ukraine spalte Ostdeutschland besonders, wo Angst vor dem eigenen Abstieg zu Skepsis gegenüber Sozialleistungen führe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die implizite Kritik mit Zahlen und klärt den Unterschied zwischen Partei- und Direktwahl sowie zwischen nationalen und regionalen Ergebnissen auf. Er erläutert konkrete Gründe für die Linke-Schwäche.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Im Wahlkreis Erfurt mit 26 % als Ministerpräsidenten-Kandidat gewählt",
+          "Mit 42 % der Stimmen in der Direktwahl",
+          "Am 23. Februar möchte ich den Wahlkreis gewinnen",
+          "Frau Wagenknecht hat dazu geführt, dass die Linke gespalten ist"
+        ],
+        "quotes": [
+          {
+            "text": "Bei dieser Abstimmung bin ich im Wahlkreis Erfurt mit 26 % mehr Stimmen gewählt worden, 42 % der Stimmen, das ist denen Stimmen umgesetzt worden, wo ich auf dem Wahlzettel stand. Am Sonntag den 23. Februar möchte ich den Wahlkreis gewinnen, da kann man mich nämlich direkt wählen.",
+            "timestamp": "01:04:37",
+            "context": "Ramelow widerlegt die Aussage, dass er unwählbar sei, mit konkreten Zahlen."
+          },
+          {
+            "text": "Die ehemalige Bürgermeisterin Karin Wolff hatte mir gesagt, sie wechselt zum BSW, um der AfD die Stimmen wegzunehmen. Dann ist das passiert, dass die AfD Stimmen gewonnen hat, und die Stimmen, die Linke verloren hat, die sind zum BSW gegangen.",
+            "timestamp": "01:06:29",
+            "context": "Ramelow analysiert die Wählerwanderung zwischen Linke, BSW und AfD."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Fragmentierung des Parteiensystems",
+          "Vertrauensverlust in etablierte Parteien",
+          "Regionale Unterschiede Ost-West",
+          "BSW und Wagenknecht"
+        ]
+      },
+      {
+        "title": "Migrationspolitik und Bürgergeld-Kritik",
+        "timestamp_range": "01:07:42 - 01:08:43",
+        "theme_description": "Ramelows Einwände gegen die Bürgergeld-Reform und die Organisationsmängel bei Geflüchteten-Sozialleistungen.",
+        "question_asked": "Warum verstehen Politiker nicht, dass Menschen Angst haben vor Zuwanderung und dass die Politik nichts gegen deren Arbeitslosigkeit tut?",
+        "question_intent": "Der Moderator will von Ramelow erfahren, wie die Linke auf das Unbehagen bei Migration und Sozialausgaben reagiert.",
+        "position": "Ramelow räumt ein, dass die Bürgergeld-Einführung Probleme hatte. Olaf Scholz habe nicht verhandeln wollen, sondern es einfach einführen wollen. Ramelow habe gefragt, ob geprüft worden sei, dass Geflüchtete keine Sozialversicherung hätten und die Kommunen alles selbst tragen mussten. Diese Situation hätte man organisatorisch anders aufziehen können. Damit antwortet er auf die Kritik der fehlenden Koordination zwischen Bund und Kommunen, relativiert aber nicht die grundsätzliche Ausrichtung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow nimmt die Frage auf und kritisiert die Umsetzung des Bürgergelds, antwortet aber nicht auf den tieferen Punkt, warum arbeitslose Menschen Angst vor Zuwanderung haben, sondern fokussiert auf die Verwaltungsmängel.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Olaf Scholz wollte gar nicht verhandeln, er wollte es einfach einführen",
+          "Ich habe gefragt, ob geprüft wurde, dass sie keine Sozialversicherung haben",
+          "Die Kommunen mussten das alles selbst tragen"
+        ],
+        "quotes": [
+          {
+            "text": "Die Politik hat das Bürgergeld eingeführt, Olaf Scholz wollte gar nicht verhandeln, er wollte es einfach einführen. Ich habe gefragt, ob geprüft wurde, dass sie keine Sozialversicherung haben, und die Kommunen mussten das alles selbst tragen, diese Situation hätte man anders organisieren können.",
+            "timestamp": "01:08:06",
+            "context": "Ramelow kritisiert die mangelnde Koordination bei der Bürgergeld-Einführung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Sozialleistungen und Integration",
+          "Föderalismus",
+          "Kommunale Finanzierung"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer und Links-rechts Rhetorik",
+        "timestamp_range": "01:09:53 - 01:10:50",
+        "theme_description": "Ramelows Verteidigung des Linke-Wahlprogramms zur Vermögensbesteuerung und theologische Begründung.",
+        "question_asked": "Das Linke-Wahlprogramm sagt, der Besserverdienende ist immer Teil des Problems – ist das nicht unfair gegenüber erfolgreichen Menschen?",
+        "question_intent": "Der Moderator stellt die radikale Rhetorik der Linken infrage und ob diese Menschenfeindlichkeit impliziert.",
+        "position": "Ramelow verteidigt diese Position mit einer theologischen Begründung: \"Wenn einer mehr tragen kann, dann soll er mehr tragen.\" Damit grenzt er sich ab von der Interpretation, die Linke wolle \"Milliardäre vertreiben\" (wie Sigmar Gabriel suggeriert). Ramelow stellt klar: Die Linke wolle Milliardäre besteuern, nicht vertreiben. Er weist darauf hin, dass sowohl SPD als auch Linke Vermögenssteuer im Wahlprogramm hätten, die SPD aber in der Regierung diese Versprechen vergesse.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow antwortet direkt und klärt das Missverständnis zwischen Besteuerung und Vertreibung auf. Er liefert eine theologische Begründung und relativiert das Radikalität-Image durch Verweis auf SPD-Positionen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das leite ich aus der Bibel ab",
+          "Er möchte sie besteuern, nicht vertreiben",
+          "Die SPD und die Linke haben Vermögenssteuer im Wahlprogramm",
+          "Die SPD verspricht immer, links abzubiegen, vergisst das dann aber immer in der Regierung"
+        ],
+        "quotes": [
+          {
+            "text": "Das leite ich aus der Bibel ab, wenn einer mehr tragen kann, dann soll er mehr tragen.",
+            "timestamp": "01:10:04",
+            "context": "Ramelow begründet die Position zur Vermögenssteuer theologisch."
+          },
+          {
+            "text": "Er möchte sie besteuern. Nicht vertreiben.",
+            "timestamp": "01:10:25",
+            "context": "Ramelow präzisiert die Linke-Position gegen Gabriel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögenssteuer und Vermögensabgaben",
+          "Einkommensteuer",
+          "Steuergerechtigkeit",
+          "Umverteilung"
+        ]
+      },
+      {
+        "title": "FDP-Austritt aus Regierung und Vertrauensverlust",
+        "timestamp_range": "01:14:27 - 01:14:54",
+        "theme_description": "Ramelows Kritik an Christian Lindner und der FDP wegen der angeblich gelügenen Darstellung des Regierungsausstiegs.",
+        "question_asked": "Implizit: Wie bewertet die Linke den FDP-Austritt und Christian Lindners Glaubwürdigkeitsverlust?",
+        "question_intent": "Der Moderator möchte von Ramelow hören, wie die politische Linke die Zerstörung der Ampel-Koalition durch die FDP einschätzt.",
+        "position": "Ramelow charakterisiert Lindners Behauptung, die Papiere zur angestrebten Regierungskrise nicht gekannt zu haben, als \"erbärmlich\". Dies steht in Kontrast zu der vorherigen Debatte, in der Gabriel und Hähnig die FDP differenzierter betrachteten (als legitime Entscheidung, rausgeworfen zu werden vs. als bewusster Sabotage). Ramelow nimmt hier eine schärfere Linie ein.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die implizite Frage nach der Linke-Position mit einer klaren Verurteilung von Lindners Glaubwürdigkeit.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Christian Lindner sagt, er hätte diese Papiere nicht gekannt – das ist erbärmlich"
+        ],
+        "quotes": [
+          {
+            "text": "Also wenn Christian Lindner sagt, er hätte diese Papiere nicht gekannt, das ist erbärmlich.",
+            "timestamp": "01:14:36",
+            "context": "Ramelow bewertet Lindners Aussage zum Krisenplan-Papier als unglaubwürdig."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ampel-Koalitionskrise",
+          "Vertrauensfrage",
+          "Glaubwürdigkeit von Politikern",
+          "Koalitionsmanagement"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im Wahlkreis Erfurt wurde Ramelow mit 42 % der Stimmen in der Direktwahl gewählt",
+        "timestamp": "01:04:37"
+      },
+      {
+        "claim": "Bodo Ramelow erhielt 26 % als Ministerpräsidenten-Kandidat (in der Abstimmung)",
+        "timestamp": "01:04:37"
+      },
+      {
+        "claim": "Am 23. Februar 2025 findet eine Bundestags-Wahl statt",
+        "timestamp": "01:04:37"
+      },
+      {
+        "claim": "95 % aller Chipfabriken werden in Eindhoven gebaut",
+        "timestamp": "00:54:07"
+      },
+      {
+        "claim": "Deutschland hat 300 Zulieferfirmen für Chipfabriken",
+        "timestamp": "00:54:07"
+      },
+      {
+        "claim": "Es gab einen Kapitol-Stürmer, der ein T-Shirt mit \\\"Camp Auschwitz\\\" trug",
+        "timestamp": "00:41:01"
+      }
+    ]
+  }
+}

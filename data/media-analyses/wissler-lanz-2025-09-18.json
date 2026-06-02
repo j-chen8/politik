@@ -1,0 +1,400 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-18-september-2025-102",
+    "video_id": "lanz-2025-09-18",
+    "politician": "Janine Wissler",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c1f0321bea33e24c",
+    "transcript_chars": 40203,
+    "caption_lines": 2022,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17661,
+    "tokens_out": 9303,
+    "cost_usd": 0.025670400000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.186Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Janine Wissler verteidigte in der Talkshow ihre Position zur Sozialpolitik als stellvertretende Fraktionschefin der Linkspartei gegen Ex-Finanzminister Peer Steinbrück. Sie argumentierte für einen stärkeren Sozialstaat, höhere Mindestlöhne und Enteignung großer Wohnungskonzerne, während Steinbrück Effizienzreformen und eine bedarfsorientierte Ausgestaltung des Sozialstaats betonte. Der Ton war sachlich-konfrontativ mit zunehmend persönlicheren Anmerkungen gegen Ende.",
+    "themes": [
+      {
+        "title": "SPD und Sozialstaatsverteidigung",
+        "timestamp_range": "00:09:07 - 00:09:07",
+        "theme_description": "Frage, warum Die Linke mit geschwundener Bedeutung wieder präsent ist und wie sie die deutsche Sozialpolitik einschätzt.",
+        "question_asked": "Frau Wissler, wie ist Ihre Analyse nach fast Bedeutungslosigkeit jetzt sind Sie zurück – was ist Ihre Ergebnisanalyse?",
+        "question_intent": "Den Grund für die Wählerrückkehr zur Linken und ihre Kritik am aktuellen Sozialstaatskurs zu verstehen.",
+        "position": "Wissler kritisierte, dass Menschen nicht mehr den Eindruck haben, dass sich ihre Lage verbessert. Sie argumentierte, dass der Begriff 'Reform' früher mit Fortschritt assoziiert wurde, aber nun Angst auslöst. Sie nannte konkrete Beispiele wie den Pflegenotstand und mangelnde Verbesserung der Lebensverhältnisse in der Breite. Sie betonte, dass die Grundlage für den Aufstieg der AfD nicht Kulturkämpfe sind, sondern materielle Sorgen um Wohnungslosigkeit und bezahlbare Rechnungen. Zentral war ihre Forderung, nicht 'die wenig haben' gegen 'die, die nichts haben' auszuspielen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wissler hat die Frage zur Analyse direkt beantwortet, indem sie eine kohärente Kritik am Status quo lieferte und ihre Position zur Ursache des Rechtspopulismus darlegte. Sie adressierte sowohl das Wahlphänomen (Linke wieder präsent) als auch ihre politische Analyse.",
+        "quotes": [
+          {
+            "text": "Früher war der Begriff Reform etwas, was man mit Fortschritt verbunden hat. Mittlerweile zucken die Leute eher zusammen, wenn sie Reform hören.",
+            "timestamp": "00:09:07",
+            "context": "Kritik an der Wahrnehmung von Reformbegriff in der Bevölkerung"
+          },
+          {
+            "text": "Die Grundlage für den Aufstieg der AfD sind Sorgen um Wohnungslosigkeit, Rechnungen, die Menschen nicht mehr begleichen können.",
+            "timestamp": "00:09:07",
+            "context": "Erklärung der materiellen Wurzeln des Rechtspopulismus"
+          }
+        ],
+        "concrete_statements": [
+          "Pflegenotstand wird nicht angegangen",
+          "Lebensverhältnisse wurden in der Breite nicht verbessert",
+          "Das Cannabis Gesetz ist überfällig (aber nicht das Problem)",
+          "Menschen dürfen nicht gegeneinander ausgespielt werden (arm gegen extrem arm)"
+        ],
+        "related_bundestag_topics": [
+          "Pflegeversicherung",
+          "Mindestlohn",
+          "Sozialpolitik",
+          "Wohnungspolitik",
+          "AfD-Aufstieg",
+          "Rechtsextremismus"
+        ]
+      },
+      {
+        "title": "Migration und unbegrenzter Zuzug",
+        "timestamp_range": "00:12:22 - 00:14:29",
+        "theme_description": "Konkrete Frage zum Standpunkt der Linken zu migrationspolitischen Grenzen und zur Arbeitsmarktintegration von Geflüchteten.",
+        "question_asked": "Markus Lanz fragte nach Zuwanderung im Ruhrgebiet und ob Die Linke weiterhin für unbegrenzten Zuzug ist.",
+        "question_intent": "Zu klären, ob Wisslers Position zu unbegrenzter Migration konsistent ist und wie sie sich zu konkreten Integrationsproblemen stellt.",
+        "position": "Wissler betonte, dass Deutschland Zuwanderung braucht und Migration nicht als Problem gesehen werden sollte – die Gesellschaft würde ohne Migration zusammenbrechen. Sie distanzierte sich von der These des unbegrenzten Zuzugs und führte an, dass 'die Mehrheit der Menschen gar nicht bis nach Deutschland kommt'. Sie kritisierte die 'hysterische Debatte über Zuwanderung' und führte statistische Beispiele an: Syrische Geflüchtete hätten höhere Arbeitsmarktintegration als der Bevölkerungsdurchschnitt, ukrainische Flüchtlinge hätten in anderen europäischen Ländern bessere Integration als in Deutschland. Sie argumentierte, dass dies nicht an den Migranten liegt, sondern an strukturellen Hürden wie langsamer Anerkennung von Abschlüssen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wissler beantwortete die Frage nach 'unbegrenztem Zuzug' durch Umdefinition (es gebe keinen unbegrenzten Zuzug), adressierte aber nicht direkt, welche Grenzen Die Linke selbst setzen würde. Sie pivotierte zu Integrationsbedingungen und deutschen Struktur-Versäumnissen, was das Problem der fehlenden Klärung ihrer eigenen Grenzzüge nicht aufgelöst hat.",
+        "evasion_note": "Die direkte Frage nach Grenzen von Die Linke wurde nicht substantiell beantwortet, stattdessen wurde das Framing der Frage kritisiert.",
+        "quotes": [
+          {
+            "text": "Wir brauchen doch Sozialstaatsreformen, ich sag doch nicht, dass der Zustand jetzt gut ist. Vollkommen klar ist, dass wir in Deutschland Zuwanderung brauchen. Wir müssen aufhören, Migration als Problem zu sehen. Die Gesellschaft würde ohne Migration zusammenbrechen.",
+            "timestamp": "00:12:22",
+            "context": "Antwort auf die Frage nach unbegrenztem Zuzug"
+          },
+          {
+            "text": "Es gibt keinen unbegrenzten Zuzug. Die Mehrheit der Menschen kommen gar nicht bis nach Deutschland.",
+            "timestamp": "00:12:44",
+            "context": "Präzisierung gegenüber der Lanz-Nachfrage"
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland braucht Zuwanderung",
+          "Migration sollte nicht als Problem gesehen werden",
+          "Braucht Sprachkurse und Arbeitsmarktzugänge für Migranten",
+          "Deutsche Integrationsergebnisse sind schlechter als in Nachbarländern (strukturelles Problem)"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Asylrecht",
+          "Arbeitsmarktintegration",
+          "Fachkräftemangel"
+        ]
+      },
+      {
+        "title": "Bürgergeldreformen und Bürokratieabbau",
+        "timestamp_range": "00:18:42 - 00:23:15",
+        "theme_description": "Position zu Reformen des Bürgergeld-Systems und Abbau unnötiger Verwaltungsbürokratie für soziale Leistungen.",
+        "question_asked": "Lanz fragte, ob Wissler für 'Team Bullshit' sei (im Sinne von: wir können uns Sozialstaat nicht leisten) oder für mehr Bürgergeld, und hinterfragte die Machbarkeit von Sparpotenzialen durch Bürokratieabbau.",
+        "question_intent": "Zu ergründen, ob Wissler für einen ausgebauteten oder sparsameren Sozialstaat steht und ob ihre Sparversprechungen realistisch sind.",
+        "position": "Wissler positionierte sich klar für mehr Sozialstaat und mehr Bürgergeld, lehnte aber die Dichotomie 'alles oder nichts' ab. Sie verwies auf konkrete Sparpotenziale durch Bürokratieabbau: 7,5 Milliarden Euro für Bürgergeld-Verwaltung, wo Menschen beschäftigt sind, um 'Erbsen zu zählen'. Sie forderte eine Kindergrundsicherung statt Kombinationen aus Kindergeld und Bildungsverträgen. Sie kritisierte, dass Menschen mit behinderten Kindern jährlich neu nachweisen müssen, dass das Kind noch behindert ist. Sie argumentierte, dass eine Grundsicherung ohne individuelle Beantragung zu Bürokratiespareinsparung führe, ohne das Leistungsniveau zu senken.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wissler hat die Frage direkt beantwortet ('Natürlich [mehr Bürgergeld]'), ihre Positionen konkretisiert und explizit Sparpotenziale benannt, die mit höheren Leistungen kompatibel seien.",
+        "quotes": [
+          {
+            "text": "Wir wollen doch Reformen haben. Wir brauchen mehr Sozialstaat. Natürlich, wir müssen die Rente Armut sicher machen. Dafür brauchen wir Reformen.",
+            "timestamp": "00:18:42",
+            "context": "Antwort auf die Frage nach 'Team Bullshit'"
+          },
+          {
+            "text": "7,5 Milliarden Euro geben wir für die Verwaltung aus. Wir beschäftigen Menschen, die Erbsen zählen bei denen, die wenig haben sie schauen, wo da noch Cent Beträge sind, statt das Geld zu nutzen.",
+            "timestamp": "00:17:23",
+            "context": "Beispiel für Verwaltungsverschwendung im Bürgergeld-System"
+          }
+        ],
+        "concrete_statements": [
+          "Mehr Bürgergeld fordern",
+          "Rente-Armut durch Reformen sichern",
+          "Sparpotenziale: 7,5 Milliarden in Bürgergeld-Verwaltung",
+          "Kindergrundsicherung statt fragmentierte Leistungen einführen",
+          "Regelmäßige Nachweise (z.B. für Behinderungen) abschaffen",
+          "Zweiklassenmedizin abschaffen",
+          "Krankenversicherungsreformen"
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Grundsicherung",
+          "Kindergrundsicherung",
+          "Krankenkassenfinanzierung",
+          "Verwaltungsrecht",
+          "Rentenversicherung"
+        ]
+      },
+      {
+        "title": "Mindestlohn und Niedriglohnsektor",
+        "timestamp_range": "00:21:50 - 00:26:15",
+        "theme_description": "Debatte über Höhe und Effekt eines noch höheren Mindestlohns zur Reduktion von Lohnsubventionierung durch Steuermittel.",
+        "question_asked": "Lanz fragte, ob noch höhere Mindestlöhne die Lösung sind und warnte vor Kollateralschäden bei kleinen Unternehmen (Friseursalons).",
+        "question_intent": "Zu ergründen, ob Wisslers Mindestlohn-Position wirtschaftliche Realitäten berücksichtigt oder ob sie diese ignoriert.",
+        "position": "Wissler argumentierte, dass 800.000 Menschen aufstocken müssen, weil sie nicht genug verdienen. Dies bedeute Subventionierung von Niedriglöhnen durch Steuermittel. Sie forderte einen höheren Mindestlohn (konkret 15 Euro), um Arbeitgeber daran zu hindern, Löhne zu drücken. Sie verwehrte sich gegen Steinbrücks Argument von Kollateralschäden: Die Preissteigungen der letzten Jahre seien nicht auf höhere Löhne zurückzuführen, sondern auf hohe Unternehmensgewinne. Sie argumentierte, dass große Konzerne 'sich die Taschen voll machen' und hohe Gewinne erzielen, während Beschäftigte nicht mehr von ihren Lohnsteigerungen profitieren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wissler hat die Frage zur Effektivität höherer Mindestlöhne substantiell beantwortet, indem sie ihre Position mit konkreten Zahlen unterlegte (800.000 Aufstocker) und die Gegenargumente (Preissteigungen, Kollateralschäden) mit eigenen empirischen Gegenargumenten adressierte.",
+        "quotes": [
+          {
+            "text": "800.000 Menschen müssen aufstocken, weil sie nicht genug verdienen. Wir subventionieren Niedriglöhne. Es ist nicht richtig, dass aufgestockt werden muss. Das könnte man durch einen höheren Mindestlohn richten.",
+            "timestamp": "00:21:50",
+            "context": "Argument für höheren Mindestlohn als Subventionssparmittel"
+          },
+          {
+            "text": "Die Leute stellen fest, dass die Preise durch die Decke gehen. Das liegt nicht daran, dass die Kassiererin mehr Geld bekommt, sondern dass sich die großen Konzerne die Taschen voll machen.",
+            "timestamp": "00:26:15",
+            "context": "Widerlegung des Inflationsarguments gegen höhere Löhne"
+          }
+        ],
+        "concrete_statements": [
+          "Forderung eines höheren Mindestlohns (mindestens 15 Euro)",
+          "Kritik an Niedriglohn-Geschäftsmodellen",
+          "Ausstieg aus Subventionierung von Niedriglöhnen durch Steuermittel",
+          "Betonung auf Schutz von Beschäftigten vor Ausbeutung"
+        ],
+        "related_bundestag_topics": [
+          "Mindestlohngesetz",
+          "Arbeitsmarktpolitik",
+          "Lohnpolitik",
+          "Sozialhilfe / Bürgergeld"
+        ]
+      },
+      {
+        "title": "Wohnungspolitik und Enteignungen",
+        "timestamp_range": "00:27:13 - 00:31:32",
+        "theme_description": "Frage nach konkreten Wege zur Senkung von Mieten, insbesondere durch Enteignung großer Wohnungskonzerne.",
+        "question_asked": "Lanz fragte, warum Mieten so hoch sind und wie Wissler konkret große Wohnungskonzerne enteignen würde.",
+        "question_intent": "Die Machbarkeit und rechtliche Realierbarkeit von Enteignungen zu hinterfragen und alternative Ansätze zu erkunden.",
+        "position": "Wissler argumentierte, dass Mieten hoch sind, wenn Wohnen dem Markt überlassen wird. Sie verwies auf ein Berliner Volksentscheid, bei dem 60 % der Bürger Enteignungen großer Wohnungsbestände forderten. Sie betonte, dass Enteignungen in Deutschland bereits regulär stattfinden (Autobahnbau, Braunkohleabbau) und mit Entschädigungen verbunden sind. Sie argumentierte, dass 'hochrangige Verfassungsjuristen' die Wege dafür aufgezeigt haben, und mahnte an, 'nicht riesige Beträge in den Rachen' großer Konzerne zu werfen, die 'in den letzten Jahren genug verdient' haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wissler hat konkrete Wege zur Enteignung benannt (Berliner Abgeordnetenhaus-Modell, Entschädigungsprinzipien) und diese rechtlich situiert. Sie adressierte sowohl die Frage nach Durchsetzbarkeit als auch die Kritik an exzessiven Entschädigungen.",
+        "quotes": [
+          {
+            "text": "Ich bin der Meinung, dass wir große Wohnungskonzerne enteignen sollten. Es gab in Berlin einen Volksentscheid dazu, 60 % der Berliner haben gesagt, dass man das enteignen muss.",
+            "timestamp": "00:29:46",
+            "context": "Position zu Wohnungskonzern-Enteignungen"
+          },
+          {
+            "text": "In diesem Land wird tagtäglich enteignet. Wenn Sie eine Autobahn bauen, dann werden auch Menschen enteignet. Für den Braunkohleabbau sind ganze Dörfer weg gebaggert worden. Mit Entschädigungen.",
+            "timestamp": "00:30:40",
+            "context": "Normalisierung von Enteignungen in Deutschland"
+          }
+        ],
+        "concrete_statements": [
+          "Enteignung großer privater Wohnungskonzerne fordern",
+          "Wohnungsbestände in öffentliche Hand überführen",
+          "Entschädigungen zahlen (nicht enteignungslos)",
+          "Sich an Berliner Abgeordnetenhaus-Modell orientieren",
+          "Kritik an überhöhten Entschädigungen für profitable Konzerne"
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Mietenpolitik",
+          "Enteignungsrecht",
+          "Gemeinnütziger Wohnungsbau"
+        ]
+      },
+      {
+        "title": "NATO-Ausgaben und Prioritätensetzung",
+        "timestamp_range": "00:40:18 - 00:41:42",
+        "theme_description": "Position zu Rüstungsausgaben, Ukraine-Unterstützung und Priorisierung von Verteidigungsetats im Verhältnis zu Sozialausgaben.",
+        "question_asked": "Lanz fragte abschließend, ob Deutschland weiter die Ukraine unterstützen soll und Geld für Waffen ausgeben soll.",
+        "question_intent": "Zu klären, ob Wissler für Waffenlieferungen eintritt und wie sie Rüstungsausgaben im Sozialstaat-Kontext sieht.",
+        "position": "Wissler lehnte die Dichotomie der Frage ab ('verkürzt') und kritisierte die Prioritätensetzung der Bundesregierung: Sie nannte die geplante Verdopplung der Rüstungsausgaben von 90 auf 211 Milliarden Euro (zum Erreichen des 5%-NATO-Ziels) 'von der Prioritätensetzung vollkommen absurd'. Sie verwies auf Die Linke als Partei, die nicht die Kürzung von Bürgergeldreformen für Ukrainer fordert – implizierend, dass andere Parteien das tun. Sie argumentierte für 'Solidarität mit den Ukrainern' mit einer anderen finanz-politischen Gewichtung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wissler hat die Frage zur Ukraine-Unterstützung nicht direkt beantwortet ('Es ist verkürzt'), sondern die Problemstellung reframt als Frage von Prioritäten und Budgetierung. Sie hat sich nicht zu Waffenlieferungen selbst positioniert, sondern nur zur Geldmenge kritisiert.",
+        "evasion_note": "Keine direkte Antwort auf die Frage 'Sollen wir die Ukraine weiter unterstützen und Waffen liefern?' – nur Kritik an Haushaltspriorisierung.",
+        "quotes": [
+          {
+            "text": "Es ist jetzt ein bisschen verkürzt, wenn man sich überlegt, die deutsche Bundesregierung hat gesagt 5 % Ziel der NATO für den Bereich Verteidigung und Rüstung, das wären 211 Milliarden Euro. Wir sind jetzt bei 90 Milliarden. Mehr als eine Verdopplung. Das scheint mir von der Prioritätensetzung vollkommen absurd zu sein.",
+            "timestamp": "00:40:18",
+            "context": "Kritik an geplanten Rüstungsausgaben"
+          }
+        ],
+        "concrete_statements": [
+          "Kritik an NATO-5%-Ziel für Rüstung",
+          "Geplante Verdopplung der Rüstungsausgaben ablehnen",
+          "Solidarität mit Ukraine nicht an Waffenlieferungen festmachen",
+          "Kritik an Kürzungen von Bürgergeldleistungen für Ukrainer (finanzielle Solidarität)"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Konflikt",
+          "Rüstungsausgaben",
+          "NATO",
+          "Haushaltspolitik",
+          "Verteidigungspolitik"
+        ]
+      },
+      {
+        "title": "Ukrainische Geflüchtete und Arbeitsmarktintegration",
+        "timestamp_range": "00:41:42 - 00:44:46",
+        "theme_description": "Debatte über Integration ukrainischer Flüchtlinge in den deutschen Arbeitsmarkt und die Rolle von Anforderungen an Geflüchtete.",
+        "question_asked": "Lanz kritisierte deutsche Integrationsergebnisse für Ukrainer im Vergleich zu anderen Ländern und fragte, ob Deutschland zu wenig von Geflüchteten verlangt.",
+        "question_intent": "Herauszustellen, dass Deutschland schlecht bei der Arbeitsmarktintegration von Ukrainern abschneidet, und dies als Versäumnis von Anforderungen zu interpretieren.",
+        "position": "Wissler argumentierte, dass das strukturelle Problem in Deutschland liegt, nicht an mangelnder Arbeitsbereitschaft von Ukrainern. Sie betonte, dass viele Ukrainer arbeiten wollen, aber auf Hürden stoßen: Abschlussanerkennung dauert zu lange, es gibt zu wenig Kinderbetreuung (besonders für Frauen mit Kindern, die alleine hergekommen sind), und die psychosozialen Betreuung ist unzureichend. Sie argumentierte gegen die These, dass 'zu wenig verlangt' wird: Strukturelle Lösungen (bessere Betreuung, schnellere Anerkennung) seien wichtiger als Druck und Zwang.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wissler hat die Arbeitsmarkt-Integrationsprobleme adressiert und Lösungsansätze benannt, aber die zentrale Frage nach 'Anforderungen an Geflüchtete' wurde eher ausgewichen, indem Lanz's Framing (zu wenig Druck) zurückgewiesen wurde, ohne konkrete Grenzen der Linken Position zu 'Fördern und Fordern' zu setzen.",
+        "evasion_note": "Wissler hat Lanz's Framing abgelehnt, ohne eine eigene klare Position zur Balance zwischen 'Fördern' und 'Fordern' zu formulieren.",
+        "quotes": [
+          {
+            "text": "Ich würde die These wagen, dass es nicht an den Ukrainerinnen und Ukrainern liegt. Menschen mit Abschluss als Ärzten, sind hochqualifiziert. Es ist einfach nicht möglich, dass sie in Arbeit kommen.",
+            "timestamp": "00:42:08",
+            "context": "Widerlegung der These mangelnder Arbeitsbereitschaft"
+          },
+          {
+            "text": "Viele Frauen wird alleine mit ihren Kindern hergekommen. Da mangelt es schon des Öfteren an Betreuungsproblem. In Dänemark ist die Betreuung besser ausgebaut.",
+            "timestamp": "00:42:08",
+            "context": "Strukturelle Hürden für Frauen mit Kindern"
+          }
+        ],
+        "concrete_statements": [
+          "Strukturelle Probleme in Deutschland (nicht mangelnde Arbeitsbereitschaft) als Ursache",
+          "Schnellere Anerkennung von Abschlüssen fordern",
+          "Bessere Kinderbetreuungsangebote für Frauen mit Kindern",
+          "Psychosoziale Betreuung für Traumatisierte ausbauen",
+          "Ansatz: Qualifizierung und Wiedereingliederung (statt Druck/Zwang)"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Flüchtlinge",
+          "Arbeitsmarktintegration",
+          "Kinderbetreuung",
+          "Berufsanerkennung",
+          "Soziale Gerechtigkeit"
+        ]
+      },
+      {
+        "title": "Vermögensverteilung und Klassenkampf-Framing",
+        "timestamp_range": "00:53:10 - 00:54:46",
+        "theme_description": "Diskussion über Vermögenssteuer, progressive Besteuerung und die Frage, ob Verteilungsdebatten als 'Klassenkampf' zu charakterisieren sind.",
+        "question_asked": "Peer Steinbrück kritisierte, dass Wissler 'Klassenkämpfe' aufmacht mit Forderungen nach höheren Steuern, statt Effizienzreformen.",
+        "question_intent": "Zu ergründen, ob Wissler ihre Verteilungsforderungen als legitime Strukturkritik oder als ideologischen 'Klassenkampf' framed.",
+        "position": "Wissler argumentierte, dass Menschen 'das Gefühl haben, einen Klassenkampf zu erleben' (nicht nur seitens Die Linke, sondern auch wahrgenommen in der Bevölkerung). Sie betonte, dass dies nicht nur eine Linke-Position ist, und verwies auf konkrete Punkte wie Vermögenssteuer und Mindestlohn, bei denen die CDU (Steinbrück's Partei) nicht das vertritt, was nötig ist. Sie argumentierte differenzierend, dass an manchen Stellen (Effizienz des Staats) sie Steinbrück zustimmt, aber fürchtet, dass die Union bei 'unterschiedlichen Punkten landen' wird. Sie kritisierte zudem, dass der Diskurs des 'schlanken Staats' zu Unterbesetzung und Bauantrag-Verzögerungen führt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wissler hat das 'Klassenkampf'-Framing angegriffen und eine Gegenposition benannt (es ist ein Phänomen, das Menschen erleben, nicht nur eine Linke-Ideologie), aber sie hat sich selbst nicht klar zu ihrer eigenen Sprache ('Klassenkampf' ja/nein?) positioniert. Sie hat eher umgelenkt auf die Kritik an CDU-Positionen.",
+        "evasion_note": "Keine direkte Antwort auf, ob Wisslers Position 'Klassenkampf' ist oder nicht – stattdessen Umlenkung auf die Frage, ob andere Parteien das auch tun.",
+        "quotes": [
+          {
+            "text": "Ich habe das Gefühl, dass viele das Gefühl haben so ein Klassenkampf zu erleben.",
+            "timestamp": "00:53:51",
+            "context": "Umkehrung des Vorwurfs: nicht Linke machen Klassenkampf, sondern Menschen erleben ihn"
+          },
+          {
+            "text": "Wir haben die Fragen von Vermögenssteuer und Mindestlohn angesprochen, da hatte ich nicht den Eindruck, dass die CDU das vertritt. Deshalb habe ich es so ausgedrückt.",
+            "timestamp": "00:54:46",
+            "context": "Rechtfertigung der Kritik an fehlenden CDU-Positionen"
+          }
+        ],
+        "concrete_statements": [
+          "Menschen erleben Klassenkampf (nicht nur ideologische Position)",
+          "CDU vertritt nicht notwendige Positionen zu Vermögenssteuer und Mindestlohn",
+          "Kritik am 'schlanken Staat'-Diskurs der Union",
+          "Unterbesetzung und Bauantrag-Delays als Folge von Spardruck"
+        ],
+        "related_bundestag_topics": [
+          "Vermögenssteuer",
+          "Vermögenspolitik",
+          "Klassenkampf-Rhetorik",
+          "Progressive Steuerpolitik",
+          "Politische Ideologie"
+        ]
+      },
+      {
+        "title": "Reformfähigkeit und Staat Effizienz",
+        "timestamp_range": "00:56:14 - 00:59:31",
+        "theme_description": "Debatte über die Balance zwischen Bürokratieabbau und notwendigen staatlichen Regulierungen für Schutz und Gesundheit.",
+        "question_asked": "Lanz warf Wissler Widerspruch vor: Erst wollte sie Bürokratie abbauen, jetzt wieder aufbauen. Die Frage war, welche Art Bürokratie abgebaut und welche aufgebaut werden soll.",
+        "question_intent": "Die innere Konsistenz von Wisslers Position zu klären und herauszustellen, dass Bürokratieabbau allein nicht das Angebot-Problem löst.",
+        "position": "Wissler präzisierte, dass es nicht um pauschalen Bürokratieabbau gehe, sondern um Unterscheidung: Man sollte Bürokratie abbauen, die Kontrolle der Armut betreibt (Erbsen-Zählen bei Bürgergeldempfängern), aber Regulierungen bewahren, die Kinder vor Ausbeutung schützen und Standards wie Gesundheitsämter sichern. Sie argumentierte gegen eine zu große 'Über-Bürokratisierung', die sowohl unnötige Kontrolle als auch mangelnde Standards führt. Sie betonte die Notwendigkeit, Bauanträge zu beschleunigen, ohne dabei Schutzstandards abzusenken.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wissler hat den vermeintlichen Widerspruch adressiert, indem sie eine Differenzierung zwischen 'guter' (protektiver) und 'schlechter' (kontrollierender) Bürokratie vornahm. Sie hat damit direkt auf die Kritik geantwortet.",
+        "quotes": [
+          {
+            "text": "Es geht nicht darum, welche Bürokratie baut man ab welche auf. Man sollte darauf achten, dass Kinder nicht in sklavenähnlichen Verhältnissen arbeiten. Nicht in Deutschland. Ich fände schon gut, dass es ein Gesundheitsamt gibt.",
+            "timestamp": "00:56:14",
+            "context": "Präzisierung des Bürokratie-Verständnis"
+          }
+        ],
+        "concrete_statements": [
+          "Bürokratie differenzieren: Kontroll-Bürokratie abbauen, Schutz-Bürokratie bewahren",
+          "Kritik an unnötige Kontrolle bei Bürgergeldempfängern",
+          "Befürwortung von Regulierung zum Kinderarbeit-Schutz",
+          "Befürwortung von Gesundheitsamt-Standards",
+          "Kritik an 'Über-Bürokratisierung' (zu viel unnötige Regulierung)",
+          "Bauantrag-Beschleunigung ohne Standards-Abbau"
+        ],
+        "related_bundestag_topics": [
+          "Verwaltungsrecht",
+          "Bürokratieabbau",
+          "Arbeitsschutz",
+          "Kinderrechte",
+          "Gesundheitsschutz",
+          "Baurecht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "60 % der Berliner haben in einem Volksentscheid für Enteignung großer Wohnungskonzerne gestimmt",
+        "timestamp": "00:29:46"
+      },
+      {
+        "claim": "Syrische Geflüchtete haben eine höhere Arbeitsmarktintegration als der Durchschnitt der Bevölkerung",
+        "timestamp": "00:12:44"
+      },
+      {
+        "claim": "Ukrainische Flüchtlinge in vielen Ländern Europas haben eine viel höhere Integration in den Arbeitsmarkt als in Deutschland",
+        "timestamp": "00:12:44"
+      },
+      {
+        "claim": "7,5 Milliarden Euro werden für die Verwaltung von Bürgergeld ausgegeben",
+        "timestamp": "00:17:23"
+      },
+      {
+        "claim": "800.000 Menschen müssen aufstocken, weil sie nicht genug verdienen",
+        "timestamp": "00:21:50"
+      },
+      {
+        "claim": "Deutschland plant, Rüstungsausgaben auf 211 Milliarden Euro (NATO 5%-Ziel) zu erhöhen, ausgehend von 90 Milliarden Euro",
+        "timestamp": "00:40:18"
+      },
+      {
+        "claim": "Die Linke führt keine Debatte über Kürzung von Bürgeldreformen für Ukrainer (implizite Behauptung, andere Parteien tun das)",
+        "timestamp": "00:40:18"
+      },
+      {
+        "claim": "In Deutschland werden 1,3 Billionen Überstunden gemacht",
+        "timestamp": "00:58:34"
+      }
+    ]
+  }
+}

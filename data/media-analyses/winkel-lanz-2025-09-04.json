@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-september-2025-100",
+    "video_id": "lanz-2025-09-04",
+    "politician": "Johannes Winkel",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "269e1cb9d2c0da01",
+    "transcript_chars": 59137,
+    "caption_lines": 2915,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24200,
+    "tokens_out": 7022,
+    "cost_usd": 0.023724000000000002,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "teilweise_antwort": 3,
+      "floskel_generisch": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.170Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johannes Winkel, Bundesvorsitzender der Jungen Union und CDU/CSU-Abgeordneter, diskutiert in dieser Sendung zentrale sozialpolitische Themen: das Bürgergeld, Rentenpolitik und Integrationsfragen. Er tritt als kritischer Stimme gegenüber der Ampel-Regierung auf und warnt vor einem \"demographischen Problem\", das zum \"demokratischen Problem\" werden könnte, wenn die junge Generation den Generationenvertrag kündigt.",
+    "themes": [
+      {
+        "title": "Bullshit-Vorwurf gegen Arbeitsministerin Bas",
+        "timestamp_range": "00:07:45 - 00:09:05",
+        "theme_description": "Bewertung der Aussage von Arbeitsministerin Bas, dass reichere Länder sich einen Sozialstaat leisten könnten, und der Kritik an ihrer Rentenpolitik.",
+        "question_asked": "Was hält Winkel vom Bullshit-Vorwurf der Arbeitsministerin Bas gegen den Kanzler?",
+        "question_intent": "Wie bewertet Winkel die politische Zuspitzung und Ausdrucksweise von Bas?",
+        "position": "Winkel sieht die groben Ausdrücke nicht als zentrales Problem, sondern kritisiert die Substanz von Bas' Politik: dass die Arbeitsministerin \"beim Thema Bürgergeld kein Einsparpotenzial\" sehe, obwohl die Ausgaben um 27 % stiegen. Noch schwerwiegender findet er, dass die SPD den Nachhaltigkeitsfaktor in der Rentenformel abschaffen will, obwohl demographischer Wandel unmittelbar bevorstehe. Er argumentiert, dass sich \"Frau Bas nicht bei Herr Merz entschuldigen\" sollte, \"sondern für ihre Politik und ihre Bilanz\". Der Tons sei weniger das Problem als die \"zahllosen\" sachlich falschen Positionen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel antwortet direkt auf die Frage nach seiner Bewertung des Bullshit-Vorwurfs und legt dar, warum er die sachliche Kritik an Bas' Politik für gerechtfertigt hält, auch wenn die Ausdrucksweise rau ist. Er adressiert die Frage nach dem Ton und dem Inhalt und gewichtet den Inhalt deutlich höher.",
+        "quotes": [
+          {
+            "text": "Wissen Sie, was ich Bullshit finde, wenn wir eine Arbeitsministerin haben, die sagt, beim Thema Bürgergeld gibt es kein Einsparpotenzial, obwohl es im letzten Jahr die Ausgaben um 27 % stiegen.",
+            "timestamp": "00:08:23"
+          },
+          {
+            "text": "Das finde ich Bullshit. Deswegen sollte sich Frau Bas nicht bei Herr Merz entschuldigen. Sie sollte sich für ihre Politik und ihre Bilanz entschuldigen.",
+            "timestamp": "00:09:05"
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitsministerin hat kein Einsparpotenzial beim Bürgergeld erkannt, obwohl Ausgaben um 27 % stiegen",
+          "SPD schafft Nachhaltigkeitsfaktor ab, obwohl demographischer Wandel vor der Tür steht",
+          "Bas sollte sich für ihre Politik entschuldigen, nicht für ihre Wortwahl"
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld-Reform",
+          "Rentenversicherung und demographischer Wandel",
+          "Sozialpolitik Ampel-Regierung"
+        ]
+      },
+      {
+        "title": "Jobcenter-Kontrolle und Sanktionspraxis",
+        "timestamp_range": "00:17:42 - 00:19:10",
+        "theme_description": "Rolle von Jobcenter-Mitarbeitern bei der Durchsetzung von Arbeitsanforderungen und deren Erfahrungen mit Sanktionspraxis unter der Ampel-Regierung.",
+        "question_asked": "Wie haben sich Jobcenter-Mitarbeiter unter der Ampel verhalten und welche Hürden entstehen bei Sanktionen?",
+        "question_intent": "Wurde die \"Fördern und Fordern\"-Philosophie tatsächlich aufgegeben, wie Winkel behauptet?",
+        "position": "Winkel berichtet aus Gesprächen mit vielen Jobcenter-Mitarbeitern, dass diese ihm sagten: \"Es man spürt es sehr genau, dass die Politik vom Grundsatz her fördern und fordern abgeschafft hat.\" Die Hürden für Sanktionen seien \"so hoch geworden\", auch durch Ampel-Politik, dass \"viele Mitarbeiter sagen, ich lasse es einfach.\" Das System habe sich für Empfänger \"eingestellt\", nachdem die Ampel \"fördern und fordern von der Ampel geschreddert\" habe. Winkel betont: \"Am Ende des Tages ist die Politik dafür verantwortlich, die dieses naive Angebot schafft.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel beantwortet die Frage nach Jobcenter-Praxis mit anekdotischen Beispielen aus eigenen Gesprächen, nicht mit statistischen Belegen oder systematischen Daten. Die Position ist klar (Ampel hat Kontrolle abgebaut), aber die empirische Grundlage wird nicht vollständig offengelegt.",
+        "quotes": [
+          {
+            "text": "Habe mich den halben Sommer mit vielen Jobcenter-Mitarbeitern gesprochen. Es war eine sehr spannende Erfahrung. Die sagen einem, es man spürt es sehr genau, dass die Politik vom Grundsatz her fördern und fordern abgeschafft hat.",
+            "timestamp": "00:17:42"
+          },
+          {
+            "text": "Am Ende des Tages ist die Politik dafür verantwortlich, die dieses naive Angebot schafft.",
+            "timestamp": "00:19:52"
+          }
+        ],
+        "concrete_statements": [
+          "Ampel-Regierung hat Grundsatz 'Fördern und Fordern' abgeschafft",
+          "Sanktionshürden sind zu hoch geworden",
+          "Jobcenter-Mitarbeiter lassen Sanktionen ausfallen, weil die Hürden zu hoch sind"
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld und Arbeitsmarktpolitik",
+          "Jobcenter-Kontrollen",
+          "Sozialstaatsreform"
+        ]
+      },
+      {
+        "title": "Merz-Bewertung und Junge-Union-Position",
+        "timestamp_range": "00:33:23 - 00:37:20",
+        "theme_description": "Bewertung von Kanzler Merz und dessen Reformleistung sowie Charakterisierung der Jungen Union-Haltung zu Merz.",
+        "question_asked": "Ist Winkel, wie Lanz behauptet, von seinem Kanzler Merz enttäuscht?",
+        "question_intent": "Kritisiert die Junge Union ihren eigenen Kanzler für mangelnde Reformschritte?",
+        "position": "Winkel widerspricht Lanz' Interpretation: \"Das habe ich so nicht gesagt, das haben Sie so interpretiert.\" Er differenziert seine Merz-Bewertung: Merz verkörpert gegenüber der \"Großen Koalition\" einen Gegenpol bei \"Ambitionslosigkeit bei der Gesundheitsreform und der Rentenreform\". Aber: \"Jetzt muss er liefern.\" Zu seiner Selbstdarstellung sagt er: \"Ich würde mich nicht als Merz-Ultra bezeichnen.\" Diese Absetzung deutet an, dass zwar Unterstützung vorhanden ist, aber kritische Erwartung überwiegt. Insgesamt eine \"enttäuscht, aber noch hoffnungsvoll\"-Haltung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel antwortet auf die Frage nach Enttäuschung mit einer Negation, aber seine Qualifizierung (\"Jetzt muss er liefern\") und seine Negation des 'Merz-Ultra'-Labels deuten durchaus auf kritische Distanz hin, die die Frage bestätigt, auch wenn er die Wortwahl des Moderators zurückweist.",
+        "quotes": [
+          {
+            "text": "Das habe ich so nicht gesagt, das haben Sie so interpretiert.",
+            "timestamp": "00:33:23"
+          },
+          {
+            "text": "Ein Stück weit hat er die politisch verpennten Zehnerjahre in Deutschland das Gegenteil davon verkörpert. Jetzt muss er liefern.",
+            "timestamp": "00:37:20"
+          }
+        ],
+        "concrete_statements": [
+          "Merz verkörpert Gegenpol zur Ambitionslosigkeit der Großen Koalition",
+          "Merz muss jetzt Reformleistungen erbringen",
+          "Winkel lehnt Label 'Merz-Ultra' ab — signalisiert kritische, nicht unkritische Unterstützung"
+        ],
+        "related_bundestag_topics": [
+          "Regierungsprogramm Merz-Koalition",
+          "Rentenreform",
+          "Gesundheitsreform",
+          "CDU/CSU Reformambitionen"
+        ]
+      },
+      {
+        "title": "Rente mit 63 und Nachhaltigkeitsfaktor",
+        "timestamp_range": "00:34:47 - 00:38:23",
+        "theme_description": "Konkrete Reformforderungen bei der Rentenpolitik, insbesondere zur Abschaffung der Rente mit 63 und zur Erhaltung des Nachhaltigkeitsfaktors.",
+        "question_asked": "Wo genau müssen Kürzungen erfolgen, und würde Winkel die Rente mit 63 abschaffen?",
+        "question_intent": "Sucht konkrete, unbequeme Reformschritte, nicht nur Kritik an der Ampel.",
+        "position": "Winkel fordert: \"Wir müssen die Rente mit 63 abschaffen oder auf die beschränken, die ein ärztliches Attest haben.\" Er argumentiert, dass der Staat \"in einem demographischen Wandel Frühverrentungsprogramme subventioniert\", was nicht nachhaltig sei. Die abschlagsfreie Rente sei historisch etwas anderes gewesen, aber \"das haben wir nie im Gesetz festgeschrieben.\" Er weist auch darauf hin, dass die jetzige Regierung und die SPD im Koalitionsvertrag ein Festhalten an \"Rente mit 64\" und an der Abschaffung des Nachhaltigkeitsfaktors vereinbart haben — Maßnahmen, die seiner Ansicht nach unter Druck sein könnten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel nennt konkrete Reformschritte (Rente mit 63 einschränken/abschaffen) und begründet diese mit demografischen Argumenten. Er adressiert die Frage nach konkreten Kürzungen direkt und substanziell.",
+        "quotes": [
+          {
+            "text": "Wir müssen die Rente mit 63 abschaffen oder auf die beschränken, die ein ärztliches Attest haben. Meine Forderung ist es, natürlich.",
+            "timestamp": "00:36:34"
+          },
+          {
+            "text": "Ab 2029 geht es mit den Staatsfinanzen bergab, wenn wir das System so lassen, dass wir nicht sagen können, das soll die nächste Bundesregierung machen.",
+            "timestamp": "00:35:10"
+          }
+        ],
+        "concrete_statements": [
+          "Rente mit 63 soll abgeschafft oder auf Personen mit ärztlichem Attest beschränkt werden",
+          "Nachhaltigkeitsfaktor in der Rentenformel muss erhalten bleiben",
+          "Ab 2029 kollabiert das Rentensystem ohne Reformen",
+          "Staat subventioniert Frühverrentungsprogramme, was unvereinbar mit demographischem Wandel ist"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Demografischer Wandel",
+          "Generationenvertrag",
+          "Nachhaltigkeitsfaktor Rentenformel"
+        ]
+      },
+      {
+        "title": "Koalitionsvertrag und fehlende Reformambition",
+        "timestamp_range": "00:34:47 - 00:36:34",
+        "theme_description": "Kritik an der Merz-Koalition wegen mangelnder Reformschritte bei Rente und Steuern, die nicht im Koalitionsvertrag verankert sind.",
+        "question_asked": "Warum kritisiert Bröcker Winkel wegen Reformungeduld, und hat er recht damit, dass die Koalition scheitert?",
+        "question_intent": "Wie ambitioniert ist Winkel wirklich bei generationengerechten Reformen, oder nur Kritik an der Ampel?",
+        "position": "Winkel weist die Kritik teilweise zurück: Er habe das Nachhaltigkeitsfaktor-Thema \"gerade angesprochen\". Er kritisiert aber auch die politische Taktik linker Parteien, die das \"Winkel will die Rente mit 70\"-Framing nutzen, um sein Reformanliegen zu delegitimieren. Er betont, es gehe um \"Arbeiten bis zum gesetzlichen Renteneintrittsalter\", nicht um Erhöhung der Altersgrenze. Dennoch gesteht er, dass im Koalitionsvertrag zu wenig festgehalten wurde: \"Es gibt Pläne, die nicht im Koalitionsvertrag stehen.\" Wenn die SPD nicht bereit ist mitzumachen, \"muss man eine Entscheidung per Richtlinienkompetenz treffen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel antwortet auf Bröckers Kritik mit der Eigeninitiative des Nachhaltigkeitsfaktors, lenkt aber auch ab auf die 'Framing-Taktik' der Opposition. Er gesteht ein, dass der Koalitionsvertrag schwach ist, aber verlagert das Problem auf die SPD statt klare Verantwortung der Merz-Regierung zu übernehmen.",
+        "quotes": [
+          {
+            "text": "Ich habe das ja gerade angesprochen. Insbesondere das Thema Nachhaltigkeitsfaktor.",
+            "timestamp": "00:34:47"
+          },
+          {
+            "text": "Der größter Cut wäre, wenn ich über das Thema Rente rede, versucht von der linken politischen Seite das Thema zu beenden, der Winkel will die Rente mit 70.",
+            "timestamp": "00:35:10"
+          }
+        ],
+        "concrete_statements": [
+          "Nachhaltigkeitsfaktor ist zentrales Reformthema",
+          "Opposition nutzt 'Rente mit 70'-Framing um Reformambitionen zu delegitimieren",
+          "Wenn SPD nicht kooperiert, muss die Regierung Richtlinienkompetenz nutzen"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Koalitionsvertrag und Regierungsprogramm",
+          "Richtlinienkompetenz des Kanzlers"
+        ]
+      },
+      {
+        "title": "Generationenvertrag und demografisches Problem",
+        "timestamp_range": "00:35:10 - 00:39:45",
+        "theme_description": "Warnung vor dem Kollaps des Rentensystems bis 2029 und der Gefahr einer 'stillen Kündigung' des Generationenvertrags durch junge Menschen.",
+        "question_asked": "Wie konkret ist die Bedrohung für den Generationenvertrag, und was sind die Konsequenzen?",
+        "question_intent": "Welche existenzielle Gefahr geht von der Untätigkeit bei Rentenreformen aus?",
+        "position": "Winkel warnt, dass das Rentensystem nach 2029 kollabiert, wenn nicht gehandelt wird: \"Man kann es berechnen, es ist keine Frage der politischen Meinung.\" Er warnt vor einer \"stillen Kündigung des Generationenvertrags durch die junge Generation\", wenn viele schauen, \"wie machen es andere europäische Länder?\" und weggehen. Das berührt sein Kernthema aus früheren Statements: \"Wenn das demographische Problem zu einem demokratischen Problem wird.\" Er fordert: \"Wir müssen es in diesen 3,5 Jahren hinbekommen.\" Ohne Reformen drohen \"Einschnitte so brutal in den dreißiger Jahren, das wird wirklich zu einem Problem.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet die Frage nach der Existenziellen Bedrohung mit Zahlen (2029), konkreten Szenarien (stille Kündigung, Migration junger Menschen) und einer dringlichen Forderung nach Handeln. Die Position ist grundsätzlich und detailliert.",
+        "quotes": [
+          {
+            "text": "Man kann es berechnen, es ist keine Frage der politischen Meinung. Ab 2029 geht es mit den Staatsfinanzen bergab, wenn wir das System so lassen.",
+            "timestamp": "00:35:10"
+          },
+          {
+            "text": "Was passieren kann, ist eine stille Kündigung des Generationenvertrags durch die junge Generation, in dem viele schauen, wie machen es andere europäische Länder?",
+            "timestamp": "00:38:29"
+          }
+        ],
+        "concrete_statements": [
+          "2029 ist der Punkt, ab dem das System ohne Reformen kollabiert",
+          "Reformen müssen in den nächsten 3,5 Jahren erfolgen",
+          "Junge Menschen könnten den Generationenvertrag 'stillschweigend kündigen' durch Abwanderung",
+          "Ohne Reformen drohen drastische Einschnitte in den 2030er Jahren",
+          "Das demographische Problem wird zu einem demokratischen Problem"
+        ],
+        "related_bundestag_topics": [
+          "Demografischer Wandel",
+          "Generationenvertrag",
+          "Rentenversicherung",
+          "Arbeitsmarktpolitik für junge Menschen"
+        ]
+      },
+      {
+        "title": "Integrationsdiskurs und politischer Islam",
+        "timestamp_range": "01:03:27 - 01:07:29",
+        "theme_description": "Kritik an der fehlenden offenen Diskussion über Integrationsprobleme und die Rolle des politischen Islam im deutschen Gesellschaftsdiskurs.",
+        "question_asked": "Warum haben Politiker jahrzehntelang nicht offen über Integrationsprobleme diskutiert?",
+        "question_intent": "Ist die fehlende Debatte über Integration schuld an der Radikalisierung und dem Vertrauensverlust in die 'politische Klasse'?",
+        "position": "Winkel sieht einen \"kritischen Diskurs über die Problemfelder, die es gibt und gab\" als lange Zeit blockiert: \"Es ist nicht nur ein Problem von Berlin, sondern von ganz Deutschland. Darüber haben wir jahrzehntelang hier nicht offen diskutiert.\" Er argumentiert: \"Weil wir sehr lange über ganz offensichtliche Alltagsprobleme der Menschen nicht diskutiert haben und Problemfälle\", die Menschen in ihrer Stadt sehen, sagen viele: \"Ich bin von der 'politischen Klasse' so enttäuscht, die die Probleme bei mir Zuhause nicht ansprechen will, dass sie zu radikalen Parteien tendieren.\" Winkel kritisiert also die kollektive Sprachlosigkeit und sieht darin ein Vertrauensverlust-Problem für die demokratischen Parteien. Zur Frage der Kritik am politischen Islam: \"Es fehlt der kritische Diskurs. Und wenn man auf Probleme hinweist, mittlerweile ist es nicht mehr so, aber vor drei Jahren die vorhergehenden 30 Jahre waren so, dass man nicht kritisch über Probleme mit dem politischen Islam sprechen konnte.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet die Moderator-Frage nach Jahrzehnten fehlender Integrationsdiskussion mit einer präzisen Analyse: jahrzehntelange Sprachlosigkeit führe zu Radikalisierung und Vertrauensverlust. Er diagnostiziert ein strukturelles Tabu bei Kritik am politischen Islam und sieht darin ein Versagen der politischen Eliten.",
+        "quotes": [
+          {
+            "text": "Den kritischen Diskurs über die Problemfelder, die es gibt und gab, es ist nicht nur ein Problem von Berlin, sondern von ganz Deutschland. Darüber haben wir jahrzehntelang hier nicht offen diskutiert. Das ist das Problem.",
+            "timestamp": "01:03:27"
+          },
+          {
+            "text": "Es fehlt der kritische Diskurs. Und wenn man auf Probleme hinweist, mittlerweile ist es nicht mehr so, aber vor drei Jahren die vorhergehenden 30 Jahre waren so, dass man nicht kritisch über Probleme mit dem politischen Islam sprechen konnte.",
+            "timestamp": "01:06:49"
+          }
+        ],
+        "concrete_statements": [
+          "Jahrzehntelange fehlende Debatte über Integrationsprobleme in ganz Deutschland",
+          "Sprachlosigkeit der politischen Eliten führt zu Radikalisierung und AfD-Wahlerfolgen",
+          "Politischer Islam konnte 30 Jahre lang nicht öffentlich kritisiert werden",
+          "Wähler wenden sich radikalen Parteien zu, weil etablierte Politiker Probleme nicht ansprechen"
+        ],
+        "related_bundestag_topics": [
+          "Integration und Migration",
+          "Politischer Islam und Islamverbände",
+          "Gesellschaftliche Kohäsion",
+          "AfD-Wahlerfolge und Populismus"
+        ]
+      },
+      {
+        "title": "Integrationsbereitschaft und Konsequenzen",
+        "timestamp_range": "01:11:17 - 01:11:22",
+        "theme_description": "Frage nach der Konsequenzziehung bei fehlender Integrationsbereitschaft von Migranten.",
+        "question_asked": "Wie gehen wir mit fehlender Integrationsbereitschaft um?",
+        "question_intent": "Soll es Sanktionen oder Konsequenzen für nicht integrationsbereite Migranten geben?",
+        "position": "Winkel stimmt dem kritischen Punkt zu (\"Natürlich\"), dass die Frage der Integrationsbereitschaft zentral ist, aber gibt keine elaborierte eigene Position — das ist eine Zustimmung ohne Konkretisierung. Später im Gespräch wird klar, dass Winkel zum politischen Islam und zum Bürgergeld Konsequenzen fordert (stärkere Kontrolle, höhere Hürden), aber bei dieser Frage direkt bleibt es bei der Bestätigung des Problemfeldes.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "floskel_generisch",
+        "match_reasoning": "Winkel antwortet mit \"Natürlich, aber wie gehen wir mit fehlender Integrationsbereitschaft um?\" — das ist eine Ja-aber-Wendung, die die Frage repetiert, ohne sie zu beantworten. Er eröffnet ein Thema, statt es zu klären.",
+        "quotes": [
+          {
+            "text": "Natürlich, aber wie gehen wir mit fehlender Integrationsbereitschaft um?",
+            "timestamp": "01:11:17"
+          }
+        ],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Integration und Integrationsbereitschaft",
+          "Migrationspolitik",
+          "Sanktionen und Konsequenzen bei Integrationsverweigerung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im letzten Jahr stiegen Bürgergeld-Ausgaben um 27 %",
+        "timestamp": "00:08:23"
+      },
+      {
+        "claim": "Der Nachhaltigkeitsfaktor wurde von früheren SPD-Ministern gegen den demografischen Wandel eingeführt",
+        "timestamp": "00:09:05"
+      },
+      {
+        "claim": "Ab 2029 gehen die Staatsfinanzen im Rentensystem bergab, wenn keine Reformen erfolgen",
+        "timestamp": "00:35:10"
+      },
+      {
+        "claim": "Die Rente mit 63 wird vom Staat subventioniert und war nie gesetzlich festgeschrieben",
+        "timestamp": "00:35:56"
+      },
+      {
+        "claim": "Im Koalitionsvertrag steht: 'Wir werden keine Steuererhöhungen machen'",
+        "timestamp": "00:40:31"
+      }
+    ]
+  }
+}

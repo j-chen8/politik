@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-3-dezember-2025-100",
+    "video_id": "lanz-2025-12-03",
+    "politician": "Sepp Müller",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "7a6f115c42f73350",
+    "transcript_chars": 65038,
+    "caption_lines": 3152,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26837,
+    "tokens_out": 8345,
+    "cost_usd": 0.0274248,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.416Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Sepp Müller verteidigt seine Ja-Stimmung zum Rentenpaket 1 trotz kritischer Bedenken, gestützt auf das Versprechen des Kanzlers für ein Rentenpaket 2 mit echten Reformen. Sein Auftritt war gekennzeichnet durch Spannung zwischen grundsätzlicher Ablehnung der Kosten für die junge Generation und der Hoffnung auf nachfolgende Strukturreformen, die er als notwendig erachtet.",
+    "themes": [
+      {
+        "title": "Rentenpaket 1 – Abstimmungsverhalten trotz Skepsis",
+        "timestamp_range": "00:03:20 - 00:07:51",
+        "theme_description": "Sepp Müller erklärt, warum er trotz fundamentaler Kritik am Rentenpaket 1 mit Ja stimmen wird.",
+        "question_asked": "Moderator Markus Lanz fragt, warum Müller froh ist, dass Die Linke das Problem abnimmt, und später, ob er gegen das Rentenpaket ist.",
+        "question_intent": "Zu verstehen, ob Müller gegen das Paket stimmt oder ob die Enthaltung der Linkspartei ihm Druck nimmt.",
+        "position": "Müller ist kritisch in der Sache, wird aber mit Ja stimmen. Grund: Der Bundeskanzler habe im Koalitionsausschuss das klare Versprechen gegeben, dass 'auf das Rentenpaket 1 das Rentenpaket 2 folgt'. Müller vertraut diesem Versprechen und sieht das Paket 1 als 'Grundlage für Rentenpaket 2'. Er erklärt seinen persönlichen Zwiespalt: Einerseits die 120 Milliarden Euro Belastung für die junge Generation, andererseits die Unterstützung für die Mütterrente und die niedrigen Renten in Sachsen-Anhalt (wo seine Mutter lebt). Er betont: 'Es geht darum, ob wir das Generationsversprechen einhalten können.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller beantwortet die ursprüngliche Frage (Freude über Linke-Enthaltung) direkt: Er schaut nicht auf andere Parteien, braucht eine Koalitionsmehrheit. Die tiefere Frage, ob er wirklich gegen das Paket ist, beantwortet er durch sein komplexes Abwägen: Ja kritisch in der Sache, aber Ja-Stimme wegen des Versprechens. Lanz stellt fest: 'Sie sind nicht kritisch, Sie sind total dagegen' – Müller widerspricht substanziell nicht, sondern reformuliert seinen Zwiespalt.",
+        "concrete_statements": [
+          "Deswegen werde ich am Freitag mit Ja stimmen",
+          "Denn Rentenpaket 1 ist die Grundlage für Rentenpaket 2",
+          "Das Versprechen des Bundeskanzlers war gewesen, dass auf das Rentenpaket 1 das Rentenpaket 2 folgt"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe den Bundeskanzler persönlich ins Wort genommen. Das Versprechen des Bundeskanzlers war gewesen, dass auf das Rentenpaket 1 das Rentenpaket 2 folgt. Dieses Rentenpaket 2, diese Reformen, die wir nötig haben, dieses Versprechen nehme ich den Bundeskanzler ab. Deswegen werde ich am Freitag mit Ja stimmen.",
+            "timestamp": "00:07:21"
+          },
+          {
+            "text": "Ich bin in der Sache sehr kritisch.",
+            "timestamp": "00:07:51"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Koalitionsvertrag CDU/CSU-SPD",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Mütterrente und Haltelinie als Sachsen-Anhalt-Belange",
+        "timestamp_range": "00:07:51 - 00:08:48",
+        "theme_description": "Müller begründet seinen Zwiespalt mit regionalen Interessen: Mütterrente als finanzielle Anerkennung und Haltelinie für niedrige Renten in Sachsen-Anhalt.",
+        "question_asked": "Markus Lanz fragt kritisch: Obwohl Sie eigentlich dagegen sind, stimmen Sie zu? Und später: Warum dürfen Renten von 57–58 % nicht gekürzt werden?",
+        "question_intent": "Nachzuhaken, ob Müllers Position kohärent ist – zustimmen zu etwas, das man ablehnt.",
+        "position": "Müller erklärt, dass die Mütterrente und Haltelinie speziell für Sachsen-Anhalt relevant sind. Die Renten seien dort besonders niedrig. Er betont: 'Mit der Mütterrente wird das auch finanziell anerkannt. Im Osten macht das auch etwas aus.' Die Steuerfinanzierung und die Haltelinie seien Elemente des Pakets 1, die Entlastung brächten. Zu dem Statement 'Sie können sich über 57 oder 58 % unterhalten' antwortet er: 'Es ist aber zu wenig zum Leben. Wir müssen uns die Menschen anschauen, die gearbeitet haben.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller adressiert die Frage des Zuwiderhandelns direkt durch lokale Kontextualisierung: Er erklärt, warum gerade Sachsen-Anhalt von Mütterrente und Haltelinie profitiert, was seinen Ja-Abstimmungsvorsatz rechtfertigt. Seine Position ist konsistent wenn man seinen Standpunkt akzeptiert, dass regionale Belange (niedrige Renten) die Ja-Stimme rechtfertigen.",
+        "concrete_statements": [
+          "Mit der Mütterrente wird das auch finanziell anerkannt",
+          "Im Osten macht das auch etwas aus",
+          "Es ist aber zu wenig zum Leben. Wir müssen uns die Menschen anschauen, die gearbeitet haben"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe Ihnen gesagt, dass man in der Wackler Anhalt eine sehr geringe Rente bekommt. Ich bin 89er Baujahr. Mit der Mütterrente wird das auch finanziell anerkannt. Im Osten macht das auch etwas aus. Vor diesem Hintergrund ist dieser Zwiespalt in mir, der am Ende mit dem Versprechen des Bundeskanzlers, ein Rentenpaket 2 auf den Weg zu bringen, damit auch die andere Generation in Zukunft noch die Chance hat, die Rente zu finanzieren.",
+            "timestamp": "00:08:08"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik Ostdeutschland",
+          "Mütterrente",
+          "Regionale Ungleichheit"
+        ]
+      },
+      {
+        "title": "AfD-Rentenpolitik und Standort Deutschland",
+        "timestamp_range": "00:15:22 - 00:16:05",
+        "theme_description": "Müller argumentiert, dass die AfD-Forderung nach 70 % Rentenniveau wirtschaftlich destruktiv für Sachsen-Anhalt wäre.",
+        "question_asked": "Ulrike Herrmann kritisiert, dass Rentenreformen taktisch unklug sind vor der Landtagswahl im Osten, wo die AfD schon bei 40 % liegt. Sepp Müller soll widersprechen.",
+        "question_intent": "Zu testen, ob Müller die Warnung vor AfD-Wählern akzeptiert oder eine Gegenposition vertritt.",
+        "position": "Müller widerspricht Herrmanns Annahme, dass AfD-Wähler höhere Renten wollen und dagegen sind, dass sich etwas ändert. Er argumentiert stattdessen: Wenn die AfD 70 % Rentenniveau fordert, müsse sie auch sagen, woher das Geld kommt – das würde zu steigenden Sozialversicherungsbeiträgen führen. Im Chemiedreieck Sachsen-Anhalts würde das zur Deindustrialisierung führen. Er sagt: 'Wir leben in Chemiedreieck. Wenn diese Partei an die Macht kommt und ihr Rentenkonzept umsetzt, dann ist das der Ausverkauf der Industrie in Sachsen-Anhalt.' Deswegen halte er den Bundeskanzler ans Wort.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller adressiert Herrmanns Warnung direkt, stellt aber eine Gegenthese auf: AfD-Politik sei nicht arbeitnehmerfreundlich, sondern wirtschaftsschädlich. Das ist eine substantielle Antwort, nicht eine Ausweichung, sondern ein Pivot zum Gegenpunkt – allerdings mit wirtschaftlicher Begründung statt Sympathie-Appell.",
+        "concrete_statements": [
+          "Wenn diese Partei an die Macht kommt und ihr Rentenkonzept umsetzt, dann ist das der Ausverkauf der Industrie in Sachsen-Anhalt",
+          "Ich werde alles daran setzen, dass das nicht passiert"
+        ],
+        "quotes": [
+          {
+            "text": "Als Sachsen-Anhalt haben muss ich deswegen widersprechen, weil das nicht das empfinden, was die Sachsen Anhalter haben. Wenn die AfD 70 % Rentenniveau fordert, muss sie auch sagen, woher kriegt sie das Geld. Das hat die Sozialversicherung Beiträge steigen. Wir leben in Chemiedreieck. Wenn diese Partei an die Macht kommt und ihr Rentenkonzept umsetzt, dann ist das der Ausverkauf der Industrie in Sachsen-Anhalt.",
+            "timestamp": "00:15:22"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "AfD-Wahlpolitik",
+          "Ostdeutsche Wirtschaft",
+          "Chemische Industrie Sachsen-Anhalt"
+        ]
+      },
+      {
+        "title": "Vertrauen zu Kanzler Merz und Schuldenbremsen-Versprechen",
+        "timestamp_range": "00:16:06 - 00:18:03",
+        "theme_description": "Markus Lanz stellt Müller auf die Probe: Hat der Kanzler Versprechen zur Schuldenbremse gebrochen? Müller versucht, Differenzierung zwischen Verständnis und Vertrauensbruch.",
+        "question_asked": "Hat Merz noch nie ein Versprechen gegeben und kurz danach schon wieder gebrochen? Und: Könnt ihr das Schuldenbremsen-Versprechen glauben?",
+        "question_intent": "Glaubwürdigkeit von Merz und damit auch die Glaubwürdigkeit des Rentenpaket-2-Versprechens in Frage zu stellen.",
+        "position": "Müller sagt erst 'Nein' auf die Frage nach Vertrauensbruch, zögert dann aber und lenkt ab: 'Ich weiß nicht, auf was Sie hinauswollen, wenn Herr Medick das Thema Schuldenbremse meint, dann wissen Sie, dass wir damit in der Union nicht nur große Bauchschmerzen hatten... Ich persönlich auch.' Auf Lanz' Drängen ('Sie stimmen jetzt etwas zu, wo Sie glauben, das muss dringend reformiert werden') antwortet Müller: 'Ich kann die Entscheidung nachvollziehen, ich habe sie auch mitgetragen im Deutschen Bundestag' und: 'Ich kann auch verstehen, was der Bundeskanzler zu Recht sagt, er hat einen hohen Kredit auf sich genommen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller weicht der direkten Vertrauensfrage (hat Merz Versprechen gebrochen?) aus, indem er zuerst 'Nein' sagt, dann aber zugibt, dass es 'Bauchschmerzen' gab – insbesondere zur Schuldenbremse. Er adressiert die Glaubwürdigkeit-Kritik, entzieht sich ihr aber durch Verständnis ('ich kann das nachvollziehen'). Das ist eine klassische Ausweichung ohne offene Verweigerung.",
+        "concrete_statements": [
+          "Ich persönlich auch [große Bauchschmerzen]",
+          "Ich kann die Entscheidung nachvollziehen, ich habe sie auch mitgetragen",
+          "Ich kann auch verstehen, was der Bundeskanzler zu Recht sagt"
+        ],
+        "quotes": [
+          {
+            "text": "Ich weiß nicht, auf was Sie hinauswollen, wenn Herr Medick das Thema Schuldenbremse meint, dann wissen Sie, dass wir damit in der Union nicht nur große Bauchschmerzen hatten... Ich persönlich auch.",
+            "timestamp": "00:16:20"
+          },
+          {
+            "text": "Ich kann die Entscheidung nachvollziehen, ich habe sie auch mitgetragen im Deutschen Bundestag.",
+            "timestamp": "00:17:52"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Fiskalische Glaubwürdigkeit CDU",
+          "Koalitionsvertrag SPD-CDU"
+        ]
+      },
+      {
+        "title": "Kapitalabgaben und Rentenkommission – inhaltliche vs. koalitionäre Absicht",
+        "timestamp_range": "00:20:46 - 00:24:30",
+        "theme_description": "Müller wird zu Robert Habecks Idee von Sozialabgaben auf Kapitalerträge befragt und zur Frage, warum Merz zuerst dagegen war, dann nicht.",
+        "question_asked": "Wären Sie für Sozialabgaben auf Kapitalerträge? Und später: Wie passt Friedrich Merz' Kehrtwende zusammen mit seiner ursprünglichen Ablehnung (Unterhemd-Rede)?",
+        "question_intent": "Zu demonstrieren, dass die Regierung inkohärent ist und dass Müller möglicherweise einer Kehrtwende zustimmt, die inhaltlich schlecht ist.",
+        "position": "Müller weicht anfangs aus: 'Ich bin dafür, dass die Rentenkommission sich über alles unterhält.' Auf Lanz' Insistieren ('Ich frage Sie, ob Sie das gut finden') antwortet er präziser: 'Würden wir das Thema Aufnehmen, auf gar keinen Fall. Würden wir die hohen Vermögen aufnehmen, dann ja.' Das heißt: Er würde Kapitalabgaben für hohe Vermögen unterstützen (nicht für Normalbürger). Zur Frage der Merz-Kehrtwende sagt Müller: Friedrich Merz sei Kanzler ohne 51 % (Mehrheit), habe daher einen Koalitionspartner, mit dem er 'aus der Mitte heraus' arbeite. 'Es geht nicht um diesen einen Spiegelstrich, es geht um die ganze Rentenkommission.' Er betont, dass Habeck und andere CDUler die Idee vorgebracht hätten, nicht Merz erfunden habe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller antwortet auf die erste Frage ausweichend (Kommission wird alles besprechen), dann substanzieller (hohe Vermögen ja, normale Sparer nein). Zur Glaubwürdigkeitsfrage (Kehrtwende) weicht er durch Koalitionslogik aus und verteilt die Urheberschaft auf mehrere CDU-Politiker. Das adressiert die Absurdität nicht direkt, sondern umgeht sie durch Systemlogik.",
+        "concrete_statements": [
+          "Würden wir das Thema Aufnehmen, auf gar keinen Fall. Würden wir die hohen Vermögen aufnehmen, dann ja",
+          "Es geht nicht um diesen einen Spiegelstrich, es geht um die ganze Rentenkommission",
+          "Von Kai Whitaker und Dr. Markus Reichel [stammte die Idee, nicht von Habeck]"
+        ],
+        "quotes": [
+          {
+            "text": "Würden wir das Thema Aufnehmen, auf gar keinen Fall. Würden wir die hohen Vermögen aufnehmen, dann ja. Dann würde Frau Herrmann mit mir im Streit legen. Das lassen wir aber außen vor.",
+            "timestamp": "00:21:43"
+          },
+          {
+            "text": "Friedrich Merz ist Bundeskanzler, wir haben keine 51 % geholt. D. h., wir haben einen Koalitionspartner, mit dem ich gerne zusammenarbeite, weil ich überzeugt bin, dass wir aus der Mitte heraus die das Land wieder stabilisieren können. Es geht nicht um diesen einen Spiegelstrich, es geht um die ganze Rentenkommission.",
+            "timestamp": "00:23:51"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Vermögensabgaben",
+          "Rentenkommission",
+          "Koalitionsmanagement"
+        ]
+      },
+      {
+        "title": "Fehler bei Rentengesetzgebung und zukünftige kritische Überprüfung",
+        "timestamp_range": "00:30:45 - 00:31:51",
+        "theme_description": "Ulrike Herrmann und Veit Medick kritisieren fehlendes Know-how in der Union; Müller gesteht Fehler ein und kündigt kritische Nachbearbeitung an.",
+        "question_asked": "Wer ist der Rentenexperte in der Union? Und: Haben die fehler gemacht?",
+        "question_intent": "Zu zeigen, dass die Union nicht kompetent genug ist, um Rentenpolitik zu gestalten.",
+        "position": "Müller verteidigt die JU-Vorsitzenden und die Berichterstatter als tief in den Themen; es sei 'unredlich', ihnen mangelndes Wissen zu unterstellen. Aber dann gesteht er: 'Man muss ja auch sagen, was falsch gelaufen ist... Es gab Fehler, und es ist nicht alles rund gelaufen.' Er kündigt an: 'Vor diesem Hintergrund werden wir auch sehr kritisch, das machen wir jetzt schon, aber besonders auch, wenn es am Freitag erfolgreich war. Dann werden wir in der Koalition aber auch in der Fraktion sehr kritisch diese Punkte angehen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller beantwortet beide Fragen direkt: Ja, es gibt Experten (JU, Berichterstatter); ja, es gab Fehler. Er balanciert Defensio mit Selbstkritik und macht eine zukunftsorientierte Zusage. Das ist substanziell und nicht ausweichend.",
+        "concrete_statements": [
+          "Es gab Fehler, und es ist nicht alles rund gelaufen",
+          "Werden wir in der Koalition aber auch in der Fraktion sehr kritisch diese Punkte angehen"
+        ],
+        "quotes": [
+          {
+            "text": "Man muss ja auch sagen, was falsch gelaufen ist. Diese Kritik an der Sache, Herr Medick, da haben Sie recht. Die Bewertung möchte ich mir nicht zu eigen machen, mit der Kritik an der Sache haben Sie aber recht. Es gab Fehler, und es ist nicht alles rund gelaufen. Vor diesem Hintergrund werden wir auch sehr kritisch, das machen wir jetzt schon, aber besonders auch, wenn es am Freitag erfolgreich war. Dann werden wir in der Koalition aber auch in der Fraktion sehr kritisch diese Punkte angehen.",
+            "timestamp": "00:31:12"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Koalitionsarbeit",
+          "Qualität von Gesetzgebung"
+        ]
+      },
+      {
+        "title": "Investitionsbooster und Druck auf Abgeordnete",
+        "timestamp_range": "00:32:48 - 00:35:23",
+        "theme_description": "Müller wird gefragt, ob er unter Druck gesetzt wurde, und ob es 'Karrieregespräche' (subtile Druckmethoden) gab.",
+        "question_asked": "Sind Sie unter Druck gesetzt worden? Und wer dann? Was erzählen die anderen dir über Karrieregespräche und subtile Druckmethoden?",
+        "question_intent": "Zu prüfen, ob die Ja-Stimmen erzwungen wurden und die Fraktion damit weniger vertrauenswürdig ist.",
+        "position": "Müller verneint, persönlich unter Druck gesetzt worden zu sein. Er sagt: 'Ich persönlich bin nicht unter Druck gesetzt worden.' Auf Nachfrage ('Wer denn dann?') antwortet er: 'Das kann ich Ihnen nicht sagen, ich entnehme Medienberichten dass Gespräche gelaufen sein sollten, von denen ich persönlich nichts weiß.' Auf die Frage nach Karrieregesprächen sagt er: 'Mit mir spricht da wirklich keiner drüber.' Dann erklärt er sein eigenes Vorgehen: 'Darf ich für mich sagen, wie gesagt, ich habe ja auch selber Verantwortung in der Fraktion. Wenn ich mit Kollegen rede, dann reden wir im Telefonat oder im persönlichen Gespräch, was bedeutet das eine und das andere. Da das für Folgen, nicht für uns persönlich, sondern für das Land. Das macht sich niemand leicht... Ich ringe auch mit mir selber. Wir gehen aber ordentlich miteinander um.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller beantwortet die direkte Frage zu sich selbst (Ja: Keine Druckausübung). Zur Frage, wer Druck ausübt, weicht er aus ('Das kann ich Ihnen nicht sagen'). Seine Rechtfertigung für sein eigenes Verhalten ist substanziell (ordentliche Gespräche, Verantwortung für Land), aber beantwortet nicht die Frage, ob andere Druck ausüben.",
+        "concrete_statements": [
+          "Ich persönlich bin nicht unter Druck gesetzt worden",
+          "Ich ringe auch mit mir selber. Wir gehen aber ordentlich miteinander um"
+        ],
+        "quotes": [
+          {
+            "text": "Darf ich für mich sagen, wie gesagt, ich habe ja auch selber Verantwortung in der Fraktion. Wenn ich mit Kollegen rede, dann reden wir im Telefonat oder im persönlichen Gespräch, was bedeutet das eine und das andere. Da das für Folgen, nicht für uns persönlich, sondern für das Land. Das macht sich niemand leicht. Da kommt keiner um die Ecke und sagt, ich hab es nicht gehört und auch nicht gemacht, du wirst auf Listenplatz XY gesetzt und du wirst nicht Staatssekretär oder was weiß ich. Ich bin selber auch kritisch gewesen. Ich ringe auch mit mir selber. Wir gehen aber ordentlich miteinander um.",
+            "timestamp": "00:34:31"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdisziplin",
+          "Fraktionszwang",
+          "Gewaltenteilung und Whip-System"
+        ]
+      },
+      {
+        "title": "Alexander Dobrindt als möglicher Fraktionsvorsitzender",
+        "timestamp_range": "00:38:14 - 00:38:37",
+        "theme_description": "Markus Lanz fragt Müller, wie er Dobrindt als Fraktionsvorsitzenden finden würde (als Alternative zu seiner Rolle als Innenminister).",
+        "question_asked": "Wie fänden Sie es, wenn Dobrindt Fraktionsvorsitzender würde (statt Innenminister)?",
+        "question_intent": "Zu testen, ob Müller Dobrindt als potenzielle Führungsperson sieht oder ob er ihn in seiner jetzigen Rolle bevorzugt.",
+        "position": "Müller antwortet kurz: 'Ich würde schade finden, wenn er nicht mehr Innenminister ist.' Das ist eine klare Aussage, dass er Dobrindt in der Innenminister-Rolle bevorzugt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller beantwortet die Frage direkt und eindeutig: Dobrindt sollte Innenminister bleiben. Das ist substanziell und nicht ausweichend.",
+        "concrete_statements": [
+          "Ich würde schade finden, wenn er nicht mehr Innenminister ist"
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde schade finden, wenn er nicht mehr Innenminister ist.",
+            "timestamp": "00:38:23"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsführung Union",
+          "Innenministerium",
+          "Koalitionsmanagement"
+        ]
+      },
+      {
+        "title": "Österreich vs. Deutschland – Rentenvergleich und Finanzierungsmodelle",
+        "timestamp_range": "00:48:49 - 00:50:33",
+        "theme_description": "Müller und Ulrike Herrmann diskutieren österreichische Rentensysteme, Inflationsindexierung und die Unterschiede bei Wartezeiten.",
+        "question_asked": "Markus Lanz stellt Fragen zu österreichischen Rentensystemen mit 87 % Rentenniveau gegenüber 55 % in Deutschland. Müller will Unterschiede klar machen.",
+        "question_intent": "Zu testen, ob Müller internationale Vergleiche akzeptiert oder dagegen argumentiert.",
+        "position": "Müller erklärt österreichische Spezifika: 'Sie bekommen erst nach 15 Jahren eine Einzahlung aus der gesetzlichen Rentenversicherung. D. h., Rentner, die nach sechs Jahren ein Betriebsunfall hatten, die bekommen dann erst nach 15 Jahren Einzahlung in Österreich etwas.' Er verweist auch auf den Inflationsindex: 'So wie die Löhne steigen, so steigen auch unsere Renten. In Österreich ist es so, dass es nach Inflation steigt.' Auf Herrmanns Gegenpunkt, dass der entscheidende Vergleich die Quote zum Nettolohn sei (55 % Deutschland vs. 87 % Österreich), bringt Müller ein: 'Da gibt es durchaus eine Verbindung, das wissen Sie. Den Schilling gibt es auch nicht mehr in Österreich. Das muss man nicht vergleichen.' Das ist eine schwache Defensio (Währungsunterschiede), die Herrmann leicht widerlegt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller versucht, Unterschiede zu relativieren, indem er österreichische Wartezeiten und Inflationsindexierung erwähnt. Das ist faktisch relevant, beantwortet aber nicht die zentrale Frage, warum Deutschland nicht auch 87 % erreichen kann. Seine Gegenwehr zur Währungsfrage ist schwach und wird sofort widersprochen.",
+        "concrete_statements": [
+          "Sie bekommen erst nach 15 Jahren eine Einzahlung aus der gesetzlichen Rentenversicherung",
+          "Außerdem haben sie einen Inflationsindex. So wie die Löhne steigen, so steigen auch unsere Renten"
+        ],
+        "quotes": [
+          {
+            "text": "Sie bekommen erst nach 15 Jahren eine Einzahlung aus der gesetzlichen Rentenversicherung. D. h., Rentner, die nach sechs Jahren ein Betriebsunfall hatten, die bekommen dann erst nach 15 Jahren Einzahlung in Österreich etwas. Außerdem haben sie einen Inflationsindex. So wie die Löhne steigen, so steigen auch unsere Renten. In Österreich ist es so, dass es nach Inflation steigt.",
+            "timestamp": "00:48:49"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Rentensysteme",
+          "Vergleichende Sozialpolitik",
+          "Inflationsindexierung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Sachsen-Anhalt hat die niedrigsten Renten in Deutschland",
+        "timestamp": "00:08:08"
+      },
+      {
+        "claim": "120 Milliarden Euro zusätzliche Belastung durch Rentenpaket 1 für die junge Generation",
+        "timestamp": "00:07:07"
+      },
+      {
+        "claim": "Im Chemiedreieck Sachsen-Anhalt würde eine 70%-Rentenquote (AfD-Forderung) zu Deindustrialisierung führen durch steigende Sozialversicherungsbeiträge",
+        "timestamp": "00:15:22"
+      },
+      {
+        "claim": "Österreich kennt nur 15 Jahre Wartezeit vor Rentenzahlung (statt 6 Jahre in Deutschland)",
+        "timestamp": "00:48:49"
+      },
+      {
+        "claim": "Kai Whitaker und Dr. Markus Reichel schlugen die Kapitalabgaben-Idee vor (nicht Robert Habeck)",
+        "timestamp": "00:22:13"
+      }
+    ]
+  }
+}

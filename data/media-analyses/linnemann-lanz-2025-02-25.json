@@ -1,0 +1,361 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-25-februar-2025-100",
+    "video_id": "lanz-2025-02-25",
+    "politician": "Carsten Linnemann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "19fae17912102cf6",
+    "transcript_chars": 55803,
+    "caption_lines": 2747,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23381,
+    "tokens_out": 7785,
+    "cost_usd": 0.0249224,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 1,
+      "substantielle_position": 6,
+      "pivot_zum_gegenpunkt": 1,
+      "gegenfrage": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.256Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Carsten Linnemann, CDU-Generalsekretär, präsentiert in dieser Sendung nach der Bundestagswahl die Lage für eine Union-SPD-Koalition. Er wirkt sachlich, teilweise defensiv zu schwierigen Fragen (Geschlechterrepräsentation, Schuldenbremse) und betont durchgehend die Notwendigkeit struktureller Veränderungen bei Migration, Rente und Industriestandort — mit Ton zwischen Warnung (Österreich-Vergleich) und konstruktiver Koalitionsbeteuerung.",
+    "themes": [
+      {
+        "title": "Frauendarstellung in Führungspositionen und Koalitionsteams",
+        "timestamp_range": "00:03:49 - 00:05:16",
+        "theme_description": "Diskussion über die mangelnde Frauenpräsenz auf einem Foto von Union-Spitzen und die Zusammensetzung künftiger Koalitionsteams.",
+        "question_asked": "Der Moderator kritisiert ein Foto, auf dem nur Männer aus der Union-Führung sitzen, und fragt, ob Linnemann es schade findet, dass keine Frau vertreten ist.",
+        "question_intent": "Den Generalsekretär zur Geschlechterrepräsentation in der politischen Führung der CDU befragen.",
+        "position": "Linnemann betont, dass er das problematische Foto selbst nicht gepostet habe. Er kündigt an, dass in Koalitionsverhandlungen 'gemischte, große Teams' gebildet werden. Auf direkte Nachfrage räumt er ein: 'Wir brauchen mehr Frauen in Führungspositionen, vor allem in der Politik.' Die unterschiedlichen Funktionen (Parteivorsitzende etc.) werden als Erklärung genannt, ohne dass dies als befriedigende Antwort präsentiert wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Linnemann weicht der eigentlichen Kritik aus, indem er auf das fehlende Foto-Posting hinweist, bekennt sich aber dann zu dem Ziel mehr Frauen in Führung. Die Antwort ist unvollständig — sie erklärt die Gegenwart nicht, sondern verweist auf Zukunftsvorsätze.",
+        "quotes": [
+          {
+            "text": "Das Foto hatte ich gar nicht gepostet. Wir werden in den Koalitionsverhandlungen gemischte, große Teams haben.",
+            "timestamp": "00:03:49",
+            "context": "Moderator fragt, ob Linnemann schade findet, dass auf dem Foto keine Frau sitzt."
+          },
+          {
+            "text": "Wir brauchen mehr Frauen in Führungspositionen, vor allem in der Politik.",
+            "timestamp": "00:04:06",
+            "context": "Direkter Nachfrage, ob er es schade findet."
+          }
+        ],
+        "concrete_statements": [
+          "Gemischte, große Teams in Koalitionsverhandlungen",
+          "Mehr Frauen in Führungspositionen notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Geschlechterrepräsentation",
+          "Personalien CDU/CSU",
+          "Koalitionsbildung"
+        ]
+      },
+      {
+        "title": "SPD-Koalitionsposition und Machtbalance",
+        "timestamp_range": "00:05:35 - 00:05:58",
+        "theme_description": "Die Verhandlungsposition der SPD als einziger verbleibender Koalitionspartner und die daraus resultierende Machtasymmetrie.",
+        "question_asked": "Der Moderator fragt, was Linnemann mehr stört: dass die CDU ihre 30%-Ziel verfehlt oder dass sie nur einen möglichen Koalitionspartner hat.",
+        "question_intent": "Herauszufinden, welches Problem Linnemann für schwerwiegender hält — das schwache Wahlergebnis oder die beschränkten Koalitionsoptionen.",
+        "position": "Linnemann hätte zwei Koalitionspartner bevorzugt, weil man dann in Verhandlungen besser Position nehmen könne (Vergleich mit Mittelständler mit zwei Lieferanten). Die SPD habe eine starke Position. Linnemann nutzt klare ökonomische Logik und konzediert implizit, dass die SPD Druck ausüben kann.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann antwortet direkt und substantiell auf die Frage: Ja, zwei Partner wären besser gewesen. Er erklärt, warum (Verhandlungsmacht) und anerkennt, dass die SPD eine starke Position hat. Keine Ausweichung.",
+        "quotes": [
+          {
+            "text": "Ich hätte gerne zwei Partner gehabt. Zwei mögliche Partner. Es ist wie bei Mittelständler, der zwei Lieferanten hat, da kann man anders verhandeln. Die SPD hat eine starke Position.",
+            "timestamp": "00:05:35",
+            "context": "Moderator fragt, was ihn mehr stört — verfehlt 30%-Ziel oder nur ein Koalitionspartner."
+          }
+        ],
+        "concrete_statements": [
+          "Bevorzugung von zwei Koalitionspartnern",
+          "SPD hat starke Verhandlungsposition"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Machtverhältnisse"
+        ]
+      },
+      {
+        "title": "Vertrauenskrise und Demokratische Legitimation",
+        "timestamp_range": "00:05:47 - 00:08:03",
+        "theme_description": "Linnemanns Analyse der tiefen Vertrauenskrise in der politischen Klasse und die Ursachen für die Abwendung zur AfD.",
+        "question_asked": "Moderator fordert auf, nicht von 'Erpressung' zu sprechen; Linnemann soll seine Beschreibung der politischen Lage geben.",
+        "question_intent": "Den wirtschaftlich ausgebildeten CDU-Generalsekretär zur Analyse der Stimmungslage und Vertrauenserosion befragen.",
+        "position": "Linnemann benennt zwei Seiten: (1) Menschen haben kein Vertrauen in die politische Klasse; (2) AfD-Stimmen sind nicht nur Protest, sondern Ausdruck, dass die Klasse versagt habe. 16 Jahre CDU-Fehler, Ampel machte es schlimmer. Jetzt herrsche depressive Stimmung mit kaum Zuversicht. Lösung: ein Plan (Agenda 2030) mit konkreten Zielen. Beispiele: Leistenbruch-OPs, Hausarzt-Facharztverhältnis, Bürgergeld-Missbrauch, Industriestandort, Zeitenwende bei Verteidigung (America First).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann gibt eine ausführliche, strukturierte Lageanalyse: Vertrauensverlust + konkrete Fehlleistungen, gefolgt von einer Strategieantwort (Agenda 2030). Er adressiert die zugrundeliegende Frage zur Regierungsfähigkeit vollständig.",
+        "quotes": [
+          {
+            "text": "Viele Stimmen an die AfD sind nicht Proteststimmen, sondern stimmen die sagen, sie haben versagt. Wir waren 16 Jahre dran, habe noch Fehler gemacht. Wurde abgewählt. Dann war die Ampel dran, sie hatte schlimmer gemacht.",
+            "timestamp": "00:05:47",
+            "context": "Analyse der Lage nach der Bundestagswahl."
+          },
+          {
+            "text": "Wir müssen etwas ändern. Das schaffen wir nur, wenn es einem Plan gibt. Wir haben die Agenda 2030.",
+            "timestamp": "00:08:03",
+            "context": "Fortsetzung der Lageanalyse mit Lösungsansatz."
+          }
+        ],
+        "concrete_statements": [
+          "Agenda 2030 als Reformprogramm",
+          "Vertrauenverlust durch 16 Jahre CDU und Ampel-Fehler",
+          "Kritik an Leistenbruch-OPs als kostenloses System-Beispiel",
+          "Rückgang der Facharztkompetenz",
+          "Bürgergeld-Reform notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Vertrauenskrise",
+          "Parteienvertrauen",
+          "Regierungsprogramm",
+          "Sozialstaat"
+        ]
+      },
+      {
+        "title": "Deutung der Merz-Rhetorik zu Antifa und Links-Extremismus",
+        "timestamp_range": "00:10:56 - 00:12:17",
+        "theme_description": "Linnemann rechtfertigt eine umstrittene Wahlkampfaussage von Friedrich Merz über 'linke Spinner' und Antifa.",
+        "question_asked": "Moderator zeigt Merz-Zitat ('grüne und linke Spinner') und fragt Linnemann, ob er wusste, dass das kommt.",
+        "question_intent": "Den Generalsekretär zur Verantwortung für die Merz-Rhetorik befragen und verstehen, ob die Aussage geplant war.",
+        "position": "Linnemann war auf der Veranstaltung, wusste aber nicht vorher, dass die Aussage kommt. Er deutet um: Der vorherige Kontext sei über Antifa in München (Links- bis Linksextremistische Gruppen) gegangen; Merz habe 'Antifa als linke Spinner' bezeichnet, hätte aber möglicherweise 'linksextremistische Spinner' sagen wollen. Linnemann unterscheidet zwischen friedlichen Demonstrationen (legitim, vor Konrad-Adenauer-Haus) und Gewalt (nicht tolerierbar). Antifa-Gewalt müsse man kritisieren und sich dagegen wehren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt die Aussage zu verteidigen oder zu kritisieren, leitet Linnemann zum Thema Antifa-Gewalt um und unterscheidet zwischen legitimen Demos und Extremismus. Die Frage nach Verantwortung wird nicht direkt beantwortet; stattdessen wird der Fokus auf Antifa-Gewalt verschoben.",
+        "quotes": [
+          {
+            "text": "Ich war da auf der Veranstaltung. Ich wusste nicht, dass das kommt. Sie haben vorher eine Minute nicht gezeigt. Da ging es um die Antifa, die sich in München gefragt. Das sind Links bis linksextremistische. Es geht um die Antifa, die hat er als linke Spinner bezeichnet.",
+            "timestamp": "00:11:02",
+            "context": "Moderator fragt, ob Linnemann das kommen sah."
+          }
+        ],
+        "concrete_statements": [
+          "Linnemann wusste von der Aussage nicht im Voraus",
+          "Unterscheidung: Antifa (zu kritisieren) vs. friedliche Demonstrationen (legitim)",
+          "Gewalt als Mittel der Demokratie inakzeptabel"
+        ],
+        "related_bundestag_topics": [
+          "Merz-Rhetorik",
+          "Antifa",
+          "Demonstrationen",
+          "Extremismus"
+        ]
+      },
+      {
+        "title": "Abgrenzung zur Antifa und Antifaschismus-Diskurs",
+        "timestamp_range": "00:13:43 - 00:14:09",
+        "theme_description": "Linnemann zieht eine klare Linie zwischen Antifaschismus als demokratischer Wert und der Antifa als Organisation mit Gewaltausübung.",
+        "question_asked": "Linnemann fragt Türmer direkt: 'Distanzieren sie sich von der Antifa und deren Gewaltausübung?'",
+        "question_intent": "Den Juso-Vorsitzenden zu einer klaren Positionierung zwingen.",
+        "position": "Linnemann stellt zwei separaten Fragen: (1) Distanz von Antifa-Gewalt; (2) Distanz von der Antifa als Organisation. Er signalisiert, dass diese Unterscheidung wichtig ist und versucht, den SPD-Vertreter zu präzisieren.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "gegenfrage",
+        "match_reasoning": "Linnemann beantwortet nicht selbst, sondern stellt eine Gegenfrage an Türmer, um dessen Position zu klären. Dies ist ein Moderationstechnisches Manöver, keine inhaltliche Antwort auf eine an ihn gerichtete Frage.",
+        "quotes": [
+          {
+            "text": "Aber es sind zwei verschiedene Themen, noch mal zur Antifa, distanzieren sie sich von der Antifa und deren Gewaltausübung?",
+            "timestamp": "00:13:43",
+            "context": "Linnemann wendet sich an Türmer nach dessen Antifaschismus-Aussage."
+          }
+        ],
+        "concrete_statements": [
+          "Unterscheidung zwischen Antifa (Organisation) und Antifaschismus (Haltung)"
+        ],
+        "related_bundestag_topics": [
+          "Antifa",
+          "Extremismus",
+          "Antifaschismus",
+          "Demokratische Werte"
+        ]
+      },
+      {
+        "title": "Migrations- und Asylpolitik: Irregularität versus humanitärer Anspruch",
+        "timestamp_range": "00:22:10 - 00:48:28",
+        "theme_description": "Linnemanns Position zur Migrationspolitik: Unterscheidung zwischen legitimer Zuwanderung, humanitärem Asyl und Bekämpfung irregulärer Migration.",
+        "question_asked": "Moderator und Türmer diskutieren, ob Zurückweisung an Grenzen in den Koalitionsvertrag gehört. Linnemann wird aufgefordert zu präzisieren, was für ihn nicht verhandelbar ist.",
+        "question_intent": "Konkrete Verhandlungsposition der CDU zur Migration herauskristallisieren.",
+        "position": "Linnemann lehnt 'Grenzschließung' ab: 'Ich würde nie die Grenzen schließen, wir brauchen dringend Zuwanderung. Ich möchte auch human sein, Menschen aufnehmen, die vor Gewalt fliehen.' Aber: 'Ich will die irreguläre Migration stoppen.' Die EU-Grenzen müssen kontrolliert sein, nicht aufgehoben, sondern 'verschoben' zu Außengrenzen. An der deutschen Grenze braucht es Kontrolle; wer keine Berechtigung hat, 'muss an der Grenze ein Stoppschild zu sehen und zurückgewiesen werden.' Bei echtem Asylrecht (individuelles Recht): 'Ich kann jetzt schon sagen, das individuelle Recht auf Asyl bleibt.' Beispiel: Pakistani, der online kritik übt und bei Rückkehr verhaftet würde — das fällt unter echtes Asylrecht. Aber: 'Die anderen kann man zurückweisen.' Im letzten Jahr weniger als 2000 echte Asylberechtigte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann gibt eine kohärente, detaillierte Position: Zuwanderung ja, Humanität ja, aber irreguläre Migration nein; echtes Asyl bleibt, illegaler Zutritt wird unterbunden. Die Antwort ist substantiell und adressiert sowohl die konkrete Frage als auch die humanitäre Komponente.",
+        "quotes": [
+          {
+            "text": "Ich würde nie die Grenzen schließen, wir brauchen dringend Zuwanderung. Ich möchte auch human sein, Menschen aufnehmen, die vor Gewalt fliehen. Ich will die irreguläre Migration stoppen.",
+            "timestamp": "00:38:01",
+            "context": "Linnemanns klare Position zur Migration gegen Türmer's Kritik."
+          },
+          {
+            "text": "Ich kann jetzt schon sagen, das individuelle Recht auf Asyl bleibt. Dafür gibt es Gesetze. Die anderen kann man zurückweisen.",
+            "timestamp": "00:47:01",
+            "context": "Konkrete Aussage zum echten Asylrecht versus irregulärer Migration."
+          }
+        ],
+        "concrete_statements": [
+          "Irreguläre Migration muss gestoppt werden",
+          "Individuelle Asylrecht bleibt (Genfer Konvention)",
+          "Grenzkontrollen mit Rückweisung für nicht-Berechtigte",
+          "Zuwanderung notwendig für Wirtschaft",
+          "Europäische Grenzen müssen funktionieren"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Asylrecht",
+          "Grenzschutz",
+          "Irreguläre Migration",
+          "Europäische Union"
+        ]
+      },
+      {
+        "title": "Bürgergeld: Sanktionen, Anreize zur Arbeit",
+        "timestamp_range": "00:28:13 - 00:56:50",
+        "theme_description": "Linnemanns Position zum Bürgergeld: Wiedereinführung ärztlicher Untersuchungen, Sanktionen bei Arbeitsverweigerung, Unterscheidung von Arbeitsunfähigkeit.",
+        "question_asked": "Moderator fragt, was die CDU mit dem Bürgergeld plant (angesichts SPD's Verteidigung des Systems).",
+        "question_intent": "Die konkrete CDU-Reform zum Bürgergeld verstehen.",
+        "position": "Linnemann kritisiert, dass Arbeiter durch Steuern den Sozialstaat finanzieren, aber Bürgergeld an Menschen geht, die arbeiten könnten — das sei 'ungerecht'. Konkrete CDU-Pläne: (1) Ärztliche Untersuchung wieder einführen, ob jemand arbeitsfähig ist; (2) Nach einem Jahr Annahme eines Jobs verbindlich, sonst 100% Sanktion; (3) Unterscheidung: Wer nicht arbeiten kann — Unterstützung. Wer nicht arbeiten will — keine. Linnemann zitiert Verfassungsgericht: Wenn jemand 'partout keine Arbeit annehmen möchte', kann der Staat davon ausgehen, dass keine Unterstützung nötig ist. Auch Hubertus Heil (SPD) habe der CDU signalisiert, dass man darüber zusammenkommen könne.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann skizziert ein klares Reformprogramm mit drei Elementen und rechtlicher Begründung. Er adressiert die Frage direkt und gibt eine inhaltliche Alternative zum Status quo.",
+        "quotes": [
+          {
+            "text": "Wenn Menschen Geld bekommen für nicht Arbeit, obwohl sie arbeiten könnten, das geht nicht.",
+            "timestamp": "00:08:03",
+            "context": "Grundsätzliche Kritik am jetzigen Bürgergeld-System."
+          },
+          {
+            "text": "Wir haben vor, die Untersuchungen wieder einzuführen, dass der Amtsarzt etwa wieder untersucht, ob jemand arbeitsfähig ist, und wer das ist, nach einem Jahr, der muss einen Job annehmen, ansonsten bekommt er 100 % Sanktion.",
+            "timestamp": "00:55:12",
+            "context": "Konkrete CDU-Reform zum Bürgergeld."
+          }
+        ],
+        "concrete_statements": [
+          "Ärztliche Arbeitsfähigkeitsprüfung wieder einführen",
+          "Nach einem Jahr Jobzwang für Arbeitsfähige",
+          "100%-Sanktion bei Arbeitsverweigerung",
+          "Verfassungsgericht hat dies gestützt",
+          "Mögliche Verständigung mit SPD (Heil-Sondierung)"
+        ],
+        "related_bundestag_topics": [
+          "Sozialstaat",
+          "Bürgergeld",
+          "Arbeitsmarkt",
+          "Hartz IV",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Schuldenbremse: Prinzipientreue und pragmatische Grenzziehung",
+        "timestamp_range": "01:00:37 - 01:07:20",
+        "theme_description": "Linnemanns Verteidigung der Schuldenbremse gegen Druck, sie zu lockern oder durch Sondervermögen zu umgehen.",
+        "question_asked": "Moderator kritisiert Inkohärenz: Merz hat Öffnung angedeutet, Linnemann sagte nein, nun sagt Merz wieder ja. Was ist Linnemanns Position?",
+        "question_intent": "Klären, ob Linnemann für eine Schuldenbremsen-Reform offenbar ist oder nicht.",
+        "position": "Linnemann bleibt hart: 'Ich werde dafür kämpfen, dass sie bleibt. Es ist meine Überzeugung.' Er unterscheidet streng zwischen Schuldenbremsen-Reform (kategorisches Nein) und Sondervermögen (verhandelbar): 'Das sind zwei verschiedene Paar Schuhe. Das ist kein Trick. Beim Sondervermögen ist es zweckgebunden. Wenn ich die Schuldenbremse löse, kann ich das Geld für alles ausgeben.' Historisches Problem: 'Die Vergangenheit zeigt, wenn Schulden gemacht werden können, gibt es kein Halten mehr. Politiker haben immer Ideen, wie man das Geld ausgeben kann.' Beispiel: Mütterrente. Infrastruktur-Investitionen (Brücken) sind wichtig, aber: 'Ich halte es für einen zentralen Fehler mit der Schuldenbremse' — sollte aber nicht Schuldenbremse gelockert, sondern Prioritäten gesetzt werden. Sondervermögen für Bundeswehr bis 2027 durchfinanziert, danach offen. Linnemann betont: 'Bei mir gibt es noch einen, der oben ist' (Merz hat das Sagen) und Länder brauchen mehr Flexibilität, aber 'Die im Bund wird bleiben.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann antwortet kohärent und wiederholte Mal auf die Kern-Frage (Schuldenbremse ja oder nein). Die Antwort ist eindeutig: Schuldenbremse bleibt, Sondervermögen ist Alternative. Er erklärt seine Begründung ausführlich.",
+        "quotes": [
+          {
+            "text": "Ich werde dafür kämpfen, dass sie bleibt. Es ist meine Überzeugung.",
+            "timestamp": "01:04:16",
+            "context": "Auf Moderators Frage: 'Schuldenbremse bleibt bei Ihnen, ja oder nein?'"
+          },
+          {
+            "text": "Das sind zwei verschiedene Paar Schuhe. Das ist kein Trick. Beim Sondervermögen ist es zweckgebunden. Wenn ich die Schuldenbremse löse, kann ich das Geld für alles ausgeben.",
+            "timestamp": "01:05:14",
+            "context": "Linnemann erklärt den Unterschied zwischen Schuldenbremsen-Reform und Sondervermögen."
+          }
+        ],
+        "concrete_statements": [
+          "Schuldenbremse bleibt, keine Reform",
+          "Sondervermögen als Alternative zu akzeptieren",
+          "Prioritäten setzen statt Grenzen lösen",
+          "Länder-Flexibilität ausbau, Bund-Schuldenbremse bleibt",
+          "Merz hat das letzte Wort in der CDU"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Haushalt",
+          "Fiskalpolitik",
+          "Bundeswehr-Finanzierung",
+          "Infrastruktur"
+        ]
+      },
+      {
+        "title": "Notwendigkeit einer starken SPD und kooperativer Regierungsfähigkeit",
+        "timestamp_range": "01:41:05 - 01:42:57",
+        "theme_description": "Linnemanns Interesse an einer starken SPD als Koalitionspartner und Warnung vor dem Scheitern der Koalition.",
+        "question_asked": "Moderator stellt fest, dass die CDU mit 28% nicht sonderlich stark abgeschnitten hat und fragt, wie großzügig man der SPD gegenüber sein kann.",
+        "question_intent": "Linnemanns Realismus zur eigenen Verhandlungsposition prüfen.",
+        "position": "Linnemann: 'Ich glaube, wir brauchen eine starke SPD in Deutschland, zwei große Volksparteien. Ich habe Interesse daran, dass es funktioniert mit Ihnen.' Er meint das nicht wahlkampftechnisch, sondern grundsätzlich: 'Wir müssen ein Klima schaffen, dass er beide wissen, denn wir scheitern scheitern der Mitte des Parlamentes. Dann gibt es sie irgendwann nicht mehr. Dann regieren die Ränder.' SPD soll klarmachen, was ihr wichtig ist, besonders Industriearbeitsplätze. Linnemann betont, dass er persönlich nichts gegen die Verhandlungen hat.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Linnemann beantwortet die implizite Frage nach Großzügigkeit nicht direkt als Eingeständnis von Schwäche, sondern rerahmt sie als strategisches Interesse: Starke SPD ist besser als schwache (verhindert Radikalisierung). Das ist eine kohärente, nicht ausweichende Antwort.",
+        "quotes": [
+          {
+            "text": "Ich glaube, wir brauchen eine starke SPD in Deutschland, zwei große Volksparteien. Ich habe Interesse daran, dass es funktioniert mit Ihnen.",
+            "timestamp": "01:41:05",
+            "context": "Auf Kritik an CDU-Wahlresultat und Verhandlungsdruck."
+          },
+          {
+            "text": "Wir müssen ein Klima schaffen, dass er beide wissen, denn wir scheitern scheitern der Mitte des Parlamentes. Dann gibt es sie irgendwann nicht mehr. Dann regieren die Ränder.",
+            "timestamp": "01:41:05",
+            "context": "Warnung vor den Folgen von Koalitionsscheitern."
+          }
+        ],
+        "concrete_statements": [
+          "SPD ist wichtiger Koalitionspartner",
+          "Zwei-Volksparteien-Modell notwendig",
+          "Scheitern hätte extreme Konsequenzen (AfD + Linke)",
+          "Bereitschaft zu konstruktiven Verhandlungen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "SPD-CDU",
+          "Regierungsfähigkeit",
+          "Mitte-Sicherung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Wir dürfen 15 Milliarden trotz Schuldenbremse an Schulden machen.",
+        "timestamp": "01:03:23"
+      },
+      {
+        "claim": "Im Jahr eine Viertel Millionen Leisten OPs haben, die fast alle stationär im Krankenhaus stattfinden",
+        "timestamp": "00:08:03"
+      },
+      {
+        "claim": "Das individuelle Recht auf Asyl bleibt drin, das war im letzten Jahr weniger als 2000 Personen.",
+        "timestamp": "00:47:01"
+      },
+      {
+        "claim": "Es gibt einen Rechtsspruch vom Verfassungsgericht, dass der Staat davon ausgehen kann, wenn jemand partout keine Arbeit annehmen möchte, kann man davon ausgehen, dass er keine Unterstützung braucht.",
+        "timestamp": "00:55:12"
+      },
+      {
+        "claim": "Bisher gibt es nicht einen Fall in Deutschland, deswegen können wieder zusammenkommen, auch Herr Mützenich hat gesagt, wir können da zusammenkommen.",
+        "timestamp": "00:55:12"
+      }
+    ]
+  }
+}

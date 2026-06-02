@@ -1,0 +1,310 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-16-juli-2025-100",
+    "video_id": "lanz-2025-07-16",
+    "politician": "Christoph Ploß",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "04d5a1a670f001af",
+    "transcript_chars": 56356,
+    "caption_lines": 2800,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23671,
+    "tokens_out": 7243,
+    "cost_usd": 0.0239544,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.348Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Christoph Ploß trat als einer von vier Gästen in der Sendung auf, um die gescheiterte Wahl von Verfassungsrichterin Frauke Brosius-Gersdorf zu diskutieren. Er vertrat dabei die Position der Union, erklärte interne Abläufe der CDU/CSU-Fraktion und argumentierte, dass die Ablehnung der Kandidatin auf sachliche Bedenken zur Menschenwürde-Frage, nicht auf rechte Kampagnen zurückging. Sein Ton war sachlich und differenzierend, teilweise defensiv gegenüber Vorwürfen der ideologischen Beeinflussung.",
+    "themes": [
+      {
+        "title": "Persönliche Bereitschaft zur schwierigen Diskussion",
+        "timestamp_range": "00:02:56 - 00:03:07",
+        "theme_description": "Begründung, warum Christoph Ploß als einziger der 24 angeforderten CDU/CSU-Politiker sofort zusagte, obwohl das Thema schwierig war.",
+        "question_asked": "Markus Lanz fragte, warum alle anderen 23 angeforderten Unionspolitiker abgesagt hatten und nur Ploß zusagte.",
+        "question_intent": "Herauszufinden, weshalb die Unionführung sich der kritischen Debatte entzog.",
+        "position": "Ploß sagte, er stelle sich auch in schwierigen Situationen. Er wisse, dass es nicht einfach wird an diesem Abend, aber das sei kein Grund, abzusagen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Die Antwort erklärt Ploßs persönliche Haltung (Bereitschaft zur schwierigen Debatte), adressiert aber nicht die Frage, WARUM die anderen abgesagt haben — das delegiert er an die Kollegen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Das müssen Sie die Kollegen fragen. Ich stelle mich auch in schwierigen Situationen.",
+            "timestamp": "00:02:56",
+            "context": "Auf die Frage, warum die anderen 23 angeforderten Unionspolitiker abgesagt hatten."
+          }
+        ],
+        "concrete_statements": [
+          "Ploß stellt sich zur schwierigen Diskussion zur Verfügung."
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsdisziplin",
+          "Öffentlichkeitsarbeit von Politikern",
+          "Kommunikationsstrategie"
+        ]
+      },
+      {
+        "title": "Würde des Menschen in Brosius-Gersdorf-Debatte",
+        "timestamp_range": "00:04:10 - 00:04:53",
+        "theme_description": "Ploßs Bewertung des Auftritts von Frauke Brosius-Gersdorf und die zentrale Frage, ob sie ihre umstrittenen Aussagen zur Menschenwürde hinreichend geklärt hat.",
+        "question_asked": "Markus Lanz fragte, ob sich für Ploß nach dem Auftritt von Brosius-Gersdorf etwas verändert habe.",
+        "question_intent": "Herauszufinden, ob der emotionale und sachliche Auftritt der Kandidatin Ploß oder die Union umgestimmt hätte.",
+        "position": "Ploß fand die entscheidende Frage zur Würde des Menschen nicht zufriedenstellend beantwortet. Sie habe zwar einige Äußerungen aus dem Rechtsausschuss vom Februar relativiert, aber gerade für die Union — für die der Schutz der Menschenwürde zentral ist — sei das nicht überzeugend.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ploß beantwortet direkt, was sich nicht verändert hat (seine kritische Position zur Würde-Frage) und begründet warum (Relativierungen ohne volle Klarheit), wodurch die Frage nach einer Umstimmung eindeutig negativ beantwortet ist.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich fand die entscheidende Frage im Umgang mit der Würde des Menschen, die ist weiter nicht zufriedenstellend beantwortet worden. Sie hat einige Äußerungen relativiert, die sie noch im Rechtsausschuss des Bundestages im Februar dieses Jahres gemacht hat.",
+            "timestamp": "00:04:21",
+            "context": "Antwort auf die Frage, ob sich etwas nach dem Auftritt verändert hat."
+          }
+        ],
+        "concrete_statements": [
+          "Ploß hätte Brosius-Gersdorf nicht gewählt",
+          "Die zentrale Frage zur Würde des Menschen wurde nicht hinreichend adressiert"
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsgerichtwahl",
+          "Menschenwürde (Art. 1 GG)",
+          "Abtreibungsrecht (§ 218)"
+        ]
+      },
+      {
+        "title": "Fraktionsinterne Dynamik und Abstimmungsabsage",
+        "timestamp_range": "00:16:36 - 00:19:06",
+        "theme_description": "Ploßs Bericht über die zeitliche Abfolge, wie das Thema in die Fraktion kam und warum die Abstimmung am Freitag abgesagt wurde.",
+        "question_asked": "Markus Lanz fragte Ploß, wie er persönlich erlebt hat, wann der Moment kam, dass die Union merkte, sie habe ein großes Thema.",
+        "question_intent": "Zu verstehen, ab wann die Unionsfraktion Spannungen bei der Wahl bemerkte und wie schnell die Dynamik eskalierte.",
+        "position": "Ploß war in Fraktionssitzungen dabei. Das Thema war für die meisten Abgeordneten erst 1,5 Wochen aktuell. Dann gab es öffentliche Diskussionen (FAZ, Welt am Sonntag). Die Abgeordneten bildeten sich eigenständig eine Meinung, nicht weil sie einer rechten Kampagne aufgesessen waren, sondern weil ein Spannungsfeld entstanden war: zwischen dem Wunsch nach Stabilität und Kern-Positionen der Union zur Menschenwürde. Auch andere Fragen (Quotenregelungen) spielten eine Rolle. Ploß fand es richtig, dass Jens Spahn die Abstimmung abgesagt hat. Er selbst hatte Bedenken und warb dafür, die Abstimmung nicht in dieser Woche durchzuführen, weil viel Gesprächsbedarf existierte. Er hätte sie auch nicht gewählt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ploß liefert eine detaillierte, chronologische Darstellung, wie das Thema in die Fraktion kam (1,5 Wochen vorher), warum es eskalierte (öffentliche Medienberichterstattung + mehrere substanzielle Positionen, nicht Kampagne) und beantwortet klar, warum die Abstimmung abgesagt wurde (Gesprächsbedarf) und wie er selbst abgestimmt hätte (nein).",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich war bei den Fraktionssitzungen dabei und den anderen Gremien. Für die meisten Abgeordneten war das erst ein Thema vor 1,5 Wochen... Ich habe den Eindruck gewonnen, in der Fraktion, es ging nicht darum, man ging nicht einer rechten Kampagne auf den Leim oder ließ sich davon treiben. Die Abgeordneten haben sich eigenständig eine Meinung gebildet.",
+            "timestamp": "00:16:36",
+            "context": "Bericht über den Ablauf und die Gründe für die Ablehnung in der Fraktion."
+          },
+          {
+            "text": "Ich hatte auch meine Bedenken kundgetan. Ich habe sehr dafür geworben, dass wir die Abstimmung nicht in der Woche durchführen. Ich hätte sie auch nicht gewählt.",
+            "timestamp": "00:18:53",
+            "context": "Antwort auf die Frage, ob Ploß zu denen gehörte, die die Stimmung verweigert hätte."
+          }
+        ],
+        "concrete_statements": [
+          "Ploß hätte gegen Brosius-Gersdorf gestimmt",
+          "Er warb dafür, die Abstimmung zu verschieben",
+          "Der Prozess war nicht optimal (Zustimmung zu Spahns Kritik)"
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsmanagement",
+          "Verfassungsgerichtwahl",
+          "Interne CDU/CSU-Positionen"
+        ]
+      },
+      {
+        "title": "Prozessfehler und Fraktionsvorbereitung",
+        "timestamp_range": "00:20:28 - 00:26:55",
+        "theme_description": "Kritik am Vorgehen von Fraktionsvorsitzendem Jens Spahn bei der mangelnden Vorbereitung und Absicherung des Prozesses.",
+        "question_asked": "Britta Haßelmann kritisierte, dass Fraktionsvorsitzender Spahn die Fraktion nicht ausreichend auf die Richterwahl vorbereitet habe. Ploß wurde implizit gefragt, inwiefern er diese Kritik teilt.",
+        "question_intent": "Herauszufinden, ob auch Union-interne Vertreter das Führungsversagen von Spahn eingestehen.",
+        "position": "Ploß räumte ein, dass der Prozess bei Spahn nicht optimal gelaufen ist — das habe auch Spahn selbst in einem Brief an die Fraktion erkannt. Die Vorbehalte hätten in einem kleineren Kreis vorher adressiert werden müssen, statt erst in der Fraktionssitzung zu explodieren. Gleichzeitig argumentierte Ploß, dass Abgeordnete nach ihrem Gewissen entscheiden, und dass bei einer Fraktionssitzung mit dieser Substanz Diskussionen notwendig sind.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ploß gibt zu, dass der Prozess schlecht war (teil_adressiert), verteidigt aber gleichzeitig die Notwendigkeit von Diskussionen und impliziert, dass nicht nur Spahn, sondern auch der Prozess selbst legitim war. Er adressiert damit die Kritik an Spahn, weicht aber bei der Bewertung der Konsequenzen aus.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Das hat Jens Spahn selber gesagt, dass der Prozess nicht optimal gelaufen ist. Da sind wir uns einig. Der Prozess war nicht gut. Es gibt einiges aufzuarbeiten.",
+            "timestamp": "00:25:20",
+            "context": "Ploß reagiert auf Haßelmanns Kritik am Fraktionsprozess."
+          }
+        ],
+        "concrete_statements": [
+          "Der Prozess war nicht optimal",
+          "Spahn hätte Vorbehalte früher in kleinerem Kreis adressieren sollen"
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsdisziplin",
+          "Fraktionsmanagement",
+          "Verfassungsgerichtwahl"
+        ]
+      },
+      {
+        "title": "Menschenwürde und Lebensschutz zentral für Union",
+        "timestamp_range": "00:47:31 - 00:49:25",
+        "theme_description": "Ploßs explizite Begründung, warum die Frage der Menschenwürde und des Lebensschutzes für die Union nicht verhandelbar ist.",
+        "question_asked": "Im Kontext der Diskussion über Abtreibungsrecht wurde Ploß implizit gefragt, warum die Union Brosius-Gersdorf ablehnte, obwohl sie selbst nicht sagt, dass es keinen Schutz des ungeborenen Lebens gibt.",
+        "question_intent": "Herauszufinden, ob die Union-Ablehnung sachlich (wegen echter Unterschiede in der Würde-Position) oder ideologisch motiviert ist.",
+        "position": "Für die meisten Abgeordneten — ob liberal oder wertekonservativ — geht es um den Schutz menschlichen Lebens mit höchstem Stellenwert. Das gelte auch für ältere Menschen in ihrer letzten Lebensphase. Ploß zitierte eine Aussage Brosius-Gersdorfs aus Februar: 'Meines Erachtens gibt es gute Gründe dafür, dass die Menschenwürdegarantie erst ab der Geburt gilt.' Das sei die Kernposition, die für die Union nicht akzeptabel sei.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ploß liefert die sachliche Begründung für die Ablehnung: die unterschiedliche Auffassung zur Menschenwürde (Union: ab Empfängnis oder zumindest im Verlauf; Brosius-Gersdorf: erst ab Geburt). Das beantwortet die implizite Frage vollständig und konkret.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich kann einen Satz aus Februar vorlesen. Zitat: 'Meines Erachtens gibt es gute Gründe dafür, dass die Menschenwürdegarantie erst ab der Geburt gilt'. Das, was für die Union der Kern ist, die Würde des Menschen nach vorne zu stellen, dass es nicht zufriedenstellend beantwortet worden.",
+            "timestamp": "00:48:13",
+            "context": "Ploß liefert das konkrete Zitat von Brosius-Gersdorf, das die Union-Position erklärt."
+          }
+        ],
+        "concrete_statements": [
+          "Der Schutz menschlichen Lebens hat für die Union höchsten Stellenwert",
+          "Brosius-Gersdorf sagt, Menschenwürde gelte erst ab der Geburt — das ist für die Union nicht akzeptabel"
+        ],
+        "related_bundestag_topics": [
+          "Menschenwürde (Art. 1 GG)",
+          "Abtreibungsrecht (§ 218, § 219a)",
+          "Lebensschutz"
+        ]
+      },
+      {
+        "title": "Kampagnen versus sachliche Debatte",
+        "timestamp_range": "00:54:30 - 00:56:25",
+        "theme_description": "Ploßs Unterscheidung zwischen legitimen sachlichen Debatten in der Fraktion und unak­zeptablen Online-Kampagnen gegen Brosius-Gersdorf.",
+        "question_asked": "Markus Lanz hielt dagegen, dass Ploß die sachliche Debatte betont, während Haßelmann von Morddrohungen und Geschlechterkampagnen berichtet. Lanz fragte, ob Ploß persönlich Versuche der Beeinflussung erlebt habe.",
+        "question_intent": "Herauszufinden, ob Ploß die Existenz und Schwere von Kampagnen außerhalb der Fraktion anerkennt oder ob er diese für irrelevant hält.",
+        "position": "Ploß unterschied zwischen automatisierten E-Mail-Kampagnen (die er nicht ernst nehme) und individuellen E-Mails und Anrufen von Ärzten, Anwälten und Handwerkern, die echte Bedenken hätten — ethisch, aber auch wegen des Eindrucks einer 'Linksverschiebung'. Die Debatte in der Unionsfraktion sei sachlich und habe nichts mit Geschlechter­fragen zu tun. Was es an Online-Kampagnen gebe, komme nicht von der Unionsfraktion, sondern von Links- und Rechtsaußen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ploß adressiert Teile der Frage (ja, es gab Beeinflussung von außen, aber unterschiedlicher Art), weigert sich aber, die Kampagnen als strukturell von der Union ausgehend anzuerkennen. Er attributiert sie stattdessen auf 'Links- und Rechtsaußen'. Das ist eine teilweise Antwort mit einer impliziten Umdefinition des Problems.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "In diesem Fall waren es viele individuelle E-Mails. Wir hatten viele Anrufe von Menschen — das kann ich nur vom ersten Eindruck schildern. Das sind Ärzte, Anwälte, Handwerker, die sich gemeldet haben. [...] Die Debatte in der Unionsfraktion ist sachlich. Das hat mit der Geschlechterfrage nicht zu tun.",
+            "timestamp": "00:54:58",
+            "context": "Ploß berichtet von Beeinflussung, betont aber deren Sachlichkeit und unterscheidet von Online-Kampagnen."
+          }
+        ],
+        "concrete_statements": [
+          "Es gab individuelle E-Mails und Anrufe von Bürgern mit ethischen Bedenken",
+          "Die Unionsfraktion-Debatte war sachlich, nicht geschlechterbezogen",
+          "Unak­zeptable Aussagen in Online-Foren kamen nicht von der Unionsfraktion"
+        ],
+        "related_bundestag_topics": [
+          "Polarisierung von Debatten",
+          "Digitale Kampagnen",
+          "Geschlechtergerechtigkeit in der Politik"
+        ]
+      },
+      {
+        "title": "Identitätspolitik und Stoßrichtung Brosius-Gersdorfs",
+        "timestamp_range": "00:57:59 - 00:58:17",
+        "theme_description": "Ploßs Kritik an Brosius-Gersdorfs Positionen in Identitätspolitik und Quoten, die er als 'linke' Stoßrichtung charakterisiert.",
+        "question_asked": "Melanie Amann argumentierte, dass Wissenschaftler und Kandidaten öffentlich Positionen vertreten sollten. Ploß wurde implizit gefragt, ob die Identitätspolitik-Positionen ein eigenständiger Grund für die Ablehnung sind.",
+        "question_intent": "Zu verstehen, ob die Ablehnung rein wegen Menschenwürde/Abtreibung ist oder ob auch ideologische Gründe (Quotierung, Identitätspolitik) eine Rolle spielen.",
+        "position": "Ploß sagte, er habe Interviews gelesen und einen ‚Stoßrichtung' erkannt: In der Identitätspolitik sei sie eher ‚links' — zum Beispiel befürworte sie quotierte Listen bei Wahlen. Das könne man in Interviews nachlesen. Dies war ein zusätzliches ideologisches Argument neben der Würde-Frage.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ploß beantwortet klar und konkret: Ja, Identitätspolitik-Positionen spielen eine Rolle; er liefert ein Beispiel (Quotierung). Das ist eine sachliche, wenn auch generali­sierende Aussage.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe auch Interviews gelesen, sie hat eine Stoßrichtung. In der Identitätspolitik ist sie eher links. Zum Beispiel, dass es quotierte Listen bei Wahlen gibt. Das kann man in Interviews nachlesen.",
+            "timestamp": "00:57:59",
+            "context": "Ploß erklärt, welche zusätzlichen ideologischen Bedenken er gegen Brosius-Gersdorf hatte."
+          }
+        ],
+        "concrete_statements": [
+          "Brosius-Gersdorf vertrittlinke Positionen zu Identitätspolitik (Quotierung bei Wahlen)"
+        ],
+        "related_bundestag_topics": [
+          "Geschlechterquoten",
+          "Identitätspolitik",
+          "Verfassungsgerichtwahl"
+        ]
+      },
+      {
+        "title": "Öffentliche Zurückhaltung von Kandidaten",
+        "timestamp_range": "00:58:34 - 00:59:39",
+        "theme_description": "Ploßs Position, dass Kandidaten für das Bundesverfassungsgericht öffentliche Zurückhaltung wahren sollten, trotz ihrer Expertise.",
+        "question_asked": "Markus Lanz fragte, ob Richter eine Meinung haben dürfen und ob Ploß das von Brosius-Gersdorf kritisiere.",
+        "question_intent": "Herauszufinden, ob Ploß gegen Expertise und öffentliches Engagement von Kandidaten generell argumentiert oder nur spezifisch gegen Brosius-Gersdorf.",
+        "position": "Ploß argumentierte, dass jemand, der sich für so ein hohes Amt bewirbt, öffentliche Zurückhaltung haben sollte. Die Kandidaten seien in der Regel auch aus gutem Grund nicht so in der Öffentlichkeit. Sie müssten 'über jeden Verdacht erhaben sein.' Haßelmann konterte mit dem Beispiel Peter Müller, der sich nicht gescheut habe, öffentlich über Wahlrecht zu sprechen. Ploß entgegnete, dass Wahlen zum Bundesverfassungsgericht sich unterscheiden und Kandidaten sich bewusst zurückhalten sollten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ploß beantwortet die Frage nach seiner Kritik (ja, mangelnde Zurückhaltung ist problematisch), weicht aber beim Argument aus: Er argumentiert nicht gegen Meinungen oder Expertise generell, sondern dass eine spezifische Position (öffentliche Zurückhaltung) für Kandidaten notwendig ist. Das ist eine normative Aussage, keine sachliche Bewertung.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Wenn sich jemand für ein so hohes Amt beim Verfassungsgericht bewirbt, sollte man auch eine öffentliche Zurückhaltung haben.",
+            "timestamp": "00:58:39",
+            "context": "Antwort auf die Frage, ob Richter eine Meinung haben dürfen."
+          }
+        ],
+        "concrete_statements": [
+          "Kandidaten für das Bundesverfassungsgericht sollten öffentliche Zurückhaltung wahren",
+          "Sie müssen über jeden Verdacht erhaben sein"
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsgerichtwahl",
+          "Unabhängigkeit der Justiz",
+          "Transparenz in der Richterwahl"
+        ]
+      },
+      {
+        "title": "Perspektive auf zukünftige Lösung",
+        "timestamp_range": "01:16:02 - 01:17:00",
+        "theme_description": "Ploßs Sicht auf mögliche nächste Schritte nach dem Scheitern der Wahl Brosius-Gersdorfs.",
+        "question_asked": "Markus Lanz fragte, wie es nach dem Scheitern weitergehen könne und ob eine Einigung realistisch ist.",
+        "question_intent": "Herauszufinden, ob die Union bereit ist zu neueren Vorschlägen oder ob sie die jetzige Position beibehält.",
+        "position": "Ploß sagte, es könne sein, dass es neue Vorschläge gibt — möglicherweise nächste Woche, vielleicht noch vor dem Urlaub. Er betonte, dass jeder Abgeordnete nach seinem Gewissen entscheide. Haßelmann hingegen konterte scharf, dass die Unionsmitglieder sie ja gewählt hätten. Ploß wiederholte die Gewissensfreiheit.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ploß gibt eine Möglichkeit an (neue Vorschläge), konkretisiert sie aber nicht und verwehrt sich subtil gegen den Vorwurf, dass eine Änderung der Position nötig wäre. Die Antwort lädt zu Hoffnung ein, ohne klare Zusage.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Es kann sein, dass es neue Vorschläge gibt. Nächste Woche, vielleicht noch vor dem Urlaub.",
+            "timestamp": "01:16:28",
+            "context": "Antwort auf Frage nach möglichen nächsten Schritten."
+          }
+        ],
+        "concrete_statements": [
+          "Es könnten neue Kandidaten/Kandidatinnen vorgeschlagen werden",
+          "Dies könnte nächste Woche oder vor dem Urlaub geschehen"
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsgerichtwahl",
+          "Koalitionsdynamik",
+          "Politische Verhandlungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Christoph Ploß war der einzige von 24 angeforderten Unionspolitikern, der sofort zusagte.",
+        "timestamp": "00:02:56"
+      },
+      {
+        "claim": "Das Thema war für die meisten Abgeordneten erst 1,5 Wochen aktuell.",
+        "timestamp": "00:16:36"
+      },
+      {
+        "claim": "Frauke Brosius-Gersdorf sagte im Rechtsausschuss des Bundestages im Februar 2024: 'Meines Erachtens gibt es gute Gründe dafür, dass die Menschenwürdegarantie erst ab der Geburt gilt'.",
+        "timestamp": "00:48:13"
+      },
+      {
+        "claim": "Jens Spahn schrieb einen Brief an die Fraktion, in dem er einräumte, dass der Prozess nicht optimal gelaufen ist.",
+        "timestamp": "00:25:20"
+      },
+      {
+        "claim": "Brosius-Gersdorf befürwortet quotierte Listen bei Wahlen (als Position zu Identitätspolitik).",
+        "timestamp": "00:57:59"
+      }
+    ]
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-13-november-2024-100",
+    "video_id": "lanz-2024-11-13",
+    "politician": "Ralf Stegner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "d8b9cfded0f9910f",
+    "transcript_chars": 50688,
+    "caption_lines": 2598,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21062,
+    "tokens_out": 7759,
+    "cost_usd": 0.0239428,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 1,
+      "pivot_zum_gegenpunkt": 3,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.009Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner (SPD, MdB) verteidigte in dieser Talkshow die Bilanz der Ampel-Regierung gegen Kritik und betonte, dass trotz erheblicher Herausforderungen viele Dinge gut gelaufen seien. Er argumentierte differenziert, dass die Außendarstellung problematisch war, die substanzielle Arbeit aber vergleichbar mit Vorgänger-Regierungen gewesen sei. Sein Ton war kämpferisch, aber respektvoll gegenüber Koalitionspartnern.",
+    "themes": [
+      {
+        "title": "Bewertung der Ampel-Regierungsleistung",
+        "timestamp_range": "00:09:51 - 00:14:58",
+        "theme_description": "Diskussion darüber, ob die Ampel-Regierung wirklich so schlecht war oder ob Kritik übertrieben wird.",
+        "question_asked": "Moderator fragte implizit, wie Stegner die Einschätzung verträgt, dass die Ampel die unbeliebteste Regierung der Geschichte war, während Stegner von guten Leistungen spricht.",
+        "question_intent": "Herausforderung der Selbstschutzdarstellung: War die Regierung wirklich besser als ihre Beliebtheit suggeriert?",
+        "position": "Stegner argumentierte, dass man die Regierung nicht pauschal als 'miserabel' bezeichnen dürfe. Er räumte ein, dass die Außendarstellung 'eine Katastrophe' war, betonte aber, dass große Teile der Arbeit 'vernünftig' gewesen seien. Besonders nannte er die Energiewende und die Ukraine-Unterstützung als Leistungen, die trotz großer Herausforderungen gelungen seien. Er wollte nicht 'mit rosarote Brille' reden, aber auch nicht nur auf Versäumnisse hinweisen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner adressiert die Frage nach der Gesamtbewertung substanziell, indem er zwischen Darstellung und Leistung trennt und einzelne Erfolge benennt. Er weicht aber der vollständigen Adressierung aus, warum diese Leistungen nicht kommuniziert wurden und warum die Unzufriedenheit trotzdem so groß war.",
+        "quotes": [
+          {
+            "text": "Es ist eine miserable Regierung gewesen, das ist glaube ich falsch. Große Teile sind vernünftig gewesen.",
+            "timestamp": "00:09:51",
+            "context": "Stegner korrigiert die pauschale Kritik der Regierungsleistung."
+          },
+          {
+            "text": "Die Außendarstellung im letzten Jahr war eine Katastrophe.",
+            "timestamp": "00:12:16",
+            "context": "Eingeständnis der Kommunikationsfehler trotz ansonsten guter Arbeit."
+          }
+        ],
+        "concrete_statements": [
+          "Energiewende ohne Regierungszusammenbruch war eine Großtat",
+          "Deutschland ist der zweitgrößte Unterstützer der Ukraine nach den USA",
+          "Die Substanz der Arbeit war keinesfalls schlechter als in Regierungen zuvor"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Ukraine-Unterstützung",
+          "Koalitionsarbeit",
+          "Regierungsbilanz"
+        ]
+      },
+      {
+        "title": "Theatralische Redebeiträge und Parlamentskultur",
+        "timestamp_range": "00:09:51 - 00:12:16",
+        "theme_description": "Bewertung der Redequalität und des Tones in der Generaldebatte des Bundestags.",
+        "question_asked": "Moderator fragte implizit: War der Ton in der heutigen Bundestags-Debatte noch angemessen für eine Demokratie, oder war es zu sehr Schauspiel?",
+        "question_intent": "Kritik an Parlamentskultur: Zu viel Polemik, zu wenig Sachlichkeit?",
+        "position": "Stegner anerkannte, dass Parlamentsdebatte 'lebhaft, rustikal und auch bisschen zupackend' sein kann, betonte aber: 'Aber Respekt voneinander zu haben, das unterscheidet uns von Leuten, die die Demokratie nicht respektieren.' Er lehnte ab, Weigels (AfD) Redebeitrag als 'jenseits von gut und böse' einzustufen, betonte also: Es gibt Grenzen, aber normale Parteien-Auseinandersetzung ist in Ordnung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner adressiert direkt, was angemessen ist (Respekt, Unterscheidung zu Anti-Demokraten) und was nicht (theatralisch, persönlich beleidigend). Er benennt auch, was von der AfD kommt als Gegenpol zu legitimer Parteien-Auseinandersetzung.",
+        "quotes": [
+          {
+            "text": "Lebhaft, rustikal und auch bisschen zupackend. Aber Respekt voneinander zu haben, das unterscheidet uns von Leuten, die die Demokratie nicht respektieren.",
+            "timestamp": "00:09:51",
+            "context": "Stegners Positionierung zur Parlamentskultur"
+          },
+          {
+            "text": "Daneben finde ich solche Sachen, theatralisch. Das hat er dargeboten. Frau Weigel von von der AFD, jenseits von gut und böse.",
+            "timestamp": "00:09:51",
+            "context": "Stegner kritisiert theatralische Elemente und grenzt AfD ab."
+          }
+        ],
+        "concrete_statements": [
+          "Parlamentarische Debatte darf lebhaft und rustikal sein",
+          "Respekt voreinander ist Kern der Demokratie",
+          "AfD-Beiträge sind 'jenseits von gut und böse' — Gegenpol zu anerkannten Parteien"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentskultur",
+          "Redekultur",
+          "Demokratie",
+          "Verfassungsschutz (AfD-Einstufung)"
+        ]
+      },
+      {
+        "title": "Bundeswahlleiter und Wahltermin-Debatte",
+        "timestamp_range": "00:19:58 - 00:24:23",
+        "theme_description": "Debatte über die öffentliche Kritik der Union an der Bundeswahlleiter bezüglich machbarer Wahltermine.",
+        "question_asked": "Malmendier kritisierte, dass die Union die Bundeswahlleiter öffentlich angegriffen habe, was die Unabhängigkeit von Institutionen gefährde. Sie fragte, ob das einer Demokratie würdig ist.",
+        "question_intent": "Warnung vor Institutionen-Beschädigung (Parallele zu USA/Trump): Ist öffentliche Kritik an Behörden ein Zeichen für anti-demokratische Tendenzen?",
+        "position": "Stegner verteidigte die Bundeswahlleiter: Sie ist 'eine Beamtin', und man solle sie 'nicht öffentlich so anzugehen, wie das die Union getan hat'. Er betonte, dass die Papierindustrie selbst gesagt habe, dass Wahlen im Februar machbar seien. Aber der 'Grund warum wir da gelandet sind, ist ein anderer': Die Regierung war schlecht, der Kanzler wurde kritisiert, die FDP forderte überall Änderungen ('es ist alles falsch'), bis Scholz keine andere Option hatte, als Lindner zu entlassen. Stegner argumentierte: Das ist nicht Trumpismus, sondern normale Koalitionsdynamik.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner adressiert die Institutionen-Schutz-Frage, indem er sie umdreht: Union beschädigt Institutionen, nicht SPD. Er pivotiert aber auch von der Frage 'Ist Kritik an Wahlleiter berechtigt?' zu 'Das sind nur Symptome, die echte Ursache ist Koalitionskrise.' Das ist strategisch, aber nicht vollständig auf Malmendiers Punkt.",
+        "quotes": [
+          {
+            "text": "Darf ich der Anklage gerne antworten? Werden die Anklageschrift gerade vorgetragen. Es wird nicht verniedlicht mit den Demokratieweiden, sie dürften den Umstand nehmen, wir hatten 40 % Rechtsradikale, das sehe ich schon als kritisch.",
+            "timestamp": "00:19:58",
+            "context": "Stegner wehrt ab und kontert mit AfD-Bedrohung"
+          },
+          {
+            "text": "Eine Beamtin, die sie öffentlich so anzugehen, wie das die Union getan hat der März ist ganz froh, dass die Wahlen im Februar stattfinden.",
+            "timestamp": "00:19:58",
+            "context": "Stegner kritisiert Union für Angriff auf Wahlleiter"
+          }
+        ],
+        "concrete_statements": [
+          "Union hat Bundeswahlleiter öffentlich zu Unrecht angegriffen",
+          "Papierindustrie ist fähig, Wahlen im Februar vorzubereiten",
+          "Echtes Problem ist Regierungskrise, nicht Wahlmascherie"
+        ],
+        "related_bundestag_topics": [
+          "Bundeswahlgesetz",
+          "Wahltermin",
+          "Verfassung (60-Tage-Frist)",
+          "Institutionen-Unabhängigkeit"
+        ]
+      },
+      {
+        "title": "Lindner-Entlassung und Koalitionsbruch",
+        "timestamp_range": "00:23:21 - 00:25:24",
+        "theme_description": "Debatte über die Verantwortung für den Koalitionsbruch und die Entlassung von Bundesfinanzminister Lindner.",
+        "question_asked": "Moderator und Malmendier fragten, ob der Kanzler oder die FDP den Koalitionsbau herbeigeführt haben, und ob die FDP-Agenda unvereinbar mit den Vereinbarungen war.",
+        "question_intent": "Schuldverteilung: Wer trug die Hauptverantwortung für das Scheitern der Koalition?",
+        "position": "Stegner konterte die Kritik an Scholz, indem er sagte: 'Will sie können den Scholz angreifen, wenn wir wollen, aber das ist Trumpismus Institution zu beschädigen.' Er argumentierte, dass der Kanzler von Anfang an versucht habe, die Dinge 'so zu verknüpfen' (um Projekte durchzuführen), und dass die Union sofort hätte wählen wollen, was aber 'in diesem Land nicht geht'. Er betonte, dass man die 'andere Seite' nicht weg lassen dürfe: Die FDP hätte lieber so spät wie möglich gewählt.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner weicht der Frage nach Lindners Entlassung aus, indem er Malmendiers Kritik als 'Trumpismus' charakterisiert und umgekehrt die Union als Schuldige für Druck darstellt. Das ist rhetorisch effektiv, aber adressiert nicht direkt die Frage nach der Berechtigung der Entlassung.",
+        "quotes": [
+          {
+            "text": "Will sie können den Scholz angreifen, wenn wir wollen, aber das ist Trumpismus Institution zu beschädigen, eine Wasserleitung, stellen Sie sich mal vor, das müsste wiederholt werden.",
+            "timestamp": "00:24:23",
+            "context": "Stegner wehrt ab, dass die Bundeswahlleiter kritisiert wird."
+          },
+          {
+            "text": "Die Union hätte am liebsten sofort gewählt. Das geht aber in diesem Land nicht. Lassen Sie den anderen Teil bitte nicht weg, sie hätten gerne so spät wie möglich.",
+            "timestamp": "00:24:23",
+            "context": "Stegner lenkt vom SPD-Fehler ab zur FDP-Strategie."
+          }
+        ],
+        "concrete_statements": [
+          "Kanzler hat lange Geduld gehabt und Kritik ertragen",
+          "Union wollte sofort wählen (Verfassungswidrigkeit)",
+          "FDP wollte so spät wie möglich wählen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbruch",
+          "Vertrauensfrage",
+          "Neuwahlen",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "Ukraine-Militärhilfe und Vergleich mit anderen Ländern",
+        "timestamp_range": "00:28:13 - 00:30:00",
+        "theme_description": "Debatte über das Ausmaß der deutschen Militärhilfe für die Ukraine und ob Deutschland seinen internationalen Verpflichtungen nachkommt.",
+        "question_asked": "Malmendier/Moderator stellten dar, dass der Kanzler 30 Milliarden Euro als Gesamtleistung präsentiert habe, davon aber nur 7 Milliarden reine Militärhilfe seien. Sie fragten implizit: Ist das irreführend?",
+        "question_intent": "Kritik an Kommunikation: Mischt die SPD/der Kanzler bewusst verschiedene Hilfearten, um die Unterstützung größer darzustellen?",
+        "position": "Stegner verteidigte sich, indem er relativierte: Andere Länder (Dänemark) leisten zwar prozentual mehr, aber Deutschland leiste 'absolut' mehr. Er argumentierte auch, dass es nicht nur um Rüstung gehe, sondern auch um 'Luftrettung' und andere Formen der Rettung von Leben. Er betonte: 'Kein Land rettet mehr Leben als wir.' Er lehnte ab, die Aussage des Trump-Beraters über 'kaputte Panzer' zu akzeptieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner weicht von der Kernfrage (Ist 30 Mrd. korrekt kommuniziert?) aus, indem er zu anderen Dimensionen wechselt (prozentual vs. absolut, Luftrettung vs. Rüstung). Die Kommunikationskritik wird nicht direkt beantwortet.",
+        "quotes": [
+          {
+            "text": "Welches Land in Europa leistet mehr Militärhilfe? Dänemark. Wer leistet absolut, dann ist Luxemburg ein toller Geber.",
+            "timestamp": "00:28:13",
+            "context": "Stegner versucht, die Kritik durch Vergleichswechsel zu entschärfen."
+          },
+          {
+            "text": "Kein Land rettet mehr Leben als wir, dass unterscheiden sie, mit der Luftrettung.",
+            "timestamp": "00:28:13",
+            "context": "Stegner erweitert die Definition von 'Militärhilfe'."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland leistet in absoluten Zahlen mehr Unterstützung als fast alle anderen Länder",
+          "Luftabwehr rettet mehr Leben als jede andere Waffenkategorie",
+          "Trump-Berater-Aussagen zu kaputten Panzern sind nicht glaubwürdig"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Rüstungsexporte",
+          "Außenpolitik",
+          "Milliardenhilfen"
+        ]
+      },
+      {
+        "title": "Schuldenbremsendebatte und Ukraine-Hilfe",
+        "timestamp_range": "00:32:16 - 00:37:46",
+        "theme_description": "Debatte über die Interpretation des Koalitionsvertrags zur Schuldenbremse und ob deren Aussetzung für Ukraine-Hilfe gerechtfertigt war.",
+        "question_asked": "Christian Dürr warf der SPD vor, dass man in einem Koalitionsausschuss-Treffen am Mittwoch vereinbart habe, die Schuldenbremse nur um 3 Mrd. Euro auszusetzen, dann aber 15 Mrd. gefordert habe. Er fragten, warum das mit anderen 12 Mrd. geschehen sollte.",
+        "question_intent": "Vorwurf der Unaufrichtigkeit und des Missbrauchs der Ukraine-Situation als Alibi für eine umfassendere Schuldenbremsen-Aussetzung.",
+        "position": "Stegner argumentierte, dass die Debatte nicht nur um die Mittwoch-Sitzung ginge, sondern um ein Jahr angespannter Koalitionsdynamik. Er konterte mit der These, dass die FDP ständig Koalitionsvereinbarungen infrage gestellt und verschoben habe. Er betonte, dass man die Ukraine unterstützen müsse mit vielen verschiedenen Dingen (nicht nur Rüstung) und dass die monetäre Hilfe Geld koste. Stegner distanzierte sich davon, dass man 'die Verfassung bricht', räumte aber ein, dass man über die Rentenpolitik hätte diskutieren können.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner adressiert nicht direkt die Frage nach den 12 Milliarden, sondern pivotiert zum größeren Koalitionssystem-Konflikt und wirft der FDP Zickzack-Kurs vor. Das ist substanzielle Gegenposition, aber nicht die konkrete finanzielle Frage.",
+        "quotes": [
+          {
+            "text": "Es geht nicht um die Sitzung am Mittwoch. Wir leben seit einem Jahr darüber.",
+            "timestamp": "00:32:16",
+            "context": "Stegner lehnt ab, die Frage nur auf das Mittwoch-Treffen zu reduzieren."
+          },
+          {
+            "text": "Wir müssen der Ukraine trotzdem helfen, mit ganz vielen Dingen. Die monetäre Hilfe kostet Geld.",
+            "timestamp": "00:36:51",
+            "context": "Begründung, warum finanzielle Hilfe nicht nur Rüstung umfasst."
+          }
+        ],
+        "concrete_statements": [
+          "Die FDP hat ständig Koalitionsvereinbarungen infrage gestellt",
+          "Man kann nicht die Verfassung brechen, aber es gibt auch andere Dinge zu berücksichtigen (Bürgergeld, Rentenpolitik)"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse (Art. 115 GG)",
+          "Kriegshilfe Ukraine",
+          "Koalitionsvertrag",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "Vorwürfe der FDP-Kündigung und Koalitionsdynamik",
+        "timestamp_range": "00:32:37 - 00:33:25",
+        "theme_description": "Debatte über gegenseitige Koalitionsverstöße zwischen SPD und FDP bei der Umsetzung des Koalitionsvertrags.",
+        "question_asked": "Dürr fragte: 'Welches Beispiel meinen Sie konkret?', als Stegner sagte, die FDP habe ständig Dinge blockiert, die vereinbart waren.",
+        "question_intent": "Einfordern von Konkretion: Welche Blockaden der FDP meint Stegner genau?",
+        "position": "Stegner nannte als Beispiel, dass die FDP 'kein Überschreitungsbeschluss und keine Steuererhöhungen' forderte, obwohl beides im Koalitionsvertrag stehe. Er hob hervor, dass die FDP sachfremd Gesetze blockiert habe, wenn sie mit ihrer Position nicht einverstanden war.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner gibt ein Beispiel (Überschreitungsbeschluss, Steuern), das ist konkret. Aber die Behauptung wird sofort von Dürr bestritten ('Das stimmt einfach nicht'), und Stegner wiederholt nur die These, ohne weitere Details zu liefern.",
+        "quotes": [
+          {
+            "text": "wenn die FDP sagt, kein Überschreitungsbeschluss und keine Steuererhöhungen dann kann ich auch sagen das stand alles im Koalitionsvertrag.",
+            "timestamp": "00:33:05",
+            "context": "Stegners Beispiel für FDP-Blockade"
+          }
+        ],
+        "concrete_statements": [
+          "FDP blockierte Überschreitungsbeschluss, obwohl im Koalitionsvertrag enthalten",
+          "FDP blockierte sachfremd Gesetze aus ideologischen Gründen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Finanzpolitik",
+          "Schuldenbremse",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "Rentenpolitik und Systemdebatte",
+        "timestamp_range": "00:59:30 - 01:06:21",
+        "theme_description": "Debatte über Rentenniveau, Beitragssätze und kapitalgedeckte vs. umlagefinanzierte Altersvorsorge.",
+        "question_asked": "Dürr warf Stegner vor, dass SPD und Scholz ohne Konkretion von 'Rentenkürzungen' durch FDP-Politik redeten, obwohl die FDP nie Rentensenkungen gefordert habe, sondern nur die Beitragssätze stabil halten wollte.",
+        "question_intent": "Vorwurf der Angstmache: Macht die SPD Wahlkampf mit falschen Rentenkürzungs-Szenarien?",
+        "position": "Stegner konzedierte, dass er Dürr 'nicht überzeug' habe. Er erklärte seine Position: Wenn man die Rentenformel anfasse und das 'Durchschnittsniveau absenken', dann führe das mathematisch zu kürzeren Renten. Er verwahrte sich aber dagegen, dass man da 'Angst' machen würde, sondern nur auf Konsequenzen hinweise. Er akzeptierte, dass man diese Debatte im Wahlkampf führen könne.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner erklärt seine Interpretation der Rentenformel, adressiert aber nicht direkt Dürrs Punkt, dass man ohne Rentenkürzung höhere Beitragssätze brauche. Die Debatte endet mit 'Darüber reden wir im Wahlkampf' — Ausstieg aus der tieferen Analyse.",
+        "quotes": [
+          {
+            "text": "wenn wir an die Rentenformel rangehen, und das Durchschnittsniveau absenken dann klingt das wie eine mathematische Formel. Wir haben gesagt wenn nicht darauf das Geld wird dadurch gespart, in dem die Renten kürzer sein.",
+            "timestamp": "01:00:25",
+            "context": "Stegner erklärt die Mathematik der SPD-Position."
+          },
+          {
+            "text": "Darüber reden wir im Wahlkampf.",
+            "timestamp": "01:01:02",
+            "context": "Stegner beendet die spitzfindige Debatte."
+          }
+        ],
+        "concrete_statements": [
+          "SPD will Rentenniveau stabilisieren, nicht senken",
+          "Dies führt mathematisch zu höheren Beitragssätzen, nicht Rentenkürzungen",
+          "Das ist Differenz zur FDP-Position, nicht Angstmache"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Alterssicherung",
+          "Beitragssätze",
+          "Sozialversicherung"
+        ]
+      },
+      {
+        "title": "Wahlkampfstrategie und Bundeskanzler-Kandidatur",
+        "timestamp_range": "01:02:51 - 01:04:17",
+        "theme_description": "Diskussion über die Wahl von Scholz und Lindner als Spitzenkandidaten nach dem Koalitionszerwürfnis.",
+        "question_asked": "Moderator fragte kritisch: Ist es ernsthaft eine gute Idee, Christian Lindner als FDP-Spitzenkandidat aufzustellen und Scholz zu halten, wenn die beiden so zerstritten sind? Und: Würde Scholz wieder mit Lindner koalieren?",
+        "question_intent": "Ist das logisch? Können zwei Menschen, die sich gerade zerstritten haben, danach wieder zusammen arbeiten?",
+        "position": "Stegner argumentierte, dass jede Partei selbst entscheidet, wen sie aufstellt. Er betonte, dass Scholz ein 'erfahrener Bundeskanzler' sei, der gegen 'jemand anträte, der noch nicht mit der Kreis Verwaltungsrats' habe. Auf die Frage, ob Scholz mit Lindner wieder koalieren würde, antwortete er ausweichend: Scholz 'hat angemeldet, er würde sich wieder bewerben', aber Stegner machte klar, dass es um einen 'Lagerwahlkampf' (Scholz vs. Merz) gehen wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Stegner weicht der persönlichen Zerstrittenheits-Frage aus, indem er zu institutioneller Legitimität (jede Partei darf selbst entscheiden) und zu Kompetenzvergleichen (Scholz erfolgreich, Merz unerfahren) ausweicht. Die Frage nach Lindner-Koalition wird gar nicht beantwortet.",
+        "quotes": [
+          {
+            "text": "Also ich finde jede Partei entscheidet, wen sie aufstellt. Wir haben ein erfahrenen Bundeskanzler, er tritt gegen jemand an, der noch nicht mit der Kreis Verwaltungsrats.",
+            "timestamp": "01:02:51",
+            "context": "Stegner vermeidet die persönliche Ebene, wechselt zu Kompetenz."
+          }
+        ],
+        "concrete_statements": [
+          "Scholz ist ein erfahrener Bundeskanzler",
+          "Der Wahlkampf wird ein Lagerwahlkampf (Scholz vs. Merz)",
+          "Es gibt unterschiedliche Meinungen zwischen SPD und FDP, aber das ist normal"
+        ],
+        "related_bundestag_topics": [
+          "Bundestagswahl",
+          "Koalitionsoptionen",
+          "Regierungsbildung",
+          "Wahlkampf"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Deutschland ist der zweitgrößte Unterstützer der Ukraine nach den USA",
+        "timestamp": "00:13:52"
+      },
+      {
+        "claim": "Dänemark leistet prozentual mehr Militärhilfe für Ukraine als Deutschland (1,6% vs. weniger)",
+        "timestamp": "00:28:13"
+      },
+      {
+        "claim": "Von den 30 Mrd. Euro Ukraine-Hilfe sind nur 7 Mrd. reine Militärhilfe",
+        "timestamp": "00:27:25"
+      },
+      {
+        "claim": "Helmut Kohl hat die Vertrauensfrage gestellt und Fristen eingehalten",
+        "timestamp": "00:25:24"
+      },
+      {
+        "claim": "Großbritannien und die USA investieren deutlich mehr für Infrastruktur-Renovierung als Deutschland",
+        "timestamp": "00:47:30"
+      }
+    ]
+  }
+}

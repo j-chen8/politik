@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-27-mai-2026-100",
+    "video_id": "lanz-2026-05-27",
+    "politician": "Jan van Aken",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c6d54563f5cfd2f5",
+    "transcript_chars": 55684,
+    "caption_lines": 2798,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23659,
+    "tokens_out": 9192,
+    "cost_usd": 0.0278476,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 1,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:28.357Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Kopf der Linkspartei, diskutierte in dieser Sendung von Markus Lanz mehrere außenpolitische und innenpolitische Themen. Sein Ton war sachlich und argumentativ, wobei er mehrfach eine kritische Perspektive auf Waffenlieferungen an die Ukraine und europäische Rüstungsausgaben einnahm, gleichzeitig aber auch zu Verhandlungslösungen tendierte.",
+    "themes": [
+      {
+        "title": "Waffenlieferungen Ukraine und Sanktions-Alternative",
+        "timestamp_range": "00:20:00 - 00:27:59",
+        "theme_description": "Debatte über die Wirksamkeit von Waffenlieferungen versus frühen Sanktionen (insbesondere Ölembargo) zur Unterstützung der Ukraine.",
+        "question_asked": "Der Moderator fragte Jan van Aken, ob seine Position der Linkspartei gegen Waffenlieferungen und stattdessen für humanitäre Hilfe angesichts der russischen Anschläge nicht überdenkenswert sei.",
+        "question_intent": "Hat Jan van Aken seine pazifistische Haltung gegenüber Waffenlieferungen angesichts der humanitären Katastrophe in der Ukraine überdacht?",
+        "position": "Van Aken argumentierte, dass die entscheidenden Fragen seien, wie man den Menschen in der Ukraine am effektivsten helfen kann und wie man den Kreml unter Druck setzt. Er hätte sich stattdessen ab Februar 2022 ein sofortiges 100-prozentiges Ölembargo gewünscht, da die Öleinnahmen in die russische Kriegskasse fließen. Ein frühes Embargo hätte die Kosten-Nutzen-Rechnung für Putin komplett verändert und bei den Istanbul-Verhandlungen zwei Monate später zu einem anderen Ergebnis führen können. Er betonte: 'Ich frage mich, ob es nicht andere effektivere Methoden gegeben hätte.' Van Aken lehnte ab, dass Waffen die einzige Lösung seien.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Van Aken adressierte die grundsätzliche Frage nach der Unterstützung der Ukraine, wich aber der direkten Frage aus, ob Waffenlieferungen im Nachhinein richtig waren. Stattdessen pivotierte er zu einer Gegenposition: Das Ölembargo hätte besser funktioniert. Er nahm die emotionale Komponente (die Bilder von Angriffen) an, but argumentierte für eine kontra-faktische Alternative statt die Frage zu bejahen oder zu verneinen.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Ich denke jedes Mal, wenn ich solche Bilder sehe, wenn ich Bombenalarm mit bekomme, dann denke ich jedes Mal, das hätten wir eigentlich schon 2022 tun können, um all das zu vermeiden.",
+          "Wenn wir im Februar 2022 gesagt hätten, es gibt sofort 100-prozentiges Ölembargo, denn die Öleinnahmen gehen in die Kriegskasse, dann hätte sich die Kosten-Nutzen-Rechnung komplett verändert."
+        ],
+        "evasion_note": "Van Aken vermied es, direkt zu sagen, dass Waffenlieferungen richtig oder nützlich waren, sondern argumentierte retrospektiv für eine Alternative, die realiter nicht gewählt wurde.",
+        "quotes": [
+          {
+            "text": "Meine entscheidende Frage ist, wie kann ich den Menschen in der Ukraine am effektivsten helfen, wie kann ich den Kreml am effektivsten unter Druck setzen.",
+            "timestamp": "00:20:13",
+            "context": "Auf die Frage, ob Waffenlieferungen richtig waren, stellte van Aken eine prinzipielle Gegenfrage."
+          },
+          {
+            "text": "Wenn wir im Februar 2022 gesagt hätten, es gibt sofort 100-prozentiges Ölembargo, dann hätte sich die Kosten-Nutzen-Rechnung komplett verändert.",
+            "timestamp": "00:21:31",
+            "context": "Van Aken verteidigt die These des Ölembargos als effektivere Alternative zu Waffen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik/Ukraine",
+          "Waffenlieferungen",
+          "Sanktionen gegen Russland",
+          "Kriegsfinanzierung"
+        ]
+      },
+      {
+        "title": "Sanktionswirksamkeit und wirtschaftliche Kosten",
+        "timestamp_range": "00:26:51 - 00:32:12",
+        "theme_description": "Debatte darüber, ob Sanktionen gegen Russland effektiv sind, welche wirtschaftlichen Kosten sie für Europa hätten und wie sie im Vergleich zu Militärhilfe stehen.",
+        "question_asked": "Der Moderator und andere Gäste fragten van Aken nach konkreten Beispielen für wirksame Sanktionen in der Geschichte und nach der Realisierbarkeit eines sofortigen Ölembargos.",
+        "question_intent": "Sind Sanktionen ein realistische und wirksame Alternative zu Waffenlieferungen, oder ist van Akens Argument historisch nicht haltbar?",
+        "position": "Van Aken verteidigte, dass Sanktionen historisch mehrfach wirksam waren. Er verwies auf Studien, die zeigten, dass in 148 verschiedenen Regimen in etwa einem Drittel der Fälle Sanktionen effektiv waren. Er nannte das Beispiel des Konflikts zwischen Russland und der Türkei als Beleg. Van Aken kritisierte, dass der Westen das Geld lieber in Militär stecke: '100 Milliarden für Militärausgaben' statt für Subventionierung von Heizkosten. Er betonte, dass Sanktionen nur wirken, wenn man sie schnell einsetzt und verwies auf eine '100-prozentige Übergangsfrist' in einem Embargo-Diskurs, der hätte vermieden werden können.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Van Aken lieferte ein Argument für die Wirksamkeit von Sanktionen (Verweis auf Studien und Beispiele), wurde aber von Neitzel und Gurkov heftig widersprochen, die argumentierten, dass die Türkei-Konfrontation kein Krieg sei und historische Embargos nicht so schnell wirken wie behauptet. Van Aken betonte die Möglichkeit von Sanktionen, stellte aber keine überzeugende empirische Antwort auf die spezifischen Konter-Argumente dar.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gibt mehrere Beispiele, nehmen wir den Konflikt zwischen Russland und der Türkei.",
+          "Es gibt wunderbare Studien, es gibt 148 verschiedene Regime, in einem Drittel der Fälle sind sie effektiv."
+        ],
+        "evasion_note": "Van Aken konnte auf direkte Nachfragen nach historischen Beispielen nur schwach antworten, die Beispiele wurden von anderen Gästen kritisiert als nicht vergleichbar.",
+        "quotes": [
+          {
+            "text": "Es gibt mehrere Beispiele, nehmen wir den Konflikt zwischen Russland und der Türkei.",
+            "timestamp": "00:28:04",
+            "context": "Auf die Frage von Neitzel nach konkreten wirksamen Sanktionen nannte van Aken ein Beispiel, das sofort kritisiert wurde."
+          },
+          {
+            "text": "Lassen Sie mich ausreden. Es gibt wunderbare Studien, es gibt 148 verschiedene Regime, in einem Drittel der Fälle sind sie effektiv. Lesen Sie sich das Buch durch, es gibt gute Beispiele.",
+            "timestamp": "00:28:43",
+            "context": "Van Aken reagierte auf Widerspruch mit Verweis auf akademische Forschung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sanktionsregime",
+          "Wirtschaftspolitik",
+          "Europa-Integration"
+        ]
+      },
+      {
+        "title": "Rüstungsausgaben vs. soziale Investitionen",
+        "timestamp_range": "00:26:51 - 00:27:23",
+        "theme_description": "Van Akens Kritik an der Priorisierung von Militärausgaben (100 Milliarden) gegenüber sozialen Investitionen wie Heizkostensubventionen.",
+        "question_asked": "Moderator und andere Gäste fragten, warum van Aken die 100 Milliarden Militärbudget nicht als notwendig sehe.",
+        "question_intent": "Wie rechtfertigt van Aken seine Position, dass Geldmittel für Rüstung nicht zwingend notwendig sind?",
+        "position": "Van Aken argumentierte, dass die gleichen 100 Milliarden, die die Bundesregierung für Militärausgaben bereitgestellt hat, alternativ zur Subventionierung von Heizkosten hätte verwendet werden können, um Energiekosten abzufedern. Er charakterisierte dies als 'politische Entscheidung': 'Man die gleichen 100 Milliarden genommen hätte, um unsere Heizkosten zu subventionieren, dann hätten wir all das auffangen können mit Geld.' Sein Argument war, dass die Mittelverteilung eine politische Wahlentscheidung sei, nicht eine ökonomische Notwendigkeit.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage direkt mit einem klaren Alternativbudget-Argument: Statt Rüstung hätte man soziale Maßnahmen finanzieren können. Dies ist eine substantielle Positionsangabe, auch wenn Gurkov kritisch nachfragte, wer diese Subventionen hätte umsetzen sollen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "In der Woche nach dem Kriegsbeginn hat der Bundeskanzler 100 Milliarden für Militärausgaben verkündet. Man die gleichen 100 Milliarden genommen hätte, um unsere Heizkosten zu subventionieren, dann hätten wir all das auffangen können mit Geld."
+        ],
+        "quotes": [
+          {
+            "text": "In der Woche nach dem Kriegsbeginn hat der Bundeskanzler 100 Milliarden für Militärausgaben verkündet. Man die gleichen 100 Milliarden genommen hätte, um unsere Heizkosten zu subventionieren, dann hätten wir all das auffangen können mit Geld. Das sind politische Entscheidungen.",
+            "timestamp": "00:26:51",
+            "context": "Van Aken kritisierte die Priorisierung von Militärbudget über sozialen Investitionen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Sozialausgaben",
+          "Rüstungsbudget",
+          "Energiewende/Heizkosten"
+        ]
+      },
+      {
+        "title": "Friedensverhandlungen und territoriale Kompromisse",
+        "timestamp_range": "00:55:46 - 00:56:11",
+        "theme_description": "Van Akens Perspektive auf mögliche Friedensverhandlungen mit Russland und die Rolle von Verfassungsänderungen bei Territorialfragen.",
+        "question_asked": "Der Moderator fragte van Aken, wie Putin dazu gebracht werden könne, seine Verfassung zu ändern, um Territorium abzugeben, wenn er Verhandlungen führen wolle.",
+        "question_intent": "Wie realistisch sind Friedensverhandlungen, wenn Verfassungsfragen und territoriale Fragen so fest verankert sind?",
+        "position": "Van Aken argumentierte, dass Verfassungsänderungen ein 'völlig normaler Prozess' bei Friedensverhandlungen seien. Er verwies auf historisches Präzedenzfall: 'Das war in Irland genauso. Die ganze Insel sollte zur Republik gehören, am Ende der Friedenshandlung stand eine Verfassungsänderung. Das ist ein normaler Prozess, es hat schon funktioniert.' Van Akens Position war damit, dass solche Kompromisse durch Verhandlungsprozesse erreichbar sind und nicht als unmöglich abgeschrieben werden sollten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage direkt, indem er ein historisches Beispiel (Irland) anführte und argumentierte, dass Verfassungsänderungen Teil normaler Friedensverhandlungen sind. Dies adressiert die Frage zur Realisierbarkeitdirekt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das ist eigentlich ein völlig normaler Prozess ein Friedensverhandlungen.",
+          "Das war in Irland genauso. Die ganze Insel sollte zur Republik gehören, am Ende der Friedenshandlung stand eine Verfassungsänderung."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist eigentlich ein völlig normaler Prozess ein Friedensverhandlungen. Das war in Irland genauso. Die ganze Insel sollte zur Republik gehören, am Ende der Friedenshandlung stand eine Verfassungsänderung. Das ist ein normaler Prozess, es hat schon funktioniert.",
+            "timestamp": "00:55:46",
+            "context": "Van Aken vertrat eine optimistische Sicht auf die Machbarkeit von Friedensverhandlungen mit territorialen Kompromissen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Konflikt",
+          "Friedenspolitik",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Militärische Stärke und NATO-Verteidigungsfähigkeit",
+        "timestamp_range": "00:56:41 - 01:02:24",
+        "theme_description": "Debatte über die militärische Überlegenheit Europas und der NATO gegenüber Russland und die Notwendigkeit von Aufrüstung.",
+        "question_asked": "Der Moderator fragte van Aken, ob er angesichts der russischen Militärstärke und des Ukraine-Krieges seine Aussage immer noch vertritt, dass das Kriegsgeheul in Europa übertrieben sei.",
+        "question_intent": "Widerspricht van Akens Position, dass Russland Europa nicht angreift, nicht seinen Zahlen über europäische Rüstungskapazität?",
+        "position": "Van Aken betonte, dass Nachbarn tatsächlich ein Nachbarland (die Ukraine) überfallen hätten, und diese Angst sei verständlich. Jedoch sagte er: 'Ich habe die Angst nicht, wenn ich mir anschaue, was wir hier für Militär haben, wie der Krieg verlaufen ist, dann habe ich keine große Angst, dass Russland die NATO angreift.' Er listete detailliert auf: 'wir haben doppelt so viele Flugzeuge, wir haben dreimal soviel Artillerie, viermal so viele Kriegsschiffe.' Er argumentierte, dass die europäischen Streitkräfte numerisch überlegen sind und es richtig sei, über gute EU-Landesverteidigung zu sprechen, aber Aufrüstung sei übertrieben. Van Aken betonte: 'Das Geld reicht vollkommen aus für eine vernünftige Verteidigung gegen Russland, wenn man das vernünftig investiert. Nur in Landesverteidigung, nicht in Auslandseinsätze.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage direkt mit konkreten Zahlen und einer klaren Position: Europa ist militärisch überlegen, daher ist Angst nicht berechtigt, aber Verteidigungsfähigkeit ist nötig. Die Antwort folgt einer inneren Logik und adressiert den Kern der Frage.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Völlig übertrieben? Das erste Faktum ist, werden Nachbarn, Russland. Sie haben ein Nachbarland überfallen.",
+          "Ich habe die Angst nicht, wenn ich mir anschaue, was wir hier für Militär haben, wie der Krieg verlaufen ist, dann habe ich keine große Angst, dass Russland die NATO angreift.",
+          "Wir haben doppelt so viele Flugzeuge, wir haben dreimal soviel Artillerie, viermal so viele Kriegsschiffe. Egal, welche Rechnung sie aufmachen, wir sind geschützt."
+        ],
+        "evasion_note": "Van Aken spricht zwar von absoluten Zahlen, ignoriert aber die qualitativen Argumente von Neitzel (Einsatzfähigkeit, Ausstattung mit modernen Drohnen), die dieser später betont.",
+        "quotes": [
+          {
+            "text": "Ich habe die Angst nicht, wenn ich mir anschaue, was wir hier für Militär haben, wie der Krieg verlaufen ist, dann habe ich keine große Angst, dass Russland die NATO angreift. Ausschließen kann ich nichts, aber es ist richtig, über eine EU Landesverteidigung zu sprechen.",
+            "timestamp": "00:56:41",
+            "context": "Van Aken reagierte auf die Frage, ob die europäische Aufrüstung angemessen sei."
+          },
+          {
+            "text": "Das Geld reicht vollkommen aus für eine vernünftige Verteidigung gegen Russland, wenn man das vernünftig investiert. Nur in Landesverteidigung, nicht in Auslandseinsätze.",
+            "timestamp": "00:58:30",
+            "context": "Van Aken betonte, dass keine weitere Aufrüstung nötig ist, wenn das Geld richtig investiert wird."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "NATO",
+          "Rüstungspolitik",
+          "Russland-Sicherheit",
+          "Bundeswehr"
+        ]
+      },
+      {
+        "title": "Alternative zu Aufrüstung: Drohnentechnologie-Forschung",
+        "timestamp_range": "01:02:24 - 01:04:25",
+        "theme_description": "Van Akens Vorschlag, statt Aufrüstungsspirale durch Massenproduktion von Drohnen, in Drohnen-Abwehrtechnologie zu investieren.",
+        "question_asked": "Neitzel und der Moderator fragten van Aken, wie Deutschland sich gegen russische Drohnen verteidigen könne, wenn es eine Aufrüstungsspirale vermeiden wolle.",
+        "question_intent": "Kann van Akens Ansatz, nur in defensive Technologien zu investieren, praktisch die Aufrüstung mit eigenen Drohnen ersetzen?",
+        "position": "Van Aken argumentierte für einen strategischen Wechsel: Statt 100.000 Drohnen zu bauen und damit eine Aufrüstungsspirale zu schaffen, sollte man sich auf Abwehrtechnologien konzentrieren. Er sagte: 'Ich würde als Verteidigungsminister sagen, jedes Jahr geht 1 Milliarde in die Forschung, wie kann ich diese Drohnen stören.' Er verwies auf die Möglichkeit, Motorensignale zu stören und andere defensive Techniken zu entwickeln. Van Aken meinte, dass bei konsequenter Forschung über drei Jahre eine Lösung entwickelt werden könne: 'Ich sage Ihnen, wenn wir das drei Jahre machen, dann haben wir einen Schutz vor Drohnen, das wäre doch die beste aller Lösungen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage mit einem klaren, alternativen Strategievorschlag: Defensive Forschung statt Aufrüstung. Obwohl Neitzel skeptisch war, hatte van Aken eine substantielle Position, die die Frage direkt adressierte.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich würde als Verteidigungsminister sagen, jedes Jahr geht 1 Milliarde in die Forschung, wie kann ich diese Drohnen stören.",
+          "Wenn wir das drei Jahre machen, dann haben wir einen Schutz vor Drohnen, das wäre doch die beste aller Lösungen."
+        ],
+        "quotes": [
+          {
+            "text": "Denken Sie das einmal zu Ende. Ich bin für EU und Landesverteidigung, ich möchte uns schützen. Ich habe zwei Möglichkeiten, ich halte 100.000 Drohnen dagegen und dann haben wir eine Aufrüstungsspirale, oder ich gehe einen anderen Weg, wir sind gut darin, neue Techniken zu entwickeln.",
+            "timestamp": "01:03:42",
+            "context": "Van Aken erläuterte sein Konzept einer Gegenposition zur klassischen Aufrüstung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungspolitik",
+          "Technologie-Forschung",
+          "Bundeswehr-Modernisierung",
+          "Militärstrategie"
+        ]
+      },
+      {
+        "title": "Wohnungspolitik: Vergesellschaftung statt Enteignung",
+        "timestamp_range": "01:06:56 - 01:10:56",
+        "theme_description": "Van Akens Positionierung zum Thema Vergesellschaftung von Wohnungsunternehmen (insbesondere Vonovia) anstelle klassischer Enteignung.",
+        "question_asked": "Der Moderator fragte van Aken nach dem Unterschied zwischen Vergesellschaftung und Enteignung und warum er das Wort 'Vergesellschaftung' benutze.",
+        "question_intent": "Ist van Akens Unterscheidung zwischen Vergesellschaftung und Enteignung rechtlich und praktisch bedeutsam, oder ist es nur eine semantische Verschiebung?",
+        "position": "Van Aken antwortete, dass Vergesellschaftung und Enteignung unterschiedlich sind. Er akzeptierte, dass es um Enteignung gehe (entgegen der Moderator-Kritik), aber betonte: 'Enteignet wird in Deutschland ständig, weil man enteignen darf, wenn es dem Allgemeinwohl dient.' Er verwies auf das Beispiel von Autobahn-Bauvorhaben, wo Grundstücke enteignet werden. Van Aken argumentierte, dass 'die Wohnungsnot in Deutschland, die Verzweiflung von jungen Menschen' so groß ist, 'dass es dem Allgemeinwohl schadet, deswegen müssen wir diese Wohnungen in Staatseigentum überführen.' Er nannte die Mieterin-Probleme, die die Linke durch Haustür-Befragungen erfasst hatte: 'feuchte Wände, Schimmel, Baulärm, Mieterhöhungen' und 'systematische' Gebühren-Probleme bei Vonovia. Van Aken argumentierte, das sei 'Mieten-Mafia': 'Das Wort darf man sagen. Wir wurden verklagt, aber man darf das sagen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage zum Unterschied zwischen Vergesellschaftung und Enteignung substantiell, indem er klarstellte, dass es tatsächlich um Enteignung gehe, diese aber verfassungsrechtlich zulässig und im Allgemeinwohlen liege. Er adressierte auch das Moderators-Missverständnis und die juristische Debatte.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Enteignet wird in Deutschland ständig, weil man enteignen darf, wenn es dem Allgemeinwohl dient.",
+          "Die Wohnungsnot in Deutschland, die Verzweiflung von jungen Menschen, die ist so groß, dass es dem Allgemeinwohl schadet, deswegen müssen wir diese Wohnungen in Staatseigentum überführen.",
+          "Mieten-Mafia darf man sagen. Das Wort darf man sagen. Wir wurden verklagt, aber man darf das sagen."
+        ],
+        "quotes": [
+          {
+            "text": "Enteignet wird in Deutschland ständig, weil man enteignen darf, wenn es dem Allgemeinwohl dient. Wenn eine Autobahn gebaut wird, da ist ein Grundstück im Weg, dann darf enteignet werden. Das ist normal. Wir sagen, die Wohnungsnot in Deutschland, die Verzweiflung von jungen Menschen, die ist so groß, dass es dem Allgemeinwohl schadet, deswegen müssen wir diese Wohnungen in Staatseigentum überführen.",
+            "timestamp": "01:10:56",
+            "context": "Van Aken verteidigte sein Vergesellschaftungs-Konzept mit verfassungsrechtlichen Argumenten."
+          },
+          {
+            "text": "Wir haben an 600.000 Haustüren geklopft, die Leute haben oft gesagt, die Mieten sind das größte Problem. Man hat alles, was man so kennt, feuchte Wände, Schimmel, Baulärm, Mieterhöhungen.",
+            "timestamp": "01:08:47",
+            "context": "Van Aken begründete seine Kritik an Vonovia mit empirischen Befunden."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Mietrecht",
+          "Stadtentwicklung/Berlin",
+          "Enteignungsrecht",
+          "Verfassungsrecht Art. 15 GG"
+        ]
+      },
+      {
+        "title": "Ehemaliges Vermögen und Linken-Verantwortung bei Wohnungspolitik",
+        "timestamp_range": "01:11:29 - 01:11:55",
+        "theme_description": "Moderator-Kritik an der Linkspartei, dass sie selbst in den 2000ern Wohnungen verkauft hatte und jetzt Vergesellschaftung fordere.",
+        "question_asked": "Der Moderator forderte van Aken auf, zu erklären, wer die Wohnungen verkauft hatte, die die Linke jetzt zurückfordern wolle.",
+        "question_intent": "Wie kann die Linke glaubwürdig Vergesellschaftung fordern, wenn sie selbst früher Wohnungen privatisiert hat?",
+        "position": "Van Aken akzeptierte die Kritik teilweise: 'Man muss auch mal Fehler eingestehen. Das müssen jetzt die Mieter ausbaden.' Er gab zu, dass die Koalitionsregierungen in den 2000ern Wohnungen verkauft hatten, und stellte fest, dass dies ein Fehler war, dessen Kosten jetzt die Mieter tragen. Er lehnte sich damit an die Kritik des Moderators an, dass die ehemalige Privatisierungspolitik der Linken/SPD-Koalition ein Fehler war, und argumentierte, dass dies eine Grund mehr für die heutige Vergesellschaftung sei.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Moderator-Kritik direkt, indem er den Fehler der Privatisierungspolitik anerkannte und erklärte, warum Vergesellschaftung jetzt notwendig sei. Dies zeigt Selbstkritik und Konsistenz der Position.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Man muss auch mal Fehler eingestehen. Das müssen jetzt die Mieter ausbaden."
+        ],
+        "quotes": [
+          {
+            "text": "Man muss auch mal Fehler eingestehen. Das müssen jetzt die Mieter ausbaden.",
+            "timestamp": "01:11:47",
+            "context": "Van Aken akzeptierte die Kritik des Moderators, dass die Linke früher Fehler bei der Privatisierung gemacht hat."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Privatisierungsgeschichte",
+          "Koalitionspolitik 2000er",
+          "Berliner Stadtpolitik"
+        ]
+      },
+      {
+        "title": "Mietpreisdeckel vs. Wohnungsneubau",
+        "timestamp_range": "01:13:52 - 01:15:24",
+        "theme_description": "Debatte darüber, ob ein Mietpreisdeckel (wie von van Aken gefordert) sinnvoll ist oder ob nur Wohnungsneubau eine echte Lösung bietet.",
+        "question_asked": "Der Moderator und Helene Bubrowski fragten van Aken, ob ein Mietpreisdeckel nicht ineffizient sei und ob nicht hauptsächlich neuer Wohnungsraum gebaut werden müsse.",
+        "question_intent": "Können Mietpreisdeckel tatsächlich die Wohnungskrise lösen, oder sind sie nur eine Placebopolitik?",
+        "position": "Van Aken argumentierte, dass man 'beides machen' müsse: sowohl einen Mietpreisdeckel als auch neuen Wohnungsneubau. Er verteidigte den Mietpreisdeckel gegen die Kritik, dass dieser keine Wohnungen baue: 'Das macht ein Mietendeckel. Ich stimme Ihnen zu, ein Mietdeckel baut keine einzige Wohnung. Das muss doch nicht, wissen Sie was, meine Katze, die baut auch keine Wohnung. Wir müssen einen Mieten-Deckel haben und neue Wohnungen bauen.' Van Aken argumentierte damit, dass der Mietpreisdeckel eine spezifische Funktion habe (Schutz vor Mietsteigerungen), während Neubau eine andere Funktion habe (Angebotserweiterung), und beide seien nicht konkurrierend, sondern komplementär.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Van Aken beantwortete die Frage mit einer klaren Position: Beide Maßnahmen sind nötig und nicht konkurrierend. Seine humorvolle Analogie mit der Katze illustrierte sein Argument, dass Mietpreisdeckel nicht die Erwartung erfüllen müssen, Wohnungen zu bauen. Dies ist eine substantielle Antwort auf die Frage nach der Komplementarität von Politikmaßnahmen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Sie müssen beides machen. Das ist ein Kampf an der falschen Stelle. Sie müssen die Mieten senken. Das macht ein Mietendeckel.",
+          "Ich stimme Ihnen zu, ein Mietdeckel baut keine einzige Wohnung. Das muss doch nicht, wissen Sie was, meine Katze, die baut auch keine Wohnung. Wir müssen einen Mieten-Deckel haben und neue Wohnungen bauen."
+        ],
+        "quotes": [
+          {
+            "text": "Sie müssen beides machen. Das ist ein Kampf an der falschen Stelle. Sie müssen die Mieten senken. Das macht ein Mietendeckel. Ich stimme Ihnen zu, ein Mietdeckel baut keine einzige Wohnung. Das muss doch nicht, wissen Sie was, meine Katze, die baut auch keine Wohnung. Wir müssen einen Mieten-Deckel haben und neue Wohnungen bauen.",
+            "timestamp": "01:14:56",
+            "context": "Van Aken verteidigte den Mietpreisdeckel gegen die Kritik, dass er nicht sofort zum Wohnungsneubau führe."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Mietrecht",
+          "Stadtentwicklung",
+          "Soziale Marktwirtschaft"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Russland hat 1,3 Millionen Soldaten, die EU hat 1,5 Millionen",
+        "timestamp": "00:57:46"
+      },
+      {
+        "claim": "In 148 verschiedenen Regimen waren Sanktionen in etwa einem Drittel der Fälle effektiv",
+        "timestamp": "00:28:43"
+      },
+      {
+        "claim": "Der Konflikt zwischen Russland und der Türkei ist ein Beispiel für wirksame Sanktionen",
+        "timestamp": "00:28:04"
+      },
+      {
+        "claim": "Im Februar 2022 gab es Verhandlungen in Istanbul, zwei Monate nach dem Kriegsbeginn",
+        "timestamp": "00:21:31"
+      },
+      {
+        "claim": "Die Linke hat 600.000 Haustüren angeklopft, um Mieterprobleme zu erfassen",
+        "timestamp": "01:08:47"
+      }
+    ]
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-maerz-2026-100",
+    "video_id": "lanz-2026-03-05",
+    "politician": "Jan van Aken",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c2f214cd75045df9",
+    "transcript_chars": 97244,
+    "caption_lines": 4748,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 37997,
+    "tokens_out": 9407,
+    "cost_usd": 0.0340128,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 7,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-02T16:33:28.908Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken (Die Linke, MdB) argumentiert gegen die Aufrüstung der Bundeswehr zu einer global einsatzbaren Armee und warnt vor einem neuen Militarismus in Deutschland. Er plädiert stattdessen für eine begrenzte EU-Landesverteidigung mit \"struktureller Nicht-Angriffsfähigkeit\" und lehnt eine Rolle der NATO unter Trump ab. In sachlichem, aber bestimmtem Ton verweist er auf eigene Erfahrungen mit Kriegsdienstverweigerung und Kriegsfolgen.",
+    "themes": [
+      {
+        "title": "Kriegsdienstverweigerung und Gewissensfreiheit",
+        "timestamp_range": "00:06:48 - 00:08:07",
+        "theme_description": "Persönliche Erfahrung mit Kriegsdienstverweigerung 1979 und Verständnis für die Position junger Menschen, die sich nicht zum Militärdienst verpflichtet sehen wollen.",
+        "question_asked": "Haben Sie Verständnis für einen jungen Mann, der sagt, sein eigenes Land zu verteidigen, macht er auf gar keinen Fall?",
+        "question_intent": "Den Gast zu prüfen, ob er nachvollziehen kann, warum junge Menschen sich gegen Wehrdienst sperren.",
+        "position": "Van Aken berichtet aus eigener Erfahrung (1979): Er musste sich einer Gewissensprüfung unterziehen, trainierte vorher, wie man die absurden Fragen beantwortete. Viele seiner Freunde scheiterten und wurden trotz Grundgesetz-Versprechen eingezogen. Die Geschichte, dass niemand zum Dienst an der Waffe gezwungen wird, nennt er 'am Ende auch gelogen'. Er versteht Ole Nymoen völlig: 'Ging mir damals genauso.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt durch ein persönliches Anschauungsbeispiel, das Verständnis für die Verweigerungshaltung nachvollziehbar macht, und liefert konkrete historische Belege (sein eigenes Fall, die Freunde, die eingezogen wurden). Die Antwort adressiert vollständig, warum Verweigerung berechtigt ist.",
+        "concrete_statements": [
+          "Diese Geschichte, die uns hier immer erzählt wird, na ja, wir haben doch das Grundgesetz, das sagt, niemand darf zum Dienst an der Waffe gezwungen werden. Das ist am Ende auch gelogen gewesen.",
+          "Es wurden viele zum Dienst einer Waffe gezwungen und deswegen kann ich den Ole Nymoen völlig verstehen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich war ja in der gleichen Situation 1979 und habe den Kriegsdienst verweigert.",
+            "timestamp": "00:07:02",
+            "context": "Auf Frage nach Verständnis für Verweigerungshaltung antwortet van Aken aus eigener Erfahrung."
+          },
+          {
+            "text": "Es wurden viele zum Dienst einer Waffe gezwungen und deswegen kann ich den Ole Nymoen völlig verstehen.",
+            "timestamp": "00:08:07",
+            "context": "Zusammenfassung seiner Position zur moralischen Berechtigung von Kriegsdienstverweigerung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Kriegsdienstverweigerung",
+          "Grundgesetz Art. 4"
+        ]
+      },
+      {
+        "title": "Generationengerechtigkeit und Verantwortung des Staates",
+        "timestamp_range": "00:09:54 - 00:10:36",
+        "theme_description": "Kritik an der Forderung nach Wehrpflicht für eine Generation, der der Staat keine sozialen Leistungen gewährt.",
+        "question_asked": "Sehen Sie auch, dass junge Menschen Loyalität vom Staat erwarten, bevor sie für ihn kämpfen sollen?",
+        "question_intent": "Zu klären, ob van Aken die Kontextfaktoren (Generationenerfahrung, Staatszurückhaltung) für die Verweigerungshaltung anerkennt.",
+        "position": "Van Aken stimmt Harald Welzers Diagnose voll zu und erweitert sie um konkrete sozialpolitische Beispiele: Junge Menschen haben das Gefühl 'Ihr tut gar nichts für mich'. Sie können keine bezahlbaren Wohnungen finden, der Staat kümmert sich nicht um ihre Probleme, und parallel sollen sie zur Bundeswehr gehen. Er sieht hier ein berechtigtes Gefühl und argumentiert, dass eine Bundesregierung, die sich um die Probleme der Mehrheit kümmern würde, die Situation ändern könnte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt auf die Frage nach Generationengerechtigkeit, benennt konkrete staatliche Defizite (Wohnen, Unterstützung), und verbindet diese mit der Frage der Loyalität. Damit adressiert er vollständig die Frage-Intention nach dem Kontext von Verweigerung.",
+        "concrete_statements": [
+          "Vielleicht hat das auch damit zu tun, dass ganz viele Jugendlichen das Gefühl haben: Ihr tut gar nichts für mich, wenn ich ein Problem habe.",
+          "Wenn ich jetzt ausziehe von zu Hause, finde ich keine bezahlbare Wohnung. Ihr kümmert euch gar nicht drum.",
+          "Ich glaube, wenn hier endlich mal eine Bundesregierung wäre, die sich um die Probleme der Mehrheit kümmern würde, dann wäre das vielleicht anders."
+        ],
+        "quotes": [
+          {
+            "text": "Ja, die ganze Zeit mein Gefühl. Wenn sich jetzt diese Bundesregierung oder die letzte darüber beschwert, dass sich zu wenig Freiwillig melden, dann sage ich immer, vielleicht hat das auch damit zu tun, dass ganz viele Jugendlichen das Gefühl haben: Ihr tut gar nichts für mich, wenn ich ein Problem habe.",
+            "timestamp": "00:09:59",
+            "context": "Auf die Frage nach Generationengerechtigkeit und Verweigerungshaltung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Sozialpolitik",
+          "Generationengerechtigkeit",
+          "Bundeswehr Rekrutierung"
+        ]
+      },
+      {
+        "title": "Afghanistan-Einsatz und Ehrlichkeit über Kriegsfolgen",
+        "timestamp_range": "00:21:08 - 00:25:10",
+        "theme_description": "Kritik an der Verniedlichung des Afghanistan-Krieges als 'friedlicher Wiederaufbau' und an der Heuchelei der kriegführenden Politiker.",
+        "question_asked": "Sind wir dazu leichtfertig, Soldaten in Einsätze zu schicken, ohne ehrlich über die Folgen zu sprechen?",
+        "question_intent": "Zu eruieren, ob die Verantwortlichen für Afghanistan die moralische und emotionale Dimension der Militäreinsätze unterschätzt haben.",
+        "position": "Van Aken wirft der politischen Führung massive Heuchelei vor: Im Bundestag wurde der Afghanistan-Einsatz nur 'nüchtern technisch' diskutiert, während Blut spritzte und Menschen starben. Die Linke war die einzige Partei, die versuchte, den Krieg als Krieg in den Bundestag zu bringen. Von den über 400 Abgeordneten, die für den Einsatz stimmten, waren kaum welche bei der Beerdigung deutscher Soldaten (Bad Karfreitags-Gefecht). Sie 'wollten den Tod nicht sehen'. Van Aken selbst war dort und blickte in die Gesichter von Kindern, die ihren Vater verloren hatten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage nach Leichtfertigkeit mit konkreten Beispielen aus dem Bundestag und persönlichen Beobachtungen. Er belegt die Heuchelei durch die Diskrepanz zwischen öffentlicher Rhetorik ('Wiederaufbau') und Realität (Todesfälle) sowie zwischen Abstimmungsverhalten und Trauerbeteiligung.",
+        "concrete_statements": [
+          "Da spritzt das Blut, die Menschen sind tot, das Gehirn fliegt weg. Das ist Zerstörung, Gewalt, Schmerz, das kann man sich alles gar nicht vorstellen.",
+          "Im Bundestag war die Linke die Einzige, die auch mal versucht hat, den Krieg als Krieg in den Bundestag reinzubringen.",
+          "Über 400 Abgeordnete aus dem Bundestag haben für den Einsatz gestimmt. Als dann am Karfreitags-Gefecht drei deutsche Soldaten gefallen sind, wie viele von denen waren denn bei der Beerdigung?"
+        ],
+        "quotes": [
+          {
+            "text": "Da spritzt das Blut, die Menschen sind tot, das Gehirn fliegt weg. Das ist Zerstörung, Gewalt, Schmerz, das kann man sich alles gar nicht vorstellen. Und darüber muss man auch reden.",
+            "timestamp": "00:21:15",
+            "context": "Bekräftigung der Position, dass Krieg ehrlich dargestellt werden muss."
+          },
+          {
+            "text": "Im Bundestag war die Linke die Einzige, die auch mal versucht hat, den Krieg als Krieg in den Bundestag reinzubringen. Und Sie alle, die für diesen Afghanistan-Einsatz gestimmt haben, die wollten das nie hören.",
+            "timestamp": "00:21:06",
+            "context": "Vorwurf der Heuchelei an andere Fraktionen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Einsatz",
+          "Militäreinsätze",
+          "Parlamentsbeteiligung bei Kriegsentscheidungen",
+          "Fürsorge für Veteranen"
+        ]
+      },
+      {
+        "title": "Traumabewältigung und Wiederaufbau als Heilmittel",
+        "timestamp_range": "00:30:24 - 00:31:54",
+        "theme_description": "Kritik an der Unterschätzung von Kriegstraumata durch Verweis auf Wiederaufbau und wirtschaftlichen Aufschwung.",
+        "question_asked": "Ist Wiederaufbau und wirtschaftlicher Aufbau ein angemessenes Mittel zur Traumabewältigung von Kriegsveteranen?",
+        "question_intent": "Zu klären, ob materielle Kompensation psychologische Kriegstraumata heilen kann.",
+        "position": "Van Aken widersprocht Kiesewetter scharf und nennt seine Aussage 'ein bisschen böse': Wiederaufbau ist keine Traumabewältigung, sondern 'redet das alles viel kleiner als es ist'. Er belegt dies mit dem Beispiel seiner Mutter, ein Flüchtlingskind, das vor dem Krieg in den 40er-Jahren floh und hochtraumatisiert war. Das ganze Wirtschaftswunder, der Wiederaufbau, Häuslebauer – das alles habe das Trauma nicht bekämpft. 'Das ist viel größer, als Sie das gerade dargestellt haben.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt auf die implizite Behauptung, dass Wiederaufbau Traumata heilt, und widerlegt sie mit einem familiären Langzeitbeispiel. Er adressiert vollständig die Frage nach der Proportionalität von Heilmitteln.",
+        "concrete_statements": [
+          "Das zieht sich auch durch den Afghanistankrieg durch. Die Linke hat immer gegen den Einsatz in Afghanistan gestimmt, aber wir waren die einzige Partei, die sich am Ende um die Soldaten gekümmert haben, die hochtraumatisiert zurückkamen.",
+          "Wenn es Wohnungsbau gibt, dann bekämpfen wir damit Traumata. Damit redest du dieses Trauma so winzig klein. Das ist viel größer."
+        ],
+        "quotes": [
+          {
+            "text": "Jetzt haben Sie gesagt, da kommen Hunderttausende traumatisiert zurück und deswegen Wiederaufbau. Wenn sie sehen, da entsteht was Neues. Das ist keine Traumabewältigung. Damit reden Sie das alles auch viel kleiner als es ist.",
+            "timestamp": "00:30:24",
+            "context": "Direkter Einspruch gegen Kiesewetters These."
+          },
+          {
+            "text": "Meine Mutter ist ein Flüchtlingskind. Die musste fliehen vor dem Krieg in den 40er-Jahren. Die war hochtraumatisiert. Und das ganze Wirtschaftswunder, der Wiederaufbau, das Häuslebauer, das hat alles dieses Trauma nicht bekämpft. Das ist viel größer, als Sie das gerade dargestellt haben.",
+            "timestamp": "00:31:34",
+            "context": "Beleg aus Familiengeschichte für die Langfristigkeit von Kriegstraumata."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Veteranenfürsorge",
+          "Psychologische Unterstützung",
+          "Kriegsfolgen",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Definition von Sicherheit und Kriegsbereitschaft",
+        "timestamp_range": "00:41:05 - 00:44:06",
+        "theme_description": "Differenzierung zwischen militärischer Sicherheit und breiter sozialer Sicherheit; Verweigerung, für die Landesverteidigung eine Waffe zu ergreifen.",
+        "question_asked": "Wie definieren Sie Sicherheit? Und wären Sie bereit, für diese Sicherheit eine Waffe zu ergreifen?",
+        "question_intent": "Den Gast zu confrontieren mit der Frage, ob er seine Prinzipien aufgibt, wenn es um konkrete Selbstverteidigung geht.",
+        "position": "Van Aken unterscheidet zwei Ebenen: Erstens anerkennt er, dass Menschen Angst vor russischem Überfall haben, was 'total verständlich' ist, aber unbegründet. Zweitens definiert er Sicherheit viel breiter: nicht nur militärisch, sondern sozial. Echte Sicherheit bedeutet, sein Leben planen zu können, eine bezahlbare Wohnung zu haben. Die allermeisten Deutschen (außer denen im Privatflugzeug) leben in Unsicherheit. Zur direkten Frage nach Waffengebrauch: 'Ich glaube nicht.' Aber er qualifiziert: In konkreten Situationen könne man nicht mit Sicherheit sagen. Er verweist auf Kontakte mit ukrainischen Linken, die vorher auch Ablehnung hatten, dann aber kämpften. Im Moment würde er 'für unsere Sicherheit kämpfen', aber 'für dieses Land' zu kämpfen, stelle er sich nicht vor. Mit der Enkeltochter würde er eher fliehen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken antwortet auf den ersten Teil (Definition von Sicherheit) substantiell und konkret, auf den zweiten Teil (Waffeneinsatz) aber ausweichend: Er sagt 'Ich glaube nicht', qualifiziert dann aber stark ('was in der konkreten Situation ist, weiß kein Mensch'). Die Antwort vermeidet ein klares Ja/Nein und verlagert die Frage in die Ungewissheit.",
+        "concrete_statements": [
+          "Sicherheit heißt auch soziale Sicherheit. Sicherheit heißt, ich kann mein Leben planen.",
+          "Ich glaube, wenn Sie so theoretisch fragen, wie definiere ich Sicherheit, dann geht Sicherheit viel weiter.",
+          "Im Moment glaube ich das auf gar keinen Fall. Aber ich kann das deswegen nicht mit Sicherheit sagen, weil wir haben mit Linken in der Ukraine immer Kontakt gehabt und die haben auch gesagt, wenn du mir das vor einem Jahr gesagt hättest, hätte ich eher gesagt, ich gehe nicht in den Krieg, ich haue hier ab."
+        ],
+        "quotes": [
+          {
+            "text": "Sicherheit heißt auch soziale Sicherheit. Sicherheit heißt, ich kann mein Leben planen. Viele Menschen können ihr Leben gar nicht planen, weil sie wissen, im nächsten Jahr kommt die nächste Mieterhöhung.",
+            "timestamp": "00:41:12",
+            "context": "Auf Frage nach Definition von Sicherheit."
+          },
+          {
+            "text": "Ich glaube nicht. Aber was in der konkreten Situation ist, weiß kein Mensch.",
+            "timestamp": "00:42:53",
+            "context": "Auf Frage, ob er eine Waffe ergreifen würde."
+          },
+          {
+            "text": "Im Moment kann ich mir nicht vorstellen, mit der Waffe in der Hand für dieses Land zu kämpfen, sondern ich würde für unsere Sicherheit kämpfen, unser ist wahrscheinlich ein bisschen weiter definiert als nur meine Familie.",
+            "timestamp": "00:43:40",
+            "context": "Präzisierung seiner Haltung zum bewaffneten Kampf."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Nationale Sicherheit",
+          "Wehrbereitschaft",
+          "Sozialpolitik und Sicherheit",
+          "Landesverteidigung"
+        ]
+      },
+      {
+        "title": "NATO, Sorge vor deutscher Militärambitionen und Militarismus",
+        "timestamp_range": "00:49:08 - 00:53:35",
+        "theme_description": "Warnung vor Militarismus in Deutschland und vor dem Ziel, die 'stärkste Armee Europas' aufzubauen; Sorge, dass die NATO als Schutz VOR Deutschland historisch wichtig war.",
+        "question_asked": "Teilen Sie die Sorge vor einem erneuertem deutschen Militarismus?",
+        "question_intent": "Zu klären, inwiefern van Aken die europäischen Nachbarn-Perspektive auf deutsches Aufrüstungs-Ziel versteht.",
+        "position": "Van Aken erinnert daran, dass die NATO innerhalb Deutschlands nicht nur Schutz FÜR Deutschland war, sondern auch Schutz VOR Deutschland – für fast alle Nachbarländer in den 60er–90er Jahren. Deutschland habe zwei Weltkriege zu verantworten, es sei dankbar, eine nicht-militaristische Gesellschaft zu haben. In den USA erlebte er unkritische Verherrlichung von Militär; in Deutschland gibt es hingegen eine breite, skeptische Mehrheit, die Soldaten nicht mit Fähnchen wegschickt. Diesen Militarismus zu bekämpfen ist wichtig, damit wir nicht 'den dritten Weltkrieg wieder lostreten'. Van Aken berichtet von Soldaten, die auf dem Hamburger Hauptbahnhof beschimpft werden, und sagt ihnen: 'Seien Sie froh, dass wir keine Gesellschaft haben, die militaristisch ist, weil dann werden Sie viel schneller in den Krieg geschickt und Sie sterben.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die implizite Frage nach Militarismus mit einem klaren Ja – es gibt legitime Gründe für Sorge – und begründet dies durch historische Erfahrung und internationale Perspektive. Er verweist auf konkrete Daten (seine USA-Erfahrung, Soldaten-Erlebnisse) und differenziert zwischen schädlichem und schützenderem Skeptizismus.",
+        "concrete_statements": [
+          "Innerhalb der NATO ja immer gerne gesagt wird, die NATO ist nicht nur Schutz für Deutschland, sie ist auch Schutz vor Deutschland.",
+          "Ich bin immer sehr dankbar darüber, dass wir hier eine Gesellschaft haben, die nicht so militaristisch geprägt ist.",
+          "Diesen Militarismus in der Gesellschaft, den zu bekämpfen ist wichtig, damit wir nicht auch den dritten Weltkrieg wieder lostreten."
+        ],
+        "quotes": [
+          {
+            "text": "Als ich das gehört habe, muss ich dran denken, dass innerhalb der NATO ja immer gerne gesagt wird, die NATO ist nicht nur Schutz für Deutschland, sie ist auch Schutz vor Deutschland.",
+            "timestamp": "00:49:08",
+            "context": "Reaktion auf Merz' Ankündigung, die Bundeswehr zur stärksten Armee Europas zu machen."
+          },
+          {
+            "text": "Ich finde das sehr gut, dass wir hier eine breite Gesellschaft haben, eine große Mehrheit, die das nicht macht, die nicht am Ufer steht und mit Fähnchen wedelt, wenn da die Soldaten in den Krieg geschickt werden, sondern die das in der großen Mehrheit skeptisch sehen.",
+            "timestamp": "00:50:04",
+            "context": "Verteidigung der kritischen Haltung gegenüber Militarismus."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Rüstungspolitik",
+          "NATO",
+          "Deutsche Außenpolitik",
+          "Historische Verantwortung"
+        ]
+      },
+      {
+        "title": "EU-Landesverteidigung statt NATO und weltweite Einsatzfähigkeit",
+        "timestamp_range": "00:59:05 - 01:02:39",
+        "theme_description": "Plädoyer für eine strukturell nicht-angriffsfähige europäische Verteidigungsarmee statt einer weltweiten NATO-gestützten Einsatzfähigkeit.",
+        "question_asked": "Ist Ihre Sorge, dass wir mit einer 'stärksten Armee Europas' wieder weltweite Interessen durchsetzen, wie Amerikaner und Russen?",
+        "question_intent": "Zu eruieren, ob van Akens Kritik primär auf imperialistische Ambitionen zielt.",
+        "position": "Van Aken bekräftigt: Ja, das ist seine 'ganz große Sorge'. Er sei klar dafür, EU-Landesverteidigung zu brauchen (inklusive Baltikum), aber entscheidend sei: 'wir brauchen keine Armee, die vierte Supermacht werden will' und 'weltweite einsetzbar ist'. Konkret: Die geplanten Fregatten F125 sind für 365-Tage-Fahrten ohne Heimathafen konzipiert – für weltweite Einsätze, nicht für die Ostsee. Das ist unnötig und teuer. Sein Konzept: 'strukturelle Nicht-Angriffsfähigkeit' – die Armee so aufbauen, dass sie gar nicht andere Länder überfallt. Das signalisiert auch anderen, dass sie sicher sind. Die Waffensysteme sollten umgeordnet werden, dann reicht das Budget der bisherigen Höhe aus, ohne neue 'irrsinnige Summen' für Hunderte Milliarden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt und konkret mit spezifischen Waffensystem-Beispielen (F125-Fregatten) und einem klaren konzeptionellen Gegenprogramm (strukturelle Nicht-Angriffsfähigkeit). Die Antwort zeigt, dass seine Kritik nicht abstrakt ist, sondern auf Rüstungsentscheidungen basiert.",
+        "concrete_statements": [
+          "Wir brauchen eine EU-Landesverteidigung. Im Grundgesetz steht Landesverteidigung, ich sage immer EU-Landesverteidigung und das schließt Baltikum mit ein.",
+          "Entscheidend für mich ist dabei, dass wir eben keine Armee jetzt aufbauen, die vierte Supermacht werden will.",
+          "Ich möchte eine EU-Landesverteidigung, die aber gar nicht in der Lage ist, anzugreifen. Das nennt sich strukturelle Nicht-Angriffsfähigkeit.",
+          "Wenn Sie das abspecken auf eine reine Verteidigungsarmee, dann kommen Sie mit dem Geld, was es letztes Jahr gab, vollkommen aus."
+        ],
+        "quotes": [
+          {
+            "text": "Ja, das ist meine ganz große Sorge. Ich bin völlig klar da drin, wir brauchen eine EU-Landesverteidigung. Ich sage das immer so. Im Grundgesetz steht Landesverteidigung, ich sage immer EU-Landesverteidigung und das schließt Baltikum mit ein.",
+            "timestamp": "00:59:33",
+            "context": "Auf Frage nach der Sorge vor weltweiter Einsatzfähigkeit."
+          },
+          {
+            "text": "Deswegen waren sie auch so wahnsinnig teuer, dass sie 365 Tage fahren können, ohne den Heimathafen anzulaufen. Ausdrücklich konzipiert worden für weltweite Einsätze. Und für mich ist es ganz entscheidend zu sagen, ich möchte eine EU-Landesverteidigung, die aber gar nicht in der Lage ist, anzugreifen.",
+            "timestamp": "01:00:43",
+            "context": "Konkrete Kritik an der F125-Fregatte und das Konzept der strukturellen Nicht-Angriffsfähigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungspolitik",
+          "Bundeswehr-Ausstattung",
+          "EU-Verteidigung",
+          "Waffensysteme",
+          "Militärhaushalt"
+        ]
+      },
+      {
+        "title": "NATO-Abhängigkeit und Trump als geopolitische Zäsur",
+        "timestamp_range": "01:04:01 - 01:04:32",
+        "theme_description": "Argument, dass mit Trumps Rückkehr die USA nicht mehr zuverlässig sind und Europa deshalb auf NATO verzichten und eigenständig denken muss.",
+        "question_asked": "Stimmen Sie zu, dass wir mit Trump nicht mehr auf die USA in der NATO verlassen können?",
+        "question_intent": "Zu prüfen, ob van Aken mit anderen (auch Major, Kiesewetter) darin übereinkommt, dass die NATO fragil geworden ist.",
+        "position": "Van Aken antwortet zustimmend, aber präzisierend: 'Zu glauben, wir können uns auf eine USA mit Trump in der NATO verlassen, ist nicht.' Deswegen, sagt er, müssen 'wir uns alle einig' sein, 'dass wir Sicherheit europäisch denken müssen'. Das ist der Grund, warum er nicht 'nationalistisch' spricht, sondern von 'EU- und Landesverteidigung'. Aber Majors Ansatz, 'so auf die NATO zu setzen', hält er für 'einen historischen Fehler', weil 'wir können uns auf Trump nicht verlassen' und 'müssen das europäisch denken'. Trotz agreement mit dem Problem lehnt er Majors NATO-Lösung ab.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken stimmt der Diagnose (Trump ist unreliable) zu, nutzt sie aber als Vorlage für seine EU-Kritik an Major, nicht als echte Antwort auf die Frage nach gemeinsamer NATO-Skepsis. Er adressiert so die Frage teilweise, lenkt aber stark zu seinem EU-Ansatz um.",
+        "concrete_statements": [
+          "Zu glauben, wir können uns auf eine USA mit Trump in der NATO verlassen, ist nicht.",
+          "Dass wir Sicherheit europäisch denken müssen.",
+          "Dass Sie so auf die NATO setzen, halte ich für einen historischen Fehler, weil wir sind weiter mittlerweile, wir wissen, wir können uns auf Trump nicht verlassen, wir müssen das europäisch denken."
+        ],
+        "quotes": [
+          {
+            "text": "Das, was Sie jetzt sagen, das hat vielleicht vor einem Jahr gestimmt, aber mittlerweile haben wir Trump. Und ich glaube, zu glauben, wir können uns auf eine USA mit Trump in der NATO verlassen, ist nicht.",
+            "timestamp": "01:04:01",
+            "context": "Reaktion auf Claudia Major, die NATO-Abhängigkeit rechtfertigt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Außenpolitik",
+          "Europäische Verteidigung",
+          "Transatlantische Beziehungen",
+          "USA-Politik"
+        ]
+      },
+      {
+        "title": "Atomwaffenächtung und Abschreckung",
+        "timestamp_range": "01:06:55 - 01:11:20",
+        "theme_description": "Warnung vor Normalisierung von Atomwaffendebatten und Plädoyer für starke Ächtung statt Rüstung.",
+        "question_asked": "Ist es in Ordnung, wenn die Amerikaner gehen und ihre Atomwaffen mitnehmen?",
+        "question_intent": "Zu klären, ob van Aken bei nuklearer Erpressung abwehren möchte oder Nuklearwaffen ganz ablehnen.",
+        "position": "Van Aken sagt: Ja, er ist okay damit, wenn Amerikaner gehen und Atomwaffen mitnehmen. Aber die Debatte selbst ist das Problem. Was in der Diskussion fehlt, ist 'der Wert der Ächtung von Atomwaffen'. Nach der Kuba-Krise (1962) waren Atomwaffen noch 'normal', heute ist ihre Ächtung so stark, dass jedes Land, das Atomwaffen einsetzt, sofort mit 192 anderen Staaten ein 'Riesenproblem' hat. Das ist echter Schutz. In dem Moment, wo Europa über eigene Atomwaffen debattiert, 'schwindet die Ächtung der Atomwaffen'. Das ist der Grund für die jetzt aufkommenden Diskussionen bei Saudi-Arabien usw. – Normalisierung führt zu Proliferation. 'Der Schutz vom Atomkrieg sind nicht Atomwaffen, sondern eine starke Ächtung von Atomwaffen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet auf die Frage nach seiner Position zu Atomwaffen mit einer differenzierten Analyse: Nicht die Waffen selbst, sondern ihre Ächtung ist entscheidend. Er begründet dies historisch (Kuba-Krise) und illustriert die Dynamik von Normalisierung → Proliferation.",
+        "concrete_statements": [
+          "Der Schutz vom Atomkrieg sind nicht Atomwaffen, sondern eine starke Ächtung von Atomwaffen.",
+          "In dem Moment, wo es normal wird, sich mit Atomwaffen zu bewaffnen, oder nein, nur drüber nachzudenken, wird es auch normal, dass Länder das tun, und dann wird es normal, sie einzusetzen.",
+          "Allein diese Debatten der letzten zwei Jahre sehe ich mit ganz großer Sorge, weil das plötzlich so normal wird. Dass plötzlich Leute in die Debatte reinwerfen, wieso nicht auch eine deutsche Atomwaffe."
+        ],
+        "quotes": [
+          {
+            "text": "Der Schutz vom Atomkrieg sind nicht Atomwaffen, sondern eine starke Ächtung von Atomwaffen. Und in dem Moment, wo wir diese Debatte allein schon hier führen, wo es in ganz Europa geführt wird, brauchen wir eigene Atomwaffen, schwindet ja die Ächtung der Atomwaffen.",
+            "timestamp": "01:07:03",
+            "context": "Auf Frage zur Akzeptanz amerikanischen Atomwaffen-Abzugs."
+          },
+          {
+            "text": "Das wäre doch vor zehn Jahren undenkbar gewesen.",
+            "timestamp": "01:11:20",
+            "context": "Reflexion über die Normalisierung von Atomwaffen-Debatten in Deutschland."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Atomwaffenpolitik",
+          "Nichtverbreitungsvertrag",
+          "Nukleare Sicherheit",
+          "Rüstungskontrolle",
+          "Abschreckungspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Ich war ja in der gleichen Situation 1979 und habe den Kriegsdienst verweigert.",
+        "timestamp": "00:07:02"
+      },
+      {
+        "claim": "Über 400 Abgeordnete aus dem Bundestag haben für den Einsatz [Afghanistan] gestimmt.",
+        "timestamp": "00:21:58"
+      },
+      {
+        "claim": "Als dann am Karfreitags-Gefecht drei deutsche Soldaten gefallen sind.",
+        "timestamp": "00:22:14"
+      },
+      {
+        "claim": "Ich war ja selbst in Afghanistan und habe Bundeswehrsoldaten besucht.",
+        "timestamp": "00:24:16"
+      },
+      {
+        "claim": "Ich bin ja mal zwei Jahre in den USA gewesen.",
+        "timestamp": "00:49:15"
+      }
+    ]
+  }
+}

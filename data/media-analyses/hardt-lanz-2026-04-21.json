@@ -1,0 +1,328 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-21-april-2026-100",
+    "video_id": "lanz-2026-04-21",
+    "politician": "Jürgen Hardt",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "87365cc034f6e8b3",
+    "transcript_chars": 63196,
+    "caption_lines": 3110,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25118,
+    "tokens_out": 8620,
+    "cost_usd": 0.027287199999999998,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 7,
+      "substantielle_position": 2
+    },
+    "generated_at": "2026-06-02T16:33:28.115Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jürgen Hardt, außenpolitischer Sprecher der CDU/CSU-Bundestagsfraktion, tritt in einer Talkshow zu Nahost-Fragen auf. Er argumentiert für Verhandlungslösungen statt militärischer Eskalation, verteidigtjedoch deutsche Waffenlieferungen an Israel und lehnt die Charakterisierung als Kriegsbeteiligung ab. Sein Ton ist sachlich-diplomatisch, teilweise defensiv gegenüber Vorwürfen von links.",
+    "themes": [
+      {
+        "title": "Straße von Hormus: Geostrategische Kontrolle und Verhandlungslösung",
+        "timestamp_range": "00:03:36 - 00:06:26",
+        "theme_description": "Jürgen Hardt analysiert die iranische Blockade der Meerenge von Hormus als Verhandlungskarte des Iran und warnt vor unvorhergesehenen wirtschaftlichen Konsequenzen der US-Strategie.",
+        "question_asked": "Markus Lanz fragt Hardt, ob er als ehemaliger Marineoffizier überrascht ist von der aktuellen Situation an der Straße von Hormus und den Szenarien, über die man lange nachdenkt.",
+        "question_intent": "Lanz will wissen, ob die Iran-Strategie strategische Blindheit der USA offenbart oder ob dies vorhersehbar war.",
+        "position": "Hardt erklärt, dass der Iran seine 'Jokerkarte' — die geografische Kontrolle der Straße von Hormus — erstmals in Jahren einsetzt. Dies sei zwar keine klassische Seeblockade, sondern eine Bedrohung durch Beschießung, die schwer kalkulierbar sei. Er meint, es könne nur eine Verhandlungslösung geben. Im Weißen Haus seien Personen dagegen opponiert haben, denen es gelang, sich nicht durchzusetzen. Hardt betont, dass selbst Trump-Unterstützer die Konsequenzen nicht bedacht hätten: steigende Düngemittelpreise in Amerika seien ein gravierendes Übersehen gewesen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt beantwortet die Frage nach Überraschung teils: Er bestätigt Voraussehbarkeit des Szenarios (Weiße Haus-Debatten), konzentriert sich aber hauptsächlich auf wirtschaftliche Überraschungsfolgen statt militärisch-strategische Analyse. Die tiefere strategische Frage — weshalb militärisch unzureichend geplant wurde — wird nur angedeutet ('Glück statt Plan').",
+        "concrete_statements": [
+          "Es kann eigentlich nur eine Verhandlungslösung geben, das weiß der Iran auch.",
+          "Das mit der Straße von Hormus wurde offensichtlich nicht ausreichend bedacht.",
+          "Viele Personen, die ich eher dem Unterstützerkreis von Donald Trump zurechnen würde, sagen, wie kann man so etwas zum jetzigen Zeitpunkt machen, wo wir alle Düngemittel in Amerika einkaufen müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Der Iran hat seine Jokerkarte, nämlich die Straße von Hormus und deren Kontrolle, gespielt. Sie haben es eingesetzt. Erstmals, in den letzten Jahren nicht.",
+            "timestamp": "00:03:36",
+            "context": "Hardt erklärt die strategische Situation an der Meerenge"
+          },
+          {
+            "text": "Ich glaube, es kann eigentlich nur eine Verhandlungslösung geben, das weiß der Iran auch. Deshalb wird das jetzt eingesetzt.",
+            "timestamp": "00:03:36",
+            "context": "Hardt erörtert die einzige mögliche Lösung für die Blockade"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Iran-Sanktionen",
+          "Seerouten-Sicherheit",
+          "US-Nahost-Politik"
+        ]
+      },
+      {
+        "title": "Kritik an Trump-Entscheidung: Mangelnde Planung und Experten-Opposition",
+        "timestamp_range": "00:04:32 - 00:06:26",
+        "theme_description": "Hardt schildert, dass selbst Trump-nahe Kreise die Iran-Angriffsplanung kritisierten wegen unzureichender Vorbereitung und Hoffnung auf Regimechange statt realistischer Ziele.",
+        "question_asked": "Lanz fragt nach Hardts Eindruck aus vertraulichen Gesprächen kurz vor Ostern: Schlägt er die Hände über dem Kopf zusammen angesichts von Trumps Entscheidung?",
+        "question_intent": "Lanz will wissen, ob selbst Trump-freundliche Insider die Iran-Operation für einen Fehler halten.",
+        "position": "Hardt differenziert zwischen Kritik von Trump-Gegnern (zu erwartend) und kritischen Stimmen aus Trumps eigenem Lager. Diese beklagten, dass der Entscheidungskreis viel zu eng war, Dinge nicht vollständig durchdacht wurden (militärische Fähigkeiten), und man 'vor allem auf Glück gehofft' habe, dass es zu einem Regimechange kommt — was sich nicht bewahrheitet hat und auch nicht danach aussieht.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hardt antwortet direkt auf die Frage mit konkreten Beobachtungen aus seinen Hintergrund-Gesprächen: Er benennt spezifische Kritikpunkte (enge Zirkeln, mangelnde militärische Planung, falsches Wunschdenken) und belegt damit, dass auch Trump-nahe Kräfte die Operation für schlecht vorbereitet hielten.",
+        "concrete_statements": [
+          "Der Kreis, derer, die diese Entscheidung getroffen haben, war sehr eng.",
+          "Die Dinge waren nicht von Anfang bis Ende durchdacht, was die militärischen Fähigkeiten angeht.",
+          "Man hat vor allem auf das Glück gehofft, dass es zu einem Regimechange kommt. Das hat sich bis zum heutigen Tage nicht bewahrheitet."
+        ],
+        "quotes": [
+          {
+            "text": "Der wurde bemängelt, dass der Kreis, derer, die diese Entscheidung getroffen haben, sehr eng war. Die Dinge waren nicht von Anfang bis Ende durch gedacht, was die militärischen Fähigkeiten angeht.",
+            "timestamp": "00:05:40",
+            "context": "Hardt berichtet über Kritik aus Trump-Unterstützer-Kreisen"
+          }
+        ],
+        "related_bundestag_topics": [
+          "US-Außenpolitik",
+          "Iran-Konflikt",
+          "Militärische Planung"
+        ]
+      },
+      {
+        "title": "Iranisches Regime: Dezentrale Kommandostrukturen und Friedensvertragsunsicherheit",
+        "timestamp_range": "00:18:47 - 00:20:39",
+        "theme_description": "Hardt erörtert die interne Machtstruktur des iranischen Regimes, die Dominanz der Revolutionsgarden und Fragen zur Einhaltung von Friedensverträgen bei dezentraler Militärstruktur.",
+        "question_asked": "Nach Moderator Lanz' Frage zu Trumps Auslöschungsdrohung gegen die iranische Zivilisation äußert sich Hardt zur Legitimität des aktuellen iranischen Regimes.",
+        "question_intent": "Lanz möchte wissen, ob das iranische Regime wirklich die persische Kultur/Bevölkerung repräsentiert oder ob dort undemokratische Unterdrückung herrscht.",
+        "position": "Hardt argumentiert, dass die jetzige iranische Herrschaft offensichtlich nicht die Unterstützung des Volkes im Interesse hat: 36.000 Tote, 50.000 Verhaftete bei Massenprotesten, viele hingerichtet. Das Regime könne nicht für sich beanspruchen, im Namen des iranischen Volkes oder der persischen Kultur zu agieren. Die interne Struktur sei fragmentiert: Revolutionsgarden gewinnen Einfluss, die 'zivile' Regierung hat weniger zu sagen. Ein kriegsheld mit hohem Ansehen könnte an die Spitze gesetzt werden. Die Revolutionsgarden hätten dezentrale Struktur mit vielen unabhängig agierenden Militärkommandos. Im Fall eines Friedensschlusses wäre unklar, ob sich jeder an Vereinbarungen hält: Hält sich der Warlord im Süden dran?",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt beantwortet die implizite Frage nach Legitimität des Regimes (nein, es repräsentiert das Volk nicht) und belegt das mit Protestzahlen. Er erweitert die Antwort aber auf die Struktur-Instabilität, was die ursprüngliche Frage nach Zivilisations-Existenzberechtigung tangential behandelt. Hauptfokus liegt auf innenpolitischen Machtgefügen statt moralisch-geopolitischer Legitimität.",
+        "concrete_statements": [
+          "Es hat die Massenproteste gegeben, 36.000 Tote, 50.000 verhaftet. Viele davon werden hingerichtet.",
+          "Die Revolutionsgarden haben einen wachsenden Anteil im Lande, die zivile Regierung hat weniger zu sagen.",
+          "Es gibt viele Militärkommandeure, die unabhängig voneinander agieren können. Wenn wir tatsächlich einen Friedensschluss bekämen, ist die Frage, hält sich da jeder dran?"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist schon so, dass die Herrschaft, die jetzige Herrschaft und auch die Herrschaft vor diesem Angriff offensichtlich nicht die Unterstützung des Volks im Interesse hat.",
+            "timestamp": "00:18:47",
+            "context": "Hardt bewertet die Legitimität des iranischen Regimes"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Regime",
+          "Menschenrechte",
+          "Innenpolitische Stabilität"
+        ]
+      },
+      {
+        "title": "Atomprogramm Iran: Gründe für israelische Bedrohungsperzeption und umfassendere Verträge",
+        "timestamp_range": "00:42:19 - 00:44:19",
+        "theme_description": "Hardt erklärt, warum Israel das iranische Atomprogramm ernst nimmt, kritisiert aber das wiederholte Mantra-Argument und fordert umfassendere statt nur nuklearer Verträge.",
+        "question_asked": "Nach einer Debatte über Netanjahus wiederholte Bomben-Narrativ seit Jahrzehnten fragt Lanz indirekt: Warum wird dieses Argument ständig wiederholt, obwohl es sich abnutzt?",
+        "question_intent": "Lanz hinterfragt die Glaubwürdigkeit der israelischen Drohbewertung durch deren Repetition.",
+        "position": "Hardt hält fest, dass der Iran seit der islamischen Revolution in Worten und Taten (Unterstützung von Terrororganisationen) die Vernichtung Israels propagiert hat — weshalb ein israelischer Bürger von realer Gefahr ausgehen kann. Das rechtfertigt nicht jedes Vorgehen, zeigt aber echte Besorgnis. Heute existieren über 400 kg hochangereichertes Uran. Hardts Kritik am Atom-Deal: Er erfasste nur die Bombe, nicht Terrorunterstützung oder erweiterte Fähigkeiten. Er wünscht sich ein umfassenderes Abkommen. Die wiederholten Aussagen Netanjahus kann Hardt nicht bewerten, erkennt aber an: Der Iran hat tatsächlich seine Fähigkeiten, Israel und andere Regionen zu bedrohen, systematisch ausgebaut.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt beantwortet die implizite Frage nach Glaubwürdigkeit indirekt: Er validiert israelische Sicherheitsbesorgnis (echte Basis), kritisiert aber die übertriebene Narrative-Wiederholung nicht direkt. Stattdessen lenkt er auf reale Fakten (400 kg Uran, reales Bedrohungsaufbau) und Policy-Kritik (Vertragsdesign) ab. Das adressiert die Mantra-Frage nur teilweise.",
+        "concrete_statements": [
+          "Wir wissen heute, dass über 400 kg hochangereichertes Uran noch zur Verfügung steht irgendwo im Land.",
+          "Meine Kritik an diesem Abkommen: Es ging nur um die Bombe.",
+          "Ich würde mir wünschen, dass es jetzt ein umfassenderes Abkommen gibt."
+        ],
+        "quotes": [
+          {
+            "text": "Der Iran hat eben mit der iranischen Revolution seit Ende der 1970er Jahre in Worten und Taten, nämlich Unterstützung von Terrororganisationen die Vernichtung von Israel propagiert.",
+            "timestamp": "00:42:19",
+            "context": "Hardt erklärt die historische Basis israelischer Sicherheitsbesorgnis"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Atom-Deal Iran",
+          "Nuklearwaffen-Proliferation",
+          "Israel-Sicherheit"
+        ]
+      },
+      {
+        "title": "Deutsches Interesse: Atomar-Prävention statt kriegerische Intervention",
+        "timestamp_range": "00:44:26 - 00:45:32",
+        "theme_description": "Hardt definiert deutsches Interesse in der Iran-Frage als Verhinderung von atomarer Bewaffnung, nicht als Unterstützung der US-Militärop.",
+        "question_asked": "Moderator Lanz zitiert Manfred Weber (EVP-Chef), der sagt, dieser Krieg sei im deutschen Interesse, und fragt Hardt, ob er zustimmt.",
+        "question_intent": "Lanz will wissen, ob Hardt die Angriffsoperation gegen Iran als deutschem Interesse dienlich betrachtet.",
+        "position": "Hardt redefines deutsches Interesse eng: Verhinderung der atomaren Bewaffnung des Iran, dass die iranische Führung das Volk nicht weiter drangsaliert, und dass Terrororganisationen nicht unterstützt werden. Er hätte das Unternehmen ex-ante abgeraten. Wenn es nach zwei Wochen geklappt hätte, hätte die Welt es als mutig bezeichnet. Aber nach über sieben Wochen, wie jetzt, waren die negativen Konsequenzen von vielen Experten vorhersehbar. Deswegen wurde davon abgeraten — 'wir sind auch nicht gefragt worden'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt beantwortet die Frage nicht direkt ('zustimmen Sie, dass es im deutschen Interesse ist?'), sondern macht eine Umkehrung: Er definiert, was SEINER ANSICHT NACH deutsches Interesse ist (Atomar-Prävention), kritisiert aber die Operation implizit durch Verweis auf Vorhersehbarkeit der Scheiterns. Er weicht damit teilweise aus und lenkt auf die Ex-ante-Rationalität statt Direct-ja/nein-Antwort.",
+        "concrete_statements": [
+          "Im deutschen Interesse ist die Verhinderung, dass der Iran sich atomar bewaffnet.",
+          "Davor haben wir gewarnt, umgekehrt, wenn es geklappt hätte nach zwei Wochen, dann hätte man in der Welt insgesamt gesagt, das war mutig.",
+          "Das was jetzt eingetreten ist nach über sieben Wochen, das war von vielen Experten vorhersehbar. Deswegen sagen wir, wird davon abgeraten."
+        ],
+        "quotes": [
+          {
+            "text": "Im deutschen Interesse ist die Verhinderung, dass der Iran sich atomar bewaffnet. Dass die iranische Führung das Volk weiter drangsaliert und dass Terrororganisationen unterstützt werden.",
+            "timestamp": "00:44:39",
+            "context": "Hardt definiert deutsches Interesse in der Iran-Frage"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Deutsche Außenpolitik",
+          "Iran-Sicherheit",
+          "Europäische Positionen"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen Israel: Rechtliche Prüfung und Verhältnismäßigkeitsdebatte",
+        "timestamp_range": "00:52:50 - 00:57:51",
+        "theme_description": "Hardt verteidigt deutsche Waffenlieferungen an Israel als sorgfältig geprüft, räumt aber Verhältnismäßigkeitsprobleme bei militärischen Operationen ein.",
+        "question_asked": "Moderator Lanz und Kristin Helberg fragen, warum Deutschland weiterhin Waffen an Israel liefert, wenn — wie Lanz mit Bildern zeigt — deutsche Waffen(teile) bei möglicherweise völkerrechtswidrigen Operationen im Libanon zum Einsatz kommen.",
+        "question_intent": "Lanz und Helberg wollen wissen, wie Hardt die deutsche Mitverantwortung bei möglichen Kriegsverbrechen rechtfertigt.",
+        "position": "Hardt betont, dass die gezeigten Bilder aus dem Libanon nach seinem Wissen KEINE deutschen Waffen zeigen. Er verweist auf das Prüfverfahren: Jede einzelne Waffenlieferung wird durch den nationalen Sicherheitsrat geprüft, Public-Domain- und geheim-Quellen werden herangezogen. Die Bundesregierung geht davon aus, dass Waffen nicht völkerrechtswidrig eingesetzt wurden. Es gab bisher keinen Gerichtsurteil gegen Deutschland deswegen. Hardt räumt aber ein: Die Situation in Gaza war teilweise problematisch (z. B. Vorenthaltung humanitärer Hilfe), aber das hat sich inzwischen verbessert. Im Libanon: Israel wird durch Terrorismus bedroht, die Hisbollah ist noch immer gefährlich. Wehrt man sich, ist das gerechtfertigt? Mit welchen Mitteln ja — aber was wir gesehen haben, ist unverhältnismäßig. Das hat auch Bundeskanzler gesagt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt antwortet auf die Lieferungs-Rechtfertigung, vermeidet aber die Zentral-Frage nach Mitverantwortung bei Kriegsverbrechen. Er beschwichtigt: 'keine deutschen Waffen' im Libanon gezeigt, verweist auf Prüfprozesse (prozedural), räumt aber gleichzeitig Verhältnismäßigkeitsverstöße ein ('unverhältnismäßig'). Diese Spannung wird nicht aufgelöst. Damit ist die Antwort semantisch zwielässig und nur teilweise auf die ethisch-juristische Frage bezogen.",
+        "concrete_statements": [
+          "Für jede einzelne Waffenlieferung wird in Deutschland geprüft. Der nationale Sicherheitsrat prüft das.",
+          "Es wurde vor keinem Gericht bisher festgestellt, dass Deutschland das nicht machen würde.",
+          "Ich glaube, dass das, was wir gesehen haben, unverhältnismäßig ist.",
+          "Das hat der Bundeskanzler gesagt, das sehe ich auch so."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, die Bilder, die ja wohl aktuelle Bilder sind, ich glaube, dass dort keine deutschen Waffen eingesetzt worden sind. Das würde ich an der Stelle einfach mal festhalten.",
+            "timestamp": "00:52:50",
+            "context": "Hardt reagiert auf Vorwurf der Lieferung deutscher Waffen für Libanon-Operationen"
+          },
+          {
+            "text": "Ich glaube, dass das, was wir gesehen haben, unverhältnismäßig ist.",
+            "timestamp": "00:58:01",
+            "context": "Hardt räumt Verhältnismäßigkeitsverstöße ein"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsexporte",
+          "Völkerrecht",
+          "Israel-Politik",
+          "Kriegsverbrechen-Vorwürfe"
+        ]
+      },
+      {
+        "title": "Gaza-Hilfe: Verbesserung der humanitären Lage vs. andauernder Mangel",
+        "timestamp_range": "00:57:51 - 01:00:23",
+        "theme_description": "Hardt und Kristin Helberg disputieren über den Umfang der humanitären Verbesserungen in Gaza seit den Waffenruhe-Verhandlungen.",
+        "question_asked": "Nach Helbergs Bericht über katastrophale Bedingungen (30% akut hungrig, 60% ohne Wohnung) und Hardts Aussage zur verbesserten Hilfe fragt Lanz nach Bildern aus März: Kann man von signifikanter Verbesserung sprechen?",
+        "question_intent": "Lanz will epistemische Klarheit: Ist Hardts Optimismus faktengestützt oder Schönfärberei?",
+        "position": "Hardt sagt, dass es die 'richtige Entwicklung' ist, Bundesregierung eine der größten Finanzierer von Gaza-Hilfe weltweit. Kristin Helberg widersagt: Kommerzielle Güter dürfen mehr in, aber Menschen können sich das nicht leisten. Humanitäre Hilfe ist schwierig, es gibt eine fortgesetzte Strategie des Aushungerns bis zu einem gewissen Grad, um Lebensbedingungen niedrig/schlecht zu halten — daher wird von andauerndem Genozid gesprochen. Hardt antwortet nicht direkt auf die Gegenposition.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt adressiert die Frage nach Verbesserung nur mit Vergleich zu 'davor': Die Situation verbessert sich, Bundesregierung investiert viel. Er verweigert aber direkt auf Helbergs Fakten-Gegendarstellung (30% Hunger, 60% ohne Heim) einzugehen und wiederholt nur die Supportive-Narrative. Die Antwort ist eher defensiv-deklarativ als material antwortend.",
+        "concrete_statements": [
+          "Die Bundesregierung ist einer der größten Finanzierer der Hilfe für Menschen in Gaza auf der ganzen Welt.",
+          "Die Situation hat sich mit Blick auf die Grundbedürfnisse der Menschen deutlich entspannt.",
+          "Wir sind weit davon entfernt, dass wir von Verhältnissen reden können, die man einem Menschen auf Dauer zumuten kann."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass das die richtige Entwicklung ist, dass wir das unterstützen, dass die Bundesregierung im Übrigen einer der größten Finanzierer der Hilfe für Menschen in Gaza ist, auf der ganzen Welt.",
+            "timestamp": "00:59:30",
+            "context": "Hardt bewertet die Gaza-Hilfe-Entwicklung"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Humanitäre Hilfe Gaza",
+          "Kriegsfolgen",
+          "Deutsche Entwicklungshilfe"
+        ]
+      },
+      {
+        "title": "Palästinensischer Staat: Zwei-Staaten-Lösung als Idealziel, Anerkennung unter Bedingungen",
+        "timestamp_range": "01:02:19 - 01:04:47",
+        "theme_description": "Hardt setzt sich für eine palästinensische Autonomie/Zwei-Staaten-Lösung ein, lehnt aber die gegenwärtige Anerkennung eines 'Staates' ab, der noch keine funktionierende Staatlichkeit hat.",
+        "question_asked": "Nach Diskussion über Gaza-Verwaltung unter Trump-Plan fragt Lanz: Warum erkennt Deutschland (eine von wenigen EU-Nationen) nicht den palästinensischen Staat an? Wir sind isoliert.",
+        "question_intent": "Lanz hinterfragt deutsche Inkonsistenz: Unterstützung der Zwei-Staaten-Lösung, aber Verweigerung der diplomatischen Anerkennung.",
+        "position": "Hardt antwortet: Es gibt keine 'Staatlichkeit', die wir anerkennen können. Länder erkennen Palästina an, aber 'dann läuft überhaupt nichts' mit der Autonomiebehörde. Deutschland ist der größte/einer der größten Geldgeber der PA weltweit. 'Wahre Solidarität' ist finanzielle Unterstützung, nicht bloße symbolische Anerkennung eines Staates, den es noch nicht funktionsfähig gibt. Kristin Helberg widersagt: Das sei Realitätsverweigerung. Israel kontrolliert de facto das gesamte Gebiet als Besatzungsmacht. Netanjahu wird Annexion verhindern, und jetzt sehen wir bereits Annexion.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hardt beantwortet die Frage nach Anerkennung praktisch (keine Staatlichkeit vorhanden), weicht aber der politischen Kern-Kritik aus, dass die Anerkennung längst überfällig/symbolisch wichtig wäre unabhängig von funktionaler Staatlichkeit. Helbergs Gegenpunkt — dass Israel de facto Annexion betreibt — wird von Hardt nicht adressiert.",
+        "concrete_statements": [
+          "Weil es keine Staatlichkeit gibt, die wir anerkennen können.",
+          "Deutschland ist einer der größten Geldgeber der Autonomiebehörde überhaupt auf der Welt.",
+          "Ich glaube daran, weil ich keine andere Lösung sehe für die Regierung. Es ist extrem schwierig diesen Punkt zu erreichen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich kann mir nicht vorstellen, dass es dauerhaft Frieden in der Region gibt, wenn Israel nicht akzeptiert, dass es diesen palästinensischen Staat an seiner Seite gibt.",
+            "timestamp": "01:03:17",
+            "context": "Hardt erklärt, warum die Zwei-Staaten-Lösung unverzichtbar ist"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Palästina-Anerkennung",
+          "Zwei-Staaten-Lösung",
+          "Deutsche Außenpolitik"
+        ]
+      },
+      {
+        "title": "Hisbollah-Entwaffnung: Politische Lösung statt militärische Zerschlagung",
+        "timestamp_range": "01:10:11 - 01:10:47",
+        "theme_description": "Hardt erklärt, dass Hisbollah-Kämpfer, die die Libanesen-Bevölkerung vertreten, eine politische Alternative brauchen und in Friedensabkommen einbezogen werden müssen.",
+        "question_asked": "Nach Diskussion über Hisbollah als Wohlfahrts- und Bildungsorganisation fragt implizit: Wie lässt sich Hisbollah-Präsenz mit Terrorbekämpfung vereinbaren?",
+        "question_intent": "Lanz und Helberg fragen, wie man zwischen legitimen Hisbollah-Funktionen (Schulen, Krankenhäuser) und Terror-Aktivitäten differenziert.",
+        "position": "Hardt stimmt Kristin Helberg zu, dass Menschen im Libanon, die sich von Hisbollah vertreten fühlen, eine 'politische Alternative' zu dieser Terrororganisation finden müssen. Sie brauchen eine Stimme, die ihre Interessen im Libanon sichert, ohne dass Terror gegen Israel ausgeübt wird. Das erfordere eine Einbindung auch von Hisbollah-Kämpfern, die nicht gegen Israel, sondern 'für die Menschen' sind. Das sei eine 'Riesenaufgabe', aber eine politische Lösung ist erforderlich.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hardt antwortet substanziell auf die implizite Frage nach Differenzierung: Er akzeptiert, dass Hisbollah auch soziale Funktionen hat, fordert aber politische De-Radikalisierung statt nur militärischer Zerschlag. Die Position ist kohärent und adressiert die zentrale Spannung.",
+        "concrete_statements": [
+          "Die Menschen im Libanon müssen eine politische Alternative zu dieser Terrororganisation finden.",
+          "Sie brauchen eine Stimme, die ihre Interessen im Libanon sichert, ohne dass sie Terror gegen Israel ausübt.",
+          "Da müssten die Hisbollah-Kämpfer eben auch eingebunden werden, die nicht gegen Israel, sondern für die Menschen sind."
+        ],
+        "quotes": [
+          {
+            "text": "Die Menschen im Libanon, die sich von der Hisbollah vertreten fühlen, eine politische Alternative zu dieser Terrororganisation finden müssen. Sie brauchen weiter eine Stimme, die ihre Interessen im Libanon sichert, ohne dass sie Terror gegen Israel ausübt.",
+            "timestamp": "01:10:11",
+            "context": "Hardt erklärt den Weg zu einer politischen Hisbollah-Lösung"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Libanon",
+          "Hisbollah",
+          "Terrorism-Bekämpfung",
+          "Politische Reintegration"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es gab Massenproteste im Iran mit 36.000 Toten, 50.000 Verhafteten, viele hingerichtet.",
+        "timestamp": "00:18:47"
+      },
+      {
+        "claim": "Es gibt über 400 kg hochangereichertes Uran im Iran.",
+        "timestamp": "00:42:19"
+      },
+      {
+        "claim": "Deutschland ist einer der größten Finanzierer der Hilfe für Menschen in Gaza auf der Welt.",
+        "timestamp": "00:59:30"
+      },
+      {
+        "claim": "Die Bundesregierung ist einer der größten Geldgeber der palästinensischen Autonomiebehörde überhaupt auf der Welt.",
+        "timestamp": "01:04:00"
+      },
+      {
+        "claim": "Trump plant, dass der Gazastreifen unter palästinensischer Kontrolle und Verwaltung der palästinensischen Autonomiebehörde bleibt.",
+        "timestamp": "01:02:19"
+      }
+    ]
+  }
+}

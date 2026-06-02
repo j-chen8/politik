@@ -1,0 +1,344 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-11-september-2025-100",
+    "video_id": "lanz-2025-09-11",
+    "politician": "Jan van Aken",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "7644eb9a57b9aa1f",
+    "transcript_chars": 56328,
+    "caption_lines": 2892,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23168,
+    "tokens_out": 8328,
+    "cost_usd": 0.0259232,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 2,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.853Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Co-Vorsitzender der Linkspartei und außenpolitischer Fachmann, kommt zu Wort bei drei Hauptthemenkomplexen: zur geopolitischen Sicherheitslage (Drohnen in Polen, NATO-Engagement in der Ukraine) und zur Migrationspolitik. Er argumentiert grundsätzlich für diplomatische Lösungen statt militärische Eskalation und kritisiert pauschale Verurteilungen von Migrant:innen, setzt sich aber auch für Rechtsstaatlichkeit ein.",
+    "themes": [
+      {
+        "title": "Drohnen in Polen und NATO-Reaktion Trumps",
+        "timestamp_range": "00:15:14 - 00:16:18",
+        "theme_description": "Jan van Aken äußert sich zur Frage, ob die Drohnen in Polen ein Test für Trump und die NATO-Solidarität darstellen, und interpretiert Putins Kalkül.",
+        "question_asked": "Markus Lanz fragt, ob die Drohnen möglicherweise dazu dienen herauszufinden, wie Trump zur NATO steht und ob dies ein Test für die NATO-Zuverlässigkeit ist.",
+        "question_intent": "Klären, ob die Drohnen-Provokationen eine bewusste Testattitude gegenüber Trump und der NATO-Solidarität darstellen.",
+        "position": "Jan van Aken argumentiert, dass Putin keinen solchen Test braucht, da Trump bereits seit Monaten zeige, dass er eher \"Team Putin\" angehöre. Beide seien Autokraten, und Trumps Ziel sei es, an der Macht zu bleiben, notfalls mit militärischer Gewalt. Die Drohnen seien zwar nicht scharf gewesen, aber dennoch ein Test – allerdings nicht primär der Amerikaner, sondern auch Polens. Entscheidend sei, dass Putin weiß, in Trump eher einen Kollegen als einen Gegner zu haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken adressiert direkt die Frage, ob und warum die Drohnen ein Test darstellen. Er positioniert sich klar, dass Trump für Putin kein Abschreckungsrisiko darstellt, und interpretiert Putins strategisches Kalkül. Die Antwort ist substanziell und beantwortet die implizite Frage nach Trumps Zuverlässigkeit als NATO-Partner.",
+        "quotes": [
+          {
+            "text": "Trump zeigt seit Monaten, dass er mehr Team Putin ist. Beides sind Autokraten und wir haben es gehört mit der Militarisierung. Trumps Ziel ist es, an der Macht zu bleiben. Zur Not mit militärischer Gewalt, da ist der potentielle.",
+            "timestamp": "00:15:14",
+            "context": "Van Aken erklärt, warum Putin keinen Test braucht und wie er Trump einschätzt."
+          },
+          {
+            "text": "Ich glaube schon, das war ein Test, es waren keine scharfen Drohnen. [...] Ich glaube das war das Hauptziel und Trump, da weiß Putin dass er eher ein Kollegen hat als ein Gegner.",
+            "timestamp": "00:15:14",
+            "context": "Van Aken konkretisiert seine Interpretation der Drohnen als Test, mit besonderem Fokus auf Putins Verständnis von Trump als Kollegen."
+          }
+        ],
+        "concrete_statements": [
+          "Trump zeigt seit Monaten, dass er mehr Team Putin ist",
+          "Putins Ziel war es nicht nur, die Amerikaner zu testen, sondern auch Polen",
+          "Putin weiß, dass Trump eher ein Kollege als ein Gegner ist"
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnisverpflichtungen",
+          "US-amerikanische Außenpolitik unter Trump",
+          "Sicherheitspolitik Osteuropa",
+          "Russische Aggressionspolitik"
+        ]
+      },
+      {
+        "title": "Militärische Eskalation und Sicherheitsgarantien für Ukraine",
+        "timestamp_range": "00:31:22 - 00:34:58",
+        "theme_description": "Jan van Aken wird nach seiner Position zu deutschen Bodentruppen und Sicherheitsgarantien für die Ukraine gefragt. Er argumentiert gegen militärische Lösungen und für Verhandlungen.",
+        "question_asked": "Markus Lanz fragt van Aken, wie man angesichts des Dilemmas zwischen notwendiger Informationsvermittlung und Vermeidung von Alarmismus mit der Frage umgehen kann, ob deutsche Soldaten in die Ukraine geschickt werden müssen, und wie man der Bevölkerung Angst vor Militarisierung nehmen kann.",
+        "question_intent": "Erfahren, wie die Linke zu möglichen deutschen Bodentruppen in der Ukraine steht und wie man Sicherheit schaffen kann, ohne in militärische Eskalation zu verfallen.",
+        "position": "Van Aken lehnt die Stationierung deutscher oder europäischer NATO-Soldaten ab, da dies zu einer direkten Konfrontation zwischen NATO und Russland führe. Er argumentiert, dass zunächst Verhandlungen und ein Waffenstillstand notwendig seien, danach könnten Sicherheitsgarantien folgen – nicht umgekehrt. Als Alternative schlägt er UN-Friedenstruppen vor (wie in Korea und Zypern), die als neutrale Kontrollmechanismen fungieren würden. Er kritisiert, dass diese Option in der deutschen Debatte völlig fehlt. Warum, so fragt er, stelle keiner die Frage der Vereinten Nationen?",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Van Aken beantwortet die Frage nach deutschen Soldaten mit einer klaren Ablehnung, aber er lenkt die Debatte um auf die Sequenzfrage (erst Verhandlung, dann Sicherheit) und schlägt UN-Lösungen vor, statt sich mit dem Angst-Reduktions-Aspekt oder der praktischen Diskussionslogik in Deutschland zu befassen. Er pivotiert zu dem Argument, dass die aktuelle Debatte selbst das Problem sei.",
+        "quotes": [
+          {
+            "text": "Das hat eine Eskalationsgefahr, die hat keiner mehr im Griff. Wenn europäische NATO Soldaten in den Krieg hinein begeben auch, dass nicht unter der NATO freigemacht. In dem Moment wo wir das machen ist die Eskalationsgefahr riesig.",
+            "timestamp": "00:31:22",
+            "context": "Van Aken warnt vor der militärischen Eskalation durch deutsche oder europäische Truppeneinsätze."
+          },
+          {
+            "text": "Erst die Verhandlungen, dann die Sicherheit Hörnchen. Mit militärischer Stärke oder wir reden mit den Vereinten Nationen. Warum stellt keiner die Frage der Vereinten Nationen.",
+            "timestamp": "00:31:22",
+            "context": "Van Aken beschreibt seine bevorzugte Sequenz und kritisiert das Fehlen von UN-Optionen in der Debatte."
+          },
+          {
+            "text": "Ich wünsche mir, dass wir wieder über die Vereinten Nationen reden. In dem Moment wo es Gespräche gibt ist Russland mit dabei. Die ganze Blockade des Sicherheitsrates ist aufgehoben.",
+            "timestamp": "00:32:53",
+            "context": "Van Aken argumentiert für die Rolle der UN und erklärt, wie Verhandlungen über die UN einen anderen Rahmen schaffen würden."
+          }
+        ],
+        "concrete_statements": [
+          "Erst Verhandlungen, dann Waffenstillstand, danach Sicherheitsgarantien – nicht umgekehrt",
+          "NATO-Soldaten in der Ukraine würden zu einer direkten Konfrontation NATO-Russland führen",
+          "UN-Friedenstruppen nach dem Vorbild Korea und Zypern sollten diskutiert werden",
+          "Die UN-Option fehlt völlig in der deutschen Debatte"
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik Ukraine",
+          "Internationale Konfliktlösung",
+          "Vereinte Nationen und Friedensmissionen",
+          "Eskalationsprävention"
+        ]
+      },
+      {
+        "title": "Verhandlungen mit Russland und Rolle Chinas",
+        "timestamp_range": "00:34:00 - 00:34:58",
+        "theme_description": "Jan van Aken wird auf die Notwendigkeit von Verhandlungen mit Putin angesprochen und erklärt, warum bisherige Versuche gescheitert sind und welche Rolle China spielen könnte.",
+        "question_asked": "Sabine Adler weist darauf hin, dass Putin Verhandlungen sabotiert, indem er unakzeptable Forderungen stellt. Van Aken wird implizit gefragt, wie er angesichts dieser Blockade Verhandlungen ermöglichen will.",
+        "question_intent": "Verstehen, wie Verhandlungen trotz Putins offensichtlicher Verweigerung möglich sein sollen.",
+        "position": "Van Aken räumt ein, dass Sabine Adler Recht hat und dass seit 3,5 Jahren vergeblich Verhandlungen angestrebt werden. Er kritisiert, dass Alaska \"keine Verhandlung\" war, sondern nur Putin und jemand anderes sich trafen. Das eigentliche Problem: Es gibt kein Druckmittel auf Putin. Aber wenn \"ein großer starker verbündeter seinen Partner drängt auf Verhandlungen, dann klappt das meistens.\" China ist ein starker Partner Russlands und hat eine \"Adresse an Friedensverhandlungen\" – diese muss aufgegriffen werden. Deutschland und der Westen sollten China drängen, Druck auf Putin auszuüben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken adressiert die Blockade-Problematik, aber seine Lösung (China als Druckmittel) wird nicht detailliert begründet, warum China ein wirkungsvolles Druckmittel sein sollte oder wie der Westen China dazu bringen könnte. Die Antwort identifiziert das Problem korrekt, bleibt aber bei der Lösungsstrategie vage.",
+        "quotes": [
+          {
+            "text": "Alaska war keine Verhandlung, nur Putin und Rum von sich getroffen. Alle haben geglaubt es gibt das Treffen Putin Selenskyj, wie kommt ihr darauf, es gibt gar kein Druckmittel dafür.",
+            "timestamp": "00:34:00",
+            "context": "Van Aken erklärt, warum bisherige Ansätze gescheitert sind: fehlende Druckmittel."
+          },
+          {
+            "text": "Wenn ein großer starker verbündeter seinen Partner drängt auf Verhandlungen, dann klappt das meistens. China ist ein starker Partner von Russland, aber die haben ein Adresse an Friedensverhandlungen. Das muss aufgegriffen werden.",
+            "timestamp": "00:34:00",
+            "context": "Van Aken nennt China als Schlüssel zur Druck-Ausübung auf Russland."
+          }
+        ],
+        "concrete_statements": [
+          "Alaska war keine echte Verhandlung",
+          "Das fehlende Druckmittel ist das zentrale Problem",
+          "China muss von den Westmächten auf Verhandlungen gedrängt werden",
+          "China hat eine \"Adresse an Friedensverhandlungen\""
+        ],
+        "related_bundestag_topics": [
+          "Diplomatie mit Russland",
+          "Chinesische Außenpolitik",
+          "Ukraine-Friedensprozesse",
+          "Multilaterale Konfliktbearbeitung"
+        ]
+      },
+      {
+        "title": "Asylpolitik und Willkommenskultur für Migrant:innen",
+        "timestamp_range": "00:44:00 - 00:45:47",
+        "theme_description": "Jan van Aken wird auf die Kritik reagiert, dass er pauschalisiert und zeigt, dass die Debatte um Identitätsverschleierung und Willkommenskultur unfair auf Migrant:innen abzielt.",
+        "question_asked": "Markus Lanz behauptet, dass van Aken pauschalisiert, und verweist auf das Beispiel Willy Brandt, dessen Name Herbert Frahm war. Lanz fragt, was daran falsch sei, wenn jemand vor dem Krieg flieht und seine Herkunft verschleiert.",
+        "question_intent": "Herausforderung: Ist die Kritik an Identitätsverschleierung von Migrant:innen legitim, besonders angesichts historischer Beispiele wie Brandt?",
+        "position": "Van Aken stimmt zu, dass das Beispiel Willy Brandt zentral ist: Brandt habe seinen Namen verschleiert, weil er sonst nicht überlebt hätte. Das zeige, dass es völlig legitim ist, wenn jemand, der vor Krieg flieht, seine Herkunft verschleiert. Er kritisiert das \"Pauschalisieren\" in dieser Debatte scharf. Aber auch: Er stimmt Koopmans zu, dass sichere Fluchtwege nötig sind, und räumt ein, dass \"so viele Menschen sterben.\" Die Debatte müsse sich von Pauschalisierungen freimachen und Einzelpersonen nicht alle als faul oder mit falschen Motiven darstellen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken adressiert die Frage direkt mit dem Brandt-Beispiel und erklärt, warum Identitätsverschleierung legitim ist. Er kritisiert die Pauschalierungstaktik und positioniert sich klar gegen die Stigmatisierung von Migrant:innen.",
+        "quotes": [
+          {
+            "text": "Der hat seinen Namen verschleiert, weil er sonst überlebt hatte. Was ist daran falsch, dass jemand der vor dem Krieg flüchtet das der seine Herkunft verschleiert. Dieses ganze pauschalisieren, das stört mich richtig.",
+            "timestamp": "00:44:00",
+            "context": "Van Aken verteidigt die Legitimitaet von Identitaetsverschleierung anhand von Willy Brandts Beispiel."
+          },
+          {
+            "text": "Sie haben recht wir brauchen sichere Fluchtwege. Sie haben völlig recht dass so viele Menschen sterben. Dieses einmal rund um, das ist alles disfunktional wenn jetzt mehr Leute im Bürger Geld sind als Arbeiten dann hat das damit zu tun dass die Syrer auch nicht arbeiten dürfen.",
+            "timestamp": "00:44:00",
+            "context": "Van Aken stimmt einzelnen Kritikpunkten zu, dreht aber den Fokus auf die Systemdisfunktionalität statt auf vermeintliche Mangel bei Migrant:innen."
+          }
+        ],
+        "concrete_statements": [
+          "Identitätsverschleierung von Flüchtlingen ist legitim",
+          "Sichere Fluchtwege sind notwendig",
+          "Die Debatte darf nicht pauschalisieren",
+          "Syrer dürfen bei Ankunft zunächst nicht arbeiten – das ist ein Systemfehler"
+        ],
+        "related_bundestag_topics": [
+          "Asylrecht und Asylverfahren",
+          "Flüchtlingsschutz",
+          "Arbeitsmarktintegration von Migrant:innen",
+          "Menschenrechtsschutz"
+        ]
+      },
+      {
+        "title": "Arbeitsmarktzugang und Willkommenskultur für Syrer",
+        "timestamp_range": "00:45:00 - 00:46:25",
+        "theme_description": "Jan van Aken argumentiert dagegen, dass Syrer nicht arbeiten dürfen und kritisiert das Fehlen einer Willkommenskultur als Systemfehler.",
+        "question_asked": "Markus Lanz stellt fest, dass Syrer nach 99 % Anerkennungsquote in Deutschland unbegrenzt arbeiten dürfen. Er fragt implizit, warum van Aken diesen Sachverhalt ignoriert oder verdreht.",
+        "question_intent": "Van Aken auf die faktische Falschheit seiner Aussage hinweisen und verstehen, warum er die Arbeitserlaubnis-Realität verkennt.",
+        "position": "Van Aken behauptet, dass Syrer beim Ankommen zunächst nicht arbeiten dürfen und in einem System landen, wo \"sie keine willkommen Kultur haben.\" Dann werde ihnen gesagt, sie müssen arbeiten – das sei \"verantwortungslos.\" Seine Position ist: Das System ist unwillkommen strukturiert, daher ist es unrealistisch, danach sofort Arbeitsmarktbeteiligung zu erwarten. Lanz und Koopmans widersprechen: Syrer DÜRFEN arbeiten. Van Aken weicht mit \"Sie weichen aus\" aus, statt die faktische Lage zu akzeptieren.",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Van Aken beharrt auf einer faktisch falschen Aussage (Syrer dürfen nicht arbeiten) und weicht aus, als Lanz und Koopmans diese korrigieren. Er adressiert die tatsächliche Frage nicht, sondern behauptet, der Gesprächspartner weiche aus. Das ist eine offene Verweigerung, die faktische Lage anzuerkennen.",
+        "quotes": [
+          {
+            "text": "Erst mal darf man es nicht. Dann sind sie erst mal in einem System, wo sie keine willkommen Kultur haben. Dann sagen Sie die müssen arbeiten. Das ist verantwortungslos.",
+            "timestamp": "00:45:21",
+            "context": "Van Aken behauptet, dass Syrer nicht arbeiten dürfen und kritisiert fehlende Willkommenskultur."
+          },
+          {
+            "text": "Sie weichen aus.",
+            "timestamp": "00:46:19",
+            "context": "Van Aken reagiert auf die Korrektur, dass Syrer sehr wohl arbeiten dürfen, mit einem Vorwurf der Ausweichung."
+          }
+        ],
+        "concrete_statements": [
+          "Syrer dürfen bei Ankunft nicht arbeiten",
+          "Es gibt keine Willkommenskultur für Syrer",
+          "Das System ist verantwortungslos, wenn es Arbeitsbeteiligung erwartet, ohne Willkommenskultur"
+        ],
+        "related_bundestag_topics": [
+          "Asylbewerberleistungsgesetz",
+          "Arbeitsmarktintegration",
+          "Aufenthaltsrecht und Arbeitserlaubnis"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer und progressive Finanzierung des Sozialstaates",
+        "timestamp_range": "00:50:52 - 00:52:30",
+        "theme_description": "Jan van Aken argumentiert, dass die Finanzierungsfrage bei Migration und Bürgergeld durch progressive Besteuerung der Superreichen gelöst werden könnte.",
+        "question_asked": "Markus Lanz fragt, warum der Wohlfahrtsstaat zwingend höhere Steuern und Abgaben benötigt, und ob nicht auch Umverteilungsfragen anders gelöst werden können.",
+        "question_intent": "Verstehen, wie van Aken die Finanzierungskrise des Sozialstaates unter Migrationsdruck lösen will.",
+        "position": "Van Aken argumentiert, dass es nicht um insgesamt mehr Steuern gehen muss, sondern um progressive Umverteilung. Er nennt ein Beispiel: Bei riesigen Erbschaften wird fast die gesamte Erbschaftsteuer erlassen, das koste 3,4 Milliarden Euro – genug für das Deutsche Ticket. Wenn man eine Vermögenssteuer einführt und Superreiche \"ihre gerechte Steuer bezahlen,\" hätte man 108 Milliarden zusätzlich (statt nur 80-85 Milliarden für Migration und Bürgergeld). Das zeige: Die Finanzierungsfrage ist eine Verteilungsfrage, nicht eine Mangelfrage.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Finanzierungsfrage direkt mit konkreten Maßnahmen (Vermögenssteuer, Erbschaftsteuerreform) und zeigt auf, dass die Finanzierungslücke durch progressive Besteuerung geschlossen werden könnte. Die Position ist kohärent und substanziell.",
+        "quotes": [
+          {
+            "text": "Bei riesigen Erbschaften wird fast die gesamte Stadtsteuer erlassen. Da werden wir deren 3,4 Milliarden Euro in den Hintern geschoben. Davon könnte man das deutsche Ticket bezahlen.",
+            "timestamp": "00:50:52",
+            "context": "Van Aken kritisiert die Steuervergünstigung für Erbschaften und zeigt ein konkretes Finanzierungsbeispiel."
+          },
+          {
+            "text": "Wenn wir die Vermögenssteuer einführen haben wir 108 Milliarden. Wenn die Superreichen ihre gerechte Steuer bezahlen. Diese Zahl kann uns merken.",
+            "timestamp": "00:52:14",
+            "context": "Van Aken nennt konkrete Zahlen für progressive Finanzierungsalternativen."
+          }
+        ],
+        "concrete_statements": [
+          "Erbschaftsteuerreform könnte 3,4 Milliarden einbringen",
+          "Eine Vermögenssteuer auf Superreiche könnte 108 Milliarden einbringen",
+          "Die Finanzierungsfrage ist eine Verteilungsfrage, keine Mangelfrage"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik und Finanzierung",
+          "Vermögenssteuer",
+          "Erbschaftsteuer",
+          "Sozialstaat und Umverteilung"
+        ]
+      },
+      {
+        "title": "Einzelne Straftäter nicht pauschalisieren, aber Doppelbestrafung vermeiden",
+        "timestamp_range": "00:55:37 - 00:57:02",
+        "theme_description": "Jan van Aken verteidigt eine differenzierte Debatte über Migrant:innen und ihre Arbeitsmarktbeteiligung und lehnt Pauschalierungen ab.",
+        "question_asked": "Markus Lanz versucht, van Aken zur Einsicht zu bewegen, dass die Quote der Bürgergeldabhängigen unter Syrern höher ist als bei anderen Gruppen, und fragt nach Gründen und Bringschuld.",
+        "question_intent": "Van Aken zur Akzeptanz der statistischen Realität bewegen und verstehen, ob es eine Bringschuld gegenüber dem Aufnahmeland gibt.",
+        "position": "Van Aken stimmt zu, dass es eine Bringschuld gibt, aber kritisiert das Wort als \"doof.\" Die allermeisten Migrant:innen wollen und können arbeiten. Eine Debatte an Einzelpersonen zu führen, die nicht arbeiten wollen, ist das Schlimme. Von 4 Millionen Bürgergeldempfänger:innen sind 19.000 nicht bereit zu arbeiten – das ist minimal. \"Alle anderen als zu faul zum Arbeiten zu bezeichnen, wir dürfen sie nicht über den Kamm scheren.\" Das widerspricht seiner Lebenserfahrung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken räumt ein, dass es eine Bringschuld gibt, aber lenkt dann auf Ausnahmefälle um. Er beantwortet nicht die statistischen Disparitäten zwischen Syrern und Ukrainern oder Europäern, sondern argumentiert, dass die Quote der Nicht-Arbeitswilligen zu klein ist, um zu pauschalisieren. Die Antwort ist teilweise, da sie die Frage nach systematischen Unterschieden ausweicht.",
+        "quotes": [
+          {
+            "text": "Da sind wir uns doch einig. Bringschuld wenn ich ein doofes Wort. Ich bin katholisch aufgewachsen. Das ist richtig, ich finde schriftlich. Die allermeisten tun es auch.",
+            "timestamp": "00:55:37",
+            "context": "Van Aken stimmt Lanz bei, dass es eine Bringschuld gibt, kritisiert aber die Wortwahl und betont, dass die meisten arbeiten wollen."
+          },
+          {
+            "text": "Von den 4 Millionen sind 19.000 nicht bereit zu arbeiten. Das ist eine minimale Zahl. Alle anderen als zu faul zum Arbeiten zu bezeichnen, wir dürfen sie nicht über den Kamm scheren.",
+            "timestamp": "00:55:37",
+            "context": "Van Aken nennt konkrete Zahlen, um Pauschalisierungen zu widersprechen."
+          }
+        ],
+        "concrete_statements": [
+          "Die allermeisten Migrant:innen wollen und können arbeiten",
+          "Von 4 Millionen Bürgergeldempfänger:innen sind nur 19.000 nicht arbeitswillig",
+          "Pauschalisierungen sind unfair und statistisch irreführend",
+          "Diese Debatte ist ein Lebenserfahrung-Thema, nicht nur Statistik"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktstatistiken und Integration",
+          "Bürgergeld und Sozialversicherung",
+          "Migrationsdemografie"
+        ]
+      },
+      {
+        "title": "Doppelbestrafung durch Abschiebung von Migrant:innen mit Strafhintergrund",
+        "timestamp_range": "01:10:22 - 01:11:33",
+        "theme_description": "Jan van Aken argumentiert gegen die Abschiebung von Migrant:innen, die eine Strafe verbüßt haben, da dies eine Doppelbestrafung darstelle.",
+        "question_asked": "Markus Lanz fragt, ob man auch Straftäter nicht abschieben sollte, als logische Konsequenz von van Akens Position zur Willkommenskultur und gegen Pauschalisierungen.",
+        "question_intent": "Van Aken auf den möglichen Widerspruch seiner Position hinweisen: Sollten sogar Straftäter bleiben dürfen?",
+        "position": "Van Aken sagt: \"Gerade bei Straftätern ist es ein Problem.\" Wenn jemand eine Bank ausraubt, kommt er ins Gefängnis. Bei Deutschen wird die Strafe abgesessen, bei Migrant:innen auch – aber dann wird er abgeschoben. Das ist eine Doppelbestrafung. \"Ich finde das falsch.\" Die Bestrafung muss sein, aber danach ist \"die Schraube vorbei.\" Der Rechtsstaat sagt: \"Jeder hat eine zweite Chance verdient.\" Das gilt für alle gleich.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt und kohärent mit einer rechtsstaatlichen Begründung. Er adressiert das Konzept der Doppelbestrafung und erklärt seine Position konsistent aus dem Prinzip der Gleichbehandlung und des Rechtsstaates.",
+        "quotes": [
+          {
+            "text": "Gerade bei Straftätern ist es ein Problem, ich finde es richtig wenn jemand eine Bank ausgeraubt kommt er ins Gefängnis und wenn es ein Deutscher ist wird die Strafe abgesessen. Wenn es ein Migrant es wird auch die Strafe abgesessen. Wenn man ihn dann abgibt ist es eine Doppelbestrafung. Ich finde das falsch.",
+            "timestamp": "01:10:22",
+            "context": "Van Aken erklärt, warum Abschiebung nach Strafvollzug eine Doppelbestrafung ist."
+          },
+          {
+            "text": "Wir dürfen Leute nicht doppelt bestrafen. Auch wenn ich dem Impuls verstehen kann, ich will kein Verbrecher. Unser Rechtsstaat sagt jeder hat eine zweite Chance verdient.",
+            "timestamp": "01:11:11",
+            "context": "Van Aken fasst sein Argument zusammen und begründet es rechtsstaatlich."
+          }
+        ],
+        "concrete_statements": [
+          "Abschiebung nach Strafvollzug ist eine Doppelbestrafung",
+          "Deutsche und Migrant:innen sollen bei Bestrafung gleich behandelt werden",
+          "Jede:r verdient nach Strafvollzug eine zweite Chance",
+          "Der Rechtsstaat muss diesen Grundsatz für alle gelten lassen"
+        ],
+        "related_bundestag_topics": [
+          "Aufenthaltsrecht und Strafrecht",
+          "Abschiebungsverfahren",
+          "Rechtsstaatsprinzipien",
+          "Gleichbehandlung vor dem Gesetz"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Von 4 Millionen Bürgergeldempfänger:innen sind 19.000 nicht bereit zu arbeiten",
+        "timestamp": "00:55:37"
+      },
+      {
+        "claim": "Trump zeigt seit Monaten, dass er mehr Team Putin ist",
+        "timestamp": "00:15:14"
+      },
+      {
+        "claim": "Bei riesigen Erbschaften wird fast die gesamte Erbschaftsteuer erlassen, das koste 3,4 Milliarden Euro",
+        "timestamp": "00:50:52"
+      },
+      {
+        "claim": "Eine Vermögenssteuer auf Superreiche könnte 108 Milliarden einbringen",
+        "timestamp": "00:52:14"
+      },
+      {
+        "claim": "Die Ukraine sind 99 % der Syrer anerkannt und dürfen unbegrenzt arbeiten",
+        "timestamp": "00:45:12"
+      }
+    ]
+  }
+}

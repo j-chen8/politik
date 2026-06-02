@@ -1,0 +1,185 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-maerz-2026-100",
+    "video_id": "lanz-2026-03-10",
+    "politician": "Franziska Brantner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "33d212f4a44109ea",
+    "transcript_chars": 61528,
+    "caption_lines": 3019,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25420,
+    "tokens_out": 3611,
+    "cost_usd": 0.017390000000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.230Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, Bundesvorsitzende von Bündnis 90/Die Grünen, diskutiert in der Sendung primär die Wahlkampfführung von Cem Özdemir in Baden-Württemberg und dessen Distanzierung vom Grünen-Label, sowie die gegen CDU-Kandidat Manuel Hagel gerichteten Vorwürfe. Sie argumentiert defensiv, dass es sich nicht um eine grüne Kampagne handelte, und verweist auf sexistische Muster bei der Kritik an einer jungen grünen Bundestagsabgeordneten. Brantner wirkt dabei wiederholt verärgert über die Debattenführung und lenkt teilweise ab.",
+    "themes": [
+      {
+        "title": "Wahlkampfplakatierung ohne Grünen-Logo in Baden-Württemberg",
+        "timestamp_range": "00:03:11 - 00:06:17",
+        "theme_description": "Diskussion, ob Cem Özdemir richtig handelte, seinen Namen und sein Profil ohne explizites Grünen-Logo zu plakatieren.",
+        "question_asked": "Markus Lanz fragt, ob Brantner es gut findet, dass Özdemir auf seinen Wahlplakaten nicht die Grünen erwähnt, obwohl er sich damit von der eigenen Bundespartei zu distanzieren scheint.",
+        "question_intent": "Kritik am fehlenden Parteilogo und der Implikation, dass Grüne in Baden-Württemberg ein Nachteil sind.",
+        "position": "Brantner verteidigt Özdemirs Strategie als legitim: Er tritt als Grüner an, will aber Ministerpräsident für Baden-Württemberg werden. In Baden-Württemberg sei bekannt, dass Özdemir Grüner ist. Sie betont, dass personalisierter Wahlkampf eine gängige Praxis ist, und dass historisch die Grünen in Baden-Württemberg aus verschiedenen Wurzeln entstanden sind — nicht nur linke, sondern auch konservativ geprägte.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner beantwortet die Frage des Moderators, warum der Name ohne Logo steht, mit strategischen und historischen Argumente. Sie adressiert aber nicht, ob diese Strategie ethisch problematisch ist oder ob sie selbst als Parteivorsitzende damit ein Anliegen an Özdemir kommuniziert hat.",
+        "quotes": [
+          {
+            "text": "Er ist ein grüner durch und durch, er tritt als solcher an, sein Ziel ist eine starke Wirtschaft zu verbinden, dass mit Klimaschutz zusammenzubringen.",
+            "timestamp": "00:04:29"
+          },
+          {
+            "text": "Baden Württemberg hat eine eigene Tradition, man ist stolz darauf Baden-Württemberger zu sein.",
+            "timestamp": "00:06:49"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Özdemir tritt als Grüner an, nicht als Parteivertreter.",
+          "Personalisierter Wahlkampf ist legitim und gängig.",
+          "Baden-Württemberg hat eigenständige grüne Traditionen aus historisch unterschiedlichen Wurzeln."
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampfstrategie Grüne",
+          "Parteien-Marketing",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Kampagne gegen CDU-Kandidat Manuel Hagel und Video",
+        "timestamp_range": "00:23:07 - 00:29:16",
+        "theme_description": "Brantner antwortet auf Vorwürfe, dass Grüne eine Kampagne gegen Hagel geführt haben, indem ein acht Jahre altes Video über inkorrekte Äußerungen von Hagel gegenüber einer Schülerin geteilt wurde.",
+        "question_asked": "Lanz fragt direkt: Warum haben Sie es nicht aktiv gestoppt (die Verbreitung des Videos)? Er weist darauf hin, dass persönliche Gespräche etwas anderes sind als eine klare Anweisung von der Parteivorsitzenden.",
+        "question_intent": "Feststellung, dass Brantner als Parteivorsitzende eine Verantwortung hat, parteiinterne Aktivitäten zu begrenzen oder zu unterbinden.",
+        "position": "Brantner argumentiert, dass es keine grüne Kampagne war, sondern dass eine junge Frau, die selbst negative Erfahrungen mit Politikern gemacht hat, ein öffentlich verfügbares Video geteilt hat. Sie kritisiert einen sexistischen Doppelstandard: Wenn Frauen Themen ansprechen, werden sie attackiert. Sie weist darauf hin, dass die Debatte sich nicht auf den Inhalt des Videos konzentriert, sondern darauf, ob die Frau das Video hätte teilen dürfen — ein klassisches Muster, das Frauen zum Schweigen bringt.",
+        "answer_match": "themenwechsel",
+        "match_reasoning": "Brantner weicht der Frage nach ihrer Verantwortung als Parteivorsitzende aus und pivot zur Kritik an sexistischen Angriffsmustern gegen die Abgeordnete, anstatt die Vorwürfe zur Kampagnenkontrolle zu adressieren.",
+        "quotes": [
+          {
+            "text": "Fehler passieren, er hat selbst Fehler gemacht, daraus kann man lernen, für uns war die Sache dann durch.",
+            "timestamp": "00:24:11"
+          },
+          {
+            "text": "Es ist immer so, eine Frau macht etwas, teilt etwas, was schon öffentlich ist... dann wird Tage nach danach diese Frau angegriffen und gesagt wie unmöglich, es ist immer gleich, wenn Frauen diese Themen ansprechen, werden sie attackiert.",
+            "timestamp": "00:24:53"
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Es war keine grüne Kampagne, sondern eine individuelle Entscheidung einer jungen Frau.",
+          "Der Fokus sollte auf dem Inhalt des Videos liegen, nicht darauf, ob es veröffentlicht werden durfte.",
+          "Frauen werden bei diesem Thema sexistisch attackiert."
+        ],
+        "evasion_note": "Brantner adressiert nicht die konkrete Frage, warum sie als Parteivorsitzende nicht aktiv eingegriffen hat.",
+        "related_bundestag_topics": [
+          "Wahlkampfethik",
+          "Geschlechtergerechtigkeitsdebatte",
+          "Parteiführung und Verantwortung"
+        ]
+      },
+      {
+        "title": "Koalitionsverhandlungen und Gleichberechtigung",
+        "timestamp_range": "00:35:27 - 00:37:51",
+        "theme_description": "Diskussion darüber, ob Grüne und CDU eine paritätische Machtverteilung anstreben sollten, nachdem beide Parteien im Landtag gleich stark sind (56 Abgeordnete).",
+        "question_asked": "Strobl kritisiert, dass Cem Özdemir einen CDU-Rotationsvorschlag als ‚Quatsch' bezeichnete. Lanz fragt implizit, wie Brantner zu einer paritätischen Aufteilung der Legislaturperiode steht.",
+        "question_intent": "Können sich Grüne vorstellen, dass die stärkste Partei nicht automatisch die gesamte Legislaturperiode stellt?",
+        "position": "Brantner argumentiert, dass es arrogant wirkt zu behaupten, die Grünen hätten verloren, nun wollen sie aber nach der Hälfte tauschen. Sie erwähnt das israelische Modell von Rotationen in Krisenzeiten. Sie betont, dass Grüne und CDU zehn Jahre erfolgreich zusammengearbeitet haben und bei Einigung eine 60-Prozent-Mehrheit hätten. Sie plädiert dafür, auf Augenhöhe zu verhandeln und gemeinsam Aufgaben anzupacken, nicht in der Dynamik ‚schwarz gegen grün'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner beantwortet mit einer Gegenposition (es ist arrogant, das zu kritisieren), spricht aber nicht substanziell darüber, ob Grüne selbst eine Rotation oder ein Rotationsmodell befürworten würden.",
+        "quotes": [
+          {
+            "text": "Es ärgert mich langsam, vielleicht ist es arrogant zu behaupten, wir haben verloren, aber wir möchten ab der Hälfte tauschen.",
+            "timestamp": "00:35:27"
+          },
+          {
+            "text": "Wir werden auf Augenhöhe... verhandeln. Das ist etwas, was ich wichtig finde.",
+            "timestamp": "00:36:28"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Grüne und CDU haben zehn Jahre erfolgreich regiert.",
+          "Es gibt keine Regierungskrise.",
+          "Eine 60-prozentige Mehrheit ist realisierbar.",
+          "Verhandlungen sollten auf Augenhöhe stattfinden.",
+          "Gemeinschaftliche Aufgabenbewältigung sollte Vorrang vor der ‚schwarz-grünen' Dynamik haben."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamiken",
+          "Regierungsbildung Bundesländer",
+          "Koalitionsverträge"
+        ]
+      },
+      {
+        "title": "Taurus-Lieferungen und Zerstörung von Raketenabschussrampen in der Ukraine",
+        "timestamp_range": "00:54:16 - 00:54:36",
+        "theme_description": "Brantner äußert sich zur Notwendigkeit von Taurus-Marineflugkörpern, um russische Raketenabschussrampen zu zerstören.",
+        "question_asked": "Die Frage ist eher Eigeninitiative — Brantner springt in die Debatte über Luftverteidigungssysteme und militärische Asymmetrien ein.",
+        "question_intent": "Brantner möchte ihre Position zur Ukraine-Unterstützung verdeutlichen.",
+        "position": "Brantner argumentiert, dass die Dynamik des Krieges aus der Ukraine zeigt, dass Taurus-Marineflugkörper notwendig sind, um Raketenabschussrampen zu zerstören, weil es mit der aktuellen Situation unmöglich ist, sich zu widersetzen.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Brantner äußert sich selbstinitiativ zu einer militärstrategischen Position. Sie adressiert kein von Lanz oder anderen gestelltes Anliegen direkt, bringt aber eine Verbindung zur vorherigen Diskussion über asymmetrische Kriegsführung.",
+        "quotes": [
+          {
+            "text": "Wenn ich eine Sache sagen darf, die Dynamik des Krieges, die wir aus der Ukraine kennen, hatten wir gesagt, dass wir den Taurus brauchen, um diese Abschussrampen zu zerstören, weil es mit der aktuellen Situation unmöglich ist, sich zu widersetzen.",
+            "timestamp": "00:54:16"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Taurus-Marineflugkörper sind notwendig zur Zerstörung von Raketenabschussrampen.",
+          "Ohne diese Möglichkeit ist Widerstand gegen russische Angriffe unmöglich."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Rüstungsexporte Deutschland",
+          "Taurus-Debatte"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Cem Özdemir erreichte 30,2 % in Baden-Württemberg.",
+        "timestamp": "00:03:11"
+      },
+      {
+        "claim": "Manuel Hagel machte in einem Fernsehinterview 2018 Äußerungen über eine Schülerin mit braunen Haaren und rehbraunen Augen.",
+        "timestamp": "00:13:24"
+      },
+      {
+        "claim": "Die Grünen und CDU haben in Baden-Württemberg je 56 Abgeordnete im Landtag.",
+        "timestamp": "00:09:21"
+      },
+      {
+        "claim": "Grüne und CDU arbeiteten zehn Jahre lang in Baden-Württemberg zusammen.",
+        "timestamp": "00:35:59"
+      },
+      {
+        "claim": "Franziska Brantner war Bundesvorsitzende der Grünen und Parlamentarische Staatssekretärin im Bundesministerium für Wirtschaft.",
+        "timestamp": "00:03:11"
+      }
+    ]
+  }
+}

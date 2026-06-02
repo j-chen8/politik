@@ -1,0 +1,440 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-maerz-2026-100",
+    "video_id": "lanz-2026-03-05",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c2f214cd75045df9",
+    "transcript_chars": 97244,
+    "caption_lines": 4748,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 38042,
+    "tokens_out": 12563,
+    "cost_usd": 0.0403428,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:28.340Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter, CDU/CSU-Bundestagsabgeordneter und ehemaliger Berufsoffizier, diskutiert in dieser Lanz-Sendung über Wehrhaftigkeit, Kriegserfahrung und europäische Sicherheitspolitik. Er argumentiert grundsätzlich für eine abschreckungsfähige Bundeswehr und verteidigt die deutsche Rüstungspolitik gegen Vorwürfe des Militarismus, während er zugleich vor dem Risiko warnt, dass die USA ihren Sicherheitsschirm aufgeben könnte. Sein Ton ist dabei durchgehend sachlich-analytisch und erfahrungsgestützt.",
+    "themes": [
+      {
+        "title": "Verständnis für Kriegsdienstverweigerung und Wehrbereitschaft",
+        "timestamp_range": "00:04:02 - 00:04:39",
+        "theme_description": "Roderich Kiesewetter äußert sich zur Frage, wie viel Verständnis man für junge Menschen haben sollte, die sich weigern, ihr eigenes Land zu verteidigen.",
+        "question_asked": "Herr Kiesewetter, wie viel Verständnis würden Sie für einen jungen Mann aufbringen, der sagt: 'mein eigenes Land verteidigen, mache ich auf gar keinen Fall'?",
+        "question_intent": "Der Moderator möchte wissen, wie tolerant Kiesewetter gegenüber Verweigerungshaltungen ist und ob er Verständnis für pazifistische Positionen aufbringt.",
+        "position": "Kiesewetter hat persönliche Erfahrung mit Grundwehrdienstverweigerern aus seiner Zeit als Zugführer. Er argumentiert, dass Streitkräfte junge Leute durch fairen Umgang überzeugen müssen, nicht durch Befehl und Gehorsam. Wichtig ist für ihn die Präzisierung: Das zentrale Thema ist nicht Wehrdienst, sondern \"Bevölkerungsschutz, Pflege, Integration und Bundeswehr\" insgesamt. Er kritisiert, dass die falsche Debatte geführt wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter antwortet zunächst auf die Frage mit persönlicher Erfahrung und grundsätzlichem Verständnis. Dann verschiebt er aber die Fokussierung: Er sagt nicht direkt, dass er Verständnis für vollständige Verweigerung hat, sondern argumentiert, dass man über das Falsche spricht (nur Wehrdienst statt breiteres Konzept). Damit teilweise beantwortet, teilweise umgelenkt.",
+        "quotes": [
+          {
+            "text": "Sie können nur überzeugen. Und Streitkräfte können junge Leute nur überzeugen, wenn sie fair mit ihnen umgehen. Befehl und Gehorsam ist eine andere Geschichte.",
+            "timestamp": "00:04:02",
+            "context": "Kiesewetter erklärt, wie man mit Grundwehrdienstverweigerern umgehen sollte, basierend auf seiner Erfahrung als Zugführer."
+          }
+        ],
+        "concrete_statements": [
+          "Streitkräfte können junge Leute nur überzeugen, wenn sie fair mit ihnen umgehen.",
+          "Wir reden über das Falsche. Das Falsche ist nur Wehrdienst. Es geht um Bevölkerungsschutz, Pflege, Integration und Bundeswehr."
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Wehrdienst",
+          "Grundwehrdienst",
+          "Bevölkerungsschutz"
+        ]
+      },
+      {
+        "title": "Generationengerechtigkeitsfrage und fehlende Partizipation",
+        "timestamp_range": "00:09:52 - 00:09:54",
+        "theme_description": "Kiesewetter stimmt der These zu, dass die junge Generation bei Wehrdebatten zu wenig gehört oder gefragt wurde.",
+        "question_asked": "Moderator und Diskutanten diskutieren, ob die junge Generation bei der Wehrpflicht-Debatte berücksichtigt wurde und ob Loyalitätsforderungen berechtigt sind.",
+        "question_intent": "Es geht um die Frage, ob die politische Klasse der jungen Generation bei Wehrpflicht-Entscheidungen ausreichend Gehör geschenkt hat und ob fehlende Partizipation eine Mitverantwortung für mangelnde Wehrbereitschaft trägt.",
+        "position": "Kiesewetter gibt Harald Welzer recht, dass die junge Generation nicht ausreichend in die Debatte eingebunden wurde. Er bestätigt damit, dass es ein Problem der fehlenden Partizipation gibt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet direkt zustimmend auf den Punkt Welzers. Er stimmt zu, dass die Partizipation fehlte. Das ist eine klare Bestätigung einer Position zum genannten Problem.",
+        "quotes": [
+          {
+            "text": "Ja, das gebe ich Ihnen Recht.",
+            "timestamp": "00:09:52",
+            "context": "Kiesewetter stimmt Welzers Kritik zu, dass die junge Generation nicht ausreichend in die Debatte einbezogen wurde."
+          }
+        ],
+        "concrete_statements": [
+          "Kiesewetter akzeptiert, dass bei der Wehrdebatten-Partizipation ein Versäumnis der Politik stattgefunden hat."
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht-Debatte",
+          "Partizipation junger Menschen",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Lehren aus historischem Kontext: nie wieder Krieg, nie wieder wehrlos",
+        "timestamp_range": "00:14:41 - 00:15:48",
+        "theme_description": "Kiesewetter argumentiert für die Verknüpfung des deutschen Lehrsatzes 'nie wieder Krieg' mit dem Konzept 'nie wieder wehrlos'.",
+        "question_asked": "Der Moderator fragt implizit, wie die junge Generation für Wehrbereitschaft gewonnen werden kann, nachdem das Beispiel eines 17-Jährigen gezeigt wurde, der sich für Wehrdienst aussprach.",
+        "question_intent": "Wie können wir die Debatte über Wehrhaftigkeit mit deutschen historischen Lehren verbinden, ohne Militarismus zu fördern?",
+        "position": "Kiesewetter betont, dass unsere historische Lehre 'Nie wieder Krieg, nie wieder Nationalsozialismus' sein sollte. Er verweist darauf, dass unsere Nachbarn (Polen, Frankreich) eine andere Lehre zogen: 'Nie wieder wehrlos.' Er schlägt vor, diese beiden zu verbinden: Wenn wir nie wieder Krieg wollen, müssen wir nie wieder wehrlos sein. Dies soll nicht nur durch Wehrdienst definiert werden, sondern breiter durch Bevölkerungsschutz, KRITIS und Integrationsarbeit.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet substantiell auf die implizite Frage, wie man Wehrbereitschaft mit deutschen Lehren verbinden kann. Er liefert ein kohärentes historisches Narrativ und konkrete Vorschläge zur Integration dieser Perspektiven.",
+        "quotes": [
+          {
+            "text": "Unsere Lehre, auch in den Schulen, vielleicht wie wir, wir sind nicht allzu weit altersmäßig auseinander, groß geworden sind, war immer: Nie wieder Krieg, nie wieder Nationalsozialismus. Unsere Nachbarn, und deswegen ist das polnische Beispiel, auch das französische Beispiel sehr klar. Die sagen: Nie wieder wehrlos.",
+            "timestamp": "00:14:41",
+            "context": "Kiesewetter vergleicht deutsche und europäische historische Lektionen und schlägt eine Synthese vor."
+          },
+          {
+            "text": "wenn wir nie wieder Krieg wollen, dann sollten wir nie wieder wehrlos sein. Und wehrlos nicht nur über Wehrdienst definieren, sondern über Bevölkerungsschutz, KRITIS und natürlich auch Integrationsarbeit und vieles mehr, also breiter vorgehen.",
+            "timestamp": "00:15:38",
+            "context": "Kiesewetter konkretisiert sein Konzept von Wehrhaftigkeit jenseits militärischer Aspekte."
+          }
+        ],
+        "concrete_statements": [
+          "Wenn wir nie wieder Krieg wollen, sollten wir nie wieder wehrlos sein.",
+          "Wehrlosigkeit sollte nicht nur über Wehrdienst definiert werden, sondern über Bevölkerungsschutz, KRITIS und Integrationsarbeit breiter.",
+          "Die jungen Leute sollten sich nicht von dieser Debatte irritieren lassen."
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Wehrfähigkeit",
+          "Historische Aufarbeitung",
+          "KRITIS",
+          "Bevölkerungsschutz"
+        ]
+      },
+      {
+        "title": "Romantisierung von Krieg und realistische Aufklärung",
+        "timestamp_range": "00:19:46 - 00:21:08",
+        "theme_description": "Kiesewetter beantwortet die Frage, ob es eine Gefahr der Romantisierung von Krieg gibt und wie offen darüber gesprochen werden sollte.",
+        "question_asked": "Besteht die Gefahr, dass Krieg in der Gesellschaft romantisiert wird? Und sollten wir offener über die brutale Realität von Krieg sprechen?",
+        "question_intent": "Der Moderator und Welzer kritisieren, dass Krieg in Medien und Debatten oft zu abstrakt oder verharmlost wird, statt seine wahre Brutalität zu zeigen.",
+        "position": "Kiesewetter sieht die Gefahr der Romantisierung von Krieg in Deutschland nicht als Hauptproblem – die Erfahrungen aus Afghanistan und der Ukraine-Krieg hätten diese Gefahr 'gebannt.' Aber es ist wichtig, aufzuklären und darüber zu reden. Wichtig ist, dass die Ausweitung dieses Krieges eingedämmt wird. Es gibt aber die Gefahr, dass Krieg in bestimmten Medien, Parteien und Gruppen romantisiert wird, die Interessen verfolgen – auch Russland romantisiert diesen Krieg massiv. Das Schlimmste trifft die Ukraine, die angegriffen ist. Kiesewetter's Message: Um Romantisierung zu vermeiden, muss man 'sehr ehrlich mit den Furchtbarkeiten dieses Krieges umgehen' und klar sagen, dass wenn Demokratien angegriffen sind, sie 'bereit sein müssen, einen Krieg zu gewinnen.' Das ist schwierig in Deutschland zu formulieren. Präventiv: Wenn Demokratien nicht bereit sind, einen Krieg zu verhindern und er sich ausweitet, müssen sie ihn führen. Wehrbereitschaft ist eine Präventionsmassnahme.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage der Romantisierungsgefahr, verneint sie für den deutschen Kontext aktuell, identifiziert aber alternative Risiken (Romantisierung durch Drikte wie Russland, Medien), und leitet konkrete Forderungen ab (ehrliche Kommunikation, Wehrbereitschaft als Prävention).",
+        "quotes": [
+          {
+            "text": "Die Gefahr einer Romantisierung des Krieges sehe ich nicht. Einmal in Deutschland durch Afghanistan, aber eben auch durch das Furchtbare, was gerade auf ukrainischem Boden passiert. Ich glaube, diese Gefahr ist gebannt.",
+            "timestamp": "00:19:46",
+            "context": "Kiesewetter reagiert auf die Frage von Moderator Lanz nach der Romantisierungsgefahr von Krieg."
+          },
+          {
+            "text": "wenn wir den Krieg verhindern wollen, müssen Demokratien wehrhaft sein. Und Demokratien, wenn sie angegriffen sind, müssen auch bereit sein, einen Krieg zu gewinnen. Und das zu formulieren, ist in Deutschland extrem schwierig.",
+            "timestamp": "00:20:26",
+            "context": "Kiesewetter erklärt, warum Deutschland schwer über militärische Notwendigkeiten sprechen kann."
+          }
+        ],
+        "concrete_statements": [
+          "Wehrbereitschaft soll Krieg verhindern, nicht romantisieren.",
+          "Wenn Demokratien angegriffen sind, müssen sie bereit sein, einen Krieg zu gewinnen.",
+          "Deutschland muss ehrlich mit den Furchtbarkeiten des Krieges umgehen."
+        ],
+        "related_bundestag_topics": [
+          "Kriegskommunikation",
+          "Sicherheitspolitik",
+          "Öffentliche Aufklärung über Kriegsfolgen"
+        ]
+      },
+      {
+        "title": "Krieg in Afghanistan: politische Verantwortung vs. Soldatenverantwortung",
+        "timestamp_range": "00:21:12 - 00:22:43",
+        "theme_description": "Kiesewetter und van Aken diskutieren über die Frage, wer Verantwortung für unzureichende oder falsche Vorbereitung von Soldaten trägt.",
+        "question_asked": "Tragen die Entscheidungsträger, die den Afghanistan-Einsatz beschlossen, auch Verantwortung für mangelnde Aufklärung und Ausstattung der Soldaten?",
+        "question_intent": "Van Aken kritisiert, dass die Bundeswehr-Führung und Politik nüchtern-technisch über Afghanistan sprachen, ohne die menschlichen Verluste zu benennen. Die Kritik: Entscheidungsträger wollten nicht sehen, dass Menschen dort starben.",
+        "position": "Kiesewetter widerspricht teilweise van Akens Kritik – nicht zutreffend sei die Aussage. Aber Kiesewetter gibt auch zu, dass 'wir auch mit Verantwortung tragen, dass wir immer über Afghanistan geredet haben, wir sind dort im friedlichen Wiederaufbau.' Jeder, der davon sprach, dass dort 'die Entsetzen des Krieges sind' (in Regierungsparteien) wurden eingedämmt, weil man nicht darüber sprechen konnte. Van Aken habe es angesprochen, habe aber auch 'nichts dazu beigetragen, die Ausstattung der Bundeswehr zu verbessern' – die Linke lehnte Einsätze immer ab. Es gehört zur Ehrlichkeit dazu, dass man über die Folgen reden muss, besonders wenn Soldaten sich im Stich gelassen fühlen. Fazit: Kiesewetter teilt Verantwortung, kritisiert aber auch die Opposition für mangelnde Unterstützung bei der Ausstattung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter antwortet auf die Kritik an der Verantwortung der Entscheidungsträger, gibt Fehler zu, lenkt aber auch ab, indem er die Verantwortung auf die Opposition (van Akens Partei) schiebt, die Auslandseinsätze grundsätzlich ablehnte. Das ist eine Art 'Gegenpunkt-Pivot': Er akzeptiert Kritik, weist aber auch gegenkritik aus.",
+        "quotes": [
+          {
+            "text": "Wir tragen auch mit Verantwortung, dass wir immer über Afghanistan geredet haben, wir sind dort im friedlichen Wiederaufbau. Jeder, der davon sprach, dass dort die Entsetzen des Krieges sind, zumindest in Regierungsparteien, die wurden eingedämmt, weil man nicht darüber sprechen konnte.",
+            "timestamp": "00:21:45",
+            "context": "Kiesewetter übernimmt teilweise Verantwortung für die beschönigende Rhetorik."
+          },
+          {
+            "text": "Sie haben es angesprochen, aber Sie haben nichts dazu beigetragen, die Ausstattung der Bundeswehr zu verbessern. Sie haben die Einsätze immer abgelehnt.",
+            "timestamp": "00:22:01",
+            "context": "Kiesewetter kontert van Akens Kritik mit Gegenargument über fehlende Unterstützung durch Die Linke."
+          }
+        ],
+        "concrete_statements": [
+          "Die Regierungsparteien trugen Verantwortung für die beschönigende Rhetorik des 'friedlichen Wiederaufbaus'.",
+          "Die Opposition hätte zur Ausstattung der Bundeswehr beitragen sollen.",
+          "Ehrlichkeit bedeutet, über Kriegsfolgen auch für Soldaten zu sprechen."
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Einsatz",
+          "Parlamentarische Kontrolle",
+          "Politische Verantwortung",
+          "Bundeswehr-Ausstattung"
+        ]
+      },
+      {
+        "title": "Afghanistan-Einsatz: politisches Framing und mangelnde Ausstattung",
+        "timestamp_range": "00:27:43 - 00:35:52",
+        "theme_description": "Kiesewetter analysiert die Afghanistan-Mission als ein Scheitern von politischem Framing und militärischer Ausstattung, nicht primär von Entscheidungsträgern.",
+        "question_asked": "Wie kann man Soldaten seriös auf Kriegseinsätze vorbereiten, wenn danach unklar ist, was sie tatsächlich erleben werden? Wer trägt Verantwortung für das Scheitern in Afghanistan?",
+        "question_intent": "Der Moderator stellt kritisch in Frage, ob die Vorbereitung und politische Entscheidung zur Afghanistan-Mission verantwortungsvoll war und wer dafür haftbar ist.",
+        "position": "Kiesewetter unterscheidet zwei Ebenen: (1) Technische Vorbereitung der Soldaten und (2) Nachsorge, wobei er die Nachsorge als das Gravierendste einstuft. Er kritisiert das politische 'Framing' als 'friedlicher Wiederaufbau,' obwohl tatsächlich Kampfhandlungen stattfanden. Das Militär selbst habe die Politik falsch beraten – der Generalinspektor war ebenfalls vom Glauben an friedlichen Wiederaufbau beseelt. Kiesewetter betont aber auch, dass die Verantwortung nicht nur bei der Politik liegt. Er sah persönlich im Balkan ähnliche Probleme. Als konkrete Verbesserungen für die Ukraine nennt er: Hunderttausende Soldaten werden zurückkommen und müssen das Gefühl haben, erfolgreich gewesen zu sein, nicht gescheitert. Wiederaufbau (Wohnungen, Schulen, Krankenhäuser) ist wichtig zur Bekämpfung von Traumatisierung. Historische Lektionen: Nach dem 1. WK (Freikorps, fehlende Integration) → Volksaufstand '53; nach dem 2. WK West (Wiederaufbau, Wirtschaftswunder) vs. Ost (schwierig). Damit meint er: Nachsorge ist zentral.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet umfassend auf die Fragen zur Verantwortlichkeit und Lernfähigkeit. Er benennt konkrete Fehler (Framing, unzureichende Ausstattung, militärische Fehlberatung), verteilt Verantwortung differenziert und leitet konkrete Forderungen (Nachsorge, Wiederaufbau in Ukraine) ab. Das ist substantiell, nicht ausweichend.",
+        "quotes": [
+          {
+            "text": "Das sind zwei Ebenen. Das eine ist die technische Vorbereitung der Soldaten. Aber das andere ist die Nachsorge. Und diese Nachsorge ist das Gravierende.",
+            "timestamp": "00:27:43",
+            "context": "Kiesewetter ordnet die Lehren aus Afghanistan: Technische Vorbereitung ist wichtig, aber Nachsorge ist das zentrale Problem."
+          },
+          {
+            "text": "Wir waren beseelt vom friedlichen Wiederaufbau. Und das Militär selbst hat die Politik falsch beraten. Das müssen wir auch deutlich machen. Das Militär wollte nicht eine stärkere Ausstattung.",
+            "timestamp": "00:34:06",
+            "context": "Kiesewetter verteilt Verantwortung zwischen Politik und Militärführung."
+          },
+          {
+            "text": "wenn die zurückkommen, von der Front zu ihren Familien, dann müssen sie das Gefühl haben, dass sie erfolgreich waren. Und nicht, dass sie quasi den Krieg einstellen mussten, Freiheit aufgeben mussten, Menschen übergeben mussten und dann im Grunde genommen gescheitert sind.",
+            "timestamp": "00:29:45",
+            "context": "Kiesewetter argumentiert für die psychologische Notwendigkeit von Erfolgsgefühl und Wiederaufbau zur Bekämpfung von Traumatisierung bei zurückkehrenden Soldaten."
+          }
+        ],
+        "concrete_statements": [
+          "Afghanistan war ein Fehler des politischen Framings.",
+          "Das Militär hat die Politik falsch beraten bezüglich der realen Bedrohungslage.",
+          "Nachsorge ist das Gravierende bei Kriegseinsätzen.",
+          "Wiederaufbau ist wichtig, um Traumatisierung und Retraumatisierung zu bekämpfen.",
+          "Hunderttausende ukrainische Soldaten werden zurückkommen und müssen Erfolgsgefühl haben, sonst Retraumatisierung."
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Einsatz",
+          "Veteranenbetreuung",
+          "Kriegsteilnehmerschutz",
+          "Politische Verantwortung für Militäreinsätze",
+          "Traumafolgestörungen"
+        ]
+      },
+      {
+        "title": "Jugoslawien-Krieg und Hilflosigkeit von Soldaten unter Einsatzregeln",
+        "timestamp_range": "00:39:41 - 00:41:05",
+        "theme_description": "Kiesewetter spricht über die psychologischen Folgen von Krieg und die Untätigkeit, wenn Einsatzregeln Handeln verbieten.",
+        "question_asked": "Ist das, was Veteranen berichten (Hilflosigkeit bei Kriegsverbrechen, die man nicht verhindern darf), ein unvermeidbares Berufsrisiko?",
+        "question_intent": "Der Moderator fragt, ob Soldaten unter PTSD leiden, weil sie im Kosovo/Bosnien zusehen mussten, ohne eingreifen zu können.",
+        "position": "Kiesewetter analysiert dies als 'Folge von Unplanbarkeit und der Unberechenbarkeit der Wirkmacht des Krieges.' Das sehen 'unsere Soldaten' täglich in der Ukraine, aber auch massiv im Kosovo und Bosnien. Er benennt auch 'Hilflosigkeit,' wenn man nicht eingreifen darf, weil Einsatzregeln es verbieten. Das ist zur Eskalationsprävention, aber: Das ist 'die unbarmherzige Wirklichkeit eines Krieges.' Die Öffentlichkeit muss das verstehen. Problemend: Bestimmte Bundesländer verbieten Jugendoffizieren die Schulbesuche. Diese 'werben nicht, aber berichten über sowas.' Viele Jugendoffiziere sind einsatzerfahren. Wichtig: Es sind nicht nur Soldaten, sondern auch THW-Helfer und Rotkreuz-Personal. Fazit: Gesellschaft muss sich bewusst machen, dass Krieg viele Berufsgruppen betrifft.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet umfassend auf die Frage nach Berufsrisiken: Er benennt die strukturelle Realität (Unplanbarkeit, Hilflosigkeit unter Regeln), ordnet sie als notwendig ein (Eskalationsprävention), betont aber deren psychologische Kosten und fordert offene Kommunikation darüber durch Jugendoffiziere in Schulen. Das ist eine differenzierte Position.",
+        "quotes": [
+          {
+            "text": "Das ist die Folge von Unplanbarkeit und der Unberechenbarkeit der Wirkmacht des Krieges. Und das ist auch etwas, was wir jeden Tag in der Ukraine haben, was unsere Soldaten in der Folge, auch in Bosnien, aber massiv auch im Kosovo gesehen haben.",
+            "timestamp": "00:39:43",
+            "context": "Kiesewetter erklärt die psychologischen Wurzeln von Kriegstrauma."
+          },
+          {
+            "text": "Das ist die unbarmherzige Wirklichkeit eines Krieges und das ist etwas, was wir auch unserer Öffentlichkeit klar machen müssen.",
+            "timestamp": "00:40:59",
+            "context": "Kiesewetter fordert offene Kommunikation über Kriegsrealität in der Gesellschaft."
+          }
+        ],
+        "concrete_statements": [
+          "Kriegstrauma ist eine Folge der Unplanbarkeit und Unberechenbarkeit von Krieg.",
+          "Einsatzregeln, die Eingreifen verbieten, können Soldaten psychologisch schädigen.",
+          "Die Gesellschaft muss sich bewusst machen, dass Krieg viele Berufsgruppen betrifft.",
+          "Jugendoffiziere sollten in Schulen über Kriegserfahrung berichten dürfen (nicht nur werben)."
+        ],
+        "related_bundestag_topics": [
+          "Veteranenbetreuung",
+          "Kriegstrauma",
+          "Einsatzregeln",
+          "Öffentliche Kriegskommunikation"
+        ]
+      },
+      {
+        "title": "Stärkste Armee Europas: nationales Ziel oder europäische Notwendigkeit",
+        "timestamp_range": "00:56:26 - 00:58:27",
+        "theme_description": "Kiesewetter ordnet die Ankündigung des Bundeskanzlers, die Bundeswehr zur stärksten Armee Europas zu machen, in den europäischen Kontext ein.",
+        "question_asked": "Ist das Ziel, die 'stärkste Armee Europas' zu werden, eine unrealistische nationalstaatliche Rhetorik oder eine pragmatische Reaktion auf europäische Sicherheitsdefizite?",
+        "question_intent": "Der Moderator stellt in Frage, ob nationale Rüstungsmaximen überhaupt sinnvoll sind angesichts der Komplexität europäischer Verteidigung (u.a. 178 verschiedene Waffensysteme vs. 30 bei den USA).",
+        "position": "Kiesewetter ordnet neu ein: Der Bundeskanzler habe eine andere, entspanntere Rhetorik gewählt als vorher Verteidigungsminister Pistorius ('kriegstüchtig'). Die Kanzler-Rhetorik 'wir müssen uns verteidigen können, damit wir uns nicht verteidigen müssen' sei rhetorisch 'viel entspannter und viel mehr runtergefahren.' Kiesewetter benennt dann das echte Problem: Seit '21/'22 großes Misstrauen um Deutschland wegen Zurückhaltung bei Ukraine-Unterstützung. Die Tallinn-Initiative (Joint Expeditionary Force) mit 10 Nationen (nordische, baltische Staaten, Polen, GB, später Frankreich) zeige: Deutschland bewusst nicht dabei. Diese Nationen nehmen mehr Verantwortung, weil sie nicht von Deutschlands Zurückhaltung gehemmt werden. Selenskyj habe gesagt: Jetzt wo Deutschland Teil der Koalition der Willigen ist, brauchen wir eine 'Koalition der Entschlossenen.' Fazit für Kiesewetter: Gefahr eines deutschen Militarismus sehe ich bei Nachbarn 'überhaupt nicht, weder im Westen noch im Osten.' Aber: Deutschland muss aufpassen, nicht selbst Nuklearmacht zu werden, sondern amerikanischen Schutzschirm halten. Sorge: Amerikaner könnten uns im Stich lassen. Gefahr: Baltische Staaten (Litauen) fragen: Wenn ihr stärkste Armee seid, aber 'damit wir uns nicht verteidigen müssen,' seid ihr dann bereit, uns zu verteidigen? Diese Sorge wächst. Deutschland muss Vertrauen bilden und Bedenken der Nachbarn wahrnehmen. Fazit: 'Wenn wir nie wieder Krieg wollen, nie wieder wehrlos sein, aber uns um Traumaopfer kümmern.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet substantiell auf die theoretische Kritik Welzers, indem er diese kontextualisiert: Er erklärt, warum die nationale Rhetorik pragmatisch nötig ist (Vertrauen zurückgewinnen in Europe, US-Unzuverlässigkeit), unterscheidet aber auch zwischen Rhetorik und Realität. Er widerlegt indirekt Welzers These, dass nationales Framing veraltet ist, mit dem Argument, dass es zur Vertrauensbildung notwendig ist.",
+        "quotes": [
+          {
+            "text": "Der Bundeskanzler hat eine ganz andere Rhetorik gewählt, als vorher der Verteidigungsminister Pistorius, der gesagt hat, die Bundeswehr muss bis 2029 kriegstüchtig werden. Er sagt jetzt, wie in den 80er Jahren, wir müssen uns verteidigen können, damit wir uns nicht verteidigen müssen. Das ist erstmal rhetorisch etwas viel entspannteres, viel mehr runtergefahrenes.",
+            "timestamp": "00:56:26",
+            "context": "Kiesewetter unterscheidet zwischen Pistorius' und Scholz' Rhetorik zu Rüstung."
+          },
+          {
+            "text": "Die Gefahr eines deutschen Militarismus sehe ich in der Nachbarschaft überhaupt nicht, weder im Westen noch im Osten. Worauf wir aber aufpassen müssen ist, dass wir Deutschen keiner Verführung unterliegen, selber Nuklearmacht zu werden.",
+            "timestamp": "00:57:32",
+            "context": "Kiesewetter widerspricht der Angst vor deutschem Militarismus und benannt stattdessen echte Risiken."
+          },
+          {
+            "text": "wenn ihr sagt, wir wollen uns verteidigen können, um uns nicht verteidigen zu müssen und ihr wollt die stärkste Armee Europas sein, ja seid ihr dann bereit, uns im Estland, Lettland, Litauen überhaupt zu verteidigen mit diesem Narrativ.",
+            "timestamp": "00:58:11",
+            "context": "Kiesewetter artikuliert die Bedenken baltischer Staaten zu Deutschlands Rhetorik."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland ist bewusst nicht Teil der Joint Expeditionary Force und wird von Nachbarn wahrgenommen als zurückhaltend.",
+          "Gefahr eines deutschen Militarismus in der Nachbarschaft existiert nicht – im Gegenteil.",
+          "Deutschland muss Vertrauen bilden gegenüber Nachbarn durch konkrete Zusicherungen von Bündnisverteidigung.",
+          "Das Risiko liegt nicht in deutschem Militarismus, sondern in US-Rückzug und deutscher Atomwaffen-Versuchung."
+        ],
+        "related_bundestag_topics": [
+          "Rüstungspolitik",
+          "NATO-Bündnisverteidigung",
+          "Europäische Verteidigungsfähigkeit",
+          "Deutsch-europäische Vertrauensfragen"
+        ]
+      },
+      {
+        "title": "Strukturelle Nicht-Angriffsfähigkeit: Kritik an van Akens Konzept",
+        "timestamp_range": "01:01:28 - 01:02:13",
+        "theme_description": "Kiesewetter antwortet auf van Akens Konzept einer Verteidigungsarmee mit 'struktureller Nicht-Angriffsfähigkeit'.",
+        "question_asked": "Kann man wirklich eine Armee so konstruieren, dass sie nur defensive Fähigkeiten hat, ohne Angriffsfähigkeit?",
+        "question_intent": "Van Aken argumentiert für eine Bundeswehr mit strukturell eingeschränkter Angriffsfähigkeit. Kiesewetter soll auf diesen Vorschlag eingehen.",
+        "position": "Kiesewetter fragt rhetorisch, ob van Aken dem Wehrbeauftragten und dem Prinzip 'Parlamentsarmee' (parlamentarische Kontrolle aller Einsätze) vertraut. Van Aken antwortet, dass Kiesewetter und seine Partei momentan die Mehrheit hätten und auch für Auslandseinsätze stimmen würden, die van Aken ablehnt. Kiesewetter kontert: Auslandseinsätze sind nicht dasselbe wie 'weltweite Kriegsführung.' Dann wirft er van Aken indirekt vor, dass dessen Strategie teuer ist, weil 'beides' gewollt wird (sowohl reine Verteidigung als auch weltweite Einsatzfähigkeit). Kiesewetter's Gegenposition: Die Bundeswehr ist strukturell nicht verteidigungsfähig, deswegen findet der Umbau statt. Van Aken widerspricht: Es gibt 'Verteidigungslücken', aber man könnte diese schließen ohne Fregatten F125, die nicht für Landesverteidigung nötig sind. Kiesewetter zustimmend: Es gibt solche Lücken, die können mit vorhandenem Geld durch Umschichtung geschlossen werden – das reicht aus.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter antwortet auf van Akens Konzept, akzeptiert dessen Kritik an bestimmten Waffensystemen (Fregatten), widerlegt aber die Prämisse, dass strukturelle Nicht-Angriffsfähigkeit allein ausreicht für Bündnisverteidigung im NATO-Kontext. Er verweist auf NATO-Verteidigungspläne, die Fähigkeiten verlangen, die über reine Defensive hinausgehen.",
+        "quotes": [
+          {
+            "text": "Haben Sie kein Zutrauen in der Art und Weise, wie Wehrbeauftragter das Thema Parlamentsarmee hier Einfluss ausüben und kontrollieren?",
+            "timestamp": "01:01:28",
+            "context": "Kiesewetter antwortet auf van Akens Vertrauensfrage mit einer institutionellen Gegenfrage."
+          },
+          {
+            "text": "Die Bundeswehr ist strukturell nicht verteidigungsfähig. Deswegen findet der Umbau statt.",
+            "timestamp": "01:02:13",
+            "context": "Kiesewetter erklärt, warum der Rüstungsausbau aus seiner Sicht notwendig ist."
+          }
+        ],
+        "concrete_statements": [
+          "Parlamentarische Kontrolle und der Wehrbeauftragte sind Kontrollmechanismen gegen Militarismus.",
+          "Auslandseinsätze sind strukturell und politisch kontrolliertund unterscheiden sich von unkontrollierter weltweiter Kriegsführung.",
+          "Die Bundeswehr hat strukturelle Verteidigungslücken, die durch Rüstungsausbau geschlossen werden müssen."
+        ],
+        "related_bundestag_topics": [
+          "Parlamentsarmee",
+          "Wehrbeauftragte",
+          "Rüstungskontrolle",
+          "NATO-Verteidigungsstandards"
+        ]
+      },
+      {
+        "title": "NATO-Bündnisverteidigung vs. nationale EU-Verteidigung",
+        "timestamp_range": "01:02:39 - 01:04:32",
+        "theme_description": "Kiesewetter clarifies that Germany's defense framework is NATO-based alliance defense, not unilateral EU defense, and critiques van Aken's conceptual framing.",
+        "question_asked": "Sollte Deutschland seine Verteidigungsstruktur auf nationale EU-Sicherheit ausrichten oder auf NATO-Bündnisverteidigung?",
+        "question_intent": "Van Aken fordert 'EU-Landesverteidigung' statt NATO-Fokus und Rüstung für weltweite Einsätze. Claudia Major und Kiesewetter verteidigen den NATO-Rahmen.",
+        "position": "Kiesewetter bestätigt implizit Claudia Majors Punkt, dass die Verteidigungsplanung im NATO-Kontext erfolgt. Er sagt nicht direkt zu van Akens EU-Verteidigungskonzept, sondern kritisiert die praktische Unmöglichkeit davon angesichts bestehender NATO-Verträge und Verteidigungspläne. Die NATO-Pläne sind auf Deutsch Ebene zentral. Major konkretisiert: NATO-Verteidigungspläne besagen, welche Ausrüstung Deutschland haben muss für Bündnisverteidigung – nicht nationale Sicherheit allein, sondern auch Verbündeter. Deutschland ist mitverantwortlich für viele andere Europäer (z.B. baltische Staaten). Van Aken kontert mit Trump-Argument: NATO sei nicht mehr verlässlich, daher EU-Fokus. Kiesewetter antwortet implizit über Major, dass die Aufgabe für Europäer um so größer wird, wenn US-Garantie unsicher ist – aber nicht durch Reduktion auf reine EU-Verteidigung, sondern durch Lückenschluss. Die Europäer müssen dann überlegen, wie sie die Lücken schließen, die die Amerikaner reißen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter antwortet auf van Akens EU-Verteidigungskonzept nicht direkt widersprechend, sondern über institutionelle Argumente (NATO-Pläne sind verbindlich, nicht veränderbar ohne alle 32 Mitglieder). Das ist eine diplomatisch-indirekte Ablehnung des Konzepts, weniger eine frontale Kritik.",
+        "quotes": [
+          {
+            "text": "Da bin ich komplett bei Ihnen, dass wir enorme Zweifel haben, ob die USA noch da sind. Aber die Aufgabe, das hatte Roderich Kiesewetter eben gesagt, wird dann für die Europäer und gerade für Deutschland umso größer.",
+            "timestamp": "01:04:32",
+            "context": "Claudia Major reagiert auf van Akens Trump-kritik und betont europäische Verantwortung."
+          }
+        ],
+        "concrete_statements": [
+          "NATO-Verteidigungspläne sind die Grundlage für deutsche Rüstungsplanung, nicht nationale EU-Ambitionen.",
+          "Deutschland ist Mitverantwortung für Bündnisschutz auch anderer europäischer Staaten eingegangen.",
+          "Wenn US-Garantie unsicher wird, müssen Europäer (nicht Deutschen national) Lücken schließen, nicht sich isolieren."
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnisverteidigung",
+          "EU-Sicherheitspolitik",
+          "Europäische Verteidigungsfähigkeit",
+          "Transatlantische Sicherheit"
+        ]
+      },
+      {
+        "title": "Nukleare Abschreckung: Struktur der Abschreckung und Trump-Unsicherheit",
+        "timestamp_range": "01:10:12 - 01:11:20",
+        "theme_description": "Kiesewetter analysiert nukleare Abschreckung unter Bedingungen der russischen Drohung und möglichen US-Rückzugs.",
+        "question_asked": "Wie sollen Europäer mit nuklearer Abschreckung umgehen, wenn die USA möglicherweise nicht mehr garantieren?",
+        "question_intent": "Van Aken argumentiert für Ächtung von Atomwaffen statt für europäische Atombewaffnung. Kiesewetter und Major argumentieren für europäische Abschreckung unter Kontrolle Frankreichs/GBs.",
+        "position": "Kiesewetter betont, dass 'Heute der Einsatz von Nuklearwaffen die Drohung' ist. Finnland und Schweden wurden nuklear bedroht, bevor sie in die NATO eintraten – aber 'als Narrativ' gelang es nicht, sie abzuhalten. Deutschland wurde bedroht wegen Kampfpanzer- und Marder-Lieferungen. Der damalige Bundeskanzler warnte vor nuklearer Gefahr (April 2022 Spiegel-Aufsatz). Ukraine gab unter westlichem Druck ihre Nuklearwaffen auf und bekam Sicherheitsgarantien – das ist der Auslöser. Wichtig: Sicherheitsgarantien und 'glaubwürdige nukleare Rückversicherung' sind notwendig, sonst führt es zu Proliferation (Iran, Saudi-Arabien). Fazit: Nicht Ächtung allein, sondern auch 'klare Kante in der Sache, dass wir unseren Nuklearschirm nicht aufgeben.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet substantiell auf die Frage der nuklearen Abschreckung, verweist auf konkrete historische Fälle (Finnland/Schweden, Ukraine, deutsche Sanktionen), und leitet daraus ab, warum bloße Ächtung nicht ausreicht und glaubwürdige Rückversicherung notwendig ist. Er liefert eine Position, nicht nur Reaktion.",
+        "quotes": [
+          {
+            "text": "Heute ist der Einsatz von Nuklearwaffen die Drohung. Finnland und Schweden wurden von Russland nuklear bedroht, bevor sie in die NATO eintraten. Als Narrativ geht nicht in die NATO, danach ist nichts passiert.",
+            "timestamp": "01:10:12",
+            "context": "Kiesewetter illustriert die gegenwärtige Struktur nuklearer Abschreckung durch russische Drohungen ohne Einsatz."
+          },
+          {
+            "text": "dass dazu gehört, Sicherheitsgarantien und glaubwürdige nukleare Rückversicherung. Sonst führt es zu dem, was Claudia Mayor sagte, dass ein Iran, ein Saudi-Arabien und andere eben sich nuklear rückversichern wollen.",
+            "timestamp": "01:10:44",
+            "context": "Kiesewetter erklärt, warum Proliferation-Schutz eine aktive Abschreckungspolitik verlangt, nicht nur Ächtung."
+          }
+        ],
+        "concrete_statements": [
+          "Sicherheitsgarantien sind zentral, um Proliferation zu verhindern.",
+          "Glaubwürdige nukleare Rückversicherung ist notwendig zur Stabilität.",
+          "Der Nuklearschirm darf nicht aufgegeben werden."
+        ],
+        "related_bundestag_topics": [
+          "Nukleare Abschreckung",
+          "Europäische Sicherheit",
+          "Proliferation",
+          "Transatlantisches Bündnis"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Roderich Kiesewetter trat 1982 in die Bundeswehr ein und war nach seinem Studium Zugführer für Grundwehrdienstleistende.",
+        "timestamp": "00:04:02"
+      },
+      {
+        "claim": "Finnland und Schweden wurden von Russland nuklear bedroht, bevor sie der NATO beitraten.",
+        "timestamp": "01:10:12"
+      },
+      {
+        "claim": "Deutschland wurde von Russland nuklear bedroht wegen der Lieferung von Kampfpanzern und Mardern.",
+        "timestamp": "01:10:28"
+      },
+      {
+        "claim": "Der damalige Bundeskanzler veröffentlichte im April 2022 einen Aufsatz im Spiegel über die nukleare Gefahr.",
+        "timestamp": "01:10:31"
+      },
+      {
+        "claim": "Die Ukraine gab auf westlichen Druck ihre Nuklearwaffen an den Rechtsnachfolger der Sowjetunion (Russland) ab und erhielt Sicherheitsgarantien.",
+        "timestamp": "01:10:36"
+      },
+      {
+        "claim": "In den 1920er Jahren wurden in Deutschland Freikorps nicht integriert, was zum Gesellschaftsproblem führte.",
+        "timestamp": "00:29:38"
+      },
+      {
+        "claim": "Westdeutschland hatte nach dem 2. Weltkrieg einen Wiederaufbau und ein 'Wirtschaftswunder', während Ostdeutschland schwierigere Lagen hatte, die 1953 zum Volksaufstand führten.",
+        "timestamp": "00:29:51"
+      }
+    ]
+  }
+}

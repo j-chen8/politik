@@ -1,0 +1,296 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-28-august-2025-100",
+    "video_id": "lanz-2025-08-28",
+    "politician": "Thorsten Frei",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "20fcecd0841565c8",
+    "transcript_chars": 50511,
+    "caption_lines": 2445,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21880,
+    "tokens_out": 6645,
+    "cost_usd": 0.022042,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.132Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei (CDU/CSU, Bundesminister für besondere Aufgaben und Chef des Bundeskanzleramtes) verteidigt in dieser Talkshow die Regierungspolitik zur Wehrpflicht, Sozialpolitik und Israel-Gaza-Konflikt. Er argumentiert sachlich für Kompromisslösungen und betont die Zustimmung zu Koalitionsentscheidungen, wirkt aber bei heiklen Fragen ausweichend.",
+    "themes": [
+      {
+        "title": "Wehrpflicht und militärische Personalbeschaffung",
+        "timestamp_range": "00:02:32 - 00:21:31",
+        "theme_description": "Diskussion über die geplante Wehrpflicht-Reform, das Modell der Freiwilligkeit mit nachgelagerter Verpflichtung und die Zielquoten für die Bundeswehr.",
+        "question_asked": "Warum wird die historische Kabinettssitzung zur Wehrpflicht im Verteidigungsministerium abgehalten statt im Kanzleramt, und wie läuft das Verfahren zur Personalbeschaffung konkret ab?",
+        "question_intent": "Der Moderator möchte verstehen, wie die Bundesregierung konkret plant, von 180.000 auf 260.000 Soldaten zu kommen, und ob die Freiwilligkeit realistisch ist.",
+        "position": "Frei argumentiert, dass die CDU einen automatischen Eskalationsmechanismus bevorzugt hätte (schwedisches Modell mit Losverfahren), sich aber auf Freiwilligkeit mit späteren Nachbesserungen geeinigt hat. Der Koalitionskompromiss erkennt an, dass 30.000–40.000 Wehrpflichtige und Berufssoldaten benötigt werden. Frei betont: „Wir sind uns einig, wir wollen von 180.000 zu 260.000 aktive Soldaten.“ Die Reserve soll größtenteils aus ehemaligen Soldaten kommen. Attraktivität soll über Wehrsold und verbesserte Arbeitsbedingungen geschaffen werden. Die Unterscheidung zwischen Berufssoldaten und Wehrdienstleistenden ist zentral.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei erklärt das Koalitionsmodell und die Komponenten (Berufssoldaten + Wehrpflichtige), bleibt aber vage bei der entscheidenden Frage, wie Freiwilligkeit die Quote erreichen soll. Er weicht auf Wehrsold und allgemeine Attraktivität aus, gibt aber keine konkreten Zahlen oder Mechanismen für den Fall, dass die Quote nicht erreicht wird. Die technische Antwort (Automatismus im Gesetz angelegt) wird fragmentarisch präsentiert.",
+        "quotes": [
+          {
+            "text": "Wir sind uns einig, wir wollen von 180.000 zu 260.000 aktive Soldaten. +200.000 in der Reserve.",
+            "timestamp": "00:09:45",
+            "context": "Frei fasst den Konsens über die Zielquote zusammen, nachdem die Diskussion zwischen den Koalitionspartnern heiß wurde."
+          },
+          {
+            "text": "Das kann man über den Wehrsold machen, darüber macht sich das Verteidigungsministerium Gedanken.",
+            "timestamp": "00:12:47",
+            "context": "Auf die Frage, wie junge Menschen für die Bundeswehr attraktiv gemacht werden, nennt Frei konkret den Wehrsold als Anreiz."
+          }
+        ],
+        "concrete_statements": [
+          "CDU hätte einen Automatismus (Losverfahren nach schwedischem Modell) bevorzugt",
+          "Im Gesetz ist bereits angelegt, dass nachgebessert werden kann",
+          "Attraktivität soll über Wehrsold und bessere Arbeitsbedingungen geschaffen werden",
+          "Beim Übergang zu Verpflichtung bedarf es einer Rechtsverordnung mit Bundestag-Zustimmung"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht-Reform",
+          "Sicherheitspolitik",
+          "Bundeswehr-Personalaustattung",
+          "NATO-Verpflichtungen"
+        ]
+      },
+      {
+        "title": "Afghanistan-Aufnahmeprogramme und Migration",
+        "timestamp_range": "00:24:50 - 00:28:14",
+        "theme_description": "Debatte über die Weitergabe oder Beendigung von freiwilligen Aufnahmeprogrammen für gefährdete Afghanen und die Balance zwischen Rechtsstaatlichkeit und Migrationskontrolle.",
+        "question_asked": "Wie lässt sich die frühere Ankündigung von Markus Söder (keine Flüge mehr nach Kabul) mit der aktuellen Praxis vereinbaren, in der noch immer Ortskräfte und Familien nach Deutschland geflogen werden?",
+        "question_intent": "Der Moderator möchte klären, ob die neue Bundesregierung eine Politik-Kehrtwende gemacht hat und ob die Rhetorik ('nur eine Richtung: Kabul') der Realität entspricht.",
+        "position": "Frei unterscheidet zwischen vier verschiedenen Aufnahmeprogrammen: (1) Ortskräfte-Programm (weitgehend abgearbeitet), (2) Bundesaufnahmeprogramm Afghanistan (aus Ampelzeit, grüne Initiative), (3) weitere Programme. Die Regierung will freiwillige Aufnahmeprogramme beenden, solange ungeregelter Migration existiert. Allerdings respektiert die CDU Rechtszusagen an Personen in Pakistan, die aus früheren Regierungszeiten stammen. Frei betont: „Wir sind ein Rechtsstaat“, auch wenn er persönlich schon immer gegen die Zuzüge war.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die vier Programme und erklärt die prinzipielle Haltung zur Beendigung (außer laufende Rechtsverpflichtungen). Aber er antwortet nicht direkt auf die konkrete Frage nach dem Februarflug mit 155 Passagieren; er bestätigt nur pauschal, dass Flüge nicht 'wieder aufgenommen' werden. Die Spannung zwischen Söders Rhetorik und der laufenden Praxis bleibt ungelöst.",
+        "quotes": [
+          {
+            "text": "Wir wollen diese ganzen freiwilligen Aufnahmeprogramme beenden. Solange wir ungeregelte Migration haben, werden wir keine freiwillige Aufnahme machen.",
+            "timestamp": "00:24:50",
+            "context": "Frei erklärt die Abkehr von freiwilligen Aufnahmeprogrammen als Teil der Migrationskontrolle."
+          },
+          {
+            "text": "Nein. Absolut nicht. Wenn Sie mich fragen würde ich würde keine Zusagen geben. Ich bin damals dagegen gewesen, heute auch. Dieses Programm wird nicht fortgesetzt, es wird beendet.",
+            "timestamp": "00:28:14",
+            "context": "Frei lehnt die Fortsetzung von Aufnahmeprogrammen kategorisch ab."
+          }
+        ],
+        "concrete_statements": [
+          "Vier separate Aufnahmeprogramme werden unterschieden",
+          "Freiwillige Aufnahmeprogramme sollen grundsätzlich beendet werden",
+          "Rechtliche Zusagen aus früheren Zeiten werden respektiert (Rechtsstaat-Argument)",
+          "Weitere Flüge nach Deutschland werden nicht aufgenommen"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Afghanistan-Evakuierung",
+          "Rechtszusagen und Völkerrecht"
+        ]
+      },
+      {
+        "title": "Rentenfinanzerung und Sozialstaat-Reformen",
+        "timestamp_range": "00:31:34 - 00:42:29",
+        "theme_description": "Diskussion über die Finanzierbarkeit des Sozialstaates, das Rentenmodell und geplante Reformen wie Frühstartrente und Aktivrente.",
+        "question_asked": "Friedrich Merz hat gesagt, der Sozialstaat sei 'nicht mehr finanzierbar'. Ist das nicht eine zu dramatische Rhetorik, und welche konkreten Reformen plant die Regierung statt Kürzungen?",
+        "question_intent": "Der Moderator möchte verstehen, ob die CDU den Sozialstaat tatsächlich bedroht sieht oder ob dies Angst-Rhetorik ist, und welche konstruktiven Lösungen es gibt.",
+        "position": "Frei argumentiert, dass die Sozialstaatsquote in Deutschland stärker gestiegen ist als die Wirtschaftsleistung (2023 und 2024 Schrumpfung). Er sieht einen enormen Handlungsdruck, warnt aber nicht vor einem 'Kollaps'. Konkrete Maßnahmen: Frühstartrente (private Vorsorge), Aktivrente (steuerliche Anreize für längeres Arbeiten, erste 2000 Euro steuerfrei), Bürgergeld-Reform zu einer Grundsicherung (konzentriert auf wirklich Bedürftige, mit klarer Arbeitserwartung). Im Kabinett wurde beschlossen, dass Rente stabil bleiben soll und weiter steigen wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei antwortet auf die Reformen konkret, weicht aber der Kernfrage aus: Ist Merz' Rhetorik angemessen oder Panik-Schüren? Er präsentiert Maßnahmen als Antwort auf Druck, nicht als 'Kahlschlag'. Zur Frage der Rentenkürzungen gibt er nur vage Zusicherungen ('stabil bleiben') ohne Details zum Rentenalter.",
+        "quotes": [
+          {
+            "text": "Wir haben im Kabinett beschlossen, dass die Rente stabil bleiben soll, und weiter steigen wird.",
+            "timestamp": "00:31:34",
+            "context": "Direkte Antwort auf Fragen zur Rentensicherheit."
+          },
+          {
+            "text": "Was wir machen werden, wir werden das Bürgergeld zu einer Grundsicherung weiterentwickeln. Auf diejenigen konzentrieren, die die Hilfe brauchen. Aber deutlich machen, wenn du arbeiten kannst, musst du auch arbeiten.",
+            "timestamp": "00:36:59",
+            "context": "Frei skizziert die geplante Bürgergeld-Reform mit Fokus auf Anreize statt blanker Leistung."
+          }
+        ],
+        "concrete_statements": [
+          "Rentenentwicklung wird stabil und wachsend gestaltet",
+          "Frühstartrente soll private Vorsorge fördern",
+          "Aktivrente mit steuerlichen Anreizen für längeres Arbeiten (erste 2000 Euro steuerfrei)",
+          "Bürgergeld wird zu Grundsicherung umgebaut, mit Arbeitserwartung",
+          "Sozialstaatsquote ist schneller gestiegen als Wirtschaftskraft"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Bürgergeld-Reform",
+          "Sozialstaatfinanzerung"
+        ]
+      },
+      {
+        "title": "Steuererhöhungen und Finanzierungsfragen",
+        "timestamp_range": "00:45:03 - 00:53:39",
+        "theme_description": "Debatte über mögliche Steuererhöhungen, speziell Erbschaftsteuer und Steuersenkungen vs. Sparmaßnahmen zur Haushaltssanierung.",
+        "question_asked": "Schließt die CDU-geführte Koalition Steuererhöhungen kategorisch aus, insbesondere bei der Erbschaftsteuer?",
+        "question_intent": "Der Moderator möchte ein klares Ja oder Nein zur Möglichkeit von Steuererhöhungen und prüft, ob Frei wirklich alle Optionen ausschließt oder nur Rhetorik betreibt.",
+        "position": "Frei wiederholt, dass nur Steuersenkungen im Koalitionsvertrag vereinbart wurden und dass das Wirtschaftswachstum (nicht Steuererhöhungen) das Problem lösen wird. Im Koalitionsvertrag steht keine kategorische Ausschlusserklärung für Steuererhöhungen. Ein Koalitionsvertrag ist kein Gesetzbuch und bindet nur die Partner. Frei weigert sich, eine simple Ja-Nein-Antwort zu geben, sondern verweist auf die gemeinsame Koalition. Er hält Steuererhöhungen (besonders für kleine und mittlere Unternehmen) für falsch, weil die Kostenprobleme nicht damit gelöst werden. Zur Erbschaftsteuer: Frei besorgt, dass Familienunternehmen (Champions) verkauft werden müssten, um Steuern zu zahlen.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Die Frage war eine direktive Ja-Nein-Frage zur Ausschlusserklärung von Steuererhöhungen. Frei antwortet nicht direkt, sondern mit Prozessargumenten (Koalitionsvertrag ist kein Gesetzbuch), wechselt zu Wirtschaftswachstum als Lösung und spricht von Problemlösungsmechaniken, nicht von der konkreten Frage. Dadurch vermeidet er eine klare Festlegung.",
+        "quotes": [
+          {
+            "text": "Wir haben nur Steuersenkungen vereinbart.",
+            "timestamp": "00:45:17",
+            "context": "Kurze, kategorische Antwort auf Nachfrage zu Steuersenkungen im Koalitionsvertrag."
+          },
+          {
+            "text": "Ein Koalitionsvertrag ist kein Gesetzbuch. Er bindet nur die Vertragspartner. Wir sind eine gemeinsame Koalition, wir finden eine gemeinsame Lösung.",
+            "timestamp": "00:45:45",
+            "context": "Frei weicht aus, indem er Prozessargumente vorbringt statt direkter Antwort."
+          },
+          {
+            "text": "Ich halte es für falsch.",
+            "timestamp": "00:46:24",
+            "context": "Persönliche Haltung zu Steuererhöhungen, aber nicht als Koalitionsposition formuliert."
+          }
+        ],
+        "concrete_statements": [
+          "Koalitionsvertrag sieht nur Steuersenkungen vor",
+          "Wirtschaftswachstum, nicht Steuererhöhungen, ist die Lösung",
+          "Mittelständler und Handwerksbetriebe dürfen nicht belastet werden",
+          "Familienunternehmen-Überführung durch Erbschaftssteuer soll vermieden werden"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Erbschaftsteuer-Reform",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "Waffenembargo gegen Israel und Außenpolitik",
+        "timestamp_range": "00:54:23 - 01:11:35",
+        "theme_description": "Diskussion über die Entscheidung des Kanzlers, Waffenexporte nach Israel zu stoppen, und die völkerrechtliche und diplomatische Situation im Gaza-Konflikt.",
+        "question_asked": "Was hat Friedrich Merz zu der Entscheidung bewogen, das deutsche Waffenembargo gegen Israel einzuführen, nachdem er zuvor versprochen hatte, Israel zu unterstützen?",
+        "question_intent": "Der Moderator möchte verstehen, ob dies eine echte Politikänderung ist oder wie die Regierung dies intern rechtfertigt.",
+        "position": "Frei bestreitet, dass es eine 'Kehrtwende' gibt. Merz habe unmittelbar danach erklärt, dass die Grundlinien der Israelpolitik unverändert bleiben. Luftverteidigung und Seeverteidigung sowie U-Boote werden weiterhin geliefert wie zuvor. Die spezifische Situation im Gaza erfordert aber eine Neubewertung: Mit 60 % unter israelischer Kontrolle und Bevölkerung auf 40 % der Fläche zusammengedrängt ist zu fragen, was noch militärisch erreicht werden kann. Es gibt enge Gespräche mit Netanjahu und den Außenminisern auf höchster Ebene; Deutschland weist auf die Verhältnismäßigkeit hin. Frei relativiert: Israel hat keinen größeren Freund als Deutschland in Europa.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Frage nach der Kehrtwende mit einer Dementi und einer Neudefinition (keine Grundlinien-Änderung, nur situative Anpassung). Aber er bleibt vage zur konkreten Begründung der Embargo-Entscheidung und verweist auf 'hoch geheime Gremien', deren Inhalte er nicht offenlegen kann. Die Frage nach innenpolitischer Motivation wird pauschal bestritten, ohne ins Detail zu gehen.",
+        "quotes": [
+          {
+            "text": "Ich würde es nicht als Kehrtwende bezeichnen. Friedrich Merz hat unmittelbar danach gesagt, die Grundlinien der Israel Politik werden nicht verändert.",
+            "timestamp": "00:58:41",
+            "context": "Frei bestreitet, dass eine Politikänderung stattgefunden hat, rahmt es als Kontinuität ein."
+          },
+          {
+            "text": "Wenn Sie den europäischen Rahmengröße ziehen, wissen Sie Israel hat keinen größeren Freund als Deutschland.",
+            "timestamp": "01:07:51",
+            "context": "Frei relativiert die Embargo-Entscheidung mit einer Aussage über die deutsch-israelischen Beziehungen."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Grundlinien-Änderung der Israelpolitik",
+          "Luftverteidigung, Seeverteidigung, U-Boote werden weiterhin geliefert",
+          "Gespräche mit Netanjahu auf höchster Ebene erfolgen regelmäßig",
+          "Verhältnismäßigkeit der Mittel wird im Dialog angesprochen",
+          "Deutschland ist Israels größter europäischer Freund"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik gegenüber Israel",
+          "Waffenexporte",
+          "Nahost-Konflikt",
+          "Deutsch-israelische Beziehungen"
+        ]
+      },
+      {
+        "title": "Hamas-Bekämpfung und Zivilbevölkerung im Gaza",
+        "timestamp_range": "00:58:12 - 01:13:40",
+        "theme_description": "Debatte über die militärische Strategie gegen die Hamas, den Schutz von Zivilisten, völkerrechtliche Fragen und mögliche Kriegsverbrechen.",
+        "question_asked": "Die Hamas ist eine terroristische Organisation und muss bekämpft werden – aber wie kann das mit dem Schutz der Zivilbevölkerung vereinbart werden, wenn 83 % der Opfer Zivilisten sind?",
+        "question_intent": "Der Moderator möchte von Frei verstehen, wie die deutsche Außenpolitik die Schutzverantwortung für Zivilisten mit militärischer Unterstützung für Israel vereinbart.",
+        "position": "Frei stimmt zu, dass die Hamas eine terroristische Organisation ist, die kritisiert werden muss und keine Rolle mehr spielen kann. Die militärische Strategie zur Bekämpfung wird aber nicht von Frei direkt beantwortet. Stattdessen verweist er auf enge Gespräche mit Netanjahu, in denen die deutschen Positionen 'sehr offen' angesprochen werden. Eine 'Entwicklung' wird registriert, die die 'Verhältnismäßigkeit der Mittel im Hinblick auf das legitime Ziel' in Frage stellt. Frei betont, dass die Situation komplex ist und Deutschland es 'schwer hat', öffentliche Kritik zu üben, wenn der Dialog gleichzeitig stattfindet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Notwendigkeit, die Hamas zu bekämpfen, antwortet aber nicht konkret auf die Frage nach der Vereinbarkeit mit Zivilschutzverpflichtungen. Er verweist stattdessen auf diplomatischen Dialog und 'hoch geheime Gremien', deren Inhalte nicht offengelegt werden können. Dies ist eine schwache Position zu einer grundsätzlichen völkerrechtlichen Frage.",
+        "quotes": [
+          {
+            "text": "Man muss sie kritisieren, es ist eine terroristische Organisation.",
+            "timestamp": "00:58:12",
+            "context": "Kurze Bestätigung, dass Hamas kritisiert werden muss, keine elaborierte Antwort."
+          },
+          {
+            "text": "Erstens, eine innenpolitische Komponente hatte das überhaupt nicht. Zweitens ich hatte berichtet übersendet engsten Gesprächen mit der israelischen Regierung. Wir sprechen das alles sehr offen an.",
+            "timestamp": "01:10:28",
+            "context": "Frei bestreitet innenpolitische Motivation und verweist auf Dialog statt öffentlicher Kritik."
+          }
+        ],
+        "concrete_statements": [
+          "Hamas ist eine terroristische Organisation",
+          "Hamas kann keine Rolle mehr spielen",
+          "Dialog mit Netanjahu erfolgt auf höchster Ebene",
+          "Verhältnismäßigkeitsfragen werden im Dialog angesprochen",
+          "Deutschland mahnt zur Zivilisten-Schonung an (impliziert)"
+        ],
+        "related_bundestag_topics": [
+          "Nahost-Konflikt",
+          "Völkerrecht und Kriegsverbrechen",
+          "Außenpolitik und Menschenrechte"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "2023 und 2024 ist die deutsche Volkswirtschaft geschrumpft.",
+        "timestamp": "00:32:40"
+      },
+      {
+        "claim": "Die Sozialstaatsquote in Deutschland ist in den letzten Jahren stärker gestiegen als die Wirtschaftsleistung.",
+        "timestamp": "00:32:40"
+      },
+      {
+        "claim": "Deutschland wird von der NATO erwartet 260.000 Soldaten bereitzustellen.",
+        "timestamp": "00:05:22"
+      },
+      {
+        "claim": "Deutschland hat derzeit etwa 180.000 aktive Soldaten in der Bundeswehr.",
+        "timestamp": "00:07:40"
+      },
+      {
+        "claim": "Es gibt vier separate Aufnahmeprogramme in Bezug auf Afghanistan.",
+        "timestamp": "00:24:50"
+      },
+      {
+        "claim": "Das Ortskräfte-Programm Afghanistan ist weitgehend abgearbeitet.",
+        "timestamp": "00:24:50"
+      },
+      {
+        "claim": "Das Bundesaufnahmeprogramm Afghanistan stammt aus der Ampelzeit und wurde von den Grünen vorangetrieben.",
+        "timestamp": "00:24:50"
+      },
+      {
+        "claim": "Bei einem Flug im Februar von Afghanistan nach Deutschland hatten 155 Passagiere an Bord, davon fünf Ortskräfte mit 20 Familienmitgliedern.",
+        "timestamp": "00:27:36"
+      },
+      {
+        "claim": "Israel kontrolliert mehr als 60 % des Gazastreifens.",
+        "timestamp": "01:00:54"
+      },
+      {
+        "claim": "83 % der Opfer im Gaza-Konflikt sind Zivilisten.",
+        "timestamp": "01:05:10"
+      }
+    ]
+  }
+}

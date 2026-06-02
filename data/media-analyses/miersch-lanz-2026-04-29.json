@@ -1,0 +1,346 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-29-april-2026-100",
+    "video_id": "lanz-2026-04-29",
+    "politician": "Matthias Miersch",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3eff38d97a91840a",
+    "transcript_chars": 45127,
+    "caption_lines": 2309,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19629,
+    "tokens_out": 8344,
+    "cost_usd": 0.0245396,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 7,
+      "themenwechsel": 1,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.272Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Matthias Miersch, SPD-Fraktionsvorsitzender, tritt in der Sendung als Vertreter der Ampel-Koalition auf und verteidigt deren Bilanz gegen Kritik an mangelnder Stabilität, fehlenden Reformen und wirtschaftlichen Problemen. Er argumentiert sachlich für notwendige Schuldenaufnahmen unter Extrembedingungen und erklärt Koalitionsarbeit als Kompromiss, wirkt dabei aber teilweise defensive und wird in mehreren Punkten als ausweichend dargestellt.",
+    "themes": [
+      {
+        "title": "Haltbarkeit der Koalition und Resignation",
+        "timestamp_range": "00:03:04 - 00:07:11",
+        "theme_description": "Reaktion auf die öffentliche Aussage eines CDU-Politikers, dass die Regierung nicht vier Jahre durchhalten werde.",
+        "question_asked": "Der Moderator spielte ein Video eines CDU-Parlamentariers ab, der sagte, die Koalition halte keine vier Jahre, die Parteien passen nicht zusammen. Wie geht es Ihnen damit?",
+        "question_intent": "Kann die Regierung stabil regieren, oder ist das Misstrauensvotum der Union berechtigt?",
+        "position": "Miersch kritisiert diese Aussagen als fahrlässig. Er betont, dass alle im Koalitionsausschuss um ihre Verantwortung wissen (insbesondere Jens Spahn und Alexander Hoffmann von der CSU). Entgegen dem Eindruck der Uneinigkeit hätten die drei Koalitionspartner tatsächlich bedeutende Reform auf den Weg gebracht: Wehrdienst, Bürgergeldreform, Sondervermögen, Asylpolitik – auch wenn diese umstritten waren. Aktuell arbeite man an Haushalt und Krankenreform. Miersch warnt vor zu pessimistischen Prognosen, die Wähler verunsichern könnten, und hält Neuwahlen oder eine Minderheitsregierung für keine stabilere Alternative.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert die Frage indirekt, indem er die Kritik als fahrlässig einstuft und Gegenargumente (gemeinsame Erfolge) benennt. Er weicht aber einer direkten Bestandsaufnahme der Herausforderungen aus und fokussiert stattdessen auf defensive Argumentationen (Neuwahlen wären schlimmer). Die Instabilität wird nicht wirklich beantwortet, sondern bestritten.",
+        "concrete_statements": [
+          "Wir müssen mit solchen Äußerungen sehr vorsichtig sein.",
+          "Wir wissen um unsere Verantwortung.",
+          "Wir haben auch eine Menge beschlossen: Wehrdienst, Bürgergeldreform, Sondervermögen, Asylpolitik.",
+          "Es ist hoch fahrlässig [solche Prognosen zu machen]."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe mich richtig geärgert. Wir müssen mit solchen Äußerungen sehr vorsichtig sein. Alle, die ich im Koalitionsausschuss erlebe, gerade Jens Spahn und Alexander Hoffmann von der CSU, wir wissen um unsere Verantwortung.",
+            "timestamp": "00:05:53",
+            "context": "Reaktion auf Video-Aussage eines CDU-Politikers zur mangelnden Haltbarkeit der Koalition."
+          },
+          {
+            "text": "Will ich die Wählerinnen und Wähler fragen - Neuwahlen? Will man in eine Minderheitsregierung, die nichts stabiler ist?",
+            "timestamp": "00:05:53",
+            "context": "Abwägung gegen Alternativen zur aktuellen Regierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Vertrauensfrage",
+          "Regierungsbilanz"
+        ]
+      },
+      {
+        "title": "Industriestrategie und fehlender Plan",
+        "timestamp_range": "00:08:04 - 00:09:27",
+        "theme_description": "Kritik an mangelnder Langfriststrategie zur Sicherung von Industrie und Arbeitsplätzen, besonders in Stahl und Automobil.",
+        "question_asked": "Der Moderator zitierte eine Aussage einer Arbeitsministerin, sie habe keinen Plan für die Zukunft der deutschen Industrie. Wie kann das sein, wenn täglich Tausende Industriejobs verloren gehen?",
+        "question_intent": "Hat die Regierung eine tragfähige Strategie zur Sicherung von Industriestandorten?",
+        "position": "Miersch relativiert: Die Arbeitsministerin habe die Koalition nicht infrage gestellt. Bei einer Konferenz (Villa Borsig) hätte es um die Frage gegangen, ob und welche Rolle Stahl zukünftig in Deutschland spielen soll – das seien große Fragen mit unterschiedlichen Antworten. Was Bärbel Bas wollte, sei eine solide Grundlage für Entscheidungen. Es sei legitim, dass Politiker offen über strittige Themen diskutieren, statt zu behaupten, sie hätten alle Antworten.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Die Frage zielt auf fehlende konkrete Strategien und Jobabbau. Miersch weicht aus, indem er den Kontext umdefiniert (es ging um grundsätzliche Fragen zur Rolle von Stahl) und die Aussage der Ministerin als Diskussionsbeitrag reinterpretiert statt sie als Mangel einzugestehen. Er beantwortet nicht, was die Regierung konkret für Industrieschutz plant.",
+        "concrete_statements": [
+          "Sie hat die Koalition überhaupt nicht infrage gestellt.",
+          "Das sind große Fragen, die teilweise unterschiedlich beantwortet werden.",
+          "Das darf man als Politiker sagen. Dass man um bestimmte Themen ringt."
+        ],
+        "quotes": [
+          {
+            "text": "Das muss man im Zusammenhang sehen. Sie hat die Koalition überhaupt nicht infrage gestellt. In der Villa Borsig war die Frage, welche Rolle spielt Stahl zukünftig in Deutschland.",
+            "timestamp": "00:08:04",
+            "context": "Erklärung des Kontextes der umstrittenen Äußerung zur fehlenden Planung."
+          },
+          {
+            "text": "Das darf man als Politiker sagen. Dass man um bestimmte Themen ringt.",
+            "timestamp": "00:09:27",
+            "context": "Verteidigung der Legitimität von offenen Diskussionen über strittige Politikpunkte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Industriepolitik",
+          "Arbeitsplatzabbau",
+          "Wirtschaftsstrategie"
+        ]
+      },
+      {
+        "title": "Erste-Mai-Feiertag und Koalitionskonflikte",
+        "timestamp_range": "00:16:50 - 00:18:23",
+        "theme_description": "Reaktion auf öffentliche Konflikte in der Koalition bezüglich möglicher Abschaffung oder Verschiebung von Feiertagen.",
+        "question_asked": "Im Koalitionsausschuss wurde diskutiert, ob der 1. Mai als Feiertag abgeschafft oder verschoben werden könnte. Wie hart war dieser Konflikt?",
+        "question_intent": "Wie massiv sind die internen Konflikte in der Koalition zu fundamentalen Wertfragen?",
+        "position": "Miersch betont, dass der 1. Mai für die SPD ein wichtiger Tag ist – nicht nur ideologisch, sondern auch für viele Menschen, die täglich arbeiten. Die Diskussion sei ernsthaft und hart geführt worden, aber auf sachlicher Basis. Er verweigert detaillierte Aussagen zu internen Diskussionen und beruft sich auf notwendige Vertrauensräume.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch beantwortet die Frage nach der Intensität des Konflikts nur oberflächlich ('sehr hart') und weigert sich, Details zu nennen. Er adressiert aber teilweise, warum der 1. Mai SPD-Kernthema ist. Die Antwort bleibt vage und defensive.",
+        "concrete_statements": [
+          "Der 1. Mai, den wir in 2 Tagen feiern, ist für uns ein ganz wichtiger Tag.",
+          "Wir waren sehr hart [in der Diskussion dazu]."
+        ],
+        "quotes": [
+          {
+            "text": "Der 1. Mai, den wir in 2 Tagen feiern, ist für uns ein ganz wichtiger Tag. Es gibt viele Menschen, die jeden Tag arbeiten, für die ist es auch wichtig. Wir hatten Diskussion über den 1. Mai, unabhängig von den Dingen, die drumherum erzählt werden. Wir waren sehr hart.",
+            "timestamp": "00:16:50",
+            "context": "Stellungnahme zur Bedeutung des 1. Mai und Konflikt in der Koalition darüber."
+          }
+        ],
+        "evasion_note": "Miersch weigert sich, weitere Details zu internen Koalitionsgesprächen preiszugeben mit dem Argument, dass Vertrauensräume nötig sind.",
+        "related_bundestag_topics": [
+          "Koalitionskonflikte",
+          "Arbeitsrecht",
+          "Feiertage"
+        ]
+      },
+      {
+        "title": "Mehr Arbeit und steuerliche Entlastung",
+        "timestamp_range": "00:19:03 - 00:19:32",
+        "theme_description": "Einordnung von Forderungen nach mehr Arbeit und wie Lohnarbeit attraktiver gemacht werden kann.",
+        "question_asked": "Die Arbeitsministerin sagte, wir müssen als Gesellschaft mehr arbeiten. Aber gleichzeitig schlägt sie Karenztage-Kürzungen vor. Ist das nicht widersprüchlich?",
+        "question_intent": "Sind die Forderungen nach Mehrarbeit glaubwürdig, wenn gleichzeitig regulatorische Hürden abgebaut werden?",
+        "position": "Miersch stellt klar, dass es nicht primär um Karenztage gehe, sondern um die zentrale Frage: Wie kann Arbeit sich wieder lohnen? In vielen Fällen bleibt netto nicht viel mehr von höherem Lohn. Deshalb sei steuerliche Entlastung und Reduktion von Sozialversicherungsbeiträgen das Thema, das SPD in die Diskussion bringe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert den kern einer Frage (wie Arbeit attraktiv machen), umgeht aber die Widerspruch-Frage durch Neurahmung. Er bietet eigene Schwerpunkte an (Steuern, Sozialabgaben), beantwortet aber nicht direkt, ob die Karenztage-Kürzung mit 'mehr Arbeit'-Forderung vereinbar ist.",
+        "concrete_statements": [
+          "Die Frage ist, wie kann durch Arbeit lohnen?",
+          "Steuerliche Entlastung, Sozialversicherungsbeiträge [sind] Themen, über die wir reden."
+        ],
+        "quotes": [
+          {
+            "text": "Es geht nicht darum über Karenztage zu sprechen. Die Frage ist, wie kann durch Arbeit lohnen? Wir sehen es teilweise, dass netto nicht viel mehr bleibt. Deswegen ist die steuerliche Entlastung, Sozialversicherungsbeiträge Themen, über die wir reden.",
+            "timestamp": "00:19:03",
+            "context": "Erklärung des SPD-Fokus bei Reformen zu Arbeitsanreizen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Arbeitsmarkt",
+          "Sozialversicherung"
+        ]
+      },
+      {
+        "title": "Schuldenpolitik und geopolitische Szenarien",
+        "timestamp_range": "00:21:56 - 00:26:25",
+        "theme_description": "Rechtfertigung der Schuldenpolitik unter Verweis auf externe Krisen (Corona, Ukrainekrieg, Nahost) und mögliche zukünftige Szenarien wie Sperrung der Straße von Hormus.",
+        "question_asked": "Müssen wir damit rechnen, noch mehr Schulden machen zu müssen? Die bisherige Neuverschuldung ist bereits historisch beispiellos.",
+        "question_intent": "Kann die Regierung die aufgelaufenen Schulden verantworten, und sind weitere Kreditaufnahmen unvermeidlich?",
+        "position": "Miersch betont die außergewöhnlichen Rahmenbedingungen der letzten Jahre: Corona, Ukrainekrieg, globale Instabilität. Die Sondervermögen und Schuldenaufnahmen seien für Verteidigungsinvestitionen und wirtschaftliche Stabilität notwendig gewesen. Er weist darauf hin, dass eine mögliche Sperrung der Straße von Hormus zu Lieferkettenkrisen und Kurzarbeit führen könnte – dann müsse die Allgemeinheit schnell finanzieren. Das sei ein legitimer Grund, die Schuldenbremse zu nutzen, nicht zwingend ein Zeichen für Fahrlässigkeit. Er betont, er plädiere nicht per se für mehr Schulden, sondern bereite sich auf schwierige Szenarien vor.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert teilweise die Frage, indem er erklärt, warum Schulden nötig waren (externe Shocks). Er weicht aber aus, wenn es um konkrete zukünftige Szenarien geht, indem er sie nur als mögliche Gefahren skizziert, nicht als Wahrscheinlichkeiten einordnet. Er antwortet auf die implizite Frage 'müssen wir mehr Schulden machen' eher philosophisch als konkret.",
+        "concrete_statements": [
+          "Ich halte es nicht für unwahrscheinlich, dass wir noch mal in schwierigere Zeiten kommen.",
+          "Dafür hat das Grundgesetz eine Möglichkeit vorgesehen, dass wir von der Schuldenregel abweichen können.",
+          "Ich möchte auch keine Schulden machen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich will darauf hinweisen, dass die Rahmenbedingungen in den letzten Jahren hochkomplex und schwierig waren. Vieles von dem ist während Corona entstanden. Wir haben den russischen Angriffskrieg erlebt, den Iran Krieg. Das sind alles Dinge, wo sie sich als Politiker nicht leichtfertig hinsetzen.",
+            "timestamp": "00:21:56",
+            "context": "Erklärung der Schuldenaufnahmen durch externe Krisen."
+          },
+          {
+            "text": "Ich halte es nicht für unwahrscheinlich, dass wir noch mal in schwierigere Zeiten kommen. Angesichts der weltweiten Situation. Wir reden nicht nur über Benzin. Auch über Helium, die wir für die Arzneimittelherstellung brauchen.",
+            "timestamp": "00:26:25",
+            "context": "Ankündigung möglicher zukünftiger Notwendigkeit weiterer Schulden."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Fiskalpolitik",
+          "Verteidigung/Sicherheit"
+        ]
+      },
+      {
+        "title": "Kritik an 'intellektueller Faulheit' und CDU-Widerspruch",
+        "timestamp_range": "00:25:08 - 00:26:16",
+        "theme_description": "Reaktion auf Vorwurf, die SPD falle nur Schuldenmachen ein und hätte keine echten Reformideen.",
+        "question_asked": "Merz warf der SPD 'intellektuelle Faulheit' vor – nur Schulden statt Lösungen. Wie antworten Sie?",
+        "question_intent": "Hat die SPD ein Konzept jenseits von Schuldenaufnahmen zur Krisenbewältigung?",
+        "position": "Miersch weist den Vorwurf schroff zurück und kontert: Es sei unfair, der SPD vorzuwerfen, nur Schulden zu sehen, während die CDU selbst gesagt habe, auch sie bräuchten möglicherweise ein drittes Hilfspaket. Der Unterschied: Die CDU sage, wir machen es, beantworte aber nicht, woher das Geld kommt. SPD und Regierung seien dagegen ehrlich, dass es schwierig wird und die Schuldenregel genutzt werden könnte. Miersch betont auch: Lars Klingbeil habe einen Sparkurs verordnet (1% der Ministerbudgets).",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Miersch beantwortet die kritische Frage nicht substantiell mit eigenen Reformideen, sondern lenkt ab, indem er auf die Inkonsistenz der CDU hinweist. Das ist ein klassisches Pivot-Manöver: statt die Vorwurf-Substanz zu adressieren, wird der Vorwurf zurückgewiesen und die andere Seite kritisiert.",
+        "deflection_target": "CDU/Friedrich Merz und deren Widersprüche bei Schuldenfrage",
+        "concrete_statements": [
+          "Das spannende bei der CDU ist, dass man sagt, das machen wir. Aber sie beantworten nicht die Frage, wo wir es hernehmen.",
+          "Lars Klingbeil hat einen Sparkurs verordnet."
+        ],
+        "quotes": [
+          {
+            "text": "Das spannende bei der CDU ist, dass man sagt, das machen wir. Aber sie beantworten nicht die Frage, wo wir es hernehmen. Darüber werden wir ringen müssen.",
+            "timestamp": "00:25:23",
+            "context": "Konter auf Kritik der intellektuellen Faulheit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushaltspolitik",
+          "Wirtschaftspolitik",
+          "Opposition/Regierung"
+        ]
+      },
+      {
+        "title": "Finanzierung durch Wirtschaftswachstum und kleine Steuern",
+        "timestamp_range": "00:28:36 - 00:31:02",
+        "theme_description": "Darlegung der Regierungsstrategie zur Haushaltssanierung: Wachstum plus moderate Steuererhöhungen (Tabak, Zucker, Plastik).",
+        "question_asked": "Wie will die Regierung ein Billionen-Schuldenloch füllen – mit Steuererhöhungen, Plastikabgaben?",
+        "question_intent": "Sind die geplanten Maßnahmen ausreichend, um die Fischereilücke zu schließen?",
+        "position": "Miersch sagt, die Regierung setzt primär auf Wirtschaftswachstum. Steuererhöhungen seien nicht die Hauptlösung, sondern gezielt eingesetzt: Tabaksteuer, Zuckersteuer und Plastikabgabe hätten teils Lenkungswirkung (z.B. um Überkonsum zu reduzieren), nicht nur Finanzierungszweck. Diese Steuern würden etwa 4 Milliarden bringen. Auch Lars Klingbeil habe Sparmaßnahmen verordnet (1% der Ministerbudgets). Das dürfe man nicht unterschätzen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch beantwortet die Finanzierungsfrage teilweise: Er nennt konkrete Zahlen (4 Mrd.) und begründet den Sinn von Steuern (Lenkung, nicht nur Fiskus). Aber er weicht aus, wenn es darum geht, wie realistisch es ist, ein Billionen-Loch damit zu schließen – das würde nur durch Wachstum funktionieren, was spekulativ ist.",
+        "concrete_statements": [
+          "Wir setzen auf Wirtschaftswachstum, das ist der zentrale Anker der Regierung.",
+          "Es wird um 4 Milliarden betreffen [die neuen Steuern].",
+          "Diese Steuern sind nicht dazu da, um die Haushaltslöcher zu stopfen.",
+          "Es ist eine Maßnahme, für die Belange eintreten, weil wir sagen, es ist eine gewisse Lenkungswirkung."
+        ],
+        "quotes": [
+          {
+            "text": "Natürlich nicht. Wir setzen auf Wirtschaftswachstum, das ist der zentrale Anker der Regierung.",
+            "timestamp": "00:28:36",
+            "context": "Antwort auf Frage, ob Steuern die Hauptstütze der Finanzierung sind."
+          },
+          {
+            "text": "Es wird um 4 Milliarden betreffen. Es kommt auf die Ausgestaltung an. Aber diese Steuern sind nicht dazu da, um die Haushaltslöcher zu stopfen.",
+            "timestamp": "00:29:57",
+            "context": "Konkretisierung der Steuerpläne und deren Zweck."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Haushaltspolitik",
+          "Gesundheitsförderung"
+        ]
+      },
+      {
+        "title": "Krankenversicherungsreform und Beitragsgerechtigkeit",
+        "timestamp_range": "00:34:47 - 00:39:24",
+        "theme_description": "Diskussion über die Gerechtigkeit von Beitragssätzen, beitragsfreie Mitversicherung von Familienangehörigen und Zahlungen für Bürgergeldempfänger.",
+        "question_asked": "Warum zahlen versicherte Arbeitnehmer mit für Bürgergeldempfänger, während die Privatversicherten außen vor sind? Das wirkt ungerecht.",
+        "question_intent": "Ist das System der Krankenversicherung-Beitragszahlung gerecht aufgebaut?",
+        "position": "Miersch versteht die Ungerechtigkeit und nimmt sie ernst. Aber die Frage sei hochkomplex: Die gesetzliche Krankenversicherung funktioniere nach Solidaritätsprinzip, bei dem höhere Risiken (Alter, chronische Krankheiten) mitgetragen werden. Die kurzfristige Lösung sei, Bürgergeldempfänger gezielter zu behandeln (höhere Zuschüsse). Langfristig könnte eine Bürgerversicherung Abhilfe schaffen, in die alle – auch Privatversicherte – einzahlen würden. Aber auch dort müsse man aufpassen, nicht in neue Ungerechtigkeit zu verfallen. Miersch weist auf das komplexe Konzept von Gerechtigkeit hin und warnt vor einfachen Lösungen, die neue Probleme schafften.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert die Ungerechtigkeit teilweise an, bietet aber keine konkrete kurzfristige Lösung außer der Aussage, man müsse in der Regierung weitere Schritte prüfen. Er weicht aus, indem er die Komplexität des Solidaritätsprinzips betont und vor schnellen Reformen warnt, statt die offensichtliche Ungerechtigkeit zu beheben.",
+        "concrete_statements": [
+          "Wir werden das im parlamentarischen Verfahren noch mal genau angucken.",
+          "Das Gerechtigkeit Momentum könnte gelöst werden, in dem [wir] wirklich eine Bürgerversicherung nachdenken.",
+          "Wir haben aber noch das Problem, dass die gesetzlichen Versicherten das tragen müssen. Die Privatversicherten sind außen vor.",
+          "Wir werden es wahrscheinlich nicht mehr in der Regierung lösen können."
+        ],
+        "quotes": [
+          {
+            "text": "Ja, das kann ich nachvollziehen, wobei das ganz schwierige Debatten sind. Wir machen jetzt die 1. Schritte. Wir werden das im parlamentarischen Verfahren noch mal genau angucken. Wir haben aber noch das Problem, dass die gesetzlichen Versicherten das tragen müssen. Die Privatversicherten sind außen vor.",
+            "timestamp": "00:34:47",
+            "context": "Antwort auf Frage nach Gerechtigkeit bei Krankenversicherungsbeiträgen."
+          },
+          {
+            "text": "Das Gerechtigkeit Momentum könnte gelöst werden, in dem [wir] wirklich eine Bürgerversicherung nachdenken, wo wir alle einzahlen.",
+            "timestamp": "00:34:47",
+            "context": "Längerfristige Lösungsperspektive für Ungerechtigkeit in der Krankenversicherung."
+          }
+        ],
+        "evasion_note": "Miersch weicht aus, indem er betont, dass kurzfristig keine vollständige Lösung möglich sei und dass Gerechtigkeit in diesem System komplex ist. Er bietet am Ende nur eine Fernperspektive (Bürgerversicherung) an.",
+        "related_bundestag_topics": [
+          "Krankenversicherung",
+          "Gesetzliche Versicherung",
+          "Sozialpolitik",
+          "Verteilungsgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Bürgergeld für Nicht-Staatsbürger und Gerechtigkeitsgefühl",
+        "timestamp_range": "00:37:42 - 00:39:24",
+        "theme_description": "Kritik an der Gewährung von Bürgergeld an Personen ohne deutschen Pass und Maßnahmen dagegen.",
+        "question_asked": "Statistiken zeigen: Jeder zweite Bürgergeldempfänger hat keinen deutschen Pass. Das wird als zunehmend ungerecht empfunden. Was tut die Regierung?",
+        "question_intent": "Wird die Regierung die Zugangsvoraussetzungen zu Bürgergeld und Sozialleistungen restriktiver gestalten?",
+        "position": "Miersch nimmt das Unbehagen ernst und zitiert Umfrageergebnisse: 60% der Befragten und 63% der SPD-Wähler finden es richtig, dass Zuwanderer nur Bürgergeld bekommen sollten, wenn sie dort schon gearbeitet haben. Er sagt, 'Wir gehen da jetzt dran' und verweist auf einen ersten Entwurf im Kabinett. Parallel müsse man aber bei Gerechtigkeitsthemen aufpassen – komplexe Fragen zu Solidarität und Risiko könnten ethisch schnell hoch problematisch werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miersch adressiert die Besorgnis und signalisiert Handlung ('Wir gehen da jetzt dran'). Aber konkrete Details oder Timeline fehlen. Er nutzt auch diesen Punkt, um zu warnen, dass man ethisch vorsichtig sein müsse – was wieder von der konkreten Frage ablenkt.",
+        "concrete_statements": [
+          "60 % der Befragten finden es richtig, wenn Zuwanderer nur Bürgergeld bekommen, wenn sie dort schon gearbeitet haben.",
+          "63 % der SPD Wähler sehen das.",
+          "Absolut. Wir gehen da jetzt dran.",
+          "In der Kabinettssitzung gibt es den 1. Entwurf."
+        ],
+        "quotes": [
+          {
+            "text": "Beim Bürgergeld jeder zweite ist kein Bürger des Landes. Es sind Menschen ohne deutschen Pass. 60 % der Befragten finden es richtig, wenn Zuwanderer nur Bürger Geld bekommen, wenn sie dort schon gearbeitet haben. Auch 63 % der SPD Wähler sehen das. Warum gehen wir da nicht dran? Absolut. Wir gehen da jetzt dran.",
+            "timestamp": "00:37:42",
+            "context": "Reaktion auf Frage zu Bürgergeld für Nicht-Staatsbürger."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Bürgergeld",
+          "Sozialpolitik",
+          "Arbeitsmarkt"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Jeder zweite Bürgergeldempfänger hat keinen deutschen Pass",
+        "timestamp": "00:37:42"
+      },
+      {
+        "claim": "60 % der Befragten finden es richtig, wenn Zuwanderer nur Bürgergeld bekommen, wenn sie dort schon gearbeitet haben",
+        "timestamp": "00:37:42"
+      },
+      {
+        "claim": "63 % der SPD Wähler sehen das [d.h. finden die Beschränkung richtig]",
+        "timestamp": "00:37:42"
+      },
+      {
+        "claim": "Lars Klingbeil hat einen Sparkurs verordnet. Die ein Prozent der Ministerien [Budgets reduzieren sich]",
+        "timestamp": "00:29:04"
+      },
+      {
+        "claim": "Die neuen Steuern [Tabak, Zucker, Plastik] werden um 4 Milliarden betreffen",
+        "timestamp": "00:29:57"
+      }
+    ]
+  }
+}

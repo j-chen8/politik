@@ -1,0 +1,303 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-3-juli-2025-100",
+    "video_id": "lanz-2025-07-03",
+    "politician": "Karl Lauterbach",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "bfc1fc0de995656d",
+    "transcript_chars": 52068,
+    "caption_lines": 2666,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21947,
+    "tokens_out": 7180,
+    "cost_usd": 0.0231388,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 2,
+      "themenwechsel": 1,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.763Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl Lauterbach äußert sich ausführlich zum Sudhoff-Bericht über die Maskenbeschaffung in der Pandemie und zu Rentenpolitik. Er verteidigt die Beauftragung des Berichts und betont die Unabhängigkeit der Autorin, weigert sich aber, über die geschwärzten Inhalte zu sprechen oder seine Nachfolgerin zu kritisieren. Zu Rentenfragen argumentiert er emotional gegen eine Erhöhung des Renteneintrittsalters.",
+    "themes": [
+      {
+        "title": "Auftrag und Unabhängigkeit des Sudhoff-Berichts",
+        "timestamp_range": "00:06:57 - 00:10:57",
+        "theme_description": "Lauterbach begründet, warum er den Bericht in Auftrag gab und wie er die Unabhängigkeit der Autorin während ihrer Arbeit sicherstellte.",
+        "question_asked": "Der Moderator fragt, warum Lauterbach den Bericht im Keller liegen ließ und ob er die Autorin Sudhoff beeinflusst hat.",
+        "question_intent": "Der Moderator möchte wissen, ob der Bericht politisch manipuliert wurde und warum er so lange unter Verschluss blieb.",
+        "position": "Lauterbach betont, dass er den Bericht in Auftrag gab, weil die Öffentlichkeit ein Anrecht auf Aufklärung hat. Er hielt sich streng daran, während Sudhoffs Arbeit nicht mit ihr über den Bericht zu sprechen – 'daran habe ich mich sehr religiös gehalten'. Er sagt, Sudhoff habe 'zwei hochqualifizierte Mitarbeiterinnen' und der Bericht wurde 'in keiner Weise jemals politisch beeinflusst'. Der Bericht lag nicht im 'Tischtenniskeller', sondern auf Festplatten. Lauterbach entschuldigt sich nachträglich nicht für die Verzögerung: 'Wichtig ist, die Arbeit von Frau Sudhoff war qualitativ sehr hochwertig.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach erklärt seine Gründe für den Auftrag und seine Hands-off-Haltung, aber vermeidet es, die Verzögerung der Veröffentlichung oder die breite Schwärzung direkt zu verteidigen. Er weicht aus, indem er sagt, dass er die Inhalte nicht kommentiere.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich habe den Bericht damals in Auftrag gegeben, weil ich der Meinung war, dass die Öffentlichkeit ein Anrecht darauf hat",
+          "daran habe ich mich sehr religiös gehalten",
+          "(Verzicht auf Zwischenbergriffe)",
+          "die Arbeit von Frau Sudhoff war qualitativ sehr hochwertig"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe den Bericht damals in Auftrag gegeben, weil ich der Meinung war, dass die Öffentlichkeit ein Anrecht darauf hat, auch ich, zu wissen, was damals gewesen ist.",
+            "timestamp": "00:06:57",
+            "context": "Lauterbach erklärt, warum er den Sudhoff-Bericht in Auftrag gab."
+          },
+          {
+            "text": "daran habe ich mich sehr religiös gehalten",
+            "timestamp": "00:08:57",
+            "context": "Lauterbach betont, dass er während der Arbeit von Sudhoff keine Zwischenberichte anforderte oder mit ihr sprach."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Maskenbeschaffung",
+          "Pandemiemanagement",
+          "Transparenz in der Verwaltung"
+        ]
+      },
+      {
+        "title": "Schwärzungen im Bericht und Veröffentlichungsverzögerung",
+        "timestamp_range": "00:08:57 - 00:12:57",
+        "theme_description": "Lauterbach reagiert auf Fragen zur Schwärzung von Seiten des Berichts und warum dieser nicht früher veröffentlicht wurde.",
+        "question_asked": "Der Moderator zeigt geschwärzte Seiten und fragt, wer diese geschwärzt hat und warum Lauterbach den Bericht nicht früher veröffentlichte.",
+        "question_intent": "Der Moderator verdächtigt Lauterbach, den Bericht gezielt unter Verschluss zu halten und fragt, ob er die Inhalte kannte und warum er nicht früher handelte.",
+        "position": "Lauterbach sagt, er habe den Bericht ungeschwärzt erhalten, könne aber die Schwärzungen nicht selbst erklären und weigert sich, zu den Inhalten zu sprechen: 'Ich kenne dem Bericht, aber ich äußere mich nicht dazu, weil ich meiner Nachfolgerin in keiner Weise heute kritisieren möchte.' Er sagt, die Schwärzungen entstanden später ('Vielleicht kommt der Bericht ja irgendwann noch ungeschwärzt'). Er lehnt ab, Kritik an seiner Nachfolgerin zu üben, auch wenn dies bedeutet, spekulativ zu wirken.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die Frage nach den Schwärzungen mit 'Das weiß ich einfach nicht' und weigert sich dann, die Inhalte zu kommentieren. Er adressiert die Frage nach der Veröffentlichungsverzögerung nur indirekt und weicht auf 'Ethos' gegenüber der Nachfolgerin aus.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich habe als die Arbeit von Frau Sudhoff abgeschlossen war den ungeschwärzt Bericht bekommen",
+          "Ich kritisiere heute die Arbeit meiner Nachfolgerin nicht, ich möchte diese Frage nicht beantworten"
+        ],
+        "quotes": [
+          {
+            "text": "Ich kenne dem Bericht, aber ich äußere mich nicht dazu, weil ich meiner Nachfolgerin in keiner Weise heute kritisieren möchte.",
+            "timestamp": "00:08:57",
+            "context": "Auf Frage, ob er die Inhalte kenne und warum die Schwärzungen so umfangreich sind."
+          },
+          {
+            "text": "Ganz ehrlich gesagt, weiß ich es nicht genau. Ich weiß es einfach nicht.",
+            "timestamp": "00:10:57",
+            "context": "Auf die Frage, wie viele Menschen den geschwärzten Bericht kennen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Informationsfreiheit",
+          "Verwaltungstransparenz",
+          "Geheimschutz"
+        ]
+      },
+      {
+        "title": "Qualifizierung von Gesundheitsministern und fachliche Kompetenz",
+        "timestamp_range": "00:12:57 - 00:14:57",
+        "theme_description": "Lauterbach äußert sich zur Frage, ob ein Gesundheitsminister Fachkompetenz im Bereich haben sollte.",
+        "question_asked": "Der Moderator fragt, ob es hilft, wenn Menschen, die Ministerien vorstehen, von dem Gebiet, das sie vertreten, etwas verstehen. Context: Es geht um die Frage, ob die aktuelle Gesundheitsministerin (Nachfolgerin) Sachkompetenz hat.",
+        "question_intent": "Der Moderator will kritisieren, dass Lauterbachs Nachfolgerin keine Gesundheitsexpertin ist.",
+        "position": "Lauterbach antwortet nuanciert: 'Es kommt darauf an, wie der Minister tickt. Ich arbeite gerne auf der Grundlage wissenschaftlicher Studien und Evidenz, auch gerne mit Wissenschaftlern zusammen. Ich bin der Typ, ich mache Politik in den Bereichen, wo ich mich auskenne. Ich bin jetzt im Forschungsausschuss. Ich leite ihn, bin dort Ausschussvorsitzender.' Er betont seine eigene Praxis, aber verteidigt auch andere Minister: 'Aber es gibt auch Minister, die sind fachfremd in den Bereich gekommen, waren trotzdem gute Minister.' Beispiel: Ulla Schmidt war Gesundheitsministerin ohne Fachkompetenz, 'es war eine gute Zeit'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die Frage mit einer differenzierten Position (nicht zwingend, aber hilfreich), weicht aber der direkten Kritik an seiner Nachfolgerin aus, indem er sich selbst in den Mittelpunkt stellt statt auf die Frage einzugehen.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es kommt darauf an, wie der Minister tickt",
+          "Ich arbeite gerne auf der Grundlage wissenschaftlicher Studien und Evidenz",
+          "es gibt auch Minister, die sind fachfremd... waren trotzdem gute Minister"
+        ],
+        "quotes": [
+          {
+            "text": "Es kommt darauf an, wie der Minister tickt. Ich arbeite gerne auf der Grundlage wissenschaftlicher Studien und Evidenz, auch gerne mit Wissenschaftlern zusammen.",
+            "timestamp": "00:14:57",
+            "context": "Auf die Frage, ob ein Minister Fachkompetenz haben sollte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ministerielle Qualifikation",
+          "Wissenschaftsorientierte Politikgestaltung",
+          "Behördliche Kompetenz"
+        ]
+      },
+      {
+        "title": "Aufarbeitung der Maskenbeschaffung und Fehler",
+        "timestamp_range": "00:20:51 - 00:24:57",
+        "theme_description": "Lauterbach erläutert, wann er erkannte, dass etwas mit der Maskenbeschaffung schiefgelaufen war, und wie er reagierte.",
+        "question_asked": "Der Moderator zitiert Lauterbachs früheren Satz ('Ich glaube, dass wir die Situation bei den Maskengeschäften nicht belassen können. Das höhlt das Vertrauen aus') und fragt, wann Lauterbach klar war, dass furchtbar etwas schief gelaufen ist.",
+        "question_intent": "Der Moderator möchte verstehen, ab wann Lauterbach die Größe des Problems erkannt hat und wie schnell er reagierte.",
+        "position": "Lauterbach sagt: 'Ich habe systematisch versucht zu verstehen, was ist damals gelaufen.' Er bemerkte, dass 'die eigenen Leute es nicht wussten' und es eine 'unsichere Situation' gab. Besonders störten ihn Fälle wie 'Emex, wo man 50 Millionen Provision bekommt'. Er hätte das nicht 'als Minister drüber gehen und sagen können, dass es so passiert'. Deshalb beauftragte er Sudhoff. Sie war qualifiziert durch ihre Erfahrung mit Beschaffung. Nachträglich sagt er: 'wenn ich mir eines vorwerfen sollte... hätte ich Frau Sudhoff früher mit dieser Aufgabe betraut.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die zentrale Frage, wann er merkte, dass es schief gelaufen war (zu Beginn seiner Amtszeit, als er die Unstimmigkeiten entdeckte) und erklärt, warum er Sudhoff beauftragte. Er gibt auch eine Selbstkritik ab (hätte früher handeln können).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich habe systematisch versucht zu verstehen, was ist damals gelaufen",
+          "Ich wollte den Schaden begrenzen",
+          "Da ist mir aufgefallen, dass wir eine unsichere Situation haben"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe systematisch versucht zu verstehen, was ist damals gelaufen. Zum Teil ist mir aufgefallen, die eigenen Leute wussten es nicht.",
+            "timestamp": "00:20:51",
+            "context": "Lauterbach erläutert, wie er die Probleme der Maskenbeschaffung entdeckte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Pandemie-Beschaffung",
+          "Korruptionsprävention",
+          "Ministerielle Aufsicht"
+        ]
+      },
+      {
+        "title": "Prozessstrategie und Olaf Scholz",
+        "timestamp_range": "00:24:14 - 00:25:45",
+        "theme_description": "Lauterbach offenbart, dass auch Finanzminister Scholz in den Bericht verstrickt ist, und erwähnt, dass die Prozessstrategie überdacht wurde.",
+        "question_asked": "Moderator fragt, ob im Bericht steht, dass Olaf Scholz als Finanzminister fehlende Lieferungen bezahlte.",
+        "question_intent": "Der Moderator möchte verstehen, in welchem Ausmaß auch Scholz in die Maskenbeschaffung verstrickt war.",
+        "position": "Lauterbach sagt: 'Was ganz klar ist, übrigens als Olaf Scholz auch nicht unkritisch weggekommen. Er hat als Finanzminister Beträge genehmigen müssen, wo sich im Nachhinein herausgestellt, dass die Ware wieder Gegenstand, nicht beliefert wurde, sondern die Beträge nur bezahlt worden. Es wurde Ramsch geliefert.' Das führte dazu, dass Lauterbach und Sudhoff die Prozessstrategie überdenken mussten. Er weigert sich aber, weitere Details zu nennen: 'Details tun hier nichts zur Sache.' Seine Selbstkritik: 'wenn ich mir eines vorwerfen sollte... hätte ich Frau Sudhoff früher mit dieser Aufgabe betraut.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach erklärt konkret, wie Scholz verstrickt war, und gibt Selbstkritik ab. Er beantwortet die Frage vollständig, weigert sich aber dann, weitere Details zu offenbaren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Olaf Scholz als Finanzminister... Beträge genehmigen musste, wo sich im Nachhinein herausgestellt, dass... Ramsch geliefert\" wurde",
+          "hätte ich Frau Sudhoff früher mit dieser Aufgabe betraut"
+        ],
+        "quotes": [
+          {
+            "text": "Was ganz klar ist, übrigens als Olaf Scholz auch nicht unkritisch weggekommen. Er hat als Finanzminister Beträge genehmigen müssen, wo sich im Nachhinein herausgestellt, dass die Ware wieder Gegenstand, nicht beliefert wurde, sondern die Beträge nur bezahlt worden.",
+            "timestamp": "00:24:14",
+            "context": "Auf die Frage, ob der Bericht auch Scholz kritisiert."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Finanzkontrolle",
+          "Regierungsverantwortung",
+          "Beschaffungsskandal"
+        ]
+      },
+      {
+        "title": "Jens Spahn und Befragung im Bericht",
+        "timestamp_range": "00:27:02 - 00:30:04",
+        "theme_description": "Der Moderator stellt fest, dass Jens Spahn als zentrale Figur nicht befragt wurde, und wirft Lauterbach vor, dies sei Parteitaktik.",
+        "question_asked": "Der Moderator fragt direkt: 'Jens Spahn ist die zentrale Figur in diesem Bericht. Stimmt das oder stimmt das nicht?' und weist auf die fehlende Befragung hin.",
+        "question_intent": "Der Moderator möchte aufdecken, ob Sudhoffs Bericht absichtlich unvollständig blieb, um einen CDU-Minister zu schonen.",
+        "position": "Lauterbach verteidigt sich: 'Es war nicht die Aufgabe des Berichtes... die Aufgabe des Berichtes war festzustellen, was damals im Haus gemacht worden.' Er argumentiert, dass 'Weder Angela Merkel, noch Olaf Scholz, noch ich noch Jens Spahn, wir als die politischen Träger sind befragt worden.' Dies sei korrekt, da der Bericht 'festgestellt, was damals im Haus gemacht worden' habe. Die politischen Verantwortungsträger sollten nicht wie normale Zeugen behandelt werden. Später sagt er: 'Ich verstehe ehrlich gesagt nicht, warum denn nicht Jens Spahn zur Verfügung gestellt wurde' – meint damit aber die Berichtseinsicht, nicht die Befragung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach weicht aus, indem er ein unterschiedliches Verständnis der Aufgabe vorstellt (Vorgänge versus Befragung von Ministern). Er gibt nicht zu, dass die fehlende Befragung ein Mangel ist, und beantwortet damit die implizite Frage nach Parteitaktik nicht direkt.",
+        "answer_type": "themenwechsel",
+        "concrete_statements": [
+          "Es war nicht die Aufgabe des Berichtes, die Aufgabe des Berichtes war festzustellen, was damals im Haus gemacht worden",
+          "Kein Politiker ist gefragt worden"
+        ],
+        "quotes": [
+          {
+            "text": "Es war nicht die Aufgabe des Berichtes, die Aufgabe des Berichtes war festzustellen, was damals im Haus gemacht worden. Weder Angela Merkel, noch Olaf Scholz, noch ich noch Jens Spahn, wir als die politischen Träger sind befragt worden.",
+            "timestamp": "00:27:59",
+            "context": "Auf den Vorwurf, dass Spahn als Zentrum des Skandals nicht befragt wurde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Unabhängige Berichterstattung",
+          "Kontrolle der Exekutive",
+          "Amtshaftung"
+        ]
+      },
+      {
+        "title": "Rente und Lebenserwartung differenzierter Bevölkerungsgruppen",
+        "timestamp_range": "01:08:47 - 01:13:53",
+        "theme_description": "Lauterbach argumentiert gegen eine Erhöhung des Renteneintrittsalters mit Hinweis auf die ungleiche Lebenserwartung zwischen Arm und Reich.",
+        "question_asked": "Der Ökonom Werding erklärt das System der Lebenserwartung und Renteneintrittsalter. Der Moderator fragt, ob wir nicht zwingend länger arbeiten müssen. Lauterbach unterricht dann ein Gegenargument.",
+        "question_intent": "Die Diskussion zielt auf die Notwendigkeit von Rentereformen ab, Werding argumentiert wissenschaftlich für höheres Renteneintrittsalter.",
+        "position": "Lauterbach bricht in emotional argumentierer Gegenkritik aus: 'Ich muss fair sein, diese Schimäre, bei uns wir machen Lebenserwartung, erstens in ganz Westeuropa werden die Menschen älter, zu wenig dafür. Die Lebenserwartung wächst nur bei denen, die gut verdienen, Beamte gewesen sind, aber in einfachen Menschen, da haben wir keine Zugewinne.' Er betont, dass einfache Arbeiter '8-7 Jahre früher' sterben und wenn man das Renteneintrittsalter erhöht, 'haben die nichts davon.' Ein Bauarbeiter, der bis 70 arbeitet, lebt im Durchschnitt bis 72–73: 'diese Leute... die leben im Durchschnitt bis 72,73, dann haben die 50 Jahre eingezahlt, haben zwei Jahre Rente.' Das sei 'ungerecht'. Lauterbach kritisiert auch: 'Das System ist kaputt, Beamten bezahle ich im Durchschnitt 20 Jahre Rente... aber die Menschen, die hart gearbeitet haben... sterben früher... dass es so ungerecht.'",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Lauterbach antwortet nicht auf Werdings wissenschaftliche Position zum Renteneintrittsalter, sondern lenkt um zu einer Kritik an der Ungerechtigkeit des Systems (unterschiedliche Lebenserwartung, Beamtenversorgung). Er pivotiert von der theoretischen Rentenfrage zu einer moralischen Gerechtigkeitsfrage.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Die Lebenserwartung wächst nur bei denen, die gut verdienen",
+          "Das System ist kaputt",
+          "(Beamtenversorgung vs. Arbeiter)",
+          "haben zwei Jahre Rente",
+          "(kritische Charakterisierung für Arbeiter)"
+        ],
+        "quotes": [
+          {
+            "text": "Eine hohe Pension für 20 Jahre im Durchschnitt bezahlt wird, aber für denjenigen, der Bau gearbeitet hat nur 2-3 Jahre bezweifelt, dass es nicht richtig.",
+            "timestamp": "01:10:48",
+            "context": "Lauterbach vergleicht die Rentendauer von Beamten mit der von Arbeitern und kritisiert die Ungerechtigkeit."
+          },
+          {
+            "text": "Die Lebenserwartung wächst nur bei denen, die gut verdienen, Beamte gewesen sind, aber in einfachen Menschen, da haben wir keine Zugewinne.",
+            "timestamp": "01:12:48",
+            "context": "Lauterbach widerlegt die Annahme einer allgemeinen Lebenserwartungssteigerung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentensystem",
+          "Sozialpolitik",
+          "Altersarmut",
+          "Beamtenversorgung"
+        ]
+      },
+      {
+        "title": "Bundeszuschuss zur Rentenversicherung und regionale Unterschiede",
+        "timestamp_range": "01:08:47 - 01:10:48",
+        "theme_description": "Lauterbach verteidigt den Bundeszuschuss zur Rentenversicherung gegen Forderungen, ihn zu kürzen.",
+        "question_asked": "Werding und Moderator diskutieren die Kürzung versicherungsfremder Leistungen. Der implizite Vorschlag ist, Leistungen zu streichen, um Haushalt zu sparen.",
+        "question_intent": "Die Frage zielt darauf ab, zu verstehen, wie man Haushaltsspielraum schafft, indem man nicht-versicherungsfremde Rentenleistungen kürzt.",
+        "position": "Lauterbach widersetzt sich: 'Ich habe es jeden Tag, lass uns dem Bundeszuschuss kürzen. Wenn man das Kurzen wurde, der größte Teil sind tatsächlich die Renten der Menschen aus Ostdeutschland. Die einfach lange Zeit nicht eingezahlt in das deutsche System... Diese Renten sind in Brandenburg, Mecklenburg-Vorpommern, Sachsen, Sachsen Anhalt, die schrumpfen zusammen wie ein Soufflee.' Er argumentiert, dass ein großer Teil des Bundeszuschusses die Renten in den neuen Bundesländern unterstützt, die besonders unter regionalen Wirtschaftsproblemen leiden.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach argumentiert konkret gegen eine Kürzung mit regionalem Argument (Ostdeutschland), beantwortet aber nicht direkt, wie der Haushalt ansonsten stabilisiert werden kann oder welche Alternative er sieht.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "der größte Teil sind tatsächlich die Renten der Menschen aus Ostdeutschland",
+          "die schrumpfen zusammen wie ein Soufflee"
+        ],
+        "quotes": [
+          {
+            "text": "Ein großer Teil, ich sage nicht alles, aber ein großer Teil, unterstützt die Renten in den neuen Bundesländern.",
+            "timestamp": "01:08:47",
+            "context": "Lauterbach verteidigt den Bundeszuschuss gegen Kürzungsforderungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenfinanzierung",
+          "Regionale Wirtschaftspolitik",
+          "Ost-West-Unterschiede"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Emex-Masken kosteten etwa 6 Euro pro Stück und brachten 50 Millionen Euro Provision.",
+        "timestamp": "00:37:45"
+      },
+      {
+        "claim": "Olaf Scholz als Finanzminister genehmigte Zahlungen für Masken, die nicht geliefert oder als 'Ramsch' geliefert wurden.",
+        "timestamp": "00:24:14"
+      },
+      {
+        "claim": "Lauterbach ist Ausschussvorsitzender im Forschungsausschuss des Bundestags.",
+        "timestamp": "00:14:57"
+      },
+      {
+        "claim": "Ulla Schmidt war Gesundheitsministerin und war nicht vom Fach.",
+        "timestamp": "00:14:57"
+      },
+      {
+        "claim": "Menschen mit niedrigerem Einkommen sterben durchschnittlich 8–7 Jahre früher als wohlhabendere Menschen.",
+        "timestamp": "01:10:48"
+      }
+    ]
+  }
+}

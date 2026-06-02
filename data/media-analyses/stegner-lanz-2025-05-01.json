@@ -1,0 +1,360 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-1-mai-2025-100",
+    "video_id": "lanz-2025-05-01",
+    "politician": "Ralf Stegner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "437e8d8f9e6d169e",
+    "transcript_chars": 48990,
+    "caption_lines": 2504,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20813,
+    "tokens_out": 7620,
+    "cost_usd": 0.0235652,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-02T16:33:28.483Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner (SPD, MdB) diskutierte in dieser Talkshow über innenpolitische und außenpolitische Fragen: die geringe SPD-Mitgliederbeteiligung bei der Koalitionsabstimmung, die Rolle Saskia Eskens, den Umgang mit der AfD sowie den Nahostkonflikt und die deutsche Außenpolitik. Er argumentierte substanziell zu seinen Positionen, zeigte dabei aber auch eine Neigung zum Pivot auf Gegenpunkte, besonders bei AfD-Fragen, und weigerte sich, persönliche Wahlentscheidungen öffentlich zu machen.",
+    "themes": [
+      {
+        "title": "SPD-Mitgliederbeteiligung bei Koalitionsabstimmung",
+        "timestamp_range": "00:04:06 - 00:05:39",
+        "theme_description": "Bewertung der 50%-Beteiligung bei der digitalen Koalitionsabstimmung und Vergleich mit CSU-Beteiligung.",
+        "question_asked": "Der Moderator fragt, wie Ralf Stegner die geringe Beteiligung von nur 50% der SPD-Mitglieder bei der digitalen Koalitionsabstimmung erklärt.",
+        "question_intent": "Verständnis dafür, warum es bei einem binären Abstimmungsergebnis relativ wenig Partizipation gab.",
+        "position": "Stegner betont, dass es sich um eine rein digitale Abstimmung handelte, wobei die SPD-Strukturen ein Durchschnittsalter von 60 Jahren hätten. Er argumentiert, dass 200.000 Teilnehmer nicht wenig seien und dass technische sowie finanzielle Gründe für die Hürden mitverantwortlich waren. Er hätte sich mehr Beteiligung gewünscht, aber sieht das Ergebnis nicht als problematisch an.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner adressiert die Frage nach Gründen für die geringe Quote, nennt aber eher strukturelle Erklärungen (Alter, digitale Hürden) als eine inhaltliche Bewertung des Abstimmungsmodus selbst. Die Frage nach demokratischer Legitimität wird nur teilweise beantwortet.",
+        "quotes": [
+          {
+            "text": "Man muss sehen, es war eine rein digitale Abstimmung. Bei 83.000 Leuten, wir haben teilweise Strukturen, mit einem Durchschnittsalter von 60 Jahren.",
+            "timestamp": "00:04:06",
+            "context": "Erklärung für Beteiligungsquote bei digitaler Abstimmung"
+          },
+          {
+            "text": "Ich hätte mir auch gerne mehr Beteiligung gewünscht. So schlecht fand ich es dennoch nicht.",
+            "timestamp": "00:05:01",
+            "context": "Bewertung der 50%-Quote"
+          }
+        ],
+        "concrete_statements": [
+          "200.000 Menschen haben sich beteiligt",
+          "Digitale Abstimmung war herausfordernd für ältere Mitgliedschaft",
+          "Finanzielle und Geschwindigkeitsgründe spielten eine Rolle"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag SPD-Grüne-CDU/CSU",
+          "Parteidemokratie",
+          "Digitalisierung Parteienstruktur"
+        ]
+      },
+      {
+        "title": "Koalitionsvertrag und CDU-Haltung zu Migration",
+        "timestamp_range": "00:06:53 - 00:10:13",
+        "theme_description": "Bewertung der SPD-Basiszustimmung (84%) und Verhandlungsergebnisse bei Migration zwischen SPD und Union.",
+        "question_asked": "Der Moderator und Johannes Winkel deuten an, dass die SPD-Basis konservativer ist als die SPD-Führung und dass die Migrationsrhetorik stärker ist als die Substanz.",
+        "question_intent": "Klärung, ob die SPD in den Koalitionsverhandlungen bei Migration wirklich ihre Positionen durchgesetzt oder eher eine Union-Position akzeptiert hat.",
+        "position": "Stegner argumentiert, dass die hohe Zustimmung zeigt, dass die SPD-Basis versteht, es gibt keine demokratische Alternative zur rechtsradikalen AfD-Regierung. Er widerspricht Winkels Interpretation einer konservativen Basis. Später kritisiert er, dass die CDU-Rhetorik zu Migration deutlich christdemokratischer ist als die Substanz — das ist laut Stegner mehr Schein als Sein. Er betont, dass die SPD für Ordnung, aber auch für Humanität und Asylrecht steht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner adressiert die Frage nach Basiszustimmung mit einer Antwort auf die strukturellen Bedingungen (kein rechtsradikales Risiko), weicht aber auf eine Gegenpunkt-Kritik an der Union aus, statt direkt zu sagen, wie viel die SPD selbst bei Migration durchgesetzt hat.",
+        "quotes": [
+          {
+            "text": "Die SPD weiß, dass wenn es keine demokratische Alternative gibt, sondern die Alternative heißt rechtsradikalen Einfluss zu haben, die Opposition hat gut verhandelt.",
+            "timestamp": "00:06:53",
+            "context": "Erklärung für hohe Basiszustimmung"
+          },
+          {
+            "text": "Die Rhetorik ist deutlichst christdemokratischer als die Substanz. Von daher ist das mehr Schein als Sein.",
+            "timestamp": "00:07:59",
+            "context": "Kritik an CDU-Position zu Migration im Koalitionsvertrag"
+          }
+        ],
+        "concrete_statements": [
+          "SPD-Basis versteht, dass es keine rechtsradikale Alternative gibt",
+          "SPD setzt auf Ordnung UND Humanität",
+          "Asylrecht muss beibehalten werden",
+          "CDU-Rhetorik zu Migration ist mehr Schein als Sein"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik Koalitionsvertrag",
+          "Asylrecht",
+          "Flüchtlingspolitik"
+        ]
+      },
+      {
+        "title": "Rolle und Konsequenzen für Saskia Esken",
+        "timestamp_range": "00:11:05 - 00:14:40",
+        "theme_description": "Frage nach persönlicher Schuld und öffentlicher Debatte um Saskia Esken im Zusammenhang mit Koalitionsverhandlungen und Kabinettsbildung.",
+        "question_asked": "Der Moderator stellt mehrfach Fragen dazu, wie die öffentliche Debatte um Saskia Esken und ihre mögliche Schuld am Scheitern von Koalitionsverhandlungen zu bewerten ist, und ob Stegner sie in die Parteiführung wählen würde.",
+        "question_intent": "Klärung, ob Stegner die öffentliche Kritik an Esken für gerechtfertigt hält und ob es Konsequenzen für ihre Position geben sollte.",
+        "position": "Stegner lehnt die personalisierte Debatte ab. Er argumentiert, dass es unfair und nicht sachgerecht ist, eine Person als alleinig schuldig zu machen. Er kritisiert die öffentliche Form der Debatte als unangemessen und meint, dass auch andere Akteure, darunter Klingbeil, Verantwortung tragen. Er unterstreicht, dass nicht nur Individuen, sondern Partei, Fraktion und Bundestag entscheiden, wer welche Rollen übernimmt. Zur Frage seiner persönlichen Wahlentscheidung lehnt Stegner eine öffentliche Darlegung ab.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf die moralisch-politische Frage nach Schuld und Konsequenzen, weigert sich aber, konkret zur direkten Frage zu antworten, ob er Esken (wieder) wählen würde. Er pivotiert stattdessen zur Kritik an der Debattenkultur selbst.",
+        "quotes": [
+          {
+            "text": "Eine Person an Gut und Böse festmachen, das finde ich miserabel.",
+            "timestamp": "00:11:05",
+            "context": "Kritik an Personalisierung von Verantwortung"
+          },
+          {
+            "text": "Ich finde, ich müsste das nicht öffentlich darlegen, wen ich wähle. Wenn ich solche Debatten schlecht finde, beteilige ich mich dabei nicht auch noch öffentlich.",
+            "timestamp": "00:13:23",
+            "context": "Ablehnung, öffentlich zur Wahlentscheidung zu stehen"
+          }
+        ],
+        "concrete_statements": [
+          "Öffentliche Debatte über Esken ist unangemessen",
+          "Gesamte Führung trägt Verantwortung, nicht nur eine Person",
+          "Lars Klingbeil trägt ebenfalls Verantwortung",
+          "Ich werde öffentlich nicht darlegen, wie ich wählen werde"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen 2025",
+          "Parteienführung SPD",
+          "Ministerienbesetzung"
+        ]
+      },
+      {
+        "title": "Gewinn und Verlust aus Union-Koalition für SPD",
+        "timestamp_range": "00:17:53 - 00:19:21",
+        "theme_description": "Bewertung der Ministerialbesetzungen und strategischen Positionen SPD in Großkoalition mit Union.",
+        "question_asked": "Der Moderator fragt, wie Stegner die konservative Aufstellung der Union in den Ministerien bewertet und welche Implikationen das für die SPD hat.",
+        "question_intent": "Verständnis dafür, ob die SPD strategisch profitiert von konservativen Union-Ministern.",
+        "position": "Stegner sagt, die Union hat eine 'sehr konservative Aufstellung' gewählt. Er schätzt einzelne Kollegen (Wadephul), findet aber manche Besetzungen 'erstaunlich' (z. B. Kulturstaatsminister als Konservativer). Das lässt 'Entwicklungspotential für uns'. Er sieht es als taktischen Vorteil: Es sei leichter mit einem Konservativen aus der Union zurechtzukommen. SPD werde sich als 'Gegengewicht' begreifen, ähnlich wie unter Merkel.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet substanziell mit einer strategischen Analyse: Er benennt konkrete Ministerposten, bewertet sie und leitet daraus eine SPD-Positionierung ab.",
+        "quotes": [
+          {
+            "text": "Mein Eindruck ist, dass die Union eine sehr konservative Aufstellung gewählt hat. [...] Das lässt Entwicklungspotential für uns. Wir werden uns als Gegengewicht begreifen.",
+            "timestamp": "00:17:53",
+            "context": "Strategische Einordnung von Union-Ministerialbesetzungen"
+          }
+        ],
+        "concrete_statements": [
+          "Union hat konservative Ministerialaufstellung",
+          "Kulturstaatsminister-Besetzung ist konservativ",
+          "Entwicklungspotential für SPD vorhanden",
+          "SPD positioniert sich als Gegengewicht",
+          "Ähnlich wie unter Merkel-CDU"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsregierung Ministerialbesetzung",
+          "SPD-Strategie Großkoalition",
+          "Arbeitsteilung CDU-SPD"
+        ]
+      },
+      {
+        "title": "AfD-Normalisierung und Debattenkultur",
+        "timestamp_range": "00:24:31 - 00:38:50",
+        "theme_description": "Kritik an Suggestionen zur AfD-Normalisierung durch CDU/CSU und Debattenkultur gegenüber konservativen Positionen.",
+        "question_asked": "Der Moderator und Stegner diskutieren über Aussagen des CDU-Fraktionsvorsitzenden zur Normalisierung der AfD und über die richtige Balance zwischen konservativ-legitim und rechtsextrem.",
+        "question_intent": "Klärung, ob und inwieweit die Union versucht, die AfD zu normalisieren, und ob eine kritische Debattenkultur gegenüber der AfD angemessen ist.",
+        "position": "Stegner lehnt die Idee ab, dass Konservative und Rechtsextremisten durch 'Canceling' nicht zu unterscheiden sind. Er kritisiert, dass der CDU-Fraktionsvorsitzende die AfD normalisiert, während seine Partei gleichzeitig sagt, die AfD will die CDU zerstören. Er argumentiert, dass die SPD von der Union unter Druck gesetzt wird ('entweder ihr stimmt mit uns oder wir stimmen mit den Rechtsradikalen'). Später sagt er, dass die real existierenden Pläne zur Schwarz-Blau-Koalition zeigen, dass es mehr als nur Geraune gibt. Er betont, dass Nazis in AfD-Reihen sind und Remigrationspläne mit dem Grundgesetz unvereinbar sind.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage nach AfD-Normalisierung direkt und substanziell mit einer klaren Position: Es gibt keine Legitimität für Normalisierung, während gleichzeitig verfassungsfeindliche Ziele verfolgt werden.",
+        "quotes": [
+          {
+            "text": "Ich finde, man verharmlost die wirklich Rechtsextremen, wenn man uns Ratschläge gibt - zu sagen, entweder, ihr stimmt mit uns oder wir stimmen mit den Rechtsradikalen. Das kann es nicht noch einmal geben.",
+            "timestamp": "00:24:46",
+            "context": "Kritik an Union-Druck auf SPD bezüglich AfD"
+          },
+          {
+            "text": "Haben Sie im Thüringer Landtag gesehen, wie deren Präsident sich verhalten hat? Da finde ich es harmlos, zu sagen, wir nehmen den, der am längsten im Parlament ist. Das war eine Katastrophe.",
+            "timestamp": "00:30:04",
+            "context": "Kritik an Änderung der Alterspräsidentenregel für die AfD"
+          }
+        ],
+        "concrete_statements": [
+          "CDU-Fraktionsvorsitzender spricht von AfD-Normalisierung",
+          "Es gibt konkrete Schwarz-Blau-Pläne in der CDU",
+          "AfD verfolgt verfassungsfeindliche Ziele (Remigration)",
+          "Nazis in AfD-Reihen, Putschpläne dokumentiert",
+          "SPD wird von Union erpresst",
+          "Man darf AfD kritisieren und muss das tun"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Umgang Bundestag",
+          "Debattenkultur Verfassungsschutz",
+          "Schwarz-Blau-Koalitionen Länder"
+        ]
+      },
+      {
+        "title": "Fehleranalyse und Learnings für SPD-Oppositionsarbeit",
+        "timestamp_range": "00:38:08 - 00:38:50",
+        "theme_description": "Reflexion über SPD-Fehler in der Vergangenheit bei Themenbesetzung und Populismus-Bekämpfung.",
+        "question_asked": "Im Kontext der AfD-Diskussion: Hätte weniger Aufmerksamkeit für die AfD und mehr Eigenarbeit der SPD zu Kernthemen geholfen?",
+        "question_intent": "Verständnis dafür, wie die SPD künftig effizienter gegen Populismus ankämpfen kann.",
+        "position": "Stegner räumt ein, die SPD hätte einen Fehler gemacht, indem sie 'bestimmte Themen den Populisten überlassen' hat. Man habe 'manche Themen vernachlässigt, die für den Bürger wichtig sind'. Er betont aber gleichzeitig, dass mit jedem Union-Kollegen klar sein muss, dass die SPD 'mit denen [der AfD] keine gemeinsame Sache machen' wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet sachlich mit Selbstkritik (Fehler bei Themenbesetzung) und klarer Abgrenzung zur AfD-Zusammenarbeit.",
+        "quotes": [
+          {
+            "text": "Ich glaube, wir haben den Fehler gemacht, dass wir bestimmte Themen den Populisten überlassen haben. Wir haben manche Themen vernachlässigt, die für den Bürger wichtig sind.",
+            "timestamp": "00:38:08",
+            "context": "Selbstkritik zur SPD-Oppositionsarbeit"
+          }
+        ],
+        "concrete_statements": [
+          "SPD hat Themen an Populisten überlassen",
+          "Wichtige Bürgerthemen wurden vernachlässigt",
+          "Mit AfD keine gemeinsame Sache möglich"
+        ],
+        "related_bundestag_topics": [
+          "Oppositionsarbeit SPD",
+          "Populismus-Bekämpfung",
+          "Themenbesetzung Bundestag"
+        ]
+      },
+      {
+        "title": "Nahostkonflikt im Koalitionsvertrag",
+        "timestamp_range": "00:44:39 - 00:47:31",
+        "theme_description": "Bewertung der Behandlung des Nahostkonflikts und Palästinas im neuen Koalitionsvertrag sowie deutsch-israelische Beziehungen.",
+        "question_asked": "Der Moderator fragt, wie der Nahostkonflikt in den Koalitionsverhandlungen behandelt wurde und ob die im Vertrag verankerten Aussagen ausreichend sind.",
+        "question_intent": "Verständnis dafür, ob die SPD ihre Positionen zum Nahost-Konflikt in den Koalitionsvertrag einbringen konnte.",
+        "position": "Stegner sagt, es wurde nicht viel über Nahostkonflikt verhandelt; Fokus lag auf USA und Ukraine. Er kritisiert, dass Deutschland bei beiden Dingen gleichzeitig handeln müsse: Holocaust-Verantwortung und Kritik an Netanjahus rechtsradikaler Regierung. Das macht die deutsche Position schwierig. Er findet die Aussagen im Koalitionsvertrag zu Israel unzureichend und moniert, dass das Thema Vertriebene mehr Platz hat als das Leid in Gaza. Er kritisiert die 'verkorkste' deutsche Debatte, die zwischen Antisemitismus-Bekämpfung und Mitleid mit Palästinensern zerreißt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet substanziell auf die Frage nach Koalitionsvertrag-Inhalten, benennt konkrete Kritikpunkte (zu wenig zu Gaza, zu viel zu Vertriebenen) und erklärt die strukturelle Schwierigkeit (Holocaust-Verantwortung + Kritik an Israel gleichzeitig).",
+        "quotes": [
+          {
+            "text": "Wir sind in Deutschland nicht in der Lage beides zu tun. Auf der einen Seite zu sagen, der Staat Israel existiert nur wegen dem Holocaust. Und gegen Antisemitismus vorzugehen. Gleichzeitig gilt es auf Gaza aufmerksam zu machen.",
+            "timestamp": "00:44:39",
+            "context": "Beschreibung der strukturellen Schwierigkeit deutscher Nahostpolitik"
+          },
+          {
+            "text": "Es ist unzureichend. Über die Vertriebenen steht mehr im Koalitionsvertrag.",
+            "timestamp": "00:46:25",
+            "context": "Kritik an Gewichtung im Koalitionsvertrag"
+          }
+        ],
+        "concrete_statements": [
+          "Nahostkonflikt war kein großes Verhandlungsthema",
+          "Koalitionsvertrag-Aussagen zu Israel sind unzureichend",
+          "Zu wenig Fokus auf Gaza-Leid",
+          "Deutschland hat Ansehen in arabischer Welt verloren",
+          "Debatte ist strukturell verkorkst"
+        ],
+        "related_bundestag_topics": [
+          "Deutsch-israelische Beziehungen",
+          "Nahostkonflikt Koalitionsvertrag",
+          "Holocaust-Verantwortung Staatsräson",
+          "Palästinenser Selbstbestimmung"
+        ]
+      },
+      {
+        "title": "Kriegsverbrechen und Netanjahu-Besuch Deutschland",
+        "timestamp_range": "00:58:01 - 01:07:09",
+        "theme_description": "Frage nach völkerrechtlichen Implikationen von Kriegsverbrechen-Vorwürfen gegen Israel und Haftbarkeit Netanjahus in Deutschland.",
+        "question_asked": "Der Moderator stellt dar, dass Friedrich Merz zusagte, Mittel und Wege zu finden, damit Netanjahu Deutschland besuchen kann, ohne verhaftet zu werden, obwohl es einen ICC-Haftbefehl gibt. Wie beurteilt Stegner das?",
+        "question_intent": "Klärung, ob die deutsche Regierung die Gewaltenteilung kompromittiert, wenn sie eine Sonderbehandlung für einen ICC-Anträger vornimmt.",
+        "position": "Stegner kritisiert Merz' Pressekonferenz als 'nicht besonders schlau'. Er meint, man könne nicht öffentlich erklären, dass Netanjahu in Deutschland nicht festgenommen wird. Das untergrabt die Glaubwürdigkeit der Rechtsstaatlichkeit. Er verweist auf die Doppelstandards im Umgang mit anderen Haftbefehlen (Putin) und betont, dass dieses Verhalten dem Rechtsstaat schadet.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt und sachlich auf die verfassungsrechtliche und rechtspolitische Frage. Er kritisiert nicht nur die Sache, sondern auch die Art und Weise der öffentlichen Kommunikation.",
+        "quotes": [
+          {
+            "text": "Die Pressekonferenz war nicht besonders schlau, sich so zu äußern. Dass wir nicht erklären können, ich bin dabei, es darf nicht zu der Konsequenz, dass er ausgerechnet in Deutschland festgenommen wird.",
+            "timestamp": "01:03:47",
+            "context": "Kritik an Merz' öffentlicher Zusage zur Netanjahu-Behandlung"
+          }
+        ],
+        "concrete_statements": [
+          "Merz' Pressekonferenz-Aussage war taktisch unklug",
+          "Man sollte Rechtsunsicherheit nicht öffentlich machen",
+          "Doppelstandards gegenüber anderen Haftbefehlen problematisch",
+          "Schädigt das Vertrauen in Rechtsstaatlichkeit"
+        ],
+        "related_bundestag_topics": [
+          "Internationaler Strafgerichtshof ICC",
+          "Netanjahu Haftbefehl",
+          "Deutsche Außenpolitik Nahost",
+          "Gewaltenteilung Rechtsstaat"
+        ]
+      },
+      {
+        "title": "Siedlungspolitik und Zwei-Staaten-Lösung",
+        "timestamp_range": "01:06:20 - 01:12:03",
+        "theme_description": "Bewertung der israelischen Siedlungspolitik im Westjordanland und Machbarkeit einer Zwei-Staaten-Lösung.",
+        "question_asked": "Der Moderator zeigt, dass die SPD wollte, die aktuelle Siedlungspolitik solle als Verstoß gegen Völkerrecht benannt werden, und fragt, warum die Union das akzeptierte.",
+        "question_intent": "Verständnis dafür, wie eine Zwei-Staaten-Lösung unter fragmentiertem Terrain noch möglich ist.",
+        "position": "Stegner sagt, die Zwei-Staaten-Lösung wird 'torpediert'. Es wird Gebietstausch geben müssen. Die jetzige Situation braucht noch zwei Generationen, bis es funktioniert, aber die derzeitigen Generationen wachsen in gegenseitigem Hass auf. Er kritisiert Europa und Deutschland, zu wenig getan zu haben, um das zu stoppen. Er sagt, man kann nicht mit dem 'Megaphon' rumrennen, aber Europäer und Deutsche sind besonders verpflichtet.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet substanziell auf die Frage nach machbaren Lösungen. Er benennt konkrete Mechanismen (Gebietstausch) und zeitliche Dimensionen (Generationen) und überträgt Verantwortung auf Europa/Deutschland.",
+        "quotes": [
+          {
+            "text": "Das wird torpediert. Es wird Gebietstausch gegeben müssen. Wenn ich diese Zwei-Staaten-Lösung habe, dafür ist vielleicht noch 2 Generationenzeit.",
+            "timestamp": "01:11:20",
+            "context": "Bewertung der Machbarkeit einer Zwei-Staaten-Lösung"
+          },
+          {
+            "text": "Das muss man den Europäern vorwerfen, sie haben zu wenig gemacht.",
+            "timestamp": "01:11:11",
+            "context": "Kritik an europäischem Engagement"
+          }
+        ],
+        "concrete_statements": [
+          "Siedlungspolitik torpediert Zwei-Staaten-Lösung",
+          "Gebietstausch notwendig",
+          "Benötigt mehrere Generationen",
+          "Europa und Deutschland haben zu wenig getan",
+          "Hass zwischen Generationen wächst",
+          "Europäer sind besonders verpflichtet zu handeln"
+        ],
+        "related_bundestag_topics": [
+          "Palästinensische Selbstbestimmung",
+          "Westjordanland Siedlungen",
+          "Internationale Gerichtshof Palästina",
+          "Deutschlands Rolle Nahost"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Bei der SPD-Koalitionsabstimmung beteiligten sich 200.000 Mitglieder.",
+        "timestamp": "00:04:06"
+      },
+      {
+        "claim": "Die SPD-Strukturen haben ein Durchschnittsalter von 60 Jahren.",
+        "timestamp": "00:04:06"
+      },
+      {
+        "claim": "Die CSU hatte 200.000 Menschen bei ihrer Koalitionsabstimmung.",
+        "timestamp": "00:04:44"
+      },
+      {
+        "claim": "Netanjahus Partei ist rechtsradikal.",
+        "timestamp": "00:44:39"
+      },
+      {
+        "claim": "Im Koalitionsvertrag steht mehr über Heimatvertriebene als über Gaza.",
+        "timestamp": "00:46:25"
+      }
+    ]
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-16-juli-2025-100",
+    "video_id": "lanz-2025-07-16",
+    "politician": "Britta Haßelmann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "04d5a1a670f001af",
+    "transcript_chars": 56356,
+    "caption_lines": 2800,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23692,
+    "tokens_out": 9400,
+    "cost_usd": 0.0282768,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 18,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 9,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.528Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Britta Haßelmann, Vorsitzende der Grünen-Bundestagsfraktion, nahm Stellung zur gescheiterten Wahl von Verfassungsrichterin Brosius-Gersdorf. Sie verteidigte die Kandidatin leidenschaftlich gegen Kampagnen und Plagiatsvorwürfe, kritisierte das Führungsversagen von Union und CDU-Spitze scharf und forderte klare Verantwortlichkeiten ein. Ihr Ton war engagiert und teilweise emotional, besonders bei Fragen zur Geschlechterbehandlung und demokratischen Standards.",
+    "themes": [
+      {
+        "title": "Bewertung des Fernsehauftritts von Brosius-Gersdorf",
+        "timestamp_range": "00:04:53 - 00:07:06",
+        "theme_description": "Haßelmann äußert ihre Einschätzung des öffentlichen TV-Gesprächs der Kandidatin mit dem Moderator.",
+        "question_asked": "Haßelmann, haben Sie den Auftritt von Frau Brosius-Gersdorf wahrgenommen, und wie bewerten Sie ihn?",
+        "question_intent": "Der Moderator will wissen, wie die Grünen den TV-Auftritt der Kandidatin einschätzen.",
+        "position": "Haßelmann würdigte den Auftritt als sehr gut und lobte den Respekt vor Brosius-Gersdorf für ihren Mut. Sie beschrieb das Gespräch als nachdenklich und nicht vorhersehbar in Frage und Antwort. Sie betonte, dass Brosius-Gersdorf als hervorragende Juristin ihre Positionen zur Rechtsbewegung klar dargelegt habe und dies für an der Materie Interessierte wertvoll gewesen sei. Die Kandidatin habe sich ihre \"Ehre zurückgeholt\" nach Vorwürfen und Falschdarstellungen, insbesondere da der zentrale Plagiatsvorwurf der CDU-Fraktionsgeschäftsführung \"wie ein Kartenhaus zusammengefallen\" sei.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die Frage zur Wahrnehmung des Auftritts substantiell und mit konkreten inhaltlichen Punkten: Sie bewertet den Auftritt positiv, nennt Gründe (Mut, Klarheit juristischer Position, Entkräftung von Plagiatsvorwürfen) und würdigt die Juristin. Sie adressiert direkt die Frage nach ihrer Wahrnehmung und Bewertung.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich fand den Auftritt sehr gut, ich habe großen Respekt davor, dass sie sich das getraut hat",
+          "Der zentrale Argument des Fraktionsgeschäftsführer der CDU-Fraktion war der Plagiatsvorwurf. Der ist heute wie ein Kartenhaus zusammengefallen",
+          "Es war ein Stück weit sich die Ehre zurück holen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich fand den Auftritt sehr gut, ich habe großen Respekt davor, dass sie sich das getraut hat. Ich fand das ein sehr nachdenkliches Gespräch zwischen Ihnen und Frau Brosius-Gersdorf.",
+            "timestamp": "00:05:02",
+            "context": "Moderator fragt Haßelmann nach ihrer Wahrnehmung des TV-Auftritts von Brosius-Gersdorf"
+          },
+          {
+            "text": "Der zentrale Argument des Fraktionsgeschäftsführer der CDU-Fraktion war der Plagiatsvorwurf. Der ist heute wie ein Kartenhaus zusammengefallen.",
+            "timestamp": "00:05:40",
+            "context": "Haßelmann erklärt, warum sie den Auftritt besonders wertvoll fand"
+          }
+        ]
+      },
+      {
+        "title": "Versachlichung vs. böswillige Unterstellungen gegen Brosius-Gersdorf",
+        "timestamp_range": "00:13:03 - 00:15:04",
+        "theme_description": "Haßelmann betont, dass der TV-Auftritt zur Versachlichung der Debatte beitrug und gegen vorherige Falschdarstellungen der Kandidatin ankämpfte.",
+        "question_asked": "Implizite Frage zu Haßelmanns Bewertung: Trug der Auftritt zur Versachlichung bei oder verstärkte er Polarisierung?",
+        "question_intent": "Der Moderator und die Diskussionsteilnehmer versuchen, die sachliche vs. emotionale Qualität der Debatte zu bewerten.",
+        "position": "Haßelmann argumentiert, dass es vor vier bis sechs Wochen massive böswillige Unterstellungen gegen Brosius-Gersdorf gab (falsche Positionen, Vorwurf von Abtreibungen bis zum neunten Monat). Der TV-Auftritt habe gezeigt, dass Brosius-Gersdorf als Wissenschaftlerin in einer Kommission oder Universität Abwägungen trifft, nicht dogmatisch vorgeht. Dies trage zur Klärung bei. Sie betont: Wer sich mit rationalen Argumenten auseinandersetzen möchte, um zu beurteilen, ob Menschen Richterin am Bundesverfassungsgericht werden können, müsse nach gestern mehr Klarheit sehen. Das Bundesverfassungsgericht sei ein Kollegialgremium, in dem es um juristische Abwägungen, nicht Einheit der Auffassungen, gehe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann antwortet substantiell auf die Frage nach Versachlichung: Sie dokumentiert vorherige Unterstellungen, beschreibt konkret, wie der Auftritt Positionen klargemacht habe, und ordnet das in den größeren Kontext von Richterwahl und Verfassungsgericht ein. Sie adressiert direkt die sachlich-inhaltliche Qualität des Auftritts.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Diese ganzen Argumente... was sind alles für Anwürfe, für verstellte Positionen, die sie gar nicht vertritt bis hin zu der Frage, Abtreibung bis zum neunten Monat",
+          "Das Bundesverfassungsgericht ist ein Kollegialgremium. Da sitzen nicht acht Leute mit derselben Auffassung. Es geht um juristische Abwägungen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn wir vier Wochen zurückgehen, was sind alles für Anwürfe, für verstellte Positionen, die sie gar nicht vertritt bis hin zu der Frage, Abtreibung bis zum neunten Monat. Mit was ist Frau Brosius-Gersdorf alles an böswilligen Unterstellungen konfrontiert worden?",
+            "timestamp": "00:13:03",
+            "context": "Haßelmann schildert die Kampagne gegen die Kandidatin in den Wochen vor dem Auftritt"
+          },
+          {
+            "text": "Das Bundesverfassungsgericht ist ein Kollegialgremium. Da sitzen nicht acht Leute mit derselben Auffassung. Es geht um juristische Abwägungen.",
+            "timestamp": "00:15:24",
+            "context": "Haßelmann erklärt, warum die unterschiedlichen wissenschaftlichen Positionen einer Richterin nicht problematisch sind"
+          }
+        ]
+      },
+      {
+        "title": "Kritik an CDU-Führungsversagen bei Richterwahl",
+        "timestamp_range": "00:19:41 - 00:23:15",
+        "theme_description": "Haßelmann kritisiert das Versagen der CDU/CSU-Führung bei der Vorbereitung und Kommunikation der gemeinsamen Richterwahl-Kandidatur.",
+        "question_asked": "Implizite Frage: Wie bewertet die Grüne-Fraktionsvorsitzende die Rolle der CDU-Führung bei der Scheitern der Wahl?",
+        "question_intent": "Der Moderator versucht, Haßelmanns Einschätzung der Verantwortlichkeiten für das Scheitern zu erfassen.",
+        "position": "Haßelmann argumentiert, dass Jens Spahn als Fraktionsvorsitzender der Union einen gemeinsamen Kandidatinnenwahl-Vorschlag mit SPD und Grünen vereinbart hatte, diesen dann aber am Freitag als angeblich SPD-Kandidatur dargestellt habe. Sie sieht darin eklatantes Führungsversagen: Spahn habe die Fraktion nicht auf den komplexen Prozess vorbereitet, keine Vorarbeit mit einzelnen Abgeordneten geleistet und verantwortungslos mit Plagiatsvorwürfen umgegangen, die nur kurzfristig über Social Media-Meldungen auftauchten. Sie betont, dass als Fraktionsvorsitzende die Aufgabe besteht, die Fraktion mitzunehmen – ein Anspruch, den Spahn nicht erfüllt habe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die implizite Frage nach CDU-Verantwortung mit substanziellen Details: Sie nennt konkrete Versäumnisse (fehlende Vorbereitung, fehlende Frühkommunikation mit Abgeordneten, Neuinterpretation des gemeinsamen Vorschlags), objektive Fakten (Plagiatsvorwurf kam Freitag über soziale Medien) und ihre eigenständige Vorbereitung als Vergleichsmaßstab. Sie adressiert direkt die Führungs- und Prozess-Probleme.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Eklatantes Führungsversagen gepaart mit Vorwürfen eines Plagiats",
+          "Ich bin am Freitagmorgen mit dem Plagiatsvorwurf durch eine Meldung auf den sozialen Medien konfrontiert worden",
+          "Das ist die Aufgabe als Fraktionsvorsitzende – die Fraktion mitzunehmen"
+        ],
+        "quotes": [
+          {
+            "text": "Dann sitz ich da am Freitag und mir wird der Eindruck vermittelt, die CDU ist noch nicht ganz so weit. Außerdem ist es ein Vorschlag der SPD.",
+            "timestamp": "00:21:29",
+            "context": "Haßelmann erklärt, wie die Union plötzlich ihre vorherige Zusage zur gemeinsamen Kandidatur neuinterpretierte"
+          },
+          {
+            "text": "Eine solch eklatantes Führungsversagen gepaart mit Vorwürfen eines Plagiats. Ich bin am Freitagmorgen mit dem Plagiatsvorwurf durch eine Meldung auf den sozialen Medien konfrontiert worden.",
+            "timestamp": "00:20:28",
+            "context": "Haßelmann beschreibt das Zusammenspiel von Führungsversagen und strategischem Einsatz von Plagiatsvorwürfen"
+          }
+        ]
+      },
+      {
+        "title": "Verantwortung gegenüber Kandidatinnen und Demokratie-Schutz",
+        "timestamp_range": "00:20:28 - 00:21:36",
+        "theme_description": "Haßelmann argumentiert, dass Fraktionsvorsitzende eine Verantwortung gegenüber denjenigen haben, die sie vorschlagen, und dass das insbesondere für Verfassungsrichter-Kandidaten gilt.",
+        "question_asked": "Implizite Frage: Welche Verantwortung trägt eine Fraktion für ihre vorgeschlagenen Kandidaten?",
+        "question_intent": "Der Moderator versucht zu verstehen, auf welcher Basis Haßelmann das CDU-Verhalten als Führungsversagen kritisiert.",
+        "position": "Haßelmann betont, dass man eine Verantwortung gegenüber den Menschen hat, die man vorschlägt – auch die Frage zu beantworten, wer sich noch bewerben wird, wenn solch ein eklatantes Führungsversagen und Plagiatsvorwürfe zusammenkommen. Niemand habe freiwillig gesagt, \"Ich möchte gerne Verfassungsrechtlerin werden\"; das habe man bei den drei Personen getan. Sie kritisiert viel verantwortungsloses Verhalten in dem Prozess.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann antwortet substantiell auf die implizite Frage zur Verantwortung: Sie definiert konkret, worin die Verantwortung besteht (gegenüber Kandidaten, für künftige Bewerbungen) und zeigt die langfristigen Konsequenzen des CDU-Verhaltens auf.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Sie haben doch eine Verantwortung gegenüber den Menschen, die man vorschlägt",
+          "Wer möchte sich da noch bewerben bzw. wird angesprochen, vorgeschlagen?",
+          "Ich finde viel verantwortungsloses Verhalten"
+        ],
+        "quotes": [
+          {
+            "text": "Sie haben doch eine Verantwortung gegenüber den Menschen, die man vorschlägt. Für die Zukunft auch die Frage zu beantworten, wer möchte sich da noch bewerben? Bzw. wird angesprochen, vorgeschlagen.",
+            "timestamp": "00:20:28",
+            "context": "Haßelmann definiert die Verantwortung von Fraktionsvorsitzenden für ihre Kandidaten"
+          }
+        ]
+      },
+      {
+        "title": "Grüne Vorbereitung der Richterwahl vs. CDU-Improvisation",
+        "timestamp_range": "00:23:47 - 00:25:20",
+        "theme_description": "Haßelmann kontrastiert die vorausschauende Vorbereitung der Grünen-Fraktion mit dem Krisenmanagement der CDU.",
+        "question_asked": "Moderator fragt: Wann haben die Grünen angefangen, ihre Fraktion auf die Richterwahl vorzubereiten?",
+        "question_intent": "Der Moderator will verstehen, wie unterschiedlich die beiden Fraktionen den Prozess vorbereitet haben.",
+        "position": "Haßelmann erklärt, dass die Grünen zunächst ein Gespräch (eine oder zwei Wochen später) führten, dann mit der Gesamtfraktionssitzung (130 Leute) die drei Namen präsentierten, mit einzelnen Abgeordneten im Rechtsbereich sprachen, diese über die Kandidaten informierten und dann der Fraktion mitteilten, dass man sich ein Bild darüber machen werde. Sie betont: \"Natürlich kann ich das Argument, jeder Abgeordneter entscheidet nach seinem Gewissen\" verstehen, aber als Fraktionsvorsitzende müsse man die Fraktion mitnehmen – das sei ihre Aufgabe. Sie habe in dreieinhalb Jahren mit Katharina Dröge und Rolf Mützenich jede Woche Mehrheiten sichern und auch bei schwierigsten Entscheidungen die Fraktion mitnehmen müssen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die Frage zur Vorbereitung detailliert mit Zeitrahmen, Ablauf und reflektiertem Verständnis ihrer Fraktionsvorsitzenden-Verantwortung. Sie adressiert direkt die Frage nach Timing und Methodik.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Eine Woche oder zwei später geht man Gesamtfraktionssitzung mit 130 Leuten und sagt, hier sind drei Namen",
+          "Das ist die Aufgabe als Fraktionsvorsitzende – die Fraktion mitzunehmen",
+          "Ich habe jetzt drei einhalb Jahre jede Woche mit Katharina Dröge und Rolf Mützenich Mehrheiten sichern müssen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben erst mal ein Gespräch geführt... Eine Woche oder zwei später. Da geht man Gesamtfraktionssitzung mit 130 Leuten und sagt, hier sind drei Namen.",
+            "timestamp": "00:23:47",
+            "context": "Haßelmann erklärt die Vorbereitung durch die Grünen-Fraktion"
+          },
+          {
+            "text": "Das ist die Aufgabe als Fraktionsvorsitzende. Ich hab jetzt drei einhalb Jahre jede Woche mit Katharina Dröge und Rolf Mützenich Mehrheiten sichern müssen. Ich habe die ganze Zeit auch schwierigsten Entscheidungen versucht, die Fraktion mitzunehmen.",
+            "timestamp": "00:24:53",
+            "context": "Haßelmann definiert ihre Verantwortung als Fraktionsvorsitzende und kontrastiert damit die CDU-Praxis"
+          }
+        ]
+      },
+      {
+        "title": "Kritik an mangelnder Solidarität mit Brosius-Gersdorf durch CDU",
+        "timestamp_range": "00:30:42 - 00:30:59",
+        "theme_description": "Haßelmann kritisiert, dass die CDU-Führung Brosius-Gersdorf bei massiven Angriffen im Stich gelassen hat.",
+        "question_asked": "Implizite Frage: Wie beurteilt Haßelmann das Verhalten der Union-Fraktion gegenüber ihrer eigenen Kandidatin?",
+        "question_intent": "Der Moderator versucht, die Verantwortlichkeit für die Zerstörung der Kandidatin zu klären.",
+        "position": "Haßelmann kritisiert, dass es keine Solidaritätsbekundung der CDU gegen die Angriffe auf Brosius-Gersdorf gab. Sie betont, dass eine Kandidatin für einen so hohen Richteramt nicht so hängenlassen werden darf. Dies sei insbesondere problematisch angesichts der fragwürdigen Kampagnen gegen die Kandidatin.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die implizite Frage zur Solidarität konkret und benannt das Manko (fehlende Bekundung von Solidarität gegen Angriffe). Sie adressiert direkt, wie die Union ihre Kandidatin behandelt hat.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es kam keine Solidaritätsbekundung gegen diese Angriffe",
+          "Ich finde Frau Brosius-Gersdorf wurde hängen gelassen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde Frau Brosius-Gersdorf wurde hängen gelassen. Es kam keine Solidaritätsbekundung gegen diese Angriffe. Welcher Wissenschaftler soll sich dem aussetzen?",
+            "timestamp": "00:30:42",
+            "context": "Haßelmann kritisiert das Verhalten der CDU-Führung gegenüber ihrer eigenen Kandidatin"
+          }
+        ]
+      },
+      {
+        "title": "Substanzielle Unterschiede in Abtreibungsrecht-Positionen und Art. 1 GG",
+        "timestamp_range": "00:38:33 - 00:40:35",
+        "theme_description": "Haßelmann klärt, dass Brosius-Gersdorf die Menschenwürde nach Art. 1 GG bekräftigt, diskutiert aber unterschiedliche juristische Positionen zum Schutz von ungeborenem Leben.",
+        "question_asked": "Implizite Frage: Sind die Positionen von Brosius-Gersdorf zum Abtreibungsrecht mit der Menschenwürde-Garantie vereinbar?",
+        "question_intent": "Der Diskurs versucht zu klären, ob es einen echten Konflikt mit Grundgesetzes-Positionen gibt.",
+        "position": "Haßelmann argumentiert, dass Art. 38 GG (freies Mandat) und Mitgliedschaft in einer Fraktionsgemeinschaft zu reconcilen sind. Es gibt schwierige und leichte Entscheidungen. Brosius-Gersdorf habe klargemacht, dass sie zu Art. 1 GG steht. Das sei klar gewesen. Haßelmann selbst findet den Vorschlag der Kommission (zum Abtreibungsrecht) genau richtig und ist nicht einer Meinung mit vielen Vertretern der katholischen Kirche. Der Schutz ungeborenen Lebens und das Selbstbestimmungsrecht im Kern der Frau seien beide relevant. Der zweite Punkt: Es wird zu sehr darüber hinweggegangen, dass Jens Spahn einen Fehler gemacht hat. Haßelmann kritisiert implizit, dass Spahn keinen echten Schuldeingeständnis ablegen wollte, sondern einfach weitermachen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haßelmann adressiert die Kernfrage (Vereinbarkeit mit Art. 1 GG) mit klarem Ja (Brosius-Gersdorf steht dazu), erklärt aber nicht vollständig, warum es dann zu Konflikten mit Union-Abgeordneten kam. Sie pivotiert teilweise zu Kritik an Spahn statt vollständig zu erklären, wo die juristische Differenz liegt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Frau Brosius hat klargemacht, dass sie bei Art. 1 im Grundgesetz steht",
+          "Der Schutz des ungeborenen Lebens, die Frage des Selbstbestimmungsrechtes im Kern der Frau – das ist die eine Frage, die hier gestern erörtert wurde",
+          "Der zweite Teil: Es wird zu sehr darüber hinweggegangen, dass Jens Spahn einen Fehler gemacht hat"
+        ],
+        "quotes": [
+          {
+            "text": "Frau Brosius hat klargemacht, dass sie bei Art. 1 im Grundgesetz steht. Das klar gewesen, um das einmal in der Sache zu sagen.",
+            "timestamp": "00:38:33",
+            "context": "Haßelmann stellt klar, dass Brosius-Gersdorf sich zur Menschenwürde bekennt"
+          },
+          {
+            "text": "Der Schutz des ungeborenen Lebens, die Frage des Selbstbestimmungsrechtes im Kern der Frau. Das ist die eine Frage, die hier gestern erörtert wurde.",
+            "timestamp": "00:40:35",
+            "context": "Haßelmann beschreibt die beiden konkurrierenden Positionen, die beide legitim sind"
+          }
+        ]
+      },
+      {
+        "title": "Wahrnehmung von Kampagnen und Geschlechterbehandlung",
+        "timestamp_range": "00:50:19 - 00:52:17",
+        "theme_description": "Haßelmann kritisiert die Art und Weise, wie Brosius-Gersdorf von verschiedenen Seiten attackiert wurde, und verweist auf geschlechtsspezifische Dimensionen.",
+        "question_asked": "Moderator fragt Haßelmann, wie sie die Kampagnen gegen Brosius-Gersdorf wahrgenommen hat, mit Bezug auf Geschlechteraspekte.",
+        "question_intent": "Der Moderator versucht zu verstehen, ob und wie Geschlechteraspekte in der Debatte eine Rolle spielen.",
+        "position": "Haßelmann kritisiert die Kampagnen gegen Brosius-Gersdorf als beispielhaft für ein problematisches Muster im Umgang mit Frauen in Führungspositionen. Sie verweist darauf, dass sie in ihrer Biografie verstanden habe, dass sie nicht möchte, dass Männer ihr die Welt erklären. Die Art, wie Brosius-Gersdorf angegangen wurde, sei nicht akzeptabel – kein Wissenschaftler, keine Ärztin, keine Frau in Führungsposition könne so behandelt werden. Sie warnt explizit vor einem AfD-ähnlichen Muster: Mit solchen Kampagnen, auf die die CDU einstiegen, werde es schwierig für künftige Frauen, sich zu bewerben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die Frage zur Geschlechterdimension substanziell: Sie benennt konkrete Erfahrung, charakterisiert das Muster als systematisch problematisch, vergleicht mit AfD-Taktiken und zieht eine Konsequenz (Abschreckung künftiger Kandidatinnen). Sie adressiert direkt die Geschlechter-Frage.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Diese Art, wie Frau Brosius-Gersdorf angegangen wurde, so kann man mit Frauen in dieser Republik nicht umgehen",
+          "Das ist das Muster der AfD",
+          "Welche Frau soll sich noch bereit erklären, in Führungsposition zu arbeiten?"
+        ],
+        "quotes": [
+          {
+            "text": "Diese Art, wie Frau Brosius-Gersdorf angegangen wurde, so kann man mit Frauen in dieser Republik nicht umgehen. Jeder Wissenschaftlerin, jede Ärztin, jede Frau in Führungsposition weiß, worüber ich spreche.",
+            "timestamp": "00:52:09",
+            "context": "Haßelmann spricht über die Behandlung von Brosius-Gersdorf im Kontext geschlechtsspezifischer Anfeindungen"
+          },
+          {
+            "text": "Das ist das Muster der AfD. Dass sie mit dieser Kampagne, auf die sie eingestiegen sind, zu Frau Brosius-Gersdorf.",
+            "timestamp": "00:52:02",
+            "context": "Haßelmann warnt die CDU vor der Ähnlichkeit ihres Verhaltens zu AfD-Taktiken"
+          }
+        ]
+      },
+      {
+        "title": "Notwendigkeit rascher Klärung der Koalitionsfähigkeit",
+        "timestamp_range": "01:02:22 - 01:04:29",
+        "theme_description": "Haßelmann fordert eine schnelle Entscheidung über die nächsten Richterwahlen, um Klarheit über die Stabilität der Ampel-Koalition zu schaffen.",
+        "question_asked": "Implizite Frage: Wie sollte mit der Hängepartie um die Richterwahlen umgegangen werden?",
+        "question_intent": "Der Moderator versucht zu klären, ob eine zeitliche Verzögerung oder schnelle Entscheidung sinnvoll ist.",
+        "position": "Haßelmann argumentiert, dass schnell vor September zu einer Richterwahl gekommen werden müsse. Die Hängepartie schade der Koalition: Ständig müsse geklärt werden, ob diese Regierung überhaupt eine Mehrheit habe und ob die Koalition belastbar sei. Das sei zentral. Die CDU/CSU-Fraktion sage, sie nicht; die SPD unterstütze alle drei Kandidaturen weiterhin. Haßelmann hält Brosius-Gersdorf für eine exzellente Juristin, die eine andere Funktion (statt Wissenschaftler) einnehmen wird. Sie beobachtet, dass Friedrich Merz versucht, den Ernst des Streits herunterzuspielen, und fordert auf, dass die CDU erst mit sich selbst klären müsse, ob sie sich von rechten Netzwerken treiben lässt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann antwortet auf die implizite Timing-Frage substantiell: Sie nennt einen konkreten Zeitrahmen (vor September), begründet ihn mit Koalitionsstabilität, bewertet die Positionen der Partner (SPD klar dafür, CDU/CSU dagegen) und fordert Klarheit ein. Sie adressiert direkt die Frage nach dem weiteren Vorgehen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir müssen schnell vor September zu einer Richterwahl kommen",
+          "Die Frage hat diese Regierung eine Mehrheit, ist die belastbar als Koalition, das ist für mich eine zentrale Frage",
+          "Die CDU muss mit sich klären. Sie müssen das klären, ob sie sich treiben lassen von rechten Netzwerken"
+        ],
+        "quotes": [
+          {
+            "text": "Wir müssen ganz schnell im Bundestag, natürlich auf allen Ebenen Gespräche führen. Wir müssen schnell vor September zu einer Richterwahl kommen, denn diese Hängepartie, die Frage hat diese Regierung eine Mehrheit, ist die belastbar als Koalition, das ist für mich eine zentrale Frage.",
+            "timestamp": "01:02:22",
+            "context": "Haßelmann äußert ihre Sicht auf die zeitliche Notwendigkeit, die Richterwahl-Situation zu klären"
+          },
+          {
+            "text": "Die CDU muss mit sich klären. Sie müssen das klären, ob sie sich treiben lassen von rechten Netzwerken.",
+            "timestamp": "01:04:29",
+            "context": "Haßelmann formuliert ihre Forderung an die CDU zur Selbstverständigung"
+          }
+        ]
+      },
+      {
+        "title": "Kritik an fehlender Kontaktaufnahme durch CDU-Spitze nach dem Debakel",
+        "timestamp_range": "01:14:06 - 01:14:28",
+        "theme_description": "Haßelmann kritisiert, dass die CDU-Spitze nach dem Freitag-Debacle nicht die Initiative ergriffen hat, um Gespräche mit den Grünen aufzunehmen.",
+        "question_asked": "Moderator fragt implizit: Gibt es Gespräche zwischen den Fraktionen, um die Situation zu entspannen?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob es politische Lösungsansätze gibt.",
+        "position": "Haßelmann berichtet, dass sie am Freitagmorgen nicht mit einem Anruf von Jens Spahn gerechnet habe und dass es vorher auch keine Kontaktaufnahme gegeben habe. Sie fragt sich, wie man mit einer solch schwierigen Situation umgeht. Sie merkt an, dass Merz nicht zu verstehen scheint, dass die AfD einen Plan hat, \"euch zu zerstören\". Sie formuliert kritisch, dass wenn man mit demokratischen Mehrheiten agieren und die demokratische Mitte stärken will, müsse man gerade nach so einem Freitag irgendwann den Kontakt aufbauen – man könne dann ggf. sagen, dass die Haßelmann-Rede scharf war, aber das sei dann ein Dialog.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haßelmann beantwortet die implizite Frage zur Kontaktaufnahme konkret: Sie berichtet, dass es keine gibt, und erklärt, warum das problematisch ist (fehlender Dialog zur Lösung). Sie adressiert direkt das Kommunikationsversagen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Am Freitag habe ich nicht mit Jens Spahns Anruf gerechnet. Es gab bisher keine Kontaktaufnahme",
+          "Merkt ihn eigentlich nicht, dass die AfD einen Plan hat, euch zu zerstören?",
+          "Wenn man mit demokratischen Mehrheiten agieren will, die demokratische Mitte stärken will, dann muss man doch gerade nach so einem Freitag irgendwann, man kann sagen, die Haßelmann war scharf, heute..."
+        ],
+        "quotes": [
+          {
+            "text": "Am Freitag habe ich nicht mit Jens Spahns Anruf gerechnet. Es gab bisher keine Kontaktaufnahme.",
+            "timestamp": "01:14:06",
+            "context": "Haßelmann berichtet über die fehlende Kommunikation mit der CDU-Führung nach der gescheiterten Wahl"
+          },
+          {
+            "text": "Merkt ihn eigentlich nicht, dass die AfD einen Plan hat, euch zu zerstören? Ich frag mich, wenn man mit demokratischen Mehrheiten agieren will, die demokratische Mitte stärken will, dann muss man doch gerade nach so einem Freitag irgendwann...",
+            "timestamp": "01:14:28",
+            "context": "Haßelmann kritisiert das Fehlen von Verständnis für die gemeinsame Bedrohung durch die AfD"
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der zentrale Argument des Fraktionsgeschäftsführers der CDU-Fraktion war der Plagiatsvorwurf, der heute wie ein Kartenhaus zusammengefallen ist",
+        "timestamp": "00:05:40"
+      },
+      {
+        "claim": "Die SPD hat Brosius-Gersdorf vorgeschlagen, die CDU hat es vorgeschlagen – das ist unser gemeinsamer Vorschlag",
+        "timestamp": "00:21:36"
+      },
+      {
+        "claim": "Ich bin am Freitagmorgen mit dem Plagiatsvorwurf durch eine Meldung auf den sozialen Medien konfrontiert worden",
+        "timestamp": "00:20:28"
+      },
+      {
+        "claim": "Frau Brosius hat klargemacht, dass sie bei Art. 1 im Grundgesetz steht",
+        "timestamp": "00:38:33"
+      },
+      {
+        "claim": "Am Freitag habe ich nicht mit Jens Spahns Anruf gerechnet. Es gab bisher keine Kontaktaufnahme",
+        "timestamp": "01:14:06"
+      }
+    ]
+  }
+}

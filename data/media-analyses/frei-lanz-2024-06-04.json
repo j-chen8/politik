@@ -1,0 +1,339 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-juni-2024-100",
+    "video_id": "lanz-2024-06-04",
+    "politician": "Thorsten Frei",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "26ae29fa678928bd",
+    "transcript_chars": 55405,
+    "caption_lines": 2796,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22424,
+    "tokens_out": 7166,
+    "cost_usd": 0.0233016,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 8,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.844Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei (CDU) diskutiert in dieser Sendung die Konsequenzen des Messerattentats von Mannheim, wobei er die Notwendigkeit eines „grundlegenden Paradigmenwechsels\" in der Migrations- und Asylpolitik betont und für schärfere Rückführungen, insbesondere nach Afghanistan, argumentiert. Er warnt vor der „Entwertung des Asylbescheids\" und kritisiert, dass Behörden nicht konsequent handeln, auch wenn rechtliche Möglichkeiten bestehen.",
+    "themes": [
+      {
+        "title": "Charakterisierung des Mannheim-Attentats als islamistisch",
+        "timestamp_range": "00:04:08 - 00:06:10",
+        "theme_description": "Einordnung des Messerangriffs als islamistisches Attentat und Einleitung der Debatte über Konsequenzen.",
+        "question_asked": "Moderator fragt Frei: Was ist am Samstag in Mannheim aus seiner Sicht passiert?",
+        "question_intent": "Den Gast zur Einordnung der Tat und Bewertung des Sicherheitsversagens aufzufordern.",
+        "position": "Frei bezeichnet die Tat als „islamistisches Attentat“ und betont, dass die Politik „Antworten“ benötigt – nicht Floskeln, sondern Problembenennungen. Er unterstreicht, dass Strafverfolgung Sache der Justiz ist, während die Politik „entscheidende“ Konsequenzen ziehen muss. Die Radikalisierung könne sehr schnell erfolgt sein oder es habe sich um einen \"Schläfer\" handeln können; bei der dünnen Informationslage warnt er vor Spekulationen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei adressiert direkt die Frage, indem er das Attentat charakterisiert, die politische Verantwortung klar trennt von juristischer, und sein Verständnis für fehlende Informationen zeigt. Er beantwortet nicht spekulativ, sondern orientiert sich an verfügbaren Fakten.",
+        "concrete_statements": [
+          "Das war ein islamistisches Attentat",
+          "Wir brauchen politische Antworten. Ein solcher Mord muss entsprechend bestraft werden, das ist Sache der gerechten. Für die Politik ist auch entscheidend, welche politischen Entscheidungen man daraus zieht.",
+          "Genau das erwarten die Menschen, keine Floskeln, sondern die Benennung des Problems und die Frage, wie man damit umgeht."
+        ],
+        "quotes": [
+          {
+            "text": "Das war ein islamistisches Attentat, dass wir dort erlebt haben.",
+            "timestamp": "00:04:08",
+            "context": "Moderator fragt nach der Art der Tat; Frei antwortet mit eindeutiger Charakterisierung."
+          },
+          {
+            "text": "Genau das erwarten die Menschen, keine Floskeln, sondern die Benennung des Problems und die Frage, wie man damit umgeht.",
+            "timestamp": "00:04:08",
+            "context": "Frei kritisiert vage Politikeraussagen und fordert klare Problembenennungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Islamismus und innere Sicherheit",
+          "Terrorismusbekämpfung",
+          "Gewaltprävention"
+        ]
+      },
+      {
+        "title": "Politischer Islam und fehlende Fachkapazität",
+        "timestamp_range": "00:06:10 - 00:06:10",
+        "theme_description": "Frei kritisiert mangelnde institutionelle Vorbereitung auf die Bekämpfung des politischen Islam.",
+        "question_asked": "Eigeninitiative: Frei führt aus, dass die Politik sich mit dem politischen Islam beschäftigen muss.",
+        "question_intent": "Die Feststellung einer institutionellen Schwachstelle verdeutlichen.",
+        "position": "Frei argumentiert, dass es keine umfassende (\"360°\") Sicht auf den politischen Islam gibt, weil \"die Bundesministerin den Expertenkreis abgeschafft\" hat. Er verbindet dies mit breiteren Fragen von Migration und Integration und beobachtet, dass das Ausmaß der Migration dazu geführt habe, dass \"Integration nicht mehr wirkt\" und \"Parallelgesellschaften entstanden sind\".",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei artikuliert eine diagnostische Position ohne direkte Frage-Voraussetzung; er benennt konkrete institutionelle Lücken (Expertenkreis-Abschaffung) und verknüpft sie mit größeren systemischen Problemen.",
+        "concrete_statements": [
+          "Die Bundesministerin hat den Expertenkreis abgeschafft.",
+          "Das Maß an Migration dazu geführt hat, dass Integration nicht mehr wirkt.",
+          "Parallelgesellschaften sind entstanden."
+        ],
+        "quotes": [
+          {
+            "text": "Da haben wir keinen 360° Blick. Die Bundesministerin hat den Expertenkreis abgeschafft.",
+            "timestamp": "00:06:10",
+            "context": "Frei kritisiert fehlende institutionelle Kapazität zur Bekämpfung des politischen Islam."
+          },
+          {
+            "text": "es ist offensichtlich, dass das Maß an Migration dazu geführt hat, dass Integration nicht mehr wirkt. Parallelgesellschaften sind entstanden.",
+            "timestamp": "00:06:10",
+            "context": "Frei diagnostiziert Integrationszusammenbruch als Folge des Migrationsvolumens."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Islamismus-Bekämpfung",
+          "Integrationspolitik",
+          "Migrationsvolumen"
+        ]
+      },
+      {
+        "title": "Kritik am Polizeieinsatz und Sicherheitsparadigma",
+        "timestamp_range": "00:10:36 - 00:11:41",
+        "theme_description": "Frei verteidigt die Polizeiaktion gegen Kritik aus dem Studio und warnt vor vorschneller Bewertung.",
+        "question_asked": "Anna Lehmann kritisiert den Polizeieinsatz als \"dilettantisch\"; Frei wird gefragt, was er dazu sage.",
+        "question_intent": "Moderator sucht nach Freis Stellungnahme zur Polizei-Kritik.",
+        "position": "Frei wendet sich gegen eine Relativierung der Tat durch Kritik am Einsatz: \"Es gab einen Mordanschlag, den kann kritisieren wie man will, aber dass er in Deutschland seine Meinung äußern kann, ist doch völlig normal.\" Er betont, dass die Polizei \"unmittelbar da\" war und \"mutig\" handelte. Frei mahnt zur Vorsicht: Vom Sofa aus aufgrund eines Videos über Fehler zu spekulieren, sei \"der komplett falsche Ansatz\".",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Sicherheitsfrage indirekt, indem er die Polizei-Kritik ablehnt, beantwortet aber nicht direkt, ob und wie der Einsatz hätte besser laufen können. Er weicht auf eine grundsätzliche Kritik an vorschneller Bewertung aus.",
+        "concrete_statements": [
+          "Die Polizei war unmittelbar da, die Polizisten waren mutig.",
+          "Das geht mir zu schnell. Vom Sofa aus darüber zu sinnieren, ohne dass man irgend welche Kenntnisse aus einem schlechten Video hat, was die Polizei für Fehler gemacht hat, das ist der komplett falsche Ansatz."
+        ],
+        "quotes": [
+          {
+            "text": "Was wollen Sie mit dieser Relativierung? Es gab einen Mordanschlag, den kann kritisieren wie man will, aber dass er in Deutschland seine Meinung äußern kann, ist doch völlig normal.",
+            "timestamp": "00:11:01",
+            "context": "Frei versucht, die Debatte vom Polizeieinsatz zurück auf die Tat zu lenken."
+          },
+          {
+            "text": "Das geht mir zu schnell. Vom Sofa aus darüber zu sinnieren, ohne dass man irgend welche Kenntnisse aus einem schlechten Video hat, das ist der komplett falsche Ansatz.",
+            "timestamp": "00:11:41",
+            "context": "Frei kritisiert vorschnelle Bewertungen von Polizeieinsätzen ohne ausreichende Informationen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Polizeieinsätze",
+          "Sicherheit",
+          "Gewaltprävention"
+        ]
+      },
+      {
+        "title": "Abschiebung von Straftätern nach Afghanistan",
+        "timestamp_range": "00:19:20 - 01:08:46",
+        "theme_description": "Frei argumentiert für rechtliche und praktische Möglichkeiten zur Rückführung schwerer Straftäter nach Afghanistan trotz Taliban-Regierung.",
+        "question_asked": "Moderator / Ahmad Mansour fragen nach Abschiebungen nach Afghanistan; später wird spezifisch der Fall des abgelehnten Asylbewerbers von Mannheim thematisiert.",
+        "question_intent": "Zu verstehen, ob und wie man Straftäter in ein Land mit Taliban-Regierung abschieben kann und sollte.",
+        "position": "Frei setzt sich dafür ein, dass bei schweren Straftätern (wie dem Täter von Mannheim) Abschiebungen nach Afghanistan möglich und notwendig seien. Er argumentiert, dass die Bundesinnenministerin die Frage \"seit Monaten juristisch prüft\" – was er als \"Euphemismus für Nichtstun\" kennzeichnet. Frei hält es für möglich, dass nach der Taliban-Machtergreifung über 100 Flüge zur Aufnahme von Menschen organisiert wurden; daher müsse es auch Rückflüge für Straftäter geben. Er betont allerdings realistisch, dass es mit den Taliban Verhandlungen erfordere – und räumt ein: \"Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei beantwortet die Frage direkt und klar: Ja, Abschiebungen nach Afghanistan sind rechtlich und praktisch möglich, aber sie erfordern pragmatische Verhandlungen mit der Taliban-Regierung. Er nennt konkrete Beispiele (die 100+ Flüge) und kritisiert politisches Zögern.",
+        "concrete_statements": [
+          "Bei schweren Straftätern, wir schieben die ab nach Afghanistan.",
+          "Das ist für mich ein Euphemismus für Nichtstun.",
+          "Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist für mich ein Euphemismus für Nichtstun.",
+            "timestamp": "01:07:49",
+            "context": "Frei kritisiert die Innenministerin dafür, dass die Abschiebungsfrage \"juristisch prüft\", ohne zu handeln."
+          },
+          {
+            "text": "Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen.",
+            "timestamp": "01:08:46",
+            "context": "Frei räumt realistisch ein, dass pragmatische Verhandlungen notwendig sind, vermeidet aber Euphemismen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Abschiebungen",
+          "Afghanistan-Politik",
+          "Migrationsvollzug"
+        ]
+      },
+      {
+        "title": "Asylbescheid-Entwertung und Rückführungsdefizit",
+        "timestamp_range": "00:31:25 - 00:34:30",
+        "theme_description": "Frei diagnostiziert ein systemisches Versagen bei der Durchsetzung negativer Asylbescheide.",
+        "question_asked": "Moderator / Gesprächspartner fragen nach dem Widerspruch zwischen abgelehnten Asylbescheiden und der Tatsache, dass Betroffene trotzdem im Land bleiben.",
+        "question_intent": "Zu verstehen, warum der Asylstaat-Status nicht zu realen Konsequenzen führt.",
+        "position": "Frei argumentiert, dass \"wir in den letzten Jahren eigentlich eine Entwertung des Asylbescheids erlebt haben. Unabhängig davon, wie es ausgeht, bleiben die Menschen hier.\" Er stellt Rückführungszahlen dar: 16.000 im letzten Jahr, 12.000 im Jahr davor – bei 350.000 Anträgen insgesamt ein Rückführungsquote von weniger als 5%. Das verdeutliche: \"Im Grunde genommen sind es kriminelle Schleuserbanden, die entscheiden, wer zu uns kommt.\" Für Lösungen benötige man einen \"grundlegenden Paradigmenwechsel\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei adressiert die zentrale Frage vollständig: Er benennt das Problem (Entwertung), belegt es mit Zahlen, und skizziert die systemische Konsequenz (Schleuser statt Staaten kontrollieren Zuwanderung).",
+        "concrete_statements": [
+          "wir in den letzten Jahren eigentlich eine Entwertung des Asylbescheids erlebt haben",
+          "Im Grunde genommen sind es kriminelle Schleuserbanden, die entscheiden, wer zu uns kommt",
+          "Wir brauchen diesen grundlegender wechselnder Politik, damit wir etwas für die tun können, die diesen Schutz brauchen."
+        ],
+        "quotes": [
+          {
+            "text": "das, dass wir in den letzten Jahren eigentlich eine Entwertung des Asylbescheids erlebt haben. Unabhängig davon, wie es ausgeht, bleiben die Menschen hier.",
+            "timestamp": "00:31:25",
+            "context": "Frei diagnostiziert das systemische Rückführungsdefizit."
+          },
+          {
+            "text": "Im Grunde genommen sind es kriminelle Schleuserbanden, die entscheiden, wer zu uns kommt.",
+            "timestamp": "00:32:36",
+            "context": "Frei fasst die Konsequenz der Rückführungsquoten zusammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylvollzug",
+          "Rückführungspolitik",
+          "Migrationskontrolle"
+        ]
+      },
+      {
+        "title": "Blaumoschee und politischer Islam",
+        "timestamp_range": "00:45:54 - 00:45:54",
+        "theme_description": "Frei äußert sich zur Schließung des Islamzentrums / der Blaumoschee als Beispiel konkreten Handelns.",
+        "question_asked": "Frau Lehmann fragt nach konkreten Vorschlägen. Gesprächspartner sprechen über Integrationszentren und Dialog.",
+        "question_intent": "Frei zu ermuntern, konkrete politische Maßnahmen zu nennen.",
+        "position": "Frei schlägt vor: \"Das Zentrum könnte man zum Beispiel sofort schließen.\" Dabei handelt es sich um die (umstrittene) Blaumoschee, über die vorher von Mansour erwähnt wurde, dass SPD und Grüne einen Vertrag mit ihr abgeschlossen hätten. Frei sieht in einer Schließung ein Signal, dass die Bundesregierung gegen islamistische Organisationen handelt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet auf die implizite Forderung nach konkreten Maßnahmen mit einem spezifischen Vorschlag (Schließung), der aber kurz bleibt und von einer anderen Frage unterbrochen wird.",
+        "concrete_statements": [
+          "Das Zentrum könnte man zum Beispiel sofort schließen."
+        ],
+        "quotes": [
+          {
+            "text": "Das Zentrum könnte man zum Beispiel sofort schließen.",
+            "timestamp": "00:45:54",
+            "context": "Frei nennt konkrete Maßnahme gegen islamistische Organisationen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Politischer Islam",
+          "Islamistische Organisationen",
+          "Ordnungsrecht"
+        ]
+      },
+      {
+        "title": "Kritik am Italien-Albanien-Modell der Bundesregierung",
+        "timestamp_range": "01:03:46 - 01:05:49",
+        "theme_description": "Frei hinterfragt die Glaubwürdigkeit des von Friedrich Merz beworbenen Albanien-Modells als Migrationslösung.",
+        "question_asked": "Gesprächspartner Gerald Knaus nennt Italiens Albanien-Deal einen \"Bluff\"; Moderator fragt, ob Merz das als Vorbild sieht. Frei wird implizit aufgefordert, dazu Stellung zu nehmen.",
+        "question_intent": "Freis Bewertung der diplomatischen Glaubwürdigkeit des Merz-Vorschlags zu ermitteln.",
+        "position": "Frei räumt ein, dass Albanien \"ein Schritt in die richtige Richtung sein\" könnte, wird aber deutlich: \"aber es wird die Probleme nicht lösen. Und zwar exakt aus dem von Ihnen beschriebenen Grund.\" Er betont, dass das europäische Prinzip \"sichere Drittstaaten\" vorsieht – mit echten Verfahren und echtem Schutz. Albanien erfülle das nicht, weil Italien sich nicht kümmere, was mit den Menschen passiert. Frei kritiert implizit Merz' Darstellung: \"Warum suggeriert Friedrich Merz dann seinen Wähler, dass das eine Lösung ist\"?",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet direkt auf die implizite Frage, indem er Merz' Darstellung als Täuschung von Wählern kritisiert, das Modell aber sachlich würdigt und die echten Anforderungen für funktionierende Drittstaaten skizziert.",
+        "concrete_statements": [
+          "Albanien mag ein Schritt in die richtige Richtung sein, aber es wird die Probleme nicht lösen.",
+          "Das Prinzip, das Verfahren in der Europäischen Union, muss in sicheren Drittstaaten erfolgen. Das ist richtig, aber das wird mit Albanien nicht fusionieren."
+        ],
+        "quotes": [
+          {
+            "text": "Warum suggeriert Friedrich Merz dann seinen Wähler, dass das eine Lösung ist.",
+            "timestamp": "01:03:46",
+            "context": "Frei kritisiert die politische Kommunikation von Merz zu Albanien."
+          },
+          {
+            "text": "Albanien mag ein Schritt in die richtige Richtung sein, aber es wird die Probleme nicht lösen.",
+            "timestamp": "01:03:46",
+            "context": "Frei bewertet das Modell sachlich, lehnt aber die politische Vermarktung ab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Drittstaaten-Modell",
+          "EU-Migrationspakt"
+        ]
+      },
+      {
+        "title": "Sicherer Drittstaat vs. Afghanistan-Abschiebung",
+        "timestamp_range": "01:05:49 - 01:08:46",
+        "theme_description": "Frei differenziert zwischen dem europäischen Drittstaaten-Prinzip und der Realität von Afghanistan.",
+        "question_asked": "Moderator fragt: Bei schweren Straftätern – schieben Sie die nach Afghanistan ab? Später wird die Rechtslage und Praktikabilität hinterfragt.",
+        "question_intent": "Freis konkrete Position zu Rückführungen in Taliban-kontrolierte Territorien zu klären.",
+        "position": "Frei bekräftigt, dass nach dem CDU-Modell \"sichere Drittstaaten\" der richtige Weg seien, aber Afghanistan ist nach seiner Analyse nicht sicher für reguläre Migration. Allerdings: Bei schweren Straftätern, \"die mehrfach strafrechtlich in Erscheinung treten\" und \"erhöhtes Gefährdungspotenzial\" haben, könne man anders argumentieren. Der Schlüssel sei Pragmatismus: Die Bundesregierung organisierte hunderte Evakuierungsflüge nach der Taliban-Übernahme, was zeige, dass Kommunikation möglich ist. Aber: \"Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen.\" Frei akzeptiert diese Realität.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet präzise: Er unterscheidet zwischen regulärer Migration (sichere Drittstaaten) und Straftäter-Rückführungen (pragmatische Verhandlungen nötig), und nimmt dabei eine konsistente Position ein, die Rechtlichkeit und Realismus verbindet.",
+        "concrete_statements": [
+          "Bei schweren Straftätern, wir schieben die ab nach Afghanistan.",
+          "es gab ein eigenes Aufnahmeprogramm. Und die GEZ ist in Afghanistan unterwegs, warum gibt es keine Rückführungen, wenn es sich um Gefährder, um schwerere Straftäter, nach Afghanistan zu ermöglichen?",
+          "Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man möchte, dass wir Straftäter nach Afghanistan abschieben, müssen wir mit den Taliban Geschäfte machen.",
+            "timestamp": "01:08:46",
+            "context": "Frei räumt ein, dass pragmatische Verhandlungen erforderlich sind, vermeidet aber die vorherige Euphemismus-Rede."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Abschiebungen",
+          "Afghanistan",
+          "Sichere Drittstaaten",
+          "Straftäter-Rückführung"
+        ]
+      },
+      {
+        "title": "Australien-Modell und Türkei-Deal als Best Practice",
+        "timestamp_range": "01:14:06 - 01:14:15",
+        "theme_description": "Frei verweist auf internationale Beispiele erfolgreicher Migrationskontrolle.",
+        "question_asked": "Eigeninitiative: Frei führt am Ende noch aus, was funktioniert hat.",
+        "question_intent": "Die Diskussion mit historischen Beispielen zu untermauern.",
+        "position": "Frei zieht Parallelen zu Australien (\"Anfang 2010\") und dem Türkei-Deal (EU-Türkei-Vereinbarung auf Flüchtlingsschutz). Er würdigt beide Modelle als \"beeindruckend\" und offenbar funktionsfähig – im Gegensatz zu weniger pragmatischen Ansätzen.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei nennt konkrete Vergleichsfälle, ohne eine Frage zu beantworten; es ist eine Evidenzbringung für sein Hauptargument (Drittstaaten-Modelle können funktionieren).",
+        "concrete_statements": [
+          "Australien hat das Anfang 2010 gezeigt. Auch der Türkei Deal, es ist schon beeindruckend."
+        ],
+        "quotes": [
+          {
+            "text": "Australien hat das Anfang 2010 gezeigt. Auch der Türkei Deal, es ist schon beeindruckend.",
+            "timestamp": "01:14:06",
+            "context": "Frei verweist auf erfolgreiche internationale Modelle der Migrationskontrolle."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Migrationspolitik",
+          "Drittstaaten-Modell",
+          "Externe Migration"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Frei behauptet, dass 16.000 Rückführungen im letzten Jahr und 12.000 im Jahr davor stattfanden.",
+        "timestamp": "00:31:25"
+      },
+      {
+        "claim": "Es gab 350.000 Asylbewerberanträge im letzten Jahr.",
+        "timestamp": "00:31:25"
+      },
+      {
+        "claim": "Nach der Taliban-Machtergreifung organisierte Deutschland über 100 Flüge nach Afghanistan.",
+        "timestamp": "01:05:49"
+      },
+      {
+        "claim": "Die Bundesministerin (Innenministerin) prüft die Rückführungsfrage seit Monaten juristisch.",
+        "timestamp": "01:07:49"
+      },
+      {
+        "claim": "Der Täter von Mannheim war ein abgelehnter Asylbewerber.",
+        "timestamp": "00:25:30"
+      }
+    ]
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-29-januar-2025-100",
+    "video_id": "lanz-2025-01-29",
+    "politician": "Beatrix von Storch",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "9e9bd590fe2ddbb7",
+    "transcript_chars": 40380,
+    "caption_lines": 1952,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17775,
+    "tokens_out": 8391,
+    "cost_usd": 0.023891999999999997,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.867Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Beatrix von Storch, stellvertretende Fraktionsvorsitzende der AfD, beschreibt die Abstimmung zur Migrationspolitik als „Sieg für die Demokratie\" und nutzt das Abstimmungsergebnis als Beleg dafür, dass die AfD notwendig ist, um Regierungsprogramme durchzusetzen. Sie argumentiert in einem konfrontativen, selbstbewussten Ton, wertet die Union als unglaubwürdig in der Migrationspolitik auf und positioniert die AfD als unverzichtbarer Partner für echte Veränderungen.",
+    "themes": [
+      {
+        "title": "Bewertung des heutigen Abstimmungsergebnisses",
+        "timestamp_range": "00:04:04 - 00:05:23",
+        "theme_description": "Beatrix von Storch charakterisiert das Abstimmungsergebnis zur Migrationspolitik und dessen politische Bedeutung.",
+        "question_asked": "Frau von Storch, wie würden Sie das beschreiben [die heutige Abstimmung, bei der die CDU mit Hilfe der AfD-Stimmen einen Antrag durchbrachte]?",
+        "question_intent": "Der Moderator möchte wissen, wie von Storch das Abstimmungsergebnis bewertet und was sie darin für die AfD sieht.",
+        "position": "Von Storch bewertet die Abstimmung als \"guter Tag für die Demokratie\" und \"Sieg für die Demokratie\", der ein \"Befreiungsschlag für die Mehrheit der Menschen\" darstellt. Sie argumentiert, dass die Mehrheit der Bevölkerung unabhängig davon, wer abstimmt, die beschlossene Migrationspolitik unterstützt. Zentral ist für sie die Botschaft, dass eine \"radikale Wende\" in der Migrationspolitik möglich ist und dass \"die Mehrheiten dafür da sind\". Sie positioniert die AfD dabei als \"Garant dafür, dass das, was die Menschen in der Mehrheit im Land wollen tatsächlich umgesetzt werden kann\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Von Storch beantwortet die Frage direkt mit einer klaren Bewertung des Abstimmungsergebnisses und verbindet dies mit ihrer Kernbotschaft zur Rolle der AfD. Sie adressiert sowohl das Abstimmungsergebnis als auch dessen politische Bedeutung vollständig.",
+        "quotes": [
+          {
+            "text": "Das war ein guter Tag für die Demokratie, das war ein Sieg für die Demokratie und ich glaube, das war ein Befreiungsschlag für die Mehrheit der Menschen in diesem Land.",
+            "timestamp": "00:04:04"
+          },
+          {
+            "text": "Die AfD ist der Garant dafür, dass das, was die Menschen in der Mehrheit im Land wollen tatsächlich umgesetzt werden kann.",
+            "timestamp": "00:04:04"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Quereinstieg CDU-AfD",
+          "Brandmauer"
+        ]
+      },
+      {
+        "title": "AfD als notwendiger Koalitionspartner für CDU-Programm",
+        "timestamp_range": "00:05:34 - 00:07:19",
+        "theme_description": "Von Storch argumentiert, dass die Union ihre Versprechen ohne die AfD nicht umsetzen kann und dass die AfD daher für die Umsetzung der Regierungsziele unabdingbar ist.",
+        "question_asked": "Moderator folgt: \"d. h. für Sie ist der Tag heute, das klare Signal, Herr Frei wird keine Mehrheit mehr ohne die AfD im Bundestag haben. Heißt, Sie stehen bereit für die Regierung?\"",
+        "question_intent": "Der Moderator fragt, ob die heutige Abstimmung ein Signal für von Storchs Bereitschaft zu einer Regierungsbeteiligung ist oder ob sie sich in einer strategischen Position befindet.",
+        "position": "Von Storch argumentiert, dass die CDU zwar Versprechungen macht (Migrationspolitik, Lieferkettengesetz, Selbstbestimmungsgesetz, etc.), diese aber ohne die AfD nicht umsetzen kann. Sie verweist darauf, dass die Union \"versucht\" die Versprechen \"mit Koalitionspartner umzusetzen, mit denen es nicht geht\". Sie hebt hervor, dass das heutige Abstimmungsergebnis diese Unmöglichkeit beweise: \"Das gute an dem heutigen Tag ist, dass das einmal alle gesehen haben. Die Republik hat gesehen, es ginge, wenn die CDU bereit ist das zu machen.\" Sie charakterisiert die Position so: Merz könne sachlich richtige Entscheidungen treffen, ohne dies dadurch \"falsch\" zu machen, dass die AfD zustimmt. Das Prinzip sei anwendbar auf weitere Gesetze (Lieferkettengesetz, Selbstbestimmungsgesetz), \"wo es eine Mehrheit\" gibt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet auf die Frage nach ihrer Regierungsbereitschaft nicht direkt mit Ja oder Nein, sondern argumentiert stattdessen, dass die CDU dependent von der AfD ist. Sie adressiert den politischen Punkt (AfD als notwendig), weicht aber der direkten Koalitionsfrage aus, indem sie diese als Abhängigkeit der Union von ihr darstellt.",
+        "quotes": [
+          {
+            "text": "Das gute an dem heutigen Tag ist, dass das einmal alle gesehen haben. Die Republik hat gesehen, es ginge, wenn die CDU bereit ist das zu machen.",
+            "timestamp": "00:05:34"
+          },
+          {
+            "text": "Sie können die Anträge weiterschreiben, 'die AfD ist doof', deshalb wird gemacht, das ist uns vollkommen egal.",
+            "timestamp": "00:05:34"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsfähigkeit",
+          "Migrationspolitik",
+          "Lieferkettengesetz"
+        ]
+      },
+      {
+        "title": "Unterschiede der Migrationspolitik zwischen CDU und AfD",
+        "timestamp_range": "00:08:10 - 00:09:51",
+        "theme_description": "Debatte über die inhaltlichen Unterschiede zwischen der Migrationspolitik von Union und AfD, insbesondere zur Frage von Abschiebungen und Grenzsicherung.",
+        "question_asked": "Thorsten Frei (CDU) kritisiert die AfD-Politik im Hinblick auf Putin und wirft ihr vor, Putins Destabilisierungspolitik zu unterstützen. Moderator fragt dann: \"Sind Sie sich da einig in der Migrationspolitik?\"",
+        "question_intent": "Der Moderator möchte klären, ob es in der Migrationspolitik tatsächlich Übereinstimmung zwischen Union und AfD gibt.",
+        "position": "Von Storch behauptet, dass die Union ihre Migrationspolitik von der AfD kopiert habe. Sie listet AfD-Positionen auf: \"abweisend an der Grenze, keiner kommt mehr rein, Gefährder, die hier rumlaufen und aufgegriffen werden, hauptsächlich an den Bahnhöfen zu inhaftieren – das ist vollkommen klar, jeder weiß, dass das AfD-Programmatik ist.\" Sie reduziert die Migrationsfrage auf eine einfache Forderung: \"Das was die Menschen interessiert ist, dass abgeschoben wird und keiner mehr rein kommt.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet auf die Frage nach Unterschieden nicht mit einer Darlegung dieser Unterschiede, sondern mit der Behauptung, dass die Union die AfD-Politik übernommen hat. Sie beantwortet damit indirekt, indem sie die Unterschiede negiert und die Konvergenz behauptet.",
+        "quotes": [
+          {
+            "text": "Die sind von uns kopiert, d. h. abweisend an der Grenze, keiner kommt mehr rein, Gefährder, die hier rumlaufen und aufgegriffen werden, hauptsächlich an den Bahnhöfen die zu inhaftierten, das ist vollkommen klar, jeder weiß, dass das AfD-Programmatik ist.",
+            "timestamp": "00:08:28"
+          },
+          {
+            "text": "Das was die Menschen interessiert ist, dass abgeschoben wird und keiner mehr rein kommt.",
+            "timestamp": "00:08:10"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Abschiebungen",
+          "Grenzsicherung",
+          "Asylrecht"
+        ]
+      },
+      {
+        "title": "Grenzsicherung und Selbstbestimmung über Zuwanderung",
+        "timestamp_range": "00:20:45 - 00:24:31",
+        "theme_description": "Von Storch argumentiert für das Recht auf unilaterale Grenzsicherung und Selbstbestimmung über Zuwanderung, unabhängig von EU-Recht.",
+        "question_asked": "Moderator fragt, wie eine dauerhafte Grenzsicherung mit Schengen vereinbar ist. Von Storch wird aufgefordert, ihre Position zu Grenzsicherung und Zurückweisungen zu präzisieren.",
+        "question_intent": "Der Moderator möchte von Storch auf Fragen zur Rechtmäßigkeit ihrer Grenzsicherungspolitik unter europäischem Recht festlegen.",
+        "position": "Von Storch argumentiert, dass kein Recht der Welt ein souveränes Land zwingen kann, \"unbeschränkt hier Leute reinzulassen\". Sie betont: \"Wir sind ein souveräner Staat und wir entscheiden, wenn wir hereinlassen. Das entscheidet über unser Schicksal, wer dieses Volk ist, weil die Leute gehen nicht weg.\" Sie argumentiert, dass \"jeder Staat das macht und kann und darf\". Falls Gesetze geändert werden müssen, \"dann werden die Gesetze dafür geändert\". Sie ergänzt: \"Grenzschutz und Zurückweisung, das ist im Moment zentral\" und betont, dass Deutschland Grenzkontrollen \"sofort\" durchsetzen könnte, ohne auf europäische Lösungen zu warten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Von Storch beantwortet die Frage zur Vereinbarkeit von Grenzsicherung mit Schengen mit einer klaren Antwort: Souveränität der Staaten überwiegt europäisches Recht. Sie adressiert die Spannung zwischen nationalem Handlungswillen und europäischem Regelwerk direkt.",
+        "quotes": [
+          {
+            "text": "Kein rechts der Welt kann uns zwingen unbeschränkt hier Leute rein zu lassen. Wir sind ein souveräner Start und wir entscheiden, wenn wir hereinlassen.",
+            "timestamp": "00:23:16"
+          },
+          {
+            "text": "Grenzschutz und Zurückweisung, das ist im Moment zentral.",
+            "timestamp": "00:24:39"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Grenzsicherung",
+          "Schengen-Abkommen",
+          "Asylrecht",
+          "EU-Recht"
+        ]
+      },
+      {
+        "title": "Differenzierung Einzelfall vs. Systemisches Problem in Migrationsdebatte",
+        "timestamp_range": "00:26:22 - 00:28:27",
+        "theme_description": "Auseinandersetzung über die Frage, ob einzelne Vorfälle (wie ein Schüler im Supermarkt) als Beleg für Systemprobleme der Migrationspolitik gelten können.",
+        "question_asked": "Moderator kritisiert von Storch, dass sie aus einzelnen Vorfällen eine Kaskade macht und vergleicht ihr Vorgehen mit Björn Höcke, der suggeriert, dass nur Gewalttäter kommen. Der Moderator fragt, wie sie Höckes Aussage bewertet, dass der Großteil der Deutschen psychisch gestört ist, wenn sie diese Politik wählen.",
+        "question_intent": "Der Moderator möchte von Storch auf ihre Distanzierung von Höckes rhetorischem Muster festlegen und damit prüfen, ob die AfD ihre Rhetorik überhaupt reflektiert.",
+        "position": "Von Storch weicht der direkten Kritik aus und argumentiert, dass die AfD \"nicht über die meisten deutschen urteilen\", sondern \"darüber, was die meisten Deutschen wollen\". Sie sagt: \"Sie wollen, dass sich etwas ändert, die sind nicht psychisch krank, die wollen, dass sich etwas ändert.\" Sie positioniert Höckes Aussagen als irrelevant: \"Was Herr Höcke gesagt hat und was Herr Putin und Assad, das interessiert die Menschen da draußen nicht.\" Sie betont, dass \"demokratischen Mehrheiten sind dazu da, um die Gesetze zu machen, dass sich etwas ändert\".",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch antwortet nicht auf die Frage zu Höckes Rhetorik, sondern umdefiniert das Problem: Sie dreht die Kritik um, indem sie sagt, nicht Höcke und die AfD hätten ein Rhetorik-Problem, sondern der Moderator sei abgelenkt. Sie antwortet substantiell, aber zu einem anderen Punkt (die Wünsche der Mehrheit), nicht zur Qualität der Rhetorik.",
+        "deflection_target": "Legitimität von Migrationspolitik durch Mehrheitswille",
+        "evasion_note": "Von Storch antwortet nicht auf die direkten Kritik an Höckes Rhetorik, sondern wertet stattdessen um.",
+        "quotes": [
+          {
+            "text": "Wir urteilen nicht über die meisten deutschen, beurteilen darüber, was die meisten Deutschen wollen, sie wollen, dass sich etwas ändert, die sind nicht psychisch krank, die wollen, dass sich etwas ändert.",
+            "timestamp": "00:27:44"
+          },
+          {
+            "text": "Was Herr Höcke gesagt hat und was Herr Putin und Assad, das interessiert die Menschen da draußen nicht.",
+            "timestamp": "00:27:44"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationsdebatte",
+          "AfD-Rhetorik",
+          "Interne Parteidiskurse"
+        ]
+      },
+      {
+        "title": "Bewaffnete Grenzverteidigung und Außenpolitik",
+        "timestamp_range": "00:33:07 - 00:33:31",
+        "theme_description": "Von Storch klärt, wie weit die AfD gehen würde, um die deutsche Grenze zu schützen, und antwortet auf Fragen zu militärischem Waffeneinsatz.",
+        "question_asked": "Moderator fragt: \"Wenn Menschen an der Grenze auftauchen und die Grenze überqueren, wie weit würden Sie gehen, um die deutsche Grenze zu schützen?\"",
+        "question_intent": "Der Moderator möchte wissen, ob von Storch Schusswaffen-Einsatz an der Grenze befürwortet.",
+        "position": "Von Storch sagt, die AfD wolle \"die deutsche Grenze schützen gegen alle, die sie illegal übertreten\" und betont: \"Wir wollen die Grenze schützen, ich glaube das geht ohne zu schießen.\" Sie ergänzt auf die Moderator-Nachfrage nach dem \"klaren Signal\": \"Das Signal auszusenden in die Welt, hier kommt keiner mehr rein.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Von Storch antwortet präzise auf die Frage nach den Mitteln der Grenzsicherung: Sie grenzt sich von Schusswaffeneinsatz ab und betont stattdessen die Signalwirkung und strikte Grenzsicherung ohne Gewalt.",
+        "quotes": [
+          {
+            "text": "Wir wollen die deutsche Grenze schützen gegen alle, die sie illegal übertreten. Wir wollen die Grenze schützen, ich glaube das geht ohne zu schießen.",
+            "timestamp": "00:33:07"
+          },
+          {
+            "text": "Das Signal auszusenden in die Welt, hier kommt keiner mehr rein.",
+            "timestamp": "00:33:25"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Grenzsicherung",
+          "Migrationspolitik",
+          "Sicherheitsrecht"
+        ]
+      },
+      {
+        "title": "Fachkräftemangel und Migrationssteuerung",
+        "timestamp_range": "00:33:48 - 00:37:42",
+        "theme_description": "Von Storch erläutert, wie die AfD mit Fachkräftemangel umgehen würde, ohne dabei auf Zuwanderung zu setzen.",
+        "question_asked": "Moderator fragt: \"Wie begegnen Sie dem Fachkräftemangel? 7 Millionen Beschäftigte werden in den nächsten Jahren in Rente gehen. 570.000 offene Stellen für qualifizierte Fachkräfte.\"",
+        "question_intent": "Der Moderator möchte ein Widerspruch bloßlegen zwischen der AfD-Forderung nach Null-Migration und der objektiven Notwendigkeit, Fachkräfte ins Land zu holen.",
+        "position": "Von Storch argumentiert, dass man \"richtig selber ausbilden\" muss und \"Leistung muss sich wieder lohnen\". Sie differenziert: Es gehe um zwei Dinge – erstens müssten die in Deutschland vorhandenen \"Ausbildungsfähigen\" hergebracht werden (5,6 Millionen Bürgergeldempfänger). Zweitens könne man dann \"Rahmenbedingungen so setzen, dass die Fachkräfte, die aus dem Ausland kommen brauchen. Die wir brauchen, die kommen nicht, weil wir nicht attraktiv sind.\" Sie nennt konkret: \"Ökonomen sagen ungefähr 400.000\" pro Jahr seien nötig. Sie schlägt vor, \"in Pakistan und in Nigeria\" oder \"in Fernost, wo die Leute top ausgebildet sind\" zu suchen, statt in denselben Ländern wie die Bundesregierung. Sie argumentiert: \"dort die Leute top ausgebildet sind, wo wir keine Integrationsprobleme haben, die Abschlüsse haben, die kompatibel sind und sich in die Gesellschaft besser integrieren.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet mit einem Ansatz (Ausbildung + gezielte Fachkräfteanwerbung), adressiert aber nicht das mathematische Problem, das der Moderator aufzeigt: 570.000 offene Stellen + 7 Millionen Renten + Ausbildung in Deutschland reichen nicht. Sie weicht aus, indem sie Ausbildung in den Vordergrund stellt und Fachkräfteimport als sekundär darstellt, ohne die Zahlen zu adressieren.",
+        "quotes": [
+          {
+            "text": "Wir bilden wieder richtig selber aus, Leistung muss sich wieder lohnen.",
+            "timestamp": "00:33:48"
+          },
+          {
+            "text": "Da müssen wir Angebote machen. Die Bundesregierung sucht in Pakistan und in Nigeria und vielleicht suchen wir er in Fernost, wo die Leute top ausgebildet sind, wo wir keine Integrationsprobleme haben.",
+            "timestamp": "00:35:19"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarkt",
+          "Fachkräftemangel",
+          "Migrationssteuerung",
+          "Ausbildung"
+        ]
+      },
+      {
+        "title": "Finanzierung von AfD-Steuersenkungen und Haushaltskonsolidierung",
+        "timestamp_range": "00:37:42 - 00:40:24",
+        "theme_description": "Von Storch skizziert, wie die AfD ihre Steuersenkungsforderungen finanzieren würde, insbesondere durch Sparmaßnahmen bei Bürgergeld, Entwicklungshilfe und Ukraine-Hilfen.",
+        "question_asked": "Moderator kritisiert: \"Es gibt schlaue Leute, die haben das ausgerechnet: Das macht ein Loch von 180 Milliarden im Bundeshaushalt. Wie stopfen Sie das?\"",
+        "question_intent": "Der Moderator möchte wissen, wie die AfD ein großes Finanzierungsloch füllen würde, das ihre Steuersenkungen verursachen.",
+        "position": "Von Storch argumentiert, dass Deutschland kein \"Einnahmeproblem\", sondern ein \"Ausgabenproblem\" habe. Sie verweist darauf, dass die gesamtstaatlichen Einnahmen in 15 Jahren von 500 Milliarden auf 1 Billion verdoppelt hätten, während die Politik behaupte, kein Geld zu haben. Sie nennt konkrete Sparmaßnahmen: Bürgergeld (\"50 % Ausländeranteil\"), Entwicklungshilfe (33 Milliarden), Ukraine-Hilfen (\"28 Milliarden\"), sowie Infrastruktur-Rücklagen (\"hunderte Milliarden\"). Sie konzentriert sich auf den Bereich Migration und sagt, man rede \"nicht von wenigen 100 Millionen\", sondern von \"mehrstelligen Milliardenbeträgen\". Sie schließt, dass bei diesen \"großen Ausgabepositionen\" ein Sparpotenzial vorhanden sein müsse.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch nennt mehrere Sparmaßnahmen (Bürgergeld, Entwicklungshilfe, Ukraine-Hilfen), rechnet aber nicht konkret vor, ob diese 180 Milliarden Loch füllen. Sie argumentiert strukturell (Ausgabenproblem statt Einnahmeproblem), adressiert die Finanzierungsfrage aber nicht mit genauen Zahlen.",
+        "quotes": [
+          {
+            "text": "Wir sind im Jahr 2025 über gesamtstaatliche Einnahmen von etwa 1 Billionen zu verfügen... dass wir in den letzten 15 Jahren unserer Einnahmen gigantisch verdoppelt haben und trotzdem reicht das Geld nicht.",
+            "timestamp": "00:37:42"
+          },
+          {
+            "text": "Wir haben kein Einnahmeproblem, sondern ein Ausgabeproblem haben. Werden keine 28 Milliarden in die Ukraine geschickt.",
+            "timestamp": "00:39:40"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Steuerpolitik",
+          "Bürgergeld",
+          "Ukraine-Hilfen",
+          "Entwicklungshilfe"
+        ]
+      },
+      {
+        "title": "Reaktion auf Vorwürfe zur Bezahlkarte und Drittes Reich",
+        "timestamp_range": "00:41:32 - 00:44:30",
+        "theme_description": "Von Storch verteidigt AfD-Forderungen zur Bezahlkarte und reagiert auf Kritik, dass die Partei eine Debatte um Vergleiche zum Dritten Reich führt.",
+        "question_asked": "Moderator kritisiert, dass bei AfD-Forderungen (Bezahlkarte, Grenzschutz) immer \"Drittes Reich\" in den Raum gestellt wird, und fragt nach von Storchs Sicht auf Björn Höckes Aussage, dass es \"ein Fehler\" ist, Hitler als \"absolut böse\" darzustellen.",
+        "question_intent": "Der Moderator möchte von Storch dazu bringen, sich von Höckes geschichtsrevisionistischen Aussagen zu distanzieren oder deren Unannehmbarkeit zu bestätigen.",
+        "position": "Von Storch verweigert sich einer direkten Stellungnahme zu Höcke und argumentiert stattdessen, dass die AfD selbst nicht das Thema setze: \"Darum wir überhaupt über das Thema reden ist, wenn Menschen gestorben sind. Sie lenken ab.\" Sie impliziert, dass die Fokussierung auf Höckes Rhetorik von den eigentlichen Problemen (Todesfälle durch Migration) ablenke. Sie verweist auf eine \"Qualitätsstatistik\" ohne diese zu konkretisieren.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Von Storch antwortet auf die Kritik an Höckes Geschichtsrevision nicht mit einer Stellungnahme zu dessen Aussagen, sondern verschiebt das Thema: Sie sagt, die Aufmerksamkeit liege auf dem \"falschen\" Punkt, nämlich auf Todesfällen durch Migration statt auf Rhetorik.",
+        "deflection_target": "Migrationsprobleme statt AfD-Rhetorik",
+        "quotes": [
+          {
+            "text": "Darum wir überhaupt über das Thema reden ist, wenn Menschen gestorben sind. Sie lenken ab. Lesen Sie mal die Qualitätsstatistik durch.",
+            "timestamp": "00:43:07"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bezahlkarte",
+          "Historikerdebatten",
+          "Björn Höcke",
+          "Holocaust-Debatte"
+        ]
+      },
+      {
+        "title": "Vergleich Wehretat mit Russland und Rüstungspolitik",
+        "timestamp_range": "00:45:31 - 00:46:57",
+        "theme_description": "Von Storch erläutert die AfD-Position zum Wehretat und zum Rüstungsbudget, während der Moderator eine Inkohärenz zwischen Putin-Nähe und Aufrüstungsforderungen aufzeigt.",
+        "question_asked": "Moderator fragt: \"Sie sind einerseits sehr Putin freundlich. Was mich interessieren würde. Wenn sie Leuten wie Herr Frei und anderen vorwerfen, sie sind Kriegstreiber [...] Aber gleichzeitig wollen Sie einen Wehr-Etat auf 7 % des Bruttoinlandsprodukts bringen. Wie passt das zusammen?\"",
+        "question_intent": "Der Moderator möchte von Storch auf einen Widerspruch zwischen ihrer Putin-freundlichen Haltung und ihrer Forderung nach massiver Rüstungsausgaben hinweisen.",
+        "position": "Von Storch argumentiert, dass die AfD \"eine gut ausgestattete Bundeswehr haben\" wolle, \"nicht deswegen jetzt aufrüsten und ausrüsten, weil wir sie jetzt nach Russland orientieren\", sondern \"damit wir unsere Bündnisverpflichtung nachkommen, weil jeder Souveräner Start eine Armee haben muss\". Sie trennt also zwischen Rüstung und Offensivpolitik: Rüstung sei defensive Stärke, nicht Kriegsvorbereitung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch adressiert die Frage nach dem Wehretat und erläutert die Begründung (Bündnisverpflichtung), beantwortet aber die zugrundeliegende Kritik des Moderators (Widerspruch zu Putin-Freundlichkeit) nicht direkt. Sie differenziert Rüstung und Offensiv-Politik, lässt aber offen, warum diese Differenz nicht auch für andere Akteure gelten könne.",
+        "quotes": [
+          {
+            "text": "Wir wollen eine gut ausgestattete Bundeswehr haben wir wollte nicht deswegen jetzt aufrüsten und ausrüsten, weil wir sie jetzt nach Russland orientieren, wollen eine gut ausgerüstete Bundeswehr haben, damit wir unsere Bündnisverpflichtung nachkommen.",
+            "timestamp": "00:45:31"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehretat",
+          "Außenpolitik Russland",
+          "NATO-Bündnis",
+          "Rüstungspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "5,6 Millionen Bürger sind Bürgergeldempfänger, der größte Teil davon ist arbeitsfähig",
+        "timestamp": "00:35:19"
+      },
+      {
+        "claim": "Ökonomen sagen ungefähr 400.000 Fachkräfte pro Jahr seien nötig",
+        "timestamp": "00:35:05"
+      },
+      {
+        "claim": "In den letzten zehn Jahren hatte Großbritannien 1,8 % Wachstum und Deutschland 1 %",
+        "timestamp": "00:17:14"
+      },
+      {
+        "claim": "Die gesamtstaatlichen Einnahmen betrugen vor 15 Jahren (2009) etwa 500 Milliarden, heute (2025) etwa 1 Billion",
+        "timestamp": "00:37:42"
+      },
+      {
+        "claim": "50 % der Bürgergeldempfänger haben einen Ausländeranteil",
+        "timestamp": "00:39:40"
+      },
+      {
+        "claim": "In Sonneberg (Thüringen) wurde unter AfD-Mitbeteiligung eine Schule geschlossen, die erhalten werden sollte, und eine Klinik ist insolvent geworden",
+        "timestamp": "00:41:32"
+      }
+    ]
+  }
+}

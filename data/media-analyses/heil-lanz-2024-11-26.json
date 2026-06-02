@@ -1,0 +1,269 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-26-november-2024-100",
+    "video_id": "lanz-2024-11-26",
+    "politician": "Hubertus Heil",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "b2a9265e2c23130e",
+    "transcript_chars": 53977,
+    "caption_lines": 2749,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22541,
+    "tokens_out": 6980,
+    "cost_usd": 0.0229764,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.642Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Hubertus Heil (SPD, Bundesarbeitsminister und stellvertretender SPD-Chef) diskutiert in dieser Talkshow-Sendung drei zentrale Themenkomplexe: die interne Debatte um die Kanzlerkandidatur und Scholz' Kanzlerschaft, die deutsche Außen- und Sicherheitspolitik im Ukraine-Konflikt, sowie die Rentenpolitik und das Bürgergeld. Er tritt durchgehend als Verteidiger der bisherigen Regierungspolitik auf, argumentiert substantiell zu den meisten Fragen und weicht bei kritischen Fragen selektiv zur Gegenposition aus.",
+    "themes": [
+      {
+        "title": "SPD-Kanzlerkandidatur und interner Parteikonflikt",
+        "timestamp_range": "00:03:35 - 00:15:27",
+        "theme_description": "Diskussion über das Wahlprozedere der SPD bei der Kandidatenfindung und die Parteisolidarität hinter Olaf Scholz.",
+        "question_asked": "Wie hat Hubertus Heil das Hickhack um die K-Frage (Kanzlerkandidatur) erlebt? Warum ließ die Parteiführung die Debatte über Pistorius tagelang laufen, anstatt Scholz sofort zu nominieren?",
+        "question_intent": "Moderator und andere Gäste werfen der SPD fehlende Führungsklarheit vor und fragen, wie Heil als Parteispitze die Krise hätte verhindern können.",
+        "position": "Heil argumentiert, dass jede Partei interne Diskussionen führen kann, solange sie sich am Ende zusammenrauft. Er betont, dass die SPD hinter Scholz versammelt hat und dass Inhalte und Personen nicht zu trennen sind. Er verweist darauf, dass Wahlen von den Bürgern entschieden werden und warnt davor, retrospektiv zu analysieren. Die zentrale Frage sei, welche Wahl zwischen Scholz und Merz die Bürger treffen – und dabei spielen Kompetenz und Krisenerfahrung eine Rolle. Heil wehrt sich gegen die Darstellung, die SPD sei zersplittert, und kritisiert statt dessen die Vergleichbarkeit mit früheren Szenarien (Laschet/Söder 2005).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Heil adressiert die Frage zur Parteisolidarität und präsentiert diese als gegeben, beantwortet aber nicht direkt die Kritik an fehlender Klarheit der Parteiführung in den ersten Tagen des Prozesses. Er lenkt stattdessen auf die Zukunft und den Wahlkampf ab.",
+        "concrete_statements": [
+          "Die Partei hat sich hinter Olaf Scholz versammelt.",
+          "Es geht um ganz bestimmte Themen, die für das Lebensalter der Menschen wichtig ist.",
+          "Es gibt eine klare Auswahl zwischen Olaf Scholz und Friedrich Merz.",
+          "Unterschätzen Sie diesen Kanzler nicht. Er hat in den letzten Jahren dieses Land durch verdammt schwierige Zeiten gebracht."
+        ],
+        "quotes": [
+          {
+            "text": "um es freundlich zu formulieren, dass es keinen deutschen Eleganz Preis bekommen hat in der letzten Woche, war zu lesen. Aber am Ende zählt, dass man sich zusammenraufen. Und dass die SPD muss sich darum kümmern, und das tun wir.",
+            "timestamp": "00:03:35",
+            "context": "Auf die Frage des Moderators, wie Heil das Hickhack um die Kanzlerkandidatur erlebt hat."
+          },
+          {
+            "text": "Unterschätzen Sie diesen Kanzler nicht. Er hat in den letzten Jahren dieses Land durch verdammt schwierige Zeiten gebracht. In dem Russland Krieg, der wirtschaftliche Folgen für uns hatte.",
+            "timestamp": "00:11:09",
+            "context": "Heil verteidigt Scholz gegen die Kritik an seiner Amtsführung und Kanzlerschaft."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kanzlerwahl",
+          "SPD-Strategien",
+          "Parteiführung",
+          "Wahlkampf 2025"
+        ]
+      },
+      {
+        "title": "Scholz als Friedenskanzler und Außenpolitik",
+        "timestamp_range": "00:11:09 - 00:15:19",
+        "theme_description": "Bewertung von Scholz' Rolle als Kanzler insbesondere in seiner Außenpolitik und dem Umgang mit wirtschaftlichen Krisen während seiner Amtszeit.",
+        "question_asked": "Wie bewertet Heil Scholz' Kanzlerschaft angesichts der Kritik, dass dieser Markenkern (Verlässlichkeit, gutes Regieren, Solidität) verloren hat und dass der Bruch der Ampel Merz bevorzugt?",
+        "question_intent": "Moderator und Journalist Medick hinterfragen, ob Scholz das Vertrauen der Bürger bewahrt hat und ob sein Image als stabiler Kanzler noch trägt.",
+        "position": "Heil verteidigt Scholz als einen Kanzler mit echter Krisenerfahrung. Er argumentiert, dass Scholz substantielle Dinge angepackt hat (Mindestlohn, Stabilisierung), und warnt davor, den Bruch der Ampelkoalition dem Kanzler anzulasten. Für Heil liegt der entscheidende Unterschied zu Merz darin, dass Scholz kommunal und regional regiert hat und Koalitionsverhandlungen bewältigt hat – Merz habe solche Erfahrung nicht. Heil betont auch, dass Scholz als erster die Forderung nach Verzicht auf russisches Gas erhoben habe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Heil antwortet substantiell auf die Frage zur Bewertung von Scholz und liefert konkrete Argumente für dessen Kompetenzen (Krisenerfahrung, Koalitionsfähigkeit) sowie Vergleiche zu Merz. Er adressiert auch die Kritik am Ampel-Bruch direkt.",
+        "concrete_statements": [
+          "Es ist ein Geschäftsmodell, dass wir nicht mit den schlechtesten Löhnen, sondern mit den bestmöglichen Produkten glänzen.",
+          "Jeder, der eine Regierung fehlt, muss in der Lage sein zu verhandeln, das hat Olaf Scholz bewiesen.",
+          "Olaf Scholz ist besonnen und entschlossen. Er hat als erstes gefordert, dass wir auf russisches Gas verzichten."
+        ],
+        "quotes": [
+          {
+            "text": "Es geht um ganz zentrale Themen. Was man tun muss, für die industrielle Basis. Es ist ein Geschäftsmodell, dass wir nicht mit den schlechtesten Löhnen, sondern mit den bestmöglichen Produkten glänzen.",
+            "timestamp": "00:13:17",
+            "context": "Heil erklärt seine Sicht auf Scholz' Wirtschaftspolitik und den Kontrast zu Merz' Ansatz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ampelkoalition",
+          "Außenpolitik",
+          "Kanzler-Kompetenz",
+          "Energiepolitik"
+        ]
+      },
+      {
+        "title": "Ukraine-Hilfe und deutsche Sicherheitspolitik",
+        "timestamp_range": "00:18:00 - 00:47:34",
+        "theme_description": "Diskussion über Umfang und Art der deutschen militärischen und finanziellen Unterstützung der Ukraine, die Frage nach Eskalation und die Frage, ob Deutschland genug tut.",
+        "question_asked": "Ist die deutsche Unterstützung für die Ukraine ausreichend? Gibt es ein Problem mit der Kommunikation des Kanzlers zu Eskalationsrisiken, und stimmt die Aussage, dass Deutschland der größte Unterstützer ist?",
+        "question_intent": "Moderator und Gast Sauer kritisieren sowohl die Höhe der deutschen Unterstützung (relativ zum BIP) als auch die Kommunikationsstrategie des Kanzlers; sie fragen implizit, ob Scholz zu ängstlich ist.",
+        "position": "Heil argumentiert, dass Deutschland materiell der größte Unterstützer Europas ist und dass diese Unterstützung dauerhaft durchgehalten werden muss. Er relativiert die Kritik an den absoluten Zahlen (30 Milliarden) damit, dass diese verschiedene Hilfsformen kombinieren (militärisch, wirtschaftlich, humanitär). Heil verweist auf das 50-Milliarden-Sicherheitspaket, das noch vor der US-Präsidentschaftswahl geschnürt wurde. Zu Sauers Kritik an Scholz' Kommunikation wehrt Heil sich und verteidigt einen verantwortungsvollen Kurs zwischen NATO und Atommacht, ohne in Eskalation zu verfallen. Er kritisiert auch die Vermischung von Angst-Schüren (AfD, BSW) mit legitimer Debatte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Heil antwortet auf die Frage zur Unterstützungshöhe mit Verweis auf Deutschland als größten materiellen Unterstützer, beantwortet aber die Kritik an der 'halben Wahrheit' (BIP-relativ andere Länder geben mehr) eher defensiv. Bei der Eskalations-Frage weicht er zur Gegenposition aus: statt direkt zu besprechen, ob Scholz mit Angst spielt, verteidigt er Scholz und kritisiert stattdessen AfD/BSW.",
+        "concrete_statements": [
+          "Deutschland ist aus Europa, der größte materielle Unterstützer der Ukraine.",
+          "Das hat diese Regierung begonnen, wir wissen das wird nicht reichen. Wir investieren viel mehr, als die anderen, die geredet haben.",
+          "Das ist der Grund, warum wir die 50 Milliarden Euro vorher klargemacht haben.",
+          "Wir müssen auch mit Bürgerinnen und Bürger reden, die Zweifel haben und fertig sind.",
+          "Deutschland, unser Land, muss sich für die Solidarität die wir diesem Land geben, weder verstecken noch schämen."
+        ],
+        "quotes": [
+          {
+            "text": "Deutschland ist aus Europa, der größte materielle Unterstützer der Ukraine. Auch was die Versorgung der geflüchteten angeht. Wir müssen diese Unterstützung dauerhaft durchhalten.",
+            "timestamp": "00:18:00",
+            "context": "Heil reagiert auf die Kritik, dass Deutschland zu wenig für die Ukraine tut."
+          },
+          {
+            "text": "Da muss man mit Verlaub, abwägen, über was man im Detail sprechen kann. Aber am Ende sind wir uns einig, dass Putin diesen Krieg nicht gewinnen darf, die Souveränität der Ukraine gewahrt sein muss.",
+            "timestamp": "00:20:10",
+            "context": "Heil betont trotz Meinungsverschiedenheiten bei Details, dass ein Konsens zur Ukraine-Unterstützung besteht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Hilfe",
+          "Außenpolitik",
+          "NATO",
+          "Rüstungslieferungen",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Rentenpolitik und Generationengerechtigkeit",
+        "timestamp_range": "00:50:16 - 01:03:15",
+        "theme_description": "Debatte über die deutsche Rentenpolitik, Frage der Belastung der jungen Generation durch Rentenbeiträge und die Frage, ob Renteneintrittsalter angepasst werden sollte.",
+        "question_asked": "Macht die SPD rentenpolitik auf dem Rücken der jungen Generation? Sollte das Renteneintrittsalter flexibler erhöht werden, um die Last zu verteilen?",
+        "question_intent": "Gast Höning kritisiert die SPD-Politik als 'brutale Politik zulasten der jungen Generation', die nur ältere Wähler gewinnen will, und fragt, warum Heil nicht das Renteneintrittsalter erhöht.",
+        "position": "Heil argumentiert, dass man nicht Rentner gegen Junge ausspielen darf. Er weist darauf hin, dass Alterssicherung auch Erwerbstätige betrifft, nicht nur Rentner. Zum Renteneintrittsalter betont er, dass man zwischen Menschen unterscheiden muss, die mit 16 zu arbeiten begannen (Handwerk, Bau, Pflege) und denen, die mit 26 (nach Jurastudium) anfingen. Leistungsanreize sind wichtig, aber Zwangserhöhungen seien für viele Menschen unmöglich und stelle faktisch Rentenkürzungen dar. Heil verweist auf die demografische Realität (2030: 57 Rentner pro 100 Beitragszahler) und betont, dass es nicht nur um die Rente selbst, sondern um die Fachkräftesicherung geht – dafür braucht es 400.000 Menschen netto pro Monat am Arbeitsmarkt, also etwa 800.000 Brutto-Zuwanderung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Heil adressiert die Frage zur Generationengerechtigkeit direkt und liefert substantielle Gegenargumente zur Erhöhung des Renteneintrittsalters. Er konkretisiert seine Position mit Beispielen (Frau in Pflege, Schichtdienst seit 1993) und bezieht sich auf demografische und wirtschaftliche Realitäten.",
+        "concrete_statements": [
+          "Es geht dabei um die, die gerade arbeiten. Und um die Jüngeren. Wie geht es darum, die Generation nicht gegeneinander auszuspielen.",
+          "Ich finde, wir müssen Anreize setzen, dass Menschen freiwillig länger arbeiten. Aber ihr Vorschlag, ist für andere nichts anderes als eine Rentenkürzung.",
+          "Wir haben ein richtiges Demographiethema. 2020 war die Situation so, dass auf 100 Beitragszahler 57 Rentner kamen. 2013 kommend etwa die gleichen 100 Beitragszahler 67 Rentner schon mal zehn mehr.",
+          "Bis 2030 müssen wir 5-6.000.000 auf dem Arbeitsmarkt ersetzen.",
+          "Wenn wir dem Arbeitsmarkt helfen, helfen wir dem Sozialsystem."
+        ],
+        "quotes": [
+          {
+            "text": "Es macht einen Unterschied, wenn man mit 16 angefangen hat zu arbeiten, im Bau, im Handwerk, in der Pflege, oder ob man mit 26 angefangen hat zu arbeiten zum Beispiel nach einem Jurastudium. Ich finde, wir müssen Anreize setzen, dass Menschen freiwillig länger arbeiten.",
+            "timestamp": "00:53:28",
+            "context": "Heil erläutert, warum pauschale Erhöhungen des Renteneintrittsalters problematisch sind."
+          },
+          {
+            "text": "Das Rentenniveau sinkt. Die werden im Schnitt ärmer. Das muss man plastisch machen. Für eine Frau, die heute in der Pflege arbeitet, 49 Jahre alt, ist für sie die Rente 1900 Euro.",
+            "timestamp": "00:58:37",
+            "context": "Heil macht mit einem konkreten Beispiel deutlich, welche Folgen eine Senkung des Rentenniveaus hätte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Renteneintrittsalter",
+          "Generationengerechtigkeit",
+          "Demografischer Wandel",
+          "Erwerbstätigenquote"
+        ]
+      },
+      {
+        "title": "Bürgergeld und Arbeitsanreize",
+        "timestamp_range": "01:05:05 - 01:14:30",
+        "theme_description": "Debatte über die Höhe des Bürgergeldes und die Frage, ob es Anreize zum Arbeiten mindert oder ob Sanktionen und Druck die richtige Lösung sind.",
+        "question_asked": "Hat die SPD das Bürgergeld so großzügig gestaltet, dass es für viele Menschen attraktiver ist, nicht zu arbeiten statt zu arbeiten? Warum wurden Sanktionen gelockert?",
+        "question_intent": "Höning und Lanz kritisieren, dass das Bürgergeld die Arbeitsanreize schwächt und fragen, ob die SPD damit nicht gegen arbeitende Menschen handelt.",
+        "position": "Heil argumentiert, dass die Behauptung statistisch falsch ist. Von den 4 Millionen Menschen im Bürgergeld arbeiten etwa 20 % (800.000) aufstockend, weil sie nicht genug verdienen. Davon abgezogen bleiben etwa 1,6 Millionen, die theoretisch arbeiten könnten. Etwa 48 % haben keinen deutschen Pass. Heil betont, dass es nicht um Druck und Sanktionen geht (die SPD hat Sanktionen gelockert, was richtig war), sondern um Qualifizierung, Sprachhürden abbauen und Betreuung. Das Bürgergeld ist keine bedingungslose Leistung, sondern ein differenziertes System. Heil kritisiert auch, dass man Rente und Bürgergeld nicht gegeneinander ausspielen darf. Er verweist auf Investitionen in Zukunftsfähigkeit (Kitas, Wohnungsbau) als echte Lösung statt Sparmaßnahmen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Heil antwortet auf die Frage der Bürgergeld-Höhe mit statistischen Differenzierungen und weist die Kritik der mangelnden Arbeitsanreize zurück. Er adressiert aber nicht direkt die Frage nach Sanktionen (warum wurden sie gelockert?) und weicht zur Gegenposition aus, indem er Qualifizierung statt Druck betont.",
+        "concrete_statements": [
+          "20 %, ungefähr 800.000 sind ungefähr aufstocken. Die verdienen nicht genug um Heizung und Miete zu bezahlen.",
+          "Dann haben wir 48 % der Bürger, die keinen deutschen Pass haben.",
+          "Es ist kein bedingungsloses Grundeinkommen.",
+          "Da muss man mit Verlaub, dass unterstellen Sie. Niemand macht das.",
+          "Wir müssen einiges tun, Stichwort Netzentgelte. Rüstung für Rente, würde diese Gesellschaft nicht aushalten."
+        ],
+        "quotes": [
+          {
+            "text": "20 %, ungefähr 800.000 sind ungefähr aufstocken. Die verdienen nicht genug um Heizung und Miete zu bezahlen. Wenn man anderer abzieht, dann bleiben ungefähr 1,6 Million, steht das auch auf Ihrem Zettel, die arbeiten könnten, aber es nicht tun.",
+            "timestamp": "01:08:39",
+            "context": "Heil differenziert die Bürgergeld-Statistik detailliert gegenüber Vorwürfen zu hoher Leistungen."
+          },
+          {
+            "text": "Der Punkt, was diese Frau besonders ärgert, die Pflegekraft, dass es nicht die Prozentzahl in der Zukunft, sondern dass sie jeden Tag aufstehen muss und dann sieht, was eine Familie beim Bürgergeld Bezug bekommt.",
+            "timestamp": "01:03:15",
+            "context": "Heil reagiert auf die Kritik von Höning, dass Pflegekräfte benachteiligt sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Grundsicherung",
+          "Arbeitsmarktpolitik",
+          "Sozialleistungen",
+          "Integration"
+        ]
+      },
+      {
+        "title": "Investitionen in Zukunft versus Sozialausgaben",
+        "timestamp_range": "01:08:11 - 01:15:06",
+        "theme_description": "Übergreifende Frage nach dem Verhältnis zwischen Ausgaben für das Rentensystem und Investitionen in Zukunftsaufgaben (Kitas, Wohnungsbau, Infrastruktur).",
+        "question_asked": "Wenn die Regierung fast 180 Milliarden für Rente ausgibt und nur 50 Milliarden für echte Investitionen hat, ist das nicht das falsche Verhältnis? Werden die richtigen Weichen für 2030 gestellt?",
+        "question_intent": "Moderator und Gast Medick fragen, ob die Prioritäten richtig gesetzt sind und ob die Regierung nicht zu sehr auf kurzfristige Sozialleistungen setzt statt auf Zukunftsinvestitionen.",
+        "position": "Heil gibt zu, dass die Aufgabe groß ist, beantwortet aber die Kritik am Zahlen-Verhältnis mit Differenzierung. Die 350 Milliarden für die Rentenversicherung sind nicht nur Ausgaben, sondern ein System mit Einnahmen und Überschüssen. Der Überschuss reicht aus, um das System vier Jahre zu halten. Heil betont, dass die Frage nicht einfach ist, welche Gesellschaft Alterssicherung misst sich am BIP-Verhältnis – und da liegt Deutschland im Mittelfeld, nicht an der Spitze. Die wahre Antwort liegt darin, den Arbeitsmarkt zu stärken (10 % mehr Arbeitszeitvolumen würde viel helfen) und gleichzeitig in Zukunft zu investieren. Das ist keine Wahl zwischen Rente oder Zukunft, sondern eine Steigerung der Erwerbsbeteiligung über Fachkräftegewinnung und bessere Integration von Zuwanderern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Heil adressiert die Zahlenfrage mit statistischen Relativierungen (BIP-Vergleiche, Überschussrechnung) und verweist auf die komplexe Systemlogik. Er antwortet aber nicht direkt auf die normative Frage, ob die Gewichtung richtig ist, sondern lenkt stattdessen auf Erwerbsbeteiligung als Lösung ab.",
+        "concrete_statements": [
+          "Wir müssen darauf hinarbeiten, dass sich alle auf die älteren verlassen können.",
+          "Wenn wir da 10 % besser werden, würde es uns besser gehen.",
+          "Wir müssen 400.000 Leute netto pro Monat am Arbeitsmarkt gewinnen. Da braucht man 800.000 brutto Zuwanderung.",
+          "Es ist sehr komplex."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben eine demokratische Entwicklung, da haben Sie recht. Die Frage, was diese Gesellschaft für Alterssicherung misst sich am wirtschaftlichen Gruppen. In der Relation zu dem, was wir als Bruttoinlandsprodukt haben.",
+            "timestamp": "01:01:31",
+            "context": "Heil erklärt seine Sicht auf das richtige Verhältnis von Rentensystem und BIP."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Investitionen",
+          "Rentenpolitik",
+          "Arbeitsmarktpolitik",
+          "Infrastruktur"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "2020 war die Situation so, dass auf 100 Beitragszahler 57 Rentner kamen, 2013 kommend etwa die gleichen 100 Beitragszahler 67 Rentner.",
+        "timestamp": "00:57:52"
+      },
+      {
+        "claim": "20 %, ungefähr 800.000 sind ungefähr aufstocken. Dann haben wir 48 % der Bürger, die keinen deutschen Pass haben.",
+        "timestamp": "01:08:39"
+      },
+      {
+        "claim": "Deutschland ist aus Europa, der größte materielle Unterstützer der Ukraine.",
+        "timestamp": "00:18:00"
+      },
+      {
+        "claim": "Der Überschuss im Jahr 2023 von 3,5 Milliarden, um das System vier Jahre stabil zu halten.",
+        "timestamp": "00:58:37"
+      },
+      {
+        "claim": "Bis 2030 müssen wir 5-6.000.000 auf dem Arbeitsmarkt ersetzen.",
+        "timestamp": "01:01:31"
+      }
+    ]
+  }
+}

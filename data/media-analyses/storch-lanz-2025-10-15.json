@@ -1,0 +1,318 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-15-oktober-2025-100",
+    "video_id": "lanz-2025-10-15",
+    "politician": "Beatrix von Storch",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "88a310e50994dbc1",
+    "transcript_chars": 60795,
+    "caption_lines": 2922,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25183,
+    "tokens_out": 7146,
+    "cost_usd": 0.0243652,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 2,
+      "substantielle_position": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.918Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Beatrix von Storch (AfD) tritt in einer Talkshow gegen Ines Schwerdtner (Die Linke) auf. Die Diskussion behandelt Themen wie Umgangsformen im Bundestag, Geschlechteridentität und das Selbstbestimmungsgesetz, Abtreibung und Verfassungsrichterwahl, kulturelle Werte und Christentum, Kontakte zu J.D. Vance und Meinungsfreiheit, sowie Außenpolitik mit Schwerpunkt auf Wehrpflicht, Ukraine-Waffenlieferungen und Diplomatie. Von Storch argumentiert durchgehend aus einer konservativen, teilweise konfrontativen Perspektive.",
+    "themes": [
+      {
+        "title": "Handschlag und Umgangsformen im Bundestag",
+        "timestamp_range": "00:03:26 - 00:04:52",
+        "theme_description": "Diskussion über die Verweigerung des Handschlags und grundlegende Umgangsformen zwischen politischen Gegnern.",
+        "question_asked": "Der Moderator fragt nach von Storchs Verhalten bei der heutigen Begrüßung und ob auch sie einen Handschlag verweigert hat, nachdem Schwerdtner berichtet, dass sie von Storch die Hand verweigert habe.",
+        "question_intent": "Der Moderator möchte verstehen, ob beide Seiten an der Verweigerung von Umgangsformen beteiligt sind und wie zivil die Debatte geführt wird.",
+        "position": "Von Storch sagt, sie habe gegrüßt, aber keinen Gruß zurückgehalten und nicht erneut die Hand gereicht, da sie wisse, dass Schwerdtner ihr diese nicht reiche. Sie argumentiert, dass in einer Demokratie unterschiedliche Meinungen normal sind und dass das Handgeben zur Zivilisation gehört, aber nicht erzwungen werden kann. Sie interpretiert die Verweigerung als Anfang der Diskursverweigerung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet auf die Frage, ob auch sie die Hand verweigert, mit der Klarstellung, dass sie gegrüßt habe. Sie adressiert aber nicht vollständig die normative Frage des Moderators (wie zivil), sondern verschiebt zu einer grundsätzlichen Verteidigung von Diskursfähigkeit.",
+        "quotes": [
+          {
+            "text": "Ich habe gegrüßt, aber ich habe keinen Gruß zurückgehalten, deshalb habe ich nicht zum x-ten Mal die Hand gereicht.",
+            "timestamp": "00:03:26"
+          },
+          {
+            "text": "Wir haben unterschiedliche Ansichten, aus meiner Sicht ist das völlig ok. Wir leben in einer Demokratie, man kann unterschiedliche Meinungen haben.",
+            "timestamp": "00:03:26"
+          }
+        ],
+        "concrete_statements": [
+          "Sie betont, dass sie gegrüßt habe, aber nicht erneut die Hand gereicht, da sie um Schwerdtners Verweigerung weiß",
+          "Sie argumentiert für das Recht auf unterschiedliche Meinungen in einer Demokratie"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Kultur",
+          "Debattenstandards"
+        ]
+      },
+      {
+        "title": "Pronomen, Selbstbestimmungsgesetz und Provokation",
+        "timestamp_range": "00:06:01 - 00:09:39",
+        "theme_description": "Auseinandersetzung über von Storchs Weigerung, die Pronomen von Markus Gansera (jetzt Sophia Gansera) zu verwenden, und die Frage, ob dies legitime Kritik oder bewusste Provokation ist.",
+        "question_asked": "Der Moderator stellt fest, dass von Storch das Pronomen-Thema selbst im Bundestag so formuliert hat und fragt, warum diese Provokation notwendig war, wenn sie privat akzeptiert, dass Menschen sich ihre Pronomen selbst aussuchen können.",
+        "question_intent": "Der Moderator möchte verstehen, warum von Storch eine bewusste Provokation in der Öffentlichkeit führt, wenn sie privat Toleranz zeigt.",
+        "position": "Von Storch argumentiert, dass es nicht um Provokation, sondern um das Selbstbestimmungsgesetz geht, das später formalisiert wurde. Sie sagt, jeder könne sich aussuchen, was er/sie sein will (außer in Kriegsfällen oder bei Rechtsextremismus), was sie für absurd hält. Sie betont, dass die Regelung zum Zeitpunkt ihrer Äußerung im Bundestag noch nicht in Kraft war, der Mann als 'Markus Gansera' auf dem Wahlzettel stand und so gewählt wurde.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch beantwortet die Frage nicht direkt (warum die Provokation?), sondern pivotiert zur Kritik am Selbstbestimmungsgesetz selbst und argumentiert, dass die Mehrheit der Bevölkerung das ablehnt. Sie konstruiert ein Gegenpunkt-Argument gegen die Gesetzeslogik statt der direkten Frage zur persönlichen Provokation zu antworten.",
+        "quotes": [
+          {
+            "text": "Nein, es geht nicht um ein TikTok Video, sondern das Selbstbestimmungsgesetz, was später formalisiert wurde, jeder kann sich aussuchen, was er sein will, außer es ist Kriegsfall oder rechtsextrem, deshalb halten wir für absurd.",
+            "timestamp": "00:08:58"
+          },
+          {
+            "text": "Das Gesetz ist nicht in Kraft. Der Mann steht als Markus Gansra auf dem Wahlzettel drauf, und ist gewählt wurden, weil er so heiß. Das ist einfach absurd, die Mehrheit der Bevölkerung lehnt das ab.",
+            "timestamp": "00:09:39"
+          }
+        ],
+        "concrete_statements": [
+          "Sie lehnt das Selbstbestimmungsgesetz als absurd ab",
+          "Sie argumentiert, dass die Mehrheit der Bevölkerung das Gesetz ablehnt",
+          "Sie verweist auf die zeitliche Logik: Gesetz war nicht in Kraft, als sie sprach"
+        ],
+        "related_bundestag_topics": [
+          "Selbstbestimmungsgesetz",
+          "Geschlechteridentität",
+          "Parlamentarische Debatten"
+        ]
+      },
+      {
+        "title": "Abtreibung, Verfassungsrichterin Gersdorf und Lebensschutz",
+        "timestamp_range": "00:15:10 - 00:22:06",
+        "theme_description": "Kontroverse um von Storchs Kritik an der Verfassungsrichterin Gersdorf wegen deren Äußerungen zur Abtreibung und zum Zeitpunkt der Menschenwürde.",
+        "question_asked": "Der Moderator fragt, warum von Storch sich im Bundestag hinstellt und behauptet, Gersdorf wolle Abtreibungen kurz vor der Geburt möglich machen, wenn das faktisch nicht Gersdorfs Position ist.",
+        "question_intent": "Der Moderator möchte verstehen, ob von Storch eine bewusste Falschdarstellung vornimmt oder basierend auf faktischen Äußerungen argumentiert.",
+        "position": "Von Storch argumentiert, dass Gersdorf eine Agenda verfolgt. Sie habe als Mitglied der Abtreibungskommission das Ziel, Paragraph 218 abzuschaffen und Abtreibung straffrei zu stellen. Gersdorf habe zudem gesagt, dass es gute Gründe dafür gibt, dass die Menschenwürde erst mit der Geburt einsetzt. Von Storch betont, dass das Bundesverfassungsgericht anders entschieden hat und dem ungeborenen Leben von Zeugung an Menschenwürde zukommt. Sie interpretiert Gersdorfs juristische Argumentation als versteckte Agenda zur Legalisierung von späten Abtreibungen.",
+        "answer_match": "teilweise_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch adressiert die Frage teilweise: Sie liefert ihre Interpretation von Gersdorfs Positionen, nicht aber eine Rechtfertigung dafür, dass sie die Position auf 'Abtreibungen kurz vor der Geburt' zuspitzt. Sie argumentiert eher zu einer abstrakteren Agenda-Frage als zu der konkreten Fehldarstellung, die der Moderator anspricht.",
+        "quotes": [
+          {
+            "text": "Diese Dame hat eine Agenda. Wir haben dem Rechtsausschuss gehört, sie war Mitglied in der Abtreibungskommission, mit dem Ziel, den Paragraf 218 abzuschaffen und die Abtreibung straflos hinzustellen.",
+            "timestamp": "00:15:49"
+          },
+          {
+            "text": "Sie hat gesagt, es gibt gute Gründe dafür, dass die Menschenwürde erst mit der Geburt einsetzt.",
+            "timestamp": "00:15:49"
+          }
+        ],
+        "concrete_statements": [
+          "Sie behauptet, Gersdorf verfolgt eine Agenda zur Abschaffung von Paragraph 218",
+          "Sie argumentiert, dass das Bundesverfassungsgericht diesen Konflikt 'gelöst' hat und Menschenwürde von Zeugung an besteht",
+          "Sie lehnt jede Änderung des Status quo ab"
+        ],
+        "related_bundestag_topics": [
+          "Abtreibungsrecht",
+          "Lebensschutz",
+          "Menschenwürde",
+          "Verfassungsrecht"
+        ]
+      },
+      {
+        "title": "Kulturkampf, christliche Werte und Trump-Bewegung",
+        "timestamp_range": "00:23:26 - 00:26:41",
+        "theme_description": "Von Storchs Äußerungen zu ihrer positiven Bewertung eines Kulturkampfs von rechts gegen linke kulturelle Verschiebungen, sowie ihre Unterstützung christlicher Werte und Bewunderung für die Trump-Bewegung.",
+        "question_asked": "Der Moderator fragt, ob von Storch für oder gegen die Homo-Ehe ist, und später, ob ihre Reise ins Weiße Haus Teil eines Kulturkampfs ist, den sie von Amerika nach Deutschland tragen möchte.",
+        "question_intent": "Der Moderator möchte von Storchs klare Position zur Homo-Ehe und ihre Motivationen bei der Zusammenarbeit mit dem Trump-Umfeld verstehen.",
+        "position": "Von Storch sagt, die AfD sei gegen die Homo-Ehe und für die eingetragene Lebenspartnerschaft. Sie argumentiert, dass die Linke lange Zeit Kulturkämpfe geführt habe und die Rechte nicht dagegenhielt. Sie freut sich, dass jetzt 'Rückhalt auch klar aus den vereinigten Staaten kommt' und mehr christliches Bekenntnis. Sie sieht die Trump-Bewegung als eine starke christliche Bewegung, die in Deutschland fehle, besonders nach dem Attentat auf Charlie Kirk.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Von Storch antwortet klar und direkt auf beide Fragen: Sie bekennt sich zur AfD-Position gegen Homo-Ehe und erklärt ihre Sicht auf Kulturkampf und christliche Werte. Sie rechtfertigt ihre Nähe zur Trump-Bewegung mit deren angeblich fehlender Unterstützung in Deutschland.",
+        "quotes": [
+          {
+            "text": "Wir sind gegen die Homo-Ehe. Die AfD ist gegen die Homo-Ehe. Wir sind für die eingetragene Lebenspartnerschaft.",
+            "timestamp": "00:24:35"
+          },
+          {
+            "text": "Ja, ich glaube es ist an der Zeit, dass die Konservativen, diesen Kulturkampf, die ganze Zeit von links geführt worden ist, aufnehmen.",
+            "timestamp": "00:23:57"
+          }
+        ],
+        "concrete_statements": [
+          "Sie lehnt Homo-Ehe ab, unterstützt eingetragene Lebenspartnerschaft",
+          "Sie sieht einen von links geführten Kulturkampf und fordert konservative Gegenbewegung",
+          "Sie begrüßt christliches Engagement aus den USA"
+        ],
+        "related_bundestag_topics": [
+          "Ehe für Alle",
+          "Kulturpolitik",
+          "Christliche Werte",
+          "Außenpolitik USA"
+        ]
+      },
+      {
+        "title": "Kontakt zu J.D. Vance, Namen und Meinungsfreiheit",
+        "timestamp_range": "00:28:04 - 00:33:17",
+        "theme_description": "Auseinandersetzung über von Storchs Treffen mit Vertretern des Trump-Umfelds und Vorwürfe, dass sie Namen von Befürwortern des Digital Services Act (DSA) liefern soll.",
+        "question_asked": "Der Moderator fragt, ob es zutrifft, dass von Storch gebeten wurde, Namen von Personen zu liefern, die den DSA unterstützen, und ob dies als Denunzianten-Tätigkeit zu verstehen ist.",
+        "question_intent": "Der Moderator möchte wissen, ob von Storch bei der Weitergabe von Namen zu Denunziationszwecken behilflich ist.",
+        "position": "Von Storch behauptet, dass sie keinen Namen liefert, sondern 'interessierte Fragen stellt' und Informationen liefert. Sie sagt, es gehe nicht nur um Namen oder nur um den DSA, sondern um verschiedene Themen, die 'für Sie von Interesse sind'. Sie argumentiert, dass die USA nicht verstehen, warum vier oder fünf Vertreter anderer Parteien einen Kandidaten (Joachim Paul) von den Wahlen ausschließen können. Sie framing die Diskussion als eine über Meinungsfreiheit und Zensurverhältnisse in Deutschland.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch beantwortet die direkte Frage nach der Weitergabe von Namen nicht mit ja oder nein, sondern weicht aus und lenkt auf die Frage der Demokratie und Meinungsfreiheit in Deutschland ab. Sie konstruiert ein Gegenpunkt-Argument (Ausschluss von Kandidaten als Demokratieproblem) statt die Denunziations-Frage zu adressieren.",
+        "quotes": [
+          {
+            "text": "Wir sind auf jeden Fall im guten Gespräch. Ich liefere ihm die ganze Zeit Informationen. Wir werden sehen, was kommt.",
+            "timestamp": "00:28:04"
+          },
+          {
+            "text": "Ich liefere keinen Namen. Wir stellen interessierte Fragen, und ich liefere Information.",
+            "timestamp": "00:28:22"
+          }
+        ],
+        "concrete_statements": [
+          "Sie behauptet, keinen Namen zu liefern, sondern nur Fragen zu stellen und Informationen bereitzustellen",
+          "Sie argumentiert für Meinungsfreiheit und gegen Zensurmechanismen",
+          "Sie kritisiert den Ausschluss von AfD-Kandidaten als Demokratieproblem"
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Digital Services Act",
+          "Wahlen",
+          "Außenpolitik USA"
+        ]
+      },
+      {
+        "title": "Wehrpflicht, nationale Verteidigung und Ukraine-Krieg",
+        "timestamp_range": "00:45:33 - 00:54:20",
+        "theme_description": "Auseinandersetzung über die AfD-Position zur Wiedereinführung der Wehrpflicht und die Frage, ob dies mit Kriegsbeteiligung in der Ukraine verbunden ist.",
+        "question_asked": "Der Moderator fragt von Storch direkt, ob die AfD für Wehrpflicht ist oder nicht, und wie sie zu Aussagen von AfD-Politikern steht, die sagen 'Meine Söhne kriegt ihr nicht' in Bezug auf die Ukraine.",
+        "question_intent": "Der Moderator möchte verstehen, ob die AfD-Position zur Wehrpflicht mit einer Angst vor Ukraine-Kriegsbeteiligung verbunden ist und damit inkonsistent ist.",
+        "position": "Von Storch bestätigt, dass die AfD Wehrpflicht befürwortet und der Ausstieg 2011 falsch war. Sie argumentiert aber, dass die aktuelle Debatte im Kontext steht, dass Menschen Angst haben, dass Wehrpflichtige in den Ukraine-Krieg geschickt werden. Sie führt Aussagen von Kiesewetter an, der mit Langstreckenraketen Moskau angreifen würde, und sagt, dass die Bevölkerung nicht zwischen Regierung und Parlament differenziert. Sie betont aber, dass die AfD Wehrpflicht für Landesverteidigung will, nicht um Soldaten in fremde Kriege zu schicken, 'vor allem nicht in die Ukraine'. Sie argumentiert, dass Donald Trump Friedensbemühungen versucht und dass der Kanzler von 'nicht mehr im Frieden' spricht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet auf die Grundfrage (Wehrpflicht ja oder nein) klar mit ja, adressiert aber die Inkonsistenz-Frage nicht vollständig. Sie argumentiert stattdessen, dass die öffentliche Debatte und die Angst vor Ukraine-Beteiligung nachvollziehbar sind, was ihre Position zu rechtfertigen, aber nicht zu klären vermag.",
+        "quotes": [
+          {
+            "text": "Die AfD hat immer gesagt, wir wollen die Wehrpflicht, der Ausstieg 2011 war falsch.",
+            "timestamp": "00:45:33"
+          },
+          {
+            "text": "Wir wollen eine Wehrpflicht haben. Aber in dieser Position den Antrag aufzusetzen, muss man das machen oder nicht? Da gibt es unterschiedliche Meinungen.",
+            "timestamp": "00:47:21"
+          }
+        ],
+        "concrete_statements": [
+          "AfD befürwortet Wehrpflicht",
+          "Sie lehnt Kriegsbeteiligung in der Ukraine ab",
+          "Sie argumentiert, dass öffentliche Angst vor Kriegsbeteiligung nachvollziehbar ist",
+          "Über 70 % der AfD-Mitglieder unterstützen Wehrpflicht laut Umfrage"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Sicherheitspolitik",
+          "Ukraine-Krieg",
+          "Landesverteidigung"
+        ]
+      },
+      {
+        "title": "Ukraine-Waffenlieferungen, Diplomatie und Friedenslösung",
+        "timestamp_range": "00:59:35 - 01:07:19",
+        "theme_description": "Von Storchs Position zu Waffenlieferungen an die Ukraine und ihre Bevorzugung von Friedenslösungen statt militärischer Unterstützung.",
+        "question_asked": "Der Moderator stellt fest, dass ein AfD-Kanzler keine Waffenlieferungen mehr geben würde, und später fragt er, ob von Storch dafür ist, dass die Ukraine Gebiete an Russland abgibt.",
+        "question_intent": "Der Moderator möchte verstehen, welche Friedenslösung von Storch konkret befürwortet und ob sie ukrainische Gebiete als Verhandlungsmasse akzeptiert.",
+        "position": "Von Storch argumentiert, dass die AfD Waffenlieferungen immer abgelehnt hat und das bleibt so. Sie sagt, dass Deutschland über 20 Milliarden Euro Waffen und humanitäre Hilfe geliefert hat, während Frankreich nur sieben. Sie unterstützt die Friedensinitiativen von Donald Trump und argumentiert, dass die deutsche Aufgabe nicht ist, 'den Krieg mit Waffen weiter zu unterstützen'. Bei der Frage zur Gebietsabgabe antwortet sie, sie wolle jeden Friedensdeal verhandelt sehen und schauen, dass es zu einer Einigung kommt. Sie weigert sich, die Frage ja/nein zu beantworten.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Von Storch antwortet auf die konkrete Frage, ob Ukraine Gebiete abgeben sollte, nicht direkt. Sie lenkt stattdessen auf die allgemeine Argumentation ab, dass Frieden durch Verhandlungen erreicht werden sollte, statt auf die spezifische Frage zu eingehen, ob sie Gebietskonzessionen unterstützt.",
+        "quotes": [
+          {
+            "text": "Wir haben nie ein Zweifel aufkommen lassen, dass wir Waffenlieferungen immer abgelehnt haben.",
+            "timestamp": "01:00:03"
+          },
+          {
+            "text": "Ich wäre dafür, dass es Frieden gibt, dass die Waffen schweigen.",
+            "timestamp": "01:01:46"
+          }
+        ],
+        "concrete_statements": [
+          "AfD lehnt Waffenlieferungen ab",
+          "Sie unterstützt Friedensinitiativen von Trump",
+          "Sie verweigert klare Aussage zu Gebietskonzessionen",
+          "Sie argumentiert für Verhandlungen statt militärische Eskalation"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Waffenlieferungen",
+          "Außenpolitik",
+          "Diplomatie"
+        ]
+      },
+      {
+        "title": "Putin als Kriegsverbrecher und Kriegsende",
+        "timestamp_range": "01:06:09 - 01:07:19",
+        "theme_description": "Von Storchs Einschätzung von Putin und der Frage, inwiefern Kriegsverbrechen von Konsequenzen für die Diplomatie haben sollten.",
+        "question_asked": "Der Moderator fragt, ob von Storch Putin für einen Kriegsverbrecher hält, und ob dies bedeutet, dass mit ihm nicht verhandelt werden kann.",
+        "question_intent": "Der Moderator möchte wissen, ob von Storch ihre Diplomatie-Forderungen mit ihrer moralischen Bewertung Putins in Einklang bringen kann.",
+        "position": "Von Storch sagt, Putin habe 'ganz bestimmt Kriegsverbrechen gemacht'. Sie gibt zu, dass sie keine Juristin in diesem Bereich (Insolvenzrecht ist ihr Fachgebiet) ist, betont aber, dass Putin 'ganz bestimmt verantwortlich für Kriegsverbrechen' ist. Sie argumentiert dann aber, dass die Frage ist, 'was folgt daraus?' Der Krieg muss beendet werden, weil viele unschuldige Menschen sterben. Sie argumentiert, dass die kämpfenden Soldaten nicht diejenigen sind, die den Krieg beschlossen haben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch antwortet ja auf die Frage, ob Putin ein Kriegsverbrecher ist, adressiert aber nicht die implizite normative Frage des Moderators (ob das Diplomatie unmöglich macht). Sie lenkt stattdessen ab auf ein humanitäres Argument (Kriegsende ist wichtiger als Gerechtigkeit).",
+        "quotes": [
+          {
+            "text": "Er hat ganz bestimmt Kriegsverbrechen gemacht, ganz bestimmt.",
+            "timestamp": "01:06:14"
+          },
+          {
+            "text": "Ich bin kein Jurist, wahrscheinlich ist er das, aber ganz bestimmt ist er verantwortlich für Kriegsverbrechen. Kann das gerne noch zweimal sagen, aber die Frage ist, was folgt daraus?",
+            "timestamp": "01:06:23"
+          }
+        ],
+        "concrete_statements": [
+          "Sie betont, dass Putin Kriegsverbrechen begangen hat",
+          "Sie argumentiert, dass Kriegsende wichtiger ist als juridische Konsequenzen",
+          "Sie sagt, dass viele unschuldige Menschen sterben"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Völkerrecht",
+          "Kriegsverbrechen",
+          "Diplomatie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die AfD lehnt Waffenlieferungen an die Ukraine ab",
+        "timestamp": "01:00:03"
+      },
+      {
+        "claim": "Deutschland hat über 20 Milliarden Euro Waffen und humanitäre Hilfe an die Ukraine geliefert, Frankreich nur sieben",
+        "timestamp": "01:00:03"
+      },
+      {
+        "claim": "Der AfD-Mitglieder-Umfrage zeigt über 70 % Unterstützung für Wehrpflicht",
+        "timestamp": "00:49:51"
+      },
+      {
+        "claim": "Das Bundesverfassungsgericht hat entschieden, dass ungeborenes Leben von Zeugung an Menschenwürde hat",
+        "timestamp": "00:16:25"
+      },
+      {
+        "claim": "Markus Gansera stand auf dem Wahlzettel als 'Markus Gansra' und wurde als dieser gewählt",
+        "timestamp": "00:09:39"
+      }
+    ]
+  }
+}

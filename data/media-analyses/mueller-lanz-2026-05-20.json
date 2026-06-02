@@ -1,0 +1,285 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-20-mai-2026-100",
+    "video_id": "lanz-2026-05-20",
+    "politician": "Sepp Müller",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "f62fe2643d4ef0fb",
+    "transcript_chars": 59189,
+    "caption_lines": 2953,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24420,
+    "tokens_out": 6691,
+    "cost_usd": 0.02315,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.623Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Sepp Müller (CDU/CSU, MdB) verteidigt die Bilanz der Merz-Regierung trotz niedriger Umfragewerte und kritischer Nachfragen. Er argumentiert, dass außenpolitisch Fortschritte erzielt wurden (EU-Einigung, Handelsmärkte mit Indien), während er innenpolitische Defizite bei Wirtschaftswachstum einräumt. Die Tonalität wirkt defensiv, teilweise weichzeichnend für die Kanzleraussage „gutes Jahr für uns\", aber auch selbstkritisch bezüglich der Umsetzung von Reformen.",
+    "themes": [
+      {
+        "title": "Deutung von Merkels „gutes Jahr für uns“-Aussage",
+        "timestamp_range": "00:03:27 - 00:06:04",
+        "theme_description": "Interpretation und Verteidigung der Kanzleraussage angesichts niedriger Zufriedenheitswerte.",
+        "question_asked": "Der Moderator hinterfragt mehrfach kritisch, was Merz mit \"gutes Jahr für uns\" gemeint hat und ob Müller selbst daran glaubt, gegeben schlechter Umfragewerte (13–16 % Zustimmung).",
+        "question_intent": "Den Kanzler oder die CDU-Führung der Realitätsverweigerung zu überführen und zu klären, wie Müller persönlich zur Lage steht.",
+        "position": "Müller interpretiert die Aussage als auf Außenpolitik bezogen: Deutschland habe durch Merkels Führung außenpolitisch an Gewicht gewonnen (EU-Einigung, Handelsmärkte mit Indien). Innenpolitisch räumt er ein, dass Deutschland beim Wirtschaftswachstum nicht dort ist, wo es sein sollte. Er versteht den Unmut der Bevölkerung und betont, dass die Koalition mit den Sozialdemokraten wichtige Themen adressiert hat, aber liefern muss. Tausende Menschen seien von Arbeitsplatzverlusten in der Automobilindustrie betroffen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller weicht der direkten Bewertung des Satzes aus und interpretiert ihn retroaktiv als auf Außenpolitik bezogen, um die Kritik zu entschärfen. Die Frage nach der innenpolitischen Bilanz wird aber anerkannt und mit Eingeständnissen beantwortet, ohne dass Müller klar sagt, ob auch er das Jahr für schlecht hält. Das ist eine Deutungs-Verschiebung, kombiniert mit Teilzustände.",
+        "quotes": [
+          {
+            "text": "Innenpolitisch müssen wir besser werden. Insbesondere beim Wirtschaftswachstum sind wir nicht da, wo wir hin wollen.",
+            "timestamp": "00:04:56",
+            "context": "Auf Kritik des Moderators zu Merkels Aussage hin."
+          },
+          {
+            "text": "Wir brauchen Wirtschaftswachstum, da sind wir noch nicht, wo wir sein wollen.",
+            "timestamp": "00:06:04",
+            "context": "Zusammenfassend zu seiner Position auf die Frage zum guten Jahr."
+          }
+        ],
+        "concrete_statements": [
+          "Außenpolitisch sei unter Merz viel Positives passiert (EU-Einigung, Handelsmärkte mit Indien).",
+          "Innenpolitisch müsse die Koalition liefern, besonders beim Wirtschaftswachstum.",
+          "Tausende Menschen seien von Arbeitsplatzverlusten bei Automobilzulieferern betroffen."
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftswachstum",
+          "Außenpolitik Deutschland",
+          "Koalitionsarbeit CDU/CSU-SPD",
+          "Arbeitsmarkt und Fachkräfte"
+        ]
+      },
+      {
+        "title": "Erwartungsmanagement und Kommunikation der Regierung",
+        "timestamp_range": "00:13:49 - 00:14:53",
+        "theme_description": "Einschätzung von Kritik des Ministerpräsidenten Haseloff (CDU) an schlechtem Erwartungsmanagement der Bundesregierung.",
+        "question_asked": "Der Moderator weist darauf hin, dass Haseloff (Ministerpräsident Sachsen-Anhalt, CDU) kritisiert, dass eine Erwartungshaltung nicht gut gemanagt wurde. Müller wird gefragt, ob Haseloff recht hat.",
+        "question_intent": "Müller soll Position zur Kritik aus der eigenen Partei beziehen und eingestehen, ob die Regierung Erwartungen zu hoch gestellt hat.",
+        "position": "Müller beschreibt Haseloff als einen 'Ministerpräsidenten, der den Finger in die Wunde legt'. Es sei nachvollziehbar, dass Erwartungshaltungen nicht gut gemanagt wurden – da gebe es 'auch gar nichts zu kritisieren'. Aber Müller betont, dass es nicht um die Reform selbst geht, sondern um Deutschlands Neustart. Er führt an, dass große Themen (Rente, Sozialstaat, Fachkräftemangel) aus Jahrzehnten bearbeitet werden müssen. Das sei schwierig auch innerhalb der Volkspartei, aber 'da hilft jammern nichts'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller antwortet direkt auf die Frage, ob Haseloff recht hat: ja, aber mit Einschränkungen. Er räumt das Kommunikationsproblem ein, ordnet es aber in größere strukturelle Herausforderungen ein. Das ist eine volle, wenn auch kontextualisierte Antwort.",
+        "quotes": [
+          {
+            "text": "Es ist nachvollziehbar, was dass die Erwartungshaltung nicht gut gemanagt wurde. Da gibt es auch gar nichts zu kritisieren.",
+            "timestamp": "00:13:56",
+            "context": "Auf Frage, ob Haseloff recht hat."
+          },
+          {
+            "text": "Deutschland braucht einen Neustart. Wir brauchen auch die Grünen.",
+            "timestamp": "00:13:56",
+            "context": "Überleitung zu größeren Aufgaben."
+          }
+        ],
+        "concrete_statements": [
+          "Erwartungshaltung sei nicht gut gemanagt worden – das ist nachvollziehbar.",
+          "Es geht um Deutschland, die Rente, den Sozialstaat und Fachkräfte.",
+          "Die Koalition braucht auch die Grünen, um diese Aufgaben zu bewältigen."
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Sozialstaat",
+          "Fachkräftemangel",
+          "Erwartungsmanagement Bundesregierung"
+        ]
+      },
+      {
+        "title": "Ratschlag des Kanzlers an seine Kinder zu USA-Auswanderung",
+        "timestamp_range": "00:16:17 - 00:17:38",
+        "theme_description": "Bewertung der Aussage von Kanzler Merz, seinen Kindern nicht zu empfehlen, in die USA zu gehen.",
+        "question_asked": "Der Moderator zitiert Merkels Aussage, dass er seinen Kindern nicht empfehlen würde, in die USA zu gehen, und stellt sie als Beispiel für mangelnde Kommunikationsfähigkeit dar. Er fragt Müller, wie das zu bewerten ist.",
+        "question_intent": "Zu zeigen, dass Merz zwei Minuten nach Selbstkritik zur Kommunikation wiederum kommunikativ scheitert.",
+        "position": "Müller verteidigt die Aussage als patriotisch richtig: 'Ich finde es richtig, dass ein deutscher Bundeskanzler das nicht empfiehlt.' Er betont, dass man das auch anders interpretieren könnte, und räumt ein, dass 'andere anscheinend' das anders tun. Die Aussage sei kein Fehler, sondern eine patriotische Position.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt die kritische Frage zur Kommunikation zu beantworten, dreht Müller die Perspektive um und verteidigt die Aussage als patriotisch richtig. Er adressiert nicht, dass die Aussage ein Kommunikationsproblem darstellt, sondern legitimiert sie inhaltlich. Das ist ein klassischer Pivot: substantielle Position zur eigenen Interpretation statt zur Kritik des Moderators.",
+        "quotes": [
+          {
+            "text": "Jetzt sage ich als Patriot, ich finde es richtig, dass ein deutscher Bundeskanzler das nicht empfiehlt.",
+            "timestamp": "00:17:21",
+            "context": "Zur Frage nach der Bewertung von Merkels USA-Aussage."
+          }
+        ],
+        "concrete_statements": [
+          "Es ist patriotisch richtig, dass ein deutscher Bundeskanzler nicht zur USA-Auswanderung rät.",
+          "Müller sieht keine Kommunikationsverfehlung, sondern eine legitime Position."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Deutsch-amerikanische Beziehungen",
+          "Fachkräftewanderung"
+        ]
+      },
+      {
+        "title": "Gießkannenprinzip: Tankrabatt vs. Entlastungsprämie",
+        "timestamp_range": "00:18:12 - 00:19:26",
+        "theme_description": "Verteidigung früherer Tankrabatt-Unterstützung und aktuelle Kritik an 1000-Euro-Entlastungsprämie.",
+        "question_asked": "Der Moderator wirft Müller Inkonsequenz vor: Er habe früher das Gießkannenprinzip beim Tankrabatt verteidigt, jetzt sage die Union, Gießkanne sei gestoppt worden. Der Moderator fragt, mit welcher Strategie die Union unterwegs ist.",
+        "question_intent": "Widersprüche in der Union-Position aufzudecken und zu zeigen, dass die Partei sich selbst widerspricht.",
+        "position": "Müller trennt beide Instrumente: Der Tankrabatt sei als Koalitions-Taskforce geprüft worden und habe eine bestimmte Zielrichtung. Die 1000-Euro-Entlastungsprämie sei dagegen ein freiwilliges Angebot gewesen, kein Prüfungsauftrag. Der Bundesrat habe das abgelehnt. Müller betont, dass es nicht um Merz oder die Union gehe, sondern darum, dass Land wieder fit zu machen. Er führt an, dass andere 'alles raus' holen aus Archiven, wo Merz Leuten bescheinigt habe, zu wenig zu arbeiten – da müsse man Konsistenz zeigen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller antwortet auf die Frage nach Strategie, indem er beide Instrumente trennt und unterschiedliche Prozesse beschreibt. Das ist aber eher Differenzierung als direkte Antwort auf den Vorwurf der Inkonsequenz. Er weicht zudem aus, indem er andere kritisiert, die 'Archiv-Recherche' betreiben. Das ist sowohl teilweise Antwort als auch Gegenlenk.",
+        "quotes": [
+          {
+            "text": "Wir haben als Taskforce der Koalitionsfraktionen den Tankrabatt prüfen lassen. Die 1000 Euro Entlastungsprämie war kein Prüfungsauftrag gewesen. Ich hatte das in Ihrer Sendung gesagt, es war ein freiwilliges Angebot.",
+            "timestamp": "00:18:43",
+            "context": "Zur Unterscheidung der beiden Maßnahmen."
+          }
+        ],
+        "concrete_statements": [
+          "Tankrabatt war Prüfungsauftrag einer Koalitions-Taskforce.",
+          "1000-Euro-Prämie war freiwilliges Angebot, kein Prüfungsauftrag; Bundesrat lehnte ab.",
+          "Es geht nicht um Merkels Person, sondern ums Land."
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise und Subventionen",
+          "Haushalt und Entlastung",
+          "Koalitionsregierung"
+        ]
+      },
+      {
+        "title": "Neues Heizungsgesetz: Erfolge und Kritik",
+        "timestamp_range": "00:19:56 - 00:24:29",
+        "theme_description": "Bewertung des überarbeiteten Heizungsgesetzes als gelungen und Abwehr von Kritik an unklaren Vorgaben.",
+        "question_asked": "Der Moderator stellt Sepp Müller mehrmals Fragen zum neuen Heizungsgesetz: Ist es wirklich 'sehr gelungen'? Warum ist es für Vermieter und Mieter unklar, wer CO2-Kosten trägt? Müller wird mit Zitaten von Experten konfrontiert, die von 'Stümperwerk' sprechen.",
+        "question_intent": "Zu zeigen, dass die Regierung trotz Ankündigung von Freiheit und Klarheit ein verworrenes Gesetz verabschiedet hat.",
+        "position": "Müller verteidigt das Heizungsgesetz als sehr gelungen. Kernpunkte: (1) Menschen können frei entscheiden, wie sie heizen – nicht der Staat regiert im Heizungskeller; (2) Wärmepumpen-Absatz stieg um 35 %; (3) 60.000 Arbeitsplätze werden geschützt; (4) Deutschland wird unabhängig von fossilen Importen; (5) Grüne Moleküle (Biogas/Biomethan) seien Teil der Lösung. Zu Vermieter-Sorgen: Müller sagt, das sei 'Quatsch' – es gebe schon eine CO2-Aufteilung (70:30), und Netzentgelte würden in Rechnungen ausgewiesen. Er verweist auf Gutachten von Forschungsinstituten, die Biomasse-Verfügbarkeit bestätigen. Zu Verfassungsbedenken: Das hätten Verfassungsrichter geprüft, es gebe keinen renommierten Verfassungsrechtler gegen das Gesetz.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller beantwortet Kritik-Punkte faktisch, weicht aber auf Ebene der Wahrnehmung aus: Er nennt das Gesetz 'gelungen', antwortet aber nicht auf die zentrale Kritik zur Unklar­heit für Vermieter/Mieter. Statt die praktischen Umsetzungs­probleme einzugestehen, relativiert er sie als 'Quatsch' und verweist auf Gutachten. Das ist eine Mischung aus teilweiser sachlicher Antwort und defensiver Abwehr von Kritik.",
+        "quotes": [
+          {
+            "text": "Wir schaffen es nicht in den Heizungskeller rein zu regieren, es gelingt uns, dass die Menschen frei entscheiden dürfen.",
+            "timestamp": "00:19:59",
+            "context": "Zur Frage, warum er das Gesetz gut findet."
+          },
+          {
+            "text": "Das ist Quatsch und das sagen uns auch die Vermieter, weil wir bereits jetzt eine CO2 Aufteilung haben, die 70:30 ist.",
+            "timestamp": "00:22:18",
+            "context": "Zu Befürchtungen von Vermietern über Kostentragung."
+          }
+        ],
+        "concrete_statements": [
+          "Wärmepumpen-Absatz um 35 % erhöht.",
+          "60.000 Arbeitsplätze durch Energiewende geschützt.",
+          "CO2-Aufteilung bereits vorhanden (70:30).",
+          "Biomasse-Verfügbarkeit durch fünf Forschungsinstitute bestätigt.",
+          "Menschen dürfen frei über Heizungstechnik entscheiden."
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik und Gebäudeenergie",
+          "Wärmewende",
+          "Verbraucherschutz und Mietrecht",
+          "Bioenergien"
+        ]
+      },
+      {
+        "title": "Biomasse-Verfügbarkeit und Bio-Treibstoff-Quote",
+        "timestamp_range": "00:23:23 - 00:31:00",
+        "theme_description": "Diskussion über Verfügbarkeit und Kontrolle von Biomasse für die Wärmewende und Bio-Treibstoff-Quoten.",
+        "question_asked": "Der Moderator fragt, woher das 'gute Zeug' (Biomasse) kommt und wie die Quote überprüft wird. Er zitiert auch die Bundeswirtschaftsministerin, dass Biomasse aus der Ukraine kommt. Müller wird aufgefordert, Gutachten zu Biomasse-Knappheit vorzulegen.",
+        "question_intent": "Zu zeigen, dass die Verfügbarkeit und Kontrolle von Biomasse fragwürdig ist und dass die Quote unrealistisch sein könnte.",
+        "position": "Müller antwortet, dass der Schornsteinfeger die Einhaltung prüft und dass Verträge existieren. Es gebe 10 % Biogaser bei gemischter Nutzung. Deutschland exportiere derzeit. Müller betont: 'Elektrizität only' funktioniere nicht – wer sich von Molekülen abspielen wolle, müsse alternative Antworten haben. Auf Kritik zur Biomasse-Verfügbarkeit antwortet er, dass es 'kein einziges Gutachten' gebe, das Mangel nachweise. Von renommierten Forschungsinstituten gebe es fünf, die nachweisen, dass Biomasse ausreichend vorhanden ist. Wer ein Gutachten zur Knappheit vorlege, 'lasse ich mich gerne eines besseren belehren'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller antwortet direkt auf alle Aspekte: Schornsteinfeger-Kontrolle, Verträge, Exportmenge, Verfügbarkeit von Biomasse. Er zitiert Forschungsinstitute und fordert Gegenbeweise an. Das ist eine vollständige, wenn auch defensive Positionierung.",
+        "quotes": [
+          {
+            "text": "Es gibt kein einziges Gutachten, welches nachweist, dass es nicht genug Biomasse gäbe. Von renommierten Forschungsinstituten gibt es fünf, die uns ausdrücklich nachweisen, wir haben genug da.",
+            "timestamp": "00:29:17",
+            "context": "Zur Frage nach Biomasse-Verfügbarkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Schornsteinfeger überprüft Einhaltung der Bio-Treibstoff-Quote.",
+          "10 % Biogaser bei gemischter Biogaser-Nutzung.",
+          "Deutschland exportiert derzeit Biomasse.",
+          "Fünf Forschungsinstitute bestätigen ausreichende Biomasse-Verfügbarkeit."
+        ],
+        "related_bundestag_topics": [
+          "Bioenergien und Biogas",
+          "Heizungsgesetz und Energiewende",
+          "Rohstoffverfügbarkeit"
+        ]
+      },
+      {
+        "title": "Verhältnis zu Grünen: Bündnis 90 und Wahlkampf-Härte",
+        "timestamp_range": "00:36:40 - 00:38:36",
+        "theme_description": "Bewertung der Union-Strategie gegen Grüne im Wahlkampf und mögliche Koalitionsoptionen.",
+        "question_asked": "Felix Banaszak beschreibt sein Engagement im Osten (Fenster in den Osten). Der Moderator fragt Müller, ob er sich vorstellen könnte, ähnlich zu arbeiten. Später wird gefragt, ob es ein Fehler war, die Grünen von Söder aus so hart 'runter zu bügeln'.",
+        "question_intent": "Zu erkunden, ob die Union offen für Zusammenarbeit mit den Grünen ist und ob der Wahlkampf-Ton ein strategischer Fehler war.",
+        "position": "Müller findet Banaszaks Ansatz, mit Menschen ins Gespräch zu kommen, richtig. Er persönlich würde nicht zu den Grünen wechseln ('das glaube ich nicht'), weist aber darauf hin, dass die Union derzeit keine Mehrheit im Bundestag hat. Zu der Frage nach Söders Härte: Müller hätte sich 'gewünscht, dass wir mehr Auswahlmöglichkeiten gehabt hätten', aber das sei nicht möglich gewesen. Er betont großen Respekt vor den Grünen und deren Parteiname Bündnis 90 – er würde sich wünschen, dass sie 'das richtig tragen'. Bündnis 90 sei 'für uns immer ein starker Partner gewesen'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller beantwortet die Frage nach Söders Härte indirekt: Er sagt, er hätte sich mehr Auswahlmöglichkeiten gewünscht, räumt aber ein, das sei nicht möglich gewesen. Das ist eher eine ausweichende Formulierung ('ich hätte gewünscht', 'das war nicht möglich') als ein klares Ja oder Nein zur Frage, ob es ein Fehler war. Gleichzeitig drückt er Respekt aus, was die Kritik abschwächt.",
+        "quotes": [
+          {
+            "text": "Ich persönlich hätte mir gewünscht, dass wir mehr Auswahlmöglichkeiten gehabt hätten. Jedoch war das nicht möglich.",
+            "timestamp": "00:37:23",
+            "context": "Auf Frage, ob Söders Härte gegen die Grünen ein Fehler war."
+          },
+          {
+            "text": "Ich habe großen Respekt vor den Grünen. Weil Sie in ihrem Parteiname noch Bündnis 90 tragen.",
+            "timestamp": "00:37:39",
+            "context": "Zu den Grünen generell."
+          }
+        ],
+        "concrete_statements": [
+          "Mit Menschen ins Gespräch zu kommen ist der richtige Weg.",
+          "Müller wird nicht zu den Grünen wechseln.",
+          "Müller hätte sich mehr Auswahlmöglichkeiten gewünscht, aber das war nicht möglich.",
+          "Bündnis 90 war ein starker Partner der CDU."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsoptionen",
+          "Wahlkampfstrategie",
+          "Parteienpluralismus und Mehrheitsbildung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Wärmepumpen-Absatz ist um 35 % gestiegen nach Änderung des Heizungsgesetzes.",
+        "timestamp": "00:20:38"
+      },
+      {
+        "claim": "60.000 Arbeitsplätze in Deutschland werden durch die Wärmewende geschützt.",
+        "timestamp": "00:20:40"
+      },
+      {
+        "claim": "Es gibt fünf renommierte Forschungsinstitute, die bestätigen, dass ausreichend Biomasse verfügbar ist.",
+        "timestamp": "00:29:17"
+      },
+      {
+        "claim": "Der Bundesrat hat die 1000-Euro-Entlastungsprämie abgelehnt.",
+        "timestamp": "00:18:43"
+      },
+      {
+        "claim": "Deutschland bringt freie Handelsmärkte mit Indien auf den Weg.",
+        "timestamp": "00:03:39"
+      }
+    ]
+  }
+}

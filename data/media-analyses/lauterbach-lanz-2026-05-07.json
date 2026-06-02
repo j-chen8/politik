@@ -1,0 +1,333 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-7-mai-2026-102",
+    "video_id": "lanz-2026-05-07",
+    "politician": "Karl Lauterbach",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "034a24392334c685",
+    "transcript_chars": 62756,
+    "caption_lines": 3127,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25958,
+    "tokens_out": 7339,
+    "cost_usd": 0.0250612,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.729Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl Lauterbach nimmt als SPD-Politiker und ehemaliger Bundesgesundheitsminister zu Fragen der Haushaltskonsolidierung, Steuerreform und Sozialstaat Stellung. Er argumentiert für strukturelle Reformen ohne Abbau von Leistungen, kritisiert Steuerkonzepte der Union als zu stark bei hohen Einkommen entlastend und verteidigt Investitionen in Infrastruktur als notwendig für die Energiewende. Sein Ton ist sachlich, fachorientiert und differenzierend.",
+    "themes": [
+      {
+        "title": "Markus Söder als potenzielle Bedrohung für Merz",
+        "timestamp_range": "00:08:51 - 00:09:36",
+        "theme_description": "Lauterbach wird gefragt, ob ihm Söders möglicher Aufstieg durch die aktuelle Regierungskrise Angst macht.",
+        "question_asked": "Macht Ihnen das Angst, dass Söder sich in Stellung bringt und möglicherweise Merz ersetzen könnte?",
+        "question_intent": "Einschätzung, ob Söders positionelle Manöver eine Gefahr für die Union-Führung unter Merz darstellt.",
+        "position": "Lauterbach hält die These für zu steil. Er hat Söder in Verhandlungen als zuverlässig erlebt und unterscheidet zwischen öffentlicher Person und Verhandlungspartner. Söder könnte Merz ersetzen, würde es aber nicht besser machen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Frage zur Bedrohung durch Söder, relativiert sie aber und fokussiert auf Verhandlungserfahrungen statt auf die eigentliche Frage zur politischen Bedrohung für die SPD.",
+        "quotes": [
+          {
+            "text": "Man kann sich mit ihm gut einigen, es wäre keine Bedrohung, wenn er Friedrich Merz ersetzen würde. Er würde es aber auch nicht besser machen, ehrlich gesagt.",
+            "timestamp": "00:09:36",
+            "context": "Antwort auf die Frage, ob Söder eine Bedrohung darstellt."
+          }
+        ],
+        "concrete_statements": [
+          "Söder ist in Verhandlungen zuverlässig",
+          "Er würde nicht besser als Merz sein"
+        ],
+        "related_bundestag_topics": [
+          "Union-Führungskrise",
+          "Koalitionsverhandlungen",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "Unterschied zwischen Ampel und aktueller Koalition",
+        "timestamp_range": "00:12:13 - 00:14:46",
+        "theme_description": "Lauterbach wird gefragt, was anders ist zwischen der gescheiterten Ampel und der aktuellen Koalition, die ebenfalls unter Druck steht.",
+        "question_asked": "Was ist anders zur Ampel-Zeit? Sie waren Teil der Ampel – wie unterscheidet sich die aktuelle Situation?",
+        "question_intent": "Vergleich der Koalitionsdynamiken und Erklärung, warum die aktuelle Koalition funktioniert, wo die Ampel scheiterte.",
+        "position": "Lauterbach argumentiert, dass die aktuelle Koalition Reformen vorantreiben will, während die Ampel durch Ukraine-Krise und Lindners Zockerei-Mentalität scheiterte. Er betont, dass es keine Fliehkräfte wie bei der Ampel gibt, aber auch dass die FDP einen strategischen Fehler machte, indem sie nicht einen eigenen Akzent setzte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach antwortet direkt und substantiell auf die Frage, liefert Vergleichspunkte (Ukraine, Lindner, Reformen) und erklärt die unterschiedlichen Koalitionsdynamiken. Er adressiert beide Koalitionen vollständig.",
+        "quotes": [
+          {
+            "text": "Das kann man überhaupt nicht vergleichen, in dieser Koalition wird der Versuch unternommen, wichtigere Formen auf die Schiene zu bringen. Das sind Reformen, die umstritten sind. Das ist der Stress.",
+            "timestamp": "00:12:22",
+            "context": "Direkte Antwort auf Frage zum Unterschied zur Ampel."
+          },
+          {
+            "text": "Ein ganzes Jahr lang haben wir damit leben müssen, dass überlegt wird, bleiben wir drin oder nicht. Aber dieses Potenzial, dass die Ampel hatte, in der Klimapolitik, in der Energiewende, bei den Sozialreformen, bei der Digitalisierung, wir haben dieses große Potenzial nicht heben können.",
+            "timestamp": "00:13:56",
+            "context": "Erklärung der Ampel-Dynamiken."
+          }
+        ],
+        "concrete_statements": [
+          "Christian Lindner hat gezockt und ständig überlegt, ob er in der Koalition bleibt",
+          "Die FDP hat einen strategischen Fehler gemacht, aus der Koalition rauszugehen statt einen eigenen Akzent zu setzen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Ampel-Bilanz",
+          "FDP-Rolle",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "Sondervermögen für Infrastruktur versus Haushaltsdisziplin",
+        "timestamp_range": "00:23:59 - 00:25:59",
+        "theme_description": "Lauterbach verteidigt die Notwendigkeit von Sondervermögen-Aufnahmen für Infrastrukturinvestitionen gegen Kritik an zusätzlichen Schulden.",
+        "question_asked": "Wie bewerten Sie 500 Milliarden Euro neue Schulden, während Frau Grimm sagt, dass 2029 das Geld knapp wird? Ist das vertretbar?",
+        "question_intent": "Kritik an Verschuldungspolitik in Zeiten angespannter Haushaltslage.",
+        "position": "Lauterbach räumt ein, dass die Szenarien zugespitzt werden, wenn man nicht reagiert. Die 500 Milliarden sind notwendig wegen riesiger Defizite in Infrastruktur und technologischer Entwicklung. Der Ausbau erneuerbarer Energien gelingt nicht ohne staatliche Verschuldung – weniger als in anderen Ländern. Die internationalen Beobachter sagen, es ist richtig. Zwar steigen die Zinslast auf 11 %, die Bedingungen sind aber noch international gesehen gut.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Schuldenfrage, aber relativiert die Kritik eher, als sie vollständig zu beantworten. Er argumentiert mit internationalen Vergleichen und Notwendigkeit, nicht mit konkreten Amortisierungsplänen.",
+        "quotes": [
+          {
+            "text": "Ich halte die Maßnahme und darauf haben uns geeinigt. Dass dadurch die Zinslast, das ist klar. Erst mal auf 11 %, 29 werden es, es kommt auch darauf an. Es sind 11 % des Haushalts, es ist eine ganze Menge Geld. Aber ich kann nicht duschen, ohne nass zu werden. Unsere Zinsbedingungen sind international gesehen noch richtig und gut.",
+            "timestamp": "00:25:25",
+            "context": "Verteidigung der Verschuldung für Infrastruktur."
+          }
+        ],
+        "concrete_statements": [
+          "500 Milliarden für Infrastruktur notwendig",
+          "Energiewende braucht staatliche Investitionen",
+          "Zinsbelastung auf 11 % des Haushalts ansteigend",
+          "Deutsche Zinsbedingungen international noch gut"
+        ],
+        "related_bundestag_topics": [
+          "Haushaltspolitik",
+          "Staatsverschuldung",
+          "Infrastrukturinvestition",
+          "Energiewende"
+        ]
+      },
+      {
+        "title": "Forschungs- und Bildungsinvestitionen zu niedrig",
+        "timestamp_range": "00:25:59 - 00:34:31",
+        "theme_description": "Lauterbach wird kritisiert, dass Deutschland nur 20 Milliarden für Forschung ausgibt, während 220 Milliarden für Soziales gehen – ist das das richtige Aufbruch-Signal?",
+        "question_asked": "Sind die Investitionen in Forschung und Zukunftstechnologie ausreichend? 220 Milliarden für Soziales, nur 20 für Forschung?",
+        "question_intent": "Kritik an Priorisierung von Sozialausgaben über Zukunftsinvestitionen.",
+        "position": "Lauterbach argumentiert, dass die 20 Milliarden Bundesbudget nur ein Teil sind – Länder investieren auch in Forschung. Aber er würde deutlich mehr in Forschung ausgeben. Das Kernproblem ist nicht die Menge Geld, sondern die Qualität des Bildungssystems – es ist bescheiden, ungerecht und ineffizient. Deutschland fällt zurück im Vergleich zu China und USA. Prioritäten stimmen nicht. Es braucht Skelettausbau im Hochschulbereich.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach antwortet auf die Frage, relativiert aber die 20-Milliarden-Zahl durch Länderinvestitionen und verlagert dann auf Bildungsqualität statt Budgetmenge. Er adressiert nicht direkt die Kritik an der absoluten Priorisierung.",
+        "quotes": [
+          {
+            "text": "Der Bund ist nur ein Teil, ich muss das in Relation sehen. Ich würde deutlich mehr ausgeben die Kernprobleme sind unser bescheidenes Bildungssystem, es nimmt die Leute nicht mit, es ist ungerecht und ineffizient. Und die Prioritäten stimmen auch nicht.",
+            "timestamp": "00:33:39",
+            "context": "Antwort auf Kritik an Forschungsbudget."
+          }
+        ],
+        "concrete_statements": [
+          "Würde deutlich mehr in Forschung ausgeben",
+          "Bildungssystem ist bescheiden, ungerecht, ineffizient",
+          "Deutschland fällt zurück vs. China und USA",
+          "Hochschulbereich braucht Skelettausbau"
+        ],
+        "related_bundestag_topics": [
+          "Bildungspolitik",
+          "Forschungsförderung",
+          "Haushaltspriorität"
+        ]
+      },
+      {
+        "title": "Steuerbelastung und Gerechtigkeitsaspekte bei Entlastung",
+        "timestamp_range": "00:32:05 - 00:34:38",
+        "theme_description": "Lauterbach wird gefragt, ob die SPD erkennt, dass der Sozialstaat nicht mehr bezahlbar ist und ob Entlastungskonzepte nicht zu Lasten der Gerechtigkeit gehen.",
+        "question_asked": "Haben Sie nicht das Gefühl, dass die SPD nicht sieht, dass der Sozialstaat wie er ist nicht mehr bezahlbar ist? Und: Ist nur Umverteilung der Weg oder auch Entlastung?",
+        "question_intent": "Kritik an SPD-Haltung zur Finanzierbarkeit von Sozialleistungen und Frage nach dem ideologischen Zugang zu Steuern/Umverteilung vs. Entlastung.",
+        "position": "Lauterbach betont, dass er selbst immer wieder für Reformen im Gesundheitssystem eintritt, ohne abzubauen. Das Kernproblem sind Ineffizienzen, nicht mangelnde Mittel. Die SPD hat eine Balance aus Reformen, Effizienz und Qualität im Blick, nicht einfach Umverteilung. Für Wachstum braucht es auch Entlastung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Effizienzfrage, weicht aber teilweise aus, indem er nicht vollständig eingesteht, dass Sozialausgaben zu Lasten anderer Investitionen gehen. Er antwortet auf Effizienz, nicht auf die Grundfrage der Bezahlbarkeit versus Umbau.",
+        "quotes": [
+          {
+            "text": "Das Gesundheitssystem ist weit über 300 Milliarden im Jahr. Wir haben das tollste Gesundheitssystem in ganz Europa. Wir haben eine mittelmäßige Qualität. Wir brauchen Reformen, die es besser machen.",
+            "timestamp": "00:32:27",
+            "context": "Antwort auf Kritik der unzureichenden Reformeinsicht der SPD."
+          }
+        ],
+        "concrete_statements": [
+          "Gesundheitssystem kostet über 300 Milliarden pro Jahr",
+          "Reformen ohne Leistungsabbau sind notwendig",
+          "Effizienzverbesserung und Qualitätsverbesserung sind der Ansatz"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Sozialhaushalt",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "Einwanderung, Sozialsysteme und Bürgergeld-Finanzierung",
+        "timestamp_range": "00:35:35 - 00:47:58",
+        "theme_description": "Lauterbach wird zu Migration, sozialen Leistungen und der Frage gefragt, wie Bürgergeldempfänger ohne deutschen Pass finanziert werden.",
+        "question_asked": "Wie gehen wir mit Menschen um, die neu ins Land kommen und nicht eingezahlt haben? Bärbel Bas sagte, es gibt keine Einwanderung ins Sozialsystem – stimmt das?",
+        "question_intent": "Kritik an Abwehr-Haltung der SPD zu Migration und Sozialsystem, Frage nach gerechter Finanzierung von Leistungen für nicht-beitragszahler.",
+        "position": "Lauterbach lehnt die Kampfbegrifflichkeit 'Einwanderung in die Sozialsysteme' ab – das ist spaltend. Aber er erkennt an, dass Migranten ohne Arbeitsmarktzugang anfangs im Sozialsystem landen. Lösung: schnellerer Arbeitsmarktzugang. Allerdings kritisiert er die Aussage von Bärbel Bas als falsch – natürlich landen Migranten zunächst in Sozialsystemen, weil sie noch nicht arbeiten können. Das ist ein Finanzierungsproblem, keine AfD-Propaganda.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Sprachproblematik und nennt Lösungsansätze (schnellerer Arbeitsmarktzugang), weicht aber teilweise aus, indem er die eigentliche Frage nach gerechter Finanzierung/Leistungsdifferenzierung nicht vollständig beantwortet.",
+        "quotes": [
+          {
+            "text": "Diese Begrifflichkeit, diese Kampfbegrifflichkeit, 'Einwanderung in die Sozialsysteme', die lehne ich ab, dass es ein spaltende Begriff. Viele Migranten, die hinkommen aus welchen Gründen auch immer, die landen natürlich erst meinen Sozialsystemen.",
+            "timestamp": "00:35:35",
+            "context": "Differenzierung zwischen Kampfbegriff und faktischer Situation."
+          },
+          {
+            "text": "Weil es falsch ist zu sagen, die wandern in diese Sozialsysteme rein.",
+            "timestamp": "00:36:32",
+            "context": "Bezug auf Aussage von Bärbel Bas."
+          }
+        ],
+        "concrete_statements": [
+          "Schnellerer Arbeitsmarktzugang für Migranten ist Lösung",
+          "Kampfbegrifflichkeit lehnt Lauterbach ab",
+          "Viele Bürgergeldempfänger haben früher Beiträge gezahlt",
+          "Nicht alle Bürgergeldempfänger sind dauerhaft abhängig"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Sozialhaushalt",
+          "Arbeitsmarktintegration",
+          "Bürgergeld"
+        ]
+      },
+      {
+        "title": "Privatversicherte und Beihilfe-Ungerechtigkeit im Gesundheitssystem",
+        "timestamp_range": "00:43:48 - 00:45:21",
+        "theme_description": "Lauterbach erläutert Ungerechtigkeiten im deutschen Krankenversicherungssystem zwischen privat und gesetzlich Versicherten.",
+        "question_asked": "Wie kann man fairere Lasten im Krankenversicherungssystem schaffen, wenn Private und Beamte nicht proportional beitragen?",
+        "question_intent": "Konkrete Reformvorschläge zur Finanzierungsgerechtigkeit im Krankenversicherungssystem.",
+        "position": "Lauterbach kritisiert, dass Privatversicherte und Beamte sich nicht an der Finanzierung beteiligen, obwohl Beamte 70 % ihrer Kosten im Alter vom Staat über Beihilfe bezahlt bekommen. Er hatte einen Vorschlag, 12 Milliarden Euro von Privatversicherten einzutreiben. Parallel: In der GKV gibt es Effizienzprobleme (zu viele Arztbesuche, unnötige Operationen), die angegangen werden müssen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach antwortet konkret auf die Gerechtigkeitsfrage, nennt Zahlen (12 Miliarden, 70 % Beihilfe), und unterscheidet zwischen Finanzierungs- und Effizienzproblemen.",
+        "quotes": [
+          {
+            "text": "An der Finanzierung beteiligen sich längst nicht alle. Die Einkommensstärkeren - Privatversicherte, Beamte - wir beteiligen uns nicht. Ich zahle nicht mit für die Bürgergeldempfänger. Das macht keinen Sinn. Was wir nicht mit bezahlen... Nicht nur, dass wir sowieso eine bessere Behandlung bekommen, davon wird im Alter noch 70 % vom Staat über die Beihilfe bezahlt. Das halte ich für ungerecht. Daher hatte ich den Vorschlag gemacht, 12 Milliarden Euro, 10 % sind privat versichert.",
+            "timestamp": "00:43:48",
+            "context": "Erläuterung der Ungerechtigkeiten und Reformvorschlag."
+          }
+        ],
+        "concrete_statements": [
+          "Privatversicherte und Beamte zahlen nicht proportional",
+          "Beamte erhalten 70 % der Kosten im Alter vom Staat (Beihilfe)",
+          "12-Milliarden-Vorschlag zur Umverteilung bei Privatversicherten",
+          "Effizienzverbesserungen in GKV nötig (zu viele Arztbesuche, Operationen)"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Krankenversicherung",
+          "Gerechtigkeitsfragen"
+        ]
+      },
+      {
+        "title": "Kritik am CSU-Steuerreformkonzept (Dorn/Bury)",
+        "timestamp_range": "00:57:22 - 01:00:05",
+        "theme_description": "Lauterbach bewertet das von Florian Dorn präsentierte CSU-Steuerreformkonzept kritisch.",
+        "question_asked": "Wie bewerten Sie das Steuerkonzept der Union, das auch hohe Einkommen stärker entlastet?",
+        "question_intent": "Kritik an progressiver Entlastung, die proportional höhere absolute Entlastung für hohe Einkommen bedeutet.",
+        "position": "Lauterbach akzeptiert die Notwendigkeit der Entlastung mittlerer Einkommen, kritisiert aber stark die Entlastung hoher Einkommen. Ein Bundestagsabgeordneter verdient 12.000 Euro pro Monat und braucht keine 4.000 Euro Steuerentlastung. Eine Bäckereiverkäuferin würde nur 300 Euro entlastet, während er 4.000 Euro bekommt – das kann er nicht vermitteln. Das Konzept hat aus seiner Sicht fundamentale Fehler.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach adressiert das Konzept direkt, benennt konkrete Zahlen und erklärt seine Ablehnung auf Basis von Gerechtigkeitsargumenten. Er differenziert zwischen mittlerer und hoher Einkommensgruppe.",
+        "quotes": [
+          {
+            "text": "Ihr Konzept hat aus meiner Sicht Fehler. Die hohen Einkommen werden stark entlastet, dass es da auch nicht wirklich sinnvoll. Für mich ausgerechnet, ich würde mit knapp 4000 Euro pro Jahr entlastet werden. Eine Verkäuferin in der Bäckerei - da habe ich nachgefragt, was Leute verdienen - die würde mit ca. 300 Euro entlastet. Eine Bäckereiverkäuferin. Ich kann in der heutigen Zeit nicht vermitteln, dass der Bundestagsabgeordnete so stark entlastet wird wie zehn Bäckereiverkäufer.",
+            "timestamp": "00:57:22",
+            "context": "Direkte Kritik am Steuerkonzept von Dorn."
+          }
+        ],
+        "concrete_statements": [
+          "Entlastung mittlerer Einkommen ist klug und notwendig",
+          "Starke absolute Entlastung bei hohen Einkommen wird abgelehnt",
+          "Konzept ist gerechtigkeitspolitisch fehlerhaft"
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Einkommensgerechtigkeit",
+          "Vermögensverteilung"
+        ]
+      },
+      {
+        "title": "Subventionsabbau und Infrastruktur-Finanzierung",
+        "timestamp_range": "01:04:31 - 01:05:24",
+        "theme_description": "Lauterbach wird gefragt, wie man Subventionen abbauen kann und welche Prioritäten es gibt.",
+        "question_asked": "Wie würden Sie mit Subventionen umgehen? Wo könnte man abbauen?",
+        "question_intent": "Konkrete Vorschläge zum Subventionsabbau, um Mittel für Reformen freizugeben.",
+        "position": "Lauterbach ist grundsätzlich für Subventionsabbau. Der größte Posten sind die erneuerbaren Energien mit 12 Milliarden Euro – deren Abbau würde aber die Energiewende gefährden. Pendlerpauschale und Dienstwagenprivileg könnten abgebaut werden, ohne zu schaden. Sondervermögen-Mittel können nicht für Subventionsabbau-Finanzierung verwendet werden, das müssen Steuermittel sein.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach beantwortet die Frage konkret mit Zahlen und nennt sowohl Abbaupotenziale als auch Hürden. Er erklärt die Zielkonflikte (Energiewende vs. Kostenreduktion).",
+        "quotes": [
+          {
+            "text": "Ich bin für Subventionsabbau. Im wesentlichen ist das, Förderung der erneuerbaren Energien. Das ist der größte Posten, an den man ran könnte. Da sind 12 Milliarden Euro. Es würde die Energiewende entschuldigen.",
+            "timestamp": "01:05:24",
+            "context": "Konkrete Benennung von Subventionsposten."
+          }
+        ],
+        "concrete_statements": [
+          "12 Milliarden Euro für erneuerbare Energien sind der größte Posten",
+          "Abbau würde aber Energiewende gefährden",
+          "Pendlerpauschale und Dienstwagenprivileg könnten abgebaut werden"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Haushaltspolitik",
+          "Subventionsreform"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das Gesundheitssystem kostet über 300 Milliarden Euro im Jahr",
+        "timestamp": "00:32:27"
+      },
+      {
+        "claim": "Bei einem Spitzensteuersatz von 70.000 Euro im Konzept von Dorn bekommt ein Bundestagsabgeordneter mit 12.000 Euro monatlich eine Steuerentlastung von etwa 4.000 Euro pro Jahr",
+        "timestamp": "00:57:22"
+      },
+      {
+        "claim": "Eine Bäckereiverkäuferin würde mit dem CSU-Konzept nur etwa 300 Euro entlastet",
+        "timestamp": "00:57:22"
+      },
+      {
+        "claim": "Beamte erhalten 70 % ihrer Krankenversicherungskosten im Alter über Beihilfe vom Staat",
+        "timestamp": "00:43:48"
+      },
+      {
+        "claim": "Die Förderung erneuerbarer Energien kostet 12 Milliarden Euro pro Jahr",
+        "timestamp": "01:05:24"
+      },
+      {
+        "claim": "Die Zinsbelastung im Haushalt beträgt 11 % durch die 500-Milliarden-Sondervermögen",
+        "timestamp": "00:25:25"
+      }
+    ]
+  }
+}

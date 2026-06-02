@@ -1,0 +1,330 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-26-maerz-2025-100",
+    "video_id": "lanz-2025-03-26",
+    "politician": "Franziska Brantner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "8a8f2e911d001212",
+    "transcript_chars": 47625,
+    "caption_lines": 2366,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20155,
+    "tokens_out": 8155,
+    "cost_usd": 0.024372,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:28.084Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, Vorsitzende der Grünen, tritt in der Lanz-Talkshow zu geopolitischen Fragen (Türkei, Demokratie) und innenpolitischen Verhandlungen (Koalitionsvertrag, Infrastrukturinvestitionen, Verteidigungsausgaben) auf. Sie wirkt sachlich-positionell, kritisiert Merz' Handlungsfähigkeit und bewahrt eine defensive Haltung zu grünen Zugeständnissen.",
+    "themes": [
+      {
+        "title": "Stille der CDU zur Türkeikrise",
+        "timestamp_range": "00:15:44 - 00:16:47",
+        "theme_description": "Kritik an mangelnder außenpolitischer Reaktion der Union auf Verhaftungen und Demokratieabbau in der Türkei.",
+        "question_asked": "Markus Lanz merkt an, dass die deutsche Politik (Friedrich Merz, Olaf Scholz, Außenministerin) sehr leise zu den Vorgängen in der Türkei ist.",
+        "question_intent": "Warum lässt sich die CDU/Merz nicht kritisch zu Erdogans Repression vernehmen?",
+        "position": "Franziska Brantner bestätigt, dass man von Friedrich Merz keinen kritischen Satz hört. Sie hebt hervor, dass die Außenministerin (Baerbock) hingegen klar kritisiert und Stellung bezogen habe: \"Wir haben uns klar an die Seite Zivilgesellschaft gestellt\". Sie lobt den Mut der Türken und Türkinnen, trotz Verhaftungswellen auf die Straße zu gehen, und unterstreicht, dass Deutschland ein klares Zeichen gegen den Demokratieabbau in der Türkei setzen muss. Besondere Erwähnung für die Resonanz bei Deutschen mit türkischen Wurzeln.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Brantner adressiert die Kritik an Merz' Schweigen direkt und würdigt das Handeln ihrer Außenministerin. Sie benennt aber nicht explizit Gründe für die CDU-Zurückhaltung, sondern positioniert die Grünen dazu kontrastiv.",
+        "concrete_statements": [
+          "man von Friedrich Merz keinen Satz dazugehört",
+          "Wir haben uns klar an die Seite Zivilgesellschaft gestellt",
+          "Wir müssen in Deutschland das klare Zeichen setzen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich gebe Ihnen recht, dass man von Friedrich Merz keinen Satz dazugehört.",
+            "timestamp": "00:15:44",
+            "context": "Auf Lanz' Beobachtung, dass die deutsche Politik sehr leise ist zur Türkeikrise."
+          },
+          {
+            "text": "Sie hat etwas dazu gesagt und hat das auch klar kritisiert. Wir haben uns klar an die Seite Zivilgesellschaft gestellt.",
+            "timestamp": "00:15:57",
+            "context": "Zur Frage, ob die Außenministerin etwas gesagt habe."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Türkei",
+          "Menschenrechte",
+          "Demokratieförderung"
+        ]
+      },
+      {
+        "title": "Deutsche Wirtschaftspolitik als Druck auf Erdogan",
+        "timestamp_range": "00:20:12 - 00:20:12",
+        "theme_description": "Strategien, wie Deutschland wirtschaftlich Druck auf die türkische Regierung ausüben kann, insbesondere durch Investitionssicherung.",
+        "question_asked": "Michael Bröcker und Deniz Yücel diskutieren konkrete deutsche Druckmittel; Yücel fordert, dass Deutschland Unternehmsinvestitionen nicht mehr ermutigt, Brantner soll Stellung nehmen.",
+        "question_intent": "Wie kann Deutschland wirtschaftlich gegen die Repression in der Türkei vorgehen?",
+        "position": "Brantner stimmt zu, dass wirtschaftliche Botschaften essentiell sind. Sie erläutert, dass der deutsche Staat Investitionen absichern kann, aber bei Rechtsstaatsverlust diese Absicherung teurer wird. Sie argumeniert, der nächste Wirtschaftsminister könne dieses Instrument nutzen. Sie verknüpft das mit einer breiteren Warnung: Das Verhalten von Donald Trump ermutige andere Autokraten, entsprechend zu handeln, und jedem sei gerade, dass sie Demokratie abschaffen können. Dies sei ein zentraler Moment.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet direkt auf die Frage nach wirtschaftlichen Druckmitteln mit konkreten Mechanismen (Investitionsabsicherung, Rechtsstaatsabhängigkeit) und verallgemeinert das Muster auf die globale Autokraten-Dynamik — eine umfassende Position.",
+        "concrete_statements": [
+          "der nächste Wirtschaftsminister kann das nutzen",
+          "jeder fühlt sich gerade ermächtigt auch die Demokratie abzuschaffen",
+          "das ist ein zentraler Moment"
+        ],
+        "quotes": [
+          {
+            "text": "Das hängt immer damit zusammen, die rechtsstaatlich sich ein anderes Land ist. Dann kann man sagen, bei den deutschen Unternehmen in der Türkei herrscht kein Recht mehr. Dann wird das investieren immerhin teurer.",
+            "timestamp": "00:20:12",
+            "context": "Zur Rolle von Investitionssicherung als Druckmittel gegen Ankara."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenwirtschaft",
+          "Rechtsstaatlichkeit",
+          "Sanktionsregime"
+        ]
+      },
+      {
+        "title": "Europäische Verteidigungsunion statt Abhängigkeit",
+        "timestamp_range": "00:33:33 - 00:35:03",
+        "theme_description": "Forderung nach europäischer Verteidigungsintegration zur Reduzierung der Abhängigkeit von unzuverlässigen Partnern wie Erdogan und Trump.",
+        "question_asked": "Lanz fragt, wie die deutsche Außenpolitik angesichts der neuen Weltlage handeln soll; Steinberg weist auf die Abhängigkeit von der Türkei hin.",
+        "question_intent": "Wie kann Deutschland/Europa sich von der Abhängigkeit von Autokraten (Türkei, Trump) strategisch befreien?",
+        "position": "Brantner verweist auf die Wiederbelebung alter Moskau-Connections in der SPD und sagt, das hätte man immer noch nicht verstanden. Angesichts der Verbrüderung von Putin und Trump und der Verachtung von Schwäche müsse die nächste Regierung den nächsten Schritt in der europäischen Integration gehen — im Bereich Verteidigung. Es brauche eine europäische Verteidigungsunion, wo gemeinsam beschafft wird, Synergien geschaffen werden und gemeinsam neue Partnerschaften eingegangen werden. Sie stellt die offene Frage, ob Friedrich Merz dazu bereit ist, obwohl die Grünen die Gelder beschafft haben, und ob er den Willen und Mut hat, diesen Schritt zu gehen — auch im Zweifelsfall mit ein paar zusammen, wenn Orban nicht mitmacht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner formuliert ein klares strategisches Konzept (europäische Verteidigungsunion, gemeinsame Beschaffung) und knüpft es an die Frage nach Merz' Bereitschaft — eine substantielle Vision mit evaluativer Skepsis.",
+        "concrete_statements": [
+          "Die nächste Regierung muss den nächsten Schritt in der europäischen Integration gehen — im Bereich der Verteidigung",
+          "Man braucht eine europäische Verteidigungsunion",
+          "Wo man gemeinsam beschafft, Synergien schafft und auch gemeinsam neue Partnerschaften eingeht"
+        ],
+        "quotes": [
+          {
+            "text": "Man braucht eine europäische Verteidigungsunion. Wo man gemeinsam beschafft, Synergien schafft und auch gemeinsam neue Partnerschaften eingeht.",
+            "timestamp": "00:33:33",
+            "context": "Zur strategischen Antwort auf die neue Weltlage der Autokraten und Krisen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Europäische Integration",
+          "NATO",
+          "Rüstungsbeschaffung"
+        ]
+      },
+      {
+        "title": "Infra-Investitionen statt Strukturreformen im Koalitionsvertrag",
+        "timestamp_range": "00:40:32 - 00:42:54",
+        "theme_description": "Kritik daran, dass die Koalition zwar große Geldsummen für Infrastruktur beschafft, aber keine echten Strukturreformen durchsetzt, besonders bei digitalisierung und Rente.",
+        "question_asked": "Lanz fragt, ob die große Koalition verstanden hat, was Großes geleistet werden muss; Bröcker kritisiert mangelnde Strategie.",
+        "question_intent": "Hat die neue Regierung verstanden, dass es um strukturelle Modernisierung gehen muss, nicht nur Geldausgaben?",
+        "position": "Brantner sagt, die Grünen hätten am Anfang zumindest eine Idee für das Land gehabt — es sollte moderner werden, das ist ihnen aber nicht gelungen. Dann kam auch der Krieg, Geld ist das eine, aber wenn man das Geld nur nimmt und es in die gleichen Strukturen wirft, ist das das Problem. Es geht darum, die Beschaffung zu modernisieren. Ihre große Sorge: Sie haben viel Geld, aber schaffen keine Strukturreform, werden nicht digital. Das Geld geht einfach irgendwelche Geschenke. Wir wissen, dass die Rente reformiert werden muss — da kam nichts von denen, außer der Mütterrente. Man müsste die Altersarmut von Frauen bekämpfen, nicht mit der Gießkanne. Es ist nicht gegenfinanziert, sind teure Dinge, anstatt das zu stabilisieren, was wir haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner adressiert die Frage zentral: Sie unterscheidet zwischen Geldausgabe und Strukturwandel, nennt konkrete Versäumnisse (Rente, Digitalisierung) und kritisiert die Unzielgerichtetheit.",
+        "concrete_statements": [
+          "Es geht darum die Beschaffung zu modernisieren",
+          "sie haben viel Geld, aber schaffen keine Strukturreform",
+          "Das Geld geht einfach nur irgend welche Geschenke"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man den einfach nur Geld nimmt und es in die gleichen Strukturen nimmt, das ist das Problem. Es geht darum die Beschaffung zu modernisieren.",
+            "timestamp": "00:40:32",
+            "context": "Zur Frage, ob die Koalition wirklich versteht, was an Reformen nötig ist."
+          },
+          {
+            "text": "Meine große Sorge ist, sie haben viel Geld, aber schaffen keine Strukturreform, schaffen nicht das wir Digital werden.",
+            "timestamp": "00:40:32",
+            "context": "Zur zentralen Unzulänglichkeit der geplanten Investitionen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Infrastruktur",
+          "Digitalisierung",
+          "Rentenpolitik"
+        ]
+      },
+      {
+        "title": "Merz' Kehrtwende bei Haushaltsbremse und Migration",
+        "timestamp_range": "00:45:17 - 00:46:58",
+        "theme_description": "Kritik an Friedrich Merz' Konsistenzbruch: er lehnte Schuldenbremsen-Aussetzung ab, setzt sie nun durch; ähnlich bei Migrationskontrollen.",
+        "question_asked": "Lanz fragt, wie Brantner sich fühlt, dass Merz jetzt handfeste Infrastrukturinvestitionen mit Schuldenabbau durchdrückt.",
+        "question_intent": "War Merz' Umkehr zur Schuldenaufnahme ein Sieg für die Grünen oder ein Erkenntnisgewinn?",
+        "position": "Brantner sagt, es ging nicht darum, ob man das witzig findet oder sich ins Fäustchen lacht. Sie war erst mal froh, dass Friedrich Merz erkannt hat, dass unser Land Investitionen braucht — in Schulen, Brücken und Häuser. Dann hat sie gesehen, der schmeißt jetzt jegliche Haushaltsrätsel über Bord. Bis gestern war er komplett dagegen, jetzt ist er bereit jegliche Bremsen über Bord zu werfen. Es muss wirklich in die Infrastruktur investiert werden. Sie ist sehr froh darüber, dass sie das erreichen konnten. Ansonsten wäre das wirklich ungerecht geworden. Sie hatten zum Glück einen eigenen Gesetzentwurf für den Fertigungsbereich. Sie kann doch nicht zusehen, wenn jemand 500 Milliarden mit dem Etikett Infrastruktur aufnimmt und dann investiert in Pendlerpauschale. Das geht doch nicht. Sie kann doch nicht ihrer Tochter sagen, du zahlst meine Schulden dafür, dass ich heute billiger Interesse rausgehen kann. Das ist grob unfair. Das wäre dann alles Schulden finanziert gewesen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner adressiert direkt die Inkonsequenz Merz', würdigt aber den Infrastruktur-Sieg und unterscheidet stringent zwischen Infrastruktur-Investitionen und Wahlgeschenken (Pendlerpauschale) — eine klare normative Position.",
+        "concrete_statements": [
+          "Bis gestern war er komplett dagegen, jetzt ist er bereit jegliche Bremsen über Bord zu werfen",
+          "Ich kann doch nicht zu sehen, wenn jemand 500 Milliarde mit dem Etikett Infrastruktur aufnimmt und dann investiert in Pendlerpauschale"
+        ],
+        "quotes": [
+          {
+            "text": "Dann habe ich gesehen, der schmeißt jetzt jegliche Haushaltshilfen über Bord. Bis gestern war er komplett dagegen, jetzt ist er bereit jegliche Bremsen über Bord zu werfen.",
+            "timestamp": "00:45:17",
+            "context": "Zur Beobachtung von Merz' Strategiewechsel bei der Schuldenbremse."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Schuldenabbau",
+          "Infrastruktur",
+          "Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben: 1,5 % statt 1 % angestrebt",
+        "timestamp_range": "00:49:03 - 00:50:44",
+        "theme_description": "Grüne Verhandlungsposition zu Verteidigungsausgaben: höhere Quoten, erweiterte Sicherheitsdefinition, letztlich unerreichte Ziele.",
+        "question_asked": "Lanz fragt, ob Brantner eine 1,5-%-Quote angestrebt hätte; Bröcker kritisiert die Ein-Prozent-Regel als Schuldenfreifahrtschein.",
+        "question_intent": "Wie ambitiös waren die Grünen bei Verteidigungsausgaben, und war die Ein-Prozent-Regel das beste Ergebnis?",
+        "position": "Brantner bejaht, dass die Grünen 1,5 % angestrebt haben — sie wollten mehr für Verteidigung ausgeben. Sie sagt, man sollte eigentlich bereit sein, weniger kontinuierlich auszugeben für Verteidigung als heute. Eigentlich muss der Anspruch höher sein: 1,5 % muss im Kern-Haushalt drin sein. Sie hatten auch schon mal 2 % angesetzt. Dieses Verhandlungsziel konnten sie nicht erreichen. Sie sagt, wenn sie schon in die Verteidigungssicherheit gehen, müssen die Nachrichtendienste mit dazu, Cybersicherheit muss mit dazu, das ist heute im Hybridenkrieg wichtig. Die 1,5 % hätten sie wirklich erreichen wollen. Jetzt kann man uns vorwerfen, wir haben nicht alles erreicht. Sie unterstreicht am Ende: Ein Prozent ist zu unambitioniert — das sagt sie als Grüne. Deshalb fanden wir es so ernüchternd, dass CDU/CSU und SPD gesagt haben, wir haben keinen höheren Anspruch mehr an unser Land.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortet direkt, benennt die Differenz zwischen Anspruch (1,5 %) und Ergebnis (1 %), erklärt die erweiterte Sicherheitsdefinition und kritisiert die Unambitioniertheit der Koalitionspartner.",
+        "concrete_statements": [
+          "1,5 % muss im Kern Haushalt drin sein",
+          "müssen die Nachrichtendienste mit dazu, Cybersicherheit muss mit dazu",
+          "Ein Prozent ist zu unambitioniert"
+        ],
+        "quotes": [
+          {
+            "text": "Ja. Wir wollten mehr für Verteidigung ausgeben. Man sagt eigentlich, wir sind bereit weniger kontinuierlich auszugeben, für die Verteidigung, als wir es heute tun. Eigentlich muss der Anspruch höher sein, 1,5 muss im Kern Haushalt drin sein.",
+            "timestamp": "00:49:14",
+            "context": "Zur Frage nach grünem Ziel bei Verteidigungsausgaben."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrpolitik",
+          "Haushalt",
+          "Sicherheitspolitik",
+          "NATO"
+        ]
+      },
+      {
+        "title": "Parlamentarische Stellvertreter für die AfD",
+        "timestamp_range": "01:00:14 - 01:05:34",
+        "theme_description": "Strategische Frage, ob die AfD einen Bundestagsvizepräsidenten stellen darf; Kontroversen über Sicherheitsrisiken und Symbolik.",
+        "question_asked": "Lanz fragt, ob die demokratischen Parteien die AfD-Gewalt in den Reden als Warnsignal verstehen und ob man der AfD am Ende einen Vizepräsidenten geben sollte.",
+        "question_intent": "Wie sollen demokratische Kräfte mit dem Anspruch auf formale Partizipation einer als antidemokratisch bewerteten Kraft umgehen?",
+        "position": "Brantner sagt, dieser Block, fast ausschließlich männliche Abgeordnete, diese Verachtung gegenüber allem, was da ist. Eine demokratisch gewählte Mehrheit ist kein Kartell, aber es suggeriert etwas komplett anderes. Das ist eine Sprache, die man aus anderen Ländern kennt. Sie ärgert auch, dass im Wahlkampf Friedrich Merz mehrfach aufgefordert wurde, wie er sein Programm finanziert, dann kam die Kehrtwende und er macht das, was er vorher immer zurückgewiesen hat. Das ist auch bei der Migration so gewesen. Sie sagt, es führt zu einer Wut und Unmut in der Bevölkerung. Zur Frage des Vizepräsidenten: Sie weist darauf hin, dass die AfD die Möglichkeit eine Person vorzuschlagen hat, das wurde dann geprüft — Bodo Ramelow hat es mit zwei Stimmen geschafft, andere mit hunderten mehr. Die AfD hat es nicht geschafft Mehrheiten auf sich zu versammeln. Sie erklärt, der Vizepräsident sitzt vorne und ist auch Präsident und hat die Macht über die Bundestagspolizei. Das ist eine persönliche Vertrauensfrage: Traue ich dem AfDler zu, dass er die Polizei nie gegen mich einsetzen würde? Der Reichstag und die Geschichte des Parlaments, da geht keiner leichtfertig mit um.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner adressiert die zugrunde liegende Frage nach dem AfD-Vizepräsidenten durchgehend substantiell: Sie erklärt die Ablehnung (Schutz von Rechtsstaatsinstitutionen, Vertrauenslogik) und unterscheidet zwischen parlamentarischem Recht und persönlicher Ermessensfrage.",
+        "concrete_statements": [
+          "Eine demokratisch gewählte Mehrheit ist kein Kartell",
+          "Der Vizepräsident hat die Macht über die Bundestagspolizei",
+          "Das ist eine persönliche Frage, traue ich dem AfDler zu, dass er die Polizei nie gegen mich einsetzen würde"
+        ],
+        "quotes": [
+          {
+            "text": "Der Vizepräsident ist in dem Moment, wenn er vorne sitzt auch Präsident und hat die Macht über die Bundestagspolizei. Und das ist eine persönliche Frage, traue ich dem AfDler zu, dass er die Polizei nie gegen mich einsetzen würde.",
+            "timestamp": "01:03:24",
+            "context": "Zur Begründung, warum Sicherheits- und Vertrauenserwägungen den AfD-Vizepräsidenten rechtfertigen würden, ihn aber zu verweigern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarischer Geschäftsbetrieb",
+          "Verfassungsschutz",
+          "AfD-Strategie"
+        ]
+      },
+      {
+        "title": "Migrationsbekämpfung: Härte ohne Hetze",
+        "timestamp_range": "01:08:47 - 01:08:47",
+        "theme_description": "Forderung nach harter Migrationspolitik, aber ohne populistische Rhetorik — Differenzierung zwischen Inhalt und Ton.",
+        "question_asked": "Steinberg und Bröcker diskutieren, dass Migrationspolitik der Schlüssel zur AfD-Bekämpfung ist; wie muss sie aussehen?",
+        "question_intent": "Wie kann die Regierung bei Migration hart sein, ohne in populistische oder rassistische Rhetorik zu verfallen?",
+        "position": "Brantner sagt: Wir brauchen eine Migrationspolitik, die inhaltlich so hart ist wie bei Friedrich Merz auf dem Papier, und so vorgetragen wie von Robert Habeck. Das bedeutet, substanzielle Strenge in der Sache, aber respektvoller Ton in der Kommunikation.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner formuliert eine klare normative Position: Sie verbindet Politiklinie (streng in der Migrationsbegrenzung) mit Rhetorik-Standard (Robert Habecks respektvoller Ton). Sie adressiert damit die Spannung zwischen Inhalts-Populismus und kommunikativer Verantwortung.",
+        "concrete_statements": [
+          "Wir brauchen eine Migrationspolitik die inhaltlich so hart ist wie bei Friedrich Merz auf dem Papier",
+          "und so vorgetragen wie von Robert Habeck"
+        ],
+        "quotes": [
+          {
+            "text": "Wir brauchen eine Migrationspolitik die inhaltlich so hart ist wie bei Friedrich Merz auf dem Papier, und so vorgetragen wie von Robert Habeck.",
+            "timestamp": "01:08:47",
+            "context": "Auf die Frage, wie die Regierung die AfD nicht weiter erstarken lässt — durch klare, faire Migrationspolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Grenzschutz",
+          "Integration"
+        ]
+      },
+      {
+        "title": "Annalena Baerbock bei der UN: Posten statt Fraktionsvorsitz",
+        "timestamp_range": "01:09:17 - 01:15:51",
+        "theme_description": "Rechtfertigung von Baerbocks Wechsel zur UN-Botschafterin statt Fraktionsvorsitz; Spannungen zwischen Frauenförderung und Machtfragen.",
+        "question_asked": "Lanz kritisiert den Vorgang: Baerbock versucht Fraktionsvorsitz zu werden, merkt fehlende Unterstützung, schreibt sich selbst zurück und wird stattdessen UN-Botschafterin. Ist das Hybris?",
+        "question_intent": "War der Wechsel zu UN-Botschafterin eine elegante Lösung oder ein problematischer Hinweis auf grüne Machtfragen?",
+        "position": "Brantner verteidigt den Posten: Bei den Vereinten Nationen gebe es eine sehr schwierige Situation mit Putin und Xi Jinping. Baerbock habe sich für die UN eingesetzt, es sei nicht unüblich, dass ehemalige Außenministerinnen diesen Job machten. Sie habe ein Netzwerk aufgebaut, gerade im globalen Süden — das wird sehr wichtig. Sie habe die Werte der Vereinten Nationen vertreten, Partnerschaften mit Nationen, die nicht so auf der Karte sind, hätten dazu beigetragen, dass sie Mehrheiten hatten. Sie sei froh darüber, dass Baerbock das Gesicht Deutschlands bei der UN sei. Sie räumt ein, dass der Vorgang von außen als Hybris erscheinen kann: Es gab Außenminister früher, das sei ein Vorgang, der als anmaßend zu bezeichnen sei. Baerbock habe die Frau selbst vorgeschlagen, bereite sich ein halbes Jahr vor und werde in letzter Minute ausgebootet, weil Baerbock nach New York möchte. Aber sie bleibe dabei, dass es richtig ist und von Baerbock intendiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Brantner verteidigt Baerbocks UN-Posten substantiell (Netzwerk, Werte, Mehrheiten), räumt aber ein, dass der Vorgang aus Perspektive der abgesetzten Vorgängerin problematisch wirkt und spricht von Hybris — das ist eine ambivalente Position, die Lanz' kritische Frage nicht vollständig adressiert.",
+        "concrete_statements": [
+          "Sie hat ein Netzwerk aufgebaut, gerade im globalen Süden. Es wird sehr wichtig.",
+          "Es ist normal, dass man solche Personalfragen mit dem zukünftig Regierenden abspricht"
+        ],
+        "quotes": [
+          {
+            "text": "Sie hat etwas dazu gesagt und hat das auch klar kritisiert. Wir haben uns klar an die Seite Zivilgesellschaft gestellt.",
+            "timestamp": "01:09:33",
+            "context": "Zur Verteidigung des UN-Postens für Baerbock (diplomatisch, international wichtig)."
+          },
+          {
+            "text": "Es ist normal, dass man solche Personalfragen mit dem zukünftig Regierenden abspricht.",
+            "timestamp": "01:15:27",
+            "context": "Zur Normalisierung von Personalabsprachen mit der künftigen Merz-Regierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Grüne Parteiorganisation",
+          "Außenpolitik",
+          "Vereinte Nationen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Friedrich Merz hat sich nicht öffentlich zu den Vorgängen in der Türkei geäußert",
+        "timestamp": "00:15:44"
+      },
+      {
+        "claim": "Bodo Ramelow wurde mit zwei Stimmen als Bundestags-Vizepräsident gewählt",
+        "timestamp": "01:02:49"
+      },
+      {
+        "claim": "Annalena Baerbock war Außenministerin und wird nun UN-Botschafterin",
+        "timestamp": "01:09:17"
+      },
+      {
+        "claim": "Die Grünen forderten 1,5 % oder 2 % der Verteidigungsausgaben, Ergebnis war 1 % plus erweiterte Sicherheitsdefinition",
+        "timestamp": "00:49:14"
+      },
+      {
+        "claim": "Deutschland gibt bereits über 50 Milliarden Euro für Verteidigung aus, also mehr als 1 % des BIP",
+        "timestamp": "00:47:59"
+      }
+    ]
+  }
+}

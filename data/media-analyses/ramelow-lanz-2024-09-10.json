@@ -1,0 +1,359 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-september-2024-100",
+    "video_id": "lanz-2024-09-10",
+    "politician": "Bodo Ramelow",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "dd484c9bf2103452",
+    "transcript_chars": 56522,
+    "caption_lines": 2921,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22922,
+    "tokens_out": 9482,
+    "cost_usd": 0.028132800000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 19,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 1,
+      "substantielle_position": 6,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.712Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bodo Ramelow, Ministerpräsident von Thüringen, diskutiert zwei Hauptthemen: die gescheiterte Migrationspolitik-Koordination zwischen Ampel und Union sowie die Lage in Thüringen nach der Landtagswahl. Er wirkt sachlich, aber kritisch gegenüber der Union und betont die Notwendigkeit europäischer Lösungen im Asylbereich sowie regulärer Migration für Thüringen. Zudem äußert er sich zur Übergangsphase in Thüringen und zu Volkswagen als Systemrisiko.",
+    "themes": [
+      {
+        "title": "Gründe für Scheitern des Migrationsgipfels",
+        "timestamp_range": "00:05:39 - 00:09:41",
+        "theme_description": "Bodo Ramelow erklärt, warum die Union die Migrationsverhandlungen verlassen hat und wie die Ampel darauf reagiert.",
+        "question_asked": "Markus Lanz fragt, welches taktische Manöver die Union mit dem Abbruch des Gipfels verfolgt und ob es von Anfang an die Absicht war, die Regierung auflaufen zu lassen.",
+        "question_intent": "Zu verstehen, ob die Union wahlkampftaktisch handelte und die Ampel bewusst isolieren wollte.",
+        "position": "Ramelow erklärt, die Union sei ohne echte Absicht zu regieren aus den Gesprächen gegangen. Die Ampel habe der Union sogar ein Dualmodell angeboten (eigenen Vorschlag + Alternativmodell testen). Er betont, die Union habe \"von Anfang an\" nicht die Absicht gehabt, teilzunehmen. Er lädt die Union ein, zurückzukehren, da es auch im Interesse der \"Partei von Adenauer und Kohl\" sein sollte, Lösungen zu finden. Er wendet sich aber gegen die Interpretation eines reinen Wahlkampfmanövers und vertraut auf die demokratische Verantwortung der Union.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage, ob es ein Wahlkampfmanöver war (ja, aber nicht als persönliche Böswilligkeit der Union), und erklärt die angebotenen Alternativen. Er weicht aber aus, indem er letztlich sagt, er vertraue auf die Union und deren 'staatstragenden' Charakter, statt die wahlkampftaktischen Gründe weiter auszuführen.",
+        "concrete_statements": [
+          "Die Union wurde angeboten, dass man beide Modelle probiert",
+          "Ich lade die Union ein, wieder zurückzukehren an den Gesprächstisch",
+          "Es muss doch den Parteien von Adenauer und Kohl ein Interesse davon sein, eine Lösung zu finden"
+        ],
+        "quotes": [
+          {
+            "text": "Im Laufe der Diskussion wurde der Union angeboten, dass man beide Modelle probiert. Ein Europarechtes Modell zu finden... Das wurde angeboten. Dann ist die Union trotzdem rausmarschiert.",
+            "timestamp": "00:05:39",
+            "context": "Ramelow erklärt das Angebot der Ampel an die Union während der Migrationsverhandlungen."
+          },
+          {
+            "text": "Ich will es offen sagen, ich lade die Union ein wieder zurückzukehren an den Gesprächstisch, weil es muss doch den Parteien von Adenauer und Kohl, ein Interesse davon sein, eine Lösung zu finden.",
+            "timestamp": "00:05:39",
+            "context": "Ramelow lädt die Union zu weiteren Gesprächen ein."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Statt das Wahlkampfmanöver der Union beim Namen zu nennen, pivotiert Ramelow zu einem Appell an die 'staatstragende Verantwortung' der Union.",
+        "evasion_note": "Obwohl Ramelow anfangs den wahlkampftaktischen Abbruch beschreibt, weigert er sich dann, dies als Vorwurf zu formulieren, und vertraut stattdessen auf das Verantwortungsbewusstsein der Union."
+      },
+      {
+        "title": "Dublin-System und Asylverfahren-Probleme",
+        "timestamp_range": "00:12:31 - 00:14:40",
+        "theme_description": "Diskussion über die Defizite des Dublin-Systems bei Asylverfahren und konkrete Beispiele gescheiterter Abschiebungen in Thüringen.",
+        "question_asked": "Eva Quadbeck beschreibt einen konkreten Fall eines Marokkaners mit mehrfacher Identität und fehlender Abschiebung; Ramelow wird gefragt, ob er mit solchen Einzelfällen vertraut ist.",
+        "question_intent": "Zu prüfen, ob Ramelow die Schwere und Systematik der Asylvollzugsprobleme anerkennt oder diese herunterspielen würde.",
+        "position": "Ramelow bestätigt, dass er 'mit den Einzelheiten vertraut' ist. Er argumentiert aber, dass der Fehler nicht auf Länderebene liegt, sondern auf Bundesebene: Der Bund müsse dafür sorgen, dass ausreisepflichtige Personen das Land verlassen – nicht die Länder, nicht die Kommunen. Er weist auf die hohe Zahl der Asylanträge in Thüringen hin (5100 in diesem Jahr), betont aber, dass die Mehrzahl dieser Menschen Unterstützung braucht. Er kritisiert, dass bei regulärer Zuwanderung aus Ländern wie Tunis erfolgreich Ausbildung und Integration funktioniert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow anerkennt das Problem des Einzelfalls, weicht aber ab, indem er die Verantwortung auf den Bund verschiebt. Er adressiert die Frage nicht vollständig, sondern nutzt sie, um auf die Notwendigkeit regulärer Zuwanderung hinzuweisen.",
+        "concrete_statements": [
+          "Man hätte Ihnen vor zehn Jahren vom Bund übernehmen müssen. Der Bund ist der Entscheider und der muss dafür sorgen, dass so jemand das Land zu verlassen hat.",
+          "Wir hatten gerade wieder einen Marokkaner, der große Mühe hatte, als Staatsbürger anerkannt zu werden.",
+          "Wir hatten es mit Tunis, mit 15 jungen Leuten geschafft, dass wir sie gut ausgebildet so integrieren können, dass sie Teil der Gesellschaft werden."
+        ],
+        "quotes": [
+          {
+            "text": "Man hätte Ihnen vor zehn Jahren vom Bund übernehmen müssen. Der Bund ist der Entscheider und der muss dafür sorgen, dass so jemand das Land zu verlassen hat.",
+            "timestamp": "00:12:31",
+            "context": "Ramelow antwortet auf Quadbecks Kritik an gescheiterten Abschiebungen und weist auf Bundeszuständigkeit hin."
+          },
+          {
+            "text": "Wenn Sie Akzeptanz für legale und reguläre Migration haben wollen, müssen Sie als Staat auf der anderen Seite dafür sorgen.",
+            "timestamp": "00:12:31",
+            "context": "Ramelow argumentiert, dass legale Migration nur funktioniert, wenn der Staat konsequent gegen illegale Migration vorgeht."
+          }
+        ],
+        "answer_type": "themenwechsel",
+        "deflection_target": "Statt das Versagen bei Abschiebung zu adressieren, lenkt Ramelow auf die Notwendigkeit regulärer Zuwanderung ab.",
+        "evasion_note": "Ramelow anerkennt das Problem, verschiebt die Verantwortung aber systematisch auf den Bund und nutzt das Thema, um sein Zuwanderungsmodell zu bewerben."
+      },
+      {
+        "title": "Zuwanderungskonzept statt Asylpolitik",
+        "timestamp_range": "00:14:40 - 00:16:40",
+        "theme_description": "Ramelows Plädoyer für ein differenziertes Modell aus regulärer Zuwanderung und kontroliertem Asylverfahren.",
+        "question_asked": "Implizit nach einer Darstellung von Ramelows Lösungsansatz für die Migrationskrise, nachdem er sich zu einzelnen Problemen geäußert hat.",
+        "question_intent": "Zu verstehen, wie Ramelow die Migration insgesamt bewältigen und regulieren möchte.",
+        "position": "Ramelow betont eine Trennung zwischen Asylpolitik und Zuwanderungspolitik. Deutschland braucht Zuwanderung, da in Thüringen 300.000 Menschen in Rente gehen, aber nur 150.000 junge Menschen nachkommen. Er wirbt für Vereinbarungen mit Ländern wie Tunis, Algerien und Marokko, um gezielt Fachkräfte anzuwerben – mit sicheren Wegen. Beispiel: Mit Tunis gelang die Integration von 15 jungen Leuten. Wenn sichere Wege für legale Migration geschaffen werden, könne man reguläre von irregulärer Migration trennen und mit Herkunftsländern vereinbaren, dass Personen zurückgenommen werden, die das Schutzrecht verwirkt haben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow legt ein konkretes Konzept dar, das Zuwanderung, Asylpolitik und Abschiebungspraxis miteinander verbindet. Er adressiert die zentrale Spannung zwischen demographischem Bedarf und Akzeptanzproblemen.",
+        "concrete_statements": [
+          "Wir brauchen Zuwanderung. 300.000 Menschen gehen in Thüringen in Rente, aber wir haben 150.000 junge Leute die nachkommen.",
+          "Ich würde gerne, dass wir mit Tunis, Algerien, Marokko, Vereinbarungen schließen, dass wir dort gezielt anwerben können, sichere Wege schaffen",
+          "Wenn wir sichere Wege schaffen, können wir den anderen Teil davon trennen und so vereinbaren, dass die Bürger zurücknehmen, die das Schutzrecht verwirkt haben."
+        ],
+        "quotes": [
+          {
+            "text": "Schauen Sie, Herr Lanz, 300.000 Menschen gehen in Thüringen in Rente, aber wir haben 150.000 junge Leute die nachkommen. D. h., wir brauchen Zuwanderung.",
+            "timestamp": "00:14:40",
+            "context": "Ramelow erläutert den demografischen Hintergrund von Thüringens Zuwanderungsbedarf."
+          },
+          {
+            "text": "Wenn Sie Akzeptanz für legale und reguläre Migration haben wollen, müssen Sie als Staat auf der anderen Seite dafür sorgen.",
+            "timestamp": "00:14:40",
+            "context": "Ramelows Kernargument zur Verknüpfung von legaler und illegaler Migrationskontrolle."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Fachkräftegewinnung und Zuwanderungsgesetz",
+          "Asylpolitik und Dublin-System",
+          "Demografischer Wandel in Ostdeutschland",
+          "Internationale Vereinbarungen zu Rückkehrverfahren"
+        ]
+      },
+      {
+        "title": "Kooperation in Thüringen zwischen demokratischen Parteien",
+        "timestamp_range": "00:46:15 - 00:50:16",
+        "theme_description": "Ramelows Positionen zu Koalitionsverhandlungen in Thüringen nach der Landtagswahl, Gespräche mit CDU und anderen Parteien.",
+        "question_asked": "Markus Lanz fragt, wie oft Ramelow mit Mario Voigt (CDU) gesprochen und telefoniert hat und wie diese Zusammenarbeit funktioniert.",
+        "question_intent": "Zu verstehen, wie konkret und intensiv die Kooperation zwischen Linke und CDU ist und ob Ramelow eine entscheidende Rolle spielt.",
+        "position": "Ramelow spricht regelmäßig mit Mario Voigt, aber auch mit anderen Partnern wie Katja Wolf (BSW) und Jan Meyer (SPD). Er habe auch jemanden von der AfD angerufen, um sie über die Haushaltsvereinbarung zu informieren. Wichtig ist ihm, dass die Mehrheit der Menschen, die zur Wahl gingen, für 'demokratische Parteien' stimmte – auch die AfD-Wähler treffen eine demokratische Wahl. Er erwartet, dass demokratische Parteien einen Koalitionsvertrag zustande bringen. Er betont mehrfach, dass es um 'staatstragende Kooperation' geht, auch wenn die Parteien 'nicht miteinander harmonieren'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage konkret (regelmäßige Gespräche mit Voigt) und kontextualisiert sie mit seiner Strategie der Zusammenarbeit über Parteilinien hinweg.",
+        "concrete_statements": [
+          "Ich rede regelmäßig mit ihm, ich rede aber auch mit Katja Wolf, ich rede mit Jan Meyer von der SPD.",
+          "Es war ein Festtag der Demokratie, wenn so viele Menschen zur Wahl gehen",
+          "Die Mehrheit hat sich für demokratische Parteien entschieden. Ich erwarte, dass demokratischen Parteien in der Lage sind, miteinander einen Koalitionsvertrag auf den Weg zu bringen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich rede regelmäßig mit ihm, ich rede aber auch mit Katja Wolf, ich rede mit Jan Meyer von der SPD. Ich habe aber auch in der vergangenen Woche jemanden von der AfD angerufen und ihn in Kenntnis gesetzt, dass wir die Haushaltsvereinbarung jetzt vornehmen.",
+            "timestamp": "00:46:15",
+            "context": "Ramelow erläutert seine Gesprächskontakte mit allen relevanten Parteien in Thüringen."
+          },
+          {
+            "text": "Man muss sich nach den Realitäten richten. Wenn man nicht möchte, dass die antidemokratische AfD Einfluss bekommt.",
+            "timestamp": "00:46:15",
+            "context": "Ramelows pragmatische Begründung für die Kooperation demokratischer Parteien."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Koalitionsbildung in Thüringen",
+          "Umgang mit Extremparteien",
+          "Föderale Struktur und Länderregierungen",
+          "Parlamentarische Mehrheitsbildung"
+        ]
+      },
+      {
+        "title": "Umgang mit der AfD in Thüringen",
+        "timestamp_range": "00:48:16 - 00:50:16",
+        "theme_description": "Ramelows Bewertung der AfD in Thüringen und die Balance zwischen demokratischer Partizipation und verfassungsfeindlichen Tendenzen.",
+        "question_asked": "Eva Quadbeck und Markus Lanz fragen, ob Ramelow die Stimmen für die AfD als 'undemokratisch' charakterisiert und wie er mit Björn Höcke umgeht.",
+        "question_intent": "Zu klären, wie Ramelow die AfD demokratisch einordnet und ob er zwischen legitimen Wählerwahl und verfassungsfeindlicher Parteiführung unterscheidet.",
+        "position": "Ramelow präzisiert, dass er nicht zwischen 'demokratischen und undemokratischen Stimmen' unterscheidet, sondern zwischen demokratischen Parteien und der AfD als Partei unter Björn Höcke, der 'SA-Parolen prüfelt' und in mehreren Strafverfahren involviert ist. Die AfD-Basis könnte sich organisieren, aber Höcke geht gegen abweichende Wahllisten vor. Ramelow wirbt dafür, dass 'staatstragende Parteien' zusammenarbeiten müssen, um die AfD von Einfluss abzuhalten. Er betont aber auch, dass er nicht 'wahlkampftaktisch' gegen die Union vorgeht und auf Dialog setzt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage zur Unterscheidung zwischen Wählern und Partei korrekt, weicht aber aus, wenn es um konkrete Konsequenzen für die Zusammenarbeit mit Höcke geht. Er betont Dialog, sagt aber auch, dass die Partei unter Höcke nicht regieren darf.",
+        "concrete_statements": [
+          "Ich erlebe eine AfD in Thüringen, wenn sich eine Basis AfD nicht bildet, die Björn Höcke das passt, dann wird eine Wahlliste einfach mal gestrichen.",
+          "Das ist richtig. Sein Direktmandat hat er trotzdem gegen den CDU-Mann verloren.",
+          "Die Mehrheit hat sich für demokratische Parteien entschieden."
+        ],
+        "quotes": [
+          {
+            "text": "Ich erlebe eine AfD in Thüringen, wenn sich eine Basis AfD nicht bildet, die Björn Höcke das passt, dann wird eine Wahlliste einfach mal gestrichen. Das hat Herrn Höcke am Ende auch den Einzug in den Landtag gesichert.",
+            "timestamp": "00:48:16",
+            "context": "Ramelow kritisiert die Kontrolle der AfD durch Höcke und deren interne undemokratische Strukturen."
+          },
+          {
+            "text": "Es wäre angemessener, wir würden eine Ministerpräsidentenkonferenz machen, so wie vergangenes Jahr, da ist eine Menge auf den Weg gebracht worden.",
+            "timestamp": "00:42:12",
+            "context": "Ramelow kritisiert die Politisierung des Migrationsgipfels und bevorzugt sachliche föderale Abstimmung."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Ramelow präzisiert seine Position zur AfD korrekt, nutzt das Thema aber auch zur Kritik an der Union und betont Dialog statt klarer Abgrenzung."
+      },
+      {
+        "title": "CDU-Unvereinbarkeitsbeschluss und Zusammenarbeit mit Ramelow",
+        "timestamp_range": "00:50:16 - 00:52:16",
+        "theme_description": "Frage, wie Ramelow mit dem CDU-Unvereinbarkeitsbeschluss gegenüber der Linke umgeht, während er als Ministerpräsident mit Mario Voigt redet.",
+        "question_asked": "Eva Quadbeck fragt, wie Ramelow das Unvereinbarkeitsbeschluss der CDU mit der Linke interpretiert und ob er doch eine wichtige Rolle spielen könnte, wenn die CDU ihre Blockade aufgibt.",
+        "question_intent": "Zu ergründen, ob Ramelow eine Brückenfunktion zwischen CDU und Linke spielen könnte und wie der Unvereinbarkeitsbeschluss in der Praxis umgangen wird.",
+        "position": "Ramelow erklärt, dass die CDU Die Linke als Partei eingeladen hat, aber er als Ministerpräsident selbstverständlich mit Opposition spricht – so wie er mit Mario Voigt in den letzten Jahren Haushalte gestaltet und Gesetze beschlossen hat. Die CDU könnte eine größere Mehrheit erhalten, wenn sie sich von 'bundespolitischer Relevanz und Rücksichtnahme' befreit und sich auf 'Thüringer Schwerpunkte' konzentriert. Er nennt zwei Optionen: CDU + Linke oder BSW + SPD + Linke. Er unterstreicht, dass der Ministerpräsident ein Verfassungsorgan ist, das allein entscheiden kann, und dass es im demokratischen Raum wichtig ist, dass 'das Parlament nicht in eine Unart verfällt'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow erklärt konkret, wie der Unvereinbarkeitsbeschluss funktioniert (Parteiebene vs. Ministerpräsidenten-Ebene) und deutet an, dass die CDU politische Optionen hat, wenn sie ihre Bundeslinie verlässt.",
+        "concrete_statements": [
+          "Ich bin aber der Ministerpräsidenten, als Ministerpräsident rede ich selbst verständlich mit dem Vertreter, der Opposition",
+          "Die CDU könnte Stimmen bündeln, wenn sie sich wegbewegt von bundespolitischer Relevanz oder Rücksichtnahme, hin zu Thüringer Schwerpunkten.",
+          "Ich kann mit zwei Optionen vorstellen. Entweder mit Anschluss der Linken, da könnte man gut regieren, oder BSW, SPD."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist so, dass die CDU uns eingeladen hat, also uns, die Partei, die Linke. Ich bin aber der Ministerpräsidenten, als Ministerpräsident rede ich selbst verständlich mit dem Vertreter, der Opposition, mit dem ich auch in den letzten Jahren Haushalte zusammen gestaltet habe.",
+            "timestamp": "00:50:16",
+            "context": "Ramelow erklärt die Unterscheidung zwischen Parteiebene und Ministerpräsidenten-Ebene."
+          },
+          {
+            "text": "Ich habe mit 72 Stimmen fünf Jahre lang das Land geführt. Die 74 Stimmen würden reichen, wenn sich die Linke strukturell ordentlich verhält, und dafür sorgt, dass wir nicht eine Mehrheit blockieren.",
+            "timestamp": "00:52:16",
+            "context": "Ramelow deutet an, dass die Linke ihm nur 74 Stimmen zur Verfügung stellen könnte – genug für eine Mehrheit ohne CDU."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Föderale Regierungsbildung",
+          "Unvereinbarkeitsbeschlüsse und deren Anwendung",
+          "Verhältnis zwischen Parteilinie und persönlicher Amtsfunktion"
+        ]
+      },
+      {
+        "title": "Sahra Wagenknecht und BSW-Verhandlungen",
+        "timestamp_range": "00:52:16 - 00:54:16",
+        "theme_description": "Ramelows Verhältnis zu Sahra Wagenknecht und ihre Rolle bei Koalitionsverhandlungen zwischen CDU und BSW.",
+        "question_asked": "Markus Lanz fragt, ob Ramelow mit Sahra Wagenknecht Probleme hat und ob sie bei Koalitionsverhandlungen hinderlich sein könnte.",
+        "question_intent": "Zu verstehen, wie Wagenknecht die Verhandlungen beeinflusst und ob Ramelow sie als konstruktiv oder destruktiv einschätzt.",
+        "position": "Ramelow hat 'nichts mit' Sahra Wagenknecht zu tun und spricht mit ihr nicht. Das BSW 'spielt in Thüringen keine Rolle' in Bezug auf Wagenknechts Steuerung. Er kritisiert scharf, dass Hürden 'aus Berlin oder dem Saarland' aufgebaut werden und er 'nicht mit den Verbal Leistungen von Frau Wagenknecht konfrontiert werden' will. Ramelow betont, dass Koalitionsverhandlungen sich nach lokalen Prioritäten richten sollten. Er wird so lange regieren, bis ein 'geordneter Übergang' möglich ist – was noch dauern könnte, da nicht klar ist, ob Voigt und das BSW zusammenkommen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage unmittelbar und klar: Er hat kein Problem mit Wagenknecht persönlich, aber ein großes mit ihrer Einmischung in Thüringer Koalitionsverhandlungen von außen.",
+        "concrete_statements": [
+          "Mit der habe ich nichts zu tun, die Spiel in Thüringen keine Rolle.",
+          "Ich möchte nicht mit den Verbal Leistungen von Frau Wagenknecht konfrontiert werden.",
+          "Ich werde so lange regieren, bis ich einen geordneten Übergang vollziehen kann."
+        ],
+        "quotes": [
+          {
+            "text": "Mit der habe ich nichts zu tun, die Spiel in Thüringen keine Rolle. Mit der rede ich nicht. Es gefällt mir überhaupt nicht, es ist eine Form, mit der wir miteinander nicht umgehen sollten, dass welche Hürden aufgebaut kriegen, die aus Berlin oder dem Saarland kommen.",
+            "timestamp": "00:52:16",
+            "context": "Ramelows deutliche Kritik an Wagenknechts Rolle in Thüringer Verhandlungen."
+          },
+          {
+            "text": "Ich werde so lange regieren, bis ich einen geordneten Übergang vollziehen kann. Das kann wirklich noch dauern, weil nicht klar ist ob Herr Voigt und das BSW zusammenkommen.",
+            "timestamp": "00:52:16",
+            "context": "Ramelow skizziert die unsichere zeitliche Perspektive seiner Übergangsphase."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Föderale Autonomie von Landespolitik",
+          "BSW als neue Kraft in Ostdeutschland",
+          "Verhältnis zwischen Zentralparteiführung und Landesverbänden"
+        ]
+      },
+      {
+        "title": "Volkswagen-Krise und Industriepolitik",
+        "timestamp_range": "00:56:17 - 01:02:26",
+        "theme_description": "Ramelows Bewertung der Volkswagen-Krise in Niedersachsen und deren Auswirkungen auf Thüringens Automobilzulieferer.",
+        "question_asked": "Markus Lanz fragt, ob Thüringen auch ein Problem hat, wenn Volkswagen in Niedersachsen ein Problem hat, und wie Ramelow die VW-Krise bewertet.",
+        "question_intent": "Zu verstehen, wie verflochten Thüringens Industrie mit VW ist und was Ramelow zu gesamtwirtschaftlichen Lösungen sagt.",
+        "position": "Thüringen ist ein 'großes Automobil Zuwanderungsland' – ein Schnupfen bei VW ist Zucht in vielen Betrieben. Ramelow kritisiert, dass beim Diesel-Skandal nicht aufgeräumt wurde. Er warnt vor negativen Auswirkungen von US-Sanktionen auf die deutsch-chinesische Zusammenarbeit. Er fordert eine europäische Industriepolitik, die Zulieferbetriebe nicht kaputt gehen lässt. Er kritisiert die ideologische Festlegung auf die Schuldenbremse und verweist auf massive Investitionserfordernisse in Infrastruktur und Schlüsseltechnologien. China und die USA investieren massiv; Deutschland müsse einen 'Ruck' erleben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow beantwortet die Frage konkret (ja, Thüringen hat ein Problem) und leitet daraus eine grundsätzliche Forderung nach Industriepolitik ab.",
+        "concrete_statements": [
+          "Thüringen ist ein großes Automobil Zuwanderungsland. Es ist ganz essenziell, ein Schnupfen bei VW ist Zucht in vielen Betrieben.",
+          "Ich neige dazu, dass wir eine Industriepolitik fahren müssen, bei denen wir die Zulieferbetriebe nicht kaputt gehen lassen.",
+          "Die Schuldenbremse können wir nicht mehr so ideologisch festhalten. Wir müssen da pragmatisch denken."
+        ],
+        "quotes": [
+          {
+            "text": "Thüringen ist ein großes Automobil Zuwanderungsland. Es ist ganz essenziell, ein Schnupfen bei VW ist Zucht in vielen Betrieben. Müssen schauen, dass viele Themen, da bin ich einmal nachgetragen, beim Diesel-Skandal hätte man schon aufräumen müssen.",
+            "timestamp": "00:56:17",
+            "context": "Ramelow charakterisiert Thüringens Abhängigkeit von der Automobilindustrie und VW."
+          },
+          {
+            "text": "Ich glaube, da muss nicht nur die Bundesregierung, nicht nur eine Landesregierung, da muss politisch, gesellschaftlich, auf allen Ebenen einen Ruck, eine Zeitenwende stattfinden.",
+            "timestamp": "01:02:26",
+            "context": "Ramelows Appell an eine grundsätzliche Neuausrichtung der Industriepolitik."
+          },
+          {
+            "text": "Und tut mir leid, Johannes Vogel, die Schuldenbremse können wir nicht mehr so ideologisch festhalten. Wir müssen da pragmatisch denken.",
+            "timestamp": "01:02:26",
+            "context": "Ramelow kritisiert die Schuldenbremse implizit als Hindernis für industrielle Investitionen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik und Industrieförderung",
+          "Schuldenbremse und Fiskalpolitik",
+          "Deutsch-chinesische Handelsbeziehungen",
+          "Automobilindustrie und Elektromobilität"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Investitionen in Schlüsseltechnologien",
+        "timestamp_range": "01:02:26 - 01:04:27",
+        "theme_description": "Ramelows Forderung, die Schuldenbremse pragmatischer zu handhaben, um Investitionen in Zukunftstechnologien zu ermöglichen.",
+        "question_asked": "Markus Lanz und Felix Lee diskutieren, ob China und die USA ihre Hausaufgaben bei Schlüsseltechnologien und Elektromobilität getan haben; implizite Frage an Ramelow, wie Deutschland angesichts dieser Konkurrenz handeln sollte.",
+        "question_intent": "Zu verstehen, ob Ramelow große Investitionen für notwendig hält und wie diese zu finanzieren sind.",
+        "position": "Ramelow betont, dass Deutschland massive Investitionen in Infrastruktur und Schlüsseltechnologien benötigt, um mit China und den USA mithalten zu können. Er sagt explizit zu Johannes Vogel (FDP): 'Die Schuldenbremse können wir nicht mehr so ideologisch festhalten.' Es geht um 'Milliarden an Investitionen, die die EU benötigt', um Wettbewerbsfähigkeit wiederherzustellen. Dies sei im 'Interesse der FDP', da Deutschland und Europa 'wieder wettbewerbsfähig' werden müssen. Das ist eine 'Zeitenwende', die ein Umdenken auf allen politischen Ebenen erfordert.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ramelow antwortet substanziell und direkt: Die Schuldenbremse muss pragmatischer angewendet werden, um große Investitionen zu ermöglichen. Er adressiert damit die zentrale wirtschaftspolitische Frage.",
+        "concrete_statements": [
+          "1 Milliarden an Investitionen, die die EU benötigt, um unsere Infrastruktur auf Vordermann zu bringen",
+          "Die Schuldenbremse können wir nicht mehr so ideologisch festhalten.",
+          "Das ist die Zeitenwende, da müssen wir umdenken."
+        ],
+        "quotes": [
+          {
+            "text": "Und tut mir leid, Johannes Vogel, die Schuldenbremse können wir nicht mehr so ideologisch festhalten. Wir müssen da pragmatisch denken. Ich glaube, es ist auch im Interesse der FDP, von der Schuldenbremse abzulassen, damit Deutschland und Europa wieder wettbewerbsfähig wird.",
+            "timestamp": "01:02:26",
+            "context": "Ramelows direkter Appell an die FDP, pragmatischer bei der Schuldenbremse zu werden."
+          },
+          {
+            "text": "1 Milliarden an Investitionen, die die EU benötigt, um unsere Infrastruktur auf Vordermann zu bringen, um in den Schlüsseltechnologien mithalten zu können, das sind gewaltige Summen, aber das ist genau das, was China und die USA tun.",
+            "timestamp": "01:02:26",
+            "context": "Ramelow argumentiert mit dem globalen Wettbewerbsvergleich für große Investitionen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Schuldenbremse und verfassungsrechtliche Schranken",
+          "Fiscalpolitische Spielräume in der Energiewende",
+          "Investitionen in Forschung und Entwicklung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Thüringen hatte 5100 Asylanträge in diesem Jahr",
+        "timestamp": "00:12:31"
+      },
+      {
+        "claim": "300.000 Menschen gehen in Thüringen in Rente, aber nur 150.000 junge Leute kommen nach",
+        "timestamp": "00:14:40"
+      },
+      {
+        "claim": "Mit Tunis gelang es, 15 junge Leute zu Ausbildung und Integration zu bringen",
+        "timestamp": "00:16:40"
+      },
+      {
+        "claim": "Ramelow führte mit 72 Stimmen fünf Jahre lang das Land",
+        "timestamp": "00:52:16"
+      },
+      {
+        "claim": "Die CDU hat einen Unvereinbarkeitsbeschluss gegenüber der Linken gefasst",
+        "timestamp": "00:50:16"
+      }
+    ]
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-7-april-2026-100",
+    "video_id": "lanz-2026-04-07",
+    "politician": "Alexander Hoffmann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "2990b1063d564e19",
+    "transcript_chars": 66034,
+    "caption_lines": 3216,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26260,
+    "tokens_out": 8486,
+    "cost_usd": 0.027476,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.985Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Alexander Hoffmann, Vorsitzender der CSU-Fraktion im Bundestag, nimmt in dieser Talkshow zur eskalierten Lage am Golf Stellung. Er betont die Sicherheitsgewinne für Europa und Deutschland durch die Begrenzung der iranischen Militärkraft, verteidigt das Vertrauen in die Einhaltung des Völkerrechts durch USA und Israel, und argumentiert gegen eine übermäßig pessimistische Einordnung. Gleichzeitig adressiert er energiewirtschaftliche Herausforderungen mit Kartellrecht und betont die Notwendigkeit, wirtschaftliche Stabilität zu wahren.",
+    "themes": [
+      {
+        "title": "Völkerrechtskonformität von Kriegsankündigungen",
+        "timestamp_range": "00:09:21 - 00:13:05",
+        "theme_description": "Lanz fragt Hoffmann als Jurist, wie er Trumps Ankündigungen zur Zerstörung ziviler Infrastruktur (Kraftwerke, Brücken) rechtlich einordnet und ob dies Kriegsverbrechen darstellt.",
+        "question_asked": "Der Moderator fragt Hoffmann mehrfach (als Jurist und Politiker), was die angekündigte Zerstörung ziviler Infrastruktur durch Trump rechtlich bedeutet und ob das Kriegsverbrechen sind.",
+        "question_intent": "Lanz versucht, Hoffmann zu einer klaren rechtlichen Stellungnahme zu bringen, ob die US-Ankündigungen Völkerrecht verletzen — als Kontrast zu Kritik von außen (Tucker Carlson etc.).",
+        "position": "Hoffmann teilt die Einordnung nicht und geht davon aus, dass sich USA und Israel an Völkerrecht halten. Er deutet Trumps Äußerungen als Teil einer 'Show' an, relativiert die rechtliche Debatte mit dem Argument, diese ändere nichts an der strategischen Realität, und betont die Verbundenheit Deutschlands zu beiden Ländern. Er argumentiert, die Israelis hätten unmittelbar klargestellt, keinen Krieg gegen die iranische Bevölkerung zu führen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hoffmann antwortet auf die Frage nach seiner juristischen Einordnung, weicht aber einer direkten Antwort auf die hypothetische Frage aus, ob die Ankündigungen Kriegsverbrechen wären. Er setzt auf Vertrauen statt auf rechtliche Analyse und deutet die Äußerungen als Show, ohne diese als Kriegsverbrechen einzuordnen oder zu widersprechen.",
+        "quotes": [
+          {
+            "text": "Ich sage, ich teile diese Einordnung und Aussage ausdrücklich nicht. Ich gehe fest davon aus, dass ich die USA, genauso wie die Israelis ein Völkerrecht halten.",
+            "timestamp": "00:10:38",
+            "context": "Auf die Frage hin, wie er als Jurist Kriegsverbrechen-Ankündigungen einordnet."
+          },
+          {
+            "text": "Wir haben diesen Tweet von Donald Trump, ich sage, dass ist Teil dieser Show.",
+            "timestamp": "00:19:05",
+            "context": "Als Lanz nach dem Tweet fragt, deutet Hoffmann ihn als Inszenierung, nicht als ernsthafte Ankündigung."
+          }
+        ],
+        "concrete_statements": [
+          "Hoffmann teilt die Einordnung von Trumps Ankündigungen als Kriegsverbrechen nicht",
+          "Er geht davon aus, dass sich USA und Israelis an Völkerrecht halten",
+          "Er deutet Trumps Tweet als Teil einer politischen Show",
+          "Er betont, dass Israelis klargestellt haben, keinen Krieg gegen die iranische Bevölkerung zu führen"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Hoffmann weicht einer direkten juristischen Analyse aus und verlässt sich auf Vertrauen in die Konformität der Akteure, statt sich mit der hypothetischen Frage auseinanderzusetzen."
+      },
+      {
+        "title": "Deutsche Sicherheitsinteressen und Sicherheitsgewinn",
+        "timestamp_range": "00:19:56 - 01:00:47",
+        "theme_description": "Hoffmann argumentiert, dass die Limitierung der iranischen Militärkraft im deutschen Sicherheitsinteresse liegt und präventiv wirkt; Lanz und andere stellen dies in Frage.",
+        "question_asked": "Lanz und andere stellen in Frage, ob dieser Krieg wirklich im deutschen Interesse liegt, angesichts wirtschaftlicher Kosten und einer möglichen Eskalation.",
+        "question_intent": "Die Frage zielt darauf ab, Hoffmanns Behauptung eines 'Sicherheitsgewinns' gegen wirtschaftliche und strategische Realitäten abzuwägen.",
+        "position": "Hoffmann betont wiederholt, dass die Limitierung der iranischen Militärkraft für Deutschland, Europa und den Westen essenziell ist. Er argumentiert, dass ein unkontrolliertes iranisches Atomprogramm unter Kontrolle der Straße von Hormus existenzielle Risiken schaffen würde. Er stellt die Gegenfrage, ob man bereit sei, jahrelang mit einem bewaffneten Iran und der Hoffnung zu leben, dass 'es schon gut gehe'. Er führt an, dass die Schlagkraft des Iran heute größer ist als erwartet, was zeige, dass eine Intervention notwendig war.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hoffmann adressiert die Kernfrage direkt: Er argumentiert, dass der Sicherheitsgewinn (limitierte iranische Militärkraft) überwiegt die wirtschaftlichen Kosten. Er präsentiert eine vollständige Begründung, weicht aber in Details (z. B. Atombombe vs. militärische Kapazität) aus.",
+        "quotes": [
+          {
+            "text": "Für den Westen, für Europa, auch Deutschland, ist es besser, wenn die militärische Kraft des Iran limitiert ist. Wir erleben heute, über was für eine Schlagkraft der Iran verfügt.",
+            "timestamp": "01:00:47",
+            "context": "Hoffmann fasst sein Argument zum Sicherheitsgewinn für Deutschland zusammen."
+          },
+          {
+            "text": "Ich will darauf hinweisen, wenn wir diese Entwicklung hätten weiterlaufen lassen, dann wäre das für uns alle sehr viel schlimmer geworden.",
+            "timestamp": "01:00:47",
+            "context": "Hoffmann argumentiert präventiv: Ein unbegrenztes iranisches Programm hätte schlimmere Folgen."
+          }
+        ],
+        "concrete_statements": [
+          "Die Limitierung der iranischen Militärkraft liegt im deutschen Sicherheitsinteresse",
+          "Ein Iran mit Atomwaffen und Kontrolle der Straße von Hormus wäre existenziell bedrohlich",
+          "Die bisherige iranische Militärkraft ist größer als in den letzten Jahren gedacht"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Nahost",
+          "Deutsche Interessen"
+        ]
+      },
+      {
+        "title": "Völkerrechtlichkeit des Konflikts und humanitäre Intervention",
+        "timestamp_range": "00:20:27 - 00:21:56",
+        "theme_description": "Mirzaei argumentiert, dass der Krieg völkerrechtswidrig sei; Hoffmann verteidigt die Legalität mit Verweis auf Selbstverteidigungsrecht und humanitäre Intervention.",
+        "question_asked": "Mirzaei stellt fest, dass über 70.000 Menschen in Gaza getötet wurden und der Krieg völkerrechtswidrig sei; Hoffmann wird implizit aufgefordert, diese Kritik zu adressieren.",
+        "question_intent": "Mirzaei will Hoffmann dazu bringen, die humanitäre Bilanz des Krieges anzuerkennen und die Völkerrechtlichkeit zu hinterfragen.",
+        "position": "Hoffmann lehnt Mirzaeis Charakterisierung ab und argumentiert mit einer Vorgeschichte: Der 7. Oktober 2023 wäre ohne das iranische Regime nicht möglich gewesen. Er betont die globale Bedrohung durch den Iran als Terrorfinanzierer und die Gefahr eines iranischen Atomwaffenprogramms. Er argumentiert, dass Israels Selbstverteidigungsrecht und möglicherweise auch eine 'humanitäre Intervention' nach dem 7. Oktober gerechtfertigt sind. Die Debatte über Kollateralschäden müsse die Vorgeschichte einbeziehen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt auf Mirzaeis Kritik zur humanitären Bilanz einzugehen, umleidet Hoffmann zum 7. Oktober und zur iranischen Bedrohung als Kontext. Er antwortet auf eine implizite Frage nach Völkerrechtlichkeit, pivotiert aber zu einem Gegenpunkt: dass die Islamische Republik eine größere Bedrohung sei.",
+        "quotes": [
+          {
+            "text": "Das 07.10.2023 wäre ohne das Regime in Teheran gar nicht möglich gewesen. [...] Der Iran ist der größte Finanzier des weltweiten Terrors, der Unterstützer.",
+            "timestamp": "00:20:27",
+            "context": "Hoffmann erklärt die Vorgeschichte des Konflikts und Irans Rolle als Begründung für die Legalität der Intervention."
+          },
+          {
+            "text": "Es gibt juristisch andere Betrachtungen zum Thema Völkerrecht, einer zum Beispiel sagt das Recht zur Selbstverteidigung Israels, auch das Recht für eine humanitäre Intervention.",
+            "timestamp": "00:20:27",
+            "context": "Hoffmann verweist auf alternative juristische Argumente für die Legalität der Kriegshandlungen."
+          }
+        ],
+        "concrete_statements": [
+          "Der 7. Oktober 2023 war ohne das iranische Regime nicht möglich",
+          "Der Iran ist der größte Finanzierer des weltweiten Terrors",
+          "Ein iranisches Atomwaffenprogramm würde die westliche Sicherheit existenziell gefährden",
+          "Israels Recht zur Selbstverteidigung und humanitäre Intervention sind völkerrechtlich zu berücksichtigen"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Nahost-Konflikt",
+          "Internationale Ordnung"
+        ]
+      },
+      {
+        "title": "NATO und US-Sicherheitsgarantien für Deutschland",
+        "timestamp_range": "00:42:44 - 00:45:31",
+        "theme_description": "Lanz fragt, was Deutschland tun würde, wenn Trump aus der NATO aussteigt; Hoffmann sagt, man müsse das Bündnis verteidigen und auf Unterstützer in den USA vertrauen.",
+        "question_asked": "Lanz stellt die konkrete Frage: Was tun wir, wenn Trump sagt, er zieht sich daraus zurück und Deutschland muss sich selbst versorgen?",
+        "question_intent": "Lanz will wissen, wie Hoffmann einen Austritt der USA aus der NATO praktisch adressieren würde — ob es einen Plan gibt oder ob das ein Horrorszenario ist.",
+        "position": "Hoffmann argumentiert, dass Deutschland sich nicht von der NATO erpressen lassen darf und gleichzeitig nicht zur Erpressung führen darf. Er verweist auf einen ähnlichen Fall (Grönland), wo man abwenden konnte, dass es zu einem Bruch kommt. Er argumentiert, dass viele im US-Senat die NATO unterstützen und verstehen, welche strategische Rolle sie spielt. Er betont, dass Trump am Ende nicht allein entscheiden kann und es eine Zweidrittelmehrheit im Senat braucht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hoffmann adressiert die Frage, weicht aber der konkreten Antwort aus. Er spricht allgemein von 'Ratio und Ziel' einer Situation, verweist auf historische Beispiele (Grönland), betont aber nicht, dass es in einem Kriegsszenario keine Verhandlungslösung geben könnte wie bei Grönland.",
+        "quotes": [
+          {
+            "text": "Wir haben zumindest in Teilen eine vergleichbare Situation auch schon gehabt mit Grönland. [...] damals konnte man abwenden, dass es zu einem Bruch kommt, das muss die Ratio und das Ziel auch seien einer solchen Situation.",
+            "timestamp": "00:43:06",
+            "context": "Hoffmann verweist auf einen historischen Präzedenzfall für Konfliktlösung."
+          },
+          {
+            "text": "Ich glaube nicht, dass es der US Präsident am Ende alleine entscheiden kann. Allein durch die Zweidrittelmehrheit, die Herr Theveßen gerade geschildert hat.",
+            "timestamp": "00:45:07",
+            "context": "Hoffmann argumentiert, dass Trump begrenzt ist durch die Verfassungsstruktur der USA."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland darf sich nicht von der NATO erpressen lassen",
+          "Es gibt Unterstützer der NATO im US-Senat",
+          "Ein Austritt aus der NATO braucht verfassungsrechtlich eine Zweidrittelmehrheit",
+          "Man sollte auf Verhandlungen setzen wie beim Grönland-Fall"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "NATO",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Spritpreise und Kartellrecht",
+        "timestamp_range": "00:49:07 - 00:53:36",
+        "theme_description": "Hoffmann stellt ein Kartellrecht-Paket vor, das Diesel- und Benzinpreise stabilisieren soll; Lanz stellt dessen Wirksamkeit in Frage.",
+        "question_asked": "Lanz fragt, ob Hoffmanns Kartellrecht-Reform funktioniert und ob die hohen Spritpreise unerklärt sind (Beweislastumkehr soll helfen).",
+        "question_intent": "Lanz will wissen, ob die Regierungsmaßnahmen wirken oder ob Mineralölkonzerne sich die 'Taschen voll machen'.",
+        "position": "Hoffmann erläutert ein Kartellrecht-Paket (Beweislastumkehr), das seitdem 1. April gilt. Er argumentiert, dass der Markt der 'am besten überwachte' in Deutschland ist, aber der Preissprung bei Diesel nicht erklärbar ist (69 Cent, bei Super nur 38 Cent). Der Preis auf dem Weltmarkt ist um 100 auf 110 Dollar gestiegen — den ersten Sprung kann man damit erklären, nicht die weiteren. Er sagt, dass verschiedene Verfahren laufen und das Kartellamt seine Arbeit machen muss. Die Konzerne müssen Transparenz zeigen; der Staat müsse beweisen, dass die Preise gerechtfertigt sind (alte Regel), jetzt müssen die Konzerne ihre Preisgestaltung transparent machen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hoffmann adressiert die Frage direkt: Er erklärt sein Kartellrecht-Paket, gibt zu, dass die Preissprünge 'nicht erklärbar' sind, und argumentiert, dass die neue Regelung Druck auf die Konzerne ausübt. Er relativiert aber, dass es sieben Tage dauert, bis die Regelung wirkt, und betont, dass die Lösung im Kartellrecht liegt, nicht in Preisregulierung.",
+        "quotes": [
+          {
+            "text": "Dieser hat eine Preissteigerung von 69 Cent, bei normalen super 38 Cent, das ist nicht erklärbar.",
+            "timestamp": "00:49:54",
+            "context": "Hoffmann gibt zu, dass die Preissteigerungen anomal sind und nicht durch Weltmarktpreise zu erklären sind."
+          },
+          {
+            "text": "Jetzt müssen die Konzerne ihre Preisgestaltung transparent machen, darauf muss vor allem das Kartellamt bestehen.",
+            "timestamp": "00:50:18",
+            "context": "Hoffmann erklärt das Kernstück seiner Reform: Umkehr der Beweislast zu Gunsten des Staates."
+          }
+        ],
+        "concrete_statements": [
+          "Ein Kartellrecht-Paket (Beweislastumkehr) gilt seit 1. April",
+          "Mineralölkonzerne müssen Transparenz bei Preisgestaltung zeigen",
+          "Das Kartellamt wird gestärkt und soll die Konzerne überwachen",
+          "Hoffmann geht davon aus, dass Konzerne 'sich die Taschen voll machen'"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Kartellrecht",
+          "Verbraucherschutz",
+          "Energiepreise"
+        ]
+      },
+      {
+        "title": "Schwarzmalerei vs. realistisches Krisenmanagement",
+        "timestamp_range": "00:49:07 - 00:52:07",
+        "theme_description": "Hoffmann argumentiert gegen Schwarzmalerei ('Schwarzmalerei betreiben'), während der Markt real unter Druck steht; Lanz hinterfragt diese Haltung.",
+        "question_asked": "Implicit: Ist es verantwortlich, von 'keine Schwarzmalerei' zu sprechen, während die Realität (Dieselpreise auf Rekordhoch) das Gegenteil zeigt?",
+        "question_intent": "Lanz will Hoffmann vorwerfen, die Realität zu verharmlosen, statt sie klar zu benennen.",
+        "position": "Hoffmann sagt, dass es in 'herausfordernden Situationen' wichtig ist, 'keine Schwarzmalerei zu betreiben'. Er argumentiert, dass die Regierung 'sehr früh reingegangen' ist mit ihrem Kartellrecht-Paket (basierend auf österreichischem Modell). Er wendet sich gegen zu pessimistische Szenarien und betont, dass man wirtschaftliche Stabilität wahren muss. Gleichzeitig gibt er zu, dass 'Auswirkungen im Bereich der Spritpreise' unmittelbar sind.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hoffmann adressiert die Spannung zwischen seiner Warnung vor Schwarzmalerei und der Realität (Dieselpreise auf Rekordhoch) nur indirekt. Er sagt, dass man 'früh reingegangen' ist, kann aber nicht erklären, warum die Preise trotzdem steigen. Das ist eine Antwort auf die allgemeine Haltung, nicht auf die konkrete Frage zum Widerspruch.",
+        "quotes": [
+          {
+            "text": "Ich glaube wichtig ist, dass wir auch in der herausfordernden Situation keine Schwarzmalerei betreiben.",
+            "timestamp": "00:49:07",
+            "context": "Hoffmann betont die Notwendigkeit, optimistisch zu bleiben, während die Kosten der Krise real sind."
+          }
+        ],
+        "concrete_statements": [
+          "Die Regierung ist 'sehr früh' mit Kartellrecht-Reformen reingegangen",
+          "Es gibt unmittelbare Auswirkungen auf Spritpreise",
+          "Man muss vermeiden, dass sich das Problem 'durch die Volkswirtschaft frisst'"
+        ],
+        "related_bundestag_topics": [
+          "Krisenkommunikation",
+          "Wirtschaftspolitik",
+          "Energiepreise"
+        ]
+      },
+      {
+        "title": "Differenzen zwischen Wirtschaftsministerium-Aussagen",
+        "timestamp_range": "00:57:00 - 01:04:38",
+        "theme_description": "Lanz zitiert Katharina Reiche (Wirtschaftsministerin): einmal 'ausreichend Gas und Öl vorhanden' (4%), dann 'Ende April könnte es knapp werden' in Texas — Hoffmann bewertet diese Kommunikation.",
+        "question_asked": "Lanz fragt, wie Hoffmann die widersprüchlichen Aussagen der Wirtschaftsministerin erklärt: erst 'genug Öl', dann 'könnte knapp werden'.",
+        "question_intent": "Lanz will Hoffmann dazu bringen, die Glaubwürdigkeit der Regierung in Frage zu stellen oder diese Aussagen zu klären.",
+        "position": "Hoffmann sagt, dass er nicht beurteilen kann, wie es zu dieser Kommunikation gekommen ist. Er betont, dass das eigentliche Problem die Sicherstellung ist, dass Deutschland und Europa keine Knappheit erleben. Auf die Frage, ob die Ministerin an einem Punkt nicht das sagte, was stimmt, antwortet er: 'Das ist nicht meine Aufgabe die Kommunikation der Ministerin zu beurteilen.' Er lenkt dann ab zur Verfügbarkeit von Treibstoff und Kartellrecht, statt die Diskrepanz zu adressieren.",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Hoffmann weigert sich, die widersprüchlichen Aussagen der Ministerin zu beurteilen oder zu erklären. Er antwortet ausweichend, dass es 'nicht seine Aufgabe' sei, Reiche zu evaluieren, obwohl Lanz betont, dass sie 'eine relevante Frau' und Hoffmann 'ein sehr mächtiger Mann' in der Republik sei. Das ist eine explizite Verweigerung der Frage.",
+        "quotes": [
+          {
+            "text": "Ich kann nicht beurteilen wie es zu dieser Kommunikation gekommen ist.",
+            "timestamp": "01:03:26",
+            "context": "Hoffmann verweigert, Reiches Kommunikation zu kommentieren."
+          },
+          {
+            "text": "Das ist nicht meine Aufgabe die Kommunikation der Ministerin...",
+            "timestamp": "01:04:38",
+            "context": "Hoffmann bricht ab und weigert sich, sich auf die Frage einzulassen."
+          }
+        ],
+        "concrete_statements": [
+          "Hoffmann kann die Kommunikation der Ministerin nicht bewerten",
+          "Er betont stattdessen, dass Verfügbarkeit Ziel sein muss",
+          "Er weigert sich, Reiche direkt zu kritisieren"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Regierungskommunikation",
+          "Wirtschaftspolitik",
+          "Energiesicherheit"
+        ]
+      },
+      {
+        "title": "Atomprogramm des Iran und Geheimdiensteinschätzungen",
+        "timestamp_range": "00:58:51 - 01:02:23",
+        "theme_description": "Lanz zitiert die US-Geheimdienstkoordinatorin, die sagt, das iranische Atomprogramm sei nicht nahe am Erfolg; Hoffmann bestreitet diese Einschätzung oder relativiert sie.",
+        "question_asked": "Lanz fragt Hoffmann, warum er die Aussage der amerikanischen Geheimdienstkoordinatorin ignoriert, dass es 'totaler Quatsch' sei, dass die Bombe kurz bevorsteht.",
+        "question_intent": "Lanz will Hoffmann zwingen, sich mit einer offiziellen US-Geheimdiensteinschätzung auseinanderzusetzen, die sein Narrativ widerlegt.",
+        "position": "Hoffmann sagt, dass es unterschiedliche Einschätzungen zum Atomprogramm gibt. Er bestreitet nicht die Aussage der Geheimdienstkoordinatorin, argumentiert aber, dass andere Faktoren (waffenfähiges Uran, balistische Raketen) ihn beunruhigen. Er betont, dass die militärische Schlagkraft des Iran größer ist als erwartet — was auf 'Fehleinschätzungen' hindeutet. Er behält sich vor, dass es unterschiedliche Perspektiven geben könne und möchte sich nicht auf eine Position festlegen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hoffmann adressiert die Frage zur Geheimdienstaussage nur indirekt. Statt sie zu widerlegen oder zu akzeptieren, argumentiert er, dass es 'unterschiedliche Einschätzungen' gibt und lenkt ab zu anderen Bedrohungen (Uran, Raketen). Er weicht damit einer direkten Auseinandersetzung aus.",
+        "quotes": [
+          {
+            "text": "Es gibt was sie nukleare Kompetenz des Iran angeht unterschiedliche Einschätzungen, wir alle merken jetzt, dass die Frage, wie militärisch schlagkräftig der Iran ist, ganz anders zu beurteilen ist.",
+            "timestamp": "00:58:51",
+            "context": "Hoffmann relativiert die Geheimdienstaussage mit dem Verweis auf unterschiedliche Perspektiven."
+          },
+          {
+            "text": "Ich sag nicht, dass es für mich nicht relevant ist, aber ich erlaube mir den Hinweis, dass es dazu unterschiedliche Einschätzungen gibt.",
+            "timestamp": "01:01:37",
+            "context": "Hoffmann gibt zu, dass die Geheimdienstaussage relevant ist, weist sie aber mit dem Verweis auf 'unterschiedliche Einschätzungen' zurück."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt unterschiedliche Einschätzungen zum iranischen Atomprogramm",
+          "Die militärische Schlagkraft des Iran ist größer als erwartet",
+          "Waffenfähiges Uran und balistische Raketen sind bedrohlich",
+          "Hoffmann beweist nicht, dass die Geheimdienstaussage falsch ist"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Nahost",
+          "Iran-Atomprogramm"
+        ]
+      },
+      {
+        "title": "Benzin- und Dieselknappheit und Verfügbarkeit",
+        "timestamp_range": "01:03:13 - 01:05:59",
+        "theme_description": "Lanz zitiert eine J.P.-Morgan-Studie, die besagt, dass Tanker mit Öl bis ca. 10. April Europa erreichen und dann knapp wird; Hoffmann bestreitet ein Knappheitsszenario.",
+        "question_asked": "Lanz fragt, ob Hoffmann einen Zeitrahmen ausschließen kann, in dem es zu Benzin- und Dieselknappheit kommt, und verweist auf die J.P.-Morgan-Prognose.",
+        "question_intent": "Lanz will Hoffmann zwingen, entweder eine Knappheit zu akzeptieren oder sein Vertrauen in die Marktmechanismen zu widerlegen.",
+        "position": "Hoffmann sagt, dass die Verfügbarkeit von Treibstoff ein Ziel der Bundesregierung sein muss. Er kann eine Knappheit nicht ausschließen, betont aber, dass 'solange ein Markt attraktiv ist für Konzerne, wird dieser Markt beliefert'. Der Staat garantiert 90-Tage-Vorräte an Mineralöl und ein Sicherstellungszuschlag für Spritpreise. Er argumentiert, dass regulatorische Eingriffe (Preisdeckelung) paradoxerweise zu Knappheit führen könnten, weil Konzerne dann nicht mehr beliefern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hoffmann adressiert die Frage teilweise: Er betont, dass Verfügbarkeit garantiert werden soll, kann aber ein Knappheitsszenario nicht kategorisch ausschließen. Statt auf die J.P.-Morgan-Prognose einzugehen, argumentiert er mit Marktmechaniken und 90-Tage-Vorräten, weicht aber der Frage aus, was passiert, wenn Öl nicht verfügbar ist.",
+        "quotes": [
+          {
+            "text": "Das muss die Zielsetzung dieser Bundesregierung in dieser Koalition sein... Können Sie es ausschließen? Das ist für die Volkswirtschaft das schlimmste aller Szenarien.",
+            "timestamp": "01:10:05",
+            "context": "Hoffmann umweicht die Frage nach Ausschlussbarkeit und spricht von Zielsetzung statt Garantie."
+          },
+          {
+            "text": "Solange ein Markt attraktiv ist für Konzerne, wird dieser Markt beliefert.",
+            "timestamp": "01:05:37",
+            "context": "Hoffmann argumentiert mit Marktmechaniken, nicht mit physischen Garantien."
+          }
+        ],
+        "concrete_statements": [
+          "Verfügbarkeit von Benzin und Diesel ist Zielsetzung, nicht Garantie",
+          "Deutschland hält 90-Tage-Vorräte an Mineralöl",
+          "Ein Sicherstellungszuschlag soll Belieferung garantieren",
+          "Preisregulierung könnte paradoxerweise zu Knappheit führen"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Energiesicherheit",
+          "Verbraucherschutz",
+          "Krisen-Management"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Iran ist der größte Finanzierer des weltweiten Terrors",
+        "timestamp": "00:20:27"
+      },
+      {
+        "claim": "Die Regelung (Beweislastumkehr beim Kartellrecht) gilt seit dem 1. April",
+        "timestamp": "00:49:49"
+      },
+      {
+        "claim": "Diesel hatte eine Preissteigerung von 69 Cent, bei normalem Super 38 Cent",
+        "timestamp": "00:49:54"
+      },
+      {
+        "claim": "Durch die Straße von Hormus gelangen etwa 20 % des weltweiten Öl-Bedarfs",
+        "timestamp": "01:05:46"
+      },
+      {
+        "claim": "Deutschland hat 90-Tagevorräte an Mineralöl",
+        "timestamp": "01:03:26"
+      }
+    ]
+  }
+}

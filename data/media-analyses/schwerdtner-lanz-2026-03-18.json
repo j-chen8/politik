@@ -1,0 +1,332 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-18-maerz-2026-100",
+    "video_id": "lanz-2026-03-18",
+    "politician": "Ines Schwerdtner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "64f990da68fd10e8",
+    "transcript_chars": 36558,
+    "caption_lines": 1818,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 16556,
+    "tokens_out": 8197,
+    "cost_usd": 0.0230164,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 3,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-02T16:33:28.704Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ines Schwerdtner, Vorsitzende der Linkspartei, diskutierte in der Markus-Lanz-Sendung mit SPD-Finanzsenator Andreas Dressel über mehrere politische Themen: den Nahostkonflikt und Antisemitismus-Vorwürfe gegen Die Linke, die Problematik des Vertrauensverlusts von Arbeiter:innen zu linken Parteien, Migrations- und Integrationspolitik, Wohnungsmarkt und schließlich Rentenreformen. Schwerdtner argumentierte tendenziell aus einer linkspolitischen Perspektive heraus, betonte Systemkritik und verteilungspolitische Lösungsvorschläge.",
+    "themes": [
+      {
+        "title": "Antisemitismus-Vorwürfe gegen Die Linke",
+        "timestamp_range": "00:02:13 - 00:13:49",
+        "theme_description": "Diskussion über einen Beschluss der Linksjugend Solid in Niedersachsen mit antizionistischen Positionen und die Frage, ob Die Linke ein Antisemitismusproblem hat.",
+        "question_asked": "Der Moderator fragte zunächst, was Schwerdtner beim ersten Sehen eines Videos mit kritischen Aussagen zum Zionismus gedacht habe, dann forderte er mehrfach auf, klipp und klar zu sagen, ob sie Antizionismus und die Aussagen des Videos als antisemitisch verurteilt.",
+        "question_intent": "Der Moderator wollte klären, ob Schwerdtner als Parteivorsitzende eindeutig Distanz zu antizionistischen Positionen schafft, ob Die Linke ein strukturelles Antisemitismusproblem hat, und warum der Antisemitismusbeauftragte der Partei zurückgetreten ist.",
+        "position": "Schwerdtner unterschied zwischen Kritik an israelischer Regierungspolitik und Siedlungspolitik einerseits und Zionismuskritik andererseits. Sie lehnte ab, Antizionismus als notwendig antisemitisch einzustufen, fand aber den Beschluss der Linksjugend 'nicht richtig' und 'falsch gemacht'. Sie betonte, dass man konkrete Kriegsverbrechen Israels kritisieren könne, ohne die 'Abhandlung der Geschichte des Zionismus' zu führen. Sie unterstrichen das Existenzrecht Israels und das Recht auf einen Schutzraum für Jüdinnen und Juden. Das Video bewertete sie als 'grenzwertig' und nicht im direkten Sinne antisemitisch, weil es echten Antisemitismus 'verharmlost'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner adressierte die Frage nach ihrer persönlichen Haltung und der Parteilinie, lehnte aber die binäre Klassifikation 'antisemitisch ja/nein' ab und verlagerte die Antwort auf eine differenziertere Unterscheidung zwischen Zionismuskritik und Antisemitismus. Sie verurteilte den Beschluss prozedural, nicht substanziell die dahinterstehenden Positionen.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Dieser Beschluss in Niedersachsen [war] einseitig und nicht richtig",
+          "Man muss sich dafür nicht feiern",
+          "Wir sind da sehr klar zu sagen, wir stehen ein für einen gerechten Frieden. Für Palästinenser und für Israelis",
+          "Es braucht einen Schutzraum für Jüdinnen und Juden, gerade nach dem Zweiten Weltkrieg",
+          "Ich finde das Video grenzwertig... Ich finde es nicht antisemitisch, damit verharmlost man realen Antisemitismus"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, es wird vor allem der sehr komplexen Situation im Nahen Osten nicht gerecht. Deswegen war dieser Beschluss in Niedersachsen einseitig und nicht richtig.",
+            "timestamp": "00:02:13"
+          },
+          {
+            "text": "Man muss in der Lage sein, die konkrete Politik und die Kriegsverbrechen Israels zu kritisieren. Nicht eine Abhandlung der Geschichte des Zionismus.",
+            "timestamp": "00:03:37"
+          },
+          {
+            "text": "Ich finde das Video grenzwertig. Es verherrlicht die Situation vor Ort. Deswegen ist es schwer tragbar. Ich finde es nicht antisemitisch, damit verharmlost man realen Antisemitismus.",
+            "timestamp": "00:13:14"
+          }
+        ],
+        "evasion_note": "Schwerdtner weichte mehrfach dem direkten Vorwurf strukturellen Antisemitismus aus, indem sie die Diskussion auf die Differenz zwischen Zionismuskritik und Antisemitismus verschob.",
+        "deflection_target": "Unterscheidung zwischen israelischer Regierungspolitik und Zionismus als Ideologie",
+        "related_bundestag_topics": [
+          "Antisemitismus-Bekämpfung",
+          "Nahost-Konflikt",
+          "Zivilgesellschaftliche Debatten",
+          "Parteiendemokratie und interne Standards"
+        ]
+      },
+      {
+        "title": "Gregor Gysi und Migrant:innen-Antisemitismus",
+        "timestamp_range": "00:10:48 - 00:12:17",
+        "theme_description": "Reaktion auf eine Aussage von Gregor Gysi zu arabischem Antisemitismus und die Kritik von jüngeren Parteimitgliedern daran, dass Migrant:innen verallgemeinert würden.",
+        "question_asked": "Der Moderator warf Schwerdtner vor, dass Gysi zu Recht beschrieben habe, dass es in diesem Land einen starken arabischen Antisemitismus gebe, und fragte, warum die Partei diese Aussage nicht eindeutig verteidigte und statt dessen Gysi kritisierte.",
+        "question_intent": "Der Moderator wollte Schwerdtner zu einer klaren Positionierung zwingen: Entweder Die Linke erkennt an, dass Gysi recht hat und arabischer Antisemitismus ein Problem ist, oder sie betreibt Vernebelungstaktik zugunsten von Migrant:innen.",
+        "position": "Schwerdtner stimmte zu, dass arabischer Antisemitismus ein reales Problem sei und dass dieser 'der stärkste Antisemitismus' in der Gesellschaft sei. Sie kritisierte aber, dass Gysi diese Aussage 'in unserer Partei' bezogen habe und damit 'die jungen Leute' unter Generalsverdacht gestellt habe. Sie betonte, dass Gysi zwar 'zu 99 % gute Sachen' sage, diese Äußerung aber 'viele Menschen verletzt' habe. Sie deutete an, dass Der Nahostkonflikt Die Partei schnell verändere und dass Differenziertheit erforderlich sei.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner bestätigte die Existenz arabischen Antisemitismus, wich aber dem eigentlichen Vorwurf aus, dass Gysi recht habe und die Partei das anerkennen sollte. Stattdessen verscho die Debatte auf eine vermeintliche 'Verletzung' durch Generalisierung.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das Problem ist, dass er das in unserer Partei bezogen hat. Auf die jungen Leute. Die unter Generalsverdacht zu stellen, das ist das Problem",
+          "Er sagt zu 99 % gute Sachen. Hier hatte einfach viele Menschen verletzt",
+          "Unsere Partei verändert sich so schnell, es sind so viele Menschen zu uns gekommen, der Nahostkonflikt bewegt viele"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist was er beschreibt. Er hätte dazu sagen müssen, dass der stärkste Antisemitismus beiträgt zu finden ist. Das ist das größte Problem in unserer Gesellschaft. Das Problem ist, dass er das in unserer Partei bezogen hat.",
+            "timestamp": "00:11:47"
+          },
+          {
+            "text": "Das hat niemand gesagt und alles schätzen und lieben Gregor Gysi sehr. Er sagt zu 99 % gute Sachen. Hier hatte einfach viele Menschen verletzt.",
+            "timestamp": "00:12:17"
+          }
+        ],
+        "evasion_note": "Schwerdtner anerkannte die Existenz des Problems, aber lenkte ab auf die Methode Gysi's ('Generalsverdacht').",
+        "deflection_target": "Kontextualität der Aussage vs. reine Faktische Aussage zu Antisemitismus",
+        "related_bundestag_topics": [
+          "Integrationspolitik",
+          "Gesellschaftlicher Zusammenhalt",
+          "Kampf gegen Diskriminierung"
+        ]
+      },
+      {
+        "title": "Konnexitätsprinzip und kommunale Finanzierung",
+        "timestamp_range": "00:23:26 - 00:23:55",
+        "theme_description": "Frage nach der Finanzierungsverantwortung des Bundes für Leistungen, die dieser anordnet, insbesondere bei Migrationspolitik.",
+        "question_asked": "Der Moderator fragte, warum die Integration von Migrant:innen nicht funktioniert, wenn ein Drittel der Langzeitarbeitslosen keinen deutschen Pass hat.",
+        "question_intent": "Der Moderator wollte wissen, wie Schwerdtner die Inkompetenz bei der Arbeitsmarktintegration von Migrant:innen erklärt.",
+        "position": "Schwerdtner machte das Konnexitätsprinzip zum Kernproblem: 'Wenn der Bund etwas bestellt von den Kommunen, dass er dafür selbst die Leistung bezahlen muss.' Sie argumentierte, dass die Trockenlegung der Kommunalfinanzen das zentrale Hindernis sei, nicht mangelnde Bereitschaft. Ohne ausreichende Mittel könnten Kommunen Integrationsprogramme nicht durchführen. Sie bezeichnete es als 'absurd', welche Migrationspolitik betrieben werde—mit bürokratischen Hürden, die Kommunen nicht tragen könnten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner antwortete auf eine implizite Frage zur Funktionsfähigkeit mit einem strukturellen Ansatz (Finanzierung), adressierte aber nicht direkt die Frage nach den Ursachen der Integrationsprobleme selbst. Sie benannte das systemische Problem, verschob aber nicht vollständig zu einer anderen Frage.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das Problem ist das Grundprinzip. Konnexität Prinzip. Wenn der Bund etwas bestellt von den Kommunen, dass er dafür selbst die Leistung bezahlen muss",
+          "Migration ist die Mutter aller Probleme. Die Mutter aller Probleme ist die Trockenlegung der Finanzen",
+          "Wenn die Kommunen keine Finanzen haben um die Menschen zu integrieren... Es ist absurd, was für eine Form von Migration Politik wir betreiben"
+        ],
+        "quotes": [
+          {
+            "text": "Das Problem ist das Grundprinzip. Konnexität Prinzip. Wenn der Bund etwas bestellt von den Kommunen, dass er dafür selbst die Leistung bezahlen muss.",
+            "timestamp": "00:23:26"
+          },
+          {
+            "text": "Migration ist die Mutter aller Probleme. Die Mutter aller Probleme ist die Trockenlegung der Finanzen. Wenn die Kommunen keine Finanzen haben um die Menschen zu integrieren.",
+            "timestamp": "00:24:48"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kommunalfinanzen",
+          "Föderalismus",
+          "Migrationspolitik",
+          "Arbeitsmarktintegration"
+        ]
+      },
+      {
+        "title": "Wohnungsmarkt und Mietendeckel",
+        "timestamp_range": "00:29:13 - 00:33:22",
+        "theme_description": "Debatte über Lösungen für die Wohnungskrise: Sozialbindung, Mietendeckel, Wohngeldsubventionen und sozialer Wohnungsbau.",
+        "question_asked": "Der Moderator fragte Schwerdtner, wie man das Wohnungsthema löst, wenn ein Mietendeckel Anreize für private Vermieter zerstört, die sich die Wohnung vom Mund abgespart haben.",
+        "question_intent": "Der Moderator wollte aufzeigen, dass es nicht nur böse Spekulanten gibt, sondern auch kleine Vermieter mit legitimen Interessen, und Schwerdtner zur Anerkennung dieser Komplexität bewegen.",
+        "position": "Schwerdtner argumentierte, dass die allermeisten privaten Vermieter zu den oberen 2 % der Bevölkerung gehören und 'vielen nur von ihren Immobilien leben'—nicht um ihre Rente aufzubessern wie im Narrativ der kleinen Rentner. Das eigentliche Problem sei, dass die meisten Menschen zur Miete leben und steigende Mieten als Riesenproblem empfinden. Sie forderte stärkere öffentliche und kommunale Investitionen in Wohnungsbau und kritisierte, dass die Bundesregierung nur 4 Milliarden Euro dafür ausgibt. Sie lehnte ab, das Wohnungsthema 'dem Markt zu überlassen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner antwortete mit einem Gegenpunkt (dass die meisten Vermieter wohlhabend sind) und Systemkritik, adressierte aber nicht die konkrete Frage nach der Vereinbarkeit von Mietendeckeln mit dem Recht kleiner Vermieter auf angemessene Rendite.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Die allermeisten, die Privatwohnungen besitzen sind dann nicht mehr die Rentnerinnen die versuchen sich die Rente aufzubessern",
+          "Die meisten Menschen in der Bundesrepublik leben zur Miete. Diese empfinden die steigenden Mieten als Riesenproblem",
+          "Ich gebe Ihnen ja recht. Aber das nützt ja Nix. Die Bundesregierung hat nur 4 Milliarden Euro dafür ausgegeben. Das reicht hinten und vorne nicht",
+          "Man kann das Thema Wohnen nicht dem Markt überlassen"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt nicht nur das, aber die meisten privaten Vermieterinnen gehören den oberen 2 % der Bevölkerung.",
+            "timestamp": "00:31:50"
+          },
+          {
+            "text": "Diese empfinden die steigenden Mieten als Riesenproblem... Deswegen auch meine sozialen kommunalen Wohnungsbau.",
+            "timestamp": "00:32:34"
+          }
+        ],
+        "evasion_note": "Schwerdtner stellte die Frage von Mietendeckeln als solche nicht in den Mittelpunkt ihrer Antwort, sondern kritisierte stattdessen unzureichende öffentliche Investitionen.",
+        "deflection_target": "Unterfinanzierung des Wohnungsbaus statt Anreizprobleme von Mietendeckeln",
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Sozialer Wohnungsbau",
+          "Mietpreisbremse und Mietendeckel",
+          "Stadtentwicklung"
+        ]
+      },
+      {
+        "title": "Grenzen des Sozialstaates und Vermögensungleichheit",
+        "timestamp_range": "00:34:13 - 00:36:00",
+        "theme_description": "Frage nach den Grenzen des Sozialstaats angesichts von Migration und die Unterscheidung zwischen legitimen sozialen Leistungen und problematischen Wohlfahrtsausgaben.",
+        "question_asked": "Der Moderator fragte wiederholt nach Grenzen des Sozialstaats—wo Schwerdtner sagen würde, dass 'es nicht mehr geht'—angesichts von Migration und parallelen Phänomenen.",
+        "question_intent": "Der Moderator wollte Schwerdtner dazu bringen, zuzugeben, dass es unlimitierte Sozialleistungen ohne Grenzen gibt und diese nicht nachhaltig sind.",
+        "position": "Schwerdtner verlagerte die Debatte: Die Grenze liege nicht bei Migrant:innen, sondern bei der Umverteilung von oben nach unten. Es gebe 800.000 Menschen, 'die alleine von ihrem Vermögen leben und nicht arbeiten gehen'. Das zentrale Problem sei, dass nicht alle zum Sozialsystem beitragen, während andere 'hart arbeiten'. Sie kritisierte, dass Jüdinnen und Juden in gesetzliche Krankenversicherungen einzahlen, sich aber nicht mehr die Zahnbehandlung leisten können. Der Sozialstaat sei etwas 'das haben uns erarbeitet, wir alle miteinander', es gebe aber 'einige, die sich hier ausnehmen'. Sie betonte, dass Altersarmut trotz lebenslanger Arbeit ein Zeichen 'tiefer Ungerechtigkeit' sei.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Schwerdtner antwortete nicht direkt auf die Frage nach Grenzen des Sozialstaats, sondern pivotierte zu der Aussage, dass die eigentliche Grenzziehung bei Vermögensungleichheit liegen sollte, nicht bei Sozialtransfers. Sie kritisierte implizit die Fragelogik des Moderators.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Für mich ist eine Grenze, dass es 800.000 Menschen gibt, die alleine von ihrem Vermögen leben und nicht arbeiten gehen",
+          "Das Problem des Sozialstaat ist, dass sie nicht alle beteiligen",
+          "Jeder von uns sind näher dran Bürgergeldempfängerin zu werden, in Grundsicherung zu kommen als Millionärin oder Millionär zu werden. Das ist eine tiefe Ungerechtigkeit",
+          "Man kann so viel tun wie man will, man landet trotzdem eventuellen Altersarmut, das ist doch ungerecht"
+        ],
+        "quotes": [
+          {
+            "text": "Für mich ist eine Grenze, dass es 800.000 Menschen gibt, die alleine von ihrem Vermögen leben und nicht arbeiten gehen. Das Problem des Sozialstaat ist, dass sie nicht alle beteiligen.",
+            "timestamp": "00:34:13"
+          },
+          {
+            "text": "Jeder von uns sind näher dran Bürgergeldempfängerin zu werden, in Grundsicherung zu kommen als Millionärin oder Millionär zu werden. Das ist eine tiefe Ungerechtigkeit.",
+            "timestamp": "00:35:06"
+          }
+        ],
+        "evasion_note": "Schwerdtner invertierte die Frage: statt zu sagen, wo der Sozialstaat endet, fragte sie implizit, warum Vermögensungleichheit nicht begrenzt wird.",
+        "deflection_target": "Vermögensungleichheit und Steuergerechtigkeit statt Grenzen sozialer Leistungen",
+        "related_bundestag_topics": [
+          "Umverteilungspolitik",
+          "Vermögenssteuer",
+          "Altersvorsorge",
+          "Socio-ökonomische Ungleichheit"
+        ]
+      },
+      {
+        "title": "Bildungsausgaben und Schuldenbremse",
+        "timestamp_range": "00:38:05 - 00:38:40",
+        "theme_description": "Debatte über das Missverhältnis zwischen Sozialausgaben (41 %) und Bildungsausgaben (10 %) und die Frage, ob die Schuldenbremse eine Reform braucht.",
+        "question_asked": "Der Moderator wies darauf hin, dass 41 % der Ausgaben in Soziales fließt, aber nur 10 % in Bildung, während von den 60 besten Universitäten der Welt keine einzige deutsch ist. Ist das eine Frage der Priorisierung?",
+        "question_intent": "Der Moderator wollte aufzeigen, dass zu viel in kurzfristige Sozialleistungen und zu wenig in Zukunftsinvestitionen fließt.",
+        "position": "Schwerdtner stimmte dem Moderator zu ('Ich gebe Ihnen ja recht'), betonte aber, dass dieses Missverhältnis 'nicht erst seit heute so' ist, 'sondern seit Jahrzehnten'. Sie deutete an, dass dies ein strukturelles Problem sei. Sie unterstützte implizit die Forderung nach mehr Bildungsinvestitionen und kombinierte diese mit ihrer Position zur Vermögenssteuer: Mit einer Vermögenssteuer könnten in Bildung investiert werden.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner stimmte dem Priorisierungsproblem zu, wichhing aber aus, indem sie es als lange bestehendes strukturelles Problem darstellte und schnell zu ihrer Vermögenssteuer-Forderung überging.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das ist aber auch nicht erst seit heute so. Das ist ja seit Jahrzehnten so",
+          "Mit einer Vermögenssteuer können wir in Bildung investieren"
+        ],
+        "quotes": [
+          {
+            "text": "Ich gebe Ihnen ja recht. Aber das nützt ja Nix.",
+            "timestamp": "00:38:40"
+          }
+        ],
+        "evasion_note": "Schwerdtner bejahte das Problem, stellte es aber als nicht neu dar, statt konkrete Umbauvorschläge zu machen.",
+        "related_bundestag_topics": [
+          "Bildungsfinanzierung",
+          "Schuldenbremse",
+          "Vermögenssteuer",
+          "Investitionen in Infrastruktur"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer als Finanzierungsinstrument",
+        "timestamp_range": "00:38:40 - 00:44:29",
+        "theme_description": "Wiederholte Forderung nach einer Vermögenssteuer zur Finanzierung von Bildung, Rente und sozialer Sicherung.",
+        "question_asked": "Moderator Dressel führte ein Gutachten zur Vermögenssteuer an, das administrative Schwierigkeiten deutlich machen würde, und schlug stattdessen vor, Erbschaftssteuer Reform zu fokussieren.",
+        "question_intent": "Der Moderator wollte aufzeigen, dass Vermögenssteuer administrativ untauglich ist, während andere Maßnahmen praktischer sind.",
+        "position": "Schwerdtner insistierte auf der Vermögenssteuer als Lösungsinstrument, ohne auf die administrativen Einwände Dressels detailliert einzugehen. Sie sagte: 'Aber das nützt ja Nix' (zu seiner Diagnose) und verwies mehrfach darauf, dass 'mit einer Vermögenssteuer können wir in Bildung investieren' und 'Jeder Euro der in Bildung investiert wird, kommt vielfach zurück'. Sie endete mit: 'Das wollen wir nicht [Armut und Pleite], deswegen haben wir aber die Vermögensteuer' und signalisierte damit, dass Vermögenssteuer ein Kernziel Der Linken ist.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Schwerdtner bestand auf der Vermögenssteuer, ging aber nicht auf die konkreten administrativen und wirtschaftlichen Kritikpunkte Dressels ein. Sie wiederholte ihre Position ohne substantielle Gegenargumente zu formulieren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Mit einer Vermögenssteuer können wir in Bildung investieren. Jeder Euro der in Bildung investiert wird, kommt vielfach zurück",
+          "Das wollen wir nicht [pleite], deswegen haben wir aber die Vermögensteuer"
+        ],
+        "quotes": [
+          {
+            "text": "Mit einer Vermögenssteuer können wir in Bildung investieren. Jeder Euro der in Bildung investiert wird, kommt vielfach zurück.",
+            "timestamp": "00:38:40"
+          },
+          {
+            "text": "Das wollen wir nicht, deswegen haben wir aber die Vermögensteuer.",
+            "timestamp": "00:44:29"
+          }
+        ],
+        "evasion_note": "Schwerdtner ging nicht auf die administrativen Schwierigkeiten ein, die Dressel und der Moderator ansprachen.",
+        "related_bundestag_topics": [
+          "Vermögenssteuer",
+          "Steuerreform",
+          "Finanzpolitik",
+          "Umverteilung"
+        ]
+      },
+      {
+        "title": "Rente nach 40 Beitragsjahren",
+        "timestamp_range": "00:42:40 - 00:44:29",
+        "theme_description": "Forderung nach Renteneintritt nach 40 Beitragsjahren ohne Zu- oder Abschläge, und wer in das System einzahlen sollte.",
+        "question_asked": "Der Moderator fragte zum Abschluss, wann die Menschen bei Der Linke in Rente gehen können.",
+        "question_intent": "Der Moderator wollte Schwerdtners Rentenpolitik konkretisieren und zeigen, dass 40 Jahre für Dachdeckers unrealistisch ist.",
+        "position": "Schwerdtner forderte: 'Die Menschen soll nach 40 Jahren [in Rente gehen], dann soll aber auch jeder einfallen, auch Jens Spahn, auch Leute, die derzeit nicht einzahlen.' Sie verteidigte dies gegen die Einwand, dass ein Dachdeckers mit 16 Anfang mit 56 fertig wäre, indem sie andere körperlich anstrengende Berufe erwähnte (Friseurin). Sie kritisierte, dass Politiker 'meiner Meinung länger arbeiten' könnten, 'aber die sollen vor allem einzahlen'. Sie forderte eine 'grundlegende Reform' ohne 'zwei Klassenmedizin'. Zur Finanzierung: Arbeitgeber sollten einen größeren Anteil zahlen; die Anteile für Arbeitnehmer seien 'viel größer geworden'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Schwerdtner beantwortete die Frage direkt mit ihrer Forderung (40 Jahre, alle zahlen ein, höhere Arbeitgeberanteile) und verteidigte sie gegen Einwände.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Menschen soll nach 40 Jahren, dann soll aber auch jeder einfallen, auch Jens Spahn, auch Leute, die derzeit nicht einzahlen",
+          "Politiker können meiner Meinung länger arbeiten, aber die sollen vor allem einzahlen",
+          "Die Arbeitgeber sollen einen größeren Anteil zahlen. Tatsächlich sind die Anteile für die Arbeitnehmer viel größer geworden",
+          "Es braucht eine grundlegende Reform. Es darf keine zwei Klassenmedizin geben",
+          "Dass die Menschen das Gefühl haben, wenn ich 40 Jahre arbeite, verfalle ich nicht in Altersarmut"
+        ],
+        "quotes": [
+          {
+            "text": "Wir sagen, die Menschen soll nach 40 Jahren, dann soll aber auch jeder einfallen, auch Jens Spahn, auch Leute, die derzeit nicht einzahlen.",
+            "timestamp": "00:42:40"
+          },
+          {
+            "text": "Politiker können meiner Meinung länger arbeiten, aber die sollen vor allem einzahlen. Die kriegen dann auch was raus.",
+            "timestamp": "00:43:16"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Alterssicherung",
+          "Arbeitnehmerrechte",
+          "Sozialversicherungspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "800.000 Menschen gibt, die alleine von ihrem Vermögen leben und nicht arbeiten gehen",
+        "timestamp": "00:34:13"
+      },
+      {
+        "claim": "Die allermeisten privaten Vermieterinnen gehören den oberen 2 % der Bevölkerung",
+        "timestamp": "00:31:50"
+      },
+      {
+        "claim": "Die Bundesregierung hat nur 4 Milliarden Euro [für Wohnungsbau] ausgegeben",
+        "timestamp": "00:33:22"
+      },
+      {
+        "claim": "Jeder Dritte im Bereich Langzeitarbeitslosigkeit hat keinen deutschen Pass [implizite Bestätigung durch Dressel]",
+        "timestamp": "00:22:38"
+      },
+      {
+        "claim": "Die Anteile [der Arbeitnehmer in der Rentenversicherung] sind viel größer geworden [als die Arbeitgeberanteile]",
+        "timestamp": "00:43:16"
+      }
+    ]
+  }
+}

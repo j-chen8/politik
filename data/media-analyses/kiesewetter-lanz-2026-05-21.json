@@ -1,0 +1,354 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-21-mai-2026-100",
+    "video_id": "lanz-2026-05-21",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "421648ffef90db53",
+    "transcript_chars": 46848,
+    "caption_lines": 2314,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19893,
+    "tokens_out": 7807,
+    "cost_usd": 0.0235712,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 1,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:29.110Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter, CDU-Außenpolitiker und Obmann im Auswärtigen Ausschuss, argumentiert in dieser Sendung nachdrücklich für uneingeschränkte militärische Unterstützung der Ukraine und EU-Integration, während er Verhandlungen mit Putin ohne vorherige Entwaffnung ablehnt. Er kritisiert zugleich die deutsche Rüstungsindustrie für veraltete Systeme und mangelnde Innovation, sowie eine Über-Bürokratisierung bei der Beschaffung moderner Drohnen-Technologie.",
+    "themes": [
+      {
+        "title": "Empfehlung für USA-Aufenthalte junger Deutscher",
+        "timestamp_range": "00:02:23 - 00:04:22",
+        "theme_description": "Frage, ob Kiesewetter seinen Kindern einen Aufenthalt in den USA empfehlen würde, angesichts aktueller gesellschaftlicher Entwicklungen.",
+        "question_asked": "Würden Sie ihren Kindern empfehlen, in den USA zu arbeiten oder zu studieren?",
+        "question_intent": "Moderator möchte wissen, wie Kiesewetter die aktuelle Lage in den USA einschätzt, besonders in Bezug auf Chancen für junge Deutsche.",
+        "position": "Kiesewetter deflektiert zunächst und betont, dass seine Kinder erwachsen sind und selbst entscheiden. Er berichtet dann von hohen Erwartungen der Amerikaner an Bundeskanzler Merz und dessen hohem Ansehen, auch bei Trump-Kritikern. Er verteidigt Merz' offene Aussage vor einer Schulklasse im sauerländischen Marsberg als legitim und berichtet, dass Amerikaner im Pentagon diesen Ort kennen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter weicht der direkten persönlichen Empfehlung aus, sondern verlegt die Antwort auf die politische Wahrnehmung Merz' in den USA. Er adressiert die implizite Sorge nur indirekt, indem er die Bedeutung Merz' hervorhebt, nicht aber konkret, ob die USA für junge Deutsche attraktiv sind.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich habe aber Merz verteidigt in dem Sinne, dass vor einer Schulklasse sehr offen gesprochen hat. Natürlich hatten die Amerikaner Hoffnungen, dass wir in die Zukunft der USA vertrauen, die USA von Donald Trump. Wir haben deutlich mehr unsere Hausaufgaben zu machen.",
+            "timestamp": "00:04:22",
+            "context": "Moderator fragt, wie Kiesewetter Merz' kritische Aussage über die USA bewertet, die Kiesewetter soeben indirekt zitiert wurde."
+          }
+        ],
+        "concrete_statements": [
+          "Merz hat ein hohes Ansehen und es gibt tatsächlich Hoffnung, dass er einen Zugang hat.",
+          "Es gibt viele Amerikaner, die das gut finden, die Frage ist, sollte man es so sagen, als deutscher Bundeskanzler?"
+        ],
+        "related_bundestag_topics": [
+          "Transatlantische Beziehungen",
+          "Deutsch-amerikanische Sicherheit"
+        ]
+      },
+      {
+        "title": "Strategische Bewertung amerikanischer Iran-Politik",
+        "timestamp_range": "00:04:50 - 00:05:55",
+        "theme_description": "Einschätzung der US-amerikanischen Strategie im Iran-Konflikt und fehlender strategischer Exit-Planung.",
+        "question_asked": "Lanz fragt, ob die Amerikaner im Pentagon wirklich mit dem Ort Marsberg vertraut sind, und kommentiert die amerikanische Reaktion auf Merz' Aussage.",
+        "question_intent": "Moderator möchte wissen, wie ernst die Amerikaner die Aussage nehmen und ob das Pentagon sich wirklich mit innerdeutschen Orten beschäftigt.",
+        "position": "Kiesewetter bestätigt, dass Amerikaner im Pentagon Marsberg kennen und richtig aussprechen können. Er kritisiert aber scharf die fehlende amerikanische Strategie im Iran-Konflikt: Die USA hätten keine klare Ausstiegsstrategie, ließen Amerikaner nach Islamabad reisen ohne Ergebnis und würden damit eine ganze Nation demütigen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Statt nur die ursprüngliche Frage zu Marsberg zu beantworten, nutzt Kiesewetter sie als Sprungbrett, um eine grundsätzliche Kritik an der US-Strategie zu üben. Er adressiert die Frage korrekt, weitet aber das Thema sofort aus auf strategische Defizite.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Die Amerikaner haben offensichtlich keine Strategie. Das Problem bei solchen Konflikten ist immer, da muss man nicht nur rein, da muss man auch wieder raus. Diese Geschichte ist zumindest unüberlegt, ich erkenne im Augenblick nicht, welchen strategischen Exit die Amerikaner jetzt wählen.",
+            "timestamp": "00:04:54",
+            "context": "Nach Bestätigung, dass Pentagon-Vertreter Marsberg kennen, kritisiert Kiesewetter mangelnde US-Strategie."
+          }
+        ],
+        "concrete_statements": [
+          "Ich erkenne im Augenblick nicht, welchen strategischen Exit die Amerikaner jetzt wählen.",
+          "Sie verhandeln sehr geschickt, oder eben sehr geschickt nicht.",
+          "Da wird eine ganze Nation gedemütigt durch iranische Staatsführung."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Transatlantische Sicherheit",
+          "Kriegsführung"
+        ]
+      },
+      {
+        "title": "Tomahawk-Raketen: Verzögerung und mangelnde NATO-Antwort",
+        "timestamp_range": "00:09:20 - 00:15:29",
+        "theme_description": "Bewertung der fehlenden NATO-Nachrüstung gegen Kaliningrad seit 2017 und die nun geplante Bereitstellung von Tomahawk-Raketen.",
+        "question_asked": "Moderator fragt, wie Kiesewetter die Reaktion auf Merz' Sauerland-Äußerung bewertet und ob die Tomahawks relevant sind.",
+        "question_intent": "Moderator möchte verstehen, wie bedeutsam die Ankündigung der Tomahawk-Stationierung für die europäische Sicherheit ist.",
+        "position": "Kiesewetter argumentiert, dass die Tomahawks neun Jahre zu spät kommen. Er betont, dass NATO-Generalsekretär Stoltenberg bereits 2017 warnte, dass Kaliningrad aufgerüstet wird. Die NATO verzichtete damals auf eine Antwort und bot Russland Verhandlungen an. Nach sieben Jahren der Verhandlungen habe Russland nicht reagiert, sondern die Ukraine angegriffen. Deshalb müsse die NATO nun endlich handeln statt warten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Frage zur Bedeutung der Tomahawks direkt und konkret mit historischer Kontextualisierung. Er erklärt die lange Verzögerung und begründet, warum die Raketen jetzt notwendig sind.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Diese Tomahawks, die sind neun Jahre zu spät gekommen von neun Jahren hat Stoltenberg als Generalsekretär gesagt, Kaliningrad wird aufgerüstet, dort wird aufgerüstet, und auf Vorschlag von Stoltenberg wurde gesagt, sie verzichten auf eine Antwort, sie bieten Russland an, darüber zu verhandeln. Dann hat es sieben Jahre gedauert.",
+            "timestamp": "00:14:31",
+            "context": "Moderator fragt nach der Bedeutung der Tomahawk-Ankündigung für Europas Sicherheit."
+          }
+        ],
+        "concrete_statements": [
+          "Es gab diese Lücke schon, 2017.",
+          "Die NATO hat keine Nachrüstung gemacht.",
+          "Russland hat nicht reagiert, das müssen wir unsere Bevölkerung immer wieder klar sagen, das gab es schon.",
+          "Wir sollten das nicht zum Anlass nehmen, Amerika zu kritisieren, sondern auf uns zu schauen."
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Rüstungskontrolle",
+          "Baltische Sicherheit",
+          "Ost-West-Konflikt"
+        ]
+      },
+      {
+        "title": "Ablehnung von Verhandlungen ohne russische Entwaffnung",
+        "timestamp_range": "00:19:53 - 00:28:37",
+        "theme_description": "Position zu möglichen Verhandlungen zwischen dem Westen, Putin und der Ukraine ohne vorherige Entwaffnung Russlands.",
+        "question_asked": "Vad behauptet, Kiesewetter habe gesagt, die Ukraine müsse ‚bis zur bedingungslosen Kapitulation Russlands' kämpfen. Kiesewetter wird um Klarstellung gebeten.",
+        "question_intent": "Moderator und Vad möchten verstehen, ob Kiesewetter wirklich eine unbegrenzte Verlängerung des Krieges fordert oder ob es Grenzen gibt.",
+        "position": "Kiesewetter weist den Vorwurf kategorisch zurück ('Sie haben es einfach nicht gelesen'). Er argumentiert stattdessen, dass Verhandlungen nur auf Basis eines echten russischen Verhandlungswillens sinnvoll sind. Putin habe beim Ankündigen von Verhandlungen Kampfhandlungen verstärkt statt eingestellt. Kiesewetter fordert: Wenn Putin verhandeln will, muss er einen Waffenstillstand akzeptieren. Deutschland müsse der Ukraine helfen zu 'gewinnen' – nicht in Form totaler Kapitulation des Feindes, sondern indem die Ukraine ihre Selbstbestimmung und territoriale Integrität zurückgewinnt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter stellt richtig, dass ihm falsch zitiert wurde, und legt dann seine eigentliche Position dar: nicht bedingungslose Kapitulation Russlands, sondern Unterstützung der Ukraine für Selbstbestimmung. Er beantwortet sowohl die Faktencorrectio als auch die zugrunde liegende Frage nach seiner Position.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Sie haben es einfach nicht gelesen. Sie stellen Behauptungen auf.",
+            "timestamp": "00:19:53",
+            "context": "Antwort auf Vads Vorwurf, Kiesewetter habe bedingungslose Kapitulation Russlands gefordert."
+          },
+          {
+            "text": "Wenn eine Demokratie angegriffen wird, dann ist nicht die Frage, was sie abgeben, damit Ruhe ist, sondern die Frage ist, was wir tun müssen, um den Krieg zu gewinnen. Auch den kognitiven Krieg.",
+            "timestamp": "00:27:03",
+            "context": "Moderator drängt auf klare Definition, was ‚Krieg gewinnen' für die Ukraine bedeutet."
+          }
+        ],
+        "concrete_statements": [
+          "Putin will nicht verhandeln, aber er kann doch ein Signal geben.",
+          "Er hat nicht die Kampfhandlungen eingestellt, er hat die Kampfhandlungen verstärkt.",
+          "Die Ukraine sollen nicht weiterhin ausgesetzt sein, Gebiete abzutreten.",
+          "Wir müssen einen europäischen Sitz in möglichen Verhandlungen haben."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Außenpolitik Russland",
+          "Kriegsziele",
+          "Diplomatische Lösung"
+        ]
+      },
+      {
+        "title": "Kritik an russischer Taktik und Putins Verhandlungssignalen",
+        "timestamp_range": "00:24:31 - 00:31:21",
+        "theme_description": "Bewertung von Putins Verhandlungssignalen und der humanitären Situation in der Ukraine als verhandlungstaktisches Instrument.",
+        "question_asked": "Moderator fragt, warum der Westen auf Verhandlungsangebote Putins nicht reagiert und ob die Ukraine nicht verdient hat, in Verhandlungen zu gehen.",
+        "question_intent": "Moderator möchte verstehen, warum Kiesewetter und andere europäische Politiker auf Putins Angebote nicht eingehen, wenn die Ukraine leidet.",
+        "position": "Kiesewetter argumentiert, dass Putin nicht ernsthaft verhandeln will. Als Beweis führt er an: Putin kündigte einen zweitägigen Waffenstillstand an, schoss dann zwei Tage später hunderte Drohnen ab und tötete dabei 64 Zivilisten. Dies zeige, dass Putin Verhandlungsrhetorik nur als Taktik nutze. Die Bundesregierung stehe an der Seite der Ukraine und könne daher nicht Vermittler zwischen Russland und Ukraine sein. Man müsse sicherstellen, dass die Ukraine nicht in ein 'modernes Nordkorea' abdriftet. Zelensky habe seit 2022 mehrfach Verhandlungen angeboten, Russland lehne ab.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Frage direkt: Er erklärt, warum er Putins Signale nicht für ernsthaft hält und warum Verhandlungen unter aktuellen Bedingungen nicht sinnvoll sind. Er stützt sich auf konkrete Beispiele.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Gerade da, wo Putin unter Druck gerät, er will einen zweitägigen Waffenstillstand machen, um dann zwei Tage später hunderte Drohnen abzuschließen und 64 Menschen umzubringen, keine Soldatinnen und Soldaten.",
+            "timestamp": "00:24:31",
+            "context": "Moderator fragt, warum nicht auf Putins Verhandlungsbereitschaft eingegangen wird."
+          },
+          {
+            "text": "Selensky versucht seit 2022 das zu machen, er hat in der Anfangszeit angeboten, dass er auf die Gebiete von 2014 verzichtet. Er hat neue Versuche gestartet, immer und immer wieder. Warum wollen wir jetzt Putin entgegenkommen?",
+            "timestamp": "00:30:42",
+            "context": "Moderator insistiert, dass Menschen täglich sterben und Zivilgesellschaft Verhandlungen verdient hat."
+          }
+        ],
+        "concrete_statements": [
+          "Das Leid der Menschen dort und das internationale Recht, das darf nicht ausgespielt werden gegen mündliche Lösungen.",
+          "Wir stehen an der Seite der Ukraine, müssen alles tun, dass dieses Land eine Chance hat auf Selbstbestimmung.",
+          "Ich will eine Lanze für die Bundesregierung sprechen, wohlüberlegt."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Humanitäres Völkerrecht",
+          "Kriegsverbrechen",
+          "Diplomatische Lösungen"
+        ]
+      },
+      {
+        "title": "EU-Mitgliedschaft als Sicherheitsgarantie für Ukraine",
+        "timestamp_range": "00:27:03 - 00:42:43",
+        "theme_description": "Position zur EU-Mitgliedschaft der Ukraine als Alternative zu NATO-Beitritt und als Sicherheitsgarantie.",
+        "question_asked": "Moderator fragt, wie eine Sicherheitsgarantie für die Ukraine aussehen könnte und wer diese geben würde.",
+        "question_intent": "Moderator möchte verstehen, wie Kiesewetter eine verhandelte Lösung konkret gestalten würde, wenn EU-Mitgliedschaft das Angebot ist.",
+        "position": "Kiesewetter argumentiert, dass Deutschland eine Initiative starten wird, die Ukraine näher an die EU zu bringen. Die EU-Mitgliedschaft sei 'unverrückbar'. Dies stelle keine Provokation dar, da es Selbstbestimmungsrecht ist. Russland könne ebenfalls einen Antrag stellen und die Bedingungen erfüllen – ironisch gemeint. Die Charta von Paris, die auch Russland unterschrieben hat, garantiere dieses Recht. Artikel 42.7 des EU-Vertrags biete eine Sicherheitsgarantie (Beistandsverpflichtung). Die Ukraine soll zu einem 'attraktiven Modell' gemacht werden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet substanziell auf die Frage nach Sicherheitsgarantien, indem er EU-Mitgliedschaft konkret als Modell präsentiert und erklärt, warum dies völkerrechtlich legitim und für die Ukraine sicherheitspolitisch bedeutsam ist.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Unser Land startet in diesem Monat eine Initiative, dass die Ukraine näher an die europäische Union kommt. Es ist unverrückbar, dass die europäische Union, dass die Ukraine die Chance hat, rascher ein Mitglied der Europäischen Union zu werden.",
+            "timestamp": "00:27:03",
+            "context": "Moderator fragt nach konkreten nächsten Schritten und Sicherheitsgarantien."
+          },
+          {
+            "text": "Ja sicher, dass es doch das Selbstbestimmungsrecht. Da ist keine Provokation, Russland kann auch den Antrag stellen und die Bedingungen erfüllen.",
+            "timestamp": "00:29:48",
+            "context": "Vad argumentiert, dass EU-Mitgliedschaft als russische Provokation wahrgenommen werden könnte."
+          }
+        ],
+        "concrete_statements": [
+          "Zur Sicherheitsgarantie gehört auch das, was in der Europäischen Union möglich ist.",
+          "Parallel müssen wir alles dafür tun, dass die Ukraine auch gewinnen kann.",
+          "Wir müssen einen europäischen Sitz in möglichen Verhandlungen haben.",
+          "Zu Recht, das ist genau die Sicherheitsgarantie."
+        ],
+        "related_bundestag_topics": [
+          "EU-Erweiterung",
+          "Ukraine",
+          "Sicherheitspolitik",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Ukraine-Stärke und technologische Überlegenheit",
+        "timestamp_range": "00:42:43 - 00:44:10",
+        "theme_description": "Einschätzung der militärischen und technologischen Überlegenheit der Ukraine trotz russischer Größe.",
+        "question_asked": "Moderator fragt, ob Russland nicht offenkundig geschwächt ist und ob die Drohnen-Überlegenheit der Ukraine echte Überlegenheit oder Illusion darstellt.",
+        "question_intent": "Moderator möchte klären, ob die Drohnen-Bilder spektakulär, aber wenig strategisch wirksam sind, oder ob sie echte Überlegenheit darstellen.",
+        "position": "Kiesewetter wird in dieser Phase des Gesprächs von Moderator zu Verena Jackson weitergeleitet. Seine eigene Position wird nicht explizit in diesem Segment ausgesprochen, aber im Kontext der bisherigen Aussagen (Forderung nach Unterstützung der Ukraine zum 'Gewinnen') wird deutlich, dass er die Drohnen-Überlegenheit für real und strategisch bedeutsam erachtet.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Moderator leitet zu Verena Jackson weiter, bevor Kiesewetter antwortet. Das Segment enthält keine direkte Antwort von Kiesewetter auf die Frage.",
+        "answer_type": "substantielle_position",
+        "quotes": [],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Drohnen-Technologie",
+          "Ukraine-Militär",
+          "Russische Militärkapazität"
+        ]
+      },
+      {
+        "title": "Kritik an deutscher Rüstungsindustrie und Beschaffungsbürokratie",
+        "timestamp_range": "00:56:54 - 00:58:40",
+        "theme_description": "Bewertung der deutschen Rüstungsinvestitionen und Kritik an veralteten Systemen sowie Überbürokratisierung bei der Beschaffung.",
+        "question_asked": "Moderator fragt, ob Kiesewetter ein Unbehagen gegenüber den gigantischen Summen hat, die in Aufrüstung fließen.",
+        "question_intent": "Moderator möchte verstehen, ob Kiesewetter die Rüstungsausgaben rückhaltlos unterstützt oder auch kritische Vorbehalte hat.",
+        "position": "Kiesewetter hat großes Unbehagen, aber nicht wegen der Summen insgesamt, sondern wegen ihrer ineffizienten Verwendung. Die deutsche Rüstungsindustrie verkaufe 'alte Bilder' und alte Systeme. Statt Innovation fördere das zu viel investition in Panzertechnik, wenig in Flugabwehr. Deutschland könne von der Ukraine lernen, die mit modernen, preiswerten Systemen arbeite (Iran-Beispiel: Billigdrohnen gegen amerikanische Technologie). Bis 2032 sollen 5% des BIP für Verteidigung ausgegeben werden, aber die Bundeswehr sei erst 2039 richtig aufgestellt – das ergibt keinen Sinn. Die Beschaffungsprozesse seien zu bürokratisch: Drohnen-Zertifizierung dauere 1,5 Jahre.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Frage substanziell und nuanciert: Er begründet sein Unbehagen nicht mit genereller Aufrüstung, sondern mit ineffizienter Mittelvergabe an alte Systeme und Über-Bürokratisierung. Er konkretisiert mit Beispielen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe ein absolutes Unbehagen, wissen Sie warum? Wir geben unglaublich viel Geld für alte Bilder aus. Alte Systeme. Die Rüstungsindustrie in Deutschland sagt, ich löse euch die Probleme. Das bedeutet, dass wir mehr vom alten machen.",
+            "timestamp": "00:56:54",
+            "context": "Moderator fragt, ob Kiesewetter Unbehagen angesichts gigantischer Rüstungsausgaben hat."
+          },
+          {
+            "text": "Bis 2032 wollen wir bis zu 5 % ausgeben. Aber die Bundeswehr soll 2039 erst richtig aufgestellt sein, das verstehe ich nicht.",
+            "timestamp": "00:57:27",
+            "context": "Kritik an zeitlicher Diskrepanz zwischen Ausgaben und Einsatzbereitschaft."
+          },
+          {
+            "text": "Wenn Sie Drohnen beschaffen heute in der Bundeswehr, dann dauert das 1,5 Jahre, bis die zertifiziert sind. Der Prozess dauert wieder zu lange. Wir überbürokratisieren das.",
+            "timestamp": "00:57:32",
+            "context": "Konkrete Beispiel für Ineffizienz im Beschaffungsprozess."
+          }
+        ],
+        "concrete_statements": [
+          "Wir stecken sehr viel Geld in Panzertechnik, wenig Geld in Flugabwehr.",
+          "Wir stecken wenig Geld darein, von der Ukraine zu lernen.",
+          "Die Rüstung Industrie verdient am alten Kriegsbild.",
+          "Das müssen wir politisch diskutieren, das machen wir zu wenig.",
+          "Die Rüstungsindustrie muss andere Auflagen bekommen, wir müssen in der Beschaffung etwas ändern."
+        ],
+        "related_bundestag_topics": [
+          "Rüstungswirtschaft",
+          "Bundeswehr-Ausstattung",
+          "Beschaffungswesen",
+          "Verteidigungsbudget"
+        ]
+      },
+      {
+        "title": "Mentale Bereitschaft der Deutschen für Wehrhaftigkeit",
+        "timestamp_range": "00:58:59 - 00:59:51",
+        "theme_description": "Einschätzung der psychologischen und politischen Bereitschaft der deutschen Bevölkerung und Regierung auf Wehrhaftigkeit.",
+        "question_asked": "Moderator fragt, ob die Deutschen mental bereit für Aufrüstung und Wehrhaftigkeit sind.",
+        "question_intent": "Moderator möchte verstehen, ob gesellschaftlicher Konsens für notwendige Rüstung vorhanden ist oder ob es noch Widerstände gibt.",
+        "position": "Kiesewetter beobachtet einen 'Riesenumdenken in der Bevölkerung', das 'noch nicht im politischen Berlin' angekommen ist. Es gibt also gesellschaftliche Bereitschaft, aber politische Trägheit. Im letzten Satz formuliert er Konsens mit Vad: 'Und Wehrhaftigkeit, da haben wir noch einen Konsens erzielt.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage zur mentalen Bereitschaft mit einer kritischen, aber differenzierten Einschätzung: Die Bevölkerung ist bereit, die Politik hinkt hinterher.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass wir ein Riesenumdenken in der Bevölkerung haben, war noch nicht im politischen Berlin.",
+            "timestamp": "00:58:59",
+            "context": "Moderator fragt, ob Deutsche mental bereit sind für Wehrhaftigkeit."
+          },
+          {
+            "text": "Und Wehrhaftigkeit, da haben wir noch einen Konsens erzielt.",
+            "timestamp": "00:59:34",
+            "context": "Schlusswort: Kiesewetter und Vad haben zumindest auf Wehrhaftigkeit als notwendig geeinigt."
+          }
+        ],
+        "concrete_statements": [
+          "Riesenumdenken in der Bevölkerung",
+          "Noch nicht im politischen Berlin angekommen"
+        ],
+        "related_bundestag_topics": [
+          "Gesellschaftlicher Konsens",
+          "Sicherheitspolitik",
+          "Nationale Verteidigung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Stoltenberg sagte 2017 als NATO-Generalsekretär, dass Kaliningrad aufgerüstet wird",
+        "timestamp": "00:14:31"
+      },
+      {
+        "claim": "Die NATO verzichtete damals auf eine Antwort und bot Russland an, darüber zu verhandeln",
+        "timestamp": "00:14:31"
+      },
+      {
+        "claim": "Nach sieben Jahren der Verhandlungen hat Russland nicht reagiert, sondern die Ukraine angegriffen",
+        "timestamp": "00:14:31"
+      },
+      {
+        "claim": "Putin kündigte einen zweitägigen Waffenstillstand an und schoss zwei Tage später hunderte Drohnen ab, wobei 64 Menschen starben",
+        "timestamp": "00:24:31"
+      },
+      {
+        "claim": "Selensky hat seit 2022 mehrfach Verhandlungen angeboten, unter anderem mit Verzicht auf die Gebiete von 2014",
+        "timestamp": "00:30:42"
+      },
+      {
+        "claim": "Die Zertifizierung von Drohnen in der Bundeswehr dauert 1,5 Jahre",
+        "timestamp": "00:57:32"
+      },
+      {
+        "claim": "Deutschland plant, bis 2032 bis zu 5% des BIP für Verteidigung auszugeben",
+        "timestamp": "00:57:27"
+      },
+      {
+        "claim": "Die Bundeswehr soll erst 2039 richtig aufgestellt sein",
+        "timestamp": "00:57:27"
+      }
+    ]
+  }
+}

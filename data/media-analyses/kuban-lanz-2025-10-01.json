@@ -1,0 +1,403 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-1-oktober-2025-100",
+    "video_id": "lanz-2025-10-01",
+    "politician": "Tilman Kuban",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "0cacc08e3aed8f7a",
+    "transcript_chars": 29683,
+    "caption_lines": 1497,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 14243,
+    "tokens_out": 9252,
+    "cost_usd": 0.0242012,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 17,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 8
+    },
+    "generated_at": "2026-06-02T16:33:28.615Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Tilman Kuban verteidigte in dieser Sendung die Reformagenda der CDU/CSU unter Friedrich Merz und argumentierte für eine pragmatische Neuausrichtung der Klima- und Energiepolitik angesichts veränderter geopolitischer Bedingungen. Er wirkte dabei sachlich-defensiv gegenüber Vorwürfen, oszillierte aber zwischen konkreten Reformforderungen (Aktivrente, Energiepolitik) und grundsätzlichen Debatten über Prioritäten zwischen Klimaschutz und Deindustrialisierungsvermeidung.",
+    "themes": [
+      {
+        "title": "Herbst der Reformen – Zeitrahmen und Umsetzung",
+        "timestamp_range": "00:01:51 - 00:04:42",
+        "theme_description": "Tillman Kuban konkretisiert den Anspruch des 'Herbsts der Reformen' und legt dar, welche Reformmaßnahmen die Koalition umsetzen will und in welchem Zeitrahmen.",
+        "question_asked": "Der Moderator fragt, ob es stimmt, dass intern die Anweisung ergangen sein soll, den 'Herbst der Reformen' öffentlich nicht mehr thematisieren.",
+        "question_intent": "Feststellung, ob die CDU intern ihre Reformrhetorik zensiert hat und ob 'Herbst der Reformen' noch glaubwürdig ist.",
+        "position": "Kuban betont, dass der 'Herbst der Reformen' kommt und die Koalition auf gutem Wege ist. Er konzediert, dass es keine 'Liebesheirat' war, argumentiert aber für eine pragmatische Partnerschaft. Konkret kündigt er Maßnahmen bei der Aktivrente, Energiepolitik und Bürgergeld an und erweitert die Rhetorik auf einen 'Frühling der Reformen', um zu signalisieren, dass Reformen längerfristig andauern werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kuban antwortet auf die Frage nach interner Zensur mit dem Dementi, die Anweisung nicht erhalten zu haben – adressiert also den Kern der Behauptung negativ. Die Ausweitung auf 'Frühling' etc. wirkt jedoch wie eine Umdefinition der ursprünglichen 'Herbst'-Botschaft, was die skeptische Frage des Moderators teilweise validiert.",
+        "concrete_statements": [
+          "Der Herbst der Reformen kommt. Wir starten jetzt.",
+          "Im Bereich der Rente werden wir mit der Aktivrente starten.",
+          "Wir werden in der Energiepolitik einige Dinge pragmatischer gestalten.",
+          "Es wird nicht alles innerhalb der nächsten 3-4 Monate an Reformen kommen, es wird weitergehen mit einem Frühling der Reformen."
+        ],
+        "quotes": [
+          {
+            "text": "Der Herbst der Reformen, der kommt. Wir starten jetzt.",
+            "timestamp": "00:01:51",
+            "context": "Kuban antwortet auf die Moderatorfrage, ob die Reformrhetorik intern zensiert wurde."
+          },
+          {
+            "text": "Ich habe sie noch nicht erhalten. Mir wurde das nicht mitgegeben.",
+            "timestamp": "00:03:11",
+            "context": "Kuban dementiert eine interne Anweisung, den 'Herbst der Reformen' nicht mehr öffentlich zu thematisieren."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Reformagenda CDU/CSU",
+          "Rentenpolitik",
+          "Energiepolitik"
+        ]
+      },
+      {
+        "title": "Erwartungshaltung, Angst und Sicherheitslage",
+        "timestamp_range": "00:05:06 - 00:07:21",
+        "theme_description": "Diskussion über die psychologische Lage im Land: Erwartungshaltung vs. Angst, sowie Kubans Verständnis von realistischer Risikokommunkation angesichts der Sicherheitslage.",
+        "question_asked": "Der Moderator argumentiert, dass Wirtschaft zu 80 % Psychologie ist und im Land eher Angsthaltung als Erwartungshaltung herrscht; Kuban wird gefragt, ob seine Rede von Kriegsgefahr diese Angst nicht noch verschlimmert.",
+        "question_intent": "Kritik an Kubans vermeintlich Angst-fördernder Kommunikation; Frage, ob Realismus in diesem Fall kontraproduktiv ist.",
+        "position": "Kuban argumentiert, dass er bei vielen Menschen eine Erwartungshaltung verspürt und dass es legitim ist, über reale Gefahren (Krieg, geopolitische Lage) offen zu sprechen. Er behauptet, dass die Leute ihn beim persönlichen Kontakt ('am Fußballplatz, an der Bratwurstbude') selbst auf diese Themen ansprechen. Seine Botschaft an die Bevölkerung ist, dass sich Deutschland verteidigen kann und unabhängiger werden muss, damit Kinder nicht in einen Krieg ziehen müssen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die Moderatorfrage direkt: Er widerlegt die Prämisse, dass seine Rede die Angst verschlimmert, und argumentiert, dass Realität und offene Kommunikation notwendig sind. Er liefert konkrete Gesprächserfahrungen und eine politische Antwort (Verteidigungsfähigkeit, Unabhängigkeit).",
+        "concrete_statements": [
+          "Ich verspüre bei vielen Menschen einer Erwartungshaltung.",
+          "Wenn ich mit den Leuten draußen spreche, am Fußballplatz, an der Bratwurstbude, es ist die Realität, dass die Leute mich darauf ansprechen.",
+          "Ich werde sagen, dass wir uns verteidigen können, das ist die klare Botschaft, die Friedrich Merz von sich gegeben hat.",
+          "Wir sorgen dafür, dass wir unabhängiger werden, und dass die Kinder nicht befürchten müssen, dass sie in einen Krieg ziehen müssten."
+        ],
+        "quotes": [
+          {
+            "text": "Aber das hilft doch nicht. Wir müssen der Realität ins Auge blicken.",
+            "timestamp": "00:06:31",
+            "context": "Kuban reagiert auf Vorwurf, dass seine Sicherheitsreden die Angst verschärfen."
+          },
+          {
+            "text": "Ich verspüre bei vielen Menschen einer Erwartungshaltung. Deswegen sind wir da gefordert, ich erlebe allerdings auch, dass es eine Angst vor Krieg geht. Dass die Lage selten so gefährlich war wie heute.",
+            "timestamp": "00:06:11",
+            "context": "Kuban wertet die Stimmungslage im Land und betont Realismus."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Verteidigungsausgaben",
+          "Geopolitik"
+        ]
+      },
+      {
+        "title": "Sozialpolitik und Gerechtigkeit beim Bürgergeld",
+        "timestamp_range": "00:16:49 - 00:18:12",
+        "theme_description": "Kubans Argumentation zu Reformen beim Bürgergeld: Abgrenzung zwischen Hilfe für Menschen, die nicht arbeiten können, und Sanktionierung von 'Missbrauch' durch Erwerbstätige, die nicht vollständig arbeiten.",
+        "question_asked": "Moderator fragt (nach Dröges Kritik an Merz): 'Herr Kuban, wie retten wir den Sozialstaat?'",
+        "question_intent": "Frage nach CDU-Antwort auf Kritik der Grünen an sozialer Gerechtigkeit und Sozialabbau.",
+        "position": "Kuban trennt scharf zwischen drei Gruppen: (1) Menschen, die nicht arbeiten können und Hilfe brauchen (soll es geben), (2) Menschen, die arbeiten könnten, es aber nicht tun (sollen Druck bekommen), (3) Systemmissbrauch durch Aufstocker (soll bekämpft werden). Er argumentiert, dass Gerechtigkeit gegenüber denen, die 'jeden Tag aufstehen und arbeiten gehen', erfordert, gegen diese Gruppen vorzugehen. Implizit: Forderung nach Sanktionen für Nichtwilligkeit.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die Frage direkt mit einer normativen Gerechtigkeitsargumentation, die Konditionalität von Leistungen rechtfertigt. Er widerspricht nicht der sozialen Basis des Staates, sondern differenziert Leistungsempfänger nach Bedarf und Verhalten.",
+        "concrete_statements": [
+          "Beim Thema Bürgergeld geht es um Gerechtigkeit.",
+          "Es gibt Leute in diesem Land, die könnten arbeiten, die tun es aber nicht.",
+          "Es gibt Leute, die stocken auf und missbrauchen das System, in dem sie ein paar Stunden arbeiten, obwohl sie mehr arbeiten könnten.",
+          "Gegen diejenigen anzugehen, und Druck zu machen, ist eine Frage der Gerechtigkeit gegenüber denen, die jeden Tag aufstehen und arbeiten gehen."
+        ],
+        "quotes": [
+          {
+            "text": "Beim Thema Bürgergeld geht es um Gerechtigkeit. Die Leute bringen ihre Kinder in die Kita, es gibt andere, die bleiben liegen. Niemand in diesem Land möchte, dass Leute, die in diesem Land leben und nicht arbeiten können, [benachteiligt werden]. Es gibt Leute in diesem Land, die könnten arbeiten, die tun es aber nicht.",
+            "timestamp": "00:17:14",
+            "context": "Kuban definiert sein Gerechtigkeitsverständnis bei Bürgergeldreformen."
+          },
+          {
+            "text": "Und gegen diejenigen anzugehen, und Druck zu machen, ist eine Frage der Gerechtigkeit gegenüber denen, die jeden Tag aufstehen und arbeiten gehen.",
+            "timestamp": "00:17:47",
+            "context": "Kuban rechtfertigt härteren Umgang mit Bürgergeldempfängern mit Gerechtigkeitsargument."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Arbeitsmarktpolitik",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Stahlindutrie und Wirtschaftsstandort – Energiekosten und Bürokratie",
+        "timestamp_range": "00:19:12 - 00:20:53",
+        "theme_description": "Kubans Erklärung, wie die CDU die Stahlindustrie durch neue Energiepolitik und weniger Bürokratie retten will, sowie Hinweis auf veränderte Weltmarktbedingungen.",
+        "question_asked": "Moderator fragt konkret: 'Wir müssen sicherstellen, dass die Stahlindustrie nicht aus Deutschland abwandert, wie?'",
+        "question_intent": "Konkrete Forderung nach Lösungsansätzen für Deindustrialisierungsgefahr, besonders Stahlindustrie.",
+        "position": "Kuban nennt drei Hauptprobleme: (1) zu hohe Energiekosten, (2) zu viel Bürokratie, (3) zu hohe Steuerlast. Lösungen: Neue Energiepolitik, Neubewertung der 'Green Deal'-Gesetzgebung. Kuban argumentiert, dass die Weltlage (weniger US-Markt, Russland-Sanktionen, China-Konkurrenz) strukturell neue ist und pragmatische Zielverschiebungen rechtfertigt. Warnung vor 'französischen Verhältnissen' (Staatsfinanzierung aller Unternehmen).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban nennt konkrete Maßnahmenbereiche (Energie, Bürokratie, Steuern) und eine Strategieverschiebung (pragmatischere Green Deal-Umsetzung). Er liefert eine geopolitische Erklärung für die Notwendigkeit der Neubewertung.",
+        "concrete_statements": [
+          "Zu diesem Handelsziel ist einer der Punkte: wir haben zu hohe Energiekosten, zu viel Bürokratie, zu wenig Steuerlasten.",
+          "Deswegen ist es wichtig, dass wir eine neue Energiepolitik machen.",
+          "Wir müssen bei Fragen der Green Deal Gesetzgebung sprechen.",
+          "Wir müssen pragmatisch angehen. Müssen unsere Ziele verschieben."
+        ],
+        "quotes": [
+          {
+            "text": "Einer der Punkte ist, wir haben zu hohe Energiekosten, zu viel Bürokratie, zu wenig Steuerlasten. Deswegen ist es wichtig, dass wir eine neue Energiepolitik machen.",
+            "timestamp": "00:19:27",
+            "context": "Kuban antwortet auf die Frage, wie die Stahlindustrie gerettet werden soll."
+          },
+          {
+            "text": "Wir haben eine komplett neue Weltlage, das ist Fakt. Wir haben wenig für unsere eigene Sicherheit ausgegeben, auf die Amerikaner vertraut. Wir hatten einen boomenden chinesischen und amerikanischen Markt, auf dem gerade die Großunternehmen – alle diese Dimensionen sind nicht mehr da.",
+            "timestamp": "00:19:51",
+            "context": "Kuban begründet Notwendigkeit von pragmatischen Zielverschiebungen geopolitisch."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Industrie- und Wirtschaftspolitik",
+          "Energiewende",
+          "Handelspolitik"
+        ]
+      },
+      {
+        "title": "Kernenergie-Abschaltungen und historische Verantwortung",
+        "timestamp_range": "00:21:06 - 00:24:20",
+        "theme_description": "Debatte über historische Energiepolitik: Wer trägt Verantwortung für Kernenergie-Ausstieg (Grüne vs. Union) und Nordstream-Abhängigkeit.",
+        "question_asked": "Moderator fragt polemisch: 'Wenn Sie dieses Spiel spielen wollen, müssen Sie sich diese Frage gefallen lassen' (auf Kubans Hinweis auf Grüne Kernenergie-Abschaltungen).",
+        "question_intent": "Kritik an Kubans Versuch, die Grünen für Energieprobleme verantwortlich zu machen, während Union ebenfalls Kernenergie abgebaut hat.",
+        "position": "Kuban gibt letztlich zu, dass 'alle Fehler der Vergangenheit gemacht' haben und verteidigt sich damit, dass die Union auch Kernenergie abgeschaltet hat ('es waren mehr als 3' [später korrigiert: 8]). Er argumentiert aber, dass es jetzt um die Zukunft geht, nicht um gegenseitige Schuldzuweisungen. Kernaussage: Alle waren naiv, auf Amerikaner und russisches Gas zu vertrauen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kuban adressiert die Schuldfrage zunächst defensiv ('auch wir haben abgebaut'), weicht dann aber zur Zukunftsorientierung aus. Die Tatsache-Fehler (Zahl der Abschaltungen) und die Versuch, das Thema zu verschieben, zeigen Ausweichverhalten.",
+        "concrete_statements": [
+          "Wir haben diese Ziele gemacht.",
+          "Wir haben Nordstream 2 auf den Weg gebracht, ihr habt Nordstream 1 auf den Weg gebracht.",
+          "Fakt ist, alle haben Fehler gemacht.",
+          "Wir waren so naiv, wir haben im Endeffekt auf die Amerikaner vertraut."
+        ],
+        "quotes": [
+          {
+            "text": "Wir können uns da nicht alle rausreden. Wir haben alle Fehler der Vergangenheit gemacht.",
+            "timestamp": "00:24:20",
+            "context": "Kuban gesteht parteiübergreifende Fehler bei Energiepolitik ein."
+          },
+          {
+            "text": "Wir waren so naiv, wir haben im Endeffekt auf die Amerikaner vertraut. Das ist Teil der Ehrlichkeit.",
+            "timestamp": "00:25:03",
+            "context": "Kuban fordert Ehrlichkeit über strategische Abhängigkeiten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende und Kernenergie",
+          "Außenpolitik und Abhängigkeiten",
+          "Historische Verantwortung"
+        ]
+      },
+      {
+        "title": "Kosten der Energiewende und Netzausbau",
+        "timestamp_range": "00:29:53 - 00:31:57",
+        "theme_description": "Technische und ökonomische Argumentation Kubans zu Kosten der Energiewende: Unterschied zwischen Kraftwerk-Kosten und Netzinfrastruktur-Kosten bei dezentralen erneuerbaren Energien.",
+        "question_asked": "Dröge und Moderator diskutieren, ob Energiewende die Strompreise teuerer oder günstiger macht; Kuban wird gefragt, sich zu den Kosten zu äußern.",
+        "question_intent": "Einladen Kubans, die gängige Behauptung (Energiewende = günstiger) zu hinterfragen durch Gesamtkostenbetrachtung.",
+        "position": "Kuban konzediert, dass Erzeugungskosten für erneuerbare Energien günstiger sind als Atomkraft. ABER: Er argumentiert, dass eine Gesamtkostenbetrachtung notwendig ist, die Netzausbau und -integration einbezieht. Dezentrale Anlagen (Tausende verbundener Windkraftanlagen) erfordern ein völlig anderes Netz als zentrale Großkraftwerke – das ist der größte Kostentreiber und wird oft unterschlagen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die Preisfrage mit differenzierter ökonomischer Analyse: Erzeugung vs. Integration. Er kritisiert das Framing von Dröge als unvollständig (Bullshit-Vergleich) und fordert Ehrlichkeit bei Gesamtkosten.",
+        "concrete_statements": [
+          "Der größte Bullshit-Satz ist, die Energiedebatte.",
+          "Es ist ein Unterschied, ob sich Kraftwerke miteinander verbindet, oder ob ich Tausende miteinander verbinde.",
+          "Ich brauche ein ganz anderes Netz. Das ist doch die Wahrheit.",
+          "Deswegen sollten wir Männern eine Gesamtkostenbetrachtung machen. Das würde zur Ehrlichkeit dazugehören."
+        ],
+        "quotes": [
+          {
+            "text": "Der größte Bullshit Satz ist, die Energiedebatte. Es ist ein Unterschied, ob sich Kraftwerke miteinander verbindet, oder ob ich Tausende miteinander verbinde. Ich brauche ein ganz anderes Netz. Das ist doch die Wahrheit.",
+            "timestamp": "00:29:53",
+            "context": "Kuban kritisiert unvollständige Kostenrechnungen bei Energiewende-Debatten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Strompreise",
+          "Netzausbau"
+        ]
+      },
+      {
+        "title": "Nato-Bündnisverpflichtungen und Zusammenarbeit mit Trump",
+        "timestamp_range": "00:31:00 - 00:32:25",
+        "theme_description": "Kubans Argumentation zur Notwendigkeit, Nato-Ausgabenversprechen einzuhalten, um Glaubwürdigkeit in Verhandlungen mit Trump zu wahren.",
+        "question_asked": "Moderator wirft Kuban vor, dass er Britta Haßelmann ('Meinung geigen') zitiert und impliziert, dass Dialog mit Trump nur möglich ist, wenn Deutschland erst einmal hart arbeitet statt zu kritisieren.",
+        "question_intent": "Kritik an Kubans Instrumentalisierung von Haßelmann und Frage, ob Dialog-statt-Kritik die richtige Strategie ist.",
+        "position": "Kuban argumentiert, dass Dialog mit Trump nur erfolgreich ist, wenn Deutschland seine Bündnisverpflichtungen ernst nimmt und erfüllt. 'Wir müssen bereit sein unsere Bündnisverpflichtung zu erfüllen, nur dann werden wir ernst genommen.' Implizit: Kritik wird von Trump als schwach interpretiert, daher Fokus auf Leistung statt Rhetorik.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert direkt die Frage nach Verhandlungsstrategie mit Trump und liefert eine Begründung: Leistung vor Rhetorik. Auch wenn die Haßelmann-Anweisung paraphrasiert ist, adressiert er die Grundfrage nach Dialog-Strategie.",
+        "concrete_statements": [
+          "Wir müssen bereit sein unsere Bündnisverpflichtung zu erfüllen, nur dann werden wir ernst genommen.",
+          "Dann nehme ich auch nicht alle anderen Vorgänge aus, wir sind unserem Ziel nicht gerecht geworden."
+        ],
+        "quotes": [
+          {
+            "text": "Wir müssen bereit sein unsere Bündnisverpflichtung zu erfüllen, nur dann werden wir ernst genommen.",
+            "timestamp": "00:31:25",
+            "context": "Kuban argumentiert für Priorität von Leistung über Kritik im Dialog mit Trump."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik und Nato",
+          "Deutschlands Rolle im Westen"
+        ]
+      },
+      {
+        "title": "Klimaschutzziele und Deindustrialisierungsrisiko – der Berg-Metapher",
+        "timestamp_range": "00:35:45 - 00:36:47",
+        "theme_description": "Kubans Metaphorik für das Dilemma zwischen Klimaschutz und wirtschaftlicher Stabilität: drei Szenarien für den Gipfel.",
+        "question_asked": "Moderator fragt, wie Kuban das Verbrenneraus thematisiert und was es bringt (in Kontexte von Klimazielen und Jobs).",
+        "question_intent": "Frage nach praktischer Priorisierung: Klima vs. Jobs – wo zieht die CDU die Linie?",
+        "position": "Kuban nutzt eine Berg-Metapher, um drei Szenarien darzustellen: (1) hart an Zielen festhalten → Deindustrialisierung, französische Verhältnisse (Absturz), (2) Klima-Leugnung (AfD), (3) SEINE Lösung: später ankommen ('etwas später auf den Gipfel'), aber alle mitnehmen. Das impliziert Zielverschiebung mit sozialer Verträglichkeit.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die Zielkonflikt-Frage direkt mit einer klaren normativen Antwort: Sozialer Zusammenhalt schlägt Tempo beim Klimaschutz.",
+        "concrete_statements": [
+          "Entweder will halten und knallhart weiter an diesen Zielen, laufen in eine Deindustrialisierung.",
+          "Oder wir passen unser Ziel an.",
+          "Wenn wir etwas später auf den Gipfel ankommen, aber dafür alle Leute mitgenommen haben, keine verloren haben, dann lieber so.",
+          "Damit es keine Toten gibt."
+        ],
+        "quotes": [
+          {
+            "text": "Ich sage, wenn wir etwas später auf den Gipfel ankommen, aber dafür alle Leute mitgenommen haben, keine verloren haben, dann lieber so. Damit es keine Toten gibt.",
+            "timestamp": "00:35:45",
+            "context": "Kuban rechtfertigt Zielverschiebung bei Klimaschutz mit sozialer Verträglichkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik und Wirtschaft",
+          "Soziale Gerechtigkeit",
+          "Arbeitsmarkt und Industriewandel"
+        ]
+      },
+      {
+        "title": "Elektromobilität und Verbrenneraus – Pragmatismus vs. technische Machbarkeit",
+        "timestamp_range": "00:37:26 - 00:43:08",
+        "theme_description": "Kubans Position zu Elektromobilität: Glaube an Markttrends, Kritik an Verboten, Kompromissbereitschaft auf europäischer Ebene.",
+        "question_asked": "Moderator und Dröge diskutieren Verbrenneraus und dessen Glaubwürdigkeit gegenüber der Industrie; Kuban wird gefragt, wie er das Verbrenneraus sieht.",
+        "question_intent": "Frage, ob die CDU am Verbrenneraus aus 2035 festhalten wird und wie realistisch das ist.",
+        "position": "Kuban ist überzeugt, dass batterieelektrische Fahrzeuge in 10-15 Jahren dominant sein werden (basierend auf IAA-Beobachtungen). Er kritisiert aber den regulatorischen Ansatz (Verbote) und plädiert für Marktmechanismen. Beispiel Toyota: 1/3 Hybrid, 1/3 Verbrenner, 1/3 Elektro – die Märkte entscheiden lassen. Zum Verbrenneraus selbst: Er ist bereit, sich auf 2035 mit 90% Flottenumstellung zu einigen ('Ich bin dabei, da schlage ich ein'), aber warnt vor zu schnellem erzwungenem Ausstieg.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die Frage mit differenzierter Technologie-Optimismus und Kritik an regulatorischen Verboten. Er signalisiert Kompromissbereitschaft auf europäischer Ebene, kritisiert aber nationale Alleingänge.",
+        "concrete_statements": [
+          "Ich glaube, dass viele Menschen in diesem Land, wenn wir in 10-15 Jahren schon, batterieelektrisch fahren werden.",
+          "Davon bin ich fest überzeugt.",
+          "Ich frage mich, geht die Welt unter, wenn wir noch ein paar verbrenne Autos verkaufen, hybride Autos verbrauchen?",
+          "Toyota hat beispielsweise eine klare Strategie. Ist mit VW der größte Autobauer. 1/3 Hybride, 1/3 Verbrenner, 1/3 Elektro.",
+          "Wenn sie sich gemeinsam darauf verständigen, 2035 90 % der Flotte, soll mir das dann so machen? Ich bin dabei. Da schlage ich ein."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass viele Menschen in diesem Land, wenn wir in 10-15 Jahren schon, batterieelektrisch fahren werden. Davon bin ich fest überzeugt.",
+            "timestamp": "00:37:26",
+            "context": "Kuban äußert Optimismus zu Elektromobilität als Markttrend."
+          },
+          {
+            "text": "Ich frage mich, geht die Welt unter, wenn wir noch ein paar verbrenne Autos verkaufen, hybride Autos verbrauchen? Nein natürlich geht die Welt davon nicht unter.",
+            "timestamp": "00:38:16",
+            "context": "Kuban kritisiert regulatorisches Denken, plädiert für Marktfreiheit."
+          },
+          {
+            "text": "Wenn sie sich gemeinsam darauf verständigen, 2035 90 % der Flotte, soll mir das dann so machen? Ich bin dabei. Da schlage ich ein.",
+            "timestamp": "00:42:52",
+            "context": "Kuban zeigt Kompromissbereitschaft auf EU-Ebene zum Verbrenneraus."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Automobilindustrie und Klimaschutz",
+          "Verbraucherschutz",
+          "Regulierungspolitik"
+        ]
+      },
+      {
+        "title": "Kernfusion und Energiezukunft",
+        "timestamp_range": "00:42:28 - 00:42:52",
+        "theme_description": "Kubans kurzer Verweis auf CDU-Initiative zu Kernfusionsreaktor als Beitrag zur Energieversorgung der Zukunft.",
+        "question_asked": "Dröge verweigert weiteres Gespräch zu Atomenergie und will zur Automobilindustrie wechseln; Kuban insistiert auf Anerkennung des Kernfusions-Themas.",
+        "question_intent": "Implizite Aufforderung, auch zukunftsgerichtete Energietechnologien zu diskutieren.",
+        "position": "Kuban hebt hervor, dass die CDU einen Kernfusionsreaktor 'auf den Weg gebracht' hat, was er als 'Riesenschritt für die Energieversorgung in Deutschland' einstuft. Dies ist sein Argument, dass die CDU nicht nur Klimaschutz abbaut, sondern aktiv an Energiealternativen arbeitet.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kuban adressiert die implizite Kritik, die CDU habe keine Energielösungen, mit einem konkreten Projekt (Kernfusion).",
+        "concrete_statements": [
+          "Er hat den Kernfusionsreaktor auf den Weg gebracht.",
+          "Das ist ein Riesenschritt für die Energieversorgung in Deutschland.",
+          "Können wir das trotzdem mal diskutieren?"
+        ],
+        "quotes": [
+          {
+            "text": "Er hat den Kernfusionsreaktor auf den Weg gebracht. Das ist ein Riesenschritt für die Energieversorgung in Deutschland. Können wir das trotzdem mal diskutieren?",
+            "timestamp": "00:42:28",
+            "context": "Kuban beharrt darauf, CDU-Energieinnovationen anzuerkennen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Forschung und Entwicklung Energie",
+          "Energiewende"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im Bereich der Rente werden wir mit der Aktivrente starten.",
+        "timestamp": "00:04:08"
+      },
+      {
+        "claim": "Es gibt Leute in diesem Land, die stocken auf und missbrauchen das System, in dem sie ein paar Stunden arbeiten, obwohl sie mehr arbeiten könnten.",
+        "timestamp": "00:17:47"
+      },
+      {
+        "claim": "Fast die Hälfte des Bundeshaushaltes sind Sozialausgaben.",
+        "timestamp": "00:13:42"
+      },
+      {
+        "claim": "Der Bundeshaushalt beträgt 480 Millionen Euro. [Anmerkung: Dieser Wert ist fehlerhaft; Kuban meint vermutlich 480 Mrd. Euro.]",
+        "timestamp": "00:14:33"
+      },
+      {
+        "claim": "Die Union hat acht Kernkraftwerke abgeschaltet, danach noch mal drei.",
+        "timestamp": "00:21:59 - 00:22:05"
+      },
+      {
+        "claim": "Wir hatten die Möglichkeit gab 10 GW [Windenergie zu installieren], haben dir dabei rausgenommen.",
+        "timestamp": "00:20:53 - 00:21:06"
+      },
+      {
+        "claim": "Im letzten Jahr nur 15 % das Ladesäulen doppelt belegt werden wollten.",
+        "timestamp": "00:37:58"
+      },
+      {
+        "claim": "In den letzten Jahren Energie genommen, die zu günstig war.",
+        "timestamp": "00:21:06"
+      },
+      {
+        "claim": "Wir waren so naiv, wir haben im Endeffekt auf die Amerikaner vertraut [bei Gasversorgung].",
+        "timestamp": "00:25:03"
+      },
+      {
+        "claim": "Ehrlicherweise haben wir im letzten Jahr so viele Jobs in der Industrie verloren, wie im öffentlichen Dienst aufgebaut worden sind.",
+        "timestamp": "00:29:53 - 00:30:15"
+      }
+    ]
+  }
+}

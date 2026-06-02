@@ -1,0 +1,347 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-1-oktober-2025-100",
+    "video_id": "lanz-2025-10-01",
+    "politician": "Katharina Dröge",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "0cacc08e3aed8f7a",
+    "transcript_chars": 29683,
+    "caption_lines": 1497,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 14245,
+    "tokens_out": 7560,
+    "cost_usd": 0.020818,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 3,
+      "teilweise_antwort": 2,
+      "substantielle_position": 4,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.456Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Katharina Dröge argumentiert in der Talkshow überwiegend kritisch gegenüber der CDU-geführten Bundesregierung unter Friedrich Merz, insbesondere zu Sozialpolitik, Klimaschutz und Energiewende. Sie vertritt Grüne Positionen zur Tarifpolitik, Elektromobilität und verweigert teilweise eine direkte Auseinandersetzung mit Moderator Lanz zu Finanzierungsfragen, bezichtigt stattdessen die CDU der Untätigkeit.",
+    "themes": [
+      {
+        "title": "Grüne Wahlniederlage NRW und Parteikommunikation",
+        "timestamp_range": "00:03:22 - 00:03:53",
+        "theme_description": "Moderator kritisiert, dass Grünen-Chef Felix Banaszak Wahlverluste von 6,5 % als 'zweitstärkstes Ergebnis jemals' darstellt; Dröge reagiert.",
+        "question_asked": "Implizite Frage (Moderator wendet sich Dröge zu): Verstehen die Grünen selbst, was bei der Wahl in NRW schiefging?",
+        "question_intent": "Ob die Grüne Führung das Ausmaß ihrer Wahlniederlage realistisch wahrnimmt und kommuniziert.",
+        "position": "Dröge kritisiert Merz statt Banaszak: Sie sagt, Merz habe sich 'im Bundestag hingestellt' und 'aus den vier Jahreszeiten der Reform' gemacht, 'aus meiner Sicht, weil er nichts hinkriegt'. Sie nennt das 'Herbstenttäuschung'. Sie weicht somit aus auf die CDU-Kritik aus, statt Banaszaks Kommunikation zur NRW-Wahl zu kommentieren.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Die Moderator-Frage zielt auf Selbstkritik der Grünen ab. Dröge lenkt stattdessen auf Merz/CDU ab und kritisiert dessen Reformrhetorik. Sie beantwortet nicht, wie die Grünen ihre NRW-Niederlage verstehen.",
+        "concrete_statements": [
+          "Friedrich Merz verspricht Reformen, kann sie nicht halten",
+          "'Herbstenttäuschung' statt 'Herbst der Reformen'"
+        ],
+        "quotes": [
+          {
+            "text": "Friedrich Merz hat sich ja im Bundestag dahingestellt, er hat die vier Jahreszeiten der Reform daraus gemacht. Aus meiner Sicht, weil er nichts hinkriegt. Er hat wieder etwas versprochen, was er nicht halten kann. Deswegen sehe ich das eher als Herbstenttäuschung.",
+            "timestamp": "00:03:26"
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Friedrich Merz' Reformrhetorik, nicht Grüne NRW-Niederlage",
+        "related_bundestag_topics": [
+          "Wahlrecht",
+          "Regierungskommunikation"
+        ]
+      },
+      {
+        "title": "Merz' Haltung zu Sozialabbau und Stigmatisierung",
+        "timestamp_range": "00:07:21 - 00:12:13",
+        "theme_description": "Katharina Dröge kritisiert Friedrich Merz' Äußerungen zum Sozialstaat, insbesondere seine Rhetorik gegenüber Bürgergeld-Empfänger:innen und deren Missachtung.",
+        "question_asked": "Moderator Lanz fragt, wie Dröge auf Kubans Aussage reagiert, dass Friedrich Merz keine Angst vor Sozialabbau habe, und verweist auf hohe AfD-Werte in Dröges Wahlkreis Köln.",
+        "question_intent": "Ob und wie Dröge die Botschaften von Merz als angstverstärkend für vulnerable Bevölkerungsgruppen interpretiert.",
+        "position": "Dröge behauptet, Merz mache Menschen Angst, weil er wiederholt Menschen im Bürgergeld stigmatisiere, indem er ihnen vorwerfe, sich nicht genug anzustrengen. Sie argumentiert, dass in ärmeren Vierteln wie Chorweiler Menschen auf Sozialleistungen angewiesen sind und Merz' Rhetorik zu Kahlschlag dieser Systeme führe. Sie kritisiert, dass Merz keine ernsthaften Lösungen anbiete, während grüne Fraktion konkrete Vorschläge wie Steuerzuschüsse für Krankenkassen habe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Dröge adressiert das zugrundeliegende Muster von Stigmatisierung und Rhetorik, weicht aber der direkten Frage nach Konsequenzen aus und pivotiert stattdessen zu Kritik an Merz' Untätigkeit. Sie nennt konkrete Maßnahmen (Steuerzuschüsse), wird aber vom Moderator zur Verantwortung gezogen, weil die Grünen ähnliche Maßnahmen nicht durchgesetzt haben.",
+        "concrete_statements": [
+          "Merz macht Menschen Angst durch wiederholte Stigmatisierung von Bürgergeld-Empfänger:innen",
+          "Grüne Fraktion hat Steuerzuschüsse in Krankenkassen gezahlt",
+          "Grüne schlagen versicherungsfremde Leistungen vor, die durch Steuerzuschüsse finanziert werden könnten"
+        ],
+        "quotes": [
+          {
+            "text": "Er hat sicher hingestellt, und gesagt er hat keine Angst vor Sozialabbau. Und ich habe ihm gesagt, Sie vielleicht nicht, aber Sie machen Menschen Angst. In diesen Orten sind Menschen auf einen Sozialstaat angewiesen.",
+            "timestamp": "00:07:52"
+          },
+          {
+            "text": "Er sagt immer wieder zu Menschen im Bürgergeld, wenn sie sich mehr anstrengen, wird das schon.",
+            "timestamp": "00:08:54"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Bürgergeldreform",
+          "Sozialabbau",
+          "Armutspolitik"
+        ]
+      },
+      {
+        "title": "Rentenfinanzierung und kapitalgedeckte Rente",
+        "timestamp_range": "00:15:00 - 00:16:05",
+        "theme_description": "Dröge erörtert Reformmöglichkeiten der Rente angesichts demografischer Herausforderungen und schlägt eine kapitalgedeckte Rente als zusätzliche Stabilisierung vor.",
+        "question_asked": "Moderator fragt, ob Dröge die Rente kürzen will, und ob der Staat sich den Sozialstaat noch leisten kann.",
+        "question_intent": "Ob und wie Dröge konkrete Sparmaßnahmen bei der Rente vorsieht oder alternative Finanzierungsquellen nennt.",
+        "position": "Dröge lehnt Rentenkürzungen explizit ab und schlägt stattdessen eine kapitalgedeckte Rente als zusätzliche Stabilisierung vor. Sie betont, dass eine Antwort auf den demografischen Wandel Fachkräfte-Zuwanderung erfordert, die die CDU ablehne. Sie kritisiert, dass Merz 'nichts' zur Belebung der Wirtschaft unternehme, was eine dritte notwendige Maßnahme sei.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Dröge beantwortet die Kernfrage nach Rentenreform direkt mit konkretem Vorschlag (kapitalgedeckte Rente) und verweigert Kürzungen. Sie benannt alle drei ihrer Lösungspunkte: Rente, Fachkräfte, Wirtschaft.",
+        "concrete_statements": [
+          "Kapitalgedeckte Rente als zusätzliche Stabilisierung einführen",
+          "Mehr Beitragszahler durch Fachkräfte-Zuwanderung gewinnen",
+          "Bundesregierung (Merz) handelt nicht zur Wirtschaftsbelebung"
+        ],
+        "quotes": [
+          {
+            "text": "Ich möchte Ihnen einen konkreten Vorschlag über die Rente machen. Eine kapitalgedeckte Rente, als zusätzliche Stabilisierung. Wir brauchen am Ende auch mehr Beitragszahler.",
+            "timestamp": "00:15:15"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Demografischer Wandel",
+          "Fachkräftegewinnung"
+        ]
+      },
+      {
+        "title": "Fachkräftezuwanderung und Deutschland-Perspektive",
+        "timestamp_range": "00:15:15 - 00:16:05",
+        "theme_description": "Dröge argumentiert, dass ohne Fachkräfte-Zuwanderung dem demografischen Wandel nicht beizukommen ist und dass die CDU das 'weigert einzusehen'.",
+        "question_asked": "Implizit in Rennen-Debatte: Wie kann man Rentenfinanzierung sichern?",
+        "question_intent": "Welche Lösungsansätze es zur Versichertengewinnung bei schrumpfender Bevölkerung gibt.",
+        "position": "Dröge führt Fachkräfte-Zuwanderung als notwendige Komponente ein, um mehr Beitragszahler zu gewinnen. Sie kritisiert, dass die CDU 'das weigert einzusehen'. Sie sieht darin eine von drei notwendigen Reformen (Rente + Zuwanderung + Wirtschaft).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Dröge nennt Fachkräften-Zuwanderung als Antwort auf die implizite Frage zur Rentenfinanzierung und positioniert sich gegen CDU-Widerstand.",
+        "concrete_statements": [
+          "Ohne Fachkräften-Zuwanderung ist dem demografischen Wandel nicht beizukommen",
+          "CDU verweigert einzusehen, dass Zuwanderung notwendig ist"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben diesen demographischen Wandel, das was sich die CDU weigert einzusehen, ist dass wir das ohne Fachkräfte Zuwanderung nicht schaffen werden.",
+            "timestamp": "00:15:15"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Fachkräftegewinnung",
+          "Migration",
+          "Arbeitskräfte"
+        ]
+      },
+      {
+        "title": "Atomausstieg und Strompreise",
+        "timestamp_range": "00:25:07 - 00:28:07",
+        "theme_description": "Dröge bestreitet, dass der Atomausstieg ursächlich für hohe Strompreise verantwortlich ist, und argumentiert, dass erneuerbare Energien günstiger sind.",
+        "question_asked": "Moderator und Kuban behaupten, dass die Grünen durch Atomausstieg Strompreise erhöht hätten; Moderator verweist auf Aussagen der Bundesnetzagentur.",
+        "question_intent": "Ob der Atomausstieg der Grünen primär für Strompreissteigerungen verantwortlich ist.",
+        "position": "Dröge behauptet, der Atomausstieg habe keinerlei Effekt auf Strompreise. Sie argumentiert, dass die Energiewende Preise günstiger macht und dass Atomenergie dreimal teurer ist als erneuerbare Energien. Sie verweist darauf, dass wirtschaftlich niemand Atomkraft weiterführen wollte. Sie liest die Bundesnetzagentur-Feststellung an, dass Atomausstieg kein Strompreis-Treiber war.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Dröge liefert eine inhaltliche Gegenposition zu Kubans Behauptung (Atomausstieg = Strompreistreiber) mit Kostenvergleichen. Sie spricht jedoch die Komplexität der Netzstabilität (Kubans technisches Argument zu Kraftwerksanbindung vs. dezentralem Netz) nicht an, was die Antwort inkomplett wirken lässt.",
+        "concrete_statements": [
+          "Atomausstieg hatte keinen Effekt auf Strompreise",
+          "Erneuerbare Energien sind dreimal günstiger als Atomenergie",
+          "Energiewende macht Strompreise langfristig günstiger"
+        ],
+        "quotes": [
+          {
+            "text": "Die Energiewende macht die Preise nicht teurer, sondern günstiger. Atomenergie ist deutlich teurer als erneuerbare Energien.",
+            "timestamp": "00:25:47"
+          },
+          {
+            "text": "Ich sage dass der Atomausstieg keinerlei Effekt auf die Strompreise hatte. Darauf muss man hinweisen können.",
+            "timestamp": "00:27:33"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Strommarktdesign",
+          "Kernenergie"
+        ]
+      },
+      {
+        "title": "Energiewende und Strompreis-Kosten",
+        "timestamp_range": "00:28:00 - 00:29:53",
+        "theme_description": "Dröge und Moderator diskutieren, ob Energiewende oder Stahlindustrie-Probleme primär Strompreis-Ursachen sind; Kuban argumentiert für Gesamtkostenbetrachtung der Netzinfrastruktur.",
+        "question_asked": "Moderator lenkt ab von der Atompolitik auf die konkrete Frage: Was fordert die Stahlindustrie und warum diskutieren Grüne nicht pragmatischer?",
+        "question_intent": "Ob Grüne flexibel auf konkrete Industrie-Forderungen eingehen können.",
+        "position": "Dröge verteidigt Energiewende-Kostenargument und akzeptiert Kubans technisches Argument (dezentrale Netzinfrastruktur braucht andere Kosten) nicht explizit. Sie räumt ein, dass erneuerbare auf lange Sicht günstiger sind, lenkt aber nicht auf Kubans Gesamtkostenfrage ein. Sie kritisiert stattdessen CDU für fehlende Grüne Personen (Lanz lobt CDU 'guten Klimaman').",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Dröge beantwortet die Frage zu pragmatischer Industrie-Flexibilität nicht, sondern wiederholt Energiewende-Kostenargument. Sie ignoriert Kubans Netzinfrastruktur-Argument und kritisiert CDU stattdessen.",
+        "concrete_statements": [
+          "Erneuerbare sind langfristig günstiger",
+          "Stahlindustrie braucht Unterstützung bei Strompreisen"
+        ],
+        "quotes": [],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "CDU-Untätigkeit bei Klimaschutz statt Gesamtkostendiskussion",
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Strommarktdesign",
+          "Industriepolitik"
+        ]
+      },
+      {
+        "title": "Britta Haßelmann und Trump-Politik",
+        "timestamp_range": "00:31:57 - 00:32:22",
+        "theme_description": "Dröge richtet eine Missquotation von Tilamn Kuban bezüglich ihrer Kollegin Britta Haßelmann.",
+        "question_asked": "Kuban erwähnt, dass 'Britta Haßelmann' Trump kritisieren wollte, was Dröge als unklug kritisiert.",
+        "question_intent": "Dröge stellt klar, was Haßelmann wirklich gesagt hat.",
+        "position": "Dröge korrigiert Kuban: Haßelmann habe nicht Trump kritisiert, sondern Friedrich Merz 'angemerkt, dass er bei einer Konferenz nicht da war.' Sie stellt damit die sachliche Akkuratheit wieder her.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Dröge adressiert die Missquotation direkt und liefert die korrekte Darstellung von Haßelmanns Aussage.",
+        "concrete_statements": [
+          "Britta Haßelmann hat Friedrich Merz kritisiert, nicht Trump"
+        ],
+        "quotes": [
+          {
+            "text": "Da sie meine Kollegin falsch zitiert haben, möchte ich das richtig stellen. Britta Haßelmann hatte Friedrich Merz angemerkt, dass er bei einer Konferenz nicht da war.",
+            "timestamp": "00:32:22"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitskonferenzen"
+        ]
+      },
+      {
+        "title": "Stahlindustrie und Industriestrompreis",
+        "timestamp_range": "00:32:22 - 00:34:26",
+        "theme_description": "Dröge kritisiert die fehlende Unterstützung der Stahlindustrie durch konkrete Maßnahmen wie Industriestrompreise und verweist auf regionale Disparitäten.",
+        "question_asked": "Moderator fragt konkret, wie die Stahlindustrie vor Abwanderung bewahrt werden kann, und nennt Forderungen nach Industriestrompreis und Brückenstrompreis.",
+        "question_intent": "Welche konkreten politischen Maßnahmen die Grünen zur Stabilisierung der Stahlindustrie vorschlagen.",
+        "position": "Dröge äußert sich unklar: Sie widerspricht Kubans These, dass die Energiewende die Stahlindustrie schadet, führt dann aber ein regionales Stromnetz-Problem ein (zwei Strompreise Nord/Süd nach Söder-Kretschmann-Proposal) und kritisiert Söder, dass dieser seine Bayern-Energiepolitik verschleiere. Sie argumentiert nicht auf die konkrete Frage zu Industriestrompreis ein.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Dröge adressiert nicht direkt die Frage nach Industriestrompreis, sondern lenkt auf regionalpolitische Kritik an Söder/CSU ab. Sie unterläuft damit die sachliche Debatte zu Stahlindustrie-Rettung.",
+        "concrete_statements": [
+          "Zwei-Strompreis-Modell Nord/Süd würde Industrie aus dem Süden in den Norden treiben",
+          "Söder verdeckt durch Energiepolitik Schaden am Industriestandort Bayern"
+        ],
+        "quotes": [
+          {
+            "text": "das Problem ist der Süden Deutschlands, lassen Sie mich mal aus was Schleswig-Holstein und Niedersachsen vorschlagen, zwei Strompreise zu machen, das würde dazu führen dass die Industrie aus dem Süden in den Norden kommen müsste.",
+            "timestamp": "00:32:47"
+          }
+        ],
+        "answer_type": "themenwechsel",
+        "deflection_target": "Söder und CSU-Energiepolitik",
+        "related_bundestag_topics": [
+          "Stahlindustrie",
+          "Strommarktdesign",
+          "Industriepolitik"
+        ]
+      },
+      {
+        "title": "Friedrich Merz' Abwesenheit von Münchner Sicherheitskonferenz",
+        "timestamp_range": "00:32:22 - 00:32:54",
+        "theme_description": "Dröge kritisiert indirekt, dass Friedrich Merz nicht zur Münchner Sicherheitskonferenz gefahren ist, während Kollegen auf seine Fehlleistung hinwiesen.",
+        "question_asked": "Moderator fragt, ob Merz vielleicht deswegen in Berlin geblieben ist, weil 'die Hütte brennt' (Anspielung auf Krise in Deutschland).",
+        "question_intent": "Ob Merz' Fehlen eine Prioritätsfehlleistung oder richtige Entscheidung angesichts von Krisen in Deutschland war.",
+        "position": "Dröge argumentiert, dass ein Bundeskanzler 'beides schaffen kann' (Generaldebatte im Bundestag und Münchner Konferenz). Sie führt an, dass frühere Kanzler immer zur Generaldebatte gefahren seien und dass auch beim Kohleausstieg die Netze hätten renoviert werden können. Sie kritisiert Merz implizit dafür, dass er nicht zum Standardprogramm eines Kanzlers eintritt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Dröge antwortet direkt auf die Frage, ob Merz zu Hause bleiben sollte, mit klarer Position: Ein Kanzler kann beide Aufgaben erfüllen. Sie liefert historische Beispiele und Parallelen.",
+        "concrete_statements": [
+          "Ein Bundeskanzler sollte sowohl zur Generaldebatte im Bundestag als auch zur Münchner Konferenz gehen",
+          "Frühere Kanzler sind immer zur Generaldebatte gefahren",
+          "Es ist kein kluges Zeichen, bei der Generaldebatte zu fehlen"
+        ],
+        "quotes": [
+          {
+            "text": "Nein ich glaube, dass ein Bundeskanzler beides schaffen kann. Wir haben Friedrich Merz auch gesagt, wir hätten die Debatte auch verschieben können. Kanzler vor ihnen sind immer zur Generaldebatte gefahren. Es kein kluges Zeichen, dort zu fehlen.",
+            "timestamp": "00:32:54"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Bundestag",
+          "Außenpolitik",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Klimaschutz und Verbrenner-Ausstieg",
+        "timestamp_range": "00:35:45 - 00:44:11",
+        "theme_description": "Dröge kritisiert CDU-Positionen zum Verbrenner-Ausstieg und zur Elektromobilität, behauptet, deutsche Hersteller hätten durch die Debatte den Anschluss verloren.",
+        "question_asked": "Moderator und Kuban argumentieren, dass strikte Klimaziele zu Deindustrialisierung führen könnten und dass Verbote (wie Verbrenner-Aus) kontraproduktiv sind; China erreiche E-Auto-Quote ohne Verbot.",
+        "question_intent": "Ob die Grünen bei ihrem strikten Verbrenner-Aus-Ziel bleiben oder pragmatischer werden würden, und wie Klimaschutz mit Industrieerhalt vereinbar ist.",
+        "position": "Dröge behauptet, VW selbst habe E-Auto-Strategie entschieden. Sie zitiert Audi-Chef, dass die Verbrenner-Debatte 'dem Industriestandort Deutschland schadet'. Sie argumentiert, dass deutsche Hersteller durch zu langsames Tempo bei Elektromobilität den Anschluss zu China verloren hätten. Sie fordert schnelleres Tempo und nennt konkrete Maßnahmen (Strompreise senken), was die CDU nicht getan habe. Sie akzeptiert Kubans Vorschlag zu 90 %-Flotten-Elektrifizierung 2035 auf europäischer Ebene.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Dröge beantwortet die Frage zu Verbrenner-Aus nicht direkt (keine Ja/Nein-Position), sondern argumentiert, dass deutsche Verzögerung schaden angerichtet habe. Sie nennt konkrete Maßnahmen (Strompreise) als Alternative zu Verboten, bleibt aber bei Kritik an CDU stecken statt die Verbrenner-Frage selbst zu klären.",
+        "concrete_statements": [
+          "Deutsche Hersteller haben durch zu langsame Elektromobilität Anschluss zu China verloren",
+          "Strompreise müssen gesenkt werden für kleine Elektroautos",
+          "IG Metall fordert schnelleres Tempo bei Elektromobilität",
+          "Auf europäischer Ebene gibt es Einigung auf 90 %-Flotte bis 2035"
+        ],
+        "quotes": [
+          {
+            "text": "VW alleine hat das entschieden wenn wir über das Verbrenner aus diskutieren, kann ich nur den Chef von Audi zitieren, die Diskussion alleine wird dem Industriestandort Deutschland schaden.",
+            "timestamp": "00:39:55"
+          },
+          {
+            "text": "wenn wir uns China anschauen, hat China einen deutlich höheren Anteil an Elektroautos die Diskussion die wir geführt hatten, hat dazu geführt, dass die deutschen Hersteller den Anschluss verpasst haben.",
+            "timestamp": "00:41:12"
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "CDU-Verzögerung bei Klimaschutz statt Verbrenner-Ausstieg selbst zu verteidigen",
+        "evasion_note": "Dröge beantwortet nicht die zentrale Frage, ob Grüne beim Verbrenner-Aus bleiben, sondern kritisiert CDU-Untätigkeit.",
+        "related_bundestag_topics": [
+          "Elektromobilität",
+          "Klimaschutz",
+          "Automobilindustrie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Friedrich Merz' Regierung hat keine Angst vor Sozialabbau",
+        "timestamp": "00:07:52"
+      },
+      {
+        "claim": "Die Stahlindustrie leidet darunter (unter hohen Strompreisen)",
+        "timestamp": "00:19:01"
+      },
+      {
+        "claim": "Atomenergie ist dreimal teurer als erneuerbare Energien",
+        "timestamp": "00:28:00"
+      },
+      {
+        "claim": "Der Atomausstieg hatte keinen Effekt auf die Strompreise",
+        "timestamp": "00:27:33"
+      },
+      {
+        "claim": "China hat einen deutlich höheren Anteil an Elektroautos als Deutschland",
+        "timestamp": "00:41:12"
+      },
+      {
+        "claim": "Frühere Bundeskanzler sind immer zur Generaldebatte gefahren",
+        "timestamp": "00:32:54"
+      },
+      {
+        "claim": "IG Metall hat schon gesagt, wir müssen Tempo machen (bei Elektromobilität)",
+        "timestamp": "00:41:12"
+      }
+    ]
+  }
+}

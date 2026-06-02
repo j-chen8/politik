@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-dezember-2024-100",
+    "video_id": "lanz-2024-12-10",
+    "politician": "Alexander Throm",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "7716201fd3297669",
+    "transcript_chars": 55123,
+    "caption_lines": 2802,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22345,
+    "tokens_out": 7016,
+    "cost_usd": 0.022969999999999997,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 4
+    },
+    "generated_at": "2026-06-02T16:33:29.257Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Alexander Throm (CDU/CSU, innenpolitischer Sprecher) argumentiert in der Debatte um syrische Flüchtlinge und die Sturz Assads, dass die berechtigte Fluchtgrundlage (das Assad-Regime) weggefallen ist und deshalb eine sachliche Neubewertung von Asylstatus und möglichen Rückführungen notwendig ist. Er betont dabei, dass dies keine Wahlkampfausrede ist, sondern eine legitime strukturelle Debatte, die seit Jahren geführt wird.",
+    "themes": [
+      {
+        "title": "Differenzierung zwischen Rückkehr und Abschiebung",
+        "timestamp_range": "00:36:22 - 00:40:51",
+        "theme_description": "Throm wird von Steffi Lemke kritisiert, dass er (zusammen mit anderen CDU-Politikern wie Jens Spahn) bereits 24 Stunden nach Assads Sturz von Rückkehr und Abschiebung gesprochen hat. Throm präzisiert, dass er von freiwilliger Rückkehr spricht, nicht Zwangsabschiebung.",
+        "question_asked": "Steffi Lemke kritisiert, dass die CDU/Throm zu schnell nach Assads Sturz über Rückkehr und Abschiebung gesprochen haben, ohne die humanitäre Situation zu bedenken. Sie stellt die Frage, ob Throm tatsächlich sofortige Abschiebungen fordert.",
+        "question_intent": "Lemke möchte wissen, ob die CDU-Position in Abschiebungen mündet oder ob es um freiwillige Rückkehr geht.",
+        "position": "Throm betont, dass er von 'freiwillige Heimreise und Rückkehr' spricht, nicht von Abschiebung ('Von Abschiebung habe ich in dieser konkreten Situation nicht gesprochen'). Er unterteilt die Syrer in verschiedene Gruppen: einige haben Flüchtlingsstatus (wegen Assad), andere haben Niederlassungserlaubnis (gut integriert) und sollten bleiben. Die diskutierte Gruppe sind jene mit befristetem Schutz, deren Fluchtgrund entfallen ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Throm beantwortet die Kritik präzise und vollständig: Er differenziert zwischen freiwilliger Rückkehr und Abschiebung, zwischen verschiedenen Statusgruppen, und erklärt, dass er nicht alle Syrer abschieben will. Dies ist sachlich und direkt.",
+        "quotes": [
+          {
+            "text": "Genau deshalb müssen wir differenzieren, das habe ich auch getan in meinen Stellungnahmen. Ich habe auch jetzt gerade von Rückkehr gesprochen, insbesondere freiwillige Heimreise und Rückkehr. Von Abschiebung habe ich in dieser konkreten Situation nicht gesprochen.",
+            "timestamp": "00:36:22",
+            "context": "Antwort auf Lemkes Kritik, dass die CDU zu schnell von Rückführung und Abschiebung gesprochen hat"
+          },
+          {
+            "text": "Seit zwei Tagen werde ich nur noch mit dem bestintegrierten konfrontiert. Die haben meistens eine Niederlassungserlaubnis, die haben keine Flüchtlingsstatus mehr. Von denen sprechen wir nicht.",
+            "timestamp": "00:40:51",
+            "context": "Klarstellung, welche Syrer nicht betroffen sind"
+          }
+        ],
+        "concrete_statements": [
+          "Throm spricht von freiwilliger Heimreise, nicht Abschiebung",
+          "Gut integrierte Syrer mit Niederlassungserlaubnis sind nicht Zielgruppe der Debatte",
+          "Eine Differenzierung nach Schutzgrund und Integrationsstatus ist notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Asylrecht und Statusgruppen",
+          "Freiwillige Rückkehr von Flüchtlingen",
+          "Integration von Migranten"
+        ]
+      },
+      {
+        "title": "Legitime innenpolitische Diskussion zu Syrien und Migration",
+        "timestamp_range": "00:37:26 - 00:45:31",
+        "theme_description": "Throm argumentiert zu Beginn, dass es legitim ist, über die Situation Syriens und die Frage von Rückkehr jetzt innenpolitisch zu diskutieren, und nicht, wie ihm unterstellt wird, dass er Wahlkampf mit dem Leid der Syrer betreibt.",
+        "question_asked": "Die Moderatoren (mit Bezug auf Nikolaus Blome) stellen dar, dass Throm kritisiert, dass die Bevölkerung in Kriegs- und Flüchtlingsfragen (Ukraine, Gaza, Syrien) nicht mit Wahlkampf belastet werden soll. Sie fragen, was das für den deutschen Diskurs aussagt.",
+        "question_intent": "Was sagt es aus, dass die CDU/Throm jetzt Syrien und Migration als Wahlkampfthema nutzen, während sie gleichzeitig andere Krisenthemen aus dem Wahlkampf heraushalten möchte?",
+        "position": "Throm argumentiert, dass es 'total daneben' ist, wenn nur über einige Konflikte (Ukraine, Gaza) nicht im Wahlkampf gesprochen werden soll, Syrien aber auch nicht. Die Bevölkerung hat ein 'berechtigtes Interesse' daran, dass Syrien und Migration jetzt und genau in dieser Situation diskutiert werden. Er sagt: 'Der Krieg in der Ukraine und in Gaza soll bitte nicht im Wahlkampf zum Thema gemacht werden, Syrien auch nicht, dabei hat die Bevölkerung ein berechtigtes Interesse daran, dass genau das und genau jetzt verhandelt wird.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Throm beantwortet die Frage direkt und substantiell: Er sagt, dass es heuchlerisch wäre, die Bevölkerung von der Diskussion über Syrien abzuschneiden, wenn sie andere internationale Krisen ohnehin diskutiert. Dies ist eine klare, kohärente Position.",
+        "quotes": [
+          {
+            "text": "Es ist einfach total daneben, wie wir diskutieren: Der Krieg in der Ukraine und in Gaza soll bitte nicht im Wahlkampf zum Thema gemacht werden, Syrien auch nicht, dabei hat die Bevölkerung ein berechtigtes Interesse daran, dass genau das und genau jetzt verhandelt wird.",
+            "timestamp": "00:37:26",
+            "context": "Eingangsstatement des Moderators, in dem Throm zitiert wird; erste Aussage von Throm in der Sendung"
+          }
+        ],
+        "concrete_statements": [
+          "Es ist legitim, Syrien und Migration im Wahlkampf zu diskutieren",
+          "Die Bevölkerung hat ein berechtigtes Interesse an dieser Diskussion",
+          "Es wäre inkonsistent, Syrien aus dem Wahlkampf herauszuhalten, wenn andere Konflikte diskutiert werden"
+        ],
+        "related_bundestag_topics": [
+          "Demokratischer Diskurs und Wahlkampf",
+          "Migration und Asylpolitik",
+          "Außenpolitik und innenpolitische Debatten"
+        ]
+      },
+      {
+        "title": "Fluchtgrund Assad-Regime ist weggefallen",
+        "timestamp_range": "00:40:14 - 00:40:51",
+        "theme_description": "Alexander Throm argumentiert, dass das zentrale Fluchtschutzgrund – das Assad-Regime – durch dessen Sturz entfallen ist und daher eine Neubewertung von knapp 1 Million syrischer Flüchtlinge in Deutschland notwendig wird.",
+        "question_asked": "Daniel Gerlach widerspreitet Throm und sagt, dass noch Krieg in Syrien herrsche, weshalb das Asylverfahren nicht automatisch enden könne. Die Moderatoren und Gäste stellen die Frage, ob es berechtigt oder verfrüht ist, so schnell über Rückführungen zu sprechen.",
+        "question_intent": "Die Diskutanten wollen wissen, ob Throms Position, den Fluchtgrund als weggefallen zu sehen, rechtlich und moralisch haltbar ist, oder ob dies zu früh und zu unsensibel gegenüber den syrischen Flüchtlingen ist.",
+        "position": "Throm behauptet, dass knapp 1 Million syrische Flüchtlinge in Deutschland überwiegend wegen des Assad-Regimes Flüchtlingsschutz erhalten haben. Der ursprüngliche Grund – die politische Verfolgung unter Assad – ist durch seinen Sturz entfallen. Dies bedeutet nicht automatisch Abschiebung, sondern eine notwendige Neubewertung der Schutzstatus. Er sagt ausdrücklich: 'Der Grund, warum sie einen Flüchtlingsstatus erhalten haben, der ist weggefallen. Darum muss man darüber nachdenken.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Throm antwortet auf die Kritik, dass er Rückführungen fordert, mit der Klarstellung, dass der Fluchtgrund weggefallen ist. Er adressiert aber nicht vollständig die Gegenargumente, dass in Teilen Syriens weiterhin Krieg herrscht und dass die rechtlichen Rahmenbedingungen komplexer sind.",
+        "quotes": [
+          {
+            "text": "Aber das widerspricht ja nicht dem, was ich gesagt habe. Knapp 1 Million syrische Flüchtlinge sind in Deutschland angekommen, überwiegend haben sie Flüchtlingsschutz erhalten. Wegen dem Assad Regime, und das fällt jetzt weg. Der Grund, warum sie einen Flüchtlingsstatus erhalten haben, der ist weggefallen. Darum muss man darüber nachdenken.",
+            "timestamp": "00:40:14",
+            "context": "Als Reaktion auf Daniel Gerlach, der argumentiert, dass in Syrien noch Krieg herrsche."
+          }
+        ],
+        "concrete_statements": [
+          "Das zentrale Fluchtschutzgrund ist das Assad-Regime",
+          "Der Fluchtgrund ist weggefallen",
+          "Eine Neubewertung der Schutzstatus ist notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Asylrecht und Flüchtlingsschutz",
+          "Syrische Flüchtlinge in Deutschland",
+          "Fluchtursachen und Rückkehr"
+        ]
+      },
+      {
+        "title": "Neubewertung Asylverfahren und BAMF-Prüfungen",
+        "timestamp_range": "00:51:02 - 01:00:32",
+        "theme_description": "Throm führt auf, dass das BAMF Asylverfahren neu prüfen und auch bereits gewährte Schutzstatus überprüfen muss, da die Schutzgründe (Verfolgung unter Assad, Bürgerkrieg) teilweise entfallen sind.",
+        "question_asked": "Steffi Lemke stellt dar, dass ein Satz von Throm lautete, das BAMF solle nicht nur Asylprüfungen auf Eis legen, sondern auch den Widerruf bereits gewährter Schutzstatus vorbereiten. Sie fragt, ob das nicht zu hart ist.",
+        "question_intent": "Lemke möchte wissen, ob Throm tatsächlich fordert, dass bereits anerkannte Schutzstatus von Syrern wieder entzogen werden sollen.",
+        "position": "Throm präzisiert, dass das BAMF die bereits gewährten Schutzstatus überprüfen muss ('Neubewertung'), da der ursprüngliche Fluchtgrund (Assad-Regime und Bürgerkrieg) weggefallen ist. Er betont, dass dies eine Neubewertung auf Grundlage geänderter Lage ist, nicht automatische Ablehnung. Er sagt: 'Der bisherige Grund, warum der Schutztitel bisher erlassen wurde, ist durch die Veränderung in Syrien weggefallen. Deswegen muss es Prüfungen geben.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Throm erklärt seine Position zur BAMF-Überprüfung, adressiert aber nicht vollständig die praktischen und humanitären Bedenken von Lemke, dass Widerrufe schnell zu Abschiebungen führen könnten, auch wenn Syrien noch nicht vollständig sicher ist.",
+        "quotes": [
+          {
+            "text": "Der bisherige Grund, warum der Schutztitel bisher erlassen wurde, ist durch die Veränderung in Syrien weggefallen. Deswegen muss es Prüfungen geben. Die Ampel hat das abgeschafft. Jetzt muss es Neuprüfungen geben.",
+            "timestamp": "00:51:02",
+            "context": "Erklärung der Position zum BAMF-Vorgehen bei Schutzstatus-Überprüfung"
+          }
+        ],
+        "concrete_statements": [
+          "Das BAMF muss die Schutzstatus von Syrern überprüfen",
+          "Die Ampel hat Neuprüfungen abgeschafft",
+          "Neuprüfungen sind jetzt notwendig",
+          "Dies ist eine sachliche Anpassung an geänderte Lage, nicht automatische Abschiebung"
+        ],
+        "related_bundestag_topics": [
+          "BAMF-Verwaltungspraxis",
+          "Asylrecht und Schutzstatus",
+          "Rückkehr von Flüchtlingen"
+        ]
+      },
+      {
+        "title": "Wahlkampf versus sachliche Migrationspolitik",
+        "timestamp_range": "00:56:40 - 01:00:32",
+        "theme_description": "Throm wird von Daniel Gerlach vorgeworfen, dass die CDU aus Glaubwürdigkeitsgründen nicht plötzlich die Syrer-Thematik instrumentalisiert, nachdem sie als Regierungspartei jahrelang nicht entschieden gegen Migration vorgegangen ist. Throm kontert, dass die Ampel einen Paradigmenwechsel versprochen und nicht umgesetzt hat und dass die aktuelle Debatte nichts mit Wahlkampf zu tun hat.",
+        "question_asked": "Daniel Gerlach kritisiert, dass Throm und die CDU jetzt plötzlich über Rückführung sprechen, obwohl die CDU-geführte Bundesregierung (Merkel) über zehn Jahre nicht das Signal gesetzt hat, dass Menschen nicht nach Deutschland kommen sollten. Er fragt, ob das nicht ein Glaubwürdigkeitsproblem ist.",
+        "question_intent": "Gerlach möchte wissen, ob es nicht heuchlerisch ist, dass die CDU jetzt (im Wahlkampf) plötzlich restriktiv gegenüber syrischen Flüchtlingen wirkt, nachdem sie selbst Jahre der Migration zugelassen hat.",
+        "position": "Throm bestreitet, dass dies Wahlkampf ist, und verweist darauf, dass die Union bereits seit Jahren strukturelle Migrationskritik geübt hat. Er sagt, dass die Ampel 'genau das Gegenteil' eines Paradigmenwechsels getan hat, obwohl sie diesen versprochen hat. Die Debatte über Ordnung und Struktur ist legitim und nicht neu – sie war jahrelang notwendig. Er argumentiert: 'Das jetzt Wahlkampf ist, das hat gar nichts damit zu tun. Wir hatten über 300.000 Asylanträge bis zum heutigen Tag.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Throm beantwortet die Frage nach Glaubwürdigkeit mit einer Gegenposition (Kritik an der Ampel), adressiert aber nicht wirklich, warum die CDU unter Merkel nicht ähnlich hart vorgegangen ist. Er weicht teilweise aus, indem er die Ampel kritisiert, statt sich direkt zum Merkel-Erbe zu äußern.",
+        "quotes": [
+          {
+            "text": "Das jetzt Wahlkampf ist, das hat gar nichts damit zu tun. Wir hatten über 300.000 Asylanträge bis zum heutigen Tag. Und jetzt schieben wir uns gegenseitig den schwarzen Peter zu, und Hammer strukturell nicht angefasst. Aber jetzt wissen wir, was zu tun ist.",
+            "timestamp": "00:58:44",
+            "context": "Antwort auf Gerlachs Kritik zur Glaubwürdigkeit der CDU-Migration spolitik"
+          }
+        ],
+        "concrete_statements": [
+          "Die Ampel hat einen Paradigmenwechsel versprochen, aber nicht umgesetzt",
+          "300.000 Asylanträge seit Amtsantritt der Ampel (immer weitere dazugekommen)",
+          "Strukturelle Lösungen sind notwendig, nicht nur Schuldvorwürfe",
+          "Die aktuelle Debatte ist nicht wahlkampfgetrieben"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik und Asylrecht",
+          "Regierungsbilanz SPD-Grüne-FDP",
+          "CDU-Positionierung zu Migration"
+        ]
+      },
+      {
+        "title": "Ordnung und Struktur in der Migrationspolitik",
+        "timestamp_range": "00:58:44 - 01:00:32",
+        "theme_description": "Throm argumentiert, dass es nicht um Abschiebung oder Unfreundlichkeit geht, sondern um Ordnung und Struktur: klare Regeln, wer Schutz erhält und warum, damit nicht nur restriktive Parteien (AfD/BSW) von Migrations-Chaos profitieren.",
+        "question_asked": "Der Moderator und andere Gäste fragen, ob die CDU Ordnung schaffen kann oder ob es nur ein Wahlkampfthema ist. Gerald Knaus (Migrations-Experte) warnt vor leeren Versprechungen.",
+        "question_intent": "Können die demokratischen Parteien strukturell Ordnung in der Migrationspolitik herstellen, oder ist es nur Wahlkampfrhetorik?",
+        "position": "Throm argumentiert, dass sowohl Ordnung als auch Humanität notwendig sind ('Wir wollen Humanität und Ordnung'). Ordnung bedeutet, dass wenn sich die Lage im Herkunftsland ändert, die Verfahren neu bewertet werden. Der Fehler der bisherigen Politik war, dass man 'strukturell nicht angefasst' hat – weder restriktive noch lockere Politik. Jetzt müssen konkrete Maßnahmen folgen: Reduzierung des Zugangs, klare Kommunikation, dass es keine zweite Flüchtlingswelle gibt. Er sagt: 'Wenn wir das dann aber tun wollen, und das entsprechend thematisieren, dass wir strukturell reingehen und sagen, wir wollen Ordnung schaffen, in dem Fall, wenn in Syrien, der ursprüngliche Fluchtgrund weggefallen ist, dann ist das Teil etwas zu tun.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Throm antwortet mit einer kohärenten Position: Ordnung und Humanität sind zwei Seiten derselben Politik. Er beantwortet direkt, was er unter Ordnung versteht, und wie das konkret aussieht (Grenzmanagement, Verfahrensprüfung, Kommunikation).",
+        "quotes": [
+          {
+            "text": "Wir wollen Humanität und Ordnung. Ordnung heißt, dass wenn sich die Lage im Herkunftsland ändert ... dass erneut überprüft wird.",
+            "timestamp": "00:53:06",
+            "context": "Antwort auf Lemkes Kritik; Erklärung des Ordnungsbegriffs"
+          },
+          {
+            "text": "Wenn wir das dann aber tun wollen, und das entsprechend thematisieren, dass wir strukturell reingehen und sagen, wir wollen Ordnung schaffen, in dem Fall, wenn in Syrien, der ursprüngliche Fluchtgrund weggefallen ist, dann ist das Teil etwas zu tun.",
+            "timestamp": "00:58:44",
+            "context": "Zusammenfassung der Position zu struktureller Migrationspolitik"
+          }
+        ],
+        "concrete_statements": [
+          "Ordnung und Humanität sind gleich wichtig",
+          "Verfahren müssen neu bewertet werden, wenn sich Lage ändert",
+          "Zugang muss reduziert werden (unter 200.000 pro Jahr)",
+          "Klare Kommunikation ist notwendig, um neue Flüchtlingswelle zu verhindern",
+          "Strukturelle Reformen sind notwendig, nicht nur Schuldvorwürfe"
+        ],
+        "related_bundestag_topics": [
+          "Grenzmanagement und Migrationskontrolle",
+          "Asylverfahren und BAMF-Praxis",
+          "Strukturelle Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Koalitionsfähigkeit und Positionierung",
+        "timestamp_range": "01:13:46 - 01:15:43",
+        "theme_description": "Am Ende der Debatte wird Throm zu möglichen Koalitionspartnern und zur Positionierung der Union gefragt. Er betont, dass die CDU unter Friedrich Merz stärker werden will und zur Migrationsfrage wenig Spielraum mit Grünen/SPD sieht.",
+        "question_asked": "Nikolaus Blome fragt, ob Throm (im Namen der CDU) möchte, dass Friedrich Merz die Migrationszahlen auf dem Merkel-Niveau erreicht. Er fragt auch, ob die CDU eine Koalition mit Grünen ausschließt.",
+        "question_intent": "Wie stark möchte die CDU Migration reduzieren, und mit wem könnte sie regieren?",
+        "position": "Throm weicht der direkten Merkel-Vergleich aus, sagt aber, dass die Zahlen 'deutlich runter' müssen – unter die bekannten 200.000 pro Jahr. Er betont, dass die CDU 'so stark wie möglich' werden wird und dann Koalitionspartner braucht. Zur Koalitionsfrage: Eine Koalition mit Grünen schließt er nicht aus, aber bei Migration sind die Grünen 'uns mit am weitesten entfernt'. Das Signal ist: Die CDU könnte mit den Grünen regieren, aber sie setzt bei Migration auf Druck und Position-Differenzierung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Throm beantwortet die Frage nach Koalitionsfähigkeit ausweichend (sagt, er könne nichts ausschließen, will aber 'so stark wie möglich' werden). Die Merkel-Vergleich wird nicht direkt beantwortet, sondern mit 'deutlich runter' ausgewichen. Dies ist ein klassisches Muster von Wahlkampfrhetorik.",
+        "quotes": [
+          {
+            "text": "Ich würde sagen, wir kämpfen so stark, dass wir es nicht nötig haben. Schließen Sie eine Koalition mit den Grünen aus? Ich kann überhaupt nichts ausschließen. Ich kann nur eins sagen, in der Migrationspolitik sind die Grünen uns mit am weitesten entfernt.",
+            "timestamp": "01:15:43",
+            "context": "Fragen zur Koalitionsfähigkeit und Positionierung"
+          }
+        ],
+        "concrete_statements": [
+          "Die Migrationszahlen müssen deutlich runter",
+          "Die CDU strebt an, so stark wie möglich zu werden",
+          "Eine Koalition mit Grünen ist nicht ausgeschlossen",
+          "Bei Migrationspolitik sind die Grünen der größte Gegenpol"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen und Regierungsbildung",
+          "Migrationspolitik und Parteiendifferenzen",
+          "CDU-Positionierung im Wahlkampf"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Knapp 1 Million syrische Flüchtlinge sind in Deutschland angekommen",
+        "timestamp": "00:40:14"
+      },
+      {
+        "claim": "Überwiegend haben die syrischen Flüchtlinge Flüchtlingsschutz erhalten wegen dem Assad Regime",
+        "timestamp": "00:40:14"
+      },
+      {
+        "claim": "Wir hatten über 300.000 Asylanträge bis zum heutigen Tag",
+        "timestamp": "00:58:44"
+      },
+      {
+        "claim": "Die Ampel hat einen Paradigmenwechsel versprochen",
+        "timestamp": "00:58:44"
+      },
+      {
+        "claim": "In elf Monaten gab es 73.000 Erstanträge aus Syrien",
+        "timestamp": "00:45:31"
+      }
+    ]
+  }
+}

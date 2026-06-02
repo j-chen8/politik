@@ -1,0 +1,399 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-12-maerz-2025-100",
+    "video_id": "lanz-2025-03-12",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "5a71c5efb8596757",
+    "transcript_chars": 33611,
+    "caption_lines": 1722,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15740,
+    "tokens_out": 9112,
+    "cost_usd": 0.02452,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.094Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter (CDU/CSU, MdB) diskutiert in dieser Markus-Lanz-Sendung Themen rund um die Koalitionsverhandlungen der Union mit SPD und Grünen, Verteidigungsausgaben, Infrastruktur-Investitionen und Sicherheitspolitik. Er wirkt sachlich und kompetent, argumentiert mit Verweis auf seine Außenpolitik- und Verteidigungserfahrung, positioniert sich aber auch kritisch zu Kommunikationsmängeln der Unionsspitze und tritt für deutlichere Investitionen in Verteidigung ein.",
+    "themes": [
+      {
+        "title": "SPD-Durchsetzung in Koalitionsverhandlungen",
+        "timestamp_range": "00:03:46 - 00:04:24",
+        "theme_description": "Frage, ob und inwiefern die SPD in den laufenden Koalitionsverhandlungen alle ihre Forderungen durchgesetzt hat.",
+        "question_asked": "Moderator Lanz fragt: Hat die SPD und/oder die CSU (Söder) alles durchbekommen in den Koalitionsverhandlungen?",
+        "question_intent": "Moderator möchte verstehen, wer die Koalitionsverhandlungen dominiert und ob eine Partei unverhältnismäßig große Gewinne erzielt hat.",
+        "position": "Kiesewetter widerspricht der These, dass die SPD alles durchgesetzt hat. Er betont, dass die Priorität darin liegen muss, schnell eine funktionsfähige Regierung zu bilden, statt einzelne Verhandlungsergebnisse zu bewerten. Er argumentiert, dass Merz selbst entschieden habe, mehr Geld in die Hand zu nehmen, und dass damit verbundene höhere Infrastruktur-Kosten logische Konsequenzen seien.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Kernfrage (hat SPD alles durchgesetzt?) mit einer klaren Negation. Er verweigert sich aber einer tieferen Diskussion des Verhandlungsergebnisses und lenkt auf die Notwendigkeit einer funktionsfähigen Regierung um. Das adressiert die Frage teilweise, weicht aber auf ein höheres (Staats-)Interesse aus.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich glaube nicht, dass die SPD alles durch bekommen hat.",
+          "Das entscheidende ist, dass wir so schnell wie möglich eine funktionsfähige Regierung brauchen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube nicht, dass die SPD alles durch bekommen hat.",
+            "timestamp": "00:03:46",
+            "context": "Antwort auf Frage, ob SPD alles in Koalitionsverhandlungen durchgesetzt hat."
+          },
+          {
+            "text": "Das entscheidende ist, dass wir so schnell wie möglich eine funktionsfähige Regierung brauchen.",
+            "timestamp": "00:04:10",
+            "context": "Ausweichmanöver zur Priorisierung der Regierungsfähigkeit über Detailfragen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen 2025",
+          "Haushaltspolitik",
+          "Regierungsbildung"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Verteidigungsausgaben",
+        "timestamp_range": "00:04:24 - 00:08:12",
+        "theme_description": "Diskussion über die Rolle der Schuldenbremse bei der Festlegung von Verteidigungsausgaben und die mangelnde Vorbereitung der Öffentlichkeit.",
+        "question_asked": "Moderator fragt: Warum wurde Friedrich Merz im Wahlkampf nicht klar, dass massive Investitionen in Verteidigung nötig sind? Warum nur das Wort ‚grundsätzlich' zur Schuldenbremse?",
+        "question_intent": "Moderator möchte verstehen, warum die Union die notwendigen Mehrausgaben nicht transparenter kommuniziert hat und ob dies Wählertäuschung darstellt.",
+        "position": "Kiesewetter gesteht ein, dass die Haltung zur Schuldenbremse im Wahlkampf unklar war (nur ‚grundsätzlich'). Er argumentiert aber, dass die geostrategische Lage sich dramatisch geändert habe (Ukrainekrieg, Trump). Als Grund für die damalige Zurückhaltung nennt er Sorge vor Angst in Ostdeutschland und Eskalationsgefahr. Er bedauert, dass die notwendigen Investitionen (Luftverteidigung, Infrastruktur) nicht früher kommuniziert wurden und verweist auf Verzögerungen, die Menschenleben gekostet hätten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet vollständig auf beide Fragen: Ja, das Wort ‚grundsätzlich' war vage und die Lage hat sich verändert. Er nennt konkrete Gründe (Sorge vor Osten, Eskalationsfurcht) und bewertet die Verzögerung als schädlich. Dies adressiert die Moderator-Intention direkt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Lage hat sich auch dramatisch geändert.",
+          "Man hätte das früher sagen müssen und die Bevölkerung darauf vorbereiten müssen.",
+          "Aus Sorge vor den Menschen im Osten [wurde es nicht gesagt]. Aus Sorge, dass der Krieg eskalieren könnte.",
+          "Durch dieses verzögern sind Tausende Ukrainer gefallen. Und viele Zivilbürger gestorben. Weil wir gezögert haben."
+        ],
+        "quotes": [
+          {
+            "text": "Die Lage hat sich auch dramatisch geändert. aber eigentlich ist man nur grundsätzlich der Meinung.",
+            "timestamp": "00:06:06",
+            "context": "Erklärung für die vagen Äußerungen zur Schuldenbremse im Wahlkampf."
+          },
+          {
+            "text": "Aus Sorge vor den Menschen im Osten. Aus Sorge, dass der Krieg eskalieren könnte. Man hat gesagt, dass wir als Hüter der Schuldenbremse nicht vermitteln wollte, das Geld in die Hand zu nehmen.",
+            "timestamp": "00:08:18",
+            "context": "Begründung, warum Merz/Union die hohen Verteidigungsausgaben im Wahlkampf nicht kommuniziert haben."
+          },
+          {
+            "text": "Durch dieses verzögern sind Tausende Ukrainer gefallen. Und viele Zivilbürger gestorben. Weil wir gezögert haben.",
+            "timestamp": "00:08:39",
+            "context": "Bewertung der Konsequenzen der verzögerten Investitionsvergaben."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Verteidigungsetat",
+          "Ukrainehilfe",
+          "Wählertäuschung"
+        ]
+      },
+      {
+        "title": "Nicht-Mitgliedschaft im Regierungsteam / Ausstieg aus aktiver Rolle",
+        "timestamp_range": "00:06:57 - 00:07:32",
+        "theme_description": "Grund für Kiesewetters Nicht-Beteiligung an der Regierungsbildung trotz seiner Expertise.",
+        "question_asked": "Ist das der Grund (die ‚isolierte Einzelmeinung' zur Schuldenbremse), warum Sie nicht Teil des Merz-Teams sind? Sind Sie darüber enttäuscht?",
+        "question_intent": "Moderator möchte verstehen, ob Kiesewetter marginalisiert wurde oder ob er selbst sich zurückgezogen hat, und ob dies emotional für ihn relevant ist.",
+        "position": "Kiesewetter weicht aus: Er verweist darauf, dass der Moderator diese Frage an Merz stellen soll. Auf die Frage nach Enttäuschung antwortet er humorvoll mit: ‚Ich bin Opa und habe Zeit meine Enkel nächste Woche.' Er signalisiert damit, dass er sich nicht existenziell betroffen fühlt, weigert sich aber, die Frage nach möglicher Ausbootung zu beantworten.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Kiesewetter antwortet nicht substanziell auf die Frage, wer (Merz oder er selbst) für seinen Ausschluss verantwortlich ist. Stattdessen nutzt er Humor und Ausweichmanöver (‚fragen Sie Merz') und signalisiert fehlende Betroffenheit. Das lenkt von der Sachfrage ab.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Da müssen Sie Friedrich Merz fragen.",
+          "Ich bin Opa und habe Zeit meine Enkel nächste Woche.",
+          "Meine Expertise steht bereit."
+        ],
+        "quotes": [
+          {
+            "text": "Da müssen Sie Friedrich Merz fragen.",
+            "timestamp": "00:07:01",
+            "context": "Ausweichmanöver bei Frage, warum er nicht im Regierungsteam ist."
+          },
+          {
+            "text": "Ich bin Opa und habe Zeit meine Enkel nächste Woche.",
+            "timestamp": "00:07:12",
+            "context": "Humorvolle Abwehr der Frage nach Enttäuschung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Personalentscheidungen CDU/CSU",
+          "Außenpolitik und Verteidigung"
+        ]
+      },
+      {
+        "title": "Wählertäuschung bei Verteidigungsausgaben",
+        "timestamp_range": "00:07:37 - 00:08:12",
+        "theme_description": "Frage, ob die Union die Wähler bei Verteidigungsausgaben bewusst getäuscht hat.",
+        "question_asked": "Sie selbst sagen ‚Wählertäuschung'. Wie können Sie das rechtfertigen?",
+        "question_intent": "Moderator möchte Kiesewetter festlegen, ob er die Union selbst der Wählertäuschung bezichtigt.",
+        "position": "Kiesewetter nuanciert: Man könne Argumente verstehen, dass es Wählertäuschung war, aber für ihn war bereits im Wahlkampf klar, dass große Investitionen nötig sind (300 Mrd. für Verteidigung, dann 500 Mrd. für Infrastruktur). Er gibt zu, dass man die Bevölkerung hätte früher und deutlicher auf diese Zumutungen vorbereiten müssen. Sein Vorwurf zielt weniger auf bewusste Lüge als auf mangelnde Kommunikation.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter unterscheidet zwischen ‚Wählertäuschung' (die möglich ist) und ‚es war für mich klar'. Er beantwortet die Kernfrage zur Verantwortung der Union nicht direkt, sondern relativiert über seine persönliche Sicht. Dies ist eine teilweise Antwort.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Man kann Argumente verstehen, für mich war schon im Wahlkampf klar, dass Leute gesagt haben die Leute müssen sehr viel Geld in die Hand nehmen.",
+          "Man hätte das früher sagen müssen und die Bevölkerung darauf vorbereiten müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Man kann Argumente verstehen, für mich war schon im Wahlkampf klar, dass Leute gesagt haben die Leute müssen sehr viel Geld in die Hand nehmen. Mir war schon klar 300.000.000.000 war die Zahl für die Verteidigung.",
+            "timestamp": "00:07:37",
+            "context": "Antwort auf Frage nach Wählertäuschung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungsetat",
+          "Wahlkampfkommunikation",
+          "Schuldenabbau",
+          "Schuldenbremse"
+        ]
+      },
+      {
+        "title": "Grüne als Partner in Sicherheits- und Infrastrukturpolitik",
+        "timestamp_range": "00:10:37 - 00:11:09",
+        "theme_description": "Bewertung der Grünen-Position bei Verteidigung und Infrastruktur sowie Kiesewetters Einschätzung ihrer bisherigen Kritik gegenüber.",
+        "question_asked": "Moderator verweist auf Kiesewetters jahrelange Kritik an den Grünen und fragt implizit: Wie kann er jetzt plötzlich sagen, die Grünen hätten recht?",
+        "question_intent": "Moderator möchte Kiesewetter auf einen Widerspruch hinweisen zwischen seiner früheren Kritik und seiner aktuellen Bewertung der Grünen-Politik.",
+        "position": "Kiesewetter verteidigt seine Position: Die Grünen hätten sich in den Verhandlungen durchgesetzt, was er begrüßt. Er hatte bereits vor 2 Jahren gesagt, dass zivile Infrastruktur-Investitionen mit Obergrenzen notwendig sind. Jens Spahn (CSU) bestätigt öffentlich, dass Habeck früh bei Rüstung recht hatte. Kiesewetter sagt: ‚Seid nett zu den Grünen, das hätten wir schon eher sein können.' Er reinterpretiert seine frühere Kritik als legitim, räumt aber ein, dass die Grünen auf zentralen Punkten recht hatten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter adressiert den impliziten Vorwurf der Inkonsistenz, indem er erklärt, dass seine frühere Kritik nicht falsch war, aber die Grünen zu Recht auch früh zentrale Punkte (Rüstung, Infrastruktur) vertreten haben. Er differenziert zwischen berechtigter Kritik und faktischem Recht-haben.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Grünen haben sich durchgesetzt. Zivile Infrastruktur, es habe schon vor 2 Jahren gesagt. Wir brauchen nach oben hin einen Deckel. Wir können das nur begrüßen.",
+          "Seid nett zu den Grünen, das hätten wir schon eher sein können."
+        ],
+        "quotes": [
+          {
+            "text": "Die Grünen haben sich durchgesetzt. Zivile Infrastruktur, es habe schon vor 2 Jahren gesagt. Wir brauchen nach oben hin einen Deckel. Wir können das nur begrüßen.",
+            "timestamp": "00:10:37",
+            "context": "Antwort auf Kritik an Kiesewetters Einstellung gegenüber den Grünen."
+          },
+          {
+            "text": "Seid nett zu den Grünen, das hätten wir schon eher sein können.",
+            "timestamp": "00:10:37",
+            "context": "Selbstreflexion zur bisherigen Union-Haltung gegenüber den Grünen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Infrastrukturpolitik",
+          "Koalitionspartnerschaften",
+          "Grüne Partei"
+        ]
+      },
+      {
+        "title": "Infrastruktur-Investitionen und Bevölkerungsvorbereitung",
+        "timestamp_range": "00:30:36 - 00:32:05",
+        "theme_description": "Kiesewetters Position zu notwendigen Infrastruktur-Investitionen und der Erwartung von Zumutungen für die Bevölkerung.",
+        "question_asked": "Eigeninitiative: Kiesewetter möchte ‚eine Brücke bauen' zur laufenden Debatte über Infrastruktur und Koalitionsfähigkeit.",
+        "question_intent": "Kiesewetter ergreift selbst das Wort, um seine differenzierte Position zu Investitionen und ihrer notwendigen Vermittlung zu erklären.",
+        "position": "Kiesewetter unterstreicht, dass Infrastruktur-Investitionen zu Recht gefordert werden und lange überfällig sind. Er verweist auf Wolfgang Schäuble, der nie ein Fan der schwarzen Null war. Seine zentrale Sorge: Man könnte mit zu viel Geld nicht in echte Veränderung gehen. Ein früherer Fraktionsvorsitzender (nicht namentlich benannt) hätte richtig gesagt, dass die Bevölkerung Zumutungen erwartet. Kiesewetter sieht die Bevölkerung als viel weiter vorbereitet auf Veränderungen als die Politik annimmt. Dazu gehört Mut: SPD müsse über ihren Schatten springen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter gibt eine konzise, vollständig selbstinitiierte Antwort auf die Frage, wie man Infrastruktur-Investitionen verantworten kann. Er kombiniert politische Analyse (Bevölkerung ist bereit), emotionale Dimension (Mut nötig) und Kritik (SPD zu zurückhaltend).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Meine große Sorge ist, dass wir mit zu viel Geld nicht in Veränderung gehen.",
+          "Die Bevölkerung erwartet Zumutungen.",
+          "Die Bevölkerung ist viel weiter vorbereitet für Veränderungen.",
+          "Das ist etwas, wo wir mutiger sein müssen. Da muss die SPD über ihren Schatten springen."
+        ],
+        "quotes": [
+          {
+            "text": "Meine große Sorge ist, dass wir mit zu viel Geld nicht in Veränderung gehen. Ein früherer Fraktion Vorsitzender behauptete, die Bevölkerung erwartet Zumutungen. Die Bevölkerung ist viel weiter vorbereitet für Veränderungen.",
+            "timestamp": "00:31:14",
+            "context": "Selbstinitiierte Positionsdarstellung zu Infrastruktur und Reformmutigen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Infrastrukturpolitik",
+          "Haushalt",
+          "Regierungskoalition SPD-CDU/CSU",
+          "Reformpolitik"
+        ]
+      },
+      {
+        "title": "Gesellschaftsjahr und Wehrpflicht",
+        "timestamp_range": "00:32:12 - 00:34:18",
+        "theme_description": "Kiesewetters Ansatz zu verpflichtenden Diensten: Gesellschaftsjahr statt Wehrpflicht.",
+        "question_asked": "Moderator fragt: Wehrpflicht ja oder nein? Das ist eine der ‚Zumutungen', von denen Sie sprechen, oder?",
+        "question_intent": "Moderator möchte Kiesewetter festlegen: Befürwortet er wirklich Wehrdienst-Verpflichtung?",
+        "position": "Kiesewetter lehnt eine klassische Wehrpflicht ab, propagt stattdessen ein verpflichtendes Gesellschaftsjahr für alle 800.000 Geburtsjahrgang. Dieses könnte Militärdienst, Katastrophenschutz oder zivile Reserve sein. Ziel: Breitere Vorbereitung der Gesellschaft und Stärkung der zivilen Infrastruktur. Er betont, dass Tausende von Freiwilligen aus der Ukraine-Hilfe gegangen sind, weshalb man eine zivile Reserve braucht. Das ist Ausdruck einer Consensus zwischen Union und Grünen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Wehrpflicht-Frage direkt (nein), schlägt aber eine konkrete Alternative vor (Gesellschaftsjahr). Er begründet dies mit Bevölkerungserfordernissen und nennt konkrete Einsatzfelder. Das adressiert die Moderator-Intent vollständig.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Zunächst einmal müssen klarmachen, dass 800.000 Menschen eines Geburtsjahrgangs eine verpflichtende Gesellschaftsjahr leisten zu können.",
+          "Kein Militärdienst, im Katastrophenschutz. Tausende Männer sind gegangen, wir brauchen eine zivile Reserve.",
+          "Es sei Ausdruck der Union und der Grünen, dass wir neben der militärischen Reserve eine zivile aufbauen müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Zunächst einmal müssen klarmachen, dass 800.000 Menschen eines Geburtsjahrgangs eine verpflichtende Gesellschaftsjahr leisten zu können. Artikel Art. 12 A des Grundgesetzes zu ändern, dass man ein verpflichtendes Gesellschaftsjahr leisten muss.",
+            "timestamp": "00:32:12",
+            "context": "Antwort auf Frage nach Wehrpflicht ja/nein."
+          },
+          {
+            "text": "Kein Militärdienst, im Katastrophenschutz. Tausende Männer sind gegangen, wir brauchen eine zivile Reserve.",
+            "timestamp": "00:32:12",
+            "context": "Konkrete Ausfüllung des Gesellschaftsjahr-Konzepts."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Gesellschaftsjahr",
+          "Wehrhaftigkeit Deutschlands",
+          "Zivile Sicherheit"
+        ]
+      },
+      {
+        "title": "Europäische Nuklearabschreckung und NATO-Glaubwürdigkeit",
+        "timestamp_range": "00:34:22 - 00:37:21",
+        "theme_description": "Diskussion über Europas nukleares Abschreckungspotenzial, Deutschland und Frankreich-Großbritannien.",
+        "question_asked": "Braucht Deutschland eine eigene Atombombe? Wie viele Sprengköpfe braucht Europa konkret?",
+        "question_intent": "Moderator testet, ob Kiesewetter eine deutsche Nuklearrüstung befürwortet oder ob ein europäisches Arrangement reicht.",
+        "position": "Kiesewetter lehnt eine deutsche Eigenrüstung mit Atomwaffen ab, sieht aber eine europäische Lösung vor: Frankreich und Großbritannien könnten ihre Arsenal ausbauen und Sprengköpfe außerhalb ihrer Territorien positionieren (z.B. Baltikum). Das ginge über die ~500 Sprengköpfe Europas hinaus. Kern: Abschreckung muss funktionieren. Es geht darum, dass ‚Russland uns nicht erpressen kann'. Wenn die USA ihre Verlässlichkeit unter Trump verliert, ist nukleares Backup notwendig. Er verweigert sich Spekulationen über exakte Zahlen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet beide Fragen vollständig: Nein zu deutschen Atomwaffen, ja zu europäischer Abschreckung mit Französisch-Britischem Arsenal. Er begründet mit Trump-Unsicherheit und strategischer Notwendigkeit.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Nein, wir brauchen das definitiv nicht.",
+          "Europa braucht die Bomben.",
+          "Es geht darum, dass Russland uns nicht erpressen kann.",
+          "Die sind sehr unterschiedlich. Sie sind sehr klein. Das entscheidende ist, dass Russland uns nicht erpressen kann."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, wir brauchen das definitiv nicht. Es gibt 3 Möglichkeiten. Die eine ist, dass die Amerikaner sagen, daran deuteln wir nicht. Die andere Methode wäre, dass Frankreich zusammen mit Großbritannien neue Nuklearwaffen anschaffen.",
+            "timestamp": "00:34:34",
+            "context": "Antwort auf Frage nach deutscher Atombombe."
+          },
+          {
+            "text": "Das entscheidende ist, dass Russland uns nicht erpressen kann. Es sind Dutzende Sprengköpfe auf Russland gerichtet.",
+            "timestamp": "00:35:36",
+            "context": "Begründung für Abschreckungslogik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Nuklearwaffen",
+          "NATO-Strategie",
+          "Französische Nuklearstreitmacht",
+          "Europäische Sicherheit",
+          "Rüstungskontrolle"
+        ]
+      },
+      {
+        "title": "NATO-Verpflichtung und Baltikum-Verteidigung",
+        "timestamp_range": "00:38:00 - 00:41:47",
+        "theme_description": "Frage nach Deutschlands Bereitschaft, baltische NATO-Länder auch gegen Russland zu verteidigen, und dem Risiko einer Eskalation.",
+        "question_asked": "Sind Sie bereit, dass deutsche Soldaten in Estland einmarschieren, wenn eine von Russland finanzierte Separatisten-Bewegung Gebiete kontrolliert? Wären wir dazu bereit? Und: Glauben Sie ernsthaft, dass ein wirtschaftlich schwaches Russland eine echte Bedrohung ist?",
+        "question_intent": "Moderator stellt Kiesewetter vor ein militäres und logistisches Dilemma: Kann man realistische NATO-Glaubwürdigkeit im Baltikum aufrechterhalten, wenn dies zu deutschem Militäreinsatz führen könnte?",
+        "position": "Kiesewetter verteidigt die NATO-Glaubwürdigkeit uneingeschränkt: Die Freiheit Estlands muss Deutschland genauso wichtig sein wie die Freiheit von Baden-Württemberg. Er argumentiert mit Abschreckung: Wenn diese funktioniert, braucht es keinen Krieg. Die Verlässlichkeit unter Trump ist fragwürdig (Trump könnte NATO-Austritte drohen); daher ist europäische Rüstung notwendig. Kiesewetter widerspricht auch der These, Russland sei wirtschaftlich schwach und daher keine Bedrohung: Putin teste die US-Glaubwürdigkeit aus; das Risiko einer Kriegsausweitung (z.B. Moldau) sei real.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter adressiert beide Teile der komplexen Frage: Ja, deutsche Soldaten sollten Baltikum verteidigen (via Abschreckung), und nein, Russland ist nicht harmlos. Er kombiniert sicherheitspolitische Logik mit emotionaler Überzeugung (Freiheit schützen).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Glaubwürdigkeit. Wir müssen arme Leute verteidigen.",
+          "Wir haben Soldaten in Litauen. Wir müssen es tun.",
+          "Die Freiheit Estlands muss uns genauso wichtig sein wie die Freiheit von Baden-Württemberg.",
+          "Das ist die Konsequenz und das Vorgehen von Trump.",
+          "Die Verlässlichkeit ist weg. Das wird Putin aus testen.",
+          "er wird uns mit einer Kriegsführung in Moldau fordern."
+        ],
+        "quotes": [
+          {
+            "text": "Die Freiheit Estlands muss uns genauso wichtig sein wie die Freiheit von Baden-Württemberg. Dafür haben wir über Jahrzehnte 11 andere NATO, wenn wir das aufs Spiel setzen, setzen sie alles aufs Spiel.",
+            "timestamp": "00:41:29",
+            "context": "Antwort auf Frage nach Baltikum-Verteidigung."
+          },
+          {
+            "text": "Das ist die Konsequenz und das Vorgehen von Trump. Die Verlässlichkeit ist weg. Das wird Putin aus testen.",
+            "timestamp": "00:39:24",
+            "context": "Begründung für erhöhte Sicherheitsrisiken durch US-Unzuverlässigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Baltische Länder",
+          "Europäische Sicherheit",
+          "Russland-Bedrohung",
+          "Bundeswehr-Einsätze",
+          "Trump-Politik"
+        ]
+      },
+      {
+        "title": "Priorisierung: Verteidigung vs. Innere Aufgaben",
+        "timestamp_range": "00:42:12 - 00:43:31",
+        "theme_description": "Frage nach dem Verhältnis zwischen Rüstungsausgaben und Investitionen in Schulen, Infrastruktur, innere Stabilität.",
+        "question_asked": "Haben wir nicht viel größere gesellschaftliche Aufgaben? Ist Russland mit kleinerem BIP als Italien wirklich die Hauptsorge? Müssen wir dieses Land erst fit machen (Schulen, Infrastruktur)?",
+        "question_intent": "Moderator stellt die Gewichtung in Frage: Ist Verteidigung oder innere Stabilität die Priorität? Wird der Verteidigungsausgaben-Fokus überbewertet?",
+        "position": "Kiesewetter antwortet, dass Abschreckung funktionieren muss, um Krieg zu vermeiden. Das ist nicht im Widerspruch zu inneren Aufgaben. Felix Banaszak (Grüne) ergänzt, dass ‚es beides braucht': Stabilisierung der Gesellschaft UND Sicherheit. Kiesewetter betont, dass wenn Putin die Stabilität Deutschlands destabilisiert (Ziel Russlands), dann ist innere Sicherung und äußere Sicherheit kombiniert zu sehen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet nicht direkt, ob Inneres oder Verteidigung Priorität haben soll, sondern argumentiert, dass beides notwendig ist und sich gegenseitig stärkt. Er weicht der Entweder-Oder-Frage aus, indem er beide Aspekte zusammen sieht.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Die Gesellschaft würde weiter die stabilisiert werden. Das ist auch ein Ziel von Putin."
+        ],
+        "quotes": [
+          {
+            "text": "Deswegen ist die Grundlogik es braucht beides. Die Gesellschaft würde weiter die stabilisiert werden. Das ist auch ein Ziel von Putin.",
+            "timestamp": "00:42:56",
+            "context": "Antwort auf Frage nach Priorisierung Verteidigung vs. innere Aufgaben. (Zitat ist von FB, aber Kiesewetter unterstützt diese Logik implizit.)"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushaltspriorisierung",
+          "Innere Sicherheit",
+          "Verteidigungsetat",
+          "Infrastruktur",
+          "Bildung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "800.000 Menschen eines Geburtsjahrgangs sollen ein verpflichtendes Gesellschaftsjahr leisten können",
+        "timestamp": "00:32:12"
+      },
+      {
+        "claim": "Wolfgang Schäuble war nie ein Fan von der schwarzen Null",
+        "timestamp": "00:31:07"
+      },
+      {
+        "claim": "Frankreich hat etwa 300 Sprengköpfe (im europäischen Kontext ~500 gesamt)",
+        "timestamp": "00:35:13"
+      },
+      {
+        "claim": "Deutschland hat Soldaten in Litauen stationiert",
+        "timestamp": "00:40:17"
+      },
+      {
+        "claim": "Trump könnte aus der NATO austreten",
+        "timestamp": "00:29:36"
+      },
+      {
+        "claim": "Tausende Ukrainer und Zivilbürger sind gestorben durch deutsche Verzögerung bei Waffenhilfe",
+        "timestamp": "00:08:39"
+      }
+    ]
+  }
+}

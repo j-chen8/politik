@@ -1,0 +1,416 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-11-maerz-2025-100",
+    "video_id": "lanz-2025-03-11",
+    "politician": "Karl Lauterbach",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "938beb71f2d7e400",
+    "transcript_chars": 60138,
+    "caption_lines": 3044,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24748,
+    "tokens_out": 9270,
+    "cost_usd": 0.0284392,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 21,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.774Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl Lauterbach erscheint als Verteidiger des Koalitionscompromisses zwischen CDU/CSU und SPD und betont pragmatische Lösungen bei Verteidigungsmitteln und Infrastrukturinvestitionen. Er wirkt konziliant gegenüber Friedrich Merz, argumentiert mit ökonomischen Zusammenhängen und warnt vor den Folgen der Trump-Politik für deutsche Wissenschaft und Gesundheitssysteme.",
+    "themes": [
+      {
+        "title": "Wortbruch oder pragmatische Lagenanpassung?",
+        "timestamp_range": "00:05:42 - 00:08:18",
+        "theme_description": "Bewertung von Friedrich Merz' Bruch mit dem Schuldenbremsen-Wahlversprechen als Reaktion auf veränderte sicherheitspolitische Lage.",
+        "question_asked": "Wie geht es Ihnen, wenn ein erfahrener Politiker neben Ihnen sitzt und sagt, das Wahlprogramm wurde nach der Wahl auf eine beispiellose Weise gebrochen?",
+        "question_intent": "Sollte Karl Lauterbach das Vorgehen von Merz kritisieren oder rechtfertigen?",
+        "position": "Lauterbach argumentiert, dass kein Wortbruch vorliegt, sondern eine legitime Lagenanpassung. Die Verteidigungsausgaben seien tatsächlich notwendig geworden, weil der Wegfall amerikanischer Hilfe massive zusätzliche Investitionen erzwingt. Die 500 Milliarden für Infrastruktur seien zudem keine grüne Erfindung, sondern auch SPD-Politik aus dem Wahlkampf. Ein Koalitionspartner müsse Konzessionen machen – das sei legitimes Regierungshandeln, kein Betrug.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach widerlegt die Wortbruch-These durch sachliche Argumente (veränderte Lage, gemeinsame SPD-Forderungen), beantwortet aber nicht vollständig die emotionale/normative Frage des Moderators nach der Integrität politischer Versprechen. Er konzentriert sich auf Faktencheck statt ethischer Debatte.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "So wie es jetzt von Friedrich Merz vorgetragen wurde, ist es kein Wortbruch, weil die Lage hat sich verändert.",
+            "timestamp": "00:05:54",
+            "context": "Der Moderator fragt direkt nach einem Wortbruch."
+          },
+          {
+            "text": "Wir müssen im Verteidigungshaushalt massiv zusätzlich investieren, hier geht es um hunderte Milliarden Euro. Dass die nicht aus dem Haushalt mobilisiert werden können, damit hat Friedrich Merz recht.",
+            "timestamp": "00:07:00",
+            "context": "Lauterbach wird nach der konkreten Veränderung der Lage gefragt."
+          },
+          {
+            "text": "Friedrich Merz hat nicht gelogen.",
+            "timestamp": "00:08:18",
+            "context": "Moderator fasst Lauterbachs Position zusammen."
+          }
+        ],
+        "concrete_statements": [
+          "Die Lage hat sich verändert durch fehlende US-Hilfe im Verteidigungsbereich",
+          "500-Milliarden-Investitionen für Infrastruktur waren auch SPD-Forderung",
+          "Ein Koalitionskomproß ist legitim, kein Wortbruch"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Verteidigungsausgaben",
+          "Infrastrukturinvestitionen",
+          "Koalitionsverhandlungen 2025"
+        ]
+      },
+      {
+        "title": "Finanzierung von Mütterrente und Investitionen",
+        "timestamp_range": "00:13:38 - 00:15:42",
+        "theme_description": "Auseinandersetzung über die Höhe der Ausgaben für Mütterrente und deren Auswirkung auf Investitionsmittel.",
+        "question_asked": "Eva Quadbeck argumentiert, dass Mütterrente, Pendlerpauschale und weitere Leistungen 50–80 Milliarden Euro jährlich kosten und damit Investitionsmittel aufgebraucht werden. Kann das bezahlt werden?",
+        "question_intent": "Sind die geplanten Sozialleistungen mit den Investitionszielen finanzierbar, oder läuft die Koalition in ein Finanzierungsloch?",
+        "position": "Lauterbach korrigiert die Kostenschätzung deutlich nach unten: Mütterrente, Pendlerpauschale und Agrardiesel kosten eher 10–12 Milliarden pro Jahr, nicht 50–80 Milliarden. Die zusätzlichen Investitionen seien daher problemlos finanzierbar. Er betont, dass jede Koalition Kompromisse eingehen müsse, und dass es nicht richtig sei, Investitionen als unmöglich darzustellen, weil ein Koalitionspartner (CSU) Mütterrente fordere.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die faktische Frage (Kosten der Maßnahmen) mit Zahlencorrektionen, lenkt aber ab auf Koalitions-Philosophie statt auf die tiefere Kritik, dass möglicherweise Investitionen umgeleitet werden könnten.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Die Gesamtsumme für die Punkte, Mütterrente, Pendlerpauschale und Agrardiesel, das hat niemals diese Dimension, es hat eher die Dimension von zehn 12 Milliarden pro Jahr.",
+            "timestamp": "00:13:38",
+            "context": "Quadbeck hat Kosten von 50–80 Milliarden behauptet."
+          },
+          {
+            "text": "Insgesamt glaube ich, das wird pro Jahr 12 Milliarden alles zusammen kosten. So funktioniert der politische Kompromiss.",
+            "timestamp": "00:15:56",
+            "context": "Zusammenfassung der Gesamtausgaben."
+          }
+        ],
+        "concrete_statements": [
+          "Mütterrente, Pendlerpauschale, Agrardiesel kosten ca. 10–12 Milliarden pro Jahr, nicht 50–80 Milliarden",
+          "Steuerreformen sind zusätzlich geplant, aber korrekt zu finanzieren",
+          "Koalitionskomproß ist notwendig; nicht alle Partner können alle Ziele bekommen"
+        ],
+        "related_bundestag_topics": [
+          "Haushalt 2025",
+          "Rentenpolitik",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "Zusätzliche vs. Umgeleitete Investitionen",
+        "timestamp_range": "00:19:25 - 00:21:12",
+        "theme_description": "Klärung, ob die 500 Milliarden aus dem Sondervermögen wirklich zusätzliche neue Investitionen finanzieren oder bisherige Haushaltsmittel umleiten.",
+        "question_asked": "Jürgen Trittin kritisiert, dass im Sondierungspapier nicht klar festgeschrieben ist, dass es sich um zusätzliche Investitionen handelt, nicht um Umleitung bestehender Haushaltsmittel.",
+        "question_intent": "Kann die Koalition garantieren, dass das Sondervermögen wirklich zusätzliches Wachstum generiert und nicht bestehende Programme finanziert?",
+        "position": "Lauterbach bestätigt, dass es sich um zusätzliche Ausgaben handelt und verspricht Klarstellung im weiteren Gesetzgebungsprozess. Es sei nicht geplant, bisherige Maßnahmen durch das Sondervermögen zu finanzieren. Allerdings nicht mit 'Taschenspielertricks': Das Geld wird wirklich zusätzlich ausgegeben, nicht als Umverteilung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die Zusagen (wir werden klarstellen), nicht aber die Kritik, dass die Klarstellung NOCH NICHT erfolgt ist. Er gibt Versprechen statt Fakten.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich will trotzdem den Konsens herausarbeiten, sonst kommen wir nicht weiter. Wir hatten sehr ähnliche Einschätzungen bei uns in der gesamten Ampel, dass für diesen riesigen Investitionsbedarf haben, jetzt kommt das Geld, wir werden das Geld zusätzlich ausgeben. Dass es im Sondierungspapier nicht drin steht... Keine Sorge, wir werden das klarstellen.",
+            "timestamp": "00:19:25",
+            "context": "Trittin fordert verbindliche Festschreibung."
+          },
+          {
+            "text": "Es sind zusätzliche Ausgaben, das werden wir auch klarstellen. Aber es ist nicht so, dass wir Vorhaben mit einem Taschenspielertricks dass wir etwas plötzlich durch ein Sondervermögen bezahlen.",
+            "timestamp": "00:20:45",
+            "context": "Zusammenfassung der Zusicherung."
+          }
+        ],
+        "concrete_statements": [
+          "Das Sondervermögen finanziert zusätzliche (nicht umgeleitete) Investitionen",
+          "Klarstellung wird in Gesetzgebung erfolgen",
+          "Keine 'Taschenspielertricks'"
+        ],
+        "related_bundestag_topics": [
+          "Sondervermögen",
+          "Investitionsförderung",
+          "Grundgesetzänderung"
+        ]
+      },
+      {
+        "title": "Investitionen vs. Steuersenkungen und Wirtschaftswachstum",
+        "timestamp_range": "00:23:08 - 00:24:03",
+        "theme_description": "Debatte über die Wirkung von Steuersenkungen als Motor für Wirtschaftswachstum zur Finanzierung zusätzlicher Ausgaben.",
+        "question_asked": "Kann die Koalition damit rechnen, dass Steuerentlastungen durch höheres Wirtschaftswachstum selbst wieder Einnahmen generieren?",
+        "question_intent": "Ist die Annahme, dass 1% Wachstum 10 Milliarden Euro Mehreinnahmen bringt, eine realistische Finanzierungsstrategie oder ein Wunschdenken?",
+        "position": "Lauterbach argumentiert, dass Steuerentlastungen und Unternehmensförderung tatsächlich Wachstum katalysieren können. Wenn die Wirtschaft um 1% mehr wächst, bedeutet das 10 Milliarden mehr Einnahmen. Das kompensiere die Kosten von Steuersenkungen teilweise. Er verweist dabei auf ähnliche Aussagen von Olaf Scholz. Allerdings relativiert er: Es könne sein, dass Steuererleichterungen 10 Milliarden kosten, aber durch höheres Wachstum wieder eingespielt werden.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die Frage zu Wachstumsmechanismen, weicht aber aus, indem er auf Scholz verweist und die Aussage relativiert ('Es kann sein...'). Er antwortet nicht vollständig auf die kritische Frage, ob dies realistische Planung oder Wunschdenken ist.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Es kann sein, dass uns das noch mal 10 Milliarden kostet, aber wenn die ein Prozent mehr Wirtschaftsleistung haben, haben wir 10 Milliarden mehr Einnahmen.",
+            "timestamp": "00:23:08",
+            "context": "Antwort auf Frage zu Finanzierungslücken durch Steuersenkungen."
+          },
+          {
+            "text": "Olaf Scholz hat ebenfalls für eine Wiederbelebung... Wir haben allenfalls gesagt, wenn die Wirtschaft ein Prozent wächst, sind das 10 Milliarden Entlastung.",
+            "timestamp": "00:23:52",
+            "context": "Verweis auf Scholz als Autorität."
+          }
+        ],
+        "concrete_statements": [
+          "1% Wirtschaftswachstum = ca. 10 Milliarden Euro Mehreinnahmen",
+          "Steuererleichterungen können diesen Wachstum katalysieren",
+          "Kosten werden teilweise durch zusätzliche Einnahmen kompensiert"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Wirtschaftspolitik",
+          "Konjunkturförderung"
+        ]
+      },
+      {
+        "title": "Klimaschutz im Koalitionsvertrag",
+        "timestamp_range": "00:45:06 - 00:47:01",
+        "theme_description": "Diskussion um die Verankerung von Klimazielen und Klimaschutz in der Sondervermögensbestimmung.",
+        "question_asked": "Jürgen Trittin fordert, dass Klimaschutz und der Zusammenhang zu Infrastrukturinvestitionen explizit ins Grundgesetz geschrieben werden, um Manipulation durch einfache Mehrheit auszuschließen.",
+        "question_intent": "Können die Grünen garantiert bekommen, dass Klimaschutz als Zweckbestimmung des Sondervermögens verfassungsrechtlich geschützt ist?",
+        "position": "Lauterbach unterstützt die Aufnahme von Klimaschutz in die Sondervermögensbestimmung, weil die geplanten Infrastrukturmaßnahmen (Schiene, Infrastruktur, Forschungsinfrastruktur) ohnehin dem Klimaschutz dienen. Für ihn kostet diese Klarstellung nichts, da die Investitionen sowieso klimaneutral sind.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach antwortet direkt auf die Frage, unterstützt das Anliegen der Grünen und erklärt, warum es keine zusätzliche Last ist. Er adressiert sowohl die Substanz als auch die Machbarkeit.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich finde es auch in der Sache richtig. Ich will nur eines sagen, die Investitionen, um die es hier geht, Schiene, Infrastruktur, Forschungsinfrastruktur, das sind alles Infrastrukturmaßnahmen, die dem Klimaschutz dienen und die haben allesamt diese Komponente. Daher kostet es uns tatsächlich nichts.",
+            "timestamp": "00:45:57",
+            "context": "Trittin hat Bedingungen für grüne Zustimmung genannt."
+          },
+          {
+            "text": "Ich teile auch die Kritik, dass das Verfahren so nicht richtig gewesen ist, mit den ihr bedient worden seid, aber ich bin zuversichtlich.",
+            "timestamp": "00:46:13",
+            "context": "Eingeständnis der Verfahrensfehler, Optimismus für Lösung."
+          }
+        ],
+        "concrete_statements": [
+          "Klimaschutz sollte in der Zweckbestimmung des Sondervermögens enthalten sein",
+          "Geplante Investitionen dienen ohnehin Klimaschutz",
+          "Keine zusätzlichen Kosten für diese Klarstellung"
+        ],
+        "related_bundestag_topics": [
+          "Klimaschutz",
+          "Grundgesetzänderung",
+          "Grüne Koalitionsbedingungen"
+        ]
+      },
+      {
+        "title": "Wissenschaft unter Trump: Auswirkungen auf deutsche Forschung",
+        "timestamp_range": "00:58:05 - 01:00:42",
+        "theme_description": "Analyse der Folgen von Trumps Budgetkürzungen und wissenschaftsfeindlicher Politik für amerikanische Eliteuniversitäten und deren Bedeutung für deutsche Forschung.",
+        "question_asked": "Der Moderator fragt, wie es Karl Lauterbach, der Gastprofessor an Harvard ist, beim Einstellungsstopp von Top-Universitäten geht und welche globalen Auswirkungen das hat.",
+        "question_intent": "Welche konkreten Folgen hat Trumps Wissenschaftspolitik für Deutschland und die globale Forschungslandschaft?",
+        "position": "Lauterbach berichtet aus eigener Erfahrung: Auch Harvard mit 50 Milliarden Dollar Stiftungsvermögen verhängt Einstellungsstopps, weil erwartete Mittel nicht kommen. Trump hat eine Liste von zehn Eliteuniversitäten unter Beobachtung gestellt, darunter Harvard und Columbia. Das gefährdet kritische Projekte in Klimaforschung, Krebsforschung und Immunologie. Die USA haben in Medizin zehnmal so hohe Erkenntnisoutputs wie ganz Europa. Das ist dramatisch und zwingt Deutschland zur KI-Eigenständigkeit in der Forschung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach antwortet mit konkreten Beispielen (Harvard, Stiftungsvermögen, Universitätslisten), konkretisiert die globalen Folgen (zehnfacher US-Vorteil in Medizin) und leitet praktische Konsequenzen ab (KI-Investitionen). Keine Ausweichmanöver.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe ja gute Kontakte zur Harvard-Universität, wo ich die Gastprofessur habe, die ich im Moment nicht bedienen kann, dann wurde ein kompletter Einstellungsstopp verhängt, weil die Mittel, die man erwartet, nicht in der zugesagten Größenordnung kommen werden.",
+            "timestamp": "00:58:05",
+            "context": "Persönliches Beispiel für Auswirkungen."
+          },
+          {
+            "text": "haben die Amerikaner zehnmal so viel wissenschaftliche Erkenntnisoutput als ganz Europa zusammen. Das ist wirklich dramatisch, beispielsweise in der Forschung von bestimmten Krebserkrankungen.",
+            "timestamp": "00:59:06",
+            "context": "Vergleich der Forschungsleistung."
+          },
+          {
+            "text": "Daher arbeite ich sehr intensiv daran für das Gesundheitssystem, KI verfügbar zu machen für die Forschung, weil wir werden das nicht automatisch von den Amerikanern noch bekommen.",
+            "timestamp": "00:59:13",
+            "context": "Strategische Konsequenz aus der Analyse."
+          }
+        ],
+        "concrete_statements": [
+          "Harvard und andere Top-Unis verhängen Einstellungsstopps wegen fehlender Mittel",
+          "Trump hat zehn Eliteuniversitäten unter spezielle Beobachtung gestellt",
+          "USA haben 10× höhere Erkenntnisoutputs in Medizin als Europa",
+          "Deutschland muss unabhängig KI für Forschung entwickeln"
+        ],
+        "related_bundestag_topics": [
+          "Forschungsfinanzierung",
+          "Künstliche Intelligenz",
+          "Gesundheitsforschung",
+          "Internationale Beziehungen USA"
+        ]
+      },
+      {
+        "title": "Ökonomische Irrationalität von Trumps Maßnahmen",
+        "timestamp_range": "01:00:54 - 01:04:27",
+        "theme_description": "Bewertung von Trumps Budget- und Regulierungspolitik als wirtschaftlich selbstschädigend.",
+        "question_asked": "Warum macht Trump das, wenn es ökonomisch Selbstmord ist? Und wie ist die Strategie hinter dieser Zerstörung?",
+        "question_intent": "Welche rationalen oder irrationalen Motive stecken hinter Trumps Policies, und welche sind die größten Risiken?",
+        "position": "Lauterbach charakterisiert Trumps Handeln als ökonomisch irrational ('Suizidal'), aber psychologisch erklärbar: 'Trump macht es, weil er es kann.' Die Tesla-Aktie hat 50% Wert verloren, die Börse wird nervös. Besonders riskant sei der Abbau von Strukturen (Wetterdienste, Universitäten), auf die man im Notfall angewiesen ist. Ein großer Public-Health-Notfall (Vogelgrippe) oder Wetterereignis könnte damit unkontrollierbar werden. Das ist '100% riskant und ökonomisch unsinnig'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach beantwortet beide Teile: (1) Ökonomische Irrationalität: bestätigt, (2) Motive: Machtspielerei statt rationaler Plan, (3) Risiken: konkrete Beispiele (Börsenreaktionen, Public-Health-Notfälle). Präzise und substanziell.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ökonomisch ist das Suizidal. Das sind Wachstumskerne der vereinigten Staaten, man sieht, die Börse verliert, Tesla hat um die 50 % seines Marktwertes gemessenen Höhepunktes verloren.",
+            "timestamp": "01:00:54",
+            "context": "Einleitung der ökonomischen Analyse."
+          },
+          {
+            "text": "Trump macht es, weil er es kann.",
+            "timestamp": "01:00:26",
+            "context": "Erklärung des psychologischen Motivs."
+          },
+          {
+            "text": "Das ist ein hochriskantes Manöver. Man baut die Strukturen ab, auf die man im Notfall angewiesen ist. Das ist 100 % riskant und ökonomisch unsinnig.",
+            "timestamp": "01:04:39",
+            "context": "Bewertung der Gesamtstrategie."
+          }
+        ],
+        "concrete_statements": [
+          "Trumps Politik ist ökonomisch irrational und selbstschädigend",
+          "Börsenreaktionen (Tesla -50%) zeigen Marktungewissheit",
+          "Abbau von Wetterdiensten und Universitäten schafft Notfall-Risiken",
+          "Vogelgrippe oder Wetterereignisse könnten unkontrollierbar werden"
+        ],
+        "related_bundestag_topics": [
+          "USA-Politik",
+          "Internationale Beziehungen",
+          "Gesundheitspolitik",
+          "Wissenschaftspolitik"
+        ]
+      },
+      {
+        "title": "Glaubwürdigkeitshypothek der neuen Koalition",
+        "timestamp_range": "01:09:49 - 01:12:16",
+        "theme_description": "Einschätzung der politischen Chancen und Risiken, mit denen Union/SPD in die neue Regierungszeit starten.",
+        "question_asked": "Die Ampel startete mit Glaubwürdigkeitsbonus, hat dann nichts geschafft. Wie sieht es für die neue Koalition aus?",
+        "question_intent": "Kann die Union-SPD-Koalition trotz Vertrauensdefizit (Wortbruch) erfolgreich regieren und Legitimität zurückgewinnen?",
+        "position": "Lauterbach sieht einen interessanten Kontrast: Die Ampel startete mit Glaubwürdigkeitsbonus, scheiterte aber wegen gegenseitiger Kämpfe und fehlender Mittel. Die neue Koalition startet mit Glaubwürdigkeitsdefizit, hat aber echte Investitionsmittel, kann beim Klimaschutz fortfahren und hat Verteidigungsmittel. Diese materialen Ressourcen könnten das Vertrauen zurückgewinnen. Konkrete Projekte wie Batterieforschung in Aachen, Karlsruhe, Tübingen zeigen, dass es umgesetzt wird.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Lauterbach beantwortet die Frage strukturiert (Ampel vs. neue Koalition, was ist unterschiedlich) und begründet seinen Optimismus mit konkreten Ressourcen und Projekten. Keine Ausweichmanöver.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wir starten mit einer Glaubwürdigkeitshypothek, aber ich glaube, die Chancen sind gut. Wir haben das gegenteilige Problem von der Ampel. In der Ampel sind wir gestartet mit einem unglaublichen Glaubwürdigkeitsbonus, haben danach aber kaum etwas hinbekommen, weil wir uns gegenseitig bekämpft haben.",
+            "timestamp": "01:09:49",
+            "context": "Einleitung der Vergleichsanalyse."
+          },
+          {
+            "text": "Wir starten mit einem Glaubwürdigkeitsdefizit diesmal, aber wir haben Investitionsmittel, wir machen beim Klimaschutz weiter und wir haben Verteidigungsmittel, daher glaube ich, dass wir auf der Strecke die Leute zurückgewinnen werden.",
+            "timestamp": "01:09:49",
+            "context": "Optimistische Begründung."
+          },
+          {
+            "text": "Deutschland hat ganz tolle Arbeitsgruppen in Aachen und Karlsruhe, in Tübingen, die an der Festkörperbatterie arbeiten. Jetzt haben wir hier aber tatsächlich in diesem Investitionsprogramm festgelegt, dass wir genau solche Projekte fördern können.",
+            "timestamp": "01:09:49",
+            "context": "Konkretes Beispiel für geplante Umsetzung."
+          }
+        ],
+        "concrete_statements": [
+          "Neue Koalition startet mit Glaubwürdigkeitsdefizit, aber echten Investitionsmitteln",
+          "Ampel-Fehler: Glaubwürdigkeitsbonus durch interne Kämpfe verspielt",
+          "Geplante Investitionen in Batterieforschung, Klimaschutz, Verteidigung können Vertrauen zurückgewinnen",
+          "Hoffnung auf 'geräuschloses Regieren' ohne öffentliche Konflikte"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsfähigkeit",
+          "Öffentliches Vertrauen",
+          "Zukunftsinvestitionen"
+        ]
+      },
+      {
+        "title": "Umgang und Ton in Koalitionsverhandlungen",
+        "timestamp_range": "01:11:42 - 01:12:45",
+        "theme_description": "Reaktion auf Boris Pistorius' kritische Äußerung über Dobrindt und Preisen als 'ohne Gewissen'.",
+        "question_asked": "Pistorius sagte in einer Fraktionssitzung zu Dobrindt und Preisen: 'kein Gewissen, Humanität und Verantwortung 0,0'. Ist das nur launig gemeint?",
+        "question_intent": "Wie ernst sind die internen Konflikte zwischen SPD und CDU, und wie kann man damit konstruktiv arbeiten?",
+        "position": "Lauterbach wertet Pistorius' Äußerung als 'launisch' ab, nicht als ernsthaften Vorwurf. Er hofft, dass diese Koalition gegenteilig zur Ampel verläuft: Ampel startete mit Selfies und Umarmungen, zerfiel dann. Diese Koalition starte schwierig, aber könnte dann 'geräuschloses Regieren' ermöglichen. Trittin widerspricht dem: Pistorius' Einschätzung sei realistisch, nicht launisch, wer Dobrindt kenne, könne nicht widersprechen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Lauterbach beantwortet nicht, wie ernst die Konflikte sind, sondern lenkt auf eine andere Frage um: wie unterschiedlich diese Koalition von der Ampel ist. Das ist ein Pivot vom Problem (Feindschaft) zur Hoffnung (Ruhe).",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Nein, das war eine launische Bemerkung wahrscheinlich. Ich bin da nicht dabei gewesen, es wird umgekehrt sein wie beim letzten Mal, beim letzten Mal sind wir mit Selfies an den Start gegangen, haben uns umarmt, danach kam ein interner Streit insbesondere mit den Kollegen von der FDP.",
+            "timestamp": "01:11:42",
+            "context": "Reaktion auf Pistorius-Zitat."
+          },
+          {
+            "text": "Ich hoffe einfach, dass diesmal genau umgekehrt ist, dass wir mit ganz schwierigen Verhältnissen beginnen, dann aber geräuschlos regieren und für diese großen Blöcke wegbekommen.",
+            "timestamp": "01:11:42",
+            "context": "Hoffnung auf konstruktive Zusammenarbeit trotz schwieriger Start."
+          }
+        ],
+        "concrete_statements": [
+          "Pistorius-Äußerung wird als nicht ernst gemeint (launisch) eingestuft",
+          "Hoffnung auf Koalitionsmodell: schlecht start, gute Regierung (umgekehrt zur Ampel)",
+          "Geräuschloses Regieren trotz anfänglicher Konflikte möglich"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsklima",
+          "Parteienverständigung",
+          "Regierungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Rolle des Gesundheitsministers in der Koalition",
+        "timestamp_range": "01:13:38 - 01:14:52",
+        "theme_description": "Klärung, ob Karl Lauterbach Gesundheitsminister bleiben wird und wie Personalfragen in Koalitionsverhandlungen behandelt werden.",
+        "question_asked": "Werden Sie Gesundheitsminister bleiben, und haben Sie mit Saskia Esken bereits darüber gesprochen?",
+        "question_intent": "Ist die Personalfrage bereits entschieden oder noch offen, und was bedeutet das für die Verhandlungen?",
+        "position": "Lauterbach lehnt Spekulationen ab. Er betont eine Prioritätenliste: (1) Lösung der Probleme, (2) Parteiengespräche, (3) Personenfragen. Das sei der richtige Weg. Er macht nicht öffentlich, mit wem er wann spricht. Jürgen Trittin kommentiert dazu kritisch, dass solche Personalfragen VOR den Inhaltlichen Verhandlungen geklärt sein sollten, sonst entstehe Chaos.",
+        "answer_match": "verweigert",
+        "match_reasoning": "Lauterbach weigert sich, die Frage direkt zu beantworten, und weicht auf ein allgemeines Verfahrensprinzip aus. Er gibt keine Information darüber, ob die Frage entschieden ist oder offenbleibt.",
+        "answer_type": "offene_verweigerung",
+        "quotes": [
+          {
+            "text": "Ich werde keine Spekulation machen, ich kann nur so viel sagen, am wichtigsten ist, dass wir die Probleme lösen, dann erst kommt das Parteigespräch und am Schluss die Personen.",
+            "timestamp": "01:13:38",
+            "context": "Direkte Frage nach seiner Rolle."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Spekulation über Personalfragen",
+          "Priorität liegt auf Problemlösung, nicht auf Personalfragen",
+          "Hält Gesprächsinhalte nicht öffentlich"
+        ],
+        "related_bundestag_topics": [
+          "Kabinettsbildung",
+          "Koalitionsverhandlungen",
+          "Personalentscheidungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Trump hat eine Liste von zehn Universitäten gemacht, die unter besonderer Beobachtung stehen, dazu gehört Harvard und Columbia",
+        "timestamp": "00:58:36"
+      },
+      {
+        "claim": "Die USA haben in bestimmten Medizinbereichen zehnmal so viel wissenschaftliche Erkenntnisoutput als ganz Europa zusammen",
+        "timestamp": "00:59:06"
+      },
+      {
+        "claim": "Tesla hat um die 50% seines Marktwertes vom Höhepunkt verloren",
+        "timestamp": "01:00:54"
+      },
+      {
+        "claim": "Harvard hat ein Stiftungsvermögen von 50 Milliarden Dollar",
+        "timestamp": "00:58:29"
+      },
+      {
+        "claim": "Mütterrente, Pendlerpauschale und Agrardiesel kosten etwa 10–12 Milliarden Euro pro Jahr",
+        "timestamp": "00:13:38"
+      }
+    ]
+  }
+}

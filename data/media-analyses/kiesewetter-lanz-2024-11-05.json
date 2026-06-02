@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-november-2024-100",
+    "video_id": "lanz-2024-11-05",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "d1b934be42e8f4d0",
+    "transcript_chars": 63562,
+    "caption_lines": 3246,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25389,
+    "tokens_out": 7351,
+    "cost_usd": 0.0248576,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-02T16:33:28.512Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter (CDU/CSU, Sicherheitspolitiker und MdB) kommentiert die US-Wahl 2024 und deutsche Innenpolitik. Er argumentiert, dass Trumps Außenpolitik differenziert zu bewerten ist, warnt vor Polarisierung nach amerikanischem Vorbild und fordert in der Koalitionskrise eine klare Richtungsentscheidung oder Neuwahlen. Sein Ton ist analytisch und sicherheitspolitisch orientiert.",
+    "themes": [
+      {
+        "title": "Trump-Außenpolitik: Kritische Bilanz",
+        "timestamp_range": "00:11:10 - 00:16:24",
+        "theme_description": "Bewertung von Trumps außenpolitischen Entscheidungen zwischen berechtigter Kritik und teilweise konstruktiven Aspekten.",
+        "question_asked": "Herr Kiesewetter, würden Sie zustimmen [mit Sigmar Gabriel], dass diese Polarisierung deutlich älter ist? [Dann folgt später:] Es gibt einen interessanten Satz von Jens Spahn: 'Donald Trump irritiert häufig, gleichzeitig muss man anerkennen, dass er außenpolitisch häufig richtig lag.' Würden Sie zustimmen?",
+        "question_intent": "Sollte man Trump außenpolitische Erfolge trotz stilistischer Probleme anerkennen, und ist US-Polarisierung ein Phänomen der letzten Jahrzehnte?",
+        "position": "Kiesewetter sieht Trumps Sicherheitspolitik kritisch, besonders wegen des gebrochenen Mittelstreckenvertrags (Reagan-Gorbatschow). Er begrüßt Härte gegenüber Iran, lehnt aber populistische Argumentation ab. Er kritisiert, dass die Palästinenser in den Abraham Accords ausgeklammert wurden, wodurch eine Faustpfand-Politik möglich wurde. Gleichzeitig unterstreicht er, dass man auf Basis von Fakten argumentieren sollte, nicht populistisch.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter akzeptiert, dass es Bereiche (Iran-Härte) gibt, in denen Trump Recht hatte, lehnt aber ab, pauschal von außenpolitischen Erfolgen zu sprechen. Er fokussiert stärker auf die strukturellen Fehler (Palästinenser-Frage) als auf eine Gesamtbewertung — eine ausweichende Antwort auf die direkte Zustimmungsfrage.",
+        "concrete_statements": [
+          "Ich sehe das als Sicherheitspolitik sehr kritisch, weil er beispielsweise den Mittelstreckenvertrag den Reagan und Gorbatschow vereinbart haben einfach gebrochen hat.",
+          "Ich sehe seine Härte gegenüber Iran positiv. Aber es ist nicht gelungen, die Palästinenser als Faustpfand darauf zu nehmen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich sehe das als Sicherheitspolitik sehr kritisch. Weil er beispielsweise den Mittelstreckenvertrag den Reagan und Gorbatschow vereinbart haben einfach gebrochen hat. Man sollte hier nicht so populistisch argumentieren. Man sollte Stück für Stück diktieren.",
+            "timestamp": "00:16:24",
+            "context": "Bewertung von Trumps außenpolitischen Erfolgen; Kiesewetter warnt vor populistischer statt faktenbasierter Argumentation."
+          },
+          {
+            "text": "Ich sehe seine Härte gegenüber Iran positiv. Aber es ist nicht gelungen, die Palästinenser als Faustpfand darauf zu nehmen.",
+            "timestamp": "00:16:24",
+            "context": "Verteidigung eines differenzierten Urteils statt pauschaler Zustimmung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik und Rüstungskontrolle",
+          "Iran-Politik",
+          "Nahost-Konflikt und Abraham Accords",
+          "NATO und europäische Sicherheit"
+        ]
+      },
+      {
+        "title": "Europäische Unabhängigkeit und das Weimarer Dreieck",
+        "timestamp_range": "00:11:10 - 00:13:13",
+        "theme_description": "Kiesewetter argumentiert für europäische strategische Unabhängigkeit statt Abhängigkeit von US-Swing-States.",
+        "question_asked": "Sie sagen, die Amerikaner sind global weniger abhängig von Welthandel als wir. Was folgt daraus für Europa?",
+        "question_intent": "Sollte Europa sich weniger auf US-Politik verlassen und stärker eigenständig werden?",
+        "position": "Kiesewetter stellt fest: USA produzieren 90% ihres BIP im Inland, sind also nicht auf Welthandel angewiesen, aber haben 6 Billionen Dollar Schulden bei China. Deutschland/Europa liegt bei 60–70% heimischer Produktion und ist stärker abhängig von den USA. Daraus folgert er: Europäer sollten nicht 'auf Swing States warten', sondern sich selbst stärken. Sein Ansatz: eine europäische G7 mit Deutschland, Frankreich, Polen (und evtl. Italien) als 'Weimarer Dreieck' – um Europa unabhängiger zu machen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter adressiert die implizite Frage direkt mit strukturierter Analyse (Datenvergleich USA/Europa) und konkretem Lösungsvorschlag (Weimarer Dreieck).",
+        "concrete_statements": [
+          "Wir sind eher im 60–70 Prozentbereich [Binnenproduktion], abhängig von den USA.",
+          "Wir sollten nicht warten, dass wir uns immer von Swing States abhängig machen.",
+          "Wir müssen uns stärker besinnen, dass das Weimarer Dreieck hilft das Europa stärker wird.",
+          "Eine europäische G7 schaffen, um uns selber zu stärken und nicht abzuwarten."
+        ],
+        "quotes": [
+          {
+            "text": "Die Amerikaner haben eine Verschuldung, die sie sehr abhängig von China machen. Von 15 Billionen sind es 6 Billionen, die von China abhängig sind. Dieses Land ist sehr vielfältig, wir sind sehr abhängig von den USA. Ich glaube, es ist auch ein Vorbild in manchen Bereichen, aber eben nicht in der Sozialpolitik. Da müssen wir Europäer nicht immer warten, dass wir uns immer von irgendwelchen Swing States abhängig machen. Aber viel stärker uns besinnen, dass das Weimarer Dreieck hilft das Europa stärker wird.",
+            "timestamp": "00:11:10",
+            "context": "Antwort auf Frage zu US-Abhängigkeit und europäischer Strategie; Vorschlag für europäische Eigenständigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheits- und Verteidigungspolitik",
+          "Deutsch-französisch-polnische Zusammenarbeit",
+          "Europäische Strategische Autonomie",
+          "NATO und europäische Rüstungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Trump 2%-NATO-Forderung: Berechtigter Druck, fehlende deutsche Initiative",
+        "timestamp_range": "00:20:03 - 00:20:45",
+        "theme_description": "Kiesewetter bewertet Trumps 2%-Forderung als inhaltlich berechtigt, kritisiert aber mangelnde deutsche Initiative statt externer Druck.",
+        "question_asked": "Sie sprechen von Trump, der das 2%-Ziel angesprochen hat. Ist das verdient?",
+        "question_intent": "Sollte man Trump Zustimmung geben für Druck zur NATO-2%-Erhöhung?",
+        "position": "Kiesewetter stimmt zu, dass das 2%-Ziel berechtigt ist und Trump es angesprochen hat, kritisiert aber die Art und Weise. Er sagt, besser hätte es sein, wenn Deutschland (unter Merkel und Gabriel in der großen Koalition) von sich aus die Initiative ergriffen hätte, statt auf externen amerikanischen Druck zu warten. Mit Blick auf die Ukraine betont er, dass Trump damals 'keine Hilfe' war.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kiesewetter akzeptiert den Inhalt (2%-Ziel berechtigt), dreht aber die Kritik um: Statt Trump Zustimmung zu geben, kritisiert er deutsche Passivität. Das verschiebt die Debatte von Trumps Verdienst zu deutscher Verantwortung — eine strategische Umdeutung.",
+        "concrete_statements": [
+          "Donald Trump hat in einer Sache Zustimmung verdient, nicht in der Art, wie er das gemacht hat, sondern indem er das 2%-Ziel angesprochen hat.",
+          "Ich finde es sinnvoller, wenn wir Deutschen, von denen ja das 2%-Ziel ursprünglich stammt, von uns aus eine Initiative gezeigt hätten.",
+          "Mit Blick auf die Ukrainer war Trump damals keine Hilfe."
+        ],
+        "quotes": [
+          {
+            "text": "Donald Trump hat in einer Sache Zustimmung verdient, nicht in der Art, wie er das gemacht hat, sondern indem er das 2 % Ziel angesprochen hat. Aber Obama hat das nicht durchgesetzt. Da finde ich es sinnvoller, wenn wir Deutschen, von denen ja das 2 % Ziel ursprünglich stammt, wenn wir von uns aus, Regierung Merkel und Gabriel, in dieser großen Koalition auf ein Bild gesagt hätten, wir müssen da etwas tun.",
+            "timestamp": "00:20:03",
+            "context": "Bewertung des Trump-2%-Drucks; Kiesewetter führt Selbstkritik am deutschen Versäumnis ein."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO 2%-Ziel und deutsche Rüstungsausgaben",
+          "Europäische Verteidigungsfähigkeit",
+          "Deutsch-amerikanische Sicherheitsbeziehungen"
+        ]
+      },
+      {
+        "title": "Putin-Kalkül und Ukraine-Krieg unabhängig von Trump",
+        "timestamp_range": "00:28:18 - 00:29:26",
+        "theme_description": "Kiesewetter argumentiert gegen die These, dass ein Trump-Präsident den Ukraine-Krieg hätte verhindern können.",
+        "question_asked": "Gerade Elmar Theveßen führt an, dass unter Trump ein Angriff auf die Ukraine nicht stattgefunden hätte. Kiesewetter lächelt dazu. Kann das sein?",
+        "question_intent": "War Trump's Präsidentschaft eine notwendige Bedingung, um Putins Angriff zu verhindern?",
+        "position": "Kiesewetter behauptet, Putins Kalkül sei unabhängig vom US-Präsidenten gewesen. Putin habe zwei strategische Ziele: (1) Spaltung zwischen USA und Europa nutzen, weil Europa schwach ist; (2) Freiheitsbewegungen in Russland und Belarus unterdrücken, die 2014/15 zur Zweikrisen-Strategie führten. Die Eskalation wäre so oder so gekommen, weil Putin die innenpolitischen Freiheitsbewegungen nicht tolerieren konnte.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter beantwortet die zentrale Frage direkt und strukturiert mit zwei Begründungsebenen (europäische Schwäche + innenpolitische Zwänge für Putin), ohne auszuweichen.",
+        "concrete_statements": [
+          "Putin kann die Spaltung zwischen USA und Europa vorantreiben, weil er die Schwäche der Europäer nutzt.",
+          "Der Krieg entstand nicht wegen Europa, sondern weil es Freiheitsbewegungen in Russland und Belarus gab.",
+          "Diese Eskalation wäre so oder so gekommen, weil Putin die Freiheitsbewegungen nicht leisten konnte."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass Putin ein klares Kalkül hatte, unabhängig, wer US Präsident ist. Er kann die Spaltung zwischen der USA und Europa vorantreiben. Weil er die Schwäche der Europäer nutzt.",
+            "timestamp": "00:28:18",
+            "context": "Antwort auf die Frage, ob Trump den Krieg hätte verhindern können."
+          },
+          {
+            "text": "Das zweite ist, weil der Krieg nicht wegen Europa entstanden ist, sondern weil es Freiheitsbewegungen in Russland und Belarus gab. Diese Eskalation wäre so oder so gekommen.",
+            "timestamp": "00:28:18",
+            "context": "Strukturiertes Argument gegen Trumps vermeintliche Friedensleistung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg und deutsche Außenpolitik",
+          "Putin-Strategie und europäische Sicherheit",
+          "Spaltung USA–Europa"
+        ]
+      },
+      {
+        "title": "Afghanistan-Chaos: Trump-Verantwortung für Taliban-Verhandlungen",
+        "timestamp_range": "00:44:14 - 00:45:46",
+        "theme_description": "Kiesewetter wirft Trump vor, das Chaos in Afghanistan herbeigeführt zu haben, indem er mit den Taliban statt mit der gewählten Regierung verhandelte.",
+        "question_asked": "Sie vergleichen Trump mit Kennedy als Friedenspräsident. Aber in Afghanistan hat Trump doch ein Trümmerfeld hinterlassen, oder?",
+        "question_intent": "Können Trumps außenpolitische Erfolge Afghansitan-Desaster rechtfertigen?",
+        "position": "Kiesewetter argumentiert direkt, dass Trump ein 'Trümmerfeld in Afghanistan' hinterlassen hat, das Joe Biden nicht mehr bewältigen konnte. Das Problem: Trump verhandelte mit den Taliban statt mit der gewählten Regierung, wodurch diese entmachtet wurde. Biden erbte einen 'hohlen Körper in Kabul'. Kiesewetter kritisiert auch Trumps Methode insgesamt: Behauptungen zu stellen, die schwer zu widerlegen sind (gemeint: eine populistische Rhetorik-Strategie).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die implizite Kritik und belegt sie mit einer spezifischen Fallbehandlung (Taliban-Verhandlungen) sowie Kausalitätskette (Entmachtung → Chaos).",
+        "concrete_statements": [
+          "Donald Trump hat ein Trümmerfeld in Afghanistan hinterlassen, was Joe Biden nicht mehr bewältigen konnte.",
+          "Trump hat mit den Taliban gesprochen, anstatt mit der gewählten Regierung.",
+          "Joe Biden hatte dann einen hohlen Körper in Kabul erlebt. Das war Trump, der die gewählte Regierung entmachtet hat."
+        ],
+        "quotes": [
+          {
+            "text": "Donald Trump hat ein Trümmerfeld in Afghanistan hinterlassen, was Joe Biden nicht mehr bewältigen konnte. Bei Donald schon mit den Taliban gesprochen hat, anstatt mit der gewählten Regierung. Die hat man gar keine Chance mehr sich gegenüber Amerika durchzusetzen. Joe Biden hatte dann einen hohlen Körper in Kabul erlebt. Das war Trump, der die gewählte Regierung entmachtet hat.",
+            "timestamp": "00:44:14",
+            "context": "Widerspruch zur These, Trump sei Friedenspräsident; konkrete Fallbehandlung Afghanistan."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Abzug und Bundeswehr",
+          "Außenpolitik und internationale Verantwortung",
+          "Sicherheitspolitische Folgen von Entscheidungen"
+        ]
+      },
+      {
+        "title": "Faktenbasierte Debattenkultur gegen Populismus",
+        "timestamp_range": "00:44:14 - 00:47:47",
+        "theme_description": "Kiesewetter warnt vor Trumps Rhetorik-Strategie, Behauptungen aufzustellen, die schwer zu widerlegen sind, und fordert fachlich-basierte Debatten.",
+        "question_asked": "Sie sprechen von Eiskugel-Preisen, Arbeitsplätzen, Inflation. Wie kann man in einer Debatte gegen solche konkreten Behauptungen argumentieren, wenn Elmar Theveßen anfängt, sie zu widerlegen?",
+        "question_intent": "Wie geht man mit vereinfachenden, schwer widerlegbaren Populist-Behauptungen um?",
+        "position": "Kiesewetter sagt: 'Das ist genau die Methode von Donald Trump, Behauptungen aufzustellen, die selbe mühsam zu widerlegen sind.' Er warnt davor, dass diese Methode es Gegnern schwermacht, in kurzer Zeit sachlich zu antworten. Das ist sein Argument gegen populistische Rhetorik generell — man muss stattdessen fachlich, 'Stück für Stück' argumentieren. In der späteren Debatte zur Koalition sagt er erneut: Statt Fake News eine Bühne zu geben, muss man 'fachlich einordnen'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter stellt die Diagnose klar dar und beschreibt die populistische Methode und deren Abwehr-Problem explizit.",
+        "concrete_statements": [
+          "Das ist genau die Methode von Donald Trump: Behauptungen aufzustellen, die schwer zu widerlegen sind.",
+          "Man sollte hier nicht so populistisch argumentieren. Man sollte Stück für Stück diktieren.",
+          "Es wird Behauptungen aufgestellt, es ist sehr schwer, die fachlich zu widerlegen in kurzer Zeit."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde die gelbe Debatte sehr spannend, man sieht, wie aufwendig es ist, Fakten und Behauptungen gegeneinander aufzulegen. Das ist genau die Methode von Donald Trump, Behauptungen aufzustellen, die selbe mühsam zu widerlegen sind.",
+            "timestamp": "00:44:14",
+            "context": "Metaanalyse der Debattendynamiken; Warnung vor populistischer Rhetorik-Strategie."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Populismus und demokratische Diskurskultur",
+          "Fact-Checking und Medienlandschaft",
+          "Politische Kommunikation"
+        ]
+      },
+      {
+        "title": "Deutsche Koalitionskrise und Reformbedarf",
+        "timestamp_range": "01:06:18 - 01:17:39",
+        "theme_description": "Kiesewetter analysiert die Ampel-Koalitionskrise und fordert klare Entscheidungen statt weiteres Durchwursteln.",
+        "question_asked": "Geht die deutsche Regierung in dieser Form noch? Wie beurteilen Sie die Koalitionskrise? Sollte es einen harten Schnitt geben?",
+        "question_intent": "Kann die Ampel-Koalition noch funktionieren, oder braucht es Neuwahlen?",
+        "position": "Kiesewetter sagt, dass man nicht ständig Fake News eine Bühne geben darf, sondern fachlich einordnen muss. Er argumentiert für Koalitionsstabilität auf Basis von demokratischer Mehrheit/Minderheit, nicht von absoluter Wahrheit. Er fordert aber klar: Die aktuelle Regierung muss die Vertrauensfrage stellen oder 'eine Regierung der Vernunft' öffnen (CDU/CSU einbinden). Der Kanzler müsse handeln, sonst 'scheitert das ganze'. Ein Jahr Stillstand stärke nur die Ränder.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter gibt eine klare, strukturierte Antwort mit konkreten Forderungen (Vertrauensfrage oder Koalitionsöffnung) und begründet sie mit der Folgenabschätzung (Randstärkung).",
+        "concrete_statements": [
+          "Diese Regierung muss die Vertrauensfrage stellen.",
+          "Eine Regierung der Vernunft bilden und die Regierungskoalition öffnen [für die Union].",
+          "Ein Jahr Stillstand bedeutet, dass die Ränder gestärkt werden und in der Mitte nichts geschieht.",
+          "Wenn es uns gelingen würde mit einem konstruktiven Misstrauensvotum diese Regierung zu beenden, das ist der eine Ansatz."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben eine Diskussion mit einer Partei, die versucht das in die Politik einzubringen. Da kommen wir auf einen realen Punkt zu und zwar nicht dieses ständige Fake News zu fördern, in denen man ihnen eine Bühne gibt sondern das fachlich einzuordnen.",
+            "timestamp": "01:06:18",
+            "context": "Antwort auf Frage zur Behandlung von Populismus und extremer Rhetorik."
+          },
+          {
+            "text": "Diese Regierung muss die Vertrauensfrage stellen, und wenn es die entsprechende Mehrheit gibt, dann muss sie auch liefern. Der Punkt ist, dass diese Regierung nicht in der Lage ist wesentliche Vorgehen voranzubringen.",
+            "timestamp": "01:17:21",
+            "context": "Direkte Forderung an den Kanzler; finale Position zur Koalitionskrise."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ampel-Koalition und Regierungsstabilität",
+          "Vertrauensfrage und Neuwahlen",
+          "CDU/CSU-Strategie zur Migrationspolitik",
+          "Extremismus und demokratische Substanz"
+        ]
+      },
+      {
+        "title": "Demokratie lebt von Mehrheit/Minderheit, nicht von objektiver Wahrheit",
+        "timestamp_range": "01:06:44 - 01:07:59",
+        "theme_description": "Kiesewetter verteidigt das pluralistische Prinzip der Demokratie gegen die Vorstellung einer objektiven politischen Wahrheit.",
+        "question_asked": "Sigmar Gabriel sagt, in einer Demokratie muss man unterstellen, dass man Unrecht haben könnte, und der andere könnte Recht haben. Sehen Sie das genauso?",
+        "question_intent": "Sollte Demokratie auf dem Prinzip der gegenseitigen Anerkennung von Ungewissheit ruhen?",
+        "position": "Kiesewetter stimmt zu und erweitert das Argument: 'Aber der andere könnte Recht haben. Die Möglichkeit, dass alle vier Jahre man das umdreht, was bis dahin die Mehrheit war.' Sein zentraler Punkt: Wenn die Mehrheit die 'objektive Wahrheit' vertreten würde, wäre ein Wechsel zu früheren Minderheiten unmöglich. Daher muss Demokratie auf dem Prinzip Mehrheit/Minderheit beruhen, nicht auf absoluter Wahrheit. 'Es kann sein, dass beim nächsten Mal die andere Partei die Mehrheit gewinnt. Dann ist das nicht das Ende des Landes.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kiesewetter beantwortet mit voller Zustimmung und ergänzt das Argument logisch (Mehrheit-Logik ermöglicht Wechsel).",
+        "concrete_statements": [
+          "Der andere könnte Recht haben.",
+          "Wenn die Mehrheit die objektive Wahrheit vertreten würde, dann wäre der Wechsel zu denjenigen, die vorher die Minderheit waren, nicht möglich.",
+          "Es geht der Demokratie um Mehrheit und Minderheit, nicht um objektiv richtig oder falsch.",
+          "Es kann sein, dass beim nächsten Mal die andere Partei die Mehrheit gewinnt. Dann ist das nicht das Ende des Landes."
+        ],
+        "quotes": [
+          {
+            "text": "Aber der andere könnte Recht haben. Die Möglichkeit, dass alle vier Jahre man das umdreht, was bis dahin die Mehrheit war. Wenn die Mehrheit die objektive Wahrheit vertreten würde, dann wäre der Wechsel zu denjenigen, die vorher die Minderheit waren, nicht möglich. Man muss immer unterstellen - es geht der Demokratie um Mehrheit und Minderheit. Nicht um objektiv richtig oder falsch.",
+            "timestamp": "01:06:44",
+            "context": "Grundsätzliche Erklärung des demokratischen Pluralismus gegen Wahrheitsansprüche."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Demokratische Kultur und Verfassungsschutz",
+          "Polarisierung und politischer Konsens",
+          "Vertrauensfrage und Mehrheitsbildung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Trump hat den Mittelstreckenvertrag (Reagan-Gorbatschow-Abkommen) gebrochen.",
+        "timestamp": "00:16:24"
+      },
+      {
+        "claim": "Die USA produzieren 90% ihres Bruttoinlandsproduktes im Land.",
+        "timestamp": "00:11:10"
+      },
+      {
+        "claim": "Deutschland und Europa liegt bei 60–70 Prozent Binnenproduktion.",
+        "timestamp": "00:11:10"
+      },
+      {
+        "claim": "6 von 15 Billionen Dollar US-Verschuldung stammen aus China.",
+        "timestamp": "00:11:10"
+      },
+      {
+        "claim": "Trump verhandelte mit den Taliban statt mit der gewählten afghanischen Regierung.",
+        "timestamp": "00:44:14"
+      }
+    ]
+  }
+}

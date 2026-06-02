@@ -1,0 +1,432 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-6-juni-2024-100",
+    "video_id": "lanz-2024-06-06",
+    "politician": "Omid Nouripour",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "26db9a432fc3f26e",
+    "transcript_chars": 59980,
+    "caption_lines": 3023,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23895,
+    "tokens_out": 10563,
+    "cost_usd": 0.030684,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 7,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.688Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Omid Nouripour, damals Co-Vorsitzender der Grünen, diskutiert intensiv über die Ankündigung des Bundeskanzlers zu Abschiebungen nach Afghanistan und Syrien. Der Ton ist sachlich-verteidigend: Nouripour betont die Komplexität der Umsetzung, lehnt Scheinlösungen ab und argumentiert mit Blick auf Rechtstaatlichkeit und praktische Machbarkeit.",
+    "themes": [
+      {
+        "title": "Grüne Vorkenntnis von Abschiebungs-Ankündigung",
+        "timestamp_range": "00:03:09 - 00:03:09",
+        "theme_description": "Nouripour erklärt, dass die Grünen vorab mit dem Kanzler über die geplante Ankündigung zu Abschiebungen nach Afghanistan und Syrien gesprochen hatten.",
+        "question_asked": "Was haben Sie gedacht, als dieser Satz im Bundestag fiel?",
+        "question_intent": "Sollte überrascht oder schockiert wirken; Moderator testet, ob die Ankündigung für die Grünen wirklich überraschend kam.",
+        "position": "Nouripour behauptet, die Grünen seien nicht überrascht gewesen, da der Kanzler es ihnen vorher erzählt habe. Die Debatte sei vor dem Hintergrund der Grausamkeiten in Mannheim geführt worden, die das Land präge. Die Leute wollen Antworten zur Bekämpfung des Islamismus. Nouripour nennt die Tat 'barbarisch' und betont, dass das Gesetz bereits vorsieht, Straftäter nach Recht und Gesetz zu verurteilen und danach das Land zu verlassen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour beantwortet die Frage nach seiner spontanen Reaktion indirekt, indem er sagt, es sei kein Überraschungsmoment gewesen. Er weicht aber sofort zur Substanz aus: Was ist der übergeordnete Sinn (Islamismus-Bekämpfung, Rechtstaatlichkeit)? Die emotionale/persönliche Komponente der Frage wird nicht direkt adressiert.",
+        "concrete_statements": [
+          "Wir wussten, dass er das sagen wird.",
+          "Der Kanzler hat es uns erzählt.",
+          "Auch das mit der Prüfung von Möglichkeiten, nach Afghanistan abzuschieben. Das ist nicht neu. Das wird seit geraumer Zeit geprüft.",
+          "Die Leute wollen von uns Antworten auf die Frage zu geben, wie bekämpfen wir Islamismus."
+        ],
+        "quotes": [
+          {
+            "text": "Wir wussten, dass er das sagen wird. Wer ist wir? Wir Grüne. Wir haben vorher miteinander gesprochen. Wir wussten, dass der Kanzler es machen wird.",
+            "timestamp": "00:03:09",
+            "context": "Antwort auf die Frage, was Nouripour gedacht hat, als die Abschiebungs-Ankündigung fiel."
+          },
+          {
+            "text": "Wir haben eine Debatte geführt, vor dem Hintergrund der Grausamkeiten, die wir in Mannheim gesehen haben. Das prägt die Diskussion, das prägt das Land. Das war barbarisch, was wir gesehen haben, was passiert ist.",
+            "timestamp": "00:03:09",
+            "context": "Erklärung für die Art, wie die Debatte gerahmt wird."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Migration",
+          "Sicherheit",
+          "Islamismus-Bekämpfung",
+          "Abschiebungen"
+        ]
+      },
+      {
+        "title": "Praktische Machbarkeit von Abschiebungen nach Afghanistan",
+        "timestamp_range": "00:05:11 - 00:09:14",
+        "theme_description": "Nouripour erläutert die rechtlichen und praktischen Hindernisse bei Abschiebungen nach Afghanistan, insbesondere weil dort Staatsräson und Sicherheitsgarantien fehlen.",
+        "question_asked": "Sie sind dafür, dass demnächst Straftäter nach Afghanistan und Syrien abgeschoben werden? Und: Wie will man das technisch machen, wenn die Taliban Terrorherrschaft ist?",
+        "question_intent": "Moderator will konkrete Ja-Nein-Antwort zur Zustimmung zu Abschiebungen und will Widerspruch aufzeigen zwischen Islamismus-Bekämpfung und Verhandlung mit Taliban.",
+        "position": "Nouripour sagt: Die Grünen wollen, dass Straftäter verurteilt werden und danach das Land verlassen müssen. Aber: In Afghanistan gibt es keine Staatlichkeit, sondern 'islamistische Terrorherrschaft'. Man kann nicht mit der Taliban ein Abkommen machen 'außer wenn man ihnen Geld gibt'. Wenn man abschieben will, muss das andere Land anerkennen, dass die Person Staatsbürger ist – das würde bedeuten, die Taliban anzuerkennen. Das aber würde als größter Rückenwind für Islamisten wirken. Die Kernfrage sei: 'wie werden wir sicherer' – man dürfe keine Scheinlösungen propagieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour beantwortet die Frage indirekt und ausweichend: Er nennt Bedingungen (Verurteilung, Weggang), vermeidet aber klare Ja-Nein-Antwort. Statt das 'Ob' zu klären, erläutert er das 'Wie' und die Hindernisse. Das ist informativ, aber nicht direkt responsiv auf die Ja-Nein-Frage.",
+        "concrete_statements": [
+          "Wir sind dafür, dass Straftäter nach Recht und Gesetz verurteilt werden. […] Dass sie die Strafe setzen und danach das Land verlassen.",
+          "In Afghanistan gibt es keine Staatlichkeit, keine Regierung. Sondern eine islamistische Terrorherrschaft.",
+          "Die Innenministerin prüft und sie wird uns erklären, was die Ergebnisse sind.",
+          "Wenn wir die Taliban anerkennen, [das wäre] die größte Rückenwind, den man Islamisten geben kann."
+        ],
+        "quotes": [
+          {
+            "text": "In Afghanistan gibt es keine Staatlichkeit, keine Regierung. Sondern eine islamistische Terrorherrschaft. Die Frage ist, wie schiebt man ab.",
+            "timestamp": "00:05:11",
+            "context": "Antwort auf Moderators Frage, ob die Grünen Abschiebungen nach Afghanistan wollen."
+          },
+          {
+            "text": "Wenn jemand in ein anderes Land zurückgeführt wird, dann ist die Regel, dass das andere Land anerkennen, dass die Person Staatsbürger des Landes ist. Dann müssten wir die Taliban mit ins Gespräch nehmen.",
+            "timestamp": "00:07:14",
+            "context": "Erklärung der völkerrechtlichen und praktischen Voraussetzungen für Abschiebungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Abschiebungen Afghanistan",
+          "Völkerrecht",
+          "Taliban",
+          "Islamismus",
+          "Staatlichkeit"
+        ]
+      },
+      {
+        "title": "Scheinlösungen vs. echte Lösungen bei Abschiebungen",
+        "timestamp_range": "00:09:14 - 00:14:52",
+        "theme_description": "Nouripour argumentiert, dass man keine Scheinlösungen wie 'Abschieben nach Pakistan/Grenze' propagieren darf, wenn Islamisten ohnehin zurückkommen würden.",
+        "question_asked": "Sie sagen, dass Scheinlösungen falsch sind – aber der Kanzler hat nicht über Scheinlösungen gesprochen, sondern es ist ein Prüfauftrag. Warum nicht die Optionen einfach auf den Tisch legen und nüchtern betrachten?",
+        "question_intent": "Moderator (oder Gast) will Nouripours defensive Haltung kritisieren: Er sagt immer 'das geht nicht' – ist das nicht auch ein Rechtsruck, wenn man die Demokraten blocker lässt?",
+        "position": "Nouripour betont, dass der Kanzler selbst viele Gründe aufgezählt hat, warum es nicht geht. Er findet es aber richtig, dass Demokraten sich nicht 'verschanzen hinter: das kann man alles nicht lösen'. Man muss darüber nachdenken, 'was wir eigentlich machen können', sonst werden Rechtspopulisten gestellt. Allerdings: 'Am Ende der Prüfung darf keiner Scheinlösung stehen. Die Probleme sollten gelöst sein.' Die Kernfrage ist: 'Wir wollen die Leute in dem Land nicht haben. Wir wollen am Ende nicht so tun, als könnte man blinzeln […] und sie sein Weg. Es gibt handwerklich Dinge zu erledigen und diese nicht klein.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour akzeptiert die Kritik teilweise: Ja, Demokraten sollten Lösungen suchen, nicht nur Probleme aufzählen. Aber er insistiert auf der Bedingung: Die Lösung muss real sein, nicht nur symbolisch. Das ist eine Stellungnahme zur Strategie, aber nicht vollständig responsiv auf die Frage, ob konkrete Szenarien (z.B. Pakistan-Modell) geprüft werden sollen.",
+        "concrete_statements": [
+          "Es ist ein Rechtsruck, wenn Demokraten sich verschanzen hinter: das kann man alles nicht lösen.",
+          "Man muss darüber nachdenken, was wir eigentlich machen können. Ansonsten werden Rechtspopulisten gestellt.",
+          "Am Ende der Prüfung darf keiner Scheinlösung stehen. Die Probleme sollten gelöst sein.",
+          "Der Kanzler hat viele Gründe, warum es nicht geht. Wir wollen Lösungen haben."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde es nämlich richtig, wenn Demokraten sich nicht immer verschanzen hinter diesem, das kann man alles nicht lösen, und wir können das alles nicht machen - sondern dass man darüber nachdenkt, was wir eigentlich machen können.",
+            "timestamp": "00:12:49",
+            "context": "Nouripours Reaktion auf die Kritik, dass die Grünen immer nur Gründe aufzählen, warum etwas nicht geht."
+          },
+          {
+            "text": "Aber das war nicht sozusagen das leidenschaftliche Plädoyer, für das was der Kanzler gesagt hat? Wir wollen die Leute in dem Land nicht haben.",
+            "timestamp": "00:14:52",
+            "context": "Nouripours Klarstellung seiner Position: Die Grünen wollen Straftäter nicht im Land haben, aber nicht durch Scheinlösungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Rechtsstaatlichkeit",
+          "Migrationspolitik",
+          "Populismus"
+        ]
+      },
+      {
+        "title": "Österreich und Abschiebungen – Rechtsstaat vs. Rhetorik",
+        "timestamp_range": "00:16:55 - 00:16:55",
+        "theme_description": "Nouripour sagt, dass Österreich als Rechtsstaat ebenfalls nicht nach Afghanistan oder Syrien abschiebt, obwohl es dort ähnliche Debatten gibt.",
+        "question_asked": "Schiebt Österreich nach Afghanistan, Syrien ab? Warum nicht?",
+        "question_intent": "Interviewer möchte zeigen, dass auch andere Rechtsstaaten de facto nicht abschieben können – trotz rechtsnationaler Rhetorik.",
+        "position": "Nouripour antwortet prägnant: 'Nein. Im Augenblick nicht. Es ist ein Rechtsstaat, als es nicht so gekommen. Das Recht hat nicht der Politik zu folgen.' Es gibt Abschiebeverfahren mit denselben Schwierigkeiten wie in Deutschland und hohen Kosten. Aber abgeschoben wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour beantwortet direkt und knapp: Österreich schiebt nicht ab, weil es ein Rechtsstaat ist. Das widerlegt die Erwartung, dass 'nur' Deutschland zu vorsichtig ist – andere Länder haben dasselbe Problem.",
+        "concrete_statements": [
+          "Im Augenblick nicht. Es ist ein Rechtsstaat, als es nicht so gekommen.",
+          "Das Recht hat nicht der Politik zu folgen.",
+          "Es gibt natürlich Abschiedverfahren, es wird abgeschoben, mit den gleichen Schwierigkeiten, die wir in Deutschland kennen, große Kosten."
+        ],
+        "quotes": [
+          {
+            "text": "Nein. Im Augenblick nicht. Es ist ein Rechtsstaat, als es nicht so gekommen. Das Recht hat nicht der Politik zu folgen.",
+            "timestamp": "00:16:55",
+            "context": "Antwort auf Frage, ob Österreich nach Afghanistan abschiebt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rechtsstaat",
+          "Abschiebungen",
+          "Österreich",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Rückführungen nach Afghanistan – Zahlen und Hürden",
+        "timestamp_range": "00:20:37 - 00:22:37",
+        "theme_description": "Nouripour erklärt, dass die Barrieren bei Abschiebungen nicht in der Unwilligkeit liegen, sondern in geltendem Recht – Personen dürfen nicht in Länder abgeschoben werden, wo ihnen Unrecht droht.",
+        "question_asked": "Wir haben große Unterschiede bei Zahlen der ausreisepflichtigen (50.000 vs. 300.000). Welche sind es wirklich? Und warum funktioniert das Recht und Gesetz nicht?",
+        "question_intent": "Moderator will auf Inkonsistenz hinweisen: Entweder es gibt Hindernisse (dann warum nicht benennen) oder es ist Unwilligkeit.",
+        "position": "Nouripour sagt: Es gibt eine Gesetzeslage. Wer kein Aufenthaltsrecht hat, muss das Land verlassen. Aber das Recht sagt auch: Man darf in ein Land nicht abschieben, 'wo die Person auch hinten gerichtet werden kann'. Diese Barrieren führen dazu, dass die Zahlen so sind wie sie sind. Bei Rückführungen habe es Fortschritt gegeben. Die Auseinandersetzung heute sei aber eine andere: 'Wie verhindern wir, dass sich so etwas wie in Mannheim nicht wiederholt.' Das funktioniert nicht über Abschiebung allein, sondern über Bekämpfung von Islamismus und weniger Radikalisierungsstrukturen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour erklärt die rechtliche Problematik (Nicht-Abschiebung in unsichere Länder), leitet aber sofort auf die übergeordnete Frage um: Wie verhindern wir Islamismus? Das ist substanziell, lenkt aber ab vom konkretesten Punkt (Warum wurden auch die 50.000–300.000 Ausreisepflichtigen nicht abgeschoben).",
+        "concrete_statements": [
+          "Es gibt eine Gesetzeslage in dem Land. Wer kein Aufenthaltsrecht hat, muss das Land verlassen.",
+          "Wenn das Recht sagt, man darf in ein Land nicht abschieben, wo die Person auch hinten gerichtet werden kann. Auch wenn keine Staatlichkeit da ist. Die Barrieren gibt es.",
+          "Die Kernfrage ist: Wie verhindern wir Islamismus? […] Man muss überlegen, wie die Radikalisierungsstrukturen in dem Land weniger werden.",
+          "Wir haben einen Fortschritt gemacht bei den Rückführungen."
+        ],
+        "quotes": [
+          {
+            "text": "Darf ich nochmals im Kern kommen? Es gibt eine Gesetzeslage in dem Land. Wir als Politik, Koalition und verflüchtigt, das Gesetz umzusetzen. Wer kein Aufenthaltsrecht hat, muss das Land verlassen.",
+            "timestamp": "00:20:37",
+            "context": "Nouripours Versuch, die zugrundeliegende Logik zu erklären: Rechtstaatlichkeit ist nicht Unwilligkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Abschiebungen",
+          "Rechtsstaat",
+          "Islamismus",
+          "Menschenrechte"
+        ]
+      },
+      {
+        "title": "Taliban-Verhandlungen und Anerkennungsfalle",
+        "timestamp_range": "00:24:37 - 00:28:42",
+        "theme_description": "Nouripour argumentiert, dass Verhandlungen mit der Taliban über Abschiebungen faktisch einer Anerkennung gleichkämen – mit praktischen und sicherheitstechnischen Hürden.",
+        "question_asked": "Friedrich Merz sagt: Deutschland arbeitet über technische Entwicklungshilfe-Kontakte schon mit Afghanistan – warum nicht für Abschiebungen nutzen?",
+        "question_intent": "Moderator versucht, einen Widerspruch zu finden: Wenn es Kontakte gibt, warum nicht nutzen?",
+        "position": "Nouripour widerspricht: Es gibt keine Zusammenarbeit mit Afghanistan – nur humanitäre Hilfe über Organisationen, damit die Taliban nicht alles abzweigt. Das ist kein diplomatischer Kanal. Wenn man abschieben will, braucht man Verhandlungen – ein Flugzeug muss landen in Kabul, braucht Landeerlaubnis, damit der 'Kläger nicht abgeschossen wird'. Ab da verhandelt man mit der Taliban. 'Deswegen wird nicht anders gehen, Kanten abzuschieben, als mit den Taliban zu reden, und das wäre für uns schlecht.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour antwortet direkt auf Merz' Vorschlag und erklärt, warum humanitäre Hilfe kein Verhandlungskanal ist. Die Logik-Kette (Abschiebung → Verhandlungen → Taliban-Anerkennung → Sicherheitsrisiko) wird klar dargelegt.",
+        "concrete_statements": [
+          "Wir machen keine Zusammenarbeit mit Afghanistan.",
+          "Es gibt humanitäre Hilfsorganisationen, international, anerkannt.",
+          "Wenn wir in Kabul landen, dann braucht man einen Lande-Genehmigung, damit der Kläger nicht abgeschossen wird. Ab da ist man in Verhandlungen mit den Taliban.",
+          "Deswegen wird nicht anders gehen, Kanten abzuschieben, als mit den Taliban zu reden, und das wäre für uns schlecht."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn wir in Kabul landen, dann braucht man einen Lande-Genehmigung, damit der Kläger nicht abgeschossen wird. Ab da ist man in Verhandlungen mit den Taliban. Deswegen wird nicht anders gehen, Kanten abzuschieben, als mit den Taliban zu reden, und das wäre für uns schlecht.",
+            "timestamp": "00:28:42",
+            "context": "Nouripours Erklärung, warum die Lösung über diplomatische Kanäle faktisch unmöglich ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Taliban",
+          "Afghanistan",
+          "Diplomatie",
+          "Internationale Beziehungen"
+        ]
+      },
+      {
+        "title": "Aufnahmeprogramm für Ortskräfte und Sicherheitsrisiken",
+        "timestamp_range": "00:32:43 - 00:38:46",
+        "theme_description": "Nouripour verteidigt das Aufnahmeprogramm für afghanische Ortskräfte gegen den Vorwurf, dass radikale Islamisten missbraucht werden könnten.",
+        "question_asked": "Es wurden 33.000 Ortskräfte 'geholt' – wissen wir eigentlich, wer dort kommt? Ein Botschafter hat gewarn, dass Scharia-Richter sich als Juristen ausgeben.",
+        "question_intent": "Moderator möchte aufzeigen, dass mangelnde Kontrolle ein Sicherheitsrisiko ist.",
+        "position": "Nouripour sagt: Bei denen (den 33.000) wissen wir es. Es sind Leute, die der Bundeswehr beigestanden haben und deshalb in Lebensgefahr sind. Auch Frauenaktivistinnen. Es ist ein Gebot von Anstand und Sicherheit: Wenn die Bundeswehr den Eindruck erweckt, 'wir lassen die Leute zurück, dann will niemand für die Bundeswehr arbeiten'. Der Botschafter hat zu Recht gewarnt – es ist ein Problem. Aber: 'Die Sicherheitsbehörden haben sich das angenommen. Das Innenministerium hat die Kontrolle massiv verschärft.' Man kann solche Dinge grundsätzlich nicht ausschließen, aber es wurde viel dagegen getan.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour beantwortet die Sicherheitsfrage mit: Ja, es gibt ein Problem, aber es wird kontrolliert. Das ist defensiv und betont Maßnahmen statt echter Zusicherung. Die Frage nach tatsächlicher Eindeutigkeit bleibt offen.",
+        "concrete_statements": [
+          "Bei denen wissen wir es. [Sie] sind Leute über Frauenaktivistinnen, mit den wir gearbeitet haben.",
+          "Das Innenministerium hat die Kontrolle massiv verschärft, damit genau das nicht passiert.",
+          "Man sollte grundsätzlich solche Dinge nicht ausschließen.",
+          "Es gab die Möglichkeit, dass man die Leute deutlich früher herausholt und dass es nicht gemacht worden von der Koalition."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ein Gebot von Anstand, sondern auch von Sicherheit, wenn die Bundeswehr den Eindruck erweckt, und wir lassen die Leute zurück, dann will niemand für die Bundeswehr arbeiten.",
+            "timestamp": "00:34:45",
+            "context": "Nouripours Argument, warum das Aufnahmeprogramm wichtig ist, auch aus Sicherheitsperspektive."
+          },
+          {
+            "text": "Man sollte grundsätzlich solche Dinge nicht ausschließen. Was ich sagen kann, dass es gut ist, das gewandt worden ist und dass die Sicherheitsvorkehrungen massiv angehoben sind.",
+            "timestamp": "00:36:46",
+            "context": "Nouripours vorsichtige Antwort auf die Frage, ob Islamisten ins Land kamen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan",
+          "Ortskräfte",
+          "Sicherheit",
+          "Bundeswehr",
+          "Islamismus"
+        ]
+      },
+      {
+        "title": "Islamismus in Deutschland unterschätzt und Überwachung",
+        "timestamp_range": "00:42:48 - 00:45:32",
+        "theme_description": "Nouripour reflektiert über die Rolle der Grünen bei der Unterschätzung von Islamismus und Radikalisierungsstrukturen.",
+        "question_asked": "Ihr ehemaliger Parteifreund Daniel Baier sagt: Die Grünen haben den Islamismus unterschätzt. Wieviel Personal haben die Verfassungsschutzbehörden? Kriegen die mit, wenn jemand radikalisiert wird?",
+        "question_intent": "Moderator möchte Selbstkritik herauslocken oder die Grünen mit ihrer eigenen Partei kritisieren.",
+        "position": "Nouripour sagt: Es ist nicht 'jetzt' ein Thema – es war im Fokus der öffentlichen Debatte nicht gestanden. Es gab Fälle wie Mannheim, wo es eine Radikalisierungsgeschichte gab, die niemand mitbekommen hat. Der Täter galt als gut integriert. Die Verfassungsschutzbehörden: komplizierte Frage – brauchen sie genug Personal? Wurden sie umgeschichtet auf Rechtsextremismus? Müssen die alles überwachen? 'Das ist im Detail sehr kompliziert, aber solche Fragen stellt man sich.' Ein Beispiel: In Moskau gab es Anschlag einer Islamisten-Gruppe. In der Moschee marschiert die Gemeinschaft durch. Die blaue Moschee ist nicht geschlossen worden. 'Es muss also wieder einen toten Polizisten geben, dass wir darüber reden, leider.' Es ist bitter für viele Afghanen: 'Vor genau den Leuten bin ich abgehauen […] und ihr kriegt es nicht hin, wer ins Land kommt, und das ist das Thema.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour gibt Selbstkritik teilweise zu (Islamismus war nicht im Fokus), weicht aber auf komplexe Fragen aus (Personal, Überwachung, Radikalisierung). Die Schlussfolgerung ist eher lyrisch-reflektierend als politisch konkret.",
+        "concrete_statements": [
+          "Es ist nicht jetzt ein Thema. Im Fokus der öffentlichen Debatte ist nicht gestanden.",
+          "Es gab eine Radikalisierungsgeschichte, die niemand mitbekommen hat. Er gilt als gut integriert, hat sich in Wahrheit radikalisiert.",
+          "Das ist im Detail sehr kompliziert, aber solche Fragen stellt man sich.",
+          "Es muss also wieder einen toten Polizisten geben, dass wir darüber reden, leider."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist nicht jetzt ein Thema. Im Fokus der öffentlichen Debatte ist nicht gestanden. Wir haben zahlreiche Fälle, wie den Täter von Mannheim, […] Aber es gab eine Radikalisierungsgeschichte, die niemand mitbekommen hat.",
+            "timestamp": "00:42:48",
+            "context": "Nouripours Einräumung, dass Islamismus unterschätzt wurde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Islamismus",
+          "Radikalisierung",
+          "Verfassungsschutz",
+          "Sicherheit",
+          "Integration"
+        ]
+      },
+      {
+        "title": "Österreich: Jörg Haider, Herbert Kickl und Populismus",
+        "timestamp_range": "00:51:40 - 00:53:40",
+        "theme_description": "Nouripour analysiert österreichische Rechtspopulisten und wie sie das Sagbare verschieben – mit historischem Bezug zu Nazi-Zeit und Waffen-SS.",
+        "question_asked": "Warum verfängt Populismus in Österreich? Hat die Waffen-SS nicht auch 'anderen' Dinge gemacht?",
+        "question_intent": "Moderatoren/Gäste möchten verstehen, warum populistische Rhetorik funktioniert und wie Geschichtsrevisionismus salonfähig wird.",
+        "position": "Nouripour sagt: Es gibt historische Gründe. Die Aufarbeitung der Nazizeit wurde nicht so intensiv und lange wie in Deutschland betrieben. Das ist Grundlage dafür, dass man auch dort nicht so genau hinschaut. Jörg Haider war einer der ersten, der 'das Sagbare verschoben' hat, dadurch Popularität erarbeitet. Es ist populär, gegen die Obrigkeit zu sein. Aber: Herbert Kickl ist eigentlich Elite – immer in Politik, studiert, direkt reingegangen, hoher Verdienst – 'er gehört zur Elite'. Ironisch: Er streitet mit Trump ständig, wer 'Amerika first' oder 'Österreich first' erfunden hat. Der Spruch ist aus den dreißiger Jahren. Beide falsch.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour antwortet substanziell auf die Frage nach historischen Gründen und Populismus-Mechanik. Er nennt konkrete Namen (Haider, Kickl), Mechanismen (Sagbares verschieben) und dekonstruiert Rhetorik (Kickl als Elite trotz Anti-Eliten-Pose).",
+        "concrete_statements": [
+          "Es gibt historische Gründe, die Aufarbeitung der Nazizeit wurde nicht so intensiv und lange wie in Deutschland betrieben.",
+          "Jörg Haider […] hat sich dadurch eine Popularität erarbeitet. Es ist populär, das kann auch Ulf Röller gleich über USA erzählen, in einer Gruppe der Populisten zu sein. Gegen die Obrigkeit zu sein.",
+          "Mehr Elite als Herbert Kickl kann man nicht sein. Er hat immer in der Politik gearbeitet. […] er verdient auch sehr gut, er gehört zur Elite.",
+          "Das ironische ist, dass er sich mit Trump ständig streitet, wer als erstes America first oder Österreich first ausgedacht hat. Der Spruch ist aus den dreißiger Jahren. Beide falsch."
+        ],
+        "quotes": [
+          {
+            "text": "Jörg Haider […] war einer der ersten in der Reihe der populärsten das sagbare verschoben hat. Er hat sich dadurch eine Popularität erarbeitet.",
+            "timestamp": "00:53:40",
+            "context": "Nouripours Erklärung, wie Populismus in Österreich funktioniert – das Verschieben des Sagbaren."
+          },
+          {
+            "text": "Mehr Elite als Herbert Kickl kann man nicht sein. […] und das ironische ist, dass er sich mit Trump ständig streitet, wer als erstes America first oder Österreich first ausgedacht hat.",
+            "timestamp": "00:53:40",
+            "context": "Nouripours Dekonstruktion der Anti-Eliten-Pose von Populisten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Populismus",
+          "Österreich",
+          "FPÖ",
+          "Geschichtsrevisionismus",
+          "Rhetorik"
+        ]
+      },
+      {
+        "title": "Chinesischer Einfluss in Ungarn und Europa",
+        "timestamp_range": "00:51:40 - 01:09:46",
+        "theme_description": "Nouripour äußert sich zu wirtschaftlicher Abhängigkeit von China und deren politischen Auswirkungen auf Ungarn und andere EU-Länder.",
+        "question_asked": "Wie groß ist der chinesische Einfluss in Ungarn und Europa? Wie nutzt China wirtschaftliche Abhängigkeit als Druckmittel?",
+        "question_intent": "Moderatoren möchten verstehen, wie externe Mächte EU-Politik beeinflussen.",
+        "position": "Nouripour antwortet mit Beispiel: China nutzt wirtschaftliche Abhängigkeit. Deutsche Konzern-Chefs trauen sich nicht, das Wort 'Arbeitslager' zu sagen – obwohl China die Uiguren unterdrückt. Das ist Zensur durch wirtschaftlichen Druck. Er sagt: Ungarn hat 'keinen Ungar beschäftigt' in chinesischen Batteriefabriken – das Modell ist: China versucht, aus Ungarn einen Bestandteil der chinesischen Infrastruktur zu machen. 'Das ist der Preis für unseren Wohlstand.' Aber: China macht auch gigantische Versprechungen, 'die hält es aber nicht' – große Investitionen, die scheitern. Das muss man 'mitbereden, weil die große Geschichte daran zerbricht'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour antwortet auf die Grundfrage (ja, China hat Einfluss), liefert aber vor allem kritische Beispiele, nicht eine systematische Analyse. Er betont auch die Schein-Aspekte (gescheiterte Projekte), weicht aber von der reinen Einfluss-Frage ab.",
+        "concrete_statements": [
+          "Wirtschaftliche Abhängigkeit für ihn fast wichtiger als die Spionagetätigkeiten.",
+          "Das ist der Preis für unseren Wohlstand.",
+          "Die Chinesen versprechen Investitionen, habe noch einen gigantischen Geldbeutel, aber wenn man sich auf der Europa Karte anschaut, was sie alles gesagt haben, was sie tun, aber nicht geschafft haben, dann ist es gigantisch.",
+          "Das muss man mit bereden, weil die große Geschichte daran zerbricht."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist der Preis für unseren Wohlstand. […] Aber die Ungarn, die haben doch nichts von den Arbeitsplätzen?",
+            "timestamp": "01:09:46",
+            "context": "Nouripours Sicht auf das chinesische Modell in Ungarn – vorteilhaft für China und reiche EU-Länder, nicht für Ungarn."
+          }
+        ],
+        "related_bundestag_topics": [
+          "China",
+          "Ungarn",
+          "EU",
+          "Wirtschaft",
+          "Geopolitik",
+          "Beeinflussung"
+        ]
+      },
+      {
+        "title": "AfD und chinesischer Einfluss auf deutsche Außenpolitik",
+        "timestamp_range": "01:10:22 - 01:10:22",
+        "theme_description": "Nouripour kritisiert die AfD dafür, dass ihre Positionen zu China, Russland und Nordstream den Interessen dieser Länder zugute kommen.",
+        "question_asked": "Wie sichtbar ist chinesischer Einfluss auch in deutscher Politik und Parteien?",
+        "question_intent": "Moderator möchte AfD-Beeinflussung durch China/Russland thematisieren.",
+        "position": "Nouripour sagt: Die Einflussnahme ist sichtbar. Wenn ein AfD-Abgeordneter eine Anfrage stellt, warum Deutschland eine Demokratiebewegung in Hongkong unterstütze, 'dann braucht man sich nicht wundern'. Die AfD sagt: 'Wir müssen Nordstream 2 wieder in Betrieb nehmen. Wir müssen aus der Europäischen Union austreten. Das wird zu vernichten und Wohlstand.' Das hilft China und Russland. 'Das ist nicht nur Einflussnahme, sondern das Programm der Partei ist sehr deutlich abhängig davon, was den Chinesen und Russen hilft.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour antwortet direkt und nennt konkrete Positionen (Hongkong-Kritik, Nordstream 2, EU-Austritt), die er als abhängig von China/Russland-Interessen deutet. Das ist substanziell und responsiv.",
+        "concrete_statements": [
+          "Wenn ein AfD Abgeordneter eine Anfrage stellt, warum wir unterstützen, eine Demokratiebewegung in Hongkong, dann braucht man sich nicht wundern.",
+          "Wenn die sagen, wir müssen Nordstream 2 wieder in Betrieb nehmen, wir müssen aus der Europäischen Union austreten, das wird zu vernichten und Wohlstand. Das hilft China und Russland.",
+          "Das ist nicht nur Einflussnahme, sondern das Programm der Partei ist sehr deutlich abhängig davon, was den Chinesen und Russen hilft."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist nicht nur Einflussnahme, sondern das Programm der Partei ist sehr deutlich abhängig davon, was den Chinesen und Russen hilft.",
+            "timestamp": "01:10:22",
+            "context": "Nouripours Fazit zur AfD-Beeinflussung durch China/Russland-Interessen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "China",
+          "Russland",
+          "Außenpolitik",
+          "Nordstream 2",
+          "EU-Austritt"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Kanzler hat es der Grünen-Fraktion vorher erzählt, dass er Abschiebungen nach Afghanistan ankündigen wird.",
+        "timestamp": "00:03:09"
+      },
+      {
+        "claim": "In Afghanistan gibt es keine Staatlichkeit, sondern eine islamistische Terrorherrschaft (Taliban).",
+        "timestamp": "00:05:11"
+      },
+      {
+        "claim": "Deutschland hat etwa 33.000 sogenannte Ortskräfte aus Afghanistan nach Deutschland geholt.",
+        "timestamp": "00:32:43"
+      },
+      {
+        "claim": "Die Innenministerin wird in zwei Wochen ein Konzept zur Abschiebung nach Afghanistan vorstellen.",
+        "timestamp": "00:20:37"
+      },
+      {
+        "claim": "Ein Botschafter in Islamabad warnte davor, dass das Aufnahmeprogramm von radikalen Islamisten missbraucht werden würde.",
+        "timestamp": "00:36:46"
+      },
+      {
+        "claim": "Österreich schiebt derzeit nicht nach Afghanistan oder Syrien ab.",
+        "timestamp": "00:16:55"
+      },
+      {
+        "claim": "Jörg Haider war einer der ersten Populisten, der das 'Sagbare verschieben' hat in Österreich.",
+        "timestamp": "00:53:40"
+      }
+    ]
+  }
+}

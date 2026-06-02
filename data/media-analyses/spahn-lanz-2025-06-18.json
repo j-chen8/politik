@@ -1,0 +1,304 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-18-juni-2025-100",
+    "video_id": "lanz-2025-06-18",
+    "politician": "Jens Spahn",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "5b3cfbcbc0ca4c82",
+    "transcript_chars": 58221,
+    "caption_lines": 3038,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24442,
+    "tokens_out": 7894,
+    "cost_usd": 0.0255648,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 2,
+      "teilweise_antwort": 6
+    },
+    "generated_at": "2026-06-02T16:33:28.046Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, CDU/CSU-Fraktionsvorsitzender, diskutiert in dieser Talkshow zwei Kernthemen: die völkerrechtliche Bewertung israelischer Luftschläge auf den Iran sowie die Aufarbeitung der Maskenaffäre aus der Corona-Pandemie. Er argumentiert pragmatisch für ein Verständnis israelischer Sicherheitsinteressen angesichts existenzieller Bedrohung durch das iranische Regime, sieht die Völkerrechtsbruch-Vorwürfe als notwendige Realpolitik in einem anarchischen internationalen System und weist Kritik an der Maskenbeschaffung als Krisenmanagement ab.",
+    "themes": [
+      {
+        "title": "Völkerrecht versus israelische Existenzsicherung",
+        "timestamp_range": "00:08:48 - 00:12:55",
+        "theme_description": "Debatte über die Legitimität israelischer Präventivschläge gegen den Iran als Verstoß gegen oder notwendige Ausnahme vom Völkerrecht.",
+        "question_asked": "Moderator stellt die grundsätzliche Frage, ob Deutschland mit seiner Zustimmung zu israelischen Angriffen das Völkerrecht aufgibt und ob nicht der Bundeskanzler mit seiner 'Bravo'-Reaktion eine unangemessene Position vertreten hat.",
+        "question_intent": "Kritik an der Position der Bundesregierung zu beurteilen: Wird das Völkerrecht zu schnell preisgegeben, nur weil es im Fall Iran 'passt'?",
+        "position": "Spahn argumentiert, dass die Diskussion um 'Recht des Stärkeren versus Stärke des Rechts' die Vorgeschichte ignoriert. Der Iran finanziere die Hisbollah, destabilisiere die Region, unterstütze Russland und habe als ausgesprochenes Staatsziel die Vernichtung Israels sowie die Entwicklung von Atomwaffen. Die zentrale Frage sei nicht philosophisches Völkerrecht, sondern ob man warten darf, bis das Regime Atommacht besitzt. Er lehnt 'Regime Change' als Ziel ab – es gehe allein darum, die Atombombennentwicklung zu verhindern. Pragmatisch verweist er auf die Realität israelischer Bedrohung durch Hamas, Hisbollah und Huthi-Milizen. Der Vorwurf der 'Drecksarbeit' werde missverstanden; es gehe um ehrliche Einschätzung regionaler Realität, die deutsche Politik bislang nicht hinreichend adressiert habe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn beantwortet die völkerrechtliche Frage nicht direkt, sondern argumentiert kontextualisierend: Die Völkerrechtsbruch-Kritik sei verständlich, aber ohne Berücksichtigung der iranischen Aggression unzureichend. Er verschiebt die Antwort auf die Sicherheitslogik Israels, statt die normative Frage zu klären, ob Präventionskrieg völkerrechtlich zulässig ist.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Das ausgesprochene Ziel des Iran ist Israel zu vernichten – das ist Staatsdoktrin",
+          "Die Frage ist: müssen wir warten bis die Atombombe da ist, oder darf man Präventiveinschläge machen?",
+          "Das Hauptziel ist die Entwicklung der Bombe zu verhindern"
+        ],
+        "quotes": [
+          {
+            "text": "Der Iran der den Hisbollah finanziert. Mit dem Iran, der Instabilität in die Region bringen. Der Russland unterstützt. [...] das Ziel hat einer Atombombe zu entwickeln. Als Staatsziel hatte es, Israel zu vernichten. Das ist das ausgesprochene Ziel. Staatsdoktrin sozusagen.",
+            "timestamp": "00:09:23",
+            "context": "Reaktion auf Anna Lehmanns Kritik an Völkerrechtsbruch und 'Drecksarbeit'-Rhetorik."
+          },
+          {
+            "text": "Darf man Präventiveinschlag machen. Ich fühle mich schon seit langem unwohl mit der Iran Politik, die versucht, Konzession zu kriegen.",
+            "timestamp": "00:09:34",
+            "context": "Rechtfertigung des Präventivschlags durch Verweis auf Ziel der Atombombenentwicklung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Israelische Sicherheit",
+          "Völkerrecht und internationale Ordnung",
+          "Deutsche Außenpolitik Nahost"
+        ]
+      },
+      {
+        "title": "Menschenrechtsbrüche und doppelte Standards",
+        "timestamp_range": "00:11:46 - 00:20:41",
+        "theme_description": "Diskussion über Widersprüche zwischen westlichen Menschenrechts- und Völkerrechtsprinzipien und ihrer praktischen Anwendung in Fällen wie Irak, Afghanistan, Syrien versus Iran-Schlag.",
+        "question_asked": "Anna Lehmann und der Moderator argumentieren, dass westliche Staaten nicht behaupten können, Völkerrecht und Menschenrechte zu schützen, wenn sie Völkerrechtsbrüche tolerierten – besonders unter dem Vorwand der Krise.",
+        "question_intent": "Zu zeigen, dass westliche Doppelzüngigkeit (Kritik an Russland/China, Duldung bei Israel) die Glaubwürdigkeit des gesamten Regelwerks untergräbt.",
+        "position": "Spahn nimmt das Doppelstandards-Argument auf, reitet es aber nicht ab. Stattdessen kontrastiert er: Ja, der Westen habe früher Völkerrecht gebrochen (Irak, Afghanistan), aber der Fall Iran sei keine 'Regime Change'-Operation – es gehe um Verhinderung von Atomwaffenentwicklung unter existenzieller Bedrohung. Putin hingegen brauche keine Begründung; er wolle die Ukraine einfach überfall en. Auch argumentiert Spahn, dass sich Staaten an Völkerrecht halten sollten, aber wenn 'Autokraten wie China, Russland, Nord Korea, Iran' mit Ziel 'Kampf gegen die freiheitliche Demokratie' handeln, müsse man sich die Frage stellen: darf der Westen einfach 'sitzen und warten'? Das ist eine Verschiebung zu Realpolitik.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Spahn adressiert das Doppelstandards-Problem, weicht aber aus, indem er auf iranische Aggression verweist und damit die Kritik umdefiniert: nicht westliche Heuchelei sei das Problem, sondern die Notwendigkeit, mit existenziellen Bedrohungen pragmatisch umzugehen. Er leitet den Vorwurf auf die iranische Seite um.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Der Iran finanziert die Hisbollah und bringt Instabilität",
+          "Das Regime hat als ausgesprochenes Ziel Israel zu vernichten",
+          "Muss man da einfach sitzen und warten?"
+        ],
+        "quotes": [
+          {
+            "text": "Das habe ich ihm nicht gesagt. Unabhängig davon ist die Frage, wenn jemand droht, die Existenz infrage stellt und dabei ist die Instrumente dafür sich zu schaffen. Und trotzdem stellt sich die Frage, was tun als westliche Wertegemeinschaft?",
+            "timestamp": "00:11:46",
+            "context": "Abwehr des Vorwurfs, er befürworte generelles Aushebeln von Völkerrecht, während er Realpolitik betont."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Glaubwürdigkeit deutscher Außenpolitik",
+          "Westliche Werteordnung",
+          "Geopolitische Pragmatik"
+        ]
+      },
+      {
+        "title": "Deutsche Diplomatie und fehlende Ehrlichkeit",
+        "timestamp_range": "00:20:54 - 00:21:39",
+        "theme_description": "Kritik an bisheriger deutscher Iran-Politik als zu hoffnungsfroh und nicht ehrlich genug über die tatsächliche iranische Agenda.",
+        "question_asked": "Im Zusammenhang mit dem Thema 'Drecksarbeit' stellt der Moderator implizit die Frage: Was haben wir (der Westen/Deutschland) übersehen?",
+        "question_intent": "Zu ergründen, wieso deutsche/westliche Diplomatie nicht zu realistischen Ergebnissen geführt hat.",
+        "position": "Spahn sagt, alle hätten gesehen, was der Iran in der Region gemacht hat – Finanzierung von Hisbollah, Destabilisierung – aber der Westen habe das 'relativ Konsequenzen los passieren lassen'. Zwar könne man über Trump sagen, was man will, aber 'das, was passiert ist, ist teilweise klarer als das, was deutsche Politiker gesagt haben'. Spahn kritisiert implizit deutsche Zurückhaltung: 'Wir waren vielleicht nicht ehrlich genug und haben eine Hoffnung gelegt, dass wir sie irgendwie zur Vernunft bringen. Das ist offensichtlich nicht gelungen.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn gibt eine teilweise kritische Selbsteinschätzung deutscher Politik (zu gehofft, nicht ehrlich genug), bleibt aber vage über konkrete deutsche Fehlentscheidungen. Er kritisiert eher die Passivität des Westens als spezifische Fehler Deutschlands.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir waren vielleicht nicht ehrlich genug",
+          "Hoffnung, dass wir sie irgendwie zur Vernunft bringen – offensichtlich nicht gelungen",
+          "Der Iran ist relativ Konsequenzen los passiert"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben doch alle gesehen, was der Iran in der Region gemacht hat. Wir haben es relativ Konsequenzen los passieren lassen. [...] Wir waren vielleicht nicht ehrlich genug und haben eine Hoffnung gelegt, dass wir sie irgendwie zur Vernunft bringen. Das ist offensichtlich nicht gelungen.",
+            "timestamp": "00:20:54",
+            "context": "Auf Moderators Frage nach den Gründen für die Wirksamkeit israelischer Luftschläge."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Diplomatie und JCPOA",
+          "Deutsche Außenpolitik Nahost",
+          "Appeasement-Vorwürfe"
+        ]
+      },
+      {
+        "title": "Maskenbeschaffung als Krisenmanagement",
+        "timestamp_range": "00:36:36 - 00:40:55",
+        "theme_description": "Rechtfertigung der Maskenbeschaffungsstrategie während der COVID-19-Pandemie unter Notfall-Bedingungen.",
+        "question_asked": "Moderator fragt grundsätzlich: In einer Krise wie März 2020 – welche Fehler hat Spahn gemacht? Welche Entscheidungen würde er heute anders treffen?",
+        "question_intent": "Zu klären, ob Spahn Verantwortung für Fehler übernimmt oder alles auf die Krise schiebt.",
+        "position": "Spahn rahmt die Maskenbeschaffung als existenzielle Entscheidung: März/April 2020, alle waren unsicher, Virologen forderten Masken, es herrschte 'gesundheitlicher Kriegsfall'. Der Bund entschied, 'koste es was es wolle' Masken zu besorgen – gemeinsames Verständnis war 'lieber Geld verlieren als Leben verlieren'. Mit dem Wissen von heute hätte man manches anders gemacht, insbesondere das Open-House-Verfahren. Aber die Gesamtstrategie war notwendig.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn gibt zu, dass er mit heutigem Wissen das Verfahren nicht wiederholt würde, bleibt aber in der Krise-Rechtfertigung verhaftet. Er antwortet nicht auf die Frage nach konkreten Fehlern (z.B. Preisfestlegung bei 4,50 Euro statt 2,50 Euro), sondern auf die allgemeine Frage nach Krisenbewältigung.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Lieber Geld verlieren als Leben verlieren",
+          "Mit dem Wissen von heute hätte ich dieses ganze Verfahren nicht gemacht",
+          "Aber damals haben wir zusammen entschieden wir wollen Abhilfe schaffen"
+        ],
+        "quotes": [
+          {
+            "text": "Alle Entscheidungen sind in diesen 6 -8 Wochen getroffen worden. Als die Pandemie über die Welt kam. [...] Virologen, Pflegekräfte, Wissenschaftler haben gesagt, wir brauchen Masken und Schutz. Da ist im Grunde der gesundheitliche Kriegsfall eingetroffen. Ja in der Zeit haben wir alles getan, koste es was es wolle, um tatsächlich Masken aber auch Desinfektionsmittel zu besorgen.",
+            "timestamp": "00:36:53",
+            "context": "Auf Moderators Frage, über welche Zeit Spahn häufig nachdenkt."
+          },
+          {
+            "text": "Mit dem Wissen von heute hätte ich dieses ganze Verfahren nicht gemacht. Mit dem Verfahren haben wir ein Ergebnis, mit 99 % des Ärgers.",
+            "timestamp": "00:44:10",
+            "context": "Moderator fragt, ob das Open-House-Verfahren falsch war."
+          }
+        ],
+        "related_bundestag_topics": [
+          "COVID-19-Pandemie-Management",
+          "Bundesbudget und Notausgaben",
+          "Ministeriale Verantwortung"
+        ]
+      },
+      {
+        "title": "Preisfestlegung bei Maskenbeschaffung",
+        "timestamp_range": "00:41:45 - 00:50:42",
+        "theme_description": "Zentrale Kontroverse um die Entscheidung, Maskenpreise auf 4,50 Euro (statt empfohlene 2,50 Euro) festzulegen, was zu 623 Mio. Euro Mehrausgaben führte.",
+        "question_asked": "Moderator verweist auf FAZ-Bericht und Sudhoff-Report: Die Fachabteilung empfahl 2,50 Euro, Spahn garantierte 4,50 Euro. Warum die Differenz?",
+        "question_intent": "Zu verstehen, ob diese Preiserhöhung notwendig war oder unnötige Verschwendung öffentlicher Mittel darstellte.",
+        "position": "Spahn erklärt, dass in der maximalen Krise der Preis nicht fix determiniert war – Preise schwankten wild (teilweise bis 13 Euro), es gab 'Goldgräberstimmung'. Der Bund beriet mit Ministerium-Kollegen, welcher Preis Sicherheit bot, dass auch etwas geliefert wurde. Sie gingen 'an den höheren Teil der Skala', um Liefersicherheit zu erreichen. Ohne klassische Ausschreibungsverfahren, weil Krisenstab das entschied. Spahn betont: 'im Zweifel sagt man natürlich, man geht ans höhere Ende des Preises und nicht ans untere. Wir wollten sicherstellen, dass auch etwas kommt.' Mit Ländern und Bundesregierung wurde 4,60 Euro parallel festgelegt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn erklärt die Logik der Preiserhöhung (Liefersicherheit in Krise), antwortet aber nicht auf die Frage, ob die Empfehlung der Fachabteilung ignorierten war und ob andere Lieferanten zu 2,50 Euro verfügbar gewesen wären. Er verweist auf Chaos und Druck, nicht auf überprüfbare Entscheidungskriterien.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Im Zweifel geht man ans höhere Ende des Preises und nicht ans untere",
+          "Wir wollten sicherstellen, dass auch etwas kommt",
+          "Preise gingen hoch und runter, teilweise 3000 % gestiegen"
+        ],
+        "quotes": [
+          {
+            "text": "Maximale Krise, maximale Not. [...] Es gab verschiedene Preise, Preis her Leitungen. Es gab Tage da kosteten sie 13 Euro. Beraten mit den Kollegen im Ministerium, was ist der Preis, bei dem wir sicher sind, dass wir auch etwas kriegen. Also wir haben gesagt, wir machen einen Preis, Anlieferung an Deutschland und Frachtkosten und ja, wir haben gemeinsam entschieden und am Ende entscheidet der Minister. Wir sind an den höheren Teil der Skala gegangen.",
+            "timestamp": "00:41:55",
+            "context": "Detaillierte Erklärung des Preis-Entscheidungsprozesses in der Krise."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushaltskontrolle und Notausgaben",
+          "Vergabeverfahren in Krisen",
+          "Pandemie-Management Fehler"
+        ]
+      },
+      {
+        "title": "Geheimhaltung Sudhoff-Bericht und Aufarbeitung",
+        "timestamp_range": "00:52:01 - 01:08:30",
+        "theme_description": "Streit über die Veröffentlichung des Sudhoff-Reports zu Maskenbeschaffungsfehlern und Form der parlamentarischen Aufarbeitung.",
+        "question_asked": "Moderator Lanz und Lehmann fordern: Warum wird der Sudhoff-Report nicht veröffentlicht? Warum nur 'ein Bericht über den Bericht'? Spahn kennt den Report nicht – warum nicht, wenn er Fraktionschef ist?",
+        "question_intent": "Zu zeigen, dass ein Mangel an Transparenz suggeriert, dass unangenehme Wahrheiten verborgen werden, und dass Aufarbeitung blockiert wird.",
+        "position": "Spahn sagt, er kenne den Bericht nicht, weil Bundesgesundheitsministerin (SPD/jetzt CDU) ihn zurückhält. Es gebe Datenschutz- und Prozessrisiken (laufende Klagen). Er möchte den Bericht lieber lesen und würde ihn gerne früher bekommen haben, befürwortet aber öffentliche Zugänglichkeit 'schnellstmöglich'. Unabhängig davon wurden alle Entscheidungen 'rückgekoppelt in der Bundesregierung und im Deutschen Bundestag'. Zur Frage eines Untersuchungsausschusses sagt Spahn 'Alles was der Bundestag sich wünscht', favorisiert aber eher eine Enquete-Kommission.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn adressiert die Transparenzfrage, schiebt aber Verantwortung auf die Gesundheitsministerin ab und verweist auf rechtliche Hürden. Er antwortet nicht überzeugend darauf, warum er als Fraktionschef nicht intern Zugriff hat oder öffentliche Druck ausübt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Der Bericht sollte schnellstmöglich öffentlich zugänglich sein",
+          "Es gibt Datenschutz und Prozessrisiken (laufende Klagen)",
+          "Alle Entscheidungen wurden rückgekoppelt in der Bundesregierung und dem Bundestag"
+        ],
+        "quotes": [
+          {
+            "text": "Ich könnte auch den vorherigen. [...] Für mich wäre es ohne Zweifel Leiche, in der aktuellen Debatte, ich weiß gar nicht, ob es Quellen gibt. [...] Ich möchte, das muss in der Art und Weise zur Verfügung gestellt werden, dass es alle lesen können.",
+            "timestamp": "00:52:41",
+            "context": "Auf Druck von Lanz, dass Spahn als CDU-Fraktionschef den Report lesen könnte."
+          },
+          {
+            "text": "Sie können nicht einfach Persönlichkeitsrechte verletzen, ich kann das auch nicht ändern. Es gibt Prozessrisiken. Mit den entsprechenden Aufarbeitung und Schwärzung, wird dieser Begriff nicht zugänglich werden.",
+            "timestamp": "01:13:06",
+            "context": "Begründung für Nicht-Veröffentlichung des vollständigen Reports."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Kontrolle",
+          "Transparenz der Regierung",
+          "Untersuchungsausschüsse",
+          "Aufarbeitung Corona-Management"
+        ]
+      },
+      {
+        "title": "Fiege-Logistik und Interessenskonflikte",
+        "timestamp_range": "00:57:22 - 01:02:35",
+        "theme_description": "Kontroverse um die Beauftragung des Logistik-Unternehmens Fiege für Maskenlagerung, dessen Eigentümer dem Rat (Spahns Wahlkreis?) verbunden sein soll.",
+        "question_asked": "Moderator und Anna Lehmann fragen: War die Wahl von Fiege notwendig oder wurde ein Unternehmen bevorzugt, das dem Minister nahstand? Warum nicht Schenker oder andere Alternativen?",
+        "question_intent": "Zu klären, ob ein Interessenskonflikt vorlag (persönliche Bekanntschaft, Nähe zu Wahlkreis) und ob alternative, vielleicht bessere Lösungen übersehen wurden.",
+        "position": "Spahn erklärt, dass Fiege aus Erfahrung mit Pandemieplanung in Norditalien proaktiv ein Pandemiekonzept eingereicht habe. Der Krisenstab brauchte dringend Lagerflächen nach traditionellen Strukturen scheiterten. Fiege habe schnell Kapazität angeboten und gehandelt. Spahn kennt Eigentümer, aber das ist laut ihm irrelevant – es gehe um 'wer Lagerkapazität anbieten konnte und logistisch handeln'. Er verweist auch darauf, dass die Hälfte der Masken mit dem Wirtschaftsministerium für eine nationale Gesundheitsreserve beschafft wurde. Zur Kritik von Lehmann (Habeck in analoger Situation), antwortet Spahn nur, dass es in Krisenteam (nicht allein Minister) entschieden wurde.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn rechtfertigt Fiege-Wahl mit Krisennotwendigkeit und Kompetenz, geht aber nicht direkt auf die Frage ein, ob die Bekanntschaft eine Rolle spielte oder ob Alternativen ausreichend geprüft wurden. Er verweist auf Krisenstab-Entscheidungen, statt persönliche Verantwortung zu klären.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Fiege hatte proaktiv ein Pandemiekonzept geschickt",
+          "Es geht nicht um die Frage wer wen gekannt hat, sondern wer Lagerkapazität anbieten konnte",
+          "Wir brauchten innerhalb von Stunden und Tagen Lagerkapazitäten"
+        ],
+        "quotes": [
+          {
+            "text": "Genau und diese Leute die ich kenne, haben ein Pandemiekonzept geschickt und das Unternehmen hat Ein Konzept geschickt dann habe ich nachgefragt, was kann das Konzept. Wir brauchten innerhalb von Stunden und Tagen Lagerkapazitäten [...] Dann haben wir auf das Unternehmen Fiege zurückgegriffen.",
+            "timestamp": "01:00:51",
+            "context": "Reaktion auf Vorwurf, dass Spahn bevorzugt bekannte Unternehmen aus seinem Umfeld beauftragte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Transparenz in der Krisenvergabe",
+          "Interessenskonflikte in der Regierung",
+          "Kontrollmechanismen bei Notausgaben"
+        ]
+      },
+      {
+        "title": "Gesamtbilanz Corona-Management",
+        "timestamp_range": "01:06:48 - 01:09:52",
+        "theme_description": "Abschließende Bewertung von Spahn: War die Corona-Krise gut bewältigt? Welche Lehren daraus?",
+        "question_asked": "Moderator fragt: Wie wertet Spahn die Gesamtleistung? Und: Sollte es zur Aufarbeitung einen Untersuchungsausschuss geben?",
+        "question_intent": "Zu ergründen, ob Spahn sich selbst für erfolgreich hält oder Fehler zugesteht, und welche Konsequenzen er daraus zieht.",
+        "position": "Spahn sagt: 'Ich sage kaum Land ist besser durch die Pandemie gekommen wie Deutschland. Ich bin stolz darauf, dass wir in einer maximal stressvollen Zeit erfolgreich durch die sehr 100 Krise geführt haben.' Gleichzeitig stelle er sich dieser Debatte. Mit Blick auf Aufarbeitung: 'Alles was der Bundestag sich wünscht'. Aber er favorisiert eine Enquete statt Untersuchungsausschuss. Wichtig sei, dass man 'daraus lernen' kann für die nächste Pandemie.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn gibt eine Gesamtbilanz (erfolgreich), gesteht Fehler ein (würde Verfahren wiederholen), betont aber Lernaspekt. Er antwortet auf die Ausschuss-Frage nicht direkt entscheidend, sondern weicht zu Enquete aus.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Kaum ein Land ist besser durch die Pandemie gekommen als Deutschland",
+          "Ich bin stolz darauf, dass wir erfolgreich durch die Krise geführt haben",
+          "Wir sollten lernen, wie wir in Zukunft besser daran arbeiten können"
+        ],
+        "quotes": [
+          {
+            "text": "Ich sage kaum Land ist besser durch die Pandemie gekommen wie Deutschland. Ich bin stolz darauf, dass wir in einer maximal stressvollen Zeit erfolgreich durch die sehr 100 Krise geführt haben. Gleichzeitig stelle ich mir dieser Debatte.",
+            "timestamp": "01:06:48",
+            "context": "Abschließende Selbstbewertung zur Corona-Krisenbewältigung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "COVID-19-Pandemie",
+          "Krisenkommunikation",
+          "Politische Verantwortung",
+          "Parlamentarische Aufarbeitung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Iran hatte als ausgesprochenes Staatsziel die Vernichtung Israels",
+        "timestamp": "00:09:34"
+      },
+      {
+        "claim": "Deutsche Bundesrepublik zahlte 623 Millionen Euro zu viel für Maskenbeschaffung (laut FAZ)",
+        "timestamp": "00:41:45"
+      },
+      {
+        "claim": "Durchschnittlicher Maskeneinkaufspreis lag bei 2,83 Euro, garantierter Preis 4,50 Euro",
+        "timestamp": "00:46:47"
+      },
+      {
+        "claim": "Gesamtschadenssumme durch Masken-Klagen 2,3 Milliarden Euro",
+        "timestamp": "00:46:47"
+      },
+      {
+        "claim": "Drei Jahre Pandemie-Ausgaben für Kurzarbeit, Gastro-Hilfe, Schutzschirm Krankenhäuser, Masken insgesamt 440 Milliarden Euro",
+        "timestamp": "00:38:08"
+      }
+    ]
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-maerz-2025-100",
+    "video_id": "lanz-2025-03-04",
+    "politician": "Jan van Aken",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "b08907717dba7d68",
+    "transcript_chars": 50397,
+    "caption_lines": 2541,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21256,
+    "tokens_out": 6098,
+    "cost_usd": 0.0206984,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-02T16:33:29.216Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken äußert sich zur amerikanischen Außenpolitik unter Trump, zur europäischen Verteidigungspolitik und zum geplanten Sondervermögen für Rüstung. Er argumentiert, dass militärische Aufrüstung nicht die Kernlösung für Europas Sicherheit ist und plädiert stattdessen für diplomatische und wirtschaftliche Maßnahmen wie ein Ölembargo gegen Russland. In kritischem, aber sachlichem Ton wendet er sich gegen bloß militärisches Denken und lehnt das Sondervermögen ab.",
+    "themes": [
+      {
+        "title": "Trumps Friedensstrategie und Putin-Verhältnis",
+        "timestamp_range": "00:16:05 - 00:17:13",
+        "theme_description": "Jan van Aken bewertet Trumps Ansatz zur Friedenslösung und dessen geopolitische Strategie, die eine Aufteilung der Welt unter drei Großmächten impliziert.",
+        "question_asked": "Markus Lanz fragt Jan van Aken, wie er Trumps Vorgehen und dessen Beziehung zu Putin beurteilt und ob dies das ist, was van Aken wollte.",
+        "question_intent": "Lanz möchte verstehen, ob van Aken die neue Trump-Administration und deren Haltung zu Putin unterstützt oder kritisiert.",
+        "position": "Jan van Aken kritisiert, dass Trump faktisch als befreundet mit Putin wirkt, nachdem er vorher sagte, man rede nicht als Freund mit Putin. Zentraler Kritikpunkt: Trumps Ansatz impliziert eine Aufteilung der Welt zwischen drei Großmächten (China, Russland, USA) mit jeweiligen Einflusssphären. Van Aken lehnt dies ab und fordert stattdessen 'einen gerechten Frieden für die Ukraine'. Er betont, dass Trumps Vorgehen gegen Völkerrecht verstößt ('das ist kein Völkerrecht').",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken beantwortet die Frage zur Trump-Putin-Beziehung und kritisiert den geopolitischen Rahmen (Aufteilung der Welt). Allerdings adressiert er nicht präzise, ob er den Friedensprozess selbst unterstützen würde oder nur die Form kritisiert. Die Position bleibt eher grundsätzlich kritisch ohne klare Alternative zur Friedensfindung anzubieten.",
+        "quotes": [
+          {
+            "text": "Das ist überhaupt gar nicht so, ich dachte, man redet nicht als Freund mit Putin, seit heute früh denke ich, er ist aber befreundet mit Putin. Das war in der Form etwas außergewöhnliches, da kann man sich auch über die Form aufregen. Wir müssen aber auf den Inhalt gucken. Er ist dafür, dass China, Russland, die USA ihre Mitarbeit halbieren. Das wäre erst mal wunderbar, dahinter steht aber der Grundgedanke, es gibt drei Weltmächte. Die würden dann die Welt aufteilen, mit den jeweiligen Hinterhöfen. Das ist nicht das, was ich mir vorgestellt habe. Es muss einen gerechten Frieden für die Ukraine geben.",
+            "timestamp": "00:16:05",
+            "context": "Markus Lanz fragt van Aken nach seiner Position zu Trumps Umgang mit Putin und ob dies dem entspricht, was die Linke will."
+          }
+        ],
+        "concrete_statements": [
+          "Trump ist faktisch befreundet mit Putin",
+          "Die Weltaufteilung unter drei Mächten lehne ich ab",
+          "Es muss einen gerechten Frieden für die Ukraine geben",
+          "Trumps Vorgehen verstößt gegen Völkerrecht"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Konflikt",
+          "NATO",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Europäische Rüstungsausgaben und Verteidigungsfähigkeit",
+        "timestamp_range": "00:37:31 - 00:39:06",
+        "theme_description": "Jan van Aken wird zur Höhe europäischer Rüstungsbudgets befragt und ob er für Aufrüstung stimmen würde. Er argumentiert, dass Europa bereits ausreichend Mittel für Verteidigung hat.",
+        "question_asked": "Markus Lanz fragt Jan van Aken, ob er für Aufrüstungsbudgets stimmen würde, angesichts der geforderten zusätzlichen Mittel.",
+        "question_intent": "Lanz möchte wissen, ob van Aken höhere Rüstungsausgaben unterstützt oder ablehnt.",
+        "position": "Van Aken argumentiert mit Zahlen: Die europäischen NATO-Staaten geben jährlich 340 Milliarden Euro für Verteidigung aus, Russland gibt 300 Milliarden aus. Er weist darauf hin, dass einige europäische Staaten ineffizient aufrüsten (Beispiel F125-Fregatte für die Ostsee unnötig). Van Aken schließt: Europa hat genug Geld im Topf, die geforderten Summen sind 'irrwitzige Summen', die 'auf dem realen Boden keine Begründung' haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt mit einer konkreten Position: Nein zu weiteren Aufrüstungsmitteln. Er begründet dies mit einer Gegenrechnung (europäische vs. russische Ausgaben) und kritisiert ineffiziente Rüstungsbeschaffung. Die Antwort adressiert die Kernfrage, ob er für höhere Budgets ist.",
+        "quotes": [
+          {
+            "text": "Ich schaue mir die Zahlen an. Die europäischen NATO-Staaten geben jedes Jahr 340 Millionen für Verteidigung aus. Russland gibt jedes Jahr 300 Millionen aus. Da ist schon mit... Das hat sich doch echt gut an, sage ich im 1. Moment. Jetzt kommt dazu, dass einige europäische Staaten stark auf den Weltmarkt gesetzt haben. Das braucht es nicht, für die Verteidigung Russlands. F125, die ist so konzipiert, dass sich sie nicht auf der Ostsee brauche. Sie können gerne über Verteidigung reden, wir brauchen eine EU und Landesverteidigung, aber im Verhältnis haben wir genug Geld im Topf. Deswegen sehe ich überhaupt nicht, woher diese irrwitzigen Summen kommen. Die sind alle auf dem Hut gezogen. Die haben für mich auf dem realen Boden keine Begründung.",
+            "timestamp": "00:37:31",
+            "context": "Lanz fragt, ob van Aken für Aufrüstung stimmen würde. Van Aken antwortet mit einer Gegenrechnung zu bisherigen europäischen und russischen Budgets."
+          }
+        ],
+        "concrete_statements": [
+          "Europäische NATO-Staaten geben 340 Mrd. Euro/Jahr für Verteidigung aus",
+          "Russland gibt 300 Mrd. Euro/Jahr aus",
+          "Einige europäische Staaten rüsten ineffizient auf",
+          "Europa hat genug Geld im Topf",
+          "Die geforderten Summen haben keine reale Begründung"
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungsbudget",
+          "Rüstung",
+          "NATO",
+          "Bundeshaushalts"
+        ]
+      },
+      {
+        "title": "Sondervermögen für Rüstung und Finanzierungsquellen",
+        "timestamp_range": "00:37:31 - 01:10:06",
+        "theme_description": "Jan van Aken lehnt das geplante Sondervermögen für Rüstungsausgaben ab und kritisiert die Finanzierungslogik. Er argumentiert, dass es später über Kürzungen sozialer Leistungen finanziert werden müsse.",
+        "question_asked": "Markus Lanz fragt Jan van Aken, ob er für das Sondervermögen stimmen würde und später im neuen Bundestag.",
+        "question_intent": "Lanz möchte wissen, ob van Aken das Sondervermögen unterstützt und ob die Linke ihre Sperrminorität einsetzen würde.",
+        "position": "Van Aken lehnt das Sondervermögen ab ('Nein, das brauche ich nicht'). Hauptkritik: Sondervermögen müssen irgendwann zurückgezahlt werden. Frage: 'Wer bezahlt dafür? Wird das Elterngeld gekürzt oder wird die Rente gekürzt? Müssen die armen alten Rentner die Pampa bezahlen?' Van Aken sieht dies auch ökonomisch schlecht gemacht und schlägt alternative Finanzierung vor: Vermögenssteuer. Im neuen Bundestag würde er nicht zustimmen ('Stand heute nicht'). Die Schuldenbremse müsse weg, aber nicht durch ein Sondervermögen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt: Nein zum Sondervermögen (sowohl alt als auch neuer Bundestag). Er begründet dies mit sozialpolitischen Konsequenzen und ökonomischen Bedenken. Die Antwort ist klar und direktes Nein ohne Wenn und Aber.",
+        "quotes": [
+          {
+            "text": "Stand heute nicht. Wir müssen das erst mal juristisch prüfen. Die Schuldenbremse muss weg, da müssen wir nicht drüber reden. Für was brauchen ein Sondervermögen? [...] Nein. Das brauche ich nicht. Ich finde das auch ökonomisch nicht gut gemacht. Wer bezahlt dafür? Die müssen irgendwann zurückgezahlt werden. Wird das Elterngeld gekürzt oder wird die Rente gekürzt? Müssen die armen alten Rentner die Pampa bezahlen?",
+            "timestamp": "01:08:15",
+            "context": "Lanz fragt van Aken, ob er für das Sondervermögen stimmen würde. Van Aken lehnt kategorisch ab und kritisiert die Finanzierung über soziale Leistungskürzungen."
+          }
+        ],
+        "concrete_statements": [
+          "Lehnt Sondervermögen ab",
+          "Schuldenbremse muss weg",
+          "Alternative: Vermögenssteuer für Finanzierung",
+          "Sondervermögen werden später über Rentens- und Elterngeldkürzungen finanziert",
+          "Ökonomisch schlecht gemacht"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Haushaltsrecht",
+          "Vermögenssteuer",
+          "Sozialbudgets"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen an die Ukraine: Alternative Strategien",
+        "timestamp_range": "00:43:04 - 00:56:47",
+        "theme_description": "Jan van Aken verteidigt seine Position gegen direkte Waffenlieferungen und schlägt alternative Strategien wie ein Ölembargo vor. Anton Hofreiter kritisiert dies scharf.",
+        "question_asked": "Nach van Akens Kritik an Hofreiters Argumenten zur Abschreckung fragt Markus Lanz nach van Akens Position: Sollte man künftig keine Waffen liefern wie die Amerikaner?",
+        "question_intent": "Lanz möchte klären, ob van Aken gegen alle Waffenlieferungen ist oder welche alternative Strategie er vertritt.",
+        "position": "Van Aken lehnt eine simplistische Dichotomie (Waffenlieferungen vs. Nichtstun) ab. Er betont: 'Zwischen Waffenlieferungen und Nichtstun gibt es ganz viel anderes.' Konkrete Alternative: Ein frühes vollständiges Ölembargo der EU hätte 'die ganze Kostenrechnung des Krieges und des Kremls komplett gedreht' und könnte zu Verhandlungen geführt haben (Bezug auf Istanbul-Verhandlungen). Van Aken argumentiert, dass die Ukraine 'dringend' andere Dinge braucht, nennt diese aber in der Diskussion nicht konkret. Er betont, dass 'zwischen Waffenlieferungen und Nichtstun...ganz viel anderes' liegt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken lehnt die Dichotomie ab und nennt eine Alternative (Ölembargo), beantwortet aber nicht präzise, ob er künftig gegen Waffenlieferungen stimmen würde. Auf wiederholte Nachfrage antwortet er evasiv ('Ich würde sagen, etwas anderes tun') statt direkt Ja oder Nein zu sagen. Die Position ist klar (gegen bisherige Waffenlieferungen), aber zur Zukunft bleibt sie vage.",
+        "quotes": [
+          {
+            "text": "Nein, mein Vorschlag war, dass ich stattdessen etwas anderes tun. Es gibt sich militärisches Denken und gar nicht zum ganz viel anderes. Wir haben dazwischen ganz viele Vorschläge gemacht, die hätten wir umsetzen können.",
+            "timestamp": "00:54:50",
+            "context": "Hofreiter wirft van Aken vor, nur gegen Waffenlieferungen zu sein. Van Aken antwortet, dass er alternative Strategien vorschlägt."
+          },
+          {
+            "text": "Ich würde sagen, etwas anderes tun. Zwischen Waffenlieferungen und Nichtstun gibt es ganz viel anderes. Ich möchte über dieses andere reden. Wir sagen schon seit drei Jahren, die Ukraine braucht das dringend.",
+            "timestamp": "00:56:22",
+            "context": "Lanz fragen van Aken direkt, ob er künftig Waffen liefern würde oder nicht."
+          }
+        ],
+        "concrete_statements": [
+          "Ölembargo hätte Kriegskostenrechnung des Kremls gedreht",
+          "Ölembargo hätte andere Verhandlungsergebnisse in Istanbul ermöglicht",
+          "Es gibt Alternativen zwischen Waffenlieferungen und Nichtstun",
+          "Van Aken nennt keine konkreten Alternativen in der Diskussion"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Hilfe",
+          "Sanktionen",
+          "Außenpolitik",
+          "Friedensverhandlungen"
+        ]
+      },
+      {
+        "title": "Sperrminorität und Abstimmungsverhalten gegenüber AfD",
+        "timestamp_range": "01:09:39 - 01:12:17",
+        "theme_description": "Jan van Aken wird nach der möglichen Rolle der Linken-Sperrminorität gefragt und ob er mit der AfD gemeinsam gegen Regierungsvorlagen stimmen würde.",
+        "question_asked": "Markus Lanz fragt, ob van Aken im Ergebnis mit der AfD gegen das Sondervermögen stimmen könnte, wenn die AfD auch dagegen ist. Später: würde er mit der AfD zusammen stimmen?",
+        "question_intent": "Lanz versucht zu klären, ob van Aken eine Koalition mit der AfD eingeht oder ob es eine politische Brandmauer gibt.",
+        "position": "Van Aken betont klar: 'Ich würde nicht mit der AfD zusammen stimmen.' Allerdings erklärt er, dass die Linke gegen Regierungsvorlagen abstimmen kann, wenn diese falsch sind ('Natürlich stimmen [wir] gegen die Regierungsvorlagen, wenn das falsch ist'). Dies geschehe auf Grundlage sachlicher Kritik, nicht aus Koalition mit der AfD. Im Ergebnis könnte es zu gleichen Abstimmungsverhalten führen, aber das sei kein Bündnis.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt zur Kernfrage: Kein Zusammenstimmen mit der AfD ('Ich würde nicht mit der AfD zusammen stimmen'). Er differenziert zwischen eigenständiger Ablehnung von Regierungsvorlagen und Koalition. Die Antwort ist klar strukturiert und adressiert die Sorge um Mehrheitsbildung mit der AfD.",
+        "quotes": [
+          {
+            "text": "Ich würde nicht mit der AfD zusammen stimmen. [...] Natürlich stimmen [wir] gegen die Regierungsvorlagen, wenn das falsch ist. Das haben wir auch in der letzten Legislaturperiode gemacht.",
+            "timestamp": "01:10:30",
+            "context": "Lanz fragt, ob van Aken im Ergebnis mit der AfD gegen Regierungsvorlagen abstimmen könnte. Van Aken klärt auf, dass dies unterschiedliche Dinge sind."
+          },
+          {
+            "text": "Hier sitzt niemand, der ein Kremlfreund ist.",
+            "timestamp": "01:11:18",
+            "context": "Van Aken antwortet auf Hofreiters Vorwurf, die Linke sei zu soft gegenüber Russland. Er verteidigt sich gegen die Unterstellung, ein Freund des Kremls zu sein."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Zusammenarbeit mit der AfD",
+          "Ablehnung von Regierungsvorlagen unabhängig von der AfD möglich",
+          "Linke ist nicht kremlofreundlich"
+        ],
+        "related_bundestag_topics": [
+          "Brandmauer gegen AfD",
+          "Abstimmungsverhalten",
+          "Parlamentarische Spielregeln",
+          "Minderheitsregierungen"
+        ]
+      },
+      {
+        "title": "Sanktionen gegen Russland: Umfang und Wirksamkeit",
+        "timestamp_range": "01:12:37 - 01:13:28",
+        "theme_description": "Jan van Aken kritisiert, dass sich die Debatte in Deutschland zu sehr auf militärische Lösungen konzentriert und alternative Sanktionsinstrumente vernachlässigt.",
+        "question_asked": "Carlo Masala wirft van Aken vor, dass man bereits beim 12. Sanktionspaket ist, also viel getan wird. Wie antwortet van Aken auf die Frage, ob Sanktionen genug sind?",
+        "question_intent": "Masala möchte zeigen, dass Sanktionen bereits umfangreich sind und nicht nur Waffenlieferungen die Lösung sein können.",
+        "position": "Van Aken argumentiert, dass das Problem nicht einzelne Sanktionspakete sind, sondern dass 'in Deutschland seit drei Jahren ausschließlich um das militärische Geld geredet' wird und 'alle anderen Alternativen werden weggelassen'. Er sieht ein konzeptionelles Problem: Es gibt Vorschläge wie ein Energieembargo, diese werden aber nicht systematisch verfolgt. Van Aken betont, dass man sich Regimen 'in allen Bereichen entgegenstellen' muss, nicht nur militärisch.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken adressiert die Frage indirekt, indem er das Diskursrahmen kritisiert (zu viel Militär, zu wenig Sanktionsalternativen), beantwortet aber nicht direkt, ob er die 12 Sanktionspakete für ausreichend hält. Seine Kritik konzentriert sich auf die Einseitigkeit der deutschen Debatte, nicht auf die Sanktionen selbst.",
+        "quotes": [
+          {
+            "text": "Das Argument ist immer, man kann das eine zu tun, und das andere zu lassen, das Problem ist aber, in deutscher wieder drei Jahre ausschließlich um das militärische Geld geredet. Alle anderen Alternativen werden weggelassen.",
+            "timestamp": "01:12:37",
+            "context": "Masala argumentiert, dass die EU bereits 12 Sanktionspakete verhängt hat. Van Aken kritisiert die einseitige Fokussierung auf Militär statt Sanktionen in der deutschen Debatte."
+          }
+        ],
+        "concrete_statements": [
+          "Deutsche Debatte konzentriert sich zu sehr auf Militärbudgets",
+          "Alternative Sanktionsmechanismen (z.B. Energieembargo) werden vernachlässigt",
+          "Benachteiligung von nicht-militärischen Strategien gegen Russland"
+        ],
+        "related_bundestag_topics": [
+          "Sanktionen gegen Russland",
+          "Energieembargo",
+          "Außenwirtschaftspolitik",
+          "EU-Koordination"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die europäischen NATO-Staaten geben jedes Jahr 340 Milliarden Euro für Verteidigung aus",
+        "timestamp": "00:37:31"
+      },
+      {
+        "claim": "Russland gibt jedes Jahr 300 Milliarden Euro für Verteidigung aus",
+        "timestamp": "00:37:31"
+      },
+      {
+        "claim": "Die F125-Fregatte ist so konzipiert, dass sie nicht auf der Ostsee gebraucht wird",
+        "timestamp": "00:37:31"
+      },
+      {
+        "claim": "Ein vollständiges Ölembargo der EU hätte die Kostenrechnung des Krieges und des Kremls komplett gedreht",
+        "timestamp": "00:54:25"
+      },
+      {
+        "claim": "Die EU hat 12 Sanktionspakete gegen Russland verhängt",
+        "timestamp": "01:12:56"
+      }
+    ]
+  }
+}

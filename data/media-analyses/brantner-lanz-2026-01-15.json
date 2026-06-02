@@ -1,0 +1,267 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-15-januar-2026-100",
+    "video_id": "lanz-2026-01-15",
+    "politician": "Franziska Brantner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "63201b75a3f3fc3f",
+    "transcript_chars": 63636,
+    "caption_lines": 3044,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26045,
+    "tokens_out": 6813,
+    "cost_usd": 0.024044,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-02T16:33:29.089Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, Bundesvorsitzende der Grünen, diskutiert in dieser Talkshow-Sendung mit Moderator Markus Lanz mehrere politische Themen. Sie argumentiert für eine progressive Erbschaftsteuerreform, verteidigt Daniel Günther gegen Missdarstellungen seiner Social-Media-Kritik, rechtfertigt interne Kommunikation der Berliner Grünen zum Stromnetzanschlag und positioniert die Grünen als Partei der politischen Mitte mit klarem Kurs auf europäische Verteidigungsfähigkeit.",
+    "themes": [
+      {
+        "title": "Föderalismus und Bundesländerfusionen",
+        "timestamp_range": "00:05:30 - 00:06:38",
+        "theme_description": "Diskussion über Notwendigkeit und Machbarkeit von Bundesländer-Reformen im Kontext föderaler Funktionsfähigkeit.",
+        "question_asked": "Im Kontext einer Diskussion über Markus Söders Kritik am Föderalismus und Länderfusionen (Eingangsbeitrag des Moderators) wird Brantner zu ihrer Position auf Bundesländer-Reformierungen angesprochen.",
+        "question_intent": "Zu klären, ob die Grünen Bundesländerfusionen unterstützen oder ob sie pragmatischere Reformen des Föderalismus bevorzugen.",
+        "position": "Brantner argumentiert, man sollte sich nicht an dem Thema Länderfusion \"verkämpfen\" und stattdessen den föderalen Staat verbessern. Dies funktioniere nur gemeinsam. Wichtig sei, sich nicht an den falschen Stellen zu verkämpfen, sondern die richtigen Punkte anzugehen. Der Wettbewerb liege nicht zwischen deutschen Bundesländern (München, Berlin, Heidelberg), sondern zwischen Europa und Asien insgesamt. Dafür lohne es sich zu kämpfen. Sie betont, Bayern sei nicht groß genug, um solche Herausforderungen allein zu bewältigen. Europa müsse als Europäer zusammenarbeiten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner adressiert die Frage pragmatisch und substanziell: Sie lehnt symbolische Kämpfe über Länderfusionen ab und setzt statt dessen auf pragmatische Verbesserung des Föderalismus unter Wahrung von regionalen Identitäten. Sie rerahmt die Debatte als europäische Wettbewerbsfähigkeit.",
+        "concrete_statements": [
+          "Man darf sich nicht an den falschen Stellen verkämpfen sondern muss die richtigen angehen",
+          "Der Wettbewerb ist nicht zwischen München Berlin und Heidelberg sondern zwischen Asien und Europa überhaupt",
+          "Bayern nicht mal groß genug ist um diese Sachen zu bestehen"
+        ],
+        "quotes": [
+          {
+            "text": "Die Frage ist doch, ob man sich an dem Thema verkämpft und sagt, ihr müsst das jetzt noch mal machen oder ob man sagt, wir müssen aus dem föderalen Staat es verbessern, darum geht es, man schafft das nur gemeinsam, man darf sich nicht an den falschen Stellen verkämpfen sondern muss die richtigen angehen, der Wettbewerb ist nicht zwischen München Berlin und Heidelberg sondern zwischen Asien und Europa überhaupt",
+            "timestamp": "00:05:30",
+            "context": "Brantners Position zu Bundesländerreformen als Antwort auf Söders Föderalismus-Kritik."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Bundesländer-Reform",
+          "Subsidiariät",
+          "Europäische Wettbewerbsfähigkeit"
+        ]
+      },
+      {
+        "title": "Erbschaftsteuer: Gerechtigkeitslücken schließen",
+        "timestamp_range": "00:09:11 - 00:23:47",
+        "theme_description": "Diskussion über die Erbschaftsteuerreform zur Behebung von Ungerechtigkeiten zwischen kleinen und großen Vermögen.",
+        "question_asked": "Der Moderator fragt (00:09:11), wie Franziska Brantner den SPD-Vorschlag zur Erbschaftsteuer sieht und ob er nicht identisch mit dem grünen Vorschlag ist.",
+        "question_intent": "Zu klären, ob die Grünen und SPD identische Positionen zur Erbschaftsteuer vertreten und wie die Grünen ihre Position unterscheiden.",
+        "position": "Brantner argumentiert, dass Deutschland eine der höchsten Vermögensungleichheiten in der EU hat. Sie betont die Ungerechtigkeiten des aktuellen Systems: Besitzer von weniger als 300 Immobilien zahlen Erbschaftsteuer, Besitzer von 350+ nicht mehr. Bei Unternehmenserbschaften können Milliardenbeträge durch gezielte Strukturierungen steuerfrei vererbt werden, während kleine Handwerksbetriebe vollständig besteuert werden. Die Grünen fordern geschlossene Gerechtigkeitslücken mit Erhalt von Unternehmen und Arbeitsplätzen. Sie arbeiten mit Familienunternehmen zusammen, nicht in \"Hinterzimmern\". Im Gegensatz zur SPD haben die Grünen klare Steuersätze definiert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner adressiert die Frage nach dem Unterschied zu SPD (teil_adressiert), nennt konkrete Unterschiede (fehlende Steuersätze bei SPD, progressive Versteuerung bei Grünen), gibt aber keine exakten Prozentsätze an und sagt am Ende 'Das erarbeiten wir gerade' (00:24:06). Sie stellt die Position dar, macht aber die Umsetzungsdetails nicht völlig transparent.",
+        "concrete_statements": [
+          "Es wird ein Gerichtsurteil geben und ja, es ist nicht Aufgabe der Politik den Gerichten hinterherzulaufen sondern wenn möglich sich Gedanken selber zu machen",
+          "Wir schließen Gerechtigkeitslücken. Wir haben gleich gesagt, es muss klar sein, in dem Unternehmen bleiben nicht nur Jobs gesichert sondern auch die Möchel zu investieren",
+          "Wir haben eine gestaffelte progressive Versteuerung, wir arbeiten mit Familienunternehmen zusammen, wir machen das nicht in Berlin in irgendwelchen Hinterzimmern"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, wir haben in Deutschland eine höhere Vermögensungleichheit, das ist eine der höchsten in der Europäischen Union, es wird ein Gerichtsurteil geben und ja, es ist nicht Aufgabe der Politik den Gerichten hinterherzulaufen sondern wenn möglich sich Gedanken selber zu machen",
+            "timestamp": "00:09:18",
+            "context": "Auf die Frage, ob der SPD-Vorschlag identisch mit dem grünen Vorschlag ist, differenziert Brantner die Position."
+          },
+          {
+            "text": "Das ist ihre Verfassung, das ist woran sich die Verfassungsgerichte messen, wenn sie es regionalisieren wollen, was Herr Huber sagt, wir schaffen es einfach ab, das entspricht nicht ihrer Verfassung.",
+            "timestamp": "00:21:44",
+            "context": "Brantner zitiert die bayerische Verfassung (Art. 123), um CSU-Generalsekretär Hubers Position infrage zu stellen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Erbschaftsteuer",
+          "Vermögensungleichheit",
+          "Unternehmensbesteuerung",
+          "Gerechtigkeitspolitik"
+        ]
+      },
+      {
+        "title": "Daniel Günther und Social-Media-Regulierung",
+        "timestamp_range": "00:29:50 - 00:45:37",
+        "theme_description": "Bewertung von Daniel Günthers Äußerungen zur Social-Media-Regulierung und Verteidigung gegen Vorwürfe, er wolle Meinungsfreiheit einschränken.",
+        "question_asked": "Der Moderator fragt (00:29:48-50), welcher Eindruck Brantner von Günthers Auftritt hatte und was konkret gefordert wurde.",
+        "question_intent": "Zu klären, ob Daniel Günther tatsächlich ein Social-Media-Verbot oder ein Zensurverbot gefordert hat, oder ob seine Position missverstanden oder manipulativ dargestellt wurde.",
+        "position": "Brantner interpretiert Günthers Aussagen als sachlich und defensiv gegen Manipulative Darstellung. Günther habe über den Schutz der Demokratie im sozialen Zeitalter gesprochen und betont, dass europäische Gesetze gegen amerikanische und chinesische Plattformen (X, TikTok) durchgesetzt werden müssen. Die Forderung nach Jugendschutz (Verbot unter 16 Jahren, wie in Australien) unterscheide sich deutlich von Zensur. Sie verteidigt die wissenschaftliche Erkenntnisse, dass soziale Medien auf junge Menschen anders wirken als auf Erwachsene. Sie kritisiert Markus Söder, der \"hart geschossen\" hat, obwohl Günther Recht habe. Sie betont, dass europäische Regeln für alle Tech-Plattformen gelten sollten, insbesondere zur Besteuerung dieser Milliarden-Konzerne.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner adressiert die Frage vollständig: Sie differenziert zwischen Jugendschutz und Zensur, zitiert Günther korrekt (Regulierung, Jugendschutz unter 16), erklärt den Unterschied zu Meinungsfreiheit und kritisiert die manipulative Berichterstattung, die zwei Schnitte aus Günthers Rede entfernt hat.",
+        "concrete_statements": [
+          "Herr Günther hat übrigens recht, die Verdienen Milliarden und zahlen so gut wie keine Steuern. Sie machen mit unseren Daten Geld.",
+          "Es gibt evident sein, dass die Nutzung dieser sozialen Plattformen einen unterschied macht dahingehend, wie intelligent diese jungen Leute werden",
+          "Das ist wie früher gesagt wurde, Alkohol bei neunjährigen ist nicht gut für ihre Entwicklung. Dann verbietet man das."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe mitbekommen, dass Herr Günther darüber gesprochen hat, wie wir unsere Demokratie im sozialen Zeitalter verteidigen können, er darüber gesprochen, dass sie eine digitale Plattform haben, die nicht unbedingt in europäischer Hand ist, es sind amerikanische, X, TikTok, China, er darüber gesprochen, dass wir unsere Rechte durchsetzen müssen, dass wir die europäischen Gesetze durchsetzen müssen.",
+            "timestamp": "00:29:50",
+            "context": "Brantner interpretiert Günthers Aussagen in ihrem eigenen, differenzierten Verständnis."
+          },
+          {
+            "text": "Das hat mich ehrlich gesagt schon gewundert, dass Herr Söder da so hart geschossen hat gegen Herr Günther. Aber um die jungen Leute zu schützen: es gibt evident sein, dass die Nutzung dieser sozialen Plattformen einen unterschied macht dahingehend, wie intelligent diese jungen Leute werden",
+            "timestamp": "00:43:54",
+            "context": "Brantner kritisiert Söders Reaktion und argumentiert für Jugendschutz basierend auf wissenschaftlichen Erkenntnissen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Medienpolitik",
+          "Jugendschutz",
+          "Digitalisierung",
+          "Plattformregulierung",
+          "Meinungsfreiheit"
+        ]
+      },
+      {
+        "title": "Berliner Stromnetzanschlag und interne Kommunikation",
+        "timestamp_range": "00:47:15 - 00:54:44",
+        "theme_description": "Verteidigung einer umstrittenen internen E-Mail der Berliner Grünen-Fraktion zum Stromnetzanschlag, in der strategische Kommunikationsziele genannt wurden.",
+        "question_asked": "Der Moderator wirft vor (00:47:15-712), dass eine interne Mail der Berliner Grünen strategisches Interesse an langer medialer Begleitung des Stromnetzanschlags zeigt und Täter bewusst aus dem Fokus genommen werden sollen zugunsten von Kritik am Bürgermeister.",
+        "question_intent": "Zu klären, ob die Grünen den Stromnetzanschlag für politisches Kalkül instrumentalisieren und von echter Aufklärung ablenken.",
+        "position": "Brantner verurteilt zunächst den Anschlag als 'verabscheuenswürdig und grausam'. Sie rechtfertigt Oppositionskritik am Krisenmanagement des Bürgermeisters als legitim. Sie sagt, die interne Formulierung sei 'unglücklich ausgedrückt' (nicht 'strategisch manipulativ'). Sie betont, dass die Berliner Grünen seit Jahren nach der Vulkangruppe fragen, ohne ausreichende Antworten zu erhalten. Sie kritisiert mangelnde Vorsorge (Bundespräsident war nicht anwesend). Sie verweist auf fehlende Verbesserungen der Infrastruktur-Sicherheit nach vorherigen Anschlägen und verlinkt das auf die Schuldenbremsen-Reform und Katastrophenschutz-Mittel.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner adressiert die Kritik teilweise: Sie verurteilt die Formulierung, erklärt aber nicht, warum eine Oppositionspartei strategisches Messaging nicht trennen sollte von Aufklärung. Sie weicht aus, indem sie auf Sicherheitsdefizite und Jahre lange unzureichende Reaktionen verweist, anstatt direkt zu sagen, ob die Fokussierung auf den Bürgermeister statt auf Täter problematisch ist.",
+        "concrete_statements": [
+          "Erst einmal möchte ich sagen, wie verabscheuenswürdig und grausam dieser Anschlag war",
+          "Unsere Abgeordneten Kolleg*innen dort nichts spekulieren es ist unglücklich ausgedrückt",
+          "Wir müssen sehen, dass wir auch die wirtschaftliche Realität anschauen. Ich habe nicht gesagt, dass ich diese E-Mail gut finde."
+        ],
+        "quotes": [
+          {
+            "text": "Erst einmal möchte ich sagen, wie verabscheuenswürdig und grausam dieser Anschlag war und offensichtlich hatten viele Berlinerinnen und Berliner viel zu lange darunter zu leiden. Und ginge es erst mal darum, die unterstützen, die darunter leiden und dann komm mal die Täter aufzufinden.",
+            "timestamp": "00:47:15",
+            "context": "Brantners Antwort auf die Vorwürfe bezüglich der internen Mail."
+          },
+          {
+            "text": "Ich finde es keine gute Formulierung. Die Frage bleibt aber, was machen wir, um das endlich herauszufinden?",
+            "timestamp": "00:53:19",
+            "context": "Brantner kommentiert die umstrittene Formulierung und weicht auf die inhaltliche Frage aus."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Innere Sicherheit",
+          "Linksextremismus",
+          "Infrastrukturschutz",
+          "Berliner Politik",
+          "Krisenkommunikation"
+        ]
+      },
+      {
+        "title": "Grüne als Partei der Mitte und Abgrenzung nach links",
+        "timestamp_range": "00:56:24 - 00:58:32",
+        "theme_description": "Positionierung der Grünen als Partei der politischen Mitte mit Klärung ihrer Abgrenzung von der Linkspartei in Berlin.",
+        "question_asked": "Robin Alexander fragt (00:56:24-847), ob Brantner ausschließt, dass die Grünen 'ganz linke' sind, und fordert sie auf zu sagen, ob die Grünen eine Partei der Mitte oder Linksaußen sind.",
+        "question_intent": "Zu erzwingen, dass Brantner sich klar zwischen Mitte und Linksaußen-Positionierung entscheidet und ihre Abgrenzungsbereitschaft gegenüber der Berliner Linken demonstriert.",
+        "position": "Brantner antwortet, die Grünen seien 'eine Partei der Mitte und unsere Kolleginnen und Kollegen kämpfen für eine starke Grüne, nicht für irgendetwas anderes.' Sie kennt die spezifischen Aussagen der Linken-Kandidatin nicht, unterscheidet aber: Bei Antisemitismus-Fragen haben sich die Berliner Grünen deutlich von den Aussagen der Linken distanziert. Sie sagt, sie wähle 'keine linke Bürgermeisterin' und kämpfe für einen 'grünen Bürgermeister'. Sie schließt aus, die Berliner Linkspartei als verfassungsfeindlich zu sehen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Brantner adressiert die Identitätsfrage (Mitte vs. Linksaußen) direkt und beantwortet sie mit 'Mitte', aber sie antwortet vage auf die konkrete Frage nach Koalitionsbedingungen mit der Linken in Berlin. Sie sagt, die Linkspartei sei 'keine verfassungsfeindliche', was impliziert, dass Koalitionen möglich wären, aber sie präzisiert nicht klar, unter welchen Bedingungen.",
+        "concrete_statements": [
+          "Wir sind eine Partei der Mitte und unsere Kolleginnen und Kollegen kämpfen für eine starke Grüne, nicht für irgendetwas anderes",
+          "In Berlin haben wir uns beim Thema Antisemitismus sehr deutlich distanziert von den Aussagen der Linken",
+          "Ich wähle keine linke Bürgermeisterin, ich kämpfe dafür, dass wir einen grünen Bürgermeister bekommen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir sind eine Partei der Mitte und unsere Kolleginnen und Kollegen kämpfen für eine starke Grüne, nicht für irgendetwas anderes.",
+            "timestamp": "00:56:24",
+            "context": "Direkte Antwort auf Alexanders Frage zur Positionierung."
+          },
+          {
+            "text": "Also soweit ich weiß, ist diese Linkspartei in Berlin keine verfassungsfeindliche. Ich finde, wir sollten in Berlin jetzt darum kämpfen, dass wir eine vernünftige Regierung haben, die diese grünen Krisen richtig einschätzt und sich für den Schutz der Infrastruktur einsetzt.",
+            "timestamp": "00:58:02",
+            "context": "Auf Frage, ob Brantner kategorisch ausschließt, die Linke als Koalitionspartner zu wählen."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Koalitionen",
+          "Parteipositionierung",
+          "Berliner Landtagswahl 2025",
+          "Linksextremismus",
+          "Antisemitismus"
+        ]
+      },
+      {
+        "title": "Deutsche Verteidigungsfähigkeit und Ukraine-Sicherheitsgarantien",
+        "timestamp_range": "01:04:05 - 01:10:45",
+        "theme_description": "Grüne Position zu deutschen Truppeneinsätzen, europäischer Verteidigungsunion und Sicherheitsgarantien für die Ukraine nach möglichem Waffenstillstand.",
+        "question_asked": "Der Moderator fragt (01:04:05-01:03:59), welche Position die Grünen zur möglichen deutschen Beteiligung an Friedenssicherung in der Ukraine einnehmen.",
+        "question_intent": "Zu erfahren, ob und unter welchen Bedingungen die Grünen deutsche Soldaten in der Ukraine unterstützen würden.",
+        "position": "Brantner betont zunächst, dass Frieden und Waffenstillstand noch weit entfernt sind, da Putin täglich Zugeständnisse mit mehr Bomben und Toten beantwortet, und Trump keinen Druck auf Putin ausübt. Falls ein Waffenstillstand kommen sollte, werden Sicherheitsgarantien notwendig sein. Diese sollten primär von den USA kommen, doch Europa wird den Großteil stemmen müssen. Sie kritisiert mangelnden Druck auf Putins Wirtschaft (Schattenflotte, Ölimporte, Vermögen). Brantner plädiert für eine europäische Verteidigungsunion unter Führung von Merz (nicht alle 27 Länder, sondern 'die vorangehen'). Sie verteidigt die Schuldenbremsen-Reform als Mittel, um Rüstungsausgaben zu ermöglichen und betont die Dringlichkeit europäischer Rüstung. Sie betont: 'Wenn wir das nicht tun, dann wird der Krieg zu uns kommen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Brantner adressiert die Frage vollständig: Sie nennt Bedingungen (Waffenstillstand, Sicherheitsgarantien notwendig), erklärt die grüne Position (europäische Verteidigungsunion), kritisiert Versäumnisse bei Druckausübung auf Russland und verlinkt Schuldenbremsen-Reform mit Verteidigungsausgaben.",
+        "concrete_statements": [
+          "Wir brauchen dringend eine europäische Verteidigungsunion",
+          "Jeden Tag den wir später anfangen ist einer zu spät",
+          "Wenn wir das nicht tun, dann wird der Krieg zu uns kommen",
+          "Aus der Schuldenbremsen Reform, damit haben wir explizit gesagt geht jetzt die großen Lücken an"
+        ],
+        "quotes": [
+          {
+            "text": "Erst einmal finde ich es wichtig zu betonen, wie Herr Mölling gesagt hat, dass es um Frieden und Waffenstillstand geht, von dem wir weit entfernt sind. Putin macht täglich Zugeständnisse, er reagiert mit mehr Bomben und mehr Toten in der Ukraine.",
+            "timestamp": "01:04:05",
+            "context": "Brantners Einleitung zur Position zu Ukraine-Friedenssicherung."
+          },
+          {
+            "text": "Wir brauchen dringend eine europäische Verteidigungsunion, dass etwas was Herr Merz voranbringen könnte, dass er nicht alle 27 sein aber man muss mit den vorangehen, die bereit sind, man kann auch die Briten dazu nehmen",
+            "timestamp": "01:10:28",
+            "context": "Konkrete Forderung nach europäischer Verteidigungsunion."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Ukraine",
+          "NATO",
+          "Rüstungsausgaben",
+          "Schuldenbremse"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In Deutschland gibt es eine der höchsten Vermögensungleichheiten in der Europäischen Union",
+        "timestamp": "00:09:18"
+      },
+      {
+        "claim": "Wenn Immobilienbesitzer weniger als 300 Immobilien besitzen (350), zahlen Sie Erbschaftsteuer, wenn nicht dann zahlen Sie keine mehr",
+        "timestamp": "00:09:18"
+      },
+      {
+        "claim": "Australien hat ein Medienverbot für unter 16-jährige eingeführt",
+        "timestamp": "00:43:54"
+      },
+      {
+        "claim": "Die Berliner Grünen-Fraktion stellt Fragen zur Vulkangruppe seit Jahren, Bundeshauptstadt auch dabei, aber Dobrindt war kein einziges Mal da",
+        "timestamp": "00:50:57"
+      },
+      {
+        "claim": "Vor vier Monaten gab es schon einen Anschlag in Berlin (gemeint: auf Infrastruktur)",
+        "timestamp": "00:50:57"
+      }
+    ]
+  }
+}

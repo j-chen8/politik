@@ -1,0 +1,332 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-20-november-2024-100",
+    "video_id": "lanz-2024-11-20",
+    "politician": "Karl Lauterbach",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "fa059bf92e29bef0",
+    "transcript_chars": 58886,
+    "caption_lines": 2970,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23828,
+    "tokens_out": 7273,
+    "cost_usd": 0.0240772,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-02T16:33:28.247Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl Lauterbach verteidigte in der Sendung die Bilanz der SPD-geführten Bundesregierung unter Olaf Scholz gegen kritische Fragen zu unerfüllten Wahlversprechen und Wirtschaftspolitik. Im Ton wirkte er loyal zum Kanzler, sachlich in Auseinandersetzungen mit dem Journalisten Michael Bröcker, und zeigte Respekt vor der ukrainischen Bevölkerung sowie kritische Einordnung zur FDP-Sabotage am Ende der Ampel-Koalition.",
+    "themes": [
+      {
+        "title": "Olaf Scholz als Kanzlerkandidat und Parteiposition SPD",
+        "timestamp_range": "00:03:24 - 00:07:27",
+        "theme_description": "Frage zur aktuellen Kanzlerkandidatur von Scholz und zum Grummeln in der SPD.",
+        "question_asked": "Wer ist gerade gesicherter Kanzlerkandidat der SPD? Gibt es Grummeln in der Partei, und warum wird Scholz in Umfragen dramatisch unterschätzt?",
+        "question_intent": "Klärung des Status der Kanzlerkandidatur und der Parteieinheit angesichts schlechter Umfragewerte.",
+        "position": "Lauterbach betont, dass Olaf Scholz der Kanzlerkandidat ist und bleibt. Das 'Grummeln' in der SPD sei eine normale Reaktion auf schlechte Umfragen, werde aber durch Gremienentscheidungen beendet. Scholz werde unterschätzt; Wahlkämpfe würden am Schluss entschieden, nicht auf Basis von Beliebtheitsumfragen. Wichtig sei, dass 'dieser Nebel' um die Kandidatur weg sei, dann könne Scholz 'aus den Startlöchern hervorkommen'. Die Diskussion sei legitim, müsse aber schnell beendet werden durch eine klare Positionierung der Gremien.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Frage zur Kandidatur direkt (Scholz ist der Kandidat) und erklärt das Grummeln. Er weicht aber aus, warum genau Scholz unterschätzt würde und gibt keine eigentliche Analyse der Ursachen — stattdessen verweist er auf Wahlkampfdynamiken generell. Die Diskussion in der SPD wird als normal dargestellt, ohne auf das inhaltliche Unbehagen einzugehen.",
+        "quotes": [
+          {
+            "text": "Olaf Scholz ist aber unser Kanzlerkandidat.",
+            "timestamp": "00:03:24",
+            "context": "Auf direkte Frage zur Kanzlerkandidatur."
+          },
+          {
+            "text": "Wenn dieser Nebel um die Kandidatur erst mal weg ist, dann wird er aus den Startlöchern hervorkamen.",
+            "timestamp": "00:03:24",
+            "context": "Erklärung, warum Scholz' Chancen steigen, sobald die Kandidaturdebatte beendet ist."
+          }
+        ],
+        "concrete_statements": [
+          "Olaf Scholz ist Kanzlerkandidat und bleibt es.",
+          "Gremien werden die Kandidatur bestätigen, dann ist der Spuk beendet.",
+          "Wahlkämpfe werden am Schluss gewonnen, nicht auf Basis von Beliebtheitsumfragen.",
+          "Scholz wird dramatisch unterschätzt."
+        ],
+        "related_bundestag_topics": [
+          "Kanzlerkandidatur SPD",
+          "Parteieinheit",
+          "Wahlkampfstrategie"
+        ]
+      },
+      {
+        "title": "Scholz' Bilanz als Bundeskanzler und Wirtschaftskrise",
+        "timestamp_range": "00:05:26 - 00:14:28",
+        "theme_description": "Debatte über Scholz' Leistung in drei Jahren Amtszeit und die wirtschaftliche Lage unter seiner Führung.",
+        "question_asked": "Hat Scholz Versprechen wie 'Kanzler für bezahlbares Wohnen' oder 'grünes Wirtschaftswunder' erfüllt? Ist die wirtschaftliche Krise nicht auch Scholz' Verantwortung?",
+        "question_intent": "Kritische Überprüfung der Regierungsbilanz und Verantwortlichkeit für wirtschaftlichen Abschwung.",
+        "position": "Lauterbach gibt zu, dass das Wahlversprechen 'Kanzler für bezahlbares Wohnen' bisher nicht erfüllt wurde, führt dies aber auf FDP-Blockade zurück (Mietpreisbremse). Zur Wirtschaft erklärt er, dass die Krise durch externe Faktoren (Kriegsfolgen, Gasmangel) verursacht wurde, die nicht vorhersehbar waren. Deutschland sei auf Billiggas aus Russland angewiesen gewesen; Scholz habe das Land durch schwere Krisen gebracht, hätte aber auch die Wirtschaft wieder ankurbeln können. Die Schuld für fehlende Investitionen liegt bei der FDP und ihrer Schuldenbremsen-Politik. Scholz sei ein 'besonderer, hochintelligenter Bundeskanzler'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach gibt zu, dass das Wohnungsversprechen nicht erfüllt wurde, lenkt aber die Schuld extern (FDP) ab. Zur Wirtschaftskrise adressiert er die Frage, verfällt aber in eine Verteidigungsrede mit externen Erklärungen (Gaskriese, Ukraine-Krieg). Er wertet die Frage als 'schlau kritisieren' ab, statt sie substanziell zu beantworten.",
+        "quotes": [
+          {
+            "text": "Ja, das ist er zum jetzigen Zeitpunkt nicht.",
+            "timestamp": "00:09:30",
+            "context": "Auf Frage, ob Scholz Kanzler für bezahlbares Wohnen geworden ist."
+          },
+          {
+            "text": "Olaf Scholz hat das Land durch die schwersten Krise gebracht.",
+            "timestamp": "00:07:27",
+            "context": "Bewertung von Scholz' Krisenbewältigung."
+          }
+        ],
+        "concrete_statements": [
+          "Scholz ist kein Kanzler für bezahlbares Wohnen geworden.",
+          "FDP blockierte Mietpreisbremse und Reformen bis zum Schluss.",
+          "Wirtschaftskrise ist durch Gasmangel und externe Faktoren verursacht, nicht durch Scholz.",
+          "FDP war mit Sand im Getriebe und blockierte Investitionen."
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsmarkt",
+          "Energiekrise",
+          "Haushaltsdebatte",
+          "Koalitionskrise"
+        ]
+      },
+      {
+        "title": "Medienberichterstattung über Scholz und Vergleich mit anderen Kanzlern",
+        "timestamp_range": "00:07:27 - 00:09:30",
+        "theme_description": "Bewertung der medialen Darstellung von Scholz und seine Leistung im Vergleich zu Vorgängern.",
+        "question_asked": "War die Berichterstattung über Scholz fair, und wird er zu Unrecht kritisiert?",
+        "question_intent": "Überprüfung, ob Scholz von Medien unfair behandelt wird.",
+        "position": "Lauterbach sagt, dass Scholz von Medien unterschätzt wird. Er verbringt viele Stunden mit dem Kanzler und erlebt ihn als 'besonderes, hochintelligentes' Individuum. Er hält generell wenig davon, Medienberichterstattung zu kritisieren (außer in Ausnahmefällen), findet aber, dass ein 'fairer' Blick zeigt: Scholz ist ein unterbewerteter Kanzler, der das Land durch schwere Krisen gebracht hat. Lauterbach verweist nicht auf konkrete unfaire Berichterstattung, sondern auf ein diffuses Gefühl der Unterbewertung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach weicht aus, indem er sagt, Medien seien fair, aber Scholz sei trotzdem unterbewertete. Das ist zirkulär: wenn die Berichterstattung fair ist, ist die Unterbewertung kein Medienproblem. Er belegt die Unterbewertungsthese nicht mit konkreten Beispielen.",
+        "quotes": [
+          {
+            "text": "Ich kann sagen, Olaf Scholz ist ein besonderer, hochintelligenter Bundeskanzler.",
+            "timestamp": "00:07:27",
+            "context": "Persönliches Urteil über Scholz, basierend auf Gesprächen."
+          }
+        ],
+        "concrete_statements": [
+          "Scholz wird von Medien unterbewertete.",
+          "Lauterbach hält wenig davon, Medien zu kritisieren.",
+          "Scholz ist ein besonderer, hochintelligenter Bundeskanzler.",
+          "Scholz hat das Land durch schwere Krisen gebracht."
+        ],
+        "related_bundestag_topics": [
+          "Medienberichterstattung",
+          "Kanzler-Leistung"
+        ]
+      },
+      {
+        "title": "Bürgergeld und Arbeitsmarkt für Ukrainer",
+        "timestamp_range": "00:16:16 - 00:27:40",
+        "theme_description": "Kritik an der SPD-Sozialpolitik beim Bürgergeld und schlechten Arbeitsmarktintegration von ukrainischen Flüchtlingen.",
+        "question_asked": "Ist die SPD-Wirtschaftspolitik gescheitert? Hat das Bürgergeld die falschen Prioritäten gesetzt und Arbeiter abgeschreckt (AfD-Wähler-Verschiebung)?",
+        "question_intent": "Vorwurf, dass die SPD mit zu hohem Bürgergeld falsche Signale setzt und Arbeiter verliert.",
+        "position": "Lauterbach erklärt, dass die Erhöhung des Bürgergeldes hauptsächlich durch Inflation bedingt war, nicht durch eine politische Entscheidung Scholz'. Der größte Kostengrund seien 1,2 Mio. ukrainische Flüchtlinge, die Polen ebenfalls aufgenommen hat. Er gibt zu, dass es Probleme gibt: zu wenig Ukrainer arbeiten (25 %), und es gibt auch Menschen, die nicht arbeiten wollen. Aber es sei ein Märchen, dass es in Deutschland schwer ist zu arbeiten — Ukrainer können sofort arbeiten (Bau, Gastronomie). Barrieren seien eher sprachlich und durch Arbeitgeber-Diskriminierung bedingt. Sein Ministerium habe Anerkennungsverfahren vereinfacht und ermöglicht schnelle Arbeitsaufnahme für Pflegekräfte und Ärzte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressiert die Bürgergeld-Frage durch Hinweis auf Ukrainer und Inflation statt auf die generelle Arbeitsmarktpolitik. Er argumentiert gegen die Prämisse (Märchen, dass Arbeiten schwer ist) statt zuzugeben, dass strukturelle Anreize möglicherweise problematisch sind. Die Arbeitsmarktdaten (25 % Arbeitsquote) werden nicht tiefgehend analysiert.",
+        "quotes": [
+          {
+            "text": "Wir haben 1,2 Millionen Flüchtlinge aus der Ukraine. Außer Polen hat das sonst niemand.",
+            "timestamp": "00:20:46",
+            "context": "Erklärung für hohe Bürgergeld-Kosten."
+          },
+          {
+            "text": "Das ist einfach ein Märchen, dass es in Deutschland so schwer ist zu arbeiten.",
+            "timestamp": "00:30:06",
+            "context": "Gegenwehr gegen Vorwurf mangelnder Arbeitsmarktchancen."
+          }
+        ],
+        "concrete_statements": [
+          "Bürgergeld-Erhöhung war hauptsächlich inflationsbedingt.",
+          "1,2 Mio. ukrainische Flüchtlinge erhöhten Kosten massiv.",
+          "Nur 25 % der Ukrainer arbeiten — das ist ein Problem, das die Regierung erkannt hat.",
+          "Lauterbach ' Ministerium hat Anerkennungsverfahren vereinfacht, Pflegekräfte können schnell arbeiten."
+        ],
+        "related_bundestag_topics": [
+          "Asyl- und Flüchtlingspolitik",
+          "Bürgergeld",
+          "Arbeitsmarktpolitik",
+          "Integration"
+        ]
+      },
+      {
+        "title": "Pistorius als Kanzlerkandidat und Spekulationen in der SPD",
+        "timestamp_range": "00:41:50 - 00:45:28",
+        "theme_description": "Frage, warum Pistorius nicht eindeutig ausschließt, Kanzlerkandidat zu werden, und Vermutungen über Partei-Intrigen.",
+        "question_asked": "Warum sagt Pistorius nicht einfach 'Ich mache es nicht', wenn die Kandidatur für Scholz so eindeutig ist?",
+        "question_intent": "Klärung, ob es in der SPD tatächlich Machtkämpfe gibt und Pistorius als Alternative bereitgestellt wird.",
+        "position": "Lauterbach weicht aus, indem er sagt, er gebe Pistorius keine Ratschläge und würde nicht als dessen Pressesprecher fungieren. Er schätzt Pistorius als 'unfassbar guten Verteidigungsminister', der im Wahlkampf eine große Rolle spielt. Auf Bröckers These, dass Lars Klingbeil nicht wolle, dass Pistorius Kandidat wird, antwortet Lauterbach: Das stimme, aber nicht wegen Egoismus Klingbeils, sondern weil dieser loyal zur Partei steht und 'keine Putschisten' seien. Lauterbach sagt, dass Klingbeil 'sein eigenes Interesse über das der SPD' nicht stellen würde.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Lauterbach weicht der direkten Frage aus (warum Pistorius nicht ablehnt), lenkt aber ab zur These über Klingbeil und verteidigt diesen gegen Bröckers Egoismus-Vorwurf. Er antwortet also zu einer anderen Frage als gestellt.",
+        "quotes": [
+          {
+            "text": "Ich gebe hier niemandem Ratschläge. Sie müssen den dann hier einladen und können Ihn direkt fragen.",
+            "timestamp": "00:41:50",
+            "context": "Weigerung, Pistorius zu drängen, Position klarzumachen."
+          },
+          {
+            "text": "Es ist ja auch gar kein Scherz, es ist sehr nah dran an der Wahrheit.",
+            "timestamp": "00:45:28",
+            "context": "Zustimmung zu Bröckers These, dass Klingbeil nicht wolle, dass Pistorius Kandidat wird."
+          }
+        ],
+        "concrete_statements": [
+          "Lauterbach gibt Pistorius keine Ratschläge.",
+          "Pistorius ist ein unfassbar guter Verteidigungsminister.",
+          "Lars Klingbeil will nicht, dass Pistorius Kandidat wird.",
+          "Klingbeil ist loyal und stellt nicht seine Karriereziele über die SPD."
+        ],
+        "related_bundestag_topics": [
+          "Kanzlerkandidatur",
+          "SPD-Parteistruktur",
+          "Parteiführung"
+        ]
+      },
+      {
+        "title": "Kooperation mit FDP in der Gesundheitspolitik vor dem Bruch",
+        "timestamp_range": "00:46:49 - 00:49:04",
+        "theme_description": "Bewertung der Zusammenarbeit mit FDP im Gesundheitsministerium und Überraschung über deren Sabotage.",
+        "question_asked": "Wie konnte Lauterbach nicht merken, dass die FDP raus wollte, wenn er täglich mit ihnen zusammenarbeitete?",
+        "question_intent": "Überprüfung von Lauterbachs Glaubwürdigkeit bezüglich FDP-Sabotage.",
+        "position": "Lauterbach sagt, dass die FDP-Zusammenarbeit in der Gesundheitspolitik sehr fruchtbar war: elektronische Patientenakte, Medizinforschung, Pharmaindustrie — viel wurde gemeinsam erreicht. Er habe die FDP oft gelobt, auch in der Gesundheitspolitik. Aber: 'Ich hätte niemals vermutet, dass es schon lange feststand, dass die FDP raus will.' Am Mittwoch (Kabinettstermin Pflegebeitrag) war Kontakt engmaschig, und die FDP stimmte zu — aber es war bereits geplant, dass alles zusammenbricht. 'Das hätte ich für unmöglich gehalten.' Es seien beispiellos hinterhältig vorgegangen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach beantwortet die Frage direkt: Die Zusammenarbeit war real und fruchtbar, aber die FDP log gleichzeitig. Das erklärt, warum er nicht merkte, dass sie raus wollten — sie versteckten es aktiv hinter Kooperationsschein.",
+        "quotes": [
+          {
+            "text": "Ich hätte niemals vermutet, dass es schon lange feststand, dass die FDP raus will. Und im Prinzip nur unter einer Camouflage dazu tun will, als wären sie noch an einer gemeinsamen Lösung arbeiten würde.",
+            "timestamp": "00:47:04",
+            "context": "Erklärung der Überraschung über FDP-Sabotage trotz guter Zusammenarbeit."
+          }
+        ],
+        "concrete_statements": [
+          "Elektronische Patientenakte wurde mit FDP umgesetzt.",
+          "Medizinforschung und Pharmaindustrie wurden modernisiert.",
+          "FDP log über ihre Absicht hinauszugehen.",
+          "Das war beispiellos hinterhältig."
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitspolitik",
+          "Koalitionsbruch",
+          "Kabinettsdynamik"
+        ]
+      },
+      {
+        "title": "Ende der Ampel-Koalition und FDP-Sabotage",
+        "timestamp_range": "00:47:04 - 00:49:04",
+        "theme_description": "Darstellung der Koalitionsauflösung und Vorwurf der FDP, heimlich geplant zu haben.",
+        "question_asked": "Wie kam es zum Bruch mit der FDP, und war es wirklich so überraschend für Scholz?",
+        "question_intent": "Klärung, ob die FDP die Koalition heimlich sabotiert hat oder ob es ein echtes Missverständnis war.",
+        "position": "Lauterbach sagt, dass die FDP 'schon lange festgestanden' habe rausgehen zu wollen, aber unter 'Camouflage' so getan habe, als würden sie an einer gemeinsamen Lösung arbeiten. Er habe am Mittwoch der Pflegebeitrags-Erhöhung zugestimmt, und die FDP habe auch zugestimmt — aber es sei sich bereits geplant gewesen. Das sei 'ein beispielloser menschlicher Fahrrad' (Fehler im Transkript, vermutlich: 'Fehler'). Grüne und SPD hätten wirklich gekämpft, seien aber in eine Falle gelockt worden. Er habe nicht vermutet, dass 'Sand im Getriebe' von Anfang an Absicht war.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach beantwortet die Frage direkt und konkret: FDP-Sabotage war real, heimlich geplant, und Scholz/er selbst waren wirklich überrascht. Die Kritik an der FDP ist deutlich und wird mit Beispielen (Pflegebeitrag, täglicher Kontakt) belegt.",
+        "quotes": [
+          {
+            "text": "Das hätte ich nie für möglich gehalten, dass es schon lange feststand, dass die FDP raus will.",
+            "timestamp": "00:47:04",
+            "context": "Reaktion auf die Erkenntnis, dass FDP die Koalition heimlich sabotiert hat."
+          },
+          {
+            "text": "Da ging es um die Erhöhung des Pflegebeitrags. Damit darüber geeinigt, und da hat er mir noch zugestimmt, ich bin vollkommen ahnungslos gewesen, dass die Planung, die jetzt ist, dass wir dort Schluss machen.",
+            "timestamp": "00:47:04",
+            "context": "Konkretes Beispiel von FDP-Täuschung im letzten Kabinettstermin."
+          }
+        ],
+        "concrete_statements": [
+          "FDP-Entscheidung zum Ausstieg war längst geplant, wurde aber unter Camouflage versteckt.",
+          "Lauterbach war ahnungslos, obwohl er täglich Kontakt mit FDP-Leuten hatte.",
+          "Grüne und SPD kämpften real, FDP führte sie in eine Falle.",
+          "Das ist ein beispielloser Fahrrad (Fehler/Bruch) von Seiten der FDP."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbruch",
+          "Ampel-Regierung",
+          "Haushaltskrise"
+        ]
+      },
+      {
+        "title": "Ukraine-Solidarität und Verwundetenhilfe",
+        "timestamp_range": "01:13:16 - 01:14:15",
+        "theme_description": "Würdigung von Deutschlands Rolle bei der Behandlung schwer verletzter ukrainischer Soldaten.",
+        "question_asked": "Wie wichtig ist die Behandlung von ukrainischen Verletzten für Deutschland, und was bedeutet es psychologisch?",
+        "question_intent": "Anerkennung von Deutschlands humanitärer Leistung für die Ukraine.",
+        "position": "Lauterbach sagt, dass die Behandlung schwer verletzter Soldaten in Deutschland von großem Respekt erfüllt. Er spricht mit diesen Leuten persönlich: Sie kämpfen für Freiheit und glauben an den freien Westen und die Demokratie. Manche hätten zwei Beine und einen Arm verloren, hätten offene Wunden, seien aber 'stolz auf den Einsatz'. Sie identifizierten sich mit dem freien Westen. Wenn man dann höre 'mit Putin verhandeln', sei das ein 'unermessliches Versprechen ohne jegliche Rechtfertigung'. Putin sei 'der größte Verbrecher unserer Zeit'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach antwortet vollständig und emotional: Er würdigt die Opfer, ihre Haltung, und leitet davon eine klare Position ab: Verhandlungen mit Putin sind nicht akzeptabel angesichts dieser Opfer.",
+        "quotes": [
+          {
+            "text": "Mir nötigt das den größten Respekt ab. Wir haben mit Schwerverletzten zu tun, die wir in Deutschland behandeln lassen.",
+            "timestamp": "01:13:16",
+            "context": "Würdigung der Verletzten."
+          },
+          {
+            "text": "Er ist der größte Verbrecher unserer Zeit.",
+            "timestamp": "01:14:15",
+            "context": "Einschätzung Putins nach Gespräch mit verletzten Soldaten."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland behandelt schwer verletzte ukrainische Soldaten.",
+          "Soldaten kämpfen für Freiheit und glauben an Demokratie.",
+          "Einige haben schwere Verletzungen, sind aber stolz auf ihren Einsatz.",
+          "Verhandlungen mit Putin sind angesichts dieser Opfer nicht akzeptabel.",
+          "Putin ist der größte Verbrecher unserer Zeit."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Humanitäre Hilfe",
+          "Außenpolitik",
+          "Kriegsfolgen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Wir haben 1,2 Millionen Flüchtlinge aus der Ukraine. Außer Polen hat das sonst niemand.",
+        "timestamp": "00:20:46"
+      },
+      {
+        "claim": "Nur 25 % der Ukrainer arbeiten in Deutschland.",
+        "timestamp": "00:22:33"
+      },
+      {
+        "claim": "Die FDP blockierte die Mietpreisbremse bis zum Schluss.",
+        "timestamp": "00:09:30"
+      },
+      {
+        "claim": "Lauterbach hat eine Initiative mit Olaf Scholz und Robert Habeck mit großen Pharma-Unternehmen umgesetzt, darauf ist die Pharmaindustrie gegen den Trend gewachsen.",
+        "timestamp": "00:40:17"
+      },
+      {
+        "claim": "Der Pflegebeitragssatz-Erhöhung wurde vom FDP-Finanzminister im Kabinett am Mittwoch vor Scholz' Rücktrittsrede zugestimmt.",
+        "timestamp": "00:49:04"
+      },
+      {
+        "claim": "Arbeiter wählen heute zu 33 % die AfD und zu 12 % die SPD (laut Michael Bröcker, aber Lauterbach bezweifelt die Prämisse nicht).",
+        "timestamp": "00:16:16"
+      }
+    ]
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-17-maerz-2026-100",
+    "video_id": "lanz-2026-03-17",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "57e84e28f21d4639",
+    "transcript_chars": 61773,
+    "caption_lines": 3060,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24977,
+    "tokens_out": 7401,
+    "cost_usd": 0.0247928,
+    "quote_validation": {
+      "valid_exact": 4,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 3,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.226Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter argumentiert für einen Systemwechsel im Iran als deutsches Sicherheitsinteresse, da das Mullah-Regime Israels Existenz bedroht und ballistische Raketen gegen Mitteleuropa richtet. Er positioniert sich kritisch gegenüber der deutschen Zurückhaltungspolitik und betont die Freiheit internationaler Seewege, lehnt aber parallel eine deutsche militärische Beteiligung im Nahen Osten ab — der Fokus müsse auf der Ukraine liegen.",
+    "themes": [
+      {
+        "title": "Systemwechsel im Iran als deutsches Interesse",
+        "timestamp_range": "00:04:37 - 00:06:13",
+        "theme_description": "Kiesewetter erklärt, warum ein Systemwechsel im Iran im deutschen Sicherheitsinteresse liegt, trotz seiner Kritik am militärischen Vorgehen.",
+        "question_asked": "Sehen Sie immer noch, dass die militärische Aktion im Iran überfällig war und dass sie im deutschen Interesse ist?",
+        "question_intent": "Der Moderator möchte wissen, ob Kiesewetter an seiner frühen Positionierung zu den iranischen Operationen festhält.",
+        "position": "Ein Systemwechsel ist im deutschen Interesse, weil der Iran drei zentrale Bedrohungen darstellt: die Vernichtung Israels, nukleare Bewaffnung und ballistische Raketen, die Mitteleuropa bedrohen könnten. Jedoch unterscheidet Kiesewetter zwischen den Zielen: Israel strebt den vollständigen Systemwechsel an, die USA beschränken sich auf die Zerstörung der Marine, ballistischen Fähigkeiten und nuklearen Kapazitäten. Das Vorgehen ist nur teilweise abgestimmt, und Europa wird überhaupt nicht einbezogen. Verhandlungen müssen Priorität haben.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Frage nach seinem Interesse an einem Systemwechsel und begründet dies mit Sicherheitsargumenten. Jedoch weicht er durch die Unterscheidung zwischen israelischen und amerikanischen Zielen teilweise aus und betont Verhandlungen, statt die militärische Aktion direkt zu verteidigen.",
+        "quotes": [
+          {
+            "text": "Ich sehe den Systemwechsel in unserem Interesse, weil er Iran drei heftige Vorhaben hat, erstens die Vernichtung Israels, zweitens die nukleare Absicht sich zu bewaffnen, drittens die ballistischen Raketen, die auch Mitteleuropa bedrohen könnten.",
+            "timestamp": "00:04:37"
+          },
+          {
+            "text": "wir Europäer werden überhaupt nicht einbezogen, dieser Systemwechsel ist in unserem Interesse, aber wir hören, wir müssen verhandeln, d. h. Wechsel ja, ich vertrete aber nicht die Mehrheitsmeinung.",
+            "timestamp": "00:04:37"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Systemwechsel ist im deutschen Interesse",
+          "Forderung nach europäischer Beteiligung an Verhandlungen",
+          "Klarstellung: Nicht alle Völkerrechtler sehen die Operation als rechtswidrig an"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitsstrategie",
+          "Iran-Sanktionen",
+          "NATO-Zusammenarbeit"
+        ]
+      },
+      {
+        "title": "Völkerrechtliche Bewertung des iranischen Konflikts",
+        "timestamp_range": "00:07:11 - 00:07:41",
+        "theme_description": "Kiesewetter verteidigt die völkerrechtliche Legitimität der Operationen gegen Cristian Dunz' Kritik.",
+        "question_asked": "Ist die militärische Operation völkerrechtswidrig, wie Dunz behauptet?",
+        "question_intent": "Der Moderator stellt fest, dass Dunz die Operation als Angriffskrieg kritisiert, und gibt Kiesewetter Gelegenheit, zu antworten.",
+        "position": "Kiesewetter argumentiert, dass nicht alle Völkerrechtler diese Operation als rechtswidrig sehen. Es gibt die Möglichkeit eines Präventivschlags, wenn eine akute Bedrohung vorhanden ist. Die unmittelbare Bedrohung Israels durch den Iran ist für Kiesewetter gegeben.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter nennt die völkerrechtliche Kontroverse, ohne sie vollständig zu klären. Er verweist auf Präventivschlag-Argumentationen, sagt aber nicht, warum das im vorliegenden Fall zutrifft — das wird erst später in der Debatte zum Thema.",
+        "quotes": [
+          {
+            "text": "Nicht alle Völkerrechtler sehen es gleich.",
+            "timestamp": "00:07:11"
+          },
+          {
+            "text": "Die Bedrohung von Israel...",
+            "timestamp": "00:07:24"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Pluralisierung der völkerrechtlichen Positionen",
+          "Verweis auf Bedrohung Israels als Legitimierungsgrund"
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht",
+          "Internationale Sicherheit",
+          "Präventivschlag-Doktrin"
+        ]
+      },
+      {
+        "title": "Israels unmittelbare Bedrohung durch den Iran",
+        "timestamp_range": "00:17:00 - 00:18:27",
+        "theme_description": "Kiesewetter argumentiert, dass der Iran für Israel eine unmittelbare Bedrohung darstellt, basierend auf Präsenz und Verweigerung der Anerkennung von Israels Existenzrecht.",
+        "question_asked": "Der Moderator zitiert einen US-Terrorismusbeamten, der sagt, der Iran war keine unmittelbare Bedrohung für die USA. War der Iran für Israel eine unmittelbare Bedrohung?",
+        "question_intent": "Der Moderator versucht zu klären, ob die Bedrohung für Israel tatsächlich akut war oder konstruiert wurde.",
+        "position": "Kiesewetter behauptet, der Iran war für Israel absolut eine unmittelbare Bedrohung. Er verweist auf den 7. Oktober, die iranische Präsenz überall (über Hisbollah, Hamas, Proxies) und die Tatsache, dass der Iran sich weigerte, Israels Existenzrecht anzuerkennen — was er als Grund für strengere US-Beratung in Bezug auf militärische Aktionen sieht. Er wurde von israelischen Außenministern nach Bedingungen für die Anerkennung gefragt und später mit einem Reisebann belegt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter antwortet substantiell auf die Frage nach Israels Bedrohung, verknüpft sie aber mit dem Argument der Verweigerung von Existenzrechtsanerkennung statt mit konkreten militärischen Kapazitäten. Damit pivotiert er teilweise zum Gegenpunkt: Der Iran ist schuld, weil er nicht verhandelt, nicht primär, weil er eine unmittelbare militärische Bedrohung darstellt.",
+        "quotes": [
+          {
+            "text": "für die USA, für Israel schon. Die Amerikaner haben sich auf diesen Druck beteiligt.",
+            "timestamp": "00:17:29"
+          },
+          {
+            "text": "ja absolut, das sind alles Tentakeln.",
+            "timestamp": "00:17:46"
+          },
+          {
+            "text": "Das Existenzrecht Israels anzuerkennen, das macht Teheran nicht.",
+            "timestamp": "00:18:34"
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Iran war für Israel unmittelbar bedrohlich",
+          "Hisbollah, Hamas und andere Proxies als 'Tentakeln' des Irans",
+          "Iran weigert sich, Israels Existenzrecht anzuerkennen — dies ist das Kernproblem",
+          "Kiesewetter wurde von israelischem Außenminister als 'unerwünscht' erklärt"
+        ],
+        "related_bundestag_topics": [
+          "Israel-Unterstützung",
+          "Antisemitismusbekämpfung",
+          "Nahostkonflikt"
+        ]
+      },
+      {
+        "title": "Deutsche Unterstützung für Libanon und humanitäre Hilfe",
+        "timestamp_range": "00:40:03 - 00:41:24",
+        "theme_description": "Kiesewetter beschreibt deutsche und europäische Maßnahmen zur Unterstützung des Libanon und kritisiert Israel für die Ausweitung seiner Kriegsziele.",
+        "question_asked": "Wie reagiert Deutschland auf die humanitäre Krise im Libanon, und was sind die Grenzen der internationalen Anstrengungen?",
+        "question_intent": "Der Moderator möchte wissen, ob die internationale Gemeinschaft — insbesondere Deutschland — wirksam reagiert.",
+        "position": "Der deutsche Außenminister hat 100 Millionen Euro für Hilfe bereitgestellt, und das Auswärtige Amt lenkt diese Mittel um — eine Entscheidung dieser Woche. Der Bundeskanzler hat Israel klar aufgefordert, die Handlungen einzustellen, aber die Wirkung wird begrenzt sein. Kiesewetter kritisiert, dass Israel im Schatten des Krieges gegen den Iran in Libanon aufräumt, wo die internationale Gemeinschaft sich nicht durchsetzen konnte, und dabei seine Ziele viel intensiver ausweitet als ursprünglich geplant. Über 100.000 Menschen sind aus dem Libanon nach Syrien geflohen. Es bedarf europäischer Anstrengungen und erhöhtem Druck auf Israel.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet substantiell auf die Frage nach deutscher und internationaler Hilfe, nennt konkrete Zahlen, Institutionen und Kritik an Israel, und fordert erhöhten europäischen Druck — dies adressiert die Frage direkt.",
+        "quotes": [
+          {
+            "text": "Das hat aus der Außenminister gemacht und das auswärtige Amt stellt 100 Millionen Euro für Hilfe bereit.",
+            "timestamp": "00:40:03"
+          },
+          {
+            "text": "Es ist schon gravierend dass Israel im Schatten des Krieges gegen den Iran dort aufräumt, wo die internationale Gemeinschaft sich nicht durchsetzen konnte und die Ziele viel intensiver ausweitet als es überhaupt mal vorgesehen war.",
+            "timestamp": "00:40:03"
+          },
+          {
+            "text": "Da muss der Druck auf die israelische Regierung erhöht werden.",
+            "timestamp": "00:40:03"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "100 Millionen Euro deutsche Hilfe für Libanon",
+          "Kritik an Israel wegen Ausweitung der Kriegsziele",
+          "Forderung nach erhöhtem europäischen Druck auf Israel",
+          "Über 100.000 Flüchtlinge aus Libanon nach Syrien"
+        ],
+        "related_bundestag_topics": [
+          "Humanitäre Hilfe",
+          "Flüchtlingspolitik",
+          "Nahostkonflikt",
+          "Sanktionen gegen Israel"
+        ]
+      },
+      {
+        "title": "Deutsche Fokussierung auf Ukraine statt Naher Osten",
+        "timestamp_range": "00:50:05 - 00:51:12",
+        "theme_description": "Kiesewetter argumentiert, dass Deutschlands sicherheitspolitischer Fokus auf der Ukraine liegen muss, nicht im Nahen Osten.",
+        "question_asked": "Wie sollte Deutschland auf Trump reagieren, der die USA aus dem Nahen Osten zurückzieht? Muss Deutschland dann eintreten?",
+        "question_intent": "Der Moderator fragt, ob Deutschland gezwungen sein wird, in den Iran-Konflikt einzugreifen, wenn die USA sich zurückziehen.",
+        "position": "Deutschlands Fokus muss die Ukraine sein. Die Amerikaner werfen Deutschland die Ukraine-Unterstützung vor die Füße und ziehen sich zurück, während sie Russland ermöglichen, zusätzliche Einnahmen zu generieren. Sie wollen jetzt auch noch die NATO in den Nahen Osten ziehen, ohne Brüssel vorher zu konsultieren. Deutschlands Fokus liegt auf vielen europäischen Staaten, besonders Polen, das genauso sieht. Die Gefahr geht von Russland aus. Trump muss deutlich gemacht werden, dass er nicht auf Europas Seite steht. Die Amerikaner haben die Europäer in ihrer eigenen Sicherheitsstrategie nach hinten geschoben. Europa muss sich auf die Ukraine konzentrieren; Trump muss den Nahen Osten selbst lösen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage mit einer klaren Priorisierungsentscheidung: Ukraine vor Naher Osten. Er begründet dies mit Ressourcenmangel, kritisiert die USA für Druck auf Europa, und fordert Trump auf, sich selbst um den Nahen Osten zu kümmern.",
+        "quotes": [
+          {
+            "text": "Unser Fokus muss die Ukraine sein, die Amerikaner schmeißen uns die Ukraine Unterstützung vor die Füße, ziehen sich zurück, ermöglichen den Russen zusätzliche Einnahmen, wollen jetzt die NATO mit reinziehen.",
+            "timestamp": "00:50:05"
+          },
+          {
+            "text": "Wir müssen uns auf die Ukraine fokussieren, dann hat Trump das im nahen Osten zu lösen.",
+            "timestamp": "00:50:05"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Forderung nach deutschen Fokus auf Ukraine, nicht Naher Osten",
+          "Kritik an US-Druck auf europäische Allianzen",
+          "Behauptung: USA ermöglichen Russland, 10 Milliarden pro Monat zu verdienen",
+          "Aussage: Deutschlands Ressourcen sind begrenzt, beides ist nicht möglich"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "NATO",
+          "Russland-Sanktionen",
+          "Deutsche Außenpolitik"
+        ]
+      },
+      {
+        "title": "Seewege und internationale Handelsfreiheit als Sicherheitsinteresse",
+        "timestamp_range": "01:05:55 - 01:07:39",
+        "theme_description": "Kiesewetter begründet, warum die Sicherheit der Straße von Hormus ein deutsches Sicherheitsinteresse ist, verweigert aber parallel militärische Unterstützung.",
+        "question_asked": "Wenn der Benzinpreis auf über 2 Euro steigt, ist das nicht ein Grund für Deutschland, in den Konflikt einzugreifen?",
+        "question_intent": "Der Moderator stellt Kiesewetters Position in Frage: Wenn Deutschland finanzielle Interessen hat, ist es dann wirklich kein 'unser Krieg'?",
+        "position": "Das Thema ist nicht Benzinpreise, sondern die Freiheit der Seewege. Die Bundesrepublik als Handelsnation schreibt in ihre eigene Sicherheitsstrategie, dass sie sich weltweit für die Sicherheit der Seewege einsetzt. Dies beinhaltet auch die Durchsetzung des Völkerrechts. Die Straße von Hormus ist ein internationaler Seeweg, und wenn Deutschland sich heraushält und nicht unterstützt, ist das 'ein heikler Punkt'. Jedoch: Die Amerikaner haben etwas angezettelt und helfen Putin; Deutschland sollte nicht seine knappen Ressourcen dorthin schicken. Der Fokus muss die Ukraine sein. Deutschland kann nicht beides tun. Daher: Nein zur militärischen Beteiligung, aber Anerkennung, dass international koordinierte Seewege-Sicherheit notwendig ist — diese Aufgabe sollten andere übernehmen (wie Frankreich mit einer 'Coalition of the Willing').",
+        "answer_match": "verschoben",
+        "match_reasoning": "Kiesewetter weicht der direkten Frage aus, indem er zwischen zwei Positionen pendelt: Einerseits betont er, dass Seewege-Sicherheit ein deutsches Sicherheitsinteresse ist und Deutschland das Völkerrecht durchsetzen sollte; andererseits lehnt er deutsche militärische Teilnahme ab und verweist auf begrenzte Ressourcen und Fokus Ukraine. Die Antwort endet mit einer Umdefinition: Das Problem sitze im 'Oval Office', nicht bei Deutschland.",
+        "quotes": [
+          {
+            "text": "Das ist nicht das Thema, das eigentliche Thema ist Freiheit der Seewege, wir erleben gerade, dass die Straße von Hormus gesperrt ist, die Bundesrepublik als Handelsnation hat in ihrer eigenen Sicherheitsstrategie, dass wir uns weltweit einsetzen für die Sicherheit der Seewege.",
+            "timestamp": "01:05:55"
+          },
+          {
+            "text": "Wenn wir als Bundesrepublik Deutschland in unsere eigene Sicherheitsstrategie schreiben, wir setzen uns für weltweit frei Seewege ein, und auch das Thema Völkerrecht gehört dazu, da muss man helfen das Völkerrecht durchzusetzen.",
+            "timestamp": "01:06:20"
+          },
+          {
+            "text": "Nein. Wenn es... Nein. Die Amerikaner haben etwas angezettelt, helfen dem Putin, wir sollen jetzt unsere knappen Ressourcen dorthin schicken? Nein.",
+            "timestamp": "01:07:53"
+          }
+        ],
+        "answer_type": "themenwechsel",
+        "concrete_statements": [
+          "Seewege-Sicherheit ist Deutschlands Sicherheitsinteresse",
+          "Völkerrecht durchsetzen ist Deutschlands Pflicht",
+          "Aber: Nein zu deutscher militärischer Beteiligung",
+          "Begründung: Begrenzte Ressourcen, Fokus Ukraine",
+          "Forderung: Andere (Frankreich) sollen 'Coalition of the Willing' organisieren"
+        ],
+        "related_bundestag_topics": [
+          "Internationale Sicherheit",
+          "Seeverkehr",
+          "Handelspolitik",
+          "Völkerrecht"
+        ]
+      },
+      {
+        "title": "Schattenflotte und europäische Sanktionen gegen Russland",
+        "timestamp_range": "01:08:41 - 01:09:44",
+        "theme_description": "Kiesewetter argumentiert für strengere Kontrolle der iranischen Schattenflotte als Mittel, Russlands Einnahmen zu reduzieren.",
+        "question_asked": "Wenn die Straße von Hormus gesperrt ist, kann Deutschland nicht helfen und dabei sagen, wir fokussieren uns auf die Ukraine?",
+        "question_intent": "Der Moderator hinterfragt die Konsistenz von Kiesewetters Position: Wenn er Seewege als deutsches Interesse sieht, aber nicht helfen will, ist das nicht widersprüchlich?",
+        "position": "Die logische Konsequenz muss sein, die Schattenflotte aufzuhalten — das sind russische Schiffe, die russische Ölverkäufe ermöglichen, was Putin Einnahmen in Höhe von etwa 10 Milliarden monatlich (steigende Tendenz) generiert. Wenn Deutschland die Straße von Hormus blockiert sieht, das aber ignoriert, gleichzeitig aber Russland über die Schattenflotte Einnahmen ermöglicht, wäre das Doppelmoral. Das eigentliche Problem sitze nicht in der Straße von Hormus, sondern darin, dass die USA sie frei haben wollen, während China und Amerikaner Schiffe durchlassen. Die Frage ist, ob es gelinge, die Straße freizumachen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Kritik an seiner Konsistenz, indem er das Problem umdefiniert: Es geht nicht um die Straße von Hormus per se, sondern um die europäische Sanktionsfähigkeit gegen Russlands Schattenflotte. Damit verschiebt er das Fokus-Argument vom Nahen Osten zurück auf Russland, beantwortet aber nicht wirklich die Moderator-Frage, ob Doppelmoral vorliegt.",
+        "quotes": [
+          {
+            "text": "Deswegen haben wir auch politisch gehandelt... Wir können nicht beides machen. Wir müssen ehrlich sein, wir haben nur begrenzte Ressourcen.",
+            "timestamp": "01:08:44"
+          },
+          {
+            "text": "Für uns muss die Konsequenz sein die Schattenflotte aufzuhalten. Tun wir da etwas? Das wäre Doppelmoral.",
+            "timestamp": "01:09:20"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Forderung nach Eindämmung der iranischen Schattenflotte",
+          "Behauptung: USA helfen Russland durch Schattenflotte-Toleranz (10 Milliarden monatlich)",
+          "Aussage: Aufhalten der Schattenflotte wäre kohärent mit Ukraine-Fokus"
+        ],
+        "related_bundestag_topics": [
+          "Russland-Sanktionen",
+          "Schattenflotte",
+          "Energiepolitik",
+          "Seewirtschaft"
+        ]
+      },
+      {
+        "title": "Europäische Diplomatie und Verhandlungsfähigkeit",
+        "timestamp_range": "01:11:48 - 01:12:37",
+        "theme_description": "Kiesewetter betont, dass diplomatischer Druck auf die USA, nicht militärische Beteiligung, Europas Strategie sein sollte.",
+        "question_asked": "Wer sollte die Amerikaner dazu bringen, diesen Krieg zu beenden?",
+        "question_intent": "Der Moderator fragt, wer die Verantwortung für Deeskalation trägt.",
+        "position": "Es geht nicht um militärische Beteiligung, sondern darum, dass Deutschland und Europa Druck auf die Amerikaner ausüben müssen, ihnen sagen: 'Wir unterstützen dich nicht.' Beim europäischen Außenministertreffen wurde gestern sehr klar gemacht, dass dies nicht funktioniert. Die europäische Herausforderung ist die Finanzierung der Ukraine — 90 Milliarden Euro in den nächsten Jahren. Europa kann es sich nicht leisten, dass die Ukraine zusammenbricht.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage nach europäischer Diplomatie mit einer klaren Forderung nach Druckausübung auf die USA statt militärischer Partizipation. Er präzisiert damit seine Position zur europäischen Rolle.",
+        "quotes": [
+          {
+            "text": "es geht nicht um das militärische, es geht darum, dass wir einen Druck auf die Amerikaner machen müssen. Wir unterstützen dich nicht.",
+            "timestamp": "01:11:48"
+          },
+          {
+            "text": "Wir haben gestern beim europäischen Außenministertreffen sehr klargemacht, dass es nicht fusioniert. Wir haben eine andere Herausforderung, das ist die Finanzierung der Ukrainer, da geht es um 90 Milliarden Euro in den nächsten Jahren.",
+            "timestamp": "01:12:04"
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Diplomatischer Druck statt militärische Beteiligung",
+          "Aussage: Europäisches Außenministertreffen hat Nein zum Nahost-Einsatz bestätigt",
+          "Forderung: 90 Milliarden Euro für Ukraine-Finanzierung in den nächsten Jahren"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Union",
+          "Außenpolitik",
+          "Ukraine-Unterstützung",
+          "Diplomatie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die NATO hat Abwehrsysteme in Rumänien stationiert, um Bedrohungen durch iranische ballistische Raketen zu adressieren.",
+        "timestamp": "00:04:37"
+      },
+      {
+        "claim": "Der deutsche Außenminister hat gesagt, die militäische Operation gegen den Iran erfolgte auf Israels Druck.",
+        "timestamp": "00:17:00"
+      },
+      {
+        "claim": "Die USA erhalten Einnahmen von etwa 10 Milliarden Euro pro Monat aus russischen Ölverkäufen via Schattenflotte, Tendenz steigend.",
+        "timestamp": "01:09:20"
+      },
+      {
+        "claim": "Über 100.000 Menschen sind aus dem Libanon nach Syrien geflohen.",
+        "timestamp": "00:40:03"
+      },
+      {
+        "claim": "Deutschland stellt 100 Millionen Euro für humanitäre Hilfe im Libanon bereit.",
+        "timestamp": "00:40:03"
+      },
+      {
+        "claim": "45 % der deutschen Gasimporte stammen derzeit aus den USA; dieser Anteil wird auf 60-70 % steigen.",
+        "timestamp": "00:58:10"
+      },
+      {
+        "claim": "Die Straße von Hormus transportiert 20 % des Welthandels mit Öl und 20 % der Flüssiggasexporte.",
+        "timestamp": "01:00:47"
+      },
+      {
+        "claim": "Das europäische Durchschnittslager für strategische Ölreserven beträgt etwa 90 Tage; China hat es auf 140 Tage erhöht.",
+        "timestamp": "01:02:02"
+      },
+      {
+        "claim": "Roderich Kiesewetter wurde von einem israelischen Außenminister gefragt, unter welchen Bedingungen der Iran Israels Existenzrecht anerkennen könnte, und erhielt später einen Reisebann.",
+        "timestamp": "00:18:34"
+      }
+    ]
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-juni-2025-100",
+    "video_id": "lanz-2025-06-04",
+    "politician": "Verena Hubertz",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3b1b6225baf40249",
+    "transcript_chars": 51094,
+    "caption_lines": 2502,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21830,
+    "tokens_out": 8757,
+    "cost_usd": 0.026246,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.861Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Verena Hubertz, Bundesbauministerin seit Mai 2025, äußert sich in dieser Markus Lanz-Sendung zu ihrer Berufung ins Ministerium, zu baupolitischen Strategien (Kostenreduktion, Normalisierung), zur Mietpreisbremse und zur Integrationspolitik im Wohnungsbereich. Sie wirkt sachlich-pragmatisch, betont ihre Qualifizierung durch zwei Legislaturperioden Bundestags-Arbeit und positioniert sich als Optimistin, ohne konkrete Zielzahlen zu setzen.",
+    "themes": [
+      {
+        "title": "Berufung zur Bundesbauministerin: Selbstverständnis und Vorbereitung",
+        "timestamp_range": "00:03:39 - 00:05:52",
+        "theme_description": "Verena Hubertz erklärt, wie sie die Anfrage von SPD-Chef Lars Klingbeil annahm und begründet ihre Qualifikation durch bisherige Arbeit in Bundestag.",
+        "question_asked": "Was habe Sie gedacht, als der Anruf kam, ob Sie Bundesbauministerin werden möchten?",
+        "question_intent": "Der Moderator will erfahren, ob Hubertz überrascht war oder gezielt auf diese Position hingearbeitet hat.",
+        "position": "Hubertz betont, dass sie sich geehrt gefühlte und Lust auf die Herausforderung habe. Sie widerspricht der Darstellung, dass dies überraschend kam: Sie sei 2021 in den Bundestag gewählt worden und habe zwei Themenbereiche (Bauen/Wohnen und Wirtschaft) für die SPD-Fraktion verantwortet. Sie erklärt, dass sie nicht gezielt auf ein bestimmtes Ministerium hingearbeitet habe, sondern durch ihre bisherige pragmatische Arbeit und ihre Person als Kandidatin für Ministerposten in Frage kam. Sie wartet auf konkrete politische Aufgaben statt auf bewusste Bewerbung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert, dass die Anfrage nicht überraschend war, weil sie sich bereits mit den Themen auskennt. Sie antwortet aber nicht direkt auf die implizite Frage nach ihrer emotionalen Reaktion (Überraschung vs. Planung), sondern weicht auf eine sachliche Beschreibung ihrer Vorbereitung aus.",
+        "concrete_statements": [
+          "Ich bin 2021 in den Deutschen Bundestag gewählt worden",
+          "Ich habe in der ersten Wahlperiode zwei Themenbereiche für die SPD-Fraktion verantwortet: Bauen Wohnen und Wirtschaft",
+          "Ich habe sofort ja gesagt"
+        ],
+        "quotes": [
+          {
+            "text": "Als Lars Klingbeil angerufen hat, habe ich mich sehr geehrt gefühlt. Das ist eine Herausforderung, da habe ich Lust mit zu gestalten und ich bin Optimistin.",
+            "timestamp": "00:03:39",
+            "context": "Auf die Frage, was sie dachte, als der Anruf kam."
+          },
+          {
+            "text": "So ganz fern war es ja nicht. Ich bin 2021 in den Deutschen Bundestag gewählt worden.",
+            "timestamp": "00:04:03",
+            "context": "Hubertz widersetzt dem Moderator auf seine Behauptung, sie wäre überrascht worden."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bauwesen",
+          "Wohnungswirtschaft",
+          "Ministeriale Besetzung"
+        ]
+      },
+      {
+        "title": "Vermeidung klarer Zielzahlen bei Wohnungsneubau",
+        "timestamp_range": "00:07:31 - 00:09:56",
+        "theme_description": "Moderator fragt nach konkreten Neubau-Zielen, die Vorgängerin Klara Geywitz sich gesetzt habe; Hubertz lehnt verbindliche Zahlen ab und argumentiert mit regionalen Unterschieden.",
+        "question_asked": "Die Vorgängerin Klara Geywitz hat sich zum Beginn ein Ziel für Tausende Wohnungen gesetzt gehabt und das hat nicht funktioniert. Welche Zahl haben Sie im Kopf?",
+        "question_intent": "Der Moderator will wissen, ob Hubertz eine ambitioniertere oder realistischere Zielzahl für Wohnungsneubau hat als ihre Vorgängerin.",
+        "position": "Hubertz lehnt es ab, sich auf eine konkrete Zahl festzulegen. Sie argumentiert, dass als Unternehmerin sie nicht eine Zahl in Stein meißeln könne, da sich alles ändere. Sie betont, dass man regionalspezifisch schauen müsse und berücksichtigen müsse, wie sich Zuwanderung und demographischer Wandel entwickeln. Im Koalitionsvertrag sei bewusst keine Zahl festgeschrieben worden, um stattdessen flexibel vorgehen zu können. Es gebe aber konkrete Zahlen im Neubau.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf die Frage nach einer Zahl, aber nicht mit einer Zahl. Sie erklärt stattdessen ihre strategische Begründung für die Vermeidung von Zahlenzielen. Die Frage bleibt faktisch unbeantwortet, die Begründung wird aber substanziell ausgearbeitet.",
+        "concrete_statements": [
+          "Warum nicht eine Zahl, als Unternehmerin Weidmann, man meistert nicht eine Zahl in Stein, alles dreht sich",
+          "Wir müssen halt regionalspezifisch gucken. Wie entwickeln sich Einwanderung, wie entwickelt sich der demographische wandel"
+        ],
+        "quotes": [
+          {
+            "text": "Warum nicht eine Zahl, als Unternehmerin Weidmann, man meistert nicht eine Zahl in Stein, alles dreht sich.",
+            "timestamp": "00:07:31",
+            "context": "Auf die Frage nach konkreten Zielzahlen für Wohnungsneubau."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsbau",
+          "Koalitionsvertrag",
+          "Baupolitische Ziele"
+        ]
+      },
+      {
+        "title": "Ministerium-Aufbau und Personalkapazitäten",
+        "timestamp_range": "00:11:01 - 00:11:52",
+        "theme_description": "Hubertz erklärt den aktuellen Aufbau und die Größe ihres Ministeriums, nachdem es lange ein Startup war.",
+        "question_asked": "Wie groß ist Ihr Ministerium mittlerweile? Wollten Sie nicht Personal abbauen und Geld sparen?",
+        "question_intent": "Der Moderator will einen Widerspruch zwischen Sparpolitik und dem Aufbau einer großen Ministerialstruktur aufzeigen.",
+        "position": "Hubertz erklärt, dass das Ministerium lange ein Startup war und nun aufgebaut werden musste. Mit nachgeordneten Behörden (Forschungseinrichtungen, Bundesbau-Verwaltung) komme man auf über 200.000 Mitarbeiter. Sie betont, dass man ohne Leute die Aufgaben nicht erfüllen kann. Es gibt zwar ein Ministerium für Staatsmodernisierung, das bei großen Ministerien Personal reduzieren könne, aber nicht bei ihrem. Sie müsse aber auch 'schlanker werden', was eine allgemeine Aufgabe aller Ressorts sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz adressiert den Widerspruch explizit, indem sie erklärt, dass Personal notwendig ist, um die Aufgabe zu erfüllen, und dass Sparmaßnahmen nicht auf alle Ministerien gleich angewendet werden. Sie differenziert zwischen Struktur-Aufbau und langfristigen Sparziele.",
+        "concrete_statements": [
+          "Es war ein Startup, wir haben es ernst wieder aufgebaut",
+          "Es gibt noch die nachgeordneten Behörden, die einen forschen, die anderen kümmern sich um die Bundesbauten und dann sind wir bei über 200.000 Mitarbeitern",
+          "Wenn wir aber keine Leute haben, dass uns das nicht"
+        ],
+        "quotes": [
+          {
+            "text": "Es war ein Startup, wir haben es ernst wieder aufgebaut. Jetzt können wir wahnsinnig darauf auch ansetzen, was geleistet wurde. Es gibt noch die nachgeordneten Behörden, die einen forschen, die anderen kümmern sich um die Bundesbauten und dann sind wir bei über 200.000 Mitarbeitern.",
+            "timestamp": "00:11:01",
+            "context": "Hubertz erklärt die Größe ihres Ministeriums."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ministerial-Struktur",
+          "Sparpolitik",
+          "Staatsmodernisierung"
+        ]
+      },
+      {
+        "title": "Normalisierung und Kosteneinsparung durch Baustandardabbau",
+        "timestamp_range": "00:14:37 - 00:18:21",
+        "theme_description": "Hubertz und Experte Günther diskutieren, wie Baukosten durch Abbau von Standards und technischen Anforderungen gesenkt werden können, um günstigeres Bauen zu ermöglichen.",
+        "question_asked": "Welche Bauvorschriften sind obsolet oder können gekürzt werden? Können Sie konkrete Beispiele geben, wo teure Anforderungen Kosten sparen könnten?",
+        "question_intent": "Der Moderator will verstehen, welche technischen oder regulatorischen Anforderungen abgebaut werden könnten, um Baukosten zu senken, ohne die Qualität zu gefährden.",
+        "position": "Hubertz betont, dass es viele technische Anforderungen gibt, an die man sich gewöhnt habe. Sie nennt konkrete Beispiele: Regeln für die Wahl einer Dachrinne (die keiner merkt), die Tiefgarage (bei der man 20 % einsparen könne durch Außenparkplätze, besonders auf dem Land). Sie stellt klar, dass es regionalspezifisch unterschiedlich ist. Sie fordert eine enge Zusammenarbeit zwischen Bund, Ländern und Kommunen über eine neue Bauministerkonferenz, um Standards zu skalieren und zu harmonisieren. Sie arbeitet mit der Justiz zusammen, um flexibel von technischen Standards abweichen zu können.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz antwortet konkret auf die Frage, nennt mehrere Beispiele (Dachrinnen, Tiefgaragen) und formuliert eine strategische Vision (Bauministerkonferenz, Harmonisierung). Sie adressiert die Frage direkt und substantiell.",
+        "concrete_statements": [
+          "Es gibt ganz viele technische Anforderungen, die wir uns gewöhnt haben",
+          "Die Tiefgarage macht auch wahnsinnig viel Kosten beim Bau aus. Da kann man 20 % einsparen, indem man draußen den Parkplatz macht",
+          "Wir wollen das angeben, zusammen mit der Justiz. Wenn man günstig und gut wohnen will, dann muss man abweichen können von den technischen Standards"
+        ],
+        "quotes": [
+          {
+            "text": "Ich war mal auf einer Baustelle, da wurde mir erklärt, es gibt Regeln, wie eine Dachrinne gewählt ist. Das merkt ja keiner, also spart man da zum Beispiel Geld.",
+            "timestamp": "00:17:12",
+            "context": "Hubertz gibt ein konkretes Beispiel für obsolete Bauvorgaben."
+          },
+          {
+            "text": "Die Tiefgarage macht auch wahnsinnig viel Kosten beim Bau aus. Da kann man 20 % einsparen, indem man draußen den Parkplatz macht.",
+            "timestamp": "00:17:31",
+            "context": "Hubertz nennt ein weiteres Kostensparpotenzial bei Wohnungsneubau."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bauverordnungen",
+          "Standardisierung",
+          "Föderalismus",
+          "Bauministerkonferenz"
+        ]
+      },
+      {
+        "title": "Grunderwerbsteuer-Schlupfloch bei Immobilienverkäufen",
+        "timestamp_range": "00:23:44 - 00:24:52",
+        "theme_description": "Diskussion über Lücken in der Besteuerung von Immobilienverkäufen (90%-Klausel, Steuerfreibeträge nach zehn Jahren), die Spekulationsgewinne begünstigen.",
+        "question_asked": "Warum wird das Schlupfloch bei der Grunderwerbsteuer nicht geschlossen, etwa wenn nur 90 % statt 100 % einer Immobilie verkauft werden, um Steuern zu vermeiden?",
+        "question_intent": "Der Moderator will wissen, warum die Regierung/Koalition nicht gegen klare Steuervermeidungsmechanismen vorgeht, wenn Wohnen als 'soziale Frage' ernst gemeint ist.",
+        "position": "Hubertz antwortet, dass das Thema nicht im Koalitionsvertrag behandelt wurde und es keine Mehrheit dafür gab. Gleichzeitig erklärt sie ihr persönliches Anliegen: Sie würde die Regelung gerne ändern, weil es viele Ungerechtigkeiten gibt (z.B. dass Wohnungen nach zehn Jahren steuerfrei verkauft werden können, obwohl sie an Wert zunehmen; dass Immobilieneigentümer von Wertsteigerungen automatisch profitieren). Sie positioniert sich als Sozialdemokratin, die diese Themen gerne angehen möchte, gibt aber zu, dass andere Parteien (impliziert: Union und FDP) diese Positionen anders bewerten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert die Grundfrage nach der Steuerlücke, erklärt aber primär, warum es nicht im Koalitionsvertrag steht. Sie drückt persönliche Sympathy mit dem Anliegen aus, schiebt aber Verantwortung auf Koalitionsparteien ab. Die zentrale Frage nach *ihrer* Handlungsfähigkeit bleibt teilweise ungeklärt.",
+        "concrete_statements": [
+          "Das steht nicht drin, bei der keine Mehrheit dafür gefunden haben",
+          "Das würde ich auch gerne verändern",
+          "Wohnungen und Immobilien nehmen wir an Wert zu, da gibt es ganz viel Ungerechtigkeit",
+          "Das sind Dinge, die würde ich als Sozialdemokraten gerne angehen"
+        ],
+        "quotes": [
+          {
+            "text": "Das würde ich auch gerne verändern. Es gibt ganz viele, zum Beispiel, wenn ich eine Wohnung nach zehn Jahren verkaufe, dann ist das steuerfrei. Wohnungen und Immobilien nehmen wir an Wert zu, da gibt es ganz viel Ungerechtigkeit.",
+            "timestamp": "00:24:12",
+            "context": "Hubertz zu ihrem persönlichen Anliegen, die Immobilien-Besteuerung zu reformieren."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Grunderwerbsteuer",
+          "Immobilienspekulation",
+          "Vermögensbesteuerung",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Mietpreisbremse: Evaluierung und Kontrolle",
+        "timestamp_range": "00:27:17 - 00:29:02",
+        "theme_description": "Hubertz antwortet auf Kritik an der Mietpreisbremse und diskutiert Durchsetzungsmechanismen wie Bußgeldregelungen.",
+        "question_asked": "Wie wollen Sie die Mietpreisbremse kontrollieren und durchsetzen, wenn Vermieter sich nicht daran halten?",
+        "question_intent": "Der Moderator und andere Diskutanten kritisieren, dass die Mietpreisbremse ineffektiv ist, weil sie nicht kontrolliert wird; er will wissen, wie die Bundesbauministerin dieses Problem lösen will.",
+        "position": "Hubertz argumentiert, dass die Mietpreisbremse ohne ihre Regelung wahrscheinlich schlechter wäre. Sie erklärt, dass oft unklar ist, ob man gegen den Mieter oder Vermieter vorgehen kann, und dass Zusammenarbeit erforderlich ist. Im Koalitionsvertrag habe man Bußgelder verankert und werde diese jetzt verlängern und in der Gesamtheit anschauen. Sie deutet an, dass es auch Instrumente braucht, um das Thema Bußgeld umzusetzen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf die Kontroll-Frage, aber bleibt relativ vage in den Umsetzungsdetails. Sie nennt Bußgelder als Instrument, ohne konkrete Kontroll- oder Durchsetzungsmechanismen zu erläutern. Die Frage nach praktischer Umsetzung bleibt teilweise offen.",
+        "concrete_statements": [
+          "Wir haben im Koalitionsvertrag Bußgelder, und das wird jetzt verlängern und in der Gesamtheit anschauen",
+          "Es muss auch Instrumente geben, dass das Thema Bußgeld [umgesetzt wird]"
+        ],
+        "quotes": [
+          {
+            "text": "Die Frage ist, was wäre ohne. Viele halten sich noch nicht einmal daran, die Mietpreisbremse wird im Grunde nicht einmal kontrolliert. Deshalb haben wir im Koalitionsvertrag Bußgelder, und das wird jetzt verlängern und in der Gesamtheit anschauen.",
+            "timestamp": "00:27:17",
+            "context": "Hubertz antwortet auf Vorwürfe, dass die Mietpreisbremse ineffektiv sei."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Mietpreisbremse",
+          "Mietrecht",
+          "Wohnungsmarkt-Regulierung"
+        ]
+      },
+      {
+        "title": "Holzbau als Baustoff und ökologische Strategie",
+        "timestamp_range": "00:35:27 - 00:35:34",
+        "theme_description": "Hubertz äußert sich begeistert zur Holzbauweise als Lösungsansatz für schnelleres und günstigeres Bauen.",
+        "question_asked": "Wie sehen Sie Fertigbau und alternative Baustoffe wie Holzbau als Lösung für die Baukosten?",
+        "question_intent": "Der Moderator will erfahren, welche innovativen Bautechniken Hubertz favorisiert, um Kosten und Zeit zu sparen.",
+        "position": "Hubertz zeigt hohe Enthusiasmus für Holzbau. Sie erwähnt Rheinland-Pfalz als 'zweitreichster Bundesland' in dieser Hinsicht. Sie stellt sich damit gegen die Bedenken des vorangegangenen Experten (Günther), der vor Holzbau warnte und auf Recycling- und Dämm-Probleme hinwies.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz äußert ihre Position zu Holzbau, antwortet aber nicht auf die kritischen Punkte des Experten (Recycling, Materialverfügbarkeit, ökologische Nachhaltigkeit). Sie betont eher ihre Begeisterung als substanzielle Argumentation.",
+        "concrete_statements": [
+          "Vom Holzbau kriegen Sie mich nicht mehr weg",
+          "In Rheinland-Pfalz sind wieder zweitreichste Bundesland [im Holzbau]"
+        ],
+        "quotes": [
+          {
+            "text": "Vom Holzbau kriegen Sie mich nicht mehr weg. In Rheinland-Pfalz sind wieder zweitreichste Bundesland.",
+            "timestamp": "00:35:27",
+            "context": "Hubertz äußert sich zum Thema Holzbau als Baustoff."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Nachhaltiges Bauen",
+          "Baustoff-Innovation",
+          "Klimapolitik"
+        ]
+      },
+      {
+        "title": "Qualifizierung und Integration: \"Qualifizierung vor Arbeitsvermittlung\"",
+        "timestamp_range": "00:36:58 - 00:37:43",
+        "theme_description": "Hubertz antwortet auf die Frage, wie arbeitsfähige Menschen (insbesondere mit Migrationshintergrund) trotz 50 Mrd. Bürgergeld in Handwerk und Bauwirtschaft integriert werden.",
+        "question_asked": "Wie passen die 50 Milliarden Euro Bürgergeld pro Jahr zusammen mit dem Fachkräftemangel im Bauwesen und der Integrationsnot?",
+        "question_intent": "Der Moderator will verstehen, ob die SPD eine echte Aktivierungsstrategie für Arbeitslose und Flüchtlinge hat oder nur passiv subventioniert.",
+        "position": "Hubertz antwortet mit dem Konzept 'Qualifizierung vor Drehtür'. Sie erklärt, dass es nicht funktioniert, Menschen einfach einen Job zuzuweisen. Stattdessen fragt man nach Motivation und Stärken, dann geht es in eine Ausbildung. Hubertz macht klar, dass dies 'kein Freifahrtschein' ist, sondern eine Leistung für Menschen, die sie brauchen. Das ist ein Gegenpol zur passiven Bürgergeld-Gewährung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz antwortet direkt auf die Frage nach der Verbindung zwischen Sozialkassen und Fachkräfte-Integration, indem sie ein aktives Qualifizierungsmodell präsentiert, das über bloße Unterstützung hinausgeht.",
+        "concrete_statements": [
+          "Qualifizierung vor Drehtür",
+          "Wer mir gesagt, du kriegst irgendeinen Job zugewiesen, dann kommen die Leute und haben kein Bock",
+          "Jetzt fragen wir, worauf hast du Lust? Was ist eine Motivation und Wochen bist du gut? Dann geht es in die Ausbildung"
+        ],
+        "quotes": [
+          {
+            "text": "Deswegen sind wir auch, Qualifizierung vor Drehtür. Wer mir gesagt, du kriegst irgendeinen Job zugewiesen, dann kommen die Leute und haben kein Bock. Jetzt fragen wir, worauf hast du Lust? Was ist eine Motivation und Wochen bist du gut? Dann geht es in die Ausbildung.",
+            "timestamp": "00:36:58",
+            "context": "Hubertz erklärt ihre Strategie zur Fachkräfte-Integration im Handwerk."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Bürgergeld",
+          "Integration und Migration",
+          "Berufsausbildung"
+        ]
+      },
+      {
+        "title": "Bürgergeld und Wohnungsmarkt: Spannungsfeld zwischen Fürsorge und Marktlogik",
+        "timestamp_range": "00:40:37 - 00:42:41",
+        "theme_description": "Hubertz antwortet auf die Kritik, dass der Staat durch Bürgergeld-Zahlungen für Mietkosten den Wohnungsmarkt verzerrt und Ungerechtigkeit zwischen Erwerbstätigen und Empfängern erzeugt.",
+        "question_asked": "Wie gehen Sie mit dem Spannungsfeld um, dass der Staat Mietkosten für Bürgergeldempfänger zahlt, die Erwerbstätige sich aber selbst nicht leisten können?",
+        "question_intent": "Der Moderator will wissen, wie Hubertz das Gerechtigkeitsempfinden adressiert, wenn Menschen mit niedriger Arbeitslohn nicht selbst wohnen können, aber der Staat Arbeitslose/Arbeitsunfähige finanziert.",
+        "position": "Hubertz betont, dass sie keine Gruppen gegeneinander ausspielen möchte. Alle (Studenten, Azubis, Rentner) brauchen Wohnungen. Sie verweist auf die Wohngeld-Reform als Unterstützung für arbeitsmarktaktive Menschen, die ihre Miete nicht tragen können. Sie spricht von Würde und davon, dass ein Mensch, der zur Arbeit geht, nach Hause kommen können muss, ohne um Almosen zu bitten. Sie fordert steuerliche Entlastung für Menschen, die hart arbeiten aber nicht über die Runden kommen, und nennt die Notwendigkeit, Mieten zu deckeln, die Renten zu stärken und Wohnungen günstiger zu machen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz antwortet direkt auf das Spannungsfeld, indem sie es ablehnt, Gruppen zu spalten, und ein eigenständiges Konzept zur Bekämpfung der Ungerechtigkeit präsentiert (Wohngeld, Steuerentlastung, günstigere Wohnungen). Sie adressiert das ethische Moment der Frage.",
+        "concrete_statements": [
+          "Mir ist wichtig, dass wir nicht anfangen, die Gruppen gegeneinander auszuspielen",
+          "Wir haben mit dem Wohngeld und der Reform noch eine ganz große Sache aufgebaut",
+          "Mir ist wichtig als Bauministerin, dass man die Leute unterstützt. Die kommen doch aus der Wirtschaft, dass es nicht selbst verständlich, dass ein Mensch zur Arbeit geht und wieder nach Hause kommt"
+        ],
+        "quotes": [
+          {
+            "text": "Mir ist wichtig, dass wir nicht anfangen, die Gruppen gegeneinander auszuspielen. Die Studenten brauchen genauso Wohnungen, wie die Azubis und die Rentnerinnen und Rentner.",
+            "timestamp": "00:40:37",
+            "context": "Hubertz antwortet auf die Kritik einer Ungleichbehandlung von Erwerbstätigen und Bürgergeldempfängern."
+          },
+          {
+            "text": "Deshalb bin ich froh, dass Wohngeld und der Reform noch eine ganz große Sache aufgebaut. Da, wo man arbeiten geht und die Wohnungen sich nicht leisten kann, da bekommt man eine Unterstützung, das ist das Wohngeld. Mir ist wichtig als Bauministerin, dass man die Leute unterstützt.",
+            "timestamp": "00:41:19",
+            "context": "Hubertz präsentiert ihre Lösung für das Gerechtigkeitsproblem."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Soziales Wohnen",
+          "Bürgergeld",
+          "Wohngeld",
+          "Sozialmarkteconomie"
+        ]
+      },
+      {
+        "title": "Bewertung des Benko-Betrugs: Anforderungen an Kontrolle",
+        "timestamp_range": "01:06:00 - 01:06:32",
+        "theme_description": "Hubertz kommentiert die Signa-Pleite von René Benko und zieht Lehren für ihre Ministerialarbeit.",
+        "question_asked": "Wie konnte es zur größten Pleite der europäischen Nachkriegsgeschichte kommen? Was ist hier schiefgelaufen?",
+        "question_intent": "Der Moderator will verstehen, ob und wie Hubertz die Verantwortung der Politik (Genehmigungen, Kontrollen) bei diesem Skandal sieht.",
+        "position": "Hubertz sagt, dass man 'genau schauen' muss, wie Betrüger 'richtig da angegangen' wurden (d.h. Benko ist angegangen worden — positiv formuliert). Gleichzeitig betont sie, dass man 'genau schauen' muss, was schiefgelaufen ist. Implizit deutet sie an, dass die Politik Verbesserungen vornehmen muss, bleibt aber vage, was konkret schiefgelaufen ist und was sie konkret ändern werde.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert das Thema, antwortet aber defensiv und ohne Selbstkritik. Sie betont, dass Betrüger angegangen wurden, ohne zu analysieren, warum Hamburg und andere Behörden Millionen-Kredite an Benko gewährten oder wie dies hätte verhindert werden können.",
+        "concrete_statements": [
+          "Wie das zu sehen, wie Betrüger richtig da angegangen wurde",
+          "Wir müssen genau schauen, was ist da schiefgelaufen"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, ich muss aber sagen, wie das zu sehen, wie Betrüger richtig da angegangen wurde. Und deshalb müssen wir jetzt genau schauen. Wir müssen schauen, was ist da schiefgelaufen.",
+            "timestamp": "01:06:00",
+            "context": "Hubertz äußert sich zum Skandal der Signa-Insolvenz und der Betrügereien von René Benko."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftskriminalität",
+          "Immobilienmarkt-Kontrolle",
+          "Genehmigungsverfahren"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Verena Hubertz ist seit 2021 Mitglied des Deutschen Bundestags",
+        "timestamp": "00:04:03"
+      },
+      {
+        "claim": "Im Koalitionsvertrag wurden keine konkreten Zielzahlen für Wohnungsneubau festgeschrieben",
+        "timestamp": "00:09:19"
+      },
+      {
+        "claim": "Die Tiefgarage macht einen großen Anteil der Baukosten aus und könnte durch Außenparkplätze um 20 % gesenkt werden",
+        "timestamp": "00:17:31"
+      },
+      {
+        "claim": "Es gibt eine neue Bauministerkonferenz zur Harmonisierung von Baustandards",
+        "timestamp": "00:16:30"
+      },
+      {
+        "claim": "Das Wohnungsministerium war lange ein Startup und ist neu aufgebaut worden",
+        "timestamp": "00:11:01"
+      },
+      {
+        "claim": "Die Signa-Gruppe von René Benko ist mit einem Gesamtschaden von fast 30 Milliarden Euro zusammengebrochen",
+        "timestamp": "00:50:02"
+      },
+      {
+        "claim": "René Benko sitzt seit Januar 2025 in Innsbruck in Haft",
+        "timestamp": "00:49:32"
+      }
+    ]
+  }
+}

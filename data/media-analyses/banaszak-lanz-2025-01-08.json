@@ -1,0 +1,270 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-8-januar-2025-100",
+    "video_id": "lanz-2025-01-08",
+    "politician": "Felix Banaszak",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3f6b7ad0b1522df4",
+    "transcript_chars": 58208,
+    "caption_lines": 2854,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23292,
+    "tokens_out": 7280,
+    "cost_usd": 0.0238768,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 4,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.543Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Felix Banaszak, neuer Grünen-Vorsitzender, positioniert sich in dieser Talkshow als pragmatischer Politiker, der traditionelle grüne Positionen gegen geopolitische und wirtschaftliche Realitäten abwägt. Er betont Europäische Souveränität, Resilienz und technologische Unabhängigkeit und verteidigt die Grüne Wirtschaftspolitik gegen Kritik von Grimm und Weimer, während er zugleich Lernfähigkeit und Selbstkritik signalisiert.",
+    "themes": [
+      {
+        "title": "Deutschlands Neuausrichtung in veränderter Geopolitik",
+        "timestamp_range": "00:21:32 - 00:28:18",
+        "theme_description": "Banaszak erörtert die notwendige Neupositionierung Deutschlands angesichts des Ausfalls der drei Säulen des bisherigen deutschen Wohlstandsmodells: billiges Russland-Gas, Absatzmärkte China, und US-Sicherheitsgarantie.",
+        "question_asked": "Moderator fragt den neuen Grünen-Vorsitzenden, ob die Grünen 'alte und lieb gewonnene Positionen räumen' müssen angesichts drastischer Ansagen von Donald Trump zur Geopolitik.",
+        "question_intent": "Wird Banaszak zugeben, dass die Grünen ihre bisherige Politik grundlegend überdenken müssen?",
+        "position": "Banaszak argumentiert, dass Deutschland nicht isoliert reagieren darf, sondern als 'zentraler Akteur in Europa' handeln muss. Die Antwort auf 'America First' sei nicht 'Germany First', sondern 'Europa United'. Er plädiert für europäische Sicherheitsautonomie, lehnt erneute Abhängigkeit (wie beim Russland-Gas) ab und sieht Zukunftstechnologien (Halbleiter, Batteriezellen, Solarmodule) als kritische Verwundbarkeit. Er unterscheidet zwischen seiner Analyse (ähnlich Grimm) und seinen Schlussfolgerungen: Statt reiner Marktkräfte sollen strategische Kooperationen auf Basis 'sozialer ökologischer Standards' heimische Produktionskapazitäten aufbauen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Banaszak adressiert die Frage nach Positionsänderung indirekt: Er betont Pragmatismus und Lernfähigkeit ('offenen Blick für die Realität'), konkretisiert aber nicht explizit, welche 'liebgewonnenen' Positionen die Grünen tatsächlich räumen. Seine Kritik an Fracking deutet auf Grenzen der Flexibilität hin.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Die Antwort auf America First ist nicht Germany sondern Europa United",
+          "wir müssen uns klarmachen, dass wir in Europa andere Sicherheit anders werden organisieren müssen",
+          "wir müssen uns nicht darauf verlassen können, dass wir die Produkte schon immer aus Regionen bekommen werden, die geopolitisch derart angespannt sind"
+        ],
+        "quotes": [
+          {
+            "text": "Die Antwort auf America first ist nicht Germany sondern Europa United.",
+            "timestamp": "00:23:36",
+            "context": "Banaszak formuliert zentrale These zur europäischen Antwort auf Trumps Isolationismus."
+          },
+          {
+            "text": "Deutschland hat seinen Wohlstand lange auf einem Dreiklang aufgebaut, der in allen drei Dimensionen nicht mehr pensioniert",
+            "timestamp": "00:21:32",
+            "context": "Eröffnung der Analyse: billig Gas aus Russland, Exportmärkte China, US-Sicherheit — alles nicht mehr tragfähig."
+          }
+        ]
+      },
+      {
+        "title": "Grüne Subventionspolitik und Zukunftstechnologien",
+        "timestamp_range": "00:23:36 - 00:24:13",
+        "theme_description": "Banaszak verteidigt die Grüne Position zu heimischer Produktion kritischer Technologien gegen die Kritik Veronika Grimms, die massive Subventionen für falsch hält.",
+        "question_asked": "Implizit in Grimms Kritik: Sind Subventionen für Zukunftstechnologien (Halbleiter, Batterien, Solarmodule) der richtige Weg, oder sollte man auf Marktmechanismen vertrauen?",
+        "question_intent": "Gibt es einen strukturellen Unterschied zwischen Banaszaks Ansatz (Direktförderung von Produktionsstätten) und Grimms Ansatz (Kostensenkung durch Deregulierung, Marktkräfte)?",
+        "position": "Banaszak sieht Halbleiter, Batterien, Solarmodule als zentrale Verwundbarkeiten. Er lehnt nicht Subventionen generell ab, sondern unterscheidet: Kooperationen auf Basis 'sozialer ökologischer Standards' sind notwendig, um nicht vollständig von China abhängig zu werden. Er erklärt implizit: Es geht nicht um Marktwettbewerb in klassischem Sinn, sondern um geopolitische Sicherheit ('wir müssen sehen, dass wir die Produkte nicht aus geopolitisch angespannten Regionen bekommen').",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Banaszak adressiert die Subventionsfrage nicht direkt, sondern rerahmt auf geopolitische Notwendigkeit. Er kritisiert nicht Grimms Marktlogik explizit, sondern stellt daneben: Strategische Autarkie erfordert andere Kriterien als Effizienz.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "An welchen Punkten sind wir besonders verwundbar: zentrale Zukunftstechnologien, Halbleiter, Batteriezellen",
+          "Wollen wir, dass alle Solarmodule in China produziert werden oder bemühen wir uns in Deutschland/Europa um heimische Produktion?",
+          "Kooperationen ausbauen auf Basis sozialer ökologischer Standards, nicht Marktkonkurrenz"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man sich ansieht, an welchen Punkten wir besonders verwundbar sind, dann sind es zentrale Zukunftstechnologien, Halbleiter, Batteriezellen",
+            "timestamp": "00:23:36",
+            "context": "Banaszak definiert geopolitische Vulnerabilität statt wirtschaftlicher Effizienz als Maßstab."
+          }
+        ]
+      },
+      {
+        "title": "Fracking in Deutschland: Notwendigkeit vs. Ideologie",
+        "timestamp_range": "00:24:29 - 00:26:47",
+        "theme_description": "Wiederholte Frage des Moderators, ob Banaszak Fracking in Deutschland befürworten würde, und wie er die Grüne Position zwischen Pragmatismus und Grundsätzen positioniert.",
+        "question_asked": "Moderator fragt mehrfach direkt und drängend: Würde Banaszak Fracking in Deutschland machen, wenn es wirtschaftlich notwendig wäre, wie Veronika Grimm argumentiert?",
+        "question_intent": "Eine klare Ja/Nein-Antwort erzwingen, um Banaszak entweder der Flexibilität oder der Ideologie zu überführen; die Headline 'Grüner Vorsitzender offen für Fracking' produzieren.",
+        "position": "Banaszak lehnt Fracking ab, nicht grundsätzlich aus Ideologie, sondern aus pragmatischer Analyse: Deutschland habe bereits ohne Fracking nach dem Wegfall von Russland-Gas seine Gasversorgung gesichert (Steigerung Norwegen-Importe, LNG-Terminals). Fracking wäre enorme Investition in Technologie, die 'Schritt für Schritt ausläuft'. Er verteidigt grüne Energiewende (LNG-Terminals unter grünem Wirtschaftsminister in Rekordtempo gebaut) und erneuerbares Wachstum. Im hypothetischen Katastrophenfall könnte man es tun ('niemand ist bescheuert und geht sehenden Auges in einen Blackout'), aber es sei faktisch nicht notwendig.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Banaszak liefert substantiell durchdachte Antwort: Fracking nicht nötig (Faktenlage Norwegen, LNG), in hypothetischen Extremfall ja, Fokus auf Pragmatismus statt Ideologie. Er weigert sich, die gewünschte Headline zu liefern ('das liefere ich Ihnen nicht'), bleibt aber faktenbasiert.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Fracking würde enorme Investitionen in Technologie bedeuten, die Schritt für Schritt ausläuft — nicht notwendig",
+          "Nach Wegfall des russischen Erdgases: nicht US-Gas, sondern Exporte aus Norwegen erhöht",
+          "LNG-Terminals unter grünem Wirtschaftsminister in diesem Land noch nicht in solchem Tempo errichtet",
+          "Wenn es notwendig wäre in extrem hypothetischer Situation ja, aber es ist nicht notwendig"
+        ],
+        "quotes": [
+          {
+            "text": "Der Punkt beim Fracking ist doch, dass wir jetzt natürlich die Entscheidung treffen könnten enorme Investitionen vorzunehmen, um ein eine Technologie zugehen die Schritt für Schritt ausläuft.",
+            "timestamp": "00:24:29",
+            "context": "Banaszak erklärt, warum Fracking wirtschaftlich irrational wäre."
+          },
+          {
+            "text": "Ich sehe worauf Sie hinaus wollen, Sie hätten gerne die Überschrift, grünen Vorsitzender offen für Fracking, das liefere ich Ihnen nicht.",
+            "timestamp": "00:26:47",
+            "context": "Banaszak durchschaut die Pressestrategie des Moderators und weigert sich explizit."
+          }
+        ]
+      },
+      {
+        "title": "Grüne Wahlkampf-Kampagne und Robert Habeck-Projektion",
+        "timestamp_range": "00:31:24 - 00:33:57",
+        "theme_description": "Banaszak wird auf die kontroverse Projektion von Robert Habeck auf das Bismarck-Denkmal in Berlin angesprochen und gibt Selbstkritik ab.",
+        "question_asked": "Moderator fragt provokativ: 'Wessen Idee war es, Robert Habeck dort zu projizieren?' und später: 'War das eine Scheißidee?'",
+        "question_intent": "Banaszak festlegen, ob die Grünen illegale/unangebrachte Wahlkampf-Taktiken nutzen; Selbstkritik oder Defensivität erzwingen.",
+        "position": "Banaszak gibt offen zu: Ja, es war eine 'blöde Idee' und hätte nicht hätte 'länger drüber nachgedacht'. Die Idee kam von der Wahlkampf-Agentur. Aber: Dieses Eingeständnis passt zu seiner These von Lernfähigkeit (einleitend erwähnt). Moderator bemerkt: Das ist nicht an diesem einen Ort gewesen, sondern auch an anderen Orten. Banaszak nuanciert: Sensibilität für Ort ist wichtig, aber Wahlkampf lebt von Aufmerksamkeit. Im nächsten Mal ein anderes Symbol.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Banaszak antwortet direkt und selbstkritisch ('blöde Idee'), lehnt keine Verantwortung ab. Er gibt auch Prozess-Erklärung ('Agentur', Zeitdruck im Wahlkampf). Das signalisiert Lernfähigkeit, ohne die taktischen Gründe des Wahlkampfs zu leugnen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Idee kam von der Wahlkampf-Agentur",
+          "Hätten wir länger drüber nachgedacht, hätten wir festgestellt, das ist eine blöde Idee",
+          "Im nächsten Mal nehmen wir einen Anderen"
+        ],
+        "quotes": [
+          {
+            "text": "Das war eine Idee der Agentur, man muss offen sagen, der Punkt mit der Lernfähigkeit: in diesem Wahlkampf werden viele Entscheidungen sehr schnell getroffen und da fallen auch falsche Entscheidungen.",
+            "timestamp": "00:31:24",
+            "context": "Banaszak erklärt Prozess: Zeitdruck, Agentur-Einfluss, Fehler unter Druck."
+          },
+          {
+            "text": "Hätten wir länger drüber nachgedacht hätten wir festgestellt, das ist eine blöde Idee.",
+            "timestamp": "00:31:42",
+            "context": "Direkte Selbstkritik ohne Ausflüchte."
+          }
+        ]
+      },
+      {
+        "title": "Ampel-Koalition: Verantwortung und Selbstkritik",
+        "timestamp_range": "00:35:38 - 00:37:15",
+        "theme_description": "Diskussion über die Frage, wer für das Scheitern der Ampel-Koalition verantwortlich ist, und inwiefern die Grünen diesen Fehler zugeben.",
+        "question_asked": "Moderator kritisiert, dass alle Ampel-Partner 'krachend gegen die Wand gefahren sind' und trotzdem wieder antreten, ohne wirklich Verantwortung zu übernehmen.",
+        "question_intent": "Banaszak zur Eingeständnis von Grüner Mitschuld am Koalitions-Scheitern zwingen oder als defensiv darstellen.",
+        "position": "Banaszak differenziert: Nicht alle Ampel-Parteien haben gleich viel versucht, das ist 'häufig Thema' in dieser Sendung gewesen. Aber: Die Grünen haben sich bewusst von Lindner (Finanzminister-Anspruch 'am Tag nach seiner Entlassung') und Scholz (Haltung 'als hätte er mit dem Scheitern nichts zu tun') unterschieden. Robert Habeck war einziger, der in Vertrauensfrage Selbstkritik formuliert und Verantwortung übernommen hat. Banaszak signalisiert damit: Grüne haben gelernt, Lindner und Scholz nicht.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Banaszak adressiert Verantwortungsfrage nur partiell: Er differenziert zwischen den Partnern statt gesamte Ampel gleich zu kritisieren. Das ist inhaltlich berechtigt (Lindner und Scholz verhalten sich tatsächlich anders), weicht aber der Kernfrage aus, inwieweit die Grünen selbst verantwortlich sind.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Nicht alle gleichermaßen versucht, das ist Thema gewesen",
+          "Lindner will wieder Finanzminister werden, Scholz tritt auf als hätte er nichts zu tun",
+          "Grüne bewusst andere Haltung nach Bruch: nicht von heute auf morgen zur nächsten Aufgabe",
+          "Robert Habeck formulierte Selbstkritik und übernahm Verantwortung in Vertrauensfrage"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt einen zentralen Unterschied zwischen den beiden anderen an der Spitze der Ampel, Herr Lindner hat am Tag nach seiner Entlassung gesagt, ich will wieder Finanzminister werden. Herr Scholz tritt auf als hätte er mit dem Scheitern der Regierung nichts zu tun.",
+            "timestamp": "00:35:38",
+            "context": "Banaszak kontrastiert Grüne Selbstkritik mit Defensivität anderer Partner."
+          }
+        ]
+      },
+      {
+        "title": "ThyssenKrupp-Transformation und grüne Industriepolitik",
+        "timestamp_range": "00:38:15 - 00:42:07",
+        "theme_description": "Banaszak antwortet auf Frage zur Arbeitslosigkeit in seinem Wahlkreis Duisburg und verteidigt die Grüne Rolle in der Unterstützung der Stahlwerks-Umstrukturierung zu grünem Stahl.",
+        "question_asked": "Was sagen Sie den Leuten in Duisburg bei ThyssenKrupp — sind die Jobs sicher? (Kontext: 11.000 Arbeitsplätze werden abgebaut.)",
+        "question_intent": "Banaszak in die Falle zu treiben: Entweder er verspricht unmögliche Jobsicherheit oder gibt zu, dass die Grüne Politik Arbeitsplätze kostet.",
+        "position": "Banaszak gibt zu: Jobs sind nicht sicher, 11.000 Abbau angekündigt. Aber: Es gibt keine Alternative zur Transformation zu grünem Stahl. Konventionell produzierter Stahl ist nicht mehr verkäuflich auf dem Weltmarkt. Die Frage ist nicht 'Job-Sicherheit', sondern 'Perspektive für Zukunft'. Die Grüne Subvention (2 Mrd. für Wasserstoff-Anlage, Vorderbescheid von Habeck/Wüst) ist Beweis, dass der Staat den Wandel aktiv unterstützt. Das ist nicht reine Ideologie, sondern rationales Überleben des Werks. Alternativen sind 'vollkommen naiv'.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Banaszak antwortet direkt und substanziell: Keine Illusion über Jobverluste, aber klare Logik für Transformation. Er nutzt lokales Wissen (Duisburger MdB) und Unternehmens-Perspektive (Gespräche mit Beschäftigten, die den Wandel akzeptieren, weil die Alternative Betriebsschließung ist).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Jobs sind nicht sicher — 11.000 Arbeitsplätze Abbau angekündigt",
+          "Konventioneller Stahl nicht mehr verkäuflich auf Weltmarkt",
+          "Grüne Stahl-Transformation einzige Perspektive für Werkserhalt",
+          "Subvention 2 Mrd. für Wasserstoff-Vorderbescheid = aktive Unterstützung des Staates"
+        ],
+        "quotes": [
+          {
+            "text": "Die Jobs sind offensichtlich nicht sicher, weil das Unternehmen jetzt schon angekündigt hat, dass in den nächsten Jahren 11.000 Arbeitsplätze abbauen wollen.",
+            "timestamp": "00:41:18",
+            "context": "Banaszak verweigert falsche Hoffnungen, spricht Realität an."
+          },
+          {
+            "text": "Ich kann Ihnen versprechen, die Idee, dass demnächst noch Produktionsanlagen stehen, wenn man diesen Weg nicht geht, ist vollkommen naiv",
+            "timestamp": "00:41:18",
+            "context": "Klare Aussage zur Alternativlosigkeit der Transformation."
+          }
+        ]
+      },
+      {
+        "title": "Wirtschaftspolitik: Marktkräfte vs. strategische Steuerung",
+        "timestamp_range": "00:44:22 - 00:44:52",
+        "theme_description": "Banaszak reagiert implizit auf Grimms Kritik an Grünen Subventionen und Weimers Forderung nach Deregulierung durch den Kontext seiner Industrie-Politik-Interventionen.",
+        "question_asked": "Implizit: Sollte der Staat sich aus Wirtschaft zurückziehen (Grimm, Weimer) oder aktiv strategische Felder fördern (Banaszak)?",
+        "question_intent": "Ideologische Konflikt zwischen Marktliberalismus (Weimer, Grimm) und strategischem Staatshandeln (Grüne) explizit machen.",
+        "position": "Banaszak tritt nicht direkt in Debatte Grimm-Weimer ein, aber seine frühere Position (strategische Kooperationen zu Zukunftstechnologien) impliziert: Märkte allein genügen nicht, wenn China staatlich coordinated die Weltmärkte übernimmt. Die Grüne Position ist weder rein subventionistisch noch rein marktwirtschaftlich, sondern pragmatisch: Unterstützung der Transformation (z.B. ThyssenKrupp), nicht Dauerpflege nicht-konkurrenzfähiger Industrie.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Banaszak entzieht sich explizit dieser Debatte. Er spricht über konkrete Fälle (ThyssenKrupp-Transformation, Halbleiter-Sicherheit), nicht über wirtschaftspolitisches Konzept. Das ist rhetorisch sinnvoll, ist aber Umlenkung auf die pragmatische Ebene statt auf die ideologische.",
+        "answer_type": "themenwechsel",
+        "concrete_statements": [],
+        "quotes": []
+      },
+      {
+        "title": "Anzeigen gegen Kritiker und politische Kultur",
+        "timestamp_range": "00:48:58 - 00:50:48",
+        "theme_description": "Diskussion über die Praxis von Anzeigen gegen Kritiker und Beleidiger, initiiert durch Kritik an Robert Habeck. Banaszak unterscheidet zwischen legitimer Kritik und Drohungen.",
+        "question_asked": "Moderator und andere Gäste (Weimer) kritisieren Robert Habeck für Tausende Anzeigen gegen Kritiker. Banaszak wird implizit aufgefordert, dazu Position zu nehmen.",
+        "question_intent": "Ist die Grüne Praktik der Anzeigen gegen Kritiker eine Abkehr von grüner Kultur (Spontiszene, Freiheit)? Oder legitimate Selbstschutz?",
+        "position": "Banaszak artikuliert Differenzierung: Er selbst antwortet auf sachliche Kritik, ignoriert persönliche Beleidigungen, bringt aber konkrete Drohungen ('wenn du wieder Fahrrad fährst schau ob du nach Hause kommst') zur Anzeige. Es geht nicht um 'jede Kritik von sich zu weisen', sondern um die 'Verrohung der Auseinandersetzung' zu bremsen. Ehrenamtliche Bürgermeister und Landräte treten nicht mehr an, weil die Hemmschwelle für Gewalt und Bedrohung sinkt. Das ist gesellschaftliches Problem, nicht nur Habeck-Frage. Gleichzeitig: Politiker müssen 'einiges aushalten'. Seine Abwägung ist anders als Habecks, aber nachvollziehbar.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Banaszak adressiert Kritik durch nuancierte Analyse statt Defensivität. Er unterscheidet scharf: sachliche Kritik (erlaubt), Beleidigung (ignoriert), Drohung (angezeigt). Er gibt zu, dass Habeck anders abwägt, verteidigt aber die Logik. Das ist substantiell, weil es zwischen Extremen differenziert statt zu polarisieren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich antworte auf sachliche Kritik, ignoriere Beleidigungen, zeige konkrete Drohungen an",
+          "Die Verrohung der Auseinandersetzung schreitet voran — ehrenamtliche Bürgermeister treten nicht mehr an",
+          "Es kann keine Frage des Mutes sein, sich für das Gemeinwohl zu engagieren",
+          "Meine Abwägung ist anders als Habecks, aber beide sind legitim"
+        ],
+        "quotes": [
+          {
+            "text": "Manche schreiben mir, wenn du wieder in Duisburg bist und Fahrrad fährst schau mal ob du noch nach Hause kommst. Sowas bringe ich zur Anzeige.",
+            "timestamp": "00:48:58",
+            "context": "Banaszak konkretisiert, ab wann er anzeigt: bei Drohungen, nicht bei Beleidigung."
+          },
+          {
+            "text": "Es geht darum, dass man akzeptiert, dass die Verrohung der Kultur in diesem Land, die Verrohung der Auseinandersetzung immer weiter voranschreitet, sodass ehrenamtliche Bürgermeisterin und Landräte reihenweise nicht mehr antreten",
+            "timestamp": "00:50:09",
+            "context": "Banaszak hebt Problem auf gesellschaftliche Ebene, nicht nur Habeck-Ebene."
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Nach Wegfall des russischen Erdgases importiert Deutschland nicht wie befürchtet vor allem Gas aus den USA, sondern hat im Kern die Exporte aus Norwegen erhöht",
+        "timestamp": "00:24:29"
+      },
+      {
+        "claim": "LNG-Terminals unter grünem Wirtschaftsminister in diesem Land noch nicht in diesem Tempo errichtet",
+        "timestamp": "00:25:40"
+      },
+      {
+        "claim": "ThyssenKrupp kündigte Abbau von 11.000 Arbeitsplätzen in den nächsten Jahren an",
+        "timestamp": "00:41:18"
+      },
+      {
+        "claim": "Robert Habeck erhielt 2 Milliarden Subvention / Vorderbescheid für Wasserstoff-Stahlanlage in Duisburg zusammen mit Hendrik Wüst",
+        "timestamp": "00:39:14"
+      },
+      {
+        "claim": "Die Arbeitslosigkeit in Duisburg ist etwa doppelt so hoch wie der Bundesdurchschnitt",
+        "timestamp": "00:38:15"
+      },
+      {
+        "claim": "China plant nach aktuellen Studien massiv mehr Produktionskapazitäten für Clean-Tech als China selbst für die Energiewende braucht und will damit den Weltmarkt beliefern",
+        "timestamp": "00:21:32"
+      }
+    ]
+  }
+}

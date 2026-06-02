@@ -1,0 +1,255 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-31-maerz-2026-100",
+    "video_id": "lanz-2026-03-31",
+    "politician": "Johannes Volkmann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "79b5b640278cb378",
+    "transcript_chars": 65661,
+    "caption_lines": 3193,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26458,
+    "tokens_out": 6090,
+    "cost_usd": 0.0227632,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "offene_verweigerung": 1,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 2
+    },
+    "generated_at": "2026-06-02T16:33:28.609Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johannes Volkmann (CDU, Bundestagsabgeordneter, Auswärtiger Ausschuss) diskutiert den Iran-Konflikt und wirtschaftspolitische Fragen. Zum Krieg am Golf argumentiert er sachlich für deutsche Zurückhaltung bei militärischen Beiträgen, betont aber strategische Interessen. In der Rentendebatte mit SPD-Juso Türmer wirkt er konfrontativ, pocht auf Wachstum und Unternehmensstandort gegen Umverteilungslogik.",
+    "themes": [
+      {
+        "title": "Mineneinsatz in der Straße von Hormus",
+        "timestamp_range": "00:26:15 - 00:27:39",
+        "theme_description": "Frage, ob Deutschland mit Minenräumung in der Straße von Hormus beitragen sollte.",
+        "question_asked": "Moderator fragt, ob Deutschland im Auswärtigen Ausschuss über Minen diskutiert und ob sich Deutschland beteiligen sollte (Punkt 00:26:26).",
+        "question_intent": "Soll Deutschland aktiv militärische Unterstützung im Iran-Konflikt leisten, speziell beim Mineneinsatz?",
+        "position": "Volkmann differenziert zwischen zwei Szenarien: Während aktiver kriegerischer Handlungen können Minen nur zum Einsatz kommen, wenn keine Gefahr aus der Luft besteht – eine unrealistische Bedingung angesichts der Bindung der Bundeswehr an die Ostflanke. Minen kämen eher für Friedensschlüsse infrage, um ausgebrachte Minen zu räumen. Wichtig ist ihm die Klarstellung, dass dies kein NATO-Konflikt ist, sondern dass die NATO nur eingreift, wenn ein Mitgliedstaat angegriffen wird – wie nach 9/11, als deutsche Soldaten im Gefecht gefallen sind.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Volkmann adressiert die Frage differenziert, verweigert aber eine klare Antwort zur aktuellen Beteiligung. Er schiebt das Thema auf potenzielle Friedensscenarien und leitet es zur NATO-Definition um, was die konkrete aktuelle Frage zur Minenräumung eher umgeht als beantwortet.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Da muss man verschiedene Ebenen in die Debatte einführen",
+          "Minen können dort eigentlich nur zum Einsatz kommen, wenn keine Gefahr von oben oder aus der Luft da sind",
+          "Das wäre eine Diskussion für einen möglichen Friedensschluss"
+        ],
+        "quotes": [
+          {
+            "text": "Da muss man verschiedene Ebenen in die Debatte einführen, die Frage ist, was können wir beitragen, wenn noch kriegerische Handlungen stattfinden, relativ wenig. Die Bundeswehr ist mit Blick auf unsere Ostflanke gebunden.",
+            "timestamp": "00:26:26",
+            "context": "Auf Frage zur Minenräumung in der Straße von Hormus antwortet Volkmann mit Verweis auf begrenzte Kapazitäten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Militärische Einsatzfähigkeit Bundeswehr",
+          "NATO-Beiträge"
+        ]
+      },
+      {
+        "title": "Kriegsziele des Iran-Konflikts und deutsches Interesse",
+        "timestamp_range": "00:34:47 - 00:37:55",
+        "theme_description": "Einschätzung, ob der Krieg am Golf im deutschen Interesse liegt und ob die angestrebten Ziele realistisch erreichbar sind.",
+        "question_asked": "Moderator verweist auf Aussage von Manfred Weber (CSU) zu Unions-Position, dass der Krieg auch im deutschen Interesse liegt, und fragt Volkmann zur Bestätigung (Punkt 00:34:47-00:35:02).",
+        "question_intent": "Vertritt Johannes Volkmann als CDU-Politiker die Position, dass dieser Krieg in deutschem Interesse liegt?",
+        "position": "Volkmann differenziert zwischen Kriegszielen und deren tatsächlicher Erreichbarkeit. Die Ziele – Verhinderung von iranischen Atomwaffen, Beendigung des Raketenprogramms, Stopp der Unterstützung für Terrororganisationen (Hisbollah, Hutis) – liegen im deutschen Interesse. Allerdings bleibt offen, ob Militärschläge diese Ziele tatsächlich erreichen. Die Bundesregierung könne diese Debatte öffentlich nicht offenbaren. Volkmann betont, dass man die Brutalität des iranischen Regimes gegen die eigene Bevölkerung (30.000 Tote, zehntausende in Foltergefängnissen) nicht vergessen darf und dass die Erpressung durch Hormus-Kontrolle nicht geduldet werden darf.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Volkmann beantwortet nicht direkt, ob er Webers Position teilt, sondern verschiebt auf eine Ebene der Unterscheidung (Ziele vs. Mittel). Er argumentiert substantiell, weicht aber der klaren Ja/Nein-Antwort aus und führt die Debatte zu humanitären Aspekten des iranischen Regimes ab.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Die Kriegsziele [...] dass der Iran keine Atomwaffen bekommt, das ballistische Raketenprogramm des Irans beendet wird, die Unterstützung für terroristische Milizen eingestellt wird – das ist in deutschem Interesse",
+          "Die Frage ist, ob mit den Militärschlägen [...] dieses Ziel zu erreichen ist",
+          "Es kann nicht in unserem Interesse sein, dass wir dem iranischen Regime zugestehen, die Weltgemeinschaft mit der Straße von Hormus zu erpressen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube man muss unterscheiden zwischen dem Kriegsziel und ob man das tatsächlich erreicht. Und die Kriegsziele, die formuliert wurden, dass der Iran keine Atomwaffen bekommt, das ballistische Raketenprogramm des Irans, dass das beendet wird, die Unterstützung für terroristische Milizen eingestellt wird, Hisbollah, Huthis, andere, das ist in deutschem Interesse.",
+            "timestamp": "00:35:02",
+            "context": "Volkmann differenziert zwischen Kriegszielen und ihrer praktischen Erreichbarkeit auf die Frage nach deutschem Interesse am Krieg."
+          },
+          {
+            "text": "Es kann nicht in unserem Interesse sein, dass wir dem iranischen Regime zugestehen, die Weltgemeinschaft mit der Straße von Hormus zu erpressen.",
+            "timestamp": "00:36:33",
+            "context": "Volkmann begründet, warum die Kontrolle der Meerenge durch den Iran nicht im deutschen Interesse liegt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Völkerrecht und Selbstverteidigung",
+          "Menschenrechte Iran"
+        ]
+      },
+      {
+        "title": "Völkerrechtskonformität der Luftangriffe",
+        "timestamp_range": "00:36:26 - 00:38:43",
+        "theme_description": "Einschätzung der rechtlichen Zulässigkeit der US-Luftangriffe nach Völkerrecht.",
+        "question_asked": "Moderator fragt direkt, ob die Angriffe völkerrechtskonform sind (Punkt 00:36:26 und wiederholt um 00:37:55-00:38:05).",
+        "question_intent": "Sollte Deutschland die Luftangriffe als rechtmäßig oder rechtswidrig einstufen?",
+        "position": "Volkmann weigert sich, eine abschließende juristische Bewertung zu treffen. Er verweist auf unterschiedliche Auffassungen in der deutschen Völkerrechtscommunity und nennt Kanada als Beispiel eines Landes mit anderer Rechtsauffassung. Für ihn ist entscheidend, was aktuellen deutschen Interessen entspricht – nicht die abstrakte völkerrechtliche Bewertung. Er argumentiert, dass die Frage beim Gewaltverbot durch die Präventivschlagdoktrin neu zu bewerten sei und verweist auf notwendige expert*innendiskussionen.",
+        "answer_match": "verweigert",
+        "match_reasoning": "Volkmann weigert sich, die Frage abschließend zu beantworten, obwohl der Moderator auf ein Gutachten des wissenschaftlichen Dienstes des Bundestages hinweist, das einen Verstoß gegen Völkerrecht feststellt. Er argumentiert, dass die Frage umstritten ist und präventive Schläge neu bewertet werden müssten, weicht aber einer klaren Position aus.",
+        "answer_type": "offene_verweigerung",
+        "concrete_statements": [
+          "Ich kann die Frage nicht abschließend beantworten",
+          "Es gibt viele dir das eine sagen, andere sagen das andere",
+          "Der wissenschaftliche Dienst des Bundestages ist mit einem Gutachten dazu beauftragt worden... [unvollständig]"
+        ],
+        "quotes": [
+          {
+            "text": "Ich kann die Frage nicht abschließend beantworten, es gibt viele dir das eine sagen, andere sagen das andere.",
+            "timestamp": "00:38:05",
+            "context": "Nach wiederholter Frage zur Völkerrechtsmäßigkeit verweigert Volkmann eine klare Antwort."
+          },
+          {
+            "text": "Da würden viele argumentieren, dass die Frage beim Gewaltverbot mit der Präventivschlagdoktrin neu zu bewerten ist.",
+            "timestamp": "00:38:43",
+            "context": "Volkmann weicht auf theoretisches Argument zu Präventivschlägen aus, statt die konkrete Frage zu beantworten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht",
+          "Gewaltverbot",
+          "Präventivschläge und Selbstverteidigung"
+        ]
+      },
+      {
+        "title": "Desindustrialisierung und Wirtschaftswachstum",
+        "timestamp_range": "00:55:26 - 00:58:35",
+        "theme_description": "Kritik an SPD-Umverteilungspolitik als Antwort auf wirtschaftliche Schwäche Deutschlands.",
+        "question_asked": "Nach SPD-Juso Türmers Vorschlag zur Besteuerung hoher Kapitalerträge antwortet Volkmann kritisch mit Verweis auf Desindustrialisierung (Punkt 00:55:26).",
+        "question_intent": "Sind Umverteilungsmaßnahmen (höhere Besteuerung) geeignet, Deutschlands Wirtschaftsprobleme zu lösen?",
+        "position": "Volkmann lehnt Türmers Ansatz als Umverteilungsdebatte ab, die an den eigentlichen Problemen vorbeigeht. Deutschland verliert aktuell 12.000 Industriejobs und erlebt eine historische De-Industrialisierung. Das ist seit der Pandemie nicht behoben worden. Die zentrale Frage ist, wie Deutschland aus der Wachstumsschwäche herauskommt und innovative sowie traditionelle Industrie eine Zukunft hat. Unternehmer fragen, ob sie in Deutschland investieren können oder ins Ausland gehen müssen. Kapitalabflüsse sind das Resultat. Höhere Besteuerung von Unternehmensgewinnen und Substanzvermögen (wie von Juso vorgeschlagen) macht den Industriestandort Deutschland kaputt.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Volkmann adressiert die Debatte nicht mit Gegenargumenten zur Höherbesteuerung selbst, sondern pivotiert zu Desindustrialisierung und Wachstumsfrage. Er verweigert damit die Ebene der Steuergerechtigkeit zugunsten einer Standort-Logik. Das ist ein klassischer Pivot: statt die Prämisse zu debattieren, lenkt er auf eine andere Problemebene.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Wachstums- und Industriestandort-Problematik statt Steuergerechtigkeit",
+        "concrete_statements": [
+          "Wenn wir über die 12.000 Industriejobs redet, wenn er darüber nachdenken, dass wir seit der Pandemie nicht gewachsen sind",
+          "Wie kriegen wir Deutschland aus dieser Wachstumsschwäche raus",
+          "Was du vorschlägst es Unternehmer zu sagen, wenn ich hier Gewinne macht, werden die euch künftig weg besteuert, damit macht man den Industriestandort Deutschland kaputt"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist eine reine Umverteilungsdebatte. Wir haben aktuell 12.000 Industriejobs, die wir aktuell verlieren, wir erleben eine historische De-Industrialisierung.",
+            "timestamp": "00:55:26",
+            "context": "Volkmann kritisiert Türmers Steuerdebatte als irrelevant angesichts von Desindustrialisierung."
+          },
+          {
+            "text": "Wie kriegen wir Deutschland aus dieser Wachstumsschwäche raus, wie sorgen wir dafür, dass wir für innovative Unternehmen aber auch die Bestandsindustrie eine Zukunft haben, im Moment stellen sich Unternehmer die Frage, kann ich die noch in Deutschland treffen oder muss ich in ein anderes Land gehen?",
+            "timestamp": "00:57:20",
+            "context": "Volkmann benennt die zentrale wirtschaftliche Frage aus seiner Perspektive."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Industriestandort Deutschland",
+          "Steuerpolitik und Unternehmensgewinne",
+          "Deindustrialisierung"
+        ]
+      },
+      {
+        "title": "Ehegattensplitting und Geschlechterparität",
+        "timestamp_range": "01:02:38 - 01:03:49",
+        "theme_description": "Debatte über Abschaffung des Ehegattensplittings als Familienpolitik.",
+        "question_asked": "SPD-Juso Türmer argumentiert für Abschaffung des Ehegattensplittings, nennt es 'altbacken'. Volkmann fragt, warum es altbacken sein soll, Familien Freiheit zu geben (Punkt 01:02:38).",
+        "question_intent": "Ist das Ehegattensplitting ein progressives oder rückständiges Steuersystem?",
+        "position": "Volkmann sieht das Ehegattensplitting als Ausdruck von Familienfreiheit: Paare können selbst entscheiden, wie sie Erwerbstätigkeit und Familienzeit aufteilen. Diese Entscheidungsfreiheit ist für ihn nicht 'altbacken'. Später führt er an, dass bei einem Einkommen von 50.000 Euro des Erstverdieners durch die Abschaffung eine massive Steuerbelastung entstünde – verstößt gegen den Koalitionsvertrag (Entlastung mittlerer und niedriger Einkommen). Er warnt, dass Facharbeiter, die aus ihrer Arbeit in die Mittelschicht aufsteigen, durch höhere Belastung den 'Gesellschaftsvertrag' – dass Fleiß belohnt wird – gefährdet sehen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Volkmann antwortet direkt auf die Kritik mit einer Gegenwertung (Familienfreiheit vs. Altbackenheit) und liefert später konkrete Berechnungen zur Steuerbelastung. Er benennt den Konflikt klar: Koalitionsvertrag vs. Türmers Abschaffungsplan.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Warum ist es altbacken Familien die Freiheit zu geben zwischen verschiedenen Steuerklassen?",
+          "Warum ist es Altbacken wenn Menschen eine Ehegemeinschaft untereinander haben und entscheiden wie sie ihrer Arbeit und Familienzeit aufteilen?",
+          "Bei 50.000 Einkommen des Erstverdieners gibt es eine massive Steuerbelastung, die da entsteht"
+        ],
+        "quotes": [
+          {
+            "text": "Eine Frage dazu, warum ist es altbacken Familien die Freiheit zu geben zwischen verschiedenen Steuerklassen? Warum ist es Altbacken wenn Menschen eine Ehegemeinschaft untereinander haben und entscheiden wie sie ihrer Arbeit und Familienzeit aufteilen?",
+            "timestamp": "01:02:38",
+            "context": "Volkmann kritisiert Türmers Charakterisierung des Ehegattensplittings als 'altbacken'."
+          },
+          {
+            "text": "Bei 50.000 Einkommen des Erstverdieners gibt es eine massive Steuerbelastung, die da entsteht. Wir haben im Koalitionsvertrag vereinbart, dass wir eine Steuerreform, also mittlere und niedrige Einkommen entlasten werden.",
+            "timestamp": "01:04:27",
+            "context": "Volkmann benennt konkrete finanzielle Auswirkungen und Koalitionskonflikte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Familienpolitik",
+          "Geschlechterparität",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Renteneintrittsalter und Beitragsjahre",
+        "timestamp_range": "01:12:09 - 01:15:22",
+        "theme_description": "Diskussion über Koppelung des Renteneintrittsalters an Beitragsjahre versus Lebenserwartung.",
+        "question_asked": "Türmer vertritt Position, dass Renteneintritt an Beitragsjahre (nicht Lebenserwartung) gekoppelt werden sollte. Volkmann befragt dies und weist auf Rentensystem-Nachhaltigkeit hin (Punkt 01:12:09).",
+        "question_intent": "Wie sollte das Renteneintrittsalter angepasst werden – an Beitragsjahre oder an Lebenserwartung – um Systemstabilität zu erreichen?",
+        "position": "Volkmann versteht Türmers Fokus auf Beitragsjahre, stellt aber zentrale Frage der Systemstabilität: Deutschland wird in den 2030ern, ohne fundamentale Reformen, zur Zahlungsunfähigkeit der Rentenversicherung führen. Das lässt sich nicht durch Erhöhung zusätzlicher Verpflichtungen lösen. Die Lösung erfordert Wiedereinführung des Nachhaltigkeitsfaktors, wobei jeder anteilig einen Beitrag leistet, wenn mehr Menschen Rente beziehen. Volkmann versteht nicht, warum Türmer nicht auf der Seite junger Menschen steht, die diese Last tragen müssen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Volkmann antwortet direkt auf die Rentendebatte mit konkretem Lösungsvorschlag (Nachhaltigkeitsfaktor) und benennt das Kernproblem (Zahlungsunfähigkeit in 2030ern). Er kritisiert Türmers Ansatz, der junge Menschen belastet, wenn Rentenniveaus erhöht werden.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir werden absehbar in den 2030ern, wenn wir nichts machen, und sich grundsätzlich reformieren, in die Zahlungsunfähigkeit unserer Rentenversicherung laufen",
+          "Die mit zusätzlich Verpflichtungen für Pensionäre rein nehmen. Wir können das nur, wenn wir den Nachhaltigkeitsfaktor wieder einführen, dass jeder anteilig einen Beitrag dazu leistet",
+          "Ich verstehe nicht, dass du nicht Entseite der jungen Leute in diesem Land bist"
+        ],
+        "quotes": [
+          {
+            "text": "Wir werden absehbar in den 2030ern, wenn wir nichts machen, und sich grundsätzlich reformieren, in die Zahlungsunfähigkeit unserer Rentenversicherung laufen. Wir können das nur, wenn wir den Nachhaltigkeitsfaktor wieder einführen, dass jeder anteilig einen Beitrag dazu leistet.",
+            "timestamp": "01:12:09",
+            "context": "Volkmann benennt zentrale Systemkrise und fordert Nachhaltigkeitsfaktor als Lösung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Nachhaltigkeit Sozialversicherung",
+          "Generationengerechtigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Wir haben aktuell 12.000 Industriejobs, die wir aktuell verlieren",
+        "timestamp": "00:55:26"
+      },
+      {
+        "claim": "Wir erleben eine historische De-Industrialisierung",
+        "timestamp": "00:55:26"
+      },
+      {
+        "claim": "Wir seit der Pandemie nicht gewachsen sind",
+        "timestamp": "00:55:26"
+      },
+      {
+        "claim": "Deutschland wird absehbar in den 2030ern [...] in die Zahlungsunfähigkeit unserer Rentenversicherung laufen",
+        "timestamp": "01:12:09"
+      },
+      {
+        "claim": "30.000 ermordete Iraner [durch das iranische Regime]",
+        "timestamp": "00:35:02"
+      }
+    ]
+  }
+}

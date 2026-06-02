@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-26-februar-2026-102",
+    "video_id": "lanz-2026-02-26",
+    "politician": "Paul Ziemiak",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "b99aaabdfdedc5e6",
+    "transcript_chars": 60850,
+    "caption_lines": 2979,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24837,
+    "tokens_out": 9011,
+    "cost_usd": 0.0279568,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 17,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-02T16:33:29.062Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Paul Ziemiak, CDU-Generalsekretär aus Nordrhein-Westfalen, tritt als Gast auf, um Fragen zum CDU-Parteitag, zur polnischen Perspektive auf Verteidigungsfähigkeit und zur AfD-Problematik zu diskutieren. Sein Tonfall ist sachlich-politisch, mit Schwerpunkt auf Reformfähigkeit der Union und klarer Warnung vor der AfD als Gefahr für Deutschland.",
+    "themes": [
+      {
+        "title": "Bilanz CDU-Parteitag: Reformen statt Friede-Freude-Eierkuchen",
+        "timestamp_range": "00:07:56 - 00:09:40",
+        "theme_description": "Paul Ziemiak bewertet den CDU-Parteitag als Wahlparteitag mit inhaltlicher Diskussion und guten Ergebnissen.",
+        "question_asked": "Wie war der CDU-Parteitag wirklich für Sie persönlich – war es nur Friede-Freude-Eierkuchen oder gab es auch echte inhaltliche Diskussionen?",
+        "question_intent": "Der Moderator möchte wissen, ob Ziemiak die kritische Einschätzung anderer Gäste (zu viel Beschwichtigung, zu wenig echte Reformen) teilt oder ob es substantielle inhaltliche Diskussionen gab.",
+        "position": "Ziemiak argumentiert, es sei ein Wahlparteitag gewesen, auf dem »inhaltlich diskutiert« wurde – beispielsweise zum Zugang von Kindern zu Social Media und deren Schutz. Er betont, dass die Stimmung in NRW als größtem Block gut war und Friedrich Merz ein gutes Ergebnis erzielte. Die Lage sei »ernst«, und die Union müsse sich mit Reformfragen auseinandersetzen, insbesondere mit Demografie und Fragen junger Menschen ohne Deutschkenntnisse in sogenannten ABC-Klassen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ziemiak beantwortet die Frage nach Inhalte und Stimmung auf dem Parteitag, weicht aber der kritischen Prämisse aus, dass es zu viel Beschwichtigung ohne echte Reformen gewesen sei. Er nennt einige inhaltliche Themen, aber nicht substantiell die größeren Reformforderungen (Rente, Bürgergeld, Staatshaushalt), die erst später erwähnt werden.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es war ein Wahlparteitag, wir noch inhaltlich diskutiert",
+          "Ein großes Thema ist die Frage von jungen Menschen, die noch nicht in der Grundschule sind, die noch kein Deutsch können"
+        ],
+        "quotes": [
+          {
+            "text": "Es war ein Wahlparteitag, wir noch inhaltlich diskutiert. Zugang zu Social Media zum Beispiel, Kinder besser zu schützen. Deshalb war das ein guter Parteitag, ein gutes Ergebnis Friedrich Merz.",
+            "timestamp": "00:07:56",
+            "context": "Auf die Frage des Moderators, wie der Parteitag wirklich war."
+          },
+          {
+            "text": "Die Lage ist ernst. Wir haben noch die SPD, es wird immer nur auf die CDU geschaut.",
+            "timestamp": "00:09:40",
+            "context": "Ziemiak betont, dass die Gesamtsituation ernst ist und nicht alles Friede-Freude-Eierkuchen ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schulpolitik",
+          "Bildungsstandards",
+          "Demografie",
+          "Reformfähigkeit"
+        ]
+      },
+      {
+        "title": "SPD als Reformbremse und Rentenkommission",
+        "timestamp_range": "00:09:47 - 00:11:57",
+        "theme_description": "Ziemiak argumentiert, dass die SPD bei Reformen zu langsam ist und verweist auf die Rentenkommission als Hoffnungsträger für konkrete Ergebnisse.",
+        "question_asked": "Ist die SPD das Problem und die Union die Lösung? Und konkret: Wie lange wird noch an Lösungen gearbeitet, ohne sie umzusetzen – gibt es Gründe, warum Politik das Vertrauen verliert?",
+        "question_intent": "Der Moderator stellt Ziemiak die Frage, ob die Union im Gegensatz zur SPD handlungsfähig ist und kritisiert das Schema, erst Kommissionen zu gründen, statt schnell zu handeln. Er möchte wissen, ob Ziemiak dies als strukturelles Politikproblem sieht.",
+        "position": "Ziemiak räumt ein, dass es »ein paar Probleme mit der SPD« bei der Reformbereitschaft gibt, betont aber, dass die Union sich »daran arbeitet«. Er verweist auf die Junge Union und Johannes Winkler als Vertreter in der Rentenkommission und hofft auf Ergebnisse »diesen Sommer«. Er lehnt die Kritik am mangelnden Handeln ab und sagt: »Diese Bundesregierung hat schon viel auf den Weg gebracht« – bei Energiekosten und Außenpolitik. Das Kernproblem sei, wie der Staat mit dem Geld auskommt, wenn »nur noch an den Zinsen hängen« würde, ohne große Reformen umzusetzen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ziemiak adressiert die Frage zur SPD und zur Reformbereitschaft, weicht aber der tieferen Kritik aus, dass Politik sich zu lange Zeit nimmt. Er verspricht Ergebnisse »diesen Sommer« aus der Rentenkommission, ohne konkrete Maßnahmen zu nennen, und verteidigt die bisherigen Leistungen – eine klassische Ausweichposition.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gibt aber ein paar Probleme mit der SPD, die Frage der Reformbereitschaft",
+          "es gibt nicht irgendwann Ergebnisse sondern diesen Sommer aus der Rentenkommission",
+          "Der Erfolg dieser Koalition wird daran gemessen werden, ob diese großen Reformen gelingen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben ganz gute Lösungen, es gibt aber ein paar Probleme mit der SPD, die Frage der Reformbereitschaft, da müssen wir daran arbeiten.",
+            "timestamp": "00:09:59",
+            "context": "Antwort auf die Frage, ob die SPD das Problem ist."
+          },
+          {
+            "text": "Der Erfolg dieser Koalition wird daran gemessen werden, ob diese großen Reformen gelingen. Dafür arbeiten wir jeden Tag.",
+            "timestamp": "00:15:15",
+            "context": "Ziemiak betont das Engagement der Union für Reformen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Arbeitsmarktpolitik",
+          "Koalitionsverhandlungen",
+          "Staatshaushalt"
+        ]
+      },
+      {
+        "title": "Landtagswahlen Baden-Württemberg: Wahlkampf und Hagel-Affäre",
+        "timestamp_range": "00:17:08 - 00:18:40",
+        "theme_description": "Ziemiak wirbt für Ministerpräsident Manuel Hagel und die CDU, lehnt aber tiefere Diskussion der Hagel-Affäre ab.",
+        "question_asked": "Warum verliert die CDU trotz großem Wahlvorsprung an die Grünen bei der Landtagswahl in Baden-Württemberg? Welche Rolle spielt die Hagel-Affäre und gibt es Sorgen über den Ausgang?",
+        "question_intent": "Der Moderator möchte wissen, warum die CDU an Umfrage-Punkten verliert, und ob die persönliche Skandal-Geschichte um Hagel oder mangelnde politische Überzeugung dafür verantwortlich sind.",
+        "position": "Ziemiak relativiert die Umfrage-Schwankungen als Teil des Wahlkampfes: »Es ist Wahlkampf und ich denke jedem war klar, es ist in Wahlkämpfen nie etwas sicher.« Er argumentiert, dass in Zeiten von Debatten über Arbeitsverbote eine CDU-geführte Regierung und »Manuel Hagel an der Spitze« notwendig seien – besonders für einen Mittelstands- und Handwerksland. Er warnt vor grüner Wirtschaftspolitik, da die Grünen »im europäischen Parlament gegen Freihandelsabkommen gestimmt« hätten.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Ziemiak lenkt nicht auf die Frage der Umfrage-Verschlechterung ein, sondern nutzt sie als Anlass für Wahlwerbung. Die Hagel-Affäre wird nicht adressiert; stattdessen wird zur Wirtschaftspolitik der Grünen pivotiert.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "In dieser Zeit, wo wir über Arbeitsverbot sprechen, in diesem Land des Mittelstandes, des Handwerks brauchen wir eine CDU geführte Regierung",
+          "Dann wünsche ich aber Baden-Württemberg eine gute Reise, die Grünen haben im europäischen Parlament gegen Freihandelsabkommen gestimmt"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist Wahlkampf und ich denke jedem war klar, es ist in Wahlkämpfen nie etwas sicher. Jetzt kommt es auf jede Stimme an.",
+            "timestamp": "00:17:08",
+            "context": "Reaktion auf Fragen zu sinkenden CDU-Umfragen."
+          },
+          {
+            "text": "In dieser Zeit, wo wir über Arbeitsverbot sprechen, in diesem Land des Mittelstandes, des Handwerks brauchen wir eine CDU geführte Regierung. Wir brauchen Manuel Hagel an der Spitze.",
+            "timestamp": "00:17:50",
+            "context": "Wahlwerbung statt Antwort auf die Umfrage-Frage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Landtagswahlen",
+          "Wirtschaftspolitik",
+          "Handwerk und Mittelstand",
+          "Außenhandel"
+        ]
+      },
+      {
+        "title": "Polen und Verteidigungsfähigkeit: Unterschied zu Deutschland",
+        "timestamp_range": "00:25:59 - 00:27:31",
+        "theme_description": "Ziemiak beschreibt die fundamental andere Mentalität Polens gegenüber Russland und Verteidigung, basierend auf historischer Erfahrung.",
+        "question_asked": "Wie blicken Sie als jemand mit engen Verbindungen nach Polen auf die Verteidigungsfähigkeit Europas, besonders angesichts des fünften Jahres des russischen Krieges? Wo stehen die Polen im Vergleich zu Deutschland?",
+        "question_intent": "Der Moderator möchte Ziemiaks persönliche und politische Perspektive als jemand polnischer Herkunft verstehen – mit Fokus darauf, wie anders Polen die Bedrohung durch Russland wahrnimmt.",
+        "position": "Ziemiak unterstreicht, dass in Polen die Diskussionen ganz anders sind als in Deutschland: Während Deutschland über Abhängigkeiten von Energien debattiert, geht es in Polen um existenzielle Fragen – »hoffentlich wiederholt sich die Geschichte nicht«. Jeder Pole wisse, dass Geschichte sich wiederholt. Er verweist auf die polnische Geschichte (Überfall Deutschlands 1939, Verfolgung unter sowjetischer Herrschaft) und die reale Bedrohung durch Russland unmittelbar an der Grenze. Umfragen zeigen, dass viele Polen nicht glauben, dass Deutschland und die NATO bereit wären, Polen zu verteidigen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ziemiak beantwortet die Frage direkt und substanziell, indem er die unterschiedliche Mentalität in Polen gegenüber existenzieller Bedrohung erläutert und historische sowie gegenwärtige Gründe dafür nennt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "die Geschichte kann sich wiederholen, hat sich auch wiederholt",
+          "Der Gedanke, dass Russland eine Bedrohung ist ist sehr real in Polen. Unmittelbar an der Grenze.",
+          "Ehrlicherweise glauben dass zunehmend mehr Menschen nicht. [dass die NATO bereit ist, Polen zu verteidigen]"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ganz anders in Polen als in Deutschland. Wir diskutieren sehr viel politisch, was heißt das für Deutschland, Abhängigkeiten von Energien. Die verkehrten. Wir müssten investieren in die Bundeswehr um sie irgendwo einzusetzen. Die Diskussionen in Polen sind, hoffentlich wiederholt sich die Geschichte nicht und jeder Pole weiß, die Geschichte kann sich wiederholen, hat sich auch wiederholt.",
+            "timestamp": "00:25:59",
+            "context": "Antwort auf die Frage nach polnischer Perspektive auf Verteidigungsfähigkeit."
+          },
+          {
+            "text": "Ehrlicherweise glauben dass zunehmend mehr Menschen nicht. [dass Deutschland und die NATO bereit sind, Polen zu verteidigen]",
+            "timestamp": "00:27:31",
+            "context": "Ziemiak beschreibt das Problem von Zweifeln an NATO-Bündnisverpflichtungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "NATO",
+          "Rüstungspolitik",
+          "Deutsche Sicherheitspolitik",
+          "Deutsch-polnische Beziehungen"
+        ]
+      },
+      {
+        "title": "Hybrid-Bedrohungen: Belarus-Migration und russische Strategie",
+        "timestamp_range": "00:32:43 - 00:35:49",
+        "theme_description": "Ziemiak schildert anhand von Erlebnissen an der polnisch-belarussischen Grenze, wie Russland und Lukaschenka Hybrid-Taktiken einsetzen, um die NATO zu testen.",
+        "question_asked": "Können Sie konkrete Beispiele geben, wie Russland und Belarus an der polnischen Grenze agieren, um europäische Stabilität zu testen?",
+        "question_intent": "Der Moderator möchte Ziemiaks praktische Erfahrungen an der Grenze verstehen – als Beleg für Carsten Masalas These, dass Russland durch Provokationen die NATO spalten will, statt Territorium zu erobern.",
+        "position": "Ziemiak berichtet von persönlichen Beobachtungen an der Grenze gemeinsam mit Alexander Dobrindt. Jeden Tag versuche der belarussische Staat, Menschen an die Grenze zu bringen. Der Grenzzaun wird geöffnet, Alarme ausgelöst. Es sind »keine Migranten, die sich dorthin verirrt haben« – der Staat steuert das bewusst. Ziemiak beschreibt ein Horror-Szenario: Menschen werden zur Grenze gebracht, ihnen wird gesagt, sie können nicht zurück; dann werden Grenzzäune geöffnet, belarussische Truppen werfen Molotowcocktails und Steine auf polnische Grenzschützer, was zu Verletzten führt. Die Polen setzen nicht-tödliche Munition ein. Das Ziel: zu sehen, »wie lang bleibt Polen stabil und vor allem wie lang bleibt Europa stabil«. Die USA-Perspektive ist für Polen eine ganz andere als für Deutschland.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ziemiak antwortet sehr konkret mit persönlichen Beobachtungen und Szenarien von der Grenze, die Masalas Analyse illustrieren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Jeden Tag versucht der Bela russische Staat durch Menschen an die Grenze zu bringen",
+          "Es sind keine Migranten, die sich dorthin verirrt haben.",
+          "Lukaschenko macht das was Russland will. Um zu schauen, wie lang bleibt Polen stabil und vor allem wie lang bleibt Europa stabil."
+        ],
+        "quotes": [
+          {
+            "text": "Ich war da, ich war mit Alexander Dobrindt direkt an der Grenze, da ist eine Befestigung. Jeden Tag versucht der Bela russische Staat durch Menschen an die Grenze zu bringen, dann wird das aufgeschnitten mit technischem Gerät.",
+            "timestamp": "00:32:55",
+            "context": "Bericht von persönlichen Beobachtungen an der polnisch-belarussischen Grenze."
+          },
+          {
+            "text": "Warum macht das Russland, Lukaschenko macht das was Russland will. Um zu schauen, wie lang bleibt Polen stabil und vor allem wie lang bleibt Europa stabil.",
+            "timestamp": "00:32:55",
+            "context": "Erklärung der russischen Strategie hinter hybriden Operationen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Grenzschutz",
+          "Nato-Osterweiterung",
+          "Russische Außenpolitik",
+          "Hybrid-Kriegsführung"
+        ]
+      },
+      {
+        "title": "Polnische Gesellschaft: Militärausbildung und historisches Trauma",
+        "timestamp_range": "00:38:17 - 00:42:22",
+        "theme_description": "Ziemiak beschreibt die in Deutschland unvorstellbare Integration von Militärausbildung in polnisches Schulsystem und gesellschaftliches Bewusstsein für Verteidigungsfähigkeit.",
+        "question_asked": "Wie bereitet sich die polnische Gesellschaft konkret auf Verteidigung vor? Wie wird die Bevölkerung mitgenommen bei dieser militärischen Ausrüstung?",
+        "question_intent": "Der Moderator möchte verstehen, wie Polen die Rüstung und Mobilisierung gesellschaftlich umsetzt – als Unterschied zu Deutschland.",
+        "position": "Ziemiak beschreibt konkrete polnische Maßnahmen: Militärklassen an Schulen ab etwa zehnter Klasse, Uniformen, Marsch- und Waffenhandhabungstraining. Es gibt ein neues Programm für Zivilisten, das Notfallsituationen und Feldmedizin lehrt. Diese Klassen werden auch praktisch eingesetzt, etwa beim Hochwasser. Ziemiak berichtet von einer Begegnung, bei der eine junge Schülerin einer Militärklasse dem Verteidigungsminister Bericht erstattete. Er unterstreicht: »In Deutschland können wir uns das nicht vorstellen. In Polen ist es gesellschaftlich akzeptiert.« Der Grund liegt in der historischen Erfahrung – die polnische Militäruniform steht für Verteidigung von Freiheit, nicht (wie in Deutschland) für Täterschaft. Am 1. August (Warschauer Aufstand) heulen landesweit Sirenen, »das ganze Land« steht still – egal ob links oder rechts. Das sei »vererbbar« Trauma.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ziemiak antwortet sehr substanziell mit konkreten Beispielen aus Schulen, Zivilprogrammen und gesellschaftlichen Ritualen. Er erklärt auch die tieferen historischen Gründe für diese Mentalität.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Militärklassen an Schulen. Es gibt Schulen, die Militärklassen haben.",
+          "man kriegt eine Uniform, man lernt das marschieren, man lernt den Umgang mit einer Waffe",
+          "In Deutschland können wir uns das nicht vorstellen. In Polen ist es gesellschaftlich akzeptiert.",
+          "Es gibt Traumata, ich glaube fest daran, dass das auch vererbbar es."
+        ],
+        "quotes": [
+          {
+            "text": "es beginnt etwas, dass wir uns in Deutschland nicht vorstellen können, Militärklassen an Schulen. Es gibt Schulen, die Militärklassen haben. Dann kommt jemand von der Armee, die kriegen Uniformen und die Gefangene in der Schule schon an mit Militärübungen.",
+            "timestamp": "00:38:17",
+            "context": "Beschreibung von Militärausbildung in polnischen Schulen."
+          },
+          {
+            "text": "Die polnische Militäruniform stehen für Verteidigung von Freiheit und das Leben von Polinnen und Polen. Die erschossen wurden durch SS Einheiten, wenn sie mal am 1. August in Warschau sind und des Warschauer Aufstandes gedacht wird.",
+            "timestamp": "00:40:21",
+            "context": "Erklärung der historischen Bedeutung von Uniformen in Polen vs. Deutschland."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bildungspolitik",
+          "Zivilschutz",
+          "Nationale Sicherheit",
+          "Deutsch-polnische Verhältnisse"
+        ]
+      },
+      {
+        "title": "AfD als Gefahr und Frage der Kontrolliertheit durch Russland",
+        "timestamp_range": "00:45:19 - 00:47:52",
+        "theme_description": "Ziemiak äußert sich zu russischen Einflussnahmen auf die AfD und warnt vor deren Gefährlichkeit für die Wirtschaft und europäische Stabilität.",
+        "question_asked": "Wie sehen Sie als CDU-Generalsekretär die AfD im Kontext der polnischen Perspektive und möglicher russischer Kontrolle?",
+        "question_intent": "Der Moderator möchte wissen, wie Ziemiak die AfD bewertet – insbesondere unter dem Aspekt der russischen Einflussnahme und der Warnung aus Polen.",
+        "position": "Ziemiak sagt, es komme darauf an, mit wem man in Polen spricht. Bei der CDU-Partnerpartei (Bürgerplattform) sei die AfD-Ablehnung klar. Im rechten Lager könne es »ein paar Sympathien« geben, da die AfD »alles hinterfragt«. Aber »mittlerweile hat jeder wohlverstanden, wie gefährlich die AfD ist«. Ziemiak warnt vor russischer Einflussnahme auf die AfD, die Geldflüsse »von der AfD, wo wir nicht wissen, woher das kommt«, und nennt konkrete Fälle wie Björn Höcke (»den haben wir unter Kontrolle«, sagt der Kreml). Kay Gottschalk habe mit Forderungen nach Reparationen Polen provoziert. Ziemiak argumentiert, dass AfD-Wähler sich als »Patrioten« sehen, »das sind Nationalisten«, die zu »erheblichen Konflikten« führen und »fremdgesteuert« aus Russland und China sind. Das Meinungsbild in Polen habe sich gewandelt von »differenziert« zu »ganz klar diese Partei ist gefährlich nicht nur für uns, sondern für Europa«.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ziemiak antwortet direkt auf die Frage zur AfD, differenziert zwischen Polen-Perspektiven, warnt konkret vor russischer Kontrolle und nennt Beispiele.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die AfD will uns als Partei zerstören",
+          "mittlerweile hat jeder wohlverstanden, wie gefährlich die AfD ist",
+          "Der Einflussnahme Russlands auf die AfD, der polnische Geheimdienst hat sehr viel Erfahrung auch in der Frage von russischer Spionage",
+          "Diese Partei ist gefährlich nicht nur für uns, sondern für Europa"
+        ],
+        "quotes": [
+          {
+            "text": "Mittlerweile hat jeder wohlverstanden, wie gefährlich die AfD ist. Der Einflussnahme Russlands auf die AfD, der polnische Geheimdienst hat sehr viel Erfahrung auch in der Frage von russischer Spionage.",
+            "timestamp": "00:45:19",
+            "context": "Bewertung der AfD und russischen Einflüsse."
+          },
+          {
+            "text": "Wenn eine Diktatur sagt, den haben wir unter Kontrolle, was ist das dann für einen Politiker. Das Meinungsbild über die AfD in Polen, am Anfang war es differenziert, aber heute ganz klar diese Partei ist gefährlich nicht nur für uns, sondern für Europa.",
+            "timestamp": "00:46:28",
+            "context": "Warnung vor AfD als von außen kontrollierten Partei."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Extremismusbekämpfung",
+          "Innere Sicherheit",
+          "Russische Einflussnahmen",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Parteiverbot AfD: Skeptik trotz Ablehnung der Partei",
+        "timestamp_range": "00:59:31 - 01:04:19",
+        "theme_description": "Ziemiak äußert sich skeptisch gegenüber einem Parteiverbotsverfahren gegen die AfD, obwohl er die Partei als gefährlich einstuft.",
+        "question_asked": "Sollte man ein Verbotsverfahren gegen die AfD anstreben, oder sind Sie wie andere skeptisch, dass dies funktioniert? Welche Voraussetzungen müssen erfüllt sein?",
+        "question_intent": "Der Moderator möchte verstehen, warum Ziemiak trotz seiner Warnung vor der AfD skeptisch beim Parteiverbot ist und wie er die juristischen Hürden beurteilt.",
+        "position": "Ziemiak ist skeptisch gegenüber einem Verbotsverfahren, auch wenn die AfD eine »gefährliche Partei« sei. Grund: Das Grundgesetz sehe zwar ein Parteiverbot vor, aber es seien »gewisse lagern Informationen« nötig, ob die Voraussetzungen erfüllt seien. Das Bundesverfassungsgericht müsse prüfen, ob die »Abschaffung der Grundordnung« gegeben ist – das muss »aggressiv kämpferisch« sein, der Partei zuzurechnen, zielgerichtet. Das sei »alles noch ziemlich ungewiss«, wie die Verwaltungsgerichts-Entscheidung zeigt. Was Ziemiak »Sorgen macht«: dass manche der Eindruck haben könnten, ein Verbotsverfahren sei eine »Prüfinstanz für die Frage, ob das für Deutschland gefährliche oder nicht gefährliche Politik« ist. Das Parteiverbot sei die »Ultima Ratio«. Unabhängig vom Verfahren bleibe: »die AfD ist für die Zukunft unseres Landes eine gefährliche Partei.«",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ziemiak antwortet direkt auf die Frage zum Parteiverbot, differenziert zwischen der Gefährlichkeit der AfD (die er unterstreicht) und der juristischen und politischen Skepsis gegenüber einem Verbotsverfahren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "das ist alles noch ziemlich ungewiss",
+          "Was mich an dieser Diskussion Sorgen macht, das manche den Eindruck haben könnten, das sei eine Prüfinstanz, für die Frage ist das für Deutschland gefährliche oder nicht gefährliche Politik",
+          "Ich sage ganz unabhängig von diesem Verfahren, die AfD ist für die Zukunft unseres Landes eine gefährliche Partei"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin skeptisch, Frau Amann hat das gesagt, es steht im Grundgesetz es gibt die Möglichkeit für ein Parteiverbot. Dafür müssen Voraussetzungen erfüllt sein. Man braucht dafür eine gewisse lagern Informationen, ob Voraussetzungen vorliegen, das vom Verfassungsgericht geprüft wird.",
+            "timestamp": "00:59:31",
+            "context": "Ziemiaks Skeptik gegenüber Parteiverbotsverfahren."
+          },
+          {
+            "text": "Ich sage ganz unabhängig von diesem Verfahren, die AfD ist für die Zukunft unseres Landes eine gefährliche Partei.",
+            "timestamp": "01:00:46",
+            "context": "Klarstellung, dass Skepsis am Verbot nicht mit Verharmlosung der AfD gleichzusetzen ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Extremismusbekämpfung",
+          "Verfassungsrecht",
+          "Demokratische Abwehr",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Migration und AfD-Wähler: Problem-Lösung statt Verbote",
+        "timestamp_range": "01:13:58 - 01:14:21",
+        "theme_description": "Ziemiak antwortet auf den Vorwurf, die Union löse Migration nicht, und verweist auf gesunkene Migrationszahlen.",
+        "question_asked": "Wenn Sie sagen, dass Sie Probleme lösen und AfD-Wähler deshalb zur Union zurückkehren, zeigen die Zahlen das wirklich – sind die Migrationszahlen real gesunken?",
+        "question_intent": "Der Moderator stellt fest, dass Ziemiak argumentiert, die beste Bekämpfung der AfD sei Problem-Lösung, nicht Verbote – und möchte wissen, ob die Union in Migrationsfragen wirklich erfolgreich ist.",
+        "position": "Ziemiak antwortet, dass die Union »ehrlicherweise auch ... wenn die Berichterstattung nicht immer so ist im Detail, was wir versuchen um die Probleme im Land zu lösen« arbeite. Er nennt konkret die Frage der Migration und »wie die Zahlen dank Alexander Dobrindt zurückgegangen sind. Das ist ein Erfolg, Probleme zu lösen. Wir arbeiten daran.«",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ziemiak versucht, die Frage zu beantworten, indem er auf gesunkene Migrationszahlen verweist, ohne aber konkrete Daten oder Vergleiche zu nennen. Der Moderator korrigiert ihn sofort: »120.000 Menschen in dieses Land gekommen« im vergangenen Jahr – was die Aussage zur Erfolgs-Narration in Frage stellt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "wie die Zahlen dank Alexander Dobrindt zurückgegangen sind. Das ist ein Erfolg, Probleme zu lösen"
+        ],
+        "quotes": [
+          {
+            "text": "Und das tun wir ehrlicherweise auch wenn die Berichterstattung nicht immer so ist im Detail, was wir versuchen um die Probleme im Land zu lösen. Die Frage der Migration, wie die Zahlen dank Alexander Dobrindt zurückgegangen sind. Das ist ein Erfolg, Probleme zu lösen. Wir arbeiten daran.",
+            "timestamp": "01:13:58",
+            "context": "Antwort auf Kritik, dass die Union Probleme nicht löst."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Asylrecht",
+          "Arbeitsmarkt",
+          "Innere Sicherheit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Grünen haben im europäischen Parlament gegen Freihandelsabkommen gestimmt",
+        "timestamp": "00:17:50"
+      },
+      {
+        "claim": "Polen hat beim Heer deutlich stärkere Kapazitäten als Deutschland, in der Panzertruppe etwa das Dreifache",
+        "timestamp": "00:37:36"
+      },
+      {
+        "claim": "Der polnische Staat orchestriert täglich Vorfälle an der Grenze zu Belarus mit Molotowcocktail-Angriffen auf polnische Grenzschützer",
+        "timestamp": "00:32:55"
+      },
+      {
+        "claim": "Björn Höcke wird vom Kreml mit den Worten kontrolliert: 'den haben wir unter Kontrolle'",
+        "timestamp": "00:45:19"
+      },
+      {
+        "claim": "Alexander Dobrindt hat es geschafft, dass Migrationszahlen gesunken sind",
+        "timestamp": "01:13:58"
+      }
+    ]
+  }
+}

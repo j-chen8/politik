@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-27-februar-2025-100",
+    "video_id": "lanz-2025-02-27",
+    "politician": "Ralf Stegner",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "c3489c697cf1039d",
+    "transcript_chars": 39304,
+    "caption_lines": 1948,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17369,
+    "tokens_out": 6976,
+    "cost_usd": 0.0208996,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 2,
+      "teilweise_antwort": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.960Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner vertritt die SPD-Position in einer Koalitionsverhandlungs-Debatte nach der Bundestagswahl 2025. Er argumentiert, dass die SPD trotz Wahlniederlage (16 %) weiterhin zentrale Positionen bewahrt und sich gegen einseitige Forderungen der Union wehrt. Die Diskussion ist angespannt, professionell, teilweise konfrontativ.",
+    "themes": [
+      {
+        "title": "Stimmungslage SPD-Union nach der Wahl",
+        "timestamp_range": "00:04:14 - 00:05:01",
+        "theme_description": "Stegner charakterisiert die Wahlniederlage der SPD und die neuen Machtverhältnisse zwischen beiden Parteien.",
+        "question_asked": "Wie ist die Stimmung gerade so zwischen Union und SPD?",
+        "question_intent": "Der Moderator möchte wissen, wie die SPD ihre Position nach dem schlechten Wahlergebnis einschätzt.",
+        "position": "Stegner bezeichnet das Ergebnis als 'bittere Niederlage' und betont, dass die Union mit 28 % nicht die angestrebten 40 % erreicht hat. Das zwingt beide Parteien, miteinander umzugehen. Dieser Satz ('erst das Land, dann die Partei') stammt von Willy Brandt. Stegner mahnt aber: Man könne nicht aus dem Satz ableiten, dass jedes mögliche Bündnis auch gemacht werden muss. Jede Seite habe ihre roten Linien.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet die Frage nach der Stimmung durch eine Analyse der Machtverhältnisse und nennt die konkrete Constraint-Situation. Er erklärt, warum Zusammenarbeit erforderlich ist, warnt aber vor zu optimistischen Erwartungen.",
+        "quotes": [
+          {
+            "text": "Wir haben natürlich eine bittere Niederlage eingesteckt, daran lässt sich nicht schönreden. Platz drei hinter den rechten. Wir haben zwar 16 %, aber die Union nicht 40 sondern 28.",
+            "timestamp": "00:04:14",
+            "context": "Stegner charakterisiert die Wahlniederlage der SPD und relativiert das stärkere Abschneiden der Union."
+          },
+          {
+            "text": "Es gibt noch eine andere politische Mehrheit, und das zwingt einen dazu, miteinander gut umzugehen.",
+            "timestamp": "00:04:14",
+            "context": "Stegner erklärt, dass die neuen Machtverhältnisse Kooperation erzwingen."
+          }
+        ],
+        "concrete_statements": [
+          "Weder gibt es die SPD im Winterschlussverkauf, noch sind unsere Grundüberzeugungen flexibel."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen 2025",
+          "Wahlergbnisse Bundestagswahl",
+          "SPD-Union-Verhältnis"
+        ]
+      },
+      {
+        "title": "Abstimmung mit Rechtsradikalen vor der Wahl",
+        "timestamp_range": "00:06:41 - 00:08:05",
+        "theme_description": "Stegner kritisiert, dass die Union möglicherweise mit der AfD abstimmt, während die SPD demonstrierte Differenzen.",
+        "question_asked": "Der Moderator verweist auf Kritik an der Union wegen Abstimmungen mit der AfD versus SPD-Verhalten.",
+        "question_intent": "Klärung, ob die SPD eine glaubwürdige Alternative darstellt gegenüber der Union.",
+        "position": "Stegner argumentiert, dass es einen fundamentalen Unterschied gibt: Die SPD stimmt nicht mit Rechtsradikalen ab. Die Union ist vorher zur SPD gekommen und hat mit der Drohung eines 'Nein' die Abstimmung mit Rechtsradikalen getan. Das wurde demonstriert, und 'im Gegensatz zu BSW und FDP haben sie in der Union noch nicht realisiert, dass das ein Fehler war'. Stegner sieht darin ein Vertrauensproblem für die künftige Zusammenarbeit.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner antwortet substantiell, aber lenkt die Frage nicht auf seine Position ab, sondern nutzt sie, um ein Versprechen der Union zu kritisieren. Er adressiert die implizite Frage nach SPD-Verlässlichkeit, indem er die Union kritisiert.",
+        "quotes": [
+          {
+            "text": "die SPD empfindet es Grund legend anders, stimmt nicht mit Rechtsradikalen ab. Man kommt vor allen Dingen auch nicht vorher zur SPD und sagt, wenn er nicht unterschreibt stimmen wir mit den Rechtsradikalen.",
+            "timestamp": "00:06:41",
+            "context": "Stegner verteidigt SPD-Position gegen Vorwürfe fehlender Kooperation."
+          },
+          {
+            "text": "Im Gegensatz zu BSW und FDP haben sie in der Union noch nicht realisiert, dass das ein Fehler war.",
+            "timestamp": "00:06:41",
+            "context": "Kritik an mangelnder Reflexion in der Union."
+          }
+        ],
+        "concrete_statements": [
+          "Die SPD stimmt nicht mit Rechtsradikalen ab.",
+          "Die Union hat demonstriert, dass sie bereit ist, mit der AfD abzustimmen."
+        ],
+        "related_bundestag_topics": [
+          "AfD-Abstimmungen",
+          "Koalitionsregeln",
+          "Kanzlerwahlrecht"
+        ]
+      },
+      {
+        "title": "Koalitionsverhandlungen und taktische Vorwürfe",
+        "timestamp_range": "00:08:05 - 00:08:31",
+        "theme_description": "Austausch über die Gestaltung und Taktik der Koalitionsverhandlungen.",
+        "question_asked": "Thorsten Frei wirft der SPD vor, nicht kooperativ zu sein beim Abstimmungsgesetz. Stegner beantwortet das.",
+        "question_intent": "Wer trägt die Schuld für gescheiterte Abstimmungsabsprachen vor der Wahl?",
+        "position": "Stegner kontert, dass es anders war: Der Union wurde gesagt, sie müsse entweder mitbestimmen oder die Union macht es anders. Selbst das 'Friedensangebot', auszusteigen, wurde nicht angenommen. Stegner deutet an, dass die Union nicht bereit war, konstruktiv zu arbeiten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet faktisch auf die Vorwürfe, aber bleibt in seiner Charakterisierung vage ('uns wurde gesagt'). Er liefert eine Gegenversion, verifiziert diese aber nicht mit Belegen.",
+        "quotes": [
+          {
+            "text": "Das stimmt nicht, es geht darum, dass uns gesagt wurde, entweder bestimmt mit oder wir machen es anders. Selbst das Friedensangebot, auf den für FDP Vorschlag auszusteigen, wurde nicht angenommen.",
+            "timestamp": "00:08:05",
+            "context": "Stegner korrigiert FreIs Darstellung der Vorverhandlungen."
+          }
+        ],
+        "concrete_statements": [
+          "Die SPD hat Ausstiegsoptionen angeboten, die Union hat diese nicht angenommen."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Vertrauensfragen"
+        ]
+      },
+      {
+        "title": "Regierungsbildung und Koalitionsunfähigkeit",
+        "timestamp_range": "00:24:28 - 00:25:44",
+        "theme_description": "Stegner mahnt die Union zur Professionalität und warnt vor Blockaden.",
+        "question_asked": "Moderator fragt implizit: Können Union und SPD überhaupt regieren?",
+        "question_intent": "Besteht Hoffnung auf stabile Koalition?",
+        "position": "Stegner kritisiert die 500 Fragen der Union an NGOs als Ablenkung. Er kann sich 'keine Situation vorstellen, wo wir in Arbeitsgruppen sitzen, und nachmittags erlebe ich, dass die Union solche Anfragen rausschickt'. Sein Rat: 'ein bisschen runter zu können'. Die SPD betreibt 'Politik professionell', das sollte man sehen. Deswegen ist Stegner dafür, dass man sich zusammensetzt und überlegt, 'was wir für unser Land tun können'. Es geht um 'dringende' Probleme wie Rezessionsspirale.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner antwortet nicht direkt auf die Koalitionsfähigkeit, sondern kritisiert stattdessen die Union-Taktik. Er signalisiert Bereitschaft, aber unter der Bedingung von Union-Professionalisierung.",
+        "quotes": [
+          {
+            "text": "Ich kann mir keine Situation vorstellen, wo wir in Arbeitsgruppen sitzen, und nachmittags erlebe ich, dass die Union solche Anfragen rausschickt.",
+            "timestamp": "00:24:28",
+            "context": "Stegner kritisiert Union-Verhalten als unproduktiv."
+          },
+          {
+            "text": "Wir betreiben Politik professionell. Das sollte man auch merken, bei dem was wir tun.",
+            "timestamp": "00:24:28",
+            "context": "Stegner kontrastiert SPD-Verhalten mit Union-Verhalten."
+          }
+        ],
+        "concrete_statements": [
+          "Die SPD ist bereit für konstruktive Koalitionsverhandlungen.",
+          "Die Union sollte professionelle Standards einhalten und keine Ablenkungsmanöver fahren."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Parlamentarische Kultur"
+        ]
+      },
+      {
+        "title": "Ablehnung rechnerischer Lösungen mit der AfD",
+        "timestamp_range": "00:28:24 - 00:31:55",
+        "theme_description": "Stegner erklärt die SPD-Linie zur Zusammenarbeit mit der AfD bei Verfassungsänderungen.",
+        "question_asked": "Moderator und andere Gäste fragen implizit: Wird die SPD bei der AfD-Unterstützung für ein Sondervermögen eingeben?",
+        "question_intent": "Wird die SPD-Unterstützung für Grundgesetzsänderungen von der Stabilität abhängen?",
+        "position": "Stegner sagt klar: Jemand, der nicht versteht, dass man der SPD nicht kommt mit der Drohung 'entweder ihr stimmt mit Rechtsradikalen ab', ist nicht für die Kanzlerschaft geeignet. Der Unterschied zwischen Demokraten und Demokratiefeinden ist, dass man sich mit den anderen Nachbarn einigen muss. Stegner deutet an, dass die Union verstehen muss, dass die Abstimmung mit der AfD ein Fehler war. Es könnte wieder passieren, wenn die Union nicht nachgibt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner definiert klar seine rote Linie: keine Abstimmungen mit der AfD. Er erklärt das Prinzip (Demokraten einigen sich untereinander, nicht mit Demokratiefeinden) und formuliert implizite Bedingungen für die SPD-Zustimmung.",
+        "quotes": [
+          {
+            "text": "Ich habe gesagt, dass jemand der nicht versteht, dass man der sozialdemokratischen Partei nicht kommen kann, entweder ihr stimmt mitunter bestimmt mit Rechtsradikalen, der sei nicht dafür geeignet Bundeskanzler zu werden. Denn was Demokraten unterscheidet zwischen Demokratiefeinden, dass man sich einigen muss, mit den anderen Nachbarn nicht zusammen.",
+            "timestamp": "00:31:55",
+            "context": "Stegner antwortet auf Frage, ob er Merz zum Kanzler wählt, obwohl er ihn für ungeeignet hält."
+          }
+        ],
+        "concrete_statements": [
+          "Wer mit Rechtsradikalen abstimmt, ist nicht Kanzler-geeignet.",
+          "Die Demokratie besteht darauf, dass sich Demokraten einigen, nicht mit Feinden zusammenarbeiten."
+        ],
+        "related_bundestag_topics": [
+          "AfD-Kordon",
+          "Verfassungsänderungen",
+          "Sondervermögen Bundeswehr"
+        ]
+      },
+      {
+        "title": "AfD-Sperrminorität und Verfassungsänderungen",
+        "timestamp_range": "00:33:17 - 00:34:47",
+        "theme_description": "Stegner thematisiert die Gefahr von AfD-Vetomacht bei Verfassungsänderungen.",
+        "question_asked": "Thorsten Frei erklärt, dass Zweidrittelmehrheiten nur mit der AfD erreichbar sind.",
+        "question_intent": "Wie sollen Verfassungsänderungen durchgesetzt werden, wenn Die Linke nicht zustimmt und nur die AfD könnte?",
+        "position": "Stegner beschreibt, dass wenn Deutschland instabil ist (wie mit Trump und Putin), kann man sich 'rein stolpern' nicht erlauben. Er positioniert klar: Die SPD macht 'mit Demokratiefeinden keine gemeinsame Sache'. Aber grundsätzlich habe die Union 'diese Klarheit nicht'. Stegner gibt zu, dass es komplex ist, aber es ist ausgeschlossen, dass die SPD mit Rechtsextremisten zusammenarbeitet — 'das geht nicht'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die implizite Frage (wie löst man das Dilemma?) und macht klar, dass die SPD dieses Dilemma nicht löst, indem sie mit der AfD paktiert. Er akzeptiert die Complexity, aber sieht die rote Linie als nicht verhandelbar.",
+        "quotes": [
+          {
+            "text": "Aber rein stolpern, das können wir uns nicht erlauben. Wenn Deutschland instabil wäre, so wie es mit Trump und Putin gerade ist, das kann man sich nicht erlauben.",
+            "timestamp": "00:37:48",
+            "context": "Stegner warnt vor Verhandlungen, die in Chaos führen."
+          },
+          {
+            "text": "Wir machen mit Demokratiefeinden keine gemeinsame Sache. Das geht nicht.",
+            "timestamp": "00:38:42",
+            "context": "Stegner beantwortet die Frage, ob die SPD mit AfD-Stimmen regiert, klar ablehnend."
+          }
+        ],
+        "concrete_statements": [
+          "Die SPD arbeitet nicht mit der AfD zusammen.",
+          "Verfassungsänderungen ohne AfD-Hilfe müssen gefunden werden."
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsänderungen",
+          "Sondervermögen",
+          "Sperrminorität"
+        ]
+      },
+      {
+        "title": "Schuldenbremsenreform und Investitionen",
+        "timestamp_range": "00:46:16 - 00:50:07",
+        "theme_description": "Stegner verhandelt über die notwendige Schuldenbremsenreform und Investitionen.",
+        "question_asked": "Moderator fragt, ob die Schuldenbremsen-Ablehnung der Union ein Red Line ist.",
+        "question_intent": "Wie verbindlich ist die SPD-Forderung nach Schuldenbremsenreform?",
+        "position": "Stegner sagt, dass man schon vor der Wahl wusste, dass die Schuldenbremse reformiert werden muss. Man braucht 'nicht die Brücke' (Trump, Putin), um das zu rechtfertigen. Die SPD hat sich bei Migration unterschätzt, und Stegner gibt zu, dass Trump nicht sein Favorit ist, aber die Schuldenbremsenreform muss 'unabhängig davon' geschehen. Deutschland braucht Investitionen in Infrastruktur und Umgestaltung der Wirtschaft für Wachstum und Beschäftigung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner adressiert die Frage direkt und begründet die Schuldenbremsen-Forderung strukturell, nicht situativ. Er lehnt ab, dass Trumps Politik oder Putins Drohungen der Grund sein sollten, und positioniert die Schuldenbremsenreform als prinzipielle Notwendigkeit.",
+        "quotes": [
+          {
+            "text": "Das ist falsch, man wusste vor der Wahl, dass man die Schuldenbremse reformieren muss. Man braucht gar nicht die Brücke. Man könnte auch sagen, man hat sich in einigen Einstellungen getäuscht.",
+            "timestamp": "00:46:16",
+            "context": "Stegner antwortet auf Robins Alexanders Kritik, die SPD instrumentalisiere Trump zur Schuldenbremsenreform."
+          },
+          {
+            "text": "Wir müssen investieren in die Infrastruktur und die Umgestaltung der Wirtschaft. Wir wollen das Wachstum und Beschäftigung entsteht.",
+            "timestamp": "00:46:16",
+            "context": "Stegner erklärt die Ziele der Schuldenbremsenreform."
+          }
+        ],
+        "concrete_statements": [
+          "Die Schuldenbremse muss reformiert werden.",
+          "Investitionen in Infrastruktur und Wirtschaft sind notwendig für Wachstum."
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Fiskalpolitik",
+          "Konjunkturprogramme"
+        ]
+      },
+      {
+        "title": "Demokratievergleich Linke und AfD",
+        "timestamp_range": "00:57:10 - 01:03:06",
+        "theme_description": "Stegner diskutiert, ob es möglich ist, mit der Linkspartei zu verhandeln, während die Brandmauer zur AfD hält.",
+        "question_asked": "Kann die Union mit der Linkspartei reden, wenn sie die Brandmauer zur AfD aufrechterhalten will?",
+        "question_intent": "Sind die Lager symmetrisch zu behandeln oder gibt es Unterschiede?",
+        "position": "Stegner verweist auf das Beispiel der Weimarer Republik: Man darf Fragen nicht gefährden, die die Demokratie selbst betreffen. Aber: Wenn demokratische Parteien sich nicht einigen können, ist die Demokratie gefährdet. Stegner sagt, die SPD wird nicht behaupten, man könne mit der Linkspartei über die NATO reden, aber 'ob man sich nicht verständigen kann, punktuell, zum Beispiel' — das muss man 'sorgfältig nachdenken'. Die SPD und Grünen sind 'neu gegründet worden', es gibt 'Riesenunterschiede' zur AfD. Stegner kritisiert die Union dafür, ein Unvereinbarkeitsvotum zu treffen, das asymmetrisch angewendet wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Stegner weicht der direkten Ja/Nein-Frage aus, indem er sie historisiert und kontextualisiert. Er beantwortet, indem er die Frage reframt: Es geht nicht um Symmetrie, sondern um Notwendigkeit. Das ist elegante Verschiebung, keine volle Antwort auf die gestellte Frage.",
+        "quotes": [
+          {
+            "text": "Wenn man sich das Ende der drei Weimarer Republik anschaut. Man darf nicht über Fragen die Demokratie gefährden. Das wenn sich auch die Zuschauer denken. Wenn die demokratischen Parteien sich nicht in der Lage fühlen, sich nicht zu einigen, dann ist die Demokratie gefährdet.",
+            "timestamp": "00:57:26",
+            "context": "Stegner historisiert die Frage."
+          },
+          {
+            "text": "Wenn ich sage ich schließ etwas aus, dann sagen wir im Zweifelsfall nehmen wir in Kauf, dass das Gebäude ein Schaden kriegt.",
+            "timestamp": "01:03:06",
+            "context": "Stegner warnt vor zu starren Brandmauern."
+          }
+        ],
+        "concrete_statements": [
+          "Die SPD wird nicht mit der Linken über NATO verhandeln.",
+          "Aber punktuelle Verständigung mit der Linken muss möglich sein.",
+          "Die SPD und Grünen unterscheiden sich fundamental von der AfD."
+        ],
+        "related_bundestag_topics": [
+          "Brandmauer",
+          "Verbotsdebatten",
+          "Koalitionsfähigkeit"
+        ]
+      },
+      {
+        "title": "Bürgergeld und Arbeitsmarktintegration",
+        "timestamp_range": "01:07:28 - 01:12:46",
+        "theme_description": "Stegner verhandelt über die Reform des Bürgergeldes und Arbeitsanreize.",
+        "question_asked": "Wie sollen SPD und Union sich beim Bürgergeld verständigen?",
+        "question_intent": "Kann die Union das Bürgergeld abschaffen und findet die SPD das akzeptabel?",
+        "position": "Stegner argumentiert: 25 % der Bürgergeld-Empfänger verdienen nicht genug. Diese möchten wir 'über Tariflöhne entlasten'. Als Moderator auf die Ukraine-Flüchtlinge hinweist, erklärt Stegner: Die SPD hat geändert, damit 'die ukrainischen Flüchtlinge ordentlich zu behandeln' nicht die Kunden bezahlen müssen. Der Part der nicht arbeiten will ist 'so klein', der Teil wo Sparen geht ist 'so klein'. Stegner verweigert, das als Hauptproblem zu behandeln: 'wir sollten keine Debatte führen, als sei das unser Hauptproblem'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf die konkrete Bürgergeld-Frage, aber reframt sie als Randaspekt größerer Probleme. Er weigert sich, das als zentral zu diskutieren, statt substantiell zu argumentieren, warum Reformen an Tariflöhnen wichtiger sind.",
+        "quotes": [
+          {
+            "text": "Die 25 %, die Bürgergeld bekommen, aber nicht genügend Geld verdient, die möchten wir über Tariflöhne entlasten.",
+            "timestamp": "01:07:28",
+            "context": "Stegner formuliert SPD-Position zum Bürgergeld."
+          },
+          {
+            "text": "Ich finde auch das Leute arbeiten, die das können, wir sollten keine Debatte führen, als sei das unser Hauptproblem.",
+            "timestamp": "01:12:34",
+            "context": "Stegner ordnet das Bürgergeld-Thema als Nebenschauplatz ein."
+          }
+        ],
+        "concrete_statements": [
+          "SPD will Bürgergeld durch Tariflohnpolitik ergänzen.",
+          "Die Arbeitsbereitschaft ist nicht das Hauptproblem."
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Arbeitsmarkt",
+          "Sozialpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die SPD hat 16 % erreicht, die Union 28 %",
+        "timestamp": "00:04:14"
+      },
+      {
+        "claim": "Die Union hat mit der AfD abgestimmt, nachdem sie zur SPD kam und die SPD nicht einigen konnte",
+        "timestamp": "00:06:41"
+      },
+      {
+        "claim": "Bei Verfassungsänderungen für ein Sondervermögen Bundeswehr braucht man eine Zweidrittelmehrheit, die ohne AfD nicht erreichbar ist",
+        "timestamp": "00:33:17"
+      },
+      {
+        "claim": "25 % der Bürgergeld-Empfänger verdienen nicht genug durch Lohnarbeit",
+        "timestamp": "01:07:28"
+      },
+      {
+        "claim": "Die SPD und Grünen sind neu gegründet worden, es gibt Riesenunterschiede zur AfD",
+        "timestamp": "01:03:06"
+      }
+    ]
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-16-april-2025-100",
+    "video_id": "lanz-2025-04-16",
+    "politician": "Jens Spahn",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "75ce79209a694fb0",
+    "transcript_chars": 33443,
+    "caption_lines": 1679,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15226,
+    "tokens_out": 8670,
+    "cost_usd": 0.0234304,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.535Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, CDU-Fraktionsvorsitzender, präsentierte sich als pragmatischer Befürworter regelbasierter Governance gegenüber der AfD, betonte Problemachwung als Gegenmittel gegen Extremismus und verteidigte die neue Koalitionsstrategie gegen Vorwürfe der Normalisierung. Der Ton war selbstbewusst, aber defensiv gegenüber Skeptizismus bezüglich seiner Rhetorik zur rechtsextremen Partei.",
+    "themes": [
+      {
+        "title": "Verhältnis zu Bärbel Bas und Koalitionsdynamik",
+        "timestamp_range": "00:01:45 - 00:02:47",
+        "theme_description": "Spahn beschreibt persönliches Verhältnis zu SPD-Kollegin und drückt Zusammenarbeit aus.",
+        "question_asked": "Moderator fragt, ob Spahn und Bas sich mögen und ob sie Söder duzen.",
+        "question_intent": "Erfassung der zwischenpersonalen Dynamik zwischen den Koalitionspartnern.",
+        "position": "Spahn betont langjährige Zusammenarbeit in Gesundheitspolitik: „Wir schätzen uns, haben in der letzten großen Koalition mit dem Thema Gesundheit zusammengearbeitet.“ Er bestätigt, Söder zu duzen, drückt Freude auf erneuerte Zusammenarbeit aus.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn beantwortete beide gestellten Fragen direkt: persönliches Verhältnis (Wertschätzung) und Duzerei mit Söder (ja), ohne Ausweichmanöver.",
+        "quotes": [
+          {
+            "text": "Wir schätzen uns, haben in der letzten großen Koalition mit dem Thema Gesundheit zusammengearbeitet. Ich freue mich, dass wir das wieder machen.",
+            "timestamp": "00:01:45",
+            "context": "Auf Frage zu persönlichem Verhältnis zu Bärbel Bas."
+          }
+        ],
+        "concrete_statements": [
+          "Duzerei mit Söder: ja",
+          "Schätzt Zusammenarbeit mit Bas in Gesundheitspolitik"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Regierungsbildung",
+          "Personalien"
+        ]
+      },
+      {
+        "title": "Carsten Linnemann und Generalsekretäramt",
+        "timestamp_range": "00:03:05 - 00:03:47",
+        "theme_description": "Spahn erklärt Entscheidung Linnemanns, Generalsekretär zu bleiben statt Ministerposten anzunehmen.",
+        "question_asked": "Moderator fragt, ob Linnemann-Entscheidung auch für Spahn gut ist.",
+        "question_intent": "Bewertung der Personalentscheidung und deren Auswirkungen auf Parteistruktur.",
+        "position": "Spahn bestätigt positive Einschätzung und lobt Linnemanns Fähigkeiten für Parteiführung: „Carsten Linnemann und ich arbeiten seit vielen Jahren gut freundlich zusammen. Er steht dafür, dass die Partei weiterhin noch stark bleiben wird in Regierungszeit.“",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn bewertete die Entscheidung unmittelbar als positiv und begründete sie mit Linnemanns Rolle für Parteigeschlossenheit und -stärke.",
+        "quotes": [
+          {
+            "text": "Carsten Linnemann und ich arbeiten seit vielen Jahren gut freundlich zusammen. Ich freue mich sehr, dass er dafür sorgen wird, dass die Partei noch ausreichend stattfinden wird. Er steht dafür, dass die Partei weiterhin noch stark bleiben wird in Regierungszeit.",
+            "timestamp": "00:03:28",
+            "context": "Auf Frage zur Bewertung der Linnemanns-Entscheidung als Generalsekretär."
+          }
+        ],
+        "concrete_statements": [
+          "Linnemann bleibt Generalsekretär der CDU",
+          "Lange gute Zusammenarbeit mit Linnemann",
+          "Wichtig für Parteigeschlossenheit in Regierungszeit"
+        ],
+        "related_bundestag_topics": [
+          "CDU-Führung",
+          "Regierungsbildung"
+        ]
+      },
+      {
+        "title": "Ministeriumsverteilung und Koalitionsabsprachen",
+        "timestamp_range": "00:06:19 - 00:07:32",
+        "theme_description": "Spahn verteidigt Ministeriumsverteilung zwischen CDU/CSU und SPD gegen Kritik.",
+        "question_asked": "Moderator wirft Spahn vor, SPD-Ministerinnen seien bevorzugt; ob Merz einen Fehler gemacht hat.",
+        "question_intent": "Bewertung, ob die Ressourcenverteilung fair ist und ob Union schlecht verhandelt hat.",
+        "position": "Spahn rahmt Ministeriumsverteilung als bewusst ausgehandelt und ausgewogen. Lehnt ‚Wer-hat-sich-durchgesetzt'-Perspektive ab: „Ich halte wenig davon zu schauen wer macht was. Entweder wir schaffen das gemeinsam SPD und Union... diese Große Koalition muss liefern. Sonst gibt es in vier Jahren ein ganz böses Erwachen.“ Warnt vor Vertrauensverlust als Konsequenz.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn vermied direktes Eingehen auf Konkrete Frage (war es ein Fehler?), sondern lenkte auf notwendige Koalitionssolidarität und Vertrauensfrage um. Keine explizite Rechtfertigung der einzelnen Ressorts.",
+        "quotes": [
+          {
+            "text": "Ich halte wenig davon zu schauen wer macht was. Entweder wir schaffen das gemeinsam SPD und Union, man fragt immer wer hat sich wohl durchgesetzt, diese Große Koalition muss liefern. Sonst gibt es in vier Jahren ein ganz böses Erwachen, wir haben jetzt in einem massiven Vertrauensverlust.",
+            "timestamp": "00:06:19",
+            "context": "Auf Kritik an Ministeriumsverteilung und Frage, ob Merz Fehler gemacht hat."
+          }
+        ],
+        "concrete_statements": [
+          "Gesamtverteilung Ministerien wurde miteinander vereinbart",
+          "Gute Aufstellung mit SPD möglich",
+          "Koalitionsmuss gemeinsam liefern, sonst Vertrauensverlust mit Folgen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Regierungsbildung",
+          "AfD-Aufstieg"
+        ]
+      },
+      {
+        "title": "AfD-Strategie und innere Sicherheit",
+        "timestamp_range": "00:07:44 - 00:08:25",
+        "theme_description": "Spahn antwortet auf Frage, wie die Koalition den Aufstieg der AfD kleiner kriegen will.",
+        "question_asked": "Moderator fragt, wie die Regierung den großen Block der Rechtsextremen kleiner kriegen will.",
+        "question_intent": "Konkrete Maßnahmen gegen AfD-Wählerzuwachs.",
+        "position": "Spahn setzt auf Problem-Lösung statt Rhetorik: „Gut regieren, illegale Migration weitestgehend beenden, Jobs sichern, für innere Sicherheit sorgen.“ Betont ‚Messerattacken' als öffentliche Besorgnis. Erklärt: „Fernsehsendungen helfen nicht, reden und schreiben hilft nicht, das einzige was hilft ist tun, umsetzen, sodass es im Alltag spürbar wird.“ Hohe Erwartungen an Wahlverhalten im Februar.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn gab konkrete Politikfelder an (Migration, Sicherheit, Jobs) und explizite Strategie (Problemlösung statt Rhetorik). Antwort adressierte direkt die Frage nach Anti-AfD-Maßnahmen.",
+        "quotes": [
+          {
+            "text": "Gut regieren, illegale Migration weitestgehend beenden, Jobs sichern, für innere Sicherheit sorgen. Wir haben so viel Messerattacken in Deutschland, das beschäftigt viele nachvollziehbarer Weise. Damit müssen wir im Alltag spürbar einen Unterschied machen. Fernsehsendungen helfen nicht, reden und schreiben hilft nicht, das einzige was hilft ist tun, umsetzen, sodass es im Alltag spürbar wird.",
+            "timestamp": "00:07:44",
+            "context": "Auf Frage, wie die Koalition die AfD kleiner kriegen will."
+          }
+        ],
+        "concrete_statements": [
+          "Illegale Migration weitestgehend beenden",
+          "Jobs sichern",
+          "Innere Sicherheit stärken",
+          "Erfolg gemessen an Alltags-Spürbarmachung, nicht Rhetorik"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Aufstieg",
+          "Migration",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Umgang mit AfD im Bundestag und Spielregeln",
+        "timestamp_range": "00:09:04 - 00:11:06",
+        "theme_description": "Debatte darüber, wie der Bundestag mit AfD-Vertreter:innen umgehen soll – Regelwerk-Konformität vs. spezielles Ausschlussvorgehen.",
+        "question_asked": "Moderator verweist auf Einlassungen Spahns zu Spielregeln-Einhaltung; Bas warnt vor Sicherheitsrisiken und Normalisierung.",
+        "question_intent": "Konkretisierung: Sollte AfD unter regulären Regeln oder speziellen Restriktionen agieren können?",
+        "position": "Spahn plädiert für Regelwerk-Konsistenz: „Die Regeln, die gelten im Bundestag, die Frage ist, ändern wir die Regeln oder zwingen wir alle nach den Regeln zu spielen. Ich bin eher für Letzteres.“ Erklärt Vizepräsidenten-Wahl brauche Mehrheit. Persönlich erlebt: „Hass und Hetze, teilweise schwulenfeindliche Sprüche... mir muss keiner erzählen, was für Typen in deren Reihen sitzen.“ Aber: „Die Frage ist nur, wie gehen wir damit so um, dass wir zum einen Vertrauen zurückgewinnen durch gute Politik und gleichzeitig ihnen nicht die Chance geben, diese Opferrolle einzunehmen.“",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn erklärte sein Regelwerk-Verständnis klar, adressierte aber nur partiell die konkrete Sicherheitsfrage von Bas (Geheimschutzgremien-Zugang, Verfassungsschutz-Beobachtung). Deutete Opferrolle-Prävention als Gegenpunkt, statt direkt Sicherheits-Bedenken zu widerlegen.",
+        "quotes": [
+          {
+            "text": "Die Regeln, die gelten im Bundestag, die Frage ist, ändern wir die Regeln oder zwingen wir alle nach den Regeln zu spielen. Ich bin eher für Letzteres, dass wir die Regeln gelten lassen und jeder muss sich an die Regeln halten.",
+            "timestamp": "00:09:04",
+            "context": "Auf Frage zur Art des Umgangs mit AfD-Vertreter:innen."
+          },
+          {
+            "text": "Ich erlebe ganz persönlich, nicht nur im Pandemiejahr, bis heute, Hass und Hetze, teilweise schwulenfeindliche Sprüche, wenn ich vorbei gehe an den Reihen der AfD Abgeordnete, mir muss keiner erzählen, was für Typen in deren Reihen sitzen, das weiß ich.",
+            "timestamp": "00:09:04",
+            "context": "Auf die Frage, wie man mit AfD umgehen solle, persönliche Erfahrung."
+          }
+        ],
+        "concrete_statements": [
+          "Regelwerk-Konformität für alle (keine Regeländerung)",
+          "Vizepräsidenten-Kandidat braucht Mehrheit",
+          "Parlamentarische Fragerechte für Opposition",
+          "Wichtig: Nicht AfD die Opferrolle geben",
+          "Neue Geschäftsordnung: Abwahl von Vorsitzenden möglich"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Umgang",
+          "Parlamentarische Regeln",
+          "Demokratische Abwehrmaßnahmen"
+        ]
+      },
+      {
+        "title": "Vorwurf der ‚Normalisierung' und Verhältnis zu neuer Rechten",
+        "timestamp_range": "00:14:12 - 00:23:13",
+        "theme_description": "Spahn wehrt sich gegen Vorwurf, die AfD zu normalisieren, und adressiert Frage nach Nähe zu internationaler neuer Rechter (Trump, Thiel).",
+        "question_asked": "Moderator wirft vor: Spahn umschleiche einen neuen Zeitgeist, setze ‚Ja-aber'-Rhetorik ein (z.B. zu Trump, J.D. Vance); Verweis auf Fotos mit Peter Thiel.",
+        "question_intent": "Überprüfung, ob Spahn die neue Rechte rhetorisch legitimiert oder verharmlost.",
+        "position": "Spahn dementiert Normalisierungs-Absicht: „Mir wird Normalisierung in den Mund gelegt. Das habe ich nicht benutzt.“ Warnt seinerseits vor Empörungsschleifen, die Debatte unmöglich machen. Historischer Verweis: Böhringer-Fall in letzter GroKo. Zu Trump/Thiel: „Das ist mindestens zehn Jahre her, ich weiß nicht, welche Fotos...“ Legt dar: Bürger lehnen Ampel-Politik ab, nicht weil ‚Rechtsruck', sondern weil Probleme (Migration, Sicherheit) ungelöst. Setzt: „Meine Empfehlung ist, Probleme lösen, hart arbeiten und nicht diese Debatten links und rechts versuchen zu vermeiden.“",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Spahn dementierte den Normalisierungs-Vorwurf und lenkte stattdessen auf Kritik an ‚Empörungsschleifen' und mangelnde Problemlösung der Ampel. Substantiell zur Frage (Verhalten gegenüber neuer Rechter), aber mit Pivot zur Verteidigung gegen den Vorwurf und Gegenpunkt zur Ampel.",
+        "quotes": [
+          {
+            "text": "Mir wird Normalisierung in den Mund gelegt. Das habe ich nicht benutzt, aber ich erlebe überall, dass versucht wird, da etwas zu konstruieren.",
+            "timestamp": "00:14:12",
+            "context": "Auf Vorwurf der Normalisierung der AfD."
+          },
+          {
+            "text": "Meine Empfehlung ist, Probleme lösen, hart arbeiten und nicht diese Debatten links und rechts versuchen zu vermeiden. Wir müssen in der Sache Probleme lösen, das ist der Kern.",
+            "timestamp": "00:21:49",
+            "context": "Auf Vorwurf ‚Ja-aber'-Rhetorik zu Trump und neuer Rechter."
+          }
+        ],
+        "concrete_statements": [
+          "Bestreitet: hat nicht ‚Normalisierung' gesagt",
+          "Kritik an Empörungsschleifen statt Sachdebatten",
+          "Empfehlung: Probleme lösen statt ideologische Debatten",
+          "Fotos mit Thiel: mindestens 10 Jahre alt",
+          "Wähler lehnen Ampel wegen ungelöster Probleme ab, nicht Rechtsrutsch"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Umgang",
+          "Neue Rechte",
+          "Migration",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Einkommensteuer-Senkung und Wirtschaftswachstum",
+        "timestamp_range": "00:26:42 - 00:27:55",
+        "theme_description": "Spahn erklärt, unter welchen Voraussetzungen Einkommensteuer sinken wird und in welcher Reihenfolge.",
+        "question_asked": "Moderator fragt konkret: Wird die Einkommensteuer gesenkt? (Anlass: unterschiedliche Aussagen von Esken/Merz zur Verbindlichkeit)",
+        "question_intent": "Klarstellung der konkreten Steuerpläne und deren Verbindlichkeit im Koalitionsvertrag.",
+        "position": "Spahn beschreibt Sequenz: „30 % Abschreibungen für Investitionen in Deutschland die ersten drei Jahre. Die Unternehmensteuer senken ab 2028... Dann entsteht Wachstum und mit diesem Wachstum entsteht Spielraum für die Einkommensteuer zu senken. So wollen wir es machen.“ Betonung: Voraussetzung ist vorheriger Investitions- und Wachstums-Fokus.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn legte konkrete Reihenfolge und Bedingungen dar (Investition → Unternehmensteuer → Wachstum → Einkommensteuer). Beantwortete die Frage nach Steuersenkung mit kausaler Sequenz.",
+        "quotes": [
+          {
+            "text": "30 % Abschreibungen für Investitionen in Deutschland die ersten drei Jahre. Die Unternehmensteuer senken ab 2028, daraus dann dies dauerhafte Standardqualität. Dann entsteht Wachstum und mit diesem Wachstum entsteht Spielraum für die Einkommensteuer zu senken.",
+            "timestamp": "00:27:00",
+            "context": "Auf Frage zur Einkommensteuer-Senkung."
+          }
+        ],
+        "concrete_statements": [
+          "30 % Abschreibungen für Investitionen (erste 3 Jahre)",
+          "Unternehmensteuer ab 2028 senken",
+          "Wachstum als Voraussetzung für Einkommensteuer-Senkung",
+          "Reihenfolge ist entscheidend"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Steuerpolitik",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Vermögensteuer und Erbschaftsteuer",
+        "timestamp_range": "00:29:29 - 00:30:32",
+        "theme_description": "Spahn lehnt Vermögensteuer kategorisch ab; zu Erbschaftsteuer-Erhöhung weniger Klarheit.",
+        "question_asked": "Moderator fragt: Wird es eine Vermögensteuer geben? (Anlass: unterschiedliche Aussagen Merz/Bas)",
+        "question_intent": "Klärung zur Union-Position auf steuerpolitischen Elementen.",
+        "position": "Spahn antwortet kategorisch: „Nein“ (zur Vermögensteuer). Weitere Konkretisierung zu Erbschaftsteuer: „Ich kann ausschließen es wird keine Vermögensteuer in Deutschland unter Regierung der CDU/CSU geben.“",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn gab unmissverständliche Position ab (keine Vermögensteuer unter Union), ebenso zu Erbschaftsteuer (ausgeschlossen). Frage wurde direkt beantwortet.",
+        "quotes": [
+          {
+            "text": "Nein.",
+            "timestamp": "00:29:29",
+            "context": "Auf Frage, ob es Vermögensteuer geben wird."
+          },
+          {
+            "text": "Ich kann ausschließen es wird keine Vermögensteuer in Deutschland unter Regierung der CDU/CSU geben.",
+            "timestamp": "00:30:16",
+            "context": "Auf erneute Frage zur Vermögensteuer-Sicherheit."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Vermögensteuer unter Union-Führung",
+          "Keine Erbschaftsteuer-Erhöhung geplant"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Migration und Grenzkontrollen",
+        "timestamp_range": "00:31:14 - 00:37:33",
+        "theme_description": "Spahn verteidigt Migrationspolitik, Rückweisungen und Abschiebungen; adressiert europäische Koordination.",
+        "question_asked": "Moderator fragt: Werden die geplanten 2800 Flüge aus Afghanistan nicht stattfinden? Später: Wie funktioniert Zurückweisung an Grenze konkret?",
+        "question_intent": "Konkretisierung des Migrationspolitik-Planes unter Koalition.",
+        "position": "Spahn erklärt: Aktuelle Bundesregierung (noch nicht GroKo) verantwortet laufende Flüge; neue Koalition sagt: „So steht es im Vertrag keine weiteren Aufnahmeprogramme aus Afghanistan und Syrien.“ Zu Grenzkontrollen: „Wir haben vereinbart ersteinmal Gefährder zurückzubringen... Zurückweisungen an der Grenze finden heute schon statt. In Abstimmung, Friedrich Merz ist in Abstimmung mit unseren Nachbarländern, Polen, Frankreich, Österreich.“ Längerfristig: „Zurückweisungen an der Grenze kann nur ein Übergangsinstrument sein. Wir wollen die europäische Außengrenze sichern.“",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn differenzierte zwischen aktueller Regierung und Koalitionsplänen, konkretisierte aber nur partiell zu laufenden Abschiebeflügen. Grenzkontrollen wurden substantiell erklärt (europäische Koordination, Übergangsinstrument), ohne direktere Konkretheit zur Rückweisungs-Praxis zu erreichen.",
+        "quotes": [
+          {
+            "text": "Wir haben vereinbart ersteinmal Gefährder zurückzubringen. Die Migrationspolitik muss sich ändern.",
+            "timestamp": "00:33:13",
+            "context": "Auf Frage zu Abschiebungen und Rückweisungen."
+          },
+          {
+            "text": "Zurückweisungen an der Grenze finden heute schon statt. In Abstimmung, Friedrich Merz ist in Abstimmung mit unseren Nachbarländern, Polen, Frankreich, Österreich. Deswegen werden wir das zügig nach Regierungsübernahme machen.",
+            "timestamp": "00:33:35",
+            "context": "Auf Frage zu Grenzkontrollen und Zurückweisungs-Prozedur."
+          }
+        ],
+        "concrete_statements": [
+          "Keine neuen Aufnahmeprogramme aus Afghanistan/Syrien",
+          "Gefährder zurückweisen",
+          "Grenzkontrollen mit Nachbarländern (Polen, Frankreich, Österreich)",
+          "Rückweisungen sind Übergangsinstrument",
+          "Ziel: Europäische Außengrenze sichern",
+          "Deutschland muss ‚handlungsstark' agieren"
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Grenzkontrollen",
+          "EU-Politik"
+        ]
+      },
+      {
+        "title": "Mindestlohn und Tarifentwicklung",
+        "timestamp_range": "00:39:35 - 00:40:39",
+        "theme_description": "Spahn erklärt die Mindestlohn-Regelung und das angestrebte 15-Euro-Ziel.",
+        "question_asked": "Moderator fragt: Kommt die Erhöhung des Mindestlohns?",
+        "question_intent": "Konkretisierung zur Erfüllung des Wahlkampf-Versprechens '15 Euro Mindestlohn'.",
+        "position": "Spahn verweist auf Mindestlohnkommission: „Wir haben gemeinsam vereinbart, dass der Mindestlohn weiter von der Mindestlohnkommission geregelt wird. Mit Blick auf die Tarifentwicklungen... Er wird in absehbarer Zeit 15 Euro erreichen. Das liegt schon in der Lohnentwicklung drin.“",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn bestätigte das 15-Euro-Ziel, umging aber die konkreten Zeitangaben durch Verweis auf Mindestlohnkommission und ‚Lohnentwicklung'. Bas konkretisierte später (2026 als Ziel), Spahn lenkte eher auf prozessuale Abläufe.",
+        "quotes": [
+          {
+            "text": "Wir haben gemeinsam vereinbart, dass der Mindestlohn weiter von der Mindestlohnkommission geregelt wird. Mit Blick auf die Tarifentwicklungen... Er wird in absehbarer Zeit 15 Euro erreichen. Das liegt schon in der Lohnentwicklung drin.",
+            "timestamp": "00:39:35",
+            "context": "Auf Frage zur Mindestlohn-Erhöhung."
+          }
+        ],
+        "concrete_statements": [
+          "Mindestlohn bleibt unter Mindestlohnkommission-Regelung",
+          "15 Euro wird ‚in absehbarer Zeit' erreicht",
+          "Basiert auf Tarifentwicklung"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitspolitik",
+          "Lohnpolitik",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Soziale Sicherungssysteme und Rentenreform",
+        "timestamp_range": "00:40:39 - 00:44:48",
+        "theme_description": "Spahn adressiert die Systemkrise in Rente und Pflege; schlägt Kommission für Reformvorschläge vor.",
+        "question_asked": "Moderator verweist auf Linnemann-Aussage zu Rentenbaustelle; fragt: Warum lösen wir das nicht? Wie wird Reform aussehen?",
+        "question_intent": "Konkrete Reformpläne für generationengerechte Renten- und Pflegesysteme.",
+        "position": "Spahn diagnostiziert: „Das Problem ist die funktionieren immer nur noch wenn der Beitrag enorm gestiegen ist... sind jetzt schon auf Kante genäht.“ Erklärt gemeinsames Verständnis mit SPD („Brutto vom Netto“), warnt: Generationengerechtigkeit wird ignoriert. Lösung: „Wir legen unseren Fokus setzt auf Wachstum, Migration, aber wir werden für diese Themen auch Fokus setzen. Aus meiner Sicht brauchen wir genau das gleiche Kommission, die uns Vorschläge machen, wie wir das finanzieren, idealerweise bis Anfang nächsten Jahres, wir können diese Beiträge nicht steigen lassen.“",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn benannte die Systemkrise (Beitragszwang, Kante genäht), aber legte nur skizzenhaft Reformansatz dar (Kommission bis Anfang nächstes Jahr, Beitragsstabilität). Konkrete Maßnahmen (Erhöhung Erwerbstätigenalter, Kapitaldeckung, Ausweitung Versichertenkreis) wurden nicht expliziert.",
+        "quotes": [
+          {
+            "text": "Das Problem ist die funktionieren immer nur noch wenn der Beitrag enorm gestiegen ist. In der Rentenentwicklung ist es absehbar, in der Pflegeversicherung, die sind jetzt schon auf Kante genäht.",
+            "timestamp": "00:41:32",
+            "context": "Auf Frage zur Rentenreform und Systemkrise."
+          },
+          {
+            "text": "Aus meiner Sicht brauchen wir genau das gleiche, Kommission, die uns Vorschläge machen, wie wir das finanzieren, idealerweise bis Anfang nächsten Jahres, wir können diese Beiträge nicht steigen lassen.",
+            "timestamp": "00:41:32",
+            "context": "Auf Frage, wie Reform aussehen soll."
+          }
+        ],
+        "concrete_statements": [
+          "Systemkrise in Rente/Pflege erkannt",
+          "Beitragsstabilität muss Ziel sein",
+          "Kommission für Reformvorschläge bis Anfang nächstes Jahr",
+          "Generationengerechtigkeit ist Kriterium",
+          "Gemeinsames Verständnis mit SPD vorhanden"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Sozialpolitik",
+          "Generationengerechtigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Messerattacken in Deutschland sind häufig / beschäftigen viele Bürger",
+        "timestamp": "00:07:44"
+      },
+      {
+        "claim": "Spahn war Staatssekretär im Finanzministerium während letzter GroKo",
+        "timestamp": "00:14:12"
+      },
+      {
+        "claim": "Peter Böhringer war Ausschussvorsitzender und wurde abgewählt",
+        "timestamp": "00:16:14"
+      },
+      {
+        "claim": "Matthias Helferich wurde aus AfD-Fraktion ausgeschlossen und ist wieder Mitglied",
+        "timestamp": "00:20:08"
+      },
+      {
+        "claim": "Spahn hatte Fotokontakt mit Peter Thiel vor mindestens 10 Jahren",
+        "timestamp": "00:21:49"
+      },
+      {
+        "claim": "Unternehmensteuer-Senkung ab 2028 geplant",
+        "timestamp": "00:27:00"
+      },
+      {
+        "claim": "Die SPD und Union haben vereinbart, dass Mindestlohn von Mindestlohnkommission geregelt wird",
+        "timestamp": "00:39:35"
+      }
+    ]
+  }
+}

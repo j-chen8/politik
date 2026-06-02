@@ -1,0 +1,358 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-29-april-2025-100",
+    "video_id": "lanz-2025-04-29",
+    "politician": "Heidi Reichinnek",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "f09835a0d9657453",
+    "transcript_chars": 56484,
+    "caption_lines": 2789,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23165,
+    "tokens_out": 7920,
+    "cost_usd": 0.025106000000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-02T16:33:28.926Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Heidi Reichinnek, Vorsitzende der Linke-Fraktion im Bundestag, diskutierte in der Sendung ihre Position zu Außenpolitik (Ukraine, Trump), zum Merz-Kabinett (das sie als Lobbyisten-Club kritisiert) und zur Wohnungspolitik ihrer Partei (Mietendeckel). Sie sprach in insgesamt substantiellem Ton, wirkte dabei teilweise defensiv bei technischen Details zum Wohnungsmarkt.",
+    "themes": [
+      {
+        "title": "Diplomatische Lösung Ukraine und Trump",
+        "timestamp_range": "00:15:08 - 00:16:37",
+        "theme_description": "Frage, ob Heidi Reichinnek Trumps Ansatz einer diplomatischen Lösung im Ukraine-Konflikt unterstützt und unter welchen Bedingungen.",
+        "question_asked": "Markus Lanz fragt, ob Reichinnek Trumps Linie einer diplomatischen Lösung unterstützt und ob die Ukraine auf besetzte Gebiete und NATO-Mitgliedschaft verzichten sollte.",
+        "question_intent": "Moderator will klären, ob Die Linke bereit ist, konkrete territoriale/sicherheitspolitische Zugeständnisse für einen Frieden zu akzeptieren.",
+        "position": "Reichinnek unterstützt diplomatische Lösungen grundsätzlich, lehnt aber ab, selbst zu definieren, welche Zugeständnisse die Ukraine machen soll. Sie betont: 'Die Ukraine muss beteiligt werden und muss sagen, was sie bereit ist zu tun.' Sie steht 'an der Seite der Ukraine' und fordert 'mehr Druck auf Putin und Russland'. Sie lehnt es ab, 'der Ukraine zu sagen, was sie tun soll'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek beantwortet die Frage zur Unterstützung diplomatischer Lösungen (ja), weicht aber bei der konkreten Frage nach Gebietsabständigkeiten aus, indem sie betont, dass die Ukraine selbst entscheiden muss. Das adressiert die Frage nach ihrer Parteiposition nicht vollständig.",
+        "concrete_statements": [
+          "Wir unterstützen von Anfang an eine diplomatische Lösung.",
+          "Das Bild [Trump-Putin Treffen] ist ein Fortschritt zum ersten Treffen im Oval Office, aber es ist noch kein positives Zeichen.",
+          "Ich bin der festen Überzeugung, es braucht mehr Druck auf Putin und Russland.",
+          "Ich werde nicht diejenige sein, die sich erdreist wird, der Ukraine zu sagen, was sie tun sollen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir unterstützen von Anfang an eine diplomatische Lösung. Aber das was Trump macht ist, ist auf dem Rücken der Ukrainer eine Lösung zu basteln.",
+            "timestamp": "00:15:26",
+            "context": "Auf die Frage von Lanz, ob sie Trumps diplomatischen Ansatz unterstützt, erklärt sie die Unterschied zwischen Prinzip und Umsetzung."
+          },
+          {
+            "text": "Ich stehe an der Seite der Ukraine. Ich bin der festen Überzeugung, es braucht mehr Druck auf Putin und Russland.",
+            "timestamp": "00:16:37",
+            "context": "Reichinnek präzisiert ihre Position zu ihrem Verhältnis zur Ukraine, nachdem Lanz nach konkreten Zugeständnissen fragte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Hilfe",
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "NATO",
+          "Russland-Sanktionen"
+        ]
+      },
+      {
+        "title": "Kritik an fehlender Verlässlichkeit für Industrie",
+        "timestamp_range": "00:32:11 - 00:34:03",
+        "theme_description": "Forderung nach klaren politischen Signalen und Verlässlichkeit für die deutsche Autoindustrie.",
+        "question_asked": "Herbert Diess fragt indirekt, wie die Regierung die Industrie unterstützen kann; Reichinnek bringt das Thema ein.",
+        "question_intent": "Reichinnek möchte betonen, dass die Industrie politische Klarheit und Planungssicherheit braucht, statt Unverbindlichkeit.",
+        "position": "Reichinnek kritisiert mangelnde Verlässlichkeit in der Industriepolitik. Sie fordert 'klare Signale' der Politik für die Industrie und konkret: Staaten sollten E-Busse selbst abnehmen mit verhandelbaren Preisen. Besonders kritisiert sie das '\"wischiwaschikram\"' bei der Technologie-Offenheit. Sie betont, dass die Regierung Rahmenbedingungen schaffen muss, 'die im Sinne ihre Beschäftigten und für das Land arbeitet'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek formuliert eine klare politische Position: die Industrie braucht Verlässlichkeit, nicht Offenheit. Sie macht konkrete Vorschläge (E-Bus-Abnahme durch den Staat) und kritisiert Unklarheit (wischiwaschikram bei Technologie-Offenheit).",
+        "concrete_statements": [
+          "Wir müssen bei ihrem Wechsel zur E-Mobilität klare Signale geben.",
+          "Wir sollten nicht klar sagen, wir wollen auf E-Busse zu setzen und sagen den Konzernen, dass wir die abnehmen.",
+          "Wir brauchen die Politik, die Rahmenbedingungen schafft und eine Industrie, die im Sinne ihre Beschäftigten und für das Land arbeitet.",
+          "Die Industrie braucht auch Verlässlichkeit."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn ich vor Ort bin bin ich vor allem bei den Beschäftigten da würde ich mir zum Beispiel wünschen, dass wir sagen, und von der Politik klare Signale kommen, es gibt Verlässlichkeit für die Industrie und nicht diesen wischiwaschikram.",
+            "timestamp": "00:32:11",
+            "context": "Reichinnek kritisiert die mangelnde Klarheit in der Industriepolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Industrie-Politik",
+          "Elektromobilität",
+          "Arbeitsplätze",
+          "Tarifbindung"
+        ]
+      },
+      {
+        "title": "Merz-Kabinett als Lobbyisten-Club",
+        "timestamp_range": "00:39:42 - 00:42:06",
+        "theme_description": "Bewertung der Besetzung des Merz-Kabinetts durch Reichinnek, insbesondere die Kritik an Managern und Lobbyisten.",
+        "question_asked": "Markus Lanz fragt, ob Reichinnek das Zitat ihrer Parteichefin zur Beschreibung des Kabinetts als 'Sammelbecken von Wald- und Wiesenpolitikern und abgehefteten Managern' unterschreibt.",
+        "question_intent": "Moderator will prüfen, ob Reichinnek die Kritik ihrer Parteiführung teilt und konkretisieren kann.",
+        "position": "Reichinnek unterschreibt die Kritik und nennt konkrete Beispiele: Sie kritisiert die Gaskonzernlobbyistin mit ihrer 'Wasserstoff in allen Farben'-Position, bemängelt die mangelnde Gesundheitspolitik-Erfahrung der Gesundheitsministerin und nennt die Wahl des Kulturministers 'besonders schockierend'. Sie sieht darin Zeichen, dass 'Friedrich Merz ein Vorbild an Trump genommen hat'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek antwortet direkt auf die Frage, unterschreibt die Kritik und konkretisiert sie mit mehreren Beispielen (Gaskonzernlobbyistin, Kulturminister, fehlende Tarifbindung). Sie liefert eine klare Position.",
+        "concrete_statements": [
+          "Eine Lobbyisten auf jeden Fall. Die Gaskonzerne werden sich die Hände reiben.",
+          "Der Kulturstaatsminister ist besonders schockierend.",
+          "Ich bestreite, dass er der richtige für den Job ist.",
+          "Friedrich Merz ein Vorbild an Trump genommen hat und sich die Rechten in das Kabinett holt.",
+          "Hinter keiner dieser Forderungen steht wirklich eine Hausnummer. [...] deswegen ist das schon ein Koalitionsvertrag der sozialen Kälte."
+        ],
+        "quotes": [
+          {
+            "text": "Eine Lobbyisten auf jeden Fall. Die Gaskonzerne werden sich die Hände reiben. Sie sagt, der Wasserstoff in allen Farben ist super. Da sparen sich große Konzerne sehr viel Aufwand.",
+            "timestamp": "00:40:37",
+            "context": "Reichinnek konkretisiert ihre Kritik an einer Lobbyistin im Kabinett."
+          },
+          {
+            "text": "Der Kulturstaatsminister ist besonders schockierend. Was hat der mit Kultur zu tun, der solche Aussagen trifft.",
+            "timestamp": "00:40:37",
+            "context": "Sie kritisiert die Wahl des Kulturministers Weimer als ungeeignet."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kabinettsbildung",
+          "Lobbyismus-Kritik",
+          "Kulturpolitik",
+          "Energiewende",
+          "Tarifbindung"
+        ]
+      },
+      {
+        "title": "Kulturminister Weimer und plurale Kulturpolitik",
+        "timestamp_range": "00:45:09 - 00:46:40",
+        "theme_description": "Auseinandersetzung über die Eignung des neuen Kulturministers Weimer und seine Kulturpolitik.",
+        "question_asked": "Lanz fragt, ob Reichinnek das gleiche bei der Documenta und Claudia Roth so laut kritisiert hat wie jetzt bei Weimer.",
+        "question_intent": "Moderator will Konsistenz und Glaubwürdigkeit der Kritik prüfen, indem er Ungleichbehandlung aufzeigt.",
+        "position": "Reichinnek behauptet, dass Die Linke bei Documenta-Antisemitismuskandalen laut war und kommentierte. Sie kritisiert Weimer konkret für rechte Talkingpoints wie 'Fortbestand des deutschen Blutes' und gegen 'Multi Kulti'. Sie fordert 'plurale Kultur' und sagt: 'Kultur muss auch mich nerven. Sie muss mich kritisieren.' Sie sieht nicht, dass Weimer die richtige Rolle spielen wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek adressiert den Vergleich Claudia Roth / Weimer nur teilweise. Sie behauptet, bei Documenta-Skandal auch laut gewesen zu sein (ohne Belege aus dem Transkript), weicht aber auf eine grundsätzliche Kritik an Weimers Kulturpolitik aus, statt die Vergleichbarkeit der Fälle zu diskutieren.",
+        "concrete_statements": [
+          "Wir waren da als Partei laut, wir haben das auch so kommentiert.",
+          "Die rechten Talkingpoints dass er gesagt hat, der Fortbestand des deutschen Blutes, dass er da fabuliert, das finde ich hochproblematisch.",
+          "Wir brauchen eine plurale Kultur. Kultur muss auch mich nerven. Sie muss mich kritisieren.",
+          "Ich sehe nicht, dass der zukünftige Kulturminister die richtige Rolle spielen wird."
+        ],
+        "quotes": [
+          {
+            "text": "Was bedeutet denn linke Kulturpolitik? Für mich sind die rechten Talkingpoints dass er gesagt hat, der Fortbestand des deutschen Blutes, dass er da fabuliert, das finde ich hochproblematisch.",
+            "timestamp": "00:45:09",
+            "context": "Reichinnek antwortet auf Lanz' Frage nach linker vs. rechter Kulturpolitik mit substanzieller Kritik an Weimer."
+          },
+          {
+            "text": "Wir brauchen eine plurale Kultur. Kultur muss auch mich nerven. Sie muss mich kritisieren. Ich sehe nicht, dass der zukünftige Kulturminister die richtige Rolle spielen wird.",
+            "timestamp": "00:45:35",
+            "context": "Sie formuliert ihr Verständnis von Kulturpolitik und lehnt Weimers Eignung ab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kulturpolitik",
+          "Antisemitismus",
+          "Rechtsextremismus",
+          "Medienfreiheit"
+        ]
+      },
+      {
+        "title": "Arbeiterflügel und fehlende Arbeitnehmervertretung im Kabinett",
+        "timestamp_range": "00:47:26 - 00:47:59",
+        "theme_description": "Kritik Reichinneks an fehlender Arbeitnehmervertretung im Merz-Kabinett.",
+        "question_asked": "Implizite Frage nach der Arbeitnehmervertretung im Kabinett; Reichinnek bringt das Thema selbst auf.",
+        "question_intent": "Reichinnek will deutlich machen, dass arbeitnehmerorientierte Politik im neuen Kabinett nicht vertreten ist.",
+        "position": "Reichinnek kritisiert, dass 'der Flügel, der in der Anthony Arbeiterinnen vertritt, ist gar nicht vertreten'. Sie sieht einen Kontinuum zum Koalitionsvertrag: 'Es wird das fort, was wir im Koalitionvertrag schon gesehen haben, dass diese Leute keine Rolle spielen.' Sie wirft der Union vor, Arbeitnehmerinteressen zu ignorieren.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek initiiert das Thema selbst ('Das wollte ich den Raum stellen'). Sie formuliert eine klare These zur fehlenden Arbeitnehmervertretung, auch wenn sie die Analyse nicht vertieft.",
+        "concrete_statements": [
+          "Der Flügel, der in der Anthony Arbeiterinnen vertritt, ist gar nicht vertreten.",
+          "Es wird das fort, was wir im Koalitionvertrag schon gesehen haben, dass diese Leute keine Rolle spielen."
+        ],
+        "quotes": [
+          {
+            "text": "Der Flügel, der in der Anthony Arbeiterinnen vertritt, ist gar nicht vertreten. [...] Das wollte ich den Raum stellen, ohne es zu bewerten.",
+            "timestamp": "00:47:26",
+            "context": "Reichinnek kritisiert die fehlende Arbeitnehmervertretung im Kabinett."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Tarifbindung",
+          "Arbeitnehmerrechte",
+          "Lohnpolitik",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "AfD-Politik und Normalisierung durch die Union",
+        "timestamp_range": "00:53:42 - 00:55:22",
+        "theme_description": "Bewertung der Wahl Jens Spahns als Innenminister und seiner AfD-Politik.",
+        "question_asked": "Lanz fragt, ob Reichinnek sich auf Jens Spahn als ihren politischen Gegenspieler freut.",
+        "question_intent": "Moderator testet, wie Reichinnek auf die kontroverse Wahl Spahns reagiert.",
+        "position": "Reichinnek findet es 'eine mutige Wahl' und kritisiert Spahn für seine 'ganzen Skandale' — er sollte 'sein Mandat von sich aus niederlegen'. Sie wirft ihm vor, die AfD zu 'normalisieren', indem er Ausschussvorsitze befürwortet. Sie sieht darin Normalisierungspolitik: 'Das ist eine rechtsradikale Partei.' Differenzierung zu Lanz' Klarstellung über Spahns genaue Aussagen lehnt sie ab.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek antwortet auf die Spahn-Frage, aber nicht differenziert auf Lanz' Richtigstellung zu Spahns Aussagen. Sie behauptet, Spahn habe 'Vizepräsident, Ausschussvorsitzenden' befürwortet — Lanz korrigiert, dass er das ablehnte. Reichinnek adressiert diese Korrektur nicht substanziell.",
+        "concrete_statements": [
+          "Ich finde es eine mutige Wahl, jemanden wie Jens Spahn — nach seinen ganzen Skandalen sollte er von sich aus das Mandat niederlegen.",
+          "Das ist eine rechtsradikale Partei.",
+          "Das ist für mich Normalisierung.",
+          "Mit uns wollen sie sowieso nicht reden."
+        ],
+        "quotes": [
+          {
+            "text": "Er hat gesagt, Vizepräsident, Ausschussvorsitzenden, dass er das gut finde. Das ist für mich Normalisierung.",
+            "timestamp": "00:54:31",
+            "context": "Reichinnek wirft Spahn vor, Normalisierung der AfD zu betreiben."
+          },
+          {
+            "text": "Aber wir haben angeboten, dass wir zu Gesprächen bereit stehen. Der Ball liegt bei der Union.",
+            "timestamp": "00:55:22",
+            "context": "Sie betont, dass Die Linke offen für Dialog ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "AfD-Politik",
+          "Geschäftsordnung Bundestag",
+          "Verfassungsschutz",
+          "Extremismus"
+        ]
+      },
+      {
+        "title": "Mietendeckel als Wohnungspolitik-Konzept",
+        "timestamp_range": "01:00:06 - 01:04:34",
+        "theme_description": "Erklärung und Verteidigung des Linken-Konzepts eines bundesweiten Mietendeckels mit Deckelung für sechs Jahre.",
+        "question_asked": "Lanz fragt, was der konkrete Plan für den Mietendeckel ist: sechs Jahre Nichtsteigerung, danach harte Obergrenzen.",
+        "question_intent": "Moderator will verstehen, wie ein solcher Deckel praktisch funktionieren würde und wer davon profitiert.",
+        "position": "Reichinnek erklärt, dass der Mietendeckel sechs Jahre Mietenfestschreibung bedeutet, aber 'nicht bundesweit gleich' ist, sondern 'vor Ort angepasst an den Zustand der Wohnung und lokale Bedingungen'. Großkonzerne wie Vonovia verdienen damit immer noch Geld. Der Deckel betrifft private Vermieter mit fairen Mieten nicht. Begleitet wird er von massiven Investitionen in sozialen Wohnungsbau und Genossenschaftsförderung. Sie nutzt eine 'Mietwucher App' und einen 'Mietwucher Rechner' zur Kontrolle.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek beantwortet die Frage detailliert: Sie erklärt das Konzept, differenziert es in Abgrenzung zu Großkonzernen vs. Kleinvermieter, beschreibt Kontrollmechanismen und flankierende Maßnahmen. Sie adressiert alle Teile der Frage.",
+        "concrete_statements": [
+          "Der wird für sechs Jahre festgelegt, aber er ist nicht bundesweit gleich. Der wird vor Ort angepasst an den Zustand der Wohnung und lokale Bedingungen.",
+          "Großkonzerne wie Vonovia verdient viel Geld damit.",
+          "Wir wollen schon durchaus, dass die Leute, die privat vermieten, die sich an alle Regeln halten, die sind davon nicht betroffen.",
+          "Wir wollen massive Investitionen in den sozialen Wohnungsbau, wir brauchen die Förderung von Genossenschaften.",
+          "Wir machen das mit unserer Mietwucher App."
+        ],
+        "quotes": [
+          {
+            "text": "Der wird für sechs Jahre festgelegt, aber er ist nicht bundesweit gleich. Der wird vor Ort angepasst an den Zustand der Wohnung und lokale Bedingungen.",
+            "timestamp": "01:02:03",
+            "context": "Reichinnek präzisiert die regionale Differenzierung ihres Mietendeckel-Konzepts."
+          },
+          {
+            "text": "Wir wollen massive Investitionen in den sozialen Wohnungsbau, wir brauchen die Förderung von Genossenschaften, wir müssen den Wohnraum schaffen.",
+            "timestamp": "01:09:17",
+            "context": "Sie erläutert die flankierenden Maßnahmen zum Mietendeckel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungspolitik",
+          "Mietpreisregulierung",
+          "Sozialer Wohnungsbau",
+          "Verbraucherschutz"
+        ]
+      },
+      {
+        "title": "Erfolg der Linken und Wohnungsnot als Kernthema",
+        "timestamp_range": "01:00:06 - 01:01:37",
+        "theme_description": "Bewertung des Erfolgs der Linken und die Rolle der Wohnungspolitik.",
+        "question_asked": "Lanz sagt, Reichinnek sei auf TikTok ein Star und sei durch ihre Rede gegen CDU-AfD-Abstimmung beliebt geworden — stimmt das?",
+        "question_intent": "Moderator stellt die These auf, dass Reichinneks persönliche Rede der Grund für den Erfolg ist.",
+        "position": "Reichinnek widerlegt die These: Sie glaube 'auch nicht, dass meine Rede der Grund für den Erfolg meiner Partei ist. Es hat auch eine Rolle gespielt, aber es waren vor allem die zehntausenden Genossinnen und Genossen, die an den Infoständen waren. Das ist die Basis, dass wir die sozialen Themen angesprochen haben, wo ich eine riesige Lehrstelle sehe.' Die Wohnungsnot war zentral: 'Viele Menschen sagten haben, dass sie sich die Miete nicht mehr leisten können.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek antwortet direkt und substantiell auf die Frage nach ihrem persönlichen Erfolg. Sie dekliniert das Hero-Narrativ ab und verweist auf Basisarbeit und Wohnungsnot als strukturelle Gründe.",
+        "concrete_statements": [
+          "Ich glaube auch nicht, dass meine Rede der Grund für den Erfolg meiner Partei ist.",
+          "Es waren vor allem die zehntausenden Genossinnen und Genossen, die an den Infoständen waren.",
+          "Wir haben uns das Thema genommen, weil viele Menschen gesagt haben, dass sie sich die Miete nicht mehr leisten können.",
+          "Der Bundesverfassungsgericht hat das kassiert, der muss auf Bundesebene beschlossen werden."
+        ],
+        "quotes": [
+          {
+            "text": "Ich möchte zustimmen, ich glaube auch nicht, dass meine Rede der Grund für den Erfolg meiner Partei ist. Es hat auch eine Rolle gespielt, aber es waren vor allem die zehntausenden Genossinnen und Genossen, die an den Infoständen waren.",
+            "timestamp": "01:00:06",
+            "context": "Reichinnek widerlegt die These des Moderators zu ihrem persönlichen Erfolg."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampf 2025",
+          "Wohnungspolitik",
+          "Basisdemokratie",
+          "Linke-Partei"
+        ]
+      },
+      {
+        "title": "Kritik an Kleinsparer-Argument und Altersvorsorge",
+        "timestamp_range": "01:05:19 - 01:10:13",
+        "theme_description": "Auseinandersetzung über den Anteil von Kleinsparern am Wohnungsbestand und deren Belastung durch einen Mietendeckel.",
+        "question_asked": "Lanz fragt nach der Verteilung: 45 Mio. Wohnungen, davon ~22,5 Mio. vermietet — wie viele gehören Großkonzernen, wie viele Kleinsparern, die damit fürs Alter vorsorgen?",
+        "question_intent": "Moderator will aufzeigen, dass ein großer Teil der vermieteten Wohnungen privaten Kleinsparern gehört, die mit Mietrenditen vorsorgen, nicht bösen Konzernen.",
+        "position": "Reichinnek räumt ein, dass Großkonzerne regional konzentriert sind, aber behauptet, es gebe keinen Unterschied zwischen Kleinsparer und Großkonzern: 'Es ist kein Unterschied ob es ein Kleinsparer oder ein Großkonzern ist. Wenn es Mieten sind, die Menschen sich nicht leisten können, haben ein Problem.' Sie stellt gegenüber, dass statt Wohneigentum die gesetzliche Rente gestärkt werden sollte. Sie lehnt die Prämisse ab, dass Wohnraum 'für mein schönes Leben' da sein sollte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek weicht auf eine normative Position aus ('kein Unterschied zwischen Kleinsparer und Konzern') statt die faktische Frage zu beantworten (Anteil Kleinsparer). Sie beantwortet die Faktenfrage nicht, sondern dekliniert die Prämisse ab. Lanz stellt später fest, dass ~60% Kleinsparer sind — Reichinnek adressiert diese Zahl nicht.",
+        "concrete_statements": [
+          "Es ist kein Unterschied ob es ein Kleinsparer oder ein Großkonzern ist. Wenn es Mieten sind, die Menschen sich nicht leisten können, haben ein Problem.",
+          "Die Frage ist, warum müssen sich Menschen Wohneigentum kaufen, warum stärken wir nicht die gesetzliche Rente?",
+          "Der Wohnraum von anderen nicht dazu da, dass ich mir ein schönes Leben machen kann."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist kein Unterschied ob es ein Kleinsparer oder ein Großkonzern ist. Wenn es Mieten sind, die Menschen sich nicht leisten können, haben ein Problem.",
+            "timestamp": "01:06:43",
+            "context": "Reichinnek lehnt Lanz' Unterscheidung zwischen Kleinsparer und Konzern ab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Altersvorsorge",
+          "Kapitaldeckung",
+          "Umverteilung",
+          "Wohnungsmarkt"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Berlin Mietendeckel wurde vom Bundesverfassungsgericht kassiert",
+        "timestamp": "01:01:37"
+      },
+      {
+        "claim": "Großkonzerne wie Vonovia verdienen mit dem Mietendeckel trotzdem noch Geld, weil Aktionäre Dividenden bekommen",
+        "timestamp": "01:02:03"
+      },
+      {
+        "claim": "Die Linke hält eine Mietwucher App und einen Mietwucher Rechner zur Kontrolle von zu hohen Mieten",
+        "timestamp": "01:04:34"
+      },
+      {
+        "claim": "Jens Spahn hat sich für Ausschussvorsitzende der AfD ausgesprochen",
+        "timestamp": "00:54:31"
+      },
+      {
+        "claim": "Trump wird morgen 100 Tage im Amt sein (bezogen auf den Sendungszeitpunkt)",
+        "timestamp": "00:02:39"
+      }
+    ]
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-februar-2026-100",
+    "video_id": "lanz-2026-02-05",
+    "politician": "Dirk Wiese",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "9359ca84a6d856c3",
+    "transcript_chars": 65878,
+    "caption_lines": 3214,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 27329,
+    "tokens_out": 9365,
+    "cost_usd": 0.0296616,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-02T16:33:29.044Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Dirk Wiese, Erster Parlamentarischer Geschäftsführer der SPD-Fraktion, verteidigte in dieser Markus Lanz-Sendung die Regierungsbilanz der Koalition gegen Kritik an Wachstumsschwäche und fehlenden Reformen. Er argumentierte sachlich und differenziert, betonte Reformbereitschaft und den unglücklichen Eindruck, den polarisierende Begriffe wie \"Lifestyle-Teilzeit\" hinterlassen haben.",
+    "themes": [
+      {
+        "title": "Eindruck und Kommunikation bei Lifestyle-Teilzeit",
+        "timestamp_range": "00:10:02 - 00:14:32",
+        "theme_description": "Dirk Wiese äußert sich zum Begriff 'Lifestyle-Teilzeit' und dessen Wahrnehmung in der Bevölkerung.",
+        "question_asked": "Herr Wiese, wie ging es Ihnen, als Sie das erste Mal den Begriff 'Lifestyle Teilzeit' gehört haben?",
+        "question_intent": "Moderator möchte wissen, wie Wiese personal und politisch auf diesen umstrittenen Begriff reagiert hat.",
+        "position": "Wiese fand den Begriff 'extremst unglücklich', da er Menschen, die sich bewusst für Teilzeit entscheiden (wegen Pflege, Kinderbetreuung oder gesellschaftlichem Engagement), in ein falsches Licht rückt. Er betont, dass der Eindruck entstand, solche Menschen 'machen die Füße hoch' und 'sitzen auf dem Sofa'. Dies habe viele Bürger in seinem Wahlkreis gestört. Er räumt ein, dass die Debatte am Ort intensiv diskutiert wird und der Eindruck berechtigt ist, dass dieser 'falsch vermittelt' wurde.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wiese adressiert die Frage emotional und inhaltlich, erklärt aber vor allem, warum der Eindruck problematisch ist, statt tiefer auf die Debatte einzugehen. Der Moderator fragt später nach, ob Wiese den Eindruck nicht selbst jetzt verstärkt, was Wiese erst ausweicht.",
+        "concrete_statements": [
+          "Ich fand den Begriff extremst unglücklich.",
+          "Es gab Menschen, die sich bewusst für Teilzeit Entscheidung. Für die Pflege, für die Kinderbetreuung. Aber auch, weil sie sich für den Zusammenhalt der Gesellschaft engagieren.",
+          "Der Eindruck, der da vermittelt wird, den fanden sie falsch."
+        ],
+        "quotes": [
+          {
+            "text": "Ich war erst einmal darüber überrascht. Man muss fairerweise sagen, es war nicht etwas, was unser Koalitionspartner auf den Tisch gelegt hat. Ich fand den Begriff extremst unglücklich.",
+            "timestamp": "00:10:02",
+            "context": "Dirk Wiese erklärt seine erste Reaktion auf den Begriff 'Lifestyle-Teilzeit'."
+          },
+          {
+            "text": "Es gab Menschen, die sich bewusst für Teilzeit Entscheidung. Für die Pflege, für die Kinderbetreuung. Aber auch, weil sie sich für den Zusammenhalt der Gesellschaft engagieren. Ich fand es unglücklich, dass man nach außen den Eindruck erzeugt, alle, die sich bewusst für Teilzeit entscheiden, die machen die Füße hoch, die sitzen auf dem Sofa, tun nichts mehr.",
+            "timestamp": "00:10:02",
+            "context": "Wiese begründet, warum der Begriff problematisch ist und welchen falschen Eindruck er vermittelt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Kinderbetreuung",
+          "Pflegepolitik",
+          "Teilzeitarbeit"
+        ],
+        "evasion_note": "Der Moderator wirft Wiese vor, den Eindruck jetzt selbst wieder zu verstärken, was Wiese zunächst ausweicht, dann aber mit Verweis auf anhaltende lokale Diskussionen rechtfertigt."
+      },
+      {
+        "title": "Angst vor Finanzplanung 2029 und wirtschaftliche Stabilität",
+        "timestamp_range": "00:22:35 - 00:26:30",
+        "theme_description": "Dirk Wiese antwortet auf Fragen zur Finanzierungslücke 2029 und seinem Optimismus trotz pessimistischer Prognosen der Wirtschaftsexpertin Veronika Grimm.",
+        "question_asked": "Moderator Lanz fragt, ob Wiese Angst vor den Zahlen der Finanzierungslücke 2029 hat, wenn Sozialausgaben, Verteidigung und Zinsen den gesamten Bundeshaushalt aufzehren.",
+        "question_intent": "Der Moderator möchte wissen, wie Wiese auf die existenzielle Haushaltskrise reagiert und woher sein Optimismus kommt.",
+        "position": "Wiese sagt, dass die Zahlen ihm keine Angst machen, da die mittelfristige Finanzplanung der Koalition diese Szenarien nicht abbildet. Er erklärt, dass die SPD bewusst die Schuldenbremse bei Verteidigungspolitik aussetzt, um für Sicherheit mehr Geld in die Hand zu nehmen. Er widerspricht dem Eindruck, dass die SPD ein 'Bremser' sei und Reformen verhindere. Er betont, dass die Koalition 2026 zeigen muss, dass Regierungen aus der 'demokratischen Mitte' das Land regieren können. Später begründet er seinen Optimismus damit, dass Maßnahmen der Bundesregierung und Investitionen Wirkung entfalten, und dass man in ein 'vorsichtig optimistisches Szenario' geht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wiese antwortet auf die Angst-Frage nicht direkt, sondern mit der Gegenbehauptung, dass die Finanzplanung anders aussieht. Er weicht Grimms Argument aus, indem er behauptet, seine Zahlen seien andere. Moderator Lanz stellt später fest, dass es dieselben Zahlen sind und fragt erneut, woher der Optimismus kommt—dann antwortet Wiese mit Verweis auf Maßnahmen und Investitionen.",
+        "concrete_statements": [
+          "Es macht mir keine Angst, weil die mittelfristige Finanzplanung, die wir aktuell in der Koalition machen, hat das nicht.",
+          "Wir haben letztenendes im Bereich der Verteidigungspolitik bewusst die Entscheidung getroffen, dass von der Schuldenbremse auszunehmen.",
+          "Diese Koalition muss 2026 zeigen, dass aus der demokratischen Mitte heraus das Land regiert werden kann.",
+          "Wir gehen in ein vorsichtig optimistisches Szenario hinein. Wir sehen beim Bau eine positive Entwicklung."
+        ],
+        "quotes": [
+          {
+            "text": "Es macht mir keine Angst, weil die mittelfristige Finanzplanung, die wir aktuell in der Koalition machen, hat das nicht.",
+            "timestamp": "00:22:35",
+            "context": "Wiese antwortet auf die Frage, ob die Finanzierungslücke 2029 ihm Angst macht."
+          },
+          {
+            "text": "Diese Koalition muss 2026 zeigen, dass aus der demokratischen Mitte heraus das Land regiert werden kann.",
+            "timestamp": "00:24:11",
+            "context": "Wiese drückt seine Überzeugung aus, dass die Koalition ihre Reformfähigkeit unter Beweis stellen muss."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Schuldenbremse",
+          "Finanzplanung",
+          "Verteidigungspolitik"
+        ],
+        "evasion_note": "Wiese weicht der direkten Konfrontation mit Grimms Zahlen aus und behauptet andere mittelfristige Planungen, ohne diese zu konkretisieren. Die moderatorische Nachfrage zwingt ihn später zu einer inhaltlicheren Antwort."
+      },
+      {
+        "title": "Reformbereitschaft bei Rentensystem und Krankenversicherung",
+        "timestamp_range": "00:23:50 - 00:25:36",
+        "theme_description": "Dirk Wiese konkretisiert die SPD-Position zu geplanten Strukturreformen in Rente und Krankenversicherung 2026.",
+        "question_asked": "Der Moderator fragt, ob Wiese eingesteht, dass die Reformen 'wehtun' werden, und hinterfragt seine ausweichenden Floskeln.",
+        "question_intent": "Der Moderator möchte, dass Wiese konkrete Maßnahmen benennt und eingesteht, dass Reformen schmerzhafte Schnitte bedeuten.",
+        "position": "Wiese betont, dass die Koalition 2026 Strukturreformen bei Krankenversicherung und Rentenreformen angehen wird. Er nennt drei Stellschrauben bei der Rente: Verlängerung des Renteneintrittsalters, Erweiterung der Einzahlbasis (mit Einschränkung bei Beamten, da Zweidrittelmehrheit notwendig ist) und ein System in Richtung Niederlande. Er hält sich mit konkreten Schnittangaben bedeckt und behauptet, 'Ergebnis offen' an die Reformen zu gehen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wiese beantwortet die Frage strukturell, nennt aber keine konkreten Schmerzschwellen. Er versichert 'Ergebnis offen', was in der Antwort zur Schmerzhaftigkeit ausweichend wirkt. Die moderatorische Nachfrage verdeutlicht diese Unschärfe.",
+        "concrete_statements": [
+          "Es gibt drei Stellschrauben, an denen wir drehen können. Bei der Rente ist es einfacher als bei den Sozialversicherungen. Da kann ich das Eintrittsalter verlängern, die Einzahlbasis erweitern.",
+          "Wir haben uns vereinbart, bis Mitte des Jahres die Vorschläge vorliegen zu haben.",
+          "Wir gehen in ein vorsichtig optimistisches Szenario hinein."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt drei Stellschrauben, an denen wir drehen können. Bei der Rente ist es einfacher als bei den Sozialversicherungen. Da kann ich das Eintrittsalter verlängern, die Einzahlbasis erweitern - bei dem Beamten bin ich da noch zurückhalten. Man braucht eine Zweidrittelmehrheit.",
+            "timestamp": "00:24:52",
+            "context": "Wiese konkretisiert die Reformoptionen bei der Rente."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Krankenversicherungsreform",
+          "Sozialversicherungssystem"
+        ],
+        "evasion_note": "Wiese vermeidet klare Schmerzgrenzen und weicht Moderators Frage aus, ob er 'rote Linien' hat. Erst später erwähnt er, dass 'Ergebnis offen' verhandelt wird, was als diplomatisch ausweichend wirkt."
+      },
+      {
+        "title": "Steuererleichterungen für Mittelstand und Facharbeiter",
+        "timestamp_range": "00:30:58 - 00:31:47",
+        "theme_description": "Dirk Wiese betont konkrete SPD-Vorhaben zur Entlastung von kleinen und mittleren Unternehmen sowie Facharbeitern.",
+        "question_asked": "Der Moderator verweist auf Punkte aus dem Wirtschaftsrat-Papier, die gut sind. Wiese erklärt, welche davon die SPD unterstützt.",
+        "question_intent": "Der Moderator möchte wissen, ob es Punkte gibt, bei denen sich Koalition schnell einigen kann.",
+        "position": "Wiese betont, dass im Ergänzungsantrag des Wirtschaftsrats gute Sachen stehen, bei denen die Koalition schnell zusammenfinden kann. Konkret nennt er: eine Einkommensteuerreform für kleine und mittlere Unternehmen sowie Entlastung der Facharbeiterschaft. Er sagt, dass diese Reform im Koalitionsvertrag vereinbart wurde und Prioritäten in diesem Jahr gesetzt werden müssen. Er ist offen dafür, die Körperschaftssteuerreform vorzuziehen, könnte aber auch die Steuerreform für kleinere Unternehmen dieses Jahr angehen—als Entlastung für die Facharbeiterschaft.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese antwortet konkret auf die Frage und benennt zwei spezifische Steuererleichterungsmaßnahmen mit Prioritätssetzung im Jahr 2026.",
+        "concrete_statements": [
+          "Da wollen eine Einkommen Steuerreform für kleine und mittlere ein Unternehmen.",
+          "Die Facharbeiterschaft zu entlasten.",
+          "Das haben wir im Koalitionsvertrag vereinbart.",
+          "Da müssen wir Prioritäten setzen in diesem Jahr."
+        ],
+        "quotes": [
+          {
+            "text": "Da wollen eine Einkommen Steuerreform für kleine und mittlere ein Unternehmen. Die Facharbeiterschaft zu entlasten. Wenn ich ihr sofort dafür. Das haben wir im Koalitionsvertrag vereinbart. Da müssen wir Prioritäten setzen in diesem Jahr.",
+            "timestamp": "00:30:58",
+            "context": "Wiese nennt konkrete Punkte aus dem Wirtschaftsrats-Papier, die SPD und Koalition unterstützen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Mittelstandsförderung",
+          "Fachkräfte"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion."
+      },
+      {
+        "title": "SPD-Position zur Sozialstaatsreform und Bürokratieabbau",
+        "timestamp_range": "00:33:00 - 00:35:44",
+        "theme_description": "Wiese erörtert die geplante Sozialstaatsreform, betont Effizienzgewinne und spricht über das Bundesteilhabe-Gesetz und Komplexität der Sozialleistungen.",
+        "question_asked": "Der Moderator stellt dar, dass Hamburgs Finanzsenator Dressel Sozialleistungen mit jährlichem Zuwachs von über 10 % bei nur 2,5 % Haushaltswachstum für nicht finanzierbar hält. Lanz fragt, wie Wiese zu dieser Einschätzung kommt.",
+        "question_intent": "Der Moderator möchte verstehen, wie SPD und Koalition auf die aus Sicht der Länder untragbare Sozialausgabensteigerung reagieren.",
+        "position": "Wiese erklärt, dass die Bundesregierung an vielen Stellen den Sozialstaat bewusst ausgeweitet hat, besonders durch das Bundesteilhabe-Gesetz. Er räumt ein, dass das System 'teilweise viel zu kompliziert und bürokratisch' geworden ist. Die Sozialstaatsreform soll den Sozialstaat effizienter, verständlicher und unbürokratischer machen. Als Beispiel nennt er eine alleinerziehende Mutter in Köln, die 17 verschiedene Anträge machen muss. Wiese betont, dass es um Vereinfachung und Zusammenführung von Leistungen geht, um Effizienzgewinne zu machen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese antwortet umfassend auf die Frage, erklärt die SPD-Position zur Sozialstaatsreform, räumt Komplexität ein und benennt konkrete Reformziele. Er adressiert Dressels Kritik direkt, indem er die Ausweitung begründet und Effizienzgewinne durch Vereinfachung anstrebt.",
+        "concrete_statements": [
+          "Das Bundelteilhabe-Gesetz, dass Menschen, die Teilhabe haben, nicht mehr gebündelt Leistung kriegen, sondern Ansprüche haben an der Gesellschaft teilzunehmen. Das kostet.",
+          "Die Sozialstaatsreform, die jetzt Ergebnisse vorgelegt hat. Die kann den Sozialstaat effizienter machen. Verständlicher und unbürokratischer.",
+          "Auch Leistungen zusammenzuführen. Da sind Effizienzgewinne zu machen.",
+          "Zurück zum Arbeitsmarkt kommen das ist das entscheidende."
+        ],
+        "quotes": [
+          {
+            "text": "Er kommt zu der Einschätzung, weil wir an vielen Stellen momentan den Sozialstaat auch ausgeweitet haben. Durch bewusste politische Entscheidungen. Das Bundelteilhabe-Gesetz, dass Menschen, die Teilhabe haben, nicht mehr gebündelt Leistung kriegen, sondern Ansprüche haben an der Gesellschaft teilzunehmen. Das kostet.",
+            "timestamp": "00:33:00",
+            "context": "Wiese erklärt, warum Dressels Einschätzung zu Recht kritisch ist."
+          },
+          {
+            "text": "Sie muss kann 17 verschiedene Anträge machen und jedes Mal von Anfang beginnen. So viele Dinge haben wir zu vereinfachen und zu verständlichen. Auch Leistungen zusammenzuführen. Da sind Effizienzgewinne zu machen.",
+            "timestamp": "00:34:00",
+            "context": "Wiese gibt ein Beispiel für die geplante Vereinfachung in der Sozialstaatsreform."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sozialstaatsreform",
+          "Bürokratieabbau",
+          "Bundesteilhabe-Gesetz",
+          "Finanzierung Sozialstaat"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion; Wiese antwortet sachlich und konkret."
+      },
+      {
+        "title": "Kinder- und Jugendhilfereformen und Prävention",
+        "timestamp_range": "00:38:19 - 00:40:28",
+        "theme_description": "Dirk Wiese behandelt die steigenden Kosten in Kinder- und Jugendhilfe und betont präventive Maßnahmen statt Sparmaßnahmen.",
+        "question_asked": "Der Moderator bezieht sich auf Andreas Dressels (Hamburger Finanzsenator) Aussage, dass Einzelfallhilfen in der Kinder- und Jugendhilfe ständig teurer werden und die Anforderungen nicht mehr verkraftbar sind.",
+        "question_intent": "Der Moderator möchte wissen, wie Wiese auf die kommunale Haushaltskrise in diesem Bereich reagiert und was die SPD-Lösung ist.",
+        "position": "Wiese bestätigt die Problematik steigender Kosten in der Kinder- und Jugendhilfe und nennt gestiegene Fallzahlen sowie Corona-Effekte als Gründe. Er räumt ein, dass dies kurzfristig nicht zu Einsparungen führt, da sich Kommunen um die jungen Menschen kümmern müssen. Stattdessen betont er präventive Ansätze: Warum gibt es immer mehr psychische Probleme? Das müsse untersucht werden. Man solle mehr in Prävention investieren, um gar nicht erst in die Situation zu kommen, wo so hohe Kosten entstehen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese antwortet umfassend: Er räumt die Problematik ein, benennt Gründe, lehnt schnelle Sparmaßnahmen ab und präsentiert einen präventiven Ansatz als SPD-Lösung.",
+        "concrete_statements": [
+          "Es sind die steigenden Kosten in der Kinder und Jugendhilfe. Die Fälle sind mehr geworden, auch sicher durch die Corona-Zeit bedingt.",
+          "Das wird kurzfristig aber nicht zu Einsparungen führen.",
+          "Ich muss mir mehr die Frage stellen, was muss ich präventiv machen, um die Zahlen runter zu bekommen.",
+          "Da muss man mehr in die Prävention investiert werden."
+        ],
+        "quotes": [
+          {
+            "text": "Es sind die steigenden Kosten in der Kinder und Jugendhilfe. Die Fälle sind mehr geworden, auch sicher durch die Corona-Zeit bedingt. Es gibt mehrere Fälle aus Kommunen, wo es die Haushalte extrem belastet. Das wird kutzfristig aber nicht zu Einsparungen führen.",
+            "timestamp": "00:38:19",
+            "context": "Wiese erklärt die Gründe für die Kostenexplosion in der Kinder- und Jugendhilfe."
+          },
+          {
+            "text": "Ich muss mir mehr die Frage stellen, was muss ich präventiv machen, um die Zahlen runter zu bekommen in der Gründer und Jugendhilfe. Warum haben wir immer mehr von psychischen Problemen, das ist nicht einfach zu beantworten. Da muss man mehr in die Prävention investiert werden.",
+            "timestamp": "00:38:19",
+            "context": "Wiese präsentiert den SPD-Ansatz: Prävention statt Sparmaßnahmen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kinder- und Jugendhilfe",
+          "Prävention",
+          "Kommunale Finanzierung"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion."
+      },
+      {
+        "title": "Arbeitsmoral, Krankheitstage und telefonische Krankschreibung",
+        "timestamp_range": "00:56:05 - 01:01:58",
+        "theme_description": "Dirk Wiese diskutiert Fragen zur Arbeitsmoral, Krankenstand und mögliche Maßnahmen wie Karenztage oder Regelungen für Online-Krankschreibungen.",
+        "question_asked": "Der Moderator fragt Wiese, ob der Kanzler recht hat, wenn er sagt, Arbeitsleistung sei nicht hoch genug und ob Krankheitstage ein Problem darstellen. Später wird konkret auf telefonische Krankschreibung und Karenztage eingegangen.",
+        "question_intent": "Der Moderator möchte wissen, ob und wie Wiese die kritische Sicht des Kanzlers auf Arbeitsmoral und Krankenstand teilt, und welche Maßnahmen die SPD befürwortet.",
+        "position": "Wiese widerspricht der Arbeitsmoral-Kritik des Kanzlers und betont, dass 1,2 Milliarden Überstunden pro Jahr geleistet werden, darunter viele unbezahlte. Er verweist auf den Vergleich mit Niederlanden, die eine viel höhere Teilzeitquote haben. Zur psychischen Belastung sagt er, dass sich in anderen Ländern 'keiner leichtfertig krankschreiben' lässt, aber er hält von telefonischer Krankschreibung ab, da sie Arztpraxen entlastet und ein Arzt niemanden leichtfertig krankschreibt. Er lehnt die Abschaffung der Telefonkrankschreibung ab, wäre aber offen für Diskussionen zu Karenztagen. Bei Online-Attesten ohne ärztliche Prüfung sieht er Regelungsbedarf.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese antwortet konkret auf alle Fragen: Er widerlegt die Arbeitsmoral-These mit Überstundendaten, lehnt telefonische Krankschreibungsabschaffung ab und ist offen für einzelne Maßnahmen wie Regelungen zu Online-Attesten. Er adressiert die Moderator-Fragen direkt und substantiell.",
+        "concrete_statements": [
+          "1,2 Milliarden Überstunden hatten wir vergangenes Jahr. Auch viele unbezahlte Überstunden. Wir leisten uns so viel.",
+          "Die Niederländer haben zum Beispiel eine viel größere Teilzeitquote.",
+          "Kein Arzt schreibt jemanden leichtfertig krank.",
+          "Die telefonische Krankschreibung abschaffen, das halte ich für falsch."
+        ],
+        "quotes": [
+          {
+            "text": "1,2 Milliarden Überstunden hatten wir vergangenes Jahr. Auch viele unbezahlte Überstunden. Wir leisten uns so viel.",
+            "timestamp": "00:56:05",
+            "context": "Wiese widerlegt die Kritik des Kanzlers an der Arbeitsmoral."
+          },
+          {
+            "text": "Wenn ich immer in die Arztpraxis gehen muss, wenn ich einen leichten Effekt habe, und gehendes enge Zimmer rein und alle Husten und haben sonstige Viren, meistens bin ich danach fünf Tage länger können. Der Arzt bei mir vor Ort sagt, es ist eine gute Möglichkeit letztendlich und trägt zur Entlastung der Praxen bei. Kein Arzt schreibt jemanden leichtfertig krank.",
+            "timestamp": "01:01:00",
+            "context": "Wiese verteidigt die telefonische Krankschreibung gegen Abolitionsforderungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Gesundheitspolitik",
+          "Arbeitszeitregelung"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion; Wiese nimmt zu jedem Punkt klar Stellung."
+      },
+      {
+        "title": "Bewertung von Söders Forderung: Eine Stunde mehr Arbeit pro Woche",
+        "timestamp_range": "00:57:42 - 01:02:13",
+        "theme_description": "Dirk Wiese äußert sich zur Forderung von Markus Söder (CSU), Arbeitnehmer sollten eine Stunde mehr pro Woche arbeiten, um Wirtschaftswachstum zu fördern.",
+        "question_asked": "Der Moderator fragt Wiese direkt nach seiner persönlichen Einschätzung: Findet er die Söder-Forderung gut oder schlecht?",
+        "question_intent": "Der Moderator will wissen, ob Wiese diese reformerische Forderung eines CSU-Ministerpräsidenten unterstützt oder ablehnt.",
+        "position": "Wiese lehnt die Söder-Forderung ab. Er sagt, es sei letztendlich eine Tarifvertragssache und dass die Politik das nicht vorschreiben kann. Er findet es 'von dem Hintergrund falsch', da über reguläre Arbeitszeit hinaus viele Überstunden geleistet werden. Der Fokus auf diese eine Stunde hält er für falsch. Er verweist auf SPD-Politikerin Annika Klose, die die Forderung ebenfalls 'daneben' findet. Er betont erneut, dass 1,2 Milliarden Überstunden geleistet werden, was pro Beschäftigtem mehr als eine Stunde ist.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese gibt eine klare, substantielle Ablehnung mit Begründungen: Politik kann Arbeitszeit nicht vorschreiben, Überstunden werden nicht ausreichend berücksichtigt, die Maßnahme sei daher kontraproduktiv.",
+        "concrete_statements": [
+          "Es ist letztendlich eine Tarifvertragssache.",
+          "Die Politik kann das nicht vorschreiben.",
+          "Ich finde es von dem Hintergrund falsch.",
+          "Der Fokus auf die 1 Stunde, den halte ich falsch."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist letztendlich eine Tarifvertragssache. Ich finde es von dem Hintergrund falsch. Es wird über die reguläre Arbeitszeit hinaus viele Überstunden geleistet. Der Fokus auf die 1 Stunde, den halte ich falsch.",
+            "timestamp": "00:59:04",
+            "context": "Wiese lehnt die Söder-Forderung ab und begründet seine Position."
+          },
+          {
+            "text": "Die beschäftigen leisten 1,2 Milliarden Überstunden. Brechen Sie das runter auf die beschäftige, dann das ist mehr als 1 Stunde.",
+            "timestamp": "01:00:05",
+            "context": "Wiese widerlegt Söders Forderung mit Datenverweis."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitszeit",
+          "Tarifpolitik",
+          "Arbeitnehmerschutz"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion; Wiese antwortet direkt und mit klarer Position."
+      },
+      {
+        "title": "Reformambitionen 2026: Gesundheit, Rente, Sozialstaat",
+        "timestamp_range": "01:08:34 - 01:10:33",
+        "theme_description": "Dirk Wiese skizziert die wichtigsten SPD-Reformvorhaben für 2026 und widerlegt den Pessimismus bezüglich Reformfähigkeit.",
+        "question_asked": "Der Moderator fragt Wiese, welche wichtigen Dinge die SPD noch umsetzen will in diesem Jahr (2026).",
+        "question_intent": "Der Moderator möchte wissen, welche konkreten Reformen die SPD konkret plant und ob diese substantiell sind.",
+        "position": "Wiese nennt vier große Reformprojekte: (1) Bürgerreform im März—diese war Grund für schlechte SPD-Umfragewerte (16 %), weil der Eindruck entstand, SPD kümmere sich mehr um Nicht-Arbeiter als Arbeiter. (2) Im März Ergebnisse zur gesetzlichen Krankenversicherung mit ambitionierten Reformen, umzusetzen bis Sommer. (3) Sozialstaatsreform mit Ergebnissen teilweise 2026. (4) Rentenreform im zweiten Halbjahr. Wiese teilt nicht den Pessimismus zur Rentenkommission und betont, dass viele Bürger nicht skeptisch gegenüber Reformen sind, sondern fordern, dass diese 'gerecht' ablaufen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wiese antwortet sehr konkret: vier benannte Reformprojekte mit Zeitplan und jeweils einer Erklärung zur SPD-Position.",
+        "concrete_statements": [
+          "Wir wollen im März die Bürgerreform umsetzen.",
+          "Wir werden im März die Ergebnisse bekommen in Hinblick auf die Situation der gesetzlichen Krankenversicherung.",
+          "Ein Teil der Reformen, die vorgeschlagen werden sind ambitioniert, und können Gesetzestexte umgewandelt werden bis zum Sommer.",
+          "Ich teile den Pessimismus bei der Rentenkommission nicht.",
+          "Viele sagen wir müssen das angehen, es muss nur gerecht zugehen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir wollen im März die Bürgerreform umsetzen. In der vergangenen Periode war das der Grund, dass wir bei 16 % gelandet sind. Weil der Eindruck war, wir kommen uns mehr um die, die nicht arbeiten, als die, die arbeiten.",
+            "timestamp": "01:08:34",
+            "context": "Wiese erklärt, warum die Bürgerreform für SPD-Image zentral ist."
+          },
+          {
+            "text": "Ich merke, viele stehen Reformen nicht skeptisch gegenüber. Viele sagen wir müssen das angehen, es muss nur gerecht zugehen.",
+            "timestamp": "01:10:33",
+            "context": "Wiese widerlegt den grassierenden Pessimismus zur Reformfähigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sozialreformen",
+          "Gesundheitsreform",
+          "Rentenreform",
+          "Bürgerreform"
+        ],
+        "evasion_note": "Keine nennenswerte Evasion; Wiese antwortet konkret und gibt Zeitpläne an."
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "1,2 Milliarden Überstunden wurden im vergangenen Jahr geleistet.",
+        "timestamp": "00:56:05"
+      },
+      {
+        "claim": "Der Krankenstand in Deutschland liegt bei 14,5 Tagen im Jahr.",
+        "timestamp": "00:15:27"
+      },
+      {
+        "claim": "Die SPD landete in einer vergangenen Wahl bei 16 %.",
+        "timestamp": "01:08:34"
+      },
+      {
+        "claim": "Niederlande haben eine viel größere Teilzeitquote als Deutschland.",
+        "timestamp": "00:56:36"
+      },
+      {
+        "claim": "Das Bundesteilhabe-Gesetz ermöglicht Menschen mit Behinderungen, Ansprüche an Gesellschaftsteilhabe zu haben, statt gebündelte Leistungen zu erhalten.",
+        "timestamp": "00:33:00"
+      }
+    ]
+  }
+}

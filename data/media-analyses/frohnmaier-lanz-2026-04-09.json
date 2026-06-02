@@ -1,0 +1,412 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-9-april-2026-102",
+    "video_id": "lanz-2026-04-09",
+    "politician": "Markus Frohnmaier",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "740654741ceb8e06",
+    "transcript_chars": 64994,
+    "caption_lines": 3174,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26628,
+    "tokens_out": 9885,
+    "cost_usd": 0.0304212,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 18,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "themenwechsel": 1,
+      "pivot_zum_gegenpunkt": 1,
+      "offene_verweigerung": 1,
+      "substantielle_position": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.894Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Markus Frohnmaier, außenpolitischer Sprecher der AfD, plädiert in dieser Sendung für einen pragmatischen, an deutschen Interessen ausgerichteten Außenpolitik. Er betont die Notwendigkeit, Unterschiede zu den USA auszutragen und lehnt einseitige moralische Urteile ab; gleichzeitig versucht er, seine Partei als fähig zu profilieren, mit allen Akteuren zu verhandeln. Der Ton ist sachlich-argumentativ mit punktuellen Ausweichbewegungen bei direkten völkerrechtlichen Fragen.",
+    "themes": [
+      {
+        "title": "Bewertung der Iran-Luftschläge: Präzision vs. zivile Opfer",
+        "timestamp_range": "00:07:28 - 00:13:02",
+        "theme_description": "Frohnmaier wird gefragt, ob die anfänglichen iranischen Luftschläge präzise waren, und muss sich mit Belegen für zivile Opfer (Schulen, Infrastruktur) auseinandersetzen.",
+        "question_asked": "Der Moderator hinterfragt Frohnmaiers Beschreibung der ersten Anschläge als 'relativ präzise' angesichts dokumentierter Bombardierungen von Schulen und Zivilinfruktur, insbesondere einer Mädchenschule.",
+        "question_intent": "Frohnmaier soll präzisieren oder revidieren, ob die chirurgische Kriegsführung haltbar ist, wenn zivile Infrastruktur nachweislich zerstört wurde.",
+        "position": "Frohnmaier räumt ein, dass zu Beginn gezielt die iranische Führung ausgeschaltet wurde, betont aber kontextuell, dass man dies von früheren amerikanischen Interventionen (Venezuela, Irakkrieg) nicht kannte. Er argumentiert, dass Flächenbombardements nicht möglich sind (‚Intrigen lässt sich das niemals gänzlich verhindern'), und differenziert zwischen anfänglichen präzisen Schlägen und dem weiteren Verlauf. Später konkretisiert er, dass zerstörte zivile Infrastruktur Kriegsverbrechen konstituiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frohnmaier adressiert die Frage zur Präzision teilweise: Er gibt zu, dass zivile Infrastruktur nicht vollständig vermeidbar ist, verteidigt aber das Konzept der ‚Unterscheidung' zwischen frühen und späteren Phasen. Eine klare Antwort, ob die dokumentierten Schulbombardierungen mit präziser Kriegsführung vereinbar sind, bleibt aus; stattdessen wird auf Kontext (Israeli Situation, iranische Aggression) ausgewichen.",
+        "quotes": [
+          {
+            "text": "Zu Beginn war es schon so, dass gezielt die iranische Führung ausgeschaltet worden ist. Das ist etwas, was wir zuvor von amerikanischen Interventionen nicht kannten.",
+            "timestamp": "00:07:28",
+            "context": "Frohnmaier wird gefragt, ob die anfängliche Bewertung der Anschläge als präzise haltbar ist."
+          },
+          {
+            "text": "Wenn zivile Infrastruktur zerstören, dann handelt es sich um Kriegsverbrechen.",
+            "timestamp": "00:21:02",
+            "context": "Der Moderator fragt direkt nach, ob Anschläge auf zivile Infrastruktur Kriegsverbrechen sind."
+          }
+        ],
+        "concrete_statements": [
+          "Frühe Anschläge waren relativ präzise, unterscheiden sich von Flächenbombardements",
+          "Zivile Opfer können nicht gänzlich vermieden werden",
+          "Zerstörung ziviler Infrastruktur = Kriegsverbrechen",
+          "Deutscher Interesse: kein regionaler Flächenbrand, keine geschlossene Straße von Hormus"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Bei der Frage nach der Haltbarkeit des ‚präzise'-Narrativs angesichts dokumentierter Schulbombardierungen weicht Frohnmaier aus, indem er Unterscheidungen zwischen Phasen vornimmt und vergleichend auf Israel/Iran-Nachbarschaft hinweist.",
+        "related_bundestag_topics": [
+          "Völkerrechtsbrüche",
+          "Kriegsverbrechen",
+          "Rüstungsexporte",
+          "Außenpolitik USA",
+          "Nahostverhältnisse"
+        ]
+      },
+      {
+        "title": "Völkerrechtliche Bewertung der Iran-Intervention",
+        "timestamp_range": "00:17:58 - 00:25:13",
+        "theme_description": "Frohnmaier wird wiederholt direkt gefragt, ob die US-Militäroperation völkerrechtswidrig ist. Er weicht aus, indem er auf Rechtsunsicherheit, fehlende Institutionen und Machtfragen hinweist.",
+        "question_asked": "Ist die US-Intervention völkerrechtswidrig oder nicht? Der Moderator fordert eine klare Einschätzung, auch mit Verweis auf Frohnmaiers Jurastudium.",
+        "question_intent": "Der Moderator möchte Frohnmaier zu einer eindeutigen rechtlichen Einschätzung zwingen und inkonsistenzen zwischen AfD-Programm (Völkerrecht) und Frohnmaiers Argumentation aufdecken.",
+        "position": "Frohnmaier betont, dass es Pro- und Contra-Argumente gibt und dass er selbst nicht aus dem Völkerrecht kommt (implizite Distanzierung von Baerbock). Er argumentiert, dass ‚Völkerrecht momentan Recht ohne Macht' ist und von fehlenden Institutionen geprägt ist. Deutsche und europäische Politik hätten die regelbasierte Ordnung wie ‚eine heilige Kuh' behandelt, aber faktisch gehe es um ‚Recht oder Macht'. Bei wiederholtem Insistieren räumt er ein: ‚Wenn zivile Infrastruktur zerstört wird, dann handelt es sich um Kriegsverbrechen' — bedingt aber diese Einschätzung auf ‚beide Seiten' (Gegenseitigkeitsargument).",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Frohnmaier beantwortet die völkerrechtliche Frage nicht direkt, sondern verschiebt sie in eine grundsätzliche Metadebatte über Völkerrecht, Macht und institutionelle Defizite. Er lenkt von der konkreten Frage ab zur Kritik an der deutschen und europäischen Behandlung von Völkerrecht als Ideologie.",
+        "quotes": [
+          {
+            "text": "Völkerrecht ist momentan Recht ohne Macht. Das haben wir gesehen in den letzten Wochen und Monaten.",
+            "timestamp": "00:20:00",
+            "context": "Moderator fordert klare völkerrechtliche Bewertung."
+          },
+          {
+            "text": "Das ist eine Einschätzung, die ich im Moment nicht einschätzen kann.",
+            "timestamp": "00:20:32",
+            "context": "Moderator fragt direkt: 'Ist das völkerrechtswidrig oder nicht?'"
+          },
+          {
+            "text": "Es gibt eine Pro-und-Contra-Argumente Wertung dazu.",
+            "timestamp": "00:19:15",
+            "context": "Ahmetović fordert klare Antwort: legitim ja oder nein?"
+          }
+        ],
+        "concrete_statements": [
+          "Völkerrecht ist ohne Macht-Durchsetzung nicht aussagekräftig",
+          "Fehlende Institutionen für Durchsetzung",
+          "Regelbasierte Ordnung wurde in Deutschland idealisiert",
+          "Conditio: Wenn zivile Infrastruktur zerstört wird = Kriegsverbrechen (gilt aber gegenseitig)"
+        ],
+        "deflection_target": "Generalisierte Kritik an europäischem Umgang mit Völkerrecht; Gegenpunkt: Auch iranische Aggressionen sind völkerrechtswidrig",
+        "evasion_note": "Frohnmaier antwortet auf die konkrete Frage zur Iran-Intervention nicht direkt, sondern schiebt eine Systemkritik vor (Völkerrecht = Recht ohne Macht). Dies verhindert eine klaren ja/nein zur Völkerrechtlichkeit.",
+        "related_bundestag_topics": [
+          "Völkerrecht",
+          "Außenpolitik",
+          "Regelbasierte internationale Ordnung",
+          "UN-Charta",
+          "Krieg Iran"
+        ]
+      },
+      {
+        "title": "Ramstein-Rolle: Teilnahme Deutschlands am Iran-Krieg",
+        "timestamp_range": "00:30:33 - 00:38:02",
+        "theme_description": "Der Moderator stellt dar, dass deutsche Ramstein-Basis zentral für Irankrieg ist, und argumentiert, Deutschland sei faktisch Kriegspartei. Frohnmaier antwortet mit Kritik an deutscher Energiepolitik statt direkter Antwort.",
+        "question_asked": "Ist Deutschland durch Ramstein nicht längst Teil dieses Krieges, obwohl die SPD sagt, wir beteiligen uns nicht aktiv?",
+        "question_intent": "Aufdeckung einer Widerspruch: Sagen 'nicht unser Krieg', aber Ramstein ist zentral — also sind wir indirekt beteiligt. Frohnmaier soll das adressieren.",
+        "position": "Frohnmaier widerspricht nicht, dass Ramstein eine Rolle spielt. Stattdessen kritisiert er jahrlange ‚ideologiegetriebene Energiepolitik' Deutschlands, die zu Verwundbarkeit geführt habe. Er argumentiert, hätte Deutschland Kernkraftwerke und Kohleenergie nicht abgebaut, würde es weniger abhängig sein und könnte sich von solchen Konflikten besser distanzieren. Der Punkt ist: Deutschlands strukturelle Schwäche (Energie-Abhängigkeit) zwingt es indirekt in Abhängigkeiten, aber nicht die Schuld Frohnmaiers Partei.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Frohnmaier weicht der direkten Frage aus und lenkt stattdessen auf deutsche Energiepolitik als Ursache. Er bestätigt indirekt die Ramstein-Rolle, verlegt aber die Verantwortung auf frühere grüne/SPD-Energiepolitik. So adressiert er die Frage nicht, sondern führt einen Gegenpunkt (deutsche Schwäche durch Energiewende).",
+        "quotes": [
+          {
+            "text": "Dieser Krieg zeigt, wie schwach wir mittlerweile geworden sind. Wir haben jahrelang eine ideologiegetriebene Energiepolitik erfolgt.",
+            "timestamp": "00:32:28",
+            "context": "Moderator fragt: Sind wir nicht längst Teil des Krieges durch Ramstein?"
+          },
+          {
+            "text": "Wenn wir Kernkraftwerke hätten, wenn wir weiterhin in Kohlekraft investieren würden, dann hätten wir...",
+            "timestamp": "00:32:30",
+            "context": "Fortsetzung der Energiepolitik-Kritik statt direkter Ramstein-Antwort."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland ist energiepolitisch verwundbar geworden",
+          "‚Ideologiegetriebene' Energiepolitik (Kernkraft-, Kohleausstieg)",
+          "Infrastruktur-Abhängigkeit als Grund für indirekte Kriegsbeteiligung",
+          "Forderung: Energiepolitik neu bewerten (Kernkraft, Kohle)"
+        ],
+        "deflection_target": "Grüne/SPD-Energiepolitik",
+        "evasion_note": "Frohnmaier beantwortet nicht direkt, ob Ramstein eine Teilnahme bedeutet, sondern kritisiert deutsche Energieabhängigkeit als strukturelle Ursache.",
+        "related_bundestag_topics": [
+          "Energiepolitik",
+          "Kernenergie",
+          "Kohleausstieg",
+          "Nato-Infrastruktur",
+          "Außenpolitische Handlungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Satz 'dieser Krieg ist nicht unser Krieg': Konsequenzen",
+        "timestamp_range": "00:30:33 - 00:34:21",
+        "theme_description": "Frohnmaier wiederholt den Satz ‚dieser Krieg ist nicht unser Krieg' und verteidigt ihn als Konsistenz mit AfD-Programm (Nicht-Interventionismus). Der Moderator argumentiert, Spanien sei neutral, Deutschland aber nicht (wegen Ramstein).",
+        "question_asked": "Wenn wir sagen ‚nicht unser Krieg', warum können deutsche Schiffe nicht durch die Straße von Hormus fahren, aber spanische schon?",
+        "question_intent": "Frohnmaier soll die Umsetzung des Satzes ‚nicht unser Krieg' konkretisieren und erklären, warum Deutschland nicht neutral ist wie Spanien.",
+        "position": "Frohnmaier argumentiert, AfD sei die einzige Partei im Bundestag, die konsequent Nicht-Interventionismus verfolge. Er deutet an, dass Deutschland diese Haltung auch bei der Ukraine durchsetze. Der Punkt: Der Satz ‚nicht unser Krieg' ist Programm-konsistent, aber Umsetzung scheitert an strukturellen Abhängigkeiten (Ramstein, Energie). Spanien machte Basen dicht, Deutschland nicht — das ist das Problem, nicht die AfD-Position.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frohnmaier erklärt, dass AfD konsequent nicht-interventionistisch ist, adressiert aber nicht, warum Ramstein faktisch eine Partizipation bedeutet. Er lenkt auf Programm-Konsistenz ab, nicht auf die Frage, wie konkret ‚nicht unser Krieg' umsetzbar ist.",
+        "quotes": [
+          {
+            "text": "Wir sind im Moment die einzige Partei im Deutschen Bundestag, die ganz klar, wir sind für einen nicht interventionistisch und wir wollen keine Einmischung in die Kriege anderer Staaten.",
+            "timestamp": "00:31:31",
+            "context": "Frohnmaier wird gefragt, warum AfD den Satz ‚nicht unser Krieg' nutzt."
+          },
+          {
+            "text": "Das ist der Punkt, um den es geht. Ein großer Teil dessen, was dort passiert läuft über Ramstein, Deutschland. Ohne Ramstein wäre das so nicht möglich.",
+            "timestamp": "00:32:48",
+            "context": "Moderator wiederholt das Ramstein-Argument; Frohnmaier scheint einzustimmen, lenkt dann aber ab."
+          }
+        ],
+        "concrete_statements": [
+          "AfD als einzige konsequent nicht-interventionistische Partei",
+          "Anwendung dieser Linie auch auf Ukraine-Frage",
+          "Spanien als Gegenbeispiel: Basen geschlossen = faktisch neutral",
+          "Deutschland sollte Ramstein nutzen als Druckmittel"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Nicht-Interventionismus",
+          "NATO-Infrastruktur",
+          "Straße von Hormus",
+          "Außenpolitische Strategie"
+        ]
+      },
+      {
+        "title": "US-Truppen in Deutschland: Abzug und NATO-Abhängigkeit",
+        "timestamp_range": "00:38:44 - 00:42:14",
+        "theme_description": "Moderator fragt, was Frohnmaiers Aussage ‚irgendwann sollten alliierte Truppen abziehen' konkret bedeutet, und ob AfD (Tino Chrupalla) das sofort fordert.",
+        "question_asked": "Tino Chrupalla hat in dieser Sendung gesagt, US-Soldaten sollen Deutschland verlassen. Fordert auch Frohnmaier das sofort?",
+        "question_intent": "Moderator will aufdecken, dass Frohnmaier Chrupallas Position relativiert/reinterpretiert; die AfD gibt sich moderater als sie ist.",
+        "position": "Frohnmaier räumt ein, dass Chrupalla den Abzug fordert, aber ‚komplement' dazu (unter bestimmten Bedingungen). Laut Grundsatzprogramm soll das erst erfolgen, wenn: (1) Bundeswehr verteidigungsfähig, (2) europäisches Verteidigungskonzept steht, (3) Prämissen gesichert. Momentan braucht Deutschland noch die USA für nuklearen Schutzschirm. Die Programmatik sei ‚gerade nicht umsetzbar'. Frohnmaier kritisiert aber auch: Bundesregierung ist ehrlich nicht, wenn sie sagt ‚wir können für uns selbst sorgen' — faktisch sind Bundeswehr in desolatem Zustand, SPD stellt lange Verteidigungsminister, aber wenig investiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frohnmaier adressiert die Frage, indem er unterscheidet zwischen Chrupallas Forderung (Abzug) und AfD-Programm (Abzug nur unter Bedingungen). Dies ist teilweise: Er erklärt die Bedingungen, aber ob diese jemals erfüllt sein werden (‚in 20, 30 Jahren?'), bleibt unklar. Moderator bohrt nach ‚Zeitrahmen', Frohnmaier weicht aus mit ‚seriöse Antwort erfordert Prämissen-Klärung'.",
+        "quotes": [
+          {
+            "text": "Unter den Bedingungen, die im Grundsatzprogramm der AfD aufgeführt sind, sollte es irgendwann dazu kommen, korrekt.",
+            "timestamp": "00:41:50",
+            "context": "Moderator fragt direkt: Sollen US-Truppen abziehen, ja oder nein?"
+          },
+          {
+            "text": "Wir brauchen erst mal eine Verteidigungsrede Bundeswehr und ein Konzept, ein europäisches...",
+            "timestamp": "00:42:14",
+            "context": "Frohnmaier erläutert Bedingungen für US-Truppenauszug."
+          }
+        ],
+        "concrete_statements": [
+          "AfD-Programm: Abzug unter Bedingungen (Bundeswehr-Stärke, europäisches Konzept, nukleare Unabhängigkeit)",
+          "Momentan: Deutschland braucht US-Schutzschirm",
+          "Kritik: Bundesregierung nicht ehrlich über Bundeswehr-Zustand",
+          "Zeitrahmen offen (‚irgendwann')"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Frohnmaier reinterpretiert Chrupalla-Position als ‚programm-konform' (nicht sofort), weicht aber auf Bedingungen aus, deren Erfülbarkeit unklar ist.",
+        "related_bundestag_topics": [
+          "NATO",
+          "US-Militärpräsenz",
+          "Bundeswehr",
+          "Verteidigungsfähigkeit",
+          "Nukleare Abschreckung"
+        ]
+      },
+      {
+        "title": "Wehrpflicht: Programm vs. politische Wirklichkeit",
+        "timestamp_range": "00:42:40 - 00:43:43",
+        "theme_description": "Schindler wirft der AfD vor, dass sie Wehrpflicht lang forderte, jetzt aber bei Diskussion keine Anträge stellt. Frohnmaier betont Programm-Bekenntnis, weicht aber konkreter Frage aus.",
+        "question_asked": "Warum hat die AfD keinen Antrag zur Wehrpflicht gestellt, obwohl das im Programm steht?",
+        "question_intent": "Schindler will zeigen, dass AfD ihre Programm-Punkte (Wehrpflicht) nicht durchsetzt; ggf. manipuliert durch interne Debatten.",
+        "position": "Frohnmaier antwortet, dass die Partei sich klar zur Wehrpflicht bekennt. Der Grund für fehlende Anträge wird nicht explicito genannt, aber impliziert: politische Umsetzung scheitert an anderer Stelle (vermutlich Chrupalla-Intervention ‚Meine Söhne kriegt ihr nicht', wie Schindler anmerkt).",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Frohnmaier beantwortet die konkrete Frage nach fehlenden Anträgen nicht; er weicht auf Programm-Bekenntnis aus. Warum keine Anträge? Unbeantwortet. Dies ist eine Verweigerung, die Inkonsistenz zwischen Programm und politischer Praxis zu adressieren.",
+        "quotes": [
+          {
+            "text": "Maßgeblich für eine Partei ist Programm. Unsere Partei erkennt sich ganz klar zur Wiedereinführung der Wehrpflicht, zur Reaktivierung des Völkerrechts. Dazu stehen wir auch.",
+            "timestamp": "00:43:23",
+            "context": "Schindler fragt, warum AfD keinen Wehrpflicht-Antrag stellt."
+          }
+        ],
+        "concrete_statements": [
+          "AfD bekennt sich zu Wehrpflicht im Programm",
+          "Wehrpflicht = Reaktivierung des Völkerrechts"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Frohnmaier weicht der Frage nach praktischer Umsetzung aus, indem er auf Programm verweist; die interne Debatte (Chrupalla: ‚Meine Söhne') wird nicht adressiert.",
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Bundeswehr",
+          "Militärische Stärke"
+        ]
+      },
+      {
+        "title": "Verhältnis zu Trump, MAGA-Bewegung und USA",
+        "timestamp_range": "00:44:56 - 00:52:38",
+        "theme_description": "Puglierin und Moderator fragen Frohnmaier, wie die AfD ihre Nähe zu Trump/MAGA mit kritischen Stimmen in der eigenen Partei vereinbart, und ob das mit Landtagswahlen zu tun hat.",
+        "question_asked": "Es gibt Widersprüche in der AfD zu Trump: Einerseits Nähe zu MAGA, andererseits kritische Stimmen auch von Alice Weidel. Woher dieser Sinneswandel? Hat das mit Landtagswahlen zu tun?",
+        "question_intent": "Frohnmaier soll erklären, wie konsistent die AfD-Position zu Trump ist und ob taktische/wahlpolitische Gründe dahinterstecken.",
+        "position": "Frohnmaier argumentiert, dass schwarz-weiß-Denken unangemessen ist. Ein amerikanischer Präsident vertritt amerikanische Interessen, nicht deutsche — das ist natürlich. Daher gibt es Gemeinsamkeiten (Migration, Anti-Wokismus) und Unterschiede (Iran-Intervention). Wer sagt, Partner müssen in allem einer Meinung sein, verwechselt Partnership mit Vasallentum. Zur konkreten Nähe zu MAGA: Frohnmaier war beim MAGA-Treffen, Alice Weidel grüßte herzlich, war aber nicht dabei. Dies ist normal — unterschiedliche Bewertungen innerhalb einer Partei.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frohnmaier gibt eine substantielle Antwort auf die Frage nach dem Verhältnis zu Trump/MAGA. Er erklärt differenzierend, dass Differenzen bei außenpolitischen Fragen (Iran) nicht dasselbe bedeuten wie Vasallentum; es gibt Gemeinsamkeiten bei innenpolitischen Themen. Dies adressiert die Frage direkt — ohne ausweichende Meta-Diskussion.",
+        "quotes": [
+          {
+            "text": "Ein amerikanischer Präsident ist dafür da, amerikanische Interessen zu vertreten. Diese sind nicht deckungsgleich mit Deutschen. Das ist völlig natürlich.",
+            "timestamp": "00:44:56",
+            "context": "Puglierin fragt nach Widersprüchen in AfD-Haltung zu Trump."
+          },
+          {
+            "text": "Ich glaube, dass es manchmal schon diese fast irritierende Vorstellung davon gibt, dass Partnerschaft bedeutet, dass man immer und ausschließlich bei allen Dingen einer Meinung sein muss. Damit ist man kein Partner, sondern Vasalle.",
+            "timestamp": "00:46:41",
+            "context": "Frohnmaier wird auf Kritik an MAGA-Nähe angesprochen."
+          }
+        ],
+        "concrete_statements": [
+          "Parteien/Staaten können unterschiedliche Interessen haben",
+          "AfD sieht Gemeinsamkeiten mit MAGA bei Migration, Anti-Wokismus",
+          "Unterschiede bei Iran-Intervention sind normal",
+          "Alice Weidel grüßte herzlich beim MAGA-Treffen (war aber nicht dabei)"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Transatlantisches Bündnis",
+          "USA-Außenpolitik",
+          "Trump-Regierung",
+          "Außenpolitische Grundsätze"
+        ]
+      },
+      {
+        "title": "Erbe, Stolz auf Deutschland, Wokismus",
+        "timestamp_range": "00:54:34 - 01:06:20",
+        "theme_description": "Moderator hinterfragt Frohnmaiers Rede in New York, speziell die Sätze ‚Globalisten' und ‚Die Tage, an denen wir uns für unser Erbe entschuldigt haben, sind vorbei'. Diskussion über deutsche Identität, Wokismus, Nationalsozialismus.",
+        "question_asked": "Was meinen Sie mit ‚Globalisten' — ist das eine antisemitische Konnotation? Welches Erbe meinen Sie, für das wir uns nicht mehr entschuldigen sollen?",
+        "question_intent": "Moderator will aufdecken, dass Frohnmaier rechte Code-Worte benutzt und möglicherweise auf Nationalsozialismus-Bagatellisierung abzielt.",
+        "position": "Frohnmaier betont, dass ‚Globalisten' eine Chiffre für Antisemitismus sei, absurd — der Preis wurde ihm von einem amerikanischen Juden verliehen. Zum Erbe: Es gehe nicht um NS-Entschuldigung (die sei berechtigt), sondern um moderne Tendenzen, sich für nationale Identität schämen zu müssen. Beispiel: An Universitäten küssen Menschen anderen die Füße für kolonialen Erbe — das sei Wokismus-Extrem. Frohnmaier möchte sich nicht schämen, Deutscher zu sein — wie auch Amerikaner sich nicht schämen sollten. Das habe ihm der jüdische Preis-Geber bestätigt. Zur ersten Strophe des Deutschlandlieds: Er würde es nicht selbst singen, aber es ist legal. Heutzutage wird es als unpassend empfunden, aber nur weil NS es missbrauchte, das zu sagen, bedeutet nicht, dass alles Deutschlandlied zu meiden ist — das wäre Hysterie.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frohnmaier adressiert beide Fragen teilweise: ‚Globalisten' sei keine antisemitische Konnotation (weil Preis von Jude), aber auf den semantischen Punkt (Code-Wort in rechten Kreisen) antwortet er nicht. Zum Erbe: Er grenzt NS ab, aber seine Beispiele (Wokismus, Kultur-Kriegs-Narrative) sind vage und lenken ab. Was konkret ‚Entschuldigung für Erbe' bedeutet außer Wokismus-Kritik, bleibt unklar.",
+        "quotes": [
+          {
+            "text": "Wissen Sie sie wäre mir den Preis verliehen hat? Ein jüdischer Amerikaner. Vor dem Hintergrund ist das etwas albern.",
+            "timestamp": "00:55:22",
+            "context": "Moderator wirft vor, ‚Globalisten' habe antisemitische Konnotation."
+          },
+          {
+            "text": "Es geht darum, dass man stolz auf das eigene sein darf. Ich finde Deutschland ist ein großartiges Land mit einer großartigen Historie und Geschichte.",
+            "timestamp": "00:57:12",
+            "context": "Frohnmaier wird gefragt, welches Erbe er meint."
+          },
+          {
+            "text": "Ich möchte mich nicht dafür schämen müssen, Deutscher zu sein.",
+            "timestamp": "00:57:26",
+            "context": "Kernaussage zum Erbe-Satz."
+          },
+          {
+            "text": "Das ist eine Form von Hysterie für mich.",
+            "timestamp": "01:02:57",
+            "context": "Frohnmaier zu Reaktionen auf erste Strophe Deutschlandlied."
+          }
+        ],
+        "concrete_statements": [
+          "‚Globalisten' ist keine antisemitische Code-Wort (Gegenbeispiel: jüdischer Preis-Geber)",
+          "Erbe = nicht-NS-Teil deutscher Geschichte (Wiedervereinigung, Verfassung, Kultur)",
+          "Wokismus-Extreme (Kultur-Demütigung an Unis) sind Hysterie",
+          "Erste Strophe Deutschlandlied: legal, aber heutzutage unüblich; würde nicht selbst singen",
+          "Nicht-Schämen für Deutschsein ist legitim"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Frohnmaier weicht auf die Frage aus, ob ‚Globalisten' Code-Wort ist, indem er Kontext anführt (jüdischer Geber); adressiert aber nicht, wie das Wort in rechten Kreisen tatsächlich verwendet wird.",
+        "related_bundestag_topics": [
+          "Nationale Identität",
+          "Erinnerungskultur",
+          "Wokismus",
+          "Deutschlandlied",
+          "Antisemitismus"
+        ]
+      },
+      {
+        "title": "USA-Reise vor Baden-Württemberg-Wahl: Zweck und Kontakte",
+        "timestamp_range": "01:09:54 - 01:13:46",
+        "theme_description": "Moderator fragt, warum Frohnmaier Tage vor der Baden-Württemberg-Wahl nach USA reiste und in welchen Kreisen er dort verkehrte (evangelikale, MAGA?).",
+        "question_asked": "Warum reisten Sie kurz vor der Baden-Württemberg-Wahl in die USA? Wer wurden Sie dort getroffen?",
+        "question_intent": "Moderator will aufdecken, dass AfD-Außenpolitik opportunistisch zu MAGA-nahen Gruppen reist, um Wahlen zu beeinflussen oder Funding zu sichern.",
+        "position": "Frohnmaier argumentiert, Baden-Württemberg habe enge Wirtschafts-Beziehungen zu USA (30% Fahrzeugteile-Export). Er traf Wirtschaft-Vizeminister und diskutierte deutsch-amerikanische Beziehungen für Neun-Punkte-Plan zur Wahl. Die Terminplanung sei Zufall, nicht Wahlkampf-Strategie. Chrupalla sagte später, es war ‚nicht die schlauste Idee'; Frohnmaier widerspricht aber, dass es irritation gab. Er könne nicht jeden Journalist zu jedem Termin mitnehmen; es gab öffentliche Termine (Europa-Fraktion-Kongress mit US-Speaker) und nicht-öffentliche (State Department, Michael Johnson-Treffen).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frohnmaier adressiert die Reise mit Wirtschafts-Argument, lenkt aber ab: Es gab mehr Termine, als er nennt; Schindler listet auf (Kongress, Michael Johnson, State Dept.), aber evangelikale/MAGA-Kontakte werden nicht explizit bestätigt oder verneint. Die Antwort ist partiell substantiell (Wirtschafts-Begründung), partiell ausweichend (Termin-Details).",
+        "quotes": [
+          {
+            "text": "Baden-Württemberg hat eine wahnsinnig enge Kooperation, wenn die auf den Handel schauen, mit den vereinigten Staaten. 30 % unserer Autos und Fahrzeugteile gehen dorthin.",
+            "timestamp": "01:09:54",
+            "context": "Frohnmaier wird gefragt, warum er vor der Wahl nach USA reiste."
+          },
+          {
+            "text": "Das war Teil des Neun-Punkte-Plans. Ich erkläre einfach, ich rechtfertige mich nicht.",
+            "timestamp": "01:10:41",
+            "context": "Frohnmaier verteidigt die Reise."
+          }
+        ],
+        "concrete_statements": [
+          "Reise für Neun-Punkte-Plan zur Baden-Württemberg-Wahl",
+          "Wirtschafts-Fokus: deutsche Auto-Exporte",
+          "Traf Wirtschaft-Vizeminister",
+          "Termine auch bei State Department und mit Michael Johnson (geplant)",
+          "Öffentliche Termine: Europa-Fraktion-Kongress mit US-Repräsentanten"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Frohnmaier nennt nur Wirtschafts-Termine, nicht evangelikale oder MAGA-spezifische Kontakte; Schindler ergänzt, dass es State-Dept.-Gespräche gab. Ob die Reise auch innenpolitische (MAGA-Kontakte) oder Funding-Zwecke hatte, bleibt unklar.",
+        "related_bundestag_topics": [
+          "Wahlkampf",
+          "Außenpolitik USA",
+          "Wirtschafts-Beziehungen transatlantisch",
+          "Landtagswahl Baden-Württemberg"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "30% der Auto und Fahrzeugteile aus Baden-Württemberg gehen in die USA",
+        "timestamp": "01:09:54"
+      },
+      {
+        "claim": "Die USA tragen 61% der NATO-Verteidigungsausgaben, Deutschland nicht mal 40%",
+        "timestamp": "00:38:02"
+      },
+      {
+        "claim": "Tino Chrupalla hat in dieser Sendung einen Kriegspräsidenten genannt und von Kriegsverbrechen bei Bombardement von Mädchenschulen gesprochen",
+        "timestamp": "00:02:03"
+      },
+      {
+        "claim": "400 Schulen wurden im Kontext der Iran-Intervention bombardiert",
+        "timestamp": "00:21:22"
+      },
+      {
+        "claim": "Straße von Hormus ist wegen des Iran-Krieges gesperrt",
+        "timestamp": "00:13:02"
+      }
+    ]
+  }
+}

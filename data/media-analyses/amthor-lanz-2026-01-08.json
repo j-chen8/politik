@@ -1,0 +1,341 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-8-januar-2026-100",
+    "video_id": "lanz-2026-01-08",
+    "politician": "Philipp Amthor",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "af3826cdbe7ca060",
+    "transcript_chars": 65912,
+    "caption_lines": 3236,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26515,
+    "tokens_out": 8100,
+    "cost_usd": 0.026806,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "themenwechsel": 1,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.205Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Philipp Amthor tritt als Parlamentarischer Staatssekretär für Digitalisierung auf und wird zu seiner Rolle in der CDU/CSU-geführten Regierung unter Friedrich Merz befragt. Er verteidigt Regierungspolitik zu Digitalisierung, Social Media, Wirtschaftsreformen und Koalitionsstabilität in einem reflektierenden, aber defensiven Ton.",
+    "themes": [
+      {
+        "title": "Berlin Blackout und Verantwortung von Kai Wegner",
+        "timestamp_range": "00:03:16 - 00:08:17",
+        "theme_description": "Diskussion über Kai Wegners Verhalten während des Stromausfalls in Berlin und die Frage, ob dieser zurücktreten sollte.",
+        "question_asked": "Der Moderator fragt, wie Amthor Karl Wegners Lüge über sein Verhalten während des Stromausfalls bewertet und ob dieser zurücktreten sollte.",
+        "question_intent": "Amthors politische Einschätzung zur Glaubwürdigkeit und Konsequenzen von Wegners Fehlverhalten einholen.",
+        "position": "Amthor sagt, Wegner 'muss mit der Situation umgehen' und räumt ein, dass dies 'Vertrauen in der Politik' erschüttert. Er betont zwar, dass es 'wichtig ist zu politischen Fehlern zu stehen' und 'den Eindruck gerade zu rücken', lehnt es aber ab, explizit zum Rücktritt Position zu beziehen. Er bescheinigt Wegner: 'Er macht aber eine sehr gute Arbeit als Bürgermeister' und sagt, die Situation kommunikativ schwierig, aber nicht konkret evaluierbar für ihn zu sein.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor adressiert die Glaubwürdigkeitsfrage und Notwendigkeit von Fehlereinsicht, weicht aber der direkten Frage zum Rücktritt aus. Er bleibt vage und fokussiert stattdessen auf Wegners generelle Arbeit.",
+        "evasion_note": "Ausweichen auf 'kommunikative Schwierigkeit' statt klarer Position zur Rücktrittsfrage.",
+        "concrete_statements": [
+          "Es ist wichtig zu politischen Fehlern zu stehen.",
+          "Das erschüttert Vertrauen in der Politik.",
+          "Er macht eine sehr gute Arbeit als Bürgermeister."
+        ],
+        "quotes": [
+          {
+            "text": "Gerade deswegen würde ich auch als jemand der auch politisch Fehler gemacht hat, sagen, es ist immer wichtig zu politischen Fehlern zu stehen.",
+            "timestamp": "00:04:54",
+            "context": "Auf Nachfrage nach dem Umgang mit Wegners Lüge während der Krise."
+          },
+          {
+            "text": "Ich kann die Situation nicht in allen Facetten bewerten, aber er selbst wird wahrscheinlich feststellen, dass es kommunikativ eine schwierige Lage ist.",
+            "timestamp": "00:08:22",
+            "context": "Auf erneute Nachfrage zur Rücktrittsfrage antwortet Amthor ausweichend."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Politische Integrität",
+          "Krisenkommunikation",
+          "Vertrauensverlust in Institutionen"
+        ]
+      },
+      {
+        "title": "Regulierung und Altersverifikation bei Social Media",
+        "timestamp_range": "00:10:23 - 00:17:23",
+        "theme_description": "Debatte über Social-Media-Regulierung, Altersverifizierung und ein mögliches Verbot von Social Media für Nutzer unter 14/16 Jahren.",
+        "question_asked": "Der Moderator fragt, ob Amthor das Engagement Schleswig-Holsteins für digitale Souveränität und strikte Social-Media-Regulierung unterschreiben würde, und fordert später eine klare Position: Würde er Social Media ab 16 verbieten?",
+        "question_intent": "Eine konkreten Ja-oder-Nein-Position zu Social-Media-Verboten für Minderjährige herauszubekommen.",
+        "position": "Amthor lobt Schleswig-Holsteins Engagement für digitale Souveränität, lehnt aber kategorische Verbote ab. Er argumentiert, dass Regulierung 'nicht der Impuls des Staates sein' muss. Kernpunkt für ihn ist, dass 'eine richtige Altersverifikation' technisch schwierig ist (reine Klicks reichen nicht). Er sagt: 'Wenn es technisch solide umsetzbar ist, kann man darüber nachdenken. Besser wäre natürlich flankieren vor dem Verbot. Allein durch Verbote geht es nicht.' Er befürwortet eine 'abgewogene Diskussion' und erwähnt die Chancen von Social Media. Auf direktes Drängen des Moderators gibt er schließlich zu: 'In einem Abwägungsprozess würde ich sagen die Altersschwelle sollte an das, geringer sein. 14 ist zum Beispiel eine Zahl über die man reden kann.'",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Amthor lenkt die Debatte wiederholt von der Verbotsfrage zur Technologie-Frage (Altersverifikation) um. Der Moderator weist mehrfach explizit darauf hin ('Das war alles nicht die Antwort auf meine Frage', 'Das ist die klassische Politiker Antwort', 'Das war nicht das Thema'). Am Ende gibt Amthor zögernd eine Antwort (Alter 14 'über die man reden kann'), aber dies ist reaktiv, nicht proaktiv.",
+        "deflection_target": "Technische Machbarkeit von Altersverifikation statt klare Verbot/Nicht-Verbot-Position",
+        "evasion_note": "Systematisches Ausweichen durch Komplexitätsargumente; ständiges Zurückgreifen auf 'abgewogene Diskussion' und 'Komplexität'.",
+        "concrete_statements": [
+          "Eine reine Klicklösung reicht nicht für Altersverifikation.",
+          "Regulierung muss nicht der Impuls des Staates sein.",
+          "Verbote allein gehen nicht.",
+          "14 ist eine Zahl, über die man reden kann."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn es technisch solide umsetzbar ist, kann man darüber nachdenken. Besser wäre natürlich flankieren vor dem Verbot. Allein durch Verbote geht es nicht.",
+            "timestamp": "00:12:34",
+            "context": "Auf die Frage nach Social-Media-Verbot ab 16 antwortet Amthor mit Komplexitätsargumenten."
+          },
+          {
+            "text": "Es ist nicht ablenken, wenn Sie mich als Politiker ansprechen, dann darf ich sagen, dass ich gerne den Blick auf das hätte, was ich's als wichtig sehe.",
+            "timestamp": "00:57:08",
+            "context": "Auf Vorwurf der Ablenkung verteidigt sich Amthor defensiv."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Jugendschutz",
+          "Meinungsfreiheit",
+          "Regulierung digitaler Plattformen",
+          "Datenschutz"
+        ]
+      },
+      {
+        "title": "Plattformverantwortung und Medienregulierung",
+        "timestamp_range": "00:20:52 - 00:22:19",
+        "theme_description": "Debatte über die Verantwortung von Social-Media-Plattformen gegenüber Inhalten, insbesondere im Vergleich zu traditionellen Medien.",
+        "question_asked": "Der Moderator weist auf Unterschied hin: Journalisten unterliegen Presserecht, Social-Media-Plattformen nicht. Welche Lösungen sieht Amthor?",
+        "question_intent": "Amthors Position zur regulatorischen Verantwortlichkeit von Plattformen und zur EU-Digitalregulierung erfahren.",
+        "position": "Amthor sagt, dass Plattformen 'zu ihrer Verantwortung stehen' müssen und es 'kein rechtsfreier Raum' ist. Er argumentiert, dass die EU-Digitalregulierungen nicht 'den Untergang der Meinungsfreiheit' bedeuten und dass 'Grenzen der Meinungsfreiheit vernünftig gewahrt' werden müssen. Der Staat habe 'eine Schutzverantwortung gegenüber den Bürgern', aber auch 'eine gesellschaftliche Verantwortung, das Diskursklima mitzubestimmen'. Grundtenor: regulierungsbefürwortend, aber differenziert.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Amthor nimmt direkt zur Frage Stellung, erklärt die regulatorische Position und verweist auf EU-Rahmen. Er differenziert zwischen Überregulierung und notwendiger Regulierung.",
+        "concrete_statements": [
+          "Plattformen müssen zu ihrer Verantwortung stehen.",
+          "Der Staat hat eine Schutzverantwortung gegenüber Bürgern.",
+          "Es ist kein rechtsfreier Raum für Plattformen."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt viele, die alle EU Digitalregulierungen als den Untergang der Meinungsfreiheit etikettieren. Die Frage ist ist es wirksam, werden die Grenzen der Meinungsfreiheit vernünftig gewahrt, ich habe den Eindruck in dieser Abwägung können wir nicht von einer Überregulierung sprechen.",
+            "timestamp": "00:21:29",
+            "context": "Auf Frage zur Verantwortung von Plattformen antwortet Amthor substantiell zur EU-Regulierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Plattformregulierung (DSA, NetzDG)",
+          "Meinungsfreiheit",
+          "Medienkompetenz"
+        ]
+      },
+      {
+        "title": "Wirtschaftstransformation und deutsches Erfolgsmodell",
+        "timestamp_range": "00:41:56 - 00:51:43",
+        "theme_description": "Große Strategie-Debatte: Kann Deutschland im Zeitalter von KI und neuer Weltordnung noch konkurrieren? Ist das Modell Automobil/Chemie am Ende?",
+        "question_asked": "Wie kann Deutschland wieder 'flott' werden? Was sind die Säulen einer neuen Wirtschaftsstrategie angesichts von KI-Transformation und sich ändernder Weltordnung?",
+        "question_intent": "Amthors strategische Vision für Deutschlands wirtschaftliche Neuaufstellung.",
+        "position": "Amthor betont 'Chancen sehen', nicht 'Lage schönreden'. Er verweist auf deutsche Stärken: 'Wir sind gut in der Wissenschaft, Forschung... Ingenieurswissenschaften' und auf notwendige Investitionen in Datenzentren. Aber er gibt auch zu, dass Deutschland 'alleine mit dem Bundeshaushalt... nicht in einen Konkurrenzwettkampf eingehen kann'. Zentrales Konzept für ihn: 'digitale Souveränität'. Er sagt, Deutschland müsse 'die richtigen Entscheidungen treffen, gerade jetzt, wo die Karten unterschiedlich verteilt werden'. Ton: Hoffnungsvoll, aber realistisch. Konkrete Maßnahmen: vage bleiben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor identifiziert Probleme (Wettbewerbsfähigkeit, KI-Rückstand), nennt aber eher Prinzipien (digitale Souveränität, Forschung) als konkrete Reformpläne. Der Moderator kritisiert später, dass Amthor 'die Lage schöner redet, als sie ist'.",
+        "concrete_statements": [
+          "Wir sind gut in Wissenschaft, Forschung und Ingenieurswissenschaften.",
+          "Wir müssen Datenzentren bauen.",
+          "Digitale Souveränität ist zentral.",
+          "Deutschland kann alleine nicht mit Meta konkurrieren."
+        ],
+        "quotes": [
+          {
+            "text": "Wir sind gut in der Wissenschaft, Forschung. Wir sind in der Phase, in der es darauf ankommt auch Datenzentren zu bauen. Das sind viele Dinge, die Deutschland gut konnte, Ingenieurswissenschaften.",
+            "timestamp": "00:50:32",
+            "context": "Auf Frage zu KI-Investitionen antwortet Amthor mit Verweis auf traditionelle Stärken."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Industriepolitik",
+          "Künstliche Intelligenz",
+          "Standortwettbewerb",
+          "Digitale Transformation"
+        ]
+      },
+      {
+        "title": "KI-Investitionen und staatliche Förderung",
+        "timestamp_range": "00:49:45 - 00:51:43",
+        "theme_description": "Diskussion über das Investitionsverhältnis: Der Staat gibt 18 Mrd. Euro für KI aus (über 4 Jahre), während Meta/Facebook 70 Mrd. jährlich ausgeben. Genug?",
+        "question_asked": "Ist die staatliche KI-Investition von 18 Mrd. Euro (über 4 Jahre) nicht zu wenig im Vergleich zu Meta (70 Mrd./Jahr)?",
+        "question_intent": "Amthors Einschätzung zur Ausreichung von Deutschlands KI-Investitionen erfahren.",
+        "position": "Amthor sagt, dass es 'gut' wäre, wenn 'große Investitionen von Unternehmen und nicht vom Staat kommen'. Der Staat sollte 'Subventionen nicht verteilen', sondern 'den Bürgern ihr Geld zurückgeben'. Wichtiger ist die Rolle des Staates als 'Ankerkundschaft' (Anwendungsfall) für KI-Lösungen. Gleichzeitig gibt er zu, dass 'die Bundesrepublik Deutschland alleine mit dem Bundeshaushalt mit Fragen Investitionen in die künstliche Intelligenz nicht in einen Konkurrenzwettkampf eingehen kann'. Fokus auf 'digitale Souveränität' statt Größe der Investitionen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor antwortet zwar auf die Frage, lenkt aber den Fokus von der absoluten Investitionsgröße weg zur Effektivität und staatlichen Rolle. Er umrahmt das Problem neu ('Staat sollte nicht konkurrieren') statt auf die konkrete Zahlendifferenz einzugehen.",
+        "concrete_statements": [
+          "Ich finde es gut, wenn große Investitionen von Unternehmen kommen.",
+          "Der Staat sollte Subventionen nicht verteilen.",
+          "Der Staat sollte sich als Ankerkunde positionieren.",
+          "Wir können alleine nicht in Konkurrenzwettkampf mit Meta eingehen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich will zunächst sagen, dass das Engagement der Landesregierung Schleswig-Holstein für digitale Souveränität sehr toll ist... Die Bundesrepublik Deutschland wird alleine mit dem Bundeshaushalt mit Fragen Investitionen in die künstliche Intelligenz nicht in einen Konkurrenzwettkampf eingehen können.",
+            "timestamp": "00:49:45",
+            "context": "Auf Vergleich Staat vs. Meta-Investitionen antwortet Amthor mit Reframing."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Künstliche Intelligenz",
+          "Digitale Souveränität",
+          "Forschungsförderung",
+          "Standortwettbewerb"
+        ]
+      },
+      {
+        "title": "Reformversprechen und Rentendebatte",
+        "timestamp_range": "00:52:04 - 00:57:44",
+        "theme_description": "Debatte über die Umsetzung von Reformversprechen der Koalition, insbesondere die kontroverse Rentendebatte und deren politische Kommunikation.",
+        "question_asked": "Der Moderator wirft vor, dass die CDU/CSU vor der Wahl 'Herbst der Reformen' versprochen hat, aber wenig umgesetzt wurde. War die Rentendebatte ein Fehler, und warum wurde ein prozentuales Rentenziel zum Konfliktfall?",
+        "question_intent": "Amthors Einschätzung zur Glaubwürdigkeit der Regierung bei der Reformumsetzung und zur Kommunikation der Rentenreform einholen.",
+        "position": "Amthor gibt zu, dass es 'Reformenstau' gibt und dass die Regierung 'den Eindruck erweckt' hat, 'die Lage in Deutschland ist so, da muss man den Schalter umlegen'. Er sagt, dass 'wir ihn adressiert haben', aber es ist 'größer als wir'. Er betont Konkreta wie 'Unternehmenssteuerreform' und 'Bürokratieabbau' und versucht, die Rentendebatte als medienunzureichend dargestellt hinzustellen: 'Ich hätte mich gefreut, wenn in der Woche der Rentenabstimmung genauso viele Sendungen und Diskussionen über die Rente gemacht wurden.' Auf Vorwurf der Ablenkung verteidigt er sich damit, dass er als Politiker sein Blickfeld selbst setzen darf.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor adressiert die Reformfrage und gibt (zögernd) Selbstkritik zu, versucht aber, mit Medienkritik abzulenken. Die Kernfrage zur Glaubwürdigkeit wird nicht direkt beantwortet.",
+        "evasion_note": "Ablenkungsversuch durch Medienkritik (Vorwurf an Lanz/Medien für unzureichende Berichterstattung). Defensiv bei Selbstkritik.",
+        "concrete_statements": [
+          "Der Reformenstau ist größer als wir ihn adressiert haben.",
+          "Wir haben Unternehmenssteuerreform angestoßen.",
+          "Bürokratieabbau haben wir viel gemacht, das reicht noch nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Fakt ist, auch das sage ich zur Frage selbst Kritik, der Reformenstau diesem Land ist nicht nur in drei Jahren Ampel entstanden, der ist auch in unserer Regierungsverantwortung entstanden, der ist größer, als wir ihn adressiert haben.",
+            "timestamp": "00:52:35",
+            "context": "Auf Frage zur Reformumsetzung gibt Amthor zögernd Selbstkritik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Arbeitsmarktreformen",
+          "Bürokratieabbau",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "Schuldenaufnahme und Glaubwürdigkeitshypothek",
+        "timestamp_range": "01:01:57 - 01:02:52",
+        "theme_description": "Debatte über die Widersprüche zwischen CDU-Versprechen vor der Wahl (Schuldenbremse) und später notwendigen Schuldenaufnahmen.",
+        "question_asked": "Der Moderator verweist auf Umfragen (Merz wird als unbeliebt eingestuft) und fragt, ob Merz selbst zugibt, dass die Schuldenaufnahme eine 'Hypothek auf seine Glaubwürdigkeit' war.",
+        "question_intent": "Amthors Einschätzung zur Vertrauenskrise wegen Lügen bei Wahlversprechen.",
+        "position": "Amthor sagt, dass 'insbesondere die Frage der Schuldenaufnahme... eine Hypothek auf seine Glaubwürdigkeit war'. Er gibt also zu, dass Merz selbst das sieht. Aber er betont: 'Ich mache Politik nicht von einer Umfrage zur nächsten.' Er sieht die Regierung als handlungsfähig an ('wir haben zwei Bundeshaushalt beschlossen'). Tenor: Anerkennung des Glaubwürdigkeitsproblems, aber Defensiv-Argumentation zur Handlungsfähigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor antwortet auf die Glaubwürdigkeitsfrage, versucht aber, dies in einen 'wir sind handlungsfähig'-Rahmen zu setzen. Die tiefere Frage zum Vertrauen wird nicht adressiert.",
+        "concrete_statements": [
+          "Die Schuldenaufnahme war eine Hypothek auf Glaubwürdigkeit.",
+          "Ich mache Politik nicht von Umfrage zu Umfrage.",
+          "Merz richtet Politik nicht danach aus, sondern danach, was für Bürger am besten ist."
+        ],
+        "quotes": [
+          {
+            "text": "Der Bundeskanzler hat gesagt, er hat auch recht, das sehen mir jetzt, dass insbesondere die Frage der Schuldenaufnahme, dass das eine Hypothek auf seine glaubwürdig kalt war.",
+            "timestamp": "01:01:57",
+            "context": "Auf Kritik zu Merz-Beliebtheit gibt Amthor zu, dass Glaubwürdigkeitshypothek besteht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Bundeshaushalt",
+          "Wahlversprechen",
+          "Vertrauen in Institutionen"
+        ]
+      },
+      {
+        "title": "Koalitionsstabilität und Minderheitsregierung",
+        "timestamp_range": "01:05:26 - 01:07:51",
+        "theme_description": "Debatte über die Stabilität der CDU/CSU-SPD-Koalition und ob sie bis 2026 hält oder eine Minderheitsregierung nötig wird.",
+        "question_asked": "Gibt die Regierung noch an ihre eigene Erfolgsfähigkeit? Wird die Koalition bis 2026 halten?",
+        "question_intent": "Interne Zweifel an Koalitionsstabilität und Reformfähigkeit sichtbar machen.",
+        "position": "Amthor sagt, dass im Ministerium und beim Bundeskanzler alles 'super funktioniert' und es 'mit notwendigem Schwung' vorangeht. Er kritisiert stattdessen die 'öffentliche Diskussion' über 'Stimmung im Land': 'Es nervt mich, dass wir eine öffentliche Diskussion haben, wo nur noch über Stimmung im Land gesprochen wird... über Stimmung zu reden ist leicht, da kann jeder was beitragen.' Er warnt davor, 'Untergangsszenarien zu beschreiben': 'Ich will sagen, das ist eine verbreitete Sportart im Moment, diese Untergangsszenarien zu beschreiben.' Sein Tenor: Funktioniert intern, schlecht kommuniziert extern.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt auf die Frage zur Stabilität direkt zu antworten, lenkt Amthor zum Vorwurf der Medien und Öffentlichkeit ab, dass sie zu pessimistisch sind. Es ist ein klassischer Pivot: nicht die Regierungspolitik infrage stellen, sondern die Berichterstattung kritisieren.",
+        "deflection_target": "Kritik an öffentlicher Debatten-Kultur statt Antwort zur Koalitionsstabilität",
+        "concrete_statements": [
+          "Bei uns im Ministerium funktioniert das super.",
+          "Beim Bundeskanzler funktioniert das richtig mit notwendigem Schwung.",
+          "Es nervt mich, dass wir nur über Stimmung im Land sprechen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich will sagen, das ist eine verbreitete Sportart im Moment, diese Untergangsszenarien zu beschreiben, dass es leichter als eine Trendwende herbeizuführen.",
+            "timestamp": "01:06:43",
+            "context": "Auf Diskussion zur möglichen Koalitionskrise antwortet Amthor kritisch zu Diskurskultur."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Regierungsstabilität",
+          "Koalitionsmanagement",
+          "Vertrauensfrage",
+          "Wahlprognosen"
+        ]
+      },
+      {
+        "title": "Steuerpolitik und Koalitionsvertrag",
+        "timestamp_range": "01:11:24 - 01:15:05",
+        "theme_description": "Debatte über Steuererhöhungen: Sind diese ausgeschlossen, und wird der Koalitionsvertrag zu eng interpretiert?",
+        "question_asked": "Schließt Amthor Steuererhöhungen kategorisch aus, oder kann es Abweichungen vom Koalitionsvertrag geben?",
+        "question_intent": "Amthors Flexibilität bei Steuerversprechen und Koalitionsgebundenheit erfahren.",
+        "position": "Amthor verweist darauf, dass Steuererhöhungen 'im Koalitionsvertrag vereinbart' sind als ausgeschlossen. Er betont Glaubwürdigkeit und sagt, dass die CDU 'mit einem Programm angetreten' ist und 'der Koalitionsvertrag auch der Maßstab für uns' ist. Auf Kritik, dass der Koalitionsvertrag 'veraltet' sein könne, antwortet er: 'Wir klammern uns auch nicht krampfhaft daran', räumt aber ein, dass 'die letzte Koalition daran gescheitert' ist, keinen Bundeshaushalt zu bekommen. Tone: Prinzipientreu, aber zugespitzt defensiv.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Amthor beantwortet klar: Koalitionsvertrag ist bindend, Steuererhöhungen sind ausgeschlossen. Er differenziert auch zwischen prinzipieller Bindung und realer Flexibilität.",
+        "concrete_statements": [
+          "Steuererhöhungen sind im Koalitionsvertrag vereinbart als ausgeschlossen.",
+          "Der Koalitionsvertrag ist Maßstab für CDU.",
+          "Wir sind handlungsfähig und haben zwei Bundeshaushalt beschlossen."
+        ],
+        "quotes": [
+          {
+            "text": "Ist im Koalitionsvertrag vereinbart. Wir sind erstens nicht ideologisch... Erst mal ist Ideologie im Sinne von Überzeugungen nicht schlecht. Wir sind vor der Wahl, wir haben die Glaubwürdigkeit schon angesprochen, mit einem Programm angetreten und wenn Sie über Deals sprechen, die man in der Koalition machen sollte, dann haben wir einen Koalitionsvertrag abgeschlossen und das ist auch der Maßstab für uns.",
+            "timestamp": "01:12:23",
+            "context": "Auf Frage zu Steuererhöhungen antwortet Amthor prinzipientreu."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Bundeshaushalt",
+          "Erbschaftsteuer",
+          "Koalitionsrecht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die CDU/CSU-geführte Regierung hat zwei Bundeshaushalt beschlossen und ist handlungsfähig.",
+        "timestamp": "01:13:42"
+      },
+      {
+        "claim": "Der reduzierte Mehrwertsteuersatz in Hotellerie und Gastronomie ist Regelfall in fast allen europäischen Ländern.",
+        "timestamp": "01:00:41"
+      },
+      {
+        "claim": "Kai Wegner war zwischen 13:00 und 14:00 Uhr Tennis spielen, was er darf, sagte aber auf Nachfrage, das hat er nicht gemacht.",
+        "timestamp": "00:03:41"
+      },
+      {
+        "claim": "Die Altersschwelle für Social Media sollte niedriger als 16 Jahre sein; 14 ist eine Zahl, über die man reden kann.",
+        "timestamp": "00:13:26"
+      },
+      {
+        "claim": "Schleswig-Holstein nutzt Microsoft Produkte nicht mehr in der Verwaltung, wo es geht.",
+        "timestamp": "00:10:23"
+      }
+    ]
+  }
+}

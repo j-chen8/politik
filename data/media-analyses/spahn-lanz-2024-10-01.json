@@ -1,0 +1,287 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-1-oktober-2024-100",
+    "video_id": "lanz-2024-10-01",
+    "politician": "Jens Spahn",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "f032857cb94c4cf3",
+    "transcript_chars": 64605,
+    "caption_lines": 3249,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25491,
+    "tokens_out": 6699,
+    "cost_usd": 0.0235944,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-02T16:33:28.590Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn diskutiert in der Sendung die Eskalation im Nahen Osten (Iran-Israel, Hisbollah), deutsche Außenpolitik und Sicherheitsdefizite sowie die verfassungspolitische Krise in Thüringen. Er wirkt engagiert, argumentativ und nimmt eine klare Positionierung der Union zur Außen- und Innenpolitik vor.",
+    "themes": [
+      {
+        "title": "Kontext der Hisbollah-Eskalation in Nordisrael",
+        "timestamp_range": "00:26:16 - 00:28:18",
+        "theme_description": "Jens Spahn erläutert die historische Vorgeschichte der Hisbollah-Raketenangriffe auf Israel seit dem 7. Oktober 2023 und die Evakuierung israelischer Bürger aus dem Norden.",
+        "question_asked": "Der Moderator verweist auf Spahns Besuch im Februar im Norden Israels und fragt implizit nach der Vorgeschichte der aktuellen Eskalation.",
+        "question_intent": "Zu verstehen, was die gegenwärtige israelische Reaktion auf die Hisbollah historisch erklärt und legitimiert.",
+        "position": "Spahn betont, dass 60.000–80.000 israelische Bürger seit dem 7. Oktober evakuiert wurden und regelmäßig in Schutzprogramme gehen mussten. Dies ist vergleichbar damit, wenn in Köln oder Düsseldorf ständig Bürger evakuiert werden müssten. Die israelische Reaktion ist aus seiner Sicht eine Reaktion auf diese fortgesetzte Bedrohung durch die Hisbollah. Spahn unterstreicht: \"Man muss sich vorstellen, wenn in Köln oder Düsseldorf unregelmäßig immer die Leute evakuiert werden müssen und in den Schutzprogramm müssen. Das würde auch bei uns etwas machen und hoffentlich dazu führen, dass wir uns wehren und den Terroristenführer, der dafür verantwortlich ist zur Rechenschaft zu ziehen.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn beantwortet die implizite Frage nach der Vorgeschichte und Legitimation mit einer narrativen Darstellung der Evakuierungen. Er leistet eine Kontextualisierung, adressiert aber nicht direkt die taktische oder strategische Bewertung der israelischen Operationen, die im Kern der Moderator-Frage lag.",
+        "quotes": [
+          {
+            "text": "Das würde auch bei uns etwas machen und hoffentlich dazu führen, dass wir uns wehren und den Terroristenführer, der dafür verantwortlich ist zur Rechenschaft zu ziehen.",
+            "timestamp": "00:26:16",
+            "context": "Spahn argumentiert für die Legitimität der israelischen Reaktion auf Hisbollah-Anschläge."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "60.000–80.000 israelische Bürger wurden evakuiert.",
+          "Seit dem 7. Oktober gab es eine weitere Eskalation im Norden Israels.",
+          "Die Hisbollah schießt seit dem 8. Oktober konstant Raketen Richtung Israel."
+        ],
+        "related_bundestag_topics": [
+          "Israel-Sicherheit",
+          "Hisbollah-Klassifizierung",
+          "Deutsche Sicherheitsgarantien für Israel"
+        ]
+      },
+      {
+        "title": "Hisbollah unterschätzte israelischen Handlungsdruck",
+        "timestamp_range": "00:28:18 - 00:29:59",
+        "theme_description": "Spahn analysiert die taktische Fehleinschätzung der Hisbollah, die glaubte, Israel langfristig beschießen zu können ohne größere Reaktion.",
+        "question_asked": "Implizite Frage: War die Hisbollah zu kühn in ihrer Annahme, Israel zu beschießen und gleichzeitig weitere Eskalation zu vermeiden?",
+        "question_intent": "Zu bewerten, ob die Hisbollah strategisch fehlkalkuliert hat.",
+        "position": "Spahn argumentiert, dass die Hisbollah ihr Blatt überreizt hat. Sie glaubte, Israel fast ein Jahr lang beschießen zu können ohne eine größere israelische Reaktion zu provozieren. Dies gelang anfangs teilweise, weil die US-Regierung die Israelis 2023 davon abhielt, Nasrallah zu töten. Jedoch unterschätzte die Hisbollah den Handlungsdruck auf israelischer Seite. Spahn sagt: \"Das war aus meiner Sicht vollkommen klar, dass Israel etwas unternehmen würde, sobald der Krieg an Intensität verliert um die Organisation zu schwächen.\" Die Hisbollah verfügte nur über eine nichtstaatliche Gruppierung mit iranischer Unterstützung, während Israel eine technologische Supermacht mit besten Nachrichtendiensten ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn beantwortet die implizite strategische Frage direkt durch eine detaillierte Analyse der Hisbollah-Fehlkalkulation und der Asymmetrie zwischen Hisbollah und Israel.",
+        "quotes": [
+          {
+            "text": "Das war aus meiner Sicht vollkommen klar, dass Israel etwas unternehmen würde, sobald der Krieg an Intensität verliert um die Organisation zu schwächen.",
+            "timestamp": "00:28:18",
+            "context": "Spahn erklärte die Vorhersehbarkeit der israelischen Reaktion."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Hisbollah überreizte ihr Blatt.",
+          "Sie unterschätzte den israelischen Handlungsdruck.",
+          "Israel ist eine technologische Supermacht mit den besten Nachrichtendiensten der Welt.",
+          "Die Tötung Nasrallahs und der wichtigsten Militärführer waren zu erwarten."
+        ],
+        "related_bundestag_topics": [
+          "Nahost-Sicherheit",
+          "Terrorismus-Bekämpfung",
+          "Israelische Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Deutsche Außenpolitik gegenüber Israel und dem Nahen Osten",
+        "timestamp_range": "00:39:58 - 00:45:53",
+        "theme_description": "Spahn kritisiert die Aussage der deutschen Außenministerin zur Lage in Israel und fordert eine klarere deutsche Positionierung in der Sicherheitspolitik.",
+        "question_asked": "Der Moderator fragt, wie Spahn die Aussage der Außenministerin Baerbock und die Haltung der deutschen Regierung einschätzt, sowie die bisherig schwache Reaktion des Bundeskanzlers.",
+        "question_intent": "Zu wissen, wie die Opposition (CDU/CSU) die deutsche Außenpolitik bewertet und welche Alternative sie anbietet.",
+        "position": "Spahn hält die Aussage der Außenministerin für irritierend und nicht konsistent mit der deutschen Staatsräson. Er argumentiert, dass Deutschland und die USA auf der Seite Israels stehen sollten, da Israel die einzige Demokratie in der Region ist und Minderheiten schützt. Die Hisbollah und Hamas halten die Bevölkerung als Geisel. Spahn kritisiert zudem, dass die Bundesregierung nicht transparent über Waffenlieferungen an Israel informiert und die Außenministerin sich mit fragwürdigen Gruppierungen trifft, die das Existenzrecht Israels in Frage stellen. Er fordert: \"An jeder Stelle muss klar sein, wo wir als Deutschland stehen.\" Er argumentiert auch für eine europäische Eindämmungspolitik gegen Iran in Kooperation mit der NATO, den Israelis und möglicherweise den Saudis.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet umfassend auf die Frage zur deutschen Außenpolitik mit einer detaillierten Kritik an der aktuellen Regierung und einem positiven Gegenmodell.",
+        "quotes": [
+          {
+            "text": "An jeder Stelle muss klar sein, wo wir als Deutschland stehen.",
+            "timestamp": "00:45:53",
+            "context": "Spahn fordert Klarheit in der deutschen Außenpolitik gegenüber Israel."
+          },
+          {
+            "text": "Russland, Nordkorea, China, Iran - die einzige Demokratie in der Region ist Israel.",
+            "timestamp": "00:45:53",
+            "context": "Spahn kontrastiert Israel mit Autokratien in der Region."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Außenministerin-Aussage ist irritierend und widersprüchlich zur Staatsräson.",
+          "Die Regierung sollte transparent über Waffenlieferungen an Israel berichten.",
+          "Die Außenministerin sollte nicht mit Gruppierungen speisen, die das Existenzrecht Israels in Frage stellen.",
+          "Deutschland sollte eine europäische Eindämmungspolitik gegen Iran mit der NATO fördern.",
+          "Die Schwächung der Hisbollah liegt im Sicherheitsinteresse Deutschlands."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Rüstungsexporte",
+          "Israel-Politik",
+          "NATO-Positionierung"
+        ]
+      },
+      {
+        "title": "Sicherheitspolitische Defizite und Handlungsfähigkeit Deutschlands",
+        "timestamp_range": "00:51:25 - 00:54:34",
+        "theme_description": "Spahn kritisiert die sicherheitspolitische Untätigkeit Deutschlands über 20 Jahre und die daraus resultierende Machtlosigkeit in internationalen Konflikten.",
+        "question_asked": "Der Moderator fordert Spahn auf, die Fehler und Defizite in der deutschen Sicherheitspolitik zu benennen, die zu gegenwärtiger Machtlosigkeit führen.",
+        "question_intent": "Zu verstehen, welche strukturellen Probleme Deutschlands Rolle im Nahen Osten schwächen.",
+        "position": "Spahn kritisiert, dass es seit 20 Jahren keine Regierung mehr gibt, die eine internationale Sicherheitspolitik macht, die diesen Namen verdient. Er weist auf Lücken in der Russland-Politik hin (seit 2014 Warnungen ignoriert, Bundeswehr trotzdem ruiniert) und im Nahen Osten (Probleme bekannt, aber keine Antworten). Dies führt dazu, dass Deutschland unvorbereitet und machtlos ist. Er argumentiert: \"Deswegen sind wir auch so unvorbereitet und machtlos. Das kommt nicht von ungefähr, dass wir jetzt eine Außenministerin haben, die in der Region nicht so recht ernst genommen wird. Wir werden dort nicht mehr ernst genommen, Europa wird nicht mehr ernst genommen.\" Die Defizite in der militärischen Macht bedeuten, dass verbale Verurteilungen wenig Konsequenzen haben. Spahn verweist auch auf die UN-Resolution 2625 und deren fehlende Durchsetzung.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn diagnostiziert systematisch die sicherheitspolitischen Defizite Deutschlands und verknüpft sie mit der gegenwärtigen Ohnmacht.",
+        "quotes": [
+          {
+            "text": "Deswegen sind wir auch so unvorbereitet und machtlos. Das kommt nicht von ungefähr, dass wir jetzt eine Außenministerin haben, die in der Region nicht so recht ernst genommen wird.",
+            "timestamp": "00:51:25",
+            "context": "Spahn analysiert die Folgen mangelnder Sicherheitspolitik."
+          },
+          {
+            "text": "Ob jetzt die Bundesregierung etwas scharf verurteilt, das hat in Wahrheit wenige Konsequenzen.",
+            "timestamp": "00:54:34",
+            "context": "Spahn betont die Ineffektivität verbaler Reaktionen ohne militärische Mittel."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Seit 20 Jahren gibt es keine adäquate internationale Sicherheitspolitik.",
+          "Die Bundeswehr wurde trotz bekannter Bedrohungen (2014 Russland) ruiniert.",
+          "Deutschland wird in der Region nicht mehr ernst genommen.",
+          "Verbale Verurteilungen ohne militärische Mittel sind ineffektiv.",
+          "UN-Resolutionen werden nicht durchgesetzt; dies hat Konsequenzen für internationales Recht."
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Rüstungsausgaben",
+          "Bundeswehr-Kapazität",
+          "Außenpolitische Handlungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Verfassungsbruch in Thüringen und institutionelles Versprechen der Demokratie",
+        "timestamp_range": "00:58:35 - 01:02:46",
+        "theme_description": "Spahn äußert sich zum geplanten Verfassungsbruch in Thüringen durch die AfD und deren Versuch, den Landtagspräsidenten per Geschäftsordnungsänderung zu stellen.",
+        "question_asked": "Der Moderator fragt Spahn, wie er das Vorgehen in Thüringen einschätzt, insbesondere den Plan, die Geschäftsordnung zu ändern, um einen AfD-Kandidaten als Präsident zu installieren.",
+        "question_intent": "Zu wissen, ob die CDU das als Verfassungsbruch sieht und wie sie damit umgeht.",
+        "position": "Spahn betont, dass der Landtagspräsident protokollarisch die erste Person des Staates ist—vor dem Ministerpräsidenten. Das ist kein triviales Amt. Er charakterisiert das Vorgehen als geplanten, gezielten und offenkundigen Versuch, Institutionen zu beschädigen. Der Kern des Konflikts ist, dass die Geschäftsordnung erlaubt, dass Vorschlagsrecht neu zu verteilen—nicht nur die stärkste Fraktion kann vorschlagen. Spahn relativiert dies teilweise: Es ist zwar ein Fehler, die Geschäftsordnung nicht vorher zu ändern, aber es ist \"zumindest normal, dass die Mehrheit in einem Gremium die Geschäftsordnung ist und diese ändern kann.\" Spahn warnt jedoch vor dem politischen Narrativ und dem Missbrauch für Desinformation in sozialen Medien—\"ein Vorgeschmack dessen, was wir erleben könnten, wenn es in anderen Parlamenten zu solchen Mehrheiten kommt.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn nennt das Vorgehen einen Verfassungsbruch und warnt vor den Folgen, relativiert aber gleichzeitig die juridische Frage (ob Geschäftsordnungsänderungen zulässig sind). Er adressiert die Warnung vor extremistischem Missbrauch, nicht aber die tiefere Frage, ob die CDU präventiv Geschäftsordnungen ändern sollte.",
+        "quotes": [
+          {
+            "text": "Der Landtagspräsident ist regelmäßig in den Bundesländern protokollarisch die erste Person vom Staat. Protokollarisch vor jedem Ministerpräsidenten zu sehen. Deswegen ist das kein triviales Amt.",
+            "timestamp": "01:00:24",
+            "context": "Spahn erklärt die Bedeutung des umstrittenen Amtes."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Der Landtagspräsident ist protokollarisch die erste Person des Staates.",
+          "Das Vorgehen der AfD ist geplant, gezielt und offenkundig ein Versuch zur Institutionenzerstörung.",
+          "Geschäftsordnungsänderungen durch die Mehrheit sind zulässig, aber es war ein Fehler, sie nicht präventiv zu ändern.",
+          "Das ist ein Vorgeschmack darauf, was in anderen Parlamenten passieren könnte."
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsrecht",
+          "Geschäftsordnungen",
+          "AfD-Strategie",
+          "Institutionenschutz"
+        ]
+      },
+      {
+        "title": "CDU-Koalitionsoption mit dem Bündnis Sahra Wagenknecht",
+        "timestamp_range": "01:08:57 - 01:11:01",
+        "theme_description": "Spahn diskutiert die Möglichkeit einer Koalition zwischen CDU und BSW in Sachsen und Thüringen unter Anspielung auf das Problem der Schuldenbremse.",
+        "question_asked": "Der Moderator fragt, ob Spahn eine Koalition mit dem BSW ausschließt und verweist auf die Warnung, dass AfD und BSW zusammen Verfassungsänderungen blockieren könnten (z. B. Schuldenbremsenreform).",
+        "question_intent": "Zu wissen, ob die CDU gegenüber BSW-Koalitionen offen ist und wie sie die Schuldenbremsen-Frage lösen würde.",
+        "position": "Spahn schließt eine Koalition mit dem BSW nicht aus. Er differenziert zwischen Bundes- und Landesebene: Auf der Landesebene (Sachsen, Thüringen) sind die Positionen des BSW zu Bildung, ländlichem Raum, Migration und innerer Sicherheit nicht weiter entfernt von der CDU als die Grünen. Das Problem ist die Bundesebene, wo es um NATO, USA, Russland und den Ukraine-Krieg geht. Spahn betont: \"Es gibt niemanden in der Union, der sich leicht tut, dass wir dort Gespräche führen. Aber wir stehen vor einer kniffligen Aufgabe. Es gibt keine gute Alternative. Es ist die Frage, was es von den schlechten die beste.\" Zur Schuldenbremse sagt Spahn: Aus heutiger Sicht will er diese nicht verändern. Er schließt aber nicht aus, dass dies in 20 Jahren anders sein könnte. Die Schuldenbremse hat Vorteile (verhindert unbegrenzte Verschuldung), aber Spahn akzeptiert auch Notfallmaßnahmen unter konjunkturellen Bedingungen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn beantwortet die Frage nach BSW-Koalition indirekt und vorsichtig (\"nicht ausgeschlossen\"), adressiert aber nicht direkt die zentrale Warnung des Moderators bezüglich der Blockade von Verfassungsänderungen durch AfD+BSW.",
+        "quotes": [
+          {
+            "text": "Es gibt niemanden in der Union, der sich leicht tut, dass wir dort Gespräche führen. Aber wir stehen vor einer kniffligen Aufgabe. Es gibt keine gute Alternative.",
+            "timestamp": "01:08:57",
+            "context": "Spahn erklärt die schwierige Situation bei BSW-Verhandlungen."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Auf Landesebene unterscheiden sich BSW und CDU nicht fundamental bei Bildung, Migration und innerer Sicherheit.",
+          "Das Problem liegt auf Bundesebene (NATO, Ukraine, Russland).",
+          "Aus heutiger Sicht will Spahn die Schuldenbremse nicht ändern.",
+          "Es gibt aber keine reine Alternative zur BSW-Koalition in manchen Bundesländern."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsoptionen",
+          "Schuldenbremse",
+          "Außenpolitik",
+          "Wagenknecht-BSW"
+        ]
+      },
+      {
+        "title": "Ton und Rhetorik in der Migrationspolitik unter Friedrich Merz",
+        "timestamp_range": "01:13:03 - 01:16:18",
+        "theme_description": "Der Moderator und Spahn diskutieren, ob die Rhetorik Friedrich Merz' zu Migranten und Schleppern polarisierend oder sachlich ist.",
+        "question_asked": "Der Moderator fordert Spahn auf, zur Rhetorik des CDU-Vorsitzenden Merz Stellung zu nehmen, speziell zum Ausdruck 'komische Autos mit komischen Figuren drin'.",
+        "question_intent": "Zu klären, ob dies eine problematisch rassistische Codierung oder eine legitime Unterscheidung zwischen Schleppern und regulären Reisenden ist.",
+        "position": "Spahn verteidigt Merz und weist darauf hin, dass mit 'komischen Figuren' die Schlepper und Schleuser gemeint sind, nicht Migranten oder Menschen aufgrund ihrer Herkunft. Spahn betont: \"Dass Schlepper, Schleuser und kriminelle komische Figuren sind, darauf kann man sicher einigen.\" Er argumentiert, dass die Polizei an der Grenze eine hohe Trefferquote habe und Erfahrung darin hätte, verdächtige Fahrzeuge zu erkennen. Spahn akzeptiert jedoch auch die Sichtweise von Ulrike Herrmann, dass Friedrich Merz den Eindruck erweckt, Kriminalität und Migration zu verbinden, was problematisch wirkt. Spahn schließt mit: \"Ich hätte gerne die ganze Rede gehört. Dann hätten wir das besser beurteilen können.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn adressiert den Kern der Kritik (mögliche rassistische Codierung) durch die Interpretation, dass 'komische Figuren' Schlepper meint, nicht Migranten. Er gesteht aber ein, dass der Kontext entscheidend ist und eine vollständige Rede nötig wäre.",
+        "quotes": [
+          {
+            "text": "Dass Schlepper, Schleuser und kriminelle komische Figuren sind, darauf kann man sicher einigen.",
+            "timestamp": "01:13:03",
+            "context": "Spahn interpretiert die Aussage von Merz."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "'Komische Figuren' bezieht sich auf Schlepper und Schleuser, nicht auf Migranten.",
+          "Polizisten an der Grenze haben Erfahrung und hohe Trefferquoten.",
+          "Spahn stimmt zu, dass eine vollständige Rede für Bewertung nötig ist."
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Innere Sicherheit",
+          "Grenzkontrolle",
+          "Rhetorik und Polarisierung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "60.000 bis 80.000 Israelis wurden aus dem Norden Israels evakuiert.",
+        "timestamp": "00:26:16"
+      },
+      {
+        "claim": "Die Hisbollah hat etwa 100.000 bis 180.000 Raketen.",
+        "timestamp": "00:28:18"
+      },
+      {
+        "claim": "Die Hisbollah schießt seit dem 8. Oktober 2023 permanent und konstant Raketen Richtung Israel.",
+        "timestamp": "00:28:18"
+      },
+      {
+        "claim": "Die Amerikaner verhinderten im Oktober 2023, dass die Israelis Nasrallah präventiv töteten.",
+        "timestamp": "00:28:18"
+      },
+      {
+        "claim": "Hisbollah-Anschlag in Argentinien 1994 mit über 80 Toten.",
+        "timestamp": "00:49:36"
+      },
+      {
+        "claim": "Deutschland schloss das Hisbollah-Zentrum in Hamburg im Juni 2024.",
+        "timestamp": "00:49:36"
+      },
+      {
+        "claim": "Seit 2020 gibt es ein Betätigungsverbot für die Hisbollah in Deutschland.",
+        "timestamp": "00:51:25"
+      }
+    ]
+  }
+}

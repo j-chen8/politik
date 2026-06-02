@@ -1,0 +1,400 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-6-februar-2025-100",
+    "video_id": "lanz-2025-02-06",
+    "politician": "Jens Spahn",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "5501ad0972413f28",
+    "transcript_chars": 43540,
+    "caption_lines": 2181,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19124,
+    "tokens_out": 9236,
+    "cost_usd": 0.0261216,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 19,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.222Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, stellvertretender CDU-Vorsitzender, verteidigt die Politik der Union zur Migrationskrise und kritisiert die SPD-geführte Regierung scharf für mangelnde Führungsverantwortung und Handlungsfähigkeit. Er argumentiert für entschiedene Maßnahmen gegen irreguläre Migration und wirft der Ampel vor, sich selbst zu demontieren, während er gleichzeitig eine gewisse Offenheit für Kompromisse signalisiert – diese aber an klare Bedingungen knüpft.",
+    "themes": [
+      {
+        "title": "Irreguläre Migration als prioritäres Thema",
+        "timestamp_range": "00:03:59 - 00:49:46",
+        "theme_description": "Spahn argumentiert, dass die irreguläre Migration eines der zentralen Wahlthemen ist und dass die Wähler einen klaren Politikwechsel fordern.",
+        "question_asked": "Wie sehen Sie das, dass viele Wähler nicht wissen, wen sie wählen sollen?",
+        "question_intent": "Den Grund für die Verunsicherung der Wähler klären und Spahns Position zu den drängendsten Problemen erfragen.",
+        "position": "Spahn verweist auf die irreguläre Migration als zentrale Sorge mit breiter Mehrheit in der Bevölkerung. Er betont, dass es nicht um diskursive Defizite gehe, sondern um Taten. Die große Mehrheit der Deutschen wolle eine andere Migrationspolitik, Fairness bei Bürgergeld und eine andere Energiepolitik. Viele SPD-Wähler im Ruhrgebiet würden zur AfD abwandern, weil sie Migrationsfragen und Bürgergeld ablehnen. Spahn argumentiert: 'Viele Menschen können ihr Leben nicht mehr so weiterleben' und verweist auf Fälle wie Magdeburg und Aschaffenburg als Beleg für Handlungsbedarf.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn antwortet auf die Frage zur Verunsicherung indirekt, indem er das Thema Migration als zentrale Ursache benennt. Er adressiert jedoch nicht die Frage, warum die Union trotz klarer Themenpriorisierung nicht begeistert, sondern widmet sich stattdessen der Begründung, warum Migration das richtige Thema ist.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Irreguläre Migration, in der Empirie gibt es eine große Mehrheit für ein Wechsel.",
+            "timestamp": "00:03:59"
+          },
+          {
+            "text": "die große Mehrheit der Deutschen will eine andere Migrationspolitik. Die wollen auch eine Änderung beim Bürgergeld, Fairness. Und eine andere Energiepolitik.",
+            "timestamp": "00:51:23"
+          },
+          {
+            "text": "Viele Menschen können ihr Leben nicht mehr so weiterleben, wir hatten viele Tote. Ein zweijähriges Kind, bestialisch ermordet. Hätte sich der Deutsche Bundestag damit nicht beschäftigen sollen?",
+            "timestamp": "00:48:16"
+          }
+        ],
+        "concrete_statements": [
+          "Großmehrheit der Deutschen fordert Wechsel in der Migrationspolitik",
+          "SPD verliert Wahlkreise im Ruhrgebiet an die AfD wegen Migrationspolitik",
+          "Friedrich Merz muss zeigen, dass Entscheidungen zu treffen sind, um irreguläre Migration zu beenden"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Asylgesetz",
+          "Bundespolizeigesetz",
+          "Familiennachzug",
+          "Rückführungsverbesserungsgesetz",
+          "EU-Außenpolitik Migration"
+        ]
+      },
+      {
+        "title": "Kritik an SPD-Selbstdemontage und fehlender Glaubwürdigkeit",
+        "timestamp_range": "00:08:19 - 00:20:04",
+        "theme_description": "Spahn greift die SPD für interne Widersprüche an und wirft ihr vor, sich selbst zu beschädigen und damit unglaubwürdig zu wirken.",
+        "question_asked": "Eigeninitiative: Spahn kommentiert unaufgefordert die interne Unklarheit der SPD zur Kanzlerkandidatur.",
+        "question_intent": "Die Rolle des Kanzlers in der Regierungskrise bewerten und Spahn zur Leadership-Frage befragen.",
+        "position": "Spahn kritisiert die SPD für mehrere Widersprüche: Der Parteivorsitzende versuchte Scholz von der Kandidatur abzuhalten, was sich aber später als Legende entpuppte. Spahn kritisiert, dass dies zwei Wochen dauerte und zeige 'wie groß das Unwohlsein ist'. Er wirft vor, dass aus der SPD entsprechend widersprüchlich kommuniziert wird. Besonders kritisiert er, dass Scholz 'einer der wenigen ist, der glaubt, dass Olaf Scholz noch mal gewinnen könnte'. Das sei beeindruckend angesichts der Tatsache, dass die AfD sich verdoppelt habe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet direkt auf die Beobachtung der Regierungskrise und benennt konkrete Punkte der SPD-Selbstdemontage: Dauer der Klärung (zwei Wochen), widersprüchliche Kommunikation und fehlendes Selbstvertrauen in den Kanzler.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Er lügt etwa wenn er sagt, es werden Hilfen beansprucht um die Ukrainer zu unterstützen. Bemerkenswert ist, dass aus der SPD heraus entsprechend kommuniziert wird. Das zeigt wie groß das Unwohlsein ist.",
+            "timestamp": "00:08:19"
+          },
+          {
+            "text": "Es ist ein bemerkenswerter Vorgang innerhalb der SPD. Allein, dass es zwei Wochen gedauert hat, um den amtierenden Kanzler zu bestimmen, ist nicht üblich.",
+            "timestamp": "00:08:19"
+          }
+        ],
+        "concrete_statements": [
+          "SPD braucht zwei Wochen, um Kanzlerkandidaten zu bestätigen (ungewöhnlich lang)",
+          "Widersprüchliche Kommunikation aus SPD-Reihen beschädigt Kanzler",
+          "Scholz genießt geringes Vertrauen in seiner eigenen Partei"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "SPD-Kanzlerkandidat",
+          "Koalitionskrise",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "Führungsverantwortung und Gestaltungsunfähigkeit Scholz'",
+        "timestamp_range": "00:11:40 - 00:19:08",
+        "theme_description": "Spahn kritisiert Bundeskanzler Scholz für mangelnde Führungspräsenz und charakterisiert ihn als faktisch abwesend aus den entscheidenden politischen Prozessen.",
+        "question_asked": "Eigeninitiative / Anlass: Moderator hatte beobachtet, dass Scholz sich in der Regierungskrise nicht aktiv durchgesetzt habe.",
+        "question_intent": "Die Rolle des Kanzlers in der Regierungskrise bewerten und Spahn zur Leadership-Frage befragen.",
+        "position": "Spahn argumentiert, dass Scholz faktisch nicht präsent war: 'Olaf Scholz war eine Randnotiz' und 'eine Rolle gespielt [hat er] in keinem der Gespräche'. Er kritisiert, dass die Entscheidung zur Entlassung des Finanzministers von Friedrich Merz und dem Bundespräsidenten getroffen wurde, nicht vom Kanzler selbst. Spahn konstatiert: 'Er ist nicht aktiv, er traut sich nicht einzugreifen.' Die Führungsverantwortung sei faktisch auf Lars Klingbeil übergegangen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn beantwortet klar und präzise die implizite Frage zur Führungsverantwortung. Er benennt konkrete Beweise (Abwesenheit in Gesprächen, Fremdbestimmung bei Finanzministerentlassung) und interpretiert diese als Versagen in der Kanzlerrolle.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Olaf Scholz war eine Randnotiz. Er hat in keinem der Gespräche teilgenommen, eine Rolle gespielt. Ich nehme ihn seit Wochen nicht wahr, dass er irgendwas prägt.",
+            "timestamp": "00:11:40"
+          },
+          {
+            "text": "Die Entscheidung, den Finanzminister zu entlassen, da haben Friedrich Merz und der Bundespräsident die Entlassungsfrist festgelegt. Das wäre eigentlich seine Aufgabe gewesen. Er ist nicht aktiv, er traut sich nicht einzugreifen.",
+            "timestamp": "00:11:40"
+          }
+        ],
+        "concrete_statements": [
+          "Scholz war faktisch nicht präsent in entscheidenden Gesprächen zur Regierungskrise",
+          "Lars Klingbeil hat praktisch den Kanzler ersetzt",
+          "Die Finanzministerentlassung wurde nicht vom Kanzler, sondern von Merz und Bundespräsident bestimmt"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Regierungskrise Januar 2025",
+          "Finanzministerentlassung",
+          "Kanzlerverantwortung"
+        ]
+      },
+      {
+        "title": "Bedenken gegen drittes Amtszeit Scholz'",
+        "timestamp_range": "00:18:27 - 00:18:42",
+        "theme_description": "Spahn argumentiert gegen eine erneute Kandidatur Scholz' mit Verweis auf dessen mangelnde Koalitionsfähigkeit.",
+        "question_asked": "Eigeninitiative: Spahn kommentiert die Ankündigung Scholz', nochmal anzutreten.",
+        "question_intent": "Die Glaubwürdigkeit und Kompetenz des amtierenden Kanzlers kritisieren.",
+        "position": "Spahn bringt einen kritischen Punkt vor: Ein Kanzler, 'der drei Jahre keine Koalition führen konnte, tritt noch mal an.' Dies wird als implizites Argument gegen Scholz' Wiederkandidatur formuliert. Die Botschaft lautet, dass Koalitionsfähigkeit eine Kernkompetenz darstellt, die Scholz nicht demonstriert habe.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn beantwortet seine eigene Kritik mit klarem logischem Argument: Wer keine Koalition führen konnte, sollte nicht nochmal kandidieren. Das ist eine substantielle Position, auch wenn sie kritisch gemeint ist.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "einen Kanzler, der drei Jahre keine Koalition führen konnte, tritt noch mal an.",
+            "timestamp": "00:18:27"
+          }
+        ],
+        "concrete_statements": [
+          "Scholz mangelt es an Koalitionsfähigkeit, deshalb sollte er nicht nochmal kandidieren"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Kanzlerverantwortung",
+          "Koalitionsregierung"
+        ]
+      },
+      {
+        "title": "Begeisterung für Friedrich Merz und Parteieinheit",
+        "timestamp_range": "00:22:05 - 00:23:50",
+        "theme_description": "Spahn verteidigt die fehlende Begeisterung für Merz als normal für Wahlen und argumentiert, dass die Partei trotzdem Unterschiede klar gemacht habe.",
+        "question_asked": "Warum gibt es nicht mehr Begeisterung für Friedrich Merz? Die CDU kommt gerade mal an die 30% – warum ist die AfD so stark, wenn euer Angebot so gut ist?",
+        "question_intent": "Die Glaubwürdigkeit und Attraktivität des Merz-Kurses bewerten und klären, warum die Wähler nicht begeisterter sind.",
+        "position": "Spahn argumentiert: (1) 'Es gibt kaum noch Parteien in Europa, die es schafft, jede dritte Wählerschaft zu bekommen' – also ist 30% respektabel. (2) Er spüre 'eine klare Erkenntnis, wer klare Führung möchte, der liegt mit Friedrich Merz richtig'. (3) Die Unterschiede seien wichtig: Merz werde Entscheidungen treffen, um irreguläre Migration zu beenden. (4) Die Partei habe 'gezeigt, dass es uns ernst ist' – durch den Gesetzesentwurf nach Solingen/Magdeburg. Spahn kritisiert die Arbeitsverweigerung von Rot-Grün als 'auf ihrem Höhepunkt angelangt'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn weicht der Kern-Frage aus (warum keine Begeisterung?), indem er: (1) 30% defensiv rechtfertigt, (2) von 'Erkenntnis' statt Begeisterung spricht, (3) auf konkrete Unterschiede bei Migration verweist statt auf allgemeine Attraktivität des Kandidaten.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich spüre aber schon eine klare Erkenntnis, wer klare Führung möchte, der liegt mit Friedrich Merz richtig.",
+            "timestamp": "00:22:17"
+          },
+          {
+            "text": "Ja, weil wir gezeigt haben, dass es uns ernst ist. Friedrich Merz hat gezeigt, dass Entscheidungen treffen wird, um irreguläre Migration zu beenden.",
+            "timestamp": "00:22:51"
+          }
+        ],
+        "concrete_statements": [
+          "30% Wähleranteil ist respektabel im europäischen Vergleich",
+          "Merz verkörpert klare Führung bei Migrationsfragen",
+          "Union hat durch Gesetzesentwürfe nach Magdeburg/Aschaffenburg Handlungsfähigkeit demonstriert"
+        ],
+        "deflection_target": null,
+        "evasion_note": "Die Frage zur fehlenden Begeisterung wird ausgewichen, indem Spahn von 'Erkenntnis' und Respektabilität spricht, statt Merz' Attraktivität zu erklären.",
+        "related_bundestag_topics": [
+          "Kanzlerwahlkampf 2025",
+          "CDU-Strategie",
+          "Wählermobilisierung"
+        ]
+      },
+      {
+        "title": "Kompromisse und Gesprächsbereitschaft zur Migration",
+        "timestamp_range": "00:25:04 - 00:42:36",
+        "theme_description": "Spahn signalisiert Bereitschaft zu Kompromissen bei Migrationsfragen, macht diese aber an klare Bedingungen gebunden und wirft SPD/Grüne vor, diese nicht erfüllt zu haben.",
+        "question_asked": "Könnten Sie konkrete Kompromissvorschläge zur Migrationsfrage machen, etwa zur Befristung des Familiennachzugs?",
+        "question_intent": "Testen, ob die Union konkrete Kompromisse anbietet oder nur rhetorisch fordernd bleibt.",
+        "position": "Spahn behauptet, dass die Union bereits Angebote gemacht habe: Befristung des Familiennachzugs, Begrenzung der Zahlen und Kompetenzen für die Bundespolizei. Er kritisiert jedoch, dass SPD und Grüne diese nicht angenommen hätten. Als Grund vermutet er ideologische Blockade seitens der Grünen, nicht der SPD. Er betont: 'Wenn die Bereitschaft da ist, nächste Woche ist noch einmal die Chance, dass mit der Befristung zu beschließen, wir stehen bereit.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn nennt konkrete Themen (Befristung, Begrenzung, Polizeikompetenzen), bringt diese aber in Verbindung mit Vorwürfen an die anderen Seite statt struktural zu erklären, wie diese Kompromisse umzusetzen wären. Die Antwort bleibt teilweise im Bereich Schuldzuweisung.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Es ist gesprochen worden, wir haben angeboten, zu befristen. Es ging um die Begrenzung der Zahlen, die Einschränkung des Familiennachzuges und Kompetenzen für die Bundespolizei, zwar um die Haft von ausreisepflichtigen.",
+            "timestamp": "00:25:57"
+          },
+          {
+            "text": "Wenn die Bereitschaft da ist, nächste Woche ist noch einmal die Chance, dass mit der Befristung zu beschließen, wir stehen bereit.",
+            "timestamp": "00:26:54"
+          }
+        ],
+        "concrete_statements": [
+          "Union hat Befristung des Familiennachzugs angeboten",
+          "Union fordert Begrenzung der Migrationszahlen",
+          "Union fordert Kompetenzen für Bundespolizei zur Haft ausreisepflichtiger Personen"
+        ],
+        "deflection_target": "Grüne und SPD blockieren Kompromisse aus ideologischen Gründen",
+        "evasion_note": "Spahn weicht der Frage, warum Kompromisse scheitern, aus, indem er Blockade durch andere beklagt statt die eigenen Positionen zu erklären.",
+        "related_bundestag_topics": [
+          "Aufenthaltsgesetz",
+          "Bundespolizeigesetz",
+          "Familiennachzug subsidiärer Schutz",
+          "Gesichtserkennung"
+        ]
+      },
+      {
+        "title": "Gesprächsverweigerung zwischen CDU und Grünen",
+        "timestamp_range": "00:36:04 - 00:39:09",
+        "theme_description": "Spahn beschuldigt die Grünen der bewussten Gesprächsverweigerung und interpretiert die Unfähigkeit, Robert Habeck zu erreichen, als strategisches Problem.",
+        "question_asked": "Warum konnte Robert Habeck Friedrich Merz in entscheidenden Stunden nicht erreichen? War das Zufall oder Absicht?",
+        "question_intent": "Klären, ob die fehlende Kommunikation ein strukturelles Problem oder persönliche Verantwortung widerspiegelt.",
+        "position": "Spahn deutet an, dass die Unfähigkeit, miteinander zu sprechen, ein systematisches Problem sei. Er argumentiert, dass es bei den Grünen an der Bereitschaft fehlt. Der grüne Kanzlerkandidat sehe das Migrationsproblem, rudere aber zurück und nutze stattdessen Instagram für Vorwürfe statt direkter Gespräche. Spahn kritisiert: 'Das Problem ist, dass es nicht gewollt ist. Der Kanzlerkandidat der Grünen sieht, dass es ein Thema ist, aber rudert zurück.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn antwortet auf die Frage durch Schuldzuweisung an die Grüne Seite, gibt aber keine substantielle Erklärung dafür, warum das Gesprächssystem zusammengebrochen ist oder wie Friedrich Merz selbst zur Gesprächsverweigerung beigetragen hat.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Das Problem ist, dass es nicht gewollt ist. Der Kanzlerkandidat der Grünen sieht, dass es ein Thema ist, aber rudert zurück. Das muss man aussprechen können.",
+            "timestamp": "00:38:28"
+          }
+        ],
+        "concrete_statements": [
+          "Grüne Führung verweigert bewusste Gespräche",
+          "Grüner Kanzlerkandidat kommuniziert über Instagram statt direkt"
+        ],
+        "deflection_target": "Grüne Führung und Kanzlerkandidat",
+        "evasion_note": "Spahn weicht der Frage aus, warum Friedrich Merz nicht proaktiv das Gespräch gesucht hat und warum die Merz-Aussage 'Ich verhandele nicht' die Gesprächsverweigerung möglicherweise initiiert hat.",
+        "related_bundestag_topics": [
+          "Migrationspolitik Verhandlungen",
+          "Regierungsbildung 2025",
+          "Koalitionsgesprächsfähigkeit"
+        ]
+      },
+      {
+        "title": "Perspektive auf Kompromissfähigkeit nach der Wahl",
+        "timestamp_range": "00:42:18 - 00:54:33",
+        "theme_description": "Spahn bespricht die Möglichkeiten für Kompromisse nach der Wahl und verknüpft dies mit Bedingungen zur Lösbarkeit von Migrationsfragen.",
+        "question_asked": "Ist ein Kompromiss noch möglich, wenn Friedrich Merz andererseits erklärt, ‚Ich verhandele nicht'?",
+        "question_intent": "Die innere Konsistenz der CDU-Position testen: Kompromisssignale einerseits, kompromisslose Rhetorik andererseits.",
+        "position": "Spahn betont zunächst: 'Wir haben gesagt, wir sind gesprächsbereit. Wenn die SPD bereit dazu ist, dann finden wir einen Kompromiss.' Er sieht aber eine zentrale Bedingung: Die nächste Regierung muss das Migrationsproblem 'spürbar' lösen. Wenn das nicht passiert, 'werden wir massiv verlieren'. Spahn bringt es auf den Punkt: Kompromisse sind 'im Alltag spürbar' oder nicht. Er warnt: 'Wenn die nächste Regierung nicht liefert, sondern irgendwie durch die Nacht gekommen ist, werden wir hier österreichische und italienische Verhältnisse sehen.' Gleichzeitig räumt er ein, dass es schwierig, aber möglich sei, Kompromisse zu finden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet direkt: Kompromisse sind möglich, wenn die SPD bereit ist. Er skizziert aber auch die Grenzen: Das Ergebnis muss 'spürbar' sein. Die Antwort adressiert sowohl die Frage zur Verhandlungsbereitschaft als auch die implizite Kritik an der fehlenden Konsistenz.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wir haben gesagt, wir sind gesprächsbereit. Wenn die SPD bereit dazu ist, dann finden wir einen Kompromiss.",
+            "timestamp": "00:42:36"
+          },
+          {
+            "text": "Die nächste Regierung, wird bei diesem Thema der irregulären Migration einen Unterschied machen, der spürbar ist. Das ist in jeder Kommune genau das, was gefordert ist.",
+            "timestamp": "00:42:36"
+          },
+          {
+            "text": "Halte es für schwierig, aber für möglich, Kompromisse zu finden. Die müssen im Alltag spürbar werden, das ist wichtig.",
+            "timestamp": "00:54:33"
+          }
+        ],
+        "concrete_statements": [
+          "Union ist gesprächsbereit mit SPD",
+          "Kompromisse müssen 'spürbar' im Alltag wirken",
+          "Wenn nächste Regierung Migrationsfrage nicht löst, drohen 'österreichische und italienische Verhältnisse'",
+          "Vier-Jahres-Phasenplan für schrittweise Entlastung in wachsender Wirtschaft"
+        ],
+        "deflection_target": null,
+        "evasion_note": null,
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen 2025",
+          "Migrationspolitik",
+          "Reformfähigkeit"
+        ]
+      },
+      {
+        "title": "Wirtschaftspolitik und Steuersenkungen",
+        "timestamp_range": "00:59:25 - 01:06:01",
+        "theme_description": "Spahn verteidigt die CDU-Forderung nach Steuersenkungen als Wachstumsstrategie gegen Kritik an fehlender Finanzierung.",
+        "question_asked": "Wie finanziert die CDU ihre Steuersenkungen konkret, insbesondere die Abschaffung des Solidaritätszuschlags?",
+        "question_intent": "Die mathematische und ökonomische Plausibilität der CDU-Pläne zur Wirtschaftsbelebung überprüfen.",
+        "position": "Spahn argumentiert mit mehreren Hebeln: (1) Der Solidaritätszuschlag schadet auch kleinen Unternehmen; (2) Die CDU will Prioritäten setzen, etwa durch Rückkehr von Bürgergeld zu Grundsicherung (high-einstelliges Milliardenvolumen); (3) Wachstum bringt neue Einnahmen (1% Wachstum = 45 Milliarden Euro Bruttoeinkommen); (4) Vier-Jahres-Phasenplan für schrittweise Entlastung in wachsender Wirtschaft; (5) Ziel: Unternehmensteuern unter 25% senken (jetzt ~30%). Spahn verweigert sich dabei genaueren Rechenschaftszahlen und wirft der SPD vor, ständig Wachstumsforderungen zu blockieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn nennt mehrere Instrumente und Größenordnungen, weicht aber auf konkreter Nachfrage aus (etwa bei der genauen Höhe der Bürgergeldersparnisse) und verlässt sich stark auf Wachstumsprognosen, deren realistische Grundlage unklar bleibt. Die Antwort ist fragmentarisch.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Der Solidaritätszuschlag betrifft auch Unternehmen, die es sowieso schon schwer haben. Da wollen wir priorisieren im Bundeshaushalt, etwa indem wir beim Bürgergeld zu Grundsicherung zurückkehren, um einzusparen.",
+            "timestamp": "01:01:37"
+          },
+          {
+            "text": "Ein Prozent Wachstum bringt 45 Milliarden Euro Bruttoeinkommen.",
+            "timestamp": "01:03:32"
+          }
+        ],
+        "concrete_statements": [
+          "Bürgergeld-Rückgang zu Grundsicherung bringt 'high-einstellige' Milliarden Euro",
+          "Heizungsgesetz-Umkehrung wirkt sich auf Kosten aus",
+          "Zielkurs: Unternehmensteuern unter 25% (aktuell ~30%)",
+          "Wachstum als Hauptfinanzierungsmechanismus"
+        ],
+        "deflection_target": "SPD blockiert konkrete Wachstumsmaßnahmen",
+        "evasion_note": "Spahn vermeidet, auf Details der Finanzierung zu antworten und betont stattdessen Wachstumspotenziale, ohne diese überzeugend zu begründen.",
+        "related_bundestag_topics": [
+          "Solidaritätszuschlag",
+          "Bürgergeld",
+          "Unternehmenssteuerreform",
+          "Konjunkturpolitik"
+        ]
+      },
+      {
+        "title": "Drittstaatenabkommen und Flüchtlingsschutz",
+        "timestamp_range": "01:09:15 - 01:14:12",
+        "theme_description": "Spahn unterscheidet zwischen Ländern, die Staatsangehörige zurücknehmen, und sogenannten sicheren Drittstaaten für Flüchtlingsschutz, und verteidigt dieses Konzept gegen Kritik.",
+        "question_asked": "Würden Sie wie Meloni mit Drittstaaten wie Ruanda Abkommen abschließen, um Flüchtlinge dort unterzubringen?",
+        "question_intent": "Testen, ob die Union bereit ist, europäische Asylverantwortung auf Nicht-EU-Länder zu externalisieren.",
+        "position": "Spahn unterscheidet zwei Arten von Drittstaatenabkommen: (1) Länder, die ihre Staatsangehörigen zurücknehmen (klassisch); (2) 'Sichere Drittstaaten', in denen Flüchtlinge, die an der EU-Außengrenze ankommen, Schutz erhalten würden. Er argumentiert: 'Wir sollten Flüchtigen, die Schutz suchen helfen, aber die können nicht allen helfen.' Das Kernproblem sei, dass die Botschaft ausgehen müsse, dass nicht jeder die EU-Außengrenze betreten könne und dann nach Deutschland komme. 'Deswegen brauchen wir sichere Drittstaaten, wo wir Menschen zum Schutz hinbringen können.' Spahn nennt keine konkreten Länder, sondern sagt: 'Wir finden sicher andere Länder.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn skizziert das Konzept der sicheren Drittstaaten, weicht aber der Frage nach konkreten Ländern aus und antwortet ausweichend auf Wolfgangs Schmidts Kritik zum Ruanda-Modell. Er nennt keine Alternative.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Das sind zwei verschiedene Arten von Drittstaaten. Hier geht es um Länder, die ihre eigenen Leute zurücknehmen. Aber es geht um ein Abkommen, wo Flüchtlinge insgesamt Schutz bekommen könnten.",
+            "timestamp": "01:09:52"
+          },
+          {
+            "text": "Wir müssen die Botschaft beenden, dass jeder die EU Außengrenze betritt. Die Hälfte davon geht nach Deutschland, das wird nicht mehr funktionieren. Deswegen brauchen wir sichere Drittstaaten, wo wir Menschen zum Schutz hinbringen können.",
+            "timestamp": "01:11:02"
+          }
+        ],
+        "concrete_statements": [
+          "Unterscheidung nötig zwischen Rücknahmestaaten und sicheren Drittstaaten",
+          "Botschaft nach außen: Nicht alle können sich automatisch zur EU-Außengrenze begeben und nach Deutschland gehen",
+          "Fachkräfteabkommen mit Rücknahmeländern sind ein Druckmittel (z.B. mit der Türkei)"
+        ],
+        "deflection_target": "SPD verweigert radikalere Drittstaatenlösung",
+        "evasion_note": "Spahn nennt kein konkretes Land als sicherer Drittstaat und unterscheidet sich damit von Meloni-Modell, erklärte aber auch nicht warum (Ruanda-Kritik stand im Raum).",
+        "related_bundestag_topics": [
+          "Asylverfahren an EU-Außengrenzen",
+          "GEAS-Verordnung",
+          "Türkei-Abkommen",
+          "Fachkräfteregelung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die AfD hat sich in den letzten drei Jahren verdoppelt.",
+        "timestamp": "00:08:19"
+      },
+      {
+        "claim": "Ein Prozent Wachstum bringt 45 Milliarden Euro Bruttoeinkommen.",
+        "timestamp": "01:03:32"
+      },
+      {
+        "claim": "Die Entscheidung zur Entlassung des Finanzministers wurde von Friedrich Merz und dem Bundespräsidenten bestimmt.",
+        "timestamp": "00:11:40"
+      },
+      {
+        "claim": "SPD verliert ihre Wahlkreise im Ruhrgebiet an die AfD.",
+        "timestamp": "00:51:23"
+      },
+      {
+        "claim": "Es gab zwei Wochen Diskussionsbedarf zur Bestätigung des SPD-Kanzlerkandidaten, das ist ungewöhnlich.",
+        "timestamp": "00:08:19"
+      },
+      {
+        "claim": "41 % der Asylanträge sind im Januar 2020 im Vergleich zum Vorjahr runtergegangen.",
+        "timestamp": "00:39:09"
+      }
+    ]
+  }
+}

@@ -1,0 +1,384 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-oktober-2024-100",
+    "video_id": "lanz-2024-10-10",
+    "politician": "Philipp Amthor",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "42f26f127cc922e1",
+    "transcript_chars": 59502,
+    "caption_lines": 2991,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24150,
+    "tokens_out": 8930,
+    "cost_usd": 0.027520000000000003,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 16,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-02T16:33:28.094Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Philipp Amthor (CDU/CSU) trat in der Markus-Lanz-Sendung als Verteidiger des Kurses von Friedrich Merz gegen die Ampel-Koalition auf. Er kritisierte die Grünen in ihrer Regierungsbeteiligung scharf – insbesondere ihre Blockadehaltung in Polizei- und Migrationsfragen – sprach sich gleichzeitig aber für sachliche Differenzierung aus und betonte, dass die CDU nicht automatisch mit den Grünen koalieren werde. Der Ton war konfrontativ gegenüber der Ampel, gemischt mit Verständnis für Kritik an der Union selbst.",
+    "themes": [
+      {
+        "title": "Brandmauer zur AfD und CDU-Mitglieder-Haltung",
+        "timestamp_range": "00:01:03:27 - 00:01:05:44",
+        "theme_description": "Diskussion über die Stabilität der Brandmauer gegen die AfD und wie die CDU mit Mitgliedern umgeht, die Gesprächsbereitschaft signalisieren.",
+        "question_asked": "Moderator hinterfragt, wie glaubwürdig die CDU-Brandmauer ist, wenn es CDU-Mitglieder gibt, die bereit sind mit der AfD zu reden. Was tut die CDU gegen solche Mitglieder?",
+        "question_intent": "Ist die CDU-Abgrenzung zur AfD konsistent, oder bröckelt sie?",
+        "position": "Amthor betont, dass sechs Mitglieder nicht für die CDU-Linie stehen. Als Mitgliederbeauftragter erklärt er, dass die CDU gerade wegen ihrer klaren Haltung zur AfD viele neue Mitglieder gewinne. In Ostdeutschland sei die CDU 'die einzigen, die noch substantiell da dagegenhalten'. Michael Kretschmer habe die Wahl gewonnen und eine klare Linie zu AfD-Abgrenzung. Für Amthor ist der entscheidende Punkt: Extremisten in den eigenen Reihen dulden ist falsch (wie in der AfD), aber einzelne Mitglieder mit abweichenden Meinungen sind noch kein Partei-Kennzeichen. Die CDU lehnt Koalitionen und jede Form von Zusammenarbeit mit der AfD ab.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor antwortet auf die Frage nach Konsequenzen (Was passiert mit solchen Mitgliedern?), indem er die Relevanz einzelner Mitglieder relativiert und auf Wahlergebnisse verweist. Er weicht der direkten Frage aus, wie die CDU gegen solche Mitglieder vorgehen würde.",
+        "quotes": [
+          {
+            "text": "Hier sitzt ein Mitglied des CDU-Bundesvorstandes. Ich bin Mitglieder beauftragter. Ich bin dafür zuständig, dass wir neue Mitglieder gewinnen. Da bekommen wir sehr viele neue. Auch wegen unserer klaren Haltung.",
+            "timestamp": "01:05:44",
+            "context": "Zur Frage, wie ernsthaft die CDU ihre Brandmauer verteidigt."
+          },
+          {
+            "text": "wer Extremisten in den eigenen Reihen duldet und so ist das in der AfD, die Grenzen sich nicht ab von den Extremisten und Extremisten sind diejenigen, die zum bestimmenden Faktor in der Partei werden",
+            "timestamp": "01:03:27",
+            "context": "Definition der Grenzziehung zur AfD."
+          }
+        ],
+        "concrete_statements": [
+          "Sechs CDU-Mitglieder stehen nicht für CDU-Linie",
+          "CDU lehnt jede Koalition und Zusammenarbeit mit AfD ab",
+          "CDU gewinnt Mitglieder gerade wegen klarer Abgrenzung",
+          "Kretschmer hat Wahl mit klarer AfD-Abgrenzung gewonnen",
+          "Extremisten als bestimmender Faktor in der Partei sind das Problem (nicht einzelne Mitglieder)"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Bekämpfung",
+          "Demokratische Werteverteidigung",
+          "Parteistruktur und Disziplin",
+          "Ost-West-Unterschiede"
+        ]
+      },
+      {
+        "title": "Wählerverluste und Rechtsverschiebung des Diskurses",
+        "timestamp_range": "00:01:08:19 - 00:01:12:06",
+        "theme_description": "Debatte über Wählerwanderung und die Frage, ob die CDU durch aggressive Anti-Grünen-Rhetorik die politische Mitte destabilisiert.",
+        "question_asked": "Frau Dröge kritisiert, dass Kretschmer durch Fokus auf Grüne als 'Hauptgegner' (statt AfD) eine Destabilisierung des demokratischen Diskurses betreibt und den Diskurs nach rechts verschiebt.",
+        "question_intent": "Verschärft die CDU-Rhetorik gegen die Grünen das AfD-Problem statt es zu lösen?",
+        "position": "Amthor argumentiert, dass die CDU nicht der Ursache von Wählerverlust aus ihrer Mitte zu den Populisten ist. Vielmehr: Die Wähler bekommen nicht, was sie wählen. 'Die Mehrheit der Wähler in diesem Land wird nicht links, hat aber trotzdem Mehrheitsverhältnisse, in dem die Grünen eine Agenda fahren.' Die CDU trete für 'echten Politikwechsel' an, nicht um mit Ampelparteien weiterzumachen. Schweden sei ein Beispiel: auch dort hätten rechte Parteien erstarkt, nicht weil Konservative zu hart gegen die Grünen argumentierten, sondern weil Wähler Changeover bekamen. Amthor behauptet: Die Anti-Grünen-Rhetorik ist nicht Ursache, sondern Reaktion auf Regierungspolitik.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Amthor antwortet auf die Kritik, dass die CDU-Rhetorik rechtsverschiebend wirkt, nicht indem er diese Kritik adressiert, sondern indem er gegenpolarisiert: Die Schuld liegt bei der Ampel-Politik, nicht bei CDU-Rhetorik. Er lenkt von der Diskurs-Destabilisierungs-Frage ab zur Wechselwähler-Frage.",
+        "quotes": [
+          {
+            "text": "Die Mehrheit der Wähler in diesem Land wird nicht links, hat aber trotzdem Mehrheitsverhältnisse, in dem die Grünen eine Agenda fahren.",
+            "timestamp": "01:08:19",
+            "context": "Zur Erklärung, warum die CDU gegen Grüne-Inhalte argumentiert."
+          },
+          {
+            "text": "Wir werden nicht zur Verfügung stehen, dass man CDU wählt und am Ende grüne Inhalte bekommt",
+            "timestamp": "01:08:19",
+            "context": "Kernposition zu Koalitionsfähigkeit und Regierungsprogramm."
+          }
+        ],
+        "concrete_statements": [
+          "CDU tritt für 'echten Politikwechsel' an, nicht Ampel-Fortsetzung",
+          "Wechselwähler verlassen die CDU wegen Regierungspolitik, nicht wegen CDU-Rhetorik",
+          "Schweden-Beispiel: rechtsextreme Parteien erstarken überall, wo konservative Parteien unpopuläre Politik umsetzen (müssen)",
+          "CDU will Unterscheidbarkeit, nicht automatische Kompromissakzeptanz"
+        ],
+        "related_bundestag_topics": [
+          "Wahlprogramm und Koalitionsfähigkeit",
+          "Parteienlandschaft Ost-West",
+          "Populismus-Bekämpfung",
+          "Wahlverhalten Forschung"
+        ]
+      },
+      {
+        "title": "Bilanz der Grünen in Regierungsbeteiligung",
+        "timestamp_range": "00:10:19 - 00:12:22",
+        "theme_description": "Kritik an mangelnden Ergebnissen der Grünen in den letzten drei Jahren Ampel-Regierung, insbesondere zu Polizeigesetzen und Migrationsfragen.",
+        "question_asked": "Moderator bemerkt, dass Amthor zuhört; Bröcker kritisiert mangelnde Glaubwürdigkeit der Grünen-Ankündigungen zu Polizei und Sicherheit.",
+        "question_intent": "Wie glaubwürdig sind die Versprechungen der Grünen zu mehr Sicherheit und besserer Polizeiausstattung?",
+        "position": "Amthor argumentiert, dass die Ampel-Regierung, insbesondere die Grünen, ihre Versprechen nicht eingelöst habe. Das Bundespolizeigesetz werde von den Grünen seit Monaten blockiert. Stattdessen hätten sie nur die Kennzeichnungspflicht für Polizisten eingeführt und einen 'verfassungswidrigen Polizeibeauftragten' etabliert. In der Migrationspolitik seien trotz großer Ankündigungen nach Solingen keine wesentlichen Schritte erfolgt. Er beschreibt dies als Muster: 'wir vermissen die auch nicht' – eine kritische Einschätzung der Tauglichkeit dieser Koalitionäre. 'Regieren tut ihnen nicht gut', resümiert er.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Amthor antwortet direkt auf die implizite Frage nach der Glaubwürdigkeit grüner Sicherheitsversprechen, indem er konkrete Legislative nennt (Bundespolizeigesetz, Kennzeichnungspflicht), die blockiert oder verfehlt wurden. Er dokumentiert sein Argument durch legislative Fakten.",
+        "quotes": [
+          {
+            "text": "da findet man zum Bundespolizeigesetz nichts, das wird von den Grünen blockiert seit Monaten. Das einzige was sie gemacht haben ist die Kennzeichnungspflicht für Polizisten, sie haben den verfassungswidrigen Polizeibeauftragten eingeführt",
+            "timestamp": "00:10:19",
+            "context": "Zur Frage, ob die Grünen ihre Ankündigungen zu mehr Polizeibefugnissen umsetzen."
+          },
+          {
+            "text": "regieren tut ihnen nicht gut",
+            "timestamp": "00:10:19",
+            "context": "Gesamteindruck von Amthors Sicht auf grüne Regierungsleistung."
+          }
+        ],
+        "concrete_statements": [
+          "Bundespolizeigesetz wird von den Grünen seit Monaten blockiert",
+          "Kennzeichnungspflicht für Polizisten als einzige umgesetzte Maßnahme",
+          "Verfassungswidriger Polizeibeauftragter eingeführt",
+          "Nach Solingen große Ankündigungen, aber keine Umsetzung in Migrationsfragen"
+        ],
+        "related_bundestag_topics": [
+          "Innere Sicherheit",
+          "Polizeigesetzgebung",
+          "Migrationspolitik",
+          "Ampel-Regierungsbilanz"
+        ]
+      },
+      {
+        "title": "Migrationspolitik und AfD-Erstarken",
+        "timestamp_range": "00:12:22 - 00:14:24",
+        "theme_description": "Debatte über Verantwortung von Union und Ampel für Migrationspolitik und das Erstarken der AfD; Amthor verteidigt die CDU-Bilanz und kritisiert die Ampel.",
+        "question_asked": "Moderator wirft Amthor indirekt vor, dass die Migration unter CDU-Kanzlerschaft 2015 nicht kontrolliert wurde (AfD bei 3 %, jetzt deutlich höher). Später: Wie sieht Amthor die gegenwärtige Verantwortung?",
+        "question_intent": "Wer trägt primär Schuld für die Migrationskrise und das AfD-Erstarken – die Merkel-Union oder die aktuelle Ampel?",
+        "position": "Amthor gibt zunächst zu, dass die Union Fehler in der Migrationspolitik gemacht hat, lehnt aber ab, Migration und AfD gleichzusetzen. Er argumentiert, dass die Union durch das EU-Türkei-Abkommen die Zahlen normalisiert habe. Die eigentliche Verantwortung für das gegenwärtige Erstarken der AfD trägt nach seiner Ansicht die Ampel: Sie habe das Migrationthema nicht angegangen, bis Friedrich Merz Druck aufgebaut habe. 'Wir sind diejenigen, die das Thema auf die Tagesordnung gesetzt haben', sagt Amthor. Gleichzeitig betont er: Auch die Union habe Fehler gemacht, und es wäre besser, nicht über Migration Wahlkampf zu führen, sondern ins Handeln zu kommen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor adressiert die Kernfrage (Verantwortung für AfD-Erstarken) substantiell, weicht aber teilweise aus, indem er zwischen historischer Schuld (2015, Union) und gegenwärtiger Verantwortung (Ampel) unterscheidet. Er lenkt die Anklage um, statt sie vollständig einzugestehen.",
+        "quotes": [
+          {
+            "text": "Wenn wir nicht den Druck gemacht hätten hätte sich die Ampel nicht bewegt",
+            "timestamp": "00:14:24",
+            "context": "Zur Frage, wer für mangelnde Migrationskontrolle verantwortlich ist."
+          },
+          {
+            "text": "da muss man ins Bundesgesetzblatt schauen, da findet man zum Bundespolizeigesetz nichts",
+            "timestamp": "00:10:19",
+            "context": "Zur Ampel-Bilanz in Sicherheitsfragen."
+          },
+          {
+            "text": "Natürlich haben wir auch eine Verantwortung für das erstarken der populistischen Parteien und auch für die Entwicklung in der Migrationspolitik",
+            "timestamp": "00:12:22",
+            "context": "Eingeständnis eigener Fehler, aber mit relativierendem 'aber'."
+          }
+        ],
+        "concrete_statements": [
+          "Union hat Fehler in Migrationspolitik gemacht, aber durch EU-Türkei-Abkommen Zahlen normalisiert",
+          "Ampel hat Migrationthema ignoriert, bis CDU Druck aufbaute",
+          "CDU fordert Wahlkampf ohne Migrations-Fokus, sondern 'ins Handeln kommen'",
+          "Union will Zurückweisungen an Grenzen, Grüne blockieren dies"
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "AfD-Bekämpfung",
+          "Grenzkontrollen",
+          "Abschiebungspraxis"
+        ]
+      },
+      {
+        "title": "Schwarze Koalitionsoptionen: Merz zwischen CDU-Inhalten und Kompromissen",
+        "timestamp_range": "00:14:24 - 00:16:27",
+        "theme_description": "Diskussion über Friedrich Merz' Koalitionsfähigkeit und ob CDU ihre Inhalte bewahren kann oder gezwungen wird, grüne Inhalte zu tolerieren.",
+        "question_asked": "Moderator wirft Merz vor, dass die CDU trotz klarer Absagen an Schwarz-Grün oder Schwarz-Rot am Ende doch Kompromisse machen wird. Amthor wird gefragt, wie glaubwürdig diese Absagen sind.",
+        "question_intent": "Kann die CDU glaubhaft versichern, dass sie nicht automatisch wieder in grüne oder rote Koalitionen schlittert?",
+        "position": "Amthor behauptet, dass die CDU dieses Mal anders vorgehen werde als früher: 'Über Jahre haben wir Kompromisse mit anderen Parteien gemacht. Wir haben das vor den Wahlen vorweggenommen. Das machen wir jetzt nicht mehr.' Er verteidigt Merz' 'Mit diesen Grünen wird das nichts'-Aussage und deutet an, dass neue Grüne mit anderen Inhalten möglich wären. Amthor selbst sitzt im CDU-Bundesvorstand und ist 'Mitgliederbeauftragter'. Die CDU will 'Unterscheidbarkeit' bewahren und nicht einfach akzeptieren, dass Wähler 'CDU wählen und am Ende grüne Inhalte' bekommen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor antwortet auf die Glaubwürdigkeitsfrage mit dem Versprechen einer neuen Strategie (nicht vorab Kompromisse eingehen), weicht aber der eigentlichen Herausforderung aus: dass Koalitionen zwangsläufig Kompromisse bedeuten, auch wenn man Unterscheidbarkeit bewahrt.",
+        "quotes": [
+          {
+            "text": "Über Jahre haben wir Kompromisse mit anderen Parteien gemacht. Wir haben das vor den Wahlen vorweggenommen. Das machen wir jetzt nicht mehr.",
+            "timestamp": "00:11:16",
+            "context": "Zur Frage, wie die CDU Glaubwürdigkeit zurückgewinnt bei Koalitionsversprechen."
+          },
+          {
+            "text": "Wir werden nicht zulassen, der Eindruck verfestigt sich wählt man CDU und bekommt grüne Inhalte",
+            "timestamp": "00:12:22",
+            "context": "Kernposition zur Koalitionsfähigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "CDU wird vor Wahl nicht vorab Koalitionskompromisse eingehen",
+          "Unterscheidbarkeit bewahren – keine automatische Anpassung an Koalitionspartner",
+          "Merz meint mit 'Mit diesen Grünen wird das nichts': neue Grüne mit anderen Inhalten wären möglich",
+          "Politikwechsel ist zentrale Forderung, nicht Ampel-Weiterkurs"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "Wahlprogramm der CDU",
+          "Parteien-Profilierung",
+          "Regierungsoptionen 2025"
+        ]
+      },
+      {
+        "title": "Verantwortung der Union für Nordstream und Energiepolitik",
+        "timestamp_range": "00:16:27 - 00:18:28",
+        "theme_description": "Kritik an CDU-Energiepolitik unter Merkel: Abhängigkeit von russischem Gas stieg auf 55 %, Nordstream-Abhängigkeit.",
+        "question_asked": "Moderator kritisiert, dass unter Merkel die Abhängigkeit von russischem Gas auf 55 % stieg und wirft der CDU Verantwortung für gegenwärtige Probleme vor.",
+        "question_intent": "Wird Amthor die Fehler der CDU-Energiepolitik eingestehen und erklären?",
+        "position": "Amthor gibt zu, dass die Union 'selbstverschuldet abgewählt worden' ist – nicht weil 'Baerbock und Scholz zu toll waren', sondern weil die Union 'nicht mehr gut genug' war und 'schwere Fehler gemacht' hat, auch in ihrer Regierungszeit. Er betont jedoch, dass die Grünen bei Nordstream 2 kritisch waren und 'mit viel Kritik ... zu Recht gehabt' haben. Amthor fragt nach Selbstkritik bei allen: Auch die Ampel habe viele Fehler gemacht, 'aber das, was sie macht, hat ganz viel mit ihrer Politik zu tun'. Sein Ansatz ist: Gegenseitige Anerkennung von Fehlern, um vorwärts zu kommen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Amthor nimmt die Kritik direkt auf und gibt Fehler der Union in der Energiepolitik zu, betont aber gegenseitige Verantwortung. Er adressiert die Frage vollständig, wenn auch defensiv-konstruktiv.",
+        "quotes": [
+          {
+            "text": "2021 ist die Union selbstverschuldet abgewählt worden und zwar nicht weil Baerbock und Scholz zu toll waren, sondern weil wir nicht mehr gut genug waren und weil wir schwere Fehler gemacht haben",
+            "timestamp": "00:16:27",
+            "context": "Eingeständnis der Union-Fehler in Regierungszeit."
+          },
+          {
+            "text": "Das gehört auch zur Wahrheit. Das hat man sehr klar gesehen an Nordstream 2. Deswegen haben sie auch gemerkt, dass ich das zu billige.",
+            "timestamp": "00:18:28",
+            "context": "Anerkennung von Grünen-Kritik an Nordstream-Politik."
+          }
+        ],
+        "concrete_statements": [
+          "Union wurde 2021 selbstverschuldet abgewählt",
+          "Union hat schwere Fehler auch in Regierungszeit gemacht",
+          "Grüne hatten Kritik an Nordstream-Politik zu Recht",
+          "Gegenwärtige Probleme hängen mit CDU-Politik zusammen, aber auch mit Ampel-Fehlern"
+        ],
+        "related_bundestag_topics": [
+          "Energiepolitik",
+          "Russland-Sanktionen",
+          "Gasabhängigkeit",
+          "Regierungsverantwortung"
+        ]
+      },
+      {
+        "title": "Migration und legale Zugangswege",
+        "timestamp_range": "00:26:28 - 00:28:37",
+        "theme_description": "Amthor kritisiert, dass Migration über regelrechte Anreize (Asylgewährung bei Ankunft) statt über legale Zugangswege laufe.",
+        "question_asked": "Dröge argumentiert emotional mit Mittelmeer-Todesfällen; Moderator fragt implizit, ob Amthor das versteht.",
+        "question_intent": "Wie kann man die Asylpolitik strenger gestalten, ohne die humanitären Verpflichtungen zu verletzen?",
+        "position": "Amthor antwortet auf die emotionale Argumentation Dröges direkt: 'Das lass ich mir nicht vorhalten, dass ich das anders sehe.' Er argumentiert, dass die Leute 'über diesen gefährlichen Weg' kommen, 'weil sie am Ende belohnt werden damit, dass man hierbleiben kann.' Die Realität: 'am Ende stellen die Leute einen Asylantrag und sind in Deutschland.' Statt Menschen über das Mittelmeer in Gefahr zu bringen, müsse man 'vor Ort die Asylprobleme lösen' und in Entwicklungshilfe investieren. Deutschland sei von sicheren Drittstaaten umgeben – 'die Leute fallen nicht vom Himmel, die kommen doch über sichere Drittstaaten'. Das System funktioniere nicht, wenn alle nach Europa kämen. Amthors Logik: Massenzuwanderung ist nicht nachhaltig und schadet der Integration.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Amthor antwortet direkt und substantiell auf die implizite Frage, wie Migrationspolitik streng, aber human sein kann. Er benennt ein Kernargument: Anreize für illegale Migration müssen reduziert werden, indem man legale Zugangswege priorisiert.",
+        "quotes": [
+          {
+            "text": "Das lass ich mir nicht vorhalten, dass ich das anders sehe. Warum kommen die Leute über diesen gefährlichen Weg? Weil sie am Ende belohnt werden damit, dass man hierbleiben kann.",
+            "timestamp": "00:26:28",
+            "context": "Zur Frage, wie man Migration steuert ohne humanitäre Verpflichtungen zu verletzten."
+          },
+          {
+            "text": "Die Leute fallen nicht vom Himmel, die kommen doch über sichere Drittstaaten Deutschland ist umgeben von sicheren Drittstaaten.",
+            "timestamp": "00:26:49",
+            "context": "Zur Dublin-System-Kritik und zur Frage der Steuerung."
+          }
+        ],
+        "concrete_statements": [
+          "Migrationspolitik braucht legale Zugangswege, nicht Anreize für illegale Wege",
+          "Vor-Ort-Lösungen in Herkunftsländern sind effektiver als Aufnahme nach Ankunft",
+          "Deutschland kann nicht alle Probleme der Welt an den Grenzen lösen",
+          "Sichere-Drittländer-Prinzip muss gestärkt werden",
+          "Entwicklungshilfe ist Schlüssel zu weniger Fluchtdruck"
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Sichere Drittländer",
+          "Grenzkontrollen",
+          "Entwicklungshilfe",
+          "Dublin-System"
+        ]
+      },
+      {
+        "title": "TikTok und Jugend-Ansprache der CDU",
+        "timestamp_range": "00:42:03 - 00:45:37",
+        "theme_description": "Amthor verteidigt CDU-Social-Media-Strategie gegen Kritik, dass Handtaschen-Videos unpolitisch seien und nicht mit AfD-Kampagnen konkurrieren können.",
+        "question_asked": "Maja Zaubitzer zeigt ein Video von Amthors TikTok-Handtaschen-Inhalt und fragt, ob das der richtige Weg ist, Jugendliche anzusprechen.",
+        "question_intent": "Sind solche Lifestyle-Videos eine effektive Strategie gegen AfD-Propaganda auf TikTok?",
+        "position": "Amthor betont, dass sein Taschenvideo zwar nur 100.000 Klicks hatte, aber seine Reden zu politischen Inhalten 'sogar noch mehr' Klicks bekommen. Er sei selbst 'gar nicht mit einem eigenen Account' auf TikTok, und 'bei mir laufen besonders viel politische Inhalte und Reden' gut. Scholz zeige nur die Tasche, Amthor habe daneben auch politische Inhalte. Es gehe nicht darum, in einfache Antworten zu verfallen wie die AfD, sondern um Unterscheidbarkeit und authentische Positionen. Die CDU kämpfe nicht nur um junge Wähler über TikTok, sondern auch durch 'echten Politikwechsel'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor adressiert die Kritik an der Taschenvideo-Strategie mit dem Argument, dass politische Inhalte besser performen, weicht aber davon ab, dass das Video tatsächlich Lifestyle statt Politik ist. Er relativiert das Format-Problem durch Verweis auf andere Inhalte.",
+        "quotes": [
+          {
+            "text": "Ich muss aber gleich zur Ehrenrettung sagen, die politischen Inhalte bei mir laufen besser. Scholz und sein Tasche der zeigt ja nur die Tasche.",
+            "timestamp": "00:42:03",
+            "context": "Verteidigung der TikTok-Strategie gegen Kritik."
+          },
+          {
+            "text": "Ich bin ja auf TikTok selber gar nicht mit einem eigenen Account unterwegs. Vor allem klickt bei mir besonders viel politische Inhalte und Reden, das finde ich auch gut.",
+            "timestamp": "00:42:03",
+            "context": "Klarstellung der eigenen Social-Media-Präsenz."
+          }
+        ],
+        "concrete_statements": [
+          "Politische Inhalte von Amthor performen auf TikTok besser als Taschenvideo",
+          "CDU muss nicht populistischer werden, sondern authentisch bleiben",
+          "Unterscheidbarkeit ist wichtiger als Format-Anpassung an AfD",
+          "Auch bei Erstwählern sei CDU stärkste Kraft bei Europawahl"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Kommunikation",
+          "Jugendwähler",
+          "Populismus und Social Media",
+          "Parteien-Authentizität"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Haushaltskonsolidierung",
+        "timestamp_range": "01:15:15 - 01:15:25",
+        "theme_description": "Kurze Diskussion über die Zukunft der Schuldenbremse unter einer neuen Bundesregierung.",
+        "question_asked": "Moderator wirft auf, dass die Schuldenbremse jetzt auch von anderen Politikern kritisiert wird und fragt, was Amthor dazu sagt.",
+        "question_intent": "Wird die CDU die Schuldenbremse unter Druck aufgeben müssen?",
+        "position": "Amthor antwortet knapp: 'Kommt auf das Wahlergebnis an.' Als Moderator sagt, die CDU hätte historisch keine absolute Mehrheit gehabt, ergänzt Amthor: 'Wir nähern uns dem steil an.' Das ist ein defensiver Hinweis: Ohne absolute Mehrheit muss man sich auf Koalitionspartner einigen, aber mit besseren Umfragewerten für 2025 könnte die CDU näher an Mehrheit heran.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Amthor gibt eine knappe Antwort, die das Problem verschiebt: 'Kommt aufs Wahlergebnis an.' Das ist eine Ausweichposition – die Schuldenbremse-Frage wird damit beantwortet, dass es darauf ankommt, was die Wähler entscheiden.",
+        "quotes": [
+          {
+            "text": "Kommt auf das Wahlergebnis an.",
+            "timestamp": "01:15:15",
+            "context": "Zur Frage der zukünftigen Schuldenbremsen-Reform."
+          },
+          {
+            "text": "Wir nähern uns dem steil an.",
+            "timestamp": "01:15:25",
+            "context": "Zum Punkt der absoluten Mehrheit der CDU."
+          }
+        ],
+        "concrete_statements": [
+          "Schuldenbremsen-Reform hängt von Wahlergebnis ab",
+          "CDU nähert sich einer absoluten Mehrheit an"
+        ],
+        "related_bundestag_topics": [
+          "Haushaltspolitik",
+          "Schuldenbremsen-Reform",
+          "Fiskalpolitik",
+          "Wahlprognosen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das Bundespolizeigesetz wird von den Grünen seit Monaten blockiert",
+        "timestamp": "00:10:19"
+      },
+      {
+        "claim": "Die Abhängigkeit von russischem Gas ist während der Merkel-Zeit auf über 55 % gestiegen",
+        "timestamp": "00:16:27"
+      },
+      {
+        "claim": "Bei der Europawahl war die CDU stärkste Kraft bei den Erstwählern",
+        "timestamp": "00:42:03"
+      },
+      {
+        "claim": "Es gibt eine Realschule in Thüringen, wo 80 % der Schüler für die AfD sind",
+        "timestamp": "00:55:23"
+      },
+      {
+        "claim": "86 % der Menschen, die 2018 zu Deutschland gekommen sind, arbeiten",
+        "timestamp": "00:32:38"
+      }
+    ]
+  }
+}

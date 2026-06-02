@@ -1,0 +1,346 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-19-november-2024-100",
+    "video_id": "lanz-2024-11-19",
+    "politician": "Jens Spahn",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "41511c785af3c889",
+    "transcript_chars": 58351,
+    "caption_lines": 2980,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23604,
+    "tokens_out": 8657,
+    "cost_usd": 0.0267556,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-02T16:33:29.176Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, CDU/CSU-Fraktionsvorsitzender, äußerte sich zu Trumps Kabinettsbesetzung, der Ukraine-Krise mit ATACMS-Freigabe, der gescheiterten Ampel-Koalition, Fiskalpolitik unter der Schuldenbremse und Reformplänen der Union in Wirtschaft, Steuern, Sozialleistungen und Klimapolitik. Er präsentierte sich dabei pragmatisch und verteidigend gegenüber Kritik, betonte nationale Interessen und warnte vor einer zu rigiden deutschen Klimapolitik ohne internationale Partner.",
+    "themes": [
+      {
+        "title": "Bewertung von Trumps Kabinettsbesetzung",
+        "timestamp_range": "00:12:09 - 00:14:33",
+        "theme_description": "Spahn erläutert, wie man Trumps umstrittene Kabinettsauswahl pragmatisch bewerten sollte, statt sich nur zu empören.",
+        "question_asked": "Der Moderator fragt, was Spahn, der häufig in den USA ist, bei Blick auf Trumps Kabinettsbesetzung durch den Kopf geht und ob das aus amerikanischer Sicht Sinn ergibt.",
+        "question_intent": "Kritische Einordnung von Trumps fragwürdigen Personalentscheidungen einholen.",
+        "position": "Spahn argumentiert, dass die Amerikaner das Kabinett bekommen, das sie gewählt haben, mit Namen, die im Wahlkampf transparent Position bezogen haben. Statt bei Empörung stehen zu bleiben, solle man die zugrundeliegenden nationalen Interessen verstehen – wie etwa US-Energieunabhängigkeit. Deutschland müsse sich damit auseinandersetzen, obwohl es schwerfalle, und müsse Kontakte bewahren, um reden zu können, auch wenn die Kritik rauer wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn beantwortet die Frage partiell: Er erklärt, warum man die Kabinettswahl verstehen sollte (nationale US-Interessen), beantwortet aber nicht direkt, was konkret \"durch seinen Kopf geht\" bei einzelnen Namen wie Kennedy oder Gaetz. Er pivotiert stattdessen zu einer Metaebene: man solle nicht empört sein, sondern pragmatisch bleiben.",
+        "quotes": [
+          {
+            "text": "Die Amerikaner kriegen das Kabinett, was sie gewählt haben. Es sind Namen, die schon mit Trump im Wahlkampf unterwegs waren. Die Position bezogen haben, die in loyal unterstützt haben.",
+            "timestamp": "00:12:09",
+            "context": "Spahn rechtfertigt Trumps Kabinettsbesetzung mit deren Wahltransparenz."
+          },
+          {
+            "text": "Ich fände es klug, wenn wir uns damit auseinandersetzen. Die USA ist unser wichtigster Partner. Wir sind nicht sicher ohne die USA. Unsere Sicherheit hängt von den USA ab.",
+            "timestamp": "00:12:09",
+            "context": "Spahn begründet, warum Deutschland sich mit der Trump-Administration konstruktiv auseinandersetzen muss."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland muss sich mit Trumps Politik und Kabinett auseinandersetzen, nicht nur empört reagieren.",
+          "Deutschland braucht Kontakte zu den USA und muss kritik üben können, aber im Rahmen einer tragfähigen Beziehung."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Transatlantische Beziehungen",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Elon Musk und Oligarchie in den USA",
+        "timestamp_range": "00:14:09 - 00:14:33",
+        "theme_description": "Spahn kommentiert Elon Musks wachsenden Einfluss auf Trump und dessen Rolle im zukünftigen Kabinett.",
+        "question_asked": "Eigeninitiative: Spahn bemerkt, dass Elon Musk überall bei Trump auftaucht.",
+        "question_intent": "Darauf hinweisen, dass Musk eine beispiellose Machtposition hat.",
+        "position": "Spahn beschreibt Musk als Chef von Tesla und Ex-Twitter-Eigentümer mit enormem Einfluss, libertärem Standpunkt und großer Machtfülle. Er stellt fest, dass Musk überall dabei ist, wo Trump dabei ist.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dies ist keine Antwort auf eine Frage, sondern eine unaufgeforderte Beobachtung Spahns. Sie wird faktisch präzise gemacht (Musks Rollen), bleibt aber wertneutral, ohne kritische Stellungnahme.",
+        "quotes": [
+          {
+            "text": "Wo Donald Trump dabei ist taucht auch er auf, Chef von Tesla und Ex, jemand mit einer riesigen Machtfülle, ein sehr libertärer Standpunkt.",
+            "timestamp": "00:14:09",
+            "context": "Spahn beobachtet Musks omnipräsente Rolle."
+          }
+        ],
+        "concrete_statements": [
+          "Elon Musk hat enormen Einfluss auf Trumps Entscheidungen und ist überall dabei, wo Trump präsent ist."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "USA-Wirtschaft",
+          "Medienkonzentration"
+        ]
+      },
+      {
+        "title": "Ukraine-Krieg: ATACMS-Einsatz und internationale Eskalation",
+        "timestamp_range": "00:20:20 - 00:30:34",
+        "theme_description": "Moderator/Masala diskutieren ATACMS-Freigabe durch Biden; Spahn ist nicht direkt in diesem Diskussionsstrang aktiv redend.",
+        "question_asked": "N.A. – Diese Passage wird primär von Carlo Masala und Elmar Theveßen (Reporter in Rio) bestritten; Jens Spahn hat hier keine direkte Rede.",
+        "question_intent": "N.A.",
+        "position": "Spahn ist in diesem Themenblock praktisch nicht aktiv. Die Diskussion wird von Masala und Moderator/Theveßen geführt.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dies ist kein Thema aus Spahns Mund. Er spricht in diesem Bereich praktisch nicht. Das Thema wird ausschließlich von anderen Gästen erörtert.",
+        "quotes": [],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Ukraine-Konflikt",
+          "Rüstungslieferungen",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Ampel-Koalition gescheitert: Versäumnisse aller Partner",
+        "timestamp_range": "00:33:40 - 00:43:50",
+        "theme_description": "Spahn verteidigt die CDU gegen Vorwürfe der Manipulation und kritisiert die Ampel-Partner für mangelnde Führung und Koalitionsfähigkeit.",
+        "question_asked": "Moderator und Winkelmann fragen nach Spahns Sicht auf die sogenannten 'Enthüllungen' über die FDP-Austrittspläne und was das über Glaubwürdigkeit und Politikqualität aussagt.",
+        "question_intent": "Spahn zu kritischer Einordnung von Lindners theatralischer Inszenierung und der Koalitionskrisen bewegen; prüfen, ob er das Ernst nimmt oder beschönigt.",
+        "position": "Spahn betont, dass es keine 'Enthüllung' ist, dass die Ampel nicht funktioniert – das war seit Tag eins offenkundig. Er kritisiert, dass sich alle drei Partner schuldig gemacht haben: Scholz hatte schon am ersten Tag keine Mehrheit, im Sommer sprach er schon mit den Grünen über die Vertrauensfrage. Spahn weist zurück, dass nur die FDP schuld sei. Gleichzeitig sagt er, die Frage sei nicht, wer was inszeniert hat, sondern dass die Wähler jetzt entscheiden können. Er bewertet Lindners persönliche Betroffenheit als subjektiven Eindruck, sagt aber auch: 'Es ist aber auch nicht meine Baustelle.' Die Koalition war von vorne herein nicht funktionsfähig.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn adressiert die Frage nach Glaubwürdigkeit und Koalitionsmechaniken, relativiert aber die Bedeutung der 'Enthüllungen' und weicht der moralischen Bewertung von Lindners Inszenierung aus, indem er sagt, es sei 'nicht meine Baustelle'. Er bestätigt, dass die Koalition gescheitert ist, lenkt aber ab auf die Wählerentscheidung statt auf die Frage, wie sehr politische Glaubwürdigkeit beschädigt wurde.",
+        "quotes": [
+          {
+            "text": "Wenn ich schon den Begriff Enthüllung höre. Es ist offenkundig, dass die Koalition nicht funktioniert. Es ist albern so zu tun, als sei die FDP schuld am Scheitern der Ampel. Seit Tag eins der Ampel, erstes Vorhaben von Olaf Scholz, da hatte er keine Mehrheit in der eigenen Ampel.",
+            "timestamp": "00:33:40",
+            "context": "Spahn weist Schuldzuweisungen an die FDP ab und kontextualisiert die Koalitionskrise."
+          },
+          {
+            "text": "Ich habe im Übrigen den Eindruck, dass er tatsächlich, es ist ein subjektiver Eindruck, persönlich getroffen war, von der Art und Weise, wie Olaf Scholz, bei sie haben drei Jahre zusammengearbeitet, ich hatte nicht den Eindruck alles sei gespielt. Es ist aber auch nicht meine Baustelle.",
+            "timestamp": "00:43:08",
+            "context": "Spahn äußert Verständnis für Lindner, distanziert sich aber von der Bewertung."
+          }
+        ],
+        "concrete_statements": [
+          "Die Ampel-Koalition funktionierte von Anfang an nicht; alle drei Parteien tragen Verantwortung.",
+          "Die Wähler können jetzt in weniger als 100 Tagen entscheiden, wem sie trauen."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Vertrauensfrage",
+          "Regierungskrisen"
+        ]
+      },
+      {
+        "title": "Schuldenbremse: Festhalten an Verfassungsrecht vs. Reformflexibilität",
+        "timestamp_range": "00:45:22 - 00:53:51",
+        "theme_description": "Spahn verteidigt die Schuldenbremse gegen Reformforderungen, räumt aber ein, dass sie technisch modifizierbar ist – sofern nicht für Konsum und Sozialpolitik.",
+        "question_asked": "Winkelmann wirft auf, dass Merz den Bruch mit früheren Aussagen durch juristische Spitzfindigkeit kaschiert: 'Schuldenbremse ist technisch reformierbar', aber nur für Investitionen und Sicherheit, nicht für Soziales. Ist das glaubwürdig?",
+        "question_intent": "Spahn zur Glaubwürdigkeit und Konsistenz der CDU-Position zur Schuldenbremse befragen.",
+        "position": "Spahn argumentiert, dass die Schuldenbremse 'wie sie ist' gut funktioniert und keiner Reform bedarf. Gleichzeitig räumt er ein, dass man technisch über eine Reform reden könnte – aber nicht für die Ampel-Ziele (Bürgergeld, Heizungsgesetz), sondern nur wenn es um Investitionen, Fortschritt und Lebensbedingungen für Kinder geht. Er betont, dass es kein Widerspruch ist, die Schuldenbremse zu verteidigen und gleichzeitig zu sagen, dass man bei wirtschaftlichem Wachstum mehr Spielraum hätte. Die eigentliche Frage sei nicht abstrakt die Schuldenbremse, sondern welche Prioritäten im Budget (Soziales vs. Investitionen/Sicherheit) gesetzt werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn beantwortet die Kernfrage nur partiell: Er sagt ja zur technischen Reformierbarkeit (Merz hatte das auch gesagt), nein zur praktischen Notwendigkeit. Aber er weicht der Glaubwürdigkeitsfrage aus, indem er argumentiert, das sei 'Gesamtkontext' und keine echte Umorientierung. Er adressiert nicht, dass Merz im Januar kategorisch ausschloss, und jetzt Spahn sagt, 'es hängt vom Zweck ab' – das ist faktisch eine Öffnung.",
+        "quotes": [
+          {
+            "text": "die Schuldenbremse so wie sie ist, funktioniert gut. Ich sehe im Moment keine Notwendigkeit, sie zu reformieren.",
+            "timestamp": "00:53:51",
+            "context": "Spahns Kernaussage zur Schuldenbremse jetzt."
+          },
+          {
+            "text": "Schuldenbremse ist ein technisches Thema. Selbst verständlich kann man das reformieren, die Frage ist zu welchem Zweck, was ist das Ergebnis einer solchen Reform? Es ist das Ergebnis, dass wir noch mehr ausgeben für Konsum und Sozialpolitik? Es ist wichtig für Investitionen, Fortschritt, für eine Lebensgrundlage unserer Kinder, dann kann es eine andere sein.",
+            "timestamp": "00:49:24",
+            "context": "Spahn räumt technische Reformierbarkeit ein, schränkt sie aber auf Investitionen ein."
+          }
+        ],
+        "concrete_statements": [
+          "Die Schuldenbremse wird unter einer CDU-Regierung beibehalten.",
+          "Eine Reform ist technisch möglich und könnte für Investitionen in Bundeswehr und Infrastruktur diskutiert werden, aber nicht für Sozialausgaben der Ampel.",
+          "Deutschland macht auch mit Schuldenbremse ca. 50 Mrd. Euro Schulden jährlich; ohne hätte die Ampel hunderte Milliarden gemacht."
+        ],
+        "related_bundestag_topics": [
+          "Fiskalpolitik",
+          "Haushalt",
+          "Grundgesetz (Schuldenbremse)",
+          "Verteidigungsausgaben"
+        ]
+      },
+      {
+        "title": "Ausgabenprioritäten: Verteidigung, Infrastruktur statt Soziales",
+        "timestamp_range": "00:55:54 - 01:00:00",
+        "theme_description": "Spahn legt dar, wie die Union Haushaltsprobleme durch Wachstum und Umpriorisierung (weg von Soziales, hin zu Sicherheit/Investitionen) lösen will, ohne neue Schulden.",
+        "question_asked": "Moderator und Carlo Masala fragen, wie Spahn konkret 80 Mrd. Euro für Verteidigung (3 % NATO-Standard) finanzieren will, wenn der Gesamthaushalt 500 Mrd. Euro ist und Soziales großen Anteil hat.",
+        "question_intent": "Konkrete Finanzierungsquellen und Umverteilungslogik prüfen.",
+        "position": "Spahn betont, dass die Lösung Wachstum ist, nicht neue Schulden. Das Missverhältnis im Haushalt sei, dass der Sozialanteil seit 30 Jahren steigt, während Investitionen in Infrastruktur/Sicherheit sinken. Spahn will nicht nur über Schulden reden, sondern über Haushaltspriorisierung: Soziales und Investitionen dürfen nicht parallel einfach steigen. Die USA machen 50 Mrd. Schulden mit Schuldenbremse; die Ampel hätte hunderte Milliarden ohne sie gemacht. Der Schlüssel ist, privates Kapital für Infrastruktur (z. B. Netzausbau) zu mobilisieren, nicht nur staatliche Investitionen. Ohne Wachstum funktioniert es nicht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn skizziert eine Gesamtstrategie (Wachstum + Umpriorisierung + privates Kapital), beantwortet aber nicht konkret die Frage nach der Finanzierungslücke von ca. 30–50 Mrd. Euro (80 Mrd. Verteidigung minus bisheriges Budget). Er weicht aus in Generalitäten ('Haushalt anders bestreiten') und sagt implizit, Soziales müsse schrumpfen, quantifiziert das aber nicht.",
+        "quotes": [
+          {
+            "text": "Der eigentliche Schlüssel eine älter werdenden Gesellschaft, wir sind eins der ältesten Länder der Welt, der Schlüssel ist Wachstum. Ohne Wachstum wird es nicht funktionieren.",
+            "timestamp": "00:57:07",
+            "context": "Spahns Kernthese zur Haushaltslösung."
+          },
+          {
+            "text": "In den letzten drei Jahren sind netto 300 Milliarden Euro aus Deutschland abgeschlossen, die nicht in Deutschland investiert wurden, sondern aus Deutschland raus. Stellt man sich vor, die würden in Deutschland investiert werden, das ist der entscheidende Schlüssel.",
+            "timestamp": "00:57:07",
+            "context": "Spahn verweist auf Kapitalflucht als Kernproblem statt Staatsschulden."
+          }
+        ],
+        "concrete_statements": [
+          "Die Union will Haushaltspriorisierungen vornehmen (mehr Sicherheit/Infrastruktur, weniger Soziales) ohne neue Schulden.",
+          "Wachstum ist der Schlüssel; private Kapitalinvestitionen sollten mobilisiert werden.",
+          "300 Mrd. Euro sind in den letzten 3 Jahren aus Deutschland abgeflossen; deren Rückkehr wäre entscheidend."
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Verteidigungsausgaben",
+          "Wirtschaftswachstum",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Wirtschaftswachstum als Schlüssel: Industrie, Automobilsektor, Standort",
+        "timestamp_range": "00:55:54 - 01:01:22",
+        "theme_description": "Spahn argumentiert, dass wirtschaftliches Wachstum der zentrale Hebel ist und dass deutsche Industrie (besonders Automobilindustrie) gestärkt statt geschädigt werden muss.",
+        "question_asked": "Eigeninitiative: Spahn kritisiert in Reaktion auf Haushaltsdebatten die zu pessimistische deutsche Debattenkultur ('Bestseller über Schrumpfen fürs Klima').",
+        "question_intent": "Seiner Sorge Ausdruck verleihen, dass Deutschland sich selbst wirtschaftlich schwächt durch zu rigide Ideologie.",
+        "position": "Spahn argumentiert, dass Wachstum ohne Alternative ist für eine älter werdende Gesellschaft wie Deutschland. Die Automobilindustrie zieht den Rest der Wirtschaft mit. Deutschland ist Exportnation und muss sich auf diese Stärken konzentrieren, nicht auf Schrumpfungsvisionen. Das Problem ist, dass 300 Mrd. Euro netto in den letzten 3 Jahren aus Deutschland abgeflossen sind – Kapitalflucht. Wenn dieses Kapital im Land bleiben würde, wäre das der entscheidende Schlüssel. Besorgnis: Bestseller über 'Degrowth fürs Klima' signalisieren falsch, dass Reduktion und nicht Transformation das Ziel ist.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dies ist unaufgeforderte Positionsäußerung Spahns ohne direkte Moderator-Frage. Er artikuliert eine klare, fundierte Position zu Wachstumsstrategie und Kapitalflucht.",
+        "quotes": [
+          {
+            "text": "Der eigentliche Schlüssel eine älter werdenden Gesellschaft, wir sind eins der ältesten Länder der Welt, der Schlüssel ist Wachstum. Ohne Wachstum wird es nicht funktionieren.",
+            "timestamp": "00:57:07",
+            "context": "Spahns zentrale These zum Wachstum."
+          },
+          {
+            "text": "Deswegen besorgt mich, dass in Deutschland Bestseller Bücher sich mit schrumpfen beschäftigen fürs Klima, aber wie soll das gehen? Zum Wachstum gehört die Industrie, die Automobilindustrie. Die ziehen den Rest mit.",
+            "timestamp": "00:57:07",
+            "context": "Spahns Kritik an Degrowth-Denken."
+          }
+        ],
+        "concrete_statements": [
+          "Wirtschaftliches Wachstum ist notwendig für Finanzierbarkeit von Rente, Pflege und Gesundheit.",
+          "Kapitalflucht (300 Mrd. Euro in 3 Jahren) muss gestoppt werden durch bessere Rahmenbedingungen.",
+          "Deutsche Automobilindustrie und Exportstärke sind zentral; 'Schrumpfungsideologie' ist kontraproduktiv."
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Standortpolitik",
+          "Investitionen",
+          "Demografie",
+          "Automobilindustrie"
+        ]
+      },
+      {
+        "title": "Steuerpolitik: Entlastung für mittlere Einkommen, Erhöhung für Spitzenverdiener",
+        "timestamp_range": "01:01:22 - 01:05:26",
+        "theme_description": "Spahn erklärt Union-Steuerpläne: Entlastung für mittlere Einkommen, offenlassung von Steuererhöhungen für hohe Einkommen, Unternehmenssteuer auf unter 25 %.",
+        "question_asked": "Moderator fragt, ob Spahn plant, Steuersätze zu erhöhen (z. B. für hohe Einkommen), und fordert konkrete Zahlen zu Spitzensteuersatz, Erbschaftsteuer und Unternehmenssteuer.",
+        "question_intent": "Konkrete Steuergeometrie und Verteilungswirkung prüfen; widersprechen mit Merz-Aussagen zu Steuererhöhungen.",
+        "question_match": "voll_adressiert",
+        "position": "Spahn gibt zu, dass für 'Gutverdiener' die Steuern steigen können, betont aber, dass dies nicht die Haupt-Schlagzeile ist – für Millionen Menschen sollen Steuern sinken. Der Mittelstandsbauch ist das Problem: zu hohe Belastung auf mittleren Einkommen, die Überstunden nicht lohnen. Das muss durch Tarifveränderung behoben werden, was Geld kostet. Unternehmenssteuer: unter 25 %. Einkommensteuer: Spahn zögert, konkrete Grenzen zu nennen, weil er befürchtet, dass die Presse daraus 'Spahn für Steuererhöhungen' macht. Die Reichensteuer beginnt derzeit bei 250.000 Euro. Erbschaftsteuer: Spahn und andere haben 'Optionen durchgespielt' (auch eine Flat Tax), aber aufgrund des Verfassungsgerichtsurteils und der Wirtschaftslage ist das nicht prioritär. Es braucht ein unbürokratisches, faires System.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn beantwortet die Frage zu Steuererhöhungen für hohe Einkommen partiell: Er sagt ja, aber zögernd und ohne konkrete Grenzwerte. Bei Unternehmenssteuer (unter 25 %) ist er klar. Bei Erbschaftsteuer weicht er aus, indem er sagt, dass andere und er 'Optionen durchgespielt' haben, aber die Zeit nicht reif ist. Er adressiert nicht, warum diese Pläne aus dem Programm verschwunden sind, und weigert sich, konkrete Gewinnschwellen zu nennen, um 'Fake News'-Vorwürfe zu vermeiden.",
+        "quotes": [
+          {
+            "text": "Kann es sein das für einzelne Gutverdiener die Steuern mehr auswerten, ja. Das ist nicht die Haupt-Headline. Gut, das Schöne ist, dass wir in einem Land leben, wo Sie die Tickermeldungen nicht vorschreiben.",
+            "timestamp": "01:05:26",
+            "context": "Spahn gibt Steuererhöhungen für Spitzenverdiener zu, relativiert aber ihre Bedeutung."
+          },
+          {
+            "text": "Unter 25 %. Und Einkommensteuer? Das ist die Kurve, die ich genannt habe. Die wollen wir für weite Teile der Bevölkerung denken.",
+            "timestamp": "01:03:24",
+            "context": "Spahn zur Unternehmenssteuer und Einkommensteuer."
+          }
+        ],
+        "concrete_statements": [
+          "Unternehmenssteuer (Gewerbe- + Unternehmenssteuer zusammen): unter 25 %.",
+          "Spitzensteuersatz: Erhöhung für Gutverdiener (ab ca. 80.000+ Euro) möglich, aber nicht primäres Ziel.",
+          "Erbschaftsteuer: Reform ist technisch denkbar (z. B. ein einheitlicher Satz), ist aber nicht prioritär; Verfassungsgerichtsurteil steht aus.",
+          "Bürgergeld-Einsparungen: 10 Mrd. Euro durch Sanktionen für Nicht-Annahme von Arbeitsangeboten."
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Einkommensteuer",
+          "Unternehmenssteuer",
+          "Erbschaftsteuer",
+          "Grundgesetz (Erbschaftsteuer)"
+        ]
+      },
+      {
+        "title": "Heizungsgesetz und Klimapolitik: Pragmatismus statt Ideologie",
+        "timestamp_range": "01:09:27 - 01:14:52",
+        "theme_description": "Spahn kritisiert die Habeck-Heizungsgesetze als zu rigide und fordert pragmatische, flexible Wege zur CO2-Reduktion ohne Dogmatismus.",
+        "question_asked": "Moderator und Winkelmann fragen, wie Spahn Deutschland bis 2045 klimaneutral macht, wenn er das Heizungsgesetz abschafft und weniger Förderung gibt.",
+        "question_intent": "Prüfen, ob Spahn einen kohärenten Klimapfad hat oder nur Habecks Gesetze killt, ohne Alternativen zu zeigen.",
+        "position": "Spahn lehnt das Heizungsgesetz à la Habeck ab (20 Mrd. Euro Förderung, die halbiert werden kann). Stattdessen will er Menschen Optionen geben, auf unterschiedlichen Wegen klimaneutral zu werden: Hybrid-Lösungen (Gasheizung + Wärmepumpe im Bestand), grünes Öl als Beimischung, pragmatische Schritte. Nicht alles auf 100 % Klimaneutralität in 20 Jahren ausrichten; das halte die Leute nicht mit. Der Schlüssel ist, dass CO2-Reduktion nur funktioniert, wenn andere Länder mitgehen – sonst schadet Deutschland nur seiner Industrie. Deutschland darf nicht allein gehen, während China und USA andere Wege gehen. Deutschland hat Ambitionen, aber sie müssen realistisch sein.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn beantwortet, wie er Klimapolitik anders gestalten will (flexibel, pragmatisch), beantwortet aber nicht konkret, wie die 2045-Verpflichtung erreicht wird, wenn er Förderung halbiert und ideologisch flexibilisiert. Er weicht in die globale Ebene aus: 'Nur wenn andere mitgehen.' Das ist eine faktische Entwertung der deutschen Verpflichtung, wird aber als Pragmatismus dargestellt.",
+        "quotes": [
+          {
+            "text": "Hybrid Lesungen im Bestand, also in Wohnungen und Häuser, die schon da sind. Gasheizungen zu kombinieren mit einer Wärmepumpe. Erspart man massiv am Investitionsbedarf.",
+            "timestamp": "01:11:33",
+            "context": "Spahns Alternative zu Habecks Heizungsgesetz."
+          },
+          {
+            "text": "Wenn wir in Deutschland ist alleine gehen, dann macht es weder für das Klima singen, noch für unsere Industrie. Es wird spannende Jahre sein.",
+            "timestamp": "01:11:33",
+            "context": "Spahn zur globalen Einbettung deutscher Klimapolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Das Heizungsgesetz wird abgeschafft; Heizungsförderung wird halbiert.",
+          "Pragmatische, flexible Wege zur CO2-Reduktion (Hybrid, grünes Öl) werden bevorzugt.",
+          "Deutsche Klimapolitik ist nur sinnvoll, wenn andere Länder mitgehen; isolierte deutsche Anstrengungen schaden der Industrie.",
+          "Die 2045-Verpflichtung bleibt, aber nicht mit bisherigem Tempo und Dogmatismus."
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Energiewende",
+          "Gebäudestandards",
+          "Emissionshandel",
+          "Internationale Klimalverpflichtungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Deutschland macht an die 50 Milliarden Schulden mit der Schuldenbremse.",
+        "timestamp": "00:47:23"
+      },
+      {
+        "claim": "300 Milliarden Euro sind in den letzten drei Jahren netto aus Deutschland abgeflossen.",
+        "timestamp": "00:57:07"
+      },
+      {
+        "claim": "Die Reichensteuer beginnt derzeit bei 250.000 Euro; diese wurde von der Großen Koalition eingeführt.",
+        "timestamp": "01:03:24"
+      },
+      {
+        "claim": "Der Spitzensteuersatz beginnt mittlerweile bei knapp über 60.000 Euro.",
+        "timestamp": "01:01:22"
+      },
+      {
+        "claim": "Die Schuldenbremse hätte verhindert, dass die Ampel hunderte Milliarden Euro in Schulden gemacht hätte.",
+        "timestamp": "00:47:23"
+      }
+    ]
+  }
+}

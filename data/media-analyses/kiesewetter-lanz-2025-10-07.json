@@ -1,0 +1,298 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-7-oktober-2025-100",
+    "video_id": "lanz-2025-10-07",
+    "politician": "Roderich Kiesewetter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "7d2d8891c672248e",
+    "transcript_chars": 51168,
+    "caption_lines": 2551,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21035,
+    "tokens_out": 7281,
+    "cost_usd": 0.022976000000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-02T16:33:28.520Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter äußerte sich als Verteidigungsexperte und CDU-Politiker zu drei Hauptkomplexen: (1) dem Israel-Gaza-Konflikt und der Rolle Deutschlands in Friedensverhandlungen, (2) internationalen Aspekten des Trump-Friedensplans und regionalem Wiederaufbau, (3) russischen Hybrid-Bedrohungen gegen Deutschland und der notwendigen Vorbereitung auf einen möglichen Spannungsfall. Er argumentierte durchgehend in einem faktenorientierten, gestaltungsoptimistischen Ton und betonte technische und institutionelle Lösungen.",
+    "themes": [
+      {
+        "title": "Geiseln versus Hamas-Zerstörung als Kriegsziel",
+        "timestamp_range": "00:23:57 - 00:25:45",
+        "theme_description": "Kiesewetter ordnet die anfangs konkurrierenden Kriegsziele Geiselbefriung und Hamas-Vernichtung und erklärt, warum Letzteres nicht nachrangig sein sollte.",
+        "question_asked": "Markus Lanz fragte, wie die deutsche Politik reagieren sollte, wenn das Militär sagt, es sei am Ende und nun die Politik zum Zug kommt. Im Israel herrsche die Meinung, man habe zu lange gewartet.",
+        "question_intent": "Sollte Deutschland Israel drängen, die Geiseln durch Waffenstillstand Vorrang zu geben, oder den Krieg zur Hamas-Vernichtung fortsetzen?",
+        "position": "Kiesewetter stellte den 20-Punkte-Plan dar und betont, dass das vorrangige Ziel lange umstritten war: sowohl Geiseln zu befreien als auch die Hamas zu zerstören. Er berichtet von zwei Besuchen in Israel nach dem 7. Oktober und stellt fest, dass viele Israelis hofften, die Befreiung der Geiseln könne Vorrang haben. Er bewertet regional-geopolitische Verschiebungen positiv (neue Führung in Syrien, Hisbollah-Schwächung, Iran mehrere Jahre von Nuklearfähigkeit entfernt) und sieht ein Verdienst Trumps darin, dass Türkei und Qatar als bisherige Hamas-Unterstützer die Gruppe aufgegeben haben. Die israelische Führung habe allerdings dem militärischen Rat nicht gefolgt, der zu diesem Zeitpunkt zum Stopp der Offensive riet.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Spannung zwischen Geiselbefreiung und Hamas-Vernichtung, gibt aber keine klare Antwort, wie die deutsche Politik dabei helfen sollte. Stattdessen wertet er geopolitische Entwicklungen und würdigt Trump.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das vorrangige Ziel war ein sehr umstrittenes, nämlich sowohl die Geiseln zu befreien, als auch die Hamas zu zerstören.",
+          "Viele gehofft haben, dass der Schwerpunkt auf der Befreiung der Geiseln liegt.",
+          "Die Türkei und Qatar, beides Hamas Unterstützer, die Hamas aufgegeben haben. Das ist ein Riesenfortschritt, aber das liegt nicht an der israelischen Führung, sondern an Donald Trump."
+        ],
+        "quotes": [
+          {
+            "text": "Das vorrangige Ziel war ein sehr umstrittenes, nämlich sowohl die Geiseln zu befreien, als auch die Hamas zu zerstören.",
+            "timestamp": "00:23:57",
+            "context": "Kiesewetter erläutert die Spannung zwischen zwei Kriegszielen."
+          },
+          {
+            "text": "Die Türkei und Qatar, beides Hamas Unterstützer, die Hamas aufgegeben haben. Das ist ein Riesenfortschritt, aber das liegt nicht an der israelischen Führung, sondern an Donald Trump.",
+            "timestamp": "00:25:45",
+            "context": "Er bewertet die Rolle Trumps in regionalen Verschiebungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Israel-Palästina",
+          "Nahost-Konflikt",
+          "Terrorismusbekämpfung"
+        ]
+      },
+      {
+        "title": "Deutsche Außenpolitik gegenüber Israel und Gesellschaft",
+        "timestamp_range": "00:35:51 - 00:38:28",
+        "theme_description": "Kiesewetter differenziert zwischen Kritik an Netanjahu und Unterstützung für Israel und betont, die israelische Gesellschaft sei breiter als die Regierung.",
+        "question_asked": "Lanz fragte, was es für die deutsche Politik bedeutet, wenn 61% der amerikanischen Juden die israelische Regierung für Kriegsverbrechen halten und 55% von Völkermord sprechen. Kiesewetter habe früh Netanjahu kritisiert, ohne Israel aufzugeben.",
+        "question_intent": "Sollte Deutschland angesichts dieser Umfragen Distanz zu Israel schaffen, oder wie kann man Kritik an Netanjahu mit Israelsolidarität verbinden?",
+        "position": "Kiesewetter betont, die deutschen Kritik sollte nicht bedeuten, Israel aufzugeben, sondern klarmachen, dass die israelische Gesellschaft breiter als die Regierung ist. Die Bevölkerung müsse sich fragen, warum die Wahlbeteiligung gering war. Viele Menschen protestieren gegen die Regierung. Er berichtet von einer Veranstaltung zur israelischen Sicherheitspolitik, die gesprengt wurde, und vom Chef der Inlandspolitik, der öffentlich gegen Netanjahu wetterte. Deutschland sollte nicht in das antiisraelische Horn stoßen, sondern Druck auf die israelische Regierung ausüben mit dem Ziel, einen existenzfähigen israelischen Staat und einen existenzfähigen palästinensischen Staat zu schaffen. Die Hamas müsse ihre Vernichtungsabsicht aufgeben und darf nicht mehr existieren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter adressiert direkt die Frage, wie Deutschland mit widersprüchlichen Loyalitäten umgeht, und liefert eine klare Position: Unterschied zwischen Regierung und Gesellschaft, Druck auf Netanjahu, aber weiterhin Israelsolidarität.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die deutsche Politik hat nicht in dieses Horn zu stoßen.",
+          "Auf die israelische Regierung muss Druck ausgeübt werden.",
+          "Das Ziel muss sein, ein Existenzweges Israel und einen existenzfähigen palästinensischen Staat zu schaffen.",
+          "Die Hamas muss dafür ihre Vernichtungsabsicht aufgeben und darf nicht mehr existieren."
+        ],
+        "quotes": [
+          {
+            "text": "Natürlich bedeutet das etwas für israelische Politik, für deutsche Politik bedeutet das nicht, Israel aufzugeben, sondern erst recht klarzumachen, dass die israelische Gesellschaft breiter ist, als dies Regierung.",
+            "timestamp": "00:36:26",
+            "context": "Kiesewetter antwortet auf die Frage nach Umfragen, die Kriegsverbrechen durch Israel zeigen."
+          },
+          {
+            "text": "Das Ziel muss sein, ein Existenzweges Israel und einen existenzfähigen palästinensischen Staat zu schaffen. Die Hamas muss dafür ihre Vernichtungsabsicht aufgeben und darf nicht mehr existieren.",
+            "timestamp": "00:38:28",
+            "context": "Er fasst deutsche Zielstellung zusammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Israel-Solidarität",
+          "Kritik Netanjahu"
+        ]
+      },
+      {
+        "title": "Trump-Friedensplan und regionale Lösung statt europäischer Plan",
+        "timestamp_range": "00:45:04 - 00:57:08",
+        "theme_description": "Kiesewetter bewertet den Trump-Plan positiv, insbesondere weil er regional verankert ist, und bezieht sich auf gescheiterte Friedensvorschläge aus 2008.",
+        "question_asked": "Sabine Adler lobte an Trumps Plan, dass er die Besatzung des Gazastreifens ausschließt. Kiesewetter kommentierte, dass es bereits 2008 bessere Vorschläge gab, die von der Hamas zunichte gemacht wurden.",
+        "question_intent": "Wie bewertet Kiesewetter Trumps Plan im Vergleich zu früheren Friedensinitativen?",
+        "position": "Kiesewetter betont, dass Israel 2008 bereits weiter war als der heutige Trump-Plan. Damals präsentierte Israel konkretere Angebote, die von den Palästinensern und der Hamas abgelehnt wurden. Der Vorteil des jetzigen Plans bestehe darin, dass die Region selbst aktiviert wurde und es kein europäischer Plan sei. Ägyptische Diplomaten und andere würden jetzt für diesen Ansatz werben. Der Wiederaufbauplan sei sehr durchdacht, mit Fokus auf erneuerbare Energien und Übergangslösungen für Wohnsituationen. Die Bundesregierung schaffe ähnliche Übergangslösungen, und es sei wichtig, dass nicht das passiere, was in Jordanien und im Libanon geschah—dass Hunderttausende Jahrzehnte in Flüchtlingslagern verbleiben. Die arabischen Staaten hätten sich dort nicht bewegt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter bewertet den Plan als regional verankert und praktikabel, erwähnt aber historische Vorschläge, ohne auf Adlers spezifische Frage zur Besatzungsausschließung einzugehen.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gab Vorschläge im Jahr 2008, die wurden aber kaputtgemacht.",
+          "Israel war schon so weit, das haben sie, die Palästinenser, Hamas, zunichte gemacht.",
+          "Israel war schon viel weiter als heute der Trump-Plan.",
+          "Es gibt in diesem Plan der Hoffnung gibt.",
+          "Der Plan ist nicht besonders elaboriert, aber er schließt die Besatzung des Gazastreifens aus.",
+          "Es darf nicht das passieren, was in Jordanien und im Libanon passiert."
+        ],
+        "quotes": [
+          {
+            "text": "Es gab Vorschläge im Jahr 2008, die wurden aber kaputtgemacht. Israel war schon so weit, das haben sie, die Palästinenser, Hamas, zunichte gemacht. Israel war schon viel weiter als heute der Trump-Plan.",
+            "timestamp": "00:45:04",
+            "context": "Kiesewetter vergleicht aktuelle mit historischen Friedensangeboten."
+          },
+          {
+            "text": "Das ist der große Vorteil, der ägyptische Botschafter wird in Berlin gerade für diesen Ansatz, das werden auch andere tun.",
+            "timestamp": "00:56:35",
+            "context": "Er bewertet die regionale Verankerung als Stärke des Plans."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Friedenspolitik",
+          "Zwei-Staaten-Lösung",
+          "Wiederaufbau",
+          "Flüchtlinge"
+        ]
+      },
+      {
+        "title": "Flüchtlingslager versus Wiederaufbau und Prävention verfestigung",
+        "timestamp_range": "00:58:09 - 00:59:18",
+        "theme_description": "Kiesewetter plädiert dafür, dass Flüchtlingslager nicht verfestigt werden, sondern Wiederaufbau und Ausbildung beginnen müssen.",
+        "question_asked": "Markus Lanz fragte, wie man verhindert, dass sich Flüchtlingscamps verfestigen wie in Jordanien und Libanon, wo Menschen seit Jahrzehnten leben.",
+        "question_intent": "Welche Mechanismen können verhindern, dass provisorische Lager zu permanenten Strukturen werden?",
+        "position": "Kiesewetter warnt, dass nicht das passieren darf, was in Jordanien und im Libanon geschah—Hunderttausende seien über Jahrzehnte in Flüchtlingslagern gefangen, weil die arabischen Staaten sich nicht bewegt hätten. Deutschland habe glücklicherweise eine kritische Debatte über die Unterstützung von UN-Einrichtungen, die sich ausschließlich für Palästinenser einsetzen und dies teilweise verfestigt haben. Das Wesentliche sei, sich jetzt nicht auf Flüchtlingslager einzulassen, sondern dass Wiederaufbau, Ausbildungen und Versorgung beginnen. Menschen dürfen nicht in ihrer Traumatisierung gefangen bleiben. Das werde auch für die Ukraine wichtig. Es bedürfe internationaler Mittel und eines Engagements der Region. Reiche arabische Staaten müssten verstehen, dass ihre Landsleute im Gazastreifen Unterstützung verdienen, um jahrzehntelange Traumatisierung zu überwinden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Verfestigungsfrage mit einer klaren Strategie: Wiederaufbau statt Lager, regionales Engagement, internationale Mittel.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es darf nicht das passieren, was in Jordanien und im Libanon passiert.",
+          "Das Wesentliche ist, dass wir uns jetzt nicht darauf einlassen, dass Flüchtlingslager gebaut werden, sondern dass ein Wiederaufbau beginnt und dass Ausbildungen, Schule, Versorgung stattfindet.",
+          "Sie dürfen nicht in ihrer Traumatisierung gefangen bleiben.",
+          "Die reichen arabischen Staaten müssen begreifen, dass ihre Landsleute im Gazastreifen, dass sie die als Araber sehen, dass sie mithelfen."
+        ],
+        "quotes": [
+          {
+            "text": "Das Wesentliche ist, dass wir uns jetzt nicht darauf einlassen, dass Flüchtlingslager gebaut werden, sondern dass ein Wiederaufbau beginnt und dass Ausbildungen, Schule, Versorgung stattfindet.",
+            "timestamp": "00:59:18",
+            "context": "Kiesewetter formuliert die Strategie gegen Lagerverfestigung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Flüchtlingspolitik",
+          "Wiederaufbau",
+          "Humanitäre Hilfe",
+          "Regionalpolitik"
+        ]
+      },
+      {
+        "title": "Deutsche Sicherheit, Spannungsfall und Russlands Hybrid-Bedrohungen",
+        "timestamp_range": "01:02:22 - 01:03:43",
+        "theme_description": "Kiesewetter betont, dass Merz mit der Formulierung 'weder Krieg noch Frieden' recht hat und erklärt Russlands Testverhalten durch Sabotageakte, Drohnen und Cyberangriffe.",
+        "question_asked": "Markus Lanz fragte, ob Merz recht hat, wenn er sagt, 'wir sind nicht im Krieg, aber auch nicht mehr im Frieden'.",
+        "question_intent": "Kann man diesen Zwischenzustand beschreiben und was bedeutet er für die deutsche Verteidigungspolitik?",
+        "position": "Kiesewetter bestätigt, dass nicht nur Merz, sondern auch der Verteidigungsminister diese Einschätzung teilen. Um den Frieden zu bewahren, müsse man klar begreifen, dass Russland Sabotageakte durchführe, Drohnen überflüge durchführe und kritische Infrastruktur ausspioniiere. Man könne eine Lösung haben, indem man den Spannungsfall ausrufe. Das sei eine heikle Sache, aber damit wolle er die Diskussion anstoßen, die jetzt nach einem Jahr Fahrt aufnimmt. Man müsse verhindern, dass es zum Krieg kommt, das mache man durch Vorbereitung. Der Bevölkerung müsse gesagt werden, dass der Krieg verhindert werden muss, indem die Ukraine unterstützt wird.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Frage direkt, bestätigt Merz und leitet zu Russlands Testverhalten und zur Notwendigkeit des Spannungsfalls über.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das sagt nicht nur der Bundeskanzler, sondern auch der Verteidigungsminister.",
+          "Russland das gerade versucht, indem sie Sabotageakte durchführen, die Drohnen überflügelt, ausspionieren der kritischen Infrastruktur.",
+          "Wir könnten eine Lösung haben, in dem wir den Spannungsfall ausrufen.",
+          "Wir müssen verhindern, dass es zum Krieg kommt, das machen wir durch Vorbereitung."
+        ],
+        "quotes": [
+          {
+            "text": "Das sagt nicht nur der Bundeskanzler, sondern auch der Verteidigungsminister. Wenn wir den Frieden bewahren wollen, dann müssen wir klar begreifen, dass Russland das gerade versucht, indem sie Sabotageakte durchführen, die Drohnen überflügelt, ausspionieren der kritischen Infrastruktur.",
+            "timestamp": "01:02:22",
+            "context": "Kiesewetter beschreibt das russische Testverhalten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Russland-Sanktionen",
+          "Spannungsfall",
+          "Landesverteidigung"
+        ]
+      },
+      {
+        "title": "Russische Drohnenanschläge und deren Nachverfolgung",
+        "timestamp_range": "01:04:47 - 01:05:22",
+        "theme_description": "Kiesewetter erklärt, dass einige Drohnen rückverfolgbar waren, aber nicht alle, und differenziert zwischen zivilen und militärischen Drohnen.",
+        "question_asked": "Markus Lanz fragte, woher man weiß, dass die Drohnen russisch sind.",
+        "question_intent": "Auf welcher Basis basiert die Annahme russischer Verantwortung, und wie sicher ist diese Einschätzung?",
+        "position": "Kiesewetter antwortet, dass manche Drohnen rückverfolgbar waren, man aber nicht wisse, wie es in Süddeutschland aussehe. Er äußert eine Mutmaßung, dass Russland Drohnen einsetzt, um Fähigkeiten zu lähmen. Das Spannende sei, dass es sich nicht um normale haushaltsübliche Drohnen handelt, sondern um Drohnen mit Spannweiten von 2,50 m, die wenige 2000 Euro kosten. Diese müssten aber ausgestattet werden. Er ist froh, dass Deutschland starke Nachrichtendienste habe. Es handele sich um ein Austesten der kritischen Infrastrukturen und wie man reagiert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter adressiert die Nachverfolgungsfrage partiell, gibt aber zu, dass nicht alle Drohnen definitiv Russland zuzuordnen sind. Er arbeitet mit Mutmaßungen und Indizienmuster.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir wissen, dass manche Drohnen rückverfolgbar waren.",
+          "Das sind nicht normale haushaltsübliche Drohnen, sondern Drohnen mit Spannweiten von 2,50 m.",
+          "Es ist ein auszutesten unserer kritischen Infrastrukturen und, wie wir reagieren."
+        ],
+        "quotes": [
+          {
+            "text": "Wir wissen, dass manche Drohnen rückverfolgbar waren. Wir wissen nicht, wie es in Süddeutschland ist. Darf ich nur eine Mutmaßung. Russland setzt Drohnen ein, das spannende ist das Fähigkeiten gelähmt werden sollen.",
+            "timestamp": "01:04:59",
+            "context": "Kiesewetter antwortet auf die Nachverfolgungsfrage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russland-Sanktionen",
+          "Cybersicherheit",
+          "Kritische Infrastruktur"
+        ]
+      },
+      {
+        "title": "Spannungsfall als Vorstufe zum Verteidigungsfall und Notwendigkeit einer Wehrpflicht-Reform",
+        "timestamp_range": "01:09:33 - 01:14:17",
+        "theme_description": "Kiesewetter erklärt den Spannungsfall als präventives Mittel ohne automatische Kriegserklärung und verbindet ihn mit notwendigen Reformen der Wehrpflicht im Bevölkerungsschutz.",
+        "question_asked": "Markus Lanz fragte, was der Spannungsfall bedeutet, da viele ihn als Vorstufe zum Krieg wahrnehmen.",
+        "question_intent": "Ist der Spannungsfall wirklich eine Kriegsvorbereitung oder eine Deeskalationsmaßnahme?",
+        "position": "Kiesewetter erklärt, dass der Spannungsfall keinen Krieg erklärt, sondern darum geht, den Krieg zu verhindern. In der jetzigen Lage stelle man fest, wie Russland immer weiter austeste: im Baltikum, Finnland, Schweden, Polen. Deutschland habe bei Angriffen auf Polen nur vier Drohnen abschießen können, die meisten hätten die Ukrainer schon abgefangen. Eine Koalition der Willigen sei möglich, aber Deutschland mache da nicht mit. Man sehe, dass die Bundeswehr nur über ihren eigenen Kasernen Drohnen abschießen dürfe, nicht in der gesamten Bundesrepublik—dafür sei die Bundespolizei zuständig. Ein Spannungsfall könnte entscheiden, dass die Bundeswehr zuständig ist oder die Bundespolizei für den gesamten Schutz der öffentlichen Infrastruktur. Das wäre eine einheitliche Regelung und würde der Bevölkerung Sicherheit geben. Der Bundestag habe im Februar bei drei Änderungen des Grundgesetzes nicht geschafft, auch die Ausweitung der Wehrpflicht auf die Bevölkerung im Katastrophenschutz zu regeln. Man brauche mit Blick auf Befindlichkeitsumfragen eine klare Alternative im Bevölkerungsschutz und Katastrophenschutz. Der Spannungsfall ist die Vorstufe, um einen Verteidigungsfall zu vermeiden. Das mache Deutschland wehrhaft.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet direkt die Frage nach der Natur des Spannungsfalls und liefert eine klare Position: nicht automatisch Krieg, sondern Prävention. Er verbindet dies mit legislativen Reformen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Sie erklären kein Krieg, es geht darum, den Krieg zu verhindern.",
+          "Wir haben nur vier Drohnen abschließen können beim Angriff auf Polen.",
+          "Verschiedene Maßnahmen sind möglich, eine Koalition der willigen, Deutschland hat erklärt, die machen da nicht mit.",
+          "Der Spannungsfall ist die Vorstufe, um einen Verteidigungsfall zu vermeiden.",
+          "Das macht uns wehrhaft."
+        ],
+        "quotes": [
+          {
+            "text": "Sie erklären kein Krieg, es geht darum, den Krieg zu verhindern. In der jetzigen Lage merken wir, wie Russland immer weiter ausgetestet.",
+            "timestamp": "01:09:33",
+            "context": "Kiesewetter erklärt die Funktion des Spannungsfalls."
+          },
+          {
+            "text": "Der Spannungsfall ist die Vorstufe, um einen Verteidigungsfall zu vermeiden. Das macht uns wehrhaft.",
+            "timestamp": "01:14:17",
+            "context": "Er fasst das strategische Ziel zusammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Spannungsfall",
+          "Wehrpflicht",
+          "Bevölkerungsschutz",
+          "Grundgesetzänderung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Kiesewetter war zweimal seit dem 7. Oktober in Israel und beobachtete dort, dass viele Israelis hofften, der Schwerpunkt liege auf Geiselbefriung.",
+        "timestamp": "00:23:57"
+      },
+      {
+        "claim": "Syrien hat eine neue Führung, die nicht ganz stabil ist; der Libanon freut sich, dass die Hisbollah nicht mehr handlungsfähig ist; der Iran ist mehrere Jahre von der Nuklearfähigkeit entfernt.",
+        "timestamp": "00:23:57"
+      },
+      {
+        "claim": "Türkei und Qatar, beide Hamas-Unterstützer, haben die Hamas aufgegeben.",
+        "timestamp": "00:25:45"
+      },
+      {
+        "claim": "Israel war bereits 2008 weiter in Friedensangeboten als der heutige Trump-Plan.",
+        "timestamp": "00:45:04"
+      },
+      {
+        "claim": "In Jordanien und im Libanon sind Hunderttausende über Jahrzehnte in Flüchtlingslagern geblieben, weil die arabischen Staaten sich nicht bewegt haben.",
+        "timestamp": "00:58:09"
+      },
+      {
+        "claim": "Deutschland konnte bei Angriffen auf Polen nur vier Drohnen abschießen; die meisten habe die Ukraine abgefangen.",
+        "timestamp": "01:09:33"
+      },
+      {
+        "claim": "Es gibt Drohnen mit Spannweiten von 2,50 m, die wenige 2000 Euro kosten.",
+        "timestamp": "01:05:22"
+      }
+    ]
+  }
+}

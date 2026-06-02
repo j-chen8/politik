@@ -1,0 +1,417 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-6-maerz-2025-102",
+    "video_id": "lanz-2025-03-06",
+    "politician": "Alice Weidel",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "0c75e2113f9dee71",
+    "transcript_chars": 56017,
+    "caption_lines": 2759,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23371,
+    "tokens_out": 8607,
+    "cost_usd": 0.0265624,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 3,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:29.149Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Alice Weidel trat als AfD-Kochefin auf und verteidigte ihre Positionen zu Außenpolitik, Ukraine-Krieg, Energiepolitik und Regierungskoalitionen. Sie wirkte defensiv-konfrontativ, besonders gegenüber kritischen Nachfragen zur Glaubwürdigkeit ihrer Partei und zur Zusammenarbeit mit rechtsextremen Funktionären.",
+    "themes": [
+      {
+        "title": "Ukraine-Krieg und Friedensverhandlungen",
+        "timestamp_range": "00:05:26 - 00:19:45",
+        "theme_description": "Weidels Forderung nach Waffenstillstand und Friedensverhandlungen statt militärischer Unterstützung für die Ukraine.",
+        "question_asked": "Moderator Lanz fragt nach Weidels Interpretation des Selenskyj-Treffens im Weißen Haus und wie sie dessen Forderung nach Neuwahlen beurteilt.",
+        "question_intent": "Zu verstehen, ob Weidel den ukrainischen Präsidenten und dessen Legitimität für Friedensverhandlungen anerkennt.",
+        "position": "Weidel argumentiert, dass seit drei Jahren Friedensverhandlungen notwendig sind, um das 'unsinnige Sterben' zu beenden. Sie sagt, die Ukraine könne den Krieg nicht gewinnen und hätte nie eine realistische Erwartungshaltung haben sollen. Ein Waffenstillstand für mindestens drei Monate sei notwendig, gefolgt von Verhandlungen über Friedensbedingungen. Sie wirft der deutschen und westlichen Politik vor, 'schwarzweißmalen' zu betreiben und dadurch eine diplomatische Sackgasse geschaffen zu haben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel antwortet auf die Frage zur Wahl-Legitimität, weicht aber auf ihre generelle Forderung nach Friedensverhandlungen aus. Sie verneint nicht direkt die Kritik, sondern rerahmt das Thema als Frage des Kriegsendes statt der persönlichen Legitimität Selenskyjs.",
+        "quotes": [
+          {
+            "text": "Wollen wir Krieg oder wollen wir Frieden. Und die eindeutige Antwort ist, dass wir Frieden wollen.",
+            "timestamp": "00:05:26",
+            "context": "Auf Frage zur Einschätzung des Selenskyj-Treffens antwortet Weidel mit ihrer Kernposition."
+          },
+          {
+            "text": "Wir brauchen ein Moratorium, einen Waffenstillstand. Der Waffenstillstand muss für mindestens drei Monate verhandelt werden. Dann setzen Sie einen Tisch und verhandeln die Friedenspositionen.",
+            "timestamp": "00:13:47",
+            "context": "Nach Kritik von Lanz zur Forderung nach Wahlen in Kriegszeit präzisiert Weidel ihren Friedensplan."
+          }
+        ],
+        "concrete_statements": [
+          "AfD fordert Waffenstillstand und Friedensverhandlungen",
+          "Ukraine könne den Krieg nicht gewinnen",
+          "Selenskyj beschreibt Weidel als 'tragische Figur'",
+          "Schwarzweiß-Malerei (gut vs. böse) habe zu diplomatischer Sackgasse geführt"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "NATO und Verteidigungsbudgets",
+          "Russland-Sanktionen"
+        ]
+      },
+      {
+        "title": "Bewertung von Donald Trump und JD Vance",
+        "timestamp_range": "00:05:26 - 00:20:13",
+        "theme_description": "Weidels positive Charakterisierung Vances als 'weiser Mann' und ihre Zustimmung zu Trumps Friedensinitiativen.",
+        "question_asked": "Lanz fragt, was genau die Vision Vances für Europa ist und kritisiert dessen Destabilisierungslogik.",
+        "question_intent": "Zu hinterfragen, ob Weidel Vances geopolitische Strategie realistisch einschätzt oder zu unkritisch übernimmt.",
+        "position": "Weidel beschreibt Trump und Vance als Partner auf Augenhöhe, die Frieden wollen und Europa auffordern, eigene Verpflichtungen nachzukommen. Sie sieht die USA-Position als realistischen Wandel: Amerika zahle nicht mehr automatisch für europäische Sicherheit. Sie charakterisiert Vance als 'unglaublich weisen vorausschauenden Mann' mit 'einer Vision für Amerika'. Europäer hätten 'das Zepter des Handelns aus der Hand gegeben'.",
+        "answer_match": "teilweise_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel antwortet auf die Frage zu Vances Vision, reduziert sie aber auf Militärbudgets statt auf Lanz' tiefere Frage zu Destabilisierungstaktiken. Sie geht nicht auf Lanz' Kritik zu Vances Drohungen gegen europäische Regulierung ein.",
+        "quotes": [
+          {
+            "text": "Sein Vizepräsident, den ich auch getroffen habe, ein unglaublich weiser vorausschauender Mann. Ich sehe das so, ein Mann, mit einer Vision für Amerika. Diese Leute wollen Frieden.",
+            "timestamp": "00:05:26",
+            "context": "In ihrer grundsätzlichen Bewertung von Vance und Trump."
+          },
+          {
+            "text": "Die USA, das haben sie deutlich gemacht, sie wollen Partner auf Augenhöhe haben. Sie wollen keine Trittbrettfahrer haben. Sie wollen nicht mehr für Europa bezahlen.",
+            "timestamp": "00:08:50",
+            "context": "Auf Lanz' Frage nach Vances europäischer Strategie."
+          }
+        ],
+        "concrete_statements": [
+          "USA wollen Partner auf Augenhöhe, keine Trittbrettfahrer",
+          "Europa müsse mehr Militärausgaben tätigen",
+          "AfD fordert Waffenstillstand statt Rüstungsspirale",
+          "Europäer haben Initiative verloren"
+        ],
+        "related_bundestag_topics": [
+          "NATO-Verteidigungsbudgets",
+          "Transatlantische Beziehungen",
+          "USA-Politik",
+          "Europäische Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Energiepolitik und Russland-Sanktionen",
+        "timestamp_range": "00:25:41 - 00:28:08",
+        "theme_description": "Weidels Kritik an Energiewendepolitik und Forderung nach Wiederaufnahme russischer Gasimporte.",
+        "question_asked": "Justus Bender fragt, warum Weidel Trump und Musk freundlich gegenüber ist, wenn sie für deutsche Industrie-Interessen einsteht.",
+        "question_intent": "Zu überprüfen, ob Weidels Position zu Energiepolitik konsistent mit ihrer angeblich pro-deutschen Haltung ist.",
+        "position": "Weidel argumentiert, dass die Energiewende ohne günstiges russisches Gas zu einer 'eklatanten Wirtschaftskrise' geführt hat. Sie kritisiert die Schließung von Atomkraftwerken in der größten Energiekrise und verweist auf 'gefälschte Daten'. Sie sagt, russisches Gas habe erneuerbare Energien 'supplementiert' bei Dunkelflaute. Sie betont, dass AfD 'offene Kanäle' zu USA, Russland und China haben sollte als 'Pflicht jeder verantwortungsvollen deutschen Bundesregierung'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel antwortet auf die implizite Kritik der Inkonsistenz, indem sie ihre Energiepolitik als deutschlandfreundlich rahmt. Sie geht aber nicht direkt auf Benders Frage ein, warum sie trotzdem Trump unterstützt, der US-Handelskriege gegen Deutschland führt.",
+        "quotes": [
+          {
+            "text": "Wir haben eine gemeinsame Administration mit Amerika und auch China wollen. Wir wollen ansprechbar bleiben... Vor allem gute Beziehungen zu unseren Haupthandelspartnern.",
+            "timestamp": "00:25:41",
+            "context": "Auf Frage zu ihrer Haltung gegenüber Trump und der USA."
+          },
+          {
+            "text": "Ich halte das für unverantwortlich. Wir sind in einer völligen Krise, dann wurde uns noch Nordstream 2 vor der Nase weggesprengt.",
+            "timestamp": "00:25:41",
+            "context": "Zu ihrer Kritik der deutschen Energiepolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Kritisiert Schließung von Atomkraftwerken in Energiekrise",
+          "Verweist auf angeblich 'gefälschte Daten' beim Habeck-Ministerium",
+          "Fordert Normalisierung von Beziehungen zu Russland",
+          "Wirft Ampel Wirtschaftskrisen-Verursachung vor"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Gasimporte",
+          "Russland-Sanktionen",
+          "Wirtschaftspolitik",
+          "Atomenergie"
+        ]
+      },
+      {
+        "title": "Wahlbeobachtung und Demokratieverständnis",
+        "timestamp_range": "00:28:18 - 00:36:30",
+        "theme_description": "Weidels Verteidiung von Wahlbeobachtungs-Aufrufen gegen Vorwurf, Misstrauen in die Demokratie zu säen.",
+        "question_asked": "Lanz wirft vor, dass AfD-Aufrufe zu Wahlbeobachtung ein Geraune ähnlich wie bei Trump sind und Vertrauen in Demokratie untergraben.",
+        "question_intent": "Zu überprüfen, ob Weidel die Parallelen zu Trump-Narrativen erkennt oder diese bewusst ignoriert.",
+        "position": "Weidel rechtfertigt Wahlbeobachtung als 'Bürgerpflicht' und Transparanzmaßnahme. Sie verweist auf dokumentierte Fälle von Fehlzählungen in NRW und anderen Bundesländern. Sie argumentiert, dass Wahlbeobachtung nicht Misstrauen säe, sondern 'natürlich auch für Transparenz' sorge. Sie lehnt den Vorwurf der Trump-Parallelen ab und sagt, die AfD fordere nicht weniger, sondern 'vielmehr Demokratie' durch direkte demokratische Elemente nach Schweizer Vorbild.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel beantwortet, indem sie Wahlbeobachtung als legitim rechtfertigt, geht aber nicht auf Lanz' tiefere Sorge um das Narrativ von Wahlbetrugsverdacht ein (parallel zu Trump 2020). Sie lenkt stattdessen zu direktdemokratischen Forderungen.",
+        "quotes": [
+          {
+            "text": "Natürlich, jeder soll doch in den Wahllokal gehen können, das ist eine Bürgerpflicht. Ich finde Wahlbeobachtung unglaublich wichtig.",
+            "timestamp": "00:31:04",
+            "context": "Auf Frage, ob Deutschland Wahlbeobachter braucht."
+          },
+          {
+            "text": "Wir wollen nicht weniger Demokratie, sondern vielmehr, deshalb fordern wir als einzige Partei direktdemokratische Elemente. Wir wollen, dass das Volk abstimmen kann.",
+            "timestamp": "00:33:43",
+            "context": "Reaktion auf Vorwurf, Vertrauen in Demokratie zu untergraben."
+          }
+        ],
+        "concrete_statements": [
+          "Wahlbeobachtung ist Bürgerpflicht",
+          "Fälle von Fehlzählungen müssen kontrolliert werden",
+          "AfD fordert mehr direkte Demokratie (Schweizer Modell)",
+          "Wahlbeobachtung ist keine Trump-ähnliche Taktik"
+        ],
+        "related_bundestag_topics": [
+          "Wahlrecht",
+          "Direkte Demokratie",
+          "Referenden",
+          "Wahlintegrität"
+        ]
+      },
+      {
+        "title": "Europäische Union und 'Germany First'",
+        "timestamp_range": "00:43:46 - 00:50:42",
+        "theme_description": "Weidels Kritik an EU-Strukturen und ihr Verständnis von 'Germany First'-Politik.",
+        "question_asked": "Moderator und Sonja Alvarez kritisieren Weidels 'Germany First'-Strategie als provinziell und wirtschaftlich schädlich für Deutschland.",
+        "question_intent": "Zu prüfen, ob Weidel versteht, dass Deutschland seine Stärke aus EU-Kooperation bezieht.",
+        "position": "Weidel argumentiert, dass die EU zu schwach geworden ist, weil sie zu viel Zentralisierung betrieben hat. Sie fordert einen 'Rückbau' der EU und Stärkung der Einzelstaaten. Sie kritisiert von der Leyen als nicht gewählt und nicht ernst genommen. Sie sagt, dass EU-Kompetenzen bei Volkvertretern bleiben sollten und lehnt 'Verbotspolitik' (Heizungsgesetze, Verbrennungsverbote) ab. Sie verweist auf EU-Versagen bei Grenzsicherung. Als Alternative zu Zentralisierung sieht sie eine 'europäische Säule' innerhalb der NATO.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel beantwortet, indem sie EU-Kritik und deutsche Einzelstaats-Stärke hervorhebt, geht aber nicht auf das wirtschaftliche Argument ein, dass Deutschland ohne EU-Rahmen schwächer wäre (Alvarez' Punkt zu 690 Mrd. Euro Kosten).",
+        "quotes": [
+          {
+            "text": "Die europäische Union, ich habe es eben angedeutet, hat maßgeblich dazu beigetragen, dass Europa insgesamt schwach geworden ist.",
+            "timestamp": "00:50:42",
+            "context": "Auf Vorwurf der Provinzialität."
+          },
+          {
+            "text": "Das ist alles so extrem zusammengefasst. Als deutsche Bundesregierung haben wir unser Land zu vertreten.",
+            "timestamp": "00:40:42",
+            "context": "Zu ihrer Definition von 'Germany First'."
+          }
+        ],
+        "concrete_statements": [
+          "EU hat Europa geschwächt",
+          "Rückbau der EU-Zentalisierung notwendig",
+          "Von der Leyen nicht legitim",
+          "Grenzsicherung ist EU-Versagen",
+          "Deutsche Interessen vor EU-Zwang"
+        ],
+        "related_bundestag_topics": [
+          "EU-Reformforderungen",
+          "Binnenschifffahrt",
+          "Grenzschutz",
+          "Subsidiarität",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Finanzpolitik",
+        "timestamp_range": "00:53:32 - 01:07:50",
+        "theme_description": "Weidels Kritik an Merz' Entscheidung, die Schuldenbremse auszusetzen, als 'Staatsstreich' und Wählerbetrug.",
+        "question_asked": "Lanz verweist auf Weidels frühere Kritik an der Schuldenbremse-Versprechen und fragt, ob diese Umkehrung die Glaubwürdigkeit beschädigt.",
+        "question_intent": "Zu klären, ob Weidel konsistent ist oder ob ihre früheren Positionen zur Schuldenbremse-Kritik ihr Glaubwürdigkeitsproblem zeigen.",
+        "position": "Weidel wirft Merz vor, Wahlversprechen zu brechen und das Finanzsystem zu gefährden. Sie charakterisiert die Aussetzung als 'finanzpolitischen Staatsstreich'. Sie warnt vor Verwerfungen am Kreditmarkt, Inflation und Abwertung des Euro. Sie betont, dass die Schuldenbremse im CDU-Wahlprogramm stand und darf nicht einfach aufgegeben werden. Sie verweist auf konkrete Auswirkungen: Staatsanleihen-Renditen sind innerhalb Stunden um 16 Basispunkte gestiegen, was Häuserkredite verteuert.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weidel beantwortet die Frage direkt mit konsistenter Kritik: Sie hat die Schuldenbremse damals und heute als notwendig befürwortet; der Bruch ist bei Merz/CDU, nicht bei ihr. Sie liefert konkrete ökonomische Argumente gegen die Aussetzung.",
+        "quotes": [
+          {
+            "text": "Das ist ein finanzpolitischer Staatsstreich, um das deutlich zu sagen. Ich bin schockiert.",
+            "timestamp": "00:55:35",
+            "context": "Auf Frage zu Merz' Schuldenbremsen-Entscheidung."
+          },
+          {
+            "text": "Wiederum jongliert wurde, die Schuldenbremse war Bestandteil des Wahlprogrammes. Da muss man nicht drum rumreden. Sie weichen das auf, sie schmeißen alles über den Haufen, sie betrügen ihre Wähler.",
+            "timestamp": "01:06:14",
+            "context": "In detaillierter Kritik der CDU-Positionswechsel."
+          }
+        ],
+        "concrete_statements": [
+          "Nennt Schuldenbremsen-Aussetzung 'Staatsstreich'",
+          "Warnt vor Kreditmarkt-Destabilisierung",
+          "Wirft CDU Wählerbetrug vor",
+          "Sondervermögen ist falsche Bezeichnung, es sind Sonderschulden"
+        ],
+        "related_bundestag_topics": [
+          "Finanzpolitik",
+          "Schuldenbremse",
+          "Haushaltspolitik",
+          "Infrastruktur-Investitionen",
+          "Bundeswehr-Ausgaben"
+        ]
+      },
+      {
+        "title": "Koalitionsfähigkeit und Merz",
+        "timestamp_range": "00:53:32 - 00:55:35",
+        "theme_description": "Weidels Ablehnung einer Koalition mit Friedrich Merz als Kanzlerkandidat der CDU.",
+        "question_asked": "Lanz fragt direkt, ob Weidel mit Merz koalieren würde, da sie vorher von einer 'ausgestreckten Hand' sprach.",
+        "question_intent": "Zu prüfen, ob Weidels früheres Koalitionsangebot an die CDU noch gilt oder ob sich ihre Position geändert hat.",
+        "position": "Weidel sagt klar, dass sie sich eine Koalition mit Merz nicht vorstellen kann und schließt sie aus. Sie wirft Merz vor, sich 'demaskiert' zu haben und nicht integer zu sein, da er 'alle Versprechen gebrochen' hat. Die Bedingung für eine CDU-Koalition wäre eine CDU-Führung, die zu ihren Wahlversprechen steht und nicht '24 Stunden später anfängt Steuergeld zum Fenster rauszuwerfen'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weidel beantwortet die Frage direkt mit einer klaren Ablehnung und liefert konkrete Gründe (gebrochene Versprechen, Schuldenbremsen-Aussetzung). Sie differenziert zwischen Merz persönlich und einer hypothetischen anderen CDU-Führung.",
+        "quotes": [
+          {
+            "text": "Friedrich Merz hat sich demaskiert, davon habe ich auch gewarnt. Friedrich Merz kann man sich nicht vorstellen, ich halte den Mann... der Mann ist nicht integer.",
+            "timestamp": "00:53:32",
+            "context": "Auf Frage, ob sie mit Merz koalieren würde."
+          },
+          {
+            "text": "Unter Friedrich Merz nicht, dass wir dich nicht unterstützen. Es muss eine CDU sein, die tatsächlich zu ihren Wahlversprechen steht.",
+            "timestamp": "00:55:35",
+            "context": "Präzisierung ihrer Koalitionsbedingungen."
+          }
+        ],
+        "concrete_statements": [
+          "Schließt Koalition mit Merz als Kanzler aus",
+          "Bedingung: CDU muss zu Wahlversprechen stehen",
+          "Merz hält Schuldenbremsen-Versprechen nicht ein",
+          "Eine andere CDU-Führung könnte koalitionsfähig sein"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionen",
+          "Regierungsbildung",
+          "Verhandlungen CDU-AfD",
+          "Brandmauer"
+        ]
+      },
+      {
+        "title": "Björn Höcke und Partei-Integrität",
+        "timestamp_range": "01:04:09 - 01:10:53",
+        "theme_description": "Weidels Erklärung ihres Kurswechsels zum Parteiausschlussverfahren gegen Höcke und ihre neue Bewertung dessen.",
+        "question_asked": "Moderator und Justus Bender konfrontieren Weidel mit ihrer früheren Unterstützung eines Parteiausschlussverfahrens gegen Höcke wegen Rechtsextremismus-Vorwürfen und ihrer heutigen Unterstützung.",
+        "question_intent": "Zu verstehen, ob Weidel ihre Position aus strategischen Gründen geändert hat oder ob sie ihre frühere Beurteilung tatsächlich revidiert hat.",
+        "position": "Weidel charakterisiert ihren früheren Parteiausschlussantrag als Fehler ('das war vor acht Jahren, das war im Lichte seiner Dresdner Rede'). Sie sagt, sie kenne Höcke jetzt 'sehr gut' und halte 'sehr viel von Björn Höcke'. Sie sieht ihn als künftigen Ministerpräsidenten Thüringens, der 'Verordnung sorgt' und 'Recht und Gesetz' umsetzt. Sie verweist auf Höckes Engagement gegen 'offene Grenzen' und 'Rechtlosigkeit'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weidel beantwortet direkt die Frage zu ihrer Positionsänderung und gibt zu, dass das Parteiausschlussverfahren ein Fehler war. Sie liefert allerdings keine neuen Argumente, warum Höcke sein früheres Verhalten ('erinnerungspolitische Wende') zurückgenommen haben soll.",
+        "quotes": [
+          {
+            "text": "Es war in der Tat ein Fehler, das war vor acht Jahren, das war im Lichte seiner Dresdner Rede, ich hab diese Frage auch schon sehr oft beantwortet.",
+            "timestamp": "01:09:37",
+            "context": "Auf Vorwurf der Inkonsistenz zu Höcke."
+          },
+          {
+            "text": "Er möchte Ministerpräsidenten von Thüringen werden, der wird es auch. Dann wird Verordnung gesorgt, dann wird Recht und Gesetz umgesetzt. So, wie es die Menschen in diesem Land verlangen.",
+            "timestamp": "01:10:13",
+            "context": "Ihre neue Bewertung Höckes."
+          }
+        ],
+        "concrete_statements": [
+          "Parteiausschlussverfahren gegen Höcke war Fehler",
+          "Höcke wird Ministerpräsident Thüringens",
+          "Weidel hält viel von Höcke",
+          "Parteikohäsion über rechtsextreme Positionen"
+        ],
+        "related_bundestag_topics": [
+          "AfD-interne Struktur",
+          "Rechtsextremismus",
+          "Verfahren gegen Parteimitglieder",
+          "Bundesland-Regierungen"
+        ]
+      },
+      {
+        "title": "Maximilian Krah und Fraktion-Aufnahme",
+        "timestamp_range": "01:11:35 - 01:13:39",
+        "theme_description": "Weidels Verteidigung der Fraktion-Aufnahme von Krah trotz Vorwürfen zu Russland-Geld und anderen Skandalen.",
+        "question_asked": "Moderator verweist auf Krahs Empfang von Russland-Geldern und fragt, ob Weidel das interessiert.",
+        "question_intent": "Zu überprüfen, ob Weidel Korruptionsvorwürfe bei eigenen Funktionären ernst nimmt.",
+        "position": "Weidel sagt, dass Krah ein Direktmandat gewonnen hat und daher aufgenommen wurde. Sie betont, dass 'jeder, der aufgestellt wird', aufgenommen wird. Sie lenkt ab auf Korruptionsskandale bei anderen Parteien ('Wir können auch gerne bei Korruptionsskandale in ihrer Partei reden'). Sie gibt Krah eine Chance: Er 'soll erst mal mitarbeiten und sich vernünftig einbringen'.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Weidel antwortet auf die Frage zu Krah nicht substantiell, sondern weicht aus, indem sie auf Korruptionsfälle in anderen Parteien hinweist. Sie vermeidet, sich zu den Russland-Geld-Vorwürfen direkt zu äußern.",
+        "quotes": [
+          {
+            "text": "Jeder, der aufgestellt wird, er hat ein Direktmandat gewonnen.",
+            "timestamp": "01:11:35",
+            "context": "Auf Frage zu Krahs Fraktion-Aufnahme."
+          },
+          {
+            "text": "Wir können auch gerne bei Korruptionsskandale in ihrer Partei reden. Das ganze, das steht noch aus. Herr Krah soll erst mal mitarbeiten und sich vernünftig einbringen.",
+            "timestamp": "01:12:05",
+            "context": "Statt sich zu Krahs Geld-Vorwürfen zu äußern."
+          }
+        ],
+        "concrete_statements": [
+          "Krah wurde aufgenommen, weil er Direktmandat gewann",
+          "Jeder Gewählte wird aufgenommen",
+          "Verweis auf Korruptionen bei anderen Parteien",
+          "Krah soll sich einbringen und bewähren"
+        ],
+        "related_bundestag_topics": [
+          "Parteienfinanzierung",
+          "Russland-Verbindungen",
+          "Korruptionsverdacht",
+          "Fraktion-Zusammensetzung"
+        ]
+      },
+      {
+        "title": "Fraktionsaufnahme von Helferich (NS-Symbol)",
+        "timestamp_range": "01:12:49 - 01:13:39",
+        "theme_description": "Weidels Erklärung zur Aufnahme eines Abgeordneten, der sich als 'freundliches Gesicht des Nationalsozialismus' bezeichnete.",
+        "question_asked": "Lanz verweist auf einen Abgeordneten, der sich selbst als 'freundliches Gesicht des Nationalsozialismus' bezeichnet hat und der jetzt in der AfD-Fraktion ist.",
+        "question_intent": "Zu überprüfen, ob Weidel Grenzen zu extremistischen Positionen zieht.",
+        "position": "Weidel sagt, dass die Bezeichnung eine 'Fremdbezeichnung' ist und nicht von Helferich selbst komme. Sie erklärt, dass jeder Abgeordnete, der gewählt wurde, aufgenommen wird (Helferich hatte Platz 6 in der Liste). Sie sagt, damit 'ist alles gesagt' und kontert, dass die CDU selbst versagt habe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weidel antwortet, indem sie die Aussage als 'Fremdbezeichnung' relativiert, beantwortet aber nicht die grundsätzliche Frage, warum die AfD jemanden in ihre Fraktion aufnimmt, der sich der NS-Nähe zumindest nicht distanziert hat.",
+        "quotes": [
+          {
+            "text": "Er hat aufgenommen, wie Linke ihn bezeichnen. Damit ist alles gesagt. Sie haben als CDU versagt.",
+            "timestamp": "01:13:24",
+            "context": "Auf Frage zu Helferichs Aufnahme in die Fraktion."
+          },
+          {
+            "text": "Ich habe ihn gerade erklärt was es bedeutet. Das ist eine Fremdbezeichnung.",
+            "timestamp": "01:13:48",
+            "context": "Zur Kritik von Winkel an Helferichs NS-Nähe."
+          }
+        ],
+        "concrete_statements": [
+          "Helferich-Bezeichnung ist Fremdbezeichnung",
+          "Jeder Gewählte wird aufgenommen",
+          "Keine persönliche Überprüfung einzelner Kandidaten",
+          "Kontert mit CDU-Versagen"
+        ],
+        "related_bundestag_topics": [
+          "Extremismus",
+          "Verfassungsschutz",
+          "Parteienrecht",
+          "Fraktion-Zusammensetzung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Staatsanleihen-Renditen sind innerhalb von Stunden um 16 Basispunkte gestiegen nach Ankündigung der Schuldenbremsen-Aussetzung",
+        "timestamp": "01:07:20"
+      },
+      {
+        "claim": "Es gab in NRW dokumentierte Fälle von Fehlzählungen bei Wahlen",
+        "timestamp": "00:31:34"
+      },
+      {
+        "claim": "Russisches Gas hat erneuerbare Energien bei Dunkelflaute supplementiert",
+        "timestamp": "00:27:10"
+      },
+      {
+        "claim": "Maximilian Krah erhielt Geld aus Russland",
+        "timestamp": "01:11:57"
+      },
+      {
+        "claim": "Nordstream 2 wurde gesprengt (ohne deutsche Intervention)",
+        "timestamp": "00:26:54"
+      }
+    ]
+  }
+}

@@ -1,0 +1,734 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8zZGFlMGExZS01MGYwLTQyZTYtYTc3Yy00MmFlZTQzNzVjZDBfZ2FuemVTZW5kdW5n",
+    "video_id": "caren-miosga-2026-05-03",
+    "politician": "Friedrich Merz",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "7dc72b936952cd77",
+    "transcript_chars": 48223,
+    "caption_lines": 1794,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19645,
+    "tokens_out": 20489,
+    "cost_usd": 0.048836000000000004,
+    "quote_validation": {
+      "valid_exact": 23,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 10,
+      "teilweise_antwort": 14
+    },
+    "generated_at": "2026-06-02T16:19:50.800Z",
+    "batch_id": "msgbatch_018TYXShZHvCdDEfS3kVu6vv"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Friedrich Merz reflektiert in diesem einstündigen Interview ein Jahr Bundeskanzlerschaft und räumt ein, dass die schwarz-rote Koalition unter Spannung steht, während er gleichzeitig Erfolge bei Asylzahlen und Reformen hervorhebt. Der Ton ist selbstbewusst, aber teilweise defensiv — Merz betont Geduld und Kompromissbereitschaft, wirkt aber auch ungeduldig mit der SPD und kritisch gegenüber Medienberichterstattung.",
+    "themes": [
+      {
+        "title": "Schwierigkeit des Regierens und Koalitionsspannungen",
+        "timestamp_range": "00:00:32 - 00:02:37",
+        "theme_description": "Merz wird nach den Anforderungen des Kanzleramts nach einem Jahr befragt und reflektiert strukturelle Herausforderungen und Koalitionsschwierigkeiten.",
+        "question_asked": "Hatten Sie damals geahnt, wie schwierig Regieren sein kann? Und: Macht das Regieren besonders schwer?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz die Komplexität unterschätzt hat und welche externen Faktoren die Regierungsarbeit erschweren.",
+        "position": "Merz bestätigt, dass die Herausforderungen absehbar waren: Ukraine-Krieg (drittes Jahr), strukturelle wirtschaftliche Schwächen, Koalition aus unterschiedlichen Parteien. Er nennt zusätzliche aktuelle Schwierigkeiten wie Krieg im Iran und Energiepreis-Entwicklung. Merz betont, dass \"Regieren in einer Demokratie nicht immer einfach\" ist und würde seinem früheren Selbst raten: \"Bleib geduldig!\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet direkt auf beide Fragen: er erklärt konkret, warum Regieren schwer ist (Ukraine-Krieg, wirtschaftliche Struktur, Koalitionsvielfalt) und nennt aktuelle externe Faktoren. Die Antwort adressiert die Frage-Intention vollständig.",
+        "concrete_statements": [
+          "Wir hatten schon das dritte Jahr des Ukraine-Krieges",
+          "Wir wussten, wir stoßen auf eine strukturelle Schwäche unseres Landes etwa bei Wirtschaft und Arbeitsplätzen",
+          "Dem Friedrich Merz von damals würde ich sagen: Bleib geduldig!"
+        ],
+        "quotes": [
+          {
+            "text": "Es war absehbar, dass wir vor Herausforderungen stehen. Das wir eine Koalition zusammengestellt haben aus unterschiedlichen Parteien.",
+            "timestamp": "00:00:32",
+            "context": "Auf die Frage, ob Merz damals hätte ahnen können, wie schwierig Regieren sein würde."
+          },
+          {
+            "text": "Regieren in einer Demokratie ist nicht immer einfach. Das wussten wir vorher.",
+            "timestamp": "00:01:33",
+            "context": "Merz fasst seine Position zusammen, dass Schwierigkeiten in der Regierungsarbeit strukturell sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamik",
+          "Regierungsführung",
+          "Ukraine-Krieg",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Asylzahlen-Erfolg und Medienberichterstattung",
+        "timestamp_range": "00:02:37 - 00:03:09",
+        "theme_description": "Merz weist auf einen konkreten Erfolg seiner Regierung hin — die Senkung der Asylbewerberzahlen um zwei Drittel — und kritisiert, dass Erfolge weniger berichtet werden als Misserfolge.",
+        "question_asked": "Das Land kommt nicht zur Ruhe, wenn die Regierung ständig streitet (Zitat von Merz als Kandidat) — ist dieser Satz noch zutreffend?",
+        "question_intent": "Der Moderator möchte wissen, ob Merz seine Kritik an der Ampelregierung auch auf seine eigene Koalition anwenden würde und ob die Koalition genauso zerrüttet wirkt.",
+        "position": "Merz bestätigt den Satz und sagt, die Regierung müsse Konstanz zeigen. Dann lenkt er ab und hebt hervor, dass die Asylbewerberzahlen gegenüber 2023 um zwei Drittel gesenkt wurden — \"ein großer Erfolg\", über den aber kaum berichtet wird. Er beklagt, dass Erfolge \"meist hinweggegangen\" werden, während Probleme \"intensiv diskutiert\" werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz bestätigt den Satz prinzipiell, beantwortet aber die Frage nach der Kohäsion seiner eigenen Koalition nicht direkt. Stattdessen nutzt er die Gelegenheit, einen Erfolg hervorzuheben, was impliziert, dass die Koalition trotz Spannungen Dinge hinbekommt — aber er weicht der direkten Selbstkritik aus.",
+        "concrete_statements": [
+          "Die Asylbewerberzahlen haben wir um zwei Drittel heruntergebracht, gegenüber 2023",
+          "Aber über Erfolge wird meist hinweggegangen. Dinge, die nicht einfach laufen, werden intensiv diskutiert."
+        ],
+        "quotes": [
+          {
+            "text": "Die Asylbewerberzahlen haben wir um zwei Drittel heruntergebracht, gegenüber 2023. Ein großer Erfolg. Aber über Erfolge wird meist hinweggegangen.",
+            "timestamp": "00:02:37",
+            "context": "Merz belegt seinen Punkt mit einem konkreten Erfolg, den er als unterreportiert kritisiert."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Migrationskontrolle"
+        ]
+      },
+      {
+        "title": "Konflikt mit SPD-Arbeitsministerin Bärbel Bas über Sozialstaatskritik",
+        "timestamp_range": "00:03:09 - 00:05:41",
+        "theme_description": "Der Moderator konfrontiert Merz mit der SPD-Kritik an seiner Aussage, dass man sich den Sozialstaat \"in der jetzigen Form nicht mehr leisten\" kann; Bas hatte das als \"zynisch\" und \"menschenverachtend\" kritisiert.",
+        "question_asked": "Sie haben im August 2025 gesagt: 'Wir können uns den Sozialstaat in der jetzigen Form nicht mehr leisten.' Jetzt sagt Frau Bas, das sei zynisch und menschenverachtend. Sie meint Sie, oder?",
+        "question_intent": "Der Moderator will verstehen, ob Merz und die SPD-Ministerin wirklich aneinander vorbeireden oder ob es ein echtes Vertrauensproblem gibt.",
+        "position": "Merz distanziert sich zunächst: \"Da müssen Sie Frau Bas fragen\" und \"Nein, tue ich nicht\" (fühle mich nicht angesprochen). Dann relativiert er die SPD-Rhetorik (\"überzogen\", aber \"am 1. Mai darf man das auch mal tun\") und versucht, sein Zitat in den Kontext der Wirtschaftsleistung zu stellen: \"Wenn wir so wenig erwirtschaften, können wir uns das nicht leisten.\" Er appelliert an Bas und Klingbeil, \"maßvoll in der Sprache\" zu bleiben, und bekräftigt: \"Frau Bas, ich und Lars Klingbeil wissen, dass wir unseren Sozialstaat zukunftsfähig machen müssen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die direkte Frage nach persönlicher Angesprochenheit mit Nein, relativiert dann aber die SPD-Rhetorik und weicht auf eine Erklärung seines Zitats aus, statt die zugrundeliegende Frage nach dem Vertrauensverhältnis ernsthaft zu bearbeiten. Er signalisiert eher Beschwichtigung als echte Beantwortung des Konflikts.",
+        "concrete_statements": [
+          "Wir können uns den Sozialstaat in der jetzigen Form nicht mehr leisten",
+          "Wenn wir so wenig erwirtschaften, können wir uns das nicht leisten. Wir müssen mir erwirtschaften.",
+          "Ich appelliere an alle. Sie sollen maßvoll in der Sprache bleiben, die Dinge angehen, die wir gemeinsam angehen müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Da müssen Sie Frau Bas fragen. Fühlen Sie sich angesprochen? Nein, tue ich nicht.",
+            "timestamp": "00:04:40",
+            "context": "Merz weigert sich, das Zitat als persönlichen Angriff zu verstehen."
+          },
+          {
+            "text": "Ich habe das im letzten Jahr in den Kontext unserer Wirtschaftsleistung gestellt: Wenn wir so wenig erwirtschaften, können wir uns das nicht leisten. Wir müssen mir erwirtschaften, das sage ich immer wieder.",
+            "timestamp": "00:05:10",
+            "context": "Merz erklärt sein Zitat neu, um Missverständnisse auszuräumen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sozialstaat",
+          "Rentenreform",
+          "Koalitionsspannungen"
+        ]
+      },
+      {
+        "title": "Vertrauen und Zusammenarbeit mit SPD-Partnern",
+        "timestamp_range": "00:05:41 - 00:08:20",
+        "theme_description": "Merz wird gefragt, ob es echtes Vertrauen zwischen CDU/CSU und SPD gibt und wie er mit Konflikten in der Koalition umgeht.",
+        "question_asked": "Erwarten Sie Mut von einer Frau, die so spricht? Und: Haben Sie noch ein echtes Vertrauensverhältnis zu Ihren Koalitionspartnern?",
+        "question_intent": "Der Moderator testet, ob das Vertrauen zu Klingbeil und Bas noch vorhanden ist oder ob die Rhetorik-Differenzen zu einer faktischen Entfremdung führt.",
+        "position": "Merz antwortet, dass er Mut erwartet und dass Kompromisse \"keine Einbahnstraße\" sind. Er bestätigt ein \"Vertrauen auf Basis der Verabredungen\" und hebt hervor, dass er dieses Verhältnis zu Klingbeil und Bas \"weiter gut entwickelt\" hat. Merz betont den Koalitionsvertrag als Grundlage und nennt konkrete Erfolge bei Digitalisierung und Föderalismusreformen. Er erklärt, dass echte Gespräche außerhalb der Medienberichterstattung stattfinden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz beantwortet die Frage nach Vertrauen konkret: ja, es gibt Vertrauen auf Basis von Verabredungen, nicht von unbegrenztem Wohlwollen. Er illustriert das mit Koalitionsvertrag und spezifischen Projekten. Die Antwort adressiert die Frage-Intention vollständig.",
+        "concrete_statements": [
+          "Kompromisse sind keine Einbahnstraße. Die müssen beide machen.",
+          "Wir haben einen ordentlichen Koalitionsvertrag gemacht. Der Koalitionsvertrag ist nach wie vor gut.",
+          "Das haben wir mit allen 16 Ministerpräsidenten verabredet"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben ein Vertrauen auf Basis der Verabredungen. Das habe ich zuletzt zu Lars Klingbeil und Bärbel Bas weiter gut entwickelt.",
+            "timestamp": "00:07:50",
+            "context": "Merz definiert die Art seines Vertrauensverhältnisses zu seinen Koalitionspartnern."
+          },
+          {
+            "text": "Wir telefonieren dann, aber ich ... mache das nicht über das Fernsehen. Wir sprechen vernünftig miteinander.",
+            "timestamp": "00:08:20",
+            "context": "Merz erklärt seinen Umgang mit Medienberichten über Koalitionskonflikte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamik",
+          "Vertrauensfragen"
+        ]
+      },
+      {
+        "title": "Kritik von CDU-Parlamentarierkreisen zur Koalitionshaltbarkeit",
+        "timestamp_range": "00:08:51 - 00:10:23",
+        "theme_description": "Der Moderator konfrontiert Merz mit einer Kritik eines CDU-Kollegen (Christian von Stetten), der bezweifelt, dass die Koalition vier Jahre hält, und fragt, ob es wachsenden Unmut in der Union gibt.",
+        "question_asked": "Ihr Parteifreund Christian von Stetten ist Chef des Parlamentskreises 'Mittelstand'. Er sagt: Diese Regierung hält 'zumindest keine vier Jahre'. Ist das Verhältnis so zerrüttet, dass man in den eigenen Reihen um den Fortbestand der Koalition fürchtet?",
+        "question_intent": "Der Moderator versucht zu ergründen, ob Merz die Kontrolle über die eigene Fraktion verliert und ob die Koalition intern als nicht zukunftsfähig gilt.",
+        "position": "Merz bestätigt einen \"größer werdenden Unmut\" in CDU und CSU über die gemachten Kompromisse, aber betonet, dass er selbst als Parteivorsitzender im Februar wiedergewählt wurde und \"ein sehr gutes Ergebnis\" bekam. Er betont: \"Ich habe einen großen Handlungsspielraum. Aber ich habe keine Vollmacht, die CDU umzubringen.\" Merz unterstreicht, dass \"in dieser Koalition die Union vorkommen\" muss und dass er \"keine andere Mehrheit\" sucht. Aber er warnt die SPD: \"Das sollte die SPD jetzt aber nicht zu dem Gedanken verleiten, sie könnte mit uns machen, was sie will.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz beantwortet die Frage direkt und ehrlich: ja, es gibt Unmut, aber nein, das Verhältnis ist nicht zerrüttet. Er erklärt seine Position im Spannungsfeld zwischen Koalitionsverpflichtung und Parteiinteresse präzise und konkret.",
+        "concrete_statements": [
+          "Es gibt in der CDU einen größer werdenden Unmut. Auch in der CSU.",
+          "Ich habe einen großen Handlungsspielraum. Aber ich habe keine Vollmacht, die CDU umzubringen.",
+          "Ich suche keine andere Mehrheit",
+          "In dieser Koalition muss die Union vorkommen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe einen großen Handlungsspielraum in der CDU. Ich habe mich zu dieser Koalition entschlossen und zu keiner anderen.",
+            "timestamp": "00:10:23",
+            "context": "Merz bezieht Position zu seiner Lojalität zur Koalition, während er Parteizweifel einräumt."
+          },
+          {
+            "text": "Es gibt in der CDU einen größer werdenden Unmut. Auch in der CSU. Über Kompromisse, die wir miteinander machen.",
+            "timestamp": "00:09:52",
+            "context": "Merz räumt ein, dass die Koalitionsmüdigkeit in der eigenen Partei wächst."
+          }
+        ],
+        "related_bundestag_topics": [
+          "CDU-Innenpolitik",
+          "Koalitionsstabilität",
+          "Parteienführung"
+        ]
+      },
+      {
+        "title": "Zweifel an Fähigkeit, Koalition auf Kurs zu bringen",
+        "timestamp_range": "00:11:23 - 00:12:27",
+        "theme_description": "Der Moderator zitiert eine Spiegel-Aussage von Merz, dass dieser Zweifel habe, ob es ihm gelingen kann, die Regierung wieder auf Kurs zu bringen, und fragt nach.",
+        "question_asked": "Im 'Spiegel' haben Sie selbst gesagt: Sie haben Zweifel, ob es Ihnen gelingen kann, diese Regierung wieder auf Kurs zu bringen. Woran haben Sie genau Zweifel?",
+        "question_intent": "Der Moderator will Merz festlegen auf die Erkenntnis seiner eigenen Grenzen und verstehen, wo seine Unsicherheiten liegen.",
+        "position": "Merz antwortet defensiv: \"Ich bin ja nicht von allem 150 Prozent überzeugt, dass ich sage: Das geht jetzt alles wie geschnitten Brot.\" Er betont aber, dass unterschiedliche Parteien gemeinsam verabredet haben, zusammenzuarbeiten. Er appelliert dann nach außen: \"Vergesst die Hoffnung, dass es was mit Minderheitsregierung gibt. Oder mit Duldung durch die AfD. Das kommt mit mir nicht infrage.\" Er stellt klar: \"Es haben zwei Parteien der politischen Mitte zusammengefunden.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die konkrete Frage nach den Quellen seiner Zweifel nicht präzise. Stattdessen relativiert er die Frage selbst und lenkt auf eine klare Botschaft nach außen ab — dass es keine Alternative zur Koalition gibt. Die Antwort weicht dem eigentlichen Thema teilweise aus.",
+        "concrete_statements": [
+          "Vergesst die Hoffnung, dass es was mit Minderheitsregierung gibt. Oder mit Duldung durch die AfD. Das kommt mit mir nicht infrage.",
+          "Es gibt in Deutschland keine linke Mehrheit. Es haben zwei Parteien der politischen Mitte zusammengefunden."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin ja nicht von allem 150 Prozent überzeugt, dass ich sage: Das geht jetzt alles wie geschnitten Brot in den nächsten Wochen.",
+            "timestamp": "00:11:56",
+            "context": "Merz räumt ein, dass er nicht absolut überzeugt ist, widersetzt sich aber der Dramatisierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Vertrauensfragen"
+        ]
+      },
+      {
+        "title": "Erwartungsmanagement und Kompromissorientierung",
+        "timestamp_range": "00:12:59 - 00:14:36",
+        "theme_description": "Der Moderator fragt, ob Merz zu hohe Erwartungen geschürt hat (als Oppositionsführer mit dem Slogan 'Links ist vorbei') und damit nun unweigerlich Enttäuschung erzeugt.",
+        "question_asked": "Man kennt Sie als Oppositionsführer, als 'Links ist vorbei'-Merz. Jetzt sind Sie in einer anderen Rolle, müssen Kompromisse machen. Haben Sie dadurch selber so hohe Erwartungen geschürt, die Sie praktisch enttäuschen mussten?",
+        "question_intent": "Der Moderator versucht, Merz auf einen Fehler seiner Rhetorik oder Strategie hinzuweisen, der nun zu Vertrauensverlust führt.",
+        "position": "Merz verweist auf das Wahlergebnis: CDU/CSU habe keine absolute Mehrheit erreicht — das war \"eine Entscheidung der Wähler und Wählerinnen\". Er betont, dass Koalitionen strukturell zum Verhältniswahlrecht gehören und dass nur einmal in der Geschichte die Union allein regiert habe. Merz argumentiert: \"Mir fehlt die Bereitschaft anzuerkennen, dass unsere Demokratie auf Kompromiss aufgebaut ist.\" Er sagt auch: \"Unterschätzt die Stimmung in der Union nicht. Die wird unfreundlicher. Wenn wir gemeinsam aus der schlechten Stimmung wollen, müssen wir gemeinsam fröhlich an die Arbeit gehen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz antwortet auf die vorwurfsvolle Frage mit einer strukturellen Verteidigungslinie (Verhältniswahlrecht, keine Mehrheit erreicht), löst aber nicht auf, ob seine eigene Rhetorik als Oppositionsführer zu hohen Erwartungen geführt hat. Er lenkt die Verantwortung zu den Wählern ab, statt sich selbstkritisch zur eigenen Kommunikation zu äußern.",
+        "concrete_statements": [
+          "Wenn wir mit schmerzverzerrtem Gesicht der Öffentlichkeit erklären, 'mehr war nicht drin', wird uns die Öffentlichkeit nicht folgen.",
+          "Wenn wir gemeinsam fröhlich an die Arbeit gehen [müssen wir das gemeinsam vertreten]",
+          "Unterschätzt die Stimmung in der Union nicht. Die wird unfreundlicher."
+        ],
+        "quotes": [
+          {
+            "text": "Mir fehlt die Bereitschaft anzuerkennen, dass unsere Demokratie auf Kompromiss aufgebaut ist.",
+            "timestamp": "00:13:31",
+            "context": "Merz formuliert sein zentrales Argument gegen die Kritik an der Kompromissorientierung."
+          },
+          {
+            "text": "Wenn wir gemeinsam aus der schlechten Stimmung wollen, müssen wir gemeinsam fröhlich an die Arbeit gehen. Wir müssen das gemeinsam vertreten. Wir müssen das als richtig vertreten, nicht als gequälten Kompromiss.",
+            "timestamp": "00:14:36",
+            "context": "Merz formuliert eine Appell an Koalitionspartner zur Rhetorik und öffentlichen Darstellung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlergebnis 2025",
+          "Regierungsbildung",
+          "Koalitionskommunikation"
+        ]
+      },
+      {
+        "title": "Bürgerkritik zur Unbeliebtheit und Kommunikation",
+        "timestamp_range": "00:15:38 - 00:18:11",
+        "theme_description": "Der Moderator zeigt Stimmen von Bürgern, die Merz als unbeliebtesten Kanzler kritisieren — wegen ungehaltener Versprechen, schlechter Kommunikation und Aussagen aus dem Bauch heraus (z.B. zum Straßenbild).",
+        "question_asked": "Macht Sie das nachdenklich? (Zur Bürgerkritik, dass Merz unbeliebt ist und seine Kommunikation problematisch ist.)",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz die Kritik ernst nimmt und sich selbstkritisch gegenüber seiner Kommunikationsstrategie verhält.",
+        "position": "Merz antwortet: \"Ja, natürlich höre ich da auch zu.\" Er versucht, \"das selbst zu überprüfen\" und versucht \"immer, meine Kommunikation und Sprache an Notwendigkeiten anzupassen\". Er betont: \"Ich versuche, so zu formulieren, dass die Bürger mich verstehen.\" Er relativiert aber auch: \"Es gibt eine allgemeine Kritik, einen Verdruss auch an Politikern. Da bin ich ... besonders betroffen. Ich bin da frei von jeder Weinerlichkeit.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet direkt und nimmt die Kritik auf, betont aber auch, dass ein allgemeiner Politikverdross wirkt und dass er sich nicht selbst bemitleidet. Die Antwort adressiert die Frage-Intention vollständig, auch wenn sie etwas defensiv wirkt.",
+        "concrete_statements": [
+          "Ich versuche, das selbst zu überprüfen",
+          "Ich versuche immer, meine Kommunikation und Sprache an Notwendigkeiten anzupassen"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, natürlich höre ich da auch zu. Ich versuche, das selbst zu überprüfen.",
+            "timestamp": "00:17:40",
+            "context": "Merz bestätigt, dass die Bürgerkritik ihn erreicht hat."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kanzler-Kommunikation",
+          "Bürgerbeteiligung"
+        ]
+      },
+      {
+        "title": "Rentneraussage vom 20. April und Kontroverse",
+        "timestamp_range": "00:18:11 - 00:20:49",
+        "theme_description": "Der Moderator zeigt Merz' Rede beim Bankenverband vom 20. April, in der dieser sagte, die gesetzliche Rentenversicherung werde 'allenfalls' nur Basisabsicherung sein. Das löste einen Sturm der Entrüstung aus.",
+        "question_asked": "Verstehen Sie inzwischen, warum [dieser Satz Empörung auslöste]?",
+        "question_intent": "Der Moderator will verstehen, ob Merz die Resonanz seiner Wortwahl nachvollzieht und ob er etwas hätte anders machen sollen.",
+        "position": "Merz antwortet, dass er \"Basisabsicherung\" schon seit zehn Jahren verwende und dass \"wer mir zugehört hat und versucht hat, das nachzuvollziehen, weiß genau, was ich damit sagen will.\" Er räumt ein: \"Der Zusatz war 'allenfalls'. Das war möglicherweise ... Ja, gut. Einverstanden damit.\" Er behauptet aber, dass der Befund richtig sei. Merz erklärt dann die Koalitionsverabredung bei 48 Prozent und verweist auf ein Vorsorge-Projekt ab 1.1.2027. Er differenziert: Es geht um Rentner der Zukunft, nicht um Kürzungen bei heutigen Rentnern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die Verständnisfrage teilweise: er räumt ein, dass \"allenfalls\" möglicherweise ungünstig war, verdächtigt aber auch die Zuhörer, nicht zugehört zu haben, statt vollständig zu erklären, warum die Öffentlichkeit Angst hatte. Die Antwort wirkt defensiv statt vollständig einsichtig.",
+        "concrete_statements": [
+          "Am 1.1.2027 tritt ein Vorsorge-Projekt in Kraft. Damit wollen wir die kapitalgedeckte Altersvorsorge ... Wir haben sie vor der Rentenreform beschlossen.",
+          "Es gibt keine Rentenkürzung. Das schlägt niemand vor."
+        ],
+        "quotes": [
+          {
+            "text": "Frau Miosga, das Wort von der Basisabsicherung verwende ich ungefähr seit zehn Jahren. Wer mir zugehört hat und versucht hat, das nachzuvollziehen, weiß genau, was ich damit sagen will.",
+            "timestamp": "00:19:15",
+            "context": "Merz erklärt, dass sein Wort nicht neu ist, aber kritisiert implizit, dass Zuhörer nicht zugehört hätten."
+          },
+          {
+            "text": "Der Zusatz war 'allenfalls'. Das war möglicherweise ... Ja, gut. Einverstanden damit. Trotzdem ist der Befund richtig.",
+            "timestamp": "00:19:48",
+            "context": "Merz räumt ein, dass die Wortwahl problematisch war, behauptet aber, dass die zugrundeliegende Aussage korrekt ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Altersvorsorge"
+        ]
+      },
+      {
+        "title": "Selbstkritik bei freier Rede und vorsichtigere Kommunikation",
+        "timestamp_range": "00:20:49 - 00:22:20",
+        "theme_description": "Der Moderator fragt, ob Merz nicht sollte vorsichtiger sein mit seinen Worten, da jedes Wort eines Bundeskanzlers auf die Goldwaage gelegt wird.",
+        "question_asked": "Denken Sie manchmal selbstkritisch: 'Ich muss ein bisschen vorsichtig sein'? Sind Sie da nicht selbstkritisch?",
+        "question_intent": "Der Moderator versucht, Merz zu drängen, seine Kommunikationsstrategie (freie, impulsive Rede) zu überdenken.",
+        "position": "Merz antwortet: \"Ja, Frau Miosga, ich möchte nicht rund wie ein Kieselstein reden. Es ist nicht meine Art und meine Kommunikation. Ich gehe damit ein gewisses Risiko ein.\" Er begründet das damit, dass \"viele Menschen im Land wollen wissen, was ihre Politiker denken.\" Er gibt zu: \"Natürlich bin ich selbstkritisch. Bei manchen Reaktionen überlege ich, was ich besser hätte sagen können. Ich sag's dann besser, aber nicht anders.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet direkt auf die Frage und erklärt seine Kommunikationsstrategie bewusst: ja, er ist selbstkritisch, aber nein, er ändert nicht seine Grundausrichtung auf freie, authentische Rede. Das ist eine konsistente Position.",
+        "concrete_statements": [
+          "Ich möchte nicht rund wie ein Kieselstein reden",
+          "Viele Menschen im Land wollen wissen, was ihre Politiker denken",
+          "Ich sag's dann besser, aber nicht anders"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, Frau Miosga, ich möchte nicht rund wie ein Kieselstein reden. Es ist nicht meine Art und meine Kommunikation. Ich gehe damit ein gewisses Risiko ein.",
+            "timestamp": "00:21:50",
+            "context": "Merz wird direkt nach seiner Kommunikationsstrategie gefragt und antwortet offen."
+          },
+          {
+            "text": "Natürlich bin ich selbstkritisch. Bei manchen Reaktionen überlege ich, was ich besser hätte sagen können. Ich sag's dann besser, aber nicht anders.",
+            "timestamp": "00:22:20",
+            "context": "Merz definiert die Grenzen seiner Selbstkritik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kanzler-Kommunikation",
+          "Rhetorik und Strategie"
+        ]
+      },
+      {
+        "title": "Umfragewerte und Missmut seit Regierungsbeginn",
+        "timestamp_range": "00:22:53 - 00:23:27",
+        "theme_description": "Der Moderator zeigt Umfragedaten: Zustimmung zu Merz ist von 39 Prozent auf 21 Prozent gefallen, und fragt, ob Merz das Phänomen als typisch für Koalitionen sieht oder als spezifisches Versagen.",
+        "question_asked": "Was denken Sie manchmal darüber? Sind wir die Weltmeister im Jammern oder nehmen Sie den Missmut ernst?",
+        "question_intent": "Der Moderator versucht, Merz zwischen Verharmlosung und ernster Selbstkritik zu treiben.",
+        "position": "Merz antwortet: \"Ich nehme den Missmut natürlich ernst. Wir werden noch mehr erklären müssen.\" Er relativiert aber auch: \"Das Phänomen ist auch anderen Regierungen widerfahren.\" Er nennt Helmut Kohl und Gerhard Schröder als Beispiele für schwierige Starts. Er betont: \"Ich nehme das sehr ernst. Ich versuche, daraus Schlussfolgerungen zu ziehen. Die Beste wäre nachzuweisen, dass wir als Koalition arbeitsfähig sind.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die Frage nach Missmut mit einer Bestätigung, relativiert aber durch Vergleiche mit anderen Kanzlern. Das ist weder vollständige Eingeständnis noch Verharmlosung, sondern ein Mittelweg, der beide Aspekte adressiert, aber auch etwas defensiv wirkt.",
+        "concrete_statements": [
+          "Ich nehme den Missmut natürlich ernst",
+          "Die Beste [Schlussfolgerung] wäre nachzuweisen, dass wir als Koalition arbeitsfähig sind"
+        ],
+        "quotes": [
+          {
+            "text": "Das Phänomen ist auch anderen Regierungen widerfahren. Nach einer gewissen Zeit gibt es Enttäuschung, Kritik.",
+            "timestamp": "00:22:53",
+            "context": "Merz relativiert das Phänomen durch historische Vergleiche."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Regierungsbilanz",
+          "Zustimmungswerte"
+        ]
+      },
+      {
+        "title": "Gesundheitsreform und Mitversicherung nicht erwerbstätiger Ehepartner",
+        "timestamp_range": "00:23:58 - 00:25:02",
+        "theme_description": "Der Moderator fragt Merz, wie es gelingen soll, die Gesundheitsreform durchs Parlament zu bringen, besonders bei der umstrittenen Mitversicherung von Familienangehörigen, wo große SPD-Widerstände bestehen.",
+        "question_asked": "Sie haben im Kabinett die Reform der gesetzlichen Krankenversicherung verabschiedet. Aber noch nicht steht fest, ob es durch das Parlament geht. Was lässt Sie glauben, dass das durchkommt?",
+        "question_intent": "Der Moderator versucht zu verstehen, wie optimistisch Merz ist, dass eine Koalitionsreform trotz Widerstands Gesetzeskraft erlangen wird.",
+        "position": "Merz antwortet, dass die Mitversicherung von Familienangehörigen dem Ehegattensplitting im Steuerrecht entspricht. Er betont, dass die SPD die Mitversicherung ganz abschaffen wollte, die Union aber im Gesetzgebungsverfahren das Modell abgemildert habe auf \"einen kleinen Betrag\". Die Reform soll Anreize schaffen, dass beide Partner arbeiten. Merz erklärt: \"Das ist ein wesentliches Element der Reform. Hoffentlich folgt uns das Parlament auf diesem Weg. Dafür werben wir.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz antwortet auf die Verständnisfrage nach der Überzeugung, dass die Reform durchkommt, mit einer Erklärung der Kompromisslogik, bleibt aber bei \"Hoffentlich\" und \"Dafür werben wir\" vage. Er adressiert die Skeptis nicht direkt mit Zahlen oder konkreter Mehrheits-Strategie.",
+        "concrete_statements": [
+          "Wir haben sie im Gesetzgebungsverfahren abgemildert, es auf einen kleinen Betrag reduziert",
+          "Wir wollten die Anreize verbessern, dass beide arbeiten. Das ist ein wesentliches Element der Reform."
+        ],
+        "quotes": [
+          {
+            "text": "Die Mitversicherung der Familienangehörigen ist wie das Ehegattensplitting im Steuerrecht. Das will die SPD abschaffen. Die SPD wollte die Mitversicherung ganz abschaffen.",
+            "timestamp": "00:24:30",
+            "context": "Merz erklärt die Kompromisslogik durch Vergleiche zu bekannten Debatten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Krankenversicherung"
+        ]
+      },
+      {
+        "title": "Finanzierung von Grundsicherungs-Kosten und Haushaltsdynamik",
+        "timestamp_range": "00:25:35 - 00:28:41",
+        "theme_description": "Der Moderator kritisiert das Paradoxon: Der Finanzminister nimmt 2 Milliarden aus dem Krankenkassen-Zuschuss heraus, während die Regierung nur 250-500 Millionen für Grundsicherungsempfänger zusätzlich einschießt — unter dem Strich belastet also.",
+        "question_asked": "Sie sagen: 'Toll, wir schießen 250 Millionen rein!' Gleichzeitig nimmt der Finanzminister zwei Milliarden aus dem Topf. Das ist nur vordergründig richtig, oder?",
+        "question_intent": "Der Moderator versucht, Merz auf das mathematische Ungleichgewicht hinzuweisen und ihn zu drängen, das anders zu finanzieren.",
+        "position": "Merz erklärt, dass der Bundeszuschuss in die Krankenversicherung in den letzten Jahren aufgewachsen sei und dass die Regierung ihn nun begrenzen wolle \"auf das Maß von früher\". Er sagt, dass sich Kranken-, Renten-, Sozial- und Pflegeversicherung \"mit bescheidenen Summen\" an der Haushaltskonsolidierung beteiligen müssen, weil der Sozialetat sehr wächst. Er argumentiert: \"Das Problem gibt es in Deutschland seit 20 Jahren. Das lässt sich nicht über Tage oder über Nacht lösen. Es wird sukzessive gelöst.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz erklärt seine Budgetlogik (Sozialausgaben deckeln), beantwortet aber nicht direkt die Frage, warum das Gesamtergebnis für Beitragszahler ein Minus ist. Die Antwort ist eher eine Verteidigungslinie als eine echte Beantwortung des Kritikpunkts.",
+        "concrete_statements": [
+          "Wir wollen den [Bundeszuschuss] begrenzen auf das Maß von früher",
+          "Das Problem gibt es in Deutschland seit 20 Jahren. Das lässt sich nicht über Tage oder über Nacht lösen. Es wird sukzessive gelöst."
+        ],
+        "quotes": [
+          {
+            "text": "Der Sozialetat wächst stark auf. Das müssen wir begrenzen. Wir tun das mit bescheidenen Summen.",
+            "timestamp": "00:27:40",
+            "context": "Merz erklärt die Haushaltsdisziplin-Logik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushaltskonsolidierung",
+          "Sozialfinanzierung"
+        ]
+      },
+      {
+        "title": "Zuckerabgabe, Tabak- und Plastiksteuer als Kompromiss",
+        "timestamp_range": "00:28:41 - 00:30:15",
+        "theme_description": "Der Moderator verweist auf Merz' früheren Widerstand gegen Zuckersteuer als \"grüne Bevormundungspolitik\", jetzt stimmt die Union aber (mit Abstrichen) zu. Merz wird gefragt, wie er diesen Kurswechsel erklärt.",
+        "question_asked": "Auf dem Parteitag im Februar haben Sie das abgelehnt: Das sei grüne Bevormundungspolitik. Jetzt haben Sie versucht, einen Kompromiss zu finden. Stehen Sie hinter der Reform?",
+        "question_intent": "Der Moderator versucht, Merz auf einen Widerspruch hinzuweisen und zu verstehen, wie er die Kehrtwende rechtfertigt.",
+        "position": "Merz räumt ein, dass die Formulierung nicht von ihm stammte, sondern von einzelnen Delegierten auf dem Parteitag. Er erklärt: \"Es ist eine Abgabe auf bestimmte Getränke. Keine allgemeine Zuckersteuer, die sehen wir sehr kritisch. Deshalb ist es ein Beitrag zur Reform. Hinter dem Sie stehen?\" — und beantwortet: \"Ich stehe hinter der Reform, überzeugt. Ich glaube, uns ist da gemeinsam was Gutes gelungen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz adressiert die Frage nach seinem Sinneswandel transparent: er erklärt die Differenzierung (nicht allgemeine Zuckersteuer, sondern Getränkeabgabe) und bestätigt, dass er jetzt dahintersteht. Das ist eine konsistente Position.",
+        "concrete_statements": [
+          "Es ist eine Abgabe auf bestimmte Getränke. Keine allgemeine Zuckersteuer, die sehen wir sehr kritisch.",
+          "Ich stehe hinter der Reform, überzeugt."
+        ],
+        "quotes": [
+          {
+            "text": "Das war nicht meine Argumentation, sondern die einzelner Delegierter.",
+            "timestamp": "00:29:12",
+            "context": "Merz distanziert sich von der ursprünglichen Ablehnung und behauptet, dass das nicht seine Position war."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verbrauchersteuern",
+          "Gesundheitsreform"
+        ]
+      },
+      {
+        "title": "Steuererhöhungen und Koalitionsvertrag",
+        "timestamp_range": "00:30:15 - 00:31:48",
+        "theme_description": "Der Moderator zeigt auf, dass Merz im Koalitionsvertrag \"keine Steuererhöhungen\" zugesagt hat, jetzt aber Verbrauchssteuern wie Zuckerabgabe, Tabak- und Plastiksteuer einführt. Merz wird gefragt, wie das zusammenpasst.",
+        "question_asked": "Steuererhöhungen hatten Sie grundsätzlich ausgeschlossen. Aber jetzt führen Sie Zuckerabgabe, Tabak-, Plastiksteuer ein. Das sind doch Steuererhöhungen, oder?",
+        "question_intent": "Der Moderator versucht, Merz auf einen Bruch mit dem Koalitionsvertrag hinzuweisen.",
+        "position": "Merz antwortet, dass der Koalitionsvertrag immer noch gilt und dass im Kontext der Verhandlungen über Einkommenssteuer, Unternehmensbesteuerung und \"Besteuerung privater Haushalte\" keine Erhöhungen vereinbart wurden. Er sagt: \"Das ist nach wie vor ein wichtiger Punkt. Da geht nicht mehr viel.\" Zu den Verbrauchssteuern erklärt er: \"Das sind Verbrauchssteuern. Dafür senken wir seit drei Tagen die Mineralölsteuer. Es gehen nicht überall die Pfeile nach oben.\" Er betont: \"Der Finanzbedarf des Staates ist zu groß geworden.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die Frage mit einer Differenzierung (Verbrauchssteuern vs. Einkommensteuern), relativiert aber auch durch den Hinweis auf die Mineralölsteuer-Senkung. Die Antwort wirkt evasiv, da sie nicht direkt adressiert, dass Verbrauchssteuern auch Steuern sind.",
+        "concrete_statements": [
+          "Der Koalitionsvertrag gilt",
+          "Das sind Verbrauchssteuern. Dafür senken wir seit drei Tagen die Mineralölsteuer.",
+          "Der Finanzbedarf des Staates ist zu groß geworden."
+        ],
+        "quotes": [
+          {
+            "text": "Markus Söder und ich haben gesagt: Wir unterschreiben keinen Vertrag mit Steuererhöhungen. Das muss Ihnen jetzt Schmerzen machen, oder? Ja.",
+            "timestamp": "00:30:15",
+            "context": "Merz räumt ein, dass dies ein Konflikt mit seiner ursprünglichen Position darstellt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Koalitionsvertrag"
+        ]
+      },
+      {
+        "title": "Steuerentlastung und Subventionsabbau",
+        "timestamp_range": "00:31:48 - 00:34:53",
+        "theme_description": "Der Moderator fragt, wie Merz die geplante Entlastung für kleine und mittlere Einkommen finanzieren will ohne Belastung der höheren Einkommen, wenn die Mathematik aufgeht. Merz wird angedrängt, sich zu Subventionsabbau zu bekennen.",
+        "question_asked": "Es gibt null Spielräume im Haushalt. Da weiß ich nicht, wie man kleine und mittlere Einkommen entlasten möchte. Ohne in der Spitze zu belasten. Wie soll das gehen?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz realistische Pläne für eine Steuerentlastung hat oder nur Wunschdenken.",
+        "position": "Merz erklärt, dass die SPD-Mathematik auf Umverteilung abzielt, dass er aber eine \"wirkliche Entlastung\" will. Er argumentiert, dass die oberen zehn Prozent schon 50 Prozent der Einkommensteuer zahlen — \"Darunter sind nicht nur Reiche. Darunter sind Hunderttausende Facharbeiter, die im Spitzensteuersatz sind.\" Merz betont: \"Wir sehen Steuerentlastung dort [bei Subventionen] vor allem.\" Er nennt Beispiele wie Solarförderung und Stromeinspeisungs-Vergütungen, die gekürzt werden könnten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet direkt auf die Frage nach der Finanzierungslogik: Subventionsabbau statt Steuererhöhungen auf Spitzensätze. Das ist eine konsistente Position, auch wenn sie umstritten ist.",
+        "concrete_statements": [
+          "Wir sehen sie [Steuerentlastung] dort vor allem [bei Subventionsabbau]",
+          "Ein Beispiel: Wir zahlen für eingespeisten Strom, der nicht gebraucht wird, eine hohe Vergütung aus dem Bundeshaushalt",
+          "Ein Vorschlag ist, die Solarförderung im privaten Bereich nicht fortzusetzen"
+        ],
+        "quotes": [
+          {
+            "text": "Die oberen zehn Prozent zahlen schon 50 Prozent der Einkommensteuer. Darunter sind nicht nur Reiche. Darunter sind Hunderttausende Facharbeiter, die im Spitzensteuersatz sind.",
+            "timestamp": "00:32:18",
+            "context": "Merz begründet, warum er den Spitzensteuersatz nicht erhöhen will."
+          },
+          {
+            "text": "Ich sehe sie dort vor allem. Andere Vorschläge sehen wir uns an, wenn sie vorliegen.",
+            "timestamp": "00:34:53",
+            "context": "Merz präzisiert, dass Subventionsabbau seine Hauptstrategie ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Subventionen",
+          "Haushaltskonsolidierung"
+        ]
+      },
+      {
+        "title": "Vertrauensfrage und Verhandlungshartnäckigkeit",
+        "timestamp_range": "00:36:58 - 00:37:32",
+        "theme_description": "Der Moderator fragt, ob Merz sein politisches Schicksal an die Durchsetzung von echten Reformen knüpfen wird, und wie er reagieren würde, wenn sich der Vertrauensverlust weiter verschärft — würde er eine Vertrauensfrage stellen?",
+        "question_asked": "Werden Sie an die Durchsetzbarkeit von echten Reformen Ihr politisches Schicksal knüpfen? Wären Sie bereit, die Vertrauensfrage zu stellen?",
+        "question_intent": "Der Moderator versucht zu verstehen, wie entschlossen Merz ist und ob er ein Machtwort sprechen könnte, falls nötig.",
+        "position": "Merz antwortet: \"Wir sind nicht im Amt, um im Amt zu sein. Wir regieren nicht um unserer selbst willen. Wir regieren, weil wir einen Auftrag haben.\" Er nennt konkrete Ziele (Außenpolitik, Europa, Innenpolitik) und sagt: \"Einiges ist bereits auf dem Weg, ist entschieden, umgesetzt. Darüber haben wir zu wenig gesprochen.\" Zur Vertrauensfrage sagt er: \"Mit der Frage muss ich mich heute nicht beschäftigen. Das ist für jeden Bundeskanzler eine Option. Darüber nachzudenken, habe ich keine Veranlassung.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die erste Frage zur Bindung seines Schicksals an Reformen implizit (ja, es ist sein Auftrag), aber die zweite Frage zur Vertrauensfrage wird evasiv beantwortet. Er signalisiert, dass das eine Option ist, aber dass er sie \"nicht für notwendig hält\".",
+        "concrete_statements": [
+          "Wir sind nicht im Amt, um im Amt zu sein",
+          "Wir regieren, weil wir einen Auftrag haben",
+          "Darüber nachzudenken, habe ich keine Veranlassung"
+        ],
+        "quotes": [
+          {
+            "text": "Mit der Frage muss ich mich heute nicht beschäftigen. Das ist für jeden Bundeskanzler eine Option. Darüber nachzudenken, habe ich keine Veranlassung.",
+            "timestamp": "00:37:32",
+            "context": "Merz antwortet evasiv auf die Vertrauensfrage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vertrauensfrage",
+          "Regierungsstabilität"
+        ]
+      },
+      {
+        "title": "Iran-Krieg und US-Strategie",
+        "timestamp_range": "00:41:46 - 00:43:50",
+        "theme_description": "Der Moderator zeigt ein Video, das zeigt, wie sich das Verhältnis zwischen Merz und Trump wegen des Iran-Kriegs verschlechtert hat. Merz hatte Trump's Strategie kritisiert; Trump antwortete mit Angriffen und Drohungen eines Truppenabzugs.",
+        "question_asked": "Beunruhigt es Sie, dass Trump so unfreundlich über Sie spricht? Und: Hat sich gerade was bei den Amerikanern verändert, oder ist er sauer wegen Ihrer Wortwahl?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz sein diplomatisches Verhältnis zu Trump geschadet hat und wie er damit umgeht.",
+        "position": "Merz antwortet: \"Wir versuchen, mit unseren unterschiedlichen Möglichkeiten gemeinsam ein Problem zu lösen.\" Er erklärt, dass er Trump beim Besuch mitgeteilt hat, dass der Krieg erhebliche Auswirkungen auf Deutschland hat und dass er Hilfe angeboten habe. Er betont: \"Ich halte an meiner Grundüberzeugung fest: Das transatlantische Bündnis ist für uns alle viel wert.\" Er erklärt auch, dass nur beim 9/11-Angriff der NATO-Vertrag Art. 5 aktiviert wurde — und Deutschland war damals dabei. Er sagt: \"Ich muss akzeptieren, dass der US-Präsident dazu eine andere Meinung hat. Aber meine Überzeugung bleibt.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet auf beide Fragen: Er räumt ein, dass Trump sauer ist, erklärt aber seine Haltung, dass das transatlantische Bündnis wichtiger ist als Konflikte über einzelne Positionen. Die Antwort ist substantiell und adressiert die Frage-Intention.",
+        "concrete_statements": [
+          "Das transatlantische Bündnis ist für uns alle viel wert",
+          "Ich muss akzeptieren, dass der US-Präsident dazu eine andere Meinung hat. Aber meine Überzeugung bleibt.",
+          "Wir haben Verabredungen gemeinsam treffen [müssen]"
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte an meiner Grundüberzeugung fest: Das transatlantische Bündnis ist für uns alle viel wert. Wir sind einmal für Amerika mit in den Krieg gezogen. Das war der Angriff auf die Twin Towers in New York am 11. September 2001.",
+            "timestamp": "00:44:23",
+            "context": "Merz erklärt seine Haltung zum transatlantischen Verhältnis mit historischen Bezügen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "USA-Beziehungen",
+          "Iran-Konflikt",
+          "NATO"
+        ]
+      },
+      {
+        "title": "Kritik an Merz' Rhetorik zum Iran-Konflikt und Diplomatie",
+        "timestamp_range": "00:45:26 - 00:47:31",
+        "theme_description": "Der Moderator konfrontiert Merz damit, dass seine Kritik am Iran-Krieg (insbesondere sein Satz über eine \"Demütigung\" der USA durch den Iran) zu diplomatischem Störfeuer führte und fragt, ob er den Satz heute immer noch so sagen würde.",
+        "question_asked": "Würden Sie den Satz heute immer noch so sagen? [zur 'Demütigung des Iran'] Der hat zu großem diplomatischen Störfeuer geführt. Wollen Sie Ihre Strategie im Umgang mit Trump ändern?",
+        "question_intent": "Der Moderator versucht, Merz auf eine Niederlage hinzuweisen: sein Satz hat nicht funktioniert, die diplomatische Linie könnte kontraproduktiv sein.",
+        "position": "Merz antwortet: \"Wir betrachten diesen Krieg unterschiedlich. Das ist kein Geheimnis. Ich stehe damit nicht allein.\" Er betont, dass das gemeinsame Ziel ist: \"Der Iran darf nicht in den Besitz einer Atomwaffe kommen.\" Er erklärt dann deutsche Diplomatie-Ansätze: \"Wir haben den Kontakt zu Irans Führung wieder aufgenommen. Wir haben das Abkommen, das es vor zehn Jahren gegeben hat, das Trump 2018 gekündigt hat, nicht aufgekündigt. Wir wollen den Aktionsplan mit dem Iran wiederbeleben.\" Er sagt zur Strategie: \"Nein, meine Strategie war von Anfang an ...\" und verweist auf seinen ersten Besuch im Juni 2025, wo er auch andere Einschätzungen als Trump hatte, die dieser akzeptiert habe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz antwortet auf die Frage nach Sinneswandel mit \"Nein\", erklärt aber nicht, warum sein Satz zur \"Demütigung\" hilfreich war. Stattdessen lenkt er auf seine Diplomatie-Ansätze ab, was evasiv wirkt. Er adressiert die kritische Frage nicht direkt.",
+        "concrete_statements": [
+          "Der Iran darf nicht in den Besitz einer Atomwaffe kommen",
+          "Wir wollen den Aktionsplan mit dem Iran wiederbeleben",
+          "Wir wollen zu gemeinsamen diplomatischen Lösungen kommen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir betrachten diesen Krieg unterschiedlich. Das ist kein Geheimnis. Ich stehe damit nicht allein.",
+            "timestamp": "00:46:30",
+            "context": "Merz rechtfertigt seine Kritik durch Pluralismus in den Ansichten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Politik",
+          "Diplomatie",
+          "USA-Beziehungen"
+        ]
+      },
+      {
+        "title": "US-Truppenabzug aus Deutschland und Raketenlieferungen",
+        "timestamp_range": "00:48:34 - 00:53:19",
+        "theme_description": "Der Moderator konfrontiert Merz mit konkreten Drohungen Trumps: Abzug von 5000+ US-Soldaten und das Ausbleiben von Tomahawk-Raketen, die Biden zugesagt hatte. Merz wird gefragt, wie realistisch diese Drohungen sind und wie Deutschland kompensieren kann.",
+        "question_asked": "Trump hat angekündigt, 5000 oder mehr Soldaten aus Deutschland abzuziehen. Das hat angekündigt, Tomahawk-Raketen zu liefern — das hat Trump nie wiederholt. Gibt es keinen Zusammenhang?",
+        "question_intent": "Der Moderator versucht, Merz darauf hinzuweisen, dass Trumps Drohungen direkte Folgen seiner Kritik sind.",
+        "position": "Merz antwortet zunächst, dass Truppenabzüge seit längerer Zeit geplant waren und dass Trump sie nicht erfunden hat. Er sagt: \"Es gibt ein Kontingent von US-Soldaten in Europa, die Joe Biden noch auf Zeit stationiert hat. Über deren Abzug wird seit längerer Zeit gesprochen.\" Zur Raketen-Frage erklärt er: \"Wenn ich es richtig weiß, haben die Amerikaner zurzeit selbst nicht genug. Sie setzen sie ein und es sind kostspielige Waffen.\" Er betont: \"Wir entwickeln eigene Systeme in Europa.\" Merz erklärt, dass Deutschland \"noch nicht\" die Mittelstreckenraketen kompensieren kann, aber: \"Wir sind auf einem guten Weg.\" Er besuchte kürzlich das Heer und sah \"einsatzfähige Waffensysteme\" und \"Drohnen in verschiedensten Konfigurationen\".",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz antwortet auf die Frage nach Zusammenhang mit einer Entlastung durch Kontextualisierung (Abzüge waren geplant). Aber er weicht aus, indem er nicht direkt adressiert, dass Trump möglicherweise schneller handelt als geplant. Die Antwort ist evasiv.",
+        "concrete_statements": [
+          "Wir haben noch über 30.000 US-Soldaten in Deutschland stationiert",
+          "Wir haben nach wie vor die 'nukleare Teilhabe' mit den USA",
+          "Wir müssen jetzt mehr für unsere eigene Sicherheit tun"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt ein Kontingent von US-Soldaten in Europa, die Joe Biden noch auf Zeit stationiert hat. Über deren Abzug wird seit längerer Zeit gesprochen.",
+            "timestamp": "00:49:05",
+            "context": "Merz historisiert die Truppenabzugsfrage."
+          },
+          {
+            "text": "Wir haben nach wie vor die 'nukleare Teilhabe' mit den USA. Da gibt es überhaupt keine Abstriche.",
+            "timestamp": "00:51:48",
+            "context": "Merz signalisiert, dass die nuklearen Zusicherungen unerschüttert sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstung",
+          "NATO",
+          "USA-Truppen in Deutschland"
+        ]
+      },
+      {
+        "title": "Verteidigungsfähigkeit Europas und Fünf-Prozent-Rüstungsausgaben",
+        "timestamp_range": "00:51:14 - 00:52:49",
+        "theme_description": "Der Moderator fragt, wann Deutschland die ausbleibenden Marschflugkörper kompensieren und die europäische Verteidigungsfähigkeit garantieren kann. Merz wird gefragt, wann das Ziel erreicht ist.",
+        "question_asked": "Glauben Sie, dass wir die Mittelstreckenraketen aus den USA bekommen? Und: Wann sind wir so weit, das kompensieren zu können?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz realistische Zeitperspektiven für eine europäische Rüstungsunabhängigkeit hat.",
+        "position": "Merz antwortet zunächst pessimistisch zur Raketen-Lieferung: \"Wie ich es gerade sehe, gibt es aus den USA heraus gerade keine Möglichkeit, Waffensysteme dieser Art abzugeben.\" Zur Kompensation sagt er: \"Wir sprechen nicht über die Kompensation einzelner Waffensysteme. Wir sprechen über ein Gesamt-Verteidigungssystem.\" Er erklärt, dass er auf dem NATO-Gipfel 2025 ein Fünf-Prozent-Ziel zugesagt hat, dass Deutschland Schrittmacher in Europa ist. Er sagt: \"Das kann ich nicht mit einer Jahreszahl beantworten. Ich möchte, dass wir in dem Rhythmus, den wir aufgenommen haben, weiter arbeiten.\" Er nennt Beschaffungspläne, Kooperationen mit ukrainischen Unternehmen und Drohnenproduktionen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die Frage nach dem Zeitrahmen mit \"kann ich nicht mit einer Jahreszahl beantworten\", was evasiv ist. Er fokussiert stattdessen auf das Gesamtsystem und Rüstungs-Maßnahmen, aber gibt keinen konkreten Horizont.",
+        "concrete_statements": [
+          "Ich habe auf dem NATO-Gipfel Anfang letzten Jahres das Fünf-Prozent-Ziel fest zugesagt",
+          "Damit sind wir Schrittmacher in Europa gewesen",
+          "Der Verteidigungsminister hat umfangreiche Beschaffungspläne vorgelegt"
+        ],
+        "quotes": [
+          {
+            "text": "Wir sprechen nicht über die Kompensation einzelner Waffensysteme. Wir sprechen über ein Gesamt-Verteidigungssystem und Verteidigungsfähigkeit des europäischen Teils der NATO.",
+            "timestamp": "00:52:49",
+            "context": "Merz rerahmiert die Frage nach Einzelwaffen in eine Systemfrage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungspolitik",
+          "NATO-Verpflichtungen"
+        ]
+      },
+      {
+        "title": "Putin's Perspektive und NATO-Konflikt",
+        "timestamp_range": "00:53:49 - 00:54:50",
+        "theme_description": "Der Moderator fragt, ob Putin sich über die Spannungen innerhalb der NATO (Merz-Trump-Konflikt) freut und ob Merz das Risiko sieht, dass Russland davon profitiert.",
+        "question_asked": "Wie guckt wohl Wladimir Putin darauf? Wird er sich gerade freuen, dass es Konflikt in der NATO gibt?",
+        "question_intent": "Der Moderator versucht Merz darauf hinzuweisen, dass sein Konflikt mit Trump möglicherweise geopolitisch schädlich ist.",
+        "position": "Merz antwortet: \"Putin guckt sehr genau auf die Ukraine. Welche Chancen er hat, das Land zu besiegen.\" Er betont: \"Wir dürfen ihm diese Chance nicht geben.\" Zur Freude sagt er: \"Ob Putin Grund zur Freude hat, das will ich mal dahingestellt lassen. Die Nachrichten aus Russland sind kein Anlass zur Freude. Die Kritik wird lauter, die Wirtschaft ist im freien Fall. Die Versorgung der Bevölkerung wird immer kritischer. Die Zahl der Soldaten, die im Ukraine-Krieg fallen ... Russland verliert jeden Tag 1000 Soldaten.\" Merz verweist auf die Nachrüstungsdebatte der 1980er, als die Sowjetunion \"nicht mehr mithalten konnte\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet direkt: Putin hat wenig Grund zur Freude, da Russland wirtschaftlich und militärisch zusammenbricht. Die Antwort adressiert die Frage-Intention vollständig und beantwortet auch das implizite Vorwurf, durch Konflikte mit Trump Putin zu helfen.",
+        "concrete_statements": [
+          "Russland verliert jeden Tag 1000 Soldaten in diesem Krieg",
+          "Die Wirtschaft [Russlands] ist im freien Fall",
+          "Die Sowjetunion in sich zusammengefallen, weil sie da nicht mehr mithalten konnte"
+        ],
+        "quotes": [
+          {
+            "text": "Wir dürfen ihm diese Chance nicht geben. Es wird in der Welt sehr beobachtet werden, wie stark wir die Ukraine verteidigen.",
+            "timestamp": "00:53:49",
+            "context": "Merz erklärt, dass deutsche Ukraine-Unterstützung strategisch wichtig ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Russland-Politik"
+        ]
+      },
+      {
+        "title": "EU-Zölltarifästreit mit Trump und Abkommen",
+        "timestamp_range": "00:54:50 - 00:56:54",
+        "theme_description": "Der Moderator zeigt auf, dass Trump mit noch höheren Zöllen (25 Prozent auf Fahrzeuge statt 15 Prozent) droht, und dass ein EU-Zollabkommen vom August 2025 bis heute nicht unterschrieben ist. Merz wird gefragt, wie entgegenkommend er Trump gegenüber sein wird.",
+        "question_asked": "Trump hat Zölltarifdrohungen erneuert — 25 Prozent auf Fahrzeuge ab kommender Woche. Haben Sie das Gefühl, Trump möchte Deutschland besonders treffen? Und: Wann werden Sie das Abkommen endlich unterschreiben?",
+        "question_intent": "Der Moderator versucht zu verstehen, ob Merz zu Konzessionen bereit ist und ob er die EU-Verhandlungsposition schwächt.",
+        "position": "Merz antwortet: \"Er will ganz Europa treffen. Er ist zurecht darüber enttäuscht, dass wir mit dem Abkommen aus dem August 2025 nicht zu einem Abschluss gekommen sind.\" Er erklärt, dass \"von europäischer Seite immer wieder neue Bedingungen formuliert\" werden. Zur Frage, ob er das \"sogar verstehen\" kann, sagt er: \"Er wird ungeduldig, weil wir eine Verabredung getroffen haben, das wir ein Zollabkommen machen.\" Er fordert die EU auf: \"Den Abschluss machen, wie die EU es seit Wochen diskutiert.\" Zur dramatischen Einschätzung sagt er: \"Nein. Wir haben eine wiederkehrende Diskussion über Zollsätze.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Merz beantwortet die Frage nach Deutschlands Besonderheit mit einer Relativierung (es geht um ganz Europa), beantwortet aber nicht direkt, wann das Abkommen unterschrieben wird. Er drängt die EU implizit zum Abschluss, was suggeriert, dass er kompromissbereit ist.",
+        "concrete_statements": [
+          "Er ist zurecht darüber enttäuscht, dass wir mit dem Abkommen aus dem August 2025 nicht zu einem Abschluss gekommen sind",
+          "Den Abschluss machen"
+        ],
+        "quotes": [
+          {
+            "text": "Er wird ungeduldig, weil wir eine Verabredung getroffen haben, das wir ein Zollabkommen machen. Und von europäischer Seite werden immer wieder neue Bedingungen formuliert.",
+            "timestamp": "00:55:53",
+            "context": "Merz erklärt die Dynamik des Zollkonflikts."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Handelskonflikt",
+          "EU-USA-Beziehungen"
+        ]
+      },
+      {
+        "title": "Fußball-WM 2028 in den USA und Deutschlands Chancen",
+        "timestamp_range": "00:56:54 - 00:58:31",
+        "theme_description": "Der Moderator fragt Merz spielerisch nach der Fußball-WM 2028 in den USA — wie wichtig das Event für die Stimmung im Land ist und mit welchem Ziel Deutschland reisen sollte.",
+        "question_asked": "Vielleicht treffen Sie ihn [Trump] bei der Fußball-WM? Wenn Deutschland im Endspiel ist, fahren Sie hin? Welches Ziel gibt der Kanzler aus — wohin müssen wir es mindestens schaffen?",
+        "question_intent": "Der Moderator versucht, die Spannung zwischen Merz und Trump spielerisch zu brechen und zu verstehen, wie optimistisch Merz für Deutschlands Chancen ist.",
+        "position": "Merz antwortet, dass er selbstverständlich zum Endspiel fahren würde, falls Deutschland dabei ist. Zur WM generell sagt er: \"Ich bin mittlerweile skeptisch, ob das eine gute Idee ist mit den weit voneinander entfernten Austragungsorten.\" Aber: \"Wenn die Deutschen weit kommen? Das hätte für das Binnenklima sicher eine gute Wirkung.\" Zum Ziel sagt er: \"Ich denke, die deutsche Mannschaft ist so gut aufgestellt, dass sie Chancen hat, in die letzten Runden zu kommen. Vielleicht sogar ins Finale.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Merz antwortet auf alle Fragen: ja zum Endspiel, skeptisch zu Austragungsorten, hoffnungsvoll zu Deutschlands Chancen. Die Antwort adressiert die Frage-Intention vollständig, auch wenn sie spielerisch bleibt.",
+        "concrete_statements": [
+          "Wenn Deutschland im Endspiel ist, fahre ich selbstverständlich hin",
+          "Vielleicht sogar ins Finale"
+        ],
+        "quotes": [
+          {
+            "text": "Ich denke, die deutsche Mannschaft ist so gut aufgestellt, dass sie Chancen hat, in die letzten Runden zu kommen. Vielleicht sogar ins Finale.",
+            "timestamp": "00:58:31",
+            "context": "Merz gibt ein optimistisches Ziel für die Mannschaft ab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Innenpolitische Stimmung",
+          "Sportkommunikation"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": "[\n  {\n    \"claim\": \"Die Asylbewerberzahlen haben wir um zwei Drittel heruntergebracht, gegenüber 2023.\",\n    \"timestamp\": \"00:02:37\"\n  },\n  {\n    \"claim\": \"Wir haben im Kabinett etwas mit einer Haltelinie verabredet. Bei 48 Prozent.\",\n    \"timestamp\": \"00:19:48\"\n  },\n  {\n    \"claim\": \"Am 1.1.2027 tritt ein Vorsorge-Projekt in Kraft. Damit wollen wir die kapitalgedeckte Altersvorsorge ... Wir haben sie vor der Rentenreform beschlossen.\",\n    \"timestamp\": \"00:20:19\"\n  },\n  {\n    \"claim\": \"Es gibt keine Rentenkürzung. Das schlägt niemand vor. Sie wären auch gar nicht zulässig.\",\n    \"timestamp\": \"00:20:49\"\n  },\n  {\n    \"claim\": \"Wir zahlen für jeden in Grundsicherung 144 Euro pro Monat in die gesetzliche Krankenversicherung.\",\n    \"timestamp\": \"00:26:07\"\n  },\n  {\n    \"claim\": \"Der Finanzminister zwei Milliarden aus dem Topf des Zuschusses für die Krankenversicherung.\",\n    \"timestamp\": \"00:27:09\"\n  },\n  {\n    \"claim\": \"Ich habe auf dem NATO-Gipfel Anfang letzten Jahres das Fünf-Prozent-Ziel fest zugesagt.\",\n    \"timestamp\": \"00:52:19\"\n  },\n  {\n    \"claim\": \"Das Bundesverfassungsgericht hat uns eine Übergangszeit gegeben [zum Soli-Abbau].\",\n    \"timestamp\": \"00:33:20\"\n  },\n  {\n    \"claim\": \"Die EU-Zölle von 25 Prozent auf Fahrzeuge sollten eigentlich 15 Prozent sein.\",\n    \"timestamp\": \"00:55:23\"\n  },\n  {\n    \"claim\": \"Nur da wurde der NATO-Vertrag Art. 5 jemals aktiviert\" [beim 9/11-Angriff].\",\n    \"timestamp\": \"00:44:23\"\n  },\n  {\n    \"claim\": \"Russland verliert jeden Tag 1000 Soldaten in diesem Krieg\" [Ukraine-Krieg].\",\n    \"timestamp\": \"00:54:20\"\n  }\n]"
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-6-maerz-2025-102",
+    "video_id": "lanz-2025-03-06",
+    "politician": "Johannes Winkel",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "0c75e2113f9dee71",
+    "transcript_chars": 56017,
+    "caption_lines": 2759,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23367,
+    "tokens_out": 6897,
+    "cost_usd": 0.023140800000000003,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-02T16:33:29.079Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johannes Winkel (CDU/CSU, Junge Union) tritt als Gast in der Lanz-Show auf und kritisiert wiederholt die AfD-Position zur Ukraine, die Auflösung europäischer Institutionen und die moralische Inkonsistenz von Alice Weidel. Er verteidigt die NATO-Solidarität, warnt vor einer Fragmentierung Europas und kritisiert die Suspendierung der Schuldenbremse, plädiert aber für eine Lösung über Sondervermögen statt Neuverschuldung.",
+    "themes": [
+      {
+        "title": "Trump und Selenskyj im Weißen Haus – geopolitische Eskalation",
+        "timestamp_range": "00:04:08 - 00:05:26",
+        "theme_description": "Johannes Winkel bewertet die konfrontative Begegnung zwischen Donald Trump und Wolodymyr Selenskyj im Weißen Haus als geplante Eskalation.",
+        "question_asked": "Moderator fragt, wie Winkel die Szenen zwischen Trump und Selenskyj interpretiert, nachdem Alice Weidel die Veranstaltung kritisiert hatte.",
+        "question_intent": "Verstehen, wie ein CDU-Politiker den Auftritt Trumps gegenüber dem angegriffenen Ukraine-Präsidenten bewertet.",
+        "position": "Winkel sieht darin eine geplante Eskalation. Trump habe Selenskyj zunächst informell in Shorts empfangen und ein Vertrauter habe später die gleiche kritische Frage wiederholt – was auf Vorbereitung hindeutet. Sachlich betont er, dass die USA sich aus der Ukraine zurückziehen, was Trump ankündigt; dies sei eine Bruchstelle innerhalb des Weißen Hauses gewesen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winkel antwortet auf die Frage nach seiner Interpretation und beschreibt die Szenerie als geplant. Er adressiert aber nicht direkt die Frage nach den politischen Konsequenzen oder wie damit umzugehen ist.",
+        "quotes": [
+          {
+            "text": "Das war schon ein Stück weit schockieren und das war auch vorbereitet. Es wurde von der Donald Trump Politik behauptet, Selenskyj hätte sich daneben benommen. Man sieht aber schon, wie Selenskyj von Donald Trump empfangen wurde. Es war eine geplante Eskalation.",
+            "timestamp": "00:04:08",
+            "context": "Antwort auf die Frage, wie Winkel den Auftritt Trumps und Selenskyj interpretiert."
+          }
+        ],
+        "concrete_statements": [
+          "Die USA ziehen sich aus der Ukraine zurück",
+          "Das war auch einstige Bruch im Weißen Haus"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "NATO-Bündnissolidarität",
+          "Ukraine-Unterstützung",
+          "Transatlantische Beziehungen"
+        ]
+      },
+      {
+        "title": "Wahlen abhalten während Kriegszustand – Legitimität Selenskyjs",
+        "timestamp_range": "00:11:49 - 00:12:04",
+        "theme_description": "Kurzer Austausch über die Möglichkeit und Notwendigkeit von Wahlen in der Ukraine während des Krieges.",
+        "question_asked": "Weidel fordert, dass Selenskyj Wahlen herbeiführen müsse, um Legitimation für Friedensverhandlungen zu haben.",
+        "question_intent": "Klären, ob die Abhaltung von Wahlen in Kriegszeiten praktizierbar und erforderlich ist.",
+        "position": "Winkel antwortet kurz und sachlich: Während des Krieges ist es schwierig, Wahlen abzuhalten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winkel gibt eine knappe, realistische Antwort, die die praktische Schwierigkeit anerkennt. Er widerspricht Weidels Forderung implizit, beantwortet aber nicht detailliert, warum dies in Kriegszeiten problematisch ist.",
+        "quotes": [
+          {
+            "text": "Während des Krieges ist es schwierig, Wahlen abzuhalten.",
+            "timestamp": "00:11:49",
+            "context": "Antwort auf Weidels Forderung nach Wahlen in der Ukraine."
+          }
+        ],
+        "concrete_statements": [
+          "Wahlen während des Krieges sind schwer durchführbar"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Demokratie",
+          "Konfliktlösung"
+        ]
+      },
+      {
+        "title": "NATO-Solidarität und westliche Bündnisverpflichtungen",
+        "timestamp_range": "00:14:28 - 00:15:59",
+        "theme_description": "Winkel kritisiert die AfD-Position, dass die USA sich aus europäischen Konflikten zurückziehen sollten, und betont gegenseitige Sicherheitsverpflichtungen.",
+        "question_asked": "Weidel argumentiert, dass die USA keine europäischen Probleme lösen sollten und dass JD Vance ein weiser Mann mit einer Vision für Europa sei. Moderator und Winkel erwidern.",
+        "question_intent": "Klären, ob gegenseitige Bündnisverpflichtungen (insbesondere nach 9/11) ein unerschütterlicher Grundsatz sind oder strategisch neu bewertet werden können.",
+        "position": "Winkel sieht einen grundsätzlichen Fehler in Weidels Position. Er argumentiert, dass NATO, Großbritannien und Europa den USA nach dem 9/11-Anschlag geholfen haben – nicht als bloße Transaktionen, sondern als befreundete Staaten. Er kritisiert es als geschichtsvergessen, jetzt zu sagen, dass die USA sich kümmern und andere Länder sich selbst überlassen müssen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel antwortet substantiell auf die Frage nach Bündnisverpflichtungen. Er legt dar, dass es nicht um Steuergeld gehen sollte, sondern um gegenseitige Hilfe unter befreundeten Staaten.",
+        "quotes": [
+          {
+            "text": "Europa, die NATO, Großbritannien haben den USA geholfen, als die Flugzeuge ins World Trade Center geflogen sind. Es sind nicht nur irgendwie zwei Länder, die zusammenarbeiten. Wir sind eigentlich, in der ursprünglichen Idee des Westens befreundete Staaten sind, die sich helfen. Es ist nicht die Frage, wie viel Steuergeld geben wir wofür aus. Wenn es uns nicht unmittelbar betrifft, dann lassen unsere Freunde stehen und ziehen uns zurück. Ich finde, das ist geschichtsvergessen.",
+            "timestamp": "00:14:28",
+            "context": "Antwort auf Weidels Position, dass die USA sich aus europäischen Konflikten zurückziehen sollten."
+          }
+        ],
+        "concrete_statements": [
+          "Gegenseitige Hilfe unter befreundeten Staaten ist kein Geschäft, sondern Solidarität",
+          "Kritik an der Position, dass die USA sich aus der Ukraine zurückziehen sollten"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "NATO-Verpflichtungen",
+          "Außenpolitik",
+          "Verteidigungspolitik"
+        ]
+      },
+      {
+        "title": "Trump und Wahlleugnung – Kritik an antdemokratischem Verhalten",
+        "timestamp_range": "00:22:31 - 00:24:39",
+        "theme_description": "Winkel kritisiert Trump dafür, dass dieser die Wahlergebnisse von 2020 nicht akzeptiert hat und argumentiert, dass das nicht mit demokratischen Prinzipien vereinbar ist.",
+        "question_asked": "Moderator kritisiert Trump als Lügner; Weidel kontert, man könne unterschiedlicher Meinung über Trump sein. Winkel wird dann nach seiner Sicht gefragt.",
+        "question_intent": "Klären, ob Ablehnung von Wahlergebnissen ein Grund zur Kritik an einer Person ist oder nur eine Meinungsverschiedenheit.",
+        "position": "Winkel argumentiert klar: Trump ist kein Demokrat, da Demokraten Wahlergebnisse anerkennen. Es ist legitim, Leute zu kritisieren, die freie Wahlen nicht akzeptieren. Er kontert Weidels Beschwichtigung, indem er betont, dass das Nicht-Akzeptieren von Wahlergebnissen ein fundamentales demokratisches Problem ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel antwortet direkt und substantiell auf die Frage, ob Trump für seine Wahlleugnung kritisiert werden sollte. Er setzt einen klaren Maßstab: Anerkennung von Wahlergebnissen ist eine demokratische Grundvoraussetzung.",
+        "quotes": [
+          {
+            "text": "Er ist jedenfalls kein Demokrat, Demokraten erkennen Wahlergebnisse an. Ich glaube nicht, dass er die Sendung schaut. Wenn sie das ungeheuerlich finden, dass man Leute kritisiert, die freie Wahlen nicht akzeptieren...",
+            "timestamp": "00:22:31",
+            "context": "Antwort auf die Debatte zwischen Lanz und Weidel über Trump als Lügner."
+          },
+          {
+            "text": "Jemanden nicht kritisieren, der eine Wahl nicht anerkennt. Ich habe Joe Biden gratuliert, er war Präsident, was gibt es da zurück zu blicken. Jetzt ist der Präsident, jetzt meinen Sie, er sei kein Demokrat. Diese Meinung teile ich nicht. Er hat ein demokratisches Ergebnis nicht akzeptiert und wollt es mit Gewalt beseitigen.",
+            "timestamp": "00:24:02",
+            "context": "Weitere Ausführung zur Kritik an Trumps Wahlleugnung."
+          }
+        ],
+        "concrete_statements": [
+          "Trump akzeptiert Wahlergebnisse nicht an – das macht ihn zum Nicht-Demokraten",
+          "Die Kritik an Wahlleugnung ist berechtigt und notwendig"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Demokratische Grundwerte",
+          "Wahlen",
+          "Rechtsstaatlichkeit"
+        ]
+      },
+      {
+        "title": "Europäische Integration versus nationale Souveränität",
+        "timestamp_range": "00:49:02 - 00:52:05",
+        "theme_description": "Winkel kritisiert Weidels Forderung nach Abbau europäischer Institutionen und warnt vor den Konsequenzen einer Rückkehr zu reinem Nationalstaat-Denken.",
+        "question_asked": "Weidel argumentiert für einen Rückbau der EU und stärkere nationale Staaten; Winkel wird gefragt, wie er das sieht.",
+        "question_intent": "Klären, ob ein schwächeres europäisches Institutionengefüge Deutschland nutzt oder schadet.",
+        "position": "Winkel warnt davor, europäische Institutionen weiter zu beschädigen. Er gibt zu, dass es Reformbedarf gibt, weist aber darauf hin, dass die EU-Kommission unter Juncker/von der Leyen Trump erfolgreich widerstanden hat – als einziges Erfolgsbeispiel. Das Problem jetzt: Einzelne europäische Länder fahren einzeln zu Trump. Er warnt, dass jedes Land allein nicht fusionieren wird und that die Antwort nicht darin liegt, weniger zusammenzuarbeiten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel adressiert Weidels Position direkt und substanziell. Er argumentiert mit einem konkreten Beispiel (Handelspolitik unter Trump) und warnt vor praktischen Konsequenzen einer EU-Auflösung.",
+        "quotes": [
+          {
+            "text": "Ich finde es spannend, dass sie so stark gegen die Institution sind. Spannenderweise ist der einzige, der den Zoll Krieg in der ersten Donald Trump Amtszeit Fenna konnte, konnte dort mit einer starken Position auftreten. Es gibt einen starken Reformbedarf, aber ich fürchte, wir werden erst dann merken, was die europäischen Institutionen für einen Wert haben, wenn wir sie noch mehr beschädigen als wär's momentan schon tun.",
+            "timestamp": "00:49:02",
+            "context": "Antwort auf Weidels Kritik an EU-Institutionen und Forderung nach Rückbau."
+          },
+          {
+            "text": "Jedes einzelne Land einzeln, das wird nicht fusionieren. Wir müssten als Europa mit einer einigen Stimme sprechen. In diesen Zeiten, wo sich Amerika so stark zurückzieht, ist nicht die Lösung, dass wir weniger zusammen arbeiten als Europa, sondern dass wir Europa stärken.",
+            "timestamp": "00:50:42",
+            "context": "Warnung vor fragmentiertem europäischem Handeln."
+          }
+        ],
+        "concrete_statements": [
+          "Die EU-Kommission war erfolgreich gegen Trump in der Handelspolitik",
+          "Nationale Alleingänge werden nicht funktionieren",
+          "Europa muss mit einer Stimme sprechen"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Europapolitik",
+          "Institutionen",
+          "Handelspolitik",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Von der Leyen und legitime EU-Führung",
+        "timestamp_range": "00:51:57 - 00:53:13",
+        "theme_description": "Kurzer Austausch über die demokratische Legitimation von Ursula von der Leyen als Präsidentin der Europäischen Kommission.",
+        "question_asked": "Weidel behauptet, von der Leyen sei nicht mehr gewählt; Winkel widerspricht.",
+        "question_intent": "Klären, ob von der Leyen legitim und demokratisch gewählt ist.",
+        "position": "Winkel sagt klar: Von der Leyen ist gewählt. Er nennt dies 'wirklich Unsinn', wenn Weidel das bestreitet.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel antwortet kurz und direkt auf die sachliche Frage nach Legitimation. Seine Antwort ist prägnant und faktisch korrekt.",
+        "quotes": [
+          {
+            "text": "Natürlich ist sie gewählt. Es ist wirklich Unsinn.",
+            "timestamp": "00:52:05",
+            "context": "Antwort auf Weidels Behauptung, von der Leyen sei nicht gewählt."
+          }
+        ],
+        "concrete_statements": [
+          "Von der Leyen ist demokratisch gewählt"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "EU-Governance",
+          "Demokratische Legitimation"
+        ]
+      },
+      {
+        "title": "Schuldenbremse suspendieren – Sondervermögen als Alternative",
+        "timestamp_range": "00:57:14 - 01:00:52",
+        "theme_description": "Winkel kritisiert die Aussetzung der Schuldenbremse, hätte aber der Lösung über ein Sondervermögen für die Bundeswehr zugestimmt.",
+        "question_asked": "Moderator fragt, warum die Aussetzung der Schuldenbremse kein Problem sei, wenn Merz das vorher nicht erwähnt hat.",
+        "question_intent": "Klären, ob die Entscheidung zur Aussetzung der Schuldenbremse glaubwürdig oder ein Wählerbetrug ist.",
+        "position": "Winkel kritisiert die finanzpolitische Entscheidung, die Schuldenbremse auszusetzen, statt das Geld über ein Sondervermögen bereitzustellen (wie bereits in der Vergangenheit für Corona). Er betont, dass mehr Geld für die Bundeswehr nötig ist und dass die Union dafür eintritt – aber hätte lieber gesehen, dass dies über Sondervermögen geregelt wird, nicht durch Aussetzen der Schuldenbremse.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winkel kritisiert die Entscheidung auf der Sachebene (Aussetzen statt Sondervermögen), adressiert aber die Glaubwürdigkeitsfrage eher indirekt. Er erklärt die Gründe für die Kritik, weicht aber der vollen Beantwortung aus, ob das ein Vertrauensbruch ist.",
+        "quotes": [
+          {
+            "text": "Ich kritisiere, dass man das nicht über das Sondervermögen auch für den militärischen Bereich realisiert hat, sondern durch die Aussetzung der Schuldenbremse in diesem Bereich. Wir haben das als Opposition beschlossen, dass mehr Geld für die Bundeswehr braucht. Ich hätte es besser gefunden, wenn wir auch den militärischen Teil - die Infrastruktur sich sowieso kritisch - das mit Sondervermögen gelöst hätten, so wie wir es bereits gemacht haben.",
+            "timestamp": "00:58:16",
+            "context": "Antwort auf die Frage, warum Merz die Aussetzung der Schuldenbremse rechtfertigen kann, wenn er das vorher nicht ankündigt hat."
+          }
+        ],
+        "concrete_statements": [
+          "Mehr Geld für die Bundeswehr ist notwendig",
+          "Ein Sondervermögen wäre die bessere Lösung gewesen",
+          "Die Aussetzung der Schuldenbremse wird abgelehnt"
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Finanzpolitik",
+          "Schuldenbremse",
+          "Bundeswehr",
+          "Haushalt"
+        ]
+      },
+      {
+        "title": "Alice Weidel und Björn Höcke – Opportunismus und Rechtsextremismus",
+        "timestamp_range": "01:04:09 - 01:05:49",
+        "theme_description": "Justus Bender stellt Weidels moralische Integrität in Frage wegen ihrer Haltung zu Björn Höcke; Winkel stimmt zu und kritisiert sie scharf.",
+        "question_asked": "Bender wirft Weidel vor, Opportunistin zu sein: Sie wollte Höcke vor Jahren aus der AfD ausschließen wegen Rechtsextremismus, jetzt umarmt sie ihn. Winkel wird nach seiner Sicht gefragt.",
+        "question_intent": "Klären, ob Weidels Umschwung zu Höcke eine Glaubwürdigkeitskrise ist oder legitime Meinungsänderung.",
+        "position": "Winkel teilt die Kritik scharf. Er unterscheidet: Bei Björn Höcke wirft er Rechtsextremismus vor; bei Alice Weidel wirft er Opportunismus vor – was schlimmer ist. Vor wenigen Jahren waren Weidel und der Bundesvorstand dafür, Höcke wegen extremer Positionen aus der Partei zu werfen. Später merkten sie, dass er zu mächtig ist und kein Weg an ihm vorbei führt – dann machte sie lieber einen Deal mit ihm. Winkel sagt, dass Weidel jetzt „nicht mehr als ein Feigenblatt für den Rechtsextremismus von Björn Höcke“ ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel antwortet umfassend und legt Weidels Glaubwürdigkeitskrise dar. Er macht deutlich, dass es um eine moralische Inkonsistenz geht, die ihre Integrität beschädigt.",
+        "quotes": [
+          {
+            "text": "am Ende des Tages ist es Björn Höcke, der Vorsitzende ist. Auch, wenn er formell nicht Vorsitzende ist. Erst die führende Figur der AfD. Am Ende des Tages geben extreme Kräfte den Ton an. Was ich Alice Weidel vorwerfe - Björn Höcke werfe ich vor, dass er Rechtsextremist ist. Alice Weidel werfe ich vor, dass sie schlimmer ist, Opportunistin. Vor wenigen Jahren waren sie noch dafür, dass Björn Höcke aus der Partei geschmissen wird wegen zu großem Rechtsextremismus. Der Bundesvorstand hatte das schon beschlossen, sie waren dafür, später haben sie gemerkt, er ist so mächtig, ihm führt kein Weg vorbei. Dann mache ich lieber einen Deal mit ihm. Sie sind jetzt vorne, machen einen eleganten, mittigen Eindruck im Wahlkampf. Am Ende sind sie nicht mehr als ein Feigenblatt für den Rechtsextremismus von Björn Höcke.",
+            "timestamp": "01:04:09",
+            "context": "Antwort auf Benders Kritik an Weidels Verhältnis zu Björn Höcke."
+          }
+        ],
+        "concrete_statements": [
+          "Weidel ist Opportunistin",
+          "Höcke ist Rechtsextremist",
+          "Weidel ist ein Feigenblatt für Extremismus"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Extremismus",
+          "AfD-Struktur",
+          "Demokratische Legitimität",
+          "Politische Glaubwürdigkeit"
+        ]
+      },
+      {
+        "title": "Rechtsextreme in der AfD-Fraktion – Grenzziehung und Parteistatute",
+        "timestamp_range": "01:13:39 - 01:14:26",
+        "theme_description": "Winkel kritisiert, dass die AfD Leute in ihrer Fraktion aufnimmt, die sich selbst als Nationalsozialisten bezeichnen.",
+        "question_asked": "Winkel fragt, wie es möglich ist, dass die AfD Leute in die Fraktion aufnimmt, die sich als Nationalsozialisten bezeichnen.",
+        "question_intent": "Klären, wo die demokratische Grenzziehung der AfD liegt und ob es überhaupt eine gibt.",
+        "position": "Winkel kritisiert, dass die AfD die Fraktion für Leute öffnet, die sich als Nationalsozialisten bezeichnen. Dies ist ein fundamentales Problem für eine demokratische Partei. Weidel versucht, dies zu beschönigen, indem sie sagt, es sei eine 'Fremdbezeichnung', aber Winkel macht deutlich, dass das nicht ausreichend ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winkel artikuliert eine klare Position: Die Aufnahme von Extremisten in die Fraktion ist ein demokratisches Problem, das nicht durch Verweis auf 'Fremdbezeichnungen' zu lösen ist.",
+        "quotes": [
+          {
+            "text": "Wenn sie Leuten ihre Fraktion aufnehmen, die sich als Nationalsozialisten bezeichnen,...",
+            "timestamp": "01:13:39",
+            "context": "Kritik an der AfD-Fraktion für die Aufnahme extremistischer Mitglieder."
+          }
+        ],
+        "concrete_statements": [
+          "AfD nimmt Menschen in die Fraktion auf, die sich als Nationalsozialisten bezeichnen"
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Extremismus",
+          "Fraktion",
+          "Demokratische Grenzziehung",
+          "Parteistruktur"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Trump hatte Selenskyj am Anfang ohne Anzug empfangen",
+        "timestamp": "00:04:08"
+      },
+      {
+        "claim": "Die US-Kommission unter Juncker/von der Leyen konnte Trump erfolgreich in Handelsfragen widerstehen – das war das einzige Erfolgsbeispiel",
+        "timestamp": "00:49:02"
+      },
+      {
+        "claim": "Der Bundesvorstand der AfD hatte beschlossen, Björn Höcke wegen Rechtsextremismus aus der Partei auszuschließen",
+        "timestamp": "01:04:09"
+      },
+      {
+        "claim": "Trump hat die Wahlergebnisse von 2020 nicht akzeptiert",
+        "timestamp": "00:22:31"
+      },
+      {
+        "claim": "Die Union hatte bereits Sondervermögen für andere Bereiche (z.B. Corona) eingerichtet",
+        "timestamp": "00:58:16"
+      }
+    ]
+  }
+}

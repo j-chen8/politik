@@ -1,0 +1,339 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-19-september-2024-102",
+    "video_id": "lanz-2024-09-19",
+    "politician": "Anton Hofreiter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "7bf37577970c1973",
+    "transcript_chars": 41908,
+    "caption_lines": 2152,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 18197,
+    "tokens_out": 7982,
+    "cost_usd": 0.0232428,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-02T16:33:28.380Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Anton Hofreiter verteidigte in dieser Talkshow die Grünen gegen Angriffe von CSU-Generalsekretär Martin Huber und warf der CSU vor, mit Lügen und Diffamierung gegen eine demokratische Partei zu arbeiten. Er betonte persönliche Sicherheitsbedrohungen bei Wahlkampfauftritten in Bayern, die er auf die Rhetorik von Markus Söder zurückführte, und argumentierte für sachliche Zusammenarbeit zwischen demokratischen Parteien auch unter schwierigen Umständen.",
+    "themes": [
+      {
+        "title": "Kanzlerkandidatur und CDU/CSU-Einigung",
+        "timestamp_range": "00:03:26 - 00:03:26",
+        "theme_description": "Die Frage, ob Martin Huber von Söders Verzicht auf die Kanzlerkandidatur zu Gunsten von Friedrich Merz vorher wusste.",
+        "question_asked": "Der Moderator fragte, ob Hofreiter Informationen darüber hatte, dass Hendrik Wüst die Kanzlerschaftserklärung abgeben würde und ob Hofreiter etwas davon wusste.",
+        "question_intent": "Den Grad der Vorinformation über das Verfahren und die Abstimmung innerhalb der Union-Spitze klären.",
+        "position": "Hofreiter äußerte sich zunächst, dass Huber nichts vorher wusste und dass 'sehr geschickt agiert' wurde – eine kurze, eher beiläufige Einschätzung. Er spielte auf die Strategie an, Söders Kanzlerkandidatur zu schwächen, wies aber auf die Tatsache hin, dass Friedrich Merz nicht mehr der Jüngste ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hofreiter beantwortete die Frage, wer was wusste, nicht direkt. Stattdessen kommentierte er eher taktisch-strategisch ('sehr geschickt agiert'), ohne auf die konkrete Frage zur Vorinformation einzugehen.",
+        "quotes": [
+          {
+            "text": "wir haben das sehr geschickt agiert. für Söder Kanzlerkandidat zu werden. Friedrich Merz ist auch nicht mehr der Jüngste. Hut ab, wer sehr klug.",
+            "timestamp": "00:03:26",
+            "context": "Als Reaktion auf die Frage, ob Hofreiter von Wüsts Erklärung vorher wusste."
+          }
+        ],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Kanzlerkandidatur CDU/CSU 2025",
+          "Kanzlerfrage"
+        ]
+      },
+      {
+        "title": "Windkraftausbau und Energiewende in Bayern",
+        "timestamp_range": "00:11:22 - 00:13:54",
+        "theme_description": "Hofreiter kritisierte die CSU-geführte Staatsregierung wegen mangelnden Windkraftausbaus in Bayern im Vergleich zum Bundestrend.",
+        "question_asked": "Der Moderator stellte keine direkten Frage; Hofreiter ergriff die Gelegenheit, auf Hubers pauschale Kritik an den Grünen zu reagieren und die CSU-Bilanz beim Windkraftausbau zu hinterfragen.",
+        "question_intent": "Huber hatte die Grünen als 'Cannabis berauscht' kritisiert und Habeck als 'Sargnagel' für die Wirtschaft bezeichnet; Hofreiter wollte das mit Fakten kontrastieren.",
+        "position": "Hofreiter verwies auf konkrete Zahlen: Im ersten Halbjahr unter der Bundesregierung seien 987 Genehmigungen für Windkraftwerke bundesweit erteilt worden, in Bayern aber nur 14. Er argumentierte, dass die CSU moderne Technologien sabotiere und dies der bayerischen wie deutschen Wirtschaft schade. Er hielt Huber vor, nicht zugeben zu wollen, dass diese Zahlen stimmen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hofreiter beantwortete die implizite Frage zur CSU-Bilanz beim Energiewandel mit spezifischen Zahlen und klarer Kritik. Er adressierte Hubers Kritik an den Grünen direkt durch Gegenbeispiele aus Bayern.",
+        "quotes": [
+          {
+            "text": "In ganz Deutschland haben wir im ersten Halbjahr 987 Genehmigung für Windkraftwerke geschafft. In Bayern 14 geschafft. Weil sie moderne Technologien sabotieren. Es schadet der Wirtschaft Bayern unter schadet auch der Wirtschaft in Deutschland.",
+            "timestamp": "00:11:22",
+            "context": "Reaktion auf Hubers pauschale Kritik an den Grünen als 'Cannabis berauscht'"
+          },
+          {
+            "text": "wir sind nicht mal in der Lage offensichtlich zuzugeben, ja diese Zahlen stimmen. Sie sagen seit Jahren, dass sie dabei zur werden wollen. Deswegen machen sie erstmalige Hausaufgaben.",
+            "timestamp": "00:13:54",
+            "context": "Nachfrage an Huber, warum die CSU die Windkraft-Bilanz nicht eingesteht"
+          }
+        ],
+        "concrete_statements": [
+          "Bayern: nur 14 Windkraftgenehmigungen im ersten Halbjahr (vs. bundesweit 987)",
+          "CSU sabotiert moderne Technologien",
+          "Dies schadet bayerischer und deutscher Wirtschaft"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Erneuerbare Energien",
+          "Windkraft-Ausbau"
+        ]
+      },
+      {
+        "title": "Koalitionsfähigkeit und politische Zusammenarbeit mit der Union",
+        "timestamp_range": "00:24:32 - 00:28:38",
+        "theme_description": "Hofreiter argumentierte dafür, dass die Grünen mit allen demokratischen Parteien, einschließlich CDU/CSU, zusammenarbeiten können.",
+        "question_asked": "Der Moderator fragte, ob Hofreiter als Vertreter der Grünen mit CDU und CSU zusammenarbeiten würde, besonders angesichts von Söders kategorischer Ablehnung.",
+        "question_intent": "Klären, ob die Grünen prinzipiell offen für Schwarz-Grün auf Bundesebene sind oder ob auch sie Grenzen ziehen.",
+        "position": "Hofreiter sagte, man müsse mit allen demokratischen Parteien Koalitionen erwägen, dazu gehöre auch die CDU. Man könne das im Moment nicht ausschließen. Er argumentierte, dass es eine 'Plattitüde' ist, jetzt schon Szenarien auszuschließen, wenn es eine Wahl geben wird. Er verwies darauf, dass Friedrich Merz in Interviews gesagt habe, man könne in einem halben Jahr neu schauen – was Hofreiter als realistischeren Umgang interpretierte. Er betonte auch, dass er gute persönliche Kontakte zu Union-Leuten hat, etwa zu Alexander Dobrindt (mit dem er 'per du' ist) und vielen CSU-Politikern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hofreiter antwortete auf die Koalitionsfrage mit einer klaren, offenen Position: Koalitionen mit der CDU sind nicht ausgeschlossen. Er kritisierte Söders kategorischen Ausschluss als unrealistisch und verwies auf persönliche Beziehungen zur Union.",
+        "quotes": [
+          {
+            "text": "Man muss mit allen demokratischen Parteien Koalition wegfallen, dazu gehört selbst verständlich auch die CDU. Das kann man im Moment nicht ausschließen.",
+            "timestamp": "00:24:32",
+            "context": "Antwort auf die Frage, ob Grüne mit CDU/CSU zusammenarbeiten würden"
+          },
+          {
+            "text": "Selbstverständlich ganz umfangreich. Ich habe einen guten Draht mit hinwies. Ich verstehe mich mit vielen mit Alexander Dobrindt würdig per du er ist ein kluger Kopf. Ich bin mit einer ganzen Reihe von CSU Politikern befreundet.",
+            "timestamp": "00:28:38",
+            "context": "Auf Frage nach persönlichen Kontakten zu Union-Leuten"
+          }
+        ],
+        "concrete_statements": [
+          "Grüne sind offen für Koalitionen mit CDU/CSU",
+          "Hofreiter hat gute persönliche Kontakte zu Union-Politikern",
+          "Söders kategorischer Ausschluss ist 'absurd' und übersieht, dass Wahlergebnisse erst zählen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsoptionen 2025",
+          "Schwarz-Grün",
+          "Bundestagswahl 2025"
+        ]
+      },
+      {
+        "title": "Diffamierung und Lügen gegen die Grünen",
+        "timestamp_range": "00:30:44 - 00:32:25",
+        "theme_description": "Hofreiter warf der CSU vor, mit Lügen und Diffamierungen gegen die Grünen zu arbeiten, speziell bezüglich angeblicher Insekten-Zwangsmaßnahmen.",
+        "question_asked": "Eigeninitiative: Huber hatte behauptet, dass grüne Wahlrechtsreformen CDU aus dem Bundestag 'killen' sollten, und kritisierte dies als 'politisches Stalking'; Hofreiter reagierte auf diese und weitere pauschale Anschuldigungen.",
+        "question_intent": "Der Moderator und Hofreiter wollten die Frage der angemessenen Kritik vs. Diffamierung in der politischen Auseinandersetzung klären.",
+        "position": "Hofreiter argumentierte, dass es nicht um berechtigte Kritik gehe, sondern um systematische Diffamierungen. Er verwies auf die Behauptung, die Grünen wollten Leute zwingen, Insekten zu essen – eine Lüge, die von Söder in vielen Reden verbreitet worden sei. Er betonte, dass man in Zeiten von Rechtsradikalismus, Fake News und hybridem Krieg nicht mit solchen Mitteln gegen demokratische Mitbewerber arbeiten dürfe. Sachliche Auseinandersetzung sei legitim, aber Lügen und Diffamierung nicht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hofreiter adressierte direkt die Frage nach dem Unterschied zwischen Kritik und Diffamierung, nannte konkrete Beispiele (Insekten-Behauptung) und entwickelte eine klare normative Position zum angemessenen Umgang in der Demokratie.",
+        "quotes": [
+          {
+            "text": "was sie hier gerade aufführen, das können Sie nachlesen Diffamierung für die Leute. Ich habe das auch in Bayern selber erlebt. Es geht nicht darum, wer die Grünen kritisiert. Ihr Ministerpräsident hat in vielen Reden behauptet, die Grünen würden die Leute zwingend Insekten verfrachten. Ich bin mir ganz sicher, dass auch Herr Söder weiß dass das gelogen ist.",
+            "timestamp": "00:30:44",
+            "context": "Reaktion auf Hubers Vorwürfe des 'politischen Stalking' gegen die Grünen"
+          },
+          {
+            "text": "Bei allen harten Auseinandersetzung auf einer Sachebene dürfen wir in den Zeiten von Rechtsradikalismus, einem Ausmaß an Fake News, einem hybriden Krieg, dürfen wir nicht so miteinander umgehen. Da kann man sich sachliche Dinge vorwerfen, aber man darf nicht mit Lügen und Diffamierung",
+            "timestamp": "00:30:44",
+            "context": "Normative Aussage zu angemessenem Umgang in der Demokratie"
+          }
+        ],
+        "concrete_statements": [
+          "Söder behauptet in vielen Reden, Grüne würden Leute zwingen, Insekten zu essen (Lüge)",
+          "Sachliche Kritik ist legitim, Diffamierung und Lügen sind nicht akzeptabel",
+          "In Zeiten von Rechtsradikalismus und Fake News darf man nicht mit Diffamierungen arbeiten"
+        ],
+        "related_bundestag_topics": [
+          "Politische Kultur",
+          "Rechtsextremismus",
+          "Desinformation/Fake News"
+        ]
+      },
+      {
+        "title": "CSU-Vorwürfe gegen Grüne und gegenseitige Anwürfe",
+        "timestamp_range": "00:36:32 - 00:45:33",
+        "theme_description": "Hofreiter reagierte auf Hubers Vorwürfe, dass Grüne die CDU aus dem Bundestag 'killen' wollten und dass Grüne rechts nicht von rechtsextrem unterscheiden.",
+        "question_asked": "Der Moderator und Melanie Amann fragten, ob es nicht auch legitim sei, wenn die Union die Grünen kritisiere, und ob Hubers Kritik am Wahlrechtsreformvorschlag berechtigt sei.",
+        "question_intent": "Die Frage nach der Reziprozität von Kritik und der berechtigten Grenzen von Auseinandersetzung.",
+        "position": "Hofreiter argumentierte, dass die CSU mit Lügen diffamiere statt sachlich zu kritisieren. Er verwies auf mangelnde Differenzierung seitens der Grünen zwischen rechts und rechtsextrem als Vorwurf, aber betonte, dass die CSU nicht der Typ sei, um das zu kritisieren: Die CSU vermeide es, rechts und rechtsextrem deutlich zu unterscheiden und habe die Neigung, Grüne und AfD in einen Topf zu werfen. Er argumentierte, dass überall in Europa konservative Parteien gegen Rechtsradikalismus zusammenarbeiteten – das sollte auch möglich sein, ohne dabei demokratische Gegner zu diffamieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Hofreiter beantwortete nicht primär die Frage zur Wahlrechtsreform oder zur Grünen-Kritik an der Union, sondern pivotierte zu einer Kritik an der CSU: dass diese mit Lügen und Diffamierungen arbeite und selbst nicht zwischen rechts und rechtsextrem unterscheide.",
+        "quotes": [
+          {
+            "text": "Ihr Ministerpräsident hat in vielen Reden behauptet, die Grünen würden die Leute zwingend Insekten verfrachten. Ich bin mir ganz sicher, dass auch Herr Söder weiß dass das gelogen ist. Mit solchen Lügen einen demokratischen Mitbewerber so zu diffamieren, das macht man ehrlich gesagt nicht.",
+            "timestamp": "00:36:32",
+            "context": "Reaktion auf Hubers Vorwurf des 'politischen Stalking'"
+          },
+          {
+            "text": "in diesen schwierigen Zeiten muss man vernünftig zusammenarbeiten können. Und das lehnen sie einfach so ab.",
+            "timestamp": "00:45:33",
+            "context": "Kritik an Hubers kategorischem Ausschluss von Zusammenarbeit"
+          }
+        ],
+        "concrete_statements": [
+          "CSU diffamiert Grüne mit Lügen statt sachlicher Kritik",
+          "CSU unterscheidet selbst nicht klar zwischen rechts und rechtsextrem",
+          "Konservative Parteien in Europa arbeiten gegen Rechtsextremismus zusammen"
+        ],
+        "related_bundestag_topics": [
+          "Politische Kultur",
+          "Extremismus-Abgrenzung",
+          "Koalitionsdiskurse"
+        ]
+      },
+      {
+        "title": "Persönliche Sicherheitsbedrohungen in Bayern",
+        "timestamp_range": "00:38:32 - 00:42:35",
+        "theme_description": "Hofreiter berichtete von verbalen Übergriffen und körperlichen Bedrohungen während Wahlkampfauftritte in Bayern und verband diese mit der politischen Rhetorik Söders.",
+        "question_asked": "Eigeninitiative: Nach einer Frage des Moderators, wie Hofreiter sich persönlich als Grüner in Bayern fühlt, erzählte er von Sicherheitsbedrohungen.",
+        "question_intent": "Der Moderator wollte verstehen, wie es sich anfühlt, als Grüner in Bayern zu agieren und wie persönlich Hofreiter die politischen Gräben erlebt.",
+        "position": "Hofreiter schilderte, dass er während des Landtagswahlkampfs in Bayern mehrfach von angetrunkenen Männern angegriffen wurde, die ihm sagten 'Hofreiter du gehörst nicht nach Bayern' und seine Sicherheit gefährdet haben. Er wurde mehrfach körperlich angegriffen. Er verband diese Erlebnisse direkt mit Söders Aussage 'Die Grünen gehören nicht zu Bayern', argumentierte, dass solche Aussagen zu Gewalttaten ermutigten. Er betonte, dass er als 'Prototyp grüner Bayer' – der bayerisch spricht – eine besondere Erwartung an den Ministerpräsidenten hat, dass dieser seine Sicherheit nicht durch polarisierende Aussagen gefährdet.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hofreiter antwortete detailliert auf die implizite Frage nach persönlichen Erlebnissen mit konkreten Beispielen von Bedrohungen und zog eine explizite Verbindungslinie zur politischen Rhetorik.",
+        "quotes": [
+          {
+            "text": "Zur Zeit das Landtagswahlkampf Bayern gab es immer wieder von angetrunkenen Männern die Ansage: Hofreiter du gehörst nicht nach Bayern. Während meiner Sicherheit gefährdet. Es war schon öfters so das sich gewaltsam angegriffen wurde.",
+            "timestamp": "00:38:32",
+            "context": "Persönlicher Bericht über Sicherheitsbedrohungen"
+          },
+          {
+            "text": "Weil ich bayerisch rede. Ich bin der Prototyp grüner Bayer. Da habe ich eine Erwartungshaltung an den Ministerpräsidenten, den ich nicht gewählt hat. Den ich nicht wählen würde, aber er ist gewählt. Er ist auch mein Ministerpräsident, ich möchte nicht, dass durch seine Aussagen meiner Bescheid gefährdet ist.",
+            "timestamp": "00:38:32",
+            "context": "Erklärung, warum ihn diese Erlebnisse besonders betroffen haben"
+          },
+          {
+            "text": "Es geht um die Aussage die Grünen gehören nicht zu Bayern. Das ermuntert zu Gewalttaten. Das habe ich jetzt schon öfters gehört.",
+            "timestamp": "00:40:41",
+            "context": "Verbindung zwischen Söders Rhetorik und erlebten Gewalttaten"
+          }
+        ],
+        "concrete_statements": [
+          "Hofreiter wurde bei Wahlkampfauftritten in Bayern mehrfach angegriffen",
+          "Verbale Anschuldigungen: 'Du gehörst nicht nach Bayern'",
+          "Körperliche Übergriffe ereigneten sich",
+          "Direkte Kausalität zwischen Söders Aussage 'Grüne gehören nicht zu Bayern' und Gewalttaten"
+        ],
+        "related_bundestag_topics": [
+          "Sicherheit von Mandatsträgern",
+          "Politische Gewalt",
+          "Politische Kultur"
+        ]
+      },
+      {
+        "title": "Energiewende und Wärmepumpenpolitik",
+        "timestamp_range": "00:47:39 - 00:49:10",
+        "theme_description": "Hofreiter verteidigte grüne Energiewende-Politik gegen den Vorwurf, dass das Heizungsgesetz zu viele Ölheizungen verkauft habe.",
+        "question_asked": "Der Moderator und Huber fragten nach der praktischen Wirkung des Heizungsgesetzes: Es seien mehr Ölheizungen verkauft worden denn je, was zeige, dass die grüne Policy kontraproduktiv sei.",
+        "question_intent": "Huber wollte zeigen, dass grüne Energiepolitik in der Praxis zu perversem Ergebnis führt.",
+        "position": "Hofreiter argumentierte, dass vielen Leuten klar werden müsse, dass eine Wärmepumpe nicht gleich eine Klimaanlage ist. Das Heizungsgesetz sei bereits mehrfach diskutiert worden. Der größere Punkt sei: Der Unterschied in der Klimapolitik zwischen Union und Grünen liege nicht in der Frage, ob man Klimaschutz macht, sondern wie. Die Union wolle Wärmepumpen durch Förderung und Möglichkeiten verbreiten, während Grüne (impliziert) eher Regulierung nutzten. Huber konterte, dass unter Schwarz-Grün (2009–2013) es besser gelaufen sei.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hofreiter wich der spezifischen Frage nach dem Heizungsgesetz-Effekt aus und verschob auf die allgemeine Frage Förderung vs. Regulierung. Er bestritt nicht die Tatsache der vermehrten Ölheizungsverkäufe.",
+        "quotes": [
+          {
+            "text": "vielen Leuten mal klar geworden, die Wärmepumpe ist nicht gleich eine Klimaanlage.",
+            "timestamp": "00:48:10",
+            "context": "Reaktion auf Kritik am Heizungsgesetz"
+          }
+        ],
+        "concrete_statements": [
+          "Wärmepumpe ist nicht gleich Klimaanlage (Öffentlichkeitsarbeit notwendig)",
+          "Unterschied: Förderung vs. Regulierung in der Energiepolitik"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Heizungsgesetz",
+          "Klimapolitik"
+        ]
+      },
+      {
+        "title": "Markus Söders Rhetorik und politische Glaubwürdigkeit",
+        "timestamp_range": "00:52:30 - 00:56:02",
+        "theme_description": "Hofreiter stellte in Frage, ob Söder bei seinen Äußerungen zur Energiewende und zu Schwarz-Grün ernst zu nehmen ist, angesichts bisheriger Positionen.",
+        "question_asked": "Melanie Amann stellte die Frage, ob Söders Ablehnung von Schwarz-Grün glaubwürdig ist, angesichts dessen, dass er vor Jahren 'Schwarz-Grün' sein Lieblingsprojekt genannt habe.",
+        "question_intent": "Die Inkonsistenz in Söders Positionen zur Grünen-Koalition aufzuzeigen.",
+        "position": "Hofreiter argumentierte, dass Söder früher den Kohleausstieg früher machen wollte, als andere Bundesländer, den Verbrennungsmotor 2025 aussteigen wollte – alles ehrgeizigere grüne Ziele. Söders jetzige Ablehnung von Schwarz-Grün müsse vor diesem Hintergrund bewertet werden. Hofreiter verwies auf die mangelnde Glaubwürdigkeit und sagte generell: 'Meine Erfahrung mit der CDU ist, sie erzählen etwas, machen dann aber was anderes.' Dies sei ein zentrales Vertrauensproblem.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hofreiter beantwortete die Frage nach Söders Glaubwürdigkeit mit Beispielen seiner wechselnden Positionen zur Energiewende und kritisierte die Unzuverlässigkeit der CDU/CSU generell.",
+        "quotes": [
+          {
+            "text": "meine Erfahrung mit der CDU ist, sie erzählen etwas, machen dann aber was anderes.",
+            "timestamp": "00:52:43",
+            "context": "Kritik an mangelnder Glaubwürdigkeit der Union bei Klimapolitik"
+          }
+        ],
+        "concrete_statements": [
+          "Söder wollte früher Kohleausstieg früher als andere Länder",
+          "Söder wollte Verbrennungsmotor 2025 aussteigen",
+          "Söders jetzige Ablehnung von Schwarz-Grün widerspricht früheren Positionen",
+          "CDU/CSU sind nicht glaubwürdig: 'erzählen etwas, machen dann aber was anderes'"
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Kohleausstieg",
+          "Verkehrswende"
+        ]
+      },
+      {
+        "title": "Friedrich Merz vs. Markus Söder als Kanzlerkandidat",
+        "timestamp_range": "00:56:02 - 00:58:35",
+        "theme_description": "Hofreiter kommentierte die Unterschiede zwischen Merz und Söder und deren Chance auf die Kanzlerschaft.",
+        "question_asked": "Der Moderator fragte, was Friedrich Merz besser kann als Markus Söder, und ob es wahrscheinlich ist, dass eine Schwarz-Grün-Koalition eintreten würde.",
+        "question_intent": "Die Unterscheidung zwischen den beiden potenziellen Kandidaten und die Realisierbarkeit von Koalitionsszenarien.",
+        "position": "Hofreiter sagte zunächst, dass dies 'Politikphrasing' sei, das Huber da von sich gebe. Als auf die Frage nach Merz vs. Söder gedrückt, sagte er, dass beide starke Parteivorsitzende sind und einen 'Bombenwahlkampf' führen würden – aber dass dies nur Phrasen sind. Er merkte auch an, dass Söder 2021 ebenfalls gesagt habe, Laschet habe seine volle Unterstützung. Der Punkt: Man könne aus bisherigen Zusagen nicht auf zukünftiges Verhalten schließen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hofreiter beantwortete die Frage zu Merz vs. Söder nicht substanziell, sondern kritisierte stattdessen die Phrase-Natur solcher Vergleiche. Er wich der spezifischen Frage aus.",
+        "quotes": [
+          {
+            "text": "das Politik Phrasen, die sie von sich geben.",
+            "timestamp": "00:56:21",
+            "context": "Reaktion auf Hubers Antwort zu Merz vs. Söder"
+          }
+        ],
+        "concrete_statements": [
+          "Merz und Söder sind beide starke Parteivorsitzende",
+          "Bisherige Zusagen (z.B. Söders 2021 zu Laschet) sind nicht verlässlich für zukünftiges Verhalten"
+        ],
+        "related_bundestag_topics": [
+          "Kanzlerkandidatur",
+          "CDU/CSU-Strategie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In Deutschland wurden im ersten Halbjahr 987 Genehmigungen für Windkraftwerke erteilt",
+        "timestamp": "00:11:22"
+      },
+      {
+        "claim": "Bayern erteilte im ersten Halbjahr unter CSU-Staatsregierung nur 14 Genehmigungen für Windkraftwerke",
+        "timestamp": "00:11:22"
+      },
+      {
+        "claim": "Hofreiter wurde bei Wahlkampfauftritten in Bayern mehrfach körperlich angegriffen",
+        "timestamp": "00:38:32"
+      },
+      {
+        "claim": "Markus Söder hat in vielen Reden behauptet, Grüne würden Leute zwingen, Insekten zu essen",
+        "timestamp": "00:30:44"
+      },
+      {
+        "claim": "Markus Söder nannte Schwarz-Grün sein 'Lieblingsprojekt'",
+        "timestamp": "00:52:30"
+      }
+    ]
+  }
+}

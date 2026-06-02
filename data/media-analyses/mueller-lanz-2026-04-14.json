@@ -1,0 +1,319 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-14-april-2026-100",
+    "video_id": "lanz-2026-04-14",
+    "politician": "Sepp Müller",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "1ea98d30278a885b",
+    "transcript_chars": 70071,
+    "caption_lines": 3434,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 28100,
+    "tokens_out": 7233,
+    "cost_usd": 0.025706,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 2,
+      "themenwechsel": 2,
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 3
+    },
+    "generated_at": "2026-06-02T16:33:28.466Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Sepp Müller verteidigte die Reaktion der Koalition auf die Energiekrise und den Tankrabatt als schnellste verfügbare Maßnahme, räumte aber ein, dass zielgerichtetere Lösungen wünschenswert wären. Er argumentierte mehrfach mit konkreten Herausforderungen von Pendlern und Unternehmern, während er Kritik an der Kommunikation innerhalb der Koalition abwehrte und auf strukturelle Lösungen durch Kartellrecht versetzte.",
+    "themes": [
+      {
+        "title": "Bewertung von Trumps Jesus-Bild und Angriff auf den Papst",
+        "timestamp_range": "00:04:27 - 00:04:55",
+        "theme_description": "Sepp Müller äußert sich zum Konflikt zwischen Trump und dem Papst über das umstrittene Jesus-Bild.",
+        "question_asked": "Was geht Ihnen als Christdemokrat durch den Kopf, wenn Sie so etwas mitkriegen?",
+        "question_intent": "Der Moderator fragt nach Müllers persönlicher Reaktion als Vertreter einer christlichen Partei auf Trumps provokative Äußerung.",
+        "position": "Müller charakterisiert Trumps Verhalten als \"anmaßend\" und kritisiert den Misskredit, den Trump dem Papst zufügt. Er wendet sich gegen die Art, wie Trump den Papst angreift, ohne jedoch eine umfassendere Debatte über Trumps Politik zu führen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller antwortet direkt auf die Frage nach seiner Haltung als Christdemokrat und nimmt klar Position gegen Trumps Verhalten, ohne auszuweichen.",
+        "quotes": [
+          {
+            "text": "Einige in meiner Heimat bezeichnen ihn als Wahnsinnigen. Es ist anmaßend, wie er den Papst hier angeht. Einen Misskredit zu bringen, das ist nicht gut.",
+            "timestamp": "00:04:43",
+            "context": "Sepp Müller wird nach seiner Sicht als Christdemokrat auf Trumps Jesus-Bild und Angriff auf den Papst gefragt."
+          }
+        ],
+        "concrete_statements": [
+          "Trumps Verhalten ist anmaßend",
+          "Das fügt dem Papst Misskredit zu"
+        ],
+        "related_bundestag_topics": [
+          "Transatlantische Beziehungen",
+          "Wertepolitik"
+        ]
+      },
+      {
+        "title": "Öffentlicher Streit Klingbeil-Reiche und Koalitionskommunikation",
+        "timestamp_range": "00:10:56 - 00:21:02",
+        "theme_description": "Müller wird zur Konfrontation zwischen Finanzminister Klingbeil und Wirtschaftsministerin Reiche befragt und muss die mangelnde Absprache der Koalition im Krisenmodus erklären.",
+        "question_asked": "Was ist am Wochenende zwischen Herr Klingbeil und der Wirtschaftsministerin passiert? und Herr Müller, ich würde gerne verstehen, in einer solchen Krise, wie es zu etwas erklären ist?",
+        "question_intent": "Der Moderator will verstehen, wie es möglich ist, dass zwei Minister in einer Krisensituation öffentlich aneinander geraten, statt sich koordiniert abzustimmen.",
+        "position": "Müller argumentiert zunächst sachlich, dass die Diskussion von Herausforderungen Teil der Demokratie sei. Er lenkt dann ab auf die Taskforce-Arbeit, wo Einvernehmen herrsche, und betont, dass Friedrich Merz die Situation geklärt und deutlich gemacht habe, dass gemeinsame Positionen nötig seien. Er weist auch darauf hin, dass er nicht die Termine der Ministerin macht und den Fokus auf Lösungen legt, die gefunden worden seien.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Müller beantwortet nicht die Kernfrage nach der mangelnden Koordination und dem schlechten öffentlichen Bild, sondern lenkt auf die Arbeitsweise der Taskforce und die Lösungsfindung ab. Er weicht der Kritik am Kommunikationsversagen aus.",
+        "quotes": [
+          {
+            "text": "Das gehört in der Demokratie dazu, dass wir miteinander reden, Bundeskanzler hat am Donnerstag richtigerweise versucht, die Taskforce wollte Ergebnisse, deswegen hat der Bundeskanzler Donnerstag versucht diese gemeinsame Position zu erzeugen, das ist nicht gelungen.",
+            "timestamp": "00:11:27",
+            "context": "Moderator fragt nach dem Streit zwischen Klingbeil und Reiche"
+          },
+          {
+            "text": "Die Wirtschaftsministerin führt parallel dazu ähnliche Gespräche... Die Pressekonferenz hat eine Viertelstunde gedauert und die Wirtschaftsministerin hatte davor oder danach andere wichtige Termine.",
+            "timestamp": "00:17:24",
+            "context": "Moderator kritisiert, dass die Ministerin nicht zum Treffen mit Klingbeil kam, aber eine Pressekonferenz abhielt"
+          }
+        ],
+        "concrete_statements": [
+          "Friedrich Merz hat die Situation am Wochenende geklärt",
+          "Die Koalitionsfraktionen erwarten gemeinsame Lösungen",
+          "Am Samstag wurden Lösungen verständigt"
+        ],
+        "evasion_note": "Müller weicht wiederholten Nachfragen des Moderators zur Kommunikationskrise aus, indem er auf die Ergebnisse der Taskforce verweist statt die Kernfrage zur öffentlichen Koordinationskrise zu beantworten.",
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Regierungskommunikation",
+          "Energiepreiskrise"
+        ]
+      },
+      {
+        "title": "Übergewinnssteuer und Kartellrecht als Preisüberwachung",
+        "timestamp_range": "00:24:36 - 00:27:33",
+        "theme_description": "Müller wird nach seiner Position zu einer Übergewinnssteuer auf Mineralölkonzerne befragt und erklärt die Alternative durch verschärftes Kartellrecht.",
+        "question_asked": "Würden Sie mitgehen bei einer Übergewinnssteuer für Mineralölkonzerne?",
+        "question_intent": "Der Moderator will wissen, ob Müller sich eine direkte Besteuerung von Unternehmensgewinnen vorstellen kann, um die Entlastungen gegenzufinanzieren.",
+        "position": "Müller stimmt zu, dass die Konzerne \"an die Leine\" genommen werden müssen und dass profitgierig kalkuliert wird. Er lehnt aber eine Übergewinnssteuer ab und setzt stattdessen auf ein verschärftes Kartellrecht, das die Preisbildung überwacht. Das Kartellamt soll sich neben den Preiskalkulator setzen und die Kalkulationen nachverfolgen. Müller betont, dass dies neuer ist als frühere Ampel-Ansätze, warnt aber auch, dass die bisherigen EU-Übergewinststeuern (2,5 Milliarden Euro) noch beklagt werden und kaum Geld geflossen ist.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Müller antwortet nicht mit \"Ja, wir unterstützen eine Übergewinnssteuer\", sondern wendet substantiell gegen die Übergewinnssteuer ein und bietet stattdessen das Kartellrecht als bessere Lösung an. Er kritisiert indirekt die früheren Versuche der Ampel.",
+        "quotes": [
+          {
+            "text": "Wir sind uns bei dem Punkt einig, dass wir die Konzerne an der Leine nehmen müssen. Das haben alle gesehen, das ist auch nachweisbar, deswegen haben wir bewusst das Kartellrecht verschärft, dieses Recht lässt es zu, dass dann einer nicht ordentlich stattgefundene Preisbildung zulasten von Verbrauchern stattfindet, da könnte das Kartellrecht abschöpfen.",
+            "timestamp": "00:24:36",
+            "context": "Moderator fragt, ob Müller eine Übergewinnssteuer unterstützt"
+          },
+          {
+            "text": "zu den 2 Milliarden Euro, die werden beklagt. Weil genau das, was ich erklärt habe, davon ist noch kaum ein Euro geflossen. Das ist noch alles eine Schattenbuchung, wenn man so etwas macht, dann muss man es richtig rechtlich sauber machen.",
+            "timestamp": "00:27:05",
+            "context": "Müller erklärt, warum die EU-Übergewinnssteuer wenig wirkt"
+          }
+        ],
+        "concrete_statements": [
+          "Kartellrecht wird verschärft, nicht Übergewinnssteuer",
+          "Kartellamt sitzt jetzt neben Preiskalkulator",
+          "Beweislastumkehr eingeführt",
+          "Kartellamt hat Briefe ausgeschickt"
+        ],
+        "related_bundestag_topics": [
+          "Kartellrecht und Wettbewerbspolitik",
+          "Energiepreiskrise",
+          "Verbraucherschutz"
+        ]
+      },
+      {
+        "title": "Effektivität und Ausgestaltung des Tankrabatts",
+        "timestamp_range": "00:29:03 - 00:32:58",
+        "theme_description": "Müller wird zu seiner Unterstützung des Tankrabatts befragt, nachdem er diesen vorher mehrfach kritisiert hatte, und erklärt die Umschwenkung.",
+        "question_asked": "Wie finden Sie den Tankrabatt? und Warum haben Sie vorher dagegen argumentiert und jetzt dafür?",
+        "question_intent": "Der Moderator möchte Müllers Widerspruch zwischen früherer Kritik am Tankrabatt und jetziger Unterstützung klären und hinterfragen, ob er konsistente Positionen vertritt.",
+        "position": "Müller räumt ein, dass der Tankrabatt nicht ideal ist und er sich zielgerichtetere Maßnahmen vorstellen könnte, aber argumentiert, dass dies die schnellste umsetzbare Maßnahme sei. Die entscheidende Änderung zur Rechtfertigung ist das neue Kartellrecht, das ab 1. April in Kraft trat und die Weitergabe der Steuerentlastung überwachen kann. Er argumentiert auch pragmatisch mit Pendlern und Pflegekräften, die die Tankrechnungen nicht bezahlen können. Er kündigt an, dass nach zwei Monaten zielgerichtetere Maßnahmen folgen könnten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller erklärt den Sinneswandel mit dem neuen Kartellrecht und nennt pragmatische Gründe. Er beantwortet aber nicht überzeugend, warum seine früheren sachlichen Kritiken (z.B. \"bringt nichts\", \"Gießkanne\") durch das neue Kartellrecht entkräftet sein sollen, wenn die Gießkannen-Kritik weiterhin gültig ist.",
+        "quotes": [
+          {
+            "text": "Das war eine Sache, die am schnellsten umsetzbar ist. Ich persönlich hätte mir zielgerichtetere Maßnahmen vorstellen können, das ging aber in dieser kurzen Zeit nicht, wir brauchen jetzt die Entlastung.",
+            "timestamp": "00:29:03",
+            "context": "Moderator fragt, wie Müller den Tankrabatt findet"
+          },
+          {
+            "text": "Nein, das bleibt deswegen richtig, weil zum 1. April das neue Kartellrecht in Kraft getreten ist, mit diesem können wir jetzt nachvollziehen, dass diese 17 Cent durchgereicht werden.",
+            "timestamp": "00:43:05",
+            "context": "Müller erklärt seine Position-Umschwenkung"
+          }
+        ],
+        "concrete_statements": [
+          "Tankrabatt ist schnellste Umsetzungsmöglichkeit",
+          "Zielgerichtetere Maßnahmen folgen nach zwei Monaten wenn nötig",
+          "Neues Kartellrecht ermöglicht Kontrolle der Weitergabe",
+          "Es wird ein drittes Paket folgen müssen"
+        ],
+        "related_bundestag_topics": [
+          "Energiepreiskrise",
+          "Steuern und Abgaben",
+          "Kartellrecht"
+        ]
+      },
+      {
+        "title": "Krisenbonus für Arbeitnehmer und Unternehmerbeteiligung",
+        "timestamp_range": "00:36:06 - 00:37:50",
+        "theme_description": "Müller wird nach seiner Haltung zum Krisenbonus von 1.000 Euro befragt, den der öffentliche Dienst erhält, Privatunternehmen aber freiwillig entrichten sollen.",
+        "question_asked": "Sind Sie für oder gegen den Krisenbonus von 1.000 Euro für Arbeitnehmer?",
+        "question_intent": "Der Moderator will klären, ob Müller diese Maßnahme unterstützt oder ablehnt, und kritisiert das Risiko einer Erwartungshaltung bei unklarem Finanzierungsmodell.",
+        "position": "Müller gibt zu, dass er überrascht war vom Krisenbonus. Er lehnt ihn ab mit der Begründung, dass die Wirtschaft ohnehin schwer unter Druck ist und nicht alle Unternehmer ihn leisten können. Er würde in dieser Situation dagegen stimmen. Gleichzeitig räumt er ein, dass es Unternehmer wie Rossmann gibt, die das zahlen können. Er kritisiert die Staatskommunikation, die keine unbegrenzten Erwartungshaltungen schaffen darf.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Müller antwortet klar auf die Frage und teilt seine persönliche Position mit: Er ist gegen den Krisenbonus in dieser Situation. Er begründet dies differenziert mit der wirtschaftlichen Lage.",
+        "quotes": [
+          {
+            "text": "Ich selbst war überrascht. Wir sehen, die Wirtschaft ist schwer unterwegs. Deshalb kann ich jeden Arbeitgeber verstehen, da sich das nicht leisten kann. Ich wäre in dieser Situation dagegen, dass zahlen zu können.",
+            "timestamp": "00:36:06",
+            "context": "Moderator fragt nach Müllers Haltung zum Krisenbonus"
+          }
+        ],
+        "concrete_statements": [
+          "Krisenbonus wird nicht vollständig von allen Unternehmern gezahlt",
+          "Prekär Beschäftigte und Rentner profitieren nicht",
+          "Der Staat muss klarmachen, dass nicht alle etwas bekommen können"
+        ],
+        "related_bundestag_topics": [
+          "Lohnpolitik und Tarifvertrag",
+          "Wirtschaftliche Entlastung",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Staatliche Sparpolitik versus höhere Steuern und Vermögensabgaben",
+        "timestamp_range": "00:37:50 - 00:41:03",
+        "theme_description": "Müller wird gefragt, ob die CDU eine Vermögenssteuer oder Erbschaftssteuerreform in Betracht zieht, lehnt dies aber ab und argumentiert stattdessen für Staatseinsparungen.",
+        "question_asked": "Es wäre schön, wenn man Verteilungsdiskussionen führen würde über Vermögenssteuer oder Erbschaftsteuerreform – warum macht die CDU das nicht?",
+        "question_intent": "Der Moderator fragt, warum die CDU nicht progressive Steuermodelle zur Gegenfinanzierung in Erwägung zieht und stattdessen Sparmaßnahmen priorisiert.",
+        "position": "Müller argumentiert, dass der Staat in der Vergangenheit noch nie so viele Steuern eingenommen habe und dass \"bei sich selbst anfangen\" mit Sparmaßnahmen besser sei als ad-hoc Steuererhöhungen. Er nennt Beispiele: deutsche Energieagentur (60 Millionen Euro), unnötige Förderprogramme, die nicht Aufgabe des Bundes sind. Er warnt vor der historischen Leistung von Steuererhöhungen, insbesondere mit Verweis auf Großbritannien, und kritisiert die Idee, der Staat könne \"Geld nehmen und besser verteilen\". Er akzeptiert Schulden für Infrastruktur und Verteidigung, hat aber \"Bauchschmerzen\", diese an die nächste Generation weiterzugeben.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Müller antwortet nicht mit einer Diskussion über Progressive Steuern, sondern verschiebt das Thema auf Staatseinsparungen und wirtschaftliche Philosophie. Er behandelt nicht die konkrete Frage nach Vermögenssteuer.",
+        "quotes": [
+          {
+            "text": "Dieser Staat hat in der Vergangenheit noch nie so viele Steuern eingenommen werden. Wir sollten erst mal bei uns anfangen. Brauchen wir noch eine deutsche Energieagentur, die für über 60 Millionen Euro zu arbeiten leistet für Ministerien, die Expertise drin hat.",
+            "timestamp": "00:39:28",
+            "context": "Müller wird nach seiner Haltung zu Vermögenssteuer befragt"
+          },
+          {
+            "text": "ich mache keinen Hehl daraus, dass ich bis heute Bauchschmerzen habe diese Schulden durch meinen Sohn, Enkelkinder zurückzuzahlen.",
+            "timestamp": "00:41:12",
+            "context": "Müller erklärt seine Skepsis gegen Schuldenaufnahme"
+          }
+        ],
+        "concrete_statements": [
+          "Keine Erhöhung der Steuern, sondern Einsparungen beim Staat",
+          "Deutsche Energieagentur könnte eingespart werden",
+          "Sparmaßnahmen vor Steuererhöhungen",
+          "Bedenken gegen hohe Schuldenaufnahme für zukünftige Generationen"
+        ],
+        "related_bundestag_topics": [
+          "Fiskalpolitik und Haushalt",
+          "Steuerpolitik",
+          "Sozialpolitik und Umverteilung"
+        ]
+      },
+      {
+        "title": "Diskussion über Abschaffung von Feiertagen",
+        "timestamp_range": "00:37:50 - 00:39:28",
+        "theme_description": "Der Moderator fragt Müller, ob in der CDU über die Abschaffung von Feiertagen zur Kostenersparnis diskutiert wird.",
+        "question_asked": "Ist es wahr, dass Sie über die Abschaffung eines Feiertags diskutiert haben? Der Spiegel meldet das. Können Sie das?",
+        "question_intent": "Der Moderator will wissen, ob die CDU auf Spardruck hin auch Feiertage abschaffen erwägt und wie Müller dies bewertet.",
+        "position": "Müller sagt, dass er darüber nicht diskutiert hat und es heute zum ersten Mal hört. Er macht klar, dass er sich erst eine Meinung bilden muss. Er verweist darauf, dass andere Länder Feiertage abgeschafft haben, und dass dies eine gesamtgesellschaftliche Diskussion sein müsse (1. Mai, Pfingstmontag, Ostermontag). Er charakterisiert die Diskussion als Symptom einer Umbruchsituation, in der man aus einer Zeit komme, \"wo wir mit viel Geldprobleme zugeschüttet haben\" und dies nun nicht mehr möglich sei.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller antwortet auf die Frage, behauptet aber, nichts davon zu wissen. Er rahmt das als breitere Diskussion über verteilungspolitische Prioritäten ein, ohne sich klar zu positionieren.",
+        "quotes": [
+          {
+            "text": "Ich höre das heute zum ersten Mal. Da müsste ich mir erst mal eine Meinung darüber bilden. Das zeigt ja, in welcher Situation wir sind, andere Länder haben auch Feiertage abgeschafft. Ob das der 1. Mai oder Pfingstmontag oder Ostermontag ist, darüber müssen wir uns gesamtgesellschaftlich unterhalten.",
+            "timestamp": "00:38:30",
+            "context": "Moderator fragt nach Diskussionen über Feiertags-Abschaffung in der CDU"
+          }
+        ],
+        "concrete_statements": [
+          "Persönlich hat Müller darüber nicht diskutiert",
+          "Gesamtgesellschaftliche Diskussion ist nötig",
+          "Dies zeigt die Übergangsphase von Überfluss zu Sparmaßnahmen"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsrecht und Feiertage",
+          "Staatliche Sparmaßnahmen",
+          "Gesellschaftliche Prioritäten"
+        ]
+      },
+      {
+        "title": "Widerspruch zwischen früheren Aussagen und aktuellem Kurs zum Tankrabatt",
+        "timestamp_range": "00:41:54 - 00:44:49",
+        "theme_description": "Der Moderator konfrontiert Müller mit seinen Zitaten von März/April gegen den Tankrabatt und fragt, ob diese noch gültig sind oder er seine Meinung grundlegend geändert hat.",
+        "question_asked": "Sie haben am 5. März gegen Aktionismus und Tankrabatt argumentiert, am 13. April nennen Sie ihn plötzlich ein starkes Signal – was ist wahr? Waren Ihre früheren Aussagen falsch?",
+        "question_intent": "Der Moderator möchte Müllers Inkonsistenz aufdecken und fragen, ob er seine Position opportunistisch angepasst hat oder ob es sachliche Gründe für die Umschwenkung gibt.",
+        "position": "Müller insistiert, dass seine früheren Aussagen nicht falsch werden durch die neuen Umstände. Die Erklärung ist das neue Kartellrecht, das ab 1. April in Kraft trat. Mit diesem Recht kann die 17-Cent-Weitergabe nachverfolgt werden. Müller zitiert den Satz \"Politik ist die Kunst des Möglichen\" und argumentiert, dass Politik handlungsfähig sein muss. Er räumt ein, dass er sich persönlich zielgenauere Maßnahmen wünscht, wenn sie schneller umsetzbar wären.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Müller erklärt, warum die früheren Aussagen im Kontext des neuen Kartellrechts nicht \"falsch\" sind, beantwortet aber nicht vollständig die Kritik, dass die Gießkannen-Problematik weiterhin besteht und das Kartellrecht diese nicht aufhebt.",
+        "quotes": [
+          {
+            "text": "Nein, das bleibt deswegen richtig, weil zum 1. April das neue Kartellrecht in Kraft getreten ist, mit diesem können wir jetzt nachvollziehen, dass diese 17 Cent durchgereicht werden. 'Politik ist die Kunst des möglichen', wir müssen es möglich machen, dass Politik auch handlungsfähig ist.",
+            "timestamp": "00:43:05",
+            "context": "Moderator konfrontiert Müller mit seinen früheren kritischen Aussagen zum Tankrabatt"
+          },
+          {
+            "text": "Die werde nicht falsch dadurch. Der Hinweis ist, das Kartellrecht wird dafür Sorge tragen, dass dieses Geld auch durchgereicht wird, wenn nicht, wird das Kartellamt diese Über-Gewinne abschöpfen.",
+            "timestamp": "00:43:58",
+            "context": "Müller verteidigt seine Position-Umschwenkung"
+          }
+        ],
+        "concrete_statements": [
+          "Kartellrecht vom 1. April ermöglicht Überwachung",
+          "17 Cent müssen weitergereicht werden oder werden abgeschöpft",
+          "Zielgerichtetere Maßnahmen sind wünschenswert, aber nicht schnell umsetzbar"
+        ],
+        "related_bundestag_topics": [
+          "Kartellrecht",
+          "Energiepreiskrise",
+          "Politische Konsistenz"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das neue Kartellrecht ist zum 1. April in Kraft getreten",
+        "timestamp": "00:43:05"
+      },
+      {
+        "claim": "Mit dem neuen Kartellrecht können die 17 Cent Steuerentlastung nachverfolgt werden",
+        "timestamp": "00:43:05"
+      },
+      {
+        "claim": "Die EU-Übergewinnssteuer von 2022/23 hat Deutschland 2,5 Milliarden Euro eingespielt",
+        "timestamp": "00:24:36"
+      },
+      {
+        "claim": "Monika Schnitzer (Wirtschaftsweise) hat den Tankrabatt als schlechteste Lösung kritisiert",
+        "timestamp": "00:31:56"
+      },
+      {
+        "claim": "Der Harzer Verkehrsbetriebe Geschäftsführer kann seine Subunternehmen nicht mehr bezahlen wegen der Spritpreise",
+        "timestamp": "00:34:09"
+      },
+      {
+        "claim": "70 % der Menschen wohnen im ländlichen Raum",
+        "timestamp": "00:33:49"
+      }
+    ]
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-4-dezember-2025-100",
+    "video_id": "lanz-2025-12-04",
+    "politician": "Felix Banaszak",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "ca73a81f66b89689",
+    "transcript_chars": 55286,
+    "caption_lines": 2761,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23035,
+    "tokens_out": 7539,
+    "cost_usd": 0.024292,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-02T16:33:28.196Z",
+    "batch_id": "msgbatch_01CNdjBM4CHNc2VRKwtod5WH"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Felix Banaszak, Grünen-Parteichef, diskutierte in dieser Talkshow über die neue Orientierung der Grünen hin zu mehr gesellschaftlichem Verständnis für Arbeiter und Industrieregionen, über die Glaubwürdigkeit dieser Neuausrichtung angesichts früherer Positionen, und über die richtige demokratische Antwort auf die AfD. Er argumentierte durchgehend für eine Kombination aus klarer ideologischer Grenzziehung gegenüber Rechtsextremisten und parallelem Aufbau glaubwürdiger Angebote für verunsicherte Wähler.",
+    "themes": [
+      {
+        "title": "Neue Grünen-Botschaft: Auto als Freiheit statt Verbot",
+        "timestamp_range": "00:04:07 - 00:05:45",
+        "theme_description": "Felix Banaszak erklärt seine Parteitagsrede zur Wahrnehmung des Autos in der Arbeiterschaft und stellt dar, wie die Grünen Technologiewechsel statt Verbote kommunizieren wollen.",
+        "question_asked": "Moderator fragt, ob Banaszaks Äußerung zum Auto als Freiheit auf großes Interesse gestoßen sei, und merkt dann an, dass die Grünen das Image einer Verbotspartei hätten.",
+        "question_intent": "Verständnis dafür zu prüfen, ob Banaszak die Kritik, die Grünen seien eine Verbotspartei, ernst nimmt und wie er diese neue Botschaft erklärt.",
+        "position": "Banaszak betont, dass seine Rede große Resonanz ausgelöst hat und nicht für unkontrollierte Automobilität plädierte, sondern dafür, Menschen in ihrer Lebenswirklichkeit zu nehmen und ihnen Alternativen anzubieten – etwa besseren Nahverkehr. Das Auto sei für ihn persönlich ein \"Gebrauchsgegenstand\", in Berlin habe er eines angeschafft, \"weil es hilfreich ist\". Die Kernbotschaft war: Menschen nicht als Gegner des Wandels erleben lassen, sondern als Partner.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak antwortet direkt auf die Frage zur Verbotspartei-These und erklärt das Dilemma und seine Lösung präzise: klares Profil + emotionale Nähe. Er belegt seine Position mit persönlichem Beispiel.",
+        "quotes": [
+          {
+            "text": "Es geht darum Menschen so zu nehmen, wie sie sind. Anzuerkennen, dass ein Auto, in meiner persönlichen Geschichte war das auch erst einmal Freiheit.",
+            "timestamp": "00:04:07",
+            "context": "Erläuterung des Ansatzes, Menschen nicht als Gegner des Wandels zu sehen."
+          },
+          {
+            "text": "Den Anspruch im Programm hochzuhalten, aber die emotionale Kluft zwischen unseren Teilen der Bevölkerung abzubauen, das mit einem sozialen Anspruch zu verbinden.",
+            "timestamp": "00:06:17",
+            "context": "Darlegung der strategischen Alternative zwischen klarem Profil und Beliebigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Fährt selbst ein Auto, fährt es bis es auseinanderfällt",
+          "Sucht nach neuem Weg zwischen klarem Profil und Beliebigkeit",
+          "Will Anspruch im Programm hochhalten und gleichzeitig emotionale Kluft abbauen"
+        ],
+        "related_bundestag_topics": [
+          "Verkehrswende",
+          "Energiewende",
+          "Arbeitsplatzsicherung in Industrieregionen"
+        ]
+      },
+      {
+        "title": "Zukunftsoptimismus gegen Nostalgie und Pessimismus",
+        "timestamp_range": "00:07:03 - 00:09:20",
+        "theme_description": "Banaszak rechtfertigt den Grünen-Slogan 'Zukunft ist für alle da' als Antwort auf gesellschaftliche Tendenzen, die Vergangenheit zu idealisieren, und betont die Notwendigkeit einer Partei, die mit Hoffnung auftritt.",
+        "question_asked": "Moderator hakt nach dem Slogan 'Zukunft ist für alle da' nach und erwähnt, dass andere Themen (AfD-Jugend, Bärbel Bas) interessanter waren als der Grünen-Parteitag.",
+        "question_intent": "Zu verstehen, warum dieser Slogan gewählt wurde und ob Banaszak eingesteht, dass der Parteitag medial untergegangen ist.",
+        "position": "Banaszak erklärt, dass der Slogan eine komplexe Botschaft verdichtet: In einer Zeit, in der Zukunftsangst dominiert und '16-Jährige weniger Zukunft sehen als 60-Jährige', braucht es eine Partei, die 'mit Hoffnung und Optimismus und Zuversicht auf die Zukunft guckt'. Der Parteitag war für die Grünen wichtig als Neuorientierung nach der Bundestagswahl-Niederlage 2025 und hat 'ein neues Kapitel aufgeschlagen, ein neues Fundament'. Die Partei stand vor der 'existenziellen Frage', ob sie überhaupt noch gebraucht wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak adressiert beide Fragen: die Slogan-Erklärung (inhaltlicher Anspruch) und die Frage des medialen Untergangs (relativiert ihn und erklärt die innere Wichtigkeit für die Partei).",
+        "quotes": [
+          {
+            "text": "Wenn es keine Partei gibt, die mit Hoffnung und Optimismus und Zuversicht auf die Zukunft guckt, dann haben wir ein Problem als Land.",
+            "timestamp": "00:07:03",
+            "context": "Begründung des Zukunfts-Slogans."
+          },
+          {
+            "text": "Diese Partei stand am 23. Februar um 18:00 Uhr vor einer existenziellen Frage. Braucht es diese Partei überhaupt noch in dieser Zeit?",
+            "timestamp": "00:08:33",
+            "context": "Erklärung des Kontexts für die Neuausrichtung nach der Wahlniederlage."
+          }
+        ],
+        "concrete_statements": [
+          "Parteitag war Neuorientierung nach existenzieller Krise durch Wahlverluste",
+          "Hat 'neues Fundament' geschaffen",
+          "Grüne müssen Gegenentwurf zu Vergangenheits-Nostalgie bieten"
+        ],
+        "related_bundestag_topics": [
+          "Generationengerechtigkeit",
+          "Klimapolitik als Zukunftsfrage"
+        ]
+      },
+      {
+        "title": "Selbstkritik zur früheren Rhetorik gegenüber Arbeitern",
+        "timestamp_range": "00:09:20 - 00:06:56",
+        "theme_description": "Banaszak gesteht ein, dass die Grünen früher harscher über Kohle, Gas und Verbrenner gesprochen haben, und erklärt, warum dieser Tonwechsel notwendig ist.",
+        "question_asked": "Moderator wirft vor, dass Banaszak und die Grünen vorher anders geredet haben und jetzt niemandem Glauben schenken, wenn sie plötzlich von 'dreckiger Kohle' sprechen.",
+        "question_intent": "Herauszufinden, ob Banaszak das Glaubwürdigkeitsproblem anerkennt und wie er es erklären würde.",
+        "position": "Banaszak bekennt sich zur Selbstkritik: 'Das ist eine Selbstkritik, ich habe auch selbst anders geredet.' Er erklärt die Notwendigkeit des Tonwechsels damit, dass emotionale Kommunikation nicht mit Sachzielen gleichzusetzen ist – inhaltlich ist er für schnellen Kohle- und Gasausstieg, aber es kommt auf die Darstellung an. Wenn Menschen das Gefühl entwickeln, 'die Grünen mögen mich nicht' oder 'entwerten meinen Lebensstil', dann 'kann ich sie nicht zu Partnern des Wandels machen'. Wer sich bedroht fühlt, entwickelt 'Abwehr', nicht 'positive Energie'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak gibt die Kritik zu, erklärt den psychologischen Mechanismus (Bedrohungswahrnehmung führt zu Abwehr) und differenziert zwischen sachlicher Position (schneller Ausstieg) und emotionaler Vermittlung (Respekt vor Lebensentwürfen).",
+        "quotes": [
+          {
+            "text": "Das ist eine Selbstkritik, ich habe auch selbst anders geredet. In der Sache bin ich dabei. Ich will, dass wir so schnell wie möglich aus der Kohle, dem Gas wegkommen.",
+            "timestamp": "00:09:36",
+            "context": "Eingeständnis der veränderten Rhetorik bei unverändertem Sachziel."
+          },
+          {
+            "text": "Die Frage ist, produziere ich es so, dass die Leute denken, die Grünen mögen mich nicht? Die entwerten meinen Lebensstil, meine Identität, meine Arbeit? Dann kann ich sie nicht zu Partnern des Wandels machen.",
+            "timestamp": "00:10:16",
+            "context": "Erklärung des Zusammenhangs zwischen emotionaler Vermittlung und Erfolg bei Transformationspolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Will schnellen Kohle- und Gasausstieg, auch Verbrenner-Ausstieg bis 2040",
+          "Muss Rhetorik ändern, um Menschen nicht abzustoßen",
+          "Frühere harte Rhetorik war strategischer Fehler"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Strukturwandel Kohleregionen",
+          "Akzeptanz von Klimapolitik"
+        ]
+      },
+      {
+        "title": "Grüne und Arbeiterklasse: Die Entfremdung vor Ort",
+        "timestamp_range": "00:11:04 - 00:17:38",
+        "theme_description": "Banaszak dokumentiert anhand seiner Reisen in den Duisburger Norden und die Lausitz, wie die Grünen die emotionale Verbindung zu Arbeitern verloren haben, ohne dass Programm-Differenzen das Hauptproblem sind.",
+        "question_asked": "Moderator behauptet, die Grünen stünden nicht für die Menschen 'am Band', für Kassiererinnen bei Rossmann und Paketboten bei Amazon, und fragt, ob das ein Eingeständnis ist, dass die Grünen früher für andere Politik gemacht haben.",
+        "question_intent": "Zu klären, ob Banaszak zugibt, dass die Grünen lange eine Akademikerpartei waren und Arbeiter vernachlässigt haben.",
+        "position": "Banaszak arbeitet mit konkreten Beispielen aus seinem Wahlkreis Duisburg und den östlichen Bundesländern. Er war 'häufiger im Stahlwerk von ThyssenKrupp' als an anderen Orten und kennt die Sorgen der Menschen (Jobverlust, Angst vor rechten Gegenbewegungen). Er berichtet: Grüne Westträger bei Protestdemos sichtbar, aber auch Bewusstsein für Transformations-Notwendigkeit. Das Problem ist nicht mangelnde Programm-Anschlussfähigkeit, sondern 'eine groß gewachsene Entfremdung'. In der Lausitz haben Ampelparteien zusammen nur 18 %, AfD 41 %. Banaszak erklärt das nicht mit Wahlprogramm-Vergleichen, sondern damit, dass sich Menschen 'nicht mehr repräsentiert' fühlen – 'Überzeugungen' und 'Einstellungsmuster' spielen eine Rolle.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak antwortet substanziell mit empirischen Beispielen und psychologischen Mechanismen statt mit Defensiven Rückweisungen. Er gesteht das Repräsentanz-Problem ein.",
+        "quotes": [
+          {
+            "text": "Ich hab meinen Wahlkreis im Duisburger Norden. Ich war häufiger im Stahlwerk von ThyssenKrupp als an vielen anderen Orten. Ich weiß was den Leuten Sorgen bereitet.",
+            "timestamp": "00:11:45",
+            "context": "Demonstration seiner Anschauungsnähe zu Arbeitermilieus."
+          },
+          {
+            "text": "Mein Eindruck war nicht, dass sie gesagt haben, Sie haben mich programmatisch nicht überzeugt, unser Programm ist an vielen Stellen anschlussfähig, aber da ist eine groß gewachsene Entfremdung.",
+            "timestamp": "00:15:48",
+            "context": "Diagnose des Haupt-Problems: emotionale Entfremdung, nicht programmatische Differenz."
+          }
+        ],
+        "concrete_statements": [
+          "Aktiv im Duisburger Stahlwerk ThyssenKrupp",
+          "Grüne haben Programm-Anschlussfähigkeit, aber emotionale Entfremdung",
+          "In Lausitz: Ampelparteien 18 %, AfD 41 %",
+          "Entfremdung, nicht Programm-Differenz ist Hauptproblem"
+        ],
+        "related_bundestag_topics": [
+          "Strukturwandelregionen",
+          "Deindustrialisierung",
+          "Arbeiter und grüne Politik"
+        ]
+      },
+      {
+        "title": "Patriotismus und Heimat: Neuinterpretation gegen Vorwürfe",
+        "timestamp_range": "00:21:05 - 00:35:01",
+        "theme_description": "Banaszak wird mit dem Slogan 'Holen wir uns das Land zurück' aus einer Grünen-Rede konfrontiert und muss sich gegen Vorwürfe verteidigen, dass dies der AfD-Rhetorik ähnele und dass die Grünen nach langer Skepsis gegenüber Patriotismus-Begriffen plötzlich opportunistisch umschalten.",
+        "question_asked": "Moderator zeigt, dass die Grünen-Politikerin in einer Eröffnungsrede 'Holen wir uns das Land zurück' sagte – ein Slogan, der an AfD-Rhetorik erinnert und kontrastiert mit früheren grünen Positionen, in denen Vaterlandsliebe kritisiert wurde (Habeck-Zitat). Er fragt, ob das nicht unglaubwürdig ist.",
+        "question_intent": "Zu testen, ob Banaszak die Glaubwürdigkeitslücke zwischen neuer Patriotismus-Rhetorik und früheren Positionen anerkennt und wie er sie erklärt.",
+        "position": "Banaszak verteidigt die Rede kontextuell: 'Wenn sie so zusammen schneiden' sei das irreführend; die Rede in voller Länge habe nicht auf ihn als problematisch gewirkt. Er distanziert sich auch von politischer Angst-Steuerung: 'Ich bin erstens kein angstgesteuerter Politiker, ich sage das, was ich denke'. Sein persönliches Verhältnis zu Begriffen wie 'Liebe' ist reserviert (persönlich, nicht staatlich), aber er bekennt sich zu Deutschland und ist 'sehr gerne hier'. Die historische Ambivalenz der Deutschen gegenüber Patriotismus-Begriffen erklärt er damit, dass die Grünen (z.B. Habeck) versuchen, Begriffe wie 'Heimat' und 'Nation' 'aus dieser rechten Ecke herauszuholen und selbst zu definieren'. Der Unterschied zu AfD-Rhetorik liegt darin, dass die Grünen die Verfassungsordnung schützen wollen, während AfD-Vertreter 'Verfassungsinstitutionen außer Gefecht' setzen wollen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak adressiert beide Teile der Kritik: die oberflächliche Ähnlichkeit zur AfD-Rhetorik (Kontext-Unterschied) und die inhaltliche Verschiebung (Habeck-Patriotismus-Konzept, Verfassungsschutz vs. -abbau).",
+        "quotes": [
+          {
+            "text": "Ich bin erstens kein angstgesteuerter Politiker, ich sage das, was ich denke, dass ich immer fühle. Ich bekenne mich hiermit zu Deutschland, ich bin sehr gerne hier.",
+            "timestamp": "00:28:57",
+            "context": "Erwiderung auf Vorwurf der Glaubwürdigkeitslücke."
+          },
+          {
+            "text": "Robert Habeck hat nach dem er diesen Satz gesagt hat, ein Buch geschrieben über Patriotismus als linkes Konzept. Er hat den Versuch unternommen diese Begriffe, Heimat, Nation, aus dieser rechten Ecke herauszuholen und selbst zu definieren.",
+            "timestamp": "00:30:28",
+            "context": "Erklärung des konzeptuellen Rahmens für die neue Patriotismus-Rhetorik."
+          },
+          {
+            "text": "Bei Gauland ein Mitglied einer gesichert rechtsextremen Partei ist, die sich daran macht dieses Land 'zurückzuholen', dass die Verfassungsinstitutionen außer Gefecht gesetzt werden. Es macht diesen qualitativen Unterschied.",
+            "timestamp": "00:34:27",
+            "context": "Differenzierung zwischen Grünen-Patriotismus und AfD-Faschismus."
+          }
+        ],
+        "concrete_statements": [
+          "Bekennt sich zu Deutschland",
+          "Benutzt Begriff 'Liebe' reserviert (persönlich, nicht staatlich)",
+          "Unterstützt Habecks Versuch, linken Patriotismus zu definieren",
+          "Weigert sich, AfD-Funktionären die Hand zu geben",
+          "Sieht sich durch Rechtsextremisten bedroht in seiner eigenen Heimat"
+        ],
+        "related_bundestag_topics": [
+          "Patriotismus und Nationalismus",
+          "Umgang mit AfD",
+          "Grundgesetz und Verfassungsschutz"
+        ]
+      },
+      {
+        "title": "Umgang mit der AfD: Brandmauer vs. Kontakt",
+        "timestamp_range": "01:01:35 - 01:07:00",
+        "theme_description": "Banaszak argumentiert für die Notwendigkeit, zwischen klarer ideologischer Ablehnung von Faschisten und pragmatischem Kontakt zu AfD-Funktionären zu unterscheiden, und kritisiert sowohl unkritische Kontakt-Euphorie als auch unrealistische Ausgrenzungs-Fantasien.",
+        "question_asked": "Nach Äußerungen von Unternehmern (Werner, Roßmann) zum Umgang mit AfD-Funktionären auf kommunaler Ebene fragt der Moderator, warum Banaszak nicht klärt, welche konkreten Grünen-Politiken die verlorenen Wähler ansprechen könnten, und wirft ihm implizit vor, nur zu sagen, was die Grünen GEGEN die AfD tun, nicht wofür.",
+        "question_intent": "Zu verstehen, ob Banaszak ein positives Angebot formulieren kann oder nur Abgrenzung nach rechts praktiziert.",
+        "position": "Banaszak differenziert präzise: Die AfD ist 'gesichert rechtsextremistisch' und teils faschistisch – er gibt ihnen nicht die Hand und sieht darin auch keinen Widerspruch zu parallel nötiger positiver Politik. Aber: 'Es reicht nicht Leute zu beschimpfen, wir müssen ein gutes Angebot machen.' Das Angebot besteht in einer Politik, die 'für alle bezahlbar' ist und 'mit wirtschaftlichem Wachstum einhergeht' – Menschen dürfen nicht befürchten, dass ihnen der Staat in die 'Heizungskeller' kommt. Zentral: 'Es braucht eine Politik, nicht nur im Osten dieses Landes, auch bei mir im Ruhrgebiet, ... bei der klar sein muss, dieser Staat funktioniert noch.' Menschen nehmen gerade wahr, dass das infrage gestellt wird – das ist der emotionale Kern des AfD-Zulaufs, nicht primär programmatische Differenzen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Banaszak adressiert gut das 'warum nicht die Hand geben' (Faschismus-These), aber auf Druck des Moderators zur konkreten Grünen-Politik weicht er teilweise aus und betont stattdessen, dass 'offensichtlich ist es nicht das Programm, was Menschen überzeugt' – also antwortet er indirekt, indem er die Frage neu rahmt.",
+        "quotes": [
+          {
+            "text": "Ich sehe, wieder eine Horde Männer ob mit oder ohne Titel, in einer Festigkeit gegenüber allen Frauen auftreten. Ich sehe, wie die ihre Witze machen mit klarem historischen Bezug... Soll ich denen die Hand geben? Das werde ich nicht tun. Ich habe selbst Respekt vor mir selbst.",
+            "timestamp": "01:05:47",
+            "context": "Begründung der persönlichen Weigerung, AfD-Funktionäre zu grüßen."
+          },
+          {
+            "text": "Es reicht nicht Leute zu beschimpfen, wir müssen ein gutes Angebot machen. Eine grüne Partei, die das Programm der AfD anbieten würde, in der Hoffnung die Wähler abzunehmen, das braucht es nicht.",
+            "timestamp": "01:08:40",
+            "context": "Differenzierung zwischen Ablehnung von AfD-Politik und eigene positive Angebote."
+          },
+          {
+            "text": "Es braucht eine Politik, nicht nur im Osten dieses Landes, auch bei mir im Ruhrgebiet, Bremerhaven, Saarland, bei der klar sein muss, dieser Staat funktioniert noch. Menschen nehmen gerade wahr, dass das infrage gestellt wird.",
+            "timestamp": "01:08:40",
+            "context": "Erklärung des emotionalen Kerns des AfD-Zulaufs."
+          }
+        ],
+        "concrete_statements": [
+          "Gibt AfD-Funktionären keine Hand",
+          "Will keine Petition gegen Unternehmerkontakte mit AfD unterschreiben",
+          "Will Klimapolitik für alle bezahlbar gestalten",
+          "Darf Menschen nicht in ihre Heizungskeller eingreifen lassen (Anspielung auf Heizungsgesetz-Kritik)",
+          "Muss Vertrauen in Staatshandlungsfähigkeit wiederherstellen"
+        ],
+        "related_bundestag_topics": [
+          "Umgang mit Rechtsextremismus",
+          "AfD-Strategie",
+          "Vertrauen in Institutionen"
+        ]
+      },
+      {
+        "title": "Migration und Sicherheit: Reaktion auf Moderator-Vorwurf",
+        "timestamp_range": "01:11:19 - 01:12:30",
+        "theme_description": "Der Moderator wirft den Grünen vor, in einer Sendung voller Diskussion um AfD-Wählerverlust das Wort 'Migration' nie zu erwähnen, obwohl es zentral für AfD-Erfolge ist. Banaszak muss reagieren.",
+        "question_asked": "Moderator sagt, dass in der gesamten Sendung das Thema Migration nicht gefallen sei, obwohl es für AfD-Erfolge zentral ist, und wirft Banaszak implizit vor, das Tabuthema zu meiden.",
+        "question_intent": "Zu überprüfen, ob die Grünen unter Banaszaks Führung bereit sind, Migration kritisch zu adressieren oder ob es weiterhin ein Tabu-Thema bleibt.",
+        "position": "Banaszak lenkt ein: 'Das kommt darauf an, was mit Migrationswende gemeint ist.' Er hat 'vor einigen Wochen einen Beitrag verfasst', der anerkennt, 'dass Menschen sagen, hier ist ein Schema' (möglicherweise: Ordnung/Struktur in der Zuwanderungsdebatte). Der Moderator presst ihn dann auch auf das Thema Kriminalität in den Drogerien an, und Banaszak übergeben an Roßmann, der das konkret beantwortet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Banaszak bestätigt, dass Migration ein Thema ist, auf das er sich berufen kann, bleibt aber vage bei 'Migrationswende' und verweist auf einen früheren Beitrag. Er beantwortet die provokative Frage nicht direkt, sondern umleitet.",
+        "quotes": [
+          {
+            "text": "Das kommt darauf an, was mit Migrationswende gemeint ist. Ich habe vor einigen Wochen einen Beitrag verfasst, der anerkannt hat, dass Menschen sagen, hier ist ein Schema.",
+            "timestamp": "01:11:59",
+            "context": "Versuch, das Migrations-Thema zu adressieren, ohne sich festzulegen."
+          }
+        ],
+        "concrete_statements": [
+          "Hat sich kürzlich zu Migrationspolitik geäußert",
+          "Verweist auf Anerkennung von Struktur-Fragen in der Migrations-Debatte",
+          "Überlässt Detailfrage zu Kriminalität dem Unternehmer Roßmann"
+        ],
+        "related_bundestag_topics": [
+          "Migration und Integration",
+          "Innere Sicherheit",
+          "AfD-Wählerverlust"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Ich hab meinen Wahlkreis im Duisburger Norden.",
+        "timestamp": "00:11:45"
+      },
+      {
+        "claim": "In der Lausitz hat auch die Ampel dafür gesorgt, da geht gelten, da entstehen neue Strukturen, Infrastruktur etc. Die Ampelparteien haben dort gesamt 18 %. Die AfD 41.",
+        "timestamp": "00:17:38"
+      },
+      {
+        "claim": "Diese Partei stand am 23. Februar um 18:00 Uhr vor einer existenziellen Frage.",
+        "timestamp": "00:08:33"
+      },
+      {
+        "claim": "16-Jährige sehen gerade weniger Zukunft als 60-Jährige.",
+        "timestamp": "00:07:03"
+      },
+      {
+        "claim": "Robert Habeck hat nach dem er diesen Satz [Vaterlandsliebe] gesagt hat, ein Buch geschrieben über Patriotismus als linkes Konzept.",
+        "timestamp": "00:30:28"
+      }
+    ]
+  }
+}
