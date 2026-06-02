@@ -355,23 +355,37 @@ nicht zwei Quellen gegeneinander (das ist Block B).
 **Cost:** ~$2-3 für 640 MdBs (Vollauf)
 **Run:** `npx tsx scripts/seed-cv.ts [--refresh] [--limit N]`
 
-### A.2 — CV-Generator (Homepage-Fallback) ⚠️ Migration ausstehend
+### A.2 — CV-Generator (Homepage-Fallback) ⭐ Haiku-Batch ist der Standard
 
-**Skript:** `scripts/seed-cv-homepage.ts`
-**Modell:** `llama-3.1-8b-instant` (Groq Free Tier) — **Migration auf Haiku 4.5 vorgesehen**
-**Modell-Slot:** **Generator-Slot Homepage** — heutige Wahl historisch (Free-Tier-Generator),
-methodisch ist Haiku 4.5 die richtige Wahl (Block A.1 nutzt das auch). Bei Förder-Geld
-zuerst diesen Slot upgraden.
-**Voraussetzung:** `politicians.homepage_url` (aus S.8 oder S.9)
-**Output:** `cv_homepage_json`, `cv_homepage_url` (genauer Pfad zur Vita-Seite, oft Subpfad),
-`cv_homepage_text` (Roh-Text), `cv_homepage_model`, `cv_homepage_prompt_version`,
-`cv_homepage_generated_at`
-**Strategie:** Findet automatisch den richtigen Vita-Subpfad (Standard-Pfade probieren,
-Link-Scan, Sitemap-Suche, One-Pager-Fallback)
-**Idempotenz:** default skipt befüllte, `--refresh` für alle, `--all` für alle Politiker
-(default nur Bundestag)
-**Cost:** $0 (Free Tier) — bei Migration auf Haiku ~$3-5 für 561 MdBs
-**Run:** `npx tsx scripts/seed-cv-homepage.ts [--all] [--refresh] [--limit N]`
+**Generator-Modell (verbindlich):** `claude-haiku-4-5` (Anthropic) — **gleicher Generator-Slot
+wie Wikipedia (A.1).** Der Homepage-CV wird, genau wie der Wikipedia-CV, mit Haiku im
+Batch erzeugt. Bestand bestätigt das: die Bundestag-Homepage-CVs tragen bereits
+`cv_homepage_model = 'anthropic:claude-haiku-4-5'` (Prompt `seed-cv-homepage-v2-haiku-batch`).
+
+**Zwei Schritte:**
+
+1. **Discovery + Text-Fetch** (kein LLM nötig): findet den richtigen Vita-Subpfad
+   (Standard-Pfade, Link-Scan, Sitemap, One-Pager-Fallback), scraped + cleant → schreibt
+   `cv_homepage_text` + `cv_homepage_url`. Die Discovery-Logik lebt in
+   `scripts/seed-cv-homepage.ts` (`findAboutPage`). Für Berlin liefert
+   `scripts/scrape-berlin-agh-profiles.ts` zusätzlich die offizielle AGH-Vita
+   (`agh_bio_text`) als zweite, systematische Quelle.
+2. **Haiku-Batch-Extraktion:** `cv_homepage_text` (bzw. `agh_bio_text`) → strukturierter CV
+   über die geteilte `scripts/_lib/cv-prompt.ts` (`CV_MODEL = claude-haiku-4-5`, `CV_SCHEMA`,
+   `buildCvUserPrompt`) — Batch-API, analog `scripts/batch-submit-cv.ts` /
+   `batch-retrieve-cv.ts` (die das für Wikipedia → `cv_json` machen).
+
+**Output:** `cv_homepage_json`, `cv_homepage_url`, `cv_homepage_text`, `cv_homepage_model`,
+`cv_homepage_prompt_version`, `cv_homepage_generated_at`
+
+**⛔️ NICHT verwenden:** `scripts/seed-cv-homepage.ts` als CV-Generator laufen lassen — es
+extrahiert mit `llama-3.1-8b-instant` (Groq) und ist deshalb deprecated (Runtime-Guard +
+Header-Warnung im Skript). Es bleibt nur als Träger der Discovery-Logik erhalten. Llama-8b
+liefert spürbar schwächere Struktur als Haiku; Familien-/Kosten-Argument greift hier nicht,
+weil der Generator-Slot bewusst stark sein soll (Inspektoren A.7/A.8 liefern die Diversität).
+
+**Cost:** ~$3-5 (Haiku-Batch) für einen Bundestag-Vollauf; Berlin (~112 Homepages +
+~134 AGH-Vitas) entsprechend kleiner.
 
 ### A.3 — CV-Generator (manueller Paste) — ad-hoc
 

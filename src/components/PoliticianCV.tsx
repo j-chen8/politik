@@ -25,8 +25,14 @@ interface SourceMeta {
 export interface SourceConflict {
   section: "ausbildung" | "beruflicher_werdegang" | "politische_stationen" | "sonstiges" | string;
   jahr: string;
-  wikipedia: string;
-  homepage: string;
+  /** Legacy-Felder (Wikipedia↔Homepage-Paare, Bundestag-Bestand). */
+  wikipedia?: string;
+  homepage?: string;
+  /** Generische Paar-Felder (jede Kombination aus wikipedia/homepage/agh). */
+  sourceA?: CVSource;
+  textA?: string;
+  sourceB?: CVSource;
+  textB?: string;
   reason: string;
   /** Stage-5.5/6 Manual-Review Klassifikation (Opus 4.7 nach Verifier-Cascade). */
   final_verdict?: "ECHT" | "PRAEZISIERUNG" | "FALSE_POSITIVE" | "UNKLAR";
@@ -44,6 +50,27 @@ export interface SourceConflict {
     quote_wikipedia: string | null;
     quote_homepage: string | null;
   };
+}
+
+const SOURCE_LABEL: Record<string, string> = {
+  wikipedia: "Wikipedia",
+  homepage: "Homepage",
+  agh: "Abgeordnetenhaus-Profil",
+};
+
+/** Liefert die beiden gegenübergestellten Quellen-Aussagen eines Konflikts —
+ *  generisch (sourceA/sourceB) oder via Legacy-Felder (wikipedia/homepage). */
+function conflictPair(c: SourceConflict): { label: string; text: string }[] {
+  if (c.sourceA && c.sourceB && c.textA != null && c.textB != null) {
+    return [
+      { label: SOURCE_LABEL[c.sourceA] ?? c.sourceA, text: c.textA },
+      { label: SOURCE_LABEL[c.sourceB] ?? c.sourceB, text: c.textB },
+    ];
+  }
+  const out: { label: string; text: string }[] = [];
+  if (c.wikipedia != null) out.push({ label: "Wikipedia", text: c.wikipedia });
+  if (c.homepage != null) out.push({ label: "Homepage", text: c.homepage });
+  return out;
 }
 
 /**
@@ -87,6 +114,11 @@ export interface PoliticianCVProps {
   homepageMeta?: SourceMeta;
   homepageUrl?: string | null;
 
+  /** Strukturiert aus dem Abgeordnetenhaus-Profil (Berlin) — dritte Quelle */
+  cvAgh?: CV | null;
+  aghMeta?: SourceMeta;
+  aghUrl?: string | null;
+
   /** Quellen-Diskrepanzen aus Stage 5 (Source-Coherence-Check). */
   sourceConflicts?: SourceConflict[] | null;
 
@@ -103,10 +135,12 @@ const SECTIONS = [
 
 type SectionKey = (typeof SECTIONS)[number]["key"];
 
+export type CVSource = "homepage" | "wikipedia" | "agh";
+
 interface MergedEntry {
   jahr: string;
   text: string;
-  sources: ("homepage" | "wikipedia")[];
+  sources: CVSource[];
 }
 
 /** Normalisiert Text für simple Duplikat-Erkennung */
@@ -114,60 +148,66 @@ function normalize(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9äöüß]/gi, "").slice(0, 60);
 }
 
-function mergeSection(
-  homepage: { jahr: string; text: string }[] | undefined,
-  wikipedia: { jahr: string; text: string }[] | undefined,
+/**
+ * Merged mehrere Quellen (in Prioritäts-Reihenfolge) zu einer deduplizierten Liste.
+ * Die erste Quelle bestimmt die Erst-Reihenfolge; spätere Quellen werden über exakte
+ * Schlüssel oder Ähnlichkeit eingemischt und tragen ihre Herkunft in `sources` nach.
+ * Bei Ähnlichkeits-Merge gewinnt eine spätere Quelle mit Jahr, wenn der bestehende
+ * Eintrag keins hat (genauere Datierung).
+ */
+function mergeSections(
+  sources: { src: CVSource; entries: { jahr: string; text: string }[] | undefined }[],
 ): MergedEntry[] {
   const result: MergedEntry[] = [];
   const seen = new Map<string, number>(); // normKey → idx in result
 
-  // Homepage hat Priorität (aktueller, persönlicher)
-  for (const e of homepage ?? []) {
-    const key = normalize(e.jahr + e.text);
-    if (seen.has(key)) continue;
-    seen.set(key, result.length);
-    result.push({ jahr: e.jahr, text: e.text, sources: ["homepage"] });
-  }
-  for (const e of wikipedia ?? []) {
-    const key = normalize(e.jahr + e.text);
-    if (seen.has(key)) {
-      const idx = seen.get(key)!;
-      if (!result[idx].sources.includes("wikipedia")) result[idx].sources.push("wikipedia");
-      continue;
-    }
-    // Ähnlichkeits-Dedup über alle bestehenden Einträge:
-    //   - Wikipedia mit Jahr + Homepage ohne Jahr (gleicher Sachverhalt) → mergen, Wikipedia-Datierung gewinnt
-    //   - Gleiches Jahr, ähnlicher Text → mergen
-    const newTextNorm = normalize(e.text);
-    const newYear = parseFirstYear(e.jahr);
-    let merged = false;
-    for (let idx = 0; idx < result.length; idx++) {
-      const existing = result[idx];
-      const existingTextNorm = normalize(existing.text);
-      const existingYear = parseFirstYear(existing.jahr);
-      const yearsCompatible =
-        newYear === null || existingYear === null || newYear === existingYear;
-      if (!yearsCompatible) continue;
-      // Text-Ähnlichkeit: einer ist Substring des anderen (mind. 25 normierte Zeichen)
-      const minLen = Math.min(existingTextNorm.length, newTextNorm.length);
-      if (minLen < 25) continue;
-      const overlap =
-        existingTextNorm.includes(newTextNorm.slice(0, 25)) ||
-        newTextNorm.includes(existingTextNorm.slice(0, 25));
-      if (!overlap) continue;
-      // Match — Wikipedia-Eintrag mergen
-      if (!existing.sources.includes("wikipedia")) existing.sources.push("wikipedia");
-      // Wenn Wikipedia ein Jahr hat und der bestehende Eintrag nicht: Wikipedia-Daten gewinnen
-      // (genauere Datierung; präzisere Formulierung)
-      if (newYear !== null && existingYear === null) {
-        result[idx] = { jahr: e.jahr, text: e.text, sources: existing.sources };
+  for (let s = 0; s < sources.length; s++) {
+    const { src, entries } = sources[s];
+    for (const e of entries ?? []) {
+      const key = normalize(e.jahr + e.text);
+      if (seen.has(key)) {
+        const idx = seen.get(key)!;
+        if (!result[idx].sources.includes(src)) result[idx].sources.push(src);
+        continue;
       }
-      merged = true;
-      break;
+      // Erste Quelle: einfach übernehmen (legt die Reihenfolge fest).
+      if (s === 0) {
+        seen.set(key, result.length);
+        result.push({ jahr: e.jahr, text: e.text, sources: [src] });
+        continue;
+      }
+      // Ähnlichkeits-Dedup über alle bestehenden Einträge.
+      const newTextNorm = normalize(e.text);
+      const newYear = parseFirstYear(e.jahr);
+      let merged = false;
+      for (let idx = 0; idx < result.length; idx++) {
+        const existing = result[idx];
+        const existingTextNorm = normalize(existing.text);
+        const existingYear = parseFirstYear(existing.jahr);
+        const yearsCompatible =
+          newYear === null || existingYear === null || newYear === existingYear;
+        if (!yearsCompatible) continue;
+        // Text-Ähnlichkeit: einer ist Substring des anderen (mind. 25 normierte Zeichen)
+        const minLen = Math.min(existingTextNorm.length, newTextNorm.length);
+        if (minLen < 25) continue;
+        const overlap =
+          existingTextNorm.includes(newTextNorm.slice(0, 25)) ||
+          newTextNorm.includes(existingTextNorm.slice(0, 25));
+        if (!overlap) continue;
+        // Match — Quelle nachtragen
+        if (!existing.sources.includes(src)) existing.sources.push(src);
+        // Wenn die neue Quelle ein Jahr hat und der bestehende Eintrag nicht:
+        // genauere Datierung gewinnt (Text + Jahr übernehmen, Quellen behalten).
+        if (newYear !== null && existingYear === null) {
+          result[idx] = { jahr: e.jahr, text: e.text, sources: existing.sources };
+        }
+        merged = true;
+        break;
+      }
+      if (merged) continue;
+      seen.set(key, result.length);
+      result.push({ jahr: e.jahr, text: e.text, sources: [src] });
     }
-    if (merged) continue;
-    seen.set(key, result.length);
-    result.push({ jahr: e.jahr, text: e.text, sources: ["wikipedia"] });
   }
 
   // Chronologisch sortieren (älteste zuerst); Einträge ohne Jahr an den Anfang
@@ -240,6 +280,9 @@ export function PoliticianCV(props: PoliticianCVProps) {
     cvHomepage,
     homepageMeta,
     homepageUrl,
+    cvAgh,
+    aghMeta,
+    aghUrl,
     sourceConflicts,
     mergeDrops,
   } = props;
@@ -255,18 +298,20 @@ export function PoliticianCV(props: PoliticianCVProps) {
   const conflictIdx = indexConflicts(visibleConflicts);
   const conflictCount = visibleConflicts.length;
 
-  // Pro Sektion mergen
+  // Pro Sektion mergen (Prioritäts-Reihenfolge: Homepage → Wikipedia → AGH).
+  // AGH ist nur für Berlin gesetzt; ohne sie ist das Ergebnis identisch zum
+  // bisherigen 2-Quellen-Merge.
+  const mergeKey = (key: SectionKey) =>
+    mergeSections([
+      { src: "homepage", entries: cvHomepage?.[key] },
+      { src: "wikipedia", entries: cvWikipedia?.[key] },
+      { src: "agh", entries: cvAgh?.[key] },
+    ]);
   const merged: Record<SectionKey, MergedEntry[]> = {
-    ausbildung: mergeSection(cvHomepage?.ausbildung, cvWikipedia?.ausbildung),
-    beruflicher_werdegang: mergeSection(
-      cvHomepage?.beruflicher_werdegang,
-      cvWikipedia?.beruflicher_werdegang,
-    ),
-    politische_stationen: mergeSection(
-      cvHomepage?.politische_stationen,
-      cvWikipedia?.politische_stationen,
-    ),
-    sonstiges: mergeSection(cvHomepage?.sonstiges, cvWikipedia?.sonstiges),
+    ausbildung: mergeKey("ausbildung"),
+    beruflicher_werdegang: mergeKey("beruflicher_werdegang"),
+    politische_stationen: mergeKey("politische_stationen"),
+    sonstiges: mergeKey("sonstiges"),
   };
 
   const nonEmpty = SECTIONS.filter((s) => merged[s.key].length > 0);
@@ -275,6 +320,9 @@ export function PoliticianCV(props: PoliticianCVProps) {
 
   const hasHomepage = !!cvHomepage && Object.values(cvHomepage).some((arr) => arr?.length > 0);
   const hasWikipedia = !!cvWikipedia && Object.values(cvWikipedia).some((arr) => arr?.length > 0);
+  const hasAgh = !!cvAgh && Object.values(cvAgh).some((arr) => arr?.length > 0);
+  // Zahl der unabhängigen Quellen, die überhaupt CV-Daten beigesteuert haben.
+  const sourceCount = [hasHomepage, hasWikipedia, hasAgh].filter(Boolean).length;
 
   return (
     <div className="bg-white rounded-2xl border border-border mb-6">
@@ -304,7 +352,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
           <Info className="w-4 h-4 mt-0.5 shrink-0 text-amber-600" aria-hidden />
           <span>
             <strong>{conflictCount === 1 ? "1 Stelle" : `${conflictCount} Stellen`}</strong>{" "}
-            {conflictCount === 1 ? "weicht" : "weichen"} zwischen Wikipedia und der persönlichen Homepage voneinander ab. Markiert in der Liste unten.
+            {conflictCount === 1 ? "weicht" : "weichen"} zwischen den Quellen voneinander ab. Markiert in der Liste unten.
           </span>
         </div>
       )}
@@ -339,12 +387,12 @@ export function PoliticianCV(props: PoliticianCVProps) {
                           </span>
                           <span className="text-foreground/90 leading-snug flex-1">
                             {entry.text}
-                            {entry.sources.length === 2 && !conflict && (
+                            {entry.sources.length >= 2 && !conflict && (
                               <span
                                 className="ml-1.5 text-[10px] text-emerald-600 font-semibold"
-                                title="In Wikipedia und auf der persönlichen Homepage übereinstimmend belegt"
+                                title={`In ${entry.sources.length} unabhängigen Quellen übereinstimmend belegt`}
                               >
-                                ✓✓
+                                {"✓".repeat(entry.sources.length)}
                               </span>
                             )}
                             {conflict && (
@@ -354,14 +402,12 @@ export function PoliticianCV(props: PoliticianCVProps) {
                                   Quellen-Diskrepanz · zum Aufklappen
                                 </summary>
                                 <div className="mt-2 space-y-1.5 text-amber-900/90 leading-snug">
-                                  <div>
-                                    <span className="font-semibold">Wikipedia:</span>{" "}
-                                    {conflict.wikipedia}
-                                  </div>
-                                  <div>
-                                    <span className="font-semibold">Homepage:</span>{" "}
-                                    {conflict.homepage}
-                                  </div>
+                                  {conflictPair(conflict).map((p, pi) => (
+                                    <div key={pi}>
+                                      <span className="font-semibold">{p.label}:</span>{" "}
+                                      {p.text}
+                                    </div>
+                                  ))}
                                   {(conflict.final_reason || conflict.reason) && (
                                     <div className="text-[11px] text-amber-800/80 italic pt-1 border-t border-amber-200/60">
                                       Hinweis der Prüfung: {conflict.final_reason ?? conflict.reason}
@@ -511,12 +557,48 @@ export function PoliticianCV(props: PoliticianCVProps) {
               )}
             </div>
           )}
+          {hasAgh && (
+            <div>
+              <strong className="text-foreground/80">Abgeordnetenhaus Berlin (Profil):</strong>{" "}
+              {aghUrl ? (
+                <a
+                  href={aghUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  Profilseite
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              ) : (
+                "Profil-URL unbekannt"
+              )}
+              {" "}· amtliche Vita des Berliner Abgeordnetenhauses
+              {aghMeta?.model && (
+                <>
+                  {" "}· extrahiert mit{" "}
+                  <span className="font-mono">{aghMeta.model}</span>
+                </>
+              )}
+              {aghMeta?.promptVersion && (
+                <> · <span className="font-mono">{aghMeta.promptVersion}</span></>
+              )}
+              {formatDate(aghMeta?.generatedAt) && (
+                <> · {formatDate(aghMeta?.generatedAt)}</>
+              )}
+            </div>
+          )}
           <div className="mt-2 pt-3 border-t border-gray-200/70">
             <strong className="text-foreground/80">Mehrfach-Verifikation für mehr Verlässlichkeit:</strong>
             <p className="mt-1">
               Jeder strukturierte Eintrag wird aus{" "}
-              <strong className="text-foreground/80">zwei unabhängigen Quellen</strong>{" "}
-              (Wikipedia + offizielle bzw. Homepage-Vita) erzeugt und anschließend
+              <strong className="text-foreground/80">
+                {sourceCount >= 3
+                  ? "bis zu drei unabhängigen Quellen"
+                  : "mehreren unabhängigen Quellen"}
+              </strong>{" "}
+              (Wikipedia, persönliche Homepage{hasAgh ? " und amtliches Abgeordnetenhaus-Profil" : ""})
+              erzeugt und anschließend
               mehrfach gegengeprüft: durch unabhängige Modelle{" "}
               <strong className="text-foreground/80">verschiedener Anbieter-Familien</strong>{" "}
               auf Quellen-Konflikte, durch einen separaten Datums-Validierungs-Lauf,
@@ -532,8 +614,9 @@ export function PoliticianCV(props: PoliticianCVProps) {
             </p>
           </div>
           <p className="text-[11px] text-muted/80 italic">
-            ✓✓ markiert Einträge, die in beiden Quellen unabhängig vorkommen.
-            Werden trotzdem Erfindungen oder Fehler entdeckt, bitte als Korrektur melden.
+            Mehrere Haken (✓✓ / ✓✓✓) markieren Einträge, die in entsprechend vielen
+            unabhängigen Quellen vorkommen. Werden trotzdem Erfindungen oder Fehler
+            entdeckt, bitte als Korrektur melden.
           </p>
         </div>
       </details>

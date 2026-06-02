@@ -33,7 +33,18 @@ if (fs.existsSync(ENV_PATH)) {
 }
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
-const PARTIAL = path.join(process.cwd(), "inspect-dates.partial.jsonl");
+// Quellen-bewusst: --source=wikipedia|homepage|agh wählt CV-Spalte + Roh-Quelltext.
+// Default wikipedia = bisheriges Verhalten (cv_json vs bio_full_text), eigene Partial-Datei je Quelle.
+const SOURCE_ARG = process.argv.find((a) => a.startsWith("--source="));
+const SOURCE = (SOURCE_ARG ? SOURCE_ARG.replace("--source=", "") : "wikipedia") as "wikipedia" | "homepage" | "agh";
+const SOURCE_CFG: Record<string, { cvCol: string; textCol: string; partial: string }> = {
+  wikipedia: { cvCol: "cv_json",          textCol: "bio_full_text",    partial: "inspect-dates.partial.jsonl" },
+  homepage:  { cvCol: "cv_homepage_json", textCol: "cv_homepage_text", partial: "inspect-dates-homepage.partial.jsonl" },
+  agh:       { cvCol: "cv_agh_json",      textCol: "agh_bio_text",     partial: "inspect-dates-agh.partial.jsonl" },
+};
+if (!SOURCE_CFG[SOURCE]) { console.error(`Ungültige --source: ${SOURCE} (wikipedia|homepage|agh)`); process.exit(1); }
+const CFG = SOURCE_CFG[SOURCE];
+const PARTIAL = path.join(process.cwd(), CFG.partial);
 
 const MISTRAL_KEYS = Object.entries(process.env)
   .filter(([k, v]) => k.startsWith("MISTRAL_API_KEY") && v)
@@ -116,10 +127,20 @@ async function callMistral(payload: object): Promise<any> {
   throw new Error("alle Mistral-Keys rate-limited");
 }
 
+/** Guard gegen LLM-Array-Drift: Haiku liefert Sektionen vereinzelt als
+ *  stringifiziertes Array statt Array. Sonst arr.forEach -> TypeError. */
+function asArray(v: any): any[] {
+  if (Array.isArray(v)) return v;
+  if (typeof v === "string") {
+    try { const p = JSON.parse(v); if (Array.isArray(p)) return p; } catch { /* kein Array */ }
+  }
+  return [];
+}
+
 function flattenCv(cv: any): Entry[] {
   const entries: Entry[] = [];
   for (const sec of ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"]) {
-    const arr = cv[sec] ?? [];
+    const arr = asArray(cv[sec]);
     arr.forEach((e: any, i: number) => entries.push({ section: sec, index: i, jahr: String(e.jahr ?? ""), text: String(e.text ?? "") }));
   }
   return entries;
@@ -131,7 +152,7 @@ async function inspectMdB(name: string, wikiText: string, cv: any): Promise<Verd
 
   const userMsg = `POLITIKER: ${name}
 
-QUELLTEXT (Wikipedia):
+QUELLTEXT:
 ${wikiText.slice(0, 15000)}
 
 EINTRÄGE zu prüfen (${entries.length} Stück):
@@ -173,15 +194,20 @@ async function main() {
 
   let sql: string;
   if (ONLY_IDS) {
-    sql = `SELECT id, first_name || ' ' || last_name AS name, bio_full_text, cv_json, cv_prompt_version
-           FROM politicians WHERE id IN (${ONLY_IDS.join(",")})`;
-  } else {
-    sql = `SELECT id, first_name || ' ' || last_name AS name, bio_full_text, cv_json, cv_prompt_version
+    sql = `SELECT id, first_name || ' ' || last_name AS name, ${CFG.textCol} AS src_text, ${CFG.cvCol} AS cv
+           FROM politicians WHERE id IN (${ONLY_IDS.join(",")})
+             AND ${CFG.cvCol} IS NOT NULL AND ${CFG.textCol} IS NOT NULL`;
+  } else if (SOURCE === "wikipedia") {
+    sql = `SELECT id, first_name || ' ' || last_name AS name, ${CFG.textCol} AS src_text, ${CFG.cvCol} AS cv
            FROM politicians
            WHERE cv_prompt_version = 'seed-cv-v5-haiku'
-             AND bio_full_text IS NOT NULL`;
+             AND ${CFG.textCol} IS NOT NULL`;
+  } else {
+    sql = `SELECT id, first_name || ' ' || last_name AS name, ${CFG.textCol} AS src_text, ${CFG.cvCol} AS cv
+           FROM politicians
+           WHERE ${CFG.cvCol} IS NOT NULL AND ${CFG.textCol} IS NOT NULL`;
   }
-  const rows = db.prepare(sql).all() as { id: number; name: string; bio_full_text: string; cv_json: string; cv_prompt_version: string }[];
+  const rows = db.prepare(sql).all() as { id: number; name: string; src_text: string; cv: string }[];
 
   // Resume: schon verarbeitete IDs überspringen
   const done = new Set<number>();
@@ -199,12 +225,12 @@ async function main() {
   for (let i = 0; i < todo.length; i++) {
     const r = todo[i];
     let cv: any;
-    try { cv = JSON.parse(r.cv_json); } catch { console.log(`✗ ${r.id} ${r.name}: cv_json nicht parsebar`); continue; }
+    try { cv = JSON.parse(r.cv); } catch { console.log(`✗ ${r.id} ${r.name}: ${CFG.cvCol} nicht parsebar`); continue; }
     const total = flattenCv(cv).length;
     if (total === 0) { console.log(`  ${r.id} ${r.name}: 0 Einträge (skip)`); continue; }
 
     try {
-      const verdicts = await inspectMdB(r.name, r.bio_full_text, cv);
+      const verdicts = await inspectMdB(r.name, r.src_text, cv);
       for (const v of verdicts) {
         if (v.status in stats) stats[v.status as keyof typeof stats]++;
       }
@@ -230,7 +256,7 @@ async function main() {
         }
       } else {
         fs.appendFileSync(PARTIAL, JSON.stringify({
-          politician_id: r.id, name: r.name, inspector_version: INSPECTOR_VERSION,
+          politician_id: r.id, name: r.name, source: SOURCE, inspector_version: INSPECTOR_VERSION,
           verdicts, summary,
         }) + "\n");
         const probs = stats.datum_falsch + stats.halluziniert + stats.fehlend;

@@ -33,12 +33,13 @@ const BRAVE_KEY = process.env.BRAVE_API_KEY;
 if (!BRAVE_KEY) { console.error("BRAVE_API_KEY fehlt in .env"); process.exit(1); }
 
 const DRY = process.argv.includes("--dry-run");
+const BERLIN = process.argv.includes("--berlin");
 const LIMIT_IDX = process.argv.indexOf("--limit");
 const LIMIT = LIMIT_IDX > -1 ? parseInt(process.argv[LIMIT_IDX + 1], 10) : 0;
 
 // Domains die NIE persönliche MdB-Homepages sind. Generische Fraktions-,
 // Partei-, Presse-, Social-Media-, sonstige Sammelsites.
-const SKIP_DOMAIN_RE = /(^|\.)(wikipedia\.org|wikidata\.org|wikimedia\.org|twitter\.com|x\.com|facebook\.com|fb\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be|linkedin\.com|threads\.net|xing\.com|mastodon\.|bewegung\.social|bluesky\.|bsky\.|abgeordnetenwatch\.de|bundestag\.de|mitmischen\.de|btg-bestellservice\.de|spd\.de|cdu\.de|csu\.de|fdp\.de|gruene\.de|afd\.de|die-linke\.de|bsw-vg\.de|freiewaehler\.|volt(deutschland|europa)\.|cducsu\.de|spdfraktion\.de|spdfraktion-bw\.de|spdfraktion-bayern\.de|gruene-bundestag\.de|linksfraktion\.de|linksfraktion-[a-z-]+|afdbundestag\.de|afd-[a-z-]+\.|cdu-[a-z-]+\.|csu-[a-z-]+\.|spd-[a-z-]+\.|gruene-[a-z-]+\.|fdp-[a-z-]+\.|linke-[a-z-]+\.|bayernspd|spd-bayern|gruene-bayern|spiegel\.de|zeit\.de|tagesschau\.de|focus\.de|welt\.de|sueddeutsche\.de|faz\.net|n-tv\.de|stern\.de|nordkurier\.de|bild\.de|gettyimages\.|news\.google\.|google\.com|duckduckgo\.com|amazon\.|spotify\.com|github\.com|t-online\.de|fr\.de|rtl\.de|dpa\.com|reddit\.com|merkur\.de|quora\.com|nzz\.ch|deutschlandfunk\.de|tagesspiegel\.de|tagesschau24|aerztezeitung\.de|aerzteblatt\.de|burg-huelshoff\.de|nordbayern\.de|swr\.de|wdr\.de|ndr\.de|br\.de|hr\.de|mdr\.de|rbb\.de|deutschlandradio\.de|deutsche-welle\.|deutscher-bundestag\.|fragdenstaat\.de|lobbycontrol\.de|abgeordnete-im-fokus\.de|dawum\.de|landtag\.|landtag-[a-z-]+\.|wen-waehlen\.de|kandidatencheck|api\.proxy\.bund\.dev|haz\.de|nwzonline\.de|shz\.de|altmarkkreis|regionalheute\.de|allesdetten\.de|zvw\.de|haznp|lokalkompass\.de|mz\.de|sr\.de|homburg1\.de|siegen-wittgenstein\.de|regensburg\.de|bayern\.de|afdwatchbremen)/i;
+const SKIP_DOMAIN_RE = /(^|\.)(wikipedia\.org|wikidata\.org|wikimedia\.org|twitter\.com|x\.com|facebook\.com|fb\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be|linkedin\.com|threads\.net|xing\.com|mastodon\.|bewegung\.social|bluesky\.|bsky\.|abgeordnetenwatch\.de|bundestag\.de|parlament-berlin\.de|mitmischen\.de|btg-bestellservice\.de|spd\.de|cdu\.de|csu\.de|fdp\.de|gruene\.de|afd\.de|die-linke\.de|bsw-vg\.de|freiewaehler\.|volt(deutschland|europa)\.|cducsu\.de|spdfraktion\.de|spdfraktion-bw\.de|spdfraktion-bayern\.de|gruene-bundestag\.de|linksfraktion\.de|linksfraktion-[a-z-]+|afdbundestag\.de|afd-[a-z-]+\.|cdu-[a-z-]+\.|csu-[a-z-]+\.|spd-[a-z-]+\.|gruene-[a-z-]+\.|fdp-[a-z-]+\.|linke-[a-z-]+\.|bayernspd|spd-bayern|gruene-bayern|spiegel\.de|zeit\.de|tagesschau\.de|focus\.de|welt\.de|sueddeutsche\.de|faz\.net|n-tv\.de|stern\.de|nordkurier\.de|bild\.de|gettyimages\.|news\.google\.|google\.com|duckduckgo\.com|amazon\.|spotify\.com|github\.com|t-online\.de|fr\.de|rtl\.de|dpa\.com|reddit\.com|merkur\.de|quora\.com|nzz\.ch|deutschlandfunk\.de|tagesspiegel\.de|tagesschau24|aerztezeitung\.de|aerzteblatt\.de|burg-huelshoff\.de|nordbayern\.de|swr\.de|wdr\.de|ndr\.de|br\.de|hr\.de|mdr\.de|rbb\.de|deutschlandradio\.de|deutsche-welle\.|deutscher-bundestag\.|fragdenstaat\.de|lobbycontrol\.de|abgeordnete-im-fokus\.de|dawum\.de|landtag\.|landtag-[a-z-]+\.|wen-waehlen\.de|kandidatencheck|api\.proxy\.bund\.dev|haz\.de|nwzonline\.de|shz\.de|altmarkkreis|regionalheute\.de|allesdetten\.de|zvw\.de|haznp|lokalkompass\.de|mz\.de|sr\.de|homburg1\.de|siegen-wittgenstein\.de|regensburg\.de|bayern\.de|afdwatchbremen)/i;
 
 async function fetchHtml(url: string): Promise<string | null> {
   const ctrl = new AbortController();
@@ -195,23 +196,30 @@ async function main() {
     console.log("→ homepage_search_attempted_at Spalte angelegt");
   }
 
+  // --berlin: MdL des Abgeordnetenhauses (parliament_id=2) statt MdB.
+  const scopeSql = BERLIN
+    ? `JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
+       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+       LEFT JOIN parties pa ON p.party_id = pa.id
+       WHERE pp.parliament_id = 2`
+    : `JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
+       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+       JOIN parliaments par ON pp.parliament_id = par.id
+       LEFT JOIN parties pa ON p.party_id = pa.id
+       WHERE par.type = 'bundestag'`;
   let rows = db
     .prepare(
       `SELECT DISTINCT p.id, p.first_name, p.last_name, pa.label AS party
        FROM politicians p
-       JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
-       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
-       JOIN parliaments par ON pp.parliament_id = par.id
-       LEFT JOIN parties pa ON p.party_id = pa.id
-       WHERE par.type = 'bundestag'
-         AND p.homepage_url IS NULL
+       ${scopeSql}
+         AND (p.homepage_url IS NULL OR p.homepage_url = '')
          AND p.homepage_search_attempted_at IS NULL
        ORDER BY p.last_name`
     )
     .all() as { id: number; first_name: string; last_name: string; party: string | null }[];
 
   if (LIMIT > 0) rows = rows.slice(0, LIMIT);
-  console.log(`\n${rows.length} MdBs ohne homepage_url, suche per DuckDuckGo`);
+  console.log(`\n${rows.length} ${BERLIN ? "MdL (Berlin)" : "MdBs"} ohne homepage_url, suche per Brave`);
 
   const update = db.prepare(
     `UPDATE politicians
@@ -226,7 +234,9 @@ async function main() {
   for (let i = 0; i < rows.length; i++) {
     const p = rows[i];
     const partyShort = (p.party ?? "").split(/[\s/]/)[0];
-    const query = `${p.first_name} ${p.last_name} MdB ${partyShort} Homepage`.trim();
+    const query = BERLIN
+      ? `${p.first_name} ${p.last_name} Abgeordnetenhaus Berlin ${partyShort} Homepage`.trim()
+      : `${p.first_name} ${p.last_name} MdB ${partyShort} Homepage`.trim();
     process.stdout.write(`\n[${i + 1}/${rows.length}] ${p.first_name} ${p.last_name} (${partyShort}): `);
 
     let hits: string[] = [];

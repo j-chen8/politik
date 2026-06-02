@@ -318,6 +318,10 @@ export interface PoliticianRow {
   cv_homepage_prompt_version: string | null;
   cv_summary_model: string | null;
   cv_summary_prompt_version: string | null;
+  // AGH-Profil (Abgeordnetenhaus Berlin) als dritte, eigenständige CV-Quelle
+  cv_agh_json: string | null;
+  cv_agh_generated_at: string | null;
+  agh_bio_url: string | null;
   homepage_source: string | null;
   source_conflicts: string | null;
   source_coherence_checked_at: string | null;

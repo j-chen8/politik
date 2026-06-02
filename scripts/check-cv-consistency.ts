@@ -29,6 +29,7 @@ interface Pol {
   has_bundestag_mandate: number;
   cv_json: string | null;
   cv_homepage_json: string | null;
+  cv_agh_json: string | null;
 }
 
 interface Entry { jahr: string; text: string; }
@@ -166,17 +167,17 @@ function main() {
         JOIN parliaments par ON pp.parliament_id=par.id
         WHERE m.politician_id=p.id AND m.type='mandate' AND par.type='bundestag'
       ) AS has_bundestag_mandate,
-      p.cv_json, p.cv_homepage_json
+      p.cv_json, p.cv_homepage_json, p.cv_agh_json
     FROM politicians p
     LEFT JOIN parties pa ON pa.id = p.party_id
-    WHERE p.cv_json IS NOT NULL OR p.cv_homepage_json IS NOT NULL
+    WHERE p.cv_json IS NOT NULL OR p.cv_homepage_json IS NOT NULL OR p.cv_agh_json IS NOT NULL
   `).all() as Pol[];
 
   console.log(`${rows.length} Politiker:innen mit CV-Daten zu prüfen...`);
 
   const allIssues: Issue[] = [];
   for (const p of rows) {
-    for (const raw of [p.cv_json, p.cv_homepage_json]) {
+    for (const raw of [p.cv_json, p.cv_homepage_json, p.cv_agh_json]) {
       if (!raw) continue;
       try {
         const cv = JSON.parse(raw) as CV;

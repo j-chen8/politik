@@ -501,8 +501,9 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           // ?orig=1 erzwingt die ursprünglichen JSONs (für Vorher/Nachher-Vergleich)
           const cvWiki = tryParse(showOriginal ? politician.cv_json : (politician.cv_json_dedup ?? politician.cv_json));
           const cvHome = tryParse(showOriginal ? politician.cv_homepage_json : (politician.cv_homepage_json_dedup ?? politician.cv_homepage_json));
+          const cvAgh = tryParse(politician.cv_agh_json);
           const conflicts = tryParseConflicts(politician.source_conflicts);
-          if (!politician.cv_summary && !cvWiki && !cvHome) return null;
+          if (!politician.cv_summary && !cvWiki && !cvHome && !cvAgh) return null;
           return (
             <div className="mb-6">
               <PoliticianCV
@@ -526,6 +527,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                   generatedAt: politician.cv_homepage_generated_at,
                 }}
                 homepageUrl={politician.cv_homepage_url ?? politician.homepage_url}
+                cvAgh={cvAgh}
+                aghMeta={{
+                  model: politician.cv_agh_json ? "anthropic:claude-haiku-4-5" : null,
+                  promptVersion: politician.cv_agh_json ? "seed-cv-v5-haiku" : null,
+                  generatedAt: politician.cv_agh_generated_at,
+                }}
+                aghUrl={politician.agh_bio_url}
                 sourceConflicts={conflicts}
                 mergeDrops={cvMergeDrops}
               />

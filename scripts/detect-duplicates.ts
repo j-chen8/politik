@@ -162,10 +162,19 @@ function detectInSection(section: string, entries: Entry[]): Duplicate[] {
   return dups;
 }
 
+/** LLM-Array-Drift-Guard: Haiku liefert ~3 % Sektionen als stringifiziertes Array. */
+function asArray(v: any): Entry[] {
+  if (Array.isArray(v)) return v as Entry[];
+  if (typeof v === "string") {
+    try { const p = JSON.parse(v); return Array.isArray(p) ? (p as Entry[]) : []; } catch { return []; }
+  }
+  return [];
+}
+
 function detectAll(cv: any): Duplicate[] {
   const all: Duplicate[] = [];
   for (const sec of ["ausbildung", "beruflicher_werdegang", "politische_stationen", "sonstiges"]) {
-    const entries = (cv[sec] ?? []) as Entry[];
+    const entries = asArray(cv[sec]);
     if (entries.length < 2) continue;
     all.push(...detectInSection(sec, entries));
   }

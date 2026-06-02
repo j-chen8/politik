@@ -37,8 +37,19 @@ if (fs.existsSync(ENV_PATH)) {
 }
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
-const INPUT = path.join(process.cwd(), "inspect-dates.partial.jsonl");
-const OUTPUT = path.join(process.cwd(), "verify-mistral.partial.jsonl");
+
+// Quellen-bewusst (parallel zu inspect-dates.ts): --source=wikipedia|homepage|agh
+const SRC_ARG = process.argv.find((a) => a.startsWith("--source="));
+const SOURCE = (SRC_ARG ? SRC_ARG.replace("--source=", "") : "wikipedia");
+const SRC_CFG: Record<string, { textCol: string; input: string; output: string }> = {
+  wikipedia: { textCol: "bio_full_text",    input: "inspect-dates.partial.jsonl",          output: "verify-mistral.partial.jsonl" },
+  homepage:  { textCol: "cv_homepage_text", input: "inspect-dates-homepage.partial.jsonl",  output: "verify-mistral-homepage.partial.jsonl" },
+  agh:       { textCol: "agh_bio_text",     input: "inspect-dates-agh.partial.jsonl",       output: "verify-mistral-agh.partial.jsonl" },
+};
+if (!SRC_CFG[SOURCE]) { console.error(`Ungültige --source: ${SOURCE}`); process.exit(1); }
+const VCFG = SRC_CFG[SOURCE];
+const INPUT = path.join(process.cwd(), VCFG.input);
+const OUTPUT = path.join(process.cwd(), VCFG.output);
 
 const GROQ_KEYS = Object.entries(process.env)
   .filter(([k, v]) => k.startsWith("GROQ_API_KEY") && v)
@@ -268,13 +279,13 @@ async function main() {
   let mdbsDone = 0;
 
   for (const [pid, { name, problems }] of todo) {
-    const row = db.prepare("SELECT bio_full_text FROM politicians WHERE id = ?").get(pid) as { bio_full_text: string } | undefined;
-    if (!row?.bio_full_text) {
-      console.log(`\n✗ ${pid} ${name}: kein bio_full_text`);
+    const row = db.prepare(`SELECT ${VCFG.textCol} AS src_text FROM politicians WHERE id = ?`).get(pid) as { src_text: string } | undefined;
+    if (!row?.src_text) {
+      console.log(`\n✗ ${pid} ${name}: kein ${VCFG.textCol}`);
       continue;
     }
     try {
-      const results = await verifyMdB(name, row.bio_full_text, problems);
+      const results = await verifyMdB(name, row.src_text, problems);
       for (const r of results) stats[r.verifier_decision] = (stats[r.verifier_decision] || 0) + 1;
 
       if (PRINT_MODE) {
