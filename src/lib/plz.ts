@@ -27,6 +27,13 @@ export type WahlkreisTreffer = {
   flaechenanteil: number;
   /** Direkt gewählte:r Abgeordnete:r mit Sitz (oder null bei Wahlrechtsreform-Lücke). */
   direkt: WahlkreisAbgeordnete | null;
+  /**
+   * Falls kein aktives Direktmandat besteht, aber die ursprünglich direkt gewählte
+   * Person zwischenzeitlich ausgeschieden ist (z. B. Wechsel in den Bundestag): die
+   * letzte Direktgewinnerin/der letzte Direktgewinner samt Enddatum. Der frei gewordene
+   * Sitz wird in Berlin über die Landesliste nachbesetzt (nicht wahlkreisgebunden).
+   */
+  formerDirekt: { abg: WahlkreisAbgeordnete; endDate: string } | null;
   /** Weitere Abgeordnete aus dem Wahlkreis, die über die Landesliste eingezogen sind. */
   liste: WahlkreisAbgeordnete[];
 };
@@ -38,27 +45,28 @@ export type PlzLookupResult = {
   treffer: WahlkreisTreffer[];
 };
 
-let _btPeriodId: number | null = null;
-function bundestagPeriodId(): number {
-  if (_btPeriodId !== null) return _btPeriodId;
+const _periodCache: Record<string, number> = {};
+/** Jüngste Wahlperiode eines Parlaments (per parliament.id — type='landtag' wäre mehrdeutig). */
+function latestPeriodId(parliamentId: number): number {
+  const key = String(parliamentId);
+  if (_periodCache[key] !== undefined) return _periodCache[key];
   const row = getDb()
     .prepare(
-      `SELECT pp.id FROM parliament_periods pp
-       JOIN parliaments p ON pp.parliament_id = p.id
-       WHERE p.type = 'bundestag'
-       ORDER BY pp.start_date DESC LIMIT 1`,
+      `SELECT id FROM parliament_periods
+       WHERE parliament_id = ?
+       ORDER BY start_date DESC LIMIT 1`,
     )
-    .get() as { id: number } | undefined;
-  if (!row) throw new Error("Keine Bundestags-Wahlperiode in der DB gefunden");
-  _btPeriodId = row.id;
-  return _btPeriodId;
+    .get(parliamentId) as { id: number } | undefined;
+  if (!row) throw new Error(`Keine Wahlperiode für parliament_id=${parliamentId} in der DB gefunden`);
+  _periodCache[key] = row.id;
+  return row.id;
 }
 
-/** Entfernt Nummer-Präfix ("92 - ") und "(Bundestag …)"-Suffix aus einem constituency-String. */
+/** Entfernt Nummer-Präfix ("92 - ") und "(Bundestag …)"/"(Berlin …)"-Suffix aus constituency. */
 function cleanWkName(c: string | null): string {
   if (!c) return "";
   return c
-    .replace(/\s*\(Bundestag[^)]*\)\s*$/i, "")
+    .replace(/\s*\((?:Bundestag|Berlin)[^)]*\)\s*$/i, "")
     .replace(/^\d+\s*[-–]\s*/, "")
     .trim();
 }
@@ -82,21 +90,25 @@ type AbgRow = {
   constituency: string | null;
 };
 
-/** Liefert die Abgeordneten zu einer Bundestags-PLZ, nach Wahlkreis-Flächenanteil sortiert. */
-export function getBundestagWahlkreiseByPlz(plz: string): PlzLookupResult | null {
+/**
+ * Generischer PLZ→Wahlkreis→Abgeordnete-Lookup für ein Parlament.
+ * `parlament` = Wert in plz_wahlkreis.parlament; `parliamentId` = parliaments.id
+ * für die aktive Wahlperiode + die Mandate.
+ */
+function lookupByPlz(plz: string, parlament: string, parliamentId: number): PlzLookupResult | null {
   const norm = normalizePlz(plz);
   if (!norm) return null;
   const db = getDb();
-  const periodId = bundestagPeriodId();
+  const periodId = latestPeriodId(parliamentId);
 
   const wkRows = db
     .prepare(
       `SELECT wkr_nr, wkr_name, flaechenanteil
        FROM plz_wahlkreis
-       WHERE plz = ? AND parlament = 'bundestag'
+       WHERE plz = ? AND parlament = ?
        ORDER BY flaechenanteil DESC`,
     )
-    .all(norm) as Array<{ wkr_nr: number; wkr_name: string; flaechenanteil: number }>;
+    .all(norm, parlament) as Array<{ wkr_nr: number; wkr_name: string; flaechenanteil: number }>;
 
   if (wkRows.length === 0) return { plz: norm, eindeutig: false, treffer: [] };
 
@@ -114,30 +126,67 @@ export function getBundestagWahlkreiseByPlz(plz: string): PlzLookupResult | null
      ORDER BY p.last_name, p.first_name`,
   );
 
+  // Ausgeschiedene:r Direktgewinner:in (Mandat beendet) — für WK ohne aktives Direktmandat.
+  const formerDirektStmt = db.prepare(
+    `SELECT p.id, p.first_name, p.last_name, p.title, pa.label AS party_label,
+            p.photo_url, m.fraction, m.end_date, m.constituency
+     FROM mandates m
+     JOIN politicians p ON p.id = m.politician_id
+     LEFT JOIN parties pa ON pa.id = p.party_id
+     WHERE m.parliament_period_id = ?
+       AND m.type = 'mandate' AND m.mandate_won = 'constituency'
+       AND CAST(m.constituency AS INTEGER) = ?
+       AND m.end_date IS NOT NULL AND m.end_date != '' AND m.end_date <= date('now')
+     ORDER BY m.end_date DESC LIMIT 1`,
+  );
+
+  const toAbg = (r: AbgRow): WahlkreisAbgeordnete => ({
+    id: r.id,
+    firstName: r.first_name,
+    lastName: r.last_name,
+    title: r.title,
+    party: r.party_label,
+    photoUrl: r.photo_url,
+    fraction: r.fraction,
+  });
+
   const treffer: WahlkreisTreffer[] = wkRows.map((wk) => {
     const rows = mandateStmt.all(periodId, wk.wkr_nr) as AbgRow[];
-    const toAbg = (r: AbgRow): WahlkreisAbgeordnete => ({
-      id: r.id,
-      firstName: r.first_name,
-      lastName: r.last_name,
-      title: r.title,
-      party: r.party_label,
-      photoUrl: r.photo_url,
-      fraction: r.fraction,
-    });
     const direktRow = rows.find((r) => r.mandate_won === "constituency");
     const liste = rows.filter((r) => r.mandate_won !== "constituency").map(toAbg);
+
+    const frRow = direktRow
+      ? undefined
+      : (formerDirektStmt.get(periodId, wk.wkr_nr) as (AbgRow & { end_date: string }) | undefined);
+    const formerDirekt: WahlkreisTreffer["formerDirekt"] = frRow
+      ? { abg: toAbg(frRow), endDate: frRow.end_date }
+      : null;
+
     // Kanonischen Wahlkreis-Namen aus den Mandaten ziehen, sonst Shapefile-Name.
-    const wkName = cleanWkName(rows[0]?.constituency) || wk.wkr_name;
+    const wkName = cleanWkName(rows[0]?.constituency) || cleanWkName(frRow?.constituency ?? null) || wk.wkr_name;
     return {
       wkrNr: wk.wkr_nr,
       wkrName: wkName,
       flaechenanteil: wk.flaechenanteil,
       direkt: direktRow ? toAbg(direktRow) : null,
+      formerDirekt,
       liste,
     };
   });
 
   const eindeutig = treffer.length === 1 && treffer[0].flaechenanteil >= 0.9;
   return { plz: norm, eindeutig, treffer };
+}
+
+/** Bundestags-Abgeordnete zu einer PLZ (Direktmandat + Landesliste), nach Flächenanteil. */
+export function getBundestagWahlkreiseByPlz(plz: string): PlzLookupResult | null {
+  return lookupByPlz(plz, "bundestag", 5 /* parliaments.id Bundestag */);
+}
+
+/**
+ * Abgeordnetenhaus-Berlin-Abgeordnete zu einer PLZ. Liefert leere Treffer für
+ * Nicht-Berliner PLZ (dort gibt es keine AGH-Wahlkreis-Zeilen).
+ */
+export function getBerlinWahlkreiseByPlz(plz: string): PlzLookupResult | null {
+  return lookupByPlz(plz, "berlin", 2 /* parliaments.id Berlin */);
 }

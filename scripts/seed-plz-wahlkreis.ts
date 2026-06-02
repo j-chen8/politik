@@ -31,7 +31,21 @@ import path from "path";
 import fs from "fs";
 import * as shapefile from "shapefile";
 import * as turf from "@turf/turf";
+import proj4 from "proj4";
 import type { Feature, Polygon, MultiPolygon, BBox } from "geojson";
+
+// Berlin AGH-Shapefile liegt in ETRS89/UTM33N (Meter); PLZ-Geojson ist WGS84.
+// Definition für proj4, damit wir vor dem turf-Verschnitt nach EPSG:4326 reprojizieren.
+proj4.defs("EPSG:25833", "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+
+/** Reprojiziert beliebig verschachtelte GeoJSON-Koordinaten von `from` nach WGS84. */
+function reprojectCoords(coords: any, from: string): any {
+  if (typeof coords[0] === "number") {
+    const [lon, lat] = proj4(from, "EPSG:4326", [coords[0], coords[1]]);
+    return [lon, lat];
+  }
+  return coords.map((c: any) => reprojectCoords(c, from));
+}
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 const GEO_DIR = path.join(process.cwd(), "data/geo");
@@ -50,6 +64,8 @@ type SourceConfig = {
   parlament: string;
   shpPath: string;
   dbfPath: string;
+  /** Falls gesetzt: Shapefile-Geometrie wird von diesem EPSG nach WGS84 reprojiziert. */
+  epsg?: string;
   /** Liest WKR-Nr + Name aus den Shapefile-Properties. */
   readWk: (props: Record<string, unknown>) => { wkrNr: number; wkrName: string };
 };
@@ -61,7 +77,16 @@ const SOURCES: Record<string, SourceConfig> = {
     dbfPath: path.join(GEO_DIR, "btw25_wk_shp/btw25_geometrie_wahlkreise_shp_geo.dbf"),
     readWk: (p) => ({ wkrNr: Number(p.WKR_NR), wkrName: String(p.WKR_NAME) }),
   },
-  // Berlin wird ergänzt, sobald die Geometrie-Quelle final ist (eigenes Feldschema).
+  // Berlin AGH-Wahlkreise 2021 (Amt für Statistik Berlin-Brandenburg, CC-BY).
+  // Felder: AWK = 4-stelliger Code (Bezirk*100 + WK, z. B. "0101" = Mitte 1),
+  // BEZ = Bezirk, AWK2 = WK im Bezirk. Number("0101")=101 == mandates.constituency.
+  berlin: {
+    parlament: "berlin",
+    shpPath: path.join(GEO_DIR, "berlin_agh_wk/AWK_AH21_25833.shp"),
+    dbfPath: path.join(GEO_DIR, "berlin_agh_wk/AWK_AH21_25833.dbf"),
+    epsg: "EPSG:25833",
+    readWk: (p) => ({ wkrNr: Number(p.AWK), wkrName: `Wahlkreis ${p.AWK} (Bezirk ${p.BEZ})` }),
+  },
 };
 
 function bboxOverlap(a: BBox, b: BBox): boolean {
@@ -75,7 +100,11 @@ async function loadWahlkreise(cfg: SourceConfig): Promise<WkFeature[]> {
     if (!f.geometry) continue;
     const { wkrNr, wkrName } = cfg.readWk(f.properties as Record<string, unknown>);
     if (!Number.isFinite(wkrNr)) continue;
-    const feature = turf.feature(f.geometry) as Feature<Polygon | MultiPolygon>;
+    let geometry = f.geometry;
+    if (cfg.epsg && (geometry.type === "Polygon" || geometry.type === "MultiPolygon")) {
+      geometry = { ...geometry, coordinates: reprojectCoords(geometry.coordinates, cfg.epsg) };
+    }
+    const feature = turf.feature(geometry) as Feature<Polygon | MultiPolygon>;
     out.push({ wkrNr, wkrName, feature, bbox: turf.bbox(feature) });
   }
   return out;
