@@ -46,10 +46,13 @@ function partyShort(label: string | null): string {
   return label;
 }
 
-/** Subject + Apposition wegschneiden ("Felix Banaszak, Co-Vorsitzender..., äußerte sich..." → "Äußerte sich..."). */
+/** Subject + Apposition wegschneiden ("Felix Banaszak, Co-Vorsitzender..., äußerte sich..." → "Äußerte sich...").
+ *  WICHTIG: [^,.] (nicht [^,]) — sonst greift die Regex über Satzgrenzen (Punkte) hinweg und frisst
+ *  bei deutschen, kommareichen Sätzen (jedes Substantiv groß) den halben Text weg
+ *  (z.B. Amthor → "Aber defensiven Ton."). Punkte begrenzen das Subjekt auf den ersten Satz. */
 function stripSubject(text: string): string {
   let result = text;
-  const withComma = /^([A-ZÄÖÜ][^,]+,\s+)+(?=[a-zäöü])/.exec(text);
+  const withComma = /^([A-ZÄÖÜ][^,.]+,\s+)+(?=[a-zäöü])/.exec(text);
   if (withComma) {
     result = text.slice(withComma[0].length);
   } else {
