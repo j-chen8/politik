@@ -289,9 +289,11 @@ const APPEARANCES: Appearance[] = [
     politician_desc: "Gregor Gysi, Die Linke, MdB, Alterspräsident des Bundestags; langjährige Galionsfigur der Linken, außenpolitisch profiliert, oppositionelle Perspektive.",
   },
   {
-    custom_id: "kluessendorf-hartaberfair-2026-04-20",
-    politician_id: 175503,
-    politician: "Tim Klüssendorf",
+    // Korrektur 2026-06-02: SPD-Gast dieser Folge war Matthias Miersch (SPD-Fraktions-
+    // vorsitzender), nicht Klüssendorf — ursprüngliche Test-Fixture hatte den Gast verwechselt.
+    custom_id: "miersch-hartaberfair-2026-04-20",
+    politician_id: 79133,
+    politician: "Matthias Miersch",
     host: "Louis Klamroth",
     publisher: "hart aber fair (ARD)",
     episode_label: "Sendung vom 20.04.2026",
@@ -301,7 +303,7 @@ const APPEARANCES: Appearance[] = [
     duration_label: "ca. 75 Min",
     format: "tv",
     other_speakers: "Panel zu Spritpreisen und Tankrabatt, u.a. eine Unternehmerin; weitere Diskutant:innen aus Wirtschaft/Verbänden möglich.",
-    politician_desc: "Tim Klüssendorf, SPD, MdB; Finanz- und Haushaltspolitiker. Vertritt die SPD-Position zu Energiepreisen und Entlastungen.",
+    politician_desc: "SPD, MdB. Dr. Matthias Miersch ist seit Mai 2025 Vorsitzender der SPD-Bundestagsfraktion; promovierter Jurist, MdB seit 2005, lange umweltpolitischer Sprecher der Fraktion.",
   },
   {
     custom_id: "merz-miosga-2026-05-03",
