@@ -24,6 +24,7 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const CONCURRENCY = 4;
 
 const ALL = process.argv.includes("--all");
+const BERLIN = process.argv.includes("--berlin");
 const REFRESH = process.argv.includes("--refresh");
 const LIMIT_IDX = process.argv.indexOf("--limit");
 const LIMIT = LIMIT_IDX > -1 ? parseInt(process.argv[LIMIT_IDX + 1], 10) : 0;
@@ -80,6 +81,7 @@ function buildUserPrompt(p: {
   occupation: string | null;
   cv_json: string | null;
   cv_homepage_json: string | null;
+  cv_agh_json: string | null;
 }): string {
   const lines: string[] = [];
   const fullName = [p.title, p.first_name, p.last_name].filter(Boolean).join(" ");
@@ -89,7 +91,7 @@ function buildUserPrompt(p: {
   if (p.occupation) lines.push(`Beruf (Stammdaten): ${p.occupation}`);
 
   const merged: CV = { ausbildung: [], beruflicher_werdegang: [], politische_stationen: [], sonstiges: [] };
-  for (const raw of [p.cv_homepage_json, p.cv_json]) {
+  for (const raw of [p.cv_agh_json, p.cv_homepage_json, p.cv_json]) {
     if (!raw) continue;
     try {
       const cv = JSON.parse(raw) as CV;
@@ -156,20 +158,30 @@ async function main() {
 
   const skipExisting = REFRESH ? "" : "AND p.cv_summary IS NULL";
 
+  const hasSource = "(p.cv_json IS NOT NULL OR p.cv_homepage_json IS NOT NULL OR p.cv_agh_json IS NOT NULL)";
+  const cols = `p.id, p.first_name, p.last_name, p.title, p.year_of_birth, p.occupation,
+            p.cv_json, p.cv_homepage_json, p.cv_agh_json, parties.label AS party`;
+
   const sql = ALL
-    ? `SELECT DISTINCT p.id, p.first_name, p.last_name, p.title, p.year_of_birth, p.occupation,
-            p.cv_json, p.cv_homepage_json, parties.label AS party
+    ? `SELECT DISTINCT ${cols}
        FROM politicians p
        LEFT JOIN parties ON parties.id = p.party_id
-       WHERE (p.cv_json IS NOT NULL OR p.cv_homepage_json IS NOT NULL) ${skipExisting}`
-    : `SELECT DISTINCT p.id, p.first_name, p.last_name, p.title, p.year_of_birth, p.occupation,
-            p.cv_json, p.cv_homepage_json, parties.label AS party
+       WHERE ${hasSource} ${skipExisting}`
+    : BERLIN
+    ? `SELECT DISTINCT ${cols}
+       FROM politicians p
+       JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
+       JOIN parliament_periods pp ON m.parliament_period_id = pp.id
+       LEFT JOIN parties ON parties.id = p.party_id
+       WHERE ${hasSource}
+         AND pp.parliament_id = 2 ${skipExisting}`
+    : `SELECT DISTINCT ${cols}
        FROM politicians p
        JOIN mandates m ON m.politician_id = p.id AND m.type = 'mandate'
        JOIN parliament_periods pp ON m.parliament_period_id = pp.id
        JOIN parliaments par ON pp.parliament_id = par.id
        LEFT JOIN parties ON parties.id = p.party_id
-       WHERE (p.cv_json IS NOT NULL OR p.cv_homepage_json IS NOT NULL)
+       WHERE ${hasSource}
          AND par.type = 'bundestag' ${skipExisting}`;
 
   let rows = db.prepare(sql).all() as {
@@ -181,6 +193,7 @@ async function main() {
     occupation: string | null;
     cv_json: string | null;
     cv_homepage_json: string | null;
+    cv_agh_json: string | null;
     party: string | null;
   }[];
 
