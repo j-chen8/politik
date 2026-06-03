@@ -1,0 +1,150 @@
+/**
+ * Bürger-Themen-Frontdoor — editorische Konfiguration ("Was bewegt Deutschland").
+ *
+ * Sichtbare, menschlich benannte Ebene ÜBER dem AW-Politikfeld-Skelett. Jede
+ * Kachel mappt auf eine oder mehrere EXAKTE `aw_field`-Werte aus `item_topics`
+ * (die linkbare, klassifizierte Einheit). Reihenfolge nach Umfrage-Salienz-TIER
+ * (Bürger-Perspektive), NICHT nach rohem Volumen — rohes Volumen = wer am meisten
+ * *einbringt* (z. B. Oppositions-Anträge), nicht parlamentarische Priorität.
+ *
+ * Salienz-Tiers sind trianguliert über mehrere Umfragen — Herleitung + Quellen:
+ * docs/umfrage-salienz.md. KEINE fragilen Einzel-Prozentzahlen (volatil +
+ * methodenabhängig). "Rente" und "Inflation" haben kein eigenes aw_field
+ * (in Soziale Sicherung bzw. Wirtschaft aufgegangen) → Divergenz-Analyse (Schicht 2),
+ * nicht als eigene Kachel.
+ */
+
+export type Tier = "sehr hoch" | "hoch" | "mittel-hoch" | "mittel" | "niedrig";
+
+export const TIER_ORDER: Tier[] = ["sehr hoch", "hoch", "mittel-hoch", "mittel", "niedrig"];
+
+/** Neutrale, abgestufte Badge-Stile (kein rot=schlecht/grün=gut — nur Intensität). */
+export const TIER_STYLE: Record<Tier, string> = {
+  "sehr hoch": "bg-[#1a3e72] text-white",
+  hoch: "bg-[#1a3e72]/12 text-[#1a3e72]",
+  "mittel-hoch": "bg-zinc-200 text-zinc-700",
+  mittel: "bg-zinc-100 text-zinc-600",
+  niedrig: "bg-zinc-50 text-zinc-400 ring-1 ring-inset ring-zinc-200",
+};
+
+export interface CitizenTopic {
+  slug: string;
+  label: string;
+  blurb: string;
+  /** Exakte aw_field-Werte aus item_topics (Volumen + Detail-Verlinkung). */
+  awFields: string[];
+  tier: Tier;
+  /** Optionaler Zusatz, z. B. Trend. */
+  flag?: string;
+}
+
+/**
+ * Featured-Shortlist — die "wichtigsten" Themen fürs Cover (nicht alle 28 Felder).
+ *
+ * REIHENFOLGE = Umfrage-Salienz, absteigend (Bürger-Perspektive). Array-Reihenfolge
+ * IST die Anzeige-Reihenfolge: die Seite sortiert NUR nach Tier (stabil), wodurch
+ * die hier gewählte Within-Tier-Ordnung erhalten bleibt. Within-Tier-Reihenfolge
+ * folgt der Umfrage-Salienz (NICHT dem Parlaments-Volumen) — z. B. Soziale Sicherung
+ * vor Verteidigung, weil Armut/Ungleichheit in vorgegebenen Umfragen oben steht
+ * (Ipsos #1, 36 %). Wo offene/vorgegebene Umfragen sich uneinig sind, dient die
+ * vorgegebene-Liste-Salienz als Tiebreaker (Begründung: docs/umfrage-salienz.md).
+ */
+export const CITIZEN_TOPICS: CitizenTopic[] = [
+  // ── sehr hoch ──────────────────────────────────────────────────────────
+  {
+    slug: "wirtschaft-preise",
+    label: "Wirtschaft & Preise",
+    blurb: "Wirtschaftslage, Inflation und Lebenshaltungskosten — in allen Umfragen ganz oben.",
+    awFields: ["Wirtschaft", "Außenwirtschaft"],
+    tier: "sehr hoch",
+  },
+  // ── hoch (Within-Tier nach Umfrage-Salienz: Ungleichheit 36 > Konflikte 31 > Migration 29) ──
+  {
+    slug: "soziale-sicherung",
+    label: "Soziale Sicherung & Gerechtigkeit",
+    blurb: "Bürgergeld, Rente, Armut und soziale Ungleichheit — Spitzensorge in vorgegebenen Umfragen.",
+    awFields: ["Soziale Sicherung", "Gesellschaftspolitik, soziale Gruppen"],
+    tier: "hoch",
+  },
+  {
+    slug: "verteidigung-aussen",
+    label: "Verteidigung & Außenpolitik",
+    blurb: "Bundeswehr, Bündnisse und militärische Konflikte — Sorge zuletzt stark gestiegen.",
+    awFields: ["Verteidigung", "Außenpolitik und internationale Beziehungen"],
+    tier: "hoch",
+  },
+  {
+    slug: "migration-asyl",
+    label: "Migration & Asyl",
+    blurb: "Zuwanderung und Aufenthaltsrecht — hoch, in Umfragen aber seit einem Jahr deutlich gefallen.",
+    awFields: ["Migration und Aufenthaltsrecht"],
+    tier: "hoch",
+    flag: "rückläufig",
+  },
+  // ── mittel-hoch (Kriminalität 24 > Gesundheit 23) ────────────────────────
+  {
+    slug: "innere-sicherheit",
+    label: "Innere Sicherheit",
+    blurb: "Kriminalität, Polizei und Extremismus.",
+    awFields: ["Innere Sicherheit"],
+    tier: "mittel-hoch",
+  },
+  {
+    slug: "gesundheit-pflege",
+    label: "Gesundheit & Pflege",
+    blurb: "Krankenversicherung, Krankenhäuser und Pflege.",
+    awFields: ["Gesundheit"],
+    tier: "mittel-hoch",
+  },
+  // ── mittel (Steuern 20 > Klima 16 > Energie 15 > Arbeit) ─────────────────
+  {
+    slug: "steuern-finanzen",
+    label: "Steuern & Staatsfinanzen",
+    blurb: "Haushalt, Steuern und Abgaben — größtes Initiativ-Volumen im Bundestag.",
+    awFields: ["Öffentliche Finanzen, Steuern und Abgaben"],
+    tier: "mittel",
+  },
+  {
+    slug: "klima-umwelt",
+    label: "Klima & Umwelt",
+    blurb: "Klimaschutz, Natur und Umwelt.",
+    awFields: ["Umwelt"],
+    tier: "mittel",
+  },
+  {
+    slug: "energie",
+    label: "Energie",
+    blurb: "Strom- und Gaspreise, Energiewende und Versorgung.",
+    awFields: ["Energie"],
+    tier: "mittel",
+  },
+  {
+    slug: "arbeit-loehne",
+    label: "Arbeit & Löhne",
+    blurb: "Arbeitsmarkt, Mindestlohn und Beschäftigung.",
+    awFields: ["Arbeit und Beschäftigung"],
+    tier: "mittel",
+  },
+  // ── niedrig ──────────────────────────────────────────────────────────────
+  {
+    slug: "bildung",
+    label: "Bildung",
+    blurb: "Schule, Hochschule und Ausbildung.",
+    awFields: ["Bildung und Erziehung"],
+    tier: "niedrig",
+  },
+  {
+    slug: "wohnen-bau",
+    label: "Wohnen & Bau",
+    blurb: "Mieten, Bauen und Stadtentwicklung — im Bund klein, vor allem Länder-/Kommunalsache.",
+    awFields: ["Raumordnung, Bau- und Wohnungswesen"],
+    tier: "niedrig",
+  },
+];
+
+export const SALIENCE_SOURCE =
+  "Salienz-Einstufung trianguliert aus Politbarometer, Eurobarometer, Ipsos-Sorgenbarometer und forsa (2025/26). Methodik & Quellen: docs/umfrage-salienz.md.";
+
+export function topicBySlug(slug: string): CitizenTopic | undefined {
+  return CITIZEN_TOPICS.find((t) => t.slug === slug);
+}

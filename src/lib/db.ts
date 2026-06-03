@@ -6978,3 +6978,66 @@ export function getTopicInitiativeMatrix(): InitiativeMatrix {
   const fields = Object.entries(fieldTotals).sort((a, b) => b[1] - a[1]).map(([f]) => f);
   return { fraktionen, fields, cells };
 }
+
+/**
+ * Bürger-Themen-Frontdoor: distinkte Drucksachen-Zahl ("Initiativen") für ein
+ * Set von aw_fields aus item_topics. Antworten ausgeschlossen (= eingebrachte
+ * Initiativen, nicht Beantwortungen). DISTINCT über das Feld-Set, damit eine DS
+ * mit zwei der Felder nicht doppelt zählt.
+ */
+export function getDrucksacheCountForFields(fields: string[]): number {
+  if (fields.length === 0) return 0;
+  const ph = fields.map(() => "?").join(",");
+  const row = getDb()
+    .prepare(
+      `SELECT COUNT(DISTINCT it.item_id) AS n
+       FROM item_topics it
+       JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+       WHERE it.source = 'bt_drucksache' AND it.aw_field IN (${ph})
+         AND da.batch_class != 'antwort' AND da.thema IS NOT NULL`,
+    )
+    .get(...fields) as { n: number };
+  return row?.n ?? 0;
+}
+
+export interface TopicDrucksache {
+  nr: string;
+  titel: string | null;
+  fraktion: string | null;
+}
+
+/** Drucksachen-Liste für die Bürger-Thema-Detailseite (ein aw_field-Set). */
+export function listDrucksachenForFields(
+  fields: string[],
+  limit = 60,
+  offset = 0,
+): { items: TopicDrucksache[]; total: number } {
+  if (fields.length === 0) return { items: [], total: 0 };
+  const ph = fields.map(() => "?").join(",");
+  const where = `it.source = 'bt_drucksache' AND it.aw_field IN (${ph})
+     AND da.batch_class != 'antwort' AND da.thema IS NOT NULL`;
+  const total = (
+    getDb()
+      .prepare(
+        `SELECT COUNT(DISTINCT it.item_id) AS n
+         FROM item_topics it JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+         WHERE ${where}`,
+      )
+      .get(...fields) as { n: number }
+  ).n;
+  const items = getDb()
+    .prepare(
+      `SELECT it.item_id AS nr,
+         COALESCE((SELECT titel FROM dip_ds_titles WHERE drucksache_nr = it.item_id AND titel IS NOT NULL),
+                  da.zusammenfassung, da.thema) AS titel,
+         da.fraktion AS fraktion
+       FROM item_topics it
+       JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+       WHERE ${where}
+       GROUP BY it.item_id
+       ORDER BY it.item_id DESC
+       LIMIT ? OFFSET ?`,
+    )
+    .all(...fields, limit, offset) as TopicDrucksache[];
+  return { items, total };
+}
