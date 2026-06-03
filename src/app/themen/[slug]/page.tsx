@@ -1,7 +1,7 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
-import { listDrucksachenForFields } from "@/lib/db";
+import { listDrucksachenForFields, listDrucksachenForThema } from "@/lib/db";
 import { topicBySlug, TIER_STYLE } from "@/lib/citizen-topics";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -27,7 +27,9 @@ export default async function ThemaDetailPage({ params }: Props) {
   const topic = topicBySlug(slug);
   if (!topic) notFound();
 
-  const { items, total } = listDrucksachenForFields(topic.awFields, LIMIT, 0);
+  const { items, total } = topic.themaMatch
+    ? listDrucksachenForThema(topic.themaMatch, LIMIT, 0)
+    : listDrucksachenForFields(topic.awFields ?? [], LIMIT, 0);
 
   return (
     <div className="page-wash min-h-screen">
@@ -52,6 +54,11 @@ export default async function ThemaDetailPage({ params }: Props) {
             </span>
           </div>
           <p className="mt-2.5 text-[14px] text-zinc-600 leading-relaxed max-w-2xl">{topic.blurb}</p>
+          {topic.surveyTerm && (
+            <p className="mt-2 text-[11.5px] text-zinc-400">
+              Umfrage-Salienz aus der Kategorie {topic.surveyTerm}.
+            </p>
+          )}
           <p className="mt-3 text-[12px] text-zinc-400">
             {fmtNum(total)} Drucksachen berühren dieses Thema
             {topic.flag && <span> · {topic.flag}</span>}

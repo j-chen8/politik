@@ -7074,6 +7074,29 @@ export function getInstrumentCountsForFields(fields: string[]): InstrumentCounts
   return { handeln: row.handeln ?? 0, kontrolle: row.kontrolle ?? 0, antrag: row.antrag ?? 0 };
 }
 
+/**
+ * Instrument-Aufschlüsselung für STICHWORT-Kacheln (Themen ohne eigenes aw_field,
+ * z. B. „Rente", „Krieg"). Match über thema-Tag ODER Zusammenfassung-Freitext.
+ */
+export function getInstrumentCountsForThema(keywords: string[]): InstrumentCounts {
+  if (keywords.length === 0) return { handeln: 0, kontrolle: 0, antrag: 0 };
+  const cond = keywords.map(() => "(da.thema LIKE ? OR da.zusammenfassung LIKE ?)").join(" OR ");
+  const params: string[] = [];
+  for (const k of keywords) params.push(`%${k}%`, `%${k}%`);
+  const row = getDb()
+    .prepare(
+      `SELECT
+         SUM(CASE WHEN di.bucket='handeln' THEN 1 ELSE 0 END) AS handeln,
+         SUM(CASE WHEN di.bucket='kontrolle' THEN 1 ELSE 0 END) AS kontrolle,
+         SUM(CASE WHEN di.bucket='antrag' THEN 1 ELSE 0 END) AS antrag
+       FROM drucksache_analyses da
+       JOIN drucksache_instrument di ON di.drucksache_nr = da.drucksache_nr
+       WHERE da.batch_class != 'antwort' AND da.thema IS NOT NULL AND (${cond})`,
+    )
+    .get(...params) as { handeln: number | null; kontrolle: number | null; antrag: number | null };
+  return { handeln: row.handeln ?? 0, kontrolle: row.kontrolle ?? 0, antrag: row.antrag ?? 0 };
+}
+
 export interface TopicDrucksache {
   nr: string;
   titel: string | null;
@@ -7113,5 +7136,36 @@ export function listDrucksachenForFields(
        LIMIT ? OFFSET ?`,
     )
     .all(...fields, limit, offset) as TopicDrucksache[];
+  return { items, total };
+}
+
+/** Drucksachen-Liste für STICHWORT-Kacheln (Rente/Krieg): thema-Tag ODER Zusammenfassung. */
+export function listDrucksachenForThema(
+  keywords: string[],
+  limit = 60,
+  offset = 0,
+): { items: TopicDrucksache[]; total: number } {
+  if (keywords.length === 0) return { items: [], total: 0 };
+  const cond = keywords.map(() => "(da.thema LIKE ? OR da.zusammenfassung LIKE ?)").join(" OR ");
+  const kp: string[] = [];
+  for (const k of keywords) kp.push(`%${k}%`, `%${k}%`);
+  const where = `da.batch_class != 'antwort' AND da.thema IS NOT NULL AND (${cond})`;
+  const total = (
+    getDb()
+      .prepare(`SELECT COUNT(*) AS n FROM drucksache_analyses da WHERE ${where}`)
+      .get(...kp) as { n: number }
+  ).n;
+  const items = getDb()
+    .prepare(
+      `SELECT da.drucksache_nr AS nr,
+         COALESCE((SELECT titel FROM dip_ds_titles WHERE drucksache_nr = da.drucksache_nr AND titel IS NOT NULL),
+                  da.zusammenfassung, da.thema) AS titel,
+         da.fraktion AS fraktion
+       FROM drucksache_analyses da
+       WHERE ${where}
+       ORDER BY da.drucksache_nr DESC
+       LIMIT ? OFFSET ?`,
+    )
+    .all(...kp, limit, offset) as TopicDrucksache[];
   return { items, total };
 }

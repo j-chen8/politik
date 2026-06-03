@@ -31,8 +31,13 @@ export interface CitizenTopic {
   slug: string;
   label: string;
   blurb: string;
-  /** Exakte aw_field-Werte aus item_topics (Volumen + Detail-Verlinkung). */
-  awFields: string[];
+  /** Entweder exakte aw_field-Werte aus item_topics … */
+  awFields?: string[];
+  /** … ODER Stichwörter (thema-Tag/Zusammenfassung) für Themen ohne eigenes
+   *  aw_field (z. B. Rente, Krieg — sind eigene Umfrage-Kategorien). */
+  themaMatch?: string[];
+  /** Original-Umfrage-Begriff(e), aus denen die Salienz stammt — für Transparenz. */
+  surveyTerm?: string;
   tier: Tier;
   /** Optionaler Zusatz, z. B. Trend. */
   flag?: string;
@@ -56,38 +61,51 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     label: "Wirtschaft & Preise",
     blurb: "Wirtschaftslage, Inflation und Lebenshaltungskosten — in allen Umfragen ganz oben.",
     awFields: ["Wirtschaft", "Außenwirtschaft"],
+    surveyTerm: "Wirtschaftslage & Kosten/Löhne/Preise",
     tier: "sehr hoch",
   },
-  // ── hoch (Within-Tier nach Ø-Salienz über die Wahlperiode: Migration 21 > Renten/
-  //    Ungleichheit ~11 ≈ Verteidigung 10,5; Ungleichheit zusätzlich Spitze in vorgegebenen) ──
+  // ── hoch ───────────────────────────────────────────────────────────────
   {
     slug: "migration-asyl",
     label: "Migration & Asyl",
     blurb: "Zuwanderung und Aufenthaltsrecht — über die Wahlperiode die zweithäufigste Sorge, zuletzt aber deutlich gefallen.",
     awFields: ["Migration und Aufenthaltsrecht"],
+    surveyTerm: "Zuwanderung / Einwanderung",
     tier: "hoch",
     flag: "zuletzt rückläufig",
   },
   {
     slug: "soziale-sicherung",
     label: "Soziale Sicherung & Gerechtigkeit",
-    blurb: "Bürgergeld, Rente, Armut und soziale Ungleichheit — Spitzensorge in vorgegebenen Umfragen.",
+    blurb: "Armut, soziale Ungleichheit und soziale Sicherung — Spitzensorge in vorgegebenen Umfragen.",
     awFields: ["Soziale Sicherung", "Gesellschaftspolitik, soziale Gruppen"],
+    surveyTerm: "Soziales Gefälle / Armut und soziale Ungleichheit",
     tier: "hoch",
   },
   {
-    slug: "verteidigung-aussen",
-    label: "Verteidigung & Außenpolitik",
-    blurb: "Bundeswehr, Bündnisse und militärische Konflikte — Sorge zuletzt stark gestiegen.",
-    awFields: ["Verteidigung", "Außenpolitik und internationale Beziehungen"],
+    slug: "krieg-konflikte",
+    label: "Krieg & internationale Konflikte",
+    blurb: "Krieg in der Ukraine, Nahost und andere militärische Konflikte zwischen Staaten.",
+    themaMatch: ["Ukraine", "Russland", "Gaza", "Nahost", "Hamas", "Selenskyj"],
+    surveyTerm: "Ukraine/Krieg/Russland / Militärische Konflikte",
+    tier: "hoch",
+    flag: "Ukraine-Sorge zuletzt gefallen",
+  },
+  {
+    slug: "verteidigung-bundeswehr",
+    label: "Verteidigung & Bundeswehr",
+    blurb: "Bundeswehr, Aufrüstung und Verteidigungsfähigkeit.",
+    awFields: ["Verteidigung"],
+    surveyTerm: "Bundeswehr/Verteidigung",
     tier: "hoch",
   },
-  // ── mittel-hoch (Kriminalität 24 > Gesundheit 23) ────────────────────────
+  // ── mittel-hoch ──────────────────────────────────────────────────────────
   {
     slug: "innere-sicherheit",
     label: "Innere Sicherheit",
     blurb: "Kriminalität, Polizei und Extremismus.",
     awFields: ["Innere Sicherheit"],
+    surveyTerm: "Kriminalität und Gewalt / Extremismus",
     tier: "mittel-hoch",
   },
   {
@@ -95,14 +113,24 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     label: "Gesundheit & Pflege",
     blurb: "Krankenversicherung, Krankenhäuser und Pflege.",
     awFields: ["Gesundheit"],
+    surveyTerm: "Gesundheitswesen, Pflege",
     tier: "mittel-hoch",
   },
-  // ── mittel (Steuern 20 > Klima 16 > Energie 15 > Arbeit) ─────────────────
+  {
+    slug: "rente",
+    label: "Rente & Alterssicherung",
+    blurb: "Gesetzliche Rente, Rentenniveau und Alterssicherung.",
+    themaMatch: ["Rente"],
+    surveyTerm: "Renten",
+    tier: "mittel-hoch",
+  },
+  // ── mittel ───────────────────────────────────────────────────────────────
   {
     slug: "steuern-finanzen",
     label: "Steuern & Staatsfinanzen",
     blurb: "Haushalt, Steuern und Abgaben — größtes Initiativ-Volumen im Bundestag.",
     awFields: ["Öffentliche Finanzen, Steuern und Abgaben"],
+    surveyTerm: "Steuern (Ipsos)",
     tier: "mittel",
   },
   {
@@ -110,6 +138,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     label: "Klima & Umwelt",
     blurb: "Klimaschutz, Natur und Umwelt.",
     awFields: ["Umwelt"],
+    surveyTerm: "Klima / Energie / Klimawandel",
     tier: "mittel",
   },
   {
@@ -117,6 +146,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     label: "Energie",
     blurb: "Strom- und Gaspreise, Energiewende und Versorgung.",
     awFields: ["Energie"],
+    surveyTerm: "Teil von Klima / Energie",
     tier: "mittel",
   },
   {
@@ -124,9 +154,10 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     label: "Arbeit & Löhne",
     blurb: "Arbeitsmarkt, Mindestlohn und Beschäftigung.",
     awFields: ["Arbeit und Beschäftigung"],
+    surveyTerm: "Arbeitslosigkeit",
     tier: "mittel",
   },
-  // ── niedrig ──────────────────────────────────────────────────────────────
+  // ── niedrig (keine eigene Umfrage-Kategorie) ──────────────────────────────
   {
     slug: "bildung",
     label: "Bildung",

@@ -1,6 +1,6 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowRight } from "lucide-react";
-import { getInstrumentCountsForFields } from "@/lib/db";
+import { getInstrumentCountsForFields, getInstrumentCountsForThema } from "@/lib/db";
 import {
   CITIZEN_TOPICS,
   TIER_ORDER,
@@ -21,7 +21,9 @@ function fmtNum(x: number): string {
 export default function ThemenPage() {
   const tiles = CITIZEN_TOPICS.map((t) => ({
     ...t,
-    instr: getInstrumentCountsForFields(t.awFields),
+    instr: t.themaMatch
+      ? getInstrumentCountsForThema(t.themaMatch)
+      : getInstrumentCountsForFields(t.awFields ?? []),
   })).sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier));
   // Stabile Sortierung: nur nach Tier. Within-Tier-Reihenfolge = Array-Reihenfolge
   // in CITIZEN_TOPICS = Umfrage-Salienz (NICHT Parlaments-Volumen). Siehe dort.
@@ -53,7 +55,7 @@ export default function ThemenPage() {
                 </h2>
                 <span
                   className={`shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TIER_STYLE[t.tier]}`}
-                  title="Salienz: wie häufig in Umfragen als wichtiges Problem genannt"
+                  title={t.surveyTerm ? `Salienz aus Umfrage-Kategorie: ${t.surveyTerm}` : "Salienz: wie häufig in Umfragen als wichtiges Problem genannt"}
                 >
                   {t.tier}
                 </span>

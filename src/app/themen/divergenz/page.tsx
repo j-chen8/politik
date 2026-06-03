@@ -1,6 +1,6 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowLeft, ArrowUp, ArrowDown, Minus } from "lucide-react";
-import { getInstrumentCountsForFields, getThemaKeywordShare } from "@/lib/db";
+import { getInstrumentCountsForFields, getInstrumentCountsForThema, getThemaKeywordShare } from "@/lib/db";
 import { CITIZEN_TOPICS, TIER_STYLE } from "@/lib/citizen-topics";
 
 export const metadata = {
@@ -16,7 +16,9 @@ function fmtNum(x: number): string {
 export default function DivergenzPage() {
   // Salienz-Rang = Reihenfolge in CITIZEN_TOPICS (umfrage-getreu, über die Wahlperiode).
   const base = CITIZEN_TOPICS.map((t, i) => {
-    const instr = getInstrumentCountsForFields(t.awFields);
+    const instr = t.themaMatch
+      ? getInstrumentCountsForThema(t.themaMatch)
+      : getInstrumentCountsForFields(t.awFields ?? []);
     return { ...t, salienceRank: i + 1, ...instr };
   });
 
