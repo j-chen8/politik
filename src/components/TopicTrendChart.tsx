@@ -1,6 +1,6 @@
 /**
  * TopicTrendChart — Zeitreihe pro Bürger-Thema (hand-gerollte SVG, kein Chart-Lib).
- * Durchgehend Linien. Zwei Panels mit geteilter Zeitachse (getrennte Einheiten):
+ * Durchgehend Balken. Zwei Panels mit geteilter Zeitachse (getrennte Einheiten):
  *   oben:  Bürger-Sorge % (Politbarometer) — der Input
  *   unten: Anfragen/Monat (Kontrolle) + Gesetzgebung/Monat (Handeln) — die Reaktion
  * Rein deskriptiv: Korrelation ≠ Kausalität, Politik reagiert mit Verzug.
@@ -24,8 +24,8 @@ export function TopicTrendChart({ months, concern, anfragen, handeln }: Props) {
   const padR = 12;
   const plotW = W - padL - padR;
   const n = months.length;
-  const step = n > 1 ? plotW / (n - 1) : plotW;
-  const x = (i: number) => padL + i * step;
+  const band = plotW / n;
+  const cx = (i: number) => padL + (i + 0.5) * band;
 
   // Panel-Geometrie
   const aTop = 16;
@@ -37,14 +37,10 @@ export function TopicTrendChart({ months, concern, anfragen, handeln }: Props) {
   const H = bBot + 28;
 
   const maxConcern = concern ? Math.max(10, ...concern.map((v) => v ?? 0)) : 0;
-  const yC = (v: number) => aBot - (v / maxConcern) * aH;
   const maxAct = Math.max(1, ...anfragen, ...handeln);
-  const yB = (v: number) => bBot - (v / maxAct) * bH;
 
-  const line = (vals: (number | null)[], y: (v: number) => number) =>
-    vals.map((v, i) => (v == null ? null : `${x(i).toFixed(1)},${y(v).toFixed(1)}`)).filter(Boolean).join(" ");
-
-  const hasConcern = concern && concern.some((v) => v != null);
+  const wA = Math.min(band * 0.6, 22); // Sorge-Balkenbreite
+  const wB = Math.min(band * 0.32, 11); // gruppierte Balkenbreite unten
   const tickEvery = n > 10 ? 3 : 2;
 
   return (
@@ -55,60 +51,57 @@ export function TopicTrendChart({ months, concern, anfragen, handeln }: Props) {
       </text>
       {[0, maxConcern].map((v) => (
         <g key={`ay${v}`}>
-          <line x1={padL} y1={yC(v)} x2={W - padR} y2={yC(v)} className="stroke-zinc-100" strokeWidth="1" />
-          <text x={padL - 4} y={yC(v) + 3} textAnchor="end" className="fill-zinc-400" fontSize="8">
+          <line x1={padL} y1={aBot - (v / maxConcern) * aH} x2={W - padR} y2={aBot - (v / maxConcern) * aH} className="stroke-zinc-100" strokeWidth="1" />
+          <text x={padL - 4} y={aBot - (v / maxConcern) * aH + 3} textAnchor="end" className="fill-zinc-400" fontSize="8">
             {Math.round(v)}
           </text>
         </g>
       ))}
-      {hasConcern ? (
-        <>
-          <polyline points={line(concern!, yC)} fill="none" className="stroke-[#1a3e72]" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-          {concern!.map((v, i) => (v == null ? null : <circle key={i} cx={x(i)} cy={yC(v)} r="2" className="fill-[#1a3e72]" />))}
-        </>
+      {concern && concern.some((v) => v != null) ? (
+        concern.map((v, i) =>
+          v == null ? null : (
+            <rect key={`c${i}`} x={cx(i) - wA / 2} y={aBot - (v / maxConcern) * aH} width={wA} height={(v / maxConcern) * aH} className="fill-[#1a3e72]" rx="1" />
+          ),
+        )
       ) : (
         <text x={W / 2} y={aTop + aH / 2} textAnchor="middle" className="fill-zinc-300" fontSize="10">
           keine Umfrage-Reihe für dieses Thema (Politbarometer fragt offen)
         </text>
       )}
 
-      {/* Panel B: Parlament (Linien) */}
+      {/* Panel B: Parlament (gruppierte Balken) */}
       <text x={padL} y={bTop - 6} className="fill-zinc-500" fontSize="9.5" fontWeight="600">
         Parlament je Monat (Anzahl)
       </text>
       {[0, maxAct].map((v) => (
         <g key={`by${v}`}>
-          <line x1={padL} y1={yB(v)} x2={W - padR} y2={yB(v)} className="stroke-zinc-100" strokeWidth="1" />
-          <text x={padL - 4} y={yB(v) + 3} textAnchor="end" className="fill-zinc-400" fontSize="8">
+          <line x1={padL} y1={bBot - (v / maxAct) * bH} x2={W - padR} y2={bBot - (v / maxAct) * bH} className="stroke-zinc-100" strokeWidth="1" />
+          <text x={padL - 4} y={bBot - (v / maxAct) * bH + 3} textAnchor="end" className="fill-zinc-400" fontSize="8">
             {Math.round(v)}
           </text>
         </g>
       ))}
-      {/* Anfragen (hell/grau) */}
-      <polyline points={line(anfragen, yB)} fill="none" className="stroke-zinc-400" strokeWidth="1.75" strokeLinejoin="round" strokeLinecap="round" />
-      {anfragen.map((v, i) => (
-        <circle key={`a${i}`} cx={x(i)} cy={yB(v)} r="1.8" className="fill-zinc-400" />
+      <line x1={padL} y1={bBot} x2={W - padR} y2={bBot} className="stroke-zinc-200" strokeWidth="1" />
+      {months.map((m, i) => (
+        <g key={m}>
+          {/* Anfragen (grau) links */}
+          <rect x={cx(i) - wB - 0.5} y={bBot - (anfragen[i] / maxAct) * bH} width={wB} height={(anfragen[i] / maxAct) * bH} className="fill-zinc-400" rx="1" />
+          {/* Gesetzgebung (blau) rechts */}
+          <rect x={cx(i) + 0.5} y={bBot - (handeln[i] / maxAct) * bH} width={wB} height={(handeln[i] / maxAct) * bH} className="fill-[#1a3e72]" rx="1" />
+          {i % tickEvery === 0 && (
+            <text x={cx(i)} y={bBot + 14} textAnchor="middle" className="fill-zinc-400" fontSize="8">
+              {monthLabel(m)}
+            </text>
+          )}
+        </g>
       ))}
-      {/* Gesetzgebung (blau) */}
-      <polyline points={line(handeln, yB)} fill="none" className="stroke-[#1a3e72]" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-      {handeln.map((v, i) => (
-        <circle key={`h${i}`} cx={x(i)} cy={yB(v)} r="2" className="fill-[#1a3e72]" />
-      ))}
-      {/* x-Labels */}
-      {months.map((m, i) =>
-        i % tickEvery === 0 ? (
-          <text key={`x${m}`} x={x(i)} y={bBot + 14} textAnchor="middle" className="fill-zinc-400" fontSize="8">
-            {monthLabel(m)}
-          </text>
-        ) : null,
-      )}
 
       {/* Legende */}
       <g transform={`translate(${padL}, ${H - 2})`}>
-        <line x1="0" y1="-3" x2="14" y2="-3" className="stroke-zinc-400" strokeWidth="2" />
-        <text x="18" y="0" className="fill-zinc-500" fontSize="8.5">Anfragen (Kontrolle)</text>
-        <line x1="128" y1="-3" x2="142" y2="-3" className="stroke-[#1a3e72]" strokeWidth="2" />
-        <text x="146" y="0" className="fill-zinc-500" fontSize="8.5">Gesetzgebung (Handeln)</text>
+        <rect x="0" y="-8" width="9" height="9" className="fill-zinc-400" rx="1" />
+        <text x="13" y="-1" className="fill-zinc-500" fontSize="8.5">Anfragen (Kontrolle)</text>
+        <rect x="125" y="-8" width="9" height="9" className="fill-[#1a3e72]" rx="1" />
+        <text x="138" y="-1" className="fill-zinc-500" fontSize="8.5">Gesetzgebung (Handeln)</text>
       </g>
     </svg>
   );
