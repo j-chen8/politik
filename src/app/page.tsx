@@ -4,6 +4,7 @@ import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLa
 import { getBundestagLandingSnapshot } from "@/lib/db";
 import { CITIZEN_TOPICS } from "@/lib/citizen-topics";
 import { TopicCard } from "@/components/TopicCard";
+import { HomeThemeToggle } from "@/components/HomeThemeToggle";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -44,14 +45,14 @@ export default function LinearLanding() {
           {v.label && (
             <Link
               href={v.detail_url}
-              className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+              className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors dark:text-zinc-100 dark:hover:text-blue-400"
               style={lineClamp(2)}
             >
               {v.label}
             </Link>
           )}
           {s.voteSummaries[v.id] && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 leading-relaxed dark:text-zinc-300" style={lineClamp(3)}>
               {s.voteSummaries[v.id]}
             </p>
           )}
@@ -87,13 +88,13 @@ export default function LinearLanding() {
         <article key={g.drucksacheNr} className="h-[150px] flex flex-col gap-2.5 overflow-hidden">
           <Link
             href={dsHref(g.drucksacheNr)}
-            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors dark:text-zinc-100 dark:hover:text-blue-400"
             style={lineClamp(2)}
           >
             {g.titel}
           </Link>
           {g.zusammenfassung && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 leading-relaxed dark:text-zinc-300" style={lineClamp(3)}>
               {g.zusammenfassung}
             </p>
           )}
@@ -121,13 +122,13 @@ export default function LinearLanding() {
         <article key={a.drucksacheNr} className="h-[150px] flex flex-col gap-2.5 overflow-hidden">
           <Link
             href={dsHref(a.drucksacheNr)}
-            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors dark:text-zinc-100 dark:hover:text-blue-400"
             style={lineClamp(2)}
           >
             {a.titel}
           </Link>
           {a.zusammenfassung && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 leading-relaxed dark:text-zinc-300" style={lineClamp(3)}>
               {a.zusammenfassung}
             </p>
           )}
@@ -149,9 +150,12 @@ export default function LinearLanding() {
 
   const topicsBlock = (
     <div>
-      <h2 className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-zinc-500">
-        Was bewegt Deutschland?
-      </h2>
+      <div className="mb-3 flex items-center justify-between">
+        <h2 className="text-[12px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          Was bewegt Deutschland?
+        </h2>
+        <HomeThemeToggle />
+      </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
         {HOME_TOPICS.map((t) => (
           <TopicCard key={t.slug} slug={t.slug} label={t.label} />

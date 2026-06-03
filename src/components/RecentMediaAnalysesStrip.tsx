@@ -20,7 +20,7 @@ export function RecentMediaAnalysesStrip() {
   if (top.length === 0) return null;
 
   return (
-    <section className="w-full border-y border-zinc-200/70 bg-[#1a3e72]/[0.025] py-14">
+    <section className="w-full border-y border-zinc-200/70 bg-[#1a3e72]/[0.025] py-14 dark:border-zinc-800 dark:bg-white/[0.02]">
       <div className="max-w-6xl mx-auto px-5">
         <div className="flex items-end justify-between mb-6 flex-wrap gap-3">
           <div className="pl-5">
@@ -30,10 +30,10 @@ export function RecentMediaAnalysesStrip() {
                 Medien-Analyse
               </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950">
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-100">
               Aktuelle Interview-Analysen
             </h2>
-            <p className="mt-1.5 text-[13.5px] text-zinc-500 max-w-xl leading-relaxed">
+            <p className="mt-1.5 text-[13.5px] text-zinc-500 max-w-xl leading-relaxed dark:text-zinc-400">
               Interviews und Talkshow-Auftritte von Abgeordneten, ausgewertet auf
               Kernaussagen und Tonalität.
             </p>

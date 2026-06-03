@@ -58,7 +58,7 @@ export function SearchBox({
           defaultValue={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-white text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all text-base shadow-sm"
+          className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-white text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all text-base shadow-sm dark:bg-zinc-900 dark:focus:ring-white/10 dark:focus:border-zinc-500"
         />
         <button
           type="submit"

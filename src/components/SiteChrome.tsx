@@ -74,7 +74,7 @@ const MORE_NAV_BERLIN = [
 const SEARCH_LINK_BERLIN = { href: "/parlamente/berlin/suche", label: "Suche" };
 
 const navLinkClass =
-  "flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-foreground transition-colors px-2.5 py-1.5 rounded-md hover:bg-zinc-100";
+  "flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-foreground transition-colors px-2.5 py-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800";
 
 function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
   const pathname = usePathname() || "/";
@@ -167,14 +167,14 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               {moreOpen && (
                 <div
                   role="menu"
-                  className="absolute left-0 top-full mt-1.5 min-w-[170px] rounded-lg border border-border-soft bg-white shadow-lg py-1"
+                  className="absolute left-0 top-full mt-1.5 min-w-[170px] rounded-lg border border-border-soft bg-white shadow-lg py-1 dark:bg-zinc-900 dark:border-zinc-700"
                 >
                   {moreNav.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       role="menuitem"
-                      className="flex items-center gap-2 px-3 py-2 text-[13px] font-medium text-muted hover:text-foreground hover:bg-zinc-100 transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 text-[13px] font-medium text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                     >
                       <item.icon className="w-3.5 h-3.5" strokeWidth={2.25} />
                       {item.label}
@@ -196,7 +196,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
             <Link
               href={searchLink.href}
               aria-label="Suche"
-              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               <Search className="w-5 h-5" strokeWidth={2.25} />
             </Link>
@@ -205,7 +205,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               onClick={() => setMobileOpen(true)}
               aria-label="Menü öffnen"
               aria-expanded={mobileOpen}
-              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 transition-colors cursor-pointer"
+              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
             >
               <Menu className="w-5 h-5" strokeWidth={2.25} />
             </button>
@@ -219,7 +219,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
           role="dialog"
           aria-modal="true"
           aria-label="Navigationsmenü"
-          className="fixed inset-0 z-[60] sm:hidden bg-white flex flex-col"
+          className="fixed inset-0 z-[60] sm:hidden bg-white flex flex-col dark:bg-zinc-950"
         >
           {/* Kopfzeile — Logo links, Schließen rechts */}
           <div className="h-14 px-5 flex items-center justify-between border-b border-border-soft shrink-0">
@@ -239,7 +239,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               type="button"
               onClick={() => setMobileOpen(false)}
               aria-label="Menü schließen"
-              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 transition-colors cursor-pointer"
+              className="flex items-center justify-center w-10 h-10 rounded-md text-muted hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
             >
               <X className="w-6 h-6" strokeWidth={2.25} />
             </button>
@@ -256,7 +256,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 transition-colors"
+                className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <item.icon className="w-5 h-5 text-muted" strokeWidth={2.25} />
                 {item.label}
@@ -268,7 +268,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 transition-colors"
+                className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <item.icon className="w-5 h-5 text-muted" strokeWidth={2.25} />
                 {item.label}
@@ -277,7 +277,7 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
             <Link
               href={searchLink.href}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 transition-colors"
+              className="flex items-center justify-center gap-3.5 px-4 py-3.5 rounded-xl text-[17px] font-medium text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               <Search className="w-5 h-5 text-muted" strokeWidth={2.25} />
               {searchLink.label}
@@ -303,7 +303,7 @@ function LinearFooter() {
     { href: `/datenschutz${ctx}`, label: "Datenschutz" },
   ];
   return (
-    <footer className="border-t border-border-soft bg-zinc-50 py-10">
+    <footer className="border-t border-border-soft bg-zinc-50 py-10 dark:bg-zinc-900/50">
       <div className="max-w-6xl mx-auto px-5 flex items-center justify-center gap-4">
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted">
           <span>Keine offizielle Regierungsseite</span>

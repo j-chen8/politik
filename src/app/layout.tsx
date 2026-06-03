@@ -34,9 +34,16 @@ export default function RootLayout({
   return (
     <html
       lang="de"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
+        {/* Dark Mode flicker-frei + homepage-scoped: nur auf "/" vor dem Paint setzen. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(location.pathname==='/'){var t=localStorage.getItem('theme-home');if(t==='dark'||(t===null&&matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}}catch(e){}`,
+          }}
+        />
         <SiteChrome parliaments={parliaments}>{children}</SiteChrome>
       </body>
     </html>
