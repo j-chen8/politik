@@ -675,7 +675,14 @@ function PoliticianRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) 
         size="sm"
       />
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.name, terms)}</div>
+        <div className="flex items-center gap-1.5 min-w-0">
+          <span className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.name, terms)}</span>
+          {hit.isFormer && (
+            <span className="shrink-0 rounded-sm bg-zinc-100 px-1 py-px text-[10px] font-medium uppercase tracking-wide text-zinc-500 ring-1 ring-inset ring-zinc-200">
+              ehem.
+            </span>
+          )}
+        </div>
         {hit.subtitle && (
           <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 truncate">
             {hit.party && (

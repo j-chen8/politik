@@ -1,4 +1,4 @@
-import { getDb, searchPoliticiansDb } from "@/lib/db";
+import { getDb, searchPoliticiansDb, searchBerlinPoliticiansDb } from "@/lib/db";
 import { expandQuery } from "@/lib/synonyms";
 import { ensureSearchFTS, ftsMatchClause, FTS_TABLES } from "@/lib/search-fts";
 
@@ -13,6 +13,8 @@ export interface PoliticianHit {
   party: string | null;
   photo_url: string | null;
   subtitle: string;
+  /** true = ehemaliges MdB (kein aktuelles Mandat) — wird mit „ehem."-Badge gezeigt. */
+  isFormer?: boolean;
 }
 
 export interface SpeechHit {
@@ -243,6 +245,7 @@ export function search(rawQuery: string, expand: boolean = false): SearchResults
     party: p.party_label,
     photo_url: p.photo_url,
     subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+    isFormer: !!p.is_former,
   }));
   const totalPoliticians = allPoliticians.length;
 
@@ -617,6 +620,7 @@ export function searchByType(
         party: p.party_label,
         photo_url: p.photo_url,
         subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+      isFormer: !!p.is_former,
       }));
       return {
         ...empty,
@@ -958,16 +962,17 @@ export function searchBerlinByType(
   if (!ftsActive && type !== "politicians") return empty;
 
   if (type === "politicians") {
-    // Berlin-MdL = nur Politicians mit parlament Berlin in der DB.
-    // Wir filtern nicht — wir zeigen alle Politicians, weil Cross-Parlament-Personen
-    // (Bundeswehr/Berlin-Wechsler) gibt es. Synonym-Expansion entfällt für Personen.
-    const all = searchPoliticiansDb(query, 10000);
+    // Berlin-Scope: Personen mit Berlin-Mandat (aktiv ODER ehemalig, is_former-Flag).
+    // NICHT searchPoliticiansDb (Bundestag) — sonst verschwinden Berliner aus der
+    // Berlin-Suche, sobald das Bundestags-Leck zu ist. Siehe searchBerlinPoliticiansDb.
+    const all = searchBerlinPoliticiansDb(query, 10000);
     const items: PoliticianHit[] = all.slice(offset, offset + safePageSize).map((p) => ({
       type: "politician", id: p.id,
       name: `${p.first_name} ${p.last_name}`.trim(),
       first_name: p.first_name, last_name: p.last_name,
       party: p.party_label, photo_url: p.photo_url,
       subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+      isFormer: !!p.is_former,
     }));
     // Personen kennen keine Synonym-Expansion → alle drei Zähler gleich.
     return { ...empty, total: all.length, totalOriginal: all.length, totalExpanded: all.length, items, expansions, matchedClusters };
@@ -1117,14 +1122,15 @@ export function searchBerlin(rawQuery: string, expand: boolean = false): SearchR
   const ftsAllTerms = ftsMatchClause([query, ...expansions]);
   const ftsTierMatch = ftsOriginalOnly ?? ftsActive;
 
-  // 1. Personen — keine Synonym-Erweiterung (Eigennamen)
-  const allPoliticians = searchPoliticiansDb(query, 1000);
+  // 1. Personen — Berlin-Scope (Berlin-Mandat, aktiv ODER ehemalig), keine Synonyme
+  const allPoliticians = searchBerlinPoliticiansDb(query, 1000);
   const politicians: PoliticianHit[] = allPoliticians.slice(0, PER_TYPE_LIMIT).map((p) => ({
     type: "politician", id: p.id,
     name: `${p.first_name} ${p.last_name}`.trim(),
     first_name: p.first_name, last_name: p.last_name,
     party: p.party_label, photo_url: p.photo_url,
     subtitle: [p.party_label, p.occupation].filter(Boolean).join(" · "),
+    isFormer: !!p.is_former,
   }));
   const totalPoliticians = allPoliticians.length;
 

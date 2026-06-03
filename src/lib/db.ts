@@ -216,24 +216,38 @@ export const IS_POLITICIAN_VISIBLE_SQL = `(
  * Strict Active — für LISTEN, COUNTS, FILTER-Dropdowns.
  * Nur aktuell aktive Politiker:innen — verstorbene/ausgeschiedene MdBs raus.
  *
+ * Leitprinzip der Liste: AKTUELLE Politiker:innen des Bundestags — gewählte
+ * Abgeordnete + Regierungsmitglieder. NICHT enthalten: Verwaltung/Diplomatie
+ * (beamtete Staatssekretär:innen, Botschafter:innen, Regierungssprecher — das sind
+ * keine Politiker:innen, sie tauchen nur als Anfrage-Beantworter in den Daten auf),
+ * der Wehrbeauftragte (Organ DES Bundestages, kein Mandat) und ehemalige MdB. Diese
+ * sind über IS_POLITICIAN_VISIBLE_SQL weiter per Detail-URL bzw. (Ehemalige) über
+ * IS_POLITICIAN_SEARCHABLE_SQL in der Suche erreichbar — nur nicht in der Liste.
+ *
  * Politiker:in ist aktiv wenn:
- *   - id >= 900000 mit Bundes-Amt (Bundesminister:in, immer aktiv solange amt gesetzt), ODER
- *   - id >= 900000 ohne Amt mit gueltig_bis NULL/leer/zukünftig (aktiver Stammdaten-MdB), ODER
+ *   - id >= 900000 als Quereinsteiger-Kabinettsmitglied (rolle Bundes-/Staatsminister,
+ *     Bundes-Amt gesetzt, kein Landes-Amt), ODER
  *   - mindestens ein Bundestags-Mandat mit end_date NULL/leer/zukünftig.
  *
- * Damit:
- *   - Reiche/Prien/Wildberger/Weimer/Hubig → sichtbar (Bundesminister mit amt)
- *   - Stein/Mandrella → sichtbar (aktive MdBs ohne abgeordnetenwatch-Eintrag)
- *   - Habeck/Baerbock/Otte/Foullong → ausgeblendet (gueltig_bis in Vergangenheit)
- *   - Träger ✝ → ausgeblendet (Mandat hat end_date in Vergangenheit)
+ * Damit (Soll: 635 = 630 MdB + 5 Quereinsteiger-Minister):
+ *   - Reiche/Prien/Wildberger/Weimer/Hubig → sichtbar (Quereinsteiger-Minister)
+ *   - Stein/Mandrella → sichtbar (Stammdaten-MdB MIT Bundestags-Mandat → 2. Zweig)
+ *   - Habeck/Baerbock/Foullong/Träger → ausgeblendet (ehemalig → SEARCHABLE/VISIBLE)
+ *   - Annen/von Geyr/Kotsch → ausgeblendet (Verwaltung, keine Politiker)
+ *   - Otte → ausgeblendet (Wehrbeauftragter, kein Mandat)
+ *   - Gräff/Czaja/Friederici → ausgeblendet (Berliner AGH-Mitglieder, Landtags-Mandat)
+ *
+ * HISTORIE (2026-06-03, CAIS/Bieber-Feedback „686 statt 630"): Der frühere Filter
+ * war zu weit. Lecks: (a) Land:%-Stringtest verfehlte 30 Berliner AGH-Mitglieder
+ * (amt=NULL); (b) der gueltig_bis-Pfad zog 20 Bundesrats-Stammdaten-Nicht-MdB
+ * (Staatssekr./Botschafter/Sprecher) + Otte rein. Verifiziert gegen bundestag.de.
+ * Jetzt exakt auf Mandat (MdB) und Kabinett (rolle/amt) gezielt — die einzig
+ * belastbaren Signale. Deckt sich mit getDbStats.cabinetQuereinsteiger.
  */
 export const IS_POLITICIAN_ACTIVE_SQL = `(
   (p.id >= 900000
-    AND (p.amt IS NULL OR p.amt NOT LIKE 'Land:%')
-    AND (
-      (p.amt IS NOT NULL AND p.amt != '')
-      OR (p.gueltig_bis IS NULL OR p.gueltig_bis = '' OR p.gueltig_bis > date('now'))
-    )
+    AND p.rolle IN ('Bundesminister', 'Staatsminister')
+    AND p.amt IS NOT NULL AND p.amt != '' AND p.amt NOT LIKE 'Land:%'
   )
   OR EXISTS (
     SELECT 1 FROM mandates m_act
@@ -244,6 +258,43 @@ export const IS_POLITICIAN_ACTIVE_SQL = `(
       AND (m_act.end_date IS NULL OR m_act.end_date = '' OR m_act.end_date > date('now'))
   )
 )`;
+
+/**
+ * Ehemalige MdB — gewählte Abgeordnete OHNE aktuelles Mandat. Eigene, klar
+ * gelabelte Gruppe (NICHT in der Liste/den 635, aber in der Suche auffindbar).
+ * Zwei Repräsentationen in der Doppel-Pipeline:
+ *   - id >= 900000 Stammdaten-Profil mit rolle='MdB' und gueltig_bis in der
+ *     Vergangenheit (Baerbock/Habeck/Foullong — kein mandates-Row), ODER
+ *   - hatte ein Bundestags-Mandat, das beendet ist (Träger ✝ — end_date past).
+ * Keine Platzhalter (Literal 'bundestag'), damit als Such-Zusatz frei kombinierbar.
+ */
+export const IS_POLITICIAN_FORMER_MDB_SQL = `(
+  ( p.id >= 900000 AND p.rolle = 'MdB'
+    AND p.gueltig_bis IS NOT NULL AND p.gueltig_bis != '' AND p.gueltig_bis <= date('now') )
+  OR (
+    EXISTS (
+      SELECT 1 FROM mandates m_fb
+      JOIN parliament_periods pp_fb ON m_fb.parliament_period_id = pp_fb.id
+      JOIN parliaments par_fb ON pp_fb.parliament_id = par_fb.id
+      WHERE m_fb.politician_id = p.id AND m_fb.type = 'mandate' AND par_fb.type = 'bundestag'
+    )
+    AND NOT EXISTS (
+      SELECT 1 FROM mandates m_fa
+      JOIN parliament_periods pp_fa ON m_fa.parliament_period_id = pp_fa.id
+      JOIN parliaments par_fa ON pp_fa.parliament_id = par_fa.id
+      WHERE m_fa.politician_id = p.id AND m_fa.type = 'mandate' AND par_fa.type = 'bundestag'
+        AND (m_fa.end_date IS NULL OR m_fa.end_date = '' OR m_fa.end_date > date('now'))
+    )
+  )
+)`;
+
+/**
+ * Such-Filter: aktuelle Politiker:innen (ACTIVE) PLUS ehemalige MdB. Damit findet
+ * die Personensuche auch Baerbock/Habeck/Träger (gelabelt „ehem."), während die
+ * Liste streng aktuell bleibt. Verwaltung/Berlin bleiben außen vor (weder ACTIVE
+ * noch FORMER). Platzhalter-Zahl = die von ACTIVE (FORMER hat keine).
+ */
+export const IS_POLITICIAN_SEARCHABLE_SQL = `(${IS_POLITICIAN_ACTIVE_SQL} OR ${IS_POLITICIAN_FORMER_MDB_SQL})`;
 
 /** Werte für die Platzhalter in IS_POLITICIAN_VISIBLE_SQL und IS_POLITICIAN_ACTIVE_SQL. */
 export const VISIBLE_PARLIAMENT_TYPE_VALUES = [...VISIBLE_PARLIAMENT_TYPES];
@@ -331,6 +382,8 @@ export interface PoliticianRow {
   gueltig_ab: string | null;
   gueltig_bis: string | null;
   bt_redner_id: string | null;
+  /** Nur in searchPoliticiansDb gesetzt: 1 = ehemaliges MdB (kein aktuelles Mandat). */
+  is_former?: number;
 }
 
 export interface MandateRow {
@@ -346,6 +399,48 @@ export interface MandateRow {
   end_date: string | null;
   constituency: string | null;
   fraction: string | null;
+}
+
+/**
+ * Berlin-gescopte Personensuche — für die Berlin-Suche (searchBerlin /
+ * searchBerlinByType). Liefert Politiker:innen mit IRGENDEINEM Berlin-Mandat
+ * (aktiv ODER beendet), `is_former=1` wenn KEIN aktives Berlin-Mandat mehr
+ * besteht (→ „ehem."-Badge wie beim Bundestag).
+ *
+ * WICHTIG: Berlin darf NICHT searchPoliticiansDb (Bundestags-Scope) benutzen.
+ * Früher tat es das und fand Berliner nur, weil die 30 berlin-mdl-backfill-
+ * Profile durch das amt=NULL-Leck in den Bundestags-Filter rutschten. Seit der
+ * Scope-Fix dieses Leck schließt (2026-06-03), MUSS Berlin über sein eigenes
+ * Mandat scopen — sonst verschwinden die Berliner aus der Berlin-Suche.
+ * Tripwire: scripts/check-bundestag-scope.ts (INV4).
+ */
+export function searchBerlinPoliticiansDb(query: string, limit = 30): PoliticianRow[] {
+  const db = getDb();
+  const term = query.trim();
+  return db
+    .prepare(
+      `SELECT p.*, pa.label as party_label,
+         CASE WHEN NOT EXISTS (
+           SELECT 1 FROM mandates m_act
+           JOIN parliament_periods pp_act ON m_act.parliament_period_id = pp_act.id
+           WHERE m_act.politician_id = p.id AND m_act.type = 'mandate'
+             AND pp_act.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID}
+             AND (m_act.end_date IS NULL OR m_act.end_date = '' OR m_act.end_date > date('now'))
+         ) THEN 1 ELSE 0 END AS is_former
+       FROM politicians p
+       LEFT JOIN parties pa ON p.party_id = pa.id
+       WHERE (word_match(p.last_name, ?) OR word_match(p.first_name, ?)
+         OR word_match(p.first_name || ' ' || p.last_name, ?))
+         AND EXISTS (
+           SELECT 1 FROM mandates m_bln
+           JOIN parliament_periods pp_bln ON m_bln.parliament_period_id = pp_bln.id
+           WHERE m_bln.politician_id = p.id AND m_bln.type = 'mandate'
+             AND pp_bln.parliament_id = ${BERLIN_PILOT_PARLIAMENT_ID}
+         )
+       ORDER BY is_former ASC, p.last_name, p.first_name
+       LIMIT ?`,
+    )
+    .all(term, term, term, limit) as PoliticianRow[];
 }
 
 export interface DataFreshness {
@@ -381,13 +476,14 @@ export function searchPoliticiansDb(query: string, limit = 30): PoliticianRow[] 
   const term = query.trim();
   return db
     .prepare(
-      `SELECT p.*, pa.label as party_label
+      `SELECT p.*, pa.label as party_label,
+         CASE WHEN ${IS_POLITICIAN_FORMER_MDB_SQL} THEN 1 ELSE 0 END AS is_former
        FROM politicians p
        LEFT JOIN parties pa ON p.party_id = pa.id
        WHERE (word_match(p.last_name, ?) OR word_match(p.first_name, ?)
          OR word_match(p.first_name || ' ' || p.last_name, ?))
-         AND ${IS_POLITICIAN_ACTIVE_SQL}
-       ORDER BY p.last_name, p.first_name
+         AND ${IS_POLITICIAN_SEARCHABLE_SQL}
+       ORDER BY is_former ASC, p.last_name, p.first_name
        LIMIT ?`
     )
     .all(term, term, term, ...VISIBLE_PARLIAMENT_TYPE_VALUES, limit) as PoliticianRow[];
