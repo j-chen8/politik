@@ -4,13 +4,15 @@ import {
   getRedenTonalitaetByFraktion,
   getDrucksacheTonalitaetByFraktion,
   getDrucksacheMonthlyTrend,
+  getTopicInitiativeMatrix,
 } from "@/lib/db";
 import { partyColor } from "@/lib/party-colors";
+import { InitiativeMatrix } from "@/components/InitiativeMatrix";
 
 export const metadata = {
   title: "Analyse — Was die Daten zeigen | Politik-Radar",
   description:
-    "Drei empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie und Trend.",
+    "Vier empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie und Trend, Themen-Profil pro Fraktion.",
 };
 
 const FRAKTION_ORDER = ["CDU/CSU", "SPD", "Grüne", "Linke", "AfD"];
@@ -35,6 +37,7 @@ export default function AnalysePage() {
   const reden = getRedenTonalitaetByFraktion();
   const ka = getDrucksacheTonalitaetByFraktion();
   const trend = getDrucksacheMonthlyTrend();
+  const initiativeMatrix = getTopicInitiativeMatrix();
 
   // === BEFUND 1: Reden-Stil-Profile ===
   // Jede Fraktion hat ein dominantes Stil-Profil — wir zeigen die Anteile
@@ -129,7 +132,7 @@ export default function AnalysePage() {
             Was die Daten zeigen
           </h1>
           <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
-            Drei empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
+            Vier empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
           <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
@@ -351,6 +354,39 @@ export default function AnalysePage() {
             eine Trend-Aussage. Eine belastbare Antwort auf die Frage, ob sich Kleine Anfragen
             historisch von Sachfragen zu Skandalisierungsanfragen verschoben haben, bräuchte den
             Datenbestand der WP18–20 — als offene Folgearbeit notiert.
+          </CaveatBox>
+        </section>
+
+        {/* === BEFUND 4: Themen-Profil pro Fraktion === */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              Befund 4 · Wer treibt welche Themen
+            </div>
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+              Jede Fraktion hat ein Themen-Profil — und die Opposition bringt die meisten Initiativen ein.
+            </h2>
+            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Jede der {initiativeMatrix.fields.length} Politikfelder-Zeilen zeigt, welche Fraktion wie
+              viele eigene Initiativen (Anträge und Gesetzentwürfe) dazu eingebracht hat. Die Schwerpunkte
+              unterscheiden sich deutlich — und die Zahlen pro Fraktion auch: Die Opposition bringt ein
+              Vielfaches dessen ein, was die Regierungskoalition über Anträge einbringt (die regiert über
+              Gesetze). Klassifikation auf die{" "}
+              <Link href="/methodik" className="text-[#1a3e72] hover:underline underline-offset-2">
+                abgeordnetenwatch-Politikfelder
+              </Link>.
+            </p>
+          </div>
+
+          <InitiativeMatrix data={initiativeMatrix} />
+
+          <CaveatBox>
+            Gezählt werden <strong>eingebrachte</strong> Initiativen, nicht beschlossene — die meisten
+            Oppositionsanträge werden abgelehnt. Ein Politikfeld kann aus gegensätzlichen Richtungen
+            bespielt werden: „Innere Sicherheit" umfasst sowohl Law-and-Order-Anträge als auch
+            Grundrechts- und Polizei-Kritik — gleiches Feld, verschiedene Haltung. Die Themen-Zuordnung
+            ist eine LLM-Klassifikation der Drucksachen-Inhalte; die verlinkte Drucksache ist immer die
+            Quelle.
           </CaveatBox>
         </section>
 

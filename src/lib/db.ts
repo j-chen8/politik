@@ -6824,3 +6824,61 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
     },
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// Themenfelder: Initiativ-Profil pro Fraktion (Bundestag)
+// Kreuzt item_topics (AW-Politikfeld-Klassifikation) × Einbringer-Fraktion.
+// Nur Initiativen (Anträge/Gesetzentwürfe), keine Regierungs-Antworten.
+// ─────────────────────────────────────────────────────────────────────────
+export function normalizeFraktion(raw: string | null): string | null {
+  if (!raw) return null;
+  let f = raw.trim().replace(/^(Fraktion\s+)?(der |die |des )/i, "").trim();
+  if (!f || f === "<UNKNOWN>") return null;
+  if (/[,]| und /.test(f)) return "Mehrere (gemeinsam)";
+  const u = f.toUpperCase();
+  if (u.includes("GRÜNEN")) return "Grüne";
+  if (u.includes("LINKE")) return "Die Linke";
+  if (u.includes("AFD")) return "AfD";
+  if (u.startsWith("CDU") || u.startsWith("CSU")) return "CDU/CSU";
+  if (u === "SPD") return "SPD";
+  if (u.includes("BUNDESREGIERUNG") || u.includes("BUNDESMINIST")) return "Bundesregierung";
+  if (u.includes("BUNDESRAT")) return "Bundesrat";
+  return null;
+}
+
+export interface InitiativeCell { count: number; items: { nr: string; titel: string }[] }
+export interface InitiativeMatrix {
+  fraktionen: { name: string; total: number }[];
+  fields: string[];
+  cells: Record<string, Record<string, InitiativeCell>>;
+}
+
+export function getTopicInitiativeMatrix(): InitiativeMatrix {
+  const rows = getDb().prepare(`
+    SELECT it.item_id AS nr, it.aw_field AS field, da.fraktion AS fraktion,
+      COALESCE((SELECT titel FROM dip_ds_titles WHERE drucksache_nr=it.item_id AND titel IS NOT NULL),
+               da.zusammenfassung, da.thema) AS titel
+    FROM item_topics it
+    JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+    WHERE it.source='bt_drucksache' AND da.batch_class != 'antwort' AND da.thema IS NOT NULL
+  `).all() as { nr: string; field: string; fraktion: string | null; titel: string | null }[];
+
+  const cells: Record<string, Record<string, InitiativeCell>> = {};
+  const fraktionTotalsDs: Record<string, Set<string>> = {};
+  const fieldTotals: Record<string, number> = {};
+  for (const r of rows) {
+    const fr = normalizeFraktion(r.fraktion);
+    if (!fr) continue;
+    (fraktionTotalsDs[fr] ??= new Set()).add(r.nr);
+    fieldTotals[r.field] = (fieldTotals[r.field] ?? 0) + 1;
+    const cf = (cells[fr] ??= {});
+    const cell = (cf[r.field] ??= { count: 0, items: [] });
+    cell.count++;
+    if (cell.items.length < 12 && r.titel) cell.items.push({ nr: r.nr, titel: r.titel.slice(0, 140) });
+  }
+  const fraktionen = Object.entries(fraktionTotalsDs)
+    .map(([name, s]) => ({ name, total: s.size }))
+    .sort((a, b) => b.total - a.total);
+  const fields = Object.entries(fieldTotals).sort((a, b) => b[1] - a[1]).map(([f]) => f);
+  return { fraktionen, fields, cells };
+}
