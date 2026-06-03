@@ -8,7 +8,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 
-const HOME_TOPICS = CITIZEN_TOPICS.slice(0, 6);
+const HOME_SLUGS = ["wirtschaft-preise", "migration-asyl", "soziale-sicherung", "krieg-konflikte", "rente"];
+const HOME_TOPICS = HOME_SLUGS.map((slug) => CITIZEN_TOPICS.find((t) => t.slug === slug)!).filter(Boolean);
 
 // Mehrzeiliges Ellipsis-Clamp per Inline-Style — Tailwinds line-clamp-Utility
 // verliert unter Tailwind v4/lightningcss das nötige -webkit-box-orient, daher inline.
@@ -148,22 +149,20 @@ export default function LinearLanding() {
 
   const topicsBlock = (
     <div>
-      <div className="flex items-baseline justify-between mb-3">
-        <h2 className="text-[12px] font-semibold uppercase tracking-wider text-zinc-500">
-          Was bewegt Deutschland?
-        </h2>
-        <Link
-          href="/themen"
-          className="inline-flex items-center gap-1 text-[12px] font-medium text-[#1a3e72] hover:gap-1.5 transition-all"
-        >
-          alle Themen
-          <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
-        </Link>
-      </div>
+      <h2 className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-zinc-500">
+        Was bewegt Deutschland?
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
         {HOME_TOPICS.map((t) => (
           <TopicCard key={t.slug} slug={t.slug} label={t.label} />
         ))}
+        <Link
+          href="/themen"
+          className="group flex aspect-[1.7] items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-white/60 text-[14px] font-semibold text-zinc-600 transition-all hover:-translate-y-0.5 hover:border-[#1a3e72]/40 hover:text-[#1a3e72] hover:shadow-sm"
+        >
+          Alle Themen
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} />
+        </Link>
       </div>
     </div>
   );
