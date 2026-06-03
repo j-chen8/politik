@@ -28,6 +28,42 @@ export default function ThemenPage() {
   // Stabile Sortierung: nur nach Tier. Within-Tier-Reihenfolge = Array-Reihenfolge
   // in CITIZEN_TOPICS = Umfrage-Salienz (NICHT Parlaments-Volumen). Siehe dort.
 
+  // Haupt-Themen (mit Umfrage-Salienz) vs. „Sonstige" (niedrig — keine Umfrage-Top-Sorge)
+  const mainTiles = tiles.filter((t) => t.tier !== "niedrig");
+  const sonstige = tiles.filter((t) => t.tier === "niedrig");
+
+  const renderTile = (t: (typeof tiles)[number]) => (
+    <Link
+      key={t.slug}
+      href={`/themen/${t.slug}`}
+      className="group flex flex-col rounded-2xl border border-zinc-200/70 bg-white p-5 hover:border-[#1a3e72]/40 hover:shadow-sm transition-all"
+    >
+      <div className="flex items-start justify-between gap-2">
+        <h2 className="text-[15px] font-semibold text-zinc-950 leading-snug group-hover:text-[#1a3e72] transition-colors">
+          {t.label}
+        </h2>
+        <span
+          className={`shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TIER_STYLE[t.tier]}`}
+          title={t.surveyTerm ? `Salienz aus Umfrage-Kategorie: ${t.surveyTerm}` : "Salienz: wie häufig in Umfragen als wichtiges Problem genannt"}
+        >
+          {t.tier}
+        </span>
+      </div>
+      <p className="mt-2 text-[12.5px] text-zinc-600 leading-relaxed flex-1">{t.blurb}</p>
+      <div className="mt-4 pt-3 border-t border-zinc-100 flex items-end justify-between gap-2">
+        <span className="text-[11.5px] text-zinc-500 leading-snug">
+          <span className="text-zinc-700 font-medium">{fmtNum(t.instr.handeln)}</span> Gesetze &amp; Beschlüsse
+          <br />
+          <span className="text-zinc-400">
+            {fmtNum(t.instr.kontrolle)} Anfragen (Kontrolle)
+            {t.flag && <span> · {t.flag}</span>}
+          </span>
+        </span>
+        <ArrowRight className="w-3.5 h-3.5 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
+      </div>
+    </Link>
+  );
+
   return (
     <div className="page-wash min-h-screen">
       <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
@@ -43,38 +79,22 @@ export default function ThemenPage() {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tiles.map((t) => (
-            <Link
-              key={t.slug}
-              href={`/themen/${t.slug}`}
-              className="group flex flex-col rounded-2xl border border-zinc-200/70 bg-white p-5 hover:border-[#1a3e72]/40 hover:shadow-sm transition-all"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <h2 className="text-[15px] font-semibold text-zinc-950 leading-snug group-hover:text-[#1a3e72] transition-colors">
-                  {t.label}
-                </h2>
-                <span
-                  className={`shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TIER_STYLE[t.tier]}`}
-                  title={t.surveyTerm ? `Salienz aus Umfrage-Kategorie: ${t.surveyTerm}` : "Salienz: wie häufig in Umfragen als wichtiges Problem genannt"}
-                >
-                  {t.tier}
-                </span>
-              </div>
-              <p className="mt-2 text-[12.5px] text-zinc-600 leading-relaxed flex-1">{t.blurb}</p>
-              <div className="mt-4 pt-3 border-t border-zinc-100 flex items-end justify-between gap-2">
-                <span className="text-[11.5px] text-zinc-500 leading-snug">
-                  <span className="text-zinc-700 font-medium">{fmtNum(t.instr.handeln)}</span> Gesetze &amp; Beschlüsse
-                  <br />
-                  <span className="text-zinc-400">
-                    {fmtNum(t.instr.kontrolle)} Anfragen (Kontrolle)
-                    {t.flag && <span> · {t.flag}</span>}
-                  </span>
-                </span>
-                <ArrowRight className="w-3.5 h-3.5 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
-              </div>
-            </Link>
-          ))}
+          {mainTiles.map(renderTile)}
         </div>
+
+        {sonstige.length > 0 && (
+          <>
+            <h2 className="mt-10 mb-4 text-[15px] font-semibold text-zinc-950">
+              Sonstige Themen
+              <span className="ml-2 text-[12px] font-normal text-zinc-400">
+                weiterer parlamentarischer Schwerpunkt, aber keine Umfrage-Top-Sorge
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sonstige.map(renderTile)}
+            </div>
+          </>
+        )}
 
         <Link
           href="/themen/divergenz"

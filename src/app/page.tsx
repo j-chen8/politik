@@ -2,8 +2,12 @@ import { SearchBox } from "@/components/SearchBox";
 import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip";
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
 import { getBundestagLandingSnapshot } from "@/lib/db";
+import { CITIZEN_TOPICS } from "@/lib/citizen-topics";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
+
+const HOME_TOPICS = CITIZEN_TOPICS.slice(0, 6);
 
 // Mehrzeiliges Ellipsis-Clamp per Inline-Style — Tailwinds line-clamp-Utility
 // verliert unter Tailwind v4/lightningcss das nötige -webkit-box-orient, daher inline.
@@ -143,14 +147,46 @@ export default function LinearLanding() {
     });
   }
 
+  const topicsBlock = (
+    <div>
+      <div className="flex items-baseline justify-between mb-3">
+        <h2 className="text-[12px] font-semibold uppercase tracking-wider text-zinc-500">
+          Was bewegt Deutschland?
+        </h2>
+        <Link
+          href="/themen"
+          className="inline-flex items-center gap-1 text-[12px] font-medium text-[#1a3e72] hover:gap-1.5 transition-all"
+        >
+          alle Themen
+          <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+        </Link>
+      </div>
+      <div className="grid grid-cols-2 gap-2.5">
+        {HOME_TOPICS.map((t) => (
+          <Link
+            key={t.slug}
+            href={`/themen/${t.slug}`}
+            className="group rounded-xl border border-zinc-200/70 bg-white px-3.5 py-3 hover:border-[#1a3e72]/40 hover:shadow-sm transition-all"
+          >
+            <span className="text-[13.5px] font-medium text-zinc-900 leading-snug group-hover:text-[#1a3e72] transition-colors">
+              {t.label}
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <ParliamentLanding
       headline="Woran arbeitet der Bundestag?"
+      headlineClassName="text-4xl sm:text-5xl lg:text-[3.4rem]"
       subtitle="Debatten, Drucksachen, Abstimmungen, Interviews — transparent und lesbar."
       methodikHref="/methodik"
       search={<SearchBox />}
+      topics={topicsBlock}
       examples={
-        <div className="mt-4 flex flex-wrap justify-center gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           {SUCH_BEISPIELE.map((term) => (
             <Link
               key={term}
