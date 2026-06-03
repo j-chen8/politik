@@ -7074,6 +7074,27 @@ export function getInstrumentCountsForFields(fields: string[]): InstrumentCounts
   return { handeln: row.handeln ?? 0, kontrolle: row.kontrolle ?? 0, antrag: row.antrag ?? 0 };
 }
 
+/** Monatliche Parlaments-Aktivität (Handeln + Kontrolle) für ein aw_field-Set,
+ *  über drucksache_instrument.publication_date — für die Zeitreihen-Graphen. */
+export function getTopicMonthlyInstrument(
+  fields: string[],
+): { month: string; handeln: number; kontrolle: number }[] {
+  if (fields.length === 0) return [];
+  const ph = fields.map(() => "?").join(",");
+  return getDb()
+    .prepare(
+      `SELECT substr(di.publication_date,1,7) AS month,
+         SUM(CASE WHEN di.bucket='handeln' THEN 1 ELSE 0 END) AS handeln,
+         SUM(CASE WHEN di.bucket='kontrolle' THEN 1 ELSE 0 END) AS kontrolle
+       FROM (SELECT DISTINCT it.item_id FROM item_topics it
+             WHERE it.source='bt_drucksache' AND it.aw_field IN (${ph})) x
+       JOIN drucksache_instrument di ON di.drucksache_nr = x.item_id
+       WHERE di.publication_date IS NOT NULL AND di.publication_date >= '2025-04'
+       GROUP BY month ORDER BY month`,
+    )
+    .all(...fields) as { month: string; handeln: number; kontrolle: number }[];
+}
+
 export interface TopicDrucksache {
   nr: string;
   titel: string | null;
