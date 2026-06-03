@@ -7000,6 +7000,47 @@ export function getDrucksacheCountForFields(fields: string[]): number {
   return row?.n ?? 0;
 }
 
+/**
+ * Fraktions-Aufschlüsselung der Initiativen für ein aw_field-Set — für die
+ * Divergenz-Analyse ("wer treibt das Volumen?"). Entzerrt den Eindruck, hohes
+ * Drucksachen-Volumen = parlamentarische Priorität (oft sind es Oppositions-
+ * anträge). Distinkte Drucksachen je roher Fraktions-Bezeichnung.
+ */
+export function getFieldFraktionBreakdown(fields: string[]): { fraktion: string | null; n: number }[] {
+  if (fields.length === 0) return [];
+  const ph = fields.map(() => "?").join(",");
+  return getDb()
+    .prepare(
+      `SELECT da.fraktion AS fraktion, COUNT(DISTINCT it.item_id) AS n
+       FROM item_topics it
+       JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+       WHERE it.source = 'bt_drucksache' AND it.aw_field IN (${ph})
+         AND da.batch_class != 'antwort' AND da.thema IS NOT NULL
+       GROUP BY da.fraktion
+       ORDER BY n DESC`,
+    )
+    .all(...fields) as { fraktion: string | null; n: number }[];
+}
+
+/**
+ * Feinkörnige Drucksachen-Zählung über das `thema`-Freifeld (Substring) — nur
+ * für Themen ohne eigenes aw_field (z. B. "Rente", in "Soziale Sicherung"
+ * aufgegangen). Liefert Treffer + Gesamtbasis für den Prozentanteil.
+ */
+export function getThemaKeywordShare(keyword: string): { hits: number; total: number } {
+  const total = (
+    getDb()
+      .prepare(`SELECT COUNT(*) AS n FROM drucksache_analyses WHERE batch_class != 'antwort' AND thema IS NOT NULL`)
+      .get() as { n: number }
+  ).n;
+  const hits = (
+    getDb()
+      .prepare(`SELECT COUNT(*) AS n FROM drucksache_analyses WHERE batch_class != 'antwort' AND thema LIKE ?`)
+      .get(`%${keyword}%`) as { n: number }
+  ).n;
+  return { hits, total };
+}
+
 export interface TopicDrucksache {
   nr: string;
   titel: string | null;

@@ -72,6 +72,21 @@ export default function ThemenPage() {
           ))}
         </div>
 
+        <Link
+          href="/themen/divergenz"
+          className="group mt-6 flex items-center justify-between gap-3 rounded-2xl border border-zinc-200/70 bg-white px-5 py-4 hover:border-[#1a3e72]/40 transition-colors"
+        >
+          <div>
+            <div className="text-[14px] font-semibold text-zinc-950 group-hover:text-[#1a3e72] transition-colors">
+              Wo Aufmerksamkeit und Sorge auseinanderlaufen
+            </div>
+            <p className="mt-0.5 text-[12px] text-zinc-500">
+              Was die Menschen umtreibt — und wie viel der Bundestag dazu tatsächlich einbringt.
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
+        </Link>
+
         <footer className="mt-10 max-w-2xl space-y-2 text-[11.5px] text-zinc-400 leading-relaxed">
           <p>
             <span className="font-medium text-zinc-500">Salienz</span> = wie häufig ein Thema in

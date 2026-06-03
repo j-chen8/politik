@@ -148,3 +148,37 @@ export const SALIENCE_SOURCE =
 export function topicBySlug(slug: string): CitizenTopic | undefined {
   return CITIZEN_TOPICS.find((t) => t.slug === slug);
 }
+
+/**
+ * Grobe Fraktions-Klassifikation für die Divergenz-Entzerrung (21. Bundestag:
+ * Koalition = CDU/CSU + SPD; Opposition = AfD, Grüne, Linke). "Regierung" =
+ * Bundesregierung/-rat/-ministerien; "ohne" = keine Fraktionsangabe.
+ */
+export type FraktionBucket = "Opposition" | "Koalition" | "Regierung" | "ohne Angabe";
+
+export function classifyFraktion(f: string | null): FraktionBucket {
+  if (!f || !f.trim()) return "ohne Angabe";
+  const s = f.toLowerCase();
+  if (s.includes("afd") || s.includes("linke") || s.includes("grüne") || s.includes("grünen")) return "Opposition";
+  if (s.includes("bundesregierung") || s.includes("bundesrat") || s.includes("bundesministerium")) return "Regierung";
+  if (s.includes("cdu/csu") || s.includes("spd")) return "Koalition";
+  return "ohne Angabe";
+}
+
+/** Aggregiert eine Fraktions-Aufschlüsselung in die vier Buckets + Gesamtsumme. */
+export function bucketizeBreakdown(
+  rows: { fraktion: string | null; n: number }[],
+): { buckets: Record<FraktionBucket, number>; total: number } {
+  const buckets: Record<FraktionBucket, number> = {
+    Opposition: 0,
+    Koalition: 0,
+    Regierung: 0,
+    "ohne Angabe": 0,
+  };
+  let total = 0;
+  for (const r of rows) {
+    buckets[classifyFraktion(r.fraktion)] += r.n;
+    total += r.n;
+  }
+  return { buckets, total };
+}
