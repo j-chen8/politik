@@ -47,6 +47,29 @@ Kategorie erfasst (≠ 0).
 | **Rente** | 11 | – | – | **mittel** (Divergenz-Star: Parl. nur 2 %) |
 | **Bildung** | – | – | – | **niedrig** (Umfrage-selten; forsa: 51 % erwarten Verschlechterung) |
 
+## Zeit-Basis: Durchschnitt über die Wahlperiode (nicht Momentaufnahme)
+
+Die Initiativen sind ein **kumulierter Bestand** über die ganze Wahlperiode; eine
+einzelne Umfrage-Welle dagegen eine Momentaufnahme, die stark schwankt. Fairer
+Vergleich = Sorge **über dieselbe Periode gemittelt**. Politbarometer-Periodenmittel
+(offene Frage, 21 Wellen, Apr 2025–Mai 2026):
+
+| Ø % | Kategorie | | Ø % | Kategorie |
+|---|---|---|---|---|
+| 23,9 | Wirtschaftslage | | 8,1 | AfD/Rechte |
+| 21,0 | **Zuwanderung** | | 7,6 | Soziales Gefälle |
+| 12,2 | Klima / Energie | | 7,6 | Politikverdruss |
+| 10,8 | Renten | | 7,1 | Ukraine/Krieg |
+| 10,5 | Bundeswehr/Verteidigung | | 5,8 | Gesundheit/Pflege |
+| 9,2 | Kosten/Löhne/Preise | | 4,5 | Arbeitslosigkeit |
+
+**Lehre:** Momentaufnahme ≠ Periodenbild. **Zuwanderung** ist im Mai-Snapshot 12 %,
+über die Periode aber **21 % (#2)** — sie war lange dominant und fällt erst zuletzt.
+Tier-Ordnung wurde entsprechend zeit-korrigiert (Migration hoch, „zuletzt rückläufig").
+Politbarometer-Kategorien decken **nicht** alle Themen ab (kein Innere Sicherheit/
+Steuern/Bildung/Wohnen) — daher bleibt die Tier-Abstraktion (mehrquellig) nötig; das
+Periodenmittel dient zur Zeit-Korrektur, wo die Zeitreihe vorliegt.
+
 ## Tier-Definitionen
 
 - **sehr hoch** — durchgängig Top-3 über offene *und* vorgegebene Umfragen.

@@ -58,7 +58,16 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     awFields: ["Wirtschaft", "Außenwirtschaft"],
     tier: "sehr hoch",
   },
-  // ── hoch (Within-Tier nach Umfrage-Salienz: Ungleichheit 36 > Konflikte 31 > Migration 29) ──
+  // ── hoch (Within-Tier nach Ø-Salienz über die Wahlperiode: Migration 21 > Renten/
+  //    Ungleichheit ~11 ≈ Verteidigung 10,5; Ungleichheit zusätzlich Spitze in vorgegebenen) ──
+  {
+    slug: "migration-asyl",
+    label: "Migration & Asyl",
+    blurb: "Zuwanderung und Aufenthaltsrecht — über die Wahlperiode die zweithäufigste Sorge, zuletzt aber deutlich gefallen.",
+    awFields: ["Migration und Aufenthaltsrecht"],
+    tier: "hoch",
+    flag: "zuletzt rückläufig",
+  },
   {
     slug: "soziale-sicherung",
     label: "Soziale Sicherung & Gerechtigkeit",
@@ -72,14 +81,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     blurb: "Bundeswehr, Bündnisse und militärische Konflikte — Sorge zuletzt stark gestiegen.",
     awFields: ["Verteidigung", "Außenpolitik und internationale Beziehungen"],
     tier: "hoch",
-  },
-  {
-    slug: "migration-asyl",
-    label: "Migration & Asyl",
-    blurb: "Zuwanderung und Aufenthaltsrecht — hoch, in Umfragen aber seit einem Jahr deutlich gefallen.",
-    awFields: ["Migration und Aufenthaltsrecht"],
-    tier: "hoch",
-    flag: "rückläufig",
   },
   // ── mittel-hoch (Kriminalität 24 > Gesundheit 23) ────────────────────────
   {
@@ -143,7 +144,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
 ];
 
 export const SALIENCE_SOURCE =
-  "Salienz-Einstufung trianguliert aus Politbarometer, Eurobarometer, Ipsos-Sorgenbarometer und forsa (2025/26). Methodik & Quellen: docs/umfrage-salienz.md.";
+  "Salienz-Einstufung über die gesamte Wahlperiode (nicht ein einzelner Monat): Politbarometer periodengemittelt (offene Frage, 21 Wellen Apr 2025–Mai 2026), ergänzt um Eurobarometer & Ipsos-Sorgenbarometer (vorgegebene Listen). Methodik & Quellen: docs/umfrage-salienz.md.";
 
 export function topicBySlug(slug: string): CitizenTopic | undefined {
   return CITIZEN_TOPICS.find((t) => t.slug === slug);

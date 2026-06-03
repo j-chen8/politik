@@ -60,9 +60,11 @@ export default function DivergenzPage() {
           </h1>
           <p className="mt-3 text-[14px] text-zinc-600 leading-relaxed">
             Zwei Blickwinkel auf dasselbe Thema: Wie sehr es die <strong>Menschen umtreibt</strong>{" "}
-            (laut Umfragen) und wie viel der <strong>Bundestag dazu einbringt</strong> (Anzahl der
-            Drucksachen). Sortiert nach Bürger-Sorge — der Chip rechts zeigt, ob das parlamentarische
-            Volumen darunter‑ oder darüberliegt.
+            (Umfragen) und wie viel der <strong>Bundestag dazu einbringt</strong> (Drucksachen).
+            Beides über die <strong>gesamte Wahlperiode</strong> — die Sorge als Durchschnitt über
+            alle Umfrage-Wellen (nicht ein einzelner, schwankender Monat), das Volumen als Summe aller
+            Initiativen. Sortiert nach Bürger-Sorge; der Chip rechts zeigt, ob das Volumen darunter‑
+            oder darüberliegt.
           </p>
         </header>
 
@@ -147,11 +149,11 @@ export default function DivergenzPage() {
             Der schärfste Einzelfall: die Rente
           </h2>
           <p className="mt-1.5 text-[12.5px] text-zinc-600 leading-relaxed">
-            In Umfragen nennen rund jede:r Zehnte die Rente als wichtigstes Problem. Im Bundestag
-            berühren sie aber nur <strong>{rente.hits}</strong> von {fmtNum(rente.total)} Drucksachen
-            (<strong>{rentePct}&nbsp;%</strong>). Die Rente hat kein eigenes Politikfeld in unserer
-            Klassifikation — sie steckt in „Soziale Sicherung" — deshalb misst dieser Wert die feinere
-            Stichwort-Ebene (Untergrenze).
+            Im Schnitt der Wahlperiode nennen rund jede:r Zehnte (Ø&nbsp;10,8&nbsp;%) die Rente als
+            wichtigstes Problem. Im Bundestag berühren sie aber nur <strong>{rente.hits}</strong> von{" "}
+            {fmtNum(rente.total)} Drucksachen (<strong>{rentePct}&nbsp;%</strong>). Die Rente hat kein
+            eigenes Politikfeld in unserer Klassifikation — sie steckt in „Soziale Sicherung" — deshalb
+            misst dieser Wert die feinere Stichwort-Ebene (Untergrenze).
           </p>
         </div>
 
