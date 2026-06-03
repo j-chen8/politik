@@ -129,6 +129,16 @@ body {
     radial-gradient(ellipse 1200px 600px at 50% -10%, rgb(37 99 235 / 0.05), transparent 60%),
     linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
 }
+/* Themen-Kacheln: zarte Tönung der Themenfarbe (var(--tile)) — nicht bunt. */
+.topic-tile {
+  background-color: color-mix(in srgb, var(--tile) 10%, #ffffff);
+  border-color: color-mix(in srgb, var(--tile) 22%, #ffffff);
+}
+.dark .topic-tile {
+  background-color: color-mix(in srgb, var(--tile) 20%, #181b22);
+  border-color: color-mix(in srgb, var(--tile) 30%, #181b22);
+}
+
 .dark .page-wash {
   background:
     radial-gradient(ellipse 1200px 600px at 50% -10%, rgb(90 130 255 / 0.10), transparent 60%),

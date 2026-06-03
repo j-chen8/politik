@@ -162,10 +162,10 @@ export default function LinearLanding() {
         ))}
         <Link
           href="/themen"
-          className="group flex aspect-[1.7] items-start overflow-hidden rounded-xl p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-          style={{ backgroundColor: "#5b6470" }}
+          className="topic-tile group flex aspect-[1.7] items-start overflow-hidden rounded-xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-sm"
+          style={{ "--tile": "#6b7280" } as CSSProperties}
         >
-          <span className="inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-bold leading-tight tracking-tight text-white">
+          <span className="inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold leading-tight tracking-tight text-zinc-900 dark:text-zinc-100">
             Alle Themen
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} />
           </span>
