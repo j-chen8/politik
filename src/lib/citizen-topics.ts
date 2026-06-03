@@ -59,8 +59,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "wirtschaft-preise",
     label: "Wirtschaft",
-
-
     blurb: "Wirtschaftslage, Inflation und Lebenshaltungskosten — in allen Umfragen ganz oben.",
     awFields: ["Wirtschaft", "Außenwirtschaft"],
     surveyTerm: "Wirtschaftslage & Kosten/Löhne/Preise",
@@ -70,8 +68,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "migration-asyl",
     label: "Migration",
-
-
     blurb: "Zuwanderung und Aufenthaltsrecht — über die Wahlperiode die zweithäufigste Sorge, zuletzt aber deutlich gefallen.",
     awFields: ["Migration und Aufenthaltsrecht"],
     surveyTerm: "Zuwanderung / Einwanderung",
@@ -81,8 +77,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "soziale-sicherung",
     label: "Soziales",
-
-
     blurb: "Armut, soziale Ungleichheit und soziale Sicherung — Spitzensorge in vorgegebenen Umfragen.",
     awFields: ["Soziale Sicherung", "Gesellschaftspolitik, soziale Gruppen"],
     surveyTerm: "Soziales Gefälle / Armut und soziale Ungleichheit",
@@ -91,8 +85,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "krieg-konflikte",
     label: "Krieg",
-
-
     blurb: "Krieg in der Ukraine, Nahost und andere militärische Konflikte zwischen Staaten.",
     themaMatch: ["Ukraine", "Russland", "Gaza", "Nahost", "Hamas", "Selenskyj"],
     surveyTerm: "Ukraine/Krieg/Russland / Militärische Konflikte",
@@ -102,8 +94,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "verteidigung-bundeswehr",
     label: "Verteidigung",
-
-
     blurb: "Bundeswehr, Aufrüstung und Verteidigungsfähigkeit.",
     awFields: ["Verteidigung"],
     surveyTerm: "Bundeswehr/Verteidigung",
@@ -113,7 +103,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "innere-sicherheit",
     label: "Innere Sicherheit",
-
     blurb: "Kriminalität, Polizei und Extremismus.",
     awFields: ["Innere Sicherheit"],
     surveyTerm: "Kriminalität und Gewalt / Extremismus",
@@ -122,8 +111,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "gesundheit-pflege",
     label: "Gesundheit",
-
-
     blurb: "Krankenversicherung, Krankenhäuser und Pflege.",
     awFields: ["Gesundheit"],
     surveyTerm: "Gesundheitswesen, Pflege",
@@ -132,8 +119,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "rente",
     label: "Rente",
-
-
     blurb: "Gesetzliche Rente, Rentenniveau und Alterssicherung.",
     themaMatch: ["Rente"],
     surveyTerm: "Renten",
@@ -143,8 +128,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "steuern-finanzen",
     label: "Steuern",
-
-
     blurb: "Haushalt, Steuern und Abgaben — größtes Initiativ-Volumen im Bundestag.",
     awFields: ["Öffentliche Finanzen, Steuern und Abgaben"],
     surveyTerm: "Steuern (Ipsos)",
@@ -153,8 +136,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "klima-umwelt",
     label: "Klima",
-
-
     blurb: "Klimaschutz, Natur und Umwelt.",
     awFields: ["Umwelt"],
     surveyTerm: "Klima / Energie / Klimawandel",
@@ -163,7 +144,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "energie",
     label: "Energie",
-
     blurb: "Strom- und Gaspreise, Energiewende und Versorgung.",
     awFields: ["Energie"],
     surveyTerm: "Teil von Klima / Energie",
@@ -172,7 +152,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "arbeit-loehne",
     label: "Arbeit",
-
     blurb: "Arbeitsmarkt, Mindestlohn und Beschäftigung.",
     awFields: ["Arbeit und Beschäftigung"],
     surveyTerm: "Arbeitslosigkeit",
@@ -183,7 +162,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "verkehr-mobilitaet",
     label: "Verkehr",
-
     blurb: "Bahn, Auto, ÖPNV und Verkehrsinfrastruktur.",
     awFields: ["Verkehr"],
     tier: "niedrig",
@@ -191,8 +169,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "digitales-datenschutz",
     label: "Digitales",
-
-
     blurb: "Digitalisierung, Internet, IT-Sicherheit und Datenschutz.",
     awFields: ["Medien, Kommunikation und Informationstechnik"],
     tier: "niedrig",
@@ -200,7 +176,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "bildung",
     label: "Bildung",
-
     blurb: "Schule, Hochschule und Ausbildung.",
     awFields: ["Bildung und Erziehung"],
     tier: "niedrig",
@@ -208,8 +183,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "wohnen-bau",
     label: "Wohnen",
-
-
     blurb: "Mieten, Bauen und Stadtentwicklung — im Bund klein, vor allem Länder-/Kommunalsache.",
     awFields: ["Raumordnung, Bau- und Wohnungswesen"],
     tier: "niedrig",
@@ -217,8 +190,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "recht-justiz",
     label: "Recht",
-
-
     blurb: "Gesetze, Justiz, Strafrecht und Rechtsstaat — großes Gesetzgebungs-Volumen.",
     awFields: ["Recht"],
     tier: "niedrig",
@@ -226,8 +197,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "staat-verwaltung",
     label: "Verwaltung",
-
-
     blurb: "Verwaltung, Bürokratie und Behörden.",
     awFields: ["Staat und Verwaltung"],
     tier: "niedrig",
@@ -235,7 +204,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "aussenpolitik-europa",
     label: "Außenpolitik",
-
     blurb: "Diplomatie, internationale Beziehungen und die Europäische Union.",
     awFields: ["Außenpolitik und internationale Beziehungen", "Europapolitik und Europäische Union"],
     tier: "niedrig",
@@ -243,7 +211,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "landwirtschaft",
     label: "Landwirtschaft",
-
     blurb: "Landwirtschaft, Ernährung und ländlicher Raum.",
     awFields: ["Landwirtschaft und Ernährung"],
     tier: "niedrig",
@@ -252,7 +219,6 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "weitere-themen",
     label: "Weitere Themen",
-
     blurb: "Parteien & Wahlrecht, Wissenschaft & Forschung, Entwicklungspolitik, Kultur, Sport und Parlamentsinternes.",
     awFields: [
       "Politisches Leben, Parteien",
@@ -281,27 +247,27 @@ export function topicBySlug(slug: string): CitizenTopic | undefined {
  * lucide-react-Export (Auflösung in TopicCard).
  */
 export const TOPIC_VISUAL: Record<string, { color: string; icon: string }> = {
-  "wirtschaft-preise": { color: "#44948e", icon: "TrendingUp" },
-  "migration-asyl": { color: "#667fb0", icon: "Users" },
-  "soziale-sicherung": { color: "#bb6895", icon: "HeartHandshake" },
-  "krieg-konflikte": { color: "#778397", icon: "Swords" },
-  "verteidigung-bundeswehr": { color: "#698fa8", icon: "Shield" },
-  "innere-sicherheit": { color: "#8c7fc5", icon: "ShieldAlert" },
-  "gesundheit-pflege": { color: "#c57769", icon: "HeartPulse" },
-  rente: { color: "#a48d66", icon: "PiggyBank" },
-  "steuern-finanzen": { color: "#5d9a78", icon: "Landmark" },
-  "klima-umwelt": { color: "#72a468", icon: "Leaf" },
-  energie: { color: "#cea45b", icon: "Zap" },
-  "arbeit-loehne": { color: "#b07a5e", icon: "Briefcase" },
-  "verkehr-mobilitaet": { color: "#5c9aa4", icon: "TrainFront" },
-  "digitales-datenschutz": { color: "#7e82c1", icon: "Cpu" },
-  "recht-justiz": { color: "#8d7ea4", icon: "Scale" },
-  "staat-verwaltung": { color: "#7e8c97", icon: "Building2" },
-  "aussenpolitik-europa": { color: "#698fb5", icon: "Globe" },
-  landwirtschaft: { color: "#8f975f", icon: "Wheat" },
-  bildung: { color: "#c1975b", icon: "GraduationCap" },
-  "wohnen-bau": { color: "#a48c77", icon: "Home" },
-  "weitere-themen": { color: "#8c919c", icon: "LayoutGrid" },
+  "wirtschaft-preise": { color: "#1aa39a", icon: "TrendingUp" },
+  "migration-asyl": { color: "#4a6fc9", icon: "Users" },
+  "soziale-sicherung": { color: "#c64d92", icon: "HeartHandshake" },
+  "krieg-konflikte": { color: "#5e6f93", icon: "Swords" },
+  "verteidigung-bundeswehr": { color: "#3f86b8", icon: "Shield" },
+  "innere-sicherheit": { color: "#7d63d6", icon: "ShieldAlert" },
+  "gesundheit-pflege": { color: "#d4624c", icon: "HeartPulse" },
+  rente: { color: "#c79a3f", icon: "PiggyBank" },
+  "steuern-finanzen": { color: "#2ba268", icon: "Landmark" },
+  "klima-umwelt": { color: "#54b04a", icon: "Leaf" },
+  energie: { color: "#e0a52e", icon: "Zap" },
+  "arbeit-loehne": { color: "#c2693e", icon: "Briefcase" },
+  "verkehr-mobilitaet": { color: "#2a9fae", icon: "TrainFront" },
+  "digitales-datenschutz": { color: "#6a6fd6", icon: "Cpu" },
+  "recht-justiz": { color: "#8e64c2", icon: "Scale" },
+  "staat-verwaltung": { color: "#607a9c", icon: "Building2" },
+  "aussenpolitik-europa": { color: "#3f86c4", icon: "Globe" },
+  landwirtschaft: { color: "#8aa03f", icon: "Wheat" },
+  bildung: { color: "#d09a35", icon: "GraduationCap" },
+  "wohnen-bau": { color: "#a87f55", icon: "Home" },
+  "weitere-themen": { color: "#788391", icon: "LayoutGrid" },
 };
 
 /**
