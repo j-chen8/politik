@@ -187,6 +187,50 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     awFields: ["Raumordnung, Bau- und Wohnungswesen"],
     tier: "niedrig",
   },
+  {
+    slug: "recht-justiz",
+    label: "Recht & Justiz",
+    blurb: "Gesetze, Justiz, Strafrecht und Rechtsstaat — großes Gesetzgebungs-Volumen.",
+    awFields: ["Recht"],
+    tier: "niedrig",
+  },
+  {
+    slug: "staat-verwaltung",
+    label: "Staat & Verwaltung",
+    blurb: "Verwaltung, Bürokratie und Behörden.",
+    awFields: ["Staat und Verwaltung"],
+    tier: "niedrig",
+  },
+  {
+    slug: "aussenpolitik-europa",
+    label: "Außenpolitik & Europa",
+    blurb: "Diplomatie, internationale Beziehungen und die Europäische Union.",
+    awFields: ["Außenpolitik und internationale Beziehungen", "Europapolitik und Europäische Union"],
+    tier: "niedrig",
+  },
+  {
+    slug: "landwirtschaft",
+    label: "Landwirtschaft & Ernährung",
+    blurb: "Landwirtschaft, Ernährung und ländlicher Raum.",
+    awFields: ["Landwirtschaft und Ernährung"],
+    tier: "niedrig",
+  },
+  // Catch-all: Long Tail, damit 100 % der Themen erreichbar sind (nichts versteckt)
+  {
+    slug: "weitere-themen",
+    label: "Weitere Themen",
+    blurb: "Parteien & Wahlrecht, Wissenschaft & Forschung, Entwicklungspolitik, Kultur, Sport und Parlamentsinternes.",
+    awFields: [
+      "Politisches Leben, Parteien",
+      "Wissenschaft, Forschung und Technologie",
+      "Entwicklungspolitik",
+      "Kultur",
+      "Sport, Freizeit und Tourismus",
+      "Neue Bundesländer",
+      "Bundestag",
+    ],
+    tier: "niedrig",
+  },
 ];
 
 export const SALIENCE_SOURCE =
