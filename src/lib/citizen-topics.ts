@@ -241,6 +241,36 @@ export function topicBySlug(slug: string): CitizenTopic | undefined {
 }
 
 /**
+ * Visuals für die farbigen „Browse"-Kacheln (Spotify-Pattern). Farben sind
+ * REIN ÄSTHETISCH vergeben — bewusst KEINE Partei-Farben, KEIN Alarm-Rot auf
+ * aufgeladenen Themen (Neutralität: Farbe darf nicht etikettieren). Icon-Name =
+ * lucide-react-Export (Auflösung in TopicCard).
+ */
+export const TOPIC_VISUAL: Record<string, { color: string; icon: string }> = {
+  "wirtschaft-preise": { color: "#0f766e", icon: "TrendingUp" },
+  "migration-asyl": { color: "#3b5b9a", icon: "Users" },
+  "soziale-sicherung": { color: "#a83d77", icon: "HeartHandshake" },
+  "krieg-konflikte": { color: "#51607a", icon: "Swords" },
+  "verteidigung-bundeswehr": { color: "#3f6f8f", icon: "Shield" },
+  "innere-sicherheit": { color: "#6b5bb5", icon: "ShieldAlert" },
+  "gesundheit-pflege": { color: "#b5503f", icon: "HeartPulse" },
+  rente: { color: "#8a6d3b", icon: "PiggyBank" },
+  "steuern-finanzen": { color: "#2f7d52", icon: "Landmark" },
+  "klima-umwelt": { color: "#4a8a3d", icon: "Leaf" },
+  energie: { color: "#c08a2d", icon: "Zap" },
+  "arbeit-loehne": { color: "#9a5530", icon: "Briefcase" },
+  "verkehr-mobilitaet": { color: "#2e7d8a", icon: "TrainFront" },
+  "digitales-datenschutz": { color: "#5a5fb0", icon: "Cpu" },
+  "recht-justiz": { color: "#6d5a8a", icon: "Scale" },
+  "staat-verwaltung": { color: "#5a6b7a", icon: "Building2" },
+  "aussenpolitik-europa": { color: "#3f6fa0", icon: "Globe" },
+  landwirtschaft: { color: "#6f7a32", icon: "Wheat" },
+  bildung: { color: "#b07a2d", icon: "GraduationCap" },
+  "wohnen-bau": { color: "#8a6b50", icon: "Home" },
+  "weitere-themen": { color: "#6b7280", icon: "LayoutGrid" },
+};
+
+/**
  * Grobe Fraktions-Klassifikation für die Divergenz-Entzerrung (21. Bundestag:
  * Koalition = CDU/CSU + SPD; Opposition = AfD, Grüne, Linke). "Regierung" =
  * Bundesregierung/-rat/-ministerien; "ohne" = keine Fraktionsangabe.

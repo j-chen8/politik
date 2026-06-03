@@ -1,12 +1,7 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowRight } from "lucide-react";
-import { getInstrumentCountsForFields, getInstrumentCountsForThema } from "@/lib/db";
-import {
-  CITIZEN_TOPICS,
-  TIER_ORDER,
-  TIER_STYLE,
-  SALIENCE_SOURCE,
-} from "@/lib/citizen-topics";
+import { CITIZEN_TOPICS, TIER_ORDER, SALIENCE_SOURCE } from "@/lib/citizen-topics";
+import { TopicCard } from "@/components/TopicCard";
 
 export const metadata = {
   title: "Was bewegt Deutschland? — Themen | Politik-Radar",
@@ -14,55 +9,14 @@ export const metadata = {
     "Die wichtigsten politischen Themen: was die Menschen umtreibt (Umfragen) und wie viel der Bundestag dazu einbringt — nebeneinander, neutral.",
 };
 
-function fmtNum(x: number): string {
-  return x.toLocaleString("de-DE");
-}
-
 export default function ThemenPage() {
-  const tiles = CITIZEN_TOPICS.map((t) => ({
-    ...t,
-    instr: t.themaMatch
-      ? getInstrumentCountsForThema(t.themaMatch)
-      : getInstrumentCountsForFields(t.awFields ?? []),
-  })).sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier));
-  // Stabile Sortierung: nur nach Tier. Within-Tier-Reihenfolge = Array-Reihenfolge
-  // in CITIZEN_TOPICS = Umfrage-Salienz (NICHT Parlaments-Volumen). Siehe dort.
-
-  // Haupt-Themen (mit Umfrage-Salienz) vs. „Sonstige" (niedrig — keine Umfrage-Top-Sorge)
+  // Stabile Sortierung nur nach Tier → Within-Tier-Reihenfolge = Array-Reihenfolge
+  // in CITIZEN_TOPICS = Umfrage-Salienz.
+  const tiles = [...CITIZEN_TOPICS].sort(
+    (a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier),
+  );
   const mainTiles = tiles.filter((t) => t.tier !== "niedrig");
   const sonstige = tiles.filter((t) => t.tier === "niedrig");
-
-  const renderTile = (t: (typeof tiles)[number]) => (
-    <Link
-      key={t.slug}
-      href={`/themen/${t.slug}`}
-      className="group flex flex-col rounded-2xl border border-zinc-200/70 bg-white p-5 hover:border-[#1a3e72]/40 hover:shadow-sm transition-all"
-    >
-      <div className="flex items-start justify-between gap-2">
-        <h2 className="text-[15px] font-semibold text-zinc-950 leading-snug group-hover:text-[#1a3e72] transition-colors">
-          {t.label}
-        </h2>
-        <span
-          className={`shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TIER_STYLE[t.tier]}`}
-          title={t.surveyTerm ? `Salienz aus Umfrage-Kategorie: ${t.surveyTerm}` : "Salienz: wie häufig in Umfragen als wichtiges Problem genannt"}
-        >
-          {t.tier}
-        </span>
-      </div>
-      <p className="mt-2 text-[12.5px] text-zinc-600 leading-relaxed flex-1">{t.blurb}</p>
-      <div className="mt-4 pt-3 border-t border-zinc-100 flex items-end justify-between gap-2">
-        <span className="text-[11.5px] text-zinc-500 leading-snug">
-          <span className="text-zinc-700 font-medium">{fmtNum(t.instr.handeln)}</span> Gesetze &amp; Beschlüsse
-          <br />
-          <span className="text-zinc-400">
-            {fmtNum(t.instr.kontrolle)} Anfragen (Kontrolle)
-            {t.flag && <span> · {t.flag}</span>}
-          </span>
-        </span>
-        <ArrowRight className="w-3.5 h-3.5 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
-      </div>
-    </Link>
-  );
 
   return (
     <div className="page-wash min-h-screen">
@@ -72,14 +26,15 @@ export default function ThemenPage() {
             Was bewegt Deutschland?
           </h1>
           <p className="mt-3 text-[14.5px] text-zinc-600 leading-relaxed">
-            Sortiert danach, wie sehr ein Thema die Menschen umtreibt (laut Umfragen). Daneben
-            steht, wie viel der Bundestag dazu tatsächlich einbringt — manchmal läuft beides
-            auseinander. Wähle ein Thema, um zu den konkreten Vorlagen zu kommen.
+            Die politischen Themen, sortiert danach, wie sehr sie die Menschen umtreiben (laut
+            Umfragen). Wähle ein Thema, um zu sehen, woran der Bundestag dazu tatsächlich arbeitet.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {mainTiles.map(renderTile)}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {mainTiles.map((t) => (
+            <TopicCard key={t.slug} slug={t.slug} label={t.label} />
+          ))}
         </div>
 
         {sonstige.length > 0 && (
@@ -90,15 +45,17 @@ export default function ThemenPage() {
                 weiterer parlamentarischer Schwerpunkt, aber keine Umfrage-Top-Sorge
               </span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sonstige.map(renderTile)}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {sonstige.map((t) => (
+                <TopicCard key={t.slug} slug={t.slug} label={t.label} />
+              ))}
             </div>
           </>
         )}
 
         <Link
           href="/themen/divergenz"
-          className="group mt-6 flex items-center justify-between gap-3 rounded-2xl border border-zinc-200/70 bg-white px-5 py-4 hover:border-[#1a3e72]/40 transition-colors"
+          className="group mt-8 flex items-center justify-between gap-3 rounded-2xl border border-zinc-200/70 bg-white px-5 py-4 hover:border-[#1a3e72]/40 transition-colors"
         >
           <div>
             <div className="text-[14px] font-semibold text-zinc-950 group-hover:text-[#1a3e72] transition-colors">
@@ -111,20 +68,14 @@ export default function ThemenPage() {
           <ArrowRight className="w-4 h-4 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
         </Link>
 
-        <footer className="mt-10 max-w-2xl space-y-2 text-[11.5px] text-zinc-400 leading-relaxed">
+        <footer className="mt-10 max-w-2xl text-[11.5px] text-zinc-400 leading-relaxed">
           <p>
             <span className="font-medium text-zinc-500">Salienz</span> = wie häufig ein Thema in
             repräsentativen Umfragen als wichtiges Problem genannt wird. Es gibt keine eine
             „richtige" Rangfolge: offene Fragen heben Wirtschaft &amp; Migration, vorgegebene Listen
             heben Armut/Ungleichheit &amp; Inflation. Die Einstufung bildet den Konsens über mehrere
-            Umfragen ab, keine Einzelzahl. {SALIENCE_SOURCE}
-          </p>
-          <p>
-            <span className="font-medium text-zinc-500">Gesetze &amp; Beschlüsse</span> (Gesetzentwürfe
-            + Beschlussempfehlungen) zeigen, woran das Parlament tatsächlich legislativ arbeitet.{" "}
-            <span className="font-medium text-zinc-500">Anfragen</span> (Kleine/Große Anfragen) sind
-            ein Kontroll-Instrument — meist der Opposition — und stehen für Aufmerksamkeit, nicht für
-            Handeln; deshalb getrennt ausgewiesen. Eine Vorlage kann mehrere Themen berühren.
+            Umfragen ab, keine Einzelzahl. Farben sind rein gestalterisch (kein Etikett).{" "}
+            {SALIENCE_SOURCE}
           </p>
         </footer>
       </div>

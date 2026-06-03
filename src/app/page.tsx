@@ -3,6 +3,7 @@ import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip"
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
 import { getBundestagLandingSnapshot } from "@/lib/db";
 import { CITIZEN_TOPICS } from "@/lib/citizen-topics";
+import { TopicCard } from "@/components/TopicCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -17,8 +18,6 @@ const lineClamp = (lines: number): CSSProperties => ({
   WebkitLineClamp: lines,
   overflow: "hidden",
 });
-
-const SUCH_BEISPIELE = ["Bürgergeld", "Heizungsgesetz", "Friedrich Merz", "Klimaschutz"];
 
 function dsHref(nr: string): string {
   return `/aktivitaeten/${nr.replace("/", "-")}`;
@@ -161,17 +160,9 @@ export default function LinearLanding() {
           <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
         {HOME_TOPICS.map((t) => (
-          <Link
-            key={t.slug}
-            href={`/themen/${t.slug}`}
-            className="group rounded-xl border border-zinc-200/70 bg-white px-3.5 py-3 hover:border-[#1a3e72]/40 hover:shadow-sm transition-all"
-          >
-            <span className="text-[13.5px] font-medium text-zinc-900 leading-snug group-hover:text-[#1a3e72] transition-colors">
-              {t.label}
-            </span>
-          </Link>
+          <TopicCard key={t.slug} slug={t.slug} label={t.label} />
         ))}
       </div>
     </div>
@@ -185,19 +176,6 @@ export default function LinearLanding() {
       methodikHref="/methodik"
       search={<SearchBox />}
       topics={topicsBlock}
-      examples={
-        <div className="mt-4 flex flex-wrap gap-2">
-          {SUCH_BEISPIELE.map((term) => (
-            <Link
-              key={term}
-              href={`/suche?q=${encodeURIComponent(term)}`}
-              className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-[12.5px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
-            >
-              {term}
-            </Link>
-          ))}
-        </div>
-      }
       plenarPill={
         s.latestSitzung
           ? {
