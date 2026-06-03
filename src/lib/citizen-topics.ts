@@ -157,7 +157,22 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
     surveyTerm: "Arbeitslosigkeit",
     tier: "mittel",
   },
-  // ── niedrig (keine eigene Umfrage-Kategorie) ──────────────────────────────
+  // ── niedrig (keine eigene Umfrage-Kategorie — in keiner genutzten Umfrage eine
+  //    Top-Sorge-Kategorie; aufgenommen wegen Wiedererkennbarkeit als Alltags-Thema) ──
+  {
+    slug: "verkehr-mobilitaet",
+    label: "Verkehr & Mobilität",
+    blurb: "Bahn, Auto, ÖPNV und Verkehrsinfrastruktur.",
+    awFields: ["Verkehr"],
+    tier: "niedrig",
+  },
+  {
+    slug: "digitales-datenschutz",
+    label: "Digitales & Datenschutz",
+    blurb: "Digitalisierung, Internet, IT-Sicherheit und Datenschutz.",
+    awFields: ["Medien, Kommunikation und Informationstechnik"],
+    tier: "niedrig",
+  },
   {
     slug: "bildung",
     label: "Bildung",
