@@ -1,6 +1,6 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowRight } from "lucide-react";
-import { getDrucksacheCountForFields } from "@/lib/db";
+import { getInstrumentCountsForFields } from "@/lib/db";
 import {
   CITIZEN_TOPICS,
   TIER_ORDER,
@@ -21,7 +21,7 @@ function fmtNum(x: number): string {
 export default function ThemenPage() {
   const tiles = CITIZEN_TOPICS.map((t) => ({
     ...t,
-    volume: getDrucksacheCountForFields(t.awFields),
+    instr: getInstrumentCountsForFields(t.awFields),
   })).sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier));
   // Stabile Sortierung: nur nach Tier. Within-Tier-Reihenfolge = Array-Reihenfolge
   // in CITIZEN_TOPICS = Umfrage-Salienz (NICHT Parlaments-Volumen). Siehe dort.
@@ -59,14 +59,16 @@ export default function ThemenPage() {
                 </span>
               </div>
               <p className="mt-2 text-[12.5px] text-zinc-600 leading-relaxed flex-1">{t.blurb}</p>
-              <div className="mt-4 pt-3 border-t border-zinc-100 flex items-center justify-between">
-                <span className="text-[11.5px] text-zinc-500">
-                  {fmtNum(t.volume)} Initiativen im Bundestag
-                  {t.flag && (
-                    <span className="ml-1.5 text-zinc-400">· {t.flag}</span>
-                  )}
+              <div className="mt-4 pt-3 border-t border-zinc-100 flex items-end justify-between gap-2">
+                <span className="text-[11.5px] text-zinc-500 leading-snug">
+                  <span className="text-zinc-700 font-medium">{fmtNum(t.instr.handeln)}</span> Gesetze &amp; Beschlüsse
+                  <br />
+                  <span className="text-zinc-400">
+                    {fmtNum(t.instr.kontrolle)} Anfragen (Kontrolle)
+                    {t.flag && <span> · {t.flag}</span>}
+                  </span>
                 </span>
-                <ArrowRight className="w-3.5 h-3.5 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
+                <ArrowRight className="w-3.5 h-3.5 shrink-0 text-zinc-300 group-hover:text-[#1a3e72] transition-colors" />
               </div>
             </Link>
           ))}
@@ -96,10 +98,11 @@ export default function ThemenPage() {
             Umfragen ab, keine Einzelzahl. {SALIENCE_SOURCE}
           </p>
           <p>
-            <span className="font-medium text-zinc-500">Initiativen</span> = Anzahl der Drucksachen
-            (Gesetze, Anträge, Anfragen), die ein Thema berühren — also was zum Thema{" "}
-            <em>eingebracht</em> wird, nicht was beschlossen oder priorisiert wird. Eine Vorlage
-            kann mehrere Themen berühren.
+            <span className="font-medium text-zinc-500">Gesetze &amp; Beschlüsse</span> (Gesetzentwürfe
+            + Beschlussempfehlungen) zeigen, woran das Parlament tatsächlich legislativ arbeitet.{" "}
+            <span className="font-medium text-zinc-500">Anfragen</span> (Kleine/Große Anfragen) sind
+            ein Kontroll-Instrument — meist der Opposition — und stehen für Aufmerksamkeit, nicht für
+            Handeln; deshalb getrennt ausgewiesen. Eine Vorlage kann mehrere Themen berühren.
           </p>
         </footer>
       </div>

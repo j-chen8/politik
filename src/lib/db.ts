@@ -7041,6 +7041,39 @@ export function getThemaKeywordShare(keyword: string): { hits: number; total: nu
   return { hits, total };
 }
 
+/**
+ * Instrument-Aufschlüsselung für ein aw_field-Set (Bürger-Themen-Frontdoor).
+ *   handeln    = Gesetzentwürfe + Beschlussempfehlungen + Verordnungen → was das
+ *                Parlament tatsächlich legislativ bearbeitet (das wichtigere Maß).
+ *   kontrolle  = Kleine/Große Anfragen → Aufmerksamkeit/Kontrolle (Oppositions-
+ *                Werkzeug), NICHT Handeln.
+ *   antrag     = Anträge (meist Opposition, meist abgelehnt).
+ * Antworten/Administratives (Wahlvorschläge etc.) zählen in keinen der drei.
+ * Quelle: drucksache_instrument (aus Volltext-Kopf geparst).
+ */
+export interface InstrumentCounts {
+  handeln: number;
+  kontrolle: number;
+  antrag: number;
+}
+
+export function getInstrumentCountsForFields(fields: string[]): InstrumentCounts {
+  if (fields.length === 0) return { handeln: 0, kontrolle: 0, antrag: 0 };
+  const ph = fields.map(() => "?").join(",");
+  const row = getDb()
+    .prepare(
+      `SELECT
+         SUM(CASE WHEN di.bucket='handeln' THEN 1 ELSE 0 END) AS handeln,
+         SUM(CASE WHEN di.bucket='kontrolle' THEN 1 ELSE 0 END) AS kontrolle,
+         SUM(CASE WHEN di.bucket='antrag' THEN 1 ELSE 0 END) AS antrag
+       FROM (SELECT DISTINCT it.item_id FROM item_topics it
+             WHERE it.source='bt_drucksache' AND it.aw_field IN (${ph})) x
+       JOIN drucksache_instrument di ON di.drucksache_nr = x.item_id`,
+    )
+    .get(...fields) as { handeln: number | null; kontrolle: number | null; antrag: number | null };
+  return { handeln: row.handeln ?? 0, kontrolle: row.kontrolle ?? 0, antrag: row.antrag ?? 0 };
+}
+
 export interface TopicDrucksache {
   nr: string;
   titel: string | null;
