@@ -1,10 +1,8 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
-import { listDrucksachenForFields, getTopicMonthlyInstrument } from "@/lib/db";
+import { listDrucksachenForFields } from "@/lib/db";
 import { topicBySlug, TIER_STYLE } from "@/lib/citizen-topics";
-import { getConcernSeries, SURVEY_MONTHS, SURVEY_SOURCE_LINE } from "@/lib/survey-series";
-import { TopicTrendChart } from "@/components/TopicTrendChart";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,15 +28,6 @@ export default async function ThemaDetailPage({ params }: Props) {
   if (!topic) notFound();
 
   const { items, total } = listDrucksachenForFields(topic.awFields, LIMIT, 0);
-
-  // Zeitreihe: Sorge (Umfrage) vs. Parlaments-Aktivität pro Monat
-  const monthly = getTopicMonthlyInstrument(topic.awFields);
-  const mMap = new Map(monthly.map((r) => [r.month, r]));
-  const months = [...SURVEY_MONTHS];
-  const anfragen = months.map((m) => mMap.get(m)?.kontrolle ?? 0);
-  const handeln = months.map((m) => mMap.get(m)?.handeln ?? 0);
-  const concernSeries = getConcernSeries(topic.slug);
-  const concern = concernSeries ? concernSeries.map((p) => p.value) : null;
 
   return (
     <div className="page-wash min-h-screen">
@@ -68,19 +57,6 @@ export default async function ThemaDetailPage({ params }: Props) {
             {topic.flag && <span> · {topic.flag}</span>}
           </p>
         </header>
-
-        <section className="mb-8 rounded-2xl border border-zinc-200/70 bg-white px-5 py-4">
-          <h2 className="text-[14px] font-semibold text-zinc-950">Sorge und parlamentarische Reaktion über die Zeit</h2>
-          <p className="mt-1 mb-3 text-[12px] text-zinc-500 leading-relaxed">
-            Bewegt sich das Parlament, wenn die Sorge steigt? Oben die Umfrage-Salienz, unten die
-            Drucksachen je Monat — Anfragen (Kontrolle) und Gesetzgebung (Handeln) getrennt.
-          </p>
-          <TopicTrendChart months={months} concern={concern} anfragen={anfragen} handeln={handeln} />
-          <p className="mt-2 text-[10.5px] text-zinc-400 leading-relaxed">
-            Sorge: {SURVEY_SOURCE_LINE}. Deskriptiv — Politik reagiert mit Verzug, Korrelation ist
-            keine Kausalität, nicht jede Sorge ist Bundessache.
-          </p>
-        </section>
 
         <h2 className="mb-3 text-[14px] font-semibold text-zinc-950">Drucksachen zum Thema</h2>
         <ul className="space-y-2.5">
