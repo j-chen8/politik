@@ -62,29 +62,31 @@ TOPIC_TAGS = [
 # (n=1.340, telef.+online). Offene Frage "wichtigste Probleme", Mehrfachnennung
 # (Summe >100 %). Werte = % der Befragten, die das Problem nennen.
 # Tabellen "Wichtige Probleme in Deutschland I+II" (Langzeit-xlsx, Stand 22.05.2026).
-SURVEY_SOURCE = "Politbarometer (Forschungsgruppe Wahlen), 19.–21.05.2026"
-# Thema-Name → Umfrage-Prozent. None = von der Umfrage nicht als eigenes Feld erfasst.
-SURVEY = {
- "Wirtschaft & Industrie": 22,          # Wirtschaftslage
- "Klima & Umwelt": 15,                  # Klima/Energie (Umfrage fasst beides zusammen)
- "Energie": 15,                         #   ^ dito — selbe Umfrage-Kategorie, überlappt
- "Migration & Asyl": 12,                # Zuwanderung
- "Rente & Alterssicherung": 11,         # Renten
- "Soziales & Bürgergeld": 10,           # Soziales Gefälle
- "Verteidigung & Bundeswehr": 10,       # Bundeswehr/Verteidigung
- "Gesundheit & Pflege": 10,             # Gesundheitswesen/Pflege
- "Demokratie & Mitbestimmung": 9,       # Politikverdruss (lose Zuordnung)
- "Arbeit & Löhne": 3,                   # Arbeitslosigkeit
+SURVEY_SOURCE = "trianguliert PB(offen)/EB+IP(vorgegeben) — siehe docs/umfrage-salienz.md"
+# Thema-Name → triangulierte Salienz-Stufe (NICHT fragile Einzel-%; Herleitung im Doc).
+# None/fehlt = in Umfragen selten top.
+TIER = {
+ "Wirtschaft & Industrie": "sehr hoch",
+ "Soziales & Bürgergeld": "hoch",          # Armut/Ungleichheit Spitze in vorgegeben
+ "Verteidigung & Bundeswehr": "hoch",      # Sicherheit/Verteidigung
+ "Migration & Asyl": "hoch (rückläufig)",
+ "Innere Sicherheit": "mittel-hoch",       # Kriminalität/Gewalt
+ "Gesundheit & Pflege": "mittel-hoch",
+ "Klima & Umwelt": "mittel",
+ "Energie": "mittel",
+ "Steuern & Staatsfinanzen": "mittel",     # + Parlaments-Volumen #1
+ "Rente & Alterssicherung": "mittel (Divergenz)",  # Parl. nur 2 %
+ "Bildung": "niedrig",
 }
+# Inflation/Preise = sehr hoch, aber Querschnitt ohne eigenes AW-Tag → Ebene B.
 
 # ── Ebene B: Ereignis-Schlagwörter ohne eigenes Politikfeld-Tag ──────────────
 # UNTERGRENZE: grobe Keyword-Suche in der Zusammenfassung, überlappt mit Ebene A.
 # Mit echtem Umfragewert annotiert, wo vorhanden.
 EVENT_KEYWORDS = [
- ("Inflation / Kosten & Preise", ["Inflation", "Strompreis", "Gaspreis", "Kaufkraft", "Lebenshaltung"], "Umfrage: 11 % (Kosten/Löhne/Preise)"),
- ("Ukrainekrieg",          ["Ukraine", "Selenskyj"],                               "Umfrage: 2 %"),
- ("Gaza & Nahost",         ["Gaza", "Hamas", "Nahost", "israelisch"],              "Umfrage: nicht erfasst"),
- ("Bürgergeld konkret",    ["Bürgergeld", "Grundsicherung"],                       "Teil v. 'Soziales Gefälle' 10 %"),
+ ("Inflation / Kosten & Preise", ["Inflation", "Strompreis", "Gaspreis", "Kaufkraft", "Lebenshaltung"], "Salienz: sehr hoch (EB 29 %/IP 31 %)"),
+ ("Militärische Konflikte (Ukraine/Nahost)", ["Ukraine", "Selenskyj", "Gaza", "Hamas", "Nahost", "israelisch"], "Salienz: hoch (IP 31 %)"),
+ ("Bürgergeld konkret",    ["Bürgergeld", "Grundsicherung"],                       "Teil v. Soziales/Ungleichheit (hoch)"),
 ]
 
 if __name__ == "__main__":
@@ -116,17 +118,15 @@ if __name__ == "__main__":
         resA.append((name, n, sal))
     resA.sort(key=lambda x: -x[1]); mx = max(r[1] for r in resA)
 
-    print(f"=== EBENE A · Parlaments-Volumen vs. Umfrage-Salienz ===")
+    print(f"=== EBENE A · Parlaments-Volumen vs. Umfrage-Salienz (Tier) ===")
     print(f"    Parlament: % der {N} Bundestag-DS, die das Feld berühren (Mehrfach-Tag).")
-    print(f"    Umfrage:   % der Befragten, die es als wichtigstes Problem nennen.")
-    print(f"    Quelle Umfrage: {SURVEY_SOURCE}\n")
-    print(f"    {'Parl%':>6} {'Umfr%':>6}  {'Δ':>5}  Thema")
+    print(f"    Salienz:   triangulierte Stufe aus mehreren Umfragen.")
+    print(f"    Quelle: {SURVEY_SOURCE}\n")
+    print(f"    {'Parl%':>6}  {'Salienz':<18} Thema")
     for name, n, sal in resA:
         pct = n / N * 100
-        u = SURVEY.get(name)
-        ustr = f"{u:5}%" if u is not None else "    –"
-        dstr = f"{u-pct:+5.0f}" if u is not None else "    ·"
-        print(f"    {pct:5.1f}% {ustr}  {dstr}  {name}")
+        tier = TIER.get(name, "—")
+        print(f"    {pct:5.1f}%  {tier:<18} {name}")
 
     print(f"\n=== EBENE B · Ereignis-Schlagwörter (Untergrenze, überlappt A) ===\n")
     resB = []
