@@ -6,13 +6,15 @@ import {
   getDrucksacheMonthlyTrend,
   getGesetzgebungsFunnel,
   type GesetzgebungsFunnelRow,
+  getTopicInitiativeMatrix,
 } from "@/lib/db";
 import { partyColor } from "@/lib/party-colors";
+import { InitiativeMatrix } from "@/components/InitiativeMatrix";
 
 export const metadata = {
   title: "Analyse — Was die Daten zeigen | Politik-Radar",
   description:
-    "Vier empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie und der Gesetzgebungs-Trichter nach Einbringer.",
+    "Fünf empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie, Themen-Profil pro Fraktion und der Gesetzgebungs-Trichter nach Einbringer.",
 };
 
 const FRAKTION_ORDER = ["CDU/CSU", "SPD", "Grüne", "Linke", "AfD"];
@@ -38,6 +40,7 @@ export default function AnalysePage() {
   const ka = getDrucksacheTonalitaetByFraktion();
   const trend = getDrucksacheMonthlyTrend();
   const funnel = getGesetzgebungsFunnel();
+  const initiativeMatrix = getTopicInitiativeMatrix();
 
   // === BEFUND 1: Reden-Stil-Profile ===
   // Jede Fraktion hat ein dominantes Stil-Profil — wir zeigen die Anteile
@@ -132,12 +135,12 @@ export default function AnalysePage() {
             Was die Daten zeigen
           </h1>
           <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
-            Vier empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
+            Fünf empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
           <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
-            Die Befunde 1–3 kommen aus der LLM-Klassifikation der Plenarreden und der Kleinen
-            Anfragen, Befund 4 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
+            Die Befunde 1–4 kommen aus der LLM-Klassifikation der Plenarreden, der Kleinen
+            Anfragen und der Drucksachen, Befund 5 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
             keine KI im Spiel (WP21, Stand{" "}
             <span className="num">{trend[trend.length - 1]?.monat ?? "—"}</span>). Methodische
             Grenzen — Themen-Confound, Speaker-Identity-Confound, fehlende
@@ -358,11 +361,44 @@ export default function AnalysePage() {
           </CaveatBox>
         </section>
 
-        {/* === BEFUND 4: Gesetzgebungs-Trichter === */}
+        {/* === BEFUND 4: Themen-Profil pro Fraktion === */}
         <section className="mb-16">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
-              Befund 4 · Gesetzgebung
+              Befund 4 · Wer treibt welche Themen
+            </div>
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+              Jede Fraktion hat ein Themen-Profil — und die Opposition bringt die meisten Initiativen ein.
+            </h2>
+            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Jede der {initiativeMatrix.fields.length} Politikfelder-Zeilen zeigt, welche Fraktion wie
+              viele eigene Initiativen (Anträge und Gesetzentwürfe) dazu eingebracht hat. Die Schwerpunkte
+              unterscheiden sich deutlich — und die Zahlen pro Fraktion auch: Die Opposition bringt ein
+              Vielfaches dessen ein, was die Regierungskoalition über Anträge einbringt (die regiert über
+              Gesetze). Klassifikation auf die{" "}
+              <Link href="/methodik" className="text-[#1a3e72] hover:underline underline-offset-2">
+                abgeordnetenwatch-Politikfelder
+              </Link>.
+            </p>
+          </div>
+
+          <InitiativeMatrix data={initiativeMatrix} />
+
+          <CaveatBox>
+            Gezählt werden <strong>eingebrachte</strong> Initiativen, nicht beschlossene — die meisten
+            Oppositionsanträge werden abgelehnt. Ein Politikfeld kann aus gegensätzlichen Richtungen
+            bespielt werden: „Innere Sicherheit" umfasst sowohl Law-and-Order-Anträge als auch
+            Grundrechts- und Polizei-Kritik — gleiches Feld, verschiedene Haltung. Die Themen-Zuordnung
+            ist eine LLM-Klassifikation der Drucksachen-Inhalte; die verlinkte Drucksache ist immer die
+            Quelle.
+          </CaveatBox>
+        </section>
+
+        {/* === BEFUND 5: Gesetzgebungs-Trichter === */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              Befund 5 · Gesetzgebung
             </div>
             <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
               Ob ein Gesetzentwurf je zur Abstimmung kommt, entscheidet vor allem der Absender.
