@@ -58,7 +58,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   // ── sehr hoch ──────────────────────────────────────────────────────────
   {
     slug: "wirtschaft-preise",
-    label: "Wirtschaft & Preise",
+    label: "Wirtschaft",
+
+
     blurb: "Wirtschaftslage, Inflation und Lebenshaltungskosten — in allen Umfragen ganz oben.",
     awFields: ["Wirtschaft", "Außenwirtschaft"],
     surveyTerm: "Wirtschaftslage & Kosten/Löhne/Preise",
@@ -67,7 +69,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   // ── hoch ───────────────────────────────────────────────────────────────
   {
     slug: "migration-asyl",
-    label: "Migration & Asyl",
+    label: "Migration",
+
+
     blurb: "Zuwanderung und Aufenthaltsrecht — über die Wahlperiode die zweithäufigste Sorge, zuletzt aber deutlich gefallen.",
     awFields: ["Migration und Aufenthaltsrecht"],
     surveyTerm: "Zuwanderung / Einwanderung",
@@ -76,7 +80,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "soziale-sicherung",
-    label: "Soziale Sicherung & Gerechtigkeit",
+    label: "Soziales",
+
+
     blurb: "Armut, soziale Ungleichheit und soziale Sicherung — Spitzensorge in vorgegebenen Umfragen.",
     awFields: ["Soziale Sicherung", "Gesellschaftspolitik, soziale Gruppen"],
     surveyTerm: "Soziales Gefälle / Armut und soziale Ungleichheit",
@@ -84,7 +90,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "krieg-konflikte",
-    label: "Krieg & internationale Konflikte",
+    label: "Krieg",
+
+
     blurb: "Krieg in der Ukraine, Nahost und andere militärische Konflikte zwischen Staaten.",
     themaMatch: ["Ukraine", "Russland", "Gaza", "Nahost", "Hamas", "Selenskyj"],
     surveyTerm: "Ukraine/Krieg/Russland / Militärische Konflikte",
@@ -93,7 +101,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "verteidigung-bundeswehr",
-    label: "Verteidigung & Bundeswehr",
+    label: "Verteidigung",
+
+
     blurb: "Bundeswehr, Aufrüstung und Verteidigungsfähigkeit.",
     awFields: ["Verteidigung"],
     surveyTerm: "Bundeswehr/Verteidigung",
@@ -103,6 +113,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "innere-sicherheit",
     label: "Innere Sicherheit",
+
     blurb: "Kriminalität, Polizei und Extremismus.",
     awFields: ["Innere Sicherheit"],
     surveyTerm: "Kriminalität und Gewalt / Extremismus",
@@ -110,7 +121,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "gesundheit-pflege",
-    label: "Gesundheit & Pflege",
+    label: "Gesundheit",
+
+
     blurb: "Krankenversicherung, Krankenhäuser und Pflege.",
     awFields: ["Gesundheit"],
     surveyTerm: "Gesundheitswesen, Pflege",
@@ -118,7 +131,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "rente",
-    label: "Rente & Alterssicherung",
+    label: "Rente",
+
+
     blurb: "Gesetzliche Rente, Rentenniveau und Alterssicherung.",
     themaMatch: ["Rente"],
     surveyTerm: "Renten",
@@ -127,7 +142,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   // ── mittel ───────────────────────────────────────────────────────────────
   {
     slug: "steuern-finanzen",
-    label: "Steuern & Staatsfinanzen",
+    label: "Steuern",
+
+
     blurb: "Haushalt, Steuern und Abgaben — größtes Initiativ-Volumen im Bundestag.",
     awFields: ["Öffentliche Finanzen, Steuern und Abgaben"],
     surveyTerm: "Steuern (Ipsos)",
@@ -135,7 +152,9 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "klima-umwelt",
-    label: "Klima & Umwelt",
+    label: "Klima",
+
+
     blurb: "Klimaschutz, Natur und Umwelt.",
     awFields: ["Umwelt"],
     surveyTerm: "Klima / Energie / Klimawandel",
@@ -144,6 +163,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "energie",
     label: "Energie",
+
     blurb: "Strom- und Gaspreise, Energiewende und Versorgung.",
     awFields: ["Energie"],
     surveyTerm: "Teil von Klima / Energie",
@@ -151,7 +171,8 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   },
   {
     slug: "arbeit-loehne",
-    label: "Arbeit & Löhne",
+    label: "Arbeit",
+
     blurb: "Arbeitsmarkt, Mindestlohn und Beschäftigung.",
     awFields: ["Arbeit und Beschäftigung"],
     surveyTerm: "Arbeitslosigkeit",
@@ -161,14 +182,17 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   //    Top-Sorge-Kategorie; aufgenommen wegen Wiedererkennbarkeit als Alltags-Thema) ──
   {
     slug: "verkehr-mobilitaet",
-    label: "Verkehr & Mobilität",
+    label: "Verkehr",
+
     blurb: "Bahn, Auto, ÖPNV und Verkehrsinfrastruktur.",
     awFields: ["Verkehr"],
     tier: "niedrig",
   },
   {
     slug: "digitales-datenschutz",
-    label: "Digitales & Datenschutz",
+    label: "Digitales",
+
+
     blurb: "Digitalisierung, Internet, IT-Sicherheit und Datenschutz.",
     awFields: ["Medien, Kommunikation und Informationstechnik"],
     tier: "niedrig",
@@ -176,41 +200,50 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "bildung",
     label: "Bildung",
+
     blurb: "Schule, Hochschule und Ausbildung.",
     awFields: ["Bildung und Erziehung"],
     tier: "niedrig",
   },
   {
     slug: "wohnen-bau",
-    label: "Wohnen & Bau",
+    label: "Wohnen",
+
+
     blurb: "Mieten, Bauen und Stadtentwicklung — im Bund klein, vor allem Länder-/Kommunalsache.",
     awFields: ["Raumordnung, Bau- und Wohnungswesen"],
     tier: "niedrig",
   },
   {
     slug: "recht-justiz",
-    label: "Recht & Justiz",
+    label: "Recht",
+
+
     blurb: "Gesetze, Justiz, Strafrecht und Rechtsstaat — großes Gesetzgebungs-Volumen.",
     awFields: ["Recht"],
     tier: "niedrig",
   },
   {
     slug: "staat-verwaltung",
-    label: "Staat & Verwaltung",
+    label: "Verwaltung",
+
+
     blurb: "Verwaltung, Bürokratie und Behörden.",
     awFields: ["Staat und Verwaltung"],
     tier: "niedrig",
   },
   {
     slug: "aussenpolitik-europa",
-    label: "Außenpolitik & Europa",
+    label: "Außenpolitik",
+
     blurb: "Diplomatie, internationale Beziehungen und die Europäische Union.",
     awFields: ["Außenpolitik und internationale Beziehungen", "Europapolitik und Europäische Union"],
     tier: "niedrig",
   },
   {
     slug: "landwirtschaft",
-    label: "Landwirtschaft & Ernährung",
+    label: "Landwirtschaft",
+
     blurb: "Landwirtschaft, Ernährung und ländlicher Raum.",
     awFields: ["Landwirtschaft und Ernährung"],
     tier: "niedrig",
@@ -219,6 +252,7 @@ export const CITIZEN_TOPICS: CitizenTopic[] = [
   {
     slug: "weitere-themen",
     label: "Weitere Themen",
+
     blurb: "Parteien & Wahlrecht, Wissenschaft & Forschung, Entwicklungspolitik, Kultur, Sport und Parlamentsinternes.",
     awFields: [
       "Politisches Leben, Parteien",
