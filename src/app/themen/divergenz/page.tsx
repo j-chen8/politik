@@ -36,8 +36,9 @@ export default function DivergenzPage() {
       const vr = volRank.get(t.slug)!;
       return { ...t, volumeRank: vr, gap: vr - t.salienceRank };
     })
-    // Größte Divergenz zuerst: erst Blindflecken (Sorge > Volumen), dann ausgeglichen, dann Volumen-lastig
-    .sort((a, b) => b.gap - a.gap);
+    // EINE klare Achse: nach Bürger-Sorge (wie die Frontdoor). Die Divergenz liest
+    // man pro Zeile am Volumen-Rang + Chip ab — NICHT über die Sortierung.
+    .sort((a, b) => a.salienceRank - b.salienceRank);
 
   const rente = getThemaKeywordShare("Rente");
   const rentePct = ((rente.hits / rente.total) * 100).toFixed(1).replace(".", ",");
@@ -60,7 +61,8 @@ export default function DivergenzPage() {
           <p className="mt-3 text-[14px] text-zinc-600 leading-relaxed">
             Zwei Blickwinkel auf dasselbe Thema: Wie sehr es die <strong>Menschen umtreibt</strong>{" "}
             (laut Umfragen) und wie viel der <strong>Bundestag dazu einbringt</strong> (Anzahl der
-            Drucksachen). Beides ist nicht dasselbe — und manchmal liegt es weit auseinander.
+            Drucksachen). Sortiert nach Bürger-Sorge — der Chip rechts zeigt, ob das parlamentarische
+            Volumen darunter‑ oder darüberliegt.
           </p>
         </header>
 
