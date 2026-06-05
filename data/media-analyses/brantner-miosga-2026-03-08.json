@@ -1,0 +1,423 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS84ZTY1OWUzMC00YTI0LTQ3OTUtOTI2ZS05MDA0MDA1NjM0YzNfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-03-08",
+    "politician": "Franziska Brantner",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "d7b675561c4e83e7",
+    "transcript_chars": 35194,
+    "caption_lines": 1292,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15592,
+    "tokens_out": 10974,
+    "cost_usd": 0.0281848,
+    "quote_validation": {
+      "valid_exact": 13,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 4,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.132Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, Co-Vorsitzende von Bündnis 90/Die Grünen, wurde von Caren Miosga zum Wahlabend Baden-Württemberg befragt, wo die Grünen mit Cem Özdemir knapp vor der CDU siegten. Brantner verteidigte Özdemirs Abgrenzung von der Bundespartei als legitime Landesstrategie, betonte aber gleichzeitig die Geschlossenheit der Bundespartei hinter ihm. Sie argumentierte für pragmatische Reformpolitik und kritisierte die CDU für taktische Fehler, nicht aber für eine grundsätzliche Abkehr von Klimapolitik.",
+    "themes": [
+      {
+        "title": "Grüner Wahlsieg Baden-Württemberg als Signal",
+        "timestamp_range": "00:01:16 - 00:02:22",
+        "theme_description": "Bewertung des knappen Grünen-Sieges über die CDU als Erfolg mit Bedeutung für die Bundespartei.",
+        "question_asked": "Caren Miosga fragte Franziska Brantner, ob das knappe Ergebnis mit nur 0,6 Prozent Abstand zu Cem Özdemir überraschend kam und ob dies wirklich als großer Erfolg einzuordnen ist.",
+        "question_intent": "Miosga wollte prüfen, ob Brantner das dünne Wahlergebnis als echter Sieg einstuft oder ob es relativiert werden sollte.",
+        "position": "Brantner bezeichnete das Ergebnis als 'fantastisches Ergebnis für uns Grüne' und 'tolles Zeichen an die Republik'. Sie interpretierte es als Votum dafür, dass die Wähler 'Mut und Zuversicht' und die Kombination von 'Wirtschaft und Klimaschutz zusammenbringen' wollen. Sie lobte Özdemir dafür, dass 'er Lust auf unser Land hat, Probleme ehrlich anspricht und Lösungen gibt' sowie für eine 'andere Stimmung' im Vergleich zur Bundesregierung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortete Miosgas Skeptik zu den 0,6 Prozent direkt, indem sie die Bedeutung nicht an der Spannbreite, sondern am Inhalt und Signal festmachte. Sie adressierte beide Implikationen der Frage: knappes Ergebnis (zugegeben, aber nicht zentral) und Aussagekraft (zentral).",
+        "quotes": [
+          {
+            "text": "Diese fulminante Aufholjagd freut mich sehr. Es ist ein fantastisches Ergebnis für uns Grüne. Ich freue mich, dass die Menschen gesagt haben, dass sie Mut und Zuversicht wollen. Sie wollen Wirtschaft und Klimaschutz zusammenbringen.",
+            "timestamp": "00:01:16",
+            "context": "Auf die Frage nach dem knappen Wahlabstand antwortete Brantner mit einer positiven Deutung des Ergebnisses."
+          },
+          {
+            "text": "Es ist knapp, aber es ist ein tolles Ergebnis. Cem Özdemir hat gezeigt, dass er Lust auf unser Land hat. Er spricht die Probleme ehrlich an und gibt Lösungen.",
+            "timestamp": "00:01:50",
+            "context": "Wiederholung der Kernposition zur Bewertung trotz knappem Ergebnis."
+          }
+        ],
+        "concrete_statements": [
+          "Deutung des Wahlergebnisses als Signal für 'Mut und Zuversicht'",
+          "Verbindung zum Erfolgsprogramm 'Wirtschaft und Klimaschutz zusammenbringen'",
+          "Lob für Özdemir als pragmatischen Kandidaten mit Problemlösungsansätzen"
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik und wirtschaftliche Wettbewerbsfähigkeit",
+          "Föderalismus und Länder-Bundpartei-Spannungen",
+          "Wahlkampfstrategie und Kandidatenbewertung"
+        ]
+      },
+      {
+        "title": "Özdemirs Distanzierung von der Bundespartei",
+        "timestamp_range": "00:12:23 - 00:16:45",
+        "theme_description": "Rechtfertigung oder Verteidigung von Cem Özdemirs Abgrenzung zur Bundespartei, insbesondere zur Ablehnung des Verbrenner-Aus und zur Zusammenarbeit mit Boris Palmer.",
+        "question_asked": "Caren Miosga zitierte Özdemirs Vergleich mit der CSU als 'Schwesterpartei' innerhalb der Grünen und fragte Brantner ironisch, ob auch sie sich 'als Teil eines gallischen Dorfes' fühle.",
+        "question_intent": "Miosga wollte Brantner dazu bringen, einzugestehen, dass Özdemir sich bewusst von der Bundespartei distanzierte, und ob Brantner dies akzeptiert oder kritisiert.",
+        "position": "Brantner lehnte die 'gallisches Dorf'-Metapher ab und betonte, dass 'Cem Özdemir ein Grüner ist' und 'das weiß in Baden-Württemberg auch jeder'. Sie hob hervor, dass 'wir als Bundespartei geschlossen hinter ihm standen' und 'seinen Wahlkampf unterstützten'. Sie argumentierte, dass Özdemirs Fokus auf 'Land vor Partei' und sein Anspruch, wie Winfried Kretschmann 'Wirtschaft und Klimaschutz zusammenzubringen', legitime Positionen sind. Sie stellte Baden-Württemberg als Beispiel für erfolgreiche grüne Regierungsarbeit dar und betonte, dass 'man es nicht kopieren kann, aber muss es kapieren'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Brantner wich der direkten Frage nach ihrer eigenen Positionierung zum 'gallischen Dorf' aus und lenkte stattdessen auf eine Verteidigung von Özdemir um. Sie sprach nicht über ihre eigene Rolle als Bundesvorsitzende, sondern über Özdemirs Legitimität. Die Frage war auch implizit eine Probe, ob Brantner Özdemirs Bruch mit der Bundespartei kritisiert — das tat sie nicht, sondern bagatellisierte ihn.",
+        "quotes": [
+          {
+            "text": "Nein, Cem Özdemir ist ein Grüner. Das weiß in Baden-Württemberg auch jeder. Wir standen als Bundespartei geschlossen hinter ihm. Wir haben seinen Wahlkampf unterstützt.",
+            "timestamp": "00:12:57",
+            "context": "Direkter Widerspruch zur 'Schwesterpartei'-Metapher und Betonung der Geschlossenheit."
+          },
+          {
+            "text": "Bei Winfried Kretschmann war es schon immer so, dass wir gesagt haben, man darf ihn nicht kopieren, aber muss ihn kapieren.",
+            "timestamp": "00:25:34",
+            "context": "Rahmenkonzept zur Legitimitätsspielraums landesspezifischer Grüner Politik."
+          }
+        ],
+        "concrete_statements": [
+          "Behauptung der Geschlossenheit der Bundespartei hinter Özdemir",
+          "Verteidigung landesspezifischer Politikansätze als nicht-kopierbar, aber respektabel",
+          "Abwehr der 'gallisches Dorf'-Charakterisierung als Missrepräsentation"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus und Parteieinheit",
+          "Grüne Kernprogramme (Verbrenner-Aus, Klimapolitik) versus Landespolitik",
+          "Parteiidentität und Wahlkampfstrategie"
+        ]
+      },
+      {
+        "title": "Grüne Position zum Verbrenner-Aus und Cem Özdemir",
+        "timestamp_range": "00:16:08 - 00:17:52",
+        "theme_description": "Klärung der grünen Position zu Özdemirs Absicht, das Verbrenner-Aus zu verschieben, und zur Frage, ob dies ein echter Parteibruch ist.",
+        "question_asked": "Caren Miosga drückte aus, dass 'Özdemir distanziert sich maximal von der Bundespartei' und nannte konkret: das Verbrenner-Aus, das die Partei will, soll Özdemir verschieben. Sie forderte Brantner auf, das zu adressieren.",
+        "question_intent": "Miosga wollte Brantner zwingen, offenzulegen, ob es einen echten Konflikt zwischen Bundespartei und Özdemir beim Verbrenner-Aus gibt, oder ob beide in Wahrheit dieselbe Position vertreten.",
+        "position": "Brantner wich aus, indem sie sagte: 'Özdemir steht dafür, dass wir die Innovationen in Baden-Württemberg an die Spitze bekommen. Er kandidiert für Baden-Württemberg.' Sie deutete an, dass Özdemir 'auf der Linie der Baden-Württemberger Grünen' handelt und verwies auf seinen pragmatischen Ansatz. Sie sagte nicht, ob die Bundespartei das Verbrenner-Aus aufgibt oder nicht, sondern rahnte dies als legitimen Unterschied zwischen Landes- und Bundespolitik.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "deflection_target": "Distinktion zwischen Bundes- und Landespolitik als kontextueller Raum für unterschiedliche Positionen",
+        "match_reasoning": "Miosga fragte konkret nach dem inhaltlichen Konflikt beim Verbrenner-Aus. Brantner beantwortete nicht die Frage, ob dies ein Konflikt ist oder ob die Partei Position ändert, sondern verschob sie auf eine föderale Kontextualisierung. Das ist kein Themenwechsel im engeren Sinne, sondern eine Reframing der Frage als nicht-konfliktär.",
+        "quotes": [
+          {
+            "text": "Özdemir steht dafür, dass wir die Innovationen in Baden-Württemberg an die Spitze bekommen. Er kandidiert für Baden-Württemberg. Man muss ihn ja nur selber hören. Er ist auf der Linie der Baden-Württemberger Grünen.",
+            "timestamp": "00:16:45",
+            "context": "Auf die Frage nach Konflikt beim Verbrenner-Aus antwortete Brantner nicht mit ja/nein, sondern mit einem Kontextwechsel."
+          }
+        ],
+        "concrete_statements": [
+          "Vermeidung einer klaren Antwort zum Verbrenner-Aus-Konflikt",
+          "Rahmung von Özdemirs Position als legitim für Baden-Württemberg",
+          "Verweis auf unterschiedliche Herausforderungen in Bund und Ländern"
+        ],
+        "related_bundestag_topics": [
+          "Kraftfahrzeugpolitik und Elektromobilität",
+          "Grüne Kernprogramme",
+          "Föderale Verteilung von Politikverantwortung"
+        ]
+      },
+      {
+        "title": "Asylpolitik und Migration: Positive Framing ohne Kursänderung",
+        "timestamp_range": "00:17:52 - 00:28:45",
+        "theme_description": "Brantners Position zur grünen Asylpolitik und Frage, ob die Grünen unter Özdemir-Einfluss zu restriktiverem Kurs bewegen.",
+        "question_asked": "Caren Miosga fragte direkt: 'Können Sie sich vorstellen sich zu bewegen bei der Migration, dass ihre Partei sagt, wir akzeptieren auch Asylverfahren aus Drittstaaten?'",
+        "question_intent": "Miosga wollte prüfen, ob Brantner eine Öffnung der grünen Asylpolitik zu restriktiverem Kurs (Drittstaaten-Verfahren) signalisiert.",
+        "position": "Brantner antwortete mit klarem 'Nein' zur Frage nach Drittstaaten-Asylverfahren. Sie rahnte die grüne Position als 'rationale Einwanderungspolitik', nicht als Abkehr von Asylrechten. Sie betonte Özdemirs Position: 'es ist absurd, wenn der Lehrling abgeschoben wird' oder 'Kinder abgeschoben werden'. Sie verwies auf Özdemirs Kritik, dass 'die Bundesregierung Integrationskurse kürzt' und 'es nutzt nicht, die Menschen zu verweigern, dass sie Deutsch lernen'. Sie formulierte dies als 'Möglichkeit des Aufstiegs' statt Restriktion und bezog sich auf 'das Bildungssystem', das ihr selbst 'diesen Aufstieg ermöglicht' hat.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortete Miosgas Kernfrage explizit mit 'Nein' und legte dann ein positives Framing der grünen Position vor, statt Restriktionen zu befürworten. Sie adressierte die implizite Angst vor einer Verschiebung grüner Politik nach rechts, indem sie Özdemirs Position in die progressive Integrationsdebatte einordnete.",
+        "quotes": [
+          {
+            "text": "Nein. In der Asylpolitik geht es darum, eine rationale Einwanderungspolitik zu machen. Cem Özdemir hat immer die Beispiele gebracht. Er sagt immer, es ist absurd, wenn der Lehrling abgeschoben wird. Dass die Kinder abgeschoben werden.",
+            "timestamp": "00:27:40",
+            "context": "Direkte Ablehnung von Drittstaaten-Verfahren mit Begründung durch Özdemirs Position."
+          },
+          {
+            "text": "Es geht um die Integration. Das Bildungssystem hat ihm diesen Aufstieg ermöglicht. Das wollen wir mehr Menschen ermöglichen.",
+            "timestamp": "00:28:45",
+            "context": "Verbindung von Asylpolitik zu Chancengleichheit als grünes Kernthema."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Annahme von Asylverfahren in Drittstaaten",
+          "Fokus auf Integrationskurse statt Restriktionen",
+          "Betonung von Aufstiegschancen statt Abschiebungslogik"
+        ],
+        "related_bundestag_topics": [
+          "Asyl- und Migrationspolitik",
+          "Integration von Migrantinnen und Migranten",
+          "Arbeitsmarktintegration"
+        ]
+      },
+      {
+        "title": "Video von Manuel Hagel und Wahlkampfethik",
+        "timestamp_range": "00:32:24 - 00:37:37",
+        "theme_description": "Brantners Stellungnahme zur Veröffentlichung eines Videos mit Hagel-Zitat durch eine grüne Abgeordnete und zur Frage von Anstand im Wahlkampf.",
+        "question_asked": "Caren Miosga fragte, ob Brantner von dem Video wusste, ob es fair war, es veröffentlichen zu lassen, und ob die Grünen Schmutzwahlkampf betrieben.",
+        "question_intent": "Miosga wollte klären, ob die Grünen bewusst eine Skandalisierungskampagne gegen Hagel führten und ob Brantner dies als Parteivorsitzende rechtfertigt oder bedauert.",
+        "position": "Brantner antwortete: 'Das war keine Kampagne. Wir wussten davon nichts.' Sie gab zu: 'Wir wussten davon nichts. In Baden-Württemberg haben sich die Werte vorher schon geändert.' Auf Druck gab sie zu, dass das Video 'öffentlich zugänglich' war und sagte: 'Ich möchte klar sagen, diese Wahl ist eine Wahl, die Cem Özdemir gewonnen hat.' Sie argumentierte dann, dass die 'Presselage in Baden-Württemberg anders' war und betonte: 'am Ende ging es auch um Energie- und Wirtschaftsfragen'. Sie stellte Hagels Aussage als insgesamt marginal dar gegenüber substanziellen Wirtschaftsfragen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Brantner weigerte sich, die ethische Frage nach der Gerechtigkeit der Veröffentlichung direkt zu beantworten. Sie sagte: 'Nein, dass das Video gepostet wurde, ist unangebracht.' Das war eine Zugeständnis, aber unter Druck und ohne Übernahme von Verantwortung.",
+        "match_reasoning": "Miosga fragte, ob Brantner von dem Video wusste und ob die Veröffentlichung fair war. Brantner antwortete zur Frage 'Wussten Sie' mit 'Nein', zur Ethik-Frage aber wich sie zunächst aus und lenkte auf die Wahlergebnisse um. Erst unter Druck gab sie zu: 'ist unangebracht.' Das ist Ausweichen gefolgt von minimaler Zugestündnis.",
+        "quotes": [
+          {
+            "text": "Das war keine Kampagne. Wir wussten davon nichts.",
+            "timestamp": "00:32:55",
+            "context": "Brantners Abwehr der Vorwurf, die Grünen hätten eine bewusste Kampagne geführt."
+          },
+          {
+            "text": "Ich möchte klar sagen, diese Wahl ist eine Wahl, die Cem Özdemir gewonnen hat.",
+            "timestamp": "00:33:25",
+            "context": "Umleitung auf Wahlsieg-Narration statt Beantwortung der Ethik-Frage."
+          },
+          {
+            "text": "Nein, dass das Video gepostet wurde, ist unangebracht.",
+            "timestamp": "00:35:35",
+            "context": "Unter Druck gegebene, minimale ethische Bewertung."
+          }
+        ],
+        "concrete_statements": [
+          "Behauptung, von Video-Veröffentlichung nichts gewusst zu haben",
+          "Charakterisierung der Wahl als Bestätigung von Özdemirs Politik, nicht als Video-Effekt",
+          "Kritik an unangebrachter Video-Veröffentlichung (unter Druck)"
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampfethik und Anstand",
+          "Digitale Kampagnenführung",
+          "Geschlechterpolitik und Frauenrechte"
+        ]
+      },
+      {
+        "title": "Lifestyle-Debatte und CDU-Fehler in der Kommunikation",
+        "timestamp_range": "00:39:41 - 00:46:45",
+        "theme_description": "Brantners Kritik an der CDU wegen der 'Lifestyle'-Debatte und der daraus resultierten Schaden für den Wahlkampf sowie Eigenverantwortung der Grünen.",
+        "question_asked": "Caren Miosga fragte Brantner nach ihrer Einschätzung der CDU-internen Debatten über 'Lifestyle-Teilzeit' und 'Zahnarztbesuche', und ob die CDU-Führung diese hätte verhindern können.",
+        "question_intent": "Miosga wollte klären, wie sehr diese Debatten dem Wahlkampf der CDU geschadet haben und ob Brantner darin einen Fehler der CDU-Leitung sieht.",
+        "position": "Brantner kritisierte die Debatten als 'absurd' und 'Scheindebatten' und stellte fest: 'Wenn man die Leute durchbeleidigt, dann muss man konsequent bleiben, sonst ist man beliebig.' Sie argumentierte, dass in 'so einer Situation im Land, wo wir Reformbereitschaft brauchen', solche Debatten 'die Menschen nicht abgeholt fühlen' lassen. Sie betonte: 'Es ist wichtig, ob bei ihrer Partei der Groschen etwas schneller fällt.' Sie warnte, dass 'Parteien die sagen, wir bleiben bei den Antworten von vor zehn Jahren, die sterben aus.' Sie sprach sich aber auch selbst-kritisch zu Wort: 'Da haben die Grünen sich versündigt. Die Debatte wurde zerstört.' Sie argumentierte gegen das Posting des Videos und sagte: 'Ich nehme die Grünen immer wahr als Partei, die sich in der Sache mit Anstand auseinandersetzt. Dass man sich so im Wahlkampf verhält, wirft kein gutes Licht.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortete Miosgas Frage nach dem Schaden der 'Lifestyle'-Debatten mit einer klaren Kritik an der CDU-Strategie und einer parallel geführten Selbstkritik der Grünen. Sie adressierte beide Seiten: CDU-Fehler in der Kommunikation und grüne Fehler beim Video-Posting.",
+        "quotes": [
+          {
+            "text": "Wenn man die Leute durchbeleidigt, dann muss man konsequent bleiben, sonst ist man beliebig.",
+            "timestamp": "00:39:09",
+            "context": "Kritik an der inkonsistenten Botschaft der CDU bei der 'Lifestyle'-Debatte."
+          },
+          {
+            "text": "Da haben die Grünen sich versündigt. Die Debatte wurde zerstört.",
+            "timestamp": "00:42:57",
+            "context": "Selbstkritik zur grünen Rolle beim Hochziehen der 'Lifestyle'-Debatte."
+          },
+          {
+            "text": "Ich nehme die Grünen immer wahr als Partei, die sich in der Sache mit Anstand auseinandersetzt. Dass man sich so im Wahlkampf verhält, wirft kein gutes Licht.",
+            "timestamp": "00:37:37",
+            "context": "Allgemeine normative Positionierung zum Wahlkampfanstand."
+          }
+        ],
+        "concrete_statements": [
+          "Kritik an CDU für 'Scheindebatten' statt substanziellen Reformdebatten",
+          "Selbstkritik der Grünen für das Hochziehen der 'Lifestyle'-Debatte",
+          "Appell für 'mehr Anstand in Wahlkämpfen'"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsrecht und Teilzeitregelungen",
+          "Wahlkampfethik",
+          "Reformbereitschaft der politischen Parteien"
+        ]
+      },
+      {
+        "title": "Grüne Verantwortung für Reformpolitik und Koalitionsstabilität",
+        "timestamp_range": "00:45:39 - 00:49:20",
+        "theme_description": "Brantners Stellungnahme zur Frage, ob die Grünen die SPD zu Reformen verpflichten müssen und zur politischen Mittenlage.",
+        "question_asked": "Caren Miosga zitierte Daniel Günther kritisch: 'Wir werden weder beim Klima noch bei den Reformen auf einen grünen Zweig kommen, wenn die politische Mitte sich maximal auseinanderbaut', und forderte Brantner auf, auf diese Kritik zu reagieren.",
+        "question_intent": "Miosga wollte Brantner dazu bringen, entweder Verantwortung für Reformversprechen zu übernehmen oder Zugeständnisse an die CDU zu signalisieren.",
+        "position": "Brantner antwortete: 'Das Gute ist, dass man sieht, dass man Wahlen in der Mitte gewinnen kann. Darauf kann man aufbauen.' Sie wies Vorwürfe von Foulspielen zurück ('Das Gute ist...in der Mitte gewinnen kann') und betonte: 'Wir wollen die vernünftige Rahmenbedingungen schaffen. Die meisten Mütter wollen mehr arbeiten. Darüber können wir diskutieren.' Sie räumte ein: 'Ich habe auch gesagt, dass es eine Antwort gegeben hat. Aber mit solchen Begriffen in der Überschrift macht man es allen verdammt einfach.' Sie argumentierte: 'Wir müssen mehr Reformen in Deutschland machen' und warnte: 'Machen Sie mal Klimapolitik, wenn das in die politische Mitte eingezogen ist.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Miosga stellte eine Kritik an der Grünen-CDU-Spannungen auf: Günther sagte, ohne Mitteneintracht kein Erfolg. Brantner hob auf die Wahlergebnis ab ('in der Mitte gewinnen') statt auf die Koalitionsdynamik einzugehen. Sie wich so dem Kern der Kritik aus, dass die Grünen-SPD-Koalition Reformen blockiert.",
+        "quotes": [
+          {
+            "text": "Das Gute ist, dass man sieht, dass man Wahlen in der Mitte gewinnen kann. Darauf kann man aufbauen.",
+            "timestamp": "00:23:57",
+            "context": "Umleitung auf Baden-Württemberg-Erfolg statt Antwort auf Bundeskoalitionskritik."
+          },
+          {
+            "text": "Machen Sie mal Klimapolitik, wenn das in die politische Mitte eingezogen ist.",
+            "timestamp": "00:46:45",
+            "context": "Gegenpunkt an die CDU, dass Klimapolitik nur mit Grünen möglich ist."
+          }
+        ],
+        "concrete_statements": [
+          "Betonung des Wahlerfolgs 'in der Mitte' aus Baden-Württemberg",
+          "Absage an Vorwürfe von Foulspielen",
+          "Warnung an CDU, dass Klimapolitik Grüne-Beteiligung braucht"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamik SPD-Grüne",
+          "Reformpolitik und Blockadepotenziale",
+          "Klimapolitik als Grüne-Kernkompetenz"
+        ]
+      },
+      {
+        "title": "Notwendigkeit von Reformen statt Wahlkampf-Taktiken",
+        "timestamp_range": "00:47:47 - 00:57:42",
+        "theme_description": "Brantners Argument, dass die Bundesregierung Reformen durchsetzen muss statt auf Wahlen zu schielen, und Kritik an Verzögerungstaktiken.",
+        "question_asked": "Caren Miosga fragte Brantner, wie lange die 'Depri-Stimmung in Berlin' anhalten wird und ob die Bundesregierung mutig Reformen durchsetzen sollte, auch wenn diese unpopulär sind.",
+        "question_intent": "Miosga wollte klären, ob Brantner einsieht, dass die Bundes-Grünen zaghaft Reformen vermieden haben, und ob dies ein Fehler war.",
+        "position": "Brantner argumentierte: 'Das Konzept ist nicht mehr aktuell', auf Wahlen zu schielen und 'keine unangenehmen Entscheidungen zu treffen'. Sie betonte: 'Uns fällt auf die Füße, wenn wir Sachen nicht anpacken.' Sie sagte: 'Die Entscheidungen müssen jetzt getroffen werden. Es wäre für Deutschland gut, wenn das die Schlussfolgerung ist.' Sie warnte vor 'Reformbereitschaft', die durch 'Scheindebatten' zerstört wird. Sie argumentierte für eine 'Modernisierungsagenda' mit 'weitreichenden Veränderungen, die die Menschen und Unternehmen spüren werden'. Sie gab aber auch zu: 'Solange die Menschen das nicht spüren, wird es die Unzufriedenheit geben.' Sie kritisierte, dass 'Bürokratieabbau' noch 'nicht da' ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortete Miosgas implizite Kritik an der Regierungszaghaftigkeit direkt und nahm eine reformorientierte Position ein, ohne die Koalition zu verlassen. Sie adressierte das Spannungsverhältnis zwischen Wahlkampf-Taktik und Reformnotwendigkeit klar.",
+        "quotes": [
+          {
+            "text": "Uns fällt auf die Füße, wenn wir Sachen nicht anpacken.",
+            "timestamp": "00:50:23",
+            "context": "Brantners These, dass Untätigkeit politisch teurer kommt als mutige Reformen."
+          },
+          {
+            "text": "Dieses Schielen auf Wahlen und zu glauben, Wahlen zu umschiffen und keine unangenehmen Entscheidungen zu treffen, das Konzept ist nicht mehr aktuell.",
+            "timestamp": "00:57:42",
+            "context": "Allgemeine Kritik an Wahlkampf-getriebener Reformzögerung."
+          }
+        ],
+        "concrete_statements": [
+          "Appell für sofortige Reformentscheidungen statt Verzögerung bis zur Wahl",
+          "Kritik an 'Scheindebatten' als Reformhindernisse",
+          "Eingeständnis, dass bisher angekündigte Reformen von Bürgern noch nicht spürbar sind"
+        ],
+        "related_bundestag_topics": [
+          "Reformagenda der Bundesregierung",
+          "Wirtschaftspolitik und Bürokratieabbau",
+          "Vertrauensverlust in Bundesregierung"
+        ]
+      },
+      {
+        "title": "Fiskalpolitik und Entlastungsmassnahmen: Stromsteuer vs. Tankrabatt",
+        "timestamp_range": "00:50:56 - 00:55:31",
+        "theme_description": "Brantners Position zu Steuersenkungen, Energiepreisen und alternative Entlastungsmodelle (Stromsteuer-Senkung vs. Tankrabatt).",
+        "question_asked": "Caren Miosga fragte, was Brantners Partei in der Bundesregierung für Steuersenkungen tut, und ob sie einen 'Tankrabatt' wie von Sachsen-Anhalt-Minister Schulze vorgeschlagen unterstützt.",
+        "question_intent": "Miosga wollte klären, wie konkret die Grünen für Entlastung sorgen und ob sie bereit sind, kurzfristige Maßnahmen wie Tankrabatte umzusetzen.",
+        "position": "Brantner beantwortete mit Verweis auf 'erste Schritte' bei der Körperschaftssteuer und Energiepreisen. Sie argumentierte: 'Bei der Stromsteuer, dass das bei allen Bürgern greift.' Sie sprach von 'steigenden Preisen, die eine massive Auswirkung auf mittlere und kleine Einkommen haben' und betonte, dass man 'gucken muss, ob wir kurzfristig reagieren können'. Sie sagte: 'Ob es ein Tankrabatt ist oder das, was ich gesagt habe, bei den Steuerbestandteilen, dass man da reagieren muss, das kann notwendig werden.' Sie kritisierte aber Tankrabatte als 'kurzfristige Aktionen, die sehr teuer' sind und argumentierte für strukturelle Lösungen: 'wir müssen aus den Abhängigkeiten rauskommen, dass wir unsere Sicherheit schützen dadurch, dass wir nicht so abhängig sind von fossilen Importen.' Sie sprach sich für Investitionen 'in die Erneuerbaren' aus.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Brantner beantwortete die Konkretfrage nach Steuersenkungen und Tankrabatt nur teilweise. Sie nannte Körperschaftssteuer und Stromsteuer, aber gab keine Aussage zum Zeitrahmen oder zum konkreten Tankrabatt-Programm.",
+        "match_reasoning": "Miosga fragte nach konkreten Steuersenkungen und einem Tankrabatt. Brantner nannte Maßnahmen (Körperschaftssteuer, Stromsteuer), wies aber auf strukturelle Lösungen hin und vermied ein klares Ja/Nein zum Tankrabatt. Sie sagte 'kann notwendig werden', statt 'wir werden es tun'.",
+        "quotes": [
+          {
+            "text": "Wir haben erste Schritte da gemacht. Bei der Körperschaftssteuer. Bei den Energiepreisen haben wir dafür gesorgt, dass eine Entlastungswirkung da ist.",
+            "timestamp": "00:50:56",
+            "context": "Brantner benannte konkrete erste Maßnahmen zur Entlastung."
+          },
+          {
+            "text": "Ob es ein Tankrabatt ist oder das, was ich gesagt habe, bei den Steuerbestandteilen, dass man da reagieren muss, das kann notwendig werden.",
+            "timestamp": "00:52:53",
+            "context": "Offene Position ohne klare Commitment zum Tankrabatt."
+          },
+          {
+            "text": "Man kann nicht alle paar Jahre ein Milliardenpaket machen. Wir müssen in die Erneuerbaren gehen.",
+            "timestamp": "00:55:00",
+            "context": "Langfristige strategische Orientierung gegen kurzfristige Maßnahmen."
+          }
+        ],
+        "concrete_statements": [
+          "Körperschaftssteuer-Senkungen als erste Schritte umgesetzt",
+          "Stromsteuer-Senkung als Priorität, nicht Tankrabatt",
+          "Offenheit für Tankrabatt als mögliche Notwendigkeit",
+          "Kritik an wiederholten Milliardenausgaben statt struktureller Reform"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik und Steuerentlastung",
+          "Energiepreise und Strommarktregulierung",
+          "Verkehrspolitik und Mineralölsteuer"
+        ]
+      },
+      {
+        "title": "Kopplung von Landtagswahlen und föderale Autonomie",
+        "timestamp_range": "00:58:18 - 00:59:28",
+        "theme_description": "Brantners Position zur Frage, ob alle Landtagswahlen auf einen Termin gelegt werden sollten.",
+        "question_asked": "Caren Miosga fragte abschließend: 'Halten Sie etwas davon, dass man alle Landtagswahlen auf ein Datum legt?' und wollte wissen, was dies bessern würde.",
+        "question_intent": "Miosga wollte klären, ob Brantner die Fragmentierung von Wahlterminen als Problem für klare Regierungsmandatserteilung sieht.",
+        "position": "Brantner antwortete klar mit 'Nein' und argumentierte: 'Was soll das besser machen? Dass wir nicht diskutieren, über Zumutungen zu sprechen. Wird es dadurch besser?' Sie verwies auf die USA als Negativbeispiel ('Wahlen, die gekoppelt sind wie in den USA') und sagte: 'Man sollte sich davon unabhängig machen.' Sie betonte aber auch: 'Es gibt immer einen Landestrend. Früher waren die Landtagswahlen abhängig von der Bundespolitik. Dass eine Partei so weit hinten liegt wie die Grünen und jetzt 30 Prozent hat, das wäre früher nicht denkbar gewesen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner beantwortete Miosgas Frage direkt mit 'Nein' und argumentierte für föderale Autonomie und gegen eine künstliche Kopplung von Wahlen. Sie adressierte beide Implikationen: praktische (Debatten werden gleichzeitig) und normative (Föderalismus).",
+        "quotes": [
+          {
+            "text": "Nein. Was soll das besser machen? Dass wir nicht diskutieren, über Zumutungen zu sprechen. Wird es dadurch besser?",
+            "timestamp": "00:58:18",
+            "context": "Ablehnung von gekoppelten Landtagswahlen mit normativer Begründung."
+          },
+          {
+            "text": "Dass eine Partei so weit hinten liegt wie die Grünen und jetzt 30 Prozent hat, das wäre früher nicht denkbar gewesen.",
+            "timestamp": "00:59:28",
+            "context": "Illustration von gestiegener föderaler Autonomie bei der Wahlentscheidung."
+          }
+        ],
+        "concrete_statements": [
+          "Ablehnung der Kopplung aller Landtagswahlen auf einen Termin",
+          "Argument für föderale Autonomie in Wahlkampfgestaltung",
+          "Sicht auf gestiegene Unabhängigkeit von Landtagswahlen von Bundestrends"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus und Wahlsystem",
+          "Zeitliche Strukturierung von Wahlkämpfen",
+          "Bundestags-Landtags-Effekte"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Cem Özdemir lag bei 17 Prozent, die Grünen legten eine Aufholjagd hin und siegten knapp mit 0,6 Prozent Vorsprung.",
+        "timestamp": "00:01:16"
+      },
+      {
+        "claim": "Winfried Kretschmann war Ministerpräsident in Baden-Württemberg und hat Wirtschaft und Klimaschutz zusammengebracht.",
+        "timestamp": "00:02:22"
+      },
+      {
+        "claim": "Manuel Hagel war CDU-Kandidat und verlor gegen Özdemir.",
+        "timestamp": "00:02:53"
+      },
+      {
+        "claim": "Boris Palmer war ex-grüner Tübinger Oberbürgermeister und ist aus der Partei ausgetreten.",
+        "timestamp": "00:11:53"
+      },
+      {
+        "claim": "Eine grüne Abgeordnete (Zoe Mayer) postete 10 Tage vor der Wahl ein Video von Manuel Hagel aus 2018, in dem dieser sexistische Äußerungen machte.",
+        "timestamp": "00:36:37"
+      },
+      {
+        "claim": "Die SPD erreichte in Baden-Württemberg nur knapp über 5 Prozent.",
+        "timestamp": "00:08:10"
+      },
+      {
+        "claim": "Dieter Salomon war grüner Ministerpräsident in Baden-Württemberg.",
+        "timestamp": "00:24:31"
+      },
+      {
+        "claim": "In der Flüchtlingskrise waren grüne Landesregierungen gegen die Aufnahme von syrischen Geflüchteten und blockierten diese.",
+        "timestamp": "00:26:38"
+      },
+      {
+        "claim": "Winfried Kretschmann brauchte bis 2016, um sich von dieser Position abzuwenden.",
+        "timestamp": "00:27:08"
+      }
+    ]
+  }
+}

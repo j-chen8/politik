@@ -1,0 +1,380 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYmY1NGMyZjEtZGRjYi00ZGE4LTlhMGItYTUyYTNkZjVhMTRl",
+    "video_id": "maischberger-2026-03-24",
+    "politician": "Katrin Göring-Eckardt",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "06bec2b27901b197",
+    "transcript_chars": 57884,
+    "caption_lines": 2165,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23539,
+    "tokens_out": 7869,
+    "cost_usd": 0.025153599999999998,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.364Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Katrin Göring-Eckardt diskutiert mit Sandra Maischberger und dem Junge-Union-Vorsitzenden Johannes Winkel zentrale Reformfragen, Energiepolitik und rentenpolitische Herausforderungen. Sie wirkt sachlich, teilweise defensiv gegenüber Kritik an Grüner Politik, und beharrt auf sozial ausgewogenen Lösungen, besonders zum Schutz von Rentnern in Ostdeutschland.",
+    "themes": [
+      {
+        "title": "Grüner Oberbürgermeister München und CSU-Wahlempfehlung",
+        "timestamp_range": "00:19:11 - 00:20:28",
+        "theme_description": "Göring-Eckardt kommentiert die Wahl eines grünen Oberbürgermeisters in München und kritisiert die CSU-Wahlempfehlung für den SPD-Kandidaten.",
+        "question_asked": "Sandra Maischberger fragt Katrin Göring-Eckardt nach der grünen Oberbürgermeister-Wahl in München und ob sie sich dabei beteiligen möchte (Ricarda Lang freut sich).",
+        "question_intent": "Maischberger möchte erfahren, ob Göring-Eckardt den grünen Wahlsieg in Bayern begrüßt und welche Positionierung die Grünen zu diesem Erfolg haben.",
+        "position": "Göring-Eckardt wertet die Wahl als Zeichen von Aufbruch und Veränderungsmöglichkeit. Sie kritisiert, dass Söder dem gewählten grünen Kandidaten nicht gratuliert hat, obwohl er eine lange Liste von CDU-Wahlsiegen zusammengestellt hat. Sie weist auch auf die CSU-Wahlempfehlung für den SPD-Kandidaten hin, was als Versuch gedeutet wird, den grünen Erfolg zu verhindern. Sie beschreibt den jungen grünen Kandidaten als \"großartigen jungen Mensch\", der \"Aufbruch\" als Möglichkeit gezeigt hat.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt antwortet direkt auf Maischbergers Frage und beantwortet sowohl die Frage nach ihrer Beteiligung (ja, sie hat ihr Dirndl gebügelt) als auch ihre Einschätzung zum Ergebnis (positiv, Kritik an CSU-Verhalten).",
+        "quotes": [
+          {
+            "text": "Auf jeden Fall. Ich habe mein Dirndl schon gebügelt. Das Krasse ist, wenn ich es richtig weiß, hat Markus Söder immer noch nicht gratuliert.",
+            "timestamp": "00:19:51"
+          },
+          {
+            "text": "das ist ein großartiger junger Mensch, der gezeigt hat, Aufbruch ist auch eine Möglichkeit",
+            "timestamp": "00:20:28"
+          }
+        ],
+        "concrete_statements": [
+          "Unterstützung für den grünen Oberbürgermeister in München",
+          "Kritik an fehlender Gratulation durch Söder",
+          "Kritik an CSU-Wahlempfehlung gegen grünen Kandidaten"
+        ],
+        "related_bundestag_topics": [
+          "Landtagswahlen 2025",
+          "Koalitionsfähigkeit Grüne"
+        ]
+      },
+      {
+        "title": "Energiepolitik: Verbrenner-Aus und Unabhängigkeit von Autokraten",
+        "timestamp_range": "00:22:00 - 00:25:38",
+        "theme_description": "Debatte über Cem Özdemirs Rückdrehen des Verbrenner-Verbots und die Energieunabhängigkeit Deutschlands von fossilen Energieträgern.",
+        "question_asked": "Sandra Maischberger fragt, ob Özdemirs Plan, die Verbrenner-Verbots-Regelung rückdrehen zu wollen, 'eine gute Möglichkeit' ist.",
+        "question_intent": "Maischberger möchte Göring-Eckardts Bewertung von Özdemirs Kurs erfahren und ob dieser energiepolitisch sinnvoll ist.",
+        "position": "Göring-Eckardt argumentiert, dass in der aktuellen Energiesituation Unabhängigkeit von Autokraten (Öl, Gas, Uran) oberste Priorität haben muss. Sie warnt vor Abhängigkeit von fossilen Energien und verweist auf historisches Versagen: 2012 habe man aufgehört, Solaranlagen in Deutschland zu produzieren, was neue Abhängigkeit schaffe. Sie verteidigt die Grüne Energiewende gegen Vorwürfe mangelnder Grundlastfähigkeit und kritisiert, dass die Kosten auf falsche Anreize und Fehlentscheidungen zurückgehen. Sie betont die Notwendigkeit des Netzausbaus und stellt die Frage nach E-Mobilität-Bezahlbarkeit und Unabhängigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Göring-Eckardt behandelt die Frage zur Verbrenner-Aus-Rückdrehen nicht direkt ('Ja' oder 'Nein'), sondern lenkt auf übergeordnete Energieunabhängigkeits-Fragen um. Sie kritisiert implizit Özdemirs Position, ohne sie explizit zu bewerten, und argumentiert für Elektromobilität als Lösung.",
+        "quotes": [
+          {
+            "text": "In dieser Energiesituation muss man alles dafür tun, dass man unabhängig wird. Da gehört auch Uran dazu. Öl und Gas. Und wenn wir nicht weiter von Autokraten abhängig sein wollen, müssen wir das Gegenteil von dem machen",
+            "timestamp": "00:22:00"
+          },
+          {
+            "text": "Wie kommen wir so schnell wie möglich dazu, dass die Elektromobilität bezahlbar ist. Wie kann man sich gebrauchte E-Autos kaufen. Dass wir unabhängiger werden.",
+            "timestamp": "00:25:07"
+          }
+        ],
+        "concrete_statements": [
+          "Energieunabhängigkeit von Autokraten als Priorität",
+          "Kritik an Fehlentscheidung von 2012 (Solarproduktion aufgegeben)",
+          "Notwendigkeit von Netzausbau und erschwinglicher E-Mobilität"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Erneuerbare Energien",
+          "Verbrennerverbot"
+        ]
+      },
+      {
+        "title": "Kernkraft vs. Erneuerbare Energien und Speichertechnologien",
+        "timestamp_range": "00:26:44 - 00:29:18",
+        "theme_description": "Debatte mit Johannes Winkel über Kernenergie als Ergänzung zu erneuerbaren Energien und die Frage nach Speicherlösungen.",
+        "question_asked": "Sandra Maischberger fragt, ob Göring-Eckardt die Union-Position zur Kernkraft als Ergänzung zu erneuerbaren Energien diskutieren möchte ('Darf ich das diskutieren?').",
+        "question_intent": "Maischberger möchte Göring-Eckardts Position zur Kernenergie als Lösungsansatz für Grundlastfähigkeit erfahren.",
+        "position": "Göring-Eckardt lehnt Kernenergie als Lösung ab. Sie verweist auf die enormen Kosten in Frankreich (450 Milliarden) und zeigt auf, dass französische Atomkraftwerke nicht kontinuierlich grundlastfähig sind (müssen bei niedrigem Wasserspiegel heruntergeregelt werden). Sie argumentiert für alternative Speicherlösungen statt für neue Kernkraft. Sie kritisiert kleine Atomkraftwerke als \"Sicherheitsproblem\" und \"wunderbare Angriffsziele\" für Deutschland und stellt die ethische Frage, wie man künftige Generationen \"zumuten\" könne, mit radioaktivem Abfall zu leben. Sie betont, dass es für kleine Atomkraftwerke weltweit kein operatives Vorbild gibt und dass diese nicht \"serienreif\" sind.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt antwortet sachlich und detailliert auf die Kernkraft-Frage und begründet ihre Ablehnung mit Kosten, Sicherheitsbedenken und technischer Unreife. Sie schlägt Speicherlösungen als Alternative vor.",
+        "quotes": [
+          {
+            "text": "450 Milliarden wird es für Frankreich kosten, die Atomenergie dort zu haben, wo sie sie haben wollen. [...] Die Atomkraftwerke immer wieder runtergeregelt werden mussten. Die sind nicht ganz so grundlastfähig.",
+            "timestamp": "00:27:45"
+          },
+          {
+            "text": "Die kleineren, die in Serie produziert werden, sind prima. Das sind viele wunderbare Angriffsziele. Und sind ein Sicherheitsproblem für Deutschland. Das sollten wir uns nicht geben.",
+            "timestamp": "00:28:18"
+          },
+          {
+            "text": "Es gibt kein einziges Atomkraftwerk auf der Welt...",
+            "timestamp": "00:29:18"
+          }
+        ],
+        "concrete_statements": [
+          "Ablehnung kleiner Atomkraftwerke wegen Sicherheitsrisiken",
+          "Forderung nach Speicherlösungen statt Kernkraft",
+          "Kritik an massiven Kosten der Kernenergie"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Kernenergie-Politik",
+          "Speichertechnologien"
+        ]
+      },
+      {
+        "title": "Spritpreise und direkte Unterstützung vs. Preisdeckelung",
+        "timestamp_range": "00:29:49 - 00:30:51",
+        "theme_description": "Diskussion über Maßnahmen gegen gestiegene Spritpreise (Luxemburg-Modell, Preisdeckelung, direkte Hilfe).",
+        "question_asked": "Sandra Maischberger fragt, ob Göring-Eckardt oder Winkel für eine Spritpreisbremse nach Luxemburg-Modell sind, da Klingbeil dies fordert.",
+        "question_intent": "Maischberger möchte Göring-Eckardts Position zu staatlicher Preisintervention bei Spritpreisen erfahren.",
+        "position": "Göring-Eckardt setzt sich für eine \"einmalige Unterstützung\" ein, nicht für dauerhafte Preisdeckelung. Sie begründet dies damit, dass man hofft, der Irankrieg dauere nicht lange und Trump \"zur Besinnung\" kommt. Sie fokussiert auf Pendler und Menschen mit kleinem Einkommen auf dem Land, die auf Mobilität angewiesen sind. Sie lehnt es ab, \"mit dem Bade auszuschütten\" (alte Regelungen grundsätzlich aufzugeben). Statt Preisdeckelung plädiert sie für kurzfristige direkte Auszahlung und mittelfristig für Unabhängigkeit vom Öl, damit das Problem zukünftig nicht mehr auftritt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Göring-Eckardt antwortet auf die Preisbremsen-Frage, lehnt aber Preisdeckelung ab und schlägt alternative Unterstützungsformen vor. Sie adressiert die Frage zum Thema Spritpreise, weicht aber auf ihre eigene Lösung aus.",
+        "quotes": [
+          {
+            "text": "Ich finde, wir brauchen eine einmalige Unterstützung. Wir hoffen, dass der Irankrieg nicht ewig dauert und Trump zur Besinnung kommt. Die Leute, die auf dem Land wohnen, die aufs Pendeln angewiesen sind, kleines Geld haben.",
+            "timestamp": "00:29:49"
+          },
+          {
+            "text": "Aber man soll nicht so tun, weil jetzt gerade diese Krise ist, das Kind mit dem Bade ausschütten. Das macht aus meiner Sicht wenig Sinn.",
+            "timestamp": "00:30:21"
+          }
+        ],
+        "concrete_statements": [
+          "Forderung nach einmaliger direkter Unterstützung für Pendler und Geringverdiener",
+          "Ablehnung von dauerhafter Preisdeckelung",
+          "Fokus auf mittelfristige Unabhängigkeit vom Öl"
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Soziale Gerechtigkeit",
+          "Irankrieg-Folgen"
+        ]
+      },
+      {
+        "title": "Rentenreformen und Generationengerechtigkeit im Osten",
+        "timestamp_range": "00:34:03 - 00:39:47",
+        "theme_description": "Debatte über Renteneintrittsalter, Nachhaltigkeitsfaktor und die Besonderheiten des Rentensystems in Ostdeutschland.",
+        "question_asked": "Sandra Maischberger fragt Göring-Eckardt, ob sie eher bei Winkel (Reformbefürworter) oder bei Laumann (Reformskeptiker wegen Belastung von Schichtarbeitern) steht bei der Frage zum Renteneintrittsalter.",
+        "question_intent": "Maischberger möchte Göring-Eckardts klare Positionierung zur Rentenreform erfahren.",
+        "position": "Göring-Eckardt schätzt Laumann und anerkennt, dass er \"für eine Generation geredet hat, die ihm sehr wichtig ist\". Sie lehnt die Unterstellung ab, dass Studium und Homeoffice \"Faulheit\" seien. Bei der Generationenfrage ist sie skeptisch gegenüber Winkel. Sie betont, dass es bei Renteneintrittsalter-Erhöhung um \"Absicherung\" gehen muss und dass viele Menschen nie das offizielle Renteneintrittsalter erreichen, weil sie in Frührente gehen. Sie unterstreicht, dass die gesetzliche Rente \"auskömmlich bleiben muss\". Besonders für Ostdeutschland warnt sie vor Verunsicherung: Menschen dort sind zu 100% auf gesetzliche Rente angewiesen, ohne Vermögensrücklagen, Erbschaften oder westdeutsche Karriere-Netzwerke. Sie will nicht, dass man \"auf Kosten derer, die sowieso schon wenig haben\" reagiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage zur Positionierung zwischen Winkel und Laumann, indem sie sich weder vollständig zu Winkel noch zu Laumann bekennt, sondern eine eigene Mittelposition zur Absicherung formuliert. Sie weicht damit etwas aus, beantwortet die Kernfrage aber mit Begründung.",
+        "quotes": [
+          {
+            "text": "Ich schätze ihn sehr. Ich finde gleichzeitig hat er für eine Generation geredet, die ihm sehr wichtig ist. Aber zu sagen, studieren ist Faulheit, Homeoffice ist Faulheit. Das sind Menschen, die auch gleichzeitig erziehen.",
+            "timestamp": "00:34:03"
+          },
+          {
+            "text": "Was wir brauchen, ist eine Absicherung. Und dann muss man über das Renteneintrittsalter reden.",
+            "timestamp": "00:35:04"
+          },
+          {
+            "text": "Wenn man darauf Rücksicht nehmen will, das sind kleine Renten, da unten muss Stabilität sein. Da kann man nicht sagen, da gehen wir an das Rentenniveau ran.",
+            "timestamp": "00:38:13"
+          }
+        ],
+        "concrete_statements": [
+          "Forderung: Rentensystem muss auskömmlich bleiben",
+          "Warnung vor Destabilisierung des Rentensystems in Ostdeutschland",
+          "Ablehnung von Rentenkürzungen zulasten von Geringverdienern",
+          "Position: Renteneintrittsalter kann diskutiert werden, aber nur bei vorheriger Absicherung"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Soziale Gerechtigkeit",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Nachhaltigkeitsfaktor in der Rente und SPD-Widerstände",
+        "timestamp_range": "00:37:10 - 00:37:40",
+        "theme_description": "Göring-Eckardts Einschätzung der Chancen, den Nachhaltigkeitsfaktor (von Ulla Schmidt 2004 eingeführt, 2007 abgeschafft) wieder einzuführen.",
+        "question_asked": "Sandra Maischberger fragt Göring-Eckardt, ob sie glaubt, dass Winkels Plan (Wiedereinführung des Nachhaltigkeitsfaktors, wonach auch Rentner/innen durch langsamere Rentensteigerungen einen kleinen Beitrag tragen) so kommen wird.",
+        "question_intent": "Maischberger möchte Göring-Eckardts Einschätzung der Machbarkeit erfahren, insbesondere ob die SPD mitziehen wird.",
+        "position": "Göring-Eckardt ist sehr skeptisch. Sie kennzeichnet dies als \"eine der zentral schwierigen Sachen der SPD\" und sagt, dass es \"mit dem Blut der SPD verbunden\" ist. Sie drückt starken Skeptizismus aus ('Ich bin sehr skeptisch'). Sie betont hingegen, wofür sie Sicherheit hat: dass die gesetzliche Rente auskömmlich bleiben muss.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage zum Nachhaltigkeitsfaktor mit klarem Skeptizismus (nicht 'Ja'), weicht aber auf ihre eigene Forderung (Auskömmlichkeit der Rente) aus und vermeidet damit eine eindeutige Ja-Nein-Antwort zur Machbarkeit des Faktors.",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass das eine der zentral schwierigen Sachen der SPD ist. Das ist mit dem Blut der SPD verbunden. Deshalb bin ich sehr skeptisch.",
+            "timestamp": "00:37:10"
+          }
+        ],
+        "concrete_statements": [
+          "Skeptische Haltung zu Wiedereinführung des Nachhaltigkeitsfaktors",
+          "Forderung: Rentenniveau muss stabil bleiben"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "SPD-Politik",
+          "Koalition"
+        ]
+      },
+      {
+        "title": "Taurus-Lieferung an Ukraine",
+        "timestamp_range": "00:40:18 - 00:40:18",
+        "theme_description": "Kurze Frage und Antwort zur Lieferung des deutschen Taurus-Marineflugkörpers an die Ukraine.",
+        "question_asked": "Sandra Maischberger stellt die Frage: 'Soll Deutschland der Ukraine den Taurus liefern?'",
+        "question_intent": "Maischberger fragt nach Göring-Eckardts Position zur deutschen Waffenhilfe an die Ukraine.",
+        "position": "Göring-Eckardt antwortet mit klarem \"Auf jeden Fall. - Ja.\" Sie befürwortet die Taurus-Lieferung an die Ukraine.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage direkt und eindeutig mit Zustimmung zur Taurus-Lieferung.",
+        "quotes": [
+          {
+            "text": "Auf jeden Fall. - Ja.",
+            "timestamp": "00:40:18"
+          }
+        ],
+        "concrete_statements": [
+          "Befürwortung von Taurus-Lieferungen an Ukraine"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Rüstungsexporte",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "FDP im Parlament und ihre Bedeutung",
+        "timestamp_range": "00:40:50 - 00:41:21",
+        "theme_description": "Kurze Antwort zur Frage, ob Göring-Eckardt die FDP im Parlament vermisst.",
+        "question_asked": "Sandra Maischberger fragt: 'Fehlt Ihnen die FDP im Parlament?'",
+        "question_intent": "Maischberger möchte erfahren, ob Göring-Eckardt die Abwesenheit der FDP als Lücke empfindet.",
+        "position": "Göring-Eckardt antwortet mit humorvoller Verwunderung 'Ich dachte, die FDP ist zurückgetreten' und sagt dann \"Mir nicht so. Wir haben alles getan.\" Sie signalisiert damit, dass sie die FDP-Abwesenheit nicht besonders vermisst und dass die Grünen alles Notwendige beigesteuert haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt antwortet direkt und humorreich mit ihrer Einschätzung, dass sie die FDP nicht besonders vermisst, da sie die Grünen als ausreichend aktiv sieht.",
+        "quotes": [
+          {
+            "text": "Ich dachte, die FDP ist zurückgetreten. [...] Mir nicht so. Wir haben alles getan.",
+            "timestamp": "00:41:21"
+          }
+        ],
+        "concrete_statements": [
+          "Behauptung, dass Grüne alle notwendigen Aufgaben erfüllt haben"
+        ],
+        "related_bundestag_topics": [
+          "FDP",
+          "Bundestagswahlen"
+        ]
+      },
+      {
+        "title": "Weibliche Bundespräsidentin",
+        "timestamp_range": "00:41:51 - 00:41:51",
+        "theme_description": "Kurze Frage zur Notwendigkeit einer weiblichen Bundespräsidentin.",
+        "question_asked": "Sandra Maischberger fragt: 'Muss eine Frau Bundespräsidentin werden?'",
+        "question_intent": "Maischberger fragt nach Göring-Eckardts Position zur Geschlechterparität im höchsten Staatsamt.",
+        "position": "Göring-Eckardt antwortet mit \"Eher ja.\" Sie befürwortet damit tendenziell eine weibliche Bundespräsidentin.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage direkt mit ihrer Position.",
+        "quotes": [
+          {
+            "text": "Eher ja.",
+            "timestamp": "00:41:51"
+          }
+        ],
+        "concrete_statements": [
+          "Befürwortung einer weiblichen Bundespräsidentin"
+        ],
+        "related_bundestag_topics": [
+          "Gleichberechtigung",
+          "Repräsentation"
+        ]
+      },
+      {
+        "title": "Brandmauer zur AfD",
+        "timestamp_range": "00:41:51 - 00:41:51",
+        "theme_description": "Kurze Frage zur Notwendigkeit einer strikten Brandmauer zur AfD.",
+        "question_asked": "Sandra Maischberger fragt: 'Muss es eine strikte Brandmauer zur AfD geben?'",
+        "question_intent": "Maischberger möchte Göring-Eckardts Position zur demokratischen Abgrenzung zur AfD erfahren.",
+        "position": "Göring-Eckardt antwortet mit klarem \"Ja.\" Sie befürwortet eine strikte Brandmauer zur AfD.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage direkt und eindeutig mit Zustimmung.",
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:41:51"
+          }
+        ],
+        "concrete_statements": [
+          "Forderung nach strikter Brandmauer zur AfD"
+        ],
+        "related_bundestag_topics": [
+          "Demokratische Abgrenzung",
+          "AfD",
+          "Koalitionslogik"
+        ]
+      },
+      {
+        "title": "Völkerrechtlichkeit des Irankrieges und Bundespräsidents-Äußerungen",
+        "timestamp_range": "00:42:22 - 00:43:55",
+        "theme_description": "Diskussion über die völkerrechtliche Bewertung des Irankrieges und die Rolle des Bundespräsidenten bei der Positionierung dazu.",
+        "question_asked": "Sandra Maischberger fragt zunächst, ob der Krieg im Iran völkerrechtswidrig ist, und dann weiter, ob es richtig ist, dass der Bundespräsident das 'so deutlich sagt'.",
+        "question_intent": "Maischberger möchte Göring-Eckardts völkerrechtliche Bewertung und ihre Einschätzung zur Rolle des Bundespräsidenten erfahren.",
+        "position": "Göring-Eckardt beantwortet die völkerrechtliche Frage nicht direkt, erwähnt aber, dass der Bundespräsident \"im Auswärtigen Amt gesprochen\" hat, \"da, wo er früher gewirkt hat als Außenminister.\" Sie kritisiert, dass \"die Bundesregierung sich nicht äußert\" und verteidigt die Redefreiheit des Bundespräsidenten (\"Freie Rede gilt auch für den Bundespräsidenten\"). Sie stimmt Winkel zu, dass man beobachtet hat, dass der Bundespräsident bei anderen Fragen \"Zurückhaltung\" gezeigt hat, wo man ihn gerne gehört hätte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Göring-Eckardt antwortet nicht zur völkerrechtlichen Frage selbst, sondern fokussiert auf die Bundespräsidenten-Rolle und die Regierungsposition. Sie verteidigt die Äußerungsfreiheit, weicht aber auf die Kritik an Regierungsstille aus.",
+        "quotes": [
+          {
+            "text": "Der Bundespräsident hat im Auswärtigen Amt gesprochen. Da, wo er früher gewirkt hat als Außenminister. Jetzt ist der Bundespräsident. Mir ging es auch auf die Nerven, dass die Bundesregierung sich nicht äußert. Freie Rede gilt auch für den Bundespräsidenten.",
+            "timestamp": "00:42:54"
+          },
+          {
+            "text": "Das stimmt, wo man ihn hätte gerne gehört.",
+            "timestamp": "00:43:55"
+          }
+        ],
+        "concrete_statements": [
+          "Kritik an Regierungsstille zum Irankrieg",
+          "Verteidigung der Redefreiheit des Bundespräsidenten",
+          "Anerkennung von Lücken bei Bundespräsidenten-Äußerungen zu anderen Themen"
+        ],
+        "related_bundestag_topics": [
+          "Irankrieg",
+          "Außenpolitik",
+          "Völkerrecht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Markus Söder hat dem grünen Oberbürgermeister-Kandidaten in München nicht gratuliert, obwohl er eine lange Liste von CDU-Wahlsiegen gemacht hat",
+        "timestamp": "00:19:51"
+      },
+      {
+        "claim": "Die CSU hat eine Wahlempfehlung für den SPD-Bürgermeister in München gegeben",
+        "timestamp": "00:20:28"
+      },
+      {
+        "claim": "Frankreich wird 450 Milliarden ausgeben für Atomenergie",
+        "timestamp": "00:27:45"
+      },
+      {
+        "claim": "2012 hatte man in Deutschland aufgehört, Solaranlagen zu produzieren",
+        "timestamp": "00:22:30"
+      },
+      {
+        "claim": "Menschen in Ostdeutschland sind zu 100% auf die gesetzliche Rente angewiesen",
+        "timestamp": "00:38:13"
+      }
+    ]
+  }
+}

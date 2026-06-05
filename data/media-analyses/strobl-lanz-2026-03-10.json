@@ -1,0 +1,288 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-maerz-2026-100",
+    "video_id": "lanz-2026-03-10",
+    "politician": "Thomas Strobl",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "33d212f4a44109ea",
+    "transcript_chars": 61528,
+    "caption_lines": 3019,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25440,
+    "tokens_out": 7203,
+    "cost_usd": 0.024582,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.533Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thomas Strobl (CDU-Innenminister Baden-Württemberg) diskutiert mit Moderator Markus Lanz und Grünen-Chefin Franziska Brantner die Landtagswahl in Baden-Württemberg. Strobl kritisiert die Grünen wegen einer Kampagne gegen CDU-Kandidat Manuel Hagel, betont die Bedeutung des politischen Klimas für Koalitionsverhandlungen und beharrt auf verfassungsrechtlichen Grenzen der Regierungsbildung. Sein Ton ist kritisch gegenüber den Grünen, aber konstruktiv-sachlich gegenüber möglichen Koalitionspartnern.",
+    "themes": [
+      {
+        "title": "Platzierung der Parteibezeichnung im Wahlkampf von Cem Özdemir",
+        "timestamp_range": "00:07:16 - 00:07:42",
+        "theme_description": "Strobl kritisiert, dass Cem Özdemir (Grüner Spitzenkandidat) die Grünen-Parteibezeichnung nicht auf seinen Wahlplakaten erwähnt, während dies unter früheren Grünen-Kandidaten wie Winfried Kretschmann üblich war.",
+        "question_asked": "Markus Lanz fragt, nachdem Franziska Brantner die Strategie Özdemirs gerechtfertigt hat, implizit: Warum versteckt Özdemir die Grünen?",
+        "question_intent": "Lanz will klären, ob die Grünen tatsächlich dazu neigen, ihre Parteiidentität zu verschleiern.",
+        "position": "Strobl stellt fest, dass frühere Grüne wie Kretschmann die Parteibezeichnung auf Plakaten trugen. Dass die Grünen sie jetzt offenbar verstecken müssen, findet er erklärungsbedürftig. Er argumentiert: 'Bei mir ist es auf dem Plakat drauf gestanden. Ich finde, da kann man vor den Bürgerinnen und Bürgern auch dazustehen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strobl beantwortet die implizite Frage direkt: Er sagt klar, dass die Verschleierung der Parteibezeichnung ungewöhnlich und problematisch ist. Er kontrastiert es mit seiner eigenen Praxis und mit Kretschmann-Grünen.",
+        "concrete_statements": [
+          "Jedenfalls gab es Zeiten, da haben die Grünen das aufs Plakat geschrieben.",
+          "Dass man die Grünen jetzt offensichtlich verstecken muss, das finde ich erklärungsbedürftig.",
+          "Da kann man vor den Bürgerinnen und Bürgern auch dazustehen."
+        ],
+        "quotes": [
+          {
+            "text": "Jedenfalls gab es Zeiten, da haben die Grünen das aufs Plakat geschrieben. Wenn ich mich recht entsinne, bei Kretschmann ist es immer so gewesen. Und dass man die Grünen jetzt offensichtlich verstecken muss, das finde ich erklärungsbedürftig.",
+            "timestamp": "00:07:16",
+            "context": "Strobl antwortet auf Markus Lanz' Frage zur Wahlkampfstrategie Özdemirs, die Parteibezeichnung nicht zu verwenden."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampfstrategie",
+          "Parteiidentität",
+          "Regionalwahlen Baden-Württemberg"
+        ]
+      },
+      {
+        "title": "Kleine demokratische Opposition und Parteienverantwortung",
+        "timestamp_range": "00:10:13 - 00:10:51",
+        "theme_description": "Strobl kritisiert die Grösse der demokratischen Opposition und wirft den Grünen vor, das politische Klima in Baden-Württemberg durch ihre Kampagne vergiftet zu haben, besonders im Kontrast zu früheren Kretschmann-Grünen.",
+        "question_asked": "Markus Lanz fragt: 'Was folgt für Sie daraus?' (00:10:13), nachdem Strobl festgestellt hat, dass CDU und Grüne je 56 Abgeordnete haben.",
+        "question_intent": "Lanz will wissen, welche Konsequenzen Strobl aus der Gleichverteilung der Mandate ableitet.",
+        "position": "Strobl beobachtet, dass es eine sehr kleine demokratische Opposition gibt. Er kritisiert, dass die Grünen das politische Klima 'ziemlich vergiftet' haben, was die Kretschmann-Grünen in zehn Jahren erfolgreicher Zusammenarbeit nie getan hätten. Er argumentiert, dass dies die Koalitionsverhandlungen erschwert und moralisch problematisch ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strobl antwortet indirekt: Statt die politische Implikation der Gleichverteilung zu analysieren, kritisiert er das Verhalten der Grünen. Die Frage 'Was folgt daraus?' wird mit Kritik beantwortet statt mit strategischen oder verfassungspolitischen Überlegungen.",
+        "concrete_statements": [
+          "Wir haben einen Landtag mit einer sehr kleinen demokratischen Opposition.",
+          "Das politische Klima in Baden-Württemberg ist tatsächlich ziemlich vergiftet worden.",
+          "Das hätten die Kretschmann Grünen mit denen wir zehn Jahre verlässlich, vertrauensvoll, erfolgreich zusammenarbeiten nie gemacht."
+        ],
+        "quotes": [
+          {
+            "text": "D. h., dass wir einen Landtag haben, mit einer sehr kleinen demokratischen Opposition. Ich bedauere ein wenig, dass gerade in den letzten Wochen aus den Reihen der Grünen das politische Klima in Baden-Württemberg tatsächlich ziemlich vergiftet worden ist.",
+            "timestamp": "00:10:19",
+            "context": "Strobl zieht Folgerungen aus der Mandatsverteilung und kritisiert das Verhalten der Grünen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Opposition",
+          "Politische Kultur",
+          "Koalitionsfähigkeit"
+        ]
+      },
+      {
+        "title": "Kampagne gegen CDU-Kandidat Manuel Hagel - Sexuelle Übergriffe-Narrative",
+        "timestamp_range": "00:10:19 - 00:17:06",
+        "theme_description": "Strobl wirft den Grünen vor, eine Kampagne gegen Manuel Hagel inszeniert zu haben, indem eine Grüne Bundestagsabgeordnete ein acht Jahre altes Video aus 2018 wieder in den Wahlkampf eingebracht hat, das zu Unterstellungen pädophiler Tendenzen führte.",
+        "question_asked": "Markus Lanz fragt zunächst, was Strobl mit 'grünem Gift' meint (00:11:13), und später konkret: 'Was genau ist daran Kampagne?' (00:12:31) und 'Wissen Sie da mehr?' (00:20:50).",
+        "question_intent": "Lanz will herausfinden, ob es tatsächlich eine organisierte Kampagne der Grünen-Parteiführung gab oder nur einzelne Aktivitäten von Parteimitgliedern, und ob Strobl Fakten oder Vermutungen äußert.",
+        "position": "Strobl macht eine Unterscheidung: Eine Grüne Bundestagsabgeordnete habe das Video initiiert und es im Netz verbreitet worden sei. Das Wahlkampf-Timing (am Tag des Triell) sei strategisch gewesen. Er räumt ein, dass die Grünen-Führung nicht aktiv die Kampagne gestartet habe, wirft ihnen aber vor, sie nicht gestoppt zu haben. Er sagt: 'Es ist auch nicht in Ordnung zu sagen, damit haben wir als Grüne überhaupt nichts zu tun.' Strobl argumentiert, dass Brantner als Parteivorsitzende eine Verantwortung hätte, so etwas zu unterbinden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strobl beantwortet teilweise: Er konkretisiert, dass eine Bundestagsabgeordnete das Video eingebracht habe und die Netzkommentierung folgte. Aber auf die Frage, ob die Parteiführung selbst eine Kampagne betrieb, weicht er teilweise aus und verschiebt auf die Frage der Unterlassung von Gegenmassnahmen. Lanz' Frage nach Belegen wird nicht vollständig beantwortet.",
+        "concrete_statements": [
+          "Es gab von einer Grünen-Bundestagsabgeordneten angezogen eine Kampagne gegen den Spitzenkandidaten der CDU, Manuel Hagel.",
+          "Das ist natürlich überhaupt nicht in Ordnung so etwas.",
+          "Es ist auch nicht in Ordnung zu sagen, damit haben wir als Grüne überhaupt nichts zu tun.",
+          "Die Grünen müssen das politische Klima in Baden-Württemberg jetzt klären."
+        ],
+        "quotes": [
+          {
+            "text": "Es gab von einer Grünen-Bundestagsabgeordneten angezogen eine Kampagne gegen den Spitzenkandidaten der CDU, Manuel Hagel, wo er im Netz in die Nähe eines Pädophilen, eines Kinderschänders gebracht wurde. Das ist natürlich überhaupt nicht in Ordnung so etwas.",
+            "timestamp": "00:11:20",
+            "context": "Strobl erklärt, was er unter 'grünem Gift' versteht, nachdem Lanz nachgefragt hat."
+          },
+          {
+            "text": "Es ist eine grüne Abgeordnete gewesen, die das gestartet hat. Es wurde von zahlreichen grünen beflaggt. Und was überhaupt nicht geht ist, dass weitergemacht wird.",
+            "timestamp": "00:11:20",
+            "context": "Strobl konkretisiert die Rolle grüner Akteure und kritisiert das Weitermachen nach der Wahl."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampfethik",
+          "Parteienverantwortung",
+          "Geschlechterdebatten in Wahlkämpfen",
+          "Baden-Württemberg Landtagswahl 2024"
+        ]
+      },
+      {
+        "title": "Historischer Vergleich: CDU-Verantwortung für alte Vorwürfe gegen Cem Özdemir",
+        "timestamp_range": "00:15:24 - 00:18:28",
+        "theme_description": "Strobl wird von Markus Lanz herausgefordert, ob er unter vergleichbaren Umständen ein ähnliches Video über Cem Özdemir öffentlich gemacht hätte; Strobl kontrastiert dies mit älteren Vorwürfen gegen Özdemir, die die CDU nicht veröffentlicht habe.",
+        "question_asked": "Markus Lanz fragt direkt: 'Wenn es ein solches Video über Cem Özdemir gegeben hätte, hätten Sie das genutzt?' (00:17:06).",
+        "question_intent": "Lanz will Strobl zur Selbstreflektion bringen und die Doppelmoral zwischen den Parteien aufzeigen.",
+        "position": "Strobl lehnt ab, solche Taktiken zu rechtfertigen. Er beruft sich auf ein intern vorgebrachtes Argument gegenüber Grünen-Mitgliedern: Er habe damals geraten, ähnliche alte Vorwürfe gegen Cem Özdemir nicht zu nutzen. Strobl argumentiert, dass solche Kampagnen der Demokratie schaden ('unsere Demokratie leidet darunter') und dass der Satz 'wenn man immer mit dem Finger auf andere zeigt, sagen immer drei Finger auf einen' zeige, dass gegenseitige Anschuldigungen destruktiv seien. Er betont, dass dies nicht die Praxis der Kretschmann-Grünen gewesen sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strobl beantwortet die Frage direkt und moralisch: Er sagt, er hätte es nicht getan und würde es nicht empfehlen. Er stützt sich auf ein explizites internes Ratschlagbeispiel. Das beantwortet Lanz' Kernfrage zur Doppelmoral.",
+        "concrete_statements": [
+          "Ich rate immer von dieser Art von Kampagnen ab.",
+          "Wenn man das immer macht, unsere Demokratie leidet darunter.",
+          "Eine derartige Kampagne würde ich sehr abraten.",
+          "Das war man von den Grünen auch nicht gewohnt. Kretschmann-Grünen haben so etwas nicht gemacht."
+        ],
+        "quotes": [
+          {
+            "text": "Ich rate immer von dieser Art von Kampagnen ab. Ich war im Deutschen Bundestag gewesen... Da ging es um Anzüge, die Herr Hunsinger finanziert hat. Und die CDU/CSU-Fraktion war damals auf dem Weg, das zu standardisieren. Ich habe intern, manche Grüne wissen das, sehr dazu geraten, das nicht zu machen.",
+            "timestamp": "00:17:17",
+            "context": "Strobl antwortet auf Lanz' Frage, ob er ein hypothetisches Özdemir-Video genutzt hätte, mit einem konkreten Beispiel aus seiner Vergangenheit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ethik in Wahlkämpfen",
+          "Geschäftsordnung Bundestag",
+          "Parteienethik"
+        ]
+      },
+      {
+        "title": "Koalitionsverhandlungen: Tonalität und gegenseitiger Respekt",
+        "timestamp_range": "00:30:01 - 00:34:02",
+        "theme_description": "Strobl kritisiert die Tonalität, in der Cem Özdemir einen CDU-Koalitionsvorschlag (Rotation des Ministerpräsidentenamts bei gleicher Sitzzahl) als 'Quatsch' abgetan hat, und argumentiert, dass respektvolle Umgangsformen Voraussetzung für erfolgreiche Koalitionsgespräche sind.",
+        "question_asked": "Markus Lanz fragt: 'Können Sie sich das vorstellen?' (00:31:19) und später: 'In der Sache wären Sie dafür, dass so zu tun?' (00:31:59).",
+        "question_intent": "Lanz will wissen, ob Strobl persönlich für oder gegen ein Rotationsmodell ist und wie stark die Kritik an Özdemirs Rhetorik ist.",
+        "position": "Strobl betont, dass es nicht primär um die Sache des Rotationsmodells geht ('Darum geht es gar nicht, es geht um den Umgang miteinander'). Er stellt fest, dass eine gleichmässige Sitzzahl (56:56) ungewöhnlich ist und rechtfertigt, dass Vorschläge dazu gemacht werden. Zur konkreten Frage des Rotationsmodells sagt er, er würde es 'zumindest nicht als Quatsch abtun'. Er kritisiert die 'Arroganz' in Özdemirs Rhetorik und zitiert Kretschmann: 'Politik ist eine Stilfrage.' Strobl möchte, dass die Grünen respektvoller mit CDU-Vorschlägen umgehen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strobl beantwortet die Frage zum Rotationsmodell nur ausweichend ('Ich würde es zumindest nicht als Quatsch abtun'), lenkt aber das Gespräch eindeutig auf die Tonalitätsfrage um, die ihm wichtiger ist. Die konkrete Frage zur Sache wird nicht substantiell beantwortet, sondern philosophisiert.",
+        "concrete_statements": [
+          "Es geht um die Tonalität, zu sagen, das ist Quatsch.",
+          "Politik ist eine Stilfrage.",
+          "Diese Arroganz habe ich nicht.",
+          "Ich würde es zumindest nicht als Quatsch abtun.",
+          "Hochmut kommt vor dem Fall."
+        ],
+        "quotes": [
+          {
+            "text": "Darum geht es gar nicht, es geht um den Umgang miteinander. Kretschmann hat einmal plakatiert, Politik ist eine Stilfrage. Darum geht es, wie geht man miteinander um?",
+            "timestamp": "00:31:28",
+            "context": "Strobl antwortet auf Lanz' Frage, ob er das Rotationsmodell konkret befürwortet, und weicht auf die Stilfrage aus."
+          },
+          {
+            "text": "Diese Arroganz habe ich nicht. Diese Partner, die so gut wie gleich stark sind. Aber nicht so mit der Reitpeitsche vom Tisch fegen. Nicht diese Arroganz, das hohe Ross.",
+            "timestamp": "00:33:12",
+            "context": "Strobl konkretisiert seine Kritik an Özdemirs Rhetorik als unpassende Arroganz gegenüber gleichstarken Partnern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung Baden-Württemberg",
+          "Politische Kultur"
+        ]
+      },
+      {
+        "title": "Umgang mit Personaldebatten in den Grünen",
+        "timestamp_range": "00:37:03 - 00:37:35",
+        "theme_description": "Strobl reagiert auf Brantners Aussage zu Koalitionsverhandlungen, indem er darauf hinweist, dass die Grünen intern bereits Ministerposten verteilen und internen Konflikten über kontroverse Kandidaten haben.",
+        "question_asked": "Implizite Frage: Wie können die Grünen ernsthaft über Koalitionsverhandlungen sprechen, wenn sie intern schon Posten verteilen?",
+        "question_intent": "Strobl will zeigen, dass die Grünen-Führung nicht kohärent ist und bereits Machtkämpfe intern austrägt.",
+        "position": "Strobl sagt, die Grünen sollten ihre internen Personaldebatten selbst klären, ohne dass die CDU sich einmischen muss. Er erwähnt, dass Ministerposten angeblich schon verteilt werden und dass es Konflikte über bestimmte Kandidaten (z.B. der Grüne Jugend gegen einen hochgeschätzten Tübinger Bürgermeister) gibt. Diese Debatten sollten die Grünen intern austragen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Strobl antwortet nicht auf Brantners Punkt zu Koalitionsverhandlungen, sondern pivotiert zu der Feststellung, dass die Grünen intern nicht einig sind. Das ist ein Gegenpunkt, kein direktes Eingehen auf ihre Aussage.",
+        "concrete_statements": [
+          "Ich höre bei den Grünen, dass schon Ministerposten verteilt werden.",
+          "Das machen Sie mal alles unter sich aus. Wir in der CDU haben da nichts mitzureden."
+        ],
+        "quotes": [
+          {
+            "text": "Führen Sie gerade wirklich sein Selbstgespräch, wer kriegt was? Ich höre bei den Grünen, dass schon Ministerposten verteilt werden, wird der hochgeschätzte Tübinger Bürgermeister einen Posten, dann kommt die Grüne Jugend und sah, der mit seinen rassistischen Äußerungen, der hat da gar nichts zu suchen, das machen Sie mal alles unter sich aus.",
+            "timestamp": "00:37:03",
+            "context": "Strobl reagiert auf Brantners Rede zu Koalitionsverhandlungen und verweist auf interne grüne Konflikte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parteiendemokratie",
+          "Koalitionsverhandlungen",
+          "Personaldebatten in Parteien"
+        ]
+      },
+      {
+        "title": "Verfassungsrechtliche Grenzen und Szenarien der Regierungsbildung",
+        "timestamp_range": "00:37:51 - 00:39:25",
+        "theme_description": "Strobl stellt klar, dass die CDU keine Koalition mit der AfD eingehen wird, und erläutert die verfassungsrechtlichen Bedingungen für die Wahl eines Ministerpräsidenten in Baden-Württemberg.",
+        "question_asked": "Markus Lanz fragt: 'Ist es für Sie klar, dass es eine Koalition mit den Grünen wird oder schließen Sie auch keine Neuwahlen aus?' (00:37:51) und später: 'Würden Sie da mitgehen, wenn die AfD Manuel Hagel wählt?' (00:39:08).",
+        "question_intent": "Lanz will klären, ob die CDU an einer Grünen-Koalition interessiert ist oder ob alternative Szenarien (AfD-Unterstützung, Neuwahlen, Patt) für sie offen sind.",
+        "position": "Strobl macht deutlich, dass 'in einer Demokratie gar nichts klar' ist. Er erläutert die Baden-Württemberger Verfassungslage: Der Landtag wählt den Ministerpräsidenten mit absoluter Mehrheit der gesetzlichen Mitgliederzahl. Es gibt keine Regelung, dass eine relative Mehrheit ausreicht. Ein 'Patt' gibt es nicht; entweder es gibt eine absolute Mehrheit, oder es gibt keinen Ministerpräsidenten. Zu AfD-Unterstützung sagt er klipp und klar: 'Das schließe ich definitiv, klar, eindeutig und ohne jede Hintertür aus.' Das komme für 'christliche Demokraten' nicht infrage.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strobl beantwortet alle Teile der Frage substantiell: Er erklärt die verfassungsrechtliche Lage, sagt klar, dass AfD-Szenarien ausgeschlossen sind, und macht deutlich, dass eine Grünen-Koalition faktisch die einzige realistische Option ist, ohne das auszusprechen.",
+        "concrete_statements": [
+          "Klar ist mal in einer Demokratie gar nichts.",
+          "Ein Pat gibt es nicht. Es gibt entweder eine Mehrheit, die Mehrheit der gesetzlichen Anzahl der Landtagsmitglieder oder es gibt die Mehrheit nicht.",
+          "Das schließe ich definitiv, klar, eindeutig und ohne jede Hintertür aus.",
+          "Das kommt Herr Hagel nicht infrage, das kommt für christliche Demokraten nicht infrage."
+        ],
+        "quotes": [
+          {
+            "text": "Klar ist mal in einer Demokratie gar nichts, die Verfassungslage Baden-Württemberg ist eine sehr klare, der Landtag von Baden-Württemberg Welt mit der Mehrheit der gesetzlichen Anzahl an Mitglieder n des Landtages einen Ministerpräsidenten.",
+            "timestamp": "00:38:05",
+            "context": "Strobl antwortet auf Lanz' Frage zur Klarheit einer Grünen-Koalition und erörtert die verfassungsrechtlichen Grundlagen."
+          },
+          {
+            "text": "Das schließe ich definitiv, klar, eindeutig und ohne jede Hintertür aus. Das kommt Herr Hagel nicht infrage, das kommt für christliche Demokraten nicht infrage.",
+            "timestamp": "00:39:25",
+            "context": "Strobl beantwortet Lanz' hypothetische Frage zu AfD-Unterstützung mit klarer Ablehnung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsrecht Baden-Württemberg",
+          "Koalitionsbildung",
+          "AfD-Ausgrenzung",
+          "Regierungsfähigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Cem Özdemir ist Spitzenkandidat der Grünen in Baden-Württemberg und erhielt 30,2 % der Stimmen.",
+        "timestamp": "00:03:44"
+      },
+      {
+        "claim": "Bei den Zweitstimmen lagen die Grünen vorne, bei den Erststimmen lag die CDU vorne.",
+        "timestamp": "00:10:13"
+      },
+      {
+        "claim": "Die Grünen haben 56 Abgeordnete im Baden-Württemberger Landtag, die CDU ebenfalls 56.",
+        "timestamp": "00:10:13"
+      },
+      {
+        "claim": "Eine Grüne Bundestagsabgeordnete hat ein Video von Manuel Hagel aus dem Jahr 2018 in den Wahlkampf eingebracht.",
+        "timestamp": "00:11:20"
+      },
+      {
+        "claim": "Das Video wurde am Tag des Triell-Fernsehauftritts der Ministerpräsidentenkandidaten im Netz verbreitet und führte zu Kommentierungen.",
+        "timestamp": "00:15:10"
+      },
+      {
+        "claim": "Winfried Kretschmann war zehn Jahre lang der Koalitionspartner der CDU in Baden-Württemberg.",
+        "timestamp": "00:10:19"
+      },
+      {
+        "claim": "Die Baden-Württembergische Verfassung sieht vor, dass der Ministerpräsident mit absoluter Mehrheit der gesetzlichen Landtagsmitgliederzahl gewählt werden muss.",
+        "timestamp": "00:38:05"
+      }
+    ]
+  }
+}

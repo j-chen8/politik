@@ -1,0 +1,455 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8zZWRlMzI2Yi00ZWI0LTQyNjktOTY3MC1mN2JhOGRkMzgzNTBfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2025-09-14",
+    "politician": "Heidi Reichinnek",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "a074e07d4a5120d9",
+    "transcript_chars": 40134,
+    "caption_lines": 1471,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17204,
+    "tokens_out": 11742,
+    "cost_usd": 0.030365600000000003,
+    "quote_validation": {
+      "valid_exact": 7,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 8,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.795Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Heidi Reichinnek, Co-Fraktionsvorsitzende der Linken, diskutierte in Caren Miosgas Talkshow über Vorwürfe, dass linke Politik dem Wohlstand schade. Sie verteidigte Umverteilungspolitik mit Verweis auf Ungleichheit, betonte aber auch pragmatische Grenzen bei der Unternehmensbesteuerung. Der Ton war engagiert, teilweise konfrontativ gegenüber Kritikern, aber auch zu Kompromissbesprechungen offen.",
+    "themes": [
+      {
+        "title": "Vertrauen in Problemlösungsfähigkeit der Linken",
+        "timestamp_range": "00:01:35 - 00:02:37",
+        "theme_description": "Caren Miosga fragt Heidi Reichinnek, wie sie auf Umfragen reagiert, dass nur 3% der Menschen in NRW der Linken zutrauen, Probleme zu lösen.",
+        "question_asked": "Caren Miosga warf ein, dass laut Infratest dimap nur drei Prozent der Menschen in NRW der Linken zutrauen, Probleme zu lösen, und fragte, ob das die Freude über den neuen Erfolg bremst.",
+        "question_intent": "Caren Miosga wollte wissen, wie Reichinnek damit umgeht, dass der Linken trotz Umfrageerfolgen mangelnde Kompetenz zugetraut wird.",
+        "position": "Reichinnek betonte, dass es Aufgabe der Linken sei, zu zeigen, dass sie Probleme lösen kann und Lösungen bereithält. Sie führte den Erfolg nicht auf ihre Person zurück, sondern auf die Konzepte der Partei. Zentral war ihre Aussage: \"Wir reden nicht nur, sondern hören auch zu und setzen um.\" Sie verwies darauf, dass Vertrauensaufbau Zeit braucht und dass sie in der Opposition bereits helfe, dass es Menschen besser geht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek adressierte die Vertrauensfrage teilweise, indem sie Problemlösungskompetenz behauptete, ging aber nicht direkt auf die 3%-Umfrage oder die tiefere Frage nach Gründen für das Misstrauen ein. Sie wich zu generischen Aussagen über Konzepte und Opposition aus.",
+        "concrete_statements": [
+          "Unsere Aufgabe ist, deutlich zu machen, dass wir Probleme vor Ort haben und Lösungen parat haben",
+          "Der Erfolg liegt nicht an mir, sondern an unseren Konzepten",
+          "Wir sind an den Haustüren und helfen schon in der Opposition"
+        ],
+        "quotes": [
+          {
+            "text": "Der Erfolg meiner Partei liegt nicht an mir, sondern an unseren Konzepten. Wir reden nicht nur, sondern hören auch zu und setzen um.",
+            "timestamp": "00:01:35",
+            "context": "Reichinnek antwortet auf die Frage, wie sie mit der Diskrepanz zwischen Umfrageerfolg und fehlendem Vertrauen in Problemlösungsfähigkeit umgeht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "Vertrauen in Regierungsfähigkeit",
+          "Oppositionspolitik"
+        ]
+      },
+      {
+        "title": "Beurteilung der DDR-Wirtschaftsordnung und Sozialismus",
+        "timestamp_range": "00:03:08 - 00:04:43",
+        "theme_description": "Caren Miosga befragte Heidi Reichinnek zu ihrer Aussage im Stern, dass die DDR kein Sozialismus gewesen sei, und ob die Wirtschaftsordnung der DDR vorbildlich war.",
+        "question_asked": "Caren Miosga zitierte Reichinneks Stern-Interview, in dem sie sagte, dass die DDR kein Sozialismus war, und fragte, was es denn dann gewesen sei und ob sie die Wirtschaftsordnung der DDR für vorbildlich halte.",
+        "question_intent": "Caren Miosga wollte Reichinnek festlegen auf ihre Position zu DDR-Sozialismus und herausfinden, welche Aspekte der DDR-Wirtschaft sie befürwortet.",
+        "position": "Reichinnek differenzierte zwischen dem, was sie sich unter Sozialismus vorstellt (mit Freiheiten und freien Wahlen), und der DDR-Realität. Sie lehnte explizit ab, dorthin zurückzuwollen. Zur DDR-Wirtschaft nannte sie positive Aspekte wie öffentliche Daseinsvorsorge, kritisierte aber auch Knappheit und mangelnde Gleichheit. Ihre zentrale Position war: Nicht die DDR nachahmen, sondern ein \"Gerechtigkeitsproblem\" adressieren, das heute besteht (Kinderarmut, Rentnerarme).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek beantwortete beide Fragen substanziell: Sie definierte, was sie unter Sozialismus versteht (demokratischer Sozialismus mit Freiheiten), grenzte ihn von der DDR ab, und nannte konkret, welche DDR-Elemente sie befürwortet (öffentliche Daseinsvorsorge) und welche nicht (Mangelwirtschaft). Sie pivotierte dann aber zur gegenwärtigen Gerechtigkeitsproblematik.",
+        "concrete_statements": [
+          "Das war kein Sozialismus, wie ihn sich meine Partei vorstellt. Ich will nicht dahin zurück",
+          "Ich brauche einen demokratischen Sozialismus",
+          "Einige Teile waren positiv, gerade die öffentliche Daseinsvorsorge. Die möchte ich auch zurückhaben",
+          "Mir geht es darum, das Problem zu benennen, das wir haben: ein Gerechtigkeitsproblem"
+        ],
+        "quotes": [
+          {
+            "text": "Das war kein Sozialismus, wie ihn sich meine Partei vorstellt. Ich will nicht dahin zurück. Aber was war es, wenn es kein Sozialismus war? Für uns ist ganz klar, dass wir die Verteilungs- und Eigentumsfrage stellen wollen. Aber natürlich brauche ich auch Freiheiten, freie Wahlen. Ich brauche einen demokratischen Sozialismus.",
+            "timestamp": "00:03:39",
+            "context": "Reichinnek antwortet auf Miosgas Frage, was die DDR denn gewesen sei, wenn nicht Sozialismus."
+          },
+          {
+            "text": "Einige Teile waren positiv, gerade die öffentliche Daseinsvorsorge. Die möchte ich auch zurückhaben. Natürlich gab es negative Aspekte. Es gab die Knappheit, den Bedarf an Arbeitskräften. Es war auch nicht alles so gleich, wie behauptet wird.",
+            "timestamp": "00:04:13",
+            "context": "Reichinnek antwortet auf Frage nach der Vorbildlichkeit der DDR-Wirtschaftsordnung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Systemkritik",
+          "Wirtschaftssystem",
+          "Geschichtspolitik DDR"
+        ]
+      },
+      {
+        "title": "Kritik an Niedriglohnsektor und Mindestlohn",
+        "timestamp_range": "00:05:15 - 00:05:48",
+        "theme_description": "Heidi Reichinnek kritisiert den aufgebauten Niedriglohnsektor und fordert einen armutsfesten Mindestlohn.",
+        "question_asked": "Eigeninitiative: Reichinnek spricht unprompted über Arbeitnehmerrechte, die Rolle von Gewerkschaften und den Niedriglohnsektor.",
+        "question_intent": "Reichinnek wollte ohne direkte Frage ein Gerechtigkeitsproblem am Arbeitsmarkt darstellen.",
+        "position": "Reichinnek verband Kritik an Deregulierung mit konkreten Forderungen: Sie beklagte, dass Arbeitnehmerrechte zurückgedreht wurden, Gewerkschaften an Macht verloren haben und ein großer Niedriglohnsektor entstanden ist. Sie forderte einen armutsfesten Mindestlohn (\"niemand, der arbeitet, darf in Armut leben\") und kritisierte die SPD-Zusage von 15 Euro als nicht ausreichend. Sie sah darin ein \"Instrument, um die Mehrheit zu entlasten\".",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dies war eine eigeninitiierte Aussage ohne vorangehende Moderatorfrage. Reichinnek präsentierte eine klare Position mit konkreten Kritikpunkten (Deregulierung, Gewerkschaftsschwäche) und Forderungen (armutsfester Mindestlohn).",
+        "concrete_statements": [
+          "Diese positiven Errungenschaften wurden zurückgedreht",
+          "Wir haben einen großen Niedriglohnsektor aufgebaut",
+          "Viele Menschen können von ihrer Arbeit nicht leben",
+          "Der Mindestlohn ist nicht armutsfest",
+          "Wir fordern, dass niemand, der arbeitet, in Armut leben muss"
+        ],
+        "quotes": [
+          {
+            "text": "Wir hatten sehr starke Gewerkschaften. Wir sehen doch, wie sich das zurückgedreht. Wir haben einen großen Niedriglohnsektor aufgebaut. Viele Menschen können von ihrer Arbeit nicht leben. Sie suchen sich Sozialleistungen. Das kann doch nicht das sein, was wir wollen.",
+            "timestamp": "00:05:15",
+            "context": "Reichinnek kritisiert Deregulierung und Niedriglohnsektor."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Mindestlohn",
+          "Gewerkschaftsrechte",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Vermögensungleichheit und Besteuerung von Millionären",
+        "timestamp_range": "00:06:19 - 00:08:56",
+        "theme_description": "Caren Miosga und Reichinnek diskutieren, ob Vermögen selbst erarbeitet wird und wie es besteuert werden sollte.",
+        "question_asked": "Caren Miosga bezweifelte Reichinneks Aussage in sozialen Medien, dass große Vermögen nicht selbst erarbeitet worden seien, und fragte, ob sie sicher sei. Sie verwies auf Beispiele wie die Biontech-Gründer.",
+        "question_intent": "Caren Miosga wollte zeigen, dass es Unternehmer gibt, die durch legitime Leistung zu Vermögen kamen, und Reichinnek auf Pauschalisierungen hinweisen.",
+        "position": "Reichinnek hielt fest, dass drei Viertel der Vermögen ererbt sind. Sie bestritt nicht, dass es Leistungsträger gibt, betonte aber, dass selbst Biontech-Gründer mit öffentlichen Mitteln unterstützt wurden und daher \"angemessene Steuern\" zahlen können. Sie diagnostizierte ein systematisches \"Gerechtigkeitsproblem\" in der Vermögensverteilung und forderte: Die mit großem Vermögen sollten höhere Steuern zahlen, um die Mehrheit zu entlasten. Sie wollte speziell eine Vermögenssteuer (1% ab 1 Million).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Reichinnek adressierte die Frage nach selbst erarbeiteten Vermögen teilweise, indem sie zugab, dass es solche gibt (Biontech). Sie pivotierte aber zur Gegenseite: Sie argumentierte, dass auch diese Unternehmen staatliche Unterstützung erhielten und daher höher besteuert werden sollten. Die eigentliche Frage (ob Pauschalisierung berechtigt ist) wurde durch systemische Gegencritik ersetzt.",
+        "concrete_statements": [
+          "Dreiviertel der Vermögen sind ererbt",
+          "Ich möchte die Mehrheit entlasten. Darum müssen die herangezogen werden, die mehr haben",
+          "Es kann nicht sein, dass eine Familie im Mittelstand über 40 Prozent Steuern zahlt und wer viel mehr Vermögen hat, zahlt weniger",
+          "Ich möchte eine Vermögenssteuer"
+        ],
+        "quotes": [
+          {
+            "text": "Dreiviertel der Vermögen sind ererbt. Und ich möchte die Mehrheit entlasten. Darum müssen die herangezogen werden, die mehr haben.",
+            "timestamp": "00:06:49",
+            "context": "Reichinnek antwortet auf Zweifel an ihrer Aussage, dass große Vermögen nicht selbst erarbeitet sind."
+          },
+          {
+            "text": "Sie wurden mit öffentlichen Mitteln unterstützt. Entsprechend können sie angemessene Steuern zahlen.",
+            "timestamp": "00:07:52",
+            "context": "Reichinnek argumentiert zum Beispiel Biontech, dass auch erfolgreiche Gründer stärker besteuert werden können, da sie staatliche Unterstützung erhielten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögenssteuer",
+          "Einkommenssteuer",
+          "Wirtschaftspolitik",
+          "Verteilungsgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Respektvoller Ton in der Kritik an Vermögenskonzentrationen",
+        "timestamp_range": "00:08:56 - 00:11:34",
+        "theme_description": "Caren Miosga kritisiert Reichinneks respektlosen Ton gegenüber Millionären und vergleicht ihn mit Merz' Ton gegenüber Bürgergeldempfängern.",
+        "question_asked": "Caren Miosga fragte, warum Reichinnek in einem so kritischen Ton über Millionäre spricht und zitierte ein Meme eines Mitarbeiters sowie Beispiele unternehmerischer Leistung (dm-Gründer Götz Werner). Sie warf Populismus vor.",
+        "question_intent": "Caren Miosga wollte Reichinnek auf eine Doppelmoral hinweisen und die Qualität ihrer politischen Rhetorik infrage stellen.",
+        "position": "Reichinnek verteidigte ihren Ton mit Verweis auf berechtigten Frust über steigende Mieten und wachsende Ungleichheit. Sie sagte: \"Dafür ist es langsam zu spät\" für respektvolle Rhetorik. Sie betonte, dass mit 1% Vermögenssteuer \"niemandem weh\" getan würde. Sie lehnte es ab, sich von Milliardären zu distanzieren, die Steuerschlupflöcher nutzen. Sie wandte ein, dass die Debatte unfair auf Bürgergeldempfänger fokussiere, während Milliardäre \"verteidigt\" würden.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Reichinnek beantwortete die Frage nach ihrem Ton nicht direkt, sondern pivotierte zu einer Gegenkritik: Sie argumentierte, dass der Frust berechtigt ist und dass die Debatte unfair auf Bürgergeldempfänger konzentriert sei, während Millionäre unangemessen verteidigt würden. Die Tonalitätskritik von Miosga wurde als falsche Priorisierung zurückgewiesen.",
+        "concrete_statements": [
+          "Dafür ist es langsam zu spät. Diese Ungleichheiten bewegen sich nicht",
+          "Mit einer Vermögenssteuer von einem Prozent tun wir niemandem weh",
+          "Ich habe für die kein Mitleid. Ich orientiere mich lieber an Alleinerziehenden",
+          "Natürlich muss ich das Geld holen, wo es ist"
+        ],
+        "quotes": [
+          {
+            "text": "Dafür ist es langsam zu spät. Diese Ungleichheiten bewegen sich nicht. Man muss den Frust der Menschen entsprechend aufgreifen. Mit einer Vermögenssteuer von einem Prozent tun wir niemandem weh. Die haben dann immer noch mehr als genug Geld.",
+            "timestamp": "00:11:04",
+            "context": "Reichinnek verteidigt ihren kritischen Ton gegenüber Millionären und erklärt, warum Respekt hier fehl am Platz ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Politische Rhetorik",
+          "Populismus",
+          "Vermögenssteuer",
+          "Sozialstaatsdiskurs"
+        ]
+      },
+      {
+        "title": "Post zur Ermordung von Charlie Kirk und Linksjugend-Reaktionen",
+        "timestamp_range": "00:12:05 - 00:17:00",
+        "theme_description": "Caren Miosga warf Reichinnek vor, dass ihr Referent und Aktivisten der Linksjugend mit zynischen Posts auf den Tod von Charlie Kirk reagiert hätten.",
+        "question_asked": "Caren Miosga fragte, warum Reichinneks Referent ein Meme mit \"ist mir egal\" zur Ermordung von Kirk postete, und später, ob die Posts von Linksjugend-Mitgliedern ein gängiger Ton sind.",
+        "question_intent": "Caren Miosga wollte aufzeigen, dass Reichinnek und ihre Partei mit zweierlei Maß messen: strenge Kritik am Ton anderer, aber Duldung ähnlicher oder schlimmerer Posts in der eigenen Partei.",
+        "position": "Reichinnek verurteilte die Posts als \"nicht gut\", betonte aber, dass sie schnell gelöscht wurden. Sie differenzierte: Der Post ihres Referenten bezog sich nicht auf Kirks Tod, sondern auf ein gleichzeitiges Schulmassaker. Sie verteidigte die Distanzierung von Kirk wegen seiner menschenverachtenden Positionen (gegen Selbstbestimmungsrecht, Rassismus). Sie weigerte sich, für jeden Post der Linksjugend verantwortlich gemacht zu werden, sagte aber, dass es Konsequenzen geben müsse. Sie verband dies mit Kritik an Rechtsextremismus in den USA als Ursprung dieser Gewalt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek distanzierte sich von den Posts (\"Ich finde den Post nicht gut\") und erklärte Kontext (Schulmassaker), lehnte aber ab, persönliche oder parteiliche Verantwortung zu übernehmen. Sie pivotierte zu einer Kritik an US-Rechtsextremismus. Die zentrale Frage nach konsistentem Ton (Kritik an anderer Rhetorik, Duldung der eigenen) wurde nicht direkt beantwortet.",
+        "concrete_statements": [
+          "Ich finde den Post nicht gut. Er wurde gelöscht",
+          "Diese Beispiele teile ich nicht",
+          "Aber ich kann auch nicht für jeden Post im Namen der Linksjugend verantwortlich gemacht werden",
+          "Es muss Konsequenzen geben"
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde den Post nicht gut. Er wurde gelöscht. War das eine Einzelmeinung? Es gab noch einen Post von einer von der linken Jugend. Das war ein Foto von Charlie Kirk mit seiner Tochter im Arm. Darüber stand: Verrotte in der Hölle. Ist das ein gängiger Ton in der Linksjugend? Diese Beispiele teile ich nicht.",
+            "timestamp": "00:15:25",
+            "context": "Reichinnek antwortet auf die Frage, ob die Posts von der Linksjugend gängig sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Innere Parteidisziplin",
+          "Extremismus-Distanzierung",
+          "Politische Gewalt",
+          "Parteikultur"
+        ]
+      },
+      {
+        "title": "Dialog mit Andersdenkenden und rechtsradikalen Positionen",
+        "timestamp_range": "00:17:00 - 00:18:37",
+        "theme_description": "Caren Miosga fragt, wie oft Reichinnek mit Andersdenkenden spricht, besonders mit Personen rechtsradikaler Überzeugungen.",
+        "question_asked": "Caren Miosga verwies darauf, dass Charlie Kirk gezielt Debatten an Universitäten führte, und fragte, wie oft Reichinnek mit Andersdenkenden spricht.",
+        "question_intent": "Caren Miosga wollte aufzeigen, dass Reichinnek zwar Dialog fordert, diesen aber nicht aktiv mit politischen Gegnern führt.",
+        "position": "Reichinnek sagte, dass sie Austausch mit Andersdenkenden wichtig findet und dass sie z.B. in Sachsen-Anhalt mit einer AfD-Mitglied diskutiert habe. Sie gab aber zu, dass es schwierig geworden ist, an Leute heranzukommen, seitdem sie bekannt sei. Sie setzte eine Grenze: Wenn rechtsextreme Positionen vertreten werden, \"bringt das für mich nichts\". Sie differenzierte: Kirks menschenverachtende Positionen sind in dieser Kategorie.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek adressierte die Frage, ob sie mit Andersdenkenden spricht, teilweise positiv (Beispiel AfD-Mitglied), legte dann aber Grenzen fest, die ihre begrenzte Dialogbereitschaft zeigen. Sie beantwortete nicht direkt, wie oft sie solche Gespräche führt.",
+        "concrete_statements": [
+          "Ich finde den Austausch wichtig",
+          "Ich habe gerade in Sachsen-Anhalt mit einem Mitglied der AfD gesprochen, einer Frau. Ich habe damit auch kein Problem",
+          "Es gibt natürlich eine Grenze, wenn man nicht weiterkommt",
+          "Gerade, wenn rechtsextreme Positionen vertreten werden, dann bringt das für mich nichts"
+        ],
+        "quotes": [
+          {
+            "text": "Mittlerweile, da ich bekannt bin, und auf viele nicht positiv wirke, ist es schwierig, an die Leute heranzukommen. Sonst mache ich das auch gerne. Ich habe gerade in Sachsen-Anhalt mit einem Mitglied der AfD gesprochen, einer Frau. Ich habe damit auch kein Problem. Ich finde das richtig.",
+            "timestamp": "00:17:30",
+            "context": "Reichinnek antwortet auf die Frage, wie oft sie mit Andersdenkenden spricht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Demokratischer Dialog",
+          "Umgang mit Extremismus",
+          "Parteiübergreifende Zusammenarbeit"
+        ]
+      },
+      {
+        "title": "Bundeswehr-Ausrüstung und Militarisierung",
+        "timestamp_range": "00:18:05 - 00:20:10",
+        "theme_description": "Caren Miosga befragte Heidi Reichinnek zur Kritik an \"Militarisierung\" angesichts russischer Tests und polnischer Drohnen-Abwehr.",
+        "question_asked": "Caren Miosga zitierte Reichinneks Kritik an \"Militarisierung\" und \"Aufrüstung\" im Bundestag und fragte sarkastisch, ob telefonische Beschwerden in Moskau ausreichend wären.",
+        "question_intent": "Caren Miosga wollte aufzeigen, dass Reichinneks Kritik an Aufrüstung angesichts konkreter russischer Aggression unrealistisch wirkt.",
+        "position": "Reichinnek differenzierte: Sie befürwortet eine \"verteidigungsfähige\" Bundeswehr mit guter Ausrüstung. Sie kritisierte aber die Ausmaße der geplanten Aufrüstung (Wehrpflicht-Wiedereinführung, Kriegstüchtigkeit-Debatten) und die Aussetzung der Schuldenbremse nur für Rüstung, nicht aber für Soziales. Sie forderte kritische Überprüfung, wohin das Geld fließt, und erwähnte, mit Bundeswehr-Mitarbeitern gesprochen zu haben. Sie betonte: \"Ich bin gar nicht gegen die Bundeswehr.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek klärte auf, dass sie nicht gegen Bundeswehr per se sei, sondern gegen Ausmaße und Fokus auf Rüstung statt Soziales. Sie beantwortete aber nicht, wie konkret man Putin zum Verhandeln bringt, wenn nur Diplomatie ohne Rüstung angestrebt wird.",
+        "concrete_statements": [
+          "Ich finde es richtig, dass wir Bundeswehr haben, die verteidigungsfähig ist",
+          "Das ist aber ein Unterschied zu dem, was debattiert wird",
+          "Die Wehrpflicht soll wieder eingeführt werden. Es wurde über Kriegstüchtigkeit gesprochen. Das kann nicht die Lösung sein",
+          "Man sollte kritisch hinterfragen, wo das Geld hingeflossen ist"
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde es richtig, dass wir Bundeswehr haben, die verteidigungsfähig ist. Dafür brauchen wir Ausrüstung und Soldaten. Das ist aber ein Unterschied zu dem, was debattiert wird.",
+            "timestamp": "00:18:37",
+            "context": "Reichinnek unterscheidet zwischen berechtigter Verteidigungsfähigkeit und Militarisierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Rüstungsausgaben",
+          "Schuldenbremse",
+          "NATO-Bündnis"
+        ]
+      },
+      {
+        "title": "Ukraine-Krieg, Putin und Diplomatie statt Waffen",
+        "timestamp_range": "00:20:10 - 00:24:00",
+        "theme_description": "Caren Miosga und Reichinnek diskutieren die Linke-Position gegen Waffenlieferungen und für Diplomatie mit Putin.",
+        "question_asked": "Caren Miosga zeigte auf, dass Kiew heftig angegriffen wird, und fragte, ob Reichinnek immer noch sagen kann, man müsse mit Putin reden. Sie erinnerte auch daran, dass Reichinnek als Fraktionsvorsitzende noch nicht in der Ukraine war.",
+        "question_intent": "Caren Miosga wollte aufzeigen, dass Reichinneks Diplomatie-Position angesichts Putins Aggression naiv wirkt, und fragte, ob eine Ukrainereise das Problem nicht besser verdeutlichen würde.",
+        "position": "Reichinnek räumte ein, dass Druck nötig ist, damit Putin an den Verhandlungstisch kommt, aber betont, dass dieser \"auf anderem Weg\" aufgebaut werden muss (russische Deserteure, Oligarchen-Sanktionen, China). Sie kritisierte, dass Waffensysteme allein nicht reichen, und forderte Diplomatie. Zur Ukrainereise: Sie sagte, dass andere von der Linken dort gewesen seien (z.B. Dietmar Bartsch), dass sie mit entsprechenden Personen rede und dass ihre persönliche Reise nicht nötig sei. Sie forderte, \"wegzukommen davon, dass nur Aufrüstung schon zu mir\".",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek beantwortete die Frage, wie Diplomatie funktioniert, wenn Putin angreift, nur teilweise. Sie nannte Maßnahmen (Sanktionen, China-Druck), verband aber nicht überzeugend, wie diese ohne Waffenunterstützung funktionieren würden. Zur Ukrainereise wich sie aus, indem sie andere Parteivertreter als Beispiel nannte.",
+        "concrete_statements": [
+          "Uns ist bewusst, dass es Druck braucht, damit Putin an den Verhandlungstisch kommt",
+          "Aber dieser Druck muss auf anderem Weg aufgebaut werden",
+          "Wir müssen auch russische Deserteure aufnehmen",
+          "Wir wollen auch die Oligarchen-Kaste in die Mangel nehmen. Vermögen und Immobilien einfrieren und konfiszieren",
+          "Wir müssen wegkommen davon, dass nur Aufrüstung schon zu mir"
+        ],
+        "quotes": [
+          {
+            "text": "Uns ist bewusst, dass es Druck braucht, damit Putin an den Verhandlungstisch kommt. Aber dieser Druck muss auf anderem Weg aufgebaut werden. Wir müssen auch russische Deserteure aufnehmen. Wir wollen auch die Oligarchen-Kaste in die Mangel nehmen. Vermögen und Immobilien einfrieren und konfiszieren.",
+            "timestamp": "00:20:55",
+            "context": "Reichinnek erklärt, wie die Linke Druck auf Putin ausüben will, ohne Waffen zu liefern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Außenpolitik",
+          "Waffenlieferungen",
+          "Diplomatie",
+          "Sanktionen"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer, Freibeträge und Unternehmensschutz",
+        "timestamp_range": "00:27:06 - 00:46:58",
+        "theme_description": "Diskussion über Heidi Reichinneks Erbschaftssteuer-Vorschläge, insbesondere die 60%-Rate ab 3 Mio. Euro und wie sie Unternehmen schützen will.",
+        "question_asked": "Caren Miosga und die Gäste Philippa Sigl-Glöckner und Michael Bröcker hinterfragten Reichinneks Erbschaftssteuer-Pläne. Sie wurde gefragt, ob kleinere und mittlere Unternehmen geschützt würden, wie die Steuer ausgestaltet sein würde, und ob 60% nicht zu hoch sei.",
+        "question_intent": "Die Moderatorin und Gäste wollten wissen, wie Reichinnek praktisch Unternehmen schützen würde und ob ihre Steuersätze nicht die Unternehmensfortführung gefährden.",
+        "position": "Reichinnek sagte, dass die Linke nicht vorhat, kleine und mittlere Unternehmen zu belasten (\"Das wäre irrational\"). Sie betonte, dass die Erbschaftssteuer Freibeträge habe, die sie nach Verwandtschaftsgrad unterschiedlich ausgestalten wolle (bis zu 500.000 Euro für Ehepartner und Kinder). Sie räumte ein, dass 60% im Wahlprogramm stand, erklärte aber, dass es \"in der Kürze des Wahlkampfes untergegangen\" sei und dass die Partei kompromissfähig sei. Sie argumentierte, dass 60% auf 3 Mio. Euro nur für große Vermögen gilt und dass Verschonungsregeln für inhabergeführte Unternehmen nötig seien. Sie betonte auch, dass der Staat stiller Teilhaber werden könnte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek beantwortete die Frage nach dem Schutz von Unternehmen teilweise: Sie erklärte Freibeträge und Verschonungsregeln, ließ aber offensiv, wie konkret diese aussehen würden. Sie gab zu, dass 60% problematisch sein könnte (\"Wir können das anpassen\"), ohne aber eine konkrete Alternative zu nennen.",
+        "concrete_statements": [
+          "Es ist nicht sinnvoll, dass kleinere, mittlere Unternehmen so belastet werden",
+          "Die Freibeträge sind höher",
+          "Wir haben kein Interesse daran, dass Unternehmen nicht existieren können oder aufgekauft werden",
+          "Es gibt auch Möglichkeiten zu sagen, wir müssen darüber diskutieren, welche Höhe und was funktioniert",
+          "Der Staat kann auch stiller Teilhaber des Unternehmens werden"
+        ],
+        "quotes": [
+          {
+            "text": "Das kann ich sehr gut verstehen, dass sie ihr Unternehmen nicht verlieren will. Das Interesse haben wir auch nicht. Es ist nicht sinnvoll, dass kleinere, mittlere Unternehmen so belastet werden. Das wäre irrational.",
+            "timestamp": "00:27:37",
+            "context": "Reichinnek antwortet auf Frage von Caren Miosga nach Verständnis für Sorgen der Unternehmerin."
+          },
+          {
+            "text": "Die Freibeträge, die wir festlegen, sind höher. Es gibt unterschiedliche, je nach Verwandtschaftsgrad. Bis zu 500.000 für Ehepartner und Kinder. Das können wir gerne diskutieren, wie man das ausgestaltet.",
+            "timestamp": "00:45:53",
+            "context": "Reichinnek konkretisiert die Freibeträge für Erbschaftssteuer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftssteuer",
+          "Unternehmensfinanzierung",
+          "Steuergerechtigkeit",
+          "Mittelstandspolitik"
+        ]
+      },
+      {
+        "title": "Vermögensregister und Transparenz großer Vermögen",
+        "timestamp_range": "00:38:29 - 00:42:38",
+        "theme_description": "Diskussion über Heidi Reichinneks Forderung nach einem öffentlich einsehbaren Finanzregister für große Vermögen.",
+        "question_asked": "Caren Miosga fragte kritisch, warum Vermögen öffentlich einsehbar sein soll und ob das nicht der \"gläserne Mensch\" sei. Später: Ab welcher Höhe soll das Register gelten, und was muss eingetragen werden?",
+        "question_intent": "Caren Miosga wollte aufzeigen, dass Reichinneks Register-Forderung datenschutzrechtlich fragwürdig und unpraktisch ist.",
+        "position": "Reichinnek betonte, dass es nicht um \"Zahnbürsten\" oder Elektroautos gehe, sondern um große Vermögen und Transparenz. Sie verwies auf das britische Ultimate Owner Register für Immobilien und sagte, dass es schon teilweise öffentliche Register gibt (z.B. Grundbuch). Sie unterschied zwischen großen Vermögen und Mittelstandsvermögen. Sie räumte ein, dass die Ausgestaltung unklar ist und dass die Linke \"über Kompromisse sprechen\" könne. Sie argumentierte, dass Transparenz große Vermögenskonzentrationen offenlegen helfe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek beantwortete die Frage nach Zweck und Ausgestaltung des Registers teilweise. Sie erklärte die Intention (Transparenz), wich aber der konkreten Frage aus, ab welcher Vermögenshöhe und welche Vermögensarten eingetragen werden sollen. Sie betonte Kompromissbereitschaft, ohne Details zu nennen.",
+        "concrete_statements": [
+          "Es geht darum, zu wissen, wo finanzielle Mittel sind",
+          "Viele Superreiche kommen in diesen Strukturen nicht vor",
+          "Mir geht es um die Frage, wie kriegen wir gerechte Verteilungen",
+          "Es ist nicht radikal, sondern es gibt in England die Verpflichtung für ein Ultimate Owner Register",
+          "Doch, wir brauchen mehr Transparenz über große Vermögenbeteiligung",
+          "Wir sind bereit für Kompromisse"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht darum, zu sehen, wo Vermögen ist. Studien zeigen, dass Durchschnitt 20 Prozent des Geldes liquide ist. Warum sollte das jeder nachschauen können? Öffentlich einsehbar. Es ist teilweise öffentlich schon einsehbar, wo was liegt.",
+            "timestamp": "00:39:31",
+            "context": "Reichinnek erklärt, warum ein Vermögensregister notwendig ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Transparenzregeln",
+          "Datenschutz",
+          "Vermögenskonzentration",
+          "Steuervermeidung"
+        ]
+      },
+      {
+        "title": "Wahl des Bundesverfassungsrichters und Zusammenarbeit mit CDU/CSU",
+        "timestamp_range": "00:54:26 - 00:58:04",
+        "theme_description": "Heidi Reichinnek wurde zur Wahl eines Bundesverfassungsrichters und ihrer Bereitschaft zur Zusammenarbeit mit der Union befragt.",
+        "question_asked": "Caren Miosga fragte, ob Heidi Reichinnek die Kandidatin für das Bundesverfassungsgericht wählen wird, und später, ob sie ein Kaffeetreffen mit Union-Politikern wie Jens Spahn oder Alexander Dobrindt erwägen würde.",
+        "question_intent": "Caren Miosga wollte wissen, ob die Linke zur Zusammenarbeit mit der Union bereit ist und wie koalitionsfähig die Partei wirkt.",
+        "position": "Reichinnek sagte, die Entscheidung werde in der Fraktion am Montag getroffen. Persönlich sehe sie \"keinen Grund, warum wir den Vorschlag nicht stützen sollten\", hätte aber auch Brosius-Gersdorf unterstützt. Zu Günther Spinner sagte sie, das sei \"noch nicht final entschieden\". Sie kritisierte, dass die Union nicht demokratische Mehrheiten absicherte. Sie forderte: \"Wenn man möchte, dass wir einen Kandidaten unterstützen, wäre es das mindeste, mit uns ins Gespräch zu gehen.\" Zum Kaffee-Treffen: Sie betonte, dass die Linke von Anfang an mit allen demokratischen Parteien zusammenarbeiten wolle und dass sie gesprächsbereit sei, besonders beim Thema Schuldenbremse.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Reichinnek signalisierte Kompromissbereitschaft (\"keinen Grund, nicht zu unterstützen\"), verband dies aber mit Kritik an der Union und Forderungen nach Dialog. Sie hielt sich offen, ohne klares Ja zur konkreten Wahl zu sagen. Zum Kaffee-Treffen wich sie aus, indem sie sagte, Miosga könne das vermitteln.",
+        "concrete_statements": [
+          "Das werden wir am Montag in der Fraktion besprechen",
+          "Ich sehe keinen Grund, warum wir den Vorschlag nicht stützen sollten",
+          "Es ist problematisch, dass die Union nicht für demokratische Mehrheiten sorgen will",
+          "Wir möchten auf Fachebene einen Austausch zu dem Vorschlag",
+          "Wir haben von Anfang an gesagt, dass wir mit allen demokratischen Parteien zusammenarbeiten wollen",
+          "Natürlich sind wir gesprächsbereit. Ich habe gerade beim Thema Schuldenbremse ein großes Interesse"
+        ],
+        "quotes": [
+          {
+            "text": "Ich sehe keinen Grund, warum wir den Vorschlag nicht stützen sollten. Aber wir hätten auch Frau Brosius-Gersdorf unterstützt, wenn sie nicht von 'ner rechten Hetzkampagne weggejagt worden wäre.",
+            "timestamp": "00:55:29",
+            "context": "Reichinnek antwortet auf Frage zur Wahl des Bundesverfassungsrichters."
+          },
+          {
+            "text": "Wenn man möchte, dass wir einen Kandidaten unterstützen, wäre es das mindeste, mit uns ins Gespräch zu gehen. Man sollte deutlich machen, dass man den Kandidaten nicht mit Stimmen der AfD gewählt. Das ist das mindeste für die Union.",
+            "timestamp": "00:56:30",
+            "context": "Reichinnek erklärt ihre Bedingungen für Unterstützung eines Kandidaten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundesverfassungsgericht",
+          "Koalitionsgespräche",
+          "Demokratische Mehrheiten",
+          "Schuldenbremse"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Dreiviertel der Vermögen sind ererbt",
+        "timestamp": "00:06:49"
+      },
+      {
+        "claim": "Biontech-Gründer erhielten über 370 Millionen vom Staat",
+        "timestamp": "00:07:52"
+      },
+      {
+        "claim": "Studien zeigen, dass durchschnittlich 20 Prozent des Geldes liquide ist",
+        "timestamp": "00:39:31"
+      },
+      {
+        "claim": "Es gibt im Vereinigten Königreich ein Ultimate Owner Register für Immobilien",
+        "timestamp": "00:40:02"
+      },
+      {
+        "claim": "Dietmar Bartsch war bereits in der Ukraine",
+        "timestamp": "00:22:58"
+      },
+      {
+        "claim": "In der Schweiz liegt die Vermögenssteuer zwischen 0,1 und 0,5%",
+        "timestamp": "00:33:39"
+      },
+      {
+        "claim": "Norwegen hat eine Vermögenssteuer von einem Prozent, die von 0,8 auf eins erhöht wurde",
+        "timestamp": "00:32:00"
+      }
+    ]
+  }
+}

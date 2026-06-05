@@ -1,0 +1,441 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtN2FlOTFiNGMtZmIzYy00YjFlLTg4MDYtMjcyNTVjMGM0NjRi",
+    "video_id": "maischberger-2026-03-25",
+    "politician": "Bernd Baumann",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "1d5e100d08cc950d",
+    "transcript_chars": 56119,
+    "caption_lines": 2096,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22906,
+    "tokens_out": 10193,
+    "cost_usd": 0.029548400000000002,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-05T12:36:41.702Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bernd Baumann (AfD, MdB) trat in der Maischberger-Sendung auf und diskutierte mit Ralf Stegner (SPD) über Steuerreformen, Verteidigungspolitik und internationale Konflikte, insbesondere den Iran-Krieg. Baumann präsentierte sich kämpferisch und offensiv, warf der SPD Scheinheiligkeit vor und verteidigte AfD-Positionen zu Einsparungen, Steuersenkungen und einer Ablehnung deutscher Kriegsbeteiligung.",
+    "themes": [
+      {
+        "title": "Steuereinnahmen und Ausgabenproblem in Deutschland",
+        "timestamp_range": "00:19:51 - 00:20:53",
+        "theme_description": "Auseinandersetzung über die Frage, ob Deutschland ein Einnahme- oder Ausgabeproblem hat und wie Steuern gestaltet werden sollten.",
+        "question_asked": "Sandra Maischberger fragte Ralf Stegner, ob die Mehrwertsteuer angehoben oder gesenkt werden sollte, nachdem Reformvorschläge diskutiert wurden.",
+        "question_intent": "Klären, wie die Gesprächspartner zu möglichen Steuererhöhungen stehen und welche wirtschaftlichen Prioritäten sie setzen.",
+        "position": "Baumann argumentierte, dass Deutschland kein Einnahmeproblem, sondern ein Ausgabeproblem habe. Der Staat nehme etwa 1 Billion Euro Steuern und 2 Billionen Euro Sozialabgaben ein. Er kritisierte Ausgaben für Klimaschutz (35 Mrd. Euro), EU-Beiträge (über 30 Mrd. Euro) und Entwicklungshilfe an Indien und China (8 Mrd. Euro) als unnötig und ideologisch. Baumann präsentierte ein AfD-Steuermodell, das Familien mit zwei Kindern bei 17.000 Euro Bruttoeinkommen von Steuern befreien würde.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann beantwortete die Frage nach Steuern nicht direkt (keine klare Position zu Erhöhung oder Senkung der Mehrwertsteuer), sondern lenkte ab auf seine Ausgabenkritik und stellte ein anderes Modell (Einkommensteuer) als Lösung dar. Er adressierte teilweise das Thema Steuerreform, wich aber der eigentlichen Frage aus.",
+        "concrete_statements": [
+          "Wir haben überhaupt keine Einnahmeproblem in Deutschland",
+          "Wir haben ein Ausgabeproblem",
+          "Wir könnten sofort ein neues Steuermodell machen",
+          "Jemand mit einer Familie, 2 Kinder, 17.000 brutto, zahlt keine Steuern mehr"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben überhaupt keine Einnahmeproblem in Deutschland. Die deutschen Steuereinnahmen, das ist ungefähr 1 Billion. Noch mal genauso viel zahlen die Deutschland Sozialabgaben, 2 Billionen kriegt der Staat. So viel Zeit kein Volk der Welt. Wir haben ein Ausgabeproblem.",
+            "timestamp": "00:19:51",
+            "context": "Baumann antwortete auf Sandra Maischbergers Frage nach Mehrwertsteuer-Reformen mit einer grundsätzlichen Kritik am Steuersystem."
+          },
+          {
+            "text": "Jemand mit einer Familie, 2 Kinder, 17.000 brutto, zahlt keine Steuern mehr.",
+            "timestamp": "00:20:53",
+            "context": "Baumann beschrieb das AfD-Steuermodell zur Entlastung von Familien."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Finanzpolitik",
+          "Sozialabgaben",
+          "Etatsicherung"
+        ]
+      },
+      {
+        "title": "Flatrate-Einkommensteuermodell und Gerechtigkeit",
+        "timestamp_range": "00:22:27 - 00:24:31",
+        "theme_description": "Debatte über ein Flat-Tax-Modell der AfD mit einheitlichem Einkommenssteuersatz von 25 Prozent und dessen Auswirkungen auf Steuergerechtigkeit.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann mehrfach und in verschiedenen Formulierungen, ob ein einheitlicher Einkommenssteuersatz von 25 Prozent gerecht sei und ab wann dieses Modell greifen könnte.",
+        "question_intent": "Konkrete Details zum geplanten Flat-Tax-Modell erfahren und überprüfen, ob es praktikabel und gerecht ist.",
+        "position": "Baumann verteidigte sein Modell als langfristiges Ziel und unterschied es von sofortigen Entlastungsmaßnahmen. Er verwies auf ein Modell von Professor Kirchhoff, das auch Merkel als Wahlprogramm genutzt habe. Baumann betonte, dass es sich um ein zukunftsweisendes Modell handele, das in einer Legislaturperiode umgesetzt werden könnte, nachdem die Bürokratie abgebaut sei. Er wies Kritik ab, dass dies eine alte, gescheiterte Idee sei.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann wich der präzisen Frage nach Gerechtigkeit und Zeitrahmen aus, indem er zwischen kurzfristigen Entlastungen und langfristigen Reformen unterschied, ohne konkrete Antworten zu geben. Er verteidigte sein Modell, adressierte aber nicht direkt, ob 25% für alle wirklich gerecht sei.",
+        "concrete_statements": [
+          "Das ist ein langfristiges Modell",
+          "Das hat nichts mit der kurzfristigen Entlastung zu tun",
+          "Wenn wir eine Regierung sind, machen wir erst die Steuerentlastung",
+          "Das dauert eine Legislative, würde ich sagen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich sage noch mal, das ist ein ganz anderes Modell, das ist ein langfristiges Modell. Das hat nichts mit der kurzfristigen Entlastung zu tun.",
+            "timestamp": "00:23:27",
+            "context": "Baumann wurde von Sandra Maischberger zu präzisen Angaben zur Flat-Tax gedrängt und betonte stattdessen die Unterscheidung zwischen kurzfristigen und langfristigen Maßnahmen."
+          },
+          {
+            "text": "Das muss man, wenn man eine Regierung ist... Wenn wir eine Regierung sind, machen wir erst die Steuerentlastung.",
+            "timestamp": "00:24:31",
+            "context": "Antwort auf die wiederholte Frage, ab wann die Flatrate umgesetzt würde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Einkommensteuer",
+          "Verteilungsgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Vetternwirtschaft und Abgeordnetengesetz",
+        "timestamp_range": "00:25:34 - 00:28:10",
+        "theme_description": "Auseinandersetzung zwischen Baumann und Stegner über Nepotismus in Parteien und die Vorwürfe gegen AfD-Abgeordnete.",
+        "question_asked": "Ralf Stegner warf Bernd Baumann vor, dass die AfD-Fraktion angeblich zu Hälfte in Vetternwirtschafts-Skandale verwickelt sei und dass Baumann rechtsradikale Mitarbeiter beschäftige; Sandra Maischberger fragte schließlich, ob Baumann das 'Geschmäckle' bei solchen Fällen sehe.",
+        "question_intent": "Baumann mit Vorwürfen von Korruptibilität konfrontieren und seine Glaubwürdigkeit in Bezug auf ethische Standards untergraben.",
+        "position": "Baumann lehnte die Vorwürfe ab und konterte, dass die CSU und SPD in Bayern 2013 in größeren Korruptionsskandalen verwickelt waren (53 CSU, 21 SPD). Er betonte, dass die AfD für eine Änderung des Abgeordnetengesetzes für alle Parteien eintrete. Baumann verwies auf die CSU-Politikerin Katrin Bär, die ihren Lebensgefährten und dessen Vater beschäftigt habe und später zur Ministerin ernannt wurde. Er forderte, dass das Abgeordnetengesetz für alle gelten müsse.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Baumann antwortete nicht auf die inhaltliche Kritik an der AfD, sondern lenkte durch Gegenbeschuldigungen gegen CSU und SPD ab. Er pivotierte zu Vorwürfen gegen andere Parteien, anstatt die Frage zur eigenen Ethik zu beantworten.",
+        "concrete_statements": [
+          "Den stärkste Skandal an Vetternwirtschaft hatten wir im bayerischen Parlament",
+          "Wir sind dafür, dass in Bayern das Abgeordnetengesetz geändert wird",
+          "Wir müssen für alle das Abgeordnetengesetz ändern",
+          "Frau Bär von der CSU hat ihren Lebensgefährten beschäftigt und den Vater von ihrem Lebensgefährten"
+        ],
+        "quotes": [
+          {
+            "text": "Den stärkste Skandal an Vetternwirtschaft hatten wir im bayerischen Parlament. Davon waren 53 von der CSU, 21 von der SPD und ein Grüner war auch dabei.",
+            "timestamp": "00:25:34",
+            "context": "Baumann konterte Stegners Vorwürfe mit Verweis auf Skandale in anderen Parteien."
+          },
+          {
+            "text": "Wir müssen das Abgeordnetengesetz für alle ändern.",
+            "timestamp": "00:28:10",
+            "context": "Baumanns Position zur Reform des Abgeordnetengesetzes über alle Parteien hinweg."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Korruptionsbekämpfung",
+          "Ethik im Bundestag",
+          "Abgeordnetenrecht"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer Abschaffung",
+        "timestamp_range": "00:28:42 - 00:30:49",
+        "theme_description": "Debatte über die Abschaffung der Erbschaftssteuer und deren Auswirkungen auf Vermögensverteilung und Steuergerechtigkeit.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, warum die AfD die Erbschaftssteuer komplett abschaffen wolle, nachdem Ralf Stegner ein SPD-Modell mit erhöhter Erbschaftssteuer für Großvermögen vorgestellt hatte.",
+        "question_intent": "Baumanns Begründung für eine radikal andere Steuerpolitik verstehen und deren Konsequenzen hinterfragen.",
+        "position": "Baumann argumentierte, dass Erbschaftssteuer eine Doppelbesteuerung darstelle, weil das vererbte Vermögen bereits versteuert worden sei. Er betonte, dass die oberen Einkommensgruppen schon Steuern zahlen. Baumann kritisierte die SPD-Politik scharf als 'linkssozialistischen Wahnsinn' und warf ihr vor, die Spitzensteuersätze zu erhöhen, die Mehrwertsteuer anzuheben und das Ehegattensplitting abzuschaffen. Er forderte, mehr Steuern abzuschaffen, nicht neue zu schaffen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baumann adressierte die Frage direkt mit einer klaren wirtschaftlichen und ideologischen Begründung (Doppelbesteuerung) und einer substanziellen Position zur Steuerreduzierung.",
+        "concrete_statements": [
+          "Weil das Vermögen ist, was schon mal versteuert ist",
+          "Nicht nur die Vermögensteuer und Erbschaftssteuer, wir müssen mehr Steuern abschaffen",
+          "Deutschland ist das Hochlohnland der Erde",
+          "Spitzensteuersatz erhöhen, Mehrwertsteuer erhöhen, Ehegattensplitting abschaffen, das ist der Gipfel des links-sozialistischen Wahnsinns"
+        ],
+        "quotes": [
+          {
+            "text": "Weil das Vermögen ist, was schon mal versteuert ist. Die Erbschaftssteuer an sich ist ungerecht?",
+            "timestamp": "00:30:16",
+            "context": "Baumann erklärte die AfD-Position zur Erbschaftssteuer."
+          },
+          {
+            "text": "Deutschland ist das Hochlohnland der Erde. Wir haben kein Einnahmeproblem. Spitzensteuersatz erhöhen, Mehrwertsteuer erhöhen, Ehegattensplitting abschaffen, das ist der Gipfel des links-sozialistischen Wahnsinns.",
+            "timestamp": "00:30:49",
+            "context": "Baumanns Gesamtkritik an der SPD-Steuerpolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögenssteuer",
+          "Steuergerechtigkeit",
+          "Verteilungspolitik"
+        ]
+      },
+      {
+        "title": "Spritpreise und Energiesteuern",
+        "timestamp_range": "00:31:19 - 00:32:53",
+        "theme_description": "Diskussion über steigende Spritpreise und die Frage, ob der Staat durch Steuersenkungen eingreifen sollte.",
+        "question_asked": "Sandra Maischberger fragte, ob der Staat in die Spritpreis-Krise eingreifen soll und wenn ja, wie; Ralf Stegner schlug Modelle wie Oberpreise vor. Dann fragte sie Baumann konkret, was er sofort tun würde.",
+        "question_intent": "Baumanns konkrete Lösungsvorschläge für die Energiepreiskrise erfahren.",
+        "position": "Baumann kritisierte die 'linksgrüne Ideologie' der Energiepolitik und argumentierte, dass über die Hälfte des Spritpreises Steuern und Abgaben seien. Diese seien 'Erziehungsgelder', um Deutsche zu weniger CO2-Ausstoß zu bewegen – ein vergeblicher Versuch, da China die reduzierten Emissionen in einem Monat wieder ausstoße. Baumann forderte sofortige Senkung von CO2-Steuer, Mineralölsteuer und Mehrwertsteuer auf Sprit. Er begründete dies mit dem Verlust von Zehntausenden Arbeitsplätzen monatlich.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baumann antwortete direkt auf Sandra Maischbergers Frage mit konkreten Maßnahmen (Steuersenkungen) und ideologischer Kritik. Die Antwort war substantiell und adressierte die Frage vollständig.",
+        "concrete_statements": [
+          "Sofort runter mit den Steuern und den ganzen Abgaben",
+          "Das sind Erziehungsgelder, die die Deutschen erziehen sollen, weniger CO2 auszustoßen",
+          "Würde ich machen – CO2-Steuer, Mineralölsteuer und Mehrwertsteuer auf Sprit streichen",
+          "Wir verlieren Zehntausende Arbeitsplätze jeden Monat"
+        ],
+        "quotes": [
+          {
+            "text": "Sofort runter mit den Steuern und den ganzen Abgaben. Das sind Erziehungsgelder, die die Deutschen erziehen sollen, weniger CO2 auszustoßen. Wenn wir uns 10 Jahre daran halten würden, würde China das in einem Monat ausstoßen.",
+            "timestamp": "00:32:22",
+            "context": "Baumann kritisierte die CO2-Steuern als wirkungslos und plädierte für Senkungen."
+          },
+          {
+            "text": "Würde ich machen. Wir brauchen Arbeit. Wir verlieren Zehntausende Arbeitsplätze jeden Monat.",
+            "timestamp": "00:32:53",
+            "context": "Baumann bestätigte direkt, dass er alle Energiesteuern auf Sprit streichen würde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Klimapolitik",
+          "Steuerpolitik",
+          "Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Russisches Öl und Gas kaufen vs. Ukraine-Unterstützung",
+        "timestamp_range": "00:33:24 - 00:34:36",
+        "theme_description": "Debatte über die Logik von Sanktionen gegen Russland und gleichzeitiger Energieeinfuhr, sowie Vorwürfe zu AfD-Finanzierung durch ausländische Mächte.",
+        "question_asked": "Ralf Stegner warf Baumann vor, dass die AfD von amerikanischen Milliardären gesponsert werde und dass AfD-Mitglieder Geld aus Peking erhalten hätten, während Baumann sich gegen Abhängigkeit von ausländischen Mächten ausspreche. Dann fragte Sandra Maischberger, ob Baumann Putins Angebot, russisches Öl und Gas zu kaufen, annehmen würde.",
+        "question_intent": "Glaubwürdigkeit der AfD-Position zu Unabhängigkeit überprüfen und konkrete Antwort zum Putin-Angebot erhalten.",
+        "position": "Baumann argumentierte ökonomisch: Wenn Deutschland russisches Öl und Gas nicht kauft, bleibt es nicht in der russischen Erde, sondern wird an China und Indien verkauft. Deutschland zahlt dann das Doppelte für US-Gas. Mit Sanktionen kann man Putin nicht bestrafen, man bestraft sich selbst. Baumann lehnte es implizit ab, die Energiepreiskrise durch Verzicht auf günstige Energie zu verstärken.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann beantwortete die Frage nach russischem Öl und Gas mit wirtschaftlichen Argumenten, wich aber der Frage nach Putins Angebot konkret aus und adressierte nicht die Glaubwürdigkeitsfrage seiner Partei bezüglich ausländischer Finanzierung.",
+        "concrete_statements": [
+          "Das gleiche Argument, wenn wir das Öl und das Gas nicht nehmen, bleibt das nicht in der russischen Erde",
+          "Der verkauft das an China und Indien und wir bezahlen das Doppelte für das US-Gas",
+          "Das macht keinen Sinn ökonomisch",
+          "Wir können Putin damit nicht bestrafen, wir bestrafen uns selbst"
+        ],
+        "quotes": [
+          {
+            "text": "Das gleiche Argument, wenn wir das Öl und das Gas nicht nehmen, bleibt das nicht in der russischen Erde, der verkauft das an China und Indien und wir bezahlen das Doppelte für das US-Gas. Das macht keinen Sinn ökonomisch. Wir können Putin damit nicht bestrafen, wir bestrafen uns selbst.",
+            "timestamp": "00:34:03",
+            "context": "Baumann verteidigte den Kauf von russischer Energie aus ökonomischen Gründen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiesicherheit",
+          "Sanktionspolitik",
+          "Russland-Politik",
+          "Außenwirtschaft"
+        ]
+      },
+      {
+        "title": "Völkerrecht und Iran-Krieg",
+        "timestamp_range": "00:35:36 - 00:36:41",
+        "theme_description": "Auseinandersetzung über die Bewertung des Iran-Krieges unter Völkerrecht und die Rolle moralischer Kategorien in der Außenpolitik.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, ob der Iran-Krieg richtig oder falsch sei, nachdem sie gefragt hatte, ob es die Aufgabe des Bundespräsidenten ist, den Krieg als völkerrechtswidrig einzustufen.",
+        "question_intent": "Baumanns Position zu Völkerrecht und zur Bewertung von Trumps Militäraktion gegen den Iran klären.",
+        "position": "Baumann relativierte die Rolle des Völkerrechts als 'moralische Kategorie', die nicht universell durchgesetzt wird – wenn China und die USA sich nicht daran halten, gelte Machtpolitik und Einflußzonen. Der Krieg sei entstanden, weil das iranische Regime Tausende tötete und das Ziel Israels Vernichtung sei. Der aktuelle Krieg sei endlos und ohne Strategie und belaste die Weltwirtschaft. Es gebe aber eine Berechtigung, innerhalb des Völkerrechts zu intervenieren, um Existenzrecht Israels zu schützen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann beantwortete die Frage zur Richtigkeit des Krieges nicht direkt mit einem 'ja' oder 'nein', sondern verwischte die Antwort durch Relativierung des Völkerrechts und Kontext-Argumente (iranisches Regime, Israel-Bedrohung). Er adressierte teilweise, wich aber einer klaren Positionierung aus.",
+        "concrete_statements": [
+          "Das Völkerrecht, da kann man drüber streiten, das ist eine moralische Kategorie",
+          "Wenn China, USA sich nicht daran halten, dann gilt das nicht",
+          "Dann geht es um Machtpolitik, Räume und Einflusszonen",
+          "Es gibt eine Berechtigung, innerhalb des Völkerrechts, einzugreifen"
+        ],
+        "quotes": [
+          {
+            "text": "Das Völkerrecht, da kann man drüber streiten, das ist eine moralische Kategorie. Gilt das dann, aber wenn China, USA sich nicht daran halten, dann gilt das nicht. Dann gilt Machtpolitik, Räume und Einflusszonen. Dann geht es um diese Dinge, um Strategie.",
+            "timestamp": "00:35:36",
+            "context": "Baumann relativierte die Bedeutung des Völkerrechts in der Bewertung von Kriegen."
+          },
+          {
+            "text": "Es gibt eine Berechtigung, innerhalb des Völkerrechts, einzugreifen.",
+            "timestamp": "00:36:41",
+            "context": "Baumann verteidigte ein Recht auf Intervention zum Schutz Israels."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht",
+          "Außenpolitik",
+          "Nahost-Konflikt",
+          "Israel-Politik"
+        ]
+      },
+      {
+        "title": "Board of Peace und UN versus Trump-Initiative",
+        "timestamp_range": "00:37:47 - 00:38:52",
+        "theme_description": "Diskussion über Deutschlands Haltung zu einer neuen Trump-Initiative ('Board of Peace') versus Unterstützung der Vereinten Nationen.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, ob Deutschland in ein 'Board of Peace' eintreten sollte, das Trump gegründet habe, nachdem Stegner sich für Stärkung der UNO ausgesprochen hatte.",
+        "question_intent": "Baumanns Position zu einer Alternative zur UNO als Gestaltungsinstrument erfahren.",
+        "position": "Baumann sprach sich dafür aus, dem 'Board of Peace' näher zu treten, betonte aber, dass dies kein Austritt aus der UNO bedeute. Seine Begründung: Bei Fällen wie islamistischem Terrorismus und Atombombe-Bestrebungen nütze die UNO nichts, weil niemand das Völkerrecht durchsetze. Man brauche jemanden mit Macht, der hoffentlich 'auf unserer Seite' ist – und das könne Trump sein. Baumann argumentierte weiter mit demografischen Zahlen: Es gibt über 1 Milliarde Chinesen, 2 Milliarden Muslime, aber nur 800 Millionen Christen – 'wir müssen gucken, dass wir zusammenhalten.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann beantwortete die Frage mit einer vorsichtigen Zustimmung ('Ich würde dem auf jeden Fall näher treten'), wich aber durch Differenzierungen und demografische Argumente aus und adressierte nicht direkt, warum das 'Board of Peace' besser als die UNO sein sollte.",
+        "concrete_statements": [
+          "Ich würde dem auf jeden Fall näher treten",
+          "Das ist nicht ein Austreten aus der UNO",
+          "Das Völkerrecht nutzt Ihnen nichts, weil keiner es durchsetzt",
+          "Da muss einer sein, der hoffentlich auf unserer Seite ist"
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde dem auf jeden Fall näher treten. Das ist nicht ein Austreten aus der UNO. Wenn wir solche Fälle haben in der Welt, da ist ein Regime, islamistischer Terrorismus, die Bauern an der Atombombe. Dann nutzt denen die UNO gar nichts.",
+            "timestamp": "00:38:19",
+            "context": "Baumann erklärte seine Position zum 'Board of Peace' und der Ineffektivität der UNO."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Vereinte Nationen",
+          "Multilateralismus",
+          "Internationale Sicherheit"
+        ]
+      },
+      {
+        "title": "Beteiligung an Straße von Hormus und militärisches Engagement",
+        "timestamp_range": "00:38:19 - 00:39:56",
+        "theme_description": "Diskussion über deutsche militärische Unterstützung beim Schutz der Straße von Hormus gemäß Trumps Bitte.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, ob Deutschland sich militärisch daran beteiligen sollte, die Straße von Hormus zu schützen, wie Trump es von Deutschland erbeten hatte.",
+        "question_intent": "Baumanns Position zu deutscher Militärbeteiligung in einem regionalen Konflikt erfahren.",
+        "position": "Baumann lehnte ab, dass Deutschland militärisch an der Straße von Hormus beteiligt sein sollte. Er begründete dies damit, dass dies nicht Deutschlands Krieg sei und Trump sich nicht mit der NATO abgesprochen habe. Zusätzlich warf er der SPD-Regierung unter Stegner vor, die Bundeswehr nicht dazu in der Lage gelassen zu haben. Die USA hätten die Kapazität, Marines einzusetzen; Deutschland habe das Potenzial nicht dazu.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baumann antwortete direkt und klar mit 'Ja, das ist nicht unser Krieg' auf die Frage, ob Deutschland sich militärisch beteiligen sollte. Er gab konkrete Begründungen (NATO-Absprache fehlte, Potenzial nicht vorhanden, nicht unser Krieg).",
+        "concrete_statements": [
+          "Das ist nicht unser Krieg",
+          "Der hat sich mit der NATO nicht abgesprochen",
+          "Das ist seine Sache",
+          "Wir haben nicht das Potenzial dazu"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, das ist nicht unser Krieg. Der hat sich mit der NATO nicht abgesprochen. Das ist seine Sache. Wir haben nicht das Potenzial dazu.",
+            "timestamp": "00:39:56",
+            "context": "Baumann lehnte deutsche militärische Beteiligung an der Straße von Hormus deutlich ab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "NATO",
+          "Außenpolitik",
+          "Militäreinsätze"
+        ]
+      },
+      {
+        "title": "Kontakte zu MAGA-Bewegung und westliche Alternativbewegungen",
+        "timestamp_range": "00:40:58 - 00:42:00",
+        "theme_description": "Auseinandersetzung über die Unterstützung enger Kontakte zwischen AfD und MAGA-Lagern sowie gemeinsame Ideologie gegen 'Grünen-Mainstream'.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, ob die AfD enge Kontakte zu den MAGA-Lagern unterstütze, nachdem sie erwähnt hatte, dass es eine AfD-Veranstaltung mit MAGA-Unterstützern im Bundestag gebe.",
+        "question_intent": "Baumanns Haltung zu internationalen rechtspopulistischen Netzwerken und deren Ideologie klären.",
+        "position": "Baumann befürwortete enge Kontakte zur MAGA-Bewegung. Er charakterisierte sie als Teil einer internationalen Bewegung gegen den 'Grünen-Mainstream' in allen westlichen Ländern. Diese Leute wollten den 'linksgrünen Wahnsinn' loswerden, glaubten nicht an 72 Geschlechter, Grenzöffnung, oder dass das christliche Abendland 'mit Schuld beladen' sei. Baumann betonte, dass die westliche Kultur 'die beste Kultur ist, die es je gegeben hat' und dass dies die AfD mit anderen westlichen Bewegungen verbinde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baumann antwortete direkt mit 'Auf jeden Fall' und lieferte eine ideologische Begründung für die Unterstützung von MAGA-Kontakten. Die Antwort adressierte die Frage vollständig, wenn auch provokativ.",
+        "concrete_statements": [
+          "Auf jeden Fall",
+          "Es gibt eine Bewegung in allen westlichen Ländern gegen den Grünen-Mainstream",
+          "Das sind Leute in der westlichen Welt, die den linksgrünen Wahnsinn loswerden wollen",
+          "Die glauben, dass die westliche Kultur die beste Kultur ist, die es je gegeben hat"
+        ],
+        "quotes": [
+          {
+            "text": "Auf jeden Fall. Es gibt eine Bewegung in allen westlichen Ländern gegen den Grünen-Mainstream. Das sind Leute in der westlichen Welt, die den linksgrünen Wahnsinn loswerden wollen. Die nicht glauben, dass es 72 Geschlechter gibt, dass man alle Grenzen aufmachen muss. Die nicht glauben, dass das christliche Abendland, mit Schuld beladen ist, dass wir in Sack und Asche gehen müssen. Die glauben, dass die westliche Kultur die beste Kultur ist, die es je gegeben hat. Das verbindet uns damit, und anderen Bewegungen in der westlichen Welt.",
+            "timestamp": "00:41:28",
+            "context": "Baumann bekannte sich zur AfD-Unterstützung von MAGA und erläuterte die gemeinsame ideologische Grundlage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Beziehungen",
+          "Populismus",
+          "Kulturpolitik",
+          "Parteienkooperationen"
+        ]
+      },
+      {
+        "title": "Selenskyj und Friedensverhandlungen mit Russland",
+        "timestamp_range": "00:43:01 - 00:43:31",
+        "theme_description": "Frage nach Baumanns Haltung zu Selenskyjs Entscheidungsfähigkeit über Friedensverhandlungen mit Russland.",
+        "question_asked": "Sandra Maischberger fragte Bernd Baumann, was die Ukraine tun solle, nachdem Selenskyj in einem Interview zu Friedensverhandlungen Stellung genommen hatte.",
+        "question_intent": "Baumanns Empfehlung zur ukrainischen Verhandlungsstrategie erfahren.",
+        "position": "Baumann wollte sich nicht einmischen in die Verhandlungen zwischen Ukraine und Russland und betonte, dass es um hohe Güter wie Frieden gehe. Er sagte, dass die USA Sicherheitsgarantien geben könnten, was gut für die Ukraine wäre, aber er habe 'von hier aus keine Empfehlung zu geben'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baumann weigerte sich weitgehend zu antworten und verwies auf die Autonomie der Ukraine. Er adressierte die Frage nur indirekt durch die Feststellung, dass er sich nicht einmischen wolle, was eine Nicht-Position ist.",
+        "concrete_statements": [
+          "Da mische ich mich nicht ein, das sind Verhandlungen zwischen der Ukraine und Russland",
+          "Ich habe von hier aus keine Empfehlung zu geben"
+        ],
+        "quotes": [
+          {
+            "text": "Da mische ich mich nicht ein, das sind Verhandlungen zwischen der Ukraine und Russland.",
+            "timestamp": "00:43:01",
+            "context": "Baumann lehnte es ab, sich in ukrainische Friedensverhandlungen einzumischen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Friedensverhandlungen",
+          "Außenpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die deutschen Steuereinnahmen betragen ungefähr 1 Billion Euro, Sozialabgaben betragen nochmal genauso viel (2 Billionen), insgesamt 2 Billionen Euro für den Staat",
+        "timestamp": "00:19:51"
+      },
+      {
+        "claim": "Deutschland zahlt alleine 17 Milliarden Euro für gesamtstaatliche Kosten (unklar, ob Militär oder andere Ausgaben)",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Deutschland zahlt 35 Milliarden Euro für Klima- und Energierettung auf deutschem Boden",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Deutschland zahlt über 30 Milliarden Euro an die EU, das Dreifache an Nettobeiträgen wie Frankreich",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Deutschland zahlt 8 Milliarden Euro Entwicklungshilfe an Indien und China",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Das Merkel-Steuermodell von Professor Kirchhoff war ein 20%-Modell, das Merkel zur Grundlage ihres Wahlprogramms gemacht hat",
+        "timestamp": "00:23:59"
+      },
+      {
+        "claim": "Im bayerischen Parlament-Skandal 2013 waren 53 CSU-Mitglieder, 21 SPD-Mitglieder und ein Grüner verwickelt",
+        "timestamp": "00:25:34"
+      },
+      {
+        "claim": "Katrin Bär von der CSU hat ihren Lebensgefährten und dessen Vater beschäftigt und wurde von der CDU zur Ministerin gemacht",
+        "timestamp": "00:28:10"
+      },
+      {
+        "claim": "China stößt in einem Monat so viel CO2 aus, wie Deutschland in 10 Jahren spart",
+        "timestamp": "00:32:53"
+      },
+      {
+        "claim": "Russland verdient täglich etwa 150 Millionen Dollar zusätzlich durch Aufhebung von Ölverkaufssanktionen unter Trump",
+        "timestamp": "01:07:35"
+      },
+      {
+        "claim": "Es gibt über 1 Milliarde Chinesen, 2 Milliarden Muslime, aber nur 800 Millionen Christen weltweit",
+        "timestamp": "00:38:52"
+      }
+    ]
+  }
+}

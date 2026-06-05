@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-19-maerz-2026-100",
+    "video_id": "illner-2026-03-19",
+    "politician": "Adis Ahmetović",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "650db5828a236125",
+    "transcript_chars": 47599,
+    "caption_lines": 2324,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19622,
+    "tokens_out": 5358,
+    "cost_usd": 0.0185648,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 3
+    },
+    "generated_at": "2026-06-05T13:37:47.562Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Adis Ahmetović, Außenpolitischer Sprecher der SPD-Fraktion, verteidigte in der Sendung \"Maybrit Illner\" die Ablehnung Deutschlands, militärisch im Irankrieg zu intervenieren, und begründete dies mit völkerrechtlichen und strategischen Bedenken. Er setzte sich für eine europäische Geschlossenheit ein und warnte vor den Risiken militärischer Beteiligung, bekannte sich aber deutlich zur NATO und zum Bündnisfall.",
+    "themes": [
+      {
+        "title": "Berechtigung der deutschen Kriegsablehnung",
+        "timestamp_range": "00:04:48 - 00:06:34",
+        "theme_description": "Bewertung der Entscheidung der Bundesregierung, sich nicht am Irankrieg zu beteiligen.",
+        "question_asked": "Maybrit Illner vergleicht Friedrich Merz' aktuelle Haltung zur Kriegsablehnung mit Gerhard Schröders damaligem Friedenskanzler-Ansatz und fragt, ob Merz jetzt ähnlich wie Schröder den Friedenskanzler macht.",
+        "question_intent": "Illner möchte wissen, ob die deutsche Kriegsablehnung opportunistisch oder aufrichtig begründet ist und wie konsistent sie mit bisherigen Positionen ist.",
+        "position": "Ahmetović betont, dass beide Entscheidungen – die von Schröder und die von Merz – \"genau richtig\" sind. Er äußert sich irritiert über die anfängliche Formulierung des Kanzlers, macht aber deutlich, dass der Bundeskanzler klar sagen muss: \"dieser Krieg ist falsch, er ist nicht unserer\" und \"völkerrechtswidrig\". Die Öffentlichkeit wolle darüber reden. Die Antwort des Bundeskanzlers, dass Deutschland sich nicht beteiligen werde, sei \"genau richtig\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ahmetović beantwortet die implizite Frage nach der Berechtigung der Kriegsablehnung direkt und substanziell mit einer klaren Position: Beide Entscheidungen sind richtig, die Völkerrechtswidrigkeit muss benannt werden. Er vergleicht präzise mit Schröder (positiv) und nimmt damit den Vergleichspunkt der Frage auf.",
+        "concrete_statements": [
+          "Beide Entscheidungen sind genau richtig",
+          "Der Krieg ist völkerrechtswidrig",
+          "Der deutsche Bundeskanzler muss sagen, ob er bereit dazu ist in so einem Krieg mitzumachen oder nicht",
+          "Die Antwort ist vom deutschen Bundeskanzler, dass wir uns nicht beteiligen werden genau richtig"
+        ],
+        "quotes": [
+          {
+            "text": "Beide Entscheidungen sind genau richtig, die Entscheidung von Schröder war es und ich bin dem Kanzler auch sehr dankbar über diese klaren Worte.",
+            "timestamp": "00:04:48",
+            "context": "Auf die Frage, ob Merz wie Schröder den Friedenskanzler spielt, verteidigt Ahmetović beide Entscheidungen als korrekt."
+          },
+          {
+            "text": "dieser Krieg ist falsch, er ist nicht unserer. Die Leute wollen in der Öffentlichkeit darüber reden aber dieser Krieg ist völkerrechtswidrig",
+            "timestamp": "00:04:48",
+            "context": "Ahmetović erklärt die Positionen, die der Bundeskanzler klar machen muss."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Deutscher Militäreinsatz im Ausland",
+          "Völkerrecht und Kriegsbeteiligung",
+          "NATO-Verpflichtungen"
+        ]
+      },
+      {
+        "title": "Beurteilung der Kriegsstrategie und Fehler",
+        "timestamp_range": "00:06:02 - 00:07:06",
+        "theme_description": "Einschätzung der Fehler und Fehlplanungen bei der Durchführung des Irankrieges.",
+        "question_asked": "Maybrit Illner fragt, ob Ahmetović meint, dass man den Krieg hätte besser nie begonnen sollen, nachdem er sagte, dass es ein falscher Krieg ist.",
+        "question_intent": "Illner will klären, ob Ahmetović nur die Durchführung kritisiert oder grundsätzlich gegen den Krieg argumentiert.",
+        "position": "Ahmetović kritisiert die Art und Weise, wie der Krieg geplant und durchgeführt wurde, als \"falsch\". Ein Kernproblem sei die fehlende vorherige Konsultation mit Verbündeten. Er kontrastiert dies mit 2003, als George Bush versuchte, Verbündete zu überzeugen und einzubeziehen. Ahmetović fordert: \"Man muss ein Stopp setzen.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ahmetović weicht die direkte Ja/Nein-Frage aus, ob man den Krieg hätte begonnen sollen, und konzentriert sich stattdessen auf die Durchführungsweise und fehlende Konsultation. Er beantwortet damit eine präzisere Frage (wie wurde es gemacht), nicht die ursprüngliche (hätte man es tun sollen).",
+        "concrete_statements": [
+          "Es gab keine Konsultation mit den Verbündeten",
+          "Man muss ein Stopp setzen",
+          "Die Kriegsziele sind gescheitert"
+        ],
+        "quotes": [
+          {
+            "text": "So wie er geplant und durchgeführt wurde, ist es falsch. Es gab keine Konsultation mit den Verbündeten.",
+            "timestamp": "00:06:34",
+            "context": "Auf die Frage, ob man den Krieg hätte begonnen sollen, erläutert Ahmetović die Fehler in der Planung und Durchführung."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Internationale Abstimmung bei Militäreinsätzen",
+          "Transparenz in der Außenpolitik"
+        ]
+      },
+      {
+        "title": "Risiken militärischer Intervention in der Straße von Hormus",
+        "timestamp_range": "00:18:22 - 00:18:33",
+        "theme_description": "Bewertung der Praktikabilität und Wirksamkeit einer militärischen Sicherung der Straße von Hormus.",
+        "question_asked": "Nach ausführlicher Erörterung der technischen und strategischen Unmöglichkeit einer militärischen Öffnung der Straße von Hormus durch Peter Neumann fragt Maybrit Illner im Grunde nach einer Zusammenfassung: \"Im Grunde genommen ist es eine verrückte Forderung. Es geht nicht die Straße einfach so zu öffnen.\"",
+        "question_intent": "Illner fordert Ahmetović implizit auf, die Ablehnung einer militärischen Intervention in der Straße von Hormus zu bestätigen.",
+        "position": "Ahmetović stimmt zu und erklärt: \"Ich denke, es wäre total riskant, ich denke nicht, dass es wirkungsvoll wäre, weil trotzdem viel zu wenig Öl durchkommen würde, nach wie vor ist unsicher.\" Er lehnt die Intervention damit sowohl aus Risiko- als auch aus Effektivitätsgründen ab.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ahmetović antwortet direkt auf die implizite Frage mit einer klaren Positionierung: Die Intervention ist zu riskant und unwirksam. Er nennt zwei konkrete Gründe: Risiko und zu wenig Ölfluss.",
+        "concrete_statements": [
+          "Es wäre total riskant",
+          "Es wäre nicht wirkungsvoll",
+          "Viel zu wenig Öl würde durchkommen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich denke, es wäre total riskant, ich denke nicht, dass es wirkungsvoll wäre, weil trotzdem viel zu wenig Öl durchkommen würde, nach wie vor ist unsicher.",
+            "timestamp": "00:18:22",
+            "context": "Ahmetović bewertet die Machbarkeit einer militärischen Sicherung der Straße von Hormus."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Militärische Einsätze zur Gewährleistung von Handelswegen",
+          "Nahost-Strategie"
+        ]
+      },
+      {
+        "title": "Notwendigkeit klarer Stellungnahme zur Völkerrechtswidrigkeit",
+        "timestamp_range": "00:40:46 - 00:41:13",
+        "theme_description": "Bewertung, ob die Bundesregierung den Krieg explizit als völkerrechtswidrig bezeichnen sollte.",
+        "question_asked": "Daniel Gerlach kritisiert indirekt, dass die deutschen Positionen in den ersten Tagen weder völkerrechtlich noch interessenbasiert argumentiert wurden. Er appelliert an Ahmetović, dies der SPD-Koalition mitzugeben. Maybrit Illner präzisiert später die Frage: \"Müssten wir nicht auch unsere Unterstützung anbieten?\" und später \"würden sie nicht glauben, dass das iranische Volk einen Moment der absoluten Schwäche Irans gerne als ein Moment zwar, in dem andere Staaten der Welt sagen, wir versuchen euch zu helfen?\"",
+        "question_intent": "Die Fragen zielten letztlich darauf, ob Deutschland nicht stärker zwischen einer völkerrechtlichen Verurteilung des Krieges und einer humanitären Unterstützung der Opposition unterscheiden sollte.",
+        "position": "Ahmetović antwortet knapp: \"Der Krieg ist falsch geführt. Egal wie man drauf blickt. Ein demokratischer säkularer Staat wird kommen. Die Kriegsziele von Israel und der USA decken sich nicht. Es passt nicht miteinander.\" Er lehnt es ab, die humanitäre Unterstützung der iranischen Opposition als Begründung für den Krieg zu akzeptieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ahmetović beantwortet die implizite Kritik, dass Völkerrecht verdrängt wurde, nicht direkt. Er wiederholt stattdessen seine Standardposition (Krieg ist falsch), ohne auf die spezifische Kritik von Gerlach einzugehen, dass Deutschland sich geweigert hat, Völkerrecht zu erwähnen.",
+        "concrete_statements": [
+          "Der Krieg ist falsch geführt",
+          "Ein demokratischer säkularer Staat wird kommen",
+          "Die Kriegsziele von Israel und der USA decken sich nicht"
+        ],
+        "quotes": [
+          {
+            "text": "Der Krieg ist falsch geführt. Egal wie man drauf blickt.",
+            "timestamp": "00:40:46",
+            "context": "Ahmetović bewertet die Durchführung und Logik des Krieges insgesamt."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Völkerrechtskonformität deutscher Außenpolitik",
+          "Unterstützung von Oppositionsbewegungen"
+        ]
+      },
+      {
+        "title": "Ramstein-Basis und deutsche Mitverantwortung",
+        "timestamp_range": "00:45:18 - 00:46:44",
+        "theme_description": "Frage nach der Zulässigkeit der Nutzung der US-Luftwaffenbasis Ramstein für Operationen im Irankrieg und der deutschen rechtlichen Verantwortung.",
+        "question_asked": "Maybrit Illner fragt direkt, ob Ahmetović die Nutzung von Ramstein für den Irankrieg ablehnt, da das Bundesverfassungsgericht Militäroperationen, die systematisch Völkerrecht verletzen, nicht von deutschem Boden ausgehen dürfen.",
+        "question_intent": "Illner prüft, ob Ahmetović die völkerrechtliche Position auch konkret durchsetzen würde, oder ob es nur theoretische Rhetorik ist.",
+        "position": "Ahmetović erklärt, dass das Auswärtige Amt gerade prüft, ob es völkerrechtskonform war. Er sagt: \"wenn das zuständige Innenministerium, in dem Falle das auswärtige Amt mit der Prüfung fertig ist, ob es völkerrechtlich konform war oder nicht, man könnte es anordnen, dass Ramstein nicht genutzt werden kann für diesen Krieg.\" Seine Position sei klar: \"es ist völkerrechtswidrig\". Die Frage müsse sich dann stellen, ob Ramstein genutzt werden kann. Dies gelte auch in Spanien und Großbritannien.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Ahmetović benennt seine Position (Krieg ist völkerrechtswidrig), verweist aber auf die Prüfung durch das Auswärtige Amt und sagt nicht explizit, dass er die sofortige Sperrung von Ramstein fordert. Er weicht damit die unmittelbare Handlungsforderung ab und macht sie von einer Behördenprüfung abhängig, was Illner als \"Satz für eine Pressemitteilung\" kritisiert.",
+        "concrete_statements": [
+          "Das Auswärtige Amt prüft gerade, ob es völkerrechtskonform war",
+          "Wenn es völkerrechtswidrig ist, muss man sich die Frage stellen, ob Ramstein genutzt werden kann",
+          "Es ist völkerrechtswidrig, die Frage muss sich dann stellen"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, wenn das zuständige Innenministerium, in dem Falle das auswärtige Amt mit der Prüfung fertig ist, ob es völkerrechtslich konform war oder nicht, man könnte es anordnen, dass Ramstein nicht genutzt werden kann für diesen Krieg.",
+            "timestamp": "00:45:18",
+            "context": "Illner fragt, ob Ahmetović die Nutzung von Ramstein ablehnt und eine Schließung fordern würde."
+          },
+          {
+            "text": "meine Position ist klar, es ist völkerrechtswidrig, die Frage muss sich dann stellen man sich drüber diskutieren, es ist nicht nur in Deutschland so gewesen, sondern auch in Spanien, Großbritannien, ob Ramstein genutzt werden kann um diese Angriffe nach Iran zu fliegen.",
+            "timestamp": "00:45:53",
+            "context": "Ahmetović klärt, dass die Prüfung läuft und die Frage dann gestellt werden muss."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Nutzung deutsches Territoriums für fremde Militäreinsätze",
+          "Völkerrechtliche Verpflichtungen Deutschlands",
+          "Bundesverfassungsgericht und Rechtskontrolle"
+        ]
+      },
+      {
+        "title": "NATO-Bündnisfall und deutsche Schutzpflicht",
+        "timestamp_range": "00:51:32 - 00:52:37",
+        "theme_description": "Klarstellung der deutschen Position zu NATO-Artikel 5 und der Verteidigungspflicht gegenüber Bündnispartnern im Fall eines iranischen Angriffs.",
+        "question_asked": "Maybrit Illner fragt, ob Deutschland beim strikten Nein zum Irankrieg bleiben würde, wenn ein NATO-Partner im Bündnisfall Unterstützung fordert, weil er vom Iran angegriffen wurde.",
+        "question_intent": "Illner prüft, ob Ahmetovićs Ablehnung des Irankrieges auch für den Fall einer NATO-Verteidigungspflicht gilt oder ob es nur um den gegenwärtigen Krieg geht.",
+        "position": "Ahmetović stellt klar: \"Dann haben wir uns missverstanden, ich stehe und wir als SPD stehen fest zum NATO Bündnis.\" Er betont die Bedeutung der Türkei als nächster NATO-Partner zum Iran. Falls irgendein NATO-Land vom Iran angegriffen wird und Art. 5 zieht, \"dann müssen wir im Bündnisfall auch eintreten. Für alle NATO Partner.\" Er erklärt die Logik: \"Dass die NATO nicht bereit ist sich zu unterstützen und zu verteidigen, wenn der Art. 5 eintritt, dann wird Deutschland auf jeden Fall einschreiten.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Ahmetović beantwortet die Frage direkt und klar: Deutschland lehnt den gegenwärtigen Irankrieg ab, wird aber im Fall eines Bündnisfalles eintreten. Er trennt die beiden Szenarien präzise und adressiert damit die potenzielle Kritik einer Unkoherenz seiner Position.",
+        "concrete_statements": [
+          "Wir stehen fest zum NATO Bündnis",
+          "Falls ein NATO-Land vom Iran angegriffen wird und Art. 5 zieht, müssen wir im Bündnisfall auch eintreten",
+          "Deutschland wird auf jeden Fall einschreiten"
+        ],
+        "quotes": [
+          {
+            "text": "Dann haben wir uns missverstanden, ich stehe und wir als SPD stehen fest zum NATO Bündnis, ich sage es sehr deutlich",
+            "timestamp": "00:51:32",
+            "context": "Auf die Frage, ob Deutschland beim strikten Nein bleiben würde, klarifiziert Ahmetović die Unterscheidung zwischen Ablehnung des gegenwärtigen Krieges und NATO-Verpflichtungen."
+          },
+          {
+            "text": "wenn irgendein NATO Land attackiert wird, aus dem Iran, von dem Iran, dieses Land Art. 5 zieht, dann müssen wir im Bündnisfall auch eintreten. Für alle NATO Partner.",
+            "timestamp": "00:51:32",
+            "context": "Ahmetović erklärt die deutsche Position zum Bündnisfall."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "NATO-Artikel 5 und Bündnisverpflichtung",
+          "Türkei als NATO-Partner",
+          "Rüstungsschutz Deutschlands"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "George Bush versuchte 2003 bei einer Invasion des Iran die Verbündeten zu überzeugen und einzubeziehen.",
+        "timestamp": "00:06:34"
+      },
+      {
+        "claim": "Es gibt Prüfungen zum Einsatz von Ramstein in Spanien und Großbritannien genauso wie in Deutschland.",
+        "timestamp": "00:45:53"
+      },
+      {
+        "claim": "Die Türkei ist der NATO-Partner, der dem Iran am nächsten liegt.",
+        "timestamp": "00:51:32"
+      },
+      {
+        "claim": "Raketen haben vom Iran nach Deutschland eine Reichweite von weniger als 3500 km und können daher Deutschland nicht erreichen.",
+        "timestamp": "00:50:15"
+      }
+    ]
+  }
+}

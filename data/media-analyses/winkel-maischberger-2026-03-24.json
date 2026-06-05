@@ -1,0 +1,369 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYmY1NGMyZjEtZGRjYi00ZGE4LTlhMGItYTUyYTNkZjVhMTRl",
+    "video_id": "maischberger-2026-03-24",
+    "politician": "Johannes Winkel",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "06bec2b27901b197",
+    "transcript_chars": 57884,
+    "caption_lines": 2165,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23462,
+    "tokens_out": 9506,
+    "cost_usd": 0.0283968,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 4
+    },
+    "generated_at": "2026-06-05T12:36:41.440Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johannes Winkel, Bundesvorsitzender der Jungen Union, diskutiert mit Sandra Maischberger und Katrin Göring-Eckardt über Koalitionsoptionen, Energiepolitik, Rentensystem und Steuererhöhungen. Er argumentiert für echte Reformen im Sozialversicherungssystem und kritisiert einen zu zaghaften Reformkurs der Regierung, vertritt dabei eine pragmatische energiepolitische Position zwischen grüner Klimapolitik und wirtschaftlichen Notwendigkeiten.",
+    "themes": [
+      {
+        "title": "Forderung nach Reformen versus Schuldenbremse",
+        "timestamp_range": "00:14:59 - 00:16:01",
+        "theme_description": "Winkels öffentliche Aussage (zitiert von Maischberger), dass CDU entweder echte Reformen durchsetzen muss oder sonst die Junge Union 'von der Fahne geht', Kritik an möglicher Schuldenbremsen-Lockerung.",
+        "question_asked": "Sandra Maischberger zitiert Winkel selbst: 'Die Junge Union droht dem Kanzler: Entweder Reformen oder wir steigen aus.' Sie fragt dann via Achterberg, ob Winkel damit recht hat und ob man wirklich echte Reformen statt Kosmetik erwarten darf.",
+        "question_intent": "Maischberger wollte Winkel mit seinen eigenen Worten zur Rechenschaft ziehen und fragen, wie ernst er diese Drohung meint.",
+        "position": "Winkel hatte gesagt (direkt zitiert): 'Wir stehen jetzt in diesem Jahr als CDU vor einer ganz einfachen Weggabelung. Entweder wir bekommen in diesem Jahr Reformen hin. Oder wir müssen die Schuldenbremse auflösen mit den Grünen, mit Heidi Reichinnek. Und dafür stehen wir nicht zur Verfügung. Deswegen müssen wir in diesem Jahr zu Reformen kommen. Und das muss der Kanzler am Ende des Tages durchsetzen. Das muss er zur Chefsache machen. Sonst geht ihnen mindestens die Junge Union von der Fahne.' Er stellt also ein Ultimatum: echte Reformen ODER Schuldenbremsen-Aufweichung ist inakzeptabel.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel hat hier (vor der Diskussion) ein klares Ultimatum öffentlich gemacht (zitiert von Maischberger). Seine Position ist unzweideutig: Reformen sind Bedingung, sonst droht innerparteilicher Widerstand. Die Aussage adressiert sowohl die Reformforderung als auch die Schuldenbremse-Linie.",
+        "quotes": [
+          {
+            "text": "Wir stehen jetzt in diesem Jahr als CDU vor einer ganz einfachen Weggabelung. Entweder wir bekommen in diesem Jahr Reformen hin. Oder wir müssen die Schuldenbremse auflösen mit den Grünen, mit Heidi Reichinnek. Und dafür stehen wir nicht zur Verfügung.",
+            "timestamp": "00:14:59",
+            "context": "Winkel erklärt das Ultimatum der Jungen Union zu Reformforderungen gegenüber dem Kanzler."
+          }
+        ],
+        "concrete_statements": [
+          "Echte Reformen müssen 2025 durchgesetzt werden, Chefsache Kanzler",
+          "Alternative: Schuldenbremsen-Aufweichung mit Grünen – nicht akzeptabel",
+          "Junge Union droht innerparteilich mit Widerstand bei Nicht-Umsetzung"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Reformprogramm",
+          "Haushaltspolitik",
+          "CDU/CSU-Programm"
+        ]
+      },
+      {
+        "title": "Koalitionsoptionen Union mit SPD versus Grünen",
+        "timestamp_range": "00:20:59 - 00:21:30",
+        "theme_description": "Frage, ob Friedrich Merz sich zu stark auf SPD als Koalitionspartner verengt hat und ob sich CDU/CSU wieder für Grüne öffnen sollte.",
+        "question_asked": "Sandra Maischberger fragt Winkel, ob Friedrich Merz sich zu sehr auf die SPD als Koalitionspartner fixiert hat und ob man sich nicht wieder für die Grünen öffnen sollte, besonders nach dem grünen Oberbürgermeister-Erfolg in München.",
+        "question_intent": "Maischberger wollte wissen, ob Merz zu einseitig auf SPD setzt oder ob taktisch auch Grüne wieder in Betracht kommen.",
+        "position": "Winkel argumentiert, dass Merz sich nicht so stark auf die SPD verengt habe wie suggeriert. Entscheidend sei nicht die ideologische Nähe, sondern welche Parteien bereit sind, echte Veränderungen zu bewirken. Er betont, dass in dieser Legislaturperiode rechnerisch mit den Grünen keine Mehrheit bestehe, weshalb die Union mit der SPD zusammenarbeite ('auf Gedeih und Verderb miteinander'). Winkel verschiebt das Kernthema von Koalitionsmathe auf die inhaltliche Frage: Wer will wirklich Reform?",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel adressiert die konkrete Frage zu Merz' Festlegung teilweise durch eine Uminterpretation: Er behauptet, Merz habe sich nicht so verengt (faktische Aussage zu Merz' Aussagen), lenkt dann aber ab auf mathematische Realität und ideologische Frage, wer echte Reformen will. Die direkte Frage nach strategischer Öffnung für Grüne wird nicht substantiell beantwortet.",
+        "quotes": [
+          {
+            "text": "Dieser Legislative ist das so, weil wir mit den Grünen keine Mehrheit haben. Mir ist das nicht so wichtig, sondern mir ist wichtig, was wollen die Parteien. Wer hat Lust, etwas zu verändern?",
+            "timestamp": "00:21:01",
+            "context": "Auf Frage zur Koalitionsstrategie antwortet Winkel, dass mathematische Mehrheit und Reformwille relevanter seien als ideologische Nähe."
+          }
+        ],
+        "concrete_statements": [
+          "Mit den Grünen keine Mehrheit in dieser Legislative",
+          "Reformbereitschaft ist entscheidender als Koalitionspartner-Identität"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "CDU/CSU-Regierungsfähigkeit",
+          "Schwarz-Grüne Koalition"
+        ]
+      },
+      {
+        "title": "Energiewende: Erneuerbare versus Kernkraft",
+        "timestamp_range": "00:22:00 - 00:29:18",
+        "theme_description": "Debatte über die energiepolitische Strategie zwischen grüner Erneuerbare-Priorität und Winkels Argument für Kernkraft zur Sicherung der Grundlastfähigkeit.",
+        "question_asked": "Sandra Maischberger fragt Winkel, ob er Katrin Göring-Eckardts Logik gegen eine neue Abhängigkeit von fossiler Energie nachvollziehen kann, nachdem Ökonom:innen kritisieren, dass Özdemir (Grüne Baden-Württemberg) durch Verbrenner-Rückbau die Abhängigkeit von Fossilien fördern könnte.",
+        "question_intent": "Maischberger wollte Winkel auffordern, die grüne Energielogik zu verteidigen oder zu widersprechen.",
+        "position": "Winkel argumentiert, dass Erneuerbare Energien mangels Grundlastfähigkeit zu extremen Mehrkosten in Deutschland führen – durch Engpass-Management und hohe Strompreise, die Unternehmen zur Abwanderung führen. Er stellt dagegen die Position Katherina Reiches (Baden-Württemberg), die Erneuerbare der 'sozialen Marktwirtschaft' zuführen wolle, indem Festvergütungen beendet werden. Als Lösung für Klimaneutralität bei Grundlastfähigkeit schlägt Winkel Kernkraft vor, unterstützt von Ursula von der Leyen. Er kritisiert implizit deutsche Technologiefeindlichkeit: 'Weil wir gesagt haben, andere sollen sich über das Thema Innovation bei Kernenergie kümmern. Wir haben es nicht gemacht.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet Maischbergers Frage direkt mit einer klaren Gegenposition zu Göring-Eckardt: Er erklärt die wirtschaftliche Logik des Energiepreis-Problems (Engpass-Management, Wettbewerbsfähigkeit) und nennt eine explizite Alternative (Kernkraft statt Erneuerbare-only). Er belegt seine Position mit Referenzen (von der Leyen, europäische Praxis).",
+        "quotes": [
+          {
+            "text": "Das Problem mit Erneuerbaren Energien ist, dass sie nicht grundlastfähig sind. Und weil sie oft abgestellt werden müssen, haben wir in Deutschland extreme Mehrkosten. Wir haben Engpass-Management. Das führt zu hohem Energiepreis in Deutschland. Wir sind nicht mehr wettbewerbsfähig. Das führt zu einer Abwanderung von Unternehmen.",
+            "timestamp": "00:23:03",
+            "context": "Winkel erklärt das ökonomische Scheitern der deutschen Energiewende ohne Grundlast."
+          },
+          {
+            "text": "Meine Antwort wäre, um das 1. Ziel zu erreichen, die Klimaneutralität, dass wir auf Kernkraft als Ergänzung setzen. Weil wir uns weniger abhängig machen von Gas, Kohle, von was auch immer.",
+            "timestamp": "00:27:15",
+            "context": "Winkel nennt explizit Kernkraft als Lösung für Klimaneutralität ohne Abhängigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Kernkraft als Ergänzung zu Erneuerbaren für Grundlastfähigkeit und Klimaneutralität",
+          "Technologiefeindlichkeit deutscher Forscher haben (Kernenergie-Innovation)",
+          "Erneuerbare Subventionen über 500 Mrd. Euro gekostet – höher als Frankreichs Atomkosten"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Kernkraft",
+          "Strompreise",
+          "Industriestandort Deutschland"
+        ]
+      },
+      {
+        "title": "Kernkraft und Technologieoffenheit",
+        "timestamp_range": "00:26:44 - 00:29:18",
+        "theme_description": "Winkels Argument für Kernkraft als Lösung gegen die Volatilität erneuerbarer Energien und deutsche Technologiefeindlichkeit.",
+        "question_asked": "Sandra Maischberger fragt Winkel (nach dessen Kernkraft-Befürwortung), ob er nicht besser auf Gas setzen sollte, und später auf Katrin Göring-Eckardts Bedenken zu Sicherheit und Kosten von Atomkraft.",
+        "question_intent": "Maischberger wollte Winkels Kernkraft-Position in Frage stellen und gegen Göring-Eckardts skeptische Argumente abwägen.",
+        "position": "Winkel präzisiert: Seine Antwort sei nicht 'Gas', sondern Kernkraft als Ergänzung zu Erneuerbaren für Grundlastfähigkeit und Klimaneutralität. Er argumentiert, dass Frankreich 450 Mrd. für Atomenergie ausgegeben habe, aber Deutschland über 500 Mrd. in die Energiewende subventioniert habe – somit nicht teurer. Auf Göring-Eckardts Punkt zu Sicherheit und Atommüll antwortet er: Deutschland könne 'Atommüll recyceln' (Wiederaufbereitung), und es gebe 'viele Entwicklungen, die wir in Deutschland nicht mitbekommen haben.' Das Problem: 'Weil wir gesagt haben, andere sollen sich über das Thema Innovation bei Kernenergie kümmern. Wir haben es nicht gemacht. Unsere Forscher sind teilweise abgewandert. Das ist eine Technologiefreundlichkeit, die wir uns nicht leisten können.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel antwortet substantiell auf Maischbergers Frage mit einer klaren Gegenpositition zu Göring-Eckardt. Er belegt Kernkraft nicht nur mit Kostenargumenten, sondern auch mit Technologie- und Innovationspolitik. Er adressiert Göring-Eckardts Sicherheitsbedenken direkt (Recycling, Innovation).",
+        "quotes": [
+          {
+            "text": "Weil wir gesagt haben, andere sollen sich über das Thema Innovation bei Kernenergie kümmern. Wir haben es nicht gemacht. Unsere Forscher sind teilweise abgewandert. Das ist eine Technologiefreundlichkeit, die wir uns nicht leisten können.",
+            "timestamp": "00:29:18",
+            "context": "Winkel kritisiert deutsche Technologiefeindlichkeit in der Kernenergiepolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Kernkraft (nicht Gas) als Ergänzung für Grundlastfähigkeit und Klimaneutralität",
+          "Atommüll-Recycling / Wiederaufbereitung ist technisch möglich",
+          "Deutsche Forscher sind wegen Technologiefeindlichkeit abgewandert",
+          "Kernenergie-Innovationen in anderen Ländern fortgeschritten, Deutschland nicht mitgemacht"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Kernkraft",
+          "Technologiepolitik",
+          "Klimaneutralität"
+        ]
+      },
+      {
+        "title": "Sprittpreise und Steuermaßnahmen",
+        "timestamp_range": "00:30:21 - 00:31:54",
+        "theme_description": "Frage nach kurzfristigen Maßnahmen gegen steigende Spritpreise und ob Steuererhöhungen (insbesondere Mehrwertsteuer) wahrscheinlich sind.",
+        "question_asked": "Sandra Maischberger fragt Winkel, ob er für eine Spritpreisbremse (wie Klingbeil fordert) eintritt und ob die Mehrwertsteuer erhöht wird, nachdem Presseberichte das vermuten.",
+        "question_intent": "Maischberger wollte wissen, wie Winkel / die Union zu Preisbremsen und Steuererhöhungen steht.",
+        "position": "Winkel lehnt Preisdämpfung durch staatliche Preisfestlegung ab. Stattdessen schlägt er vor, den 'riesigen Steueranteil' am Spritpreis kurzfristig zu senken – eine Maßnahme, die die Bundesregierung umsetzen könne. Als längerfristige Strategie nennt er auch Kartellrecht-Maßnahmen. Zur Mehrwertsteuer erklärt er deutlich: 'Ich bin nicht dafür und es wird auch nicht so kommen, weil wir in Deutschland generell uns darauf verständigt haben, die Regierungsparteien insbesondere, dass wir eine umfassendere Reform machen.' Er betont, Steuern zu erhöhen wäre das falsche Signal angesichts einer Wirtschaftsflaute; stattdessen sei 'Mut zur Reform' nötig, besonders im Sozialversicherungssystem, das 90% der Wähler in Rheinland-Pfalz reformiert sehen wollen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet beide Teile der Frage konkret: Er lehnt Preisbremsen ab (mit kurzfristiger Alternative: Steuersenkung), verneint Mehrwertsteuer-Erhöhung und begründet dies mit Reformplanung. Seine Aussage zu Mehrwertsteuer ist ein implizites Zusprechen Merz' Reformwille, dessen Umsetzung er für Gebot der Stunde hält.",
+        "quotes": [
+          {
+            "text": "Wenn Sie ein kurzfristiges heißwirksames Signal setzen wollen, müssen Sie den riesigen Steueranteil senken am Spritpreis. Das können Sie machen.",
+            "timestamp": "00:30:51",
+            "context": "Winkel schlägt Steuersenkung statt Preisbremse vor."
+          },
+          {
+            "text": "Ich bin nicht dafür und es wird auch nicht so kommen, weil wir in Deutschland generell uns darauf verständigt haben, die Regierungsparteien insbesondere, dass wir eine umfassendere Reform machen in diesem Land.",
+            "timestamp": "00:31:54",
+            "context": "Winkel verneint Mehrwertsteuer-Erhöhung und bezieht sich auf Reformagenda."
+          }
+        ],
+        "concrete_statements": [
+          "Steueranteil am Spritpreis soll gesenkt werden (kurzfristig)",
+          "Kartellrecht-Maßnahmen gegen Preisabsprachen (laufend)",
+          "Mehrwertsteuer wird nicht erhöht (Zusage / Erwartung)",
+          "Umfassende Sozialversicherungsreformen statt Steuererhöhungen"
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Steuerpolitik",
+          "Wirtschaftsstabilisierung",
+          "Energiekrise"
+        ]
+      },
+      {
+        "title": "Renteneintrittsalter und demografischer Wandel",
+        "timestamp_range": "00:32:57 - 00:39:47",
+        "theme_description": "Debatte über die Erhöhung des Renteneintrittsalters als Teil von Sozialversicherungsreformen, Konflikt zwischen Jüngeren und älteren Beschäftigten.",
+        "question_asked": "Sandra Maischberger fragt Winkel nach seinem Streitpunkt mit der eigenen Partei (Karl-Josef Laumann, NRW-Arbeitsminister, lehnt Renteneintrittsalter-Erhöhung ab), und später, wie mehrheitsfähig Winkels Position ist.",
+        "question_intent": "Maischberger wollte Winkel auffordern, seinen eigenen Parteikonflikt zu Rentenreform zu erklären und zu bewerten, ob er damit isoliert steht.",
+        "position": "Winkel verweist auf unterschiedliche Lebensarbeitsbedingungen (Schichtarbeit vs. Homeoffice) als Argument gegen pauschale Altersgrenzerhöhung, betont aber: 'den Nachhaltigkeitsfaktor wieder einführen' (2004 von Ulla Schmidt eingeführt), der drei Säulen des Systems (Beitragssatz, Steuerzuschuss, Rentenniveau) gleichermaßen belastet – nicht durch Rentenkürzungen, sondern durch langsameres Rentenwachstum. Sein Kern-Argument: 'Das ist ein fairer Deal.' Er sieht diesen Faktor als zentrale Lösung, da SPD ihn unter Druck abgeschafft habe. In der Konfrontation mit Göring-Eckardt (die Rentenniveaustabilität fordert, besonders für Ostdeutschland) wird Winkel kritisch: Er deutet an, dass Göring-Eckardts Position alle Lasten auf Jüngere abwälzt ('Also nur auf Kosten der jungen Generation. Das ist fair.'), worauf Göring-Eckardt widerspricht. Winkel hält dagegen: 'Einer muss es ja bezahlen' und betont Generationengerechtigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel beantwortet Maischbergers erste Frage (Parteikonflikt mit Laumann) indirekt, indem er Laumanns Position würdigt, aber dann zu seiner eigenen Reformlogik wechselt (Nachhaltigkeitsfaktor statt Altersgrenzerhöhung). Zur Mehrheitsfähigkeit antwortet er nicht direkt, sondern argumentiert, dass nach den Landtagswahlen ('Reform-Lockdown') nun die Zeit reif sei. Er adressiert Maischbergers Frage nach Isolierung nur implizit.",
+        "quotes": [
+          {
+            "text": "Was wir machen müssen im Rentensystem, ist v.a. den Nachhaltigkeitsfaktor wieder einzuführen. Der wurde 2004 von Ulla Schmidt eingeführt. Sie hat damals gesehen, wir haben ein riesiges demografisches Problem Anfang der Dreißigerjahre. Wenn es eine Dysbalance gibt, dann gibt es Mehrkosten, weil es mehr Renten gibt. Und die Kosten schultern 3 Schultern gleichermaßen.",
+            "timestamp": "00:36:07",
+            "context": "Winkel erklärt sein Kernkonzept zur Rentensystem-Reform statt Altersgrenzerhöhung."
+          },
+          {
+            "text": "Gegen die ersten beiden Punkte habe ich nichts. Aber der 3. Punkt ist, dass auch die Rentnerinnen und Rentner einen kleinen Anteil tragen. Nicht, indem die Renten gekürzt werden. Sondern weil sie langsamer steigen. Das ist ein fairer Deal.",
+            "timestamp": "00:36:37",
+            "context": "Winkel verteidigt seinen Reformvorschlag als generationenübergreifend gerecht."
+          }
+        ],
+        "concrete_statements": [
+          "Nachhaltigkeitsfaktor (2004-Modell Ulla Schmidt) wieder einführen, nicht Altersgrenzerhöhung",
+          "Rentenwachstum verlangsamen statt Rentenkürzung (Last auf alle drei Säulen verteilen)",
+          "SPD hat diesen Faktor unter Druck abgeschafft – muss wieder rein",
+          "Generationengerechtigkeit: alle müssen einen Anteil tragen, nicht nur Jüngere"
+        ],
+        "related_bundestag_topics": [
+          "Rentensystem",
+          "Demografischer Wandel",
+          "Sozialversicherungen",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Sondervermögen für Verteidigung und Klimafonds",
+        "timestamp_range": "00:40:18 - 00:40:50",
+        "theme_description": "Rückblick auf das 2024-Sondervermögen (500 Mrd. Euro) von Ampel/Grüne und Frage, ob es bereut wird.",
+        "question_asked": "Sandra Maischberger fragt Katrin Göring-Eckardt und Winkel, ob sie es bereuen, letztes Jahr gemeinsam das Sondervermögen beschlossen zu haben.",
+        "question_intent": "Maischberger wollte wissen, ob die Grünen und CDU/CSU das 500-Mrd.-Paket rückblickend als richtig oder falsch bewerten.",
+        "position": "Winkel verweigert direkt eine Bewertung des Sondervermögens, da er 2024 kein Abgeordneter war ('Ich habe das Sondervermögen nicht beschlossen, weil ich kein Abgeordneter war.'). Aber hypothetisch: 'Wenn ich einer gewesen wäre, würde ich es jedenfalls für den Teil Infrastruktur sicher bereuen.' Er kritisiert, dass statt für Infrastruktur (Teil des ursprünglichen Plans) das Geld in den Sozialhaushalt geflossen sei ('Pustekuchen') und sieht dies als 'nicht respektvoll gegenüber der jungen Generation'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel adressiert die Frage technisch korrekt (war nicht dabei), weicht aber inhaltlich aus, indem er nur einen hypothetischen Infrastruktur-Bereuungsgrund nennt, statt sich zu den tatsächlich beschlossenen Verteidigungs-/Klimafonds zu äußern. Göring-Eckardt bekennt sich dazu; Winkel kritisiert implizit die Umleitung.",
+        "quotes": [
+          {
+            "text": "Ich habe das Sondervermögen nicht beschlossen, weil ich kein Abgeordneter war. Wenn ich einer gewesen wäre, würde ich es jedenfalls für den Teil Infrastruktur sicher bereuen. Wir haben gesagt, wir geben 500 Milliarden aus. Und jetzt kommt raus, Pustekuchen. Das geht in den Sozialhaushalt.",
+            "timestamp": "00:40:50",
+            "context": "Winkel kritisiert die Mittelverwendung des Sondervermögens statt dessen Grundsatz."
+          }
+        ],
+        "concrete_statements": [
+          "Hätte als Abgeordneter für Infrastruktur-Teil bereut",
+          "Kritik: Mittel sind nicht in Infrastruktur, sondern Sozialhaushalt geflossen",
+          "Nicht respektvoll gegenüber junge Generation"
+        ],
+        "related_bundestag_topics": [
+          "Sondervermögen",
+          "Haushaltspolitik",
+          "Infrastruktur",
+          "Verteidigungsbudget"
+        ]
+      },
+      {
+        "title": "Social-Media-Verbot für Kinder und Jugendliche",
+        "timestamp_range": "00:41:21 - 00:41:51",
+        "theme_description": "Schnellfrage zu einem möglichen Social-Media-Verbot für Minderheiten nach Maischbergers Frageliste.",
+        "question_asked": "Sandra Maischberger fragt aus ihrer Frageliste: 'Braucht es ein Social-Media-Verbot für Jugendliche?' Winkel antwortet, Göring-Eckardt hinterher.",
+        "question_intent": "Maischberger wollte schnelle Positionierung zu Social-Media-Regulation.",
+        "position": "Winkel differenziert: 'Nein, aber für Kinder.' Er betont: 'Das ist eine entscheidende Differenzierung. Bis welches Alter? Bis 14 finde ich kann man das diskutieren. Aber ab 14 nicht mehr.' Implizit argumentiert er damit für Altersabhängigkeit und gegen pauschale Jugendlichen-Verbote.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet die Frage direkt und präzise mit einer Alters-Differenzierung, die zeigt, dass er die Frage verstanden hat und eine klare Position vertritt – nicht pro Jugendlichen-Verbot, sondern pro Kinder-Schutz bis 14.",
+        "quotes": [
+          {
+            "text": "Nein, aber für Kinder. Das ist eine entscheidende Differenzierung. Bis 14 finde ich kann man das diskutieren. Aber ab 14 nicht mehr.",
+            "timestamp": "00:41:51",
+            "context": "Winkel gibt seine Position zu Social-Media-Regulation."
+          }
+        ],
+        "concrete_statements": [
+          "Kein Social-Media-Verbot für Jugendliche (ab 14)",
+          "Aber Verbot/Regulation für Kinder unter 14 sollte diskutiert werden"
+        ],
+        "related_bundestag_topics": [
+          "Medienpolitik",
+          "Jugendschutz",
+          "Digitale Gesellschaft"
+        ]
+      },
+      {
+        "title": "Brandmauer zur AfD",
+        "timestamp_range": "00:41:51 - 00:42:22",
+        "theme_description": "Schnellfrage zur Notwendigkeit einer strikten Brandmauer zwischen Union und AfD.",
+        "question_asked": "Sandra Maischberger fragt aus ihrer Frageliste: 'Muss es eine strikte Brandmauer zur AfD geben?' Beide antworten.",
+        "question_intent": "Maischberger wollte schnelle Feststellung der Position zur AfD-Abgrenzung.",
+        "position": "Winkel antwortet einfach: 'Ja.' – Göring-Eckardt antwortet ebenso: 'Ja.' Sie sind sich einig.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Winkel beantwortet die Ja-Nein-Frage direkt und eindeutig. Keine weitere Begründung nötig; die Antwort ist klar.",
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:42:22",
+            "context": "Winkels einfache Antwort zur Brandmauer-Frage."
+          }
+        ],
+        "concrete_statements": [
+          "Strikte Brandmauer zur AfD – ja"
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "Abgrenzung rechtsextrem",
+          "Koalitionsfähigkeit"
+        ]
+      },
+      {
+        "title": "Iran-Krieg und Völkerrecht",
+        "timestamp_range": "00:42:22 - 00:43:55",
+        "theme_description": "Frage, ob der Krieg im Iran völkerrechtswidrig ist, und Bewertung der Außenpolitik des Bundespräsidenten.",
+        "question_asked": "Sandra Maischberger fragt: 'Ist der Krieg im Iran völkerrechtswidrig?' und später: 'Ist es richtig, dass der Bundespräsident das so deutlich sagt?' (bezüglich der völkerrechtswidrig-Feststellung).",
+        "question_intent": "Maischberger wollte Winkel und Göring-Eckardt zu ihrer völkerrechtlichen Einschätzung und zur Rolle des Bundespräsidenten befragen.",
+        "position": "Winkel antwortet zunächst ausweichend: 'Das Völkerrecht schützt eben genauso Diktatoren wie Demokratien, das ist das große Problem. Aber es ist kein klares Ja oder Nein.' Er überwindet seine Zurückhaltung dann und stimmt Göring-Eckardt zu: 'Das stimmt, ja.' Zur Frage, ob es richtig ist, dass der Bundespräsident sich so pointiert äußert, antwortet Winkel skeptisch: 'Mich wundert, dass der Bundespräsident sich auf einmal so pointiert äußert. Das hat er bei vielen anderen wichtigen Fragen... Das hat man vermisst.' Er nimmt damit eine positive Bemerkung Göring-Eckardts auf, widerlegt sie aber implizit: Zurückhaltung sei beim Bundespräsidenten 'angesagt', auch wenn 'er es trotzdem machen [darf].'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Winkel adressiert die erste Frage (Völkerrechtswidrigkeit) ausweichend mit einer grundsätzlichen Kritik am Völkerrecht selbst, lenkt dann ab. Bei der zweiten Frage widerlegt er implizit seine Zustimmung: Er kritisiert die Unnachgiebigkeit des Bundespräsidenten in anderen Fällen. Er antwortet also nicht wirklich ja/nein zu 'ist es richtig', sondern artikuliert Verunsicherung.",
+        "quotes": [
+          {
+            "text": "Das Völkerrecht schützt eben genauso Diktatoren wie Demokratien, das ist das große Problem. Aber es ist kein klares Ja oder Nein.",
+            "timestamp": "00:42:54",
+            "context": "Winkel weicht der direkten völkerrechtlichen Frage aus."
+          },
+          {
+            "text": "Mich wundert, dass der Bundespräsident sich auf einmal so pointiert äußert. Das hat er bei vielen anderen wichtigen Fragen... Das hat man vermisst. Deswegen wundert mich das. Eigentlich ist Zurückhaltung beim Bundespräsidenten angesagt.",
+            "timestamp": "00:43:55",
+            "context": "Winkel kritisiert die Inkonsistenz des Bundespräsidenten – nicht die Iran-Aussage selbst, sondern seine Selektivität."
+          }
+        ],
+        "concrete_statements": [
+          "Völkerrecht schützt Diktatoren wie Demokratien – Problem des Systems",
+          "Bundespräsident sollte Zurückhaltung üben (auch wenn rechtlich erlaubt)",
+          "Kritik an Selektivität von Bundespräsident: andere wichtige Fragen unbeantwortet"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Völkerrecht",
+          "Iran",
+          "Bundespräsident",
+          "Diplomatie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Nachhaltigkeitsfaktor wurde 2004 von Ulla Schmidt eingeführt",
+        "timestamp": "00:36:07"
+      },
+      {
+        "claim": "Der Nachhaltigkeitsfaktor wurde auf Drängen der SPD abgeschafft",
+        "timestamp": "00:36:37"
+      },
+      {
+        "claim": "Frankreich gibt 450 Milliarden Euro für Atomenergie aus",
+        "timestamp": "00:27:45"
+      },
+      {
+        "claim": "Die deutsche Energiewende hat über 500 Milliarden Euro gekostet an Subvention",
+        "timestamp": "00:27:45"
+      },
+      {
+        "claim": "90% der Menschen in Rheinland-Pfalz erwarten klare Entscheidungen bei Reformen der Sozialversicherung",
+        "timestamp": "00:32:25"
+      }
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8xMzZjMjdmYS1jYzQ1LTQ0ZDgtOWI5MS00ZWE4MjViZjk5ZDdfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-01-25",
+    "politician": "Boris Pistorius",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "838b87d7c44b150a",
+    "transcript_chars": 37574,
+    "caption_lines": 1400,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 16095,
+    "tokens_out": 7451,
+    "cost_usd": 0.02134,
+    "quote_validation": {
+      "valid_exact": 7,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-05T13:37:47.886Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bundesverteidigungsminister Boris Pistorius diskutiert in der Sendung von Caren Miosga die geopolitischen Herausforderungen durch Donald Trumps Politik und Putins Krieg. Er wirkt sachlich und gewogen, betont europäische Handlungsfähigkeit statt Angst und versucht, Optimismus mit realistischen Warnungen zu verbinden.",
+    "themes": [
+      {
+        "title": "Grönland-Krise und NATO-Geschlossenheit",
+        "timestamp_range": "00:02:06 - 00:05:12",
+        "theme_description": "Caren Miosga fragt, wie erleichtert Pistorius ist, dass Trump Grönland nicht militärisch einnehmen will, und ob Grönland territoriale Sicherheit hat.",
+        "question_asked": "Caren Miosga fragt Pistorius, wie erleichtert er ist, dass Trump Grönland nicht einnehmen will, und ob die Grönländer und Dänen sicher sein können, dass ihre territoriale Integrität unversehrt bleibt.",
+        "question_intent": "Miosga möchte wissen, wie sehr die Trump-Administration eine echte Bedrohung für NATO-Territorium darstellt und wie stabil die NATO-Zusicherungen sind.",
+        "position": "Pistorius betont, dass er die Eskalation nie erwartet hat und dass das \"Abkommen\" nicht zwischen formalen Parteien zustande kam. Das NATO-Gespräch hatte zum Ergebnis, dass europäische NATO-Partner ihr Engagement in der Arktis ausbauen sollen – genau das, was die EU seit Monaten propagiert. Pistorius sieht darin keine Sicherheitsbedrohung, sondern Bestätigung bestehender europäischer Sicherheitspartnerschaft. Er betont: \"Grönland, das muss man sich in Erinnerung rufen, ist als Teil von Dänemark NATO-Gebiet.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Pistorius adressiert die Frage der territorialen Integrität indirekt, indem er das Abkommen als unkritisch einordnet und auf bestehende NATO-Verantwortung verweist. Jedoch vermeidet er eine klare Aussage zur Garantie der territorialen Sicherheit angesichts Trumps vorangegangener Besitzansprüche – eine direkte Antwort hätte mehr Klarheit geben können.",
+        "concrete_statements": [
+          "Wir sind bereit, unseren Beitrag zu erhöhen als NATO-Partner",
+          "Wir können von Island aus operieren zusammen mit anderen NATO-Staaten",
+          "Wir machen alles im Konzert mit der NATO"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist eine gute Frage. Die Woche hat gezeigt, wie turbulent die Ereignisse sich überschlagen. Bin ich erleichtert? Ich hab's nie erwartet.",
+            "timestamp": "00:02:06",
+            "context": "Caren Miosga fragt, wie erleichtert Pistorius ist, dass Trump Grönland nicht einnehmen will."
+          },
+          {
+            "text": "Grönland, das muss man sich in Erinnerung rufen, ist als Teil von Dänemark NATO-Gebiet. Es war damit immer Auftrag der NATO-Partner.",
+            "timestamp": "00:04:42",
+            "context": "Pistorius unterstreicht die rechtliche und militärische Realität von Grönlands NATO-Status."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnisverpflichtung",
+          "Arktische Sicherheit",
+          "Deutsches Militärengagement"
+        ]
+      },
+      {
+        "title": "Bundeswehr-Erkunden­dungsmission und Eskalationsvorwurf",
+        "timestamp_range": "00:05:43 - 00:06:45",
+        "theme_description": "Caren Miosga wirft Pistorius vor, dass eine NATO-Erkundungsmission mit Bundeswehr-Beteiligung in Grönland Trump provoziert hat und zu seinen Strafzölle-Ankündigungen führte.",
+        "question_asked": "Caren Miosga fragt Pistorius direkt, ob er mit anderen NATO-Staaten durch die Entsendung von 15 Bundeswehrsoldaten zur Erkundungsmission nach Grönland zur Eskalation beigetragen hat, und ob sich das \"gelohnt\" hat.",
+        "question_intent": "Miosga möchte Pistorius dazu bringen, zu zugeben, dass die deutsche Militäraktion provokativ wirkte und unbeabsichtigte Konsequenzen (Zölle) auslöste.",
+        "position": "Pistorius lehnt ab, dass die Mission zur Eskalation beitrug. Er argumentiert, die Aktion war ein Statement europäischer Verantwortung in der Arktis und war mit allen NATO-Partnern koordiniert. Die Zölle waren seiner Meinung nach nicht kausal mit der Mission verbunden, sondern resultierten aus einem \"Missverständnis in Washington\". Die Mission war nicht symbolisch gegen jemanden gerichtet, sondern eine Solidaritätsbekundung für die Dänen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Pistorius beantwortet nicht die Kernfrage (ob die Mission provokativ war), sondern verlagert den Fokus auf die Legitimität der Mission selbst und deklariert die Zölle als unabhängiges Missverständnis. Er wendet die Kritik ins Positive um.",
+        "evasion_note": "Pistorius vermeidet anzuerkennen, dass auch gut gemeinte Missionen unbeabsichtigte Reaktionen auslösen können.",
+        "concrete_statements": [
+          "Wir haben nichts zur Eskalation beigetragen",
+          "Es war abgestimmt unter den NATO-Partnern",
+          "Dass die Strafzölle zurückgenommen worden sind zeigt, dass es ein Missverständnis in Washington gegeben hat"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben nichts zur Eskalation beigetragen. Im Gegenteil: Wir haben durch unsere Aktion mit anderen NATO-Partnern unterstrichen: Wir sind uns unserer Verantwortung und unserer Pflicht bewusst, auch für die Sicherheit der Arktis einzutreten.",
+            "timestamp": "00:06:14",
+            "context": "Pistorius antwortet auf Miosgas Vorwurf der Provokation durch die Erkundungsmission."
+          },
+          {
+            "text": "Es ging nicht um die symbolische Wirkung gegen jemanden. Es ging darum zu zeigen: Die NATO trägt Verantwortung auf Grönland.",
+            "timestamp": "00:07:15",
+            "context": "Pistorius betont die Absicht der Mission."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Koordination",
+          "Arktische Militärpräsenz",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Trumps Äußerungen zu gefallenen Soldaten",
+        "timestamp_range": "00:07:48 - 00:09:27",
+        "theme_description": "Caren Miosga stellt in Frage, wie Pistorius damit umgeht, dass Trump alliierte Soldaten verunglimpft hat und behauptet, sie hätten sich in Afghanistan abseits der Frontlinie aufgehalten.",
+        "question_asked": "Caren Miosga fragt Pistorius, ob es \"wieder gut macht\", dass Trump gefallene Soldaten verunglimpft, auch Bundeswehrsoldaten, nachdem er die Verlässlichkeit der NATO angezweifelt hat.",
+        "question_intent": "Miosga möchte, dass Pistorius klar Stellung bezieht gegen Trumps Beleidigung von Kriegsgefallenen und nicht diese Kritik beschönigt.",
+        "position": "Pistorius teilt klare Kritik: Er habe Trumps Äußerung gestern zurückgewiesen und betont, dass \"Respekt gegenseitig erbracht werden\" muss – \"Den muss man sich verdienen. So über gefallene Verbündete zu reden, ist unanständig und respektlos.\" Er verweist darauf, dass der NATO-Bündnisfall 2001 von den USA ausgelöst wurde und alle NATO-Partner unterstützten. Dies nicht anzuerkennen, \"ist schlicht nicht wahr\". Pistorius macht klar, dass man sich \"vor unsere Streitkräfte\" gestellt hat \"und vor die Angehörigen der Gefallenen\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius beantwortet die Frage direkt und substanziell: Er wendet sich klar gegen Trumps Äußerungen, bewertet sie als respektlos und dokumentiert mit Fakten (2001 NATO-Bündnisfall), dass Trumps Vorwurf falsch ist. Er kombiniert Kritik mit Schutz der Streitkräfte und Gefallenen.",
+        "concrete_statements": [
+          "Ich habe das klar zurückgewiesen",
+          "Respekt muss gegenseitig erbracht werden. Den muss man sich verdienen",
+          "So über gefallene Verbündete zu reden, ist unanständig und respektlos",
+          "Das war bisher der einzige Bündnisfall der NATO. Er wurde 2001 von den USA ausgelöst. Alle standen an der Seite der USA."
+        ],
+        "quotes": [
+          {
+            "text": "So über gefallene Verbündete zu reden, ist unanständig und respektlos. Das haben wir zum Ausdruck gebracht.",
+            "timestamp": "00:08:20",
+            "context": "Pistorius antwortet auf die Frage, wie er mit Trumps Verunglimpfung gefallener Soldaten umgeht."
+          },
+          {
+            "text": "Das war bisher der einzige Bündnisfall der NATO. Er wurde 2001 von den USA ausgelöst. Alle standen an der Seite der USA. Etwas anderes zu behaupten, ist schlicht nicht wahr.",
+            "timestamp": "00:08:50",
+            "context": "Pistorius widerlegt Trumps Vorwurf der mangelnden Unterstützung mit Fakten zum Bündnisfall."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Einsatz",
+          "NATO-Bündnisverpflichtung",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Vertrauen in Trump und NATO-Verlässlichkeit",
+        "timestamp_range": "00:11:00 - 00:14:08",
+        "theme_description": "Caren Miosga zitiert Zelenskyj, der zweifelt, ob die NATO zuverlässig eintritt, wenn Russland NATO-Mitglieder angreift, und fragt Pistorius nach seinem Vertrauen in Trump.",
+        "question_asked": "Caren Miosga stellt fest, dass Zelenskyj hypothetisch fragte, wer antworten würde, wenn Russland Litauen oder Polen angreift, und fragt Pistorius direkt: \"Wie sehr vertrauen Sie einem Präsidenten, der vergisst, dass wir ihm beigestanden haben? Der Gefallene verunglimpft? Der sich über befreundete Staatschefs lustig macht?\"",
+        "question_intent": "Miosga will, dass Pistorius sein Vertrauen in Trump und die NATO-Beistandsgarantie einschätzt.",
+        "position": "Pistorius antwortet ehrlich: \"Das weiß ich nicht.\" Er anerkennt eine Realitätsverschiebung: \"Wir können uns auf nichts mehr so verlassen, wie wir das 70 Jahre tun konnten. Das ist die Realität.\" Aber er lehnt ab, in Angst zu handeln: \"Es hilft nichts, auf einen Präsidenten einzugehen, für den Respekt keine Priorität hat. Wir sollten auf uns schauen.\" Er setzt auf Taten, nicht Worte: \"Taten zählen. Die Defense Strategy zählt. Nicht Worte, die über Truth Social verbreitet werden.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius antwortet direkt mit Ehrlichkeit: Er bekennt Unsicherheit ein, anerkennt die veränderte Sicherheitslage und legt ein Konzept vor (auf Taten statt Worte achten, auf sich selbst schauen). Das ist eine substanzielle Position, nicht ausweichend.",
+        "concrete_statements": [
+          "Das weiß ich nicht.",
+          "Wir können uns auf nichts mehr so verlassen, wie wir das 70 Jahre tun konnten",
+          "Es hilft nichts, auf einen Präsidenten einzugehen, für den Respekt keine Priorität hat. Wir sollten auf uns schauen",
+          "Taten zählen. Die Defense Strategy zählt. Nicht Worte, die über Truth Social verbreitet werden"
+        ],
+        "quotes": [
+          {
+            "text": "Das weiß ich nicht. Wir können uns auf nichts mehr so verlassen, wie wir das 70 Jahre tun konnten. Das ist die Realität.",
+            "timestamp": "00:13:36",
+            "context": "Pistorius antwortet auf Miosgas Frage, wie sehr er Trump vertraut."
+          },
+          {
+            "text": "Es hilft nichts, auf einen Präsidenten einzugehen, für den Respekt keine Priorität hat. Wir sollten auf uns schauen. Alles andere sollten wir kommentieren, wenn es nötig ist wie im Falle Afghanistans. Und bei anderen Aussagen auch weghören.",
+            "timestamp": "00:13:36",
+            "context": "Pistorius legt dar, wie Europa mit Trump umgehen sollte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnisverpflichtung",
+          "Deutsch-amerikanische Beziehungen",
+          "Europäische Verteidigungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Europäische Verteidigungsfähigkeit ohne USA",
+        "timestamp_range": "00:11:00 - 00:12:34",
+        "theme_description": "Caren Miosga interpretiert Zelenskyjs Rede als Aufruf zu europäischer Unabhängigkeit und fragt Pistorius, ob Europa sich selbst verteidigen kann.",
+        "question_asked": "Caren Miosga bezieht sich auf Zelenskyjs hypothetische Frage, wer antwortet, wenn die USA nicht eingreifen, und fragt indirekt, ob Europa konventionelle Verteidigungsfähigkeit ohne USA hat.",
+        "question_intent": "Miosga möchte wissen, ob Pistorius Zelenskyjs Sorge um fehlende europäische Autonomie teilt.",
+        "position": "Pistorius teilt Zelenskyjs Einschätzung teilweise: \"Ich teile seine Einschätzung, dass Europa mehr tun könnte.\" Aber er gibt Entwarnung: \"Den Schuh muss sich Deutschland nicht anziehen. Aber wir sind in der Lage, uns konventionell zu verteidigen. Wir werden immer besser.\" Er betont das bestehende Bündnis mit den USA und zeigt Optimismus: \"Ich bin optimistischer. Wir könnten reagieren.\" Sein Fazit: Europa sollte auf Strukturveränderung und mehr Investitionen setzen, nicht auf ein rein europäisches Verteidigungsbündnis.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Pistorius adressiert die Kernfrage (europäische Fähigkeit) mit ja, betont aber gleichzeitig die fortdauernde Allianz mit den USA und weicht Zelenskyjs Implication einer notwendigen Unabhängigkeit teilweise aus. Seine Antwort ist eher defensiv als proaktiv zur Europäischen Autonomie.",
+        "concrete_statements": [
+          "Ich teile seine Einschätzung, dass Europa mehr tun könnte",
+          "Wir sind in der Lage, uns konventionell zu verteidigen",
+          "Wir haben nach wie vor ein Bündnis mit den Amerikanern",
+          "Wir sollten mehr in Verteidigung investieren. Die Strukturen verändern. Da haben wir viel Zeit verloren"
+        ],
+        "quotes": [
+          {
+            "text": "Ich teile seine Einschätzung, dass Europa mehr tun könnte. Den Schuh muss sich Deutschland nicht anziehen. Aber wir sind in der Lage, uns konventionell zu verteidigen.",
+            "timestamp": "00:12:04",
+            "context": "Pistorius antwortet auf Zelenskyjs Forderung nach europäischer Unabhängigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Verteidigungsfähigkeit",
+          "Rüstungsausgaben",
+          "NATO-Bündnisverpflichtung"
+        ]
+      },
+      {
+        "title": "Deutschlands Kriegstüchtigkeit bis 2029",
+        "timestamp_range": "00:14:38 - 00:15:40",
+        "theme_description": "Caren Miosga erinnert an Pistoriuss früheres Versprechen, Deutschland müsse bis 2029 kriegstüchtig sein, und fragt, ob das zu schaffen ist.",
+        "question_asked": "Caren Miosga fragt Pistorius, ob Deutschland es schafft, bis 2029 kriegstüchtig zu sein, wie Pistorius früher beteuert hat.",
+        "question_intent": "Miosga möchte wissen, ob das Ziel noch realistisch ist und wie weit Deutschland bereits ist.",
+        "position": "Pistorius zeigt Optimismus: \"Wir sind auf exzellentem Wege.\" Er nennt Fortschritte: Beschaffung hochgefahren, Aufwuchszahlen der Bundeswehr erfreulich. Er erklärt, dass 2029 als Zeitpunkt selbst gesetzt wurde, weil Experten diesen Zeitpunkt als den nennen, zu dem Russland möglicherweise angriffsfähig sein könnte. Allerdings räumt er ein, man könne Kriegstüchtigkeit nicht quantifizieren, und warnt: \"Wenn man 30 Jahre aufholen muss... Aber wir können nicht zaubern.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius antwortet direkt und mit konkreten Indikatoren (Beschaffung, Aufwuchszahlen), adressiert aber auch die Grenzen der Messbarkeit und die Realität des Aufholbedarfs. Eine substanzielle, eher optimistische mit realistischen Caveats versehene Position.",
+        "concrete_statements": [
+          "Wir sind auf exzellentem Wege",
+          "Wir haben die Beschaffung hochgefahren",
+          "Die Aufwuchszahlen der Bundeswehr sind erfreulich",
+          "2029 haben wir als Zeitpunkt selber gesetzt"
+        ],
+        "quotes": [
+          {
+            "text": "Wir sind auf exzellentem Wege. Wir haben die Beschaffung hochgefahren. Die Aufwuchszahlen der Bundeswehr sind erfreulich. Ich bin optimistisch.",
+            "timestamp": "00:14:38",
+            "context": "Pistorius beantwortet die Frage zur Kriegstüchtigkeit bis 2029."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsausgaben",
+          "Bundeswehr-Ausrüstung",
+          "Verteidigungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Ukraine-Verhandlungen und Putins Kriegsziele",
+        "timestamp_range": "00:19:54 - 00:22:28",
+        "theme_description": "Die Sendung diskutiert Verhandlungen zwischen Ukrainern und Russen in Abu Dhabi und ob Putin an einem Waffenstillstand interessiert ist.",
+        "question_asked": "Indirekt wird Pistorius (durch den Kontext der Sendung und später durch Schwarzer und Röttgen) eingeladen, zu kommentieren, ob Verhandlungen ohne Ergebnis sinnvoll sind und wie es mit Putins Kriegsziele aussieht.",
+        "question_intent": "Die Gäste wollen ausloten, ob es realistisch ist, dass Putin verhandeln will, oder ob er auf militärischen Sieg setzt.",
+        "position": "Pistorius vertraut der militärhistorischen Logik: \"Es kann nur einen Waffenstillstand geben, wenn er damit mehr erreichen kann als mit dem Krieg.\" Er beobachtet: \"Während der Verhandlungen fliegt er massive Luftangriffe. Er hält den Druck aufrecht im tiefsten Winter. Er glaubt, dass er den Abnutzungskrieg gewinnt.\" Aus der Militärgeschichte: \"Wir haben dann einen Waffenstillstand, wenn beide Seiten sagen, die Weiterführung des Krieges bringt uns nichts.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius gibt eine substanzielle, auf Militärgeschichte basierende Analyse: Er erklärt die logische Bedingung für Waffenstillstand (beidseitiges Interesse) und diagnostiziert, dass Putin diese Bedingung derzeit nicht erfüllt sieht. Das ist eine klare Position.",
+        "concrete_statements": [
+          "Es kann nur einen Waffenstillstand geben, wenn er damit mehr erreichen kann als mit dem Krieg",
+          "Er glaubt, dass er den Abnutzungskrieg gewinnt",
+          "Wir haben einen Waffenstillstand, wenn beide Seiten sagen, die Weiterführung des Krieges bringt uns nichts"
+        ],
+        "quotes": [
+          {
+            "text": "Es kann nur einen Waffenstillstand geben, wenn er damit mehr erreichen kann als mit dem Krieg. Während der Verhandlungen fliegt er massive Luftangriffe. Er hält den Druck aufrecht im tiefsten Winter. Er glaubt, dass er den Abnutzungskrieg gewinnt.",
+            "timestamp": "00:21:57",
+            "context": "Pistorius analysiert Putins Haltung zu Waffenstillstandsverhandlungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Russland-Sanktionen",
+          "Kriegsfinanzierung"
+        ]
+      },
+      {
+        "title": "Optimismus trotz Unsicherheit",
+        "timestamp_range": "00:58:00 - 00:58:30",
+        "theme_description": "Am Ende des Gesprächs fragt Caren Miosga Pistorius nach seinem früheren Zitat, der letzte Sommer im Frieden könne sein, und ob er noch so pessimistisch ist.",
+        "question_asked": "Caren Miosga erinnert Pistorius an sein früheres Zitat, dass der letzte Sommer im Frieden sein könnte, und fragt, ob er immer noch so pessimistisch ist.",
+        "question_intent": "Miosga möchte wissen, ob Pistorius seine Gefahrenwarnung revidiert hat oder ob die Situation sich gegenüber dem Vorjahr verbessert hat.",
+        "position": "Pistorius revidiert sein Statement teilweise: \"Ich bin jetzt optimistischer. Das habe ich gesagt nach der Rede von J.D. Vance. Da hatten wir Angst, dass die NATO überlebt.\" Aber er warnt noch: \"Noch gibt es sie. Noch sind die Atomwaffen hier. Wir haben 3,5 Prozent investiert. Die Ukraine gibt es noch. Da war ich mir im letzten März nicht sicher. Aber wir sind nicht über den Berg. Es kann vor 2029 zu einem Krieg mit Russland kommen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius antwortet direkt auf das frühere Zitat und erklärt, warum er pessimistischer war (Angst um NATO-Bestand). Er zeigt, wie sich die Situation verbessert hat (NATO existiert, Ukraine verteidigt sich), behält aber die Warnung bei. Das ist eine konsistente, nuancierte Position.",
+        "concrete_statements": [
+          "Ich bin jetzt optimistischer",
+          "Aber wir sind nicht über den Berg",
+          "Es kann vor 2029 zu einem Krieg mit Russland kommen",
+          "Mein Appell an die Politik: Denkt über die Besoldungsgruppe hinaus"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin jetzt optimistischer. Das habe ich gesagt nach der Rede von J.D. Vance. Da hatten wir Angst, dass die NATO überlebt. Noch gibt es sie. Noch sind die Atomwaffen hier. Wir haben 3,5 Prozent investiert. Die Ukraine gibt es noch. Da war ich mir im letzten März nicht sicher. Aber wir sind nicht über den Berg.",
+            "timestamp": "00:58:00",
+            "context": "Pistorius wird auf sein früheres pessimistisches Zitat angesprochen und revidiert es teilweise."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kriegsgefahr",
+          "Rüstungsausgaben",
+          "Verteidigungsplanung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es gibt die hypothetische Frage, zu welchem Zeitpunkt Russland angriffsfähig sein könnte – 2029",
+        "timestamp": "00:15:08"
+      },
+      {
+        "claim": "Der NATO-Bündnisfall 2001 wurde von den USA ausgelöst",
+        "timestamp": "00:08:50"
+      },
+      {
+        "claim": "Alle NATO-Partner standen nach 2001 an der Seite der USA",
+        "timestamp": "00:08:50"
+      },
+      {
+        "claim": "Die USA haben die National Defense Strategy am Wochenende veröffentlicht, die eine weiterhin zentrale Rolle der USA in der NATO vorsieht",
+        "timestamp": "00:11:32"
+      },
+      {
+        "claim": "Deutschland hat 3,5 Prozent (des BIP) in Rüstung investiert",
+        "timestamp": "00:58:00"
+      }
+    ]
+  }
+}

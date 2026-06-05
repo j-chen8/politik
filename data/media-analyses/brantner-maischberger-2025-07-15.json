@@ -1,0 +1,350 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNy0xNV8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-07-15",
+    "politician": "Franziska Brantner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "408de06a2194b85f",
+    "transcript_chars": 54670,
+    "caption_lines": 2027,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22133,
+    "tokens_out": 7848,
+    "cost_usd": 0.0245492,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 7
+    },
+    "generated_at": "2026-06-05T12:36:41.565Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Franziska Brantner, Bundesvorsitzende von Bündnis 90/Die Grünen, tritt in der Sendung „Maischberger\" auf und diskutiert mit Dorothee Bär (Bundesministerin für Forschung, Technologie und Raumfahrt) über Koalitionsfragen, Klimapolitik, Forschungsinvestitionen und die gescheiterte Richterwahl für das Bundesverfassungsgericht. Sie wirkt sachlich-kritisch, insbesondere gegenüber den finanzpolitischen Entscheidungen der Regierung und der Klimastrategie, betont aber auch ihre Bereitschaft zur konstruktiven Zusammenarbeit.",
+    "themes": [
+      {
+        "title": "Beschädigung der Koalition durch Richterwahl-Desaster",
+        "timestamp_range": "00:01:07 - 00:04:24",
+        "theme_description": "Einschätzung, ob und inwiefern die gescheiterte Richterwahl für das Bundesverfassungsgericht die Koalition beschädigt hat.",
+        "question_asked": "Sandra Maischberger fragte Franziska Brantner einleitend, ob die Koalition durch die abgeblasene Richterwahl beschädigt sei.",
+        "question_intent": "Maischberger wollte wissen, wie schwerwiegend die politischen Folgen des Richterwahl-Debakels für die Koalitionsfähigkeit sind.",
+        "position": "Brantner bestätigt, dass die Koalition beschädigt ist, wendet sich aber gegen eine Übertreibung des Vorfalls. Sie kritisiert, dass Kanzler Scholz die Situation heruntergespielt habe ('untrieben'), und betont, dass die Aufgabe des Fraktionsvorsitzenden darin besteht, die zugesagte Mehrheit zusammenzuführen. Sie sieht es als grundlegende Verletzung demokratischer Standards, wenn sich Abgeordnete nach Zusagen ihrer Fraktion mit Zweifeln zurückziehen, ohne diese vorher zu kommunizieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Brantner beantwortet die Frage nach Schaden mit 'ja, aber', gibt aber keine klare Bewertung der Schwere oder konkreter Folgen. Sie konzentriert sich stattdessen auf die Kritik am Verfahren und an Scholz' Kommunikation, weicht also teilweise in die Prozess-Ebene aus.",
+        "concrete_statements": [
+          "Die Koalition ist beschädigt",
+          "Es ist kein Debakel (gegen Stegner)",
+          "Der Kanzler hat untertrieben",
+          "Die Aufgabe des Fraktionsvorsitzenden ist, eine Mehrheit zu bringen"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, sie ist beschädigt, aber es ist kein Debakel.",
+            "timestamp": "00:01:07",
+            "context": "Antwort auf Maischbergers Frage zur Beschädigung der Koalition"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundesverfassungsgericht",
+          "Koalitionsstabilität",
+          "Richterwahl"
+        ]
+      },
+      {
+        "title": "Klimaschutz und technologische Lösungen",
+        "timestamp_range": "00:18:48 - 00:20:53",
+        "theme_description": "Diskussion über die Rolle von Forschung und Technologie bei der Lösung von Klimaschutzaufgaben und Kritik an der Energiepolitik der aktuellen Regierung.",
+        "question_asked": "Sandra Maischberger fragte Franziska Brantner und Dorothee Bär, ob die Klimaschutzfrage am Ende technologisch gelöst wird und in welchem Umfang die Regierung das Klimaneutralitätsziel 2045 verfolgt.",
+        "question_intent": "Maischberger wollte erfahren, ob technologische Innovation der Weg zur Lösung von Klimaproblemen ist und wie verbindlich die Regierungsziele sind.",
+        "position": "Brantner bekennt sich zu technologischen Lösungen, kritisiert aber entscheidend die Energiepolitik von Wirtschaftsministerin Katherina Reiche. Sie wirft der Regierung vor, auf Gas zu setzen, anstatt die erneuerbaren Technologien voranzubringen, die die Ampel-Regierung initiiert habe. Sie warnt vor Technologie-Abwanderung nach China und sieht 'made in Germany' als Benchmark für grüne Technologien. Sie verweist auf die bindende Kraft des Koalitionsvertrags und des Klimaneutralitätsgesetzes.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet substantiell auf beide Fragen: Sie befürwortet technologische Lösungen, kritisiert aber die konkrete Umsetzung durch Reiche und bekräftigt die Verbindlichkeit des 2045-Ziels. Sie mischt Policy-Kritik mit einer klaren Position zu erneuerbaren Energien.",
+        "concrete_statements": [
+          "Diese ganzen Technologien, die gerade vorangebracht werden, die werden wieder abgewürgt, weil Frau Reiche sagt, wir setzen auf Gas",
+          "Das macht mir richtig Sorgen",
+          "Wir werden diese Technologie in 15 Jahren aus China importieren",
+          "Meine Benchmark bleibt made in Germany",
+          "Der Koalitionsvertrag steht. Es ist auch ein Gesetz."
+        ],
+        "quotes": [
+          {
+            "text": "Ich sehe es mit großer Sorge, dass diese Regierung die neuen Technologien gerade wieder abgerückt. Sie setzen auf Cleantech. Und Frau Reiche setzt gleichzeitig nur auf Gas. Da gehen alle Milliarden in zusätzliches Fossiles.",
+            "timestamp": "00:19:21",
+            "context": "Kritik an der Energiewende-Politik unter Reiche"
+          },
+          {
+            "text": "Meine Benchmark bleibt made in Germany. Das kann Deutschland, wenn die Regierung das nicht kaputtmacht.",
+            "timestamp": "00:20:53",
+            "context": "Vision für grüne Technologien 'Made in Germany'"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Grüne Technologien",
+          "Klimaneutralität 2045"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Finanzierung von Strukturausgaben",
+        "timestamp_range": "00:23:27 - 00:25:34",
+        "theme_description": "Debatte über die Finanzierung von Gastro-Steuerentlastung und anderen Ausgaben über Sondervermögen (mit Schulden) statt aus dem regulären Haushalt.",
+        "question_asked": "Dorothee Bär argumentierte, dass im Haushalt kein Geld für zusätzliche Stromsteuersenkungen vorhanden sei; Franziska Brantner widersprach dieser Einschätzung.",
+        "question_intent": "Die Frage zielt auf die Verteilungsgerechtigkeit zwischen Entlastungen für Unternehmen, Restaurants und zukünftigen Generationen ab.",
+        "position": "Brantner kritisiert, dass Ausgaben wie die Gasinfrastruktur (1 Milliarde) aus dem Sondervermögen finanziert werden, was Schulden bedeutet, die zukünftige Generationen tragen müssen. Sie hält es für ungerecht, dass ihre Tochter für Entlastungen wie niedrigere Restaurant-Preise zahlt, während diese über Schuldenfinanzierung ermöglicht werden. Sie argumentiert, dass es bei einer Entscheidung darum gehen muss, ob man sich eine Maßnahme leisten kann, nicht nur ob Geld da ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet direkt auf die implizite Frage nach der Rechtfertigung von Schuldenfinanzierung. Sie benennt konkrete Beispiele (Gasinfrastruktur, Restaurantsteuer) und setzt ein klares Verteilungsgerechtigkeits-Argument dagegen.",
+        "concrete_statements": [
+          "Das ist Quatsch. So viel Geld war noch nie da.",
+          "Diese Ausgaben sind aus dem normalen Haushalt raus und im Sondervermögen. Die werden mit Schulden finanziert.",
+          "Dadurch gibt es 1 Milliarde, die sie für die Gastrosteuer oder die Pendlerpauschale einsetzen kann. Aber dass meine Tochter mal dafür zahlt, dass wir beide billiger ins Restaurant gehen können, finde ich ungerecht.",
+          "Es geht darum, ob es über Schulden finanziert wird oder nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist ja Quatsch. So viel Geld war noch nieder. Das ist on top, das haben wir mit ermöglicht. Wir haben bei der Schuldenmache mitgemacht. Weil der Deal ist, die nächste Generation macht mit, aber dafür kriegen sie ein neues Land.",
+            "timestamp": "00:23:27",
+            "context": "Kritik an der Aussage Bärs, dass kein Geld verfügbar sei"
+          },
+          {
+            "text": "Ich mach ein konkretes Beispiel aus diesem Haushalt. Wir hatten die Gasinfrastruktur geplant. Die hatten wir aus dem normalen Kernhaushalt geplant. 1 Milliarde fast. Diese Ausgaben sind aus dem normalen Haushalt raus und im Sondervermögen. Die werden mit Schulden finanziert.",
+            "timestamp": "00:24:00",
+            "context": "Konkrete Beispiel der Umschichtung von Haushaltsmitteln"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Haushalt 2025-2026",
+          "Sondervermögen"
+        ]
+      },
+      {
+        "title": "Altersarmut von Frauen und Mütterrente",
+        "timestamp_range": "00:25:34 - 00:27:10",
+        "theme_description": "Diskussion über Geschlechtergerechtigkeit in der Rentenpolitik und die Frage, ob die Ausweitung der Mütterrente eine gezielte oder undifferenzierte Maßnahme ist.",
+        "question_asked": "Dorothee Bär verteidigte die Mütterrente-Ausweitung als Anerkennungsleistung für Frauen, die in einer Zeit Kinder bekommen hatten, ohne Rechtsanspruch auf Berufstätigkeit; Brantner widersprach der Umfang und Logik dieser Maßnahme.",
+        "question_intent": "Die Frage zielt auf die Effektivität und Gerechtigkeit von pauschalen versus zielgenauen sozialpolitischen Maßnahmen zur Bekämpfung von Altersarmut.",
+        "position": "Brantner ist grundsätzlich für Maßnahmen gegen Altersarmut von Frauen, kritisiert aber die Mütterrenten-Ausweitung als ineffizient ('Gießkanne'). Sie argumentiert, dass diejenigen, die wirklich in Armut leben und Kinder großgezogen haben, von einer pauschalen Erhöhung (20 Euro) nicht ausreichend profitieren. Sie sieht die fehlende Rentenstrukturreform als grundlegende Verfehlung der Regierung gegenüber jungen Menschen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Brantner adressiert die Gerechtigkeitsfrage, weicht aber auf die Kritik an strukturellen Versäumnissen aus (fehlende Rentenreform). Sie stimmt nicht direkt zur Frage ab, ob Mütterrente ein Fehler ist, sondern kritisiert die Mittel und Wirksamkeit.",
+        "concrete_statements": [
+          "Ich bin der festen Überzeugung, dass wir Altersarmut bei Frauen, und das ist eine echte Herausforderung bekämpfen müssen",
+          "Das, was Sie machen, ist mit der Gießkanne. Aber die, die in der Armut leben und Kinder großgezogen haben, darum geht es.",
+          "Bei der Rente finde ich es unglaublich, dass diese Regierung sagt, wir machen eine große Rentenreform. Dabei wird nur mehr ausgegeben."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin der festen Überzeugung, dass wir Altersarmut bei Frauen, und das ist eine echte Herausforderung... Das, was Sie machen, ist mit der Gießkanne. Aber die, die in der Armut leben und Kinder großgezogen haben, darum geht es.",
+            "timestamp": "00:26:04",
+            "context": "Kritik an der pauschalen Mütterrenten-Erhöhung als Instrument gegen Altersarmut"
+          },
+          {
+            "text": "Bei der Rente finde ich es unglaublich, dass diese Regierung sagt, wir machen eine große Rentenreform. Dabei wird nur mehr ausgegeben. Anstatt irgendwann mal die strukturellen Herausforderungen anzugehen.",
+            "timestamp": "00:26:38",
+            "context": "Kritik an fehlender Rentenstrukturreform"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Altersarmut",
+          "Rentenpolitik"
+        ]
+      },
+      {
+        "title": "Raumfahrt und europäische Souveränität",
+        "timestamp_range": "00:28:46 - 00:30:54",
+        "theme_description": "Würdigung von Raumfahrt-Investitionen und deren Bedeutung für technologische Souveränität Deutschlands und Europas.",
+        "question_asked": "Sandra Maischberger fragte, ob Markus Söder 2018 Weitsicht gezeigt habe, als er für Raumfahrt warb, und bot Brantner die Gelegenheit, dies zu bestätigen.",
+        "question_intent": "Maischberger wollte Brantner die Möglichkeit geben, einen politischen Gegner (Söder/CSU) zu loben, um Geschlossenheit zu zeigen.",
+        "position": "Brantner stimmt zu, dass Raumfahrt extrem wichtig ist. Sie verweist auf Investitionen der Ampel-Regierung unter Habeck in diesem Bereich, einschließlich des ersten deutschen Raketenstarts und der Unterstützung europäischer Raumfahrtagenturen. Sie erwähnt bayerische Startups, die vom Engagement profitiert haben. Sie verbindet Raumfahrt mit Klimaschutz, Ernährungssicherheit und europäischer Unabhängigkeit (z.B. in der Ukraine). Sie betont, dass es ein 'gemeinschaftliches Werk' zwischen CDU (Söder, Bär) und Grünen (Habeck) war.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet vollständig auf die Lob-Einladung, würdigt Söders Weitsicht aber kombiniert dies mit dem Verweis auf Ampel-Leistungen und betont die parteiübergreifende Zusammenarbeit. Sie verbindet das Thema mit größeren Policy-Zielen (Klimaschutz, Souveränität).",
+        "concrete_statements": [
+          "Raumfahrt ist extrem wichtig",
+          "Wir haben in unserem Ministerium deswegen in der Zeit so viel investiert",
+          "Wir haben es auch ermöglicht bei der europäischen Raumfahrtagentur, dass es neue Unternehmen gibt",
+          "Es ist ein gemeinschaftliches Werk von CDU und Grünen"
+        ],
+        "quotes": [
+          {
+            "text": "Raumfahrt ist extrem wichtig. Wir haben in unserem Ministerium deswegen in der Zeit so viel investiert in dieser Zeit. Bei Habeck, und da bin ich stolz drauf.",
+            "timestamp": "00:28:46",
+            "context": "Bestätigung der Bedeutung von Raumfahrt-Investitionen"
+          },
+          {
+            "text": "Es ist wichtig, dass wir souverän sind in Europa und das wird dadurch dafür sorgen können, dass wir weiterhin in einem friedlichen Land leben können. Das hat alles mit der Raumfahrt zu tun.",
+            "timestamp": "00:30:19",
+            "context": "Verbindung von Raumfahrt mit europäischer Souveränität und Sicherheit"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Raumfahrt",
+          "Forschung und Technologie",
+          "Europäische Souveränität"
+        ]
+      },
+      {
+        "title": "Ja/Nein-Fragen zu Klimageld und Digitalsteuer",
+        "timestamp_range": "00:31:25 - 00:32:29",
+        "theme_description": "Klare Positionierungen zu konkreten Politikmaßnahmen: Klimageld und Digitalsteuer für Tech-Konzerne.",
+        "question_asked": "Sandra Maischberger stellte präzise Ja/Nein-Fragen zu (1) Klimageld-Einführung und (2) Digitalsteuer; Brantner sollte unambivalent antworten.",
+        "question_intent": "Maischberger wollte klare, vergleichbare Positionen zwischen Brantner und Bär dokumentieren.",
+        "position": "Zu Klimageld: Brantner antwortet mit 'Ja, ich bin dafür'. Sie kritisiert, dass Klimagelder nicht vom Bürger bezahlt werden (impliziert: progressive Finanzierung). Zu Digitalsteuer: Brantner antwortet 'Ja, absolut richtig und notwendig' und verweist auf Wirtschaftsminister Weimer, der dies gefordert habe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet präzise auf beide Ja/Nein-Fragen mit klarem Ja und begründet ihre Position in beiden Fällen. Sie erfüllt das Format vollständig.",
+        "concrete_statements": [
+          "Ich bin dafür [Klimageld]",
+          "Was mich darüber ärgert, dass wir Klimagelder nicht ein Bürger zahlen",
+          "Ich finde es absolut richtig und notwendig [Digitalsteuer]"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin dafür. Was mich darüber ärgert, dass wir Klimagelder nicht ein Bürger zahlen.",
+            "timestamp": "00:31:56",
+            "context": "Antwort auf Frage zur Einführung eines Klimagelds"
+          },
+          {
+            "text": "ich finde es absolut richtig und notwendig. Herr Weimer aus der Regierung hat es zu Recht gefordert",
+            "timestamp": "00:32:29",
+            "context": "Antwort zur Digitalsteuer für Tech-Konzerne"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Besteuerung",
+          "Digitalwirtschaft"
+        ]
+      },
+      {
+        "title": "Bedauern über Rückzug von Habeck und Werbeblock",
+        "timestamp_range": "00:33:02",
+        "theme_description": "Frage, ob es schade sei, dass Robert Habeck und [Werbeblock] sich aus der deutschen Politik zurückziehen.",
+        "question_asked": "Sandra Maischberger fragte Brantner (Ja/Nein): Ist es schade, dass Habeck und Werbeblock sich aus der deutschen Politik zurückziehen?",
+        "question_intent": "Persönliche Einschätzung zur Bedeutung dieser Akteure für die Grünen und die Regierung.",
+        "position": "Brantner antwortet schlicht mit 'Ja.' Das signalisiert, dass sie den Rückzug dieser Personen für einen Verlust hält.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kurze, eindeutige Antwort auf die Ja/Nein-Frage; Brantner beantwortet sie substanziell, auch wenn die Antwort sehr knapp ausfällt.",
+        "concrete_statements": [
+          "Ja [es ist schade, dass Habeck sich aus der Politik zurückzieht]"
+        ],
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:33:02",
+            "context": "Antwort auf Maischbergers Frage zum Rückzug von Habeck und Werbeblock"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Personalpolitik",
+          "Regierungsbewertung"
+        ]
+      },
+      {
+        "title": "Richterwahl-Ausschuss und Verfahrensgerechtigkeit",
+        "timestamp_range": "00:33:34 - 00:40:12",
+        "theme_description": "Kritik am Verfahren der Richterwahl und der Frage, wann Abgeordnete Bedenken einbringen dürfen, ohne dass Kandidaten beschädigt werden.",
+        "question_asked": "Dorothee Bär argumentierte, dass die Grünen vorab den Kandidaten mitträgten und sich nachträglich nicht davon distanzieren können; Brantner widersprach dieser Charakterisierung.",
+        "question_intent": "Zu klären, ob die Grünen Mitverantwortung für die Kandidaten hatten und ob die nachträgliche Kritik berechtigt oder Verfahrensbruch war.",
+        "position": "Brantner verteidigt das Recht von Abgeordneten, entlang ihres Gewissens rechtzeitig Bedenken einzubringen. Sie argumentiert, dass es einen Konsens geben müsse, dass die Stabilität demokratischer Institutionen wie des Bundesverfassungsgerichts 'über allem steht' — ein Konsens, den die CDU/CSU aufgebrochen habe. Sie kritisiert, dass auch nach der Ratifizierung im Ausschuss (Montag) mit Zweidrittelmehrheit die Kandidatin 'tagelang durch die Manege gezogen' wurde, bevor sie am Freitag nicht gewählt wurde. Sie sieht darin ein 'großes Führungsversagen' — bereits das zweite nach der gescheiterten Kanzlerwahl. Sie betont, dass Fraktionen Kandidaten vor formalen Verfahren sondieren müssen ('zum richtigen Zeitpunkt'), um sie nicht zu beschädigen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet substantiell und differenziert: Sie akzeptiert nicht Bärs Frame, sondern setzt ein Gegen-Argument (institutionelle Stabilität als übergeordnetes Prinzip) und kritisiert konkret das Timing und die Beschädigung der Kandidatin. Sie adressiert die Vorwürfe direkter als durch bloße Ablehnung.",
+        "concrete_statements": [
+          "Es gab in Deutschland mal einen Konsens, dass die Stabilität demokratischer Institutionen wie dem Bundesverfassungsgericht über allem steht. Und diesen Konsens hat die CDU/CSU aufgebrochen.",
+          "Das machen wir alle [Ablehnung von Kandidaten]",
+          "Aber wenn man sich dann geeinigt hat, und noch weiter im Richterwahlausschuss mit Zweidrittelmehrheit dafür gestimmt hat am Montag, dann kann man nicht diese Frau durch die Manege [...] tagelang durch die Manege zu ziehen",
+          "Es ist für mich das 2. Mal ein großes Führungsversagen",
+          "Wenn man das zum falschen Zeitpunkt macht, leidet die Person darunter",
+          "Jeder Abgeordnete hat entlang seines Gewissens rechtzeitig Bedenken einzubringen."
+        ],
+        "quotes": [
+          {
+            "text": "Es gab in Deutschland mal einen Konsens, dass die Stabilität demokratischer Institutionen wie dem Bundesverfassungsgericht über allem steht. Und diesen Konsens hat die CDU/CSU aufgebrochen. Und das ist das, was so gefährlich ist.",
+            "timestamp": "00:35:35",
+            "context": "Zentrale Kritik am Verfahrensbruch durch CDU/CSU"
+          },
+          {
+            "text": "Wenn man sich dann geeinigt hat, und noch weiter im Richterwahlausschuss mit Zweidrittelmehrheit dafür gestimmt hat am Montag, dann kann man nicht diese Frau durch die Manege... Um dann diese Frau tagelang durch die Manege zu ziehen. Es ist irre, was da passiert.",
+            "timestamp": "00:36:05",
+            "context": "Kritik an der zeitlichen Abfolge und psychologischen Belastung"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundesverfassungsgericht",
+          "Richterwahl",
+          "Koalitionsverhältnis"
+        ]
+      },
+      {
+        "title": "Untersuchungsausschuss zu Maskenbestellungen",
+        "timestamp_range": "00:33:34",
+        "theme_description": "Frage nach der Notwendigkeit eines Untersuchungsausschusses zu Maskenbestellungen in der Pandemie.",
+        "question_asked": "Sandra Maischberger fragte beide Ministerinnen direkt (Ja/Nein), ob es einen Untersuchungsausschuss zu Maskenbestellungen geben sollte.",
+        "question_intent": "Transparenzanforderung zur Aufarbeitung von Pandemie-Fehlentscheidungen.",
+        "position": "Brantner antwortet klar mit 'Ja, natürlich.' Sie plädiert damit für volle Aufklärung und Transparenz.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Brantner antwortet präzise auf die Ja/Nein-Frage; keine Ausweichung oder Relativierung.",
+        "concrete_statements": [
+          "Ja, natürlich [sollte es einen Untersuchungsausschuss geben]"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, natürlich.",
+            "timestamp": "00:33:34",
+            "context": "Antwort auf Maischbergers Ja/Nein-Frage zu Untersuchungsausschuss Maskenbestellungen"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Pandemie-Aufarbeitung",
+          "Korruptionsverdacht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Ampel-Regierung hat eine Milliarde Euro für Gasinfrastruktur aus dem normalen Kernhaushalt ins Sondervermögen verschoben.",
+        "timestamp": "00:24:00"
+      },
+      {
+        "claim": "Der erste deutsche Raketenstart fand während der Ampel-Regierung statt, unterstützt durch Mittel des Grünen-geführten Forschungsministeriums.",
+        "timestamp": "00:28:46"
+      },
+      {
+        "claim": "Die Gasabhängigkeit Deutschlands wurde aufgrund von Putins Attacken auf die Ukraine als Energiekrise wirksam.",
+        "timestamp": "00:17:19"
+      },
+      {
+        "claim": "Die europäische Raumfahrtagentur ermöglichte unter Habeck die Unterstützung neuer Unternehmen, darunter zwei bayerische Raumfahrt-Startups.",
+        "timestamp": "00:29:16"
+      },
+      {
+        "claim": "Der Koalitionsvertrag 2021–2025 enthält das Ziel der Klimaneutralität 2045 und ist ein Gesetz.",
+        "timestamp": "00:21:23"
+      },
+      {
+        "claim": "Katherina Reiche als Wirtschaftsministerin setzt der Regierungspolitik auf Gas statt auf erneuerbare Energien.",
+        "timestamp": "00:19:21"
+      }
+    ]
+  }
+}

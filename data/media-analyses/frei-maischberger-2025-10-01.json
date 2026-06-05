@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMC0wMV8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-10-01",
+    "politician": "Thorsten Frei",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "6e13cc94b0fc52a3",
+    "transcript_chars": 50004,
+    "caption_lines": 1882,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20600,
+    "tokens_out": 8649,
+    "cost_usd": 0.025538,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 1,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.483Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei, Chef des Bundeskanzleramts der CDU/CSU, diskutiert mit Felix Banaszak (BÜNDNIS 90/DIE GRÜNEN) in der Maischberger-Sendung über zentrale Politikfelder der neuen Regierung: Klimapolitik, Energiewende, Industriestandort Deutschland, Migration und Rentensicherung. Der Ton ist sachlich, teilweise konfrontativ, mit deutlich sichtbaren Differenzen zwischen den Koalitionspartnern.",
+    "themes": [
+      {
+        "title": "Verursacher der wirtschaftlichen Probleme Deutschlands",
+        "timestamp_range": "00:20:10 - 00:21:49",
+        "theme_description": "Wem ist die wirtschaftliche Krise Deutschlands anzulasten — den Klimaschutzzielen der Ampel oder strukturellen Wettbewerbsproblemen?",
+        "question_asked": "Sandra Maischberger stellt die Frage, ob Thorsten Frei keine Selbstkritik bezüglich wirtschaftspolitischer Fehlentscheidungen habe und fragt, ob Klimaschutz tatsächlich der Grund für die Wirtschaftsprobleme sei.",
+        "question_intent": "Maischberger will klären, ob die Union die wirtschaftlichen Probleme zu einseitig dem Klimaschutz anlastet, statt strukturelle Defizite der Ampel einzugestehen.",
+        "position": "Thorsten Frei lehnt eine monokausale Erklärung ab. Nach seiner Analyse haben die wirtschaftlichen Probleme Deutschlands mehrere Ursachen: enormer Wettbewerbsdruck, schlechte Standortbedingungen, hohe Kosten und vor allem unfairer Mitbewerb (besonders durch Dumping-Stahl aus China). Er kritisiert das Narrativ, dass Klimaschutz das Hauptproblem sei: \"Ich teile die Analyse in der Sache nicht, dass die Probleme, vor denen die deutsche Wirtschaft steht, mit Klimaschutz zu tun haben.\" Vielmehr müssten sich Regierung und Wirtschaft auf Standortfaktoren konzentrieren. Die hohen Strompreise und Energiewende seien ein Problem, aber nicht isoliert betrachtet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Frage nach wirtschaftlichen Ursachen substantiell, lehnt aber die Prämisse ab, dass Klimaschutz primär schuldig ist. Er nennt alternative Ursachen (Wettbewerb, Standort), weicht damit aber teilweise der impliziten Kritik Maischbergers aus, dass die Union zu wenig Selbstkritik an ihrer bisherigen Klimapolitik-Blockade zeige.",
+        "concrete_statements": [
+          "Ich teile die Analyse in der Sache nicht, dass die Probleme, vor denen die deutsche Wirtschaft steht, mit Klimaschutz zu tun haben.",
+          "Wir haben einen enormen Wettbewerbsdruck. Die Standorte sind an vielen Orten in Deutschland schlecht. Es ist teuer.",
+          "Das Entscheidende ist, dass wir uns auf unsere Standortfaktoren fokussieren."
+        ],
+        "quotes": [
+          {
+            "text": "Ich teile die Analyse in der Sache nicht, dass die Probleme, vor denen die deutsche Wirtschaft steht, mit Klimaschutz zu tun haben.",
+            "timestamp": "00:21:15",
+            "context": "Antwort auf Maischbergers Frage, ob die Union Klimaschutz als Hauptschuldigen für Wirtschaftsprobleme sieht."
+          },
+          {
+            "text": "Das Entscheidende ist, dass wir uns auf unsere Standortfaktoren fokussieren.",
+            "timestamp": "00:22:51",
+            "context": "Freis Position zur Wirtschaftspolitik statt Fokus auf Klimaschutz als Sündenbock."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Klimapolitik",
+          "Standortwettbewerb",
+          "Energiepreise",
+          "Industriestandort Deutschland"
+        ]
+      },
+      {
+        "title": "Energiewende: Grundlastfähigkeit und Gaskraftwerke",
+        "timestamp_range": "00:27:35 - 00:30:48",
+        "theme_description": "Braucht Deutschland Gaskraftwerke und wasserstofffähige Energieinfrastruktur, um Versorgungssicherheit zu gewährleisten?",
+        "question_asked": "Felix Banaszak kritisiert, dass Freis Argumentationen zu Gaskraftwerken und Energiewende zu allgemein seien. Sandra Maischberger fragt indirekt, ob Freis Vertrauen auf Gas- und Fusionskraftwerke realistisch ist.",
+        "question_intent": "Maischberger will hinterfragen, ob die Koalitionsstrategie (Gaskraftwerke + Fusionsforschung) eine praktikable Lösung ist oder bloß Verzögerung der Energiewende.",
+        "position": "Frei argumentiert, dass Deutschland wegen fehlender Speicherkapazitäten und Dunkelflaute im Winter grundlastfähige Energieträger jenseits erneuerbarer Energien benötigt. Gaskraftwerke seien CO₂-schwächer als Kohlekraftwerke und daher eine notwendige Übergangslösung. Das zentrale Problem sei nicht Klimaschutz an sich, sondern die fehlende Grundlastfähigkeit. Parallel investiert die Regierung in Fusionsforschung (1,7 Mrd. Euro plus weitere 757 Mio. Euro) und wasserstofffähige Gaskraftwerke als zukunftsgerichtete Technologien. Frei betont: \"Das ist richtig, dass man die mit Gaskraftwerken macht, weil die CO2 schwächer sind als Kohlekraftwerke.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei liefert eine detaillierte Erklärung der Koalitionsstrategie zur Energiewende: Gaskraftwerke für Grundlast, wasserstofffähige Technologien für Perspektive, Forschungsinvestitionen für Kernfusion. Er adressiert die technischen und ökonomischen Zwänge direkt und rechtfertigt die Übergangslösung mit wissenschaftlichen Argumenten.",
+        "concrete_statements": [
+          "Gaskraftwerke sind notwendig wegen fehlender Speicherkapazitäten und Dunkelflaute",
+          "1,7 Milliarden für Fusionsforschung und weitere 757 Millionen für wasserstofffähige Gaskraftwerke",
+          "Das erste Fusionskraftwerk soll in Deutschland stehen",
+          "Wasserstofffähige Gaskraftwerke werden mit fossilem Gas betrieben, derzeit alternativlos, aber Perspektive ist grüner Wasserstoff"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist richtig, dass man die mit Gaskraftwerken macht, weil die CO2 schwächer sind als Kohlekraftwerke.",
+            "timestamp": "00:28:07",
+            "context": "Erklärung, warum Gaskraftwerke in der Energiewende notwendig sind."
+          },
+          {
+            "text": "Wir geben für Forschung, Technologie und Entwicklung noch viel mehr aus, weil sie die Grundlage für wirtschaftlicher Erfolg ist.",
+            "timestamp": "00:31:18",
+            "context": "Rechtfertigung der Investitionen in Zukunftstechnologien wie Kernfusion."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Gaskraftwerke",
+          "Wasserstoffstrategie",
+          "Kernfusionsforschung",
+          "Versorgungssicherheit"
+        ]
+      },
+      {
+        "title": "Klimawandel und Transformation als Marathon",
+        "timestamp_range": "00:31:54 - 00:33:26",
+        "theme_description": "Sind die Sorgen um Wirtschaftsschäden durch Klimapolitik berechtigt, und wird die Transformation zu schnell vorangetrieben?",
+        "question_asked": "Sandra Maischberger fragt indirekt, ob Cem Özdemir, der GRÜNE, sich selbstkritisch zu Robert Habecks Energiewende äußert und ob das mit der Landtagswahl zu tun hat.",
+        "question_intent": "Maischberger will wissen, ob die GRÜNEN selbst Zweifel an der Geschwindigkeit ihrer Energiewende haben und ob diese Selbstkritik strategisch motiviert ist.",
+        "position": "Thorsten Frei stimmt Cem Özdemirs Kritik an Robert Habecks Energiewende-Politik zu. Er beschreibt ein globales Phänomen: Viele Menschen, die überzeugt von Klimaneutralität waren, seien nun skeptisch geworden. Die Sorgen seien berechtigt. \"Die Transformation ist kein Spaziergang, es ist ein Marathon. Manchmal läuft das nicht perfekt.\" Ein zweites Problem sieht Frei darin, dass diese Politik bewusst bekämpft wird, insbesondere durch Trump und wirtschaftliche Interessen. Allerdings adressiert Banaszak darauf hin, dass Frei damit der Regierung Steuerung durch fossile Interessen unterstelle — was Frei energisch zurückweist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei nimmt zu Özdemirs Kritik Stellung und erklärt sowohl das Phänomen skeptischer Wähler als auch die Notwendigkeit einer nachhaltigen Transformationsstrategie. Er anerkennt, dass Transformation komplex ist, und benennt externe Widerstände (Trump, fossile Interessen). Die Antwort ist kohärent und direkt.",
+        "concrete_statements": [
+          "Viele Menschen sind jetzt skeptisch, obwohl sie überzeugt waren, dass Klimaneutralität der richtige Weg ist.",
+          "Die Sorgen sind berechtigt.",
+          "Die Transformation ist kein Spaziergang, es ist ein Marathon."
+        ],
+        "quotes": [
+          {
+            "text": "Die Transformation ist kein Spaziergang, es ist ein Marathon. Manchmal läuft das nicht perfekt.",
+            "timestamp": "00:32:55",
+            "context": "Freis Bewertung der Geschwindigkeit und Komplexität der Energiewende."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Energiewende",
+          "Akzeptanz von Transformationspolitik",
+          "Wirtschaftliche Folgen der Dekarbonisierung"
+        ]
+      },
+      {
+        "title": "Ampel-Fehler bei Klimaschutz und Wirtschaft",
+        "timestamp_range": "00:33:56 - 00:35:28",
+        "theme_description": "War die Ampel-Regierung für die Wirtschaftsprobleme verantwortlich, und hatte die Klimapolitik Fehlentwicklungen?",
+        "question_asked": "Felix Banaszak untersucht, ob die aktuelle Regierung von fossilen Interessen gesteuert wird und wirft Frei vor, die Verantwortung der Ampel zu übertreiben. Maischberger fragt implizit, wie Frei die Ampel-Bilanz bewertet.",
+        "question_intent": "Banaszak will Frei dazu bringen, die Verantwortung zu differenzieren und nicht pauschal die Ampel zu verdammen. Maischberger möchte wissen, ob Merz ein besserer Wirtschaftskanzler als Scholz wird.",
+        "position": "Frei wirft der Ampel vor, dass Scholz und Habeck behauptet hätten, Investitionen in Klimaschutz würden zu einem \"neuen deutschen Wirtschaftswunder\" führen. Dies sei \"ein Irrweg\" gewesen. Die Formel, dass Klimainvestitionen wirtschaftliche Gewinne brächten, habe nicht funktioniert. Allerdings betont Frei, dass Klimaschutz ökonomisch vernünftig umgesetzt werden muss: \"Es ist ein großes Problem, es reicht nicht aus, dass wir unsere CO2-Emissionen reduzieren... Es wird nur dann erfolgreich sein, wenn wir es ökonomisch vernünftig machen.\" Seine zentrale Kritik: Die Ampel habe Klimainvestitionen versprochen, ohne parallel Marktwirtschaft und Wettbewerbsfähigkeit zu sichern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei nimmt Stellung zur Ampel-Bilanz und erklärt den Unterschied zwischen dem Versprechen (Wirtschaftswunder durch Klimainvestitionen) und der Realität (Verlust von Wettbewerbsfähigkeit). Er differenziert: Klimaschutz ist notwendig, aber nur wenn ökonomisch rational umgesetzt.",
+        "concrete_statements": [
+          "Olaf Scholz und Robert Habeck behaupteten, dass Investitionen in Klimaschutz zu einem neuen deutschen Wirtschaftswunder führen würden.",
+          "So wie sie es gemacht haben, war es ein Irrweg.",
+          "Es wird nur dann erfolgreich sein, wenn wir es ökonomisch vernünftig machen.",
+          "Die Lücke schließen: im Winter zu wenig Energie aus erneuerbaren, im Sommer zu viel. Das ganze ist zu teuer, weil wir es hoch subventionieren."
+        ],
+        "quotes": [
+          {
+            "text": "Fakt ist, so wie sie es gemacht haben, war es ein Irrweg.",
+            "timestamp": "00:33:56",
+            "context": "Kritik an der Klimapolitik der Ampel-Regierung."
+          },
+          {
+            "text": "Es wird nur dann erfolgreich sein, wenn wir es ökonomisch vernünftig machen.",
+            "timestamp": "00:34:27",
+            "context": "Freis Forderung nach marktwirtschaftlicher Ausgestaltung der Klimapolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Klimapolitik",
+          "Wirtschaftspolitik",
+          "Subventionen für erneuerbare Energien"
+        ]
+      },
+      {
+        "title": "Friedenssituation Deutschland und NATO-Beitrag",
+        "timestamp_range": "00:35:28 - 00:36:32",
+        "theme_description": "Lebt Deutschland noch im Frieden, und wie sollte die Sicherheitspolitik auf Bedrohungen reagieren?",
+        "question_asked": "Felix Banaszak fragt direkt: \"Leben wir in Deutschland noch im Frieden?\". Dies folgt auf die Diskussion über Trump und geopolitische Spannungen.",
+        "question_intent": "Banaszak will von Frei eine klare Einschätzung der Sicherheitslage und eventuelle Divergenzen in der Risikowahrnehmung heben.",
+        "position": "Frei antwortet nuanciert: \"Wir haben keinen Krieg aktuell, aber wir werden immer wieder angegriffen, hybrid angegriffen.\" Er nennt konkrete Beispiele: Luftraumverletzungen durch Partner-Staaten (implizit Russland), hybride Angriffe. Deshalb investiere die Regierung in Rekordsicherheitsbudgets. Frei vermeidet Alarmismus, betont aber die \"herausfordernde Situation\", die erhöhte Wachsamkeit und Investitionen rechtfertigt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet direkt auf die Frage und liefert eine differenzierte Lagebewertung: Kein aktueller Krieg, aber kontinuierliche hybride Bedrohungen, daher Notwendigkeit von Aufrüstung. Die Antwort ist klar positioniert.",
+        "concrete_statements": [
+          "Wir haben keinen Krieg aktuell, aber wir werden immer wieder angegriffen, hybrid angegriffen.",
+          "Wir erleben das nicht nur durch die Luftraumverletzung bei Partnern.",
+          "Wir sind in einer herausfordernden Situation.",
+          "Das ist der Grund, warum der Rekordinvestitionen in unsere Sicherheit machen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben keinen Krieg aktuell, aber wir werden immer wieder angegriffen, hybrid angegriffen.",
+            "timestamp": "00:35:28",
+            "context": "Freis Antwort auf Banaszaks Frage, ob Deutschland im Frieden lebt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Friedenssicherung",
+          "Hybride Kriegsführung",
+          "Sicherheitspolitik",
+          "NATO",
+          "Rüstungsbudgets"
+        ]
+      },
+      {
+        "title": "Rentenpolitik und Erhöhung der Arbeitslebenszeit",
+        "timestamp_range": "00:36:32 - 00:38:37",
+        "theme_description": "Sollen die Arbeitslebensdauer erhöht und/oder der Pflegegrad 1 abgeschafft werden?",
+        "question_asked": "Felix Banaszak fragt, ob Katharina Reiche pauschal die Lebensarbeitszeit erhöhen will, und kritisiert fehlende Differenzierung zwischen verschiedenen Berufsgruppen. Später wird die geplante Abschaffung des Pflegegrads 1 thematisiert.",
+        "question_intent": "Banaszak will von Frei klären, ob die Union einseitig Rentnerinnen und Rentner belasten will oder ob es Differenzierungen gibt; zudem will er die Pflegegrad-1-Abschaffung als unsozial kritisieren.",
+        "position": "Frei verteidigt das Koalitionsmodell der \"Aktivrente\": Das tatsächliche Rentenalter soll steigen, aber auf freiwilliger Basis. Auf Banaszaks Kritik zur Pflegegrad-1-Abschaffung antwortet Frei, dass eine entsprechende Kommission eingerichtet wurde und erst deren Ergebnisse abgewartet werden sollen. Er lehnt pauschal ab: \"Man setzt keine Kommission ein, wenn man glaubt, alles zu wissen.\" Die demographische Entwicklung zwingt zu Anpassungen, aber es gibt Offenheit für Differenzierungen. Auf die Frage, ob Pflegegrad 1 das Wesentliche sei, antwortet Frei ausweichend: \"Man kann das so pauschal nicht sagen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Rentenfrage deutlich (Aktivrente, Freiwilligkeit), weicht aber bei der Pflegegrad-1-Frage aus, indem er auf eine Kommission verweist statt klare Position zu beziehen. Das ist teilweise Verzögerung, teilweise legitime offene Haltung.",
+        "concrete_statements": [
+          "Unser Modell ist die Aktivrente. Das tatsächliche Rentenalter soll steigen.",
+          "Das hängt von der Freiwilligkeit ab.",
+          "Wir haben eine entsprechende Kommission eingerichtet.",
+          "Die demographische Entwicklung zwingt zu Anpassungen."
+        ],
+        "quotes": [
+          {
+            "text": "Unser Modell ist die Aktivrente. Das tatsächliche Rentenalter soll steigen.",
+            "timestamp": "00:37:03",
+            "context": "Freis Position zur Rentenpolitik."
+          },
+          {
+            "text": "Man setzt keine Kommission ein, wenn man glaubt, alles zu wissen.",
+            "timestamp": "00:37:35",
+            "context": "Erklärung, warum zur Pflegegrad-1-Frage noch keine endgültige Position besteht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentensicherung",
+          "Arbeitslebensdauer",
+          "Pflege",
+          "Demographischer Wandel",
+          "Sozialversicherung"
+        ]
+      },
+      {
+        "title": "Asylzahlen und Erfolg der Migrationspolitik",
+        "timestamp_range": "00:38:37 - 00:41:13",
+        "theme_description": "Sind sinkende Asylzahlen ein Erfolg der Schwarz-Rot-Koalition, und warum steigen AfD-Umfragewerte trotzdem?",
+        "question_asked": "Felix Banaszak fragt, ob die sinkenden Asylzahlen (August: 60% weniger Asylanträge) ein Erfolg sind, wenn die AfD trotzdem in Umfragen wächst. Er insinuiert, dass die Koalition das Migrationsthema hochhält, statt es zu lösen.",
+        "question_intent": "Banaszak will aufzeigen, dass Migrationspolitik allein nicht zu sinkenden AfD-Werten führt und möglicherweise durch ständiges Hochhaltung des Themas kontraproduktiv wirkt.",
+        "position": "Frei bestreitet nicht, dass Asylzahlen gesunken sind (60% weniger in August), aber schreibt den Erfolg nicht der aktuellen Koalition allein zu: \"Das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.\" Auf die Frage, warum AfD-Werte trotzdem steigen, antwortet Frei, dass niemand je behauptet habe, dass Migrationspolitik allein AfD-Werte senke. Die AfD-Stärke hänge mit allgemeiner Unzufriedenheit zusammen: fehlende Zukunftszuversicht, wirtschaftliche Gegebenheiten, Vertrauensverlust in den Staat. Banaszak wirft ein, dass es um Kommunikation gehe und dass in seinem Wahlkreis (Duisburg) staatliches Versagen spürbar sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet differenziert: Er akzeptiert, dass Asylzahlen sinken, ordnet den Erfolg aber multipel ein (externe Faktoren wie Assad-Sturz). Er widerlegt Banaszaks Implikation, dass die Koalition das Thema artificial hochhält, indem er strukturelle Gründe für AfD-Wachstum benennt (Zukunftszuversicht, Wirtschaft, Vertrauen). Die Antwort ist substantiell.",
+        "concrete_statements": [
+          "Das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.",
+          "Niemand hat behauptet, dass das Lösen der Migration Herausforderungen dafür sorgt, dass die Werte der AfD untergehen.",
+          "Wenn Populisten und Extremisten stark sind, zeigt es Unzufriedenheit der Leute mit der Politik im Land.",
+          "Das hängt nicht nur mit der Migration zusammen, sondern mit Zukunftszuversicht, den wirtschaftlichen Gegebenheiten."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.",
+            "timestamp": "00:39:09",
+            "context": "Freis Erklärung der sinkenden Asylzahlen — nicht primär Erfolg der aktuellen Koalition."
+          },
+          {
+            "text": "Wenn Populisten und Extremisten stark sind, dann zeigt es eine Unzufriedenheit der Leute mit der Politik im Land.",
+            "timestamp": "00:40:13",
+            "context": "Freis Analyse der AfD-Wählerschaft jenseits reiner Migrationspolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Migration",
+          "AfD",
+          "Wählerzufriedenheit",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Reformversprechen und Umsetzungserwartungen",
+        "timestamp_range": "00:41:46 - 00:43:54",
+        "theme_description": "Hat die Merz-Regierung mit dem \"Herbst der Reformen\" zu hohe Erwartungen geweckt, und wann werden Verbesserungen spürbar?",
+        "question_asked": "Felix Banaszak kritisiert, dass Merz enorme Erwartungen mit dem Slogan \"mit mir wird alles besser\" geweckt habe, diese aber nicht erfüllt werden. Sandra Maischberger fragt präzise: \"Hat der Kanzler mit dem Herbst der Reformen zu viel versprochen?\" und \"Wann merken wir es wirklich?\"",
+        "question_intent": "Maischberger will von Frei eine realistische Einschätzung, wann die Koalitionsreformen wirtschaftlich spürbar werden, und ob der Kanzler Erwartungsmanagement falsch angegangen ist.",
+        "position": "Frei weist die kritische Rahmung ab. Die Regierung habe am 6. Mai begonnen und sich \"direkt ans Werk gemacht, eine Reihe an Gesetzen auf den Weg zu schicken.\" Er nennt konkrete Beispiele: Sonderabschreibungen, Körperschaftsteuerreform. Dabei beharrt er darauf, dass Gesetze Zeit brauchen, um zu wirken — nicht Jahreszeiten sind das Maß, sondern wirtschaftliche Effekte. Auf Banaszaks Erwartung einer \"merking im Sommer\" antwortet Frei: \"Ich finde die Frage nicht gut gestellt.\" Die Regierung arbeite \"so schnell wie möglich, so gut wie möglich.\" Damit verweigert Frei implizit, konkrete Fristen zu nennen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei nennt konkrete Gesetze und Maßnahmen, weicht aber der Kernfrage (Wann sind Effekte spürbar?) aus, indem er die Frage als \"nicht gut gestellt\" kritisiert und auf Prozessgeschwindigkeit statt Ergebniswirkung verweist. Das ist elegante Umleitung, nicht substantielle Antwort auf die Erwartungsfrage.",
+        "evasion_note": "Frei vermeidet konkrete Fristen oder Indikatoren für Erfolgskontrolle. Stattdessen betont er Prozess (Gesetze verabschiedet) statt Outcome (messbare Wirtschaftsverbesserungen).",
+        "concrete_statements": [
+          "Wir haben am 6. Mai begonnen. Wir haben uns direkt ans Werk gemacht.",
+          "Gesetze müssen wirken — Sonderabschreibungen, Körperschaftsteuerreform.",
+          "Ich finde die Frage nicht gut gestellt.",
+          "Wir arbeiten so schnell wie möglich, so gut wie möglich."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben am 6. Mai begonnen. Wir haben uns direkt ans Werk gemacht, eine Reihe an Gesetzen auf den Weg zu schicken.",
+            "timestamp": "00:43:24",
+            "context": "Freis Verteidigung der bisherigen Reformtätigkeit."
+          },
+          {
+            "text": "Ich finde die Frage nicht gut gestellt.",
+            "timestamp": "00:43:24",
+            "context": "Freis Ablehnung der Erwartungsfrage zur spürbaren Wirkung von Reformen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsreformen",
+          "Steuerreform",
+          "Wirtschaftspolitik",
+          "Erwartungsmanagement",
+          "Reformtempo"
+        ]
+      },
+      {
+        "title": "Friedensnobelpreis für Trump",
+        "timestamp_range": "00:43:54 - 00:44:41",
+        "theme_description": "Verdient Donald Trump den Friedensnobelpreis für seine bisherigen Friedensbemühungen?",
+        "question_asked": "Sandra Maischberger stellt die direkte Frage: \"Hat Donald Schramm den Friedensnobelpreis verdient?\" (vermutlich Transkriptionsfehler für Trump).",
+        "question_intent": "Maischberger will Freis Bewertung von Trumps außenpolitischen Leistungen, insbesondere zum Gaza-Friedensplan.",
+        "position": "Frei antwortet knapp und negativ: \"Nein, da gehört etwas mehr dazu.\" Er lehnt ab, Trump den Preis zugesprochen zu sehen, vermeidet aber weitere Elaboration. Diese knappe Antwort steht im Kontext der vorherigen Diskussion, in der Scheck Trumps Friedensansprüche als maßlos kritisiert hatte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet direkt mit einer klaren Ablehnung. Die Begründung ist knapp, aber prägnant (\"da gehört etwas mehr dazu\"), was impliziert: Ein einzelner Friedensplan rechtfertigt noch nicht den Nobelpreis.",
+        "concrete_statements": [
+          "Da gehört etwas mehr dazu."
+        ],
+        "quotes": [
+          {
+            "text": "Da gehört etwas mehr dazu.",
+            "timestamp": "00:43:54",
+            "context": "Freis Antwort auf die Frage, ob Trump den Friedensnobelpreis verdient."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Friedensnobelpreis",
+          "Gaza-Konflikt",
+          "Nahostpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im August gab es 60% weniger Asylanträge in Deutschland.",
+        "timestamp": "00:39:39"
+      },
+      {
+        "claim": "Europaweit sanken die Asylanträge um 20%, in Deutschland um 45% — mehr als das Doppelte.",
+        "timestamp": "00:39:39"
+      },
+      {
+        "claim": "Die Regierung gibt 1,7 Milliarden für Fusionsforschung und zusätzlich 757 Millionen aus.",
+        "timestamp": "00:30:48"
+      },
+      {
+        "claim": "Robert Habeck hatte geplant, 12,5 GW Gaskraftwerke; Katharina Reiche versucht es mit 20 GW.",
+        "timestamp": "00:29:46"
+      },
+      {
+        "claim": "Die Chemieindustrie liegt 25% unter dem Vor-Coronaniveau.",
+        "timestamp": "00:23:21"
+      }
+    ]
+  }
+}

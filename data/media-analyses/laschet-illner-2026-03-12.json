@@ -1,0 +1,353 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-12-maerz-2026-100",
+    "video_id": "illner-2026-03-12",
+    "politician": "Armin Laschet",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "20a12bd339de5361",
+    "transcript_chars": 44967,
+    "caption_lines": 2282,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19185,
+    "tokens_out": 8584,
+    "cost_usd": 0.024842,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.326Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Armin Laschet äußert sich in Maybrit Illners Talkshow zu Irans Atomwaffenfähigkeit, europäischer Rolle im Nahost-Konflikt und möglicher NATO-Beteiligung. Er argumentiert differenziert zwischen strategischen Zielen (Regimestabilisierung) und praktischen Grenzen deutscher/europäischer Handlungsfähigkeit, ohne jedoch klare normative Positionen zu Trump-Israels Vorgehen zu offenbaren.",
+    "themes": [
+      {
+        "title": "Irans Atomwaffenfähigkeit und militärische Schwächen",
+        "timestamp_range": "00:03:32 - 00:03:56",
+        "theme_description": "Bewertung, inwieweit militärische Schläge gegen den Iran dessen Atomwaffenprogramm und konventionelle Fähigkeiten beschädigt haben.",
+        "question_asked": "Maybrit Illner fragt, was ein überzeigendes Ende des Krieges für Armin Laschet bedeuten würde und wie viele Tage es dauern müsste, bis Friedrich Merz seine Position von 'Ziele mit USA und Israel teilen' zu 'Krieg beenden' ändert.",
+        "question_intent": "Illner möchte verstehen, ob Laschet eine Inkohärenz in Merz' Position sieht oder wie lange Laschet glaubt, dass beide Ziele parallel verfolgt werden können.",
+        "position": "Laschet betont, dass sowohl ein Regimewechsel als auch eine baldige Kriegsbeendigung wünschenswert sind. Er stellt fest, dass man das iranische Regime militärisch geschwächt habe (Flotte, ballistische Raketen), aber beim Atomprogramm 'noch nicht richtig erfolgreich' sei. Trump sei unzuverlässig; die zeitlichen Ansagen wechselten ständig.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laschet antwortet auf die Frage nach einem 'überzeugenden Ende', indem er zunächst sagt, dass man die Tage nicht gezählt habe, dann aber ein realistisches Szenario skizziert (Regime schwach, Atomprogramm noch eine Herausforderung). Er adressiert jedoch nicht direkt, wie lange Merz' Positionen konsistent bleiben könnten—das bleibt offen.",
+        "concrete_statements": [
+          "Natürlich wünschen wir uns, dass das Regime zusammenbricht.",
+          "Dass es gelingt, die Atomwaffenfähigkeit des Iran zu stoppen.",
+          "Gleichzeitig hoffen wir, dass der Krieg bald zu Ende geht.",
+          "Man hat das iranische Regime militärisch viele Schwächen erreicht und zugemutet. Die Flotte und die ballistischen Raketen. Aber bei dem Atomprogramm ist man noch nicht richtig erfolgreich."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe die Tage nicht gezählt, aber beide Aussagen sind richtig. Natürlich wünschen wir uns, dass das Regime zusammenbricht. Dass es gelingt, die Atomwaffenfähigkeit des Iran zu stoppen. Gleichzeitig hoffen wir, dass der Krieg bald zu Ende geht.",
+            "timestamp": "00:03:32",
+            "context": "Maybrit Illner hatte vorher über das Spannungsverhältnis zwischen Regimesturz und schneller Kriegsbeendigung gefragt."
+          },
+          {
+            "text": "Man hat das iranische Regime militärisch viele Schwächen erreicht und zugemutet. Die Flotte und die ballistischen Raketen. Aber bei dem Atomprogramm ist man noch nicht richtig erfolgreich.",
+            "timestamp": "00:03:56",
+            "context": "Laschet analysiert den militärischen Status quo und die bisher erreichten Ziele."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Atomabkommen JCPOA",
+          "Nahost-Konflikt",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Europas Rolle und die gescheiterten Atomverhandlungen",
+        "timestamp_range": "00:20:46 - 00:21:30",
+        "theme_description": "Bewertung der europäischen Verhandlungsbeteiligung am Atomabkommen (JCPOA) und Frage, ob die Europäer nach einem Krieg noch Verhandlungspartner sein könnten.",
+        "question_asked": "Maybrit Illner fragt Armin Laschet: Warum sollten die Europäer nach einem solchen Krieg noch am Verhandlungstisch sitzen, wenn sie vorher nicht dabei waren?",
+        "question_intent": "Illner möchte verstehen, welchen diplomatischen Wert Laschet Europa zuschreibt, angesichts dessen fehlender Macht im laufenden Krieg.",
+        "position": "Laschet argumentiert, dass Europa beim JCPOA-Atomabkommen noch beteiligt war—Deutschland, Frankreich und Großbritannien verhandelten mit dem Iran bis vor kurzem, allerdings erfolglos. Der Prozess sei 15 Jahre alt gewesen. Trump habe das Abkommen in seiner ersten Amtszeit gekündigt, der Iran habe die Zeit genutzt, sein Atomprogramm zu erweitern. Jetzt spielen Verhandlungen weniger Rolle.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet direkt, dass die Europäer beim Atomabkommen bis vor kurzem beteiligt waren und erklärt die Erfolglosigkeit durch die Struktur (15 Jahre alte Prozesse, Trumps Ausstieg, iranische Verzögerungstaktik). Er nimmt damit implizit Stellung dazu, dass Verhandlungen momentan nicht der Ansatz sind.",
+        "concrete_statements": [
+          "Deutschland, Frankreich, Großbritannien waren mit dem Iran beim Atomabkommen bis vor wenigen Monaten noch dabei, allerdings erfolglos.",
+          "Der Erfolglosigkeitsprozess ist 15 Jahre alt.",
+          "Trump kündigte das Abkommen in seiner 1. Amtszeit.",
+          "Der Iran nutzte diese Zeit, um sein Atomprogramm voranzutreiben."
+        ],
+        "quotes": [
+          {
+            "text": "Da waren die Europäer noch am Tisch beim Atomabkommen. Deutschland, Frankreich, Großbritannien mit dem Iran bis vor wenigen Monaten noch. Allerdings erfolglos. Und dieser Erfolglosigkeitsprozess ist 15 Jahre alt.",
+            "timestamp": "00:20:46",
+            "context": "Illner hinterfragt die europäische Rolle nach dem Krieg; Laschet verweist auf die Geschichte des JCPOA-Scheiterns."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Atomabkommen JCPOA",
+          "Iran-Diplomatie",
+          "Europäische Außenpolitik",
+          "Multilateralismus"
+        ]
+      },
+      {
+        "title": "Regionale Destabilisierung durch Irans Aktivitäten",
+        "timestamp_range": "00:21:30 - 00:23:01",
+        "theme_description": "Laschets Argument, dass der Iran nicht nur Israel bedroht, sondern die gesamte Region durch Terror-Finanzierung und Proxy-Milizen destabilisiert.",
+        "question_asked": "Maybrit Illner hat vorher (indirekt über Katrin Eigendorf) gefragt, ob nicht nur die Israelis vom Iran bedroht sind—Laschet antwortet auf die implizite Kritik, dass der Krieg zu einseitig gegen den Iran gerichtet sei.",
+        "question_intent": "Illner will verstehen, ob Laschet den regionalen Destabilisierungskontext des Iran als Rechtfertigung für den Krieg akzeptiert.",
+        "position": "Laschet argumentiert, dass der Iran die gesamte Region destabilisiert habe, nicht nur Israel bedrohe. Der Libanon sei ein Beispiel: Die Hisbollah werde vom Iran finanziert und stelle einen 'Staat im Staat' dar. Der Iran habe Politiker finanziert und in Ämter gesetzt. Oman, das lange verhandelt habe und Brücken gebaut habe, werde bombardiert. Es gehe um die gesamte Region. Er kenne keinen europäischen Regierungschef, der nicht den Erfolg der Amerikaner wolle (mit möglicher Ausnahme des spanischen Ministerpräsidenten).",
+        "answer_match": "pivot_zum_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Illner/Eigendorf hatten gefragt, ob der Krieg strategisch sinnvoll sei. Laschet antwortet nicht mit einer direkten Bewertung des Kriegsverlaufs, sondern mit einer Gegenpunkt-These: Der Iran destabilisiert die gesamte Region; daher sind Amerikas Aktionen nicht isoliert zu betrachten. Das ist ein Pivot von 'Kriegsstrategie' zu 'Iranische Bedrohung als Kontext'.",
+        "concrete_statements": [
+          "Der Iran hat die ganze Region destabilisiert.",
+          "Der Libanon ist in seinem Zustand, weil die Hisbollah vom Iran finanziert ein Staat im Staat ist.",
+          "Der Iran hat Leute finanziert und in politische Ämter gesetzt.",
+          "Ich kenne keinen Regierungschef in Europa, der sagen würde, wir wollen nicht den Erfolg der Amerikaner.",
+          "Alle anderen wollen, dass das Ganze erfolgreich ist."
+        ],
+        "quotes": [
+          {
+            "text": "Er hat die ganze Region destabilisiert. Der Libanon ist in dem Zustand, weil die Hisbollah vom Iran finanziert ein Staat im Staat ist. Er hat die Leute finanziert und in politische Ämter gesetzt.",
+            "timestamp": "00:21:30",
+            "context": "Laschet antwortet auf Eigendorfs These, dass Israel auch ein destabilisierender Faktor sei."
+          },
+          {
+            "text": "Ich kenne keinen Regierungschef in Europa, der sagen würde, wir wollen nicht den Erfolg der Amerikaner. Vielleicht der spanische Ministerpräsident. Aber alle anderen wollen, dass das Ganze erfolgreich ist. Dass der Krieg endet. In dem Dilemma befinden wir uns.",
+            "timestamp": "00:21:30",
+            "context": "Laschet versucht zu erklären, dass europäische Regierungen im Dilemma zwischen Kriegsgegnersein und Erfolgwünschen der Amerikaner stecken."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Terrorismusfinanzierung",
+          "Libanon-Hezbollah",
+          "Regionaler Frieden Naher Osten",
+          "Außenpolitische Kohärenz"
+        ]
+      },
+      {
+        "title": "Spekulatives Szenario: US-Botschaftsanschlag und NATO-Beistand",
+        "timestamp_range": "00:40:58 - 00:43:04",
+        "theme_description": "Frage, ob Deutschland NATO-Beistand leisten müsste, wenn die USA-Botschaft angegriffen würde; Laschets Skepsis gegenüber hypothetischen Szenarien.",
+        "question_asked": "Maybrit Illner referiert auf Omid Nouripours Warnung, dass die USA Deutschland im NATO-Rat um Beistand bitten könnten, wenn eine US-Botschaft angegriffen würde. Sie fragt Laschet, ob er solche Fälle ausschließen kann.",
+        "question_intent": "Illner möchte wissen, ob Deutschland in ein mit-Krieg-gegen-Iran-Szenario gezogen werden könnte durch einen NATO-Artikel-5-Fall.",
+        "position": "Laschet lehnt ab, spekulativ zu antworten ('Das weiß ich nicht', 'Das ist viel zu spekulativ'). Er sagt, 'den Fall den er kreiert, den gibt es nicht'. Statt auf diese Hypothese einzugehen, lenkt er auf die realen Wechselwirkungen zwischen Russland und dem Iran-Konflikt ab: Der Iran habe bisher Russland mit Drohnen versorgt für den Ukraine-Krieg; nun könne das nicht im gleichen Umfang weitergehen, weil der Iran die Drohnen selbst brauche. Das sei gut für die Ukraine. Damit verschiebt er die Diskussion von einem NATO-Szenario zu den Iran-Ukraine-Verbindungen.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Illner fragt spezifisch, ob ein US-Botschaftsanschlag die NATO aktivieren könnte. Laschet verweigert nicht direkt zu antworten, sondern erklärt, dass das Szenario 'viel zu spekulativ' sei und lenkt stattdessen zu den realen Auswirkungen des Iran-Kriegs auf die Ukraine ab (Drohnenversorgung Russlands). Das ist eine klassische Themenverschebung.",
+        "concrete_statements": [
+          "Das ist viel zu spekulativ. Den Fall den er kreiert, den gibt es nicht.",
+          "Der Iran hat bisher Russland versorgt mit Drohnen, die sie eingesetzt hat, im Kampf gegen die Ukrainer.",
+          "Ich kann mir nicht vorstellen, dass es im gleichen Umfang weitergeht.",
+          "Das ist gut für die Ukraine."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist viel zu spekulativ. Den Fall den er kreiert, den gibt es nicht.",
+            "timestamp": "00:41:04",
+            "context": "Laschet wird nach einem hypothetischen US-Botschaftsanschlag gefragt."
+          },
+          {
+            "text": "Der Iran hat bisher Russland versorgt, mit Drohnen die sie eingesetzt hat, im Kampf gegen die Ukrainer. Ich kann mir nicht vorstellen, dass es im gleichen Umfang weitergeht. Weil er mit den Drohnen in der Region agiert.",
+            "timestamp": "00:41:04",
+            "context": "Laschet lenkt statt auf NATO-Szenarios auf Iran-Ukraine-Verflechtungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnis",
+          "Artikel 5",
+          "Ukraine-Krieg",
+          "Iran-Drohnen"
+        ]
+      },
+      {
+        "title": "Iran-Ukraine-Verflechtung und russische Drohnenversorgung",
+        "timestamp_range": "00:41:04 - 00:42:41",
+        "theme_description": "Argument, dass Irans Beschäftigung mit dem heimischen Krieg positive Auswirkungen auf die Ukraine haben kann, weil Drohnenversorgung Russlands nachlässt.",
+        "question_asked": "Im Kontext der Iran-Diskussion erwähnt Laschet selbst die Auswirkungen auf die Ukraine; keine direkte Frage, aber Illner und andere folgen diesem Thread.",
+        "question_intent": "Implizite Frage: Gibt es eine strategische Gewinn-Situation für den Westen, wenn Iran wegen Eigenversorgung Russland weniger unterstützt?",
+        "position": "Laschet argumentiert strategisch: Der Iran habe bisher Russland mit Drohnen versorgt für den Ukraine-Krieg. Wenn der Iran jetzt im eigenen Krieg gegen Israel/USA mitkämpft, kann er nicht im gleichen Umfang Russland unterstützen. Das bedeute: weniger iranische Drohnen für die Russen, also besser für die Ukraine. Einzelne Schiffe (für Handel?) aus China/Indien könnten Durchfahrt geblockt werden (Straße von Hormus). Das seien positive Nebeneffekte.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet bringt diesen Punkt eigeninitiativ ein, nicht als Antwort auf eine spezifische Frage von Illner. Es ist eine strategische Überlegung, die er ohne Aufforderung vorbringt und die seine Position nuanciert: Der Krieg gegen Iran könnte unbeabsichtigte positive Folgen für die Ukraine haben.",
+        "concrete_statements": [
+          "Der Iran hat bisher Russland versorgt mit Drohnen, die sie eingesetzt hat, im Kampf gegen die Ukrainer.",
+          "Ich kann mir nicht vorstellen, dass es im gleichen Umfang weitergeht, weil der Iran mit den Drohnen in der Region agiert.",
+          "Das ist gut für die Ukraine."
+        ],
+        "quotes": [
+          {
+            "text": "Die eine Auswirkung ist, der Iran hat bisher Russland versorgt, mit Drohnen die sie eingesetzt hat, im Kampf gegen die Ukrainer. Ich kann mir nicht vorstellen, dass es im gleichen Umfang weitergeht. Weil er mit den Drohnen in der Region agiert. Und nicht Russland weiter in der Ukraine unterstützen kann. Das ist gut für die Ukraine.",
+            "timestamp": "00:41:04",
+            "context": "Laschet lenkt von Spekulationen auf konkrete Iran-Ukraine-Verflechtungen um."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Russische Drohnen",
+          "Iran-Russland Kooperation",
+          "Proxy-Konflikte"
+        ]
+      },
+      {
+        "title": "NATO-Aktivierung und deutsches Engagement",
+        "timestamp_range": "00:43:04 - 00:43:34",
+        "theme_description": "Klärung, unter welchen Bedingungen ein NATO-Artikel-5-Fall einträte und wie dies Deutschlands Handlungsoptionen begrenzt.",
+        "question_asked": "Maybrit Illner widerspricht Laschets Skepsis und weist darauf hin, dass bisher gesagt wurde, die USA könnten NATO-Staaten aufrufen oder brauchen.",
+        "question_intent": "Illner möchte Laschet zu einer klareren Positionierung zwingen: Ist eine US-Botschaft angegriffen wirklich ein NATO-Fall?",
+        "position": "Laschet sagt: 'Es ist kein NATO Fall.' Ein NATO-Fall wäre nur, wenn die Türkei oder Zypern direkt angegriffen würden. Auch ein Anschlag auf eine US-Botschaft sei nicht ausreichend, um den NATO-Bündnisfall auszulösen, bei dem alle Mitglieder mitmachen müssten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet die Frage klar und sachlich: Ein Botschaftsanschlag ist nach seiner Einschätzung kein NATO-Fall. NATO-Fälle kämen nur bei direkten Angriffen auf NATO-Territorium in Frage (etwa Türkei oder Zypern). Das adressiert direkt Illners Frage.",
+        "concrete_statements": [
+          "Es ist kein NATO Fall.",
+          "Was anderes ist, ist wenn die Türkei eingegriffen werden würde. Oder wenn die Aktivitäten gegen Zypern fortgesetzt werden.",
+          "Ich bin mir nicht sicher ob das reicht den Fall der NATO auszurufen, wo alle Mitglieder mitmachen müssten."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist kein NATO Fall. Was anderes ist, ist wenn die Türkei eingegriffen werden würde. Oder wenn die Aktivitäten gegen Zypern fortgesetzt werden.",
+            "timestamp": "00:43:04",
+            "context": "Laschet konkretisiert, unter welchen Bedingungen ein NATO-Fall vorläge."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Artikel 5",
+          "Türkei",
+          "Zypern-Konflikt",
+          "Bündnisverpflichtungen"
+        ]
+      },
+      {
+        "title": "Risiko eines Flächenbrands und historische Parallelen",
+        "timestamp_range": "00:43:34 - 00:44:51",
+        "theme_description": "Einschätzung des Kriegseskalationsrisikos und Vergleich mit historischen Fallstricken (Schlafwandler, Weltkriegsrisiken).",
+        "question_asked": "Maybrit Illner fragt Laschet, wie groß die Gefahr ist, dass dieser Krieg ein Flächenbrand wird—ein dramatisches Wort, aber möglich?",
+        "question_intent": "Illner möchte wissen, ob Laschet Weltkriegsgefahren sieht oder das Eskalationsrisiko minimiert.",
+        "position": "Laschet sagt: 'Gefahr besteht immer.' Er verweist auf historische Parallelen (Schlafwandler-These zum Ersten Weltkrieg) und stellt fest: Wenn eins zum anderen kommt, kann es zu einem Krieg kommen. Glücklicherweise hätte Deutschland keine Bündnisverpflichtung gegenüber dem Iran, sonst würe man in einem Weltkrieg. Man müsse bei allen Konflikten 'auf allen Seiten' darauf hinarbeiten, dass es deeskaliert wird und nicht zu einem Flächenbrand kommt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet die Flächenbrand-Frage direkt: Ja, Gefahr besteht, mit historischen Parallelen illustriert. Er gibt aber auch Entwarnung (keine Bündnisverpflichtung zu Iran). Das ist eine substantielle Position, auch wenn sie eher tautologisch ist (Gefahr besteht immer).",
+        "concrete_statements": [
+          "Gefahr besteht immer.",
+          "Man muss bei all diesen Konflikten alles nutzen, auf allen Seiten, dass es deeskaliert wird.",
+          "Es soll nicht zu einem Flächenbrand kommen.",
+          "Glücklicherweise haben wir keine Bündnisverpflichtung gegenüber dem Iran."
+        ],
+        "quotes": [
+          {
+            "text": "Gefahr besteht immer. Bei uns ist es üblich, wenn man historisch zitiert, im Zweiten Weltkrieg zu zitieren. Das Schlafwandler der Recherche hineintappen in den Krieg. Wenn eins zum anderen kommt, kann es zu einem Krieg kommen, dies Gott sei Dank. Wenn Sie eine Bündnisverpflichtung gegenüber den Iran hätten, wären wir in einem Weltkrieg.",
+            "timestamp": "00:43:53",
+            "context": "Laschet wird nach dem Flächenbrand-Risiko gefragt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kriegeskalation",
+          "Weltkriegsrisiko",
+          "Bündnislogik",
+          "Deeskalation Naher Osten"
+        ]
+      },
+      {
+        "title": "Retrospektive Bewertung: War der Krieg notwendig?",
+        "timestamp_range": "00:45:00 - 00:45:58",
+        "theme_description": "Frage, ob es ein Fehler war, dass Trump und Netanjahu den Krieg begonnen haben; Laschets Einschätzung, was die Bundesregierung geraten hätte.",
+        "question_asked": "Maybrit Illner fragt direkt: 'Hätte man es dann besser nicht tun sollen? War es ein Fehler, dass Donald Trump das zusammen mit Netanjahu gemacht hat?'",
+        "question_intent": "Illner möchte eine klare Stellungnahme Laschets: Hätte man den Krieg von Anfang an besser nicht beginnen sollen?",
+        "position": "Laschet antwortet: 'Auch das hilft im Moment keinen Meter weiter.' Er sagt, die Bundesregierung hätte wahrscheinlich nicht zu einem Angriff geraten. Wenn man die Menschen auf der Straße gewesen wären (Hinweis auf mögliche iranische Aufstände), hätte man möglicherweise geraten, zu warten. Aber ein Regimesturz wäre 'ein Traum'—die ganze Ordnung im Nahen Osten würde sich ändern. Die ehrliche Antwort: 'Ich glaube nicht, dass wir zu geraten hätten.' Das ist ein Zugeständnis gegen den Krieg, aber ohne Vorwurfe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laschet adressiert die Frage nur halbwegs: Er sagt, die Bundesregierung hätte nicht geraten, beantwortet aber nicht, ob der Krieg insgesamt ein 'Fehler' war. Stattdessen betont er, dass rückwärtsgewandte Urteile nicht helfen ('keinen Meter weiter'), und erklärt die Logik eines Regimewechsels. Das ist evasiv.",
+        "concrete_statements": [
+          "Die Bundesregierung hätte wahrscheinlich nicht zu einem Angriff geraten.",
+          "Wenn die Menschen auf der Straße gewesen wären, hätte man möglicherweise geraten zu warten.",
+          "Wenn dieses Regime gestürzt würde, würde sich die ganze Ordnung im Nahen Osten ändern.",
+          "Ehrlich gesagt, ich glaube nicht, dass wir zu geraten hätten."
+        ],
+        "quotes": [
+          {
+            "text": "Auch das hilft im Moment keinen Meter weiter. Wir hätten wahrscheinlich nicht dazu geraten.",
+            "timestamp": "00:45:00",
+            "context": "Laschet wird direkt gefragt, ob es ein Fehler war, den Krieg zu beginnen."
+          },
+          {
+            "text": "Die Frage ist, hätten wir, wenn man uns gefragt hatte, greift an, wahrscheinlich mehrheitlich in der Bundesregierung nicht. Wenn, hätten wir gesagt als die Menschen auf der Straße waren. Das kann mit einer Zeitverzögerung. Dass das eine Befreiung für die gesamte Region und der Welt wäre. Wenn dieses Regime gestürzt, würde sich die ganze Ordnung im Naher Osten ändern. Ehrlich gesagt, ich glaube nicht, dass wir zu geraten hätten.",
+            "timestamp": "00:45:21",
+            "context": "Laschet erklärt die Logik, warum die Bundesregierung nicht geraten hätte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitische Verantwortung",
+          "Krieg und Diplomatie",
+          "Regimewechsel Iran"
+        ]
+      },
+      {
+        "title": "Ölpreise und wirtschaftliche Konsequenzen",
+        "timestamp_range": "00:52:35 - 00:53:49",
+        "theme_description": "Bewertung von Maßnahmen gegen steigende Energiepreise und kritische Haltung zu unbegrenzten Staatshilfen.",
+        "question_asked": "Maybrit Illner fragt, ob steigende Ölpreise durch den Krieg das letzte sind, das die deutsche Bundesregierung gebrauchen könnte. Dann verweist sie auf Benzinpreismaßnahmen und fragt Laschet zum generellen Umgang mit Krisenkosten.",
+        "question_intent": "Illner möchte verstehen, ob Laschet Regierungsmaßnahmen zur Preiskontrolle befürwortet oder lieber haushaltskonservativ agiert.",
+        "position": "Laschet sagt: 'Die ganze Welt kann das nicht gebrauchen. Die Bundesregierung auch nicht.' Er findet es 'eine richtige Maßnahme', dass die Regierung bei Benzinpreisen aktiv wird (Kartellamt kontrolliert). Aber er warnt vor grundsätzlicher Philosophie: 'Jedes Problem auf der Welt mit immer neuen Schulden zu begleichen. Das haben wir bei jeder Krise gemacht. Das ist unverantwortlich.' Er ist froh, dass die Regierung sich 'dem Licht erlogen ist' (wohl gemeint: dem Druck widersetzt hat). Alle Mittel sind wichtig, aber nicht blind Geld ausgeben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet klar: Ja, steigende Preise sind ein Problem, aber man sollte nicht mit automatischen Schulden reagieren. Das ist eine klare haushaltskonservative Position, die zur CDU-Tradition passt.",
+        "concrete_statements": [
+          "Die ganze Welt kann das nicht gebrauchen.",
+          "Das finde ich eine richtige Maßnahme (bei Benzinpreiskontrolle).",
+          "Ich bin froh, dass sie dem Licht erlogen ist (Regierung widersetzt sich unbegrenzte Schuldenaufnahme).",
+          "Jedes Problem auf der Welt mit immer neuen Schulden zu begleichen. Das ist unverantwortlich.",
+          "Alle Mittel zu nutzen, ist wichtig. Das Kartellamt soll aufmerksam beobachten."
+        ],
+        "quotes": [
+          {
+            "text": "Das finde ich eine richtige Maßnahme. Ich bin froh, dass sie dem Licht erlogen ist. Jedes Problem auf der Welt mit immer neuen Schulden zu begleichen. Das haben wir bei jeder Krise gemacht. Das ist unverantwortlich.",
+            "timestamp": "00:52:57",
+            "context": "Laschet nimmt Stellung zu Benzinpreismaßnahmen und grundsätzlicher Fiskalpolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Staatliche Hilfen",
+          "Haushaltskonsumation",
+          "Kartellrecht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Iran hat bisher Russland mit Drohnen versorgt, die im Kampf gegen die Ukrainer eingesetzt wurden.",
+        "timestamp": "00:41:04"
+      },
+      {
+        "claim": "Das iranische Regime wurde militärisch schwach gemacht in Bezug auf Flotte und ballistische Raketen.",
+        "timestamp": "00:03:56"
+      },
+      {
+        "claim": "Deutschland, Frankreich und Großbritannien waren mit dem Iran beim Atomabkommen bis vor wenigen Monaten noch beteiligt.",
+        "timestamp": "00:20:46"
+      },
+      {
+        "claim": "Die Hisbollah im Libanon wird vom Iran finanziert und stellt einen Staat im Staat dar.",
+        "timestamp": "00:21:30"
+      },
+      {
+        "claim": "Trump kündigte das Atomabkommen (JCPOA) in seiner 1. Amtszeit.",
+        "timestamp": "00:21:30"
+      }
+    ]
+  }
+}

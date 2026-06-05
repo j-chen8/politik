@@ -1,0 +1,299 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0yNl8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-26",
+    "politician": "Karl Lauterbach",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "93417682cc8d4e8f",
+    "transcript_chars": 52226,
+    "caption_lines": 1938,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21202,
+    "tokens_out": 7065,
+    "cost_usd": 0.0226108,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 4,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.268Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl Lauterbach diskutierte mit Moderatorin Sandra Maischberger und Wirtschaftsweise Monika Schnitzer über die geplante Rentenreform der Bundesregierung. Er warnte vor Ungleichheit im Rentensystem, plädierte für eine umfassendere Reform und verteidigte die Haltelinie der SPD, wobei er eine defensive, aber argumentativ differenzierte Haltung einnahm.",
+    "themes": [
+      {
+        "title": "Notwendigkeit umfassender Rentenreform",
+        "timestamp_range": "00:21:41 - 00:27:02",
+        "theme_description": "Karl Lauterbach argumentiert für eine strukturelle Gesamtreform des Rentensystems, die über die aktuellen Gesetzesentwürfe hinausgeht.",
+        "question_asked": "Sandra Maischberger und Monika Schnitzer fragten Karl Lauterbach, warum die SPD bei der aktuellen Rentenreform mitwirkt, wenn sie selbst davon überzeugt ist, dass nur eine umfassendere Reform die Probleme lösen kann (Schnitzer: \"Verstehen Sie den Aspekt, sie wollen etwas beschließen, wo sie nachher in der Kommission noch mal drauf gucken, ob das gut war?\").",
+        "question_intent": "Moderatorin und Schnitzer wollten wissen, warum Lauterbach ein unvollständiges Rentenpaket unterstützt, wenn er selbst die Notwendigkeit einer großen Reform betont.",
+        "position": "Lauterbach argumentierte, dass die aktuelle Rentenreform notwendig ist, um die Haltelinie zu stabilisieren und damit Gerechtigkeitsprobleme zu adressieren. Er betonte, dass die Verengung der Diskussion auf Jung-gegen-Alt zu kurz greift. Stattdessen müsse man die \"Riesen Ungerechtigkeit\" im Rentensystem angehen, die Geringverdiener benachteiligt – nur etwa 3 % der Rentner hätten keine Beitragszahlung geleistet. Gleichzeitig plädierte er dafür, dass die große Reform in Angriff genommen wird: \"Ich finde, dass wir jetzt an den Punkten, wo wir diese 4 Punkte beschließen können. Wenn wir bei einer großen Rentenreform zu überzeugen, dass etwas verändert werden muss.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach adressierte die Frage nach dem Widerspruch zwischen Unterstützung und kritischer Haltung, indem er das aktuelle Paket als notwendigen Schritt zur Stabilisierung beschrieb. Er betonte aber nicht hinreichend, warum man sich auf ein unvollständiges Paket einigt, wenn eine umfassendere Reform strukturell bessere Lösungen bietet – ein Kernpunkt von Schnitzers Kritik.",
+        "concrete_statements": [
+          "Die aktuelle Reform stabilisiert die Haltelinie und adressiert Gerechtigkeitsprobleme für Geringverdiener",
+          "Eine große Rentenreform ist langfristig notwendig, um strukturelle Ungleichheiten zu beheben",
+          "Die Kommission kann als fairer Interessenausgleich funktionieren, wenn sie gut geführt wird"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass wir eine große Rentenreform benötigen. Ich glaube, dass sich die Verengung der Diskussion, die wir derzeit haben, die Jungen sind die Verlierer, die alten sind die Gewinner. Dass das zu kurz springt.",
+            "timestamp": "00:25:57",
+            "context": "Lauterbach antwortet auf Schnitzers Kritik, dass die aktuelle Reform unvollständig und nicht gründlich genug überlegt ist."
+          },
+          {
+            "text": "Die Kommission macht keine Forschung. Aber man eskortiert einen fairen Interessenausgleich. Insbesondere, wenn die Kommission gut geführt wird.",
+            "timestamp": "00:25:25",
+            "context": "Lauterbach verteidigt die Rolle der geplanten Rentenkommission gegen Schnitzers Vorwurf, dass Kommissionen Zeit verschwenden."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Generationengerechtigkeit",
+          "Sozialleistungen",
+          "Bundeshaushalt"
+        ]
+      },
+      {
+        "title": "Gerechtigkeitsprobleme für Geringverdiener",
+        "timestamp_range": "00:26:31 - 00:30:38",
+        "theme_description": "Karl Lauterbach warnt vor der Benachteiligung von Geringverdienern und ärmeren Rentnern, die durch längere Arbeitszeiten zusätzlich belastet würden.",
+        "question_asked": "Monika Schnitzer schlug vor, dass längeres Arbeiten und die Kopplung der Lebensarbeitszeit an die Lebenserwartung Reformkomponenten sein sollten. Sandra Maischberger und Schnitzer fragten, wie man mit unterschiedlichen Lebenserwartungen zwischen reichen und armen Bevölkerungsgruppen umgehen solle.",
+        "question_intent": "Die Fragesteller wollten verstehen, wie eine Lebenserwartungs-gekoppelte Rentenreform sozial gerecht gestaltet werden könnte, ohne Arme zusätzlich zu belasten.",
+        "position": "Lauterbach lehnte die unkritische Erhöhung des Renteneintrittsalters ab. Er warnte, dass die Lebenserwartung von Geringverdienern etwa 8,5 Jahre unter der von Wohlhabenden liegt. Er betonte ein strukturelles Problem: \"20% zahlen nur ein, die holen keinen Cent raus, weil sie vorher sterben.\" Dies sei nicht gerecht. Lauterbach pladierte stattdessen dafür, dass man Geringverdiener durch bessere Bildung, Ausbildung und Berufschancen unterstütze. Außerdem warnte er vor dem Vertrauen in eine große Rentenkommission, wenn die Grundprobleme (Gerechtigkeitslücke, Armut im Alter) gar nicht angegangen werden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach präsentierte eine klare Position gegen pauschale Lebenserwartungs-Koppelung und begründete sie mit konkreten Zahlen zur Lebensdauer-Ungerechtigkeit. Er wandte sich direkt gegen Schnitzers Vorschlag und entwickelte eine alternative Sicht, die Armut und Gerechtigkeit zentral stellt.",
+        "concrete_statements": [
+          "Geringverdiener haben eine um 8,5 Jahre kürzere Lebenserwartung als Wohlhabende",
+          "20% der Rentner zahlen ein, erhalten aber nichts, da sie vor Renteneintritt sterben",
+          "Längere Arbeitszeiten ohne Kompensation benachteiligen Arme zusätzlich",
+          "Investitionen in Bildung und Ausbildung sind prioritär, um künftige Rentensicherheit zu verbessern"
+        ],
+        "quotes": [
+          {
+            "text": "Die einkommensschwachen haben eine Lebenserwartung, die ist bei Männern in Deutschland 8,5 Jahre kürzer als die der einkommensstarken. Wenn ich so tu, als würden alle gleich lang arbeiten. Die ärmeren erleben die Rente gar nicht.",
+            "timestamp": "00:31:39",
+            "context": "Lauterbach antwortet auf Schnitzers Vorschlag, Lebensarbeitszeit an Lebenserwartung zu koppeln."
+          },
+          {
+            "text": "Kann ich Ihnen sagen aus den vielen Gesprächen, die ich da führe. 40 Jahre gearbeitet haben, habe nicht so viel verdient, die haben mit der Rente nicht mehr raus, als hätten sie nie gearbeitet. Die sind in der Nähe der Grundsicherung.",
+            "timestamp": "00:30:07",
+            "context": "Lauterbach beschreibt die Situation von Geringverdienern aus eigener Erfahrung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Altersarmut",
+          "Gleichstellung",
+          "Gesundheitliche Ungleichheit",
+          "Bildungsinvestitionen"
+        ]
+      },
+      {
+        "title": "Haltelinie und politische Verlässlichkeit",
+        "timestamp_range": "00:28:03 - 00:30:07",
+        "theme_description": "Karl Lauterbach verteidigt die SPD-Position zur 48%-Haltelinie als Ausdruck von Koalitionsvertrag und politischer Verlässlichkeit.",
+        "question_asked": "Monika Schnitzer fragte, warum Lauterbach etwas beschließen will, von dem er selbst nicht völlig überzeugt ist, und stellte die Frage, ob die SPD bei einer Verzögerung der Mütterrente von der Haltelinie abweichen könnte (\"die Mütterrente, wenn der Söder sagt, ich nehme die vom Tisch, sind Sie bereit, von der Haltelinie zu gehen?\").",
+        "question_intent": "Schnitzer wollte herausfinden, ob Lauterbach flexibel ist oder ob er rigide an der Haltelinie festhält, und was die tatsächlichen roten Linien der SPD sind.",
+        "position": "Lauterbach betonte das Prinzip der politischen Verlässlichkeit: \"Es ist ein Prinzip der politischen Verlässlichkeit. Wenn wir Wahlkampf machen für eine bestimmte Position. Und verhandeln die, dies beschlossen. Das, was da steht, ist genau das, was wir vereinbart hatten.\" Die SPD werde die Haltelinie durchziehen, da dies im Koalitionsvertrag vereinbart wurde. Lauterbach warnte zudem vor der politischen Botschaft einer Verzögerung: Wenn Geringverdiener hörten, \"wir wollen erst noch mal kürzen\", würden diese \"zunehmend AfD\" wählen. Gleichzeitig signalisierte er, dass wenn das \"gesamte Paket noch einmal aufgemacht hätten, dann wäre ich persönlich da beweglich\".",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lauterbach beantwortete Schnitzers Frage zum Prinzip politischer Verlässlichkeit klar und positionierte die SPD damit als zuverlässiger Koalitionspartner. Allerdings ließ er die konkrete Frage offen, ob die SPD bei einem Neuverhandeln des gesamten Pakets von der Haltelinie abgehen würde – er andeutete nur, dass er \"persönlich\" beweglich wäre.",
+        "concrete_statements": [
+          "Die 48%-Haltelinie ist Bestandteil des Koalitionsvertrags und muss eingehalten werden",
+          "Politische Verlässlichkeit ist zentral für die Regierungsfähigkeit",
+          "Geringverdiener wählen AfD, wenn die Regierung Rentenkürzen signalisiert",
+          "Eine Verzögerung des gesamten Pakets könnte zu SPD-Flexibilität führen, aber nicht einzelne Punkte"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ein Prinzip der politischen Verlässlichkeit. Wenn wir Wahlkampf machen für eine bestimmte Position. Und verhandeln die, dies beschlossen. Das, was da steht, ist genau das, was wir vereinbart hatten.",
+            "timestamp": "00:28:36",
+            "context": "Lauterbach erklärt, warum die SPD das Rentenpaket wie vereinbart umsetzen will."
+          },
+          {
+            "text": "Wenn diese Leute hören, wir wollen erst noch mal kürzen, wir können uns das System so nicht mehr leisten, die Leute sind jetzt schon auf der Zinne. Werden zunehmend AfD.",
+            "timestamp": "00:30:38",
+            "context": "Lauterbach warnt vor den politischen Folgen einer Verzögerung oder Kürzung der Rentenleistungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "SPD-Politik",
+          "Regierungsstabilität",
+          "Wählerbindung"
+        ]
+      },
+      {
+        "title": "Kapitaldeckung in der Altersvorsorge",
+        "timestamp_range": "00:34:15 - 00:34:45",
+        "theme_description": "Karl Lauterbach bekräftigt seine frühere Position zur obligatorischen Kapitaldeckung als langfristige Ergänzung zur Rentenversicherung.",
+        "question_asked": "Monika Schnitzer fragte, warum Deutschland wie andere Länder (z.B. Schweden) nicht eine Kapitaldeckung für die Rente aufgebaut habe, und ob es an Mut oder an Vorbehalten gegen Aktienmarktinvestitionen liege.",
+        "question_intent": "Schnitzer wollte verstehen, warum Deutschland eine Reformchance verpasst hat, die andere Länder erfolgreich genutzt haben.",
+        "position": "Lauterbach stimmte Schnitzer zu: \"Da sind wir einer Meinung. Ich war damals für die obligatorische Kapitaldeckung, die ohne viel Bürokratie die Renten langfristig verbessert. Für die, die allein mit der Rentenumlage nicht leben können.\" Er deutete an, dass ideologische Widerstände in SPD und Gewerkschaften gegen Aktieninvestitionen diesen Reformweg verhindert hätten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach antwortete direkt und affirmativ auf Schnitzers Frage, bestätigte seine eigene frühere Position und benannte konkrete ideologische Hindernisse (SPD, Gewerkschaften).",
+        "concrete_statements": [
+          "Obligatorische Kapitaldeckung hätte langfristig die Renten ohne große Bürokratie verbessert",
+          "Ideologische Widerstände gegen Aktienmarktinvestitionen haben diesen Reformweg blockiert",
+          "Eine solche Kapitaldeckung hätte Menschen geholfen, die nicht allein von der Rentenumlage leben könnten"
+        ],
+        "quotes": [
+          {
+            "text": "Da sind wir einer Meinung. Ich war damals für die obligatorische Kapitaldeckung, die ohne viel Bürokratie die Renten langfristig verbessert. Für die, die allein mit der Rentenumlage nicht leben können.",
+            "timestamp": "00:34:45",
+            "context": "Lauterbach antwortet auf Schnitzers Frage zu verpassten Reformchancen in der Kapitaldeckung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Altersvorsorge",
+          "Kapitalmarktpolitik",
+          "Rentensicherung",
+          "Finanzmarktregulierung"
+        ]
+      },
+      {
+        "title": "Beamtenpensionen und Ungerechtigkeit",
+        "timestamp_range": "00:35:18 - 00:36:55",
+        "theme_description": "Karl Lauterbach kritisiert die unterschiedliche Behandlung von Beamtenpensionen und gesetzlichen Renten als vertrauensschädigend.",
+        "question_asked": "Monika Schnitzer warf die Frage auf, ob man Beamte und Selbstständige in die Rentenversicherung einziehen sollte, um die Lasten fairer zu verteilen. Lauterbach antwortete, dass das Problem größer sei: der Staat mache Regeln, die für ihn selbst nicht gelten.",
+        "question_intent": "Schnitzer wollte wissen, ob eine Ausweitung der Rentenversicherung auf Beamte eine Reformoption sei.",
+        "position": "Lauterbach lehnte die bloße Einbeziehung von Beamten in die Rentenversicherung ab und formulierte stattdessen ein prinzipielleres Problem: \"Der Staat Regeln macht. Die für ihn selbst nicht gelten, das können Sie einfachen Menschen nicht erläutern. Das ist ein Fehler, dass hüllt das Vertrauen einen Staat aus.\" Beamten hätten faktisch eine niedrigere Lebensarbeitszeit bei gleicher Pensionszahlung, und dies schaffe einen Vertrauensverlust. Er plädierte dafür, dass Beamte dem Umlageprinzip einbezogen werden müssen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach adressierte Schnitzers Frage vollständig, indem er das konkrete Ungleichgewicht benannte und ein Vertrauens-Argument einbrachte, das über reine Finanzierungsfragen hinausgeht.",
+        "concrete_statements": [
+          "Beamtenpensionen sind faktisch höher als gesetzliche Renten bei gleicher Arbeitszeit",
+          "Der Staat macht Regeln, die für sich selbst nicht gelten – das unterminiert Vertrauen",
+          "Beamte müssen in die Rentenumlage einbezogen werden"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe damals dafür plädiert, dass Beamten dieses Umlagesystem einbezogen werden müssen. Weil das der Staat Regeln macht. Die für ihn selbst nicht gelten, das können Sie einfachen Menschen nicht erläutern.",
+            "timestamp": "00:35:18",
+            "context": "Lauterbach kritisiert die Privilegierung von Beamten als Vertrauensverlust."
+          },
+          {
+            "text": "Das Niveau ist gesunken. Von fast 55% auf 48%.",
+            "timestamp": "00:36:25",
+            "context": "Lauterbach korrigiert Schnitzers Aussage zur Rentenniveauentwicklung und weist auf die faktische Absenkung hin."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Beamtenpolitik",
+          "Rentengerechtigkeit",
+          "Öffentlicher Dienst",
+          "Vertrauenskultur"
+        ]
+      },
+      {
+        "title": "Rentenniveauabsenkung und Armut",
+        "timestamp_range": "00:36:25 - 00:37:28",
+        "theme_description": "Karl Lauterbach warnt vor der faktischen Absenkung des Rentenniveaus und deren Auswirkungen auf Arme.",
+        "question_asked": "Monika Schnitzer bestritt, dass das Rentenniveau abgesenkt worden sei, und argumentierte, dass die gesetzliche Rente nie gesenkt werden darf. Lauterbach widersprach.",
+        "question_intent": "Schnitzer wollte sachlich zwischen nominaler Rentenzahlung (die nicht sinkt) und relativem Rentenniveau (das sinken kann) unterscheiden.",
+        "position": "Lauterbach bestand darauf, dass das Rentenniveau faktisch abgesenkt wurde: \"Von fast 55% auf 48%.\" Er betonte, dass dies den \"einfachen Menschen\" nicht zu erklären ist und real zu Armut führt: \"Die Leute sind doch nicht dumm. Die kapieren ganz genau, dass die Rente nicht so stark steigen soll wie die Löhne.\" Besonders problematisch finde er, dass Mietkosten stärker steigen als Löhne – deshalb müsse man ärmere Menschen durch Wohngeld oder ähnliche Maßnahmen abfedern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach antwortete direkt auf Schnitzers technische Unterscheidung, indem er die praktische Auswirkung (Real-Verelendung von Rentnern) in den Mittelpunkt stellte und nicht die buchhalterische Debatte über Nominal- vs. Relativniveaus führte.",
+        "concrete_statements": [
+          "Das Rentenniveau ist von 55% auf 48% abgesenkt worden",
+          "Dies ist faktische Absenkung, auch wenn nominale Renten nicht sinken",
+          "Mieten steigen schneller als Löhne, was ärmere Rentner besonders belastet",
+          "Abfederungsmaßnahmen für Arme sind notwendig"
+        ],
+        "quotes": [
+          {
+            "text": "Die Leute sind doch nicht dumm. Die kapieren ganz genau, dass die Rente nicht so stark steigen soll wie die Löhne.",
+            "timestamp": "00:36:55",
+            "context": "Lauterbach erwidert auf Schnitzers technische Unterscheidung zwischen nominaler und relativer Rentenabsenkung."
+          },
+          {
+            "text": "Die Leute haben den Kaffee auf. Die können die Miete nicht bezahlen. Die Miete steigt stärker als die Löhne. Das muss man bei ärmeren Leuten abfedern.",
+            "timestamp": "00:36:55",
+            "context": "Lauterbach verdeutlicht die praktische Notlage von Geringverdienern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Altersarmut",
+          "Wohngeld",
+          "Lebenshaltungskosten",
+          "Einkommenspolitik"
+        ]
+      },
+      {
+        "title": "Regierungsfähigkeit und Rentenpaket",
+        "timestamp_range": "00:43:16 - 00:43:50",
+        "theme_description": "Karl Lauterbach äußert sich optimistisch über das Zustandekommen des Rentenpakets und warnt vor Koalitionsbruch.",
+        "question_asked": "Sandra Maischberger fragte Karl Lauterbach direkt: \"Lauterbach, die Silke Regierung, haben sie gesagt, steht vor einem Koalitionsbruch. Dieses Rententhema hat das Potenzial, dass es Koalitionsbruch drinnen hat. Kommt es dazu oder nicht?\"",
+        "question_intent": "Maischberger wollte eine klare Prognose von Lauterbach zur Stabilität der Koalition.",
+        "position": "Lauterbach antwortete optimistisch, dass die Koalition hält: \"Nein, ich glaube, wir werden die Kurve bekommen.\" Er betonte, dass das Rentensicherungsvorhaben lediglich \"1,5% der Rentenausgaben\" betrage – eine verkraftbare Summe. Allerdings gab er zu: \"Das haben sie versucht. Wir werden uns einigen und regieren weiter und hätten uns diesen Staat ersparen müssen. Mal sehen, wie es ausgeht.\" Dies deutete an, dass die bisherige innere Zerreißprobe unnötig und schädlich war.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lauterbach gab eine direkte Antwort auf Maischbergers Frage, signalisierte aber auch Zweifel durch seine qualifizierende Aussage \"mal sehen wie es ausgeht\".",
+        "concrete_statements": [
+          "Die Koalition wird sich bei der Rentenreform einigen",
+          "Das Rentenpaket macht nur 1,5% der Rentenausgaben aus und ist finanzierbar",
+          "Die bisherigen Konflikte waren unnötig und haben dem Staat geschadet",
+          "Koalitionsbruch ist nicht zu erwarten"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, ich glaube, wir werden die Kurve bekommen, das kann man dem Bürger nicht erläutern.",
+            "timestamp": "00:43:16",
+            "context": "Lauterbach antwortet optimistisch auf Maischbergers Frage zu Koalitionsbruch."
+          },
+          {
+            "text": "Wir werden uns einigen und regieren weiter und hätten uns diesen Staat ersparen müssen. Mal sehen, wie es ausgeht.",
+            "timestamp": "00:43:50",
+            "context": "Lauterbach qualifiziert seinen Optimismus mit einer kritischen Reflexion über den bisherigen Prozess."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Regierungskoalition",
+          "Regierungsstabilität",
+          "SPD-Politik",
+          "Bundestag-Abstimmungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Lebenserwartung von Geringverdienern ist bei Männern in Deutschland etwa 8,5 Jahre kürzer als die der einkommensstarken",
+        "timestamp": "00:31:39"
+      },
+      {
+        "claim": "Etwa 20% der Rentner zahlen nur ein und holen keinen Cent raus, weil sie vorher sterben",
+        "timestamp": "00:32:09"
+      },
+      {
+        "claim": "Das Rentenniveau ist von über 55% auf 48% abgesenkt worden",
+        "timestamp": "00:34:45"
+      },
+      {
+        "claim": "Die geplante Haltelinie macht etwa 1,5% der Rentenausgaben aus",
+        "timestamp": "00:43:16"
+      },
+      {
+        "claim": "Karl Lauterbach war früher für die obligatorische Kapitaldeckung in der Altersvorsorge",
+        "timestamp": "00:34:45"
+      }
+    ]
+  }
+}

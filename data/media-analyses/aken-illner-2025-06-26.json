@@ -1,0 +1,308 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-26-juni-2025-100",
+    "video_id": "illner-2025-06-26",
+    "politician": "Jan van Aken",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "b514542b200fa82e",
+    "transcript_chars": 47084,
+    "caption_lines": 2336,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19947,
+    "tokens_out": 7215,
+    "cost_usd": 0.0224088,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "themenwechsel": 2,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.698Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Vorsitzender der Linken, diskutiert in der Sendung \"maybrit illner\" über die iranische Nuklearpolitik, NATO-Rüstungsausgaben und die Ukraine-Krise. Er argumentiert grundsätzlich für Diplomatie statt militärische Eskalation und kritisiert die geplante Vervierfachung der deutschen Rüstungsausgaben als unverhältnismäßig und sozial belastend.",
+    "themes": [
+      {
+        "title": "Iranisches Atomprogramm und US-Angriff",
+        "timestamp_range": "00:06:49 - 00:08:37",
+        "theme_description": "Jan van Aken bewertet die US-Luftschläge gegen iranische Nuklearanlagen und deren Auswirkungen auf die Verhandlungsfähigkeit.",
+        "question_asked": "Maybrit Illner fragt Jan van Aken, ob Donald Trump mit seinem Angriff die iranischen Ambitionen für ein Atomwaffenprogramm damit nicht tatsächlich 'erst mal kaputt gemacht' hat (Paraphrase: Hat Trump das Problem gelöst?).",
+        "question_intent": "Illner möchte von van Aken wissen, ob der militärische Schlag Trumps langfristig die iranische Atombombe-Entwicklung behindert oder verhindert.",
+        "position": "Jan van Aken differenziert zwischen Atomprogramm und Atomwaffenprogramm. Er betont, dass der Iran das Atomwaffenprogramm laut US-Geheimdiensten seit 2003 nicht mehr verfolgt und dass internationale Kontrolleure vor Ort vor Uran-Anreicherung auf 90% bewahrt haben. Sein Kernargument: Ohne Inspektoren vor Ort und bei gescheiterten Verhandlungen sinke die Sicherheit, da der Iran dann Anlagen tiefer unter Felsen bauen könnte. Er konkludiert: 'Ohne Kontrolleure keine Sicherheit. Ich glaube, die Gefahr ist durch die Bomben der USA größer geworden.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken beantwortet nicht direkt die Frage, ob der Angriff das Problem 'gelöst' hat, sondern reframet die Debatte: Er argumentiert, dass Militärschläge die Sicherheit verschärfen, ohne es zu lösen. Die Antwort ist substanziell, adressiert aber eine andere Frage-Dimension (Konsequenzen statt Erfolg) und weicht zur Verhandlungs-These aus.",
+        "concrete_statements": [
+          "Atomwaffenprogramm hatte der Iran bis zu 2003",
+          "US-amerikanische Geheimdienste haben vor einer Woche noch gesagt, die bauen nicht an der Atombombe",
+          "Solange die Kontrolleure vor Ort sind, können sie sagen, die sind bei 60% und nicht bei 90%",
+          "Ohne Kontrolleure keine Sicherheit",
+          "Die Gefahr ist durch die Bomben der USA größer geworden"
+        ],
+        "quotes": [
+          {
+            "text": "Glaube ich nicht. Müssen wir sagen Atomprogramm und Atomwaffenprogramm. Atomprogramm hat der Iran und Atomwaffenprogramm hatte er bis zu 2003 das sind sich alle einig, auch die US-amerikanischen Geheimdienste haben vor einer Woche noch gesagt, die bauen nicht an der Atombombe.",
+            "timestamp": "00:06:49",
+            "context": "Van Aken widerspricht Illners Prämisse, dass der Angriff iranische Atomambitionen zunichte gemacht habe."
+          },
+          {
+            "text": "Ohne Kontrolleure keine Sicherheit. Ich glaube, die Gefahr ist durch die Bomben der USA größer geworden.",
+            "timestamp": "00:08:06",
+            "context": "Van Akens Fazit zur Frage, ob Militärschläge zukünftige Proliferation verhindern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Atompolitik",
+          "Internationale Rüstungskontrolle",
+          "Vereinte Nationen und Völkerrecht"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben und NATO-Forderung nach 5%",
+        "timestamp_range": "00:28:35 - 00:40:25",
+        "theme_description": "Jan van Aken kritisiert die von der NATO geforderte Steigerung der Rüstungsausgaben auf 5% des BIP als unverhältnismäßig und nicht notwendig angesichts der russischen Militärlage.",
+        "question_asked": "Maybrit Illner fragt Jan van Aken (als Linker), ob es nicht interpretierbar ist, endlich für europäische Unabhängigkeit von den USA zu plädieren, und ob das nicht das sein müsste, 'was man dann eigentlich als Linker jetzt hochhalten müsste'.",
+        "question_intent": "Illner sucht eine Antwort auf den scheinbaren Widerspruch: Linke fordern Unabhängigkeit von den USA, aber deutsche Rüstung braucht die USA – wie passt das zusammen?",
+        "position": "Jan van Aken argumentiert, dass Die Linke seit der Bush-Administration die USA als unzuverlässig einstuft und deshalb 'sicherheitseuropäisch denken' muss. Sein zentrales Argument: Die NATO-Staaten geben zusammen mehr aus als der ganze Rest der Welt; daher sei eine Vervierfachung des deutschen Etats (von 52 Mrd. auf 220 Mrd. Euro) disproportional. Er lehnt ab, dass Deutschland 'überall auf der Welt einsatzfähig' sein müsse – das widerspreche dem Selbstverständnis der Linken als Partei gegen globale militärische Interventionen. Konkret kritisiert er, dass Waffen wie Fregatten 'keinen Heimathafen haben', die für die Ostsee-Verteidigung unnötig seien.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Van Aken antwortet nicht auf Illners Frage zur europäischen Unabhängigkeit, sondern verschiebt zum Kernargument gegen 5%-Rüstungsausgaben: Die Frage wird als Prämisse entschärft ('Unabhängigkeit ja, aber nicht durch Hochrüstung'), dann wird ein anderes Thema prominent gemacht (Finanzierungsmöglichkeiten, globale Rüstungslogik).",
+        "concrete_statements": [
+          "Wir müssen europäischer denken seit Bush, sind unzuverlässig",
+          "Wir müssen sicherheitseuropäisch denken",
+          "NATO allein hat mehr Militärausgaben als der ganze Rest der Welt zusammen",
+          "Wir vervierfachen das in Deutschland, das geht nicht auf",
+          "Wir brauchen überall auf der Welt einsatzfähig zu sein – das wollen wir als Linke nicht",
+          "Wir haben Waffensysteme, die brauche ich nicht für Landesverteidigung gegenüber Russland, sondern um global einsatzfähig zu sein"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben das Problem, seit Busch, die sind unzuverlässig seitdem sagen wir, wir müssen europäischer denken. Das entscheidende ist, dass wir sicherheitseuropäisch denken müssen.",
+            "timestamp": "00:28:35",
+            "context": "Van Akens Ausgangspunkt zur Frage europäischer Unabhängigkeit."
+          },
+          {
+            "text": "Die NATO allein hat mehr Militärausgaben als der ganze Rest der Welt zusammen. Deswegen zusammen, wir müssen deshalb in Deutschland vervierfachen, das geht nicht auf.",
+            "timestamp": "00:28:35",
+            "context": "Kernkritik an der 5%-Forderung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungsetat",
+          "NATO und Europäische Sicherheit",
+          "Militärische Interventionen"
+        ]
+      },
+      {
+        "title": "Diplomatie statt Militär in Außenpolitik",
+        "timestamp_range": "00:30:15 - 00:30:34",
+        "theme_description": "Jan van Aken argumentiert für diplomatische Konfliktlösung statt militärischer Interventionen, am Beispiel des Iran und Libyen.",
+        "question_asked": "Johann Wadephul (Außenminister, CDU) argumentiert, dass Handelswege (Suezkanal) geschützt werden müssen; van Aken antwortet darauf kontra.",
+        "question_intent": "Implizit: Können Diplomatie und Rüstung reduzieren und Handelssicherheit gewährleisten?",
+        "position": "Van Aken stimmt Wadephul zu, dass Handelswege geschützt werden müssen, argumentiert aber: 'Mit kluger Diplomatie können wir viele Konflikte lösen.' Er verwirft Auslandseinsätze zur Konfliktlösung und verweist auf das Beispiel Libyen, wo Intervention zu Instabilität geführt hat: 'Am Ende können Sie mit Auslandseinsätzen irgendwo weiter. Gucken Sie sich an, was in Libyen passiert ist.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken akzeptiert die Prämisse (Handelswege müssen geschützt sein), bietet aber eine Alternative (Diplomatie statt Militär) statt das militärische Konzept zu widerlegen. Die Antwort ist eher illustrativ (Libyen-Beispiel) als argumentativ ausgearbeitet.",
+        "concrete_statements": [
+          "Mit kluger Diplomatie können wir viele Konflikte lösen",
+          "Mit Auslandseinsätzen kommen Sie irgendwo nicht weiter",
+          "Libyen zeigt, dass Intervention nicht funktioniert"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin ganz bei Ihnen, sowie beim Iran argumentiere ich auch für den Rest der Welt. Mit kluger Diplomatie können wir viele Konflikte lösen. Am Ende können Sie mit Auslandseinsätzen irgendwo weiter. Gucken Sie sich an, was in Libyen passiert ist.",
+            "timestamp": "00:30:15",
+            "context": "Van Akens Gegenargument zur militärischen Handelssicherung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Diplomatie",
+          "Militärische Interventionen"
+        ]
+      },
+      {
+        "title": "Finanzierung von Rüstung und soziale Lasten",
+        "timestamp_range": "00:38:48 - 00:44:27",
+        "theme_description": "Jan van Aken argumentiert, dass die geplanten Rüstungsausgaben zu Lasten von Sozialausgaben und Bürgern gehen, und kritisiert die Bereicherung von Rüstungskonzernen durch den Krieg.",
+        "question_asked": "Maybrit Illner fragt Jan van Aken, warum die Minister der Linken im Bundesrat für das Sondervermögen (Schuldenbremsausnahme) für 100 Mrd. Euro Rüstung gestimmt haben, obwohl die Partei-Vorsitzenden die 5% als 'Wahnsinn' bezeichnen – was wäre denn okay?",
+        "question_intent": "Illner möchte aufzeigen, dass van Akens Partei intern uneins ist, und ihn zur Rechenschaft über diese Widersprüchlichkeit ziehen.",
+        "position": "Van Aken erklärt, dass Die Linke dem Paket zugestimmt hat, weil es Teil eines Gesamtdeals war: Bundesländer erhielten finanzielle Mittel für Armutsbekämpfung. Er präferiert 2%-Ausgaben (NATO-Standard vor 2024) und macht drei Punkte: (1) Kaufkraftbereinigt sind 435 Mrd. Euro (NATO ohne USA) gegen 300 Mrd. Euro Russland genug; (2) die Vervierfachung in Deutschland (52 Mrd. → 220 Mrd.) sei nicht finanzierbar ohne Sozialkürzungen; (3) Die CDU redet 'die ganze Zeit davon, den Bürgergeldempfänger das Geld zu kürzen' – das sei der Skandal.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet direkt, warum Die Linke zugestimmt hat (Gesamtpaket), erklärt dann seine Position zur 5%-Forderung und verbindet das explizit mit der Finanzierungsfrage. Er artikuliert eine klare Position gegen die geplante Hochrüstung und benennt die sozialen Kosten.",
+        "concrete_statements": [
+          "Wir haben zugestimmt, weil das zusammen gespielt wurde, als Teil des Gesamtpakets",
+          "Bundesländer bekommen ordentlich Geld, Geld wird dringend für Armutsbekämpfung gebraucht",
+          "Grundsätzlich sagen sie, die 2% waren ok",
+          "Ohne die USA geben die NATO 434 Milliarden aus, Russland sind 300 Milliarden, kaufkraftbereinigt",
+          "Russische Streitkräfte sind im desolaten Zustand",
+          "Ich finde die 5% sind ein Wahnsinn",
+          "Verteidigungsetat von 52 Milliarden gehabt, sollten 220 Milliarden werden, Vervierfachen",
+          "CDU redet davon, Bürgergeldempfänger das Geld zu kürzen",
+          "Am Ende kostet es den Menschen, die den ganzen Tag arbeiten"
+        ],
+        "quotes": [
+          {
+            "text": "Grundsätzlich sagen sie, die 2% waren ok. Ohne die USA geben die NATO 434 Milliarden aus, Russland sind 300 Milliarden, wenn wir es kaufkraftbereinigt machen. Die russischen Streitkräfte sind im desolaten Zustand.",
+            "timestamp": "00:38:48",
+            "context": "Van Akens Position zu angemessenen Rüstungsausgaben."
+          },
+          {
+            "text": "Ich finde die 5% sind ein Wahnsinn. Wir haben einen Verteidigungsetat von 52 Milliarden gehabt. Das sollen 220 Milliarden werden. Vervierfachen. Wo soll das herkommen?",
+            "timestamp": "00:38:48",
+            "context": "Kritik an der Steigerung und Finanzierbarkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Schuldenbremse",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Profiteering durch Rüstungsindustrie",
+        "timestamp_range": "00:43:40 - 00:44:27",
+        "theme_description": "Jan van Aken kritisiert, dass private Investoren und Rüstungskonzerne (exemplarisch Rheinmetall) von Kriegsprofiten durch die Ukraine-Krise profitieren.",
+        "question_asked": "Maybrit Illner hat van Aken nicht direkt zur Rüstungsindustrie befragt; van Aken eröffnet das Thema aus Eigeninitiative als Folgepunkt zur Finanzierungsdiskussion.",
+        "question_intent": "Nicht direkt angewendet; Eigeninitiative des Gastes.",
+        "position": "Van Aken berichtet, dass er 2019 zwei Rheinmetall-Aktien zu 180 Euro kaufte, um auf der Hauptversammlung sprechen zu können; sie sind nun 3500 Euro wert. Er wertet dies als Skandal: 'Einige Menschen, die da investiert haben, die haben Millionen verdient. Sie bereichern sich daran, dass Menschen in der Ukraine sterben.'",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken greift ein neues Thema eigeninitiativ auf, verankert es aber in der vorherigen Diskussion über Rüstungsfinanzierung. Die Aussage ist substanziell: Sie benennt konkrete Profiteure und eine moralische Kritik. Das ist eine eigenständige argumentative Eröffnung, kein Ausweichen.",
+        "concrete_statements": [
+          "Vor fünf Jahren zwei Rheinmetall Aktien gekauft, um auf Hauptversammlung zu sprechen",
+          "180 Euro bezahlt, sind jetzt 3500 Euro wert",
+          "Einige Menschen haben Millionen verdient",
+          "Sie bereichern sich daran, dass Menschen in der Ukraine sterben, das ist ein Skandal"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe vor fünf Jahren zwei Rheinmetall Aktien gekauft. Weil ich auf der Hauptversammlung sprechen wollte. Ich habe 180 Euro bezahlt, die sind jetzt 3500 Euro wert. Einige Menschen, die da investiert haben, die haben Millionen verdient. Sie bereichern sich daran, dass Menschen in der Ukraine sterben. Das ist ein Skandal.",
+            "timestamp": "00:43:40",
+            "context": "Van Akens Illustration von Kriegsprofiteurschaft durch Rüstungsaktien."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsindustrie",
+          "Wirtschaftliche Interessenskonflikte",
+          "Ethik in der Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Sanktionen gegen russisches Öl",
+        "timestamp_range": "00:58:39 - 00:59:18",
+        "theme_description": "Jan van Aken schlägt vor, dass die deutsche Küstenwache illegal transportiertes russisches Öl vor Fehmarn stoppen sollte, und argumentiert, dass dies völkerrechtlich zulässig wäre.",
+        "question_asked": "Maybrit Illner impliziert eine Frage zu Ukraine-Hilfe versus Bundeswehr-Aufbau; van Aken antwortet mit einem anderen Beispiel für Ukraine-Unterstützung ohne Militär-Hochfahrt.",
+        "question_intent": "Was kann Deutschland tun, um Putin zu schaden, ohne massive Rüstungsausgaben?",
+        "position": "Van Aken argumentiert, dass an der Küste bei Fehmarn täglich 'mehrere Tanker lang mit illegalem russischen Öl' fahren und 'die deutsche Küstenwache tut nichts'. Er impliziert, dass dies zulässig und wirksamer wäre als Rüstungsausgaben. Wadephul widerspricht völkerrechtlich, van Aken kontert: 'geht Küstenwache Polizei, sie dürfen das. Ein Schiff haben sie auch schon an die Kette gelegt.`'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Van Aken beantwortet nicht die Frage nach Priorität (Ukraine-Hilfe vs. Bundeswehr), sondern wendet zu einem Gegenpunkt: Die Regierung tut nicht genug gegen Putin mit verfügbaren völkerrechtlichen Mitteln. Das ist ein Pivot, kein direktes Ausweichen, aber es entkräftet die implizite Frage nach Rüstungs-Notwendigkeit.",
+        "concrete_statements": [
+          "An der Küste bei Fehmarn fahren täglich mehrere Tanker mit illegalem russischen Öl",
+          "Die deutsche Küstenwache tut nichts",
+          "Küstenwache und Polizei dürfen das machen",
+          "Ein Schiff haben sie auch schon an die Kette gelegt"
+        ],
+        "quotes": [
+          {
+            "text": "Stellen Sie sich auf Fehmarn hin. Sie können sich an die Küste stellen, jeden Tag fahren dann mehrere Tanker lang mit illegalem russischen Öl. Die deutsche Küstenwache tut nichts.",
+            "timestamp": "00:58:39",
+            "context": "Van Akens Beispiel für Nicht-Nutzung verfügbarer Sanktionsmittel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sanktionen gegen Russland",
+          "Völkerrecht",
+          "Küstenschutz"
+        ]
+      },
+      {
+        "title": "Symmetrie und Asymmetrie in Militärdiskurs",
+        "timestamp_range": "00:59:10 - 01:02:26",
+        "theme_description": "Jan van Aken argumentiert, dass die westliche Sicherheitsdiskussion einer Rüstungsspirale ähnelt wie die russische Bedrohungserzählung, und kritisiert den Einsatz der Türkei als Beispiel für NATO-Doppelmoral.",
+        "question_asked": "Maybrit Illner merkt an, dass Alfons Mais von Moskauer Talkshows spricht, die Bombardierungen Berlins diskutieren; van Aken kontert mit Ähnlichkeit der westlichen Erzählung.",
+        "question_intent": "Implizit: Ist van Aken ungerecht, russische und westliche Rüstungspolitik gleichzusetzen?",
+        "position": "Van Aken argumentiert, dass in Moskau eine Erzählung läuft 'die NATO wird uns angreifen', und in Deutschland die Umkehrung: 'Russland wird uns angreifen'. Beide Erzählungen werden in den jeweiligen Ländern ernst genommen. Das ist laut van Aken eine Rüstungsspirale ohne Ende. Er kritisiert zudem, dass die Türkei als NATO-Mitglied 'gerade einen völkerrechtswidrigen Angriffskrieg in Syrien' führt, aber darüber nicht geredet wird – das widerlege die These von NATO als reines Defensivbündnis. Wadephul wirft ein, die NATO ist ein Defensivbündnis und Art. 5 kann nur zur Verteidigung ausgelöst werden; van Aken kontert, dass Wadephul die Türkei dann sofort dazu anhalten müsste.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Van Aken reagiert auf eine Herausforderung (Symmetrie-Kritik), antwortet aber nicht auf die eigentliche Frage nach der Legitimität des Vergleichs, sondern wechselt zum Thema NATO-Doppelmoral (Türkei). Das ist ein Themenwechsel, kein direkter Eingang in den Symmetrie-Streit.",
+        "concrete_statements": [
+          "In Russland wird erzählt, die NATO wird uns angreifen",
+          "Hier ist es umgekehrt, wir sagen Russland wird uns angreifen",
+          "Beide Erzählungen werden im jeweiligen Land erst mal ernst genommen",
+          "Wir sind in einer Rüstungsspirale mit offenem Ende",
+          "Die Türkei ist ein NATO Land und führt einen völkerrechtswidrigen Angriffskrieg in Syrien",
+          "Über die Türkei wird gar nicht geredet"
+        ],
+        "quotes": [
+          {
+            "text": "Was ich nur sage ist, in Russland wird erzählt, die NATO wird uns angreifen, deswegen die Talkshows und hier ist es umgekehrt. Beide Erzählungen werden im jeweiligen Land erst mal ernst genommen.",
+            "timestamp": "01:01:46",
+            "context": "Van Akens Position zu symmetrischer Rüstungs-Erzählung."
+          },
+          {
+            "text": "Die Türkei ist ein NATO Land, die führt gerade einen völkerrechtswidrigen Angriffskrieg in Syrien.",
+            "timestamp": "01:02:13",
+            "context": "Van Akens Kritik an NATO-Doppelmoral."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO und Völkerrecht",
+          "Sicherheitspolitische Narrative",
+          "Türkei und Syrien"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "US-amerikanische Geheimdienste haben vor einer Woche noch gesagt, der Iran baut nicht an der Atombombe",
+        "timestamp": "00:06:49"
+      },
+      {
+        "claim": "Iran hatte Atomwaffenprogramm bis 2003",
+        "timestamp": "00:07:32"
+      },
+      {
+        "claim": "NATO allein hat mehr Militärausgaben als der ganze Rest der Welt zusammen",
+        "timestamp": "00:28:35"
+      },
+      {
+        "claim": "Ohne die USA geben die NATO 434 Milliarden aus, Russland 300 Milliarden kaufkraftbereinigt",
+        "timestamp": "00:38:48"
+      },
+      {
+        "claim": "Deutschlands Verteidigungsetat soll von 52 Milliarden auf 220 Milliarden Euro erhöht werden (Vervierfachung)",
+        "timestamp": "00:38:48"
+      },
+      {
+        "claim": "Jan van Aken kaufte zwei Rheinmetall-Aktien vor fünf Jahren zu 180 Euro, die sind jetzt 3500 Euro wert",
+        "timestamp": "00:43:40"
+      },
+      {
+        "claim": "Jeden Tag fahren mehrere Tanker mit illegalem russischen Öl an der Küste bei Fehmarn vorbei",
+        "timestamp": "00:58:39"
+      },
+      {
+        "claim": "Die Türkei führt einen völkerrechtswidrigen Angriffskrieg in Syrien",
+        "timestamp": "01:02:13"
+      }
+    ]
+  }
+}

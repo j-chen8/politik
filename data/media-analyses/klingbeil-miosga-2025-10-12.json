@@ -1,0 +1,596 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS9iODUxN2EzMC1lOWU3LTQzNjgtOWVhZC0zYThhYjYzMGFmZDNfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2025-10-12",
+    "politician": "Lars Klingbeil",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "5babec6c03a2fb34",
+    "transcript_chars": 41727,
+    "caption_lines": 1525,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 17932,
+    "tokens_out": 16779,
+    "cost_usd": 0.0407308,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 11,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.311Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Lars Klingbeil, Bundesfinanzminister und Vizekanzler der SPD, diskutierte in der Sendung \"Miosga\" (NDR, 12.10.2025) mit Caren Miosga über zentrale politische Fragen: den Nahostkonflikt und die Geiselfrage nach möglicher Waffenruhe, das Sondervermögen für Infrastruktur und dessen Verteilung auf Kommunen, die Reform des Bürgergeldes und grundsätzliche Finanzierungsfragen für Rente, Pflege und Verteidigung. Klingbeil präsentierte sich als pragmatischer Koalitionsführer, der Verständnis für Kritik an der Ausgabenpolitik signalisierte, aber Koalitionskompromisse betont.",
+    "themes": [
+      {
+        "title": "Hoffnung auf Geiselfrelassung und Waffenstillstand im Nahost",
+        "timestamp_range": "00:01:37 - 00:02:08",
+        "theme_description": "Einschätzung der Chancen und Risiken für die bevorstehende Geiselfrelassung und den Friedensprozess im Nahost-Konflikt.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ob Hoffnung oder Skepsis überwiegt angesichts der bevorstehenden Freilassung der letzten von der Hamas gekidnappten Geiseln, darunter sieben Deutsche.",
+        "question_intent": "Zu erfahren, wie der Finanzminister die Chancen auf eine erfolgreiche Geiselfrelassung einschätzt und ob er optimistisch auf einen nachhaltigen Frieden hofft.",
+        "position": "Klingbeil betonte, dass er Hoffnung haben möchte, räumte aber ein, dass man jede Meldung überprüfe und sich frage, ob auf den letzten Metern etwas schiefgehen könne. Die Woche gebe ihm viel Hoffnung auf Frieden und einen nachhaltigen Frieden. Er betonte die Bedeutung eines öffentlichen Prozesses und äußerte Mitgefühl für die betroffenen Familien.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil adressiert die Hoffnungsfrage durch persönliche Erwartungen, bekundet aber gleichzeitig Vorsicht. Er geht nicht detailliert auf konkrete Chancen oder Hindernisse ein, sondern bleibt eher bei allgemeinen emotionalen Reaktionen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich möchte gerne Hoffnung haben. Ich muss offen sagen, dass man jede Meldung anschaut. Man fragt sich, ob auf den letzten Metern etwas schiefgehen kann. Es ist eine Woche, die mir viel Hoffnung gibt. Hoffnung auf Frieden und einen nachhaltigen Frieden.",
+            "timestamp": "00:01:37"
+          }
+        ],
+        "concrete_statements": [
+          "Hoffnung auf Frieden und nachhaltigen Frieden in der Region"
+        ],
+        "related_bundestag_topics": [
+          "Nahostkonflikt",
+          "Geiseln",
+          "Internationale Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Trumps Rolle und diplomatischer Stil beim Geiseldeal",
+        "timestamp_range": "00:02:39 - 00:03:13",
+        "theme_description": "Bewertung von Donald Trumps Verdienst bei der Vermittelung des Geiseldeal und seines unkonventionellen politischen Stils.",
+        "question_asked": "Caren Miosga fragte Klingbeil, wie er erkläre, dass Trumps undiplomat­ischer, brachial­er Stil zum Erfolg führte und er etwas erreichte, was US-Präsidenten vor ihm nicht erreicht hatten.",
+        "question_intent": "Zu verstehen, ob und wie Klingbeil Trumps Führungsstil als legitim für außenpolitische Erfolge sieht.",
+        "position": "Klingbeil räumte Trumps Verdienste bei der Vermittelung ein und sagte, die Brachialität könnte genau das richtige Instrument gewesen sein. Er betonte, dass ohne Trump der Deal nicht zustande gekommen wäre und dass Trump vor Netanjahu und Palästinensern Einfluss bewiesen habe. Die USA könnten beeinflussen, wohin es in der Region gehe. Klingbeil hoffte auf die Unterzeichnung in Ägypten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klingbeil beantwortet die Frage direkt, indem er Trumps Verdienste anerkennt und den Zusammenhang zwischen Brachialität und Erfolg erörtert. Er liefert eine konkrete Einschätzung des Trump-Faktors in der Vermittelung.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Vielleicht ist es genau diese Brachialität. Ohne Donald Trump hätte es das nicht gegeben. Das ist ein Verdienst, muss man sagen. Die USA können beeinflussen, wohin es geht. Das hat er bewiesen vor Netanjahu und den Palästinensern.",
+            "timestamp": "00:02:39"
+          }
+        ],
+        "concrete_statements": [
+          "Trump hat Verdienste bei der Geiselfrelassung und Waffenruhe",
+          "Brachialität als Verhandlungsmittel war erfolgreich"
+        ],
+        "related_bundestag_topics": [
+          "USA-Außenpolitik",
+          "Nahostpolitik",
+          "Internationale Beziehungen"
+        ]
+      },
+      {
+        "title": "Kritik an Trumps Innenpolitik trotz außenpolitischen Erfolgs",
+        "timestamp_range": "00:03:13 - 00:03:47",
+        "theme_description": "Differenzierung zwischen Anerkennung von Trumps Erfolg im Nahostkonflikt und Kritik an seiner innenpolitischen Praxis.",
+        "question_asked": "Caren Miosga fragte, ob Klingbeil findet, dass Trump den Friedensnobelpreis verdient habe, wie viele am Wochenende kommentierten.",
+        "question_intent": "Zu erfahren, ob Klingbeil Trumps außenpolitische Erfolge mit einem Preis würdigen würde, trotz bekannter Bedenken gegenüber seinen innenpolitischen Praktiken.",
+        "position": "Klingbeil lehnte es ab, die Nobelpreisfrage zu kommentieren, betonte aber Dank für die Geiselfrelassung. Gleichzeitig äußerte er tiefe Bedenken zur innenpolitischen Situation in den USA: Fernsehsendungen würden abgesetzt, Oppositionelle diskreditiert. Er betonte, dass er als deutscher Politiker nicht in diesem Komitee sitze, aber die politische Situation in den USA bedenklich finde.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Klingbeil weicht der direkten Nobelpreis-Frage aus, lenkt aber stattdessen auf Kritik an Trumps innenpolitischen Praktiken ab. Dies ist eine klassische Umleitung zu einem Gegenpunkt, nicht eine Weigerung, sondern ein Perspektivwechsel.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Ich möchte das gar nicht kommentieren. Er hat seine Verdienste an dieser Sache. Bei dieser Sache gebührt ihm Dank. Wenn ich mir aber die politische Situation in den USA angucke, ist da alles andere als zufrieden. Ich bin deutscher Politiker. Ich sitze nicht in diesem Komitee.",
+            "timestamp": "00:03:13"
+          }
+        ],
+        "concrete_statements": [
+          "Trump gebührt Dank für die Vermittelung der Geiselfrelassung",
+          "Bedenken gegen Fernsehzensur, Diskreditierung von Oppositionellen in den USA",
+          "Innenpolitische Situation in den USA ist bedenklich"
+        ],
+        "related_bundestag_topics": [
+          "USA-Politik",
+          "Menschenrechte",
+          "Demokratische Normen"
+        ]
+      },
+      {
+        "title": "Deutschlands Rolle beim Wiederaufbau und Friedensprocess in Gaza",
+        "timestamp_range": "00:04:47 - 00:06:22",
+        "theme_description": "Deutschlands Engagement und Verantwortung beim Wiederaufbau und der Unterstützung eines nachhaltigen Friedensprozesses im Gazastreifen.",
+        "question_asked": "Caren Miosga fragte Klingbeil, welche Konsequenzen es haben sollte, wenn der Waffenstillstand hält, und wie Deutschland weiterhin mit Benjamin Netanjahu umgehen sollte. Sie fragte auch nach Deutschlands finanziellem Umfang bei der Beteiligung am Wiederaufbau.",
+        "question_intent": "Zu erfahren, welche politischen und finanziellen Initiativen Deutschland unter Klingbeils Führung beim Wiederaufbau ergreifen wird und wie Deutschland die Lage in den palästinensischen Gebieten bewerten wird.",
+        "position": "Klingbeil sah eine Möglichkeit für einen Neustart und betonte, dass Deutschland mithelfen sollte, wie man dort nachhaltigen Frieden haben kann. Er sprach von Engagement im Wiederaufbau und in der Frage der Unterstützung Israels und anderer Länder in der Region. Kritik an Netanjahu blieb berechtigt, besonders mit Blick auf aggressiven Siedlungsbau im Westjordanland, wo Klingbeil Sorge vor einem nächsten Konflikt äußerte. Die Bundesregierung müsse alles tun, um den Friedensprozess zu unterstützen. Zum Wiederaufbau sagte Klingbeil: Alle sollten sich daran beteiligen, auch Israel. Finanzierungsdetails würden später mit anderen Vorsitzenden geklärt, aber erst müsse die Geiselfrelassung erfolgen. Zu Deutschlands Rolle sagte er, Merz spreche von federführender Rolle, was vor allem politische Führung bedeute, wobei Deutschland Kompetenz bei Durchführung und Organisation habe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil adressiert die Frage zu Deutschlands Rolle und Wiederaufbau, bleibt aber bei vagen Aussagen zu Engagement und Unterstützung. Zur konkreten finanziellen Beteiligung weicht er aus und verweist auf spätere Klärungen nach der Geiselfrelassung. Die Kritik an Netanjahu wird adressiert, aber nicht detailliert zu Konsequenzen beantwortet.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Es ist eine Möglichkeit für einen Neustart. Wir sollten mithelfen als Deutschland, wie man dort nachhaltigen Frieden haben kann. Es geht darum Engagement. Auch in der Frage des Wiederaufbaus.",
+            "timestamp": "00:04:47"
+          },
+          {
+            "text": "Federführend geht es vor allem darum, dass wir politische Führung übernehmen. Wir sind gut darin, Dinge durchzuführen und zu organisieren. Wir haben dort eine ziemlich große Kompetenz.",
+            "timestamp": "00:06:22"
+          }
+        ],
+        "concrete_statements": [
+          "Neustart und Engagement Deutschlands beim Wiederaufbau erforderlich",
+          "Kritik an Netanjahu berechtigt, besonders bei aggressivem Siedlungsbau im Westjordanland",
+          "Alle Länder sollten sich am Wiederaufbau beteiligen, auch arabische Länder und USA",
+          "Finanzielle Details und Deutschlands Umfang müssen später geklärt werden"
+        ],
+        "related_bundestag_topics": [
+          "Nahostpolitik",
+          "Entwicklungszusammenarbeit",
+          "Internationale Sicherheit"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen an Israel nach Waffenstillstand",
+        "timestamp_range": "00:06:55 - 00:07:59",
+        "theme_description": "Deutschlands Haltung zu Waffenlieferungen an Israel unter Bedingung der Existenzverteidigung und Beendigung des Gaza-Konflikts.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ob Deutschland uneingeschränkt Waffen liefern wird, wenn der Krieg nicht mehr stattfindet.",
+        "question_intent": "Zu klären, wie Deutschland seine Waffenlieferungspolitik nach einem Waffenstillstand handhaben wird und ob frühere Einschränkungen rückgängig gemacht werden.",
+        "position": "Klingbeil sagte, wenn der Krieg nicht mehr stattfindet, werde Deutschland Waffen liefern. Es gab ein Waffenembargo, aber am Anfang stehe das Existenzrecht Israels. Israel sei bedroht von Nachbarn, Iran und Huthi-Rebellen. Deutschland sei bereit, Waffen zu liefern, wenn Israel seine Existenz verteidigte. Allerdings: Deutschland liefert keine Waffen, die mit dem Gaza-Vorgehen einhergehen. Das werde im Bundessicherheitsrat überprüft. Nach Kriegsende werde das eingeschränkte Waffenembargo rückgängig gemacht, da man gemeinsam diese Entscheidung getroffen habe. Die neue Situation müsse noch gemeinsam bewertet werden, aber Israels Existenzrecht müsse gewährleistet sein.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klingbeil beantwortet die Frage direkt und substantiell: Er macht Waffenlieferungen nach Kriegsende von Bedingungen abhängig (keine Nutzung gegen Zivilbevölkerung) und kündigt an, dass frühere Einschränkungen nach Kriegsende aufgehoben werden. Die Antwort ist präzise und adressiert die Frage vollständig.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wir liefern keine Waffen, die im Umfeld mit dem Gaza-Vorgehen einhergeht. Wir überprüfen das im Bundessicherheitsrat. Wir werden das in der Regierung miteinander besprechen. Israels Existenzrecht muss gewährleistet sein. Aber dass wir eingeschränkt Waffen lieferten, nachdem klar war, dass Gaza-Stadt angegriffen wird, das wird rückgängig gemacht bei Kriegsende.",
+            "timestamp": "00:07:27"
+          }
+        ],
+        "concrete_statements": [
+          "Waffenlieferungen an Israel nach Kriegsende werden wieder freigegeben",
+          "Existenzrecht Israels ist prioritär",
+          "Keine Waffen für Gaza-Operationen",
+          "Bundessicherheitsrat überprüft Waffenlieferungen",
+          "Neue Situation nach Waffenstillstand muss gemeinsam bewertet werden"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsexporte",
+          "Israel-Politik",
+          "Nahostkonflikt"
+        ]
+      },
+      {
+        "title": "Ukraine-Unterstützung durch eingefrorene russische Vermögen",
+        "timestamp_range": "00:08:34 - 00:10:07",
+        "theme_description": "Finanzierungsmechanismus zur Ukraine-Unterstützung durch eingefrorene russische Vermögen und Rolle der EU-Finanzminister.",
+        "question_asked": "Caren Miosga fragte Klingbeil, der am Freitag beim Treffen der EU-Finanzminister war, ob die Gelder der eingefrorenen russischen Vermögen über einen indirekten Weg der Ukraine zugute kommen werden.",
+        "question_intent": "Zu erfahren, ob und wie die EU es geschafft hat, die eingefrorenen russischen Vermögen zur Unterstützung der Ukraine einzusetzen, und welche Hindernisse es gab (z.B. belgische Bedenken).",
+        "position": "Klingbeil erklärte, dass man direkt die Vermögen nicht nehmen könne wegen Eigentumsrechte, habe aber einen direkten Mechanismus gefunden, um Gelder für die Ukrainer zur Verfügung zu stellen. Mit diesem Geld würden Kredite für die Ukraine geschaffen. Das sei das Ziel: Ukraine unterstützen gegen russische Aggression. In der Europäischen Union werde das diskutiert und man habe Unterstützung der Amerikaner. Zur belgischen Position sagte er, dass es dort um die Haushaltsfrage gehe, was die Rückzahlung bedeutete. Er sei sich aber sicher, eine vernünftige Lösung zu bekommen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil erklärt den Mechanismus und betont die Unterstützung, weicht aber zu Detailfragen (belgische Zustimmung, genaue Finanzierungsmodelle) aus und verweist auf laufende Diskussionen ohne konkrete Zusagen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Es wurde gesagt, das geht nicht. Das sind Eigentumsrechte. Sie haben einen direkten Mechanismus gefunden, um die Gelder der Ukrainer zur Verfügung zu stellen. Es geht nicht darum, dass er das Geld selbst nehmen. Mit diesem Geld schaffen wir Kredite für die Ukraine.",
+            "timestamp": "00:08:34"
+          }
+        ],
+        "concrete_statements": [
+          "Kreditmechanismus für Ukraine aus eingefrorenen russischen Vermögen",
+          "Unterstützung der Amerikaner bei diesem Mechanismus vorhanden",
+          "Belgische Bedenken zu Haushaltsfragen werden adressiert"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Finanzpolitik",
+          "Sanktionen gegen Russland"
+        ]
+      },
+      {
+        "title": "Unterschied zwischen Finanzminister und SPD-Vorsitzenden-Rolle",
+        "timestamp_range": "00:10:38 - 00:11:11",
+        "theme_description": "Klärung, ob und wie Klingbeil seine Rollen als Finanzminister und SPD-Parteivorsitzender unterschiedlich wahrnimmt.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ob die Fragen an den Vizekanzler und Finanzminister ihm lieber sind als die an den SPD-Chef, und ob er diese Rollen unterschiedlich handhabe.",
+        "question_intent": "Zu verstehen, ob es Zielkonflikte zwischen Klingbeils Rollen gibt und ob er eine unterschiedliche Rhetorik oder Position je nach Rolle einnimmt.",
+        "position": "Klingbeil sagte, dass er diese Unterscheidung nicht merke. Er sei eine Person. Beim Finanzminister-Treffen sei es eine Tickermeldung gewesen, der SPD-Vorsitzende sei auch er. Er erklärte, dass der Finanzminister sagt, etwas sei gut und kostet nicht so viel, während der SPD-Chef sagen müsse, das sei Mist. Der SPD-Vorsitzende aber sagt: Wir müssen eine Priorität setzen. Die Priorität war die gefährdeten Arbeitsplätze in der Industrie. Das sagt das Regierungsmitglied. Sie hätten die Absenkung der Stromsteuer für Privathaushalte nicht in ihre Programme aufgenommen. Diese Entscheidung hätten sie am Ende auch getroffen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil versucht zu zeigen, dass es keine echte Rollentrennung gibt, aber seine Erklärung wird später durch die Beispiele der Stromsteuer komplex, wo Finanzminister und SPD-Chef unterschiedliche Positionen vertreten. Er adressiert die Frage, bleibt aber etwas unklar.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Der SPD-Vorsitzende sagt Ihnen, wir müssen eine Priorität setzen. Die Priorität war: Es gibt gefährdete Arbeitsplätze in der Industrie. Das sagt das Regierungsmitglied. Wir haben unseren Programmen die Absenkung nicht.",
+            "timestamp": "00:10:38"
+          }
+        ],
+        "concrete_statements": [
+          "Keine echte Unterscheidung der Rollen, Klingbeil als eine Person",
+          "Priorität auf Schutz von Arbeitsplätzen in der Industrie statt Stromsteuersenkung"
+        ],
+        "related_bundestag_topics": [
+          "SPD-Politik",
+          "Koalitionspolitik"
+        ]
+      },
+      {
+        "title": "Persönliches: Vereinbarkeit von Familie, Karriere und Ämtern",
+        "timestamp_range": "00:12:13 - 00:13:16",
+        "theme_description": "Frage nach der persönlichen Bewältigung mehrerer hochrangiger Ämter und Vaterschaft.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ein Finanzminister, Vizekanzler und Parteichef zugleich mit kleinem Kind, ob er immer zwischen den verschiedenen Rollen wechseln könne, ob das alles hinkomme und wie er damit umgehe. Sie bemerkte, dass diese Frage eher Frauen gestellt werde.",
+        "question_intent": "Zu verstehen, wie Klingbeil die Anforderungen mehrerer hoher Ämter mit Familienverantwortung vereinbart, und ob er als Mann diese sonst nur Frauen gestellte Frage akzeptiert.",
+        "position": "Klingbeil sagte, er kriege es hin. Die Frage sollte man aber heutzutage niemandem mehr stellen. Er betonte, dass er aus einfachen Verhältnissen komme, seine Mutter sei Verkäuferin gewesen, und er hätte es nie an die Spitze einer Partei geschafft, ohne diese Gelegenheit. Es gebe ihm Kraft und Motivation. Er sei ein Teamplayer mit einem guten Team, gut im Organisieren. Auch gebe er viel Geld in den Ausbau von Kitas, um Familien und Beruf zu stärken.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klingbeil beantwortet die persönliche Frage direkt, äußert Dankbarkeit für die Gelegenheit, kritisiert aber auch das Genre der Frage und betont familienfreundliche Politik.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich kriege es hin. Diese Frage sollte man aber heutzutage niemandem mehr stellen. Wenn ich schaue, was ich als Finanzminister mache, da gebe ich viel Geld in den Ausbau von Kitas. Wir müssen Familien und Beruf stärken.",
+            "timestamp": "00:12:44"
+          }
+        ],
+        "concrete_statements": [
+          "Klingbeil kommt aus einfachen Verhältnissen, Mutter war Verkäuferin",
+          "Investitionen in Kita-Ausbau zur Vereinbarkeit von Familie und Beruf"
+        ],
+        "related_bundestag_topics": [
+          "Gesellschaftspolitik",
+          "Kinderbetreuung"
+        ]
+      },
+      {
+        "title": "Bürgergeldreform und Geldeinsparungen im Haushalt",
+        "timestamp_range": "00:13:16 - 00:15:23",
+        "theme_description": "Reform des Bürgergeldes (Neue Grundsicherung): Ziele, erwartete Einsparungen und Missbrauchbekämpfung.",
+        "question_asked": "Caren Miosga fragte Klingbeil, wie viel Sparpotential die Reform des Bürgergeldes (nun Neue Grundsicherung) für den Haushalt bringt, und hinterfragte die früher von der Union angegebenen Milliardenbeträge.",
+        "question_intent": "Zu erfahren, welche konkreten finanziellen Einsparungen die Bürgergeldreform bringt und ob die Union mit ihren Milliardenaussagen Stimmungsmache betrieben hat.",
+        "position": "Klingbeil sagte, er könne konkrete Sparpotentiale erst sagen, wenn der Gesetzentwurf vorliegt. Hauptziel sei, Menschen in Arbeit zu bringen, um die Wirtschaft anzukurbeln. Die Reform richte sich gegen Missbrauch (Nicht-Wahrnehmen von Terminen, schwarze Arbeit, Bürgergeldempfang ohne Arbeitsbereitschaft). Wenn jemand dreimal zum vereinbarten Termin nicht erscheint, bekomme er kein Geld. Das sei eine folgerichtige und selbstverständliche Entscheidung. In der letzten Legislaturperiode hätte die SPD zu wenig um die Mitte gekümmert und zu viel um dieses Thema. Die SPD habe erkannt, dass Menschen für 3000 Euro arbeiten und es ungerecht finden, wenn der Staat Menschen Geld gibt, die nicht arbeiten. Das sei der Gerechtigkeitsaspekt aus seiner Perspektive.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil weicht konkreten Sparzahlen aus, adressiert aber die Ziele der Reform (Missbrauchbekämpfung, Arbeitsanreize) substantiell. Die Kritik an früheren Versprechungen wird teilweise aufgegriffen, ohne die Union direkt zu kritisieren.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Wir müssen vor allem Menschen in Arbeit bringen. Es geht vor allem darum, dass wir die Wirtschaft ankurbeln. Dass Menschen an Arbeit kommen. Wir kriegen das hin.",
+            "timestamp": "00:13:47"
+          },
+          {
+            "text": "Der Gerechtigkeitsaspekt, das ist mein Blickwinkel. Das ist ja mein Blickwinkel. Für Menschen, die für 3000 Euro arbeiten, ist es nicht okay, dass jemand vom Staat Geld bekommt und nicht arbeitet.",
+            "timestamp": "00:16:25"
+          }
+        ],
+        "concrete_statements": [
+          "Ziel: Menschen in Arbeit bringen und Wirtschaft ankurbeln",
+          "Bekämpfung von Missbrauch (Nicht-Teilnahme an Terminen, schwarze Arbeit)",
+          "Sanktion: Kein Geld nach drittem fehlenden vereinbarten Termin",
+          "Gerechtigkeitsaspekt für Geringverdiener"
+        ],
+        "related_bundestag_topics": [
+          "Sozialleistungen",
+          "Arbeitsmarktpolitik",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "SPD-Positionierung zur Mitte und Warum Bürgergeld-Fehler?",
+        "timestamp_range": "00:15:23 - 00:18:01",
+        "theme_description": "Selbstkritik der SPD zu ihrer früheren Bürgergeld-Einführung und Ausrichtung auf linkes Lager statt Mitte.",
+        "question_asked": "Caren Miosga fragte, warum die SPD das Bürgergeld überhaupt eingeführt habe, wenn man jetzt erkenne, dass es ungerecht sei. Sie zitierte auch Sören Link (SPD-Oberbürgermeister Duisburg), der beklagte, die SPD habe ihre Kernklientel der Arbeiter verloren.",
+        "question_intent": "Klingbeil zur Rechenschaft zu ziehen für ein angeblich fehlerhaftes politisches Projekt und zu fragen, warum die SPD nicht früher auf diese Kritik reagierte.",
+        "position": "Klingbeil sagte, die SPD müsse sich um Menschen kümmern, denen nicht rigoros über den Sozialstaat geredet werde. Es gebe Missbrauch, aber auch Steuerbetrug, über den man gerne reden sollte. Die SPD habe sich zu wenig um die Mitte gekümmert und zu sehr um das Bürgergeld-Thema. Unter seiner Führung habe man das jetzt geändert. In der Ampel-Regierung gab es auch Gesetze gegen Nicht-Arbeitende und schwarze Arbeit. Das Bürgergeld wie von der SPD geschaffen fanden viele Leute ungerecht. Das hätte man früher erkennen können. Die Ungerechtigkeit korrigiert man jetzt. Es sei nichts, das man ihm aufzwingen musste, sondern eine richtige Entscheidung der SPD. Der Fehler der fehlenden Fokussierung auf Arbeiter sei korrigierbar.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil gibt teilweise Selbstkritik ab (SPD kümmerte sich zu wenig um die Mitte), weicht aber aus bei der Frage, warum die SPD das Bürgergeld überhaupt so eingeführt hat. Er betont die Korrektur, rechtfertigt aber nicht die ursprüngliche Entscheidung.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "So wie die SPD das Bürgergeld erschaffen hat, fanden das viele Leute ungerecht. Warum haben Sie das jetzt erst erkannt? Wir haben es nicht jetzt erst erkannt. Aber wir haben es unter meiner Führung geändert.",
+            "timestamp": "00:17:00"
+          }
+        ],
+        "concrete_statements": [
+          "SPD kümmerte sich zu wenig um die Mitte",
+          "Selbstkritik: Bürgergeld wurde so gestaltet, dass es viele für ungerecht hielten",
+          "Unter Klingbeils Führung wurde die Reform eingeleitet",
+          "Fokussierung auf arbeitende Menschen mit 3000 Euro Einkommen"
+        ],
+        "related_bundestag_topics": [
+          "SPD-Strategie",
+          "Arbeiterschaft",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Gründe für SPD-Verluste und AfD-Gewinne; Online-Kommunikation",
+        "timestamp_range": "00:18:01 - 00:21:25",
+        "theme_description": "SPD-Wahlverluste, Aufstieg der AfD und Frage nach korrekter Kommunikation durch die SPD-Organisation.",
+        "question_asked": "Caren Miosga stellte fest, dass die SPD-Abwärts-Entwicklung zur AfD-Aufwärts-Entwicklung führte und fragte Klingbeil, wie er dagegen steuere. Sie sprach auch einen SPD-Instagram-Post an, in dem die AfD kritisiert wurde, und fragte, ob die AfD scheißegal ist oder ob dies eine Marketing-Idee war.",
+        "question_intent": "Zu verstehen, wie Klingbeil die SPD-Verluste und die Gründe analysiert, und ob die SPD-Kommunikation zur AfD sachlich oder populistisch ist.",
+        "position": "Klingbeil sagte, man könne in der Politik schnell Vertrauen verlieren. Das Sondervermögen diene dazu, massiv in das Land zu investieren, und vernünftige Zusammenarbeit in der Regierung sei wichtig. Ein Post der SPD über die AfD fiel auf, und Klingbeil sagte, er habe sofort angerufen und deutlich gemacht, dass er das nicht akzeptiere. Er gehe immer hart ins Gericht mit denen, die Verantwortung für die AfD übernehmen, beschimpfe aber nicht die, die die AfD wählen. Der Post sei ein völlig falsches Signal. Es gebe überzeugte Rechtsextreme, die die AfD wählen, aber auch Leute, die sich wegen der Ampel von der klassischen Politik abgewandt hätten. Klingbeil beschimpfe AfD-Wähler nicht. Der Post sei noch online gewesen, und Klingbeil sagte, er gucke nach.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil adressiert die Kritik am SPD-Post und betont Distanz von populistischer Rhetorik, weicht aber zu konkreten Gründen der SPD-Verluste aus. Seine Analyse bleibt eher bei Maßnahmen (Sondervermögen) als bei politischen Gründen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich habe sofort angerufen und gesagt, das akzeptiere ich nicht. Das müsste entfernt sein. Ich gehe immer hart ins Gericht mit den Leuten, die Verantwortung für die AfD übernehmen. Aber ich beschimpfte nicht die, die die AfD wählen. Darum ist dieser Kachel ein völlig falsches Signal.",
+            "timestamp": "00:20:22"
+          }
+        ],
+        "concrete_statements": [
+          "SPD-Post zur AfD wurde von Klingbeil kritisiert und sollte entfernt werden",
+          "Unterscheidung zwischen Verantwortlichen für AfD-Aufstieg und AfD-Wählern",
+          "Keine Beschimpfung von AfD-Wählern",
+          "AfD-Wähler haben teilweise rationale Gründe (Ampel-Politik, Infrastruktur-Probleme)"
+        ],
+        "related_bundestag_topics": [
+          "AfD-Kritik",
+          "Wahlverluste SPD",
+          "Kommunikationsstrategie"
+        ]
+      },
+      {
+        "title": "Kommunikation über Leistung und Floskeln",
+        "timestamp_range": "00:21:25 - 00:24:35",
+        "theme_description": "Selbstkritik zu Floskeln in der SPD-Kommunikation und Ziel, mehr Substanz statt Wiederholungen zu bieten.",
+        "question_asked": "Caren Miosga verwies auf einen Leitantrag des SPD-Vorstands, wonach die SPD 'sich nicht hinter Floskeln verstecken, sondern aufrichtig und transparent kommunizieren' solle, und fragte, ob Klingbeil das beherzige. Sie wies auch auf die Wiederholung des Satzes über 'Fleißige' hin und fragte, ob das nicht auch eine Floskel sei.",
+        "question_intent": "Klingbeil zu fragen, ob er selbst dem SPD-Anspruch auf authentische, nicht-floskelhaft Kommunikation genügt oder ob er in die alte Rhetorik zurückfällt.",
+        "position": "Klingbeil bejahte den Anspruch auf keine Floskeln und gab zu, dass er manchmal in Floskeln abrutsche. Er wiederholte dann aber genau diese Sätze über 'Fleißige', was Miosga unmittelbar aufgriff. Klingbeil bat, den Satz nicht zu wiederholen, aber er habe ihn gerade eben selbst wiederholt. Auf Miosgas Punkt, dass die 'Fleißigen' eine Floskel seien, reagierte Klingbeil defensiv: 'Das sind keine Floskeln.' Er betonte, dass Arbeitnehmer in der 'Berliner Blase' nicht repräsentiert seien, und verwies auf Gespräche mit Betriebsräten, die sagten, sie wüssten nicht, was bei der SPD los sei. Der Blickwinkel sei wichtig: Sich um die Belange der Arbeitnehmer kümmern.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Klingbeil weicht der eigentlichen Kritik (dass er Floskeln nutzt) aus, indem er seine Wortwahl verteidigt und auf die substanzielle Bedeutung (Arbeitnehmer-Repräsentation) hinweist. Dies ist ein Themenwechsel von Rhetorik-Kritik zu politischem Inhalt.",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "Sein fleißig, halt dich an die Regeln, guck, dass du arbeitest und du kommst voran im Leben. Ich wollte sagen, werden Sie diesen Satz bitte nicht wiederholen? Sie haben ihn eben wiederholt.",
+            "timestamp": "00:22:26"
+          },
+          {
+            "text": "Bei dem Thema sage ich Ihnen, das sind keine Floskeln. Die Fleißigen und anständigen, die für 3000 Euro arbeiten, werden in der Berliner Blase, der Sie angehören ... Nee!",
+            "timestamp": "00:23:03"
+          }
+        ],
+        "concrete_statements": [
+          "Kommunikation mit Betriebsräten zur Verständigung über Arbeitnehmer-Belange",
+          "Fokus auf Dialog mit Arbeitnehmer-Vertreter statt auf Zentral-Politik",
+          "Ziel: Arbeitnehmer sollten merken, dass Politik für sie da ist"
+        ],
+        "related_bundestag_topics": [
+          "SPD-Kommunikation",
+          "Arbeiterschaft",
+          "Politische Rhetorik"
+        ]
+      },
+      {
+        "title": "Konkrete Maßnahmen für Arbeiter und Wirtschaft",
+        "timestamp_range": "00:24:35 - 00:25:42",
+        "theme_description": "Konkrete Maßnahmen der Bundesregierung zur Unterstützung von Arbeitnehmern und Industrie-Arbeitsplätzen.",
+        "question_asked": "Caren Miosga fragte direkt: 'Was haben Sie denn für die Fleißigen getan?' und forderte konkrete Beispiele.",
+        "question_intent": "Klingbeil zur Rechenschaft zu ziehen und zu erfahren, welche konkreten Maßnahmen für Arbeitnehmer bereits umgesetzt oder geplant sind.",
+        "position": "Klingbeil nannte mehrere konkrete Maßnahmen: Sicherung von Arbeitsplätzen, Senkung von Energiepreisen, Förderung von privaten Investitionen, Automobildialog, Stahl-Gipfel. Die Regierung nehme die arbeitenden Menschen in den Fokus. Es gehe um Infrastruktur: Schlaglöcher beseitigen, Schultoiletten reparieren, dies direkt im Alltag spüren. Das Sondervermögen von 500 Mrd. Euro soll in Infrastruktur und Kitas und Schulen fließen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klingbeil antwortet direkt mit konkreten Maßnahmen (Energiepreise, Arbeitsplätze, Dialog mit Industrie) und macht deutlich, dass die Regierung diese Themen priorisiert.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Wir wollen Arbeitsplätze sichern. Die Energiepreise senken. Noch verlieren wir Arbeitsplätze jeden Monat. Nach vier Jahren Schwächephase kann man den Schalter nicht einfach umdrehen, aber wir müssen die Energiepreise senken.",
+            "timestamp": "00:24:35"
+          }
+        ],
+        "concrete_statements": [
+          "Sicherung von Arbeitsplätzen in Industrie (Auto, Stahl)",
+          "Energiepreise senken",
+          "Förderung privater Investitionen",
+          "Automobildialog und Stahl-Gipfel",
+          "Infrastrukturmaßnahmen (Straßen, Schulen, Kitas) mit 500 Mrd. Euro Sondervermögen"
+        ],
+        "related_bundestag_topics": [
+          "Industriepolitik",
+          "Arbeitsmarktpolitik",
+          "Infrastruktur"
+        ]
+      },
+      {
+        "title": "Sondervermögen: Ankündigung und kommunale Umsetzung",
+        "timestamp_range": "00:25:42 - 00:28:18",
+        "theme_description": "Das 500-Mrd.-Sondervermögen für Infrastruktur: Versprochene Wirkung und Frage nach tatsächlicher Ankommen in den Kommunen.",
+        "question_asked": "Caren Miosga stellte Fragen zur Umsetzung des Sondervermögens anhand eines Besuchs in Bad Honnef, wo Bürgermeister Otto Neuhoff skeptisch zur Wirksamkeit war. Sie fragte Klingbeil, wann die Leute in den Kommunen sehen werden, dass das Schlagloch vor ihrer Haustür verschwindet.",
+        "question_intent": "Klingbeil zur Rechenschaft zu ziehen, ob das Sondervermögen wirklich schnell und effektiv in den Kommunen ankommt oder ob es nur ein Versprechen bleibt.",
+        "position": "Klingbeil sagte, wenn es nach ihm ginge, sehr schnell. Die Frage sei aber auch, wie schnell die Verfahren sind und dass es ein Infrastrukturbeschleunigungsgesetz geben müsse. Ihm gehe das zu langsam, Deutschland brauche ein anderes Tempo. Er habe Zuständigkeiten an die Länder abgegeben: 100 Mrd. Euro für Länder, davon sollen 60 Prozent an die Kommunen gehen. Die Länder seien sich einig darauf, dass das so sein soll. Rheinland-Pfalz habe mit seinen Kommunen ein Paket geschlossen, wo mehr als 60 Prozent an die Kommunen gehen. 300 Mrd. stelle der Bund direkt zur Verfügung. Das Ziel müsse sein, dass sich etwas spürbar verändert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil nennt konkrete Summen und Verteilprinzipien, weicht aber bei der Frage nach Schnelligkeit aus, indem er auf Verfahrensprobleme verweist. Die Antwort ist eher prozedural als substantiell zu schnellem Erfolg.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Wenn es nach mir geht, sehr schnell. Die Frage ist aber auch, wie schnell die Verfahren sind. Es gibt Ideen für das Infrastrukturbeschleunigungsgesetz. Mir geht das zu langsam. Wir müssen schneller werden. Wir brauchen ein anderes Tempo in Deutschland.",
+            "timestamp": "00:28:18"
+          }
+        ],
+        "concrete_statements": [
+          "100 Mrd. Euro für Länder, 60 % davon an Kommunen",
+          "300 Mrd. Euro direkt durch den Bund",
+          "Infrastrukturbeschleunigungsgesetz erforderlich",
+          "Ziel: Spürbare Veränderungen im Alltag (Schlaglöcher, Schultoiletten)"
+        ],
+        "related_bundestag_topics": [
+          "Kommunalfinanzierung",
+          "Infrastruktur-Förderung",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Kommunale Unterfinanzierung als strukturelles Problem",
+        "timestamp_range": "00:28:18 - 00:31:27",
+        "theme_description": "Debatte über strukturelle Unterfinanzierung der Kommunen und ob das Sondervermögen ausreichend ist.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ob die Sorge des Bad Honnefer Bürgermeisters berechtigt sei, dass nicht genug Geld ankommt, und wie die Bundesregierung mit dem strukturellen Kommunal-Problem umgehe.",
+        "question_intent": "Zu verstehen, ob und wie die Regierung über das Sondervermögen hinaus das grundlegende Kommunalfinanzierungs-Problem angeht, das seit Jahrzehnten besteht.",
+        "position": "Klingbeil räumte ein: 'Deutschland hat einen Investitionsrücklauf. Egal, was das Finanzministerium macht, es reicht nicht.' Das sei die Aufgabe vor der Regierung. Die Stimmung in den Kommunen sei wichtig. Es sei eine Turnhalle, wo man keine Stromsteuersenkung brauche, aber echte Investitionen. Das Grundproblem sei: Bund entscheidet über Aufgaben, Kommunen haben aber nicht die Finanzmittel. Es brauche strukturelle Veränderungen. Auf der Ministerpräsidenten-Konferenz mit dem Kanzler habe man verabredet, die Aufgabenverteilung zu klären. Das sei nicht mit einem Sondervermögen allein getan. Er arbeite als Finanzminister daran, das Altschulden-Problem anzugehen: Der Bund unterstütze Kommunen im Ruhrgebiet mit hohen Altschulden. Das seien aber nur 250 Mio. Euro pro Jahr – ein Anfang. Die Diskussion laufe, welche Aufgaben der Bund früher übertragen habe und ob man dieses Geld zurückholen könne.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klingbeil adressiert das strukturelle Problem direkt, nennt konkrete Maßnahmen (Altschuldenhilfe, Aufgabenklärung) und gibt zu, dass es unzureichend ist. Diese Antwort ist substanziell und ehrlich.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass nicht genug ankommt, ist klar. Deutschland hat einen Investitionsrücklage. Egal, was das Finanzministerium macht, es reicht nicht. Das ist die Aufgabe, die vor der Regierung liegt.",
+            "timestamp": "00:29:53"
+          }
+        ],
+        "concrete_statements": [
+          "Investitionsrücklauf: strukturelles Unterfinanzierungsproblem",
+          "Altschuldenhilfe: 250 Mio. Euro pro Jahr (Anfang)",
+          "Aufgabenverteilung zwischen Bund, Ländern und Kommunen muss geklärt werden",
+          "Kommunen sollten von den 400 Mrd. Bund-Mitteln profitieren"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Kommunalfinanzierung",
+          "Strukturelle Defizite"
+        ]
+      },
+      {
+        "title": "Haushalt 2025/2026: Verschiebebahnhof oder legitime Umstrukturierung",
+        "timestamp_range": "00:31:27 - 00:40:24",
+        "theme_description": "Kritik am Haushalt 2026: Verschiebung von Investitionen vom Kernhaushalt ins Sondervermögen und Finanzierung zusätzlicher Leistungen (Mütterrente, etc.).",
+        "question_asked": "Caren Miosga und die Wirtschaftsweise Monika Schnitzer wiesen nach, dass der Bund Investitionen in Schienen und Autobahnbrücken im Kernhaushalt um über 10 Mrd. Euro gekürzt hat und dafür Geld aus dem Sondervermögen nutzt. Dies könnte bedeuten, dass die Mittel aus dem Sondervermögen nicht zusätzlich sind. Sie fragten, ob das 'Trickserei' sei.",
+        "question_intent": "Klingbeil zur Rechenschaft zu ziehen für die Haushaltspolitik und zu fragen, ob die Versprechen des Sondervermögens (zusätzliche Investitionen) wirklich eingehalten werden.",
+        "position": "Klingbeil wehrte sich gegen den Vorwurf der 'Trickserei'. Er sagte, dass die zehn-Prozent-Investitionsquote im Kernhaushalt eingehalten werde. Der Haushalt 2025 habe 115 Mrd. Euro Investitionen, der 2026 (wie vorgelegt) 120 Mrd. zusätzliche Investitionen. Man könne nicht sagen, dass nichts zusätzlich passiere. Das Sondervermögen sei für zusätzliche Investitionen, und die alte Regierung habe zwölf Prozent Investitionen geplant. Man habe sich jetzt auf zehn Prozent geeinigt. Für Verteidigung wurden früher 1,5 Prozent aus dem Kernhaushalt ausgegeben, nun nur noch ein Prozent (der Rest ist schuldenfinanziert). Dadurch würden 20 Mrd. Euro frei für andere Dinge. Es sei auch richtig, dass Geld in Mütterrente fließe: Das sei politischer Kompromiss mit der Union. Klingbeil betonte Stabilität der Koalition und dass man nicht alles gegenseitig infrage stellen dürfe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil bestreitet die 'Trickserei'-Vorwürfe, gibt aber zu, dass es Verschiebungen und Umstrukturierungen gibt. Seine Antwort ist defensiv und verweist auf politische Kompromisse, adressiert aber nicht vollständig die Kritik an der fehlenden Zusätzlichkeit von Investitionen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich muss widersprechen. Wir haben eine zehn Prozent Investitionsbremse. Die halten wir ein. Der Haushalt 2025 hat 115 Mrd. Investition. So wie ich den Haushalt 2026 vorgelegt habe, sind da 120 Mrd. Zusätzliche Investitionen. Man kann nicht sagen, da passiert nichts zusätzlich.",
+            "timestamp": "00:40:24"
+          }
+        ],
+        "concrete_statements": [
+          "10-Prozent-Investitionsquote wird eingehalten",
+          "Haushalt 2025: 115 Mrd. Euro Investitionen",
+          "Haushalt 2026: 120 Mrd. Euro zusätzliche Investitionen",
+          "20 Mrd. Euro frei durch Verteidigungsausgaben-Umstrukturierung",
+          "Mütterrente finanziert durch politischen Kompromiss"
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Investitionspolitik",
+          "Koalitionspolitik"
+        ]
+      },
+      {
+        "title": "Haushaltsloch 2027: Struktur- und Reformproblem",
+        "timestamp_range": "00:40:56 - 00:44:41",
+        "theme_description": "Lücke im Haushalt 2027 von 34 Mrd. Euro und Frage, wie diese geschlossen wird – durch Reformen oder Sparmaßnahmen.",
+        "question_asked": "Caren Miosga und Monika Schnitzer fragten Klingbeil, wie die prognostizierte Haushaltslücke von 34 Mrd. Euro 2027 geschlossen werden soll und warum das Sondervermögen nicht dieses Problem gelöst habe.",
+        "question_intent": "Zu verstehen, wie konkret die Regierung plant, die massive Haushaltslücke zu schließen, und ob Maßnahmen wie das Sondervermögen nur symptomatisch sind.",
+        "position": "Klingbeil gab zu, dass die Lücke bekannt war und die Koalition sie durch politische Maßnahmen vergrößert habe (z.B. Mütterrente 2027). Die Lücke war aber immer da. Kompensation für Kommunen erfolge zu 100 Prozent. Die Lücke entstehe auch, weil die Mütterrente 2027 in Kraft tritt – das sei Teil eines politischen Kompromisses. Er betonte, dass es ein gerechtes Gesamtpaket sein müsse. Alle sollten spüren, dass sich etwas verändert. Die Menschen wüssten, dass etwas getan werden muss. Er widersprach Schnitzer, dass es 'Trickserei' sei. Es sei eine politische Debatte. Klingbeil betonte, dass er eine stabile Regierung wolle und dass man nicht ständig Dinge infrage stellen könne. Es brauche Reformen in Rente, Pflege, Gesundheit. Es könne nicht sein, dass nur beim Bürgergeld eingespart werde, während Reiche keinen Beitrag leisten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil adressiert die Haushaltslücke teilweise (gibt zu, dass sie bekannt und vergrößert wurde), weicht aber zu konkreten Sparmaßnahmen und Reformen aus und verweist auf die Notwendigkeit von Gesamtpaketen.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "2027 - da fehlen Ihnen 34 Milliarden. Ich habe die als Sozialdemokraten nicht auf den Tisch gelegt. Es ist ein klassischer politischer Kompromiss. Warum machen Sie's mit? Weil ich möchte, dass das Land stabil regiert wird.",
+            "timestamp": "00:38:51"
+          }
+        ],
+        "concrete_statements": [
+          "Haushaltslücke 2027: 34 Mrd. Euro",
+          "Mütterrente erhöht die Lücke (politischer Kompromiss mit Union)",
+          "100-Prozent-Kompensation der Kommunen angestrebt",
+          "Reformpakete in Rente, Pflege, Gesundheit erforderlich",
+          "Stabilität der Koalition erfordert Kompromisse"
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Sozialversicherung",
+          "Koalitionspolitik"
+        ]
+      },
+      {
+        "title": "Rentensystem und langfristige Reformen",
+        "timestamp_range": "00:44:41 - 00:52:37",
+        "theme_description": "Herausforderungen bei der Rentenfinanzierung: Demografie, Beitragssätze und notwendige Strukturreformen.",
+        "question_asked": "Caren Miosga fragte Klingbeil, wie lange die steigende Steuerfinanzierung der Rentenkasse ohne grundlegende Reformen gut gehe, und ob er konkrete Einschnitte benennen könne.",
+        "question_intent": "Klingbeil zu konkrete Reformvorschlägen zu zwingen, um zu zeigen, dass die Regierung nicht nur Versprechen macht, sondern auch unpopuläre Maßnahmen ergreifen wird.",
+        "position": "Klingbeil wies auf die Rentenkommission hin, die zum Jahreswechsel Vorschläge machen werde. Reform bedeute nicht nur Leistungskürzungen, sondern auch Bürokratie- und Planungsreformen. Er kündigte an, als Finanzminister ein Gesetz zur Reform der privaten Altersvorsorge vorzulegen. Die Altersvorsorge müsse ausgebaut werden. Er setze auf eine starke erste Säule (Rente) und müsse sich mehr trauen im Bereich private Rente. Es gebe auch eine Sozialstaatskommission. Die Beiträge würden steigen. Die Idee der Solidarität zwischen Alt und Jung sei wichtig. Die jungen Leute, mit denen er spreche, wollten, dass Großeltern, die hart gearbeitet hätten, auch eine Rente hätten. Er kritisierte, dass manche sagen, man solle den Alten das Geld wegnehmen – das treffe er nicht. Es sei eine Ungerechtigkeit. Die Rentenkommission müsse Mut haben, über schwierige Themen wie längeres Arbeiten zu reden. Klingbeil gab zu, dass 'die jungen Leute nicht wissen, was das bedeutet' (steigende Lohnnebenkosten). Eine Variante wäre, dass Renten nicht mehr so schnell steigen wie die Inflation. Das müsse man durchdenken. Es brauche ein gerechtes Gesamtpaket.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Klingbeil weicht konkreten Renteneinsparungen aus, indem er auf die Rentenkommission verweist und das Thema zu allgemeineren Reformen (Bürokratie, private Rente) lenkt. Er nennt keine konkreten Leistungskürzungen, obwohl danach gefragt wurde.",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "Wir reden nicht über Kürzungen bei der Rente. Die Rente wird nicht gekürzt, sondern sie steigt nicht mehr so stark. In den allermeisten Ländern steigen die Renten mit der Inflation. Man wird nie weniger Geld Real in der Tasche haben. Aber es steigt nicht so schnell.",
+            "timestamp": "00:52:05"
+          }
+        ],
+        "concrete_statements": [
+          "Rentenkommission wird bis Jahreswechsel Reformvorschläge machen",
+          "Reform der privaten Altersvorsorge durch Finanzminister-Gesetz",
+          "Ausbau der Altersvorsorge, starke erste Säule (Rente)",
+          "Solidarität zwischen Jung und Alt",
+          "Möglichkeit: Rentensteigerung gedrosselt (nicht Leistungskürzung)"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Sozialpolitik",
+          "Demografischer Wandel"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer und Vermögensbesteuerung",
+        "timestamp_range": "00:58:15 - 00:58:50",
+        "theme_description": "Frage nach Steuererhöhungen für Vermögende und konkrete Maßnahmen bei der Erbschaftssteuer.",
+        "question_asked": "Caren Miosga fragte Klingbeil, ob die SPD (die sagt, Vermögende müssten mehr beitragen) konkrete Maßnahmen bei der Erbschaftssteuer ergreifen werde, und ob Jens Spahn (Union) einen Vorschlag unterbreitet habe.",
+        "question_intent": "Zu prüfen, ob die SPD-Forderung nach Steuern auf Vermögende und Erbschaften in konkrete Politik umgesetzt wird.",
+        "position": "Klingbeil sagte, er bremse Jens Spahn da nicht. Er werde sich nicht in einen 'Kampf am Sonntagabend' begeben. Das würde man mit den anderen drei Vorsitzenden klären. Vielleicht habe Friedrich Merz oder Markus Söder eine bessere Lösung. Alle Vorschläge würden geprüft. Man habe gelernt, dass ein Reformpaket ansteht. Konkrete Einschnitte würden zeitnah kommuniziert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klingbeil weicht einer direkten Antwort zu Erbschaftssteuer aus und verweist auf interkoalitionäre Diskussionen. Er gibt keine eigene Position zu konkreten Steuersätzen oder Freibeträgen ab.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Ich bremse Jens Spahn da nicht. Ich werde da nicht in so einen Kampf am Sonntagabend gehen. Das klären wir mit den anderen drei Vorsitzenden. Vielleicht hat Friedrich Merz oder Markus Söder eine bessere Lösung. Da gucke ich mir alle Vorschläge an.",
+            "timestamp": "00:58:50"
+          }
+        ],
+        "concrete_statements": [
+          "SPD nicht gegen Union-Erbschaftssteuer-Vorschläge",
+          "Diskussionen mit anderen Koalitionspartnern ausstehend"
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Vermögensbesteuerung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "20 Geiseln sollen am Leben sein, darunter sieben Deutsche.",
+        "timestamp": "00:01:02"
+      },
+      {
+        "claim": "Der Haushalt 2025 hat 115 Mrd. Euro Investitionen. Der Haushalt 2026 hat 120 Mrd. Euro zusätzliche Investitionen.",
+        "timestamp": "00:40:24"
+      },
+      {
+        "claim": "Der Bund gibt 100 Mrd. Euro an die Länder aus dem Sondervermögen, davon sollen 60 Prozent an die Kommunen gehen.",
+        "timestamp": "00:28:48"
+      },
+      {
+        "claim": "2025 zahlen wir 30 Mrd. Euro für Zinsen auf bestehende Schulden. 2029 werden es demnach 67 Mrd. allein Zinsen sein.",
+        "timestamp": "00:45:12"
+      },
+      {
+        "claim": "Deutschland läuft 2027 in eine Haushaltslücke von 34 Mrd. Euro.",
+        "timestamp": "00:33:04"
+      }
+    ]
+  }
+}

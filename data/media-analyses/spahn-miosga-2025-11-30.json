@@ -1,0 +1,383 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS9lOWQ4MGQ2Yy0xOWNkLTRiNTQtYmM1OC01ZTRiNWU4ODZmYmFfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2025-11-30",
+    "politician": "Jens Spahn",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "ab2876f6c364b33f",
+    "transcript_chars": 32658,
+    "caption_lines": 1231,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 14821,
+    "tokens_out": 9568,
+    "cost_usd": 0.0250644,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T13:37:47.359Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, CDU/CSU-Fraktionsvorsitzender, verteidigte in der Sendung \"Miosga\" das Rentenpaket der Koalition gegen Kritik aus der eigenen Jungen Gruppe. Er sprach in ruhigem, verantwortungsvollem Ton und betonte die Notwendigkeit von Kompromissen in einer Koalitionsregierung, warnte aber gleichzeitig vor den langfristigen Folgekosten des Pakets und signalisierte Offenheit für umfassendere Reformen durch die neu beauftragte Rentenkommission.",
+    "themes": [
+      {
+        "title": "Vergleich zwischen jungem Spahn und heutigem Protestpotenzial",
+        "timestamp_range": "00:00:32 - 00:03:42",
+        "theme_description": "Caren Miosga fragt Spahn, ob er als 22-Jähriger heute noch den Widerstand der Jungen Gruppe unterstützen würde und bezieht sich auf sein damaliges Protestverhalten gegen Rentenpolitik.",
+        "question_asked": "Caren Miosga fragte Jens Spahn (mit Bezug zu seinem damaligen Alter von 22 Jahren beim Eintritt in den Bundestag): 'Würden Sie heute als 22-Jähriger den Widerstand [der Jungen Gruppe gegen das Rentenpaket] unterstützen?' und erinnert später: 'Könnten Sie sich vorstellen, dass sich die jungen Leute am frühen Jens Spahn orientieren? Er hat auch gegen Merkel protestiert.'",
+        "question_intent": "Miosga wollte herausstellen, ob Spahn an seiner damaligen Position zur Rentenpolitik festhält oder ob er diese Position heute aus Machtgründen aufgegeben hat.",
+        "position": "Spahn sagte, er würde sich 'in der Jungen Gruppe' bewegen und 'in der Diskussion mit den Kollegen einbringen', verstehe das Anliegen 'sehr gut'. Die Generationengerechtigkeit sei wichtig, da in den 2030er Jahren geburtenstarke Jahrgänge in Rente gingen und 'das System nicht vorbereitet' sei. Später: 'Ich wäre ja froh gewesen, wenn sich 1980 einige Menschen über 2030 Gedanken gemacht hätten.' Er betonte auch: 'Es ist meine Generation, die bis 67 wird arbeiten müssen' – und warnte, dass 2030 statt drei nur noch zwei Beitragszahler pro Rentner vorhanden seien.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die hypothetische Frage zustimmend (würde sich in der Jungen Gruppe bewegen), adressiert aber nicht direkt, ob er den *aktuellen Widerstand* unterstützen würde. Stattdessen verschiebt er zur Sachfrage Generationengerechtigkeit. Die zweite Frage wird nicht direkt beantwortet – er würdigt statt dessen die jungen Leute: 'Ich finde gut, dass wir eine Junge Gruppe haben.'",
+        "quotes": [
+          {
+            "text": "Ich wäre in der Jungen Gruppe. Ich würde mich in der Diskussion mit den Kollegen einbringen. Ich verstehe das Anliegen sehr gut. Es muss für die Generationen gerecht zugehen.",
+            "timestamp": "00:01:06",
+            "context": "Antwort auf Miosgas Frage, ob Spahn als 22-Jähriger den heutigen Widerstand unterstützen würde."
+          },
+          {
+            "text": "Ich wäre ja froh gewesen, wenn sich 1980 einige Menschen über 2030 Gedanken gemacht hätten. Ich wundere mich manchmal, wer sich laut aufregt. Die sind nicht unbedingt betroffen. Es ist meine Generation, die bis 67 wird arbeiten müssen.",
+            "timestamp": "00:02:41",
+            "context": "Spahn reagiert auf Miosgas Hinweis auf sein damaliges Protestverhalten in Talkshows und stellt einen Generationenvergleich her."
+          }
+        ],
+        "concrete_statements": [
+          "Das System ist auf die geburtenstarken Jahrgänge in den 2030ern nicht vorbereitet",
+          "In den 2030ern kommen auf einen Rentner nur noch zwei Beitragszahler (2030: drei)"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Generationengerechtigkeit",
+          "Demografische Entwicklung"
+        ]
+      },
+      {
+        "title": "Laufende Überzeugungsgespräche mit Jungen-Gruppe-Abgeordneten",
+        "timestamp_range": "00:04:50 - 00:07:31",
+        "theme_description": "Miosga hinterfragt, wie Spahn junge Abgeordnete von einer Position überzeugt, die diesen zuwiderläuft, und fragt, wie viele bereits überzeugt wurden.",
+        "question_asked": "Caren Miosga fragte: 'Wie überzeugen Sie? Es ist eine Machtfrage geworden. Wie überzeugen Sie junge Leute gegen deren innere Haltung?' und später: 'Wie viele haben Sie überzeugt?'",
+        "question_intent": "Miosga wollte wissen, mit welchen inhaltlichen oder auch politischen Mitteln Spahn Abgeordnete zur Zustimmung bewegen will und ob ihm das bereits gelungen ist.",
+        "position": "Spahn betonte, dass man 'in der Sache' diskutiere. Das Rentenpaket 1 führe 'Kapitaldeckung' ein – 'das haben wir in der Union immer gefordert'. Es gebe 'strukturelle Erneuerungen'. 'Aktuell ist aber mehr nicht möglich.' Es öffne sich 'ein Fenster für Möglichkeiten' durch die Junge Gruppe: Die Rentenkommission müsse 'schneller arbeiten' und 'im Juni schon Ergebnisse liefern'. Er führe 'freundliche und klare Gespräche' und: 'Ich stelle die Frage: Wie soll aus einer Ablehnung des Rentenpakets eine größere Reformfähigkeit entstehen?' Später: 'Die Kollegen ringen stark um die Frage.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet sachlich auf die erste Frage (er diskutiere Inhalte wie Kapitaldeckung), weicht aber bei der konkreten Frage 'Wie viele haben Sie überzeugt?' aus ('Das war ein netter Versuch'). Er behandelt diese Frage als politisches Taktik-Quiz, das er nicht beantworten möchte.",
+        "quotes": [
+          {
+            "text": "Es gibt das Rentenpaket eins, das wichtige Veränderungen macht. Es führt die Kapitaldeckung ein. Das haben wir in der Union immer gefordert. Es gibt im Paket strukturelle Erneuerungen.",
+            "timestamp": "00:06:27",
+            "context": "Spahn erklärt die inhaltlichen Gründe für das Rentenpaket als Antwort auf Miosgas Frage, wie er junge Leute überzeugt."
+          },
+          {
+            "text": "Ich stelle die Frage: Wie soll aus einer Ablehnung des Rentenpakets eine größere Reformfähigkeit entstehen?",
+            "timestamp": "00:08:32",
+            "context": "Spahns Gegenfrage an die Junge Gruppe, um sie zur Zustimmung zu bewegen."
+          }
+        ],
+        "concrete_statements": [
+          "Kapitaldeckung soll eingeführt werden",
+          "Strukturelle Erneuerungen im Rentenpaket 1 vorgesehen",
+          "Rentenkommission soll schneller arbeiten und im Juni 2026 Ergebnisse liefern"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpaket",
+          "Kapitaldeckung",
+          "Rentenkommission"
+        ]
+      },
+      {
+        "title": "Koalitionszusammenhalt und Mehrheitssicherung",
+        "timestamp_range": "00:07:31 - 00:09:04",
+        "theme_description": "Miosga fragt, wie sicher die Mehrheit ist und ob die Koalition bei schwierigen Entscheidungen aufrechtzuerhalten ist.",
+        "question_asked": "Caren Miosga fragte: 'Die Frage ist, ob die Koalition eine Mehrheit hat' und später: 'Wie überzeugen Sie? Es ist eine Machtfrage geworden.'",
+        "question_intent": "Miosga wollte wissen, ob die Koalition stabil genug ist, das Rentenpaket durchzubringen.",
+        "position": "Spahn sagte: 'Wir sind im dritten Jahr der Rezession. Die Wirtschaft schrumpft. Europa ist nicht in einer stabilen Lage. Jede Abstimmung hat Folgen.' Er betonte die Notwendigkeit von Koalitionsdisziplin: 'Man muss schwierige Kompromisse mittragen. Man muss die Erkenntnisse abwägen. Man musste von der Sache gar nicht ganz überzeugt sein. Man muss es dann trotzdem mittragen.' Später: 'Ich werbe dafür, die Gesamtschau zu machen.' Die 'Verantwortung geht über die einzelne Person hinaus. Wir sind als Parteien gewählt worden.'",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn antwortet inhaltlich auf die Frage: Er erklärt, warum Koalitionsdisziplin nötig ist (Rezession, instabile Lage) und wie Kompromisse zu mittragen sind. Er adressiert direkt die Frage nach Mehrheit und Stabilität.",
+        "quotes": [
+          {
+            "text": "Man muss schwierige Kompromisse mittragen. Man muss die Erkenntnisse abwägen. Man musste von der Sache gar nicht ganz überzeugt sein. Man muss es dann trotzdem mittragen.",
+            "timestamp": "00:08:01",
+            "context": "Spahns Erklärung des Koalitionsprinzips bei schwierigen Entscheidungen."
+          },
+          {
+            "text": "Wir sind als Parteien gewählt worden. Diese Verantwortung geht über die einzelne Person hinaus.",
+            "timestamp": "00:10:36",
+            "context": "Spahn erklärt die Verantwortung von Fraktionsmitgliedern gegenüber der Partei."
+          }
+        ],
+        "concrete_statements": [
+          "Fraktionsmitglieder haben Verantwortung gegenüber der Partei, nicht nur gegenüber sich selbst",
+          "Wirtschaftliche Rezession und europäische Instabilität erfordern Koalitionsstabilität"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Fraktionsdisziplin",
+          "Regierungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Drohungen und Konsequenzen für abweichende Abgeordnete",
+        "timestamp_range": "00:09:34 - 00:11:42",
+        "theme_description": "Miosga wirft Spahn vor, junge Abgeordnete mit Listenplätzen gedroht zu haben und fragt, ob er solche Drohungen konkret gemacht hat.",
+        "question_asked": "Caren Miosga sagte: 'Sie wussten, dass es die Vorwürfe seit 2008 gibt. Junge Abgeordnete soll es gegeben haben, die gesagt haben, dass Sie gedroht haben, dass sie auf hinteren Listenplätzen landen könnten. Haben Sie damit gedroht?'",
+        "question_intent": "Miosga wollte eruieren, ob Spahn Zwang durch Karrieredrohungen einsetzt, um Gehorsam zu erzwingen.",
+        "position": "Spahn antwortete zunächst negativ: 'Nicht so konkret.' Er betonte: 'Ich führe persönliche Gespräche. Darüber rede ich nicht hier mit Ihnen. Ich führe freundliche und klare Gespräche.' Als Miosga nachfragte, ob er das 'angedeutet' habe, sagte Spahn: 'Ich skizzierte sehr klar. Im persönlichen Gespräch und auch bei Ihnen. In der Sachfrage, was Rentenpolitik ist ...' Später betonte er, dass persönliche Gespräche privat bleiben: 'Das habe ich nicht so konkret gemacht.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet ausweichend: Er dementiert zwar konkrete Drohungen ('nicht so konkret'), gibt aber zu, 'sehr klar' etwas 'skizziert' zu haben. Er verlegt das Gespräch ins Private und verweigert Details. Die Antwort adressiert die Frage nicht direkt – sie ist bewusst mehrdeutig.",
+        "quotes": [
+          {
+            "text": "Nicht so konkret. Ich führe persönliche Gespräche. Darüber rede ich nicht hier mit Ihnen. Ich führe freundliche und klare Gespräche.",
+            "timestamp": "00:11:10",
+            "context": "Antwort auf Miosgas Frage, ob Spahn jungen Abgeordneten mit hinteren Listenplätzen gedroht hat."
+          },
+          {
+            "text": "Ich skizzierte sehr klar. Im persönlichen Gespräch und auch bei Ihnen.",
+            "timestamp": "00:11:42",
+            "context": "Spahns klarstellung, dass er in Gesprächen 'sehr klar' war, aber Details nicht in der Öffentlichkeit teilen will."
+          }
+        ],
+        "concrete_statements": [
+          "Führt persönliche Gespräche mit Abgeordneten",
+          "Gibt zu, 'sehr klar' etwas 'skizziert' zu haben, nennt aber keine Details"
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsdisziplin",
+          "Parlamentarischer Druck",
+          "Listenplatzierungen"
+        ]
+      },
+      {
+        "title": "Kritik an Rentenpaket-Kosten und Folgelasten",
+        "timestamp_range": "00:20:48 - 00:30:53",
+        "theme_description": "Experte Clemens Fuest und Spahn diskutieren die geschätzten Folgekosten des Rentenpakets (120 Mrd. Euro bis 2040), die Finanzierbarkeit und strukturelle Probleme.",
+        "question_asked": "Clemens Fuest (ifo-Institut) kritisierte die Folgekosten und stellte fest: 'Das Rentenpaket hat Folgekosten von 120 Mrd. Euro. Das darf auf keinen Fall so kommen.' Später fragte Miosga: 'Was bedeutet es, wenn die Haltelinie 2031 endet?' und 'Wurden Sie [die Union] über den Tisch gezogen?'",
+        "question_intent": "Fuest und Miosga wollten Spahn zu den massiven Kosten und zur Frage befragen, ob die Union in Koalitionsverhandlungen schlecht verhandelt hat.",
+        "position": "Spahn gab zu, dass die Kosten erheblich sind, ordnete sie aber ein: 'Es geht um 700 Milliarden Euro für Rente im Jahr. Es ist um sehr viel Geld.' Die 120 Mrd. Euro 'auf zehn Jahre gerechnet' seien bedeutsam, aber: 'Ohne Regelung hätten wir zwei Prozent Mehrausgaben.' Er argumentierte: 'Das geht nur, wenn wir Wachstum haben.' Später: 'Der Koalitionsvertrag ist an dieser Stelle schwammig. Es gab keine Möglichkeit, das Gesetz nachzuverhandeln.' Er räumte Fehler bei der Kommunikation ein ('Bei der Kommunikation müssen Dinge besser machen'), bestand aber darauf: 'Aber die Debatte muss zur Entscheidung kommen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn adressiert die Kostenfrage sachlich, relativiert aber durch Kontextualisierung (2 % Mehrausgaben, Wirtschaftswachstum als Voraussetzung). Die Frage, ob er über den Tisch gezogen wurde, beantwortet er ausweichend mit Verweis auf 'schwammige' Koalitionsvertragsformulierung. Er gibt zu, dass die SPD sich 'durchgesetzt' hat, nennt dies aber nicht explizit einen Fehler der Union.",
+        "quotes": [
+          {
+            "text": "Die 120 Milliarden sind viel Geld auf zehn Jahre gerechnet. Ohne Regelung hätten wir zwei Prozent Mehrausgaben. Es geht um 700 Milliarden Euro für Rente im Jahr.",
+            "timestamp": "00:33:03",
+            "context": "Spahns Relativierung der 120-Mrd.-Euro-Kosten im Gesamtkontext des Rentenhaushalts."
+          },
+          {
+            "text": "Der Koalitionsvertrag ist an dieser Stelle schwammig. Es gab keine Möglichkeit, das Gesetz nachzuverhandeln.",
+            "timestamp": "00:30:53",
+            "context": "Spahns Erklärung für die Kostensteigerung: Die SPD wollte das Paket nicht neu verhandeln."
+          }
+        ],
+        "concrete_statements": [
+          "120 Mrd. Euro Folgekosten bis 2040 sind erheblich",
+          "Koalitionsvertrag war zu schwammig formuliert",
+          "SPD verweigerte Neuerhandlung des Gesetzes nach Kabinettsentwurf"
+        ],
+        "related_bundestag_topics": [
+          "Rentenfinanzierung",
+          "Bundeshaushalt",
+          "Koalitionsverhandlungen"
+        ]
+      },
+      {
+        "title": "Strukturelle Rentenreformen und Rentenkommission",
+        "timestamp_range": "00:37:52 - 00:51:06",
+        "theme_description": "Spahn und die Gäste diskutieren, welche strukturellen Reformen die Rentenkommission erarbeiten soll: Lebensarbeitszeit, Kapitaldeckung, Nachhhaltigkeitsfaktor, Beitragssätze.",
+        "question_asked": "Miosga und Fuest fragten: 'Was soll die Kommission jetzt machen?' und 'Sind Sie dafür [dass das Renteneintrittsalter angepasst wird]?' sowie 'Können sich Union und SPD zusammenkommen [bei den Reformen]?'",
+        "question_intent": "Die Moderatoren und der Experte wollten von Spahn konkrete Reformvorschläge und realistische Chancen auf Reformfähigkeit erfahren.",
+        "position": "Spahn nannte mehrere Reformelemente: '(1) Lebensarbeitszeit, (2) Kapitaldeckung, (3) Nachhaltigkeitsfaktor, (4) Renteneintrittsalter 67' und betonte: 'Das ist Bestandteil des Arbeitsauftrag an die Kommission.' Er warnte: 'Für die Zeit danach müssen wir reden. Wir werden alle länger arbeiten müssen. Das ist ein klarer Umstand. Über den Mechanismus muss man aber reden.' Zur Konsensfähigkeit der längeren Lebensarbeitszeit sagte er kritisch: 'Das ist in der Koalition nicht konsensfähig. Die SPD tut sich schwer mit dem Eintrittsalter 67 ... Das ist für die ein Tabu.' Er forderte auch Kapitaldeckung: 'Die deutschen Rentner profitieren nicht vom Rekordhoch des DAX. Kanadische Lehrer haben höhere Rente wegen des DAX.'",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn adressiert alle Aspekte der Frage konkret: Er benennt vier Reformelemente, erklärt deren Notwendigkeit und analysiert realistisch die politischen Blockaden (SPD-Tabu bei Renteneintrittsalter). Er hält sich nicht bedeckt, sondern nimmt Position ein.",
+        "quotes": [
+          {
+            "text": "Das ist Bestandteil des Arbeitsauftrag an die Kommission. Wir machen das bis 2031. Da geht es um das Renteneintrittsalters 67. Für die Zeit danach müssen wir reden. Wir werden alle länger arbeiten müssen.",
+            "timestamp": "00:42:39",
+            "context": "Spahns konkrete Reformagenda für die Rentenkommission."
+          },
+          {
+            "text": "Das ist in der Koalition nicht konsensfähig. Die SPD tut sich schwer mit dem Eintrittsalter 67. Das wurde vor vielen Jahren vereinbart. Die Rente mit 67 hat die SPD entzweit. Da hat die SPD ein Trauma.",
+            "timestamp": "00:45:47",
+            "context": "Spahns realistische Einschätzung der politischen Hürden bei Renteneintrittsalter-Reformen."
+          },
+          {
+            "text": "Die deutschen Rentner profitieren nicht vom Rekordhoch des DAX. Kanadische Lehrer haben höhere Rente wegen des DAX. Auch die deutschen Rentner soll etwas davon haben.",
+            "timestamp": "00:45:47",
+            "context": "Spahns Begründung für Kapitaldeckung in der Rente."
+          }
+        ],
+        "concrete_statements": [
+          "Rentenkommission soll bis 2031 arbeiten",
+          "Vier Reformelemente: Lebensarbeitszeit, Kapitaldeckung, Nachhaltigkeitsfaktor, Renteneintrittsalter 67",
+          "Spahn hält längere Lebensarbeitszeit für notwendig, räumt aber ein, dass Berufe unterschiedlich anstrengend sind",
+          "SPD betrachtet Erhöhung des Renteneintrittsalters als Tabu"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Renteneintrittsalter",
+          "Kapitaldeckung",
+          "Rentenkommission",
+          "Nachhhaltigkeitsfaktor"
+        ]
+      },
+      {
+        "title": "Möglichkeiten und Grenzen der Rentenfinanzierung",
+        "timestamp_range": "00:47:24 - 00:52:40",
+        "theme_description": "Spahn und die Gäste debattieren, wie die Rente finanziert werden kann: weitere Einkommensarten, Beitragssätze, Steuern, Abgeordnetenversicherung.",
+        "question_asked": "Miosga und Fuest fragten: 'Wie sollen weitere Einkommensarten einbezogen werden?' und 'Können Sie sich vorstellen, Beiträge mit zu bemessen?' sowie 'Was kann die Kommission erarbeiten?'",
+        "question_intent": "Die Moderatoren und der Experte wollten von Spahn sachliche Finanzierungsoptionen für die Rente erfragen.",
+        "position": "Spahn warnte vor regressiven Modellen: 'Weitere Einkommensarten einzubeziehen, bringt nur etwas, wenn man dafür keine Ansprüche entstehen lässt. Die Rentenkasse wird dadurch nicht entlastet.' Er kritisierte: 'Man muss den Leuten sagen, dass sie was zahlen, aber nichts dafür bekommen. Das geht rechtlich nicht.' Zur Selbständigenversicherung: 'Man müsste vielleicht Selbständige mit hinein nehmen. Das wird aber auch nicht funktionieren. Es sei denn, man führt ein Soli für die Renten ein. Man verschärft so nur die Probleme von heute.' Er warnte vor zu hohen Beitragssätzen: '40 Prozent der Einkommen gehen in die Rente. Das wird das Wachstum im Land zerstören.' Zur Abgeordnetenversicherung sagte er: 'Das ist ein Tropfen auf den heißen Stein. Aber das ist ein politisches Signal.'",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn adressiert alle Finanzierungsoptionen konkret und erklärt, warum die meisten nicht funktionieren oder kontraproduktiv sind. Er zeigt realistische Verständnis der rechtlichen und wirtschaftlichen Grenzen.",
+        "quotes": [
+          {
+            "text": "Weitere Einkommensarten einzubeziehen, bringt nur etwas, wenn man dafür keine Ansprüche entstehen lässt. Die Rentenkasse wird dadurch nicht entlastet. Man kann eine weitere Einkommensteuer erheben.",
+            "timestamp": "00:47:24",
+            "context": "Spahns Analyse der Grenzen bei der Ausweitung von Einkommensquellen für die Rentenkasse."
+          },
+          {
+            "text": "40 Prozent der Einkommen gehen in die Rente. Das wird das Wachstum im Land zerstören.",
+            "timestamp": "00:48:25",
+            "context": "Spahns Warnung vor zu hohen Rentenbeitragssätzen."
+          },
+          {
+            "text": "Das ist ein Tropfen auf den heißen Stein. Aber das ist ein politisches Signal.",
+            "timestamp": "00:50:36",
+            "context": "Spahns Bewertung der Abgeordnetenversicherung als Reformelement."
+          }
+        ],
+        "concrete_statements": [
+          "Weitere Einkommensarten ohne Ansprüche rechtlich nicht machbar",
+          "Selbständigenversicherung ohne Solidaritätszuschlag funktioniert nicht",
+          "Beitragssätze über 40 % schaden dem Wirtschaftswachstum",
+          "Abgeordnetenversicherung ist ein symbolisches politisches Signal, löst aber nicht das Problem"
+        ],
+        "related_bundestag_topics": [
+          "Rentenfinanzierung",
+          "Beitragssätze",
+          "Steuerfinanzierung",
+          "Solidaritätsprinzip"
+        ]
+      },
+      {
+        "title": "Gewerkschaften, Arbeitgeber und gesellschaftliche Polarisierung",
+        "timestamp_range": "00:53:24 - 00:54:27",
+        "theme_description": "Spahn äußert sich zu Konflikten mit Gewerkschaften und Arbeitgebern bezüglich der Rentenpolitik und warnt vor gesellschaftlicher Polarisierung durch 'linken Mob und extreme Rechte'.",
+        "question_asked": "Miosga fragte: 'Für mich war der Arbeitgebertag für mich ein Schlüsselerlebnis, weil da deutlich geworden ist, gegen wen wir kämpfen müssen. Wie zuversichtlich sind Sie jetzt?' und Spahn respondierte: 'Im dritten Jahr der Rezession würde ich Arbeitgeber beschäftigte als Partner sehen.'",
+        "question_intent": "Miosga wollte von Spahn wissen, wie er mit dem Konflikt zwischen Arbeitgebern/Gewerkschaften und der Regierung umgehen will.",
+        "position": "Spahn sagte: 'Im dritten Jahr der Rezession würde ich Arbeitgeber beschäftigte als Partner sehen. Beide Gruppen sollten mit den Ministern darüber reden, wie wir zu Wachstum kommen. Über Gegnerschaft sollten wir nicht reden.' Er differenzierte: 'Die Gegner der Demokratie sind linker Mob und extreme Rechte. Das müssen wir klar haben in der Definition.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn adressiert Miosgas Frage nur indirekt. Statt konkret auf den Arbeitgebertag-Konflikt einzugehen, lenkt er um auf die allgemeine Notwendigkeit von Partnerschaften und warnt dann vor 'linkem Mob und extremer Rechte' – eine Verschiebung der Debatte.",
+        "quotes": [
+          {
+            "text": "Im dritten Jahr der Rezession würde ich Arbeitgeber beschäftigte als Partner sehen. Beide Gruppen sollten mit den Ministern darüber reden, wie wir zu Wachstum kommen.",
+            "timestamp": "00:53:55",
+            "context": "Spahns Antwort auf Miosgas Frage zu Arbeitgeberkonflikten."
+          },
+          {
+            "text": "Die Gegner der Demokratie sind linker Mob und extreme Rechte. Das müssen wir klar haben in der Definition.",
+            "timestamp": "00:54:27",
+            "context": "Spahns Warnung vor Polarisierung und Abgrenzung von Extremen."
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitgeber und Gewerkschaften sollten als Partner der Regierung verstanden werden",
+          "Die echten Gegner sind 'linker Mob und extreme Rechte', nicht Tarifparteien"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitgeber-Gewerkschaften-Verhältnis",
+          "Sozialpartnerschaft",
+          "Extremismusbekämpfung",
+          "Gesellschaftliche Polarisierung"
+        ]
+      },
+      {
+        "title": "Perspektive auf Koalitionsregierung und Wahlkampf",
+        "timestamp_range": "00:54:27 - 00:57:39",
+        "theme_description": "Miosga und der Experte Fuest fragen Spahn, ob Union und SPD zusammenkommen können und ob Spahns Fraktionsvorsitz gefährdet ist, falls die Rentenabstimmung scheitert.",
+        "question_asked": "Miosga fragte: 'Können sich Union und SPD zusammenkommen?' und später: 'Das muss gut gehen. Sonst ist die Wahrscheinlichkeit nicht gering, dass es Jens Spahn den Kopf kosten könnte. Hängt Ihr Amt daran?'",
+        "question_intent": "Miosga wollte Spahn zu seiner persönlichen Verantwortung befragen und herausstellen, dass sein politisches Schicksal von der Abstimmung abhängt.",
+        "position": "Spahn betonte die Notwendigkeit der Koalition: 'Können sich Union und SPD zusammenkommen? Wir müssen. Wir sind zum Erfolg verpflichtet. Wer, wenn nicht wir? Diese Koalition muss es machen. Wer sonst?' Er räumte ein: 'Es ist mühsam und anstrengend. Wir fliegen gelegentlich aus der Kurve. Aber wir haben die Pflicht, es hinzukriegen.' Zu seinem Amt sagte er: 'Ich soll die Mehrheiten besorgen. Bisher hatten wir diese Mehrheiten immer. Wir werden sie auch weiterhin haben. Wir schauen, was passiert.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die erste Frage inhaltlich (Koalition ist notwendig). Auf die Frage nach seinem Amt antwortet er ausweichend: Er beschwört Kontinuität ('bisher hatten wir diese Mehrheiten immer') statt direkt zu sagen, ob sein Amt auf dem Spiel steht. Die Formulierung 'Wir schauen, was passiert' ist beschwichtigend.",
+        "quotes": [
+          {
+            "text": "Können sich Union und SPD zusammenkommen? Wir müssen. Wir sind zum Erfolg verpflichtet. Wer, wenn nicht wir? Diese Koalition muss es machen.",
+            "timestamp": "00:54:27",
+            "context": "Spahns Antwort auf die Frage, ob Koalitionspartner zusammenkommen können."
+          },
+          {
+            "text": "Ich soll die Mehrheiten besorgen. Bisher hatten wir diese Mehrheiten immer. Wir werden sie auch weiterhin haben.",
+            "timestamp": "00:57:39",
+            "context": "Spahns Antwort auf Miosgas Frage, ob sein Fraktionsvorsitz gefährdet ist."
+          }
+        ],
+        "concrete_statements": [
+          "Koalition aus Union und SPD ist alternativlos",
+          "Spahn wird weiterhin Mehrheiten für Koalitionsgesetze sicherstellen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Fraktionsvorsitz",
+          "Regierungsfähigkeit",
+          "Wahlkampf 2026"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "2030 kommen auf einen Rentner nur noch zwei Beitragszahler (aktuell drei)",
+        "timestamp": "00:02:41"
+      },
+      {
+        "claim": "In den 2030er Jahren gehen geburtenstarke Jahrgänge in Rente und das System ist nicht darauf vorbereitet",
+        "timestamp": "00:01:38"
+      },
+      {
+        "claim": "Das Rentenpaket führt Kapitaldeckung ein",
+        "timestamp": "00:06:27"
+      },
+      {
+        "claim": "Die geschätzten Folgekosten des Rentenpakets betragen etwa 120 Mrd. Euro bis 2040",
+        "timestamp": "00:21:20"
+      },
+      {
+        "claim": "Es geht um 700 Milliarden Euro für Rente im Jahr",
+        "timestamp": "00:33:03"
+      },
+      {
+        "claim": "Die Rentenkommission soll im Juni 2026 erste Ergebnisse liefern",
+        "timestamp": "00:07:00"
+      },
+      {
+        "claim": "Die Rente mit 67 wurde vor vielen Jahren (vor 2007) vereinbart und hat die SPD entzweit",
+        "timestamp": "00:45:47"
+      },
+      {
+        "claim": "Kanadische Lehrer haben höhere Renten wegen des Rekordhochs des DAX",
+        "timestamp": "00:45:47"
+      }
+    ]
+  }
+}

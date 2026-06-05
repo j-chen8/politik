@@ -1,0 +1,272 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-24-juli-2025-100",
+    "video_id": "illner-2025-07-24",
+    "politician": "Verena Hubertz",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "984f94861b78d46e",
+    "transcript_chars": 45297,
+    "caption_lines": 2310,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19506,
+    "tokens_out": 6486,
+    "cost_usd": 0.0207744,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:46.978Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Verena Hubertz, SPD-Bundesministerin für Wohnen, Stadtentwicklung und Bauwesen, tritt in der Illner-Sendung zu „Streit statt Aufbruch\" auf. Sie verteidigt die Schwarz-Rot-Koalition gegen Kritik an internen Konflikten (Stromsteuersenkung, Richterwahl), betont Fortschritte im Wohnungsbau und plädiert für strukturelle Reformen bei langfristiger Planbarkeit. Der Ton wirkt konstruktiv, aber mit defensiven Elementen angesichts der schlechten Umfragewerte der SPD.",
+    "themes": [
+      {
+        "title": "Haltung SPD zur gescheiterten Richterwahl",
+        "timestamp_range": "00:03:07 - 00:08:48",
+        "theme_description": "Stellungnahme zur abgesagten Wahl der SPD-Kandidatin für das Bundesverfassungsgericht und der Vorwürfe öffentlicher Konflikte in der Koalition.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz direkt nach ihrer Rolle als Bauministerium und ob sie die Kritik teilt, dass die öffentlichen Auseinandersetzungen über die Richterwahl peinlich sind und ob es nicht besser wäre, solche Fragen in geschützten Räumen zu klären.",
+        "question_intent": "Maybrit Illner möchte wissen, ob Verena Hubertz die Eskalation der Richterwahl-Debatte problematisch findet und ob die SPD nicht pragmatischer hätte vorgehen sollen.",
+        "position": "Verena Hubertz unterscheidet zwischen ‚stur bleiben' und ‚standhaft' sein und bekräftigt, dass die SPD-Kandidatin eine ‚hervorragende Juristin' ist, hinter der die SPD steht. Sie betont, dass die parlamentarische Sommerpause hilfreich ist und dass die Koalition weiterarbeitet. Sie erkennt an, dass der Union-Fraktion angeboten wurde, die Kandidatin zwischenzeitlich ‚einzulegen', damit man sprechen kann, statt ‚Hetzkampagnen' zu starten. Sie verweist auf die Notwendigkeit, ‚mit Meinungsverschiedenheiten klarzukommen' und betont, dass es nicht darum geht, ‚wo man sich auch uneins ist', sondern um die fachliche Qualifikation der Juristin.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert die Frage zur Haltung der SPD und deren Kandidatin, antwortet aber nicht direkt auf Illners Kritik, dass die öffentliche Debatte ‚peinlich' ist oder ob geschützte Räume besser gewesen wären. Sie weicht auf die Defensivposition aus (‚standhaft, nicht stur') und wirbt für die Kandidatin, statt sich mit der Prozess-Kritik auseinanderzusetzen.",
+        "quotes": [
+          {
+            "text": "Sie bleiben nicht stur, wir bleiben standhaft, sie ist eine hervorragende Juristin, die stehen hinter ihr.",
+            "timestamp": "00:03:07",
+            "context": "Antwort auf Illners Frage, wie die SPD mit der Kritik am öffentlichen Richterwahl-Streit umgeht."
+          },
+          {
+            "text": "Wir sprechen von unserer Kandidatin, weil wir Vorschlag-Recht haben.",
+            "timestamp": "00:08:48",
+            "context": "Hubertz rechtfertigt, warum die SPD von ‚ihrer' Kandidatin spricht, statt neutral von einer Vorschlagskandidatin."
+          }
+        ],
+        "concrete_statements": [
+          "SPD steht zur Kandidatin",
+          "Sommerpause tut gut",
+          "Angebot an Union, Kandidatin zwischenzeitlich ‚einzulegen'",
+          "Muss zu Lösungsfindung zurück an den Tisch"
+        ],
+        "related_bundestag_topics": [
+          "Bundesverfassungsgericht",
+          "Richterwahl",
+          "Koalitionskonflikte",
+          "parlamentarische Verfahren"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Fiskalpaket",
+        "timestamp_range": "00:15:05 - 00:15:46",
+        "theme_description": "Stellungnahme zu Merkels Diskussion über die Schuldenbremse und die Verwendung des Sondervermögens für Investitionen.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz (basierend auf einer Fußnote über Merz und einen Bundesverfassungsrichter), ob die SPD und Merz über die alte Zweidrittelmehrheit des alten Parlaments nachgedacht haben, um die Schuldenbremse auszubremsen, und ob Hubertz davon wusste.",
+        "question_intent": "Maybrit Illner möchte wissen, ob Merz die Schuldenbremsen-Debatte vorher strategisch geplant hat und ob die SPD darin involviert war.",
+        "position": "Verena Hubertz antwortet nicht auf die spezifische Frage zur Zweidrittelmehrheit, sondern verweist darauf, dass ‚ein Kanzlerkandidat sich mit verschiedenen Szenarien beschäftigen muss'. Sie betont, dass die SPD ‚schon immer' dafür geworben hat, dass ‚massiv investieren' notwendig ist, und dass sie dankbar waren, das Sondervermögen von 500 Milliarden in schwieriger Zeit investieren zu können.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Hubertz weicht der Frage aus, ob die SPD von Merkels strategischen Planungen zur Schuldenbremse wusste, und pivotiert stattdessen zu einem Gegenpunkt: Die SPD wollte immer investieren, und das Sondervermögen war eine positive Lösung. Sie adressiert nicht die eigentliche Frage nach dem Timing und der Strategieentwicklung.",
+        "quotes": [
+          {
+            "text": "Ein Kanzlerkandidat muss sich mit verschiedenen Szenarien beschäftigen und wir als SPD haben schon immer dafür geworben, dass wir massiv investieren müssen.",
+            "timestamp": "00:15:05",
+            "context": "Hubertz weicht der Frage aus und rerahmt die Debatte auf SPD-Positionen."
+          }
+        ],
+        "concrete_statements": [
+          "SPD wirbt für massive Investitionen",
+          "Sondervermögen von 500 Milliarden war dankbar in schwieriger Zeit",
+          "Kanzlerkandidat muss sich mit Szenarien beschäftigen"
+        ],
+        "related_bundestag_topics": [
+          "Schuldenbremse",
+          "Sondervermögen",
+          "Fiskalpaket",
+          "Investitionen"
+        ]
+      },
+      {
+        "title": "Stromsteuersenkung und Koalitionsversprechen",
+        "timestamp_range": "00:26:30 - 00:28:34",
+        "theme_description": "Diskussion über die Nichterfüllung des Versprechens, die Stromsteuer für alle zu senken, und die Prioritätensetzung in der Koalition zwischen Stromsteuer und Mütterrente.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz direkt, ob man gute Argumente dafür finden kann, dass die Koalition Geld für die Mütterrente hat, aber nicht den Strom für alle senkt, obwohl eine Stromsteuersenkung für alle versprochen wurde.",
+        "question_intent": "Maybrit Illner möchte von Hubertz wissen, wie die SPD und CDU das Versprechen der Stromsteuersenkung rechtfertigen können, wenn sie gleichzeitig in die Mütterrente investieren.",
+        "position": "Verena Hubertz verweist auf den Koalitionsvertrag, der die Stromsteuersenkung enthält, und betont, dass CDU und SPD nicht in absoluter Mehrheit sind. Sie argumentiert, dass die Koalition ‚ordentliche Schritte' geht und weitere folgen werden. Sie rahmt die Priorität als Abwägung zwischen ‚Konsolidierung und Sparen' ein und betont, dass ‚große Musik' in großen Reformen liegt, nicht in Einzelprojekten. Sie beschreibt die Regierungstätigkeit als ‚letzte Chance, dieses Land wieder auf Vordermann zu bringen'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf die Frage, warum die Stromsteuer nicht gesenkt wurde, aber weicht aus, indem sie auf den Koalitionsvertrag verweist und die Notwendigkeit von Priorisierung unterstreicht, statt die konkrete Kritik an der Nichterfüllung des Versprechens zu adressieren. Sie rerahmt die Debatte auf ‚große Reformen' statt Einzelmaßnahmen.",
+        "quotes": [
+          {
+            "text": "Das steht im Ertrag drin, dass wir die Stromsteuer für alle senken wollen. Ja wir gehen jetzt ordentliche Schritte, und es werden noch weitere folgen.",
+            "timestamp": "00:27:02",
+            "context": "Hubertz antwortet auf Illners direkte Frage zur Stromsteuersenkung."
+          },
+          {
+            "text": "Die große Musik spielt darin, dass wir uns große Reformen zutrauen.",
+            "timestamp": "00:27:02",
+            "context": "Hubertz rerahmt die Prioritätendebatte weg von Einzelmaßnahmen hin zu strukturellen Reformen."
+          }
+        ],
+        "concrete_statements": [
+          "Koalitionsvertrag sieht Stromsteuersenkung vor",
+          "Koalition geht ‚ordentliche Schritte'",
+          "Weitere Schritte werden folgen",
+          "Fokus auf große Reformen, nicht Einzelprojekte"
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Stromsteuer",
+          "Koalitionsvertrag",
+          "Finanzpolitik"
+        ]
+      },
+      {
+        "title": "Wohnungsbau und Bauinvestitionen",
+        "timestamp_range": "00:34:50 - 00:36:46",
+        "theme_description": "Darstellung der Bauinvestitionen durch das Sondervermögen und deren Wirkung auf den Wohnungsmarkt und die Konjunktur.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz (implizit), wann die Stromsteuer gesenkt wird und verweist darauf, dass Handwerker eine Senkung begrüßen würden. Sie fragt, woher die Bitterkeit der Menschen kommt und ob Hubertz nicht versprechen kann, dass jeder morgen eine Wohnung findet.",
+        "question_intent": "Maybrit Illner möchte verstehen, wie die Regierung die Zuversicht der Menschen zurückgewinnen kann, angesichts der wirtschaftlichen Schwierigkeiten und des Wohnungsmangels.",
+        "position": "Verena Hubertz betont als Bundesbauministerium, dass sie durch das Sondervermögen (23 Milliarden für sozialen Wohnungsbau) langfristige Planbarkeit schafft und ‚massive Mittel' bereitstellt, um anzukurbeln. Sie gibt zu, nicht zu versprechen, dass jeder morgen eine Wohnung findet, aber verspricht, dass sich ‚alle Stellschrauben' in der Regierung bewegen, um das Problem zu adressieren. Sie nennt ‚Technologie und schnellere Verfahren' als Lösungsansätze. Sie wendet sich gegen die Kritik, dass die Koalition zu wenig für Energiepreise getan hat.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert die Frage nach Wohnungsbau und Investitionen, weicht aber ab auf ihre spezifische Rolle als Bauministerium und die 23-Milliarden-Investition. Sie gibt eine realistische Warnung ab (kann nicht versprechen, dass alle morgen Wohnung finden), antwortet aber nicht direkt auf Illners Kernfrage, wie die Bitterkeit der Menschen zu überwinden ist.",
+        "quotes": [
+          {
+            "text": "Ich mach das für meinen Bereich, ich bin Bundesbauministerium, die Hälfte der Investitionen Deutschlands sind Bauinvestitionen. Wenn die jetzt im Sonderbereich stattfinden, da gibt es dem ich den Wohnungsbereich in den nächsten Jahren, wir haben 23 Milliarden für den sozialen Wohnungsbau.",
+            "timestamp": "00:34:50",
+            "context": "Hubertz erläutert ihre Rolle und die Investitionen in sozialen Wohnungsbau durch das Sondervermögen."
+          },
+          {
+            "text": "Auch ich kann nicht versprechen, dass jeder morgen eine Wohnung findet. Aber ich kann versprechen, dass sich alle Stellschrauben in der Regierung bewegen, damit wir dieses Problem adressieren.",
+            "timestamp": "00:34:50",
+            "context": "Hubertz reagiert auf Illners Frage zur Wohnungskrise und setzt realistische Erwartungen."
+          }
+        ],
+        "concrete_statements": [
+          "23 Milliarden für sozialen Wohnungsbau",
+          "Langfristige Planbarkeit durch Sondervermögen",
+          "Fokus auf Technologie und schnellere Verfahren",
+          "Massive Mittel zur Ankurbelung"
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsbau",
+          "Bauministerium",
+          "Sondervermögen",
+          "Infrastruktur"
+        ]
+      },
+      {
+        "title": "Strukturreformen in Rente und Sozialversicherung",
+        "timestamp_range": "00:43:04 - 00:53:48",
+        "theme_description": "Diskussion über die Mutigkeit der Koalition bei Strukturreformen in Rente, Pflege und Krankenversicherung und die SPD-Haltung zur Rentenreform.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz, wo die SPD ‚mutig' sein will bei Rentenreformen und verweist auf Illen, dass Monika Schnitzer kritisiert, dass die Koalition keine großen Strukturreformen plant. Später fragt Illner, ob Hubertz nicht auch will, dass man bis 70 arbeitet (wie in Skandinavien).",
+        "question_intent": "Maybrit Illner möchte wissen, ob die SPD bereit ist, unpopuläre Strukturreformen wie die Erhöhung des Renteneintrittsalters zu unterstützen.",
+        "position": "Verena Hubertz betont zunächst die Generationengerechtigkeit und das ‚Problem sensibilisieren', dass bei ihrer Generation (37 Jahre) fraglich ist, ob später noch eine gute Rente vorhanden sein wird. Sie verweist auf ‚andere Köpfe' unter der neuen Parteivorsitzenden Bärbel Bas und beschreibt Bas als ‚totale Pragmatikerin', die rechnen kann und die Lage sieht. Sie betont, dass ‚Deutschland beweglich wird, wenn es richtig schmerzt', und verweist auf Beispiele wie die Pandemie und die Energiewende. Sie argumentiert, dass ‚es gar nicht mehr darum geht, wie lange jeder arbeiten muss', sondern ‚wie stärken wir, dass das Geld arbeitet für die Menschen'. Sie lehnt die Renteneintrittsalter-Erhöhung implizit ab, indem sie sagt, ihr Vater als Schlosser ‚hat auch nicht bis 65 durchgearbeitet' und auf die Frage, ob sie selbst bis 70 arbeiten will, antwortet sie: ‚Es hindert mich nichts daran'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert die Frage nach Reformmut, weicht aber auf Generationengerechtigkeit und Pragmatismus aus, statt konkret zu sagen, ob die SPD zum höheren Renteneintrittsalter bereit ist. Sie verweist auf neue Köpfe unter Bas und rerahmt die Debatte weg von klassischen Renteneintrittsalter-Erhöhungen hin zu ‚Geld arbeitet für die Menschen'. Sie gibt implizit zu erkennen, dass nicht alle arbeiten können bis 70.",
+        "quotes": [
+          {
+            "text": "Ich bin 37 Jahre alt, dass es auch eine Frage von Generationengerechtigkeit. Haben wir später noch eine Rente, von der wir oder unsere Kinder gut leben könnten?",
+            "timestamp": "00:44:03",
+            "context": "Hubertz reagiert auf Frage nach Reformmut in der Rentenpolitik."
+          },
+          {
+            "text": "Es geht gar nicht mehr darum, wie lange jeder arbeiten muss, es geht darum, wie stärken wir, dass das Geld arbeitet für die Menschen.",
+            "timestamp": "00:51:07",
+            "context": "Hubertz rerahmt die Debatte weg von Renteneintrittsalter hin zu Kapitalrentabilität."
+          },
+          {
+            "text": "Mein Vater war Schlosser, er hat auch nicht bis 65 durchgearbeitet.",
+            "timestamp": "00:52:28",
+            "context": "Hubertz gibt implizit zu, dass nicht alle bis 70 arbeiten können."
+          }
+        ],
+        "concrete_statements": [
+          "SPD unter Bärbel Bas ist pragmatisch",
+          "Generationengerechtigkeit ist wichtig",
+          "Deutschland braucht Schmerz für Reformen",
+          "Nicht klassische Renteneintrittsalter-Erhöhung, sondern Kapitalrentabilität"
+        ],
+        "related_bundestag_topics": [
+          "Rente",
+          "Strukturreformen",
+          "Generationengerechtigkeit",
+          "Sozialversicherung"
+        ]
+      },
+      {
+        "title": "Investitionen und Unternehmerstimmung",
+        "timestamp_range": "00:59:23 - 01:01:51",
+        "theme_description": "Hubertz' Aussagen zur Stimmung von Unternehmern und Investoren nach der Regierungsübernahme sowie zur Notwendigkeit pragmatischen Handelns.",
+        "question_asked": "Maybrit Illner fragt Verena Hubertz, ob sie manchmal überrascht über ihren Optimismus ist und ob nicht wieder eine große Notlage nötig wäre, um die Koalition zu pragmatischem Handeln zu bewegen, wie es in der Pandemie und bei der Energiekrise der Fall war.",
+        "question_intent": "Maybrit Illner möchte wissen, ob Hubertz realistisch einschätzt, dass große Reformen ohne äußeren Druck schwer durchzusetzen sind.",
+        "position": "Verena Hubertz antwortet, dass man pragmatisch ‚immer' handeln sollte und nicht auf Notlagen warten sollte. Sie argumentiert, dass man in ein paar Jahren ‚anders auf die Regierungszeit zurückblicken' wird, unter Bezug auf Gasrennung und Strompreisbremsen. Sie betont, dass die Stimmung sich gedreht hat seit die Regierung im Amt ist: 60 CEOs waren dabei (offenbar bei einer Veranstaltung), und ausländische Investoren sagen, sie kommen zurück nach Deutschland. Sie nutzt Zahlen von 600 Milliarden (offensichtlich Sondervermögen), von denen ein Viertel ‚wirklich neue Investitionen' sind. Sie weist auf die Sorge hin, dass der Mittelstand nicht ‚dabei war'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf Illners Frage zum Optimismus, indem sie positive Signale (CEO-Gipfel, Investorenstimmung) anführt, weicht aber ab auf Optimismus-Rhetorik statt sich mit Illners tiefergehender Kritik auseinanderzusetzen, dass große Reformen ohne Notlagen schwer sind.",
+        "quotes": [
+          {
+            "text": "Pragmatisch sollte man immer handeln. Die Notlage, dass wir uns gerade noch mal von russischem Gas lösen müssen, ich glaube, in ein paar Jahren wird man anders auf die Regierungszeit zurückblicken.",
+            "timestamp": "00:59:23",
+            "context": "Hubertz reagiert auf Illners Frage zum Optimismus und zur Notwendigkeit von Notlagen für Reformen."
+          },
+          {
+            "text": "Ich erlebe, dass sich die Stimmung gedreht hat seit die Regierung im Amt ist. Allein diese Woche waren 60 CEOs dabei. Wir sehen ausländische Investoren, die sagen, was drum macht, ist mir zu unsicher. Wir kommen zurück nach Deutschland, wir können das wieder schaffen.",
+            "timestamp": "00:59:23",
+            "context": "Hubertz führt positive Signale an, um ihren Optimismus zu begründen."
+          }
+        ],
+        "concrete_statements": [
+          "Stimmung hat sich gedreht seit Regierungsübernahme",
+          "60 CEOs waren dabei (offensichtlich bei einer Veranstaltung)",
+          "Ausländische Investoren kommen zurück nach Deutschland",
+          "Von 600 Milliarden ein Viertel neue Investitionen",
+          "Mittelstand noch nicht ausreichend dabei"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Investitionen",
+          "Unternehmerstimmung",
+          "Außenwirtschaft"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Verena Hubertz ist Bundesbauministerium; die Hälfte der Investitionen Deutschlands sind Bauinvestitionen",
+        "timestamp": "00:34:50"
+      },
+      {
+        "claim": "23 Milliarden für den sozialen Wohnungsbau",
+        "timestamp": "00:34:50"
+      },
+      {
+        "claim": "500 Milliarden Sondervermögen für Investitionen",
+        "timestamp": "00:15:05"
+      },
+      {
+        "claim": "60 CEOs waren dabei (diese Woche)",
+        "timestamp": "00:59:23"
+      },
+      {
+        "claim": "Von 600 Milliarden sind ein Viertel wirklich neue Investitionen",
+        "timestamp": "00:59:23"
+      }
+    ]
+  }
+}

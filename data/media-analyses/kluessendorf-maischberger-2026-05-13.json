@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYzYzNGZiM2UtMTQ5OC00YWMzLThmMTctNjQyNTdiZGQ2OGM4",
+    "video_id": "maischberger-2026-05-13",
+    "politician": "Tim Klüssendorf",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "d4bd668f38cd30db",
+    "transcript_chars": 58321,
+    "caption_lines": 2180,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23739,
+    "tokens_out": 6992,
+    "cost_usd": 0.0234796,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 0,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.618Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Tim Klüssendorf, SPD-Generalsekretär, diskutiert in Maischbergers Sendung die wirtschaftliche Lage, die Koalitionskrise und Reformpolitik. Er präsentiert sich als vermittelnd zwischen den Koalitionspartnern und betont die Notwendigkeit, Sozialpartner einzubeziehen — wirkt dabei sachlich und lösungsorientiert, ohne dabei konfrontativ gegenüber Kritik zu werden.",
+    "themes": [
+      {
+        "title": "Reaktion auf Merz-Auftritt beim DGB und Auspfeifen",
+        "timestamp_range": "00:18:44 - 00:20:20",
+        "theme_description": "Tim Klüssendorf wird gefragt, ob das Auspfeifen von Friedrich Merz beim DGB berechtigt war, und wie er zur polarisierten Debattenlage steht.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob er es in Ordnung fand, dass Friedrich Merz beim DGB ausgepfiffen wurde, wenn er seine Rentenpläne skizzierte.",
+        "question_intent": "Maischberger möchte wissen, ob Klüssendorf das unkonstruktive Verhalten des Publikums am DGB gegenüber dem Kanzler kritisiert oder verteidigt.",
+        "position": "Tim Klüssendorf verwehrt sich gegen die Sichtweise, dass eine Seite grundsätzlich richtig liegt. Er verweist darauf, dass auch Bärbel Bas im Vorjahr ausgelacht wurde und sieht das als Symptom einer polarisierten Debatte. Er bekundet Verständnis für die Emotionalität, mahnt aber an, dass man ‚wieder zusammenbinden' muss. Er kritisiert indirekt, dass Bärbel Bas die Chance nicht genutzt hat, Merz in Schutz zu nehmen, wie dieser sie zuvor verteidigt hatte. Betonung liegt auf Konsens statt Lagerkampf.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf beantwortet die Frage nicht direkt mit Ja oder Nein zum Auspfeifen, sondern kontextualisiert es als Teil einer größeren Polarisierungsdynamik. Er adressiert die Tonalität der Debatte, weicht aber der direkten Bewertung aus und fokussiert stattdessen auf Einheit.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wenn man sich an den Seiten reinstellt, sieht man, dass im vergangenen Jahr Bärbel Bas ausgelacht worden ist. Jetzt Merz ausgebuht.",
+          "Wir müssen irgendwie schauen, dass wir das wieder zusammengebunden bekommen.",
+          "Daher haben wir gestern im Koalitionsausschuss den Fahrplan vereinbart."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man sich an den Seiten reinstellt, sieht man, dass im vergangenen Jahr Bärbel Bas ausgelacht worden ist. Jetzt Merz ausgebuht. Das zeigt, in welcher Debatte wir stecken.",
+            "timestamp": "00:18:44",
+            "context": "Als Antwort auf die Frage, ob das Auspfeifen von Merz in Ordnung war."
+          },
+          {
+            "text": "Wir müssen das Ganze wieder zusammenbringen. Es hilft niemandem weiter.",
+            "timestamp": "00:19:47",
+            "context": "Zum Abschluss seiner Position über polarisierte Debatten und Koalitionsfähigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Parlamentarische Kultur",
+          "Rentenpolitik"
+        ]
+      },
+      {
+        "title": "Sozialpartnerschaft als Modell für Reformgespräche",
+        "timestamp_range": "00:21:30 - 00:22:32",
+        "theme_description": "Tim Klüssendorf wird direkt gefragt, ob die SPD (wie Bärbel Bas andeutete) die Arbeitgeber als ‚Gegner' sieht oder ob es um Zusammenarbeit geht.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf direkt: ‚Herr Klüssendorf, ist das die Haltung der SPD? Die Arbeitgeber sind die, gegen die man kämpfen muss?'",
+        "question_intent": "Zu klären, ob die SPD ideologisch gegen Unternehmertum eingestellt ist oder ob die Äußerung von Bärbel Bas nur eine Ausrutscher war.",
+        "position": "Klüssendorf sagt, dass ‚sie [Bärbel Bas] das auch selber eingeordnet [hat] im Nachhinein'. Das zeige die ‚Bestrebung' der SPD. Persönlich habe er ‚in den vergangenen Tagen darauf hingewiesen, dass wir gerade, wenn es um die Reformen geht, eine Kraftanstrengung mit den Sozialpartnern brauchen'. Deutschland habe ‚ein über Jahrzehnte gewachsenes Modell, das robust ist, weil Gewerkschaftler mit am Tisch sitzen'. Die Lösung ist: ‚Wir müssen sie mit dazu holen. Das muss der Weg sein.' ‚Wir brauchen diesen Zusammenhalt, diesen Zusammenschluss. Wir müssen alle Beteiligten mit an einen Tisch holen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf antwortet klar: Nein, die SPD sieht Arbeitgeber nicht als Gegner, Bärbel Bas hat sich selbst korrigiert. Die SPD-Position ist aktiv pro-Sozialpartnerschaft und historisch fundiert in deutschem Erfolgsmodell.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Nein, sie hat das auch selber eingeordnet im Nachhinein.",
+          "Wir müssen die Sozialpartner mit dazu holen. Das muss der Weg sein.",
+          "Deutschland hat ein über Jahrzehnte gewachsenes Modell, das robust ist, weil Gewerkschaftler mit am Tisch sitzen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, sie hat das auch selber eingeordnet im Nachhinein. Das zeigt auch unsere Bestrebung. Ich habe selber die vergangenen Tage darauf hingewiesen, dass wir gerade, wenn es um die Reformen geht, eine Kraftanstrengung mit den Sozialpartnern brauchen.",
+            "timestamp": "00:21:30",
+            "context": "Zur Frage, ob die SPD Arbeitgeber als Gegner sieht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Tarifverhandlungen",
+          "Koalitionspolitik"
+        ]
+      },
+      {
+        "title": "SPD-Position zu Steuergerechtigkeit und Spitzensteuersatz",
+        "timestamp_range": "00:23:33 - 00:28:19",
+        "theme_description": "Tim Klüssendorf wird zur SPD-Position bei der Steuerreform befragt und muss gegen Vorwürfe von ‚Klassenkampf' und ‚Spaltung' argumentieren.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob die SPD mit ihrer Forderung, mittlere und untere Einkommen zu entlasten und dafür höhere Einkommen stärker zu belasten, auch Mittelständler im Spitzensteuersatz meint.",
+        "question_intent": "Maischberger wünscht sich Klarheit, ob die SPD-Steuerreform auch mittelständische Unternehmer in höheren Steuersätzen trifft.",
+        "position": "Klüssendorf präzisiert, dass der Spitzensteuersatz bei etwa 70.000 Euro anfängt und ‚tief in die Mitte der Gesellschaft reingeht'. Etwa 90% der handwerklichen Unternehmen fallen bis zu dieser Schwelle. Die SPD will dort Entlastung, sieht aber bei denjenigen über 270.000 Euro Jahresgehalt (Reichensteuersatz) ‚eine stärkere Verantwortung'. Er verwehrt sich gegen den Vorwurf des Klassenkampfs und verweist darauf, dass über Jahre mittlere und kleine Einkommen ‚zu stark belastet' wurden bei gleichzeitig zu niedriger Besteuerung der höheren Einkommen. Historisches Beispiel: Helmut Kohl hatte 56% Spitzensteuersatz.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf beantwortet die Kernfrage direkt: Nein, die meisten Handwerksbetriebe profitieren von der Entlastung unter 70.000 Euro. Die höhere Belastung trägt nur eine kleine Gruppe über 270.000 Euro. Er liefert konkrete Zahlen und wehrt die Spaltungskritik ab.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Rund 90% der handwerklichen Unternehmen sind ungefähr bis zu dieser Schwelle in den Steuersätzen drin. Dort soll es natürlich zu einer starken Entlastung kommen.",
+          "Bei denjenigen, die am Reichensteuersatz sind und mehr als 270.000 Euro Jahresgehalt haben, dass da eine stärkere Verantwortung ist.",
+          "Über viele Jahre haben wir die mittleren und kleinen Einkommen zu stark belastet. Im Gegenzug haben wir aber oben zu wenig besteuert. Wir hatten bei Helmut Kohl mal 56% Steuersatz."
+        ],
+        "quotes": [
+          {
+            "text": "Der Grenzsteuersatz für den Spitzensteuersatz ist in einem Bereich, der tief in die Mitte der Gesellschaft reingeht. Bei rund 70.000 Euro.",
+            "timestamp": "00:23:33",
+            "context": "Zur Präzisierung der Schwelle des Spitzensteuersatzes."
+          },
+          {
+            "text": "Rund 90% der handwerklichen Unternehmen sind ungefähr bis zu dieser Schwelle in den Steuersätzen drin. Dort soll es natürlich zu einer starken Entlastung kommen.",
+            "timestamp": "00:23:33",
+            "context": "Zur Klarstellung, wie viele Handwerksbetriebe von Entlastung profitieren."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerreform",
+          "Mittelstandspolitik",
+          "Einkommensgerechtigkeit",
+          "Finanzausschuss"
+        ]
+      },
+      {
+        "title": "Kritik am Klassenkampf-Vorwurf und Umverteilungspolitik",
+        "timestamp_range": "00:26:13 - 00:28:19",
+        "theme_description": "Tim Klüssendorf antwortet auf Christoph Ahlhaus' Vorwurf, die SPD betreibe ‚Klassenkampf' und ‚Spaltung' statt konstruktiver Reformpolitik.",
+        "question_asked": "Sandra Maischberger paraphrasiert Ahlhaus' Kritik: Die SPD bringe ‚Rezepte von vorgestern' und betreibe ‚Klassenkampf', wenn sie von ‚ganz toll verdienenden' spricht, die mehr zahlen sollen. Klüssendorf wird implizit aufgefordert, das zu erwidern.",
+        "question_intent": "Zu klären, ob die SPD wirklich ‚Klassenkampf' betreibt oder eine legitime Umverteilungspolitik verfolgt.",
+        "position": "Klüssendorf lehnt den Spaltungsvorwurf als ‚Ablenkungsmanöver' ab und kontert mit dem Hinweis, dass die Union selbst Bürgergeldempfänger gegen Niedrigverdiener ausspielt. Er verweist auf zwei CDU-Abgeordnete, die selbst eine Reichensteuererhöhung vorsehen — was zeigt, dass der Gedanke nicht grundsätzlich unionsfremd ist. Sein eigentliches Argument ist: Langfristig struktureller Wandel des Steuersystems nötig, nicht ideologische Lagerkämpfe. Akzeptanz für Reformen entsteht nur, wenn nicht nur kleine und mittlere Einkommen belastet werden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf beantwortet die Kritik substanziell, indem er (1) den Spaltungsvorwurf als Ablenkung zurückweist, (2) Beispiele aus der Union nennt, die seine Position stützen, (3) historisch-systematisch argumentiert (Steuersystem-Asymmetrie über Jahrzehnte), und (4) eine positive Gegenposition formuliert (Akzeptanz durch Fairness statt Dauerspannungen).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Der Vorwurf der Spaltung ist in gewisser Weise ein Ablenkungsmanöver.",
+          "Über viele Jahre haben die mittleren und kleinen Einkommen zu stark belastet. Im Gegenzug haben wir aber oben zu wenig besteuert.",
+          "Wie kriegen wir den Zusammenhalt jetzt hin. Nur dann, wenn es Akzeptanz gibt. Die ist nicht vorhanden, wenn immer nur alles auf den kleinen und mittleren Einkommen ausgetragen wird."
+        ],
+        "quotes": [
+          {
+            "text": "Der Vorwurf der Spaltung ist in gewisser Weise ein Ablenkungsmanöver. Den habe ich nicht gehört, als es darum ging Bürgergeldempfänger gegen Niedrigverdiener auszuspielen.",
+            "timestamp": "00:27:17",
+            "context": "Als Reaktion auf Ahlhaus' Vorwurf des Klassenkampfs und der Spaltung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuergerechtigkeit",
+          "Soziale Gerechtigkeit",
+          "Koalitionspolitik"
+        ]
+      },
+      {
+        "title": "1.000-Euro-Entlastungsprämie: Kommunikationsfehler und Lernprozess",
+        "timestamp_range": "00:32:30 - 00:34:05",
+        "theme_description": "Tim Klüssendorf wird gefragt, wie die misslungene 1.000-Euro-Prämie zustande kam und warum Manuela Schwesig (SPD, Ministerpräsidentin) sich öffentlich beschwerte.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, wie es passieren konnte, dass die Villa-Borsig-Runde (nur Koalitionäre) ein Paket schnürte, das sowohl Ahlhaus als auch Schwesig kritisierten, und das Ding schnell tot war.",
+        "question_intent": "Zu verstehen, ob die SPD intern handlungsunfähig ist oder ob dies ein systematisches Kommunikations- und Absprache-Problem der Koalition zeigt.",
+        "position": "Klüssendorf deutet die Prämie als Resultat von ‚Drucksituation' auf die Koalition hin. Man versuchte Entlastungen zu verabreden, das war an sich richtig, aber es gab einen ‚kommunikativen Fehler in der Folge'. Die Idee war, Menschen die Möglichkeit freiwilliger Zahlung zu geben, wurde aber als zwanghaft kommuniziert. Die ‚Lehre daraus' ist klar: ‚Die Menschen, die das umsetzen, müssen sowohl die Gewerkschaften als auch die Unternehmer mit an den Tisch holen.' Zukünftig wird ‚diese Beratung gemeinsam' gemacht.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf beantwortet die Kernfrage direkt: Es war ein Kommunikationsfehler, der durch zu enge Zirkel (nur Koalition, nicht Sozialpartner) entstanden ist. Er akzeptiert die Kritik implizit und zieht konkrete Konsequenzen für zukünftige Abstimmung.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das war ein kommunikativer Fehler in der Folge, dass als Entlastung zu kommunizieren.",
+          "Die Lehre daraus ist, die Menschen, die das umsetzen, müssen sowohl die Gewerkschaften als auch die Unternehmer mit an den Tisch holen.",
+          "Wir werden diese Beratung gemeinsam machen."
+        ],
+        "quotes": [
+          {
+            "text": "Das war ein kommunikativer Fehler in der Folge, dass als Entlastung zu kommunizieren. Man wollte die Möglichkeit geben, diese freiwillige Zahlung zu machen.",
+            "timestamp": "00:32:30",
+            "context": "Zur Erklärung, wie die 1.000-Euro-Prämie zustande kam und warum sie scheiterte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Entlastungsmaßnahmen",
+          "Koalitionspolitik",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Reformtempo und Koalitionsausschuss-Fahrplan bis 10. Juli",
+        "timestamp_range": "00:35:46 - 00:36:50",
+        "theme_description": "Tim Klüssendorf wird zum ehrgeizigen Zeitplan der Koalition befragt — bis 10. Juli vier große Reformen (Steuerreform, Rentenreform, Arbeitsmarktreform, Bürokratieabbau).",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob dieser Fahrplan bis 10. Juli ‚hilfreich oder nur Ablenkung' ist, und ob das realistisch ist angesichts der Komplexität.",
+        "question_intent": "Zu verstehen, ob die SPD/Koalition tatsächlich mit handfesten Reformen rechnet oder nur symbolische Schritte ankündigt.",
+        "position": "Klüssendorf betont, dass es ‚extrem wichtig ist, jetzt in den Dialog zu kommen' und ‚das Gespräch miteinander zu suchen'. Es gibt bereits Vorarbeiten — eine Kommission hat Vorschläge erarbeitet, man fängt nicht bei Null an. Der Unterschied zur Villa Borsig: ‚Man spricht über unterschiedliche Maßnahmen, Instrumente, Wege, die am besten sind' und macht das ‚auf Augenhöhe'. Das ist das, was Manuela Schwesig forderte: In solchen Krisen müssen mehr als nur die Koalitionäre am Tisch sitzen — Sozialpartner und Länder gehören dazu.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf weicht der direkten Frage aus, ob bis 10. Juli konkrete Reformen verabschiedet werden. Stattdessen begründet er das Vorgehen als notwendigen Dialogprozess. Er adressiert die Frage nach Ablenkung nur indirekt, indem er den Unterschied zu vorherigen Fehlern erläutert, sagt aber nicht, ob die vier Reformen tatsächlich bis dahin fertig sind.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gibt natürlich eine ganze Reihe von Vorarbeiten. Wir haben eine Kommission eingesetzt, die mit Vorschlägen kommen wird.",
+          "Man spricht über unterschiedliche Maßnahmen, Instrumente, Wege, die am besten sind. Und macht das auf Augenhöhe.",
+          "In so einer Situation braucht es einfach mehr als nur die Koalitionäre, die sich zusammensetzen."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt natürlich eine ganze Reihe von Vorarbeiten. Da hat er recht. Wir haben eine Kommission eingesetzt, die mit Vorschlägen kommen wird.",
+            "timestamp": "00:35:46",
+            "context": "Zur Frage, ob der 10.-Juli-Fahrplan realistisch ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Reformpolitik",
+          "Bundesregierung"
+        ]
+      },
+      {
+        "title": "Gerhard Schröder als Ukraine-Vermittler und Putin-Angebote",
+        "timestamp_range": "00:38:29 - 00:40:10",
+        "theme_description": "Tim Klüssendorf wird zur Frage gestellt, ob Gerhard Schröder (ehemaliger SPD-Kanzler) als Vermittler im Ukraine-Krieg geeignet ist, nachdem Putin Schröder ins Spiel brachte.",
+        "question_asked": "Sandra Maischberger berichtet, dass Wladimir Putin Gerhard Schröder als möglichen Vermittler im Ukraine-Krieg genannt hat, und Ralf Stegner (SPD) fand das prüfenswert. Sie fragt Tim Klüssendorf, was er dazu sagt.",
+        "question_intent": "Zu klären, ob die SPD Putin-Angebote mit Ex-Kanzlern ernsthaft erwägt oder ob sie diese als propagandistische Manöver durchschaut.",
+        "position": "Klüssendorf äußert ‚tiefes Misstrauen' gegenüber Putins Aussagen. Putin habe ‚schon das eine oder andere vergiftete Angebot geschickt' und Gesprächsangebote gemacht, ‚die nicht ernst waren'. In Wahrheit sei Putin nicht interessiert an Frieden — ‚Er könnte von heute auf morgen die Waffen niederlegen. Es braucht keine Vermittlung dort.' Der Fokus muss auf Russlands Willen liegen, den Krieg zu beenden. Man brauche ‚Verhandler, die von beiden Partnern akzeptiert werden. Der Aggressor kann nicht bestimmen, wer verhandelt.' Zur Angela-Merkel-Spekulation sagt er eher skeptisch — ‚Skeptisch ist nicht nein', aber der Ukraine darf man nicht die Hand binden durch externe Kandidaten, die der Aggressor nicht akzeptiert.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf antwortet substanziell auf die Frage: Er lehnt Schröder als Vermittler implizit ab durch skeptische Haltung gegenüber Putins Angebot, betont das Misstrauen und erklärt das Prinzip, wonach der Angreifer nicht über Vermittler entscheiden darf.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich bin zutiefst misstrauisch, was das angeht, was Wladimir Putin erzählt.",
+          "Er könnte von heute auf morgen die Waffen niederlegen. Es braucht keine Vermittlung dort.",
+          "Der Aggressor kann nicht bestimmen, wer verhandelt."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin zutiefst misstrauisch, was das angeht, was Wladimir Putin erzählt. Ich glaube, er hat schon das eine oder andere vergiftete Angebot geschickt.",
+            "timestamp": "00:39:00",
+            "context": "Zur Frage, ob Gerhard Schröder als Ukraine-Vermittler geeignet wäre."
+          },
+          {
+            "text": "Der Aggressor kann nicht bestimmen, wer verhandelt. Also eher nein.",
+            "timestamp": "00:39:37",
+            "context": "Zum Prinzip der Verhandlungslegitimation bei Kriegen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Konflikt",
+          "Außenpolitik",
+          "Sicherheitspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Rund 90% der handwerklichen Unternehmen sind ungefähr bis zu einer Schwelle von 70.000 Euro in den Steuersätzen drin.",
+        "timestamp": "00:23:33"
+      },
+      {
+        "claim": "Bei Helmut Kohl gab es einen Spitzensteuersatz von 56%.",
+        "timestamp": "00:27:48"
+      },
+      {
+        "claim": "Gerhard Schröder hat den Spitzensteuersatz auf ein Niveau mit einer 4 vor dem Komma abgesenkt.",
+        "timestamp": "00:28:19"
+      },
+      {
+        "claim": "Das Ampel-Aus liegt etwa 12-20 Monate zurück (je nach Zählweise).",
+        "timestamp": "00:29:24"
+      },
+      {
+        "claim": "Eine Kommission wurde eingesetzt, die mit Reformvorschlägen zu Steuer-, Renten-, Arbeitsmarktreform und Bürokratieabbau kommt.",
+        "timestamp": "00:35:46"
+      }
+    ]
+  }
+}

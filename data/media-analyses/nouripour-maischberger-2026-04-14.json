@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNGNlNGFiODYtMjlkYi00MTA4LTg2MmQtNGNkOGIzYWM1YTM3",
+    "video_id": "maischberger-2026-04-14",
+    "politician": "Omid Nouripour",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "49ef6b64bdc10518",
+    "transcript_chars": 50015,
+    "caption_lines": 1838,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20799,
+    "tokens_out": 6558,
+    "cost_usd": 0.0214356,
+    "quote_validation": {
+      "valid_exact": 7,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.330Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Omid Nouripour diskutiert mit Sandra Maischberger die Lage im Iran unter Trumps Druck und mögliche europäische Reaktionen. Er wirkt informativ und kritisch: besorgt um die iranische Bevölkerung, skeptisch gegenüber amerikanischen Planungen und fokussiert auf europäische Unabhängigkeit statt NATO-Involvement in der Straße von Hormus.",
+    "themes": [
+      {
+        "title": "Lage der iranischen Bevölkerung unter Trump-Druck",
+        "timestamp_range": "00:50:51 - 00:52:59",
+        "theme_description": "Omid Nouripour beschreibt die humanitäre und sicherheitspolitische Situation für Iranern nach den Angriffen und Blockade-Drohungen durch die USA.",
+        "question_asked": "Sandra Maischberger fragt, ob der Besuch Nouripours im Iran – den er im Januar ankündigt hatte – durch die Anschläge nähergebracht oder entfernt wurde.",
+        "question_intent": "Maischberger möchte wissen, ob die jüngsten Eskalationen Nouripours persönliche Pläne zur Rückkehr in seinen Herkunftsstaat beeinflussen.",
+        "position": "Nouripour berichtet, das Regime sitze \"weiter fest im Sattel\" und habe im Januar über 30.000 Menschen bei Protesten über Brotpreisen erschossen. Nach den Angriffen habe die Bevölkerung kurzzeitig Hoffnung verspürt, die nun wieder geschwunden sei. Die Hauptängste seien Bombardements, Versorgungsmangel (Mehl, Benzin). Es gebe Befremden gegenüber amerikanischen Positionen, teilweise auch von Exiliranem, die sich Bombardements wünschten – was die Iraner im Land nicht teilten. Die Lage sei \"sehr trist\", mit der Befürchtung, der Westen könne sich wieder zurückziehen und das Regime allein überlassen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Nouripour antwortet auf die persönliche Frage indirekt (durch Bericht zur Lage statt direkter Antwort), adressiert aber substanziell die Eskalationsdynamik und Hoffnungslosigkeit. Er beantwortet nicht explizit, ob er reisen will, sondern charakterisiert die Situation, in die eine Reise stattfinden würde.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das Regime sitzt weiter fest im Sattel.",
+          "Im Januar wurden über 30.000 Menschen erschossen wegen Protesten über Brotpreise.",
+          "Die Hoffnung nach den Angriffen ist jetzt weg.",
+          "Die Hauptangst ist Bombardements, Schlangen beim Mehl, wenig Benzin.",
+          "Es gibt Befürchtung, der Westen zieht sich zurück und lässt uns mit dem Regime allein."
+        ],
+        "quotes": [
+          {
+            "text": "Sie haben im Januar über 30.000 Menschen erschossen auf der Straße. Weil sie auf die Proteste gegangen sind, weil die Brotpreise zu hoch waren. Nach dem Angriff war die 1. Wochen die Stimmung... Es ist schwer zu kommunizieren, weil das Internet abgeschaltet ist. Die Stimmung war, es ist nicht schön, im Krieg zu leben, aber wir kriegen eine Hoffnung. Die ist jetzt weg.",
+            "timestamp": "00:51:22"
+          },
+          {
+            "text": "Und es gibt die Gefahr, geht ihr wieder, der Westen, die Amerikaner und lasst uns mit dem Regime wieder alleine. Dann wird es schlimmer.",
+            "timestamp": "00:52:59"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Menschenrechte im Iran",
+          "Außenpolitik Nahost",
+          "Europäische Sicherheit"
+        ]
+      },
+      {
+        "title": "Bewertung amerikanischer Kriegspläne und fehlende Strategie",
+        "timestamp_range": "00:54:07 - 00:56:57",
+        "theme_description": "Omid Nouripour analysiert, ob Trump einen Plan für die Iran-Krise hat und welche Verhandlungsziele realistisch sind.",
+        "question_asked": "Karl-Theodor zu Guttenberg fragt, welches Szenario Nouripour sich für mögliche Verhandlungen vorstellt, die in 2 Tagen stattfinden sollen.",
+        "question_intent": "zu Guttenberg möchte verstehen, ob Nouripour realistische Aussichten auf Verhandlungserfolge sieht.",
+        "position": "Nouripour sieht keinen erkennbaren Plan. Die Hoffnung sei nur, dass es \"irgendeine Lösung\" gibt, die Menschen nicht als Figuren in einem \"großen Spiel\" unter die Räder kommen lässt. Er warnt vor Verhaftungs- und Hinrichtungswellen, die nach einem Krieg einträten. Trump habe recht gehabt, dass die Geistlichkeit nicht mehr relevant sei – das System sei nun eine Militärdiktatur – aber das System sei \"weit schlimmer als vorher\". Trump schicke Diplomaten (Schwiegersohn, Immobilienkumpel) ohne echte Expertise. Die Iraner seien \"trainiert, den Eindruck zu hinterlassen, wir verhandeln\" – das Nuklearprogramm werde seit 25 Jahren verhandelt ohne echte Fortschritte. Trump könnte sich auf keinen Fall einen Dauerkrieg leisten; es gehe ihm um die Midterms und um Senatsstabilität.",
+        "answer_match": "substantielle_position",
+        "answer_reasoning": "Nouripour adressiert die Frage direkt: Er benennt den Mangel an Plan, charakterisiert die Verhandlungsaussichten als gering und erklärt Trumps eigentliches Motiv (Midterms, Senatswahlverluste zu vermeiden). Die Antwort ist analytisch substanziell.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich sehe keinen Plan.",
+          "Das System ist jetzt eine Militärdiktatur, nicht mehr die Geistlichkeit.",
+          "Das System ist weit schlimmer als vorher.",
+          "Die Iraner sind trainiert, den Eindruck zu hinterlassen, wir verhandeln.",
+          "Es geht Trump um die Midterms und darum, nicht den Senat zu verlieren."
+        ],
+        "quotes": [
+          {
+            "text": "Die 1. Frage war, was ist der Plan. Ich sehe keinen. Die Hoffnung ist, dass es irgendeine Lösung gibt, die nicht dazu führt, dass die Menschen am Ende das Gefühl haben, dass sie nur noch Figuren sind in einem großen Spiel.",
+            "timestamp": "00:54:07"
+          },
+          {
+            "text": "Die Iraner sind darauf trainiert, den Eindruck zu hinterlassen, wir verhandeln und kommen zu einer Lösung. Allein das Nuklearprogramm wird seit 25 Jahren verhandelt. Was ist erreicht worden?",
+            "timestamp": "00:56:16"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Nuklearprogramm",
+          "Außenpolitik USA",
+          "Nahost-Konflikt"
+        ]
+      },
+      {
+        "title": "Deutsche Beteiligung an Sicherung der Straße von Hormus",
+        "timestamp_range": "00:59:35 - 01:04:49",
+        "theme_description": "Nouripour erörtert, ob Deutschland sich an Trumps Forderung zur Freigabe der Straße von Hormus beteiligen sollte und schlägt Alternativen vor.",
+        "question_asked": "Sandra Maischberger fragt, ob Deutschlands Ablehnung, militärisch in der Straße von Hormus zu helfen, richtig ist, angesichts Trumps Bitte um NATO-Unterstützung.",
+        "question_intent": "Maischberger möchte Nouripours Stellung zu Deutschlands Nein-Position im transatlantischen Kontext klären.",
+        "position": "Nouripour lehnt ab, \"die ganze Zeit Astrologie vom Weißen Haus zu betreiben\". Es sei wichtig, dass deutsche Sicherheit nicht \"unter die Räder kommt\" und dass Deutschland nicht in den NATO-Rahmen offiziell hineingerät. Er plädiert dafür, bilateral zu helfen statt über die NATO: etwa besseres WLAN in Ramstein oder andere Formen des Beistands, die nicht Art. 5 involvieren. Mit britischen und französischen Partnern zusammen könne man verhandeln. Zentral sei, dass Deutschland \"klarmacht, wir gucken, was wir tun können\" – aber bilateral, nicht in Brüssel.",
+        "answer_match": "substantielle_position",
+        "answer_reasoning": "Nouripour beantwortet die Frage zur Legitimität des Neins mit einer differenzierten Position: Er verteidigt die Ablehnung NATO-offizieller Beteiligung, schlägt aber bilaterale Alternativen vor. Das adressiert die Frage direkt und zeigt eine klare strategische Überlegung.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es ist wichtig, dass wir nicht in der NATO Rahmen offiziell geraten.",
+          "Wir können bilateral helfen – z.B. besseres WLAN in Ramstein.",
+          "Wir müssen verhandeln mit den Briten und Franzosen.",
+          "Zentral ist, dass wir klarmachen, was wir tun können – bilateral, nicht in Brüssel."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, das wichtigste ist, dass wir nicht die ganze Zeit Astrologie vom Weißen Haus betreiben. Das ist keine Astrologie, sondern eine Forderung. Ich will darauf hinaus. Vance kommt ohne Ergebnis zurück. Dann beschimpft Trump den Papst. Darüber diskutieren wir 3 Tage.",
+            "timestamp": "01:00:39"
+          },
+          {
+            "text": "Es ist wichtig, dass wir nicht in der NATO Rahmen offiziell geraten... Hauptsache es geht nicht in die NATO rein.",
+            "timestamp": "01:01:10"
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnis",
+          "Deutschlands Außenpolitik",
+          "Sicherheitspolitik Nahost"
+        ]
+      },
+      {
+        "title": "Trump-System an Grenzen und Widerstand in der Kernwählerschaft",
+        "timestamp_range": "01:05:50 - 01:07:54",
+        "theme_description": "Nouripour reflektiert, ob Trumps System an seine Grenzen kommt und wo interner Widerstand wächst.",
+        "question_asked": "Sandra Maischberger fragt, ob Trump bei der Bombardierung des Iran Warnungen ignoriert hat (u.a. von Vance) und ob das System an Grenzen kommt.",
+        "question_intent": "Maischberger möchte verstehen, ob Nouripour Trump-internes Chaos und möglich beginnende Destabilisierung erkennt.",
+        "position": "Nouripour konstatiert, dass Widerstand \"wirklich stärker\" werde. Das \"Entsetzen über die Äußerung\" zur Auslöschung der Zivilisation sei \"mit Händen zu greifen\" gewesen. Trumps \"Messias\"-Stilisierung sei absurd; er \"braucht einen Arzt\". Innerhalb der christlichen Kernwählerschaft könne \"Blasphemie\" rufen – das könne \"etwas wegbrechen\" lassen. Allerdings könne ein Skandal durch den nächsten überdeckt oder durch eine Handlung überschattet werden. Sich mit dem Papst anzulegen gehe aber \"eine Spur zu weit\". Er erwarte nicht, dass Zusatzartikel 25 gezogen wird; die Amtszeit werde Bestand haben bis zum Ende. Wenn beide Häuser des Kongresses verloren würden (Wahrscheinlichkeit steigt), gebe es 2 Jahre Impeachment-Debatten.",
+        "answer_match": "substantielle_position",
+        "answer_reasoning": "Nouripour antwortet umfassend auf die implizite Frage nach Trumps Grenzen: Er benennt konkrete Risse in der Wählerkoalition (christliche Basis, Blasphemie-Reaktion), warnt aber auch vor Skandal-Überdeckung als Ablenkung. Die Antwort ist analytisch, nicht polemisch.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Widerstand wird stärker.",
+          "Entsetzen über die Auslöschungs-Äußerung ist mit Händen zu greifen.",
+          "Trump braucht einen Arzt.",
+          "Die christliche Kernwählerschaft könnte durch Blasphemie-Vorwurf wackeln.",
+          "Ein Skandal kann durch den nächsten überdeckt werden.",
+          "Ich glaube nicht, dass Zusatzartikel 25 gezogen wird.",
+          "Wenn beide Häuser verloren, gibt es 2 Jahre Impeachment."
+        ],
+        "quotes": [
+          {
+            "text": "Er wird wirklich stärker. Das Entsetzen über die Äußerung, die wir gerade diskutiert haben, war mit Händen zu greifen. Die Auslöschung der Zivilisation... Man darf das nicht unterschätzen. Dieses vollkommen absurde Bild der vergangenen Tage, wo er sich selbst zum Messias stilisiert hat. Ich glaube, er braucht einen Arzt.",
+            "timestamp": "01:06:21"
+          },
+          {
+            "text": "Da besteht die Gefahr, dass etwas wegbricht. Da besteht die Methode, ein Skandal kann durch den Nächsten überdeckt werden.",
+            "timestamp": "01:07:24"
+          }
+        ],
+        "related_bundestag_topics": [
+          "USA-Politik",
+          "Präsidentschaft Trump",
+          "Innenpolitik USA"
+        ]
+      },
+      {
+        "title": "Ungarische Wahl als Signal gegen Rechtspopulismus in Europa",
+        "timestamp_range": "01:08:59 - 01:10:38",
+        "theme_description": "Nouripour bewertet die Wahl von Peter Magyar in Ungarn als Zeichen gegen Rechtspopulismus und diskutiert, ob Friedrich Merz übertriebt hat.",
+        "question_asked": "Sandra Maischberger fragt, ob Friedrich Merz übergetrieben hat, als er in Péter Magyars Wahlsieg ein Zeichen gegen Rechtspopulismus weltweit sah, da Vance vergeblich für Orbán warb.",
+        "question_intent": "Maischberger möchte wissen, ob Nouripour Merz' Optimismus teilt oder für überambitioniert hält.",
+        "position": "Nouripour nennt die Wahl \"unglaublich wichtig\", betont aber, dass sie nicht alle Probleme löse. J.D. Vance habe auch für die italienische Nationalmannschaft eine Motivationsansprache gehalten, was \"noch mehr gebracht\" habe (Sarkasmus). Es sei zentral, was \"wirklich in den USA stattgefunden\" habe. Es gebe ein Zeitfenster, wo Europa zusammenkommen könne ohne Blockaden in Brüssel – doch das dürfe nicht zu Selbstzufriedenheit führen. Europa müsse sich auf sich konzentrieren und \"nicht immer sagen, das war ein Weckruf\". Die \"Weckrufe sind ohne Ende erfolgt\".",
+        "answer_match": "teil_adressiert",
+        "answer_reasoning": "Nouripour würdigt das Wahlergebnis, warnt aber vor Überinterpretation. Er beantwortet indirekt, ob Merz übergetrieben hat – durch Zurückhaltung und Verweis auf andere Prioritäten – adressiert aber nicht direkt, ob Merz konkret recht oder unrecht hatte.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es ist eine unglaublich wichtige Wahl gewesen.",
+          "Das löst nicht alle Probleme.",
+          "Es gibt ein Zeitfenster, wo Europe zusammenkommen kann ohne Blockaden in Brüssel.",
+          "Wir müssen nicht immer sagen: Das war ein Weckruf.",
+          "Die Weckrufe sind ohne Ende erfolgt."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist eine unglaublich wichtige Wahl gewesen. Allerdings löst das nicht alle Probleme. J.D. Vance hat eine Motivationsansprache gehalten für die italienische Nationalmannschaft, die hat noch mehr gebracht als die.",
+            "timestamp": "01:09:35"
+          },
+          {
+            "text": "Es ist eine erfreuliche für Europa und das gibt uns ein Zeitfenster, wo wir zusammenkommen können, wo es keine Blockaden gibt in Brüssel.",
+            "timestamp": "01:10:06"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rechtspopulismus Europa",
+          "Ungarische Politik",
+          "Europäische Integration"
+        ]
+      },
+      {
+        "title": "Europäische Unabhängigkeit und digitale Souveränität",
+        "timestamp_range": "01:10:38 - 01:11:12",
+        "theme_description": "Nouripour hebt hervor, dass Europa technologische und finanzielle Unabhängigkeit von den USA schaffen muss.",
+        "question_asked": "Eigeninitiative – Nouripour führt ohne direkte Frage von Maischberger ein Beispiel europäischer Abhängigkeit an.",
+        "question_intent": "Nouripour illustriert, warum Europa sich konzentrieren muss und nicht auf externe Weckrufe warten sollte.",
+        "position": "Nouripour nennt konkret: \"Es gibt nicht ein einziges Kreditkartensystem, was europäisch ist. Wero ist das einzig europäische System. Alles andere können die Amerikaner abschalten.\" Das sei ein \"weiter Bogen\" – d.h. ein großes Strukturproblem –, das zeige, wie abhängig Europa von USA-Infrastruktur sei.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_reasoning": "Das ist eine eigeninitiierte Illustration von Nouripours Argument zur europäischen Unabhängigkeit, keine Antwort auf eine Moderator-Frage. Daher: kein direkter Anlass für Frage-Antwort-Struktur.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es gibt nicht ein einziges Kreditkartensystem, was europäisch ist.",
+          "Wero ist das einzig europäische System.",
+          "Alles andere können die Amerikaner abschalten."
+        ],
+        "quotes": [
+          {
+            "text": "Ein Beispiel jenseits von Militär und KI, es gibt nicht ein einziges Kreditkartensystem, was europäisch ist. Wero ist das einzig europäische System. Alles andere können die Amerikaner abschalten.",
+            "timestamp": "01:10:38"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Digitale Souveränität",
+          "Europäische Unabhängigkeit",
+          "Finanzinfrastruktur"
+        ]
+      },
+      {
+        "title": "Koalitionskultur und öffentliche Kritik am Partner",
+        "timestamp_range": "01:12:49 - 01:14:22",
+        "theme_description": "Nouripour kritisiert öffentliche Auseinandersetzungen zwischen Koalitionspartnern und plädiert für Diskretion.",
+        "question_asked": "Sandra Maischberger fragt, ob Markus Söder das Problem der Regierung ist, nachdem Klingbeil ihn kritisiert hat.",
+        "question_intent": "Maischberger möchte Nouripours Einschätzung, wer in der Koalition das Scheitern verantwortet.",
+        "position": "Nouripour weigert sich, \"über dieses Stöckchen\" zu springen, korrigiert es zu \"Baum\". Wichtig sei, dass man \"konsistent bleibt und berechenbar\". Er sei \"ampelgeschädigt\" und wünsche dem Land, dass \"keine Koalition so streitet, wie es die Ampel gemacht hat. Und wie es die jetzige Koalition auch tut.\" Klingbeil solle wissen, dass man \"dreimal auf die Unterlippe beißen muss, bevor man öffentlich über den Partner und Parteivorsitzenden, Söder, sagt.\" Er finde \"nichts Gutes an Söder\", aber wenn er koalieren müsste, würde er \"lieber nichts sagen öffentlich\". Die Regierung schaffe es, wenn sie \"nicht streitet, sondern liefert\".",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_reasoning": "Nouripour beantwortet die Söder-Frage nicht direkt (wer das Problem ist), sondern pivotiert zu einer generellen Kritik an öffentlichen Koalitionskonflikten und an Klingbeils Verhalten. Die Antwort verlegt das Problem von Söder auf die Koalitionskultur insgesamt.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Ich bin ampelgeschädigt.",
+          "Ich wünsche diesem Land, dass keine Koalition so streitet wie die Ampel und die jetzige Koalition.",
+          "Klingbeil sollte dreimal auf die Unterlippe beißen, bevor man öffentlich über den Partner Söder spricht.",
+          "Ich würde lieber nichts öffentlich sagen, wenn ich koalieren müsste.",
+          "Die Regierung schafft es, wenn sie nicht streitet, sondern liefert."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin ampelgeschädigt. Ich wünsche diesem Land, dass keine Koalition so streitet, wie es die Ampel gemacht hat. Und wie es die jetzige Koalition auch tut. Klingbeil sollte wissen, dass man dreimal auf die Unterlippe beißen muss, bevor man öffentlich über den Partner und Parteivorsitzenden, Söder, sagt.",
+            "timestamp": "01:13:50"
+          },
+          {
+            "text": "Wenn Sie nicht streiten, sondern liefern, dann ja. Zurzeit sieht es so nicht aus. Sie muss es schaffen.",
+            "timestamp": "01:13:50"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsregierungen",
+          "Ampel-Koalition",
+          "Regierungsfähigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das iranische Regime hat im Januar über 30.000 Menschen bei Protesten wegen Brotpreisen erschossen.",
+        "timestamp": "00:51:22"
+      },
+      {
+        "claim": "Das Nuklearprogramm des Iran wird seit 25 Jahren verhandelt.",
+        "timestamp": "00:56:16"
+      },
+      {
+        "claim": "Wero ist das einzige europäische Kreditkartensystem.",
+        "timestamp": "01:10:38"
+      },
+      {
+        "claim": "20% der Öl- und Gaslieferungen der Welt gehen durch die Straße von Hormus.",
+        "timestamp": "00:38:41"
+      },
+      {
+        "claim": "Trump hat den Papst beschimpft und sich selbst als Jesus dargestellt.",
+        "timestamp": "01:00:39"
+      }
+    ]
+  }
+}

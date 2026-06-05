@@ -1,0 +1,398 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYThjOThkODAtNzRhZC00NmY1LTg4OWYtNDBjMDEwMzU0NDNk",
+    "video_id": "maischberger-2026-02-24",
+    "politician": "Ines Schwerdtner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "cb037bbfa07aec3b",
+    "transcript_chars": 59960,
+    "caption_lines": 2200,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24003,
+    "tokens_out": 9340,
+    "cost_usd": 0.0282812,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.192Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ines Schwerdtner, Bundesvorsitzende der Linken und MdB, diskutiert in dieser Maischberger-Sendung über Außenpolitik (Trump, UN, Friedensrat), CDU-Sozialpolitik und Verteidigungsbudgets. Sie wirkt argumentativ präzise, kritisch gegenüber Union und Trump-Administration, dabei aber sachlich-konstruktiv in den Policy-Debatten.",
+    "themes": [
+      {
+        "title": "Trump-Friedensrat statt UN-Strukturen",
+        "timestamp_range": "00:10:07 - 00:10:38",
+        "theme_description": "Bewertung von Trumps Friedensrat als Geschäftsplattform statt echter Friedensmechanismus im Vergleich zu UN-Strukturen.",
+        "question_asked": "Sandra Maischberger stellt implizit die Frage, ob der Trump-Friedensrat als Instrument für Friedensverhandlungen ernst zu nehmen ist, indem sie auf die Absurdität der Konstellation anspielt.",
+        "question_intent": "Zu erfahren, ob der Friedensrat funktional oder nur eine PR-Inszenierung ist.",
+        "position": "Ines Schwerdtner charakterisiert den Friedensrat als 'eines der absurdesten Gebilde, das man seit langem gesehen hat'. Sie beschreibt es als ein 'Board of profit' mit Geschäftsgesprächen, bei dem es primär darum geht, 'wie man aus Friedensverhandlungen Kapital schlagen kann'. Sie kontrastiert dies mit der UN-Struktur und kritiert die James-Bond-Film-artige Inszenierung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet substantiell auf die implizite Frage zur Legitimität des Friedensrats: Sie liefert eine konkrete Analyse seiner Funktionsweise (nicht friedensorientiert, sondern profit-orientiert) und kritisiert die Inszenierungslogik. Die Antwort adressiert direkt die Frage-Intention zur Seriösität.",
+        "concrete_statements": [
+          "Der Friedensrat ist mit das Absurdeste, was man seit langem gesehen hat",
+          "Es geht um ein Board of profit, das waren Geschäftsgespräche",
+          "Alles, worum es geht, ist, wie man Deals machen kann"
+        ],
+        "quotes": [
+          {
+            "text": "Dieser Friedensrat ist mit das Absurdeste, was man seit langem gesehen hat. Ich habe mir die Aufnahmen davon angeschaut. Es hat nur noch gefehlt, dass Donald Trump eine weiße Katze auf seinem Schoß krault, dann hätte ich gedacht, ich bin in einem 60er-Jahre James-Bond-Film. Man hat gesehen, das, was da ist, ist kein Friedensrat. Es geht um ein Board of profit, das waren Geschäftsgespräche.",
+            "timestamp": "00:10:07"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Friedenssicherung",
+          "UN-Ordnung",
+          "Internationale Beziehungen"
+        ]
+      },
+      {
+        "title": "CDU-Positionen zu Social-Media-Verbot unter 14-Jährigen",
+        "timestamp_range": "00:53:58 - 00:55:01",
+        "theme_description": "Kritik am CDU-Beschluss zum Verbot von Social Media für unter 14-Jährige; Schwerdtner argumentiert gegen diesen Weg und für Regulierung der Plattformen.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner (nachdem Frei das CDU-Parteitagsbeschluss vertreten hat), ob dieses Verbot nicht 'Feigheit vor den großen Digitalkonzernen' darstellt.",
+        "question_intent": "Zu klären, ob die CDU das Problem an der falschen Stelle anpackt – bei Jugendlichen statt bei Tech-Konzernen.",
+        "position": "Schwerdtner lehnt das CDU-Verbot ab und argumentiert, dass 'die Union es schafft, sich mit Millionen von Jugendlichen anzulegen, aber nicht mit den großen Digitalplattformen'. Sie sagt, die Plattformen hätten 'auch die Algorithmen besser steuern müssen, das ginge nach EU-Gesetzen'. Sie hält den Ansatz für 'den falschen Weg', betont aber auch praktische Schwierigkeiten ('Aber ich will mich auch nicht mit meinem Sohn anlegen').",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner adressiert die Frage zur Strategie der CDU direkt: Sie kritisiert die Zielrichtung (gegen Jugendliche statt gegen Plattformen), benennt die regulatorische Alternative (EU-Gesetze, Algorithmen-Steuerung) und aktualisiert ihre Position mit dem persönlichen Realitäts-Check ('Feigheit vor den großen Digitalkonzernen? Nein, aber wir müssen Realitäten anerkennen').",
+        "concrete_statements": [
+          "Die Union schafft es, sich mit Millionen von Jugendlichen anzulegen, aber nicht mit den großen Digitalplattformen",
+          "Die Algorithmen hätten besser gesteuert werden müssen, das ginge nach EU-Gesetzen",
+          "Wir halten das für den falschen Weg"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, zum Glück nicht, aber man merkt eben, dass die Union es schafft, sich mit Millionen von Jugendlichen anzulegen, aber nicht mit den großen Digitalplattformen. Die hätten auch die Algorithmen besser steuern müssen, das ginge nach EU-Gesetzen. Wir halten das für den falschen Weg.",
+            "timestamp": "00:54:29"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Digitalpolitik",
+          "Jugendschutz",
+          "Regulierung von Tech-Konzernen",
+          "EU-Recht"
+        ]
+      },
+      {
+        "title": "Rentenpolitik und Generationengerechtigkeit",
+        "timestamp_range": "00:55:31 - 01:00:15",
+        "theme_description": "Debatte über Renteneintrittsalter, demografischen Wandel und die Frage, ob Rentenreformen auf dem Rücken von Rentnern oder zur Vermögens-Umverteilung führen.",
+        "question_asked": "Sandra Maischberger und Thorsten Frei (CDU) diskutieren mit Schwerdtner, ob die Junge Union auf dem CDU-Parteitag zu Unrecht abgeschmettert wurde. Schwerdtner wird gefragt, ob sie für eine Reform des Renteneintrittsalters ist.",
+        "question_intent": "Zu erfahren, inwieweit Schwerdtner/Die Linke Rentenreformen befürwortet oder ablehnt und wie sie den Konflikt zwischen Generationengerechtigkeit und Rentner-Schutz sieht.",
+        "position": "Schwerdtner kritisiert, dass die Junge Union 'auf dem Rücken von Millionen von Rentnern' argumentiert und das 'im Namen der Generationengerechtigkeit' für 'falsch' hält, weil es 'eigentlich ein Konflikt zwischen Arm und Reich ist'. Sie bezeichnet die Junge Union als 'alte Menschen im Gewand von jungen Leuten'. Sie lehnt eine starre Erhöhung des Renteneintrittsalters ab (z.B. bis 70), betont aber, dass Österreich mit 40 Beitragsjahren Rente möglich macht. Sie fordert stattdessen, dass 'alle einzahlen, auch die Selbständigen, die Top-Verdiener'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet präzise auf die Frage zur Rentenpolitik: Sie definiert das Problem als Umverteilungsfrage (nicht Generationenfrage), nennt konkrete Alternativen (40-Jahres-System wie Österreich, universale Rentenkasse-Beteiligung) und kritisiert die CDU-Logik. Sie weigert sich nicht, Reformen zu diskutieren, sondern verschiebt deren Fokus.",
+        "concrete_statements": [
+          "Das ist ein Konflikt zwischen Arm und Reich",
+          "Die Rente mit 63 abschlagsfrei nach 45 Jahren – das muss verteidigt werden",
+          "Nach Österreich: Man kann nach 40 Beitragsjahren in Rente gehen",
+          "Alle sollten einzahlen, auch Selbständige und Top-Verdiener"
+        ],
+        "quotes": [
+          {
+            "text": "Das Ganze wurde an die Bundestagsfraktion verwiesen, insofern der Streit kommt noch. Die 18 jungen Alten, die schon den Aufstand geprobt haben das letzte Mal, haben das auf dem Rücken von Millionen von Rentnern gemacht. Wenn sie das nächste Mal wieder den Aufstand proben und das im Namen der Generationengerechtigkeit, halte ich das für falsch, weil das eigentlich ein Konflikt zwischen Arm und Reich ist.",
+            "timestamp": "00:55:31"
+          },
+          {
+            "text": "Es können die Minister länger arbeiten, das kann jetzt schon jeder. Menschen wie mein Vater haben die Rente nicht erreicht, viele meiner Onkel auch nicht. Die Leute haben hart gearbeitet. Sie können den Leuten nicht sagen, dass sie nach 40 Jahren nicht das Recht haben, in Rente zu gehen.",
+            "timestamp": "01:03:20"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Alterssicherung",
+          "Demografie",
+          "Sozialversicherung",
+          "Steuer- und Abgabenpolitik"
+        ]
+      },
+      {
+        "title": "CDU-Haushalt und Sondervermögen-Ausgaben",
+        "timestamp_range": "01:05:28 - 01:06:00",
+        "theme_description": "Kritik an der CDU-Verwendung des 60-Milliarden-Sondervermögens für Infrastruktur statt kleinerer und mittlerer Unternehmen sowie Privatpersonen.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner (implizit durch ihre Kritik an Friedrich Merz), ob die CDU das Sondervermögen richtig einsetzt – für Unternehmen oder für Infrastruktur.",
+        "question_intent": "Zu klären, ob die Prioritäten der Regierung (Infrastruktur) richtig sind oder ob direkte Entlastung von KMU und Bürgern vorgesehen sein sollte.",
+        "position": "Schwerdtner kritisiert, dass die CDU 'sich entschieden' hat, 'Unternehmen zu entlasten aber nicht die kleinen Leute'. Sie betont, dass bei den verfügbaren Mitteln 'sofort kleinere und mittlere Unternehmen entlasten' könnte. Sie argumentiert, dass die Politik derzeit 'unbeliebt' ist (Merz ist 'der unbeliebteste Kanzler aller Zeiten') und dass das Sondervermögen bislang nicht bei den Menschen ankommt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner kritisiert die Prioritäten-Setzung und nennt eine Alternative (KMU-Entlastung), aber sie geht nicht detailliert auf Freís Argument ein (dass Infrastruktur für zukünftige Generationen investiert wird). Sie adressiert die Frage nach der Verwendung, bleibt aber bei der grundsätzlichen Kritik, ohne Freís Logik systematisch zu widerlegen.",
+        "concrete_statements": [
+          "Sie haben sich entschieden, Unternehmen zu entlasten aber nicht die kleinen Leute",
+          "Sie können sofort kleinere und mittlere Unternehmen entlasten",
+          "Friedrich Merz ist der unbeliebteste Kanzler aller Zeiten"
+        ],
+        "quotes": [
+          {
+            "text": "Ich kann nichts daran ändern, dass Friedrich Merz der unbeliebteste Kanzler aller Zeiten ist, er macht offensichtlich unpopuläre Politik. Sie haben ein Sondervermögen und nichts kommt bei den Leuten an. Sie können sofort kleinere und mittlere Unternehmen entlasten. Sie haben sich entschieden, Unternehmen zu entlasten aber nicht die kleinen Leute.",
+            "timestamp": "01:05:28"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Haushalt",
+          "Infrastrukturpolitik",
+          "Wirtschaftsförderung",
+          "Entlastung von KMU",
+          "Mitttelstandspolitik"
+        ]
+      },
+      {
+        "title": "Vermögensverteilung und Steuergerechtigkeit",
+        "timestamp_range": "01:06:31 - 01:07:01",
+        "theme_description": "Frage zur Gerechtigkeit der Vermögensverteilung in Deutschland und zur Höhe des Spitzensteuersatzes.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner direkt: 'Ist die Vermögensverteilung in Deutschland gerecht?' Danach wird die Frage zum geplanten Spitzensteuersatz der CDU gestellt.",
+        "question_intent": "Zu erfahren, wie Die Linke die aktuelle Vermögensverteilung bewertet und ob sie die CDU-Pläne zur Steuerpolitik ablehnt.",
+        "position": "Schwerdtner antwortet deutlich 'Nein, auf keinen Fall' zur Frage der Vermögens-Gerechtigkeit. Sie kritisiert, dass 60% der CDU-Wähler gegen die Spitzensteuersatz-Entlastung sind. Sie widerspricht aber dann, wenn sie sagt 'Spitzensteuersatz haben wir abgeräumt, aber er soll ab 80.000 greifen' – hier scheint sie zu sagen, dass Die Linke für einen progressiveren Steuersatz ist. Sie stimmt zu, dass 'die, die mehr verdienen, mehr zahlen' sollen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner beantwortet die erste Frage (Vermögensverteilung gerecht?) klar mit Nein. Bei der Steuerfrage wird ihre Aussage aber etwas verworren: Sie kritisiert die CDU, sagt dann aber 'Spitzensteuersatz haben wir abgeräumt, aber er soll ab 80.000 greifen' – was unklar ist, ob sie das billigt oder nicht. Die Antwort adressiert die Frage teilweise, bleibt aber bei der Steuersatz-Komponente undeutlich.",
+        "concrete_statements": [
+          "Vermögensverteilung in Deutschland ist nicht gerecht",
+          "60% der CDU-Wähler sind gegen Spitzensteuersatz-Entlastung",
+          "Die, die mehr verdienen, sollen mehr zahlen"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, auf keinen Fall.",
+            "timestamp": "01:07:01"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Vermögensverteilung",
+          "Einkommenssteuer",
+          "Sozialpolitik",
+          "Umverteilung"
+        ]
+      },
+      {
+        "title": "Haltbarkeit der Schwarz-Rot-Koalition",
+        "timestamp_range": "01:07:01 - 01:07:33",
+        "theme_description": "Prognose zur Dauer der CDU-SPD-Koalition bis 2029 und Frage nach Merz' zweiter Amtszeit.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner: 'Hält Schwarz-Rot 4 Jahre durch?' und 'Sollte Friedrich Merz für eine 2. Amtszeit antreten?'",
+        "question_intent": "Zu erfahren, wie pessimistisch Die Linke die Koalitions-Stabilität sieht und ob sie Merz als Kanzler für eine zweite Amtszeit ablehnt.",
+        "position": "Schwerdtner antwortet prägnant 'Nein' zur Frage der 4-Jahres-Haltbarkeit von Schwarz-Rot. Zur Frage nach Merz' zweiter Amtszeit antwortet sie ebenfalls klar 'Auf keinen Fall'. Sie begründet dies implizit mit ihrer vorherigen Kritik an unpopulärer Politik und mangelnder Sozialpolitik.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet präzise auf beide Fragen mit klaren Positionen (Nein zur Koalitions-Stabilität, Nein zur zweiten Merz-Amtszeit). Die Antworten sind knapp, aber substantiell, da sie ein klares Misstrauen gegenüber der aktuellen Koalition und Merz ausdrücken.",
+        "concrete_statements": [
+          "Die Koalition Schwarz-Rot hält nicht 4 Jahre",
+          "Friedrich Merz sollte nicht für eine zweite Amtszeit antreten"
+        ],
+        "quotes": [
+          {
+            "text": "Nein.",
+            "timestamp": "01:07:01"
+          },
+          {
+            "text": "Auf keinen Fall.",
+            "timestamp": "01:07:33"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsregierung",
+          "Bundestag",
+          "Wahlprognosen",
+          "Kanzlerschaft",
+          "Parteienpolitik"
+        ]
+      },
+      {
+        "title": "CDU-Linke-Koalitionsausschluss und Sozialpolitik",
+        "timestamp_range": "01:07:33 - 01:08:03",
+        "theme_description": "Frage nach Möglichkeit einer Koalition zwischen CDU und Die Linke, sowie Kritik an CDU-Sozialpolitik.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner: 'Schließen Sie eine Koalition zwischen CDU und Linken aus?' und dahinter versteckt sich auch die Frage, ob Die Linke unter Merz Sozialpolitik machen könnte.",
+        "question_intent": "Zu klären, ob Die Linke grundsätzlich eine Koalition mit der CDU ausschließt und ob dies an inhaltlichen (Sozialpolitik) oder parteiischen Gründen liegt.",
+        "position": "Schwerdtner antwortet, dass es einen 'Unvereinbarkeitsbeschluss' gibt und hofft, dass man 'nicht in die Nähe' einer solchen Koalition kommt. Sie ergänzt: 'Aber wir müssen das Land sozialer machen. Das war kein Ja oder Nein. Ich sehe nur, dass mit der CDU keine Sozialpolitik zu machen ist.' Sie lehnt also nicht per se ab, argumentiert aber, dass die CDU keine Sozialpolitik umsetzen würde, weshalb eine Koalition für Die Linke sinnlos wäre.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner beantwortet die formale Frage (Ausschluss?) durch Verweis auf den Unvereinbarkeitsbeschluss, weicht aber dann ab und kritisiert die CDU-Sozialpolitik statt klare Ja/Nein zu geben. Sie adressiert die Frage teilweise, wich aber in die inhaltliche Kritik aus.",
+        "concrete_statements": [
+          "Es gibt einen Unvereinbarkeitsbeschluss (zwischen CDU und Linken)",
+          "Wir müssen das Land sozialer machen",
+          "Mit der CDU ist keine Sozialpolitik zu machen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich hoffe nicht, dass wir in die Nähe kommen. Aber wir müssen das Land sozialer machen. Das war kein Ja oder Nein. Ich sehe nur, dass mit der CDU keine Sozialpolitik zu machen ist.",
+            "timestamp": "01:07:33"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Sozialpolitik",
+          "Linke Partei",
+          "CDU/CSU",
+          "Regierungsbildung"
+        ]
+      },
+      {
+        "title": "Donald Trumps zweite Amtszeit – positive Aspekte?",
+        "timestamp_range": "01:08:03 - 01:08:03",
+        "theme_description": "Frage, ob Ines Schwerdtner der Trump-Administration etwas Positives abgewinnen kann.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner direkt: 'Können Sie Donald Trumps 2. Amtszeit etwas Gutes abgewinnen?'",
+        "question_intent": "Zu erfahren, ob es für Die Linke überhaupt Positives an der Trump-Administration gibt oder ob die Ablehnung total ist.",
+        "position": "Schwerdtner antwortet kategorisch 'Nein' (lacht). Sie sagt selbst 'Da brauche ich nicht lange überlegen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner beantwortet die Frage präzise und unmissverständlich: Sie lehnt jede Aufzählung von Positiven ab. Die Antwort ist kurz, aber die Frage wird vollständig adressiert.",
+        "concrete_statements": [
+          "Trumps zweite Amtszeit hat für Die Linke keine positiven Aspekte"
+        ],
+        "quotes": [
+          {
+            "text": "Nein. (lacht) Da brauche ich nicht lange überlegen.",
+            "timestamp": "01:08:03"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "USA-Politik",
+          "Internationale Beziehungen",
+          "Trump-Administration"
+        ]
+      },
+      {
+        "title": "Zuverlässigkeit Trumps für NATO-Bündnis",
+        "timestamp_range": "01:08:34 - 01:09:06",
+        "theme_description": "Frage zur Glaubwürdigkeit von Trumps Sicherheitsgarantien für NATO-Länder, insbesondere vor dem Hintergrund der Grönland-Debatte.",
+        "question_asked": "Sandra Maischberger fragt: 'Glauben Sie, Donald Trump würde europäischen NATO-Ländern im Falle eines Angriffs beistehen?' Thorsten Frei (CDU) sagt Ja, Ines Schwerdtner wird nach ihrer Sicht gefragt.",
+        "question_intent": "Zu erfahren, ob Die Linke Trump als verlässlichen Bündnispartner sieht oder ob die Unsicherheit überwiegt.",
+        "position": "Schwerdtner lehnt ab: 'Grönland hat deutlich gezeigt, dass wir uns auf nichts verlassen können, was Trump sagt.' Sie argumentiert, dass Trumps Verhalten (Grönland-Forderung, mangelnde Verlässlichkeit) zeigt, dass NATO-Länder nicht auf seine Zusicherungen vertrauen können.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet direkt auf die Frage zur Zuverlässigkeit Trumps und konkretisiert ihre Skepsis durch das Grönland-Beispiel. Sie adressiert die Frage präzise und präsentiert ein konkretes Argument für ihr Misstrauen.",
+        "concrete_statements": [
+          "Grönland zeigt, dass wir uns auf nichts verlassen können, was Trump sagt",
+          "Trump ist nicht als verlässlicher Bündnispartner einzuschätzen"
+        ],
+        "quotes": [
+          {
+            "text": "Grönland hat deutlich gezeigt, dass wir uns auf nichts verlassen können, was Trump sagt.",
+            "timestamp": "01:08:34"
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Sicherheitspolitik",
+          "Bündnispolitik",
+          "USA-Außenpolitik",
+          "Internationale Beziehungen"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben und Rüstungskontrolle",
+        "timestamp_range": "01:09:39 - 01:10:41",
+        "theme_description": "Debatte über 5%-Verteidigungsbudget, Kontrollierbarkeit von Rüstungsausgaben und die Frage eines europäischen Atomschutzschirms.",
+        "question_asked": "Sandra Maischberger und Thorsten Frei diskutieren mit Schwerdtner über das 5%-Verteidigungsbudget und später über einen europäischen Atomschutzschirm. Die implizite Frage: Braucht Deutschland wirklich 5% für Verteidigung und sollte es nukleare Abschreckung entwickeln?",
+        "question_intent": "Zu erfahren, ob Die Linke das 5%-Budget als notwendig sieht und ob sie für oder gegen einen europäischen Atomschutzschirm ist.",
+        "position": "Schwerdtner sagt, es sei 'wichtig, verteidigungsfähig zu sein', aber es müsse 'gezeigt werden, warum man dafür 5% braucht'. Sie kritisiert, dass 'Milliarden über Nacht fließen und wir nicht mehr kontrollieren können, für welche Rüstungsausgaben das draufgeht'. Sie argumentiert, dass die Regierung 'jeden Preis zahlt, ohne zu fragen, wofür'. Zum Atomschutzschirm sagt sie: 'Ich glaube, wir brauchen darüber nicht diskutieren, denn es gibt einen.' Sie betont, dass Die Linke 'für eine Welt, die auf Abrüstung setzt' eintritt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner adressiert die Kontroll-Komponente des 5%-Budgets (Kritik an Intransparenz), stellt aber nicht klar fest, ob 5% grundsätzlich zu viel sind. Sie weicht beim Atomschutzschirm aus, indem sie sagt, es gebe bereits einen – statt die Frage nach einer europäischen Alternative zu beantworten. Die Antwort ist teilweise kritisch, bleibt aber vage bei der Kernfrage des Budgetvolumens.",
+        "concrete_statements": [
+          "Es muss gezeigt werden, warum man für Verteidigung 5% braucht",
+          "Milliarden fließen über Nacht und wir können nicht kontrollieren, wofür",
+          "Wir zahlen jeden Preis, ohne zu fragen, wofür",
+          "Die Linke setzt auf Abrüstung, nicht Wiederaufrüstung"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist wichtig, verteidigungsfähig zu sein. Dafür müsste man zeigen, warum man dafür 5% braucht.",
+            "timestamp": "01:09:39"
+          },
+          {
+            "text": "Ich sitze im Haushaltsausschuss. Da sehe ich, wie die Milliarden über Nacht fließen und wir nicht mehr kontrollieren können, für welche Rüstungsausgaben das draufgeht. Wir zahlen jeden Preis, ohne zu fragen, wofür.",
+            "timestamp": "01:09:39"
+          },
+          {
+            "text": "Ich glaube, wir brauchen darüber nicht diskutieren, denn es gibt einen. Und wer sollte da den Knopf drücken? Ist Ihnen lieber, wenn die Vereinigten Staaten das tun?",
+            "timestamp": "01:11:18"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Rüstungsausgaben",
+          "Bundeshaushalt",
+          "Nukleare Abschreckung",
+          "NATO-Fähigkeiten",
+          "Abrüstung"
+        ]
+      },
+      {
+        "title": "Friedrich Merz' Außenpolitik und Friedensverhandlungen Ukraine",
+        "timestamp_range": "01:13:24 - 01:15:36",
+        "theme_description": "Bewertung von Merz' außenpolitischen Aktivitäten, insbesondere zur Frage seiner Rolle in Ukraine-Friedensverhandlungen und geplanten Reisen nach China und Moskau.",
+        "question_asked": "Sandra Maischberger stellt die Frage (nachdem Schwerdtner kritisiert hat, dass Merz erst nach 9 Monaten nach China reist): 'Soll Friedrich Merz demnächst nach Moskau reisen?' und später präzisierend, welche Rolle Merz spielen soll.",
+        "question_intent": "Zu klären, ob Die Linke denkt, dass Merz aktiv in Friedensverhandlungen involviert sein sollte oder ob er zu passiv ist.",
+        "position": "Schwerdtner kritisiert, dass 'Friedrich Merz erst mal nach China reist, 9 Monate nach seiner Amtszeit, was wahrscheinlich zu spät ist'. Sie sagt, er 'hätte sich früher um internationale Abkommen' kümmern müssen und 'ob die EU überhaupt an den Friedensverhandlungen teilnimmt'. Sie argumentiert, dass 'Trump und Putin offensichtlich unter sich die Ukraine aufteilen'. Ihre Position: Merz soll 'dafür sorgen, dass die EU und andere Staaten, dass es Verhandlungen gibt zwischen Selenskyj und Putin'. Sie kritisiert, dass 'er noch keine aktive Rolle darin gespielt hat'. Sie betont damit, dass Merz nicht zu Moskau reisen soll, sondern die EU koordinieren soll.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner beantwortet die implizite Frage zur Merz-Strategie (Moskau-Reise?) indirekt, indem sie sagt, was er stattdessen tun soll (EU-Koordination, Verhandlungen ermöglichen). Sie weicht aber der direkten Ja/Nein-Frage zur Moskau-Reise aus, obwohl Frei direkt fragt. Ihre Antwort adressiert die Frage teilweise durch Alternative, nicht durch direkte Antwort.",
+        "concrete_statements": [
+          "Merz reist zu spät nach China (9 Monate nach Amtsantritt)",
+          "Trump und Putin teilen die Ukraine offensichtlich unter sich auf",
+          "Merz soll EU-Koordination für Verhandlungen Selenskyj-Putin sicherstellen",
+          "Merz spielt noch keine aktive Rolle in Ukraine-Friedensverhandlungen"
+        ],
+        "quotes": [
+          {
+            "text": "Friedrich Merz reist erst mal nach China, 9 Monate nach seiner Amtszeit, was wahrscheinlich zu spät ist. Er hätte sich früher um internationale Abkommen... Er hätte sich mehr darum kümmern müssen, ob die EU überhaupt an den Friedensverhandlungen teilnimmt. Was wir sehen, ist, dass Trump und Putin offensichtlich unter sich die Ukraine aufteilen.",
+            "timestamp": "01:13:24"
+          },
+          {
+            "text": "Er soll dafür sorgen, dass die EU und andere Staaten, dass es Verhandlungen gibt zwischen Selenskyj und Putin. Da muss die EU eine Rolle spielen, auch Merz. Er muss alles dafür tun, dass es zu diesen Gesprächen kommt. Es gibt Verhandlungen offensichtlich, aber er hat noch keine aktive Rolle darin gespielt.",
+            "timestamp": "01:13:24"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Krieg",
+          "Friedensverhandlungen",
+          "EU-Koordination",
+          "Kanzleramtsverantwortung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Markus Söder sagt, das Social-Media-Verbot für unter 14-Jährige ist realitätsfremd",
+        "timestamp": "00:53:58"
+      },
+      {
+        "claim": "CDU hat 91,2% für Merz als Parteichef gestimmt",
+        "timestamp": "00:43:24"
+      },
+      {
+        "claim": "Österreichisches Rentensystem: Man kann nach 40 Beitragsjahren in Rente gehen",
+        "timestamp": "01:00:45"
+      },
+      {
+        "claim": "Friedrich Merz ist neun Monate nach Amtsantritt erst nach China gereist",
+        "timestamp": "01:13:24"
+      },
+      {
+        "claim": "60% der CDU-Wähler sind gegen die Spitzensteuersatz-Entlastung",
+        "timestamp": "01:06:31"
+      }
+    ]
+  }
+}

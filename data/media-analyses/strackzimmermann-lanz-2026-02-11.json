@@ -1,0 +1,302 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-11-februar-2026-100",
+    "video_id": "lanz-2026-02-11",
+    "politician": "Marie-Agnes Strack-Zimmermann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3cba8f64a6208b4e",
+    "transcript_chars": 60005,
+    "caption_lines": 2947,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24523,
+    "tokens_out": 8257,
+    "cost_usd": 0.0263232,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "teil_adressiert": 1,
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.225Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Marie-Agnes Strack-Zimmermann trat in dieser Lanz-Sendung zur Sicherheitskonferenz und transatlantischen Sicherheitspolitik auf. Sie argumentierte kritisch gegen eine unkritische Betrachtung der Trump-Administration und warnte vor deren autoritären Zügen, während sie gleichzeitig für eine europäische Verteidigungsunabhängigkeit und verstärkte Ukraine-Unterstützung plädierte. Ihr Ton war engagiert und normativ, stellte aber auch Nuancen her, etwa bei der Unterscheidung zwischen „autoritär\" und „Diktatur\".",
+    "themes": [
+      {
+        "title": "Sicherheitskonferenz und Marco Rubio statt JD Vance",
+        "timestamp_range": "00:03:11 - 00:05:23",
+        "theme_description": "Bewertung von Vances Absage zur Münchner Sicherheitskonferenz und Einschätzung von Rubios Rolle.",
+        "question_asked": "Markus Lanz fragte Strack-Zimmermann, wie groß sie darüber sei, dass Vance nicht zur Sicherheitskonferenz komme.",
+        "question_intent": "Lanz wollte erfahren, ob sie Vances Absage positiv oder negativ bewertet.",
+        "position": "Strack-Zimmermann räumte ein, dass Vances Rede im Vorjahr 'Unterhaltungswert' gehabt habe (ironisch gemeint: er habe Europäern einen Einlauf gegeben), wisse aber nicht, warum er absage — vielleicht wegen mangelnder Lust angesichts von Buhrufen bei den Olympischen Spielen. Sie betonte, dass Rubio kommt, und charakterisierte ihn als einen der wichtigsten Minister und heißen Anwärter auf die nächste Präsidentschaftskandidatur, was zeige, dass die Trump-Administration 'das schon noch ernst' nehme, auch Europa.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie beantwortete die Frage zu Vance direktund analysierte Rubios Rolle. Die Antwort war substanziell und adressierte Lanz' implizite Frage nach der strategischen Bedeutung der Delegation.",
+        "concrete_statements": [
+          "Marco Rubio ist einer der wichtigsten Minister, ist ein heißer Anwärter auf die nächste Kandidatur des Präsidentenamts",
+          "Die nehmen das schon noch ernst, auch Europa"
+        ],
+        "quotes": [
+          {
+            "text": "Das hätte wahrscheinlich einen hohen Unterhaltungswert, im letzten Jahr hat aber wahrscheinlich sein Pulver schon verschossen. Ich war überrascht, dass er abgesagt hat. Sein großer Konkurrent Marco Rubio kommt jetzt, vielleicht wollten sie nicht beide gleichzeitig auftreten.",
+            "timestamp": "00:03:11",
+            "context": "Antwort auf Frage zu Vance-Absage"
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Einladung zur Sicherheitskonferenz und AfD-Teilnahme",
+        "timestamp_range": "00:15:14 - 00:17:07",
+        "theme_description": "Diskussion darüber, warum die AfD von sensiblen Sicherheitsbesprechungen der Münchner Sicherheitskonferenz ausgeschlossen oder begrenzt sein sollte.",
+        "question_asked": "Markus Lanz fragte Strack-Zimmermann, warum die AfD nicht oder nur begrenzt zur Sicherheitskonferenz eingeladen wurde, insbesondere im Kontext sensitiver Informationsaustäusche.",
+        "question_intent": "Lanz wollte verstehen, ob es legitim ist, eine im Bundestag vertretene Partei von einem internationalen Sicherheitsforum auszuschließen und welche Bedenken dies rechtfertigen.",
+        "position": "Strack-Zimmermann betonte, dass sie die AfD-Position als \"explizit gegen die NATO, gegen die EU\" erlebt und dass bei einer Sicherheitskonferenz, wo man sich \"um unsere Sicherheit sorgen machen\" muss, Vorsicht geboten ist. Sie verwies auf russische Verbindungen einzelner AfD-Mitglieder und äußerte Bedenken bezüglich der Weitergabe sicherheitsrelevanter Informationen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Strack-Zimmermann antwortete auf die Grundfrage, indem sie Sicherheitsbedenken benannte, umging aber die tiefere verfassungsrechtliche Frage einer Ausgrenzung einer Parlamentsfraktion. Sie sprach von einzelnen Verbindungen, nicht von systematischer Unterwanderung.",
+        "concrete_statements": [
+          "sie sind so explizit gegen die NATO, gegen die EU",
+          "wenn ein solcher Mann mit russischen Verbindungen sitzt wäre nicht sinnvoll"
+        ],
+        "quotes": [
+          {
+            "text": "Ich fand es losgelöst von den Persönlichkeiten überraschen, weil ich so, wie ich die AfD und das Europaparlament erlebe, sie sind so explizit gegen die NATO, gegen die EU. Das ist eine Sicherheitskonferenz, wo wir uns um unsere Sicherheit sorgen machen.",
+            "timestamp": "00:15:25",
+            "context": "Antwort auf Frage warum AfD-Führungspersonen nicht eingeladen wurden"
+          },
+          {
+            "text": "dort werden ohne mit der Wimper zu zucken erklärt, dass man die Kontakte hat und pflegt... Wir wissen und gehen davon aus das eins zu eins Informationen weitergegeben werden.",
+            "timestamp": "00:17:07",
+            "context": "Konkretisierung ihrer Bedenken bezüglich Informationssicherheit"
+          }
+        ],
+        "answer_type": "teil_adressiert",
+        "evasion_note": "Sie präzisierte nach Nachfrage, dass keine AfD-Mitglieder in sicherheitsrelevanten Gruppen anwesend sein würden, was ihre Position etwas relativierte."
+      },
+      {
+        "title": "Sicherheitsrisiko von AfD-Anfragen im Verteidigungsausschuss",
+        "timestamp_range": "00:22:40 - 00:24:09",
+        "theme_description": "Auseinandersetzung darüber, ob die großvolumigen detaillierten Kleinen Anfragen der AfD zu Militärlogistik ein Sicherheitsrisiko darstellen oder legitime parlamentarische Kontrolle sind.",
+        "question_asked": "Markus Lanz stellte fest, dass die AfD präzise Fragen zu Eisenbahnlinien, Brückenlastfähigkeit und Materialtransport stellt, und fragte, ob Lucassen garantieren könne, dass keine sensiblen Informationen weitergegeben werden. Strack-Zimmermann wartete einen Moment und griff dann ein, um die Sicherheitsproblematik zu spezifizieren.",
+        "question_intent": "Lanz wollte verstehen, ob solche öffentlichen Fragen aus Sicherheitsgründen problematisch sind und ob die Antworten auf sie ein Sicherheitsrisiko schaffen.",
+        "position": "Strack-Zimmermann argumentierte, dass solche detaillierten Fragen zu Trajektorien, Brückenlast und Logistik im europäischen Kontext (Materialtransport, Truppenbewegung) hochgradig sicherheitsrelevant sind. Sie verwies auf ihre Arbeit im Europaparlament an Fragen der Materialverlagerung und -deklaration und betonte: \"Wenn der alles auf den Tisch gelegt wird öffentlich, dann ist das in dem Moment für die, die nichts Gutes für uns wollen hochinteressant. Wenn Sie die Logistik zerstören, dann können Sie nach Hause gehen.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie antwortete direkt auf Lanz' implizite Frage, indem sie die Sicherheitskriterien ausformulierte, konkrete Beispiele aus ihrer Praxis gab und erklärte, warum dies Transparenzgrenzen rechtfertigt.",
+        "concrete_statements": [
+          "In dieser Detailliertheit ist das Sicherheit relevant",
+          "Wenn Sie genau die Traglast wissen wollen, wo welche Zugstrecken sind... es ist ein ganz großes Thema",
+          "Wenn Sie die Logistik zerstören, dann können Sie nach Hause gehen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn Sie genau die Traglast wissen wollen, wo welche Zugstrecken sind, wir arbeiten im europäischen Parlament verstärkt am verlagern von Material, Soldaten, wie können die Deutschland bzw. Europa überqueren, dass nicht alles deklariert werden muss, es ist ein ganz großes Thema. Wir waren gerade in Rotterdam. Es ist ein hochrelevantes Thema.",
+            "timestamp": "00:23:14",
+            "context": "Konkretisierung ihrer Position zur Sicherheitsproblematik von militärlogistischen Anfragen"
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Bewertung von Trump-Administration und Diktatur-These",
+        "timestamp_range": "00:28:38 - 00:33:02",
+        "theme_description": "Auseinandersetzung mit ihrer eigenen Aussage, dass Trump die USA in eine Diktatur führe, und Klärung der Unterscheidung zwischen autoritären Zügen und faktischer Diktatur.",
+        "question_asked": "Markus Lanz präsentierte zunächst Vances Zitat zur Brandmauer-Kritik, dann warf er Strack-Zimmermann ihre Aussage vor, wonach Trump in einem Jahr eine Demokratie in eine Diktatur verwandeln könne, und fragte, ob dies plausibel sei.",
+        "question_intent": "Lanz wollte überprüfen, ob Strack-Zimmermanns kritische Bewertung der Trump-Administration faktisch haltbar ist oder hyperbole darstellt.",
+        "position": "Strack-Zimmermann modifizierte ihre ursprüngliche Aussage und unterschied klar zwischen 'autoritären Zügen' und 'Diktatur'. Sie benannte kritikwürdige Fälle wie ICE-Übergriffe, wehrte aber den Diktatur-Vergleich ab, da die Gewaltenteilung noch funktioniere, der Kongress Budgets sperren könne, und die nächste Wahl anstehe. Parallel kritisierte sie aber Trumps Machtentgrenzung in anderen Bereichen (Grönland, Gerichtsbesetzungen, Epstein-Dokumente) als demokratiefeindlich.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie nahm die Frage zu ihrer Diktatur-These auf und differenzierte sie, zog aber während ihrer Antwort neue kritische Beispiele heran (Grönland, Epstein), sodass unklar blieb, ob sie ihre Ursprungsthese widerrief oder nur sprachlich präzisierte.",
+        "concrete_statements": [
+          "Sie können es kritikwürdig nennen, autoritär, brutal nennen, das sind alles Attribute, die nicht das Label Diktatur rechtfertigen",
+          "wenn man darüber spricht, was ist der Weg in die Diktatur, dann gehen wir ins Weiße Haus, das was der amerikanische Präsident umsetzt"
+        ],
+        "quotes": [
+          {
+            "text": "Sie können es kritikwürdig nennen, autoritär, brutal nennen, das sind alles Attribute, die nicht das Label Diktatur rechtfertigen. Deutschland wurde von den Amerikanern vom Nationalsozialismus befreit.",
+            "timestamp": "00:33:15",
+            "context": "Klarstellung ihrer Position zur Trump-Administration nach kritischen Nachfragen"
+          },
+          {
+            "text": "wenn man darüber spricht, was ist der Weg in die Diktatur, dann gehen wir ins Weiße Haus, das was der amerikanische Präsident umsetzt.",
+            "timestamp": "00:33:47",
+            "context": "Verschiebung der Kritik auf Präsidialmacht statt auf Behördenhandeln"
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Während sie ihre Diktatur-These sprachlich präzisierte, führte sie neue Kritik-Punkte ein (Grönland, Epstein, Justizbesetzungen), die die ursprüngliche Aussage durch die Hintertür wieder substanziell stützten."
+      },
+      {
+        "title": "Vance-Rede: Brandmauer und liberale Kritik",
+        "timestamp_range": "00:28:38 - 00:29:33",
+        "theme_description": "Interpretation von JD Vances Kritik an politischen Brandmauern gegen populistische Parteien als Kommentar zu deutscher Demokratie.",
+        "question_asked": "Markus Lanz zitierte Vances Satz gegen politische Brandmauern und fragte Strack-Zimmermann, was sie dazu denke, und nannte das 'den Finger in die Wunde'.",
+        "question_intent": "Lanz wollte überprüfen, ob Strack-Zimmermann Vances Kritik an Brandmauern als berechtigt anerkennt.",
+        "position": "Strack-Zimmermann stimmte Vance teilweise zu, dass Brandmauern gegen starke oppositionelle Parteien gescheitert seien (Umfragewerte zeigen Parität mit Union, Rechte in Frankreich führt), monierte aber, dass Vance auch problematische Forderungen (Massendeportationen) rechtfertige, die Diktatur-ähnlich seien. Sie kritisierte seine Haltung zur Massenmigration als richtig erkannt, kombiniert mit unkritischer Haltung zu Trump-Gewaltentätigung (ICE).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie adressierte Vances Kritik an Brandmauern und räumte Faktizität ein, pivotierte dann aber zu einer Gegenkritik an Vance selbst (ICE-Einsätze), statt die implizite Frage zu beantworten, ob Brandmauern vielleicht dennoch schützend wären.",
+        "concrete_statements": [
+          "Der Versuch mit Brandmauern die liberale Demokratie auszuhalten, losgelöst davon, was man von dem Programm hält, ist gescheitert",
+          "Sagt ein Mann, der seine ICE-Truppen auf Bürger in der USA schickt und schlimmsten Fall erschießt"
+        ],
+        "quotes": [
+          {
+            "text": "Der Versuch bestimmte starke oppositionelle Parteien von der Regierung fernzuhalten, gibt es nicht nur in Deutschland. In Deutschland heißt es Brandmauer, die gibt es auch woanders. Und das zeigen alle Wahlergebnisse und Umfragen, die ist gescheitert.",
+            "timestamp": "00:28:38",
+            "context": "Einleitung ihrer Position zu Brandmauern"
+          },
+          {
+            "text": "Sagt ein Mann, der seine ICE-Truppen auf Bürger in der USA schickt und schlimmsten Fall erschießt, ich finde das ist der zweite Satz, der dazugehört.",
+            "timestamp": "00:29:19",
+            "context": "Kritik an Vance' Glaubwürdigkeit durch Gegenpunkt zu ICE"
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt"
+      },
+      {
+        "title": "Trump-Vergleiche mit Diktatoren und Grenzziehung",
+        "timestamp_range": "00:35:12 - 00:38:12",
+        "theme_description": "Auseinandersetzung über Vergleichbarkeit von Trump-Maßnahmen (ICE, Grönland) mit Putins Verhalten in der Ukraine.",
+        "question_asked": "Nach Strack-Zimmermanns Nennung von Venezuela, Epstein-Dokumenten und Grönland-Gedanken fragte Sönke Neitzel, ob sie Trumps Verhalten mit Diktatur-Regimen wie Putins vergleiche. Lanz ergänzte, dass es in Amerika auch Massenproteste gebe, nicht wie in China oder Russland.",
+        "question_intent": "Vertreter wollten eine moralische Grenzziehung zwischen autoritären und diktatorischen Systemen durchsetzen.",
+        "position": "Strack-Zimmermann räumte ein, dass Massenproteste in den USA möglich sind (anders als in China/Russland), aber betonte: '(a) Regimegegner fallen nicht aus Hotelfenstern', (b) die kritikwürdigen Vorgänge (ICE, Epstein) seien 'autoritäre Züge', nicht volle Diktatur, (c) aber die Gesamtrichtung (Justizbesetzungen, Epstein-Erpressung, fehlende Checks on presidential power) deute auf diktatorische Tendenzen. Sie verwehrte sich gegen den Vorwurf der Übertreibung, indem sie argumentierte, dass solche Vergleiche mit Weimar/SA/SS historisch unangemessen, aber die Warnung vor 'autoritären Zügen' berechtigt sei.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie differenzierte ihre Position zwar (Massenproteste = nicht-diktatorisch), behielt aber ihre Warnung vor Diktatur-Tendenzen bei und verweigerte, eine klare Trennlinie zwischen 'kritikwürdig' und 'demokratiegefährlich' zu ziehen.",
+        "concrete_statements": [
+          "Da fallen auch nicht Regimegegner aus Hotelfenstern",
+          "nicht diktatorisch, sondern autoritäre Züge",
+          "diese Affinität von Trump Putin gegenüber beruht auch darauf, dass es unglaublich attraktiv findet, dass dort ein Machthaber im Kreml sitzt, der machen kann was er will"
+        ],
+        "quotes": [
+          {
+            "text": "Sie können es kritikwürdig nennen, autoritär, brutal nennen, das sind alles Attribute, die nicht das Label Diktatur rechtfertigen. Deutschland wurde von den Amerikanern vom Nationalsozialismus befreit. Und wir reden jetzt von einer amerikanischen Bundesbehörde, die das Land in eine Diktatur abrutscht? Ich bin echt sprachlos, das bin ich selten.",
+            "timestamp": "00:33:15",
+            "context": "Reaktion auf Vorwurf der Diktatur-Übertreibung"
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Ukraine-Situation und europäische Unterstützung",
+        "timestamp_range": "00:41:18 - 00:43:50",
+        "theme_description": "Bericht über Reise in die Ukraine und Forderung nach verstärkter europäischer Luftabwehr und humanitärer Unterstützung.",
+        "question_asked": "Markus Lanz fragte Strack-Zimmermann, wie sie die Situation in der Ukraine gerade erlebt habe, nachdem sie am Samstag zurückgekommen sei.",
+        "question_intent": "Lanz wollte einen Augenzeugebericht und emotionale Perspektive auf den Krieg erhalten.",
+        "position": "Strack-Zimmermann beschrieb massive Luftanschläge, gezielte Bombardierung von Infrastruktur (Energieversorgung), Vertreibung von 4 Millionen Menschen aus Kiew, und Erfrierungstodesfälle als 'gezielten Massenmord' oder 'Völkermord'. Sie forderte konkret: verstärkte Generatorenlieferung, technisches Know-how, und europäische Luftabwehr statt bloßer Resilienz-Rhetorik. Sie kritisierte die Bundesrepublik, die \"eine Menge macht aber eben nicht genug\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie beantwortete die Frage durch persönliche Beobachtungen, Konkretes Material zum Leid, und ableitete daraus klare Forderungen. Lanz' Frage nach ihrem Erleben wurde vollständig und substanziell beantwortet.",
+        "concrete_statements": [
+          "das zentrale Netz in der Ukrainer wurde zerbombt",
+          "4 Millionen Kiewer die Stadt verlassen haben",
+          "Das ist ein gezielter Massenmord",
+          "wir müssen in Europa wieder mehr Luftabwehr schicken. Dass wir dieses Bombardement nicht zulassen"
+        ],
+        "quotes": [
+          {
+            "text": "ununterbrochen gibt es Luftalarm. Es kommen Raketenangriffe, überwiegend Drohnenangriffe von unvorstellbarer Anzahl. Sie haben ständig dieser Bedrohung, auch nachts wollen. In den Morgenstunden, 4,5 Uhr das ist kein Zufall, dass es dann, wenn die Menschen am tiefsten schlafen, das zentrale Netz in der Ukrainer wurde zerbombt.",
+            "timestamp": "00:41:18",
+            "context": "Schilderung persönlicher Beobachtungen bei Besuch in der Ukraine"
+          },
+          {
+            "text": "Das wollen sie nicht hören, was sie hören wollen ist, dass wir mehr Hilfe leisten, im technischen Know-how. Dass man Wärme erzeugt, Generatoren, es wird gejubelt, weil der Papst gesagt hat er schickt dorthin. Und vor allen Dingen, dass wir in Europa wieder mehr Luftabwehr schicken.",
+            "timestamp": "00:43:18",
+            "context": "Formulierung konkreter Forderungen basierend auf Gesprächen mit Ukrainern"
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Europäische Verteidigungsunabhängigkeit und NATO-Ambivalenz",
+        "timestamp_range": "01:08:21 - 01:12:21",
+        "theme_description": "Debatte über Europas strategisches Ziel der Unabhängigkeit von den USA und die Notwendigkeit, sich dennoch auf amerikanisc technisches Wissen zu stützen.",
+        "question_asked": "Markus Lanz forderte eine Klarstellung: Wenn Strack-Zimmermann kritisiert, die USA würden sich zurückziehen, und Europa müsse unabhängig werden, aber zugleich nur mit amerikanischer Unterstützung funktioniere, wie könne Europa dann unabhängig sein? Lucassen warf ihr vor, sie wolle die Amerikaner rausdrücken.",
+        "question_intent": "Lanz wollte einen Widerspruch aufdecken: Wie kann Europa unabhängig sein, wenn es militärisch auf die USA angewiesen ist?",
+        "position": "Strack-Zimmermann unterschied zwischen zwei Ebenen: (1) Europa könne und müsse sich 'sukzessive Fähigkeiten aneignen', um unabhängig zu werden (baltische Staaten, Finnland, Schweden als Beispiele). (2) Gleichzeitig sei es legitim, Trump-Politik zu kritisieren — die Kritik bedeute nicht, die USA ganz rausdrücken zu wollen. Sie betonte: 'wir wollen USA nicht aus der NATO haben, müssen aber erkennen, dass dieses Land sich so verändert hat'. Sie forderte eine europäische Strategie mit 27 EU-Staaten + GB, Norwegen, Island, während sie Trump dafür kritisierte, Selenskyj statt Putin Druck zu machen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Sie benannte zwei parallele Strategien (Unabhängigkeit + Kritik) ohne zu erklären, wie diese Spannung aufzulösen ist. Sie wiederholte, dass Kritik nicht Rauswurf bedeute, but did not fully address the strategic contradiction that Lanz posed.",
+        "concrete_statements": [
+          "wir wollen USA nicht aus der NATO haben, müssen aber erkennen, dass dieses Land sich so verändert hat",
+          "das ganze ganz schnell. Mit den 27 EU-Staaten, mit Großbritannien, Norwegen, Island und anderen europäischen Staaten",
+          "Das was in den USA sehe und was mich zutiefst herumtreibt zu kritisieren... ich erlaube mir das kritisch zu sein"
+        ],
+        "quotes": [
+          {
+            "text": "wir wollen USA nicht aus der NATO haben, müssen aber erkennen, dass dieses Land sich so verändert hat, über die Sicherheitsstrategie haben wir noch gar nicht gesprochen, wo die Europäer aus ihrer Sicht gar keine Rolle spielen. In diesem Kontext müssen wir selbständig werden,",
+            "timestamp": "01:10:18",
+            "context": "Klärung ihrer Position zur europäischen Unabhängigkeit gegenüber der Kritik von Lucassen"
+          },
+          {
+            "text": "ich erlaube mir aber als Europa-Abgeordnete, das was in den USA sehe und was mich zutiefst herumtreibt zu kritisieren, ich komme aus der Ukraine gerade, ich bin relativ häufig da. Ich sehe, dass Trump nicht den Unterschied macht, sondern dass die Ukrainer, Selenskyj an die Wand nagelt, Druck auf ihn macht, nicht auf Putin.",
+            "timestamp": "01:11:03",
+            "context": "Rechtfertigung ihrer kritischen Haltung zu Trump trotz Betonung der NATO-Wichtigkeit"
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "AfD-Antieuropäismus und Nationalismus-Kritik",
+        "timestamp_range": "01:08:21 - 01:08:54",
+        "theme_description": "Kritik an AfD-Parlamentariern im Europaparlament für antieuropäische Politik trotz Mitgliedschaft.",
+        "question_asked": "Strack-Zimmermann sagte, dass AfD-Kolleg:innen im Europaparlament 'antieuropäisch arbeiten' und sich in den Nationalstaat zurückziehen wollen. Lucassen widersprach und sagte, dass er immer zur AfD befragt werde, nicht zur FDP. Strack-Zimmermann antwortete darauf, dass sie nicht 'davon weglaufen' kann, dass Kollegen sich 'benehmen wie eine offene Hose'.",
+        "question_intent": "Lucassen versuchte, die Kritik an der AfD abzulenken, indem er auf Kritik an anderen Parteien hinwies. Strack-Zimmermann wollte verdeutlichen, dass die AfD-Antieuropäismus besonders problematisch ist.",
+        "position": "Strack-Zimmermann beharrte darauf, dass AfD-Parlamentarier im Europaparlament explizit antieuropäisch arbeiten und argumentieren, sich in den Nationalstaat zurückziehen wollen. Sie argumentierte: 'Der Rückzug in den Nationalstaat ist für ein Land wie Deutschland, das im Herzen von Europa liegt Gift.' Sie lehnte Lucassens Ausweichversuch ab und nötigte ihn, sich zu seiner Fraktion zu verhalten.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Sie antwortete direkt auf Lucassens Ausweichmanöver, insistierte auf ihrer Kritik und formulierte eine klare Position zur Gefahr des Nationalismus für Deutschland.",
+        "concrete_statements": [
+          "Der Rückzug in den Nationalstaat ist für ein Land wie Deutschland, das im Herzen von Europa liegt Gift",
+          "sie Kollegen haben im europäischen Parlament, die sich mit Verlaub benehmen wie eine offene Hose"
+        ],
+        "quotes": [
+          {
+            "text": "Sie können doch nicht davon weglaufen, dass sie Kollegen haben im europäischen Parlament, die sich mit Verlaub benehmen wie eine offene Hose. Wenn Sie sagen antieuropäisch, muss ich zu dem zurück, was sie anfangs gesagt haben.",
+            "timestamp": "01:08:54",
+            "context": "Reaktion auf Lucassens Ausweichversuch"
+          }
+        ],
+        "answer_type": "substantielle_position"
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Marco Rubio ist einer der wichtigsten Minister und ein heißer Anwärter auf die nächste Kandidatur des Präsidentenamts",
+        "timestamp": "00:05:23"
+      },
+      {
+        "claim": "Die Gewaltenteilung in den USA funktioniert noch. In 2 Jahren gibt es die nächste Wahl in den USA. Donald Trump hat aus Witz immer wieder angedroht, ein 3. Mal abzutreten. Aber er wird die politische Macht wieder abgeben müssen.",
+        "timestamp": "00:31:13"
+      },
+      {
+        "claim": "Das zentrale Netz in der Ukrainer wurde zerbombt. Es hängen 1 Millionen Menschen in Kiew dran.",
+        "timestamp": "00:41:18"
+      },
+      {
+        "claim": "4 Millionen Kiewer die Stadt verlassen haben. Nicht ihr Land jedoch. Sie sind aufs Land, wo möglicherweise Familie ist.",
+        "timestamp": "00:41:18"
+      },
+      {
+        "claim": "Die Menschen können nicht aus ihren Leitungen raus. Wir haben gesehen, dass dort Menschen erfrieren, in ihren Wohnungen.",
+        "timestamp": "00:41:18"
+      },
+      {
+        "claim": "Es wird gejubelt, weil der Papst gesagt hat er schickt dorthin [Generatoren in die Ukraine]",
+        "timestamp": "00:43:18"
+      },
+      {
+        "claim": "Die baltischen Staaten mit ihren Erfahrungen der russischen Grenze sind noch in der Sowjetunion sozialisiert",
+        "timestamp": "01:14:14"
+      }
+    ]
+  }
+}

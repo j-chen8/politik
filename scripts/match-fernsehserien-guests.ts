@@ -30,6 +30,9 @@ const WRITE = args.includes("--write");
 const showFilter = args.includes("--show") ? args[args.indexOf("--show") + 1] : null;
 
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/ß/g, "ss");
+// Wortgrenzen-Match statt nackter Substring ("Thomas Reich" ⊄ "Thomas Reichart").
+const wholeWord = (hay: string, needle: string) =>
+  new RegExp(`(?:^|[^a-z0-9])${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:[^a-z0-9]|$)`).test(hay);
 const stripTags = (h: string) => h.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ").replace(/\s+/g, " ").trim();
 const isoToDe = (iso: string) => { const [y, m, d] = iso.split("-"); return `${d}.${m}.${y}`; };
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -74,6 +77,9 @@ function extractGuestText(html: string): string {
 (async () => {
   const db = new Database(DB_PATH, { readonly: true });
   const pols = loadPoliticians(db);
+  const nameCount = new Map<string, number>();
+  for (const p of pols) nameCount.set(p.full, (nameCount.get(p.full) ?? 0) + 1);
+  const ambiguous = new Set([...nameCount].filter(([, n]) => n > 1).map(([k]) => k)); // gleichnamige → nicht raten
   const transcriptDates = (folder: string): string[] => {
     const dir = path.join(ROOT, folder);
     if (!fs.existsSync(dir)) return [];
@@ -95,7 +101,7 @@ function extractGuestText(html: string): string {
       await sleep(600);
       const guestText = extractGuestText(await get(`https://www.fernsehserien.de${href}`));
       const gtN = norm(guestText);
-      const guests = [...new Map(pols.filter((p) => gtN.includes(p.full))
+      const guests = [...new Map(pols.filter((p) => !ambiguous.has(p.full) && wholeWord(gtN, p.full))
         .map((p) => [p.id, { politician_id: p.id, name: `${p.first} ${p.last}`, party: p.party || null, parliaments: p.parliaments || null }])).values()];
       episodes[iso] = { url: `https://www.fernsehserien.de${href}`, guest_text: guestText, guests };
       console.log(`  ${iso}  ${guests.length ? guests.map((g) => g.name).join(", ") : "—"}`);

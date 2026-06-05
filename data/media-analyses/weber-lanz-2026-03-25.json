@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-25-maerz-2026-100",
+    "video_id": "lanz-2026-03-25",
+    "politician": "Manfred Weber",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "b91bac1d71375276",
+    "transcript_chars": 63617,
+    "caption_lines": 3100,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25535,
+    "tokens_out": 7804,
+    "cost_usd": 0.025822,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 2,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.375Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Manfred Weber, stellvertretender CSU-Parteivorsitzender und EVP-Fraktionsvorsitzender im Europaparlament, diskutiert mit Markus Lanz über drei Hauptthemen: die Sicherheitslage im Nahen Osten (Iran-Angriffe, Völkerrecht), die europäische Verteidigungsfähigkeit sowie die Zusammenarbeit der EVP mit Rechtsaußen-Fraktionen im EU-Parlament. Weber argumentiert aus einer geopolitischen Realpolitik-Perspektive, die Sicherheitsinteressen über strikte völkerrechtliche Interpretationen stellt, und verteidigt seine Fraktion gegen Vorwürfe strukturierter Zusammenarbeit mit der AfD.",
+    "themes": [
+      {
+        "title": "Mehrwertsteuererhöhung und CSU-Position",
+        "timestamp_range": "00:00:00 - 00:00:00",
+        "theme_description": "Die von Markus Lanz in der Einleitung erwähnte Frage, wie Weber als stellvertretender CSU-Parteivorsitzender zur Mehrwertsteuererhöhung steht.",
+        "question_asked": "Markus Lanz eröffnet die Sendung mit der Beobachtung, dass CDU/CSU-Politiker vor der Wahl das Wort 'Steuererhöhung' nicht aussprechen wollten, der Kanzler es aber jetzt getan hat. Lanz fragt implizit (in der Einleitung), wie Weber diese Wendung bewerten würde.",
+        "question_intent": "Lanz will verstehen, wie die CSU eine Steuererhöhung-Ankündigung des Kanzlers bewertet und wie die Partei damit umgeht, dass dies vor der Wahl tabu war.",
+        "position": "Weber geht auf dieses Thema in der Sendung **nicht ein**. Trotz Lanz' expliziter Ankündigung in der Einleitung wird die Frage nicht an Weber gestellt.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Markus Lanz kündigt das Thema an, wendet sich dann aber sofort Ofer Waldman zu und führt die Diskussion über den Nahen Osten. Weber wird zu diesem Thema nicht befragt.",
+        "answer_type": "substantielle_position",
+        "quotes": [],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "CSU-Position zu Steuern",
+          "Glaubwürdigkeit in Wahlkampfversprechen"
+        ]
+      },
+      {
+        "title": "Israelische Luftschläge gegen Iran und Völkerrecht",
+        "timestamp_range": "00:18:19 - 00:22:28",
+        "theme_description": "Bewertung der amerikanisch-israelischen Militäroperationen gegen den Iran als möglicher Präventivschlag und deren völkerrechtliche Legitimität.",
+        "question_asked": "Markus Lanz fragt Manfred Weber, warum die Debatte über Israels Drecksarbeit für Deutschland und Europa nicht geführt wird, und ob die Luftschläge einen Bruch des Völkerrechts darstellen.",
+        "question_intent": "Lanz will verstehen, wie Weber die Einordnung dieser Militärop als völkerrechtlich legitim mit Deutschlands Verpflichtung zu Rechtsstaatlichkeit vereinbart.",
+        "position": "Weber argumentiert, dass man zwei Seiten betrachten muss: Kritik an der israelischen Regierung (die Europa mehrfach geäußert hat) und das legitime Verteidigungsrecht Israels. Er führt an, dass der Iran mittelfristig Atomwaffen entwickeln könnte, was für Israel existenzielle Bedeutung hat. Weber charakterisiert das iranische Regime als Terrorregime. Er räumt ein, dass die Luftschläge \"grenzwertig\" sind, sieht sie aber als notwendig an, da völkerrechtliche Normen allein nicht vor Atomwaffen schützen. Weber betont, dass durch die Schwächung des Iran auch Europa sicherer wurde, da dieser sonst Raketen entwickeln könnte, die München erreichen. Er lehnt ab, dass dies \"nur Drecksarbeit\" für Europa ist, sondern sieht europäische Sicherheitsinteressen tangiert.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Weber geht auf die Frage nach völkerrechtlicher Legitimität ein, bleibt aber vage (\"grenzwertig\", \"hoch strittig\") und weicht zur Sicherheitsargumentation aus. Lanz' zentrale Frage zu doppelten Standards wird nur indirekt beantwortet – Weber behauptet, kein Widerspruch zu existieren, ohne dies überzeugend nachzuweisen.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "evasion_note": "Weber pivotiert von der rechtlichen Frage zur Sicherheitsfrage und argumentiert, dass realistische Geopolitik über abstrakte juristische Debatten gehen muss.",
+        "quotes": [
+          {
+            "text": "Für mich ist es grenzwertig. Weil ich nicht genau weiß, ob Iran wirklich Vorder in Atomwaffe stand oder nicht.",
+            "timestamp": "00:21:34",
+            "context": "Auf Lanz' Frage, ob die Luftschläge einen Bruch des Völkerrechts darstellen, gibt Weber eine ambivalente Antwort."
+          },
+          {
+            "text": "Aber ich sage auch deutlich dazu, dass uns ein Paragraf im internationalem Gesetz nicht vor Atomwaffen, vor einem Terrorregime, davor nicht schützen, dass sie in Zukunft an Atomwaffen bekommen.",
+            "timestamp": "00:21:34",
+            "context": "Weber argumentiert, dass juristische Feinheiten keinen praktischen Schutz bieten."
+          }
+        ],
+        "concrete_statements": [
+          "Iran ist ein Terrorregime mit Zugriff auf Atomwaffen",
+          "Zwei-Staaten-Lösung ist erstrebenswert, aber Israel muss nicht unmöglich gemacht werden",
+          "Europa ist durch schwächere iranische Raketenkapazität ein Stück weit sicherer geworden",
+          "Europäer müssen sich mit Realitäten der Welt, nicht nur juristischen Debatten, auseinandersetzen"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Sicherheitspolitik Nahost",
+          "Völkerrecht und Intervention",
+          "Israelisch-Palästinensischer Konflikt"
+        ]
+      },
+      {
+        "title": "Situation im Libanon und Unterstützung der demokratischen Opposition",
+        "timestamp_range": "00:26:29 - 00:27:31",
+        "theme_description": "Webers Bericht über Gespräche mit libanesischen Partnern und deren Sicht auf iranische und israelische Militäraktionen.",
+        "question_asked": "Im Kontext der Debatte über Militärinterventionen im Nahen Osten teilt Weber von sich aus mit, dass er mit libanesischen Partnern gesprochen habe.",
+        "question_intent": "Eigeninitiative: Weber möchte die Diskussion mit Perspektiven von Partnern im Libanon anreichern, die weniger kritisch zu iranischen Interventionen stehen.",
+        "position": "Weber berichtet, dass die libanesische Regierung einen Friedensvertrag mit Israel angeboten habe und dass 90 % der Libanesen nicht unter der Knechtschaft der Hisbollah leben wollen. Der \"demokratische, friedensbewusste Teil des Libanons\" begrüße die Interventionen im Iran. Weber betont, dass diese Bevölkerungsteile die Israelis um Waffen bitten, um die libanesische Armee gegen die Hisbollah zu stärken, nicht um gegen Israel zu kämpfen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Weber beantwortet seine eigene Anekdote vollständig und illustriert damit seine These, dass nicht alle Akteure im Nahen Osten gegen israelische/amerikanische Interventionen sind. Die Antwort unterstützt seine geopolitische Position.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "90 % der Libanesen wollen nicht mehr unter der Knechtschaft der Hisbollah leben. Die demokratische, die friedensbewusste Teil des Libanons, der begrüßt die Interventionen im Iran.",
+            "timestamp": "00:26:29",
+            "context": "Weber illustriert, dass nicht alle Akteure im Libanon israelische Operationen ablehnen."
+          }
+        ],
+        "concrete_statements": [
+          "Libanesische Regierung hat Friedensvertrag mit Israel angeboten",
+          "90 % der Libanesen lehnen Hisbollah-Herrschaft ab",
+          "Demokratische Kräfte im Libanon bitten um Waffen zur Stärkung der libanesischen Armee",
+          "Europäische Partner im Libanon begrüßen Interventionen im Iran"
+        ],
+        "related_bundestag_topics": [
+          "Libanon und Hisbollah",
+          "Nahost-Konflikte",
+          "Iranische Einflusssphäre"
+        ]
+      },
+      {
+        "title": "Völkerrecht als Grundprinzip vs. Realpolitik",
+        "timestamp_range": "00:27:31 - 00:30:21",
+        "theme_description": "Debatte darüber, ob Europa das Völkerrecht konsequent anwenden kann oder ob Sicherheitsinteressen Vorrang haben müssen.",
+        "question_asked": "Markus Lanz mahnt Weber, dass Europa zum Völkerrecht stehen muss und fragt, warum nicht offensiv von Bruch gesprochen wird, besonders gegenüber dem globalen Süden, der Doppelstandards kritisiert.",
+        "question_intent": "Lanz will von Weber hören, ob die EVP/CDU/CSU glaubwürdige Positionen zu Rechtsstaatlichkeit und Völkerrecht vertreten können, wenn sie geopolitische Interessen vor Rechtsprinzipien stellen.",
+        "position": "Weber bekennt sich zunächst zum Völkerrecht als Grundprinzip, räumt aber sofort ein: \"Die regelbasierte Welt, die wir uns wünschen, die ist nicht real, das müssen wir uns eingestehen.\" Er argumentiert, dass Europa Hüter von internationalem Recht sein will, aber bei einem Terrorregime mit Atomwaffen-Ambitionen nicht nur juristische Debatten führen kann. Weber sieht keinen Widerspruch zwischen Völkerrecht-Bekenntnis und pragmatischer Außenpolitik. Er betont, dass Europa \"die Tools in die Hand nehmen\" muss, um relevant zu sein.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Weber anerkennt die Kritik an Doppelstandards teilweise, antwortet aber nicht direkt auf Lanz' Frage, wie man Glaubwürdigkeit im globalen Süden wahrt. Er stellt Realitätsorientierung gegen Normativität, ohne zu erklären, wie diese Spannung aufgelöst werden kann.",
+        "answer_type": "themenwechsel",
+        "evasion_note": "Weber weicht von der Glaubwürdigkeitsfrage zur Sicherheitsfrage aus und neutralisiert damit die zentrale Kritik.",
+        "quotes": [
+          {
+            "text": "Wir sind der Hüter von internationalem Recht... Aber die regelbasierte Welt, die wir uns wünschen, die ist nicht real, das müssen wir uns eingestehen.",
+            "timestamp": "00:28:01",
+            "context": "Auf Lanz' Druck zu Völkerrecht und Glaubwürdigkeit erklärt Weber die Spannung zwischen Ideal und Praxis."
+          },
+          {
+            "text": "Wenn wir ein Terrorregime haben, das hat Atomwaffen, die können München erreichen, dann müssen wir uns mit Fragen beschäftigen, wir müssen die Tools in die Hand nehmen.",
+            "timestamp": "00:29:37",
+            "context": "Weber rechtfertigt pragmatische Außenpolitik mit Sicherheitsargumenten."
+          }
+        ],
+        "concrete_statements": [
+          "Europa steht zum Völkerrecht, aber muss auch Realitäten der Welt ins Auge schauen",
+          "Abstrakte Völkerrechts-Debatten reichen nicht zum Schutz vor Atomwaffen",
+          "Europa hat keine isoliert juristische, sondern auch eine praktische Antwort auf Terrorregime nötig"
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht und Interventionismus",
+          "Außenpolitische Konsistenz",
+          "Regelbasierte internationale Ordnung",
+          "Menschenrechte vs. Sicherheit"
+        ]
+      },
+      {
+        "title": "Europäische Eigenständigkeit und Verteidigungsfähigkeit",
+        "timestamp_range": "00:42:28 - 01:00:21",
+        "theme_description": "Webers Forderung nach europäischer militärischer und politischer Unabhängigkeit von den USA und verbesserter Rüstungsproduktion in Europa.",
+        "question_asked": "Markus Lanz und Nico Lange fragen, wie Europa seine Verteidigungsfähigkeit, insbesondere gegen ballistische Raketen und Drohnen, aufbauen kann und ob Europa wirklich fähig ist, sich selbst zu verteidigen.",
+        "question_intent": "Lanz und Lange wollen verstehen, welche konkreten Maßnahmen notwendig sind und wie realistisch Europas Selbstverteidigungsperspektive ist.",
+        "position": "Weber argumentiert, dass Europa nicht länger abhängig von der Wahlentscheidung in den USA sein darf. Er fordert explizit einen \"europäischen Pfeiler der Verteidigung\" und betont, dass Rüstungsproduktion in Deutschland und Europa stattfinden muss – nicht nur Einkauf. Er sieht Frieden-Sicherung durch Verteidigungsfähigkeit: nur wenn ein Angreifer keinen Sinn darin sieht zu attackieren, gibt es Frieden. Weber lehnt ab, dass dies \"Aufrüstung\" um des Aufrüstens willen ist, sondern dass es um Friedenssicherung gehe. Er kritisiert implizit den bisherigen \"Flickenteppich\" europäischer Rüstungspolitik.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Weber antwortet auf die allgemeine Frage nach europäischer Eigenständigkeit substanziell und nennt konkrete Forderungen (europäische Produktion, Pfeiler-Konzept). Aber er geht nicht detailliert auf die technischen Fragen ein, die Lange zu Lenkflugkörpern, Drohnenabwehr und konkreten Lücken stellt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Europa braucht einen europäischen Pfeiler der Verteidigung",
+          "Rüstungsproduktion muss in Deutschland und Europa erfolgen, nicht nur extern eingekauft werden",
+          "Frieden wird nur gesichert, wenn es für einen Angreifer keinen Sinn macht zu attackieren",
+          "Europa darf nicht davon abhängig sein, dass Amerika einen wohlgesonnenen Präsidenten wählt",
+          "Gegenwärtige europäische Rüstungspolitik ist ein Flickenteppich, der verschwendet Ressourcen"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheitspolitik",
+          "Rüstungsproduktion und -export",
+          "NATO und transatlantische Beziehungen",
+          "Militärische Fähigkeiten Europa"
+        ]
+      },
+      {
+        "title": "Venezuela als Beispiel für regelbasierte Außenpolitik",
+        "timestamp_range": "00:49:00 - 00:50:14",
+        "theme_description": "Webers Beispiel Venezuela zur Verteidigung von Interventionen, die demokratische Oppositionelle unterstützen.",
+        "question_asked": "Im Kontext der Debatte über Völkerrecht und realpolitische Interventionen bringt Weber von sich aus das Venezuela-Beispiel ein.",
+        "question_intent": "Eigeninitiative: Weber möchte zeigen, dass Interventionen zugunsten von demokratischen Kräften nicht nur an strengem Völkerrecht gemessen werden können, sondern positive Ergebnisse haben.",
+        "position": "Weber berichtet, dass er Anfang des Jahres den demokratisch gewählten Präsidenten Venez (im Exil) traf und dass die demokratische Opposition diese Unterstützung ausdrücklich begrüßt habe. Als Resultat wurden Gefangene der Opposition, die von Maduro eingesperrt waren, freigelassen und das Land bekam Perspektive. Weber argumentiert daraus, dass man sich nicht \"ausreden\" kann, für regelbasierte Ansätze zu stehen und gleichzeitig in der realen Welt Machtmöglichkeiten nutzen, um relevant zu sein.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Weber beantwortet seine implizite Frage selbst und liefert ein konkretes historisches Beispiel, das seine realpolitische Philosophie illustriert.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ich habe Anfang des Jahres den demokratisch gewählten Präsidenten getroffen, der es dort im Exil, die demokratische Opposition in Venezuela hat es ausdrücklich begrüßt. Es wurden dort alle Gefangenen, die von Maduro eingesperrt worden sind, die Opposition, freigelassen. Das Land hat eine Perspektive bekommen.",
+            "timestamp": "00:49:00",
+            "context": "Weber illustriert mit Venezuela, dass Interventionen zugunsten demokratischer Kräfte legitim sind."
+          }
+        ],
+        "concrete_statements": [
+          "Weber unterstützt den demokratischen Präsidenten Venezuelas im Exil",
+          "Die demokratische Opposition in Venezuela begrüßte diese Unterstützung",
+          "Politische Gefangene wurden freigelassen, das Land bekam Perspektive",
+          "Regelbasierte Ansätze müssen mit realen Machtmöglichkeiten kombiniert werden"
+        ],
+        "related_bundestag_topics": [
+          "Lateinamerika-Politik",
+          "Unterstützung von Oppositionellen",
+          "Außenpolitik und Menschenrechte"
+        ]
+      },
+      {
+        "title": "EVP-Zusammenarbeit mit Rechtsaußen-Fraktionen im EU-Parlament",
+        "timestamp_range": "00:59:57 - 01:07:54",
+        "theme_description": "Frage nach strukturierter oder informeller Zusammenarbeit der EVP-Fraktion mit AfD und anderen rechtsextremen Parteien bei der Migrationspolitik.",
+        "question_asked": "Markus Lanz berichtet, dass die EVP mit drei Rechtsaußen-Fraktionen bei der Migrationspolitik koordiniert hat und fragt, ob es gemeinsame Papiere, Absprachen oder eine Zusammenarbeit gab. Später weist Lanz auf konkrete WhatsApp-Gruppen und öffentliche Tweets einer AFD-Abgeordneten hin.",
+        "question_intent": "Lanz will aufklären, ob die EVP entgegen ihrer Behauptung tatsächlich strukturiert oder zumindest informell mit rechtsextremen Parteien kooperiert, besonders der AfD.",
+        "position": "Weber behauptet, es habe \"keine strukturierte Zusammenarbeit und es gibt keine Zusammenarbeit\" mit der AfD gegeben. Er erklärt, dass die EVP die Positionen umgesetzt habe, die die Innenminister beschlossen hätten, nicht was die AfD forderte. Bei Migrationsfragen hätten die Sozialdemokraten sich geweigert, Kompromisse mitzutragen, deshalb habe die EVP die Positionen zur Abstimmung gestellt – das sei die beste Methode, Rechtsradikale zu bekämpfen, indem man die dahinterstehenden Probleme löse. Weber bestreitet vehement, dass EVP-Mitarbeiter in WhatsApp-Gruppen koordiniert hätten; er könne nicht alle Gruppen kontrollieren bei 120 Abgeordneten aus 27 Ländern. Er reißt die Debatte weg von \"Taktik\" hin zu \"Sachinhalt\" und wirft den Grünen vor, beim Mercosur-Abstimmung bewusst mit der AfD gestimmt zu haben.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Weber lehnt die zentrale Vorwurf kategorisch ab (keine Zusammenarbeit), gibt aber zu, dass ein Jahr lang mit Sozialdemokraten verhandelt wurde, am Ende aber zur Abstimmung gestellt. Zur konkreten WhatsApp-Gruppe und den Tweets weicht er aus, indem er sagt, er könne nicht alle Gruppen kontrollieren, und dreht die Debatte zu: Grüne hätten bewusst mit AfD gestimmt. Er beantwortet nicht, warum ein EVP-Mitarbeiter \"danke für die Zusammenarbeit\" schreiben würde.",
+        "answer_type": "themenwechsel",
+        "evasion_note": "Weber lenkt von der konkreten Vorwurf (WhatsApp, Tweets, koordinierte Änderungsanträge) ab zur allgemeinen Verteidigung ('wir haben nur das umgesetzt, was Innenminister beschlossen') und attackiert die Grünen.",
+        "quotes": [
+          {
+            "text": "Es gab und gibt keine strukturierte Zusammenarbeit mit der AfD.",
+            "timestamp": "01:02:54",
+            "context": "Auf Quadbecks detaillierte Darlegung von informeller Koordination antwortet Weber mit kategorischer Negation."
+          },
+          {
+            "text": "Sie haben wiederholt, was Frau Quadbeck schon gesagt hat. Ich wusste davon nichts. Wir haben 120 Abgeordnete, aus 27 Ländern. Allein bei mir gibt es 50 verschiedene Parteien in der EVP Fraktion, ich kontrolliere nicht alle WhatsApp Gruppen.",
+            "timestamp": "01:04:11",
+            "context": "Auf Lanz' Frage, ob Weber vom Inhalt der WhatsApp-Gruppe wusste, behauptet Weber Unwissenheit und mangelnde Kontrollierbarkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt keine strukturierte Zusammenarbeit mit der AfD",
+          "Die EVP setzt Positionen um, die von Innenministern beschlossen wurden, nicht was die AfD fordert",
+          "Die beste Methode, Rechtsradikale zu bekämpfen, ist, die dahinterstehenden Probleme zu lösen",
+          "Die Grünen haben beim Mercosur bewusst mit der AfD gestimmt",
+          "Die Brandmauer steht und es gibt keine Wackeln"
+        ],
+        "related_bundestag_topics": [
+          "Rechtsradikalismus und Brandmauer",
+          "Europaparlament und Migrationspolitik",
+          "Zusammenarbeit mit Extremisten",
+          "Koalitionsdynamiken EU",
+          "AfD und ihre europäischen Partner"
+        ]
+      },
+      {
+        "title": "Brandmauer gegen die AfD in Europa",
+        "timestamp_range": "01:08:54 - 01:16:23",
+        "theme_description": "Webers Position zur Brandmauer gegen rechtsradikale Parteien und zur Rolle der EVP als Fraktionschef in Europa.",
+        "question_asked": "Markus Lanz zitiert öffentliche Aussagen von AfD-Politikern (Chrupalla), die die Brandmauer als positiv bewerten und sagen, dass nun 'vernünftige Politik' möglich wird. Lanz stellt die Frage, ob Weber zugeben kann, dass auf europäischer Ebene die Brandmauer längst gefallen ist.",
+        "question_intent": "Lanz will, dass Weber anerkennt, dass die EVP de facto mit rechtsextremen Parteien kooperiert, während sie in Deutschland von einer Brandmauer spricht.",
+        "position": "Weber lehnt ab, dass die Brandmauer gefallen ist. Er betont, dass er der erste Parteichef in Europa war, der die Brandmauer definierte und dagegen steht. Auf der linken Seite würden auch problematische Parteien (mit antieuropäischen und antisemitischen Strukturen) existieren, aber die EVP halte die Brandmauer. Er argumentiert, dass die AfD im Europaparlament irrelevant sei – die EVP habe bei Abstimmungen oft mit 10 Stimmen Unterschied gewonnen und die AfD spiele keine Rolle. Diese Diskussion über Brandmauer gebe es \"so nur in Deutschland\", nicht in anderen europäischen Ländern, weil sie keine so radikalen Parteien hätten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Weber bejaht sein Engagement für die Brandmauer, lehnt aber ab, dass sie gefallen ist. Er verklärt die politische Realität, indem er sagt, die AfD sei irrelevant im Europaparlament (widerlegt durch die WhatsApp-Koordination und die expliziten Tweets der AFD-Abgeordneten über Einfluss auf die Gesetzestext), und er verweist auf deutsche Besonderheiten als Grund, warum diese Debatte in Deutschland anders sei.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Weber beantwortet die Frage zu faktischen Realitäten (AfD-Einfluss, Koordination) durch normative Behauptung (Brandmauer steht), ohne die Lücke zwischen Anspruch und Wirklichkeit zu schließen.",
+        "quotes": [
+          {
+            "text": "Ich stehe für die Brandmauer. Und um das mal zu sagen, wir hatten Situation, wo wir mit 10 Stimmen Abstand gewonnen, die AfD hat nur eine, sie ist irrelevant.",
+            "timestamp": "01:10:21",
+            "context": "Weber verteidigt seine Brandmauer-Position, indem er die AfD als parlamentarisch irrelevant darstellt."
+          },
+          {
+            "text": "Als Fraktionschef der größten Partei Europas, ich sage Ihnen, diese Diskussion gibt es so nur in Deutschland.",
+            "timestamp": "01:11:26",
+            "context": "Weber relativiert die Brandmauer-Debatte als deutsches Phänomen, nicht europäisches."
+          }
+        ],
+        "concrete_statements": [
+          "Weber hat die Brandmauer als Parteichef in Europa definiert",
+          "Die Brandmauer steht und wackelt nicht",
+          "Die AfD ist im Europaparlament irrelevant",
+          "Die Diskussion um die Brandmauer existiert so nur in Deutschland"
+        ],
+        "related_bundestag_topics": [
+          "Brandmauer gegen Rechtsextremismus",
+          "Koalitionsdynamiken",
+          "AfD und ihre europäischen Allianzen",
+          "Demokratische Normen und Grenzziehung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Iran hat Zugriff auf oder entwickelt Atomwaffen",
+        "timestamp": "00:21:34"
+      },
+      {
+        "claim": "90 % der Libanesen wollen nicht unter Hisbollah-Herrschaft leben",
+        "timestamp": "00:26:29"
+      },
+      {
+        "claim": "Weltweite Jahresproduktion von Patriot-Lenkflugkörpern liegt bei etwa 650 Stück (zitiert von Nico Lange, nicht Weber)",
+        "timestamp": "00:09:51"
+      },
+      {
+        "claim": "Die EVP-Fraktion besteht aus 120 Abgeordneten aus 27 Ländern",
+        "timestamp": "01:04:11"
+      },
+      {
+        "claim": "Manfred Weber traf Anfang des Jahres den demokratisch gewählten Präsidenten Venezuelas im Exil",
+        "timestamp": "00:49:00"
+      },
+      {
+        "claim": "Bei einer Abstimmung zur Migrationspolitik hatte die EVP einen Vorsprung von nur 10 Stimmen",
+        "timestamp": "01:10:21"
+      }
+    ]
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-2-dezember-2025-100",
+    "video_id": "lanz-2025-12-02",
+    "politician": "Alexander Schweitzer",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "73719d3bb70524da",
+    "transcript_chars": 66256,
+    "caption_lines": 3239,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26737,
+    "tokens_out": 6484,
+    "cost_usd": 0.0236628,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6
+    },
+    "generated_at": "2026-06-05T13:37:47.864Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Alexander Schweitzer (SPD-Vize, Ministerpräsident Rheinland-Pfalz) erscheint in der Markus Lanz-Sendung zu multiplen Themen: Gesellschaftliche Polarisierung, Umgang mit der AfD, Rentenpaket und die innenpolitischen Spannungen um die Bundesregierung. Er wirkt pragmatisch und bemüht, Eskalation zu deeskalieren, äußert sich aber auch deutlich zu fehlender Selbstkritik in der Regierung.",
+    "themes": [
+      {
+        "title": "Gesellschaftliche Gewalt und Umgang mit Journalisten",
+        "timestamp_range": "00:18:05 - 00:20:26",
+        "theme_description": "Schweitzer äußert sich zum Thema Gewalt in politischen Debatten, zur Behandlung von Journalist:innen und zur Notwendigkeit, Gewalt als Mittel der Auseinandersetzung abzulehnen.",
+        "question_asked": "Markus Lanz fragte, wie Schweitzer das in der Gießen-Demo Geschilderte – die Bedrohung des Reporters Paul Ronzheimer – einordnet und welche Botschaft es für den Umgang miteinander in der Gesellschaft sendet.",
+        "question_intent": "Lanz wollte wissen, ob Schweitzer die Eskalation von verbaler Gewalt gegen Journalist:innen als systematisches Gesellschaftsproblem anerkennt und wie damit umzugehen ist.",
+        "position": "Schweitzer betont, dass Gewalt kein legitimes Mittel der Auseinandersetzung ist – das sei ein nicht verhandelbarer Punkt. Er kritisiert auch verbale Gewalt und Denunziation. Gleichzeitig mahnt er zu Differenzierung: Viele friedliche Demonstrant:innen würden nicht mit denen verwechselt werden wollen, die Gewalt ausüben. Wichtig ist für ihn, dass man klar macht, \"wer sich mit denen einlässt, die auf Demonstrationen Gewalt ausüben, da muss ich mich dann auch von denen distanzieren.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer adressiert das Thema Gewalt direkt und positioniert sich klar dagegen. Er differenziert aber stark zwischen radikalen und friedlichen Demonstranten statt sich klar zu Journalist:innen-Schutz zu äußern. Die Frage nach der Verantwortung von Politiker:innen (Lanz' Kern-Intent) wird nur indirekt beantwortet.",
+        "quotes": [
+          {
+            "text": "In einer Demokratie ist ein Punkt nicht verhandelbar und zwar, Gewalt ist kein legitimes Mittel der Auseinandersetzung.",
+            "timestamp": "00:18:05",
+            "context": "Schweitzer reagiert auf Lanz' Beschreibung der Vorfälle in Gießen und generalisiert zum Gewalt-Thema."
+          },
+          {
+            "text": "Ich bin ja froh, dass Sie dass sagen. Das ist etwas, was mich auch total ärgert. Viele Menschen, die sagen, ich war noch nie auf einer Demonstration. Ich hab mal ein Plakat gemalt und bin gegen Rassismus auf die Straße gegangen. Die wollen mit sowas auch nicht in Verbindung gebracht werden.",
+            "timestamp": "00:19:49",
+            "context": "Schweitzer betont die Notwendigkeit von Differenzierung zwischen friedlichen und gewalttätigen Protest."
+          }
+        ],
+        "concrete_statements": [
+          "Gewalt ist kein legitimes Mittel der Auseinandersetzung – das ist ein nicht verhandelbarer Punkt.",
+          "Verbale Gewalt und Denunziation sind auch kein gutes Mittel.",
+          "Differenzierung ist wichtig: Friedliche Demonstranten dürfen nicht pauschal mit radikalen Elementen gleichgesetzt werden."
+        ],
+        "related_bundestag_topics": [
+          "Pressefreiheit",
+          "Innere Sicherheit",
+          "Gesellschaftliche Polarisierung",
+          "Extremismus"
+        ]
+      },
+      {
+        "title": "Dialog und Konfrontation mit der AfD",
+        "timestamp_range": "00:20:45 - 00:28:18",
+        "theme_description": "Schweitzer antwortet auf Fragen zu seiner persönlichen Strategie im Umgang mit AfD-Kandidat:innen und zur Frage, ob Medien der AfD eine Plattform geben sollten.",
+        "question_asked": "Markus Lanz fragte konkret, ob Schweitzer mit einem AfD-Kandidaten im Fernsehen sitzen würde und wie er prinzipiell mit der AfD umgeht, auch im Landtagswahlkampf.",
+        "question_intent": "Lanz wollte herausfinden, ob und unter welchen Bedingungen Schweitzer die AfD als Gesprächspartner akzeptiert, um die generelle Frage ‚Können Demokrat:innen noch miteinander reden?' zu konkretisieren.",
+        "position": "Schweitzer berichtet aus der Praxis: Die AfD sitzt seit Jahren in seinem Landtag, er argumentiert und streitet demokratisch mit ihr, weicht ihr nicht aus. Er betont aber: ‚Ich gehöre nicht zu denen, die den ganzen nur Tag nur über und mit der AfD geredet.' Er sieht Fern-Auftritte und Radio-Diskussionen als gleichwertig. Auf Lanz' Betonung der ‚Bühnen-Effekt'-Frage antwortet er: Das sei Lanz' Verantwortung als Moderator, nicht seine. Er ergänzt: ‚Ich rede nicht den ganzen Tag mit und über die AfD, weil ich das nicht die als Aufgabe sehe.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer beantwortet die praktische Frage zu seinem Umgang mit der AfD substantiell (Dialog, aber keine Überbetonung). Zur Kern-Frage ‚Sollte man sie ins Fernsehen einladen?' weicht er aus, indem er sagt, das sei Lanz' Entscheidung. Er pivotiert leicht zur Kritik an der Überrepräsentation von AfD-Diskursen statt zur Beantwortung des Bühnen-Dilemmas.",
+        "quotes": [
+          {
+            "text": "Die AfD ist bei uns seit einigen Jahren im Landtag und ich gehe selbst verständlich mit ihnen um. Ich argumentiere, ich streite demokratisch mit Ihnen. Ich gehe ihnen auch nicht aus dem Weg, das wäre ein bisschen albern in meiner Rolle.",
+            "timestamp": "00:20:45",
+            "context": "Schweitzer beschreibt sein praktisches Vorgehen."
+          },
+          {
+            "text": "Ich rede nicht den ganzen Tag mit und über die AfD, weil ich das nicht die als Aufgabe sehe.",
+            "timestamp": "00:23:28",
+            "context": "Schweitzer grenzt sich von medialer Überbetonung ab."
+          }
+        ],
+        "concrete_statements": [
+          "Ich argumentiere und streite demokratisch mit AfD-Kandidaten.",
+          "Ich weiche der AfD nicht aus.",
+          "Ich übergewichte AfD-Diskurse nicht in meiner Strategie.",
+          "Ob Medien die AfD einladen, ist nicht meine Verantwortung, sondern die der Redaktion."
+        ],
+        "related_bundestag_topics": [
+          "AfD-Strategie",
+          "Parlamentarismus",
+          "Medienverantwortung",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Rentenpaket und Arbeitsministerin-Auftritt bei Arbeitgeberverband",
+        "timestamp_range": "00:32:18 - 00:42:25",
+        "theme_description": "Schweitzer wird zu den Aussagen der Arbeitsministerin Bärbel Bas beim Arbeitgeberverband und zur Formulierung ‚wir belasten Beitragszahler nicht' (finanziert aus Steuermitteln) befragt.",
+        "question_asked": "Markus Lanz fragte: ‚Wenn Sie so einen Satz hören – wir finanzieren die Haltelinie aus Steuermitteln, wir belasten damit die Beitragszahler nicht – wer denkt sich so etwas aus?' und später, ob das Gelächter der Arbeitgeber berechtigt war.",
+        "question_intent": "Lanz wollte von Schweitzer hören, ob die Formulierung von Bärbel Bas politisch ungeschickt oder irreführend ist und ob Schweitzer die Kritik der Arbeitgeber nachvollzieht.",
+        "position": "Schweitzer räumt ein: ‚Technisch ist es sehr präzise. Am Ende ist es aber eine Belastung.' Er sagt aber auch, das Gelächter ‚gehört sich nicht', da man jemanden nicht auslacht, den man auf die Bühne eingeladen hat. Er verteidigt Bas' Technik-Argumentation, kritisiert aber nicht, dass das psychologisch als Ausweich-Manöver wahrgenommen wird. Später: ‚Es ist eine Belastung. Technisch ist es richtig und trotzdem ist es aber eine Belastung.' Er mahnt, nicht ‚jemanden auszumachen, der eingeladen wurde'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer adressiert das sachliche Problem (Technisch richtig, aber eine Belastung) und das Etiketten-Problem (nicht auslachen von Eingeladenen). Er weicht aber Lanz' tiefere Frage aus: Ob die Regierung versucht, mit einer technischen Formulierung eine unbequeme Realität zu verschleiern. Sein Fokus liegt auf Debattenkultur statt Substanz.",
+        "quotes": [
+          {
+            "text": "Das, was Sie in ihrem Eingangsstatement erwähnt, dass ist natürlich technisch sehr präzise. Am Ende ist es aber eine Belastung.",
+            "timestamp": "00:32:18",
+            "context": "Schweitzer gibt zu, dass die Formulierung nicht das Problem löst."
+          },
+          {
+            "text": "Nein, einfach, weil es sich auch nicht gehört. Da steht eine Ministerin auf der Bühne, man kann es ja auch falsch finden und man kann sich dann zu Wort melden...",
+            "timestamp": "00:32:33",
+            "context": "Schweitzer kritisiert das Gelächter als unhöflich."
+          }
+        ],
+        "concrete_statements": [
+          "Die Formulierung ist technisch präzise, aber faktisch eine Belastung.",
+          "Das Gelächter war nicht angemessen.",
+          "Man sollte nicht jemanden kritisieren, indem man ihn/sie auslacht."
+        ],
+        "related_bundestag_topics": [
+          "Rentenpaket II",
+          "Rentenversicherung",
+          "Arbeitsmarktpolitik",
+          "Koalitionsverhandlungen"
+        ]
+      },
+      {
+        "title": "Reaktion auf Bärbel Bas' Juso-Rede und Klassenkampf-Rhetorik",
+        "timestamp_range": "00:35:31 - 00:42:25",
+        "theme_description": "Schweitzer wird zur Reaktion von Bärbel Bas bei den Jusos angesprochen, in der sie von ‚Klassenkampf'-ähnlichen Ausdrücken sprach und Arbeitgeber kritisierte.",
+        "question_asked": "Markus Lanz zeigte Ausschnitte der Juso-Rede von Bas und fragte Schweitzer, was er von dieser ‚Klassenkampf-Rhetorik' hält und wie das die Debattenkultur beeinflusst.",
+        "question_intent": "Lanz wollte von Schweitzer wissen, ob er die Rhetorik von Bas selbst als problematisch findet und ob die SPD sich damit selbst schadet.",
+        "position": "Schweitzer versucht, zwischen Deeskalation und Substanz zu balancieren: ‚Das war eine Reaktion von ihr persönlich' auf das Gelächter. Er sagt aber auch, ‚bescheinigt wäre beides nicht nötig gewesen'. Er betont: ‚Hier geht es nicht um Marxismus, die SPD ist Teil der Bundesregierung.' Er erwähnt Industriestrompreise als Pro-Unternehmens-Politik. Später: ‚Es ist historisch korrekt, dass nicht Arbeitgeber aus guter Laune heraus irgendwann den Arbeiter etwas geschenkt [haben], es wurde erreicht.' Aber: ‚Wir sind nicht in diesen Phasen der frühen Arbeiterbewegung, das ist vorbei.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer adressiert das Thema Rhetorik und historischen Kontext, weicht aber der expliziten Frage aus, ob Bas' Rede selbst problematisch war. Er pivotiert stattdessen zu: ‚Das ist eine Reaktion auf unhöfliches Verhalten' und ‚Das ist nicht die Gesamtposition der Regierung'. Das ist ein Ausweich-Manöver; die Frage nach der Angemessenheit der Rhetorik wird nicht direkt beantwortet.",
+        "quotes": [
+          {
+            "text": "Das ist eine Reaktion auf die Empfindung, die Bärbel Bas hatte. So ist sie einzuschieben, das ist nicht die Position, die die Regierungsarbeit insgesamt trägt.",
+            "timestamp": "00:40:19",
+            "context": "Schweitzer versucht, Bas' Äußerung als Einzelreaktion zu kontextualisieren."
+          },
+          {
+            "text": "Wir sind nicht in diesen Phasen der frühen Arbeiterbewegung, das ist vorbei, wir müssen schauen dass wir die Wirtschaft am laufen halten.",
+            "timestamp": "00:41:13",
+            "context": "Schweitzer argumentiert, dass historische Klassenkampf-Kategorien nicht mehr anwendbar sind."
+          }
+        ],
+        "concrete_statements": [
+          "Bas' Rede war eine emotionale Reaktion auf unhöfliches Verhalten bei der Arbeitgeberrede.",
+          "Das ist nicht die offizielle SPD-Position zur Arbeitsmarktpolitik.",
+          "Die SPD unterstützt Pro-Unternehmens-Politik wie Industriestrompreise.",
+          "Historisch hatten Arbeitnehmer:innen ihre Rechte erkämpft, aber heute geht es um wirtschaftliche Stabilität."
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Arbeitgeber-Arbeitnehmer-Verhältnis",
+          "SPD-Strategie",
+          "Koalitionskohäsion"
+        ]
+      },
+      {
+        "title": "Rentenpaket-Abstimmung und Koalitionskrise",
+        "timestamp_range": "00:47:02 - 00:50:03",
+        "theme_description": "Schweitzer wird zu den Konsequenzen einer gescheiterten Abstimmung des Rentenpakets und zum allgemeinen Zustand der Koalition befragt.",
+        "question_asked": "Markus Lanz fragte: ‚Was passiert, wenn die Abstimmung jetzt schief geht in dieser Woche?' und ‚Können Sie uns hier versprechen, dass es eine große Rentenreform geben wird?'",
+        "question_intent": "Lanz wollte von Schweitzer eine Risiko-Einschätzung: Ist ein Scheitern der Abstimmung das Ende der Koalition? Wie kritisch ist die Lage?",
+        "position": "Schweitzer sagt offen: ‚Diese Bundesregierung hat ein massives Problem' (bei Scheitern). ‚Das weiß ich nicht, da ist die Arbeit dann in massiven Schwierigkeiten.' Er gibt zu machen sich Sorgen. Später: ‚Ich würde auch sagen, das darf nicht passieren, denn das ist es nicht wert.' Aber: ‚Im Moment sehe ich keine bessere Alternative im Deutschen Bundestag. Diese Regierung hat ein paar gute Ideen, hat auch einiges erreicht.' Er lenkt ab von der Frage ‚Ist eine Koalitionskrise zu erwarten?' auf: Das Rententhema wurde zu sehr zur Machtfrage hochstilisiert, die Jungen und andere haben sachliche Argumente, die auch berechtigt sind.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer antwortet auf ‚Was passiert beim Scheitern?' mit ‚Massive Probleme', gibt aber keine klare Einschätzung, ob das Koalitionsende bedeutet. Er pivotiert zu einer Kritik der Politisierung der Frage und betont, dass keine bessere Alternative im Bundestag sichtbar ist – das ist eine Umleitung zur Legitimation der Koalition statt zur Risiko-Analyse.",
+        "quotes": [
+          {
+            "text": "Diese Bundesregierung hat ein massives Problem. [...] Ehrlich gesagt, ich mache mir schon Sorgen. Ich mache mir Sorgen.",
+            "timestamp": "00:47:07",
+            "context": "Schweitzer gibt zu, dass ein Scheitern kritisch ist."
+          },
+          {
+            "text": "Im Moment sehe ich keine bessere Alternative im Deutschen Bundestag. Diese Regierung hat ein paar gute Ideen, hat auch einiges erreicht.",
+            "timestamp": "00:49:16",
+            "context": "Schweitzer rechtfertigt, warum die Koalition trotz Problemen weitermachen sollte."
+          }
+        ],
+        "concrete_statements": [
+          "Ein Scheitern der Abstimmung ist ein massives Problem für die Regierung.",
+          "Ich mache mir Sorgen, dass es schiefgeht.",
+          "Das darf nicht passieren.",
+          "Es gibt keine bessere Alternative im Bundestag.",
+          "Die Regierung hat gute Ideen, aber auch Fehler gemacht (z.B. Richterwahl)."
+        ],
+        "related_bundestag_topics": [
+          "Rentenpaket II",
+          "Koalitionsstabilität",
+          "Regierungsfähigkeit",
+          "Haushalt"
+        ]
+      },
+      {
+        "title": "Rentenreform und Kommissions-Prozess",
+        "timestamp_range": "00:55:04 - 00:57:48",
+        "theme_description": "Schweitzer wird nach konkreten Reformplänen für die Rente gefragt: Längere Arbeitszeit, späterer Renteneintritt oder private Vorsorge?",
+        "question_asked": "Markus Lanz fragte: ‚Können Sie uns hier versprechen, dass es eine große Rentenreform geben wird?' und später: ‚Worüber werden wir reden müssen – längere Arbeitslebenszeit oder späterer Renteneintritt?'",
+        "question_intent": "Lanz wollte konkrete Richtlinien von Schweitzer bekommen, auf welche Elemente (Lebensarbeitszeit, Renteneintrittsalter, kapitaldeckte Anteile) sich eine Reform konzentrieren wird.",
+        "position": "Schweitzer verspricht keine konkrete Reform, sondern: ‚Ich glaube, es ist richtig, dass wir alle Themen auf den Tisch legen.' Er betont, dass die Rentenkommission ihren Job richtig machen muss und nicht vorher schon Tabus festlegen sollte – auch wenn er persönlich inhaltliche Positionen hat. Er nennt Rahmenbedingungen: Das Renteneintrittsalter, Lebensarbeitszeit, kapitaldeckte Elemente könnten alle eine Rolle spielen. Er kritisiert die Riester-Rente als zu teuer und nur für eine Minderheit attraktiv. Zum zentralen demografischen Problem sagt er: ‚Der alte Spruch von Adenauer, Kinder bekommen die Menschen immer, der hat sich nicht so bewährt.' Er skizziert die Produktivitäts-Herausforderung durch KI.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schweitzer beantwortet die Frage ‚Welche Elemente werden reformiert?' mit ‚Alle müssen auf den Tisch', was transparent, aber wenig committal ist. Die Frage ‚Längere Arbeitszeit ja/nein?' wird explizit nicht mit Ja oder Nein beantwortet, sondern mit dem Hinweis auf die Kommission ausgewichen. Das ist eine strategische Vermeidung konkreter Zusagen.",
+        "quotes": [
+          {
+            "text": "Ich kann Ihnen das nicht versprechen, ich wünsche es mir aber.",
+            "timestamp": "00:55:04",
+            "context": "Schweitzer weist die Zusage einer Rentenreform ab."
+          },
+          {
+            "text": "Ich glaube, es ist richtig, dass wir alle Themen auf den Tisch legen. Da kann alles eine Rolle spielen, ich kann Ihnen über das Ergebnissicht sagen. Ich bin aber dafür, dass die Rentenkommission sich einschränkt.",
+            "timestamp": "00:55:52",
+            "context": "Schweitzer verweigert sich auf konkrete Prioritäten festzulegen."
+          }
+        ],
+        "concrete_statements": [
+          "Ich kann keine große Rentenreform nächstes Jahr versprechen.",
+          "Alle Themen müssen auf den Tisch: Lebensarbeitszeit, Renteneintrittsalter, private Vorsorge.",
+          "Die Rentenkommission muss ihre Arbeit ohne Tabu-Festlegungen durchführen.",
+          "Betriebsrente und Riester sind zu teuer / nicht attraktiv genug für breite Bevölkerung.",
+          "KI und Robotisierung werden Produktivität verändern – das muss in Rentendebatte einbezogen werden."
+        ],
+        "related_bundestag_topics": [
+          "Rentenpaket II",
+          "Rentenversicherung",
+          "Demografie",
+          "Arbeitsmarktpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die AfD sitzt seit einigen Jahren im Landtag von Rheinland-Pfalz.",
+        "timestamp": "00:20:45"
+      },
+      {
+        "claim": "Die Rentenbeitragssätze liegen aktuell bei 18,6 % und werden nach Berechnung auf 21 % oder höher steigen.",
+        "timestamp": "00:30:10"
+      },
+      {
+        "claim": "Der Haushaltszuschuss zur Rentenversicherung liegt aktuell bei 130 %.",
+        "timestamp": "00:32:05"
+      },
+      {
+        "claim": "Die Rentenversicherung ist ‚der stabilste Zweig seit acht Jahren' bei 18,6 %.",
+        "timestamp": "00:29:03"
+      },
+      {
+        "claim": "Die Riester-Rente ist inzwischen nur noch für eine Minderheit von Arbeitgebern/Arbeitnehmern attraktiv.",
+        "timestamp": "00:56:20"
+      }
+    ]
+  }
+}

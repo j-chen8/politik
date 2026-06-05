@@ -1,0 +1,360 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMC0wMV8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-10-01",
+    "politician": "Felix Banaszak",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "6e13cc94b0fc52a3",
+    "transcript_chars": 50004,
+    "caption_lines": 1882,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20589,
+    "tokens_out": 8779,
+    "cost_usd": 0.0257936,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.200Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Felix Banaszak, Bundesvorsitzender der Grünen, diskutiert mit Thorsten Frei (CDU/CSU-Kanzleramtsminister) unter Moderation von Sandra Maischberger über die Schwarz-Rote Koalition versus die Ampel-Bilanz, Energiewende und Klimapolitik. Der Ton ist sachlich, aber mit erkennbaren ideologischen Differenzen zu Wirtschafts- und Energiefragen; Banaszak wirkt defensiv gegenüber Kritik an der Ampel, betont aber auch Selbstkritik und warnt vor einseitiger Schuldzuweisung.",
+    "themes": [
+      {
+        "title": "Trumps Kritik an grüner Energiewende und deutsche Abhängigkeit",
+        "timestamp_range": "00:17:31 - 00:20:10",
+        "theme_description": "Diskussion über Trumps UN-Rede, in der er Deutschland für grüne Politik kritisierte und Banaszak ordnet diese Kritik ein und warnt vor neuer Abhängigkeit von Trump statt Putin.",
+        "question_asked": "Sandra Maischberger fragt Banaszak, wie Annalena Baerbock bei Trumps Kritik an der grünen Politik Deutschlands Contenance bewahren konnte, und später, ob Merz' Nicht-Anwesenheit bei der UN ein Fehler war.",
+        "question_intent": "Sandra Maischberger möchte wissen, wie die Grünen mit der Trump-Kritik umgehen und ob Merz die richtige Priorität setzte.",
+        "position": "Banaszak hält Trumps Kritik in Teilen für fehlgeleitet. Er bestätigt, dass 'an einer Stelle ein wahrer Kern' steckt — dass 'Deutschland unter Scholz und Merz den Weg zurück' gehe — warnt aber vor einseitiger Trump-Abhängigkeit: 'Die Hälfte des Gases, das wir importieren, kommt von Trump... Wollen wir uns so abhängig von Trump machen, wie wir es von Putin waren?' Die Merz-Laudatio Trumps sei persönlich gemeint, aber sachlich setze Merz einen ähnlichen Kurs fort. Merz' Nicht-Anwesenheit bei der UN rechtfertigt er mit Haushaltswoche und innenpolitischer Priorität.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Banaszak adressiert die inhaltliche Frage zu Trumps Kritik und zur Abhängigkeitsproblematik, verteidigt aber implizit auch die grüne Politik und kritisiert stattdessen den Merz-Kurs. Die Frage zur Contenance wird kurz beantwortet ('keine Sorgen'), dann pivotiert er zu inhaltlicher Kritik.",
+        "concrete_statements": [
+          "An einer Stelle war ein wahrer Kern: Deutschland geht unter Scholz und Merz den Weg zurück.",
+          "Wollen wir uns so abhängig von Trump machen, wie wir es von Putin waren?",
+          "Das Lob auf der einen Seite ist persönlich an Merz gemeint, aber in der Sache ist der Kurs ähnlich."
+        ],
+        "quotes": [
+          {
+            "text": "An einer Stelle war ein wahrer Kern: Deutschland geht unter Scholz und Merz den Weg zurück. Hin dazu, dass wir uns wieder daran orientieren: Dann sind wir nicht mehr von Putin abhängig, sondern von Trump.",
+            "timestamp": "00:18:37",
+            "context": "Banaszak differenziert Trumps UN-Kritik und warnt vor neuer außenpolitischer Abhängigkeit."
+          },
+          {
+            "text": "Die Frage ist, wollen wir uns so abhängig von Trump machen, wie wir es von Putin waren?",
+            "timestamp": "00:19:08",
+            "context": "Banaszak verdeutlicht die Abhängigkeitsproblematik bei Energieimporten und Außenpolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Außenpolitik gegenüber USA",
+          "Energiesicherheit",
+          "Abhängigkeitsrelationen"
+        ]
+      },
+      {
+        "title": "Wirtschaftsprobleme und Rolle des Klimaschutzes",
+        "timestamp_range": "00:20:42 - 00:26:30",
+        "theme_description": "Diskussion darüber, ob Klimaschutz oder andere Faktoren (Wettbewerb, Standortfaktoren) hauptsächlich für Wirtschaftsprobleme verantwortlich sind; Banaszak verteidigt differenzierte Sicht auf Energiepolitik.",
+        "question_asked": "Sandra Maischberger und dann Thorsten Frei kritisieren die Ampel, ob sie 'den kranken Weg' (Trumps Worte) mit grüner Politik gegangen ist; Frei behauptet, dass Klimaschutz zu Wirtschaftsproblemen geführt habe, und stellt die Frage, ob Banaszak Selbstkritik übt.",
+        "question_intent": "Frei möchte Banaszak dazu bringen, die Ampel-Energiewende als primäre Ursache für Wirtschaftsprobleme einzugestehen.",
+        "position": "Banaszak lehnt ab, Klimaschutz als Hauptschuldiger zu sehen. Er sagt, die 'Probleme, vor denen die deutsche Wirtschaft steht', hätten nicht primär mit Klimaschutz zu tun, sondern mit 'enormem Wettbewerbsdruck', schlechten Standortfaktoren und 'unfairem Mitbewerb'. Er anerkennt aber auch: 'Mit den höchsten Strompreisen haben wir ein Problem.' Die Energiewende könne 'marktwirtschaftlicher werden', und er verteidigt Robert Habecks Plan für 12,5 GW Gaskraftwerke als realistisch gegenüber Reiches 20-GW-Plan. Selbstkritik existiert, richte sich aber nicht gegen die Zielsetzung, sondern gegen den Umsetzungsweg.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Banaszak adressiert die Wirtschaftsfrage, verschiebt aber die Verantwortung von Klimapolitik auf Wettbewerbsdruck und Standortfaktoren. Er gibt zu, dass Strompreise ein Problem sind, verteidigt aber die Ampel-Energiewende als prinzipiell richtig. Damit beantwortet er Freis Frage, ob Klimaschutz schuld sei, mit 'teilweise ja, aber nicht hauptsächlich'.",
+        "concrete_statements": [
+          "Ich teile die Analyse in der Sache nicht, dass die Probleme vor denen die deutsche Wirtschaft steht mit Klimaschutz zu tun haben.",
+          "Das Problem ist, dass wir einen unfairen Mitbewerb haben. Wir tun zu wenig dagegen.",
+          "Mit den höchsten Strompreisen haben wir ein Problem... Aber der Weg dahin muss marktwirtschaftlicher werden."
+        ],
+        "quotes": [
+          {
+            "text": "Ich teile die Analyse in der Sache nicht, dass die Probleme, vor denen die deutsche Wirtschaft steht, mit Klimaschutz zu tun haben. Wir haben einen enormen Wettbewerbsdruck.",
+            "timestamp": "00:21:15",
+            "context": "Banaszak widerspricht Freis Diagnose, dass Klimapolitik hauptverantwortlich sei."
+          },
+          {
+            "text": "Der Weg dahin muss marktwirtschaftlicher werden.",
+            "timestamp": "00:22:51",
+            "context": "Banaszak räumt ein, dass die Umsetzung der Energiewende optimiert werden könnte, bekennt sich aber zur Zielsetzung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Energiewende",
+          "Wettbewerbspolitik",
+          "Strompreise"
+        ]
+      },
+      {
+        "title": "Kernenergie: Perspektiven und Realismus gegenüber Fusion",
+        "timestamp_range": "00:28:39 - 00:31:18",
+        "theme_description": "Debatte über Atomkraft als Energiequelle; Frei präsentiert Atomkraft und Fusionsforschung als realistische Optionen, Banaszak lehnt Atomkraft als kurzfristige Lösung ab und kritisiert Fusionsversprechen als zu weit entfernt.",
+        "question_asked": "Sandra Maischberger fragt, wie Banaszak Trumps Atomkraft-Lob und Dorothee Bärs Fusionsforscher-Vorschlag aus der Kabinettsklausur interpretiert; Frei verteidigt Investitionen in Fusionsforschung.",
+        "question_intent": "Sandra Maischberger möchte wissen, ob Banaszak Atomkraft als Alternative zur grünen Energiewende sieht.",
+        "position": "Banaszak lehnt Atomkraft als kurzfristige Lösung ab. Er argumentiert, dass 'optimistische Experten' davon ausgehen, dass Fusionskraftwerke in '25 bis 30 Jahren' einsatzfähig sind — also nach dem Zeitpunkt, an dem die Regierung Klimaneutralität erreichen will. Es sei 'keine Technologie, die uns dabei hilft'. Forschungsinvestitionen sind akzeptabel ('da kann man gerne Geld reinstecken'), aber keine Alternative. Zu Gaskraftwerken sagt er differenziert: Sie sind kurzfristig unvermeidlich, aber das Detail ist wichtig — Habecks Plan für 12,5 GW sei realistisch, höhere Pläne würden 'nicht fusionieren'. Wasserstoff-fähige Gaskraftwerke sind 'derzeit alternativlos', perspektivisch aber auf grünen Wasserstoff angewiesen, der wiederum durch Energiewende entsteht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak beantwortet klar: Atomkraft ist kurzfristig keine Lösung, Fusion ist zu weit entfernt. Er begründet mit Zeitrahmen und erklärt seine Position zu Gaskraftwerken und Wasserstoff sachlich. Er adressiert sowohl Trumps Atomkraft-Lob als auch Bärs Fusionsvorschlag.",
+        "concrete_statements": [
+          "Da werden wir in 25 bis 30 Jahren zu rechnen haben, also nach dem Zeitpunkt, wo wir behaupten, klimaneutral sein zu wollen. Das ist keine Technologie, die uns dabei hilft.",
+          "Wasserstoff-fähige Gaskraftwerke werden mit fossilem Gas betrieben, derzeit alternativlos, aber die Perspektive dauerhaft ist grüner Wasserstoff.",
+          "Robert Habeck hat geplant, 12,5 GW. Das war sehr schwer durchsetzbar aus Wettbewerbsgründen. Frau Reiche versucht es in 20 GW. Meine These ist, das wird nicht fusionieren."
+        ],
+        "quotes": [
+          {
+            "text": "Die Idee, dass ein Kraftwerk oder eine Technologie, von der die optimistischen Experten sagen, da werden wir in 25 bis 30 Jahren zu rechnen haben, also nach dem Zeitpunkt, wo sie behaupten, klimaneutral sein zu wollen. Das ist keine Technologie, die uns dabei hilft.",
+            "timestamp": "00:29:10",
+            "context": "Banaszak erklärt, warum Atomfusion kurzfristig keine Lösung ist."
+          },
+          {
+            "text": "Wasserstoff-fähige Gaskraftwerke, die werden mit fossilem Gas betrieben, derzeit alternativlos, aber die Perspektive dauerhaft ist grüner Wasserstoff.",
+            "timestamp": "00:30:16",
+            "context": "Banaszak differenziert zwischen kurzfristigen Übergangslösungen und langfristigem Ziel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Kernenergie",
+          "Forschungsförderung",
+          "Wasserstoffwirtschaft"
+        ]
+      },
+      {
+        "title": "Selbstkritik der Ampel und Cem Özdemirs Kritik an Habeck",
+        "timestamp_range": "00:31:54 - 00:33:56",
+        "theme_description": "Banaszak antwortet auf Frage, wie er sich erklärt, dass Grünen-Politiker Cem Özdemir die Energiepolitik unter Habeck kritisiert.",
+        "question_asked": "Sandra Maischberger fragt Banaszak, wie er erklären kann, dass Cem Özdemir Robert Habeck kritisiert und ob das mit der Landtagswahl zusammenhängt.",
+        "question_intent": "Sandra Maischberger möchte wissen, ob interne grüne Kritik an Habeck ein Zeichen mangelnder Selbstkritik oder von Kalkül ist.",
+        "position": "Banaszak weicht aus und sagt, er wünsche sich, dass Özdemir die Landtagswahl gewinnt und habe 'volle Unterstützung'. Dann anerkennt er: 'Was er beschreibt, ist richtig.' Allerdings globalisiert er das Problem: 'Wir haben in den letzten Jahren, nicht nur Deutschland, sondern global, die Situation, dass viele Menschen, die überzeugt waren, dass Klimaneutralität der richtige Weg ist, jetzt skeptisch sind.' Die Transformation sei 'kein Spaziergang', manchmal läufe das nicht perfekt. Kritik an der Regierung leitet er aber um: Trump und ökonomische Interessen 'bekämpfen diese Politik bewusst', nicht nur Fehler in der Umsetzung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Banaszak adressiert Özdemirs Kritik nur indirekt, anerkennt aber grundsätzlich Probleme ('Was er beschreibt, ist richtig'). Er relativiert aber durch Kontextualisierung (globales Phänomen) und externe Kritik (Trump, Wirtschaftsinteressen) statt tiefergehende Ampel-Selbstkritik zu üben.",
+        "concrete_statements": [
+          "Was er beschreibt, ist richtig.",
+          "Wir haben in den letzten Jahren, nicht nur Deutschland, sondern global, die Situation, dass viele Menschen, die überzeugt waren, dass Klimaneutralität der richtige Weg ist, jetzt skeptisch sind.",
+          "Diese Politik wird bewusst bekämpft. Trump spricht nicht nur für sich, da sind auch ökonomische Interessen dahinter."
+        ],
+        "quotes": [
+          {
+            "text": "Die Transformation ist kein Spaziergang, es ist ein Marathon. Manchmal läuft das nicht perfekt.",
+            "timestamp": "00:32:24",
+            "context": "Banaszak räumt implizit Umsetzungsprobleme ein, relativiert diese aber als normal."
+          },
+          {
+            "text": "Diese Politik wird bewusst bekämpft. Trump spricht nicht nur für sich, da sind auch ökonomische Interessen dahinter.",
+            "timestamp": "00:32:55",
+            "context": "Banaszak lenkt von interner Kritik ab und fokussiert externe Widerstände."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Grüne Parteikultur",
+          "Habeck",
+          "Klimapolitik"
+        ]
+      },
+      {
+        "title": "Fossile Interessen und Regierungspolitik",
+        "timestamp_range": "00:33:26 - 00:35:28",
+        "theme_description": "Banaszak unterstellt der neuen Merz-Regierung, dass sie fossile Interessen vertritt; Frei weist das zurück.",
+        "question_asked": "Thorsten Frei wirft vor, dass Banaszak mit der Ampel für wirtschaftliche Probleme verantwortlich ist und behauptet, Scholz/Habeck habe Klimainvestitionen als Wirtschaftswunder gepriesen. Frei fragt implizit, ob Banaszak das akzeptiert.",
+        "question_intent": "Frei möchte Banaszak zwingen, Ampel-Verantwortung zu akzeptieren und die Grünen als wirtschaftsschädlich darzustellen.",
+        "position": "Banaszak kontert, dass Merz-Regierung jetzt 'die fossilen Interessen vertritt', während Wind- und Solarbranche sowie Privatpersonen mit Solaranlagen 'jetzt in die Röhre gucken'. Er warnt: 'Wir werden alle einen hohen Preis dafür bezahlen.' Zu Freis Kritik an Scholz/Habeck sagt er, dass Klimaschutz nur dann erfolgreich sei, 'wenn wir es ökonomisch vernünftig machen'. Allerdings betont er: 'Es reicht nicht aus, dass wir unsere CO2-Emissionen reduzieren' — das müsse aber 'ökonomisch vernünftig' geschehen, nicht durch Deindustrialisierung.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt Freis Vorwurf der Ampel-Verantwortung zu adressieren, dreht Banaszak den Spieß um und wirft der neuen Regierung vor, fossile Interessen zu vertreten. Das ist eine klassische Pivot-Strategie.",
+        "concrete_statements": [
+          "Die Regierung jetzt die fossilen Interessen vertritt.",
+          "Wir werden alle einen hohen Preis dafür bezahlen.",
+          "Es reicht nicht aus, dass wir unsere CO2-Emissionen reduzieren... es wird nur dann erfolgreich sein, wenn wir es ökonomisch vernünftig machen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich doch, genau das unterstelle ich dieser Regierung, dass die Akteure in der Wirtschaft, die Windenergiebranche, Solarbranche, Menschen, die überlegt haben, ich möchte mich mit Solar selbst versorgen, die gucken jetzt in die Röhre, weil die Regierung jetzt die fossilen Interessen vertritt.",
+            "timestamp": "00:33:26",
+            "context": "Banaszak kontert Freis Kritik mit Gegenvorwurf."
+          },
+          {
+            "text": "Wir werden alle einen hohen Preis dafür bezahlen.",
+            "timestamp": "00:33:26",
+            "context": "Banaszak warnt vor Konsequenzen der Energiewende-Bremsung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Wirtschaftspolitik",
+          "Erneuerbare Energien",
+          "Industrie"
+        ]
+      },
+      {
+        "title": "Frieden, Ukraine und Militäraufbau",
+        "timestamp_range": "00:35:28 - 00:36:32",
+        "theme_description": "Kurze Frage von Sandra Maischberger, ob Deutschland noch im Frieden lebt; Banaszak beantwortet mit Verweis auf hybride Kriegsführung und Drohnen.",
+        "question_asked": "Sandra Maischberger fragt zweimal: 'Leben wir in Deutschland noch im Frieden?' — zuerst als rhetorische Frage nach Freis Antwort, dann später zu Banaszak.",
+        "question_intent": "Sandra Maischberger möchte eine klare Antwort, ob Deutschland sich in einem Kriegszustand befindet.",
+        "position": "Banaszak antwortet: 'Wir werden hybrid angegriffen. Die Drohnenbewegung über deutschem, europäischem Luftraum sind ein Hinweis darauf, dass Putin die Grenzen austestet. Wir sind deutlich im Visier.' Er warnt: 'Wenn Putin in der Ukraine merkt, dass er nicht weiter kommt, könnte er die Nato selbst ins Visier zu nehmen.' Das impliziert, dass formaler Frieden besteht, aber strategische Bedrohung real ist. Er geht nicht so weit, einen Kriegszustand auszurufen, aber signalisiert, dass hybride Aggression bereits läuft.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak beantwortet die Frage mit differenzierter Analyse: technisch noch Frieden, aber hybride Kriegsführung ist real und Eskalationsrisiko ist präsent.",
+        "concrete_statements": [
+          "Wir werden hybrid angegriffen.",
+          "Die Drohnenbewegung über deutschem, europäischem Luftraum sind ein Hinweis darauf, dass Putin die Grenzen austestet.",
+          "Wir sind deutlich im Visier."
+        ],
+        "quotes": [
+          {
+            "text": "Wir werden hybrid angegriffen. Die Drohnenbewegung über deutschem, europäischem Luftraum sind ein Hinweis darauf, dass Putin die Grenzen austestet. Wir sind deutlich im Visier.",
+            "timestamp": "00:36:32",
+            "context": "Banaszak antwortet auf Maischbergers Frage zum Friedenszustand."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Nationale Sicherheit",
+          "NATO",
+          "Hybride Kriegsführung",
+          "Rüstung"
+        ]
+      },
+      {
+        "title": "Rentenreformen und Lebensarbeitszeit",
+        "timestamp_range": "00:36:32 - 00:38:37",
+        "theme_description": "Banaszak lehnt pauschale Erhöhung der Lebensarbeitszeit ab und kritisiert Plan, den Pflegegrad 1 abzuschaffen.",
+        "question_asked": "Sandra Maischberger fragt, ob Banaszak der Aussage von Katharina Reiche zustimmt, dass die Lebensarbeitszeit steigen soll; später fragt Frei, ob der Pflegegrad 1 abgeschafft werden soll.",
+        "question_intent": "Sandra Maischberger und Frei möchten wissen, ob Banaszak Rentenreformen unterstützt.",
+        "position": "Banaszak lehnt pauschal steigende Lebensarbeitszeit ab, 'weil sie keine Unterscheidung macht zwischen Menschen wie Herrn Frei und mir und Leuten in der Krankenpflege und auf dem Bau'. Das halte er 'nicht für den richtigen Weg'. Zum Pflegegrad 1 sagt er deutlicher: 'Ich halte das für einen Fehler. Ein schlechtes Signal an viele Menschen, die ihr Leben weiterleben wollen, ohne in die stationäre Pflege zu gehen. Das ist ein Ausdruck der sozial und gesundheitspolitischen Ideenlosigkeit.' Er fordert implizit, dass differenzierte Lebensarbeitszeiten notwendig sind und Pflegeversicherung inklusiv ausgestaltet werden sollte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak beantwortet klar und begründet seine Ablehnung mit sozialen Differenzierungen (körperliche vs. intellektuelle Berufe) und mit Auswirkungen auf vulnerable Gruppen.",
+        "concrete_statements": [
+          "Nicht so pauschal, weil sie keine Unterscheidung macht zwischen Menschen wie Herrn Frei und mir und Leuten in der Krankenpflege und auf dem Bau.",
+          "Ich halte das für einen Fehler. Ein schlechtes Signal an viele Menschen, die ihr Leben weiterleben wollen, ohne in die stationäre Pflege zu gehen.",
+          "Das ist ein Ausdruck der sozial und gesundheitspolitischen Ideenlosigkeit."
+        ],
+        "quotes": [
+          {
+            "text": "Nicht so pauschal, weil sie keine Unterscheidung macht zwischen Menschen wie Herrn Frei und mir und Leuten in der Krankenpflege und auf dem Bau. Das halte ich nicht für den richtigen Weg.",
+            "timestamp": "00:36:32",
+            "context": "Banaszak lehnt pauschale Rentenreformen ab."
+          },
+          {
+            "text": "Ich halte das für einen Fehler. Ein schlechtes Signal an viele Menschen, die ihr Leben weiterleben wollen, ohne in die stationäre Pflege zu gehen. Das ist ein Ausdruck der sozial und gesundheitspolitischen Ideenlosigkeit.",
+            "timestamp": "00:38:07",
+            "context": "Banaszak kritisiert scharf die Pläne zur Abschaffung des Pflegegrades 1."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Pflegeversicherung",
+          "Sozialpolitik",
+          "Lebensarbeitszeit"
+        ]
+      },
+      {
+        "title": "Asylzahlen, AfD-Wahlergebnisse und Populismus",
+        "timestamp_range": "00:38:37 - 00:41:46",
+        "theme_description": "Diskussion, ob sinkende Asylzahlen ein Erfolg der neuen Koalition sind und warum die AfD-Umfragewerte trotzdem steigen.",
+        "question_asked": "Sandra Maischberger fragt, ob sinkende Asylzahlen ein Erfolg von Schwarz-Rot sind; Frei behauptet, es sei ein Erfolg der Regierung.",
+        "question_intent": "Sandra Maischberger möchte wissen, wem der Rückgang von Asylzahlen zuzuordnen ist.",
+        "position": "Banaszak sagt klar: 'Nein, das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.' Damit weist er die Anrechnung auf die aktuelle Regierung zurück. Allerdings räumt er ein: 'Obwohl die Zahlen zurückgehen, bleibt das Thema auf der Agenda.' Er erklärt die steigenden AfD-Werte nicht mit Migration, sondern: 'Wenn Populisten und Extremisten stark sind, dann zeigt es eine Unzufriedenheit der Leute mit der Politik im Land... mit Zukunftszuversicht, den wirtschaftlichen Gegebenheiten.' Er sieht das Problem in 'staatlichem Versagen' in seinem Wahlkreis (Duisburg-Nord, AfD-Hochburg): Armut, schlechte Infrastruktur (Bahn), was zu Vertrauensverlust führt. Seine Sorge: 'Merz enorme Erwartungen geweckt hat, als er gesagt hat, mit mir wird alles besser. Jetzt sieht man, dass stimmt nicht.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak adressiert beide Fragen (Asylzahlen-Erfolg und AfD-Anstieg) mit klarer Begründung. Er ordnet die Asylzahlen dem außenpolitischen Kontext (Assad-Sturz) zu und erklärt AfD-Erfolg durch strukturelle Unzufriedenheit, nicht durch Migrations-Populismus der Regierung.",
+        "concrete_statements": [
+          "Das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.",
+          "Wenn Populisten und Extremisten stark sind, dann zeigt es eine Unzufriedenheit der Leute mit der Politik im Land.",
+          "Da ist staatliches Versagen spürbar. Man ist mit Armut konfrontiert. Man muss Glück haben, wenn eine Bahn kommt.",
+          "Meine Sorge ist, dass Merz enorme Erwartungen geweckt hat, als er gesagt hat, mit mir wird alles besser. Jetzt sieht man, dass stimmt nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, das ist im Kern ein Erfolg derer, die dafür gesorgt haben, dass Assad nicht mehr Machthaber ist in Syrien.",
+            "timestamp": "00:38:37",
+            "context": "Banaszak weist Erfolgsanrechnung zurück."
+          },
+          {
+            "text": "In meinem Wahlkreis, im Duisburger Norden, das ist eine der Hochburgen der AfD. Da ist staatliches Versagen spürbar. Man ist mit Armut konfrontiert. Man muss Glück haben, wenn eine Bahn kommt.",
+            "timestamp": "00:41:46",
+            "context": "Banaszak begründet AfD-Erfolg mit lokalen Strukturproblemen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Asylpolitik",
+          "AfD",
+          "Populismus",
+          "Wahlkreisarbeit"
+        ]
+      },
+      {
+        "title": "Friedensnobelpreis und Trump",
+        "timestamp_range": "00:43:54 - 00:44:41",
+        "theme_description": "Kurze Frage von Sandra Maischberger, ob Donald Trump den Friedensnobelpreis verdient; Banaszak antwortet knapp.",
+        "question_asked": "Sandra Maischberger fragt: 'Hat Donald Trump den Friedensnobelpreis verdient?'",
+        "question_intent": "Sandra Maischberger möchte wissen, wie Banaszak Trumps Außenpolitik (insbesondere Gaza-Friedensplan) bewertet.",
+        "position": "Banaszak antwortet kurz: 'Nein.' Keine Begründung in diesem Moment, aber im Kontext vorheriger Diskussionen zu Trump (Abhängigkeit, fossile Interessen) kann man schließen, dass er Trumps außenpolitische Bilanzen nicht als Friedensleistung einstuft.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Banaszak antwortet unmissverständlich mit klarem 'Nein'. Keine Elaboration nötig — die Antwort ist vollständig und eindeutig.",
+        "concrete_statements": [
+          "Nein."
+        ],
+        "quotes": [
+          {
+            "text": "Nein.",
+            "timestamp": "00:43:54",
+            "context": "Banaszaks kurze Antwort auf Maischbergers Frage zum Friedensnobelpreis für Trump."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "USA",
+          "Friedenspolitik",
+          "Gaza-Konflikt"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Hälfte des Gases, das Deutschland importiert, kommt von Trump.",
+        "timestamp": "00:19:08"
+      },
+      {
+        "claim": "Robert Habeck hat geplant, 12,5 GW Gaskraftwerke auszubauen.",
+        "timestamp": "00:30:16"
+      },
+      {
+        "claim": "Frau Reiche versucht es mit 20 GW Gaskraftwerken.",
+        "timestamp": "00:30:16"
+      },
+      {
+        "claim": "Im August waren es 60% weniger Asylanträge.",
+        "timestamp": "00:39:09"
+      },
+      {
+        "claim": "Europaweit sind Asylanträge um 20% zurückgegangen, in Deutschland um 45%.",
+        "timestamp": "00:39:39"
+      }
+    ]
+  }
+}

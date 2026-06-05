@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-15-januar-2026-100",
+    "video_id": "illner-2026-01-15",
+    "politician": "Annalena Baerbock",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "1d9f33d763bcb929",
+    "transcript_chars": 58286,
+    "caption_lines": 2896,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23699,
+    "tokens_out": 5799,
+    "cost_usd": 0.021077600000000002,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.550Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Annalena Baerbock, seit September 2025 Präsidentin der UN-Generalversammlung, nimmt zur Sendung „Maybrit Illner\" aus New York zu Telekonferenz teil. Sie argumentiert für die Verteidigung des Völkerrechts und der UN-Charta als „Lebensversicherung\" aller Staaten angesichts von Trumps Expansionsplänen (Grönland, Venezuela). Sie betont, dass die Mehrheit der UN-Staaten geschlossen gegen Regelbruch eintreten muss, und positioniert sich gegen Argumente, dass Völkerrecht Diktatoren „schützt\" – es gebe alternative rechtliche Hebel wie den Internationalen Strafgerichtshof.",
+    "themes": [
+      {
+        "title": "Rolle der UN gegen territoriale Expansion",
+        "timestamp_range": "00:18:31 - 00:21:13",
+        "theme_description": "Kann die UN Donald Trump von der Annexion Grönlands abhalten und welche Instrumente stehen ihr zur Verfügung?",
+        "question_asked": "Maybrit Illner fragt direkt, ob die Vereinten Nationen den US-Präsidenten davon abhalten können, in Grönland einzumarschieren, nachdem sie die Diskussionsbeiträge der anderen Gäste verfolgt hat.",
+        "question_intent": "Illner möchte wissen, ob die UN praktische Handlungsfähigkeit hat oder nur ein symbolisches Forum bleibt.",
+        "position": "Baerbock antwortet zweistufig: (1) Die UN allein können Trump nicht stoppen – es brauche klare Signale des Sicherheitsrats und der Europäer sowie eine einheitliche Haltung der Mitgliedstaaten, besonders Lateinamerikas. Sie betont, dass die Generalversammlung mit 193 Mitgliedern signalisieren kann: „wir stehen ein für das Völkerrecht. Wir stehen ein für diese Charta, weil sie unsere Lebensversicherung ist.“ (2) Sie verweist auf ein aktuelles Beispiel: Bei Trumps ursprünglichem Rivieraplan für Gaza habe eine 140-Staaten-Konferenz unter Führung Saudi-Arabiens und Frankreichs Einheit gezeigt, woraufhin die USA ihren Friedensplan umgestaltet hätten. Die zentrale Botschaft: Geschlossene Mehrheit stoppt Regelbruch.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baerbock adressiert die Frage nach UN-Handlungsfähigkeit, vermeidet aber eine klare Antwort auf ‚Können sie Trump abhalten' und verlagert die Verantwortung auf die Mitgliedstaaten und deren Geschlossenheit. Sie beschreibt eher Bedingungen (‚wenn die Mehrheit…') als operative UN-Kapazitäten. Dies ist eine Antwort auf die Intention (UN-Grenzen zeigen), aber keine vollständige direktive Antwort auf die Frage selbst.",
+        "concrete_statements": [
+          "Die Vereinten Nationen sind stark, wenn die Mehrheit der Staaten deutlich sagt, bis hierhin und nicht weiter.",
+          "Es braucht das klare Signal aller anderen Mitglieder des Sicherheitsrates, das klare Signal der Europäer.",
+          "Wenn deutlich wird, dass Völkermord nicht verhindert werden kann am Verhandlungstisch, gibt es die Aufgabe [für UN-Missionen], die kann man nur gemeinsam mit einem Mandat des Sicherheitsrates lösen."
+        ],
+        "quotes": [
+          {
+            "text": "Die Vereinten Nationen sind stark, wenn die Mehrheit der Staaten deutlich sagt, bis hierhin und nicht weiter.",
+            "timestamp": "00:21:07",
+            "context": "Baerbock beschreibt die kollektive Macht der UN als Gegenpol zu Trumps Expansionsplänen."
+          },
+          {
+            "text": "Wir stehen ein für das Völkerrecht. Wir stehen ein für diese Charta, weil sie unsere Lebensversicherung ist.",
+            "timestamp": "00:18:31",
+            "context": "Antwort auf Illners zentrale Frage, ob Völkerrecht gegen Großmächte noch zählt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "UN-Reform",
+          "Sicherheitsrat-Veto",
+          "Multilateralismus",
+          "Völkerrecht",
+          "Charta der Vereinten Nationen"
+        ]
+      },
+      {
+        "title": "Präzedenzfall Grönland und Kollektivlogik",
+        "timestamp_range": "00:20:31 - 00:22:27",
+        "theme_description": "Wenn Trump Grönland annektiert, folgen andere Länder – warum ist dies ein systemisches Risiko für die internationale Ordnung?",
+        "question_asked": "Indirekte Frage in Baerbocks eigenem Redebeitrag: Sie stellt die rhetorische Frage ‚Die Frage ist, welches Land folgt als nächstes? Dann ist kein Land mehr sicher' und erwähnt, dass lateinamerikanische Staatschefs fragen, ‚welches Land ist das nächste?', während Trump Mexiko und anderen Staaten gedroht habe.",
+        "question_intent": "Baerbock will das domino-theoretische Argument verdeutlichen: Ein Regelbruch durch eine Großmacht macht alle kleineren Länder verwundbar.",
+        "position": "Baerbock argumentiert: (1) Die Frage ‚Wer kommt als nächstes?' ist nicht abstrakt. (2) Lateinamerikanische Länder berichten, dass die Europäer sie früher um Unterstützung gebeten hätten (gegen Nordstream, für europäische Friedensordnung) – jetzt fragen diese Länder, ob sie die nächsten Ziele sind. (3) Trump habe Mexico und anderen Staaten gedroht. (4) Eine geschlossene Haltung aller Unterzeichner der UN-Charta ist daher existenziell: Sie signalisiert, dass Regelbruch Konsequenzen hat. Ohne dieses Signal wird die internationale Ordnung zur Jagd.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baerbock articulates a complete argument on systemic risk. She doesn't answer a direct question from Illner here, but develops her own theme within her opening statement—which is legitimate for an expert witness role. The logic is clear and supported by recent diplomatic feedback (Latin American representatives).",
+        "concrete_statements": [
+          "Die Frage ist, welches Land folgt als nächstes? Dann ist kein Land mehr sicher.",
+          "Die lateinamerikanischen Staaten fragen, welches Land ist das nächste? Mexiko und anderen Staaten wurde gedroht.",
+          "Es kommt auf eine geschlossene Haltung derjenigen an, die hinter der Charta der Vereinten Nationen geschlossen stehen."
+        ],
+        "quotes": [
+          {
+            "text": "Die Frage ist, welches Land folgt als nächstes? Dann ist kein Land mehr sicher.",
+            "timestamp": "00:20:31",
+            "context": "Baerbock articulates the escalation risk if Greenland precedent is allowed to stand."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Stabilität",
+          "Kleine und mittlere Staaten",
+          "Regelbasierte internationale Ordnung",
+          "Sicherheitsgarantien"
+        ]
+      },
+      {
+        "title": "Völkerrecht schützt nicht Diktatoren",
+        "timestamp_range": "00:22:27 - 00:24:18",
+        "theme_description": "Ist das Völkerrecht eine Fassade, die Diktatoren wie Maduro und die Ajatollahs schützt, anstatt sie zur Rechenschaft zu ziehen?",
+        "question_asked": "Maybrit Illner fragt provokativ, ob das Völkerrecht nicht Diktatoren schützt – Maduro und das Ajatollah-Regime sollen fallen, aber das Völkerrecht erlaube es ihnen, sich zu verschanzen, solange sie keinen formalen Krieg führen. Ist es also bloße Fassade?",
+        "question_intent": "Illner möchte Baerbock zur Debatte stellen, ob Völkerrecht nicht moralisch fragwürdig ist, wenn es Despoten in der Praxis immunisiert.",
+        "position": "Baerbock lehnt diese Einordnung ab und argumentiert: (1) Das Völkerrecht selbst enthält Ausnahmen – militärische Intervention ist zulässig bei Völkermord. (2) Entscheidend ist: Völkerrecht verbietet einem einzelnen Land, selbst zu definieren, wann Intervention gerechtfertigt ist – das verhindert Willkür. (3) Es gibt alternative rechtliche Hebel: Menschenrechtsschutz, Internationale Strafgerichtshof (der gegen Putin wie gegen Venezuela Ermittlungen führt), Sanktionen. (4) Das Argument, es gäbe keine Alternativen, sei falsch: „Wenn die Kraft auf die Verteidigung der Menschenrechte eingesetzt würde, könnte man das durchführen.“",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Baerbock adressiert direkt Illners Kernfrage und widerlegt die Prämisse (Völkerrecht als bloße Fassade). Sie artikuliert eine kohärente normative Position: Völkerrecht ist nicht Schutz von Diktatoren, sondern Ordnung gegen Willkür; es hat Ventile für Zwangsfälle und alternative Instrumente. Dies ist substanziell und direkt auf Illners Intention bezogen.",
+        "concrete_statements": [
+          "Das Völkerrecht verbietet, dass ein Land für sich definiert, wir finden jetzt, wo wir militärisch interveniert werden.",
+          "Der Internationale Strafgerichtshof hat Investigationen durchgeführt [gegen Menschenrechtsverletzungen], so wie es bei Putin auch stattgefunden hat, auch mit Blick auf Venezuela.",
+          "Leider unterstützen nicht alle Sicherheitsratsmitglieder, inklusive der USA, den Internationalen Strafgerichtshof. Gerade haben die Amerikaner erklärt, dass sie die unterschiedlichen Institutionen verlassen.",
+          "Das Argument, es gäbe nichts anderes, ist falsch."
+        ],
+        "quotes": [
+          {
+            "text": "Das Völkerrecht verbietet, dass ein Land für sich definiert, wir finden jetzt, wo sie militärisch interveniert werden. Das Völkerrecht hat andere Hebel.",
+            "timestamp": "00:23:05",
+            "context": "Kernaussage zu alternativen rechtlichen Instrumenten gegen Diktatoren ohne Bruch des Völkerrechts."
+          },
+          {
+            "text": "Wenn die Kraft auf die Verteidigung der Menschenrechte eingesetzt würde, könnte man das durchführen.",
+            "timestamp": "00:23:05",
+            "context": "Baerbock kritisiert implizit, dass westliche Staaten diese Hebel nicht nutzen, statt Völkerrecht als Ausrede."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationales Strafrecht",
+          "Menschenrechte",
+          "Sanktionen",
+          "Charta der Vereinten Nationen Artikel 7 und 42",
+          "Vetorecht Sicherheitsrat"
+        ]
+      },
+      {
+        "title": "Alternative zu einseitiger US-Militärintervention",
+        "timestamp_range": "00:24:42 - 00:26:12",
+        "theme_description": "Wenn die UN keine Blauhelm-Missionen entsenden kann, wird Trump selbst zum Friedensbringer – wie kann dies verhindert werden?",
+        "question_asked": "Maybrit Illner argumentiert: Wenn UN-Truppen geschickt werden können aber nicht entsandt werden, stellt sich Trump in die Tür und löst Konflikte selbst. Dies sei das Problem. Baerbock wird implizit gefragt: Ist dies nicht ein strukturelles Problem der UN?",
+        "question_intent": "Illner möchte verstehen, wie die UN ihre Glaubwürdigkeit zurückgewinnt, wenn Trump als private Friedensmacht auftritt.",
+        "position": "Baerbock antwortet mehrdimensional: (1) Wenn Trump-ähnliche Logik akzeptiert wird (‚ich löse das selbst'), akzeptieren wir morgen, dass eine Großmacht auch unser Land angeifen darf – das ist inakzeptabel. (2) Trumps Argumentation reproduziert Putins Rhetorik: Putin sagte nicht ‚ich breche Völkerrecht', sondern ‚der Präsident [der Ukraine] sei nicht legitim' – und invasive die Ukraine. (3) Die UN sind nicht perfekt, aber sie entsenden Peacekeeping-Missionen (Libanon) – diese laufen aus, weil die USA Unterstützung entziehen. (4) Wirkliche Stärke kann nur im Rahmen von internationalem Recht gezeigt werden. Eine Blauhelm-Mission in Gaza scheitert, weil viele Länder sagen: wir können nur mitmachen, wenn sie in das multilaterale System eingebettet ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baerbock beantwortet die Strukturkritik an der UN nicht direkt (‚Ist dies ein UN-Problem?'), sondern verweist auf externe Faktoren (US-Truppenentzug) und argumentiert normativ (warum wir die UN brauchen). Sie adressiert Illners Intention (wie man Trump als private Macht hindert), weicht aber einer direkten Evaluation der UN-Handlungsfähigkeit aus.",
+        "concrete_statements": [
+          "Wir haben ähnliche Argumente vom russischen Präsidenten gehört. Der argumentierte auch nicht, er möchte das Völkerrecht brechen und marschiert deswegen in der Ukraine ein. Er argumentierte, dass der Präsident nicht legitim sei.",
+          "Wahre Stärke kann nur gezeigt werden im Rahmen des internationalen Rechts.",
+          "Diese Truppen können bei Konflikten aktiviert und eingesetzt werden. Die Vereinten Nationen sind alles andere als perfekt, aber wichtig."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben ähnliche Argumente vom russischen Präsidenten gehört. Der argumentierte auch nicht, er möchte das Völkerrecht brechen und marschiert deswegen in der Ukraine ein.",
+            "timestamp": "00:24:42",
+            "context": "Baerbock zieht Parallele zwischen Trumps und Putins Narrativ zur Rechtfertigung von Intervention."
+          },
+          {
+            "text": "Wahre Stärke kann nur gezeigt werden im Rahmen des internationalen Rechts.",
+            "timestamp": "00:26:12",
+            "context": "Fundamental statement on Baerbock's principled position."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Peacekeeping-Missionen",
+          "UN-Handlungsfähigkeit",
+          "Legitimitätskrisen",
+          "Multilateralismus vs. Unilateralismus",
+          "Internationale Rechtsordnung"
+        ]
+      },
+      {
+        "title": "UN-Missionen und Priorität Verhandlungen",
+        "timestamp_range": "00:26:12 - 00:28:33",
+        "theme_description": "Wohin würde Baerbock UN-Blauhelme entsenden und wie setzt sie als Generalversammlungs-Präsidentin Prioritäten?",
+        "question_asked": "Maybrit Illner fragt doppelt: (1) Für welche UN-Mission würde sich Baerbock einsetzen und wohin UN-Truppen schicken? (2) Können wir verhindern, dass China und die USA die Welt in Einflusssphären aufteilen?",
+        "question_intent": "Illner möchte konkrete Positionen von Baerbock zur UN-Einsatzpolitik erfahren und verstehen, wie sie als Präsidentin Ordnung gegen Machtaufteilung schafft.",
+        "position": "Baerbock antwortet delegativ und strategisch: (1) Als Präsidentin der Generalversammlung setzt sie um, was die Mehrheit der Staaten möchte – nicht ihre persönliche Agenda. (2) Die Mehrheit sagt zu Recht: Konflikte sollten am Verhandlungstisch gelöst werden (oberste Priorität). (3) Blauhelm-Einsätze sind nur, wenn Verhandlungen nachweislich scheitern und Völkermord droht – und dann nur mit Sicherheitsrats-Mandat. (4) Zur zweiten Frage: Es gibt eine Chance für Mittelmächte und Zusammenarbeit. Ägypten sagte in der Debatte, dass alte Blöcke verschwinden – dies ist eine Chance für neue Kooperation, auch zwischen Europa und Afrika. (5) Europa muss aktiv werden, nicht schlafen: Baerbock sieht Chancen in breiten Bündnissen (Europa–Golfstaaten zeigen Stärke), beim Klimaschutz, wirtschaftlichen Kooperationen – wo China bereits investiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Baerbock adressiert die erste Frage (konkrete UN-Missionen) evasiv, indem sie ihre institutionelle Rolle hervorhebt (sie setze um, was die Mehrheit wolle, nicht eigene Wünsche). Dies ist formell korrekt, aber weicht der inhaltlichen Frage aus. Zur zweiten Frage antwortet sie substanziell: Sie reframet die Bedrohung (Machtaufteilung) als Chance für neue Kooperation und gibt strategische Handlungsoptionen (Bündnisse schmieden).",
+        "concrete_statements": [
+          "Die Präsidentin der Generalversammlung setzt das um, was die Mehrheit der Staaten möchte.",
+          "Konflikte sollten am Verhandlungstisch gelöst werden. Das wäre die oberste Priorität.",
+          "Gerade für Europa und Afrika [gibt es eine Chance für Kooperation]. Wir haben gesehen, welche Stärke wir haben, wenn Europäer mit Golfstaaten zusammenarbeiten.",
+          "Europa sollte nicht schlafen und zuschauen, wie andere aktiv werden. Die breiten Bündnisse müssen mit geschmiedet werden."
+        ],
+        "quotes": [
+          {
+            "text": "Die Präsidentin der Generalversammlung setzt das um, was die Mehrheit der Staaten möchte. Die Mehrheit sagt zu Recht, Konflikte sollten am Verhandlungstisch gelöst werden.",
+            "timestamp": "00:26:50",
+            "context": "Baerbock articulates her institutional role and the preference for negotiation-first approach."
+          },
+          {
+            "text": "Europa sollte nicht schlafen und zuschauen, wie andere aktiv werden. Die breiten Bündnisse müssen mit geschmiedet werden.",
+            "timestamp": "00:26:50",
+            "context": "Baerbock's appeal for European proactive engagement in global coalition-building."
+          }
+        ],
+        "related_bundestag_topics": [
+          "UN-Generalsekretär",
+          "Multilaterale Zusammenarbeit",
+          "Afrika-Politik",
+          "Golfstaaten-Beziehungen",
+          "Klimadiplomatie"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es hat eine Konferenz von 140 Staaten gegeben, angeführt von Saudi-Arabien und Frankreich, zum Gaza-Rivieraplan, wo die Amerikaner nicht dabei waren, danach aber in den Sicherheitsrat kamen und ihren Friedensplan vorstellten.",
+        "timestamp": "00:20:31"
+      },
+      {
+        "claim": "Der Internationale Strafgerichtshof hat gegen Menschenrechtsverletzungen in Venezuela Ermittlungen durchgeführt, so wie auch gegen Putin.",
+        "timestamp": "00:23:05"
+      },
+      {
+        "claim": "Es gibt Peacekeeping-Missionen, zum Beispiel im Libanon, die nun auslaufen, weil die Amerikaner ihre Unterstützung entzogen haben.",
+        "timestamp": "00:24:42"
+      },
+      {
+        "claim": "Ägypten sagte in der UN-Aussprache, dass in der Situation, wo es die alten Blöcke und Mächte nicht mehr gibt, eine Chance für viele Mittelmächte besteht, dass sie zusammen kooperieren können.",
+        "timestamp": "00:26:50"
+      },
+      {
+        "claim": "Die USA haben erklärt, dass sie unterschiedliche Institutionen [des internationalen Rechts] verlassen.",
+        "timestamp": "00:23:05"
+      }
+    ]
+  }
+}

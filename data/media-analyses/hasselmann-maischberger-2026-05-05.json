@@ -1,0 +1,282 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtZDY4YTUwNDgtNjY1YS00ZDU4LWI3YzktNjc3YTc1NGQwMjMz",
+    "video_id": "maischberger-2026-05-05",
+    "politician": "Britta Haßelmann",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "8223031f898f700e",
+    "transcript_chars": 55533,
+    "caption_lines": 2076,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22704,
+    "tokens_out": 7215,
+    "cost_usd": 0.0235116,
+    "quote_validation": {
+      "valid_exact": 11,
+      "valid_fuzzy": 4,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.685Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Britta Haßelmann, Fraktionsvorsitzende der Grünen, kritisiert in der Maischberger-Sendung die Gesundheitsreform scharf als unzureichend und sozial ungerecht. Sie wirkt sachlich-konzentriert, teilweise deutlich ablehnend gegenüber der Koalitionspolitik und appelliert an mehr Empathie des Kanzlers gegenüber Bürgern.",
+    "themes": [
+      {
+        "title": "Frauenrepräsentation in Führungspositionen",
+        "timestamp_range": "00:22:24 - 00:23:56",
+        "theme_description": "Vergleich des Frauenanteils im Bundestag zwischen CDU (20,6%) und Grünen (61,2%); Debatte über Relevanz weiblicher Perspektiven in Politik.",
+        "question_asked": "Sandra Maischberger fragte Haßelmann, ob sie Nina Warkens niedriger Frauenanteil in der CDU neidet oder ob 61,2% (Grüne) 'zu viel' ist ('Gibt es etwas, was Sie der CDU neiden?').",
+        "question_intent": "Die Moderatorin wollte Haßelmann dazu bringen, entweder Selbstlob für die Grünen abzugeben oder eine Schwäche der CDU zu kritisieren.",
+        "position": "Haßelmann lehnt Neid ab ('Den geringen Frauenanteil auf keinen Fall') und betont stattdessen, dass sie 'viel zu wenig Frauen in der Politik' sieht. Sie argumentiert, dass in der 'kleinen Großen Koalition' die Frauenrepräsentation 'sehr dünn' ist, was 'ein entscheidender Unterschied' ist, 'denn wir Frauen wissen, was für Frauen im Land wichtig ist'. Sie berichtet von persönlichen Erfahrungen: 'Ich bin ständig damit konfrontiert, dass mir Männer die Welt erklären, die in Führungspositionen sind. Und das ist überflüssig.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haßelmann antwortet auf die Frage 'Gibt es etwas, was Sie der CDU neiden?', indem sie die Prämisse ablehnt (keine Neid-Perspektive) und stattdessen eine grundsätzliche Forderung nach mehr Frauen in Politik formuliert. Sie nutzt die Gelegenheit zu einer Grundsatz-Kritik statt zu einem direkten CDU-Vergleich.",
+        "concrete_statements": [
+          "Zu viele wenige Frauen in der Politik insgesamt",
+          "Führungsstrukturen in der Koalition sind bei Frauenrepräsentation 'sehr dünn'",
+          "Frauen wissen, was für Frauen im Land wichtig ist",
+          "Männer in Führungspositionen erklären Frauen die Welt unnötigerweise"
+        ],
+        "quotes": [
+          {
+            "text": "Den geringen Frauenanteil auf keinen Fall. Ich finde, es sind viel zu wenig Frauen in der Politik. Ich glaube, da bin ich sogar mit Nina Warken einig, dass wir viel mehr Frauen in Führungsverantwortung brauchen.",
+            "timestamp": "00:22:24"
+          },
+          {
+            "text": "Ich bin ständig damit konfrontiert, dass mir Männer die Welt erklären, die in Führungspositionen sind. Und das ist überflüssig.",
+            "timestamp": "00:23:26"
+          }
+        ]
+      },
+      {
+        "title": "Gesundheitsreform: Stabilisierung der Beitragssätze",
+        "timestamp_range": "00:25:28 - 00:31:16",
+        "theme_description": "Debatte über die Wirksamkeit der Gesundheitsreform zur Stabilisierung oder Senkung der Krankenkassenbeiträge.",
+        "question_asked": "Sandra Maischberger fragte Britta Haßelmann (nach Bundesgesundheitsministerin Warken), ob die Stabilisierung der Beiträge, die als großer Erfolg der Reform dargestellt wird, ausreicht (paraphrasiert: 'Ein Erfolg dieser Reform?').",
+        "question_intent": "Die Moderatorin wollte von Haßelmann erfahren, ob sie die Beitragsstabilisierung als Reformerfolg anerkennt oder kritisiert.",
+        "position": "Haßelmann lehnt die Darstellung der Reform als Erfolg ab. Sie argumentiert, dass die Beiträge 'weiter steigen' werden, weil die Maßnahmen nicht ausreichen. Sie kritisiert, dass die Finanzkommission 66 Vorschläge gemacht hat, von denen eine Umsetzung Beitragssenkungen von 2% ermöglicht hätte. Die Regierung schone dagegen die Pharmaindustrie, den Haushalt und der Finanzminister 'bediene sich sogar aus der Kasse'. Sie fordert, 'versicherungsfremde Leistungen' wie Krankengeldbezüge für Bürgergeldempfänger (12 Milliarden Euro) aus dem Gesundheitsfonds zu nehmen und auf den Staat zu übertragen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haßelmann antwortet direkt auf die Frage zur Beitragsstabilisierung, gibt aber keine differenzierte Stellungnahme ab — sie lehnt pauschal ab ('Nein, ich glaube, die Beiträge werden weiter steigen'). Sie verlagert jedoch das Thema auf Kritik an Finanzminister Klingbeil und fordert strukturelle Änderungen statt nur auf die Frage zu reagieren.",
+        "concrete_statements": [
+          "Die Beiträge werden weiter steigen",
+          "Die Maßnahmen reichen nicht aus, um Beiträge zu stabilisieren",
+          "Es waren Senkungen von 2% möglich gewesen",
+          "Lars Klingbeil bedient sich aus der Kasse",
+          "Versicherungsfremde Leistungen (12 Milliarden Euro) sollten vom Staat getragen werden"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, ich glaube, die Beiträge werden weiter steigen. Die Maßnahmen, die jetzt im Gesetzentwurf stehen, werden nicht ausreichen, die Beiträge zu stabilisieren. Und schon gar nicht zu senken.",
+            "timestamp": "00:25:58"
+          },
+          {
+            "text": "Man muss einfach sagen, Lars Klingbeil bedient sich für den Bund aus den Beiträgen der Versicherten. Und das ist alles andere als eine Reform, die die Beiträge stabilisiert oder gar senkt.",
+            "timestamp": "00:30:14"
+          }
+        ]
+      },
+      {
+        "title": "Finanzierung der Gesundheitsreform und Belastung der Versicherten",
+        "timestamp_range": "00:27:05 - 00:31:16",
+        "theme_description": "Streitpunkt über die Finanzierungsmechanismen der Reform: Kürzung des Bundeszuschusses versus geringe Kompensation für Versicherte.",
+        "question_asked": "Nach Haßelmanns kritischen Aussagen hakte Sandra Maischberger nach, ob die Versicherten bei der Finanzierung leiden würden ('Bleiben wir bei dem Punkt').",
+        "question_intent": "Die Moderatorin wollte konkrete Zahlen und Belastungsdetails von Haßelmann erfahren, um die Kritik zu konkretisieren.",
+        "position": "Haßelmann argumentiert, dass das Defizit der Kassen (15 Milliarden Euro) durch die Übernahme von 12 Milliarden Euro an Gesundheitskosten für Bürgergeldempfänger (Krankengeldbezüge) durch den Staat ausgeglichen werden könnte. Stattdessen verkürzt der Finanzminister den Bundeszuschuss um 2 Milliarden Euro, während nur 250 Millionen (später 500 Millionen) Euro 'Einstiegsfinanzierung' angeboten wird. Netto müssen Versicherte 1,75 Milliarden Euro zusätzlich bezahlen. Sie bezeichnet dies als 'Schildbürgerstreich' und 'Versuch, die Versicherten für dumm zu verkaufen'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann beantwortet die Frage nach der Belastung der Versicherten vollständig mit konkreten Zahlen (12 Mrd., 250/500 Mio., 1,75 Mrd., 2 Mrd.) und erklärt die Logik: Defizitabbau durch Strukturreform versus Finanzminister-Geldraub. Sie bleibt beim Thema.",
+        "concrete_statements": [
+          "12 Milliarden Euro Gesundheitskosten für Bürgergeldempfänger sollten vom Staat übernommen werden",
+          "250 Millionen Euro Einstiegsfinanzierung reicht nicht gegen 2 Milliarden Euro Kürzung des Bundeszuschusses",
+          "Netto müssen Versicherte 1,75 Milliarden Euro zusätzlich zahlen",
+          "Der Finanzminister nimmt 2 Milliarden Euro aus dem Gesundheitsfonds"
+        ],
+        "quotes": [
+          {
+            "text": "Nämlich 2 Mrd. Netto müssen die Versicherten 1,75 Mrd. Euro mehr bezahlen. Das ist es der Versuch, die Versicherten für dumm verkaufen. Ein Schildbürgerstreich, die Versicherten werden für dumm verkauft.",
+            "timestamp": "00:29:42"
+          },
+          {
+            "text": "Aber gleichzeitig nimmt er 2 Mrd. Euro raus aus dem Gesundheitsfonds. Das bedeutet, wie beschrieben, 1,75 Mrd. zahlen die Versicherten zusätzlich.",
+            "timestamp": "00:31:16"
+          }
+        ]
+      },
+      {
+        "title": "Pharmaindustrie-Schonung und strukturelle Reformdefizite",
+        "timestamp_range": "00:34:55 - 00:38:03",
+        "theme_description": "Kritik an unausgewogener Kostenverteilung: Haßelmann wirft vor, dass Pharmaindustrie zu wenig belastet wird, während Versicherte stärker zur Kasse gebeten werden.",
+        "question_asked": "Sandra Maischberger fragte nach der 'Schieflage' bei den Reformen, da Zuzahlungen steigen, Zahnersatz sinkt und Hautkrebsvorsorge infrage gestellt wird ('Glauben Sie, da ist eine Schieflage insgesamt?').",
+        "question_intent": "Die Moderatorin wollte wissen, ob Haßelmann die Verteilung der Reformlasten als gerecht oder ungerecht bewertet.",
+        "position": "Haßelmann nennt die Maßnahmen eine 'soziale Schieflage'. Sie hätte sich gewünscht, gemeinsam die 66 Vorschläge der Finanzkommission umzusetzen, um Bürger zu entlasten. Sie kritisiert, dass Friedrich Merz mit seiner 'Methode' — 'jede Woche eine neue Sau durchs Dorf treiben' — die notwendige 'Bereitschaft für Veränderung' bei der Bevölkerung zerstört. Sie weist darauf hin, dass Haushalt, Pharmaindustrie und Versicherte unterschiedlich behandelt werden: Die Pharmaindustrie werde geschont, obwohl die Kommission andere Preisregeln vorgeschlagen hat ('Einfach gar nicht' umsetzbar). Sie argumentiert, dass Menschen ein 'erhebliches Gespür dafür' haben, wenn Politik 'schief ist'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann beantwortet die Schieflage-Frage direkt mit ihrer Bewertung 'soziale Schieflage' und erläutert die asymmetrische Lastenverteilung (Versicherte vs. Pharmaindustrie). Sie begründet ihre Position mit Verweis auf die Finanzkommission.",
+        "concrete_statements": [
+          "Die Reform weist eine soziale Schieflage auf",
+          "Zuzahlungen und andere Maßnahmen treffen Versicherte",
+          "Pharmaindustrie wird geschont",
+          "Merz' Methode ('jede Woche eine neue Sau durchs Dorf') zerstört die Veränderungsbereitschaft",
+          "Die Kommissions-Vorschläge zu Medikamentenpreisen werden nicht umgesetzt"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, ich glaube, das ist eine soziale Schieflage. Die Maßnahmen, die jetzt vorbereitet werden und gleichzeitig wieder infrage gestellt werden, schon von Markus Söder... Ich hätte mir gewünscht, wir hatten gemeinsam überlegt, wie kann man diese 66 Vorschläge der Finanzkommission wirklich umsetzen.",
+            "timestamp": "00:34:55"
+          },
+          {
+            "text": "Deshalb sage ich, die Leute haben ein erhebliches Gespür dafür, wenn etwas schief ist.",
+            "timestamp": "00:35:58"
+          }
+        ]
+      },
+      {
+        "title": "Merz' Kommunikationsstil und Glaubwürdigkeit",
+        "timestamp_range": "00:35:27 - 00:43:18",
+        "theme_description": "Kritik an Merz' Art, Politik zu kommunizieren: wöchentliche 'Säue durchs Dorf', impulsive Äußerungen, mangelnde Lieferfähigkeit.",
+        "question_asked": "Nach Haßelmanns Kritik an der sozialen Schieflage der Reform fragte die Moderatorin nicht direkt weiter, aber das Thema der Reformkommunikation war Haßelmanns Eigeninitiative innerhalb ihrer längeren Aussage ('Mit dieser Methode Merz...').",
+        "question_intent": "Implicit: Wie bewertet Haßelmann Merz' Kommunikationsstil als Brems- oder Schlechtmachfaktor für nötige Reformen?",
+        "position": "Haßelmann charakterisiert Merz' Stil als 'Methode Merz': 'Jede Woche eine neue Sau durchs Dorf zu treiben. Die Menschen zu beschimpfen. Jede Woche ist etwas Neues. Dann haut man das raus und wundert sich, dass die Bereitschaft bei den Bürger*innen klein ist, mitzugehen auf dem Weg der Veränderung.' Sie kritisiert ein Muster 'seit einem Jahr': 'Immer große Ankündigungen machen. Um am Ende dann nicht zu liefern.' Sie argumentiert außerdem, dass Merz' 'Weinerlichkeit' und sein 'Selbstmitleid' — besonders sein Satz 'kein Kanzler musste so etwas aushalten' — absurd sind: 'Stellen Sie sich vor, wir hätten das gesagt... Wäre Frau Merkel so etwas je über die Lippen gekommen?'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann adressiert das implizite Thema der Kommunikation vollständig, mit konkreten Kritikpunkten (wöchentliche Chaos-Rhetorik, fehlende Lieferung, Selbstmitleid). Sie bleibt substanziell und entwickelt eine kohärente Narrative.",
+        "concrete_statements": [
+          "Merz treibt jede Woche eine neue Sau durchs Dorf",
+          "Er beschimpft die Menschen",
+          "Dies zerstört die Veränderungsbereitschaft der Bürger",
+          "Muster: große Ankündigungen, dann keine Lieferung",
+          "Merz zeigt 'Weinerlichkeit' und 'Selbstmitleid'",
+          "Sein Vergleich von sich selbst mit Merkel ist unpassend"
+        ],
+        "quotes": [
+          {
+            "text": "Deshalb bin ich bei Friedrich Merz. Mit dieser Methode Merz, jede Woche eine neue Sau durchs Dorf zu treiben. Die Menschen zu beschimpfen. Jede Woche ist etwas Neues. Dann haut man das raus und wundert sich, dass die Bereitschaft bei den Bürger*innen klein ist, mitzugehen auf dem Weg der Veränderung.",
+            "timestamp": "00:35:27"
+          },
+          {
+            "text": "Das ist genau die Methode Merz und diese Regierung, so ist sie geprägt. Immer große Ankündigungen machen. Um am Ende dann nicht zu liefern. Das ist das Muster, das wir seit einem Jahr erleben.",
+            "timestamp": "00:30:14"
+          }
+        ]
+      },
+      {
+        "title": "Mehrere kurze Ja/Nein-Positionen zu Politikthemen",
+        "timestamp_range": "00:38:37 - 00:39:40",
+        "theme_description": "Schnelle Positionierungen zu einzelnen Fragen: Homöopathie, syrische Ärzte, Schwarz-Grün, Reichensteuer, Tankrabatt, Rente, Merz' Beliebtheit, Koalitionshaltbarkeit.",
+        "question_asked": "Sandra Maischberger bat um 'ein paar Positionen' mit 'Ja oder Nein'-Antworten ('Darf ich Sie bitte um ein paar Positionen?').",
+        "question_intent": "Die Moderatorin wollte knappe, vergleichbare Ja/Nein-Antworten von Haßelmann zu verschiedenen aktuellen Themen.",
+        "position": "Haßelmanns Antworten im Überblick: (1) Homöopathie-Abschaffung: Ja, 'auch bei uns'. (2) Krankenhäuser ohne syrische Ärzte — Problem: Ja, 'ganz sicher'. (3) Schwarz-Grüne Bundesregierung: 'Es gibt mehrere schwarz-grüne Landesregierungen, die funktionieren.' (4) Reichensteuer erhöhen: Ja. (5) Tankrabatt entlastet: Nein. (6) Rente mehr als Basisabsicherung: Ja, 'auf jeden Fall'. (7) Merz unbeliebter als Scholz — zu Recht: Ja, 'Zurecht, weil er es so macht, wie er macht'. (8) Koalitionshaltbarkeit: 'Ich wünsche mir, dass sie sich zusammenreißen.' (Das ist keine direkte Ja/Nein-Antwort, sondern eine Hoffnungsäußerung.)",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann beantwortet alle acht Fragen, überwiegend mit Ja/Nein oder kurzen klaren Statements. Wo sie nicht Ja/Nein antwortet (Schwarz-Grün, Koalitionshaltbarkeit), gibt sie kurze, substanzielle Alternativ-Aussagen.",
+        "concrete_statements": [
+          "Homöopathie als Kassenleistung: sollte abgeschafft werden",
+          "Krankenhäuser brauchen syrische Ärzte",
+          "Reichensteuer sollte erhöht werden",
+          "Tankrabatt entlastet nicht",
+          "Rente muss mehr als nur Basisabsicherung sein",
+          "Merz ist zu Recht unbeliebter als Scholz"
+        ],
+        "quotes": [
+          {
+            "text": "Ist beschlossen, auch bei uns.",
+            "timestamp": "00:38:37",
+            "context": "Auf Frage: Soll Homöopathie als Kassenleistung abgeschafft werden?"
+          },
+          {
+            "text": "Ja. Ganz sicher.",
+            "timestamp": "00:38:37",
+            "context": "Auf Frage: Bekämen Krankenhäuser ohne syrische Ärzte ein Problem?"
+          },
+          {
+            "text": "Zurecht, weil er es so macht, wie er macht.",
+            "timestamp": "00:39:08",
+            "context": "Auf Frage: Merz ist unbeliebter als Scholz. Zu Recht?"
+          }
+        ]
+      },
+      {
+        "title": "Koalitionskrise und Neuwahl-Szenario",
+        "timestamp_range": "00:41:42 - 00:42:46",
+        "theme_description": "Frage, ob Haßelmann als kritische Oppositionelle Neuwahlen wünscht; Reflexion ihrer Rolle in Koalitionsstabilität.",
+        "question_asked": "Sandra Maischberger fragte direkt: 'Frau Haßelmann, weil sie so kritisch sind gegenüber Merz. Wünschen Sie sich Neuwahlen?'",
+        "question_intent": "Die Moderatorin wollte Haßelmann in einen Widerspruch treiben: Wie kann man die Regierung so stark kritisieren, ohne Neuwahlen zu wünschen?",
+        "position": "Haßelmann lehnt Neuwahlen ab: 'Nein, die kann man sich als Demokrat nicht einfach wünschen.' Sie argumentiert, dass die Oppositionsrolle eine Begleitung 'kritisch. Aber konstruktiv' bedeutet. Sie verweist auf die Verhandlungen zum Sondervermögen als Beweis dieser Haltung. Sie betont: 'Ich möchte, dass diese Regierung funktioniert' und 'man kann sich kein Chaos wünschen'. Sie kritisiert danach Merz' Mangel an Empathie: 'Vielleicht kann der Kanzler ein bisschen mehr Empathie für die Bürgerinnen und Bürger entwickeln. Und nicht nur für sich selbst.' Sie bezieht sich auf sein 'Selbstmitleid' über Kritik und kontrastiert dies mit ihrer eigenen Erfahrung als Oppositionsführerin unter seiner Kritik.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann antwortet klar und entscheidend auf die Neuwahl-Frage mit 'Nein' und begründet dies konsistent mit ihrem Verständnis von Oppositionsrolle. Sie bleibt beim Thema und entwickelt eine kohärente Position.",
+        "concrete_statements": [
+          "Wünscht sich keine Neuwahlen",
+          "Opposition muss kritisch UND konstruktiv begleiten",
+          "Hat konstruktiv bei Verhandlungen zum Sondervermögen gearbeitet",
+          "Möchte, dass die Regierung funktioniert",
+          "Kritisiert Merz' mangelnde Empathie gegenüber Bürgern",
+          "Kritisiert Merz' 'Selbstmitleid' über Kritik"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, die kann man sich als Demokrat nicht einfach wünschen. Ich möchte, dass diese Regierung funktioniert. Sie hat sich zusammengefunden. Wir sind in der Opposition und begleiten diese Regierung kritisch. Aber konstruktiv.",
+            "timestamp": "00:41:42"
+          },
+          {
+            "text": "Vielleicht kann der Kanzler ein bisschen mehr Empathie für die Bürgerinnen und Bürger entwickeln. Und nicht nur für sich selbst. Dieses Selbstmitleid, ich bin am schlechtesten behandelt worden über Jahre, mein Gott.",
+            "timestamp": "00:42:12"
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Finanzkommission hat 66 Vorschläge zur Gesundheitsreform gemacht",
+        "timestamp": "00:26:34"
+      },
+      {
+        "claim": "Aus den 66 Kommissions-Vorschlägen wären Beitragssenkungen von 2% möglich gewesen",
+        "timestamp": "00:26:34"
+      },
+      {
+        "claim": "Krankengeldbezüge für Bürgergeldempfänger kosten 12 Milliarden Euro",
+        "timestamp": "00:27:05"
+      },
+      {
+        "claim": "Das Defizit der Kassen beträgt 15 Milliarden Euro",
+        "timestamp": "00:27:05"
+      },
+      {
+        "claim": "Der Bundeszuschuss wird um 2 Milliarden Euro gekürzt, während nur 250 Millionen Euro (später 500 Millionen) Einstiegsfinanzierung angeboten wird",
+        "timestamp": "00:28:40"
+      },
+      {
+        "claim": "Netto müssen Versicherte 1,75 Milliarden Euro zusätzlich bezahlen",
+        "timestamp": "00:29:42"
+      },
+      {
+        "claim": "Die Regierung setzt 43 von 66 Kommissions-Vorschlägen um (laut Warken: über 90% in Finanzwirkung)",
+        "timestamp": "00:28:10"
+      },
+      {
+        "claim": "Der Bundeszuschuss wird auf über 200 Euro (217 Euro in 2031) erhöht für Bürgergeldempfänger",
+        "timestamp": "00:28:40"
+      },
+      {
+        "claim": "Frauenanteil im Bundestag CDU: 20,6%, Grüne: 61,2%",
+        "timestamp": "00:22:24"
+      }
+    ]
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtY2ViOTc4ZjYtM2NiZi00YzMyLWEyNjgtMDQxOTAyMDIyYzk1",
+    "video_id": "hartaberfair-2025-11-03",
+    "politician": "Karl-Josef Laumann",
+    "host": "Louis Klamroth",
+    "publisher": "hart aber fair (ARD)",
+    "transcript_sha": "acdf01e181aceb4d",
+    "transcript_chars": 54396,
+    "caption_lines": 2053,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22342,
+    "tokens_out": 7653,
+    "cost_usd": 0.024242800000000002,
+    "quote_validation": {
+      "valid_exact": 7,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 2,
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.009Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl-Josef Laumann, CDU-Gesundheitsminister aus Nordrhein-Westfalen, diskutiert in Louis Klamroths Talkshow zum Thema \"Notfall Pflege: Wer sorgt für ein Altern in Würde?\" über Demenz, Pflegeinfrastruktur und Finanzierungsfragen. Er argumentiert sachlich-pragmatisch und verteidigt die deutsche Pflegepolitik gegen Vorwürfe der Unterversorgung.",
+    "themes": [
+      {
+        "title": "Demenz im persönlichen und politischen Erleben",
+        "timestamp_range": "00:09:25 - 00:11:32",
+        "theme_description": "Karl-Josef Laumann reflektiert über persönliche Erfahrungen mit Demenz in seiner Familie und deren Bedeutung für sein politisches Handeln.",
+        "question_asked": "Louis Klamroth fragt Laumann, ob Demenz ein Thema ist, über das er sich Gedanken macht, angesichts der Tatsache, dass Laumann als Minister tätig ist, aber auf dem Papier bereits im Rentenalter steht.",
+        "question_intent": "Klamroth möchte wissen, ob Demenz ein persönlich relevantes Thema für Laumann ist und wie er damit umgeht.",
+        "position": "Laumann berichtet, dass er viele Menschen mit Alzheimer und Demenz kennt und dass dies ein normales Phänomen in größeren Familien sei. Er stammt aus einem Drei-Generationen-Haushalt, wo man früher nicht von Demenz sprach, sondern sagte 'Unser Opa wird ein bisschen tüdelig'. Er betont die Wichtigkeit, im Alter aktiv zu bleiben, verweist auf Franz Müntefering und dessen 'Drei Ls' (Laufen, lesen, lachen) und reflektiert, dass man in jüngeren Jahren Beziehungen pflegen sollte, um auf gute Kontakte im Alter zu verfügen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laumann antwortet direkt auf die Frage, indem er seine persönliche Nähe zum Thema erläutert, seine Herkunft und Präventionsverständnis klar macht. Er adressiert sowohl die persönliche als auch die gesellschaftliche Dimension des Themas.",
+        "quotes": [
+          {
+            "text": "Jeder, der eine etwas größere Familie hat, hat das in unterschiedlichen Ausformungen zu Hause erlebt. Ich bin aus einem Milieu, in dem man in einem 3-Generationen-Haushalt gelebt hat. Früher hat man das nicht Demenz genannt, da sagte man 'Unser Opa wird ein bisschen tüdelig'.",
+            "timestamp": "00:09:57",
+            "context": "Laumann erläutert seine persönliche Erfahrung mit Demenz in der Familie."
+          },
+          {
+            "text": "Franz Müntefering hat immer den Leuten gesagt, denke immer an die 3 Ls. Laufen, lesen, lachen. Das ist ein guter Merksatz.",
+            "timestamp": "00:10:30",
+            "context": "Laumann beschreibt Präventionsprinzipien für ein würdevolles Altern."
+          }
+        ],
+        "concrete_statements": [
+          "Im Alter aktiv bleiben ist wichtig",
+          "Prävention durch Bewegung, Lesen und Humor",
+          "Frühzeitig soziale Kontakte und Familie pflegen"
+        ],
+        "related_bundestag_topics": [
+          "Altersgerechte Gesellschaft",
+          "Demenzprävention",
+          "Sozialgesetze"
+        ]
+      },
+      {
+        "title": "Pflegeinfrastruktur in Nordrhein-Westfalen",
+        "timestamp_range": "00:28:33 - 00:31:43",
+        "theme_description": "Laumann erläutert die Struktur und Vielfalt des Pflegesystems in NRW im Vergleich zu internationalen Modellen (Niederlande).",
+        "question_asked": "Rainer Heydenreich weist auf niederländische Pflegehöfe hin und fragt implizit, warum es solche Konzepte in Deutschland nicht gibt; Louis Klamroth leitet die Frage an Laumann weiter, da sein Bundesland an die Niederlande grenzt.",
+        "question_intent": "Klamroth und Heydenreich möchten wissen, warum Deutschland von erfolgreichen niederländischen Modellen nicht profitiert.",
+        "position": "Laumann argumentiert, dass das niederländische System grundlegend anders ist: dort entscheiden nicht die Bürger, sondern die Pflegekassen, in welches Heim sie gehen. Er betont, dass NRW und Deutschland eine vielfältige Pflegelandschaft haben, die man strukturell denken müsse. Er führt auf: verschiedene stationäre Einrichtungen, Tagespflege, Heime mit unterschiedlichen Philosophien. Er berichtet, dass er Pflegeheime mit Tieren, Hochbeeten und Stationen mit eigenem Kochen besucht habe. Er unterstreicht, dass 85-86% der Pflegebedürftigen zu Hause gepflegt werden, eine stabile Quote seit 30 Jahren. Zudem erwähnt er, dass 70% der Menschen in Heimen die Pflege selbst finanzieren können.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laumann antwortet auf die Vergleichsfrage, beschreibt aber hauptsächlich die deutsche Struktur statt zu erklären, warum speziell die niederländischen Modelle nicht übernommen werden. Er relativiert den Vergleich durch Systemunterschiede, ohne die Kritik zu Innovationslücken direkt zu adressieren.",
+        "quotes": [
+          {
+            "text": "Ich weiß nicht, ob das in Holland alles sehr viel besser ist. In Holland ist es so, dass der Bürger gar nicht entscheiden kann, in welches Pflegeheim er geht. Das entscheiden alles die Pflegekassen. Also ein völlig anderes System.",
+            "timestamp": "00:29:03",
+            "context": "Laumann relativiert den Vergleich zu niederländischen Modellen durch Systemunterschiede."
+          },
+          {
+            "text": "Wenn ich in NRW Pflegeheime besuche, sehe ich auch, dass Pflegeheime Tiere haben. Wir fördern in NRW seit vielen Jahren in Pflegeheimen auch Hochbeete.",
+            "timestamp": "00:30:05",
+            "context": "Laumann beschreibt bereits bestehende Innovationen in NRW-Heimen."
+          }
+        ],
+        "concrete_statements": [
+          "NRW hat vielfältige Pflegestrukturen",
+          "85-86% der Pflegebedürftigen werden zu Hause gepflegt (stabile Quote seit 30 Jahren)",
+          "70% der Heimbewohner finanzieren Pflege selbst",
+          "Betreuungskräfte werden finanziert (keine Pflegekräfte)",
+          "Hochbeete und Kochen in Heimen werden gefördert"
+        ],
+        "related_bundestag_topics": [
+          "Pflegeinfrastruktur",
+          "Langzeitpflege",
+          "Häusliche Pflege"
+        ]
+      },
+      {
+        "title": "Prävention und Risikofaktoren für Demenz",
+        "timestamp_range": "00:38:34 - 00:40:38",
+        "theme_description": "Laumann antwortet auf die Frage, wie Politik Prävention unterstützen kann und wo es Defizite gibt.",
+        "question_asked": "Louis Klamroth fragt: 'Kann die Politik einem helfen, gesünder zu leben? Oder müssen die Menschen da selbst drauf kommen?' Dies folgt auf Eckart von Hirschhausens Ausführungen zu Lebenswandel und Risikofaktoren.",
+        "question_intent": "Klamroth möchte wissen, welche Rolle die Politik bei der Demenzprävention durch Lebensstiländerungen spielt.",
+        "position": "Laumann betont, dass Prävention zur Gesundheitspolitik gehört. Er gibt zu, dass bei Präventionskampagnen ein Problem besteht: Man erreicht gut informierte Menschen sehr gut, aber es gibt Bevölkerungsgruppen mit anderem Medienkonsum, die schwer zu erreichen sind. Das ist ein Problem auch für die Bundesregierung und ihrer Stellen (wie die große Stelle in Köln). Es gibt Lebenswelten-Prävention in Schule, Arbeitswelt, Freizeit und Sport, finanziert von Krankenkassen und Staat. Das 'A und O' bei Prävention ist aber, wie man die Menschen erreicht, die man nicht erreicht. Er kritisiert retrospektiv: Die Pflegepolitik wurde vor vielen Jahren von der Wissenschaft entwickelt, die Pflegegrade aufgeteilt. In Pflegestufe 1 sollte auch Prävention verbunden sein, aber 7 Jahre später merken sie, dass da so wenig passiert. Sie müssen noch mal hingucken, wie man Prävention auch dann machen kann, wenn Menschen merken, dass es nicht mehr so gut klappt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laumann beschreibt Probleme und Strukturen in der Prävention (Zielgruppenreichbarkeit, Lebenswelten-Ansatz), gibt aber keine konkrete Antwort darauf, wie Politik konkret helfen kann oder ob Eigenverantwortung dominiert. Er kritisiert indirekt das System.",
+        "quotes": [
+          {
+            "text": "Bei den Kampagnen, wenn es um Prävention geht, frage ich mich immer, wie können wir noch besser werden, bestimmte Bevölkerungsgruppen zu erreichen. Einen Teil erreichst du sehr gut. Das sind die Menschen, die sich gut informieren. Aber du hast auch einen Teil der Bevölkerung, an den du sehr schwer ankommst, weil sie einen anderen Medienkonsum haben.",
+            "timestamp": "00:39:04",
+            "context": "Laumann beschreibt das Kernproblem der Präventionskommunikation."
+          },
+          {
+            "text": "Das A und 0 bei der Prävention ist aber, wie erreichen wir die Menschen, die wir nicht erreichen.",
+            "timestamp": "00:40:08",
+            "context": "Laumann fasst das zentrale Problem zusammen."
+          }
+        ],
+        "concrete_statements": [
+          "Prävention ist Teil der Gesundheitspolitik",
+          "Schwierigkeit, unterversorgte Bevölkerungsgruppen zu erreichen",
+          "Lebenswelten-Prävention in Schulen, Arbeitswelt, Freizeit und Sport existiert",
+          "Nachbesserung nötig: Prävention auch bei bereits beeinträchtigten Menschen"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsprävention",
+          "Gesundheitskommunikation",
+          "Soziale Unterschiede"
+        ]
+      },
+      {
+        "title": "Kritik an Pflegebedingungen und Laumanns Gegenposition",
+        "timestamp_range": "00:52:20 - 00:54:25",
+        "theme_description": "Andrea Sawatzki und Stella Merendino kritisieren massiv die Zustände in deutschen Pflegeheimen; Karl-Josef Laumann widerspricht und verweist auf Kontrollmechanismen.",
+        "question_asked": "Louis Klamroth fragt Laumann direkt, nachdem Sawatzki und Merendino schwere Vorwürfe (mangelnde Wertschätzung, skandalöse Zustände, Sedierung, Windel-Wiederverwendung) erhoben haben: 'Sie haben den Kopf geschüttelt. Sie stimmen dem nicht zu.'",
+        "question_intent": "Klamroth möchte Laumanns Reaktion auf die Kritik an systemischen Missständen in der Pflege erfragen.",
+        "position": "Laumann stimmt nicht zu und argumentiert, dass die Kritik nicht der objektiven Realität entspricht. Er räumt ein, dass es solche und solche Heime gibt und dass eine Heimaufsicht und ein Medizinischer Dienst existieren. In NRW müsse man Heime zeitweise schließen. Aber es gibt auch eine große Anzahl von Heimen, wo sehr gute Arbeit geleistet wird. Er beharrt darauf, dass er als Politiker durchgesetzt hat, dass Pflegekräfte nach Tarifvertrag bezahlt werden müssen, und dass die Löhne über dem Durchschnitt der Einkommensskala in NRW liegen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Laumann adressiert die Kritik nicht substantiell, sondern widerlegt pauschal deren Realitätsbezug, ohne auf die konkreten Beispiele einzugehen. Er pivotiert zur Gegenfrage (Tarifvertrag-Durchsetzung), um seine eigene Leistung zu unterstreichen, statt die Kritik zu debattieren.",
+        "quotes": [
+          {
+            "text": "Nein, dem stimme ich nicht zu. Nicht, weil ich das nicht will, sondern weil es objektiv nicht die Realität ist. Wir haben sicherlich in den Pflegeeinrichtungen solche und solche. Das will ich nicht bestreiten. Deswegen gibt es eine Heimaufsicht. Deswegen gibt es einen Medizinischen Dienst.",
+            "timestamp": "00:54:25",
+            "context": "Laumann weist die Kritik pauschal zurück und verweis auf Kontrollmechanismen."
+          },
+          {
+            "text": "Ich glaube schon, dass ich in Anspruch nehmen kann, dass ich der Politiker bin in Deutschland, der durchgesetzt hat, dass Pflegekräfte nach Tarifvertrag bezahlt werden müssen.",
+            "timestamp": "00:54:56",
+            "context": "Laumann verweist auf eigene politische Erfolge als Gegenposition zur Kritik."
+          }
+        ],
+        "concrete_statements": [
+          "Pflegekräfte müssen nach Tarifvertrag bezahlt werden (durchgesetzt von Laumann)",
+          "Löhne in NRW liegen über dem Durchschnitt der Einkommensskala",
+          "Heimaufsicht und Medizinischer Dienst existieren als Kontrollmechanismen"
+        ],
+        "related_bundestag_topics": [
+          "Tarifvertrag Pflege",
+          "Heimaufsicht",
+          "Arbeitsbedingungen in Pflegeheimen"
+        ]
+      },
+      {
+        "title": "Pflegeausbildung und Quote in NRW",
+        "timestamp_range": "00:55:27 - 00:57:35",
+        "theme_description": "Laumann verteidigt die Ausbildungszahlen in der Pflege gegen Vorwürfe von Unterversorgung und begründet hohe Pflegestandards in NRW.",
+        "question_asked": "Stella Merendino fragt nach der Pflegeausbildung in NRW und kritisiert die fehlende Wertschätzung. Laumann wird aufgefordert, sich zu konkretisieren: 'Was meinen Sie denn genau damit?'",
+        "question_intent": "Merendino möchte Laumann dazu bringen, die mangelnde Wertschätzung von Pflegekräften konkret zu benennen und zu erklären.",
+        "position": "Laumann verteidigt zunächst seine Aussage: Er zählt zu Politikern, die nicht sagen, dass man aus jedem jungen Menschen eine Pflegekraft machen kann. Man müsse den Beruf wollen und mögen, und es gehöre zum Menschenleben, einen Beruf zu finden, der zur eigenen Persönlichkeit passt. Er präzisiert dann die Zahlen: NRW hat ca. 17.000 Auszubildende pro Jahr in der Pflege, von denen 30% abbrechen (aber auch 30% brechen ihr Studium ab). Mit 170.000 Schulabgängern pro Jahr hat die Pflege fast 10% aller Schulabgänger. Zum Vergleich: Alle Handwerker in NRW zusammen haben 28.000 Auszubildende. Er betont, dass NRW einer der teuersten Länder bei der Pflege ist und sehr hohe Pflegeschlüssel hat im Vergleich zu Niedersachsen. Wohngruppen statt Heime nehmen zu.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laumann liefert Zahlen und Vergleiche, beantwortet aber die Frage nach Wertschätzung eher indirekt, indem er Anforderungen und Standards beschreibt. Die Kritik zur Wertschätzung wird nicht direkt adressiert, sondern mit Struktur- und Ausbildungszahlen beantwortet.",
+        "quotes": [
+          {
+            "text": "Ich glaube aber auch, dass, wenn man Pflege lernt, das ist eine anspruchsvolle Ausbildung, aber man muss auch eine innere Einstellung dazu haben. Man kann nicht jeden zur Pflegekraft machen.",
+            "timestamp": "00:56:29",
+            "context": "Laumann verteidigt die Anforderungen an Pflegekräfte gegen die Kritik an fehlender Wertschätzung."
+          },
+          {
+            "text": "NRW ist eines der teuersten Länder in Deutschland, was die Pflege angeht. Wir haben ganz andere Pflegeschlüssel als Niedersachsen.",
+            "timestamp": "00:57:35",
+            "context": "Laumann argumentiert mit hohen Standards und Kosten als Zeichen von Wertschätzung."
+          }
+        ],
+        "concrete_statements": [
+          "Ca. 17.000 Auszubildende pro Jahr in der Pflege in NRW",
+          "30% Abbruchquote in der Pflegeausbildung",
+          "Fast 10% aller Schulabgänger in NRW gehen in die Pflege",
+          "Hohe Pflegeschlüssel in NRW im Vergleich zu anderen Bundesländern",
+          "Zunahme von Wohngruppen statt traditioneller Heime"
+        ],
+        "related_bundestag_topics": [
+          "Pflegeausbildung",
+          "Pflegefachkraftquoten",
+          "Pflegeschlüssel"
+        ]
+      },
+      {
+        "title": "Häusliche Pflege und Finanzierung",
+        "timestamp_range": "01:04:23 - 01:07:04",
+        "theme_description": "Laumann argumentiert zur Finanzierbarkeit häuslicher Pflege und lehnt eine Vollpflegeversicherung ab.",
+        "question_asked": "Bernd Meurer bemerkt, dass es eigentlich nicht zu bezahlen sei, dass Menschen zu Hause im gewohnten Umfeld bleiben können. Louis Klamroth fragt dann konkret: 'Gibt es genug Geld für Menschen, die zu Hause gepflegt werden? Werden Menschen, die pflegen, genug entlastet?'",
+        "question_intent": "Klamroth möchte wissen, ob die finanzielle Ausstattung für häusliche Pflege ausreicht.",
+        "position": "Laumann argumentiert, dass man das mit Geld nicht aufwiegen kann. Die aktuelle Pflegeversicherung hat 67 Mrd. pro Jahr und ist eine Teilversicherung, keine Vollversicherung. Ohne näher auf Merendinos Frage einzugehen, lehnt er eine Vollpflegeversicherung ab: Er sieht aktuell nicht die Ressourcen, um sie verantwortungsvoll zu bezahlen, und würde sie nicht über Sozialversicherungsbeiträge finanzieren wollen, wenn Deutschland wirtschaftlich stark bleiben soll. Er stellt auch die sozialpolitische Frage: Warum sollte die Allgemeinheit die Pflege für vermögende Menschen mit guter Pension und Eigentum finanzieren? Er hält die Teilversicherung für richtig und argumentiert, dass 70% der Heimbewohner die Pflege ohne Unterstützung finanzieren können.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Die Frage zielt auf Ausreichung der Finanzierung für häusliche Pflege ab. Laumann weicht aus, indem er zunächst sagt, Geld könne das nicht aufwiegen, dann zu grundsätzlichen Positionen zur Versicherungsstruktur und Sozialpolitik übergeht, ohne die konkrete Frage nach der Ausreichung der Mittel zu beantworten.",
+        "quotes": [
+          {
+            "text": "Ich würde mal so sagen, du kannst das mit Geld nicht aufwiegen. Wir haben in der Pflegeversicherung eine Versicherung, die ist zurzeit 67 Mrd. pro Jahr. Das ist eine Teilversicherung. Es ist keine Vollpflegeversicherung.",
+            "timestamp": "01:06:02",
+            "context": "Laumann weicht zur Systemfrage aus, statt Ausreichung zu beurteilen."
+          },
+          {
+            "text": "Ich sage Ihnen auch ganz offen, ich finde es nicht in Ordnung, auch sozialpolitisch nicht, dass Menschen, die vermögend sind, eine gute Pension haben, auch Eigentum haben, dass da von der Allgemeinheit die Pflege finanziert wird.",
+            "timestamp": "01:06:33",
+            "context": "Laumann argumentiert mit sozialpolitischen Grundsätzen gegen Vollversicherung."
+          }
+        ],
+        "concrete_statements": [
+          "Ablehnung einer Vollpflegeversicherung",
+          "Teilversicherungsmodell (67 Mrd./Jahr) als ausreichend",
+          "70% der Heimbewohner finanzieren Pflege selbst",
+          "Vermögende sollten nicht von Allgemeinheit finanziert werden"
+        ],
+        "related_bundestag_topics": [
+          "Pflegeversicherung",
+          "Finanzierung der Pflege",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Häusliche Pflege als wirtschaftliche Realität",
+        "timestamp_range": "01:04:23 - 01:05:01",
+        "theme_description": "Laumann erklärt die wirtschaftliche Notwendigkeit häuslicher Pflege und die Rolle der Familie.",
+        "question_asked": "Bernd Meurer stellt fest: 'Zu Hause ist immer schöner, wenn es geht.' Louis Klamroth präzisiert: 'Sie haben vorhin gesagt, es ist eigentlich nicht zu bezahlen, dass die Menschen zu Hause im gewohnten Umfeld bleiben können.'",
+        "question_intent": "Klamroth möchte Laumanns vorherige Aussage präzisieren: ob häusliche Pflege finanziell unrealistisch ist.",
+        "position": "Laumann bejaht: Wenn es rein theoretisch keine häusliche Pflege gäbe, wäre kein politisches System in der Lage, so viele professionelle Pflegekräfte bereitzustellen, die man dann bräuchte. Das muss man logisch und ehrlich sagen. Der zweite Punkt: Zu Hause wird viel gepflegt, weil Menschen das aus Verantwortung auch wollen. Laumann gehört zu Politikern, die sich nicht in die Debatte 'ambulant vor stationär' eingemischt haben (das kann man im Internet nachprüfen), weil er davon überzeugt ist, dass Pflegebedürftige und Familien entscheiden sollen, wo der Pflegebedürftige wohnt. Aber das ist eine Frage des Geldes. Im Rahmen der Sozialgesetze hat das Gesundheitssystem die Aufgabe, den Menschen dahin zu bringen, wo er wohnen will.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laumann beantwortet klar und direkt: Er bestätigt, dass häusliche Pflege wirtschaftlich notwendig ist (Pflegekräftemangel), und erklärt dann seine politische Haltung dazu (Selbstbestimmung der Pflegebedürftigen statt Verschiebung ins System).",
+        "quotes": [
+          {
+            "text": "Wenn wir rein theoretisch keine häusliche Pflege hätten, glaube ich, wäre kein politisches System in der Lage, so viel professionelle Pflegekräfte zu besorgen, die man dann bräuchte. Das muss man ganz logisch und ehrlich sagen.",
+            "timestamp": "01:04:23",
+            "context": "Laumann begründet die wirtschaftliche Notwendigkeit häuslicher Pflege."
+          },
+          {
+            "text": "Ich gehöre zu den Politikern, da können Sie im Internet recherchieren, ich habe mich nie an dieser Debatte ambulant vor stationär beteiligt. Weil ich zutiefst davon überzeugt bin, dass ein Pflegebedürftiger und seine Familie entscheiden sollen, wo der Pflegebedürftige wohnt.",
+            "timestamp": "01:05:01",
+            "context": "Laumann erklärt seine politische Position zur Selbstbestimmung."
+          }
+        ],
+        "concrete_statements": [
+          "Häusliche Pflege ist wirtschaftlich notwendig (Pflegekräftemangel)",
+          "Pflegebedürftige und Familien sollten über Wohnform entscheiden",
+          "Gesundheitssystem sollte Selbstbestimmung ermöglichen"
+        ],
+        "related_bundestag_topics": [
+          "Ambulante vs. stationäre Pflege",
+          "Selbstbestimmung in der Pflege",
+          "Ressourcenallokation"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In Nordrhein-Westfalen wird Pflegeausbildung mit ca. 17.000 Anfängern pro Jahr durchgeführt.",
+        "timestamp": "00:55:27"
+      },
+      {
+        "claim": "30% der Pflegeauszubildenden brechen ihre Ausbildung ab.",
+        "timestamp": "00:55:59"
+      },
+      {
+        "claim": "Alle Handwerker in NRW zusammen haben ca. 28.000 Auszubildende pro Jahr.",
+        "timestamp": "00:55:59"
+      },
+      {
+        "claim": "85-86% der Pflegebedürftigen in Deutschland werden zu Hause gepflegt.",
+        "timestamp": "00:30:37"
+      },
+      {
+        "claim": "Diese Quote ist seit 30 Jahren stabil und hat sich nicht verändert.",
+        "timestamp": "00:30:37"
+      },
+      {
+        "claim": "Selbst in schweren Pflegestufen sind 50% der Menschen zu Hause.",
+        "timestamp": "00:31:11"
+      },
+      {
+        "claim": "70% der Menschen in Heimen können die Pflege ohne staatliche Unterstützung finanzieren.",
+        "timestamp": "00:31:43"
+      },
+      {
+        "claim": "Die Pflegeversicherung in Deutschland hat ein Budget von 67 Milliarden Euro pro Jahr.",
+        "timestamp": "01:06:02"
+      },
+      {
+        "claim": "Karl-Josef Laumann hat als Politiker durchgesetzt, dass Pflegekräfte nach Tarifvertrag bezahlt werden müssen.",
+        "timestamp": "00:54:56"
+      },
+      {
+        "claim": "Die Löhne in der Pflege in NRW liegen über dem Durchschnitt der Einkommensskala in NRW.",
+        "timestamp": "00:55:27"
+      }
+    ]
+  }
+}

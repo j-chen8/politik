@@ -1,0 +1,478 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS85NDFmYmQyMC1hYzk2LTQ0YWQtYTdiYi1lODUzOTQ5ZjY0MDNfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-05-10",
+    "politician": "Manuela Schwesig",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "5c5261f34cd5e2c4",
+    "transcript_chars": 39328,
+    "caption_lines": 1477,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 16940,
+    "tokens_out": 11520,
+    "cost_usd": 0.029816000000000002,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 7,
+      "teilweise_antwort": 5,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.088Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Manuela Schwesig, Ministerpräsidentin von Mecklenburg-Vorpommern, diskutiert mit Caren Miosga über die Vertrauenskrise der SPD, insbesondere bei Arbeitnehmern und in Ostdeutschland. Sie verteidigt ihre Landespolitik, kritisiert die mangelnde Kommunikation und Vorbereitung der Bundesregierung und positioniert sich vor der Landtagswahl im September als Vertreterin landesspezifischer Interessen statt reiner Parteipolitik.",
+    "themes": [
+      {
+        "title": "Spritpreise als Kernthema für Pendler",
+        "timestamp_range": "00:01:05 - 00:01:35",
+        "theme_description": "Schwesig erklärt ihre Prioritätensetzung bei Spritpreisen gegenüber dem medialen Wal-Thema.",
+        "question_asked": "Caren Miosga fragt, welches Schicksal Schwesig zuletzt mehr umgetrieben habe – das des gestrandeten Buckelwals oder die Krise der Bundesregierung.",
+        "question_intent": "Miosga möchte wissen, wie Schwesig ihre Aufmerksamkeitspriorisierung rechtfertigt und ob sie für ihre Umweltminister oder Bundes-Politik zuständig ist.",
+        "position": "Schwesig erklärt eine klare Aufgabenteilung: Till Backhaus kümmere sich um den Wal, sie selbst um die Spritpreise. Diese seien ein großes Thema im Bundesland, da viele Menschen kleine und mittlere Einkommen haben, pendeln, als Pflegekräfte fahren oder in Handwerk und Spedition arbeiten. Spritpreise seien daher ein wichtiges Thema gewesen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig beantwortet direkt, warum sie sich auf Spritpreise konzentriert, und nennt konkrete Zielgruppen und Gründe. Sie adressiert die implizite Frage nach ihrer Rollenfokussierung (Umwelt vs. Wirtschaft) vollständig.",
+        "quotes": [
+          {
+            "text": "Till Backhaus musste sich um den Wal kümmern. Ich habe mich um die Spritpreise gekümmert. Das ist ein großes Thema in meinem Bundesland. Dort haben die Menschen kleine und mittlere Einkommen. Viele Menschen pendeln.",
+            "timestamp": "00:01:35",
+            "context": "Auf Miosgas Frage, welches Thema Schwesig mehr umgetrieben habe, erklärt sie ihre Prioritätensetzung."
+          }
+        ],
+        "concrete_statements": [
+          "Spritpreise sind für Pendler, Pflegekräfte, Handwerker und Spediteure zentral.",
+          "Kleine und mittlere Einkommen in Mecklenburg-Vorpommern sind besonders betroffen."
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Tankrabatt",
+          "Regionale Wirtschaftsförderung"
+        ]
+      },
+      {
+        "title": "Vertrauenskrise der Bundesregierung",
+        "timestamp_range": "00:02:10 - 00:02:40",
+        "theme_description": "Schwesig kommentiert den Vertrauensverlust der Bundesregierung und kritisiert die Ansprache durch Bundeskanzler Merz.",
+        "question_asked": "Caren Miosga fragt, ob das Bild des kraftlosen Wals ein Symbol für die Bundesregierung sei.",
+        "question_intent": "Miosga versucht, einen symbolischen Vergleich zur Schwäche der Regierung herzustellen.",
+        "position": "Schwesig lehnt den direkten Vergleich ab, warnt aber: Die Bundesregierung habe Vertrauen verloren, die Stimmung in der Bevölkerung sei sehr schlecht. Sie kritisiert besonders die Aussage des Bundeskanzlers, Deutschland arbeite zu wenig – das sei die falsche Ansprache. Viele Menschen arbeiten hart, kümmern sich um Familien, haben wenig Geld trotz Arbeit, während Preise für Mieten, Lebensmittel und Sprit gestiegen sind. Diese Realität müsse man anerkennen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig beantwortet nicht direkt die Symbolfrage, bietet aber eine substantielle Diagnose des Vertrauensproblems und nennt konkrete Kritik am Bundeskanzler. Sie weicht teilweise in ein breiteres Statement über Regierungspolitik aus, adressiert aber die Frage nach Schwäche.",
+        "quotes": [
+          {
+            "text": "Die Bundesregierung hat an Vertrauen verloren. Die Stimmung in der Bevölkerung ist sehr schlecht.",
+            "timestamp": "00:02:10",
+            "context": "Auf Miosgas Frage zur Symbolik des Wals antwortet Schwesig mit einer Diagnose der Vertrauenskrise."
+          },
+          {
+            "text": "Diese Ansprache an die Bevölkerung durch den Bundeskanzler, Deutschland würde nicht genug arbeiten: Das ist aus meiner Sicht die falsche Ansprache.",
+            "timestamp": "00:02:40",
+            "context": "Schwesig kritisiert explizit die Kommunikation des Bundeskanzlers Merz."
+          }
+        ],
+        "concrete_statements": [
+          "Bundeskanzler Merz wählt die falsche Ansprache, wenn er sagt, Deutschland arbeitet zu wenig.",
+          "Die Realität vieler Menschen: hard work, geringe Einkommen, gestiegene Lebenshaltungskosten – muss anerkannt werden."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Regierungskommunikation",
+          "Vertrauen in Demokratie"
+        ]
+      },
+      {
+        "title": "Blockade der Einmalprämie durch Länder",
+        "timestamp_range": "00:03:47 - 00:05:24",
+        "theme_description": "Schwesig erklärt, warum sie und andere Ministerpräsidenten die von der Bundesregierung beschlossene 1000-Euro-Einmalprämie gestoppt haben.",
+        "question_asked": "Caren Miosga fragt, warum Schwesig die Einmalprämie gestoppt habe, wenn viele Unternehmen sagten, sie können das nicht zahlen.",
+        "question_intent": "Miosga möchte verstehen, ob Schwesigs Veto gerechtfertigt war und ob damit die Regierung zu Recht gedämmt wurde.",
+        "position": "Schwesig begründet die Blockade damit, dass man nur Dinge versprechen soll, die wirklich kommen. Der Mittelstand könne das nicht leisten – ihm flögen gerade die Kosten um die Ohren, viele Betriebe bauen Arbeitsplätze ab, selbst die öffentliche Hand und soziale Arbeitgeber sagen, sie können das nicht. Schwesig kritisiert, dass mit den Betroffenen (Unternehmen und Ministerpräsidenten) nicht vorab gesprochen wurde. Sie hätte die Diskussion zur Folge gehabt: Wer bekommt es alles nicht? Stattdessen hätte es eine Einkommensteuerreform sein sollen, die bei allen ankommt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig antwortet direkt auf die Frage, warum sie die Prämie blockiert hat, mit konkreten Gründen und Kritik am Prozess (Fehlen von Konsultation). Sie benennt auch die Alternative (Einkommensteuerreform).",
+        "quotes": [
+          {
+            "text": "Man sollte nur Dinge versprechen, die auch wirklich kommen. Das macht es nicht leicht im Alltag. Der Mittelstand kann das nicht. Ihm fliegen gerade die Kosten um die Ohren. Viele Betriebe bauen gerade Arbeitsplätze ab.",
+            "timestamp": "00:04:19",
+            "context": "Schwesig erklärt, warum die Prämie nicht umsetzbar ist."
+          },
+          {
+            "text": "Das ist unprofessionell. Das ist ein Beispiel, wie es nicht mehr weiterlaufen kann in Deutschland. Wir müssen die Wirtschaft zum Laufen bringen. Wir müssen die Energiepreise senken.",
+            "timestamp": "00:05:54",
+            "context": "Schwesig bewertet den Prozess rund um die Prämie als unprofessionell und fordert bessere Koordination."
+          }
+        ],
+        "concrete_statements": [
+          "Bundesregierung hat nicht mit Unternehmen und Ministerpräsidenten vorab geredet – unprofessionell.",
+          "Mittelstand kann die Prämie nicht zahlen, Betriebe bauen Arbeitsplätze ab.",
+          "Alternative: Einkommensteuerreform, die bei allen ankommt."
+        ],
+        "related_bundestag_topics": [
+          "Entlastungspolitik",
+          "Föderalismus",
+          "Koalitionskommunikation"
+        ]
+      },
+      {
+        "title": "Forderung nach Einbeziehung von Sozialpartnern",
+        "timestamp_range": "00:05:54 - 00:08:01",
+        "theme_description": "Schwesig plädiert für eine strukturelle Reform der Regierungsmethode durch Einbeziehung von Arbeitgebern, Gewerkschaften und Ministerpräsidenten.",
+        "question_asked": "Caren Miosga fragt, ob es ein Verstoß gegen Normalität ist, dass Lars Klingbeil sich nicht vorher bei Schwesig gemeldet hat.",
+        "question_intent": "Miosga möchte wissen, ob die Kommunikation zwischen Bundespolitik und Ländern zusammengebrochen ist.",
+        "position": "Schwesig bekräftigt: Man kann nicht zu dritt im Kanzleramt treffen und riesige Aufgaben allein lösen. Man muss Arbeitgeber und Gewerkschaften an den Tisch holen – das ist die soziale Marktwirtschaft. Sie hätten dem Bundeskanzler vorgeschlagen, eine Ministerpräsidentenkonferenz einzuberufen, wie Scholz und Merkel es getan haben. Dies ist keine Parteiauseinandersetzung, sondern ein Beispiel für falsche Arbeitsweise. Statt Verhandlung über die Prämie hätte Einkommensteuerreform besser gewesen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig antwortet präzise auf die implizite Frage nach Koordinationsversagen und begründet ihre Forderung nach strukturellen Änderungen konkret (MPK, Sozialpartner-Einbeziehung).",
+        "quotes": [
+          {
+            "text": "Wenn ich so gigantische Aufgaben habe, kann man sich nicht nur zu dritt treffen und die alleine lösen wollen. Man muss Sozialpartner an den Tisch holen. Auch Arbeitgeber und Gewerkschaften.",
+            "timestamp": "00:06:26",
+            "context": "Schwesig kritisiert die Arbeitsmethode der Bundesregierung beim Treffen in der Villa Borsig."
+          }
+        ],
+        "concrete_statements": [
+          "SPD hat zwei Kanäle vorgeschlagen: Einbindung von Arbeitgebern/Gewerkschaften und Ländern.",
+          "Ministerpräsidenten hätten MPK-Vorschlag gemacht, wie zu Scholz/Merkel-Zeiten.",
+          "Soziale Marktwirtschaft funktioniert nur mit breiter Partizipation."
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Tarifpolitik",
+          "Konsensdemokratie"
+        ]
+      },
+      {
+        "title": "Aussage Bärbel Bas zu Migration und Sozialsystemen",
+        "timestamp_range": "00:10:41 - 00:12:48",
+        "theme_description": "Schwesig antwortet auf Miosgas Frage, ob sie Arbeitsministerin Bas' Aussage versteht, dass niemand in Sozialsysteme einwandert.",
+        "question_asked": "Caren Miosga fragt, ob Schwesig versteht, warum Bärbel Bas solch eine Aussage macht, als würde niemand in Sozialsysteme einwandern.",
+        "question_intent": "Miosga möchte, dass Schwesig kritisiert oder verteidigt, ob die SPD-Arbeitsministerin die Realität verkennt oder nur Fachkräfte meinte.",
+        "position": "Schwesig differenziert: Es gibt unterschiedliche Gründe, warum Menschen nach Deutschland kommen. Ein großer Teil arbeitet, aber ein großer Teil wartet noch auf Integration in den Arbeitsmarkt. Es ist unstrittig, dass der Sozialstaat nur für Menschen da sein darf, die Hilfe brauchen, und niemand darf ihn ausnutzen – das gilt für alle, mit und ohne Migrationshintergrund. Sie kritisiert indirekt Bas: Die Aussage war problematisch, weil der Eindruck entstanden ist, die SPD sähe Probleme nicht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig antwortet auf die Frage, weicht aber in allgemeine Prinzipien aus, statt Bas direkt zu kritisieren oder zu verteidigen. Sie anerkennt implizit das Problem, bleibt aber vorsichtig formuliert.",
+        "quotes": [
+          {
+            "text": "Es gibt verschiedene Gründe, warum Menschen nach Deutschland kommen. Es ist uns gelungen, dass viele Menschen mit Migrationshintergrund arbeiten.",
+            "timestamp": "00:11:14",
+            "context": "Schwesig antwortet ausweichend auf die Frage, ob sie Bas' Aussage unterstützt."
+          },
+          {
+            "text": "Ein Großteil der Menschen mit Migration arbeitet. Aber ein großer Teil ist noch in Sozialleistungen. Unsere Aufgabe ist, zu schauen, warum klappt es für die einen und die anderen nicht.",
+            "timestamp": "00:12:15",
+            "context": "Schwesig präzisiert die Realität differenzierter als Bas."
+          }
+        ],
+        "concrete_statements": [
+          "SPD sieht die Probleme – Bas hat erste Sozialministerin konkrete Vorschläge gegen Missbrauch gemacht.",
+          "Konkrete Programme nötig: z.B. Schwerin – unter-25-Jährige anschreiben, Schul-/Berufsabschluss fördern."
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Sozialsystem",
+          "Arbeitsmarktintegration",
+          "Bürgergeld"
+        ]
+      },
+      {
+        "title": "Distanzierung von Bundes-SPD im Wahlkampf 2025",
+        "timestamp_range": "00:14:24 - 00:16:04",
+        "theme_description": "Schwesig erklärt, wie sie mit der unpopulären Bundes-SPD in ihrer Landtagswahl umgeht.",
+        "question_asked": "Caren Miosga fragt, wie Schwesig die SPD im Wahlkampf \"verstecken\" wird, ähnlich wie Cem Özdemir (Grüne) sich von seiner Bundespartei distanziert hat.",
+        "question_intent": "Miosga möchte wissen, ob Schwesig ihre Partei desavouieren wird, um Wähler zu halten.",
+        "position": "Schwesig antwortet, dass sie sich nicht versteckt. Sie vertritt vor allem ihr Bundesland, unterstützt gute Dinge und kritisiert andere, versucht sie zu verändern. Bei der Landtagswahl geht es um das Land, nicht um Bundespolitik. Sie hoffe, dass die Umfragen vor der Wahl wieder besser werden, wie 2021 (von 23% vier Monate vor der Wahl auf 39%).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig antwortet, dass sie sich nicht verstecken wird, weicht aber aus, ob Klingbeil und Bas in den Wahlkampf kommen. Sie betont ihr lokales Fokus-Framing, adressiert aber nicht direkt, wie aggressiv sie gegen die Bundes-SPD Distanz schaffen wird.",
+        "quotes": [
+          {
+            "text": "Ich verstecke mich nicht. Ich vertrete vor allem mein Bundesland. Dinge, die gut sind, unterstütze ich. Andere Dinge kritisiere ich und versuche, sie zu verändern.",
+            "timestamp": "00:15:02",
+            "context": "Auf die Frage, wie sie die SPD \"verstecken\" würde, antwortet Schwesig defensiv."
+          }
+        ],
+        "concrete_statements": [
+          "Landtagswahl dreht sich nicht allein um Bundespolitik – es geht um das Land.",
+          "2021: SPD M-V bei 23%, vier Monate später bei 39% – Hoffnung auf Wiederholung."
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Wahlkampf 2025",
+          "Vertrauenskrise SPD"
+        ]
+      },
+      {
+        "title": "Russland-Politik und Nord Stream 2",
+        "timestamp_range": "00:17:39 - 00:18:40",
+        "theme_description": "Schwesig verteidigt ihren Schwenk von Pro-Russland-Haltung vor 2022 zu scharfer Distanzierung nach dem Überfall.",
+        "question_asked": "Caren Miosga fragt, ob Schwesigs Wähler ihren schnellen Schwenk von Nord-Stream-2-Befürwortung (80% Unterstützung) zur Distanzierung von Russland nach dem Krieg \"krumm genommen\" haben.",
+        "question_intent": "Miosga möchte wissen, ob der Policy-Umschwung Schwesig Wählerverluste gekostet hat.",
+        "position": "Schwesig findet es nachvollziehbar, unter den Umständen des Angriffskrieges keine Beziehung mehr zu Russland zu haben und keine Energielieferungen aufzunehmen. Das habe ihr Bundesland nie für sich allein genommen – galt für ganz Deutschland. Sie stehe zu dieser klaren Haltung, weil es eine Zeitenwende gibt. Ihr Bundesland habe seinen Beitrag geleistet mit Energielieferungen durch andere Wege (Öl über Schwedt, LNG über Lubmin).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig antwortet direkt auf die Frage, ob Wähler den Schwenk krumm genommen haben, mit einer Verteidigung ihrer Position: Nachvollziehbarkeit durch geänderte Umstände (Angriffskrieg).",
+        "quotes": [
+          {
+            "text": "Unter diesen Umständen kann es keine Beziehung mehr zu Russland geben. Wir können auch keine Energielieferung aufnehmen. Das hat mein Bundesland auch nie für sich selber genommen.",
+            "timestamp": "00:18:09",
+            "context": "Schwesig rechtfertigt ihren Ukraine-Schwenk gegenüber Miosga."
+          }
+        ],
+        "concrete_statements": [
+          "Angriff Russlands = Zeitenwende, rechtfertigt Haltungswechsel.",
+          "Mecklenburg-Vorpommern stellte alternative Energieversorgung sicher: Öl über Schwedt, LNG über Lubmin."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Ukraine-Krieg",
+          "Energieversorgung",
+          "Gaslieferungen"
+        ]
+      },
+      {
+        "title": "Gerhard Schröder als Vermittler im Ukraine-Krieg",
+        "timestamp_range": "00:19:46 - 00:20:50",
+        "theme_description": "Schwesig antwortet auf die Frage, ob Gerhard Schröder (Putins Vermittler) eine gute Idee als Friedensunterhändler ist.",
+        "question_asked": "Caren Miosga fragt, ob Schröders Vorschlag von Putin, als Vermittler im Ukraine-Krieg zu fungieren, eine gute Idee ist.",
+        "question_intent": "Miosga möchte erfahren, ob Schwesig/SPD Schröder als Vermittler unterstützt.",
+        "position": "Schwesig betont, dass der Angriffskrieg der Ukraine viel Leid bringt, daher ist es wichtig, dass es zu Frieden kommt und Russland den Krieg beendet. Diplomatie spielt eine Rolle, aber die Entscheidung über Gespräche muss Selenskyj mit europäischen Regierungschefs treffen – nicht die SPD von der Seitenlinie kommentieren.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Schwesig weicht aus, Schröder direkt zu bewerten. Sie verschiebt die Frage: Es geht nicht um Schwesigs/SPDs Meinung zu Schröder, sondern um Selenskyjs Entscheidung. Sie vermeidet, sich festzulegen, ob Schröder geeignet ist.",
+        "quotes": [
+          {
+            "text": "Ich glaube aber, dass nur Selenskyj mit den Regierungschefs Europas beantworten kann, wann und in welcher Form Gespräche stattfinden sollten.",
+            "timestamp": "00:20:20",
+            "context": "Schwesig lehnt ab, die Schröder-Frage zu beantworten, und delagiert an Selenskyj."
+          }
+        ],
+        "concrete_statements": [
+          "Entscheidung über Vermittler liegt bei Selenskyj und europäischen Regierungschefs.",
+          "SPD macht keine Seitenlinienkritik zu Vermittlungsfragen."
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Diplomatie",
+          "Russland-Politik",
+          "Altkanzler"
+        ]
+      },
+      {
+        "title": "Verlust von Arbeiterwählern an AfD",
+        "timestamp_range": "00:21:23 - 00:25:12",
+        "theme_description": "Schwesig kommentiert die Analyse von Soziologe Klaus Dörre über den Verlust von Arbeiterwählern zur AfD und wendet sich gegen die Kritik an der SPD-Bürgergeld-Politik.",
+        "question_asked": "Nach einer Expertenanalyse fragt Caren Miosga Schwesig direkt: War das Bürgergeld im Nachhinein ein Fehler?",
+        "question_intent": "Miosga möchte, dass Schwesig zugibt, dass die Bürgergeld-Politik die Arbeiter-Wählerschaft verloren hat.",
+        "position": "Schwesig antwortet: Wenn dieser Eindruck entstanden ist, sind Fehler passiert. Es war richtig, das Bürgergeld zu reformieren. Aber die SPD ist stark, wenn sie Wirtschaftsstärkung und Arbeitskräftesicherung verbindet. Die Leute, die arbeiten gehen, sind im Fokus. Sie führt konkrete Beispiele an: Gesetze zu Tariflöhnen bei öffentlichen Aufträgen, Abschaffung von Kita-Kosten für alle Eltern (nicht nur Nicht-Arbeitsuchende). Sie wirbt mit Energiekosten, Tankrabatt. Mindestlohn ist wichtig, aber auch der Tankdeckel.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig antwortet auf die Bürgergeld-Frage mit einer bedingten Einräumung von Fehlern, weicht aber in Gegenbeispiele aus und versucht, die SPD als Arbeiterpartei zu rehabilitieren. Sie beantwortet nicht vollständig, warum Dörres Analyse richtig oder falsch ist.",
+        "quotes": [
+          {
+            "text": "Wenn dieser Eindruck entstanden ist, sind Fehler passiert. Deshalb ist es richtig gewesen, das Bürgergeld zu reformieren.",
+            "timestamp": "00:25:12",
+            "context": "Schwesig antwortet auf die Bürgergeld-Frage mit vorsichtiger Fehlereinräumung."
+          },
+          {
+            "text": "Die SPD ist immer stark, wenn wir die Stärkung der Wirtschaft, die Sicherung von Arbeitskräften mit der Wirtschaft verbinden.",
+            "timestamp": "00:25:45",
+            "context": "Schwesig positioniert die SPD neu als Wirtschaftspartei."
+          }
+        ],
+        "concrete_statements": [
+          "Bürgergeld-Eindruck hat Fehler verursacht – Reform war richtig.",
+          "Kita-Kosten für alle Eltern abgeschafft (nicht nur Nicht-Arbeitsuchende).",
+          "Öffentliche Aufträge an Tariflöhne gebunden.",
+          "Tankrabatt UND Tankdeckel notwendig für Flächenland."
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Mindestlohn",
+          "Arbeitsmarktpolitik",
+          "Energiepreise"
+        ]
+      },
+      {
+        "title": "Mangelnde SPD-Präsenz und Struktur in der Fläche",
+        "timestamp_range": "00:31:00 - 00:37:17",
+        "theme_description": "Schwesig verteidigt die SPD-Präsenz und Strukturen in Ostdeutschland gegen die Kritik von Bürgermeister Piwodda und Blome.",
+        "question_asked": "Wie groß ist die Schwäche der SPD-Struktur in der Fläche? Schwesig wird implizit eingeladen, auf Piwodda und Blome zu antworten, die verkrustete SPD-Strukturen kritisieren.",
+        "question_intent": "Moderatoren und Gäste möchten von Schwesig hören, ob sie die SPD-Präsenz-Probleme anerkennt.",
+        "position": "Schwesig bestreitet nicht alle Kritik, aber nuanciert: Historisch ist die SPD in Ostdeutschland schwächer, weil sie sich nach 1990 neu gründete (im Gegensatz zur Linken als SED-Nachfolger). Bei uns gibt es fast 3000 Mitglieder (westdeutsch: ein Kreisverband hat so viele), Büros in fast allen Wahlkreisen, Marktstände auch außerhalb von Wahlen. Sie mache regelmäßig Bürgerdialoge (morgen in Altentreptow), viele Menschen kommen, nicht nur zu kleinen Problemen. Natürlich können sie nicht überall sein, aber Zusammenarbeit mit Bürgermeistern ist wichtig – 700 Gemeinden, die meisten mit ehrenamtlichen Bürgermeistern. Sie wünscht sich direkter Draht statt vieler Zwischenschritte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig bestreitet die Kritik nicht vollständig, sondern kontert mit Daten über SPD-Strukturen in M-V und persönlichen Aktivitäten (Bürgerdialoge, Marktstände). Sie adressiert die Frage nach Schwäche mit Gegenbeispielen, bleibt aber bei der grundsätzlichen Schwäche in der Fläche vorsichtig.",
+        "quotes": [
+          {
+            "text": "Diese pauschale Einschätzung kann ich nicht teilen. Es gibt historische Gründe, warum die SPD in Ostdeutschland strukturell nicht so stark ist. Bei uns gibt es fast 3000 Mitglieder. So viel hat im Westen ein Kreisverband.",
+            "timestamp": "00:36:39",
+            "context": "Schwesig antwortet auf die Kritik an SPD-Präsenz mit statistischen Fakten."
+          },
+          {
+            "text": "Wir haben in allen Wahlkreisen ein Büro. Wir haben fast alle Wahlkreise geholt. Wir haben auch Marktstände, auch zu Nicht-Wahlkampfzeiten.",
+            "timestamp": "00:36:39",
+            "context": "Schwesig belegt ihre SPD-Aktivitäten konkret auf."
+          }
+        ],
+        "concrete_statements": [
+          "SPD M-V: ~3000 Mitglieder, Büros in fast allen Wahlkreisen, regelmäßige Bürgerdialoge.",
+          "700 Gemeinden in M-V, die meisten mit ehrenamtlichen Bürgermeistern – direkte Zusammenarbeit wichtig.",
+          "Historisch: SPD Neugründung 1990, Linke ist SED-Nachfolger – erklärt strukturelle Schwäche."
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Parteistrukturen",
+          "Ostdeutschland",
+          "Bürgerbeteiligung"
+        ]
+      },
+      {
+        "title": "Kommunale Finanzprobleme und Sondervermögen",
+        "timestamp_range": "00:41:08 - 00:45:02",
+        "theme_description": "Schwesig adressiert die Finanzierungskrise von Kommunen und bewertet das Bundessondervermögen.",
+        "question_asked": "Auf Piwodda, der über Kommunenfinanzierungsprobleme spricht (25% öffentliche Aufgaben, 14% Gelder), fragt Caren Miosga Schwesig, ob das faire Finanzierung ist.",
+        "question_intent": "Miosga möchte von Schwesig wissen, ob sie die kommunale Finanzierungskrise anerkennt und ob Bundesmittel ausreichend sind.",
+        "position": "Schwesig bestätigt: 88% der Bürgermeister und Landräte klagen über Finanznot – auch bei ihr. Viele Pflichtausgaben, nur 100.000€/Jahr für Investitionen. Sondervermögen der Bundesregierung: 1,3 Millionen für M-V – guter Start. Problem: Falsche Dynamik entwickelt sich – \"immer um Geld betteln\". 25% aller Aufgaben von Kommunen, aber nur 14% aller Gelder – das ist nicht fair. Bundesteilhabegesetz: Geld überschritten, 5 Milliarden Mehrkosten von Kommunen getragen. Keine neuen Leistungen ohne Finanzierung. Aber Sondervermögen war wichtiger Schritt: Gelder für Sanierungen, schafft Modernisierung, hebt Spalt zwischen Waffen/Militär und Kita/Schule/Straße auf.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig antwortet direktauf die Finanzierungsfrage mit konkreten Zahlen aus M-V und differenzierter Bewertung des Sondervermögens als notwendig, aber nicht ausreichend.",
+        "quotes": [
+          {
+            "text": "Das Hauptproblem der Kommunen ist, dass viele Gesetze nicht ausfinanziert sind. Da kommen die Kommunen unter Druck.",
+            "timestamp": "00:45:34",
+            "context": "Schwesig benennt das Kernproblem der Kommunenfinanzen."
+          },
+          {
+            "text": "Mit dem Sondervermögen hat die Bundesregierung einen wichtigen Schritt gemacht. Dass wir jetzt Gelder für Sanierungen haben, schafft eine Modernisierung.",
+            "timestamp": "00:46:07",
+            "context": "Schwesig würdigt das Sondervermögen als positiv, aber nicht alle Probleme lösend."
+          }
+        ],
+        "concrete_statements": [
+          "M-V: Finanzprobleme bestätigt – nur 100.000€/Jahr für Investitionen bei vielen Pflichtausgaben.",
+          "Bundesfinanzen unfair: 25% Aufgaben/Kommunen, aber nur 14% Gelder.",
+          "Bundesteilhabegesetz: 5 Milliarden Mehrkosten von Kommunen selbst getragen.",
+          "Sondervermögen 1,3 Mio. für M-V: notwendig, behebt aber nicht alle Probleme."
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Kommunenfinanzen",
+          "Bundesteilhabegesetz",
+          "Infrastrukturinvestition"
+        ]
+      },
+      {
+        "title": "Zusammenarbeit mit AfD auf kommunaler Ebene",
+        "timestamp_range": "00:48:48 - 00:54:07",
+        "theme_description": "Schwesig wird gefragt, ob und wie sie mit der AfD zusammenarbeitet, besonders auf kommunaler Ebene.",
+        "question_asked": "Caren Miosga und Piwodda fragen: Wie läuft die Zusammenarbeit mit der AfD in Gartz (Piwodda) und M-V? Müssen alle mit der AfD zusammenarbeiten?",
+        "question_intent": "Miosga und Piwodda möchten verstehen, wo Schwesig die Linie zieht: Koalitionen mit AfD ja oder nein?",
+        "position": "Schwesig ist differenziert: Auf kommunaler Ebene arbeiten in M-V CDU und AfD zusammen (Beispiel: Landkreis Vorpommern-Greifswald zur Brücke). Sie verurteilt die Bürgermeister nicht, die so zusammenarbeiten. Aber auf Landespolitik: \"Für mich wird es keine Zusammenarbeit mit der AfD geben.\" Es gibt genug demokratische Mehrheiten. Sie lehnt aber auch Schwarzweißmalerei ab – die Antwort ist \"Alle zusammen für die Bürger\", nicht \"Alle zusammen gegen die AfD\". Auf Landesebene vor der Wahl im September: AfD tritt mit radikaler Liste an, inkl. bekennender Rechtsextremist – als Sozialdemokratin kann sie mit solchen Leuten nicht zusammenarbeiten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig beantwortet präzise: kommunale Ebene (de facto Realität, nicht ideal), Landesebene (nein, mit demokratischen Mehrheiten). Sie erklärt auch ihre Abgrenzung zur Brandmauer-Rhetorik und positioniert sich als \"pro Bürger\"-Position statt \"anti-AfD\".",
+        "quotes": [
+          {
+            "text": "Auf kommunaler Ebene arbeiten in meinem Bundesland CDU und AfD zusammen. In der Landespolitik wird es keine Zusammenarbeit geben. Wir haben genügend demokratische Mehrheiten, um es selber zu machen.",
+            "timestamp": "00:51:26",
+            "context": "Schwesig erklärt ihre differenzierte Haltung zu AfD-Zusammenarbeit."
+          },
+          {
+            "text": "Für mich wird es keine Zusammenarbeit mit der AfD geben. Auch nicht auf kommunaler Ebene? Auf kommunaler Ebene gibt es das zwischen AfD und CDU.",
+            "timestamp": "00:51:26",
+            "context": "Schwesig präzisiert ihre Linie: nein auf Landesebene, de facto auf kommunaler Ebene."
+          }
+        ],
+        "concrete_statements": [
+          "CDU und AfD arbeiten auf kommunaler Ebene in M-V zusammen (Beispiel: Landkreis Vorpommern-Greifswald).",
+          "Landesebene: Keine Zusammenarbeit mit AfD, genug demokratische Mehrheiten vorhanden.",
+          "Abkehr von Brandmauer-Rhetorik – Forderung: \"Alle zusammen für die Bürger\"."
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "AfD-Isolationspolitik",
+          "Föderalismus",
+          "Demokratieschutz"
+        ]
+      },
+      {
+        "title": "Zuspitzung der Landtagswahl 2025 als Richtungsentscheidung",
+        "timestamp_range": "00:56:45 - 00:59:28",
+        "theme_description": "Schwesig rahmt die Landtagswahl am 20. September als Duopol zwischen SPD und AfD statt als Koalitionsverhandlung.",
+        "question_asked": "Caren Miosga fragt, ob es ein \"Offenbarungseid\" ist, wenn die Wahl nur noch um Verhinderung geht statt um Inhalte. Sie vergleicht mit Sachsen-Anhalt, wo die SPD eine Koalition mit dem CDU-Ministerpräsidenten Schulze anstrebt.",
+        "question_intent": "Miosga möchte wissen, ob Schwesigs Framing (SPD vs. AfD) eine echte Richtungswahl ist oder nur Negativkampagne.",
+        "position": "Schwesig räumt ein: Es fehlen klare Ideen, ja. Aber in M-V ist die Situation zugespitzt: CDU oder Linke fallen nicht aus dem Landtag. Es geht um die Präsenz traditioneller Parteien der Mitte. Falls mehrere rausfallen, schafft das Mehrheitsverhältnisse, in denen AfD-Kandidat Chef wird – anders als 2021. Deshalb: Wahl am 20.9. ist Richtungsentscheidung – SPD oder AfD. Die Frage ist: Stabilität und Verlässlichkeit oder AfD-Übernahme?",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig beantwortet die Frage zu Offenbarungseid und Duopol-Framing direkt und erklärt, warum M-V anders ist als Sachsen-Anhalt (mathematische Mehrheiten). Sie verteidigt das Zuspitzungs-Framing als sachlich notwendig.",
+        "quotes": [
+          {
+            "text": "Bei der Landtagswahl am 20. September wird es darum gehen: Ob die SPD gewählt wird oder ob die AfD gewählt wird. Das ist die Lage. Das müssen die Menschen entscheiden.",
+            "timestamp": "00:58:53",
+            "context": "Schwesig rahmt die Wahl am 20.9. als binäre Richtungsentscheidung."
+          }
+        ],
+        "concrete_statements": [
+          "M-V: CDU/Linke fallen nicht aus, aber Zuspitzung SPD vs. AfD ist real wegen Mehrheitsmathematik.",
+          "Wahl 20.9.: Richtungsentscheidung zwischen Stabilität/Verlässlichkeit oder AfD-Übernahme.",
+          "Dinge würden sich erheblich ändern unter AfD: Politik, Arbeitsmarkt, Wirtschaft, Bildung."
+        ],
+        "related_bundestag_topics": [
+          "Wahlkampf 2025",
+          "Polarisierung",
+          "Koalitionsmathematik",
+          "AfD-Widerstand"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "2021 stand die SPD Mecklenburg-Vorpommern bei 23 Prozent, vier Monate später bei 39 Prozent.",
+        "timestamp": "00:16:36"
+      },
+      {
+        "claim": "2025 lag der Anteil der Bürgergeldbezieher von Nicht-EU-Bürgern bei 48%.",
+        "timestamp": "00:12:48"
+      },
+      {
+        "claim": "88 Prozent der Bürgermeister und Landräte klagen über Finanznot.",
+        "timestamp": "00:41:08"
+      },
+      {
+        "claim": "80 Prozent der SPD-Wähler in Mecklenburg-Vorpommern wollten die Nord-Stream-2-Pipeline vor dem Ukraine-Überfall.",
+        "timestamp": "00:17:39"
+      },
+      {
+        "claim": "50 Prozent in Mecklenburg-Vorpommern möchten immer noch Gaslieferungen aus Russland.",
+        "timestamp": "00:18:40"
+      },
+      {
+        "claim": "Es gibt in M-V fast 3000 SPD-Mitglieder.",
+        "timestamp": "00:36:39"
+      },
+      {
+        "claim": "Kommunen nehmen 25% aller öffentlichen Aufgaben wahr, erhalten aber nur 14% aller öffentlichen Gelder.",
+        "timestamp": "00:42:12"
+      },
+      {
+        "claim": "Das Bundesteilhabegesetz hat zu 5 Milliarden Euro Mehrkosten geführt, die von Kommunen getragen werden.",
+        "timestamp": "00:44:28"
+      }
+    ]
+  }
+}

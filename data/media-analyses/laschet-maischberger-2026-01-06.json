@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNDI4NGFhNzctY2JiNS00MGFmLTgxODYtODk4N2JjY2RiNDZl",
+    "video_id": "maischberger-2026-01-06",
+    "politician": "Armin Laschet",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "676b7e7133b0f41d",
+    "transcript_chars": 54859,
+    "caption_lines": 2025,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21815,
+    "tokens_out": 7369,
+    "cost_usd": 0.023464,
+    "quote_validation": {
+      "valid_exact": 6,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.492Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Armin Laschet, Vorsitzender des Auswärtigen Ausschusses des Bundestages, diskutiert mit Sandra Maischberger die US-geführte militärische Operation gegen Venezuela, deren geopolitische Implikationen und die Frage nach Deutschlands Handlungsfähigkeit in einer veränderten internationalen Ordnung. Er argumentiert pragmatisch für europäische Eigenständigkeit, plädiert jedoch zugleich für strategische Ruhe gegenüber den USA, um Ukraine-Verhandlungen nicht zu gefährden, und betont die Notwendigkeit europäischer wirtschaftlicher Wettbewerbsfähigkeit.",
+    "themes": [
+      {
+        "title": "Bewertung der Venezuela-Operation als nicht-Trump-spezifisch",
+        "timestamp_range": "00:17:44 - 00:19:21",
+        "theme_description": "Armin Laschet ordnet Trumps Aktion gegen Venezuela in die historische Kontinuität amerikanischer Außenpolitik ein und bestreitet damit deren Besonderheit.",
+        "question_asked": "Sandra Maischberger fragt Laschet, ob Trump zu Recht von einem 'spektakulären Angriff' spricht und bezieht sich dabei auf die Verhaftung des venezolanischen Präsidenten Maduro durch US-Militär.",
+        "question_intent": "Maischberger möchte wissen, ob diese Operation ein Bruch mit bisheriger US-Politik darstellt oder ob sie in etablierte Muster passt.",
+        "position": "Laschet widerspricht Trumps Charakterisierung und relativiert die Aktion als Teil einer langen Reihe ähnlicher Operationen. Er führt Beispiele an: die Tötung von Osama bin Laden (völkerrechtlich zweifelhaft), die Irakkriege (250.000 Tote, kein UNO-Mandat), den Jugoslawien-Krieg (Grenzen verschoben ohne Sicherheitsratsbeschluss). Sein Fazit: 'Jeder amerikanische Präsident hat in seiner Amtszeit, selbst Obama und Bush, ähnliche Vorgänge gehabt. Das macht es nicht besser, aber das zeigt, das ist nicht ein alleiniger Trump-Gang.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet antwortet direkt auf Maischbergers Frage und liefert eine klare Position mit historischen Belegen. Er adressiert die Frage, ob dies Trump-spezifisch ist, und beantwortet sie mit Nein – es ist historisches Muster.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das macht es nicht besser, aber das zeigt, das ist nicht ein alleiniger Trump-Gang",
+          "Jeder amerikanische Präsident hat in seiner Amtszeit ähnliche Vorgänge gehabt"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist keine Besonderheit von Trump. Ein Beispiel haben wir an Osama bin Laden gehört. Er wird erschossen, wir fanden das alles gut, aber völkerrechtlich mindestens zweifelhaft.",
+            "timestamp": "00:17:44",
+            "context": "Laschet widerspricht Trumps Charakterisierung der Venezuela-Operation als spektakulär und ordnet sie in historische Kontinuität ein."
+          },
+          {
+            "text": "Jeder amerikanische Präsident hat in seiner Amtszeit, selbst Obama und Bush, ähnliche Vorgänge gehabt. Das macht es nicht besser, aber das zeigt, das ist nicht ein alleiniger Trump-Gang.",
+            "timestamp": "00:18:49",
+            "context": "Zusammenfassung seiner Einschätzung, dass Trumps Vorgehen kein Bruch mit bisheriger US-Politik ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht und internationale Ordnung",
+          "Außenpolitische Kontinuität der USA",
+          "Souveränität und Interventionspolitik"
+        ]
+      },
+      {
+        "title": "Strategische Zurückhaltung als Pragmatismus der Bundeskanzler",
+        "timestamp_range": "00:22:39 - 00:23:40",
+        "theme_description": "Laschet verteidigt Friedrich Merz' abwägende Rhetorik zur Venezuela-Operation gegen die Kritik, sie sei eine Weigerung, Völkerrechtsbruch klar zu benennen.",
+        "question_asked": "Sandra Maischberger fragt Laschet, ob Friedrich Merz durch sein Ausweichen auf 'komplex' statt 'Völkerrechtsbruch' richtig gehandelt hat – 'weil er nicht anders kann oder darf?'",
+        "question_intent": "Maischberger hinterfragt, ob Merz' diplomatische Zurückhaltung Feigheit, Opportunismus oder kluge Strategie ist.",
+        "position": "Laschet defend Merz' Vorgehen als strategisch klug und notwendig. Seine Begründung: In dem Moment, als die Operation stattfand, war Deutschlands außenpolitischer Berater in Kiew, um an einer Ukraine-Lösung zu arbeiten; die 27 Regierungschefs der 'Koalition der Willigen' trafen sich parallel in Paris. Unter diesen Bedingungen hätte ein öffentliches 'Abrechnen' mit Trump kontraproduktiv sein können. Merz habe stattdessen pragmatisch überlegt: Welche Konsequenzen hätte eine klare Verurteilung? (Sanktionen? Einfrieren von US-Assets?) Laschet's These: 'Man muss als Bundeskanzler immer schon einen Schritt weiter denken' – und das habe Merz getan, um 'alle Kraft jetzt auf diese Ukraine-Verhandlungen' zu legen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet beantwortet die Frage nach Merz' Rhetorik direkt und liefert die strategische Begründung. Er adressiert das Spannungsfeld zwischen moralischer Klarheit und realpolitischen Zwängen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Und das hat Friedrich Merz sehr klug gemacht",
+          "Man muss als Bundeskanzler immer schon einen Schritt weiter denken",
+          "Alle Kraft muss jetzt auf diese Ukraine-Verhandlungen gehen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man weiß, dass in dem Moment, wo das passiert ist, der außenpolitische Berater des Bundeskanzlers in Kiew war mit den anderen außenpolitischen Beratern, um eine Lösung zu finden in dem Ukraine-Konflikt. Wenn man weiß, dass heute die 27 Regierungschefs der Willigen in Paris zusammen sind, dann fragt man sich zurecht, hätte man Friedrich Merz raten sollen, dass er richtig mal am Sonntag mit Präsident Trump abrechnet?",
+            "timestamp": "00:22:39",
+            "context": "Laschet legt dar, warum Merz' Zurückhaltung angesichts laufender diplomatischer Prozesse sinnvoll war."
+          },
+          {
+            "text": "Man muss als Bundeskanzler immer schon einen Schritt weiter denken. Und das hat Friedrich Merz sehr klug gemacht.",
+            "timestamp": "00:23:10",
+            "context": "Abschließende Verteidigung von Merz' strategischer Zurückhaltung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitische Strategie und Diplomatie",
+          "Ukraine-Konflikt und Verhandlungen",
+          "Deutsche Außenpolitik unter Merz"
+        ]
+      },
+      {
+        "title": "Lateinamerika als historische Einflusssphäre der USA",
+        "timestamp_range": "00:25:11 - 00:27:15",
+        "theme_description": "Laschet erklärt Trumps imperialistische Rhetorik zu Lateinamerika mit historischen Präzedenzfällen, lehnt dieses Modell aber ab, plädiert gleichzeitig für europäischen diplomatischen Druck.",
+        "question_asked": "Sandra Maischberger fragt, ob Trumps Ankündigung, Venezuela selbst zu führen, bis etwas Neues entsteht, sowie Hinweise auf eine nationale Sicherheitsstrategie mit Lateinamerika als 'Hinterhof' bedeuten: 'Ist das Amerikas Strategie jetzt? Wir haben unsere Einflusssphäre und was dort passiert, bestimmen nur wir?'",
+        "question_intent": "Maischberger will wissen, ob die USA offiziell zu einem imperialistischen Konzept von regionalen Einflusssphären zurückkehren.",
+        "position": "Laschet bestätigt, dass dies tatsächlich die US-Strategie ist – 'Ja, das ist die Strategie' – lehnt sie aber normativ ab, da sie in Nachahmung durch China und Russland führt. Allerdings ordnet er dies historisch ein: 'das ist 80 Jahre mindestens amerikanische Politik, das Lateinamerika als eigenen Hinterhof betrachtet', mit Präsident Kennedy, der russische Raketen auf Kuba verhindern wollte. Seine Forderung: Europa sollte Druck auf die USA ausüben, dass sie den 'gewählten Oppositionspräsidenten' Edmundo González unterstützen und nicht mit der Vizepräsidentin Geschäfte machen. Dies wäre 'der softe Teil der europäischen Diplomatie'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet beantwortet die Frage präzise, bestätigt das imperialistische Muster als Strategie, historisiert es, lehnt es normativ ab und schlägt europäische Gegenmaßnahmen vor.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ja, das ist die Strategie",
+          "Aber die kann man nicht gut finden. Denn das löst gleich die Folge aus, dass China das auch beansprucht und Russland auch",
+          "Das gab es immer wieder",
+          "Ich finde, man muss jetzt da seine Kanäle auch nutzen"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, das ist die Strategie. Aber die kann man nicht gut finden. Denn das löst gleich die Folge aus, dass China das auch beansprucht und Russland auch.",
+            "timestamp": "00:26:13",
+            "context": "Laschet bestätigt das imperialistische Konzept, warnt aber vor Anreizen für Gegenmächte."
+          },
+          {
+            "text": "Aber auch da ist das 80 Jahre mindestens amerikanische Politik, das Lateinamerika als eigenen Hinterhof betrachtet.",
+            "timestamp": "00:26:13",
+            "context": "Historische Kontextualisierung des US-Verhaltens."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Ordnung und Macht",
+          "Lateinamerika-Politik",
+          "Multilateralismus versus Einflusssphären"
+        ]
+      },
+      {
+        "title": "NATO-Verteidigung und Grönland-Szenario",
+        "timestamp_range": "00:30:52 - 00:32:25",
+        "theme_description": "Laschet bewertet das Grönland-Szenario als existenzielle Bedrohung für die NATO und legt dar, unter welchen Bedingungen Europa handeln muss.",
+        "question_asked": "Sandra Maischberger fragt hypothetisch: 'Mal angenommen, Mette Frederiksen stellt das so dar, mal angenommen, die Amerikaner greifen einen NATO-Partner an. Was macht dann Europa?'",
+        "question_intent": "Maischberger will wissen, ob die NATO ein militärisches Bündnis bleibt, wenn ein Gründungsmitglied (über Dänemark/Grönland) angegriffen wird.",
+        "position": "Laschet antwortet differenziert: Zunächst müssen alle diplomatischen Anstrengungen darauf gerichtet sein, 'die Amerikaner davon abzuhalten, militärisch in Grönland einzugreifen'. Seine Einschätzung: Falls dies geschähe, 'würden nicht europäische Truppen in einen Krieg mit den USA ziehen'. Die NATO wäre dann 'wahrscheinlich tot'. Jedoch: Ein NATO-Land könne nicht akzeptieren, 'dass Territorium militärisch einverleibt wird' – dies betreffe 'unsere Sicherheit am Ende'. Strategisches Ziel müsse sein, 'alle Anstrengungen darauf zu richten, die Amerikaner beizubehalten in der Ukraine. Und ihnen klarzumachen, dass es nicht in ihrem Interesse liegen kann, die NATO so zu sprengen durch eine einseitige Aktion in Grönland'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet beantwortet die hypothetische Frage realistisch: Er benennt die militärische Unmöglichkeit (europäische Truppen gegen die USA), die politische Konsequenz (NATO-Ende) und die strategische Priorität (Diplomatie und Prävention).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Würden nicht europäische Truppen in einen Krieg mit den USA ziehen",
+          "Die NATO wäre wahrscheinlich tot",
+          "Das kann kein NATO-Land akzeptieren, dass Territorium militärisch einverleibt wird",
+          "Es ist eine ernste Lage, weil die Konsequenzen größer sind als Grünland. Es betrifft unsere Sicherheit am Ende"
+        ],
+        "quotes": [
+          {
+            "text": "Ja, das ist wirklich eine sehr gute Frage. Was es jetzt gemacht hat, ist erst einmal die Stellungnahme der Regierungschefs, die in einem abgewogenen Ton, aber sehr klarer Sprache gewandt haben. Man muss jetzt alle diplomatischen Anstrengungen darauf richten, die Amerikaner davon abzuhalten, militärisch in Grönland einzugreifen.",
+            "timestamp": "00:31:22",
+            "context": "Laschet leitet seine Antwort auf das Grönland-Szenario mit der Betonung diplomatischer Prävention ein."
+          },
+          {
+            "text": "Meine Einschätzung ist, wenn sie es tun würden, würden nicht europäische Truppen in einen Krieg mit den USA ziehen. Deshalb muss die politische Zielsetzung sein, und die NATO wäre wahrscheinlich tot, den 2. Satz würde ich wahrscheinlich, das kann kein NATO-Land akzeptieren, dass Territorium militärisch einverleibt wird.",
+            "timestamp": "00:31:54",
+            "context": "Laschet formuliert die militärischen und politischen Konsequenzen eines US-Angriffs auf Grönland."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO und Bündnispflicht",
+          "Grönland und Arktische Sicherheit",
+          "Europäische Verteidigungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Gemeinsame Interessen mit USA bei Grönland-Sicherheit",
+        "timestamp_range": "00:36:05 - 00:37:11",
+        "theme_description": "Laschet argumentiert für die Umwandlung von Grönland in ein gemeinsames Sicherheitsinteresse zwischen USA und Europa statt in einen Konfrontationspunkt.",
+        "question_asked": "Sandra Maischberger fragt nach Laschets Reaktion auf Gabriels Hypothese, dass die USA eventuell nicht-militärisch Grönland kontrollieren wollen und ob Europa handlungsfähig bleiben kann – 'Sind wir machtlos, wenn es einer auf seine brutale Durchsetzung...'",
+        "question_intent": "Maischberger sondiert, ob es europäische Handlungsspielräume gibt, falls Trump tatsächlich hart vorgehen sollte.",
+        "position": "Laschet schlägt vor, die Sicherheitsargumente (chinesische und russische Aktivitäten in der Arktis durch Eisschmelze) als gemeinsame Interessen neu zu rahmen. Konkret: 'Alles zu tun, die Amerikaner davon zu überzeugen, dass wenn es die Sicherheitsargumente sind, die Sigmar Gabriel gerade genannt hat, chinesische und russische Aktivitäten rund um Grönland, von Jahr zu Jahr erleichtert durch das Schmelzen des Eises, dass das auch unser Interesse ist, unser NATO-Interesse, dort Sicherheit zu gewährleisten.' Falls Trump dennoch sage, 'ich brauche das in meiner Landkarte', würden sich 'unsere Argumente' ändern – man müsse diese dennoch einsetzen. Abschließend: 'Wir werden umso glaubwürdig, wenn wir wieder wettbewerbsfähig sind in der Europäischen Union.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet antwortet auf die implizite Frage nach europäischer Agency mit einem konstruktiven Vorschlag: Umdefinition von Konkurrenz in gemeinsame Sicherheitsinteressen und Betonung europäischer wirtschaftlicher Stärke als Verhandlungsmasse.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Alles zu tun, die Amerikaner davon zu überzeugen, dass... das auch unser Interesse ist, unser NATO-Interesse, dort Sicherheit zu gewährleisten",
+          "Wenn er sagt, ich brauche das in meiner Landkarte, dann ändern sich unsere Argumente",
+          "Wir werden umso glaubwürdig, wenn wir wieder wettbewerbsfähig sind"
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde auch hier sagen, nicht dieses schwarz-weiß, sondern alles zu tun, die Amerikaner davon zu überzeugen, dass wenn es die Sicherheitsargumente sind, die Sigmar Gabriel gerade genannt hat, chinesische und russische Aktivitäten rund um Grönland, von Jahr zu Jahr erleichtert durch das Schmelzen des Eises, dass das auch unser Interesse ist, unser NATO-Interesse, dort Sicherheit zu gewährleisten.",
+            "timestamp": "00:36:05",
+            "context": "Laschet schlägt vor, Grönland-Sicherheit als gemeinsames Interesse zu rahmen statt als Konfrontation."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arktische Sicherheit",
+          "NATO-Zusammenarbeit",
+          "Geopolitik und Klimawandel"
+        ]
+      },
+      {
+        "title": "Europäische Wirtschaftsstärke als Fundament der Glaubwürdigkeit",
+        "timestamp_range": "00:37:11 - 00:37:41",
+        "theme_description": "Laschet argumentiert, dass europäische wirtschaftliche Wettbewerbsfähigkeit die einzige Grundlage für politische Handlungsfähigkeit gegenüber den USA darstellt.",
+        "question_asked": "Sandra Maischberger wendet sich an Laschet und Steingart zur Frage europäischen Einflusses auf die USA – implizit: Wie können die Europäer Trump entgegentreten, wenn sie wirtschaftlich schwächer sind?",
+        "question_intent": "Maischberger will verstehen, ob Europa ein Mitspracherecht gegenüber Trump hat.",
+        "position": "Laschet setzt den Punkt abschließend: 'Früher hätten wir Gegenmaßnahmen gehabt, wir sind aber heute so machtlos, dass Frau von der Leyen an den schottischen Sitz reist, um zu verhandeln.' Aber es gibt Wege: 'Diese europäische Verteidigungsposition muss jetzt entstehen. Es gibt viele Signale, dass das gelingen kann. Wenn nicht mit den 27, dann mit der alten Idee eines Kerneuropa. Mit Deutschland, Frankreich und Italien. Selbst wenn es nur 10 sind. Sich zusammentun und das gegenüber den USA signalisieren.' Die Koalition der Willigen in Paris zeige, dass 'diese Koalition der Willigen sitzt zufällig gerade heute in Paris zusammen' und dass die USA nicht isoliert handeln.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laschet antwortet auf die implizite Frage nach europäischer Agency mit einer dreistufigen Antwort: Analyse der gegenwärtigen Machtlosigkeit, Skizzierung eines Kerneuropa-Konzepts als Lösung und Verweis auf die Paris-Koalition als Hoffnungssignal.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir sind aber heute so machtlos, dass Frau von der Leyen an den schottischen Sitz reist",
+          "Diese europäische Verteidigungsposition muss jetzt entstehen",
+          "Wenn nicht mit den 27, dann mit der alten Idee eines Kerneuropa"
+        ],
+        "quotes": [
+          {
+            "text": "Früher hätten wir Gegenmaßnahmen gehabt, wir sind aber heute so machtlos, dass Frau von der Leyen an den schottischen Sitz reist, um zu verhandeln. Diese europäische Verteidigungsposition muss jetzt entstehen.",
+            "timestamp": "00:37:11",
+            "context": "Laschet diagnostiziert europäische Machtlosigkeit und skizziert Gegenmaßnahmen."
+          },
+          {
+            "text": "Mit Deutschland, Frankreich und Italien. Selbst wenn es nur 10 sind. Sich zusammentun und das gegenüber den USA signalisieren.",
+            "timestamp": "00:37:41",
+            "context": "Laschet konkretisiert das Kerneuropa-Konzept als Strategie gegen US-Dominanz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Autonomie",
+          "EU-Verteidigungspolitik",
+          "Deutsch-französische Zusammenarbeit"
+        ]
+      },
+      {
+        "title": "Deutsche Soldaten in der Ukraine unter Bedingungen",
+        "timestamp_range": "00:41:21 - 00:42:58",
+        "theme_description": "Laschet bewertet Merz' Aussage zu möglichen deutschen Soldaten im Ukraine-Konflikt als an Bedingungen gebunden und differenziert zwischen Kriegssituation und potenzieller Friedenssicherung.",
+        "question_asked": "Sandra Maischberger fragt: 'Er [Merz] hat nicht ausgeschlossen, dass es deutsche Soldaten in der Ukraine geben soll? Ist die deutsche Bevölkerung schon so weit, dass sie das trägt?'",
+        "question_intent": "Maischberger sondiert die öffentliche Akzeptabilität von deutschen Kampftruppen in der Ukraine.",
+        "position": "Laschet antwortet, dass Merz' Position an mehrere Bedingungen gebunden ist: Es muss einen Waffenstillstand geben, der 'mit Russland vereinbart ist'; Russland muss Sicherheitsgarantien für die Ukraine akzeptieren ('Was möglich scheint'). Dann stelle sich die Frage, wie man das absichert. Merz habe von Truppen 'am Rande der Ukraine' gesprochen (in Polen, Rumänien). 'Ehe das nicht beantwortet ist, kann man heute nicht Ja oder Nein sagen.' Jedoch betont Laschet: 'Aber wenn das im Einvernehmen mit Russland wäre, nach einem Waffenstillstand, in einer neuen Perspektive. Dann finde ich, ist die Frage anders zu diskutieren als in einer Kriegssituation.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Laschet antwortet auf die Frage nach Akzeptanz, weicht sie aber auf in eine Diskussion über die Bedingungen und rechtfertigt Merz' Vorsicht. Die Antwort adressiert die Frage indirekt: Die Bevölkerung trägt es möglicherweise, aber nur unter Frieden, nicht Krieg.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das hängt seit Monaten von den Bedingungen ab",
+          "Es muss einen Waffenstillstand geben, der mit Russland vereinbart ist",
+          "Ehe das nicht beantwortet ist, kann man heute nicht Ja oder Nein sagen"
+        ],
+        "quotes": [
+          {
+            "text": "Das hängt seit Monaten von den Bedingungen ab. Es muss einen Waffenstillstand geben, der mit Russland vereinbart ist. Wenn es diesen Waffenstillstand gibt. Wenn Russland zusagt gegenüber den Amerikanern, wir akzeptieren Sicherheitsgarantien für die Ukraine.",
+            "timestamp": "00:41:21",
+            "context": "Laschet bindet die Frage deutscher Soldaten an Friedensbedingungen."
+          },
+          {
+            "text": "Dann finde ich, ist die Frage anders zu diskutieren als in einer Kriegssituation.",
+            "timestamp": "00:42:25",
+            "context": "Laschet unterscheidet zwischen Kriegs- und Friedensszenario für deutsche Beteiligung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Deutsche Militärpräsenz im Ausland",
+          "Ukraine-Konflikt und Waffenstillstand",
+          "Deutsche Sicherheitspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Bei der Tötung von Osama bin Laden handelt es sich um einen völkerrechtlich mindestens zweifelhaften Fall",
+        "timestamp": "00:17:44"
+      },
+      {
+        "claim": "Im Irak-Krieg starben 250.000 Menschen, und Giftgas wurde nicht gefunden",
+        "timestamp": "00:18:17"
+      },
+      {
+        "claim": "Der Jugoslawien-Krieg fand ohne UNO-Sicherheitsratsbeschluss statt",
+        "timestamp": "00:18:49"
+      },
+      {
+        "claim": "Die USA haben für mindestens 80 Jahre Lateinamerika als ihren Hinterhof betrachtet",
+        "timestamp": "00:26:13"
+      },
+      {
+        "claim": "Edmundo González wurde von den Amerikanern als gewählter Präsident Venezuelas anerkannt",
+        "timestamp": "00:26:44"
+      }
+    ]
+  }
+}

@@ -1,0 +1,461 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMC0wOF8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-10-08",
+    "politician": "Tim Klüssendorf",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "25b5234c17be40d5",
+    "transcript_chars": 57038,
+    "caption_lines": 2089,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23343,
+    "tokens_out": 10374,
+    "cost_usd": 0.0300852,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 6,
+      "pivot_zum_gegenpunkt": 2,
+      "themenwechsel": 1,
+      "floskel_generisch": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.711Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Tim Klüssendorf, SPD-Generalsekretär, diskutiert in der Maischberger-Sendung mit Heidi Reichinnek (Die Linke) über Sozialpolitik, Steuergerechtigkeit und Migrationspolitik. Er tritt defensiv auf gegenüber Kritik an der Ampel-Bilanz und betont Investitionen in Infrastruktur sowie die finanzielle Notwendigkeit von Prioritätensetzungen.",
+    "themes": [
+      {
+        "title": "Stromsteuer und breite Entlastungen",
+        "timestamp_range": "00:21:01 - 00:22:02",
+        "theme_description": "Diskussion über eine versprochene Stromsteuersenkung, die nicht in breite Bevölkerungsteile gelangt ist.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob die SPD bei der Stromsteuer zu Unrecht kritisiert wird, ob sie also «nur Phrasen» gemacht hat, wie Heidi Reichinnek in einem TikTok-Video sagte.",
+        "question_intent": "Maischberger möchte wissen, ob die SPD ihre eigenen Versprechen zur Stromsteuer eingelöst hat oder ob die Kritik der Linken berechtigt ist.",
+        "position": "Klüssendorf räumt ein, dass das Thema Stromsteuer «nicht gut gelöst» wurde und die Ankündigung «nicht in die breite Mehrheit der Bevölkerung» gelangte. Allerdings betont er, dass die SPD «eine ganze weitere Reihe von Entlastungen» getroffen habe und eine «klare Priorität» auf Arbeitsplatzerhalt gesetzt haben. Konkrete Beispiele: Netzentgelte als alternative Entlastungsmaßnahme.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf adressiert die Frage zur Stromsteuer teilweise: Er gibt zu, dass die Umsetzung gescheitert ist, antwortet aber mit Verweis auf alternative Entlastungsmaßnahmen statt die zentrale Frage zu beantworten, warum die Stromsteuer nicht umgesetzt wurde. Die Antwort weicht aus, indem sie auf andere Erfolge verweist.",
+        "concrete_statements": [
+          "Wir haben auf jeden Fall das Thema der Stromsteuer miteinander nicht gut gelöst.",
+          "Wir haben eine ganze weitere Reihe von Entlastungen beschlossen. Netzentgelte z.B."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben auf jeden Fall das Thema der Stromsteuer miteinander nicht gut gelöst. Weil wir was angekündigt haben, was nicht in die breite Mehrheit der Bevölkerung gekommen ist.",
+            "timestamp": "00:21:21",
+            "context": "Auf Nachfrage hin, ob die Kritik an der Stromsteuer berechtigt ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiepreise",
+          "Entlastungsmaßnahmen",
+          "Haushaltspolitik"
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Arbeitsplatzerhalt als Priorität gegenüber Stromsteuer",
+        "timestamp_range": "00:21:31 - 00:22:02",
+        "theme_description": "Begründung, warum die SPD Arbeitsplatzerhalt über die versprochene Stromsteuersenkung priorisiert hat.",
+        "question_asked": "Implizite Nachfrage durch Maischberger, wie die SPD ihre Prioritäten rechtfertigt, nachdem sie widersprüchlich agiert hat.",
+        "question_intent": "Maischberger möchte verstehen, ob die Prioritätensetzung auf Arbeitsplatzerhalt eine rationale Entscheidung oder eine Rückzugsposition ist.",
+        "position": "Klüssendorf argumentiert, dass Arbeitsplatzerhalt «das Wichtigste» für Menschen sei, die um ihre wirtschaftliche Gesamtentwicklung besorgt sind. Die SPD habe daher eine «klare Priorität» auf dieses Ziel gesetzt. Dies erklärt, warum weniger ambitionierte Maßnahmen wie die Stromsteuer zugunsten dieser Priorität zurückgefahren wurden.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Klüssendorf begründet die Entscheidung nachvollziehbar mit einer Prioritätensetzung. Er antwortet direkt auf die implizite Frage, warum andere Maßnahmen nicht umgesetzt wurden: Weil Arbeitsplatzerhalt wichtiger war.",
+        "concrete_statements": [
+          "Es ging auch darum, Arbeitsplätze zu sichern. Das ist das Wichtigste für diejenigen, die betroffen sind von dem sorgenvollen Blick auf die wirtschaftliche Gesamtentwicklung.",
+          "Deshalb haben wir eine klare Priorität gesetzt auf den Erhalt der Arbeitsplätze."
+        ],
+        "quotes": [
+          {
+            "text": "Es ging auch darum, Arbeitsplätze zu sichern. Das ist das Wichtigste für diejenigen, die betroffen sind von dem sorgenvollen Blick auf die wirtschaftliche Gesamtentwicklung. Deshalb haben wir eine klare Priorität gesetzt auf den Erhalt der Arbeitsplätze.",
+            "timestamp": "00:21:31",
+            "context": "Bei der Erklärung, warum Stromsteuer nicht prioritär war."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Arbeitsmarkt",
+          "Industriepolitik"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Sondervermögen für Infrastruktur als SPD-Erfolg",
+        "timestamp_range": "00:23:34 - 00:24:06",
+        "theme_description": "Tim Klüssendorf behauptet, dass die SPD durch ein Sondervermögen große Infrastrukturinvestitionen ermöglicht hat.",
+        "question_asked": "Heidi Reichinnek fragt implizit, was die SPD konkret ins Schaufenster stellen kann, und verweist auf fehlende Entlastungen.",
+        "question_intent": "Reichinnek möchte wissen, welche konkreten Erfolge die SPD in der Koalition hat, die sie als Partei rechtfertigen.",
+        "position": "Klüssendorf antwortet, dass ohne die SPD es kein Sondervermögen für Infrastruktur gegeben hätte. Er nennt konkrete Zahlen: «Alleine 216 Mio. Euro bei den Kommunen, Brücken, Kitas, Schulen, Schwimmbäder». Er weist auch auf andere Koalitionserfolge hin (Grüne hatten Verdienst, aber «die Sozialdemokratie» auch) und erwähnt Fortschritte beim Wohnungsbau.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Klüssendorf beantwortet die implizite Frage mit konkreten Beispielen von SPD-Erfolgen. Er nennt das Sondervermögen, konkrete Summen und Projekte, was substantiell ist. Allerdings verwendet er eine rhetorische Umkehrung: Er behauptet, ohne die SPD würde es diese Investitionen nicht geben, statt zu zeigen, dass die SPD die Höhe/Qualität erhöht hat.",
+        "concrete_statements": [
+          "Ohne die SPD gebe es kein Sondervermögen die Infrastruktur.",
+          "Alleine 216 Mio. Euro bei den Kommunen, Brücken, Kitas, Schulen, Schwimmbäder, das gäbe es ohne die Sozialdemokratie nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Ohne die SPD gebe es kein Sondervermögen die Infrastruktur. Alleine 216 Mio. Euro bei den Kommunen, Brücken, Kitas, Schulen, Schwimmbäder, das gäbe es ohne die Sozialdemokratie nicht.",
+            "timestamp": "00:23:34",
+            "context": "Als Antwort auf die Frage nach konkreten SPD-Erfolgen in der Koalition."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Infrastruktur",
+          "Föderalismus",
+          "Haushaltspolitik",
+          "Kommunalfinanzierung"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Erbschaftsteuer und Steuergerechtigkeit",
+        "timestamp_range": "00:24:39 - 00:26:43",
+        "theme_description": "Diskussion über höhere Besteuerung von Erbschaften und Vermögen als Mittel zur Bekämpfung von Wohlstandskonzentration.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob er von einer Vermögenssteuer träumt, nachdem Heidi Reichinnek eine kritische Lage zur Vermögenskonzentration skizziert hat.",
+        "question_intent": "Maischberger möchte wissen, ob die SPD auch Vermögenssteuer als Lösung in Betracht zieht oder nur bei Erbschaftsteuer argumentiert.",
+        "position": "Klüssendorf antwortet, dass er nicht von «Steuern» träumt, sondern von einer «gerechteren Gesellschaft». Er stimmt Reichinnek zu, dass Wohlstandskonzentration «demokratiegefährdend» ist. Die SPD führe eine Diskussion um die Erbschaftsteuer, die «unfair» ist, weil «höchste Erbschaften am wenigsten besteuert» werden. Klüssendorf betont, dass es um «Steuergerechtigkeit» gehe, nicht um Steuererhöhung, und er wolle nur über die «Ausnahmen» diskutieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf adressiert die Frage zu Vermögenssteuer nur indirekt: Er antwortet auf die Frage nach Vermögenssteuer mit einer Diskussion über Erbschaftsteuer. Er weicht also teilweise aus, indem er das Thema zu einem ihm lieber gelegenen Punkt verschiebt.",
+        "concrete_statements": [
+          "Ich träume davon, dass unsere Gesellschaft gerechter wird.",
+          "Die Konzentration von Wohlstand in Deutschland ist mittlerweile auf einem Level, was demokratiegefährdend ist.",
+          "Gerechtere Besteuerung ist ein Weg, der anzugreifen.",
+          "Das ist aus meiner Sicht keine Frage der Steuererhöhung, sondern der Steuergerechtigkeit."
+        ],
+        "quotes": [
+          {
+            "text": "Ich träume nicht von Steuern, wenn ich das so sagen darf. Ich träume davon, dass unsere Gesellschaft gerechter wird. Da hat sie einen richtigen Punkt, die Konzentration von Wohlstand in Deutschland ist mittlerweile auf einem Level, was demokratiegefährdend ist.",
+            "timestamp": "00:25:39",
+            "context": "Auf die Frage, ob er von Vermögenssteuer träumt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuergerechtigkeit",
+          "Erbschaftsteuer",
+          "Vermögenssteuer",
+          "Finanzierung",
+          "Ungleichheit"
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Migration und GEAS-Reform als notwendige Grenzsetzung",
+        "timestamp_range": "00:29:18 - 00:30:50",
+        "theme_description": "Klüssendorf antwortet auf Vorwürfe, dass die Große Koalition einem «rechten Zeitgeist» folgt, indem er die Notwendigkeit von Grenzen und GEAS-Reform begründet.",
+        "question_asked": "Sandra Maischberger fragt Tim Klüssendorf, ob die SPD und Union einem «rechten Zeitgeist» folgen, nachdem Heidi Reichinnek diese These vorgebracht hat.",
+        "question_intent": "Maischberger möchte Klüssendorf auf die Kritik antworten lassen, dass die Migrationspolitik ideologisch kompromittiert ist.",
+        "position": "Klüssendorf antwortet: «Nein, deswegen nicht, weil wir gerade 2 Dinge machen.» Er argumentiert, dass die SPD auf Menschen höre, «die das Ganze umzusetzen haben», und diese sägen, «dass wir eine Grenze erreicht haben mit dem, was schaffbar ist». Deshalb müsse man zur GEAS-Reform greifen, die «wichtig» sei und bei der «Deutschland [...] vorangegangen» ist. Zweites Punkt: Die SPD habe «zu wenig in Integrationsmaßnahmen investiert», womit Klüssendorf der Kritik teilweise Recht gibt.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Klüssendorf antwortet nicht direkt auf die Frage, ob die Politik einem rechten Zeitgeist folgt, sondern weicht aus, indem er argumentiert, dass die SPD «auf Menschen höre», die das «Umzusetzen haben». Das ist eine Umdefinition der Frage: statt moralischer Kritik wird eine pragmatische Schranke gesetzt. Er pivotiert zum Gegenpunkt, dass man an Grenzen gestoßen ist.",
+        "concrete_statements": [
+          "Wir hören auf Menschen, die das Ganze umzusetzen haben. Die sagen, dass wir eine Grenze erreicht haben mit dem, was schaffbar ist.",
+          "Deswegen müssen wir da ran, auch europäisch, mit der GEAS-Reform.",
+          "Es ist ein wichtiger Schritt, Deutschland ist da vorangegangen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, deswegen nicht, weil wir gerade 2 Dinge machen. Wir hören auf Menschen, die das Ganze umzusetzen haben. Die sagen, dass wir eine Grenze erreicht haben mit dem, was schaffbar ist.",
+            "timestamp": "00:29:49",
+            "context": "Auf Vorwurf, dass die SPD/Union einem rechten Zeitgeist folgen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Asyl",
+          "GEAS",
+          "Integration",
+          "Europapolitik"
+        ],
+        "answer_type": "pivot_zum_gegenpunkt"
+      },
+      {
+        "title": "Integration und Investitionen in Integrationsmaßnahmen",
+        "timestamp_range": "00:30:19 - 00:30:50",
+        "theme_description": "Klüssendorf stimmt Heidi Reichinnek teilweise zu, dass zu wenig in Integration investiert wird.",
+        "question_asked": "Implizite Frage durch den Kontext: Sind die Integrationsmittel ausreichend?",
+        "question_intent": "Zu verstehen, ob die SPD die Integrationsdefizite in der Politik anerkennt.",
+        "position": "Klüssendorf räumt ein: «Und das 2. ist, und da stimme ich dir zu, wir haben viel zu wenig in Integrationsmaßnahmen investiert. Teilweise sind die Mittel dafür sogar gesenkt worden.» Er weist aber darauf hin, dass «unsere Haushalte sehr dafür kämpfen», was suggeriert, dass die Mittel nicht zur Verfügung standen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf antwortet direkt und substanziell auf die Frage, dass die Integrationsmaßnahmen unterfinanziert sind. Er gibt Reichinnek Recht und nennt konkrete Mangel (Mittel gesenkt).",
+        "concrete_statements": [
+          "Wir haben viel zu wenig in Integrationsmaßnahmen investiert.",
+          "Teilweise sind die Mittel dafür sogar gesenkt worden."
+        ],
+        "quotes": [
+          {
+            "text": "Und das 2. ist, und da stimme ich dir zu, wir haben viel zu wenig in Integrationsmaßnahmen investiert. Teilweise sind die Mittel dafür sogar gesenkt worden.",
+            "timestamp": "00:30:19",
+            "context": "Auf implizite Kritik zum Thema Integration."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Integration",
+          "Migration",
+          "Haushalt",
+          "Sozialausgaben"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Lautstärke der Kritik an Grausamkeits-Vorwurf",
+        "timestamp_range": "00:32:26 - 00:33:31",
+        "theme_description": "Klüssendorf protestiert gegen die Charakterisierung der Großen Koalition als «grausam» und behauptet, die SPD handle mit «bestem Wissen und Gewissen».",
+        "question_asked": "Heidi Reichinnek wirft dem Klüssendorf vor, dass die Bürgergeld-Reform grausam sei, da Eltern auf Essen verzichten.",
+        "question_intent": "Reichinnek möchte zeigen, dass die Koalitionspolitik humanitär unzureichend ist.",
+        "position": "Klüssendorf antwortet: «Mir passt das von der Wortwahl her nicht, von Grausamkeiten zu sprechen, ich finde, das wird uns nicht gerecht.» Er argumentiert, dass die SPD «in der politischen Mitte fair miteinander» sein müsse und dass die Regierung «mit bestem Wissen und Gewissen» handle. Er betont: «Wenn wir auf Dinge reagieren, die nicht gut passen, z.B. Reformen beim Bürgergeld, dann von Grausamkeiten zu sprechen, finde ich nicht gut.»",
+        "answer_match": "verschoben",
+        "match_reasoning": "Klüssendorf adressiert die Frage nicht inhaltlich (sind die Konsequenzen der Bürgergeld-Reform tatsächlich hart?), sondern attackiert die Wortwahl und fordert «Fair play» in der Debatte. Dies ist eine Themenverschobeung von der Sachfrage zu einer Debatte über Redeweisen.",
+        "concrete_statements": [
+          "Mir passt das von der Wortwahl her nicht, von Grausamkeiten zu sprechen.",
+          "Was wir tun, ist mit bestem Wissen und Gewissen."
+        ],
+        "quotes": [
+          {
+            "text": "Mir passt das von der Wortwahl her nicht, von Grausamkeiten zu sprechen, ich finde, das wird uns nicht gerecht. Da müssen wir in der politischen Mitte fair miteinander sein. Was wir tun, ist mit bestem Wissen und Gewissen.",
+            "timestamp": "00:32:26",
+            "context": "Antwort auf Reichinneks Vorwurf der Grausamkeit bei der Bürgergeld-Reform."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Sozialpolitik",
+          "Kinderarmut"
+        ],
+        "answer_type": "themenwechsel"
+      },
+      {
+        "title": "Kostenloses Mittagessen an Schulen",
+        "timestamp_range": "00:32:56 - 00:33:31",
+        "theme_description": "Klüssendorf reagiert auf Reichinneks Vorwurf mangelnder Unterstützung armer Kinder mit dem Argument fehlender Mehrheiten.",
+        "question_asked": "Heidi Reichinnek merkt an, dass Eltern im Bürgergeld auf Essen verzichten, damit Kinder genug haben.",
+        "question_intent": "Reichinnek kritisiert die Sozialpolitik als unzureichend in der Bekämpfung von Kinderarmut.",
+        "position": "Klüssendorf antwortet: «Dann können wir über kostenloses Mittagessen sprechen an Schulen, wofür wir keine Mehrheiten haben.» Die Antwort impliziert: Das ist eine gute Idee, aber die Koalition kann sie nicht durchsetzen. Er argumentiert dann gegen Reichinnek's Framing, indem er sagt, man sollte «lieber darüber diskutieren, als zu sagen, es ist grausam».",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf adressiert die Frage teilweise: Er anerkennt das Problem (kostenloses Mittagessen wäre gut), aber argumentiert mit fehlenden Mehrheiten. Dann weicht er ab mit der Gegenkritik an der Wortwahl «grausam».",
+        "concrete_statements": [
+          "Dann können wir über kostenloses Mittagessen sprechen an Schulen, wofür wir keine Mehrheiten haben."
+        ],
+        "quotes": [
+          {
+            "text": "Dann können wir über kostenloses Mittagessen sprechen an Schulen, wofür wir keine Mehrheiten haben. Dann sollten wir lieber darüber diskutieren, als zu sagen, es ist grausam, Menschen, die sich monatelang nicht zurückmelden, dass das mit dem Bürgergeld nicht passt.",
+            "timestamp": "00:32:56",
+            "context": "Auf Vorwurf mangelnder Unterstützung für arme Kinder."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kinderarmut",
+          "Schulspeisungen",
+          "Sozialpolitik"
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Koalitionspräferenz und mehrheitliche Realität",
+        "timestamp_range": "00:33:31 - 00:34:02",
+        "theme_description": "Klüssendorf wird gefragt, ob die SPD lieber mit der Linken oder der Union koalieren würde.",
+        "question_asked": "Sandra Maischberger stellt ein Schnellfrageformat: «Die SPD soll lieber mit den Linken oder der Union koalieren?»",
+        "question_intent": "Maischberger möchte wissen, welche Koalitionsoption Klüssendorf ideell bevorzugt.",
+        "position": "Klüssendorf antwortet: «Kommt auf die Mehrheiten an. Es gibt im Moment nur die Mehrheit mit der Union. Also nein.» Die Antwort ausweichen Wunsch und mathematische Realität: Ideell würde er lieber mit der Linken koalieren (siehe später sein Traum von Koalitionen ohne schwarz-rot), aber faktisch gibt es nur die Mehrheit mit der Union.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Klüssendorf antwortet direkt auf die Frage, auch wenn er die Antwort mit Verweis auf Mehrheiten rahmt. Er sagt implizit: Ja, ideell könnte ich lieber mit Linken koalieren, aber es gibt nur die Mehrheit mit der Union.",
+        "concrete_statements": [
+          "Kommt auf die Mehrheiten an.",
+          "Es gibt im Moment nur die Mehrheit mit der Union. Also nein."
+        ],
+        "quotes": [
+          {
+            "text": "Kommt auf die Mehrheiten an. Es gibt im Moment nur die Mehrheit mit der Union. Also nein.",
+            "timestamp": "00:33:31",
+            "context": "Auf Frage, ob die SPD lieber mit Linken oder Union koalieren soll."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Regierungsprogramm"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Veggie-Wurst und unbedeutende Debatten",
+        "timestamp_range": "00:34:02 - 00:34:36",
+        "theme_description": "Klüssendorf äußert sich zur Kontroverse um die Umbenennung von Veggie-Wurst.",
+        "question_asked": "Sandra Maischberger fragt: «Soll die Veggie-Wurst nicht mehr Wurst heißen?»",
+        "question_intent": "Maischberger stellt eine populäre Kontroversen-Frage, um zu sehen, wie Klüssendorf reagiert.",
+        "position": "Klüssendorf antwortet gereizt: «Das ärgert mich wirklich, dass so etwas debattiert wird. Das interessiert keinen Menschen. Es ist mir scheiß... Nicht scheißegal, aber... Ich finde, wir haben wichtigere Themen.» Er expresset seine Ungeduld über die Trivialisierung von Politik.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Die Frage ist provokativ gemeint und Klüssendorf reagiert mit einer Frustrationsantwort, die nicht auf die Substanz der Frage eingeht (ob Veggie-Wurst «Wurst» heißen darf), sondern die Frage selbst als unbedeutend ablehnt.",
+        "concrete_statements": [
+          "Das ärgert mich wirklich, dass so etwas debattiert wird.",
+          "Das interessiert keinen Menschen.",
+          "Ich finde, wir haben wichtigere Themen."
+        ],
+        "quotes": [
+          {
+            "text": "Das ärgert mich wirklich, dass so etwas debattiert wird. Das interessiert keinen Menschen. Ich finde, wir haben wichtigere Themen.",
+            "timestamp": "00:34:02",
+            "context": "Auf Frage zur Veggie-Wurst-Nomenklatur."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Symbolpolitik",
+          "Verbraucherschutz",
+          "Kennzeichnungsvorschriften"
+        ],
+        "answer_type": "floskel_generisch"
+      },
+      {
+        "title": "Außenpolitik Merz vs. Scholz",
+        "timestamp_range": "00:35:06 - 00:35:39",
+        "theme_description": "Klüssendorf wird gefragt, ob Friedrich Merz außenpolitisch eine bessere Figur macht als Olaf Scholz.",
+        "question_asked": "Sandra Maischberger stellt eine Schnellfrage: «Macht Friedrich Merz außenpolitisch eine bessere Figur als Olaf Scholz?»",
+        "question_intent": "Maischberger möchte Klüssendorfs persönliche Bewertung der beiden Kanzler, gemessen an außenpolitischen Fähigkeiten.",
+        "position": "Klüssendorf antwortet differenziert: «Ich finde, das muss man ihm zugute halten, er macht außenpolitisch eine gute Figur. Ich finde aber auch, dass Olaf Scholz unterschätzt ist.» Er würdigt Merz, redet aber auch gegen die These an, dass Scholz schwach war.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf antwortet auf die Frage (ja, Merz macht eine gute Figur), negiert aber die implizite Wertung (dass Scholz schlecht war), indem er sagt, Scholz sei «unterschätzt». Die Antwort ist also diplomatisch, nicht eindeutig.",
+        "concrete_statements": [
+          "Er macht außenpolitisch eine gute Figur.",
+          "Olaf Scholz ist unterschätzt."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde, das muss man ihm zugute halten, er macht außenpolitisch eine gute Figur. Ich finde aber auch, dass Olaf Scholz unterschätzt ist.",
+            "timestamp": "00:35:06",
+            "context": "Auf Frage zum Vergleich Merz vs. Scholz in der Außenpolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Kanzlerschaft",
+          "Ukraine",
+          "NATO"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Drohnen-Abschuss und Angstmaschinerie",
+        "timestamp_range": "00:35:39 - 00:36:41",
+        "theme_description": "Klüssendorf antwortet auf die Frage, ob Drohnen über deutschen Flughäfen abgeschossen werden sollen, und kritisiert die Angstmache.",
+        "question_asked": "Sandra Maischberger fragt: «Sollten Drohnen über deutschen Flughäfen abgeschossen werden können?»",
+        "question_intent": "Maischberger möchte Klüssendorfs Position zur konkreten Sicherheitsmaßnahme wissen.",
+        "position": "Klüssendorf antwortet «Nein» und begründet das zweiteilig: 1. «Das geht 1. das nicht dem gerecht, glaube ich, was dort passiert», 2. «Wir müssen klären, wie gehen wir mit den Drohnen um» statt sofort zu schießen. Er kritisiert auch die «Angstmaschinerie» in den sozialen Medien und sagt, dass man klar sagen müsse: «Das ist so nicht richtig». Die Position: Klärung und Rationalität statt Angst und Überreaktion.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Klüssendorf beantwortet die Frage klar (Nein zum Abschuss) und begründet seine Position mit zwei rationalen Argumenten: 1. Pragmatik (das ist nicht sinnvoll), 2. Kritik an Angstmache (die Debatte ist hochriskant für die Gesellschaft).",
+        "concrete_statements": [
+          "Nein, weil 1. das nicht dem gerecht wird, glaube ich, was dort passiert.",
+          "Wir müssen klären, wie gehen wir mit den Drohnen um, was sind die Mechanismen.",
+          "Diese Angstmaschinerie, mit der wir gerade konfrontiert sind, da ist niemandem mit gedient."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, weil 1. das nicht dem gerecht wird, glaube ich, was dort passiert. Und ich glaube, dass wir dazu beitragen müssen, die Dinge einzuordnen. Welche Drohnen sind das eigentlich? Diese Angstmaschinerie, mit der wir gerade konfrontiert sind, da ist niemandem mit gedient.",
+            "timestamp": "00:35:39",
+            "context": "Auf Frage zum Abschuss von Drohnen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Drohnen",
+          "Cybersecurity",
+          "Landesverteidigung",
+          "Flugsicherheit"
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Wehrpflicht und Motivation über Freiwilligkeit",
+        "timestamp_range": "00:37:41 - 00:38:46",
+        "theme_description": "Klüssendorf antwortet auf die Frage der Linken, ob die Wehrpflicht abgeschafft werden soll, und argumentiert für Freiwilligkeit.",
+        "question_asked": "Sandra Maischberger fragt: «Wären Sie dafür zu haben, Herr Klüssendorf?» (bezogen auf Reichinneks Antrag zur Streichung der Wehrpflicht aus dem Grundgesetz).",
+        "question_intent": "Maischberger möchte wissen, ob die SPD die Wehrpflicht ablehnt oder befürwortet.",
+        "position": "Klüssendorf antwortet: «Ich finde die Debatte an dem Punkt nicht sinnvoll.» Er argumentiert, dass es genug junge Leute gibt, die man motivieren kann, zur Bundeswehr zu gehen, und dass es dort auch Berufschancen und persönliche Perspektiven gibt. Später ärgert er sich über seinen Koalitionspartner CDU, der sagt, Freiwilligkeit werde nicht klappen. Klüssendorf kritisiert: «Es kann nicht sein, dass wir selber hinter Gesetzesentwürfen, die noch nicht mal beschlossen sind, schon direkt sagen, das klappt nicht.»",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Klüssendorf beantwortet die Frage zu Wehrpflicht nur indirekt: Er sagt «ich finde die Debatte nicht sinnvoll» statt klare Stellung zu nehmen, ob er Wehrpflicht befürwortet oder ablehnt. Die Antwort weicht aus zur Frage der Freiwilligkeit und Motivation.",
+        "concrete_statements": [
+          "Ich finde die Debatte an dem Punkt nicht sinnvoll.",
+          "Es gibt genug junge Leute, die man motivieren kann, dass sie in die Bundeswehr gehen.",
+          "Es kann nicht sein, dass wir selber hinter Gesetzesentwürfen, die noch nicht mal beschlossen sind, schon direkt sagen, das klappt nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde die Debatte an dem Punkt nicht sinnvoll. Es gibt genug junge Leute, die man motivieren kann, dass sie in die Bundeswehr gehen. Es gibt dort auch Berufschancen, persönliche Perspektiven.",
+            "timestamp": "00:37:42",
+            "context": "Auf Frage zur Wehrpflicht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Bundeswehr",
+          "Sicherheit",
+          "Personalgewinnung",
+          "Wehrgerechtigkeit"
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Koalitionsgeschichte und SPD-Investitionen",
+        "timestamp_range": "00:39:49 - 00:40:51",
+        "theme_description": "Klüssendorf behauptet, dass die SPD substantielle Erfolge bei der Infrastrukturinvestition erzielt hat, und wendet sich gegen die Charakterisierung des Scheiterns.",
+        "question_asked": "Heidi Reichinnek sagt, die SPD habe sich «komplett über den Tisch ziehen lassen» in der Koalition.",
+        "question_intent": "Reichinnek kritisiert die SPD-Verhandlungsführung und die Ergebnisse als schwach.",
+        "position": "Klüssendorf reagiert: «Ich trage das nicht mit. Ich finde es auch falsch, das so darzustellen.» Er argumentiert, dass die SPD jetzt in Infrastruktur, Schulen und Kitas investiere, was es in Deutschland jahrzehntelang nicht gegeben habe. Das sei «ganz klar ein SPD-Erfolg» und müsse «jetzt umgesetzt werden». Der Effekt würde sich später zeigen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Klüssendorf antwortet nicht direkt auf die Frage, ob die SPD sich hat über den Tisch ziehen lassen, sondern pivot zu einem Gegenpunkt: Die SPD habe erfolgreiche Investitionen durchgesetzt. Das ist eine rhetorische Umkehrung.",
+        "concrete_statements": [
+          "Ich trage das nicht mit.",
+          "Was wir jetzt investieren, ist etwas, was es über Jahrzehnte in Deutschland nicht gegeben hat.",
+          "Das ist ganz klar ein SPD-Erfolg."
+        ],
+        "quotes": [
+          {
+            "text": "Ich trage das nicht mit. Ich finde es auch falsch, das so darzustellen. Was wir jetzt investieren, ist etwas, was es über Jahrzehnte in Deutschland nicht gegeben hat. Dass wir in unserer Infrastruktur, in Schulen, in Kitas investieren. Das ist nicht irgendetwas, das muss jetzt umgesetzt werden.",
+            "timestamp": "00:39:49",
+            "context": "Auf Vorwurf, die SPD lasse sich über den Tisch ziehen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Infrastruktur",
+          "Schulen",
+          "Kindergärten",
+          "Investitionen",
+          "Koalitionspolitik"
+        ],
+        "answer_type": "pivot_zum_gegenpunkt"
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Ohne die SPD gebe es kein Sondervermögen für die Infrastruktur.",
+        "timestamp": "00:23:34"
+      },
+      {
+        "claim": "Alleine 216 Mio. Euro bei den Kommunen, Brücken, Kitas, Schulen, Schwimmbäder",
+        "timestamp": "00:23:34"
+      },
+      {
+        "claim": "In Schleswig-Holstein haben wir einen neuen Feiertag eingeführt.",
+        "timestamp": "00:34:03"
+      },
+      {
+        "claim": "Die Stromsteuer wurde nicht in die breite Mehrheit der Bevölkerung gebracht.",
+        "timestamp": "00:21:21"
+      },
+      {
+        "claim": "Teilweise sind die Mittel für Integrationsmaßnahmen gesenkt worden.",
+        "timestamp": "00:30:19"
+      }
+    ]
+  }
+}

@@ -1,0 +1,445 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-12-mai-2026-100",
+    "video_id": "lanz-2026-05-12",
+    "politician": "Winfried Kretschmann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "342566c51096590f",
+    "transcript_chars": 88803,
+    "caption_lines": 4434,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 35336,
+    "tokens_out": 12249,
+    "cost_usd": 0.0386324,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 8,
+      "teilweise_antwort": 3
+    },
+    "generated_at": "2026-06-05T13:37:47.599Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Winfried Kretschmann, am letzten Tag seiner Amtszeit als Ministerpräsident von Baden-Württemberg, diskutiert mit Markus Lanz in ruhigem, reflektivem Ton über Krisenmanagement (Corona, Ukrainekrieg), die wirtschaftliche Lage Baden-Württembergs, insbesondere die Automobilindustrie, und die Leistungsfähigkeit der Demokratie. Er tritt als erfahrener Pragmatiker auf, der zwischen idealistischen Ansprüchen und praktischen Realitäten balanciert.",
+    "themes": [
+      {
+        "title": "Abschied aus dem Amt nach 16 Jahren",
+        "timestamp_range": "00:03:27 - 00:05:54",
+        "theme_description": "Kretschmann bewertet seine Amtszeit in Baden-Württemberg rückblickend unter dem Eindruck mehrerer schwerer Krisen.",
+        "question_asked": "Markus Lanz fragt Kretschmann zu Beginn: Wie fühlt sich das an, dass Sie gerade Ihren letzten Arbeitstag als Ministerpräsident haben, nachdem Sie 5500 Tage im Amt waren?",
+        "question_intent": "Markus Lanz möchte wissen, wie Kretschmann persönlich seinen Abschied von einem der längsten Ämter in der Bundesrepublik empfindet.",
+        "position": "Kretschmann sagt, er gehe zufrieden aus dem Amt. Ein großer Teil der Amtszeit sei von schweren Krisen geprägt gewesen: Corona (am härtesten, weil beispiellos seit 100 Jahren), die Flüchtlingskrise 2015, die Finanzmarktkrise, der Ukrainekrieg und die massiven Interventionen des amerikanischen Präsidenten. Er betont: \"Ich gehe zufrieden aus dem Amt, was mich selber betrifft. Ich habe da gegeben, was ich konnte\" und sagt, er habe das Land \"ordentlich regiert\". Es gebe Wehmut wegen der Menschen, mit denen er lange zusammengearbeitet habe, aber er gehe \"ohne Wehmut\" aus dem Amt und sei \"froh darüber, dass es jetzt rum ist\". Er habe einen Nachfolger, \"der die Begabung, das Talent, das Format, die Erfahrung hat\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann beantwortet die emotionale und sachliche Frage direkt und umfassend: Er benennt die Krisen, bewertet seine Leistung, reflektiert über Wehmut und Erleichterung zugleich und äußert sich zum Nachfolger. Die Antwort ist personlich und politisch substanziell.",
+        "quotes": [
+          {
+            "text": "Gut im Prinzip. Aber ein Großteil des Amtes war von schweren Krisen geprägt. Am härtesten natürlich Corona, weil wir sowas seit 100 Jahren nicht mehr kannten.",
+            "timestamp": "00:03:27",
+            "context": "Auf Markus Lanz' Frage, wie sich die 5500 Tage anfühlen."
+          },
+          {
+            "text": "Ich gehe zufrieden aus dem Amt, was mich selber betrifft. Ich habe da gegeben, was ich konnte und was in mir steckt und habe das Land, glaube ich, ordentlich regiert.",
+            "timestamp": "00:05:03",
+            "context": "Auf Markus Lanz' Frage, ob Freude oder Traurigkeit überwiegt."
+          }
+        ],
+        "concrete_statements": [
+          "Corona war die härteste Krise seit 100 Jahren",
+          "Die Amtszeit war von vier großen Krisen geprägt: Corona, Flüchtlingskrise 2015, Finanzmarktkrise, Ukrainekrieg",
+          "Kretschmann vertraut seinem Nachfolger, das Amt fortzuführen"
+        ],
+        "related_bundestag_topics": [
+          "Krisenmanagement",
+          "Regierungsführung Länder",
+          "Amtsübergabe"
+        ]
+      },
+      {
+        "title": "Schlafmangel im Ministeramt und Tagesablauf",
+        "timestamp_range": "00:07:14 - 00:09:25",
+        "theme_description": "Markus Lanz und Stephan Weil sprechen über Schlafprobleme von Ministerpräsidenten; Kretschmann kommentiert kurz seinen eigenen Tagesablauf.",
+        "question_asked": "Markus Lanz fragt Kretschmann: Sie auch, Schlafprobleme? Und später: Wann stehen Sie auf im Amt?",
+        "question_intent": "Markus Lanz möchte wissen, ob Kretschmann als Ministerpräsident auch Schlafstörungen hatte und wie er seinen Tag strukturiert.",
+        "position": "Kretschmann antwortet knapp: \"Ja\" zu Schlafproblemen. Zur Aufstehzeit sagt er: \"In der Regel nicht vor halb sieben.\" Als Markus Lanz fragt, ob das \"grüne Lässigkeit\" sei, antwortet Kretschmann: \"Nein, nein, ich arbeite halt länger.\" Er berichtet, dass er unter dem ständigen Schlafdefizit \"wirklich gelitten\" habe und hofft, das \"jetzt wegzubekommen\". Zur Frage nach Markus Söder sagt er: \"Aber ob er gut schläft, weiß ich nicht, aber ich vermute es... Ausgeschlafen. Er kommt einfach ausgeschlafen, frisch und propper daher.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmann antwortet auf die Fragen, bleibt aber sehr knapp. Er nennt seine Aufstehzeit, erwähnt sein Schlafdefizit, spekuliert aber dann über Söder statt sich tiefergehend zu seiner eigenen Situation zu äußern. Die Antwort ist eher reaktiv und wird durch Spekulationen verdünnt.",
+        "quotes": [
+          {
+            "text": "In der Regel nicht vor halb sieben.",
+            "timestamp": "00:08:15",
+            "context": "Auf Markus Lanz' Frage zur Aufstehzeit im Amt."
+          },
+          {
+            "text": "Ich habe schon so unter diesem ständigen Schlafdefizit wirklich gelitten. Also hoffe, dass ich das jetzt wegbekomme.",
+            "timestamp": "00:08:19",
+            "context": "Zur Frage, warum so früh aufstehen nicht möglich war."
+          }
+        ],
+        "concrete_statements": [
+          "Kretschmann stand im Amt nicht vor 7:00 Uhr auf",
+          "Er arbeitete 14 Stunden täglich",
+          "Er litt unter chronischem Schlafdefizit"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheit Politiker",
+          "Belastung Amtspersonen"
+        ]
+      },
+      {
+        "title": "MPK-Zusammenarbeit in Corona – Keine einsame Phase",
+        "timestamp_range": "00:10:36 - 00:11:46",
+        "theme_description": "Kretschmann widerlegt die These, Corona sei eine einsame Zeit für Ministerpräsidenten gewesen, und würdigt die intensive Beratung in den 39 MPKs.",
+        "question_asked": "Markus Lanz fragt: Sind Sie sich in den MPK-Runden näher gekommen, oder bleibt man am Ende doch sehr einsam in diesem Beruf?",
+        "question_intent": "Markus Lanz möchte erfahren, ob die Corona-Krise zu persönlicher Nähe unter Ministerpräsidenten geführt hat oder diese eher isoliert geblieben sind.",
+        "position": "Kretschmann antwortet: \"Das war keine einsame Zeit, Corona. Das wäre, glaube ich, ein großer Irrtum.\" Es gab 39 MPKs, die meisten digital. \"Das war, glaube ich, eine Fehlwahrnehmung. Es war überhaupt nichts einsam. Dort wurden die Dinge wirklich durchgesprochen, oft bis in die Nacht. Und wir haben uns gut beraten.\" Er wundert sich über manche Debatten danach. Es war \"eine Phase intensivster Beratung\". Er beriet sich fast jede Woche mit vier Experten, die aber nicht ins öffentliche Licht traten. \"Das war vielleicht auch gut so, wenn es auch Nachteile hatte.\" Die Experten waren bei den Entscheidungen nicht bekannt – anders als die politischen Debatten später.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann beantwortet die Frage direkt und präzise mit Fakten (39 MPKs, intensive Beratung, Expertenkonsultation) und einer klaren Position gegen die Narrative der Isolation. Er korrigiert eine Fehlwahrnehmung substanziell.",
+        "quotes": [
+          {
+            "text": "Das war keine einsame Zeit, Corona. Das wäre, glaube ich, ein großer Irrtum. Wir hatten 39 MPKs zu Corona. Die meisten natürlich digital. Das war, glaube ich, eine Fehlwahrnehmung. Es war überhaupt nichts einsam.",
+            "timestamp": "00:10:36",
+            "context": "Auf Markus Lanz' Frage, ob die MPK-Zeit isoliert war oder nicht."
+          }
+        ],
+        "concrete_statements": [
+          "39 Ministerpräsidentenkonferenzen zu Corona",
+          "Intensive Beratung oft bis in die Nacht",
+          "Beratung mit vier Experten pro Woche, nicht öffentlich bekannt"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "MPK",
+          "Pandemiemanagement"
+        ]
+      },
+      {
+        "title": "Corona-Maßnahmen und Impfpflicht im Rückblick",
+        "timestamp_range": "00:13:02 - 00:24:56",
+        "theme_description": "Kretschmann verteidigt die Corona-Maßnahmen und die damalige Debatte über Impfpflicht, ohne sich zu entschuldigen, und erklärt die damaligen Entscheidungskontexte.",
+        "question_asked": "Markus Lanz und Melanie Amann fragen, nachdem Amann einige Fehler der Corona-Politik thematisiert: Verlieren wir in Corona als Gesellschaft den Halt? Und später: Herr Kretschmann, Sie waren ja sehr entschieden für die Impfpflicht – wie bewerten Sie diese Entscheidung heute?",
+        "question_intent": "Markus Lanz und Amann möchten wissen, ob und inwiefern Kretschmann die damaligen Entscheidungen – besonders zur Impfpflicht – heute kritisch sieht und ob er Verständnis für die Kritik hat.",
+        "position": "Kretschmann sagt, ein Teil der Gesellschaft habe sich in Corona verloren – Verschwörungserzählungen hätten sich ausgebreitet, wo er das für undenkbar hielt. Das müsse aber schon untergründig da gewesen sein. Die Eingriffe in persönliche Freiheiten seien einschneidend gewesen. Zur Impfpflicht sagt er: Nach drei Wochen war der gemeinsame Artikel mit Söder falsch. \"Man kann nicht für eine Impfpflicht eintreten, wenn die nicht wirklich richtig gut wirkt.\" Die Wirksamkeit habe sich verändert, daher sei die Impfpflicht \"obsolet\" geworden. Seine Lehre: \"Da muss man extrem vorsichtig sein.\" Er verweist auf Masernimpfpflicht als anderes Beispiel – die Effektivität hänge von den Virus-Eigenschaften ab. Generell sagt er: \"Ich will mal so sagen, nach drei Wochen war der Artikel falsch... Das nächste Virus ist vielleicht völlig anders.\" Zu seiner Gesamtverantwortung: \"Ja, aber da habe ich mir echt nichts vorzuwerfen. Das muss ich klipp und klar sagen. Ich werde oft aufgefordert, mich zu entschuldigen. In der Situation habe ich richtig gehandelt.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmann adressiert die Impfpflicht-Frage sachlich und gibt eine differenzierte Erklärung (Wirksamkeitsfrage), weist aber die Entschuldigungsforderung ab und verteidigt sein damaliges Handeln. Er antwortet also auf die faktische Frage (warum Kehrtwende?), nicht aber auf die implizite moralisch-politische Frage (Verantwortung für Gesellschaftsspaltung).",
+        "quotes": [
+          {
+            "text": "Da haben wir mit dem Markus Söder zusammen einen Artikel in der \"FAZ\" dazu geschrieben.",
+            "timestamp": "00:16:59",
+            "context": "Auf Melanie Amanns Erwähnung seiner früheren Befürwortung der Impfpflicht."
+          },
+          {
+            "text": "Nach drei Wochen war der Artikel falsch. Weil man kann nicht für eine Impfpflicht eintreten, wenn die nicht wirklich richtig gut wirkt. Und durch die Veränderung war das aber so.",
+            "timestamp": "00:17:16",
+            "context": "Zur Frage, wie er die Impfpflicht-Kehrtwende erklärt."
+          },
+          {
+            "text": "Ja, aber da habe ich mir echt nichts vorzuwerfen. Das muss ich klipp und klar sagen. Ich werde oft aufgefordert, mich zu entschuldigen. In der Situation habe ich richtig gehandelt.",
+            "timestamp": "00:20:03",
+            "context": "Auf Melanie Amanns Druck, mehr Verständnis für Kritiker zu zeigen."
+          }
+        ],
+        "concrete_statements": [
+          "Impfpflicht-Artikel mit Söder wurde nach 3 Wochen obsolet, weil Impfstoff nicht ausreichend wirkte",
+          "Kretschmann entschuldigt sich nicht für Corona-Maßnahmen; seine Entscheidungen waren in der Situation richtig",
+          "Künftige Pandemien erfordern fallspezifische Lösungen, nicht generelle Rezepte"
+        ],
+        "related_bundestag_topics": [
+          "Corona-Pandemie",
+          "Impfpflicht-Debatte",
+          "Regierungskommunikation"
+        ]
+      },
+      {
+        "title": "Berliner Politik und schlechtes handwerkliches Regieren",
+        "timestamp_range": "00:30:02 - 00:32:04",
+        "theme_description": "Kretschmann kritisiert die öffentliche Streitkultur in der Berliner Koalitionsregierung und kontrastiert sie mit seinem handwerklichen Anspruch an Regierung.",
+        "question_asked": "Markus Lanz fragt Kretschmann: Wie erleben Sie die Performance gerade der Berliner Politik? Die Reaktion, dieses dünnhäutige, das da drin ist?",
+        "question_intent": "Markus Lanz möchte Kretschmanns externe, erfahrene Perspektive auf die derzeitige Berliner Koalition hören – ist das eine Regierungskrise?",
+        "position": "Kretschmann sagt: \"Ich will jetzt, ich höre ja auf und will jetzt da keine große Kritik machen. Das sind schwierige Zeiten.\" Aber dann präzisiert er sein Handwerks-Verständnis: \"Regieren ist eine handwerkliche Aufgabe neben den großen oder kleineren Ideen. Da ist erst mal gutes Handwerk. Gutes Handwerk heißt... man streitet nicht dauernd öffentlich rum. Man stellt nicht Forderungen auf, von denen man weiß, dass der Koalitionspartner das gar nicht machen wird. Das ist einfach schlechtes Handwerk.\" Er ist stolz darauf, dass er das in seinen Koalitionen nicht so gemacht habe. \"Das gilt übrigens für die meisten Länderregierungen, wird es so nicht gemacht.\" Man darf spüren, dass unterschiedliche Parteien koalieren, aber \"du kannst nicht sozusagen im Dauermodus Dinge fordern, die dann der andere sofort einsammelt. Man streitet sich natürlich in der Koalition, aber man muss das hinter den Kulissen machen. Und dann zu Ergebnissen des Streits kommen, die stellt man der Öffentlichkeit vor. Darauf hat sie ein Anrecht.\" Zur konkreten Situation Reiche/Klingbeil: \"So kann man einfach nicht arbeiten. Das ist schlechtes Handwerk. Und Handwerk ist zwei Drittel der Regierungsarbeit.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann antwortet substanziell mit einem klaren handwerklichen Leitbild: Konflikte hinter den Kulissen austragen, keine öffentlichen Forderungen, die man nicht durchsetzen kann. Das ist eine direkte Kritik der Berliner Praxis, gerahmt in sein Erfolgsprinzip.",
+        "quotes": [
+          {
+            "text": "Regieren ist eine handwerkliche Aufgabe neben den großen oder kleineren Ideen. Da ist erst mal gutes Handwerk. Gutes Handwerk heißt, das ist auch Aufgabe des Regierungschefs, man streitet nicht dauernd öffentlich rum.",
+            "timestamp": "00:30:02",
+            "context": "Auf Markus Lanz' Frage zur Berliner Koalitionskultur."
+          },
+          {
+            "text": "So kann man einfach nicht arbeiten. Das ist schlechtes Handwerk. Und Handwerk ist zwei Drittel der Regierungsarbeit.",
+            "timestamp": "00:31:45",
+            "context": "Zur öffentlichen Auseinandersetzung zwischen Katharina Reiche und Lars Klingbeil."
+          }
+        ],
+        "concrete_statements": [
+          "Gutes Handwerk beim Regieren bedeutet: keine öffentlichen Dauerstreits",
+          "Keine Forderungen stellen, die man nicht durchsetzen kann",
+          "Konflikte hinter den Kulissen austragen, Ergebnisse öffentlich präsentieren",
+          "Koalitionshandwerk ist zwei Drittel der Regierungsarbeit"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsregierung",
+          "Regierungskommunikation",
+          "Föderalismus vs. Bundes-Koordination"
+        ]
+      },
+      {
+        "title": "Wirtschaftslage Baden-Württemberg und Automobilindustrie",
+        "timestamp_range": "00:38:07 - 00:40:56",
+        "theme_description": "Kretschmann beschreibt die dramatische Lage der Automobilindustrie in Baden-Württemberg durch Arbeitsplatzabbau, sinkende Gewerbesteuer und Export-Abhängigkeit.",
+        "question_asked": "Markus Lanz fragt: Wie würden Sie die Lage gerade in Baden-Württemberg beschreiben? Insbesondere mit Blick auf die Automobilindustrie. Und: 2011 hatten Sie noch Wirtschaftswachstum von 3%, jetzt 0,6% in Deutschland.",
+        "question_intent": "Markus Lanz möchte Kretschmanns Einschätzung der wirtschaftlichen Krise in seinem Bundesland – speziell in der Schlüsselindustrie Automobil – hören.",
+        "position": "Kretschmann antwortet: \"Einigermaßen dramatisch. Ja, also das ist klar, wir haben einen massiven Arbeitsplatzabbau. Bei den Automobilisten wie bei den Zulieferern. Das ist natürlich höchst besorgend.\" Die Körperschaftssteuer ist zusammengebrochen – \"Nirgendwo ist die so eingebrochen wie in Baden-Württemberg.\" Der Export ist das Geschäftsmodell Baden-Württembergs. \"Wir sind eine der exportstärksten Regionen der Welt überhaupt. Und deswegen trifft uns das jetzt besonders hart.\" Aber: \"Wir sind im Aufholprozess technologisch.\" Das Problem sei nicht die Technologie, sondern: Die Chinesen sind auf einem anderen Niveau, greifen \"auf Augenhöhe an\". Dann die amerikanische Zollpolitik – \"Zangenbewegung\". Dazu hohe Standortnachteile: nicht nur Kosten, sondern auch \"Arbeitszeit. Man muss sehen, allein die Schweizer arbeiten schon 200 Stunden mehr wie wir.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann adressiert alle Aspekte der Frage: Dramatik der Lage (Arbeitsplatzabbau, Steuereinbußen), strukturelle Ursachen (Export-Abhängigkeit, chinesischer Wettbewerb, US-Zölle, Arbeitszeit), aber auch Hoffnung auf technologische Aufholjagd. Die Antwort ist differenziert und faktengestützt.",
+        "quotes": [
+          {
+            "text": "Einigermaßen dramatisch. Ja, also das ist klar, wir haben einen massiven Arbeitsplatzabbau. Bei den Automobilisten wie bei den Zulieferern.",
+            "timestamp": "00:38:07",
+            "context": "Auf Markus Lanz' Frage zur Lage Baden-Württembergs."
+          },
+          {
+            "text": "Der Export ist ja das Geschäftsmodell von Baden-Württemberg. Wir sind eine der exportstärksten Regionen der Welt überhaupt. Und deswegen trifft uns das jetzt besonders hart.",
+            "timestamp": "00:38:41",
+            "context": "Zur Erklärung, warum die Krise Baden-Württemberg so hart trifft."
+          }
+        ],
+        "concrete_statements": [
+          "Massiver Arbeitsplatzabbau bei Automobilisten und Zulieferern",
+          "Körperschaftsteuer in Baden-Württemberg besonders eingebrochen",
+          "Baden-Württemberg ist eine der exportstärksten Regionen der Welt",
+          "Hauptprobleme: chinesischer Wettbewerb, amerikanische Zollpolitik, Arbeitszeit-Nachteil (200 Stunden weniger pro Jahr als Schweiz)"
+        ],
+        "related_bundestag_topics": [
+          "Automobilindustrie",
+          "Wirtschaftspolitik",
+          "Strukturwandel",
+          "Außenhandel"
+        ]
+      },
+      {
+        "title": "Wohlstands-Trägheit und Innovationspotenzial als Herausforderung",
+        "timestamp_range": "00:40:56 - 00:43:33",
+        "theme_description": "Kretschmann erklärt sein Konzept des \"Fluchs des Massenwohlstandes\" als Mentalitätsproblem – Sicherheitsdenken statt Innovationswille – und fordert \"Ranklotzen\" mit intelligenter Arbeit.",
+        "question_asked": "Markus Lanz fragt: Ist das der Fluch des Massenwohlstands, den ich vorhin zitiert habe? Und Sie sagen immer wieder, wenn Krise ist, müssen wir alle deutlich mehr arbeiten – kann doch das Rezept nicht sein, weniger zu arbeiten?",
+        "question_intent": "Markus Lanz möchte verstehen, was Kretschmann konkret mit dem \"Fluch des Massenwohlstandes\" meint und wie mehr Arbeit zur Lösung beitragen könnte.",
+        "position": "Kretschmann erklärt: \"Das habe ich damit gemeint. Man hat ein bisschen den Eindruck, wir sind wohlhabend. Das ist irgendwie selbstverständlich.\" Das sei ein Irrtum. \"Andere sind einfach auch gut geworden. Die Chinesen sind jetzt einfach gut geworden.\" Auf die direkte Frage antwortet er: \"Der Fluch des Massenwohlstands\" ist: \"Dass man denkt, den hat man.\" Man sichert ab, denkt in Sicherheit, und \"hat das Gefühl dafür verloren, dass dieser Wohlstand durch Produktivitätsfortschritte... Du kannst doch hohe Löhne nur haben verglichen mit anderen, wenn du immer eine Nasenlänge vorne bist.\" Aber nicht nur Mehrarbeit: \"Allein durch plumpe Mehrarbeit wird man wenig erreichen.\" Vielmehr: Start-Ups zwei Jahre befreien von Regulierungen, Bürokratie verschlanken. \"Es geht immer darum, diese ganzen Innovationspotenziale... die Leute sind oft junge Leute, das kann man machen, zeitlich begrenzt.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann definiert seinen Begriff klar (Annahme, Wohlstand ist selbstverständlich) und zeigt dann, dass es nicht um plumpe Mehrarbeit geht, sondern um Innovationspotenziale, Bürokratieabbau und Mentalitätswechsel. Er adressiert sowohl die mentale als auch die politische Dimension.",
+        "quotes": [
+          {
+            "text": "Das habe ich damit gemeint. Man hat ein bisschen den Eindruck, wir sind wohlhabend. Das ist irgendwie selbstverständlich. Da habe ich schon böse Dinge mir anhören müssen. Das ist ein Irrtum.",
+            "timestamp": "00:42:23",
+            "context": "Auf Markus Lanz' Frage zur Definition des \"Fluchs des Massenwohlstandes\"."
+          },
+          {
+            "text": "Dass man denkt den hat man... Man sichert ab, man ist im Sicherheitsdenken. Und hat das Gefühl dafür verloren, dass dieser Wohlstand durch Produktivitätsfortschritte... Du kannst doch hohe Löhne nur haben verglichen mit anderen, wenn du immer eine Nasenlänge vorne bist.",
+            "timestamp": "00:42:50",
+            "context": "Zur Erklärung des Fluchs als Mentalitätsproblem."
+          }
+        ],
+        "concrete_statements": [
+          "Wohlstand ist nicht selbstverständlich, muss erarbeitet werden",
+          "Chinesische Konkurrenz ist inzwischen gleichberechtigt, nicht hinnehmbar als \"Werkbank\"",
+          "Start-Ups sollten zeitlich begrenzt von Regulierungen befreit werden",
+          "Bürokratie braucht \"Fastenkur\"",
+          "Hohe Löhne erfordern ständige Produktivitätsfortschritte"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Innovationspolitik",
+          "Regulierung",
+          "Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Strategiedialog Automobilwirtschaft und Ladeinfrastruktur",
+        "timestamp_range": "01:01:32 - 01:03:33",
+        "theme_description": "Kretschmann beschreibt seine proaktive Rolle als Ministerpräsident beim Aufbau der E-Mobilität in Baden-Württemberg und kritisiert rückblickend die \"Verbrenner-aus\"-Kampagne.",
+        "question_asked": "Markus Lanz fragt: Wann haben Sie das erste Mal gespürt, da verändert sich was? Waren wir da zu bräsig, zu langsam, zu bequem?",
+        "question_intent": "Markus Lanz möchte wissen, wann Kretschmann erkannt hat, dass die Automobilindustrie sich wandeln muss, und ob Baden-Württemberg zu zögerlich war.",
+        "position": "Kretschmann sagt: \"Glaube ich nicht.\" Er habe sehr früh den \"Strategiedialog Automobilwirtschaft\" ins Leben gerufen – alle Akteure an einem Tisch, nicht nur Diskutierklubs, sondern Arbeits- und Entscheidungszusammenhang. \"Und das war auch das richtige Format.\" Beispiel: Projekt \"Keine Ladesäule weiter als zehn Kilometer weg\" – fertig vor sechs Jahren, während andere \"mit der Planung begannen\". \"Heute haben wir das beste Ladennetz Europas. Also das haben wir wirklich gemacht.\" Aber: gigantische Überkapazitäten, \"Wir haben nicht die Nachfragen, die dem entsprechen. Und das ist der Kern des Problems.\" Dann Zollpolitik usw. Zur \"Verbrenner-aus\"-Kampagne: \"Darum war ich ein Gegner dieser Verbrenner-aus-Kampagne. In der Sache waren wir überhaupt nicht auseinander. Aber daraus eine Kampagne zu machen, die den Anschein erweckt, die Zukunft ist vielleicht doch der Verbrenner. Dann geht man Halt an der technologischen Entwicklung mal richtig knapp, aber klar vorbei.\" Man muss \"an Technologieoffenheit und Fortschritt glauben\" und nicht bei den ersten Hürden umkehren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann antwortet mit konkreten Erfolgen (Ladeinfrastruktur, Strategiedialog-Format), benennt aber auch Probleme (Überkapazitäten, Nachfragemangel) und kritisiert die \"Verbrenner-aus\"-Kampagne als kontraproduktiv. Die Antwort ist faktisch, selbstbewusst und strategisch klar.",
+        "quotes": [
+          {
+            "text": "Ich habe sehr früh den Strategiedialog Automobilwirtschaft ins Leben gerufen. Also einfach mal diese Dieselgipfel, wo man immer den Problemen hinterherrennt, überwunden. Alle Akteure waren da an einem Tisch.",
+            "timestamp": "01:01:32",
+            "context": "Auf Markus Lanz' Frage, wann er den Wandel erkannt hat."
+          },
+          {
+            "text": "Darum war ich ein Gegner dieser Verbrenner-aus-Kampagne. In der Sache waren wir überhaupt nicht auseinander. Aber daraus eine Kampagne zu machen, die den Anschein erweckt, die Zukunft ist vielleicht doch der Verbrenner. Dann geht man Halt an der technologischen Entwicklung mal richtig knapp, aber klar vorbei.",
+            "timestamp": "01:03:33",
+            "context": "Zur Kritik an der \"Verbrenner-aus\"-Kampagne."
+          }
+        ],
+        "concrete_statements": [
+          "Baden-Württemberg hat beste Ladeinfrastruktur Europas",
+          "Zehn-Kilometer-Projekt sechs Jahre vor anderen Bundesländern abgeschlossen",
+          "Problem nicht die Technologie, sondern: Überkapazitäten, geringe Nachfrage, chinesische Konkurrenz, Zölle",
+          "\"Verbrenner-aus\"-Kampagne ist strategisch kontraproduktiv und verstärkt Zweifel an E-Mobilität"
+        ],
+        "related_bundestag_topics": [
+          "Elektromobilität",
+          "Energiewende",
+          "Infrastrukturpolitik",
+          "Automobilindustrie"
+        ]
+      },
+      {
+        "title": "Energiewende, Atomkraft und Notwendigkeit von Langfristigkeit",
+        "timestamp_range": "01:05:16 - 01:10:05",
+        "theme_description": "Kretschmann verteidigt die Energiewende und den Atomausstieg als notwendige Kursentscheidungen, räumt aber ein, dass ein Weiterbetrieb der letzten drei AKWs hätte erwogen werden können.",
+        "question_asked": "Markus Lanz fragt: War das auch ein Fehler, die Energiewende so schnell zu machen? Und: War das Abschalten der AKW ein Fehler? Zu schnell gemacht?",
+        "question_intent": "Markus Lanz möchte wissen, ob Kretschmann das Tempo der Energiewende und des Atomausstiegs im Nachhinein für falsch hält.",
+        "position": "Kretschmann antwortet auf die Atomfrage: \"Nein.\" Auf die Schnelligkeit: \"Nein, wir hätten überlegen können in einer bestimmten Phase, ob man jetzt die bestehenden nicht noch mal auf Jahre hin länger laufen lässt. Das hätte man machen können.\" Und auf die Frage, ob das aus heutiger Sicht nötig gewesen wäre (wegen Strompreisen): \"Ja, hätte man jetzt aus heutiger Sicht auch machen müssen, wäre nicht so einfach gewesen, wie es sich anhört. Also ich habe mich damit ernsthaft beschäftigt. Die Hürden sind schon gewaltig. Sofort kamen die Unternehmen mit Haftungsfragen.\" Allgemein sagt er: \"Das ist aber auch wurscht, da nützt doch nichts mehr der Fehler. Jetzt muss man einfach nach vorne gehen und gucken. Wir müssen jetzt in die Infrastruktur investieren.\" Seine Botschaft: nicht rückwärts schauen, sondern weitermachen und die Energiewende zu Ende bringen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmann räumt ein, dass ein Weiterbetrieb der drei letzten AKWs hätte erwogen werden können und aus heutiger Sicht vielleicht hätte erfolgen sollen, weicht aber von einer klaren Schuldeingeständnis ab, indem er auf Haftungsfragen und praktische Hürden verweist. Er dreht das Thema am Ende nach vorne ab.",
+        "quotes": [
+          {
+            "text": "Nein, wir hätten überlegen können in einer bestimmten Phase, ob man jetzt die bestehenden nicht noch mal auf Jahre hin länger Laufen lässt. Das hätte man machen können.",
+            "timestamp": "01:08:54",
+            "context": "Auf Markus Lanz' Frage, ob es ein Fehler war, so schnell auszusteigen."
+          },
+          {
+            "text": "Das ist aber auch wurscht, da nützt doch nichts mehr der Fehler. Jetzt muss man einfach nach vorne gehen und gucken.",
+            "timestamp": "01:05:18",
+            "context": "Zur grundsätzlichen Frage, ob Fehler bereut werden sollten."
+          }
+        ],
+        "concrete_statements": [
+          "Längerbetrieb der letzten 3 AKWs hätte erwogen werden können",
+          "Aus heutiger Sicht mit Strompreis-Blick wäre Weiterbetrieb sinnvoll gewesen",
+          "Praktische Hürden waren aber erheblich (Haftungsfragen der Betreiber)",
+          "Zurückschauen hilft nicht – vorwärts in die Infrastruktur investieren ist jetzt die Aufgabe"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Atomkraft",
+          "Strompreise",
+          "Energiesicherheit"
+        ]
+      },
+      {
+        "title": "Ziel klar, Wege offen – Technologieoffenheit statt Dogmatik",
+        "timestamp_range": "01:06:32 - 01:08:38",
+        "theme_description": "Kretschmann antwortet auf Melanie Amanns Kritik, dass man das Ziel nicht anpassen darf, sondern den Weg, und präzisiert sein Verständnis von Marktwirtschaft und Flexibilität.",
+        "question_asked": "Melanie Amann argumentiert: Man muss nicht immer das Ziel anpassen, man muss den Weg anpassen. Beschreibt die chinesische Vorgehensweise als zielkonsequent aber wegflexibel.",
+        "question_intent": "Melanie Amann möchte wissen, ob Kretschmann zwischen Zieländerung und Wegflexibilität unterscheidet.",
+        "position": "Kretschmann antwortet: \"Klar in den Ziel, offen in den Wegen, war immer meine Überschrift.\" Das ist sein Leitprinzip. Allgemein sagt er: \"Die Marktwirtschaft hat nur dann ihren Vorteil, wenn sie jederzeit ihre Ziele, den realen Gegebenheiten anpasst, darauf reagiert und nicht dogmatisch daran feststellt.\" (Das ist etwas unklar formuliert – er meint vermutlich: ihre Wege/Mittel anpasst, nicht ihre Ziele). Das ist die richtige Haltung gegen Ideologie und für Pragmatismus.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann antwortet mit einer klaren Formel (\"Klar in den Zielen, offen in den Wegen\") und differenziert zwischen ideologischer Starrheit und pragmatischer Anpassung. Das beantwortet Amanns Punkt direkt.",
+        "quotes": [
+          {
+            "text": "Klar in den Ziel, offen in den Wegen, war immer meine Überschrift.",
+            "timestamp": "01:08:35",
+            "context": "Auf Melanie Amanns Kritik zur Unterscheidung zwischen Ziel und Weg."
+          },
+          {
+            "text": "Die Marktwirtschaft hat nur dann ihren Vorteil, wenn sie jederzeit ihre Ziele, den realen Gegebenheiten anpasst, darauf reagiert und nicht dogmatisch daran feststellt.",
+            "timestamp": "01:06:32",
+            "context": "Zum Verständnis von Marktwirtschaft und Pragmatismus."
+          }
+        ],
+        "concrete_statements": [
+          "Leitprinzip: Klar in den Zielen, offen in den Wegen",
+          "Marktwirtschaft erfordert Pragmatismus und Reaktionsfähigkeit, nicht Dogmatik"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Wirtschaftspolitik",
+          "Technologiepolitik"
+        ]
+      },
+      {
+        "title": "Demokratie unter Druck, aber alternativlos – Reformfähigkeit zeigen",
+        "timestamp_range": "01:10:50 - 01:14:28",
+        "theme_description": "Kretschmann antwortet auf die Systemfrage: Ist die Demokratie in Krise? Er verneint Systemkrise, betont Alternativlosigkeit der Demokratie und zeigt Optimismus bezüglich Reformfähigkeit.",
+        "question_asked": "Markus Lanz fragt: Ist Demokratie in der Krise? Sind die Spielräume zu eng geworden? Ob das System langfristig die Lösungen bieten kann, die wir brauchen – das ist die Systemfrage.",
+        "question_intent": "Markus Lanz möchte von Kretschmann als erfahrenem Demokrat hören, ob er die Demokratie selbst als systemisch gefährdet sieht.",
+        "position": "Kretschmann antwortet: \"Die Demokratie ist weltweit unter Druck. Ich meine, das kann ja nun niemand bestreiten. Aber wenn wir darüber nachdenken, werden wir schnell dahin kommen, was soll die Alternative sein. Es gibt nämlich keine bessere.\" Das ist seine zentrale These. \"Und davon bin ich ganz, ganz tief überzeugt. Und wir zeigen gerade und werden zeigen, die Demokratie ist reformfähig und sie wird sich neu aufstellen. Und das ist das, was wir nämlich letztlich alle wollen und keiner wandert nach China aus.\" Zum Abschluss auf Melanie Amanns Punkt von Ungeduld und Misstrauen: \"Wir können schneller und effizienter werden. Ich meine, das beweisen wir. Ich habe eine Taskforce eingesetzt, weil wir bei der Windkraft zurückhängen. Und das habe ich runtergebracht von Jahren auf Monate. Von sieben Jahren auf Monate. Das geht also.\" Dann: \"Jetzt müssen wir nicht da in Trübsinn verfallen. Anpacken, zupacken und was machen. Schneller, besser, das geht. Das kriegen wir hin.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmann beantwortet beide Ebenen der Frage: Er verneint die Systemkrise (Alternativlosigkeit), betont aber Reformnotwendigkeit und zeigt Handlungsfähigkeit durch konkrete Beispiele (Windkraft-Genehmigungen). Das ist eine optimistische, aber nicht naive Position.",
+        "quotes": [
+          {
+            "text": "Die Demokratie ist weltweit unter Druck. Ich meine, das kann ja nun niemand bestreiten. Aber wenn wir darüber nachdenken, werden wir schnell dahin kommen, was soll die Alternative sein. Es gibt nämlich keine bessere. Und davon bin ich ganz, ganz tief überzeugt.",
+            "timestamp": "01:10:50",
+            "context": "Auf Markus Lanz' Frage, ob Demokratie in Krise ist."
+          },
+          {
+            "text": "Wir können schneller und effizienter werden. Ich meine, das beweisen wir. Ich habe eine Taskforce eingesetzt, weil wir bei der Windkraft zurückhängen. Und das habe ich runtergebracht von Jahren auf Monate. Von sieben Jahren auf Monate.",
+            "timestamp": "01:13:53",
+            "context": "Auf Melanie Amanns Punkt von demokratischer Reformfähigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Demokratie ist alternativlos",
+          "Demokratie ist reformfähig und wird sich neu aufstellen",
+          "\"Keiner wandert nach China aus\""
+        ],
+        "related_bundestag_topics": [
+          "Vertrauenskrise Demokratie",
+          "Systemfrage",
+          "Parlamentarische Reformfähigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Winfried Kretschmann war 5500 Tage im Amt als Ministerpräsident von Baden-Württemberg",
+        "timestamp": "00:03:27"
+      },
+      {
+        "claim": "Kretschmann hatte keine Schlafprobleme vor 7 Uhr aufstehen; er arbeitete 14 Stunden täglich",
+        "timestamp": "00:08:15"
+      },
+      {
+        "claim": "Es gab 39 Ministerpräsidentenkonferenzen (MPKs) zu Corona",
+        "timestamp": "00:10:36"
+      },
+      {
+        "claim": "Baden-Württemberg hat das beste Ladennetz Europas für Elektroautos",
+        "timestamp": "01:03:33"
+      },
+      {
+        "claim": "Die Schweizer arbeiten 200 Stunden pro Jahr mehr als Baden-Württemberger",
+        "timestamp": "00:40:07"
+      },
+      {
+        "claim": "Baden-Württemberg investiert 5,7 Prozent seines BIP in Forschung und Entwicklung",
+        "timestamp": "00:40:56"
+      },
+      {
+        "claim": "Eine Taskforce senkte die Genehmigungszeit für Windkraftanlagen von sieben Jahren auf Monate",
+        "timestamp": "01:13:53"
+      },
+      {
+        "claim": "Kretschmann und Söder schrieben zusammen einen Artikel zur Impfpflicht in der FAZ",
+        "timestamp": "00:16:59"
+      }
+    ]
+  }
+}

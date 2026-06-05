@@ -1,0 +1,285 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtMjJiZWNjNDUtOWVhZS00ODhlLTg4M2UtYTg3YzhhMGFhN2M0",
+    "video_id": "maischberger-2026-03-16",
+    "politician": "Jan van Aken",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "d1729b0151375c01",
+    "transcript_chars": 51174,
+    "caption_lines": 1894,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21152,
+    "tokens_out": 6603,
+    "cost_usd": 0.0216668,
+    "quote_validation": {
+      "valid_exact": 11,
+      "valid_fuzzy": 1,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.727Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken, Co-Bundesvorsitzender der Linken und promovierter Biologe mit außenpolitischer Expertise, diskutiert mit Sandra Maischberger und der FDP-Politikerin Marie-Agnes Strack-Zimmermann hauptsächlich über die Iran-Krise, deutsche Sicherheitspolitik und NATO-Abhängigkeit. Van Aken wirkt sachlich-kritisch, setzt strukturelle Argumente gegen militärische Optionen und lehnt Rüstungseskalation ab.",
+    "themes": [
+      {
+        "title": "Atomabkommen mit Iran und diplomatische Alternativen",
+        "timestamp_range": "00:18:30 - 00:20:37",
+        "theme_description": "Van Aken bewertet die Aufkündigung des JCPOA und die Eskalation gegenüber dem Iran unter Hinweis auf gescheiterte Diplomatie.",
+        "question_asked": "Sandra Maischberger fragt Jan van Aken nach einer Begründung für die amerikanischen Militärschläge gegen den Iran, deren Folgen Deutschland schaden könnten, insbesondere in Bezug auf Friedrich Merz' Argument zum iranischen Atomprogramm.",
+        "question_intent": "Maischberger möchte wissen, ob van Aken die amerikanisch-israelische Militärintervention für gerechtfertigt hält oder ob es Alternativen gibt.",
+        "position": "Van Aken argumentiert, dass die Bundesregierung und ihre europäischen Partner 23 Jahre erfolgreiche diplomatische Arbeit geleistet haben, die zum Atomabkommen (JCPOA) führte. Das Abkommen ermöglichte Vor-Ort-Inspektionen und Messung der Urananreicherung. Merz' Begründung mit dem Atomprogramm negiere diese Erfolgsgeschichte. Am Tag des Angriffs gab es Fortschritt im Oman. Durch die Eskalation ist das Risiko einer iranischen Atomwaffe heute höher als zuvor, weil Kontrolleure nicht mehr vor Ort sind. Van Aken betont, dass das Völkerrecht klar ist: Präventivschläge ohne unmittelbare Verteidigungsnotwendigkeit sind rechtswidrig. Israel und die USA hätten sich fälschlicherweise auf das Völkerrecht berufen; alle Völkerrechtler seien sich einig, dass dies nicht zutreffe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken adressiert die Atomprogramm-Frage substanziell und widerspricht Merz. Er betont jedoch nicht primär die geopolitischen Risiken für Deutschland (Maischbergers direkte Frage), sondern konzentriert sich auf die völkerrechtliche und diplomatische Bewertung. Die Frage nach Alternativen wird implizit beantwortet (Diplomatie), aber nicht explizit entwickelt.",
+        "quotes": [
+          {
+            "text": "Aber die Begründung von Merz mit dem Atomprogramm, da leugnet er 23 Jahre gute diplomatische Arbeit. Gerade der Bundesregierung. Mit England und Frankreich, die es geschafft haben, das Atomabkommen zu verhandeln.",
+            "timestamp": "00:18:30",
+            "context": "Van Aken kritisiert Merz' Argumentationslinie zum Atomprogramm als Kriegsgrund."
+          },
+          {
+            "text": "Das Risiko einer iranischen Atomwaffe ist heute höher als vor 2 Wochen. Jetzt sind keine Kontrolleure mehr da.",
+            "timestamp": "00:19:30",
+            "context": "Van Aken beschreibt die kontraproduktiven Effekte der Eskalation."
+          }
+        ],
+        "concrete_statements": [
+          "Das JCPOA-Abkommen war erfolgreich und ermöglichte Kontrolle des Atomprogramms",
+          "Völkerrecht verbietet Präventivschläge ohne unmittelbare Verteidigungsnotwendigkeit",
+          "Alle Völkerrechtler stimmen überein, dass Israel/USA sich fälschlicherweise auf Völkerrecht berufen",
+          "Die Eskalation erhöht das Risiko einer iranischen Atomwaffe, nicht senkt es"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Iran-Sanktionen",
+          "Völkerrecht",
+          "Multilaterale Diplomatie",
+          "Rüstungskontrolle"
+        ]
+      },
+      {
+        "title": "Deutsche Beteiligung an Straßenvon-Hormus-Schutz",
+        "timestamp_range": "00:23:54 - 00:26:32",
+        "theme_description": "Van Aken wird zur möglichen deutschen Militärpräsenz in der Straße von Hormus befragt und analysiert Szenarien einer Eskalation.",
+        "question_asked": "Sandra Maischberger fragt van Aken, ob Deutschland Nein sagen kann, wenn die Amerikaner deutsche Kapazitäten (z.B. Minensuchboote) zur Sicherung der Straße von Hormus einfordern, und wie lange Gewalt andauern könnte.",
+        "question_intent": "Maischberger möchte wissen, wie realistisch deutsche Unabhängigkeit von US-Forderungen ist und welche Szenarien zu deutscher Kriegsbeteiligung führen könnten.",
+        "position": "Van Aken hält es für möglich, dass Deutschland in den nächsten Wochen Nein sagen kann, da Friedrich Merz das klar angekündigt hat. Bei längerer Dauer mehrerer Monate hält er alles für möglich und schließt eine Beteiligung nicht aus. Sein Worst-Case-Szenario: Der Konflikt zieht sich 3 Monate hin. Van Aken analysiert die militärische Logistik: Es sind viele Schiffe täglich, die Konvois bräuchten jeden Tag 1–2 Eskorte-Operationen über nur wenige Kilometer (die engste Stelle ist 20 Seemeilen/34 km). Er hält es nicht für ausgeschlossen, dass Trump erklärt, seine Ziele seien erreicht, während der Iran eine 3-Monats-Blockade durchhält. Van Aken zweifelt aber daran, dass Deutschland in den ersten 3 Monaten militärisch hineingezogen wird, warnt aber vor längerfristiger Eskalation.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken beantwortet die Frage nach Deutschlands Handlungsfähigkeit (kann Merz Nein sagen?) und entwirft ein Szenario-Modell. Er adressiert aber nicht explizit die Frage nach Trumps Druck-Potenzial oder die Zuverlässigkeit von Merz' Zusage unter Dauer-Belastung. Seine Aussage 'halte ich alles für möglich' bleibt strategisch vage.",
+        "quotes": [
+          {
+            "text": "Ich glaube, auf jeden Fall für die nächsten Wochen. Die Ansage von Friedrich Merz war klar. Wenn es sich noch mehrere Monate hinzieht, halte ich alles für möglich.",
+            "timestamp": "00:23:54",
+            "context": "Van Aken bewertet die Verlässlichkeit von Merz' Ablehnung unter zeitlichem Druck."
+          },
+          {
+            "text": "Der Worst Case ist, dass sie das 3 Monate durchhalten.",
+            "timestamp": "00:24:25",
+            "context": "Van Aken beschreibt sein Worst-Case-Szenario der Blockade."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland kann in den nächsten Wochen Nein sagen",
+          "Bei mehreren Monaten Dauer ist deutsche Beteiligung möglich",
+          "Militärisch sind tägliche Konvois über 20 Seemeilen notwendig",
+          "Van Aken schließt keine deutsche Kriegsbeteiligung in den ersten 3 Monaten aus, warnt aber vor längerfristiger Eskalation"
+        ],
+        "related_bundestag_topics": [
+          "Militäreinsätze",
+          "Bundestag-Abstimmungsrecht",
+          "NATO-Verpflichtungen",
+          "Strategische Logistik"
+        ]
+      },
+      {
+        "title": "Europäische Unabhängigkeit von der NATO und US-Sicherheit",
+        "timestamp_range": "00:27:05 - 00:28:46",
+        "theme_description": "Van Aken plädiert für europäische Verteidigungsfähigkeit unabhängig von der NATO und den USA.",
+        "question_asked": "Sandra Maischberger fragt van Aken, was es bedeutet, 'Sicherheit europäisch zu denken, nicht im Rahmen der NATO', insbesondere angesichts Trumps NATO-Drohungen und der Abhängigkeit von US-Unterstützung für die Ukraine.",
+        "question_intent": "Maischberger möchte verstehen, wie ein konkretes europäisches Sicherheitsmodell ohne NATO aussehen könnte und ob es realistisch ist.",
+        "position": "Van Aken sagt, dass Deutschland schon seit Jahren wissen sollte, dass man sich auf die USA nicht verlassen kann (schon unter George W. Bush). Europa muss seine Sicherheit eigenständig denken. Das bedeutet konkret: Die EU und Deutschland müssen bereit sein, sich selbst zu verteidigen, wenn Russland die Hauptbedrohung ist. Viele Menschen haben Angst; dafür reichen konventionelle europäische Kapazitäten aus. Die EU sollte ein Verteidigungsbündnis sein, nicht eine vierte Weltmacht, die wie Russland und die USA Nachbarländer befällt. Wenn man alle EU-Länder zusammenzählt, sind die Zahlen für reine EU-Landesverteidigung ausreichend. Van Aken betont, dass nur ein Blick auf Europa nötig ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet präzise und kohärent. Er erklärt sowohl die philosophische Begründung (USA unzuverlässig) als auch das konkrete Modell (EU-Konvention statt NATO, konventionelle Kapazitäten reichen). Seine Position zur europäischen Eigenständigkeit ist klar strukturiert.",
+        "quotes": [
+          {
+            "text": "Deswegen sage ich seit Jahren, wir müssen 2 Schritte zurückgehen und anerkennen, dass man sich auf die USA nicht verlassen kann. Das war schon bei George W. Bush so. Wir müssen die Sicherheit europäisch denken, nicht im Rahmen der NATO.",
+            "timestamp": "00:27:05",
+            "context": "Van Aken begründet seine Position zur europäischen Unabhängigkeit."
+          },
+          {
+            "text": "Für eine reine EU-Landesverteidigung sind wir sehr gut aufgestellt. Wir müssen auf Europa gucken.",
+            "timestamp": "00:28:09",
+            "context": "Van Aken fasst seine Position zusammen."
+          }
+        ],
+        "concrete_statements": [
+          "USA sind nicht zuverlässig (seit George W. Bush)",
+          "Europa muss Sicherheit eigenständig denken",
+          "EU als Verteidigungsbündnis, nicht Weltmacht",
+          "Konventionelle europäische Kapazitäten reichen für EU-Verteidigung aus",
+          "Alle EU-Länder zusammen sind gut aufgestellt"
+        ],
+        "related_bundestag_topics": [
+          "NATO-Reform",
+          "Europäische Sicherheitspolitik",
+          "Strategische Autonomie",
+          "Wehrtechnik",
+          "Militärbudgets"
+        ]
+      },
+      {
+        "title": "Europäische Kernwaffen und Abschreckung",
+        "timestamp_range": "00:31:37 - 00:32:38",
+        "theme_description": "Van Aken lehnt europäische Kernwaffen als Abschreckung ab und argumentiert für globale Ächtung.",
+        "question_asked": "Sandra Maischberger fragt van Aken, ob Europa eine eigene nukleare Verteidigung unter französischer Führung aufbauen sollte, um den NATO-'Bandscheibenvorfall' zu kompensieren.",
+        "question_intent": "Maischberger möchte wissen, ob van Aken Macrons Vorschlag für europäische Atomwaffen unterstützt.",
+        "position": "Van Aken lehnt europäische Atomwaffen ab. Er unterscheidet zwischen 'Ächtung' und 'Abschreckung': Der beste Schutz vor Atomkrieg ist die globale Ächtung von Atomwaffen, nicht Abschreckung durch mehr Atomwaffen. Wenn Europa jetzt über europäische Atomwaffen nachdenkt, normalisiert das diese Waffen wieder – wie in den 1960er-Jahren, als Atomwaffen als normale Waffen galten. Van Aken erinnert an die Kubakrise, in der die Welt 5 Minuten vor Atomkrieg stand. Sein Argument: Länder mit Atomwaffen werden nicht angegriffen (Beispiele: Nordkorea); Länder ohne werden angegriffen. Die Ukraine hätte ihre Atomwaffen nicht abgeben sollen – das war ein Fehler gegenüber der Sicherheitsgarantie. Van Aken argumentiert strukturell gegen Rüstungslogik.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken antwortet direkt und kohärent. Er erklärt seine Opposition gegen europäische Atomwaffen durch Prinzip (Ächtung statt Abschreckung) und historische Warnung (Kubakrise-Logik).",
+        "quotes": [
+          {
+            "text": "Der beste Schutz vor einem Atomkrieg ist die Ächtung von Atomwaffen. Wenn wir jetzt über europäische Atomwaffen reden, wird es wieder normal.",
+            "timestamp": "00:32:07",
+            "context": "Van Aken argumentiert gegen europäische Kernwaffen."
+          },
+          {
+            "text": "Wir standen in den 60er-Jahren in der Kubakrise 5 min vor einem Atomkrieg. Alle, die eine haben, werde nicht angegriffen.",
+            "timestamp": "00:32:38",
+            "context": "Van Aken historisiert die Gefahren von Atomwaffenlogik."
+          }
+        ],
+        "concrete_statements": [
+          "Ächtung von Atomwaffen ist der beste Schutz vor Atomkrieg",
+          "Europäische Atomwaffen normalisieren diese Waffen wieder",
+          "Länder mit Atomwaffen werden nicht angegriffen",
+          "Die Ukraine hätte ihre Atomwaffen nicht abgeben sollen"
+        ],
+        "related_bundestag_topics": [
+          "Atomwaffenpolitik",
+          "Rüstungskontrolle",
+          "Nukleare Abschreckung",
+          "Abrüstung",
+          "Nichtverbreitungsvertrag"
+        ]
+      },
+      {
+        "title": "Allgemeine Wehrpflicht und Geschlechtergerechtigkeit",
+        "timestamp_range": "00:34:15 - 00:38:30",
+        "theme_description": "Van Aken wird zu einer möglichen Wehrpflicht für Frauen und zum Zwangsdienst befragt; er positioniert sich gegen jeden Zwang.",
+        "question_asked": "Sandra Maischberger fragt van Aken, ob Die Linke als Gleichberechtigungs-Partei der Musterung von Frauen zustimmen würde, da Strack-Zimmermann das fordert. Sie zitiert auch einen Hilfstext der Linken mit Tipps, einen Joint vor der Musterung zu rauchen.",
+        "question_intent": "Maischberger möchte wissen, ob van Aken konsistent zur Gleichberechtigung steht und wie Die Linke zum Zwangsdienst steht.",
+        "position": "Van Aken lehnt kategorisch jeden Zwangsdienst ab – für Frauen und Männer. Gleichberechtigung bedeutet nicht automatisch, dass Frauen auch in Kampfsituationen erzwungen werden dürfen. Persönlich hatte van Aken Kriegsdienstverweigerung; drei Männer prüften sein Gewissen mit der Frage: 'Würden Sie sich verteidigen, wenn drei Männer mit Kalaschnikows auf Sie zukommen?' Van Aken sagt, er sei trainiert worden, nicht zu antworten, und habe Gewissensbisse vorgetäuscht. Seine Forderung: Geben Sie genug Geld für das Freiwillige Soziale Jahr (FSJ) aus – mit Finanzierung statt Zwang erreichen Sie mehr Engagement bei jungen Leuten. Van Aken kritisiert, dass die Bundesregierung nicht genug Mittel für das FSJ bereitstellt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken adressiert seine grundsätzliche Opposition gegen Zwangsdienst klar. Er beantwortet die Konsistenz-Frage implizit (Ablehnung aller Zwänge = Gleichberechtigung ohne Erzwingung). Die Frage nach dem Joint-Tipp entlastet er durch Gegenargument zur FSJ-Finanzierung, beantwortet aber nicht direkt, ob Die Linke diesen Tipp verbreitet. Die moralische Dimension ('Verantwortung') wird angesprochen, aber nicht tiefer entwickelt.",
+        "quotes": [
+          {
+            "text": "Gleichberechtigung, wenn es sich nur darum entscheidet, ob Frauen auch an der Waffe schießen können, ich bin gegen jede Art von Zwangsdienst.",
+            "timestamp": "00:34:15",
+            "context": "Van Aken positioniert sich gegen Zwang als Definition von Gleichberechtigung."
+          },
+          {
+            "text": "Geben Sie das Geld, dann haben Sie mehr erreicht als mit diesem Zwang.",
+            "timestamp": "00:37:57",
+            "context": "Van Aken schlägt FSJ-Finanzierung als Alternative zu Zwangsdienst vor."
+          }
+        ],
+        "concrete_statements": [
+          "Gegen jeden Zwangsdienst für Frauen und Männer",
+          "Gleichberechtigung bedeutet nicht Erzwingung in Kampfsituationen",
+          "Freiwillige Soziale Jahr besser finanzieren statt Zwangsdienst",
+          "Bundesregierung gibt nicht genug Geld für FSJ"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Zivilschutz",
+          "Geschlechtergerechtigkeit",
+          "Freiwilligenarbeit",
+          "Bundeswehr-Personal"
+        ]
+      },
+      {
+        "title": "FDP-Wahlkampf und Merz' politische Verantwortung",
+        "timestamp_range": "00:39:02 - 00:41:44",
+        "theme_description": "Van Aken kritisiert Merz' Kritik an der FDP als unverantwortlich und wirft ihm vor, eine schwache Partei ins Abseits zu drängen.",
+        "question_asked": "Sandra Maischberger fragt van Aken als Reaktion auf Strack-Zimmermanns Frage zu Verantwortung und Wehrpflicht, was er davon hält, dass Friedrich Merz die FDP öffentlich kritisiert und ihr als 'im Staub liegende' Partei einen 'Nackentritt' gibt.",
+        "question_intent": "Maischberger möchte wissen, ob van Aken Merz' taktische Attacke auf die FDP für democracypolitisch legitim hält.",
+        "position": "Van Aken kritisiert Merz deutlich. Er wirft ihm vor, dass eine Partei, 'der es nicht gut geht, im Staub liegend noch den Nackentritt' zu geben, nicht würdig eines Bundeskanzlers ist. Van Aken sagt, diese Reaktion sei 'fatal'. Sie triggert nur diejenigen, die die Demokratie sowieso für obsolet halten. Die FDP hatte 2% in Baden-Württemberg; Merz zog 3% herüber und fuhr dann damit unter Wasser. Merz hat keine seiner Versprechungen erfüllt (0%), zeigt den Wählern der FDP jetzt 'den Mittelfinger'. Van Aken hält das für politisch toxisch.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt und substanziell. Er wertet nicht nur Merz' Taktik, sondern erklärt auch die Mechanik (Triggering von Anti-Demokraten) und die Inkonsistenz (Versprechungen vs. Erfüllung).",
+        "quotes": [
+          {
+            "text": "Herr Merz macht etwas Fatales. Dass er einer Partei, der es nicht gut geht, im Staub liegend noch den Nackentritt gibt. Finde ich eines Bundeskanzlers nicht würdig.",
+            "timestamp": "00:40:05",
+            "context": "Van Aken kritisiert Merz' Attacke auf die FDP als unverantwortlich."
+          },
+          {
+            "text": "Friedrich Merz hat denjenigen, die er angelockt hat, den Mittelfinger gezeigt. Jetzt macht er es wieder.",
+            "timestamp": "00:41:13",
+            "context": "Van Aken kritisiert die Inkonsistenz und Rücksichtslosigkeit von Merz."
+          }
+        ],
+        "concrete_statements": [
+          "Merz' Nackentritt gegen die FDP ist 'fatal'",
+          "Das triggert Anti-Demokraten",
+          "Merz hat 0% seiner Versprechungen erfüllt",
+          "Merz zeigt FDP-Wählern den Mittelfinger"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Wahlkampf-Ethik",
+          "Regierungsfähigkeit",
+          "Parteien-Verhältnisse"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das JCPOA-Atomabkommen ermöglichte Inspekteure vor Ort und Messung der Urananreicherung in Staubproben.",
+        "timestamp": "00:19:00"
+      },
+      {
+        "claim": "Am Tag des iranischen Angriffs (Angriffsdatum des Transkripts) gab es einen Fortschritt bei Verhandlungen im Oman.",
+        "timestamp": "00:19:30"
+      },
+      {
+        "claim": "Alle Völkerrechtler sind sich einig, dass Israel und die USA sich bei ihrer Begründung für die Luftschläge gegen den Iran fälschlicherweise auf das Völkerrecht berufen.",
+        "timestamp": "00:20:03"
+      },
+      {
+        "claim": "Die engste Stelle der Straße von Hormus ist 20 Seemeilen (34 km) breit.",
+        "timestamp": "00:24:57"
+      },
+      {
+        "claim": "Die Ukraine war die drittstärkste Atommacht und gab ihre Atomwaffen ab.",
+        "timestamp": "00:33:12"
+      },
+      {
+        "claim": "Jan van Aken hatte Kriegsdienstverweigerung und wurde von drei Männern mit Kalaschnikows zum Thema Selbstverteidigung befragt.",
+        "timestamp": "00:34:48"
+      },
+      {
+        "claim": "Friedrich Merz hat in Baden-Württemberg 3% der Wähler von der FDP herübergezogen und ist damit 'unter Wasser' gefahren.",
+        "timestamp": "00:41:13"
+      }
+    ]
+  }
+}

@@ -17,12 +17,28 @@ import { matchPolitician, MatchedPolitician } from "./_lib/politician-matcher";
 const BASE_URL = "https://www.fernsehserien.de/markus-lanz/episodenguide/18/21920";
 const ZDF_BASE_URL = "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-";
 
-interface ScrapedEpisode {
+export interface ScrapedEpisode {
   episodeNumber: string;
   airDate: string;        // "20.05.2026"
   airDateIso: string;     // "2026-05-20"
   guests: Array<{ name: string; description: string }>;
   zdfUrlGuess: string;    // sollte zur ZDF Mediathek führen (Verfügbarkeit nicht garantiert)
+}
+
+/** Scrapet + dedupliziert die Lanz-Episodenliste (für Wiederverwendung, z.B.
+ *  match-lanz-guests.ts mit 18-Parlamente-Matcher statt period-161). */
+export async function scrapeLanzEpisodes(pages: number[]): Promise<ScrapedEpisode[]> {
+  const all: ScrapedEpisode[] = [];
+  for (const page of pages) {
+    try {
+      all.push(...parseEpisodes(await fetchPage(page)));
+      await new Promise(r => setTimeout(r, 1500));
+    } catch (e) {
+      console.error(`  Seite ${page} FAILED: ${(e as Error).message}`);
+    }
+  }
+  const seen = new Set<string>();
+  return all.filter(e => !seen.has(e.episodeNumber) && seen.add(e.episodeNumber));
 }
 
 interface SuggestedAppearance {
@@ -222,4 +238,7 @@ async function main() {
   }
 }
 
-main().catch(e => { console.error("FAILED:", e); process.exit(1); });
+// Nur als CLI ausführen — nicht beim Import (match-lanz-guests.ts importiert scrapeLanzEpisodes).
+if (process.argv[1] && /discover-lanz\.ts$/.test(process.argv[1])) {
+  main().catch(e => { console.error("FAILED:", e); process.exit(1); });
+}

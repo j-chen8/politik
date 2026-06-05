@@ -1,0 +1,370 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0xOF8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-18",
+    "politician": "Karsten Wildberger",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "8a06b1913dcf57ac",
+    "transcript_chars": 51003,
+    "caption_lines": 1901,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20848,
+    "tokens_out": 7931,
+    "cost_usd": 0.0242012,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.218Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karsten Wildberger, seit Mai 2025 Bundesminister für Digitales und Staatsmodernisierung, diskutiert mit Sandra Maischberger seine Pläne zur Entbürokratisierung und Digitalisierung. Er wirkt engagiert und sachlich, betont den Kulturwandel als notwendig und verteidigt die Regierungsprozesse gegen den Vorwurf langsamer Umsetzung.",
+    "themes": [
+      {
+        "title": "Motivation für die Ministerposition",
+        "timestamp_range": "00:17:02 - 00:18:35",
+        "theme_description": "Wildberger erläutert, warum er die Ministerposition angenommen hat, obwohl sie finanzielle Verluste und Herausforderungen mit sich bringt.",
+        "question_asked": "Sandra Maischberger fragt, ob Wildberger sofort ja gesagt hat, als Friedrich Merz ihn anfragte, und weist darauf hin, dass er deutlich weniger verdient und zehnmal mehr Ärger hat.",
+        "question_intent": "Die Moderatorin möchte verstehen, was Wildberger zur Annahme einer politischen Aufgabe bewogen hat, die mit erheblichen persönlichen Opfern verbunden ist.",
+        "position": "Wildberger berichtet, dass er eine Nacht über den Anruf schlafen konnte und dieser unerwartet kam. Er beschreibt die Aufgabe als große und wichtig, gefragt zu werden, 'ob man in schwierigen Zeiten mithelfen will, dass es vorangeht', als prägende Erfahrung. Die Motivation ist laut Wildberger in den sechs Monaten eher gestiegen; der Ärger wird nicht als belastend empfunden, sondern als antreibend.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger antwortet direkt auf die Frage nach seiner Motivation und erklärt, warum er trotz finanzieller Verluste das Amt angenommen hat. Er addressiert sowohl die Überraschung des Anrufs als auch sein gestiegenes Engagement.",
+        "quotes": [
+          {
+            "text": "Gefragt werden, ob man in so schwierigen Zeiten mithelfen will, dass es vorangeht, ist eine große Aufgabe und ihre.",
+            "timestamp": "00:18:02",
+            "context": "Wildberger erklärt, warum er das Ministeramt angenommen hat, obwohl es finanzielle Verluste bedeutet."
+          },
+          {
+            "text": "Die Motivation ist in den 6 Monaten eher gestiegen.",
+            "timestamp": "00:18:35",
+            "context": "Wildberger wird gefragt, ob der Ärger der Position nicht überwiegend ist, und antwortet, dass seine Motivation gestiegen ist."
+          }
+        ],
+        "concrete_statements": [
+          "Hat eine Nacht über die Entscheidung geschlafen",
+          "Der Schlaf war unruhig",
+          "Der Anruf hatte er nicht erwartet",
+          "Dann kam aber ein klares Ja",
+          "Empfinde das nicht als Ärger",
+          "Die Motivation ist in den 6 Monaten eher gestiegen"
+        ],
+        "related_bundestag_topics": [
+          "Regierungsteam",
+          "Kabinettsämter",
+          "Politische Verantwortung"
+        ]
+      },
+      {
+        "title": "Ziele und Größenordnung des Bürokratieabbaus",
+        "timestamp_range": "00:19:06 - 00:20:44",
+        "theme_description": "Diskussion über die konkreten Ziele des Bürokratieabbaus und wie diese gemessen werden sollen, insbesondere die angekündigten 16 Milliarden Euro Einsparungen.",
+        "question_asked": "Sandra Maischberger weist auf die scheinbare Widersprüchlichkeit hin, dass das Ziel 8% Stellen abbau in 4 Jahren beträgt, aber im Haushalt 2026 mehr Stellen vorgesehen sind als vorher, und fragt, wohin die 16 Milliarden Euro gehen und ob sie bei den Unternehmen sichtbar werden.",
+        "question_intent": "Die Moderatorin möchte Wildberger auf einen Widerspruch hinweisen und verstehen, wie konkret und messbar die Bürokratieeinsparungen sind.",
+        "position": "Wildberger betont, dass die Regierung 3 Milliarden Euro an Vorhaben verabschiedet hat und 5 Milliarden Euro für ein Paket bereitgestellt hat. Er argumentiert, dass die Frage nicht nur auf Geldmengen ausgerichtet sein sollte, sondern auf spürbare Verbesserungen wie schnelleres und billigeres Bauen, bessere Infrastruktur sowie reduzierte Berichtspflichten für den Mittelstand. Er weist darauf hin, dass 20 Jahre Komplexität nicht in Monaten aufgelöst werden kann.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger antwortet auf die Frage nach der Sichtbarkeit der Einsparungen mit konkreten Beispielen (Bauen, Infrastruktur, Mittelstand), adressiert aber nicht direkt die Widersprüchlichkeit zwischen dem angestrebten Stellenabbau und der Erhöhung der Stellen im Haushalt 2026.",
+        "quotes": [
+          {
+            "text": "Das Bauen wird billiger, und es wird schneller.",
+            "timestamp": "00:20:12",
+            "context": "Wildberger antwortet auf die Frage, wo Bürgerinnen und Bürger die Bürokratieeinsparungen sehen werden."
+          },
+          {
+            "text": "wenn man gefühlt, so empfinde ich es, 20 Jahre Komplexität angehäuft hat, dann hat das etwas damit zu tun, dass sich vielleicht eine Kultur darum gebaut hat.",
+            "timestamp": "00:20:44",
+            "context": "Wildberger erläutert, warum schnelle Lösungen nicht möglich sind."
+          }
+        ],
+        "concrete_statements": [
+          "3 Milliarden Euro an Vorhaben verabschiedet",
+          "5 Milliarden Euro Paket bereitgestellt",
+          "Bauen wird billiger und schneller",
+          "Infrastruktur, Glasfaser, Mobilfunk werden ausgebaut",
+          "Berichtspflichten für Mittelstand müssen reduziert werden",
+          "Erwartet nicht zu versprechen, mit einem Knopfdruck alles wird besser"
+        ],
+        "related_bundestag_topics": [
+          "Bürokratieabbau",
+          "Haushaltspolitik",
+          "Verwaltungsreform"
+        ]
+      },
+      {
+        "title": "Unterschied zwischen Kettensäge und Nagelschere",
+        "timestamp_range": "00:22:54 - 00:23:58",
+        "theme_description": "Debatte über das Tempo und die Radikalität des Bürokratieabbaus im Vergleich zu anderen Ländern wie Argentinien und mit Blick auf die Trump-Administration.",
+        "question_asked": "Sandra Maischberger zitiert Beispiele wie Argentinien und Trump, die 'zur Kettensäge' gegriffen haben, und fragt Wildberger, ob er die Nagelschere oder die Kettensäge bevorzugt.",
+        "question_intent": "Die Moderatorin möchte erfahren, ob Wildberger ein radikaleres Vorgehen wie Argentinien oder Trump anstrebt oder ob er einen gemäßigteren Weg vorzieht.",
+        "position": "Wildberger versteht den Druck und die Erwartung auf schnellere Umsetzung an, betont aber, dass Etwas mit Kettensäge aufzubauen nicht sein Ansatz ist. Er präferiert ein Werkzeugset bestehend aus Nagelschere, Hammer und Tupfer, um flexibel auf verschiedene Herausforderungen eingehen zu können.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet die Frage direkt und explizit: Er lehnt die Kettensäge ab und erklärt sein Instrumentarium-Konzept. Er macht seine Position zu radikalem Umbau klar.",
+        "quotes": [
+          {
+            "text": "Etwas aufzubauen mit Kettensäge, dass er nicht meins. Wir haben eine Nagelschere, aber auch einen Hammer. Aber auch einen Tupfer.",
+            "timestamp": "00:23:25",
+            "context": "Wildberger antwortet auf die Frage, ob er die Kettensäge oder Nagelschere bevorzugt."
+          }
+        ],
+        "concrete_statements": [
+          "Versteht den Druck, dass es schneller gehen muss",
+          "Glaube nicht an ein Instrument allein",
+          "Etwas mit Kettensäge aufbauen ist nicht sein Ansatz",
+          "Hat verschiedene Instrumente: Nagelschere, Hammer, Tupfer"
+        ],
+        "related_bundestag_topics": [
+          "Reformtempo",
+          "Verwaltungsumbau",
+          "Regierungsstil"
+        ]
+      },
+      {
+        "title": "Konkrete Beispiele: Bürokratie in der Landwirtschaft",
+        "timestamp_range": "00:23:58 - 00:26:04",
+        "theme_description": "Diskussion über konkrete Bürokratieabbau-Beispiele in der Landwirtschaft, insbesondere Kassenberichte und Bonpflicht.",
+        "question_asked": "Sandra Maischberger präsentiert ein Beispiel eines Landwirts, der abends Kassenberichte auf Papier und digital auf USB-Sticks archivieren muss, und fragt Wildberger, um wie viel Prozent dieser Bürokratieaufwand in ein bis zwei Jahren sinkt.",
+        "question_intent": "Die Moderatorin möchte konkrete, messbare Zusagen zur Reduktion von Bürokratie in spezifischen Bereichen erhalten.",
+        "position": "Wildberger kann aus dem Stegreif keine exakte Zahl nennen, hofft aber, dass beim nächsten Interview in zwei bis drei Jahren 'mehr Wurst in der Wurst' vorhanden ist. Er nennt dann später konkrete Beispiele wie die Rücknahme der Bonpflicht und Verbesserungen im Landwirtschaftsbereich. Er spricht von einer möglichen Halbierung der Bürokratie im betreffenden Bereich, was 7,5% in vier Jahren entsprechen würde.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger weicht der direkten Zahlenangabe aus, bietet aber später konkrete Maßnahmen und eine ungefähre Halbierung an. Die Antwort ist vage bei der konkreten Zahl, aber substanziell bei den Maßnahmen.",
+        "quotes": [
+          {
+            "text": "Das wäre, aus dem Stegreif eine Zahl zu schießen, ist schwierig. Aber ich hoffe, wenn wir dasselbe Interview in 2 bis 3 Jahren wieder hören, ist wieder mehr Wurst in der Wurst.",
+            "timestamp": "00:24:32",
+            "context": "Wildberger wird nach einer konkreten prozentualen Reduktion gefragt und weicht aus."
+          },
+          {
+            "text": "Ich würde schon in dem Bereich sagen, halbieren, weil gerade im Landwirtschaftsbereich passiert viel, da werden viele Berichtspflichten zurückgenommen.",
+            "timestamp": "00:24:32",
+            "context": "Wildberger nennt dann doch eine Zahl nach Nachfrage."
+          }
+        ],
+        "concrete_statements": [
+          "Bonpflicht steht im Koalitionsvertrag, ist noch nicht umgesetzt",
+          "Müssen sich mit Kassensystemen befassen",
+          "Landwirtschaftsbereich: viele Berichtspflichten werden zurückgenommen",
+          "Hoffnung auf Halbierung des Bürokratieaufwands in diesen Bereichen",
+          "7,5% Reduktion in 4 Jahren angestrebt"
+        ],
+        "related_bundestag_topics": [
+          "Landwirtschaft",
+          "Bürokratieabbau",
+          "Finanzamt-Digitalisierung",
+          "Kassensysteme"
+        ]
+      },
+      {
+        "title": "Europäische Bürokratie und Brüssel-Engagement",
+        "timestamp_range": "00:26:04 - 00:27:06",
+        "theme_description": "Diskussion über neue Bürokratiegesetze, die aus Brüssel kommen, und Wildbergers Engagement, diese zurückzudrehen.",
+        "question_asked": "Sandra Maischberger präsentiert ein Beispiel einer Autohändlerin, die alle Verpackungen zurückgeben muss, was zu absurden Praktiken führt, und fragt implizit, wie Wildberger mit solcher Bürokratie umgeht.",
+        "question_intent": "Die Moderatorin möchte wissen, wie Wildberger mit neuen, dysfunktionalen Bürokratie-Regeln umgeht und ob er diese zurückfahren kann.",
+        "position": "Wildberger erklärt, dass er das Beispiel selbst für Unsinn hält und dass solche Berichtspflichten teilweise aus Brüssel kommen. Er erwähnt die Lieferketten-Sorgfaltspflicht als ein Gesetz, das nur in Deutschland existiert, und betont, dass die Regierung daran arbeitet, diese zurückzunehmen. Er ist auch aktiv in Brüssel unterwegs, um die Bürokratiewelle mit anderen Mitgliedstaaten im 'Schulterschluss' zurückzudrehen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger antwortet substanziell mit konkreten Beispielen (Lieferketten-Sorgfaltspflicht) und erklärt sein Engagement in Brüssel. Er addressiert die Frage nach dysfunktionaler Bürokratie klar.",
+        "quotes": [
+          {
+            "text": "das kommt teilweise aus Brüssel. Aber das Lieferketten-Sorgfaltspflichten gesetzt, das gibt es auch nur bei uns, da sind viele solcher Berichtspflichten bei, da sind wir gerade dabei, das zurückzunehmen.",
+            "timestamp": "00:26:35",
+            "context": "Wildberger erklärt, wie er mit aus Brüssel kommender Bürokratie umgeht."
+          },
+          {
+            "text": "Wir sind auch sehr aktiv in Brüssel unterwegs, dass wir diese Bürokratiewelle, die permanent auf uns zukommt, dass wir das im Schulterschluss mit den anderen Mitgliedstaaten zurückdrehen.",
+            "timestamp": "00:26:35",
+            "context": "Wildberger beschreibt sein Engagement für Bürokratieabbau auf europäischer Ebene."
+          }
+        ],
+        "concrete_statements": [
+          "Hält das Beispiel für Unsinn",
+          "Lieferketten-Sorgfaltspflicht nur in Deutschland",
+          "Arbeitet daran, Berichtspflichten zurückzunehmen",
+          "Ist aktiv in Brüssel unterwegs",
+          "Arbeitet im Schulterschluss mit anderen Mitgliedstaaten"
+        ],
+        "related_bundestag_topics": [
+          "Europapolitik",
+          "Verbraucherschutz",
+          "Unternehmensregulierung",
+          "Lieferketten-Sorgfaltspflicht"
+        ]
+      },
+      {
+        "title": "Digitalisierung und föderale Herausforderungen",
+        "timestamp_range": "00:27:06 - 00:29:11",
+        "theme_description": "Wildberger erläutert die Herausforderungen bei der Digitalisierung der öffentlichen Verwaltung und gibt ein Beispiel für ineffiziente Prozesse zwischen Bundesländern.",
+        "question_asked": "Sandra Maischberger erwähnt die parteiübergreifende Forderung nach Entbürokratisierung und fragt, ob Wildberger es schafft, dass digitale Leistungen am Ende seiner Amtszeit deutlich verbessert sind, insbesondere beim Umzug zwischen Bundesländern.",
+        "question_intent": "Die Moderatorin möchte wissen, ob Wildberger die Digitalisierung der Verwaltung konkret vorantreiben kann, insbesondere das föderale Problem.",
+        "position": "Wildberger betont, dass die Digitalisierung im Osten ein 'Megabrett' ist. Er ist zuversichtlich, dass substantielle Fortschritte erreicht werden und dass digitale Leistungen in vielen Bundesländern und Kommunen um 30 bis 40% ausgebaut werden. Er erklärt, dass Deutschland aus 575 Leistungen etwa 6000 Varianten gebaut hat, die teilweise nicht miteinander funktionieren. Er nennt dies ein 'Durchbruchsprojekt' und arbeitet im Schulterschluss mit den Ländern daran.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger antwortet direkt auf die Frage zur Digitalisierung mit konkreten Zahlen, erkennt die Herausforderung an und skizziert seinen Lösungsansatz.",
+        "quotes": [
+          {
+            "text": "Die Digitalisierung im östlichen Bereich ist das Megabrett. Ich bin zuversichtlich, dass wir substantielle Fortschritte erreichen. Dass wir digitale Leistungen 30 bis 40% in vielen Bundesländern und Kommunen, dass wir da sehen, dass wir deutlich vorankommen.",
+            "timestamp": "00:27:36",
+            "context": "Wildberger antwortet auf Fragen zur Digitalisierung in der Verwaltung."
+          },
+          {
+            "text": "Wir haben es geschafft, in Deutschland, aus 575 Leistungen, die wir online zugänglich machen wollen... Man weiß es nicht genau, aber um die 6000 Varianten zu bauen, die teilweise nicht miteinander funktioniert.",
+            "timestamp": "00:28:08",
+            "context": "Wildberger beschreibt das Digitalisierungschaos in Deutschland."
+          }
+        ],
+        "concrete_statements": [
+          "Digitalisierung ist ein 'Megabrett'",
+          "Zielt auf 30-40% Verbesserung digitaler Leistungen",
+          "Deutschland hat 6000 Varianten statt standardisierter 575 Leistungen",
+          "Nennt es ein 'Durchbruchsprojekt'",
+          "Arbeitet mit Kollegen (Schnieder) an Fahrzeugschein-Digitalisierung",
+          "Verweist auf Griechenland (2000 Möglichkeiten in einer App) und Türkei (Strafzettel in App)"
+        ],
+        "related_bundestag_topics": [
+          "E-Government",
+          "Verwaltungsdigitalisierung",
+          "Föderalismus",
+          "Infrastruktur",
+          "Digitale Verwaltung"
+        ]
+      },
+      {
+        "title": "Digitale Brieftasche und Datensicherheit",
+        "timestamp_range": "00:29:41 - 00:32:19",
+        "theme_description": "Wildberger stellt die europäische digitale Brieftasche vor und beantwortet Bedenken zur Datensicherheit und zur Kontrolle über Cloud-Infrastruktur.",
+        "question_asked": "Sandra Maischberger erwähnt einen heutigen Digitalgipfel mit Merz und Macron und fragt, wann die digitale Brieftasche kommt und äußert Bedenken, dass Daten in amerikanischen Clouds landen könnten.",
+        "question_intent": "Die Moderatorin möchte wissen, wann die digitale Brieftasche einsatzbereit ist und wie Datensicherheit gewährleistet wird.",
+        "position": "Wildberger erklärt, dass die digitale Brieftasche Ende 2026 oder Januar 2027 kommt. Sie ermöglicht es, sich in vielen Lebensbereichen digital zu bewegen, wenn Zeugnisse o.ä. benötigt werden. Er betont, dass die Daten auf europäischen Cloud-Servern mit europäischer Verschlüsselung liegen und nicht zu US-Anbietern abfließen werden. Die digitale Souveränität ist ihm eine 'Herzensangelegenheit'. 75 Unternehmen unterschrieben, um Lösungen auf Basis dieser Brieftasche zu entwickeln.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger antwortet detailliert auf beide Aspekte: Zeitplan und Datensicherheit. Er adressiert die Sorge um amerikanische Cloud-Abhängigkeit direkt.",
+        "quotes": [
+          {
+            "text": "Mit der sogenannten digitalen Brieftasche, ganz wichtig, sehr sicher, werden wir in der Lage sein, und sind vielen Lebensbereichen, perspektivisch hoffentlich allen, wo wir Zeugnis o. ä. brauchen, uns digital zu bewegen.",
+            "timestamp": "00:30:12",
+            "context": "Wildberger erklärt die Funktion der digitalen Brieftasche."
+          },
+          {
+            "text": "Da kann ich Sie beruhigen, diese Daten werden auf einer europäischen Cloud liegen, mit einer rein europäischen Verschlüsselung. Die Daten werden nicht abfließen können.",
+            "timestamp": "00:31:15",
+            "context": "Wildberger antwortet auf die Besorgnis um Datensicherheit."
+          },
+          {
+            "text": "So einen Gipfel, wie wir jetzt hatten, das ist mir eine persönliche Herzensangelegenheit.",
+            "timestamp": "00:32:19",
+            "context": "Wildberger betont die Wichtigkeit des Digitalgipfels."
+          }
+        ],
+        "concrete_statements": [
+          "Digitale Brieftasche kommt Ende 2026 oder Januar 2027",
+          "Ermöglicht digitale Bewältigung vieler Lebensbereiche",
+          "Beispiele: Bankkonto, Ummeldung automatisiert",
+          "Daten auf europäischen Cloud-Servern mit europäischer Verschlüsselung",
+          "75 Unternehmen unterschrieben Partnerschaftsabkommen",
+          "Arbeitet an souveränen Cloud-Lösungen",
+          "Themen: Souveränität, Datensicherheit, Verschlüsselung, Software-Kontrolle"
+        ],
+        "related_bundestag_topics": [
+          "Digitalisierung",
+          "Datenschutz",
+          "Datensouveränität",
+          "Europäische Souveränität",
+          "Künstliche Intelligenz",
+          "Technologiepolitik"
+        ]
+      },
+      {
+        "title": "Rentenpolitik und Stabilität der Koalition",
+        "timestamp_range": "00:34:24 - 00:37:00",
+        "theme_description": "Wildberger wird zu seiner Sicht auf die Rentenpolitik und die Spannungen in der Koalition befragt, insbesondere zur Frage, ob junge Leute für Koalitionsstabilität stimmen sollten.",
+        "question_asked": "Sandra Maischberger zitiert den Wirtschaftsrat, der die Bedenken der Jungen Union nachvollzieht, und fragt, ob das auch Wildbergers Meinung ist. Sie fragt dann, ob er jungen Menschen sagen würde, die Kritik sei berechtigt, aber die Regierung dürfe nicht platzen.",
+        "question_intent": "Die Moderatorin möchte wissen, ob Wildberger die inhaltlichen Bedenken der Jungen Union teilt und wie er junge Leute zur Unterstützung der Koalition bewegen würde.",
+        "position": "Wildberger erklärt, dass das Rentenproblem äußerst komplex ist und dass zu diesem Thema 'alles gesagt' wurde, 'nur nicht von jedem'. Er betont, dass die Gleichung nicht funktioniert und dass Wirtschaftswachstum notwendig ist. Er weist darauf hin, dass Deutschland in schwierigen Zeiten ist (Wehrpflicht, Wirtschaftswachstum, Souveränität, Digitalisierung) und dass es nicht möglich ist, innerhalb von 6 Monaten auf alle großen Fragen Antworten zu haben. Die Stabilität der Regierung ist für ihn zentral, um diese Aufgaben erfüllen zu können. Er betont, dass Debatten wichtig sind, aber dass die Stimmen der Koalition im Bundestag zusammenstehen müssen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger beantwortet die Frage nach seiner Meinung zur Rentenpolitik nur indirekt und weicht in die Gesamtverantwortung der Regierung aus. Er adressiert nicht explizit, ob die Bedenken der Jungen Union berechtigt sind, und gibt auch keine direkte Antwort auf die Frage, was er jungen Menschen sagen würde.",
+        "quotes": [
+          {
+            "text": "Das ist wieder so ein Thema, extrem wichtig, superkomplex. Da sage ich immer, es ist alles gesagt für den Moment, nur nicht von jedem.",
+            "timestamp": "00:34:57",
+            "context": "Wildberger wird zur Rentenpolitik befragt."
+          },
+          {
+            "text": "Wir müssen richtig Gas geben. Wir müssen wehrpflichtig werden, es geht um Wirtschaftswachstum, wir reden über Souveränität, Digitalisierung. Wir merken, in fast allen Bereichen muss es schnell gehen.",
+            "timestamp": "00:35:28",
+            "context": "Wildberger erklärt die breite Herausforderung der Regierung."
+          },
+          {
+            "text": "Damit wir diese Aufgabe gut erfüllen können, in schwierigsten Zeiten, brauchen wir diese Stabilität.",
+            "timestamp": "00:36:30",
+            "context": "Wildberger antwortet auf die Frage zu Rentenpolitik und Koalitionsstabilität."
+          }
+        ],
+        "concrete_statements": [
+          "Rentenproblem ist 'extrem wichtig, superkomplex'",
+          "Die Gleichung funktioniert nicht",
+          "Wirtschaftswachstum ist notwendig",
+          "Versteht, dass es schneller gehen muss",
+          "Braucht Koalitionsstabilität in schwierigsten Zeiten",
+          "Debatten müssen ausgehalten werden, aber Koalitionsstimmen müssen zusammenstehen",
+          "Erlebt die Zusammenarbeit mit CDU, CSU und SPD im Ministerium anders als die öffentliche Debatte"
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Koalitionsstabilität",
+          "Generationengerechtigkeit",
+          "Haushaltspolitik",
+          "Fiskalpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "3 Milliarden Euro an Vorhaben wurden verabschiedet",
+        "timestamp": "00:19:39"
+      },
+      {
+        "claim": "5 Milliarden Euro Paket wurde gesichert",
+        "timestamp": "00:19:39"
+      },
+      {
+        "claim": "Die digitale Brieftasche kommt Ende 2026 oder Januar 2027",
+        "timestamp": "00:31:15"
+      },
+      {
+        "claim": "75 Unternehmen unterschrieben auf Basis der digitalen Brieftasche Lösungen",
+        "timestamp": "00:30:44"
+      },
+      {
+        "claim": "Aus 575 Leistungen wurden etwa 6000 Varianten gebaut, die teilweise nicht miteinander funktionieren",
+        "timestamp": "00:28:08"
+      },
+      {
+        "claim": "Griechenland hat 2000 Möglichkeiten innerhalb einer App",
+        "timestamp": "00:28:39"
+      },
+      {
+        "claim": "In der Türkei ist der Strafzettel in der App",
+        "timestamp": "00:28:39"
+      }
+    ]
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-26-februar-2026-100",
+    "video_id": "illner-2026-02-26",
+    "politician": "Marie-Agnes Strack-Zimmermann",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "e8129d1367852986",
+    "transcript_chars": 47423,
+    "caption_lines": 2351,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19786,
+    "tokens_out": 10038,
+    "cost_usd": 0.0279904,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.354Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Marie-Agnes Strack-Zimmermann diskutierte in der Sendung „Maybrit Illner\" die Epstein-Affäre und ihre politischen, sicherheitspolitischen sowie rechtlichen Dimensionen. Sie betonte die Notwendigkeit von Ermittlungen in Deutschland und Europa, warnte vor Erpressungsrisiken für Staaten und kritisierte die Schutzlosigkeit der Opfer. Der Ton war sachlich-analytisch mit deutlicher normativer Orientierung auf Rechtsstaat und Transparenz.",
+    "themes": [
+      {
+        "title": "Vertrauenproblem in US-Justiz und Trump-Verbindung",
+        "timestamp_range": "00:03:21 - 00:04:39",
+        "theme_description": "Analyse der Gefahr, die die Epstein-Akten für Donald Trump darstellen, und des Vertrauensproblems in die Unabhängigkeit des US-Justizministeriums unter der Trump-Administration.",
+        "question_asked": "Maybrit Illner fragte, auf welchen Ebenen die Epstein-Akten für Donald Trump eine Gefahr darstellen und ob die bisher veröffentlichten oder die nicht-öffentlichen Akten gemeint sind.",
+        "question_intent": "Illner wollte wissen, wie bedeutsam die Akten für Trumps Position sind und ob die Zurückhaltung von Dokumenten ein zusätzliches Risiko darstellt.",
+        "position": "Strack-Zimmermann unterschied zwischen strafrechtlicher Relevanz (keine vorliegenden Beweise für Trumps direkte Verwicklung in Missbrauch) und dem fundamentaleren Problem der fehlenden Transparenz. Sie kritisierte, dass die Justizministerin sich im Wahlkampf zu 100%-iger Loyalität gegenüber Trump geäußert habe und somit an der Schnittstelle der amerikanischen Justiz sitze. Sie sah ein berechtigtes Vertrauenproblem und verglich negativ mit der Biden-Regierung, in der auch gegen den eigenen Sohn ermittelt wurde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann adressierte beide Aspekte der Frage vollständig: Sie differenzierte zwischen direkter strafrechtlicher Verwicklung und dem Vertrauensproblem der Behördenumsetzung. Sie benannte konkret die politische Abhängigkeit der Justizministerin als das zentrale Problem.",
+        "quotes": [
+          {
+            "text": "Es gibt aus meiner Sicht ein berechtigtes Vertrauenproblem in die Aufarbeitung des amerikanischen Justizministeriums.",
+            "timestamp": "00:03:21",
+            "context": "Bei der Bewertung der Gefahr, die die Epstein-Akten durch mögliche Zurückhaltung darstellen."
+          },
+          {
+            "text": "Die Justizministerin hatte im Wahlkampf gesprochen, Donald Trump 100 % loyal zu sein. Sie sitzt an der Schnittstelle, wo die amerikanische Justiz zusammen läuft.",
+            "timestamp": "00:03:21",
+            "context": "Erklärung des Vertrauensproblems durch die mangelnde Unabhängigkeit der Justizministerin."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt derzeit keinen Beleg, dass Trump strafrechtlich relevant verwickelt war.",
+          "Ein berechtigtes Vertrauenproblem in die Aufarbeitung des amerikanischen Justizministeriums besteht.",
+          "Die Justizministerin zeigt mangelnde Unabhängigkeit durch ihre Wahlkampf-Loyalitätserklärung."
+        ],
+        "related_bundestag_topics": [
+          "Rechtsstaatlichkeit",
+          "Unabhängigkeit der Justiz",
+          "Transparency International",
+          "USA-Beziehungen"
+        ]
+      },
+      {
+        "title": "Epstein-Akten und Vertrauensschutz durch Korruption",
+        "timestamp_range": "00:07:14 - 00:09:14",
+        "theme_description": "Analyse des Epstein-Ökosystems als Menschenhandelssystem mit Erpressungsmechanismen und die Notwendigkeit europäischer Ermittlungen.",
+        "question_asked": "Maybrit Illner fragte Strack-Zimmermann, ob sie Verständnis dafür hat, dass Hillary Clinton ihren Mann (Bill Clinton) schützt, in Bezug auf dessen Verbindung zu Epstein.",
+        "question_intent": "Illner wollte wissen, wie Strack-Zimmermann die Entscheidung von Hillary Clinton bewertet, ihren Mann nicht zu verlassen, anders als andere Ehefrauen.",
+        "position": "Strack-Zimmermann ging nicht auf die Hillary-Clinton-Frage ein, sondern verlagerte den Fokus auf die systemische Dimension: Sie betonte, dass Epstein von jedem Kunden Akten angelegt und diese zu Erpressung genutzt hat. Sie warnte davor, dass dieses Ökosystem auch auf den europäischen Kontinent ausstrahlt, spekulierte über mögliche deutsche Fälle und beschrieb Epsteins System als Sklaverei. Sie verwies auf die besondere Begehrtheit von Königshausmitgliedern (Geld und Titel) und dankte der Moderatorin für die Sendung. Sie forderte, die Perspektive der über 1000 Opfer in die Diskussion einzubringen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Strack-Zimmermann wich der persönlichen Frage zu Hillary Clinton aus und verlagerte das Thema auf die Systemfrage des Menschenhandels und der Erpressung. Sie adressierte substantiell die strukturelle Dimension, nicht aber die ursprünglich gestellte Personenfrage.",
+        "quotes": [
+          {
+            "text": "Dass durch diese Akten öffentlich geworden ist, dass dieser Epstein von jedem seiner Kunden auch Akten angelegt hat. Und damit sie auch eingefangen und erpresst hat.",
+            "timestamp": "00:07:14",
+            "context": "Erklärung des zentralen Erpressungsmechanismus von Epsteins System."
+          },
+          {
+            "text": "Ich hab keine Beweise, aber ich warte darauf, dass auch in Deutschland das aufploppt. Es ist ganz unwahrscheinlich, dass das Ökosystem dieses Menschenhandels, das ist ja Sklaverei gewesen.",
+            "timestamp": "00:07:14",
+            "context": "Warnung vor europäischer Ausbreitung und Spekulationen über deutsche Fälle."
+          }
+        ],
+        "concrete_statements": [
+          "Epstein hat von Kunden Akten angelegt und diese zu Erpressung genutzt.",
+          "Die Opferperspektive der über 1000 Frauen muss in die Diskussion eingebracht werden.",
+          "Das Ökosystem könnte auch auf Deutschland übergreifen.",
+          "Königshausmitglieder waren besonders begehrt wegen ihrer Kombination von Geld und Titel."
+        ],
+        "related_bundestag_topics": [
+          "Menschenhandel",
+          "Organisierte Kriminalität",
+          "Europol",
+          "Grenzüberschreitende Ermittlungen"
+        ]
+      },
+      {
+        "title": "Ermittlungspflicht der Bundesregierung in Deutschland",
+        "timestamp_range": "00:13:43 - 00:15:56",
+        "theme_description": "Strack-Zimmermanns Forderung nach aktiven Ermittlungen durch die deutsche Bundesregierung gegen Epstein-Netzwerk-Akteure in Deutschland.",
+        "question_asked": "Nachdem Franziska Brantner forderte, dass Deutschland ermitteln sollte, widersprach ein Pressesprecher der Bundesregierung, dass eine Regierung das nicht machen könne. Strack-Zimmermann wurde darauf nicht direkt befragt, äußerte sich aber eigeninitiativ.",
+        "question_intent": "Eigeninitiative: Strack-Zimmermann wollte klarstellen, dass die Bundesregierung sehr wohl ermitteln kann und muss, entgegen der Aussage des Regierungssprechers.",
+        "position": "Strack-Zimmermann korrigierte explizit die Aussage des Pressesprechers und sagte, dass eine Regierung das selbstverständlich kann – die Franzosen hätten es bereits getan. Sie wies auf Europols Möglichkeiten bei Menschenhandel, Korruption und Geldwäsche hin und forderte, dass Länder und Deutschland aktiv werden müssten. Sie lehnte ab, das Thema einfach beiseite zu schieben mit dem Motto \"Gott sei Dank war es kein deutscher Name\". Sie verwies auf den Prozess von Dominique Pelicot und deren Aussage, dass die Scham die Seite wechseln muss. Sie warnte vor Erpressbarkeit und Geheimnisverrat, nannte das Beispiel des britischen Königsbruders und forderte, dem Geldfluss nachzugehen (\"follow the money\"). Sie kritisierte die Deutsche Bank, die Epstein 40 Konten eröffnet hatte, obwohl eine Sachbearbeiterin Bedenken äußerte, der Chef aber sagte \"mit dem verdienen wir Geld\".",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann beantwortete die implizite Frage vollständig, indem sie die Aussage des Pressesprechers direkt widersprach, konkrete Beispiele anderer Länder nannte und mehrere Mechanismen aufzeigte, wie Deutschland aktiv werden könnte (Europol, Bankkontrollen, Erpressungsrisiken).",
+        "quotes": [
+          {
+            "text": "Der Pressesprecher in Deutschland wurde ja darauf angesprochen hat gesagt, eine Regierung kann das nicht machen, natürlich kann das die Regierung machen, die Franzosen haben das gemacht.",
+            "timestamp": "00:13:43",
+            "context": "Direkte Widerlegung der Aussage eines Regierungssprechers zur Ermittlungsfähigkeit."
+          },
+          {
+            "text": "Das kann man nicht einfach wegbürsten nach dem Motto Gott sei Dank war es kein deutscher Name. Das ist nur eine Frage der Zeit.",
+            "timestamp": "00:13:43",
+            "context": "Zurückweisung einer ausweichenden Reaktion und Warnung vor Naivität."
+          },
+          {
+            "text": "Nachdem Epstein das erste Mal im Gefängnis saß wissen wir, dass er bei der Deutschen Bank 40 Konten eröffnet hat und eine Sachbearbeiterin irgendwann sagte, Leute, ist das eigentlich korrekt und der Chef sagte, mit dem verdienen wir Geld.",
+            "timestamp": "00:13:43",
+            "context": "Konkrete Kritik an der Deutschen Bank und deren Compliance."
+          }
+        ],
+        "concrete_statements": [
+          "Die Bundesregierung kann und muss ermitteln (Widerspruch zum Pressesprecher).",
+          "Europol hat Befugnisse bei Menschenhandel, Korruption und Geldwäsche.",
+          "Deutschland sollte nicht einfach davon ausgehen, unbeteiligt zu sein.",
+          "Die Scham muss die Seite wechseln (Referenz Pelicot-Prozess).",
+          "Erpressungsrisiken durch Geheimnisverat müssen ernst genommen werden.",
+          "Deutsche Bank muss zur Rechenschaft gezogen werden für die 40 Konten.",
+          "Der Chef der Deutschen Bank hat Compliance-Bedenken ignoriert."
+        ],
+        "related_bundestag_topics": [
+          "Bundesregierung und Justiz",
+          "Finanzaufsicht BaFin",
+          "Deutsche Bank",
+          "Europol",
+          "Innere Sicherheit",
+          "Menschenhandel und organisierte Kriminalität"
+        ]
+      },
+      {
+        "title": "Kultur des Rücktritts und Ökosystem der Unangreifbarkeit",
+        "timestamp_range": "00:29:12 - 00:31:08",
+        "theme_description": "Einschätzung der Rücktrittswelle nach Epstein-Enthüllungen und der strukturellen Bedingungen, die prominente Täter schützen.",
+        "question_asked": "Maybrit Illner fragte Strack-Zimmermann, ob es noch eine Kultur des Rücktritts gibt, da manche Rücktritte erzwungen und manche freiwillig waren, gemessen an der Dimension der Epstein-Affäre.",
+        "question_intent": "Illner wollte wissen, ob der institutionelle Wille zu Konsequenzen für Komplizenschaft noch vorhanden ist oder ob die Rücktritte als minimal anzusehen sind.",
+        "position": "Strack-Zimmermann antwortete, dass Rücktritte nur geschehen, wenn der Druck groß genug ist. Manche hätten die \"Flucht nach vorne\" angetreten, bevor es peinlicher würde, aber das sei nur eine Handvoll gewesen, gemessen an der Dimension. Sie analysierte die Opfer als schwach und gezielt ausgewählt – Frauen aus einfachen Verhältnissen, die eine Chance durch Geld sahen, und Frauen aus Osteuropa. Sie beschrieb Epsteins System als ein Ökosystem, in dem man sich unangreifbar fühlte, ähnlich wie in der Kirche. Sie betonte, dass es um Machtstrukturen geht, nicht nur Geld, und verglich es mit Mafiastrukturen, die nur funktionieren, wenn sich alle gegenseitig decken.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann beantwortete die Frage zur Rücktrittkultur direkt (Druck notwendig, minimal im Vergleich zur Dimension) und erweiterte dann analytisch auf die Strukturfragen (Opferauswahl, Ökosystem-Charakter, gegenseitiges Decken), was die tiefere Ursache für mangelnde Konsequenzen offenlegte.",
+        "quotes": [
+          {
+            "text": "Wenn der Druck groß genug ist, dann gibt es das. Manche haben auch die Flucht nach vorne angetreten, bevor es noch peinlicher wird. Aber das war nur eine Hand voll.",
+            "timestamp": "00:29:12",
+            "context": "Einschätzung der Rücktrittkultur als druckabhängig und minimal."
+          },
+          {
+            "text": "Das sieht man auch bei den Opfern, die aus einem einfachen Milieu kamen. Die eine Chance gesehen haben durch Geld. Da werden gezielt Leute ausgesucht, Frauen aus Osteuropa.",
+            "timestamp": "00:29:12",
+            "context": "Analyse der systematischen Auswahl von Opfern nach Vulnerabilität."
+          },
+          {
+            "text": "Das funktioniert nur, wenn man sich gegenseitig deckt.",
+            "timestamp": "00:29:12",
+            "context": "Beschreibung der Funktionsweise von Mafiastrukturen im Epstein-Netzwerk."
+          }
+        ],
+        "concrete_statements": [
+          "Rücktritte entstehen nur durch Druck.",
+          "Nur eine Handvoll traten freiwillig an.",
+          "Opfer werden gezielt aus einfachen Verhältnissen und Osteuropa ausgewählt.",
+          "Das System funktioniert wie ein Ökosystem der Unangreifbarkeit.",
+          "Gegenseitige Deckelei ist das Funktionsprinzip."
+        ],
+        "related_bundestag_topics": [
+          "Korruption und Vetternwirtschaft",
+          "Politische Verantwortung",
+          "Öffentliche Ämter",
+          "Ethik in der Politik"
+        ]
+      },
+      {
+        "title": "Frauenbild und gesellschaftliche Normalisierung von Missbrauch",
+        "timestamp_range": "00:34:52 - 00:45:43",
+        "theme_description": "Analyse des Frauenbildes in Trump-Bewegung und gesellschaftlicher Normalisierung sexueller Gewalt durch Sprache und Kultur.",
+        "question_asked": "Eigeninitiative: Nach einer kritischen Diskussion über Trumps sexistische Äußerungen und das Wahlverhalten von Frauen reagierte Strack-Zimmermann auf die Frage, wie es zu solcher Normalisierung kommen kann.",
+        "question_intent": "Strack-Zimmermann wollte erklären, wie Trump trotz sexistischer Aussagen Unterstützung erhält und wie das Frauenbild mit politischen Narrativen verwoben ist.",
+        "position": "Strack-Zimmermann kritisierte, dass Trump durch \"Woke\"-Gegnerschaft ein Bild kreiert, wonach ein anderes Verständnis von Frauen offensichtlich überfordert. Sie konnte nicht verstehen, wie es soweit kommen kann, verwies aber auf Fotos von Trump mit seiner späteren Frau bei Epstein, was zeige, dass er kein unbehagliches Gefühl hatte. Sie sah dies als Tragödie und Beweis dafür, dass die Erziehung und das Empowerment von Frauen von großer Relevanz ist, besonders weil Frauen aus bildungsferneren Schichten größerer Gefahr laufen, in solche Gefängnisse zu laufen. Sie kritisierte die Normalisierung durch Sprache (\"Sexpartys\" statt Menschenhandel, \"minderjährige Frauen\" statt Vergewaltigung von Kindern) und wies auf Berliner Zeitungsredaktionen hin, die dieses Problem hatten. Sie betonte auch, dass Frauen wie Ghislaine Maxwell sich zu Komplizinnen machten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann adressierte die strukturelle Frage vollständig durch die Verflechtung von Frauenbild, politischen Narrativen (Woke-Gegnerschaft), Bildungsmangel und Sprachnormalisierung. Sie benannte konkrete Beispiele (Trump-Fotos, Berliner Redaktionen, Maxwell).",
+        "quotes": [
+          {
+            "text": "Das ist der Donald Trump, der natürliches saugt aus der Geschichte heraus, in den letzten Jahrzehnten, wenn von links oder woke gesprochen wird, ein Bild zu kreieren, dass wenn man ein anderes Verständnis von Frauen hat, dass das offensichtlich da den ein oder anderen überfordert.",
+            "timestamp": "00:34:52",
+            "context": "Analyse von Trumps politischem Framing um das Frauenbild."
+          },
+          {
+            "text": "Das ist eine Tragödie, für uns der Beweis, dass die Erziehung und das Empowern von Frauen von großer Relevanz ist. Von der Bildung, sie laufen größerer Gefahr, in solche Gefänge zu laufen.",
+            "timestamp": "00:34:52",
+            "context": "Verknüpfung von Bildung und Schutzbedürftigkeit gegenüber Ausbeutung."
+          },
+          {
+            "text": "Er hat mit Frau Maxwell eine Partnerin gehabt, die das bedient hat und gefüttert hat. Mädchen angelernt hat. Frauen machen sich dazu Komplizen.",
+            "timestamp": "00:42:40",
+            "context": "Analyse der Rolle von Frauen als Mittäterinnen im Epstein-System."
+          }
+        ],
+        "concrete_statements": [
+          "Trump nutzt Woke-Gegnerschaft um alternative Frauenbilder als überfördernd zu framen.",
+          "Bildungsmangel erhöht Gefahr von Ausbeutung für Frauen.",
+          "Sprache normalisiert Missbrauch (Sexpartys statt Menschenhandel).",
+          "Berliner Redaktionen hatten Probleme mit angemessener Sprachverwendung.",
+          "Frauen können sich als Mittäterinnen zum Komplizen machen (Maxwell-Beispiel)."
+        ],
+        "related_bundestag_topics": [
+          "Geschlechterparität",
+          "Frauenrechte",
+          "Bildung",
+          "Medienberichterstattung",
+          "Sexuelle Gewalt"
+        ]
+      },
+      {
+        "title": "Erpressung und nationale Sicherheit als Folge von Informationskontrolle",
+        "timestamp_range": "00:48:56 - 00:50:23",
+        "theme_description": "Sicherheitspolitische Dimension des Epstein-Netzwerks als Erpressungsmittel für Staaten und Geheimdienste.",
+        "question_asked": "Eigeninitiative: Nach einer Diskussion über Insiderhandel und die Nutzung von Informationen durch Epstein äußerte sich Strack-Zimmermann zu den sicherheitspolitischen Implikationen.",
+        "question_intent": "Strack-Zimmermann wollte die Verbindung zwischen sexueller Ausbeutung, Informationskontrolle und staatlicher Erpressbarkeit durch Geheimdienste offenlegen.",
+        "position": "Strack-Zimmermann bezog sich auf einen Euro-Rettungsschirm-Fall (500 Milliarden, wo Epstein mit einem Tag Vorlauf informiert war) und warnte vor sicherheitspolitischen Implikationen. Sie beschrieb eine \"ganz alte Masche\": Mann setzt Frau ein, um an Wissen zu bekommen, das wird dann gegen einen verwendet. Dies gebe dem Menschen das Gefühl, jeder macht, was er will, und man selber steht am Ende der Nahrungskette. Sie illustrierte dies mit dem Beispiel eines falschen Parkplatzes, für den man sofort einen Strafzettel bekommt, während oben andere straffrei bleiben. Sie beschrieb dies als \"derart destruktiv für Staaten, auch für unseren, sehr gefährlich\" und forderte, dass die Bundesregierung aktiv werden muss. Sie spekulierte über russische und belarussische Informationsabschöpfung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann verknüpfte die konkrete Informationskontrolle (Euro-Rettungsschirm) mit der sicherheitspolitischen Dimension (Erpressbarkeit durch Geheimdienste) und illustrierte dies durch ein Alltagsbeispiel, das die Rechtsungleichheit unterstreicht. Sie benannte explizit die notwendige Bundesregierungsmaßnahme.",
+        "quotes": [
+          {
+            "text": "Das ist eine ganz alte Masche, Mann setzt eine Frau um an Wissen zu bekommen. Das wird dann gegen einen verwendet. Dass man einem Menschen das Gefühl geben, jeder macht was er will und man selber zum Ende der Nahrungskette.",
+            "timestamp": "00:48:56",
+            "context": "Beschreibung des klassischen Erpressungsmechanismus durch sexuelle Ausbeutung."
+          },
+          {
+            "text": "Das ist derart destruktiv für Staaten, auch für unseren, sehr gefährlich. Und die Bundesregierung muss da aktiv werden.",
+            "timestamp": "00:48:56",
+            "context": "Bewertung der Gefahr und Forderung nach Regierungshandeln."
+          }
+        ],
+        "concrete_statements": [
+          "Sexuelle Ausbeutung dient klassisch der Informationsbeschaffung.",
+          "Informationen werden zur Erpressung genutzt.",
+          "Dies schafft Rechtsungleichheit und Vertrauenserosion.",
+          "Russische und belarussische Dienste könnten gezielt Informationen abschöpfen.",
+          "Die Bundesregierung muss aktiv werden."
+        ],
+        "related_bundestag_topics": [
+          "Nationale Sicherheit",
+          "Geheimdienste und Spionage",
+          "Informationsschutz",
+          "Innere Sicherheit",
+          "Außenpolitik Russland/Belarus"
+        ]
+      },
+      {
+        "title": "Monarchien im Schock und Generationswechsel als Hoffnung",
+        "timestamp_range": "00:50:48 - 00:56:43",
+        "theme_description": "Einschätzung der Stabilität und Selbstverständnis von Monarchien unter Epstein-Schock und Chancen durch Generationswechsel.",
+        "question_asked": "Maybrit Illner fragte, was jemand wie Kronprinzessin Mette Marit von Norwegen von Epstein gewinnen konnte und ob Monarchien \"wackeln\" können.",
+        "question_intent": "Illner wollte verstehen, welche Motivationen und Gefährdungen auf die Monarchien zukommen.",
+        "position": "Strack-Zimmermann sagte, dass das Selbstverständnis Norwegens erschüttert wird. Sie war weniger an Norwegen interessiert (ob das Königshaus überhaupt reich ist) als an Großbritannien, das \"historisch bedeutender\" ist. Sie sah eine Chance durch den Generationswechsel: Prinz William und seine Frau hätten sich schon vor 2-3 Jahren vom Onkel (Andrew) distanziert. \"Wenn da ein Generationenwechsel kommt, der authentisch wirkt, ist sowas zu retten.\" Sie betonte, dass bekannt ist, was der Onkel tat. Sie warnte vor Generalsuspekt gegenüber Familienmitgliedern, sah aber in der Kombination von Geld und Adelsrang ein System: \"Das eine Geld das macht sexy und macht Spaß. Dann fehlt noch die Kirche auf der Sahne, nämlich sich zu umgeben mit dem Adel.\" Sie kritisierte als \"Nichtmonarchistin\", dass Adel \"eigentlich aus der Zeit gefallen\" ist, aber weiterhin besonderen Zugang hat. Sie beschrieb ein \"Schloss-und-Geld-Modell\" (bürgerliche Partner bringen Wohlstand, Monarchen bringen Schloss), das auch Trump zu imitieren versuche.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strack-Zimmermann beantwortete die Frage zu Motiven teilweise (Geld + Adel als Kombination), adressierte aber mehr die strukturelle Frage des Monarchie-Systems und des Generationenwechsels als die direkten persönlichen Motive von Mette Marit. Die Frage nach Monarchie-Stabilität wurde durch Optimismus (Generationenwechsel) beantwortet, ohne tiefere Analyse der politischen Destabilisierungsrisiken.",
+        "quotes": [
+          {
+            "text": "Es erschüttert dieses Land. Ihr Selbstverständnis wird zerstört. Jetzt im Königshaus, mit dem Sohn, da haben sie ein großes Problem.",
+            "timestamp": "00:53:11",
+            "context": "Einschätzung der Schockwelle für die norwegische Gesellschaft."
+          },
+          {
+            "text": "Wenn da ein Generationenwechsel kommt, der authentisch wirkt ist sowas zu retten. Dass man das wusste, was der Onkel trieb, das ist nachgewiesen.",
+            "timestamp": "00:53:11",
+            "context": "Hoffnung auf Stabilisierung durch Generationenwechsel, aber mit Warnung vor weiterer Verstrickung."
+          },
+          {
+            "text": "Das eine Geld das macht sexy und macht Spaß. Dann fehlt noch die Kirche auf der Sahne, nämlich sich zu umgeben mit dem Adel.",
+            "timestamp": "00:55:58",
+            "context": "Analyse der Attraktivität von Adelsrang als Statussymbol für Reiche."
+          }
+        ],
+        "concrete_statements": [
+          "Norwegens Selbstverständnis wird durch Epstein-Verbindungen erschüttert.",
+          "Großbritannien ist wegen historischer Bedeutung spannender.",
+          "Prinz William und seine Frau haben sich bereits vom Onkel distanziert.",
+          "Ein authentischer Generationenwechsel könnte Monarchien stabilisieren.",
+          "Bekannt ist, was Andrew tat, aber Familienmitglieder sollten nicht unter Generalsverdacht gestellt werden.",
+          "Adel ist zeitlich überholt, hat aber noch besonderen Zugang.",
+          "Kombinationen von Geld und Adelsrang sind für Neureiche attraktiv."
+        ],
+        "related_bundestag_topics": [
+          "Internationale Beziehungen",
+          "Monarchische Systeme",
+          "Vertrauenskrisen in Institutionen",
+          "Generationswechsel in Führungspositionen"
+        ]
+      },
+      {
+        "title": "Rechtsstaat als Schutz gegen Vermögens-Elite-Willkür",
+        "timestamp_range": "00:56:43 - 00:59:21",
+        "theme_description": "Rolle des Rechtsstaates als Gegengewicht gegen die Macht unbegrenzten Vermögens und Forderung nach europäischem Beispiel.",
+        "question_asked": "Eigeninitiative: Nach einer Diskussion über die Verbindung von Geld und Einfluss äußerte sich Strack-Zimmermann zu den Grenzen von Vermögenskonzentration.",
+        "question_intent": "Strack-Zimmermann wollte klarmachen, dass Vermögen nicht automatisch kriminell macht, aber unbegrenzter Einfluss der Vermögens-Elite kontrolliert werden muss.",
+        "position": "Strack-Zimmermann differenzierte: Geld macht nicht automatisch kriminell, bedeutet aber Einfluss und Lobbying. Wer viel Geld hat, ist auch mächtig – \"Dimensionen, die in der Tat jenseits von gut und böse sind.\" Sie beschrieb Macht nach unten, beruflich oder wirtschaftlich, wo der Stärkere den Schwächeren \"ausbeutet – seelisch und körperlich.\" Sie forderte, dass der Rechtsstaat und die Demokratien relevant sind, \"der Sache so weit wie möglich auf den Grund zu gehen.\" Sie warnte vor dem \"System Donald Trump\", in dem Tech-Billionäre Gesetze für eigene Bereicherung nutzen. Sie betonte, dass Europa zeigen muss, dass Recht noch etwas wert ist und dass niemand über dem Gesetz steht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann beantwortete die implizite Frage zur Rolle des Rechtsstaates substanziell durch die Differenzierung von Vermögen und Einfluss, die Beschreibung von Machtdynamiken und die explizite Forderung nach rechtlicher Kontrolle. Sie kontrastierte mit dem Trump-System.",
+        "quotes": [
+          {
+            "text": "Wer sehr viel Geld hat es natürlich auch mächtig. Das sind Dimensionen, die in der Tat jenseits von gut und böse sind. Es ist doch immer wieder eine Frage der Macht. Macht nach unten, sei es beruflich oder in einem wirtschaftlichen Umfeld - es ist der stärkere, der den schwächeren packt, und nennen wir es so, ausbeutet - seelisch und körperlich.",
+            "timestamp": "00:56:59",
+            "context": "Analyse der unbegrenzten Vermögensmacht und deren Ausbeutungslogik."
+          },
+          {
+            "text": "Deswegen ist der Rechtsstaat und die Demokratien so relevant der Sache so weit wie möglich auf den Grund zu gehen.",
+            "timestamp": "00:58:27",
+            "context": "Befürwortung des Rechtsstaates als notwendige Kontrolle."
+          }
+        ],
+        "concrete_statements": [
+          "Vermögen macht nicht automatisch kriminell, bedeutet aber Einfluss.",
+          "Unbegrenztes Vermögen schafft Machtasymmetrien.",
+          "Macht wird nach unten gegen Schwächere ausgeübt.",
+          "Der Rechtsstaat muss die Sache auf den Grund gehen.",
+          "Das Trump-System zeigt die Gefahr unkontrollierter Tech-Vermögens-Macht.",
+          "Europa muss zeigen, dass Recht noch etwas wert ist."
+        ],
+        "related_bundestag_topics": [
+          "Vermögenskonzentration",
+          "Lobbyismus",
+          "Vermögenssteuer",
+          "Kartellrecht",
+          "Regulierung von Tech-Konzernen"
+        ]
+      },
+      {
+        "title": "Hoffnung auf weitere Aufdeckungen und forensische Grenzen",
+        "timestamp_range": "00:58:27 - 01:02:20",
+        "theme_description": "Strack-Zimmermanns Position zu Wahrscheinlichkeit weiterer Aufdeckungen trotz forensischer und rechtlicher Hürden.",
+        "question_asked": "Maybrit Illner fragte (am Ende der Diskussion), wie groß Strack-Zimmermanns Hoffnung ist, dass die Epstein-Affäre vollständig aufgeklärt wird.",
+        "question_intent": "Illner wollte wissen, ob Strack-Zimmermann optimistisch oder pessimistisch zur Wahrscheinlichkeit weiterer Aufdeckungen und strafrechtlicher Verfolgung ist.",
+        "position": "Strack-Zimmermann äußerte sich nicht direkt zu dieser Frage. Stattdessen antwortete Investigativjournalist Daniel Laufer ausführlich. Strack-Zimmermann äußerte sich eigeninitiativ am Ende der Sendung mit einem kurzen, positiven Kommentar: \"Ich glaube, dass auch viele hier in Deutschland jetzt Schweiß auf der Stirn haben, das hoffe ich sehr.\" Dies war eine indirekte Antwort auf die Hoffnungsfrage, wobei sie die Hoffnung auf deutsche Schuldeingeständnisse ausdrückte statt auf strafrechtliche Aufklärung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strack-Zimmermann adressierte die Hoffnungsfrage nur indirekt und nicht systematisch. Sie äußerte Hoffnung auf Gewissenserregung, nicht auf forensische oder juristische Klärung. Die Frage nach Aufklärungsmöglichkeiten wurde von anderen Gästen beantwortet, nicht von ihr.",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass auch viele hier in Deutschland jetzt Schweiß auf der Stirn haben, das hoffe ich sehr.",
+            "timestamp": "01:00:32",
+            "context": "Strack-Zimmermanns abschließendes Statement zur Hoffnung auf Schuldeingeständnis in Deutschland."
+          }
+        ],
+        "concrete_statements": [
+          "Hoffnung auf Schuldeingeständnis und Reue in Deutschland.",
+          "Keine explizite Einschätzung zu Wahrscheinlichkeit strafrechtlicher Aufklärung."
+        ],
+        "related_bundestag_topics": [
+          "Aufarbeitung von Verbrechen",
+          "Internationale Kooperation in Ermittlungen",
+          "Datenschutz versus Transparenz"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Epstein hat bei der Deutschen Bank 40 Konten eröffnet, nachdem er das erste Mal im Gefängnis war.",
+        "timestamp": "00:13:43"
+      },
+      {
+        "claim": "Die Deutsche Bank Chef sagte zu einer Sachbearbeiterin, die Bedenken äußerte: 'Mit dem verdienen wir Geld'.",
+        "timestamp": "00:13:43"
+      },
+      {
+        "claim": "Der Euro-Rettungsschirm war 500 Milliarden Euro groß.",
+        "timestamp": "00:48:56"
+      },
+      {
+        "claim": "Epstein hatte am Tag vor einer Verhandlung zum Rettungsschirm Kenntnis von Insiderinformationen.",
+        "timestamp": "00:48:56"
+      },
+      {
+        "claim": "Prinz William und seine Frau haben sich vor 2-3 Jahren von Prinz Andrew distanziert.",
+        "timestamp": "00:53:11"
+      }
+    ]
+  }
+}

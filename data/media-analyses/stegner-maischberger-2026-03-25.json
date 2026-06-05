@@ -1,0 +1,423 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtN2FlOTFiNGMtZmIzYy00YjFlLTg4MDYtMjcyNTVjMGM0NjRi",
+    "video_id": "maischberger-2026-03-25",
+    "politician": "Ralf Stegner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "1d5e100d08cc950d",
+    "transcript_chars": 56119,
+    "caption_lines": 2096,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22930,
+    "tokens_out": 10229,
+    "cost_usd": 0.02963,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 8,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.251Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner (SPD, MdB) tritt in der Maischberger-Sendung gegen Bernd Baumann (AfD) an und diskutiert Fragen zu SPD-Reformen, Steuerpolitik, Vetternwirtschaft und außenpolitischen Themen wie den Iran-Krieg und die Ukraine. Stegner argumentiert defensiv und offensiv zugleich: Er lehnt AfD-Positionen scharf ab, verweist auf verfassungsrechtliche und moralische Grenzen, beharrt aber auch auf kritischen Fragen zur Effektivität von Reformen bei sinkenden Wählerzahlen der SPD.",
+    "themes": [
+      {
+        "title": "SPD-Führung und Reformfähigkeit nach Landtagswahlen",
+        "timestamp_range": "00:17:08 - 00:19:19",
+        "theme_description": "Sandra Maischberger fragt Stegner, ob die SPD-Parteichefs nach zwei verlorenen Landtagswahlen die richtigen sind und wie die Partei mit Vertrauensverlust umgeht.",
+        "question_asked": "Sandra Maischberger fragt Ralf Stegner direkt: 'Sind die Parteichefs noch die richtigen?' angesichts von zwei verlorenen Landtagswahlen und damit verbundener Probleme.",
+        "question_intent": "Maischberger will wissen, ob Stegner einen Personalwechsel in der SPD-Führung für notwendig hält oder wie die Partei anders reagieren soll.",
+        "position": "Stegner räumt ein, dass die SPD 'drei herbe Niederlagen' eingesteckt hat und dass es ein Problem gibt, das über Personen hinausgeht. Er betont aber, dass die Lösung nicht darin besteht, 'einen neuen Messias zu suchen'. Die Herkulesaufgabe für jeden Vorsitzenden liege darin, dass es internationale Probleme gibt, große Parteienskepsis herrsche und 'die SPD fast tot' sei. Die populistische Konkurrenz mache es der SPD zu einfach, indem sie 'so tut, als hätte sie Lösungen'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner beantwortet die Frage nach Personalwechsel indirekt, indem er erklärt, warum ein Wechsel schwierig ist. Er adressiert aber nicht direkt, ob die aktuellen Vorsitzenden bleiben sollten, sondern weicht in eine grundsätzlichere Kritik an den Rahmenbedingungen aus. Die Frustration ist spürbar, aber die Antwort zur spezifischen Führungsfrage bleibt vage.",
+        "concrete_statements": [
+          "Wir suchen uns einen neuen Messias, den werden wir nicht finden.",
+          "Es liegt vielleicht daran, dass es im Augenblick eine Herkulesaufgabe ist.",
+          "Die SPD ist fast tot. Wir merken, dass wir es den Populisten zu einfach machen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir suchen uns einen neuen Messias, den werden wir nicht finden.",
+            "timestamp": "00:18:42",
+            "context": "Stegner antwortet auf Maischbergers Frage, ob man nicht den Trainer austauschen sollte wie beim Fußball."
+          },
+          {
+            "text": "Es liegt vielleicht daran, dass es im Augenblick eine Herkulesaufgabe ist.",
+            "timestamp": "00:18:42",
+            "context": "Erklärung, warum niemand die Partei anführen möchte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parteiführung",
+          "Wählerverluste",
+          "Populismus",
+          "Vertrauenskrise"
+        ]
+      },
+      {
+        "title": "Brandmauer gegen AfD und europäische Konservative",
+        "timestamp_range": "00:18:11 - 00:18:42",
+        "theme_description": "Stegner verteidigt die Brandmauer gegen die AfD als notwendig und unterscheidet zwischen legitimer taktischer Zusammenarbeit und dem Einreißen von Demokratie-Schutzmaßnahmen.",
+        "question_asked": "Maischberger: 'Es ist nicht nur eine taktische Frage, ob man mit anderen Parteien zusammen geht. Für die SPD kommt das nicht infrage.' — Stegner wird dabei zitiert, dass die Union die Brandmauer einreißen könnte.",
+        "question_intent": "Maischberger will klären, warum die SPD kategorisch gegen Zusammenarbeit mit der AfD ist, während die Union offener zu sein scheint.",
+        "position": "Stegner betont: 'Solche Brandmauern, die lösen das Problem nicht alleine. Aber wer sie einreißt, beteiligt sich an der Brandstiftung.' Das ist keine taktische, sondern eine prinzipielle Frage – es geht um die Verteidigung der Demokratie selbst, nicht nur um Koalitionsgeometrie. Wenn die Union die Brandmauer aufgibt, 'ist die Koalition nicht nur zu Ende, sondern der Punkt ist überschritten.' Stegner warnt vor der Normalisierung der AfD.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage nach der Brandmauer mit einer klaren Position: Sie ist nicht taktisch, sondern prinzipiell notwendig. Wer sie einreißt, 'beteiligt sich an der Brandstiftung'. Die Antwort adressiert die Frage vollständig mit normativ klarer Begründung.",
+        "concrete_statements": [
+          "Für die SPD kommt das nicht infrage.",
+          "Wer die Brandmauer einreißt, beteiligt sich an der Brandstiftung.",
+          "Wenn die Union das macht, ist nicht nur die Koalition zu Ende, sondern der Punkt ist überschritten."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn die Union das macht, ist die Koalition nicht nur zu Ende, sondern der Punkt ist überschritten. Solche Brandmauern, die lösen das Problem nicht alleine. Aber wer sie einreißt, beteiligt sich an der Brandstiftung.",
+            "timestamp": "00:18:11",
+            "context": "Stegners Warnung vor einem Einreißen der Brandmauer durch die Union."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Brandmauer",
+          "AfD",
+          "Koalitionsfähigkeit",
+          "Demokratieschutz"
+        ]
+      },
+      {
+        "title": "Staatliche Einnahmen versus Ausgabenproblem Deutschlands",
+        "timestamp_range": "00:19:51 - 00:20:53",
+        "theme_description": "Sandra Maischberger fragt Stegner zur geplanten Mehrwertsteuererhöhung als Teil der Reformpläne.",
+        "question_asked": "Maischberger fragt Stegner: 'Würden Sie dafür sein, die [Mehrwertsteuer] anzuheben oder zu senken?'",
+        "question_intent": "Maischberger will klären, ob Stegner die Steuererhöhung unterstützt oder ablehnt.",
+        "position": "Stegner antwortet klar: Das sei 'eine Diskussion, eine Katastrophe'. Deutschland habe 'überhaupt keine Einnahmeproblem', sondern ein 'Ausgabeproblem'. Die Steuereinnahmen betragen etwa 1 Billion Euro, Sozialabgaben ebenfalls 2 Billionen – insgesamt 2 Billionen für den Staat. Das Problem liege in unverhältnismäßigen Ausgaben: 17 Milliarden für gesamtstaatliche Zwecke, 35 Milliarden für 'Klima- und Energierettung' (die Stegner als 'reine Ideologie' kritisiert), über 30 Milliarden an die EU, 8 Milliarden Entwicklungshilfe an Indien und China. Stegner fordert stattdessen Einsparungen und ein neues Steuermodell.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage nach Mehrwertsteuer-Erhöhung mit einer klaren Position: Nein, nicht erhöhen. Er begründet dies mit einer Diagnose des Ausgabenproblems und liefert konkrete Zahlen sowie eine alternative Lösung (Steuermodell-Reform statt Steuererhöhung). Die Antwort ist inhaltlich substanziell und direkt.",
+        "concrete_statements": [
+          "Deutschland hat überhaupt keine Einnahmeproblem.",
+          "Wir haben ein Ausgabeproblem.",
+          "Wir können so viel einsparen und können sofort ein neues Steuermodell machen.",
+          "Jemand mit einer Familie, 2 Kinder, 17.000 brutto, zahlt keine Steuern mehr."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist eine Diskussion, eine Katastrophe. Wir haben überhaupt keine Einnahmeproblem in Deutschland.",
+            "timestamp": "00:19:51",
+            "context": "Stegners direkter Einstieg zu seiner Position zur Mehrwertsteuer."
+          },
+          {
+            "text": "Wir haben ein Ausgabeproblem. Wir zahlen alleine gesamtstaatliche 17 Mrd... das ist reine Ideologie.",
+            "timestamp": "00:20:23",
+            "context": "Erläuterung der Ausgabenprobleme und Kritik an Klimapolitik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuerpolitik",
+          "Mehrwertsteuer",
+          "Haushaltspolitik",
+          "Reformpläne"
+        ]
+      },
+      {
+        "title": "Kritik an AfD-Positionen zu Europa und Globalisierung",
+        "timestamp_range": "00:20:53 - 00:21:56",
+        "theme_description": "Stegner reagiert auf Baumann (AfD) mit scharfer Kritik zu Europa, Zuwanderung und der AfD-Position 'Deutschland den Deutschen'.",
+        "question_asked": "Eigeninitiative – kein direkte Frage von Maischberger, sondern Stegners Reaktion auf Baumanns Aussagen zu Steuersparen und implizierte AfD-Positionen.",
+        "question_intent": "Stegner will aufzeigen, dass Baumanns Positionen zu Europa und Migration populistisch und wirtschaftlich schädlich sind.",
+        "position": "Stegner attackiert Baumann mit der Charakterisierung 'Das ist Wahnsinn'. Er argumentiert, dass ein Ausstieg aus Europa zu 'Massenarbeitslosigkeit' führte und dass kein Land 'mehr von Europa profitiert' als Deutschland. Stegner unterstreicht Arbeitskräftemangel, den Deutschland nicht alleine lösen kann, und wirft Baumann vor, 'Deutschland den Deutschen, Ausländer raus' zu spielen – 'da sieht man doch, welches Geistes Kind Sie sind. Sie spielen den Brandstifter.' Europa sei ein 'Vorteil für uns'. Die Globalisierung verlange Kommunikation und gegenseitige Verantwortung: Wenn andere Länder nicht zurechtkommen, kämen alle her.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Stegner antwortet nicht auf eine spezifische Frage, sondern nutzt die Redezeit, um Baumann zu attackieren. Er dreht das Thema von der Steuerdiskussion zu einer grundsätzlichen Kritik an AfD-Positionen. Das ist ein strategischer Pivot, der Baumann als 'Brandstifter' darstellt – eine Gegenpunkt-Rhetorik statt direkter Sachdarlegung zu den Fragen.",
+        "concrete_statements": [
+          "Wenn wir aus Europa aussteigen, wie Sie das wollen, hätten wir Massenarbeitslosigkeit.",
+          "Kein Land profitiert mehr von Europa.",
+          "Sie spielen den Brandstifter.",
+          "Man kann sich nicht der Probleme entledigen, indem man sagt, Deutschland den Deutschen."
+        ],
+        "quotes": [
+          {
+            "text": "Wahnsinn ist das, was Sie sagen. Wenn wir aus Europa aussteigen, wie Sie das wollen, hätten wir Massenarbeitslosigkeit.",
+            "timestamp": "00:20:53",
+            "context": "Stegners Einleitung seiner Gegenposition zu Baumanns Steuerpolitik-Ausführungen."
+          },
+          {
+            "text": "Da sieht man doch, welches Geistes Kind Sie sind. Sie spielen den Brandstifter.",
+            "timestamp": "00:21:25",
+            "context": "Stegners direkte Attacke auf Baumanns implizierte Deutschland-Erste-Position."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europapolitik",
+          "Migration",
+          "Populismus",
+          "Arbeitskräfte"
+        ]
+      },
+      {
+        "title": "Gerechtigkeitsfrage zur geplanten Erbschaftssteuer",
+        "timestamp_range": "00:28:42 - 00:29:12",
+        "theme_description": "Sandra Maischberger fragt Stegner zur Erbschaftssteuer-Reform der SPD: Ist es gerecht, große Vermögen höher zu besteuern?",
+        "question_asked": "Maischberger fragt: 'Die SPD hat vorgelegt, die Erbschaftssteuer, 1 Mio. soll steuerfrei sein, höhere Erbschaften sollen Steuern zahlen. Ist das gerecht?'",
+        "question_intent": "Maischberger will Stegners Bewertung der Gerechtigkeitsdimension der SPD-Erbschaftssteuer-Reform.",
+        "position": "Stegner bejaht: 'Das finde ich schon.' Die Mehrheit der Menschen wäre nicht betroffen. Bei 'Riesenvermögen, die vererbt werden, von vielen Millionen Euro nicht zahlen zu müssen, ist unanständig'. Stegner verweist auf die soziale Realität: 'Wir haben Menschen, die nicht wissen, wie sie in der 2. Monatshälfte zurechtkommen sollen.' Das Modell der 'sozialen Marktwirtschaft' erfordere Umverteilung. International werden 'Vermögen und Erbschaften höher versteuert als bei uns'. Das müsse man ändern, 'wenn man will, dass man etwas für die Gesellschaft tut'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt und substanziell auf die Gerechtigkeitsfrage. Er bejaht die SPD-Reform, argumentiert mit sozialer Gerechtigkeit, internationalen Vergleichen und der Idee der sozialen Marktwirtschaft. Die Antwort adressiert die Gerechtigkeitsdimension vollständig.",
+        "concrete_statements": [
+          "Das finde ich schon [gerecht].",
+          "Ein Großteil der Menschen wäre nicht betroffen.",
+          "Riesenvermögen nicht zu besteuern ist unanständig.",
+          "Das muss man ändern, wenn man will, dass man etwas für die Gesellschaft tut."
+        ],
+        "quotes": [
+          {
+            "text": "Das finde ich schon. Ein Großteil der Menschen wäre nicht betroffen. Aber bei Riesenvermögen, die vererbt werden, von vielen Millionen Euro nicht zahlen zu müssen, ist unanständig.",
+            "timestamp": "00:28:42",
+            "context": "Stegners direkte Antwort auf die Gerechtigkeitsfrage zur Erbschaftssteuer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftssteuer",
+          "Vermögensverteilung",
+          "Soziale Gerechtigkeit",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "Erbschaftsteuer vs. AfD-Position der Abschaffung",
+        "timestamp_range": "00:29:12 - 00:30:49",
+        "theme_description": "Stegner widersricht Baumanns AfD-Forderung, die Erbschaftssteuer komplett abzuschaffen, und bewertet dies als 'DDR-Sprech' und ungerecht.",
+        "question_asked": "Eigeninitiative – Stegner führt ein kontroverses Argument gegen Baumanns Position an und nennt diese 'faktenfrei'.",
+        "question_intent": "Stegner will zeigen, dass Baumanns ökonomische Argumentation (doppelte Besteuerung) falsch ist und dass die AfD-Position zugunsten von Reichen ungerecht ist.",
+        "position": "Stegner widerlegt Baumanns Behauptung der 'doppelten Besteuerung': 'Das ist faktenfrei, was Sie sagen, es wird nicht besteuert und noch mal versteuert.' Er beruft sich auf seine Erfahrung als früherer Finanzminister und erklärt: 'Der Vermögenszuwachs wird besteuert, der ist leistungslos.' Das ist die relevante ökonomische Kategorie. Stegner kritisiert Baumann als 'scheinheilig': Baumann behaupte, 'Sie wollen denen was zurückgeben, und zocken den Staat in einer Art und Weise ab' – Stegner meint damit die Beschäftigung von Familienangehörigen durch AfD-Politiker ohne angemessene Steuerbelastung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die ökonomische Logik von Baumanns Erbschaftssteuer-Abschaffungsforderung. Er widerlegt die Doppelbesteuerungs-These mit Fachkompetenz und adressiert die Gerechtigkeitsfrage. Die Antwort ist substanziell, wenn auch polemisch gefärbt.",
+        "concrete_statements": [
+          "Das ist faktenfrei, was Sie sagen.",
+          "Der Vermögenszuwachs wird besteuert, der ist leistungslos.",
+          "Sie zocken den Staat in einer Art und Weise ab.",
+          "Das ist Doppelmoral, AfD, so kann man das buchstabieren."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist faktenfrei, was Sie sagen, es wird nicht besteuert und noch mal versteuert, das darf ich Ihnen sagen, ich war mal Finanzminister.",
+            "timestamp": "00:29:42",
+            "context": "Stegner widerlegt Baumanns ökonomische Argumentation zur Doppelbesteuerung mit Verweis auf seine Fachkompetenz."
+          },
+          {
+            "text": "Der Vermögenszuwachs wird besteuert, der ist leistungslos. Das ist störend, wenn Sie gegeneinander sprechen.",
+            "timestamp": "00:29:42",
+            "context": "Stegners ökonomisches Argument für die Besteuerung von Vermögenszuwächsen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftssteuer",
+          "Steuergerechtigkeit",
+          "Vermögensbesteuerung",
+          "AfD-Politik"
+        ]
+      },
+      {
+        "title": "Spritpreise und staatliche Eingriffsmöglichkeiten",
+        "timestamp_range": "00:31:19 - 00:31:50",
+        "theme_description": "Maischberger fragt, ob der Staat bei steigenden Spritpreisen eingreifen soll und wie Stegner ein solches Eingreifen bewerten würde.",
+        "question_asked": "Maischberger: 'Muss der Staat überhaupt eingreifen. Und wenn ja, wie?'",
+        "question_intent": "Maischberger will wissen, welche staatlichen Maßnahmen gegen Spritpreis-Teuerung Stegner für sinnvoll hält.",
+        "position": "Stegner bejaht staatliches Eingreifen. Die schnellste Lösung wäre ein Ende des Krieges – da liegt der Kern des Problems. Kurzfristig müsse verhindert werden, 'dass die Mineralölkonzerne abkassieren'. Es gebe Modelle wie in Luxemburg mit 'Obergrenze für Spritpreise'. Aber 'das wird nur funktionieren, wenn der Krieg aufhört. Die Kriege tragen dazu bei, dass alles, was wir an Wirtschaftswachstum produzieren, kaputtgemacht wird.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage nach staatlichen Maßnahmen bei Spritpreisen. Er nennt konkrete Instrumente (Preisdeckelung, Übergewinnsteuer) und verbindet das mit einer grundsätzlicheren Analyse (Kriegs-Ursachen). Die Antwort ist substanziell.",
+        "concrete_statements": [
+          "Der Krieg muss aufhören.",
+          "Mineralölkonzerne dürfen nicht abkassieren.",
+          "Es gibt Modelle, wie die Luxemburger, wo man eine Obergrenze festlegt.",
+          "Übergewinnsteuer ist eine Möglichkeit."
+        ],
+        "quotes": [
+          {
+            "text": "Ich möchte hinzufügen, was am schnellsten funktionieren würde und muss, ist, dass der Krieg aufhört.",
+            "timestamp": "00:31:19",
+            "context": "Stegners Antwort auf die Frage nach staatlichen Maßnahmen bei Spritpreisen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiepolitik",
+          "Spritpreise",
+          "Verbraucherschutz",
+          "Kriegsfolgen"
+        ]
+      },
+      {
+        "title": "CO2-Steuern und Energiewende zwischen Ideologie und Notwendigkeit",
+        "timestamp_range": "00:32:22 - 00:33:24",
+        "theme_description": "Stegner kritisiert Baumanns Forderung nach Streichung von CO2-Steuer und anderen Energieabgaben als 'Papagei-Sprech' und verteidigt die Energiewende.",
+        "question_asked": "Eigeninitiative – Stegner antwortet auf Baumanns Argument, dass CO2-Steuern 'Erziehungsgelder' seien und nichts nützten, wenn China trotzdem ausstößt.",
+        "question_intent": "Stegner will Baumanns Vereinfachungslogik ('Wenn China nicht mitmacht, brauchen wir nicht') widerlegen und die Notwendigkeit der Energiewende behaupten.",
+        "position": "Stegner antwortet: 'Sie reden wie ein Papagei.' Seine implizite Position: Baumanns Logik ist falsch. Man kann sich nicht aus dem Klimaproblem 'freikaufen', wenn andere Länder nicht mitmachen. Deutschland muss seinen Beitrag leisten. Stegner stellt später fest: 'Das Problem an diesem Gespräch ist, wir haben es nicht mit normalen Parteien zu tun, dass das Reden das eine ist, das Tun das andere.' Er meint damit, dass die AfD populistisch redet, aber ihre praktischen Handlungen (z.B. Sponsoring durch Milliardäre, Mitarbeiter aus Peking) widerspruchsvoll sind.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner adressiert Baumanns Argument mit Polemik ('Papagei'), widerlegt die Logik aber nicht explizit. Er springt stattdessen zu einer Metakritik: Die AfD sei nicht 'normal' und rede anders als sie handle. Das ist eine teilweise Antwort – die Ablehnung ist klar, aber die sachliche Gegenposition zu CO2-Steuern bleibt unterbelichtet.",
+        "concrete_statements": [
+          "Sie reden wie ein Papagei.",
+          "Wir haben es nicht mit normalen Parteien zu tun.",
+          "Das Reden ist das eine, das Tun das andere.",
+          "Sie werden gesponsert von amerikanischen Milliardären."
+        ],
+        "quotes": [
+          {
+            "text": "Sie reden wie ein Papagei.",
+            "timestamp": "00:32:22",
+            "context": "Stegners Reaktion auf Baumanns wiederholtes Argument zu CO2-Steuern."
+          },
+          {
+            "text": "Das Problem an diesem Gespräch ist, wir haben es nicht mit normalen Parteien zu tun, dass das Reden das eine ist, das Tun das andere.",
+            "timestamp": "00:33:24",
+            "context": "Stegners Metakritik an der AfD, die populistisch redet aber anders handelt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "CO2-Abgaben",
+          "Energiewende",
+          "Finanzierung"
+        ]
+      },
+      {
+        "title": "Ukraine-Unterstützung und Sanktionen gegen Russland",
+        "timestamp_range": "00:34:03 - 00:35:06",
+        "theme_description": "Stegner argumentiert gegen Baumanns Vorschlag, russisches Öl und Gas zu kaufen, und betont die Notwendigkeit, Sanktionen gegen Russland beizubehalten.",
+        "question_asked": "Maischberger: 'Wladimir Putin bietet Europa an, russisches Öl und Gas zu kaufen... Sie würden sagen, ja. Was sagen Sie?'",
+        "question_intent": "Maischberger will Stegners Position zu Putin-Geschäften und Sanktionen wissen.",
+        "position": "Stegner lehnt Baumanns Vorschlag ab: 'Wir können nicht hingehen, sagen, wir unterstützen die Ukraine gegen den russischen Angriffskrieg, machen Sanktionen, und dann weil Trump sich verrechnet hat, da kriegt man die Folge nicht in den Griff, jetzt hebe ich das auf.' Das wäre inkonsistent und moralisch falsch. 'Was soll daran richtig sein? Dass die AfD das richtig findet, das wundert mich nicht. Weil die die russische Position von Anfang an unterstützt haben.' Stegner betont, dass 'Wir können nicht auf Knopfdruck die Kriege ausmachen, aber wir können versuchen, unsere diplomatischen Möglichkeiten einzusetzen.' Man müsse 'versuchen, dass die Kriege aufhören, weil das der Kern der Probleme ist'. Ohne Kriegsende kann es 'Wirtschaftswachstum' nicht geben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage mit einer klaren, begründeten Position: Nein zu Putin-Geschäften, ja zu Sanktionen-Konsistenz. Er nennt den Grund (Unterstützung der Ukraine) und kritisiert die AfD für ihre Russland-freundlichkeit. Die Antwort ist inhaltlich und logisch substanziell.",
+        "concrete_statements": [
+          "Wir können nicht hingehen und gleichzeitig Sanktionen aufheben.",
+          "Die AfD unterstützt die russische Position von Anfang an.",
+          "Wir können versuchen, unsere diplomatischen Möglichkeiten einzusetzen.",
+          "Ohne Kriegsende gibt es kein Wirtschaftswachstum."
+        ],
+        "quotes": [
+          {
+            "text": "Wir können nicht hingehen, sagen, wir unterstützen die Ukraine gegen den russischen Angriffskrieg, machen Sanktionen, und dann weil Trump sich verrechnet hat, da kriegt man die Folge nicht in den Griff, jetzt hebe ich das auf. Was soll daran richtig sein?",
+            "timestamp": "00:34:36",
+            "context": "Stegners direkte Ablehnung von Baumanns Putin-Öl-Position."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine",
+          "Sanktionen",
+          "Russland",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Völkerrecht und der Iran-Krieg",
+        "timestamp_range": "00:36:41 - 00:37:47",
+        "theme_description": "Stegner bekundet Unterstützung für die Aussage des Bundespräsidenten zur Völkerrechtswidrigkeit des Iran-Kriegs und argumentiert für eine regelbasierte internationale Ordnung.",
+        "question_asked": "Maischberger: 'Der Bundespräsident hat gerade ziemlich klar gesagt, er hält diesen Krieg im Iran für völkerrechtswidrig. Wie sehen Sie das?'",
+        "question_intent": "Maischberger will wissen, ob Stegner die Einschätzung des Bundespräsidenten zur Völkerrechtswidrigkeit des Iran-Kriegs teilt.",
+        "position": "Stegner bejaht energisch: 'Ich bin froh, dass wir ein Staatsoberhaupt haben, dass die Wahrheit ausspricht.' Er verteidigt das Völkerrecht als universales Prinzip, das nicht selektiv angewendet werden darf: 'Wir können nicht sagen, wenn es um Venezuela, um Grönland geht, dann gilt das nicht.' Das Völkerrecht basiere auf der 'Lehre aus der Nazizeit'. 'Die Mittelmächte könnten doch ein Angebot an die anderen Länder machen, jenseits von dieser Machtpolitik.' Mit 'diplomatischen Möglichkeiten' könne man einwirken. Wenn man das Völkerrecht aufgibt, 'freuen sich die Diktatoren'. Stegner fordert, 'Wir müssen zum Völkerrecht zurückfinden. Wir sollten die Vereinten Nationen stärken. Und nicht diesen Club, den der Trump gegründet hat.' Auch humanitäre Hilfe dürfe nicht gekürzt werden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage mit einer klaren, begründeten Position zu Völkerrecht. Er unterstützt den Bundespräsidenten, argumentiert für Universalität des Völkerrechts und gegen selektive Anwendung. Die Antwort ist substanziell und normativ präzise.",
+        "concrete_statements": [
+          "Der Bundespräsident spricht die Wahrheit.",
+          "Wir können nicht selektiv Völkerrecht anwenden.",
+          "Mittelmächte könnten diplomatische Angebote machen.",
+          "Wir müssen zum Völkerrecht zurückfinden und die UN stärken.",
+          "Nicht diesen Club, den Trump gegründet hat."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin froh, dass wir ein Staatsoberhaupt haben, dass die Wahrheit ausspricht. Wir können nicht sagen, wenn es um Venezuela, um Grönland geht, dann gilt das nicht.",
+            "timestamp": "00:36:41",
+            "context": "Stegners Unterstützung des Bundespräsidenten und Verteidigung der Universalität des Völkerrechts."
+          },
+          {
+            "text": "Das ist die Lehre aus der Nazizeit, dass wir uns an das Völkerrecht halten.",
+            "timestamp": "00:37:13",
+            "context": "Stegners historische Begründung für die Bindung an Völkerrecht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht",
+          "Iran-Krieg",
+          "Außenpolitik",
+          "UN",
+          "Internationales Recht"
+        ]
+      },
+      {
+        "title": "Nationale und westliche Werte gegen AfD-MAGA-Alliierung",
+        "timestamp_range": "00:42:00 - 00:42:30",
+        "theme_description": "Stegner kritisiert die AfD-Allianz mit MAGA-Bewegungen in den USA und verteidigt demokratische Werte sowie die europäische Integration.",
+        "question_asked": "Maischberger: 'Es gibt heute Abend eine Veranstaltung der AfD im Bundestag, da sind MAGA-Unterstützer eingeladen. Unterstützen Sie enge Kontakte zu den MAGA-Lagern?' — Baumann bejaht.",
+        "question_intent": "Maischberger will Stegners Bewertung der AfD-MAGA-Alliierung wissen.",
+        "position": "Stegner argumentiert, dass bei 20% (zu viel) AfD-Wählern, 80% wissen, dass 'wir Wohlstand, Demokratie haben, weil wir unser Grundgesetz haben. Weil wir gegen Nationalismus sind, weil wir eine europäische Friedensordnung haben, und weil wir die größte Katastrophe des Jahrhunderts verursacht haben.' Der Umkehrschluss: 'Wählen wir Nationalismus, wählen wir Elend und Krieg.' Stegner warnt: 'Die Union lernt gerade, das überall da, wo sie das in Europa versucht, die Konservativen kaputtgehen.' – Das ist eine indirekte Kritik an AfD-ähnliche Bewegungen in anderen EU-Ländern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet nicht direkt auf die MAGA-Frage, sondern argumentiert stattdessen normativ: Deutsche Wohlfahrt hängt von europäischer Integration, Grundgesetz und Abkehr vom Nationalismus ab. Das ist eine substanzielle, wertegeleitete Position gegen nationale Isolationismus-Bewegungen wie MAGA.",
+        "concrete_statements": [
+          "80% wissen, dass wir Wohlstand, Demokratie haben, weil wir gegen Nationalismus sind.",
+          "Wir haben eine europäische Friedensordnung.",
+          "Wählen wir Nationalismus, wählen wir Elend und Krieg.",
+          "Überall da, wo die [Konservativen in Europa das versuchen], gehen sie kaputt."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn 20%, was für mich zu viel ist, die AfD wählen, da gibt es 80%, die wissen, dass wir Wohlstand, Demokratie haben, weil wir unser Grundgesetz haben. Weil wir gegen Nationalismus sind, weil wir eine europäische Friedensordnung haben, und weil wir die größte Katastrophe des Jahrhunderts verursacht haben. Wählen wir Nationalismus, wählen wir Elend und Krieg.",
+            "timestamp": "00:42:00",
+            "context": "Stegners normativ-historisches Argument gegen Nationalismus und für europäische Ordnung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Nationalismus",
+          "Europäische Integration",
+          "Demokratie",
+          "Geschichtsbewusstsein"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Deutschland hat Steuereinnahmen von etwa 1 Billion Euro und Sozialabgaben von etwa 2 Billionen Euro insgesamt.",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Deutschland zahlt 17 Milliarden Euro für gesamtstaatliche Zwecke, 35 Milliarden für Klima- und Energierettung, über 30 Milliarden an die EU und 8 Milliarden Entwicklungshilfe an Indien und China.",
+        "timestamp": "00:20:23"
+      },
+      {
+        "claim": "Stegner war Finanzminister und kann daher die Regelungen zur Vermögensbesteuerung und Erbschaftssteuer aus Erfahrung beurteilen.",
+        "timestamp": "00:29:42"
+      },
+      {
+        "claim": "Luxemburg hat ein Modell mit Preisobergrenzen für Sprit.",
+        "timestamp": "00:31:50"
+      },
+      {
+        "claim": "Ralf Stegner ist Vorsitzender des 1. Untersuchungsausschusses zum Abzug der Bundeswehrtruppen aus Afghanistan.",
+        "timestamp": "00:17:08"
+      }
+    ]
+  }
+}

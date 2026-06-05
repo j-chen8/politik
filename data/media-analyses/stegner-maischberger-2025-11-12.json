@@ -1,0 +1,356 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0xMl8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-12",
+    "politician": "Ralf Stegner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "7db3159467dd3f92",
+    "transcript_chars": 58012,
+    "caption_lines": 2148,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23397,
+    "tokens_out": 8387,
+    "cost_usd": 0.0261328,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.557Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner (SPD, MdB) diskutiert in der Maischberger-Sendung mit CDU-Politiker Roderich Kiesewetter vor allem außenpolitische Fragen zur Ukraine, Rüstung und Verteidigungsfähigkeit. Er wirkt dabei als gemäßigter Mahner, der Eskalation kritisiert und für Diplomatie sowie begrenzte Waffenlieferungen plädiert, während er Kiesewetter wegen dessen Befürwortung von Angriffen auf russisches Territorium kontrastiert.",
+    "themes": [
+      {
+        "title": "CDU als bessere AfD – Merz und die Rhetorik der Rechten",
+        "timestamp_range": "00:01:39 - 00:02:09",
+        "theme_description": "Kritik an Friedrich Merz und der CDU, die Denk- und Redeweise der Rechten zu übernehmen und damit die AfD salonfähig zu machen.",
+        "question_asked": "Sandra Maischberger eröffnet die Diskussion zur Frage, ob die Regierung ihrer Verantwortung für Deutschland gerecht wird (bezugnehmend auf das Koalitions-Motto).",
+        "question_intent": "Maischberger will von Ralf Stegner als SPD-Vertreter eine Bilanz der Union-SPD-Regierung nach einem halben Jahr erfahren.",
+        "position": "Stegner argumentiert scharf, dass die CDU unter Merz versucht, die bessere AfD zu sein – indem sie mit großem Pathos von einer Brandmauer gegen die AfD spricht, gleichzeitig aber die Denkweise und Rhetorik der Rechten übernimmt und salonfähig macht. Dies führe dazu, dass Wähler sagen: 'Dann wählen wir das Original' – die AfD selbst. Dies sei fatal, weil es zu einer AfD-Regierungsbeteiligung 2029 führen könne.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf Maischbergers Bilanz-Frage mit einer scharfen Kritik an Merz und der CDU, nicht direkt an der Ampel-Regierung oder der aktuellen Koalition. Er weicht von der gestellten Frage (Verantwortung der Regierung) auf die Verantwortung und Rhetorik der CDU-Opposition aus.",
+        "quotes": [
+          {
+            "text": "Wenn die CDU nicht aufhört, die bessere AfD sein zu wollen, passiert eines, wir haben 2029 eine Regierung unter Beteiligung der AfD.",
+            "timestamp": "00:02:09",
+            "context": "Stegner kritisiert die CDU-Strategie im Kontext der Ampel-Bilanz nach einem halben Jahr."
+          },
+          {
+            "text": "Die Wähler sehen einen Friedrich Merz, der mit großem Pathos von einer Brandmauer erzählt, aber andererseits die Denkweise und Rhetorik der Rechten übernimmt. Und auch salonfähig gemacht. An sagen die Leute, dann werden wir das Original.",
+            "timestamp": "00:02:09",
+            "context": "Erläuterung seiner Kritik an Merz' politischer Strategie."
+          }
+        ],
+        "concrete_statements": [
+          "CDU muss aufhören, die bessere AfD sein zu wollen",
+          "Andernfalls: 2029 Regierung mit AfD-Beteiligung",
+          "Merz' Rhetorik gefährlich: Brandmauer im Wort, Rechte-Rhetorik in der Tat"
+        ],
+        "related_bundestag_topics": [
+          "Brandmauer gegen die AfD",
+          "Werteunion und konservative Verschiebung",
+          "Extremisierung des Koalitionsdiskurses"
+        ]
+      },
+      {
+        "title": "Unterschied zur AfD in der Ukraine-Position",
+        "timestamp_range": "00:16:39 - 00:17:12",
+        "theme_description": "Stegner betont, dass SPD und CDU/CSU trotz unterschiedlicher Positionen bei der Ukraine-Unterstützung gemeinsam gegen die AfD-Position stehen.",
+        "question_asked": "Sandra Maischberger fragt, ob Stegner und Kiesewetter, die beide als Freidenker gelten und nicht immer auf ihrer Parteien-Linie sind, das aneinander schätzen.",
+        "question_intent": "Maischberger will erfahren, ob die beiden gegensätzlichen Außenpolitiker sich trotz ihrer Differenzen respektieren und ob es Spannungen zwischen ihnen gibt.",
+        "position": "Stegner sagt, er würde das nicht 'Querschießen' nennen, sondern bei seiner Meinung zu bleiben. Er betont, dass er und Kiesewetter Unterschiede haben, aber beide der Ansicht sind, dass man 'der Ukraine beistehen' muss – im Gegensatz zur AfD, die diese Frage überhaupt stelle. Volkparteien mit Breite hätten weniger Raum für Extremisten; das unterscheide sie grundlegend von der AfD.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf Maischbergers Frage nach dem gegenseitigen Respekt und erklärt sein Verständnis von konstruktivem Dissens in Volksparteien, der gegen Extremismus schützt.",
+        "quotes": [
+          {
+            "text": "Ich würde es nicht querschießen nennen, aber bei seiner Meinung zu bleiben, finde ich besser, als keine zu haben.",
+            "timestamp": "00:16:39",
+            "context": "Stegners Antwort auf Maischbergers Frage, ob er und Kiesewetter das Querschießen aneinander schätzen."
+          },
+          {
+            "text": "Wir sind Volksparteien. Wenn sich diese unterscheiden und man diskutiert, ist weniger Raum für die Extremisten.",
+            "timestamp": "00:17:12",
+            "context": "Erklärung, warum Meinungsvielfalt in Volksparteien wichtig ist."
+          },
+          {
+            "text": "Bei allem, was uns unterscheiden mögen, wir fragen, wieder der Ukraine beistehen. Und nicht wie die AfD, ob man ihnen beistehen muss.",
+            "timestamp": "00:17:12",
+            "context": "Hervorhebung der gemeinsamen Position zur Ukraine gegen AfD-Position."
+          }
+        ],
+        "concrete_statements": [
+          "SPD und CDU sind sich einig: Ukraine muss unterstützt werden",
+          "AfD stellt diese Frage überhaupt in Frage",
+          "Meinungsvielfalt in Volksparteien schützt vor Extremismus"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Hilfe",
+          "Verteidigungsfähigkeit",
+          "Abgrenzung zur AfD"
+        ]
+      },
+      {
+        "title": "Luftabwehr statt Eskalation – Kritik an Kiesewetter",
+        "timestamp_range": "00:18:47 - 00:19:20",
+        "theme_description": "Stegner lehnt Kiesewetters Forderung ab, den Krieg auf russisches Territorium zu tragen, und pocht auf begrenzte Waffenhilfe (Luftabwehr).",
+        "question_asked": "Sandra Maischberger zitiert Kiesewetter: 'Der Krieg muss nach Russland getragen werden' mit Angriffen auf Ministerien und Wachposten, und fragt Stegner direkt: 'Jetzt mal im Ernst, Herr Stegner, was haben Sie gedacht?'",
+        "question_intent": "Maischberger will von Stegner erfahren, wie er auf Kiesewetters damalige Forderung reagiert und ob das seine Position widerspiegelt.",
+        "position": "Stegner sagt klar, dass das überhaupt nicht seine Position ist. Er glaubt, man müsse der Ukraine mit Luftabwehr helfen, um Kindergärten, Schulen und Infrastruktur zu schützen – aber nicht den Krieg eskalieren. Er deutet an, dass diese Eskalations-Rhetorik auch mit Wahlverlusten der SPD zusammenhängt: Wähler mit Angst vor Kriegsausweitung würden sich abwenden. SPD müsse ein anderes Angebot machen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet direkt auf Maischbergers Frage nach seiner Reaktion auf Kiesewetter und präzisiert seine eigene Position zu Waffenlieferungen (Ja zu Luftabwehr, Nein zu Eskalation).",
+        "quotes": [
+          {
+            "text": "Dass das überhaupt nicht meine Position ist. Ich glaube, man muss der Ukraine helfen mit Luftabwehr, weil man damit Kindergärten und Schulen und Infrastruktur schützt. Aber nicht den Krieg eskalieren.",
+            "timestamp": "00:19:20",
+            "context": "Stegners direkte Antwort auf Maischbergers Frage zu Kiesewetters Eskalations-Forderung."
+          }
+        ],
+        "concrete_statements": [
+          "Luftabwehr für Ukraine ja – zum Schutz von Zivilzielen",
+          "Krieg nach Russland tragen: nein",
+          "Eskalations-Rhetorik kostet SPD Wähler"
+        ],
+        "related_bundestag_topics": [
+          "Taurus-Lieferung",
+          "Waffenlieferungen Ukraine",
+          "Eskalationsdynamiken"
+        ]
+      },
+      {
+        "title": "Merz' Taurus-Versprechen und politische Glaubwürdigkeit",
+        "timestamp_range": "00:22:28 - 00:24:00",
+        "theme_description": "Stegner bewertet Merz' Umschwung bei der Taurus-Lieferung als politischen Fehler und wirft ihm vor, im Wahlkampf falsches versprochen zu haben.",
+        "question_asked": "Sandra Maischberger fragt Stegner direkt: 'Da bin ich mal gespannt. Warum hat Merz den Taurus vor der Wahl schicken wollen. Und jetzt als Kanzler macht er es nicht mehr?'",
+        "question_intent": "Maischberger will von Stegner wissen, wie er Merz' Richtungswechsel beim Taurus bewertet und ob dieser glaubwürdig ist.",
+        "position": "Stegner sagt, Merz habe als Kanzler wenig Waffen für das geliefert, was Deutschland versprochen hatte (nur 18 Schützenpanzer, 4 Raketenwerfer). Merz habe etwas versprochen, worauf auch Nachbarländer vertraut hätten. Jetzt schaue er innenpolitisch und sehe, dass die Frage in der Bevölkerung schwer zu erklären ist. Doch: Der Bundeskanzler hätte das der Bevölkerung zumuten müssen – es war ein politischer Fehler, sein Versprechen nicht einzuhalten. Es gebe keinen rechtlichen Grund, die Taurus nicht zu liefern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet Maischbergers Frage direkt und präzise: Er kritisiert Merz' Umschwung als politischen Fehler und begründet dies mit fehlender Glaubwürdigkeit und mangelndem Mut.",
+        "quotes": [
+          {
+            "text": "Der Bundeskanzler hat einen Fehler gemacht, sein Versprechen nicht einzuhalten.",
+            "timestamp": "00:22:59",
+            "context": "Stegners Bewertung von Merz' Taurus-Umschwung."
+          },
+          {
+            "text": "Es gibt keine Notwendigkeit, die Taurus nicht so liefern. Weder die Nachrichtendienste, die Bundeswehr, noch die Firmen sagen, es gibt Einschränkungen. Es ist eine politische Entscheidung des Bundeskanzlers gewesen, sein Versprechen nicht einzuhalten.",
+            "timestamp": "00:23:29",
+            "context": "Erläuterung, dass es kein substantieller Grund für den Verzicht gibt."
+          }
+        ],
+        "concrete_statements": [
+          "Merz machte Wahlkampf-Versprechen für Taurus-Lieferung",
+          "Diese nicht einzuhalten ist politischer Fehler",
+          "Kein rechtlicher oder militärischer Grund für Verzicht",
+          "Vertrauensverlust durch Glaubwürdigkeitsproblem"
+        ],
+        "related_bundestag_topics": [
+          "Taurus-Lieferung Ukraine",
+          "Wahlkampfversprechen",
+          "Bundeskanzler Merz"
+        ]
+      },
+      {
+        "title": "Waffenlieferungen vs. Diplomatie – Skeptis zu Eskalations-Strategie",
+        "timestamp_range": "00:24:30 - 00:25:31",
+        "theme_description": "Stegner wertet die Waffenlieferungen Deutschlands defensiv auf und argumentiert gegen Kiesewetters Strategie, dass Waffen allein den Krieg nicht beenden.",
+        "question_asked": "Sandra Maischberger konstatiert, dass Kiesewetter sagte, Waffen-Lieferungen sollten diesen Krieg beenden, und fragt Stegner: 'Was sie wollten, war Waffenstillstand. Das hat Donald Trump versucht und ist gescheitert. Müssen Sie erkennen, dass das, was sie sich vorgestellt haben, eben auch nicht funktioniert?'",
+        "question_intent": "Maischberger will Stegner dazu bringen zu zugeben, dass auch seine (implizit: Diplomatie-orientierte) Strategie fehlgeschlagen ist.",
+        "position": "Stegner widerspricht und sagt, Diplomatie funktioniere nicht in 3 Tagen oder einem Tag. Die SPD-Strategie sei: über 3–5 Jahre Waffen liefern, dann an einen Verhandlungstisch gehen. Dagegen stehe Kiesewetters Strategie: reden und danach wird mehr bombardiert. Der Punkt sei: lass uns das einfrieren – das sei offizielle Position von Deutschland und Amerika. (Anmerkung: Das ist faktisch umstritten; Kiesewetter widerspricht sofort.)",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf Maischbergers Vorwurf, dass auch seine Strategie fehlschlägt, mit einer Gegenpositionalität: Er präsentiert SPD-Position vs. Kiesewetter-Position, ohne direkt einzugestehen, dass Diplomatie bislang gescheitert ist.",
+        "quotes": [
+          {
+            "text": "Da will ich widersprechen, Diplomatie fusioniert nicht in 3 Tagen, nicht mit einem Tag. Die Strategie über 3, 5 Jahre zu sagen, wir liefern Waffen, gehen an einen Verhandlungstisch.",
+            "timestamp": "00:25:31",
+            "context": "Stegners Gegensatz zu Kiesewetters Waffen-Eskalations-Strategie."
+          }
+        ],
+        "concrete_statements": [
+          "Diplomatie braucht Zeit (3–5 Jahre), nicht Tage",
+          "SPD-Strategie: Waffen + Verhandlungen, nicht nur Eskalation",
+          "Deutschland und Amerika wollen Waffenstillstand einfrieren"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Frieden",
+          "Waffenstillstand",
+          "Deutsche Außenpolitik"
+        ]
+      },
+      {
+        "title": "Spannungsfall und Kriegsgefahr – Kirche im Dorf lassen",
+        "timestamp_range": "00:31:47 - 00:34:00",
+        "theme_description": "Stegner warnt vor Alarmismus bei der Bedrohungslage und pocht darauf, in Kategorien von Frieden und Diplomatie zu denken, nicht nur militärisch.",
+        "question_asked": "Sandra Maischberger bringt das Beispiel russischer Kampfjets in estnischem Luftraum und Kiesewetters Forderung nach Spannungsfall-Ausrufung auf. Sie fragt Stegner, was er zum Spannungsfall gesagt habe, und vermerkt: 'Sie haben gesagt, es sei brandgefährlich.'",
+        "question_intent": "Maischberger will erfahren, warum Stegner den Spannungsfall als brandgefährlich bewertet und wie er die Bedrohungslage einschätzt.",
+        "position": "Stegner sagt, 'brandgefährlich' finde er es, wenn man nur in militärischen Kategorien denkt. Die evangelische Kirche habe eine Friedensschrift veröffentlicht. Man dürfe nicht nur von der militärischen Perspektive ausgehen und nur reaktiv spielen. Der Spannungsfall sei eine Stufe vor dem Verteidigungsfall; Stegner habe ihn letztes Jahr angesprochen, um klarzumachen, dass man ihn nicht ausrufen könne, weil man keine Wehrpflicht leisten könne. Zudem: Jetzt habe man nicht einmal die Zweidrittelmehrheit im Bundestag ohne AfD und Linke. Und: 'Ich will gar nichts mit der AfD ausrufen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet Maischbergers Frage nach seiner Brandgefahr-Warnung und erklärt seine Position zum Spannungsfall: Er kritisiert rein militärisches Denken und verweist auf praktische Gründe gegen die Ausrufung.",
+        "quotes": [
+          {
+            "text": "Brand gefährlich finde ich es, wenn wir nur in Kategorien denken. Die evangelische Kirche hat eine Friedensschrift veröffentlicht. Können wir beim Spannungsfall bleiben? Es gehört dazu, dass wir nicht nur die militärische Perspektive betrachten.",
+            "timestamp": "00:32:19",
+            "context": "Stegners Warnung vor Alarmismus und einseitig militärischem Denken."
+          },
+          {
+            "text": "Ich will gar nichts mit der AfD ausrufen.",
+            "timestamp": "00:34:00",
+            "context": "Stegners Grund gegen Spannungsfall-Ausrufung: fehlende Mehrheit ohne AfD."
+          }
+        ],
+        "concrete_statements": [
+          "Nur militärisches Denken ist brandgefährlich",
+          "Diplomatie und Friedensschriften müssen Teil der Antwort sein",
+          "Spannungsfall praktisch nicht ausrufbar (keine Zweidrittelmehrheit ohne AfD/Linke)",
+          "Wehrpflicht-Voraussetzung für Spannungsfall fehlt"
+        ],
+        "related_bundestag_topics": [
+          "Spannungsfall und Verteidigungsfall",
+          "Kriegsgefahr und NATO",
+          "Wehrpflicht"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und Freiwilligkeit – gegen Zwang, für Attraktivität",
+        "timestamp_range": "00:35:04 - 00:36:36",
+        "theme_description": "Stegner plädiert für eine freiwillige Wehrpflicht statt Zwang und betont Bedeutung von Finanzierung und Attraktivität.",
+        "question_asked": "Sandra Maischberger fragt die beiden Außenpolitiker, was junge Männer ab 2008 sich auf Musterung vorbereiten müssten und wie sie Wehrpflicht gestalten würden.",
+        "question_intent": "Maischberger will von Stegner konkrete Informationen zur Wehrpflicht-Reform und deren Gestaltung erfahren.",
+        "position": "Stegner sagt, er war in der alten Bundesrepublik ein Anhänger der Wehrpflicht, heute könne man sie so nicht einführen. Er findet es wichtig, auf Freiwilligkeit zu setzen – 'nicht zu sagen, ihr müsst'. Die Los-Sache sei absurd gewesen. Die Debatte müsse dauern und mit jungen Leuten geführt werden. Dienste müssten attraktiv sein – ob Bundeswehr oder THW. Dass das zu tun, ist 'nicht leicht zu sagen', aber Vergütung und vernünftige Bedingungen sind notwendig. Pistorius habe recht: Musterung für alle, Freiwilligkeit, und man müsse dafür bewerben – dann Musterung und über 3-6 Monate Dienst.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner antwortet detailliert auf Maischbergers Frage zur Wehrpflicht-Gestaltung und legt seine Position dar: Freiwilligkeit statt Zwang, Finanzierung und Attraktivität essentiell.",
+        "quotes": [
+          {
+            "text": "Ich muss sagen, ich war in der alten Bundesrepublik ein Anhänger der Wehrpflicht. Heute kann man sie so nicht einführen. Ich finde es wichtig, auf Freiwilligkeit zu setzen. Und nicht zu sagen, ihr müsst.",
+            "timestamp": "00:35:34",
+            "context": "Stegners grundsätzliche Position zur Wehrpflicht-Reform."
+          },
+          {
+            "text": "Wenn man anständig dafür zahlt, sorgt, dass es vernünftig ist.",
+            "timestamp": "00:36:04",
+            "context": "Bedingung für erfolgreiche Freiwilligkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Freiwilligkeit statt Zwang bei Wehrpflicht",
+          "Los-Verfahren absurd und wurde zu Recht verworfen",
+          "Anständige Bezahlung und vernünftige Bedingungen notwendig",
+          "3–6 Monate Dienst für ca. 5.000 pro Jahr angestrebt",
+          "Ersatzämter/Zivildienst auch wichtig"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht 2024",
+          "Berufssoldat und Freiwillige",
+          "Bundeswehr-Personalwirtschaft"
+        ]
+      },
+      {
+        "title": "SPD und Regierungsverantwortung – Angst vor AfD und Reform-Debatten",
+        "timestamp_range": "00:38:39 - 00:39:39",
+        "theme_description": "Stegner verteidigt SPD-Positionen zur Rentenreform und Arbeitsmarkt-Politik, betont dass alle kapiert haben: Regierungsscheitern = AfD, nicht Alternative wie Jamaika.",
+        "question_asked": "Sandra Maischberger fragt, ob in Stegners Partei-Laden alle begriffen haben, dass 'Verantwortung für Deutschland' bedeutet, und erwähnt SPD-Mitglieder-Begehren gegen Reformen sowie junge CDU-Abgeordnete, die die Rentenreform zu Fall bringen wollen.",
+        "question_intent": "Maischberger will von Stegner wissen, ob SPD-Mitglieder und Partei-Funktionäre die Ernst der Situation verstanden haben, oder ob es interne Widerstände gegen notwendige Reformen gibt.",
+        "position": "Stegner sagt, dass sich seit der Wahl nicht viel geändert hat: es gibt keine demokratische Alternative, SPD hat gelernt, dass es keine Jamaika/Ampel-Alternative gibt – es geht um AfD-Verhinderung. Mitglieder-Debatten gegen Reformen sind normal in einer Partei, die nicht der Vatikan ist. Die meisten haben kapiert: Wenn die Regierung scheitert, gibt es AfD, nicht Alternativkoalition. Zu den jungen CDU-Abgeordneten, die Rentenreform zu Fall bringen wollen: Das würde die Regierung in schwere Krise stürzen – das ist verantwortungslos.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stegner beantwortet Maischbergers Frage zu SPD-Geschlossenheit bei Reformen direkt und erklärt die Partei-Kultur sowie die existentielle Bedeutung von Regierungs-Stabilität gegen AfD.",
+        "quotes": [
+          {
+            "text": "Ich glaube, schon, 1 muss man sagen, was sich nicht geändert hat seit der Wahl, es gibt keine demokratische Alternative.",
+            "timestamp": "00:38:39",
+            "context": "Stegners Einleitung zu SPD-Verständnis von Regierungsverantwortung."
+          },
+          {
+            "text": "Die meisten haben kapiert, wenn die Regierung scheitert, gibt es nicht Jamaika oder Ampel, sondern AfD. Das müssen wir verhindern, da sind wir beide der Meinung.",
+            "timestamp": "00:39:09",
+            "context": "Hervorhebung der gemeinsamen Lage von SPD und CDU gegen AfD-Gefahr."
+          }
+        ],
+        "concrete_statements": [
+          "SPD-Mitglieder kapieren: Keine demokratische Alternative zur Regierung",
+          "Regierungsscheitern = AfD-Regierungsbeteiligung, nicht Jamaika",
+          "Interne Debatten sind normal in Volkparteien",
+          "Junge CDU-Abgeordnete, die Rentenreform zu Fall bringen wollen, sind verantwortungslos"
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Arbeitsmarkt-Reformen",
+          "Koalitions-Stabilität"
+        ]
+      },
+      {
+        "title": "Wirtschaft und Wohlfahrt vs. Migration – Prioritäten der Bevölkerung",
+        "timestamp_range": "00:39:39 - 00:40:40",
+        "theme_description": "Stegner kritisiert, dass Öffentlichkeit und Politik zu viel über Migration, zu wenig über Wirtschaft, Renten, Wohnung sprechen.",
+        "question_asked": "Sandra Maischberger fragt Stegner, ob in seiner Partei alle begriffen haben, dass 'Verantwortung für Deutschland' bedeutet, und ob die Partei bei wichtigen Themen wie Wehrpflicht oder Rentenreform geschlossen ist.",
+        "question_intent": "Maischberger will von Stegner erfahren, ob SPD-Geschlossenheit auch bei Themen wie Wirtschaft, Wohnung, Rente besteht – oder ob sie vom wichtigen ablenkt.",
+        "position": "Stegner sagt, das Thema, das die Bevölkerung berührt, sei: Wirtschaft, Renten, bezahlbare Mieten, Wohnungsnot. Aber 'wir reden über Migration'. Wenn man fragt, was sind die Hauptprobleme, sprechen Leute über Migration – 'da sieht man nur Hammer und Nägel, aber nicht die Vielfalt des Landes, die es zu erhalten gilt'. Junge Menschen müssen die Rente zahlen; wenn die Alten sich möglichst viele Renten holen, muss man darüber nachdenken, dass es bezahlbar bleibt. Nicht 'müssen', sondern 'dürfen' älter werden – wenn sie Glück haben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Stegner antwortet auf die Regierungs-Verantwortungs-Frage mit einer Kritik an Prioritäten-Setzung: Er lenkt ab von der Frage nach SPD-Geschlossenheit zu einer Kritik an öffentlicher Agenda-Setting (Migration statt Wirtschaft).",
+        "quotes": [
+          {
+            "text": "Das ist das, was die Menschen berührt. Und wir reden über Migration. Wenn jemand gefragt, was sind die Hauptprobleme, da sprechen Sie über Migration, über Migration, da sieht man nur Hammer und Nägel, aber nicht die Vielfalt des Landes, die es zu erhalten gilt.",
+            "timestamp": "00:40:09",
+            "context": "Stegners Kritik an Agenda-Setzung in der politischen Debatte."
+          }
+        ],
+        "concrete_statements": [
+          "Bevölkerung sorgt sich um Wirtschaft, Renten, Wohnungspreise",
+          "Öffentliche Debatte übergewichtet Migrationsfragen",
+          "Junge Menschen tragen Renten-Lasten – nachhaltige Finanzierung nötig",
+          "Vielfalt des Landes muss erhalten bleiben"
+        ],
+        "related_bundestag_topics": [
+          "Rentenversicherung",
+          "Wohnungsmarkt-Politik",
+          "Migrationsdebatte",
+          "Generationengerechtigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die SPD erzielte bei der Bundestagswahl das schlechteste Ergebnis bundesweit seit 138 Jahren",
+        "timestamp": "00:19:20"
+      },
+      {
+        "claim": "Russland greift jeden Tag mit Systemen wie Taurus an",
+        "timestamp": "00:24:00"
+      },
+      {
+        "claim": "Deutschland war der zweitgrößte Unterstützer der Ukraine, ist jetzt der größte geworden",
+        "timestamp": "00:24:30"
+      },
+      {
+        "claim": "Der Spannungsfall ist eine Stufe vor dem Verteidigungsfall",
+        "timestamp": "00:32:52"
+      },
+      {
+        "claim": "Ab 2027 wird eine Musterung für Männer eingeführt",
+        "timestamp": "00:37:38"
+      }
+    ]
+  }
+}

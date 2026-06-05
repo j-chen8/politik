@@ -1,0 +1,418 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wOS0yNF8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-09-24",
+    "politician": "Hendrik Streeck",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "b8e5ad428a0c73a8",
+    "transcript_chars": 53288,
+    "caption_lines": 1934,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21710,
+    "tokens_out": 10621,
+    "cost_usd": 0.029926,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 11,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.162Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Hendrik Streeck stellte sich in seinem ersten Maischberger-Interview als Neuling im Bundestag (seit März 2025) und neuer Drogenbeauftragter der Bundesregierung vor. Er warnte vor einer Spaltung der Gesellschaft à la USA, äußerte sich kritisch zur Trump-Administration im Bereich Wissenschaft und Impfpolitik und positionierte sich zu Gesundheitsreformen mit Vorschlägen zur Primärversorgung und sozialverträglicher Selbstbeteiligung.",
+    "themes": [
+      {
+        "title": "Perspektive als Neuling im Bundestag",
+        "timestamp_range": "01:01:05 - 01:01:35",
+        "theme_description": "Streeck reflektiert seine ersten Monate im Bundestag und seine Erfahrungen als Wissenschaftler in der Politik.",
+        "question_asked": "Sandra Maischberger fragte Streeck, wie er den politischen Betrieb 'von innen' nach sechs Monaten Bundestag empfinde, nachdem er ihn vorher von außen als Wissenschaftler beobachtet hatte.",
+        "question_intent": "Maischberger wollte Streecks Eindruck vom Unterschied zwischen Außen- und Innensicht erfahren.",
+        "position": "Streeck antwortet: 'Ich kann das mal trennen, ich habe unheimlich viel gelernt in der Zeit. Es ist wahnsinnig spannend, jeder Tag ist wirklich was neues für mich. Ich habe die Ehre gab, ein Regierungsamt zu bekommen mit dem Beauftragten für Drogen-und sucht Fragen. Und das ist ein extrem spannendes Feld.' Auf Maischbergers Anmerkung, dass der Betrieb in Zeitungen schlecht geredet werde (als würde man sich nur streiten), relativiert er: 'So kommt es mir gar nicht vor. Wir hatten gerade erst gemeinsames Grillen mit der SPD, ein schöner Abend.' Er differenziert: 'Kann man ja so oder so deuten. Wir reden über die Vereinigten Staaten. Da ist der Umgang härter.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet die Frage differenziert: Er trennt Lernprozess und Amt, betont positive Erfahrungen (Spannung, tägliche Lernkurve), widerspricht dem negativen Medienbild (Streits) mit konkretem Beispiel (Grillen mit SPD) und relativiert durch Vergleich mit USA.",
+        "quotes": [
+          {
+            "text": "Ich kann das mal trennen, ich habe unheimlich viel gelernt in der Zeit. Es ist wahnsinnig spannend, jeder Tag ist wirklich was neues für mich. Ich habe die Ehre gab, ein Regierungsamt zu bekommen mit dem Beauftragten für Drogen-und sucht Fragen. Und das ist ein extrem spannendes Feld. Ich finde, der Umgang wird so schlecht geredet außen. Es kommt einem so vor, wir würden uns nur streiten, wenn wir die Zeitung lesen. So kommt es mir gar nicht vor. Wir hatten gerade erst gemeinsames Grillen mit der SPD, ein schöner Abend.",
+            "timestamp": "01:01:05",
+            "context": "Antwort auf Maischbergers Frage zu Streecks Eindruck vom Bundestag nach sechs Monaten."
+          }
+        ],
+        "concrete_statements": [
+          "Intensive Lernkurve, täglich neue Erkenntnisse",
+          "Amt als Drogenbeauftragter ist 'extrem spannend'",
+          "Außendarstellung in Medien ist zu negativ",
+          "Kollegiales Verhältnis auch mit SPD vorhanden",
+          "Unterschied zu USA: Umgang ist weniger hart"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarisches Geschehen",
+          "Koalitionsdynamik"
+        ]
+      },
+      {
+        "title": "Sorge vor Gesellschaftsspaltung wie in den USA",
+        "timestamp_range": "01:02:06 - 01:02:37",
+        "theme_description": "Streeck äußert Bedenken bezüglich der Entwicklung in den USA und betont, dass Deutschland eine Spaltung vermeiden sollte.",
+        "question_asked": "Sandra Maischberger fragte, was Streeck von seinen Kollegen über die Lage der Wissenschaft und Medizin unter der neuen US-Regierung höre.",
+        "question_intent": "Maischberger wollte verstehen, wie Streeck die Auswirkungen der Trump-Administration auf Wissenschaft und Medizin bewertet.",
+        "position": "Streeck beobachtet die US-amerikanische Entwicklung mit Sorge. Er hat neun Jahre dort gelebt und betont, dass der Umgang mit Wissenschaft in den USA problematisch ist. Er warnt Deutschland davor, eine ähnliche Gesellschaftsspaltung zu erleben, setzt aber auf einen breiteren Debattenkorridor und glaubt nicht, dass Deutschland sich wie die USA entwickeln wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet die Frage direkt: Er äußert konkrete Sorge über die US-Entwicklung, nennt seinen persönlichen Bezug (9 Jahre Aufenthalt) und differenziert zwischen dem US-Szenario und der deutschen Situation. Die Position ist klar und substanziell.",
+        "quotes": [
+          {
+            "text": "Ich beobachte das schon ein bisschen mit Sorge, ich habe 9 Jahre da gelebt, habe da viele Freunde und Kollegen. Gerade der Umgang mit der Wissenschaft ist etwas, was mir Sorge bereitet. Ich glaube, wir müssen aufpassen in Deutschland, dass wir keine Spaltung der Gesellschaft bekommen.",
+            "timestamp": "01:02:06",
+            "context": "Antwort auf Maischbergers Frage zur Lage der Wissenschaft in der neuen US-Regierung."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland sollte eine Spaltung der Gesellschaft vermeiden",
+          "Mehr Debatte und einen breiteren Debattenkorridor zulassen",
+          "Risiko einer US-ähnlichen Entwicklung in Deutschland ist gering"
+        ],
+        "related_bundestag_topics": [
+          "Wissenschaftsfreiheit",
+          "Gesellschaftlicher Zusammenhalt",
+          "Transatlantische Beziehungen"
+        ]
+      },
+      {
+        "title": "HIV-Programme und Impfskeptizismus in den USA",
+        "timestamp_range": "01:03:07 - 01:03:41",
+        "theme_description": "Streeck kritisiert die Einstellung von HIV-Forschungs- und Impfprogrammen in den USA unter dem Gesundheitsminister Kennedy.",
+        "question_asked": "Sandra Maischberger fragte, was Streeck von Kollegen im HIV-Forschungsbereich höre und wie diese von der neuen US-Regierung betroffen seien.",
+        "question_intent": "Maischberger wollte konkrete Beispiele für negative Auswirkungen der Trump-Administration auf medizinische Forschung.",
+        "position": "Streeck berichtet aus seinem eigenen Forschungsbereich (HIV und Impfungen), dass Programme eingestellt wurden mit der Begründung von 'liberalen Richtungen' und 'Wokeness'. Er warnt vor katastrophalen globalen Konsequenzen: Wenn Menschen mit HIV nicht mehr an Medikamente herankommen, werden sie kränker, geben das Virus weiter, was zu mehr AIDS-Todesfällen und weltweit steigenden Infektionszahlen führt. Er qualifiziert dies als 'brandgefährlich'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck antwortet konkret mit persönlichen Erfahrungen aus seinem Forschungsbereich, nennt das Programm, beschreibt die Begründung und quantifiziert die Konsequenzen. Die Antwort ist substanziell und faktengestützt.",
+        "quotes": [
+          {
+            "text": "Ich komme aus dem HIV-Forschungsbereich, da geht es auch um Impfungen, und der Bereich wurde extrem betroffen in den USA. Weil gesagt wurde, dass da er so liberale Richtungen, wokeness gefordert werden würde, weil es auch um LGBTQ-Rechte usw geht. Das ist brandgefährlich, muss man sagen. Das Programm wurde eingestellt. Wenn alle, die weltweit infiziert sind mit HIV, nicht mehr an Medikamente herankommen, dann werden die Menschen nicht nur kränker, sie geben das Virus auch weiter. Wir werden dann mehr Todesfälle durch Aids bekommen. Und die Infektionszahlen werden weltweit hochgehen.",
+            "timestamp": "01:03:07",
+            "context": "Antwort auf Maischbergers Frage zu Auswirkungen auf HIV-Forschung."
+          }
+        ],
+        "concrete_statements": [
+          "HIV-Programme wurden unter dem Vorwand von 'liberalen Richtungen' und 'Wokeness' eingestellt",
+          "Globale Konsequenz: mehr AIDS-Todesfälle, steigende Infektionszahlen weltweit"
+        ],
+        "related_bundestag_topics": [
+          "Internationale Gesundheitspolitik",
+          "Aidsbekämpfung"
+        ]
+      },
+      {
+        "title": "Impfstoffsicherheit und Autismus-Mythos",
+        "timestamp_range": "01:04:54 - 01:05:27",
+        "theme_description": "Streeck klärt auf, dass die Behauptung von Impfstoff-Autismus-Zusammenhang widerlegt ist und von einem einzelnen Arzt (Wakefield) stammt.",
+        "question_asked": "Sandra Maischberger fragte, was der Stand der wissenschaftlichen Studien zu Kennedys Behauptung sei, dass Impfungen Autismus auslösen.",
+        "question_intent": "Maischberger wollte wissen, ob die Behauptung wissenschaftlich belegt ist.",
+        "position": "Streeck erklärt, dass die Wakefield-Hypothese (Impfungen verursachen Autismus) in 'zig tausend Studien' danach widerlegt wurde. Er betont, dass Wakefield mit dieser Aussage 'unglaublich viel Schaden' angerichtet hat und dass viele Menschen fälschlicherweise von diesem Zusammenhang ausgehen. Er unterstreicht aber: Das ist wissenschaftlich belegt nicht der Fall. Streeck hebt hervor, dass Impfungen 'eines der besten und kostengünstigsten Mittel' sind, um Erkrankungen und Tod zu verhindern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck antwortet direkt mit wissenschaftlicher Evidenz: tausende Studien haben die Hypothese widerlegt. Er nennt die Quelle des Mythos (Wakefield), bewertet dessen Schaden und betont die wissenschaftliche Konsensposition.",
+        "quotes": [
+          {
+            "text": "Die Idee, dass Impfungen Autismus hervorrufen würden, dass kam von Wakefield. Das ist in zig 1000 Studien danach widerlegt worden, dass das nicht der Fall ist. Der Wakefield Hat mit seinen Aussagen, dass ein Arzt in den USA, so viel Schaden angerichtet.",
+            "timestamp": "01:05:27",
+            "context": "Antwort auf Maischbergers Frage zum wissenschaftlichen Stand der Impf-Autismus-Hypothese."
+          }
+        ],
+        "concrete_statements": [
+          "Impf-Autismus-Hypothese ist in tausenden Studien widerlegt",
+          "Wakefield hat als Arzt massiven Schaden angerichtet",
+          "Impfungen sind eines der besten und kostengünstigsten Mittel gegen Erkrankungen"
+        ],
+        "related_bundestag_topics": [
+          "Impfwesen",
+          "Medizinische Prävention",
+          "Wissenschaftskommunikation"
+        ]
+      },
+      {
+        "title": "Gefahren durch impfskeptische Gesundheitspolitik",
+        "timestamp_range": "01:05:58 - 01:06:29",
+        "theme_description": "Streeck warnt vor den globalen Konsequenzen, wenn ein impfskeptischer Gesundheitsminister feste Überzeugungen gegen wissenschaftliche Evidenz durchsetzt.",
+        "question_asked": "Sandra Maischberger fragte, was es bedeutet, wenn der Gesundheitsminister seine festen Überzeugungen hat und diese nicht von wissenschaftlichen Erkenntnissen beeinflussen lässt – für ihn, das Land und internationale Programme.",
+        "question_intent": "Maischberger wollte die Risiken und Folgen einer evidenzfernen Gesundheitspolitik verstehen.",
+        "position": "Streeck nennt diese Entwicklung 'eine extrem gefährliche Entwicklung'. Er erklärt: Ärzte kennen Polio und Masern nur noch aus Lehrbüchern, da diese Erkrankungen durch Impfungen eliminiert wurden. Wenn diese Impfprogramme zusammenbrechen, werden diese Krankheiten zurückkommen und ärztliches Personal, das diese Erkrankungen nie praktisch behandelt hat, muss sich damit auseinandersetzen. Streeck betont die Notwendigkeit, 'dass man die Medizin auch Medizin sein lässt, Wissenschaft Wissenschaft sein lässt' und dass Politik sich der wissenschaftlichen Evidenz bedienen sollte – nicht umgekehrt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck antwortet präzise auf alle drei Teile der Frage: (1) für den Minister/die Politik, (2) für das Land und (3) für internationale Programme. Er gibt konkrete Beispiele (Polio, Masern) und artikuliert ein grundsätzliches Prinzip (Politik folgt Evidenz, nicht umgekehrt).",
+        "quotes": [
+          {
+            "text": "Insgesamt ist das wirklich eine extrem gefährliche Entwicklung, weil wir bestimmte Erkrankungen haben, die wir als Ärzte gar nicht mehr kennen, Polio, Masern. Das kennt man nur aus dem Lehrbuch, aber man kennt die Erkrankung nicht mehr. Wenn das alles wieder zurückkommt, werden wir mit ganz anderen Erkrankungsbildern wieder zu tun haben, die viele nicht mehr so gelernt haben. Man muss aufpassen, dass man die Medizin auch Medizin sein lässt, Wissenschaft Wissenschaft sein lässt. Und nicht versucht, da rein zu regieren.",
+            "timestamp": "01:06:29",
+            "context": "Antwort auf Maischbergers Frage zu Gefahren einer evidenzfernen Gesundheitspolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Es ist eine 'extrem gefährliche Entwicklung'",
+          "Polio und Masern könnten zurückkommen, wenn Impfprogramme ausfallen",
+          "Ärzte sind nicht mehr trainiert für diese Erkrankungen",
+          "Politik muss sich der wissenschaftlichen Evidenz bedienen, nicht umgekehrt"
+        ],
+        "related_bundestag_topics": [
+          "Impfwesen",
+          "Infektionsschutzgesetz",
+          "Internationale Gesundheit"
+        ]
+      },
+      {
+        "title": "Motivation hinter impfskeptischer Politik",
+        "timestamp_range": "01:07:01 - 01:07:31",
+        "theme_description": "Streeck spekuliert über Gründe, warum Trump und Kennedy trotz wissenschaftlicher Evidenz impfskeptisch sind.",
+        "question_asked": "Sandra Maischberger fragte, warum Trump oder Kennedy impfskeptisch handeln, wenn die wissenschaftliche Evidenz gegen ihre Position spricht.",
+        "question_intent": "Maischberger wollte verstehen, welche Motivation oder Logik hinter der impfskeptischen Haltung steckt.",
+        "position": "Streeck antwortet vorsichtig: 'Ich kann es nicht sagen, warum er das macht'. Er spekuliert aber: 'Vielleicht ist seine Überzeugung. Vielleicht will er eine bestimmte politische Richtung unterstützen in den USA. Es gibt relativ viele Impfgegner in den USA.' Auf die Nachfrage, ob es Menschen gibt, die Impfungen 'nicht vertragen' und das ein Grund sein könnte, mehr Gehör zu geben, antwortet Streeck: 'Ich kann auch nur spekulieren, ich weiß nicht, was seine Motivation dahinter ist. Ich halte es für gefährlich, weil wir wirklich viel erreicht haben durch die Impfung.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Streeck verweigert nicht zu antworten, spekuliert aber vorsichtig statt eine klare Erklärung zu geben. Er nennt Hypothesen (persönliche Überzeugung, politische Richtung, Bedienung von Impfgegnern in den USA), weigert sich aber, eine definitive Aussage zu machen. Die Antwort adressiert die Frage, bleibt aber bewusst spekulativ.",
+        "quotes": [
+          {
+            "text": "Ich kann es nicht sagen, warum er das macht, vielleicht ist seine Überzeugung. Vielleicht will er eine bestimmte politische Richtung unterstützen in den USA. Es gibt relativ viele Impfgegner in den USA.",
+            "timestamp": "01:07:31",
+            "context": "Antwort auf Maischbergers Frage zur Motivation hinter Impfskeptizismus."
+          }
+        ],
+        "concrete_statements": [
+          "Motivation unklar, Spekulationen: persönliche Überzeugung oder politische Kalkulation",
+          "Es gibt viele Impfgegner in den USA, die bedient werden könnten"
+        ],
+        "related_bundestag_topics": [
+          "Impfwesen",
+          "Wissenschaftskommunikation"
+        ]
+      },
+      {
+        "title": "Vergleich Gesundheitssysteme USA und Deutschland",
+        "timestamp_range": "01:08:01 - 01:08:33",
+        "theme_description": "Streeck würdigt das deutsche Gesundheitssystem und kritisiert das Zwei-Klassen-System in den USA.",
+        "question_asked": "Sandra Maischberger fragte, ob Streeck sich im Notfall lieber in ein deutsches oder US-amerikanisches Krankenhaus begeben würde.",
+        "question_intent": "Maischberger wollte Streecks Bewertung der Systeme vergleichen.",
+        "position": "Streeck antwortet: 'Deutschland hat eines der besten Gesundheitssysteme weltweit.' Ein Vorteil ist, dass bei jeder Person gleich behandelt wird. In den USA wird dagegen der 'gut behandelt, der privilegiert ist'. Auf Maischbergers Einwand, dass es auch in Deutschland ein Zwei-Klassen-System gibt (Kassen- vs. Privatpatienten, unterschiedliche Wartezeiten), antwortet Streeck: 'Das bestreite ich nicht, das ist auch ein Problem.' Er betont aber, dass deshalb im Koalitionsvertrag eine Termingarantie verankert wurde und dass das Gesundheitssystem 'radikal reformiert' werden muss – 'radikal im wahrsten Sinne des Wortes, an der Wurzel packen, die Probleme, die es gibt.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet die Frage klar und unterscheidet zwischen den Systemen. Er gibt eine klare Präferenz (Deutschland) und begründet dies mit Universalität und Gleichbehandlung. Auf den Gegeneinwand bezüglich Zwei-Klassen-System gibt er zu, dass dieses Problem auch in Deutschland existiert, und nennt konkrete Reformvorschläge.",
+        "quotes": [
+          {
+            "text": "Deutschland hat eines der besten Gesundheitssysteme weltweit. Hier ist auch deswegen es so gut, bei jeder gleich behandelt wird. In den USA wird der gut behandelt, der privilegiert ist.",
+            "timestamp": "01:08:01",
+            "context": "Antwort auf Maischbergers Frage zum Vergleich der Gesundheitssysteme."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland hat eines der besten Gesundheitssysteme weltweit",
+          "Vorteil: Universelle Gleichbehandlung",
+          "Zwei-Klassen-System existiert auch in Deutschland (Kassen- vs. Privatpatienten)",
+          "Koalitionsvertrag enthält Termingarantie",
+          "Radikale Gesundheitsreform notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitswesen",
+          "Gesundheitsreform",
+          "Krankenversicherung"
+        ]
+      },
+      {
+        "title": "Primärversorgung und Hausarztmodell",
+        "timestamp_range": "01:09:03 - 01:09:34",
+        "theme_description": "Streeck erläutert das geplante Primärarztsystem und dessen wirtschaftliche Vorteile.",
+        "question_asked": "Sandra Maischberger hinterfragte, ob das vom Bund geplante Modell (Hausarzt statt direkter Facharztgang) wirklich günstiger sei, wenn am Ende trotzdem zwei Ärzte aufgesucht werden müssen.",
+        "question_intent": "Maischberger wollte verstehen, wo die tatsächlichen Kosteneinsparungen liegen.",
+        "position": "Streeck erklärt: 'Es gibt da mehrere Studien dazu, wie ein Primärarztsystem funktionieren kann.' Der Vorteil liegt nicht unbedingt in weniger Arztkontakten insgesamt (Hausarzt + Facharzt), sondern darin, dass 'man weniger ins Krankenhaus kommt. Da spielt die Musik, dass der Krankenhausanteil insgesamt nach unten gedrückt wird.' Er konkretisiert das Problem: 'Ich kenne von Kollegen Beschreibungen von Patienten, die dieses Jahr schon 50 oder 60 mal in der Notaufnahme waren, nur um ein Rezept einzulösen. Das ist teuer und blockiert die Notaufnahme.' Das Primärarztsystem soll diesem Problem entgegenwirken.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet den Einwand Maischbergers präzise: Er akzeptiert, dass Arztkontakte nicht sinken, erklärt aber, wo die echten Einsparungen liegen (Krankenhaus- statt Notaufnahmen) und belegt dies mit konkretem Beispiel (50-60 Notaufnahmebesuche für Rezepte).",
+        "quotes": [
+          {
+            "text": "Der Vorteil daran ist, nicht unbedingt, dass es weniger Arzt Kontakte im Vorfeld gibt. Also vom Facharzt und Hausarzt. Der Vorteil ist, dass man weniger ins Krankenhaus kommt. Da spielt die Musik, dass der Krankenhausanteil insgesamt nach unten gedrückt wird.",
+            "timestamp": "01:09:34",
+            "context": "Antwort auf Maischbergers Frage, ob Hausarztmodell wirklich günstiger ist."
+          }
+        ],
+        "concrete_statements": [
+          "Kosteneinsparungen liegen in geringeren Krankenhausaufenthalten, nicht weniger Arztkontakten",
+          "Problem: Patienten nutzen Notaufnahme für Rezepte (50-60x pro Jahr dokumentiert)",
+          "Primärarztsystem soll Notaufnahmen entlasten"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Primärversorgung",
+          "Krankenhausstruktur"
+        ]
+      },
+      {
+        "title": "Selbstbeteiligung im Gesundheitswesen",
+        "timestamp_range": "01:10:04 - 01:11:08",
+        "theme_description": "Streeck verteidigt das Konzept einer sozialverträglichen Selbstbeteiligung gegen den Vorwurf, dass dies Patienten 'bestrafen' würde.",
+        "question_asked": "Sandra Maischberger kritisierte Streecks Vorschlag einer Selbstbeteiligung und fragte provokativ: 'Wollen Sie die bestrafen, die häufiger zum Arzt gehen müssen?'",
+        "question_intent": "Maischberger wollte Streeck mit dem Wort 'Bestrafung' auf einen sozial ungerechten Aspekt des Vorschlags hinweisen.",
+        "position": "Streeck lehnt die Charakterisierung ab: 'Es ist keine Bestrafung. Wir wollen das System verbessern.' Er präzisiert: 'Wir wollen ein Gesundheitssystem haben, wo jeder gut und schnell behandelt wird.' Das aktuelle System 'bröckelt im Moment' – Menschen bekommen keine Termine, das System verwahrloste. Seine Lösung: 'An die Pharmafirmen dran, Arzneimittelpreisen zu hoch' + 'an die Krankenhausgesellschaft dran, weil Krankenhausaufenthalte sind zu hoch' + Selbstbeteiligung, die 'eine steuernde Wirkung hat', damit sich Patienten überlegen 'muss ich wirklich in die Notaufnahme.' Er nennt Beispiele: Selbstbeteiligung bei Rezepten existiert schon; im Krankenhaus zahlen Patienten schon 10 Euro pro Tag (bis 280 Euro). 'Selbstbeteiligung in anderen Ländern, die Niederlande, Schweden und Finnland wird benutzt.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet sowohl die emotionale Frage (ist es eine Bestrafung?) als auch die sachliche (wie funktioniert das System?). Er weist die Bestrafungs-Kritik ab, erläutert das Ziel (Systemverbesserung), nennt mehrere Reformebenen (Pharma, Krankenhäuser, Selbstbeteiligung) und belegt mit internationalen Beispielen.",
+        "quotes": [
+          {
+            "text": "Es ist keine Bestrafung. Wir wollen das System verbessern. Wir wollen ein Gesundheitssystem haben, wo jeder gut und schnell behandelt wird. Das bröckelt im Moment. Wir sehen, dass man keine Termine mehr bekommt, die Menschen das Gefühl bekommen, dass das verwahrlost. Die Frage ist, wo wir rangehen, ich glaube, überall.",
+            "timestamp": "01:10:36",
+            "context": "Antwort auf Maischbergers Vorwurf, Selbstbeteiligung würde Patienten 'bestrafen'."
+          }
+        ],
+        "concrete_statements": [
+          "Selbstbeteiligung ist keine Bestrafung, sondern Systemverbesserung",
+          "Ziele: Gleichzeitige Reform bei Pharmapreisen und Krankenhauskosten",
+          "Sozialverträgliche Selbstbeteiligung soll Lenkungswirkung haben",
+          "Selbstbeteiligung existiert bereits in anderen Bereichen (Rezepte, Krankenhausaufenthalt)",
+          "Modelle in Niederlande, Schweden, Finnland zeigen Funktionsfähigkeit"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Krankenversicherung",
+          "Patientengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Handyverbot an Grundschulen und Medienkompetenz",
+        "timestamp_range": "01:12:09 - 01:13:11",
+        "theme_description": "Streeck lehnt ein striktes Handyverbot ab und plädiert stattdessen für Medienkompetenz und altersgerechte App-Zugangsregelungen.",
+        "question_asked": "Sandra Maischberger fragte, ob Streeck für oder gegen ein Handyverbot an Grundschulen sei – eine Forderung, die in der Debatte gestellt wird.",
+        "question_intent": "Maischberger wollte Streecks Position zu einer konkreten schulpolitischen Forderung.",
+        "position": "Streeck sagt: 'Diese Frage kann man nicht so einfach beantworten. Nein. Doch.' Er beschreibt ein Spannungsfeld: 'Auf der einen Seite wollen wir eine digitale Teilhabe. Wir wollen, dass Kinder und Jugendliche lernen, mit Internet und Handy gut umzugehen. Und einen gesunden Umgang haben. Auf der anderen Seite haben wir die Entwicklung, durch Corona noch verstärkt, dass jedes 4. Kind ein riskantes Medienverhalten hat. Ein Suchtverhalten könnte man es nennen.' Er ist 'gegen ein striktes Handyverbot' und schlägt stattdessen vor: 'Wir brauchen entweder bei bestimmten Apps und Anwendungen eine gestaffelte Altersverifikation. Dass man nur ab einem bestimmten Alter an bestimmte Apps ran soll.' Für die genaue Ausgestaltung beruft er sich auf 'eine Expertenkommission'. Er betont auch: 'Ich finde es aber auch extrem wichtig, dass die Wissenschaft...'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet die Ja-oder-Nein-Frage mit einer differenzierten Position: Er lehnt ein striktes Verbot ab und begründet dies mit dem Spannungsfeld zwischen Medienkompetenz und Suchtprävention. Er nennt einen Alternativvorschlag (Altersverifikation) und verweist auf Experten.",
+        "quotes": [
+          {
+            "text": "Wir haben hier einen schmalen Grat, den wir gehen können. Auf der einen Seite wollen wir eine digitale Teilhabe. Wir wollen, dass Kinder und Jugendliche lernen, mit Internet und Handy gut umzugehen. Und einen gesunden Umgang haben. Auf der anderen Seite haben wir die Entwicklung, durch Corona noch verstärkt, dass jedes 4. Kind ein riskantes Medienverhalten hat.",
+            "timestamp": "01:12:09",
+            "context": "Antwort auf Maischbergers Frage zum Handyverbot an Grundschulen."
+          },
+          {
+            "text": "Ich bin gegen ein striktes Handyverbot, ich glaube, wir brauchen entweder bei bestimmten Apps und Anwendungen eine gestaffelte Altersverifikation. Dass man nur ab einem bestimmten Alter an bestimmte Apps ran soll.",
+            "timestamp": "01:13:11",
+            "context": "Streecks konkreter Alternativvorschlag."
+          }
+        ],
+        "concrete_statements": [
+          "Gegen striktes Handyverbot",
+          "Befürwortung von digitaler Teilhabe und Medienkompetenzförderung",
+          "Problem: 25% der Kinder zeigen riskantes Medienverhalten (verstärkt durch Corona)",
+          "Vorschlag: Gestaffelte Altersverifikation für bestimmte Apps",
+          "Expertenkommission soll Details klären"
+        ],
+        "related_bundestag_topics": [
+          "Bildung",
+          "Digitale Teilhabe",
+          "Jugendschutz",
+          "Medienregulierung"
+        ]
+      },
+      {
+        "title": "Handynutzung im Bundestag",
+        "timestamp_range": "01:13:42 - 01:14:13",
+        "theme_description": "Streeck verteidigt die Handynutzung von Abgeordneten während Debatten gegen Maischbergers kritische Anmerkung.",
+        "question_asked": "Sandra Maischberger machte einen humorvollen Einwand: 'Wie wäre es mit einem Handyverbot im Bundestag?' und verwies darauf, dass Abgeordnete während Reden alle am Handy sind.",
+        "question_intent": "Maischberger wollte Streeck mit der Inkonsistenz konfrontieren: Er fordert Medienkompetenz für Kinder, aber Abgeordnete nutzen Handys während Debatten.",
+        "position": "Streeck erklärt die Unterscheidung: 'Das Problem ist nicht, dass man dann nicht mehr zuhört. Das sind ja Stunden. Nebenbei hat man Kommunikation mit dem Büro, Dinge abzuzeichnen, man hat bestimmte zeitkritische Papiere zu unterzeichnen oder zu antworten. Das dient eher dazu, dass man im Kontakt bleibt.' Die Handynutzung im Bundestag hat also eine andere Funktion als bei Schülern – es geht um Geschäftskommunikation, nicht um Unterhaltung oder Suchtverhalten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck beantwortet Maischbergers humorvolle Provokation sachlich und differenziert: Er erklärt den Zweck der Handynutzung von Abgeordneten und unterscheidet diesen bewusst von der Nutzung bei Kindern. Die Antwort ist logisch konsistent.",
+        "quotes": [
+          {
+            "text": "Das Problem ist nicht, dass man dann nicht mehr zuhört. Das sind ja Stunden. Nebenbei hat man Kommunikation mit dem Büro, Dinge abzuzeichnen, man hat bestimmte zeitkritische Papiere zu unterzeichnen oder zu antworten. Das dient eher dazu, dass man im Kontakt bleibt.",
+            "timestamp": "01:13:42",
+            "context": "Antwort auf Maischbergers Frage zu Handynutzung im Bundestag."
+          }
+        ],
+        "concrete_statements": [
+          "Handynutzung im Bundestag dient der Geschäftskommunikation",
+          "Zeitkritische Papiere müssen signiert/beantwortet werden",
+          "Unterschied zu Schülern: Funktionalität, nicht Suchtverhalten"
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarisches Geschehen",
+          "Geschäftsbetrieb"
+        ]
+      },
+      {
+        "title": "Zukunftsaussichten und Bescheidenheit",
+        "timestamp_range": "01:14:13 - 01:14:13",
+        "theme_description": "Streeck äußert sich bescheiden zu seiner politischen Zukunft und lehnt Spekulationen über höhere Ämter ab.",
+        "question_asked": "Sandra Maischberger fragte humorvoll: 'Sie werden lange im Parlament bleiben und am Ende Bundeskanzler?' – eine provokante Anspielung auf seine schnelle Karriere vom Wissenschaftler zum Regierungsbeauftragten.",
+        "question_intent": "Maischberger wollte Streeck humorvoll zu seiner ambitionalen Karrierezielstellung befragen.",
+        "position": "Streeck antwortet bescheiden: 'Wishful thinking. Ich bin erst mal ausgefüllt. Das ist eine extrem steile Lernkurve. Mal sehen, wie das weitergeht. Es sind gerade mal 100 Tage im Amt, ein bisschen mehr. Ich freue mich auf die nächsten Jahre.' Er signalisiert damit, dass er sich auf sein aktuelles Amt konzentriert, nicht auf höhere Positionen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Streeck antwortet auf die humorvolle Frage mit einer klaren, bescheidenen Position: Er lehnt Spekulationen über Bundeskanzleramt ab und betont seine Fokussierung auf das aktuelle Amt.",
+        "quotes": [
+          {
+            "text": "Wishful thinking. Ich bin erst mal ausgefüllt. Das ist eine extrem steile Lernkurve. Mal sehen, wie das weitergeht. Es sind gerade mal 100 Tage im Amt, ein bisschen mehr.",
+            "timestamp": "01:14:13",
+            "context": "Antwort auf Maischbergers humorvolle Frage zu Streecks politischer Zukunft."
+          }
+        ],
+        "concrete_statements": [
+          "Weiß nicht, ob Bundeskanzleramt realistisches Ziel ist",
+          "Fokus auf aktuelles Amt als Drogenbeauftragter",
+          "Etwa 100+ Tage im Amt",
+          "Freut sich auf nächste Jahre in dieser Position"
+        ],
+        "related_bundestag_topics": [
+          "Politische Karrieren"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Hendrik Streeck ist seit einem halben Jahr im Bundestag.",
+        "timestamp": "01:01:05"
+      },
+      {
+        "claim": "Hendrik Streeck hat 9 Jahre in den USA gelebt.",
+        "timestamp": "01:02:06"
+      },
+      {
+        "claim": "Impf-Autismus-Hypothese wurde in 'zig tausend Studien' widerlegt.",
+        "timestamp": "01:05:27"
+      },
+      {
+        "claim": "Jedes vierte Kind hat ein riskantes Medienverhalten, verstärkt durch Corona.",
+        "timestamp": "01:12:09"
+      },
+      {
+        "claim": "Deutsche gehen im Schnitt zehn mal zum Arzt, Franzosen vier mal.",
+        "timestamp": "01:10:04"
+      },
+      {
+        "claim": "Im deutschen Krankenhaus zahlt man 10 Euro pro Tag Selbstbeteiligung, maximal 280 Euro.",
+        "timestamp": "01:11:08"
+      },
+      {
+        "claim": "Die Niederlande, Schweden und Finnland nutzen Selbstbeteiligung im Gesundheitswesen.",
+        "timestamp": "01:11:08"
+      },
+      {
+        "claim": "Es gibt Patienten, die 50 bis 60 mal pro Jahr die Notaufnahme besuchen, nur um Rezepte einzulösen.",
+        "timestamp": "01:09:34"
+      }
+    ]
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtMzdlY2I2ODktMmM1ZS00MDFlLWI4OWUtYTI2NGI4OTE4ZmVi",
+    "video_id": "hartaberfair-2026-03-02",
+    "politician": "Stephan Mayer",
+    "host": "Louis Klamroth",
+    "publisher": "hart aber fair (ARD)",
+    "transcript_sha": "491fa16d011a2696",
+    "transcript_chars": 49898,
+    "caption_lines": 1839,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20283,
+    "tokens_out": 7059,
+    "cost_usd": 0.0222312,
+    "quote_validation": {
+      "valid_exact": 7,
+      "valid_fuzzy": 4,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 5
+    },
+    "generated_at": "2026-06-05T13:37:47.319Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Stephan Mayer, CDU/CSU-Bundestagsabgeordneter und Auswärtiger Ausschuss-Mitglied, diskutiert in Louis Klamroths Sendung die Lage im Iran nach dem Tod von Khamenei. Mayer teilt Hoffnung auf einen Regimewechsel, verteidigt Deutschlands Haltung als solidarisch aber militärisch nicht involviert und betont die Notwendigkeit, das iranische Volk selbstbestimmt entscheiden zu lassen. Sein Ton ist sachlich und verteidigend gegenüber Kritik an der deutschen und israelischen Politik.",
+    "themes": [
+      {
+        "title": "Regimewechsel im Iran: Chancen und Hoffnung",
+        "timestamp_range": "00:08:46 - 00:09:17",
+        "theme_description": "Bewertung der Wahrscheinlichkeit und des Zeitrahmens für einen iranischen Regimewechsel nach Khameneis Tod.",
+        "question_asked": "Louis Klamroth fragt, ob Mayer die Hoffnung hat, dass ein Regime Change kommt.",
+        "question_intent": "Klamroth möchte wissen, wie realistisch Mayer einen Regimewechsel im Iran nach dem Tod Khameneis einschätzt.",
+        "position": "Mayer teilt die Hoffnung auf einen Regimewechsel, sieht ihn aber als ferne Perspektive. Er argumentiert jedoch, dass die Chancen größer sind als je zuvor, da nicht nur Khamenei getötet wurde, sondern auch 'viele der Führungsspitze' und 'weitere 6 führende Generäle'. Er warnt zwar vor der Gefahr, dass diese Personen ersetzt werden, bleibt aber optimistisch: 'Die Chancen für den Regimewechsel ist so groß wie noch nie zuvor. Das sollte uns alle mit Hoffnung erfüllen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Mayer beantwortet die direkten Frage zur Hoffnung positiv, qualifiziert dies aber mit 'in weiter Ferne'. Er bietet Gründe für Optimismus (Tötung der Führung), aber auch eine Warnung (Ersetzbarkeit), was eine ausgewogene, aber nicht vollständig substanzielle Stellungnahme darstellt.",
+        "concrete_statements": [
+          "Ich teile die Hoffnung, dass es zum Regimewechsel kommt",
+          "Der ist in weiter Ferne",
+          "Aber die Chancen für den Regimewechsel ist so groß wie noch nie zuvor",
+          "Das sollte uns alle mit Hoffnung erfüllen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich teile die Hoffnung, dass es zum Regimewechsel kommt. Der ist in weiter Ferne. Auf der anderen Seite ist die Chance groß wie nie zuvor.",
+            "timestamp": "00:08:46",
+            "context": "Auf Louis Klamroths Frage nach Hoffnung auf einen Regime Change."
+          },
+          {
+            "text": "Die Chancen für den Regimewechsel ist so groß wie noch nie zuvor. Das sollte uns alle mit Hoffnung erfüllen.",
+            "timestamp": "00:09:17",
+            "context": "Begründung der optimistischen Einschätzung trotz erkannter Gefahren."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Iran",
+          "Regimewechsel-Szenarien",
+          "Geopolitische Stabilität Naher Osten"
+        ]
+      },
+      {
+        "title": "Deutschlands Außenpolitik zur iranischen Opposition",
+        "timestamp_range": "00:12:26 - 00:16:07",
+        "theme_description": "Frage zur Unterstützung der iranischen Opposition durch die deutsche Regierung und Kritik an restriktiven Visa-Regelungen.",
+        "question_asked": "Daniela Sepehri fragt Mayer kritisch, warum die deutsche Regierung nicht gezielt Angehörige der iranischen Opposition mit humanitären Visa aufnimmt, zumal ihr CSU-Parteikollege Dobrindt als Innenminister den Zugang massiv reduziert habe.",
+        "question_intent": "Sepehri möchte wissen, warum Deutschland die iranische Oppositionsbewegung nicht durch großzügigere Visa-Politik unterstützt, sondern diese sogar verschärft hat.",
+        "position": "Mayer weist die Vorwürfe gegen Dobrindt und die deutsche Regierung zurück. Er betont, dass 'Deutschland offen für alle Menschen, denen Gefahr an Leib und Leben droht' ist und verweist auf Aufenthaltstitel nach Paragraph 22 für iranische Staatsangehörige. Er argumentiert, dass das Ziel sein muss, 'den Staat zu liberalisieren und nicht, die Türen für alle zu öffnen'. Mayer präzisiert später, dass spezialisierte Aufnahmeprogramme verfrüht wären; der erste Schritt sei ein Regimewechsel.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Statt direkt zur Frage der humanitären Visa-Politik zu antworten, pivotiert Mayer zu einer Kritik an Sepehris Vorwurf selbst. Er stellt die Prämisse in Frage ('Das kann ich so nicht stehen lassen'), weist auf bestehende Rechtsnormen hin und verschiebe die Priorität auf den Regimewechsel — nicht auf Aufnahmeprogramme.",
+        "deflection_target": "Kritik an CSU-Innenminister Dobrindt und Vorwürfe unzureichender Visa-Politik",
+        "concrete_statements": [
+          "Deutschland ist offen für alle Menschen, denen Gefahr an Leib und Leben droht",
+          "Es gibt Aufenthaltstitel nach Paragraf 22",
+          "Das Ziel muss sein, den Staat zu liberalisieren und nicht, die Türen für alle zu öffnen",
+          "Sich über irgendwelche Aufnahmeprogramme Gedanken zu machen, ist verfrüht"
+        ],
+        "quotes": [
+          {
+            "text": "Deutschland ist offen für alle Menschen, denen Gefahr an Leib und Leben droht. Die iranische Diaspora in Deutschland ist groß.",
+            "timestamp": "00:15:32",
+            "context": "Gegendarstellung zu Sepehris Vorwurf der Auslieferung von Oppositionellen."
+          },
+          {
+            "text": "Das Ziel muss sein, den Staat zu liberalisieren und nicht, die Türen für alle zu öffnen.",
+            "timestamp": "00:16:07",
+            "context": "Erklärung der Priorisierung von Staatsinteressen über individuelle Schicksale."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Flüchtlingspolitik",
+          "Humanitäre Visa",
+          "Deutschlands Außenpolitik gegenüber Iran",
+          "Innenministerium-Kompetenzen"
+        ]
+      },
+      {
+        "title": "Europäische Einheit und Merkels Erklärung",
+        "timestamp_range": "00:40:15 - 00:43:45",
+        "theme_description": "Bewertung der gemeinsamen Erklärung von Merz, Macron und Starmer zur Iran-Krise und deren Bedeutung für europäische Geschlossenheit.",
+        "question_asked": "Louis Klamroth zeigt Statements von Friedrich Merz, Emmanuel Macron und Keir Starmer und bittet Mayer um Erklärung, was Merz damit meint, dass Europäer sich nicht militärisch beteiligen werden.",
+        "question_intent": "Klamroth möchte wissen, wie Mayer die Bedeutung dieser trilateralen Erklärung einschätzt und ob sie ein Fortschritt für europäische Einheit ist.",
+        "position": "Mayer sieht in der Erklärung einen 'klaren Fortschritt'. Er würdigt, dass sich 'die 3 wichtigsten europäischen Länder einer Auffassung' sind und dass dies dem häufigen Vorwurf entgegensteht, die EU spreche nicht mit einer Stimme. Er betont die 'Kohärenz' der drei Länder in ihrer Unterstützung Israels: 'Das ist etwas wert.' Dies ist für ihn ein positives Zeichen europäischen Handelns, auch wenn die direkten militärischen Handlungsfähigkeiten begrenzt sind.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mayer antwortet direkt auf die implizite Frage, wie er die Merz-Erklärung bewertet. Er würdigt sie als Fortschritt europäischer Einheit und erklärt, warum dies wichtig ist — gegen die häufige Kritik an EU-Uneinigkeit.",
+        "concrete_statements": [
+          "Es ist ein klarer Fortschritt",
+          "Die 3 wichtigsten europäischen Länder sind einer Auffassung",
+          "Das ist etwas wert",
+          "Man muss ja mal bei Lichte betrachtet auch mal sagen, dass Merz, Starmer und Macron das früh so festgelegt haben"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ein klarer Fortschritt. Es wird immer kritisiert, dass die EU nicht mit einer Sprache spricht. In diesem Fall sind die 3 wichtigsten europäischen Länder einer Auffassung. Das ist etwas wert.",
+            "timestamp": "00:43:14",
+            "context": "Bewertung der Merz-Macron-Starmer-Erklärung zur europäischen Einheit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Außenpolitik",
+          "EU-Kohäsion",
+          "Deutsch-französisch-britische Beziehungen",
+          "Nahost-Diplomatie"
+        ]
+      },
+      {
+        "title": "Deutschlands militärische Rolle und Völkerrecht",
+        "timestamp_range": "00:40:53 - 00:43:14",
+        "theme_description": "Diskussion über mögliche militärische Maßnahmen Deutschlands gegen den Iran und völkerrechtliche Einordnung von Präventivschlägen.",
+        "question_asked": "Louis Klamroth fragt Mayer direkt, 'welche militärischen Maßnahmen Deutschland treffen könnte, um an der Quelle Drohnen und Raketen zu zerstören'.",
+        "question_intent": "Klamroth möchte konkrete deutsche militärische Optionen gegen den Iran erfragen, nachdem die Bundeskanzler-Erklärung Solidarität mit Israel ankündigte.",
+        "position": "Mayer antwortet klar ablehnend: 'Ich persönlich bin der Überzeugung, dass es nicht die Aufgabe Deutschlands ist, im Iran aktiv tätig zu werden.' Er betont jedoch Solidarität mit Israel. Mayer begründet seine Unterstützung für den israelischen Präventivschlag mit der nuklearen Bedrohung: 'Der Iran war dabei, Uran so anzureichern, dass er in der Lage gewesen wäre, Atomwaffen zu produzieren. Ich habe Verständnis dafür, dass Israel und die USA diesen Präventivschlag gestartet haben.' Er relativiert die Kritik von Wolffsohn an der Regierungserklärung als 'Heergeschwafel'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mayer antwortet direkt und substanziell auf die Frage: Deutschland solle sich militärisch nicht beteiligen, aber Israel unterstützen. Er begründet diese Position mit völkerrechtlichen Überlegungen (Präventivschlag gegen Atombedrohung) und sicherheitspolitischem Realismus.",
+        "concrete_statements": [
+          "Es ist nicht die Aufgabe Deutschlands, im Iran aktiv tätig zu werden",
+          "Wir sind solidarisch mit Israel",
+          "Ich habe Verständnis dafür, dass Israel und die USA diesen Präventivschlag gestartet haben",
+          "Wir müssen uns unmittelbar aus dem militärischen Konflikt heraushalten"
+        ],
+        "quotes": [
+          {
+            "text": "Ich persönlich bin der Überzeugung, dass es nicht die Aufgabe Deutschlands ist, im Iran aktiv tätig zu werden.",
+            "timestamp": "00:40:53",
+            "context": "Antwort auf Klamroths Frage zu möglichen deutschen Militäreinsätzen."
+          },
+          {
+            "text": "Der Iran war dabei, Uran so anzureichern, dass er in der Lage gewesen wäre, Atomwaffen zu produzieren. Ich habe Verständnis dafür, dass Israel und die USA diesen Präventivschlag gestartet haben.",
+            "timestamp": "00:41:24",
+            "context": "Begründung der Unterstützung für den israelischen Militärschlag."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Deutschlands Außenpolitik",
+          "Völkerrecht und Präventivschläge",
+          "Deutsch-israelische Beziehungen",
+          "Bundeswehreinsätze im Ausland"
+        ]
+      },
+      {
+        "title": "Völkerrecht, Präventivschlag und Reformbedarf",
+        "timestamp_range": "00:56:57 - 00:58:06",
+        "theme_description": "Debatte über die völkerrechtliche Legitimität des israelischen Präventivschlags und Fragen zur Reformierbarkeit des Völkerrechts.",
+        "question_asked": "Louis Klamroth fragt Mayer, ob die Anschuldigung stimmt, dass der Angriff völkerrechtswidrig war, oder ob es legale Wege gibt, ihn zu rechtfertigen.",
+        "question_intent": "Klamroth möchte wissen, ob Mayer die völkerrechtliche Kritik am Schlag teilt oder wie dieser rechtlich zu bewerten ist.",
+        "position": "Mayer argumentiert, dass es 'zwei Möglichkeiten' gibt, wie der Angriff nicht völkerrechtswidrig wäre: erstens durch einen Sicherheitsratsbeschluss (nicht erfolgt wegen Veto von China und Russland) oder zweitens durch eine 'unmittelbare Bedrohung'. Mayer betont die Ironie, dass sie im 'wohltemperierten Studio im sicheren Köln' schnell einig sind, dass keine unmittelbare Bedrohung vorlag, während die USA und Israel diese behaupteten. Er kennzeichnet dies als authentisches Dilemma zwischen völkerrechtlichen Prinzipien und geopolitischer Realität und kritiert die pauschale Verurteilung des Angriffs.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Mayer adressiert die völkerrechtliche Frage differenziert, indem er potenzielle Legitimationswege aufzählt. Er weicht aber einer klaren eigenen Bewertung aus, ob die Bedrohung real war, und verlagert dies in die Debatte zwischen verschiedenen Sicherheitseinschätzungen.",
+        "evasion_note": "Statt klarzustellen, ob die unmittelbare Bedrohung tatsächlich bestand, lenkt Mayer ab auf die Diskrepanz zwischen europäischer Sicherheit und iranischer Realität.",
+        "concrete_statements": [
+          "Es gibt 2 Möglichkeiten, wie er das nicht wäre: Durch einen Beschluss des Sicherheitsrates oder wenn eine unmittelbare Bedrohung vorherrscht",
+          "Das haben die USA und Israel in der Sondersitzung am Samstag behauptet",
+          "Es ist eine authentische Schilderung des Dilemmas, in dem wir stecken"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt 2 Möglichkeiten, wie er das nicht wäre. Durch einen Beschluss des Sicherheitsrates, das ist eine Möglichkeit. Den gibt es nicht wegen eines Vetos von China und Russland. Oder wenn eine unmittelbare Bedrohung vorherrscht.",
+            "timestamp": "00:57:28",
+            "context": "Analyse der völkerrechtlichen Rahmenbedingungen für den Präventivschlag."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht und internationales Recht",
+          "UN-Sicherheitsrat",
+          "Präventivschläge und Selbstverteidigung",
+          "Deutsche Außenpolitik"
+        ]
+      },
+      {
+        "title": "Irans Handel und deutsche Sanktionspolitik",
+        "timestamp_range": "01:00:20 - 01:01:26",
+        "theme_description": "Diskussion über wirtschaftliche Beziehungen mit dem Iran und die Rolle Deutschlands als Handelspartner.",
+        "question_asked": "Daniela Sepehri kritisiert, dass Deutschland weiterhin mit dem Iran handelt und dieser für viele Iraner 'der stärkste Handelspartner der EU' ist. Sie fragt implizit, warum Deutschland wirtschaftliche Sanktionen nicht konsequenter umsetzt.",
+        "question_intent": "Sepehri möchte belegen, dass Deutschland durch fortgesetzten Handel das iranische Regime unterstützt und nicht wirklich Druck ausübt.",
+        "position": "Mayer widerspricht Sepehris Behauptung direkt: 'Das Handelsvolumen im Iran ist vernachlässigungswert. Das von Luxemburg war größer als das mit dem Iran.' Er verweist auch auf institutionelle Grenzen: Der Innenminister könne keine Banken schließen — das sei nicht seine Kompetenzen. Mayer verteidigt die aktuelle Bundesregierung und die Vorgängerregierung, da Deutschland 'Vorreiter' bei der Einstufung der Revolutionsgarden als Terrororganisation war, 'auch wenn das zu lange gedauert' hat.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mayer beantwortet Sepehrs Kritik direkt, indem er mit Fakten zu Handelsvolumina widerlegt, was sie aussagt, und verweisenauf deutsche Sanktionsbemühungen.",
+        "concrete_statements": [
+          "Das Handelsvolumen im Iran ist vernachlässigungswert",
+          "Das von Luxemburg war größer als das mit dem Iran",
+          "Er ist Bundesinnenminister und nicht Finanzminister, er kann keine Banken schließen",
+          "Deutschland war Vorreiter bei der Einstufung der Revolutionsgarden als Terrororganisation"
+        ],
+        "quotes": [
+          {
+            "text": "Das Handelsvolumen im Iran ist vernachlässigungswert. Das von Luxemburg war größer als das mit dem Iran.",
+            "timestamp": "01:00:56",
+            "context": "Gegenargument zu Sepehris Kritik am deutschen Handel mit dem Iran."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenhandelspolitik",
+          "Sanktionen gegen den Iran",
+          "Terrorismusbekämpfung",
+          "Bundesregierungspolitik"
+        ]
+      },
+      {
+        "title": "Sicherheitsbedrohung für Juden und Amerikaner in Deutschland",
+        "timestamp_range": "01:01:56 - 01:02:28",
+        "theme_description": "Sicherheitslage und präventive Maßnahmen gegen mögliche iranische Vergeltungsanschläge in Deutschland.",
+        "question_asked": "Im Kontext der Diskussion über die Terrorlistung der Revolutionsgarden erwähnt Mayer selbstständig die Sicherheitsbedrohungen in Deutschland und deren Ausmaß.",
+        "question_intent": "Kein direkter Anlass; Eigeninitiative von Mayer zu Sicherheitsfragen.",
+        "position": "Mayer weist auf akute Sicherheitsrisiken in Deutschland hin. Er verweist auf 'mehrere Tausend Personen, die der Hisbollah nahestehen' (laut Sicherheitsbehörden) und betont die Notwendigkeit, 'aufmerksam zu sein, was die Bedrohung von jüdischen und amerikanischen Einrichtungen in Deutschland angeht'. Dies ist mit Blick auf die 'veränderte Lage im Nahen Osten' besonders relevant geworden.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mayer führt unpromptiert ein relevantes Sicherheitsthema ein und bietet konkrete Zahlen sowie eine begründete Einschätzung der Lageänderung.",
+        "concrete_statements": [
+          "Wir haben auf Aussagen der Sicherheitsbehörden mehrere Tausend Personen, die der Hisbollah nahestehen",
+          "Wir haben gewisse Bedrohungssituationen aufgrund der veränderten Lage im Nahen Osten",
+          "Es geht darum, aufmerksam zu sein, was die Bedrohung von jüdischen und amerikanischen Einrichtungen in Deutschland angeht"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben auf Aussagen der Sicherheitsbehörden mehrere Tausend Personen, die der Hisbollah nahestehen. Vor dem Hintergrund haben wir gewisse Bedrohungssituationen, auch aufgrund der veränderten Lage im Nahen Osten.",
+            "timestamp": "01:02:28",
+            "context": "Einführung von Sicherheitsaspekten der neuen Lage nach Khameneis Tod."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Innere Sicherheit",
+          "Terrorismus-Prävention",
+          "Hisbollah-Aktivitäten in Deutschland",
+          "Schutz von Minderheiten"
+        ]
+      },
+      {
+        "title": "Merz-Trump-Treffen und transatlantische Beziehungen",
+        "timestamp_range": "01:03:28 - 01:03:59",
+        "theme_description": "Bewertung des anstehenden Treffens zwischen Friedrich Merz und Donald Trump und dessen strategische Bedeutung.",
+        "question_asked": "Louis Klamroth fragt, mit welchem Ziel Friedrich Merz morgen mit Trump zusammentrifft und was er da erreichen kann.",
+        "question_intent": "Klamroth möchte wissen, welche deutschen Interessen Merz in dem Gespräch vertreten sollte und ob Mayer das Treffen für sinnvoll hält.",
+        "position": "Mayer sieht das Treffen positiv: 'Ich glaube, dass das gut ist.' Er begründet dies mit der Notwendigkeit gegenseitiger Abstimmung: 'Es ist wichtiger denn je, dass wir uns der gegenseitigen Abstimmung versichern.' Mayer lobt auch das Verhältnis zwischen Merz und Trump als 'gut' und hebt dies als Unterschied zu Merz' Vorgänger hervor. Dies sei 'auch im deutschen Interesse'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mayer beantwortet die Frage direkt mit einer klaren Bewertung (positiv) und begründet diese mit strategischen Überlegungen zur transatlantischen Koordination.",
+        "concrete_statements": [
+          "Das ist gut",
+          "Es ist wichtiger denn je, dass wir uns der gegenseitigen Abstimmung versichern",
+          "Das Verhältnis der beiden ist gut",
+          "Das ist auch im deutschen Interesse"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass das gut ist. Es ist wichtiger denn je, dass wir uns der gegenseitigen Abstimmung versichern.",
+            "timestamp": "01:03:28",
+            "context": "Bewertung des Merz-Trump-Treffens."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Deutsch-amerikanische Beziehungen",
+          "Außenpolitik unter Trump",
+          "Transatlantische Koordination"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "6 führende Generäle wurden neben Khamenei getötet",
+        "timestamp": "00:09:17"
+      },
+      {
+        "claim": "90 Millionen iranische Bürger wurden über Jahrzehnte vom Mullahregime geknechtet",
+        "timestamp": "00:13:00"
+      },
+      {
+        "claim": "Über 2.000 Hinrichtungen im Iran allein in diesem Jahr aufgrund von Protesten",
+        "timestamp": "00:13:30"
+      },
+      {
+        "claim": "Das Handelsvolumen Deutschlands mit dem Iran ist vernachlässigungswert und kleiner als das von Luxemburg",
+        "timestamp": "01:00:56"
+      },
+      {
+        "claim": "Es gibt mehrere Tausend Personen in Deutschland, die der Hisbollah nahestehen (laut Sicherheitsbehörden)",
+        "timestamp": "01:02:28"
+      },
+      {
+        "claim": "Der Iran hatte über 60 Prozent Urananreicherung erreicht",
+        "timestamp": "00:45:26"
+      }
+    ]
+  }
+}

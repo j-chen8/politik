@@ -1,0 +1,488 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-2-september-2025-100",
+    "video_id": "lanz-2025-09-02",
+    "politician": "Markus Söder",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "e465a9006b4c2d25",
+    "transcript_chars": 64421,
+    "caption_lines": 3091,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26791,
+    "tokens_out": 12439,
+    "cost_usd": 0.0355944,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 2,
+      "teilweise_antwort": 8,
+      "themenwechsel": 1,
+      "pivot_zum_gegenpunkt": 1,
+      "floskel_generisch": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.654Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Markus Söder diskutiert in dieser Markus Lanz-Sendung schwerpunktmäßig zu Erbschaftssteuern und Wehrpflicht. Er wirkt sich selbstbewusst, argumentativ und bereit zu intensiven Debatten, verteidigt die CSU-Position zur Steuersenkung energisch und begründet die geplante Wehrpflicht mit der gewandelten Sicherheitslage in Europa.",
+    "themes": [
+      {
+        "title": "Verhältnis zu Friedrich Merz und CDU-Zusammenarbeit",
+        "timestamp_range": "00:02:13 - 00:03:35",
+        "theme_description": "Markus Söder bewertet sein aktuelles Verhältnis zu CDU-Vorsitzendem Friedrich Merz nach einem heutigen Gespräch.",
+        "question_asked": "Markus Lanz fragt Söder zunächst, wann er zuletzt mit Friedrich Merz gesprochen hat, und später, wie er sein Verhältnis zu Merz aktuell beschreiben würde.",
+        "question_intent": "Markus Lanz möchte verstehen, wie stabil und konstruktiv die Zusammenarbeit zwischen CSU und CDU unter den neuen Vorsitzenden ist.",
+        "position": "Söder beschreibt das Verhältnis zu Merz als \"das beste Verhältnis, was ich jemals zu einem CDU-Vorsitzenden hatte\". Er betont, dass sie nicht immer einer Meinung sein müssen, aber zu guten Ergebnissen kommen. Er charakterisiert Merz als konservativ und wirtschaftsfreundlich, was \"ganz gut\" zur CSU passe. Merz habe \"einen guten Einblick in Bayern\" und fühle sich bei der CSU wohl. Söder beschließt: \"Ich bin sehr zufrieden in der Zusammenarbeit.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Söder antwortet direkt auf beide Fragen: das heutige Gespräch mit Merz wird erwähnt, und das Verhältnis wird konkret positiv und differenziert eingeordnet. Die Antwort enthält substanzielle Argumente zur Passfähigkeit der Politik.",
+        "quotes": [
+          {
+            "text": "Es ist das beste Verhältnis, was ich jemals zu einem CDU-Vorsitzenden hatte.",
+            "timestamp": "00:02:47",
+            "context": "Söder bewertet sein persönliches Verhältnis zu Merz im historischen Vergleich."
+          },
+          {
+            "text": "Friedrich Merz ist kein besonders linker in der CDU, sondern eher konservativ. Es Wirtschaft freundlich, das passt bei uns ganz gut mit der CSU.",
+            "timestamp": "00:03:13",
+            "context": "Söder erklärt, warum die politische Ausrichtung Merz' zur CSU kompatibel ist."
+          }
+        ],
+        "concrete_statements": [
+          "Söder hat heute Mittag mit Merz gesprochen",
+          "Söder beurteilt das Verhältnis als das beste zu einem CDU-Vorsitzenden",
+          "Merz ist konservativ und wirtschaftsfreundlich",
+          "Merz hat Einblick in Bayern und fühlt sich dort wohl"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "CDU-CSU-Verhältnis",
+          "Führungspersonalien"
+        ]
+      },
+      {
+        "title": "Koalitionsklima und aktuelle Herausforderungen",
+        "timestamp_range": "00:03:35 - 00:04:30",
+        "theme_description": "Söder charakterisiert das Klima in der Koalition und nennt externe Herausforderungen.",
+        "question_asked": "Markus Lanz fragt Söder, wie er das Klima in der Koalition beschreiben würde.",
+        "question_intent": "Markus Lanz möchte wissen, ob die Koalition stabil läuft oder ob es Spannungen gibt.",
+        "position": "Söder vergleicht den Start mit einem Fußballspiel, das lange führte, dann aber unnötige Gegentore bekam. Die Richterwahl sei emotional schwierig gewesen, doch es gehe \"auf dem Weg der Besserung\". Größere Herausforderungen seien außenpolitischer Natur (Friedensgefahren), wirtschaftliche Probleme, US-Zölle und Druck in der Automobilindustrie. Söder betont, dass Hetzer \"von rechts und manchmal auch von links\" versuchen, Profit aus der Situation zu schlagen. Er konstatiert: \"Wir haben den Zwang, erfolgreich zu sein.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Söder beantwortet die Frage nach dem Koalitionsklima konkret und stellt es in den Kontext von internen und externen Herausforderungen. Er liefert eine bewertende Aussage (\"auf dem Weg der Besserung\") mit detaillierten Gründen.",
+        "quotes": [
+          {
+            "text": "Der Start war sehr gut. Ein bisschen wie bei einem Fußballspiel, wenn du lange führst du dein Kassi ist in den letzten Minuten unnötige Gegentore, dass mit der Richterwahl war natürlich emotional schwierig. Aber ich habe das Gefühl, es ist auf dem Weg der Besserung.",
+            "timestamp": "00:03:41",
+            "context": "Söder beschreibt den bisherigen Verlauf der Koalition."
+          }
+        ],
+        "concrete_statements": [
+          "Koalitionsstart war sehr gut",
+          "Richterwahl war emotional schwierig",
+          "Koalition befindet sich auf dem Weg der Besserung",
+          "Externe Herausforderungen (Frieden, Wirtschaft, Zölle) üben Druck aus"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Geopolitik",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer und Steuerwettbewerb zwischen Ländern",
+        "timestamp_range": "00:04:44 - 00:07:10",
+        "theme_description": "Söder tritt für Senkung oder Abschaffung der Erbschaftssteuer ein und lehnt SPD-Forderungen nach Steuerhöhungen ab.",
+        "question_asked": "Markus Lanz fragt, wie Söder findet, dass die Union um eine Steuersenkung kommt, während Merz dies für weniger dringend hält als andere Themen. Später: Markus Lanz fragt kritisch nach, ob Söders Argument der Ungerechtigkeit auch für große Vermögen gelten sollte.",
+        "question_intent": "Markus Lanz möchte verstehen, warum Söder Erbschaftssteuersenkung zur Priorität macht und wie konsistent sein Gerechtigkeitsargument ist.",
+        "position": "Söder argumentiert, dass die SPD-Forderung nach Steuerhöhungen das Thema zu einem \"Topthema\" macht. Er verweist auf unfaire Belastung in Bayern: Erben müssen dort \"im Vergleich immens Vorteile zahlen\", woraufhin Familienangehörige ihre Häuser verkaufen müssen. Söder kritisiert, dass die Erbschaftssteuer \"die einzige Steuer auf versteuerten Geldes\" ist. Bayern erwirtschaftet ein Drittel des Erbschaftssteueraufkommens, worauf andere Länder zugreifen. Er plädiert für einen \"Steuerwettbewerb in Deutschland\", bei dem Länder selbst entscheiden, ob sie die Steuer erhöhen: \"da habe ich kein Problem, da machen endlich einen Steuerwettbewerb in Deutschland und die Soziländer können ihn verdoppeln.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder beantwortet die erste Teilfrage zu Steuerhöhungen konkret (Nein, wir sind dagegen). Bei der Kritik zur Ungerechtigkeit gegenüber großen Vermögen weicht er teilweise aus – er gibt zu, dass Milliardäre \"natürlich auch\" die Steuer zahlten, fokussiert dann aber wieder auf mittelständische Immobilienbesitzer, nicht auf die gesamte Frage der progressiven Besteuerung.",
+        "quotes": [
+          {
+            "text": "Mit der CSU wird es keine Steuererhöhungen geben, auch wenn die CDU jetzt in letzter Zeit damit kam.",
+            "timestamp": "00:04:44",
+            "context": "Söder signalisiert Unabhängigkeit der CSU bei Steuerthemen."
+          },
+          {
+            "text": "Das ist unfair. Es führt dazu, dass bei uns reihenweise Familienangehörige ihrer Häuser, da geht es nicht um Luxuserben, verkaufen müssen um die Erbschaftssteuer zu bezahlen.",
+            "timestamp": "00:05:08",
+            "context": "Söder illustriert mit einem Beispiel die Ungerechtigkeit in Bayern."
+          }
+        ],
+        "concrete_statements": [
+          "CSU wird keine Steuererhöhungen mittragen",
+          "Erbschaftssteuer in Bayern belastet Mittelständler unfair",
+          "Bayern erwirtschaftet ein Drittel des Erbschaftssteueraufkommens",
+          "Söder plädiert für Steuerwettbewerb zwischen Ländern"
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftsteuerreform",
+          "Bundesländerfinanzen",
+          "Steuerverteilungsgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Gerechtigkeit bei Erbschaftssteuer und großen Vermögen",
+        "timestamp_range": "00:08:12 - 00:12:11",
+        "theme_description": "Markus Lanz drängt Söder darauf, auch große Vermögen unter Gerechtigkeitsgesichtspunkten zu diskutieren; Söder betont, dass die Erbschaftssteuer insgesamt unfair ist und nennt Steuersenkungen generell wichtig.",
+        "question_asked": "Markus Lanz spricht von regionalen Unterschieden (München vs. Leipzig) und fragt mehrfach nach, warum Söder die Ungerechtigkeit bei kleinen Immobilienbesitzern sieht, aber nicht bei großen Vermögen, insbesondere beim Thema Verschonungsregeln ab 26 Millionen Euro. Lanz erinnert auch daran, dass Söder selbst Finanzminister war und damals solche Regeln mit verhandelt hat.",
+        "question_intent": "Markus Lanz möchte Söder in einen logischen Widerspruch treiben: Er spricht von Gerechtigkeit bei mittleren Vermögen, schont aber große Vermögen durch Loopholes.",
+        "position": "Söder argumentiert, dass die regionalen Unterschiede ein echtes Gerechtigkeitsproblem darstellen. Ein Vater mit zwei Kindern, der in Leipzig ein Haus erbt und eines in München, zahlt in München ~500.000 Euro Erbschaftssteuer gegenüber ~20.000 in Leipzig. Söder betont: \"Das kann es sich nicht leisten. Das ist eine Ungerechtigkeit. Es wird immer gesagt erhöhen, ich sage reduzieren.\" Zur Frage der großen Vermögen antwortet Söder, dass \"erfolgreiche Leute in Deutschland\" substanzielle Steuern zahlen, und verweist auf hohe Einkommensteuersätze. Bei den Verschonungsregeln ab 26 Millionen gibt Söder zu, dass er selbst nicht allein verhandelt hat (\"Nicht immer gegen Horst Seehofer\") und dass mehrere föderale Akteure involviert waren. Er behauptet nicht, dass die Regelung gerecht ist, sondern verteidigt sich eher procedural. Generell sagt er: \"Ich bin generell für Steuersenkungen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder liefert auf die regionale Ungerechtigkeit konkrete Zahlenbeispiele und eine klare Position (senken). Auf die kritische Frage zu Großvermögen und Verschonungsregeln weicht er aus: Er leugnet nicht deren Existenz, aber argumentiert allgemein für Steuersenkungen statt sich zur spezifischen Ungerechtigkeit bei 26-Millionen-Grenzen zu äußern.",
+        "quotes": [
+          {
+            "text": "Wenn ein Vater mit zwei Kindern ein Haus in Leipzig vererbt und eins in München, dann zahlt das Kind in Leipzig für ungefähr das gleiche ungefähr 20.000 Erbschaftssteuer und das in München muss fast 500.000 zahlen. Das kann es sich nicht leisten. Das ist eine Ungerechtigkeit.",
+            "timestamp": "00:08:12",
+            "context": "Söder illustriert mit konkreten Zahlen das regionale Ungleichgewicht."
+          },
+          {
+            "text": "Es ist die einzige Steuer auf versteuerten Geld.",
+            "timestamp": "00:07:26",
+            "context": "Söder begründet die Kritik an der Erbschaftssteuer grundsätzlich."
+          }
+        ],
+        "concrete_statements": [
+          "Erbschaftssteuersätze unterscheiden sich regional extrem",
+          "Söder hat nicht allein bei Verschonungsregeln verhandelt",
+          "Söder verteidigt grundsätzliche Steuersenkungen",
+          "Söder räumt ein, dass das Erbschaftssteuerrecht insgesamt nicht gerecht ist"
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftsteuerreform",
+          "Verfassungsgerichtsbarkeit",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Länderfinanzausgleich und Bayerns Positon",
+        "timestamp_range": "00:14:35 - 00:20:06",
+        "theme_description": "Söder kritisiert den Länderfinanzausgleich als unfair und verwendet drastische Worte; Markus Lanz verweist auf Bayerns historische Profiteure aus dem Ausgleich.",
+        "question_asked": "Markus Lanz hinterfragt Söders Kritik: Bayern habe 30 Jahre von wohlhabendem Ruhrgebiet profitiert; wie kann Söder jetzt sagen, Bayern sei das Opfer? Später fragt Lanz nach spezifischen Investitionen in Rüstung und deren Verteilung.",
+        "question_intent": "Markus Lanz möchte Söder widerlegen, dass Bayern sich moralisch als Opfer darstellen kann, wenn es historisch selbst profitiert hat.",
+        "position": "Söder nennt den Länderfinanzausgleich \"eine große Sauerrei und der größte Scheiß\". Bayern zahlt 3,8 Milliarden Euro jährlich aus und muss laut Söder sogar die Schuldenbremse nutzen, um das zu finanzieren. Er fragt: \"Das kann doch nicht sein.\" Söder argumentiert, dass andere Bundesländer (z.B. Berlin) sich Dinge leisten, die Bayern nicht kann. Zur historischen Argumenttion von Lanz sagt Söder: \"Lieber Herr Lanz, Sie sind sonst immer super informiert, aber bei dem Thema schwimmen sie herum.\" Er wirft ein, dass Zeit vergangen sei und frühere Zahlungen nicht einfach \"aufgerechnet\" werden könnten. Bei Rüstungsausgaben räumt Söder ein, dass vieles in den Norden gehe (Werften, Schiffe), Bayern habe aber auch gute Unternehmen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder kritisiert den Länderfinanzausgleich energisch und nennt konkrete Zahlen (3,8 Mrd.). Auf Lanz' historisches Argument (Bayern hat früher profitiert) antwortet Söder mit einer proceduralen Gegenkritik (nicht einfach Zahlungen aus verschiedenen Epochen verrechnen), nicht mit einer sachlichen Antwort auf die Gerechtigkeitsfrage selbst.",
+        "quotes": [
+          {
+            "text": "Der Länderausgleich ist eine große Sauerrei, und der größte Scheiß, Entschuldigung, was es in Deutschland gibt.",
+            "timestamp": "00:15:36",
+            "context": "Söder drückt drastisch sein Unverständnis für den Finanzausgleich aus."
+          },
+          {
+            "text": "Lieber Herr Lanz, Sie sind sonst immer super informiert, aber bei dem Thema schwimmen sie herum.",
+            "timestamp": "00:20:54",
+            "context": "Söder kritisiert Lanz' historische Argumentation."
+          }
+        ],
+        "concrete_statements": [
+          "Bayern zahlt 3,8 Milliarden Euro jährlich aus dem Länderfinanzausgleich",
+          "Bayern muss Schuldenbremse nutzen um Ausgleichszahlungen zu finanzieren",
+          "Söder lehnt den Ausgleich als unwirtschaftlich und unfair ab",
+          "Bayern hat höchsten Bevölkerungszuwachs (16 %)"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Länderfinanzausgleich",
+          "Bundesverfassungsgericht"
+        ]
+      },
+      {
+        "title": "Kritik an Robert Habeck und Wirtschaftspolitik",
+        "timestamp_range": "00:22:05 - 00:26:59",
+        "theme_description": "Söder kritisiert Robert Habeck als Wirtschaftsminister scharf und lehnt Versuche ab, die Wirtschaftskrise strukturellen Faktoren zuzuordnen.",
+        "question_asked": "Markus Lanz verweist auf Otto Ellerbrocks Kritik an der Verrohrung des Tons und erinnert daran, dass Söder \"Gute Reise\" zu Habeck sagte. Später argumentiert Lanz, dass Söder Habeck pauschale Kritik vorbringt, während Söder selbst fast 80 % von Habecks Wirtschaftsprogramm übernimmt. Lanz und Lehmann betonen, dass die Wirtschaftskrise strukturelle Ursachen hat (billigem Gas, fehlender Vorsorge bei China).",
+        "question_intent": "Markus Lanz möchte Söder vorwerfen, dass er Habeck persönlich angreift, während er selbst ähnliche Positionen vertritt; außerdem möchte er Söder zwingen, die Komplexität der Wirtschaftskrise anzuerkennen.",
+        "position": "Söder verteidigt sich gegen die Kritik am Ton (\"Gute Reise\" sei \"eine sehr freundliche und liebevolle Verabschiedung\") und weigert sich, Habeck von Verantwortung freizusprechen. Er sagt: \"Er wird den Frieden finden mit dem, was in der Zeit war, aber kein guter Wirtschaftsminister, er ist abgewählt worden.\" Söder behauptet, dass Habeck schlecht wirtschaftete und sich eine \"der schlechtesten Bilanzen\" einer Wirtschaftsministers hat. Er wirft Habeck \"Mist\" vor und weist auf den Automobilmarkt hin: \"Der Automobilmarkt ist wann zusammengebrochen? Das war eine Entscheidung von Herr Habeck.\" Söder lehnt ab, dass externe Faktoren (Putin, Trump) allein schuld sind, und sagt: \"Es geht nicht um Richtig oder Falsch bei den AKWs, aber der Zeitpunkt war falsch.\" Er behauptet, dass das aktuelle Wirtschaftsprogramm \"fast 80 % von Habeck\" sei und fragt, ob das \"nur aus Schulden\" bestehe.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Die Frage ist, ob Söders persönlicher Ton sich von Habecks unterscheidet und ob Söder strukturelle Wirtschaftsprobleme anerkennt. Söder antwortet nicht auf die Tonkritik, sondern verteidigt die Richtigkeit seiner Habeck-Kritik. Auf die strukturelle Komplexität antwortet er, dass Habeck \"Mist gebaut\" hat – eine simplifizierende Gegenposition, nicht eine Auseinandersetzung mit der Argumentlinie.",
+        "quotes": [
+          {
+            "text": "Gute Reise, für das was Herr Habeck gesagt hatte, eine sehr freundliche und liebevolle Verabschiedung.",
+            "timestamp": "00:22:41",
+            "context": "Söder verteidigt seinen Ton gegenüber Habeck."
+          },
+          {
+            "text": "Er wird den Frieden finden mit dem, was in der Zeit war, aber kein guter Wirtschaftsminister, er ist abgewählt worden.",
+            "timestamp": "00:23:07",
+            "context": "Söder fasst sein Urteil über Habeck zusammen."
+          },
+          {
+            "text": "Sie wollen einfach nicht zugeben, dass Herr Habeck Mist gebaut hat.",
+            "timestamp": "00:25:51",
+            "context": "Söder pocht auf seiner Kritik an Habecks Verantwortung."
+          }
+        ],
+        "concrete_statements": [
+          "Söder bewertet Habeck als schlechten Wirtschaftsminister",
+          "Söder macht Habeck für Automobilmarkt-Zusammenbruch verantwortlich",
+          "Söder lehnt die Absolution Habecks durch externe Faktoren ab",
+          "Söder sagt, dass das neue Wirtschaftsprogramm fast identisch mit Habecks ist"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Energiewende",
+          "Automobilindustrie"
+        ]
+      },
+      {
+        "title": "Ton in der Politik und generationenübergreifender Dialog",
+        "timestamp_range": "00:29:35 - 00:32:16",
+        "theme_description": "Söder wird konfrontiert mit der Kritik, dass ein rauer Ton zwischen Politikern der Demokratie schadet; er differenziert zwischen Leidenschaft und Populismus und lobt die SPD-Juso Otto Ellerbrock.",
+        "question_asked": "Otto Ellerbrock kritisiert, dass es permanente verbale Attacken gibt und dass es auch darum geht, sich nicht zu mögen und nicht bereit zu sein, miteinander zu arbeiten. Später vergleicht er das mit der AfD. Markus Lanz verweist auf frühere Politikergenerationen, die sich noch größer \"um die Ohren gehauen\" haben.",
+        "question_intent": "Otto und Markus möchten Söder anhalten, den Ton zu mäßigen und Bereitschaft zur Zusammenarbeit zu signalisieren.",
+        "position": "Söder antwortet zunächst mit einer Gegenfrage zu Ottos SPD-Engagement und verweist darauf, dass auch die Jusos \"kein Musterbeispiel für den Umgang in der eigenen Partei\" seien. Er argumentiert, dass \"Leidenschaft\" in der Politik nötig ist: \"Wenn wir alle nur das gleiche sagen und reden und Angst haben, das falsche Wort zu finden, dann werden wir nicht erreichen.\" Söder differenziert: Populär zu sein ist gut (\"Populär zu sein ist das Ziel von uns allen\"), Populismus dagegen ist \"wenn man bewusst Meinungen versucht zu manipulieren\". Söder erklärt, dass die AfD-Brandmauer deswegen wichtig ist, und betont, dass die CSU bereit sei, \"Manche Dinge neu zu denken und Lösungen zu finden.\" Er betont am Ende: \"Ich bin nicht so zart beseitigt, das, was wir hier machen, dass es total harmlos.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder antwortet auf die Tonkritik nicht mit Reue oder Zusage einer Mäßigung, sondern mit einer Gegenposition: dass Leidenschaft nötig ist und dass die frühere Generation rauere Töne hatte. Er lenkt ab, indem er Jusos kritisiert. Eine volle Antwort würde Söders Position zu Zusammenarbeit über Parteigrenzen hinweg oder zu einem moderateren Ton klar machen.",
+        "quotes": [
+          {
+            "text": "Leidenschaft. Wenn wir alle nur das gleiche sagen und reden und Angst haben, das falsche Wort zu finden, dann werden wir nicht erreichen.",
+            "timestamp": "00:30:37",
+            "context": "Söder betont die Notwendigkeit von Leidenschaft in der Politik."
+          },
+          {
+            "text": "Populismus ist, wenn man bewusst Meinungen versucht zu manipulieren. Da bin ich bei Ihnen.",
+            "timestamp": "00:30:49",
+            "context": "Söder definiert Populismus und grenzt es von legitimer politischer Aktivität ab."
+          }
+        ],
+        "concrete_statements": [
+          "Söder hält Leidenschaft in der Politik für notwendig",
+          "Söder differenziert zwischen Populismus (Manipulation) und populärer Politik (Nähe zu Menschen)",
+          "CSU hält an Brandmauer zu AfD fest",
+          "Söder ist bereit, \"Dinge neu zu denken\""
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsvertrag",
+          "Brandmauer AfD",
+          "Parlamentarische Kultur"
+        ]
+      },
+      {
+        "title": "Soziale Gerechtigkeit und Bürgergeld-Debatte",
+        "timestamp_range": "00:33:04 - 00:37:02",
+        "theme_description": "Markus Lanz wirft auf, dass bei der Gerechtigkeitsdebatte die soziale Komponente zentral ist; Söder konzentriert sich auf Mütterrente statt auf breite Umverteilung.",
+        "question_asked": "Markus Lanz benennt die soziale Frage als zentral für Wahlentscheidungen (Amerika-Beispiel Trump) und fragt, warum Söder nicht auch auf hohe Vermögen geht, statt kleine Sparer zu schützen. Später: Warum nicht Vermögensbesteuerung statt Einkommensbelastung?",
+        "question_intent": "Markus Lanz möchte Söder zeigen, dass echte Gerechtigkeitspolitik auch bedeutet, oben zu besteuern, nicht nur oben zu entlasten.",
+        "position": "Söder antwortet, dass das Gerechtigkeitsgefühl der Deutschen \"weniger tangiert\" ist durch hohe Vermögen – stattdessen sind Maßstöbereiche von Reichtum der sogenannten \"Kapitalismusflucht\". Er nennt das Bürgergeld als größere Gerechtigkeitsforderung: Viele Menschen hätten den Eindruck, dass Arbeit \"am Ende genauso viel wert ist, wie wenn ich keine Arbeit leiste.\" Er illustriert: Wer \"lange soziale Kasten einen gezahlt hat, dass gleiche oder weniger bekommt, als man den noch nie eingezahlt hat\". Söder benennt auch die \"Migrationsfrage\" als zentral und hebt dann die Mütterrente hervor – nicht als Großprogramm, sondern als Beispiel von Gerechtigkeit für Frauen, die Kinder großzogen und weniger Rente bekommen als Zugewanderte mit Grundsicherung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder spricht die soziale Frage an, lenkt die Debatte aber von Vermögensbesteuerung auf Bürgergeld und Migration um. Er antwortet auf die Frage zu hohen Vermögen indirekt (\"weniger tangiert\"), nicht direkt. Die Antwort enthält substanzielle Argumente, aber zu einem verschobenen Thema.",
+        "quotes": [
+          {
+            "text": "dass viele Leute den Eindruck haben, dass die Arbeit, die ich leiste, am Ende genauso viel wert ist, wie wenn ich keine Arbeit leiste.",
+            "timestamp": "00:34:32",
+            "context": "Söder benennt ein zentrales Gerechtigkeitsgefühl, das er für die SPD-Verluste verantwortlich macht."
+          },
+          {
+            "text": "Dass Frauen, ein Leben lang Kinder hochgezogen haben und am Ende weniger bekommen als jemand, der neuem Land ist und eine Wohnung gestellt bekommt. Ich bin dafür, an dieser Stelle eine Justierung vorzunehmen.",
+            "timestamp": "00:35:02",
+            "context": "Söder exemplifiziert mit Mütterrente ein Gerechtigkeitsproblem."
+          }
+        ],
+        "concrete_statements": [
+          "Söder sieht Bürgergeld als größere Gerechtigkeitsfrage als Vermögensbesteuerung",
+          "Söder kritisiert, dass Arbeit und Nichtarbeit gleich bewertet werden",
+          "Söder fordert Justierung bei der Mütterrente",
+          "Migration ist für Söder Teil der Gerechtigkeitsfrage"
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Rentenversicherung",
+          "Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und militärische Stärke",
+        "timestamp_range": "00:42:38 - 00:51:27",
+        "theme_description": "Söder befürwortet ein Wehrpflicht-Modell und begründet dies mit gestiegenen Sicherheitsanforderungen; Otto Ellerbrock kritisiert, dass die Jugend belastet wird.",
+        "question_asked": "Markus Lanz fragt, ob Söder eine Wehrpflicht will, nicht nur ein Wehrdienst (wie das schwedische Modell). Später: Wie war Söders Zeit bei der Bundeswehr, und was hält er grundsätzlich von Dienstverpflichtung?",
+        "question_intent": "Markus Lanz möchte klären, was genau Söders Position ist und ob er die Kritik der Jugend ernst nimmt.",
+        "position": "Söder sagt, dass das schwedische Modell zuerst kommen soll, betont aber, dass \"wir eine andere außenpolitische Situation haben als die letzten 30 Jahre.\" Deutschland müsse in der NATO und für die europäische Sicherheit mehr Verantwortung übernehmen. Er räumt ein, dass die USA nicht mehr in gleicher Weise verteidigen werden, worauf Deutschland mehr Investitionen und \"mehr Soldaten und Soldatinnen\" braucht. Der Fragebogen sei der erste Schritt, aber \"am Ende muss man beschließen, wie viele Soldaten und Soldatinnen bräuchte man\". Söder gibt zu, dass bei freiwilliger Meldung \"wahrscheinlich... mehr eingezogen\" werden müssten. Zur eigenen Bundeswehr-Zeit sagt er, dass er \"drei Sachen gemacht\" hat (Wache, Lkw fahren, technischer Dienst) und davon \"profitiert\" hat von \"Gemeinschaft und Zusammenleben\". Er verteidigt das Grundgesetz, das die \"theoretische Möglichkeit zur Einschränkung der Freiheit\" für \"existenziellen Schutz unserer Demokratie\" erlaubt. Söder betont: \"Es geht um die Frage des wir.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder antwortet auf die Frage nach Wehrpflicht mit einer gradualistischen Position (erst freiwillig, dann notwendigerweise Zwang). Er begründet diese mit Sicherheitslage und grundgesetzlichen Prinzipien. Auf Ottos Kritik der Jugend, dass sie nicht gefragt wurde, antwortet Söder mit grundsätzlicher Argumentation, nicht auf die spezifische Kritik zum fehlenden Dialog mit Jugendlichen.",
+        "quotes": [
+          {
+            "text": "Warum gibt unser Grundgesetz die theoretische Möglichkeit zur Einschränkung der Freiheit, und zwar wenn es zum existenziellen Schutz unserer Demokratie ist. Wenn wir die Anzahl der Soldatinnen und Soldaten nicht bräuchten, dann wäre es nicht gerechtfertigt.",
+            "timestamp": "00:49:56",
+            "context": "Söder rechtfertigt Wehrpflicht verfassungsrechtlich."
+          },
+          {
+            "text": "Es geht um die Frage des wir. Ich war bei der Bundeswehr, ich habe auch einen Beitrag erbracht.",
+            "timestamp": "00:54:03",
+            "context": "Söder beschließt sein Argument mit einer Appell an Solidarität und Generationalität."
+          }
+        ],
+        "concrete_statements": [
+          "Söder befürwortet das schwedische Modell als ersten Schritt",
+          "Söder erwartet, dass freiwillige Meldungen nicht ausreichen",
+          "Söder rechtfertigt Wehrpflicht mit geänderter Sicherheitslage",
+          "Söder betont: \"Es geht um Verteidigung, nicht um das Ich\""
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Verteidigungspolitik",
+          "NATO",
+          "Bundeswehr-Reform"
+        ]
+      },
+      {
+        "title": "Extremismus in der Bundeswehr und Attraktivität des Diensts",
+        "timestamp_range": "01:07:02 - 01:09:44",
+        "theme_description": "Anna Lehmann kritisiert mangelnde Attraktivität und Extremismus-Vorwürfe; Söder wehrt ab und sagt, das könne man \"nicht immer\" tun.",
+        "question_asked": "Anna Lehmann schlägt vor, die Bundeswehr attraktiver zu machen, u.a. durch Aufarbeitung von Extremismus und Diversity; Söder widerspricht der Grundprämisse. Otto Ellerbrock wirft ein, dass Zivildienst und Pflege auch Probleme sind – der Fokus liegt zu sehr auf Bundeswehr.",
+        "question_intent": "Anna und Otto möchten argumentieren, dass Personalprobleme der Bundeswehr durch positive Maßnahmen, nicht durch Zwang, gelöst werden könnten.",
+        "position": "Söder lehnt ab, der Bundeswehr Extremismus zu unterstellen: \"Bitte unterstellen Sie nicht der Bundeswehr, dass sie extremistisch sei, das ist doch absurd.\" Er sagt, dass \"alles, was dort passiert, wird verfolgt.\" Söder betont, dass man \"nicht immer über die Bundeswehr\" auf diese Weise reden kann und dass \"viele Soldaten, die das sehen\" sich nicht vertreten fühlen würden. Er räumt ein, dass Bundeswehr eine \"Perspektive bieten\" kann (wie Lkw-Führerschein), und verweist auf die Lage in der Ukraine, wo Militärdienst ein existenzielles Anliegen sei. Söder kritisiert die Idee, dass Bundeswehr einfach ein \"Arbeitgeber\" sei, der durch Marketing attraktiver wird – das verfehle den Kern.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Lehmanns Frage ist konstruktiv: Wie macht man die Bundeswehr attraktiver? Söder antwortet nicht mit Gegenvorschlägen, sondern mit einer Abwehr (keine Extremismus-Vorwürfe) und einer Gegenpositon (Bundeswehr ist kein Arbeitgeber, sondern ein Dienst an der Demokratie).",
+        "quotes": [
+          {
+            "text": "Bitte unterstellen Sie nicht der Bundeswehr, dass sie extremistisch sei, das ist doch absurd.",
+            "timestamp": "01:07:02",
+            "context": "Söder wehrt ab und grenzt sich von Lehmanns Framing ab."
+          },
+          {
+            "text": "Ich glaube nicht, dass die Bundeswehr irgend ein Arbeitgeber ist. Sie kann eine Perspektive bieten.",
+            "timestamp": "01:08:01",
+            "context": "Söder korrigiert das Verständnis von Bundeswehr."
+          }
+        ],
+        "concrete_statements": [
+          "Söder lehnt Extremismus-Vorwürfe gegen Bundeswehr ab",
+          "Söder sagt, dass Extremismus-Fälle verfolgt werden",
+          "Söder sieht Bundeswehr nicht als Arbeitgeber, sondern als Dienst",
+          "Söder verweist auf Ukraine als Beispiel der Notwendigkeit"
+        ],
+        "related_bundestag_topics": [
+          "Bundeswehr-Reform",
+          "Extremismus in den Sicherheitskräften",
+          "Kasernenkultur"
+        ]
+      },
+      {
+        "title": "Bildung und Schulqualität in Bayern",
+        "timestamp_range": "01:11:34 - 01:11:58",
+        "theme_description": "Otto Ellerbrock kritisiert mangelnde Investitionen in Bildung und Lehrkräftemangel; Söder kontert mit Bayern-Rankings.",
+        "question_asked": "Otto sagt, dass zu wenig für Bildung getan wird, und benennt Lehrkräftemangel. Söder fragt zurück, warum Otto das sagt.",
+        "question_intent": "Otto möchte die Schule als Gegengewicht zu Wehrpflicht-Fokus benannt; Söder möchte einen Faktenceck.",
+        "position": "Söder antwortet, dass \"Bayern liegt in den Rankings so, dass wir die größte Zufriedenheit mit den Schulen habe.\" Er impliziert damit, dass Ottos Kritik nicht faktisch gedeckt ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder beantwortet Ottos Kritik mit einem Ranking-Verweis. Das ist eine teilweise Antwort, weil es nicht auf spezifische Probleme (Lehrkräftemangel) eingeht, sondern mit einer aggregierten Statistik kontert.",
+        "quotes": [
+          {
+            "text": "Bayern liegt in den Rankings so, dass wir die größte Zufriedenheit mit den Schulen habe.",
+            "timestamp": "01:11:50",
+            "context": "Söder antwortet auf Ottos Kritik zum Bildungssystem."
+          }
+        ],
+        "concrete_statements": [
+          "Bayern rangiert bei Schulzufriedenheit führend",
+          "Söder impliziert, dass Lehrkräftemangel kein besonderes Bayern-Problem ist"
+        ],
+        "related_bundestag_topics": [
+          "Bildungspolitik",
+          "Föderalismus",
+          "Lehrerkräftesicherung"
+        ]
+      },
+      {
+        "title": "Fragebogen-Katalog zur Wehrpflicht und Datenschutz",
+        "timestamp_range": "01:12:46 - 01:13:49",
+        "theme_description": "Otto Ellerbrock kritisiert die geplanten Fragebögen zur Erfassung von Wehrtauglichkeit als datenschutzproblematisch; Söder äußert sich nicht substantiell dazu.",
+        "question_asked": "Markus Lanz liest Swedish-Fragebogen-Beispiele vor (Alkoholkonsum, Mobbing, Depressionen); Otto kritisiert, dass das während Corona bei Datenschutz zu Aufschrei führte, jetzt aber akzeptiert wird. Söder wird nicht direkt gefragt.",
+        "question_intent": "Otto und Markus möchten zeigen, dass der Datenschutz-Standard inkonsistent angewendet wird und dass die Jugend damit rechnen muss, intime Daten zu teilen.",
+        "position": "Söder antwortet nicht auf diese Frage. Das Thema wird von Markus Lanz und Otto diskutiert, nicht mit Söder.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "floskel_generisch",
+        "match_reasoning": "Söder wird zu diesem Thema nicht direkt befragt und äußert sich nicht. Eine Bewertung ist daher nicht möglich.",
+        "quotes": [],
+        "concrete_statements": [],
+        "related_bundestag_topics": [
+          "Datenschutz",
+          "Wehrpflicht",
+          "Fragebogen-Design"
+        ]
+      },
+      {
+        "title": "Kriegsdienstverweigerung und Zivildienst",
+        "timestamp_range": "01:14:14 - 01:15:33",
+        "theme_description": "Otto Ellerbrock erklärt, dass er im Falle einer Wehrpflicht Kriegsdienstverweigerung in Anspruch nehmen würde; Söder akzeptiert das, kritisiert aber die Idee, Ältere auch zu verpflichten.",
+        "question_asked": "Markus Lanz fragt Otto, was er im Falle einer Wehrpflicht tun würde. Otto antwortet: Kriegsdienstverweigerung. Söder kritisiert dann die Idee der \"Sozialen Pflicht\" für Ältere.",
+        "question_intent": "Markus Lanz möchte verstehen, wie Otto reagieren würde; es geht um die praktische Umgang mit Optionen.",
+        "position": "Söder sagt zu Ottos Kriegsdienstverweigerung: \"Das ist o. k.\" und betont, dass \"jeder bei der Bundeswehr sich auch für sein Land einsetzt.\" Als Anna Lehmann die Idee einer \"Sozialen Pflicht\" für Ältere erwähnt, kritisiert Söder: \"Was ist denn das für eine Quatsch-Idee mit der Verpflichtung für Ältere. Die haben wirklich genug gearbeitet, jetzt machen Sie nicht auch noch die älteren runter.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Söder akzeptiert Kriegsdienstverweigerung, äußert sich aber nicht zur Substanz der Debatte über Altersgrenzen oder alternative Wege. Seine Kritik an der Idee ist eher emotionaler Natur (\"Quatsch-Idee\") als argumentativ.",
+        "quotes": [
+          {
+            "text": "Das ist o. k.",
+            "timestamp": "01:14:27",
+            "context": "Söder akzeptiert Ottos Kriegsdienstverweigerung."
+          },
+          {
+            "text": "Was ist denn das für eine Quatsch-Idee mit der Verpflichtung für Ältere. Die haben wirklich genug gearbeitet.",
+            "timestamp": "01:14:49",
+            "context": "Söder kritisiert die Idee der Altersverpflichtung."
+          }
+        ],
+        "concrete_statements": [
+          "Söder akzeptiert die Kriegsdienstverweigerung",
+          "Söder lehnt Verpflichtung für Ältere ab",
+          "Söder sagt, dass auch Zivildienst Beitrag leisten kann"
+        ],
+        "related_bundestag_topics": [
+          "Kriegsdienstverweigerung",
+          "Zivildienst",
+          "Generationengerechtigkeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Durchschnittspreis pro Quadratmeter in München ist fast 3000 Euro.",
+        "timestamp": "00:08:12"
+      },
+      {
+        "claim": "Der Durchschnittspreis pro Quadratmeter in Bremen, Leipzig oder Dortmund ist ungefähr 300 Euro.",
+        "timestamp": "00:08:12"
+      },
+      {
+        "claim": "Bayern erwirtschaftet ein Drittel des Erbschaftssteueraufkommens Deutschlands.",
+        "timestamp": "00:07:10"
+      },
+      {
+        "claim": "Bayern zahlt 3,8 Milliarden Euro jährlich in den Länderfinanzausgleich.",
+        "timestamp": "00:16:12"
+      },
+      {
+        "claim": "Bayern hat 16 % Zuwachs und ist das Land mit dem größten Zuwachs.",
+        "timestamp": "00:18:21"
+      },
+      {
+        "claim": "Ein bayerisches Unternehmen wird ungefähr 9 Millionen an Renten kosten (Mütterrente).",
+        "timestamp": "00:36:33"
+      }
+    ]
+  }
+}

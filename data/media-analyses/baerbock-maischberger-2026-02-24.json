@@ -1,0 +1,344 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYThjOThkODAtNzRhZC00NmY1LTg4OWYtNDBjMDEwMzU0NDNk",
+    "video_id": "maischberger-2026-02-24",
+    "politician": "Annalena Baerbock",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "cb037bbfa07aec3b",
+    "transcript_chars": 59960,
+    "caption_lines": 2200,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24017,
+    "tokens_out": 9313,
+    "cost_usd": 0.028232800000000002,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.675Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Annalena Baerbock tritt als Präsidentin der UN-Generalversammlung auf und wird von Sandra Maischberger zu ihrer Amtszeit befragt. Sie argumentiert für die regelbasierte internationale Ordnung der UN-Charta gegen Trumps Kritik am UN-System, verteidigt ihre feministische Außenpolitik als Außenministerin gegen den Vorwurf der Untätigkeit, und adressiert Fragen zur Olympiade, Viktor Orbán, den US-amerikanischen Veto-Handlungen und Deutschlands außenpolitischer Rolle. Der Ton ist sachlich-diplomatisch mit gelegentlich kritischen Untertönen zu Trump-Politik.",
+    "themes": [
+      {
+        "title": "Olympische Winterspiele und politische Neutralität",
+        "timestamp_range": "00:16:21 - 00:18:54",
+        "theme_description": "Baerbock bespricht die Frage, ob Sportler politische Statements bei Olympischen Spielen machen dürfen, am Beispiel eines ukrainischen Skeleton-Fahrers mit gedenk-Helm.",
+        "question_asked": "Sandra Maischberger erwähnt, dass Baerbock bei den Olympischen Winterspielen die Fackel trug und als Trampolinspringerin daran interessiert gewesen sein könnte. Sie verweist auf einen ukrainischen Skeleton-Fahrer, der einen Helm mit Bildern gefallener ukrainischer Sportler tragen wollte, aber ausgeschlossen wurde. Sie fragt, wie schwierig es für Baerbock ist, diese Entscheidung zu beurteilen.",
+        "question_intent": "War die Disqualifikation des ukrainischen Sporters richtig oder eine zu strikte Anwendung von Politische-Neutralität-Regeln?",
+        "position": "Baerbock erklärt, dass sie selbst nicht Trampolinspringerin auf Olympia-Niveau war und dass Trampolinspringen damals nicht olympisch war. Sie findet die Entscheidung 'schwierig zu beurteilen', da sie die genauen IOC-Regeln nicht kenne. Sie erwähnt, dass die neue IOC-Präsidentin (erste Frau nach 130 Jahren) die Entscheidung mit Tränen erklärte. Sie zieht eine Parallele zur Außenpolitik: Es gibt 'Gratwanderungen'. Sie betont, dass sie nicht weiß, wie andere Athleten behandelt wurden, und dass Sport das Prinzip verlangt, dass 'alle sich an Regeln halten'. Sie hebt die 'wunderbar Bilder' hervor, wenn Menschen aus verfeindeten Ländern sich umarmen, und argumentiert, dass 'eine Welt ohne Regeln in der Anarchie endet'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Baerbock weicht der direkten Bewertung aus ('schwierig zu beurteilen') und verlegt den Fokus auf die Regel-Seriosität insgesamt, statt zur spezifischen Frage zu sagen, ob die Disqualifikation gerechtfertigt war. Sie adressiert die Frage auf Meta-Ebene (Wichtigkeit von Regeln), nicht zur konkreten Entscheidung.",
+        "quotes": [
+          {
+            "text": "Das ist ähnlich in der Außenpolitik, dass es manchmal Gratwanderungen gibt.",
+            "timestamp": "00:17:23",
+            "context": "Baerbock vergleicht die IOC-Entscheidung mit außenpolitischen Dilemmata."
+          },
+          {
+            "text": "Eine Welt ohne Regeln in der Anarchie endet oder die schönsten Sportarten nicht möglich wären, das ist wichtig, dass wir uns das immer wieder vergegenwärtigen.",
+            "timestamp": "00:18:54",
+            "context": "Baerbock betont die Wichtigkeit von Regelwerk im Sport und allgemein."
+          }
+        ],
+        "concrete_statements": [
+          "Die genauen IOC-Regeln und deren Anwendungsraum sind unklar",
+          "Regeln im Sport sind notwendig für faire Wettkämpfe",
+          "Eine Welt ohne Regeln führt zur Anarchie"
+        ],
+        "related_bundestag_topics": [
+          "Sportpolitik",
+          "Olympische Spiele",
+          "Menschenrechte vs. Neutralität"
+        ],
+        "answer_type": "teilweise_antwort",
+        "deflection_target": "zur allgemeinen Wichtigkeit von Regelwerk statt zur konkreten Entscheidung",
+        "evasion_note": "Baerbock vermeidet eine klare Position zur Disqualifikation und generalisiert zur Regel-Bedeutsamkeit."
+      },
+      {
+        "title": "Viktor Orbán und einseitige Blockade EU-Kredits",
+        "timestamp_range": "00:19:26 - 00:20:28",
+        "theme_description": "Baerbock kommentiert Viktor Orbáns Veto gegen den 90-Milliarden-Euro-Kredit für die Ukraine.",
+        "question_asked": "Sandra Maischberger berichtet, dass die EU-Spitze nach Kiew reiste, aber leer zurückkam, weil Viktor Orbán einen verabredeten 90-Milliarden-Euro-Kredit blockierte. Sie fragt, was Baerbock Orbán sagen würde, wenn sie ihm im UN-Flur begegnete.",
+        "question_intent": "Wie sollte man mit Orbáns Veto-Taktik umgehen?",
+        "position": "Baerbock sagt, dies sei nicht überraschend. Sie verweist auf ein vierjähriges Muster: Orbán habe Sanktionspakete gegen Russland immer wieder zur Durchsetzung eigener Interessen genutzt. Sie betont, dass man ihn nicht überzeugen muss, denn 'er weiß, was er tut' und tut es 'aus einem gewissen Grund'. Statt auf Orbán zu reagieren, setzt sie eine grundsätzliche Botschaft: Es geht um die Prinzipienfrage, ob starke Länder ihre Nachbarn einfach überfallen dürfen. Sie argumentiert, dass fast kein Land mehr ruhig schlafen könne, wenn man dies akzeptiert. Sie betont, dass man nicht 'wegschauen' darf, sondern 'jeden Tag' daran arbeiten muss, Frieden möglich zu machen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Baerbock beantwortet nicht direkt, was sie persönlich Orbán sagen würde, sondern erklärt sein Verhalten und verschiebt dann zur Grundsatz-Botschaft (größere Friedensordnung, Akzeptanz von Regeln). Sie adressiert die Orbán-Frage auf Meta-Ebene (sein Verhalten ist strategisch rational) statt dialogisch.",
+        "quotes": [
+          {
+            "text": "Zum einen verwundert das nicht, muss man ehrlichkeitshalber sagen. Er hatte schon zugestimmt vorher. Das haben wir 4 Jahre lang erlebt, dass immer wieder die Sanktionspakete dazu genutzt worden sind, eigene Interessen durchzudrücken.",
+            "timestamp": "00:19:56",
+            "context": "Baerbock erklärt Orbáns Veto als Teil eines bekannten Musters, nicht als Überraschung."
+          },
+          {
+            "text": "Es geht darum, ob wir akzeptieren, dass ein stärkeres Land einfach seinen Nachbarn überfallen darf. Wenn wir das täten, kann fast kein Land mehr ruhig schlafen.",
+            "timestamp": "00:20:28",
+            "context": "Baerbock verallgemeinert das Orbán-Problem zu einer Prinzipienfrage der globalen Ordnung."
+          }
+        ],
+        "concrete_statements": [
+          "Orbáns Blockade ist Teil eines vierjährigen Musters von Veto-Taktiken",
+          "Man muss nicht versuchen, ihn zu überzeugen, denn er handelt bewusst strategisch",
+          "Die zentrale Frage ist die Aufrechterhaltung der regelbasierten Ordnung, nicht Orbáns Einzelveto"
+        ],
+        "related_bundestag_topics": [
+          "EU-Kohäsion",
+          "Rechtsstaatlichkeit",
+          "Ungarn",
+          "Ukraine-Unterstützung"
+        ],
+        "answer_type": "teilweise_antwort",
+        "deflection_target": "zur grundsätzlichen Friedensordnung und Regelakzeptanz",
+        "evasion_note": "Baerbock weicht der personalisierten Orbán-Frage aus und verschiebt auf die Systemfrage."
+      },
+      {
+        "title": "Regelbasierte Ordnung und Souveränität Ukraine",
+        "timestamp_range": "00:20:28 - 00:24:10",
+        "theme_description": "Baerbock erörtert die UN-Resolution zum Ukraine-Jahrestag und die US-amerikanische Ablehnung von Klauseln zu territorialer Integrität und UN-Charta-Konformität.",
+        "question_asked": "Sandra Maischberger fragt, warum die USA die bedingungslose Waffenruhe nicht unterstützen und später, warum die amerikanische Vertretung Änderungsanträge zur Streichung von Klauseln über territoriale Integrität und UN-Charta-Konformität eingereicht hat.",
+        "question_intent": "Warum wendet sich die USA von ihren früheren Positionen zur Ukraine (UN-Charta, territoriale Integrität) ab?",
+        "position": "Baerbock berichtet, dass die USA zum ersten Mal nicht für die Ukraine-Resolution stimmten, obwohl sie dies zuvor 140 Mal taten. Die US-Vertretung wollte explizit zwei Paragrafen streichen: dass Frieden gerecht und dauerhaft sein soll und die UN-Charta gewahrt werden soll. Sie interpretiert dies als kritisches Signal: eine der größten Mächte werde die gemeinsamen Spielregeln (UN-Charta mit Gewaltverbot) nicht mehr anerkennen. Sie warnt, dass dies zu einer 'Welt der Regellosigkeit' führe. Sie betont, dass die Mehrheit der Staaten diese Position ablehnte, und fordert auf, nicht nur über Destruktion zu berichten, sondern auch über die Staaten, die an Frieden glauben.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock erklärt die US-Position sachlich (Verweis auf laufende Verhandlungen) und interpretiert sie politisch korrekt als Versuch, Standards der UN-Charta zu schwächen. Sie setzt diese in den größeren Kontext einer Abkehr von regelbasierter Ordnung ein und adressiert damit die Frage, warum die USA ihre bisherige Linie aufgeben.",
+        "quotes": [
+          {
+            "text": "Man streicht bewusst aus einer Resolution raus, dass es ein dauerhafter und gerechter Frieden sein soll. Und dass die UN-Charta gewahrt werden soll.",
+            "timestamp": "00:22:35",
+            "context": "Baerbock kritisiert die geplanten US-Streichungen aus der Ukraine-Resolution als bewusste Unterminierung von Standards."
+          },
+          {
+            "text": "Akzeptiert eine der größten und kräftigsten Mächte der Welt weiterhin, dass die gemeinsamen Spielregeln die UN-Charta sind?",
+            "timestamp": "00:23:40",
+            "context": "Baerbock stellt die grundsätzliche Frage, ob die USA sich noch an die UN-Charta gebunden sehen."
+          }
+        ],
+        "concrete_statements": [
+          "Die USA stimmten erstmals nicht für die Ukraine-Resolution",
+          "Die US-Vertretung wollte Klauseln zu gerechtem Frieden und UN-Charta-Konformität streichen",
+          "Dies würde zu einer 'Welt der Regellosigkeit' führen",
+          "Die Mehrheit der Staaten (140+) lehnt diese Position ab"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "UN-Charta",
+          "Internationale Rechtsordnung",
+          "Frieden und Sicherheit"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      },
+      {
+        "title": "UN-Wirksamkeit gegen Trumps Friedensrat",
+        "timestamp_range": "00:24:10 - 00:27:47",
+        "theme_description": "Baerbock widerlegt Trumps Vorwurf, die UN seien machtlos, und erläutert die UN-Funktionen versus der neuen Trump-Initiative.",
+        "question_asked": "Sandra Maischberger verweist auf Trumps Aussage in der UN-Generalversammlung im September, dass die UN machtlos seien, und fragt, ob Trump inhaltlich einen Punkt habe.",
+        "question_intent": "Hat Trumps Kritik an der UN-Ineffektivität Berechtigung?",
+        "position": "Baerbock lehnt Trumps Vorwurf ab und unterscheidet zwischen Sicherheitsrat und Generalversammlung. Sie weist darauf hin, dass die USA und Russland im Sicherheitsrat gezielt Vetos einlegten (Gaza, Ukraine) und dies die UN-Lähmung verursachten. Sie führt Beispiele auf: 142 Staaten einigten sich auf einen Plan zur Hamas-Entwaffnung, doch die USA blockierten diesen. Sie betont, dass die Generalversammlung mit Mehrheitsentscheidungen funktioniert und bei der Ukraine-Resolution erfolgreich war. Sie sieht das wahre Problem in der Blockade durch ständige Mitglieder, nicht in der UN-Struktur selbst.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock antwortet direkt auf Trumps Kritik mit Fakten: Sie zeigt auf, dass die USA selbst UN-Prozesse blockieren (Beispiel Gaza-Friedensplan mit 142 Staaten, Ukraine-Resolutionen). Sie differenziert zwischen Sicherheitsrat und Generalversammlung und weist nach, dass letztere funktioniert. Sie adressiert also exakt die Frage nach Trumps Punkt und widerlegt ihn argumentativ mit Beispielen.",
+        "quotes": [
+          {
+            "text": "Wenn ich erst alles blockiere und kaputt mache und dann sage, das funktioniert ja gar nicht, dann ist das in der eigenen Logik ganz einfach.",
+            "timestamp": "00:26:15",
+            "context": "Baerbock kritisiert die Logik, zunächst UN-Prozesse durch Vetos zu sabotieren und dann die UN-Machtlosigkeit zu behaupten."
+          },
+          {
+            "text": "Es gab, bevor er die Rede gehalten hat, die 2-Staaten-Konferenz von 142 Staaten, die Amerikaner haben das blockiert.",
+            "timestamp": "00:26:15",
+            "context": "Konkrete Beispiel für US-Blockade von Friedensinitiativen."
+          }
+        ],
+        "concrete_statements": [
+          "142 Staaten haben einen detaillierten Plan für Gaza gemacht, die USA haben ihn blockiert",
+          "Die Generalversammlung funktioniert mit Mehrheitsentscheidungen, z. B. bei der Ukraine-Resolution",
+          "Man muss den Sicherheitsrat reformieren, aber nicht abschaffen"
+        ],
+        "related_bundestag_topics": [
+          "UN-Reform",
+          "Sicherheitsrat-Veto-Macht",
+          "Multilateralismus",
+          "Regelbasierte internationale Ordnung"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      },
+      {
+        "title": "UN-Humanitäre Hilfe und alternative Strukturen",
+        "timestamp_range": "00:28:17 - 00:29:54",
+        "theme_description": "Baerbock erörtert die praktischen Konsequenzen der US-Finanzierungsstreichung für UN-Unterorganisationen und deren humanitäre Funktionen.",
+        "question_asked": "Sandra Maischberger führt an, dass die Amerikaner die Finanzierung für viele UN-Unterorganisationen gestellt haben und fragt, wer dann die humanitäre Hilfe übernimmt, wenn die UN ihre Arbeit (z.B. Essensverteilung im Sudan) nicht mehr macht.",
+        "question_intent": "Welche praktischen Folgen hat Trumps Defundierung der UN für die humanitäre Hilfe weltweit?",
+        "position": "Baerbock antwortet, dass die UN humanitäre Hilfe leisten und 'diejenigen sind, die Essen verteilen im Sudan, einer der furchtbarsten Kriege, sonst würden die Menschen verhungern'. Sie argumentiert, dass 'all diejenigen, die sagen, brauchen wir nicht mehr, müssen auch sagen, dass wir all diese humanitäre Hilfe dann nicht mehr hätten'. Sie gibt weitere Beispiele: Flugverkehr ist global geregelt durch UN-Organisationen. Sie betont, dass der Friedensrat diese Funktionen nicht erfüllt und 'nicht gesagt wird, wer soll das bezahlen'. Sie bezieht das auf Deutschland: 'Es ist eben so, dass es unser ganzes Land betrifft.' Sie verteidigt ihre eigene Parteilichkeit: 'Ich weiß, dass einige sagen, was wirbt die so vehement dafür, diese Regeln einzuhalten. Sie sind die Präsidentin, Sie müssen das tun.' Sie betont, dass es in schweren Zeiten 'wichtig ist, nicht aufzugeben' und dass dies 'das Wichtigste in der Außenpolitik' sei.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock zeigt die direkten Konsequenzen der Finanzierungsstreichung (Hungerkatastrophe Sudan) und den Gegensatz zu Trump's Friedensrat (keine Kapazität für humanitäre Arbeit). Sie adressiert die praktische Frage vollständig und verbindet sie mit ihrer Verantwortung als UN-Präsidentin.",
+        "quotes": [
+          {
+            "text": "Die UN leisten humanitäre Hilfe. Das sind diejenigen, die Essen verteilen im Sudan, einer der furchtbarsten Kriege, sonst würden die Menschen verhungern.",
+            "timestamp": "00:28:52",
+            "context": "Baerbock zeigt konkrete Beispiele UN-humanitärer Funktionen."
+          },
+          {
+            "text": "All diejenigen, die sagen, brauchen wir nicht mehr, müssen auch sagen, dass wir all diese humanitäre Hilfe dann nicht mehr hätten.",
+            "timestamp": "00:28:52",
+            "context": "Baerbock stellt Konsequenzen der UN-Abschaffung dar."
+          }
+        ],
+        "concrete_statements": [
+          "Die UN verteilen Lebensmittel im Sudan und anderen Krisengebieten",
+          "Flugverkehr wird durch UN-Organisationen global reguliert",
+          "Der Friedensrat ersetzt diese humanitären und regulatorischen Funktionen nicht",
+          "Finanzierungsstreichungen haben globale Auswirkungen auf alle Länder, auch Deutschland"
+        ],
+        "related_bundestag_topics": [
+          "Humanitäre Hilfe",
+          "UN-Finanzierung",
+          "Entwicklungspolitik",
+          "Krisenmanagement"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      },
+      {
+        "title": "Feministische Außenpolitik und Iran/Afghanistan",
+        "timestamp_range": "00:30:25 - 00:33:37",
+        "theme_description": "Baerbock verteidigt ihre feministische Außenpolitik gegen den Vorwurf von Alice Schwarzer, sie habe Frauen im Iran und Afghanistan im Stich gelassen.",
+        "question_asked": "Alice Schwarzer wird zitiert, dass Baerbock als Außenministerin bei feministischer Außenpolitik völlig versagt habe; sie habe Frauen im Iran im Stich gelassen und in Afghanistan auch. Sandra Maischberger fragt, ob es nicht leichter ist, über feministische Außenpolitik zu reden, wenn aber im Iran Frauen auf der Straße gehen und das Regime sie zusammenschießt, man wenig Möglichkeiten hat.",
+        "question_intent": "War Baerbocks feministische Außenpolitik eine leere Versprechen, die an der Realität von Unterdrückung im Iran und Afghanistan gescheitert ist?",
+        "position": "Baerbock zitiert einen Lehrsatz ihrer Vorgänger: 'Außenpolitik ist manchmal die Wahl zwischen Pest und Cholera.' Sie betont ihren Anspruch, 'die Welt zum Besseren zu verändern', aber 'wissentlich, dass es keinen Zauberstab gibt'. Sie verteidigt konkrete Maßnahmen: Ein Afghanistan-Aufnahmeprogramm für Zehntausende, Gespräche mit dem iranischen Außenminister (die sie von allen Seiten kritisierte), und ihre Reise nach Syrien als erste europäische Außenministerin als Frau. Sie argumentiert, dass 'Gender Mainstreaming' praktisch bedeutet (z.B. Toiletten-Standorte, um Vergewaltigungen zu verhindern). Sie bekennt: 'Jeden Tag hätte ich gesagt, wir hätten mehr erreichen können.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock antwortet direkt auf den Vorwurf der Untätigkeit mit konkreten Beispielen (Aufnahmeprogramm Afghanistan, Syrien-Reise, Gespräche Iran) und erklärt ihre Philosophie (keine Wunder möglich, aber Versuche nötig). Sie adressiert die Tension zwischen Idealen und Realität transparent.",
+        "quotes": [
+          {
+            "text": "Eine der wichtigsten Lehrsätze, den einer meiner Vorgänger gemacht hat, Außenpolitik ist manchmal die Wahl zwischen Pest und Cholera. Wenn man das nicht aushalten kann, sollte man nicht Außenministerin werden.",
+            "timestamp": "00:30:56",
+            "context": "Baerbock erklärt die Grenzen von Außenpolitik und ihre persönliche Belastbarkeit-Anforderung."
+          },
+          {
+            "text": "Aber wenn ich 100 Menschenleben retten, oder da waren es Zehntausende, dann war es für mich jede Mühe und jede Kritik wert.",
+            "timestamp": "00:32:03",
+            "context": "Baerbock verteidigt das Afghanistan-Aufnahmeprogramm gegen den Vorwurf der Unzulänglichkeit."
+          },
+          {
+            "text": "Endlich eine Frau, die dazu steht. Die Frauen da haben gesagt, endlich eine Frau, die dazu steht.",
+            "timestamp": "00:33:07",
+            "context": "Baerbock berichtet von positiver Resonanz auf ihre Syrien-Reise von Frauen vor Ort."
+          }
+        ],
+        "concrete_statements": [
+          "Ein Afghanistan-Aufnahmeprogramm für Zehntausende Frauen wurde eingeführt",
+          "Gespräche mit dem iranischen Außenminister wurden aufgenommen (gegen externe Kritik)",
+          "Erste europäische Außenministerin-Reise nach Syrien als Frau",
+          "Gender Mainstreaming bedeutet praktische Maßnahmen (z.B. Toiletten-Standorte zur Vergewaltigungsprävention)"
+        ],
+        "related_bundestag_topics": [
+          "Frauenrechte",
+          "Feministische Außenpolitik",
+          "Iran-Politik",
+          "Afghanistan-Evakuierung"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      },
+      {
+        "title": "Satz-Vervollständigungen zu aktuellen Themen",
+        "timestamp_range": "00:34:09 - 00:35:40",
+        "theme_description": "Schnelle Antworten Baerbocks zu verschiedenen politischen Themen in einem Spielformat.",
+        "question_asked": "Sandra Maischberger führt ein Spiel durch, bei dem sie Sätze beginnt und Baerbock sie vervollständigen soll. Themen: Supreme Court, WHO-Chef Lauterbach, Fußball-WM Visa, Social-Media-Verbot unter 14, Angela Merkel, Cem Özdemir und Boris Palmer, Friedrich Merz versus Olaf Scholz als Außenpolitiker.",
+        "question_intent": "Wie bewertet Baerbock aktuelle politische Entwicklungen und Personen in prägnanten Sätzen?",
+        "position": "Supreme Court: 'Ist eine autonome Entscheidung eines Gerichts, und aus guten Gründen haben wir die Gewaltenteilung.' Lauterbach als WHO-Chef: 'Keine schlechte Wahl.' Fußball-WM/Visa: 'Das Problem ist, dass viele nicht reisen dürfen, weil sie kein Visum bekommen.' Social-Media-Verbot unter 14: 'Ich übe mit meinen Töchtern, das durchzusetzen, und scheitere kläglich.' Merkel: 'Finde ich gut.' Özdemir/Palmer-Hochzeit: 'Habe ich leider nicht mitbekommen. Darf der das? [...] Es gibt ein Foto in Farbe. [...] Sie sehen alle sehr glücklich aus. Doch Diplomatin.' Merz als Außenpolitiker: 'Ich dachte, als die deutsche Außenministerin, die es davor gegeben hat. Jeder macht die Arbeit, die er für richtig hält. Wir haben Trump, der das so sieht. Der lobt ab und zu Friedrich Merz.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock antwortet auf alle Fragen kurz und prägnant, teilweise humorvoll (Scheitern mit Töchtern beim Social-Media-Verbot), teilweise diplomatisch (Merz vs. Scholz). Sie adressiert jedes Thema, ohne auszuweichen.",
+        "quotes": [
+          {
+            "text": "Ich übe mit meinen Töchtern, das durchzusetzen, und scheitere kläglich.",
+            "timestamp": "00:34:40",
+            "context": "Baerbock antwortet humorvoll auf die Frage zum Social-Media-Verbot unter 14-Jährigen."
+          },
+          {
+            "text": "Sie sehen alle sehr glücklich aus. Doch Diplomatin.",
+            "timestamp": "00:35:10",
+            "context": "Baerbock kommentiert das Hochzeitsfoto von Özdemir und Palmer mit humorvollem Seitenhieb auf ihre Diplomaten-Rolle."
+          }
+        ],
+        "concrete_statements": [
+          "Supreme Court-Entscheidung ist korrekt (Gewaltenteilung)",
+          "Lauterbach als WHO-Chef wäre akzeptabel",
+          "Visa-Problem ist real für Fußball-WM-Teilnehmer",
+          "Angela Merkel's öffentlichere Rolle wird begrüßt",
+          "Unterschiedliche Außenpolitiker haben unterschiedliche Ansätze, alle legitim"
+        ],
+        "related_bundestag_topics": [
+          "Gewaltenteilung",
+          "WHO-Führung",
+          "Einwanderungspolitik",
+          "Digitale Regulierung",
+          "Außenpolitik"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      },
+      {
+        "title": "Trump Zölle und Grönland-Debatte",
+        "timestamp_range": "00:36:21 - 00:40:31",
+        "theme_description": "Baerbock kommentiert Trumps Aussagen bei einer UN-Rede über die deutsche Wirtschaft und beantwortet Fragen zu seinen Grönland-Aussagen und zur Wahrheit in der Diplomatie.",
+        "question_asked": "Sandra Maischberger zeigt ein Video von Trumps UN-Rede, in der er sagt 'Deutschland ist bankrott gegangen, fast, wegen der grünen Politik'. Sie fragt Baerbock, wie schwer es ihr fiel, ein Pokerface zu wahren, und später verweist sie auf Teleprompter-Probleme bei der Rede und fragt Baerbock, warum es wichtig ist, Wahrheit und Unwahrheit zu unterscheiden.",
+        "question_intent": "Wie sollte man mit Trumps falschen Behauptungen und Technologie-Pannen bei Reden umgehen?",
+        "position": "Baerbock bemerkt, dass Trump 'uns alle persönlich' wahrscheinlich nicht so gut kennt und dass ihr Handy 'die ganze Zeit gepiepst' hat mit Fragen, ob er von ihr spricht. Sie sagt, sie habe '3 Jahre lang geübt, ein Pokerface zu haben'. Zur Wahrheit erklärt sie, es sei 'total wichtig', zwischen Wahrheit und Unwahrheit zu unterscheiden. Sie betont, dass wenn man anfange, 'darüber zu verhandeln', man 'in Teufels Küche' komme. Sie beschreibt ihre Reaktion auf die Teleprompter-Probleme: Sie habe es als 'technischen Hinweis' verpackt und gesagt, die UN-Teleprompter funktionieren sehr gut. Sie argumentiert, dass man 'klare Haltung zeigen' und 'für seine Positionen einstehen' muss, was auch in der amerikanischen Öffentlichkeit Resonanz findet (74% gegen die Grönland-Aussage). Sie erläutert die Grönland-Lage: Grönland sei nicht EU-Gebiet, aber Dänemarks Staatsbürger seien EU-Staatsbürger mit Außengrenzen-Status.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Baerbock antwortet auf beide Aspekte: (1) persönlich zu Trumps Aussage (Pokerface, Handy-Piepsen), (2) grundsätzlich zu Wahrheit/Falschheit in der Diplomatie (Wichtigkeit von Fakten, Beispiel Grönland). Sie zeigt konkrete Reaktionsstrategie und faktische Klärung.",
+        "quotes": [
+          {
+            "text": "Weil wenn wir Wahrheit und Unwahrheit, einfach immer drüber hinweg zu hören. Oder auch anfangen, darüber zu verhandeln, kommen wir in Teufels Küche.",
+            "timestamp": "00:38:24",
+            "context": "Baerbock warnt vor der Normalisierung von Falschaussagen."
+          },
+          {
+            "text": "Nur dass sich keiner Sorgen macht, die UN-Teleprompter funktionieren sehr gut. Offensichtlich wollte man nicht die UN-Kollegen im Regieraum haben.",
+            "timestamp": "00:38:56",
+            "context": "Baerbock beschreibt ihre diplomatische Reaktion auf Trumps Teleprompter-Probleme als Hinweis auf Sabotage."
+          },
+          {
+            "text": "Das auszusprechen, was die Fakten sind, das ist jede Mühe wert.",
+            "timestamp": "00:39:59",
+            "context": "Baerbock betont die Wichtigkeit, Fakten auszusprechen (z.B. zu Grönland und Davos-Unternehmern)."
+          }
+        ],
+        "concrete_statements": [
+          "Trump kennt deutsche Innenpolitik wahrscheinlich nicht so genau",
+          "Wahrheit und Falschheit nicht zu unterscheiden führt zu Unordnung",
+          "Klare Haltung zu Fakten (z.B. Grönland=EU-Gebiet) hat Resonanz in US-Öffentlichkeit (74%)",
+          "CEO von Weltkonzernen fragten in Davos, warum Europa Grönland wichtig ist"
+        ],
+        "related_bundestag_topics": [
+          "USA-Beziehungen",
+          "Grönland-Frage",
+          "Diplomatie und Wahrheit",
+          "Technologie und politische Reden"
+        ],
+        "answer_type": "substantielle_position",
+        "deflection_target": null,
+        "evasion_note": null
+      }
+    ]
+  }
+}

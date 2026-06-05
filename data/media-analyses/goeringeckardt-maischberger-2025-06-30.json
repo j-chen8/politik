@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNi0zMF8yMi0zMC1NRVNa",
+    "video_id": "maischberger-2025-06-30",
+    "politician": "Katrin Göring-Eckardt",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "c1e9b7a33f2cd583",
+    "transcript_chars": 55741,
+    "caption_lines": 2033,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22495,
+    "tokens_out": 8814,
+    "cost_usd": 0.026626000000000004,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 1,
+      "substantielle_position": 7,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.582Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Katrin Göring-Eckardt äußert sich in der Maischberger-Sendung zu Kulturkampf, Cancel Culture und Regierungspolitik. Sie argumentiert gegen die These von Wolfram Weimer einer linken \"Woke\"-Kultur und betont stattdessen rechte Bedrohungen für Freiheit und kulturelle Institutionen im ländlichen Raum. Der Ton ist sachlich-kritisch, mit deutlicher Differenzierung zwischen legitimer Debatte und gezielter Einschüchterung.",
+    "themes": [
+      {
+        "title": "100-Tage-Bewährung für Kulturstaatsminister Weimer",
+        "timestamp_range": "00:17:18 - 00:19:24",
+        "theme_description": "Katrin Göring-Eckardt äußert sich zur umstrittenen Ernennung von Wolfram Weimer als Kulturstaatsminister und der Petition gegen ihn.",
+        "question_asked": "Sandra Maischberger fragt Göring-Eckardt, ob sie eine Petition gegen Weimer unterschreiben würde, die sein großer Unterschied zu seiner Vorgängerin Claudia Roth kritisiert (paraphrasiert nach 00:18:22).",
+        "question_intent": "Maischberger möchte wissen, ob Göring-Eckardt als grüne Politikerin die Kritik an Weimers konservativer Kulturpolitik gegenüber Roths liberaler Haltung teilt.",
+        "position": "Göring-Eckardt lehnt Petitionsunterzeichnung ab und verweist auf eine erste parlamentarische Debatte. Sie gibt Weimer grundsätzlich 100 Tage Zeit zur Bewährung. Sie kritisiert jedoch, dass Weimer einseitig über 'gecancelte' Personen mit großer Mediensendezeit spricht, während er die unter Druck stehende queere Community übersieht. Sie betont, dass der Kulturbegriff sehr weit ist und sich die Eignung Weimers an konkreten Fakten und parlamentarischer Arbeit zeigen muss, nicht an Versprechungen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Göring-Eckardt beantwortet die Frage nach ihrer Haltung zur Petition, lehnt sie ab und setzt Maßstäbe für die Bewährung. Sie adressiert aber nur teilweise die inhaltliche Kritik: Sie differenziert, welche 'Cancel Culture' real ist, antwortet aber nicht direkt auf die Frage der politischen Differenz zwischen Weimer und Roth.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich unterschreibe keine Petitionen, weil die ja an mich selbst gehen",
+          "Man gibt dem erst mal 100 Tage Zeit",
+          "Das muss sich zeigen an den Fakten, an der Arbeit und an dem, was wir im Parlament ganz real sehen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich unterschreibe keine Petitionen, weil die ja an mich selbst gehen.",
+            "timestamp": "00:18:22",
+            "context": "Auf die Frage, ob sie eine Petition gegen Weimer unterschreiben würde, lehnt Göring-Eckardt ab."
+          },
+          {
+            "text": "Das muss sich zeigen an den Fakten, an der Arbeit und an dem, was wir im Parlament ganz real sehen.",
+            "timestamp": "00:19:24",
+            "context": "Sie erklärt, wie sie Weimers Eignung als Kulturstaatsminister bewerten wird."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kulturpolitik",
+          "Ministerbesetzung",
+          "Cancel Culture",
+          "Medienfreiheit"
+        ]
+      },
+      {
+        "title": "Linke vs. rechte Cancel Culture und Machtasymmetrien",
+        "timestamp_range": "00:22:30 - 00:24:43",
+        "theme_description": "Debatte darüber, welche Seite (links oder rechts) problematischere Einschränkungen von Meinungsfreiheit verursacht; Göring-Eckardt differenziert zwischen legitimer Sensibilität und gezielter Einschüchterung.",
+        "question_asked": "Wolfram Weimer führt Beispiele von vermeintlicher linker Cancel Culture auf (Karl May, Gedicht, Venus-Statue) und stellt sie als dominanten Raum-Einengung dar. Maischberger fordert dann auf, bei der linken Seite zu bleiben und Göring-Eckardt antworten zu lassen (paraphrasiert 00:22:30).",
+        "question_intent": "Weimer impliziert, dass die Linke/Grüne durch übertriebene Sensibilität Redefreiheit einschränkt; Maischberger möchte Göring-Eckardts Gegendarstellung hören.",
+        "position": "Göring-Eckardt unterscheidet zwischen legitimer Frage nach Sensibilität (z.B. Karl-May-Darstellungen von Ureinwohnern, antisemitische Judensau-Skulptur) und echten Zensuraktionen. Sie argumentiert, dass es um 'sensibel sein' und 'niemanden vorsätzlich beleidigen' geht, nicht um Verbote – Beispiel: das Gericht entschied, die Judensau muss bleiben, aber mit Kontextualisierung. Sie kontert, dass Weimer einzelne Beispiele aufzählt, ohne die reale Macht-Asymmetrie zu sehen: Menschen mit großer Mediensendezeit vs. kleine kulturelle Projekte auf dem Land, die von AfD-Politikern eingeschüchtert werden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Göring-Eckardt antwortet direkt auf Weimers Cancel-Culture-These, differenziert zwischen Debatte und Zensur, und pivotiert dann zu ihrer Kerkkritik: die real gefährlichere Seite sind nicht Sensibilitätsdebatten, sondern rechte Einschüchterung von Kulturschaffenden vor Ort.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es geht nicht darum, dass man nicht darüber redet, sondern darum, dass man sensibel ist und niemanden vorsätzlich beleidigt",
+          "Sie verunsichern Leute, die keine große Macht haben",
+          "Es gibt Leute, die im kleinen Kultur machen und auf die wir angewiesen sind, in kleinen Mittelstädten und im ländlichen Raum. Die sagen, vielleicht bekomme ich das Geld nicht mehr, wenn ich dieses oder jenes sage"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht nicht darum, dass man nicht darüber redet, sondern darum, dass man sensibel ist und niemanden vorsätzlich beleidigt.",
+            "timestamp": "00:23:01",
+            "context": "Göring-Eckardt klärt, was ihrer Ansicht nach legitime Sensibilität von echter Zensur unterscheidet."
+          },
+          {
+            "text": "Sie verunsichern Leute, die keine große Macht haben. [...] Es gibt Leute, die im kleinen Kultur machen und auf die wir angewiesen sind, in kleinen Mittelstädten und im ländlichen Raum.",
+            "timestamp": "00:24:07",
+            "context": "Sie beschreibt konkrete Auswirkungen rechter Einschüchterung auf lokale Kulturschaffende."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Kulturförderung auf dem Land",
+          "Extremismus-Bekämpfung",
+          "Dezentralisierung der Kulturpolitik"
+        ]
+      },
+      {
+        "title": "Verstärkung des Problems durch öffentliche Debatte",
+        "timestamp_range": "00:25:14 - 00:26:47",
+        "theme_description": "Weimer argumentiert, dass zu viel Reden über Cancel Culture das Gefühl der Meinungsunfreiheit verschärft; Göring-Eckardt antwortet, dass man objektive Probleme nicht klein reden kann.",
+        "question_asked": "Weimer wirft ein: Nur 40% der Deutschen glauben, frei ihre Meinung sagen zu können; wenn ihr andauernd darüber redet, dass man nicht reden darf, verstärkt ihr das Problem (paraphrasiert nach 00:25:14).",
+        "question_intent": "Weimer möchte Göring-Eckardt dazu bringen zuzugeben, dass Grüne durch ihre Rhetorik selbst die Angst vor Cancel Culture schüren.",
+        "position": "Göring-Eckardt argumentiert, dass man objektive Probleme nicht klein reden kann. Sie erklärt, dass Menschen sehr wohl sagen können, was sie denken, aber Sorge vor Widerspruch haben – und Widerspruch ist ein Grundsatz der Demokratie. Sie wendet ein, dass Weimers eigene Rhetorik ('du darfst nicht mehr sagen, was du denkst') die Algorithmen in sozialen Medien füttern, die genau diese Angstsignale verstärken.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Göring-Eckardt adressiert Weimers direkten Vorwurf teilweise: Sie greift seine Logik auf (dass man Probleme nicht klein reden kann), aber lenkt dann ab – statt zum Kernproblem der vermeintlichen Grünen-Rhetorik zurückzukommen, kritisiert sie Weimers eigene Verstärkerrolle. Das ist ein eleganter Pivot, aber antwortet nicht ganz auf die Frage, ob Grüne durch Überempfindlichkeit selbst ein Klima der Angst geschaffen haben.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Die Menschen sagen, natürlich kann ich sagen, was ich will, aber ich habe Sorge, dass ich Widerspruch bekomme. Aber das ist doch der Grundsatz unserer Demokratie",
+          "Weil Sie sie bestärken. [...] Umso höher sind die Algorithmen, die sagen du das nicht mehr sagen"
+        ],
+        "quotes": [
+          {
+            "text": "Die Menschen sagen, natürlich kann ich sagen, was ich will, aber ich habe Sorge, dass ich Widerspruch bekomme. Aber das ist doch der Grundsatz unserer Demokratie, dass man auf Widerspruch aushalten können muss.",
+            "timestamp": "00:26:47",
+            "context": "Göring-Eckardt erklärt das Verhältnis zwischen Meinungsfreiheit und legitimer Kritik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Demokratische Debattenkultur",
+          "Sozialen Medien und Algorithmenkritik"
+        ]
+      },
+      {
+        "title": "Rechte Attacken auf Kultur und Kulturfreiheit in Ostdeutschland",
+        "timestamp_range": "00:30:29 - 00:31:31",
+        "theme_description": "Göring-Eckardt illustriert anhand von konkreten Beispielen aus Thüringen, wie die AfD Druck auf Kulturinstitutionen ausübt und dabei Kulturschaffende einschüchtert.",
+        "question_asked": "Maischberger fragt implizit nach rechten Beispielen für Cancel Culture / Kulturkampf (nach Weimers USA-Fokus in seinem Artikel); Göring-Eckardt nennt spontan Beispiele aus ihrer eigenen Erfahrung in Thüringen (ab 00:30:29).",
+        "question_intent": "Göring-Eckardt nutzt die Gelegenheit, um substanzielle rechte Beispiele zu liefern, die ihrer These einer real gefährlicheren rechten Einschüchterung belegen.",
+        "position": "Göring-Eckardt berichtet von einem Kultur-Eröffnungsevent in Thüringen, bei dem sie als Gast eingeladen war. Sie wurde angerufen mit der Warnung, dass drei lokale Bürgermeister (Union, parteilos und AfD-nah) anwesend sein würden, und die Organisatoren hätten Angst, von der AfD keine Unterstützung mehr zu bekommen, wenn sie als Grüne teilnimmt. Sie wertet dies als gezielten Kulturkampf gegen die Grünen, der Kulturschaffende und Demokratie-Projekte vor Ort verunsichert. Sie fordert, dass Kulturprojekte auf dem Land geschützt werden und dass Leute in Ostdeutschland sicher sein können, ihre Projekte zu machen.",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Göring-Eckardt liefert ein konkretes, anschauliches Beispiel für ihre These, dass rechte Einschüchterung echter und materieller ist als die vermeintliche linke Cancel Culture, die Weimer diskutiert.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die AfD versucht, ein Theater zu zensieren, und zu sagen, sie dürfen folgendes Programm nicht mehr machen",
+          "Die brauchen wir auch, die sind hier in der Nähe. Wir haben Angst, dass wir von denen keine Unterstützung mehr bekommen, wenn sie auftauchen",
+          "Ich möchte, dass Leute auf dem Dorf, in Ostdeutschland, dass sie sicher sind, dass ihre Kulturprojekte und Demokratieprojekte machen können"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt 3 Bürgermeister, einer ist Union, einer ist frei und einer ist AfD nah. Die brauchen wir auch, die sind hier in der Nähe. Wir haben Angst, dass wir von denen keine Unterstützung mehr bekommen, wenn sie auftauchen.",
+            "timestamp": "00:31:01",
+            "context": "Sie beschreibt das konkrete Szenario der Einschüchterung durch lokale AfD-nahe Akteure."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kulturkampf",
+          "Extremismus-Prävention",
+          "Dezentralisierung / Ländliche Entwicklung",
+          "Ostdeutschland"
+        ]
+      },
+      {
+        "title": "Globale Freiheitskrise vs. isolierte westliche Debatten",
+        "timestamp_range": "00:31:31 - 00:33:07",
+        "theme_description": "Göring-Eckardt argumentiert, dass die Freiheitskrise ein globales Phänomen ist und dass Weimers Fokus auf westliche linke Cancel Culture das größere Bild verkennt.",
+        "question_asked": "Überleitung zu Weimers Artikel in der Süddeutschen Zeitung, in dem er Cancel Culture von links und rechts beklagt. Maischberger oder der Kontext fordert Göring-Eckardt auf, zu dieser Analyse Stellung zu nehmen (paraphrasiert).",
+        "question_intent": "Zu erfahren, wie Göring-Eckardt Weimers globale Analyse von Freiheitskrisen bewertet und ob sie seinem Framing zustimmt.",
+        "position": "Göring-Eckardt stimmt Weimer zu, dass es eine globale Freiheitsreduzierung gibt, sieht aber das Problem größer als nur westliche Woke-Debatten. Sie zählt auf: China und Russland als diktatorisch-blutig, neonazistische Tendenzen in Ungarn (Orban), repressive Tendenzen in den USA (z.B. Bücherverbote in Florida, Michelangelos David darf nicht gezeigt werden). Sie kritisiert, dass Weimers Artikel sich hauptsächlich auf USA-Beispiele konzentriert, statt die globale Dimension und die lokale rechte Bedrohung in Deutschland zu adressieren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Göring-Eckardt antwortet direkt auf Weimers Artikel und bewertet seine Analyse als unvollständig: Sie zeigt, dass es nicht nur um westliche linke Cancel Culture geht, sondern um eine globale Asymmetrie der Bedrohungen, in der rechte Regime und Neonationale eine größere Gefahr darstellen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir haben die Freiheitsreduzierung in diesem Zeit geistigen Trend global",
+          "Wir haben mehreren Ländern im Westen auch einen neonazistischen Umschlag, denken wir an Ungarn",
+          "Wir haben aber auch in den vereinigten Staaten Freiheitsentziehungen, die repressiven Charakter annehmen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben die Freiheitsreduzierung in diesem Zeit geistigen Trend global. Die Idee der Freiheit ist gerade global unter Druck.",
+            "timestamp": "00:32:02",
+            "context": "Göring-Eckardt kontextualisiert die Freiheitskrise als globales Phänomen, nicht nur westliches Problem."
+          },
+          {
+            "text": "Das ist ein wichtiges Argument, dass Sie in ihrem Artikel in der Süddeutschen Zeitung nicht aufgegriffen haben.",
+            "timestamp": "00:31:31",
+            "context": "Sie kritisiert, dass Weimers Artikel eine lokale deutsche Dimension übersieht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Menschenrechte",
+          "Demokratie-Schutz",
+          "Internationale Beziehungen"
+        ]
+      },
+      {
+        "title": "Unterschätzen der lokalen Kulturbedrohung durch rechts",
+        "timestamp_range": "00:34:13 - 00:35:56",
+        "theme_description": "Göring-Eckardt warnt davor, dass Weimers Rhetorik der 'bürgerlichen Mitte' unterschätzt, wie sehr Menschen vor Ort um ihre kulturelle Freiheit kämpfen und von rechts bedroht werden.",
+        "question_asked": "Weimer antwortet auf Göring-Eckardts globale Freiheitskrise-Analyse und sagt, die Mitte müsse den Raum für Kultur erweitern und zurückerobern. Göring-Eckardt wird aufgefordert, zu dieser Vision zu reagieren (implizit nach 00:34:13).",
+        "question_intent": "Zu erfahren, ob Göring-Eckardt sich Weimers Mitteposition zu eigen macht oder ob sie eine andere Diagnose hat.",
+        "position": "Göring-Eckardt stimmt zu, dass man miteinander streiten soll, warnt aber, dass Weimer ein großes Risiko unterschätzt: Wenn ein 'Mann der bürgerlichen Mitte' sagt, 'es gibt gar keine Cancel Culture', dann bewegen sich andere (z.B. rechts) auch in diese Richtung. Sie kritisiert, dass die alltäglichen Kulturarbeiter:innen vor Ort kaum sichtbar sind – sie kämpfen täglich für Demokratie und Vielfalt. Sie fordert, dass Weimer die konkrete Bedrohung dieser Leute anerkennt, z.B. ein queeres Cafe in Berlin, das Gewalt erfährt.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Göring-Eckardt adressiert Weimers Vorsatz direkt, kritisiert seine blinde Stelle (die Unterschätzung von lokaler Bedrohung) und konkretisiert, was sie von ihm als Kulturstaatsminister erwartet.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Meine Sorge ist, und ich glaube, dass unterschätzen Sie total, wenn der Wolfram Weimer, der sagt, er sei ein Mann der bürgerlichen Mitte, wenn der auch sagt, es gibt gar keine Cancel Culture, dann bewegen sich andere auch in diese Richtung",
+          "Die Menschen, die sich jeden Tag den Hintern für die Demokratie aufreißen, direkt vor Ort, die sehen wir ganz selten",
+          "Ich würde mir wünschen, dass sie hingehen und sagen, ich bin der Mann der bürgerlichen Mitte und möchte, dass sie das hier weitermachen"
+        ],
+        "quotes": [
+          {
+            "text": "Meine Sorge ist, und ich glaube, dass unterschätzen Sie total, wenn der Wolfram Weimer, der sagt, er sei ein Mann der bürgerlichen Mitte, wenn der auch sagt, es gibt gar keine Cancel Culture, dann bewegen sich andere auch in diese Richtung.",
+            "timestamp": "00:34:44",
+            "context": "Göring-Eckardt kritisiert die blinde Stelle in Weimers Analyse."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kulturpolitik",
+          "Dezentralisierung",
+          "Extremismusbekämpfung",
+          "LGBTQ+-Rechte"
+        ]
+      },
+      {
+        "title": "Meinungsfreiheit und legitime Debatte während der Pandemie",
+        "timestamp_range": "00:37:33 - 00:39:08",
+        "theme_description": "Göring-Eckardt und Weimer debattieren, ob während der Pandemie Meinungsfreiheit unzulässig eingeschränkt wurde und ob Kritik an Maßnahmen ausreichend Raum hatte.",
+        "question_asked": "Weimer argumentiert, dass wachsende Teile der Bevölkerung während der Pandemie das Gefühl hatten, die Debatte sei verengt und man könne nicht sagen, dass Maßnahmen übertrieben sind. Maischberger fragt implizit, ob das auch bei Migration so war (paraphrasiert).",
+        "question_intent": "Zu prüfen, ob Göring-Eckardt zugibt, dass Grüne/Regierung während der Pandemie echte Debatten beschränkt haben, und ob das auch bei Migration der Fall war.",
+        "position": "Göring-Eckardt stimmt zu: 'Da bin ich total dabei. Ich war auch auf der politischen Seite während der Pandemie in der Opposition.' Sie erklärt, dass es Sorge und Unwissenheit gab, daher große Einigkeit bei Schutzmaßnahmen. Sie betont aber: Impfen schützt wirklich, wenn auch nicht jeden einzelnen. Bei Migration differenziert sie: Das Problem war nicht zu viel Debatte, sondern dass reale Probleme nicht gelöst wurden (Kommunen bekamen nicht genug Geld, zu wenige Lehrer). Sie sagt: 'Bei der Kulturdebatte sehe ich das anders' – implizierend, dass dort legitim mehr Debatte nötig ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Göring-Eckardt adressiert beide Aspekte direkt: Sie gibt zu, dass die Pandemie-Debatte eng war, erklärt aber die Gründe. Bei Migration lenkt sie ab zu objektiven Problemen statt zu Debattenbeschränkung. Bei Kultur kehrt sie zu ihrer Hauptposition zurück.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Da bin ich total dabei. Ich war auch auf der politischen Seite während der Pandemie in der Opposition",
+          "Es stimmte, dass es wegen der Sorge und wegen der Unwissenheit eine große Einigkeit gab, dass man vor allen Dingen schützen soll",
+          "Bei der Migration wurden zu lange die realen Probleme nicht gelöst. Es geht nicht darum, dass zu viel darüber gesprochen worden wäre"
+        ],
+        "quotes": [
+          {
+            "text": "Da bin ich total dabei. Ich war auch auf der politischen Seite während der Pandemie in der Opposition.",
+            "timestamp": "00:38:35",
+            "context": "Göring-Eckardt stimmt zu, dass es während der Pandemie eine verengte Debatte gab."
+          }
+        ],
+        "related_bundestag_topics": [
+          "COVID-19-Bekämpfung",
+          "Parlamentarische Kontrolle",
+          "Meinungsfreiheit in Krisen"
+        ]
+      },
+      {
+        "title": "Erwartungen an Kulturstaatsminister: Haltung ohne politische Bevormundung",
+        "timestamp_range": "00:39:08 - 00:40:12",
+        "theme_description": "Göring-Eckardt definiert, was sie von dem neuen Kulturstaatsminister Weimer erwartet: klare Positionierung gegen verfassungsfeindliche Äußerungen, aber keine direkte politische Bevormundung von Kulturinstitutionen.",
+        "question_asked": "In Reaktion auf Göring-Eckardts Kritik, dass Weimer sich zu unklare Position äußert, fragt Sandra Maischberger implizit, was Göring-Eckardt konkret von Weimer als Kulturstaatsminister erwartet.",
+        "question_intent": "Zu erfahren, welche konkreten Erwartungen die Grünen an Weimers Amtsführung haben.",
+        "position": "Göring-Eckardt sagt konkret: Sie möchte, dass der Kulturstaatsminister Deutschlands, der über Freiheit redet, sagt: 'Rechnen Sie damit, dass ich Ihnen widerspreche, wenn Sie etwas Verfassungsfeindliches sagen.' Sie warnt aber auch vor einer anderen Falle: Man darf nicht zulassen, dass der rosa Elefant-Effekt entsteht (wenn man ständig sagt 'denk nicht dran', denken alle dran). Sie akzeptiert, dass sozialen Medien Dinge herauspicken und größer machen, aber sie möchte, dass Kulturinstitutionen selbst ihre Autonomie bewahren können.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Göring-Eckardt formuliert präzise ihre Erwartung: klare Haltung gegen Verfassungsfeindliches, aber keine direkten politischen Vorgaben an Kulturinstitutionen. Sie adressiert damit direkt die Balance, die sie von Weimer erwartet.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Ich möchte, dass der Kulturstaatsminister Deutschlands, der über Freiheit redet und sagt, sie können in Deutschland sagen, was sie wollen, der soll sagen, rechnen Sie damit, dass ich Ihnen widerspreche, wenn sie etwas Verfassungsfeindlich sagen",
+          "Wenn man immer sagt, da ist ein rosa Elefant, aber denken Sie nicht daran, dann denken alle an den rosa Elefant"
+        ],
+        "quotes": [
+          {
+            "text": "Ich möchte, dass der Kulturstaatsminister Deutschlands, der über Freiheit redet und sagt, sie können in Deutschland sagen, was sie wollen, der soll sagen, rechnen Sie damit, dass ich Ihnen widerspreche, wenn sie etwas Verfassungsfeindlich sagen.",
+            "timestamp": "00:39:08",
+            "context": "Göring-Eckardt definiert ihre konkrete Erwartung an Weimer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kulturpolitik",
+          "Verfassungsschutz",
+          "Künstlerische Autonomie",
+          "Extremismus-Bekämpfung"
+        ]
+      },
+      {
+        "title": "Digitalsteuer und Monopolmacht großer Tech-Konzerne",
+        "timestamp_range": "00:40:12 - 00:42:17",
+        "theme_description": "Göring-Eckardt fragt Weimer nach der geplanten Digitalsteuer und dem Umgang mit großen Tech-Monopolen, die Kulturinhalte nutzen, ohne angemessen Steuern zu zahlen.",
+        "question_asked": "Weimer erwähnt, dass große Digitalkonzerne Monopole sind und Deutschlands Kreativwirtschaft ausnutzen. Göring-Eckardt bohrt nach: 'Kommt die Steuer?' (mehrfach, ab 00:41:13).",
+        "question_intent": "Göring-Eckardt möchte konkrete Antworten von Weimer zur Durchsetzbarkeit der Digitalsteuer und dem Wille der Regierung, diese zu realisieren.",
+        "position": "Göring-Eckardt unterstreicht die Kritik an großen Digitalkonzernen (Google, Amazon etc.), die Monopole sind und kaum Steuern zahlen, während sie deutsche Journalismus, Industrie und Kreativwirtschaft nutzen. Sie fordert konkret: 'Kommt die Steuer?' und kritisiert später, dass Friedrich Merz in seinen Reden nur von der Autoindustrie spricht, nicht von der Steuergerechtigkeit für Digitalkonzerne.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Weimer antwortet, dass er sich für die Steuer einsetzt und im Parlament gekämpft hat, dass aber große Verhandlungen mit den Amerikanern laufen (Zölle, Regularien) und er hofft, dass es zu einer Lösung kommt. Göring-Eckardt macht darauf hinaus, dass dies eine vage Antwort ist – sie bohrt nach einer klaren Zusage, bekommt aber keine.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die großen Digitalkonzerne verstärken das Problem, dass wir gerade besprochen haben. Sie sind zudem Monopole und Zahlen in Deutschland kaum Steuern",
+          "Sie nutzen unsere Kreativwirtschaft, unseren Journalismus und unsere Industrie und schleichen sich raus",
+          "Ich höre bei Friedrich Merz immer nur, es geht um die Autoindustrie"
+        ],
+        "quotes": [
+          {
+            "text": "Die großen Digitalkonzerne verstärken das Problem, dass wir gerade besprochen haben. Sie sind zudem Monopole und Zahlen in Deutschland kaum Steuern. Sie nutzen unsere Kreativwirtschaft, unseren Journalismus und unsere Industrie und schleichen sich raus.",
+            "timestamp": "00:41:13",
+            "context": "Göring-Eckardt kritisiert die Ausnutzung von Kulturinhalten durch Tech-Monopole."
+          },
+          {
+            "text": "Kommt die Steuer?",
+            "timestamp": "00:41:46",
+            "context": "Wiederholte Forderung nach konkreter Antwort zur Umsetzung der Digitalsteuer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuergerechtigkeit",
+          "Digitale Wirtschaft",
+          "Wirtschaftspolitik",
+          "Internationale Verhandlungen (Trump, USA-Zölle)"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Markus Söder verteidigt die Regenbogenfahne auf dem bayerischen Landtag mit bestimmten Argumenten",
+        "timestamp": "00:27:21"
+      },
+      {
+        "claim": "Julia Klöckner, die neue Bundestagspräsidentin, hat sich gegen das Hissen der Regenbogenfahne entschieden",
+        "timestamp": "00:10:22"
+      },
+      {
+        "claim": "Die AfD hat 151 Abgeordnete im Bundestag und ist die zweitstärkste Fraktion",
+        "timestamp": "00:12:01"
+      },
+      {
+        "claim": "Bärbel Bas erhielt 95% der Stimmen beim SPD-Parteitag",
+        "timestamp": "00:06:17"
+      },
+      {
+        "claim": "In Ungarn unter Viktor Orban wurde die Pride-Parade verboten, und bei der Parade zeigt sich, dass der Wunsch nach Freiheit größer ist als Orbans Politik",
+        "timestamp": "00:29:58"
+      }
+    ]
+  }
+}

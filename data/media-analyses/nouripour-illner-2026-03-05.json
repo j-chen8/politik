@@ -1,0 +1,279 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-5-maerz-2026-100",
+    "video_id": "illner-2026-03-05",
+    "politician": "Omid Nouripour",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "44fdb68ba8e4ac41",
+    "transcript_chars": 47809,
+    "caption_lines": 2382,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19956,
+    "tokens_out": 8142,
+    "cost_usd": 0.0242664,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T13:37:47.879Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Omid Nouripour, Grünen-Politiker und ehemaliger Bundesvorsitzender, diskutiert in Maybrit Illners Sendung die Frage \"Hat Trump keinen Plan für den Iran?\" aus einer kritischen Perspektive auf die militärische Eskalation und ihre strategischen Folgen. Er wirkt nachdenklich-skeptisch, warnt vor Szenarien einer NATO-Beteiligung und betont die Gefahr, dass ein scheiternder Regime-Change zu erneuter Repression gegen die iranische Zivilbevölkerung führt.",
+    "themes": [
+      {
+        "title": "NATO-Beistandsfall und deutsche Handlungsoptionen",
+        "timestamp_range": "00:07:11 - 00:10:47",
+        "theme_description": "Wie wahrscheinlich ist ein NATO-Beistandsfall durch iranische Angriffe auf Türkei oder Zypern, und wie sollte Deutschland darauf reagieren?",
+        "question_asked": "Maybrit Illner fragt Omid Nouripour direkt: 'Wir sehen, wie NATO und EU Staaten angegriffen werden, was machen die Deutschen? Drücken wir die Daumen, dass es gut ausgeht, wollen selber aber nichts tun? Ist es das, was wir ausdrücken, wenn der Außenminister sagt, wir wollen nicht eskalieren?'",
+        "question_intent": "Illner will von Nouripour wissen, ob Deutschlands Zurückhaltung ein Verstoß gegen NATO-Solidarität ist oder ob sie gerechtfertigt ist.",
+        "position": "Nouripour beschreibt, dass 'bisher nicht so viel passiert von Deutschland aus' und warnt vor zwei kritischen Szenarien: Erstens könnte ein NATO-Bündnisfall nicht nur von der Türkei ausgehen, zweitens könnte eine Eskalation etwa durch die Sprengung der US-Botschaft in Riad zu einer unausweichlichen NATO-Beteiligung führen. Er stellt klar, dass 'du den Amerikanern in der jetzigen Situation nicht nein sagen' kannst, merkt aber an, dass 'zur Zeit im politischen Berlin und auch die Bundesregierung nicht ernsthaft diese Szenarien vorbereitet werden.' Nouripour betont, dass nach dem 11. September der Bündnisfall 'von den Amerikanern ausgerufen wurde', nicht von den betroffenen Ländern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour antwortet auf die implizite Frage zur Legitimität von Deutschlands Zurückhaltung, indem er konkrete Eskalationsszenarien aufzählt und warnt. Er adressiert aber nur teilweise die direkte Kritik Illners, dass Deutschland 'nichts tut' — statt klare deutsche Positionen zu skizzieren, warnt er vor Szenarien, in denen Deutschland gar keine Wahl mehr hätte.",
+        "concrete_statements": [
+          "Es gibt ein Drehbuch im Iran für die Enthauptung des Revolutionsführers — das wird jetzt umgesetzt",
+          "Wenn die amerikanische Botschaft in Riad in die Luft gesprengt wird und es zig amerikanische Tote gibt, dann kann ich nicht ausschließen, dass die Amerikaner in den NATO Rat kommen",
+          "Du kannst den Amerikanern in der jetzigen Situation nicht nein sagen",
+          "Ich habe nicht das Gefühl, dass zur Zeit im politischen Berlin und auch eine Bundesregierung jetzt ernsthaft diese Szenarien vorbereitet werden"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt seit Jahren im Iran ein Drehbuch für diesen Augenblick der Enthauptung des Revolutionsführers. Das wird jetzt umgesetzt.",
+            "timestamp": "00:07:39",
+            "context": "Nouripour erklärt, dass das iranische Regime ein strategisches Drehbuch für eine Krise wie die jetzige nach dem Tod von Raisi hat."
+          },
+          {
+            "text": "Du kannst den Amerikanern in der jetzigen Situation nicht nein sagen.",
+            "timestamp": "00:07:39",
+            "context": "Nouripour charakterisiert die deutsche Handlungsfähigkeit im Fall einer NATO-Aktivierung als praktisch inexistent."
+          }
+        ]
+      },
+      {
+        "title": "Iranische Terrorgefahr in Europa und Schutzmaßnahmen",
+        "timestamp_range": "00:09:41 - 00:10:47",
+        "theme_description": "Wie groß ist die aktuelle Bedrohung durch iranische Terrorzellen in Europa und welche Schutzmaßnahmen sind notwendig?",
+        "question_asked": "Maybrit Illner fragt: 'Wie groß sind heute noch die Ableger, also auch Terrorzellen des Iran, wie groß ist hier tatsächlich in Europa eine Anschlagsgefahr?'",
+        "question_intent": "Illner möchte wissen, ob die Eskalation im Nahost unmittelbare Sicherheitsrisiken für europäische Zivilisten mit sich bringt.",
+        "position": "Nouripour betont, dass die iranische Terrorgefahr 'man nicht genau quantifizieren' kann, aber 'es gibt [sie] und die können einen großen Schaden anrichten'. Er belegt dies mit konkreten Beispielen: 'Es gibt mindestens elf erwiesener Fälle, bei denen das iranische Regime auf europäischen Boden versucht hat Terroranschläge auszuüben.' Er fordert daraus ab: 'Deshalb muss man grundsätzlich davon ausgehen, das sind alles Ziele, die jetzt besonders geschützt werden müssen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour beantwortet die Frage vollständig mit konkreten Fallzahlen und einer klaren Sicherheitsassessment, die auf dokumentierte iranische Anschlagsversuche verweist. Er zieht daraus explizit eine Schutzmaßnahmen-Schlussfolgerung.",
+        "concrete_statements": [
+          "Es gibt mindestens elf erwiesene Fälle, bei denen das iranische Regime auf europäischen Boden versucht hat Terroranschläge auszuüben",
+          "Das sind alles Ziele, die jetzt besonders geschützt werden müssen"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt mindestens elf erwiesener Fälle, bei denen das iranische Regime auf europäischen Boden versucht hat Terroranschläge auszuüben. Deshalb muss man grundsätzlich von ausgehen, das sind alles Ziele, die jetzt besonders geschützt werden müssen.",
+            "timestamp": "00:09:57",
+            "context": "Antwort auf die Frage nach der Größe der iranischen Terrorgefahr in Europa."
+          }
+        ]
+      },
+      {
+        "title": "Fehlerhafte Timing und verpasste Massenbewegung",
+        "timestamp_range": "00:19:12 - 00:21:06",
+        "theme_description": "War der militärische Angriff zu diesem Zeitpunkt richtig, oder gab es einen besseren Moment zur Unterstützung der iranischen Protestbewegung?",
+        "question_asked": "Maybrit Illner stellt eine implizite Frage: War der Angriff eine Reaktion auf ein einmaliges Treffen von 40 religiösen Führern, oder war die Entscheidung längerfristig bereits gefallen? Sie vermutet einen Kausalzusammenhang zwischen israelischen Zielen und Trumps Entscheidung.",
+        "question_intent": "Illner möchte klären, ob die Aktion strategisch durchdacht war oder opportunistisch erfolgte, und wer die treibende Kraft dahinter ist.",
+        "position": "Nouripour argumentiert, dass eine frühere Gelegenheit zur Unterstützung von Massenbewegungen bestanden hätte. Er rekonstruiert ein früheres Szenario: 'Es gab vor 5-6 Wochen eine Situation, als Trump gesagt hat […] geht auf die Straße, protestiert, Hilfe ist unterwegs. Das wäre vielleicht ein Augenblick gewesen, wo man weiß, es hätte eine Melange gegeben. Und dann hätte die Massenbewegung, die es gegeben hätte, die hätten wirklich einen Regimewechsel hinbekommen.' Aber: 'Jetzt ist das Zeitfenster nicht mehr so synchronisiert […] wie vor ein paar Wochen.' Die Situation habe sich drastisch verschlechtert, weil Bombardierungen Proteste unmöglich machen und Trauerfeierlichkeiten Menschen von der Straße fernhalten. Nouripour schließt: 'Jetzt ist das Zeitfenster nicht mehr so synchronisiert war wie vor ein paar Wochen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour adressiert die Frage nach schlechtem Timing und verpassten Chancen, geht aber nicht explizit auf die Frage ein, ob Israel/Trump die Entscheidung bereits lange vorher getroffen hatten (womit er implizit Frau Clarens Position teilt, dass die ‚einmalige Gelegenheit'-These fragwürdig ist). Er konzentriert sich auf die Unfähigkeit der USA, Massenbewegungen zu mobilisieren.",
+        "concrete_statements": [
+          "Es gab vor 5-6 Wochen einen Augenblick, wo Hilfe unterwegs gewesen wäre und eine Massenbewegung einen Regimewechsel hinbekommen hätte",
+          "Jetzt ist das Zeitfenster nicht mehr so synchronisiert wie vor ein paar Wochen",
+          "Die Leute sind nicht mehr auf der Straße, weil ganze Bomben fallen und Trauerfeierlichkeiten stattfinden"
+        ],
+        "quotes": [
+          {
+            "text": "Es gab vor 5-6 Wochen eine Situation, als Trump gesagt hat, dass zwar zur Hochseiten der brutal niedergeschlagenen Protesten […] geht auf die Straße, protestiert, Hilfe ist unterwegs. Das wäre vielleicht ein Augenblick gewesen, wo man weiß, es hätte eine Melange gegeben.",
+            "timestamp": "00:19:12",
+            "context": "Nouripour identifiziert eine frühere, möglicherweise bessere Gelegenheit für US-Unterstützung der iranischen Protestbewegung."
+          }
+        ]
+      },
+      {
+        "title": "Israelische vs. amerikanische Kriegsziele",
+        "timestamp_range": "00:19:12 - 00:21:06",
+        "theme_description": "Unterscheidet sich die israelische Zielsetzung (Schwächung/Sturz des Regimes) von der amerikanischen, und wie wirkt sich das aus?",
+        "question_asked": "Diese Frage ist nicht direkt an Nouripour gestellt, sondern ergibt sich aus der Diskussion zwischen Illner und anderen Gästen. Illner hat Nicole Deitelhoff und Frank Sauer zur Frage der ‚echten Strategie' befragt; Nouripour bezieht sich darauf, dass Israelis und Amerikaner unterschiedliche Ziele haben könnten.",
+        "question_intent": "Verstehen, ob die beiden Koalitionspartner tatsächlich gemeinsame Kriegsziele verfolgen oder strategisch aneinander vorbeireden.",
+        "position": "Nouripour anerkennt, dass die israelischen Ziele klarer sind als die amerikanischen. Er sagt: 'Bei den Israelis gibt es ein sehr klares Ziel. Die sagen, dieses Regime hat als Staatsdoktrin die Zerstörung unseres Landes und wir können nicht alle sechs Monate versuchen, zu verhüten, was uns bevorsteht.' Damit beschreibt er die israelische Logik zustimmend. Zugleich warnt er aber implizit vor einer Divergenz: Die Amerikaner hätten 'nicht wirklich eine Tradition gehabt zu wissen, was im Nahen Osten am Tag nach einem Krieg zu machen ist.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Nouripour charakterisiert die israelische Position (präventive Schwächung gegen existenzielle Bedrohung), beantwortet aber nicht explizit die Frage nach der Divergenz oder deren Konsequenzen. Er wiederholt eher die Position Israels, statt das Spannungsverhältnis analytisch zu klären.",
+        "concrete_statements": [
+          "Bei den Israelis gibt es ein sehr klares Ziel: dieses Regime hat als Staatsdoktrin die Zerstörung unseres Landes",
+          "Die Amerikaner haben nicht wirklich eine Tradition gehabt zu wissen, was im Nahen Osten am Tag nach einem Krieg zu machen ist"
+        ],
+        "quotes": [
+          {
+            "text": "Unterm Strich bleibt, bei den Israelis gibt es ein sehr klares Ziel. Die sagen, dieses Regime hat als Staatsdoktrin die Zerstörung unseres Landes und wir können nicht alle sechs Monate versuchen, zu verhüten, was uns bevorsteht.",
+            "timestamp": "00:19:12",
+            "context": "Nouripour beschreibt die israelische Kriegsdoktrin als präventiv und strukturell begründet."
+          }
+        ]
+      },
+      {
+        "title": "Militärische Schwächung und Befehlsstruktur des Iran",
+        "timestamp_range": "00:26:55 - 00:27:21",
+        "theme_description": "Haben die Luftangriffe das iranische Militär und seine Führungsstruktur nachhaltig beschädigt?",
+        "question_asked": "Maybrit Illner fragt Frank Sauer, ob die Iraner ihre Raketenabschüsse aus taktischen Gründen reduzieren oder ob sie weniger Waffen haben. Omid Nouripour ergänzt dazu eine Beobachtung.",
+        "question_intent": "Feststellung des aktuellen militärischen Status des Iran nach den Angriffen.",
+        "position": "Nouripour betont die militärische Schwächung konkret: 'Es gibt ja noch um etwas andere Sachen, man sieht, dass die massiv geschwächt sind. Die haben kaum eine Marine.' Er verweist zudem auf eine beschädigte Befehlskette: 'die haben eine komponieren der Befehlskette, weil immer klar ist, die nächsten sechs Stellvertreter stehen bereits fest. Aber das natürlich nicht dieselben Leute mit derselben Autorität und Qualität.' Fazit: 'Das Regime ist massiv militärisch geschwächt.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour antwortet substanziell mit drei konkreten Indikatoren für Schwächung (Marine, Befehlskette, Stellvertreter-Qualität) und liefert damit eine klare Einschätzung.",
+        "concrete_statements": [
+          "Die massiv geschwächt sind",
+          "Sie haben kaum eine Marine",
+          "Die haben eine Disruption der Befehlskette — die nächsten sechs Stellvertreter stehen bereits fest, aber das sind nicht dieselben Leute mit derselben Autorität und Qualität",
+          "Das Regime ist massiv militärisch geschwächt"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt ja noch um etwas andere Sachen, man sieht, dass die massiv geschwächt sind. Die haben kaum eine Marine. […] Das Regime ist massiv militärisch geschwächt.",
+            "timestamp": "00:26:55",
+            "context": "Nouripour bewertet den militärischen Status des Iran nach den Angriffen."
+          }
+        ]
+      },
+      {
+        "title": "Kurdische Bodentruppen als Regimewechsel-Strategie",
+        "timestamp_range": "00:40:13 - 00:41:46",
+        "theme_description": "Ist es strategisch sinnvoll, mit kurdischen Gruppen ein Bodenkrieg-Szenario aufzubauen, oder verstärkt das regionale Instabilität?",
+        "question_asked": "Maybrit Illner bezieht sich auf Norbert Röttgens Warnung, dass eine Unterstützung kurdischer Gruppen das Land spalten und den Kurden schaden würde. Sie fragt Omid Nouripour implizit: Muss man eine Bodentruppen-Komponente haben, und wenn ja, wie kann das klug aussehen?",
+        "question_intent": "Herausfinden, ob Nouripour Bodenkrieg-Szenarien für realistisch oder kontraproduktiv hält, insbesondere die Rolle der Kurden.",
+        "position": "Nouripour warnt vor einem regionalen Dominoeffekt durch die Unterstützung von Kurden. Er benennt ein 'weiteres Risiko': 'Es gibt noch ein weiteres Risiko, nämlich dass die anderen Staaten, die die kurdische Minderheiten haben, die traditionell auch darauf dreschen, bei jedem einzelnen Zug, wenn Kurden mehr Freiheiten bekommen.' Er nennt die Türkei als Hauptakteur, die 'immer wieder in den Nachbarstaaten einmarschiert, um gegen Kurden vorzugehen. Sowohl in Syrien, als auch im Irak.' Gleichzeitig betont er die Not der Kurden: 'Man muss gleichseitig auch sehen, die Verzweiflung bei den Kurden ist noch größer, als im Rest der Bevölkerung, weil die wirklich am meisten abgekriegt haben. Sie haben auch als erstes ein Maschinengewehr abbekommen und nicht nur ein Knüppel.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour adressiert beide Dimensionen der Frage: die Risiken für die Kurden selbst (türkische Vergeltung, regionale Destabilisierung) und ihr berechtigtes Interesse an Unterstützung gegen das Regime. Er gibt eine nuancierte Position ab, die Sympathie mit dem Ziel mit Skeptik gegenüber der Methode kombiniert.",
+        "concrete_statements": [
+          "Die Türkei ist immer wieder in den Nachbarstaaten einmarschiert, um gegen Kurden vorzugehen",
+          "Die Verzweiflung bei den Kurden ist noch größer als im Rest der Bevölkerung, weil die wirklich am meisten abgekriegt haben",
+          "Sie haben auch als erstes ein Maschinengewehr abbekommen und nicht nur ein Knüppel"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt noch ein weiteres Risiko, nämlich dass die anderen Staaten, die die kurdische Minderheiten haben, die traditionell auch darauf dreschen, bei jedem einzelnen Zug, wenn Kurden mehr Freiheiten bekommen. Allen voran natürlich die Türkei. Die Türkei ist immer wiederenden Nachbarstaaten einmarschiert, um gegen Kurden vorzugehen.",
+            "timestamp": "00:40:56",
+            "context": "Nouripour warnt vor regionalen Konsequenzen einer kurdischen Unterstützungs-Strategie."
+          }
+        ]
+      },
+      {
+        "title": "Regime-Wechsel ohne externe Kräfte und Bedingungen",
+        "timestamp_range": "00:41:46 - 00:42:46",
+        "theme_description": "Unter welchen Bedingungen könnte ein Regimewechsel im Iran tatsächlich zustande kommen, und wie realistisch ist das Szenario ohne echte Bodentruppen?",
+        "question_asked": "Maybrit Illner fragt: 'Wie geht es jetzt weiter? Der Elefant im Raum sollte am besten keiner sein, besser nicht Bodentruppen. Wie geht es weiter?'",
+        "question_intent": "Illner sucht eine realistische Prognose für das Szenario ohne Bodeneinsatz.",
+        "position": "Nouripour ist pessimistisch über die Chancen für einen Regimewechsel unter den gegebenen Bedingungen. Er sagt: 'Die ersten Posts von Trump klangen so, als hätte er die Vorstellung, die iranischen Zivilbevölkerung sei seine Bodentruppen.' Das ist unrealistisch. Dann formuliert er die zentrale These: 'Am Ende ist ein Szenario, bei dem das Regime fällt, unter den gegebenen Umständen ausschließlich denkbar, wenn es massive Brüche im System selbst gibt. Wenn aus dem System selbst heraus Leute sagen, wir können so nicht weitermachen.' Er stellt fest: 'Das sieht aber zurzeit nicht so aus.' Sein Fazit: 'Wir werden jetzt vielleicht drei Monate Ruhe haben.' (Spielraum für interne Umstrukturierung), aber danach drohe Stagnation ohne grundlegende Veränderung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour gibt eine klare, strukturelle Analyse der Bedingungen für Regimewechsel. Er zeigt auf, dass die militärischen Angriffe allein nicht ausreichen, solange interne Bruchstellen fehlen. Seine Position ist pessimistisch aber analytisch fundiert.",
+        "concrete_statements": [
+          "Ein Szenario, bei dem das Regime fällt, ist ausschließlich denkbar, wenn es massive Brüche im System selbst gibt",
+          "Das sieht aber zurzeit nicht so aus",
+          "Wir werden jetzt vielleicht drei Monate Ruhe haben"
+        ],
+        "quotes": [
+          {
+            "text": "Die ersten Posts von Trump klangen so, als hätte er die Vorstellung, die iranischen Zivilbevölkerung sei seine Bodentruppen. […] Am Ende ist ein Szenario, bei dem das Regime fällt, unter den gegebenen Umständen ausschließlich denkbar, wenn es massive Brüche im System selbst gibt.",
+            "timestamp": "00:41:53",
+            "context": "Nouripour erklärt die unrealistischen Hoffnungen Trumps und die Bedingungen für echten Regimewechsel."
+          }
+        ]
+      },
+      {
+        "title": "Revolution Guards Designierung als Terrororganisation",
+        "timestamp_range": "00:53:07 - 00:53:16",
+        "theme_description": "Sollten die iranischen Revolutionsgarden offiziell als Terrororganisation eingestuft werden?",
+        "question_asked": "Diese Frage ergibt sich aus einer Diskussion zwischen Mariam Claren und Guido Steinberg. Claren fordert die Listung der Revolutionsgarden als Terrororganisation; Steinberg erklärt, warum das im westlichen Rechtssystem problematisch ist.",
+        "question_intent": "In diesem Austausch antwortet Nouripour mit nur einem Wort, aber es signalisiert klare Position.",
+        "position": "Nouripour stimmt Claren implizit zu, indem er deren Aussage 'Eine Terrororganisation, die für Vergewaltigung und Mord zuständig ist' mit dem Wort 'Bis heute' beantwortet — dies drückt aus, dass diese Listung immer noch aussteht oder dass seine Vergangenheit nicht ausreichend als Terrorismus kategorisiert wurde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Obwohl Nouripour nur zwei Worte spricht, ist die Position klar: Er positioniert sich auf der Seite derer, die eine schärfere Einstufung der Revolutionsgarden fordern. ‚Bis heute' signalisiert, dass dies eine historische Versäumnis ist.",
+        "concrete_statements": [
+          "Bis heute [ist eine Listung als Terrororganisation nicht erfolgt]"
+        ],
+        "quotes": [
+          {
+            "text": "Bis heute.",
+            "timestamp": "00:53:07",
+            "context": "Nouripour antwortet auf Clarens Aussage, dass die Revolutionsgarden eine Terrororganisation für Vergewaltigung und Mord ist."
+          }
+        ]
+      },
+      {
+        "title": "Langzeit-Folgen eines fehlgeschlagenen Regimewechsels",
+        "timestamp_range": "00:55:46 - 00:57:08",
+        "theme_description": "Welche strategischen und humanitären Konsequenzen hat es, wenn das Regime trotz Luftangriffe an der Macht bleibt?",
+        "question_asked": "Maybrit Illner stellt zwei zusammenhängende Fragen: 'Wird Donald Trump diesen Krieg auch beenden? Es wird sehr willkürlich sein, es wird ein noch größeres Desaster?' und impliziert die Frage nach Szenarien, in denen das Regime überlebt.",
+        "question_intent": "Illner möchte Nouripours Einschätzung der Konsequenzen für den Iran, wenn die militärische Eskalation keine Regimeveränderung bewirkt.",
+        "position": "Nouripour gibt eine düstere strategische Prognose ab. Er sagt: 'Ich weiß nicht, was am Ende sein wird, aber alles, was dazu führt, dass dieses Regime bleibt und sei es, dass es danach eine Militärdiktatur ist. Um ehrlich zu sein, es ist das Drehbuch für den nächsten Krieg.' Er beschreibt das Szenario: Das Regime wird 'ständig setzen und überlegen, was ist denn das nächste, was wir zu tun haben. Das erste, was sie tun werden ist das Atomprogramm hochzufahren. Dann werden sie überlegen, dass ihre Truppen wieder aufbauen, ihre Verbündeten in der Region wieder so stark wie möglich machen, damit sie Pufferzonen haben. D. h., wenn das Regime bleibt, dann wird es auf Dauer keinen Frieden geben, dass es nur eine Atempause vor den nächsten kriegen.' Zudem warnt er: 'Es gibt diese ewigen Gefängnisse, die haben jetzt aufgehört die Leute dort zu ernähren. Wir wissen nicht, was passieren wird.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Nouripour gibt eine strategische Antwort auf die Frage nach den Langzeit-Konsequenzen eines fehlgeschlagenen Interventionsszenarios. Er verbindet eine geopolitische Analyse (Raketenaufrüstung, regionale Allianzen) mit humanitären Bedenken (Gefängnisse) und zeichnet ein konsistentes Bild der Zyklus-Wiederholung.",
+        "concrete_statements": [
+          "Alles, was dazu führt, dass dieses Regime bleibt, ist das Drehbuch für den nächsten Krieg",
+          "Das erste, was sie tun werden ist das Atomprogramm hochzufahren",
+          "Dann werden sie ihre Truppen wieder aufbauen und ihre Verbündeten in der Region wieder so stark wie möglich machen",
+          "Wenn das Regime bleibt, dann wird es auf Dauer keinen Frieden geben, nur eine Atempause vor den nächsten Kriegen",
+          "Es gibt diese ewigen Gefängnisse, die haben jetzt aufgehört die Leute dort zu ernähren"
+        ],
+        "quotes": [
+          {
+            "text": "Ich weiß nicht, was am Ende sein wird, aber alles, was dazu führt, dass dieses Regime bleibt und sei es, dass es danach eine Militärdiktatur ist. Um ehrlich zu sein, es ist das Drehbuch für den nächsten Krieg.",
+            "timestamp": "00:55:46",
+            "context": "Nouripour warnt vor den Langzeit-Konsequenzen, falls die Luftkampagne das Regime nicht stürzt."
+          },
+          {
+            "text": "Wenn das Regime bleibt, dann wird es auf Dauer keinen Frieden geben, dass es nur eine Atempause vor den nächsten kriegen.",
+            "timestamp": "00:55:46",
+            "context": "Nouripour erklärt die zyklische Logik einer Regimepermanenz: Aufrüstung statt Konsolidierung."
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es gibt mindestens elf erwiesene Fälle, bei denen das iranische Regime auf europäischen Boden versucht hat Terroranschläge auszuüben.",
+        "timestamp": "00:09:57"
+      },
+      {
+        "claim": "Die nächsten sechs Stellvertreter [der iranischen Führung] stehen bereits fest.",
+        "timestamp": "00:27:07"
+      },
+      {
+        "claim": "Die Türkei ist immer wieder in den Nachbarstaaten einmarschiert, um gegen Kurden vorzugehen — sowohl in Syrien als auch im Irak.",
+        "timestamp": "00:40:56"
+      },
+      {
+        "claim": "Der NATO-Bündnisfall wurde [nach dem 11. September] von den Amerikanern ausgerufen.",
+        "timestamp": "00:09:24"
+      },
+      {
+        "claim": "Es gab vor 5-6 Wochen eine Situation, als Trump gesagt hat ‚geht auf die Straße, protestiert, Hilfe ist unterwegs' — während der Proteste.",
+        "timestamp": "00:19:12"
+      }
+    ]
+  }
+}

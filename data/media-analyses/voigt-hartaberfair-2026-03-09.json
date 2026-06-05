@@ -1,0 +1,370 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYjk3NjFhN2UtYjc3NS00MmMwLTgzYTgtYjBmYmVhODBiMDEw",
+    "video_id": "hartaberfair-2026-03-09",
+    "politician": "Mario Voigt",
+    "host": "Louis Klamroth",
+    "publisher": "hart aber fair (ARD)",
+    "transcript_sha": "f39b7b5e0c5c6356",
+    "transcript_chars": 53586,
+    "caption_lines": 1972,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22140,
+    "tokens_out": 10941,
+    "cost_usd": 0.030738,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 2,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T13:37:47.483Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Mario Voigt, Ministerpräsident von Thüringen (CDU), diskutiert in der Sendung \"Hart aber fair\" unter der Moderation von Louis Klamroth zentrale Fragen zum Superwahljahr 2025: Baden-Württemberg-Wahl, Vertrauen in Politik, Energiepreise und Infrastruktur. Voigt wirkt sachlich und faktenorientiert, betont pragmatische Lösungen statt ideologische Politik und verteidigt die CDU-Position, dass Inhalte vor Ämterfragen kommen sollten.",
+    "themes": [
+      {
+        "title": "CDU-Vorteil gegenüber Hagel nach Baden-Württemberg-Wahl",
+        "timestamp_range": "00:01:37 - 00:05:46",
+        "theme_description": "Louis Klamroth fragt, welche Vortei­le Mario Voigt als CDU-Ministerpräsident gegenüber Hagel hat; Voigt bewertet das Wahlergebnis in Baden-Württemberg und versucht, einen Führungsanspruch zu rechtfertigen.",
+        "question_asked": "Louis Klamroth fragt Voigt direkt: 'Sie sind 2024 Ministerpräsident geworden für die CDU. Was haben Sie, was Herr Hagel nicht hat?' (00:01:10).",
+        "question_intent": "Klamroth will wissen, welche persönlichen oder politischen Qualitäten Voigt von Hagel unterscheiden und damit einen Anspruch auf Führungsposition legitimieren würden.",
+        "position": "Voigt antwortet humorvoll mit 'Ich bin älter als er' (00:01:37), würdigt aber Hagels Leistung. Er legt dar, dass die CDU bei der Wahl 6% zugelegt habe, die Grünen trotz Personenfaktor aufgeholt hätten. Konkret fordert er: 'Es geht um die Inhalte' und betont, dass 'ohne CDU-Handschrift' keine Regierung zustande komme (00:05:46). Die Erststimmen-Analyse soll zeigen, dass die CDU mit 400.000 Stimmen Vorsprung einen Anspruch habe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt adressiert die Frage nach seinen Vorteilen teilweise humorvoll-ausweichend (Alter), konzentriert sich dann aber auf die objektiven Wahlergebnisse und die Forderung nach inhaltlicher Mitsprache. Die persönliche Komponente (was unterscheidet ihn von Hagel als Mensch/Politiker) bleibt unterbelichtet; stattdessen argumentiert er mit Partei-Stärke und strategischen Positionen.",
+        "concrete_statements": [
+          "Die CDU hat 6% zugelegt und ist die einzige bürgerliche Partei, die gewachsen ist",
+          "Es geht jetzt um Inhalte; ohne CDU-Handschrift kommt keine Regierung zustande",
+          "Bei Erststimmen liegt die CDU 400.000 Stimmen vorne; das ist ein relevanter Faktor"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin älter als er. Aber er ist jemand, der die CDU in famoser Art und Weise zurückgeführt hat.",
+            "timestamp": "00:01:37",
+            "context": "Antwort auf Klamroths Frage nach Voigts Vorteilen gegenüber Hagel; humorvolle Eröffnung, die sofort in ehrliche Würdigung übergeht."
+          },
+          {
+            "text": "Es geht jetzt konkret darum, über Inhalte zu reden. Es geht tatsächlich darum, dass ohne CDU-Handschrift nicht zu einer Regierung kommt.",
+            "timestamp": "00:05:13",
+            "context": "Voigt begründet, warum die CDU mitsprachen haben sollte: inhaltliche Ausrichtung statt Ämterverteilung."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Ministerpräsidenten-Wahl",
+          "Wahlallokation"
+        ]
+      },
+      {
+        "title": "Ämterteilungs-Vorschlag für Ministerpräsidentschaft",
+        "timestamp_range": "00:04:09 - 00:08:56",
+        "theme_description": "Louis Klamroth fragt nach dem CDU-Vorschlag (von Jens Spahn), dass Özdemir und Hagel die Amtszeit als Ministerpräsident teilen sollten. Voigt reagiert nüchtern, betont aber Inhalts-Vorrang.",
+        "question_asked": "Louis Klamroth fragt Voigt: 'Herr Voigt, ist das [der Ämter­teilungs­vorschlag] ernst gemeint?' (00:04:09).",
+        "question_intent": "Klamroth will wissen, ob Voigt (und die CDU) ernsthaft glauben, dass eine Wechsel­lösung im Amt des Ministerpräsidenten realistisch oder durchsetzbar ist.",
+        "position": "Voigt nennt es 'eine spannende Idee', betont aber Vorrang von Inhaltsverhandlungen. Er argumentiert, dass Özdemir eine 'Kopie der CDU-Politik' betrieben habe, und wenn man CDU und Grüne addiere, käme man auf '60% der Stimmen'. Das sei nicht ignorierbar. Er bleibt aber dabei: 'Es wird zuerst um Inhalte gehen' und warnt vor 'Leichtigkeit', mit der man über CDU-Zugewinne hinweggehen könne. Am Ende müsse 'die Entscheidung zwischen den Spitzenkandidaten' stattfinden (00:08:24).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt beantwortet nicht direkt, ob das ernst gemeint ist, sondern rahmt es strategisch: Die Idee könnte etwas sein, aber nur wenn Inhalte zuerst geklärt sind. Er weicht damit der direkten Frage nach Realisierbarkeit aus und dreht sie zu einer Verhandlungsposition (Inhalts-Vorbehalt).",
+        "concrete_statements": [
+          "Die Idee einer Amtsteilung könnte 'etwas sein, was sein könnte'",
+          "Inhaltliche Klärung muss zuerst erfolgen",
+          "CDU und Grüne zusammen haben 60% der Stimmen – ein Faktor, den man nicht ignorieren darf",
+          "Die endgültige Entscheidung muss zwischen den Spitzenkandidaten getroffen werden"
+        ],
+        "quotes": [
+          {
+            "text": "Zuerst einmal ist es eine spannende Idee. Es geht jetzt konkret darum, über Inhalte zu reden.",
+            "timestamp": "00:04:40",
+            "context": "Voigts erste Reaktion auf den Ämter­teilungsvorschlag."
+          },
+          {
+            "text": "Jetzt einen Alleinstellungsanspruch zu formulieren [für die Grünen] – Es gibt unterschiedliche Modelle, es geht um die Inhalte. Am Ende muss die Entscheidung zwischen den Spitzenkandidaten getroffen werden.",
+            "timestamp": "00:07:54",
+            "context": "Voigt relativiert den Grünen-Vorsprung und insistiert auf Inhalts-Priorität."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Ämterverteilung",
+          "Mehrheitsbildung"
+        ]
+      },
+      {
+        "title": "Klimapolitik und Verbrenner-Aus: Pragmatismus vs. Ideologie",
+        "timestamp_range": "00:05:13 - 00:21:51",
+        "theme_description": "Felix Banaszak (Grüne) wird von Klamroth gefragt, ob die Grünen bei ihrem Ziel 2035 bleiben. Voigt mischt sich ein und kritisiert, dass Özdemir 'im Wahlkampf nicht nachgelassen' habe beim Green Deal, obwohl das wirtschaftlich riskant sei.",
+        "question_asked": "Louis Klamroth fragt Banaszak: 'Kommt jetzt, ein Jahr ja früher oder später, darauf kommt es nicht an. Deshalb die Frage, bleiben Sie dabei [bei 2035]?' (00:17:59). Voigt interveniert dann: 'Ich will auf einen anderen Punkt. Ich glaube, dass es in der Tat so ist, dass Kretschmann fokussiert auf Baden-Württemberg unterwegs war. Die Frage, bei der Wirtschaftspolitik nicht nachzulassen, Green Deal. Entgegen dem, was er im Wahlkampf erzählt hat' (00:21:16).",
+        "question_intent": "Klamroth will wissen, ob die Grünen beim ambitionierten Klimaziel bleiben oder ob sie realistische Kompromisse eingehen. Voigt nutzt das, um die Grüne Agenda als wirtschaftlich kontraproduktiv zu kritisieren.",
+        "position": "Voigt argumentiert, dass 'es Sinn macht, das nach der Wahl zu tun, was man vorher im Wahlkampf versprochen hat' – aber nur, wenn es wirtschaftlich nachhaltig ist. Seine Kernkritik: Klimaziele dürfen nicht 'ideologisch' umgesetzt werden. Er stellt dem Grünen-Kurs seinen Pragmatismus entgegen: 'Für mich ist entscheidend, die Frage ist die Frage der wirtschaftlichen Wettbewerbsfähigkeit' (00:21:51). Implizit wirft er den Grünen vor, Klimapolitik über wirtschaftliche Rationalität zu stellen.",
+        "answer_match": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Voigt beantwortet Klamroths Frage nach Grünen-Kompromissen nicht direkt, sondern pivotiert zu seiner Kritik an Grüner Ideologie. Er bestätigt damit nicht eine Position zum Verbrenner-Aus selbst, sondern positioniert sich als wirtschaftlich rationales Korrektiv zu Grüner Fehleinschätzung.",
+        "concrete_statements": [
+          "Es macht Sinn, das nach der Wahl zu tun, was man vorher versprochen hat",
+          "Für mich ist entscheidend: wirtschaftliche Wettbewerbsfähigkeit",
+          "Mit ideologischer Politik kann man eine Industrienation nicht gestalten"
+        ],
+        "quotes": [
+          {
+            "text": "Es macht Sinn, das nach der Wahl tun, was man vorher im Wahlkampf versprochen hat. Für mich ist entscheidend, die Frage ist die Frage der wirtschaftlichen Wettbewerbsfähigkeit.",
+            "timestamp": "00:21:51",
+            "context": "Voigt kritisiert indirekt die Grüne Klima-Agenda als wirtschaftlich ignorant."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Klimapolitik",
+          "Energiewende",
+          "Wirtschaftliche Auswirkungen grüner Politiken"
+        ]
+      },
+      {
+        "title": "Schmutzkampagne gegen Hagel und politisches Klima",
+        "timestamp_range": "00:10:10 - 00:12:11",
+        "theme_description": "Louis Klamroth bringt ein Thema ein: Eine 8–9 Jahre altes Video von Hagel wurde 10 Tage vor der Wahl von einer Grünen-Bundestagsabgeordneten geteilt. Voigt soll dazu Stellung nehmen, ob das eine Schmutzkampagne war.",
+        "question_asked": "Louis Klamroth äußert die Beobachtung, dass 10 Tage vor der Wahl eine Grünen-Bundestagsabgeordnete ein altes Video zur 'zentralen Angelpunkt der Wahlkampfkommunikation' machte, und fragt implizit nach dem Charakter (Schmutzkampagne vs. berechtigte Kritik).",
+        "question_intent": "Klamroth will prüfen, ob Voigt das als unfaire Kampagnentaktik wertet und ob er ein problematisches politisches Klima diagnostiziert.",
+        "position": "Voigt positioniert sich als 'Ministerpräsident, nicht Parteipolitiker' (00:11:08). Er kritisiert das 'polarisierte' politische Klima und fragt nach dem Motiv der Grünen-Abgeordneten. Er betont aber auch: 'Doppelmoral ist kein Standard' und fordert gegenseitigen Verantwortungstragen. Voigt vermeidet, das Video selbst zu verdammen, und lenkt stattdessen auf die Frage ab, ob Reflektion und Demut im Umgang mit solchen Themen nötig sind. Er kritisiert indirekt, dass die Grünen mit ethischen Ansprüchen argumentieren, aber selbst keine Reflexion zeigen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt beantwortet die Frage nach Schmutzkampagne indirekt: Er nennt es 'sehr stimmt einen nachdenklich' statt 'Schmutzkampagne', fokussiert dann aber auf die größere Frage des politischen Klimas und gegenseitiger Verantwortung. Er weicht damit der scharfen Verurteilung aus und rahmt das Problem systemisch statt parteiisch.",
+        "concrete_statements": [
+          "Das politische Klima ist auf eine Art und Weise polarisiert – da hat jeder eine Verantwortung dafür",
+          "Die Bundestagsabgeordneten der Grünen, die so eine Debatte vom Zaun treten, müssen sich fragen: Was ist das Motiv dahinter?",
+          "Wenn wir verantwortlich agieren wollen, muss jeder prüfen, was er dazu beiträgt, dass es stabiler wird"
+        ],
+        "quotes": [
+          {
+            "text": "Dass 10 Tage vor einer Wahl, eine Grünen-Bundestagsabgeordnete ein Video findet, was 8 oder 9 Jahre alt ist, dass zum zentralen Angelpunkt der Wahlkampfkommunikation macht, dann ist das zumindest sehr… es stimmt einen nachdenklich.",
+            "timestamp": "00:10:34",
+            "context": "Voigts Bewertung der Video-Strategie."
+          },
+          {
+            "text": "Ich sitze nicht als Parteipolitiker hier. Sondern ich sitze hier als Ministerpräsident. Ich kann Ihnen sagen, das politische Klima ist auf eine Art und Weise polarisiert, das können wir nicht nur in Talkshows beweinen. Da hat jeder eine Verantwortung dafür.",
+            "timestamp": "00:11:08",
+            "context": "Voigt ordnet seine kritische Position in einen überparteilichen Rahmen ein."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Wahlkampfkultur",
+          "Politisches Klima",
+          "Ethik in der Politikvermittlung"
+        ]
+      },
+      {
+        "title": "Wirtschaftswachstum und strukturelle Reformen in Thüringen",
+        "timestamp_range": "00:21:16 - 00:22:23",
+        "theme_description": "Louis Klamroth führt auf Voigts Beispiel zurück: Voigt hatte Thüringens 'stärkstes Wachstum' in Deutschland erwähnt. Es geht um die Frage, wie wirtschaftliche Wettbewerbsfähigkeit hergestellt wird.",
+        "question_asked": "Louis Klamroth leitet ein: Voigt spricht von 'stärkstem Wachstum in Thüringen' und will zeigen, dass pragmatische, nicht ideologische Politik funktioniert.",
+        "question_intent": "Klamroth will wissen, wie Voigt wirtschaftliche Erfolge mit strukturellen Reformen verbindet und ob das skalierbar ist.",
+        "position": "Voigt argumentiert, dass wirtschaftliche Wettbewerbsfähigkeit auf 'Arbeitskräfte' und 'bezahlbare Wirtschaftspreise' beruhe. In Thüringen habe man 'das stärkste Wachstum in Deutschland' erreicht. Aber: 'Wenn ich mir anschaue, dass in Deutschland momentan jeden Monat 10.000 Industriearbeitsplätze verloren gehen, dann müssen wir uns bestimmte Punkte angucken.' Voigt kritisiert indirekt die Ampel-Politik (zu hohe Energiepreise, ideologisches Festhalten an Zielen wie dem Verbrenner-Aus). Zentral: 'Ich glaube nicht, dass man mit einer ideologischen Politik entscheiden kann, wie eine Industrienation gestaltet werden kann. Sie können es wegwischen und sagen rückwärtsgewandt. Es ist eine pragmatische Politik, die an den Menschen orientiert ist' (00:22:53).",
+        "answer_match": "substantielle_position",
+        "match_reasoning": "Voigt liefert ein klares Erfolgsmodell (Thüringen: Wachstum durch pragmatische, not ideologische Politik), benennt die Herausforderungen (Arbeitsplatzabbau bundesweit, hohe Energiepreise) und kritisiert implizit die Bundespolitik. Die Position ist vollständig und substanziell artikuliert.",
+        "concrete_statements": [
+          "In Thüringen haben wir das stärkste Wachstum in Deutschland erreicht",
+          "Deutschland verliert jeden Monat 10.000 Industriearbeitsplätze – das muss Anlass für Kurswechsel sein",
+          "Wirtschaftliche Wettbewerbsfähigkeit erfordert Arbeitskräfte und bezahlbare Wirtschaftspreise",
+          "Ideologische Politik funktioniert nicht bei der Gestaltung einer Industrienation; pragmatische, menschenorientierte Politik ist nötig"
+        ],
+        "quotes": [
+          {
+            "text": "In Thüringen haben wir das stärkste Wachstum gehabt in Deutschland. Wenn ich mir anschaue, dass in Deutschland momentan jeden Monat 10.000 Industriearbeitsplätze verloren gehen, dann müssen wir uns bestimmte Punkte angucken.",
+            "timestamp": "00:22:23",
+            "context": "Voigt verweist auf seinen Erfolg in Thüringen als Beweis für pragmatische Politik."
+          },
+          {
+            "text": "Ich glaube nicht, dass man mit einer ideologischen Politik entscheiden kann, wie eine Industrienation gestaltet werden kann. Es ist eine pragmatische Politik, die an den Menschen orientiert ist.",
+            "timestamp": "00:22:53",
+            "context": "Voigt verteidigt seinen Ansatz gegen Vorwürfe der Rückwärtsgewandtheit."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Industriestandort Deutschland",
+          "Energiewirtschaft",
+          "Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Benzinpreise und Regulierung des Kartells",
+        "timestamp_range": "00:22:23 - 00:48:10",
+        "theme_description": "Louis Klamroth bringt das Thema Spritpreise (2,20 Euro/Liter) ein und lässt Lkw-Fahrerin Scheib ihre Sorgen äußern. Voigt muss dazu Position beziehen, ob Politik hier handeln kann und wie.",
+        "question_asked": "Louis Klamroth leitet über: 'Ich verspreche Ihnen, wir sprechen heute noch über Spritpreise, denn wir haben eine Lkw-Fahrerin bei uns' (00:22:53). Später (00:33:55) fragt er direkt: 'Friedrich Merz hatte eine Wirtschaftswende versprochen, ist die bei Ihnen angekommen?' und konkret zur Spritpreis-Situation: 'Muss man dann irgendwann auch kommunikativ umsteuern?' (00:34:56).",
+        "question_intent": "Klamroth will wissen, ob Voigt gegenüber der Bürgerin (Scheib) ein Lösungs­angebot machen kann und ob die Regierung nicht nur langfristige Ansprüche, sondern auch sofortige Maßnahmen benennen kann.",
+        "position": "Voigt identifiziert mehrere Ebenen: (1) Kartellamtbefugnisse (Konzerne manipulieren Preise; Regelwerk Netzentgelte wurden gesenkt; Maßnahmen wirken mit zeitlichem Verzug); (2) geopolitische Faktoren (Krieg in der Ukraine und im Nahen Osten als Preistreiber); (3) staatliche Einnahmen (Mehrwertsteuer-Mitnahmeeffekte; Finanzminister 'macht Kasse'); (4) Tagespreise-Praktiken (in anderen EU-Ländern nur 1x täglich Festpreis, nicht mehrfach täglich wie in Deutschland). Er fordert: 'Das Kartellamt muss da draufblicken' und 'Wir müssen für die Zeit das deckeln. Damit der Staat nicht die Mitnahmeeffekte hat' (00:37:37). Er lehnt Banaszaks Aussage ab, das Kartellamt sei nicht zuständig: 'Das ist eine Ausrede. Lasse ich auch nicht zu' (00:46:40). Voigt bleibt aber vorsichtig: Er adressiert nicht Tankrabatte direkt, sondern fokussiert auf Kartell­kontrolle und Preis­deckelung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt liefert eine differenzierte Analyse (Kartell, Geopolitik, Steuermechaniken) und konkrete Forderungen (Kartellamt-Kontrolle, Preisdeckel), beantwortet aber die implizite Frage 'Sofortmaßnahme Tankrabatt ja/nein?' nicht direkt. Er hält sich damit Spielraum offen und rahmt Lösungen als längerfristiges Regulierungs-Problem, nicht als kurzfristige Entlastung.",
+        "concrete_statements": [
+          "Das Kartellamt muss draufblicken – die Konzerne sind die Einzigen, die diese Steilsprünge haben",
+          "Wir müssen einen Deckel darauf passen; der Staat darf nicht durch Mehrheitsbesitz mitverdienen",
+          "In anderen europäischen Ländern gibt es nur einen Festpreis pro Tag, nicht mehrfach täglich wie hier",
+          "Das Kartellamt ist sehr wohl zuständig – die Aussage, es sei nicht zuständig, ist eine Ausrede",
+          "Der Krieg im Nahen Osten treibt die Preise weiter, solange die Konfliktsituation andauert"
+        ],
+        "quotes": [
+          {
+            "text": "Gehen Sie an die Tankstelle. 2,20 Euro für den Liter. Das ist der Griff ins Portmonee des kleinen Mannes. Deswegen glaube ich nicht, dass man mit einer ideologischen Politik entscheiden kann, wie eine Industrienation gestaltet werden kann.",
+            "timestamp": "00:22:53",
+            "context": "Voigt verankert das Spritpreis-Problem in alltäglicher Realität und grenzt sich von ideologischen Ansätzen ab."
+          },
+          {
+            "text": "Das ist eine Ausrede. Lasse ich auch nicht zu. Das Kartellamt mischt sich an anderen Dingen schnell ein. Bei so einer Frage, die Millionen Deutsche betrifft, es geht um die vielen Pendler.",
+            "timestamp": "00:46:40",
+            "context": "Voigt widerlegt Banaszaks Einwand, das Kartellamt sei nicht zuständig."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Energiewirtschaft",
+          "Kartellrecht",
+          "Verbraucherschutz",
+          "Geopolitische Preisfolgen"
+        ]
+      },
+      {
+        "title": "Vertrauen in Politik und Bürgerkommunikation",
+        "timestamp_range": "00:59:26 - 01:02:04",
+        "theme_description": "Louis Klamroth fragt Voigt, ob er bei all seinen 1.500 Terminen im Jahr das Gefühl hat, dass das Vertrauen in Politik zurückgewonnen werden kann, oder ob Entfremdung unüberwindbar ist.",
+        "question_asked": "Louis Klamroth fragt: 'Sie haben 1.500 Termine gemacht im letzten Jahr. Ganz viele Gespräche mit Bürgern auch dabei. Haben Sie das Gefühl, man kann sich abrackern und man kriegt das Gefühl der Entfremdung mit den Bürgern nicht weg?' (00:59:26).",
+        "question_intent": "Klamroth will wissen, ob Voigt's intensive Bürgerkommunikation wirksam ist oder ob strukturelle Entfremdung unumkehrbar ist.",
+        "position": "Voigt beantwortet sehr konkret: 'Nein, das Gefühl habe ich nicht, im Gegenteil' (00:59:26). Er diagnostiziert: 'Der Frust sitzt tief, auch zu Recht, weil Dinge versprochen worden sind, die am Ende nicht geliefert werden.' Kern seiner Antwort: 'Deswegen darf Politik nicht mehr versprechen, als sie halten kann. Das Vertrauen muss man sich erarbeiten. Das ist schnell vergeben, schnell verloren, man muss es zurück erarbeiten.' Er betont, dass seine Termine nicht 'ein Abhaken im Kalender' sind, sondern echte Problem-Lösungs-Gespräche. Konkrete Erfolge: 'In Thüringen ist das Wirtschaftswachstum gestiegen, Unterrichtsausfall, haben wir versprochen, haben wir das stärkste Absinken, weil wir mehr Lehrer eingestellt haben' (01:00:27). Er kritisiert die AfD-Narrative ('Deutschland auf der schiefen Ebene') als Falle, aber akzeptiert, dass die AfD-Wähler 'echte Probleme' haben. Letzter Punkt: 'Das ist der Job von uns. Lösungen produzieren, nicht nur Sprechblasen. Das ist der entscheidende Aspekt' (01:00:27).",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Voigt beantwortet die Frage direkt und substanziell: Er behauptet nicht, dass Vertrauen leicht zurückzugewinnen ist, sondern articulates klare Voraussetzungen (keine leeren Versprechungen, echte Ergebnisse, regelmäßige Bürgerkommunikation) und liefert konkrete Beispiele aus seiner Arbeit. Die Antwort ist sowohl diagnostisch als auch handlungsorientiert.",
+        "concrete_statements": [
+          "Das Vertrauen muss man sich erarbeiten; es ist schnell vergeben und schnell verloren",
+          "Politik darf nicht mehr versprechen, als sie halten kann",
+          "Meine Termine sind nicht einfach ein Abhaken im Kalender, sondern echte Problembesprechungen",
+          "In Thüringen: stärkstes Wirtschaftswachstum, stärksten Rückgang von Unterrichtsausfall durch Lehrer-Einstellungen",
+          "Die AfD hat sich eine Miesmacher-Narrative angeeignet; aber deren Wähler haben echte Probleme, die wir lösen müssen",
+          "Der Job der Politik ist: Lösungen produzieren, nicht Sprechblasen"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, das Gefühl habe ich nicht, im Gegenteil, ich glaube, dass der Frust tief sitzt, auch zu Recht, weil Dinge versprochen worden sind, die am Ende nicht geliefert werden. Deswegen darf Politik nicht mehr versprechen, als sie halten kann. Das Vertrauen muss man sich erarbeiten.",
+            "timestamp": "00:59:26",
+            "context": "Voigts Ansicht auf die zentrale Frage, wie Vertrauen zurückgewonnen werden kann."
+          },
+          {
+            "text": "Die Termine sind nicht ein Abhaken im Kalender, geht es um konkrete Gespräche. Für mich geht es darum, immer das Problem der Leute zu sehen, es zu lösen. Das ist der entscheidende Aspekt.",
+            "timestamp": "00:59:57",
+            "context": "Voigt konkretisiert seine Kommunikationsstrategie."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Bürgerbeteiligung",
+          "Vertrauensfrage in Politik",
+          "AfD-Wählerklientel"
+        ]
+      },
+      {
+        "title": "AfD-Wählerschaft und emotionale Entfremdung von Demokratie",
+        "timestamp_range": "01:00:27 - 01:07:30",
+        "theme_description": "Jana Hensel warnt vor 'Ende der Demokratie in Ostdeutschland' (01:08:01); Louis Klamroth verweist auf Infrastruktur-Mängel (Bahnhöfe, Schwimmbäder, Schulen) als strukturelle Gründe für AfD-Zustimmung. Voigt muss dazu Position beziehen.",
+        "question_asked": "Louis Klamroth fasst zusammen: 'Die Infrastrukturfrage, die ist, wenn man sie weiterdenkt, eine Demokratiefrage' (01:07:30). Hensel hatte gerade gesagt: 'Das Ende der Demokratie in Ostdeutschland wird kommen, vielleicht ist es schon da. Das klingt fatalistisch' (01:08:01). Voigt wird implizit aufgefordert, auf diese These zu reagieren.",
+        "question_intent": "Klamroth / die Runde will wissen, ob Voigt Hensels These vom Demokratie-Kollaps in Ostdeutschland teilt oder ob er Gegenargumente hat.",
+        "position": "Voigt lehnt Hensels Fatalismus ab, ohne ihn zu kritisieren. Er gibt zu, dass 'Vertrauen über Jahrzehnte angewachsen' ist und schnell nicht umzukehren ist (echoing Hensel). Aber: 'Ich glaube, dass das die entscheidende Frage sein wird' – ob Özdemir die Wirtschaftspolitik wirklich umsetzt, nicht nur Wahlkampf-Rhetorik (00:20:43–00:21:16). Dann pivotiert er zu Ostdeutschland: Er dokumentiert seine eigene Arbeit als Infrastruktur-Aktivist. Er habe 'das Sondervermögen mit unterstützt' und gebe 'in Thüringen 1 Mrd. Euro an die Kommunen' für 'Schwimmbad, Turnhalle' (01:06:53). Seine Frustration: 'Seit 2007 ist klar, dass es eine Mitte-Deutschland-Verbindung geben muss. Ich kämpfe heute noch darum, das Geld zu kriegen' – aber 'der Kanzler hat sich dem Thema angenommen. Das ist das, wo die Leute sagen: Liefert doch mal ab' (01:06:53). Voigt antwortet damit nicht auf Hensels Fatalismus-These direkt, sondern zeigt: Infrastruktur-Probleme sind erkannt, werden bearbeitet, aber dauern. Das ist nicht Demokratie-Ende, sondern Frage der Kontinuität.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt adressiert die Frage nach Demokratie-Kollaps indirekt: Er ignoriert Hensels 'Fatalismus'-Diagnose nicht, sondern liefert konkrete Gegenbeispiele aus seiner Arbeit (Infrastruktur-Investitionen, Kommunale Förderung). Aber er beantwortet nicht, ob der Prozess 'kaum aufzuhalten' ist, sondern setzt auf Kontinuität und Lieferfähigkeit.",
+        "concrete_statements": [
+          "Wir geben in Thüringen 1 Mrd. Euro an die Kommunen für Infrastruktur-Projekte (Schwimmbäder, Turnhallen)",
+          "Seit 2007 ist eine Mitte-Deutschland-Verbindung notwendig; der Kanzler hat sich dem Thema jetzt angenommen",
+          "Das Problem liegt darin, dass Leute Lieferfähigkeit erwarten – 'Liefert doch mal ab'",
+          "Vertrauen verlieren schnell, aber nicht der Prozess ist unhaltbar; es braucht konsistente Politik"
+        ],
+        "quotes": [
+          {
+            "text": "Das war einer der Gründe, warum ich das Sondervermögen mit unterstützt habe. Weil wir in Thüringen hingehen und sagen, wir geben 1 Mrd. Euro an die Kommunen. Und sagen, baut das Schwimmbad, die Turnhalle. Das Gefühl des Abgehängtseins, da müssten wir entgegenwirken.",
+            "timestamp": "01:06:53",
+            "context": "Voigt zeigt konkrete Gegenmaßnahmen gegen Abgehängtheits-Gefühle in Ostdeutschland."
+          },
+          {
+            "text": "Ich kämpfe heute noch darum, das Geld zu kriegen. Der Kanzler hat sich dem Thema angenommen. Aber das ist das, wo die Leute sagen, liefert doch mal ab.",
+            "timestamp": "01:07:30",
+            "context": "Voigt diagnotziert: Das Problem ist nicht Demokratie-Kollaps, sondern Lieferverzug bei bekannten Projekten."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Infrastruktur Ostdeutschland",
+          "Demokratische Legitimität",
+          "AfD-Wählermilieus"
+        ]
+      },
+      {
+        "title": "Hoffnung, Veränderungsbotschaft und Kampagnen-Strategie",
+        "timestamp_range": "01:11:16 - 01:12:54",
+        "theme_description": "Jana Hensel warnt: Die demokratische Mitte könne nicht 'einen Schleier der Fröhlichkeit liefern', wenn die Wirklichkeit düster ist. Sie müsse eine echte 'Veränderungsbotschaft' bringen, nicht nur Status-quo-Verteidigung. Voigt wird aufgefordert, zu dieser strategischen Frage Stellung zu nehmen.",
+        "question_asked": "Jana Hensel sagt: 'Das Angebot der AfD ist, wir machen alles anders. Vielleicht ist die demokratische Mitte gut daran beraten, nicht so zu tun, als könnte sie einen Schleier der Fröhlichkeit liefern' (01:12:21). Louis Klamroth deutet an, dass Voigt hier widersprechen möchte.",
+        "question_intent": "Hensel (und Klamroth implizit) wollen wissen, ob Voigt meint, dass Hoffnung und positive Botschaften ausreichen, um Wähler von der AfD abzuhalten, oder ob echte Veränderungen nötig sind.",
+        "position": "Voigt antwortet mit historischem Beispiel: 'Ein 1. Punkt, Brooklyn Bridge wurde von einem Thüringer gebaut. Wenn wir eines lernen können, dann ist es die positive Botschaft' (01:12:54). Er unterstützt Sven Schulzes Vertrauen, dass 'Umfragen sind nicht Wahlergebnisse. Derjenige, der als Ministerpräsident zeigen kann, dass er es kann, wird gewählt.' Seine Schluss-Position: 'Deswegen bin ich nicht so pessimistisch wie Sie, sondern zuversichtlich. Eines muss gelten, dass wir tatsächlich daran glauben, dass man Dinge umkehren kann, dass man das Land mit Zuversicht führen kann' (01:12:54). Voigt antwortet damit nicht auf Hensels Kritik an 'Schleier-der-Fröhlichkeit'-Politik direkt, sondern setzt auf 'positive Botschaft' + demonstrierte Erfolge (Sven Schulze).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Voigt beantwortet Hensels Kritik indirekt: Er weicht ab zur historischen Anekdote (Brooklyn Bridge), bestätigt dann aber Hensels Punkt implizit ('Derjenige, der als Ministerpräsident zeigen kann, dass er es kann, wird gewählt'). Er adressiert nicht, ob 'Schleier der Fröhlichkeit' problematisch ist, sondern ersetzt es durch 'positive Botschaft' + handfeste Erfolgsbeweise.",
+        "concrete_statements": [
+          "Positive Botschaften sind zentral; historische Beispiele wie Brooklyn Bridge zeigen das",
+          "Umfragen sind nicht Wahlergebnisse; derjenige, der seine Fähigkeit zum Regieren zeigt, wird gewählt",
+          "Ich bin zuversichtlich, nicht pessimistisch wie Hensel",
+          "Wir müssen daran glauben, dass man Dinge umkehren kann und das Land mit Zuversicht führen kann"
+        ],
+        "quotes": [
+          {
+            "text": "Brooklyn Bridge wurde von einem Thüringer gebaut. Wenn wir eines lernen können, dann ist es die positive Botschaft, die Sven Schulze hat, Umfragen sind nicht Wahlergebnisse. Derjenige, der als Ministerpräsident zeigen kann, dass er es kann, wird gewählt.",
+            "timestamp": "01:12:54",
+            "context": "Voigts Antwort auf Hensels Kritik an 'Fröhlichkeits-Politik'; er pivotiert zu positiven Vorbildern und Lieferfähigkeit."
+          },
+          {
+            "text": "Deswegen bin ich nicht so pessimistisch wie Sie, sondern zuversichtlich. Eines muss gelten, dass wir tatsächlich daran glauben, dass man Dinge umkehren kann, dass man das Land mit Zuversicht führen kann.",
+            "timestamp": "01:12:54",
+            "context": "Voigts Schluss-Position zu Hensels Fatalismus."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Wahlkampf-Strategie",
+          "Politische Hoffnung",
+          "Zuversicht vs. Krisendiagnose"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In Thüringen haben wir das stärkste Wachstum in Deutschland gehabt",
+        "timestamp": "00:22:23"
+      },
+      {
+        "claim": "In Deutschland werden jeden Monat 10.000 Industriearbeitsplätze verloren",
+        "timestamp": "00:22:23"
+      },
+      {
+        "claim": "Die CDU hat bei der Baden-Württemberg-Wahl 6% zugelegt",
+        "timestamp": "00:05:13"
+      },
+      {
+        "claim": "Bei den Erststimmen liegt die CDU 400.000 Stimmen vor den Grünen in Baden-Württemberg",
+        "timestamp": "00:07:54"
+      },
+      {
+        "claim": "Nur 6% unserer Mineralölstoffe kommen aus dem Nahen Osten",
+        "timestamp": "00:38:10"
+      },
+      {
+        "claim": "In Thüringen wurde 1 Mrd. Euro an die Kommunen für Infrastruktur-Maßnahmen bereitgestellt",
+        "timestamp": "01:06:53"
+      }
+    ]
+  }
+}

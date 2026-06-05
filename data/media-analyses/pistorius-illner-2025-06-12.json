@@ -1,0 +1,345 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-12-juni-2025-100",
+    "video_id": "illner-2025-06-12",
+    "politician": "Boris Pistorius",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "2e5b98d326746f0c",
+    "transcript_chars": 47144,
+    "caption_lines": 2386,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19571,
+    "tokens_out": 8313,
+    "cost_usd": 0.0244544,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.304Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bundesverteidigungsminister Boris Pistorius (SPD) äußert sich in einem Interview mit Maybrit Illner zur eskalierenden Lage in der Ukraine, zur amerikanischen Außenpolitik unter Trump und zur verteidigungspolitischen Neuausrichtung Deutschlands. Er wirkt sachlich-bestimmt und wendet sich gegen Kritik aus der eigenen Partei zur Ukraine-Unterstützung.",
+    "themes": [
+      {
+        "title": "Vergeltungsnarrative und ukrainische Drohnenangriffe",
+        "timestamp_range": "00:10:41 - 00:10:41",
+        "theme_description": "Pistorius hinterfragt den Begriff der Vergeltung für russische Bombenangriffe auf die Ukraine nach ukrainischen Drohnenangriffen auf russische Flugzeuge.",
+        "question_asked": "Maybrit Illner fragt, ob die massiven Drohnenangriffe der Russen eine Vergeltung auf die Operation Spinnennetz darstellen.",
+        "question_intent": "Zu klären, ob die aktuellen russischen Luftangriffe als direkte Reaktion auf die erfolgreiche ukrainische Geheimdienst-Operation gegen russische Flugzeugbasen verstanden werden sollen.",
+        "position": "Pistorius wendet sich gegen die Interpretation, dass Russland Vergeltung übe, da dies impliziert, die Ukraine hätte einen Grund für solche Angriffe gegeben. Er betont, dass die Ukraine einen Angriffskrieg nicht begonnen hat und dass Russland keinen Anlass zum Eskalieren braucht. Die massiven Angriffe der letzten Nächte sind nach seiner Bewertung beachtlich und richten sich besonders gegen zivile Ziele.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius adressiert direkt die semantische und politische Problematik des Vergeltungsbegriffs und grenzt sich bewusst von dieser Deutung ab. Er bekräftigt damit die ukrainische Perspektive und lehnt eine Mitverantwortung der Ukraine für die russischen Angriffe ab.",
+        "quotes": [
+          {
+            "text": "Ich würde mich der Interpretation nicht anschließen, Vergeltung heißt es, als hätte die Ukrainer vorher etwas gemacht, dass eine Vergeltung rechtfertigen würde. Hier geht es um einen Angriffskrieg, den die Ukrainer nicht begonnen hat.",
+            "timestamp": "00:10:41",
+            "context": "In Reaktion auf die Frage, ob Russlands Drohnenangriffe als Vergeltung für die ukrainische Operation Spinnennetz zu verstehen sind."
+          }
+        ],
+        "concrete_statements": [
+          "Es braucht keinen Anlass um zu eskalieren für Russland",
+          "Die Angriffe der letzten Nächte waren beachtlich in besonderen Dimensionen",
+          "Es geht fast ausschließlich gegen zivile Ziele"
+        ],
+        "related_bundestag_topics": [
+          "Ukrainischer Widerstandsrecht",
+          "Internationale Kriegsrechtsverständnis",
+          "Zivile Infrastruktur in bewaffneten Konflikten"
+        ]
+      },
+      {
+        "title": "Amerikanische Unterstützung und Trumps Haltung",
+        "timestamp_range": "00:10:41 - 00:12:41",
+        "theme_description": "Pistorius nimmt zu Donald Trumps Verständnis für russische Bombenangiffe und zur Zuverlässigkeit der USA als westlicher Partner Stellung.",
+        "question_asked": "Maybrit Illner fragt, ob der amerikanische Präsident, der Verständnis für die Bomben aus Russland zeigt und den Ukrainern Mitschuld gibt, noch ein verlässlicher Partner des Westens ist.",
+        "question_intent": "Zu prüfen, wie die deutsche Regierung mit der widersprüchlichen und erschütternden Außenpolitik Trumps umgeht und ob Europa noch auf amerikanische Unterstützung rechnen kann.",
+        "position": "Pistorius lehnt ab, sich auf die Bewertung von Trumps Charakterisierungen einzulassen, und fokussiert stattdessen auf die praktische Frage, wie Europa die Ukraine weiter unterstützen kann und wie es die USA trotz solcher Äußerungen im westlichen Bündnis halten kann. Er behandelt Trumps Äußerungen als problematisch, aber nicht als Grund, die USA fallenzulassen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Pistorius weicht der direkten Bewertung von Trumps Zuverlässigkeit aus und verschiebt den Fokus auf europäisches Handeln. Er beantwortet die Kernfrage nach Trumps Partnerschaftsfähigkeit nur indirekt durch die Aussage, ihn 'im Boot' halten zu wollen, was eher ein Gestaltungsanspruch als eine klare Einschätzung ist.",
+        "quotes": [
+          {
+            "text": "Ich würde mich lieber damit aufhalten, wie wir als Europäer die Ukrainer weiter unterstützen können. Und die Amerikaner trotz solcher Äußerungen im Boot behalten.",
+            "timestamp": "00:10:41",
+            "context": "Antwort auf Frage zu Trumps Verständnis für russische Bombenangriffe und seiner Zuverlässigkeit als westlicher Partner."
+          }
+        ],
+        "concrete_statements": [
+          "Fokus liegt auf europäischer Unterstützung für Ukraine",
+          "USA trotz problematischer Äußerungen im Bündnis halten wollen"
+        ],
+        "related_bundestag_topics": [
+          "Transatlantische Beziehungen",
+          "NATO-Bündniskohäsion",
+          "Ukraine-Unterstützung durch Westmächte"
+        ]
+      },
+      {
+        "title": "Kürzung der US-Hilfen für die Ukraine",
+        "timestamp_range": "00:12:41 - 00:12:41",
+        "theme_description": "Pistorius bewertet die Ankündigung von Kürzungen der US-amerikanischen Militärhilfe für die Ukraine durch die Trump-Administration.",
+        "question_asked": "Maybrit Illner fragt, ob Pistorius die geplanten Kürzungen der US-Militärhilfe für die Ukraine genauso wie Selenskyj als 'Bombe' definiert.",
+        "question_intent": "Zu ermitteln, ob der Verteidigungsminister die Schwere dieser Entwicklung teilt und wie dramatisch er die Gefährdung der Ukraine-Unterstützung einschätzt.",
+        "position": "Pistorius bezeichnet die Hilfekürzung zwar nicht mit Selenskyjs Wort 'Bombe', würdigt aber, dass es sich um 'ein Schlag' handelt. Er differenziert zwischen zwei Szenarien: Frühere Aussagen über völlige Einstellung der Hilfe werden nicht mehr getätigt. Die entscheidende Frage ist nun das Ausmaß der Reduzierung und ob dieses durch europäische Mittel kompensierbar ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius adressiert beide Aspekte: die Bewertung der Schwere (Ablehnung des 'Bombe'-Begriffs, aber Anerkennung als Schlag) und die operative Frage der Kompensierbarkeit. Seine Antwort zeigt praktische Sachlichkeit statt emotionaler Reaktion.",
+        "quotes": [
+          {
+            "text": "Es ist nicht meine Sprache, aber ja, es ist ein Schlag. Der unterschied ist erst mal festzuhalten, bis vor wenigen Tagen war die Rede davon, dass die Hilfe ganz eingestellt würde, dass man sich gegen die Ukrainer wenden würde als USA, davon ist nicht mehr die Rede. Trotzdem muss man schauen, wie stark fällt diese Reduzierung aus. Ist das kompensierbar durch uns?",
+            "timestamp": "00:12:41",
+            "context": "Antwort auf Frage, ob Pistorius die US-Hilfekürzungen als 'Bombe' wie Selenskyj bezeichnet."
+          }
+        ],
+        "concrete_statements": [
+          "Ablehnung des 'Bombe'-Begriffs, aber Anerkennung als Schlag",
+          "Differenzierung zwischen (abgewendetem) Szenario völliger Einstellung und tatsächlicher Reduzierung",
+          "Frage nach Kompensierbarkeit durch europäische Mittel"
+        ],
+        "related_bundestag_topics": [
+          "Finanzierung der Ukraine-Unterstützung",
+          "Europäische Verteidigungsausgaben",
+          "Ersatz amerikanischer Militärhilfe"
+        ]
+      },
+      {
+        "title": "Europäische Verantwortung und britische Koordination",
+        "timestamp_range": "00:12:41 - 00:14:43",
+        "theme_description": "Pistorius positioniert Deutschland und Großbritannien als verantwortlich für die Organisation der Ukraine-Hilfe, falls sich die USA zurückziehen.",
+        "question_asked": "Maybrit Illner stellt fest, dass wegen des US-Rückzugs Pistorius und seine britischen Kollegen nun verantwortlich für die Koordination der Ukraine-Hilfe sind, und erwähnt Selenskyjs Bitte um Langstreckenraketen, insbesondere Taurus.",
+        "question_intent": "Zu klären, wie Pistorius die neue europäische Führungsrolle interpretiert und welche Antwort er auf Selenskyjs konkrete Waffenbitten geben kann.",
+        "position": "Pistorius bestätigt das europäische Verantwortungszuständnis angesichts des US-Rückzugs und berichtet von finanziellen Ankündigungen (7 Milliarden Euro mit Aussicht auf weitere 1,9 Milliarden). Zur Taurus-Frage äußert er, dass er sich wünscht, Friedrich Merz (Bundeskanzler) würde diese Waffe liefern, distanziert sich aber von öffentlichen Diskussionen und betont, dass dies eine legitime Frage sei, zu der es jedoch private, nicht-öffentliche Gründe gegen eine Lieferung gibt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Pistorius adressiert die finanzielle Seite vollständig, weicht bei der Taurus-Frage aber aus, indem er auf 'andere Gründe' verweist, die nicht öffentlich diskutierbar sind. Dies ist eine klassische Verweigerung der Substanz, bei gleichzeitiger Anerkennung der Legitimität der Frage.",
+        "quotes": [
+          {
+            "text": "Die Taurus-Frage ist bedeutend. Ich wünschte, Friedrich würde uns Taurus geben. Was haben sie ihm geantwortet? ich habe nie gesagt, dass dieses Wort im nicht in den Mund genommen werden darf. Es ist eine legitime Frage.",
+            "timestamp": "00:12:41",
+            "context": "Antwort auf Frage, was Pistorius Selenskyj zur Taurus-Rakete geantwortet hat."
+          },
+          {
+            "text": "Es gibt andere Gründe über die wir nicht öffentlich reden können.",
+            "timestamp": "00:14:43",
+            "context": "Erklärung, warum Deutschland Taurus nicht liefert, ohne diese Gründe zu benennen."
+          }
+        ],
+        "concrete_statements": [
+          "Finanzielle Unterstützung: 7 Mrd. Euro zugesagt, 1,9 Mrd. Euro weitere Aufstockung in Verhandlung",
+          "Weitreichende Raketen anderer Bauart können bis Ende des Jahres bereitgestellt werden",
+          "Keine Taurus-Lieferung, aber nicht wegen SPD-Bremse"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungshilfe Ukraine",
+          "Langstreckenwaffen-Lieferungen",
+          "Deutsche Rüstungspolitik"
+        ]
+      },
+      {
+        "title": "Kritik von SPD-Friedensmanifest und Konfrontationspolitik",
+        "timestamp_range": "00:17:06 - 00:19:09",
+        "theme_description": "Pistorius nimmt Stellung zum Manifest von SPD-Mitgliedern, die ein Ende der Konfrontationspolitik gegenüber Russland fordern und Verteidigungsausgaben von 5% kritisieren.",
+        "question_asked": "Maybrit Illner fragt, ob Pistorius nach dem Manifest gegen ihn und Lars Klingbeil noch die Unterstützung seiner Partei hat, da das Manifest eine Zusammenarbeit mit Russland und 'irrationale' Verteidigungsausgaben kritisiert.",
+        "question_intent": "Zu untersuchen, ob die SPD-interne Kritik das Vertrauen in die Verteidigungspolitik von Pistorius und Klingbeil unterminiert und wie fragmentiert die SPD in dieser Frage ist.",
+        "position": "Pistorius nimmt die Kritik nicht persönlich, sondern weist dem Vorwurf der Konfrontationsstrategie zurück und adressiert stattdessen Putin als Aggressor. Er kritisiert die Autoren des Manifests scharf dafür, dass sie eine engere Zusammenarbeit mit Russland vorschlagen, während dieser die Angriffe auf die Zivilbevölkerung erhöht. Pistorius verweist auf Willy Brandts historisches Verständnis, dass Verhandlungen mit der Sowjetunion nur von einer Position der Stärke aus möglich seien. Er betont, dass die SPD mehrheitlich den Koalitionsvertrag unterstützt und dass er seit 45 Jahren Parteimitglied ist.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Die Frage zielt auf die SPD-interne Solidarität, Pistorius antwortet aber substantiell zu den politischen Inhalten: Er widersetzt sich dem Vorwurf der Konfrontation und dreht ihn um, indem er Putin als Aggressor und die Manifest-Autoren als befremdlich darstellt. Das ist ein klassischer Gegenpunkt: statt Schwäche zuzugeben, wird die andere Seite als unvernünftig positioniert.",
+        "quotes": [
+          {
+            "text": "Ich weiß, dass wir nicht diejenigen sind, die den Weg einer Konfrontationsstrategie eingeschlagen haben. Der Vorwurf geht ins Leere, es ist sehr bedauerlich, dass man diesen Vorwurf so formuliert, Putin ist der Aggressor in diesem Fall.",
+            "timestamp": "00:17:06",
+            "context": "Antwort auf Vorwurf, dass das Manifest einen offenen Angriff gegen ihn und Klingbeil darstellt."
+          },
+          {
+            "text": "Es ist völlig eindeutig, wie man sich in dieser Phase eine engere Zusammenarbeit mit Russland verschenken, das ist total befremdlich.",
+            "timestamp": "00:17:06",
+            "context": "Bewertung der Forderung im Manifest nach Zusammenarbeit mit Russland."
+          }
+        ],
+        "concrete_statements": [
+          "Pistorius und Klingbeil haben keine Konfrontationsstrategie eingeleitet",
+          "Putin ist der Aggressor und unterläuft durch erhöhte Angriffe die Vorschläge für Zusammenarbeit",
+          "Mehrheit der SPD unterstützt Koalitionsvertrag",
+          "Willy Brandt-Referenz: Verhandlungen nur aus Position der Stärke möglich"
+        ],
+        "related_bundestag_topics": [
+          "SPD-Parteiposition zu Russland",
+          "Friedenspolitik vs. Wehrhaftigkeit",
+          "Verhandlungen mit autorititären Regimen"
+        ]
+      },
+      {
+        "title": "NATO-Parteitag-Beschluss und europäische Strategie",
+        "timestamp_range": "00:19:09 - 00:21:11",
+        "theme_description": "Pistorius betont, dass der SPD-Parteitag beschlossen hat, dass Europa mit und gegen Russland handeln muss, und grenzt sich damit ab von reinen Kooperationsideen.",
+        "question_asked": "Maybrit Illner bemerkt, dass Pistorius damit einen SPD-Parteitags-Beschluss konterkariert, den Klingbeil hart erkämpft hat: Europa muss nicht nur mit Russland, sondern auch gegen Russland vorgehen.",
+        "question_intent": "Zu klären, wie Pistorius seine eigenen bisherigen Positionen mit dem SPD-Parteitags-Beschluss in Einklang bringt und ob das Parteigefüge hinter dieser Linie steht.",
+        "position": "Pistorius bekräftigt, dass persönliche politische Schäden für ihn nicht relevant sind. Er vertraut der SPD, deren Mehrheit den Koalitionsvertrag mit all seinen Inhalten akzeptiert hat. Er erinnert daran, dass der Parteitag vor eineinhalb Jahren bereits beschlossen hat, wie der Umgang mit Russland auszusehen hat. Die gegenwärtige Herausforderung durch Krieg ist ungewünscht, aber es geht nicht darum, Wahrheit zu leugnen oder Schuld bei anderen zu suchen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius adressiert die Anschuldigung vollständig und verdeutlicht, dass er sich auf dem Boden des Parteitags-Beschlusses bewegt. Er nutzt die Gelegenheit, die SPD-Einheit zu betonen und sein Vertrauen in die Partei auszudrücken.",
+        "quotes": [
+          {
+            "text": "Es wird sich tatsächlich mit diesen Fragen beschäftigt, welche aber ein großes Vertrauen in die SPD, ich gehöre ihr seit mehr als 45 Jahren an. Der Parteiteil, der größer ist, der den Koalitionsvertrag mit allen Inhalten zugestimmt hat, der bin ich sehr entspannt, und ich bin völlig bei Ihnen, die Partei hat vor eineinhalb Jahren beschlossen, wie der Umgang mit Russland zu sein hat.",
+            "timestamp": "00:19:09",
+            "context": "Antwort auf Vorwurf, dass Pistorius einen SPD-Parteitags-Beschluss konterkariert."
+          }
+        ],
+        "concrete_statements": [
+          "Persönliche politische Schäden sind nicht relevant",
+          "Mehrheit der SPD unterstützt Koalitionsvertrag",
+          "Parteitag hat 1,5 Jahre zuvor Russland-Strategie festgelegt",
+          "Wahrheit darf nicht geleugnet werden, Schuld darf nicht auf andere verschoben werden"
+        ],
+        "related_bundestag_topics": [
+          "SPD-Parteidemokratie",
+          "Außenpolitische Zieldefinition",
+          "Vertrauensfrage in Parteileitung"
+        ]
+      },
+      {
+        "title": "Verteidigungsausgaben und 5%-Ziel",
+        "timestamp_range": "00:21:11 - 00:23:13",
+        "theme_description": "Pistorius erläutert das Ziel von 3,5% Verteidigungsausgaben bis 2032 und setzt sich damit gegen die SPD-Kritik von 5% ab.",
+        "question_asked": "Maybrit Illner stellt dar, dass das SPD-Manifest 5% als 'irrational' kritisiert, während Friedrich Merz (CDU) 5% als Richtgröße sieht, und fragt, ob 5% nur ein Versuch ist, die USA in der NATO zu halten.",
+        "question_intent": "Zu verstehen, wie Pistorius die unterschiedlichen Ziele (3,5% vs. 5%) legitimiert und ob dies eine versteckte Kritik an Trump ist.",
+        "position": "Pistorius differenziert zwischen der 5%-Prozentzahl, die Trump in die Welt gebracht hat, und dem realistischen Ziel von bis zu 3,5% bis 2032. Dies ist ein nachvollziehbarer Versuch, Vergleichbarkeit herzustellen, aber es kommt letztlich darauf an, dass jedes Land die festgelegten NATO-Ziele umsetzt. Das kostet Geld und Personal. Die Alternative ist, dass die Länder verteidigungsunfähig werden – und das ist für niemanden eine akzeptable Wahl.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius adressiert sowohl die politische Kritik (5% als übertrieben) als auch die praktische Realität (Ziele umsetzen kostet unabhängig von der Prozentzahl). Er gibt eine klare Antwort auf die Legitimation unterschiedlicher Ziele.",
+        "quotes": [
+          {
+            "text": "Diese Prozentzahl, die von Donald Trump in die Welt gebracht worden ist, es ist der nachvollziehbare Versuch eine Vergleichbarkeit herzustellen. Diese Diskussion, die kann man führen, und wird man noch führen müssen, am Ende kommt es aber darauf an, dass möchte ich deutlich sagen, auf etwas anderes an. Jedes Land muss die Ziele, die festgelegt sind, umsetzen. Das kostet jede Menge Geld und Personal.",
+            "timestamp": "00:21:11",
+            "context": "Antwort auf Kritik des SPD-Manifests gegen 5% und Frage nach der Richtigkeit dieser Zahl."
+          },
+          {
+            "text": "Das können bis zu 3,5 % sein bis zum Jahre 2032, die Alternative ist, sind für verteidigungsfähig? Das sind die Fragen, von dem wir stehen, da stellt sich niemand gerne, ich zumindest nicht.",
+            "timestamp": "00:21:11",
+            "context": "Erläuterung des 3,5%-Ziels als realistische Alternative zur 5%-Forderung."
+          }
+        ],
+        "concrete_statements": [
+          "5% ist Trumps Zahl, 3,5% bis 2032 ist das deutsche Ziel",
+          "Ziele umzusetzen ist wichtiger als die genaue Prozentzahl",
+          "Verteidigungsunfähigkeit ist keine Alternative",
+          "Die Diskussion kann und wird noch geführt"
+        ],
+        "related_bundestag_topics": [
+          "NATO-Ziele und deutsche Umsetzung",
+          "Rüstungshaushalt und Budgetplannung",
+          "Europäische Verteidigungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Stärkste Armee Europas und Wehrdienst",
+        "timestamp_range": "00:23:13 - 00:23:13",
+        "theme_description": "Pistorius bewertet die Vision einer stärksten europäischen Bundeswehr und die Frage nach der Notwendigkeit einer Wehrpflicht.",
+        "question_asked": "Maybrit Illner fragt, ob Deutschland die stärkste Armee Europas werden wird, wie Friedrich Merz wünscht, und ob dafür eine Wehrpflicht nötig ist.",
+        "question_intent": "Zu klären, wie ambitioniert die Ziele für die Bundeswehr sind und welche Mittel (insbesondere Wehrpflicht) zur Erreichung dieser Ziele erforderlich sind.",
+        "position": "Das Ziel ist laut Pistorius unbestritten: Als größte Volkswirtschaft in exponierter Lage ist es naheliegend, dass Deutschland die größte konventionelle Armee sein wird. Allerdings kommt es auf die Definition an – nicht nur die absolute Größe ist relevant, sondern auch die spezifischen Fähigkeiten, die jedes Land im NATO-Profil einbringt. Deutschland wird wahrscheinlich das größte oder zweitgrößte Paket schultern. Zur Wehrpflicht: Es hängt davon ab, ob der Wehrdienst attraktiv genug für junge Menschen gestaltet werden kann. Dies wird sich in den nächsten Jahren zeigen und bestimmen, ob eine Ausweitung nötig ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Pistorius adressiert beide Aspekte der Frage: das Ziel der militärischen Stärke und die Mittel (Wehrdienst). Er bleibt pragmatisch und offen für verschiedene Szenarien, je nachdem wie attraktiv der Dienst für Freiwillige ist.",
+        "quotes": [
+          {
+            "text": "Das Ziel ist eigentlich völlig klar, unbestritten. Wir sind die größte Volkswirtschaft, in exponierter Lage. Von daher ist es naheliegend, dass wir die größte konventionelle Armee sein werden irgendwann. Die entscheidende Frage ist eigentlich wie definiert man das? Jeder muss andere Fähigkeiten in das NATO-Profil einbringen.",
+            "timestamp": "00:23:13",
+            "context": "Antwort auf Frage, ob Deutschland die stärkste europäische Armee wird."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschlands größte Volkswirtschaft = naheliegend größte konventionelle Armee",
+          "Definition kommt auf NATO-Fähigkeiten an, nicht nur absolute Größe",
+          "Deutschland wird größtes oder zweitgrößtes Rüstungspaket schultern",
+          "Wehrpflicht hängt von Attraktivität des Dienstes ab"
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsaufbau Bundeswehr",
+          "Wehrpflicht und Freiwilligendienst",
+          "NATO-Fähigkeiten und Spezialisierungen"
+        ]
+      },
+      {
+        "title": "Selenskyjs Teilnahme am NATO-Gipfel",
+        "timestamp_range": "00:23:13 - 00:23:13",
+        "theme_description": "Pistorius wird gefragt, ob der ukrainische Präsident am nächsten NATO-Gipfel teilnehmen wird oder nur zu einem Mittagessen eingeladen ist.",
+        "question_asked": "Maybrit Illner fragt, ob Selenskyj am nächsten NATO-Gipfel teilnehmen darf oder ob er nur zu einem Mittagessen mit Pistorius eingeladen wird.",
+        "question_intent": "Zu klären, welchen Status und welche Partizipation die Ukraine auf dem kommenden NATO-Gipfel haben wird und ob dies ein Signal der Solidarität darstellt.",
+        "position": "Pistorius kann die Teilnahmefrage nicht beantworten, da sie nicht in seiner Hand liegt. Er hofft aber sehr, dass Selenskyj eingeladen wird, wenn dies der Fall ist, da dies ein notwendiges Signal wäre – gerade jetzt. Die konkrete Antwort muss der Präsident selbst geben.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Pistorius adressiert nur die Hoffnung und die Begründung dafür (notwendiges Signal), ohne konkrete Information zur Teilnahme zu geben. Dies ist eine sachliche Beschränkung auf das verfügbare Wissen, nicht eine Verweigerung.",
+        "quotes": [
+          {
+            "text": "Wenn er eingeladen wird, was ich nicht weiß, ob das der Fall ist, das liegt nicht in meiner Hand. Er wird natürlich kommen, ich kann das aber alles nicht beantworten, das müssen Sie dem Präsidenten fragen. Ich hoffe natürlich sehr, es wäre ein notwendiges Signal, gerade jetzt.",
+            "timestamp": "00:23:13",
+            "context": "Antwort auf Frage zur Partizipation von Selenskyj beim NATO-Gipfel."
+          }
+        ],
+        "concrete_statements": [
+          "Entscheidung liegt nicht in Pistoriuss Hand",
+          "Selenskyj würde kommen, wenn eingeladen",
+          "Teilnahme wäre notwendiges Signal gerade jetzt"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Status in NATO-Strukturen",
+          "Symbolische Anerkennung der Ukraine",
+          "NATO-Gipfel-Agenda"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Ukraine hat den Angriffskrieg nicht begonnen",
+        "timestamp": "00:10:41"
+      },
+      {
+        "claim": "7 Milliarden Euro Militärhilfe sind bereits zugesagt",
+        "timestamp": "00:14:43"
+      },
+      {
+        "claim": "Weitere 1,9 Milliarden Euro zur Aufstockung wurden vor einigen Wochen verhandelt",
+        "timestamp": "00:14:43"
+      },
+      {
+        "claim": "Das Weitreichende-Raketen-System wird bis Ende des Jahres verfügbar sein",
+        "timestamp": "00:14:43"
+      },
+      {
+        "claim": "Willy Brandt verhandelte mit der Sowjetunion von einer Position der Stärke aus bei Verteidigungsausgaben um 4%",
+        "timestamp": "00:17:06"
+      },
+      {
+        "claim": "Der SPD-Parteitag hat vor eineinhalb Jahren beschlossen, wie der Umgang mit Russland auszusehen hat",
+        "timestamp": "00:19:09"
+      },
+      {
+        "claim": "Pistorius gehört der SPD seit mehr als 45 Jahren an",
+        "timestamp": "00:19:09"
+      },
+      {
+        "claim": "Das deutsche Ziel sind Verteidigungsausgaben bis zu 3,5% bis zum Jahr 2032",
+        "timestamp": "00:21:11"
+      }
+    ]
+  }
+}

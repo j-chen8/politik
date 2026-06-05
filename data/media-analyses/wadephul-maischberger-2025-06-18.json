@@ -1,0 +1,331 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNi0xOF8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-06-18",
+    "politician": "Johann Wadephul",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "71099c1747070beb",
+    "transcript_chars": 51854,
+    "caption_lines": 1936,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20927,
+    "tokens_out": 10474,
+    "cost_usd": 0.029318800000000002,
+    "quote_validation": {
+      "valid_exact": 3,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 3,
+      "themenwechsel": 1,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.355Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johann Wadephul, seit Mai 2025 Bundesaußenminister, wird von Sandra Maischberger in dieser Maischberger-Sendung zu außenpolitischen Krisenthemen befragt. Er tritt dabei als Verteidiger der israelischen Militäraktion gegen den Iran auf, erklärt die Erhöhung der Verteidigungsausgaben auf 5% des BIP und beantwortet Kritik zu seiner kurzen Amtszeit. Der Ton ist sachlich und verteidigend, mit Versuchen, missverstandene Formulierungen zu präzisieren.",
+    "themes": [
+      {
+        "title": "Amtsantritt und CSU-Kritik als 'tickende Zeitbombe'",
+        "timestamp_range": "00:22:22 - 00:24:26",
+        "theme_description": "Wadephul wird nach seinen ersten 40 Tagen als Außenminister befragt und mit der CSU-Kritik konfrontiert, dass er eine 'tickende Zeitbombe' sei.",
+        "question_asked": "Sandra Maischberger fragt, wie überrascht Wadephul war, von Friedrich Merz angerufen zu werden (angesichts anderer Kandidaten wie Röttgen oder Laschet). Dann zitiert sie die CSU-Kritik: 'Sie seien eine tickende Zeitbombe' — und fragt, wie er selbst seine ersten 40 Tage bewerten würde.",
+        "question_intent": "Sandra Maischberger will verstehen, wie sicher Wadephul in seiner neuen Rolle ist und wie er mit interner Partei-Kritik umgeht.",
+        "position": "Wadephul sagt, dass es mehrere Kandidaten gab (Röttgen, Laschet waren im Gespräch), freut sich aber, dass Merz ihn angerufen hat. Die CDU/CSU ist 'außenpolitisch orientiert', und es gab mehrere Kandidaten. Zur Selbstbewertung: 'Man soll sich selbst nicht bewerten' — das möchte er anderen überlassen. Er sei 'unheimlich belastbar' und kenne die CSU lange. Die Fraktion-Gemeinschaft sei gut. Er erwarte nicht, dass jeder immer mit allem einverstanden sei. Er habe einen 'neuen Akzent' gesetzt, was notwendig war — bezieht sich auf humanitärere Töne in der Nahostpolitik.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul antwortet auf die Frage nach der CSU-Kritik ausweichend: Er würdigt sich nicht selbst (richtige Bescheidenheit), aber er adressiert die konkrete Kritik nicht. Er lenkt stattdessen auf seine 'Belastbarkeit' und seinen 'neuen Akzent' ab — eine teilweise, eher defensive Antwort.",
+        "concrete_statements": [
+          "Man soll sich selbst nicht bewerten.",
+          "Ich bin unheimlich belastbar und kenne die CSU lange.",
+          "Ich habe einen neuen Akzent gesetzt, das war notwendig."
+        ],
+        "quotes": [
+          {
+            "text": "Na ja, Man soll sich selbst nicht bewerten. Das möchte ich anderen überlassen. Da bin ich unheimlich belastbar. Ich kenne die CSU lange und wir haben eine Fraktion Gemeinschaft.",
+            "timestamp": "00:23:26"
+          }
+        ]
+      },
+      {
+        "title": "Neuer Ton in der Nahostpolitik und Gazastreifen",
+        "timestamp_range": "00:23:26 - 00:25:32",
+        "theme_description": "Wadephul wird gefragt, wie er die humanitäre Krise im Gazastreifen und die Notwendigkeit von Kritik an Israels Vorgehen bewertet.",
+        "question_asked": "Sandra Maischberger fragt, ob Wadephul einen 'neuen Akzent' in der Nahostpolitik setzen wollte und wie er die humanitäre Situation im Gazastreifen sieht. Sie thematisiert auch die Kritik am Begriff 'Zwangssolidarität'.",
+        "question_intent": "Sandra Maischberger will verstehen, ob Wadephul trotz seiner Unterstützung für Israel auch kritische Positionen zur Zivilbevölkerung einnimmt und wie er die Kritik von Vorgängern handhabt.",
+        "position": "Wadephul betont, dass er einen 'neuen Akzent' notwendig fand. Er kritisiert, dass die Hamas-Bekämpfung zu einer Abriegelung des Gazastreifens von humanitärer Versorgung (Lebensmittel, Medikamente) führt. Er spricht von einem 'sehr harten Krieg', in dem die Unterscheidung zwischen Zivilisten und Terroristen 'nicht mehr eindeutig' ist und betont, dass 'Menschenleben gleichwertig' sind. Er gibt zu, dass 'Zwangssolidarität' eine unglückliche Formulierung war, und präzisiert: Deutschland hat eine Verantwortung für Israels Existenz und Sicherheit, aber jeder darf die Politik kritisieren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul adressiert direkt die Kritik an der humanitären Situation, differenziert zwischen Unterstützung für Israel und Kritik an seiner Politik, und erklärt seinen Positionen-Wechsel. Er beantwortet damit vollständig, was Sandra Maischberger wissen wollte.",
+        "concrete_statements": [
+          "Wir haben eine humanitäre Situation im Gazastreifen, die ist unerträglich.",
+          "Ein sehr harter Krieg dort, wo die Differenzierung zwischen Zivilisation und Terroristen nicht mehr eindeutig ist.",
+          "Die 'Zwangssolidarität'-Formulierung war nicht die glücklichste.",
+          "Deutschland hat eine riesige Verantwortung für Israel, aber jeder darf die Politik kritisieren."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben eine humanitäre Situation im Gazastreifen, die ist unerträglich. Und diese Terroristen der Hamas zu bekämpfen. Aber den Gazastreifen komplett von jeder humanitären Versorgung abgeriegelt. Von Lebensmitteln, von Medikamenten. Ein sehr harter Krieg dort, wo die Differenzierung zwischen Zivilisation und Terroristen nicht mehr eindeutig ist.",
+            "timestamp": "00:23:56"
+          },
+          {
+            "text": "Wenn ich Herrn Medicks Begriff übernehmen darf, das war nicht die glücklichste Formulierung. Ich wollte damit ausdrücken, dass wir eine riesige Verantwortung für Israel haben. Für die Existenz und Sicherheit des Staates Israel. Jeder deutsche und jede deutsche darf das. Aber die Politik dieser Regierung kritisieren.",
+            "timestamp": "00:24:59"
+          }
+        ]
+      },
+      {
+        "title": "Bewertung der israelischen Militäroperation gegen den Iran",
+        "timestamp_range": "00:26:26 - 00:30:37",
+        "theme_description": "Wadephul wird befragt, ob er Friedrich Merz' Formulierung der 'Drecksarbeit' teilt und wie er die israelische Militäroperation rechtfertigt.",
+        "question_asked": "Sandra Maischberger fragt (nach Merz-Zitat 'Israel macht die Drecksarbeit auch für uns'), wie Wadephul zum Angriff auf den Iran steht und ob er diese Bewertung teilt.",
+        "question_intent": "Sandra Maischberger will wissen, ob Wadephul die Deutung unterstützt, dass Israel im westlichen Interesse handelt, oder ob er eine andere Begründung hat.",
+        "position": "Wadephul betont, dass der Iran per Staatsziel die Vernichtung Israels anstrebt. Er bejaht Israels Selbstverteidigungsrecht, wenn die israelische Regierung zu dem Schluss kommt, dass der Iran atomare Bedrohung darstellt. Er argumentiert, dass dieses Regime auch eine Bedrohung für Deutschland und Europa sei, da iranische Raketen auch hier landen könnten. Die Differenzierung zwischen Zivilbevölkerung und Terroristen sei im Gazastreifen 'nicht mehr eindeutig', weshalb er trotz humanitärer Sorgen die Selbstverteidigung rechtfertigt. Er distanziert sich von der Formulierung 'Drecksarbeit' und präzisiert: Es geht um Israels Sicherheitsinteresse, nicht um westliche Stellvertreterlogik.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul adressiert die Frage nach seiner Position zur israelischen Aktion und bietet eine völkerrechtliche Begründung (Selbstverteidigungsrecht). Er lehnt aber das Framing 'Drecksarbeit für uns' ab und argumentiert stattdessen, dass die Bedrohung real für den Westen ist. Er beantwortet also teilweise — bejaht die Aktion, aber nicht aus dem von Merz unterstellten Grund.",
+        "concrete_statements": [
+          "Das Regime, das die Intention hat, Israel zu vernichten, finde ich nicht in Ordnung.",
+          "Wenn die israelische Regierung zu dem Schluss kommt, dass sie jetzt in die Lage kommen, das zu machen mit Atomwaffen, dann muss Israel das Recht haben, sich zu verteidigen.",
+          "Diese Raketen können auch hier landen und uns unter Druck setzen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir sind uns jedenfalls einig darin, dass dieses Regime die Intention hat, Israel zu vernichten. Ich finde das nicht in Ordnung. Iran hat als Staatsziel, diesen Staat zu vernichten. Und wenn die israelische Regierung zu dem Schluss kommt, dass sie jetzt in die Lage kommen, das zu machen mit Atomwaffen, mit Raketen und anderen Mitteln, wenn das die Schlussfolgerung ist, dann muss Israel das Recht haben, sich zu verteidigen.",
+            "timestamp": "00:26:26"
+          },
+          {
+            "text": "Wenn uns das klar ist, führen wir vielleicht auch eine völkerrechtliche Diskussion anders. Es gab mal einen deutschen Außenminister. Der hat gesagt, ich bin nicht überzeugt von dem Plan der USA. ... Ich bin nicht in der Situation, dass ich in Israel lebe und dieser Situation ausgesetzt bin.",
+            "timestamp": "00:27:41"
+          }
+        ]
+      },
+      {
+        "title": "Irans Atomprogramm und internationale Verträge",
+        "timestamp_range": "00:28:34 - 00:29:36",
+        "theme_description": "Wadephul wird gefragt, wie überzeugend die Begründung für den Angriff auf iranische Atomziele ist und was genau das Ziel der Operation war.",
+        "question_asked": "Sandra Maischberger zitiert einen früheren deutschen Außenminister ('Ich bin nicht überzeugt von dem Plan der USA') und fragt Wadephul, wie überzeugend die Argumentation Israels für ihn persönlich ist, zumal nicht nur Atomkraftanlagen, sondern auch Ölfelder und Medien angegriffen wurden.",
+        "question_intent": "Sandra Maischberger will prüfen, ob Wadephul kritische Fragen zur Verhältnismäßigkeit und zum echten Fokus der Operation (Atomwaffen vs. Regime Change) hat.",
+        "position": "Wadephul lehnt es ab, von Berlin aus die Situation besser zu beurteilen als die betroffene israelische Regierung. Er verweist auf die unabhängige Feststellung der Internationalen Atomenergiebehörde, dass Irans Atomprogram deutlich über zivile Nutzung hinausgeht. Er sagt, er halte sich an die Aussagen des israelischen Außenministers, der ihm 'klipp und klar' gesagt habe, es gehe um Entwaffnung (Atomwaffen und Raketen), nicht um Regime Change. Er argumentiert auch, dass Netanyahu die Bevölkerung aufgefordert habe, gegen das Regime aufzustehen, doch Deutschland die Position vertrete, dass jedes Land selbst entscheiden dürfe, wer es regiert.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul beantwortet die Frage nach dem echten Ziel (Atomwaffen-Stopp vs. Regime Change), indem er sich auf Aussagen des israelischen Außenministers beruft. Das adressiert die Frage teilweise, weicht aber zugleich aus, weil er nicht unabhängig einschätzt, sondern delegiert. Zur Verhältnismäßigkeit (Ölfelder, Medien) äußert er sich nicht direkt.",
+        "concrete_statements": [
+          "Iran hat das Programm unzweifelhaft fortgesetzt und ein Niveau erreicht, deutlich oberhalb jeder sinnvollen zivilen Nutzung.",
+          "Der israelische Außenminister hat mir klipp und klar gesagt, es geht darum, ihm die Waffen aus der Hand zu schlagen. Atomare Bewaffnung und auch die Raketen.",
+          "Das iranische Volk muss selbst entscheiden, wie es regiert wird."
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin nicht in der Situation, dass ich in Israel lebe und dieser Situation ausgesetzt bin. Das ist ein ernsthafter Punkt. Iran hat das Programm verlangsamen müssen. Aber es hat das Programm unzweifelhaft fortgesetzt. Es hat ein Niveau erreicht, was deutlich oberhalb jeder sinnvollen zivilen Nutzung ist.",
+            "timestamp": "00:28:34"
+          },
+          {
+            "text": "Ich halte mich an das, was die israelische Regierung mir sagt. Ich habe mehrmals mit dem Außenminister telefoniert. Er hat mir klipp und klar gesagt, es geht darum, ihm die Waffen aus der Hand zu schlagen. Atomare Bewaffnung und auch die Raketen.",
+            "timestamp": "00:29:06"
+          }
+        ]
+      },
+      {
+        "title": "US-Truppenpräsenz und Wahrscheinlichkeit amerikanischer Intervention",
+        "timestamp_range": "00:31:07 - 00:32:39",
+        "theme_description": "Wadephul wird befragt, wie wahrscheinlich eine Intervention der USA im Nahostkonflikt ist und wie er die Rüstungsbewegungen interpretiert.",
+        "question_asked": "Sandra Maischberger fragt, wie wahrscheinlich es ist, dass die USA militärisch eingreifen, angesichts der Truppenbewegungen und der unklaren Aussagen Donald Trumps.",
+        "question_intent": "Sandra Maischberger will wissen, ob Wadephuls Vertrauen in die USA-Zurückhaltung realistisch ist oder ob eine Eskalation zu befürchten ist.",
+        "position": "Wadephul verweist auf offizielle Aussagen von US-Außenminister Marco Rubio, der zu Anfang gesagt habe, die USA seien 'nicht Teil dieser Auseinandersetzung'. Die Truppenverstärkung interpretiert er als Abschreckung: Die Amerikaner bereiten sich vor, zurückzuschlagen, 'wenn sie angegriffen werden'. Das sei ein Signal an den Iran, zu verhandeln und nicht anzugreifen. Er gibt zu, dass sich das morgen ändern kann, hält sich aber an die 'aktuelle Einschätzung' von Rubio. Er betont auch, dass Trump und Rubio beide sagten, der Iran müsse 'zu Behandlungen bereit sein' — was auch Wadephuls Botschaft ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul antwortet auf die Frage nach Wahrscheinlichkeit einer US-Intervention mit einer Interpretation offizieller Aussagen, nicht mit seiner eigenen Risiko-Einschätzung. Er adressiert die Frage teilweise, indem er beruhigende Signale zitiert, vermeidet aber eine klare Einschätzung zur tatsächlichen Wahrscheinlichkeit.",
+        "concrete_statements": [
+          "Die USA sind nicht Teil dieser Auseinandersetzung und leisten keinen Beitrag dazu.",
+          "Die Amerikaner bereiten sich vor, zurück zu schlagen, wenn sie angegriffen werden. Das ist ein klares Zeichen an den Iran: Verhandeln und greift uns nicht an.",
+          "Der Iran muss zu Behandlungen bereit sein. Das ist auch meine Botschaft."
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte mich an das, was mein Amtskollege Marco Rubio offiziell dazu gesagt hat. Er hat das ganz am Anfang gesagt: Die USA sind nicht Teil dieser Auseinandersetzung. Sie leisten keinen Beitrag dazu. Er hat auch dazu gesagt, daher auch die Truppenkonzentrierung: die Amerikaner bereiten sich vor, zurück zu schlagen, wenn sie angegriffen werden.",
+            "timestamp": "00:31:39"
+          }
+        ]
+      },
+      {
+        "title": "Deutsche Waffenlieferungen an Israel",
+        "timestamp_range": "00:33:13 - 00:34:16",
+        "theme_description": "Wadephul wird befragt, wie Deutschland Waffenlieferungen an Israel überwacht und sicherstellt, dass diese nicht in Gaza eingesetzt werden.",
+        "question_asked": "Sandra Maischberger fragt, warum Deutschland Waffen an Israel liefert, und wie gewährleistet wird, dass U-Boote nicht in Gaza eingesetzt werden und dass Panzer nur kontrolliert zum Einsatz kommen.",
+        "question_intent": "Sandra Maischberger will prüfen, ob Wadephul konkrete Kontrollmechanismen hat oder ob die Argumentation unzureichend ist.",
+        "position": "Wadephul rechtfertigt Waffenlieferungen mit Deutschlands historischer Verantwortung: Deutschland liefert seit jeher an Israel (495 Mio. Euro allein von Oktober 2023 bis jetzt). U-Boote aus Kiel werden nicht in Gaza eingesetzt. Bei anderen Lieferungen (Panzerteile, Munition, Ausrüstung) betont er, dass die aktuelle Bundesregierung diese 'sehr sorgfältig' überprüft und 'abgewogene Entscheidungen' trifft. Entscheidungen und Beratungen seien nicht öffentlich zu machen. Er verweist auch darauf, dass die alte Bundesregierung diese Lieferungen entschieden habe, die neue Regierung aber dazu stehe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul beantwortet die Frage nach Waffenlieferungen im Prinzip, weicht aber bei der zentralen Frage nach Kontrollmechanismen aus, indem er sagt, 'Beratungen und Ergebnisse' könne er nicht öffentlich besprechen. Das adressiert die Kritik nur teilweise.",
+        "concrete_statements": [
+          "Deutschland liefert an Israel Waffen, das haben wir immer getan. 495 Mio allein von Oktober 23 bis jetzt.",
+          "U-Boote werden dort nicht eingesetzt.",
+          "Wir schauen uns das sehr sorgfältig an und treffen abgewogene Entscheidungen."
+        ],
+        "quotes": [
+          {
+            "text": "Deutschland liefert an Israel Waffen, das haben wir immer getan. 495 Mio allein von Oktober 23 bis jetzt. Von Anbeginn an. Ich komme aus Kiel, da werden U-Boote gebaut. Diese für die Sicherheit des Staates Israel wichtig.",
+            "timestamp": "00:33:13"
+          }
+        ]
+      },
+      {
+        "title": "Taurus-Lieferungen an die Ukraine",
+        "timestamp_range": "00:34:49 - 00:38:24",
+        "theme_description": "Wadephul wird befragt, warum er als Politiker lange die Taurus-Lieferung gefordert hat, aber als Außenminister diese Position nicht klar vertritt.",
+        "question_asked": "Sandra Maischberger erinnert daran, dass Wadephul früher die Lieferung von Taurus-Marineflugkörpern an die Ukraine gefordert hat. Sie fragt, warum er diese Position jetzt nicht klar äußert und ob er jetzt weiß, was gegen Taurus spricht, wenn damals niemand eine rationale Erklärung gegeben habe.",
+        "question_intent": "Sandra Maischberger will aufdecken, ob Wadephul seine Position opportunistisch gewechselt hat oder ob er kohärent argumentiert.",
+        "position": "Wadephul gibt zu, dass die frühere Position richtig war ('Es wäre auch richtig gewesen'). Er kritisiert, dass zu viele Waffen zu spät geliefert wurden. Jetzt sei aber eine 'andere Kriegssituation': Die Ukraine sei in der Lage, 'tief in Sibirien Einsätze durchzuführen mit großem Erfolg'. Zur aktuellen Taurus-Frage sagt er, es gebe 'keine öffentlichen Stellungnahmen der Bundesregierung' — wird aber korrigiert: Der Bundeskanzler habe klar gesagt 'Wir liefern nicht'. Wadephul vertritt nun die Position der Bundesregierung: Lieferungen sollen situationsabhängig entschieden werden. Er verweigert eine klare Zusage für Taurus, verspricht aber: 'Auf Deutschland kann sich die Ukraine verlassen. Wir werden sie militärisch und wirtschaftlich in die Lage versetzen, dass sie diesen Krieg nicht verliert.'",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Wadephul beantwortet die Frage nach seinem Positions-Wechsel zu Taurus nicht direkt. Statt die Inkohärenz zu erklären, lenkt er auf eine andere Kriegssituation ab ('andere Kriegssituation, andere Lage') und auf die Versprechen der Bundesregierung. Das ist eine Umleitung, keine Antwort auf die Kritik.",
+        "concrete_statements": [
+          "Es wäre auch richtig gewesen [die Taurus zu liefern].",
+          "Wir haben viel zu viele Waffen viel zu spät geliefert.",
+          "Jetzt sind wir in einer anderen Kriegssituation, wo die Ukrainer in der Lage ist, tief in Sibirien Einsätze durchzuführen.",
+          "Wir werden Herrn Putin nicht von hier aus Berlin aus wissen lassen, was wir tun. Aber er muss sich darauf einstellen, dass wir an der Seite von der Ukraine stellen.",
+          "Auf Deutschland kann sich die Ukraine verlassen."
+        ],
+        "quotes": [
+          {
+            "text": "Es wäre auch richtig gewesen. Wir haben viel zu viele Waffen viel zu spät geliefert. Mittlerweile sind wir in einer anderen Kriegssituation, wo wir sehen, dass die Ukrainer in der Lage ist, tief in Sibirien Einsätze durchzuführen mit großem Erfolg.",
+            "timestamp": "00:35:49"
+          },
+          {
+            "text": "Auf Deutschland kann sich die Ukraine verlassen. Wir werden sie militärisch und wirtschaftlich in die Lage versetzen, dass sie diesen Krieg nicht verliert, dass sie obsiegen kann und ihr Territorium so verteidigen kann, dass sie in einen vernünftigen Verhandlungsprozess kommt.",
+            "timestamp": "00:36:51"
+          }
+        ]
+      },
+      {
+        "title": "5%-Verteidigungsausgaben und NATO-Verpflichtung",
+        "timestamp_range": "00:38:24 - 00:41:28",
+        "theme_description": "Wadephul wird zur Ankündigung der 5%-Verteidigungsausgaben befragt, die er beim NATO-Außenministertreffen vor dem Bundeskanzler öffentlich gemacht habe.",
+        "question_asked": "Sandra Maischberger fragt, warum Wadephul die 5%-Marke für Verteidigungsausgaben 'vorhergesagt' (verkündet) habe, bevor sich der Bundeskanzler selbst positioniert habe. Sie fragt, ob das eine Vorabzusage an Trump war und warum er diese umstrittene Zahl ohne Bundeskanzler-Koordination öffentlich machte.",
+        "question_intent": "Sandra Maischberger will wissen, ob Wadephul unkoordiniert und zu ambitioniert vorgegangen ist oder ob eine strategische Absicht dahintersteckt.",
+        "position": "Wadephul erklärt, dass die 5% aus einem NATO-Fähigkeitsplanungs-Prozess stammen. Der NATO-Generalsekretär habe die Zahl mit allen Fachleuten ermittelt: 3,5% für reine Verteidigung + 1,5% für Infrastruktur (Straßen, Schienen, Flugplätze, Kanäle, Brücken). Diese Infrastruktur sei bis Anfang/Mitte des nächsten Jahrzehnts bereitzustellen. Er habe die Zahl beim NATO-Außenministertreffen in der Türkei gesagt, 'auch zuständigkeitshalber'. Grund: Deutschland wurde lange angezweifelt, und die Regierung wolle wieder eine Führungsrolle übernehmen. Deutschland habe die Verfassung geändert, um diese Ausgaben zu ermöglichen. Die 5%-Zahl sei 'griffig', erkläre aber nicht die ganze Geschichte; dahinter stehe ein Verteidigungskonzept. Wadephul betont, dass sich die Opposition nicht widersprüchlich verhalten darf ('Man kann als Opposition nicht sagen, Deutschland muss wieder in eine Führungsfunktion gehen, und das dann nicht tun').",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul adressiert die Frage vollständig: Er erklärt, woher die Zahl kommt, warum er sie genannt hat, und wie sie sich zusammensetzt. Er widerspricht auch der Kritik von Veit Medick, indem er argumentiert, dass eine solche Ankündigung notwendig ist, um Verlässlichkeit zu zeigen.",
+        "concrete_statements": [
+          "Der Generalsekretär der NATO hat sich genau angeschaut, was wir brauchen: 3,5% für reine Verteidigung und 1,5% für Infrastruktur.",
+          "Ich habe das gesagt beim NATO-Außenministertreffen in der Türkei, auch zuständigkeitshalber.",
+          "Man hat an Deutschland lange gezweifelt. Außerdem haben wir uns vorgenommen, wieder eine Führungsrolle zu übernehmen.",
+          "Wir sind entschlossen, die NATO-Zahlen und die Konzeption zu 100% zu unterstützen."
+        ],
+        "quotes": [
+          {
+            "text": "Der Generalsekretär der NATO hat sich genau angeschaut, was wir brauchen, mit allen Fachleuten. Was für ein Fähigkeitsplanung brauchen. Der ist an diese Zahlen gekommen. Die setzen sich zusammen aus 3,5% für die reine Verteidigung und weitere 1,5% für die Infrastruktur. Straßen, Schienen, Flugplätze, Kanäle, Brücken, usw.",
+            "timestamp": "00:38:54"
+          }
+        ]
+      },
+      {
+        "title": "Diplomatie mit Russland und Verhandlungen zur Ukraine",
+        "timestamp_range": "00:41:28 - 00:42:31",
+        "theme_description": "Wadephul wird befragt, ob er plane, mit dem russischen Außenminister zu sprechen, und wie er zum Appell der SPD für Friedensverhandlungen steht.",
+        "question_asked": "Sandra Maischberger fragt, ob Wadephul plant, mit dem russischen Außenminister Lawrow zu sprechen, und sie erinnert an mehrere Kontroversen um Wadephuls Aussagen (Fake-Anruf, Aussage über 'Russland als Feind für immer').",
+        "question_intent": "Sandra Maischberger will klären, wie offen Wadephul für Diplomatie ist und ob er eine konsistente Positionierung zur Kommunikation mit Russland hat.",
+        "position": "Wadephul lehnt Gespräche mit dem russischen Außenminister ab, weil dieser 'nicht im Ansatz erkennen lässt, dass er zu einem Frieden in der Ukraine bereit ist'. Er räumt ein, dass er auf einen Fake-Anruf reingefallen ist (was 'außerordentlich ärgerlich' ist und 'die Hintertriebenheit der Russen' zeigt). Zur Aussage 'Russland bleibt für immer ein Feind' präzisiert er: Das stimme so nicht. Richtig ist: 'Sicherheit in Europa können wir, das ist eine bittere Erfahrung, nur gegen Russland organisieren.' Er unterscheidet sich von seiner Vorgängerin Baerbock, die Xi Jinping einen 'Diktator' nannte. Wadephul: 'Ich bin der Meinung, dass man mit allen gesprächsfähig sein muss.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul antwortet auf die Frage nach Diplomatie mit einer Begründung für die Ablehnung von Gesprächen mit Lawrow. Er präzisiert seine früheren Aussagen, adressiert die Fakten aber nicht vollständig, weil er nicht erklärt, wie eine Friedenslösung ohne Gespräche mit Russland erreicht werden soll.",
+        "concrete_statements": [
+          "Ich plane kein Gespräch mit dem russischen Außenminister, weil er nicht im Ansatz erkennen lässt, dass er zu einem Frieden in der Ukraine bereit ist.",
+          "Sicherheit in Europa können wir nur gegen Russland organisieren.",
+          "Ich bin der Meinung, dass man mit allen gesprächsfähig sein muss."
+        ],
+        "quotes": [
+          {
+            "text": "Ich plane kein Gespräch mit dem russischen Außenminister. Weil er nicht im Ansatz erkennen lässt, dass er zu einem Frieden in der Ukraine bereit ist. Dass ich auf einem Fakeanruf aus Russland reingefallen bin. Das ist außerordentlich ärgerlich. Es zeigt die Hintertriebenheit der Russen.",
+            "timestamp": "00:41:28"
+          },
+          {
+            "text": "Ich bin der Meinung, dass man mit allen gesprächsfähig sein muss. Ich bin nicht der Chef-Politikwissenschaftler der BRD.",
+            "timestamp": "00:42:31"
+          }
+        ]
+      },
+      {
+        "title": "Persönliche Fragen und Hintergrund",
+        "timestamp_range": "00:43:01 - 00:45:05",
+        "theme_description": "Sandra Maischberger stellt persönliche Fragen zu Wadephuls Lebensstil, Hobbys und Kolleg*innen.",
+        "question_asked": "Sandra Maischberger stellt eine Reihe von persönlichen Fragen: zur Bundeswehr-Erinnerung, zu Instagram, zum Kochen (mit Archiv-Video aus 2000), zur Grenzpolitik, zu Olympischen Spielen, und dann zu Ralf Stegner (SPD, Schleswig-Holstein).",
+        "question_intent": "Sandra Maischberger will Wadephul 'menschlicher' machen und den Zuschauer*innen seine Persönlichkeit näher bringen.",
+        "position": "Wadephul antwortet durchweg persönlich und auflockernd: Seine schönste Erinnerung an die Bundeswehr ist 'Kameradschaft mit vielen guten Freunden'. Er kocht 'alle 2 Wochen' noch selbst (nicht aus der Tiefkühltruhe), steht aber beim Herden während alle essen. Zu Stegner (SPD): Sie spielten zusammen erfolgreich Fußball ('Er war ein super Keeper'); Wadephul führt mit Stegner 'harte Diskussionen', schätzt ihn aber als 'verlässlichen Gesprächspartner' und haben ein 'persönlich intaktes Verhältnis'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul beantwortet alle persönlichen Fragen vollständig und authentisch. Das ist ein direkter Austausch ohne Ausweichmanöver.",
+        "concrete_statements": [
+          "Meine schönste Erinnerung an die Zeit bei der Bundeswehr ist die Kameradschaft mit vielen guten Freunden.",
+          "Selten, aber doch alle 2 Wochen [koche ich]. Und dann ist es nicht ran an die Tiefkühltruhe. Nein, den Teig kann ich schon alleine.",
+          "Wir haben beide sehr erfolgreich im Fußballklub des Landtages gespielt. Er war ein super Keeper.",
+          "Ich schätze ihn als einen verlässlichen Gesprächspartner. Ich führe mit ihm harte Diskussionen. Wir haben Kontroversen, aber ein persönlich intaktes Verhältnis."
+        ],
+        "quotes": [
+          {
+            "text": "Ich stehe da noch am Herd, wenn alle essen.",
+            "timestamp": "00:43:31"
+          }
+        ]
+      },
+      {
+        "title": "Kritik an SPD-Friedensmanifest und Diplomatie-Debatte",
+        "timestamp_range": "00:46:06 - 00:46:36",
+        "theme_description": "Wadephul wird nach seiner Sicht auf das SPD-Manifest von Rolf Mützenich und Ralf Stegner für Friedensverhandlungen befragt.",
+        "question_asked": "Sandra Maischberger fragt (später, im Diskurs mit den anderen Gästen), ob Wadephul (nicht direkt, aber impliziert) Stegners Position zu Diplomatie und Waffenstillstandsverhandlungen teilt oder kritisiert.",
+        "question_intent": "Sandra Maischberger will Wadephuls Haltung zur SPD-Forderung nach mehr Diplomatie und Waffenstillstandsverhandlungen verstehen.",
+        "position": "Wadephul kritisiert Mützenichs frühe Forderung nach Waffenstillstand indirekt. Er sagt, dass Scholz, Macron und Trump mit Putin telefoniert haben — ohne Erfolg. Die Frage ist: Was konkret soll die Diplomatie erreichen, wenn Putin keinen Frieden will? Er betont, dass Olaf Scholz kurz vor dem Krieg noch in Moskau war und Putin sagte, der NATO-Beitritt der Ukraine stehe nicht auf der Tagesordnung — Putin sei trotzdem eingefallen ('Jetzt sind zigtausende Tote... Mit solchen Leuten muss ich jetzt nicht reden'). Wadephul argumentiert also: Diplomatie ist sinnlos, solange Putin einen Krieg führt. Das ist eine Absage an die SPD-Linie.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Wadephul antwortet nicht direkt auf die Frage nach Stegners Position, sondern pivotiert zu einem Gegenpunkt: Diplomatie sei nicht möglich, weil Putin die Vorbedingungen nicht erfüllt (er führt einen ungerechtfertigten Krieg). Das ist eine Ausweichbewegung, aber mit klarem politischen Inhalt.",
+        "concrete_statements": [
+          "Es wurde zu spät über einen Waffenstillstand gesprochen.",
+          "Putin hat trotzdem einen Krieg angezettelt — jetzt sind zigtausende Tote.",
+          "Mit solchen Leuten muss ich jetzt nicht reden, Putin."
+        ],
+        "quotes": [
+          {
+            "text": "Olaf Scholz hatte eine, aus meiner Sicht, große Tat vollbracht, indem er kurz vor dem Krieg noch einmal da war. Und Putin gesagt hat, der NATO Beitritt der Ukraine steht nicht auf der Tagesordnung. Wer dann trotzdem bei Rot über die Ampel fährt und in so einer Situation einen Krieg angezettelt. Jetzt sind zigtausende Tote. Auch Russen, das ist ein Menschheitsverbrechen. Mit solchen Leuten muss ich jetzt nicht reden, Putin.",
+            "timestamp": "00:46:06"
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Deutschland hat von Oktober 2023 bis jetzt 495 Millionen Euro an Waffenlieferungen an Israel geleistet.",
+        "timestamp": "00:33:13"
+      },
+      {
+        "claim": "Die Internationale Atomenergiebehörde hat unabhängig festgestellt, dass Irans Atomprogramm ein Niveau erreicht hat, das deutlich oberhalb jeder sinnvollen zivilen Nutzung liegt.",
+        "timestamp": "00:29:06"
+      },
+      {
+        "claim": "Johann Wadephul ist seit Oktober 2009 Mitglied des Deutschen Bundestages.",
+        "timestamp": "00:00:04"
+      },
+      {
+        "claim": "Die 5%-Verteidigungsausgabe setzt sich zusammen aus 3,5% für reine Verteidigung und 1,5% für Infrastruktur (Straßen, Schienen, Flugplätze, Kanäle, Brücken).",
+        "timestamp": "00:38:54"
+      },
+      {
+        "claim": "Olaf Scholz sagte kurz vor dem Krieg zu Putin, dass der NATO-Beitritt der Ukraine nicht auf der Tagesordnung stehe.",
+        "timestamp": "00:46:06"
+      }
+    ]
+  }
+}

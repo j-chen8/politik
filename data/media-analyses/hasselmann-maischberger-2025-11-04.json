@@ -1,0 +1,319 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0wNF8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-04",
+    "politician": "Britta Haßelmann",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "5775db0dd1f4e0c7",
+    "transcript_chars": 55640,
+    "caption_lines": 2062,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22723,
+    "tokens_out": 7379,
+    "cost_usd": 0.0238472,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 4,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.322Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Britta Haßelmann, Fraktionsvorsitzende der Grünen, diskutiert in dieser Maischberger-Sendung intensiv über Syrien-Rückführungen, innere Koalitionskonflikte (besonders zum \"Stadtbild\"-Narrativ von Friedrich Merz) und mangelnde Führungsleistung des Kanzlers. Sie spricht im sachlich-kritischen Ton, wirbt für differenzierte Debatten und betont die Rolle von Kommunalfinanzierung sowie Integration von Syrern in den deutschen Arbeitsmarkt.",
+    "themes": [
+      {
+        "title": "Ampel-Bilanz und Berechtigung zur Regierung",
+        "timestamp_range": "00:21:04 - 00:21:34",
+        "theme_description": "Haßelmann bewertet die Arbeit der Ampel-Koalition und antwortet auf die Frage, ob sie froh ist, dass Schwarz-Grün nicht zustande kam.",
+        "question_asked": "Sandra Maischberger fragt, ob Haßelmann froh ist, dass der Kelch einer Schwarz-Grün-Koalition an ihr vorbeigegangen ist.",
+        "question_intent": "Maischberger möchte wissen, ob Haßelmann die gescheiterte Koalitionsmöglichkeit als Erleichterung wahrnimmt.",
+        "position": "Haßelmann betont, dass sie gerne regiert hätte, weil Gestalten eine wichtige Aufgabe ist. Sie führt an, dass die Grünen in 3,5 Jahren mit SPD und Bundeswirtschaftsministerium viel erreicht haben, obwohl das Ansehen der Ampel schlecht war.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haßelmann antwortet auf die Frage nach ihrer Erleichterung indirekt, indem sie ihre Bereitschaft zu regieren ausdrückt. Sie weicht aber zur Ampel-Bilanz aus, statt direkt zu klären, ob sie Schwarz-Grün als unerwünschte Alternative sieht.",
+        "quotes": [
+          {
+            "text": "Ich hätte gerne regiert, weil Gestalten ist wirklich eine wichtige Aufgabe. Das habe ich in den 3,5 Jahren hinter mir. Mit der SPD und der SPD zusammen haben die Grünen wirklich viel erreicht.",
+            "timestamp": "00:21:04",
+            "context": "Haßelmann antwortet auf Maischbergers Frage nach ihrer Zufriedenheit mit dem Scheitern von Schwarz-Grün."
+          }
+        ],
+        "concrete_statements": [
+          "Wir haben in 3,5 Jahren mit SPD viel erreicht",
+          "Das Ansehen der Ampel war schlecht, aber das war nicht meine Frage"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Ampel-Regierung",
+          "Regierungsbilanz"
+        ]
+      },
+      {
+        "title": "Kritik an Merz-Führungslosigkeit und Koalitionskakophonie",
+        "timestamp_range": "00:21:34 - 00:22:41",
+        "theme_description": "Haßelmann kritisiert die mangelnde Führungsverantwortung des Kanzlers Merz gegenüber inneren Koalitionskonflikten, insbesondere im Fall des Außenministers Wadephul.",
+        "question_asked": "Sandra Maischberger schließt mit einer offenen Einladung an die Diskussionsteilnehmer, wobei Haßelmann eigeninitiativ auf die Außenpolitik-Koordination zwischen Merz und Wadephul zu sprechen kommt.",
+        "question_intent": "Maischberger möchte die Debatte zwischen Haßelmann und Mayer strukturiert vorantreiben, ohne gezielte Vorfrage.",
+        "position": "Haßelmann argumentiert, dass Merz nach seiner Sprödigkeit als Oppositionsführer überraschend als schlechter Kanzler erscheint, der Führungslosigkeit zeigt. Sie kritisiert den Shitstorm und die Debattendiffusion gegen Wadephuls empathische Stellungnahme zur Lage in Syrien und prangert an, dass Merz nicht klar genug zum Außenminister steht oder einen Kompass hat. Sie fragt: 'Wo ist der Kanzler und hat er einen Kompass?'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann liefert eine klare, ausführliche Kritik am Führungsstil von Merz und dessen Umgang mit inneren Koalitionskonflikten. Sie benennt konkrete Beispiele (Wadephul, Shitstorm) und eine klare Forderung nach Führungsverantwortung.",
+        "quotes": [
+          {
+            "text": "Ich habe nicht erwartet, nach der Sprödigkeit von Friedrich Merz als Oppositionsführer, dass wir einen so schlechten Kanzler kriegen, der so Führungslosigkeit.",
+            "timestamp": "00:21:34",
+            "context": "Haßelmann antwortet auf die Frage nach ihrer Sicht auf die aktuelle Regierung nach dem Scheitern von Schwarz-Grün."
+          },
+          {
+            "text": "Und ein solcher Shitstorm und Debattendiffusion, aus der CDU-Fraktion. Dass man sich fragt, wo ist der Kanzler und hat er einen Kompass.",
+            "timestamp": "00:22:41",
+            "context": "Sie fasst zusammen, wie kritisch sie die fehlende Koordination und Führung sieht."
+          }
+        ],
+        "concrete_statements": [
+          "Merz zeigt Führungslosigkeit",
+          "Es gibt nur Streit in der Koalition zwischen SPD und CDU",
+          "Der Kanzler hat keinen erkennbaren Kompass"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsregierung",
+          "Außenpolitik",
+          "Bundeskanzler-Autorität"
+        ]
+      },
+      {
+        "title": "Wadephuls Empathie und Außenpolitik-Professionalität",
+        "timestamp_range": "00:25:48 - 00:26:49",
+        "theme_description": "Haßelmann verteidigt den Außenminister Wadephul gegen Vorwürfe, dass er sich von Emotionen habe übermannen lassen, und stellt die Qualität seiner vor-Ort-Bewertung in Syrien dar.",
+        "question_asked": "Stephan Mayer (CSU) kritisiert Wadephul dafür, sich von seinen Emotionen übermannt zu haben. Haßelmann greift ein und fragt provokativ: 'Warum trauen Sie ihm nicht?' sowie 'Was ist schlecht an Empathie?'",
+        "question_intent": "Mayer möchte implizieren, dass Wadephuls emotionale Einschätzung seine Professionalität als Außenminister untergraben hat. Haßelmann möchte dies widerlegen und für Wadephuls Glaubwürdigkeit argumentieren.",
+        "position": "Haßelmann argumentiert, dass es nichts Schlechtes an Empathie gibt und wirft Mayer vor, komfortabel aus dem Sessel zu urteilen. Sie betont, dass Wadephul vor Ort war, die Zerstörung gesehen hat und seine Einschätzung ernst nehmen sollte. Sie kritisiert Mayers Position als zynisch und betont, dass der Außenminister der CDU/CSU-geführten Regierung vertraut werden sollte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann antwortet direkt auf Mayers Kritik an Wadephuls Emotionalität und liefert ein klares Gegenargument: Wadephuls Einschätzung basiert auf Vor-Ort-Beobachtung und ist daher glaubwürdig. Sie adressiert die zugrundeliegende Frage, ob Empathie in der Diplomatie fehl am Platz ist.",
+        "quotes": [
+          {
+            "text": "Lassen Sie mich mal ausreden. Weil aus Ihrem Sessel sagt sich das bequem, dass man nach Syrien abschieben kann und dass es dort Regionen gibt, wo er das geht. Herr Wadephul war vor Ort und hat eine Einschätzung gegeben. Das ist Ihr Außenminister. Warum trauen Sie ihm nicht?",
+            "timestamp": "00:26:18",
+            "context": "Haßelmann verteidigt Wadephul gegen Mayers Kritik, dass er sich emotional habe übermannen lassen."
+          },
+          {
+            "text": "Sie aus Ihrem Sessel sagen, doch, das geht. Ich finde das sehr zynisch.",
+            "timestamp": "00:26:49",
+            "context": "Sie characterisiert Mayers Haltung als zynisch, weil dieser ohne Vor-Ort-Erfahrung die Rückführungsmöglichkeit behauptet."
+          }
+        ],
+        "concrete_statements": [
+          "Wadephul war vor Ort und hat Zerstörung gesehen",
+          "Empathie ist nicht falsch",
+          "Wadephul sollte als Außenminister vertraut werden"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Syrien-Rückführungen",
+          "Ministerverantwortung"
+        ]
+      },
+      {
+        "title": "Differenzierung der Syrien-Debatte von Kriminalität und Migration",
+        "timestamp_range": "00:29:53 - 00:30:59",
+        "theme_description": "Haßelmann wendet sich gegen die Vermengung von Syrien-Rückführungen mit Merz' 'Stadtbild'-Debatte und betont Integrationsleistungen syrischer Geflüchteter.",
+        "question_asked": "Mayer stellt die Debatte dar, als ob Rückführungen und 'Stadtbild'-Probleme zusammenhängen, und Haßelmann fragt zurück: 'Jetzt doch nicht? Sie haben gerade die Debatte verbunden.'",
+        "question_intent": "Haßelmann will offenlegen, dass Mayer die sachliche Debatte über Rückführungen mit rassistischer 'Stadtbild'-Rhetorik vermischt.",
+        "position": "Haßelmann stellt klar, dass 62 % der in Arbeit befindlichen Syrer in systemrelevanten Berufen tätig sind (nicht 62 % aller Syrer). Sie nennt konkret, dass rund 7.000 syrische Ärzte in Deutschland arbeiten, und warnt vor negativen Auswirkungen dieser polarisierenden Debatte auf Menschen, die bereits integriert sind. Sie stellt die Frage, ob diese Debatte auch die gut integrierten Kinder meint, die in Gymnasien gehen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann adressiert die Kernfrage direkt: Sie weist nach, dass die Debatte über Rückführungen sachlich ist, aber mit Merz' 'Stadtbild'-Narrativ vermischt wird, was zu rassistischen Verallgemeinerungen führt. Sie liefert konkrete Zahlen zur Integration und kritisiert die Rhetorik.",
+        "quotes": [
+          {
+            "text": "62%, Frau Marinic hat das angesprochen, sind in Arbeit. Das stimmt so nicht. 62% von denen, die arbeiten... Da da sind 100.000 Arbeiten. Von denen, die in Arbeit sind, sind 62% systemrelevanten Berufen.",
+            "timestamp": "00:29:53",
+            "context": "Sie korrigiert die statistische Aussage über syrische Arbeiter."
+          },
+          {
+            "text": "7.000 Menschen sind Ärztinnen und Ärzte, Syrer, die in der Kardiologie und sonst wo arbeiten, wo meine Eltern und viele andere Menschen darauf angewiesen sind, dass diese Menschen arbeiten. Wir können dankbar dafür sein.",
+            "timestamp": "00:30:59",
+            "context": "Sie beschreibt konkrete Integrationsleistung und warnt implizit vor den Folgen der polarisierenden Debatte."
+          }
+        ],
+        "concrete_statements": [
+          "62 % der beschäftigten Syrer sind in systemrelevanten Berufen",
+          "Ca. 7.000 syrische Ärzte arbeiten in Deutschland",
+          "Viele syrische Kinder sind bestens integriert in deutschen Schulen",
+          "Die Debatte wirkt sich negativ auf diese Menschen aus"
+        ],
+        "related_bundestag_topics": [
+          "Integration von Migranten",
+          "Arbeitsmarkt",
+          "Syrien-Rückführungen"
+        ]
+      },
+      {
+        "title": "Kommunale Finanzierung als Kern der Sicherheitsdebatte",
+        "timestamp_range": "00:34:07 - 00:35:10",
+        "theme_description": "Haßelmann argumentiert, dass die mangelnde städtische Sicherheit nicht primär ein Migrationsproblem ist, sondern auf unzureichende kommunale Finanzierung und Sozialarbeit zurückgeht.",
+        "question_asked": "Sandra Maischberger fragt zusammenfassend: 'Sie meinen, man muss es nicht auf Migration beziehen, sondern besser ausstatten, dann hätte man das Sicherheitsproblem im Griff.'",
+        "question_intent": "Maischberger verdichtet Haßelmanns Position zu einer These, um sie zu klären.",
+        "position": "Haßelmann erklärt als ehemalige Sozialarbeiterin, dass Sicherheit an Bahnhöfen und öffentlichen Räumen durch Polizeipräsenz, Prävention, Drogenkonsumsräume, Street Work und Sozialarbeit gelöst werden kann. Diese kosten Kommunen erheblich Geld und sind 'freiwillige Aufgaben', denen Gemeinden nicht nachkommen können. Sie argumentiert auch für Bekämpfung von organisierter Kriminalität, Drogenhandel und Geldwäsche, aber: 'nicht über eine Stadtbild-Debatte, die im Kern suggeriert, dass es irgendwie was zu tun hat mit Migration.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann antwortet direkt auf die Frage der kommunalen Finanzierung und bietet ein vollständiges Alternativnarrativ zur Merz-'Stadtbild'-Debatte. Sie nennt konkrete Maßnahmen und deren Kostenfolgen.",
+        "quotes": [
+          {
+            "text": "Ich war in meinem früheren Leben Sozialarbeiterin. Sie können über die Polizeipräsenz reden, über die Präventionsmaßnahme, auch über Drogenkonsumsräume, über Streer Work, über Sozialarbeit. All das kostet die Kommunen richtig Geld, denn es sind 'freiwillige Aufgaben'.",
+            "timestamp": "00:34:07",
+            "context": "Sie begründet, warum Finanzierung entscheidend ist und nicht Rhetorik."
+          },
+          {
+            "text": "Aber nicht über eine Stadtbild-Debatte, die im Kern suggeriert, dass es irgendwie was zu tun hat mit Migration.",
+            "timestamp": "00:35:10",
+            "context": "Sie grenzt ihre Position klar von Merz' Narrativ ab."
+          }
+        ],
+        "concrete_statements": [
+          "Bahnhofs-Sicherheit braucht: mehr Polizeipräsenz, Drogenkonsumsräume, Street Work, Sozialarbeit",
+          "Das sind freiwillige Aufgaben der Kommunen, die unterfinanziert sind",
+          "Organisierte Kriminalität, Drogenhandel und Geldwäsche sind echte Probleme",
+          "Aber das hat nichts mit Migration zu tun"
+        ],
+        "related_bundestag_topics": [
+          "Kommunalfinanzierung",
+          "Öffentliche Sicherheit",
+          "Sozialarbeit",
+          "Migration"
+        ]
+      },
+      {
+        "title": "Polizeistellen an der Grenze vs. an Bahnhöfen",
+        "timestamp_range": "00:36:46 - 00:37:22",
+        "theme_description": "Haßelmann weist auf die Verlagerung von Polizeikräften hin: 3.000–4.000 Bundespolizisten werden für Grenzkontrollen eingesetzt und fehlen damit an Bahnhöfen.",
+        "question_asked": "Mayer stellt dar, dass 1.000 zusätzliche Polizeistellen geschaffen werden. Haßelmann unterbreitet, dass die Gewerkschaft der Polizei einen Mangel von 3.000–4.000 Polizisten an Bahnhöfen und Hotspots beklagt.",
+        "question_intent": "Haßelmann möchte zeigen, dass es nicht um Stellenvermehrung geht, sondern um Umverteilung: Grenzkontrollen werden prioritärt, Bahnhofs-Sicherheit unterversorgt.",
+        "position": "Haßelmann zitiert die Gewerkschaft der Polizei, die einen Mangel von 3.000–4.000 Polizisten an Bahnhöfen und Hotspots beklagt. Sie weist darauf hin, dass diese Polizisten für Grenzkontrollen an europäischen Grenzen eingesetzt werden, ohne Schwerpunktkontrollen an den kritischen Orten zu konzentrieren. Sie kritisiert diese Priorisierung implizit als falsch.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann antwortet auf die Polizeistellen-Debatte mit einer konkreten Analyse: Es geht nicht um Mangel schlechthin, sondern um falsche Schwerpunktsetzung. Sie nennt konkrete Zahlen und Quellen (Gewerkschaft der Polizei).",
+        "quotes": [
+          {
+            "text": "Die Gewerkschaft der Polizei sagt gerade, uns fehlen an den Bahnhöfen und an den Hotspots, Aufgaben der Bundespolizei, die Bahnhöfe... Wir reden in Stichworten schon über das Thema: Sicherheit an Bahnhöfen. Uns fehlen 3.000 bis 4.000 Polizist*innen, das ist keine Zahl von Britta Haßelmann, das ist die Zahl der Gewerkschaft der Polizei.",
+            "timestamp": "00:36:46",
+            "context": "Sie antwortet auf Mayers Darstellung der neuen Polizeistellen."
+          },
+          {
+            "text": "Diese Polizist*innen setzen wir für Grenzkontrollen ein an unseren europäischen Grenzen. Ohne uns auf Schwerpunktkontrollen und Schwerpunktsituationen zu konzentrieren.",
+            "timestamp": "00:37:22",
+            "context": "Sie kritisiert die Priorisierung der Polizeieinsätze."
+          }
+        ],
+        "concrete_statements": [
+          "3.000–4.000 Bundespolizisten fehlen an Bahnhöfen und Hotspots (Gewerkschaft der Polizei)",
+          "Diese werden stattdessen für Grenzkontrollen eingesetzt",
+          "Es gibt keine Schwerpunktkonzentration auf kritischen Orten"
+        ],
+        "related_bundestag_topics": [
+          "Bundespolizei",
+          "Grenzsicherheit",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Ursachen von Fachkräftemangel und Gewerbesteuerkrise",
+        "timestamp_range": "00:39:28 - 00:40:59",
+        "theme_description": "Haßelmann kontrastiert Merz' Forderung nach Einsparungen bei Kommunen mit konkreten Ausgaben, die Kommunen für soziale Aufgaben (Jugendhilfe, Pflege) tragen müssen.",
+        "question_asked": "Haßelmann berichtet, dass Merz sagte, es brauche eine 'Korrektur auf der Ausgabenseite bei den Kommunen', was zu Einsparungen führe. Sie fragt, ob Merz seine Worte nicht im Griff hat wie beim Stadtbild, oder ob er tatsächlich diese Bereiche durchsägen will.",
+        "question_intent": "Haßelmann möchte aufzeigen, dass Merz' wirtschaftspolitik zu Problemen führt, die dann durch Einsparungen verschärft werden.",
+        "position": "Haßelmann kritisiert indirekt, dass die Ampel-Regierung durch ihre Wirtschaftspolitik (nicht näher benannt) zu einem Rückgang der Gewerbesteuern und damit zu Kommunal-Finanzierungsproblemen geführt habe. Sie nennt konkrete unterfinanzierte Bereiche: Jugendhilfe, Pflege, Eingliederungshilfe, Frauenhäuser (14.000 Plätze fehlen). Sie impliziert, dass Merz sowohl für Sicherheit als auch für Finanzierungen argumentieren müsse, nicht für Einsparungen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haßelmann adressiert die Frage zu Merz' Aussagen teilweise: Sie kritisiert die Einsparungslogik und nennt Bereiche, die Finanzierung bräuchten. Sie weicht aber zur Ampel-Bilanz aus, statt Merz' aktuelle Haushaltspolitik direkt zu analysieren.",
+        "quotes": [
+          {
+            "text": "Frauen im öffentlichen Raum, 14.000 Plätze in Frauenhäusern fehlen. Darüber können wir reden, das kostet Geld.",
+            "timestamp": "00:39:28",
+            "context": "Sie nennt konkrete Unterfinanzierung von Frauenhaus-Plätzen."
+          }
+        ],
+        "concrete_statements": [
+          "Jugendhilfe, Pflege, Eingliederungshilfe sind unterfinanziert",
+          "14.000 Frauenhaus-Plätze fehlen",
+          "Gewerbesteuerkrise in Kommunen",
+          "Einsparungen in diesen Bereichen sind kontraproduktiv"
+        ],
+        "related_bundestag_topics": [
+          "Kommunalfinanzen",
+          "Sozialpolitik",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "Bewertung der gegenwärtigen Bundesregierung",
+        "timestamp_range": "00:41:29 - 00:43:04",
+        "theme_description": "Haßelmann kritisiert die Leistung der Merz-Regierung nach sechs Monaten und lehnt Söders 'letzte Patrone der Demokratie'-Aussage ab.",
+        "question_asked": "Mayer stellt dar, dass die Regierung erst 6 Monate im Amt ist und bereits Verbesserungen (z.B. bei Strompreisen) erzielt hat. Haßelmann antwortet mit Skepsis auf Söders Aussage, die Regierung sei 'die letzte Patrone der Demokratie'.",
+        "question_intent": "Mayer möchte die Regierungsleistung rechtfertigen; Haßelmann möchte diese Aussage dekonstruieren und eine Kritik der politischen Rhetorik anbringen.",
+        "position": "Haßelmann lehnt Söders martialische Rhetorik ('letzte Patrone der Demokratie') ab und kritisiert die implizite Aussage: 'Ihr habt richtig gewählt, aber das war das letzte Mal. Seid zufrieden mit uns, auch wenn wir schlecht sind, weil wir sind die letzte Patrone.' Sie bewertet die aktuelle Regierungsleistung als unzureichend: 'Das ist sehr milde ausgedrückt' in Reaktion auf Mayers 'da ist noch Raum für Verbesserung'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Haßelmann antwortet direkt auf die Regierungsbewertung mit einer klaren kritischen Position. Sie dekonstruiert Söders Rhetorik und kritisiert sowohl die Regierungsleistung als auch die damit verbundene Wahlstrategie.",
+        "quotes": [
+          {
+            "text": "Auf gar keinen Fall. Ich hasse auch diese martialischen Ausdrücke, die oft von Markus Söder kommen. Was wollen Sie der Gesellschaft sagen? Ihr habt das richtige gewählt, aber das war das letzte Mal. Seid zufrieden mit uns, auch wenn wir schlecht sind, weil wir sind die letzte Patrone.",
+            "timestamp": "00:42:32",
+            "context": "Sie lehnt Söders Aussage und deren Implikationen ab."
+          },
+          {
+            "text": "Das ist sehr milde ausgedrückt.",
+            "timestamp": "00:43:04",
+            "context": "Sie reagiert auf Mayers Einschätzung, dass die Regierung 'noch Raum für Verbesserung' hat."
+          }
+        ],
+        "concrete_statements": [
+          "Die 'letzte-Patrone'-Rhetorik ist inakzeptabel",
+          "Die aktuelle Regierungsleistung ist schlechter als 'noch Raum für Verbesserung' suggeriert",
+          "Haßelmann unterschreibt Söders Aussage nicht"
+        ],
+        "related_bundestag_topics": [
+          "Bundesregierung",
+          "Merz-Regierung",
+          "Koalitionspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "62% von denen, die arbeiten, sind in systemrelevanten Berufen",
+        "timestamp": "00:29:53"
+      },
+      {
+        "claim": "Rund 7.000 syrische Menschen sind Ärztinnen und Ärzte in Deutschland",
+        "timestamp": "00:30:59"
+      },
+      {
+        "claim": "Die Gewerkschaft der Polizei sagt, uns fehlen 3.000 bis 4.000 Polizisten an Bahnhöfen und Hotspots",
+        "timestamp": "00:36:46"
+      },
+      {
+        "claim": "14.000 Plätze in Frauenhäusern fehlen",
+        "timestamp": "00:39:28"
+      },
+      {
+        "claim": "Über 1 Million syrische Staatsangehörige leben in Deutschland",
+        "timestamp": "00:24:13"
+      }
+    ]
+  }
+}

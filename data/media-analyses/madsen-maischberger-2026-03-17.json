@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtN2IxY2QxNjgtZDE1NS00MGUxLThjM2UtYjVkYjRmNTMzOWFm",
+    "video_id": "maischberger-2026-03-17",
+    "politician": "Claus Ruhe Madsen",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "11a291993c83feec",
+    "transcript_chars": 53674,
+    "caption_lines": 1992,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21934,
+    "tokens_out": 6917,
+    "cost_usd": 0.0226076,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 1,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.372Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Claus Ruhe Madsen, Wirtschaftsminister aus Schleswig-Holstein, wird von Sandra Maischberger zu Wirtschaftskrise, Energiepolitik, Automobilindustrie und geopolitischen Themen befragt. Er argumentiert für Unternehmertum ohne übermäßige Regulierung, plädiert für erneuerbare Energien statt Atomkraft und wendet sich gegen Subventionen im Energiesektor; sein Ton ist sachlich-pragmatisch mit kritischem Blick auf deutsche „Bedenkenkultur\".",
+    "themes": [
+      {
+        "title": "Deutsche Bedenkenkultur und unternehmerische Entscheidungen",
+        "timestamp_range": "00:18:18 - 00:19:54",
+        "theme_description": "Kritik an der deutschen Neigung, Entscheidungen zu hinterfragen statt Verantwortung zu übernehmen.",
+        "question_asked": "Sandra Maischberger fragt, ob Claus Ruhe Madsen die deutsche Autoobsession entdeckt hat, nachdem er seit 3 Jahren deutscher Staatsbürger ist.",
+        "question_intent": "Sandra Maischberger möchte eine persönliche Reflexion von Claus Ruhe Madsen über den Kulturunterschied zwischen Dänemark und Deutschland.",
+        "position": "Claus Ruhe Madsen lenkt nicht auf die Autoobsession ab, sondern kritisiert eine tiefere deutsche Mentalität: «Wir Deutschen sind auch Weltmeister in ‚Bedenken haben'. Bedenken ist ein furchtbares Wort, weil es drängt Menschen dazu, ja, triff die Entscheidung, aber ich melde Bedenken an.» Er argumentiert, dass diese Bedenkenkultur zu Lähmung führt und zu nachträglichen Rechtfertigungen dient («Ich habe doch damals schon...»). Für ihn sind Entscheidungen und vorwärtsorientierte Handlung wichtiger als Absicherung durch Bedenken.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Die Frage zielt auf persönliche Beobachtungen zur Autoobsession. Claus Ruhe Madsen antwortet auf diese Frage nur kurz («Seit 3 Jahren deutsch, ja») und pivotiert dann zu einer grundsätzlichen Kritik am deutschen Entscheidungsverhalten und der Bedenkenkultur. Statt zu sagen «Ja, ich habe die Autoobsession entdeckt», stellt er ein strukturelles Problem dar, das die deutsche Wirtschaft lähmt.",
+        "deflection_target": "Generelle deutsche Mentalität der Bedenklichkeit statt der Autoobsession",
+        "concrete_statements": [
+          "Kritik an der deutschen Bedenkenkultur",
+          "Forderung nach Entscheidungen ohne Absicherungsmentalität",
+          "Vorwärtsschau statt Rückwärtsverteidigung von Entscheidungen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir Deutschen sind auch Weltmeister in 'Bedenken haben'. Bedenken ist ein furchtbares Wort, weil es drängt Menschen dazu, ja, triff die Entscheidung, aber ich melde Bedenken an.",
+            "timestamp": "00:18:50",
+            "context": "Antwort auf Maischbergers Frage zur deutschen Autoobsession"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Unternehmergeist in Deutschland",
+          "Deregulierung",
+          "Politisches Vertrauen in Wirtschaft"
+        ]
+      },
+      {
+        "title": "Spritpreisregulierung und Marktmechanismen",
+        "timestamp_range": "00:21:01 - 00:22:38",
+        "theme_description": "Diskussion über Maßnahmen zur Preis­­senkung bei Benzin und die Rolle staatlicher Eingriffe in Märkten.",
+        "question_asked": "Herbert Diess hatte vorgeschlagen, den Benzinpreis durch Steuersenkungen zu senken. Sandra Maischberger fragt Claus Ruhe Madsen, ob er dafür Sympathie hat.",
+        "question_intent": "Sandra Maischberger will wissen, ob Claus Ruhe Madsen eine Steuersenkung auf Sprit befürwortet, um Bürger zu entlasten.",
+        "position": "Claus Ruhe Madsen lehnt Steuersenkungen auf Sprit entschieden ab und warnt vor den Marktkonsequenzen. Er argumentiert, dass bereits die Diskussion über künstliche Preissenkungen zu falschen Marktimpulsen führt: «Allein die Diskussion führt zu einer künstlichen Preisfindung. Wenn der eine oder andere von den größeren Ölkonzernen hört, in einem Land diskutiert man, ob man den Preis künstlich runterbringt.» Er betont, dass Konzerne bei jeder Subventionsdiskussion ihre Preise erhöhen und das die Situation verschärft. Stattdessen sieht er langfristige Lösungen in erneuerbaren Energien und warnt vor einer gefährlichen Diskussionsdynamik.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Claus Ruhe Madsen antwortet auf die Frage zu Steuersenkungen, lehnt diese aber ab. Er adressiert die Kernfrage (Sympathie für Steuersenkungen: nein), verschiebt die Antwort aber weg von einer direkten Kosten-Nutzen-Abwägung hin zu einer grundsätzlichen Kritik an der Marktgefährlichkeit der Diskussion selbst. Die Frage nach dem «Wie helfen wir der Pflegekraft» wird nicht direkt beantwortet.",
+        "concrete_statements": [
+          "Lehnt künstliche Preissenkungen ab",
+          "Warnt vor Marktverzerrung durch Diskussionen über Subventionen",
+          "Setzt auf erneuerbare Energien als langfristige Lösung",
+          "Kritisiert, dass Konzerne Preiserhöhungen mit Subventionsdiskussionen rechtfertigen"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist extrem gefährlich. Allein die Diskussion führt zu einer künstlichen Preisfindung.",
+            "timestamp": "00:21:34",
+            "context": "Antwort auf Diess' Vorschlag zur Senkung des Benzinpreises durch Steuervergünstigungen"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiesteuern",
+          "Marktwirtschaftliche Regulierung",
+          "Spritpreise und Pendler"
+        ]
+      },
+      {
+        "title": "Autonomes Fahren als technologische Barriere in Deutschland",
+        "timestamp_range": "00:26:50 - 00:27:22",
+        "theme_description": "Forderung zur Freigabe von autonomem Fahren in Deutschland, um Innovationen zu ermöglichen.",
+        "question_asked": "Sandra Maischberger impliziert die Frage, warum die deutsche Autoindustrie nicht innovativ genug ist. Claus Ruhe Madsen bringt autonomes Fahren als Beispiel regulatorischer Blockade ein.",
+        "question_intent": "Anlass für Claus Ruhe Madsen, ein konkretes Regulierungsbeispiel zu nennen.",
+        "position": "Claus Ruhe Madsen identifiziert die Genehmigung für autonomes Fahren als Schlüsselbremse: «Wenn man in China autonom fahren darf ohne Probleme, darf man das machen. In Amerika auch. In Deutschland geht es nicht.» Er argumentiert mit einer Absurdität-Metapher: «Das ist wie, als würde man sagen, Milch trinken ist verboten. Was glauben Sie, wie viele Milchbauern wir noch hätten?» Das Problem sieht er in der Verlagerung von Innovationstätigkeiten ins Ausland, wo die Technologien getestet und entwickelt werden. Seine Forderung ist, Innovationen in Deutschland zuzulassen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen benennt ein konkretes regulatorisches Hindernis und begründet es mit internationalen Vergleichen sowie Marktlogik. Die Antwort ist direkt und substanziell.",
+        "concrete_statements": [
+          "Forderung zur Freigabe autonomes Fahren in Deutschland",
+          "Warnung vor Technologieverlagung ins Ausland",
+          "Kritik der Überregulierung von Innovationen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man in China autonom fahren darf ohne Probleme, darf man das machen. In Amerika auch. In Deutschland geht es nicht. Das bedeutet, dass man in Deutschland Technologien entwickeln muss, die hier nicht zulässig sind.",
+            "timestamp": "00:26:50",
+            "context": "Erklärung für Innovationsschwäche der deutschen Autoindustrie"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Mobilität der Zukunft",
+          "Technologieregulierung",
+          "Innovationsförderung"
+        ]
+      },
+      {
+        "title": "Regulierung und Bürokratie als Wirtschaftsbremse",
+        "timestamp_range": "00:30:28 - 00:31:33",
+        "theme_description": "Forderung, Statistiken und Prüfvorgaben zu reduzieren, um Unternehmertum zu begünstigen.",
+        "question_asked": "Implizite Nachfrage Diess', wie man die deutsche Automobilindustrie wettbewerbsfähig macht. Claus Ruhe Madsen wird nicht direkt gefragt, sondern bringt den Punkt selbst ein.",
+        "question_intent": "Antwort aus eigenem Anlass auf die Notwendigkeit, Unternehmertum attraktiver zu machen.",
+        "position": "Claus Ruhe Madsen kritisiert den Überschuss an Prüfvorgaben und Bürokratie in Deutschland. Er schlägt vor, «Statistiken und Erhebungen 2 Jahre auszusetzen» und zu beobachten, ob Deutschland davon profitiert. Er veranschaulicht das mit einer Metapher: «Wir drücken uns gegenseitig unter Wasser und prüfen uns gegenseitig. Das ist ein bisschen, als würden Sie jeden Abend protokollieren müssen, ich bin über Grün gegangen, habe meinen Nachbarn begrüßt. Ich finde, Sie sollten protokollieren, wenn Sie über Rot fahren.» Sein Anliegen ist, Unternehmertum wieder attraktiv zu machen durch weniger Kontrolle.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen adressiert das zentrale Thema des wirtschaftlichen Niedergangs und präsentiert eine konkrete, wenn auch unkonventionelle Forderung: temporäre Aussetzung von Statistiken und Erhebungen. Die Antwort ist substanziell und direkt zur Frage.",
+        "concrete_statements": [
+          "Forderung nach 2-jähriger Aussetzung von Statistiken und Erhebungen",
+          "Reduzierung von Bürokratie für Unternehmen",
+          "Umbewertung von Prüfvorgaben (nur bei Verfehlungen, nicht bei Einhaltung)"
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe es ein paarmal gesagt, Statistiken und Erhebungen 2 Jahre aussetzen und gucken, ob Deutschland da ist. Wir drücken uns gegenseitig unter Wasser und prüfen uns gegenseitig.",
+            "timestamp": "00:30:28",
+            "context": "Monolog zu Bürokratieabbau und Unternehmertum"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürokratieabbau",
+          "Deregulierung",
+          "Unternehmensfreundliche Politik"
+        ]
+      },
+      {
+        "title": "Langfristige Energiestrategie versus Kurz-Reaktionen",
+        "timestamp_range": "00:34:41 - 00:35:41",
+        "theme_description": "Kritik an ad-hoc-Energiepolitik (Atomausstieg-Debatte) statt langfristiger Planung; Chancen für Energieinvestitionen in Schleswig-Holstein.",
+        "question_asked": "Sandra Maischberger wirft die Frage auf, ob die Hin-und-Her-Politik zwischen Atomkraft und Erneuerbaren (Merkel, Fukushima, Söder) gutes politisches Handeln ist und kontrastiert mit KI-Unternehmen, die Energie als Begrenzungsfaktor sehen.",
+        "question_intent": "Sandra Maischberger will wissen, wie Claus Ruhe Madsen langfristige Energiepolitik bewertet.",
+        "position": "Claus Ruhe Madsen kritisiert die Zickzack-Politik und betont Planungskontinuität: «Es ist so, dass man langfristige Planung braucht.» Er bringt eine neue Perspektive: KI-Unternehmen im Silicon Valley haben Energie als kritischen Faktor identifiziert, nicht als Mangel, sondern als Standortvorteil: «Da gab es die Quartalszahlen von einigen KI-Unternehmen. Sie haben berichtet, dass die Begrenzung Energie ist.» Sein Fazit für Deutschland: «Ich bin mir sicher, dass wir starke Ansiedlungen bekommen werden in Schleswig-Holstein, aufgrund dessen, dass wir Energie haben.» Seine Strategie ist, Energie zum Wettbewerbsvorteil zu machen, nicht zu rationieren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen adressiert die Kritik an der Ad-hoc-Atomkraft-Debatte und dreht das Energiethema um: nicht Knappheit, sondern Überfluss ist das echte Problem, das man zum Vorteil nutzen kann.",
+        "concrete_statements": [
+          "Kritik an Zickzack-Politik (Atomausstieg, dann Rückkehr-Debatte)",
+          "Forderung nach langfristiger Energieplanning",
+          "Energie als Standortvorteil für Hochtech-Ansiedlungen in Deutschland",
+          "Investitionen in KI-Infrastruktur durch Energieaverfügbarkeit"
+        ],
+        "quotes": [
+          {
+            "text": "Es ist so, dass man langfristige Planung braucht. Ich war gerade in Silicon Valley unterwegs. Da gab es die Quartalszahlen von einigen KI-Unternehmen. Sie haben berichtet, dass die Begrenzung Energie ist.",
+            "timestamp": "00:34:41",
+            "context": "Kritik an Atomkraft-Hin-und-Her und Chancen für Energiewirtschaft"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Energiesicherheit",
+          "Standortpolitik",
+          "Künstliche Intelligenz"
+        ]
+      },
+      {
+        "title": "Erneuerbare Energien und Netzkapazität in Schleswig-Holstein",
+        "timestamp_range": "00:37:12 - 00:38:15",
+        "theme_description": "Darlegung der erneuerbaren Energiekapazität in Schleswig-Holstein und Ablehnung von Mini-Atomkraftwerken.",
+        "question_asked": "Sandra Maischberger fragt, ob Claus Ruhe Madsen Mini-Atomkraftwerke in Schleswig-Holstein errichten möchte, wie Markus Söder das fordert.",
+        "question_intent": "Sandra Maischberger will erfahren, ob Claus Ruhe Madsen die Atomkraft-Forderung von Söder teilt.",
+        "position": "Claus Ruhe Madsen lehnt Mini-Atomkraftwerke für Schleswig-Holstein ab und kontrastiert dies mit einer Anecdote: «Ich hatte gestern ein Gespräch mit einem Unternehmen. Wir haben uns ein Grundstück angeschaut. Sie wollen 1,2 GWh Leistung. Das ist etwa ein Atomkraftwerk. Wir können das ohne Probleme liefern.» Das Netzproblem in Schleswig-Holstein ist nach seiner Aussage nicht Energiemangel, sondern Überfluss: Der Netzbetreiber habe gesagt, das sei «ein Segen», dass es so viel erneuerbare Energie gibt. Sein Lösungsansatz liegt in besserer Netzintegration und Speichertechnologie, nicht Atomkraft.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen beantwortet die Frage direkt (nein zu Mini-AKW) und untermauert seine Position mit einem konkreten Beispiel aus seiner Regierungstätigkeit, das zeigt, dass erneuerbare Energien ausreichend sind.",
+        "concrete_statements": [
+          "Ablehnung von Mini-Atomkraftwerken in Schleswig-Holstein",
+          "Betonung der Netzkapazität für erneuerbare Energien",
+          "Forderung nach besserer Netzintegration statt Atomkraft"
+        ],
+        "quotes": [
+          {
+            "text": "Ich hatte gestern ein Gespräch mit einem Unternehmen. Wir haben uns ein Grundstück angeschaut. Sie wollen 1,2 GWh Leistung. Das ist etwa ein Atomkraftwerk. Wir können das ohne Probleme liefern. Mit Ihren Windrädern auf See?",
+            "timestamp": "00:37:42",
+            "context": "Antwort auf Frage zu Mini-Atomkraftwerken und Energieversorgung in Schleswig-Holstein"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Erneuerbare Energien",
+          "Netzausbau",
+          "Atomausstieg"
+        ]
+      },
+      {
+        "title": "Zollpolitik und Verhandlung mit den USA",
+        "timestamp_range": "00:39:49 - 00:40:53",
+        "theme_description": "Kritik an den Trump-Zöllen und deren inflationären Effekten sowie Forderung nach europäischer Zusammenarbeit.",
+        "question_asked": "Sandra Maischberger fragt, ob die US-Zölle tatsächlich bei der amerikanischen Bevölkerung landen (Inflationswirkung) und wie Deutschland damit umgehen soll.",
+        "question_intent": "Sandra Maischberger will Claus Ruhe Madsens Einschätzung der ökonomischen Folgen der Zölle.",
+        "position": "Claus Ruhe Madsen bestätigt die Inflationswirkung der Zölle mit wissenschaftlicher Autorität: «Die Wahrheit ist allerdings, dass 96% der Zölle bei der amerikanischen Bevölkerung gelandet ist und eine Inflation ausgelöst hat. Es ist nachgewiesen vom Institut der Weltwirtschaft in Kiel.» Er erklärt, dass Verkäufer die Zölle einfach weitergeben und die erwartete wirtschaftliche Belebung ausbleibt. Seine Forderung ist europäische Solidarität und Strategiefähigkeit: «Deswegen ist es wichtig, dass wir Europäer zusammenkommen. ... Wir müssen in Europa zusammenrücken.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen beantwortet die Frage zu den Zolleffekten mit konkreten Daten und zieht daraus eine politische Schlussfolgerung (europäische Zusammenarbeit). Die Antwort ist substanziell und direkt.",
+        "concrete_statements": [
+          "96% der Zölle belasten amerikanische Verbraucher (Inflation)",
+          "Forderung nach europäischer Solidarität gegen Zollpolitik",
+          "Warnung vor Abhängigkeit in Schlüsseltechnologien (Batterien, Halbleiter)"
+        ],
+        "quotes": [
+          {
+            "text": "Die Wahrheit ist allerdings, dass 96% der Zölle bei der amerikanischen Bevölkerung gelandet ist und eine Inflation ausgelöst hat.",
+            "timestamp": "00:39:49",
+            "context": "Antwort auf Frage zu wirtschaftlichen Folgen der US-Zölle"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Handelspolitik",
+          "Zölle",
+          "Europäische Integration",
+          "Außenpolitik USA"
+        ]
+      },
+      {
+        "title": "Europäische Souveränität und Bedrohung durch Trump",
+        "timestamp_range": "00:41:56 - 00:42:59",
+        "theme_description": "Reflexion auf Trump als externe Bedrohung und Katalysator für europäische Einheit.",
+        "question_asked": "Sandra Maischberger verweist auf Diess' Aussage, dass Trump eine Chance für Europa darstellt (als Katalysator der Einigung). Sie fragt implizit, ob Claus Ruhe Madsen das teilt, und erwähnt Trumps Äußerung zum Kauf Grönlands.",
+        "question_intent": "Sandra Maischberger will Claus Ruhe Madsens Einschätzung von Trump als externe Bedrohung.",
+        "position": "Claus Ruhe Madsen sieht Trump als fundamentale Bedrohung für die internationale Rechtsordnung: «Wir leben in einem Jahrhundert, wo nicht das Recht des Stärkeren herrscht. Das Land gehört den Grönländern.» Er vergleicht die gegenwärtige Situation mit seiner Kindheit: «Ich bin groß geworden mit dem großen Bruder Amerika, der immer kommt, wenn er gerufen wurde. Jetzt ist er zur Bedrohung geworden.» Trotzdem betont er: «Das zeigt, wie wichtig es ist, dass Europa das begriffen hat, dass wir stärker in der Unabhängigkeit werden.» Seine Position ist: Trump erzwingt europäische Unabhängigkeit, aber das ist ein Albtraum, kein Segen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Claus Ruhe Madsen antwortet direkt und mit persönlicher Perspektive auf die Frage. Er nimmt eine klare kritische Position zu Trump ein und verbindet dies mit europäischen Interessen.",
+        "concrete_statements": [
+          "Ablehnung des Rechts des Stärkeren in internationaler Politik",
+          "Kritik an Trump als Bedrohung, nicht als Chance",
+          "Forderung nach europäischer Unabhängigkeit und Stärke"
+        ],
+        "quotes": [
+          {
+            "text": "Wir leben in einem Jahrhundert, wo nicht das Recht des Stärkeren herrscht. Ich bin groß geworden mit dem großen Bruder Amerika, der immer kommt, wenn er gerufen wurde. Jetzt ist er zur Bedrohung geworden.",
+            "timestamp": "00:42:59",
+            "context": "Antwort auf Frage zu Trump und europäischer Souveränität"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik USA",
+          "Europäische Sicherheit",
+          "Transatlantische Beziehungen",
+          "NATO"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "96% der Trump-Zölle landen bei der amerikanischen Bevölkerung und lösen Inflation aus",
+        "timestamp": "00:39:49"
+      },
+      {
+        "claim": "Das Institut der Weltwirtschaft in Kiel hat nachgewiesen, dass viele Produkte unter Zöllen nicht ersetzt werden können",
+        "timestamp": "00:40:23"
+      },
+      {
+        "claim": "Ein Unternehmen in Schleswig-Holstein benötigt 1,2 GWh Leistung, das etwa der Kapazität eines Atomkraftwerks entspricht",
+        "timestamp": "00:37:42"
+      },
+      {
+        "claim": "KI-Unternehmen im Silicon Valley berichten, dass Energie die Begrenzung für ihre Expansion ist",
+        "timestamp": "00:34:41"
+      },
+      {
+        "claim": "Deutschland ist das einzige Industrieland, das sowohl aus fossilen Energien als auch aus Kernkraft aussteigt",
+        "timestamp": "00:08:00"
+      }
+    ]
+  }
+}

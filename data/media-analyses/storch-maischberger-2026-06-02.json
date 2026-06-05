@@ -1,0 +1,272 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYzM0YWYwNDAtNDNkZS00ZjczLWJhMjAtYjdiY2Y0ZTJjMjZj",
+    "video_id": "maischberger-2026-06-02",
+    "politician": "Beatrix von Storch",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "146ae5a8afd46b37",
+    "transcript_chars": 57576,
+    "caption_lines": 2175,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23319,
+    "tokens_out": 6887,
+    "cost_usd": 0.0231016,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "pivot_zum_gegenpunkt": 3,
+      "substantielle_position": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.642Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Beatrix von Storch tritt als stellvertretende Fraktionschefin der AfD auf und diskutiert mit Sandra Maischberger und dem Politologen Albrecht von Lucke zentrale Positionen ihrer Partei zu Bildung, Migration und Außenpolitik. Sie verteidigt dabei das AfD-Wahlprogramm mit Fokus auf die wachsende Unterstützung (42 % in Umfragen) und argumentiert, dass die AfD echte Probleme adressiert, die andere Parteien ignorieren.",
+    "themes": [
+      {
+        "title": "Schulpflicht-Abschaffung und Bildungspolitik",
+        "timestamp_range": "00:49:34 - 00:58:40",
+        "theme_description": "Diskussion über das AfD-Wahlprogramm Sachsen-Anhalts, das die Abschaffung der Schulpflicht vorsieht und wie von Storch dies mit Unterrichtsqualität und europäischen Vergleichen begründet.",
+        "question_asked": "Sandra Maischberger fragte Beatrix von Storch direkt, ob die Abschaffung der Schulpflicht in Sachsen-Anhalt richtig sei, und später, wie sich die geplante Verankerung von 'Heimatliebe' im Schulgesetz konkret im Lehrplan ausbuchstabieren würde (00:51:12 und 00:57:34).",
+        "question_intent": "Maischberger wollte verstehen, wie von Storch ein radikales Wahlversprechen (Ende der Schulpflicht, nationale Erziehung) mit dem Anspruch auf bessere Bildungsergebnisse in Einklang bringt und was 'Heimatliebe' konkret bedeutet.",
+        "position": "Von Storch betont, dass die Schulpflicht-Abschaffung keine Ausnahme sei: 'In den meisten europäischen Staaten ist das der Fall.' Sie argumentiert, dass das deutsche Schulsystem versagt, da Schüler nicht richtig lesen und rechnen können, und dass daher 'Bildung ja, und auch Prüfung, Überprüfungen' nötig seien, aber nicht zwingend in der Schule. Zur 'Heimatliebe' sagt sie: 'dass wir die Schüler dazu bringen wollen, stolz auf das eigene Land zu sein.' Sie lehnt 'ideologische Propaganda gegen eine große Oppositionskraft auf deutschen Schulhöfen' ab und bezieht sich dabei auf vermeintliche Anti-AfD-Inhalte in Schulen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch adressiert die Schulpflicht-Frage durch europäische Vergleiche und Kritik am bestehenden System, beantwortet aber nicht konkret, warum weniger Schulbesuch gerade bei diagnostiziertem Versagen des Systems die Lösung sein soll. Zur 'Heimatliebe' gibt sie nur Allgemeinplätze ('stolz auf das eigene Land'), ohne die konkrete Lehrplan-Ausbuchstabierung zu erklären, obwohl Maischberger genau danach fragte.",
+        "concrete_statements": [
+          "Abschaffung der Schulpflicht ist in 'mindestens 12 Ländern in Europa' Standard",
+          "40 % der Schüler können nicht richtig lesen",
+          "Das Schulsystem wird kritisiert, aber ohne Schulzwang kann es durch 'Bildungspflicht' mit Prüfungen ersetzt werden",
+          "Heimatliebe soll Schüler dazu bringen, 'stolz auf das eigene Land' zu sein"
+        ],
+        "quotes": [
+          {
+            "text": "In den meisten europäischen Staaten ist das der Fall. So zu tun, als wäre das etwas Verrücktes, das ist ein deutscher Sonderweg.",
+            "timestamp": "00:51:12",
+            "context": "Von Storch rechtfertigt die Abschaffung der Schulpflicht mit internationalen Vergleichen."
+          },
+          {
+            "text": "Die Zahlen sind für Deutschland, nicht für Sachsen-Anhalt, aber ich nehme an, das sind die gleichen. Wenn wir sagen, dass 40% nicht richtig lesen können, weil das in den Schulen nicht mehr transportiert wird, stellt sich die Frage, wo ist da das Problem, wie kann man das lösen.",
+            "timestamp": "00:54:53",
+            "context": "Von Storch argumentiert, dass schlechte Schulleistungen die Abschaffung der Schulpflicht rechtfertigen."
+          },
+          {
+            "text": "Wunderbar. Dass die Respekt und die Liebe dem deutschen Volk... Das habe ich nicht ausbuchstabiert, aber es versteht sich von selbst, dass wir die Schüler dazu bringen wollen, stolz auf das eigene Land zu sein.",
+            "timestamp": "00:58:09",
+            "context": "Von Storch wird zu konkreten Lehrplan-Inhalten zu 'Heimatliebe' befragt, weicht aber aus."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bildungspolitik",
+          "Schulpflicht",
+          "Lehrplaninhalte",
+          "Kulturkampf in Schulen"
+        ]
+      },
+      {
+        "title": "Reaktion auf Dämonisierungs-Vorwürfe und 42% Umfragewerte",
+        "timestamp_range": "01:00:16 - 01:01:26",
+        "theme_description": "Von Storch reagiert auf Albrecht von Luckes Kritik an AfD-Programm (Kampf gegen Institutionen, Orbán-Vergleich) mit dem Argument, dass 42% in Umfragen und reale Probleme belegen, dass Dämonisierung nicht funktioniert.",
+        "question_asked": "Albrecht von Lucke kritisierte das AfD-Programm als Versuch, staatliche Institutionen zu demontieren (Schulen, Kirchen) nach dem Vorbild Orbáns; Maischberger fragte dann, was passiere, wenn die Wähler sich bewusst für diese 'mehr Deutsche und Nationale'-Richtung entscheiden würden (01:00:55 und 01:01:26).",
+        "question_intent": "Maischberger wollte klären, wie von Lucke und von Storch damit umgehen würden, wenn die Wähler trotz der Kritik die AfD mit diesem Programm unterstützen würden.",
+        "position": "Von Storch antwortet: 'Das Programm wird nicht heute erst öffentlich. Es ist öffentlich debattiert und beschlossen worden. 42% in den Umfragen. Das, was sie versuchen mit großer Intensität zu dämonisieren. Das ist etwas, was in Sachsen-Anhalt nicht verfängt. Weil die Menschen dort diesen Eifer nicht haben. Und echte Probleme haben.' Sie argumentiert: 'Es gibt Wahlen in Sachsen-Anhalt und Mecklenburg-Vorpommern, Ganz bestimmt werden die Bürger sich mit dem Programm auseinandersetzen.'",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch antwortet nicht direkt auf die normative Frage (sollte/darf eine Partei mit solchen Plänen regieren), sondern pivotiert zur Realität der Wählerpräferenz: 42% Umfrage, öffentliches Programm, dass Dämonisierung nicht verfängt. Sie dreht die Fragerichtung um: nicht 'Was halten Sie von Ihrem Programm?', sondern 'Die Wähler entscheiden—das ist Demokratie.' Dies ist ein faktischer Pivot, kein Ausweichen.",
+        "concrete_statements": [
+          "42% Umfragewerte zeigen, dass Dämonisierung des Programms nicht funktioniert",
+          "Programm ist öffentlich beschlossen und bekannt",
+          "In Sachsen-Anhalt/Mecklenburg-Vorpommern werden Bürger sich mit Programm auseinandersetzen"
+        ],
+        "quotes": [
+          {
+            "text": "Das Programm wird nicht heute erst öffentlich. Es ist öffentlich debattiert und beschlossen worden. 42% in den Umfragen. Das, was sie versuchen mit großer Intensität zu dämonisieren. Das ist etwas, was in Sachsen-Anhalt nicht verfängt.",
+            "timestamp": "01:00:55",
+            "context": "Von Storch antwortet auf Vorwürfe der Institutionen-Demontage mit Verweis auf Wählerpräferenz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlumfragen",
+          "Politische Kommunikation",
+          "Ostdeutsche Landtagswahlen",
+          "Demokratische Legitimation"
+        ]
+      },
+      {
+        "title": "Vergleich mit anderen Parteien zur Wirtschafts-/Fachkräftekritik",
+        "timestamp_range": "01:03:31 - 01:04:36",
+        "theme_description": "Beatrix von Storch relativiert Warnungen von Wirtschaftsverbänden vor der AfD durch Verweis auf lautere Warnungen vor der Bundesregierung (Industriekrise, Energieeffizienzgesetze).",
+        "question_asked": "Albrecht von Lucke warnte, dass gut integrierte Migranten und Fachkräfte Rassismus erleben und abwandern würden; er merkte an, dass er noch keinen Wirtschaftsvertreter gehört habe, der AfD-Politik befürworte. Maischberger ergänzte, dass Wirtschaft vor AfD-Politik warnt, genauso wie vor Bundesregierung.",
+        "question_intent": "Die Fragesteller wollten die Glaubwürdigkeit von von Storchs Wirtschafts-Optimismus in Frage stellen: Wenn Wirtschaft vor beiden warnt, warum sollte AfD-Politik bessere Ergebnisse bringen?",
+        "position": "Von Storch antwortet: 'Ich glaube im Moment warnen viele Leute davor, die warnen dramatisch vor dieser Regierung, der Bundesregierung. Sie warnen vor den Energieeffizienzgesetzen, vor der Gebäudesanierung, vor dem Zerfall unserer Industrie. Der Chef der deutschen Industrie hat gesagt, die Industrie ist im freien Fall.' Sie fügt hinzu: 'Nur wenn mir gesagt wird, sie warnen vor der AfD in Sachsen-Anhalt, dann wird vor der Bundesregierung gewarnt.'",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch adressiert nicht die spezifische Frage nach Migration und Fachkräfteabwanderung unter AfD-Regierung, sondern pivotiert zur Kritik an der Bundesregierung. Sie argumentiert: Wenn Wirtschaft vor Bundesregierung warnt, dann relativiert das die Warnungen vor AfD. Dies ist ein klassischer Gegenpunkt-Pivot—nicht Nein-Sagen, sondern 'Aber die anderen sind schlimmer'.",
+        "concrete_statements": [
+          "Wirtschaft warnt vor Bundesregierung: Energieeffizienzgesetze, Gebäudesanierung, Industriezerfall",
+          "Industrie-Chef sagte: 'Industrie im freien Fall'",
+          "Warnungen vor AfD und vor Bundesregierung sind vergleichbar"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube im Moment warnen viele Leute davor, die warnen dramatisch vor dieser Regierung, der Bundesregierung. Sie warnen vor den Energieeffizienzgesetzen, vor der Gebäudesanierung, vor dem Zerfall unserer Industrie.",
+            "timestamp": "01:03:31",
+            "context": "Von Storch relativiert AfD-kritische Warnungen durch Gegenwarnungen zur Bundesregierung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Energiewende",
+          "Industrie-Kritik",
+          "Mittelstand"
+        ]
+      },
+      {
+        "title": "Migration, Abschiebungen und Integrationspolitik",
+        "timestamp_range": "01:04:03 - 01:06:37",
+        "theme_description": "Debatte über AfD-Forderungen nach Massenabschiebungen, die Aussagen des Spitzenkandidaten Siegmund zu ausländischen Ärzten und mögliche Fachkräfteabwanderung.",
+        "question_asked": "Albrecht von Lucke und Sandra Maischberger fragten Beatrix von Storch, inwieweit die AfD in Kauf nehme, dass bei Abschiebung von Migranten (etwa von 'syrischen Ärzten') eine Fachkräfteabwanderung entstehe, und wie sie dazu stehe, dass gut integrierte Migranten und Ingenieure bereits Rassismus erleben würden.",
+        "question_intent": "Die Fragesteller wollten aufzeigen, dass AfD-Politik zu wirtschaftlichen Schäden und zu einer Vertreibung von bereits integrierten, hochqualifizierten Personen führen könnte—ein Zielkonflikt zwischen Migrationsrestriktion und Fachkräftemangel.",
+        "position": "Von Storch wird bei der Frage zu Siegmunds Aussage über syrische Ärzte nicht direkt zitiert, sondern antwortet generell: 'Wir haben als AfD immer klar artikuliert, dass wir für eine Abschiebung im großen Stil sind.' Sie merkt an, dass dies 'die Worte des letzten Kanzlers, Scholz' seien und dass 'Das Gegenteil passiert—die Migrationszahlen steigen weiter an.' Sie behauptet, es gebe '250.000 Ausreisepflichtige' und verweist darauf, dass 'gut integrierte Migranten' in großer Zahl zur AfD kämen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Von Storch weicht der Frage nach wirtschaftlichen und sozialen Kosten ihrer Abschiebungspolitik aus und pivotiert stattdessen zur Kritik an der Bundesregierung ('das Gegenteil passiert') sowie zur Behauptung, dass Migranten zur AfD kämen. Sie adressiert nicht den Kern: dass Fachkräfte abwandern könnten, sondern behauptet stattdessen, dass 'Ausreisepflichtige' noch im Land sind.",
+        "concrete_statements": [
+          "AfD fordert Abschiebung 'im großen Stil'",
+          "250.000 Ausreisepflichtige sind noch im Land",
+          "Migrationszahlen steigen weiter (ohne zu erwähnen, dass sie sinken)",
+          "'Gut integrierte Migranten kommen in großen Scharen zur AfD' (persönliche Behauptung ohne Beleg)"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben als AfD immer klar artikuliert, dass wir für eine Abschiebung im großen Stil sind. Das sind die Worte des letzten Kanzlers, Scholz. Das meinen wir ernst.",
+            "timestamp": "01:04:36",
+            "context": "Von Storch betont das Kernziel der AfD-Migrationspolitik."
+          },
+          {
+            "text": "Die gut integrierten Migranten kommen in großen Scharen zur AfD und werden Mitglied. Ich führe die Gespräche selber in meinem Verband.",
+            "timestamp": "01:06:37",
+            "context": "Von Storch behauptet, dass integrierte Migranten zur AfD stoßen, ohne konkrete Zahlen zu nennen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Abschiebungen",
+          "Arbeitskräftemangel",
+          "Integration"
+        ]
+      },
+      {
+        "title": "AfD-Delegation nach Russland und Außenpolitik",
+        "timestamp_range": "01:07:08 - 01:09:19",
+        "theme_description": "Diskussion über die geplante Reise einer AfD-Delegation nach Russland und die Außenpolitik-Ausrichtung der Partei.",
+        "question_asked": "Sandra Maischberger fragte Beatrix von Storch nach ihrer Einschätzung zur geplanten AfD-Delegation nach Russland und später, ob es nicht Teil der Aufgabe von AfD-Abgeordneten sei, sich mit Kriegsfragen auseinanderzusetzen (01:07:08 und 01:07:40).",
+        "question_intent": "Maischberger wollte verstehen, ob die AfD-Delegation ernst zu nehmen ist und ob die Reise sicherheitspolitischen Bedenken bezüglich Russland-Nähe entspricht, insbesondere im Kontext des Ukraine-Krieges.",
+        "position": "Von Storch argumentiert: 'Ich glaube, dass es sehr sinnvoll ist, in alle Richtungen Kanäle zu haben. In alle Richtungen zu sprechen.' Sie betont, dass die AfD hervorragende Kontakte in die USA habe und auch zu Russland, weil 'es sinnvoll ist...diesen furchtbaren Krieg zu beenden' und 'diplomatische Bemühungen' nötig seien. Sie erklärt, dass es bei der Reise 'im Moment...um Wirtschaft' gehe und dass die Russen wissen, dass die AfD 'in einiger Zeit sicherlich Verantwortung übernehmen wird'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Von Storch beantwortet nur teilweise: Sie erklärt die Notwendigkeit von Gesprächskanälen (legitim), verweist aber darauf, dass es um Wirtschaft gehe, nicht um Krieg—was der impliziten Frage ausweicht, warum ausgerechnet jetzt eine solche Delegation nötig ist und wie sie sich zur Ukraine-Position verhält. Sie gibt zu, dass die Russen wissen, die AfD könnte in Deutschland Verantwortung übernehmen.",
+        "concrete_statements": [
+          "AfD-Delegation reist nach Russland, Schwerpunkt: Wirtschaft, nicht Krieg",
+          "Russland weiß, dass AfD 'in einiger Zeit Verantwortung übernehmen wird'",
+          "AfD betont Kontakte zu USA und Russland für Diplomatie"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass es sehr sinnvoll ist, in alle Richtungen Kanäle zu haben. In alle Richtungen zu sprechen. Wir sind in den letzten Monaten sehr viel in die USA gereist. Wir haben hervorragende Kontakte in die USA. Wir haben auch Kontakte nach Russland. Das ist sehr wichtig.",
+            "timestamp": "01:07:40",
+            "context": "Von Storch rechtfertigt die Diplomatie-Ausrichtung der AfD."
+          },
+          {
+            "text": "Im Moment geht es dort im Schwerpunkt um Wirtschaft. Die Russen wissen sehr genau, dass sie mit uns eine Partei haben, die in einiger Zeit hier sicherlich Verantwortung übernehmen wird.",
+            "timestamp": "01:08:13",
+            "context": "Von Storch erklärt den Fokus der geplanten Delegation und signalisiert Ambitionen auf Regierungsbeteiligung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Russland-Beziehungen",
+          "Ukraine-Krieg",
+          "Diplomatie"
+        ]
+      },
+      {
+        "title": "EU-Koalitionen und Rechteparteien-Mehrheiten",
+        "timestamp_range": "01:10:26 - 01:12:35",
+        "theme_description": "Von Storch verteidigt die Zusammenarbeit der AfD mit anderen Rechteparteien im EU-Parlament (Migration Pact mit RN, CDU, Meloni) und negiert die öffentliche Distanzierung von Marine Le Pen.",
+        "question_asked": "Albrecht von Lucke warf ein, dass Bardella (Chef der Le-Pen-Partei RN) sich kürzlich von der AfD distanziert habe und sie als 'rechtsradikal' bezeichnet; Sandra Maischberger fragte, wie die EU dann aussähe und ob die AfD-Vision einer rechtsdomierten EU funktioniere (01:11:27 und 01:12:03).",
+        "question_intent": "Die Fragesteller wollten aufzeigen, dass die AfD isoliert ist und dass eine von ihr angestrebte rechtsdominierte EU-Architektur unrealistisch oder gefährlich wäre.",
+        "position": "Von Storch redet von Sachpolitik: 'Wenn es um Sachpolitik geht, dann stellen wir fest, dass es Mehrheiten gibt.' Sie behauptet, Migration Pact sei mit CDU, RN (Le Pen), AfD und Meloni beschlossen worden, und nennt dies die 'Venezuela-Koalition'. Sie argumentiert: 'Die EU funktioniert immer besser, weil es immer rechtere Mehrheiten gibt' und dass 'Rechte...Präsidenten...in Frankreich oder in Deutschland' werden könnten, was neue Gestaltungsmöglichkeiten böte. Sie erkennt an, dass konservative Parteien AfD-Positionen übernommen haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Von Storch antwortet direkt auf die Frage nach EU-Koalitionen und präsentiert ihre Sicht: sachpolitische Mehrheiten mit anderen Rechteparteien, Verschiebung des Spektrums nach rechts. Sie negiert nicht die Ferne zu Bardella, sondern behauptet stattdessen, dass auf sachlicher Ebene ('Venezuela-Koalition') Zusammenarbeit funktioniert. Sie adressiert die Frage nach der zukünftigen EU-Form.",
+        "concrete_statements": [
+          "Migration Pact wurde mit CDU, RN, AfD, Meloni, Österreichern beschlossen (Selbstbenennung: 'Venezuela-Koalition')",
+          "Rechte Parteien werden stärker als konservative Parteien in Europa",
+          "EU funktioniert besser mit rechterer Mehrheit"
+        ],
+        "quotes": [
+          {
+            "text": "AfD und Rassemblement National machen gemeinsame Politik in Brüssel.",
+            "timestamp": "01:10:26",
+            "context": "Von Storch behauptet sachpolitische Zusammenarbeit trotz öffentlicher Distanzierung durch RN-Chef."
+          },
+          {
+            "text": "Die EU funktioniert immer besser, weil es immer rechtere Mehrheiten gibt. Stellen Sie sich vor nicht allzulanger Zeit, Rechte werden Präsidenten in Frankreich oder in Deutschland. Diese Mehrheiten sind in vielen europäischen Staaten im Vormarsch.",
+            "timestamp": "01:12:35",
+            "context": "Von Storch skizziert ihre Vision einer rechtsdominierten EU-Zukunft."
+          }
+        ],
+        "related_bundestag_topics": [
+          "EU-Politik",
+          "Internationale Beziehungen",
+          "Migrationspolitik (EU-Ebene)",
+          "Parteien-Allianzen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In den meisten europäischen Staaten gibt es Bildungspflicht statt Schulpflicht",
+        "timestamp": "00:51:12"
+      },
+      {
+        "claim": "40% der Grundschüler können nicht angemessen lesen",
+        "timestamp": "00:52:14"
+      },
+      {
+        "claim": "Es gibt mindestens 12 europäische Länder mit Bildungspflicht ohne Schulzwang",
+        "timestamp": "00:56:29"
+      },
+      {
+        "claim": "250.000 Ausreisepflichtige sind aktuell noch in Deutschland",
+        "timestamp": "01:05:07"
+      },
+      {
+        "claim": "Migration Pact wurde mit CDU, Rassemblement National, AfD, Meloni und Österreichern beschlossen",
+        "timestamp": "01:10:26"
+      },
+      {
+        "claim": "Chef der deutschen Industrie sagte, 'die Industrie ist im freien Fall'",
+        "timestamp": "01:03:31"
+      },
+      {
+        "claim": "AfD ist bei allen Forschungsinstituten vorne, mit 2–7 Prozentpunkten vor der Union",
+        "timestamp": "00:50:07"
+      }
+    ]
+  }
+}

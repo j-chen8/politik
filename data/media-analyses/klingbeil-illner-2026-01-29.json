@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-29-januar-2026-100",
+    "video_id": "illner-2026-01-29",
+    "politician": "Lars Klingbeil",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "b8d114a4446db6b6",
+    "transcript_chars": 47781,
+    "caption_lines": 2404,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20258,
+    "tokens_out": 6746,
+    "cost_usd": 0.021595200000000002,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 2,
+      "teilweise_antwort": 5
+    },
+    "generated_at": "2026-06-05T13:37:47.265Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bundesfinanzminister Lars Klingbeil stellte sich in der von Shakuntala Banerjee moderierten Sendung (wegen Krankheit von Maybrit Illner) zur Debatte über Deutschlands Wettbewerbsfähigkeit und wirtschaftliche Stärke. Er betonte europäischen Zusammenhalt gegen Trump-Druck, mahnte zur Erfüllung innerer Reformaufgaben und verteidigte SPD-Politiken wie die Sozialstaatsreform von Bärbel Bas gegen pauschale Kritik.",
+    "themes": [
+      {
+        "title": "Trump-Druck und europäische Handlungsfähigkeit",
+        "timestamp_range": "00:03:21 - 00:05:38",
+        "theme_description": "Klingbeil bewertet Deutschlands und Europas Fähigkeit, gegenüber Trump-Drohungen standzuhalten und Zeit für Reformarbeit zu gewinnen.",
+        "question_asked": "Shakuntala Banerjee fragte, ob die Trump-Drohungen nur kurzzeitig abgewendet wurden oder ob Europa wirklich Zeit gewonnen hat, um sich zu stärken (00:02:09-00:03:21).",
+        "question_intent": "Banerjee wollte wissen, ob Trumps Rückzieher in der Zollfrage eine stabile Verbesserung oder nur vorübergehende Erleichterung darstellt.",
+        "position": "Klingbeil lehnte Selbstzufriedenheit ab und betonte, dass Europa durch klare Haltung Trump zum Einlenken bewegt hat. Er sieht aber nur 'maximal Zeit gewonnen' und betont zwei Hauptaufgaben: Wettbewerbsfähigkeit erhöhen und Verteidigungsfähigkeit ausbauen. Klingbeil will 'den Amerikanern die Hand ausstrecken', vertraut aber nicht auf Trumps Stimmung und fordert: 'Wir müssen alles dafür tun, dass Europa so stark wird, dass wir uns vor keinem anderen Land der Welt klein machen müssen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Klingbeil antwortet direkt auf Banerjees Frage zum Zeitgewinn: Er bejaht ihn, warnt aber vor Leichtfertigkeit und leitet konkrete Schlussfolgerungen ab (Reformarbeit innen). Die Antwort adressiert sowohl die Unsicherheit (Trump bleibt unberechenbar) als auch europäische Handlungsfähigkeit.",
+        "quotes": [
+          {
+            "text": "Wir haben jetzt maximal Zeit gewonnen. Uns jetzt stärker aufzustellen.",
+            "timestamp": "00:03:21",
+            "context": "Klingbeil antwortet auf Frage, ob Zeit wirklich gewonnen wurde oder nur Nervosität weg ist."
+          },
+          {
+            "text": "Wir müssen alles dafür tun, dass Europa so stark wird, dass wir uns vor keinem anderen Land der Welt klein machen müssen.",
+            "timestamp": "00:03:21",
+            "context": "Formulierung der europäischen Ambition unter Trump-Bedingungen."
+          }
+        ],
+        "concrete_statements": [
+          "Europa hat durch klare Haltung Druck auf Trump ausgeübt",
+          "Wir sind nicht machtlos gegenüber Trump",
+          "Deutschland muss Hausaufgaben machen – das ist kein Luxus, sondern notwendig",
+          "Wettbewerbsfähigkeit und Verteidigungsfähigkeit sind die beiden Hauptaufgaben Europas"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Trump",
+          "EU-Zusammenhalt",
+          "Sicherheitspolitik",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Investitionen und private Kapitalmobilisierung",
+        "timestamp_range": "00:16:36 - 00:18:15",
+        "theme_description": "Klingbeil erläutert, wie die Bundesregierung privates Kapital für Investitionen mobilisieren will, statt nur öffentliche Schulden zu erhöhen.",
+        "question_asked": "Shakuntala Banerjee fragte, was konkret sich verändern muss, wenn der Kanzler sagt 'es verändert sich alles rasant' (00:16:21-00:16:36).",
+        "question_intent": "Banerjee wollte konkrete Maßnahmen zur wirtschaftlichen Stärkung erfahren, nicht nur allgemeine Absichtserklärungen.",
+        "position": "Klingbeil verweist auf Milliardeninvestitionen in Sicherheitspolitik als Kurswechsel gegenüber Lindner-Ära. Im Wirtschaftlichen setzt er auf Strukturreformen und Mobilisierung privater Investitionen: Ein gemeinsamer europäischer Kapitalmarkt soll entstehen. Er hat befreundete Finanzminister eingeladen, um 'aus üblichen Formaten in Brüssel rauszugehen'. Ziel: 'dass wir im Thema kein gemeinsamer europäischer Kapitalmarkt auf einen Nenner kommen'. Das öffentliche Geld soll privates Kapital hebeln – mit dem Deutschlandformat '500 Milliarden Sondervermögen'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert die Frage nach konkreten Veränderungen, nennt aber eher institutionelle Instrumente (Kapitalmarkt, Sondervermögen) als operative Reformen. Details zu Steuern, Arbeitsrecht oder Energiekosten fehlen in dieser Antwort, werden aber später thematisiert.",
+        "quotes": [
+          {
+            "text": "Mit Milliardeninvestitionen in der Sicherheitspolitik. Es hat noch nie eine Regierung so viel Geld in die Hand genommen, um so ein Sicherheitsproblem zu korrigieren.",
+            "timestamp": "00:16:36",
+            "context": "Klingbeil beschreibt den Bruch mit Lindner-Politik."
+          },
+          {
+            "text": "Alle Investoren in da Mota mir gesagt, Deutschland und Europa sind interessant. Aber ein gemeinsamer Kapitalmarkt, das würde helfen und jetzt ist die Zeit für politische Entscheidung.",
+            "timestamp": "00:16:36",
+            "context": "Begründung für Kapitalmarktreform."
+          }
+        ],
+        "concrete_statements": [
+          "500 Milliarden Sondervermögen für Investitionen etabliert",
+          "Europäischer Kapitalmarkt als zentrale Reform angestrebt",
+          "Deutschlandformat: öffentliches Geld hebt privates Kapital (Hebel 8-10x)"
+        ],
+        "related_bundestag_topics": [
+          "Sondervermögen",
+          "Kapitalmarktintegration EU",
+          "Investitionsförderung"
+        ]
+      },
+      {
+        "title": "Automobilibranche und Verbrenneraus",
+        "timestamp_range": "00:26:43 - 00:27:45",
+        "theme_description": "Klingbeil rechtfertigt, warum Regierung und Automobilindustrie beim Verbrenner-Ausstieg weniger starr vorgehen.",
+        "question_asked": "Shakuntala Banerjee beschrieb Klingbeils Nicken während Hildegard Müllers Kritik und fragte (00:26:25-00:26:43): 'Herr Klingbeil, Sie haben sehr oft genickt, ist das Ihnen peinlich jetzt im Nachhinein?'",
+        "question_intent": "Banerjee wollte wissen, ob Klingbeil sich (oder die SPD) distanziert vom starren 'Verbrenneraus' oder ob das Nicken taktisches Einverständnis war.",
+        "position": "Klingbeil deutet an, dass die 16 Bundesländer Technologieoptionen durchsetzen wollen (weniger Starrheit beim Verbrenneraus). Das habe zu Bewegung geführt. 'Politik kann entgegenkommen': Es gibt Beschäftigungsgarantien. Klingbeil betont das 'gemeinsam'-Prinzip: 'Und so möchte ich gemeinsam in diesem Land Politik machen.' Außerdem erwähnt er Zusicherungen großer Konzerne, weiter in Deutschland zu investieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil antwortet auf die 'Peinlichkeit'-Frage nicht direkt (Verweigerung, diese zu bejahen), sondern nennt stattdessen konstruktive Zugeständnisse (Technologieoptionen, Beschäftigungsgarantien). Das ist ein Pivot zur Gegenpunkt-Verschiebung: nicht Peinlichkeit/Einknicken, sondern pragmatische Kompromisse.",
+        "quotes": [
+          {
+            "text": "Es gibt eine Zusicherung dass die Beschäftigungsgarantien angeht. Und so möchte ich gemeinsam in diesem Land Politik machen.",
+            "timestamp": "00:26:43",
+            "context": "Klingbeil erklärt, warum Politik entgegenkommt: Beschäftigungsschutz ist entscheidend."
+          }
+        ],
+        "concrete_statements": [
+          "16 Bundesländer durchsetzen Technologieoptionen statt starrem Verbrenneraus",
+          "Beschäftigungsgarantien für Automobilindustrie vereinbart",
+          "Globale Konzerne signalisieren Weiterervestitionen in Deutschland"
+        ],
+        "related_bundestag_topics": [
+          "Industriepolitik",
+          "Verkehrswende",
+          "Automobilindustrie"
+        ]
+      },
+      {
+        "title": "Haushaltskonsolidierung und Sparkurs",
+        "timestamp_range": "00:27:45 - 00:36:47",
+        "theme_description": "Klingbeil erklärt, wie die Bundesregierung massive Haushaltslöcher (60 Mrd. bis 2028) schließen will, ohne einfach zu kürzen.",
+        "question_asked": "Shakuntala Banerjee warf Klingbeil vor (00:35:06-00:35:47): Damals (unter Lindner) hatten Sie gewarnt, dass es nicht 30-40 Mrd. Einsparungen sind, sondern deutlich mehr. Jetzt sind Sie in der Verantwortung – 'was müssen Sie jetzt kaputt sparen?'",
+        "question_intent": "Banerjee wollte konkrete Bereiche wissen, die Klingbeil (als Finanzminister) opfern wird – eine Konfrontation mit dem Widerspruch zwischen ehemaliger Kritik und aktueller Verantwortung.",
+        "position": "Klingbeil weigert sich, einzelne 'Opfer' zu nennen. Er hebt hervor: '500 Milliarden Sondervermögen' als Unterschied zur Lindner-Politik. Strukturreform nach Bärbel Bas muss umgesetzt werden. Subventionen werden überprüft. Klingbeil betont, dass 60 Mrd. Einsparungen nicht ohne merkliche Effekte gehen, möchte aber nicht öffentlich 'verhandeln': 'Ich habe nichts davon, wenn man das öffentlich macht. Wir müssen die Köpfe zusammen stecken im privaten.' Die Erbschaftsteuer-Reform gehört dazu. Klingbeil will 'positiv überraschen' am Ende.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil beantwortet die Konfrontation, indem er 1) die Sondervermögen-Strategie von Lindner abgrenzt, 2) strukturelle Reformen (nicht Cuts) betont, 3) aber konkrete Sparbereiche nicht nennt. Das ist eine strategische Antwort – nicht Verweigerung, sondern bewusste Evasion öffentlicher Festlegung.",
+        "quotes": [
+          {
+            "text": "Ich will es einmal sagen, wir haben 500 Milliarden Sondervermögen für Investitionen auf den Weg gebracht. Das ist eine deutliche Veränderung auch zur Politik, die Lindner beantworten hatte.",
+            "timestamp": "00:35:06",
+            "context": "Klingbeil differenziert zur früheren kritik von Lindners Sparkurs."
+          },
+          {
+            "text": "Es wird schon etwas sein, was zu Diskussionen führen kann. Ich habe nichts davon, wenn man das öffentlich macht. Wir müssen die Köpfe zusammen stecken im privaten und das dann präsentieren.",
+            "timestamp": "00:35:47",
+            "context": "Ausweichen vor spezifischen Sparmaßnahmen."
+          }
+        ],
+        "concrete_statements": [
+          "Strukturreformen nach Bärbel Bas Sozialstaatsreform müssen schnell umgesetzt werden",
+          "Subventionen werden überprüft",
+          "Erbschaftsteuer-Reform gehört zu den Maßnahmen",
+          "500 Milliarden Sondervermögen statt reiner Haushaltssparen"
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Schuldenbremse",
+          "Sozialausgaben",
+          "Steuerreform"
+        ]
+      },
+      {
+        "title": "Arbeitszeitdiskussion und Teilzeit-Debatte",
+        "timestamp_range": "00:41:26 - 00:43:43",
+        "theme_description": "Klingbeil differenziert in der Debatte um Teilzeit und Krankschreibungen, warnt vor Polarisierung und fordert konstruktive Sozialdialoge.",
+        "question_asked": "Shakuntala Banerjee fragte (00:41:54-00:42:04): 'Und sie teilen den Verdacht, dass man sich leicht krank schreiben lassen kann?'",
+        "question_intent": "Banerjee wollte, dass Klingbeil sich zu dem Union-Vorwurf der 'Lifestyle-Teilzeit' und Missbrauch von Krankmeldungen positioniert.",
+        "position": "Klingbeil stimmt zu, dass es mehr Krankheit in Deutschland gibt, will aber differenzieren: 'Das ist das, was mich an der Debatte stört. Es entsteht eine Diskussionslage, als ob die Menschen beschimpft werden, er muss fleißiger sein, euch mehr anstrengen. Es ist ein Hohn, wenn ich auf Pflegekräfte und Erzieher*innen gucke.' Er fordert eine andere Diskussionskultur: 'Deutschland war immer dann stark, wenn wir Gewerkschaft, Arbeitgeber und Politikern am Tisch hatten. Ich möchte eine polarisierten Seite haben.' (Verschreiber: vermutlich 'polarisierte Debatte vermeiden'). Zur Teilzeit: nicht abschaffen, aber differenziert über Anreize sprechen. Verweist auch auf Ehegattensplitting als strukturelles Problem.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil antwortet auf die Krankschreibungs-Frage mit Differenzierung statt Zustimmung zum Vorwurf. Er gibt zu, dass Probleme existieren, kehrt aber die Debatte um (Kritik an Polarisierung statt Einseitigkeit gegenüber Erwerbstätigen). Das ist eine Gegenpunkt-Verschiebung mit substantieller Position zur Debattenkultur.",
+        "quotes": [
+          {
+            "text": "Das ist das, was mich an der Debatte stört. Es entsteht eine Diskussionslage, als ob die Menschen beschimpft werden, er muss fleißiger sein, euch mehr anstrengen. Es ist ein Hohn, wenn ich auf Pflegekräfte und Erzieher*innen gucke.",
+            "timestamp": "00:42:04",
+            "context": "Klingbeil kritisiert den Ton der Debatte statt sich nur auf Missbrauchskritik einzulassen."
+          },
+          {
+            "text": "Deutschland war immer dann stark, wenn wir Gewerkschaft, Arbeitgeber und Politikern am Tisch hatten.",
+            "timestamp": "00:42:04",
+            "context": "Appell für Sozialdialog statt Polarisierung."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt Missbrauch bei Krankschreibungen, aber auch strukturelle Gründe für hohe Krankheitsquoten",
+          "Teilzeit sollte nicht abgeschafft werden; es geht um bessere Anreize",
+          "Ehegattensplitting ist ein struktureller Grund für zu viel Teilzeit bei Frauen",
+          "Debatte muss konstruktiv und respektvoll stattfinden, nicht moralisierend"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarkt",
+          "Krankenversicherung",
+          "Sozialgesetzbuch"
+        ]
+      },
+      {
+        "title": "Bärbel-Bas-Sozialstaatsreform und Aktivierungspflichten",
+        "timestamp_range": "00:52:47 - 00:53:52",
+        "theme_description": "Klingbeil verteidigt die Sozialstaatsreform von Bärbel Bas gegen Kritik, dass sie zu wenig Druck aufbaut.",
+        "question_asked": "Der Kontext ist Kritik von Weidel (Linke), dass die Reform zu teuer wird. Banerjee kommentiert (00:53:52-00:54:09): 'Es gibt Lob und Kritik. Es ist eine Reform, die tut nicht weh, und wenn es nicht weh tut, ist das keine Reform.'",
+        "question_intent": "Banerjee hinterfragt, ob die Reform substanziell genug ist oder zu zahnlos bleibt.",
+        "position": "Klingbeil lobt Bärbel Bas' Vorschläge als 'gerade richtig'. Er verteidigt die Verschärfung gegen die Kritik der Linken: Wenn Menschen zum dritten oder vierten Mal Termine beim Amt nicht wahrnehmen, soll 'man den Druck erhöhen'. Klingbeil empathisiert mit SPD-Perspektive: 'Wenn ich sage, die SPD kommt auf diese Gesellschaft aus der Brille von Menschen, die zweieinhalb 1000 Euro verdienen, dann kann ich niemandem erklären, warum jemand seine Termine beim Amt nicht wahrnimmt.' Er definiert SPD-Position: Menschen wollen Arbeit wertgeschätzt sehen und davon leben können; deshalb sind Aktivierungsmaßnahmen gerecht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Klingbeil beantwortet Banerjees Skepsis direkt mit substantiellem Bekenntnis zur Reform. Er erklärt sowohl Umverteilungslogik (mehr Netto-Einkommen von Lohnarbeit) als auch moralische Grundlage (Respekt vor Arbeitsleistung). Das adressiert die Frage 'tut nicht weh = keine echte Reform' durch Gegenargument.",
+        "quotes": [
+          {
+            "text": "Dass Menschen, die das dritte oder vierte Mal ihre Termine nicht wahrnehmen, dass man den Druck erhöht.",
+            "timestamp": "00:52:47",
+            "context": "Klingbeil beschreibt Verschärfung in der Bas-Reform."
+          },
+          {
+            "text": "Die meisten Menschen in diesem Land wollen, dass ihre Arbeit wertgeschätzt wird. Und dass sie von ihrer Arbeit leben können.",
+            "timestamp": "00:52:47",
+            "context": "Begründung für SPD-Haltung zu Arbeitsmarktpolitik."
+          }
+        ],
+        "concrete_statements": [
+          "Bärbel Bas' Reform ist richtig und wertvoll",
+          "Aktivierungspflichten müssen verschärft werden (Druck bei wiederholtem Nichterscheinen)",
+          "SPD-Position: Vollzeitarbeit sollte sich für Beschäftigte lohnen",
+          "Reform macht Arbeit attraktiver, indem Menschen mehr vom Lohn behalten"
+        ],
+        "related_bundestag_topics": [
+          "Sozialgesetzbuch II/III",
+          "Bürgergeld",
+          "Arbeitsmarktpolitik",
+          "Bekämpfung von Altersarmut"
+        ]
+      },
+      {
+        "title": "Reformpolitik und Opfer-Frage",
+        "timestamp_range": "00:58:41 - 00:59:24",
+        "theme_description": "Klingbeil lehnt den Rahmen 'wer muss opfern' ab und setzt auf gemeinsame Lösungen.",
+        "question_asked": "Shakuntala Banerjee fragte (00:58:41-00:58:51): 'Sprechen darüber, wer was opfern kann und muss. Das waren in den letzten Jahren immer die Punkte, woran das gescheitert ist.'",
+        "question_intent": "Banerjee wollte wissen, ob Klingbeil anerkennt, dass Reformen an der Verteilungs-Frage scheitern, weil sich jede Gruppe weigert, Opfer zu bringen.",
+        "position": "Klingbeil lehnt die 'Opfer'-Framing ab: 'Es geht nicht um opfern oder sonst irgendetwas.' Er fordert stattdessen ein Gesamtpaket ('Haushaltsfragen, wirtschaftliche Stärke') und appelliert an SPD-Basis: 'Ich treffe an der SPD Basis Leute, die sagen: Streitet euch nicht, löst die Probleme des Landes.' Für Klingbeil ist das die 'Aufgabe, die wir haben'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert Banerjees Frage nach Blockaden, weicht aber der Spezifik aus, indem er das Opfer-Framing insgesamt ablehnt. Das ist eine Umdefinition des Problems (nicht Opfer-Verteilung, sondern gemeinsames Handeln). Ob das die Scheitern-Frage beantwortet, bleibt offen.",
+        "quotes": [
+          {
+            "text": "Es geht nicht um opfern oder sonst irgendetwas. Ich wünsche mir, dass wir am Ende ein Paket haben, mit dem wir anpacken können.",
+            "timestamp": "00:58:51",
+            "context": "Klingbeil lehnt Opfer-Framing ab."
+          },
+          {
+            "text": "Ich treffe an der SPD Basis Leute, die sagen: Streitet euch nicht, löst die Probleme des Landes.",
+            "timestamp": "00:59:24",
+            "context": "Appell an Pragmatismus statt Interessenskonflikte."
+          }
+        ],
+        "concrete_statements": [
+          "Nicht einzelne Opfer stehen im Zentrum, sondern Gesamtpaket (Haushalt + Wirtschaft)",
+          "SPD-Basis fordert Problemlösung statt Konfliktvermeidung",
+          "Reformpaket soll Vertrauen der Bürger gewinnen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionspolitik",
+          "Reformagenda"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Es hat noch nie eine Regierung so viel Geld in die Hand genommen, um so ein Sicherheitsproblem zu korrigieren",
+        "timestamp": "00:16:36"
+      },
+      {
+        "claim": "Sieben von zehn Elektroautos kommen aus Deutschland",
+        "timestamp": "00:22:59"
+      },
+      {
+        "claim": "500 Milliarden Sondervermögen für Investitionen wurde etabliert",
+        "timestamp": "00:35:06"
+      },
+      {
+        "claim": "Deutschland ist die drittgrößte Volkswirtschaft",
+        "timestamp": "00:21:35"
+      },
+      {
+        "claim": "Es gibt ein europäisches Urteil, das sagt: Überstunden müssten auch bei Teilzeitangestellten ab der ersten Überstunde bezahlt werden",
+        "timestamp": "00:39:34"
+      }
+    ]
+  }
+}

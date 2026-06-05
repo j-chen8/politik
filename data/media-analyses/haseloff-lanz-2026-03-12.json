@@ -1,0 +1,324 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-12-maerz-2026-100",
+    "video_id": "lanz-2026-03-12",
+    "politician": "Reiner Haseloff",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "d42ae0683b3ee26a",
+    "transcript_chars": 68764,
+    "caption_lines": 3291,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 27574,
+    "tokens_out": 9020,
+    "cost_usd": 0.0290696,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.098Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Reiner Haseloff, ehemaliger Ministerpräsident von Sachsen-Anhalt, diskutiert in der Markus Lanz Sendung seinen Übergang in den Ruhestand nach 15 Jahren Amtszeit, seine Haltung zur AfD als existenzielle Bedrohung der Demokratie und zentrale Herausforderungen für die CDU – von Personalfragen über die Brandmauer-Politik bis zu Wirtschafts- und Klimapolitik. Haseloff wirkt engagiert und temperamentvoll, bleibt aber strategisch fokussiert auf sein Kernziel: Verhinderung einer AfD-Regierungsübernahme.",
+    "themes": [
+      {
+        "title": "Übergang aus Ministeramt – persönliche Umstellung",
+        "timestamp_range": "00:02:55 - 00:05:21",
+        "theme_description": "Wie sich Reiner Haseloff 40 Tage nach seinem Rücktritt als Ministerpräsident an den Ruhestand anpasst und welche Veränderungen er persönlich erlebt.",
+        "question_asked": "Markus Lanz fragt Haseloff, wie sich sein Leben unmittelbar nach dem Rücktritt als Ministerpräsident verändert hat und ob die Sicherheitsbegleitung wegfällt – ein Detail, das Lanz hinter den Kulissen beobachtet hat.",
+        "question_intent": "Lanz möchte verstehen, wie ein 15 Jahre lang dominierender Politker den abrupten Machtverlust und die Alltagsveränderungen psychologisch verarbeitet.",
+        "position": "Haseloff betont, dass die operative Geschäfte seinem Nachfolger obliegen, sein Terminkalender aber weiterhin voll ist und er aktiv bleibt – u.a. im Wahlkreis und in der Koalition. Die Sicherheitsbegleitung ist noch vorhanden, aber reduziert. Persönlich genießt er vor allem mehr Schlaf (7–8 Stunden) und eine ruhigere psychische Verfassung. Er beschreibt die Umstellung als bewusste mentale Vorbereitung auf ein Leben nach der Politik, hat aber 'noch immer einen vollen Terminkalender'.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haseloff antwortet direkt auf alle drei Fragen: zur Geschäftsverteilung, zur Sicherheit und zum persönlichen Wohlbefinden. Er liefert konkrete Details (Schlafmenge, psychische Entlastung) und erklärt seine mentale Haltung zum Übergang.",
+        "concrete_statements": [
+          "Das operative Geschäft macht jetzt mein Nachfolger",
+          "Ich habe immer noch einen vollen Terminkalender",
+          "Am meisten genieße ich, dass ich jetzt auf 7-8 Stunden Schlaf komme",
+          "Dadurch nimmt man die Morgennachrichten mit einer gewissen Ruhe wahr"
+        ],
+        "quotes": [
+          {
+            "text": "Das operative Geschäft, das macht jetzt mein Nachfolger. Das ist auch gut und das ist auch gewollt gewesen.",
+            "timestamp": "00:02:55",
+            "context": "Haseloff erklärt die Aufgabenverteilung nach seinem Rücktritt."
+          },
+          {
+            "text": "Am meisten genieße ich, dass ich jetzt auf 7-8 Stunden Schlaf kommen.",
+            "timestamp": "00:04:42",
+            "context": "Lanz fragt, was Haseloff am meisten genießt und vermisst – größte Umstellung."
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "AfD als existenzielle Bedrohung der Demokratie",
+        "timestamp_range": "00:07:14 - 00:08:45",
+        "theme_description": "Haseloffs emotionale Rede gegen die AfD im Landtag und die Gründe für seine harte Haltung gegen die Partei.",
+        "question_asked": "Markus Lanz zeigt ein Video von Haseloffs emotionalem Auftritt im Landtag vom 12. Juni und fragt, was ihn damals so provoziert hat.",
+        "question_intent": "Lanz möchte verstehen, welche konkreten Handlungen oder Äußerungen der AfD Haseloff zu diesem ungewöhnlich temperamentvollen Ausbruch bewogen haben.",
+        "position": "Haseloff sieht in der AfD nicht nur eine Partei mit anderen politischen Inhalten, sondern eine existenzielle Bedrohung für die demokratische Grundordnung Deutschlands. Er zieht historische Parallelen zu 1932/33: die AfD setze Themen wie Bauhaus-Schließung, kulturelle Substitution, Druck auf Opposition und den Umbau hin zu einem 'völkischen System' um – exakt das Muster, das zur Machtergreifung der Nationalsozialisten führte. Seine Provokation richtet sich gegen die 'Selbstsicherheit' der AfD, die sich bereits kurz vor der Regierungsübernahme präsentiert.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haseloff beantwortet direkt, was ihn provozierte: die Selbstsicherheit und die historischen Parallelen. Er begründet seine Haltung mit konkreten Beispielen (Themen, Rhetorik) und historischem Kontext.",
+        "concrete_statements": [
+          "Es geht um alles, es geht um dieses Land, unsere Demokratie oder ein anderes Land",
+          "Die Themen, die sie gesetzt haben, haben genau dort angesetzt, wie 1932, als die Nationalsozialisten die Macht übernommen haben",
+          "Das sind Sachen, die man gerade auch als Bürger Sachsen-Anhalt genau geschichtlich einzuordnen weiß"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht um alles, es geht um dieses Land, unser Land, unsere Demokratie oder ein anderes Land.",
+            "timestamp": "00:08:32",
+            "context": "Haseloff klärt, worum es in seiner emotionalen Rede im Landtag ging."
+          },
+          {
+            "text": "Die Themen, die Sie gesetzt haben, auch genau dort angesetzt haben, wie 1932 schon einmal. Als die Nationalsozialisten die Macht übernommen haben.",
+            "timestamp": "00:08:45",
+            "context": "Haseloff begründet seine Provokation mit historischen Parallelen."
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Wahlszenarien Sachsen-Anhalt und Koalitionsmöglichkeiten",
+        "timestamp_range": "00:14:33 - 00:16:59",
+        "theme_description": "Haseloffs Einschätzung der Wahlchancen der CDU und der Koalitionsoptionen angesichts von Umfragen, die der AfD bis zu 40 % bescheinigen.",
+        "question_asked": "Markus Lanz und Anne Hähnig fragen, welche Szenarien denkbar sind, wenn die AfD knapp vor der absoluten Mehrheit steht und ob Disziplin bei CDU-Abgeordneten in geheimer Abstimmung gewährleistet ist.",
+        "question_intent": "Lanz und Hähnig wollen wissen, ob Haseloff realistisch einschätzt, dass bei knapper Mehrheit einzelne CDU-Politiker zu der AfD überlaufen könnten, und wie er damit umgehen würde.",
+        "position": "Haseloff vertraut darauf, dass die CDU stärkste Kraft wird und die AfD keine absolute Mehrheit erlangt. Er begründet das mit Erfahrungen aus 2021, als Umfragen ähnlich negativ waren, das Wahlergebnis aber 'auffällig etwas anderes' zeigte. Er setzt auf Mobilisierung durch 'harte Arbeit' und verweist auf Botschaften, die die CDU noch senden muss. Er lehnt detaillierte Spekulationen über Szenarien ab ('da will ich jetzt auch gar nicht im Detail spekulieren'), betont aber: 'Ich bin mir ziemlich sicher, dass in diesem Land keine absolute Mehrheit für die AfD hinzubekommen ist.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haseloff antwortet auf die Wahlszenarien, weicht aber der direkten Frage nach CDU-Disziplin aus. Er nennt sein Ziel (stärkste Kraft, AfD-Ausschluss), beantwortet aber nicht konkret, wie er mit einzelnen Abtrünnigen umgehen würde. Seine Antwort ist eher motivierend als risikobewusst.",
+        "concrete_statements": [
+          "Ich bin mir ziemlich sicher, dass in diesem Land keine absolute Mehrheit für die AfD hinzubekommen ist",
+          "Wir werden weiterhin mobilisieren",
+          "Das Ziel war, dass diese Koalition erfolgreich nachweist, dass wir dieses Land gut regiert haben",
+          "Wir werden jetzt auch nicht zu sehr spekulieren und so tun, als ob Sachsen-Anhalt eine Singularität darstellt"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin mir ziemlich sicher, dass in diesem Land keine absolute Mehrheit für die AfD hinzubekommen ist. Weil wir hart arbeiten, wir werden weiterhin mobilisieren, wir haben auch ein Angebot.",
+            "timestamp": "00:15:32",
+            "context": "Haseloff beantwortet Lanz' Frage zur Wahrscheinlichkeit einer AfD-Mehrheit."
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Wahlkampfstrategie und Sven Schulze als Kandidat",
+        "timestamp_range": "00:17:20 - 00:18:07",
+        "theme_description": "Haseloffs Bewertung seines Nachfolgers Sven Schulze und der CDU-Strategie gegen die AfD ohne Haseloff als Spitzenkandidat.",
+        "question_asked": "Markus Lanz fragt, ob Haseloff einzelne CDU-Politiker kennt, die bei Abstimmungen 'wackeln' würden, und später stellt Anne Hähnig die Frage, ob der Übergang zu Schulze zu spät war.",
+        "question_intent": "Lanz und Hähnig wollen prüfen, ob Haseloff die Risiken für die Koalitionsstabilität realistisch einschätzt und ob der Wechsel zu Schulze strategisch sinnvoll war.",
+        "position": "Haseloff lehnt es ab, die Frage auf einzelne Personen zu 'unterbrechen'; es gehe um Zahlen und Ziele. Sein Fokus liegt auf der Wahlvorbereitung und dem Angebot der Koalition, nicht auf Personalrisiken. Er verteidigt Sven Schulze: Dieser sei gut nominiert und gewählt worden und habe 'auch die eigenen Leute bei der Nominierung [...] gut hinter sich gebracht'. Schulze mache 'das sehr gut, er ist in einer Fläche [...] wir sind gemeinsam alle unterwegs, wir machen Wahlkampf'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haseloff antwortet auf die generelle Strategie-Frage, aber meidet die Personalrisiken. Er weicht teilweise auf thematische Argumente aus (wirtschaftliche Entwicklung, Migrationsfrage) statt auf Schulzes Bewährung einzugehen.",
+        "concrete_statements": [
+          "Es geht um Zahlen, das ist richtig",
+          "Sven Schulze ist mein Nachfolger, ich habe ihn vorgeschlagen",
+          "Er macht das sehr gut, er ist in einer Fläche",
+          "Wir werden dieses Land versuchen auch in der Mitte zu halten"
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde das nicht auf Personen unterbrechen. Es geht um Zahlen, das ist richtig.",
+            "timestamp": "00:17:20",
+            "context": "Haseloff antwortet auf Lanz' Frage nach wackelnden CDU-Abgeordneten."
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Kabinett Merz – Haseloffs Überlegungen zu einem Ministeramt",
+        "timestamp_range": "00:28:26 - 00:32:05",
+        "theme_description": "Haseloffs Gedanken zu einer möglichen Ernennung als Wirtschaftsminister im Kabinett Merz und die Gründe, warum es nicht dazu kam.",
+        "question_asked": "Markus Lanz fragt direkt, ob Haseloff tatsächlich als Minister im Kabinett Merz gehandelt wurde und ob er die Position angenommen hätte.",
+        "question_intent": "Lanz möchte erfahren, ob Haseloff eine echte Alternative zur Regelübertragung des Ministerpräsidenten an Sven Schulze gab und wie sehr Haseloff enttäuscht über die fehlende Berücksichtigung ist.",
+        "position": "Haseloff gibt zu, dass es Überlegungen in östlichen CDU-Kreisen gab, aber betont, dass der Bundeskanzler die Entscheidung trifft. Er war 'grundsätzlich bereit, darüber nachzudenken', falls ein Vorschlag gekommen wäre. Mit Katharina Reiche sei es gelungen, Ostdeutschland zu repräsentieren. Er verteidigt sich gegen den Vorwurf, enttäuscht zu sein: 'Nein, ich bin überhaupt nicht angefressen. Weil, diese Diskussion nutzt uns allen überhaupt nichts.' Später lässt er aber durchblicken, dass es eine 'echte Chance' war und 'vielleicht schaut man darauf auch zurück und denkt sich, wenn man das so gemacht hätte, dann hätte ich nicht wortbrüchig werden müssen'. Es wären 'sogar drei Fliegen mit einer Klappe gewesen'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haseloff antwortet auf die formale Frage (ja, es gab Überlegungen), gibt aber kein klares Ja zur Annahme-Bereitschaft. Er vermeidet Kritik an Merz explicit und verharmlost die eigene Enttäuschung erst, gibt dann aber später zu, dass es ein verpasstes Fenster war. Seine Antwort ist emotional ambivalent.",
+        "concrete_statements": [
+          "Ich war zumindestens grundsätzlich bereit, darüber nachzudenken, wenn ich diesen Vorschlag bekommen hätte",
+          "Nein, ich bin überhaupt nicht angefressen",
+          "Das war eine echte Chance",
+          "Eigentlich wären es sogar drei Fliegen mit einer Klappe gewesen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich war zumindestens grundsätzlich bereit, darüber nachzudenken, wenn ich diesen Vorschlag bekommen hätte.",
+            "timestamp": "00:29:12",
+            "context": "Haseloff antwortet auf Lanz' direkte Frage, ob er ein Ministeramt angenommen hätte."
+          },
+          {
+            "text": "Nein, ich bin überhaupt nicht angefressen. Weil, diese Diskussion nutzt uns allen überhaupt nichts.",
+            "timestamp": "00:32:05",
+            "context": "Haseloff verneint, enttäuscht zu sein, gibt dann aber zu: 'Das war eine echte Chance'."
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Video-Skandal Baden-Württemberg und Frauen in der CDU",
+        "timestamp_range": "00:37:29 - 00:42:28",
+        "theme_description": "Haseloffs Bewertung des Rehbraune-Augen-Videos und die Debatte über Frauenrepräsentation in der CDU.",
+        "question_asked": "Markus Lanz fragt, ob Haseloff das Hochziehen des alten Videos von Manuel Hagel eine 'miese Kampagne' findet. Ulrike Herrmann argumentiert, dass die CDU ein Frauenproblem habe und die Video-Affäre ein Symptom sei.",
+        "question_intent": "Lanz und Herrmann wollen prüfen, ob Haseloff die strukturellen Probleme der CDU (Frauenunterrepräsentation, Machokultur) anerkennt oder ob er die Video-Affäre als Ablenkungsmanöver ansieht.",
+        "position": "Haseloff lehnt ab, dass das Video ein Frauenproblem der CDU aufdecke. Er hält die Verbindung für 'konstruiert' und sagt: 'Das kann ich so nicht nachvollziehen, dass wir ein Frauen Problem haben, das wissen wir selber.' Er gibt zu, dass die CDU ein Frauenmigliedschafts-Problem hat und froh ist 'über jede, die sich engagiert'. Aber: Das Video von Manuel Hagel habe 'überhaupt nichts' mit der Zielsetzung der CDU zu tun. Die moralische Frage ist für Haseloff: Wer hat das Video bewusst hochgezogen – war es Manipulation? Er vermutet billigende Inkaufnahme durch die CDU-Spitze und hält das für 'moralisch verwerflich'.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Haseloff antwortet nicht auf Herrmanns Argument (Frauenrepräsentation), sondern pivotiert zur Frage nach Ethik im Wahlkampf (Wer hat das Video gezielt eingesetzt?). Er gibt einen Gegenpunkt zur angeblichen Schuld der CDU ab, statt die Frauenrepräsentation zu adressieren.",
+        "deflection_target": "Ethik und Verantwortung für das Video-Hochziehen statt Frauenrepräsentation in der CDU",
+        "concrete_statements": [
+          "Das gehört sich nicht",
+          "Ich erwarte [...], dass man in der Lage ist, Prioritäten richtig zu setzen",
+          "Das muss ja auch im Prinzip mit dem Einvernehmen aller gewesen sein",
+          "Das halte ich für moralisch verwerflich und das schadet unserer Demokratie"
+        ],
+        "quotes": [
+          {
+            "text": "Das gehört sich nicht und ich erwarte eigentlich in dieser Gesellschaft, was die Gesamtdiskussion anbelangt, einschließlich auch der Medienreflexion, dass man in der Lage ist, Prioritäten richtig zu setzen.",
+            "timestamp": "00:37:29",
+            "context": "Haseloff bewertet die Nutzung des Hagel-Videos im Wahlkampf."
+          },
+          {
+            "text": "Das halte ich für moralisch verwerflich und das schadet unserer Demokratie. Gerade auch im Osten, wo man sehr sensibel ist zu diesen Themen.",
+            "timestamp": "00:38:21",
+            "context": "Haseloff kritisiert die vermutete bewusste Nutzung des Videos durch CDU-Funktionäre."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt"
+      },
+      {
+        "title": "Linkepartei und Brandmauer – Koalitionsfähigkeit",
+        "timestamp_range": "00:48:10 - 00:52:22",
+        "theme_description": "Haseloffs Haltung zu einem möglichen Verzicht auf den Unvereinbarkeitsbeschluss mit der Linkspartei angesichts von Mehrheitsengpässen.",
+        "question_asked": "Markus Lanz fragt, ob Haseloff bereit ist, den Unvereinbarkeitsbeschluss mit der Linkspartei aufzugeben, um überhaupt eine Mehrheit zu finden. Lanz möchte Haseloff auch auf Diskussionen um die Brandmauer stoßen.",
+        "question_intent": "Lanz will verstehen, welche ideologischen Linien Haseloff noch ziehen will und wo Pragmatik beginnt – also ob die Brandmauer flexibel ist.",
+        "position": "Haseloff primaiert das Ziel, die AfD aus der Regierung zu halten, über alle anderen strategischen Fragen. Er will sich erst mit 'Fallgestaltungen' befassen, nachdem die Wahl gewonnen ist, und verweist auf Präzedenzfälle (Brandenburg, Sachsen, Thüringen). Sein Fokus liegt auf Problemlösung: Die wirtschaftliche Entwicklung und Migrationsfrage sind auf Landesebene teilweise nicht entscheidbar und erfordern Bundeshilfe. Er betont: 'Wir können nur mit dem Bund zusammen Probleme lösen.' Zur Linkspartei sagt er subtil: Das erste Ziel ist 'dass die AfD nicht in die Regierungsverantwortung kommt', dann 'gucken wir uns die Fallgestaltung an'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haseloff beantwortet die Frage nach Flexibilität nicht direkt, sondern verschiebt sie auf ein hypothetisches Nachher. Er adressiert die strategische Frage nur indirekt und betont stattdessen Prioritäten (AfD-Ausschluss) und Bundespolitik-Vorwürfe.",
+        "concrete_statements": [
+          "Das erste Ziel ist, dass die AfD nicht in die Regierungsverantwortung kommt",
+          "Dann gucken wir uns die Fallgestaltung an",
+          "Wir können nur mit dem Bund zusammen Probleme lösen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich sage Ihnen, das erste Ziel ist, dass die AfD nicht in die Regierungsverantwortung kommt. Dann gucken wir uns die Fallgestaltung an.",
+            "timestamp": "00:48:38",
+            "context": "Haseloff antwortet auf Lanz' Frage, ob er mit der Linkspartei koaliert, wenn nötig."
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      },
+      {
+        "title": "Klimapolitik und wirtschaftliche Wettbewerbsfähigkeit",
+        "timestamp_range": "00:48:38 - 00:50:48",
+        "theme_description": "Haseloffs Kritik an der deutschen Klimapolitik aus Sicht der wirtschaftlichen Tragfähigkeit und des globalen Kontextes.",
+        "question_asked": "Im Kontext der Landtagswahl-Szenarien und Mehrheitsfragen bringt Haseloff selbst das Thema Klimapolitik auf und kritisiert den 'fast selbstzerstörerischen' Umgang.",
+        "question_intent": "Haseloff will aufzeigen, dass die Themensetzung in Deutschland (insbesondere Klima) zu Wählerunzufriedenheit führt, wenn sie nicht wirtschaftlich tragbar gestaltet wird.",
+        "position": "Haseloff argumentiert als Physiker: Deutschland betreibt eine 'nationalistische' Klimapolitik, die Industriearbeitsplätze vernichtet, aber nicht global wirkt. Der richtige Weg wäre: Industriestandort bewahren und gleichzeitig helfen, dass andere Länder (Indien, China) CO2 einsparen – eine 'globale CO2-Bilanz' im Auge. Der Treibhauseffekt ist global, nicht an Landesgrenzen gebunden (410–420 ppm in der Luft). Deutschland darf nicht sein Industrie 'zur Disposition stellen', wenn dadurch nur die Emissionen woanders höher werden.",
+        "answer_match": "kein_direkter_anlass",
+        "match_reasoning": "Haseloff führt das Thema Klimapolitik selbst an – es war keine direkte Frage. Er liefert aber eine substantielle Position mit physikalischen Argumenten und wirtschaftspolitischen Konsequenzen.",
+        "concrete_statements": [
+          "Das völlig abgeschottete mit allem Drum und Dran. Das sind Dinge, die gab es in Deutschland nie wieder geben",
+          "Letztendlich müssen wir global was machen und wenn wir unsere Industrie nicht zur Disposition stellen wollen, müssen wir anderen Ländern helfen",
+          "Es gibt keine Grenze nach oben zum Himmel, wo unsere CO2 Bilanz rational abgekoppelt werden kann"
+        ],
+        "quotes": [
+          {
+            "text": "Da haben Sie es schwer genug, in Deutschland muss man den Treibhauseffekt deswegen kennen, weil ansonsten falsche Politik gemacht wird. Es gibt keine Grenze nach oben zum Himmel, wo unsere CO2 Bilanz rational abgekoppelt werden kann.",
+            "timestamp": "00:50:48",
+            "context": "Haseloff kritisiert die nationale Fokussierung der deutschen Klimapolitik und pocht auf globale Perspektive."
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "AfD-Wählerschaft und Problemlösungsfähigkeit der Demokratie",
+        "timestamp_range": "00:53:17 - 00:54:47",
+        "theme_description": "Haseloffs Analyse, warum die AfD wächst und wie die etablierten Parteien antworten sollten.",
+        "question_asked": "Markus Lanz sagt, Haseloff klage über Dinge, die auch von AfD-Chefmann Chrupalla kommen könnten – und fragt: Was ist die Lösung? Haseloff antwortet mit einem Gegenpunkt: die etablierten Parteien müssen den Themen die Luft aus dem Segel nehmen, nicht 'hinwursteln'.",
+        "question_intent": "Lanz will wissen, ob Haseloff konstruktive Lösungen für die Wirtschafts- und Migrationsprobleme hat oder nur Kritik an der Bundesregierung.",
+        "position": "Haseloff betont: 'Deswegen muss man denen die Themen wegnehmen und sie lösen und nicht hinwursteln.' Die AfD wächst nicht wegen ihrer Alternative, sondern weil sie Themen besetzt hat, die die etablierten Parteien nicht gelöst haben (Wirtschaft, Energiewende, Migration). Der Unterschied: Die AfD will totale 'Abschottung', während sachliche Lösungen möglich sind. Alle Parteien (SPD, CDU) sehen die Probleme gleich – die Frage ist, wer sie löst. Das Vertrauen fehlt, dass Demokratie überhaupt noch Probleme löst.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Haseloff antwortet direkt und erklärt seine Position: nicht Kritik am System, sondern dass Problemlösung nötig ist. Er differenziert zwischen AfD-Faschismus und berechtigten Wählersorgen.",
+        "concrete_statements": [
+          "Deswegen muss man denen die Themen wegnehmen und sie lösen und nicht hinwursteln",
+          "Die entscheidenden Punkte, die derzeitige Umfrageergebnisse bedingen, sind die wirtschaftliche Entwicklung im Zusammenhang mit der Migrationsfrage",
+          "Man kann nicht dauerhaft gegen eine Mehrheit zu bestimmten Themen regieren"
+        ],
+        "quotes": [
+          {
+            "text": "Der Unterschied, zwischen dem, was Den Haag dann Fakten, die die Wirtschaft und die Energiewende machen... Weswegen die AfD für uns auswählt, dass es genau das, was ich ganz am Anfang sagte. Das völlig abgeschottete mit allem Drum und Dran.",
+            "timestamp": "00:53:55",
+            "context": "Haseloff erklärt, warum die AfD bei Sachfragen nicht die Lösung bietet, aber wächst."
+          }
+        ],
+        "answer_type": "substantielle_position"
+      },
+      {
+        "title": "Brandmauer und AfD-Koalitionsfähigkeit – wann könnte Zusammenarbeit möglich sein?",
+        "timestamp_range": "00:54:47 - 01:01:06",
+        "theme_description": "Haseloffs Bedingungen für eine potenzielle Zusammenarbeit mit der AfD oder für deren Koalitionsfähigkeit.",
+        "question_asked": "Markus Lanz fragt, ob es nicht demokratischer wäre, Sachfragen (wie Grunderwerbsteuer oder Führerscheinpreise) mit der AfD zu verhandeln statt die Brandmauer 'einfach hochzuhalten', und verweist auf das Beispiel Thüringen.",
+        "question_intent": "Lanz möchte provozieren, dass eine absolute Brandmauer die 40 % AfD-Wähler ausschließt und fragen, ob nicht sachlich-pragmatische Zusammenarbeit demokratischer ist.",
+        "position": "Haseloff setzt eine hohe Hürde: Die AfD könnte nur koalitionsfähig sein, wenn sie 'rechtsradikale Elemente' aus ihrer Partei entfernt und 'verfassungskonform und vor dem Hintergrund der Geschichte' sauber darstellt. Konkrete Bedingungen: Sie müssen 'bestimmte Sachen' aufgeben – 'wir wollen das Bauhaus nicht schließen, wir wollen die Schulpflicht nicht abschaffen, wir wollen diesen ganzen braunen Mist nicht haben'. Zu Sachfragen sagt er: 'Zu diesen Themen brauchen wir die AfD nicht, um abzustimmen. Wir haben eine eigene Mehrheit.' Damit signalisiert er: keine Zusammenarbeit nötig, aber auch: ideologisch unmöglich solange AfD so ist wie heute.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Haseloff antwortet auf die Brandmauer-Frage, aber nicht auf Lanz' eigentliche Provokation (Demokratie-Vorwurf). Er verschiebt stattdessen auf Bedingungen und verweist auf eigene Mehrheiten – beantwortet die Frage also eher indirekt und defensiv.",
+        "concrete_statements": [
+          "Zu diesen Themen brauchen wir die AfD nicht, um abzustimmen",
+          "Wir haben eine eigene Mehrheit, wir brauchen die Afd nie in unserem Land, um etwas durchzusetzen",
+          "Wenn die das alles raus haben, dann wären die eine bürgerliche Partei",
+          "Die Frage ist letztendlich, wie setzt sich diese bisherigen gehe AfD Wählerschaft zusammen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn die das alles raus haben, dann wären die eine bürgerliche Partei. Aber wenn Sie mit dieser Einstufung, diese zu Recht erfolgt, da haben sie auch eine Klage zurückgezogen, weil sie genau wissen wie das bei uns aussieht.",
+            "timestamp": "00:59:15",
+            "context": "Haseloff skizziert Bedingungen, unter denen die AfD koalitionsfähig wäre."
+          }
+        ],
+        "answer_type": "teilweise_antwort"
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In 2021 waren die Umfragen ähnlich negativ für die CDU, aber das Wahlergebnis war auffällig etwas anderes",
+        "timestamp": "00:15:32"
+      },
+      {
+        "claim": "Von 2011 zu 2016 fuhr Haseloff eine Wahlbeteiligungskampagne mit dem Ergebnis, dass die AfD bei 24,9 % lag – 5 % mehr als sie jetzt im Landtag hat",
+        "timestamp": "00:21:52"
+      },
+      {
+        "claim": "Bei der Europawahl und Bundestagswahl erreichte die AfD 39 % (bei den betreffenden Wählergruppen)",
+        "timestamp": "00:22:20"
+      },
+      {
+        "claim": "Die Zufriedenheit mit der Landesregierung Sachsen-Anhalt liegt deutlich über der mit der Bundesregierung",
+        "timestamp": "00:14:33"
+      },
+      {
+        "claim": "Das Koalitionsvertrag Sachsen-Anhalt hat einen vorzeitigen Wechsel bewusst ausgeschlossen",
+        "timestamp": "00:26:34"
+      },
+      {
+        "claim": "Haseloff war Wirtschaftsminister in Sachsen-Anhalt (Erwähnung durch Anne Hähnig)",
+        "timestamp": "00:33:26"
+      }
+    ]
+  }
+}

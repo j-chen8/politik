@@ -305,6 +305,43 @@ UI-Filter.
 - **UI-Konsumenten** (Master-Worktree): `listAllVotesForIndex()` (Abstimmungs-
   Index) + `getBundestagDsHandzeichenVotes(dsNr)` (Drucksachen-Detail-Seite).
 
+### 2.15 TV-Talk-Transkripte + Medien-Auftritte (`data/media-transcripts/`, `data/media-appearances.json`)
+
+Archiv der TV-Polittalks (Lanz, Illner, maischberger, Caren Miosga, hart aber fair)
++ KI-Themen-Analyse der Auftritte einzelner Politiker:innen (Medien-Strip auf der
+Profilseite). Drei Stufen, die ersten beiden **kostenlos**:
+
+1. **Transkript-Refresh (gratis, kein LLM):** `scripts/update-talkshows.ts`
+   - 3-stufig: Discovery (yt-dlp enumeriert verfügbare Folgen — ZDF Hub-Playlist /
+     ARD Sendungs-Collection `/sendung/x/<show.id>`) → Diff gegen
+     `data/media-transcripts/<folder>/_manifest.tsv` → Fetch der deutschen
+     Redaktions-UT (`--write-subs --skip-download`) als `<folder>-<YYYY-MM-DD>.deu.vtt`.
+   - `npx tsx scripts/update-talkshows.ts` = Dry-Run (zeigt neue Folgen);
+     `--fetch` lädt UT; `--show <key>` / `--limit N` zum Eingrenzen.
+   - **Empirie 2026-06-03:** ARD page-gateway-Widget-API ist tot/404 → yt-dlp-
+     Collection ist der robuste Weg für ZDF **und** ARD. Folgen ohne UT-Spur werden
+     als Lücke geloggt (nur per Whisper holbar).
+   - **DB-/Manifest-Watermark:** `MAX`-Datum je `_manifest.tsv` vs. Discovery-Liste.
+2. **Gäste-Matching (gratis, kein LLM):** Voll-Namen-Match aller DB-Politiker:innen
+   (18 Parlamente) gegen die Gäste-Teile der Episoden-Metadaten → `data/talkshow-guests-appearances.json`.
+   - `scripts/match-talkshow-guests.ts` (ARD-Synopsis-Pfad: maischberger, miosga)
+     + `scripts/match-fernsehserien-guests.ts` (fernsehserien.de-„Gäste:"-Block: HaF,
+     illner). Beide `--write` zum Speichern, sonst Dry-Run. Lanz separat
+     (`data/lanz-mdb-appearances.json`, ZDF-Synopsis hat keine Gästeliste).
+   - Erkennt auch Landtags-/EU-/Ex-Mandats-Gäste (nicht nur aktuelle MdB).
+3. **LLM-Analyse (kostenpflichtig, bewusst getrennt):** `scripts/build-talkshow-batch-appearances.ts`
+   (`--show <key>`) materialisiert Gäste → `data/talkshow-batch-appearances.json`
+   (1 Record je Gast×Folge, skip-if-analysiert), dann
+   `scripts/batch-media-analyses.ts --submit --from <datei>` → `--status` → `--apply`
+   (Haiku 4.5 Batch, Multi-Speaker-Prompt; schreibt `data/media-analyses/<id>.json`
+   + Index `data/media-appearances.json`). Pendant für Lanz:
+   `build-lanz-batch-appearances.ts`.
+   - **Kosten:** ~$0,015/Auftritt (75-Min-Transkript, Batch). Richtwert: 70
+     maischberger-Auftritte ≈ $1.
+   - **Gate:** wie alle LLM-Schritte NUR auf bewusste Freigabe ([[feedback_ask_before_spending]]).
+- **UI-Konsumenten** (Master-Worktree): Medien-Strip auf der Profilseite liest
+  `data/media-appearances.json` (Einträge mit `analysis_file` → Detail-Analyse).
+
 ---
 
 ## 3. Periodischer Workflow
@@ -315,6 +352,7 @@ npx tsx scripts/check-data-freshness.ts
 
 # 2. Gratis/idempotente neue Daten ziehen (KEINE LLM-Schritte)
 npx tsx scripts/check-data-freshness.ts --fetch
+npx tsx scripts/update-talkshows.ts --fetch   # TV-Talk-Transkripte (§2.15), separat
 
 # 3. LLM-Schritte bewusst + einzeln (Kosten!) — siehe Report-Ausgabe:
 #    Reden:       siehe §2.2   (~$ je nach Delta, Pre-Flight zeigt exakt)

@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtMjJiZWNjNDUtOWVhZS00ODhlLTg4M2UtYTg3YzhhMGFhN2M0",
+    "video_id": "maischberger-2026-03-16",
+    "politician": "Marie-Agnes Strack-Zimmermann",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "d1729b0151375c01",
+    "transcript_chars": 51174,
+    "caption_lines": 1894,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21102,
+    "tokens_out": 6580,
+    "cost_usd": 0.0216008,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.718Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Marie-Agnes Strack-Zimmermann (FDP, Europa-Parlamentarierin) diskutierte mit Sandra Maischberger und Jan van Aken (Die Linke) über die eskalierte Lage im Nahen Osten und mögliche deutsche Militärbeteiligung sowie über Verteidigungspolitik und Wehrpflicht. Sie vertrat eine klare Interventions-befürwortende Position, charakterisierte den Iran als Bedrohung und plädierte für europäische Aufrüstung und Unabhängigkeit von den USA, allerdings mit differenziertem Blick auf NATOs fortgesetzte Rolle.",
+    "themes": [
+      {
+        "title": "Rechtfertigung des Iran-Kriegs und Charakterisierung des Irans",
+        "timestamp_range": "00:15:47 - 00:17:59",
+        "theme_description": "Bewertung des von Israel und den USA begonnenen Angriffs auf den Iran und Analyse der iranischen Rolle in regionalen Konflikten.",
+        "question_asked": "Sandra Maischberger fragte Strack-Zimmermann, wie sie den von Präsident Trump begonnenen Krieg nennen würde, nachdem Trump ihn als 'kleinen Ausflug' charakterisiert hatte.",
+        "question_intent": "Maischberger wollte Strack-Zimmermanns Bewertung der Kriegseskalation und deren Sicht auf die Legitimität des amerikanischen Handelns erfahren.",
+        "position": "Strack-Zimmermann begründete den Krieg mit Irans regionaler Destabilisierung: das Land unterstütze Huthis im Jemen, terrorisiere seit 47 Jahren die eigene Bevölkerung (im Januar seien 40.000 Menschen 'in den Kopf geschossen' worden), unterhalte Proxies wie Hamas und Hisbollah gegen Israel und sei der größte Unterstützer Russlands mit Drohnenlieferungen. Sie bezeichnete den Iran als 'die Pestbeule dieser Erde' und argumentierte, dass 'wenn man den Tyrannen erledigen will, halte ich ihn für gerechtfertigt', räumte aber ein, dass Völkerrecht 'ein schwieriges Thema mit 2 Herzen in der Brust' sei. Sie betonte, man sollte die Chance sehen und nicht die Mullahs schützen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann beantwortete Maischbergers Frage direkt mit einer expliziten Position: Sie rechtfertigt die Kriegshandlung unter Bedingungen (Tyrannentötung) und konkretisiert ihre Argumentation mit spezifischen Vorwürfen gegen den Iran. Sie weicht nicht aus, sondern etabliert eine substanzielle Position, die Völkerrecht kontextualisiert.",
+        "quotes": [
+          {
+            "text": "Der Iran ist die Pestbeule dieser Erde.",
+            "timestamp": "00:16:56",
+            "context": "Strack-Zimmermann beschreibt die Rolle des Iran als zentrale Bedrohung und Unterstützer mehrerer destabilisierender Akteure."
+          },
+          {
+            "text": "Wenn man den Tyrannen erledigen will, halte ich ihn für gerechtfertigt.",
+            "timestamp": "00:17:26",
+            "context": "Sie rechtfertigt den Krieg unter der Bedingung, dass es um die Beseitigung eines tyrannischen Regimes geht."
+          }
+        ],
+        "concrete_statements": [
+          "Der Iran unterstützt Huthis im Jemen und behindert freie Wasserstraßen",
+          "Der Iran ist der größte Unterstützer Russlands in der Ukraine mit Drohnenlieferungen",
+          "Der Iran ist verantwortlich für Angriffe der Hamas und Hisbollah auf Israel",
+          "Im Januar wurden 40.000 Menschen im Iran 'in den Kopf geschossen'"
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Nahost-Konflikt",
+          "Völkerrecht",
+          "Verteidigungspolitik",
+          "Terrorismusbekämpfung"
+        ]
+      },
+      {
+        "title": "Irans Atomprogramm als Kriegsgrund und diplomatische Alternativen",
+        "timestamp_range": "00:20:37 - 00:21:10",
+        "theme_description": "Debatte über die Rolle des iranischen Atomprogramms als Begründung für die Kriegshandlungen und der Frage nach diplomatischen Lösungen.",
+        "question_asked": "Sandra Maischberger hakte ein, nachdem Jan van Aken das Atomprogramm als eigentlichen Kriegsgrund bezweifelt hatte und fragte, ob Strack-Zimmermann das Atomprogramm für den Grund hält oder ob es um andere Faktoren geht.",
+        "question_intent": "Maischberger suchte Klarheit darüber, ob Strack-Zimmermann das Atomprogramm oder andere Motive (Energieressourcen, Geopolitik) als treibende Faktoren der Kriegsaggression sieht.",
+        "position": "Strack-Zimmermann erkannte die technische Eskalation an: Bei 60% Uran-Anreicherung sei innerhalb von 2 Wochen Waffenfähigkeit erreicht; 3% genüge für Atomkraftwerke. Sie äußerte Skepsis, ob das Atomprogramm wirklich der Grund ist, und mutmaßte stattdessen wirtschaftliche Motive Trumps ('Die Amerikaner verfolgen häufig Ziele, wenn es um Energie geht'). Ihre Motivation müsse sein, den Menschen vor Ort zu helfen, was sie anzweifelt. Sie warnte vor Trumps Unberechenbarkeit: Am nächsten Tag könne er etwas anderes sagen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strack-Zimmermann gibt eine hybride Antwort: Sie adressiert die technische Dimension des Atomprogramms, lässt aber die Frage nach Trumps wahren Motiven offen und weicht in Spekulation über wirtschaftliche Interessen aus. Sie beantwortet nicht eindeutig, ob *sie* das Programm für den Grund hält, sondern wertet stattdessen Trumps Glaubwürdigkeit ab.",
+        "quotes": [
+          {
+            "text": "Das Atomprogramm, wenn das 60% angereichert ist, dann ist das 2 Wochen später nicht mehr. 3% braucht man für ein Atomkraftwerk.",
+            "timestamp": "00:20:37",
+            "context": "Strack-Zimmermann erläutert die technische Bedrohung durch das iranische Atomprogramm."
+          },
+          {
+            "text": "Die Amerikaner verfolgen häufig Ziele, wenn es um Energie geht. Die Frage ist, will er wirklich den Menschen vor Ort helfen? Das bezweifle ich.",
+            "timestamp": "00:21:10",
+            "context": "Sie äußert Zweifel an den humanitären Motiven Trumps und spekuliert über ökonomische Interessen."
+          }
+        ],
+        "concrete_statements": [
+          "60% Uran-Anreicherung führt in 2 Wochen zu Waffenfähigkeit",
+          "Trump hat möglicherweise energiewirtschaftliche Motive",
+          "Humanitäre Hilfe für die iranische Bevölkerung sollte die deutsche Motivation sein"
+        ],
+        "related_bundestag_topics": [
+          "Kernenergie und Nonproliferation",
+          "Außenpolitik Nahost",
+          "JCPOA (Atomabkommen)"
+        ]
+      },
+      {
+        "title": "Deutschlands Rolle und Nein-Sagenkompetenz gegenüber USA",
+        "timestamp_range": "00:22:22 - 00:25:28",
+        "theme_description": "Frage, ob Deutschland Militärbeteiligung ablehnen kann, wenn die USA trotz NATO-Absagen Druck ausüben.",
+        "question_asked": "Sandra Maischberger fragte, ob Trumps Aussage 'für die, die profitieren, helft oder es wird schlecht für die NATO' ein Ultimatum darstellt und ob Deutschland überhaupt Nein sagen kann, wenn die USA deutsche Fähigkeiten wie Minensuchboote anfordern.",
+        "question_intent": "Maischberger wollte herausfinden, ob Strack-Zimmermann glaubt, dass Deutschland unter amerikanischem Druck letztlich in den Krieg hineingezogen würde, trotz Merz' bisheriger Absagen.",
+        "position": "Strack-Zimmermann deutet Entwarnung: Sie sieht in Trumps Aussage keine NATO-Erpressung, da er selbst gesagt habe, er brauche die NATO nicht. Sie erinnert an Trump-Ausfälle gegen Soldaten nach Afghanistan und sagte, sie habe 'momentan keine Sorge'. Allerdings merkte sie an, dass es Leute im Weißen Haus geben werde, die auf europäische Basen (z.B. Ramstein) hinweisen werden. Sie relativierte Trumps Drohungen als möglich, aber nicht sicher ('Bluff bedeutet ja eine gewisse Intelligenz dahinter'). Konkret zu Minensuchbooten: Bei 150 Schiffen täglich und nur 20 Seemeilen Engpass müsse rein militärisch Iran sich selbst schaden, da er kein Öl exportieren könne. Sie sah kein deutsches Schiff dort und verwies auf Guido Westerwelle, der sich 2011 aus Libyen herausgezogen hatte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Strack-Zimmermann gibt eine nuancierte, teils beschwichtigende Antwort. Sie adressiert die Erpressungsfrage (Nein, es ist keine), weicht aber bei der konkreten Frage aus, ob Deutschland *kann* nein sagen, wenn es konkrete militärische Anforderungen gibt. Sie spekuliert über mögliche Szenarien (Basen), ohne eine klare Antwort zur ursprünglichen Frage zu geben.",
+        "quotes": [
+          {
+            "text": "Es wird irgendjemanden im Weißen Haus geben, der sagt, der Angriff im Nahen Osten findet auch in Basen statt auf europäischem Boden. Ramstein ist z.B. eine.",
+            "timestamp": "00:22:52",
+            "context": "Strack-Zimmermann erkennt indirekte Druck-Mechanismen durch europäische Militärbasen an."
+          },
+          {
+            "text": "Ich sehe kein deutsches Schiff dort. Ich erinnere an Guido Westerwelle, der gesagt hat, wir greifen in Libyen nicht ein.",
+            "timestamp": "00:25:28",
+            "context": "Sie verweist auf präzedenzloses Nein-Sagen und deutet an, dass Deutschland sich auch hier weigern könnte."
+          }
+        ],
+        "concrete_statements": [
+          "Trump braucht laut eigener Aussage die NATO nicht",
+          "Ramstein-Basis könnte als Hebel für Beteiligung verwendet werden",
+          "150 Schiffe fahren täglich durch die Straße von Hormus",
+          "Iran schadet sich selbst, wenn es den Handel blockiert"
+        ],
+        "related_bundestag_topics": [
+          "NATO-Verpflichtungen",
+          "Außenpolitik USA",
+          "Militärbasis Ramstein",
+          "Parlamentsvorbehalt Bundeswehr"
+        ]
+      },
+      {
+        "title": "NATO als Rückgrat und europäische Unabhängigkeit langfristig",
+        "timestamp_range": "00:28:46 - 00:31:37",
+        "theme_description": "Diskussion über die Rolle der NATO für die deutsche Sicherheit, europäische Verteidigungsunabhängigkeit und die Frage, ob Europa ohne die USA existieren kann.",
+        "question_asked": "Sandra Maischberger fragte nach Strack-Zimmermanns Reaktion auf Jan van Akens Vorschlag, europäische Sicherheit statt NATO-Abhängigkeit zu denken, und später, ob Deutschland und Europa ohne die USA im Ukrainekrieg bestehen können.",
+        "question_intent": "Maischberger wollte erfahren, ob Strack-Zimmermann van Akens europäischer Lösung zustimmt oder ob sie die NATO-Abhängigkeit als unvermeidlich sieht.",
+        "position": "Strack-Zimmermann äußerte Bewunderung für van Akens Position, bemerkte aber, dass solche Aussagen in der linken Fraktion des EU-Parlaments typischerweise strikte Ablehnung bedeuten ('Die Linken sind im Europaparlament strikt dagegen, gegen eine gemeinsame Verteidigung'). Sie bekräftigte: 'Die NATO ist unser Rückgrat, unsere Sicherheit.' Europa baue gerade an Unabhängigkeit, auch technisch, aber dies sei ein mehrjähriger Prozess. Deutschland könne sich nicht von heute auf morgen unabhängig machen. Zur Ukraine-Frage: 'Heute und jetzt können wir es nicht. Wir können es nicht.' Sie identifizierte das Problem nicht in mangelndem amerikanischen Willen (genug Unterstützer existieren), sondern im Weißen Haus wegen Trumps 'machterotischem Verhältnis zu Putin'. Sie räumte später ein, dass Macrons französische Atomwaffen nicht ganz Europa (Baltikum, Skandinavien) schützen könnten und dass konventionelle Wehrhaftigkeit praktischer sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann antwortet direkt auf beide Fragen: Sie positioniert sich klar pro-NATO und gegen europäische Alleingänge, während sie den Weg zu größerer Unabhängigkeit als richtig anerkennt, aber zeitlich als unrealistisch einordnet. Sie benennt konkrete Gründe (Trump-Putin-Verhältnis) und unterscheidet zwischen Soll (langfristig mehr Unabhängigkeit) und Ist (heute NATO-Abhängigkeit).",
+        "quotes": [
+          {
+            "text": "Die NATO ist unser Rückgrat, unsere Sicherheit. In Europa bauen wir gerade daran, unabhängiger von den USA zu werden.",
+            "timestamp": "00:29:17",
+            "context": "Strack-Zimmermann definiert die NATO als zentral und europäische Unabhängigkeit als langfristiges Ziel."
+          },
+          {
+            "text": "Heute und jetzt können wir es nicht. Wir können es nicht. Wer das behauptet... Das Problem sitzt im Weißen Haus. Weil Trump ein machterotisches Verhältnis zu Putin hat.",
+            "timestamp": "00:30:25",
+            "context": "Sie macht klar, dass Europe ohne USA derzeit unmöglich ist und identifiziert Trump als Problem, nicht fehlende europäische Kapazität."
+          }
+        ],
+        "concrete_statements": [
+          "NATO ist Rückgrat deutscher Sicherheit",
+          "Europa baut an Unabhängigkeit, aber das braucht Jahre",
+          "Heute kann Deutschland/Europa die Ukraine ohne USA nicht schützen",
+          "Trumps Verhältnis zu Putin ist das eigentliche Problem",
+          "Konventionelle Rüstung ist praktischer als französische Atomwaffen für gesamteuropäische Abschreckung"
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Europäische Verteidigungsunion",
+          "Außenpolitik",
+          "Rüstungspolitik"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und Gleichberechtigung — Musterung von Frauen",
+        "timestamp_range": "00:34:15 - 00:39:02",
+        "theme_description": "Debatte über die Notwendigkeit der Wehrpflicht und die gleichberechtigte Musterung von Frauen angesichts der sicherheitspolitischen Lage.",
+        "question_asked": "Sandra Maischberger fragte Strack-Zimmermann, ob langfristig Frauen gemustert werden müssen, wenn die FDP Wehrhaftigkeit konventionell vorantreibt, und hakte beim Thema Gleichberechtigung ein.",
+        "question_intent": "Maischberger wollte herausfinden, ob Strack-Zimmermann konsequent eine Wehrpflicht auch für Frauen verlangt und wie sie van Akens Argument der Gewissensverweigerung einordnet.",
+        "position": "Strack-Zimmermann plädierte für Musterung (nicht zwangsläufig Wehrpflicht), um Verantwortungsbewusstsein zu schaffen. Sie halten es für unlogisch, die Hälfte der Bevölkerung nicht zu mustern und verglich dies mit der AfD-Position, Frauen in die Küche gehören. Sie betonte, Musterung diene nicht nur dem Militär, sondern auch Zivilschutz und zivilen Aufgaben. Sie warf van Aken vor, dass eine Option die Raucherberatung vor Musterung sei, was sie angesichts der geopolitischen Lage für absurd hielt. Sie äußerte, dass es viele Frauen gibt, 'die sagen, ich bin bereit, auch zu Hause etwas zu tun, wenn es der Sache dient'. Zentral war für sie die Frage: 'Wärst du bereit, wenn deine Familie angegriffen wird, dich zu wehren?' Sie verwies auf Ukraine als Beispiel.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Strack-Zimmermann beantwortet die Frage klar: Ja, Frauen sollten gemustert werden, und sie begründet dies mit Gleichberechtigung, Verantwortungsdiffusion und dem praktischen Nutzen für Zivilschutz. Sie benennt van Akens Position als unbefriedigend und bringt konkrete Beispiele (Ukraine).",
+        "quotes": [
+          {
+            "text": "Es gibt keinen Grund, die Hälfte der Gesellschaft nicht zu mustern. Dann die Frage, Angebote zu machen, das ist das eine. Aber warum sollen wir die Hälfte der Bevölkerung nicht mustern?",
+            "timestamp": "00:36:21",
+            "context": "Strack-Zimmermann argumentiert konsequentialistisch gegen van Akens Position."
+          },
+          {
+            "text": "Es ist irre, wir mustern die 18-Jährigen, die Frauen lassen wir weg. Es gibt mehr Frauen als Männer.",
+            "timestamp": "00:36:52",
+            "context": "Sie beschreibt die aktuelle Praxis als logisch inkonsistent."
+          }
+        ],
+        "concrete_statements": [
+          "Frauen sollten gemustert werden wie Männer",
+          "Musterung schafft Verantwortungsgefühl und dient auch Zivilschutz",
+          "Viele Frauen sind bereit, Verantwortung zu übernehmen",
+          "Die Ukraine zeigt, dass Bereitschaft zur Verteidigung lebensrettend ist"
+        ],
+        "related_bundestag_topics": [
+          "Wehrgerechtigkeit",
+          "Wehrpflicht/Wehrersatzdienst",
+          "Geschlechtergleichstellung",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Kritik an Friedrich Merz und FDP-Wahlkampf-Widersprüche",
+        "timestamp_range": "00:39:35 - 00:42:47",
+        "theme_description": "Bewertung der politischen Strategie von Kanzler Friedrich Merz und Verteidigung der FDP angesichts schlechter Wahlergebnisse.",
+        "question_asked": "Sandra Maischberger wies auf Merz' negative Äußerung zur FDP in Rheinland-Pfalz hin und fragte, ob Strack-Zimmermann als Parteichefin über einen Rücktritt nachdenkt, sollte die nächste Wahl verloren gehen.",
+        "question_intent": "Maischberger wollte erfahren, ob Strack-Zimmermann Konsequenzen aus Wahlniederlagen zieht und ob die FDP-Führung wechselt.",
+        "position": "Strack-Zimmermann verteidigte sich: Sie wollte sich nicht an Merz' Problemen 'abarbeiten'. Sie verglich Merz' Versprechen vor der Bundestagswahl mit den Ergebnissen und sagte, er hätte '0% eingelöst' von dem, was er versprochen habe. Sie kritisierte Merz scharf dafür, der FDP den 'Mittelfinger' zu zeigen, nachdem er deren Wähler mit Versprechen angelockt hatte. Sie lehnte ab, sich die Haare zu rasieren wie Generalsekretärin Büttner und sagte, sie werde die Wahlkämpfe bis Sonntag weiterführen und danach überlegen, was zu tun ist. Sie betonte 37 Jahre Parteizugehörigkeit und dass 'jeder wird an der Stelle arbeiten, dass es uns bald wieder besser geht'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Strack-Zimmermann weicht der direkten Rücktritts-Frage aus, indem sie Merz kritisiert und damit den Fokus von ihrer eigenen Verantwortung weg und auf Merz' Verhalten verschiebt. Sie antwortet auf die Frage nach FDP-Wahlkampf, nicht auf die Frage zur eigenen Konsequenz.",
+        "quotes": [
+          {
+            "text": "Frau Maischberger. Ich will mich nicht abarbeiten an den Problemen des Friedrich Merz.",
+            "timestamp": "00:40:39",
+            "context": "Strack-Zimmermann weigert sich, die Debatte auf Merz zu konzentrieren, bevor sie die eigentliche Frage stellt."
+          },
+          {
+            "text": "Friedrich Merz hat denjenigen, die er angelockt hat, den Mittelfinger gezeigt. Jetzt macht er es wieder.",
+            "timestamp": "00:41:13",
+            "context": "Sie kritisiert Merz' Verhalten gegenüber FDP-Wählern und suggeriert, der Fehler liegt bei ihm, nicht bei ihr."
+          }
+        ],
+        "concrete_statements": [
+          "Merz hat 0% seiner Wahlversprechen eingelöst",
+          "Merz gibt der FDP einen 'Mittelfinger' in Rheinland-Pfalz",
+          "Die FDP wird die Wahlen bis Sonntag durchkämpfen",
+          "Nach der Wahl wird über Konsequenzen entschieden, nicht vorher"
+        ],
+        "related_bundestag_topics": [
+          "Parteienlandschaft",
+          "FDP-Krise",
+          "Bundestagswahl 2025",
+          "Koalitionen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im Januar wurden 40.000 Menschen im Iran 'in den Kopf geschossen'",
+        "timestamp": "00:17:59"
+      },
+      {
+        "claim": "Die Straße von Hormus hat an der schmalsten Stelle gerade mal 20 Seemeilen (34 km)",
+        "timestamp": "00:24:57"
+      },
+      {
+        "claim": "Es fahren ungefähr 150 Schiffe am Tag durch die Straße von Hormus",
+        "timestamp": "00:24:57"
+      },
+      {
+        "claim": "Bei 60% Uran-Anreicherung ist innerhalb von 2 Wochen Waffenfähigkeit erreicht",
+        "timestamp": "00:20:37"
+      },
+      {
+        "claim": "Der Iran hat erstmalig Drohnen an Russland geliefert",
+        "timestamp": "00:16:56"
+      }
+    ]
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYzM0YWYwNDAtNDNkZS00ZjczLWJhMjAtYjdiY2Y0ZTJjMjZj",
+    "video_id": "maischberger-2026-06-02",
+    "politician": "Karsten Wildberger",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "146ae5a8afd46b37",
+    "transcript_chars": 57576,
+    "caption_lines": 2175,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23308,
+    "tokens_out": 6539,
+    "cost_usd": 0.0224012,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 1,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 1,
+      "teilweise_antwort": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.152Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karsten Wildberger, Bundesminister für Digitales und Staatsmodernisierung (CDU), diskutiert in Maischbergers Sendung die Bilanz seines Ministeriums nach einem Jahr sowie Fragen zu Bürokratieabbau und Digitalisierung. Er wirkt konstruktiv-optimistisch, betont praktische Erfolge und räumt gleichzeitig ein, dass die bisherige Geschwindigkeit nicht ausreichend ist.",
+    "themes": [
+      {
+        "title": "Social Media Präsenz und digitale Kommunikation",
+        "timestamp_range": "00:15:44 - 00:17:48",
+        "theme_description": "Frage zu Social-Media-Accounts und der Entscheidung des Ministeriums, nicht auf X/Twitter präsent zu sein.",
+        "question_asked": "Sandra Maischberger fragt zunächst scherzhaft, welcher Politiker den besten Social-Media-Account hat, und verweist dann auf die Tatsache, dass Grüne, Teile der Linken und SPD nicht mehr auf X sind, während Wildberger und sein Ministerium dort auch nicht zu finden sind. Sie fragt, ob das Absicht ist.",
+        "question_intent": "Maischberger möchte verstehen, warum ein Digitalminister bewusst auf einer großen Plattform nicht präsent ist und ob dahinter eine politische Haltung zu Elon Musk steckt.",
+        "position": "Wildberger begründet die fehlende X-Präsenz als bewusste Entscheidung, da das Ministerium nicht überall sein kann und sich auf Plattformen konzentriert, die den Vorstellungen entsprechen. Er erklärt: \"die Kommunikationsform, die ich auf X erlebe, entspricht nicht meinen Vorstellungen. Wir können wählen. Deshalb unterstützen wir Plattformen, die uns wichtig sind.\" Er betont, dass es genügend andere Plattformen für gute Kommunikation gibt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet die Frage direkt und substanziell: Er nennt seinen Grund (Kommunikationsform auf X entspricht nicht seinen Vorstellungen), erklärt die strategische Entscheidung (bewusst wählen, wo man präsent ist) und verneint implizit eine reine Musk-Kritik als Grund, indem er allgemeiner argumentiert.",
+        "quotes": [
+          {
+            "text": "die Kommunikationsform, die ich auf X erlebe, entspricht nicht meinen Vorstellungen. Wir können wählen. Deshalb unterstützen wir Plattformen, die uns wichtig sind.",
+            "timestamp": "00:17:48",
+            "context": "Auf Nachfrage von Maischberger, ob die X-Abwesenheit mit Elon Musk zu tun hat."
+          }
+        ],
+        "concrete_statements": [
+          "Bewusste Entscheidung, nicht auf X präsent zu sein",
+          "Fokus auf Plattformen, die den Kommunikationsvorstellungen entsprechen",
+          "Es gibt genügend andere Plattformen für Kommunikation"
+        ],
+        "related_bundestag_topics": [
+          "Digitalpolitik",
+          "Medienfreiheit",
+          "Plattform-Governance"
+        ]
+      },
+      {
+        "title": "Digitalisierungsfortschritt und Bilanz nach einem Jahr",
+        "timestamp_range": "00:18:21 - 00:20:53",
+        "theme_description": "Bewertung der bisherigen Umsetzung von Digitalvorhaben: 19 von 220 umgesetzt, Begründung für die langsame Geschwindigkeit.",
+        "question_asked": "Sandra Maischberger verweist auf die Bilanz: Die Regierung hat insgesamt 220 Digitalvorhaben, davon hat Wildbergers Ministerium nach einem Jahr nur 19 umgesetzt, 200 noch nicht. Sie fragt direkt: \"Warum sind Sie so langsam?\"",
+        "question_intent": "Maischberger möchte eine Erklärung für die niedrige Umsetzungsquote und will hinterfragen, ob die Regierung ihre Reformversprechen erfüllt.",
+        "position": "Wildberger argumentiert, dass die Aufgabe nicht numerisch zu bewerten ist. Er betont praktische Erfolge wie die Anbindung von 120 Kommunen pro Monat für digitale Services (Anmeldungen, Ummeldungen), wodurch 60 Millionen Bürger erreicht werden. Er erklärt, dass hinter den Kulissen große Infrastrukturarbeiten stattfinden, insbesondere der Aufbau einer souveränen Infrastruktur zwischen Bund, Ländern und Kommunen. Große Vorhaben wie die \"digitale Brieftasche\" kommen Anfang 2027, die Deutschland-App folgt danach. Wildberger räumt ein: \"Ich bin ehrlich, es frustriert mich auch, dass es nicht schneller geht.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger adressiert die Kritik der langsamen Geschwindigkeit teilweise: Er erklärt die Hintergründe (Komplexität, Föderalismus, Infrastrukturaufbau) und nennt konkrete Erfolge (120 Kommunen/Monat, 60 Mio. Bürger erreicht). Die Kritik an nur 19 umgesetzten Vorhaben umgeht er aber, indem er argumentiert, dass numerische Bewertung nicht passt – die eigentliche Frage, warum die Quote so niedrig ist, wird so nicht vollständig beantwortet.",
+        "quotes": [
+          {
+            "text": "Erst mal, das ist nicht eine numerische Aufgabe. Ich würde so sagen, vor einem Jahr haben wir angefangen. Ich sitze heute hier mit der Überzeugung, dass wir vorankommen in Deutschland.",
+            "timestamp": "00:18:21",
+            "context": "Auf die Frage von Maischberger, warum nur 19 von 220 Vorhaben umgesetzt sind."
+          },
+          {
+            "text": "Es gibt noch etwas anderes, woran wir arbeiten. Wir müssen uns durch die Komplexität der Digitalisierung, Bund, Länder, Kommunen, in der Vielschichtigkeit, durchwühlen.",
+            "timestamp": "00:19:22",
+            "context": "Erklärung der Komplexität, die hinter den Kulissen stattfindet."
+          },
+          {
+            "text": "Ich bin ehrlich, es frustriert mich auch, dass es nicht schneller geht.",
+            "timestamp": "00:23:58",
+            "context": "Eingeständnis der eigenen Frustration über die Geschwindigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "120 Kommunen werden monatlich digital angeschlossen",
+          "60 Millionen Bürger können via digitale Anmeldung/Ummeldung erreicht werden (zuvor 30 Millionen)",
+          "Digitale Brieftasche kommt Anfang 2027",
+          "Deutschland-App folgt nach der Wallet",
+          "Aufbau einer souveränen Infrastruktur zwischen Bund, Ländern, Kommunen"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Verwaltung",
+          "E-Government",
+          "Bürokratieabbau",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Bürokratieabbau: Menge der Regulierung und Entlastungsmaßnahmen",
+        "timestamp_range": "00:21:23 - 00:24:30",
+        "theme_description": "Kritik an der unzureichenden Entlastung von Bürokratie; Wildberger stellt dar, wie viel Bürokratie trotz allem abgebaut wurde und welche EU-Verpflichtungen es gibt.",
+        "question_asked": "Sandra Maischberger zeigt ein O-Ton des Thüringer Textilunternehmers Gerald Rosner, der sagt, dass praktisch ständig neue bürokratische Hürden hinzukommen, aber noch nie etwas weggenommen wurde. Sie fragt: \"Mehr eingeführt als abgebaut. Wie kommt das?\"",
+        "question_intent": "Maischberger möchte wissen, warum der Bürokratieabbau nicht funktioniert und warum neue Regulierungen hinzukommen, statt alte zu streichen.",
+        "position": "Wildberger kann die Aussage des Unternehmers nachvollziehen und erklärt, dass viele EU-Regulierungsvorschriften im Umsetzungsstau sind. Er stellt klar: \"Wir sind in der EU und wir müssen sie umsetzen.\" Er hebt eine Strategie hervor – die 1:1-Umsetzung von EU-Gesetzgebung, ohne zusätzliche nationale Regelungen (\"Sonderlocken\") hinzuzufügen. Konkrete Maßnahmen: 16 Milliarden Euro Entlastung geplant, 8 Milliarden bereits beschlossen und auf dem Weg. Infrastrukturgenehmigungsverfahren wurden beschleunigt, KI wird zur Automatisierung eingesetzt. Im Gesundheits- und Landwirtschaftssektor wurden spezifische Maßnahmen umgesetzt. Wildberger räumt ein: \"Die Komplexität, die wir in den letzten 25 Jahren aufgebaut haben, ist enorm. Wir haben viel erreicht. Aber es reicht bei Weitem nicht.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger adressiert die Frage teilweise: Er erklärt, warum EU-Regulierungen hinzukommen (EU-Verpflichtung), benennt konkrete Entlastungsmaßnahmen (8 Mrd. Euro, Infrastruktur-Genehmigung, KI-Automatisierung) und gibt zu, dass das nicht reicht. Die kernhafte Frage, warum insgesamt mehr hinzukommt als abgebaut wird, wird aber nicht vollständig beantwortet – er erklärt nur die EU-Komponente.",
+        "quotes": [
+          {
+            "text": "Wir sind in der EU und wir müssen sie umsetzen. Aber was wir geschafft haben, das ist eine wichtige Botschaft, dass wir EU-Gesetzgebung 1:1 umsetzen. In der Vergangenheit haben wir das noch mit Sonderlocken versehen.",
+            "timestamp": "00:22:26",
+            "context": "Erklärung der EU-Verpflichtung und der Strategie der 1:1-Umsetzung."
+          },
+          {
+            "text": "Die Komplexität, die wir in den letzten 25 Jahren aufgebaut haben, ist enorm. Wir haben viel erreicht. Aber es reicht bei Weitem nicht.",
+            "timestamp": "00:23:58",
+            "context": "Eingeständnis der Unzulänglichkeit bisheriger Maßnahmen."
+          }
+        ],
+        "concrete_statements": [
+          "16 Milliarden Euro Entlastung geplant, 8 Milliarden bereits beschlossen",
+          "EU-Gesetzgebung wird 1:1 umgesetzt, ohne nationale Zusätze (\"Sonderlocken\")",
+          "Infrastrukturgenehmigungsverfahren beschleunigt",
+          "KI-gestützte Automatisierung von Genehmigungen",
+          "Maßnahmen in Gesundheitssektor und Landwirtschaft umgesetzt"
+        ],
+        "related_bundestag_topics": [
+          "Bürokratieabbau",
+          "Regulatory Reform",
+          "EU-Recht",
+          "Mittelstandspolitik"
+        ]
+      },
+      {
+        "title": "Berichtspflichten und Beweislastumkehr: Länder-Vorbild",
+        "timestamp_range": "00:25:02 - 00:26:36",
+        "theme_description": "Diskussion über das Konzept der Beweislastumkehr auf Länderebene: automatisches Auslaufen von Berichtspflichten, die neu begründet werden müssen.",
+        "question_asked": "Sandra Maischberger bezieht sich auf ein Cem-Özdemir-Beispiel aus Bundesländern, wo Berichtspflichten automatisch auslaufen, es sei denn, sie werden begründet weitergeführt. Sie fragt, warum der Bund das nicht macht.",
+        "question_intent": "Maischberger möchte verstehen, warum das bewährte Ländermodell nicht auf Bundesebene übertragen wird.",
+        "position": "Wildberger erklärt, dass dieser Mechanismus auf Bundesebene deutlich komplexer ist als auf Länderebene. Er sagt, man sei dabei, einen ähnlichen Mechanismus zu diskutieren. Das Problem: Bundesrecht ist komplexer, etwa weil mehrere Rechtsgebiete betroffen sind (Arbeitsrecht etc.). Er begründet die Vorsicht: \"Es ist manchmal nicht ganz so leicht, Dinge in den Unternehmen zu isolieren. Es ist das Arbeitsrecht betroffen. Setzen wir das Arbeitsrecht aus? Schwierig. Die Welt ist deutlich komplexer.\" Er versichert dennoch: \"30% Reduktion haben wir uns nicht nur vorgenommen, das werden wir auch hinbekommen.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger adressiert die Frage teilweise: Er erklärt die Komplexität und nennt konkrete Hindernisse (Arbeitsrecht, Isolation von Regeln). Aber auf die konkrete Frage, warum das Ländermodell nicht einfach übertragen wird, antwortet er eher ausweichend mit technischen Schwierigkeiten statt mit einer klaren Umsetzungsperspektive.",
+        "quotes": [
+          {
+            "text": "Das ist überhaupt nicht einfach. Und auf Bundesebene sind wir dabei, einen Mechanismus, weil das Bundesrecht ist noch einmal komplexer. Wir sind dabei, einen ähnlichen Mechanismus zu diskutieren.",
+            "timestamp": "00:26:06",
+            "context": "Antwort auf die Frage, warum der Bund das Ländermodell nicht umsetzt."
+          },
+          {
+            "text": "Klar ist, 30% Reduktion haben wir uns nicht nur vorgenommen, das werden wir auch hinbekommen.",
+            "timestamp": "00:26:06",
+            "context": "Zusicherung, dass eine Reduktion um 30% erreicht wird."
+          }
+        ],
+        "concrete_statements": [
+          "Bundesebene arbeitet an einem ähnlichen Mechanismus wie die Länder",
+          "Ziel: 30% Reduktion der Berichtspflichten",
+          "Wöchentlicher Austausch mit Ländern zu diesem Thema"
+        ],
+        "related_bundestag_topics": [
+          "Verwaltungsvereinfachung",
+          "Föderalismus",
+          "Normenkontrolle"
+        ]
+      },
+      {
+        "title": "Wirtschafts-Feedback und Rückmeldungen von Unternehmensvertretern",
+        "timestamp_range": "00:27:12 - 00:28:45",
+        "theme_description": "Wildberger beschreibt sein Verständnis für die Kritik der Wirtschaft, berichtet über ermutigende Gespräche mit Unternehmern und differenziert zwischen Tempo-Kritik und Anerkennung.",
+        "question_asked": "Sandra Maischberger fragt, ob Wildbergers Kollegen aus der Wirtschaft, die die Bundesregierung stark kritisieren, zu ungeduldig sind oder die Komplexität nicht sehen. Sie zitiert den Arbeitgeberpräsidenten, der sagt, die Arbeit dieser Regierung sei schlimmer als die der Ampel.",
+        "question_intent": "Maischberger möchte wissen, wie Wildberger die Wirtschafts-Kritik einordnet – ob sie berechtigt ist oder zu impulsiv.",
+        "position": "Wildberger berichtet von einem positiven Treffen mit 30 Unternehmensvertretern am Vortag und beschreibt das Feedback als \"in vielen Bereichen sehr ermutigend\" und \"eine balancierte Diskussion\", obwohl auch Kritik an liegen gebliebenen Themen vorhanden war. Er betont: \"Richtig ist, dass die Geschwindigkeit nicht reicht.\" Er erklärt, dass große Reformvorhaben zeitlich kumuliert sind, was schlecht ist für die Umsetzung. Auf Nachfrage, ob das Feedback eher auf sein Ministerium oder auf den Kanzler gemünzt war, weicht er aus und spricht von Teamarbeit des Ministeriums mit dem Kanzler. Die Wirtschaft spreche viel balancierter über den Kanzler als Medien, \"Viel Positives, weil Friedrich Merz versteht die Wirtschaft.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger adressiert die Ausgangsfrage teilweise: Er bestätigt, dass Geschwindigkeit nicht reicht, und erklärt strukturelle Gründe (Vorhaben kumuliert). Das Kernthema – ob Ungeduld oder fehlende Einsicht der Wirtschaft – wird aber nicht direkt beantwortet; stattdessen wird ein positives eigenes Gespräch hervorgehoben und auf Merz verwiesen.",
+        "quotes": [
+          {
+            "text": "Das Feedback, was ich dort bekommen habe, war in vielen Bereichen sehr ermutigend. Gleichzeitig auch Kritik, was noch liegengeblieben ist. Ich fand das eine balancierte Diskussion.",
+            "timestamp": "00:28:14",
+            "context": "Bericht über das Treffen mit 30 Unternehmensvertretern."
+          },
+          {
+            "text": "Richtig ist, dass die Geschwindigkeit nicht reicht. Wir stehen vor großen Reformvorhaben, die man jetzt feststellt, hätten wir besser früher gemacht.",
+            "timestamp": "00:28:14",
+            "context": "Eingeständnis, dass das Tempo nicht ausreichend ist."
+          },
+          {
+            "text": "Viel balancierter, als wenn ich die Zeitung lese. Inwiefern? Viel Positives, weil Friedrich Merz versteht die Wirtschaft.",
+            "timestamp": "00:28:45",
+            "context": "Antwort auf Frage nach dem Wirtschafts-Feedback zu Merz."
+          }
+        ],
+        "concrete_statements": [
+          "Persönliches Treffen mit 30 Unternehmern am Vortag des Interviews",
+          "Feedback war in vielen Bereichen ermutigend",
+          "Geschwindigkeit der Umsetzung reicht nicht aus",
+          "Große Reformvorhaben wurden zeitlich zu sehr kumuliert"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Regierungsleistung",
+          "Reformagenda"
+        ]
+      },
+      {
+        "title": "Koalitions-Stabilität und Vertrauen zu Hendrik Wüst",
+        "timestamp_range": "00:29:16 - 00:30:51",
+        "theme_description": "Frage, ob Hendrik Wüst statt Friedrich Merz Kanzler sein sollte, und wie Wildberger die Debatte dazu einordnet.",
+        "question_asked": "Sandra Maischberger fragt, ob Wildbergers Landeschef Hendrik Wüst das Kanzleramt besser machen könnte, und bezieht sich auf die laufende Debatte um einen Kanzlerwechsel.",
+        "question_intent": "Maischberger möchte wissen, ob Wildberger diese Kanzlerwechsel-Debatte unterstützt oder wie er sie bewertet.",
+        "position": "Wildberger sagt, er wisse nicht, wo diese Debatte herkommt, und findet sie \"völlig...\" (bricht ab). Er macht deutlich: \"Ich kann nicht jede Diskussion, die irgendjemand vom Zaun brechen möchte, kommentieren. Das ist nicht mein Job.\" Er betont, mit Wüst zusammenzuarbeiten \"supervertrauensvoll\" und dass die drei Reformvorhaben und die Digitalisierung \"sehr gut zusammen\" passen. Er versucht, das Thema zu beenden: \"Es ist zwar anstrengend, so erlebe ich das auch im Kabinett. Es geht darum, die Dinge schnell auf die Straße zu bekommen.\" Am Ende sagt er: \"Mein Energielevel ist deutlich höher als noch vor einem Jahr.\"",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Wildberger beantwortet die Frage nicht substantiell, sondern weicht ab mit einer Meta-Aussage (\"ich kann nicht jede Diskussion kommentieren\") und lenkt stattdessen zu seinem guten Verhältnis zu Wüst um. Er signalisiert: Das ist nicht sein Problem, sondern eine externe Debatte. Die Frage wird so pivotiert zu einer Bekräftigung von Teamfähigkeit statt zur Beantwortung der inhaltlichen Frage.",
+        "quotes": [
+          {
+            "text": "Ich kann nicht jede Diskussion, die irgendjemand vom Zaun brechen möchte, kommentieren. Das ist nicht mein Job.",
+            "timestamp": "00:30:51",
+            "context": "Antwort auf die Frage, ob Wüst besser Kanzler sein könnte."
+          },
+          {
+            "text": "Mit Herrn Wüst arbeiten wir supervertrauensvoll zusammen. Die 3 Vorhaben, da bin ich superdankbar. Auch im Bereich der Digitalisierung passt das sehr gut zusammen.",
+            "timestamp": "00:30:51",
+            "context": "Bekräftigung der guten Zusammenarbeit mit Wüst statt Beantwortung der Frage."
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitet vertrauensvoll mit Hendrik Wüst zusammen",
+          "Digitalisierungspolitik zwischen Bund und NRW passt gut zusammen",
+          "Energielevel ist höher als vor einem Jahr"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Parteiinteressen",
+          "Bundestags-Dynamik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "120 Kommunen werden monatlich digital angeschlossen, wodurch 60 Millionen Bürger erreicht werden (zuvor 30 Millionen).",
+        "timestamp": "00:19:22"
+      },
+      {
+        "claim": "Digitale Brieftasche kommt Anfang 2027.",
+        "timestamp": "00:20:53"
+      },
+      {
+        "claim": "16 Milliarden Euro Entlastung waren geplant, 8 Milliarden bereits beschlossen.",
+        "timestamp": "00:23:26"
+      },
+      {
+        "claim": "30% der Berichtspflichten sollen Stück für Stück abgebaut werden.",
+        "timestamp": "00:25:02"
+      },
+      {
+        "claim": "Länder-Berichtspflichten laufen bis Ende 2027 automatisch aus, es sei denn, sie werden ausnahmsweise begründet weitergeführt.",
+        "timestamp": "00:25:35"
+      }
+    ]
+  }
+}

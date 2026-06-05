@@ -1,0 +1,372 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMC0wOF8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-10-08",
+    "politician": "Heidi Reichinnek",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "25b5234c17be40d5",
+    "transcript_chars": 57038,
+    "caption_lines": 2089,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23336,
+    "tokens_out": 8036,
+    "cost_usd": 0.0254064,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 10,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.280Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Heidi Reichinnek, Fraktionsvorsitzende der Linken im Bundestag, diskutiert in der Maischberger-Sendung mit SPD-Generalsekretär Tim Klüssendorf über Sozialabbau, die Ampel-Politik und außenpolitische Fragen. Sie kritisiert die Große Koalition scharf als zweiten \"Sündenfall\" der SPD nach Hartz IV und fordert progressive Umverteilungsmaßnahmen sowie friedenspolitische Deeskalation.",
+    "themes": [
+      {
+        "title": "Hartz IV als Grund gegen SPD-Mitgliedschaft",
+        "timestamp_range": "00:18:45 - 00:19:15",
+        "theme_description": "Reichinnek erklärt, warum sie nicht der SPD beigetreten ist, und zieht eine historische Linie von Hartz IV zum heutigen Bürgergeld.",
+        "question_asked": "Sandra Maischberger fragt, ob Reichinnek auch in der SPD hätte sein können, angesichts der Gemeinsamkeiten beider Politiker aus Arbeiterfamilien.",
+        "question_intent": "Zu verstehen, warum die Fraktionschefin der Linken sich von der SPD abgrenzt, obwohl sie sozialpolitische Ziele teilen könnte.",
+        "position": "Reichinnek lehnt die SPD wegen des 'Sündenfalls Hartz IV' ab, durch den Die Linke überhaupt entstanden ist. Darüber hinaus kritisiert sie, dass die SPD gerade den 'zweiten Sündenfall' begeht — nicht nur beim Bürgergeld, sondern in einer breiteren sozialpolitischen Richtung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Reichinnek beantwortet die Frage direkt und substanziell mit einer klaren Ablehnung der SPD auf Basis von deren Sozialpolitik-Geschichte. Sie präzisiert sogar, dass es nicht nur um Bürgergeld geht.",
+        "concrete_statements": [
+          "Die SPD hat den Sündenfall Hartz IV begangen, wodurch Die Linke entstanden ist",
+          "Die SPD begeht gerade den zweiten Sündenfall"
+        ],
+        "quotes": [
+          {
+            "text": "Nein. U.a. wegen dem Sündenfall Hartz IV. Dadurch ist meine Partei in dieser Form überhaupt entstanden. Das Problem ist, dass die SPD gerade den 2. Sündenfall begeht.",
+            "timestamp": "00:18:45",
+            "context": "Maischberger fragte, ob Reichinnek auch in der SPD sein könnte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld-Reform",
+          "Sozialabbau",
+          "Hartz IV-Vermächtnis"
+        ]
+      },
+      {
+        "title": "Mangel an SPD-Erfolgen im Schaufenster",
+        "timestamp_range": "00:22:02 - 00:22:34",
+        "theme_description": "Reichinnek antwortet auf Klüssendorfs Argumente mit der Kritik, dass die SPD keine konkreten Erfolge vorweisen kann, die den Menschen helfen.",
+        "question_asked": "Sandra Maischberger fragt Reichinnek, ob sie von Klüssendorfs Argumenten zu Entlastungen und Arbeitsplätzen überzeugt ist.",
+        "question_intent": "Zu ermitteln, ob die Kritik der Linken an der SPD substanziell oder ideologisch motiviert ist.",
+        "position": "Reichinnek lehnt Klüssendorfs Argumente ab und fordert konkrete Erfolge für den Alltag: kostenloses Wohnraum, Entlastungen bei Stromsteuer, Klimageld, Mehrwertsteuer-Streichung und eine echte Verteidigung des Mindestlohns gegen den Druck der Bürgergeld-Sanktionen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie beantwortet direkt mit 'Nein' und liefert eine ausführliche Begründung mit konkreten politischen Forderungen statt nur Kritik.",
+        "concrete_statements": [
+          "Die SPD hat nichts, was sie ins Schaufenster stellen kann",
+          "Es gibt zu wenig Entlastungen bei Stromsteuer, Klimageld, Mehrwertsteuer und bezahlbarem Wohnraum",
+          "Das Bürgergeld dient vor allem dazu, Druck auf Menschen in Arbeit auszuüben"
+        ],
+        "quotes": [
+          {
+            "text": "Nein. Das Spannende ist, ich habe auch ein Interesse an einer starken SPD in der Tat. Ich wünsche mir, dass es genug Parteien gibt, die gemeinsam Progressives umsetzen können. Aber die SPD hat nichts, was sie ins Schaufenster stellen. Ich würde mal wissen wollen, konkret, was gibt es, was den Menschen im Alltag hilft.",
+            "timestamp": "00:22:02",
+            "context": "Maischberger fragte, ob die SPD-Argumente Reichinnek überzeugen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld-Reform",
+          "Entlastungspolitik",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Vermögenskonzentration als Demokratiebedrohung",
+        "timestamp_range": "00:24:39 - 00:25:09",
+        "theme_description": "Reichinnek beantwortet Maischbergers Frage, ob Milliardäre eine Bedrohung für die Demokratie darstellen, und begründet ihre Sicht mit der Konzentration von Vermögen und medialer Macht.",
+        "question_asked": "Sandra Maischberger fragt direkt: 'Frau Reichinnek meint sowieso, jeder Milliardär ist eine Bedrohung für unsere Demokratie. Und das meinen Sie ernst?'",
+        "question_intent": "Zu überprüfen, ob Reichinnek diese polemische Aussage wirklich vertritt oder ob sie relativiert.",
+        "position": "Reichinnek bejaht und begründet ihre Position mit der Konzentration von Vermögen und Macht in den Händen Weniger, insbesondere medialer Macht. Sie argumentiert, dass man auf der Einnahmenseite ansetzen muss, um Klimaschutz, Gesundheit und Sozialsystem zu finanzieren, und verweist darauf, dass die Schuldenbremse für Rüstung, nicht aber für andere Bereiche ausgesetzt wurde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie bejaht die Frage ausdrücklich ('Das meine ich ernst') und liefert eine substantielle politische Begründung mit Fokus auf Vermögenskonzentration und deren demokratische Implikationen.",
+        "concrete_statements": [
+          "Vermögenskonzentration in wenigen Händen ist ein Problem für die Demokratie",
+          "Man muss auf der Einnahmenseite ansetzen, um öffentliche Aufgaben zu finanzieren",
+          "Die Schuldenbremse wurde für Rüstung ausgesetzt, nicht aber für Soziales"
+        ],
+        "quotes": [
+          {
+            "text": "Das meine ich ernst, weil ich sehe, wie sich das Vermögen in den Händen von einigen wenigen konzentriert, und auch Macht, zum Beispiel mediale Macht. Das ist ein Problem, deswegen müssen uns die Einnahmenseite angucken.",
+            "timestamp": "00:24:39",
+            "context": "Maischberger stellte die Frage, ob Reichinnek Milliardäre wirklich als Demokratiebedrohung sieht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Steuergerechtigkeit",
+          "Vermögenssteuer",
+          "Demokratie-Schutz"
+        ]
+      },
+      {
+        "title": "Bürgerversicherung statt gesplittertem Versicherungssystem",
+        "timestamp_range": "00:27:15 - 00:27:46",
+        "theme_description": "Reichinnek fordert eine Bürgerversicherung im Gesundheitssystem und kritisiert die fehlende SPD-Verhandlungsposition gegenüber der Union.",
+        "question_asked": "Sandra Maischberger fragt nicht direkt, sondern Reichinnek initiiert das Thema selbst und antwortet auf die vorherige Diskussion um Steuergerechtigkeit.",
+        "question_intent": "Eigeninitiative: Reichinnek nutzt den Moment, um ihre Sicht auf ein progressives Gesundheitssystem darzulegen.",
+        "position": "Reichinnek fordert eine Bürgerversicherung, in die alle einzahlen und alle Einkommensarten einbezogen werden. Dies würde es ermöglichen, die Versicherungssätze für die Mehrheit zu senken und gleichzeitig mehr Geld im System zu haben. Sie kritisiert, dass die SPD solche Debatten nicht gegen die Union führt, und schlägt vor, das sei etwas, das nur mit der Linken durchzusetzen wäre.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet auf eigenem Antrieb zu einem neuen Thema (Gesundheitssystem) und liefert ein detailliertes positives Reformprogramm — dies ist eine Initiativposition ohne direkte Frage.",
+        "concrete_statements": [
+          "Eine Bürgerversicherung, in die alle einzahlen, ist erforderlich",
+          "Alle Einkommensarten müssen einbezogen werden",
+          "Dies ermöglicht niedrigere Sätze für die Mehrheit",
+          "Solche Reformen können nur mit der Linken, nicht mit der Union durchgesetzt werden"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht zum Beispiel darum, Leistungen aus dem Gesundheitssystem rauszunehmen. Aber warum haben wir keine Bürgerversicherung, wo alle einzahlen? Wo alle Einkommensarten mit einbezogen werden. Dann können wir die Sätze für die Mehrheit senken und hätten mehr Geld im System.",
+            "timestamp": "00:27:15",
+            "context": "Reichinnek spricht über Angriffe auf das Gesundheitssystem und stellt ein alternatives Modell vor."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitspolitik",
+          "Bürgerversicherung",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Migration und Familiennachzug-Aussetzung",
+        "timestamp_range": "00:28:47 - 00:29:49",
+        "theme_description": "Reichinnek unterscheidet Flucht/Asyl von Arbeitsmigration und kritisiert die Große-Koalition-Politik scharf, insbesondere die Aussetzung des Familiennachzugs.",
+        "question_asked": "Sandra Maischberger fragt, ob die Abschaffung der Turbo-Einbürgerung ein Fortschritt ist.",
+        "question_intent": "Zu erfahren, wie die Linke die verschärfte Migrationspolitik der Merz-Regierung beurteilt.",
+        "position": "Reichinnek lehnt die neue Einbürgerungspolitik ab und kritisiert mehrere Maßnahmen scharf: Die Aussetzung des Familiennachzugs führt dazu, dass Frauen und Kinder in Krisengebieten zurückbleiben; sie verursacht Verzweiflung, nicht weniger Migration. Die GEAS-Reformen sperren Menschen in 'haftähnliche Lager'. Sie argumentiert, dass Friedrich Merz, wenn er ein echtes Herz für Kinder hätte, hier ansetzen müsste. Integration funktioniert durch Sprachkurse und dezentrale Unterbringung, nicht durch repressive Maßnahmen. Sie wirft SPD und Union vor, einem 'rechten Zeitgeist' zu folgen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet direkt auf die Frage ('Natürlich nicht') und liefert eine detaillierte Kritik mit mehreren konkreten Beispielen und Gegenargumenten.",
+        "concrete_statements": [
+          "Die Aussetzung des Familiennachzugs ist hochproblematisch",
+          "Das Aussetzen des Familiennachzugs führt nicht zu weniger Migration, sondern zu Verzweiflung",
+          "GEAS-Reformen sperren Menschen in haftähnliche Lager",
+          "Integration vor Ort mit Sprachkursen ist bewährt",
+          "SPD und Union folgen einem rechten Zeitgeist"
+        ],
+        "quotes": [
+          {
+            "text": "Natürlich nicht. Wir müssen unterscheiden, wir haben das Thema Flucht und Asyl, aber auch Arbeitsmigration. Da muss man trennscharf sein. Alles was von der Großen Koalition kommt, ist hochproblematisch. Das Aussetzen des Familiennachzugs. Das bedeutet, dass Frauen und Kinder im Krisengebiet zurückbleiben. Mir konnte niemand erklären, warum das dafür sorgt, dass weniger Menschen kommen.",
+            "timestamp": "00:28:47",
+            "context": "Maischberger fragte, ob die Turbo-Einbürgerungs-Abschaffung ein Fortschritt ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Migration",
+          "GEAS-Reform"
+        ]
+      },
+      {
+        "title": "Überbelastung von Kommunen und investiver Stau",
+        "timestamp_range": "00:31:20 - 00:31:51",
+        "theme_description": "Reichinnek antwortet auf Maischbergers Frage nach sinkenden Asylbewerberzahlen und kritisiert die struktu­relle Unterfinanzierung von Kommunen.",
+        "question_asked": "Sandra Maischberger fragt, ob die sinkenden Zahlen von Asylbewerbern in Deutschland ein Erfolg sind.",
+        "question_intent": "Zu verstehen, wie die Linke die Wirksamkeit und Legitimität der verschärften Asylpolitik bewertet.",
+        "position": "Reichinnek lehnt es ab, sinkende Asylzahlen als Erfolg zu bewerten, wenn sie durch repressive Maßnahmen erreicht werden. Sie argumentiert, dass das echte Problem nicht Migration, sondern chronische Unterfinanzierung der Kommunen ist — fehlende Wohnräume, Kita-Plätze, ÖPNV- und Schulinvestitionen. Sie kritisiert auch Haushaltsjustierungen und beklagt mangelnde Umsetzung versprochener Politik.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Sie antwortet auf die Erfolgsfrage, lenkt aber stark ab zur Kommunen-Unterfinanzierung statt auf die Migration selbst einzugehen. Dies ist eine deflektive Antwort, die das Problem neuinterpretiert.",
+        "concrete_statements": [
+          "Sinkende Asylzahlen sind kein Erfolg, wenn sie durch repressive Maßnahmen erreicht werden",
+          "Kommunen sind chronisch unterfinanziert",
+          "Fehlende Investitionen in Wohnraum, Kitas, ÖPNV und Schulen sind das Kernproblem"
+        ],
+        "quotes": [
+          {
+            "text": "Wir wollen, dass Fluchtursachen bekämpft werden. Wir wollen, dass das Sterben im Mittelmeer aufhört. Diese Zahlen, das ist kein Erfolg, wenn sie mit solchen Maßnahmen erreicht werden. Die Kommunen sind überlastet. Das liegt daran, dass sie seit Jahrzehnten chronisch kaputtgespart worden sind.",
+            "timestamp": "00:31:20",
+            "context": "Maischberger fragte nach sinkenden Asylzahlen als Erfolg."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "Kommunalfinanzen",
+          "Infrastruktur-Investitionen"
+        ]
+      },
+      {
+        "title": "Kritik an Bürgergeld-Druck und Existenznotstand",
+        "timestamp_range": "00:32:26 - 00:32:56",
+        "theme_description": "Reichinnek beantwortet Klüssendorfs Kritik an ihrer Wortwahl 'Grausamkeiten' mit einem konkreten Beispiel aus der Lebenswirklichkeit von Bürgergeld-Empfängern.",
+        "question_asked": "Tim Klüssendorf sagt, dass der Begriff 'Grausamkeiten' für die SPD-Politik nicht passend ist; Sandra Maischberger moderiert die Reaktion an.",
+        "question_intent": "Zu klären, ob die Charakterisierung von Reformen als 'grausam' angemessen ist oder übertrieben.",
+        "position": "Reichinnek insistiert auf ihrer Wortwahl und liefert ein Beispiel: Die Hälfte aller Eltern im Bürgergeld verzichtet bereits auf Essen, damit die Kinder genug haben. Dies ist für sie die Definition von Grausamkeit. Sie fordert kostenlose Schulmahlzeiten und verweist auf Berliner Erfolge bei der Umsetzung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet direkt und sehr prägnant mit einem konkreten Beispiel, das ihre Wortwahl begründet statt sie zu relativieren.",
+        "concrete_statements": [
+          "Die Hälfte aller Eltern im Bürgergeld verzichtet auf Essen, damit Kinder genug haben",
+          "Kostenlose Schulmahlzeiten sind erforderlich",
+          "Berlin hat das erfolgreich durchgesetzt"
+        ],
+        "quotes": [
+          {
+            "text": "Aber es ist grausam, wenn die Hälfte aller Eltern im Bürgergeld jetzt schon auf Essen verzichtet, damit die Kinder genug haben.",
+            "timestamp": "00:32:56",
+            "context": "Klüssendorf kritisierte die Wortwahl 'Grausamkeiten' für SPD-Reformen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld-Reform",
+          "Kindergrundsicherung",
+          "Armut"
+        ]
+      },
+      {
+        "title": "Drohnen sollten gestört, nicht abgeschossen werden",
+        "timestamp_range": "00:35:39 - 00:35:39",
+        "theme_description": "Reichinnek antwortet auf die Frage, ob Drohnen über deutschen Flughäfen abgeschossen werden sollen.",
+        "question_asked": "Sandra Maischberger fragt beide Gäste, ob Drohnen über deutschen Flughäfen abgeschossen werden können/sollen.",
+        "question_intent": "Zu klären, wie weit links- und rechtsliberal ausgerichtete Politiker bei der Sicherheitsmaßnahmen gehen würden.",
+        "position": "Reichinnek lehnt einen Abschuss ab und fordert stattdessen, Drohnen zu stören. Dies ist eine technisch-defensive Antwort, die Eskalation vermeiden soll.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet direkt und prägnant mit einer klaren Alternative (Störung statt Abschuss).",
+        "concrete_statements": [
+          "Drohnen sollen nicht direkt abgeschossen werden",
+          "Drohnen sollen gestört werden"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, sie sollten gestört und nicht direkt abgeschossen werden.",
+            "timestamp": "00:35:39",
+            "context": "Maischberger fragte, ob Drohnen über Flughäfen abgeschossen werden sollen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitsmaßnahmen",
+          "Luftraum-Überwachung"
+        ]
+      },
+      {
+        "title": "Militarisierung und Friedenstüchtigkeit statt Kriegstüchtigkeit",
+        "timestamp_range": "00:36:41 - 00:37:11",
+        "theme_description": "Reichinnek kritisiert die Diskurs-Verschiebung hin zu Militarisierung und fordert stattdessen Friedenstüchtigkeit.",
+        "question_asked": "Sandra Maischberger fragt, was Reichinnek von Merz' Aussage hält, dass Deutschland nicht im Krieg, aber auch nicht mehr im Frieden ist.",
+        "question_intent": "Zu verstehen, wie die Linke die deutsche Sicherheitslage interpretiert und welche politischen Schlussfolgerungen sie zieht.",
+        "position": "Reichinnek kritisiert, dass die gegenwärtige Debatte zu stark auf Militarisierung fokussiert. Sie argumentiert, dass Deutschland 'friedenstüchtig' werden muss, nicht 'kriegstüchtig'. Die Bedrohungsdarstellung wird als 'hochproblematisch' charakterisiert. Besonders kritisch sieht sie, dass diskutiert wird, Krankenhäuser kriegstüchtig zu machen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet indirekt aber substanziell: Sie verweigert die Fragestellung ('Ich weiß nicht genau, was du meinst') und liefert ein konkretes Gegenprogramm (Friedenstüchtigkeit statt Kriegstüchtigkeit).",
+        "concrete_statements": [
+          "Gesellschaft wird zu stark militarisiert",
+          "Bedrohungsdarstellung ist hochproblematisch",
+          "Friedenstüchtigkeit, nicht Kriegstüchtigkeit, sollte das Ziel sein",
+          "Krankenhäuser dürfen nicht kriegstüchtig gemacht werden"
+        ],
+        "quotes": [
+          {
+            "text": "Ich weiß nicht genau, was du meinst, weil ich bin nicht in deinem Kopf drin. Natürlich merken wir gerade, dass sehr viel auf die Militarisierung der Gesellschaft fokussiert wird. Eben auch, weil eine Bedrohungsweise auf eine Art dargestellt wird, die hochproblematisch ist. Es wird darüber diskutiert, dass Krankenhäuser kriegstüchtig werden. Wir müssen eigentlich darüber reden, wie wir friedenstüchtig werden.",
+            "timestamp": "00:36:41",
+            "context": "Maischberger fragte Reichinnek nach ihrer Reaktion auf Merz' Friedens-Krieg-Aussage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Friedenspolitik",
+          "Militarisierung"
+        ]
+      },
+      {
+        "title": "Wehrpflicht kategorisch ablehnen",
+        "timestamp_range": "00:38:16 - 00:38:46",
+        "theme_description": "Reichinnek antwortet auf Fragen zur Wehrpflicht und kritisiert indirekt die SPD-Position dazu.",
+        "question_asked": "Sandra Maischberger fragt, wo für Reichinnek der Punkt käme, an dem Wehrpflicht notwendig wäre.",
+        "question_intent": "Zu erfragen, unter welchen sicherheitspolitischen Bedingungen die Linke ihre kategorische Ablehnung aufgeben würde.",
+        "position": "Reichinnek lehnt Wehrpflicht kategorisch ab. Sie argumentiert, dass die Bundeswehr als Arbeitgeberin attraktiver werden muss. Die zentrale Frage sei, welche Auslandseinsätze tatsächlich dem Frieden dienen und welche einen 'Beigeschmack' haben, der junge Menschen abschreckt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie beantwortet direkt mit einer klaren Ablehnung und liefert eine positive Alternative (Attraktivität der Bundeswehr, Prüfung von Auslandseinsätzen).",
+        "concrete_statements": [
+          "Wehrpflicht wird kategorisch abgelehnt",
+          "Die Bundeswehr muss als Arbeitgeberin attraktiver werden",
+          "Die Legitimität von Auslandseinsätzen muss überprüft werden"
+        ],
+        "quotes": [
+          {
+            "text": "Wir lehnen eine Wehrpflicht kategorisch ab. Man muss darüber diskutieren, wie die Bundeswehr als Arbeitgeberin attraktiv werden kann. Es geht da um die Frage von Auslandseinsätzen. Welche sind wirklich da, um Frieden zu sichern und welche haben einen Beigeschmack, wo junge Leute nicht dabei sein möchten?",
+            "timestamp": "00:38:16",
+            "context": "Maischberger fragte, unter welchen Bedingungen Wehrpflicht nötig wäre."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrverfassung",
+          "Auslandseinsätze",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Kritik an Koalitionsergebnissen und Infrastruktur-Investitionen",
+        "timestamp_range": "00:39:17 - 00:40:20",
+        "theme_description": "Reichinnek bewertet die bisherigen Ergebnisse der Große-Koalition und antwortet auf Klüssendorfs Verteidigung der SPD-Infrastruktur-Investitionen.",
+        "question_asked": "Sandra Maischberger fragt, was nach der Koalition mit der SPD passieren soll; später verteidigt Klüssendorf die Investitionen in Infrastruktur.",
+        "question_intent": "Zu erfahren, welche Option die Linke für SPD-Koalitionen präferiert und wie sie die bisherigen SPD-Leistungen bewertet.",
+        "position": "Reichinnek wünscht sich eine SPD-Koalition mit den Grünen und der Linken, nicht mit der Union. Sie kritisiert, dass die SPD sich bislang 'komplett über den Tisch ziehen lässt', ohne konkrete Projekte ins Schaufenster zu stellen. Sie räumt ein, dass die Infrastruktur-Investitionen wichtig sind, aber weist auf den weiterhin hohen Investitionsstau hin und fordert eine Reform der Schuldenbremse, um das Problem grundlegend zu lösen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Sie antwortet substanziell auf die implizite Frage nach ihrer Bewertung: Sie anerkennt Investitionen, kritisiert aber deren Unzureichendkeit und verlangt strukturelle Reformen.",
+        "concrete_statements": [
+          "Die SPD sollte mit Linken und Grünen koalieren, nicht mit der Union",
+          "Die SPD hat sich über den Tisch ziehen lassen",
+          "Die Infrastruktur-Investitionen reichen nicht aus",
+          "Die Schuldenbremse muss reformiert werden"
+        ],
+        "quotes": [
+          {
+            "text": "Das wird sehr darauf ankommen, an welchen Punkten die SPD deutlich sagen kann, das haben wir in dieser Koalition erreicht. Gerade gibt es da nichts. Niemand findet das schlimmer als ich. Auch ich wünsche mir eine starke SPD, starke Grünen und v.a. eine starke Linke. Damit wir wieder über gesellschaftliche Mehrheiten diskutieren können.",
+            "timestamp": "00:39:17",
+            "context": "Maischberger fragte, was Reichinnek für die SPD-Zukunft erwartet."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsoptionen",
+          "Infrastruktur-Investitionen",
+          "Schuldenbremse"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Hälfte aller Eltern im Bürgergeld verzichtet auf Essen, damit die Kinder genug haben",
+        "timestamp": "00:32:56"
+      },
+      {
+        "claim": "In Berlin wurde kostenlose Schulmahlzeiten durchgesetzt",
+        "timestamp": "00:33:04"
+      },
+      {
+        "claim": "Die Schuldenbremse wurde für Rüstung ausgesetzt, nicht aber für andere Bereiche",
+        "timestamp": "00:25:09"
+      },
+      {
+        "claim": "GEAS-Reformen sperren Menschen in haftähnliche Lager",
+        "timestamp": "00:29:18"
+      },
+      {
+        "claim": "Sprachkurse helfen erwiesenermaßen, Menschen in den Arbeitsmarkt zu bringen",
+        "timestamp": "00:29:49"
+      }
+    ]
+  }
+}

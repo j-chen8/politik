@@ -1,0 +1,317 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-4-maerz-2026-100",
+    "video_id": "illner-2026-03-04",
+    "politician": "Norbert Röttgen",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "f0ea720ab4df600b",
+    "transcript_chars": 51406,
+    "caption_lines": 2575,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21360,
+    "tokens_out": 7667,
+    "cost_usd": 0.023878000000000003,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "pivot_zum_gegenpunkt": 2,
+      "substantielle_position": 4,
+      "themenwechsel": 2,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.198Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen diskutiert mit Maybrit Illner die völkerrechtliche und geopolitische Dimension des Iran-Konflikts. Er argumentiert für eine „Abwägung des kleineren Übels\" zwischen US-israelischen Militärschlägen und dem iranischen Regime, betont Deutschlands verfassungsrechtliche Grenzen und setzt sich für eine europäische Taskforce zur Bewältigung wirtschaftlicher Folgen ein. Sein Ton wirkt sachlich-analytisch mit gelegentlichen normativen Positionen zu Israels Kriegszielen.",
+    "themes": [
+      {
+        "title": "Völkerrechtlichkeit des US-Israel-Angriffs auf Iran",
+        "timestamp_range": "00:11:38 - 00:13:38",
+        "theme_description": "Diskussion über die rechtliche Bewertung der Militärschläge und die Abwägung zwischen völkerrechtswidriger Aktion und Bekämpfung des iranischen Regimes.",
+        "question_asked": "Maybrit Illner fragt, ob dies wieder ein völkerrechtswidriger Krieg ist, in dem 'wir uns dank dieser US-amerikanischen Regierung befinden und wir trauen uns wieder nicht zu sagen, dass es einer ist'.",
+        "question_intent": "Illner möchte wissen, ob Röttgen eingesteht, dass auch unter der Trump-Administration deutsche und europäische Kritiker das Völkerrecht einseitig anwenden und ob Deutschland mehr Kritik üben sollte.",
+        "position": "Röttgen argumentiert, dass es keine Scheu vor offener Diskussion gibt. Er wendet ein analytisches Konzept der 'Abwägung des kleineren Übels' an: Der Angriff selbst sei zwar völkerrechtlich fragwürdig ('nicht gut gedeckt'), aber die Alternative — ein iranisches Regime mit 'Existenzgarantie', das 30.000 Menschen 'niedergemäht' hat — stelle ebenfalls massive Völkerrechtsverletzungen dar. Die Entscheidung zu Militärschlägen sei amerikanisch-israelisch, nicht europäisch. Röttgen positioniert dies nicht als Gut vs. Böse, sondern als Dilemma in der Außenpolitik.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen adressiert Illners Vorwurf der Sprachlosigkeit direkt, betont aber, dass das Problem nicht in deutscher Kritik liegt, sondern in der Abwägung unterschiedlicher Übel. Er beantwortet die implizite Frage 'sollte Deutschland kritischer sein' mit einem strategischen Argument (deutsche Verfassungsgrenzen, keine Entscheidungskompetenz), nicht mit einer vollständigen ethisch-normativen Stellungnahme zu Völkerrecht an sich.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Es gibt meinerseits kein richtig oder falsch, es gibt nur die Abwägung des kleineren Übels.",
+            "timestamp": "00:11:38"
+          },
+          {
+            "text": "Dieser Angriff selber, da ist vertretbar gut zu sagen, der Angriff ist nicht gut gedeckt. Wenn man dann den Schluss ziehen, wir unterlassen das, ist die Konsequenz, dass das glatteste und Gegenteil, nämlich das iranische Regime, eine Existenzgarantie hat.",
+            "timestamp": "00:11:38"
+          }
+        ],
+        "concrete_statements": [
+          "Der Angriff ist völkerrechtlich nicht gut gedeckt.",
+          "Das iranische Regime ist Völkerrechtsverletzung in Staatsform.",
+          "Deutschland könnte verfassungsrechtlich keine Militärschläge führen (Grundgesetz Artikel 87a)."
+        ],
+        "related_bundestag_topics": [
+          "Bundeswehr-Einsätze",
+          "UN-Sicherheitsrat",
+          "NATO-Verpflichtungen",
+          "Iranische Menschenrechtsverletzungen"
+        ]
+      },
+      {
+        "title": "Deutschlands verfassungsrechtliche Grenzen für militärische Aktion",
+        "timestamp_range": "00:17:21 - 00:18:49",
+        "theme_description": "Röttgen erklärt, warum Deutschland nicht militärisch gegen den Iran vorgehen kann und wie dies die europäische Kritik am US-Vorgehen kontextualisiert.",
+        "question_asked": "Maybrit Illner zitiert Kanzler Merz mit: 'Wir können nicht ausrichten, deshalb können wir auch nicht kritisieren' und fragt Röttgen, ob dies die richtige Logik ist.",
+        "question_intent": "Illner hinterfragt, ob Deutschlands Unvermögen zu militärischer Aktion die Berechtigung zu politischer und ethischer Kritik einschränkt.",
+        "position": "Röttgen differenziert: Deutschland könne verfassungsrechtlich nach dem Grundgesetz nur in zwei Fällen die Bundeswehr einsetzen — bei direkter Verteidigung (nicht gegeben) oder im Rahmen kollektiver Sicherheit (NATO oder UN-Sicherheitsrat, hier nicht vorliegend). Die Lage sei für Israel anders: als betroffener Staat in der Region mit existenziellem Interesse an der Verhinderung iranischer Atomwaffen. Daher sei die Frage 'Könnten wir?' nicht zentral; zentral sei, dass USA und Israel eine Entscheidung trafen, die Deutschland nicht selbst treffen kann.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen beantwortet Illners logische Frage vollständig: Er erklärt, dass Deutschland nicht kritisieren muss, WEIL es nicht selbst handeln könnte, sondern WEIL es verfassungsrechtlich nicht handeln KANN. Diese Differenzierung ist substantiell.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Man fragt, könnten wir? Dann sage ich, wir könnten verfassungsrechtlich nach dem Grundgesetz eindeutig nicht. Das Grundgesetz nennt zwei Fälle, in denen die Bundeswehr eingesetzt werden kann, außerhalb des Landes, zur Verteidigung, da müssten wir angegriffen worden sein, dass es nicht der Fall.",
+            "timestamp": "00:17:21"
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland darf Bundeswehr nur bei direkter Verteidigung oder UN/NATO-Mandat einsetzen.",
+          "Iran-Angriff fällt unter keinen dieser beiden Fälle.",
+          "Israel hat anders gelagerte verfassungsrechtliche und strategische Positionen."
+        ],
+        "related_bundestag_topics": [
+          "Grundgesetz Artikel 87a",
+          "Parlamentsvorbehalt für Auslandseinsätze",
+          "NATO-Artikel 5",
+          "UN-Sicherheitsrats-Resolutionen"
+        ]
+      },
+      {
+        "title": "Deutschlands Handlungsspielraum jenseits von Waffen",
+        "timestamp_range": "00:20:06 - 00:22:09",
+        "theme_description": "Röttgen antwortet auf Bente Schellers Kritik, dass Deutschland mehr humanitäre und diplomatische Maßnahmen ergreifen könnte.",
+        "question_asked": "Bente Scheller kritisiert, dass Deutschland sich 'dahinter versteckt', wenn es sagt, es könne nicht militärisch handeln. Sie nennt konkrete Maßnahmen: Behandlung von Verletzten, Visaerleichterungen für Oppositionelle. Röttgen antwortet darauf.",
+        "question_intent": "Scheller möchte hinterfragen, ob Deutschlands Ablehnung von Militärintervention als Ausrede für mangelnde humanitäre Engagements dient.",
+        "position": "Röttgen erklärt zunächst, dass er Schellers humanitäre Kritik nicht abweisen will ('Ich will gar nicht Ihrer Kritik entgegentreten'), da er sich 'jahrelang' auf solche Fragen eingesetzt habe. Jedoch differenziert er: Humanitäre Maßnahmen (Visa, medizinische Hilfe) seien von der Frage der Systemstabilisierung getrennt. Sein Punkt: Diese beiden Dinge sollte man nicht vermischen. Ein gutes humanitäres Programm hätte das System nicht destabilisiert, wenn es gut gelaufen wäre — das sei eine 'andere Frage'.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen anerkennt Schellers humanitäre Kritik formal an, weist sie aber argumentativ zurück, indem er humanitäre von regime-change-Logik trennt. Er sagt nicht nein zu den Maßnahmen selbst, sondern sagt, dass sie auf einer anderen Ebene liegen. Das ist eine Ablenkung vom Kern von Schellers Kritik (dass Deutschland zu wenig tut).",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "Ich will gar nicht Ihrer Kritik entgegentreten: auf anderem Gebiet habe ich mich ja jahrelang eingesetzt. Ein Punkt ist es hätte das System nicht destabilisiert, wenn es gut gelaufen wäre. Das ist eine andere Frage.",
+            "timestamp": "00:21:25"
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland hätte Visa für Oppositionelle erleichtern sollen.",
+          "Humanitäre Hilfe und Systemwechsel sind unterschiedliche Ziele.",
+          "Diese Maßnahmen hätten das System nicht destabilisiert."
+        ],
+        "related_bundestag_topics": [
+          "Menschenrechte im Iran",
+          "Asyl- und Visapolitik",
+          "Zivilgesellschaftliche Unterstützung"
+        ]
+      },
+      {
+        "title": "Chancen für einen Regimewechsel durch externe Schläge",
+        "timestamp_range": "00:22:09 - 00:24:06",
+        "theme_description": "Röttgen argumentiert, dass externe Militärschläge Chancen für innere Transformation schaffen, während andere Teilnehmer skeptisch sind.",
+        "question_asked": "Implizit aus der Diskussion: Können externe Militärschläge zu einem echten Regimewechsel oder einer Volksbewegung führen? Bente Scheller und Mariam Lau sagen nein; Röttgen widerspricht.",
+        "question_intent": "Die Diskussion zielt darauf, ob Röttgens Hoffnung auf durch externe Kraft katalysierte innere Umbrüche historisch oder empirisch begründet ist.",
+        "position": "Röttgen argumentiert: Das iranische Volk habe sich immer wieder erhoben, sei unterdrückt worden, habe sich wieder erhoben. Der militärische Angriff von außen kombiniert mit dieser inneren Kraft könnte einen Unterschied machen. Das Regime sei 'in einer Weise geschwächt wie noch nie'. Die kritische Frage laute: 'Sind die Deutschen und Europäer dann da, um sich einzusetzen?' — d. h., werden wir den Moment für Transition unterstützen? Röttgen positioniert sich als zukunftsorientiert: Man könne am Tag 5 des Krieges nicht wissen, was am Ende steht, aber man könne sich vorbereiten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen adressiert die Frage, ob externe Gewalt zu Systemwechsel führt, nicht direkt historisch-empirisch. Stattdessen verschiebt er auf die Frage der europäischen Nachbereitung. Seine Antwort ist hoffnungsvoll, aber weniger materialistisch-analytisch als argumentativ-normativ.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Dieses Regime ist in einer Weise geschwächt wie noch nie. Delegitimiert. Das Volk ist aufgestanden. Das Volk ist aufgestanden, jetzt ist es militärisch, die Führungselite ist in den erheblichen Teilen eliminiert worden... Denn es wird sich die Frage dar, wenn dieser Krieg zu Ende ist, sind die Deutsche und die Europäer da, um sich einzusetzen?",
+            "timestamp": "00:22:09"
+          }
+        ],
+        "concrete_statements": [
+          "Das iranische Regime ist politisch delegitimiert.",
+          "Die Führungselite ist teilweise eliminiert.",
+          "Deutschland und Europa müssen auf einen Post-Krieg-Moment vorbereitet sein."
+        ],
+        "related_bundestag_topics": [
+          "Transition und Staatsaufbau",
+          "Unterstützung von Oppositionsgruppen",
+          "Nachkonflikt-Planung"
+        ]
+      },
+      {
+        "title": "Gefahr der Fragmentierung des Iran durch bewaffnete Gruppen",
+        "timestamp_range": "00:24:37 - 00:25:44",
+        "theme_description": "Röttgen warnt vor den Risiken, wenn der Westen einzelne iranische Ethnien oder Gruppen bewaffnet.",
+        "question_asked": "Maybrit Illner stellt die Frage, ob man die Kurden oder andere lokale Gruppen bewaffnen könnte, um im Krieg zu helfen. Röttgen antwortet mit einer Warnung.",
+        "question_intent": "Illner möchte erkunden, ob externe Akteure direkter in den Konflikt eingreifen könnten, indem sie lokale Kräfte unterstützen.",
+        "position": "Röttgen lehnt dies ab mit einer geopolitischen Warnung: Der Iran habe etwa 12 Ethnien. Wenn der Westen anfange, einzelne Volksgruppen zu bewaffnen, riskiere man Fragmentierung und 'Chaotisierung'. Deutsches und westliches Interesse sollte darin liegen, die Einheit des Landes zu bewahren — nicht einen Völkerkrieg im Iran zu fördern.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen beantwortet Illners Frage direkt: Nein, man sollte lokale Gruppen nicht bewaffnen, und er begründet es mit langfristigen destabilisierenden Konsequenzen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Das birgt auch die Gefahr der Fragmentierung, der Chaotisierung im Land. Es sollte nicht im Interesse sein, die Einheit des Landes zu zerstören. Wenn wir jetzt aus dem Westen anfingen, es sind im wesentlichen zwölf Ethnien in Iran, einzelne Volksgruppen zu bewaffnen ... Wir wollen keinen Völkerkrieg und keinen Zerfall dieses Landes.",
+            "timestamp": "00:25:14"
+          }
+        ],
+        "concrete_statements": [
+          "Bewaffnung ethnischer Gruppen würde Fragmentierung fördern.",
+          "Ziel muss Erhalt der iranischen Staatseinheit sein.",
+          "Regionale Auswirkungen auf Irak und Nachbarländer müssen berücksichtigt werden."
+        ],
+        "related_bundestag_topics": [
+          "Ethnische Konflikte im Nahen Osten",
+          "Kurdische Frage",
+          "Regionale Stabilität"
+        ]
+      },
+      {
+        "title": "Kriegsdauer und wirtschaftliche Vorbereitung (Taskforce)",
+        "timestamp_range": "00:39:45 - 00:41:54",
+        "theme_description": "Röttgen antwortet auf die Frage nach einer Spritpreisbremse und entwickelt das Konzept einer Taskforce für wirtschaftliche Vorbereitung.",
+        "question_asked": "Maybrit Illner fragt konkret: 'Ab welcher Höhe des Spritpreises gibt es die Spottpreisbremse?' als Nachfolge auf sein Vorschlag, eine Taskforce zu gründen.",
+        "question_intent": "Illner will wissen, ob Röttgen konkrete Zahlen oder Schwellwerte nennen kann, oder ob die Taskforce ein abstraktes Konzept bleibt.",
+        "position": "Röttgen antwortet nicht direkt auf die Schwellwert-Frage, sondern bezieht sich auf Lars Felds vorherige Aussage, dass 'keiner sagen kann' wie schlecht es wird. Er argumentiert: Die Konsequenz aus wirtschaftlichen Risiken kann nicht sein, dass 'wir uns einbuddeln und alles über uns ergehen lassen'. Es könnte auch positiv ausfallen — 93 Millionen Iraner könnten sich 'wieder entwickeln', was 0,5% globalen Wachstum bedeuten könnte. Daher brauche es eine Taskforce, um vorbereitet zu sein. Er spekuliert, dass der Krieg wahrscheinlich 'nur paar Wochen' dauern wird, basierend auf Trumps Innenpolitik und der Zerstörung iranischer Kapazitäten in den ersten 5 Tagen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen beantwortet die konkrete Frage nach Spritpreis-Schwellwerten nicht, sondern argumentiert strategisch auf einer höheren Ebene: Warum man überhaupt eine Taskforce braucht (Unsicherheit + Chancen). Das weicht der operativen Frage aus.",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "In dem ersten Teil müssen wir in den Krieg ziehen, jetzt haben wir nur Angst, dass die Flüchtlinge kommen, die Ölpreise hochgehen. Und was ist die Konsequenz daraus? Dass wir uns einbuddeln und alles über uns ergehen lassen? Es kann auch dieses Regime zu Ende gehen. Es kann auch dazu kommen, dass Iran, 93 Millionen Menschen sich wieder entwickelt.",
+            "timestamp": "00:39:53"
+          }
+        ],
+        "concrete_statements": [
+          "Eine europäische Taskforce soll wirtschaftliche Risiken bewältigen.",
+          "Der Krieg wird wahrscheinlich wenige Wochen dauern.",
+          "Ein Regimewechsel könnte zu 0,5% globalem Wachstum führen (Felbermayr).",
+          "In 5 Tagen wurden bereits große Teile der iranischen Luftverteidigung zerstört."
+        ],
+        "related_bundestag_topics": [
+          "Energiesicherheit",
+          "Wirtschaftspolitik",
+          "Ölpreismanagement"
+        ]
+      },
+      {
+        "title": "Israels Kriegsziel: Regimewechsel vs. US-Fokus auf Militär",
+        "timestamp_range": "00:52:12 - 00:53:29",
+        "theme_description": "Röttgen differenziert zwischen Israels und der US-Kriegsziele und betont Israels Fokus auf Systemwechsel.",
+        "question_asked": "Implizit aus der Diskussion über die Haltbarkeit von Regimewechsel-Szenarien und Kurden-Bewaffnung: Wer verfolgt welches Ziel in diesem Krieg?",
+        "question_intent": "Die Diskussionspartner versuchen zu verstehen, ob die USA und Israel die gleichen Ziele verfolgen und wie realistisch ein Regimewechsel ist.",
+        "position": "Röttgen: 'Wir lassen ein bisschen Israel außer Betracht.' Israel unter Netanyahu habe ein 'ganz eindeutiges Ziel': Systemwechsel und Regimewechsel. Das erkläre, wann und wie der Krieg begonnen habe (als Führungselite zusammensaß) und erkläre auch die Kriegführung — gezielt das Regime in all seinen Einrichtungen treffen. Die USA konzentrieren sich stärker auf militärische Einrichtungen. Das sei ein wichtiger Unterschied, den man bei der Frage 'wie geht dieser Krieg und was will er erreichen?' nicht übersehen darf.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen präzisiert eine implizite Frage durch eigenständige Initiative und macht einen analytisch wichtigen Punkt: Israel und USA haben unterschiedliche Kriegsziele. Das ist eine substantielle Analyse.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Israel hat für mich einen absolut entscheidenden Faktor in diesem Krieg. Israel und israelische Regierung unter Ministerpräsident haben ein ganz eindeutiges Ziel, als Treiber dieser gesamten Entwicklung. Sie haben ein Ziel und eine Strategie: Systemwechsel und Regimewechsel in Iran. Darum machen sie das.",
+            "timestamp": "00:52:12"
+          }
+        ],
+        "concrete_statements": [
+          "Israel verfolgt explizit einen Systemwechsel im Iran.",
+          "Die USA konzentrieren sich primär auf militärische Kapazitäten.",
+          "Die Kriegführung (Zielauswahl) unterscheidet sich zwischen Israel und USA.",
+          "Netanyahu ist der Treiber dieser gesamten Entwicklung (Röttgens Interpretation)."
+        ],
+        "related_bundestag_topics": [
+          "Israel-Politik",
+          "Regionale Sicherheit",
+          "Kriegsziele und Kriegführung"
+        ]
+      },
+      {
+        "title": "Ukraine-Unterstützung vs. Nahost-Engagement",
+        "timestamp_range": "00:53:58 - 00:56:51",
+        "theme_description": "Röttgen widersetzt sich der Darstellung eines Entweder-Oder zwischen Ukraine- und Nahost-Unterstützung.",
+        "question_asked": "Maybrit Illner warnt, dass Patriot-Systeme für den Iran gebraucht werden und nicht mehr der Ukraine zur Verfügung stehen. Mariam Lau argumentiert, dass sich westliche Aufmerksamkeit nun vom Ukraine-Krieg zum Iran verschiebt. Röttgen antwortet.",
+        "question_intent": "Illner und Lau möchten wissen, ob Deutschland tatsächlich beide Krisenregionen parallel unterstützen kann oder ob eine Priorisierung nötig ist.",
+        "position": "Röttgen lehnt das Entweder-Oder ab: Beide Konflikte sind gleichzeitig da. Der Ukraine-Krieg ist ein europäischer Krieg, der Nahost-Konflikt ist für die Golfregion zentral. Deutschland hat beide unterstützt. Er kritisiert implizit andere Länder (Spanien) dafür, dass sie Patriot-Systeme nicht weitergeben. Die Golfstaaten seien 'voll ausgestattet'. Das Problem sei nicht deutsche Ressourcenverteilung, sondern mangelnde Solidarität anderer Verbündeter. Röttgen betont: 'Das können wir nicht ausspielen gegen Sicherheitsinteressen, die auch im Nahen Osten für uns auf dem Spiel stehen.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen beantwortet die implizite Frage (müssen wir wählen?) mit Nein, aber er weicht Laus Argument aus, dass es faktisch zu einer Aufmerksamkeits- und Ressourcenumverteilung kommt. Seine Antwort ist normativ (es sollte nicht so sein), nicht deskriptiv (es passiert trotzdem).",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "quotes": [
+          {
+            "text": "Ich halte gar nichts davon, zu sagen, dass man die Dinge gegeneinander ausspielt. Sie sind beide gleichzeitig da. Der Krieg gegen die Ukraine ist ein Krieg in Europa. Wir haben viele Patriots geliefert.",
+            "timestamp": "00:53:58"
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland unterstützt beide Regionen parallel.",
+          "Der Ukraine-Krieg ist europäisch zentral.",
+          "Sicherheitsinteressen im Nahen Osten sind ebenfalls auf dem Spiel.",
+          "Andere Länder (Spanien) sollten ihre Patriot-Systeme teilen."
+        ],
+        "related_bundestag_topics": [
+          "Waffenlieferungen Ukraine",
+          "NATO-Verteidigungsfähigkeit",
+          "Mittlere Osten-Engagement"
+        ]
+      },
+      {
+        "title": "Trumps innenpolitischer Druck als Kriegstreiber",
+        "timestamp_range": "01:00:18 - 01:00:57",
+        "theme_description": "Röttgen analysiert, wie Trumps innenpolitische Lage seine Außenpolitik treibt.",
+        "question_asked": "Maybrit Illner und die Diskussionsrunde debattieren, ob Trump strategisch oder innenpolitisch motiviert ist. Röttgen wird nicht direkt gefragt, antwortet aber eigeninitiativ.",
+        "question_intent": "Die Diskussion versucht zu verstehen, ob Trumps Kriegführung im Iran rationale Außenpolitik oder Ablenkung von innenpolitischen Problemen ist.",
+        "position": "Röttgen: Trump ist 'irre unter Druck innenpolitisch'. Zu glauben, dass alles nur außenpolitisch sei, sei falsch. Das zentrale Zollthema sei ihm 'aus der Hand geschlagen worden'. Der Riesenerfolg in Venezuela habe ihn ermuntert, auf diesem Gebiet Zustimmung zu suchen, 'die er innenpolitisch nicht erreichen kann'. Das spiele 'nach meiner Einschätzung auch eine Rolle' — also nicht nur strategische Logik, sondern Innenpolitik.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen beantwortet die implizite Frage (Außenpolitik oder Innenpolitik?) substantiell mit einer psychologisch-motivationalen Analyse: Beides spielt eine Rolle, aber Innenpolitik ist nicht zu unterschätzen.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Trump ist irre unter Druck innenpolitisch. Das zentrale Thema Zölle ist ihm aus der Hand geschlagen worden. Es fing alles an mit diesem Riesenerfolg in Venezuela. Diese 'großartige Leistung', wie es dort gesehen wird. Das hat ihn ermuntert, auf diesem Gebiet Zustimmung zu suchen, die er innenpolitisch nicht erreichen kann.",
+            "timestamp": "01:00:18"
+          }
+        ],
+        "concrete_statements": [
+          "Trump unterliegt erheblichem innenpolitischem Druck.",
+          "Zollpolitik ist aus seiner Hand geglitten.",
+          "Venezuela-'Erfolg' ermunterte ihn zu weiteren geopolitischen Actionen.",
+          "Außenpolitische Aktion ersetzt innenpolitische Erfolgslosigkeit."
+        ],
+        "related_bundestag_topics": [
+          "Trump-Administration",
+          "US-Außenpolitik",
+          "Transatlantische Beziehungen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das iranische Regime hat vor wenigen Wochen 30.000 Menschen niedergemäht.",
+        "timestamp": "00:11:38"
+      },
+      {
+        "claim": "Das Grundgesetz nennt zwei Fälle, in denen die Bundeswehr eingesetzt werden kann: Verteidigung und Rahmen kollektiver Sicherheit.",
+        "timestamp": "00:17:21"
+      },
+      {
+        "claim": "Es gibt im wesentlichen zwölf Ethnien im Iran.",
+        "timestamp": "00:25:14"
+      },
+      {
+        "claim": "Ein Regimewechsel im Iran würde 0,5 % globalen Wachstums entsprechen (Felbermayr).",
+        "timestamp": "00:39:53"
+      },
+      {
+        "claim": "In den ersten fünf Tagen wurde eine große Luftverteidigung des Iran zerstört; es gibt keine Luftverteidigung im Iran mehr.",
+        "timestamp": "00:41:54"
+      }
+    ]
+  }
+}

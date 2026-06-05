@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-14-januar-2026-100",
+    "video_id": "lanz-2026-01-14",
+    "politician": "Manfred Weber",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "605bbe83d0a19abc",
+    "transcript_chars": 54355,
+    "caption_lines": 2714,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22389,
+    "tokens_out": 7059,
+    "cost_usd": 0.0230736,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 11,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.141Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Manfred Weber (EVP, EU-Parlament) nimmt in der Markus Lanz-Sendung zu geopolitischen Krisen (Iran, Grönland, Venezuela) sowie zu EU-Strategien gegen Trump-Politik Stellung. Er argumentiert für eine gestärkte europäische Einheit, kritisiert nationale Egoismen und die Handlungsunfähigkeit Europas, warnt vor der AfD als Verbündete des Trump-Populismus und plädiert für einen starken, geschlossenen EU-Kurs — in sachlichem, dezidiert pro-europäischem Ton.",
+    "themes": [
+      {
+        "title": "Europäische Unterstützung für Protestbewegung im Iran",
+        "timestamp_range": "00:11:47 - 00:13:28",
+        "theme_description": "Manfred Weber wird gefragt, wie Europa und Deutschland die Protestbewegung im Iran unterstützen sollte, nachdem Markus Lanz von mangelnder EU-Solidarität berichtet.",
+        "question_asked": "Markus Lanz fragt Manfred Weber, wo Europas und Deutschlands Unterstützung für die Protestbewegung im Iran aussieht, angesichts der Hinrichtungsdrohungen gegen Demonstranten (00:11:35 - 00:11:47).",
+        "question_intent": "Lanz möchte wissen, wie die EU konkret die iranische Zivilgesellschaft unterstützen kann und warum Europa weniger sichtbar ist als die USA.",
+        "position": "Weber plädiert dafür, dass die EU ihre Botschaften im Iran öffnet — vergleichbar mit dem Ostblock-Modell — um sichere Orte zu schaffen und zu zeigen, dass Europa auf der richtigen Seite steht. Er kritisiert, dass die Revolutionsgarde nicht auf die Terrorliste gesetzt wurde, obwohl sie eine Terrororganisation ist. Kernaussage: \"Das heutige Europa ist nicht handlungsfähig\" — es brauche Einstimmigkeit aller 27 Mitgliedstaaten. Weber verweist auf die Notwendigkeit amerikanisch-europäischer Koordination: \"Es ist gut zu sehen, dass Amerika und Europa auf der gleichen Seite sind um sie zu unterstützen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber beantwortet die Frage direkt mit konkreten Forderungen (Öffnung von Botschaften, Terrorlisten-Eintrag der Revolutionsgarde) und verbindet sie mit seiner Diagnose europäischer Handlungsunfähigkeit. Er adressiert sowohl die Unterstützungsfrage als auch das strukturelle Problem der EU-Einstimmigkeitsregel.",
+        "concrete_statements": [
+          "EU Botschaften im Iran sollten geöffnet werden, ähnlich wie im Ostblock",
+          "Die Revolutionsgarde ist eine Terrororganisation und sollte auf die Terrorliste gesetzt werden",
+          "Europa kann nur handeln, wenn alle 27 Mitgliedstaaten zustimmen",
+          "Amerika und Europa sollten koordiniert auf der gleichen Seite stehen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde mir wünschen, dass wir unsere EU Botschaften in dem Iran öffnen. Ähnlich wie wir es im Ostblock erlebt haben. Man müsste einen sicheren Ort der Sicherheit anbieten. Wir müssen zeigen dass wir auf der richtigen Seite stehen.",
+            "timestamp": "00:11:47",
+            "context": "In Reaktion auf die Frage, wie Europa und Deutschland die Protestbewegung im Iran unterstützen können."
+          },
+          {
+            "text": "Mit dem Wahnsinnsargument, wir brauchen Gesprächs träte in dem Iran. Wir haben es mit einem Terrorregime zu tun. Sie sind eine Terrororganisation, das sieht man an den Bildern.",
+            "timestamp": "00:12:46",
+            "context": "Kritik an der Weigerung von Frankreich und Italien, die Revolutionsgarde auf die Terrorliste zu setzen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Sanktionen",
+          "EU-Außenpolitik",
+          "Terrorismusbekämpfung",
+          "Menschenrechte"
+        ]
+      },
+      {
+        "title": "NATO-Konflikt und Selbstbehauptung gegen Trump-Ultimaten",
+        "timestamp_range": "00:32:13 - 00:38:17",
+        "theme_description": "Weber wird zu Trumps Drohungen gegen Grönland und zur NATO-Verletzung durch US-Forderungen befragt; er soll die Reaktion europäischer Staaten und die deutsche Verteidigungsstrategie bewerten.",
+        "question_asked": "Markus Lanz fragt Manfred Weber, wie Europa und Politiker wie Friedrich Merz auf Trumps aggressives Verhalten (Grönland, Mexiko, Kolumbien) reagieren sollten — mit Demut oder mit Selbstbewusstsein. Die Frage zielt auf die Frage ab, ob Deutschland und die EU sich wehren sollten (00:20:33 - 00:21:00, sowie 00:32:13 - 00:34:20).",
+        "question_intent": "Lanz möchte verstehen, wie Weber Europas Rolle gegenüber einem Präsidenten einschätzt, der mit Gewalt droht und Völkerrecht ablehnt, und wie die EU ihre Interessen durchsetzen kann.",
+        "position": "Weber verweist zunächst auf die grundsätzliche Problematik: Es geht um einen NATO-Konflikt, bei dem Trump seinen Egoismus über Bündnissolidarität stellt. Die AfD begrüße diesen Egoismus, was falsch sei. Weber betont, dass die USA und Europa getrennte Interessen haben: Während Amerika sich die westliche Hemisphäre aneignen will, hat die EU — insbesondere Deutschland — am meisten von den bestehenden Strukturen (EU, NATO) profitiert. Grönland sei ein europäisches Sicherheitsproblem, keine US-Angelegenheit. Weber unterstützt deutsche Truppenpräsenz in Grönland — \"Ich bin sehr dafür. Es ist unsere Sicherheit\" — weil dies ein Signal europäischer Handlungsfähigkeit ist. Kern: Europa muss sich bewusst machen, dass eine gestärkte EU die einzige Antwort auf nationalen Egoismus ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber beantwortet sowohl die Frage zur europäischen Reaktionsstrategie als auch zum deutschen Verteidigungsbeitrag konkret. Er argumentiert, dass europäisches Selbstbewusstsein (nicht Demut) notwendig ist, und verknüpft dies mit seiner EU-Integration-These.",
+        "concrete_statements": [
+          "Eine militärische Aktion gegen Grönland würde das Ende der NATO bedeuten",
+          "Deutsche Soldaten sollten nach Grönland gehen — es ist europäische Sicherheit",
+          "Gemeinsames europäisches Auftreten mit den USA ist die beste Strategie",
+          "Länder wie Polen und Finnland haben sich klar gegen Trump-Ultimaten positioniert",
+          "Grönland ist ein gemeinsames europäisches Problem, kein deutsches Einzelproblem"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht um einen Konflikt innerhalb der NATO. Es ist eine Substanzfrage. Es wurde begrüßt. Er sagt, ich setze meinen Egoismus über alles. Die AfD und andere begrüßen das.",
+            "timestamp": "00:32:13",
+            "context": "Reaktion auf die Frage, wie Europa auf Trump-Ultimaten reagieren sollte; Weber kritisiert die AfD-Unterstützung für Trumps Egoismus."
+          },
+          {
+            "text": "Ich bin sehr dafür. Es ist unsere Sicherheit. Die Schweden haben es bereits angekündigt. Die Finnen hat am meisten Erfahrung im Winter kommt. Gemeinsam Flagge zeigen mit USA ist die beste Strategie.",
+            "timestamp": "00:53:49",
+            "context": "Auf die Frage von Markus Lanz, ob deutsche Soldaten nach Grönland gehen sollten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "Sicherheitspolitik",
+          "Europäische Verteidigungsfähigkeit",
+          "USA-Außenpolitik",
+          "Grönland-Konflikt"
+        ]
+      },
+      {
+        "title": "AfD-Positionierung zwischen Trump-Bewunderung und europäischer Substanz",
+        "timestamp_range": "00:32:13 - 00:45:10",
+        "theme_description": "Weber wird gefragt, wie die AfD ihre Unterstützung für Trump mit ihrer Forderung nach Wehrpflicht und Rüstungsausgaben vereinbart; er soll die inkonsistente AfD-Positionierung analysieren.",
+        "question_asked": "Markus Lanz stellt fest, dass die AfD einerseits Patriotismus und Wehrpflicht fordert, andererseits aber Truppeneinsätze in der Ukraine ablehnt — eine Inkonsistenz. Later fragt Lanz, warum AfD-Posts es so darstellen, dass deutsche Soldaten in die Ukraine geschickt werden, obwohl das nicht wahr ist (00:42:42 - 00:43:27). Weber wird implizit gefragt, die AfD-Rhetorik zu bewerten.",
+        "question_intent": "Lanz möchte aufdecken, dass die AfD populistische Rhetorik betreibt, ohne echte Positionen zu haben, und dass sie Trump bejubelt, während sie gleichzeitig deutsche Sicherheitsinteressen in der NATO gefährdet.",
+        "position": "Weber kritisiert die AfD scharf: Sie begrüße Trumps nationalen Egoismus und feierten ihn öffentlich, aber das zeige, dass sie nicht in Europas Interesse handelt. Weber zitiert Björn Höcke mit der Aussage, dass Deutschland es nicht wert sei, verteidigt zu werden — ein Regimewechsel-Gedanke. Weber sieht die AfD als Trägerin einer anderen Logik, die mit Lucke und Petry begann, die sich abwandten, weil sie die AfD bürgerlich halten wollten. Die aktuelle AfD habe diese bürgerliche Verankerung verloren. Konkret: Die AfD stimme gegen Rückführungs-Verfahren ab, obwohl diese Migration minimieren sollen. Das sei Unaufrichtigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Weber adressiert die implizite Frage nach AfD-Inkonsistenz, lenkt aber den Fokus von der Rhetorik-Analyse auf die grundsätzliche Frage: Wer steht auf welcher Seite? (EU vs. Trump). Dies ist ein Pivot von der konkreten Rhetorik-Kritik zu einer grundsätzlichen Positionierung.",
+        "concrete_statements": [
+          "Die AfD begrüßte Trumps Egoismus und feierten ihn öffentlich",
+          "Höcke sagte, dass Deutschland es nicht wert sei, verteidigt zu werden",
+          "Die AfD hat ihre bürgerliche Verankerung verloren (seit Lucke und Petry)",
+          "Die AfD stimmt gegen Rückführungs-Verfahren ab, obwohl diese ihrer Migration-Rhetorik entsprechen sollten",
+          "Wer die EU-Strukturen in Frage stellt, stellt Deutschland in Frage"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht um einen Konflikt innerhalb der NATO. Es ist eine Substanzfrage. Es wurde begrüßt. Er sagt, ich setze meinen Egoismus über alles. Die AfD und andere begrüßen das. Sie haben es politisch genutzt und Gefeiert. Es zeigt dass das Denken ähnlich ist aber wie geht man mit dem Egoismus um?",
+            "timestamp": "00:32:13",
+            "context": "Kritik an der AfD-Unterstützung für Trumps Egoismus und ihrer Fehleinschätzung von Deutschlands Interessen."
+          },
+          {
+            "text": "Es war ein innerer Streit, es wurde gesagt, dass Deutschland ist es nicht wert, zu verteidigen. Das hat Herr Höcke zum Ausdruck verbracht. Es gibt Menschen, die sagen, unser Land ist es nicht wert, verteidigt zu werden. Unsere Werte. Das ist der Regimewechsel, den man will.",
+            "timestamp": "00:45:30",
+            "context": "Weber zitiert Höcke und kritisiert die AfD-Position zur Wehrpflicht und Landesverteidigung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "Migration",
+          "Sicherheitspolitik",
+          "Wehrpflicht",
+          "Trump-Haltung"
+        ]
+      },
+      {
+        "title": "Europäische Handlungsfähigkeit durch EU-Integration gegen Zersplitterung",
+        "timestamp_range": "00:52:01 - 00:53:52",
+        "theme_description": "Weber wird gefragt, wie Europa sich wirtschaftlich und politisch gegen Trumps Zölle und Egoismus wehren kann; er soll die Chancen europäischer Integration bewerten.",
+        "question_asked": "Markus Lanz weist darauf hin, dass Trumps Zölle Europa schwächen (00:52:01 - 00:52:19), und impliziert die Frage: Können nationale Reaktionen ausreichen? Später fragt er konkret nach dem Mercosur-Abkommen und dessen Erfolg (00:54:05 - 00:55:14).",
+        "question_intent": "Lanz möchte verstehen, ob die EU-Integration (z.B. Mercosur) eine ausreichende Antwort auf Trump-Protektionismus ist, und ob Weber diesen Erfolg wirklich als Sieg darstellen kann.",
+        "position": "Weber argumentiert, dass nur eine gestärkte EU europäische Interessen durchsetzen kann. Nationale Länder wie Deutschland allein seien nicht mehr in der Lage, ihre Interessen zu vertreten. Er verweist auf das bevorstehende Mercosur-Abkommen als Beispiel europäischer Gegenkraft — es sei ein \"Anti-Donald-Trump-Pakt\". Konkrete Erfolge: 30%-Zölle werden auf 0% reduziert (sub703-704), 700 Millionen Verbraucher profitieren (sub704). Das Gesetz zum Schutz europäischer Bauern werde in der nächsten Woche beschlossen. Weber betont: \"Wo wir ein starkes Europa haben, sind wir handlungsfähig. Wenn wir die Einstimmigkeit haben.\" Allerdings zeigt er auch das strukturelle Dilemma: Einstimmigkeit ist notwendig, aber lähmend.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber antwortet direkt auf die Frage nach europäischer Gegenkraft: Die EU ist das einzige Mittel, nationale Egoismen zu überwinden. Er belegt dies mit dem Mercosur-Beispiel und konkreten Zahlen, demonstriert aber auch das Dilemma (Einstimmigkeit).",
+        "concrete_statements": [
+          "Eine gestärkte Europäische Union ist die einzige Antwort auf nationalen Egoismus",
+          "Das Mercosur-Abkommen ist ein Anti-Donald-Trump-Pakt",
+          "Zölle werden von 30% auf 0% reduziert, 700 Millionen Verbraucher profitieren",
+          "Ein Schutzgesetz für europäische Bauern wird nächste Woche beschlossen",
+          "Deutschland alleine ist nicht mehr in der Lage, seine Interessen zu vertreten"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben es mit nationalem Egoismus zu tun, das wird schön geredet. Die einzige Frage, die sich jetzt stellt, wer hat die Kraft, seine eigenen Interessen noch durchzusetzen? Da gibt es nur eine Antwort: eine gestärkte Europäische Union.",
+            "timestamp": "00:52:23",
+            "context": "In Reaktion auf Lanz' Bemerkung, dass Trumps Zölle und Rhetorik Europa schwächen."
+          },
+          {
+            "text": "Wir haben einen über 30 % Zoll. Wir werden auf 0 % runterkommen. 700 Millionen Verbraucher. Wenn wir es schaffen dass wir das abschließen, werden wir am Ende des Monats auch Indien, Australien, Neuseeland abschließen.",
+            "timestamp": "00:55:14",
+            "context": "Auf Lanz' Frage, ob das Mercosur-Abkommen ein politischer oder ökonomischer Erfolg ist; Weber betont die Chancen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenhandel",
+          "EU-Integration",
+          "Handelspolitik",
+          "Protektionismus",
+          "Mercosur-Abkommen"
+        ]
+      },
+      {
+        "title": "Datenschutz als Souveränitätsfrage gegen US-Konzerne",
+        "timestamp_range": "01:01:34 - 01:03:31",
+        "theme_description": "Weber wird gefragt, warum Elon Musk und die US-Administration sich in europäische Datenschutzgesetze einmischen und ob die EU (mit ihrer Besorgnis um Demokratie) nicht selbst das problem sei.",
+        "question_asked": "Beatrix von Storch führt an, dass die USA (vertreten durch Elon Musk) Bedenken um deutsche Demokratie äußert, und Markus Lanz fragt, ob die EU wirklich für den digitalen Service Act kämpft (01:01:34 - 01:02:36). Weber wird implizit gefragt, warum die US-Administration in europäische Datenschutzpolitik eingreift.",
+        "question_intent": "Lanz möchte verstehen, ob Elon Musks und Trumps Kritik an EU-Zensur (unter dem Deckmantel von Demokratiesorge) legitim ist, oder ob dies nur ein Vorwand für wirtschaftliche Interessen ist.",
+        "position": "Weber lehnt die US-Einmischung ab und weist Elon Musks Argumentation als heuchlerisch zurück: \"Wenn Elon Musk zugeschaltet hat, wie naiv muss man sein, dass er das aus Nettigkeit und für die Demokratie macht. Er macht das für Daten, Das sind die neuen Währungen.\" Weber betont, dass Datenschutz ein europäisches Recht ist und dass europäische Daten auf europäischen Servern gespeichert sein sollten. Die USA können der EU keine Lektionen über Demokratie erteilen, während gleichzeitig US-Konzerne europäische Gesetze sabotieren. Weber verweist auf die Kraft der EU: \"Wenn jeder amerikanische Großkonzern Geld verdienen will, muss er diese Gesetze akzeptieren. Dieses Bewusstsein brauchen wir.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber beantwortet die implizite Frage nach US-Einmischung direkt und durchschauend: Er entlarvt Musks Rhetorik als Interesse an Datenzugang und plädiert für europäische Durchsetzungskraft gegen US-Konzerne. Dies ist eine klare Position zur Souveränitätsfrage.",
+        "concrete_statements": [
+          "Elon Musk und die US-Administration interessieren sich für Daten, nicht für Demokratie",
+          "Europäische Daten sollten nur auf europäischen Servern gespeichert sein",
+          "US-Konzerne müssen europäische Gesetze akzeptieren, wenn sie Geld verdienen wollen",
+          "Die USA dürfen der EU keine Lektionen über Demokratie erteilen, während sie europäische Gesetze sabotieren"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn Elon Musk zugeschaltet hat, wie naiv muss man sein, dass er das aus Nettigkeit und für die Demokratie macht. Er macht das für Daten, Das sind die neuen Währungen. Damit verdient man viel Geld. Er möchte Zugriff auf diese Daten haben, deswegen mag er sie nicht, weil sie so geschützt sind.",
+            "timestamp": "01:01:34",
+            "context": "In Reaktion auf die Behauptung, dass die USA Bedenken um deutsche Demokratie haben und Elon Musk europäische Datenschutzgesetze kritisiert."
+          },
+          {
+            "text": "Ich bin der Meinung, dass Datenschutz richtig und wichtig ist. Unsere öffentlichen Daten, dass die nicht auf amerikanischen und chinesischen Servern liegen sollten. Die sollten nur auf europäischen Servern gespeichert sein. Wenn wir akzeptieren, dass die Amerikaner uns Lektionen erteilen, wie unsere Gesetze aussehen.",
+            "timestamp": "01:02:44",
+            "context": "Weber betont die Wichtigkeit europäischer Datensouveränität gegen US-Einflussnahme."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Datenschutz",
+          "Digitale Souveränität",
+          "Digital Services Act",
+          "EU-Regulierung"
+        ]
+      },
+      {
+        "title": "Europäische Regulierung gegen Desinformation und Fake News",
+        "timestamp_range": "01:13:00 - 01:13:31",
+        "theme_description": "Weber wird gefragt, wie die EU gegen Desinformation und Fake News vorgehen kann, insbesondere im Kontext von Wahlkampf-Beeinflussung (z.B. Rumänien-Wahl).",
+        "question_asked": "Markus Lanz versucht, Beatrix von Storch zum Thema Zensur und Regulierung zu drängen; Weber wird implizit nach seiner Sicht auf europäische Regulierung von Desinformation gefragt (01:13:00 - 01:13:31).",
+        "question_intent": "Lanz möchte verstehen, wie die EU Desinformation bekämpft, ohne dabei Meinungsfreiheit zu zerstören, und ob dies eine legitime Regulierungsaufgabe ist.",
+        "position": "Weber argumentiert, dass Desinformation ein echtes Problem sei, besonders wenn externe Mächte (z.B. Russland in der Rumänien-Wahl) eingreifen. Die EU müsse Regulierung durchsetzen und europäische Standards für Transparenz und Rechenschaftspflicht implementieren. Dies sei nicht Zensur, sondern notwendige Regulierung zum Schutz der freien Demokratie. \"Wenn wir da nicht regulieren und europäische Standards durchsetzen und Klagen einfordern, dann haben wir keine freie Demokratie mehr.\" Weber betont die Unterscheidung zwischen Meinungsfreiheit und verbreiteter Lüge.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber beantwortet die Frage zur Desinformation-Regulierung direkt und substantiell: Er verweist auf konkrete Beispiele (Rumänien-Wahl) und plädiert für europäische Standards als Schutz der Demokratie, nicht als Zensur.",
+        "concrete_statements": [
+          "Desinformation mit Belegen über russischen Einfluss ist ein echtes Problem",
+          "Die EU muss europäische Standards für Desinformation durchsetzen",
+          "Klagen gegen Fake News müssen eingefordert werden",
+          "Ohne Regulierung haben wir keine freie Demokratie mehr"
+        ],
+        "quotes": [
+          {
+            "text": "Mit gezielter Desinformation wird im rumänischen Wahlkampf haben wir Belege über russischen Einfluss. Diese Dimension, wenn wir da nicht regulieren und europäische Standards durchsetzen, und Klagen einfordern. Ich will wissen, wer was sagt. Wir brauchen diese Kraft, das umzusetzen. Wenn das nicht passiert, haben wir keine freie Demokratie mehr.",
+            "timestamp": "01:13:00",
+            "context": "Antwort auf die implizite Frage nach europäischer Desinformation-Bekämpfung; Weber verweist auf russische Beeinflussung in der Rumänien-Wahl."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Desinformation",
+          "Wahlintegrität",
+          "Digitale Sicherheit",
+          "Europäische Regulierung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Revolutionsgarde im Iran kontrolliert 80% der Wirtschaft",
+        "timestamp": "00:24:51"
+      },
+      {
+        "claim": "Wir werden bei Mercosur von über 30% Zoll auf 0% runterkommen",
+        "timestamp": "00:55:14"
+      },
+      {
+        "claim": "Mit Kanada vereinbar, sind die Preise für den Mittelstand nach oben gegangen",
+        "timestamp": "00:57:15"
+      },
+      {
+        "claim": "In Rumänien gab es russischen Einfluss auf den Wahlkampf mit Belegen",
+        "timestamp": "01:13:00"
+      },
+      {
+        "claim": "Björn Höcke hat gesagt, dass Deutschland es nicht wert sei, verteidigt zu werden",
+        "timestamp": "00:45:30"
+      }
+    ]
+  }
+}

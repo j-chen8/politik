@@ -1,0 +1,245 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wOS0zMF8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-09-30",
+    "politician": "Ines Schwerdtner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "1c11595d85ddd394",
+    "transcript_chars": 51848,
+    "caption_lines": 1902,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21434,
+    "tokens_out": 5887,
+    "cost_usd": 0.0203476,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 3,
+      "invalid": 2,
+      "valid_pct": "80.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.515Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ines Schwerdtner, Bundesvorsitzende der Linken und MdB, tritt in einer Maischberger-Diskussion zu Koalitions- und Reformplänen sowie Außenpolitik auf. Sie nimmt eine konfrontative Haltung gegenüber der geplanten Sozialreformen ein, kritisiert die vermeintliche Doppelmoral der CDU/CSU in der Frage des Unvereinbarkeitsbeschlusses und bezieht klare Positionen zu Steuergerechtigkeit, Wehrpflicht und dem Gaza-Konflikt.",
+    "themes": [
+      {
+        "title": "Unvereinbarkeitsbeschluss und Zusammenarbeit mit AfD",
+        "timestamp_range": "00:21:54 - 00:26:04",
+        "theme_description": "Debatte über die Rechtmäßigkeit und Anwendung des Unvereinbarkeitsbeschlusses gegen Die Linke im Vergleich zur AfD und faktische Koalitionen mit der AfD auf lokaler Ebene.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner, nachdem Philipp Amthor auf die Frage antwortet, ob ein parlamentarischer Staatssekretär eine Genehmigung der Parteispitze benötigt, um mit ihr zu reden: ob Schwerdtner sich mehr Austausch mit der CDU/CSU wünsche.",
+        "question_intent": "Sandra Maischberger möchte wissen, ob Schwerdtner an Gesprächen mit Amthor und der CDU/CSU interessiert ist.",
+        "position": "Schwerdtner lehnt Gespräche mit Spahn und Linnemann ab und bezeichnet den Unvereinbarkeitsbeschluss als Farce. Sie erwartet vom Kanzler, dass er für die nächste Zweidrittelmehrheit eine andere Lösung findet. Sie betont, dass der Unvereinbarkeitsbeschluss eine künstliche Unterscheidung darstellt, ohne die inhaltlichen Gründe einer Zusammenarbeit zu adressieren. Sie wirft der CDU/CSU vor, auf kommunaler Ebene bereits mit der AfD zusammenzuarbeiten und damit doppelzüngig zu handeln, besonders in Mecklenburg-Vorpommern. Die Linke hingegen habe sich in Thüringen und Sachsen pragmatisch verhalten, um Haushalte zu sichern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner antwortet auf die Austauschfrage mit einer klaren Ablehnung, adressiert aber nicht direkt, ob sie selbst Gespräche führen möchte. Sie lenkt stattdessen auf die Kritik des Unvereinbarkeitsbeschlusses und die Doppelmoral der CDU ab, was eine Umleitung auf einen Gegenpunkt darstellt.",
+        "concrete_statements": [
+          "Ganz und gar nicht. Ich muss nicht mit Herrn Spahn, Herrn Linnemann sprechen.",
+          "Ich halte es für eine Farce, wenn eine Partei es nicht schafft, eine Zweidrittelmehrheit zu organisieren.",
+          "Ich erwarte es von einem Kanzler, dass er sagt, beim nächsten Mal würden wir anders reagieren.",
+          "Die Brandmauer mit der AfD ist kommunal schon lange gefallen."
+        ],
+        "quotes": [
+          {
+            "text": "Ganz und gar nicht. Ich muss nicht mit Herrn Spahn, Herrn Linnemann sprechen. Ich halte es für eine Farce, wenn eine Partei es nicht schafft, eine Zweidrittelmehrheit zu organisieren.",
+            "timestamp": "00:22:22",
+            "context": "Sandra Maischberger fragt, ob Schwerdtner mehr Austausch mit der CDU/CSU wünsche."
+          },
+          {
+            "text": "Es ist absolute Doppelmoral. In ihrem Bundesland gibt es diverse Zusammenarbeit auf kommunaler Ebene. Mit der AfD. Die Brandmauer mit der AfD ist kommunal schon lange gefallen.",
+            "timestamp": "00:24:24",
+            "context": "Schwerdtner wirft Philipp Amthor Doppelstandards bei der Anwendung des Unvereinbarkeitsbeschlusses vor."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Unvereinbarkeitsbeschluss gegen Die Linke",
+          "Koalitionen und Minderheitsregierungen",
+          "AfD-Abgrenzung",
+          "Brandmauer-Debatte"
+        ]
+      },
+      {
+        "title": "Sozialreformen und Kritik an Merz-Regierungsplänen",
+        "timestamp_range": "00:27:05 - 00:31:47",
+        "theme_description": "Bewertung der geplanten Sozialreformen des Kabinetts Merz, insbesondere zur Pflege, zum Bürgergeld und zu Fragen sozialer Gerechtigkeit.",
+        "question_asked": "Sandra Maischberger fragt Ines Schwerdtner (nachdem Amthor von Reformplänen spricht): 'Uns geht es gar nicht so schlecht. Wie kriegen Sie das zusammen mit dem Herbstreformen?'",
+        "question_intent": "Sandra Maischberger möchte erfahren, wie Schwerdtner die Kritik rechtfertigt, wenn Deutschland wirtschaftlich nicht schlecht dasteht.",
+        "position": "Schwerdtner bezeichnet die geplanten Sozialreformen als absoluten Skandal und wirft der Merz-Regierung vor, kontinuierlich den Sozialstaat anzugreifen – erst die Rentner, dann die Pflege, dann junge Menschen. Sie behauptet, Merz habe nicht mit Menschen in Pflegeberufen gesprochen, die von der Abschaffung der Pflegestufe 1 betroffen sind. Sie kritisiert, dass ein Rekordhaushalt aufgestellt wurde, aber keine Entlastung bei den Bürgern ankommt, und wird persönlich: 'Sagen Sie das mal einer Sozialarbeiterin ins Gesicht.' Zur Bürgergeld-Debatte sagt sie, dass die Fokussierung auf Leistungsmissbrauch (0,27 Prozent) nur symbolisch sei und von echten Problemen ablenke. Sie fordert stattdessen, über Vermögenssteuer und höhere Löhne zu sprechen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwerdtner beantwortet die Frage zur wirtschaftlichen Situation nicht direkt, sondern greift stattdessen die Sozialpolitik an. Sie adressiert implizit das Argument, dass Reformen nötig seien, dreht aber das Framing um: nicht das Land ist marode, sondern die Regierung attackiert den Sozialstaat unnötig.",
+        "concrete_statements": [
+          "Ich halte es für einen absoluten Skandal.",
+          "Die Pflegestufe 1 soll abgeschafft werden. Sie machen Attacken auf den Sozialstaat. Jede Woche eine Attacke.",
+          "Die Menschen erwarten Entlastungen. Sie haben eine Rekordhaushalt aufgestellt und es kommt keine Entlastung bei den Menschen an.",
+          "Diese Debatte ist einfach nur Treten nach unten. Dann reden wir über die da oben.",
+          "Es ist absolut symbolisch. [...] Wir müssen den Haushalt auf nachhaltige Füße stellen. Die Leute müssen mehr verdienen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte es für einen absoluten Skandal. Ich weiß nicht, ob Herr Merz mit Menschen gesprochen haben, die in der Pflege arbeiten, die Sozialarbeiter sind. Die jetzt gesagt bekommen, die Pflegestufe 1 soll abgeschafft werden. Sie machen Attacken auf den Sozialstaat. Jede Woche eine Attacke.",
+            "timestamp": "00:27:22",
+            "context": "Sandra Maischberger stellt die Frage zur Vereinbarkeit von guter Wirtschaftslage und Reformbedarf."
+          },
+          {
+            "text": "Es ist absolut symbolisch. [...] Diese Debatte ist einfach nur Treten nach unten. Dann reden wir über die da oben.",
+            "timestamp": "00:31:09",
+            "context": "Schwerdtner kritisiert die Fokussierung auf Bürgergeld-Missbrauch statt auf strukturelle Steuerungerechtigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Pflegereform",
+          "Bürgergeld und Leistungsmissbrauch",
+          "Sozialstaat",
+          "Gerechtigkeitsdebatte",
+          "Löhne und Steuern"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer und Steuergerechtigkeit",
+        "timestamp_range": "00:31:16 - 00:37:10",
+        "theme_description": "Debatte über Vermögenssteuer, Erbschaftssteuer und die Frage, wer durch Steuern zur Finanzierung des Sozialstaats herangezogen werden sollte.",
+        "question_asked": "Sandra Maischberger bezieht sich auf die Aussage von Jens Spahn zur Erbschaftssteuer (über 300 Wohnungen als Betriebsvermögen): 'Ist das gerecht?' und fragt Amthor, wie er das sieht. Schwerdtner ergänzt die Debatte durch mehrere Interventionen zur Vermögenssteuer.",
+        "question_intent": "Sandra Maischberger möchte klären, ob die geltenden Steuerregeln für große Vermögen gerecht sind.",
+        "position": "Schwerdtner argumentiert, dass die Fokussierung auf Bürgergeld-Missbrauch (100 Millionen Euro Schaden) unbedeutend ist, wenn man es mit den Milliarden vergleicht, die durch fehlende Vermögenssteuer verloren gehen. Sie behauptet, dass 2024 13,3 Milliarden Euro Erbschafts- und Verschenkungssteuer eingenommen wurden, und dass hunderte Milliarden Euro durch die ausgesetzte Vermögenssteuer verloren gehen. Sie wirft Amthor vor, sich 'nicht an die Reichen ran zu trauen' und beschuldigt ihn des Populismus. Sie kritisiert auch, dass es eine breite Mehrheit in Deutschland für Vermögenssteuer gibt, die aber nicht umgesetzt wird. Zur konkreten Frage der Pflegestufe 1: Sie lehnt kurz ab, dass die älteren später in Rente gehen sollen, und beantwortet mehrere Schnellfragen mit klaren Positionen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner liefert konkrete Zahlen und eine klare steuerpolitische Position: sie kritisiert die Vernachlässigung von Vermögenssteuer und Erbschaftssteuer und betont, dass dies die nachhaltige Finanzierung des Sozialstaats ermöglichen würde. Sie adressiert die Gerechtigkeitsfrage direkt und widersetzt sich Amthors Argument, dass höhere Vermögenssteuern zu Abwanderung führten.",
+        "concrete_statements": [
+          "Das kann man tun und trotzdem ist die Debatte fehl, wenn wir nicht über Milliardäre sprechen.",
+          "Es gibt eine breite Mehrheit in Deutschland, die für eine Vermögenssteuer ist. Eine breite Mehrheit, die das Steuer-System als ungerecht befindet.",
+          "Wir haben die Vermögenssteuer ausgesetzt und uns entgehen jedes Jahr hunderte Mrd.. 2024 gab es 13,3 Mrd. Erbschaft und Verschenkungssteuer.",
+          "Sie tun so, als müssten wir sparen und sparen, weil Sie sich nicht an die Reichen ran trauen.",
+          "Für alles, was wir sanieren wollen, brauchen wir Geld."
+        ],
+        "quotes": [
+          {
+            "text": "Das kann man tun und trotzdem ist die Debatte fehl, wenn wir nicht über Milliardäre sprechen. Können wir dabei bleiben? Wir kommen gleich zu den Steuern. 100 Mio. Schaden. Ich sage nur, wie sprechen über Totalverweigerer, wir reden über einen kleinen Anteil im Verhältnis zu den Mrd., die wir dazu bekommen könnten für unseren Sozialstaat.",
+            "timestamp": "00:30:42",
+            "context": "Nach Amthors Nennung von konkreten Zahlen zu Bürgergeld-Missbrauch kritisiert Schwerdtner die Verhältnismäßigkeit der Debatte."
+          },
+          {
+            "text": "Es gibt eine breite Mehrheit in Deutschland, die für eine Vermögenssteuer ist. Eine breite Mehrheit, die das Steuer-System als ungerecht befindet.",
+            "timestamp": "00:35:09",
+            "context": "Schwerdtner argumentiert für die demokratische Legitimation von Vermögenssteuer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögenssteuer",
+          "Erbschaftssteuer",
+          "Steuergesetzgebung",
+          "Sozialstaatsfinanzierung",
+          "Steuergerechtigkeit"
+        ]
+      },
+      {
+        "title": "Außenpolitik: Wehrpflicht und NATO",
+        "timestamp_range": "00:37:40 - 00:38:42",
+        "theme_description": "Schnelle Fragen zu Wehrpflicht, NATO-Luftraumverteidigung und Verantwortung der USA.",
+        "question_asked": "Sandra Maischberger stellt Ja-oder-Nein-Fragen an beide Gäste: 'Sollen die Deutschen später in Rente gehen? Sollen Überstunden steuerfrei werden? Hat Friedrich Merz die Stimmung im Land verbessert? Braucht Deutschland eine Wehrpflicht? Soll die NATO bei Luftraumverletzungen russische Kampfjets abschießen? Glauben Sie, die USA steht Europa zur Seite?'",
+        "question_intent": "Sandra Maischberger möchte klare, knappe Positionen zu aktuellen politischen Fragen erhalten.",
+        "position": "Schwerdtner lehnt eine spätere Rente ab, befürwortet steuerfrei ausgezahlte Überstunden (nicht nur Zuschläge), sagt, dass Merz die Stimmung nicht verbessert hat, lehnt Wehrpflicht ab, sagt, dass die NATO sich verteidigen können sollte (nicht explizit zur Abschuss-Frage), und äußert Skepsis, dass die USA Europa zur Seite stehen ('Das glauben sie selber nicht').",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner beantwortet alle Ja-Nein-Fragen direkt und substantiell. Bei der NATO-Frage weicht sie leicht aus (antwortet mit 'sich verteidigen können' statt ja/nein zur Abschuss-Frage), aber das ist eine legitimste Differenzierung zur gestellten Frage.",
+        "concrete_statements": [
+          "Nein. [zur späteren Rente]",
+          "Ja und überhaupt ausgezahlt werden. [zu Überstunden]",
+          "Auf keinen Fall. [zu Merz' Stimmungsverbesserung und zu Wehrpflicht]",
+          "Sie soll sich verteidigen können. [zu NATO und Luftraumverletzungen]",
+          "Das glauben sie selber nicht. [zu US-Unterstützung für Europa]"
+        ],
+        "quotes": [
+          {
+            "text": "Auf keinen Fall. [zu Wehrpflicht]",
+            "timestamp": "00:38:11",
+            "context": "Sandra Maischberger fragt, ob Deutschland eine Wehrpflicht benötigt."
+          },
+          {
+            "text": "Das glauben sie selber nicht. [zu US-Unterstützung]",
+            "timestamp": "00:38:34",
+            "context": "Sandra Maischberger fragt, ob Schwerdtner glaubt, dass die USA Europa zur Seite stehen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Rente",
+          "Steuerpolitik",
+          "NATO",
+          "Transatlantische Beziehungen",
+          "Luftraumverteidigung"
+        ]
+      },
+      {
+        "title": "Gaza-Konflikt und Trumps Friedensplan",
+        "timestamp_range": "00:38:42 - 00:40:22",
+        "theme_description": "Bewertung von Trumps Gaza-Friedensplan, Deutschlands Rolle und die Frage von Sanktionen gegen Israel.",
+        "question_asked": "Sandra Maischberger fragt: 'Ist Trumps Friedensplan ein Durchbruch?' und später: 'Sollte Deutschland Druck ausüben [auf Israel]?'",
+        "question_intent": "Sandra Maischberger möchte erfahren, ob Schwerdtner Trumps Plan für vielversprechend hält und welche Rolle Deutschland spielen sollte.",
+        "position": "Schwerdtner sagt, dass Frieden in Gaza dringend nötig ist, glaubt aber nicht, dass Trumps Plan funktionieren wird, weil Netanjahu sich nicht daran halten wird. Sie fordert, dass Deutschland Druck auf Israel ausüben sollte und kritisiert, dass die deutsche Bundesregierung sich zum 'Komplizen' macht, indem sie weiter Waffen liefert. Sie verlangt Sanktionen gegen die 'rechtsextreme Regierung' Israels. Sie betont am Ende der Debatte, dass Frieden für Israelis und Palästinenser möglich ist, wenn diese Menschen 'an den Tisch geholt werden'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwerdtner antwortet substantiell auf beide Fragen: Sie bewertet Trumps Plan kritisch und liefert konkrete Forderungen (Druck auf Israel, Sanktionierung, Waffenembargo). Sie adressiert die Intention der Fragen nach ihrer Position zu Deutschland's Verantwortung und Trumps Plan direkt.",
+        "concrete_statements": [
+          "Es braucht dringend Frieden in Gaza, aber ich glaube, dass der Friedensplan so nicht funktionieren wird, weil Netanjahu sich nicht daran hält.",
+          "Unbedingt. Wir fordern das schon lange, dass die deutsche Bundesregierung sich zum Komplizen macht, wenn sie weiter Waffen liefert.",
+          "Und Sanktionen gegen die rechtsextreme Regierung stellt.",
+          "Ich glaube, dass es Frieden für die Israelis und auch für die Palästinenser geben kann, wenn diese Menschen an den Tisch geholt werden."
+        ],
+        "quotes": [
+          {
+            "text": "Es braucht dringend Frieden in Gaza, aber ich glaube, dass der Friedensplan so nicht funktionieren wird, weil Netanjahu sich nicht daran hält.",
+            "timestamp": "00:38:45",
+            "context": "Sandra Maischberger fragt nach Trumps Friedensplan."
+          },
+          {
+            "text": "Unbedingt. Wir fordern das schon lange, dass die deutsche Bundesregierung sich zum Komplizen macht, wenn sie weiter Waffen liefert. Und Sanktionen gegen die rechtsextreme Regierung stellt.",
+            "timestamp": "00:39:35",
+            "context": "Sandra Maischberger fragt, ob Deutschland Druck auf Israel ausüben sollte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Gaza-Konflikt",
+          "Waffenlieferungen an Israel",
+          "Sanktionen gegen Israel",
+          "Internationale Verhandlungen",
+          "Deutsche Außenpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Innerhalb der Zusammenarbeit zwischen Union und Linken auf kommunaler Ebene in Mecklenburg-Vorpommern gibt es laut Rosa Luxemburg Stiftung diverse Zusammenarbeit mit der AfD.",
+        "timestamp": "00:24:24"
+      },
+      {
+        "claim": "Die Rosa Luxemburg Stiftung hat herausgefunden, dass CDU/CSU kommunal über 20 Fälle mit der AfD zusammenarbeitet.",
+        "timestamp": "00:24:49"
+      },
+      {
+        "claim": "2024 gab es 13,3 Milliarden Euro Erbschafts- und Verschenkungssteuer.",
+        "timestamp": "00:35:53"
+      },
+      {
+        "claim": "Andrea Nahles hat gesagt, dass 2024 etwa 100.000 Fälle von Bürgergeld-Missbrauch gab.",
+        "timestamp": "00:30:26"
+      },
+      {
+        "claim": "Der Schaden durch Bürgergeld-Missbrauch betrug etwa 110 Millionen Euro.",
+        "timestamp": "00:30:31"
+      }
+    ]
+  }
+}

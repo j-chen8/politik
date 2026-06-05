@@ -1,0 +1,246 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-9-april-2026-100",
+    "video_id": "illner-2026-04-09",
+    "politician": "Norbert Röttgen",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "1ba30bf54ca07d17",
+    "transcript_chars": 50509,
+    "caption_lines": 2532,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21022,
+    "tokens_out": 5980,
+    "cost_usd": 0.0203688,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "themenwechsel": 1,
+      "substantielle_position": 2,
+      "teilweise_antwort": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.190Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen, Außenpolitiker der CDU, argumentierte in Maybrit Illners Sendung, dass die europäische Beteiligung an einer militärischen Mission am Golf nicht das zentrale Problem ist, sondern dass Trump eher versucht, den europäischen Verbündeten Schuld zuzuweisen. Röttgen verband seine Kritik an der westlichen Iran-Politik mit einer differenzierten Sicht auf die Schwächung des iranischen Regimes als potenzielle Chance für die iranische Bevölkerung, warnte aber zugleich vor einer Militärdiktatur unter Kontrolle der Revolutionsgarden.",
+    "themes": [
+      {
+        "title": "Trump-Ultimatum und europäische Verteidigungsbeteiligung",
+        "timestamp_range": "00:04:27 - 00:08:24",
+        "theme_description": "Diskussion darüber, ob die USA ein Ultimatum an die NATO-Partner bezüglich militärischer Beteiligung am Golf erteilt haben und wie Deutschland damit umgehen sollte.",
+        "question_asked": "Maybrit Illner fragte Röttgen, wie lange Bundeskanzler Friedrich Merz an seiner Position festhalten kann, dass es kein Krieg ist, an dem sich die Deutschen militärisch beteiligen, während der amerikanische Präsident etwas anderes zu wünschen scheint.",
+        "question_intent": "Illner wollte wissen, ob die deutsche Haltung gegen Kriegsbeteiligung unter amerikanischem Druck haltbar ist.",
+        "position": "Röttgen argumentierte, dass unklar ist, was Trump und der NATO-Generalsekretär konkret besprochen haben, und dass man von einem großen Nichtwissen sprechen muss. Seiner Ansicht nach geht es Trump nicht um ein spezifisches militärisches Ultimatum zu einer konkreten Aktion, sondern um Rhetorik und PR – nämlich darum, den Europäern und der NATO einen Schuldanteil für eine möglicherweise scheiternde Strategie zuzuweisen. Er betonte: \"Es geht um Diplomatie, Rhetorik, PR.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen weicht der direkten Frage aus, ob Merz seine Position halten kann, und lenkt stattdessen auf die Unsicherheit über Trumps tatsächliche Absichten. Er beantwortet implizit die Frage durch die Analyse von Trumps Motiven, adressiert aber nicht direkt, wie lange die deutsche Position praktisch haltbar ist.",
+        "answer_type": "themenwechsel",
+        "concrete_statements": [
+          "Wir müssen sagen, dass mich hier von einem großen Nichtwissen reden",
+          "Ultimatum - zu welcher Aktion? Noch hat die amerikanische Marine noch irgendetwas unternommen, um die Straße von Hormus zu sichern. Darum geht es noch gar nicht momentan",
+          "Es geht erstens darum der NATO und den Europäern einen Schuldanteil zuzuschieben",
+          "Es geht um Diplomatie, Rhetorik, PR"
+        ],
+        "quotes": [
+          {
+            "text": "Das einzige worüber wir reden, ist das, was zwischen Trump und dem NATO-Generalsekretär gesprochen wurde. Und was besprochen wurde, das wissen wir nicht, die Bundesregierung sagt, es gibt kein Ultimatum, das wird nach außen gesagt.",
+            "timestamp": "00:05:23",
+            "context": "Röttgen reagiert auf Illners Verweis auf öffentliche Äußerungen Trumps und argumentiert für Zurückhaltung beim Interpretieren."
+          },
+          {
+            "text": "Es geht erstens darum der NATO und den Europäern einen Schuldanteil zuzuschieben. Denn eins ist klar: dieser Krieg, den die USA und Israel gegen Iran eröffnet haben, der hat eine Wendung genommen, mit denen offensichtlich im Weißen Haus keiner gerechnet hat.",
+            "timestamp": "00:06:09",
+            "context": "Röttgen analysiert Trumps Strategie als Schuldzuweisung an die Europäer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Artikel 5",
+          "Außeneinsätze der Bundeswehr",
+          "Transatlantische Sicherheit",
+          "Mandatserfordernis"
+        ]
+      },
+      {
+        "title": "Westliche Iran-Politik und Atomabkommen",
+        "timestamp_range": "00:20:48 - 00:21:35",
+        "theme_description": "Bewertung der europäischen und westlichen Diplomatiegeschichte mit dem Iran, besonders die Rolle des Atomabkommens und die Konsequenzen des US-Austritts.",
+        "question_asked": "Im Kontext der Diskussion über die Verhandlungsfähigkeit des Iran, äußerte sich Röttgen eigeninitiativ zu den Fehlern der westlichen Iran-Politik.",
+        "question_intent": "Eigeninitiative – Röttgen wollte eine differenzierte Bewertung der historischen westlichen Iran-Politik einbringen.",
+        "position": "Röttgen stimmte Souad Mekhennet zu, dass die Iran-Politik des Westens \"kein Glanzstück europäischer Außenpolitik\" gewesen ist. Er kritisierte, dass der Westen auf dem Atomabkommen beharrt habe, während man hätte sagen können: Wenn ihr nicht auch über Menschenrechte, Terror und Raketen reden wollt, gibt es kein Atomprogramm-Gespräch. Seiner Ansicht nach haben sie diese Hartnäckigkeit \"teuer erkauft\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen brachte eine eigenständige kritische Position zu westlichen Verhandlungsfehlern ein und zog damit eine Bilanz, die sowohl Kritik an der westlichen Strategie als auch Verständnis für die iranische Position enthielt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Iran-Politik des Westens war kein Glanzstück europäische Außenpolitik gewesen",
+          "Wir waren immer auf dem Atomabkommen beharrt",
+          "Wir haben das teuer erkauft"
+        ],
+        "quotes": [
+          {
+            "text": "Die Iran-Politik des Westens war kein Glanzstück europäische Außenpolitik gewesen. Das was Frau Souad Mekhennet gesagt hat, stimmt. Wir waren immer auf dem Atomabkommen beharrt. Wenn man sagt, wenn ihr Anfang, über die Menschenrechte zu reden, über die Organisation von Terror in der Region, in der Welt und in der Region, und wenn ihr noch über die Raketen reden wollt, gibt es schon gar kein Atomprogramm. Wir haben das teuer erkauft.",
+            "timestamp": "00:20:48",
+            "context": "Röttgen kommentiert die Rolle des Westens bei Verhandlungen über das Atomabkommen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "JCPOA (Atomabkommen)",
+          "Menschenrechte im Iran",
+          "Ballistische Raketen",
+          "UN-Sicherheitsrat Resolutionen"
+        ]
+      },
+      {
+        "title": "Militärische Schwächung des Regimes und humanitäre Perspektive",
+        "timestamp_range": "00:36:39 - 00:41:37",
+        "theme_description": "Bewertung, ob die Schwächung des iranischen Regimes durch militärische Operationen eine Chance für die 93 Millionen Menschen im Iran darstellt oder moralisch und praktisch problematisch ist.",
+        "question_asked": "Maybrit Illner fragte implizit, ob Deutschland und Europa die iranische Bevölkerung unter den gegenwärtigen Umständen nicht im Stich lassen dürfen, nachdem dem Regime Tausende Menschen zum Opfer gefallen sind.",
+        "question_intent": "Illner wollte klären, ob die humanitäre Situation der Iraner eine rechtfertigende Rolle für die Kriegsoperationen spielen kann.",
+        "position": "Röttgen argumentierte, dass die entscheidende Orientierung für ihn immer die Frage war, was das für die 93 Millionen Menschen bedeutet. Er hielt die Völkerrechts-Frage für differenzierter als klar zu verurteilend, da auch vor Kriegsbeginn das Regime Tausende niedergemacht habe. Die militärische Schwächung des Regimes sieht er als potenzielle Chance für unterdrückte Menschen. Allerdings warnte er, dass wenn das Regime eine Militärdiktatur wird und die Straße von Hormus kontrolliert, das ein strategischer Sieg für das Regime und eine Niederlage für die iranische Bevölkerung wäre – eine dauerhafte Geiselnahme der Weltwirtschaft und Europas.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen adressiert die humanitäre Perspektive und bietet eine eigenständige Sicht, wonach Regimeschwächung eine Chance sein kann. Er differenziert aber zwischen theoretischer Schwächung und konkretem Ausgang, ohne klar zu sagen, ob die gegenwärtige Kriegsführung unter diesen Unsicherheiten ethisch gerechtfertigt ist.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich bin der Auffassung, dass es die entscheidende Frage, und ist immer noch offen",
+          "Ich bin der Auffassung, dass sie erhebliche militärische Schwächung des Regimes eine Schwächung ist, die positiv ist",
+          "Wenn ein solches Terrorregime weniger Waffen hat, wenn es geschwächtes, wenn es in seine strukturgeschwächtes, dann ist das eine Verbesserung, es ist doch eine potentielle Chance für die unterdrückten Menschen",
+          "Wenn das Regime eine Militärdiktatur wird, und behält die Kontrolle über die Straße von Hormus, dann ist das ein großer strategischer Sieg, und eine Niederlage für die iranische Bevölkerung"
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte es für differenzierter, als zu sagen, dass es völlig klar ist. Es ist umstritten. Sie haben von den 93 Millionen gesprochen, ich bin der Auffassung, dass es die entscheidende Frage, und ist immer noch offen, man kann natürlich sagen, was es in der Vergangenheit falsch gelaufen? Was ist in der jüngsten Vergangenheit falsch gelaufen?",
+            "timestamp": "00:37:29",
+            "context": "Röttgen antwortet auf Juli Zehs Skepsis bezüglich einer humanitären Begründung des Krieges."
+          },
+          {
+            "text": "Wenn das Regime eine Militärdiktatur wird, und behält die Kontrolle über die Straße von Hormus, dann ist das ein großer strategischer Sieg, und eine Niederlage für die iranische Bevölkerung. Es ist eine dauerhafte Geiselnahme der Weltwirtschaft. Und auch der Europäer. Das müssen wir verhindern.",
+            "timestamp": "00:40:00",
+            "context": "Röttgen skizziert sein Szenario für einen strategischen Fehlschlag und dessen Folgen für die Iraner."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Menschenrechte",
+          "Völkerrecht",
+          "Intervention und Legitimitätsfrage",
+          "Zivilbevölkerung in Konflikten"
+        ]
+      },
+      {
+        "title": "Kriegsbeteiligung und deutsche Interessen am Golf",
+        "timestamp_range": "00:54:20 - 00:57:15",
+        "theme_description": "Frage, ob Deutschland und Europa bei Operationen am Golf mitmachen sollten und wie die Haltung 'das ist nicht unser Krieg' zu bewerten ist.",
+        "question_asked": "Maybrit Illner fragte Röttgen, wie lange Bundeskanzler Friedrich Merz bei seiner Position bleiben kann, dass es nicht Deutschlands Krieg ist und Deutschland erst nach einem Friedensschluss beteiligt wird.",
+        "question_intent": "Illner wollte wissen, ob Merz' Haltung unter Trump-Druck und angesichts der wirtschaftlichen Folgen (Straße von Hormus) praktisch durchzuhalten ist.",
+        "position": "Röttgen kritisierte, dass die Formulierung \"das ist nicht unser Krieg\" die Botschaft vermittelt, \"es geht uns nichts an\", aber das sei falsch: Der Krieg gehe Deutschland \"verdammt viel\" an. Deutschland und Europa seien Geiseln der Straße von Hormus, auch merkbar an der Zapfsäule. Dennoch unterstrich er, dass es bei den Grundsätzen bleiben wird: Deutschland wird nicht Beteiligter des Krieges. Wenn der Krieg aber beendet ist, werden Themen bleiben, die Deutschland massiv betreffen – besonders die Frage, wie ein Iran unter Militärdiktatur mit der Kontrolle der Straße umgeht.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen adressiert beide Aspekte: Er kritisiert die deutsche Sprachregelung als missverständlich, bekräftigt aber parallel Deutschlands Verweigerung direkter Kriegsbeteiligung und erläutert, warum Deutschland trotzdem massiv betroffen ist.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das hat aber auch die Botschaft ein bisschen, es geht uns nichts an. Wir sind nicht beteiligt. Aber der Krieg geht uns verdammt viel an",
+          "Wir sind auch Geiseln der Straße von Hormus. Das ist eine Geiselnahme, die stattfindet",
+          "Meine Antwort ist, es bleibt bei den Grundsätzen. Es wird bei allen Grundsätzen bleiben. Wir werden nicht Beteiligter des Krieges werden"
+        ],
+        "quotes": [
+          {
+            "text": "Das hat aber auch die Botschaft ein bisschen, es geht uns nichts an. Wir sind nicht beteiligt. Aber der Krieg geht uns verdammt viel an. Wir sind auch Geiseln der Straße von Hormus. Das ist eine Geiselnahme, die stattfindet. Wir sind Geiseln und wir merken es auch, zum Beispiel an der Zapfsäule.",
+            "timestamp": "00:54:34",
+            "context": "Röttgen kritisiert die deutsche Rhetorik und unterstreicht, dass Deutschland trotz Kriegsverweigerung stark betroffen ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiesicherheit",
+          "Außenpolitische Interessenwahrung",
+          "Mandatspflicht",
+          "Strategische Autonomie Europas"
+        ]
+      },
+      {
+        "title": "Ukraine-Krieg und Trump-Deals mit Russland",
+        "timestamp_range": "00:55:24 - 00:57:15",
+        "theme_description": "Diskussion darüber, ob Trump einen Deal machen könnte, bei dem er Putin die Ukraine und den Iran überlässt, und wie das deutsche und europäische Sicherheitsinteressen gefährdet.",
+        "question_asked": "Maybrit Illner zitierte John Bolton, der sagte, dass Trump einen Deal machen könnte, bei dem er Putin die Ukraine und den Iran überlässt, und fragte Röttgen, ob das auch seine Befürchtung sei.",
+        "question_intent": "Illner wollte wissen, ob Röttgen eine solche Trump-Strategie des Großmacht-Arrangements als existenzielle Bedrohung sieht.",
+        "position": "Röttgen erklärte zunächst, dass ein solcher Deal nicht funktionieren würde, weil der Iran keine russische Besitzung ist. Dann lenkte er aber die Debatte zur Ukraine: Trump mache genau das, was Illner als Gefahr beschrieben habe – er mache permanent Geschenke an Putin und setze die Ukraine unter Druck. Die USA geben kein Geld mehr, die Europäer haben die Verantwortung übernommen. Deutschland müsse sich bewusst machen, dass es um existenzielle Interessen geht: Wenn Putin gewinnt, habe Europa ein \"verdammt anderes Europa\". Die Kontrolle der Straße von Hormus durch ein schwaches oder radikales Regime sei ebenfalls existenziell.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen weicht zunächst mit \"dieser Deal würde niemals funktionieren\" aus, lenkt dann aber substanziell zu Trumps tatsächlicher Ukraine-Politik um. Er adressiert die Sorge vor Deals indirekt, indem er Trumps bereits sichtbares Verhalten analysiert.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Zu Russland und Ukraine, Donald Trump macht seit langer Zeit genau das, was Sie als Gefahr beschrieben haben. Er macht permanent Geschenke an Putin und setzt dauernd die Ukraine unter Druck",
+          "Man stelle sich mal vor, Putin gewinnt diesen Krieg in Europa. Dann haben wir aber ein verdammt anderes Europa. Das ist so offensichtlich. Wir können gar nicht anders. Das ist existenziell"
+        ],
+        "quotes": [
+          {
+            "text": "Zu Russland und Ukraine, Donald Trump macht seit langer Zeit genau das, was Sie als Gefahr beschrieben haben. Er macht permanent Geschenke an Putin und setzt dauernd die Ukraine unter Druck. Sie geben auch kein Geld mehr. Sondern das haben die Europäer im wesentlichen übernommen.",
+            "timestamp": "00:55:52",
+            "context": "Röttgen analysiert Trumps tatsächliche Politik gegenüber Russland und der Ukraine."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Hilfe",
+          "Waffenlieferungen",
+          "Strategische Aufklärung",
+          "Europäische Sicherheitsarchitektur",
+          "Russland-Sanktionen"
+        ]
+      },
+      {
+        "title": "Europäische Einigkeit und Haltbarkeit der Linie gegen Kriegsbeteiligung",
+        "timestamp_range": "00:57:33 - 00:59:00",
+        "theme_description": "Frage, ob Europa einig bleiben kann bei der Verweigerung militärischer Beteiligung am Golf oder ob einzelne Länder unter Druck nachgeben werden.",
+        "question_asked": "Maybrit Illner fragte Röttgen indirekt, ob Europa die Trump-Forderung nach Kriegshilfe volley ablehnen kann oder ob das Bündnis auseinanderbrechen wird.",
+        "question_intent": "Illner wollte klären, ob die deutsche Haltung unter europäischer Solidarität auch haltbar ist oder ob Mittel- und Osteuropäer einknicken.",
+        "position": "Röttgen antwortete kurz und allgemein: \"Das ist auch eine Frage für uns.\" Er bot keine detaillierte Prognose, sondern verwies auf die Frage, an was sich Länder wie Mittel- und Osteuropa, die die USA als Lebensversicherung sehen, orientieren könnten – möglicherweise an einer Nachkriegssicherung. Die konkretere Analyse kam von Carlo Masala, der sagte, nur einige Staaten würden durchhalten, während mittlere und osteuropäische Staaten (die US-abhängig sind) möglicherweise einknicken könnten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen gab eine kurze, eher deklarative Antwort ohne tiefe Analyse. Er bestätigte nur, dass es eine Frage für Deutschland ist, ohne Prognose oder detaillierte Positionierung zu bieten.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [],
+        "quotes": [
+          {
+            "text": "An was könnten sich diese Länder orientieren? Vielleicht an einer Nachkriegssicherung.",
+            "timestamp": "00:58:21",
+            "context": "Röttgen reagiert auf die Frage nach der Haltbarkeit europäischer Linie bei mittleren und osteuropäischen Ländern."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Solidarität",
+          "Europäische Strategische Autonomie",
+          "Mittel- und Osteuropa",
+          "Sicherheitsgarantien"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die USA haben der Ukraine keine Mittel mehr bereitgestellt, sondern das haben die Europäer im wesentlichen übernommen",
+        "timestamp": "00:55:52"
+      },
+      {
+        "claim": "Die Straße von Hormus ist eine Geiselnahme und die Iraner lassen nur sehr wenige Schiffe durch – etwa 15 pro Tag",
+        "timestamp": "00:54:34"
+      },
+      {
+        "claim": "Das Regime hat Tausende von Menschen niedergemacht, bevor der Krieg anfing – mindestens 30.000",
+        "timestamp": "00:36:39"
+      },
+      {
+        "claim": "Trump macht permanent Geschenke an Putin und setzt die Ukraine unter Druck",
+        "timestamp": "00:55:52"
+      },
+      {
+        "claim": "Wenn Putin den Krieg in der Ukraine gewinnt, hätte Europa ein anderes Europa – Röttgen sieht das als existenziell",
+        "timestamp": "00:56:00"
+      }
+    ]
+  }
+}

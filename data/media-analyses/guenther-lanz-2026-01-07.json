@@ -1,0 +1,359 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-7-januar-2026-100",
+    "video_id": "lanz-2026-01-07",
+    "politician": "Daniel Günther",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "0c5a16da3af60b03",
+    "transcript_chars": 60187,
+    "caption_lines": 3040,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 24392,
+    "tokens_out": 10299,
+    "cost_usd": 0.0303548,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 17,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 7,
+      "teilweise_antwort": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.336Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Daniel Günther, Ministerpräsident von Schleswig-Holstein und CDU-Vorsitzender, diskutiert mit Markus Lanz zentrale außenpolitische und innenpolitische Herausforderungen: Die geopolitische Bedrohung durch russische Schattenflotten und Drohnen vor Schleswig-Holsteins Küste, die notwendige europäische Eigenständigkeit angesichts der Trump-Administration, sowie die strategische Haltung der Union gegenüber der AfD. Günther wirkt sachlich und konzentriert, artikuliert eine defensive Sicherheitspolitik und eine klare Ablehnung der AfD als antidemokratische Kraft.",
+    "themes": [
+      {
+        "title": "Bedrohung durch Schattenflotte und Drohnen",
+        "timestamp_range": "00:28:48 - 00:32:36",
+        "theme_description": "Markus Lanz fragt Günther nach der konkreten Bedrohungslage in Schleswig-Holstein durch russische Schattenflotten und Drohnenüberflüge.",
+        "question_asked": "Markus Lanz verweist auf die russische Schattenflotte, die direkt vor Schleswig-Holsteins Küsten vorbeifährt, und stellt die Frage: Wie nehmen Sie diese Bedrohung wahr, und wie sollen wir damit umgehen?",
+        "question_intent": "Lanz möchte verstehen, wie konkret die Bedrohungslage für Günthers Bundesland ist und welche Maßnahmen er für notwendig erachtet.",
+        "position": "Günther betont, dass Schleswig-Holstein als Land zwischen den Meeren als erstes eine Bedrohung spürt. Die russischen Schiffe passieren regelmäßig. Er argumentiert, dass Europa sich selbst schützen und Sicherheit selbst in die Hand nehmen muss. Bei Drohnen sei das Ursprungserkennen schwierig – man sehe nicht automatisch, ob es eine innen- oder außenpolitische Bedrohung ist. Dies sei der Grund, warum Deutschland bei der Drohnenabwehr an Grenzen der bisherigen Regelungen gekommen sei. Er nennt regelmäßige Drohnenüberflüge über kritischer Infrastruktur (Werften, Unternehmen). Die Bundeswehr war in Kopenhagen stationiert, um Veranstaltungen zu schützen. Günther fordert: Es gibt Grauzonen, aber man muss sich auf die Bedrohung einstellen. Schleswig-Holstein habe mit Polizeieinstellungen reagiert, aber das reiche nicht aus – es sei eine gesamtstaatliche Aufgabe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet direkt auf Lanz' Frage nach der Bedrohungslage und reagiert mit konkreten Beispielen (Dutzende Drohnenüberflüge, Schiffe im Ostseeraum) sowie mit klaren Positionen zu notwendigen Maßnahmen. Er adressiert die Frage vollständig.",
+        "concrete_statements": [
+          "Wir spüren als Land zwischen den Meeren als erstes eine Bedrohung.",
+          "Wir müssen uns in Europa selbst schützen.",
+          "Wir hatten Dutzende [Drohnensichtungen].",
+          "Es ist eine gesamtstaatliche Aufgabe."
+        ],
+        "quotes": [
+          {
+            "text": "Wir spüren als Land zwischen den Meeren als erstes eine Bedrohung. Die Schiffe kommen da regelmäßig vorbei. Wir müssen uns in Europa selbst schützen. Wir müssen unsere Sicherheit selber in die Hand nehmen.",
+            "timestamp": "00:28:48",
+            "context": "Lanz fragt, wie Günther die Schattenflotte vor seiner Haustür einschätzt."
+          },
+          {
+            "text": "Wir hatten Dutzende. Man muss immer vorsichtig sein, müssen uns angucken, was ist der Ursprung.",
+            "timestamp": "00:29:18",
+            "context": "Auf die Frage nach Drohnensichtungen über Schleswig-Holstein antwortet Günther mit konkreten Zahlen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Russland-Sanktionen",
+          "Verteidigungsbudget",
+          "Bundeswehreinsatz"
+        ]
+      },
+      {
+        "title": "Bundeswehr im Inneren einsetzen",
+        "timestamp_range": "00:30:30 - 00:32:36",
+        "theme_description": "Markus Lanz fragt nach Günthers Position zum Einsatz der Bundeswehr im Inneren zur Abwehr von Drohnen und Sabotage.",
+        "question_asked": "Markus Lanz fragt direkt: Reden wir über den Einsatz der Bundeswehr im Inneren?",
+        "question_intent": "Lanz will klären, ob Günther den verfassungsmäßig umstrittenen Einsatz von Streitkräften im Inland befürwortet.",
+        "position": "Günther bejaht dies eindeutig. Er argumentiert, es gebe immer Grauzonen: Wenn sich eine Drohne in einem Bundeswehrgelände befindet, darf die Bundeswehr diese herunterholen. Sobald es außerhalb ist, wird es kompliziert und Behörden müssen zusammengebracht werden. Er sagt: Man müsse sich auf die Bedrohung einstellen. Im Kreise der Ministerpräsidenten und der Bundesregierung spricht man auch mit Bundesverteidigungsminister und Bundesinnenminister. Die Frage müsse generell stringent geklärt werden. Die Möglichkeit, dass Drohnen nach Deutschland kommen, sei über den Ostseeraum – dort ist die Schattenflotte. Es gebe keine Möglichkeit, das zu verhindern. Mecklenburg-Vorpommern, Schleswig-Holstein, Hamburg seien die Einfallsrouten. Günther sagt: \"Ich glaube, wir werden dauerhaft um eine Änderung des Grundgesetzes nicht herumkommen.\" Er betont aber, dass die AfD und Teile der Linkspartei eine Grundgesetzänderung verhindern würden, was die Sicherheit des Landes gefährde.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet direkt auf die Frage und macht eine klare, verfassungspolitisch konkrete Position: Er fordert Grundgesetzänderung für Bundeswehreinsatz im Inneren. Er adressiert die praktischen Grauzonen und die politischen Hürden (AfD, Linke) vollständig.",
+        "concrete_statements": [
+          "Ich glaube, wir werden dauerhaft um eine Änderung des Grundgesetzes nicht herumkommen.",
+          "Die AfD und Teile der Linkspartei gefährden mittlerweile die Sicherheit unseres Landes.",
+          "Es ist eine gesamtstaatliche Aufgabe."
+        ],
+        "quotes": [
+          {
+            "text": "Absolut. Es gibt immer Grauzonen. Wenn es sich in einem Bundeswehrgelände befindet, darf die Bundeswehr die Drohne herunter holen. Sobald es nicht mehr bei ihnen ist, wird es hakelig.",
+            "timestamp": "00:30:35",
+            "context": "Lanz fragt nach Einsatz der Bundeswehr im Inneren."
+          },
+          {
+            "text": "Ich glaube, wir werden dauerhaft um eine Änderung des Grundgesetzes nicht herumkommen.",
+            "timestamp": "00:32:40",
+            "context": "Günther fasst seine Position zusammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Grundgesetzänderung",
+          "Innere Sicherheit",
+          "Bundeswehr im Inland",
+          "Krisenmanagement"
+        ]
+      },
+      {
+        "title": "Europäische Eigenständigkeit und NATO-Verlässlichkeit",
+        "timestamp_range": "00:49:17 - 00:53:12",
+        "theme_description": "Markus Lanz spricht mit Günther über die Notwendigkeit europäischer Eigenständigkeit angesichts der Trump-Administration und der Frage, wie Europa sich positionieren muss.",
+        "question_asked": "Markus Lanz führt aus, dass Markus Merz von einem Paradigmenwechsel spricht – die USA stellen ihre Verlässlichkeit in Frage. Dann fragt er Günther: Müssen wir in Europa unsere Angelegenheiten selbst in die Hand nehmen?",
+        "question_intent": "Lanz möchte verstehen, wie Günther die strategische Situation Europas bewertet und welche Konsequenzen er daraus zieht.",
+        "position": "Günther antwortet, dass die Situation der letzten Tage gezeigt habe, dass Europa zusammenwirken muss und Verteidigung selbst in die Hand nehmen muss. Man könne sich nicht mehr auf die Verlässlichkeit verlassen, die es früher gab. Die Situation in Venezuela zeige – man kann unterschiedliche Auffassungen haben, wie das völkerrechtlich ist – dass Europa keine Rolle gespielt hat. Bei Grönland wird ähnlich über Gebietsveränderungen gesprochen. Innerhalb der NATO gibt es Verträge, die Beistand garantieren, aber man spricht davon, dass es Gebietsveränderungen geben kann. Günther betont: Das ist logisch – wir müssen in Europa die Geschicke selbst in die Hand nehmen. Donald Trump hat reagiert und gesagt, er halte an NATO-Mitgliedschaft fest. Das zeigt, dass Europa in Eigenverantwortung handeln muss. \"Wir müssen uns aus meiner Sicht selbstbewusster geben. Wir haben Nachholbedarf im militärischen Bereich. Wir dürfen nicht unterschätzen, dass ein Raum von Menschen sind – eine halbe Milliarde Menschen – zusammenbringen.\" Bei USA, Russland, China bewegten sich auf dem Niveau von Amerika und Russland. Günther argumentiert weiter: Wenn man Südamerika und Afrika sieht, sehnten sich die Länder nach Kontakten zu Europa. In dieser Situation, wo es negative Assoziationen gebe, müsse man sehen, dass es wirtschaftliche Chancen für Europa gibt. \"Als Deutschland, als drittgrößte Volkswirtschaft der Erde, müssen bereit sein, Verantwortung zu übernehmen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet direkt und umfassend auf Lanz' Frage nach europäischer Eigenständigkeit. Er liefert Analysen zur Venezuela-, Grönland-Situation, betont die Notwendigkeit europäischer Selbstverantwortung und nennt konkrete Forderungen. Die Antwort adressiert die strategische Kernfrage vollständig.",
+        "concrete_statements": [
+          "Wir müssen in Europa zusammenwirken.",
+          "Wir müssen unsere Verteidigung in die Hand nehmen.",
+          "Wir müssen uns aus meiner Sicht selbstbewusster geben.",
+          "Als Deutschland, als drittgrößte Volkswirtschaft der Erde, müssen bereit sein, Verantwortung zu übernehmen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir mussten realistisch feststellen, über die letzten Tage, die uns gezeigt haben, dass wir in Europa zusammenwirken müssen. Wir müssen unsere Verteidigung in die Hand nehmen. Wir können uns auf Verlässlichkeit, die es früher gab, nicht mehr verlassen.",
+            "timestamp": "00:49:17",
+            "context": "Günther analysiert die geopolitische Situation."
+          },
+          {
+            "text": "Wir müssen uns aus meiner Sicht selbstbewusster geben. Wir haben Nachholbedarf, im militärischen Bedarf.",
+            "timestamp": "00:50:57",
+            "context": "Günther präzisiert seine Position zu europäischer Eigenverantwortung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheit",
+          "NATO",
+          "Außenpolitik",
+          "Rüstungsausgaben"
+        ]
+      },
+      {
+        "title": "Deutsches Engagement in der Ukraine",
+        "timestamp_range": "00:49:33 - 00:54:20",
+        "theme_description": "Markus Lanz zitiert Friedrich Merz' Aussage über mögliche deutsche Truppenpräsenz in der Ukraine und fragt Günther nach seiner Interpretation und Position.",
+        "question_asked": "Markus Lanz zitiert Friedrich Merz, der sagte, deutsche Truppen könnten in benachbarten NATO-Gebieten stationiert werden, um eine Ukraine abzusichern. Lanz fragt: Wie haben Sie das verstanden? Und dann direkt: Würden Sie sagen, in letzter Konsequenz ja – deutsche Bundeswehrsoldaten in der Ukraine?",
+        "question_intent": "Lanz will von Günther eine klare Antwort auf die Frage, ob er deutsche Soldaten in der Ukraine befürwortet.",
+        "question_intent_short": "Kernfrage: Gunther's Haltung zu deutschen Truppen in der Ukraine.",
+        "position": "Günther antwortet zunächst diplomatisch: Er habe Merz so verstanden, dass dieser im ersten Schritt nicht gesagt hat, dass deutsche Soldaten in der Ukraine absichern sollen. Aber er räumt ein: Die Situation der letzten Tage zeige, dass Europa zusammenwirken muss und Verteidigung selbst in die Hand nehmen muss. Man könne sich nicht mehr auf frühere Verlässlichkeit verlassen. Die Venezuela-Situation zeige – ob völkerrechtlich richtig oder nicht – dass Europa keine Rolle spielt. Bei Grönland sehe man ähnlich Gebietsveränderungen diskutiert. Günther betont die NATO-Verträge. Dann sagt er ausweichend: \"Ich will von hier aus als Ministerpräsident von Schleswig-Holstein keine Außenpolitik machen.\" Lanz insistiert. Günther antwortet: Er sei nicht als Bürger, sondern als Ministerpräsident hier. Er sei nicht für Außenpolitik zuständig. \"Aber ich bin nicht der Bundeskanzler der Bundesrepublik Deutschland.\" Dann aber: \"Sobald Friedrich Merz sich äußert und sagt, wir müssen über deutsche Truppen zur Absicherung reden, wir dürfen keine Tabus haben, finde ich ist das eine sehr starke Äußerung, in eine Richtung, die ich unterstütze.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Günther weicht anfangs aus, indem er sich auf die Rolle als Ministerpräsident beruft und sagt, er wolle keine Außenpolitik machen. Am Ende signalisiert er Unterstützung für Merz, aber nicht für die konkrete Frage selbst. Die Antwort adressiert die Kernfrage (deutsche Truppen in Ukraine?) nur indirekt und deflektiert zur Rolle als Landespolitiker.",
+        "deflection_target": "Seine Zuständigkeit als Ministerpräsident, nicht als Außenpolitiker.",
+        "evasion_note": "Günther weicht der direkten Ja/Nein-Frage durch Rollenargument aus, signalisiert aber später Unterstützung für Merz' Position.",
+        "concrete_statements": [
+          "Ich will von hier aus als Ministerpräsident von Schleswig-Holstein keine Außenpolitik machen.",
+          "Sobald Friedrich Merz sich äußert und sagt, wir müssen über deutsche Truppen zur Absicherung reden, wir dürfen keine Tabus haben, finde ich ist das eine sehr starke Äußerung, in eine Richtung, die ich unterstütze."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe ihn so verstanden, dass einem ersten Schritt nicht gesagt hat, dass deutsche Soldaten das in der Ukraine absichern sollen.",
+            "timestamp": "00:49:33",
+            "context": "Auf Lanz' Frage, wie Günther Merz verstanden hat."
+          },
+          {
+            "text": "Ich will von hier aus als Ministerpräsident von Schleswig-Holstein keine Außenpolitik machen.",
+            "timestamp": "00:53:23",
+            "context": "Lanz fragt direkt nach Günthers persönlicher Meinung zu deutschen Truppen."
+          },
+          {
+            "text": "Sobald Friedrich Merz sich äußert und sagt, wir müssen über deutsche Truppen zur Absicherung reden, wir dürfen keine Tabus haben, finde ich ist das eine sehr starke Äußerung, in eine Richtung, die ich unterstütze.",
+            "timestamp": "00:53:49",
+            "context": "Günther signalisiert doch Unterstützung – aber für Merz, nicht direkt zur Frage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "NATO-Engagement",
+          "Außenpolitik",
+          "Sicherheitsgarantien"
+        ]
+      },
+      {
+        "title": "Ablehnung des Begriffs Brandmauer gegenüber AfD",
+        "timestamp_range": "01:01:39 - 01:05:30",
+        "theme_description": "Markus Lanz fragt Günther nach seinem bekannten Zitat, dass ihm der Begriff 'Brandmauer' nicht gefällt, und will verstehen, was Günther damit meint.",
+        "question_asked": "Markus Lanz fragt: Wenn Sie sagen, mit dem Begriff der Brandmauer, der gefällt mir nicht, was meinen Sie damit?",
+        "question_intent": "Lanz möchte verstehen, wie Günther die Strategie der Union gegenüber der AfD anders gestalten will als mit dem Konzept der Brandmauer.",
+        "position": "Günther argumentiert, dass der Begriff ‚Brandmauer' suggeriert, die CDU/Union müsse nur die Brandmauer einhalten, um die AfD klein zu kriegen. Der Begriff vermittelt beiden Leutchen den Eindruck, die wollen nicht in Gespräche kommen – das ist falsch. Es muss den Demokraten klar sein, dass man nicht mit rechtspopulistischen Parteien zusammenarbeiten. Aber zu denken, als demokratische Parteien müsse man nur Distanz zur AfD halten, dann wird das in Deutschland wieder ins Lot kommen – das sei ein Trugschluss. Es sei ein Problem, das alle betrifft. Stärker müssen die Menschen den Unterschied zwischen etablierten demokratischen Parteien und AfD verstehen. Die CDU und anderen seien sehr gefangen in parteipolitischen Kleinkriegen (wie in 80er, 90ern zwischen CDU und SPD). Heute sei das Vertrauen in etablierte Parteien so gering, dass die Leute sagen: Wenn wir als Demokraten ähnliches bekommen, wenden wir uns insgesamt von euch ab. Man müsse den Menschen ein positives Zukunftsbild von Deutschland zeichnen, das zeigt, warum es toll ist, dort zu leben, warum Demokratie wichtig ist, Meinungsfreiheit, Selbstbestimmung. Man müsse auf eigene Stärken schauen. \"Wenn die demokratischen Parteien so ein positives Bild zeichnen würden und in den nächsten Jahren sehen würden, dass Wahlkampf Kampf bedeutet, und wir aufpassen müssen, dass uns nicht ganze Landstriche an die AfD verloren gehen – das ist Aufgabe von allen demokratischen Parteien. Deswegen kommen wir mit Begriffen wie Brandmauer nicht weiter.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet direkt und differenziert auf die Frage. Er erklärt, warum der Begriff Brandmauer seiner Meinung nach nicht hilft, und skizziert eine alternative Strategie: positive Vermittlung demokratischer Werte statt bloße Abgrenzung. Die Antwort adressiert die Kernfrage vollständig.",
+        "concrete_statements": [
+          "Man nicht mit rechtspopulistischen Parteien zusammenarbeiten.",
+          "Zu denken, als demokratische Parteien, ihr müsst eine Distanz zur AfD halten, dann wird das in Deutschland wieder ins Lot kommen – das ist ein Trugschluss.",
+          "Müssen wir viel stärker den Menschen den Unterschied zwischen etablierten demokratischen Parteien und AfD machen.",
+          "Wenn die demokratischen Parteien so ein positives Bild zeichnen würden, dann kriegen wir mehr Vertrauen in die demokratischen Parteien."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass das ein Begriff ist, der suggeriert, dass die CDU, die Union insgesamt, die Brandmauer nur einhalten muss, um die AfD klein zu kriegen. Ich glaube, dass der Begriff beiden Leutchen den Eindruck vermittelt, die wollen nicht in Gespräche kommen. Das ist falsch.",
+            "timestamp": "01:01:51",
+            "context": "Günther erklärt sein Verständnis des Brandmauer-Konzepts."
+          },
+          {
+            "text": "Es ist ein Problem, das uns alle betrifft. Deswegen glaube ich, müssen wir viel stärker den Menschen den Unterschied zwischen etablierten demokratischen Parteien und AfD machen.",
+            "timestamp": "01:03:26",
+            "context": "Günther formuliert seine alternative Strategie."
+          }
+        ],
+        "related_bundestag_topics": [
+          "AfD-Strategie",
+          "Verbotsverfahren",
+          "Innenpolitik",
+          "Wahlen"
+        ]
+      },
+      {
+        "title": "AfD als nicht-demokratische Partei und Verbotsverfahren",
+        "timestamp_range": "01:05:12 - 01:08:05",
+        "theme_description": "Markus Lanz fragt Günther, ob er die AfD noch für eine demokratische Partei hält, und diskutiert die Möglichkeit eines Verbotsverfahrens.",
+        "question_asked": "Markus Lanz fragt: Für Sie ist es keine demokratische Partei mehr?",
+        "question_intent": "Lanz möchte wissen, ob Günther die AfD aus dem demokratischen Spektrum ausschließt und damit implizit ein Verbotsverfahren befürwortet.",
+        "position": "Günther antwortet klar mit Nein. Die AfD ist für ihn eine Partei, die aktiv daran mitwirkt, dass Demokratie und demokratische Institutionen sowie die freiheitliche demokratische Ordnung abgeschafft werden. Auf die Folgesfrage nach einem Verbotsverfahren sagt Günther: \"Da bin ich ohnehin für.\" Auf Lanz' Frage, auch bei minimaler Aussicht auf Erfolg, antwortet er: \"Ich glaube nicht, dass die Erfolgsaussichten minimal sind.\" Er argumentiert: Das Bundesverfassungsgericht habe bei der NPD angelegt, dass ein Verbot nicht gereicht habe, weil die Partei zu klein war, um politische Macht auszuüben. Dieses Argument sei weg. \"Wir haben die AfD nicht nur als Verdachtsfall, wir haben sie als gesichert rechtsextrem in drei Bundesländern und auf Bundesebene steht ein Urteil aus.\" Günther sagt: \"Wir haben die Pflicht, unsere Demokratie zu schützen. Wenn da ein Verbotsverfahren die Rolle spielt, müssen auf die Bedrohungen sehen, die damit verbunden sind.\" Er führt an, dass man zulasse, dass über Social Media und Tech-Konzerne die Bevölkerung infiltriert wird. Schleswig-Holstein sei das einzige Bundesland, das ausländische Behörden ausgeschickt habe, die mit Tech-Konzernen verbunden werden. Man mache nur noch Open Source in Schleswig-Holstein.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet unmissverständlich auf beide Fragen: Nein, die AfD ist keine demokratische Partei; ja, er befürwortet ein Verbotsverfahren. Er begründet beide Positionen substantiell mit Verfassungsrecht und Bedrohungsanalyse.",
+        "concrete_statements": [
+          "Es ist eine Partei, die aktiv daran mitwirkt, Demokratie, demokratische Institutionen, daran mitwirkt, dass die freiheitliche demokratische Ordnung abgeschafft wird.",
+          "Da bin ich ohnehin für [Verbotsverfahren].",
+          "Wir haben die AfD nicht nur als Verdachtsfall, wir haben sie als gesichert rechtsextrem in drei Bundesländern.",
+          "Wir haben die Pflicht, unsere Demokratie zu schützen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein. Es ist eine Partei, die aktiv daran mitwirkt, Demokratie, demokratische Institutionen, daran mitzuwirken, dass die freiheitliche demokratische Ordnung abgeschafft wird.",
+            "timestamp": "01:05:18",
+            "context": "Günther beantwortet die Frage, ob die AfD eine demokratische Partei ist."
+          },
+          {
+            "text": "Da bin ich ohnehin für. Das habe ich immer offen gezeigt.",
+            "timestamp": "01:06:45",
+            "context": "Auf die Frage nach Verbotsverfahren antwortet Günther direkt."
+          },
+          {
+            "text": "Ich glaube nicht, dass die Erfolgsaussichten minimal sind. So wie das Verfassungsgericht es bei der NPD angelegt hat – da hat es für ein Verbot nicht gereicht, weil die Partei zu klein war um politische Macht auszuüben. Dieses Argument ist weg.",
+            "timestamp": "01:06:54",
+            "context": "Günther argumentiert, warum ein Verbot der AfD rechtlich realistisch ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "AfD-Verbot",
+          "Extremismus",
+          "Verfassungsschutz",
+          "Demokratischer Rechtsstaat"
+        ]
+      },
+      {
+        "title": "Tech-Konzerne, Regulierung und Datenschutz",
+        "timestamp_range": "01:08:12 - 01:09:49",
+        "theme_description": "Markus Lanz fragt Günther über die Regulierung von Tech-Konzernen, seinen Ansatz mit Open Source in Schleswig-Holstein und die Notwendigkeit von Altersbeschränkungen für Social Media.",
+        "question_asked": "Markus Lanz fragt: Sie haben kein Google, kein Facebook, kein Instagram? Und: Wie soll man sowas regulieren – ihr australischer Weg mit Altersbeschränkungen für Social Media?",
+        "question_intent": "Lanz möchte verstehen, wie konkret Günther die Infrastruktur seines Bundeslandes schützt und welche Regulierungen er bundesweit fordert.",
+        "position": "Günther erklärt, dass es darum geht, dass Schleswig-Holsteins Infrastruktur – E-Mails usw. – geschützt werden. Das Bundesland mache nur noch Open Source. Man habe eine Werbetour in Europa und Deutschland gemacht, um darauf hinzuweisen, dass man sich generell dagegen schützen müsse. Günther sagt: \"Wir lassen Social Media zu. Dass unsere minderjährigen Kinder infiltriert werden und ihnen die Möglichkeit gegeben wird – wenn wir nicht endlich aufwachen in Deutschland und sehen...\" Zur Regulierung sagt er: \"Social Media darf bis 16-jährigen nicht zugänglich gemacht werden. Da brauchen wir eine Unterstützung, wie Australien ausgemacht hat. Um die Jugendlichen zu schützen vor Desinformation, vor sexuellen Übergriffen.\" Günther argumentiert weiter, dass es nicht nur Aufgabe der Politik sei, Demokratie zu schützen. Alle zivilen Organisationen müssen sich auch zur Demokratie bekennen. Es müsse innerhalb der Medien eine Diskussion über Qualitätskriterien geben. Pressefreiheit und Meinungsfreiheit seien wichtig, aber wenn man solche Einflussnahme habe wie Medien, müsse man bestimmte Qualitätskriterien einhalten. Er argumentiert: Die USA zeige, dass man dort ihre politischen Ziele nicht erreiche, es gehe um Machtinteressen. \"Es ist nicht so, dass sie in Europa daran interessiert sind, dass wir Stabilität haben, demokratische Parteien in unseren Ländern.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet umfassend auf die Fragen zu Tech-Konzernen, Regulierung und Altersgrenzen. Er nennt konkrete Maßnahmen (Open Source in Schleswig-Holstein), konkrete Forderungen (Altersgrenze 16 für Social Media nach australischem Vorbild) und argumentiert die Notwendigkeit der Maßnahmen mit Sicherheitsbedenken und Demokratieschutz.",
+        "concrete_statements": [
+          "Wir machen nur noch Open Source in Schleswig-Holstein.",
+          "Social Media darf bis 16-jährigen nicht zugänglich gemacht werden.",
+          "Es ist nicht so, dass [die USA] in Europa daran interessiert sind, dass wir Stabilität haben, demokratische Parteien in unseren Ländern."
+        ],
+        "quotes": [
+          {
+            "text": "Es geht darum, dass unsere Infrastruktur – die E-Mails usw. Wir machen nur noch Open Source in Schleswig-Holstein. Wir haben das angesetzt, machen eine Werbetour in Europa und Deutschland insgesamt, dass wir uns generell dagegen schützen müssen.",
+            "timestamp": "01:08:12",
+            "context": "Günther erklärt seinen Open-Source-Ansatz für Schleswig-Holstein."
+          },
+          {
+            "text": "Social Media darf bis 16-jährigen nicht zugänglich gemacht werden. Da brauchen wir eine Unterstützung, wie Australien ausgemacht hat.",
+            "timestamp": "01:12:52",
+            "context": "Günther fordert Altersgrenze für Social Media."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Datenschutz",
+          "Cyberattacken",
+          "Technologieregulierung",
+          "Jugendschutz"
+        ]
+      },
+      {
+        "title": "Journalistische Qualität und Desinformation im Mediensystem",
+        "timestamp_range": "01:09:05 - 01:14:55",
+        "theme_description": "Markus Lanz und Günther diskutieren die Qualität von Nachrichtenportalen wie Nius, die Verantwortung von Medien bei der Einhaltung von Qualitätskriterien und die Unterscheidung zwischen Meinung und Propaganda.",
+        "question_asked": "Markus Lanz fragt: Was meinen Sie damit, dass es Portale gibt, die Kampagne sind und mit Journalismus nichts zu tun haben? Wo greifen wir dann ein?",
+        "question_intent": "Lanz möchte verstehen, wie weit Günther in der Regulierung gehen will und wer entscheiden soll, was noch Journalismus ist und was Propaganda.",
+        "position": "Günther argumentiert, dass Selbstabgeordnete im Bundestag sich solche Portale angucken und nicht merken, dass bestimmte Medien darauf einsteigen – indem sie selbst politische Agitation betreiben und keine Journalismus machen. Dies sei ein Problem. Er sagt: \"Machen wir uns nichts vor. In der großen Koalition, da müssen wir vorsichtig sein. Mit der SPD gemeinsam, wenn wir da in eine Schieflage gekommen sind, hat uns immer etwas damit zu tun, dass sich Politik auch davon beeinflussen lässt.\" Günther nennt das Beispiel Brosius-Gersdorf und sagt: \"Nius\" sei das Portal, das dagegen geschossen hat. \"Es gibt Abgeordnete, die solche Portale lesen, so etwas weiterschicken, in WhatsApp Gruppen verteilen.\" Er argumentiert: \"Wir müssen uns klarmachen, dass unsere Gegner die Feinde von Demokratie sind. Wenn wir uns nicht zusammenreißen, uns zusammen tun, uns gegen solche Exzesse wehren, dann werden wir unsere Demokratie in Deutschland in den nächsten zehn Jahren nicht wiedererkennen.\" Zur Frage der Regulierung sagt Günther: Es sei nicht nur Aufgabe der Politik, Demokratie zu schützen. Alle zivilen Organisationen müssen sich zur Demokratie bekennen. Innerhalb der Medien müsse eine Diskussion über Qualitätskriterien stattfinden. \"Natürlich ist es so, wir haben bei uns Pressefreiheit, Meinungsfreiheit. Aber wenn man eine solche Einflussnahme hat wie Medien, dann muss man bestimmte Qualitätskriterien einhalten.\" Er fragt: Findet heute noch statt, dass man eine zweite Quelle prüft, dass Journalisten wahrhaft berichten? \"Wenn ich mir Artikel von Nius angucke, muss ich sagen, dass dem in der Regel nichts von. Es ist frei von Fakten.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Günther antwortet auf Lanz' Frage konkret: Er nennt spezifische Fälle (Nius, Brosius-Gersdorf), identifiziert das Problem (Vermischung von Agitation und Journalismus), schildert Konsequenzen (Beeinflussung von Abgeordneten) und skizziert Lösungsansätze (Qualitätskriterien, zivilgesellschaftliches Engagement). Die Antwort adressiert die gestellte Frage vollständig.",
+        "concrete_statements": [
+          "Es gibt Abgeordnete, die solche Portale lesen, so etwas weiterschicken, in WhatsApp Gruppen verteilen.",
+          "Wir müssen uns klarmachen, dass unsere Gegner die Feinde von Demokratie sind.",
+          "Wenn man eine solche Einflussnahme hat wie Medien, dann muss man bestimmte Qualitätskriterien einhalten.",
+          "Es ist frei von Fakten [bei Nius-Artikeln]."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn ich mir Artikel von Nius angucke, muss ich sagen, dass dem in der Regel nichts von. Es ist frei von Fakten. Sie machen aber den Eindruck als wäre durch Meinungsfreiheit das etwas, was in unserem Land sagen kann.",
+            "timestamp": "01:13:29",
+            "context": "Günther kritisiert die Qualität von Nius-Artikeln."
+          },
+          {
+            "text": "Wir müssen uns klarmachen, dass unsere Gegner die Feinde von Demokratie sind. Wenn wir uns nicht zusammenreißen, uns zusammen tun, uns gegen solche Exzesse wehren, dann werden wir unsere Demokratie in Deutschland in den nächsten zehn Jahren nicht wiedererkennen.",
+            "timestamp": "01:10:30",
+            "context": "Günther warnt vor der Gefahr von Desinformation für die Demokratie."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Medienregulierung",
+          "Pressefreiheit",
+          "Desinformation",
+          "Medienkompetenz"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Daniel Günther wurde mit fast 95 Prozent erneut zum CDU-Vorsitzenden gewählt",
+        "timestamp": "sub18-sub19"
+      },
+      {
+        "claim": "Markus Söder kam neulich nur auf 83,6 Prozent bei der CDU-Wahl",
+        "timestamp": "sub23"
+      },
+      {
+        "claim": "Schleswig-Holstein hatte Dutzende Drohnensichtungen",
+        "timestamp": "00:29:18"
+      },
+      {
+        "claim": "Bundesverfassungsgericht hat bei der NPD entschieden, dass ein Verbot nicht gereicht hat, weil die Partei zu klein war um politische Macht auszuüben",
+        "timestamp": "01:06:54"
+      },
+      {
+        "claim": "Die AfD ist in drei Bundesländern als gesichert rechtsextrem eingestuft",
+        "timestamp": "01:06:54"
+      },
+      {
+        "claim": "Schleswig-Holstein ist das einzige Bundesland, das ausländische Behörden ausgeschickt hat, die mit Tech-Konzernen verbunden werden",
+        "timestamp": "01:08:05"
+      },
+      {
+        "claim": "3 % der Deutschen haben Vertrauen zu sozialen Medien",
+        "timestamp": "01:10:09"
+      }
+    ]
+  }
+}

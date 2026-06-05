@@ -1,0 +1,459 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8yMGI3NWEwOS02MjhiLTRlOGMtYjc5Yi1jZDJlNzM5N2MyYjRfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2025-09-21",
+    "politician": "Jens Spahn",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "800bc42208d7eb1f",
+    "transcript_chars": 35507,
+    "caption_lines": 1319,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15426,
+    "tokens_out": 13051,
+    "cost_usd": 0.0322724,
+    "quote_validation": {
+      "valid_exact": 22,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.045Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, Vorsitzender der CDU/CSU-Bundestagsfraktion, erscheint in Caren Miosgas Talkshow und diskutiert zunächst Probleme bei der bevorstehenden Richterwahl fürs Bundesverfassungsgericht, dann Vermögensungleichheit und schließlich die demokratische Krise in den USA unter Trump. Im Ton wirkt Spahn überwiegend sachlich-argumentativ, teilweise defensiv zur Maskenbeschaffung, und betont mehrfach die Notwendigkeit von Debatte und Mäßigung.",
+    "themes": [
+      {
+        "title": "Richterwahl Bundesverfassungsgericht nach Fehlschlag",
+        "timestamp_range": "00:01:03 - 00:07:59",
+        "theme_description": "Caren Miosga fragt, ob die geplante Richterwahl am Donnerstag diesmal erfolgreich durchgeführt werden kann, nachdem die vorherige abgesetzt wurde.",
+        "question_asked": "Caren Miosga fragt Jens Spahn, ob er versprechen kann, dass die Richterwahl fürs Bundesverfassungsgericht diesmal klappt, nachdem die vorherige Wahl wegen fehlender Zustimmung aus Teilen seiner Fraktion abgeblasen werden musste.",
+        "question_intent": "Caren Miosga will wissen, ob Spahn organisatorisch und fraktionsintern die Kontrolle über das Verfahren gewonnen hat und wie sicher er sich der Durchführung ist.",
+        "position": "Spahn versichert, dass die Wahl am Donnerstag erfolgreich stattfinden wird. Er begründet dies mit intensiven Gesprächen zur neuen Kandidatin Sigrid Emmenegger, die er als 'sehr gute', 'fachlich versiert' und 'sehr überzeugend' charakterisiert. Das Verfahren sei verbessert worden; Spahn habe sich 'früher und stärker eingebracht'. Er habe mit etwa 70 Kollegen vor der Abstimmung gesprochen. Die Union gehe gemeinsam mit der SPD mit drei Kandidatenvorschlägen (einer von der Union, zwei von der SPD) in die Wahl. Für die erforderliche Zweidrittelmehrheit seien auch Grüne und Linke eingebunden; Bodo Ramelow und andere hätten Zustimmung signalisiert.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn beantwortet die Frage direkt und konkret mit 'Ja, es wird am Donnerstag klappen.' Er legt dar, welche organisatorischen Verbesserungen getroffen wurden, nennt die neue Kandidatin, beschreibt sein persönliches Vorgehen (Gespräche mit 70 Kollegen) und erklärt die koalitionäre Abstimmung mit SPD sowie die Rückendeckung durch andere Fraktionen.",
+        "quotes": [
+          {
+            "text": "Ja. Es wird am Donnerstag klappen.",
+            "timestamp": "00:01:35",
+            "context": "Antwort auf die Frage, ob die Richterwahl erfolgreiche durchgeführt werden kann."
+          },
+          {
+            "text": "Die neue Kandidatin ist eine sehr gute. Ich habe mit ihr das Gespräch geführt. Fachlich versiert, sehr überzeugend. Das wird gelingen.",
+            "timestamp": "00:01:35",
+            "context": "Spahn charakterisiert die neue Kandidatin Sigrid Emmenegger."
+          }
+        ],
+        "concrete_statements": [
+          "Wahl wird am Donnerstag erfolgreich durchgeführt",
+          "Neue Kandidatin ist fachlich versiert und überzeugend",
+          "Verfahren wurde verbessert und Kommunikation früher/stärker eingebracht",
+          "Gespräche mit etwa 70 Kollegen vor Abstimmung geführt",
+          "Koalition mit SPD (Union stellt 1 Kandidat, SPD 2)",
+          "Bodo Ramelow und andere haben Zustimmung signalisiert"
+        ],
+        "related_bundestag_topics": [
+          "Bundesverfassungsgericht",
+          "Verfassungsrichter",
+          "Koalitionsvereinbarung",
+          "Richterwahl"
+        ]
+      },
+      {
+        "title": "Abtreibungsrecht und Verfassungsgericht-Kandidatin",
+        "timestamp_range": "00:02:39 - 00:05:18",
+        "theme_description": "Caren Miosga bohrt nach, ob Spahn die neue Kandidatin Sigrid Emmenegger zum Abtreibungsrecht befragt hat, angesichts von Kritik an der früheren Kandidatin Frauke Brosius-Gersdorf wegen ihrer liberalen Haltung.",
+        "question_asked": "Caren Miosga fragt, ob Spahn die neue Kandidatin auch zum Abtreibungsrecht befragt hat, und verweist darauf, dass Kritik an der früheren Kandidatin teilweise auf deren liberale Abtreibungshaltung zurückging.",
+        "question_intent": "Caren Miosga möchte wissen, ob Spahn und die Union beim Thema Abtreibungsrecht präventiv abgeklärt haben, um erneute Konflikte zu vermeiden.",
+        "position": "Spahn bestätigt, dass er die Frage zum Abtreibungsrecht und andere thematische Fragen mit der Kandidatin diskutiert hat. Jedoch sagt er, nicht aus internen Gesprächen berichten zu wollen. Der eigentliche Kritikpunkt sei nicht gewesen, dass jemand eine andere Position zum Abtreibungsrecht habe – auch andere Richter hätten unterschiedliche Positionen. Entscheidend sei das Verständnis von bisheriger Rechtsprechung. Es gebe einen 'etwas krummen Kompromiss', der breite Akzeptanz in der Bevölkerung habe. Im Koalitionsvertrag stehe, die Regierung wolle die Kostenübernahme von Abbrüchen erweitern. Diese würde 'nichts Fundamentales' ändern; es gebe bereits Regelungen, wo die Krankenversicherung bei niedrigem Einkommen die Kosten übernimmt. Mögliche Änderungen durch Altersgrenzen oder soziale Situationen seien 'verfassungsmäßig nicht problematisch'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn beantwortet die Frage, dass er die Kandidatin zum Abtreibungsrecht befragt hat, verweigert aber die Offenlegung der Antwort mit Verweis auf Vertraulichkeit. Er erklärt danach sein Verständnis von verfassungsrechtlicher Legitimitiät (bisheriger Kompromiss ist okay, geplante Erweiterung ist nicht verfassungswidrig), beantwortet aber nicht direkt, was die Kandidatin selbst zur Position zum Abtreibungsrecht gesagt hat.",
+        "quotes": [
+          {
+            "text": "Ja, über diese und andere Fragen. Auch diese Frage und andere Themen haben wir diskutiert. Das eigentliche Thema war nicht, dass jemand eine andere Position da hat, das haben auch andere Richter dort.",
+            "timestamp": "00:03:10",
+            "context": "Spahn antwortet auf die Frage, ob er die Kandidatin zum Abtreibungsrecht befragt hat."
+          },
+          {
+            "text": "Ich möchte nicht aus einem internen Gespräch berichten. Aber das Verständnis war da, damit können wir umgehen.",
+            "timestamp": "00:03:45",
+            "context": "Spahn lehnt es ab, Details aus dem Gespräch preiszugeben, deutet aber auf positives Verständnis hin."
+          }
+        ],
+        "concrete_statements": [
+          "Kandidatin wurde zum Abtreibungsrecht befragt",
+          "Details des Gesprächs werden nicht offengelegt",
+          "Verständnis von bisheriger Rechtsprechung ist maßgeblich, nicht persönliche Abtreibungsmeinung",
+          "Koalitionsvertrag-Pläne zur Kostenübernahme sind nicht verfassungswidrig",
+          "Es gibt bereits Regelungen für Kostenübernahme bei niedrigem Einkommen"
+        ],
+        "related_bundestag_topics": [
+          "Abtreibungsrecht",
+          "Schwangerschaftsabbruch",
+          "Koalitionsvertrag",
+          "Verfassungsrecht"
+        ]
+      },
+      {
+        "title": "Warum Richterwahl Fehlschlag: eigene Mitverantwortung?",
+        "timestamp_range": "00:09:02 - 00:10:39",
+        "theme_description": "Caren Miosga fragt, warum Spahn bei der gescheiterten Richterwahl nicht merkte, dass die Stimmen fehlten, und ob ihn Berichte zur Maskenbeschaffung zu sehr ablenkten.",
+        "question_asked": "Caren Miosga wirft die Frage auf, warum Spahn nicht vorher bemerkt hat, dass Stimmen für die Richterwahl fehlten, und spekuliert, ob Spahn von Berichten zu seinen Maskenbeschaffungen zu sehr abgelenkt war.",
+        "question_intent": "Caren Miosga möchte die persönliche Verantwortung von Spahn für den organisatorischen Fehlschlag klären und hinterfragt implizit, ob externe Probleme (Maskenskandal) sein Fokus beeinträchtigt haben.",
+        "position": "Spahn bestreitet, abgelenkt gewesen zu sein. Er erklärt, dass man erst in der Vorwoche bemerkt habe, dass es Diskussionen zum Thema Schwangerschaftsabbruch gebe, und deshalb über die Vizepräsidentenwahl debattiert habe. Er persönlich habe mit etwa 70 Kollegen in den Tagen vor der Abstimmung gesprochen; diese hätten die Wahrheit gesagt. Am Freitagmorgen seien weitere (nicht näher genannte) Themen hinzugekommen, dann sei es 'nicht mehr gegangen'. Er möchte die Aufarbeitung nicht fortführen, da der Blick nach vorne wichtiger sei. Man befinde sich im dritten Rezessionsjahr und brauche Wachstum und Vertrauen.",
+        "answer_match": "teilweise_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die Frage nach fehlender Kontrolle/Vorausplanung mit einer narrativen Erklärung (Diskussionen zum Abtreibungsrecht, Gespräche mit 70 Kollegen, unerwartete Themen am Freitag). Er bestreitet, abgelenkt gewesen zu sein, aber erklärt nicht, warum er trotz Gesprächen mit so vielen Kollegen die Stimmen nicht gezählt hat. Die Antwort adressiert die Frage nach seiner Verantwortung nur teilweise und endet mit einem Pivot auf zukünftige Prioritäten.",
+        "quotes": [
+          {
+            "text": "Ich war nicht abgelenkt. In der Vorwoche haben wir gemerkt, es gibt eine Diskussion zum Thema Schwangerschaftsabbruch.",
+            "timestamp": "00:09:38",
+            "context": "Spahn antwortet auf die Frage, ob ihn Maskenbeschaffungs-Berichte abgelenkt haben."
+          },
+          {
+            "text": "Ich habe mit 70 Kollegen in den Tagen vor der Abstimmung gesprochen. Haben die nicht die Wahrheit gesagt?",
+            "timestamp": "00:09:38",
+            "context": "Spahn verweist auf intensive Kommunikation mit Kollegen."
+          }
+        ],
+        "concrete_statements": [
+          "War nicht abgelenkt durch Maskenbeschaffungs-Berichte",
+          "Probleme entstanden durch Diskussionen zum Schwangerschaftsabbruch",
+          "Sprach mit etwa 70 Kollegen vor Abstimmung",
+          "Weitere (unerwartete) Themen kamen Freitag hinzu",
+          "Will Aufarbeitung nicht fortführen; Fokus liegt auf Zukunft"
+        ],
+        "related_bundestag_topics": [
+          "Richterwahl",
+          "Fraktionsdisziplin",
+          "Krisenkommunikation"
+        ]
+      },
+      {
+        "title": "Vermögensungleichheit und Erbschaftssteuer",
+        "timestamp_range": "00:11:09 - 00:18:30",
+        "theme_description": "Caren Miosga fragt, warum Spahn in einer Talkshow plötzlich die Vermögensungleichheit als Thema aufgeworfen hat und danach zur Erbschaftssteuer ausweicht, und ob das mit dem Kanzleramt abgestimmt war.",
+        "question_asked": "Caren Miosga fragt nach Spahns Auftritt bei Maybrit Illner, wo er von Vermögensungleichheit sprach und Erbschaftssteuer ansprach – ob das mit dem Kanzleramt abgestimmt war und warum er danach wieder ausweicht.",
+        "question_intent": "Caren Miosga möchte wissen, ob Spahns öffentliche Statements zu Vermögen und Erbschaftssteuer strategisch mit der Regierung koordiniert sind oder ob er eine Eigeninitiative zeigt, die anderen in der Union widerspricht.",
+        "position": "Spahn sagt, er diskutiere in Talkshows nicht mit Vorabbesprechung mit dem Kanzleramt. Als 'Christdemokrat' mit 'sozialem Blick' halte er Vermögensungleichheit in Deutschland für ein Thema, das man nicht ignorieren dürfe. Er unterscheide zwischen Einkommensungleichheit (gut durch Steuersystem und Sozialversicherung ausgeglichen) und Vermögensungleichheit (durch niedrige Zinsen verschärft, weil Reiche ohne Anstrengung reicher wurden). Kleine und mittlere Einkommen müssten Chancen zum Vermögensaufbau haben – etwa durch Sparprogramme für Kinder ab dem 6. Lebensjahr (10 Euro/Monat) und Aktienentwicklungen. Zur Erbschaftssteuer: Das Bundesverfassungsgericht werde ein Urteil fällen (Jahresende/Anfang 2026 erwartet). Aktuell werde die Union 'nichts machen'; man warte auf das Urteil. Beim Übergang von Generation zu Generation müsse es 'ohne Substanzverlust' möglich sein – Arbeitsplätze sicherndes Firmenvermögen dürfe nicht besteuert werden. Die Ungerechtigkeit entstehe dadurch, dass zu viele 'keine Chance haben, Vermögen aufzubauen' (nicht durch Steuern auf hohe Vermögen).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Spahn antwortet auf die Frage nach strategischer Koordination mit einem Pivot: Er erklärt sein Verständnis von Vermögensungleichheit und sozialer Gerechtigkeit (Christdemokratie), beantwortet aber nicht direkt, ob die Illner-Äußerung abgestimmt war oder eine Eigeninitiative. Zur Erbschaftssteuer lenkt er ab auf die Erwartung eines Verfassungsgerichtsurteils und betont Abwarten statt aktuelle Pläne – das adressiert die Frage nach Haushalts-Kohärenz nur indirekt.",
+        "quotes": [
+          {
+            "text": "Ich diskutiere in einer Sendung, da rufe ich nicht vorher an.",
+            "timestamp": "00:15:51",
+            "context": "Spahn antwortet auf Frage, ob die Erbschaftssteuer-Äußerung mit dem Kanzleramt abgestimmt war."
+          },
+          {
+            "text": "Vermögensungleichheit, da bin ich Christdemokrat. Ich habe einen sozialen Blick auf die Dinge. Ungleichheit ist in Deutschland ein Thema. Man darf davon nicht die Augen verschließen.",
+            "timestamp": "00:15:51",
+            "context": "Spahn erklärt seine Position zu Vermögensungleichheit."
+          },
+          {
+            "text": "Wir werden aktuell an dem Thema nichts machen. Wir warten auf das Urteil des Verfassungsgerichtes.",
+            "timestamp": "00:17:57",
+            "context": "Spahn stellt klar, dass die Union aktuell keine Erbschaftssteuer-Reform plant."
+          }
+        ],
+        "concrete_statements": [
+          "Spricht in Talkshows nicht im Voraus mit Kanzleramt ab",
+          "Vermögensungleichheit ist wichtiges christdemokratisches Thema",
+          "Chance zum Vermögensaufbau für kleine/mittlere Einkommen zentral",
+          "Sparförderung für Kinder ab 6 Jahren geplant (10 Euro/Monat)",
+          "Keine aktuellen Pläne zu Erbschaftssteuer; Warten auf Verfassungsgerichtsurteil",
+          "Firmenvermögen, das Arbeitsplätze sichert, darf nicht besteuert werden"
+        ],
+        "related_bundestag_topics": [
+          "Vermögensverteilung",
+          "Erbschaftssteuer",
+          "Einkommensteuern",
+          "Soziale Gerechtigkeit",
+          "Bundesverfassungsgericht"
+        ]
+      },
+      {
+        "title": "Selbstkritik und eigene Fehler als Politiker",
+        "timestamp_range": "00:18:30 - 00:21:38",
+        "theme_description": "Caren Miosga fragt Spahn, ob ihm als Fraktionschef nicht das Zuhören und das Vermittelnde fehle, und ob er genug Selbstkritik übe.",
+        "question_asked": "Caren Miosga fragt Jens Spahn, ob als Fraktionschef das Zuhören und Vermittelnde zu kurz kommt, ob ihm das Selbstkritische fehle, und wie er selbst seine Rolle beurteilt.",
+        "question_intent": "Caren Miosga möchte wissen, ob Spahn seine eigenen Schwächen (mangelnde Selbstreflexion, wenig Empathie für interne Konflikte) anerkennt oder sich eher selbstbewusst darstellt.",
+        "position": "Spahn sagt, dass er zweimal in Koalitionsfunktionen tätig war (impliziert: als Bundesminister für Gesundheit und jetzt als Fraktionsvorsitzender). Die Aufgabe eines Bundesministers ist anders als die des 'stellvertretenden Oppositionschefs': Ein Minister müsse 'ausgeglichener' sein und 'Kompromisse ermöglichen', während ein Oppositioneller 'den Finger in die Wunde legen' muss. Er habe versucht, 'die richtigen Mittel' für jede Rolle zu finden. Zur Frage nach Selbstkritik sagt er: Das Bild, das viele von ihm haben, sei sein Image; manche sagten danach, er sei netter als gedacht. Aber er wisse, 'was in den letzten Jahren gelungen ist': Kompromisse. 'Ich beginne keine Debatte, ohne sie nicht zum Ergebnis führen zu wollen. Jede Debatte, die ich beginne, führe ich auch zu Ende.' Er versuche, Mehrheiten zu finden. 'Manchmal schieße ich über das Ziel hinaus. Oder ich lege auch mal falsch.' – das sei eine Form von Selbstkritik.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die Frage nach Selbstkritik mit kurzer Anerkennung ('Manchmal schieße ich über das Ziel hinaus'), beantwortet aber nicht direkt, ob ihm als Fraktionschef das Zuhören fehlt. Er erklärt stattdessen Unterschiede zwischen Ministeramt und Fraktionsvorsitz, was teilweise die Frage umdeutet. Die Selbstkritik wirkt eher rhetorisch als substantiell.",
+        "quotes": [
+          {
+            "text": "Manchmal schieße ich über das Ziel hinaus. Oder ich lege auch mal falsch.",
+            "timestamp": "00:21:38",
+            "context": "Spahn antwortet auf Frage nach Selbstkritik."
+          },
+          {
+            "text": "Ich beginne keine Debatte, ohne sie nicht zum Ergebnis führen zu wollen. Jede Debatte, die ich beginne, führe ich auch zu Ende.",
+            "timestamp": "00:21:38",
+            "context": "Spahn beschreibt seinen Verhandlungsstil."
+          }
+        ],
+        "concrete_statements": [
+          "War in zwei Koalitionsfunktionen tätig (Minister und Fraktionsvorsitzender)",
+          "Ministeramt erfordert Ausgeglichenheit und Kompromisse; Opposition erfordert Deutlichkeit",
+          "Versucht, Mehrheiten zu finden und Debatten zu Ende zu führen",
+          "Gibt zu: manchmal über das Ziel hinausgeschossen, manchmal falsch gelegen"
+        ],
+        "related_bundestag_topics": [
+          "Fraktionsführung",
+          "Koalitionsmanagement",
+          "Politische Rollen"
+        ]
+      },
+      {
+        "title": "Trump, Meinungsfreiheit und Absetzung Jimmy Kimmel",
+        "timestamp_range": "00:22:10 - 00:32:20",
+        "theme_description": "Caren Miosga fragt (später im Kontext einer Diskussion mit Gästen Kohlenberg und Clüver Ashbrook), wie Spahn Trumps Angriff auf die Meinungsfreiheit – speziell die Absetzung der Jimmy-Kimmel-Show – bewertet.",
+        "question_asked": "Im Gesprächsverlauf wird Spahn implizit gefragt (nach Kohlenbergs Stellungnahme), wie er die Absetzung der Jimmy-Kimmel-Show unter Druck der Trump-Administration bewertet und ob das Zensur ist.",
+        "question_intent": "Caren Miosga und die anderen Gäste möchten wissen, ob Spahn das als Verstoß gegen Meinungsfreiheit sieht und wie er dies mit den USA als demokratische Vorbildnation vereinbart.",
+        "position": "Spahn erklärt, dass 'Zensur ein großes Wort' ist. Trump nutze 'Methoden von der anderen politischen Seite', speziell Hasssprache-Vorwürfe. Er wirft ein: 'Wo haben die Demokraten einen Moderator abgesetzt?' Die Rechte nutze jetzt 'die Methoden der Linken'. Es sei 'unterschiedlich' und 'falsch, so eine Sendung abzusetzen'. Die Frage sei aber, 'warum der Sender da mitmacht'. Spahn versucht, einen Bezug zu Deutschland zu wagen: Es gebe auch dort Debatten über Moderatoren und Sendungen. Angesichts der US-Polarisierung wolle er vermeiden, dass Deutschland in eine ähnliche Situation kommt. 'Damit wir keine Sendungen und Moderatoren absetzen.' Spahn kritisiert, dass 'alles, was links von Bill Clinton extremistisch' und 'alles, was rechts von Mitt Romney rechtsextrem' sei – das sei falsch. Man dürfe 'das nicht pauschaliert sagen: Das war einfach ein Rechtsextremer.' Es gibt einen 'großen Unterschied zwischen Cancel Culture sowohl links und rechts'. Sie sei 'unerträglich' und werde 'liebevoll von beiden Seiten gepflegt'. Aber: Die 'Absetzung eines TV-Hosts auf Druck der Regierung' sei unzulässig – eine Firma kann einen Host nicht mögen (das ist legal), aber 'wenn ein Regierungsmitarbeiter Druck ausübt', darf die Regierung das nicht machen. 'Das haben die Demokraten noch nie gemacht. Das ist ein historischer Moment.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn beantwortet die Frage nach der Kimmel-Absetzung mit klarer normativer Position: Das ist falsch und (wenn unter Regierungsdruck) ein historischer Bruch. Er differenziert zwischen legaler Firmenentscheidung und illegaler Regierungspressure. Er adressiert auch die Frage nach deutschen Konsequenzen und lehnt pauschale Extremisierungen ab.",
+        "quotes": [
+          {
+            "text": "Es ist falsch, so eine Sendung abzusetzen. Die Frage ist, warum der Sender da mitmacht.",
+            "timestamp": "00:29:35",
+            "context": "Spahn bewertet die Absetzung der Jimmy-Kimmel-Show."
+          },
+          {
+            "text": "Aber es ist sehr extrem polarisiert in den USA. Immer weniger setzt man sich auseinander. Ich möchte vermeiden, dass wir in eine ähnliche Situation kommen.",
+            "timestamp": "00:30:07",
+            "context": "Spahn betont seine Sorge um deutsche Debattenkultur."
+          },
+          {
+            "text": "Aber die Absetzung eines TV-Hosts auf den Druck der Regierung ... Das darf die Regierung nicht machen.",
+            "timestamp": "00:31:46",
+            "context": "Spahn konkretisiert das Verbot von Regierungsdruck."
+          }
+        ],
+        "concrete_statements": [
+          "Absetzung der Kimmel-Show ist falsch",
+          "Unterschied zwischen Firmenentscheidung (legal) und Regierungsdruck (illegal)",
+          "Regierungsdruck auf Medien ist historisch beispiellos (im negativen Sinne)",
+          "Cancel Culture von links und rechts ist unerträglich",
+          "Pauschale Extremisierung ('alles rechts von Romney ist Rechtsextremist') ist falsch",
+          "Deutschland muss die Debattenräume weit halten, um nicht in US-Muster zu verfallen"
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Medienfreiheit",
+          "Pressefreiheit",
+          "Trump-Administration",
+          "Polarisierung"
+        ]
+      },
+      {
+        "title": "Charlie Kirk und die Rolle radikaler Konservativismus",
+        "timestamp_range": "00:30:07 - 00:52:45",
+        "theme_description": "In der Diskussion über Trumps Rhetorik und Politik wird Spahn gefragt, wie er die Rolle von Charlie Kirk – dem getöteten rechten Aktivisten – einordnet und wie radikal seine Positionen waren.",
+        "question_asked": "Nach Ausführungen von Gästen (Kohlenberg, Clüver Ashbrook) wird Spahn angesprochen, ob er Charlie Kirk als 'Rechtsextremen' oder radikalen Konservativen sieht, und ob die Beschreibung seiner Rolle fair ist.",
+        "question_intent": "Die Moderatorin und Gäste möchten Spahns Einordnung von Kirk verstehen – ist er ein normaler Konservativer mit großem Appeal, oder war er tatsächlich extremistisch?",
+        "position": "Spahn sagt, dass man 'mit der Figur Charlie Kirk viel über die Fehler der Demokraten lernen' kann. Man dürfe das 'nicht pauschaliert sagen: Das war einfach ein Rechtsextremer'. Kirk sei 'zum Teil sehr konservativ, zum Teil liberal. Oder radikal.' Die Bezeichnung 'extremistisch' sei 'vielleicht nicht die richtige Einordnung'. 'Wir müssen andere Meinungen nicht gleich extremistisch machen.' Kirk habe 'wie viele Menschen' angesprochen und sei 'in eine Leerstelle der Demokraten gegangen' – 'das war ein legitimes Projekt'. (Kohlenberg kritisiert später, dass Spahn dabei nicht deutlich genug gewesen sei.) Spahn antwortet: 'Das habe ich vielleicht nicht deutlich genug gesagt.' Auf die Frage, warum MAGA an der AfD interessiert sei, antwortet Spahn: 'Es geht um die Schwächung von Europa.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die Frage nach Kirks Extremismus mit einer Differenzierung (teils konservativ, teils liberal, teils radikal) und lehnt pauschale Extremisierung ab. Er erklärt, dass Kirk 'legitim' in eine Leerstelle der Demokraten getreten ist. Die Antwort adressiert aber nicht klar, inwieweit Kirks extremistische Äußerungen (die Kohlenberg erwähnt) zu bewerten sind; Spahn betont eher das Verständnis für seinen Appeal.",
+        "quotes": [
+          {
+            "text": "Mit der Figur Charlie Kirk kann man viel über die Fehler der Demokraten lernen. Man darf das nicht pauschaliert sagen: Das war einfach ein Rechtsextremer.",
+            "timestamp": "00:52:09",
+            "context": "Spahn wehrt sich gegen pauschale Etikettierung von Kirk."
+          },
+          {
+            "text": "Er ist in eine Leerstelle der Demokraten gegangen. Das war ein legitimes Projekt.",
+            "timestamp": "00:52:45",
+            "context": "Spahn erklärt Kirks Appeal als Angebot an vernachlässigte Wählergruppe."
+          }
+        ],
+        "concrete_statements": [
+          "Kirk darf nicht pauschal als Rechtsextremer etikettiert werden",
+          "Kirk war teils sehr konservativ, teils liberal, teils radikal – keine einfache Einordnung",
+          "Kirk sprach Menschen an, die Demokraten vernachlässigt hatten (legitimes Projekt)",
+          "Nicht alle anderen Meinungen sollten sofort extremistisch genannt werden"
+        ],
+        "related_bundestag_topics": [
+          "Polarisierung",
+          "Konservatismus",
+          "Radikalismus",
+          "MAGA-Bewegung"
+        ]
+      },
+      {
+        "title": "Trump-Administration und Pressefreiheit für Auslandskorrespondenten",
+        "timestamp_range": "00:38:10 - 00:42:56",
+        "theme_description": "Caren Miosga fragt Spahn, wie er auf Drohungen gegen Auslandskorrespondenten (Visabeschränkungen, Klagen gegen New York Times) reagiert und ob er Grenell angerufen hat.",
+        "question_asked": "Caren Miosga fragt Jens Spahn, ob er Richard Grenell (ehemaliger US-Botschafter in Deutschland) angerufen hat angesichts von dessen Drohungen, dem ZDF-Studioleiter Elmar Theveßen das Pressevisum zu entziehen.",
+        "question_intent": "Caren Miosga möchte wissen, ob Spahn persönlich diplomatische Kanäle nutzt, um für Pressefreiheit einzutreten, oder ob er diese Verantwortung anderen überlässt.",
+        "position": "Spahn betont, dass 'nur, weil man jemanden kennt' (wie Grenell), man 'nicht alles teilt'. Das sei 'ein Thema in Deutschland', wo 'immer unterstellt' wird, dass Bekannte gleich denken. 'Das ist falsch.' Die USA könnten selbst über Visapolitik entscheiden, aber es 'befördert nicht die Berichterstattung aus den USA'. Das könne 'zu einer Form von Selbstzensur führen'. Spahn hätte sich 'gewünscht, dass Herr Theveßen mal sagt, dass er über Charlie Kirk etwas Falsches gesagt hat'. 'Fehler macht ja jeder.' Das ZDF habe es 'bedauert', trotzdem macht das 'die Diskussion leichter'. Die Klagen gegen Medien seien problematisch, aber: 'Das rechtfertigt nicht, jemanden zu verweisen und zu sagen, er sei ein linker Radikaler, der zu Gewalt aufruft.' (Das sagte implizit Grenell.) Spahn sagt am Ende, er wisse nicht genau, 'was die Bundesregierung da machen kann'. 'Wenn Trump das Gefühl hat, dass ich nicht mehr kommen soll, kann die Bundesregierung nichts machen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Spahn antwortet auf die Frage nach dem Anruf bei Grenell mit einer Erklärung, warum er es nicht nötig findet (Bekanntsein bedeutet nicht Übereinstimmung). Er kritisiert danach die Visa-Beschränkungen und Drohungen, beantwortet aber nicht direkt, ob er Grenell angerufen hat (implizit: nein). Die Antwort adressiert die Pressefreiheit-Frage nur indirekt.",
+        "quotes": [
+          {
+            "text": "Das Verrückte an den deutschen Debatten ist: Nur, weil man jemanden kennt, teilt man nicht alles.",
+            "timestamp": "00:39:16",
+            "context": "Spahn erklärt, warum Bekanntschaft mit Grenell nicht bedeutet, ihn zu unterstützen."
+          },
+          {
+            "text": "Die USA kann selbst entscheiden, wie sie mit Visa umgeht. Aber es befördert nicht die Berichterstattung aus den USA. Das kann zu einer Form von Selbstzensur führen.",
+            "timestamp": "00:39:46",
+            "context": "Spahn kritisiert die Auswirkung von Visa-Beschränkungen."
+          }
+        ],
+        "concrete_statements": [
+          "Grenell nicht angerufen (implizit durch Umformulierung)",
+          "USA können Visapolitik selbst entscheiden, aber Beschränkungen fördern Selbstzensur",
+          "Fehlereingeständnisse (wie beim ZDF zur Kirk-Berichterstattung) sind wichtig für Vertrauenskultur",
+          "Klagen gegen Medien sind problematisch",
+          "Bundesregierung hat begrenzte Möglichkeiten, US-Entscheidungen zu beeinflussen"
+        ],
+        "related_bundestag_topics": [
+          "Pressefreiheit",
+          "Medienfreiheit",
+          "Diplomatie",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "MAGA-AfD-Nähe und europäische Souveränität",
+        "timestamp_range": "00:44:02 - 00:55:35",
+        "theme_description": "Die Gesprächsgäste bringen auf, dass die MAGA-Bewegung der deutschen AfD nahe steht. Caren Miosga und die anderen Gäste fragen Spahn, warum MAGA an einer antiamerikanischen, pro-russischen Partei interessiert ist.",
+        "question_asked": "Caren Miosga und die Gäste (insbesondere Clüver Ashbrook) fragen Spahn, wie er erklärt, dass MAGA und die AfD sich annähern, obwohl die AfD antiamerikanisch, gegen NATO und pro-russisch ist.",
+        "question_intent": "Die Moderatorin möchte verstehen, ob Spahn die MAGA-AfD-Verbindung als Strategie zur Destabilisierung Europas sieht und wie er diese Nähe politisch bewertet.",
+        "position": "Spahn erklärt zunächst, dass die republikanische Partei 'breiter als MAGA' ist – sie reicht 'von libertär bis klerikal, von klassischen Konservativen bis zur MAGA-Bewegung'. Die AfD sei 'im Kern antiamerikanisch', gegen NATO und Ukraine-Unterstützung, 'pro-russisch'. Er fragt sich, 'ob das der richtige Partner ist'. Er stelle fest, dass AfDs außenpolitische 'Sortierung' nicht 'präsent' sei in den Gesprächen. Aber: 'Welchen Hebel hat die Bundesregierung?' Deutschland sei 'abhängig von den USA. Es gibt keine Sicherheit hier ohne die USA.' Deshalb müsse sich die Regierung 'ausgewogen' äußern, 'weil es im Interesse des Landes ist'. Der Kanzler brauche 'einen Draht zum US-Präsidenten'. 'Manchmal brauchen wir die USA. Ob man das mag oder nicht.' Zu MAGA's Interesse: 'Es geht um die Schwächung von Europa.' Es gebe 'Vordenker' wie Steve Bannon, der 'in Europa eine Parallelbewegung' wolle. Es gebe 'wenig Verständnis' dafür, 'wie unterschiedlich in Europa die politischen Parteien sind'. Spahn fragt: 'Ob es im US-Interesse ist, mit einer Partei die Kontakte zu pflegen, und die Parteien zu irritieren, die regieren?' (Implizite Kritik.) Auf die Frage nach MAGA's Zielen: Es gibt 'viele Splittergruppen in der Bewegung, die sollen zusammengehalten werden. Die haben auch unterschiedliche Ziele. Es geht zum Beispiel um die Einwanderung.' Deshalb arbeite MAGA 'mit der AfD zusammen'. Die AfD 'steht für ein Ende von Europa'. Das wolle auch JD Vance – 'den Eindruck habe ich nicht'. Vance definiere 'auf eine besondere Art Amerika'. Sein Land sei 'nicht auf Ideen und Idealen aufgebaut. Es geht um eine gemeinsame Geschichte und gemeinsame Traditionen.' 'Das ist doch kein Problem. Das ist auch mein Verständnis von Deutschland.' Europa werde 'als Angriff' auf den 'Nationalgedanken' gesehen. 'Konservative Nationalisten glauben, man brauche mehr Souveränität der einzelnen Staaten. Europa sei ein Krake.' Es sei 'legitim zu sagen, dass man in einem Staat souverän entscheiden möchte'. Das andere wäre, 'aktiv die EU kaputtmachen zu wollen. Mit allen Folgen. Wir müssen aufpassen, dass es viel Grautöne gibt.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Spahn antwortet auf die Frage nach MAGA-AfD-Nähe mit mehreren Ebenen: Er kritisiert die AfD als antiamerikanisch (adressiert die Frage), pivot danach aber zu Deutschlands Abhängigkeit von den USA (Gegenpunkt gegen zu scharfe Kritik an Trump), erklärt MAGAs Motiv (Schwächung Europas, Immigrationspolitik), differenziert aber dann zwischen legitimer Souveränitat und aktiver EU-Zerstörung. Die Antwort adressiert die Frage nach der Nähe, aber betonet geopolitische Realitäten und Pragmatismus statt klarer Ablehnung.",
+        "quotes": [
+          {
+            "text": "Die AfD ist im Kern antiamerikanisch. Sie ist gegen NATO und gegen die Unterstützung der Ukraine. Sie ist pro-russisch. Ich frage immer wieder, ob das der richtige Partner ist.",
+            "timestamp": "00:46:43",
+            "context": "Spahn kritisiert die AfD als ungeeignete MAGA-Partnerin."
+          },
+          {
+            "text": "Welchen Hebel hat die Bundesregierung? Wir sind abhängig von den USA. Es gibt keine Sicherheit hier ohne die USA. Unser Wohlstand hängt im großen Maße vom Handel mit den USA ab.",
+            "timestamp": "00:47:14",
+            "context": "Spahn erklärt die Grenzen deutscher Handlungsfähigkeit gegenüber Trump."
+          },
+          {
+            "text": "Es geht um die Schwächung von Europa.",
+            "timestamp": "00:49:27",
+            "context": "Spahn erklärt MAGAs Motiv für die AfD-Nähe."
+          }
+        ],
+        "concrete_statements": [
+          "AfD ist antiamerikanisch, gegen NATO/Ukraine, pro-russisch – fragwürdig als US-Partner",
+          "Bundesregierung muss aus geopolitischen Gründen ausgewogene Haltung zu Trump bewahren",
+          "Deutschland ohne USA keine Sicherheit; Wohlstand hängt vom US-Handel ab",
+          "MAGA will Europa schwächen; Steve Bannon strebt Parallelbewegung in Europa an",
+          "Wenig US-Verständnis für europäische Parteiendifferenzen",
+          "Legitim: einzelne Staaten wollen Souveränität; illegitim: aktive EU-Zerstörung",
+          "Viele Grautöne zwischen Souveränität und Destabilisierung"
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "MAGA",
+          "Außenpolitik",
+          "NATO",
+          "EU-Souveränität",
+          "Deutsch-amerikanische Beziehungen"
+        ]
+      },
+      {
+        "title": "Demokratieverständnis JD Vance und Trump",
+        "timestamp_range": "00:55:03 - 00:58:23",
+        "theme_description": "In der Schlussphase fragt Caren Miosga, was Spahn von JD Vance' Demokratieverständnis hält und welche Botschaft er an die US-Regierung hat.",
+        "question_asked": "Caren Miosga führt aus, dass JD Vance in München Meinungsfreiheit gepriesen habe, aber die Administration tue das Gegenteil (Visa-Beschränkungen, Medienrepression). Spahn soll dann sagen, was das über Vance' Demokratieverständnis aussagt und was seine Botschaft an die USA ist.",
+        "question_intent": "Caren Miosga möchte, dass Spahn die Heuchelei/Inkohärenz in Vance' Positionen deutlich macht und dann eine Botschaft zur Rettung der US-Demokratie formuliert.",
+        "position": "Spahn antwortet auf Kohlenbergs Bemerkung, dass Vance in München von Meinungsfreiheit sprach, aber Trump das Gegenteil tue, mit: 'JD Vance ist für Meinungsfreiheit eingestanden. Aber gerade tun sie das Gegenteil.' Das sei 'das Gegenteil dessen, wofür er in München geworben hat'. Auf die Frage nach seinem Demokratieverständnis sagt Spahn: 'Ein schwieriges. Es ist schwierig, wie es sich in den USA entwickelt. Es tut einem ja weh. Ich bin Transatlantiker.' Es gebe 'immer weniger Sprachfähigkeit miteinander'. Das 'Grundverständnis, wenn jemand eine andere Meinung hat', sei in Gefahr. 'Hass ist das Problem, wenn es anfängt, um Meinungsfreiheit zu gehen. Wenn ich einen Menschen nicht mehr in seiner Würde sehe.' Das sehe man 'in den USA auf beiden Seiten des Spektrums. Teilweise auch in der Regierung'. 'Der Kern der Demokratie ist das Gespräch, die Debatte.' Das sei 'für eine Demokratie schwierig'. Die Regierung 'hat eine Verantwortung'. 'Wir müssen hier einen anderen Weg gehen. Wir müssen die Debattenräume weit halten. Wir müssen mit Andersmeinenden klarkommen.' Am Ende sagt Spahn: 'Entscheidende Botschaften würde ich intern übermitteln. Das geht nicht über TV-Sendungen.' Er werbe 'dafür, hier und in den USA, Maß und Mitte zu suchen'. 'Die Mehrheit der Deutschen hat eine Position der Mitte. Sicher auch die meisten Amerikaner. Aber die Debatten treiben Widersprüche nach vorn. Ich werbe für gute Debatten. Da kann man dann für Mehrheiten sorgen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Spahn beantwortet auf die Frage nach Vance' Demokratieverständnis klar (Heuchelei zwischen Lippenpflicht und Tat). Er identifiziert das Kernproblem (Mangel an gegenseitiger Würdigung, Hasspolitik, Missachtung von Meinungsvielfalt), benennt die Wurzel (Debatte statt Monolog), und formuliert eine konkrete Gegenstrategie (Debattenräume weit halten, moderate Mehrheit mobilisieren). Die Antwort ist substantiell und adressiert die Frage zur Gänze.",
+        "quotes": [
+          {
+            "text": "JD Vance ist für Meinungsfreiheit eingestanden. Aber gerade tun sie das Gegenteil.",
+            "timestamp": "00:55:35",
+            "context": "Spahn kritisiert die Heuchelei in Vance' Positionen."
+          },
+          {
+            "text": "Der Kern der Demokratie ist das Gespräch, die Debatte. Das ist für eine Demokratie schwierig.",
+            "timestamp": "00:37:38",
+            "context": "Spahn definiert das Wesen von Demokratie."
+          },
+          {
+            "text": "Entscheidende Botschaften würde ich intern übermitteln. Das geht nicht über TV-Sendungen. Ich werbe dafür, hier und in den USA, Maß und Mitte zu suchen.",
+            "timestamp": "00:57:51",
+            "context": "Spahn formuliert seine Abschlussbotschaft."
+          }
+        ],
+        "concrete_statements": [
+          "Vance' Position ist heuchlerisch: predigt Meinungsfreiheit, aber Administration unterdrückt sie",
+          "Kernproblem: Hass und Nicht-Anerkennung der Würde Andersdenkender",
+          "Debatte ist Kern der Demokratie, nicht Monolog oder Hasspolitik",
+          "Regierung hat Verantwortung, anderslautende Stimmen zu schützen",
+          "Debattenräume müssen weit gehalten werden",
+          "Moderate Mehrheiten (in D und USA) müssen durch gute Debatten mobilisiert werden",
+          "Entscheidende Botschaften an USA sollten privat übermittelt werden"
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Debattenkultur",
+          "Demokratieschutz",
+          "Deutsch-amerikanische Beziehungen",
+          "Trump-Administration"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Jimmy Kimmel-Show wurde nach 22 Jahren eingestellt",
+        "timestamp": "00:24:15"
+      },
+      {
+        "claim": "Charlie Kirk-Trauerfeier fand in Glendale, Arizona, statt mit bis zu 70.000 Trauergästen in einem Footballstadion",
+        "timestamp": "00:25:17"
+      },
+      {
+        "claim": "Richard Grenell war ehemaliger US-Botschafter in Deutschland",
+        "timestamp": "00:38:43"
+      },
+      {
+        "claim": "Trump verklagt die New York Times auf 15 Milliarden Dollar",
+        "timestamp": "00:22:40"
+      },
+      {
+        "claim": "Beatrix von Storch reiste zu 'strategischen Gesprächen' mit Trump-Administration-Beratern nach Washington",
+        "timestamp": "00:44:02"
+      },
+      {
+        "claim": "Newt Gingrich schrieb 1990 ein Memo über Politische Sprache und Polarisierung",
+        "timestamp": "00:42:21"
+      },
+      {
+        "claim": "JD Vance hielt im Juli eine Rede mit Redefinition des Konzepts der Nation",
+        "timestamp": "00:54:30"
+      }
+    ]
+  }
+}

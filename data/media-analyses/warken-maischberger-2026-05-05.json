@@ -1,0 +1,334 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtZDY4YTUwNDgtNjY1YS00ZDU4LWI3YzktNjc3YTc1NGQwMjMz",
+    "video_id": "maischberger-2026-05-05",
+    "politician": "Nina Warken",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "8223031f898f700e",
+    "transcript_chars": 55533,
+    "caption_lines": 2076,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22665,
+    "tokens_out": 7533,
+    "cost_usd": 0.024132,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 2,
+      "substantielle_position": 3,
+      "pivot_zum_gegenpunkt": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.422Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Nina Warken, Bundesgesundheitsministerin (CDU/CSU), verteidigt in der Maischberger-Sendung die Gesundheitsreform und die Koalitionspolitik gegen Kritik von Britta Haßelmann (Grüne). Sie betont Erfolge wie stabile Beitragssätze, argumentiert für differenzierte Kostenverteilung und skizziert längerfristige Strukturreformen. Der Ton ist sachlich-defensiv, mit Fokus auf Koalitionsverantwortung gegenüber schneller Kritik.",
+    "themes": [
+      {
+        "title": "Frauenanteil in CDU/CSU vs. Grünen",
+        "timestamp_range": "00:22:24 - 00:24:26",
+        "theme_description": "Diskussion über die Unterrepräsentation von Frauen in Führungspositionen der CDU/CSU im Vergleich zu den Grünen und Wege zur Verbesserung.",
+        "question_asked": "Sandra Maischberger fragt Nina Warken, ob sie neidisch auf den Frauenanteil der Grünen (61,2%) sei, wenn die CDU nur 20,6% aufweise, oder ob sie das zu viel finde.",
+        "question_intent": "Maischberger möchte provokativ erfragen, ob Warken die Unterrepräsentation von Frauen in der CDU/CSU als Problem oder bloß als Normalfall ansieht.",
+        "position": "Warken sieht Verbesserungspotenzial. Sie betont, dass es nicht um Neid geht, sondern dass die CDU/CSU aktiv daran arbeiten muss, mehr Frauen in Mandate zu bringen. Sie betont die Notwendigkeit gesamtparteilicher Anstrengung und spricht aus eigener Erfahrung in Kommunalpolitik von der Ergebnisorientierung von Frauen in Diskussionen — ein Punkt, den sie als Vorteil für Politik darstellt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Warken antwortet auf die Frage nach Neid klar negativ, adressiert aber nur teilweise den Kern: Sie beschreibt das Problem (20,6% vs. 61,2%), äußert sich aber eher allgemein zu notwendigen Anstrengungen, ohne konkrete Maßnahmen oder Verantwortlichkeiten zu benennen.",
+        "quotes": [
+          {
+            "text": "Zu viel ist es auf keinen Fall. Wir haben Luft nach oben. Wir müssen da auch schauen, wie wir mehr Frauen in Mandate bekommen. Das ist auch eine Aufgabe der gesamten Partei.",
+            "timestamp": "00:22:24",
+            "context": "Auf Maischbergers Frage zum Frauenanteil antwortend."
+          },
+          {
+            "text": "Frauen tun jeder Runde gut, auch der Politik.",
+            "timestamp": "00:23:56",
+            "context": "Warken wertet die Rolle von Frauen aus ihrer Erfahrung heraus auf."
+          }
+        ],
+        "concrete_statements": [
+          "Mehr Frauen in Mandate bringen ist Aufgabe der gesamten Partei",
+          "Frauen sind ergebnisorientiert in Diskussionen"
+        ],
+        "related_bundestag_topics": [
+          "Geschlechterparität",
+          "Frauenquote",
+          "Repräsentation von Frauen in Führungspositionen"
+        ]
+      },
+      {
+        "title": "Gesundheitsreform: Beitragsstabilität und Ziele",
+        "timestamp_range": "00:24:26 - 00:25:28",
+        "theme_description": "Bewertung der Gesundheitsreform bezüglich der Stabilisierung von Krankenversicherungsbeiträgen und Versorgungssicherheit.",
+        "question_asked": "Sandra Maischberger fragt, ob das Ziel, dass die Beiträge nicht steigen und dies gelungen sei, bereits ausreichend sei.",
+        "question_intent": "Maischberger will wissen, ob Warken die Stabilisierung der Beiträge als Erfolg ausreichend einschätzt oder ob weitere Reformschritte nötig sind.",
+        "position": "Warken bewertet Beitragsstabilität als wichtigen ersten Schritt, nicht als Endzweck. Sie betont mehrere Ziele: stabile Beitragssätze als wichtig für Bürger und Wirtschaftswettbewerbsfähigkeit, Entlastung von bisherigen Belastungen (Beitrag habe sich verdoppelt), und darüber hinaus langfristige Strukturreformen (Notfallreform). Sie hebt Zugänglichkeit zu Hausärzten und Krankenhäusern als zentrale Versorgungsziele hervor.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Warken adressiert die Frage direkt: Sie wertet stabile Beiträge als notwendig, aber nicht hinreichend, und legt ein umfassendes Reformverständnis dar, das über reine Kostendeckung hinausgeht.",
+        "quotes": [
+          {
+            "text": "Das ist natürlich der 1. wichtige Schritt. Unser ganz großes Ziel, stabile Beitragssätze sind wichtig, nicht nur für die Bürgerinnen und Bürger, auch wichtig für die Unternehmen, dass die Lohnnebenkosten nicht weiter steigen.",
+            "timestamp": "00:24:26",
+            "context": "Auf Frage zur Ausreichendheit der Beitragsstabilisierung."
+          },
+          {
+            "text": "Es muss jeder den Hausarzt erreichbar haben, das Krankenhaus muss in der Nähe sein mit einer guten Versorgung. Und darum geht es dann am Ende des Tages eben auch.",
+            "timestamp": "00:25:28",
+            "context": "Warken fasst ihre Prioritäten in der Gesundheitspolitik zusammen."
+          }
+        ],
+        "concrete_statements": [
+          "Stabile Beitragssätze sind erste wichtige Maßnahme",
+          "Versorgungssicherheit (Hausarzt, Krankenhaus) ist zentral",
+          "Notfallreform ist auf dem Weg",
+          "Strukturreformen sind notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsreform",
+          "Krankenversicherung",
+          "Gesundheitsversorgung",
+          "Lohnnebenkosten"
+        ]
+      },
+      {
+        "title": "Kontroverse um Finanzierungslücke und Bürgergeldfinanzierung",
+        "timestamp_range": "00:27:05 - 00:28:40",
+        "theme_description": "Debatte über die Schließung der 15-Milliarden-Euro-Finanzierungslücke der Krankenkassen und die unzureichende Übernahme von Bürgergeldempfänger-Kosten durch den Staat.",
+        "question_asked": "Britta Haßelmann (Grüne) kritisiert, dass von den 12 Milliarden Euro, die durch Übernahme von Gesundheitskosten für Bürgergeldempfänger hätten gewonnen werden können, dieser Posten nicht vollständig aus der Versichertenfinanzierung herausgenommen wurde. Sandra Maischberger hakt nach, indem sie fragt, ob Warken sich gegen den Finanzminister nicht durchgesetzt habe.",
+        "question_intent": "Haßelmann und Maischberger wollen aufzeigen, dass Warken zu viel Kompromiss zugunsten des Finanzministers (Lars Klingbeil) eingegangen ist und Versicherte dadurch belastet werden.",
+        "position": "Warken räumt ein, dass sie sich stärkere Kostenübernahme für Bürgergeldempfänger gewünscht hätte. Sie argumentiert aber mit Koalitionslogik: Es gibt einen Einstieg (von 144 auf über 217 Euro bis 2031), obwohl eine volle Übernahme nicht durchsetzbar war. Sie sieht dies als Steigerung und Beitrag zur Konsolidierung. Sie betont, dass man 2/3 der Kommissions-Maßnahmen (43 von 66) umsetzt und über 90% der Finanzwirkung erreicht. Sie rechtfertigt die Beteiligung aller Kostenverursacher proportional (auch Pharma).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Warken räumt Kritikpunkt ein (nicht durchgesetzt gegen Finanzminister), lenkt dann aber ab auf die Logik des Einstiegs und auf Kompromisszwänge statt die Schieflage direkt zu rechtfertigen. Sie adressiert die Kritik, weicht aber auf Prozessargumente aus.",
+        "quotes": [
+          {
+            "text": "Natürlich hätte ich mir gewünscht, dass wir stärker einsteigen in die Bürgergeld-Empfängerfinanzierung. Da haben Sie sich nicht durchgesetzt gegen den Finanzminister. Wir haben es 2-mal im Koalitionsvertrag stehen gehabt. Dieses Mal haben wir es gemacht, es ist nur ein Einstieg.",
+            "timestamp": "00:28:10",
+            "context": "Warken antwortet auf Kritik, nicht gegen Finanzminister durchgesetzt zu haben."
+          },
+          {
+            "text": "Wir setzen im Übrigen 2/3 der Maßnahmen der Kommission um. 43 von 66. [...] Über 90% in der Finanzwirkung.",
+            "timestamp": "00:27:40",
+            "context": "Warken argumentiert mit Umsetzungsquote statt vollständiger Betrachtung."
+          }
+        ],
+        "concrete_statements": [
+          "Einstieg in Bürgergeldempfänger-Finanzierung von 144 auf über 200 Euro bis 2031",
+          "Umsetzung von 43 von 66 Kommissions-Maßnahmen (66%)",
+          "Über 90% der Finanzwirkung der Kommissions-Vorschläge umgesetzt",
+          "Anteil an Konsolidierungsbeitrag geleistet"
+        ],
+        "related_bundestag_topics": [
+          "Gesundheitsfinanzierung",
+          "Bürgergeld",
+          "Haushaltkonsolidierung",
+          "Versichertenbelastung"
+        ]
+      },
+      {
+        "title": "Zuckersteuer als Prävention vs. schwarze Geldbeschaffung",
+        "timestamp_range": "00:32:52 - 00:34:25",
+        "theme_description": "Debatte über die geplante Zuckerabgabe als Finanzierungsinstrument und Präventivmaßnahme, mit kritischem Vergleich zu früherer CDU-Kritik an grüner Bevormundungspolitik.",
+        "question_asked": "Sandra Maischberger verweist auf einen früheren CDU-Minister (Daniel Günther), der Zuckersteuer als grüne Bevormundungspolitik kritisierte, und fragt Warken, ob dies jetzt einfach schwarze Geldbeschaffung sei.",
+        "question_intent": "Maischberger will aufzeigen, dass die CDU/CSU opportunistisch ihre Haltung zu dieser Maßnahme geändert hat, je nachdem ob sie Opposition oder Regierung ist.",
+        "position": "Warken weist die Geldbeschaffungs-Unterstellung zurück. Sie betont, dass die Zuckerabgabe kein unumstrittenes Thema in CDU/CSU sei (gespalten Beschluss, Befürworter und Gegner). Ihre Position ist nicht primär Finanzierung, sondern Prävention: Die Kommission schlug die Maßnahme vor, weil sie Geld bringt, aber auch gesundheitlich sinnvoll ist. Sie betont breite Parlamentseinigkeit zur Maßnahme und rechtfertigt sie als notwendige Kompromissbelastung für ihre Koalitionspartner.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Warken nimmt den vorwurf der Opportunität direkt auf, gibt aber mit differenziertem Argument dagegen an: Sie erklärt, warum die Zuckerabgabe aus ihrer Sicht nicht bloß Geldbeschaffung ist, sondern ein Präventions-und Finanzmix mit parteiinterner Kontroverse.",
+        "quotes": [
+          {
+            "text": "Es ist sicherlich kein Thema, bei dem die CDU-Mitglieder und CSU-Mitglieder mit wehenden Fahnen voranschreiten. Der Beschluss war auch sehr gespalten, es gab auch Befürworter. Mein Ansatz ist nicht, Geld in die Kasse zu spülen. Es ist eine Maßnahme auch der Prävention.",
+            "timestamp": "00:33:22",
+            "context": "Warken antwortet auf Frage zur Zuckerabgabe und Vorwurf der Opportunität."
+          }
+        ],
+        "concrete_statements": [
+          "Zuckerabgabe dient Prävention und Finanzierung",
+          "Beschluss war innerhalb CDU/CSU gespalten",
+          "Breite Parlamentseinigkeit für Maßnahme",
+          "Ansatz ist nicht bloße Geldbeschaffung"
+        ],
+        "related_bundestag_topics": [
+          "Steuerfinanzierung",
+          "Prävention",
+          "Gesundheitswirtschaft",
+          "Ernährungspolitik"
+        ]
+      },
+      {
+        "title": "Kritik an Pharmaindustrie-Schonung versus Arbeitsplätze",
+        "timestamp_range": "00:36:29 - 00:38:03",
+        "theme_description": "Kontroverse über die Differentialbehandlung der Pharmaindustrie in der Gesundheitsreform: Haßelmann wirft Warken vor, die Pharmabranche zu schonen, während Warken das Interesse an innovativen Arbeitsplätzen verteidigt.",
+        "question_asked": "Britta Haßelmann argumentiert, dass die Pharmaindustrie durch die Reform geschont wird, während Zuzahlungen und andere Maßnahmen bei Patienten landen. Sie fragt indirekt, warum strukturelle Reformen bei der Pharmaindustrie nicht stärker greifen.",
+        "question_intent": "Haßelmann will Warken zwingen zu begründen, warum Pharmakonzerne weniger belastet werden als Versicherte und Patienten.",
+        "position": "Warken verteidigt die Behandlung der Pharmaindustrie mit zwei Argumenten: (1) Die Kommission schlug auch Maßnahmen bei Medikamenten vor, die Warken anders umsetzt (via Abschlag mit anderem Mechanismus und bevorzugte Herstellerrabatte für Unternehmen mit klinischen Studien in Deutschland). (2) Die Pharmabranche ist ein wichtiger Arbeitgeber und Innovationsmotor; es war wichtig, einen Mechanismus zu finden, der spart, aber deutsche Unternehmen nicht übermäßig belastet. Sie argumentiert, dass Pharmakonzerne nach ihrem Kostenanteil (Verursacherprinzip) beteiligt sind.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Warken weicht der direkten Kritik (zu viel Schon der Pharma) aus, indem sie umdefiniert: Sie sagt nicht, dass die Pharma nicht beteiligt ist, sondern dass sie anders beteiligt ist. Sie pivotiert zum Gegenpunkt (Arbeitsplätze, Innovation) statt zu sagen ‚ja, wir schonen sie, weil X'. Das ist keine vollständige Adressierung der Frage.",
+        "quotes": [
+          {
+            "text": "wir alle wollen diese Industrie im Land haben. Wir wollen sicheren und schnellen Zugang zu Medikamenten, wir wollen die Arbeitsplätze. Die Pharmaindustrie schafft das und steht für Innovation.",
+            "timestamp": "00:37:02",
+            "context": "Warken begründet ihr Interesse an Pharmaindustrie-Ansiedelung."
+          },
+          {
+            "text": "Die Pharmaindustrie wird auch mit dem Anteil an der Einsparung beteiligt, den sie auch verursacht.",
+            "timestamp": "00:37:32",
+            "context": "Warken argumentiert mit Verursacherprinzip."
+          }
+        ],
+        "concrete_statements": [
+          "Abschlag bei Medikamenten wird mit anderem Mechanismus erhöht",
+          "Bevorzugte Herstellerrabatte für Unternehmen mit klinischen Studien in Deutschland",
+          "Pharmabranche wird proportional ihrem Kostenanteil beteiligt",
+          "Fokus auf Wahrung von Arbeitsplätzen und Innovation"
+        ],
+        "related_bundestag_topics": [
+          "Pharmaindustrie",
+          "Arzneimittelpreise",
+          "Herstellerrabatte",
+          "Standortpolitik"
+        ]
+      },
+      {
+        "title": "Kommunikation von Regierungsleistung und Erwartungsmanagement",
+        "timestamp_range": "00:40:11 - 00:41:12",
+        "theme_description": "Frage nach Gründen für Unbeliebtheit der Regierung trotz durchgesetzter Reformen: Warken antwortet mit Kommunikations- und Erwartungsmanagement-Defiziten statt inhaltlicher Kritik.",
+        "question_asked": "Sandra Maischberger fragt, ob die Unbeliebtheit der aktuellen Regierung (schlechter als Ampel-Regierung) nur an schlechter Kommunikation liegt oder auch an dem liegt, was man gemacht oder nicht gemacht hat.",
+        "question_intent": "Maischberger will erfragen, ob Warken echte politische Defizite einräumt oder bloß Kommunikationsprobleme diagnostiziert.",
+        "position": "Warken betont, dass die Regierung mehr getan hat als rüberkommt. Sie nennt konkrete Gesetze (Migration, Grundsicherung, Bauen, Forschung), sieht aber Luft nach oben bei Kommunikation und Erwartungsmanagement. Sie argumentiert, dass große Reformen nicht sofort wirken und die Bürger besser verstehen müssen, dass es Zeit braucht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Maischberger fragt nach realen Defiziten vs. Kommunikation; Warken antwortet primär mit ‚wir haben mehr getan als rüberkommt' und Kommunikationsdefiziten, ohne die Frage nach realen Kritikpunkten substantiell zu adressieren. Sie weicht auf Erwartungsmanagement aus.",
+        "quotes": [
+          {
+            "text": "Ich denke, wir haben mehr getan, als rüberkommt. Da ist noch Luft nach oben, das besser zu kommunizieren.",
+            "timestamp": "00:40:11",
+            "context": "Warken auf Frage zu Unbeliebtheit der Regierung."
+          },
+          {
+            "text": "Vielleicht muss man beim Erwartungsmanagement noch einmal ran, den Bürgern vermitteln, große Herausforderungen sind da, wir brauchen Reformen, die kann man nicht morgen beschließen und übermorgen wirken sie.",
+            "timestamp": "00:40:41",
+            "context": "Warken diagnostiziert Erwartungsmanagement-Defizit."
+          }
+        ],
+        "concrete_statements": [
+          "Viele Gesetze haben konkret Dinge im Land verändert (Migration, Grundsicherung, Bauen, Forschung)",
+          "Bessere Kommunikation erforderlich",
+          "Erwartungsmanagement muss verbessert werden",
+          "Reformen wirken nicht kurzfristig"
+        ],
+        "related_bundestag_topics": [
+          "Regierungskommunikation",
+          "Politische Reformen",
+          "Öffentlichkeitsarbeit",
+          "Bürgerbeteiligung"
+        ]
+      },
+      {
+        "title": "Außerungen von Friedrich Merz (Kanzler) rechtfertigen",
+        "timestamp_range": "00:43:18 - 00:44:18",
+        "theme_description": "Warken verteidigt kritisierte Äußerungen von Kanzler Merz gegen den Vorwurf von Weinerlichkeit und mangelnder Empathie.",
+        "question_asked": "Haßelmann kritisiert Merz für ‚Weinerlichkeit' und mangelnde Empathie für Bürger. Sandra Maischberger fragt Warken, was sie zu Merz' Äußerung gedacht habe, dass kein Kanzler vor ihm so etwas aushalten musste, und erwähnt zum Vergleich, dass Merkel das nie gesagt hätte.",
+        "question_intent": "Maischberger und Haßelmann wollen Warken zu einer kritischen Distanzierung oder Erklärung des Verhaltens von Merz bewegen.",
+        "position": "Warken verteidigt Merz: Er habe nicht Selbstmitleid erzeugen wollen, sondern auf die Härte der öffentlichen Diskussionen hinweisen. Sie argumentiert, dass Merz Kritik verträgt, dass die Herausforderungen groß sind (2 Kriege, Energiekrise), und dass notwendige Reformen durch Diskussionen und Streit umgesetzt werden. Sie betont, dass die Regierung Dinge angeht, die 20+ Jahre nicht angegangen wurden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Warken adressiert Haßelmanns Kritik nicht direkt, sondern erklärt Merz' Intention um: nicht Selbstmitleid, sondern Hinweis auf schwierige Lage. Sie pivotiert dann zu Selbstverantwortung (große Herausforderungen) und zu sachlicher Verteidigung von Merz. Sie nimmt den Ton-Vorwurf nicht substantiell auf.",
+        "quotes": [
+          {
+            "text": "Er wollte da kein Selbstmitleid, noch Mitleid erzeugen. Er wollte darauf hinweisen, dass die Diskussionen hart sind. Aber ich glaube, dass er auch Kritik verträgt.",
+            "timestamp": "00:43:18",
+            "context": "Warken verteidigt Merz gegen Vorwurf von Weinerlichkeit."
+          },
+          {
+            "text": "Wir gehen die Dinge an, die nicht nur die letzten 20 Jahre, sondern auch die letzten 3 Jahre vorher nicht angegangen worden sind.",
+            "timestamp": "00:43:48",
+            "context": "Warken argumentiert für die substantiellen Leistungen der Regierung."
+          }
+        ],
+        "concrete_statements": [
+          "Merz wollte auf Härte von öffentlichen Diskussionen hinweisen, nicht Mitleid erzeugen",
+          "Große Herausforderungen (2 Kriege, Energiekrise) erfordern Diskussionen und Streit",
+          "Regierung geht an Reformen aus 20+ Jahren Untätigkeit"
+        ],
+        "related_bundestag_topics": [
+          "Kanzler-Kommunikation",
+          "Medienbeziehungen",
+          "Politische Rhetorik",
+          "Koalitionsmanagement"
+        ]
+      },
+      {
+        "title": "Villa Borsig und Brüllen im Koalitionsmanagement",
+        "timestamp_range": "00:44:18 - 00:44:18",
+        "theme_description": "Kurze Nachfrage, ob es Spannungen (Brüllen) im Kanzler-Vizekanzler-Verhältnis gab, wie Medienberichte suggerierten.",
+        "question_asked": "Sandra Maischberger fragt Warken direkt, ob sie mitbekommen hat, dass es Brüllen bei dem Treffen in Villa Borsig (privates Treffen Merz/Klingbeil) gab.",
+        "question_intent": "Maischberger möchte wissen, ob die Koalitionsspannungen real sind oder Medienerfindung.",
+        "position": "Warken antwortet kurz und knapp: ‚Ich habe nichts mitbekommen.' Das ist eine Verneinung der Spannungen oder zumindest ihrer persönlichen Wahrnehmung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Die Frage ist direkt, die Antwort ist direkter Widerspruch zum Medien-Narrativ der Konfrontation. Warken adressiert die Frage unmittelbar.",
+        "quotes": [
+          {
+            "text": "Ich habe nichts mitbekommen.",
+            "timestamp": "00:44:18",
+            "context": "Warken antwortet auf Frage zu Konfrontationen in Villa Borsig."
+          }
+        ],
+        "concrete_statements": [
+          "Warken hat keine Konfrontationen im Koalitionsmanagement wahrgenommen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Regierungskommunikation",
+          "Medienberichterstattung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Frauenanteil im Bundestag der CDU liegt bei 20,6%, der Grünen bei 61,2%",
+        "timestamp": "00:22:24"
+      },
+      {
+        "claim": "Der Beitrag zur gesetzlichen Krankenversicherung hat sich in den letzten Jahren verdoppelt",
+        "timestamp": "00:24:57"
+      },
+      {
+        "claim": "Die Kommission zur Gesundheitsfinanzierung hat 66 Vorschläge gemacht",
+        "timestamp": "00:26:34"
+      },
+      {
+        "claim": "66% der Kommissions-Maßnahmen (43 von 66) werden umgesetzt, über 90% der Finanzwirkung erreicht",
+        "timestamp": "00:27:40"
+      },
+      {
+        "claim": "Von 144 Euro staatlicher Übernahme für Bürgergeldempfänger soll die Quote auf über 200, 217 Euro bis 2031 gesteigert werden",
+        "timestamp": "00:28:40"
+      },
+      {
+        "claim": "Die Finanzierungslücke der Krankenkassen beträgt 15 Milliarden Euro, davon 12 Milliarden durch fehlende Übernahme von Bürgergeld-Krankenkosten",
+        "timestamp": "00:27:05"
+      },
+      {
+        "claim": "250 Millionen Euro Einstiegsfinanzierung für Bürgergeldempfänger stehen 2 Milliarden Euro Reduktion des staatlichen Zuschusses gegenüber",
+        "timestamp": "00:29:10"
+      }
+    ]
+  }
+}

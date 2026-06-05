@@ -1,0 +1,402 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNGNlNGFiODYtMjlkYi00MTA4LTg2MmQtNGNkOGIzYWM1YTM3",
+    "video_id": "maischberger-2026-04-14",
+    "politician": "Michael Kretschmer",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "49ef6b64bdc10518",
+    "transcript_chars": 50015,
+    "caption_lines": 1838,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20700,
+    "tokens_out": 8852,
+    "cost_usd": 0.025984,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 6
+    },
+    "generated_at": "2026-06-05T12:36:41.380Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Michael Kretschmer, Ministerpräsident von Sachsen (CDU), diskutiert mit Sandra Maischberger über die wirtschaftliche Lage Deutschlands, die Energiepreise und die Rolle der Bundesregierung. Er argumentiert diagnostisch für strukturelle Reformen statt punktueller Maßnahmen und kritisiert die Koalition als orientierungslos. Zu Außenpolitik bezieht er eine differenzierte, auf europäische Eigenständigkeit ausgerichtete Position.",
+    "themes": [
+      {
+        "title": "Energiesteuerentlastung und Sofortmaßnahmen",
+        "timestamp_range": "00:17:51 - 00:21:08",
+        "theme_description": "Bewertung der Bundesregierungsentlastung durch 17-Cent-Energiesteuersenkung und deren Angemessenheit.",
+        "question_asked": "Sandra Maischberger fragte Michael Kretschmer, der aus Görlitz kommt (nahe Polen und Tschechien): Haben Sie in letzter Zeit mal getankt, und reicht die 17-Cent-Energiesteuersenkung aus?",
+        "question_intent": "Maischberger wollte wissen, ob Kretschmer die geplante Steuersenkung für ausreichend hält, um die Belastung der Bürger zu lindern.",
+        "position": "Kretschmer sieht die 17-Cent-Senkung als 'einen Anfang' und 'richtige Maßnahme', da sie alle Bürger gleichmäßig entlastet und Inflationsspiralen bremsen könnte. Allerdings betont er, dass 'weitere Maßnahmen folgen müssen' und kritisiert die symptomatische statt kausale Behandlung: 'Wir sind Weltmeister dabei, die Symptome zu bekämpfen und wundern uns, dass die Ursache nicht weg geht.' Das große Problem liege in mangelnder Wettbewerbsfähigkeit und dem Krieg (Energiekosten). Die 17 Cent lösen 'überhaupt kein Problem', helfen aber 'ein bisschen der Druck zu lindern'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmer beantwortet die Frage nach der Ausreichendheit mit 'ja, aber' — die Maßnahme ist richtig, reicht aber nicht. Er lenkt aber deutlich zu den Grundursachen um (Wettbewerbsfähigkeit, Krieg), statt die konkrete Frage nach Ausreichendheit zu quantifizieren oder zu vertiefen.",
+        "quotes": [
+          {
+            "text": "Es ist ein Anfang. Weitere Maßnahmen müssen folgen. V.a. müssen wir mit der Bevölkerung sprechen. Was ist der Grund? Wir sind Weltmeister dabei, die Symptome zu bekämpfen und wundern uns, dass die Ursache nicht weg gehen.",
+            "timestamp": "00:18:23",
+            "context": "Auf Maischbergers Frage, ob die 17-Cent-Senkung reicht."
+          },
+          {
+            "text": "Ich finde die 17 Cent richtig. Das ist die richtige Maßnahme, weil wir alle betroffen sind. Es muss darum gehen, deshalb sind die Leute so enttäuscht, dass wir an diesem Punkt nicht stehen bleiben.",
+            "timestamp": "00:20:28",
+            "context": "Auf die Frage, was Kretschmer sich stattdessen gewünscht hätte."
+          }
+        ],
+        "concrete_statements": [
+          "Die 17-Cent-Senkung ist richtig und ein Beitrag",
+          "Weitere Maßnahmen müssen folgen",
+          "Deutschland hat Wettbewerbsprobleme",
+          "Energiepreise müssen durch Kriegsbeendigung und europäische Einigkeit adressiert werden"
+        ],
+        "related_bundestag_topics": [
+          "Energiesteuern",
+          "Konjunkturmaßnahmen",
+          "Inflation"
+        ]
+      },
+      {
+        "title": "Wirtschaftspolitik und strukturelle Reformen",
+        "timestamp_range": "00:21:42 - 00:23:50",
+        "theme_description": "Kritik an Mikrosteuerung und Forderung nach grundlegenden Reformen in Energieversorgung und Deregulierung.",
+        "question_asked": "Sandra Maischberger fragte, was Kretschmer konkret meint mit 'von A nach C gehen' und welche Maßnahmen die Bundesregierung ergreifen sollte.",
+        "question_intent": "Maischberger wollte konkrete Reformvorschläge von Kretschmer erfahren, um die Wirtschaftslage zu verbessern.",
+        "position": "Kretschmer fordert: (1) Energie darf kein knappes Gut sein — die CO2-Steuer muss überprüft werden; heimische Energieträger sind richtig. (2) Deregulierung auf europäischer Ebene — 'Dinge, die kosten kein Geld'. Deutschland war 'die Apotheke der Welt', verliert aber Wettbewerbsfähigkeit. (3) Er kritisiert, dass 'pro Monat 10.000 Industriearbeitsplätze abgebaut werden' und verweist auf Länder wie Polen, die 'enormes Wachstum' haben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer beantwortet direkt mit drei benannten Handlungsfeldern (Energie, Deregulierung, europäische Ebene) und belegt diese mit Daten (Arbeitsplatzabbau, Vergleiche). Er bleibt bei der Frage.",
+        "quotes": [
+          {
+            "text": "Wir müssen anfangen mit Energie. Energie darf kein knappes Gut sein. Nicht die Klimaziele aufgeben, aber der Weg, den wir beschreiten führt durch ein Tal des Todes. Wir sind mittendrin, pro Monat 10.000 Industriearbeitsplätze, die abgebaut werden.",
+            "timestamp": "00:23:19",
+            "context": "Auf Maischbergers Frage nach konkreten Maßnahmen von A nach C."
+          },
+          {
+            "text": "Der 2. ist Deregulierung. Wir waren mal die Apotheke der Welt. Dinge, die kosten kein Geld. Dafür muss ich keine neuen Schulden aufnehmen. Länder wie Polen haben ein enormes Wachstum, wir nicht.",
+            "timestamp": "00:23:50",
+            "context": "Fortsetzung der Reformforderungen."
+          }
+        ],
+        "concrete_statements": [
+          "Energiepreise senken durch Prüfung der CO2-Steuer und Nutzung heimischer Energieträger",
+          "Deregulierung auf europäischer Ebene durchführen",
+          "10.000 Industriearbeitsplätze werden monatlich abgebaut",
+          "Deutschland braucht wieder Wettbewerbsfähigkeit wie Polen"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Industriepolitik",
+          "Deregulierung",
+          "CO2-Bepreisung"
+        ]
+      },
+      {
+        "title": "Verbrenner-Aus und Technologieoffenheit",
+        "timestamp_range": "00:21:42 - 00:22:45",
+        "theme_description": "Kritik an verzögertem Ausstieg aus Verbrenner-Regelung und Forderung nach Technologieoffenheit.",
+        "question_asked": "Sandra Maischberger bezog sich auf Kretschmers früheren Vorwurf 'Macht Friedrich Merz Planwirtschaft?' und fragte nach dem Verbrenner-Aus.",
+        "question_intent": "Maischberger wollte verstehen, wie Kretschmer die Rolle Merz' bei wirtschaftspolitischen U-Turns einschätzt.",
+        "position": "Kretschmer: Der Kritik-Kontext war 'das große Ganze'. Jetzt, unter aktueller Wirtschaftsministerin: Abkehr von Mikrosteuerung, hin zu Technologieoffenheit. Aber: 'Wir haben ein halbes Jahr gebraucht, das Verbrenner-Aus abzuschaffen. Daran sieht man, wie zerrissen diese Bundesregierung ist.' Jetzt sind sie 'sich einig', dass sie das europäischen Zusagen vertreten. Kernaussage: 'Es ist eine Realität, dass wir nur mit Technologieoffenheit vorankommen.' Nicht klar, wie Verbrenner-Aus-Abschaffung hilft, wenn 'es an der Tankstelle teuer ist'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmer antwortet auf Ebene von Regierungszerrissenheit, nicht auf Technologie-Kernfrage. Er kritisiert Verzögerung und Zerrüttung, lenkt aber zu Teknologieoffenheit um.",
+        "quotes": [
+          {
+            "text": "Wir haben ein halbes Jahr gebraucht, das Verbrenner-Aus abzuschaffen. Daran sieht man, wie zerrissen diese Bundesregierung ist.",
+            "timestamp": "00:22:14",
+            "context": "Auf Maischbergers Frage zur Planwirtschaft und Verbrenner-Entscheidung."
+          },
+          {
+            "text": "Es ist eine Realität, dass wir nur mit Technologieoffenheit vorankommen.",
+            "timestamp": "00:22:45",
+            "context": "Position zu Technologieoffenheit."
+          }
+        ],
+        "concrete_statements": [
+          "Regierung brauchte 6 Monate für Verbrenner-Aus-Entscheidung",
+          "Regierung ist 'zerrissen'",
+          "Nur Technologieoffenheit führt voran"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Automobilindustrie",
+          "Technologieoffenheit"
+        ]
+      },
+      {
+        "title": "Vertrauen in die Bundesregierung und Koalitionskrise",
+        "timestamp_range": "00:24:22 - 00:25:58",
+        "theme_description": "Bewertung des Vertrauens in die Bundesregierung und deren Fähigkeit, gemeinsam zu handeln.",
+        "question_asked": "Sandra Maischberger fragte Michael Kretschmer: 'Haben Sie Vertrauen in diese Bundesregierung?' im Kontext von Konflikten zwischen Kabinettsmitgliedern.",
+        "question_intent": "Maischberger wollte Kretschmers ehrliche Einschätzung des Vertrauens in die Regierungsfähigkeit erfahren.",
+        "position": "Kretschmer hat 'ein Erkenntnisproblem' bei der Koalition diagnostiziert. Ein Kanzler, der am Donnerstag sagt 'nichts kommt' und dann doch die Gießkanne packt, zeigt Unentschlossenheit. Er ist 'erstaunt', dass IG Metall und SPD-Mitglieder in Gewerkschaften 'die Dinge ganz klar sehen', aber die Regierung nicht. Das zentrale Problem: 'Diese Regierung ist sich nicht einig.' Kretschmer fordert einen 'Ruck durch Deutschland' mit Regierung, Opposition, Ländern und Sozialpartnern — 'Wir müssen raus aus dem Klein-klein.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer antwortet direkt auf die Vertrauensfrage mit 'Erkenntnisproblem' und begründet dies konkret mit Beispielen (Donnerstag/Gießkanne, Gewerkschaftsgespräche). Er bleibt bei der Frage und zieht keine Ablenkung.",
+        "quotes": [
+          {
+            "text": "Diese Regierung ist sich nicht einig. Die Koalition hat ein Erkenntnisproblem.",
+            "timestamp": "00:24:52",
+            "context": "Direkte Antwort auf Vertrauensfrage."
+          },
+          {
+            "text": "Wir müssen raus aus dem Klein-klein. Die Zeit läuft uns davon. Dieses Land verliert immer weiter an Kraft. Kraft, die Dinge zu finanzieren und zu leisten, die es leisten muss.",
+            "timestamp": "00:25:24",
+            "context": "Diagnose des Kernproblems."
+          }
+        ],
+        "concrete_statements": [
+          "Koalition hat ein Erkenntnisproblem",
+          "Regierung ist sich nicht einig",
+          "Fordert überparteiliche Zusammenarbeit (Regierung, Opposition, Länder, Sozialpartner)"
+        ],
+        "related_bundestag_topics": [
+          "Regierungskrise",
+          "Koalitionsgespräche",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "AfD-Wahlergebnisse und wirtschaftliche Ursachen",
+        "timestamp_range": "00:25:58 - 00:28:03",
+        "theme_description": "Analyse der Verbindung zwischen schwacher Wirtschaftspolitik und Wahlerfolgen der AfD.",
+        "question_asked": "Sandra Maischberger fragte: 'Wird die AfD nicht stärker mit guter Wirtschaftspolitik?' und bezog sich dabei auf Kretschmers Aussage, dass schwache Wirtschaftspolitik 2004 zur NPD-Wahl führte.",
+        "question_intent": "Maischberger wollte wissen, ob Kretschmers historische Analyse (2004) noch auf die AfD zutrifft.",
+        "position": "Kretschmer bestätigt die Analyse: 2004 Hartz-IV-Reformen → NPD in Landtag. Jetzt: '20% AfD' in Orten wie Hammbach (keine besonders schlechte wirtschaftliche Lage). Die Ursachen sind komplexer: Wirtschaftsprobleme + Verunsicherung + Angst. Eine 'falsche Krisenbekämpfung' könnte die AfD wieder stärken. Präventiv möglich: 'Es ist nicht Gottgegeben. Man kann handeln.' Zwar gab es NPD-Rückgang, aber die 'Analyse gilt noch für heute'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmer beantwortet die Kernfrage ('Gilt die Analyse noch?') bejaht sie, aber qualifiziert sie mit Verweis auf weitere Faktoren. Er sagt nicht direkt, ob gute Wirtschaftspolitik AfD-Wachstum verhindert, sondern eher, dass falsche Krisenbekämpfung es befeuert.",
+        "quotes": [
+          {
+            "text": "Zumindest haben wir eine Chance, dass sie nicht stärker wird. Da gehören viele andere Dinge dazu. 2004, Hartz IV Reformen, das Land war in Unruhe. Das war der zentrale Punkt.",
+            "timestamp": "00:27:01",
+            "context": "Auf Frage zur Aktualität der 2004-Analyse."
+          }
+        ],
+        "concrete_statements": [
+          "Wirtschaftspolitik ist einer mehrerer Faktoren für AfD-Erfolg",
+          "Gute Wirtschaftspolitik kann AfD-Wachstum bremsen, aber nicht verhindern",
+          "2004-Analyse (Hartz IV → NPD) ist noch relevant"
+        ],
+        "related_bundestag_topics": [
+          "AfD",
+          "Wahlergebnisse",
+          "Wirtschaftspolitik und Radikalisierung"
+        ]
+      },
+      {
+        "title": "Sachsen-Anhalt-Wahl und Prävention von Extremismus",
+        "timestamp_range": "00:27:32 - 00:28:39",
+        "theme_description": "Haltung zu möglicher AfD-Regierungsbeteiligung in Sachsen-Anhalt und Präventionsansätze.",
+        "question_asked": "Sandra Maischberger fragte: 'Es kann sein, dass in Sachsen-Anhalt im Herbst die AfD einen Ministerpräsidenten stellen kann. Was wäre in diesem Fall Ihre größte Sorge?'",
+        "question_intent": "Maischberger wollte Kretschmers Reaktion auf ein extremes Szenario und seine Handlungsbereitschaft erfahren.",
+        "position": "Kretschmer: 'Ich würde mich darum kümmern, dass es nicht so weit kommt. Das ist alles nicht Gottgegeben. Man kann handeln.' Er arbeitet 'jeden Tag daran', es zu verhindern. Sachsen-Anhalt ist für ihn ein 'Land, in dem viel aufgebaut worden ist', dem er 'Chaos' ersparen möchte. Die AfD-Pläne sind 'absurd und an den eigentlichen Themen vorbei'. Anderen Ministerpräsidenten (Sven Schulze, Manuela Schwesig) 'verdienen, dass sie weiter unter den Ministerpräsidenten bleiben'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer antwortet direkt und engagiert: Sorge ist 'Chaos', Gegenmaßnahme ist tägliche Arbeit zur Prävention. Er begründet seinen Einsatz mit Aufbau und Leistung des Landes. Bleibt bei der Frage.",
+        "quotes": [
+          {
+            "text": "Ich würde mich darum kümmern, dass es nicht so weit kommt. Das ist alles nicht Gottgegeben. Man kann handeln.",
+            "timestamp": "00:28:03",
+            "context": "Auf die Frage nach größter Sorge bei AfD-Ministerpräsidentschaft."
+          },
+          {
+            "text": "Ich würde diesem Land gerne das Chaos ersparen, was dadurch entsteht, dass Menschen an die Macht kommen, die populistisch erfolgreich sein wollen.",
+            "timestamp": "00:28:39",
+            "context": "Erklärung des Engagements."
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitet täglich daran, AfD-Ministerpräsidentschaft zu verhindern",
+          "AfD-Wahlprogramm ist 'absurd und an eigentlichen Themen vorbei'",
+          "Will Sachsen-Anhalt Chaos ersparen"
+        ],
+        "related_bundestag_topics": [
+          "Sachsen-Anhalt-Wahl",
+          "AfD-Containment",
+          "Länder-Koalitionen"
+        ]
+      },
+      {
+        "title": "Minderheitsregierung Sachsen als Modell",
+        "timestamp_range": "00:29:11 - 00:30:18",
+        "theme_description": "Einschätzung, ob Sachsens Minderheitsregierung und Konsultation mit Grünen, Linken, BSW als Vorbild taugt.",
+        "question_asked": "Sandra Maischberger fragte: 'Sie haben in Sachsen eine interessante Form der Regierung wählen müssen, eine Minderheitsregierung. Ist das ein Vorbild im Zweifel auch für die Kollegen in Sachsen-Anhalt?'",
+        "question_intent": "Maischberger wollte klären, ob Kretschmers Regierungsmodell übertragbar ist.",
+        "position": "Kretschmer lehnt Übertragbarkeit ab: 'Jeder muss in der Situation bestehen, in die er gesetzt wird. Man kann es nicht übertragen.' Grund: 'Die Menschen in Sachsen lieben ihre Heimat in besonderer Weise. Sie sind bereit, über den Parteischatten zu schauen.' Das ist 'kein Modell für jemand anderen'. Bezüglich AfD-Konsultationen: Alle Abgeordneten haben 'gleiche Rechte, aber bitte schön auch die gleichen Pflichten'. Die AfD ist 'die einzige Partei, die gesagt hat, wir beteiligen uns nicht, wir wollen euer Scheitern'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer antwortet direkt und klar: Nein, nicht übertragbar. Er begründet mit Spezifika Sachsens und mit AfD-Verweigerungshaltung.",
+        "quotes": [
+          {
+            "text": "Jeder muss in der Situation bestehen, in die er gesetzt wird. Man kann es nicht übertragen. Die Menschen in Sachsen lieben ihre Heimat in besonderer Weise.",
+            "timestamp": "00:29:44",
+            "context": "Auf Frage zur Übertragbarkeit der Minderheitsregierung."
+          },
+          {
+            "text": "Die einzige Partei, die gesagt hat, wir beteiligen uns nicht, wir wollen euer Scheitern, ist die AfD.",
+            "timestamp": "00:30:18",
+            "context": "Zur Frage nach AfD-Beteiligung."
+          }
+        ],
+        "concrete_statements": [
+          "Sachsens Minderheitsregierungsmodell nicht übertragbar",
+          "AfD-Verweigerungshaltung ist Beweis ihrer Unkooperativität"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmodelle",
+          "Sachsen-Politik"
+        ]
+      },
+      {
+        "title": "Solarpark Leipzig und Arbeitsplatzsorgen",
+        "timestamp_range": "00:31:20 - 00:31:51",
+        "theme_description": "Bewertung des Solarparks Leipzig als Energiewende-Symbol, Bedenken zu Arbeitsplatzbilanz.",
+        "question_asked": "Satz-Vervollständigung von Maischberger: 'Dass sich bei Leipzig der größte Solarpark Europas befindet...' — Kretschmer sollte reaktiv antworten.",
+        "question_intent": "Maischberger wollte Kretschmers Bewertung von Energiewende-Symbolen (Großprojekte vs. Arbeitsplätze) testen.",
+        "position": "Kretschmer: Eröffnung durch ihn, 'bin total über den Solarpark begeistert'. Aber: 'Wenn man sich bedenkt, wie viel bei Braunkohle war und wie viele jetzt da waren, ist da eine große Skepsis' zur Arbeitsplatzbilanz. 'Der Strom ist gut', aber die Arbeitsplatz-Transformation wird kritisch gesehen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Kretschmer gibt ambivalente Antwort: Begeisterung für Solarpark, aber Sorge um Arbeitsplatz-Verluste bei Transition. Adressiert nicht direkt, ob das akzeptabel ist.",
+        "quotes": [
+          {
+            "text": "Ich bin total über den Solarpark begeistert. Aber wenn man sich bedenkt, wie viel bei Braunkohle war und wie viele jetzt da waren, ist da eine große Skepsis.",
+            "timestamp": "00:31:51",
+            "context": "Zu Solarpark Leipzig."
+          }
+        ],
+        "concrete_statements": [
+          "Solarpark Leipzig ist begeisternde Leistung",
+          "Arbeitsplatz-Bilanz ist skeptisch zu bewerten"
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Arbeitsplatzpolitik",
+          "Braunkohleausstieg"
+        ]
+      },
+      {
+        "title": "Iran-Krieg und deutsche Bündnisverpflichtungen",
+        "timestamp_range": "00:32:22 - 00:34:27",
+        "theme_description": "Einschätzung von Trumps Iran-Politik, Nordatlantische Allianz und deutscher Nein-Antwort zur Hormus-Straße.",
+        "question_asked": "Sandra Maischberger fragte: 'Trumps bisherige Friedensbemühungen sind...?' (Satz-Vervollständigung) und später: 'Nein zur Öffnungshilfe bei der Straße von Hormus, das finden Sie richtig?'",
+        "question_intent": "Maischberger wollte Kretschmers Bewertung von Trumps Iran-Strategie und Deutschlands Abgrenzung erfahren.",
+        "position": "Trump: 'Ich erkenne keine' Friedensbemühungen. Er ist 'ein Narzisst, der hoffentlich jetzt an sich selbst scheitert'. Allerdings: Amerika hat 'echte Sorge' und 'muss eigene Interessen vertreten'. ABER: 'wie es läuft, und wie die Welt ins Chaos gestürzt wird, kann man nicht miteinander umgehen.' Zur Hormus-Straße: JA zum Nein. 'Die Straße ist blockiert durch die Iraner. Trump blockiert jetzt auch.' Deutsches Nein ist korrekt: 'Die NATO ist ein Verteidigungsbündnis, das, was sie sagen, ist ein Eintritt in einen Krieg. Das verbietet sich von vornherein.' Ohne UN-Mandat unmöglich ('Davon sind wir so weit weg'). Aber: Europa muss 'selbstbewusster sein' und sich klären ('Wichtig ist, dass wir unsere Dinge klären').",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer antwortet auf beide Fragen direkt und konkret. Er bewertet Trump kritisch, rechtfertigt deutsches Nein über NATO-Mandat-Argument, fordert aber auch europäische Eigenständigkeit.",
+        "quotes": [
+          {
+            "text": "Ich erkenne keine. Er ist ein Narzisst, der hoffentlich jetzt an sich selbst scheitert.",
+            "timestamp": "00:32:22",
+            "context": "Satz-Vervollständigung zu Trumps Friedensbemühungen."
+          },
+          {
+            "text": "Die NATO ist ein Verteidigungsbündnis, das, was sie sagen, ist ein Eintritt in einen Krieg. Das verbietet sich von vornherein.",
+            "timestamp": "00:34:57",
+            "context": "Begründung für Nein zur Hormus-Hilfe."
+          },
+          {
+            "text": "Wir Europäer müssen uns unter Haken und nicht nur drüber reden.",
+            "timestamp": "00:32:52",
+            "context": "Forderung nach europäischer Eigenständigkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Trump zeigt keine Friedensbemühungen",
+          "Deutschland muss Nein zur Hormus-Öffnungshilfe sagen (NATO-Mandat-Argument)",
+          "Europa muss sich von USA emanzipieren",
+          "UN-Mandat für Militäreinsätze erforderlich"
+        ],
+        "related_bundestag_topics": [
+          "Iran-Konflikt",
+          "NATO-Bündnis",
+          "Außenpolitik",
+          "Taurus-Lieferungen"
+        ]
+      },
+      {
+        "title": "USA-Reisen und deutsch-amerikanische Beziehungen",
+        "timestamp_range": "00:35:27 - 00:36:28",
+        "theme_description": "Rat an Sachsen-Bürger zum Reisen in die USA und Verhältnis zu Amerika.",
+        "question_asked": "Sandra Maischberger fragte: 'Würden Sie Ihren Bürgern in Sachsen raten, in diese USA zu reisen?'",
+        "question_intent": "Maischberger wollte wissen, wie sicher/attraktiv Kretschmer die USA für deutsche Reisende hält und wie er zu Amerika steht.",
+        "position": "Kretschmer: 'Natürlich muss man da hinfahren.' Er begründet mit DDR-Hintergrund: 'Ich komme aus der ehemaligen DDR. Wenn wir nicht mehr dahingehen, wird sich erst recht ein Narrativ durchsetzen.' USA sind 'ein großartiges Land'. Problem: 'Wir müssen nur aufhören, wie Bittsteller hinterher zu rennen.' Europa mit 450 Mio. Einwohnern ist 'eine Weltmacht', muss aber 'mit einer gewissen Stärke sagen, was er möchte'. 'Man muss nicht arrogant auftreten, aber wir müssen uns auch nicht so klein machen.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Kretschmer antwortet direkt, begründet mit historischem Kontext (DDR) und betont Notwendigkeit von europäischer Selbstbehauptung statt Unterwürfigkeit.",
+        "quotes": [
+          {
+            "text": "Natürlich muss man da hinfahren. Zurückblicken, ich komme aus der ehemaligen DDR. Wenn wir nicht mehr dahingehen, wird sich erst recht ein Narrativ durchsetzen.",
+            "timestamp": "00:35:58",
+            "context": "Auf Frage zu USA-Reisen."
+          },
+          {
+            "text": "Wir müssen nur aufhören, wie Bittsteller hinterher zu rennen. Amerika ist ein großartiges Land... Es lebt davon, dass jemand da ist, der mit einer gewissen Stärke sagt, was er möchte.",
+            "timestamp": "00:35:58",
+            "context": "Zum Verhältnis zu USA."
+          },
+          {
+            "text": "Wir haben 450 Mio. Einwohner. Wenn wir wollen, sind wir eine Weltmacht.",
+            "timestamp": "00:36:28",
+            "context": "Forderung nach europäischer Selbstbehauptung."
+          }
+        ],
+        "concrete_statements": [
+          "Bürger sollten in die USA reisen",
+          "Europa muss als Weltmacht auftreten",
+          "Keine unterwürfige Haltung gegenüber USA",
+          "Narrative-Kontrolle wichtig gegen Abgrenzungsdruck"
+        ],
+        "related_bundestag_topics": [
+          "Transatlantische Beziehungen",
+          "Amerika-Politik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Benzinpreis in Görlitz unter 1,70 Euro pro Liter",
+        "timestamp": "00:18:23"
+      },
+      {
+        "claim": "Polen hat 'enormes Wachstum' im Vergleich zu Deutschland",
+        "timestamp": "00:23:50"
+      },
+      {
+        "claim": "Pro Monat 10.000 Industriearbeitsplätze werden abgebaut",
+        "timestamp": "00:23:19"
+      },
+      {
+        "claim": "Energiesteuer-Senkung von 17 Cent entspricht 1,4 Milliarden Euro pro Monat",
+        "timestamp": "00:19:58"
+      },
+      {
+        "claim": "Hartz-IV-Reformen 2004 führten zu NPD-Eintritt in Landtag",
+        "timestamp": "00:27:01"
+      },
+      {
+        "claim": "Bundesregierung brauchte ein halbes Jahr, das Verbrenner-Aus abzuschaffen",
+        "timestamp": "00:22:14"
+      },
+      {
+        "claim": "Europa hat 450 Millionen Einwohner",
+        "timestamp": "00:36:28"
+      }
+    ]
+  }
+}

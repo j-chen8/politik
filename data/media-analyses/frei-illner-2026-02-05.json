@@ -1,0 +1,336 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-5-februar-2026-100",
+    "video_id": "illner-2026-02-05",
+    "politician": "Thorsten Frei",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "34287f10d503d9a5",
+    "transcript_chars": 47405,
+    "caption_lines": 2335,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20526,
+    "tokens_out": 7635,
+    "cost_usd": 0.0234804,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "substantielle_position": 2,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.683Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei, Bundesminister und Chef des Bundeskanzleramtes (CDU), verteidigt in der Maybrit Illner-Sendung die Reformpläne der Bundesregierung gegen Kritik von links und von einer skeptischen Moderatorin. Er argumentiert differenziert für Flexibilisierung, lehnt aber zentrale Vorschläge ab und legt Wert darauf, dass der Staat nicht bevormunden soll.",
+    "themes": [
+      {
+        "title": "Überblick über Reformprozess und Kommissionsergebnisse",
+        "timestamp_range": "00:02:45 - 00:04:39",
+        "theme_description": "Thorsten Frei skizziert den Stand der Reformarbeit der Bundesregierung mit Fokus auf Kommissionsergebnisse.",
+        "question_asked": "Maybrit Illner fragt, ob Frei noch durchblickt bei den vielen Reformvorschlägen, die in der Einleitung satirisch dargestellt wurden.",
+        "question_intent": "Illner wollte wissen, wie die Bundesregierung angesichts der verwirrenden und teilweise widersprüchlichen Reformvorschläge die Orientierung behält.",
+        "position": "Frei betont, dass die Bundesregierung bereits im letzten Jahr Reformen umgesetzt hat (Bürgergeld, Grundsicherung). Der Reformprozess läuft über mehrere Kommissionen: Sozialstaatskommission, Gesundheitswesen-Kommission und weitere. Die Ergebnisse sollen schnell in Gesetzesprozesse übergehen. Frei unterstreicht, dass die Sozialstaatskommission ein einstimmiges Votum abgegeben hat, was eine gute Grundlage für Koalitionsverständigung biete.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Frage zur Orientierung durch den Verweis auf strukturierte Prozesse und einstimmige Kommissionsvoten. Er beantwortet aber nicht direkt, was konkret von den satirisch vorgestellten Vorschlägen umgesetzt wird.",
+        "concrete_statements": [
+          "Wir haben im letzten Jahr schon eine Menge von Reformen auf den Weg gebracht",
+          "Die Sozialstaatskommission hat ein einstimmiges Votum abgegeben"
+        ],
+        "quotes": [
+          {
+            "text": "Man muss sagen, dass wir im letzten Jahr schon eine Menge von Reformen auf den Weg gebracht haben. Das gilt für das Bürgergeld und die Grundsicherung.",
+            "timestamp": "00:02:45",
+            "context": "Antwort auf Frage, ob Frei noch durchblickt bei den Reformvorschlägen."
+          },
+          {
+            "text": "Die Sozialstaatskommission hat ein einstimmiges Votum abgegeben. Das ist bei den anderen beiden Kommissionen ähnlich. Das ist eine gute Grundlage, auf der wir uns auch in der Koalition verständigen können.",
+            "timestamp": "00:04:11",
+            "context": "Vertrauenswürdigkeit der Reformprozesse unterstreichen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Gesundheitswesen",
+          "Grundsicherung",
+          "Arbeitsmarktreformen"
+        ]
+      },
+      {
+        "title": "Stellungnahme zu Teilzeitverschärfung und Zahnzusatz",
+        "timestamp_range": "00:04:39 - 00:06:52",
+        "theme_description": "Frei nimmt konkret zu zwei Vorschlägen Stellung: Einschränkung des Teilzeitrechts und Privatisierung von Zahnleistungen.",
+        "question_asked": "Maybrit Illner fragt konkret nach zwei Vorschlägen: Zum einen Einschränkung der Teilzeitarbeit, zum anderen Privatisierung von Zahnleistungen. Was von diesen beiden Vorschlägen wird überleben?",
+        "question_intent": "Illner wollte wissen, welche dieser konkreten und umstrittenen Reformvorschläge die Bundesregierung tatsächlich verfolgt.",
+        "position": "Frei sagt klar: Das wird so nicht überleben. Bei Teilzeit betont er, dass die CDU anderen nicht vorschreiben möchte, wie viel sie arbeiten sollen. Da die Beschäftigungsquote in Deutschland sehr hoch ist und viele Menschen in Teilzeit sind, müsse man die tatsächliche Situation analysieren. Die Rahmenbedingungen sollen so gesetzt werden, dass niemand aufgrund staatlicher Verhältnisse auf eine Vollzeitstelle verzichten muss. Zur Zahngesundheit: Das sei kein entscheidender Punkt und kein gutes Beispiel für Leistungskürzungen, da Zahngesundheit viel mit Prophylaxe zu tun habe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet direkt auf beide Fragen: Er lehnt beide Vorschläge explizit ab und begründet seine Ablehnungen nachvollziehbar. Er geht auf die Frage ein, was überleben wird, und sagt klar: nicht diese beiden.",
+        "concrete_statements": [
+          "Das wird so nicht überleben",
+          "Wir sind diejenigen, die den anderen nicht vorschreiben möchten wie viel sie zu arbeiten haben",
+          "Wir sollten die Rahmenbedingungen so setzen, dass niemand aufgrund der Verhältnisse des Staates auf eine Vollzeitstelle verzichten muss"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, das wird so nicht überleben. Bei der Teilzeit muss man sagen, wir sind diejenigen, die den anderen nicht vorschreiben möchten wie viel sie zu arbeiten haben.",
+            "timestamp": "00:05:01",
+            "context": "Direkte Antwort auf Frage zu konkreten Vorschlägen (Teilzeit, Zähne)."
+          },
+          {
+            "text": "Das Thema Zahngesundheit ist kein entscheidender Punkt. Zum anderen muss man sagen, dass Zahngesundheit viel mit Prophylaxen zu tun hat.",
+            "timestamp": "00:06:28",
+            "context": "Erklärung, warum Zahnleistung kein geeignetes Sparmodell ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Gesundheitswesen",
+          "Krankenversicherung"
+        ]
+      },
+      {
+        "title": "Auseinandersetzung mit Grünen über Freiheit und Staat",
+        "timestamp_range": "00:12:35 - 00:13:32",
+        "theme_description": "Direkter Schlagabtausch mit Katharina Dröge (Grüne) über die Rolle des Staates bei der Gestaltung von Lebensentwürfen.",
+        "question_asked": "Katharina Dröge kritisiert die CDU dafür, dass die Partei mit dem Vorschlag zur Einschränkung des Teilzeitrechts Frauen ein bestimmtes Lifestyle-Modell aufzwinge. Frei kontert die Kritik.",
+        "question_intent": "Die Grünen wollten der CDU vorwerfen, bevormundend zu agieren und Frauen implizit zu mehr Erwerbstätigkeit zu zwingen.",
+        "position": "Frei wirft Dröge vor, dass sie sich herauspickt, was ihr gefällt. Er betont: Die CDU ist für Gleichberechtigung, aber das müssen die Familien entscheiden, nicht der Staat. Das sei das typisch Grüne: anderen vorzuschreiben, wie sie ihr Leben zu führen haben. Dröge müsse sich eingestehen, dass sie gerade einen Streik organisiert hat – würde die Bevölkerung das als schlau einstufen?",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Frei antwortet nicht direkt auf die Vorwürfe zur CDU-Bevormundung, sondern lenkt um und wirft Dröge und den Grünen vor, selbst bevormundend zu sein und Streiks zu organisieren. Er weicht auf einen Gegenpunkt aus, statt die inhaltliche Kritik zu adressieren.",
+        "deflection_target": "Kritik an Grüner Politik und Streikorganisation",
+        "concrete_statements": [
+          "Wir sind für Gleichberechtigung aber das entscheiden ja die Familien, gerade nicht der Staat",
+          "Typisch für Ihre Politik, dass sie anderen sagen möchten, wie sie ihr Leben zu führen haben"
+        ],
+        "quotes": [
+          {
+            "text": "Die Frau Dröge zieht sich das raus, was sie gerne hätte, natürlich sind wir für Gleichberechtigung aber das entscheiden ja die Familien, gerade nicht der Staat. Sie haben das typisch grüne vorgeschlagen, typisch für Ihre Politik, dass sie anderen sagen möchten, wie sie ihr Leben zu führen haben.",
+            "timestamp": "00:12:35",
+            "context": "Reaktion auf Grünen-Kritik zur Bevormundung von Frauen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Gleichberechtigung",
+          "Arbeitsmarktpolitik",
+          "Koalitionsmanagement"
+        ]
+      },
+      {
+        "title": "Mehrarbeit und Wettbewerbsfähigkeit im Koalitionskontext",
+        "timestamp_range": "00:16:24 - 00:17:20",
+        "theme_description": "Frei erklärt das Ziel der Regierung, Mehrarbeit attraktiv zu machen, und präzisiert die Position zur Arbeitszeit-Flexibilisierung.",
+        "question_asked": "Nach heftigem Schlagabtausch mit Grünen und DGB-Vorsitzender Fahimi repliziert Frei auf Kritik an der Forderung nach Mehrarbeit und zur geplanten Flexibilisierung der Arbeitszeiten.",
+        "question_intent": "Die Opponenten warfen vor, dass die Regierung Menschen zu mehr Arbeit zwinge, ohne dass dies wirtschaftlich sinnvoll sei.",
+        "position": "Frei stellt klar: Niemand soll zu etwas gedrängt werden. Es geht darum, dass Arbeit und Mehrarbeit sich für die Menschen lohnen – dass sie vom Brutto mehr Netto haben. Darum wolle die Bundesregierung Rahmenbedingungen schaffen. Das gehöre zur Stärkung der Wettbewerbsfähigkeit. Die Regierung wolle niemanden eine 48-Stunden-Woche geben. Im Koalitionsvertrag ist vereinbart: Flexibilisierung bei der Arbeitszeit, wobei es nicht um eine Tages-, sondern um eine Wochenarbeitszeit geht (gemäß europäischer Richtlinie).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet umfassend auf den Vorwurf der Bevormundung und präzisiert die Regierungsposition zur Flexibilisierung. Er gibt konkrete Differenzierungen an (Wochenarbeitszeit vs. Tagesarbeitszeit).",
+        "concrete_statements": [
+          "Wir wollen niemanden zu etwas drängen",
+          "Dass sie vom brutto mehr netto haben",
+          "Wir wollen niemandem eine 48 Stunden Woche geben",
+          "Flexibilisierung bei der Arbeitszeit möcht"
+        ],
+        "quotes": [
+          {
+            "text": "Als erstes will ich sagen, wir wollen niemanden zu etwas drängen. Es geht darum, dass Arbeit und auch Mehrarbeit sich für die Menschen. Dass sie vom brutto mehr netto haben. Dass sie davon etwas haben, dafür wollen wir die Rahmenbedingungen setzen.",
+            "timestamp": "00:16:24",
+            "context": "Klarstellung zur Absicht der Regierung nach heftigen Kritik von links."
+          },
+          {
+            "text": "Wir wollen niemandem eine 48 Stunden Woche geben. Wir haben im Koalitionsvertrag vereinbart, das ist die Position der Bundesregierung, dass wir eine Flexibilisierung bei der Arbeitszeit möcht. Das bedeutet nicht, dass wir eine Tages-Höchstarbeitszeit haben, sondern wie in der europäischen Richtlinie einer Wochenarbeitszeit.",
+            "timestamp": "00:16:24",
+            "context": "Präzisierung der Regierungsposition zur Arbeitszeit-Flexibilisierung gegen Kritik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktreformen",
+          "Koalitionsvertrag",
+          "Arbeitsschutz",
+          "Wettbewerbsfähigkeit"
+        ]
+      },
+      {
+        "title": "Unterscheidung zwischen Reformprozess und Parteianträgen",
+        "timestamp_range": "00:23:07 - 00:24:33",
+        "theme_description": "Frei grenzt die Bundesregierungsposition von einzelnen Parteitagsanträgen ab und weist Überhöhung zurück.",
+        "question_asked": "Maybrit Illner zitiert Michael Hüther, dass die Regierung statt negativer besser positive Geschichten erzählen sollte. Sie führt an, dass die Schweiz erfolgreich ist, und fragt, warum die Bundesregierung immer nur das Negative hervorhebe.",
+        "question_intent": "Illner wollte kritisieren, dass Freis Regierung Reformen schlecht kommuniziert und negative Szenarien zeichnet, statt Chancen zu vermitteln.",
+        "position": "Frei wendet ein, dass er gerade eben gesagt hat, dass niemand zu bestimmtem Verhalten gedrängt werde. Man müsse die Kirche im Dorf lassen: Die Regierung spricht über einen Parteitag mit hunderten Anträgen. Es gibt gute und weniger gute Anträge. Andere werden keine Mehrheit finden. Frei will nicht auf andere Parteien gehen. Dass es eine Vielfalt darstellt, sei doch vollkommen klar. Daher findet er die Überhöhung fehl am Platz und nicht gerecht zur Situation.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert teilweise die Kritik zur negativen Kommunikation, indem er auf seine vorherige Klarstellung verweist. Er relativiert aber auch: Nicht alle Anträge werden Mehrheit finden. Er antwortet jedoch nicht direkt auf die Frage nach positiver Erzählung und erfolgreichen Beispielen wie der Schweiz.",
+        "concrete_statements": [
+          "Wir sprechen über einen Parteitag, mit hunderten von Anträgen",
+          "Da gibt es gute und weniger gute Anträge. Andere werden keine Mehrheit finden",
+          "Diese Überhöhung fehl am Platz"
+        ],
+        "quotes": [
+          {
+            "text": "Ich meine, dass ich gerade eben gesagt habe, dass mir niemanden zu einem bestimmten Verhalten drängen möchten. Jetzt muss man die Kirche im Dorf lassen. Wir sprechen über einen Parteitag, mit hunderten von Anträgen. Da gibt es gute und weniger gute Anträge. Andere werden keine Mehrheit finden.",
+            "timestamp": "00:23:24",
+            "context": "Reaktion auf Kritik zur negativen Kommunikation und Vergleich mit der Schweiz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Parteitag",
+          "Kommunikation von Reformen"
+        ]
+      },
+      {
+        "title": "Abgrenzung zu falschen Vorwürfen bei Migrationspolitik",
+        "timestamp_range": "00:44:13 - 00:45:49",
+        "theme_description": "Frei wehrt sich gegen Vorwürfe der Grünen, dass die Union Migrationshürden verschärft habe.",
+        "question_asked": "Katharina Dröge kritisiert die Union (CDU/CSU) dafür, dass sie die Bedingungen für Schutzsuchende, die arbeiten möchten, verschlechtert habe. Sie wirft der Union vor, Arbeitsverbote aufrecht zu erhalten.",
+        "question_intent": "Dröge wollte der Union Blockadehaltung bei Arbeitsmigration vorwerfen.",
+        "position": "Frei weist Dröges Aussage als falsch zurück: Es gibt kein Arbeitsverbot. Er kontert, dass die Grünen selbst dreieinhalb Jahre regiert haben und dass die Union sogar ein Gesetz verändert hat, das nicht nur Fachkräfte, sondern auch anderen Menschen Arbeitsmarktzugang ermöglicht. Das könne man nachschauen.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Frei antwortet nicht substantiell auf den Vorwurf, sondern lehnt ihn als falsch ab und kontert mit einem Gegenpunkt: dass die Grünen selbst lange regiert haben und die Union positive Änderungen gemacht habe.",
+        "deflection_target": "Kritik an Grüner Regierungstätigkeit",
+        "concrete_statements": [
+          "Das ist kein Arbeitsverbot das ist schlicht falsch was sie sagen",
+          "Die Grünen waren diejenigen, die dieses Gesetz so verändert haben, dass nicht nur die Menschen, die als Fachkräfte eingesetzt werden kommen können sondern auch lohnen"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist kein Arbeitsverbot das ist schlicht falsch was sie sagen.",
+            "timestamp": "00:44:13",
+            "context": "Reaktion auf Grünen-Vorwurf zu Arbeitsverboten für Schutzsuchende."
+          },
+          {
+            "text": "Die Grünen waren diejenigen, die dieses Gesetz so verändert haben, dass nicht nur die Menschen, die als Fachkräfte eingesetzt werden kommen können sondern auch lohnen. Das kann man auch nachschauen.",
+            "timestamp": "00:45:01",
+            "context": "Konter mit Verweis auf frühere Grüne Regierungsbeteiligung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Arbeitsmarkt und Zuwanderung",
+          "Fachkräftemangel"
+        ]
+      },
+      {
+        "title": "Offenheit für Reformdebatte gegen Totschlag-Argumente",
+        "timestamp_range": "00:48:32 - 00:49:18",
+        "theme_description": "Frei wendet ein gegen den Vorwurf, dass umfassende Debatte unmöglich gemacht wird, und argumentiert für Diskussionsoffenheit.",
+        "question_asked": "Maybrit Illner zeigt Umfrageergebnisse, wonach auch 50% der Union-Wähler die Diskussion zur Einschränkung der Teilzeitarbeit nicht gut finden. Sie fragt, wie die Regierung damit umgeht.",
+        "question_intent": "Illner wollte hinterfragen, warum die Bundesregierung eine Debatte führt, der auch eigene Wähler nicht zustimmen.",
+        "position": "Frei sagt: Wir wissen auch gar nicht, ob der Antrag eine Mehrheit findet. Es geht eher um die Frage, ob man offen darüber sprechen kann, ohne dass Totschlags-Argumente entgegengesetzt werden. Wenn man den Summenstrich zieht, sind sich viele einig, dass es vor allem darum geht, möglichst viele Spielräume zu eröffnen. Das ist dann in der Tat ein Thema unter vielen zur Stärkung der Wettbewerbsfähigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei weicht partiell aus: Er antwortet nicht auf die Umfrage, sondern umdefiniert die Debatte als Frage der Diskussionskultur (Totschlags-Argumente). Er versucht damit, die inhaltliche Ablehnung durch eigene Wähler zu relativieren.",
+        "evasion_note": "Frei geht nicht direkt auf die Tatsache ein, dass auch Union-Wähler den Vorschlag mehrheitlich ablehnen, sondern rahmt es als Frage der Debattenkultur.",
+        "concrete_statements": [
+          "Wir wissen auch gar nicht ob der Antrag eine Mehrheit findet",
+          "Es geht eher um die Frage ob man offen darüber sprechen kann",
+          "Möglichst viele Spielräume zu eröffnen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir wissen auch gar nicht ob der Antrag eine Mehrheit findet. Es geht eher um die Frage ob man offen darüber sprechen kann. Bei Totschlags Argumente dem entgegengesetzt werden.",
+            "timestamp": "00:48:32",
+            "context": "Reaktion auf Umfrageergebnis, dass auch Union-Wähler Teilzeit-Einschränkung ablehnen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Parteitag-Debatten",
+          "Wettbewerbsfähigkeit"
+        ]
+      },
+      {
+        "title": "Feststellung zu geleisteten Feiertagen und Arbeitsvolumen",
+        "timestamp_range": "00:53:57 - 00:54:25",
+        "theme_description": "Frei trägt Zahlen zur bereits erfolgten Reduktion von Feiertagen vor und betont, dass die Debatte nur ein Teilaspekt sei.",
+        "question_asked": "Maybrit Illner stellt die Feiertags-Debatte in den Raum und fragt, ob dieser Vorschlag für die Steigerung der Arbeitsvolumens ausreichend ist. Der Ökonom Hüther nennt 8,6 Milliarden Euro Ertrag.",
+        "question_intent": "Illner wollte die Eignung des Feiertags-Vorschlags als praktische Reformmaßnahme überprüfen.",
+        "position": "Frei teilt mit: Deutschland hat in diesem Jahr schon 2,4 Feiertage weniger als im letzten Jahr – es gibt also schon einen gewissen positiven Effekt. Aber das ist schon eine Scheindebatte und nur einen Teilaspekt. Es geht um die Frage, wie man das Arbeitsvolumen erhöhen kann. Da gibt es viele Möglichkeiten, dazu gehören auch die Rahmenbedingungen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei nennt konkrete Zahlen zu Feiertagen und gibt eine teilweise Antwort. Er wertet die Debatte aber als Scheindebatte ab und verweigert damit eine tiefere Diskussion dieses einzelnen Instruments.",
+        "concrete_statements": [
+          "Wir haben dieses Jahr schon 2,4 Feiertage weniger als im letzten Jahr",
+          "Das ist schon eine Scheindebatte, und ist nur einen Teilaspekt beinhaltet",
+          "Es geht um die Frage, wie wir das Arbeitsvolumen erhöhen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben dieses Jahr schon 2,4 Feiertage weniger als im letzten Jahr, d. h. wir haben schon einen gewissen positiven Effekt. Aber das ist schon eine Scheindebatte, und ist nur einen Teilaspekt beinhaltet. Es geht um die Frage, wie wir das Arbeitsvolumen erhöhen.",
+            "timestamp": "00:53:57",
+            "context": "Reaktion auf Frage zur Wirksamkeit des Feiertags-Vorschlags."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktreformen",
+          "Arbeitsvolumen",
+          "Feiertage"
+        ]
+      },
+      {
+        "title": "Arbeitszeitmitverantwortung und Koalitionsvereinbarung",
+        "timestamp_range": "00:58:03 - 00:58:20",
+        "theme_description": "Frei verteidigt die Arbeitszeit-Flexibilisierung mit Verweis auf Vereinbarung mit Sozialpartnern.",
+        "question_asked": "Nachdem Yasmin Fahimi (DGB) scharfe Kritik an der Flexibilisierung übt und fragt, wer unter der veränderten Arbeitszeitbestimmung leidet, reagiert Frei.",
+        "question_intent": "Fahimi wollte Freis Position zur Besorgnis hinsichtlich des Bestimmungsrechts von Arbeitgebern überprüfen.",
+        "position": "Frei sagt klar: Wir haben mit den Sozialpartnern darüber gesprochen und haben das vereinbart. Dies ist ein Beleg dafür, dass auch Gewerkschaften und Arbeitgeber der Flexibilisierung zustimmen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei antwortet knapp mit Verweis auf Sozialpartner-Vereinbarung, geht aber nicht auf Fahimis spezifische Kritik zum Bestimmungsrecht des Arbeitgebers ein.",
+        "concrete_statements": [
+          "Wir haben mit den Sozialpartnern darüber gesprochen und haben das vereinbart"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben mit den Sozialpartnern darüber gesprochen und haben das vereinbart.",
+            "timestamp": "00:58:03",
+            "context": "Rechtfertigung der Arbeitszeit-Flexibilisierung durch Verweis auf Sozialpartner-Vereinbarung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitszeiten",
+          "Tarifverhandlungen",
+          "Sozialpartnerschaft"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Wir haben dieses Jahr schon 2,4 Feiertage weniger als im letzten Jahr",
+        "timestamp": "00:53:57"
+      },
+      {
+        "claim": "Die Sozialstaatskommission hat ein einstimmiges Votum abgegeben",
+        "timestamp": "00:04:11"
+      },
+      {
+        "claim": "Die Beschäftigungsquote in Deutschland ist sehr hoch und viele Menschen arbeiten in Teilzeit",
+        "timestamp": "00:05:01"
+      },
+      {
+        "claim": "Im Koalitionsvertrag ist vereinbart, dass wir eine Flexibilisierung bei der Arbeitszeit möchten",
+        "timestamp": "00:16:24"
+      },
+      {
+        "claim": "Die Grünen waren diejenigen, die das Gesetz so verändert haben, dass nicht nur Menschen als Fachkräfte sondern auch Lohnabhängige arbeiten können",
+        "timestamp": "00:45:01"
+      }
+    ]
+  }
+}

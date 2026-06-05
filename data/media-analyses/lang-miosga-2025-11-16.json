@@ -1,0 +1,422 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8yOGNmMzU0ZC0wODE2LTRhMmYtYWZmNi05ODA4YjFhYjY2YWNfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2025-11-16",
+    "politician": "Ricarda Lang",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "3bd8f77cfdd80184",
+    "transcript_chars": 32286,
+    "caption_lines": 1190,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 14337,
+    "tokens_out": 11616,
+    "cost_usd": 0.0289668,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 5,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 6,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.661Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ricarda Lang diskutiert mit Caren Miosga, Ferdinand von Schirach und Martin Machowecz über Vertrauenskrise in der Demokratie, Kompromissfähigkeit der Politik und die Rolle von Algorithmen. Lang argumentiert, dass nicht die Fähigkeit zum Kompromiss, sondern strukturelle Defizite des Regierungssystems und die fehlende Umsetzungsgeschwindigkeit das Vertrauen untergraben. Sie wirkt sachlich, differenzierend und teilweise kritisch gegenüber ihrer eigenen Partei.",
+    "themes": [
+      {
+        "title": "Bedingungsloses Vertrauen zwischen Politikern",
+        "timestamp_range": "00:01:06 - 00:01:36",
+        "theme_description": "Frage, ob es in der Politik bedingungsloses Vertrauen gibt und wie damit umzugehen ist.",
+        "question_asked": "Caren Miosga fragt Ricarda Lang, welchem politischen Freund sie zu 100 Prozent vertraut.",
+        "question_intent": "Zu erfahren, ob es in der Politik persönliche, unbedingte Loyalitäten gibt oder ob diese nur instrumentell sind.",
+        "position": "Lang beantwortet die Frage zunächst mit dem Namen Omid Nouripour, relativiert dies aber sofort: Bedingungsloses Vertrauen sei eine „kindische Vorstellung von Politik“. Sie argumentiert, dass es in politischen Systemen um Zusammenarbeit für gute Ergebnisse gehe, nicht um absolute persönliche Loyalität. Sie unterscheidet zwischen einer medial vereinfachten Logik von „Freunden und Feinden“ und der Realität, dass Menschen auch ohne Ellenbogen-Mentalität zusammenarbeiten könnten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang antwortet auf die Frage selbst (mit Nouripour), widerlegt dann aber unmittelbar die Prämisse der Frage, indem sie erklärt, dass die Frage selbst auf einer falschen Annahme beruht. Sie adressiert also die eigentliche Frage-Intention (gibt es echte Loyalität?) mit dem Argument, dass diese Kategorie für gute Politik weniger relevant ist als funktionale Zusammenarbeit.",
+        "concrete_statements": [
+          "Bedingungsloses Vertrauen ist eine kindische Vorstellung von Politik",
+          "Man muss zusammenarbeiten für gute Ergebnisse"
+        ],
+        "quotes": [
+          {
+            "text": "Omid Nouripour. Ich dachte, es gibt in der Politik kein bedingungsloses Vertrauen. Es heißt ja, es gibt Freunde und Feinde und Parteifeinde. Das ist eine kindische Vorstellung von Politik. Man fährt ja nicht immer die Ellenbogen aus.",
+            "timestamp": "00:01:06",
+            "context": "Auf die direkte Frage nach bedingungslosem Vertrauen antwortet Lang initial personenbezogen, reinterpretiert dann aber die Frage konzeptionell."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfähigkeit",
+          "Vertrauenskrise",
+          "Parlamentarische Zusammenarbeit"
+        ]
+      },
+      {
+        "title": "Gründe für den Verlust von Vertrauen in Demokratie",
+        "timestamp_range": "00:02:45 - 00:05:21",
+        "theme_description": "Analyse der strukturellen und politischen Ursachen, weshalb das Vertrauen in die Demokratie und speziell in die Koalitionsregierung bröckelt.",
+        "question_asked": "Caren Miosga hält Studien vor, die zeigen, dass zwar 80 % hinter der Demokratie stehen, aber nur 49 % ihr zutrauen, Probleme zu lösen. Sie fragt implizit nach den Ursachen dieses Vertrauensverlustes.",
+        "question_intent": "Zu verstehen, ob und warum die Bürger die Effektivität der Demokratie anzweifeln.",
+        "position": "Lang entwickelt ein analytisches Drei-Punkte-Modell für Vertrauensverluste: (1) Versprochenes wird nicht gehalten, (2) politische Akteure werden als ungerecht empfunden, (3) Probleme werden nicht benannt. Sie konkretisiert dies durch Kritik am Kanzler (Scholz), der Dinge verspreche, die er nicht halten könne. Sie thematisiert strukturelle Probleme (Infrastruktur, Asylrecht mit 50 % der Richter im Asylverfahren beschäftigt) und kritisiert das Bürgergeld als „völlig falsch angepackt – es geht um Gerechtigkeit, nicht um Geld“.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die implizite Frage direkt und systematisch. Sie benennt Kausalfaktoren für Vertrauensverlust und illustriert diese mit konkreten politischen Beispielen (Scholz, Asylverfahren, Bürgergeld). Die Antwort wird nicht ausgewichen oder umgelenkt.",
+        "concrete_statements": [
+          "Kanzler Scholz verspricht Dinge, die er nicht halten kann",
+          "Infrastruktur funktioniert in vielen Bereichen nicht mehr",
+          "50 % der Verwaltungsrichter sind ausschließlich mit Asylverfahren beschäftigt",
+          "Bürgergeld ist völlig falsch angepackt worden – es geht um Gerechtigkeit, nicht um Geld"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn Vertrauen so erschüttert ist, ist die Lüge viel gefährlicher als in Zeiten, wo ein Vertrauen besteht. Das kennt man auch aus dem privaten Leben. Wir müssen überlegen, wann das Vertrauen in die Politik erschüttert wird. Drei Dinge: Es wird etwas versprochen und nicht gehalten.",
+            "timestamp": "00:03:17",
+            "context": "Lang erklärt ihre analytische Basis für Vertrauensverluste – drei Mechanismen, die in der aktuellen Politik alle greifen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vertrauenskrise",
+          "Koalitionsregierung",
+          "Asylpolitik",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Kritik am Kanzler Scholz und Rentenreform",
+        "timestamp_range": "00:05:55 - 00:09:06",
+        "theme_description": "Bewertung der Glaubwürdigkeit des Kanzlers und Diskussion der Rentenreform als Beispiel für uneingelöste Versprechen.",
+        "question_asked": "Caren Miosga verweist auf die Verärgerung der Jungen Union über Scholz und fragt direkt: „Vertrauen Sie dem Kanzler noch? Große Frage.“",
+        "question_intent": "Herauszufinden, ob Lang als grüne Politikerin das Vertrauen in Scholz selbst verloren hat oder welche Position die Grünen haben.",
+        "position": "Lang äußert sich kritisch, ohne das Vertrauen völlig aufzugeben. Sie konkretisiert Scholz-Versprechen, die nicht eingehalten wurden: Aufhebung der Schuldenbremse, großes Kreditpaket, die vor der Wahl hätten verhandelt werden sollen. Sie beschreibt Scholz' Verhältnis zur Jungen Union als „Fallenlassen“. Zur Rentenreform selbst gibt Lang zu, dass das aktuelle System langfristig nicht finanzierbar ist und dass die Jungen zu Recht frustriert sind. Sie argumentiert aber differenzierend: Man könne nicht pauschal das Renteneintrittsalter anheben, weil Dachdecker und Pflegekräfte „früh total am Ende“ sind. Sie identifiziert drei Ungerechtigkeiten im Rentensystem: Jung vs. Alt, Beamte vs. Selbstständige vs. Arbeitnehmer, und Lebensdauer in Relation zu Berufslast.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die Vertrauensfrage durch differenzierte Kritik. Sie bendet nicht, sondern erklärt, in welchen Punkten Scholz/die Regierung Vertrauen verspielt hat und erörtert die sachliche Komplexität (Rentenfinanzierbarkeit, Differenzierung nach Berufsgruppen).",
+        "concrete_statements": [
+          "Schuldenbremsen-Aufhebung und Kreditpaket waren vor Scholz-Wahl hätte verhandelt werden müssen",
+          "Rentenalter nicht pauschal erhöhbar – Dachdecker und Pflegekräfte schaffen es nicht bis zur regulären Rente",
+          "Rentensystem ist nicht finanzierbar auf Dauer",
+          "Drei Ungerechtigkeiten: Jung vs. Alt, Beamte vs. Selbstständige, Lebenserwartung vs. Berufslast"
+        ],
+        "quotes": [
+          {
+            "text": "Das Rentensystem hat drei Ungerechtigkeiten: Zwischen Jung und Alt. Zwischen Beamten und Selbstständigen und den Bezahlern. Und die, die harte Jobs haben und wenig verdienen, leben tendenziell nicht so lange und profitieren nicht so lange.",
+            "timestamp": "00:09:06",
+            "context": "Lang präzisiert ihre Position zur Rentenreform und verweigert sich simplen Lösungen wie pauschale Erhöhung des Renteneintrittsalters."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Generationengerechtigkeit",
+          "Regierungskrise",
+          "Koalitionsstabilität"
+        ]
+      },
+      {
+        "title": "Koalitionsstabilität und Fraktionsdisziplin",
+        "timestamp_range": "00:10:12 - 00:11:15",
+        "theme_description": "Frage, ob die Koalition am Rentenpaket-Streit in der Union zerbrechen könnte und wer Verantwortung trägt.",
+        "question_asked": "Caren Miosga fragt, ob die Koalition am Rentenpaket-Widerstand der Jungen Union (18 Abgeordnete) auseinanderfallen könnte.",
+        "question_intent": "Einzuschätzen, wie stabil die Dreier-Koalition noch ist und wer die Vermittlung schultern muss.",
+        "position": "Lang äußert sich vorsichtig und delegiert das Problem an die Fraktionschefs: „Das ist ein Fall für die Fraktionschefs. Wenn die das nicht schaffen, dann keiner.“ Sie setzt auf „Vermittlungsfähigkeit der Leute, die in den Fraktionen das Sagen haben“. Allerdings gibt sie zu: „Aber in der Koalition sind schon Dinge passiert, die einem den Glauben nehmen.“ Sie kritisiert implizit Jens Spahn als Fraktionschef der Union, der das Problem lösen soll, aber möglicherweise gar nicht will. Sie warnt: Lösungen müssen „gut gemacht und gut durchdacht sein“.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang antwortet auf die Frage, ob die Koalition zerbrechen könnte, mit einer vorsichtigen Position (es könnte passieren, ist aber nicht ihre Entscheidung). Sie weicht der direkten Vorhersage aus und delegiert die Verantwortung. Die inhaltliche Kritik an Merz/Spahn adressiert eher die Glaubwürdigkeitsfrage als die konkrete Gefahr eines Koalitionsbruchs.",
+        "concrete_statements": [
+          "Koalitionen können an kleineren Problemen zerbrechen",
+          "Hoffnung, dass die Beteiligten alles tun, um Kompromisse zu finden",
+          "Spahn soll das als Fraktionschef lösen – aber will er das überhaupt?"
+        ],
+        "quotes": [
+          {
+            "text": "Es sind schon Koalitionen an kleineren Probleme zerbrochen. Es kann passieren. Ich hoffe, die Beteiligten tun alles, um Kompromisse zu finden. Das ist ein Fall für die Fraktionschefs.",
+            "timestamp": "00:10:43",
+            "context": "Lang versucht, die Verantwortung auf Fraktionsebene zu verschieben, gibt aber implizit zu, dass die Situation ernst ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Rentenreform",
+          "Fraktionszwang",
+          "Parlamentarische Regierungsweise"
+        ]
+      },
+      {
+        "title": "Demokratische Reformvorschläge und Parlamentsvollmachten",
+        "timestamp_range": "00:12:16 - 00:16:28",
+        "theme_description": "Auseinandersetzung mit von Schirach's Reformvorschlag, den Kanzler für sieben Jahre zu wählen und ihm begrenzte Gesetzesvollmachten zu geben.",
+        "question_asked": "Von Schirach schlägt vor: Kanzler 7 Jahre im Amt (nicht wieder wählbar), synchronisierte Landtagswahlen, und sogenannte „Kanzlergesetze“ (3 pro Amtszeit, Verfassungsgericht prüft, Parlament kann nach 3 Jahren rückgängig machen). Caren Miosga spricht für Lang's Position: würde sie das unterstützen?",
+        "question_intent": "Zu erfahren, ob Lang weitgehende Verfassungsreformen akzeptieren würde, auch wenn dies Parlamentskompetenz einschränkt.",
+        "position": "Lang stimmt dem Gedankengang zu, dass Demokratie reformiert werden muss, lehnt aber von Schirach's konkrete Lösung ab. Sie argumentiert, dass größere Probleme – Rentenreform, Arbeitsmarktreform, Steuerreform – nicht durch Verfassungsreformen, sondern durch bessere Koalitionen zu lösen seien. Sie kritisiert: „Eine Partei mit 16 Prozent bestimmt, was gemacht wird.“ Sie akzeptiert die Idee der synchronisierten Landtagswahlen („Das finde ich richtig“), hadert aber mit der Idee, dass ein schwächeres Parlament effizienzsteigernde Effekte hätte. Zitat: „Dieser Gedanke ist für mich als Parlamentarierin schwierig“ – das Gefühl, dass Parteien irgendwie „vorkommen“, sei wichtig. Sie warnt vor der „Logik der letzten Patrone“ (ein Söder-Zitat), die mit Verlieren/Gewinnen-Denken spielt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang beantwortet die Frage zu Reformvorschlägen, lehnt aber die konkrete Lösung ab und verschiebt das Vertrauen auf ein anderes Reformdenken. Sie adressiert den Reformbedarf inhaltlich (Effizienz, Größe von Koalitionen), weicht aber der Frage aus, ob sie selbst für oder gegen von Schirach's Vorschlag ist.",
+        "concrete_statements": [
+          "Demokratie muss reformiert werden",
+          "Synchronisierte Landtagswahlen sind richtig",
+          "Ein schwächeres Parlament ist nicht unbedingt die Lösung",
+          "Es geht nicht darum, dass einzelne Parteien alles durchsetzen, sondern dass sie irgendwie 'vorkommen'"
+        ],
+        "quotes": [
+          {
+            "text": "Dieser Gedanke ist für mich als Parlamentarierin schwierig. Jetzt haben wir die Logik der letzten Patrone. Das sagte Söder. Aber wir wollen als Partei auch noch das Gefühl haben, dass wir irgendwie vorkommen.",
+            "timestamp": "00:15:58",
+            "context": "Lang erklärt ihre Skepsis gegenüber von Schirach's Modell: Sie fürchtet, dass ein System ohne echte Parlamentskompetenz die Parteikompetenzen weiter erodiert."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Verfassungsreform",
+          "Parlamentarische Kontrolle",
+          "Koalitionssystem",
+          "Gouvernanz"
+        ]
+      },
+      {
+        "title": "Kompromisspähigkeit und Polarisierung in Parteien",
+        "timestamp_range": "00:16:28 - 00:20:52",
+        "theme_description": "Frage, ob Parteien den Kompromiss verlernt haben oder ob sie nur härter in ihren Positionen geworden sind.",
+        "question_asked": "Von Schirach behauptet, Parteien seien „langweiliger, aber härter in ihrer Position“ geworden und wollten nicht mehr zuhören. Er fragt, ob die Parteien streitsuchtiger werden sollten. Caren Miosga wendet ein: \"Aber es klappt nicht.\"",
+        "question_intent": "Herauszufinden, ob Lang einräumt, dass Parteien (auch die Grünen) nicht mehr kompromissfähig sind, oder ob sie das Gegenteil argumentiert.",
+        "position": "Lang wendet gegen von Schirach ein: „Wir haben den Kompromiss nämlich nicht verlernt. Aber die Parteien werden in ihren Positionen viel langweiliger als früher. Aber sie werden viel härter in ihrer Position.“ Sie dreht dann das Argument um: Das Problem liegt nicht bei den Parteien, sondern bei den Bürgern – „Die Parteien werden das nicht tun [sich klarer positionieren und streitsüchtiger werden]. Ich möchte auch jeden Tag tolles Wetter. Auch das funktioniert nicht.“ Das echte Problem sei nicht fehlendes Kompromissdenken, sondern mangelndes Vertrauen. Sie argumentiert, dass Leute AfD wählen, weil sie enttäuscht sind – nicht weil es zu viele Kompromisse gibt. Sie kritisiert die Infrastruktur-Umsetzung (Bahn bis 2037) und fordert schnellere Ergebnisse: „Das müssen sie in zwei Jahren hinbekommen.“",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Lang antwortet auf die Frage nach Kompromisspähigkeit zunächst mit Ablehnung der Prämisse (Parteien haben nicht verlernt, zu kompromittieren), lenkt dann aber ab zu einer Gegenkritik: Das Problem seien die Bürger, nicht die Parteien. Sie pivotiert von der Frage der Parteien-Haltung zu einer Vertrauens- und Umsetzungskritik.",
+        "concrete_statements": [
+          "Kompromiss ist nicht bei Parteien in Verruf, sondern die Menschen wollen Kompromisse nicht mehr",
+          "Die Menschen wollen Lösungen, nicht Kompromisse",
+          "Bahn-Renovierung muss in 2 Jahren, nicht bis 2037 hinbekommen werden",
+          "Menschen wählen AfD aus Enttäuschung, nicht weil es zu viele Kompromisse gibt"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben den Kompromiss nämlich nicht verlernt. Aber die Parteien werden in ihren Positionen viel langweiliger als früher. Aber sie werden viel härter in ihrer Position. Sie wollen nicht mehr zuhören. Ich nehme es den Leuten nicht ab, dass sie der Politik keine Kompromisse mehr zutrauen. Die Anspruchshaltung ist eher: Die Leute wollen den Kompromiss nicht.",
+            "timestamp": "00:19:12",
+            "context": "Lang präzisiert ihre Position: Das Problem liegt nicht bei den Parteien (die können noch kompromittieren), sondern bei den Bürgern (die wollen keine Kompromisse mehr, sondern funktionierende Ergebnisse)."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Politische Polarisierung",
+          "Vertrauenskrise",
+          "Wählerverhaltens",
+          "Infrastrukturpolitik"
+        ]
+      },
+      {
+        "title": "AfD-Wähler und alternative Parteien",
+        "timestamp_range": "00:26:05 - 00:35:23",
+        "theme_description": "Analyse der AfD-Wählerschaft, deren Motive und der Frage, ob weniger Migration zu weniger AfD-Wählern führt.",
+        "question_asked": "Caren Miosga stellt fest, dass die AfD in Sachsen-Anhalt über 40 % erreicht – das ist keine Protestwahl mehr. Sie fragt implizit: Warum wählen so viele AfD, wenn die Union doch so viel über Migration redet?",
+        "question_intent": "Herauszufinden, ob Lang die These teilt, dass weniger Migration = weniger AfD-Erfolg ist, oder ob es andere Faktoren gibt.",
+        "position": "Lang verneint die einfache Kausalitäts-These: „Weniger Migration gleich weniger AfD: Das stimmt so nicht!“ Die Grenzen seien zu, die Migrationszahlen seien deutlich gesunken – und die AfD gehe trotzdem hoch. Sie argumentiert, dass das Problem tiefer liege: Jahre lang keine Auseinandersetzung mit bestimmten Problemen führt dazu, dass Bürger glauben, etablierte Parteien kümmern sich nicht darum. Dann steuert man um, es gibt kleine Erfolge – aber Leute von Grünen/Linken sagen dann, wenn AfD immer noch gewählt wird, sei das Policy nicht richtig gewesen. Das hält Lang für „schräge Argumentation“. Sie warnt: „Es kann nicht die Lösung sein zu sagen, weil die AfD Probleme adressiert, können die anderen sie nicht lösen.“ Sie betont, dass es „viele Jahre dauern wird, diese Partei zu verkleinern“ und dass es nicht ein einziges Politikfeld ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die implizite Frage direkt: Sie weist die Kausalität (weniger Migration = weniger AfD) als zu simpel zurück und erklärt komplexere Gründe (Vertrauensverlust durch fehlende Adressierung, jahrelange Tabuisierung). Sie argumentiert mit Daten und Logik.",
+        "concrete_statements": [
+          "Migrationszahlen sind deutlich gesunken – AfD geht trotzdem hoch",
+          "Weniger Migration gleich weniger AfD stimmt nicht",
+          "Jahrelange Nicht-Auseinandersetzung mit Problemen führt zu Vertrauensverlust",
+          "Es wird viele Jahre dauern, die AfD zu verkleinern",
+          "Das Erfolgsgeheimnis der AfD ist nicht nur ein Thema, sondern multiple Faktoren"
+        ],
+        "quotes": [
+          {
+            "text": "Die Grenzen sind zu – die AfD geht trotzdem jeden Tag weiter hoch. Weniger Migration gleich weniger AfD: Das stimmt so nicht! So eine einfache These stimmt natürlich nicht. Aber wenn man sich viele Jahre lang nicht mit einem Problem beschäftigt, denken Leute irgendwann, die etablierten Parteien kümmern sich nicht darum.",
+            "timestamp": "00:34:20",
+            "context": "Lang widerlegt die einfache Kausalitäts-These und erklärt, warum AfD trotz gesunkener Migrationszahlen wächst."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Asylpolitik",
+          "AfD-Erstarken",
+          "Wählerverhaltens",
+          "Politische Polarisierung",
+          "Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Diskurs-Tabuisierung bei Corona und Ukraine",
+        "timestamp_range": "00:27:13 - 00:30:31",
+        "theme_description": "Kritik an der Tabuisierung offener Diskurse während Corona und Ukraine-Krieg und deren Auswirkungen auf Vertrauen.",
+        "question_asked": "Caren Miosga fragt, ob Lang einräumt, dass bei Migration die etablierten Parteien und Medien zu einseitig berichtet haben – also Positives betont und Negatives ignoriert. Sie spitzt zu: „Haben Sie bei der Migration zu sehr das Positive rausgestellt und das Negative nicht sehen wollen?“",
+        "question_intent": "Herauszufinden, ob Lang selbstkritisch eingesteht, dass die Grünen und andere Mainstream-Parteien bestimmte legitime Bedenken unterdrückt haben.",
+        "position": "Lang differenziert stark: Sie räumt ein, dass es „bei vielen großen Krisen“ eine Tabuisierung des offenen Diskurses gab – Corona, Ukraine-Krieg. Sie sagt: „Die Menschen haben ihre Meinung nirgends gehört und gesehen. Diesen Fehler haben auch die Medien gemacht. Diesen Fehler hat die Politik gemacht.“ Sie bestreitet aber, dass bestimmte Stimmen (z.B. Wagenknecht) unterdrückt wurden: „Wagenknecht war in jeder Talkshow.“ Sie argumentiert, dass es ein verbreiteter Glaube ist, dass Meinungsfreiheit eingeschränkt wird, dieser aber nicht stimmt: „Da gehen mir die Fußnägel hoch.“ Sie warnt davor, Kelsen'sche Logik zu bemühen (man könne nicht diktatorisch für Demokratie kämpfen), ebenso wie Habermas: Der habe einen Brief zum Ukraine-Krieg geschrieben, dessen Meinung Lang nicht geteilt habe, aber „manche Meinungen wurden sehr schnell abgetan als unzulässig.“ Sie argumentiert, dass man sich in andere Positionen reinversetzen müsse – das größte Problem in politischen Auseinandersetzungen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang antwortet auf die Frage zur Einseitigkeit bei Migration eher indirekt, indem sie auf allgemeinere Diskurs-Tabuisierungen verweist (Corona, Ukraine). Sie gibt teilweise selbstkritisch zu, dass Diskurse tabuisiert wurden, bestreitet aber gleichzeitig, dass einzelne Stimmen unterdrückt wurden. Die Antwort ist nuanciert aber nicht völlig auf der Ebene der Migration-Frage.",
+        "concrete_statements": [
+          "Bei Corona und Ukraine-Krieg wurde der offene Diskurs tabuisiert",
+          "Menschen haben ihre Meinungen nicht gehört und gesehen",
+          "Politik und Medien haben diesen Fehler gemacht",
+          "Bestimmte Stimmen wurden aber nicht unterdrückt – Wagenknecht war in jeder Talkshow",
+          "Meinungsfreiheit ist nicht eingeschränkt – das ist ein Glaube, der nicht stimmt"
+        ],
+        "quotes": [
+          {
+            "text": "Bei allen großen Krisen haben wir den offenen Diskurs tabuisiert. Das war bei Corona so. Das war auch beim Ukraine-Krieg so. Und die Menschen haben ihre Meinung nirgends gehört und gesehen. Diesen Fehler haben auch die Medien gemacht. Diesen Fehler hat die Politik gemacht.",
+            "timestamp": "00:27:13",
+            "context": "Lang gesteht ein, dass es bei großen Krisen zu Diskurs-Tabuisierung kam, positioniert das aber nicht spezifisch auf Migration."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Meinungsfreiheit",
+          "Medien-Kritik",
+          "Corona-Politik",
+          "Ukraine-Diskurs",
+          "Partizipation"
+        ]
+      },
+      {
+        "title": "AfD-Verbot und wehrhafter Demokratie",
+        "timestamp_range": "00:35:53 - 00:44:50",
+        "theme_description": "Debatte über die Prüfung eines Verbotsverfahrens gegen die AfD, verfassungsrechtliche Hürden und die Legitimität von Verbotsverfahren.",
+        "question_asked": "Caren Miosga fragt, ob Ricarda Lang es richtig findet, dass der Bundespräsident über ein AfD-Verbot nachdenkt. Sie spitzt zu: Wenn die AfD in Sachsen-Anhalt die stärkste Kraft ist, ist ein Verbot dann nicht undemokratisch?",
+        "question_intent": "Herauszufinden, wie Lang zur 'wehrhaften Demokratie' steht – darf man eine Partei verbieten, die zu stark wird?",
+        "position": "Lang äußert sich ambivalent und historisch informiert. Sie zitiert die klassische Debatte zwischen Hans Kelsen (man könne Demokratie nicht retten, indem man diktatorisch handelt) und Karl Löwenstein (wehrhaften Demokratie). Sie argumentiert, dass die Bundesrepublik einen Mittelweg mit dem Parteiverbot gewählt hat – „Das ist wahnsinnig schwierig, eine Partei zu verbieten.“ Sie betont, dass ein Verbotsverfahren nur das Bundesverfassungsgericht entscheiden darf, nicht die Politik. Sie findet es wichtig, dass es diesen Mechanismus gibt, sagt aber auch: „Was wir haben, scheint mir nicht auszureichen für ein Parteiverbot.“ Sie kritisiert subtil Steinmeier's Rede als nicht klug: „Sie wurde gehalten vor lauter Leuten, die ohnehin im Lager von Steinmeier stehen.“ Sie warnt davor, dass die Rede das Gegenteil bewirkt haben könnte. Sie betont aber auch: Ein Verbot wäre „eine Pleiteerklärung“ für die Partei, die es einreicht – \"Wir haben es nicht geschafft, den Wählern dieser Partei ein Angebot zu machen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die Frage zur Legitimität von Verbotsverfahren mit einem ausführlichen historischen und verfassungsrechtlichen Argument. Sie positioniert sich klar, aber differenziert: Sie schließt ein Verbot nicht aus, hält es aber für problematisch und betont die institutionellen Hürden. Sie antwortet sowohl zur Frage des Verbotsgedankens als auch zu dessen strategischen Folgen.",
+        "concrete_statements": [
+          "Ein Verbot wäre eine Pleiteerklärung für die Partei, die es einreicht",
+          "Verfassungsschutz-Bericht allein reicht nicht für ein Parteiverbot aus",
+          "Nur das Bundesverfassungsgericht darf entscheiden, nicht die Politik",
+          "Steinmeier's Rede war vor lauter Leuten, die ohnehin bei ihm stehen – nicht klug",
+          "Rede scheint das Gegenteil dessen bewirkt zu haben, was sie bewirken sollte"
+        ],
+        "quotes": [
+          {
+            "text": "Ein Verbot der AfD ist eine Pleiteerklärung für die Partei, die es einreicht. Ein Offenbarungseid. 'Wir haben es nicht geschafft, den Wählern dieser Partei ein Angebot zu machen.' Und jetzt tun viele so, als wäre so ein Verbot etwas Tolles. Ist es nicht. Es ist etwas sehr Undemokratisches.",
+            "timestamp": "00:38:57",
+            "context": "Lang erklärt, warum sie Verbotsverfahren kritisch sieht – nicht aus Verständnis für die AfD, sondern aus Sorge um die Legitimität von Verbotsmaßnahmen."
+          },
+          {
+            "text": "Sie wurde gehalten vor lauter Leuten, die ohnehin im Lager von Steinmeier stehen. Und von denen keiner jemals die AfD wählen würde. Es war eine Rede, wo man einen Feind außen hat und man sitzt gemütlich am Lagerfeuer.",
+            "timestamp": "00:37:24",
+            "context": "Lang kritisiert Steinmeier's rhetorische Strategie als innerhalb eines Chors sprechend, nicht überzeugend für Außenstehende."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parteiverbot",
+          "Verfassungsschutz",
+          "Wehrhaften Demokratie",
+          "Politische Extremen",
+          "Verfassungsrecht"
+        ]
+      },
+      {
+        "title": "Algorithmen und soziale Medien als Demokratie-Gefahr",
+        "timestamp_range": "00:46:17 - 00:57:29",
+        "theme_description": "Diskussion über die Gefahr von Tech-Oligarchen, Algorithmen und deren Auswirkungen auf Polarisierung und demokratische Meinungsbildung.",
+        "question_asked": "Martin Machowecz präsentiert eine Studie, die zeigt: Bei der Bundestagswahl waren AfD und Linke auf Social Media überproportional sichtbar (37,4 % der Clips für AfD vs. 14,1 % für SPD). Die Frage: Ist der Algorithmus schuld? Hat das die Wahl beeinflusst?",
+        "question_intent": "Herauszufinden, ob Lang dem Algorithmus die Schuld für Grüne/SPD-Verluste gibt oder ob sie andere Faktoren sieht.",
+        "position": "Lang gibt dem Algorithmus eine Mitschuld, aber nicht die alleinige Schuld. Sie sagt: „Das sehe ich so“ – dass Algorithmen die Grünen und SPD benachteiligen. Aber: „Wir müssen als Partei eine Arbeit machen.“ Sie präzisiert dann: Sie habe früher gesagt, dass soziale Medien „das verstärken, was ohnehin da ist“, diese These teile sie nicht mehr. Sie argumentiert, dass Algorithmen von Tech-Oligarchen kontrolliert werden, die „Klicks mit Empörung und Angst“ machen. Sie warnt, dass auf Social Media ein falscher Eindruck entsteht: „50 Prozent auf der einen Seite, 50 Prozent auf der anderen, und diese Menschen hassen sich.“ Aber im Wahlkreis sei das nicht so – „Wir haben ganz viele Dinge, worauf wir uns einigen können.“ Sie kritisiert auch populistische Posts (z.B. Döner-Essen), die „die Politik infantil“ machen, ohne aber ein Verbot zu fordern: „Jeder darf sich lächerlich machen.“ Sie argumentiert für strukturelle Lösungen: Algorithmen-Transparenz via Digital Services Act.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die Frage zur Rolle von Algorithmen direkt und differenziert: Sie gibt ihnen einen Effekt zu, lehnt aber deterministische Erklärungen ab. Sie argumentiert gegen ihre frühere Position und für regulatorische Lösungen. Das ist inhaltlich substantiell und auf die Frage bezogen.",
+        "concrete_statements": [
+          "Algorithmen benachteiligen die Grünen und SPD gegenüber extremen Parteien",
+          "Tech-Oligarchen kontrollieren Algorithmen mit Ziel, Engagement durch Empörung zu maximieren",
+          "Soziale Medien verstärken nicht nur, was ohnehin da ist, sondern schaffen neue Polarisierung",
+          "Digital Services Act muss umgesetzt werden mit Transparenzanforderungen",
+          "Populistische Politik-Posts infantilisieren Politik, sollten aber nicht verboten werden"
+        ],
+        "quotes": [
+          {
+            "text": "Diese sozialen Medien sind in der Hand von einzelnen Tech-Oligarchen. Die machen Klicks mit Empörung und Angst. Dann schauen mehr Leute hin.",
+            "timestamp": "00:48:56",
+            "context": "Lang erklärt das Geschäftsmodell von Social-Media-Plattformen, die von Tech-Oligarchen kontrolliert werden."
+          },
+          {
+            "text": "Ich schaue manchmal auf die sozialen Medien. Dann denke ich: Auf der einen Seite stehen 50 Prozent, auf der anderen Seite stehen 50 Prozent. Und diese Menschen hassen sich. Dann komme ich im Wahlkreis an. Und ich merke, das ist gar nicht so.",
+            "timestamp": "00:49:35",
+            "context": "Lang beschreibt den Effekt von Algorithmen auf Wahrnehmung: Sie verstärken Polarisierung, die in der Realität nicht so stark ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Digitale Regulierung",
+          "Algorithmen-Transparenz",
+          "Meinungsbildung",
+          "Medienkompetenz",
+          "Tech-Oligarchen",
+          "Digital Services Act"
+        ]
+      },
+      {
+        "title": "Orwell'sche Manipulation durch Tech-Konzerne",
+        "timestamp_range": "00:55:52 - 00:57:29",
+        "theme_description": "Vergleich zwischen Orwell's 1984-Dystopie und der Datenmacht moderner Tech-Konzerne.",
+        "question_asked": "Caren Miosga zitiert Orwell's \"Der stille Freund\" und \"1984\" – darin wird beschrieben, wie Lügen zur Wahrheit werden, wenn sie oft genug behauptet werden. Sie fragt: Perfektionieren soziale Medien das, was Orwell voraussah?",
+        "question_intent": "Herauszufinden, ob Lang die Gefahr von Algorithmen-gesteuerten Wahrheits-Verzerrungen so dramatisch einschätzt wie von Schirach.",
+        "position": "Lang stimmt zu: „Ja. Das tun sie. Diese Gefahr ist riesig.“ Sie erklärt, dass Tech-Konzerne „die besten Psychologen der Welt“ beschäftigen, um Nutzer auf Plattformen zu halten. Sie warnt konkret: „Facebook weiß vor Ihnen, ob Sie schwanger sind.“ Die Konzerne könnten Nutzer verfolgen über Browsing-Verhalten (Facebook weiß, dass jemand schwanger ist, wenn er/sie Inhalte durchsucht, die Schwangere anschauen). Sie warnt: „Diese Macht ist unfassbar.“ Sie gibt ein globales Beispiel: „In kleineren Ländern kaufen diese Konzerne die Wahlen. In diesen Ländern heißt das Internet 'Facebook'. Das ist so gefährlich. Das gefährdet die Demokratie.“ Sie räumt aber auch ein, dass soziale Medien „auch demokratisieren – sie geben den Leuten die Möglichkeit, sich zu artikulieren“ und dass man „zwischen Zensur und Meinungsfreiheit“ balancieren muss.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die Frage zu Orwell'schen Parallelen direkt und substanziell. Sie stimmt zu, gibt aber auch Differenzierungen zu (positive Effekte von Demokratisierung). Sie konkretisiert die Gefahr mit Beispielen (Datenmacht, Wahlbeeinflussung in anderen Ländern).",
+        "concrete_statements": [
+          "Algorithmen perfektionieren Orwell'sche Wahrheitsverdrehung",
+          "Facebook und andere Konzerne verfügen über psychologische Beeinflussungstechniken",
+          "Tech-Konzerne können Nutzer über Verhalten vorhersagen (Schwangerschaft, sexuelle Orientierung)",
+          "In kleineren Ländern beeinflussen diese Konzerne Wahlen – das Internet heißt dort 'Facebook'",
+          "Soziale Medien gefährden die Demokratie, bieten aber auch Demokratisierungspotenziale"
+        ],
+        "quotes": [
+          {
+            "text": "Diese Tech-Konzerne haben die besten Psychologen der Welt. Die überlegen den ganzen Tag, wie sich die Leute auf der Plattform halten. Facebook weiß vor Ihnen, ob Sie schwanger sind. Sie schauen sich Dinge an, die Schwangere angucken. Und schon weiß Facebook das.",
+            "timestamp": "00:56:24",
+            "context": "Lang illustriert die Datenmacht von Tech-Konzernen mit einem konkreten Beispiel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Datenschutz",
+          "Digitale Autonomie",
+          "Tech-Regulierung",
+          "Demokratische Wahlen",
+          "Algorithmen-Transparenz"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "50 Prozent der Verwaltungsrichter sind ausschließlich mit Asylverfahren beschäftigt",
+        "timestamp": "00:04:18"
+      },
+      {
+        "claim": "Die SPD hat im Wahlkampf zur Bundestagswahl 24,1 Prozent der Videos hochgeladen",
+        "timestamp": "00:47:53"
+      },
+      {
+        "claim": "Von der AfD kamen 21,5 Prozent der Videos",
+        "timestamp": "00:47:53"
+      },
+      {
+        "claim": "Im Feed der Nutzer waren 14,1 Prozent der angezeigten Clips von der SPD",
+        "timestamp": "00:48:24"
+      },
+      {
+        "claim": "Bei der AfD waren es 37,4 Prozent der angezeigten Videos im Feed",
+        "timestamp": "00:48:24"
+      },
+      {
+        "claim": "Die Bahn-Renovierung soll bis 2037 dauern",
+        "timestamp": "00:18:37"
+      },
+      {
+        "claim": "Das Pergamon-Museum wird 14 Jahre lang renoviert",
+        "timestamp": "00:18:37"
+      },
+      {
+        "claim": "In Sachsen-Anhalt und Mecklenburg wird nächstes Jahr gewählt und die AfD ist teilweise über 40 Prozent",
+        "timestamp": "00:26:41"
+      }
+    ]
+  }
+}

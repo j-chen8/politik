@@ -39,6 +39,11 @@ const showFilter = args.includes("--show") ? args[args.indexOf("--show") + 1] : 
 function norm(s: string): string {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/ß/g, "ss");
 }
+// Wortgrenzen-Match statt nackter Substring: "Thomas Reich" darf NICHT in "Thomas Reichart"
+// treffen. norm() liefert [a-z0-9 ]; Grenze = Nicht-Alphanumerik oder String-Rand.
+function wholeWord(hay: string, needle: string): boolean {
+  return new RegExp(`(?:^|[^a-z0-9])${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:[^a-z0-9]|$)`).test(hay);
+}
 function partnerOf(episodeId: string): string {
   // base64(crid://<partner>.de/...) → partner
   try {
@@ -89,7 +94,10 @@ const manifestEpisodes = (folder: string): { iso: string; id: string }[] => {
 (async () => {
   const db = new Database(DB_PATH, { readonly: true });
   const pols = loadPoliticians(db);
-  console.log(`Match-Pool: ${pols.length} Politiker:innen (18 Parlamente)\n`);
+  const nameCount = new Map<string, number>();
+  for (const p of pols) nameCount.set(p.full, (nameCount.get(p.full) ?? 0) + 1);
+  const ambiguous = new Set([...nameCount].filter(([, n]) => n > 1).map(([k]) => k)); // gleichnamige → nicht raten
+  console.log(`Match-Pool: ${pols.length} Politiker:innen (18 Parlamente) · ${ambiguous.size} ambige Voll-Namen ausgeschlossen\n`);
 
   const shows = ARD_SHOWS.filter((s) => !showFilter || s.key === showFilter);
   const result: any = {};
@@ -108,7 +116,7 @@ const manifestEpisodes = (folder: string): { iso: string; id: string }[] => {
       if (show.marker) { const m = syn.match(show.marker); if (m) guestText = syn.slice(m.index); }
       const synN = norm(guestText);
       const guests = pols
-        .filter((p) => synN.includes(p.full))
+        .filter((p) => !ambiguous.has(p.full) && wholeWord(synN, p.full))
         .map((p) => ({ politician_id: p.id, name: `${p.first} ${p.last}`, party: p.party || null, parliaments: p.parliaments || null }));
       // Dedupe gleiche politician_id
       const uniq = [...new Map(guests.map((g) => [g.politician_id, g])).values()];

@@ -1,0 +1,338 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-28-mai-2026-100",
+    "video_id": "illner-2026-05-28",
+    "politician": "Ricarda Lang",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "b86a9725126a4fdb",
+    "transcript_chars": 47613,
+    "caption_lines": 2397,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20712,
+    "tokens_out": 7568,
+    "cost_usd": 0.0234208,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 14,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.174Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ricarda Lang (Bündnis 90/Die Grünen) diskutiert in Maybrit Illners Sendung über Regierungsreformen in Krisenzeiten. Sie kritisiert die mangelnde Empathie der Regierung gegenüber arbeitenden Menschen, pocht auf gerechte Lastenverteilung und fordert eine klare Beteiligung von Wohlhabenden und Erben an den notwendigen Reformen. Ihr Ton ist sachlich-kritisch, mit Fokus auf soziale Gerechtigkeit und konkrete Entlastungsmaßnahmen für Familien.",
+    "themes": [
+      {
+        "title": "Regierungsperformance unter Druck und Kanzlerstabilität",
+        "timestamp_range": "00:06:54 - 00:09:29",
+        "theme_description": "Bewertung der Herausforderungen, denen die Bundesregierung gegenübersteht, und ihrer bisherigen Bewältigung.",
+        "question_asked": "Maybrit Illner fragt, ob der Bundeskanzler eine besondere schwierige Situation hat und ob er in seiner Aussage Recht hat, dass kein Kanzler vor ihm einen schwereren Job hatte.",
+        "question_intent": "Illner möchte überprüfen, ob die Regierung zu Recht von extremem Handlungsdruck spricht oder ob dies eine Selbstviktimisierung ist.",
+        "position": "Lang bestätigt, dass die Aufgaben objektiv schwierig sind, kritisiert jedoch die objektiv schlechte Performance der Regierung. Sie beschreibt die von der Regierung geschaffene Verunsicherung in der Bevölkerung und das Vertraensverlust in die Handlungsfähigkeit der Politik insgesamt. Statt sich über die Oppositionsprobleme zu freuen, fordert sie: 'reißt euch zusammen' — ein klarer Appell an Merz, Lindner und Frei zur Fokussierung auf Sachfragen statt Machtkämpfe.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang spricht die Schwierigkeit der Aufgaben an, weicht aber zu ihrer Kritik an der Regierungsperformance aus. Sie antwortet nicht direkt auf die Frage, ob Merz recht hat, sondern nutzt die Gelegenheit, um Vertrauensverlust und mangelnde Handlungsfähigkeit zu kritisieren. Das ist eine Teilantwort, die mehr bewertet als beantwortet.",
+        "quotes": [
+          {
+            "text": "man muss sagen, die Aufgaben me vor dem diese Regierung steht, sind objektiv schwierig. Die Performance der Regierung ist aber auch objektiv schlecht.",
+            "timestamp": "00:06:54"
+          },
+          {
+            "text": "Das Vertrauen in diese Regierung geht verloren und in die Handlungsfähigkeit der Politik als Ganzes. Ich wünsche das Friedrich Merz, Jens und Thorsten Frei es auf die Reihe bekommen. Ich kann nur sagen, reißt euch zusammen.",
+            "timestamp": "00:06:54"
+          }
+        ],
+        "concrete_statements": [
+          "Performance der Regierung ist objektiv schlecht",
+          "Vertrauen in Regierung und Handlungsfähigkeit geht verloren",
+          "Forderung an Merz, Lindner und Frei: 'reißt euch zusammen'"
+        ],
+        "related_bundestag_topics": [
+          "Vertrauensfrage",
+          "Koalitionsstabilität",
+          "Regierungshandlungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Merz-Interview und Kanzleraussagen zur Schwierigkeit",
+        "timestamp_range": "00:08:44 - 00:09:06",
+        "theme_description": "Einschätzung von Friedrich Merz' Äußerungen in einem Interview über die Schwierigkeit seines Amts.",
+        "question_asked": "Maybrit Illner kommentiert, dass in Merz' Interview ein Satz über die Schwierigkeit seines Amtes zentral war und fragt, wie Lang das Interview wahrnimmt.",
+        "question_intent": "Illner möchte verstehen, ob Langs Kritik an Merz' mangelnder Empathie durch sein Interview widerlegt wird, und ob sein reflektierender Ton etwas ändert.",
+        "position": "Lang bewertet Merz positiv für sein nachdenkliches Auftreten und die Anerkennung großer Probleme. Sie beschreibt ihn als jemanden, der nicht mehr an einer 'Wohlstandsillusion' festhalten kann. Dies steht in leichtem Kontrast zu ihrer späteren Kritik an mangelnder Empathie gegenüber normalen Arbeitern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die implizite Frage (hat das Interview etwas geändert?) direkt mit einer Bewertung von Merz' Nachdenklichkeit und Realismusbereitschaft. Sie liefert eine substantielle Antwort zum Interview-Eindruck.",
+        "quotes": [
+          {
+            "text": "Er hat sich als sehr nachdenklich gezeigt, der weiß das große Probleme bestehen. Er kann diese Wohlstandsillusion nicht mehr aufrechterhalten.",
+            "timestamp": "00:08:44"
+          }
+        ],
+        "concrete_statements": [
+          "Merz wird als nachdenklich und realistisch bezüglich großer Probleme bewertet",
+          "Anerkennung, dass er sich von Wohlstandsillusion befreit"
+        ],
+        "related_bundestag_topics": [
+          "Bundeskanzler",
+          "Merz-Regierung",
+          "Regierungskommunikation"
+        ]
+      },
+      {
+        "title": "Empathie-Defizit und Top-Down-Regieren von Merz",
+        "timestamp_range": "00:13:47 - 00:14:53",
+        "theme_description": "Kritik an Friedrich Merz' mangelnder Empathie für betroffene Menschen und sein autoritärer Regierungsstil.",
+        "question_asked": "Maybrit Illner fragt Ricarda Lang (als Reaktion auf Robin Alexanders Aussage), wie es möglich ist, dass instabile Signale aus der CDU zu zerstörerischen Reaktionen führt.",
+        "question_intent": "Illner möchte verstehen, warum die Regierung nicht souveräner mit Spekulationen umgehen kann und welche Rolle Merz' Außenkommunikation spielt.",
+        "position": "Lang kritisiert Merz direkt für mangelnde Empathie gegenüber arbeitenden Menschen: 'Er hat keinen Funken an Empathie, den er für die Menschen die das am meisten betrifft, auftritt. Er regiert von oben herab.' Sie sieht darin ein Problem, das schwer zu vermitteln ist und zu Vertrauensverlust führt.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Lang bricht aus der Frage nach Kommunikationsstabilität aus und kritisiert Merz' persönliche Führungsqualitäten und Empathie-Defizite. Sie antwortet substantiell, aber zu einer anderen Frage als gestellt — nicht 'wie soll die Regierung mit Spekulationen umgehen?', sondern 'was ist das Kernproblem von Merz?'",
+        "quotes": [
+          {
+            "text": "Er hat keinen Funken an Empathie, den er für die Menschen die das am meisten betrifft, auftritt. Er regiert von oben herab.",
+            "timestamp": "00:14:29"
+          }
+        ],
+        "concrete_statements": [
+          "Merz fehlt Empathie für betroffene Menschen",
+          "Merz regiert autokratisch/von oben herab"
+        ],
+        "related_bundestag_topics": [
+          "Kanzlerschaft",
+          "Politische Führung",
+          "Vertrauensfrage"
+        ]
+      },
+      {
+        "title": "Entlastungsversprechen und Realität von Belastungen",
+        "timestamp_range": "00:20:16 - 00:21:38",
+        "theme_description": "Frage, ob Grüne den Bürgern noch gute Zeiten und erschwingliches Leben versprechen können oder müssen, und wie mit realistischen Erwartungen umgegangen wird.",
+        "question_asked": "Maybrit Illner fragt Ricarda Lang direkt: 'Würden Sie den Bürgern heute noch versprechen, dass diese guten Zeiten zukommen. Dass das Leben bezahlbar ist, dass man sich die Sorgen nicht machen muss. Würden Sie als Grüne den Bürgern das heute noch versprechenden Fragen?'",
+        "question_intent": "Illner möchte wissen, ob die Grünen noch optimistische Zukunftsversprechungen machen können oder müssen sie realistisch sein.",
+        "position": "Lang lehnt bewusst Versprechungen ab und präferiert Ehrlichkeit: Sie würde niemand versprechen, dass es immer mehr von allem gibt, und auch nicht, dass die 'guten alten Zeiten' zurückkehren, 'sonst würde ich die Leute anlügen'. Stattdessen fokussiert sie auf konkrete Entlastung für normale Familien, beschreibt die Erschöpfung durch Kindergarten-, Miete- und andere Belastungen und fordert mehr Luft zum Atmen für junge Familien.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die Frage direkt und präzise: Sie verspricht nichts, betont Ehrlichkeit gegenüber Bürgern und fokussiert stattdessen auf konkrete, realistische Entlastungsmaßnahmen. Sie adressiert sowohl die grundsätzliche Frage als auch die dahinterstehende Intention (wie sollen wir mit Erwartungen umgehen?).",
+        "quotes": [
+          {
+            "text": "Ich würde niemand versprechen dass wir von allem mehr haben werden. Ich würde auch niemandem versprechen, dass die guten alten Zeiten, also da wo meine Mutter vielleicht noch ausgewachsen ist, dass das zurückkommt. Dann würde ich die Leute anlügen. Die Leuten wollen nicht angelockt werden.",
+            "timestamp": "00:20:34"
+          },
+          {
+            "text": "Ich erlebe eine starke Form der Erschöpfung. Die Mischung aus Mandarin zur Kita... Dann kommt eine Mietrechnung die einem nachts wach hält. [...] Gerade jungen Familien muss man mehr Luft zum Atmen geben.",
+            "timestamp": "00:20:34"
+          }
+        ],
+        "concrete_statements": [
+          "Ablehnung unbegründeter Optimismus-Versprechen",
+          "Fokus auf konkrete Entlastung für Familien",
+          "Kritik an geplanten Einsparungen beim Elterngeld"
+        ],
+        "related_bundestag_topics": [
+          "Familienpolitik",
+          "Elterngeld",
+          "Erwerbstätigenversicherung",
+          "Sozialpolitik"
+        ]
+      },
+      {
+        "title": "Elterngeldreform und Unterstützung für Mittelschicht",
+        "timestamp_range": "00:22:53 - 00:24:44",
+        "theme_description": "Debatte über die Einkommensgrenzen bei Elterngeld und ob Einsparungen bei Mittelschicht-Familien richtig sind.",
+        "question_asked": "Robin Alexander kritisiert eine potenzielle Herabsetzung der Einkommensgrenzen beim Elterngeld (von 300.000 auf 175.000 Euro) als zu wenig zielgerichtet. Maybrit Illner moderiert die Debatte, in der Lang und Alexander sich austauschen.",
+        "question_intent": "Alexander / Illner möchten verstehen, ob Einsparungen beim Elterngeld für Mittelschicht-Familien mit hoherem Einkommen zielführend sind oder ob dies an vorbei geht.",
+        "position": "Lang widerspricht Alexander und betont, dass die Belastung 'weit in die Mitte der Gesellschaft hinein' geht, nicht nur an den Rändern. Sie argumentiert, dass Einsparungen beim Elterngeld die falschen treffen und dass das Ziel (mehr Frauen am Erwerbsleben, bessere Jobs) wichtig bleibt. Sie verteidigt Unterstützung für Familien als investition in Vereinbarkeit von Beruf und Familie.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang spricht die Belastung der Mittelschicht an und verteidigt Elterngeldunterstützung, weicht aber zum generellen Ziel der Frauenerwerbtätigkeit aus, statt direkt auf Alexanders Frage zur Zielgenauigkeit zu antworten. Sie kritisiert eher, als dass sie das Haushaltsloch-Argument adressiert.",
+        "quotes": [
+          {
+            "text": "Aber es geht nicht darum dass die Menschen am Rand der Gesellschaft stehen. Die Belastung geht weit in die Mitte der Gesellschaft hinein.",
+            "timestamp": "00:23:06"
+          },
+          {
+            "text": "Aber ich kann sagen dass ich es falsch finde. Genau das Thema ist die Entlastung der Familien. Mehr Frauen sollen in Arbeit kommen.",
+            "timestamp": "00:24:01"
+          }
+        ],
+        "concrete_statements": [
+          "Belastung reicht in Mittelschicht hinein, nicht nur Ränder",
+          "Einsparungen beim Elterngeld falsch, wenn Geburtenrate sinkt",
+          "Ziel: Frauenerwerbtätigkeit und bessere Jobs unterstützen"
+        ],
+        "related_bundestag_topics": [
+          "Elterngeld",
+          "Familienpolitik",
+          "Frauenerwerbtätigkeit",
+          "Kindergeld",
+          "Soziale Gerechtigkeit"
+        ]
+      },
+      {
+        "title": "Subventionen und Tankrabatt: Wem hilft der Staat?",
+        "timestamp_range": "00:33:32 - 00:35:12",
+        "theme_description": "Kritik an staatlichen Subventionen (besonders Tankrabatt) als ziellos und Diskussion, wem der Staat wirklich helfen soll.",
+        "question_asked": "Maybrit Illner zitiert und kritisiert, dass Subventionen wie der Tankrabatt zu breit wirken und Menschen erreichen, die ihn nicht brauchen. Sie stellt die Frage, warum Politik das so lange nicht ausgesprochen hat.",
+        "question_intent": "Illner möchte von den Gästen hören, warum ziellose Subventionen so lange akzeptiert wurden und wie man künftig zielgerichteter hilft.",
+        "position": "Lang stimmt zu, dass es eine Subvention war, und betont, dass es 'riesige Demonstrationen in diesem Land' gegen den Tankrabatt gab. Sie argumentiert, dass man Konfliktbereitschaft braucht, wenn man Privilegien kürzen will, und dass dies an der Lebensrealität vieler Menschen vorbei geht. Sie nutzt das Beispiel, um auf ihr zentrales Thema zu lenken: Senkung der Sozialversicherungsbeiträge durch Reformen (Notfallversorgung, Pharmakonzerne, Zuckersteuer).",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Lang beantwortet die Kritik am Tankrabatt, leitet aber schnell zu ihrer Gegenpositition um: Statt Subventionen braucht man strukturelle Reformen bei Sozialabgaben. Sie antwortet substantiell zu Subventionen, nutzt dies aber als Sprungbrett für ihre Agenda-Punkte.",
+        "quotes": [
+          {
+            "text": "Es durchaus eine Subvention. Es gab riesige Demonstrationen in diesem Land. Es ist einfach gesagt, gerade aus Sicht von meiner Partei... Wenn Menschen profitieren, lege ich mit Leuten an. Ich brauch eine Form von Konfliktbereitschaft.",
+            "timestamp": "00:33:32"
+          },
+          {
+            "text": "Ich will über die Sozialversicherungsbeiträge reden. Der absolute Schlüssel, auch bei sozialer Gerechtigkeit, Menschen die kaum Steuern zahlen aber hohe Sozialbeiträge, da hat die Regierung nicht viel vorgelegt was dazu führt dass es gesenkt wird.",
+            "timestamp": "00:33:32"
+          }
+        ],
+        "concrete_statements": [
+          "Tankrabatt war eine Subvention ohne Zielgenauigkeit",
+          "Notwendigkeit von Konfliktbereitschaft bei Privilegienkürzen",
+          "Forderung: Senkung Sozialversicherungsbeiträge durch Notfallversorgung-Reform, Pharmakonzern-Regulation, Zuckersteuer"
+        ],
+        "related_bundestag_topics": [
+          "Subventionen",
+          "Energiewirtschaft",
+          "Sozialversicherungen",
+          "Gerechtigkeitsabgaben",
+          "Gesundheitswesen"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer und Vermögensverteilung",
+        "timestamp_range": "00:42:08 - 00:44:41",
+        "theme_description": "Debatte über Gerechtigkeitslücken in der Erbschaftssteuer und ob Wohlhabende stärker zur Finanzierung von Reformen herangezogen werden müssen.",
+        "question_asked": "Maybrit Illner stellt fest, dass eine Debatte darüber läuft, ob große Erbschaften von Steuerverantwortung befreit sein sollten, wenn alle ihren Beitrag leisten müssen. Sie fragt, wie Ricarda Lang dies sieht.",
+        "question_intent": "Illner möchte verstehen, ob Lang eine Gerechtigkeitslücke sieht und ob dies an die Akzeptanz von Reformen gekoppelt ist.",
+        "position": "Lang sieht eine klare Gerechtigkeitslücke und kritisiert, dass die 'Menschganz mit den größten Erbschaften aus der Verantwortung genommen werden'. Sie argumentiert, dass dies die Akzeptanz von Reformen gefährdet. Sie gibt ein Beispiel: Wenn man drei Immobilien erbt, zahlt man keine Steuern, wenn man eine erbt, unter Umständen schon — eine 'Gerechtigkeitslücke'. Sie warnt, dass ein Bundesverfassungsgericht-Urteil zu einer Verschärfung führen wird, wenn die Union nicht handelt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang antwortet direkt auf die Frage und bietet eine klare Positionierung: Erbschaftssteuer-Lücken sind ungerecht, müssen geschlossen werden, sonst leidet die Akzeptanz von Reformen. Sie verbindet Gerechtigkeitskritik mit verfassungsrechtlicher Warnung.",
+        "quotes": [
+          {
+            "text": "Ich recherchiere seit 20 Jahren dazu. Es ist ein großes Anliegen für mich. In solchen Zeiten, wo sie sagen, dass jeder seinen Beitrag leisten muss, dass die Erben großer Vermögen, dass sie die Möglichkeit vom Staat der kompletten Verschonung brauchen. Das können Sie nicht sagen.",
+            "timestamp": "00:42:08"
+          },
+          {
+            "text": "Aber dass die Mensch mit den größten Erbschaften aus der Verantwortung genommen werden, reden wir über die Akzeptanz der Reformen. Die mit dem höheren Einkommen sind auch mal dran Verantwortung zu übernehmen. Die reichsten aus der Verantwortung zu nehmen, wird es keine Akzeptanz für die Reform geben.",
+            "timestamp": "00:43:24"
+          }
+        ],
+        "concrete_statements": [
+          "Erbschaftssteuer-Verschonungsregeln sind Gerechtigkeitslücken",
+          "Asymmetrische Behandlung von Immobilienerben ist unfair",
+          "Bundesverfassungsgericht wird Urteil sprechen, wenn Union nicht handelt",
+          "Fehlende Beteiligung Wohlhabender schadet Akzeptanz von Reformen"
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftsteuer",
+          "Vermögensbesteuerung",
+          "Verfassungsgerichtsbarkeit",
+          "Steuerrecht"
+        ]
+      },
+      {
+        "title": "Vermögenssteuer und Reichensteuer: Definitionen und Grenzen",
+        "timestamp_range": "00:56:08 - 00:57:06",
+        "theme_description": "Diskussion über die Definition von 'reich' und ab welchem Vermögen oder Einkommen eine höhere Besteuerung berechtigt ist.",
+        "question_asked": "Maybrit Illner fragt die Gäste, wann man reich ist und wann Superreichen-Steuersätze greifen sollten. Sie wendet sich speziell an Ricarda Lang.",
+        "question_intent": "Illner möchte konkrete, operationalisierbare Schwellwerte wissen, ab denen Umverteilung begonnen werden sollte.",
+        "position": "Lang weigert sich, die Frage auf eine konkrete Zahl herunterzubrechen. Ihrer Ansicht nach liegt die Frage nicht im Einkommen, sondern im Vermögen und Erbe. Sie unterscheidet zwischen Menschen mit Spitzensteuersatz (die nicht gemeint sind) und Menschen mit großem Vermögen und Erbe (die gemeint sind). Sie vermutet, dass 'mehrere Formen' an breiterer Akzeptanz für eine solche Regelung finden würden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Lang weigert sich, die direkt gestellte Frage (ab wann konkret?) zu beantworten und verschiebt stattdessen die Diskussion auf ihre Ebene (Vermögen statt Einkommen). Sie liefert eine Position, weicht aber der numerischen Konkretheit aus.",
+        "quotes": [
+          {
+            "text": "Ich würde das nicht auf eine Zahl runter brechen. Aus meiner Sicht liegt diese Frage nicht im Einkommen. Wir reden nicht über die Leute mit dem Spitzensteuersatz. Wir reden Leute die viel Vermögen und Erbe haben.",
+            "timestamp": "00:56:08"
+          }
+        ],
+        "concrete_statements": [
+          "Weigert sich, Steuergrenzen auf konkrete Zahlen festzulegen",
+          "Fokus auf Vermögen und Erbe, nicht Einkommen",
+          "Vermutet breite Akzeptanz für moderate Vermögensbesteuerung"
+        ],
+        "related_bundestag_topics": [
+          "Einkommensteuer",
+          "Vermögenssteuer",
+          "Reichensteuer",
+          "Steuerrecht",
+          "Spitzensteuersatz"
+        ]
+      },
+      {
+        "title": "Koalitionsfähigkeit Schwarz-Grün und Pizza-Diplomatie",
+        "timestamp_range": "00:57:41 - 00:58:43",
+        "theme_description": "Frage nach Koalitionsfähigkeit zwischen Union und Grünen und persönlichen politischen Grenzen.",
+        "question_asked": "Maybrit Illner fragt Ricarda Lang humorvoll: 'Mit wem würden Sie keine Pizza essen?' — als Metapher für Koalitionsfähigkeit, nachdem erwähnt wurde, dass Grüne und Union sich regelmäßig treffen ('Pizza Connection 2.0').",
+        "question_intent": "Illner möchte wissen, ob es rote Linien für eine potenzielle Koalition gibt und wie offen Lang für Zusammenarbeit ist.",
+        "position": "Lang antwortet offen: 'Pizza essen tu ich erst mal mit jedem.' Sie bemerkt aber, dass schwarz-Grün politisch unmöglich gemacht wurde und sowieso keine Mehrheit hat. Sie kritisiert, dass die Hoffnung in Teilen der Union, Schwarz-Grün könne funktionieren, unrealistisch ist. Die SPD und CDU müssen ihre Probleme selbst lösen ('Ihr werdet das auf die Reihe bekommen müssen').",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Lang beantwortet die humorvolle Frage direkt mit einer offenen Haltung, kombiniert dies aber mit realpolitischer Nüchternheit (keine Mehrheit, Unmöglichkeit durch Sabotage). Sie gibt eine substantielle Position ab.",
+        "quotes": [
+          {
+            "text": "Pizza essen tu ich erst mal mit jedem. Es ist spannend, auf die Debatte zu schauen. Politisch wird es unmöglich gemacht. Das offensichtlich gescheitert. Gleichzeitig muss man sagen, schwarz-Grün hat keine Mehrheit. Die Hoffnung dies in Teilen der Union gibt, wird nicht funktionieren. Ihr werdet das auf die Reihe bekommen müssen.",
+            "timestamp": "00:57:41"
+          }
+        ],
+        "concrete_statements": [
+          "Offenheit für Dialog mit allen Partnern",
+          "Schwarz-Grün ist realpolitisch nicht machbar",
+          "CDU und SPD müssen selbst ihre Koalition stabilisieren"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsverhandlungen",
+          "Regierungsbildung",
+          "Schwarz-Grün",
+          "Parlamentarische Konstellationen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Ricarda Lang hat seit 20 Jahren zur Erbschaftssteuer recherchiert",
+        "timestamp": "00:42:08"
+      },
+      {
+        "claim": "Die Lohnnebenkosten betrugen im Durchschnitt 43,3 Prozent",
+        "timestamp": "00:31:23"
+      },
+      {
+        "claim": "Bei der letzten Elterngeldreform lag die Einkommensgrenze bei 300.000 Euro",
+        "timestamp": "00:05:57"
+      },
+      {
+        "claim": "Die Einkommensgrenze beim Elterngeld liegt aktuell bei 175.000 Euro im Jahr",
+        "timestamp": "00:23:06"
+      },
+      {
+        "claim": "Menschen, die 20 Jahre lang keine Wirtschaftsflaute wie die heutige erlebt haben, prägen die jetzige Wahrnehmung",
+        "timestamp": "00:01:12"
+      },
+      {
+        "claim": "Das Bundesverfassungsgericht hat zwei Mal zur Erbschaftssteuer geurteilt",
+        "timestamp": "00:41:34"
+      }
+    ]
+  }
+}

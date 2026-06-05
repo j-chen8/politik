@@ -1,0 +1,441 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNi0yNV8yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-06-25",
+    "politician": "Verena Hubertz",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "a2ad791395618481",
+    "transcript_chars": 55327,
+    "caption_lines": 2037,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22249,
+    "tokens_out": 10527,
+    "cost_usd": 0.0299536,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.458Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Verena Hubertz (SPD, Bundesministerin für Wohnen, Stadtentwicklung und Bauwesen) diskutiert in der Sendung Maischberger primär zur Wohnungskrise und ihrer Politik sowie kurz zu ihrer wirtschaftlichen Vergangenheit. Sie präsentiert sich als pragmatische Reformerin aus unternehmischen Wurzeln mit Fokus auf Effizienzsteigerung statt ambitionierte Zahlenziele; Sandra Maischberger versucht wiederholt, konkrete Metriken (Wohnungszahlen, Baukosten) zu extrahieren.",
+    "themes": [
+      {
+        "title": "Wirtschaftserfahrung im Kabinett",
+        "timestamp_range": "00:57:11 - 00:57:42",
+        "theme_description": "Sandra Maischberger fragt, ob die wirtschaftliche Erfahrung mehrerer Kabinettsmitglieder zu schnelleren oder effizientereren Sitzungen führt.",
+        "question_asked": "Sandra Maischberger erkundigt sich, ob der wirtschaftliche Hintergrund von Hubertz und anderen Kabinettsmitgliedern (Kanzler Merz, Wirtschaftsministerin Reiche, weitere Akteure) zu einem anderen, schnellerem oder 'zackigerem' Ablauf von Kabinettssitzungen führt.",
+        "question_intent": "Ist wirtschaftliche Erfahrung ein Differenzierungsmerkmal für die Arbeitsweise der neuen Bundesregierung?",
+        "position": "Hubertz betont, dass unterschiedliche Lebenswege im Kabinett wertvoll sind und sie sich über die Verstärkung aus der Wirtschaft freut. Sie nimmt keine Aussage zu schnelleren Sitzungen, sondern zur Pluralität von Perspektiven vor.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf die Frage nach schnelleren Abläufen nicht direkt ('Das weiß ich nicht'), sondern weicht auf eine allgemeine Würdigung von Vielfalt aus. Die Kernfrage nach Effizienzgewinnen bleibt unbeantwortet; stattdessen wird die Frage neu interpretiert als Lob für Diversität.",
+        "concrete_statements": [
+          "Ich war ja vorher nicht Teil des Kabinetts.",
+          "Ich finde, es tut uns gut, dass auch in der Bundesregierung genau diese unterschiedlichen Lebenswege haben."
+        ],
+        "quotes": [
+          {
+            "text": "Das weiß ich nicht. Ich war ja vorher nicht Teil des Kabinetts. Aber ich finde, es tut uns gut, dass auch in der Bundesregierung genau diese unterschiedlichen Lebenswege haben.",
+            "timestamp": "00:57:42",
+            "context": "Auf die Frage nach schnelleren oder zackigerem Ablauf von Kabinettssitzungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kabinettszusammensetzung",
+          "Regierungseffizienz",
+          "Wirtschaftskompetenz in der Politik"
+        ]
+      },
+      {
+        "title": "Politische Motivation aus Mindestlohn-Engpass",
+        "timestamp_range": "00:58:14 - 00:58:45",
+        "theme_description": "Hubertz berichtet von ihrer beruflichen Erfahrung bei Burger King während des Studiums und der daraus gewachsenen politischen Motivation zur SPD.",
+        "question_asked": "Sandra Maischberger erkundigt sich, wie Hubertz bei einem Burger-King-Job (6,13 € ohne Mindestlohn) auf die Idee kam, sich politisch zu engagieren.",
+        "question_intent": "Welche persönliche Erfahrung führte zu Hubertzs Eintritt in die SPD?",
+        "position": "Hubertz erzählt, dass eine Wahlkampfrede von Frank Walter Steinmeier zur SPD-Forderung nach Mindestlohn sie 2009/2010 motiviert hat, der SPD beizutreten, auch wenn die SPD diese Wahl verloren hatte. Sie verankert ihren Eintritt in der persönlichen Erfahrung von Niedriglohn.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz adressiert die Frage direkt durch eine konkrete Anekdote (Steinmeier-Rede, Mindestlohn-Versprechen) und verbindet sie mit ihrer Motivation. Die Antwort ist narrativ kohärent und beantwortet die Kernfrage nach dem Eintrittsgrund.",
+        "concrete_statements": [
+          "Dann bin ich in die SPD eingetreten und habe gesagt, von Arbeit muss man auch leben können."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe damals 6 Euro 13 verdient. Es gab keinen Mindestlohn. Die SPD war damals mit Frank Walter Steinmeier im Wahlkampf. Und der hat so eine flammende Rede gehalten in Trier und hat gesagt: überall in Europa gibt es Mindestlohn, außer in Deutschland und irgendeinem Land im Osten. Warum ist das so? Damals hat die SPD nicht gewonnen. Schwarz-gelb hat gewonnen. Und die haben 1. Erleichterungen für Hoteliers auf den Weg gebracht. Dann bin ich in die SPD eingetreten und habe gesagt, von Arbeit muss man auch leben können.",
+            "timestamp": "00:58:14",
+            "context": "Auf Frage nach der Motivation zum SPD-Eintritt während der Burger-King-Zeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Mindestlohn",
+          "Arbeitnehmerrechte",
+          "SPD-Wahlprogramm"
+        ]
+      },
+      {
+        "title": "Verhandlung zum Mindestlohn von 15 Euro",
+        "timestamp_range": "00:58:45 - 00:59:15",
+        "theme_description": "Sandra Maischberger fragt, ob Hubertz und die SPD ihr Wahlversprechen eines 15-Euro-Mindestlohns einlösen werden.",
+        "question_asked": "Sandra Maischberger fragt: Das Versprechen zum 15-Euro-Mindestlohn sei ein großes Wahlversprechen der SPD gewesen – was wenn die SPD da nicht hinkommt?",
+        "question_intent": "Wird die SPD ihr Wahlversprechen zum 15-Euro-Mindestlohn erfüllen oder ist sie bereit, dieses zu relativieren?",
+        "position": "Hubertz teilt mit, dass sie optimistisch auf eine ausgewogene Interessenabwägung vertraut. Sie verweigert eine konkrete Zusage, sondern fragt zum genauen Verhandlungsstand auf dem Stand der Koalitionsgespräche.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz beantwortet die Frage nicht mit Zusage oder Ablehnung des 15-Euro-Ziels, sondern mit generischer Zuversicht ('schauen wir erst mal an, wie sie entscheidet'). Die konkrete Zusicherung fehlt; stattdessen wird auf laufende Verhandlungen verwiesen.",
+        "concrete_statements": [
+          "Ich habe erst mal eine zuversichtlichen Blick, dass eben genau da die Interessen austariert werden."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe erst mal eine zuversichtlichen Blick, dass eben genau da die Interessen austariert werden. Da schauen wir erst mal an, wie sie entscheidet.",
+            "timestamp": "00:58:45",
+            "context": "Auf Frage zum 15-Euro-Mindestlohn als SPD-Wahlversprechen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Mindestlohn",
+          "Koalitionsverhandlungen",
+          "Arbeitnehmerrechte"
+        ]
+      },
+      {
+        "title": "Unternehmungserfolg und Vermögen durch Kitchen Stories",
+        "timestamp_range": "00:59:15 - 01:00:16",
+        "theme_description": "Sandra Maischberger fragt, wie Hubertz in der SPD als Unternehmerin und Vermögende wahrgenommen wird und vergleicht dies mit der öffentlichen Wahrnehmung von Kanzler Merz.",
+        "question_asked": "Sandra Maischberger erkundigt sich, ob SPD-Mitglieder und Wähler vermögende Politiker wie Hubertz mit Anerkennung oder Kritik betrachten – und warum Hubertz diese Skepsis nicht wie Merz erfährt.",
+        "question_intent": "Unterscheidet sich die Wahrnehmung von Unternehmervermögen in der SPD versus der Union; was sind die Gründe?",
+        "position": "Hubertz berichtet von anfänglicher Skepsis, betont aber ihren bodenständigen familiären Hintergrund (Vater Schlosser, Mutter theologischer Hintergrund). Sie unterscheidet ihren Weg (Eigenrisiko, Kredit mit 25 Jahren) von Merz und argumentiert, dass Leistung sich lohnen muss. Sie verweigert eine direkte Antwort auf die Vergleichsfrage zu Merz.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz antwortet auf die Skepsis-Frage mit autobiografischer Kontextualisierung (bodenständiges Elternhaus) und gibt eine implizite Unterscheidung zu Merz. Sie weicht einer direkten Analyse der Wahrnehmungsdifferenz aus ('Das weiß ich nicht') und lenkt stattdessen auf ihre persönliche Leistungsgeschichte um.",
+        "concrete_statements": [
+          "Ich bin in der SPD, weil ich glaube, Leistung muss sich lohnen.",
+          "Ich glaube, es ist ein Unterschied, ob man ein eigenes Unternehmen gegründet hat, ob man ins Risiko gegangen ist."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, am Anfang ist immer ein bisschen Skepsis dar. Weil die dachten, kommt da jetzt eine Unternehmerin aus Berlin und erklärt uns die Welt. Die versteht das doch alles nicht. Aber ich komm aus einem sehr bodenständigen Elternhaus. Mein Vater ist Schlosser. Meine Mutter hat katholische Theologie studiert. Ich bin in der SPD, weil ich glaube, Leistung muss sich lohnen.",
+            "timestamp": "00:59:45",
+            "context": "Auf Frage zu Skepsis gegenüber vermögenden Unternehmern in der SPD."
+          },
+          {
+            "text": "Ich glaube, es ist ein Unterschied, ob man ein eigenes Unternehmen gegründet hat, ob man ins Risiko gegangen ist. Ich war 25 Jahre alt, ich habe einen Sparkassen Kredit aufgenommen. Das hätte auch so was von gegen die Wand fahren können.",
+            "timestamp": "01:00:49",
+            "context": "Auf Vergleich zu Friedrich Merz."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögensverteilung",
+          "Unternehmertum und Politik",
+          "Steuergerechtigkeit"
+        ]
+      },
+      {
+        "title": "Tech-Milliardäre und Musk im Kabinett-Umfeld",
+        "timestamp_range": "01:01:20 - 01:02:23",
+        "theme_description": "Sandra Maischberger fragt Hubertzs Bewertung zur Präsenz großer Tech-Konzern-Chefs (Musk) im Trump-Umfeld und ob Deutschland ähnliches braucht.",
+        "question_asked": "Sandra Maischberger verweist auf Musks Rolle im Trump-Kabinett und fragt, ob Hubertz – als Startup-Gründerin – ein ähnliches Verständnis von Bürokratieabbau durch externe Tech-Experten teilt.",
+        "question_intent": "Sollte Deutschland Unternehmern wie Musk folgen und Bürokratie durch radikale 'Kettensägen'-Methoden abbauen?",
+        "position": "Hubertz lehnt das Musk-Modell ab als 'besorgniserregend'. Sie kritisiert, dass Tech-Konzern-Chefs Politik mitbestimmen und positioniert sich gegen Musks 'Kettensägen'-Ansatz. Sie betont, dass der Staat effizienter werden muss, aber nicht durch radikale Zerstörung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz beantwortet die Frage klar und substantiell: Ablehnung des Musk-Modells für Deutschland, Kritik an Tech-Oligarchie, Befürwortung von Staatseffizienz ohne 'Kettensäge'. Die Position ist differenziert und direkt.",
+        "concrete_statements": [
+          "Die ist besorgniserregend. Es kann nicht sein, als Trump damals auch seiner Amtseinführung hatte, dass die Reihe dann direkt von den großen Techkonzernen besetzt wurde. Es kann nicht sein, dass die dann auch Politik mitbestimmen.",
+          "Auf gar keinen Fall.",
+          "Der Staat muss effizienter werden. Aber dafür braucht es keine Kettensäge."
+        ],
+        "quotes": [
+          {
+            "text": "Die ist besorgniserregend. Es kann nicht sein, als Trump damals auch seiner Amtseinführung hatte, dass die Reihe dann direkt von den großen Techkonzernen besetzt wurde. Es kann nicht sein, dass die dann auch Politik mitbestimmen. Deswegen müssen wir auch Europa bestärken.",
+            "timestamp": "01:01:20",
+            "context": "Auf Frage zur Rolle von Musk und Tech-Milliardären."
+          },
+          {
+            "text": "Der Staat muss effizienter werden. Aber dafür braucht es keine Kettensäge.",
+            "timestamp": "01:02:23",
+            "context": "Auf Frage, ob Deutschland ähnliche radikale Bürokratieabbau-Methoden braucht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Digitale Wirtschaft und Politik",
+          "Interessenskonflikte",
+          "Verwaltungsreform"
+        ]
+      },
+      {
+        "title": "Brechstange statt Kettensäge im Wohnungsbau",
+        "timestamp_range": "01:02:53 - 01:03:28",
+        "theme_description": "Sandra Maischberger versucht zu klären, wie Hubertzs 'Brechstangen'-Metapher sich vom Musk-Ansatz unterscheidet und wie sie ohne Verluste umgesetzt wird.",
+        "question_asked": "Sandra Maischberger fragt, wie Hubertz Planungsverfahren von 5 Jahren auf 2 Monate reduzieren will, ohne wichtige Prüfungen (Umwelt, Bürgerbeteiligung, Verfahrensschutz) zu verlieren.",
+        "question_intent": "Wie konkretisiert sich die 'Brechstangen'-Strategie operativ, ohne regulatorische Standards zu gefährden?",
+        "position": "Hubertz erklärt, dass die 'Brechstange' auf Verschlankung von Prozessen abzielt, nicht auf deren Abschaffung. Umweltverträglichkeitsprüfung und Bürgerbeteiligung bleiben; jedoch sollen nicht-essenzielle Anforderungen wegfallen. Sie verweist auf lokale Kommunen als Akteure.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz differenziert zwischen Prozessbeschleunigung und Wegfall von Standards und betont, dass UVP und Beteiligung bleiben. Konkrete operative Schritte zur Reduktion von 5 Jahren auf 2 Monate sind aber nicht detailliert dargelegt; stattdessen wird auf Kommunen und allgemeine Prinzipien verwiesen.",
+        "concrete_statements": [
+          "Die Brechstange setzt nicht daran, die Menschen nicht zu beteiligen.",
+          "Es wird immer noch eine Umweltverträglichkeitsprüfung geben.",
+          "Aber dass man nicht von vornherein alles erfüllen muss."
+        ],
+        "quotes": [
+          {
+            "text": "Die Brechstange habe ich als Motiv gewählt, weil es in Deutschland zu viel Bürokratie gibt. Wir können auch nicht aus Berlin heraus entscheiden, wo soll noch mal aufgestockt werden, wo ist eine Lücke, wo können wir nach verdichten. In den Kommunen sitzen ganz viele schlaue Leute. Die wissen genau, wie man vor Ort vorangehen kann.",
+            "timestamp": "01:02:53",
+            "context": "Auf Frage zur operativen Umsetzung der Brechstangen-Strategie."
+          },
+          {
+            "text": "Die setzt da an, dass man ein Stück weit ganzen Prozesse verschlankt und mal nicht alles erfüllen muss. Aber es wird immer noch eine Umweltverträglichkeitsprüfung geben.",
+            "timestamp": "01:03:28",
+            "context": "Zur Klärung von Bürgerbeteiligung und Umweltprüfungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Planungsrecht",
+          "Umweltschutz",
+          "Verwaltungsreform",
+          "Bürgerbeteiligung"
+        ]
+      },
+      {
+        "title": "Verzicht auf Zahlenziele für Wohnungsbau",
+        "timestamp_range": "01:05:05 - 01:05:35",
+        "theme_description": "Sandra Maischberger drängt Hubertz wiederholt, ein konkretes Zahlenziel für Wohnungsneubau zu nennen, nachdem Scholz 400.000 Einheiten versprochen aber verfehlt hat.",
+        "question_asked": "Sandra Maischberger versucht mehrfach, ein konkretes Jahresziel (Zahl der Wohnungen) zu extrahieren; sie hält Hubertzs Ablehnung für 'feige' und fragt, welche konkrete Zahl als Messstab dienen soll.",
+        "question_intent": "Will Hubertz sich messbar verpflichten (Zahlenziel), oder vermeidet sie absichtlich Ziele, um nicht wie Scholz zu scheitern?",
+        "position": "Hubertz lehnt Zahlenziele ab und erklärt, dass diese in der heutigen Lage nicht sinnvoll sind ('Die Welt dreht sich, es passiert immer ganz viel'). Sie bietet alternative Messstäbe an: Tempo (2 Monate Planungsverfahren), Baukosten (2.500 statt 5.000 €/qm) und Bezahlbarkeit, nicht Menge.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Hubertz weicht der direkten Zahlenziel-Frage aus und rerahmt das Problem: Statt Menge sollen Tempo, Kosten und Qualität Messstäbe sein. Sie legitimiert dies mit dem Scheitern von Scholz und der dynamischen Lage. Dies ist kein Ausweichen, aber ein bewusster Perspektivwechsel, der impliziert: Zahlenziele sind das falsche Kriterium.",
+        "concrete_statements": [
+          "Nein, wir nennen keine Zahl.",
+          "Sie können mich daran messen, ob es schneller oder günstiger bauen.",
+          "Sie dürfen mich am Tempo messen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, wir nennen keine Zahl. Die Welt dreht sich, es passiert immer ganz viel. Und da muss man Ziele auch mal anpassen.",
+            "timestamp": "01:05:05",
+            "context": "Auf wiederholte Nachfrage nach Wohnungszahl-Zielen."
+          },
+          {
+            "text": "Sie können mich daran messen, ob es schneller oder günstiger bauen. Und ob wir nachher bezahlbaren Wohnraum anbieten können.",
+            "timestamp": "01:05:05",
+            "context": "Zur Umdefiniton der Messstäbe."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsmarkt",
+          "Wohnungsbau",
+          "Zielvereinbarungen",
+          "Regierungskommunikation"
+        ]
+      },
+      {
+        "title": "Kostentreiber im Wohnungsbau – Tiefgarage und Gebäudestandards",
+        "timestamp_range": "01:06:06 - 01:07:11",
+        "theme_description": "Sandra Maischberger fragt nach konkreten Maßnahmen zur Kostenreduktion; Hubertz nennt Tiefgaragen und Gebäudetyp E als Beispiele.",
+        "question_asked": "Sandra Maischberger fragt: Wie genau wollen Sie Baukosten senken? Wo wird es konkret billiger?",
+        "question_intent": "Welche konkreten Maßnahmen und Standards sollen eliminiert oder reduziert werden, um Baukosten zu senken?",
+        "position": "Hubertz nennt konkrete Beispiele: Verzicht auf Tiefgaragen (stattdessen Parkplätze draußen), Reduzierung von Dachkomplexität und Wanddicke, Gebäudetyp E (Verzicht auf unnötige Features). Sie zitiert Hamburgs Ansatz als Vorbild und visiert 2.500 €/qm im Neubau an.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz antwortet mit konkreten, benannten Kostentreibern (Tiefgaragen, Dachdesign, Wanddicke) und einem operativen Typ (Gebäudetyp E). Die Antwort ist direkt und beispielgebunden.",
+        "concrete_statements": [
+          "Wenn man auf die Kosten Treiber verzichtet, zum Beispiel die Tiefgarage, da kann man richtig was einsparen.",
+          "Dann geht es weiter zu Dingen wie: wie sieht das Dach aus, wie dick ist die Wand? Gebäudetyp E, wo werden einfach mal auf unnötige Dinge verzichtet."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn man auf die Kosten Treiber verzichtet, zum Beispiel die Tiefgarage, da kann man richtig was einsparen. Man braucht vielleicht eine Anbindung. Aber es ist nicht immer die Tiefgarage. Ich habe mir mal so ein Gebäude angeschaut. Da gab es Parkplätze draußen. Allein das spart schon viel an cash.",
+            "timestamp": "01:06:38",
+            "context": "Auf Frage nach konkreten Kostensenkungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsbau",
+          "Baustandards",
+          "Kostenmanagement"
+        ]
+      },
+      {
+        "title": "Baulandpreise als primärer Kostentreiber",
+        "timestamp_range": "01:07:45 - 01:09:19",
+        "theme_description": "Sandra Maischberger referenziert Hans-Jürgen Vogel, dass Baulandpreise die größte Kostenexplosion verursacht haben (39.000 % in der BRD seit 1950), und fragt nach Hubertzs Lösungsansatz: Kommunale Enteignung oder alternative Wege?",
+        "question_asked": "Sandra Maischberger zitiert Vogel: Baulandpreise sind der zentrale Kostentreiber. Sollen Kommunen Grund kaufen oder notfalls enteignen? Wie steht Hubertz dazu?",
+        "question_intent": "Wird die Regierung Enteignungsrecht nutzen, um Baulandpreise zu kontrollieren, oder gibt es alternative Lösungen?",
+        "position": "Hubertz lehnt Enteignung ab ('Nein, ich möchte nicht enteignen'), betont aber, dass Grund und Boden ein 'Riesenkostentreiber' ist. Sie schlägt das Erbbaurecht (99-Jahre-Modell) als Alternative vor, um Eigentum von Nutzung zu trennen. Sie verweist auf Bahnstrecken als legitimierte Enteignungsfälle, aber will 'kreative Lösungen' statt Enteignung.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz adressiert die Kostentreiber-Frage und nennt das Erbbaurecht als Alternative zu Enteignung. Sie lehnt die Enteignungsoption aber ab, was impliziert, dass sie das Problem anerkennt, aber eine andere Lösung bevorzugt. Die Konkretion des Erbbaurecht-Ansatzes ist aber begrenzt (keine Zahlen zu Senkungspotenzialen).",
+        "concrete_statements": [
+          "Absolut. Grund und Boden ist ein Riesenkostentreiber. Gerade in Ballungsgebieten.",
+          "Nein, ich möchte nicht enteignen. Ich möchte, dass sie andere Wege finden, wie wir über Grund und Boden denken.",
+          "Kann man das nicht per Erbpachtrecht zur Verfügung stellen für 99 Jahre? Damit wird es für alle wieder günstiger."
+        ],
+        "quotes": [
+          {
+            "text": "Absolut. Grund und Boden ist ein Riesenkostentreiber. Gerade in Ballungsgebieten. Im ländlichen Raum haben wir eher das andere Problem. Wollen Sie enteignen? Nein, ich möchte nicht enteignen. Ich möchte, dass sie andere Wege finden, wie wir über Grund und Boden denken. Zum Beispiel das Erbbaurecht. Muss man eigentlich Grund und Boden besitzen? Kann man das nicht per Erbpachtrecht zur Verfügung stellen für 99 Jahre? Damit wird es für alle wieder günstiger.",
+            "timestamp": "01:08:49",
+            "context": "Auf Frage zu Enteignung und Baulandpreis-Kontrolle."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsmarkt",
+          "Eigentumsrecht",
+          "Bodenrecht",
+          "Enteignung"
+        ]
+      },
+      {
+        "title": "Zielwert 15 Euro/qm Neubau und eigene Vermietungspraxis",
+        "timestamp_range": "01:09:52 - 01:10:58",
+        "theme_description": "Sandra Maischberger fragt, ob Hubertz selbst das Ziel von 15 €/qm für ihre vermietete Neubauwohnung in Berlin erreicht.",
+        "question_asked": "Sandra Maischberger erkundigt sich, ob Hubertz, die selbst Vermieterin einer Neubauwohnung in Berlin ist, es schafft, diese unter 15 €/qm zu vermieten.",
+        "question_intent": "Ist das 15-€/qm-Ziel realistisch, wenn auch Hubertz selbst es nicht erfüllt?",
+        "position": "Hubertz gibt zu, dass ihre Wohnung über 15 €/qm liegt ('Die ist über drüber'). Sie erklärt, dass die Wohnung nicht mit optimalen Standards gebaut wurde und dass sie sie gekauft hat. Sie verweist auf neue Technologien (Vorfertigung statt Stein auf Stein), Finanzierungsoptimierung und Zinssätze (3–4 % statt 1 %) als Hebel.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubertz antwortet offen zu ihrer eigenen Verfehlung des Ziels, differenziert aber zwischen bestehendem Altbau und zukünftigen Neubauten mit optimierten Standards. Sie benennt konkrete technische und finanzielle Hebel (Vorfertigung, Zinsen, Private-Capital-Hebel).",
+        "concrete_statements": [
+          "Die ist über drüber.",
+          "Wir müssen bei der Technologie anders bauen. Nicht mehr Stein auf Stein, sondern auch vor produzieren.",
+          "Da müssen wir noch mal schauen, wie können wir privates Kapital auch günstig hebeln."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist eine Neubauwohnung. Und die haben wir noch nicht mit dem Gebäudetyp E... Die habe ich auch nicht gebaut, wie ich sie bauen wollte. Die habe ich gekauft. Und da schaffe ich das nicht. Die ist über 15 Euro?",
+            "timestamp": "01:09:52",
+            "context": "Auf Frage, ob Hubertz selbst das 15-€/qm-Ziel erreicht."
+          },
+          {
+            "text": "Wir müssen bei der Technologie anders bauen. Nicht mehr Stein auf Stein, sondern auch vor produzieren. [...] Wenn wir die beiden Dinge anwenden und noch über die Finanzierung nachdenken, da müssen wir noch mal schauen, wie können wir privates Kapital auch günstig hebeln.",
+            "timestamp": "01:10:22",
+            "context": "Auf Frage, wie das 15-€/qm-Ziel erreichbar ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsbau",
+          "Baukosten",
+          "Finanzierungspolitik"
+        ]
+      },
+      {
+        "title": "350.000 Wohnungen im Jahr als implizites Ziel",
+        "timestamp_range": "01:12:36 - 01:13:06",
+        "theme_description": "Hubertz nennt spontan die Zahl 350.000 Wohnungen im Jahr, korrigiert sich aber sofort und weigert sich, diese zu bestätigen.",
+        "question_asked": "Sandra Maischberger hakt nach der Zahl 350.000, die Hubertz genannt hat: Ist das Ihr implizites Ziel?",
+        "question_intent": "Hat Hubertz doch ein verdecktes Zahlenziel, das sie nicht offen benennen will?",
+        "position": "Hubertz weigert sich, die Zahl zu bestätigen. Sie sagt, dass Ziele jedes Jahr überarbeitet werden und verspricht, nicht bei späteren Nachfragen ihre Aussage zu ändern ('Ich werde jetzt nicht beim 4. mal was anderes sagen. Ich habe das geübt.'). Sie erwähnt, dass sie 'trainiert' wurde, nicht auf die Frage-Taktik von Maischberger hereinzufallen.",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Hubertz verweigert eine Bestätigung der 350.000-Zahl offen und verweist auf ihre Trainierung ('Das wird einem schon gesagt, die Frau Maischberger fragt oft nach'). Dies ist eine transparente, wenn auch unbequeme, Weigerung, sich quantitativ festzulegen.",
+        "concrete_statements": [
+          "Ich habe das geübt.",
+          "Ich habe keine Zeit, sonst würde ich die ihnen auch sagen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe mir auch nicht innerlich was vorgenommen. 350.000 im Jahr, da kann man ja mal gucken. [...] Ich habe das geübt. Sie haben so was geübt? Das wird einem schon gesagt, die Frau Maischberger fragt oft nach. Aber sie haben eine Zahl? Nein, ich habe keine Zeit, sonst würde ich die ihnen auch sagen.",
+            "timestamp": "01:12:36",
+            "context": "Auf Nachfrage zu einer genannten Zahl von 350.000 Wohnungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wohnungsbau",
+          "Regierungskommunikation",
+          "Politische Rhetorik"
+        ]
+      },
+      {
+        "title": "Kritik von jungen SPD-Mitgliedern und Lars Klingbeil",
+        "timestamp_range": "01:13:36 - 01:14:06",
+        "theme_description": "Sandra Maischberger verweist auf Kritik von jungen SPD-Mitgliedern an Klingbeil ('Architekt des Misserfolgs') und fragt, ob Hubertz dieses Thema anspricht.",
+        "question_asked": "Sandra Maischberger fragt: Es gibt Kritik von jungen SPD-Mitgliedern an Klingbeil als 'Architekt des Misserfolgs' und 'Machtmensch'. Sprechen Sie das an?",
+        "question_intent": "Wie handhabt Hubertz interne Partei-Kritik an Klingbeil, und unterstützt sie ihn trotz der Vorwürfe?",
+        "position": "Hubertz bejaht, dass sie mit Klingbeil im 'engen Austausch' steht. Sie vergleicht die Situation mit Trainerwechsel im Sport: 'Nur weil es mal schlecht läuft, tauscht man nicht direkt den Trainer aus.' Sie würdigt Klingbeils 'Generationenwechsel' und positioniert sich selbst als Teil dieser Erneuerung (37 Jahre alt). Sie betont, dass die SPD-Mannschaft sich 'neu aufstellen' müsse.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubertz beantwortet die Frage zur Kritik mit Defensiv-Rhetorik (Trainer-Metapher, 'enges Austausch') und weicht einer direkten Auseinandersetzung mit den Vorwürfen aus. Sie validiert Klingbeils Generationenwechsel-Agenda, aber adressiert nicht die substanziellen Kritikpunkte ('Machtmensch', Misserfolg).",
+        "concrete_statements": [
+          "Natürlich. Wir sind im engen Austausch.",
+          "Nur weil es mal schlecht läuft, tauscht man nicht direkt den Trainer aus.",
+          "Lars Klingbeil hat den Generationenwechsel eingeleitet."
+        ],
+        "quotes": [
+          {
+            "text": "Natürlich. Wir sind im engen Austausch. Nur weil es mal schlecht läuft, tauscht man nicht direkt den Trainer aus. [...] Lars Klingbeil hat den Generationenwechsel eingeleitet. Da gehöre ich dann auch dazu mit meinen 37 Jahren. Aber natürlich müssen wir uns in der Mannschaft SPD neu aufstellen.",
+            "timestamp": "01:13:36",
+            "context": "Auf Frage zu Kritik an Klingbeil und innerparteiliches Malaise."
+          }
+        ],
+        "related_bundestag_topics": [
+          "SPD-Parteistruktur",
+          "Generationswechsel",
+          "Intra-Partei-Konflikte",
+          "Klingbeil-Kurs"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Verena Hubertz arbeitete bei Burger King in Trier am Hauptbahnhof und verdiente 6,13 € pro Stunde bei Abwesenheit eines gesetzlichen Mindestlohns.",
+        "timestamp": "00:58:14"
+      },
+      {
+        "claim": "Frank Walter Steinmeier führte eine Wahlkampfrede 2009/2010 in Trier, in der er sagte, dass überall in Europa Mindestlohn gibt außer Deutschland und 'irgendeinem Land im Osten'.",
+        "timestamp": "00:58:14"
+      },
+      {
+        "claim": "Die SPD verlor die Wahl 2009/2010, und Schwarz-Gelb (Merkel-FDP-Koalition) führte Erleichterungen für Hoteliers ein.",
+        "timestamp": "00:58:45"
+      },
+      {
+        "claim": "Hubertz gründete die App Kitchen Stories mit 25 Jahren und nahm einen Sparkassen-Kredit auf.",
+        "timestamp": "01:00:49"
+      },
+      {
+        "claim": "Der Vater von Verena Hubertz ist Schlosser, die Mutter hat katholische Theologie studiert.",
+        "timestamp": "01:00:49"
+      },
+      {
+        "claim": "Apple-Chef besuchte Kitchen Stories und lobte es als 'feine Sache', worauf das Unternehmen 'durch die Decke' ging.",
+        "timestamp": "01:01:20"
+      },
+      {
+        "claim": "Planungsverfahren für Bebauungspläne dauern im Durchschnitt 5 Jahre in deutschen Großstädten.",
+        "timestamp": "01:02:53"
+      },
+      {
+        "claim": "Baulandpreise in der Bundesrepublik sind seit 1950 um 39.000 % gestiegen (Vogel-Referenz).",
+        "timestamp": "01:07:45"
+      },
+      {
+        "claim": "Hamburg hat einen rigoros Ansatz zur Kostenreduktion im Wohnungsbau.",
+        "timestamp": "01:06:06"
+      },
+      {
+        "claim": "Hubertz besitzt eine Neubauwohnung in Berlin, die sie vermietet.",
+        "timestamp": "01:09:52"
+      }
+    ]
+  }
+}

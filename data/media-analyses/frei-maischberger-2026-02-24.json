@@ -1,0 +1,360 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYThjOThkODAtNzRhZC00NmY1LTg4OWYtNDBjMDEwMzU0NDNk",
+    "video_id": "maischberger-2026-02-24",
+    "politician": "Thorsten Frei",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "cb037bbfa07aec3b",
+    "transcript_chars": 59960,
+    "caption_lines": 2200,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23996,
+    "tokens_out": 9483,
+    "cost_usd": 0.0285644,
+    "quote_validation": {
+      "valid_exact": 14,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 6,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.651Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Thorsten Frei, CDU-Kanzleramtschef, diskutiert mit Ines Schwerdtner (Linke-Chefin) und Moderatorin Sandra Maischberger über Rentenpolitik, Sozialpolitik und Außenpolitik. Frei argumentiert für ganzheitliche Reformpakete statt ad-hoc-Entscheidungen, betont die demografischen Herausforderungen und verteidigt die Koalitionspolitik mit der SPD mit gemäßigtem Ton.",
+    "themes": [
+      {
+        "title": "Social-Media-Verbot für unter 14-Jährige",
+        "timestamp_range": "00:52:58 - 00:55:01",
+        "theme_description": "Diskussion über einen Parteitagsbeschluss der CDU, wonach Social Media für Kinder unter 14 Jahren verboten werden soll.",
+        "question_asked": "Sandra Maischberger fragt Thorsten Frei, ob er mit seinen eigenen Kindern (13, 15, 17) vorher über das beschlossene Social-Media-Verbot für unter 14-Jährige diskutiert hat und ob er selbst dafür ist.",
+        "question_intent": "Zu erfahren, wie Frei persönlich zum Verbot steht und ob es praktisch umsetzbar ist, wenn auch seine Kinder betroffen sind.",
+        "position": "Frei bestätigt, dass seine Kinder ständig am Handy sind und er weiß, wie schwierig es ist, Regeln durchzusetzen. Er steht hinter dem Parteitagsbeschluss vom Wochenende. Die praktische Umsetzung ist die große Herausforderung: \"Wie man Regeln, die an sich vernünftig sind, am Ende durchsetzt.\" Zur Frage der Grauzone zwischen 14–16 Jahren: \"Zwischen 14 und 16 ist ja noch Grauzone.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei bejaht die Unterstützung des Verbots und reflektiert die praktische Schwierigkeit, gibt aber keine detaillierte Analyse zur Machbarkeit oder zu kritischen Punkten (z. B. technische Umsetzung, internationale Aspekte) wie Schwerdtner später andeutet.",
+        "concrete_statements": [
+          "Wir haben das am Wochenende beschlossen, da stehe ich dahinter.",
+          "Das ist die ganz große Herausforderung. Wie man Regeln, die an sich vernünftig sind, am Ende durchsetzt."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben das am Wochenende beschlossen, da stehe ich dahinter.",
+            "timestamp": "00:53:45",
+            "context": "Auf die direkte Frage, ob er für das Verbot ist."
+          },
+          {
+            "text": "Ich glaube, das ist die ganz große Herausforderung. Wie man Regeln, die an sich vernünftig sind, am Ende durchsetzt.",
+            "timestamp": "00:53:45",
+            "context": "Beschreibung der praktischen Umsetzungsprobleme des Verbots."
+          }
+        ]
+      },
+      {
+        "title": "Rentenpolitik und demografischer Wandel",
+        "timestamp_range": "00:55:01 - 01:02:17",
+        "theme_description": "Debatte über Rentenreformen angesichts des demografischen Wandels und die Position der CDU zur Erhöhung des Renteneintrittsalters versus Erhalt von 'Rente mit 63'.",
+        "question_asked": "Ines Schwerdtner wirft Frei vor, dass die CDU und SPD keine grundlegende Rentenreform vorantreiben, sondern warten. Sandra Maischberger und Schwerdtner drücken auf die konkrete Frage, wie lange Menschen arbeiten sollen und ob Frei bereit ist, grundlegend zu reformieren.",
+        "question_intent": "Zu klären, ob die Regierung grundlegende Rentenreformen durchführen wird oder ob sie nur aus Opportunismus wegen anstehender Landtagswahlen eine Entscheidung aufschiebt.",
+        "position": "Frei argumentiert, dass man nicht in einem schnellen Parteitagsbeschluss 20 Reformpunkte beschließen kann, wenn Landtagswahlen anstehen. Er betont die Rolle der Alterssicherungskommission, die im Juni Ergebnisse liefert. Der Kern seiner Position: Nicht jeder kann gleich lang arbeiten (z. B. Dachdecker vs. Bürokraft). Er hat die \"Aktivrente\" eingeführt, wonach wer über das Renteneintrittsalter hinaus arbeitet, steuerfrei 2.000 Euro pro Monat hinzuverdient. Er verweist auf das österreichische System als Negativbeispiel komplexerer Anforderungen. Frei betont mehrfach, dass Rentenpolitik im Gesamtkontext und in Koalitionsabsprachen zu lösen ist, nicht isoliert: \"Das müsste man in einem Gesamtkonzept erarbeiten.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei beantwortet die Frage nach seinem Reformwillen mit Verweis auf den Zeitplan (Juni-Kommission, Landtagswahlen) und mit konkreten Beispielen (Aktivrente, differenzierte Arbeitsalter). Er weicht aber der direkten Frage aus, ob die Regierung bereit ist zu reformieren oder nicht, und verweigert Aussagen zum Gesamtkonzept mit der Begründung, das nicht auf dem Talk-Set zu verhandeln.",
+        "concrete_statements": [
+          "Wir haben die Ergebnisse der Sozialstaatskommission. Das sagte er, aber Sie wollen das nicht beschließen.",
+          "Wir werden im Juni das Ergebnis der Alterssicherungskommission haben. Da werden wir sicherlich gute Vorschläge sehen und versuchen, die gemeinsam umzusetzen.",
+          "Ich glaube, dass man über ein Gesamtpaket sprechen muss.",
+          "Wir haben die Situation, dass wir 50 Jahre über den demografischen Wandel geredet haben, jetzt ist er da, wir müssen damit umgehen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass man über ein Gesamtpaket sprechen muss. Wir haben vorhin darüber gesprochen, am Ende muss Politik erfolgreich sein und liefern. Das bedeutet, dass wir in einer Koalition zu einer gemeinsamen Haltung finden.",
+            "timestamp": "01:01:17",
+            "context": "Antwort auf die Frage, welche Eckpunkte des Rentenreform-Gesamtpakets Frei konkret nennen kann."
+          },
+          {
+            "text": "Wir haben die Situation, dass wir 50 Jahre über den demografischen Wandel geredet haben, jetzt ist er da, wir müssen damit umgehen. Das betrifft die Rente, aber nicht nur.",
+            "timestamp": "00:58:08",
+            "context": "Begründung für die Notwendigkeit von Rentenreformen angesichts veränderter Demografie."
+          }
+        ]
+      },
+      {
+        "title": "Gerechtigkeitsprinzipien: Horizontal vs. Vertikal",
+        "timestamp_range": "00:56:04 - 00:57:35",
+        "theme_description": "Debatte, ob Generationengerechtigkeit vs. Klassengerechtigkeit das zentrale Kriterium bei Rentenreformen sein sollte.",
+        "question_asked": "Ines Schwerdtner sagt, die Junge Union verhandelt Rente 'auf dem Rücken von Millionen von Rentnern' und mischt das mit Generationengerechtigkeit. Sie findet, das ist ein Konflikt zwischen Arm und Reich. Thorsten Frei wird implizit gefragt, warum er den Ansatz der Jungen Union nicht als neoliberal kritisiert.",
+        "question_intent": "Zu erfahren, wie Frei zwischen horizontaler Gerechtigkeit (zwischen Generationen) und vertikaler Gerechtigkeit (zwischen Reichen und Armen) abwägt.",
+        "position": "Frei findet Schwerdtners Ausdrucksweise (\"alten Leuten im Gewand von jungen Leuten\") \"grenzwertig\". Er argumentiert dann: \"Es geht darum, dass wir die Gerechtigkeit nicht nur horizontal, sondern auch vertikal sehen.\" (Vertikal = zwischen Arm und Reich, Horizontal = zwischen Generationen). Er betont: \"Natürlich ist es eine Gerechtigkeitsfrage.\" Sein Kernargument: Das ist kein entweder-oder, sondern beides muss berücksichtigt werden. Die demografische Realität ist, dass weniger junge Erwerbstätige auf mehr Rentner kommen, und das muss auch fair gemanagt werden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei adressiert beide Dimensionen von Gerechtigkeit und macht klar, dass die CDU beide bedenkt, nicht nur eine. Er kritisiert Schwerdtners Rhetorik und liefert eine gedanklich kohärente Position.",
+        "concrete_statements": [
+          "Ich finde schon die Ausdrucksweise grenzwertig.",
+          "Es geht darum, dass wir die Gerechtigkeit nicht nur horizontal, sondern auch vertikal sehen.",
+          "Natürlich ist es eine Gerechtigkeitsfrage.",
+          "Deswegen ist klar, anders als vor 50 Jahren kommen nicht mehr 6 Erwerbstätige auf einen Rentner. Sondern 1,5 auf einen Rentner."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde schon die Ausdrucksweise grenzwertig. Es geht darum, dass wir die Gerechtigkeit nicht nur horizontal, sondern auch vertikal sehen.",
+            "timestamp": "00:56:04",
+            "context": "Reaktion auf Schwerdtners Kritik an der Jungen Union und deren Rhetorik."
+          }
+        ]
+      },
+      {
+        "title": "Abschaffung von 'Rente mit 63'",
+        "timestamp_range": "01:01:17 - 01:02:48",
+        "theme_description": "Diskussion über die mögliche Abschaffung oder Kürzung der 'Rente mit 63' für Langjährige.",
+        "question_asked": "Sandra Maischberger und Ines Schwerdtner fragen direkt: Ist Thorsten Frei bereit, die 'Rente mit 63' (abschlagsfrei nach 45 Beitragsjahren) anzufassen oder abzuschaffen?",
+        "question_intent": "Zu erfahren, ob Frei konkret bereit ist, diese populäre Leistung zu reformieren.",
+        "position": "Frei weicht aus und sagt, man müsse \"über ein Gesamtpaket sprechen\". Auf die Nachfrage konkretisiert er nur, dass \"nicht jeder kann gleich lang arbeiten\" und verweist auf die Dachdecker-Beispiel von 2014. Er kritisiert implizit die damalige Rente mit 63, da \"jeder, der diese Voraussetzungen erfüllt hat, mit 63 in Rente gegangen\" ist, obwohl das \"nicht Sinn der Sache\" war. Er betont, dass es für Berufe mit Erfahrung (also auch höherqualifizierte) keine Grenze gibt: \"Es gibt Berufe, da wird man mit Erfahrung besser.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei antwortet auf die konkrete Frage nach Rente mit 63 nicht mit Ja oder Nein, sondern weicht auf ein Gesamtkonzept aus und kritisiert implizit die bisherige Regelung, ohne eine klare Reform zu benennen. Das adressiert die Reformbereitschaft nur teilweise.",
+        "concrete_statements": [
+          "Es gibt Berufe, da wird man mit Erfahrung besser.",
+          "Das hat man verstanden, dass man auf dem Dach nicht mit 70 noch arbeiten kann. Aber jeder, der diese Voraussetzungen erfüllt hat, ist mit 63 in Rente gegangen. Und das ist nicht Sinn der Sache."
+        ],
+        "quotes": [
+          {
+            "text": "Das hat man verstanden, dass man auf dem Dach nicht mit 70 noch arbeiten kann. Aber jeder, der diese Voraussetzungen erfüllt hat, ist mit 63 in Rente gegangen. Und das ist nicht Sinn der Sache.",
+            "timestamp": "01:02:48",
+            "context": "Kritik an der bisherigen Rente mit 63 als zu pauschal."
+          }
+        ]
+      },
+      {
+        "title": "Erwerbsbeteiligung und Arbeitszeit pro Kopf",
+        "timestamp_range": "01:05:28 - 01:06:00",
+        "theme_description": "Debatte, ob die CDU unter Merz die Narrative von zu wenig Arbeit und Leistung verstärkt, oder ob Friedrich Merz den Ton gemäßigt hat.",
+        "question_asked": "Ines Schwerdtner sagt, Merz habe vorher oft davon gesprochen, dass Leute 'zu wenig arbeiten' und einen 'Lifestyle' führen, den man sich nicht leisten kann. Thorsten Frei antwortet, das stimme nicht; Merz habe nur auf 'Pro-Kopf-Arbeitszeit' verwiesen.",
+        "question_intent": "Zu klären, ob die CDU-Rhetorik stigmatisierend gegenüber Arbeitnehmern ist oder faktisch basiert.",
+        "position": "Frei verteidigt Merz und sagt, dieser habe nicht behauptet, \"die Leute arbeiten zu wenig\", sondern nur \"hingewiesen, dass die Pro-Kopf-Arbeitszeit heute geringer ist\" als früher. Damit unterscheidet er zwischen einer Anschuldigung (\"zu faul\") und einer statistischen Beobachtung (geringere aggregierte Arbeitszeit pro Kopf).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert den Vorwurf der stigmatisierenden Rhetorik, indem er Merz' Aussage als sachlich (Pro-Kopf-Arbeitszeit) uminterpretiert, was Schwerdtners Vorwurf teilweise entkräftet, aber nicht widerlegt, dass Merz ähnliche Aussagen im Wahlkampf gemacht hat.",
+        "concrete_statements": [
+          "Er hat darauf hingewiesen, dass die Pro-Kopf-Arbeitszeit heute geringer ist."
+        ],
+        "quotes": [
+          {
+            "text": "Er hat darauf hingewiesen, dass die Pro-Kopf-Arbeitszeit heute geringer ist.",
+            "timestamp": "01:05:28",
+            "context": "Verteidigung von Friedrich Merz gegen Schwerdtners Vorwurf der stigmatisierenden Rhetorik."
+          }
+        ]
+      },
+      {
+        "title": "Infrastrukturinvestitionen vs. Entlastung von Bürgern",
+        "timestamp_range": "01:05:58 - 01:06:31",
+        "theme_description": "Debatte, ob das Sondervermögen für Zukunftsinvestitionen oder unmittelbare Entlastung von kleinen und mittleren Unternehmen und Bürgern eingesetzt werden soll.",
+        "question_asked": "Ines Schwerdtner kritisiert, die CDU/SPD-Regierung habe sich entschieden, Unternehmen zu entlasten, nicht aber 'die kleinen Leute'. Sie haben ein Sondervermögen und könnten sofort KMU entlasten. Thorsten Frei wird gefragt, warum nicht.",
+        "question_intent": "Zu erfahren, warum die Regierung nicht unmittelbar Bürger und kleinere Betriebe entlastet, statt auf langfristige Infrastruktur zu setzen.",
+        "position": "Frei argumentiert, das Sondervermögen sei bewusst für Infrastruktur reserviert, damit \"das Geld, was spätere Generationen im Zweifel zurückbezahlen müssen, für Zukunftsinvestitionen zur Verfügung steht.\" Er verteidigt also die langfristige Nutzung statt kurzfristige Entlastung.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet direkt und mit klarer Begründung, warum das Sondervermögen nicht für unmittelbare Entlastung genutzt wird. Er adressiert Schwerdtners Kritik vollständig, auch wenn Schwerdtner nicht einverstanden ist.",
+        "concrete_statements": [
+          "Wir haben uns entschieden, die Infrastruktur auf Vordermann zu bringen, damit das Geld, was spätere Generationen im Zweifel zurückbezahlen müssen, für Zukunftsinvestitionen zur Verfügung steht."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, wir haben uns entschieden, die Infrastruktur auf Vordermann zu bringen, damit das Geld, was spätere Generationen im Zweifel zurückbezahlen müssen, für Zukunftsinvestitionen zur Verfügung steht.",
+            "timestamp": "01:06:00",
+            "context": "Antwort auf Schwerdtners Kritik, dass die Regierung KMU nicht sofort entlastet."
+          }
+        ]
+      },
+      {
+        "title": "Vermögensverteilung und Steuergerechtigkeit",
+        "timestamp_range": "01:06:31 - 01:07:01",
+        "theme_description": "Frage, ob die Vermögensverteilung in Deutschland gerecht ist und ob Spitzensteuersätze erhöht oder Vermögensabgaben eingeführt werden sollen.",
+        "question_asked": "Sandra Maischberger fragt direkt: 'Ist die Vermögensverteilung in Deutschland gerecht?' und später, ob Zahnarztkosten von den Krankenkassen übernommen werden sollen.",
+        "question_intent": "Zu erfahren, wie Frei die Gerechtigkeitsfrage beurteilt und ob er Umverteilungsmaßnahmen unterstützt.",
+        "position": "Auf die Frage 'Ist die Vermögensverteilung in Deutschland gerecht?' antwortet Frei ausweichend: \"Was ist gerecht? Das ist eine sehr abstrakte Frage.\" Als Sandra Maischberger \"Ja oder Nein?\" verlangt, sagt er klar: \"Nein, auf keinen Fall.\" Bezüglich Spitzensteuersatz: Frei sagt, sie hätten ihn \"abgeräumt\" und er soll \"ab 80.000 greifen\" (also progressive Belastung für höhere Einkommen). Zu Zahnarztkosten: \"Ja. Ich habe nie was anderes gesagt.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei antwortet auf alle drei Fragen direkt: Vermögensverteilung nicht gerecht (Nein), Spitzensteuersatz mit Schwelle ab 80.000 Euro, Zahnarztkosten von Krankenkasse. Er weicht zunächst aus, liefert aber auf Druck eine klare Position.",
+        "concrete_statements": [
+          "Nein, auf keinen Fall.",
+          "Spitzensteuersatz haben wir abgeräumt, aber er soll ab 80.000 greifen.",
+          "Ja. Ich habe nie was anderes gesagt."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, auf keinen Fall.",
+            "timestamp": "01:07:01",
+            "context": "Antwort auf die Frage, ob die Vermögensverteilung in Deutschland gerecht ist."
+          },
+          {
+            "text": "Spitzensteuersatz haben wir abgeräumt, aber er soll ab 80.000 greifen.",
+            "timestamp": "01:07:01",
+            "context": "Position zu Spitzensteuersätzen nach CDU-Parteitagsbeschluss."
+          }
+        ]
+      },
+      {
+        "title": "Vertrauen in NATO und Trump-Garantie",
+        "timestamp_range": "01:08:03 - 01:08:34",
+        "theme_description": "Frage, ob Thorsten Frei glaubt, dass die USA unter Trump NATO-Ländern im Angriff beistehen würden.",
+        "question_asked": "Sandra Maischberger fragt Thorsten Frei: 'Glauben Sie, Donald Trump würde europäischen NATO-Ländern im Falle eines Angriffs beistehen?' Ines Schwerdtner dagegen weist auf Grönland hin als Zeichen der Unzuverlässigkeit Trumps.",
+        "question_intent": "Zu klären, wie sicher sich deutsche Politiker unter Trump-Administration fühlen und ob US-Sicherheitsgarantien verlässlich sind.",
+        "position": "Frei antwortet klar: \"Ja, es gibt keinen Grund, daran zu zweifeln.\" Das ist eine direkte und assertive Antwort. Er bezieht sich implizit auf die NATO-Beistandspflicht (Artikel 5), die für alle Mitglieder gilt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Frei beantwortet die Frage mit einer klaren Ja-Position und kurzer Begründung. Er adressiert die Frage zur US-Sicherheitsgarantie vollständig, ohne auszuweichen.",
+        "concrete_statements": [
+          "Ja, es gibt keinen Grund, daran zu zweifeln."
+        ],
+        "quotes": [
+          {
+            "text": "Ja, es gibt keinen Grund, daran zu zweifeln.",
+            "timestamp": "01:08:34",
+            "context": "Antwort auf die Frage, ob Trump europäischen NATO-Ländern Beistand leisten würde."
+          }
+        ]
+      },
+      {
+        "title": "Rüstungsausgaben und Verteidigungsfähigkeit",
+        "timestamp_range": "01:08:34 - 01:10:11",
+        "theme_description": "Debatte über die Notwendigkeit von 5% Rüstungsbudget und Transparenz bei Rüstungsausgaben.",
+        "question_asked": "Ines Schwerdtner fragt, ob es richtig ist, 5% des BIP für Verteidigung auszugeben und kritisiert mangelnde Transparenz und Kontrolle über Rüstungsausgaben im Haushaltsausschuss.",
+        "question_intent": "Zu erfahren, wie Frei die Ausgabenhöhe und Kontrollierbarkeit von Rüstungsinvestitionen rechtfertigt.",
+        "position": "Frei begründet die 5% mit einer gefährlicheren Weltlage: \"Wir leben in einer gefährlicheren Welt als noch vor wenigen Jahren. Allein wenn man auf die ersten Tage dieses Jahres schaut, der Nahe Osten, Iran, Ukraine, Venezuela, Grönland, das zeigt einfach, dass wir in einer schwierigeren und gefährlicheren Welt leben.\" Er warnt vor Abrutschen von einer \"regelbasierten Ordnung hin zurück in den Dschungel\" und betont die Notwendigkeit der \"Verteidigungsfähigkeit\". Zur Transparenz-Kritik Schwerdtners antwortet er: \"Sie bekommen darauf auch Antworten, auch im Haushaltsausschuss.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die Frage zum 5%-Budget mit geopolitischer Begründung, reagiert aber auf die konkrete Kritik zur fehlenden Transparenz weniger substantiell (\"Sie bekommen darauf auch Antworten\") ohne Details zu liefern.",
+        "concrete_statements": [
+          "Wir leben in einer gefährlicheren Welt als noch vor wenigen Jahren.",
+          "Es gibt die große Gefahr, dass wir vollkommen abrutschen, von einer regelbasierten Ordnung hin zurück in den Dschungel.",
+          "Dafür müssen wir verteidigungsfähig sein."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde, das ist offensichtlich. Wir leben in einer gefährlicheren Welt als noch vor wenigen Jahren. Allein wenn man auf die ersten Tage dieses Jahres schaut, der Nahe Osten, Iran, Ukraine, Venezuela, Grönland, das zeigt einfach, dass wir in einer schwierigeren und gefährlicheren Welt leben.",
+            "timestamp": "01:09:06",
+            "context": "Begründung für 5% Rüstungsbudget."
+          },
+          {
+            "text": "Es gibt die große Gefahr, dass wir vollkommen abrutschen, von einer regelbasierten Ordnung hin zurück in den Dschungel. Dafür müssen wir verteidigungsfähig sein.",
+            "timestamp": "01:09:06",
+            "context": "Geopolitische Warnung und Begründung für Verteidigungsfähigkeit."
+          }
+        ]
+      },
+      {
+        "title": "Europäischer nuklearer Schutzschirm",
+        "timestamp_range": "01:10:41 - 01:11:50",
+        "theme_description": "Diskussion über einen europäischen Atomwaffenschutz unabhängig von US-Garantien.",
+        "question_asked": "Ines Schwerdtner fragt, ob es einen europäischen nuklearen Abwehrschirm geben sollte und wer 'den Knopf drücken' würde. Thorsten Frei wird gefragt, ob Deutschland für Atomwaffen-Technologien offen ist.",
+        "question_intent": "Zu klären, ob Deutschland oder die EU eine unabhängige Atommacht sein sollte und wie das rechtlich und praktisch umzusetzen ist.",
+        "position": "Frei antwortet rechtlich korrekt: \"Für Deutschland ist das völkerrechtlich ausgeschlossen.\" Er sagt aber, Deutschland könne \"Teil eines atomaren Schutzschirms\" sein. Er verweist auf französische und britische Kapazitäten und sagt: \"Ich glaube schon, dass es sinnvoll ist, sich mit den europäischen Partnern darüber zu unterhalten, wie wir uns auch komplementär gut schützen können.\" Das vermeidet eine klare Forderung nach eigenständigen Atomwaffen, stellt aber multilaterale Lösungen in Aussicht.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Frei adressiert die rechtliche Grenze (völkerrechtlich ausgeschlossen für Deutschland) und weicht auf europäische Kooperation aus. Er beantwortet die Frage nach einer europäischen Atommacht nur indirekt und vage (\"darüber unterhalten\"), statt eine klare Position zu nehmen.",
+        "concrete_statements": [
+          "Für Deutschland ist das völkerrechtlich ausgeschlossen.",
+          "Dass wir Atomwaffen haben. Aber dass wir Teil eines atomaren Schutzschirms sind...",
+          "Ich glaube schon, dass es sinnvoll ist, sich mit den europäischen Partnern darüber zu unterhalten, wie wir uns auch komplementär gut schützen können."
+        ],
+        "quotes": [
+          {
+            "text": "Für Deutschland ist das völkerrechtlich ausgeschlossen. Dass wir Atomwaffen haben. Aber dass wir Teil eines atomaren Schutzschirms sind...",
+            "timestamp": "01:10:41",
+            "context": "Rechtliche Klarstellung zur deutschen Atompolitik."
+          },
+          {
+            "text": "Ich glaube schon, dass es sinnvoll ist, sich mit den europäischen Partnern darüber zu unterhalten, wie wir uns auch komplementär gut schützen können.",
+            "timestamp": "01:11:18",
+            "context": "Vorsichtig formulierte Position zu europäischer Atomrüstung."
+          }
+        ]
+      },
+      {
+        "title": "Friedensverhandlungen Ukraine: Merz-Reise nach Moskau",
+        "timestamp_range": "01:13:24 - 01:15:36",
+        "theme_description": "Frage, ob Bundeskanzler Friedrich Merz nach Moskau reisen sollte, um Friedensgespräche zu führen.",
+        "question_asked": "Ines Schwerdtner sagt, Merz reise erst nach China (zu spät) und sollte stattdessen dafür sorgen, dass es Verhandlungen zwischen Selenskyj und Putin gibt. Sandra Maischberger fragt konkret: 'Soll Friedrich Merz nach Moskau reisen?'",
+        "question_intent": "Zu erfahren, ob die Bundesregierung eine direkte Diplomatie mit Russland führen wird und wie aktiv Merz in Friedensverhandlungen sein will.",
+        "position": "Frei weicht auf mehreren Ebenen aus: Erstens kritisiert er Schwerdtners Vorwurf als inkonsistent (\"zu viele Reisen\" vs. \"zu spät\"). Zweitens betont er, dass Merz \"derjenige\" war, der \"Deutschland wieder eine aktive Stimme gegeben hat außenpolitisch\" durch das E3-Format (mit Frankreich, Großbritannien) und multilaterale Zusammenarbeit. Drittens sagt er zur Moskau-Frage: \"Das hängt von unterschiedlichen Faktoren ab\" und verweist auf bisherige erfolglose Moskau-Reisen, die \"danach noch schlimmere Bombardierungen\" zur Folge hatten. Seine Schlussposition: \"Für uns ist entscheidend, dass wir eine aktive Rolle spielen, dass, wenn es um einen Frieden in Europa geht, in der Ukraine, dass das nicht über die Ukraine und über Europa hinweg passiert.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Frei beantwortet die Frage nicht direkt mit Ja oder Nein zu einer Moskau-Reise, sondern lenkt zu Merz' bisherigen Erfolgen (multilaterale Zusammenarbeit) ab und kritisiert Schwerdtners Vorwürfe als widersprüchlich. Das adressiert eher die Kritik an Merz als die Kernfrage nach Moskau.",
+        "concrete_statements": [
+          "Er war derjenige, der Deutschland wieder eine aktive Stimme gegeben hat außenpolitisch.",
+          "Damit hat Europa eine starke Stimme in diesem Konzept bekommen und spielt eine aktive Rolle.",
+          "Für uns ist entscheidend, dass wir eine aktive Rolle spielen, dass, wenn es um einen Frieden in Europa geht, in der Ukraine, dass das nicht über die Ukraine und über Europa hinweg passiert."
+        ],
+        "quotes": [
+          {
+            "text": "Fakt ist doch, er war derjenige, der Deutschland wieder eine aktive Stimme gegeben hat außenpolitisch. Er hat sich sofort im E3-Format mit Frankreich und Großbritannien zusammengetan, auch mit Polen und Italien.",
+            "timestamp": "01:13:56",
+            "context": "Verteidigung von Merz' außenpolitischer Aktivität gegen Schwerdtners Kritik."
+          },
+          {
+            "text": "Das hängt von unterschiedlichen Faktoren ab. Diejenigen, die zwischenzeitlich nach Moskau gereist sind, haben damit keinen Erfolg gehabt. Die Konsequenz war, dass es danach noch schlimmere Bombardierungen gab.",
+            "timestamp": "01:14:59",
+            "context": "Ausweichende Antwort zur Moskau-Reise mit Bezug auf bisherige erfolglose Reisen."
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Thorsten Frei hat eine 13-jährige, eine 15-jährige und eine 17-jährige Tochter/Kinder.",
+        "timestamp": "00:53:28"
+      },
+      {
+        "claim": "Die CDU hat einen Parteitagsbeschluss zu einem Social-Media-Verbot für unter 14-Jährige gefasst.",
+        "timestamp": "00:52:58"
+      },
+      {
+        "claim": "Die aktuellen Geburtsjahrsgänge sind halb so groß wie die in den 1960er-Jahren.",
+        "timestamp": "00:56:35"
+      },
+      {
+        "claim": "Das Verhältnis von Erwerbstätigen zu Rentnern ist von 6:1 auf 1,5:1 gesunken.",
+        "timestamp": "00:56:35"
+      },
+      {
+        "claim": "Die Sozialversicherungsbeiträge haben 42,7% des Bruttogehalts erreicht.",
+        "timestamp": "00:58:42"
+      },
+      {
+        "claim": "Mit der 'Aktivrente' erhalten Arbeitnehmer ab dem gesetzlichen Renteneintrittsalter die ersten 2.000 Euro monatlich steuerfrei hinzu.",
+        "timestamp": "01:00:15"
+      },
+      {
+        "claim": "Im österreichischen Rentensystem kann man nach 40 Beitragsjahren in Rente gehen.",
+        "timestamp": "01:00:45"
+      },
+      {
+        "claim": "Bei der 'Rente mit 63' (2014) konnten alle, die die Voraussetzungen erfüllten, bereits mit 63 in Rente gehen.",
+        "timestamp": "01:02:48"
+      },
+      {
+        "claim": "Friedrich Merz wurde mit 91,2% auf dem CDU-Parteitag wiedergewählt.",
+        "timestamp": "00:43:24"
+      },
+      {
+        "claim": "Der CDU-Parteitag beschloss eine Erhöhung des Spitzensteuersatzes ab 80.000 Euro.",
+        "timestamp": "01:07:01"
+      }
+    ]
+  }
+}

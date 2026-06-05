@@ -1,0 +1,449 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wOS0xN18yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-09-17",
+    "politician": "Gitta Connemann",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "536e4e8da80588fc",
+    "transcript_chars": 48682,
+    "caption_lines": 1835,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20314,
+    "tokens_out": 9669,
+    "cost_usd": 0.0274636,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 9
+    },
+    "generated_at": "2026-06-05T12:36:41.259Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Gitta Connemann (CDU/CSU, Parlamentarische Staatssekretärin im Wirtschaftsministerium) diskutierte mit Sandra Maischberger über Reformversprechen der Koalition, Energiepolitik und Sozialpolitik. Sie trat energisch gegen die Kritik der Grünen-Politikerin Katharina Dröge auf und betonte konkrete Maßnahmen, wirkte dabei jedoch teilweise defensiv angesichts von Fragen zur Umsetzung von Wahlversprechen.",
+    "themes": [
+      {
+        "title": "Bundeskanzler Scholz und Herbst der Reformen",
+        "timestamp_range": "00:06:20 - 00:07:54",
+        "theme_description": "Bewertung der Reformreden des Bundeskanzlers und Kritik an mangelndem konkreten Inhalt.",
+        "question_asked": "Sandra Maischberger fragte, ob Connemann wie andere Panelisten auch Bedenken bezüglich der «Herbst der Reformen»-Rhetorik hat und was sie von Scholz' heutiger Rede im Bundestag hält (paraphrasiert aus Kontext: Was erwartet sie konkret von der Regierung?).",
+        "question_intent": "Maischberger wollte wissen, ob Connemann die allgemeine Skepsis teilt, dass der Kanzler leere Versprechungen macht.",
+        "position": "Connemann kritisierte scharf, dass Scholz bei seiner Rede keine neuen Inhalte geliefert habe, sondern nur «gedroschene Sätze» wiederhole. Sie hätte erwartet, dass der Kanzler konkrete Hinweise gibt, wie Reformen umgesetzt werden. Sie forderte eine Änderung der Botschaftsstrategie im Kanzleramt. Gleichzeitig verteidigte sie jedoch die Koalition gegen Vorwürfe: Die Rente werde ab 2027 verhandelt, die Schuldenbremsen-Reform sei ins nächste Jahr verschoben – dies seien zwar unbefriedigende Zeitrahmen, aber die Regierung arbeite.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Connemann kritisierte Scholz' Rede konsequent, ging aber nicht wirklich auf Maischbergers eigentliche Frage ein (ob auch sie die Hoffnung aufgegeben hat). Stattdessen lieferte sie eine gemischte Bewertung: Kritik am Kanzler, aber Verteidigung der Koalitionsarbeit. Sie adressierte die fehlenden Inhalte, nicht aber die grundsätzliche Skepsis zur Machbarkeit.",
+        "quotes": [
+          {
+            "text": "Er hat ganz gemütlich daher geredet. Es gab keinen neuen Aspekt in seiner Rede. Es waren allesamt gedroschene Sätze. Ich war sehr erschrocken darüber.",
+            "timestamp": "00:03:40",
+            "context": "Connemann bewertete Scholz' Auftritt im Bundestag als rhetorisch schwach."
+          },
+          {
+            "text": "Dann kündigt man einen Stallgipfel an. Aus diesen Gipfeln wird meistens nichts. Es stimmt nicht ganz, was Sie sagen, Herr Jörges, wir wissen, woher das kommt. Die Rente wird ab 2027 verhandelt, die Schuldenbremse Reform wurde ins nächste Jahr verschoben.",
+            "timestamp": "00:05:45",
+            "context": "Connemann erklärte, warum Erwartungen nicht erfüllt wurden, verwies aber auf konkrete Timelines in Verhandlungen."
+          }
+        ],
+        "concrete_statements": [
+          "Der Kanzler hätte dringend Inhalte liefern müssen.",
+          "Man müsste langsam darüber nachdenken im Kanzleramt, dass man eine neue Botschaft raus bringt.",
+          "Die Rente wird ab 2027 verhandelt, die Schuldenbremse Reform wurde ins nächste Jahr verschoben."
+        ],
+        "related_bundestag_topics": [
+          "Reformprogramm",
+          "Schuldenbremse",
+          "Rentenpolitik",
+          "Koalitionsmanagement"
+        ]
+      },
+      {
+        "title": "Baerbock-Video und Selbstdarstellung von Politikern",
+        "timestamp_range": "00:16:31 - 00:17:31",
+        "theme_description": "Bewertung von Annalena Baerbocks Video aus New York und deren Stil der Kommunikation auf Social Media.",
+        "question_asked": "Sandra Maischberger fragte Connemann (nach Diskussion mit anderen Panelisten): «Frau Connemann, dieses Video erntet Häme. Als Frau: Kann man das gut finden, dass eine deutsche Politikerin so auf der Weltbühne sich darstellt?»",
+        "question_intent": "Maischberger wollte Connemanns Sicht als Frau und CDU-Politikerin auf Baerbocks Stil der Selbstdarstellung hören und ob dies klug oder unangemessen ist.",
+        "position": "Connemann sagte, sie habe das Video nicht kommentiert, bemerkte aber: «Sie lebt erkennbar ihren amerikanischen Traum. Aber am Ende ist die Frage, ob jemand, der auch von Deutschland als frühere Außenministerin, ob das so klug war.» Sie kritisierte die Selbstdarstellung auf Instagram grundsätzlich: «Mir geht die Selbstdarstellung auf Instagram grundsätzlich auf die Nerven. Und bei Politikern zumal.» Sie fand das Video aber nicht überraschend empörend. Sie betonte, dass es bei der Reaktion um eine Doppelmoral gehe: Markus Söder erhalte für seine «penetranten Essvideos» weniger Kritik als Baerbock.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Connemann antwortete auf die Frage, indem sie Baerbocks Video kritisierte, aber auch auf eine Doppelmoral bei der Bewertung hinwies (Söder vs. Baerbock). Sie adressierte die Frage nach Klugheit nur ambivalent ('ob das so klug war') und relativierte ihre eigene Kritik mit dem Hinweis auf fehlende Symmetrie.",
+        "quotes": [
+          {
+            "text": "Mir geht die Selbstdarstellung auf Instagram grundsätzlich auf die Nerven. Und bei Politikern zumal. Die Aufregung kann ich aber nicht teilen. Das Video ist harmlos.",
+            "timestamp": "00:16:31",
+            "context": "Connemann kritisierte Baerbocks Video, relativierte aber die öffentliche Aufregung."
+          }
+        ],
+        "concrete_statements": [
+          "Sie lebt erkennbar ihren amerikanischen Traum.",
+          "Ob jemand, der auch von Deutschland als frühere Außenministerin, ob das so klug war."
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Etikette",
+          "Außenpolitik",
+          "Kommunikationsstil",
+          "Geschlechterdebatten"
+        ]
+      },
+      {
+        "title": "Kritik an Robert Habeck und Bilanz der Grünen",
+        "timestamp_range": "00:22:21 - 00:24:30",
+        "theme_description": "Bewertung von Robert Habecks Amtszeit und dessen kritischen Äußerungen zur Bundestagspräsidentin Julia Klöckner.",
+        "question_asked": "Nach Dröges Verteidigung von Habecks Kritik an Klöckner fragte Connemann (quasi als Gegenfrage/eigene Initiative): Wie kann Habeck zuerst Klöckner loben und dann kritisieren, und wie bewertet Connemann dies?",
+        "question_intent": "Connemann wollte Dröges Position zur Konsistenz und zum Respekt gegenüber Frauen in Politischer Auseinandersetzung hinterfragen.",
+        "position": "Connemann kritisierte Robert Habeck scharf dafür, dass er zunächst eine Laudatio auf Julia Klöckner gehalten habe und sie dann «zu diskreditieren» versuche. Sie nannte dies «bemerkenswert» für einen Grünen, der Respekt für Frauen einfordere. Sie verteidigte Klöckker: «Sie geht absolut neutral gegen alle Störer im Bundestag vor. Dafür bin ich total dankbar, von ganz rechts bis ganz links.» Sie warf Habeck vor, beim Abschied zu wenig Größe zu zeigen. Sie hätte erwartet, dass er sich seiner eigenen Bilanz bewusst werde: «Seine Bilanz waren 3 verlorene Jahre für Deutschland» – durch Rezession und außenpolitische Bedeutungslosigkeit. Dies sei eine Bilanz, die man nicht vergessen sollte.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Connemann antwortete substantiell, drehte die Debatte aber nicht einfach um: Sie kritisierte Habeck und verteidigte Klöckner – was ein Pivot ist. Sie lenkte von der Frage ab, ob Habecks Kritik inhaltlich berechtigt ist, hin zu einer Kritik an Habecks Stil und seiner Bilanz als Wirtschaftsminister. Das ist ein Pivot zu einem Gegenpunkt (Habecks negative Bilanz).",
+        "quotes": [
+          {
+            "text": "Ich fand das interessant, Robert Habeck hat irgendwann eine Laudatio über Julia Klöckner gehalten. Wo er sie hochgelobt hat. Sie jetzt in dieser Art und Weise, zu diskreditieren. Übrigens, eine Frau. Finde ich für einen Grünen, der Respekt für Frauen einfordert, bemerkenswert.",
+            "timestamp": "00:23:25",
+            "context": "Connemann kritisierte Habecks Widerspruch in seinem Verhalten gegenüber Klöckner."
+          },
+          {
+            "text": "Ich hätte mir gewünscht, dass Robert Habeck mehr Größe zeigt beim Abschied. Ich hätte es gut gefunden, wenn er sich seine eigene Bilanz eingesehen hatte. Seine Bilanz waren 3 verlorene Jahre für Deutschland.",
+            "timestamp": "00:23:55",
+            "context": "Connemann bewertete Habecks Amtszeit als Wirtschaftsminister negativ."
+          }
+        ],
+        "concrete_statements": [
+          "Sie geht absolut neutral gegen alle Störer im Bundestag vor.",
+          "Seine Bilanz waren 3 verlorene Jahre für Deutschland.",
+          "Es war 3 Jahre Rezession. Wir hatten 3 Jahre auch außenpolitische Bedeutungslosigkeit."
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Geschlechterdebatten",
+          "Parlamentarische Ethik",
+          "Regierungsbilanz"
+        ]
+      },
+      {
+        "title": "Strompreise und Atomkraft-Strategie",
+        "timestamp_range": "00:26:15 - 00:34:02",
+        "theme_description": "Auseinandersetzung über die Ursachen hoher Strompreise in Deutschland und die richtige Energiepolitik zwischen Kernkraft und Erneuerbaren.",
+        "question_asked": "Sandra Maischberger fragte Connemann direkt (nach längerer Diskussion mit Dröge): «Frau Connemann, Sie sind Staatssekretärin. Was ist Ihre Antwort?» – bezogen auf Dröges Kritik an der Energiepolitik der Regierung unter Wirtschaftsminister Habeck.",
+        "question_intent": "Maischberger wollte Connemanns Position zur Frage hören: Trägt der Atomausstieg zu hohen Strompreisen bei, und was ist der richtige Weg?",
+        "position": "Connemann argumentierte, dass die hohen Strompreise in Deutschland (18 Cent vs. 8 Cent in den USA) auf den «kompletten Ausstieg aus der Kernenergie» zurückgehen. Sie kritisierte weiterhin einen «ungesteuerten Ausbau der erneuerbaren» ohne Strategie, ohne Backups und ohne erkennbare Zahlen. Sie betonte, dass die Regierung das nun ändern wolle: gesteuert und mit Systemverantwortung. Sie verwies darauf, dass erneuerbare Energien 60 Prozent zum Strom beitragen und daher Systemverantwortung übernehmen müssen. Sie verteidigte auch private Photovoltaik-Anlagen kritisch: Die Kosten würden auf den Steuerzahler umgelegt, daher sei es richtig, Subventionen abzubauen. Bezüglich Kernkraft kündigte sie einen Kernfusionsreaktor an und betonte, dass Deutschland derzeit von importierter Kernenergie abhängig sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann antwortete direkt auf die Frage mit einer klaren energiepolitischen Position: Sie verwies auf konkrete Ursachen (Atomausstieg, ungesteuerte Erneuerbare), nannte Lösungsansätze (gesteuerte Energiewende, Subventionsabbau) und setzte sich mit Dröges Gegenargumenten auseinander. Sie adressierte vollständig die Frage nach der Energiestrategie.",
+        "quotes": [
+          {
+            "text": "Wir haben Entscheidungen gehabt, die dazu geführt haben, dass der Strom in Deutschland der teuerste in Europa ist. Er haben einen Strompreis von 18 Cent in Deutschland, in den USA von 8 Cent. Das hat damit zu tun, dass es den kompletten Ausstieg aus der Kernenergie gegeben hat.",
+            "timestamp": "00:26:46",
+            "context": "Connemann erklärte die Ursachen hoher Strompreise."
+          },
+          {
+            "text": "Wir wollen den Ausbau der erneuerbaren Energien, aber gesteuert. Und in Kenntnis der Tatsache, dass die erneuerbaren 60 Prozent zum Strom beitragen. Sie müssen Systemverantwortung übernehmen.",
+            "timestamp": "00:34:37",
+            "context": "Connemann definierte ihren Weg der Energiewende."
+          }
+        ],
+        "concrete_statements": [
+          "Das Abschalten der Atomkraftwerke hat dazu geführt, dass der Preis teurer geworden ist.",
+          "Wir brauchen Versorgungssicherheit, bezahlbare und Umweltverträglichkeit.",
+          "Wir haben eine Vereinbarung, dass wir einen Kernfusionsreaktor in Deutschland bauen wollen.",
+          "Es ist richtig, weg mit Subventionierung, die am Ende nicht dem Markt dient."
+        ],
+        "related_bundestag_topics": [
+          "Energiewende",
+          "Atomenergie",
+          "Strompreise",
+          "Erneuerbare Energien"
+        ]
+      },
+      {
+        "title": "Mütterrente und Altersarmut",
+        "timestamp_range": "00:36:46 - 00:36:46",
+        "theme_description": "Frage, ob sich Deutschland eine neue Mütterrente leisten kann.",
+        "question_asked": "Sandra Maischberger fragte: «Kann sich Deutschland die Mütterrente jetzt leisten?»",
+        "question_intent": "Maischberger wollte wissen, ob Connemann angesichts angespannter Finanzen die Mütterrente für vertretbar hält.",
+        "position": "Connemann antwortet knapp: «Persönlich sage ich nein.» Sie hielt also eine Mütterrente für finanziell nicht leistbar. Sie deutete an, dass Altersarmut ein wichtigeres Problem sei, auf das man sich konzentrieren sollte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine klare, prägnante Antwort. Sie lehnte die Mütterrente ab und begründete dies indirekt mit Prioritäten (Altersarmut).",
+        "quotes": [
+          {
+            "text": "Persönlich sage ich nein.",
+            "timestamp": "00:36:46",
+            "context": "Connemann zur Finanzierbarkeit der Mütterrente."
+          }
+        ],
+        "concrete_statements": [
+          "Mütterrente ist nicht leistbar.",
+          "Altersarmut ist ein wichtigeres Thema."
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Altersarmut",
+          "Familienförderung"
+        ]
+      },
+      {
+        "title": "Bundesverfassungsgericht-Kandidatin Julia Klöckner",
+        "timestamp_range": "00:36:46 - 00:36:46",
+        "theme_description": "Bewertung der neuen Kandidatin für das Bundesverfassungsgericht.",
+        "question_asked": "Sandra Maischberger fragte: «Ist die neue Kandidatin für das Bundesverfassungsgericht eine gute Wahl?»",
+        "question_intent": "Maischberger wollte Connemanns Meinung zur Eignung der Kandidatin hören.",
+        "position": "Connemann antwortet knapp: «Ja.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine klare Ja-Antwort. Sie adressierte die Frage vollständig, auch wenn keine Begründung folgte.",
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:36:46",
+            "context": "Connemann zur neuen Bundesverfassungsgericht-Kandidatin."
+          }
+        ],
+        "concrete_statements": [
+          "Die neue Kandidatin für das Bundesverfassungsgericht ist eine gute Wahl."
+        ],
+        "related_bundestag_topics": [
+          "Justiz",
+          "Verfassungspolitik"
+        ]
+      },
+      {
+        "title": "Gendern in der öffentlichen Verwaltung",
+        "timestamp_range": "00:36:46 - 00:36:46",
+        "theme_description": "Position zur Genderdebatte in Behörden und Amtspflichten.",
+        "question_asked": "Sandra Maischberger fragte: «Sollen Beamte gendern dürfen?»",
+        "question_intent": "Maischberger wollte klären, ob Connemann Gendern als Pflicht, Recht oder Verbot sieht.",
+        "position": "Connemann antwortet: «Privat dürfen sie machen, was sie wollen.» Das impliziert: Im offiziellen Dienst soll Gendern nicht verpflichtend oder nicht gefördert werden; privat ist es erlaubt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine klare Position ab: Unterscheidung zwischen privatem und offiziellem Bereich. Sie adressierte die Frage vollständig.",
+        "quotes": [
+          {
+            "text": "Privat dürfen sie machen, was sie wollen.",
+            "timestamp": "00:36:46",
+            "context": "Connemann zum Gendern in der Verwaltung."
+          }
+        ],
+        "concrete_statements": [
+          "Beamte dürfen privat gendern, nicht im Dienst."
+        ],
+        "related_bundestag_topics": [
+          "Geschlechtergerechte Sprache",
+          "Verwaltung",
+          "Kulturpolitik"
+        ]
+      },
+      {
+        "title": "USA unter Trump und Außenpolitik",
+        "timestamp_range": "00:36:46 - 00:36:46",
+        "theme_description": "Bewertung der USA unter Donald Trump als Partner.",
+        "question_asked": "Sandra Maischberger fragte: «Ist Trump ein Freund?»",
+        "question_intent": "Maischberger wollte Connemanns Einschätzung der USA unter Trump als Verbündete wissen.",
+        "position": "Connemann antwortet: «Die USA ja, Trump nein.» Sie unterschied also zwischen dem Land (USA) und der Person (Trump). Die USA sind Freund/Partner, Trump ist es nicht.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine prägnante, differenzierte Antwort. Sie adressierte die Frage durch eine wichtige Unterscheidung vollständig.",
+        "quotes": [
+          {
+            "text": "Die USA ja, Trump nein.",
+            "timestamp": "00:36:46",
+            "context": "Connemann zur Frage, ob Trump ein Freund ist."
+          }
+        ],
+        "concrete_statements": [
+          "Die USA sind Freund/Partner, Trump ist es nicht."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "USA-Beziehungen",
+          "Geopolitik"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und Verteidigungspolitik",
+        "timestamp_range": "00:37:17 - 00:37:48",
+        "theme_description": "Position zur Wehrpflicht und ob sie verpflichtend sein sollte.",
+        "question_asked": "Sandra Maischberger fragte: «Sollte der Wehrdienst verpflichtend sein?» und später spezifischer: «Sollte er verpflichtend sein, wie Markus Söder das sagt?»",
+        "question_intent": "Maischberger wollte klären, ob Connemann für eine generelle Wehrpflicht eintritt oder das freiwillige Modell bevorzugt.",
+        "position": "Connemann erklärte zuerst: «Wir haben ihn jetzt verpflichtend auf den Weg gebracht, freiwillig verpflichtend.» Das ist eine etwas widersprüchliche Formulierung (freiwillig verpflichtend). Sie präzisierte dann: «Für mich persönlich ja» – also: Sie würde eine generelle Wehrpflicht unterstützen, so wie Söder sie fordert.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann antwortete auf beide Versionen der Frage. Sie erklärte den Status quo und ihre persönliche Position deutlich. Sie adressierte die Frage vollständig.",
+        "quotes": [
+          {
+            "text": "Wir haben ihn jetzt verpflichtend auf den Weg gebracht, freiwillig verpflichtend. Sollte er verpflichtend sein, wie Markus Söder das sagt? Für mich persönlich ja.",
+            "timestamp": "00:37:17",
+            "context": "Connemann zur Wehrpflicht."
+          }
+        ],
+        "concrete_statements": [
+          "Wir haben den Wehrdienst freiwillig verpflichtend auf den Weg gebracht.",
+          "Für mich persönlich: ja zu einer generellen Wehrpflicht wie Söder sie fordert."
+        ],
+        "related_bundestag_topics": [
+          "Verteidigungspolitik",
+          "Wehrpflicht",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Asylzahlen und Migrationspolitik",
+        "timestamp_range": "00:37:48 - 00:37:48",
+        "theme_description": "Kurze Bewertung der Asylzahlen-Reduktion durch die Regierung.",
+        "question_asked": "Sandra Maischberger fragte in schneller Abfolge: «Ist es ein Erfolg, dass die Asylzahlen um 60 Prozent gesunken sind?» (an Dröge, dann implizit an Connemann).",
+        "question_intent": "Maischberger wollte wissen, ob die Reduktion von Asylzahlen ein Erfolg ist oder ob die Maßnahmen ethisch/rechtlich fragwürdig sind.",
+        "position": "Connemann antwortet knapp: «Ja.» Sie bejahte damit, dass die 60-prozentige Reduktion ein Erfolg sei.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine klare, prägnante Antwort auf eine einfache Ja/Nein-Frage. Sie adressierte die Frage vollständig, auch wenn sie keine weiteren Argumente lieferte.",
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:37:48",
+            "context": "Connemann bewertete die Reduktion der Asylzahlen als Erfolg."
+          }
+        ],
+        "concrete_statements": [
+          "Asylzahlen-Reduktion um 60 Prozent ist ein Erfolg."
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Asylpolitik",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Finanzierung von Ukrainer-Bürgergeld",
+        "timestamp_range": "00:37:48 - 00:37:48",
+        "theme_description": "Frage, ob ukrainische Flüchtlinge weiterhin Bürgergeld erhalten sollen.",
+        "question_asked": "Sandra Maischberger fragte: «Soll es für Ukrainer kein Bürgergeld mehr geben?»",
+        "question_intent": "Maischberger wollte klären, ob die Regierung Sozialleistungen für Ukrainer einschränken will.",
+        "position": "Connemann antwortet prägnant: «Ja.» Sie tritt dafür ein, dass das Bürgergeld für Ukrainer gestrichen werden soll.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann gab eine klare Position ab. Sie antwortete direkt auf die Frage mit Ja.",
+        "quotes": [
+          {
+            "text": "Ja.",
+            "timestamp": "00:37:48",
+            "context": "Connemann befürwortete, das Bürgergeld für Ukrainer nicht mehr zu zahlen."
+          }
+        ],
+        "concrete_statements": [
+          "Bürgergeld für Ukrainer sollte gestrichen werden."
+        ],
+        "related_bundestag_topics": [
+          "Sozialleistungen",
+          "Ukraine-Unterstützung",
+          "Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Leistungsfähigkeit des Sozialsystems und Bürgergeld",
+        "timestamp_range": "00:38:18 - 00:40:54",
+        "theme_description": "Frage, ob Deutschland sich den heutigen Sozialstaat noch leisten kann und wie Sozialreformen aussehen sollten.",
+        "question_asked": "Sandra Maischberger fragte Connemann: «Können wir uns diesen Sozialstaat leisten? Nein, ich bin absolut bei Friedrich Merz...» – Connemann sollte sich positionieren zu Merz' Aussage, dass der Sozialstaat von heute nicht mehr leistbar ist.",
+        "question_intent": "Maischberger wollte wissen, ob Connemann Merz' kritische Diagnose des Sozialstaates teilt oder eher mit Bas argumentiert, dass die Formulierung problematisch ist.",
+        "position": "Connemann positionierte sich klar bei Merz: Der Sozialstaat habe strukturelle Probleme, die Lohnnebenkosten seien zu hoch, das System hebe sich selbst aus. Sie nannte das Bürgergeld als Beispiel einer Fehlentwicklung (50 Mrd. Euro Kosten, davon 1,8 Mrd. für Unterbringung). Sie betonte, dass es 1,4 Mio. offene Stellen gibt, aber 1,8 Mio. Erwerbsfähige, die nicht arbeiten. Sie sah dies als Gerechtigkeitsfrage: Steuerzahler erwarten, dass ihre Gelder Bedürftige unterstützen, nicht dass Menschen «im System verhaftet» sind, obwohl sie arbeiten könnten. Sie verteidigte also eine Reformposition, die das Bürgergeld kritisiert, ohne es ganz abzulehnen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Connemann antwortete direkt auf die Frage: Sie teilte Merz' Diagnose und lieferte konkrete Zahlen und Argumente. Sie adressierte sowohl die strukturelle Frage (Lohnnebenkosten) als auch ein Reformbeispiel (Bürgergeld). Sie beantwortete die Frage vollständig und differenziert.",
+        "quotes": [
+          {
+            "text": "Nein, ich bin absolut bei Friedrich Merz, der einen Befund gefällt hat, dass wir einen Sozialstaat haben, der das Fundament frisst, wenn er zu teuer wird, was auch Lohnnebenkosten angeht, was Abgaben angeht.",
+            "timestamp": "00:39:22",
+            "context": "Connemann stimmte Merz' These zu, dass der Sozialstaat finanziell nicht nachhaltig ist."
+          },
+          {
+            "text": "Es kostet momentan 50 Mrd. Euro. Das ist eine große Menge. Alleine 1,8 Mrd. Kosten für die Unterbringung. Wir haben dabei Erwerbsfähige, die nicht in Arbeit sind, obwohl 1,4 Mio. Stellen nicht besetzt werden.",
+            "timestamp": "00:39:53",
+            "context": "Connemann begründete ihre Kritik am Bürgergeld mit konkreten Zahlen."
+          }
+        ],
+        "concrete_statements": [
+          "Der Sozialstaat hat das Fundament frisst, wenn er zu teuer wird.",
+          "Das Bürgergeld kostet momentan 50 Mrd. Euro.",
+          "Es gibt eine Gerechtigkeitsfrage: Menschen zahlen Steuern, in der Erwartung, dass sie die unterstützen, die Hilfe brauchen."
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Sozialreform",
+          "Arbeitsmarkt",
+          "Lohnnebenkosten"
+        ]
+      },
+      {
+        "title": "Geduld der Wähler und Umsetzungstempo der Regierung",
+        "timestamp_range": "00:43:36 - 00:45:41",
+        "theme_description": "Debatte über die zeitliche Dimension von Reformen und ob die Wähler Geduld haben, bis Maßnahmen sichtbar werden.",
+        "question_asked": "Sandra Maischberger fragte Connemann: «Wie viel Geduld müssen wir denn haben, Frau Connemann? Die Wirtschaft schrumpft, die Arbeitslosenzahl steigt. Wann wird das, wofür der Kanzler Geduld fordert, sichtbar?»",
+        "question_intent": "Maischberger wollte von Connemann wissen, wann konkrete Ergebnisse für Wähler sichtbar werden und ob Geduld realistisch ist angesichts negativer wirtschaftlicher Indikatoren.",
+        "position": "Connemann verteidigte die Notwendigkeit von Geduld, verwies aber auf bereits beschlossene und anlaufende Maßnahmen: Investitions-Booster, steuerliche Investitionserleichterungen in Forschung, geplante Abschaffung einer Gaspreisumlage. Sie nannte auch Maßnahmen mit schnellerer Wirkung wie den Abschreibungs-Booster und Sport-Mrd. Sie argumentierte, dass es unrealistisch sei, dass der Kanzler «in Gelsenkirchen Straßenbau» veranlasse – das sei Aufgabe der Kommunen. Sie gab zu: Der Kanzler müsste Klarheit liefern, was bis wann passiert. Sie behielt aber optimistische Hoffnung: «Einen Hoffnungsschimmer habe ich immer. Ohne Hoffnung wäre es düster. Aber man kann nicht alles in 5 Monaten schaffen.»",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Connemann antwortete auf die Frage nach Geduld mit einer Mischung aus Verteidigung der Regierung (Maßnahmen sind im Gange) und Zugeständnissen (mehr Klarheit wäre nötig). Sie adressierte nicht wirklich die skeptische Grundfrage Maischbergers (ist Geduld realistisch?), sondern wechselte zu einer Hoffnungsbotschaft. Das ist eine teilweise Antwort.",
+        "quotes": [
+          {
+            "text": "Wir haben eine Menge auf den Weg gebracht. Zum Beispiel den Investitions-Booster. Wir haben gerade steuerliche Investitionen in die Forschung. Zum Beispiel die Abschaffung einer Gaspreisumlage, beschlossen ist.",
+            "timestamp": "00:45:41",
+            "context": "Connemann listete bereits implementierte oder geplante Maßnahmen auf."
+          },
+          {
+            "text": "Einen Hoffnungsschimmer habe ich immer. Ohne Hoffnung wäre es düster. Aber man kann nicht alles in 5 Monaten schaffen.",
+            "timestamp": "00:14:22",
+            "context": "Connemann verteidigte Geduld, betonte aber auch die Notwendigkeit von Klarheit."
+          }
+        ],
+        "concrete_statements": [
+          "Es gibt Maßnahmen, die werden im Herbst wirken.",
+          "Der Investitions-Booster muss erst mal anlaufen.",
+          "Der Kanzler wird niemals in Gelsenkirchen Straßenbau."
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik",
+          "Koalitionsmanagement",
+          "Regierungserfolge",
+          "Investitionen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der Strompreis in Deutschland liegt bei 18 Cent, in den USA bei 8 Cent.",
+        "timestamp": "00:26:46"
+      },
+      {
+        "claim": "Das Bürgergeld kostet momentan 50 Mrd. Euro.",
+        "timestamp": "00:39:53"
+      },
+      {
+        "claim": "Alleine 1,8 Mrd. Kosten für die Unterbringung im Bürgergeld-System.",
+        "timestamp": "00:39:53"
+      },
+      {
+        "claim": "Es gibt 1,4 Mio. offene Stellen, aber 1,8 Mio. Erwerbsfähige sind nicht in Arbeit.",
+        "timestamp": "00:40:24"
+      },
+      {
+        "claim": "Erneuerbare Energien tragen 60 Prozent zum Strom bei.",
+        "timestamp": "00:34:37"
+      },
+      {
+        "claim": "Die Asylzahlen sind um 60 Prozent gesunken.",
+        "timestamp": "00:37:48"
+      }
+    ]
+  }
+}

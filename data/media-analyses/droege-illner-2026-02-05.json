@@ -1,0 +1,270 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-5-februar-2026-100",
+    "video_id": "illner-2026-02-05",
+    "politician": "Katharina Dröge",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "34287f10d503d9a5",
+    "transcript_chars": 47405,
+    "caption_lines": 2335,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20530,
+    "tokens_out": 7152,
+    "cost_usd": 0.022516,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "pivot_zum_gegenpunkt": 1,
+      "teilweise_antwort": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.160Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Katharina Dröge, Fraktionsvorsitzende der Grünen, diskutiert in der Sendung \"Maybrit Illner\" über Reformvorschläge zur Stärkung der Wettbewerbsfähigkeit Deutschlands. Sie verteidigt das Recht auf Teilzeitarbeit als Erfolgsgeschichte für die Erwerbsbeteiligung von Frauen und kritisiert Vorschläge zur Einschränkung dieses Rechts als \"Unverschämtheit\". Insgesamt argumentiert Dröge für eine gerechtere Verteilung von Erwerbstätigkeit und Hausarbeit und gegen eine ausschließliche Lastenverteilung auf Arbeitnehmer.",
+    "themes": [
+      {
+        "title": "Teilzeitarbeit als Erfolgsgeschichte für Frauen",
+        "timestamp_range": "00:09:30 - 00:12:23",
+        "theme_description": "Katharina Dröge verteidigt die Teilzeitarbeit als wichtiges Instrument für die Erwerbsbeteiligung von Frauen in Deutschland.",
+        "question_asked": "Maybrit Illner hinterfragt die Grünen-Empörung über Teilzeit-Vorschläge und wirft vor, die Grünen würden insgeheim denken, weniger Teilzeitjobs wären gut.",
+        "question_intent": "Illner möchte wissen, ob die Grünen tatsächlich gegen Teilzeitarbeit sind oder ob sie nur für Show empört sind.",
+        "position": "Dröge argumentiert, dass 'die Tatsache, dass so viele Frauen sich entschieden haben, Teilzeit zu arbeiten, dazu geführt hat, dass wir mehr Beschäftigte in Deutschland haben.' Sie sieht Teilzeit als 'Erfolgsgeschichte von Erwerbstätigkeit von Frauen' und weist darauf hin, dass 80% der Teilzeitbeschäftigten Frauen sind. Sie kritisiert die CDU-Position als 'Unverschämtheit' und argumentiert, dass Frauen faktisch zwei Jobs haben (einen unbezahlten), weshalb eine Debatte, die Frauen 'Lifestyle' vorwirft, aus ihrer Sicht lächerlich ist.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dröge beantwortet Illners Frage direkt und substantiell: Sie erklärt nicht nur, warum sie nicht gegen Teilzeit ist, sondern liefert auch Daten (80% Frauenanteil) und ein Argument für die wirtschaftliche Bedeutung (höhere Beschäftigtenzahlen). Sie weist die implizite Unterstellung Illners mit Fakten zurück.",
+        "concrete_statements": [
+          "Teilzeit ist eine Erfolgsgeschichte von Erwerbstätigkeit von Frauen",
+          "80% in Teilzeit sind Frauen",
+          "Dieses 'Lifestyle'-Vorwurf der CDU ist eine Unverschämtheit"
+        ],
+        "quotes": [
+          {
+            "text": "Im Gegenteil, die Tatsache, dass so viele Frauen sich entschieden haben, Teilzeit zu arbeiten, hat dazu geführt, dass wir mehr Beschäftigte in Deutschland haben. Deswegen ist Teilzeit eine Erfolgsgeschichte von Erwerbstätigkeit von Frauen gewesen.",
+            "timestamp": "00:09:30",
+            "context": "Maybrit Illner behauptet, die Grünen würden insgeheim denken, weniger Teilzeitjobs wären gut. Dröge widerlegt dies mit ökonomischen Argumenten."
+          },
+          {
+            "text": "Frauen haben zwei Jobs, einer ist unbezahlt. Solange Frauen weiterhin die gesamte Hausarbeit schultern müssen und trotzdem weniger Lohn und Rente bekommen und die CDU sich nicht hinstellt und sagt, wir wollen dafür sorgen, dass Männer und Frauen gleichberechtigt sind, finde ich die Debatte, die Frauen ein Lifestyle vorwirft eine Debatte über die Frauen nur lachen können.",
+            "timestamp": "00:09:30",
+            "context": "Dröge kritisiert die geschlechtergerechtigkeitspolitische Inkonsequenz der CDU und deren Rhetorik gegenüber Frauen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Frauenbeschäftigung",
+          "Teilzeitregelungen",
+          "Geschlechterparität",
+          "Arbeitsmarktpolitik"
+        ]
+      },
+      {
+        "title": "Rechtsanspruch auf Teilzeit als Freiheitsrecht",
+        "timestamp_range": "00:11:28 - 00:13:03",
+        "theme_description": "Dröge verteidigt den bestehenden Rechtsanspruch auf Teilzeitarbeit als grundlegende Freiheit gegen Pläne zu dessen Einschränkung.",
+        "question_asked": "Maybrit Illner stellt eine Präzisierungsfrage: Ob es richtig ist, aus dem CDU-Antrag zu interpretieren, dass dieser Rechtsanspruch abgeschafft werden soll, wenn der Antrag bestimmte Gruppen (Erzieher, sich Weiterbildende, Pflegekräfte) ausnimmt.",
+        "question_intent": "Illner möchte klären, ob Dröge den CDU-Antrag zu simpel darstellt oder ob der Antrag tatsächlich eine substantielle Einschränkung bedeutet.",
+        "position": "Dröge argumentiert, dass selbst mit Ausnahmen die Kernproblematik bleibt: Der momentane Rechtsanspruch ermöglicht es Beschäftigten zu sagen, 'es geht für mich gerade nicht, deswegen muss ich Teilzeit arbeiten.' Die geplante Einschränkung werde in der Realität dazu führen, dass Menschen, die ihre Arbeitszeit reduzieren müssen, dies ablehnen aus wirtschaftlicher Notwendigkeit ('weil das Geld sowieso nicht reicht') und stattdessen ganz aufhören zu arbeiten. Sie sieht dahinter ein Problem unzureichender Infrastruktur und Lebenskosten, nicht mangelnde Arbeitsbereitschaft.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dröge beantwortet die Präzisierungsfrage präzise, indem sie erklärt, warum selbst mit Ausnahmen die geplante Änderung problematisch ist. Sie adressiert direkt Illners Punkt ('ist es richtig daraus zu machen, man will das abschaffen?') und belegt ihre Position mit Alltagsrealität.",
+        "concrete_statements": [
+          "Der Rechtsanspruch ermöglicht Menschen zu sagen: 'es geht für mich gerade nicht, deswegen muss ich Teilzeit arbeiten'",
+          "Eine Einschränkung würde dazu führen, dass Menschen ganz aufhören zu arbeiten statt Teilzeit zu arbeiten"
+        ],
+        "quotes": [
+          {
+            "text": "Momentan haben der Beschäftigte ein Recht darauf zu sagen, es geht für mich gerade nicht, deswegen muss ich Teilzeit arbeiten. Jetzt geht es darum diesen Rechtsanspruch einzuschränken. Was in der Realität dazu führen wird, dass Menschen dann sagen, ich kriege das nicht hin im Alltag und hören dann ganz aufzuarbeiten.",
+            "timestamp": "00:11:28",
+            "context": "Dröge erklärt, warum die geplante Einschränkung des Rechtsanspruchs praktisch kontraproduktiv wäre."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsrecht",
+          "Arbeitsmarktflexibilität",
+          "Vereinbarkeit Familie und Beruf"
+        ]
+      },
+      {
+        "title": "Kritik an einseitiger Lasten-Rhetorik gegenüber Arbeitnehmern",
+        "timestamp_range": "00:24:11 - 00:24:41",
+        "theme_description": "Dröge kritisiert ein Muster in der CDU/CSU-Rhetorik, das Arbeitnehmer als faul darstellt und ihnen einseitig Verantwortung für wirtschaftliche Probleme zuweist.",
+        "question_asked": "Thorsten Frei wirft Dröge vor, sie würde 'aus einem Antrag herausziehen, was sie gerne hätte', und kritisiert ein 'typisch grünes' Verhalten, anderen zu sagen, wie sie ihr Leben zu führen haben. Dröge antwortet, dass sie Freiheit für alle gewährleisten möchte.",
+        "question_intent": "Frei möchte Dröge widerlegen und suggerieren, dass die Grünen bevormundend seien.",
+        "position": "Dröge stellt fest, dass 'der deutsche Bundeskanzler' sagt, mit 'work life balance kriegen wir die Wirtschaft nicht entsprungen' und wertet dies als symptomatisch für ein Muster 'der Spitzen der CDU', das immer wieder in Serie auftritt. Sie kritisiert diesen 'Sound', dass Beschäftigte als Faulenzer dargestellt werden. Dahinter sieht sie die Verfehlung der CDU, dass mehr Erwerbstätigkeit von Frauen (640.000 zusätzliche Erwerbstätige) möglich wäre, wenn die richtigen Bedingungen geschaffen würden — was die CDU nicht leiste.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Dröge antwortet auf Freis Kritik an grüner Bevormundung nicht direkt ('Nein, ich möchte die Freiheit...'), sondern lenkt um zu einer Gegenattacke: Sie kritisiert die CDU-Rhetorik selbst als bevormundend ('Faulenzer', einseitige Lasten) und verweist auf ein Versprechen (640.000 mehr Frauen in Erwerbstätigkeit), das die CDU nicht erfüllt. Dies ist ein legitimes rhetorisches Manöver, das aber die konkrete Frage ('typisch grüne Bevormundung') durch eine Gegenpolitik-Kritik ersetzt.",
+        "concrete_statements": [
+          "Die Spitzen der CDU machen immer wieder in Serie Aussagen, die Beschäftigte als Faulenzer darstellen",
+          "640.000 mehr Erwerbstätige wären möglich, wenn Frauen so viel arbeiten könnten wie sie können — das schafft die CDU nicht"
+        ],
+        "quotes": [
+          {
+            "text": "Das macht auch der deutsche Bundeskanzler, der sagt, mit work life balance kriegen wir die Wirtschaft nicht entsprungen. Es sind schon die Spitzen der CDU, die das immer wieder in Serie machen. Es ist immer wieder der Sound, dass die Beschäftigten in diesem Land Faulenzer wäre.",
+            "timestamp": "00:24:11",
+            "context": "Dröge kritisiert ein wiederkehrendes Muster in der Union-Rhetorik, nachdem Frei ihr 'typisch grüne' Bevormundung vorgeworfen hatte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Geschlechterparität",
+          "Reformdebatte",
+          "Arbeitsstandards"
+        ]
+      },
+      {
+        "title": "Debattenkultur und Darstellung von CDU-Anträgen",
+        "timestamp_range": "00:34:03 - 00:35:52",
+        "theme_description": "Dröge wehrt sich gegen den Vorwurf Robin Alexanders, die Grünen hätten einen CDU-Antrag absichtlich falsch dargestellt und damit 'die Debatte kaputt gemacht'.",
+        "question_asked": "Robin Alexander behauptet, die Grünen hätten den CDU-Antrag zu Teilzeitrechten falsch interpretiert und absichtlich Ausnahmen (für Erzieher, sich Weiterbildende, Pflegekräfte) verschwiegen, um ihn zu diskreditieren. Dröge antwortet zuerst mit 'Ich lasse mir nicht nachsagen, was nicht wahr ist' und fordert Alexander auf, konkret zu benennen, wen er meine.",
+        "question_intent": "Alexander möchte Dröge der Manipulationstaktik überführen; Dröge möchte sich verteidigen und Alexander zwingen, konkret zu werden.",
+        "position": "Dröge weist den Vorwurf explizit zurück ('Ich lasse mir nicht nachsagen, was nicht wahr ist') und fordert Alexander zu Präzisierung auf ('wen meinen Sie dann, bei dem es ein gesprengt werden könnte?'). Sie macht sich nicht auf eine diffuse Debatte ein, sondern verlangt Konkretheit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Dröge weist den Vorwurf zurück und fordert Konkretheit, beantwortet aber Alexanders implizite Frage nach ihrer Darstellung des Antrags nicht substantiell (warum dachte sie, dass dieser Antrag problematisch ist). Sie setzt stattdessen auf eine 'höhere' Debatte (Ich lasse mir nicht nachsagen…), was taktisch geschickt ist, aber die Sachfrage nicht löst.",
+        "concrete_statements": [
+          "Dröge weist den Vorwurf falscher Darstellung zurück"
+        ],
+        "quotes": [
+          {
+            "text": "Ich lasse mir nicht nachsagen, was nicht wahr ist. Die zweite Frage ist an sie ganz konkret: wen meinen Sie dann, bei dem es ein gesprengt werden könnte?",
+            "timestamp": "00:34:03",
+            "context": "Dröge wehrt sich gegen Alexanders Kritik, die Grünen hätten einen CDU-Antrag falsch dargestellt, und fordert ihn zu Konkretheit auf."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Debattenkultur",
+          "Mediendarstellung von Politikern",
+          "Arbeitsmarktreformen"
+        ]
+      },
+      {
+        "title": "Lebensarbeitszeit und Rente: Vorschlag für flexible Lebensarbeitszeit",
+        "timestamp_range": "00:42:36 - 00:44:13",
+        "theme_description": "Dröge präsentiert den Grünen-Vorschlag einer flexiblen Lebensarbeitszeit statt starre Rentenalteranpassung und kritisiert Arbeitsverbote für Geflüchtete.",
+        "question_asked": "Maybrit Illner verweist auf einen Grünen-Vorschlag zur Lebensarbeitszeit und möchte wissen, wie dieser konkret aussieht. Später wirft Thorsten Frei Dröge vor, mit 'Arbeitsverboten' falsch zu behaupten, dass die Union Migration nicht am Arbeitsmarkt ermöglicht.",
+        "question_intent": "Illner möchte die Grüne Alternative verstehen; Frei möchte Dröges Kritik an der Union diskreditieren.",
+        "position": "Dröge erklärt: Es gibt 'ein großes Potenzial von Menschen, die länger arbeiten könnten, wenn die Bedingungen stimmen'. Das Kernproblem sei die Rente mit 63, die 'den Anreiz in die falsche Richtung setzt'. Die Grünen schlagen statt dessen vor: 'Rente mit 63 nur für die, die nicht können und dann auch alle bis 67 arbeiten.' Dies sei ein flexibler Ansatz. Zu Arbeitsverboten für Asylsuchende hält sie dagegen: Die Union habe 'die Bedingungen verschlechtert für diejenigen, die sehr gut Deutsch sprechen, die sich schnell integrieren, die einen Job haben.' Es gebe weiterhin 'Arbeitsverbote'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Dröge adressiert Illners Frage zur Lebensarbeitszeit substantiell und konkret. Zu Freis Einwand auf 'Arbeitsverbote' hin gibt sie eine teilweise Antwort: Sie wiederholt ihre Aussage, belegt sie aber nicht mit Details, sondern verlagert in eine Gegenattacke ('Sie haben die Bedingungen verschlechtert'). Damit antwortet sie teilweise auf die sachliche Frage, nutzt aber auch ein Umleitungsmuster.",
+        "concrete_statements": [
+          "Rente mit 63 nur für die, die nicht können; alle anderen arbeiten bis 67",
+          "Bedingungen für Geflüchtete mit Deutschkenntnissen und Job wurden von der Union verschlechtert",
+          "Es gibt weiterhin Arbeitsverbote für Geflüchtete"
+        ],
+        "quotes": [
+          {
+            "text": "Es liegt ein großes Potenzial von Menschen, die länger arbeiten könnten, wenn die Bedingungen stimmen könnten. Das ist ein zentraler Schlüssel und die Rente mit 63 setzt den Anreiz in die falsche Richtung. Deswegen haben wir Grünen gesagt, die Rente mit 63 nur für die, die nicht können und dann auch alle bis 67 arbeiten.",
+            "timestamp": "00:42:36",
+            "context": "Dröge präsentiert den Grünen-Vorschlag zur flexibilisierung der Lebensarbeitszeit, nachdem Michael Hüther auf demografische Herausforderungen hingewiesen hat."
+          },
+          {
+            "text": "Sie haben die Bedingungen wieder verschlechtert für diejenigen, die sehr gut Deutsch sprechen, die sich schnell integrieren, die einen Job haben, für die haben Sie die Bedingungen verschlechtert.",
+            "timestamp": "00:44:19",
+            "context": "Dröge kritisiert Frei, nachdem dieser behauptet hatte, dass die Union Arbeitsverbote nicht einführt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Lebensarbeitszeit",
+          "Migrationspolitik",
+          "Arbeitsmarktintegration"
+        ]
+      },
+      {
+        "title": "Investitionen und Wachstum statt Lasten auf Arbeitnehmer",
+        "timestamp_range": "00:51:22 - 00:53:26",
+        "theme_description": "Dröge argumentiert für eine Fokussierung auf Investitionen und Wirtschaftswachstum statt auf eine einseitige Erhöhung der Arbeitslasten.",
+        "question_asked": "Maybrit Illner fragt, ob der Feiertag (als Sparmaßnahme) Dröge helfe. Dröge antwortet mit einer Gegenfrage nach alternativen Lösungen.",
+        "question_intent": "Illner möchte wissen, wie Dröge zu einem konkreten Sparvorschlag steht.",
+        "position": "Dröge lehnt die Fokussierung auf Sparmaßnahmen zu Lasten der Arbeitnehmer ab und fragt statt dessen: 'warum gibt es auch Leute die weniger arbeiten müssen?' Sie argumentiert, dass, wenn Frauen in den Arbeitsmarkt gehen, 'die Arbeit zuhause' nicht wegfällt, sondern sich zwischen Partnern verteilt. Die zentrale Frage sei nicht, Arbeitnehmer unter Druck zu setzen, sondern 'was Wirtschaftswachstum diesem Land bringen würde.' Sie verweist auf Sachverständigen-Aussagen, dass zusätzliche Investitionen 'einen doppelt so hohen' Effekt hätten als die diskutierten Maßnahmen.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Illner fragt, ob ein Feiertag 'hilft'. Dröge antwortet nicht mit ja/nein, sondern lenkt die Debatte zu grundsätzlicheren Fragen: Warum sollten Menschen weniger arbeiten? Warum nicht Investitionen? Dies ist eine bewusste Umleitung der Frage zu einem anderen Thema (Investitionen statt Sparmaßnahmen), die Dröges Alternative deutlich macht, aber nicht direkt auf Illners Frage antwortet.",
+        "concrete_statements": [
+          "Wirtschaftswachstum durch Investitionen hätte einen doppelt so hohen Effekt als Sparmaßnahmen",
+          "Die Debatte sollte nicht nur auf Druck für Beschäftigte fokussieren, sondern auf Investitionen"
+        ],
+        "quotes": [
+          {
+            "text": "Diese große Frage, warum gibt es auch Leute die weniger arbeiten müssen. Wenn Frauen in den Arbeitsmarkt gehen, dann heißt es nicht dass die Arbeit zuhause wegfällt. Männer und Frauen teilen sich etwas mehr auf. Man kann sich das besser vereinbaren. Es ist nicht die Lebensrealität von Familien. Ich finde es nicht richtig die Debatte immer nur den Druck auf Beschäftigte zu führen. Man müsste auch darüber sprechen was Wirtschaftswachstum diesen Land bringen würde.",
+            "timestamp": "00:51:32",
+            "context": "Dröge lehnt eine einseitige Fokussierung auf Sparmaßnahmen ab und fordert eine breitere Debatte über Investitionen und Geschlechterparität."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Fiskalpolitik",
+          "Wirtschaftswachstum",
+          "Konjunkturpolitik",
+          "Geschlechterparität"
+        ]
+      },
+      {
+        "title": "Arbeitszeitgesetz und tägliche Höchstarbeitszeit als Schutzstandard",
+        "timestamp_range": "00:59:56 - 01:00:24",
+        "theme_description": "Dröge verteidigt die geltende tägliche Höchstarbeitszeit von acht Stunden als wichtigen Schutzstandard für Arbeitnehmer.",
+        "question_asked": "Maybrit Illner fragt nach Dröges Sicht auf die europäische Richtlinie zur Wochenarbeitszeit und ob sie 'nicht schlecht' sei. Im Kontext wird deutlich, dass die Regierung eine Flexibilisierung plant, die von einer Tages- zu einer Wochenarbeitszeitbegrenzung führt.",
+        "question_intent": "Illner möchte wissen, ob Dröge auch Flexibilisierungen für machbar hält, oder ob sie an starren Regeln festhält.",
+        "position": "Dröge begründet die Notwendigkeit täglicher Grenzen mit zwei Argumenten: (1) Müdigkeitseffekte — 'Wer zu lange arbeitet wird müde und macht Fehler'; (2) Familiäre Auswirkungen — wenn der Arbeitgeber entscheiden kann, wer lange arbeitet, führt das zu Ungleichverteilung innerhalb von Familien ('jemand muss das Kind aus der Kita abholen'). Deshalb sind solche Regeln notwendig.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dröge beantwortet Illners implizite Frage (sollte man Flexibilisierungen erlauben?) mit klarer Position: Nein, tägliche Grenzen sind notwendig. Sie begründet dies mit zwei konkreten Faktoren (Müdigkeit, familiäre Verteilung), die über pure Regelgläubigkeit hinausgehen.",
+        "concrete_statements": [
+          "Tägliche Grenzen sind ein Schutzgrund",
+          "Wer zu lange arbeitet wird müde und macht Fehler",
+          "Flexibilisierung ohne tägliche Grenzen führt zu ungerechter Verteilung von Betreuungslasten in Familien"
+        ],
+        "quotes": [
+          {
+            "text": "Das tägliche Grenzen gibt es ein Schutzgrund. Wer zu lange arbeitet mit müde und macht Fehler. Es muss auch in die Familie passen. Und wenn der Arbeitgeber sagt, heute bleibst du lang aber jemand muss das Kind aus der Kita abholen, dann führt es dazu, dass der eine sehr lange arbeitet unter andere muss deutlich weniger arbeiten. Deshalb ist es wichtig, dass es solche Regeln gibt.",
+            "timestamp": "00:59:56",
+            "context": "Dröge verteidigt das Arbeitszeitgesetz mit täglicher Höchstarbeit gegen Pläne zur Flexibilisierung auf Wochenebene."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitszeitgesetz",
+          "Arbeitsschutz",
+          "Arbeitsmarktregulierung",
+          "Vereinbarkeit Familie und Beruf"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "80% der Teilzeitbeschäftigten in Deutschland sind Frauen",
+        "timestamp": "00:09:30"
+      },
+      {
+        "claim": "640.000 mehr Erwerbstätige könnten erreicht werden, wenn Frauen so viel arbeiten könnten wie sie können",
+        "timestamp": "00:24:41"
+      },
+      {
+        "claim": "Die Sachverständigen sagen, wenn die Regierung das alles investieren würde, wäre der Effekt doppelt so hoch",
+        "timestamp": "00:52:42"
+      },
+      {
+        "claim": "Die Rente mit 63 setzt den Anreiz in die falsche Richtung",
+        "timestamp": "00:42:36"
+      },
+      {
+        "claim": "Die Union hat Bedingungen für Geflüchtete mit guten Deutschkenntnissen und Job verschlechtert",
+        "timestamp": "00:44:19"
+      }
+    ]
+  }
+}

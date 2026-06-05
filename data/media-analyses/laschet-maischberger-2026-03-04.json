@@ -1,0 +1,236 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtMWEyN2FkM2UtZDdjMS00YzQwLTgyNjQtMGIwMjZjOWVkMGRh",
+    "video_id": "maischberger-2026-03-04",
+    "politician": "Armin Laschet",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "78197a7eace1d602",
+    "transcript_chars": 52936,
+    "caption_lines": 1977,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21529,
+    "tokens_out": 5552,
+    "cost_usd": 0.0197156,
+    "quote_validation": {
+      "valid_exact": 4,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.500Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Armin Laschet, CDU-Vorsitzender des Auswärtigen Ausschusses, diskutiert in der Sendung \"Maischberger\" mit Moderatorin Sandra Maischberger über den Krieg gegen den Iran und Deutschlands Rolle darin. Er argumentiert pragmatisch für eine differenzierte völkerrechtliche Beurteilung, verteidigt die Position von Friedrich Merz gegenüber völkerrechtlichen Kritikern der Opposition und äußert sich skeptisch zur Möglichkeit eines schnellen Regimewechsels im Iran.",
+    "themes": [
+      {
+        "title": "Dubai-Evakuierung und Bundesregierung Verantwortung",
+        "timestamp_range": "00:20:26 - 00:22:01",
+        "theme_description": "Bewertung der Reaktion der Bundesregierung auf die Evakuierung von Touristen aus Dubai und die Frage nach Staatsverantwortung vs. Eigenverantwortung.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, ob ihm (als CDU-Politiker) das, was mit dem Touristen-Desaster in Dubai passiert sei, nicht auch passiert wäre – und ob Außenminister Wadephul richtig gehandelt habe.",
+        "question_intent": "Maischberger wollte hören, ob Laschet die CDU von Wadepuhls Fehlkommunikation distanziert oder verteidigt.",
+        "position": "Laschet sagt, dass so etwas jedem passieren kann. Er erklärt, dass es prinzipielle Reisewarnungen seit Mitte Januar gegeben hat und dass Flugzeugträger aufmarchiert waren. Er differenziert zwischen formeller Reisewarnung (die rechtsverbindlich ist) und allgemeinen Warnungen. Laschet kritisiert, dass Wadephul das Instrumentarium \"formelle Reisewarnung\" nicht rechtzeitig eingesetzt hat, entschuldigt sich dann aber und sagt, dass das erste Signal sein muss, wenn deutsche Staatsbürger in Not sind. Er spricht von Prioritätslisten (Frauen, Schwangere) und erwähnt, dass heute das erste Flugzeug starten sollte.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laschet kritisiert Wadephul für fehlende formelle Reisewarnung, aber verteilt auch Verantwortung auf Reiseveranstalter. Er betont die Fürsorgepflicht des Staates, adressiert aber nicht direkt, ob Wadepuhls Kommunikationsfehler (die Schuld den Touristen zu geben) richtig oder falsch war.",
+        "concrete_statements": [
+          "Es gibt einmal die prinzipielle Warnung, in bestimmte Regionen zu reisen.",
+          "Dann gibt es eine formelle Reisewarnung. Das ist die einzige, die zählt, rechtlich.",
+          "Es muss das 1. Signal sein, wenn irgendwo ein deutscher Staatsbürger in Not ist, müssen wir alles tun, um ihm zu helfen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein. Er hat es ja korrigiert und sich entschuldigt. Weil er dieses Instrumentarium \"formelle Reisewarnung\" nicht gemacht hat. Es muss das 1. Signal sein, wenn irgendwo ein deutscher Staatsbürger in Not ist, müssen wir alles tun, um ihm zu helfen.",
+            "timestamp": "00:21:27",
+            "context": "Laschet verteilt eine gemischte Bewertung: Wadephul habe einen Fehler gemacht, ihn aber korrigiert."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Konsularische Schutzpflichten",
+          "Außenpolitik und Bürgerschutz",
+          "Krisenmanagement"
+        ]
+      },
+      {
+        "title": "Völkerrechtliche Bewertung des Iran-Angriffs",
+        "timestamp_range": "00:26:26 - 00:29:06",
+        "theme_description": "Diskussion über die völkerrechtliche Zulässigkeit des israelischen und amerikanischen Angriffs auf den Iran und die richtige rechtliche Positionierung der Bundesregierung.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, nachdem Laschet gesagt hatte, dass Völkerrecht studiert zu haben, ob er Merz' Position oder Klingbeils völkerrechtliche Kritik für überzeugender halte und wie die Bundesregierung die Völkerrechtsfrage bewerten sollte.",
+        "question_intent": "Maischberger wollte wissen, wie Laschet persönlich die völkerrechtliche Legitim des Angriffs einschätzt und ob die Bundesregierung eine klare völkerrechtliche Position einnehmen sollte.",
+        "position": "Laschet argumentiert, dass die USA ihre Begründung basierend auf Artikel 51 UN-Charta (Selbstverteidigungsrecht) detailliert dargelegt haben, was ein wichtiger Unterschied zu Venezuela darstellt. Er betont, dass Völkerrecht ein Problem hat: Es gibt keine wirksame Durchsetzungsinstanz. Die UN-Sicherheitsrat kann zwar Verstöße feststellen, aber ohne Konsequenzen. Er kritisiert implizit Klingbeils neu entdeckten Völkerrechtsengagement und verweist darauf, dass der Iran seit 40 Jahren völkerrechtswidrig handelt (Hisbollah-Finanzierung, Assad-Unterstützung, Atomprogramm). Laschet positioniert sich näher bei Merz.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laschet beantwortet teilweise: Er erklärt die US-Begründung und kritisiert Klingbeils Position. Er adressiert aber nicht direkt, ob ER selbst den Angriff für völkerrechtswidrig oder -konform hält. Er weicht zur Kritik am iranischen Handeln aus, statt eine klare juristische Position zum aktuellen Angriff zu beziehen.",
+        "concrete_statements": [
+          "Die USA haben im Sicherheitsrat anders als bei Venezuela sehr lang, sehr detailliert versucht zu begründen, warum es im Einklang mit der UN-Charta war.",
+          "Ich habe Völkerrecht studiert. Aber die Position von Friedrich Merz ist mir näher als die des neu entdeckten Völkerrechtlers Klingbeil.",
+          "Der Iran finanziert die Hisbollah, die Huthis, hat Assad gestützt. Er baut Atomwaffen, ohne dass jemand da eingreift."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe Völkerrecht studiert. Aber die Position von Friedrich Merz ist mir näher als die des neu entdeckten Völkerrechtlers Klingbeil.",
+            "timestamp": "00:26:58",
+            "context": "Laschet nimmt zu der Frage Stellung, wessen völkerrechtliche Analyse er für überzeugender hält."
+          },
+          {
+            "text": "Der Rest der Welt sieht es anders. China, Indien, Brasilien. Die haben diese Rechtsauffassung nicht. Deshalb ist das, was Friedrich Merz sagt, richtig.",
+            "timestamp": "00:28:03",
+            "context": "Laschet argumentiert, dass Völkerrecht keine universale Geltung hat und deshalb pragmatische Positionen wie die von Merz berechtigt sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Völkerrecht und internationale Ordnung",
+          "UN-Charta Artikel 51",
+          "Iran-Sanktionen",
+          "Nahost-Konflikt"
+        ]
+      },
+      {
+        "title": "Deutschlands militärische Beteiligung am Iran-Krieg",
+        "timestamp_range": "00:29:38 - 00:31:15",
+        "theme_description": "Klarstellung darüber, ob und in welchem Umfang Deutschland sich militärisch an Kampfhandlungen gegen den Iran beteiligen wird.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, ob die trilaterale Erklärung Deutschlands, Großbritanniens und Frankreichs impliziere, dass sich Deutschland auch militärisch an diesem Krieg beteilige.",
+        "question_intent": "Maischberger wollte klären, ob Deutschland militärisch in den Iran-Konflikt hineingezogen wird oder bleibt.",
+        "position": "Laschet erklärt, dass die trilaterale Erklärung von britischer Seite so formuliert wurde und dass die Bundesregierung inzwischen klargestellt hat, dass Deutschland sich NICHT militärisch an diesem Krieg beteiligen wird. Er erwähnt, dass deutsche Soldaten in Jordanien angegriffen wurden, aber Deutschland würde sich nur verteidigen. Er betont, dass die Bundesregierung ihre Position klargestellt habe.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet die Frage direkt und substantiell: Deutschland wird sich nicht militärisch beteiligen, das wurde klargestellt. Er unterscheidet zwischen Selbstverteidigung (wenn angegriffen) und offensiver Beteiligung am Krieg.",
+        "concrete_statements": [
+          "Es ist klargestellt worden von der Bundesregierung, wir werden uns nicht an diesem Krieg beteiligen.",
+          "Deutsche Soldaten sind angegriffen worden in Jordanien. Keinen Schaden, aber in dem Fall würden wir uns verteidigen."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist klargestellt worden von der Bundesregierung, wir werden uns nicht an diesem Krieg beteiligen.",
+            "timestamp": "00:30:09",
+            "context": "Laschet verdeutlicht die offizielle deutsche Position zur Frage militärischer Beteiligung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik und Sicherheit",
+          "NATO-Beistandspflicht",
+          "Einsatz Bewaffneter Streitkräfte"
+        ]
+      },
+      {
+        "title": "Risiko einer Eskalation und NATO-Beistandspflicht",
+        "timestamp_range": "00:30:41 - 00:31:15",
+        "theme_description": "Erörterung der Risiken einer regionalen Eskalation, insbesondere wenn NATO-Länder angegriffen werden und Artikel-5-Szenarien ausgelöst werden könnten.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, ob es nicht sehr ernst sei, dass eine Rakete auf türkisches Gebiet geflogen ist (Türkei ist NATO-Mitglied) und ob das möglicherweise den NATO-Beistandspakt auslösen könnte.",
+        "question_intent": "Maischberger wollte verstehen, wie gefährlich die Lage ist und ob Deutschland in einen NATO-Konflikt hineingezogen werden könnte.",
+        "position": "Laschet bestätigt, dass die Lage ernst ist, warnt aber davor, zu schnell über Stufe 3 und 4 zu sprechen. Er betont, dass man zunächst klären müsse, ob der Raketenangriff auf die Türkei beabsichtigt oder ein Versehen war. Er erwähnt, dass der türkische Präsident sich kryptisch zum Iran geäußert hat und nicht als zuverlässiger Zeuge dient. Laschet empfiehlt Zurückhaltung und Fokus auf das, was derzeit tatsächlich stattfindet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Laschet adressiert die Frage teilweise: Er bestätigt die Ernst der Lage, warnt aber vor Überreaktion und schlägt vor, sich auf Fakten statt Szenarien zu konzentrieren. Er gibt keine klare Antwort darauf, wie Deutschland im Fall eines NATO-Artikel-5-Szenarios handeln würde.",
+        "concrete_statements": [
+          "Natürlich ist die Lage ernst. Wenn es ein Versehen war gegenüber der Türkei, ist es etwas anderes.",
+          "Ich würde uns empfehlen, nicht über die 3. und 4. Stufe zu reden, sondern das, was im Moment stattfindet, zu beurteilen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich würde uns empfehlen, nicht über die 3. und 4. Stufe zu reden, sondern das, was im Moment stattfindet, zu beurteilen.",
+            "timestamp": "00:31:15",
+            "context": "Laschet mahnt zu Zurückhaltung bei Spekulationen über Eskalationsstufen und empfiehlt Fokus auf aktuelle Fakten."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO und Bündnissicherheit",
+          "Artikel 5 NATO-Vertrag",
+          "Sicherheitspolitik",
+          "Türkei-Beziehungen"
+        ]
+      },
+      {
+        "title": "Irans strategische Fehler und regionale Isolation",
+        "timestamp_range": "00:31:49 - 00:33:27",
+        "theme_description": "Analyse der iranischen Strategie, Nachbarländer anzugreifen, und deren Folge: der Iran verliert regionale Unterstützer und Verbündete.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, ob der Iran durch das Bombardieren von Golf-Nachbarländern (wo amerikanische Basen stationiert sind) nicht einen schweren strategischen Fehler begangen habe.",
+        "question_intent": "Maischberger wollte verstehen, ob Laschet den Iran als strategisch dumm oder als isoliert sieht und welche Konsequenzen das hat.",
+        "position": "Laschet bewertet das iranische Vorgehen als schweren Fehler. Er erklärt, dass die Golfstaaten der USA vorher gesagt hatten, von ihren Militärbasen dürfen keine amerikanischen Flugzeuge starten. Jetzt, wo der Iran diese Länder bombardiert (einschließlich ziviler Ziele wie Hotels in Dubai), sind diese Länder schockiert und wütend. Sie haben noch nie in 50 Jahren eine Attacke erlebt. Das führe dazu, dass Iran nun ohne Verbündete in der Region dasteht und die Gefahr besteht, dass die Golf-Länder militärisch in den Krieg eingreifen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet die Frage vollständig mit einer klaren strategischen Analyse: Der Iran-Angriff auf Nachbarländer ist ein Fehler, der zu seiner regionalen Isolation führt.",
+        "concrete_statements": [
+          "Ich halte das, was der Iran gemacht hat gegenüber den Golfstaaten, für einen schweren Fehler.",
+          "Der Iran hat überhaupt keine Verbündeten mehr.",
+          "Es droht die Gefahr, dass die Länder mit Eingreifen in diesem Krieg."
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte das, was der Iran gemacht hat gegenüber den Golfstaaten, für einen schweren Fehler. Diese Staaten haben gesagt, von unserem Militärbasen dürfen keine amerikanischen Flugzeuge starten. Ausgerechnet diese Länder, die das gesagt haben, werde nun auch bei zivilen Zielen, wie Hotels in Dubai, beschossen.",
+            "timestamp": "00:31:49",
+            "context": "Laschet erläutert die strategische Inkohärenz des iranischen Vorgehens."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Nahostpolitik",
+          "Golfstaaten",
+          "Internationale Beziehungen",
+          "Sicherheit am Golf"
+        ]
+      },
+      {
+        "title": "Rolle von Reza Pahlavi als Übergangsfigur",
+        "timestamp_range": "00:40:26 - 00:42:56",
+        "theme_description": "Einschätzung des Potenzials des Shahzadeh (Sohn des ehemaligen Schahs) als mögliche Übergangsfigur oder Anführer nach dem Sturz des aktuellen Regimes.",
+        "question_asked": "Sandra Maischberger fragte Armin Laschet, den er getroffen hatte, welchen Eindruck er von Reza Pahlavi habe, ob dieser eine Rolle spielen könne und unter welchen Umständen.",
+        "question_intent": "Maischberger wollte wissen, ob Laschet Pahlavi als glaubwürdige Alternative sieht und wie realistisch seine Chancen sind.",
+        "position": "Laschet hat Pahlavi in einem Gespräch unter vier Augen getroffen und beschreibt ihn als klug argumentierend, abgeklärt und nicht ausstrahlung habend, unbedingt wieder Schah werden zu wollen. Laschet vermutet, dass Pahlavi sich vielleicht als Übergangspräsident vorstellt. Laschet beobachtet, dass Pahlavi zuerst nur 20-30% Zustimmung hatte, aber der Zustimmungsgrad ständig gestiegen ist, weil er die einzige Figur ist, auf die man hinweisen kann. Er wird zu Demonstrationen in Deutschland gezeigt und fungiert als Hoffnungsfigur, auch wenn nicht alle von ihm begeistert sind.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Laschet beantwortet die Frage direkt und differenziert: Er beschreibt Pahlavi als intelligente, abgeklärte Figur ohne Machtgier, nennt ihn die einzige Bezugsfigur für die Opposition und erklärt das Anwachsen seiner Unterstützung.",
+        "concrete_statements": [
+          "Er macht einen sehr abgeklärten, klug argumentierenden Eindruck.",
+          "Er stellt sich vielleicht vor, dass er vielleicht Übergangspräsident sein könnte.",
+          "Er ist aber immer weiter gestiegen, weil er die einzige Figur ist."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe ihn da getroffen, zu einem längeren Gespräch unter 4 Augen. Er macht einen sehr abgeklärten, klug argumentierenden Eindruck, der nicht ausstrahlt, ich muss unbedingt wieder Schah werden, ich will unbedingt die Monarchie.",
+            "timestamp": "00:41:25",
+            "context": "Laschet charakterisiert seinen persönlichen Eindruck von Reza Pahlavi basierend auf einem privaten Treffen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Oppositionsbewegungen",
+          "Regimewechsel und Übergangslösungen",
+          "Außenpolitische Positionen zu Iran"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die USA haben im Sicherheitsrat detailliert versucht zu begründen, warum der Angriff im Einklang mit der UN-Charta war.",
+        "timestamp": "00:24:18"
+      },
+      {
+        "claim": "Deutsche Soldaten sind angegriffen worden in Jordanien.",
+        "timestamp": "00:30:09"
+      },
+      {
+        "claim": "Eine Rakete ist auf türkisches Gebiet geflogen und die Türken sagen, die hätte möglicherweise britische Basen auf Zypern treffen sollen.",
+        "timestamp": "00:30:41"
+      },
+      {
+        "claim": "Der Außenminister der Emirate war gestern in Berlin.",
+        "timestamp": "00:31:49"
+      },
+      {
+        "claim": "Die Golf-Staaten haben seit 50 Jahren nie eine Attacke erlebt.",
+        "timestamp": "00:32:23"
+      }
+    ]
+  }
+}

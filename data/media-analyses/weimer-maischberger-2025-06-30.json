@@ -1,0 +1,250 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNi0zMF8yMi0zMC1NRVNa",
+    "video_id": "maischberger-2025-06-30",
+    "politician": "Wolfram Weimer",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "c1e9b7a33f2cd583",
+    "transcript_chars": 55741,
+    "caption_lines": 2033,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22437,
+    "tokens_out": 6581,
+    "cost_usd": 0.022136799999999998,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.660Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Wolfram Weimer, neuer Kulturstaatsminister ohne Parteizugehörigkeit, verteidigt seinen umstrittenen Amtsantritt gegen Kritik aus dem linken und grünen Lager. Er argumentiert aus der Position der \"liberalen Mitte\" für einen weiten Freiheitsbegriff und behauptet, Cancel Culture komme von links, rechts und global — betont aber auch die Notwendigkeit, die demokratische Mitte gegen Extremismus zu stärken. Die Diskussion mit Katrin Göring-Eckardt (Grüne) verläuft in sachlichem, aber zugespitztem Ton.",
+    "themes": [
+      {
+        "title": "Kritik am Amtsantritt und Freundschaft zu Merz",
+        "timestamp_range": "00:17:18 - 00:17:49",
+        "theme_description": "Sandra Maischberger fragt, ob die Freundschaft zu Kanzler Friedrich Merz die Wahl zum Staatsminister erschwert.",
+        "question_asked": "Sandra Maischberger erkundigt sich, ob es schwierig ist, dass Weimer mit Friedrich Merz befreundet ist und dieser sein Vorgesetzter als Kanzler.",
+        "question_intent": "Zu klären, ob persönliche Nähe zum Kanzler die politische Unabhängigkeit des neuen Kulturstaatsministers gefährdet.",
+        "position": "Wolfram Weimer antwortet, dass sich die Freundschaft 'gut anfühlt'. Der Grund für die anfängliche Kritik liegt vielmehr darin, dass er vorher häufig als Journalist in der Sendung war und aus 'bürgerlicher Perspektive' linke und grüne Positionen kritisierte. Sein Wechsel von der Beobachterposition in ein Regierungsamt überraschte diese Kreise. Er betont damit, dass der Wechsel selbst, nicht die Freundschaft, der Grund für die Kritik ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weimer beantwortet die Frage nach der Freundschaft mit 'nein, das fühlt sich gut an', weicht aber sofort auf eine andere Erklärung aus — nämlich die Kritik aufgrund seiner früheren journalistischen Tätigkeit. Die eigentliche Frage zur Unabhängigkeit wird nicht direkt adressiert.",
+        "concrete_statements": [
+          "Das fühlt sich gut an",
+          "Der Wechsel war ein Grund, warum ich am Anfang so kritisiert wurde",
+          "Ich war zu häufig bei Ihnen und habe aus einer bürgerlichen Perspektive linke und grüne kritisiert"
+        ],
+        "quotes": [
+          {
+            "text": "Nein. Das fühlt sich gut an. Aber der Wechsel von da hierher ist wahrscheinlich ein Grund, warum ich am Anfang so kritisiert wurde.",
+            "timestamp": "00:17:49",
+            "context": "Auf die Frage von Sandra Maischberger, ob es schwierig ist, den Chef zum Freund zu haben."
+          }
+        ]
+      },
+      {
+        "title": "Cancel Culture: linke Beispiele und Definition",
+        "timestamp_range": "00:19:54 - 00:22:30",
+        "theme_description": "Weimer wird nach einem Gastbeitrag in der Süddeutschen Zeitung zur Cancel Culture befragt und nennt Beispiele, die er als linke Überreaktionen sieht.",
+        "question_asked": "Sandra Maischberger verweist auf Weimers Gastbeitrag in der Süddeutschen Zeitung und fragt konkret, was er mit 'Cancel Culture von links und rechts' meint.",
+        "question_intent": "Konkrete Belege und Definitionen für die These der Cancel Culture zu erhalten.",
+        "position": "Weimer definiert sich als 'Mann des liberalen Bürgertums' und argumentiert aus der Position der 'liberalen Mitte'. Er sieht eine Polarisierung in Deutschland mit einer großen AfD-Fraktion (latent aggressiv) und Linkspartei (Aggressionspotenzial). Der Raum der bürgerlichen Mitte schrumpfe, weil beide Seiten ihn enger machten. Zur linken Cancel Culture nennt er konkrete Beispiele: Karl-May-Verbote wegen 'kolonialer Vorteile', das Übermalen eines Gedichts eines Schweizer Schriftstellers von einer Hausfassade wegen vermeintlicher Sexismus, das Entfernen einer Venus-Statue durch eine 'feministisch gesinnte Frauenbeauftragte'. Weimer argumentiert, dass der 'Raum des Gezeigten und Gesagten' von links eingeengt wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weimer antwortet ausführlich mit konkreten Beispielen zur linken Cancel Culture. Die Frage wird vollständig adressiert; er liefert eine klare Position und drei Anwendungsbeispiele.",
+        "concrete_statements": [
+          "Es gibt eine Mode der Wokeness, eine Cancel-Culture-Mode",
+          "Der Raum des Gezeigten und Gesagten wird von links gemacht",
+          "Es ist die Aufgabe der bürgerlichen Mitte, das wieder zu weiten"
+        ],
+        "quotes": [
+          {
+            "text": "Ich bin ein Mann des liberalen Bürgertums. Ich argumentiere in diesem Artikel, wie überhaupt von meiner Grundhaltung, aus der Position der liberalen Mitte.",
+            "timestamp": "00:20:24",
+            "context": "Eröffnung seiner Position zum Cancel-Culture-Thema."
+          },
+          {
+            "text": "Der Raum des Gezeigten und Gesagten wird von links gemacht. Jetzt bleiben wir erst mal bei Links.",
+            "timestamp": "00:21:57",
+            "context": "Zusammenfassung seiner Beispiele zur linken Cancel Culture."
+          }
+        ]
+      },
+      {
+        "title": "Freiheitswahrnehmung und Polarisierung in Deutschland",
+        "timestamp_range": "00:24:43 - 00:25:46",
+        "theme_description": "Weimer zitiert eine Umfrage, dass nur 40% der Deutschen meinen, frei sprechen zu können, und führt dies partiell auf die 'grüne woke Blase' zurück.",
+        "question_asked": "Nach Katrin Göring-Eckardts Beispielen von rechten Repressalien fragt Sandra Maischberger, wie Wolfram Weimer die Aussage deutet, dass nur noch 40% der Deutschen meinen, frei reden zu können.",
+        "question_intent": "Zu verstehen, wer für den Verlust der Redefreiheit verantwortlich ist und wie der Kulturstaatsminister dieses Phänomen bewertet.",
+        "position": "Weimer nennt den Befund 'alarmierend' — sowohl als Medienschaffender als früher als auch als Politiker. In den 1990ern hätten noch 95% der Deutschen gedacht, frei sprechen zu können. Er identifiziert mehrere Verantwortliche, betont aber besonders die 'grüne woke Blase', die eine 'Bevormundung' geschaffen habe, bei der viele Menschen sagen: 'wir wollen das nicht'. Er schließt nicht aus, dass auch die Linke eine Rolle spielt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weimer antwortet direkt auf die Statistik mit einer Bewertung und benennt spezifische Akteure (grüne Blase). Die Antwort adressiert die Frage vollständig.",
+        "concrete_statements": [
+          "Dieser Befund ist alarmierend",
+          "In den neunziger Jahren war es noch so, dass 95% der Menschen dachten, ich kann noch sagen was ich will",
+          "Die grüne woke Blase hat eine Bevormundung geschaffen"
+        ],
+        "quotes": [
+          {
+            "text": "Nur noch 40% der Deutschen sind der Meinung, du kannst in Deutschland frei deine Meinung sagen ohne irgendwelche Nachteile zu erwarten. Das war, bevor ich im Amt war, schon so. Dieser Befund ist alarmierend.",
+            "timestamp": "00:25:14",
+            "context": "Bewertung einer Umfrage zur Redefreiheit in Deutschland."
+          },
+          {
+            "text": "Natürlich viele. Aber auch eure grüne woke Blase. Die eine Bevormundung hat entstehen lassen, wo viele Leute sagen, wir wollen das nicht.",
+            "timestamp": "00:25:46",
+            "context": "Auf die Frage, wer verantwortlich ist für den Freiheitsverlust."
+          }
+        ]
+      },
+      {
+        "title": "Regenbogenflagge am Reichstag und parlamentarische Neutralität",
+        "timestamp_range": "00:27:21 - 00:28:56",
+        "theme_description": "Weimer wird nach seiner Position zur Regenbogenflagge am Reichstag gefragt, die Bundestagspräsidentin Julia Klöckner nicht mehr am Christopher-Street-Day hissen will.",
+        "question_asked": "Sandra Maischberger fragt Wolfram Weimer nach seiner Position zur Regenbogenflaggen-Debatte: Julia Klöckner will sie nicht hissen, während Bayerns Ministerpräsident Markus Söder sie verteidigt.",
+        "question_intent": "Weimers persönliche Stellungnahme zur symbolischen Frage von Neutralität versus aktiven Werteaussagen im Parlament zu klären.",
+        "position": "Weimer berichtet von seinem Besuch beim Christopher Street Day in München — eine 'entspannte Feier der Liberalität'. Er verweist auf Markus Söders Haltung, der die Regenbogenflagge am Landtag verteidigt. Die Frage ist für Weimer nicht, ob Klöckner recht hat, sondern wie man die Würde des Parlaments bewahrt. Klöckner definiere ihre Rolle 'mehr von der Würde des Parlaments her' und achte auf Neutralität und Spielregeln. Weimer respektiert beide Positionen: Man könne auch die Vatikanfahne aufhängen, um aufmerksam zu machen. Klöckner habe entschieden, es gebe an einem Tag (17. Mai) die Regenbogenflagge. Die Grünen protestierten, indem sie sich Regenbogenfarben anziehen. Für Weimer ist die Frage, 'ob von der Würde des Parlamentes her geht und der Autonomie der Staatlichkeit' — man wolle nicht in jedem Gerichtssaal Regenbogenflaggen haben. 'Man kann es in der Debatte so oder so argumentieren.' Er respektiere beide Positionen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weimer antwortet auf die Frage nach seiner Position mit einer Verteidigungsrede für Klöckners Neutralitätskonzept, nicht mit einer klaren Aussage zu seiner eigenen Überzeugung. Er sagt 'ich respektiere beides', weicht also einer eindeutigen Stellungnahme aus.",
+        "concrete_statements": [
+          "Eine entspannte Feier der Liberalität",
+          "Julia Klöckner achtet sehr auf Neutralität und Spielregeln",
+          "Ich respektiere beides"
+        ],
+        "quotes": [
+          {
+            "text": "Ich war am Wochenende in München beim Christopher Street Day. Eine entspannte Feier der Liberalität.",
+            "timestamp": "00:27:21",
+            "context": "Persönliche Erfahrung zum Thema CSD."
+          },
+          {
+            "text": "Sie achtet sehr auf Neutralität, auf Spielregeln. Sie weist die AfD auch in einer besonders strengen Form zurück. Man kann es in der Debatte so oder so argumentieren. In der Union haben es 2 Parlamentspräsidenten anders entschieden. Ich respektiere beides.",
+            "timestamp": "00:28:25",
+            "context": "Bewertung beider Positionen zur Regenbogenflagge."
+          }
+        ]
+      },
+      {
+        "title": "Globale Freiheitsbedrohung und Kulturauffassung",
+        "timestamp_range": "00:31:31 - 00:34:13",
+        "theme_description": "Weimer wird vorgeworfen, in seinem Artikel die rechte Unterdrückung nur in den USA zu sehen, und antwortet mit einer globalen Perspektive auf Freiheitsbedrohungen.",
+        "question_asked": "Katrin Göring-Eckardt kritisiert, dass Weimer in seinem Süddeutsche-Zeitung-Artikel nur auf die USA schaut, nicht auf deutsche rechte Repressionen gegen kulturelle Projekte, besonders in Ostdeutschland.",
+        "question_intent": "Zu prüfen, ob Weimer die realen lokalen Bedrohungen von rechts durch die AfD genug berücksichtigt oder hauptsächlich globale Narrative bedient.",
+        "position": "Weimer erklärt, dass er das Problem größer sieht — nicht nur national, sondern global. Die Idee der Freiheit steht überall unter Druck: China und Russland sind diktatorisch, es gibt neonazistische Tendenzen in Ungarn, in den USA gibt es 'Freiheitsentziehungen, die repressiven Charakter annehmen' (Beispiel: Bücher aus Regalen in Florida, Michelangelos David darf nicht gezeigt werden). Seine These ist: 'Die Freiheit steht in einem globalen Maßstab unter Druck.' Deutschland habe zum Glück keine AfD an der Macht und die Regierung 'trinkt ja sehr dafür, die zurückzunehmen'. Aber es gebe 'erste Phänomene'. Auf Deutschland und Europa komme die zentrale Frage zu: 'Bleiben wir im Licht der Aufklärung und Toleranz, verteidigen wir unsere Freiheit — auch in unseren inneren Räumen?' Weimer nennt rechte Attacken (Neonationalismus), islamistische Attacken (Charlie Hebdo) und linke Attacken. Die Frage, welche Attacke am gefährlichsten ist, beantwortet er relativ: In China sei es die KP, in Florida die rechte Seite. 'Ich möchte das nicht gewichten. Ich beobachte als Verfechter der bürgerlichen Mitte — wir kriegen es von allen Seiten.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weimer weicht auf eine globale Perspektive aus und vermeidet damit, die spezifische Kritik zu den lokalen deutschen Repressionen der AfD (wie Zensur von Kulturprojekten in Ostdeutschland) zentral zu beantworten. Er behandelt das als ein Beispiel unter vielen gleichgewichtigen globalen Phänomenen.",
+        "deflection_target": "Globale Freiheitsbedrohungen statt lokale AfD-Repressionen",
+        "evasion_note": "Weimer verlagert die Debatte von der konkreten Kritik an deutschen rechten Akteuren auf eine abstrakte globale Bedrohungsanalyse.",
+        "concrete_statements": [
+          "Die Freiheit steht in einem globalen Maßstab unter Druck",
+          "Wir kriegen es von allen Seiten",
+          "Es ist die Aufgabe der bürgerlichen Mitte, das wieder zu weiten und zurückzuerobern"
+        ],
+        "quotes": [
+          {
+            "text": "Die Idee der Freiheit ist gerade global unter Druck. Wenn wir Weltmächte wie China oder Russland angucken, dann sind sie diktatorisch und blutig im Umschlag.",
+            "timestamp": "00:32:02",
+            "context": "Globale Perspektive auf Freiheitsbedrohung."
+          },
+          {
+            "text": "Ich möchte das nicht gewichten. Ich beobachte als ein Verfechter der bürgerlichen Mitte, wir kriegen es von allen Seiten.",
+            "timestamp": "00:33:40",
+            "context": "Antwort auf die Frage, welche politische Seite die gefährlichste Bedrohung darstellt."
+          }
+        ]
+      },
+      {
+        "title": "Über Reden zu Problemen und den Pandemie-Vergleich",
+        "timestamp_range": "00:37:01 - 00:38:05",
+        "theme_description": "Weimer argumentiert, dass das ständige Reden über ein Problem dasselbe nicht verschlimmert, und zieht einen Vergleich zur Pandemie-Debatte.",
+        "question_asked": "Göring-Eckardt warnt: 'Wenn Sie immer darüber reden, verschlimmern Sie das Problem.' Weimer wird implizit aufgefordert, diese These zu evaluieren.",
+        "question_intent": "Zu klären, ob die Thematisierung von Cancel Culture und Freiheitsverlust das Problem selbst verschärft.",
+        "position": "Weimer lehnt die These ab: Das sei 'eine falsche Analyse'. Man könne objektive Probleme nicht klein reden oder durch Reden verändern — 'sie sind einfach da'. Er gibt ein 'unpolitisches Beispiel' aus der Pandemie: Große und wachsende Teile der Bevölkerung hätten den Eindruck gehabt, die Debatte sei verengt, man könne nicht sagen, 'hier übertreibt es mit den Maßnahmen'. Erst sehr spät habe man Debattenraum aufgemacht. 'Die Pandemie hat vieles verändert in der Kultur. Da sind die Zahlen runtergegangen mit der Meinungsfreiheit.' — Das zeige: Die Verengerung war real, nicht durch Sprechen entstanden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weimer adressiert die These direkt und liefert ein konkretes Beispiel (Pandemie-Debatte), um seine Gegenposition zu stützen.",
+        "concrete_statements": [
+          "Objektive Probleme kannst du nicht klein reden",
+          "Die Pandemie hat vieles verändert in der Kultur",
+          "Da sind die Zahlen runtergegangen mit der Meinungsfreiheit"
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, das ist eine falsche Analyse. Objektive Probleme kannst du nicht klein reden oder Reden. Die sind einfach da.",
+            "timestamp": "00:37:33",
+            "context": "Direkter Widerspruch zu Göring-Eckardts These."
+          }
+        ]
+      },
+      {
+        "title": "Digitalsteuer: Positionen zu Megakonzernen und Verhandlungen",
+        "timestamp_range": "00:39:40 - 00:42:17",
+        "theme_description": "Weimer wird nach seiner Haltung zu einer Digitalsteuer für große Tech-Konzerne gefragt und nach dem Stand der Verhandlungen.",
+        "question_asked": "Göring-Eckardt fragt zunächst, ob Weimer sicher ist, dass eine Besteuerung von Social-Media-Eigentümern mehr Kontrolle über Inhalte bringt; später wird konkret nach der Umsetzung gefragt: 'Kommt die Steuer?'",
+        "question_intent": "Einerseits die Logik von Weimers Steuerplan zu prüfen, andererseits zu wissen, ob die Regierung die Steuer wirklich durchsetzen will.",
+        "position": "Weimer sagt, er 'vertraue der Freiheit und dem Wettbewerb — auch dem Wettbewerb der Ideen'. Beim Thema Digitalisierung müsse dieser 'weit gemacht' werden. Große Digitalkonzerne verstärken das Problem der Freiheitsverluste: Sie sind Monopole, zahlen in Deutschland kaum Steuern, 'nutzen unsere Kreativwirtschaft, unseren Journalismus und unsere Industrie und schleichen sich raus'. Beispiel: Trump möchte das Meer umbenennen, Google macht es — 'da sie die Macht über die Kartographie der Welt haben'. Deswegen adressiert Weimer das Thema. Er 'tritt für die Steuer ein und hat dafür auch im Parlament gekämpft'. Auf die wiederholte Frage 'Kommt die Steuer?' antwortet er: 'In den beiden Fraktionen habe ich damit mehr zu tun. Wir haben jetzt große Verhandlungen mit den Amerikanern über das gesamte Feld. Zölle, Regularien. Ich hoffe, dass wir am Ende zu einer Lösung kommen, dass es reicht, was ich will. Dass wir Steuern zahlen oder die Löhne...' Die Antwort bleibt offen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Weimer adressiert die Frage nach seiner Unterstützung für die Steuer vollständig (ja, er tritt dafür ein), aber auf die konkrete Frage, ob die Steuer kommt, weicht er mit dem Hinweis auf laufende Verhandlungen mit Amerikanern aus.",
+        "concrete_statements": [
+          "Ich trete für die Steuer ein und habe dafür auch im Parlament gekämpft",
+          "Große Digitalkonzerne nutzen unsere Kreativwirtschaft, unseren Journalismus und unsere Industrie und schleichen sich raus",
+          "Wir haben jetzt große Verhandlungen mit den Amerikanern"
+        ],
+        "quotes": [
+          {
+            "text": "Ich vertraue der Freiheit und dem Wettbewerb. Auch dem Wettbewerb der Ideen. Deswegen muss der weit gemacht werden.",
+            "timestamp": "00:40:12",
+            "context": "Antwort auf die Frage zur Digitalsteuer und Inhaltskontrolle."
+          },
+          {
+            "text": "Ich trete für die Steuer ein und habe dafür auch im Parlament gekämpft. In den beiden Fraktionen habe ich damit mehr zu tun. Wir haben jetzt große Verhandlungen mit den Amerikanern über das gesamte Feld.",
+            "timestamp": "00:41:46",
+            "context": "Antwort auf die wiederholte Frage zur konkreten Umsetzung der Digitalsteuer."
+          }
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "In den neunziger Jahren dachten 95% der Menschen, sie können noch sagen was sie wollen",
+        "timestamp": "00:25:14"
+      },
+      {
+        "claim": "Nur noch 40% der Deutschen sind der Meinung, du kannst in Deutschland frei deine Meinung sagen ohne irgendwelche Nachteile zu erwarten",
+        "timestamp": "00:25:14"
+      },
+      {
+        "claim": "Trump möchte ein Meer umbenennen und Google macht das, weil sie die Macht über die Kartographie der Welt haben",
+        "timestamp": "00:41:46"
+      },
+      {
+        "claim": "Eine Venus-Statue wird aus einer deutschen Behörde entfernt, weil eine feministisch gesinnte Frauenbeauftragte meint, die Venusstatue sei nicht mehr tragbar",
+        "timestamp": "00:21:57"
+      },
+      {
+        "claim": "Ein Gedicht eines schweizerischen Schriftstellers über Frauen und Straßen wird von einer Hausfassade gestrichen, weil es angeblich sexistisch ist",
+        "timestamp": "00:21:57"
+      }
+    ]
+  }
+}

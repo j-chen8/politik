@@ -1,0 +1,322 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtOWQxZDljMzMtMzgzZS00MmJiLThhODktMGVlODhhOWY4MWE0",
+    "video_id": "maischberger-2025-12-03",
+    "politician": "Fabio De Masi",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "b69e882ac92ae547",
+    "transcript_chars": 51928,
+    "caption_lines": 1916,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21276,
+    "tokens_out": 7721,
+    "cost_usd": 0.0239524,
+    "quote_validation": {
+      "valid_exact": 8,
+      "valid_fuzzy": 4,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-05T12:36:41.523Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Fabio De Masi präsentierte sich als kritischer Kommentator zur Rentendiskussion und insbesondere zur Ukraine-Friedenspolitik. Sein Ton war sachlich-konfrontativ, wobei er wiederholt Positionen zur Diplomatieoffenheit und Sanktionskritik vertrat, die er gegen Manfred Weber (EVP) argumentativ verteidigte.",
+    "themes": [
+      {
+        "title": "Rentensystem und Fiskalische Nachhaltigkeit",
+        "timestamp_range": "00:01:37 - 00:04:49",
+        "theme_description": "De Masi kritisierte die geplante Rentenreform als teure Maßnahme ohne strukturelle Lösungen für das Rentensystem.",
+        "question_asked": "Sandra Maischberger stellte keine direkte Frage an De Masi, sondern dieser äußerte sich eigeninitiativ zur Rentenreform und deren Finanzierung.",
+        "question_intent": "De Masi wollte unaufgefordert seine Kritik an der Rentenreform öffentlich machen.",
+        "position": "De Masi warnte vor einer 120-Milliarden-Euro-Reform ab 2031, die aus Steuerzahlerkassen finanziert werde und das tatsächliche Rentenproblem nicht löse. Er forderte stattdessen ein \"kapitalgedecktes\" Rentensystem über einen Staatsfonds. Er kritisierte die niedrige Teilzeitquote von Frauen (49%) und fehlende Diskussionen über Arbeitsmarktintegration. De Masi charakterisierte die Reform als \"Wahlgeschenk\" ohne ehrliche Sachdebatten.",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi machte unbegründet eine volle sachliche Aussage zur Rentenkritik mit konkreten Zahlen und strukturellen Alternativvorschlägen (Kapitaldeckung, Staatsfonds, Frauenbeschäftigung). Keine Frage-Antwort-Sequenz, aber eigeninitiative Positionsklärung.",
+        "concrete_statements": [
+          "Das wird 120 Mrd. Euro kosten ab 2031, d.h. 12 Mrd. Euro pro Jahr",
+          "Man suggeriert, dass das Rentenproblem dadurch gelöst wird. Aber es kommt aus Steuerzahlerkassen",
+          "Was nicht beantwortet ist, sind wirkliche Lösungen, dass man ein Rentensystem kapitalgedeckt aufgestellt, über einen Staatsfond",
+          "Die Teilzeitquote von Frauen bei 49%. Die Zahlen nur bedingt in die Rentenkassen ein"
+        ],
+        "quotes": [
+          {
+            "text": "Das wird 120 Mrd. Euro kosten ab 2031, d.h. 12 Mrd. Euro pro Jahr. Man suggeriert, dass das Rentenproblem dadurch gelöst wird. Aber es kommt aus Steuerzahlerkassen.",
+            "timestamp": "00:01:37",
+            "context": "De Masi kritisiert die finanzielle Tragfähigkeit der geplanten Rentenreform."
+          },
+          {
+            "text": "Was nicht beantwortet ist, sind wirkliche Lösungen, dass man ein Rentensystem kapitalgedeckt aufgestellt, über einen Staatsfond.",
+            "timestamp": "00:02:07",
+            "context": "De Masi fordert strukturelle Alternativen statt kurzfristiger Maßnahmen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Fiskalische Nachhaltigkeit",
+          "Frauenbeschäftigung",
+          "Altersarmut"
+        ]
+      },
+      {
+        "title": "Mehrheitsbildung und Regierungsstabilität",
+        "timestamp_range": "00:03:44 - 00:04:16",
+        "theme_description": "De Masi beurteilte die Instabilität der Merz-Regierung und die Abhängigkeit von Linken-Tolerierung für Gesetzesvorhaben.",
+        "question_asked": "Sandra Maischberger fragte, ob die Regierung unter Merz die Kraft für anstehende Reformen hat, wenn sie nur wegen Die Linke-Enthaltung durchkommt.",
+        "question_intent": "Maischberger wollte klären, ob die Regierungsstabilität durch knappe Mehrheiten gefährdet ist.",
+        "position": "De Masi prangerte die ständigen \"Steißgeburten\" dieser Regierung an und kritisierte, dass immer wieder \"Schicksalsfragen\" gestellt werden müssen, weil die Mehrheiten so knapp sind. Er verband dies mit der ursprünglichen Kanzlerwahl Merz' und dessen Schwierigkeiten, Mehrheiten zu organisieren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi adressierte direkt Maischbergers Sorge um Regierungsstabilität, indem er ein Muster von Mehrheitsproblemen darstellte — Merz-Kanzlerwahl, Union-interne Spannungen, wiederholte Vertrauensfragen — und die Schlussfolgerung zog, dass dieses Regierungssystem unter Schmerzen agiert.",
+        "concrete_statements": [
+          "Sie gebärt unter Schmerzen",
+          "Ich glaube, dass von ihm aus ein Exempel statuiert worden ist einer jungen Gruppe, die in der Sache völlig recht hat"
+        ],
+        "quotes": [
+          {
+            "text": "Er muss jetzt die eigene Mehrheiten bekommen. Ich glaube, dass von ihm aus ein Exempel statuiert worden ist einer jungen Gruppe, die in der Sache völlig recht hat.",
+            "timestamp": "00:03:44",
+            "context": "De Masi kritisiert Merz' Umgang mit der Jungen Gruppe in der Union, die gegen die Rentenreform rebelliert."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Regierungsstabilität",
+          "Mehrheitsbildung",
+          "Koalitionsdisziplin",
+          "Vertrauensfrage"
+        ]
+      },
+      {
+        "title": "Wirtschaftskrise und Strukturreformen",
+        "timestamp_range": "00:12:47 - 00:14:55",
+        "theme_description": "De Masi diagnostizierte tiefe Strukturprobleme der deutschen Wirtschaft, insbesondere Transformation, kriegerisches Umfeld und digitale Umwälzungen.",
+        "question_asked": "Sandra Maischberger verband Aussagen zur wirtschaftlichen Stagnation mit dem BDI-Ausspruch 'freier Fall' und fragte, ob die Regierung handlungsfähig ist.",
+        "question_intent": "Maischberger wollte verstehen, ob De Masi die Wirtschaftskrise als hausgemacht oder strukturell bewertet und ob die Regierung die richtigen Antworten hat.",
+        "position": "De Masi sah die Wirtschaftskrise nicht primär als aktuales Versagen, sondern als Transformation: Weg vom CO2, Digitalisierung (mit KI), die Jobs verdrängt; dazu das kriegerische Umfeld in Europa (USA-China-Machtkampf); schließlich strukturelle Probleme, die 2024 im \"Dauerschlaf\" waren. Er bezeichnete die Situation als \"Stagnation\" statt Krise im klassischen Sinne und warnte: \"Es wird nicht besser, wenn Deutschland politisch abdriftet.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "De Masi adressierte die Frage nach Wirtschaftskrise und Regierungshandlung, verlagerte sie aber auf strukturelle Langfristtrends (CO2-Transformation, KI, geopolitik) statt auf konkrete Regierungspolitik. Er bot diagnose, aber weniger Bewertung der Regierungsmaßnahmen.",
+        "concrete_statements": [
+          "Diese Wirtschaft in der Transformation steckt",
+          "Weg vom CO2, dann Digitalisierung, wo jetzt KI hinzukommt, die die Jobs jetzt in rasender Geschwindigkeit ersetzt",
+          "2 Weltmächte, die um die Vormachtstellung in der Welt kämpfen",
+          "Es wird nicht besser, wenn Deutschland politisch abdriftet"
+        ],
+        "quotes": [
+          {
+            "text": "Das, was neu ist, ist, dass diese Wirtschaft in der Transformation steckt. Weg vom CO2, dann Digitalisierung, wo jetzt KI hinzukommt, die die Jobs jetzt in rasender Geschwindigkeit ersetzt.",
+            "timestamp": "00:13:20",
+            "context": "De Masi erklärt strukturelle Ursachen der Wirtschaftskrise."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftskrise",
+          "Strukturwandel",
+          "Energiewende",
+          "Digitalisierung",
+          "Arbeitsmarkt"
+        ]
+      },
+      {
+        "title": "Trump-Vermittlung und 28-Punkte-Plan",
+        "timestamp_range": "00:43:31 - 00:55:49",
+        "theme_description": "De Masi kritisierte Trump-Plan als Bereicherungsprogramm für US-Unternehmen, lehnte aber Kapitulation der Ukraine ab; forderte europäische Autonomie.",
+        "question_asked": "Anja Kohl/ Moderator stellte dar, dass De Masi-These 'entweder Deal oder Krieg geht weiter' sei und fragten nach De Masis Einschätzung.",
+        "question_intent": "Es sollte geklärt werden, ob De Masi tatsächlich einen beliebigen Plan akzeptiert oder Bedingungen hat.",
+        "position": "De Masi kritisierte scharf: Der 28-Punkte-Plan sei kein Friedensplan, sondern \"Bereicherungsplan\" für Trump-Administration (Deals zwischen US- und russischen Unternehmen; Energie, Metalle, Wiederaufbau Nord Stream mit US-Unterstützung; Versuch, 300 Mrd. Euro gefrorene russische Vermögen zu nutzen). Gleichzeitig: \"Das ist ein Diktatfrieden. Der die Ukraine schutzlos ausliefern würde.\" De Masi war gegen unkonditionierte Annahme, forderte aber europäische Gegenposition — Energiedeals als Eintrittskarte in Verhandlungen nach Waffenstillstand. Kern: Europa muss selbst ins Spiel (nicht bloß Katzentisch).",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi adressierte die Entweder-Oder-Frage und differenzierte: nicht 'beliebiger Deal akzeptabel', sondern 'Plan ist Diktat, aber Verhandlung ist Weg; Europa muss Hebel haben (Energie-Rückbau als Lockmittel nach Waffenstillstand)'.",
+        "concrete_statements": [
+          "Das ist kein Friedensplan. Das ist ein Bereicherungsplan für die Trump-Regierung",
+          "Es geht um Deals von US-Unternehmen mit russischen Unternehmen",
+          "Es ist auch darum, die Nord Stream Pipeline möglicherweise mit US-Unterstützung wieder aufzubauen",
+          "Das ist ein Diktatfrieden. Der die Ukraine schutzlos ausliefern würde"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist kein Friedensplan. Das ist ein Diktatfrieden. Der die Ukraine schutzlos ausliefern würde. Für uns würden die Kosten exorbitant steigen, wenn wir das akzeptieren, menschlich, finanziell, was Wehrdienst angeht, was die Sicherheit für Europa angeht.",
+            "timestamp": "00:43:31",
+            "context": "De Masi kritisiert Trump-Plan massiv als nicht akzeptabel ohne europäischen Gegenpol."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Trump-Außenpolitik",
+          "Ukraine-Friedensplan",
+          "USA-Russland-Verhandlungen",
+          "Europäische Autonomie"
+        ]
+      },
+      {
+        "title": "Ukraine-Friedensplan und Diplomatie",
+        "timestamp_range": "00:53:42 - 01:02:42",
+        "theme_description": "De Masi forderte Verhandlungslösungen und kritisierte den 28-Punkteplan als unausgewogen, verteidigte aber Diplomatie gegenüber maximaler militärischer Unterstützung.",
+        "question_asked": "Manfred Weber fragte, ob De Masi bewusst polemisch formuliert habe mit der Aussage, dass Waffenlieferungs-Befürworter selbst in die Ukraine gehen sollten.",
+        "question_intent": "Weber wollte De Masis provokative Formulierung als Rhetorik-Strategie entlarven.",
+        "position": "De Masi bestätigte die bewusste Polemik und erklärte seinen Kontext: Er habe Kritiker in sozialen Medien beobachtet, die sich gegen Wehrdienst-Entziehungen in der Ukraine aufregten, ohne selbst Wehrdienst geleistet zu haben. Seine Kernposition war: Die Ukraine habe das Recht auf NATO-Mitgliedschaft, aber es sei \"nicht politisch klug\", diesen Wunsch zu erfüllen, wenn dadurch das Land zerstört wird. Er zitierte sogar die ehemalige Pressesprecherin Selenskyjs, die Kompromissbereitschaft fordere. De Masi verwies auf das Stoltenberg-Angebot vor Kriegseintritt (Garantie, Ukraine nicht in NATO) und fragte: \"war es das wert?\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi adressierte Webers Frage direkt mit explizitem Kontext für seine Polemik und entwickelte eine differenzierte Position: Recht ≠ Klugheit, empirische Zitate, kontrafaktische Frage zu Stoltenberg. Keine Ausweichung.",
+        "concrete_statements": [
+          "Die Ukraine hat selbstverständlich das Recht, einen Wunsch auszusprechen. Aber d.h. nicht, dass es politisch klug ist, dass wir diesen Wunsch gewähren, wenn das die Zerstörung der Ukraine zur Folge hat",
+          "Das sagt die ehemalige Pressesprecherin von Selenskyj",
+          "Es wurde vor Kriegseintritt, da gab es ein Angebot der Russen an den damaligen NATO-Generalsekretär. Die haben gesagt, wir wollen darüber reden, dass die Ukraine nicht in die NATO kommt"
+        ],
+        "quotes": [
+          {
+            "text": "Die Ukraine hat selbstverständlich das Recht, einen Wunsch auszusprechen. Aber d.h. nicht, dass es politisch klug ist, dass wir diesen Wunsch gewähren, wenn das die Zerstörung der Ukraine zur Folge hat.",
+            "timestamp": "01:01:10",
+            "context": "De Masi legt dar, warum er NATO-Perspektive für die Ukraine unter den gegenwärtigen Bedingungen für kontraproduktiv hält."
+          },
+          {
+            "text": "Es wurde vor Kriegseintritt, da gab es ein Angebot der Russen an den damaligen NATO-Generalsekretär. Die haben gesagt, wir wollen darüber reden, dass die Ukraine nicht in die NATO kommt. Herr Stoltenberg hat gesagt, man habe das selbstverständlich zurückgewiesen. Ich frage mich, war es das wert.",
+            "timestamp": "01:02:42",
+            "context": "De Masi verweist auf kontrafaktische Verhandlungsmöglichkeit vor Kriegsbeginn."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "NATO-Erweiterung",
+          "Friedensverhandlungen",
+          "Diplomatie"
+        ]
+      },
+      {
+        "title": "Entspannungspolitik und historische Parallelen",
+        "timestamp_range": "00:58:58 - 01:03:14",
+        "theme_description": "De Masi berief sich auf Entspannungs-Theorie und historische Präzedenzfälle (Kanada-China, Kuba-Krise), um Neutralität der Ukraine als realistisches Ziel zu rechtfertigen.",
+        "question_asked": "Manfred Weber forderte De Masi auf, seinen Argument zu Neutralität Ukraine und Analogie zu Kanada-China zu erläutern.",
+        "question_intent": "Weber wollte De Masis Argument als Putin-Sympathie darstellen und die völkerrechtswidrige Aggression gegen legitime Verteidigungsrecht.",
+        "position": "De Masi argumentierte: Das Neutralitäts-Argument sei nicht neu — US-Diplomaten wie Kennan (Kalter Krieg) und viele US-Diplomaten hätten gesagt, es sei ein Fehler gewesen, nicht über Ukraine-Neutralität zu sprechen. Analogie: wenn Kanada oder Mexiko mit China ein Militärbündnis eingingen, würde das \"vermutlich nicht gut enden\" — das \"rechtfertigt nicht diesen Krieg\" (Putins Aggression), aber \"wir wissen, dass jetzt am Ende dieses Prozesses wahrscheinlich die Neutralität der Ukraine stehen wird. Und dafür sind Hunderttausende gestorben.\" De Masis Position: De-Eskalation ist das einzige realistische Ziel; weitere Ukraine-Kämpfe führen nicht zu besseren Bedingungen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi entwickelte eine komplexe historisch-analogische Antwort auf Webers implizite Frage, warum Neutralität realistisch sei. Er trennte klar 'Rechtfertigung der Aggression' (nein) von 'Realistische Erwartung am Ende' (Neutralität wahrscheinlich).",
+        "concrete_statements": [
+          "Denken Sie an zahlreiche US-Diplomaten, die gesagt haben, es war ein Fehler, dass man nicht über die Neutralität der Ukraine gesprochen hat",
+          "Wenn z.B. Kanada oder Mexiko in ein Militärbündnis mit China gehen würden, würde das vermutlich nicht gut enden",
+          "Das rechtfertigt nicht diesen Krieg",
+          "Wir wissen, dass jetzt am Ende dieses Prozesses wahrscheinlich die Neutralität der Ukraine stehen wird. Und dafür sind Hunderttausende gestorben"
+        ],
+        "quotes": [
+          {
+            "text": "Denken Sie an zahlreiche US-Diplomaten, die gesagt haben, es war ein Fehler, dass man nicht über die Neutralität der Ukraine gesprochen hat. Wenn z.B. Kanada oder Mexiko in ein Militärbündnis mit China gehen würden, würde das vermutlich nicht gut enden. Das rechtfertigt nicht diesen Krieg.",
+            "timestamp": "00:58:58",
+            "context": "De Masi verteidigt sein Neutralitäts-Argument als Analyse, nicht als Billigung von Putins Aggression."
+          },
+          {
+            "text": "Wir wissen, dass jetzt am Ende dieses Prozesses wahrscheinlich die Neutralität der Ukraine stehen wird. Und dafür sind Hunderttausende gestorben, dafür wurde ein Land zerstört.",
+            "timestamp": "01:00:10",
+            "context": "De Masi argumentiert, dass Weiterkämpfen nicht zu besseren Bedingungen führt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Entspannungspolitik",
+          "Ukraine-Neutralität",
+          "Geopolitische Realität",
+          "Historische Lehren"
+        ]
+      },
+      {
+        "title": "Sanktionen gegen Russland und Energiepolitik",
+        "timestamp_range": "01:06:21 - 01:07:34",
+        "theme_description": "De Masi kritisierte Sanktionspolitik als Eigentor und forderte Sanktionslösung im Austausch für Waffenstillstand und erneuerte Gaslieferungen.",
+        "question_asked": "Manfred Weber fragte, ob De Masi auf sofortiges Wiederöffnen des Gashahns zu Russland plädiere oder erst nach Waffenstillstand.",
+        "question_intent": "Weber wollte De Masis Position zur Sanktionsaufhebung präzisieren und als mangelnde Unterstützung für Ukraine-Widerstand darstellen.",
+        "position": "De Masi lehnte ab, \"wieder den Gashahn aufzudrehen\", sondern plädierte für \"diplomatisches Spiel\": Im Waffenstillstandsfall könnten Energiebeziehungen wieder aufgenommen werden. Er warnte, dass Sanktionen Deutschland selbst schadeten (höchste Energiepreise in Europa, Arbeitsplätze), während Putin seinen Krieg überwiegend nicht mit \"unseren Gas-Euros\" finanziere (er habe seine Wirtschaft umgestellt). De Masi betonte, Amerikaner kauften weiterhin Uran aus Russland für Atomkraftwerke. Seine Kernkritik: \"1.000 Sanktionspakete, die uns am Ende mehr schaden und den Krieg nicht verkürzen.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "De Masi beantwortete Webers Präzisierungsfrage vollständig: nein zu sofortigen Gashahn, ja zu Energie-Wiederaufnahme nach Waffenstillstand im diplomatischen Kontext. Eigene Begründung mit Schadensabschätzung und Vergleich USA-Uran.",
+        "concrete_statements": [
+          "Wir sollten uns diplomatischen Spiel bringen",
+          "Wir können nicht 1.000 Sanktionspakete machen, die uns am Ende mehr schaden und den Krieg nicht verkürzen",
+          "Wir haben in Deutschland die höchsten Energiepreise in Europa, Arbeitsplätze werden vernichtet",
+          "Putin finanziert seinen Krieg überwiegend nicht mit unseren Gas-Euros"
+        ],
+        "quotes": [
+          {
+            "text": "Wir sollten uns diplomatischen Spiel bringen. Wir können nicht 1.000 Sanktionspakete machen, die uns am Ende mehr schaden und den Krieg nicht verkürzen.",
+            "timestamp": "01:06:57",
+            "context": "De Masi kritisiert europäische Sanktionspolitik als kontraproduktiv."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russland-Sanktionen",
+          "Energieversorgung",
+          "Rohstoffabhängigkeit",
+          "Wirtschaftskrise"
+        ]
+      },
+      {
+        "title": "Europäische Verteidigungsunabhängigkeit und Rüstung",
+        "timestamp_range": "01:09:48 - 01:11:21",
+        "theme_description": "De Masi lehnte europäische Aufrüstung und Atomwaffen-Debatte ab und forderte stattdessen Rüstungskontrolle und Entspannungspolitik.",
+        "question_asked": "Manfred Weber fragte, ob De Masi einer europäischen Verteidigungsorganisation ohne USA zustimmt und später, ob er sich für europäische Atomwaffen einsetzt.",
+        "question_intent": "Weber wollte De Masi zur klaren Positionierung zu europäischer Sicherheit zwingen und implizit als Anhänger von Schwäche darstellen.",
+        "position": "De Masi argumentierte für \"größere Unabhängigkeit von USA\", aber nicht durch Aufrüstung: Europa habe 150 Waffensysteme (6x USA-Anzahl); weitere Rüstungsausgaben machten die Wirtschaft kaputt, während Schulen zerfallen und Infrastruktur leidet. Er lehnte europäische Atomwaffen ab (\"hanebüchen\", nukleare Eskalation als worst case). Seine Alternative: Rüstungskontrolle-Vereinbarung mit Russland und Entspannungspolitik, da \"Atommacht\" nicht mit Panzerkauf zu besiegen sei. Er skeptisierte auch praktische Kriegsfähigkeit (Deutsch-französischer Kampfjet gescheitert; europäische Armee unrealistisch).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "De Masi adressierte die Verteidigungsfrage, aber mit Gegenposition statt Zustimmung: Unabhängigkeit ja, aber Entspannung statt Aufrüstung. Atomwaffen lehnte er explizit ab. Er beantwortete aber nicht direkt Webers Frage zur \"geeinted europäischen Stimme\", sondern argumentierte, warum diese unmöglich ist (Souveränität, Interessenskonflikte Slowakei-Gas).",
+        "concrete_statements": [
+          "Wir brauchen eine größere Unabhängigkeit von der USA",
+          "Wir haben 150 Waffensysteme in Europa. Das sechsfache der USA",
+          "Wenn wir da jetzt mehr Geld reinschütten, machen wir unsere Wirtschaft kaputt",
+          "Wir müssen zur Rüstungskontrolle- Vereinbarung mit Russland kommen",
+          "Das Schlimmste, was uns passieren könnte, wäre eine nukleare Eskalation"
+        ],
+        "quotes": [
+          {
+            "text": "Wir brauchen eine größere Unabhängigkeit von der USA. Wir bekommen es nicht mal hin, wir haben 150 Waffensysteme in Europa. Das sechsfache der USA. Wenn wir da jetzt mehr Geld reinschütten, machen wir unsere Wirtschaft kaputt.",
+            "timestamp": "01:09:48",
+            "context": "De Masi argumentiert gegen europäische Aufrüstung."
+          },
+          {
+            "text": "Wir müssen zur Rüstungskontrolle- Vereinbarung mit Russland kommen. Wir können noch so viele Panzer kaufen, das ist eine Atommacht.",
+            "timestamp": "01:10:51",
+            "context": "De Masi plädiert für Diplomatie statt Rüstung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Verteidigung",
+          "Rüstungsausgaben",
+          "Nuklearwaffen",
+          "NATO",
+          "Entspannungspolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Rentenreform wird 120 Mrd. Euro ab 2031 kosten, d.h. 12 Mrd. Euro pro Jahr.",
+        "timestamp": "00:01:37"
+      },
+      {
+        "claim": "Die Teilzeitquote von Frauen liegt bei 49%.",
+        "timestamp": "00:02:38"
+      },
+      {
+        "claim": "Das Loch in der Rentenkasse beläuft sich auf mehr als 120 Mrd. im Jahr, was 1/4 bis 1/3 des gesamten Steueraufkommens entspricht.",
+        "timestamp": "00:04:16"
+      },
+      {
+        "claim": "Europa hat 150 Waffensysteme, das Sechsfache der USA.",
+        "timestamp": "01:09:48"
+      },
+      {
+        "claim": "Vor Kriegseintritt gab es ein Angebot der Russen an den damaligen NATO-Generalsekretär Stoltenberg, über die Nicht-NATO-Mitgliedschaft der Ukraine zu verhandeln.",
+        "timestamp": "01:02:42"
+      }
+    ]
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-mai-2026-100",
+    "video_id": "lanz-2026-05-05",
+    "politician": "Karl-Josef Laumann",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "3750b3ae72229bb0",
+    "transcript_chars": 66440,
+    "caption_lines": 3243,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 26672,
+    "tokens_out": 7050,
+    "cost_usd": 0.0247688,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "teilweise_antwort": 2,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.745Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karl-Josef Laumann (CDU, Nordrhein-Westfalen) tritt in der Markus-Lanz-Sendung als Brückenbauer in einer zerstrittenen Koalition auf. Er verteidigt die Notwendigkeit der CDU-SPD-Regierung, betont Reformfortschritte und wendet sich gegen Vorwürfe mangelnder Leistungsbereitschaft in Deutschland. Im Ton wirkt er sachlich-pragmatisch und konziliativ, wo er innerparteiliche Spannungen ausgleichen möchte.",
+    "themes": [
+      {
+        "title": "Friedrich Merz und transatlantische Rhetorikkrise",
+        "timestamp_range": "00:15:22 - 00:16:15",
+        "theme_description": "Laumann verteidigt Friedrich Merz' Schulaussage zur Iran-Politik als normal-menschliche Relativierung und hebt dessen langjähriges pro-amerikanisches Engagement hervor.",
+        "question_asked": "Markus Lanz erwähnt, dass Laumann nach Ronzheimers Analyse von Merz' kritischem Auftritt lächelt, und fragt implizit nach Laumanns Bewertung.",
+        "question_intent": "Lanz möchte verstehen, wie Laumann die Schule-Aussage von Merz interpretiert — als Ehrlichkeit oder als politischer Fehler.",
+        "position": "Laumann argumentiert, dass jeder öffentliche Auftritt, auch in einer Schulklasse, ein öffentlicher Auftritt ist und dass Politiker dafür Verantwortung tragen müssen. Wenn man etwas Unangemessenes sagt, muss man es 'ein bisschen relativieren'. Das sei 'wie im nicht politischen Leben'. Er verteidigt Merz: 'Ich kenne Friedrich Merz seit 40 Jahren, er ist natürlich schon ein Politiker in Deutschland, der auch über sehr gute aber auch sehr grundsätzlich positive Meinungen über die für einigen Staaten hat. Das hatte in seinem politischen Leben über Jahrzehnte bewiesen.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laumann antwortet direkt auf die implizite Frage nach seiner Bewertung und erklärt sein Verständnis des Vorfalls mit Verweis auf normale politische Verantwortung und auf Merz' Langzeitbilanz.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es ist immer ein öffentlicher Auftritt.",
+          "Wenn man etwas gesagt hat, wo man hinterher sagt, man hätte es besser nicht gesagt, dann muss man sehen, dass man es auch ein bisschen relativiert.",
+          "Friedrich Merz ist natürlich schon ein Politiker in Deutschland, der auch über sehr gute aber auch sehr grundsätzlich positive Meinungen über die für einigen Staaten hat."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist so, dass der Auftritt, das fängt schon beim Landesminister an, es ist immer ein öffentlicher Auftritt, auch wenn man in einer Schulklasse nur ist, es ist ein öffentlicher Auftritt.",
+            "timestamp": "00:15:22",
+            "context": "Laumann erklärt die Öffentlichkeitsnatur jedes Politikerauftritts."
+          },
+          {
+            "text": "Ich weiß sehr wohl und ich kenne Friedrich Merz seit 40 Jahren, er ist natürlich schon ein Politiker in Deutschland, der auch über sehr gute aber auch sehr grundsätzlich positive Meinungen über die für einigen Staaten hat.",
+            "timestamp": "00:15:22",
+            "context": "Laumann verteidigt Merz' transatlantisches Engagement über Jahrzehnte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Transatlantische Beziehungen",
+          "USA-Politik",
+          "Politische Kommunikation",
+          "Friedrich Merz"
+        ]
+      },
+      {
+        "title": "Notwendigkeit der Koalition trotz Konflikte",
+        "timestamp_range": "00:33:41 - 00:36:29",
+        "theme_description": "Laumann argumentiert, dass die CDU-SPD-Koalition trotz grundlegender Unterschiede die beste verfügbare Option für Deutschland ist.",
+        "question_asked": "Markus Lanz fragt Laumann, wie die Äußerung von Friedrich Merz 'Ich habe keine Vollmacht die CDU umzubringen' bei ihm ankommt und was dieser Satz für ihn bedeutet.",
+        "question_intent": "Lanz möchte wissen, wie Laumann die Dramatik der Koalitionskrise interpretiert und ob die Regierung überhaupt lebensfähig ist.",
+        "position": "Laumann sieht Merz' Satz als berechtigte Forderung, dass die SPD nicht ständig Koalitionsvereinbarungen infrage stellen darf. Er betont, dass es im Deutschen Bundestag zu dieser Koalition keine 'vernünftige verantwortbar Alternative' gibt. Das Wahlergebnis habe diese Koalition notwendig gemacht, und die CDU müsse Verantwortung tragen. Eine Minderheitsregierung oder Vertrauensfrage würde 'Europa in Turbulenzen stürzen'. Laumann sagt: 'Wenn der Wahlabend da ist und das Ergebnis da ist, dann hast du die Verantwortung daraus das Beste zu machen.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Laumann antwortet auf die emotionale Frage nach Trotz und Drama mit einer pragmatischen Notwendigkeitsargumentation, nicht aber auf die implizite Frage nach der Machbarkeit und dem Vertrauensverlust. Er ordnet die Aussage ein, ohne die zugrundeliegende Verzweiflung zu reflektieren.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es gibt im Deutschen Bundestag zu dieser Koalition keine vernünftige verantwortbar Alternative.",
+          "Eine Minderheitsregierung oder Vertrauensfrage würde Europa in Turbulenzen stürzen.",
+          "Die CDU ist seit dem Zweiten Weltkrieg ohne Frage eine der erfolgreichsten Parteien in Europa. Daran müssen wir auch wieder anknüpfen."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn der Wahlabend da ist und das Ergebnis da ist, dann hast du die Verantwortung daraus das Beste zu machen.",
+            "timestamp": "00:35:13",
+            "context": "Laumann erklärt seine politische Grundhaltung zur Verantwortung nach Wahlen."
+          },
+          {
+            "text": "Es gibt im Deutschen Bundestag zu dieser Koalition keine vernünftige verantwortbar Alternative.",
+            "timestamp": "00:34:51",
+            "context": "Auf Lanz' Frage, wie der Satz 'Ich habe keine Vollmacht die CDU umzubringen' ankommt, argumentiert Laumann pragmatisch."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "CDU-SPD-Regierung",
+          "Vertrauensfrage",
+          "Minderheitsregierung"
+        ]
+      },
+      {
+        "title": "Regierungsfähigkeit durch Gesetzgebung und Durchsetzung",
+        "timestamp_range": "00:38:15 - 00:39:36",
+        "theme_description": "Laumann argumentiert, dass Koalitionen durch Handeln und nicht durch Verhandlungsdebatten stabilisiert werden.",
+        "question_asked": "Markus Lanz möchte wissen, wie Laumann einen 'großen Plan' zur Stabilisierung der Koalition sieht, wenn der Koalitionskonflikt so fundamental ist.",
+        "question_intent": "Lanz fragt, wie man aus einer Zwangsverpflichtung zur SPD wieder zu echter Zusammenarbeit kommt.",
+        "position": "Laumann sagt klar: 'In so einer Situation hilft nur eins, es muss jetzt einfach funktionieren, dass wir das notwendige tun.' Er betont, dass wenn die Koalition Entscheidungen trifft — Steuerreform, Rentenreform, große Themen — und diese ins Parlament einbringt und durchsetzt, 'dann wird die Stimmung auch besser werden'. Parlamentarische Änderungen seien normal und akzeptabel. Seine Botschaft: Nicht debattieren, sondern regieren. 'Man kann so eine Problematik nur überwinden, den man schlicht und ergreifend regiert.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laumann antwortet direkt auf die Stabilierungsfrage mit einer klaren Strategie: Durchregieren statt Verhandeln. Er adressiert das Lanz' Frage nach dem Exit aus der Zwangssituation konkret.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "In so einer Situation hilft nur eins, es muss jetzt einfach funktionieren, dass wir das notwendige tun.",
+          "Man kann so eine Problematik nur überwinden, den man schlicht und ergreifend regiert.",
+          "Es wird ohne Frage zu einer Steuerreform kommen, es wird auch die Rentenreform kommen.",
+          "Wenn diese drei großen Themen so beantwortet sind, dass es auch in der Gesellschaft gesehen wird, das haben sie vernünftig gemacht, dass sich auch dann die Stimmung für die Koalition verändert."
+        ],
+        "quotes": [
+          {
+            "text": "Man kann so eine Problematik nur überwinden, den man schlicht und ergreifend regiert. Entscheidungen trifft, sie ins Parlament einbringen, im Parlament werden alle Gesetze sowieso ein bisschen verändert, das ist auch okay.",
+            "timestamp": "00:38:22",
+            "context": "Laumann beschreibt seinen Ansatz zur Koalitionsstabilisierung durch Gesetzgebung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarischer Prozess",
+          "Koalitionsmanagement",
+          "Steuerreform",
+          "Rentenreform"
+        ]
+      },
+      {
+        "title": "Kritik an pauschalisierender Rhetorik und fehlender Empathie",
+        "timestamp_range": "00:41:45 - 00:42:45",
+        "theme_description": "Laumann bewertet die aggressive Rhetorik von Bärbel Bas als unpolitisch, empfiehlt aber Zurückhaltung statt öffentlicher Eskalation.",
+        "question_asked": "Markus Lanz fragt Laumann direkt, wen Bärbel Bas mit ihrer Kritik am '1. Mai'-Auftritt (in dem sie von 'zynisch' und 'menschenverachtend' sprach) gemeint hat und wie Laumann damit umgeht.",
+        "question_intent": "Lanz möchte klären, ob die kulturelle Kluft zwischen CDU und SPD durch solche verbalen Attacken überbrückbar ist.",
+        "position": "Laumann antwortet, dass Lanz diese Frage an Bas stellen müsse. Er betont, dass die CDU richtig reagiert habe, indem sie nicht kommentiert, was die Rede 'nur schlimmer' machen würde. Er differenziert zwischen der Rhetorik an besonderen Tagen (Aschermittwoch, 1. Mai), wo 'bestimmte Dinge erwartet werden', und normaler Politikkultur. Die Strategie müsse klar sein, aber nicht in solchen Debatten bestehen.",
+        "answer_match": "verschoben",
+        "match_reasoning": "Laumann weicht einer Direktbewertung aus, indem er sagt, Lanz solle Bas fragen. Er verschiebt die Verantwortung für die Klarstellung und redet dann über Rhetorikkultur allgemein, nicht über die spezifische Aussage.",
+        "answer_type": "themenwechsel",
+        "concrete_statements": [
+          "Das müssen Sie Frau Bas fragen.",
+          "Die CDU haben wir insofern richtig reagiert, dass sie es nicht kommentiert haben, damit macht man es nur schlimmer.",
+          "Am Aschermittwoch werden auch bestimmte Dinge erwartet, das ist nun mal so, da würde ich auch nicht alles auf die Goldwaage legen."
+        ],
+        "quotes": [
+          {
+            "text": "Das müssen Sie Frau Bas fragen, ich denke als CDU haben wir insofern richtig reagiert, dass sie es nicht kommentiert haben, damit macht man es nur schlimmer.",
+            "timestamp": "00:41:45",
+            "context": "Auf die Frage, wen Bas mit ihrer Kritik gemeint hat, weicht Laumann aus und betont strategisches Schweigen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionskommunikation",
+          "Politische Rhetorik",
+          "Parteikultur"
+        ]
+      },
+      {
+        "title": "Bilanz Koalition und Reformfortschritt",
+        "timestamp_range": "00:42:49 - 00:45:58",
+        "theme_description": "Laumann verteidigt die Bilanz der Koalition mit konkreten Reformbeispielen und warnt vor Eigenopposition in der Regierung.",
+        "question_asked": "Markus Lanz merkt an, dass Laumann seit einem Jahr im Amt ist und fragt, warum er angesichts fundamentaler kultureller Unterschiede nicht selbst kritischer ist.",
+        "question_intent": "Lanz möchte wissen, ob Laumann die fehlende Aufbruchsstimmung nicht selbst als Versagen betrachtet.",
+        "position": "Laumann behauptet, dass 'in diesem Jahr eigentlich eine Menge passiert' sei und zählt auf: Flüchtlingspolitik entschärft, Bürgergeld mit stärkerer Verbindung von Förderung und Forderung, Unternehmenssteuerreform, Gesundheitsreformvorschläge. Die Bilanz sei 'nicht so schlecht'. Er argumentiert: 'Wenn du dich in der Koalition entschieden hast etwas zu machen, darfst du nicht die eigene Opposition sein.' SPD und CDU seien beide Volksparteien mit unterschiedlichen Strömungen, aber beide müssten versuchen, die Gesellschaft zusammenzuhalten. Er sagt: 'Man kann nicht Regierung und Opposition in einem sein. Das hat noch nie funktioniert.'",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Laumann beantwortet die Frage nach seiner Selbstkritik nicht, sondern listet Leistungen auf und wechselt zu einer Grundsatzkritik an innerkoalitionärer Zerreißproben. Er verteidigt statt zu reflektieren.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Diese Regierung hat die Frage der Flüchtlingspolitik weitestgehend entschärft.",
+          "Wir haben das Bürgergeld gemacht. Das Bürgergeld führt dazu, dass wir fördern und fordern wieder enger zusammengebracht haben.",
+          "Wir haben eine Unternehmenssteuerreform gemacht.",
+          "Wenn du dich in der Koalition entschieden hast etwas zu machen, darfst du nicht die eigene Opposition sein."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn du dich in der Kollision entschieden hast etwas zu machen, darfst du nicht die eigene Opposition seien zudem, was du entschieden hast in der Koalition, dann muss es verteidigen. Man kann nicht Regierungen Opposition in einem sein. Das hat noch nie funktioniert.",
+            "timestamp": "00:42:51",
+            "context": "Laumann formuliert seine Grundposition zur Koalitionsdisziplin."
+          },
+          {
+            "text": "Diese Sozialdemokraten sind zumindest von der Struktur her, wie wir von der CDU eine Volkspartei. Zwei Volksparteien haben natürlich auch die Situation, dass sie sich auch treffen.",
+            "timestamp": "00:44:55",
+            "context": "Laumann erklärt die Koalitionsfähigkeit von CDU und SPD als Volksparteien."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdisziplin",
+          "Reformbilanz",
+          "Flüchtlingspolitik",
+          "Bürgergeld",
+          "Steuerreform"
+        ]
+      },
+      {
+        "title": "Rhetorik über Arbeitsmoral und Leistungsbereitschaft",
+        "timestamp_range": "00:54:03 - 00:57:50",
+        "theme_description": "Laumann verteidigt die deutsche Bevölkerung gegen Vorwürfe mangelnder Leistungsbereitschaft und kritisiert die pauschalierende Rhetorik von Koalitionspartnern.",
+        "question_asked": "Markus Lanz fragt Laumann, ob er die Position des Vizekanzlers teilt, dass Deutscher länger arbeiten müssen, oder wie er dazu steht, nachdem Klingbeil von 'zu faulen' Menschen sprach.",
+        "question_intent": "Lanz möchte klären, inwieweit Laumann die vermeintlich diskreditierende Rhetorik der SPD gegenüber Arbeitnehmern teilt oder kritisiert.",
+        "position": "Laumann lehnt pauschalierende Rhetorik kategorisch ab und betont, dass sich 'fleißige Menschen vor den Kopf gestoßen fühlen', wenn sie in dieser Weise dargestellt werden. Er verweist auf Statistiken (19 Krankheitstage pro Arbeitnehmer im Jahr) und stellt fest, dass Deutschland 'nach wie vor eine Leistungsbereite Bevölkerung' hat. 75 Prozent der Beschäftigten hätten eine formale Berufsausbildung. Die hohe Teilzeitquote führt er auf Partnerschaften und Familienbild zurück, nicht auf Faulheit. Er sagt: 'Meine Position ist ganz klar, man muss sehr aufpassen, dass man es nicht pauschalisieren.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laumann beantwortet Lanz' Frage direkt und substantiell mit Kritik an pauschalisierender Rhetorik, Daten und einer differenzierten Sicht auf Arbeitsmarktstrukturen. Er adressiert sowohl die fehlende Empathie als auch die Faktenfrage.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Meine Position ist ganz klar: man muss sehr aufpassen, dass man es nicht pauschalisieren.",
+          "75 % unserer Beschäftigten haben eine formale Berufsausbildung, nur 25 % haben keine.",
+          "Deutschland ist ein fleißiges Land mit fleißigen Menschen.",
+          "Das Familienbild teilt sich auch Erwerbsarbeiten zwischen Mann und Frau auf."
+        ],
+        "quotes": [
+          {
+            "text": "Meine Position ist ganz klar, man muss sehr aufpassen, dass man es nicht pauschalisieren. Weil sich dann einfach auch viele fleißige Menschen vor den Kopf gestoßen fühlen.",
+            "timestamp": "00:54:03",
+            "context": "Laumann kritisiert pauschalierende Aussagen über deutsche Arbeitnehmer."
+          },
+          {
+            "text": "Ja, ich würde auch mal sagen, dass wir viel Teilzeit haben ist eine Frage, wo kommen wir daher, dass ganz viele Partnerschaften dieses Familienbild haben.",
+            "timestamp": "00:55:53",
+            "context": "Laumann erklärt strukturelle Gründe für Teilzeitquoten statt Motivationsmangel."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Erwerbsbeteiligung",
+          "Krankenstandsquoten",
+          "Teilzeitbeschäftigung"
+        ]
+      },
+      {
+        "title": "Differenzierte Rentenreform und Lebensarbeitszeit",
+        "timestamp_range": "01:08:52 - 01:15:27",
+        "theme_description": "Laumann argumentiert für eine flexible Lebensarbeitszeit-Regelung statt eines starren Renteneintrittsalters, die körperliche Belastung und Ausbildungsdauer berücksichtigt.",
+        "question_asked": "Markus Lanz spielt einen Videoclip ab, in dem sich Laumann auf dem CDU-Parteitag gegen einen Antrag ausspricht, der Menschen ab einem bestimmten Alter gleich behandeln würde, unabhängig von Ausbildungsdauer und Berufslast. Lanz fragt, warum das Laumann so wütend gemacht hat.",
+        "question_intent": "Lanz möchte verstehen, welche Injustiz Laumann in einer starren Rentenregelung sieht und wie das zu einer leistungsgerechteren Lösung führen könnte.",
+        "position": "Laumann lehnt ein rigides Renteneintrittsalter für alle ab und fordert stattdessen eine differenzierte Betrachtung von Lebensarbeitszeit und körperlicher Belastung. Er akzeptiert, dass die Lebensarbeitszeit erhöht werden muss (über 67 Jahre hinaus), aber nicht pauschal. Es müsse berücksichtigt werden, wie lange und hart jemand arbeitet: 'Es ist ein Unterschied, ob man viele Jahre im Ministerium arbeitet und im Home Office arbeitet oder ob ich Krankenschwester bin und jedes Jahr in ein Dreischichtensystem arbeite.' Er lehnt ab, Menschen in körperlich belastenden Berufen bei Erwerbsunfähigkeit auf formale Arbeitszeiten zu reduzieren und kritisiert, dass man ihnen sagt, sie sollen 'etwas anderes machen'. Zur dualen Ausbildung sagt er, dass Lehre und Meister 'eine gleichwertige Ausbildung' sind.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Laumann beantwortet sowohl die Frage nach seinem emotionalen Einwand als auch die zur inhaltlichen Lösung. Er erklärt die Ungerechtigkeit einer Pauschalregelung und benennt sein differenziertes Modell konkret.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wir werden bei der Rente gravierende Veränderungen machen müssen.",
+          "Mit 67 Jahren ist ja heute im Gesetz festgelegt, da wird es nicht bleiben können.",
+          "Ich tendiere sehr dazu, dass man eine Frage absehen muss, wie belastet sind die Leute und wie hart und lang haben sie gearbeitet.",
+          "Es kann nicht sein, dass Sie diesen Menschen sagen, wenn du dann eben mit irgendeinem Alter nicht mehr kannst, dann kriegst du Erwerbs Unfähigkeit Geld — in Deutschland ist das so gestaltet, dass wenn man noch mehr als 3 Stunden arbeiten kann, dass man keine Rente kriegt.",
+          "Ein Mensch, der eine bodenständige Lehre macht und dann einen Meister macht, ist eine gleichwertige Ausbildung."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ein Unterschied, ob man viele Jahre im Ministerium arbeitet und im Home Office arbeitet oder ob ich Krankenschwester bin und jedes Jahr in ein Dreischichtensystem arbeite, das ist ein Unterschied.",
+            "timestamp": "01:09:55",
+            "context": "Laumann argumentiert für differenzierte Lebensarbeitszeit je nach Berufslast."
+          },
+          {
+            "text": "Ich finde es aber auch nicht in Ordnung, wenn wir sagen, die duale Ausbildung — ich gehöre zu den Politikern, dass wir das als gleich bezeichnen, ich finde ein Mensch, der eine bodenständige Lehre macht und dann einen Meister macht ist eine gleichwertige Ausbildung.",
+            "timestamp": "01:14:11",
+            "context": "Laumann verteidigt die gleichwertige Anerkennung von Berufsausbildung gegenüber akademischen Wegen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Lebensarbeitszeit",
+          "Erwerbsminderungsrente",
+          "Berufliche Ausbildung"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "75 % unserer Beschäftigten haben eine formale Berufsausbildung, nur 25 % haben keine.",
+        "timestamp": "00:54:58"
+      },
+      {
+        "claim": "Wir haben zur Zeit in Deutschland etwa 19 Krankheitstage pro Arbeitnehmer, Pro Jahr.",
+        "timestamp": "00:54:03"
+      },
+      {
+        "claim": "Die fünf größten Reformthemen der Koalition sind Steuerreform, Rentenreform und Gesundheitsreform.",
+        "timestamp": "00:39:17"
+      },
+      {
+        "claim": "Flüchtlingspolitik wurde weitestgehend entschärft, so dass in der öffentlichen Wahrnehmung das Thema Flüchtling nicht mehr so groß ist wie vor der Wahl.",
+        "timestamp": "00:42:51"
+      },
+      {
+        "claim": "Das Bürgergeld führt dazu, dass wir fördern und fordern wieder enger zusammengebracht haben.",
+        "timestamp": "00:42:51"
+      }
+    ]
+  }
+}

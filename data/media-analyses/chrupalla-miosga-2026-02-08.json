@@ -1,0 +1,285 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8xMTY1NjU4YS00ZWMyLTQwMGUtYjFiZS0wOGFjOTUzZDkzNTNfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-02-08",
+    "politician": "Tino Chrupalla",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "a5bcf3a6404e1732",
+    "transcript_chars": 33015,
+    "caption_lines": 1231,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 14899,
+    "tokens_out": 7511,
+    "cost_usd": 0.020981600000000003,
+    "quote_validation": {
+      "valid_exact": 11,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "themenwechsel": 2,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.610Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Tino Chrupalla, AfD-Bundesvorsitzender und Fraktionschef, diskutiert in der Sendung von Caren Miosga über Trump, Migration, Rüstungsausgaben, NATO, Wehrpflicht und Wirtschaftspolitik. Er wirkt dabei defensiv bei Vorwürfen gegen seine Partei (Justizfälle, Vetternwirtschaft), versucht Differenzierungen vorzubringen und positioniert sich zwischen Verständnis für Trump und Kritik an dessen Politik. Sein Ton ist sachlich-argumentativ, teilweise ausweichend.",
+    "themes": [
+      {
+        "title": "Justizfälle und Vetternwirtschaft in der AfD",
+        "timestamp_range": "00:01:33 - 00:07:52",
+        "theme_description": "Caren Miosga fragt nach mehreren laufenden Justizverfahren gegen AfD-Abgeordnete und Vorwürfen der Vetternwirtschaft in der Partei.",
+        "question_asked": "Caren Miosga fragt Tino Chrupalla, ob er und Alice Weidel 'den Laden' angesichts mehrerer Justizfälle in der Woche (Dornau, Möller, Höcke) noch im Griff haben, und später, warum familiäre Netzwerke in der AfD-Struktur so häufig vorkommen.",
+        "question_intent": "Miosga will wissen, ob die AfD-Führung die disziplinarischen Probleme kontrolliert und ob die Partei — die gegen 'Filz' angetreten ist — selbst in Vetternwirtschaft verstrickt ist.",
+        "position": "Chrupalla betont, dass die Fälle unter Kontrolle sind und abgewartet werden müssen. Er räumt ein, ein 'Störgefühl' bei den Vetternwirtschaftsfällen zu haben, insistiert aber darauf, dass die Arbeitsverträge rechtlich geprüft und bestätigt wurden. Er akzeptiert, dass andere Parteien ähnliche Fälle haben. Bei der Björn-Höcke-Situation argumentiert er, dass Reden im Parlament unter Indemnität stehen und man 'die Dinge im Kontext' sehen müsse. Er weigert sich, persönlich mit Höcke zu sprechen oder dessen Verhalten öffentlich zu kritisieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla antwortet zu den Verträgen und Rechtmäßigkeit, weicht aber der Frage nach persönlicher Verantwortung und Parteiführung aus. Er bestätigt das 'Störgefühl', lehnt aber ab, konkrete Maßnahmen gegen Höcke einzuleiten oder persönlich mit ihm zu sprechen, was die Kernfrage zu Kontrolle und Führungsfähigkeit nicht vollständig adressiert.",
+        "concrete_statements": [
+          "Wir haben den Laden im Griff.",
+          "Wir müssen die Ermittlungen abwarten.",
+          "Ich halte es für rechtlich schwierig, dass diese Rede überhaupt beanstandet wird.",
+          "Ich habe da auch ein Störgefühl. Aber es ist rechtens."
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben den Laden im Griff.",
+            "timestamp": "00:02:37",
+            "context": "Antwort auf Miosgas Frage, ob Chrupalla und Weidel den Laden angesichts mehrerer Justizfälle in Griff haben."
+          },
+          {
+            "text": "Ich habe da auch ein Störgefühl. Aber es ist rechtens.",
+            "timestamp": "00:06:18",
+            "context": "Zu den Vetternwirtschaftsfällen in Sachsen-Anhalt (Siegmund, Korell etc.)"
+          }
+        ],
+        "evasion_note": "Chrupalla weicht der Frage aus, ob er persönlich mit Höcke gesprochen hat oder dessen SA-Parolen kritisiert. Stattdessen verweist er auf Indemnität und Kontextualität."
+      },
+      {
+        "title": "Trump als Vorbild und Bewertung seiner Politik",
+        "timestamp_range": "00:09:28 - 00:15:50",
+        "theme_description": "Caren Miosga fragt, was Trump gut macht und warum Chrupalla ihn begrüßt, kritisiert aber auch Umstände zu ICE-Abschiebungen in den USA.",
+        "question_asked": "Caren Miosga fragt zunächst, was Chrupalla an Trumps Politik für richtig hält, und verweist dann auf problematische Fälle von ICE-Abschiebungen (Minneapolis, Renee Good, Alex Pretti), bei denen US-Bürger ohne Rechtmäßigkeit getötet wurden. Sie fragt, ob Chrupalla eine ähnliche Behörde wie ICE in Deutschland befürworten würde.",
+        "question_intent": "Miosga will prüfen, ob Chrupalla Trumps harte Migrationspolitik kritiklos bewundert und ob die AfD ICE-ähnliche Strukturen in Deutschland anstrebt.",
+        "position": "Chrupalla lobt Trump für seine Versprechen zur Migration, zur Begrenzung von Konflikten und zur Interessenvertretung Amerikas. Er äußert aber auch Enttäuschungen (Inflation, kriegerische Auseinandersetzungen). Zu ICE sagt er, diese Behörde gebe es seit 2001, Todesfälle im Gewahrsam seien nicht neu unter Trump, müssten aber kritisiert und aufgeklärt werden. Er lehnt ab, dass Deutschland eine ICE-ähnliche Behörde braucht, da die Bundespolizei ausreichend und zuständig sei. Er kritisiert als 'zu weit hergeholt', ICE mit der Gestapo zu vergleichen, und akzeptiert, dass es Meinung von Joe Rogan sei. Die Vergleiche seien 'zu weit hergeholt'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla antwortet zu Trumps Positionen und zur Ablehnung einer ICE-ähnlichen Behörde in Deutschland. Er weicht aber der Kritik an Trumps Abschiebepraxis aus, indem er sie historisiert (seit 2001 bekannt) und die Gestapo-Vergleiche delegitimiert. Er beantwortet nicht, wie er Trumps Migrationspraxis selbst bewertet.",
+        "concrete_statements": [
+          "Er ist angetreten mit dem Versprechen, für die Interessen Amerikas einzutreten.",
+          "Er will keine weiteren Konflikte in der Welt beginnen.",
+          "Bei mir sind aber auch einige Enttäuschungen dar.",
+          "Wir brauchen keine weitere Behörde wie ICE in Deutschland; die Bundespolizei reicht."
+        ],
+        "quotes": [
+          {
+            "text": "Er ist angetreten mit dem Versprechen, für die Interessen Amerikas einzutreten. Er will keine weiteren Konflikte in der Welt beginnen.",
+            "timestamp": "00:09:28",
+            "context": "Antwort auf Frage, was Trump gut macht."
+          },
+          {
+            "text": "Wir brauchen sie auch in der Bildung und bei den Lehrern. Wir brauchen mehr Beamte. Wir brauchen keine weiteren illegalen Migranten.",
+            "timestamp": "00:14:45",
+            "context": "Zur Frage, ob Deutschland eine ICE-ähnliche Behörde braucht."
+          }
+        ],
+        "deflection_target": "Chrupalla verlagert die Debatte von Trump-Kritik weg zu 'illegaler Migration' als Zielgruppe."
+      },
+      {
+        "title": "NATO-Mitgliedschaft, Rüstungsausgaben und Russland-Bedrohung",
+        "timestamp_range": "00:16:22 - 00:24:17",
+        "theme_description": "Caren Miosga fragt, wie Chrupalla zu Trumps Forderung nach 5% Rüstungsausgaben, zur NATO-Mitgliedschaft und zur russischen Bedrohung steht.",
+        "question_asked": "Caren Miosga fragt zunächst, ob Chrupalla Trumps Forderung nach 5% Rüstungsausgaben befürwortet, und setzt später nach, ob die AfD aus der NATO austreten will. Sie fragt auch, ob Deutschland sich von Russland bedroht fühlt und zitiert Putins Aussagen über Atomwaffen.",
+        "question_intent": "Miosga will klären, ob die AfD die NATO ablehnt, wie sie zur russischen Bedrohung steht und ob Chrupalla Putins Atomwaffen-Drohungen ernst nimmt.",
+        "position": "Chrupalla befürwortet, dass Deutschland mehr in Rüstung investieren muss, bezweifelt aber, dass 5% dauerhaft ohne Sozialkürzungen machbar sind. Er will 'kriegerische Konflikte beenden', damit hohe Ausgaben nicht nötig sind. Zur NATO sagt er: 'Wir haben keinen Parteitagsbeschluss zum Austritt.' Er betont, dass die NATO ein Abschreckungsbündnis sei, sieht sich aber nicht direkt bedroht von Russland. Er argumentiert, dass die NATO sich reformieren müsse und dass die Interessen unterschiedlich seien (wie bei der Türkei). Zu Putin sagt er: 'Ich sehe nicht, dass Deutschland von Russland bedroht ist.' Er relativiert Putins Aussagen als 'Sicherheitsinteressen', nennt die NATO-Osterweiterung als Grund für den Ukraine-Krieg und fordert Gespräche mit Russland. Er lehnt ab, Putins Atomwaffen-Drohung als echte Bedrohung für Deutschland zu akzeptieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Chrupalla antwortet zur NATO-Mitgliedschaft (Neigung zum Verbleib, aber mit Reformforderungen), weicht aber der Frage zu Putins Bedrohung aus, indem er NATO-Osterweiterung als Grund anführt und von einer 'Sicherheitsinteressen'-Perspektive auf Russland argumentiert, statt die Aggression zu benennen.",
+        "concrete_statements": [
+          "Wir haben keinen Parteitagsbeschluss dazu.",
+          "Ich sehe nicht, dass Deutschland von Russland bedroht ist.",
+          "Wir müssen mit Russland wieder ins Gespräch kommen.",
+          "Es sind Russlands Sicherheitsinteressen, die er anspricht."
+        ],
+        "quotes": [
+          {
+            "text": "Ob wir das auf Dauer jedes Jahr leisten können, bezweifele ich stark. Wenn ich den Bundeshaushalt anschaue, wird das nicht ohne Einschnitte im Sozialstaat gehen.",
+            "timestamp": "00:16:22",
+            "context": "Zur Frage, ob 5% Rüstungsausgaben machbar sind."
+          },
+          {
+            "text": "Ich sehe nicht, dass Deutschland von Russland bedroht ist.",
+            "timestamp": "00:19:41",
+            "context": "Auf Frage, ob sich Chrupalla von Putin bedroht fühlt."
+          }
+        ],
+        "evasion_note": "Chrupalla definiert Bedrohung um, indem er 'Sicherheitsinteressen' Russlands betont, statt Putins Kriegsführung und Atomwaffen-Drohungen direkt als Bedrohung anzuerkennen."
+      },
+      {
+        "title": "Wehrpflicht, Militäreinsätze und patriotische Haltung",
+        "timestamp_range": "00:25:22 - 00:33:22",
+        "theme_description": "Caren Miosga kritisiert Höckes rhetorische Frage, ob ein junger Mensch für ein Deutschland kämpfen soll, das der AfD-Ideologie nicht entspricht, und fragt, wann Chrupalla eine Wehrpflicht einführen würde.",
+        "question_asked": "Caren Miosga zitiert eine Rede von Björn Höcke, in der dieser fragt, wofür ein junger Mensch kämpfen soll (kritisiert Drag-Queen-Auftritte, Deindustrialisierung, Massenzuwanderung), und kritisiert dies als diskriminierend und propagandistisch. Sie fragt Chrupalla persönlich, wann die AfD eine Wehrpflicht einführen würde und ob sie eine Behörde wie ICE für Abschiebungen braucht.",
+        "question_intent": "Miosga will offenlegen, dass Höckes Rede eine indirekte Ablehnung Deutschlands ausdrückt und fragt, ob Chrupalla dies als Parteichef akzeptiert, und wann konkret eine Wehrpflicht geplant ist.",
+        "position": "Chrupalla verteidigt Höckes Aussage: 'Ich kann an dieser Aussage nichts falsch finden.' Er sagt, Patriotismus und Heimatliebe seien 'uns abtrainiert' worden, und dass man dafür kämpfen sollte. Er erklärt, dass die AfD eine Wehrpflicht einführen werde, 'wenn wir regieren.' Er bestätigt, dass es einen Fraktionsbeschluss gibt: Solange der Ukraine-Krieg läuft, keine Wehrpflicht. Er nennt die Wehrpflicht einen 'legitimen Ansatz'. Zu Höckes konkretem Standpunkt sagt er: 'Es gibt einen Fraktionsbeschluss, an den hat er sich zu halten.' Er kritisiert dann leicht: 'Ich fand es nicht gut, dass er das öffentlich gemacht hat.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla antwortet zur Wehrpflicht-Planung, rechtfertigt aber Höckes ideologische Kritik an Deutschland, ohne klar zu machen, wofür die Wehrpflicht dienen soll. Er adressiert die Kernfrage (wann Wehrpflicht) nur unvollständig, da er die innere Widerspruchlichkeit (Deutschland verteidigen, wenn man es ablehnt) nicht auflöst.",
+        "concrete_statements": [
+          "Solange der Ukraine-Krieg läuft, keine Wehrpflicht.",
+          "Wir wollen die Wehrpflicht einführen, wenn wir regieren.",
+          "Ich kann an dieser Aussage nichts falsch finden.",
+          "Es gibt einen Fraktionsbeschluss, an den hat er sich zu halten."
+        ],
+        "quotes": [
+          {
+            "text": "Solange der Ukraine-Krieg läuft, keine Wehrpflicht. Wir wollen die Wehrpflicht einführen, wenn wir regieren.",
+            "timestamp": "00:32:50",
+            "context": "Zur Frage, wann die AfD Wehrpflicht einführen würde."
+          },
+          {
+            "text": "Ich kann an dieser Aussage nichts falsch finden.",
+            "timestamp": "00:31:07",
+            "context": "Zur Verteidigung von Höckes Rede zu Patriotismus und Deutschlands Zustand."
+          }
+        ],
+        "deflection_target": "Chrupalla verschiebt die Diskussion von Höckes Deutschlandkritik zu Patriotismus-Allgemeinplätzen."
+      },
+      {
+        "title": "Freihandelsabkommen, Schutzzölle und nationale Wirtschaft",
+        "timestamp_range": "00:38:05 - 00:52:11",
+        "theme_description": "Caren Miosga und Wirtschaftsexpertin Veronika Grimm kritisieren die AfD-Wirtschaftspolitik als protektionistisch und befragen Chrupalla zu Buy-BW-Politik (heimische Produkte für Behörden) und zu Freihandelsabkommen.",
+        "question_asked": "Miosga fragt, ob die AfD 'Buy BW' (Behörden sollen nur Autos aus eigener Produktion kaufen) verfolgt wie Trump, und beide Gesprächspartnerinnen kritisieren AfD-Wirtschaftspolitik als populistisch und wirtschaftsfeindlich. Später werden Freihandelsabkommen (Mercosur, Indien) diskutiert.",
+        "question_intent": "Miosga und Grimm wollen zeigen, dass AfD-Wirtschaftspolitik den Mittelstand schadet, Globalisierung ablehnt und protektionistisch ist.",
+        "position": "Chrupalla verteidigt 'Buy BW' als Stärkung der einheimischen Wirtschaft und lobt es als Forderung der Kollegen in Baden-Württemberg. Er sagt, die AfD habe nichts gegen qualifizierte Zuwanderung, kritisiert aber die 'Stimmung', die durch Kriminalitätsprobleme von Migranten geschaffen wurde. Er befürwortet Freihandelsabkommen, aber 'mit Respekt und Anerkennung' und 'beidseitigem Vorteil.' Zu Mercosur sagt er, es gibt Nachteile für Bauern und Tierwohl, die nachverhandelt werden müssen. Zu Indien sagt er, dass deutsche Investitionen dort überwiegen, was eine Deindustrialisierung fördert. Er fordert bessere Rahmenbedingungen in Deutschland, damit Unternehmen nicht abwandern, und nennt Regulierung als Problem. Er akzeptiert, dass Freihandelsabkommen Verschiebungen verursachen, fordert aber 'Veränderungen abfedern'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Chrupalla antwortet zu Freihandelsabkommen und deren Bedingungen, weicht aber der Kernkritik aus, dass 'Buy BW' und Protektionismus dem Mittelstand insgesamt schaden. Er verlagert auf Rahmenbedingungen und Regulierung, ohne die Spannung zwischen Freihandel und nationaler Schutzpolitik zu lösen.",
+        "concrete_statements": [
+          "Buy BW ist eine Forderung der Kollegen in Baden-Württemberg zur Stärkung der einheimischen Wirtschaft.",
+          "Wir sind für Freihandelsabkommen, aber beidseitig profitabel.",
+          "Zu Mercosur: Nachteile für Bauern und Tierwohl müssen nachverhandelt werden.",
+          "Zu Indien: Deutsche Investitionen fördern Deindustrialisierung."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist eine Forderung der Kollegen in Baden-Württemberg. Sie wollen die einheimische Wirtschaft stärken.",
+            "timestamp": "00:38:05",
+            "context": "Zu Buy BW Kampagne."
+          },
+          {
+            "text": "Wir müssen die Rahmenbedingungen hier verbessern. Wir müssen erreichen, dass neue Industrien hierher kommen.",
+            "timestamp": "00:52:11",
+            "context": "Zur Konkurrenz mit Schwellenländern."
+          }
+        ],
+        "deflection_target": "Chrupalla verlagert Debatte von protektionistischer Wirtschaftspolitik auf Regulierung und Rahmenbedingungen."
+      },
+      {
+        "title": "EU-Reform oder EU-Austritt",
+        "timestamp_range": "00:40:18 - 00:42:59",
+        "theme_description": "Caren Miosga fragt, ob die AfD immer noch einen EU-Austritt anstrebt oder ob Reform das Ziel ist.",
+        "question_asked": "Caren Miosga fragt Chrupalla, ob die AfD aus der EU austreten will, und verweist auf einen Entwurf des Bundestagswahlprogramms, der einen EU-Austritt vorsah.",
+        "question_intent": "Miosga will wissen, ob die AfD tatsächlich einen EU-Austritt anstrebt oder ob dies nur Wahlkampf-Rhetorik ist.",
+        "position": "Chrupalla sagt: 'Wir wollen die EU reformieren. Das ist unser Ziel.' Er erklärt, die EU-Austritt sei als 'letztes Mittel' oder 'Druckmittel' gedacht, nicht als Erstes. Er will das 'bürokratische Monstrum' verkleinern und sagt, die EU halte sich nicht an ihre Gesetzmäßigkeiten (Dublin, Maastricht). Er befürwortet eine EU, 'mit der Maßgabe, dass die nationalen Interessen mehr berücksichtigt werden. Und dass die Hauptzahler den Ton angeben.' Er betont die Notwendigkeit, dass Europäer zusammenhalten gegen USA und China.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla antwortet, dass Reform das Ziel ist, EU-Austritt das letzte Mittel, beantwortet aber nicht direkt, unter welchen Bedingungen ein Austritt erfolgen würde oder wie realistisch Reform ist. Die Antwort bleibt vage.",
+        "concrete_statements": [
+          "Wir wollen die EU reformieren.",
+          "EU-Austritt als letztes Mittel, als Druckmittel.",
+          "Wir wollen das bürokratische Monstrum verkleinern.",
+          "Die EU hält sich nicht an ihre eigenen Gesetzmäßigkeiten (Dublin, Maastricht)."
+        ],
+        "quotes": [
+          {
+            "text": "Wir wollen die EU reformieren. Das ist unser Ziel.",
+            "timestamp": "00:40:18",
+            "context": "Antwort auf Frage zum EU-Austritt."
+          },
+          {
+            "text": "Als letztes Mittel, als Druckmittel. Aber wir wollen es nicht als Allererstes.",
+            "timestamp": "00:41:56",
+            "context": "Erläuterung zum Status von EU-Austritt in AfD-Strategie."
+          }
+        ]
+      },
+      {
+        "title": "Wirtschaftliche Attraktivität Deutschlands und AfD-Image",
+        "timestamp_range": "00:54:51 - 00:59:23",
+        "theme_description": "Michael Bröcker fragt nach dem Widerspruch zwischen Trump-Verehrung der AfD und Kritik an wirtschaftlicher Globalisierung, und warnt vor der AfD als Standortnachteil.",
+        "question_asked": "Bröcker fragt Chrupalla, wie er den Spagat zwischen Trump-Verehrung und wirtschaftlicher Kritik erklärt, und äußert, dass 'das größte Standorthemmnis in Deutschland die AfD' sei, da Investoren nicht investieren, wenn AfD-Politiker regieren.",
+        "question_intent": "Bröcker will offenlegen, dass die AfD trotz wirtschaftlicher Ansprüche ein Investitions-Schreck ist.",
+        "position": "Chrupalla sagt, Trump sei 'in einer anderen Situation' und man könne seine Politik nicht direkt übersetzen. Er argumentiert, dass 'Niemand profitiert davon so wie wir' von europäischer Vernetzung. Er räumt ein, dass Deutschland nicht so abschottet wie Trump, weil wir 'vernetzt in Europa' sind. Zur Kritik an der AfD als Standortnachteil sagt er: 'Wir schmieren wegen der letzten Regierungen ab. Dafür sind die Altparteien zuständig.'",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Chrupalla antwortet nicht direkt auf Bröckers Kritik, dass AfD ein Standortnachteil ist, sondern verlagert die Verantwortung auf die 'Altparteien' und den Wirtschaftszustand, den er nicht selbst verursacht haben will. Er beantwortet die Kohärenz-Frage nicht.",
+        "concrete_statements": [
+          "Trump ist in einer anderen Situation; man kann das nicht direkt übersetzen.",
+          "Wir schmieren wegen der letzten Regierungen ab."
+        ],
+        "quotes": [
+          {
+            "text": "Wir schmieren wegen der letzten Regierungen ab. Dafür sind die Altparteien zuständig.",
+            "timestamp": "00:58:53",
+            "context": "Antwort auf Bröckers Kritik, dass AfD ein Standortnachteil für Investitionen ist."
+          }
+        ],
+        "deflection_target": "Chrupalla verschiebt Verantwortung auf Altparteien und Wirtschaftszustand."
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die ICE (Immigration and Customs Enforcement) in den USA gibt es seit den Terroranschlägen von 2001.",
+        "timestamp": "00:12:03"
+      },
+      {
+        "claim": "In Minneapolis wurden zwei US-Bürger (Renee Good, eine dreifache Mutter, und Alex Pretti, ein Intensivpfleger) von Bundesbeamten der ICE erschossen.",
+        "timestamp": "00:11:33"
+      },
+      {
+        "claim": "Der Vater des Landesvorsitzenden Ulrich Siegmund ist beim Bundestagsabgeordneten Thomas Korell mit 7.725 Euro monatlich (90.000 Euro im Jahr) angestellt.",
+        "timestamp": "00:05:44"
+      },
+      {
+        "claim": "Der Vater des Landesvorsitzenden ist Ingenieur und hat die Gehaltsprüfung im Bundestag bestanden.",
+        "timestamp": "00:06:18"
+      },
+      {
+        "claim": "Der Parlamentarische Geschäftsführer in Sachsen-Anhalt, Tobias Rausch, hat drei Geschwister im Bundestag; eine Tochter arbeitet für die AfD-Fraktion Sachsen-Anhalt, ein Schwager für einen weiteren AfD-Abgeordneten, und die Partnerin ist Referentin der Landtagsfraktion.",
+        "timestamp": "00:07:21"
+      },
+      {
+        "claim": "Donald Trump hat versucht, den Krieg in der Ukraine zu beenden.",
+        "timestamp": "00:10:30"
+      },
+      {
+        "claim": "70 Prozent der deutschen Exporte gehen in die EU.",
+        "timestamp": "00:42:59"
+      },
+      {
+        "claim": "69 Prozent der deutschen Unternehmen sehen in einem Erstarken der AfD ein Risiko für den Wirtschaftsstandort (Umfrage).",
+        "timestamp": "00:36:31"
+      },
+      {
+        "claim": "Es gibt eine NATO-Russland-Akte von 1997.",
+        "timestamp": "00:23:01"
+      },
+      {
+        "claim": "Das Mercosur-Abkommen wird seit 25 Jahren verhandelt.",
+        "timestamp": "00:45:44"
+      }
+    ]
+  }
+}

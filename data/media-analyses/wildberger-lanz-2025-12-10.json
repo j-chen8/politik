@@ -1,0 +1,548 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-10-dezember-2025-100",
+    "video_id": "lanz-2025-12-10",
+    "politician": "Karsten Wildberger",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "076abda84c11060b",
+    "transcript_chars": 32724,
+    "caption_lines": 1630,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 15370,
+    "tokens_out": 11979,
+    "cost_usd": 0.030106,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 20,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 9,
+      "teilweise_antwort": 6
+    },
+    "generated_at": "2026-06-05T13:37:46.995Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Karsten Wildberger, Bundesminister für Digitales und Staatsmodernisierung, diskutiert mit Markus Lanz über Fortschritte und Herausforderungen der Digitalisierung in Deutschland. Der Ton ist pragmatisch und optimistisch; Wildberger betont die Notwendigkeit, Menschen mitzunehmen und Veränderungen graduell umzusetzen, während er gleichzeitig ehrgeizige Ziele verfolgt.",
+    "themes": [
+      {
+        "title": "KI und menschliche Entscheidungsfindung in der Verwaltung",
+        "timestamp_range": "00:01:37 - 00:02:16",
+        "theme_description": "Diskussion über die Rolle künstlicher Intelligenz bei Verwaltungsentscheidungen und die Sicherung der menschlichen Entscheidungshoheit.",
+        "question_asked": "Markus Lanz zeigt ein Video einer KI-Ministerin aus Albanien und fragt implizit, ob Wildberger daran arbeitet, dass Menschen sich selbst abschaffen, um effizienter zu werden.",
+        "question_intent": "Lanz möchte wissen, ob Wildberger plant, menschliche Verwaltungsfunktionen durch KI zu ersetzen.",
+        "position": "Wildberger betont, dass er hofft, dass der Mensch am Ende entscheidet. Er sieht Technologie und KI als Unterstützungswerkzeuge, nicht als Ersatz: 'Ich hoffe das immer noch der Mensch am Ende entscheidet, aber ich glaube, dass Technologie und KI in der Unterstützung eine große Rolle spielt.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet die zugrundeliegende Frage nach der Menschenrolle substantiell und direkt. Er grenzt KI als Unterstützungstool von der Entscheidungshoheit des Menschen ab.",
+        "quotes": [
+          {
+            "text": "Ich hoffe das immer noch der Mensch am Ende entscheidet, aber ich glaube, dass Technologie und KI in der Unterstützung eine große Rolle spielt.",
+            "timestamp": "00:02:16",
+            "context": "Antwort auf die Frage nach der Rolle von KI in der Verwaltung und ob Menschen ersetzt werden sollen."
+          }
+        ],
+        "concrete_statements": [
+          "Der Mensch trifft die endgültigen Entscheidungen",
+          "KI spielt Unterstützungsrolle, nicht ersetzende Rolle"
+        ],
+        "related_bundestag_topics": [
+          "Künstliche Intelligenz",
+          "Verwaltungsmodernisierung",
+          "Digitalisierung"
+        ]
+      },
+      {
+        "title": "Warum Deutschland in der Digitalisierung hinterherhinkt",
+        "timestamp_range": "00:03:48 - 00:05:44",
+        "theme_description": "Analyse der Gründe für Deutschlands Rückstand bei der Digitalisierung gegenüber anderen Ländern wie Griechenland und Estland.",
+        "question_asked": "Markus Lanz fragt Wildberger: 'Warum sind wir soweit hinten? Was ist schiefgelaufen?'",
+        "question_intent": "Lanz möchte verstehen, welche strukturellen oder kulturellen Defizite Deutschland beim Thema Digitalisierung aufweist.",
+        "position": "Wildberger differenziert: Deutschland sei in der KI-Forschung sehr gut und habe fantastische Ökosysteme, schaffe es aber zu wenig, eigene Produkte zu entwickeln. Das zentrale Problem sei die Unfähigkeit, große Projekte zu organisieren. Entscheidend sei nicht nur das Wissen, sondern die tatsächliche Umsetzung: 'Entscheidend ist aber wie wir Dinge umsetzen. Wir müssen weniger reden und mehr machen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger benennt Forschungsstärke und Produktentwicklungsschwäche, geht aber nicht tiefer auf strukturelle Barrieren (Föderalismus, Mentalität) ein, die Markus Lanz später wird adressieren. Die Antwort ist teilweise, fokussiert auf Organisationsfähigkeit statt auf tiefere Systemprobleme.",
+        "quotes": [
+          {
+            "text": "Entscheidend ist aber wie wir Dinge umsetzen. Wir müssen weniger reden und mehr machen.",
+            "timestamp": "00:05:44",
+            "context": "Antwort auf die Frage, warum Deutschland in der Digitalisierung zurückliegt."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland hat fantastische KI-Ökosysteme",
+          "Deutschland entwickelt zu wenig eigene Produkte",
+          "Mangel an Fähigkeit zur Organisation großer Projekte"
+        ],
+        "related_bundestag_topics": [
+          "Digitalisierung",
+          "Forschung und Innovation",
+          "Wettbewerbsfähigkeit"
+        ]
+      },
+      {
+        "title": "KI als Sprungmöglichkeit für Deutschland",
+        "timestamp_range": "00:07:29 - 00:08:01",
+        "theme_description": "Diskussion darüber, ob KI Deutschland ermöglicht, bürokratische Ebenen zu überspringen und schneller zu werden.",
+        "question_asked": "Markus Lanz erwähnt Länder wie Italien und Griechenland, die wegen ihrer kleineren Verwaltungen gezwungen sind, digitale Lösungen zu nutzen, und fragt implizit, ob das ein Vorteil ist, den Deutschland nachahmen könnte.",
+        "question_intent": "Kann Deutschland von der erzwungenen Dezentralisierung anderer Länder lernen und KI als Mittel nutzen, um Bürokratie zu überspringen?",
+        "position": "Wildberger sieht KI als potenziellen 'Befreiungsschlag' für Deutschland, wenn gesellschaftliche, politische und wirtschaftliche Offenheit dafür gewährleistet ist. Er betont, dass KI einen Sprung ermöglicht, den andere Länder auch in anderen Technologien geschafft haben: 'KI kann einen Sprung machen, das haben viele Länder auch in anderen Technologien geschafft. Wenn wir die Offenheit dafür bekommen, gesellschaftlich, in der Politik, in der Wirtschaft. Dann kann das unser Befreiungsschlag sein.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger antwortet direkt auf die implizite Frage und nennt konkrete Bedingungen (gesellschaftliche, politische, wirtschaftliche Offenheit), unter denen KI als Transformationsmechanismus funktioniert.",
+        "quotes": [
+          {
+            "text": "KI kann einen Sprung machen, das haben viele Länder auch in anderen Technologien geschafft. Wenn wir die Offenheit dafür bekommen, gesellschaftlich, in der Politik, in der Wirtschaft. Dann kann das unser Befreiungsschlag sein.",
+            "timestamp": "00:08:01",
+            "context": "Antwort auf die Frage, ob KI Deutschland helfen kann, bürokratische Hürden zu überspringen."
+          }
+        ],
+        "concrete_statements": [
+          "KI kann Deutschland ermöglichen, Bürokratie zu überspringen",
+          "Voraussetzung: gesellschaftliche, politische und wirtschaftliche Offenheit"
+        ],
+        "related_bundestag_topics": [
+          "Künstliche Intelligenz",
+          "Bürokratieabbau",
+          "Digitalisierung"
+        ]
+      },
+      {
+        "title": "Mobilfunk- und Breitbandoffensive",
+        "timestamp_range": "00:08:46 - 00:10:34",
+        "theme_description": "Konkrete Maßnahmen zur Verbesserung der Mobilfunk- und Breitbandinfrastruktur und deren Umsetzungsstrategie.",
+        "question_asked": "Markus Lanz fragt: 'Mobilfunkoffensive. Das fand ich clever, was haben Sie gemacht? Wie haben Sie das gemacht?'",
+        "question_intent": "Lanz möchte wissen, welche konkreten Maßnahmen Wildberger ergriffen hat und wie er sicherstellt, dass diese nicht wieder 25 Jahre dauern.",
+        "position": "Wildberger beschreibt ein mehrstufiges Vorgehen: Bürgerbefragung zur Identifikation von Funklöchern, Beschleunigungsgesetz mit zwei Jahren Aufholbedarf, weitere Gesetzesnovelle, Regelung von Förderungen und Messbarkeitskriterien. Er nennt konkrete Instrumente wie einen Projektträger für öffentliche Gelder und betont die Zeitorientierung. Viele Menschen seien bereits angeschlossen, es fehle nur das letzte Stück.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger gibt eine detaillierte Antwort mit konkreten Maßnahmen (Befragung, Beschleunigungsgesetz, Messbarkeit) und benannt organisatorische Strukturen (Projektträger). Er adressiert die implizite Frage nach Schnelligkeit durch Betonung der Zeitorientierung.",
+        "quotes": [
+          {
+            "text": "Wir fragen die Bürger, auch über die Netzagentur. Wo sind weißer Flecken, jetzt zum Beschleunigungsgesetz für Mobilfunk, da hat man gut zwei Jahre auf dem Buckel, da muss man den auch mal rein machen. Der Faktor Zeit ist ein wichtiges Element, Dinge müssen fertig werden.",
+            "timestamp": "00:09:57",
+            "context": "Antwort auf die Frage nach der Mobilfunkoffensive und deren Umsetzung."
+          }
+        ],
+        "concrete_statements": [
+          "Bürgerbefragung zur Identifikation von Funklöchern",
+          "Beschleunigungsgesetz für Mobilfunk mit zwei Jahren Aufholbedarf",
+          "Weitere Gesetzesnovelle zur Beschleunigung",
+          "Regelung von Förderungen für Glasfaser und Mobilfunk",
+          "Projektträger für Management öffentlicher Gelder",
+          "Zeitorientierung als Erfolgsfaktor"
+        ],
+        "related_bundestag_topics": [
+          "Breitbandausbau",
+          "Mobilfunkinfrastruktur",
+          "Digitale Infrastruktur"
+        ]
+      },
+      {
+        "title": "Koordination föderaler Digitalstandards",
+        "timestamp_range": "00:12:05 - 00:14:05",
+        "theme_description": "Ansätze zur Vereinheitlichung digitaler Standards zwischen Bundesländern und Kommunen ohne zentrale Kontrolle.",
+        "question_asked": "Markus Lanz fragt: 'Das können wir so doch nicht weitermachen. Wie bekommen Sie das in den Griff, dass die Bundesländer andere Softwares bestellen?'",
+        "question_intent": "Wie kann Wildberger Einheitlichkeit in der digitalen Verwaltung erreichen, wenn die Bundesländer dezentral entscheiden?",
+        "position": "Wildberger erklärt, dass er nicht einfach weitermacht wie bisher, sondern ein Puzzle-Ansatz nutzt: Sechs Großprojekte laufen parallel als Puzzlestücke, die zusammenpassen werden. Er habe mit den Ländern Standards entwickelt und vereinbart, nach diesen zu arbeiten. Viele Kommunen seien schon weit fortgeschritten. Er zentralisiert selektiv, z.B. bei App-basierten Bürgeleistungen (800 Leistungen über die OZG-App), während er Prozessautomatisierung durch KI vorantreibt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet die zentrale Koordinationsfrage mit einem konkreten Puzzle-Modell und nennt Einzelbeispiele (Standards, App-Leistungen, KI-Automatisierung). Er erklärt sowohl das Problem (unterschiedliche Standards) als auch seine Lösungsstrategie.",
+        "quotes": [
+          {
+            "text": "Wir machen Dinge anders, wir machen nicht so weiter. Das ist ein dickes Brett, dieses Brett bohren wir an verschiedenen Stellen an. Sechs Großprojekte laufen, das sind einzelne Puzzlestücke, die werden aber zusammen passen. Wir haben Standards entwickelt. Wir haben mit den Ländern vereinbart, dass wir nach diesen Standards arbeiten.",
+            "timestamp": "00:12:05",
+            "context": "Antwort auf die Frage, wie Wildberger die Länder zur Einheitlichkeit bringt."
+          }
+        ],
+        "concrete_statements": [
+          "Sechs Großprojekte als Puzzle-Ansatz",
+          "Standards entwickelt und mit Ländern vereinbart",
+          "800 Bürgeleistungen über einheitliche App (OZG)",
+          "Prozessautomatisierung durch KI",
+          "Selective Zentralisierung bei Kernleistungen",
+          "Dezentralisierung wo sinnvoll"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Verwaltungsmodernisierung",
+          "E-Government",
+          "Digitale Verwaltung"
+        ]
+      },
+      {
+        "title": "Digitale Brieftasche und Ausweisdokumente",
+        "timestamp_range": "00:14:39 - 00:17:45",
+        "theme_description": "Zeitplan und Umfang der digitalen Brieftasche mit Ausweis, Führerschein und weiteren Dokumenten.",
+        "question_asked": "Markus Lanz fragt konkret: 'In den ersten drei Wochen haben Sie ein Breitband rausgebracht, über das keiner redet. Aber wann versprechen Sie uns den digitalen Führerschein, den digitalen Personalausweis? Sachen, die man in anderen Ländern schon hat?'",
+        "question_intent": "Wann kann der Bürger konkret digitale Ausweisdokumente nutzen, und warum dauert das so lange?",
+        "position": "Wildberger kündigt an, dass eine digitale Brieftasche im Januar 2026 startet, die initial Ausweis, Führerschein, Fahrzeugschein und Versicherungskarte enthält, mit neuen Dokumenten jedes Quartal. Die Brieftasche soll sicher, mobil und für alltägliche Anwendungen einsetzbar sein (Kontoeröffnung, Altersnachweis beim Einkauf). Er erklärt, dass der lange Zeitraum (ein Jahr) auf Austausch mit Estland und Österreich zurückgeht und dass Griechenland 7–8 Jahre daran arbeitete. Er signalisiert Ungeduld mit sich selbst: 'Ein Jahr finde ich auch eine lange Zeit.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger nennt ein konkretes Datum (Januar 2026) und Umfang der digitalen Brieftasche, erklärt aber die Verzögerung eher durch Vergleiche mit anderen Ländern als durch echte Gründe für die Dauer. Die Antwort auf 'warum so lange?' bleibt oberflächlich.",
+        "quotes": [
+          {
+            "text": "Die digitale Brieftasche wird im Januar rausgebracht. Wir haben da drin den Ausweis, Führerschein und Fahrzeugschein. und die Versicherungskarte. Jedes Quartal kommen neue dazu.",
+            "timestamp": "00:14:55",
+            "context": "Antwort auf die Frage nach dem Zeitplan für digitale Ausweisdokumente."
+          },
+          {
+            "text": "Ein Jahr finde ich auch eine lange Zeit.",
+            "timestamp": "00:17:11",
+            "context": "Wildberger äußert Ungeduld mit dem Zeitrahmen selbst."
+          }
+        ],
+        "concrete_statements": [
+          "Digitale Brieftasche startet im Januar 2026",
+          "Initial: Ausweis, Führerschein, Fahrzeugschein, Versicherungskarte",
+          "Neue Dokumente jedes Quartal hinzu",
+          "Einsatz für Kontoeröffnung, Altersnachweis, Zahlungen"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Identität",
+          "Digitale Ausweisdokumente",
+          "E-Government"
+        ]
+      },
+      {
+        "title": "Föderale Widerstände und Zusammenarbeit mit Bundesländern",
+        "timestamp_range": "00:18:19 - 00:21:05",
+        "theme_description": "Strategien zur Überwindung föderaler Widerstände und Sicherung der Unterstützung durch Bundesländer wie Bayern unter Minister Söder.",
+        "question_asked": "Markus Lanz fragt provokativ: 'Wie bekommen Sie das in den Griff, dass die Bundesländer andere Softwares bestellen? [...] Wenn Sie dem Söder erklären, dass er das Modell aus NRW übernehmen soll?'",
+        "question_intent": "Wie überwindet Wildberger föderale Eigenständigkeit und Prestigedenken von Länderministern?",
+        "position": "Wildberger lehnt sich auf Best-Practice-Auswahl ab: Man schaue sich in den Ländern um und nehme die beste Lösung. Jedes Bundesland habe etwas, das es besonders gut mache. Das Ziel sei, das Beste herauszunehmen und es für alle zu nutzen. Er nennt konkretes Beispiel '24-Stunden Gründung' und 'Kfz-Ummeldung'. Zur Föderalismus-Challenge: Er versuche, Diskussionen 'runter zu nehmen jenseits der Headline, auf der inhaltlichen Ebene'. Er berichtet von unerwartet viel Unterstützung auf Länder- und kommunaler Ebene und nennt konkrete Länderunterstützung (Nordrhein-Westfalen, Bayern).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger beantwortet die Frage nach Best-Practice-Auswahl gut, weicht aber der provokanten Söder-Frage aus, indem er zur Sachebene verschiebt statt substantiell zu erklären, wie man einen Söder konkret überzeugt. Die Antwort ist pragmatisch, aber nicht vollständig.",
+        "quotes": [
+          {
+            "text": "Wir schauen uns in den Ländern um und nehmen die beste Lösung. Wenn Sie die Kfz ummelden, nimmt man auch das beste. Jedes Bundesland hat irgendwas, was sie besonders gut machen.",
+            "timestamp": "00:19:40",
+            "context": "Antwort auf die Frage, wie er föderale Widerstände überwindet."
+          },
+          {
+            "text": "Indem wir die Diskussion runter nehmen jenseits der Headline, auf der innerlichen Ebene.",
+            "timestamp": "00:20:46",
+            "context": "Antwort auf die Söder-Spezifik."
+          }
+        ],
+        "concrete_statements": [
+          "Best-Practice-Auswahl aus Bundesländern",
+          "24-Stunden Gründung als Beispiel",
+          "Diskussionen auf Sachebene führen statt auf Headline-Ebene",
+          "Viel Unterstützung von Ländern (NRW, Bayern)"
+        ],
+        "related_bundestag_topics": [
+          "Föderalismus",
+          "Bund-Länder-Kooperation",
+          "Verwaltungsmodernisierung"
+        ]
+      },
+      {
+        "title": "Bürokratieabbau und pragmatische Umsetzung",
+        "timestamp_range": "00:23:26 - 00:25:18",
+        "theme_description": "Philosophie des graduellen Wandels statt radikaler Kettensägen-Ansatz; Umgang mit Großtransformationen.",
+        "question_asked": "Markus Lanz verweist auf Videos von Cuts in anderen Ländern (Ministeriumsauflösungen) und fragt: 'Denken Sie, dass es schön wäre, wenn Sie das auch so tun könnten?'",
+        "question_intent": "Wäre ein radikalerer, schnellerer Ansatz (Abolition von Behörden) nicht effektiver?",
+        "position": "Wildberger lehnt den Kettensägen-Ansatz ab. Mit einer Kettensäge könne man Sachen 'auseinandernehmen, aber nicht bauen'. Umsetzung funktioniere nur, wenn man Menschen mitnehme. Er differenziert zwischen 'Härte' (Ambitionen setzen) und pragmatischer Umsetzung (Teambildung, Dynamik, Menschen mitnehmen). Der kürzeste Weg sei nicht immer eine Gerade. Er beschreibt eine 30-Jahres-Kultur, die sich nicht durch Knopfdruck ändere. Wildberger sieht sich als 'unglaublich mutig' in seinen Ambitionen, aber als Pragmatiker in der Umsetzung. Sein Credo: 'Wir bleiben im Rückspiegel stecken, das nervt mich' — vorwärts fahren statt in Kritik verfangen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger gibt eine reflektierte, substanzielle Antwort, die sein Transformations-Verständnis offenlegt: ambitioniert aber graduell. Er erklärt sowohl die Grenzen des Radikalismus als auch sein positives Gegenmodell.",
+        "quotes": [
+          {
+            "text": "Mit einer Kettensäge können Sie die Sachen auseinandernehmen, aber nicht bauen. Es ist ein Prozess. Wir verwechseln ein bisschen was heißt Härte? Umsetzung funktioniert nur, wenn wir Menschen mitnehmen.",
+            "timestamp": "00:23:26",
+            "context": "Antwort auf die Frage, ob radikalere Cuts nicht besser wären."
+          },
+          {
+            "text": "Wir sind unglaublich ambitioniert und mutig in unseren Wertungen, wo wir aktuell stehen. Aber in einem System, was wir über 30 Jahre geschaffen haben, das braucht seine Zeit.",
+            "timestamp": "00:24:16",
+            "context": "Wildbergers Verständnis von Transformation."
+          },
+          {
+            "text": "Wir bleiben im Rückspiegel stecken, das nervt mich.",
+            "timestamp": "00:24:46",
+            "context": "Wildbergers Credo gegen übermaßige Kritik."
+          }
+        ],
+        "concrete_statements": [
+          "Kettensägen-Ansatz: nicht sinnvoll",
+          "Menschen müssen mitgenommen werden",
+          "Transformation einer 30-Jahres-Kultur braucht Zeit",
+          "Ambitioniert in Zielen, pragmatisch in Umsetzung"
+        ],
+        "related_bundestag_topics": [
+          "Verwaltungsreform",
+          "Bürokratieabbau",
+          "Change Management"
+        ]
+      },
+      {
+        "title": "Common Sense und konkreter Bürokratieabbau",
+        "timestamp_range": "00:25:34 - 00:27:05",
+        "theme_description": "Konkrete Beispiele absurder Bürokratie und wie sie gelöst werden, z.B. Fliesen-Konflikt bei Bäckereien.",
+        "question_asked": "Markus Lanz nennt ein konkretes Beispiel: 'Bäcker dürfen nur glatte Fliesen verbauen. Was aber der Arbeitsschutz verbietet, weil Mitarbeiter ausrutschen könnten. Was machen Sie jetzt?'",
+        "question_intent": "Wie geht Wildberger mit regelrechten Widersprüchen in der Bürokratie um?",
+        "position": "Wildberger setzt auf 'Common Sense' — Vernunft reinnebringen. Er hat viele solche Dinge bereits verabschiedet und rechnet aus, wie viel Entlastung sie bringen (in Euro quantifiziert). Die Bürokratiekosten liegen bei 8 Milliarden Euro. Er will diese 'Pipeline' weiter füllen mit Vereinfachungen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet das konkrete Bürokratiebeispiel mit einer klaren Philosophie (Common Sense) und einer Metriken-Strategie (Kostenberechnung). Er signalisiert aktives Handeln und Priorisierung.",
+        "quotes": [
+          {
+            "text": "Wir haben bei dem Thema: das Leben einfacher machen für die Menschen. Bürokratie. Ich möchte common sence. Wieder reinbringen. Wir haben viele Dinge schon verabschiedet. Wir rechnen aus, wie viel Entlastung es bringt. Aufwand übersetzt in Euros. Bürokratie Kosten von 8 Milliarden Euro.",
+            "timestamp": "00:26:08",
+            "context": "Antwort auf das Fliesen-Beispiel und Bürokratieabbau generell."
+          }
+        ],
+        "concrete_statements": [
+          "Common Sense zurückbringen",
+          "Bereits viele Vereinfachungen verabschiedet",
+          "Entlastung quantifizieren (in Euro)",
+          "Bürokratiekosten: 8 Milliarden Euro",
+          "Pipeline von Vereinfachungen füllen"
+        ],
+        "related_bundestag_topics": [
+          "Bürokratieabbau",
+          "Regulatorische Vereinfachung",
+          "Wirtschaftsförderung"
+        ]
+      },
+      {
+        "title": "Motivation und persönliche Antriebskräfte",
+        "timestamp_range": "00:27:53 - 00:29:16",
+        "theme_description": "Warum Wildberger seine erfolgreiche Karriere aufgegeben hat, um Minister zu werden; persönliche Motivation.",
+        "question_asked": "Markus Lanz fragt: 'Das ist auch der Grund, warum Sie zugesagt haben? Denn Sie haben einen sehr guten Job dafür eingetauscht. Haben Sie schon mal bereut?'",
+        "question_intent": "War es eine vernünftige persönliche Entscheidung, diese Position zu nehmen, oder bereut Wildberger die Karriere-Umstellung?",
+        "position": "Wildberger beantwortet mit klarem Nein: Es gibt Aufgaben im Leben, bei denen Geld keine Währung ist. In einer kritischen Phase wie der deutschen Situation bejaht er aus Überzeugung, dass es geht, Menschen mitzunehmen. Er beschreibt das Amt als Energiequelle, nicht als Belastung. Er hätte sich nicht im Spiegel anschauen können, hätte er Nein gesagt. Er sucht nicht das Leben in der Öffentlichkeit, aber es ist ihm ein Anliegen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet persönlich und reflexiv. Er erklärt sowohl das Warum (Phase im Land, Energiequelle) als auch eine innere Notwendigkeit (Spiegelbild).",
+        "quotes": [
+          {
+            "text": "Es gibt Aufgaben im Leben da ist Geld keine Währung. Wenn Sie in so einer Phase wie wir in unserem Land, gefragt werden und sie brennen für das Thema, und ich glaube das es geht, jeden Menschen mitzunehmen. Dann habe aus Überzeugung ja gesagt.",
+            "timestamp": "00:28:22",
+            "context": "Antwort auf die Frage nach der persönlichen Motivation."
+          },
+          {
+            "text": "Ich hätte nicht in den Spiegel gucken können hätte ich nein gesagt. Ich suche nicht das Leben in der Öffentlichkeit. Aber es ist mir schon ein Anliegen.",
+            "timestamp": "00:29:03",
+            "context": "Persönliche Reflexion zur inneren Verpflichtung."
+          }
+        ],
+        "concrete_statements": [
+          "Persönliche Karriere-Opfer gerechtfertigt durch innere Überzeugung",
+          "Amt als Energiequelle",
+          "Keine Reue",
+          "Innerliche Verpflichtung ('Spiegelbild-Test')"
+        ],
+        "related_bundestag_topics": [
+          "Ministerielles Amt",
+          "Persönliche Verantwortung",
+          "Staatliche Transformation"
+        ]
+      },
+      {
+        "title": "Digitale Zahlungssysteme und Bargeldpolitik",
+        "timestamp_range": "00:30:34 - 00:34:01",
+        "theme_description": "Strategie zur Förderung digitaler Zahlungen und Unabhängigkeit von US-Zahlungssystemen.",
+        "question_asked": "Markus Lanz fragt provokativ: 'Warum macht man das nicht? Jeder Händler sollte kontaktlose digitale Bezahlung anbieten müssen. Warum kann man nicht ansagen: Bargeld bleibt, aber digital muss auch gehen?'",
+        "question_intent": "Warum setzt Wildberger nicht stärker durch, dass digitales Zahlen für alle möglich sein muss?",
+        "position": "Wildberger erklärt zunächst, dass Ansagen allein nicht funktionieren. Deutschland sei in den letzten Jahren aber bereits besser geworden. Im Koalitionsvertrag sei das Thema 'weniger Papier' verankert. Er möchte ein 'digitaleres Ökosystem verbindlich festgeschrieben' haben. Für den 2. Januar kündigt er konkret an, dass man auf Basis der digitalen Brieftasche ein Zahlsystem etablieren wird. Dahinter steckt eine strategische Überlegung: Das heutige Zahlsystem habe viele Daten und diese seien auf US-Systemen wichtig. Wildberger möchte ein 'eigenes Ökosystem aufbauen'. Für den stationären Handel müsse es auch für kleine Händler technisch passbar sein.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger erklärt seine Strategie (Brieftasche, eigenes Ökosystem) und nennt ein konkretes Datum (2. Januar), geht aber nicht auf die zugrundeliegende Lanz-Kritik ein, dass eine Händler-Verpflichtung ein einfaches, schnelles Mittel wäre. Stattdessen fokussiert er auf systemischere Lösungen.",
+        "quotes": [
+          {
+            "text": "Per Ansage geht es nicht. Wir sind allerdings in Deutschland auch schon in den letzten Jahren besser geworden.",
+            "timestamp": "00:31:12",
+            "context": "Antwort auf Lanz' Frage nach direkter Durchsetzung."
+          },
+          {
+            "text": "2. Januar, bekanntlich um 0:01 Uhr. Auf der Basis diskutieren wir zwei Dinge. Wie schaffen wir Als auf Basis der Brieftasche das als Zahlsystem zu etablieren. Unser Zahlsystem hat viele Daten. [...] Wie wäre es denn, wenn wir es schaffen ein eigenes Ökosystem aufzubauen.",
+            "timestamp": "00:33:02",
+            "context": "Wildbergers strategisches Verständnis von digitalem Zahlen."
+          }
+        ],
+        "concrete_statements": [
+          "Ansagen allein funktionieren nicht",
+          "Koalitionsvertrag verankert digitales Zahlen",
+          "Brieftasche als Basis für Zahlsystem (ab 2. Januar)",
+          "Eigenes deutsches Ökosystem als Ziel (unabhängig von US-Systemen)",
+          "Technische Lösungen müssen auch für kleine Händler passen"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Wirtschaft",
+          "Zahlungsverkehr",
+          "Datenschutz",
+          "Digitale Souveränität"
+        ]
+      },
+      {
+        "title": "IT-Souveränität und deutsche Hosting-Infrastruktur",
+        "timestamp_range": "00:35:49 - 00:38:07",
+        "theme_description": "Strategie zur Vermeidung von Abhängigkeit von US-IT-Diensten und Aufbau deutscher IT-Infrastruktur.",
+        "question_asked": "Markus Lanz verweist auf Diskussionen mit Lars Klingbeil über einen großen deutschen IT-Dienstleister und fragt implizit: 'Warum können Sie nicht Deutschland-Hosting durchsetzen, ohne in US-Abhängigkeit zu geraten?'",
+        "question_intent": "Warum gibt es Widerstände gegen ein deutsches IT-System, und wie geht Wildberger damit um?",
+        "position": "Wildberger erklärt, die Diskussion mit Klingbeil sei länger und komplexer gewesen als erwartet. Es gebe verfassungsrechtliche Fragen (Steuer, Zoll in hoheitsrechtlicher Verantwortung). Von der Infrastruktur-Seite sei es ein 'großer Durchbruch' gelungen, das zusammenzuhalten. Es bleibe extrem viel zu tun. Er fühle sich '0,0 limitiert'. Es gebe deutsche Unternehmen für Bund-Hosting. Ein IT-Vorbehalt im Kabinett (vermutlich Sicherheitsmaßnahme) wird konstruktiv genutzt. Er erläutert, dass verschiedene Modelle in verschiedenen Stufen gehostet werden und Nachnutzung geplant ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger erklärt die Komplexität (Verfassungsrecht) und beschreibt einen Durchbruch, adressiert aber nicht direkt, warum es schwierig war oder wie konkret das deutsche Hosting aussieht. Die Antwort ist eher defensiv als proaktiv.",
+        "quotes": [
+          {
+            "text": "Es war eine längere Diskussion. Woran liegt das, es ist komplexer, als ich gedacht habe. Dahinter stehen verfassungsrechtliche Dinge. Es gibt da Dinge wie Steuer, Zoll. Die liegen in der hoheitsrechtlichen Verantwortung. Wie geht man damit technisch um? Ist es uns gelungen, von der Infrastruktur Seite, es zusammenzuhalten. Das ist ein großer Durchbruch.",
+            "timestamp": "00:36:18",
+            "context": "Wildbergers Erklärung der Komplexität bei IT-Souveränität."
+          }
+        ],
+        "concrete_statements": [
+          "Verfassungsrechtliche Barrieren (Steuer, Zoll)",
+          "Infrastruktur-Durchbruch gelungen",
+          "Deutsche Unternehmen für Hosting",
+          "IT-Vorbehalt im Kabinett wird konstruktiv genutzt"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Souveränität",
+          "IT-Sicherheit",
+          "Cloud-Infrastruktur"
+        ]
+      },
+      {
+        "title": "Digitale Steuererklärung: Zeitplan und Komplexität",
+        "timestamp_range": "00:38:59 - 00:43:41",
+        "theme_description": "Herausforderungen und Zeitplan für die Einführung einer digitalen Steuererklärung.",
+        "question_asked": "Markus Lanz fragt mehrfach nach einem konkreten Datum für die digitale Steuererklärung und gibt nicht auf: 'Die digitale Steuererklärung? [...] Dieser Satz geht immer: sind wir dran.'",
+        "question_intent": "Wann wird die digitale Steuererklärung endlich Realität, und warum dauert das so lange?",
+        "position": "Wildberger kann kein Datum angeben ('Das kann ich Ihnen nicht sagen'). Er betont, dass die Angabe von unseriösen Terminen unbrauchbar ist. Die Komplexität liege darin, dass es systeminterne Probleme gibt: Dinge sind nicht richtig definiert (z.B. Einkommensbegriff), bei Digitalisierung müssen Prozesse umgebaut werden, alle Ämter müssen mitgebracht werden. Ein Jahr sei eine lange Zeit, aber wenn man vor mehreren Jahren angefangen hätte, würde man jetzt sitzen. Es gebe viele parallele Projekte. Drei Jahre seien schon eine lange Zeit im Amt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wildberger erklärt die systemische Komplexität (Prozessänderung, Ämter-Mitnahme) und lehnt das Geben von unseriösen Terminen ab, adressiert aber nicht direkt, warum 25 Jahre schon vergangen sind und immer noch 'wir sind dran' gesagt wird.",
+        "quotes": [
+          {
+            "text": "Das kann ich Ihnen nicht sagen. [...] Das wäre schon schön. Drei Jahre sind schon eine lange Zeit.",
+            "timestamp": "00:43:00",
+            "context": "Wildberger kann kein Datum für digitale Steuererklärung geben."
+          },
+          {
+            "text": "Das ist eben wenn man im System ist und sich damit beschäftigt. Wie es technisch funktioniert. Nehmen wir das Thema der Sozialleistung. Es gibt Themen wie bei Einkommen, die nicht richtig definiert wird. Wenn wir etwas digital machen, müssen wir Prozesse umbauen. Man muss auf die Ebene absteigen. Sie müssen aber die ganzen Ämter umbauen.",
+            "timestamp": "00:39:52",
+            "context": "Wildbergers Erklärung der System-Komplexität."
+          }
+        ],
+        "concrete_statements": [
+          "Kein Zeitplan nennen (wäre unseriös)",
+          "Systeminterne Prozess-Probleme existieren",
+          "Einkommensbegriffe nicht klar definiert",
+          "Alle Ämter müssen mitgebracht werden",
+          "Viele parallele Projekte mit Kapazitätsgrenzen"
+        ],
+        "related_bundestag_topics": [
+          "Digitale Steuererklärung",
+          "Finanzamtdigitalisierung",
+          "E-Government"
+        ]
+      },
+      {
+        "title": "System-Widerständigkeit und Tempo-Kritik",
+        "timestamp_range": "00:41:49 - 00:42:45",
+        "theme_description": "Verständnis dafür, dass das System selbst Widerstand leistet, und Anerkennung, dass das Tempo nicht ausreicht.",
+        "question_asked": "Markus Lanz fragt: 'Haben Sie manchmal das Gefühl, das System arbeitet gegen Sie?'",
+        "question_intent": "Erkennt Wildberger an, dass die Verwaltung selbst strukturell bremst?",
+        "position": "Wildberger antwortet mit klarem Nein, erklärt aber differenziert: Das System sei 'sperrig' und 'resistent', nicht böswillig. Es seien 30 Jahre Strukturen gewachsen. Es geht nur Stück für Stück. Man muss sich durchsetzen und gleichzeitig Momentum aufbauen. Ihm reiche die Geschwindigkeit selbst nicht: 'Mir reicht die Geschwindigkeit auch nicht.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger gibt eine ehrliche, differenzierte Antwort: Er lehnt 'System arbeitet gegen mich' ab, aber erklärt sehr klar, dass das System sperrig und resistent ist. Er validiert die Kritik am zu langsamen Tempo.",
+        "quotes": [
+          {
+            "text": "Resistent, sperrig. Das geht nur Stück für Stück. Man muss sich durchsetzen und gleichzeitig Momentum aufbauen. Mir reicht die Geschwindigkeit auch nicht.",
+            "timestamp": "00:42:32",
+            "context": "Wildbergers Beschreibung des System-Widerstands."
+          }
+        ],
+        "concrete_statements": [
+          "System ist sperrig und resistent, nicht böse",
+          "30 Jahre gewachsene Strukturen",
+          "Gradueller Wandel notwendig",
+          "Tempo reicht Wildberger selbst nicht"
+        ],
+        "related_bundestag_topics": [
+          "Verwaltungsmodernisierung",
+          "Organisationsentwicklung",
+          "Change Management"
+        ]
+      },
+      {
+        "title": "Austausch mit internationalen Partnern (Griechenland, Kanada)",
+        "timestamp_range": "00:44:27 - 00:45:11",
+        "theme_description": "Bedeutung des internationalen Austauschs mit Digitalvorreiter-Ländern für die deutsche Strategie.",
+        "question_asked": "Markus Lanz schlägt vor: 'Die nächste Reise sollte nach Griechenland oder Albanien gehen. Da könnte man eine Menge Know-how lernen.' Dann fragt er nach Kanada, da Wildberger gerade dort war.",
+        "question_intent": "Nutzt Wildberger internationale Best Practices? Welche Länder sind seine Vorbilder?",
+        "position": "Wildberger bestätigt enge Zusammenarbeit mit Griechenland: 'Der Austausch Griechenland ist sowieso dort auch regelmäßig, die Teams arbeiten zusammen. Der Austausch ist sehr eng.' Er freut sich über G7-Gipfel zu Technologie, Digitalisierung und KI. Er denkt, dass Deutschland auch häufiger mit Kanada zusammenarbeiten wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wildberger beantwortet die Frage konkret: Griechenland ist bereits enger Partner (regelmäßiger Austausch, Teams arbeiten zusammen), G7-Fora nutzen, Kanada als zukünftige Partnerin.",
+        "quotes": [
+          {
+            "text": "Der Austausch Griechenland ist sowieso dort auch regelmäßig, die Teams arbeiten zusammen. Der Austausch ist sehr eng. Ich bin froh, denn G7-Gipfel zu Technologie, Digitalisierung und künstlicher Intelligenz, dass wir da waren.",
+            "timestamp": "00:44:42",
+            "context": "Wildbergers Erläuterung des internationalen Austauschs."
+          }
+        ],
+        "concrete_statements": [
+          "Regelmäßiger Austausch mit Griechenland",
+          "Teams arbeiten zusammen",
+          "G7-Fora für Austausch zu Technologie und KI nutzen",
+          "Zukünftige Zusammenarbeit mit Kanada geplant"
+        ],
+        "related_bundestag_topics": [
+          "Internationale Zusammenarbeit",
+          "Best-Practice-Transfer",
+          "Digitale Transformation"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die digitale Brieftasche wird im Januar 2026 rausgebracht mit Ausweis, Führerschein, Fahrzeugschein und Versicherungskarte.",
+        "timestamp": "00:14:55"
+      },
+      {
+        "claim": "Griechenland hat 7-8 Jahre an der digitalen Transformation gearbeitet.",
+        "timestamp": "00:17:25"
+      },
+      {
+        "claim": "In Estland läuft alles digital, bis auf Heirat und Scheidung.",
+        "timestamp": "00:16:51"
+      },
+      {
+        "claim": "Bürokratiekosten in Deutschland betragen 8 Milliarden Euro.",
+        "timestamp": "00:26:08"
+      },
+      {
+        "claim": "Es gibt etwa 800 Bürgeleistungen, die über die OZG-App abrufbar sind.",
+        "timestamp": "00:14:05"
+      },
+      {
+        "claim": "Das Beschleunigungsgesetz für Mobilfunk hat zwei Jahre Aufholbedarf.",
+        "timestamp": "00:09:57"
+      },
+      {
+        "claim": "Es gibt 8500 Leistungen im digitalen Verwaltungsbereich.",
+        "timestamp": "00:41:17"
+      },
+      {
+        "claim": "Wildberger hatte vor seiner Ministerposition eine Top-Manager-Position bei Saturn/MediaMarkt mit mehr als 50.000 Mitarbeitern.",
+        "timestamp": "00:01:37"
+      }
+    ]
+  }
+}

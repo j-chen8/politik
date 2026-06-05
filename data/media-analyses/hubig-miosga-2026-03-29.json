@@ -1,0 +1,398 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS82M2ZjNjI2Yi0xNWQxLTQxMzYtODkzNy0wZTE0MzU5Nzg2YTFfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-03-29",
+    "politician": "Stefanie Hubig",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "75308db2aae9019d",
+    "transcript_chars": 37548,
+    "caption_lines": 1390,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 16220,
+    "tokens_out": 10914,
+    "cost_usd": 0.028316,
+    "quote_validation": {
+      "valid_exact": 10,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 8,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.166Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Bundesjustizministerin Stefanie Hubig diskutiert in dieser Miosga-Sendung digitale Gewalt gegen Frauen und kündigt einen fertiggestellten Gesetzentwurf zur Strafbarkeit von pornographischen Deepfakes an. Sie betont die Notwendigkeit gesellschaftlicher Sensibilisierung, richterlicher und polizeilicher Schulung und macht deutlich, dass Gesetzesverschärfung allein nicht ausreicht — das soziale Umfeld und männliche Verantwortung sind zentral.",
+    "themes": [
+      {
+        "title": "Unterscheidung zwischen Deepfakes und Identitätsdiebstahl",
+        "timestamp_range": "00:13:22 - 00:14:58",
+        "theme_description": "Diskussion zwischen Collien Fernandes und der Runde, ob ihr Fall echte Deepfakes oder eher Identitätsdiebstahl darstellt und welche Lücke im geplanten Gesetzentwurf das aufdeckt.",
+        "question_asked": "Caren Miosga und Collien Fernandes sprechen davon, dass in Fernandes' Fall fremde Fotos unter ihrem Namen hochgeladen wurden und fragt, ob das in den Gesetzentwurf erfasst ist.",
+        "question_intent": "Es soll geklärt werden, ob der geplante Gesetzentwurf nur Deepfakes (manipulierte/synthetische Bilder) oder auch Fälle von Identitätsdiebstahl mit realen fremden Pornobildern abdeckt.",
+        "position": "Stefanie Hubig bemerkt: «Das ist der Punkt: Es gab einen Gesetzentwurf, da werden zwei Fälle aufgeführt: Einmal eine heimlich gemachte intime Aufnahme. Zum anderen neuerdings Deepfakes. In diesem Fall ist das keines von beiden.» Sie erklärt, dass falsche Profile unter Fernandes' Namen mit Pornofotos von Darstellerinnen (nicht synthetisch erzeugt) strafbar sein sollten, aber bislang nicht vollständig in einer Nachschärfung erfasst sind. Sie fordert daher: «Daher ist es wichtig, darauf aufmerksam zu machen. Wir müssen schauen: Was passiert und wie können wir die Nachschärfung nachschärfen, sodass auch dieser Fall erfasst ist?»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet direkt die Frage, ob die geplante Gesetzgebung die Fernandes-Fall abdeckt: Sie erklärt klar, warum der aktuelle Entwurf diese Fallkonstellation (Identitätsdiebstahl mit realen Pornobildern) nicht erfasst, und konkretisiert ein Handlungsdefizit. Sie nimmt damit auch eine Verantwortung an, das nachzuschärfen.",
+        "quotes": [
+          {
+            "text": "In diesem Fall ist das keines von beiden. Diese Accounts sind auf meinen Namen. Man sieht mein Foto als Profilbild. Wenn ich sage: Hier ist ein Foto von mir - das ist allerdings eine Pornodarstellerin. Dann ist das juristisch gesehen kein Deepfake. Es ist aber auch keine heimlich von mir gemachte Aufnahme. Das ist ein Fall, der auch nicht in einer Nachschärfung erfasst ist.",
+            "timestamp": "00:14:26",
+            "context": "Collien Fernandes erläutert die Fallkonstellation; Hubig schließt sich dieser Diagnose an und sagt: «Daher ist es wichtig, darauf aufmerksam zu machen.»"
+          }
+        ],
+        "concrete_statements": [
+          "Geplanter Gesetzentwurf erfasst nicht alle Fälle von Identitätsdiebstahl mit sexualisierten Inhalten",
+          "Fall Fernandes (fremde Porno-Fotos unter falschem Profil) ist noch nicht vollständig normiert",
+          "Nachschärfung des Gesetzes ist geplant, um auch diese Konstellation zu erfassen"
+        ],
+        "related_bundestag_topics": [
+          "Identitätsdiebstahl",
+          "Strafrechtliche Lücken bei digitaler Gewalt",
+          "Personenrecht und Bild"
+        ]
+      },
+      {
+        "title": "Strafbarkeit von Deepfakes — Gesetzentwurf",
+        "timestamp_range": "00:21:56 - 00:28:32",
+        "theme_description": "Caren Miosga und Stefanie Hubig diskutieren, wie pornographische Deepfakes strafrechtlich erfasst werden sollen und wie man diese von künstlerischen oder satirischen Inhalten abgrenzt.",
+        "question_asked": "Caren Miosga fragt, was Stefanie Hubig mit Blick auf Deepfakes ändern will und wie die Justizministerin zwischen herabwürdigenden Fakes, Kunst und Satire unterscheiden will.",
+        "question_intent": "Caren Miosga möchte wissen, welche konkreten gesetzlichen Änderungen die Bundesjustizministerin plant und wie diese verfassungsrechtlich und praktisch haltbar sind.",
+        "position": "Stefanie Hubig unterscheidet zwischen pornographischen und anderen Deepfakes. Das Herstellen und Verbreiten pornographischer Deepfakes sollen strafbar sein. Für künstlerische, satirische oder legitime Kritik-Deepfakes sollen Ausnahmen gelten. Ein Straftatbestand beschreibt zunächst, was strafbar ist, und macht dann Ausnahmen etwa für Kunst. Wenn ein Paar solche Videos untereinander austauscht, bleibt das in Ordnung; wenn sie gegen den Willen einer Person verbreitet werden, steht es unter Strafe. Sie kündet an: «Wir haben im Koalitionsvertrag klare Formulierungen. Wir sind jetzt mit dem Gesetzentwurf fertig.» Geplant ist eine breite Anhörung in Praxis und Wissenschaft, da solche Gesetze diskutiert werden müssen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Stefanie Hubig beantwortet beide Teilfragen direkt: Sie benennt konkrete legislative Pläne (Gesetzentwurf fertig, Anhörungen geplant) und skizziert eine differenzierte Abgrenzung zwischen strafbarer und legaler Nutzung. Sie adressiert auch die verfassungsrechtlichen Herausforderungen, indem sie auf Ausnahmen und die Notwendigkeit klarer Grenzen für Richter und Staatsanwälte hinweist.",
+        "quotes": [
+          {
+            "text": "Wir haben im Koalitionsvertrag klare Formulierungen. Wir sind jetzt mit dem Gesetzentwurf fertig. Wir sind froh, dass wir einen Schritt weiter sind.",
+            "timestamp": "00:23:32",
+            "context": "Auf die Frage, warum unter der Ampel so wenig passiert ist und was Hubig ändern will."
+          },
+          {
+            "text": "Solche Videos und Deepfakes, die aus künstlerischen oder satirischen Grünen, aus legitimer Kritik heraus erstellt werden, sollen legal bleiben. Es geht nicht darum, die Meinungsfreiheit im Netz zu beschränken.",
+            "timestamp": "00:26:18",
+            "context": "Auf die Frage, wie man zwischen Herabwürdigung und Kunst/Satire unterscheidet."
+          }
+        ],
+        "concrete_statements": [
+          "Gesetzentwurf zu pornographischen Deepfakes ist fertig",
+          "Anhörung in Praxis und Wissenschaft geplant",
+          "Ausnahmen für Kunst, Satire und legitime Kritik vorgesehen",
+          "Erlaubnis für gegenseitige Verbreitung unter einwilligenden Personen",
+          "Strafbarkeit bei Verbreitung gegen Willen der abgebildeten Person"
+        ],
+        "related_bundestag_topics": [
+          "Sexualstrafrecht",
+          "Digitale Gewalt",
+          "Künstliche Intelligenz und Recht",
+          "Meinungsfreiheit vs. Strafrecht"
+        ]
+      },
+      {
+        "title": "Sicherheit und Grenzen von KI-Erkennungsmerkmalen",
+        "timestamp_range": "00:25:48 - 00:28:02",
+        "theme_description": "Debatte, ob Deepfakes mit sichtbarem KI-Wasserzeichen oder offensichtlichen Erkennungsmerkmalen legal bleiben oder ebenfalls strafbar sein sollten.",
+        "question_asked": "Ronen Steinke fragt, ob es rechtlich sicher ist, Deepfakes mit Wasserzeichen oder deutlich erkennbar falschen Merkmalen weiterhin zu erlauben oder ob auch diese strafbar sein sollten.",
+        "question_intent": "Steinke möchte wissen, ob Hubig plant, auch Fälle einzubeziehen, in denen das KI-Ursprungszeichen erkennbar bleibt oder die Unechtheit offensichtlich ist.",
+        "position": "Stefanie Hubig antwortet: «Aus unserer Sicht ist der Anschein: Auch wenn es ein Wasserzeichen gibt, kann es strafbar sein.» Sie erklärt, dass der Anschein der Echtheit nicht das entscheidende Kriterium ist. Stattdessen kommt es darauf an, dass das Bild sexualisierend wirkt und gegen den Willen einer Person verbreitet wird. Zur rechtlichen Klarheit sagt sie: «Wir haben eine Anhörung in der Praxis und Wissenschaft, weil solche Gesetze diskutiert werden müssen. Es ist nicht einfach, das zu regeln. Die Grenze muss klar gezogen sein. Damit Richter und Staatsanwälte mit diesen Paragrafen arbeiten können.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet die Frage direkt: Sie macht klar, dass auch Deepfakes mit Wasserzeichen strafbar sein können, und begründet dies mit der sexualisierenden Wirkung und dem Verbreitungskontext statt mit dem äußeren Merkmal. Sie räumt gleichzeitig ein, dass die Rechtsumsetzung noch diskutiert wird.",
+        "quotes": [
+          {
+            "text": "Aus unserer Sicht ist der Anschein: Auch wenn es ein Wasserzeichen gibt, kann es strafbar sein.",
+            "timestamp": "00:27:30",
+            "context": "Auf die Frage, ob Deepfakes mit sichtbarem Wasserzeichen strafbar sein sollten."
+          },
+          {
+            "text": "Es kann sein, dass Sie es noch mal umformulieren? Das ist grundsätzlich so. Das finde ich super. Viele Wissenschaftler und Journalisten haben sich schon gemeldet. Wir müssen das breit diskutieren.",
+            "timestamp": "00:28:02",
+            "context": "Auf Nachfrage, ob der Entwurf noch angepasst werden könnte."
+          }
+        ],
+        "concrete_statements": [
+          "Wasserzeichen disqualifiziert nicht automatisch von Strafbarkeit",
+          "Breite Anhörung mit Praxis und Wissenschaft geplant",
+          "Möglichkeit der Nachformulierung wird offen gelassen"
+        ],
+        "related_bundestag_topics": [
+          "Künstliche Intelligenz und Kennzeichnung",
+          "Technische Machbarkeit von Strafrecht"
+        ]
+      },
+      {
+        "title": "Polizei und Justiz unzureichend auf digitale Gewalt vorbereitet",
+        "timestamp_range": "00:33:49 - 00:35:56",
+        "theme_description": "Diskussion, ob Polizei und Justiz strukturell und personell ausreichend für digitale Gewalt sensibilisiert und ausgebildet sind.",
+        "question_asked": "Caren Miosga fragt direkt: Sind Polizei und Justiz auf digitale Gewalt nicht vorbereitet?",
+        "question_intent": "Miosga möchte von Hubig bestätigt bekommen, dass es ein strukturelles Problem bei Ermittlung und Verfolgung digitaler Gewalt gibt.",
+        "position": "Stefanie Hubig antwortet zunächst zurückhaltend und differenzierend: «Das ist nur ein Teil. Es gibt hervorragend arbeitende Polizisten, Richterinnen und Richter. Wir haben schon tolle Profis. Da sind wir gut aufgestellt. Von solchen Fällen, von denen Sie erzählen, höre ich jedoch auch immer wieder.» Sie räumt dann ein: «Schulungen sind wichtig. Wir wollen die Justiz als Bund weiter unterstützen.» Gleichzeitig verbreitert sie die Verantwortung: «Man darf es aber auch nicht alles nur auf eine Institution überlagern. Wir brauchen dieses Bewusstsein in der Gesellschaft.»",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubig beantwortet die Frage nur teilweise: Sie bestätigt zwar die Probleme («höre ich immer wieder») und nennt Schulungsbedarfe, zögert aber, ein klares systemisches Problem einzugestehen. Sie lenkt zur Gesamtgesellschaft ab und würdigt auch einzelne gute Praktiken. Dies ist ein klassisches Pattern: Problem-Bestätigung ohne klare Systemkritik.",
+        "quotes": [
+          {
+            "text": "Es gibt hervorragend arbeitende Polizisten, Richterinnen und Richter. Wir haben schon tolle Profis. Da sind wir gut aufgestellt. Von solchen Fällen, von denen Sie erzählen, höre ich jedoch auch immer wieder.",
+            "timestamp": "00:35:25",
+            "context": "Auf Frage, ob Polizei und Justiz unzureichend vorbereitet sind."
+          },
+          {
+            "text": "Schulungen sind wichtig. Wir wollen die Justiz als Bund weiter unterstützen. Man darf es aber auch nicht alles nur auf eine Institution überlagern. Wir brauchen dieses Bewusstsein in der Gesellschaft.",
+            "timestamp": "00:35:25",
+            "context": "Hubigs Antwort zu Verbesserungsmaßnahmen."
+          }
+        ],
+        "concrete_statements": [
+          "Schulungen für Polizei und Justiz zum Thema digitale Gewalt erforderlich",
+          "Bund will Justiz weiter unterstützen",
+          "Bewusstsein in der Gesamtgesellschaft nötig, nicht nur in Institutionen"
+        ],
+        "related_bundestag_topics": [
+          "Justizausstattung",
+          "Polizeiausbildung",
+          "Digitale Kriminalität"
+        ]
+      },
+      {
+        "title": "Gesellschaftliche Sensibilisierung wichtiger als Strafverschärfung",
+        "timestamp_range": "00:36:28 - 00:37:05",
+        "theme_description": "Stefanie Hubig argumentiert, dass Gesetzesverschärfung allein ein geringer Abschreckungseffekt hat und dass die gesellschaftliche Debatte und männliche Verantwortung entscheidender sind.",
+        "question_asked": "Im Kontext der Diskussion über Strafmaßnahmen äußert Hubig eigeninitiativ ihre Überzeugung, dass Strafverschärfung begrenzte Wirkung hat.",
+        "question_intent": "Es ist keine direkte Frage, sondern ein eigeninitiativ vorgetragenes Argument: Hubig will klarstellen, dass nicht nur Gesetze, sondern vor allem Gesellschaft und Männer sich ändern müssen.",
+        "position": "Stefanie Hubig betont: «Auch wenn die Gesetze verschärft werden, hat das auf die Häufigkeit der Fälle einen geringen Effekt. Das zeigt die Forschung. Leute, die so eine Tat begehen wollen, für sie ist das nur ein Aspekt, ob das strafbar ist. Viel wichtiger ist, was das soziale Umfeld sagt. Das betrifft vor allem uns Männer. Wir reden wir miteinander? Was für eine Vorstellung haben Männer? Bin ich bei meinen Freunden unten durch, wenn ich so etwas tun? Oder hast du gezeigt, was für ein toller Typ du bist? Heißt es, \\\"das ist nicht lustig, du bist nicht mehr mein Freund.\\\" So eine Diskussion ist wichtiger.»",
+        "answer_match": "kein_direkter_anlass",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Dies ist eine eigeninitiativ vorgetragene Position von Hubig (kein_direkter_anlass), in der sie bewusst gegen eine möglicherweise einseitig rechtliche Perspektive argumentiert. Sie beantwortet damit implizit Erwartungen an weitere Strafverschärfung, indem sie deren begrenzte Wirksamkeit anspricht.",
+        "quotes": [
+          {
+            "text": "Auch wenn die Gesetze verschärft werden, hat das auf die Häufigkeit der Fälle einen geringen Effekt. Das zeigt die Forschung. Leute, die so eine Tat begehen wollen, für sie ist das nur ein Aspekt, ob das strafbar ist. Viel wichtiger ist, was das soziale Umfeld sagt. Das betrifft vor allem uns Männer.",
+            "timestamp": "00:36:28",
+            "context": "Eigeninitiativ-Stellungnahme zum Verhältnis zwischen Strafrecht und gesellschaftlichem Wandel."
+          }
+        ],
+        "concrete_statements": [
+          "Strafverschärfung hat begrenzten präventiven Effekt",
+          "Soziales Umfeld und männliche Normen entscheidender als Strafrahmen",
+          "Gesellschaftliche Debatte in Familie, Freundeskreis und Talkshows ist zentral"
+        ],
+        "related_bundestag_topics": [
+          "Kriminalpolitik und Prävention",
+          "Geschlechterrolle und Männergewalt",
+          "Gesellschaftliche Prävention"
+        ]
+      },
+      {
+        "title": "Reaktion auf Bundeskanzler und Zuwanderungs-Narrative",
+        "timestamp_range": "00:38:42 - 00:39:13",
+        "theme_description": "Caren Miosga kritisiert, dass der Bundeskanzler die Frage zu digitaler Gewalt durch einen Pivot auf Zuwanderung auswich. Hubig nimmt Position dazu.",
+        "question_asked": "Caren Miosga fragt Stefanie Hubig, wie sie es findet, dass der Kanzler mit dem Finger auf Zuwanderer gezeigt hat, statt die Betroffenen zu unterstützen.",
+        "question_intent": "Caren Miosga möchte wissen, ob Hubig das Ausweichmanöver des Kanzlers problematisch findet und wie sie zu diesem Narrativ steht.",
+        "position": "Stefanie Hubig antwortet: «Ich habe eine klare Haltung: Wir müssen über digitale Gewalt gegen Frauen reden — unabhängig von Herkunft, Religion und allem. Der Kanzler hat deutlich gesagt, dass er gegen Gewalt ist. Es ist wichtig, den Blick nicht auf andere Punkte zu richten. Es ist für mich richtig, dieses Thema und diese Diskussion zu führen: Was bedeutet das für den oder die Betroffene?»",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Hubig beantwortet die Frage nur teilweise: Sie bekräftigt einen universellen Ansatz (unabhängig von Herkunft) und würdigt die Haltung des Kanzlers («deutlich gesagt, dass er gegen Gewalt ist»), weicht aber einer klaren Kritik am Ausweichmanöver aus. Sie formuliert den positiven Weg statt sich direkter zum Kanzlers-Pivot zu äußern.",
+        "quotes": [
+          {
+            "text": "Ich habe eine klare Haltung: Wir müssen über digitale Gewalt gegen Frauen reden — unabhängig von Herkunft, Religion und allem. Der Kanzler hat deutlich gesagt, dass er gegen Gewalt ist. Es ist wichtig, den Blick nicht auf andere Punkte zu richten.",
+            "timestamp": "00:38:42",
+            "context": "Auf Caren Miosga's Kritik am Kanzlers Pivot zu Zuwanderung."
+          }
+        ],
+        "concrete_statements": [
+          "Digitale Gewalt gegen Frauen ist unabhängig von Herkunft und Religion zu bekämpfen",
+          "Fokus muss auf Betroffenen liegen, nicht auf Ablenkungsthemen"
+        ],
+        "related_bundestag_topics": [
+          "Chancleramt und Regierungskommunikation",
+          "Migration und Gewalt",
+          "Frauenschutz"
+        ]
+      },
+      {
+        "title": "Sexualstrafrecht in der juristischen Ausbildung",
+        "timestamp_range": "00:39:46 - 00:41:16",
+        "theme_description": "Diskussion, ob Sexualstrafrecht ausreichend in juristischen Lehrplänen verankert ist und wie das die Fachkompetenz von Richtern und Staatsanwälten beeinflusst.",
+        "question_asked": "Caren Miosga fragt Juristen in der Runde, wer Sexualstrafrecht im Studium hatte, und später, ob die Richter und Staatsanwälte von morgen mit diesen Inhalten nicht vertraut sind.",
+        "question_intent": "Miosga möchte aufdecken, ob eine Lücke in der juristischen Ausbildung bei Sexualstrafrecht existiert, die erklärt, warum digitale Gewalt im Strafvollzug unterrepräsentiert ist.",
+        "position": "Stefanie Hubig antwortet: «Im Studium nicht, aber als Richterin und Staatsanwältin.» Sie erklärt dann aus ihrer Erfahrung: «Ich war früher Bildungsministerin in Rheinland-Pfalz. Wir müssen Jugendlichen, Heranwachsenden und Kindern deutlich machen: Das ist kein Spaß, das sind Straftaten. Mobbing etwa. Das ist nicht lustig, das ist eine Straftat.» Sie bekräftigt damit implizit die Forderung Theresia Crones, dass Sexualstrafrecht stärker in die Lehrpläne gehört. Sie betont auch: «Das ist schade. Die Richterinnen, Richter und Staatsanwälte von morgen — auf dem Lehrplan steht kein Sexualstrafrecht.» (Aussage Crone, aber von Hubig nicht widersprochen, sondern unterstützt.)",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet die implizite Frage nach der Ausbildungslücke direkt: Sie bestätigt, dass sie Sexualstrafrecht im Studium nicht hatte, und verbindet das mit ihrer jetzigen Überzeugung als Justizministerin, dass das geändert werden muss. Sie benennt konkrete Konsequenzen (Fehlsensibilisierung von Richtern).",
+        "quotes": [
+          {
+            "text": "Im Studium nicht, aber als Richterin und Staatsanwältin.",
+            "timestamp": "00:39:46",
+            "context": "Auf Caren Miosga's Frage, ob Hubig Sexualstrafrecht im Studium hatte."
+          },
+          {
+            "text": "Ich war früher Bildungsministerin in Rheinland-Pfalz. Wir müssen Jugendlichen, Heranwachsenden und Kindern deutlich machen: Das ist kein Spaß, das sind Straftaten. Mobbing etwa. Das ist nicht lustig, das ist eine Straftat.",
+            "timestamp": "00:39:13",
+            "context": "Auf die weitergehende Diskussion, wie Prävention in Schulen verankert werden muss."
+          }
+        ],
+        "concrete_statements": [
+          "Sexualstrafrecht ist nicht im Lehrplan juristischer Studiengänge enthalten",
+          "Schulung von Jugendlichen zu digitaler Gewalt als Straftat notwendig",
+          "Schulung von Polizisten, Richtern und Staatsanwälten erforderlich"
+        ],
+        "related_bundestag_topics": [
+          "Justizausbildung",
+          "Schulische Prävention",
+          "Sexualstrafrecht"
+        ]
+      },
+      {
+        "title": "IP-Adressen-Speicherung und Ermittlungsbefugnisse",
+        "timestamp_range": "00:45:01 - 00:49:15",
+        "theme_description": "Debatte über die Einführung von IP-Adressen-Speicherung für Ermittlungen bei digitaler Gewalt und das Spannungsfeld zwischen Ermittlungseffektivität und Datenschutz.",
+        "question_asked": "Caren Miosga fragt Stefanie Hubig nach ihrer geplanten Regelung zur Speicherung von IP-Adressen: Warum nicht einfach Klarnamenpflicht, und wie lange sollten die Daten gespeichert werden?",
+        "question_intent": "Miosga möchte verstehen, warum Hubig keine Klarnamenpflicht durchsetzen will, und wie das geplante Datenspeichersystem funktionieren soll, um digitale Gewalt zu bekämpfen.",
+        "position": "Stefanie Hubig lehnt Klarnamenpflicht ab: «Dafür habe ich mich früher ausgesprochen und gegen Klarnamenpflicht. Menschen im Internet, gerade Betroffene: Da gibt es viele Selbsthilfegruppen, auch Oppositionelle anderer Länder, die diese Freiheit brauchen, um Kritik üben zu können.» Stattdessen schlägt sie vor: «Ich habe einen Entwurf vorgelegt, sodass wir eine Person demaskieren können. Also, von welchem Computer aus welche Internetseite besucht wurde. Ich erkläre das wie mit einem Autokennzeichen. Man sieht das, man weiß aber nicht, wer dahinter steckt. Eine IP-Adresse ist ähnlich.» Zu Speicherdauer: «Wir bekommen von Ermittlungsbehörden viel Zuspruch... Wir müssen aber die Rechtsprechung des europäischen Gerichtshofs und des Verfassungsgerichts berücksichtigen. Deswegen sind es drei Monate. So ist es auch im Koalitionsvertrag vorgesehen.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet beide Unterfragen: Sie erklärt detailliert, warum Klarnamenpflicht ablehnt, und begründet dies mit Schutzbedarfen von Opfern und Oppositionellen. Sie beschreibt dann ihr Alternativmodell (IP-Speicherung) und rechtfertigt die Dauer mit verfassungsrechtlichen Vorgaben. Sie adressiert das zentrale Spannungsfeld transparent.",
+        "quotes": [
+          {
+            "text": "Ich habe mich vor einiger Zeit dagegen ausgesprochen. Menschen im Internet, gerade Betroffene: Da gibt es viele Selbsthilfegruppen, auch Oppositionelle anderer Länder, die diese Freiheit brauchen, um Kritik üben zu können.",
+            "timestamp": "00:44:27",
+            "context": "Auf Frage, warum Klarnamenpflicht keine Lösung ist."
+          },
+          {
+            "text": "Ich habe einen Entwurf vorgelegt, sodass wir eine Person demaskieren können. Also, von welchem Computer aus welche Internetseite besucht wurde. Ich erkläre das wie mit einem Autokennzeichen. Man sieht das, man weiß aber nicht, wer dahinter steckt. Eine IP-Adresse ist ähnlich.",
+            "timestamp": "00:45:01",
+            "context": "Hubigs Alternativvorschlag zu Klarnamenpflicht."
+          },
+          {
+            "text": "Wir müssen aber die Rechtsprechung des europäischen Gerichtshofs und des Verfassungsgerichts berücksichtigen. Deswegen sind es drei Monate. So ist es auch im Koalitionsvertrag vorgesehen.",
+            "timestamp": "00:46:04",
+            "context": "Begründung für die 3-Monatsfrist."
+          }
+        ],
+        "concrete_statements": [
+          "Klarnamenpflicht lehnt Hubig ab",
+          "Neuer Entwurf sieht IP-Adressen-Speicherung vor",
+          "Speicherdauer begrenzt auf 3 Monate (verfassungsrechtlich geboten)",
+          "Ermittlungsbehörden erhalten Zuspruch für das Modell",
+          "Europäischer Gerichtshof und Bundesverfassungsgericht berücksichtigt"
+        ],
+        "related_bundestag_topics": [
+          "Datenschutz",
+          "Vorratsdatenspeicherung",
+          "Ermittlungsbefugnisse",
+          "Grundrecht auf Anonymität"
+        ]
+      },
+      {
+        "title": "Häusliche Gewalt — Dunkelfeld und Glaubwürdigkeitsfragen",
+        "timestamp_range": "00:50:18 - 00:56:45",
+        "theme_description": "Diskussion über die hohe Dunkelfeld-Quote bei häuslicher Gewalt, warum Frauen nicht anzeigen, und welche Rolle Vorurteile von Justiz und Gesellschaft spielen.",
+        "question_asked": "Caren Miosga fragt Stefanie Hubig, warum weniger als 3 % der Fälle von Partnerschaftsgewalt angezeigt werden und was Frauen abhält, ihre Partner anzuzeigen.",
+        "question_intent": "Miosga möchte verstehen, warum trotz schwerer Gewalt Dunkelziffern so hoch sind und welche systemischen Barrieren und Vorurteile dafür verantwortlich sind.",
+        "position": "Stefanie Hubig identifiziert mehrere Gründe: «Es gibt die Erfahrung, dass an der Polizeistelle nichts passiert, oder ich fühle mich unter Druck, Beweise zu liefern. Vielleicht möchte man eigene Daten schützen. Vielleicht möchte man nicht, dass die eigene Adresse gegenüber dem Ex-Partner angegeben wird. Es geht häufig auch mit Stigmatisierung einher.» Sie betont dann ein tieferes Problem: «Wenn man sich nach der Gewalt nicht vom Partner trennt, wird einem das vielleicht vorgeworfen... Es werden viele Rollenerwartungen, Bilder, die im Kopf vorherrschen, wie man sich zu verhalten hat, als Opfer von sexueller Gewalt, den Frauen entgegengehalten.» Hubig's Lösungsansatz: «Es muss ein Dialog mit Polizeibeamten, Richterinnen und Richtern geben. Dinge müssen enttabuisiert werden. Vielleicht muss man mehr in den Dialog mit der Wissenschaft kommen.» Sie schließt mit klarer Botschaft: «Wir müssen den Frauen signalisieren, dass sie nicht schuld sind... Das müssen wir noch viel deutlicher in der Gesellschaft leben.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet beide Teilfragen umfassend: Sie erklärt konkrete Hinde rnisse (Polizeistellen-Erfahrungen, Datenschutz, Stigmatisierung), adressiert dann Vorurteile und Rollenstereotypen in Justiz und Gesellschaft, und skizziert einen Maßnahmenkatalog (Dialog, Enttabuisierung, Sensibilisierung). Sie nutzt dabei ihre Erfahrung als Richterin und Bildungsministerin.",
+        "quotes": [
+          {
+            "text": "Es gibt die Erfahrung, dass an der Polizeistelle nichts passiert, oder ich fühle mich unter Druck, Beweise zu liefern. Vielleicht möchte man eigene Daten schützen. Es geht häufig auch mit Stigmatisierung einher.",
+            "timestamp": "00:51:22",
+            "context": "Auf Frage, was Frauen abhält zu zeigen."
+          },
+          {
+            "text": "Es werden viele Rollenerwartungen, Bilder, die im Kopf vorherrschen, wie man sich zu verhalten hat, als Opfer von sexueller Gewalt, den Frauen entgegengehalten.",
+            "timestamp": "00:53:57",
+            "context": "Hubig beschreibt Vorurteile in Justiz und Gesellschaft."
+          },
+          {
+            "text": "Wir müssen den Frauen signalisieren, dass sie nicht schuld sind. Einige Frauen denken, sie sind falsch angezogen oder haben falsche Signale gesendet. Aber kein Mann hat das Recht, übergriffig zu werden.",
+            "timestamp": "00:56:11",
+            "context": "Hubigs Kernbotschaft gegen Täter-Entlastung und für Opfer-Unterstützung."
+          }
+        ],
+        "concrete_statements": [
+          "Dunkelfeld bei Partnerschaftsgewalt liegt unter 3 % Anzeigequote",
+          "Erfahrungen mit Polizeistellen schrecken ab",
+          "Stigmatisierung und Datenschutzsorgen halten Frauen von Anzeigen ab",
+          "Justiz und Gesellschaft arbeiten mit Vorurteilen über \\\"echte\\\" Opfer",
+          "Dialog mit Polizei, Justiz und Wissenschaft notwendig",
+          "Enttabuisierung von sexualisierter Gewalt erforderlich"
+        ],
+        "related_bundestag_topics": [
+          "Häusliche Gewalt",
+          "Geschlechtergewalt",
+          "Opferschutz",
+          "Justizkultur"
+        ]
+      },
+      {
+        "title": "Rollenbilder und Männer-Verantwortung bei Prävention",
+        "timestamp_range": "00:57:15 - 00:59:30",
+        "theme_description": "Debatte über konservative Rollenbilder bei jungen Menschen und wie Männer durch ihre Haltung in Freundesgruppen und Gesellschaft Kultur zur Gewalt gegen Frauen verändern können.",
+        "question_asked": "Caren Miosga und Theresia Crone fragen, wie gesellschaftliche Rollenbilder geändert werden können und welche Verantwortung Männer haben.",
+        "question_intent": "Die Interlocutorinnen möchten wissen, wie strukturelle und kulturelle Veränderungen erreicht werden, besonders durch Männer-Verantwortung.",
+        "position": "Stefanie Hubig bemerkt zuerst ein Phänomen: «Es gibt ein etwas konservativeres Bild, das gerade einzieht» (bei jungen Leuten). Sie stimmt dann Theresia Crone zu, dass nicht nur direkte Täter, sondern auch Zuschauer/Mitwisser Verantwortung tragen: «Ich bin schon Mittäter, wenn ich sehe, wie Frauen auf Partys abgefüllt werden. Oder wenn in der umkleide ein Witz gemacht wird über Vergewaltigung.» Sie schlussfolgert: «Da müssen gesellschaftliche Debatten beginnen. Natürlich in der Schule, aber auch am Arbeitsplatz. Es braucht eine Kultur, in der so etwas nicht geduldet wird.» Hubig's abschließende Überzeugung zum Gesamtthema: «Das liegt an uns. Viele tolle Frauen haben in den letzten Tagen Demos organisiert. Es wurde in vielen Gruppenchats besprochen. Männer sollten sich an der Stelle hinterfragen. Dann können wir dafür sorgen, dass sich was ändert.»",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Hubig beantwortet die Frage zum Kulturwandel und zur Männer-Verantwortung direkt und setzt dabei auf Affirmation des Gast-Standpunkts (Theresia Crone). Sie identifiziert konkrete Settings (Schule, Arbeitsplatz, Freundesgruppen) und formuliert eine ethische Haltung, nicht nur eine juristische.",
+        "quotes": [
+          {
+            "text": "Da müssen gesellschaftliche Debatten beginnen. Natürlich in der Schule, aber auch am Arbeitsplatz. Es braucht eine Kultur, in der so etwas nicht geduldet wird.",
+            "timestamp": "00:58:18",
+            "context": "Hubigs Ansatz zu Kulturwandel gegen Gewalt gegen Frauen."
+          },
+          {
+            "text": "Das liegt an uns. Viele tolle Frauen haben in den letzten Tagen Demos organisiert. Es wurde in vielen Gruppenchats besprochen. Männer sollten sich an der Stelle hinterfragen. Dann können wir dafür sorgen, dass sich was ändert.",
+            "timestamp": "00:58:54",
+            "context": "Hubigs Schlusswort: Verantwortung liegt bei Gesellschaft und Männern."
+          }
+        ],
+        "concrete_statements": [
+          "Konservative Rollenbilder befestigen sich gerade bei jungen Menschen",
+          "Schulen und Arbeitsplätze müssen zu Orten der Debatte gegen Gewalt werden",
+          "Männer müssen sich untereinander hinterfragen",
+          "Kultur, die Gewalt nicht duldet, ist notwendig",
+          "Männer-Verantwortung und Peer-Druck sind zentral für Prävention"
+        ],
+        "related_bundestag_topics": [
+          "Geschlechterrolle und Sozialisation",
+          "Prävention von Geschlechtergewalt",
+          "Schulische Sexualaufklärung",
+          "Männergewalt und Prävention"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Eine aktuelle Studie zeigt, dass nur 2,4 Prozent der digitalen Gewalt angezeigt wird.",
+        "timestamp": "00:12:20"
+      },
+      {
+        "claim": "Weniger als 5 % der Gewalttaten insgesamt werden angezeigt, bei Partnerschaftsgewalt gegen Frauen sogar nur 2,7 % der Fälle.",
+        "timestamp": "00:50:50"
+      },
+      {
+        "claim": "2024 verzeichnete das BKA einen Anstieg von 2,1 % im Vergleich zu 2023 bei Sexualstraftaten.",
+        "timestamp": "00:49:45"
+      },
+      {
+        "claim": "Rund 190.000 Frauen zeigten 2024 häusliche Gewalttaten an.",
+        "timestamp": "00:49:45"
+      },
+      {
+        "claim": "Theresia Crone ist der einzig bekannte Fall in Deutschland, wo es für pornographische Deepfakes zu einer Verurteilung gekommen ist.",
+        "timestamp": "00:21:26"
+      }
+    ]
+  }
+}

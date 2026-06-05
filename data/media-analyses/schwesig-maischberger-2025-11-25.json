@@ -1,0 +1,342 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0yNV8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-25",
+    "politician": "Manuela Schwesig",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "1ea9671fa6df51fa",
+    "transcript_chars": 50886,
+    "caption_lines": 1903,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20709,
+    "tokens_out": 8398,
+    "cost_usd": 0.0250796,
+    "quote_validation": {
+      "valid_exact": 5,
+      "valid_fuzzy": 6,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 4,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.507Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Manuela Schwesig, Ministerpräsidentin von Mecklenburg-Vorpommern (SPD), diskutiert in Maischbergers Sendung zwei zentrale Themen: die innenpolitische Rentendebatte und die Außenpolitik zur Ukraine. Sie wirkt sachlich und konzentriert, argumentiert mit konkreten Beispielen aus ihrem Bundesland und mahnt zu Verantwortungsbewusstsein in der Koalition. Zum Wahlkampf 2025 gibt sie sich optimistisch, ohne sich dabei defensiv gegen die AfD zu positionieren.",
+    "themes": [
+      {
+        "title": "Koalitionsharmonie und Zusammenarbeit im Norden",
+        "timestamp_range": "00:56:06 - 00:57:08",
+        "theme_description": "Schwesig beschreibt das gute Verhältnis zwischen SPD und CDU im Norden Deutschlands und wünscht sich ein ähnliches Miteinander auf Bundesebene.",
+        "question_asked": "Sandra Maischberger fragte, ob es zwischen Schwesig und ihrem CDU-Kollegen Daniel Günther besser funktionieren würde, wenn sie statt Merz und Scholz die Bundespolitik führten, nachdem Maischberger erwähnt hatte, dass die beiden bei einem Fest zusammen getanzt hätten.",
+        "question_intent": "Maischberger wollte erfahren, ob die regionalen Erfolgsmodelle der Zusammenarbeit auf Bundesebene übertragbar sind und implizit kritisieren, dass die Bundesregierung weniger harmonisch funktioniert.",
+        "position": "Schwesig betont, dass sie und Daniel Günther als Nachbarn im Norden gut zusammenarbeiten und über Parteigrenzen hinweg kooperieren. Sie wünscht sich für die Bundesregierung ebenfalls einen gemeinsamen Zugriff auf die Herausforderungen: 'Kein Streit zwischen den Parteien. Auch Zusammenarbeiten über die Parteigrenzen hinweg.' Sie rahmt dies als Wunsch der Bürger und stellt fest, dass die meisten Menschen Zusammenhalt erwarten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig antwortet auf die provokative Frage nach der besseren Kompetenz indirekt, indem sie die regionalen Erfolge würdigt, ohne sich selbst als bessere Kandidatin zu positionieren. Sie lenkt stattdessen ab auf allgemeine Appelle für Zusammenhalt und Bürgerwünsche. Die direkte Frage zur eigenen Taugnis wird nicht beantwortet.",
+        "concrete_statements": [
+          "Auf jeden Fall kommen wir gut im Norden klar",
+          "Das ist ein schöner Moment von einem Fest, der für mich als Tag der friedlichen Revolution ganz besonders emotional ist",
+          "Genau das erhoffen wir uns auch von der neuen Bundesregierung, dass man zusammen an einem Strang zieht"
+        ],
+        "quotes": [
+          {
+            "text": "Auf jeden Fall kommen wir gut im Norden klar. Ich glaube das ist das, was sich die Menschen wünschen. Kein Streit zwischen den Parteien. Auch Zusammenarbeiten über die Parteigrenzen hinweg.",
+            "timestamp": "00:56:06",
+            "context": "Schwesig antwortet auf Maischbergers Frage, ob es zwischen ihr und Günther besser funktionieren würde als auf Bundesebene."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamiken",
+          "Föderalismus",
+          "Zusammenarbeit zwischen Parteien",
+          "Regierungsführung"
+        ]
+      },
+      {
+        "title": "Rentenniveau-Stabilisierung und Finanzierbarkeit",
+        "timestamp_range": "00:57:38 - 01:00:16",
+        "theme_description": "Schwesig erläutert die Bedeutung des Rentenniveaus für ältere Menschen, speziell im Osten Deutschlands, wo niedrige Renten ein existenzielles Problem darstellen.",
+        "question_asked": "Sandra Maischberger fragte implizit durch die vorangegangene Diskussion, wie die Rente finanzierbar sein kann, wenn das Rentenniveau stabilisiert werden soll und Steuerzuschüsse bereits sehr hoch sind.",
+        "question_intent": "Maischberger wollte wissen, wie Schwesig die Kritik der Jungen Union zur Finanzierbarkeit adressiert und ob das Rentenniveau wirklich zu halten ist, ohne das System zu überlasten.",
+        "position": "Schwesig betont das existenzielle Problem von Rentnern, besonders im Osten, wo Durchschnittsrenten bei nur 1300 Euro liegen – ohne zusätzliche Betriebsrenten oder Vermögen. Sie verweist auf ein konkretes Beispiel: Ein Bürger, der nach 40 Jahren Arbeit nur 1100 Euro Rente erhält, obwohl die Lebenshaltungskosten bereits 1100 Euro betragen. Das Rentenniveau sank von 45% auf 48%. Sie argumentiert, dass 'wir so darum kämpfen' nicht aus ideologischen, sondern aus existenziellen Gründen: 'Für die meisten eine ganz existenzielle Frage.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig beantwortet die Frage umfassend durch konkrete Beispiele aus ihrem Bundesland und macht deutlich, warum die Rente für bestimmte Bevölkerungsgruppen nicht verhandelbar ist. Sie konkretisiert das abstrakte Problem mit Zahlen und menschlichen Schicksalen.",
+        "concrete_statements": [
+          "400.000 Rentner bekommen durchschnittlich 1300 Euro",
+          "Rentenniveau war vor vielen Jahren bei 45%, jetzt nur noch bei 48%",
+          "Im Osten gibt es keine Betriebsrente, kein Vermögen durch Teilung",
+          "Ein Bürger kriegt 2500 Euro und hat 1100 Euro Lebenshaltungskosten"
+        ],
+        "quotes": [
+          {
+            "text": "Für mich heißt es ganz konkret, über 400.000 Rentner, die durchschnittlich 1300 Euro ausgezahlt bekommen. Was immer noch 200 Euro mehr ist als im Westen. Weil viele Frauen gearbeitet haben.",
+            "timestamp": "00:58:40",
+            "context": "Schwesig illustriert die Rentensituation im Osten mit konkreten Zahlen."
+          },
+          {
+            "text": "Es geht uns weniger darum, Recht zu behalten. Es ist für die meisten eine ganz existenzielle Frage.",
+            "timestamp": "01:00:16",
+            "context": "Schwesig unterstreicht die existenzielle Bedeutung der Rentenfrage jenseits parteipolitischer Positionen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Sozialpolitik",
+          "Finanzierung der Rente",
+          "Regionale Disparitäten (Ost-West)"
+        ]
+      },
+      {
+        "title": "Beamte und Politiker in der Rentenkasse",
+        "timestamp_range": "01:02:32 - 01:03:04",
+        "theme_description": "Schwesig schlägt vor, Beamte und Politiker in die Rentenkasse einzahlen zu lassen, um das System zu stabilisieren.",
+        "question_asked": "Sandra Maischberger stellte implizit die Frage, wie das Rentensystem langfristig finanzierbar sein kann, nachdem Schwesig die existenzielle Not betont hatte.",
+        "question_intent": "Maischberger wollte wissen, ob es andere Finanzierungsmöglichkeiten gibt, ohne nur die jetzigen Beitragszahler zu belasten.",
+        "position": "Schwesig unterstützt einen Vorschlag der Sozialministerin, wonach ab einem bestimmten Zeitpunkt in der Zukunft auch Beamte und Politiker in die Rentenkasse einzahlen sollen – ohne bestehende Rentner zu belasten. Sie argumentiert, dass dies systemmäßig fair wäre: 'Z.B. zahlen Politiker oder Beamte nicht rein. Warum kann man kein System machen, ab einem bestimmten Zeitpunkt in der Zukunft, dann nehme ich nicht jetzt Leuten etwas weg, dann zahlen auch Beamte, Politiker ein.' Sie merkt an, dass die Rentenkommission diesen Punkt im Sommer verhandeln wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig unterbreitet einen konkreten alternativen Lösungsvorschlag, der die Finanzierungsfrage adressiert, ohne dabei die jetzigen Rentner zu belasten. Sie entkräftet damit auch das Argument der Union, dass das System nicht finanzierbar ist.",
+        "concrete_statements": [
+          "Sozialministerin hat konkreten Vorschlag gemacht, den ich unterstütze",
+          "Beamte und Politiker sollten ab Zeitpunkt X einzahlen",
+          "Hätten wir das System schon vor 10 Jahren eingeführt, wären wir heute weiter",
+          "Das wird die Rentenkommission im Sommer aufmachen"
+        ],
+        "quotes": [
+          {
+            "text": "Z.B. zahlen Politiker oder Beamte nicht rein. Warum kann man kein System machen, ab einem bestimmten Zeitpunkt in der Zukunft, dann nehme ich nicht jetzt Leuten etwas weg, dann zahlen auch Beamte, Politiker ein.",
+            "timestamp": "01:02:32",
+            "context": "Schwesig schlägt ein System vor, das Beamte und Politiker langfristig zur Rentenkasse-Finanzierung heranziehen würde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenfinanzierung",
+          "Erwerbstätigenversicherung",
+          "Systemgerechtigkeit"
+        ]
+      },
+      {
+        "title": "Positive Elemente des Rentenpakets und Jüngeren-Fokus",
+        "timestamp_range": "01:03:36 - 01:04:38",
+        "theme_description": "Schwesig würdigt zwei Punkte des Rentenpakets, die die Union eingebracht hat: Steuerfreiheit für längeres Arbeiten und die Frühstartrente für Kinder.",
+        "question_asked": "Sandra Maischberger fragte, wie die SPD und Schwesig die Kritik der jungen Union und Söder auf sich nehmen und ob alle Argumente in den Koalitionsgesprächen auch adressiert wurden.",
+        "question_intent": "Maischberger wollte verstehen, ob die SPD auch Zugeständnisse macht oder nur auf ihrer Position beharrt.",
+        "position": "Schwesig bestätigt, dass im Rentenpaket auch zwei Elemente von der Union stammen, die sie selbst 'sehr gut' findet: (1) Die Möglichkeit, steuerfrei länger zu arbeiten, was 'für Fachkräfte und auch für die Wirtschaft' wichtig ist, und (2) die 'Frühstartrente', wonach ab dem sechsten Lebensjahr 10 Euro monatlich für Kinder angelegt wird, um ihnen später etwas davon zu haben. Sie bewertet dies als Maßnahmen für die Jüngeren und sagt, dass die SPD diese Elemente 'unterstützt'.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig demonstriert konkret, dass die SPD auch Punkte der Union im Rentenpaket verankert hat und diese nicht einfach blockiert. Sie zeigt damit eine Koalitionsbereitschaft auf.",
+        "concrete_statements": [
+          "Zwei Zeitpunkte, die die Union eingebracht hat, finde ich sehr gut",
+          "Steuerfreies längeres Arbeiten für Fachkräfte ist wichtig",
+          "Frühstartrente: 10 Euro im Monat ab 6. Lebensjahr angelegt",
+          "Das bringt aber nicht zu viel Entlastung"
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt im ganzen Rentenpaket, aus meiner Sicht, 2 Zeitpunkte, die die Union eingebracht hat in die Verhandlungen. Die ich sehr gut fand.",
+            "timestamp": "01:03:36",
+            "context": "Schwesig würdigt zwei konkrete Punkte des Rentenpakets, die von der Union stammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Familienpolitik",
+          "Altersvorsorge"
+        ]
+      },
+      {
+        "title": "Merz' Führungsversagen bei der Koalition",
+        "timestamp_range": "01:05:09 - 01:06:13",
+        "theme_description": "Schwesig diagnostiziert mangelnde Führung bei Bundeskanzler Merz, der nicht gelungen ist, seine eigene Partei hinter dem Rentenpaket zu vereinen.",
+        "question_asked": "Sandra Maischberger fragte direkt: 'Sagen Sie Herrn Merz gerade Führungsversagen nach?'",
+        "question_intent": "Maischberger wollte eine klare Antwort, ob Schwesig Merz Versagen vorwirft oder es differenzierter sieht.",
+        "position": "Schwesig antwortet ausweichend, indem sie es 'eine klassische Führungsaufgabe' nennt statt 'Führungsversagen'. Sie erklärt, dass jeder Regierungschef früh eine 'Antenne' dafür haben muss, wo Menschen in der eigenen Partei nicht mitgehen können. Sie betont, dass in jeder Volkspartei intern Kritik existiert und dies 'legitim' sei. Sie sagt aber auch: 'Bisher ist es dem Kanzler nicht gelungen, diese Führung auszuüben.' Sie endet mit der Hoffnung, dass Merz dieser Aufgabe 'recht wird'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig antwortet ausweichend auf die direkte Frage und weicht in allgemeine Aussagen über Führung aus, ohne klar ja oder nein zu 'Führungsversagen' zu sagen. Sie bleibt damit diplomatisch, bestätigt aber implizit das Versagen: 'Bisher ist es dem Kanzler nicht gelungen.'",
+        "concrete_statements": [
+          "Es ist eine klassische Führungsaufgabe",
+          "Bisher ist es dem Kanzler nicht gelungen, diese Führung auszuüben",
+          "Man muss sich um die Kritiker bemühen",
+          "Das kann man nicht der SPD vor die Füße kippen",
+          "Ich gehe fest davon aus, dass Merz dieser Führungsaufgabe recht wird"
+        ],
+        "quotes": [
+          {
+            "text": "Ich sage, es ist eine klassische Führungsaufgabe. Ich gehe fest davon aus, dass Merz dieser Führungsaufgabe recht wird.",
+            "timestamp": "01:06:13",
+            "context": "Schwesig weicht der direkten Frage nach Führungsversagen diplomatisch aus."
+          },
+          {
+            "text": "Bisher ist es dem Kanzler nicht gelungen, diese Führung auszuüben.",
+            "timestamp": "01:06:47",
+            "context": "Schwesig beschreibt die Realität, dass Merz die Führung bislang nicht ausgeübt hat."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsdynamiken",
+          "Regierungsführung",
+          "Rentenpolitik"
+        ]
+      },
+      {
+        "title": "Szenarien bei Scheitern des Rentengesetzes",
+        "timestamp_range": "01:07:18 - 01:09:22",
+        "theme_description": "Schwesig wird auf mehrfache Nachfrage zu den Konsequenzen gefragt, wenn das Rentengesetz in der Abstimmung keine Mehrheit findet.",
+        "question_asked": "Sandra Maischberger fragte mehrfach: 'Was passiert, wenn Ihre Hoffnung in die Führung des Kanzlers drückt und dieser Gesetzentwurf durchfällt?' Und wiederholt: 'Können Sie mir sagen, was dann passiert?'",
+        "question_intent": "Maischberger wollte von Schwesig hören, welche konkreten Szenarien es gibt, wenn das Rentengesetz scheitert, oder ob die SPD Konsequenzen androht.",
+        "position": "Schwesig antwortet wiederholt ausweichend: 'Es ist jetzt Aufgabe des Kanzlers dafür zu sorgen, dass das, was wichtig für Menschen ist' und 'Ich rechne damit, dass der Kanzler und die Koalition das zusammen hinbekommen.' Sie sagt 'Das wäre nicht gut für Deutschland' und betont, dass 'Demokraten es immer zusammen hinbekommen müssen'. Sie will 'Plan A' (das Rentengesetz) durchsetzen und meint: 'Plan B müssen wir gucken'. Sie lässt sich nicht auf konkrete Konsequenzen festlegen.",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Schwesig verweigert eine substantielle Antwort auf die mehrfach gestellte Frage zu den Konsequenzen. Sie weicht stattdessen in allgemeine Appelle an Verantwortung aus und sagt 'Plan B müssen wir gucken' – ohne zu konkretisieren. Sie sagt explizit: 'Ich kann verstehen, dass Sie so weit nicht denken wollen heute' – womit sie ihre Verweigerung rechtfertigt.",
+        "concrete_statements": [
+          "Es ist jetzt Aufgabe des Kanzlers",
+          "Das wäre nicht gut für Deutschland",
+          "Demokraten müssen es zusammen hinbekommen",
+          "Das ist Plan A. Plan B müssen wir gucken",
+          "Ich rechne damit, dass der Kanzler und die Koalition das zusammen hinbekommen"
+        ],
+        "quotes": [
+          {
+            "text": "Ich setze auf den Kanzler und die Union, dass sich hier verantwortungsbewusst ist. Dass es viele Millionen Menschen gibt, die verunsichert sind. Das ist ein Plan A. Den Plan B müssen wir gucken.",
+            "timestamp": "01:08:51",
+            "context": "Schwesig wird auf mehrfache Nachfrage zu Konsequenzen gefragt und antwortet ausweichend."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsstabilität",
+          "Rentenpolitik",
+          "Vertrauensfrage"
+        ]
+      },
+      {
+        "title": "SPD-Wahlergebnisse 2025 und AfD-Konkurrenz",
+        "timestamp_range": "01:09:52 - 01:11:01",
+        "theme_description": "Schwesig wird mit schlechten SPD-Umfragewerten (18%) konfrontiert und mit der Ankündigung von Woidke verglichen, der sagte, er höre auf, wenn die AfD stärkste Kraft wird.",
+        "question_asked": "Sandra Maischberger stellte fest: 'Sie haben nächstes Jahr Wahlen. Die SPD liegt bei 18%, die AfD bei 28.' Sie fragte implizit, ob Schwesig nicht besorgter sein sollte, und verglich sie dann mit Dietmar Woidke, der sagte: 'Entweder die werden nicht die stärkste Partei, dann mache ich weiter, wenn doch, höre ich auf.' Maischberger fragte dann: 'Und Sie?'",
+        "question_intent": "Maischberger wollte wissen, ob Schwesig eine ähnliche Ultimatum-Haltung wie Woidke hat oder sich anders verhält.",
+        "position": "Schwesig antwortet sehr selbstbewusst: 'Ich werbe ganz klar dafür, dass wir wieder die stärkste Kraft werden. Das ist mein Ziel. Ich werbe vor allem für mich und mein inhaltliches Angebot. Und kämpfe mich nicht jeden Tag an der AfD ab.' Sie verweist auf konkrete Erfolge in ihrem Land: 'Wir haben Wirtschaftswachstum, wir haben die Kitas freigemacht, wir haben mehr Lehrer eingestellt. Wir haben mehr für Mobilität getan.' Sie argumentiert: 'Das wäre schön, dass der Bund dieser Alltagsthemen, wie die Rente, löst.' Sie unterscheidet sich von Woidkes Haltung, indem sie sagt: 'Ich will bei den Menschen werben für die inhaltlichen Angebote. Und mich gar nicht so sehr auseinandersetzen, was ist, wenn die AfD ist.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig beantwortet die implizite Frage nach ihrem Vertrauen in Wahlergebnisse mit Selbstbewusstsein, beantwortet aber die direkte Frage zu Woidkes Ultimatum nicht. Sie positioniert sich als weniger pessimistisch als Woidke, ohne sich aber auf eine vergleichbare Aussage festzulegen.",
+        "concrete_statements": [
+          "Ich werbe ganz klar dafür, dass wir wieder die stärkste Kraft werden",
+          "Das ist mein Ziel",
+          "Ich werbe vor allem für mich und mein inhaltliches Angebot",
+          "Ich kämpfe mich nicht jeden Tag an der AfD ab",
+          "Wir haben Wirtschaftswachstum, freie Kitas, mehr Lehrer, mehr Mobilität"
+        ],
+        "quotes": [
+          {
+            "text": "Ich werbe ganz klar dafür, dass wir wieder die stärkste Kraft werden. Das ist mein Ziel. Ich werbe vor allem für mich und mein inhaltliches Angebot. Und kämpfe mich nicht jeden Tag an der AfD ab.",
+            "timestamp": "01:11:01",
+            "context": "Schwesig wird auf Woidkes Ultimatum-Aussage hin gefragt und gibt ihre eigene Haltung zu Wahl und AfD."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wahlen 2025",
+          "Umfragewerte",
+          "AfD",
+          "Strategien gegen Rechtsextremismus"
+        ]
+      },
+      {
+        "title": "Freie Kitas und Föderalismus",
+        "timestamp_range": "01:12:04 - 01:12:36",
+        "theme_description": "Schwesig verteidigt die freien Kitas in Mecklenburg-Vorpommern gegen die Kritik von Söder, der sagt, Bayern zahle dafür.",
+        "question_asked": "Sandra Maischberger fasst zusammen: 'Der bayerische Ministerpräsident beklagt, dass Ihre freie Kita er bezahlt. In Bayern gibt es keine freien Kitas. Dafür zahlt er Mrd. in den Länderfinanzausgleich. Die Gelder gehen an Sie. Das sei eine Wohltat.'",
+        "question_intent": "Maischberger wollte wissen, wie Schwesig diese kritik adressiert, ob die freien Kitas wirklich fair verteilt sind.",
+        "position": "Schwesig wendet ein: 'Dass es keine Wohltat ist. Sondern, wenn man es ernst meint, dass man die Arbeiter unterstützen will, dann muss man die Kitas freimachen.' Sie argumentiert, dass es ungerecht ist, wenn Eltern arbeiten gehen und dann noch 400-500 Euro Gebühr zahlen müssen. Sie kontert auch gegen Söder: 'Herr Söder sollte nicht vergessen, woher seine Energieversorgung herkommt' – eine Anspielung auf Windkraft aus Mecklenburg-Vorpommern.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Schwesig antwortet direkt auf Söders Kritik mit einer eigenen Sicht auf Gerechtigkeit und kontert mit dem Gegenargument zur Energieversorgung. Sie adressiert sowohl die Kritik als auch die politische Philosophie dahinter.",
+        "concrete_statements": [
+          "Es ist ungerecht, wenn Eltern arbeiten gehen und 400, 500 Euro zahlen",
+          "Herr Söder sollte nicht vergessen, woher seine Energieversorgung herkommt",
+          "Man muss die Kitas freimachen, wenn man Arbeiter unterstützen will",
+          "Das ist keine Wohltat, sondern eine Frage der Gerechtigkeit"
+        ],
+        "quotes": [
+          {
+            "text": "Dass es keine Wohltat ist. Sondern, wenn man es ernst meint, dass man die Arbeiter unterstützen will, dann muss man die Kitas freimachen. Es ist ungerecht, wenn die Eltern arbeiten gehen und dann auch noch 400, 500 Gebühr zahlen.",
+            "timestamp": "01:12:04",
+            "context": "Schwesig wehrt sich gegen Söders Kritik an den freien Kitas."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Familienpolitik",
+          "Föderalismus",
+          "Länderfinanzausgleich",
+          "Energieversorgung"
+        ]
+      },
+      {
+        "title": "Ukraine-Kriegsziele und gerechter Frieden",
+        "timestamp_range": "01:13:06 - 01:13:37",
+        "theme_description": "Schwesig wird gefragt, ob der 28-Punkte-Plan dem widerspricht, dass die Ukraine gewinnen muss, und wie es mit der ukrainischen Freiheit aussieht.",
+        "question_asked": "Sandra Maischberger bezog sich auf Schwesigs frühere Aussage: 'Sie haben im letzten Jahr, als Sie in der Ukraine waren, die Ukraine muss diesen Krieg gewinnen. Es kann nicht sein, dass Russland mit der Aggression durchkommt. Passiert das gerade, wenn Sie sich den 28-Punkte-Plan angucken?'",
+        "question_intent": "Maischberger wollte wissen, ob Schwesig ihre frühere Position zur Gewinnung des Krieges aufgibt oder wie sie den Plan mit ihrer Position vereinbart.",
+        "position": "Schwesig antwortet: 'Die Sorge gibt es. Das hat auch die Sendung hier gezeigt, dass da viel Sorge ist und viel Unklarheit.' Sie betont, dass 'Deutschland und Europa klar gesagt hat, das kann nicht bei diesem Aufschlag das 28-Punkteplans bleiben.' Sie vertraut 'da unserer Bundesregierung, dass die da alles versucht, sich einzusetzen'. Sie sagt abschließend: 'Wir wünschen uns Frieden für Ukraine, aber das muss gerechter Frieden werden.' Sie verweist auf ihre Erfahrung vom 9. November: 'Ich habe erlebt, wie es möglich ist, friedlich zu Freiheit und Demokratie zu kommen. Deswegen wünsche ich mir, dass alle Ukrainer ihre Freiheit und ihre Demokratie bekommen.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Schwesig bestätigt die Sorgen, beantwortet die Frage nach ihrer Position aber eher defensiv, indem sie sich auf Bundesregierung beruft und auf 'gerechter Frieden' umlenkt. Sie bekräftigt ihre Ziele für die Ukraine, antwortet aber nicht konkret, wie diese bei einem schlecht ausgehenden Plan erreicht werden.",
+        "concrete_statements": [
+          "Das kann nicht bei diesem Aufschlag des 28-Punkteplans bleiben",
+          "Deutschland und Europa haben das klar gesagt",
+          "Ich vertraue da unserer Bundesregierung",
+          "Wir wünschen uns Frieden für Ukraine, aber das muss gerechter Frieden werden",
+          "Ich wünsche mir, dass alle Ukrainer ihre Freiheit und ihre Demokratie bekommen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir wünschen uns Frieden für Ukraine, aber das muss gerechter Frieden werden. Ich habe erlebt, wie es möglich ist, friedlich zu Freiheit und Demokratie zu kommen. Deswegen wünsche ich mir, dass alle Ukrainer ihre Freiheit und ihre Demokratie bekommen.",
+            "timestamp": "01:13:06",
+            "context": "Schwesig wird gefragt, ob der 28-Punkte-Plan ihrem Kriegs-Gewinn-Postulat widerspricht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Außenpolitik",
+          "Frieden und Sicherheit",
+          "Russland-Sanktionen"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Im Osten bekommen 400.000 Rentner durchschnittlich 1300 Euro Rente ausgezahlt",
+        "timestamp": "00:58:40"
+      },
+      {
+        "claim": "Das Rentenniveau war vor vielen Jahren bei 45%, jetzt nur noch bei 48%",
+        "timestamp": "01:00:16"
+      },
+      {
+        "claim": "Renten im Westen sind durchschnittlich 200 Euro niedriger als im Osten, weil im Westen lange Zeit keine Kinderbetreuung für Frauen gab",
+        "timestamp": "00:58:40"
+      },
+      {
+        "claim": "Nach 40 Jahren Arbeit und aktuellen Lebenshaltungskosten von 1100 Euro steht einem Bürger eine Rente von 1100 Euro zu",
+        "timestamp": "00:59:45"
+      },
+      {
+        "claim": "Im Osten gibt es keine Betriebsrenten von 200-300 Euro und kein Vermögen durch Teilung wie im Westen",
+        "timestamp": "00:59:13"
+      }
+    ]
+  }
+}

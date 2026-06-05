@@ -1,0 +1,264 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wOS0yM18yMi01MC1NRVNa",
+    "video_id": "maischberger-2025-09-23",
+    "politician": "Hendrik Wüst",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "1ee4ffb60a89c04f",
+    "transcript_chars": 53634,
+    "caption_lines": 1972,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21605,
+    "tokens_out": 6462,
+    "cost_usd": 0.021566000000000002,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 2
+    },
+    "generated_at": "2026-06-05T12:36:41.449Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Hendrik Wüst (CDU, Ministerpräsident von NRW) diskutierte mit Sandra Maischberger über Regierungshandeln, Reformdruck und Wahlentwicklungen. Wüst wirkte konstruktiv-optimistisch, betonte Leistungen der neuen Koalition und lehnte die \"Merkeligkeit\"-Kritik gelassen ab; tatsächliche Handlungsprobleme (Spielraum beim Bürgergeld, Zeitrahmen für Investitionen) wurden durch Hinweise auf Prozesse und langfristige Perspektiven partiell ausgewichen.",
+    "themes": [
+      {
+        "title": "Koalitionsstabilität und Reformprogramm der Bundesregierung",
+        "timestamp_range": "00:21:17 - 00:24:58",
+        "theme_description": "Sandra Maischberger fragt, ob Hendrik Wüst der neuen Harmonie zwischen CDU und SPD vertraut und wie konkret die Reformagenda umgesetzt wird.",
+        "question_asked": "Sandra Maischberger fragte, ob Wüst dem neuen Zusammenhalt zwischen Merz und Scholz traut, insbesondere nach den Streitigkeiten der Ampel; später: wie konkret sind die Reformpläne – etwa beim Bürgergeld – wenn 'Bullshit' (Bas zu Merz) schon am Anfang stand.",
+        "question_intent": "Maischberger wollte überprüfen, ob Wüst realistisch ist bezüglich Umsetzungschancen oder ob er die Koalition nur beschönigt.",
+        "position": "Wüst betont, dass die Bundesregierung besser läuft als ihr Ruf. Er lehnt es ab, Auftritten zu viel Gewicht zu geben, und sagt, dass 'alle, die in der Bundesregierung arbeiten, wissen doch, dass es jetzt wirklich gelingen muss'. Zur Reformkonkretheit: 'Der Herbst fängt gerade erst an. Es gibt alle möglichen Kommissionen, die daran arbeiten.' Bei Bürgergeld: 'Wenn das Bürgergeld aufgerufen ist, werden wir uns schon einigen können. Man muss nicht immer über den letzten Euro reden. Natürlich muss jeder mit anpacken. Solidarität ist, wer kann, muss mit anpacken. Wer nicht kann, dem wird geholfen.' Er räumt ein, dass Parteien 'weit entfernt' bei bestimmten Themen sind, sieht aber grundsätzliche Einigkeit.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wüst spricht Koalitionsfähigkeit an, weicht aber bei der konkretesten Frage aus: Wo genau wird beim Bürgergeld gespart? Er verweist auf Kommissionen im Herbst und Solidaritätsprinzipien, ohne konkrete Schnittmengen oder Sparquoten zu nennen. Maischbergers Pointe – dass bereits Streit vor echten Reformen besteht – wird nicht direkt beantwortet.",
+        "quotes": [
+          {
+            "text": "Ich würde einem Auftritt nicht zu viel Gewicht geben. Alle, die in der Bundesregierung arbeiten, wissen doch, dass es jetzt wirklich gelingen muss.",
+            "timestamp": "00:22:21",
+            "context": "Auf die Frage, ob er der neuen Harmonie zwischen Merz und Scholz vertraut."
+          },
+          {
+            "text": "Der Herbst fängt gerade erst an. Es gibt alle möglichen Kommissionen, die daran arbeiten.",
+            "timestamp": "00:23:55",
+            "context": "Zur Frage, wie konkret die Reformpläne beim Sozialbereich sind."
+          }
+        ],
+        "concrete_statements": [
+          "Reformdiskussionen sind verabredet im Koalitionsvertrag.",
+          "Die Bundesregierung ist besser als ihr Ruf.",
+          "Alle wissen, was die Stunde geschlagen hat.",
+          "Über Eckpunkte wird in der Koalition Einigkeit herrschen."
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld-Reform",
+          "Koalitionsvertrag",
+          "Sozialbereich-Reformen"
+        ]
+      },
+      {
+        "title": "Erbschaftssteuer und Unternehmensschutz",
+        "timestamp_range": "00:25:28 - 00:28:33",
+        "theme_description": "Diskussion über die Frage, ob und wie die Union bei der Erbschaftssteuer Zugeständnisse macht, insbesondere zum Schutz von Unternehmenserben.",
+        "question_asked": "Sandra Maischberger fragt Wüst direkt: 'Wer hat, der soll geben – die Erbschaftssteuer ist diskutiert.' Sie verweist auf Matthias Miersch (SPD), der sagt, Unternehmen dürfen unter Druck nicht verkauft werden müssen. Später: 'Auch nicht die Erbschaftssteuer?' (auf die Frage, warum Steuererhöhungen das falsche Signal wären).",
+        "question_intent": "Maischberger prüft, ob die CDU unter Druck bei Erbschaftssteuer nachgibt oder ob 'Steuererhöhungen sind Gift' (Reiche-Zitat) eine Totaldefinition ist.",
+        "position": "Wüst lehnt präventiv Steuererhöhungen ab: 'Ich finde, Steuererhöhungen sind das falsche Signal. Wir haben gerade Senkungen beschlossen, die müssen erst mal ihre Wirkung entfalten.' Er räumt ein, dass Unternehmenserbe ein echtes Problem ist ('ein riesengroßes Unternehmen mit zig 1000 Arbeitsplätzen'), möchte aber das Problem durch höhere Freibeträge und Sonderregelungen lösen, nicht durch Steuererhöhung. Zur Dezentralisierung von Erbschaftssteuer (Länder-Entscheidung): 'Ich habe kein Interesse an einem Wettbewerb. Um den Erbschaftsteuerstandort. Der werden Unternehmen den Sitz weg verlegen, wo gerade die Erbschaftssteuer niedrig ist.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wüst adressiert das Unternehmensschutzproblem an, lehnt aber die Lösung via Erbschaftssteuer ab und bietet stattdessen 'höhere Freibeträge' – ohne zu konkretisieren, wie diese finanziert werden. Maischbergers Kernfrage bleibt offen: Akzeptiert die Union Erbschaftssteuererhöhung ja oder nein?",
+        "quotes": [
+          {
+            "text": "Ich finde, Steuererhöhungen sind das falsche Signal. Wir haben gerade Senkungen beschlossen, die müssen erst mal ihre Wirkung entfalten.",
+            "timestamp": "00:27:31",
+            "context": "Zur Frage, ob die Union auch bei Erbschaftssteuer nachdenken würde."
+          },
+          {
+            "text": "Ich bin gespannt, wer immer das fordert, welche Lösung er hat für die großen Betriebsvermögen.",
+            "timestamp": "00:27:31",
+            "context": "Wüst wendet ein, dass Kritiker keine gangbare Alternative nennen."
+          }
+        ],
+        "concrete_statements": [
+          "Steuererhöhungen sind das falsche Signal.",
+          "Höhere Freibeträge könnten eine Lösung sein.",
+          "Ein dezentralisiertes Erbschaftssteuer-System (Länder-Entscheidung) würde zu unerwünschtem Wettbewerb führen.",
+          "Das Problem großer Betriebsvermögen ist real, aber schwer zu lösen."
+        ],
+        "related_bundestag_topics": [
+          "Erbschaftssteuer-Reform",
+          "Unternehmensfinanzierung",
+          "Steuerpolitik"
+        ]
+      },
+      {
+        "title": "AfD-Zuwachs und Migrationspolitik",
+        "timestamp_range": "00:30:46 - 00:32:50",
+        "theme_description": "Frage, wie NRW mit der Gefahr von AfD-Bürgermeistern umgeht und ob Migrationspolitik allein die Antwort ist.",
+        "question_asked": "Sandra Maischberger fragt Wüst direkt: (1) 'Kann man das ändern?' – gemeint ist die EU-Rechtslage, die Arbeitnehmerfreizügigkeit erlaubt. (2) Welche Hebel kann NRW ansetzen, um die Menschen wieder an die Politik zu glauben?",
+        "question_intent": "Maischberger prüft, ob Wüst die Zuwanderungsfrage als Kernproblem sieht und ob er konkrete Lösungen hat oder nur beruhigende Worte spricht.",
+        "position": "Wüst bejaht, dass das EU-Recht geändert werden sollte: 'Ich glaube, wir sollten es ändern. Kann man das ändern? Es ist EU-Gesetzeslage. Warum sollen wir das nicht ändern können? Dass es schwer ist, kompliziert ist, ist ja okay. Aber es ist nicht so, dass es unabänderlich ist.' Er kritisiert, dass die Regelung so nicht von Arbeitnehmerfreizügigkeit beabsichtigt war. Alternativ verweist er auf Mittel, die NRW direkt hat: Städtebauförderung, und später auf Sondervermögen für Infrastruktur.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wüst adressiert die Zuwanderungsfrage an und bejaht Reformbedarf, konkretisiert aber nicht, wie eine Änderung aussehen würde oder welche Widerstände zu erwarten sind. Er lenkt ab auf Infrastruktur, die auch wichtig ist, aber die Kernfrage ausweicht: Wird die Union die EU-Regel tatsächlich ändern?",
+        "quotes": [
+          {
+            "text": "Ich glaube, wir sollten es ändern. Kann man das ändern? Es ist EU-Gesetzeslage. Warum sollen wir das nicht ändern können?",
+            "timestamp": "00:32:19",
+            "context": "Zur Frage, ob man die EU-Regel zur Arbeitnehmerfreizügigkeit und Bürgergeld-Aufstockung ändern könne."
+          }
+        ],
+        "concrete_statements": [
+          "Die EU-Regel zur Arbeitnehmerfreizügigkeit sollte reformiert werden.",
+          "Das war nicht die Idee der ursprünglichen Arbeitnehmerfreizügigkeit.",
+          "Infrastrukturinvestitionen und Städtebauförderung sind Hebel zur Bürgerkommunikation.",
+          "Wüst sagt, er tue alles dafür, dass die AfD keine Bürgermeister in NRW stellt."
+        ],
+        "related_bundestag_topics": [
+          "Arbeitnehmerfreizügigkeit",
+          "Bürgergeld-Zuwanderung",
+          "AfD-Zuwachs",
+          "Migrationspolitik"
+        ]
+      },
+      {
+        "title": "Bundesinvestitionen und kommunale Infrastruktur (Sondervermögen)",
+        "timestamp_range": "00:32:50 - 00:35:26",
+        "theme_description": "Frage, wie schnell Milliardeninvestitionen des Bundes den Bürgern zugutekommen, insbesondere zur Innenstadtbelebung in schrumpfenden Städten.",
+        "question_asked": "Sandra Maischberger verweist auf den Bürgermeister-Kandidaten in Hagen (CDU), der in Markus Lanz sagte, dass Infrastrukturverfall und Zuwanderung zusammen die AfD-Wählbarkeit treiben. Maischberger fragt: Wann sieht die Innenstadt von Hagen so aus, dass der Bürgermeister zufrieden ist? Und später: Wann spüren die Bürger etwas davon, bevor sie Einschnitte spüren?",
+        "question_intent": "Maischberger prüft, ob die Ankündigung von 100 Mrd. Euro Sondervermögen tatsächlich schnell zu sichtbaren Erfolgen führt oder ob das bloße Versprechung ist.",
+        "position": "Wüst besucht Hagen und sagt: 'So furchtbar sieht es da nicht aus. Da kann man mal was machen. Mit Städtebauförderung, die gibt es vom Land. Wenn Herr Rehbein das will, können wir das machen. Da können wir eine Schubumkehr organisieren für Hagen.' Zur Verteilung des Sondervermögens: 'Ein Großteil davon werden wir an die Kommunen weitergeben.' Die SPD fordert 80%, Wüst sagt: 'Damit habe ich kein Problem' (gemeint: mit 60%), aber erst muss der Bundesrat am 17. Oktober entscheiden. Zum Zeitrahmen: 'Ich glaube, die Bürger wären da im nächsten Jahr schon die eine oder andere Baustelle sehen, Wo sie vielleicht lange drauf gewartet haben.'",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wüst verspricht Besserung und konkrete Mittel (Städtebauförderung, Weitergabe an Kommunen), gibt aber zeitlich vage Antworten ('nächstes Jahr schon') und verschiebt finanzielle Klarheit auf den Bundesrat-Termin 17. Oktober. Maischbergers Kernfrage – schnelle sichtbare Erfolge – wird mit Vagen Baustellen-Versprechen beantwortet.",
+        "quotes": [
+          {
+            "text": "So furchtbar sieht es da nicht aus. Da kann man mal was machen. Mit Städtebauförderung, die gibt es vom Land.",
+            "timestamp": "00:33:21",
+            "context": "Auf die Frage, wann die Innenstadt von Hagen wieder in Ordnung kommt."
+          },
+          {
+            "text": "Ein Großteil davon werden wir an die Kommunen weitergeben.",
+            "timestamp": "00:33:53",
+            "context": "Zur Frage nach der Verteilung des Sondervermögens."
+          }
+        ],
+        "concrete_statements": [
+          "NRW wird den größten Teil des Sondervermögens an Kommunen weitergeben.",
+          "60–80% der Mittel werden an Kommunen gehen.",
+          "Klarheit über die Mittelverteilung erfolgt nach dem Bundesrat-Beschluss am 17. Oktober.",
+          "Schulen und Kindergärten sollten Priorität vor Innenstadtbelebung haben."
+        ],
+        "related_bundestag_topics": [
+          "Sondervermögen-Verteilung",
+          "Kommunale Infrastruktur",
+          "Städtebauförderung",
+          "Haushaltsrecht"
+        ]
+      },
+      {
+        "title": "Persönliche Ambitionen und Bundespolitik",
+        "timestamp_range": "00:36:29 - 00:38:34",
+        "theme_description": "Sandra Maischberger fragt, ob Hendrik Wüst Bundeskanzler-Ambitionen hat und wie er seine Rolle als Landespolitiker versteht.",
+        "question_asked": "Sandra Maischberger verweist auf Kritik, dass Wüst ein 'Karrierist' sei, und fragt: Was ist das Karriereziel eines 50-jährigen Landespolitikers? Kann man die Ziele in Berlin nicht besser machen als in Düsseldorf?",
+        "question_intent": "Maischberger prüft, ob Wüst ehrlich ist oder beschönigt – ob er wirklich zufrieden mit Landespolitik ist oder Bundeskanzler-Ambitionen verfolgt.",
+        "position": "Wüst sagt: 'Mein Ziel ist, dieses Land voranzubringen, all diese wunderbaren Dinge, die wir gerade besprochen haben. Das kann man in Berlin nicht besser machen als in Düsseldorf? In Berlin gibt es andere Leute, die das toll machen. Ich bin gerade zufrieden mit dem, was ich mache.' Er räumt ein, dass 'niemals würde ich etwas machen für NRW' nicht glaubwürdig wäre, verneint aber konkrete Bundespläne: 'Das Kanzleramt war immer schon mein Ziel. Das wäre auch falsch.' Er verweist darauf, dass er 2002 bewusst in den Landtag gegangen ist, obwohl ein Bundes-Angebot vorlag.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wüst beantwortet die Frage direkt und glaubhaft: Er lehnt Kanzler-Ambitionen ab, räumt aber auch ein, dass absolute Dementis unglaubwürdig wären. Er präsentiert eine schlüssige Begründung (Überzeugung für Landespolitik, bewusste Wahl 2002). Maischbergers Skepsis wird transparent adressiert.",
+        "quotes": [
+          {
+            "text": "Ich bin gerade zufrieden mit dem, was ich mache.",
+            "timestamp": "00:37:00",
+            "context": "Auf die Frage, ob Berlin nicht attraktiver sei als Düsseldorf."
+          },
+          {
+            "text": "Das Kanzleramt war immer schon mein Ziel. Das wäre auch falsch.",
+            "timestamp": "00:38:04",
+            "context": "Zur Frage nach Bundespolitik-Ambitionen."
+          }
+        ],
+        "concrete_statements": [
+          "Wüst lehnt Kanzler-Ambitionen ab.",
+          "Er ist bewusst Landespolitiker, nicht nur mangels Alternativen.",
+          "2002 wurde ihm ein Bundes-Angebot gemacht, das er ablehnte.",
+          "Seine Ziele sind in Nordrhein-Westfalen ansässig."
+        ],
+        "related_bundestag_topics": [
+          "Personaldebatten in der CDU",
+          "Merz vs. Wüst",
+          "Föderalismus"
+        ]
+      },
+      {
+        "title": "Merz und internationale Sicherheit",
+        "timestamp_range": "00:38:34 - 00:40:06",
+        "theme_description": "Würde Hendrik Wüst mit Merz tauschen wollen angesichts der internationalen Bedrohungslage?",
+        "question_asked": "Sandra Maischberger fragt: 'Würden Sie mit Merz tauschen wollen, wenn sie gerade sehen, was da gerade für eine internationale Bedrohungslage auf uns zukommt? Mit russischen Kampfjets, die in NATO Gebiet eindringen.'",
+        "question_intent": "Maischberger prüft, ob Wüst Merz kritisiert oder unterstützt – eine Probe, ob interne CDU-Spannungen sichtbar werden.",
+        "position": "Wüst verteidigt Merz: 'Ich finde, das muss man ernst nehmen. Ich bin sehr froh, da haben manche drüber gelästert, dass Friedrich Merz in den ersten Wochen viel in der Welt unterwegs war.' Er räumt ein, dass das unpopulär sei ('Nicht jeder in Deutschland findet das sympathisch, wenn man sich bemüht, mit Trump gut klarzukommen'), sieht es aber als legitimes Kerngeschäft: 'Es ist der Job eines Bundeskanzlers, Merz macht den Job super. Dass er am Anfang sofort auf europäischer Ebene sich Vertrauen zurück erarbeitet hat, was kaputt gegangen war.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wüst antwortet klar und positiv zu Merz, begründet seine Unterstützung sachlich (Wiederherstellung europäischen Vertrauens, Umgang mit Trump). Er weicht nicht aus, sondern adressiert sogar die Kritikpunkte (unpopuläre Trump-Nähe) und verteidigt sie als notwendig.",
+        "quotes": [
+          {
+            "text": "Ich bin sehr froh, da haben manche drüber gelästert, dass Friedrich Merz in den ersten Wochen viel in der Welt unterwegs war.",
+            "timestamp": "00:39:04",
+            "context": "Zur Frage, ob Merz richtig handelt in dieser Sicherheitslage."
+          },
+          {
+            "text": "Es ist der Job eines Bundeskanzlers, Merz macht den Job super.",
+            "timestamp": "00:39:04",
+            "context": "Zur Bewertung von Merz' Außenpolitik-Engagement."
+          }
+        ],
+        "concrete_statements": [
+          "Wüst verteidigt Merz' intensive Diplomatie in den ersten Wochen.",
+          "Vertrauen auf europäischer Ebene wiederherzustellen war notwendig.",
+          "Trump-Zusammenarbeit ist unpopulär, aber kerngeschäftlich notwendig.",
+          "Medien-Kritik an Merz als 'Außenkanzler' ist unangebracht."
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "NATO",
+          "Trump-Diplomatie",
+          "Russland-Aggression"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "NRW erhält den größten Teil des Sondervermögens von 100 Milliarden Euro, weil es ein großes Bundesland ist.",
+        "timestamp": "00:32:50"
+      },
+      {
+        "claim": "Die EU-Gesetzeslage erlaubt, dass jemand aus dem Ausland kommt, einen Minijob annimmt und sofort Bürgergeld-Aufstockung erhält.",
+        "timestamp": "00:31:49"
+      },
+      {
+        "claim": "2002 gab es für Wüst ein Angebot zu kandidieren für den Bundestag, das er ablehnte.",
+        "timestamp": "00:38:34"
+      },
+      {
+        "claim": "Friedrich Merz war in den ersten Wochen seiner Kanzlerschaft viel international unterwegs.",
+        "timestamp": "00:39:04"
+      },
+      {
+        "claim": "Der Koalitionsausschuss ist in Würzburg zusammengekommen und war erfolgreich.",
+        "timestamp": "00:22:21"
+      }
+    ]
+  }
+}

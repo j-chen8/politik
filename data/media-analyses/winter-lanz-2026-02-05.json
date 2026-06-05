@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-5-februar-2026-100",
+    "video_id": "lanz-2026-02-05",
+    "politician": "Wiebke Winter",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "9359ca84a6d856c3",
+    "transcript_chars": 65878,
+    "caption_lines": 3214,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 27350,
+    "tokens_out": 8151,
+    "cost_usd": 0.027242000000000002,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 15,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 3,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.493Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Wiebke Winter (CDU, Bremen) diskutierte in der Markus Lanz-Sendung zentrale Fragen zur Wirtschaftskrise und Arbeitsmarktreformen Deutschlands. Sie wirkte grundsätzlich konstruktiv und lösungsorientiert, verteidigte die CDU gegen Vorwürfe der Beliebigkeit ihrer Reformproposaale und plädierte für \"große Reformen\" statt piecemeal-Änderungen.",
+    "themes": [
+      {
+        "title": "CDU Wirtschaftsrat und Forderungen zur Wirtschaft",
+        "timestamp_range": "00:03:30 - 00:05:31",
+        "theme_description": "Wiebke Winter distanziert die CDU von einzelnen Forderungen des CDU Wirtschaftsrats wie Zahnersatz-Kürzungen, betont aber die Notwendigkeit von Wirtschaftsreformen.",
+        "question_asked": "Markus Lanz fragt, ob die CDU über den Wirtschaftsrat versteckt Forderungen wie Zahnersatz-Kürzungen mache, oder ob es sich um unabhängige Positionen handle.",
+        "question_intent": "Zu verstehen, ob die CDU-Führung hinter den kontroversen Forderungen des Wirtschaftsrats steht oder sich bewusst distanziert.",
+        "position": "Winter argumentiert, dass der Wirtschaftsrat \"uns genauso nah\" ist \"wie Greenpeace\" — also unabhängig. Sie betont die Wichtigkeit der Differenzierung zwischen Parteipositionionen und Außenorganisationen. Bezüglich einzelner Forderungen sagt sie: \"Die Forderung, dass der Zahnarzt aus dem Leistungskatalog herausgestrichen werden sollte, das kann ich nicht teilen. Es ist wichtig, dass wir eine Prävention haben.\" Sie signalisiert aber Offenheit für eine Gesamtagenda zur Wirtschaftsbelebung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winter beantwortet die Frage nach der Unabhängigkeit des Wirtschaftsrats mit einer Distanzierungsstrategie (\"wie Greenpeace\"), was die Kontrollbehauptung Lanz' indirekt zurückweist. Sie adressiert aber nicht direkt, warum der Wirtschaftsrat dann CDU-nah genannt wird oder wie die CDU-Führung konkret Distanz schafft. Einzelne Forderungen lehnt sie ab, würdigt aber die Gesamtagenda.",
+        "concrete_statements": [
+          "Der Wirtschaftsrat ist uns genauso nah wie Greenpeace.",
+          "Die Forderung, dass der Zahnarzt aus dem Leistungskatalog herausgestrichen werden sollte, kann ich nicht teilen.",
+          "Es ist wichtig, dass wir eine Prävention haben."
+        ],
+        "quotes": [
+          {
+            "text": "Er ist uns genauso nah, wie Greenpeace.",
+            "timestamp": "00:03:39",
+            "context": "Auf Markus Lanz' Insistieren, dass der Wirtschaftsrat doch CDU-nah sei, antwortet Winter mit dieser Aussage."
+          },
+          {
+            "text": "Die Forderung, dass der Zahnarzt aus dem Leistungskatalog herausgestrichen werden sollte, das kann ich nicht teilen.",
+            "timestamp": "00:04:30",
+            "context": "Winter bricht aus der Defensivpostion aus und lehnt eine konkrete Forderung des Wirtschaftsrats ab."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Gesetzliche Krankenversicherung",
+          "Wirtschaftspolitik",
+          "Sozialleistungen"
+        ]
+      },
+      {
+        "title": "Lifestyle-Teilzeit Begriff und inhaltliche Debatte",
+        "timestamp_range": "00:05:38 - 00:07:26",
+        "theme_description": "Wiebke Winter verteidigt die inhaltliche Debatte über flexible Arbeitszeiten, distanziert sich aber von dem polarisierenden Begriff \"Lifestyle-Teilzeit\".",
+        "question_asked": "Markus Lanz fragt, ob die CDU/ihre Mittelstandsunion den Begriff \"Lifestyle-Teilzeit\" bewusst zur Provokation und öffentlichen Diskussionssteigerung erfunden hat.",
+        "question_intent": "Zu ergründen, ob es strategisches Framing-Kalkül war oder spontane Wortwahl.",
+        "position": "Winter erklärt, dass die Mittelstandsunion (MIT) den Begriff als \"Überschrift für den Antrag\" gewählt hat. Sie stimmt zu, dass \"der Begriff \\\"Lifestyle-Teilzeit\\\" polarisiert und nicht das wiederspiegelt, was in Deutschland passiert\". Sie betont aber: \"Es ist natürlich so, wenn man über Ideen sprechen möchte, ist es gut, wenn man ihnen einen Namen gibt. Das hat hier gut funktioniert.\" Gleichzeitig sagt sie, dass \"die Mehrheit der CDU\" sagt, \"es ist nicht der richtige Begriff gewesen, weil er die Debatte emotionalisiert hat.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winter antwortet auf die Frage nach absichtlicher Provokation indirekt: Sie beschreibt zunächst pragmatisch, dass Begriffsfindung hilft, Ideen diskutierbar zu machen (\"Das hat hier gut funktioniert\"), räumt dann aber ein, dass die Mehrheit der CDU den Begriff als kontraproduktiv sieht. Sie beantwortet die Absicht-Frage (bewusste Provokation?) nicht direkt, sondern verschiebt auf Effektivität und anschließende Korrektur.",
+        "concrete_statements": [
+          "Der Begriff 'Lifestyle-Teilzeit' polarisiert und spiegelt nicht das wieder, was in Deutschland passiert.",
+          "Die Mittelstandsunion hat sich das überlegt, dass das eine gute Überschrift für den Antrag wäre.",
+          "Die Mehrheit der CDU sagt, es ist nicht der richtige Begriff gewesen, weil er die Debatte emotionalisiert hat."
+        ],
+        "quotes": [
+          {
+            "text": "Klar ist, der Begriff \"Lifestyle-Teilzeit\" polarisiert und spiegelt nicht das wieder, was in Deutschland passiert.",
+            "timestamp": "00:06:16",
+            "context": "Winter differenziert zwischen dem polarisierenden Wort und der inhaltlichen Debatte dahinter."
+          },
+          {
+            "text": "Es ist natürlich so, wenn man über Ideen sprechen möchte, ist es gut, wenn man ihnen einen Namen gibt. Das hat hier gut funktioniert.",
+            "timestamp": "00:06:53",
+            "context": "Winter verteidigt zunächst die Strategie der Begriffsfindung, zieht dies aber später wieder zurück."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Arbeitsmarktreformen",
+          "Teilzeitarbeit",
+          "Arbeitsrecht"
+        ]
+      },
+      {
+        "title": "Schuldenbremse und Finanzierung der Wirtschaft",
+        "timestamp_range": "00:28:48 - 00:30:58",
+        "theme_description": "Wiebke Winter äußert sich zur weich gemachten Schuldenbremse ihres Kanzlers und rechtfertigt diese als notwendig für wirtschaftliche Impulse.",
+        "question_asked": "Markus Lanz fragt Winter direkt: \\\"War das falsch, von ihrem Kanzler?\\\" — bezüglich der Aufweichung der Schuldenbremse und der Ausnahme von 1 Billion Euro für Verteidigung.",
+        "question_intent": "Zu testen, ob Wiebke Winter, bekannt für strenge Schuldenbremsen-Haltung, ihren Kanzler Friedrich Merz öffentlich kritisiert oder die Position rechtfertigt.",
+        "position": "Winter antwortet zunächst ausweichend (\"Dass wir die Schuldenbremse weiter aufgeweicht haben?\"), dann aber klar: \"Ich glaube, es war absolut richtig gewesen. Das Geld brauchen wir, um die Wirtschaft überhaupt wieder anzukurbeln.\" Sie räumt ein: \"Auch mir hat das wehgetan und trotzdem ist es richtig das zu tun\", da \"die Wirtschaft den Impuls, auch die Verteidigung\" braucht. Sie begründet dies mit J.D. Vance-Aussagen auf der Münchner Sicherheitskonferenz und plädiert für \"eine neue Mondlandungserzählung\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winter beantwortet die direkte Frage nach der Richtigkeit der Schuldenbremsen-Aufweichung klar mit Ja. Sie äußert auch persönliches Unbehagen (\\\"auch mir hat das wehgetan\\\"), erklärt aber die rationale Begründung (wirtschaftliche Impulse, Verteidigung). Sie weicht nicht aus, sondern nimmt eine klare Position ein.",
+        "concrete_statements": [
+          "Ich glaube, es war absolut richtig gewesen.",
+          "Das Geld brauchen wir, um die Wirtschaft überhaupt wieder anzukurbeln.",
+          "Auch mir hat das wehgetan und trotzdem ist es richtig das zu tun.",
+          "Wir brauchen eine neue Mondlandungserzählung."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, es war absolut richtig gewesen. Das Geld brauchen wir, um die Wirtschaft überhaupt wieder anzukurbeln.",
+            "timestamp": "00:29:33",
+            "context": "Winter beantwortet direkt Lanz' Frage nach der Legitimität der Schuldenbremsen-Aufweichung."
+          },
+          {
+            "text": "Auch mir hat das wehgetan und trotzdem ist es richtig das zu tun.",
+            "timestamp": "00:29:51",
+            "context": "Winter gesteht persönliches Unbehagen als christdemokratische Politiker ein, verteidigt aber die Entscheidung."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Fiskalpolitik",
+          "Schuldenbremse",
+          "Verteidigungsausgaben",
+          "Konjunkturpolitik"
+        ]
+      },
+      {
+        "title": "Sozialstaat Komplexität und Digitalisierung",
+        "timestamp_range": "00:39:19 - 00:40:28",
+        "theme_description": "Wiebke Winter äußert sich zur Komplexität des Sozialstaates und fordert Digitalisierung und Vereinfachung der Verwaltung.",
+        "question_asked": "Markus Lanz bezieht sich auf Dirk Wiese' Beispiel einer alleinerziehenden Mutter, die 17 verschiedene Anträge für Sozialleistungen stellen muss. Er fragt dann: \\\"Frau Winter?\\\" — als Oppositionsführerin in Bremen zur Situation vor Ort.",
+        "question_intent": "Zu erfahren, wie Winter die Bürokratie-Last des deutschen Sozialstaates aus Bremer Perspektive einschätzt und welche Lösungen sie sieht.",
+        "position": "Winter berichtet aus Bremen: \"Ich kann die Zahlen aus Bremen. Es belastet die Haushalte enorm.\" Sie plädiert für \"frühere einzugehen\" und fragt, \"womöglich auch Leistungen weniger kompliziert zu machen\". Sie erkennt an, dass die Vereinfachung \"vermutlich teurer\" wird, aber ist \"ehrlich\" darin. Sie konkretisiert mit einem Bremer Problem: \"unbegleitete Minderjährige Ausländer, zum Teil noch sehr lange in den Einrichtungen bleiben, weil wir keine Wohnungen finden.\" Sie fordert: \"Da müssen wir die Verwaltung effizienter machen.\" Mit Blick auf KI sagt sie: \"Wenn ich mich an den Laptop setze, kann ich mit KI vieles sehr schnell regeln, warum kriegen wir das da bei der Verwaltung nicht hin?\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winter beantwortet nicht nur Lanz' implizite Frage nach der Bremer Situation, sondern gibt konkrete Beispiele (unbegleitete Minderjährige), räumt Kosten ein und fordert Digitalisierung als Lösung. Sie adressiert sowohl die Komplexität als auch mögliche Maßnahmen.",
+        "concrete_statements": [
+          "Es belastet die Haushalte enorm.",
+          "Es wird dann vermutlich teurer, so ehrlich müssen wir sein.",
+          "Da müssen wir uns fragen, wie können wir die Verwaltung effizienter machen?",
+          "Mit KI können vieles sehr schnell geregelt werden — warum kriegen wir das da bei der Verwaltung nicht hin?"
+        ],
+        "quotes": [
+          {
+            "text": "Ich kann die Zahlen aus Bremen. Es belastet die Haushalte enorm.",
+            "timestamp": "00:39:19",
+            "context": "Winter bestätigt die Last der wachsenden Sozialausgaben aus regionaler Perspektive."
+          },
+          {
+            "text": "Wenn ich mich an den Laptop setze, kann ich mit KI vieles sehr schnell regeln, warum kriegen wir das da bei der Verwaltung nicht hin?",
+            "timestamp": "00:39:50",
+            "context": "Winter fordert Digitalisierung und KI-Einsatz in der Verwaltung als Lösung für Effizienz."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Sozialleistungen",
+          "Verwaltungsvereinfachung",
+          "Digitalisierung",
+          "Kommunale Finanzen"
+        ]
+      },
+      {
+        "title": "Arbeitsmoral und Leistungsbereitschaft junger Generation",
+        "timestamp_range": "00:44:48 - 00:47:39",
+        "theme_description": "Wiebke Winter reflektiert über Arbeitsmoral in Deutschland und stellt fest, dass bei der jungen Generation Unsicherheit und fehlende Zukunftserzählung die Leistungsbereitschaft beeinflussen.",
+        "question_asked": "Markus Lanz fragt Winter direkt: \\\"Haben wir ein Problem mit der Arbeitsmoral in diesem Land? Wie würden Sie das sehen, Frau Winter?\\\"",
+        "question_intent": "Zu erfahren, ob Winter Merz' Vorwurf (deutsche arbeiten zu wenig) teilt oder anderer Meinung ist.",
+        "position": "Winter antwortet zwiespältig: Einerseits betont sie, \"es gibt wahnsinnig viele Menschen, die unglaublich leistungsbereit sind\" und definiert Leistung neu: \"wenn man sich morgens hinweg erstellt, zur Arbeit geht, danach die Kinder betreut... Jeder der aufsteht und sagt, ich mache etwas für das Land.\" Andererseits gesteht sie: \"Gleichzeit nehme ich wahr, dass es Menschen gibt, die sich fragen, wofür mache ich das? Die junge Generation weiß nicht mehr wofür?\" Sie diagnostiziert konkret: \"Viele gehen in meiner Generation nicht davon aus, dass die [Rente] reichen wird\" und \"wieso soll ich in dem Umfang arbeiten, wenn ich weiß, ich kann mir danach kein Eigenheim leisten.\" Sie führt dies auf \"eine gewisse Frustration\" und \"Unsicherheit\" wegen Kriegen, Klimatransformation und Digitalisierung zurück.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winter beantwortet die Frage nach Arbeitsmoral nuanciert: Sie lehnt Merz' Pauschalkritik (\\\"deutsche arbeiten zu wenig\\\") ab, räumt aber ein, dass es Demotivationsfaktoren gibt (fehlende Rente, Wohnungsnot, Unsicherheit). Sie benennt strukturelle Gründe statt moralischer Defizite.",
+        "concrete_statements": [
+          "Es gibt wahnsinnig viele Menschen, die unglaublich leistungsbereit sind.",
+          "Viele gehen in meiner Generation nicht davon aus, dass die Rente reichen wird.",
+          "Ich nehme wahr, dass es Menschen gibt, die sich fragen: Wieso soll ich in dem Umfang arbeiten, wenn ich weiß, ich kann mir danach kein Eigenheim leisten?",
+          "Wir haben eine große Unsicherheit — Kriege, Transformation zu klimaneutraler Wirtschaft, Digitalisierung."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde, es gibt wahnsinnig viele Menschen, die unglaublich leistungsbereit sind.",
+            "timestamp": "00:44:48",
+            "context": "Winter antwortet auf Merz' implizite Kritik an mangelnder Arbeitsmoral mit Gegenposition."
+          },
+          {
+            "text": "Wieso soll ich in dem Umfang arbeiten, wenn ich weiß, ich kann mir danach kein Eigenheim leisten?",
+            "timestamp": "00:46:07",
+            "context": "Winter benennt konkrete materielle Gründe für fehlende Leistungsmotivation bei der jungen Generation."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Arbeitsmarkt",
+          "Rente",
+          "Wohnungspolitik",
+          "Generationengerechtigkeit"
+        ]
+      },
+      {
+        "title": "Wachstum und Raumfahrt als Zukunftserzählung",
+        "timestamp_range": "00:52:25 - 00:54:14",
+        "theme_description": "Wiebke Winter kontert Pessimismus über Wirtschaftskrise mit optimistischen Beispielen aus Bremen und plädiert für positive Zukunftserzählung wie Raumfahrt.",
+        "question_asked": "Markus Lanz stellt fest, dass trotz Startups die Autoindustrie und Stahl-Industrie in Schwierigkeiten sind, weil Arbeit zu teuer ist. Er fragt implizit, ob Winters Optimismus realistisch ist.",
+        "question_intent": "Zu hinterfragen, ob Winters Fokus auf innovative Sektoren (Raumfahrt) ausreicht, um strukturelle Krisen in traditionellen Industrien zu bewältigen.",
+        "position": "Winter räumt Schwierigkeiten ein: \"Sie haben absolut recht, wir haben da große Schwierigkeiten, es werden Jobs abgebaut.\" Sie betont aber: \"Gleichzeitig ist es so, dass in Unternehmen in Bremen zusätzliche Personen einstellt, weil wir wissen, da haben wir Chancen.\" Sie verwandelt die Debatte: \"Es ist ein weiterer Punkt, der mir nicht vergessen dürfen. Aus der Raumfahrtforschung, kommt Innovation hervor, die wir weiter nutzen können. Da können große Dinge entstehen.\" Sie konkretisiert: \"Ich denke vor allem an GPS. Wenn man sich das anschaut, es werden im Weltall neue Organe gebaut. Man kann neue Netzhaut bauen, damit die Menschen länger sehen können.\"",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Winter antwortet auf Lanz' kritische Frage (realistische Chancen?) nicht direkt durch Zahlen oder strukturelle Analysen, sondern verschiebt auf positive Beispiele (Bremen, Raumfahrt) und innovative Spillovers (GPS, Medizin). Sie adressiert so den Pessimismus, aber nicht das strukturelle Problem der Autoindustrie.",
+        "concrete_statements": [
+          "Gleichzeitig ist es so, dass in Unternehmen in Bremen zusätzliche Personen einstellt.",
+          "Aus der Raumfahrtforschung kommt Innovation hervor, die wir weiter nutzen können.",
+          "Ich denke vor allem an GPS.",
+          "Man kann neue Netzhaut bauen, damit die Menschen länger sehen können."
+        ],
+        "quotes": [
+          {
+            "text": "Aus der Raumfahrtforschung, kommt Innovation hervor, die wir weiter nutzen können. Da können große Dinge entstehen.",
+            "timestamp": "00:52:55",
+            "context": "Winter pivotiert zu einer Zukunftserzählung statt auf Gegenwartskrise einzugehen."
+          },
+          {
+            "text": "Man kann neue Netzhaut bauen, damit die Menschen länger sehen können.",
+            "timestamp": "00:54:02",
+            "context": "Winter konkretisiert medizinische Anwendungen von Raumfahrttechnologie."
+          }
+        ],
+        "answer_type": "pivot_zum_gegenpunkt",
+        "related_bundestag_topics": [
+          "Industriepolitik",
+          "Raumfahrtpolitik",
+          "Forschung und Entwicklung",
+          "Strukturwandel"
+        ]
+      },
+      {
+        "title": "Arbeitszeit und Karenztage — 41-Stundenwoche",
+        "timestamp_range": "01:02:13 - 01:04:00",
+        "theme_description": "Wiebke Winter äußert sich zu konkreten Arbeitszeit-Reformen wie der 41-Stunden-Woche für Beamte und Karenztagen.",
+        "question_asked": "Markus Lanz fragt: \\\"Was nehmen Sie mit? 1 Stunde mehr arbeiten in der Woche? Ist das mit der CDU drin?\\\"",
+        "question_intent": "Zu erfahren, ob Winter konkrete Maßnahmen zur Erhöhung der Arbeitsleistung unterstützt (1 Stunde, Karenztage).",
+        "position": "Winter antwortet zunächst allgemein: \"Wir brauchen einen Hauruckmoment.\" Zur 1-Stunde-Forderung sagt sie: \"Ich glaube nicht, dass 1 Stunde mehr, dass man das umsetzen muss.\" Sie relativiert aber: \"Die Frage ist, ob ich eine Videokonferenz mache oder mit meinem Arzt telefoniere, das macht keinen Unterschied.\" Zur 41-Stundenwoche für Beamte: \"Ich bin dafür. Ich möchte aber einen Punkt machen. Man muss auf die Rücksicht nehmen, die eine bestimmte Betreuungsleistung haben.\" Zu Karenztagen: \"Ich denke, dass man darüber nachdenken muss... ich bin nicht null oder 100 dafür. Man muss Anreize schaffen.\" Sie fordert: \"Es müssen Maßnahmen sein, die wirksam sind.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Winter antwortet auf die direkte Frage nach konkreten Arbeitszeit-Maßnahmen evasiv. Zur 1-Stunde lehnt sie ab (ohne klare Begründung), zur 41-Stunden-Woche zeigt sie Unterstützung mit Caveat, zu Karenztagen bleibt sie unentschlossen (\\\"nicht null oder 100\\\"). Sie weicht also bei der zentralen Frage aus, ob sie konkrete Maßnahmen unterstützt oder nicht.",
+        "concrete_statements": [
+          "Wir müssen eine 41-Stundenwoche für Beamte einführen.",
+          "Ich bin dafür.",
+          "Man muss Rücksicht nehmen auf die, die eine bestimmte Betreuungsleistung haben.",
+          "Es müssen Maßnahmen sein, die wirksam sind.",
+          "Es ist die Frage, brauchen wir 1 Stunde mehr oder können wir die Effizienz heben."
+        ],
+        "quotes": [
+          {
+            "text": "Wir debattieren in Bremen gerade die Frage, gehen wir zu einer 41-Stundenwoche für Beamte. NRW und Schleswig-Holstein machen das. Ich bin dafür.",
+            "timestamp": "01:02:34",
+            "context": "Winter signalisiert Unterstützung für eine konkrete Arbeitszeit-Erhöhung auf Beamten-Ebene."
+          },
+          {
+            "text": "Man muss Anreize schaffen... ich bin nicht null oder 100 dafür.",
+            "timestamp": "01:03:29",
+            "context": "Winter drückt sich bei Karenztagen vorsichtig aus und vermeidet klare Positionierung."
+          }
+        ],
+        "answer_type": "teilweise_antwort",
+        "related_bundestag_topics": [
+          "Arbeitsrecht",
+          "Beamtenreform",
+          "Krankenstand",
+          "Tarifpolitik"
+        ]
+      },
+      {
+        "title": "Rente und große strukturelle Reformen",
+        "timestamp_range": "01:10:53 - 01:12:01",
+        "theme_description": "Wiebke Winter diskutiert, ob sie den Weg der Rentenkommission mittragen wird, obwohl sie vorher Kritik am Rentenkompromiss der Bundesregierung geübt hat.",
+        "question_asked": "Markus Lanz fragt: \\\"Gerade wurde die Rente genannt. Sie waren eine, die gesagt haben so geht das nicht. Das ist nicht finanzierbar. Das war Ihre Haltung im vergangenen Jahr bei dem großen Streit. Werden Sie den Weg dann mitgehen?\\\"",
+        "question_intent": "Zu testen, ob Winter ihre frühere Ablehnung des Rentenkompromisses aufgibt und konstruktiv mitarbeitet.",
+        "position": "Winter antwortet konstruktiv: \"Wir brauchen eine Reform der Rente. Ich hoffe, die Rentenkommission wird Lösungen erarbeiten. Die werden dann hart debattiert.\" Sie äußert Kritik an der Vorfestlegung: \"Ich hätte mir gewünscht, dass wenn schon 120 Milliarden Euro für die Dreißigerjahre festgeschrieben hätten und dann erst die Kommission einsetzen. Ich hätte mir gewünscht, dass die mit einem weißen Blatt starten.\" Sie betont aber: \"Jetzt wissen wir aber dafür sorgen, dass die erfolgreiche sind.\" Sie formuliert Ziele: \"Wie bekommen wir Sinn, dass wir eine Rente für alle die auszahlen können, und die Lebensleistung honoriert... Aber auch ein System schaffen, für meine Generation, damit die darauf vertrauen können, eine gesetzliche Rente zu bekommen.\" Abschließend: \"Die Veränderungen werden schmerzhaft sein, aber wir müssen das machen, damit das Land weiterkommt.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Winter beantwortet Lanz' zentrale Frage, ob sie mitgehen wird, affirmativ. Sie erklärt ihre frühere Kritik (Vorfestlegung der 120 Mrd), signalisiert aber Konstruktivität (\\\"dafür sorgen, dass die erfolgreiche sind\\\"). Sie benennt konkrete Ziele (Lebensleistung, Generationengerechtigkeit) und akzeptiert Schmerztherapie.",
+        "concrete_statements": [
+          "Wir brauchen eine Reform der Rente.",
+          "Die Veränderungen werden schmerzhaft sein, aber wir müssen das machen, damit das Land weiterkommt.",
+          "Wir müssen eine Rente für alle auszahlen können und die Lebensleistung honorieren.",
+          "Ein System schaffen, für meine Generation, damit die darauf vertrauen können, eine gesetzliche Rente zu bekommen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich hätte mir gewünscht, dass die mit einem weißen Blatt starten.",
+            "timestamp": "01:10:53",
+            "context": "Winter kritisiert die Vorfestlegung der 120 Milliarden für Rente, bevor die Kommission ihre Arbeit aufnimmt."
+          },
+          {
+            "text": "Die Veränderungen werden schmerzhaft sein, aber wir müssen das machen, damit das Land weiterkommt.",
+            "timestamp": "01:11:55",
+            "context": "Winter akzeptiert schwierige Reformen und zeigt Bereitschaft zur Verantwortung."
+          }
+        ],
+        "answer_type": "substantielle_position",
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Generationengerechtigkeit",
+          "Sozialversicherungen",
+          "Rentenalter"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Der CDU Wirtschaftsrat ist eine eigenständige Vereinigung, die nicht zur Parteienfamilie der CDU gehört.",
+        "timestamp": "00:03:30"
+      },
+      {
+        "claim": "Die Mittelstandsunion hat den Begriff 'Lifestyle-Teilzeit' als Überschrift für den Antrag erfunden.",
+        "timestamp": "00:06:20"
+      },
+      {
+        "claim": "In Bremen sind unbegleitete Minderjährige Ausländer teilweise noch sehr lange in Einrichtungen, weil keine Wohnungen gefunden werden.",
+        "timestamp": "00:39:19"
+      },
+      {
+        "claim": "NRW und Schleswig-Holstein haben bereits eine 41-Stundenwoche für Beamte eingeführt.",
+        "timestamp": "01:02:34"
+      },
+      {
+        "claim": "Es werden im Weltall mit GPS-Technologie neue Organe/Netzhäute gebaut, damit Menschen länger sehen können.",
+        "timestamp": "00:54:02"
+      }
+    ]
+  }
+}

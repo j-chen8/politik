@@ -1,0 +1,377 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/markus-lanz-114/markus-lanz-vom-19-november-2025-100",
+    "video_id": "lanz-2025-11-19",
+    "politician": "Manfred Weber",
+    "host": "Markus Lanz",
+    "publisher": "Markus Lanz (ZDF)",
+    "transcript_sha": "be3c601ff464c2d5",
+    "transcript_chars": 61964,
+    "caption_lines": 3123,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 25617,
+    "tokens_out": 9565,
+    "cost_usd": 0.0293768,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 17,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 7,
+      "pivot_zum_gegenpunkt": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.257Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Manfred Weber, als Vorsitzender der EVP-Fraktion im EU-Parlament, diskutierte mit Markus Lanz über die geopolitischen Herausforderungen Europas, insbesondere die Abhängigkeit von Rohstoffen und die Strategien zur Unabhängigkeit von China. Weber warnte vor systemischen Provokationen Trump-artiger Politik, betonte Europas Wirtschaftskrise und forderte europäische Einigkeit sowie pragmatische Strategien zur Sicherung kritischer Rohstofflieferketten.",
+    "themes": [
+      {
+        "title": "Systemische Provokationen und mediale Radikalisierung",
+        "timestamp_range": "00:20:00 - 00:21:40",
+        "theme_description": "Analyse der systembedingten täglichen Provokationen durch Trump und deren Verstärkung durch Social Media.",
+        "question_asked": "Markus Lanz fragte Manfred Weber, wie beunruhigend die geopolitischen Entwicklungen rund um Trump sind und ob diese Wut und Provokationen nicht auch systemisch bedingt sind.",
+        "question_intent": "Lanz wollte verstehen, wie gefährlich das System der täglichen Provokation durch Trump ist und wie es in den Medien wirkt.",
+        "position": "Weber charakterisierte die Trump-Strategie als ein übergeordnetes System, nicht nur Einzelfälle. Er verwies auf die systembedingten Faktoren: Social Media bevorzugt und vervielfältigt Provokation; normale argumentative Diskurse der Mitte finden nicht mehr statt; Trump schafft sich seine 'Fox Realität'. Gleichzeitig erkannte Weber einen positiven Aspekt: bei der Epstein-Akte hätten mutige Republikaner aufgestanden und gesagt 'wir wollen es wissen', was zeige, dass 'das System stabil ist' und es Grenzen für Trumps Alleiniginstellung gibt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber adressierte direkt Lanz' Frage zu den systemischen Provokationen, identifizierte Mechanismen (Social Media, Fox-Realität) und bot zugleich eine ausgewogene Analyse, die auch Gegenkräfte aufzeigte.",
+        "quotes": [
+          {
+            "text": "Das ist gefährlich. Dass noch schlimmere ist, wir diskutieren bei Donald Trump immer die Einzelfälle. Aber das ist ja ein System. Seit Jahren tägliche suchte die Provokation des Tages. Wir leben in einer Welt von Social Media, die bevorzugt Provokation. Und vervielfältigt. Das normale Argument in der Mitte findet nicht mehr statt.",
+            "timestamp": "00:20:00",
+            "context": "Auf Lanz' Frage, wie gefährlich die Trump-Rhetorik ist und wie man damit umgehen sollte."
+          },
+          {
+            "text": "Der Einsteigermodell Epstein Akte ich fand es erstaunlich, dass Republikaner aufstehen und sagen, wir wollen es wissen. Das ist vielleicht der erste Knackpunkt, dass ich in Amerika Leute auftun und das System stabil ist.",
+            "timestamp": "00:21:16",
+            "context": "Weber beschreibt positive Zeichen für Systemstabilität trotz Trumps Dominanz."
+          }
+        ],
+        "concrete_statements": [
+          "Social Media bevorzugt und vervielfältigt Provokation",
+          "Die normale Argumentation in der Mitte findet nicht mehr statt",
+          "Trump schafft sich eine Fox-Realität für sich",
+          "Mutige Republikaner lehnen Trumps Durchgreifen bei schweren Verbrechen ab"
+        ],
+        "related_bundestag_topics": [
+          "Medienvielfalt und Pressefreiheit",
+          "Polarisierung und gesellschaftlicher Zusammenhalt"
+        ]
+      },
+      {
+        "title": "Europas wirtschaftliche Lage und Herausforderungen",
+        "timestamp_range": "00:21:40 - 00:22:51",
+        "theme_description": "Einschätzung der angespannten wirtschaftlichen Situation Europas nach dem Ende einer Phase von Wachstum und Stabilität.",
+        "question_asked": "Markus Lanz fragte Weber, basierend auf dessen Aussage 'Die Hütte brennt', in welcher Lage sich die europäische Wirtschaft wirklich befindet.",
+        "question_intent": "Lanz wollte eine konkrete Einschätzung erhalten, wie dramatisch die wirtschaftliche Situation Europas tatsächlich ist.",
+        "position": "Weber beschrieb Europas wirtschaftliche Situation als 'sehr angespannt, schwierig'. Deutschland habe die größten Probleme. Europa wache aus einer 'Wohlfühlsituation' auf: Nach der Wiedervereinigung habe es kontinuierliches Wachstum gegeben, aber nun seien die bisherigen Stützen weggefallen – russisches Gas, amerikanisches Militär, Absatzmärkte in Asien. Die alten Realitäten lösten sich in Luft auf. Trotz allem müsse man 'an uns selber glauben' und Optimismus bewahren, denn Europa sei trotz aller Herausforderungen der größte Wirtschaftsraum; mit den richtigen Weichen würde man es schaffen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber antwortete direkt auf die Frage zur wirtschaftlichen Lage, benannte konkrete Problembereiche (fehlende Gas-, Sicherheits- und Marktgarantien) und zeigte gleichzeitig eine lösungsorientierte Haltung.",
+        "quotes": [
+          {
+            "text": "In einer sehr angespannten, schwierigen. Wir Deutschen haben die größten Probleme. In der Summe wacht Europa aus einer Wohlfühlsituation auf. Nach der Wende hatten wir immer Wachstum, jetzt haben wir weder das russische Gas, das amerikanische Militär oder die Absatzmärkte in Asien.",
+            "timestamp": "00:21:59",
+            "context": "Webers Darstellung der europäischen Wirtschaftskrise."
+          },
+          {
+            "text": "Wir werden die Aufgaben nicht lösen, ohne Optimismus. Der Kontinent ist trotz allen Herausforderungen, der größte Wirtschaftsraum. Wenn wir die richtigen Weichen stellen, schaffen wir das.",
+            "timestamp": "00:22:36",
+            "context": "Webers Appell für Optimismus und konkretes Handeln."
+          }
+        ],
+        "concrete_statements": [
+          "Deutschland hat die größten Probleme",
+          "Europa verliert russisches Gas, amerikanisches Militär und Absatzmärkte in Asien",
+          "Die Realitäten der letzten Jahrzehnte lösen sich auf",
+          "Europa muss an sich selbst glauben und optimistisch bleiben",
+          "Mit richtigen Weichen können die Aufgaben gelöst werden"
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftspolitik und Wettbewerbsfähigkeit",
+          "Energiesicherheit",
+          "Europäische Integration"
+        ]
+      },
+      {
+        "title": "Verhalten Chinas gegenüber europäischen Diplomatikern",
+        "timestamp_range": "00:29:48 - 00:31:27",
+        "theme_description": "Diskussion über den Statuswandel in der Kommunikation zwischen der EU und China sowie strategische Implikationen.",
+        "question_asked": "Markus Lanz bezog sich auf Eva Quadbecks Bericht von Scholz' China-Besuch und fragte Weber als von der Leyen-Vertrauten, wie er den Stimmungswechsel in der Kommunikation mit China erlebe.",
+        "question_intent": "Lanz wollte verstehen, wie Weber als hochrangiger EU-Politiker die Verschiebung der Machtverhältnisse zwischen EU und China wahrnimmt.",
+        "position": "Weber führte aus, dass Merkel als Chefin Europas angesehen wurde und dadurch Türen geöffnet wurden, daher diskutiere man die Probleme jetzt. Mit neuem Selbstbewusstsein Chinas brauche die gesamte EU Unterstützung. Weber argumentierte, Europäer müssen 'Naivität ablegen': noch vor einem Jahr habe Scholz gegen Autozölle auf chinesische Elektroautos protestiert, dabei wollen die Chinesen Märkte übernehmen, wie den Elektroautomarkt. Zusätzlich warnte Weber vor einer eskalierenden Taiwan-Frage: Der chinesische Präsident plane, die Taiwanfrage in den nächsten Jahren zu klären – ein szenario ähnlich wie Ukraine/Russland. Darauf müssen sich Europäer gemeinsam vorbereiten.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber adressierte Lanz' Frage nach Webers Wahrnehmung des Stimmungswechsels direkt, verband ihn mit Merkels Rolle und artikulierte sowohl das Problem der chinesischen Marktübernahme als auch die sicherheitspolitische Dimension (Taiwan).",
+        "quotes": [
+          {
+            "text": "Sie wurde als Chefin Europas angesehen. Über die lange Regierungszeit wurde sie so angesehen. Die Türen öffnet erst Europa. Deswegen diskutieren wir heute.",
+            "timestamp": "00:29:48",
+            "context": "Webers Erklärung, warum Merkels Stellung früher anders war."
+          },
+          {
+            "text": "Der Präsident ordnet an, dass er die Taiwan Frage in den nächsten Jahren klären möchte. Ein ähnliches Szenario also wie mit der Ukraine und Russland. Da ist die gleiche Logik mit China und Taiwan. Ein demokratisches Land in das kommunistische Mutterland zurückholen. Dann wird es spätestens ganz ungemütlich. Darauf müssen wir uns vorbereiten als Europäer gemeinsam.",
+            "timestamp": "00:30:34",
+            "context": "Webers Warnung vor dem Taiwan-Konflikt als zweites Ukraine-Szenario."
+          }
+        ],
+        "concrete_statements": [
+          "Europas Position hat sich verschoben – keine automatische Tür zu Xi mehr",
+          "Europäer müssen Naivität ablegen bezüglich chinesischer Marktpolitik",
+          "China will Elektroautomarkt übernehmen",
+          "Taiwan-Frage könnte zu Konflikt eskalieren ähnlich wie Ukraine",
+          "Europa muss sich gemeinsam vorbereiten"
+        ],
+        "related_bundestag_topics": [
+          "China-Politik und Außenpolitik",
+          "Sicherheitspolitik und NATO",
+          "Handelspolitik"
+        ]
+      },
+      {
+        "title": "Europäische Strategie für Rohstoffversorgung und Grönland",
+        "timestamp_range": "00:45:36 - 00:46:41",
+        "theme_description": "Strategische Überlegungen zur europäischen Unabhängigkeit bei kritischen Rohstoffen und die Rolle von Grönland.",
+        "question_asked": "Nach Michael Baus Hinweis auf Grönland als Rohstoffquelle fragte Markus Lanz Weber, wie Weber auf Trumps Interesse an Grönland reagiert und welche europäische Strategie es gibt.",
+        "question_intent": "Lanz wollte verstehen, wie Weber die europäische Rohstoffstrategie sieht und ob Europa Grönland unterschätzt hat.",
+        "position": "Weber bestätigte, dass Trump richtig erkannt hat, dass Grönland wichtig ist. Er berichtete, dass er den holländischen Premierminister vor vier Wochen traf und dieser angeboten habe, Europa auf Grönland hinzuweisen. Allerdings habe sich Europa in den letzten Jahren um Grönland überhaupt nicht gekümmert, obwohl es dort Perspektiven und Partnerschaften gebe. Trump öffne die Augen, sich darauf zu konzentrieren. Weber betonte: 'Wir müssen uns die Hände schmutzig machen müssen. Eigene Ressourcen selber heben.' Europa brauche nicht chinesische Standards, müsse aber eigene Verantwortung mit europäischen Standards übernehmen. Zudem sei Kreislaufwirtschaft wichtig: Lithium aus Batterien durch Recycling in Europa halten, nicht als Elektroschrott nach Afrika exportieren.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber antwortete direkt auf die implizite Frage zu Europas Rohstoffstrategie, benannte Grönland und Partner konkret, und skizzierte ein europäisches Aktionsprogramm (Standards, Recycling, Eigenverantwortung).",
+        "quotes": [
+          {
+            "text": "Ich habe den holländischen Premierminister getroffen vor vier Wochen. Er bietet uns das an. Aber Europa hat sich in den letzten Jahren um Grönland überhaupt nicht gekümmert, obwohl es da Perspektiven und Partnerschaften gibt.",
+            "timestamp": "00:45:36",
+            "context": "Webers Kritik an europäischem Desinteresse an Grönland."
+          },
+          {
+            "text": "Wir müssen uns die Hände schmutzig machen müssen. Eigene Ressourcen selber heben. Wir brauchen nicht chinesische Standards aber wir müssen unsere eigene Verantwortung übernehmen mit unseren Standards. Wir müssen uns auch um unsere Kreislaufwirtschaft kümmern.",
+            "timestamp": "00:45:50",
+            "context": "Webers pragmatische Formulierung europäischer Verantwortung bei Rohstoffen."
+          }
+        ],
+        "concrete_statements": [
+          "Europa hat Grönland vernachlässigt",
+          "Trump hat erkannt, dass Grönland wichtig ist",
+          "Holländischer PM bietet Vermittlung an",
+          "Europa muss Rohstoffe in Eigenverantwortung fördern",
+          "Europäische Standards (nicht chinesische) müssen gelten",
+          "Lithium-Recycling muss in Europa stattfinden",
+          "Elektroschrott darf nicht nach Afrika exportiert werden"
+        ],
+        "related_bundestag_topics": [
+          "Rohstoffversorgung und Energiewende",
+          "Europäische Außenpolitik",
+          "Kreislaufwirtschaft und Umweltschutz"
+        ]
+      },
+      {
+        "title": "Europäische Investitionen und Koordination in Rohstoffprojekten",
+        "timestamp_range": "00:54:44 - 00:56:39",
+        "theme_description": "Notwendigkeit staatlicher europäischer Investitionen zur Unabhängigkeit von China und Koordination zwischen Mitgliedstaaten.",
+        "question_asked": "Nach Andreas Krolls Bemerkung zu Chinas harter Industriepolitik fragte Markus Lanz Weber, wie Europa strategisch auf diese Herausforderung reagieren soll und wie die Investitionen organisiert werden.",
+        "question_intent": "Lanz wollte verstehen, welche konkrete europäische Strategie Weber für die Rohstoffunabhängigkeit verfolgt.",
+        "position": "Weber betonte, dass viele Staaten, auch Amerika, mit staatlichen Mitteln beim Aufbau eigener Lieferketten investieren. Wenn China billiger wird und den Markt beherrscht, muss Europa Geld in die Hand nehmen, um Mindestpreise und Mindestmengen zu garantieren – aber nicht in China, sondern mit Partnerländern. Weber verwies auf 60 Programme und Projekte mit Geldern der europäischen Investitionsbank. Dabei seien es private Investoren (17 internationale Projekte), wobei die EU bei Genehmigungen helfe und schnelle Vorankommen erleichtere: europäische Gesetze sollten Genehmigungen innerhalb von 12–15 Monaten ermöglichen. Jedoch: Die Resourcen seien fragmentiert – Deutschland 1 Milliarde, Frankreich 1 Milliarde etc. –, viele Länder versuchen einzeln Strategien aufzubauen und machen sich gegenseitig Konkurrenz. 'Lasst uns das europäisch machen! Dann werden wir alle profitieren in Europa.'",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber skizzierte detailliert europäische Investitionsprogramme, benannte die Rolle der EIB, konkrete Laufzeiten und das Fragmentierungsproblem. Er bot eine kohärente Strategie gegen die chinesische Konkurrenz.",
+        "quotes": [
+          {
+            "text": "Das sind viele Staaten dahinter. Auch die Amerikaner gehen mit ganz vielen staatlichen für den Aufbau der eigenen Lieferketten rein. Die Chinesen werden es billiger geben und so den Markt beherrschen. Deswegen muss Europa Geld in die Hand nehmen. Um einen Mindestpreis und Mindestabgabemengen zu garantieren.",
+            "timestamp": "00:54:44",
+            "context": "Webers Darstellung der notwendigen europäischen Gegenmaßnahme."
+          },
+          {
+            "text": "60 Programm und Projekte haben wir derzeit diese auch mit Geldern der europäischen Investitionsbank unterstützen wollen... Der zentrale Punkt ist, dass wir denen bei der Genehmigung helfen, schnell vorankommen. Europäische Gesetze, dass das innerhalb von 12-15 Monaten genehmigt wird.",
+            "timestamp": "00:55:17",
+            "context": "Webers Darstellung der EU-Maßnahmen für schnellere Genehmigungen."
+          },
+          {
+            "text": "Wir haben in Deutschland 1 Milliarde, in Frankreich 1 Milliarde - viele Länder versuchen eine Strategie aufzubauen und dann machen wir uns gegenseitig Konkurrenz in bestimmten Funktionsbereichen. Da würden wir alle profitieren in Europa.",
+            "timestamp": "00:55:31",
+            "context": "Webers Kritik an der Fragmentierung europäischer Rohstoffpolitik."
+          }
+        ],
+        "concrete_statements": [
+          "60 EU-Programme/Projekte für Rohstoffversorgung",
+          "Europäische Investitionsbank soll diese unterstützen",
+          "Private Investoren: 17 internationale Projekte",
+          "EU hilft bei Genehmigungsverfahren (12–15 Monate)",
+          "Mindestpreise und Mindestabgabemengen müssen garantiert werden",
+          "Europäische Mitgliedstaaten konkurrieren sich selbst Schaden zu",
+          "Koordinierte europäische Strategie notwendig"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Wirtschaftspolitik",
+          "Kritische Infrastruktur und Rohstoffsicherung",
+          "Finanzierung und EU-Haushalt"
+        ]
+      },
+      {
+        "title": "Kritik an europäischer Fragmentierung vs. strategischer Kohärenz",
+        "timestamp_range": "01:02:08 - 01:03:24",
+        "theme_description": "Webers Widerspruch zu Eva Quadbecks Ansicht, dass die EU gegenüber dem US-China-Wettbewerb chancenlos sei.",
+        "question_asked": "Eva Quadbeck argumentierte, dass die USA und China rivalisierten und Europa dabei völlig egal sei. Weber wurde implizit gefragt, ob das stimmt.",
+        "question_intent": "Lanz und Quadbeck hinterfragten, ob europäische Rohstoffpolitik überhaupt eine Chance gegen den US-China-Wettbewerb habe.",
+        "position": "Weber widersprach Quadbecks pessimistischer Einschätzung. Das europäische 'Tempolang' liege nicht an mangelnder Fähigkeit, sondern an der Struktur: 27 Regierungen, jede fahre nach China und versuche einzeln zu agieren – die Chinesen versuchten dies auszunutzen und zu spalten. Gleichzeitig: Der zuständige EU-Handelskommissar (Verhandlungsleiter) reise gerade nach Australien; dieser entscheide mehr über deutschen Zugang zu seltenen Erden als Lars Klingbeil in China. Die Wahrnehmung für europäische Koordination bei solchen Diskussionen sei zu gering. Dies impliziert: Mit besserer Koordination zwischen EU-Institutionen und Mitgliedstaaten könnte Europa sehr wohl Tempo aufnehmen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Webers Antwort adressierte die Pessimismus-These nicht vollständig, sondern pivotierte zu strukturellen EU-Problemen (27 Regierungen, mangelnde Koordination) und implizierter Gegenkritik an Europas fehlender interner Geschlossenheit – ohne direkt zu sagen, ob Europa chancenlos ist oder nicht.",
+        "quotes": [
+          {
+            "text": "Wir haben Europa Tempo, weil wir 27 Regierungen haben. Wir haben gerade das Foto von Klingbeil gesehen in China. 27 der nationalen Regierungen fahren nach China und die freuen sich darüber herausfinden, wo die Unterschiede zwischen den Ländern sind. Sie versuchen uns jedes Mal zu spalten.",
+            "timestamp": "01:02:08",
+            "context": "Webers Analyse der europäischen Fragmentierung."
+          },
+          {
+            "text": "Der entscheidet im Moment mehr über die Frage, ob Deutschland Zugang zu seltenen Erden hat, als Lars Klingbeil in China. Wir haben die Wahrnehmung für europäische Diskussion zu wenig auf dem Schirm.",
+            "timestamp": "01:02:34",
+            "context": "Webers Kritik an der Unterschätzung von EU-Institutionen in Rohstoffpolitik."
+          }
+        ],
+        "concrete_statements": [
+          "27 nationale Regierungen fahren separat nach China",
+          "Chinesen versuchen, die EU zu spalten",
+          "EU-Handelskommissar beeinflusst Rohstoffzugang mehr als nationale Politiker",
+          "Europäische Koordination wird zu wenig wahrgenommen"
+        ],
+        "related_bundestag_topics": [
+          "Europäische Institutionen und Koordination",
+          "Kohäsion der EU",
+          "Außenpolitische Geschlossenheit"
+        ]
+      },
+      {
+        "title": "Notwendigkeit europäischer Standards und Partnerschaften",
+        "timestamp_range": "01:03:33 - 01:04:38",
+        "theme_description": "Europas Verantwortung für hohe Umweltstandards bei der Rohstoffförderung und strategische Partnerschaften mit Ländern wie Kanada.",
+        "question_asked": "Markus Lanz warf ein, dass Lithium-Versorgung überall möglich sei, aber nicht in Europa – auf die Frage, wie Europa damit umgehen sollte.",
+        "question_intent": "Lanz wollte verstehen, wie Weber den Konflikt zwischen Europas Umweltstandards und der Notwendigkeit von Rohstoffen löst.",
+        "position": "Weber betont, dass man sich 'die Hände schmutzig machen' muss, aber nicht das chinesische Modell kopieren wird. Man brauche hohe Umweltstandards. Allerdings müsse Europa auch seinen eigenen Beitrag leisten und offen für Kooperation mit echten Partnern sein. Kanada beispielsweise: Es gab eine Diskussion, die von den Grünen 'massiv bekämpft wurde', aber heute sei Europa froh, weil Kanada auch mit den Amerikanern hadert und damit ein verlässliches Rohstoffland mit europäischen Werten sei. Europa müsse die Partnerschaften, die es vor der Tür habe, mitnehmen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber adressierte direkt die Spannung zwischen Standards und Rohstoffbedarf, präsentierte einen pragmatischen Ansatz (eigener Beitrag mit hohen Standards) und benannte konkrete Partnerländer (Kanada).",
+        "quotes": [
+          {
+            "text": "Deswegen bleibe ich dabei, wir werden uns die Hände schmutzig machen müssen. Aber die Diskussion ist die gleiche, vor Ort waren Menschen, die skeptisch waren... Wir brauchen hohe Umweltstandards. Keiner will das chinesische Modell kopieren. Aber wir werden auch unseren eigenen Beitrag leisten müssen und offen sein für eine Kooperation mit den echten Partnern.",
+            "timestamp": "01:03:33",
+            "context": "Webers pragmatische Balance zwischen Standards und Rohstoffbedarf."
+          },
+          {
+            "text": "Kanada, wenn ich daran erinnern darf, wir hatten eine Diskussion, die von den Grünen massiv bekämpft wurde. Heute sind wir froh, weil Kanada auch mit den Amerikanern hadert. Damit wir verlässlich mit Kanada, einem echten Rohstoffland handeln können.",
+            "timestamp": "01:03:51",
+            "context": "Webers Beispiel für erfolgreiche Partnerschaften."
+          }
+        ],
+        "concrete_statements": [
+          "Europa muss sich engagieren, wird aber chinesisches Modell nicht kopieren",
+          "Hohe Umweltstandards sind notwendig",
+          "Kanada ist ein verlässlicher Rohstoffpartner",
+          "Europa muss offen für Kooperation mit echten Partnern sein",
+          "Grüne-Blockade zu Kanada war kontraproduktiv"
+        ],
+        "related_bundestag_topics": [
+          "Umweltpolitik und Green Deal",
+          "Außenpolitik und Partnerschaften",
+          "Nachhaltige Rohstoffgewinnung"
+        ]
+      },
+      {
+        "title": "Brandmauer-Debatte und EVP-Abstimmungsverhalten",
+        "timestamp_range": "01:08:23 - 01:16:22",
+        "theme_description": "Rechtfertigung der EVP-Fraktionsstimmen mit rechtspopulistischen Parteien bei der Lieferkettengesetz-Abstimmung und die Relation zur 'Brandmauer'-Rhetorik.",
+        "question_asked": "Markus Lanz fragte Weber direkt, warum die EVP mit rechtsradikalen Parteien beim Lieferkettengesetz abgestimmt hat, während Friedrich Merz in Deutschland eine Brandmauer gegen die AfD proklamiert.",
+        "question_intent": "Lanz wollte verstehen, wie Webers Abstimmungsverhalten mit der Brandmauer-Rhetorik vereinbar ist.",
+        "position": "Weber betonte zunächst, dass die Brandmauer 'auch auf europäischer Ebene steht' und dass die EVP die Partei ist, 'die europaweit an vorderster Front steht'. Dann präzisierte er das tatsächliche Geschehen: Das europäische Parlament unterscheide sich vom Bundestag – es gebe keine festen Koalitionen, keine festen Mehrheiten. Die EVP, Sozialdemokraten und Liberale hatten einen Kompromiss zur Lieferkette vereinbart, doch 'ein Drittel der Sozialdemokraten' hielt sich nicht an die Absprache. Deshalb sei es 'folgerichtig' gewesen, dass die EVP anders abstimmte. Weber argumentierte weiter: Man dürfe nicht 'national' denken – die AfD-Stimmen waren für die Abstimmung 'irrelevant'. Seine Fraktion stimme für 'genverändertes Saatgut' und 'moderne Techniken'. Es gebe auch Umweltgesetze, die 'nur beschlossen worden' seien, 'weil Orban zugestimmt hat', worauf es 'keine Aufregung' gab. Und: 'Wenn Umweltgesetze abgestimmt werden, dürfen Radikale zustimmen, wenn Wirtschaftsgesetze abgestimmt werden, nicht – das ist ein Skandal.' Abschließend: Am Ende werde Populismus besiegt, wenn man 'Sorgen ernst nehmen und liefern in der Sache'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Weber adressierte die Frage zur Brandmauer teilweise direkt, pivotierte dann aber zu strukturellen Unterschieden zwischen Bundestag und EU-Parlament sowie zu Gegenargumenten (SPD-Bruch, Orban-Beispiele, Doppelstandards), ohne die implizite Kritik vollständig zu beantworten.",
+        "concrete_statements": [
+          "Brandmauer steht auch auf europäischer Ebene",
+          "EU-Parlament hat keine festen Koalitionen wie Bundestag",
+          "SPD-Fraktion brach Abstimmungsabsprache mit einem Drittel der Stimmen",
+          "EVP-Stimmen bei Lieferkettengesetz waren folgerichtig",
+          "AfD-Stimmen waren für das Ergebnis irrelevant",
+          "Orban stimmte bei Umweltgesetzen zu, ohne Aufregung",
+          "Doppelstandards: Radikale bei Umwelt, nicht bei Wirtschaft zulassen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsfragen und Mehrheitsbildung",
+          "Lieferkettengesetz",
+          "Zusammenarbeit mit Ungarn",
+          "Brandmauer und Umgang mit populistischen Parteien"
+        ]
+      },
+      {
+        "title": "Pragmatismus in Europas Rohstoff- und Wirtschaftspolitik",
+        "timestamp_range": "01:14:22 - 01:16:41",
+        "theme_description": "Webers abschließende Argumentation für pragmatische Kompromisse und substantielle Ergebnisse als Mittel gegen Populismus.",
+        "question_asked": "Markus Lanz fragte Weber erneut, warum er das Lieferkettengesetz so entschieden habe, und charakterisierte ihn als 'Stimme der Vernunft' und 'gemäßigt auftreten(d)' Politiker.",
+        "question_intent": "Lanz suchte nach der Begründung hinter Webers pragmatischem Kurs und wollte verstehen, ob dieser als Kompromiss zu sehen ist.",
+        "position": "Weber lehnte ab, 'national' zu denken und hob die Abstimmung aus diesem Framing heraus. Er kritisierte implizit die 'Sunday-Reden' über Brandmauern, wenn substantiell nichts geliefert wird. Die Kern-These: 'Am Ende wird Populismus dann besiegt, wenn wir Sorgen ernst nehmen und liefern in der Sache. Taktisch, wenn es zur Abgrenzung zum Rechtsradikalismus geht: Wenn wir in der Sache nicht mehr liefern, weil die Linken uns sagen, was Zukunft ist, wird das genauso Futter sein für die Populisten.' Dies bedeutet: Pragmatische Kompromisse mit Reformergebnissen sind wichtiger als ideologische Reinheit in Abstimmungen – und dieser Ansatz ist das beste Mittel gegen Populismus.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Weber adressierte die Frage direkt und präsentierte eine kohärente Theorie: Populismus wird nicht durch Brandmauern-Rhetorik, sondern durch substantielle Ergebnisse bezwungen. Sein Abstimmungsverhalten war Ausdruck dieser Strategie.",
+        "quotes": [
+          {
+            "text": "Am Ende wird Populismus dann besiegt, wenn wir Sorgen ernst nehmen und liefern in der Sache. Taktisch, wenn es zur Abgrenzung zum Rechtsradikalismus geht. Wenn wir in der Sache nicht mehr liefern, weil die Linken uns sagen, was Zukunft ist, wird das genauso Futter sein für die Populisten.",
+            "timestamp": "01:16:15",
+            "context": "Webers zentrale Theorie zur Bekämpfung von Populismus durch Pragmatismus."
+          },
+          {
+            "text": "Herr Lanz, wir machen sofort wieder den gleichen Fehler, das ganze national zu diskutieren. Die AfD waren bei den radikalen, waren aber für die Abstimmung irrelevant.",
+            "timestamp": "01:14:22",
+            "context": "Webers Ablehnung der nationalen Kategorie für EU-Abstimmungen."
+          }
+        ],
+        "concrete_statements": [
+          "Populismus wird durch Sorgenernstnahme und Lieferung besiegt, nicht durch Brandmauern-Rhetorik",
+          "Substanzielle Regelungsergebnisse sind wichtiger als ideologische Reinheit",
+          "Wenn Linke den Kurs diktieren, wird Populismus gefüttert",
+          "EU-Logik unterscheidet sich von deutscher Bundestags-Logik"
+        ],
+        "related_bundestag_topics": [
+          "Populismus und Extremismusprävention",
+          "Strategische Koalitionen",
+          "Sachpolitik vs. Symbolpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Ein Windrad enthält zwischen 200 und 600 Kilogramm seltene Erden",
+        "timestamp": "00:02:14"
+      },
+      {
+        "claim": "Ein F35-Kampfjet enthält über 400 Kilo seltene Erden",
+        "timestamp": "00:02:16"
+      },
+      {
+        "claim": "China hat 2011 die seltenen Erden nicht mehr an Japan liefern angedroht",
+        "timestamp": "00:53:53"
+      },
+      {
+        "claim": "Nach Chinas Drosselung 2011 entstanden etwa 240 Minenprojekte weltweit",
+        "timestamp": "00:53:53"
+      },
+      {
+        "claim": "Nach Deutschland kommen 5000 Tonnen seltene Erden pro Jahr",
+        "timestamp": "00:56:43"
+      },
+      {
+        "claim": "Darüber hinaus wird Weber damit zitiert, dass holländischer Premierminister das Grönland-Angebot machte vor vier Wochen",
+        "timestamp": "00:45:36"
+      }
+    ]
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0wNi0xNl8yMi0zMC1NRVNa",
+    "video_id": "maischberger-2025-06-16",
+    "politician": "Ralf Stegner",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "b790713544ca384a",
+    "transcript_chars": 56135,
+    "caption_lines": 2075,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 22621,
+    "tokens_out": 7239,
+    "cost_usd": 0.0235264,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 7,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 3,
+      "teilweise_antwort": 5
+    },
+    "generated_at": "2026-06-05T12:36:41.289Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Ralf Stegner, SPD-Mitglied des Bundestages und Mitverfasser des Friedensmanifests, diskutiert mit Sandra Maischberger und dem Militärexperten Carlo Masala über Diplomatie in der Ukraine-Krise, deutsche Rüstungsausgaben und die Haltung zu Verhandlungen mit Russland. Stegner vertritt eine differenzierte Position zwischen militärischer Unterstützung der Ukraine und diplomatischen Gesprächen; sein Ton ist sachlich, stellenweise defensiv gegenüber Kritik an seinen Positionen.",
+    "themes": [
+      {
+        "title": "Diplomatie als legitimes Thema in der Friedensdebatte",
+        "timestamp_range": "00:03:47 - 00:04:17",
+        "theme_description": "Stegner erklärt die Notwendigkeit, Diplomatie öffentlich zu diskutieren, während Waffendebatten für jeden zugänglich sind.",
+        "question_asked": "Sandra Maischberger fragt (nach vorangegangener Diskussion), wie Ralf Stegner begründet, dass diese Debatte über Diplomatie notwendig ist, insbesondere angesichts der Kritik am Manifest.",
+        "question_intent": "Maischberger möchte verstehen, warum Stegner und die Manifest-Autoren öffentliche diplomatische Debatte für erforderlich halten.",
+        "position": "Stegner argumentiert, dass über Waffen öffentlich jeder ohne Fachkompetenz sprechen kann, während Diplomatie hinter verschlossenen Türen stattfindet und daher einer öffentlichen Debatte bedarf. Er betont, dass es wichtig ist, diese Perspektive zu vermitteln, besonders da sich Menschen zu Unrecht zum Thema Diplomatie auslassen, ohne Rüstungsgüter zu verstehen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Stegner antwortet direkt auf die Frage nach der Notwendigkeit einer Diplomatiedebatte und begründet diese mit der Asymmetrie zwischen öffentlicher Waffendiskussion und privater Diplomatie.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Über Waffen kann öffentlich jeder Trottel reden, auch der, der ein Gewehr nicht unterscheiden kann von einem Regenschirm",
+          "Diplomatie aber findet hinter verschlossenen Türen statt"
+        ],
+        "quotes": [
+          {
+            "text": "Für Waffen kann öffentlich jeder Trottel reden. Aber Diplomatie findet hinter verschlossenen Türen statt. Für die, die es nicht verstanden haben: Über Waffen kann öffentlich jeder Trottel reden, auch der, der ein Gewehr nicht unterscheiden kann von einem Regenschirm. Diplomatie aber findet hinter verschlossenen Türen statt.",
+            "timestamp": "00:03:47",
+            "context": "Stegner erklärt auf Nachfrage von Maischberger, warum die öffentliche Diplomatiedebatte notwendig ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Friedensmanifest",
+          "Diplomatie Ukraine",
+          "Entspannungspolitik"
+        ]
+      },
+      {
+        "title": "SPD als Friedenspartei und Abgrenzung zu Extremisten",
+        "timestamp_range": "00:13:41 - 00:14:11",
+        "theme_description": "Stegner verteidigt das Manifest gegen den Vorwurf des Stimmenfangs und betont die historische Rolle der SPD als Friedenspartei.",
+        "question_asked": "Sandra Maischberger fragt Stegner direkt: 'Geht es am Ende nur um Stimmenfang?' — basierend auf seiner Aussage, dass das Manifest aus SPD-Überlegungen zum Wahlverlust entstanden sei.",
+        "question_intent": "Maischberger will klären, ob das Manifest primär wahltaktisch motiviert ist oder substantiell begründet.",
+        "position": "Stegner lehnt ab, dass es um Stimmenfang geht. Er betont, dass die SPD historisch eine Friedenspartei sei und sich bewusst von Rechtsradikalen und Wagenknecht-Bewegungen abgrenzt. Das Manifest entstehe, weil andere Parteien nur über Waffen sprächen, während die SPD eine differenzierte Diskussion führe. Stegner argumentiert, dass besorgte Bürger sonst Parteien wählen müssten, die das Thema Frieden nicht adäquat adressieren.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Stegner adressiert die Motivationsfrage, lenkt aber stark auf die historische Rolle der SPD ab und vermeidet damit, direkt zu klären, inwieweit Wahlkalkül faktisch eine Rolle spielte.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Die SPD ist immer Friedenspartei gewesen",
+          "Wir haben nichts gemein mit den Rechtsradikalen oder mit Frau Wagenknecht",
+          "Die Leute, die sich um Frieden sorgen, die müssen so eine Partei wählen, weil andere das nicht so ansprechen"
+        ],
+        "quotes": [
+          {
+            "text": "Nein, es geht nicht um Stimmenfang. Sondern die SPD ist immer Friedenspartei gewesen. Wir haben nichts gemein mit den Rechtsradikalen oder mit Frau Wagenknecht. Aber die bemächtigen sich des Themas. Die Leute, die sich um Frieden sorgen, die müssen so eine Partei wählen, weil andere das nicht so ansprechen.",
+            "timestamp": "00:13:41",
+            "context": "Auf Maischbergers Frage, ob es um Stimmenfang geht, antwortet Stegner mit Abgrenzung und historischer Begründung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "SPD Programm",
+          "Friedenspolitik",
+          "Wagenknecht-Bewegung"
+        ]
+      },
+      {
+        "title": "Verhandlungen als Praxis in der Entspannungspolitik",
+        "timestamp_range": "00:15:43 - 00:16:20",
+        "theme_description": "Stegner verweist auf historische Verhandlungsbeispiele und argumentiert, dass Gespräche mit Gegnern etablierte diplomatische Praxis sind.",
+        "question_asked": "Carlo Masala fordert Stegner heraus bezüglich des Manifests und der Forderung nach Verhandlungen mit Russland; Stegner antwortet ohne direkte vorangegangene Frage, bringt aber historische Parallelen ein.",
+        "question_intent": "Masala will Stegner widersprechen und die Effektivität von Verhandlungen in Frage stellen.",
+        "position": "Stegner argumentiert, dass mit den Sowjets bereits verhandelt wurde, während gleichzeitig Waffen stationiert wurden — ein Beleg für die Doppelstrategie von Abschreckung und Dialog. Er verweist darauf, dass Rolf Mützenich vor einem Jahr Waffenstillstandsgespräche gefordert habe und dafür heftig kritisiert worden sei, während Franzosen und Engländer heute selbst solche Positionen verträten. Stegner argumentiert, dass das Beschimpfen von Verhandlungsideen offensichtlich nicht funktioniere.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Stegner adressiert den Punkt zu Verhandlungen, lenkt aber auf historische Beispiele und den Tonfall der Debatte ab, statt direkt auf Masalas Argument der fehlgeschlagenen Verhandlungsversuche einzugehen.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Mit den Sowjets wurde verhandelt, während Waffen stationiert wurden",
+          "Als Rolf Mützenich vor einem Jahr von Waffenstillstand sprach, wurde er heftig beschimpft, jetzt fordern das die Franzosen und Engländer selbst"
+        ],
+        "quotes": [
+          {
+            "text": "Immerhin diskutieren wir, wie ich demaskiert habe man, dass mit den Sowjets verhandelt wurde. Dass hier Waffen stationiert werden, das sei ohne Verhandlungen passieren Als Rolf Mützenich vor einem Jahr gesagt hat, lassen Sie uns über Waffenstillstand reden, lassen Sie uns über einfrieren reden, wurde er heftig beschimpft. Heute fordern dass die Franzosen und Engländer selbst, aber jetzt ist die Lage schlechter geworden. Das beschimpfen funktioniert ja offensichtlich nicht.",
+            "timestamp": "00:15:43",
+            "context": "Stegner antwortet auf Masalas kritischen Punkt zu Verhandlungen mit einer historischen Gegendarstellung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Entspannungspolitik",
+          "NATO-Erweiterung",
+          "Rüstungskontrolle"
+        ]
+      },
+      {
+        "title": "Kritik an Verteidigungsausgabenhöhe und NATO-Quote",
+        "timestamp_range": "00:17:59 - 00:19:02",
+        "theme_description": "Stegner bestreitet die Notwendigkeit massiver Erhöhung der Rüstungsausgaben auf 3,5% BIP und verweist auf absolute Ausgabensummen global.",
+        "question_asked": "Masala fragt Stegner direkt, wen das Manifest meint, wenn es von Entscheidungsträgern spricht, die für massive Rüstungssteigerung plädieren — der Kontext ist eine Debatte über die Höhe der Ausgaben.",
+        "question_intent": "Masala will Stegner festlegen, ob er mit seiner Kritik an hohen Rüstungsausgaben auf konkrete Personen abzielt (Pistorius, Klingbeil) oder ob es eine allgemeine Position ist.",
+        "position": "Stegner argumentiert, dass die Vergleiche historisch nicht korrekt sind. Er betont, dass Deutschland letzte Jahr etwa 90 Mrd. Euro ausgegeben habe und verweist auf absolute globale Rüstungsbudgets: USA 990 Mrd., China etwa 500 Mrd., Russland 140 Mrd. Er argumentiert, dass Deutschland bereits Rekordzahlen habe und kritisiert die geplanten Steigerungen als 'Wahnsinnssummen'. Stegner präzisiert, dass es notwendig sei, Verteidigungsfähigkeit zu steigern, aber nicht in dieser Höhe.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Stegner adressiert die Frage zur Kritik an Rüstungsausgaben sachlich mit Zahlen, weicht aber auf die internationale Vergleichsfrage aus und vermeidet, die personale Zuspitzung (Pistorius, Klingbeil) direkt zu beantworten.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "90 Mrd. ungefähr letztes Jahr ausgegeben",
+          "990 Mrd. die Amerikaner, die Hälfte davon die Chinesen, 140 Russen — es ist ja nicht so, dass wir zu wenig hätten",
+          "Wir müssen noch mehr tun, um uns verteidigungsfähig zu machen, aber nicht solche Wahnsinnssummen"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht um eine immense Steigerung. Wir haben 90 Mrd. ungefähr letztes Jahr ausgegeben. [...] Nehmen Sie ein Institut, dass das feststellt, 990 Mrd. haben die Amerikaner, die Hälfte davon die Chinesen, 140 Russen, es ist ja nicht so, dass wir zu wenig hätten. Wir haben Rekordzahlen, jetzt schon. Wir müssen noch mehr tun, um uns verteidigungsfähig zu machen, aber nicht solche Wahnsinnssummen.",
+            "timestamp": "00:18:32",
+            "context": "Stegner argumentiert in der Diskussion mit Masala gegen die geplanten Rüstungsausgabensteigerungen mit Bezug auf absolute Zahlen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsbudget",
+          "NATO 2%-Ziel",
+          "Verteidigungsfähigkeit",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "Interne SPD-Toleranz für kritische Debatten",
+        "timestamp_range": "00:19:33 - 00:20:05",
+        "theme_description": "Stegner rechtfertigt die Meinungsverschiedenheiten innerhalb der SPD als normalen Parteienprozess.",
+        "question_asked": "Maischberger verweist darauf, dass SPD-Verteidigungsminister Pistorius Stegner 'Realitätsverweigerung' vorgeworfen hat und fragt, ob Stegner von Genervtheit durch Pistorius spricht.",
+        "question_intent": "Maischberger will verstehen, wie Stegner die interne Konfrontation mit dem eigenen Verteidigungsminister bewertet und ob diese das Manifest delegitimiert.",
+        "position": "Stegner argumentiert, dass die SPD keine institution ist wie der Vatikan, sondern dass Diskussionen miteinander auszuhalten seien. Er unterstreicht, dass die Resonanz des Manifests in der Öffentlichkeit zeigt, dass Menschen sich Sorgen machen mit dem Gefühl, dass Russland militärisch nicht zu besiegen sei. Stegner betont: Die Alternative ist nicht, dass Russland gewinnt, sondern dass die Ukraine nicht verliert und es Verhandlungsalternativen geben könne.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Stegner adressiert die Frage zur internen SPD-Kritik und nimmt diese als normalen Parteienprozess hin, lenkt aber stark ab auf die öffentliche Resonanz und moralisch-emotionale Argumente statt auf die sachliche Debatte mit Pistorius.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Das muss man in der SPD aushalten können",
+          "Wir sind nicht der Vatikan, wir können miteinander diskutieren",
+          "Die Menschen machen sich Sorgen, weil sie das Gefühl haben, militärisch zu besiegen ist Russland nicht",
+          "Wir können dafür sorgen, dass die Ukraine nicht verliert. Das heißt nicht, dass es keine Alternative gibt."
+        ],
+        "quotes": [
+          {
+            "text": "Das muss man in der SPD aushalten können. Wir sind nicht der Vatikan, wir können miteinander diskutieren. Diese Resonanz, die es in der Öffentlichkeit gibt, zeigt, die Menschen machen sich Sorgen, weil sie das Gefühl haben, militärisch zu besiegen ist Russland nicht. Wir können dafür sorgen, dass die Ukraine nicht verliert. D.h. nicht, dass es keine Alternative gibt.",
+            "timestamp": "00:19:33",
+            "context": "Stegner antwortet auf die Frage zur Kritik durch Pistorius und zur internen SPD-Debatte."
+          }
+        ],
+        "related_bundestag_topics": [
+          "SPD Parteidemokratie",
+          "Friedensmanifest Debatte"
+        ]
+      },
+      {
+        "title": "Kontakte zu russischen Gesprächspartnern und Diplomatie",
+        "timestamp_range": "00:25:25 - 00:26:56",
+        "theme_description": "Stegner erklärt seine Begegnungen mit russischen Vertretern und die Rechtfertigung für Gesprächskontakte trotz unterschiedlicher Auffassungen.",
+        "question_asked": "Masala fragt Stegner, ob er private oder offizielle Kontakte zu Russland hatte (im Kontext von Treffen in Baku mit Gazprom-Vertretern und anderen Analysten).",
+        "question_intent": "Masala will klären, ob Stegner in offizieller oder privater Funktion mit russischen Kontakten kommuniziert und zielt dabei auf Bedenken bezüglich Manipulation ab.",
+        "position": "Stegner verteidigt Gespräche mit Gegnern als wichtig zur Informationsbeschaffung. Er argumentiert, dass man sich nicht 'benutzen lassen muss', indem man seine Positionen nicht verändert. Stegner führt drei Funktionen von Gesprächen an: (1) Erkenntnis, was die andere Seite wirklich denkt, (2) Aufdeckung von Veränderungen und (3) Einflussnahme während laufender Kommunikation. Er vergleicht dies mit der Sowjet-Phase und argumentiert, dass diplomatische Verständigung Kriege verhindert habe. Zur Frage privat vs. offiziell: 'Es war insofern privat, dass es niemandem bezahlt hat und es kein Auftrag gab. Natürlich nicht [im Auftrag der Regierung], aber es ist auch nicht privat, ich bin Politiker, wir wollten der russischen Seite vermitteln, wir sind für Gespräche aber nicht für Okkupation.'",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Stegner beantwortet die Frage zu Art und Grund der Kontakte detailliert und subtanziert seine Position mit Funktionen und historischen Vergleichen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Diplomatisch zu reden, diplomatische Einigungen zu finden",
+          "Es hat 3 Bedeutungen: 1. dass man mitkriegt, was die denken, jenseits von dem, was sie in Propagandamitteilungen sagen, 2. um herauszufinden, ob dort Veränderungen stattfinden, 3. Solange geredet wird, kann noch einen gewissen Einfluss [ausgeübt werden]",
+          "Es ist insofern privat, dass es niemandem bezahlt hat und es kein Auftrag gab. [...] Natürlich nicht [Auftrag der Regierung], aber es ist auch nicht privat, ich bin Politiker"
+        ],
+        "quotes": [
+          {
+            "text": "Es hat 3 Bedeutungen, 1. dass man mitkriegt, was die denken, jenseits von dem, was sie in Propagandamitteilungen sagen. Und um herauszufinden, ob dort Veränderungen stattfinden. Solange geredet wird, kann noch einen gewissen Einfluss. Mit Afghanistan wollen wir nicht reden, für die Menschen tun wir dann auch nicht. Ich finde es immer wichtig, dass mit ihnen redet, deren Auffassung man nicht teilt. Das zeigt uns auch, dass es in der Sowjetphase nicht so friedlich war, das hat uns den 3. Krieg erspart. Diplomatisch zu reden, diplomatische Einigungen zufinden.",
+            "timestamp": "00:25:55",
+            "context": "Stegner erklärt seine Positionen zu Gesprächskontakten mit Russland gegenüber Masalas kritischen Nachfragen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Petersburger Dialog",
+          "Diplomatie Russland"
+        ]
+      },
+      {
+        "title": "Begriffsklärung: Wer ist mit 'Trottel' gemeint?",
+        "timestamp_range": "00:30:39 - 00:31:10",
+        "theme_description": "Stegner klärt seine Wortwahl in Bezug auf die Kritik an Waffendiskussionen und adressiert direkt die Frage, ob er Carlo Masala gemeint hat.",
+        "question_asked": "Maischberger fragt direkt: 'Kleine Frage, meinen Sie mit Herrn Masala mit Trottel?' — eine Klarstellung zu Stegners früherer Aussage über 'Trottel', die öffentlich über Waffen sprechen.",
+        "question_intent": "Maischberger will potenziell beleidigenden Sprachgebrauch klären und feststellen, ob Stegner Masalas Fachkompetenz infrage stellt.",
+        "position": "Stegner entkräftet die Interpretation: 'Es geht nicht darum, wer deutscher Nationaltrainer wird. Also erst nicht der Trottel, das wollte ich nur klarstellen.' Er ergänzt, dass er sehr wohl fachliche Meinungen akzeptiere 'viel eher als umgekehrt'. Stegner signalisiert damit, dass seine 'Trottel'-Aussage nicht auf konkrete Experten wie Masala zielt, sondern auf Politiker und Laien, die ohne Fachkompetenz öffentlich Waffendiskussionen führen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Stegner klärt seine Aussage direkt und präzise, indem er die Frage beantwortet und zugleich seine Offenheit gegenüber Fachpositionen betont.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es geht nicht darum, wer deutscher Nationaltrainer wird",
+          "Ich kann sehr wohl fachliche Meinungen akzeptieren",
+          "Viel eher als umgekehrt"
+        ],
+        "quotes": [
+          {
+            "text": "Es geht nicht darum, wer deutscher Nationaltrainer wird. Also erst nicht der Trottel, das wollte ich nur klarstellen. Ich kann sehr wohl fachliche Meinungen akzeptieren. Viel eher als umgekehrt.",
+            "timestamp": "00:30:39",
+            "context": "Maischberger fragt Stegner direkt, ob er mit 'Trottel' Carlo Masala gemeint hat; Stegner klärt auf."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Debattenkultur",
+          "Fachkompetenz Politik"
+        ]
+      },
+      {
+        "title": "Krieg in Nahost: Völkerrecht und Präventivmaßnahmen",
+        "timestamp_range": "00:33:21 - 00:36:29",
+        "theme_description": "Stegner äußert sich zur israelischen Operation gegen den Iran und zu humanitären sowie völkerrechtlichen Aspekten.",
+        "question_asked": "Maischberger fragt Stegner, nachdem Masala seine Position zum Iran-Konflikt dargelegt hat, ob Stegner ähnlich sieht und wie er die Situation bewertet — im Kontext von Gaza, Iran-Atomdrohung und europäischer Diplomatie.",
+        "question_intent": "Maischberger will Stegners Bewertung der Legitimität und Konsequenzen des israelischen Präventivschlags sowie seine Position zu Völkerrecht und Diplomatie im Nahost-Konflikt verstehen.",
+        "position": "Stegner argumentiert differenziert: (1) Deutschland müsse Israels Sicherheit unterstützen, dürfe aber nicht zur Kriegsausweitung beitragen; (2) Deutsche Außenpolitik müsse auf der Seite des Völkerrechts stehen; (3) Der Iran-Angriff sei völkerrechtlich fragwürdig, aber er merkt auch kritisch an, dass das Interesse europäischer Diplomatie oft marginal sei gegenüber US-Interessen. Stegner kritisiert Trump als unzuverlässiger Partner. Er argumentiert, dass Regime-Change-Versuche teuer und gefährlich seien und dass der Iran aktuell signalisiere, zurück an den Verhandlungstisch zu wollen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Stegner adressiert die Fragen zu Völkerrecht und Diplomatie, lenkt aber stark auf Trump-Kritik und europäische Handlungsunfähigkeit ab, statt eine klare Positionierung zu Israel-Iran zu treffen.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir müssen natürlich Israels Sicherheit unterstützen",
+          "Wir dürfen nicht dazu beitragen, dass der Krieg ausgeweitet wird, dass die humanitäre Katastrophe ausgeweitet wird",
+          "Deutschland sollte immer auf der Seite des Völkerrechts sein",
+          "Das hat sich ein schlechtes Geschäft geworden mit Trump",
+          "Regime Change: Das könnte sehr teuer werden"
+        ],
+        "quotes": [
+          {
+            "text": "Wir müssen natürlich Israels Sicherheit unterstützen. Wir dürfen nicht dazu beitragen, dass der Krieg ausgeweitet wird, dass die humanitäre Katastrophe ausgeweitet wird. Die Frage ist schon, ob er das machen können oder nicht. [...] Deutschland sollte immer auf der Seite des Völkerrechts sein. Man sieht an alldem, dass ein schlechtes Geschäft geworden ist mit Trump.",
+            "timestamp": "00:35:58",
+            "context": "Stegner antwortet auf Maischbergers Frage zu seiner Bewertung des Israel-Iran-Konflikts und zu Waffenlieferungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Israel Sicherheit",
+          "Iran Atomprogramm",
+          "Völkerrecht",
+          "Gaza"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Deutschland hat letzte Jahr etwa 90 Milliarden Euro für Verteidigung ausgegeben",
+        "timestamp": "00:18:32"
+      },
+      {
+        "claim": "Die USA geben 990 Milliarden Dollar für Rüstung aus, China etwa die Hälfte davon, Russland 140 Milliarden",
+        "timestamp": "00:18:32"
+      },
+      {
+        "claim": "Die SPD ist immer Friedenspartei gewesen",
+        "timestamp": "00:13:41"
+      },
+      {
+        "claim": "Rolf Mützenich forderte vor einem Jahr Waffenstillstandsgespräche und wurde dafür heftig beschimpft, während jetzt Franzosen und Engländer dasselbe fordern",
+        "timestamp": "00:15:43"
+      },
+      {
+        "claim": "Mit den Sowjets wurde verhandelt, während gleichzeitig Waffen stationiert wurden",
+        "timestamp": "00:15:43"
+      }
+    ]
+  }
+}

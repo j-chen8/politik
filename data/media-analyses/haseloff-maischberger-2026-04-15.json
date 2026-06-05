@@ -1,0 +1,240 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtNzkzZTJiMDQtMjBkMy00NDNjLTliZGMtMmNjODUyOTNlMjI1",
+    "video_id": "maischberger-2026-04-15",
+    "politician": "Reiner Haseloff",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "d76c4e62d05ef338",
+    "transcript_chars": 54444,
+    "caption_lines": 1983,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21843,
+    "tokens_out": 5568,
+    "cost_usd": 0.0198732,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "themenwechsel": 1,
+      "teilweise_antwort": 4
+    },
+    "generated_at": "2026-06-05T12:36:41.239Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Reiner Haseloff (CDU, ehemaliger Ministerpräsident Sachsen-Anhalt) diskutiert mit Sandra Maischberger über die Bundesregierung, Landtagswahlen in Sachsen-Anhalt und die AfD-Konkurrenz. Er verteidigt seine politische Glaubwürdigkeit gegen Vorwürfe der Spielchen bei Koalitionsverhandlungen und weist auf wirtschaftliche Erfolge während seiner Amtszeit hin. Der Ton ist selbstbewusst und sachlich.",
+    "themes": [
+      {
+        "title": "Wirtschaftsministerin Reiche und Koalitionskonflikte",
+        "timestamp_range": "01:01:30 - 01:03:35",
+        "theme_description": "Haseloff wird gefragt, ob die öffentliche Kritik von Wirtschaftsministerin Reiche (aus der Koalition) gegen den Finanzminister glaubwürdig ist oder dem Regierungshandeln schadet.",
+        "question_asked": "Sandra Maischberger fragt zunächst, ob Haseloff froh ist, nicht selbst Wirtschaftsminister im Kabinett Merz geworden zu sein. Dann wirft sie vor, dass Wirtschaftsministerin Reiche gegen den Koalitionspartner (Finanzminister) öffentlich hart streitet und sagt, alles, was er sagt, sei \"Mist\", und fragt, ob das der Regierung hilft (01:02:01-01:02:31).",
+        "question_intent": "Maischberger möchte verstehen, ob und wie Haseloff die Konflikte innerhalb der Koalition bewertet und ob sie schaden.",
+        "position": "Haseloff erklärt, dass Reiche \"eine sehr selbstbewusste, resolute Frau mit viel Erfahrung\" ist. Er argumentiert, dass wenn Klingbeil (Vizekanzler) Forderungen stellt, \"wo der Vizekanzler genau weiß, das ist nicht umzusetzen innerhalb dieser Koalition\", dann fragt sich Haseloff, \"warum dieser Aufschlag mit all den Forderungen ... in den Raum geschickt wurde, um eine Reaktion der Wirtschaftsministerin zu erzeugen.\" Er deutet also an, dass die Konflikte provoziert sind. Zur inhaltlichen Frage (Übergewinnsteuer, Energiesteuer, Prämie) sagt er: \"Das will ich nicht kommentieren.\" Er meint nur, das \"bringt nichts, für den Osten sowieso nicht\".",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Haseloff lenkt die Debatte von der Frage, ob harte Konflikte schaden, auf die Frage um, warum Klingbeil provokative Forderungen stellt. Er weicht also der direkten Bewertung aus und verlagert die Verantwortung auf den SPD-Vizekanzler. Die inhaltliche Frage kommentiert er bewusst nicht.",
+        "quotes": [
+          {
+            "text": "Sie ist eine sehr selbstbewusste, resolute Frau mit viel Erfahrung in der Politik und der Wirtschaft. Der Koalitionspartner weiß genau, was ordnungspolitisch mit dem Partner zu machen ist.",
+            "timestamp": "01:02:31",
+            "context": "Haseloff verteidigt Wirtschaftsministerin Reiche gegen die Kritik der öffentlichen Konflikte."
+          },
+          {
+            "text": "Dann frage ich mich, warum dieser Aufschlag mit all den Forderungen, die Klingbeil gemacht hat, in den Raum geschickt wurde, um eine Reaktion der Wirtschaftsministerin zu erzeugen.",
+            "timestamp": "01:03:04",
+            "context": "Haseloff deutet an, dass SPD-Vizekanzler Klingbeil die Konflikte provoziert."
+          }
+        ],
+        "concrete_statements": [
+          "Klingbeil stellt bewusst nicht-umzusetzende Forderungen, um Reaktionen zu provozieren",
+          "Reiche ist eine erfahrene und kompetente Ministerin",
+          "Die 1000-Euro-Prämie bringt besonders für den Osten nichts"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Energiepolitik",
+          "Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "1000-Euro-Bonus für Arbeitnehmer und Glaubwürdigkeit",
+        "timestamp_range": "01:04:09 - 01:06:19",
+        "theme_description": "Haseloff wird zur Glaubwürdigkeit der Bundesregierung befragt, die Unternehmer zur Zahlung eines 1000-Euro-Bonus auffordert, während Sachsen-Anhalt diesen nicht an die eigenen Mitarbeiter zahlt.",
+        "question_asked": "Sandra Maischberger fragt, wie glaubwürdig es ist, wenn die Bundesregierung von Unternehmern verlangt, was sie selbst nicht tut (dass Sachsen-Anhalt unter der Führung von Haseloffs Nachfolger nicht zahlt), und hakt nach, indem sie darauf hinweist, dass auch viele Unternehmer eine Ausrede haben, weil sie das Geld nicht haben (01:05:17-01:06:19).",
+        "question_intent": "Maischberger möchte Haseloff zur Heuchelei und zum fehlenden Vorbild verpflichten, wenn der Staat die Privatwirtschaft zu etwas auffordert, das er selbst nicht leisten kann.",
+        "position": "Haseloff sagt, dass Sachsen-Anhalt ein kleines Land mit kleinem Budget ist (13-15 Mrd. Euro pro Jahr), und eine Zahlung von 0,5 Mrd. für alle Angestellten aus dem Budget nicht möglich ist. Er gibt zu, dass dies \"nicht gut\" ist und \"ein falsches Signal\" setzt, betont aber, dass das Thema ein Nebenthema sei. Er argumentiert, dass dies auch im privaten Sektor nicht realisierbar ist. Am Ende gibt er zu: \"Das war am Wochenende keine besonders gute Performance bezüglich der Kommunikation.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haseloff erklärt seine Position zum Budget, gesteht aber nur indirekt ein, dass die Glaubwürdigkeitsfrage berechtigt ist. Er charakterisiert es als Nebenthema und räumt letztlich eine Kommunikationsschwäche ein, beantwortet aber nicht wirklich, wie man diese Glaubwürdigkeitsfalle löst.",
+        "quotes": [
+          {
+            "text": "Da weiß man, dass man im öffentlichen Sektor bezüglich der Nöte der kleinen Verdiener und Pendler dort nicht ein Signal setzen kann, was in der Wirtschaft nicht realisiert werden kann.",
+            "timestamp": "01:05:48",
+            "context": "Haseloff erklärt die budgetären Zwänge Sachsen-Anhalts."
+          },
+          {
+            "text": "Das war am Wochenende keine besonders gute Performance bezüglich der Kommunikation.",
+            "timestamp": "01:06:49",
+            "context": "Haseloff gesteht ein Kommunikationsproblem bei der Bonus-Frage ein."
+          }
+        ],
+        "concrete_statements": [
+          "Sachsen-Anhalt kann den 1000-Euro-Bonus nicht aus dem Budget zahlen",
+          "Finanzielle Mittel fehlen für ein Vorbild-Signal im öffentlichen Sektor",
+          "Die Kommunikation rund um das Thema war schwach"
+        ],
+        "related_bundestag_topics": [
+          "Konjunkturstützung",
+          "Energiekosten",
+          "Tarifpolitik"
+        ]
+      },
+      {
+        "title": "Glaubwürdigkeit und Koalitionswechsel Sachsen-Anhalt",
+        "timestamp_range": "01:08:21 - 01:11:02",
+        "theme_description": "Haseloff wird mit Vorwürfen der politischen Glaubwürdigkeitsverletzung bei seinem Koalitionswechsel konfrontiert.",
+        "question_asked": "Sandra Maischberger bezieht sich auf Haseloffs frühere Aussage, er trete an und bleibe dabei, stellt dann fest, dass sein Nachfolger sagte, er wolle keine politischen Spielchen, und wirft Haseloff vor, die politische Glaubwürdigkeit durch Spielchen massiv beschädigt zu haben (01:08:53).",
+        "question_intent": "Maischberger möchte verstehen, wie Haseloff die Diskrepanz zwischen seinem Versprechen der Kontinuität und dem tatsächlichen Koalitionswechsel rechtfertigt und ob er Verantwortung für den Glaubwürdigkeitsverlust trägt.",
+        "position": "Haseloff argumentiert, dass sein Demokratieverständnis darin besteht, Zugesagtes einzuhalten. Er behauptet, die CDU Sachsen-Anhalt stehe für Glaubwürdigkeit und lehnt ab, dass diese beschädigt wurde (\"Das glaube ich nicht, das wird auch im Land anders gesehen\"). Er erklärt, dass die veränderte politische Lage mit der AfD im Parlament neue Koalitionskonstellationen notwendig machte, die früher unmöglich waren. Er betont, dass der Wechsel \"sehr gut gelungen\" war und dass er die Stabilität sicherstellen musste.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haseloff adressiert die Kritik, indem er sein Handeln als notwendige Reaktion auf veränderte Bedingungen (AfD-Stärke) deutet und Demokratieprozesse erwähnt. Allerdings weicht er der direkten Frage nach der Glaubwürdigkeitsverletzung aus, indem er das Thema in die Breite der Bundestagsdynamik verlagert, statt konkret zu erklären, warum sein \"Nein\" zu einem \"Ja\" wurde.",
+        "quotes": [
+          {
+            "text": "Das Demokratieverständnis, das ich habe, ist, dass ich das, was ich zugesagt habe, auch einhalte.",
+            "timestamp": "01:08:53",
+            "context": "Haseloff antwortet auf Maischbergers Vorwurf, er habe seine Glaubwürdigkeit beschädigt."
+          },
+          {
+            "text": "Das glaube ich nicht, das wird auch im Land anders gesehen.",
+            "timestamp": "01:09:24",
+            "context": "Haseloff reagiert auf die konkrete Anschuldigung, die CDU habe die politische Glaubwürdigkeit durch Spielchen massiv beschädigt."
+          }
+        ],
+        "concrete_statements": [
+          "Die CDU Sachsen-Anhalt steht für Glaubwürdigkeit",
+          "Der Koalitionswechsel war notwendig wegen der veränderten Rolle der AfD in den Parlamenten",
+          "Alte Koalitionskonstellationen sind unmöglich geworden",
+          "Der Wechsel ist sehr gut gelungen"
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsbildung",
+          "Föderalismus",
+          "Landtagswahlen Sachsen-Anhalt"
+        ]
+      },
+      {
+        "title": "Arbeitsmarkt-Erfolge Sachsen-Anhalts und AfD-Wahlergebnisse",
+        "timestamp_range": "01:12:35 - 01:15:11",
+        "theme_description": "Haseloff wird gefragt, warum die AfD trotz guter Arbeitsmarkt-Zahlen in seiner Zeit so stark ist, wenn die Arbeitslosigkeit von 25% auf 8% sank.",
+        "question_asked": "Sandra Maischberger fragt, warum die AfD-Zahlen trotzdem so hoch sind, wenn unter Haseloff die Arbeitslosenquote von 25% (1996) auf 12% bei Amtsantritt und dann auf 8% bei Ausscheiden sank (01:13:35).",
+        "question_intent": "Maischberger möchte wissen, warum wirtschaftliche Erfolge nicht vor der AfD-Stärke schützen und wo das Vertrauen in Institutionen abhanden gekommen ist.",
+        "position": "Haseloff argumentiert, dass die Arbeitsmarkt-Zahlen und AfD-Unterstützung nicht miteinander korrelieren (\"Ich glaube, dass korreliert gar nicht aneinander\"). Er führt das Phänomen auf mangelndes Vertrauen in Institutionen zurück, die sich ausgeweitet haben (ohne dass europäische Länder dies aufweisen). Er erwähnt Probleme bei der Machtverteilung zwischen Bund und Ländern und den Bundesrat, sowie lange Entscheidungsprozesse. Er erklärt auch, dass es lange gedauert habe, die Energiewende-Strategie nach dem Ukrainekrieg zu überdenken, und kritisiert die Abgabe von Zuständigkeiten an die EU.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haseloff erkennt die Frage an und bietet Erklärungen (Institutionenvertrauen, föderale Strukturen, lange Entscheidungsprozesse), weicht aber in gänzlich neue Themen aus (Energiewende, EU-Kompetenzen, Automobilbranche). Er erklärt, warum gute Zahlen nicht vor AfD-Erfolg schützen, antwortet aber nicht konkret auf die Frage nach dem Vertrauen in Institutionen in Sachsen-Anhalt speziell.",
+        "quotes": [
+          {
+            "text": "Ich glaube, dass korreliert gar nicht aneinander. Die Arbeitsmarktthematik liegt an einer ganzen Reihe von Thematiken. Das Vertrauen in die Institution.",
+            "timestamp": "01:13:35",
+            "context": "Haseloff antwortet auf Frage nach der Diskrepanz zwischen guten Arbeitsmarkt-Zahlen und hohen AfD-Zahlen."
+          },
+          {
+            "text": "Alle Prozesse dauern bei uns relativ lange. Nicht nur im Bundestag, auch im Bundesrat. Es gibt nur ein bedingt schnelles Krisenmanagement.",
+            "timestamp": "01:14:06",
+            "context": "Haseloff erklärt das Vertrauensproblem mit Entscheidungsverzögerungen im föderalen System."
+          }
+        ],
+        "concrete_statements": [
+          "Arbeitsmarkt-Entwicklung korreliert nicht mit AfD-Stärke",
+          "Mangelendes Vertrauen in Institutionen ist der Grund für AfD-Erfolge",
+          "Föderale Entscheidungsprozesse sind zu lange",
+          "Kompetenzen wurden zu viel an die EU abgegeben"
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Föderalismus",
+          "Institutionenvertrauen",
+          "Energiewende"
+        ]
+      },
+      {
+        "title": "AfD-Wahlprogramm und Gefühl vor September-Wahlen",
+        "timestamp_range": "01:16:12 - 01:17:16",
+        "theme_description": "Haseloff wird gefragt, mit welchen Gefühlen er vor den Septemberwahlen vor dem Fernseher sitzen wird, angesichts der AfD-Stärke.",
+        "question_asked": "Sandra Maischberger fragt, mit welchen Gefühlen Haseloff im September vor dem Fernseher sitzen wird und ob das Rennen offen ist (01:16:12).",
+        "question_intent": "Maischberger möchte Haseloffs persönliche Sorgen und Erwartungen für die Landtagswahl erfahren.",
+        "position": "Haseloff sagt, er wird nicht vor dem Fernseher sitzen, sondern aktiv Wahlkampf führen und seinen Nachfolger im eigenen Wahlkreis unterstützen. Er sagt: \"Es wird gekämpft.\" Er verweist darauf, dass die Quote vor 5 Jahren ähnlich war, und betont: \"Das Rennen ist offen. Das müssen Sie sagen.\" Er vergleicht die Situation mit dem bundesweiten Trend, dass \"die SPD auf einem Niveau\" ist, \"dass sie sich selbst auch die Frage beantworten muss, braucht man sie.\" Er stellt klar: \"Wir brauchen Sie als Koalitionspartner.\" Er meint auch, die Abwanderung von Wählern ging nicht zur CDU, sondern \"eher die Parteien sind nicht mehr da.\" Abschließend: \"Es kann nicht die Aufgabe der CDU sein, die Demokratie zu retten.\"",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Haseloff antwortet auf die persönliche Frage, indem er sein aktives Engagement und seinen Optimismus erklärt (Rennen ist offen). Aber auf die eigentliche emotionale Frage (mit welchen Gefühlen) antwortet er nicht; stattdessen pivotiert er zu Kampfrhetorik und verlagert die Diskussion auf die Schwäche der SPD und die CDU-Rolle.",
+        "quotes": [
+          {
+            "text": "Ich werde nicht vor dem Fernseher sitzen, ich führe einen aktiven Wahlkampf. Ich habe einen Wahlkreis und will sehen, dass ich meinen Nachfolger im Wahlkreis unterstütze, dass er eine Chance hat.",
+            "timestamp": "01:16:12",
+            "context": "Haseloff antwortet auf Frage nach seinen Gefühlen vor den Septemberwahlen."
+          },
+          {
+            "text": "Das Rennen ist offen. Das müssen Sie sagen.",
+            "timestamp": "01:16:45",
+            "context": "Haseloff betont die Offenheit der Wahl, vergleicht mit früheren Umfragen."
+          },
+          {
+            "text": "Es kann nicht die Aufgabe der CDU sein, die Demokratie zu retten.",
+            "timestamp": "01:17:16",
+            "context": "Haseloff definiert die Grenzen der CDU-Verantwortung gegenüber der AfD-Welle."
+          }
+        ],
+        "concrete_statements": [
+          "Haseloff führt aktiv Wahlkampf",
+          "Die Wahl ist offen",
+          "Die SPD muss ihre Notwendigkeit selbst begründen",
+          "Die CDU kann nicht allein die Demokratie retten"
+        ],
+        "related_bundestag_topics": [
+          "Landtagswahlen Sachsen-Anhalt",
+          "CDU-Strategie",
+          "Koalitionsparteien"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Arbeitslosenquote in Wittenberg 1996 betrug 25%",
+        "timestamp": "01:12:35"
+      },
+      {
+        "claim": "Unter Haseloff bei Amtsantritt lag die Arbeitslosenquote bei 12%",
+        "timestamp": "01:13:05"
+      },
+      {
+        "claim": "Unter Haseloff bei Ausscheiden lag die Arbeitslosenquote bei 8%",
+        "timestamp": "01:13:05"
+      },
+      {
+        "claim": "Die aktuelle Arbeitslosenquote in Sachsen-Anhalt ist etwa gleich wie in NRW (siebtgrößte Volkswirtschaft Europas)",
+        "timestamp": "01:13:35"
+      },
+      {
+        "claim": "Sachsen-Anhalt hat ein jährliches Budget von 13-15 Mrd. Euro",
+        "timestamp": "01:05:48"
+      },
+      {
+        "claim": "Die Zahlung des 1000-Euro-Bonus an alle Angestellten würde Sachsen-Anhalt etwa 0,5 Mrd. Euro kosten",
+        "timestamp": "01:05:48"
+      }
+    ]
+  }
+}

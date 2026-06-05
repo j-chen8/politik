@@ -1,0 +1,362 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-11-september-2025-100",
+    "video_id": "illner-2025-09-11",
+    "politician": "Jens Spahn",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "4b4b7addffb602ec",
+    "transcript_chars": 51658,
+    "caption_lines": 2630,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21866,
+    "tokens_out": 8725,
+    "cost_usd": 0.0261964,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 12,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.510Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jens Spahn, Fraktionsvorsitzender der Union, diskutiert in Maybrit Illners Sendung zentrale Fragen zum Sozialstaat, Reformen und der Wirtschaft. Seine Haltung ist geprägt von der Forderung nach Wachstum als Voraussetzung für Sozialleistungen, kritischen Tönen zu Missbrauch im Bürgergeld-System und der Bettonung von Gerechtigkeitsfragen. Der Ton ist sachlich, teilweise konfrontativ gegenüber linken Positionen, aber koalitionsorientiert.",
+    "themes": [
+      {
+        "title": "Reformen ohne Kürzungen: Wachstum statt Sparmaßnahmen",
+        "timestamp_range": "00:05:02 - 00:06:41",
+        "theme_description": "Spahn antwortet auf die Frage, ob man ohne Kürzungen reformieren kann, mit der Forderung nach Wachstum als primäre Lösung statt Sparmaßnahmen.",
+        "question_asked": "Maybrit Illner fragt Jens Spahn, ob es überhaupt Reformen geben wird, wenn Friedrich Merz nicht bereit ist zu kürzen oder zu schleifen, wie es Gerhard Schröder tat.",
+        "question_intent": "Illner will wissen, ob die Koalition zu feige ist, echte Reformen durchzuführen, wenn der Bundeskanzler öffentlich Kürzungen ausschließt.",
+        "position": "Spahn betont, dass es zwei Baustellen gibt: erstens die Rückkehr zu Wachstum, die Grundvoraussetzung für funktionierende Sozialsysteme, und zweitens Reformen der sozialen Sicherungssysteme, um sie demographiefest zu machen. Er verweist auf die Zehnerjahre als Phase mit Wachstum und funktionierenden Versicherungen. Arbeitskosten müssen runter, und es braucht schnelle Maßnahmen bei Energiekosten.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn antwortet auf die zugrundeliegende Frage, ob ohne Kürzungen reformiert werden kann, indem er eine Alternative anbietet (Wachstum statt Sparen). Er adressiert aber nicht direkt, wie eine Reform konkret ohne Leistungskürzungen funktioniert, sondern verschiebt das Problem auf die Notwendigkeit von Wachstum.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir brauchen wieder Wachstum, das ist die Voraussetzung für funktionierende Sozialsysteme.",
+          "Die Arbeitskosten müssen runter.",
+          "Soziale Sicherungssysteme müssen demographiefest gemacht werden."
+        ],
+        "quotes": [
+          {
+            "text": "Aus meiner Sicht hat es zwei Baustellen: wir brauchen wieder Wachstum, das ist die Voraussetzung für funktionierende Sozialsysteme, damit wir es uns leisten können.",
+            "timestamp": "00:05:02",
+            "context": "Antwort auf Illners Frage, ob Reformen ohne Kürzungen möglich sind."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftswachstum",
+          "Arbeitsmarkt",
+          "Rentenversicherung",
+          "Pflegeversicherung",
+          "Energiewende"
+        ]
+      },
+      {
+        "title": "Ursachen der Sozialkassen-Defizite",
+        "timestamp_range": "00:17:15 - 00:19:17",
+        "theme_description": "Spahn erklärt die strukturellen Gründe für Defizite in den Sozialkassen und betont die Notwendigkeit von Wachstum und Kostensenkung.",
+        "question_asked": "Maybrit Illner fragt, was dazu geführt hat, dass die Sozialkassen nicht mehr reichen, trotz staatlicher Zuschüsse.",
+        "question_intent": "Illner will die Ursachen der Kassenlöcher in Gesundheit, Pflege und Rente von Spahn erläutert bekommen.",
+        "position": "Spahn identifiziert zwei Hauptfaktoren: Erstens schrumpft die Wirtschaft im dritten Jahr in Folge, was Einnahmen reduziert. Zweitens steigen die Kosten in der Pflege, weil mehr Menschen pflegebedürftig sind. Er hebt hervor, dass Deutschland ein ambitioniertes Versprechen hat – jeder Zugang zu medizinischen Innovationen ab Zulassungstag, was in keinem anderen Land so existiert. Zur Reformabfolge sagt er: Schulden allein funktionieren nicht, man braucht schnellere Planung, höheres Potenzial-Wachstum durch bessere Rahmenbedingungen, insbesondere niedrigere Energiekosten, und Bürokratieabbau.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn beantwortet die Frage zu den Ursachen direkt: Wirtschaftsschrumpfung und steigende Pflegekosten durch Demographie. Er ergänzt mit strukturellen Problemen (hochambitionierte medizinische Versprechen) und skizziert eine Reformlogik.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Die Wirtschaft schrumpft im dritten Jahr in Folge.",
+          "Die Kosten in der Pflege steigen, weil wir mehr Menschen haben, die pflegebedürftig sind.",
+          "Schulden alleine machen das nicht.",
+          "Wir brauchen schnellere Planung und Beschleunigung des Wachstumspotenzials.",
+          "Die Energiekosten sind zu hoch."
+        ],
+        "quotes": [
+          {
+            "text": "Zwei Faktoren, die Mitgründer schon besprochen haben, die Wirtschaft schrumpft im dritten Jahr in Folge. Die Kosten in der Pflege steigen, weil wir mehr Menschen haben, die pflegebedürftig sind.",
+            "timestamp": "00:17:15",
+            "context": "Antwort auf die Frage nach Ursachen der Sozialkassen-Defizite."
+          },
+          {
+            "text": "Schulden alleine machen, das geht nicht. Das ist Wachstum auf Pump.",
+            "timestamp": "00:17:15",
+            "context": "Klarstellung, dass reine Neuverschuldung keine Lösung ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Konjunkturpolitik",
+          "Demographie",
+          "Gesundheitswesen",
+          "Pflegefinanzierung",
+          "Energiepolitik"
+        ]
+      },
+      {
+        "title": "Unerfüllte Wahlversprechen und Stimmungsumschwung",
+        "timestamp_range": "00:19:58 - 00:22:13",
+        "theme_description": "Spahn wird auf das Versprechen der Regierung nach Stimmungsumschwung angesprochen und muss eingestehen, dass dies nicht erfüllt wurde.",
+        "question_asked": "Maybrit Illner fragt Jens Spahn, warum die Regierung versprochen oder geglaubt hat zu versprechen, dass sich die Stimmung im Sommer ändert, wenn absehbar war, dass wirtschaftliche Verbesserungen nicht schnell kommen.",
+        "question_intent": "Illner will Spahn auf das Versprechen Merz' von den '100 Tagen' und einer neuen Stimmung festlegen und die Diskrepanz zwischen Ankündigung und Realität aufzeigen.",
+        "position": "Spahn gibt zunächst einen Ausweichversuch (Verteidigungspolitik als andere Politikfelder), wird dann aber direkter. Er räumt ein: 'Niemand hat versprochen, dass man nach 100 Tagen im Paradies ist. Der Teil ist nicht gelungen, da möchte ich nicht drumherum reden, dass es nicht gelungen, die Stimmung ist nicht besser.' Er betont, dass Wachstum der entscheidende Faktor ist und dass die Menschen es im Portmonee spüren müssen. Die Koalition muss den Menschen Zuversicht geben, besonders in der Automobilindustrie.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn gesteht das Scheitern des Stimmungsversprechens ein, adressiert aber die Grund-Frage (warum wurde es dann versprochen?) nicht substanziell. Er rechtfertigt mit Verweis auf Wachstum als langfristiger Lösung.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Der Teil ist nicht gelungen, die Stimmung ist nicht besser.",
+          "Aus meiner Sicht ist Wachstum die entscheidende Faktor.",
+          "Die Menschen müssen es in ihrem Portmonee spüren."
+        ],
+        "quotes": [
+          {
+            "text": "Niemand hat versprochen, dass man nach 100 Tagen im Paradies ist. Der Teil ist nicht gelungen, da möchte ich nicht drumherum reden, dass es nicht gelungen, die Stimmung ist nicht besser.",
+            "timestamp": "00:20:23",
+            "context": "Direkte Anerkennung, dass das Stimmungsversprechen nicht erfüllt wurde."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Konjunktur",
+          "Bürgerbeteiligung",
+          "Vertrauensfrage Regierung"
+        ]
+      },
+      {
+        "title": "Bürgergeld-Reform: Missbrauch und Gerechtigkeitsfrage",
+        "timestamp_range": "00:22:13 - 00:37:50",
+        "theme_description": "Spahn argumentiert für Bürgergeld-Reformen unter dem Gesichtspunkt von Gerechtigkeit und Missbrauchs-Bekämpfung, nicht Kostenersparnis.",
+        "question_asked": "Maybrit Illner und Heidi Reichinnek diskutieren Spahns Aussage zu Bürgergeld. Illner fragt nach der Logik von Reformen bei fehlenden Kosteneinsparungen.",
+        "question_intent": "Illner will wissen, worauf sich Union und SPD beim Bürgergeld einigen werden, und ob die Einsparungsziele realistisch sind.",
+        "position": "Spahn stellt klar, dass es ihm bei der Bürgergeld-Thematik um Gerechtigkeit geht, nicht um Sparen. Er argumentiert, dass es ungerecht ist, wenn jemand arbeiten könnte aber nicht will und trotzdem volle staatliche Unterstützung erhält. Die Koalition hat im Vertrag vereinbart: 'Wer arbeiten kann, sollte arbeiten'. Er kritisiert das System für fehlende Kontrolle (Mietkosten werden im ersten Jahr nicht überprüft), was zu Missbrauch führt, etwa bei ukrainischen Flüchtlingen. Spahn nennt konkrete Probleme: bandenmäßig organisierter Missbrauch durch europäische Freizügigkeit (Arbeitstourismus mit Aufstockung), und fehlendes Kontroll-Sanktionsregime. Er spricht von Missbrauch bei Energiekosten (10 % Sparpotenzial). Mit der SPD sollen folgende Vereinbarungen gelten: Vorrang der Vermittlung vor Qualifikation – angebotene Arbeit muss angenommen werden, nicht erst Qualifizierungsmaßnahmen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet substanziell auf die Bürgergeld-Frage: Er definiert die Position als Gerechtigkeitsfrage (nicht Sparen), benennt konkrete Probleme (Missbrauch, Kontrolllücken, Arbeitsanreize) und nennt Koalitions-Vereinbarungen (Vermittlung vor Qualifikation). Die Antwort ist substantiell und direkt.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Wer arbeiten kann, sollte arbeiten.",
+          "Das sogenannte Bürgergeld ist eine Vertrauensfrage in diesem Land.",
+          "Ein Großteil der Bürgergeldempfänger ist nicht Deutsch.",
+          "Es gibt bandenmäßig organisiertes Missbrauch-System durch europäische Freizügigkeit.",
+          "Sanktionsregime muss verändert werden.",
+          "Bei Energiekosten können 8-10 % gespart werden durch richtige Anreize.",
+          "Vorrang der Vermittlung vor Qualifikation – das ist geändert worden."
+        ],
+        "quotes": [
+          {
+            "text": "Der Punkt ist ein anderer, es ist eine Frage der Gerechtigkeit... Wer in den letzten Monaten in Deutschland unterwegs ist, spürt, dass eine der größten Vertrauensverluste das sogenannte Bürgergeld ist.",
+            "timestamp": "00:33:22",
+            "context": "Definierung der Bürgergeld-Reform als Gerechtigkeitsfrage."
+          },
+          {
+            "text": "Es gibt viele aufstocken, nicht alle davon, aber mittlerweile ein bandenmäßig organisiertes System. Durch europäischeFreizügigkeit, arbeiten hier ein paar Stunden, wird aufgestockt, Kindergeld beantragt, das ist Missbrauch.",
+            "timestamp": "00:33:22",
+            "context": "Konkrete Beschreibung von Missbrauch im System."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitsmarktpolitik",
+          "Sozialleistungen",
+          "Gerechtigkeitsfrage",
+          "Migration und Arbeitsmarkt",
+          "Koalitionsverhandlungen"
+        ]
+      },
+      {
+        "title": "Vermögensverteilung und Vermögensteuer",
+        "timestamp_range": "00:41:22 - 00:49:19",
+        "theme_description": "Spahn erörtert die Problematik ungleicher Vermögensverteilung, lehnt aber derzeit Vermögensteuer ab und setzt auf Vermögensbildung.",
+        "question_asked": "Heidi Reichinnek spricht von Vermögensungleichheit und fragt, was die Koalition dagegen tun wird. Maybrit Illner öffnet die Tür für eine Vermögensteuer.",
+        "question_intent": "Die Moderatorin will von Spahn wissen, ob die Union bereit ist, die Vermögensverteilung durch Besteuerung zu verändern.",
+        "position": "Spahn räumt ein, dass Vermögensverteilung ungerecht ist, widerspricht aber der Vermögensteuer zunächst implizit ('Nicht für eine Vermögensteuer, erst mal ist vielleicht schon eine Erkenntnis, dass sich dieses Problem auch als solches sehe.'). Er betont, dass es zunächst um Vermögensbildung für Menschen ohne Vermögen gehen muss. Der DAX steigt, Deutsche haben wenig davon. Die andere Frage ist, wie man größere Gerechtigkeit herstellen kann. Falls ein Verfassungsgerichtsurteil kommt, halten sich die nicht die Ohren zu. Später, bei der Steuerreform-Diskussion, betont Spahn: 'Jetzt ist nicht die Zeit für Steuererhöhungen' – die Reformabfolge ist: investieren, beschleunigen, Wachstum und Standort stärken, erst dann Sozialstaatsreformen, dann Steuerreform.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn anerkennt das Vermögensungleichheits-Problem, weicht aber bei konkreten Lösungen (Vermögensteuer) aus, indem er zuerst Vermögensbildung priorisiert und die Reformabfolge betont. Er lässt eine zukünftige Öffnung offen ('Falls ein Urteil kommt'), adressiert aber nicht klar, ob eine Vermögensteuer jetzt oder später kommt.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Bei der Vermögensverteilung stimme ich zu, dass diese nicht fair ist.",
+          "Der DAX steigt immer weiter, die Deutschen haben wenig davon.",
+          "Zuerst Vermögensbildung für Menschen ohne Vermögen.",
+          "Die Reformabfolge: investieren, Wachstum, Sozialstaatsreformen, dann Steuerreform.",
+          "Jetzt ist nicht die Zeit für Steuererhöhungen."
+        ],
+        "quotes": [
+          {
+            "text": "Bei der Vermögensverteilung, dass diese nicht fair ist, da stimme ich zu. Aber der zweite Teil ist, was machen wir dagegen, das erste ist, bei den niedrigen Vermögen oder gar keinem Vermögen, mithelfen, dass Vermögensbildung stattfinden kann.",
+            "timestamp": "00:41:52",
+            "context": "Anerkennung des Problems mit Gegenposition zu Vermögensteuer."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Vermögensteuer",
+          "Erbschaftsteuer",
+          "Vermögensbildung",
+          "Steuerpolitik",
+          "Einkommenverteilung"
+        ]
+      },
+      {
+        "title": "Systemdiskurs: Marktwirtschaft vs. Sozialismus",
+        "timestamp_range": "00:53:10 - 00:54:29",
+        "theme_description": "Spahn verteidigt das marktwirtschaftliche System gegen Kritik von Heidi Reichinnek und fragt nach deren Systemalternative.",
+        "question_asked": "Heidi Reichinnek kritisiert die Ergebnisse der Marktwirtschaft (Niedriglohnsektor, Ungleichheit). Spahn fragt, ob die Linke ein anderes System will.",
+        "question_intent": "Spahn will Reichinnek festlegen, ob die Linke den Kapitalismus ablehnt und für einen anderen Systemtyp plädiert.",
+        "position": "Spahn argumentiert, dass Deutschland ein reiches Land ist, weil es eine Marktwirtschaft hat. Er verweist auf die historischen Misserfolge des Sozialismus (Verarmung, Umweltverschmutzung, Bespitzelung, Inhaftierung). Er kritisiert scharf: Auf Linken-Parteitagen wird unter Applaus gesagt, 'Millionäre sollen erschossen werden', und er nimmt Bezug auf ein Attentat in den USA, über das sich Leute aus Reichinneks Bundestagsbüro freuten. Er stellt die Systemfrage: 'Sie möchten ein anderes System, Sie wollen Sozialismus. Das wird bei Ihnen nicht besser funktionieren, als auch schon in der Vergangenheit. Wir einigen uns auf das System, dass der Menschen Wohlstand gebracht hat.'",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Spahn antwortet nicht auf die sachliche Kritik an Niedriglöhnen oder Ungleichheit, sondern weicht aus, indem er einen grundsätzlichen Systemkonflikt aufmacht und die Linke in eine extreme ideologische Ecke stellt (Sozialismus, Gewaltandrohung). Das ist ein klassischer Pivot zur Gegenkritik.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "Ideologische Differenzen zwischen Marktwirtschaft und Sozialismus; Extremismus-Vorwürfe gegen die Linke",
+        "evasion_note": "Spahn weicht sachlichen Fragen zur Armutsfestigkeit von Löhnen aus, indem er zum Systemdiskurs pivotiert.",
+        "concrete_statements": [
+          "Wir einigen uns auf das System, dass der Menschen Wohlstand gebracht hat.",
+          "Auf ihrem Parteitag wird unter Applaus gesagt: Millionäre sollen erschossen werden.",
+          "Sie möchten ein anderes System, Sie wollen Sozialismus."
+        ],
+        "quotes": [
+          {
+            "text": "Sie möchten ein anderes System, Sie wollen Sozialismus. Das wird bei Ihnen nicht besser funktionieren, als auch schon in der Vergangenheit, wir einigen uns auf das System, dass der Menschen Wohlstand gebracht hat.",
+            "timestamp": "00:53:47",
+            "context": "Antwort auf Reichinneks Kapitalismus-Kritik."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wirtschaftssysteme",
+          "Ideologische Positionierungen",
+          "Marktwirtschaft",
+          "Einkommenspolitik"
+        ]
+      },
+      {
+        "title": "Versicherungsfremde Leistungen und Kassenstabilität",
+        "timestamp_range": "00:56:25 - 00:57:21",
+        "theme_description": "Spahn wird auf die Klage der Krankenkassen angesprochen, die 10 Mrd. Euro für versicherungsfremde Leistungen zurückverlangen.",
+        "question_asked": "Maybrit Illner fragt, wie Spahn auf die Klage der 74 Krankenkassen reagiert, die 10 Mrd. Euro zurückfordern, weil der Staat seine Finanzierungspflicht für versicherungsfremde Leistungen nicht erfüllt.",
+        "question_intent": "Illner will wissen, ob die Koalition bereit ist, versicherungsfremde Leistungen (wie Mütterrente) vollständig vom allgemeinen Staatshaushalt zu finanzieren.",
+        "position": "Spahn stimmt Reichinnek zu, dass viele Frauen von der Mütterrente profitieren. Er räumt ein, dass diese Thematik bereits mehrfach in Koalitionsverträgen stand – versicherungsfremde Leistungen sollten aus dem Bundeshaushalt finanziert werden. Aber: Das Geld muss dann woanders herkommen. Das ist der Grund, warum die richtige Zuordnung der Kosten noch nicht erfolgt ist und absehbar auch nicht erfolgen kann, weil die finanziellen Mittel nicht vorhanden sind.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet direkt: Er anerkennt die Gerechtigkeit der Forderung, erklärt aber die politische Realität (kein Geld im Haushalt). Die Antwort ist substantiell und ehrlich.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Viele Frauen in Deutschland werden von der Mütterrente profitieren.",
+          "Versicherungsfremde Leistungen sollten vom Bundeshaushalt finanziert werden.",
+          "Das Geld muss dann woanders herkommen.",
+          "Die finanzielle Mittel dazu sind nicht vorhanden."
+        ],
+        "quotes": [
+          {
+            "text": "Es stand die letzten Jahre schon mehrfach in Koalitionsverträgen, dass diese versicherungsfremden Leistungen, zum Beispiel die Krankenversicherungsbeiträge übernommen werden müssten. Sie müssen aber das Geld dann woanders hernehmen.",
+            "timestamp": "00:56:25",
+            "context": "Anerkennung der berechtigten Forderung mit Erklärung der Finanzierungshindernisse."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Finanzierung Sozialsysteme",
+          "Mütterrente",
+          "Krankenversicherung",
+          "Bundeshaushalt"
+        ]
+      },
+      {
+        "title": "Reguläre Migration und AfD-Abgrenzung",
+        "timestamp_range": "00:58:05 - 01:01:03",
+        "theme_description": "Spahn wird vorgeworfen, dass Deutschland zu links regiert wird und dass die Mitte-rechts-Regierung auf AfD-Wähler angewiesen ist.",
+        "question_asked": "Maybrit Illner wirft Spahn vor, dass er gesagt hat, Deutschland werde zu links regiert, und fragt, ob das bedeutet, dass die Regierung auf AfD-Stimmen angewiesen ist.",
+        "question_intent": "Illner will Spahn auf die logische Inkonsistenz festlegen: Wenn die Regierung Mitte-rechts ist und die Mehrheit nicht links gewählt hat, dann ist die Regierung nicht zu links – oder die Mehrheit der Deutschen sind AfD-Wähler.",
+        "position": "Spahn stellt klar, dass er 'deskriptiv einen Zustand beschrieben' hat: 2013 hat die Mehrheit der Deutschen nicht links gewählt (Parteien, die nicht links sind). Das ist eine neutrale Feststellung. Im Koalitionsvertrag haben sie gelöst: Vorgehensweise gegen irreguläre Migration, Veränderungen der Außenpolitik und Verteidigungspolitik – das hat große Mehrheiten in Deutschland. Sein Werben ist, dass Volksparteien (Union und SPD) die Probleme lösen, die dazu führen, dass radikalpopulistische Linke und extreme Rechte die Macht haben. Der Frust entsteht, weil eine Regierung (besonders die Ampel) an der Mehrheit des Landes vorbei regiert hat. Die aktuelle Koalition versucht, das zu korrigieren. Die Regierung ist nicht 'zu links', sondern adressiert genau die Themen, wo sich die Mehrheit Veränderung wünscht.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Spahn antwortet auf die Frage nach der AfD-Abhängigkeit mit einer Präzisierung seiner Aussage, adressiert aber nicht vollständig Illners kritische Logik. Er reframt die Aussage als 'deskriptiv' und betont Mehrheitsthemen, was sachlich ist, aber die Falle der 70-80%-Aussage nicht vollständig löst.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich habe deskriptiv einen Zustand beschrieben: 2013 hat die Mehrheit nicht links gewählt.",
+          "Im Koalitionsvertrag haben wir Vorgehensweise gegen irreguläre Migration, Veränderungen der Außen- und Verteidigungspolitik gelöst.",
+          "Das hat große Mehrheiten in Deutschland.",
+          "Wir werben dafür, dass Volksparteien die Probleme lösen, die zu radikalpopulistischer Linker und extremer Rechter Macht führen.",
+          "Die Ampel regiert an der Mehrheit des Landes vorbei – das wollen wir nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe deskriptiv einen Zustand beschrieben, bereits 2013 hat die Mehrheit der Deutschen nicht links gewählt.",
+            "timestamp": "00:58:05",
+            "context": "Klarstellung der eigenen Aussage zur 'zu-links'-Regierung."
+          },
+          {
+            "text": "Eine Regierung hat an der Mehrheit des Landes vorbei regiert. Auf ihrer Grundlage wollen wir jetzt wieder Politik machen.",
+            "timestamp": "00:59:21",
+            "context": "Charakterisierung der Ampel-Regierung und Abgrenzung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migration",
+          "Außenpolitik",
+          "Verteidigungspolitik",
+          "AfD-Abgrenzung",
+          "Mehrheitskoalitionen"
+        ]
+      },
+      {
+        "title": "Koalitions-Zusammenarbeit und Reformbereitschaft",
+        "timestamp_range": "01:05:24 - 01:06:15",
+        "theme_description": "Spahn wird gefragt, was unter seiner Moderation als Fraktionsvorsitzender anders laufen muss, um große Blöcke zwischen Union und SPD zu bewegen.",
+        "question_asked": "Maybrit Illner fragt Jens Spahn am Ende, was er anders machen könnte/muss, um die großen Koalitionsblöcke (Union/SPD) zu bewegen.",
+        "question_intent": "Illner will von Spahn als neuem Fraktionsvorsitzender hören, was sein Ansatz zur Konfliktbewältigung in der Koalition ist.",
+        "position": "Spahn betont, dass es 'viel miteinander reden' braucht, aber das reicht nicht. Die Koalition ist erst im fünften Monat. Es braucht gegenseitige Verständigung darüber, was man sich zumuten kann und was nicht. Das politisch Mögliche muss mit dem politisch Notwendigen zusammengedacht werden. Man sollte sich auf das konzentrieren, was man vereinbart hat (Arbeitsprogramm), nicht ständig alte Kämpfe neu führen. Ein Stimmungsumschwung wird nicht in zwei Wochen kommen – es braucht langen Atem.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Spahn antwortet direkt auf Illners Frage nach seinem Moderations-Ansatz mit konkreten Punkten: gegenseitiges Zuhören, Verständigung über Zumutbarkeit, Fokus auf Vereinbartes, langer Atem. Die Antwort ist substantiell.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es braucht viel miteinander reden, aber das reicht nicht.",
+          "Es braucht gegenseitige Verständigung: was man sich zumuten kann und was nicht.",
+          "Das politisch Mögliche muss mit dem politisch Notwendigen zusammengedacht werden.",
+          "Konzentrieren auf das Vereinbarte (Arbeitsprogramm).",
+          "Ein Stimmungsumschwung braucht langen Atem."
+        ],
+        "quotes": [
+          {
+            "text": "Es braucht erst mal wie immer im menschlichen Beisammensein viel miteinander reden, aber das reicht nicht. Wir brauchen zu wissen, was man sich gegenseitig zumuten kann und was nicht.",
+            "timestamp": "01:05:24",
+            "context": "Antwort auf die Frage nach Moderations-Ansatz in der Koalition."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Koalitionsmanagement",
+          "Bundestags-Fraktionen",
+          "Reformpolitik",
+          "Verhandlungsmanagement"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Zehnerjahre waren die letzte Phase in der Geschichte der Bundesrepublik von Wachstum.",
+        "timestamp": "00:05:02"
+      },
+      {
+        "claim": "Die Wirtschaft schrumpft im dritten Jahr in Folge.",
+        "timestamp": "00:17:15"
+      },
+      {
+        "claim": "2013 hat die Mehrheit der Deutschen nicht links gewählt.",
+        "timestamp": "00:58:05"
+      },
+      {
+        "claim": "Ein Großteil der Bürgergeldempfänger ist nicht Deutsch.",
+        "timestamp": "00:33:22"
+      },
+      {
+        "claim": "In Deutschland gibt es keine Kontrolle der Angemessenheit der Miete im ersten Jahr des Bürgergeld-Bezugs.",
+        "timestamp": "00:35:22"
+      },
+      {
+        "claim": "Es gibt 5,5 Millionen Bürgergeld-Empfänger, davon 4 Millionen Erwachsene, und mehr als die Hälfte von ihnen arbeiten oder sind in Ausbildung.",
+        "timestamp": "00:30:54"
+      }
+    ]
+  }
+}

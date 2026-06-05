@@ -1,0 +1,400 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-16-oktober-2025-100",
+    "video_id": "illner-2025-10-16",
+    "politician": "Irene Mihalic",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "c26e381ae14f18a0",
+    "transcript_chars": 51061,
+    "caption_lines": 2606,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21629,
+    "tokens_out": 11562,
+    "cost_usd": 0.0317756,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 18,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 8,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.466Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Irene Mihalic von Bündnis 90/Die Grünen diskutiert mit Bundesinnenminister Alexander Dobrindt (CSU), André Wüstner (Bundeswehrverband) und Holger Stark (Die Zeit) unter Moderation von Maybrit Illner über Deutschlands Sicherheit, Wehrdienst und innere Sicherheit angesichts hybrider Bedrohungen. Mihalic argumentiert pragmatisch und fokussiert auf Umsetzbarkeit, warnt vor übereilten Entscheidungen ohne vorbereitende Maßnahmen und betont die Notwendigkeit, junge Menschen durch Attraktivität und Sinnstiftung zu gewinnen, nicht durch Zwang.",
+    "themes": [
+      {
+        "title": "Friedrich Merz als schwacher Kanzler",
+        "timestamp_range": "00:05:43 - 00:06:46",
+        "theme_description": "Bewertung von Bundeskanzler Friedrich Merz und seiner Handlungsfähigkeit in der aktuellen Wehrdienst-Debatte.",
+        "question_asked": "Maybrit Illner fragt Irene Mihalic, ob sie—ähnlich wie Oppositionspolitiker Friedrich Merz früher über Kanzler Olaf Scholz—heute ähnliche Kritik am aktuellen Bundeskanzler üben würde (paraphrasiert: \"Würden Sie das heute ähnlich über diesen Bundeskanzler sagen?\").",
+        "question_intent": "Illner möchte herausfinden, ob Mihalic den Bundeskanzler für unfähig oder schwach hält und ob es parallelen zur früheren Merz-Kritik gibt.",
+        "position": "Mihalic kritisiert Merz deutlich: Er habe in seiner Amtszeit \"schon gezeigt, dass er Einführung schwacher Kanzler ist\". Sie begründet dies damit, dass die aktuelle Debatte zur Wehrpflicht viel zu ernst sei für die Art von Chaospolitik, die diese Woche beobachtet wurde. Die Debatte habe \"schon einigen Vorlauf\" gehabt, und junge Menschen brauchen Planungssicherheit. Statt Ernsthaftigkeit habe man \"Zeiten erinnern\" lassen, \"wo wir geglaubt haben, dass wir sie hinter uns gelassen haben.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt auf Illners Frage und liefert eine klare persönliche Bewertung von Merz als schwachen Kanzler mit konkreten Gründen (mangelnde Ernsthaftigkeit in der Debatte, Chaos in der Koalition).",
+        "quotes": [
+          {
+            "text": "Friedrich Merz hat in der Kürze seiner bisherigen Amtszeit leider schon gezeigt, dass er Einführung schwacher Kanzler ist, ich muss es leider so sagen.",
+            "timestamp": "00:05:43",
+            "context": "Antwort auf Illners Frage, ob Mihalic heute ähnlich wie Merz früher über den Kanzler sprechen würde."
+          },
+          {
+            "text": "Das zeigt sich vor allen Dingen an dieser Debatte, die Lage ist viel zu ernst. Wir haben uns nicht erst seit ein paar Wochen Gedanken darüber gemacht, dass Deutschland verteidigungsfähig werden muss.",
+            "timestamp": "00:05:43",
+            "context": "Begründung der Kritik am Kanzler mit Verweis auf die Seriosität und Vorbereitung der Wehrdienst-Debatte."
+          }
+        ],
+        "concrete_statements": [
+          "Merz ist ein schwacher Kanzler",
+          "Die Debatte wird nicht mit der richtigen Ernsthaftigkeit geführt",
+          "Junge Menschen benötigen Planungssicherheit"
+        ],
+        "related_bundestag_topics": [
+          "Regierungsfähigkeit",
+          "Wehrdienst/Wehrpflicht",
+          "Koalitionsfunktion"
+        ]
+      },
+      {
+        "title": "Wehrdienst: Freiwilligkeit vor Pflicht",
+        "timestamp_range": "00:14:41 - 00:18:15",
+        "theme_description": "Position zur Wehrpflicht: Fokus auf freiwillige Dienste als Priorität, skeptisch gegenüber schnellen Pflicht-Modellen ohne vorbereitende Maßnahmen.",
+        "question_asked": "Maybrit Illner fragt Irene Mihalic direkt: \"D. h. Sie sind für die Freiwilligkeit und auch die absolute Freiwilligkeit. Sie wollen nicht über schwedische oder dänische Modell nachdenken.\" (ab 00:15:36); später fragt Illner, ob man nicht die Frage stellen muss, \"wenn es nicht reicht\" (00:16:18).",
+        "question_intent": "Illner möchte klären, ob Mihalic rigoros bei absoluter Freiwilligkeit bleibt und Swedish/dänische Modelle mit Lotterie oder Auswahlverfahren kategorisch ablehnt, oder ob sie pragmatisch umdisponiert, wenn Freiwilligenquoten unzureichend sind.",
+        "position": "Mihalic besteht auf Freiwilligkeit als Einstiegspunkt, aber nicht absolut starr. Sie argumentiert, dass jedes Jahr Menschen sich bei der Bundeswehr bewerben, \"es werden gar nicht alle genommen, weil es auch nicht genug Kapazitäten gibt.\" Solange keine Anzeichen existieren, dass zu wenig Freiwillige sich melden, \"sehe ich keinen Sinn darin über ein Pflichtmodell zu diskutieren, oder sogar eines zu beschließen.\" Sie warnt vor psychologischen Folgen von Lotterie-Szenarien: junge Menschen müssten wissen, zu welchen Bedingungen sie dienen. Sie betont, dass ihre Fraktion die \"einzige\" ist, die junge Menschen als Sachverständige zu Anhörungen einlädt. Schließlich fordert sie, erst Rahmenbedingungen für freiwillige Dienste zu schaffen, \"über eine Pflicht kann der Bundestag immer noch entscheiden.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet substanziell auf beide Fragen: Sie definiert ihre Position klar als Freiwilligkeit mit pragmatischem Fallback (\"wenn Anzeichen dafür existieren\"), lehnt aber hastige Entscheidungen ohne Vorbereitung ab. Sie adressiert Illners implizite Frage, ob sie dogmatisch bei Freiwilligkeit bleibt, mit: 'Nein, aber erst müssen Bedingungen erfüllt sein.'",
+        "quotes": [
+          {
+            "text": "Der Punkt ist doch der, es bewerben sich jedes Jahr Leute bei der Bundeswehr, es werden gar nicht alle genommen, weil es auch nicht genug Kapazitäten gibt, d. h., solange keine Anzeichen dafür haben, dass ich nicht genug Freiwillige bewerben, sich keinen Sinn darin über ein Pflichtmodell zu diskutieren, oder sogar eines zu beschließen.",
+            "timestamp": "00:15:46",
+            "context": "Antwort auf Illners Frage, ob Mihalic dänische/schwedische Modelle kategorisch ablehnt."
+          },
+          {
+            "text": "Ich denke, dass man junge Leute überzeugen muss, diesen Dienst auch leisten zu wollen. Sie möchten das auch, aber sie möchten wissen, zu welchen Bedingungen sie das tun sollen, wenn sie solche Diskussionen anstoßen, wie Lotterie, du weißt nicht ob du eingezogen wirst, dann spielen Sie mit den Perspektiven der Leute.",
+            "timestamp": "00:17:06",
+            "context": "Warnung vor Lotterie-Szenarien und deren psychologischer Wirkung auf junge Menschen."
+          }
+        ],
+        "concrete_statements": [
+          "Erst Rahmenbedingungen für Freiwilligkeit schaffen, danach kann der Bundestag über Pflicht entscheiden",
+          "Grüne laden junge Menschen als Sachverständige zu Anhörungen ein",
+          "Lotterie-Diskussionen spielen mit den Perspektiven junger Leute und erzeugen Verunsicherung",
+          "Solange ausreichend Freiwillige sich bewerben, kein Sinn in Pflichtdiskussionen"
+        ],
+        "related_bundestag_topics": [
+          "Wehrdienst",
+          "Wehrpflicht",
+          "Personalgewinnung Bundeswehr",
+          "Sicherheit junger Menschen"
+        ]
+      },
+      {
+        "title": "Attraktivität und Sinnstiftung statt Zwang",
+        "timestamp_range": "00:14:41 - 00:15:36",
+        "theme_description": "Fokus auf die Notwendigkeit, den Wehrdienst durch Attraktivität, Anreize und Sinngebung zu fördern statt durch staatlichen Zwang.",
+        "question_asked": "Maybrit Illner fragt zu André Wüstners Aussage, ob \"Fragebogenarmee\" in \"Lotteriearmee\" umgewandelt werden soll (\"Aus einer Fragebogenarmee eine Lotteriearmee?\", 00:14:35), und möchte Mihalics Einordnung.",
+        "question_intent": "Illner möchte wissen, ob Mihalic ein Losverfahren für Wehrpflicht-Kandidaten akzeptiert oder ablehnt.",
+        "position": "Mihalic lehnt Losverfahren ab: \"auf gar keinen Fall.\" Sie argumentiert, dass die Bundeswehr Menschen \"natürlich davon überzeugen\" muss, ihren Dienst leisten zu wollen—dies sei \"das entscheidende.\" Selbst unter Pflicht können Menschen Dienst verweigern; deshalb führt an Attraktivitätssteigerung kein Weg vorbei. Zentral ist Sinnstiftung: \"Es geht vor allem auch darum die Profis zu halten. Wir wollen die besten für die Bundeswehr.\" Das oberste Ziel: \"dass wir unser Land verteidigen können.\"",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt auf Illners Frage zur Lotterie (klare Ablehnung) und begründet mit einer strategischen Position: Attraktivität vor Zwang, Sinnstiftung als Kern der Personalgewinnung. Sie adressiert die implizierten Fragen vollständig.",
+        "quotes": [
+          {
+            "text": "auf gar keinen Fall, sie haben es gerade gesagt, muss die Menschen natürlich davon überzeugen ihren Dienst tun zu wollen, das ist das entscheidende, egal welches Pflichtmodell man überlegt, am Ende kommen sie nicht da um hin, jungen Menschen davon zu überzeugen, sich bei der Bundeswehr zu bewerben.",
+            "timestamp": "00:14:41",
+            "context": "Ablehnung von Lotterie-Modellen und Begründung warum Attraktivität unvermeidbar ist."
+          },
+          {
+            "text": "Es geht vor allem auch darum die Profis zu halten. Wir wollen die besten für die Bundeswehr, man muss doch im Vordergrund stehen, dass wir unser Land verteidigen können. Das ist das entscheidende.",
+            "timestamp": "00:15:36",
+            "context": "Kernziel und Strategie: Sinnstiftung durch Fokus auf Landesverteidigung."
+          }
+        ],
+        "concrete_statements": [
+          "Lotteriemodelle kategorisch ablehnen",
+          "Attraktivitätssteigerung ist unvermeidbar, nicht optional",
+          "Sinnstiftung der Tätigkeit muss Priorität sein",
+          "Fokus auf Beibehaltung von Profis/Berufssoldaten"
+        ],
+        "related_bundestag_topics": [
+          "Wehrdienst",
+          "Bundeswehrreform",
+          "Personalmanagement"
+        ]
+      },
+      {
+        "title": "Freiwilliges Engagement: Unterestimierung junger Menschen",
+        "timestamp_range": "00:16:18 - 00:17:58",
+        "theme_description": "Vertrauen in Bereitschaft junger Menschen zu voluntärem Engagement bei Sicherheits- und Hilfsdiensten; Kritik am Unterschätzen dieser Altersgruppe.",
+        "question_asked": "Maybrit Illner stellt fest: \"Jeder will der Freiwilligkeit. Jeder wünscht sich das. Aber man muss sich ja die Frage stellen, wenn es nicht reicht.\" (00:16:09). Mihalic antwortet: \"Ich glaube man muss sie natürlich beantworten, aber wir unterschätzen die jungen Leute ein bisschen an der Stelle\" (00:16:18).",
+        "question_intent": "Illner möchte verstehen, ob Mihalic eine fallback-Option zu Pflicht-Diensten befürwortet, wenn Freiwilligenquoten unzureichend sind. Mihalic dreht die Frage um: Wir unterschätzen junge Menschen.",
+        "position": "Mihalic argumentiert, dass junge Menschen \"mit denen ich spreche, und doch mit denen die Bundesregierung sprechen sollte, wenn sie über deren Zukunft entscheidet, die fürchten sich davor, dass es hier irgendwann zu einem Krieg kommt.\" Sie weist auf das RAND-Szenario hin: \"Das Szenario wurde ja schon beschrieben, 2029, das ist nicht aus der Luft gegriffen.\" Sie stellt fest: \"Ich merke, dass sich viele Menschen engagieren wollen, nicht nur bei der Bundeswehr, sondern auch bei anderen freiwilligen Diensten.\" Sie impliziert, dass junge Menschen kein Motivationsproblem haben, sondern Klarheit und Sicherheit wollen—was durch Lotterie-Szenarien unterminiert wird.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt auf Illners Frage und reframt sie: Statt \"wenn Freiwilligkeit nicht reicht\" mahnt sie, dass junge Menschen bereit sind, wenn man sie nicht durch Unsicherheit entmutigt. Sie liefert konkrete Beobachtungen und Beispiele (RAND 2029-Szenario).",
+        "quotes": [
+          {
+            "text": "Ich glaube man muss sie natürlich beantworten, aber wir unterschätzen die jungen Leute ein bisschen an der Stelle, die Leute, mit denen ich spreche, und doch mit denen die Bundesregierung sprechen sollte, wenn sie über deren Zukunft entscheidet, die fürchten sich davor, dass es hier irgendwann zu einem Krieg kommt. Das Szenario wurde ja schon beschrieben, 2029, das ist nicht aus der Luft gegriffen. Und ich merke, dass sich viele Menschen engagieren wollen, nicht nur bei der Bundeswehr, sondern auch bei anderen freiwilligen Diensten.",
+            "timestamp": "00:16:18",
+            "context": "Antwort auf Illners Frage zur Fallback-Pflicht bei unzureichender Freiwilligkeit; Mihalic reframt mit Fokus auf unterschätzte Engagement-Bereitschaft."
+          }
+        ],
+        "concrete_statements": [
+          "Junge Menschen sind nicht unmotiviert, sondern verunsichert",
+          "RAND-Szenario 2029 ist realistische Perspektive, nicht Spekulation",
+          "Viele junge Menschen wollen sich engagieren, wenn Sicherheit gegeben ist",
+          "Lotterie-Diskussionen entmutigen Engagement durch Verunsicherung"
+        ],
+        "related_bundestag_topics": [
+          "Wehrdienst",
+          "Generationengerechigkeit",
+          "Sicherheitspolitik",
+          "Vertrauen in demokratische Prozesse"
+        ]
+      },
+      {
+        "title": "Sofortmaßnahmen zur Verteidigungsfähigkeit",
+        "timestamp_range": "00:18:15 - 00:19:36",
+        "theme_description": "Pragmatischer Fokus auf unmittelbare Maßnahmen zur Truppentauglichkeit statt verzögerter Grundsatzdiskussionen.",
+        "question_asked": "Alexander Dobrindt wirft ein: \"Es ist maximal die hybride Bedrohung da und die Gefahr. Und dann müssen wir uns noch mal Zeit lassen? Ich glaube, wir müssen jetzt entscheiden. Weil wir eben keine Zeit haben! Sie wollen es schieben!\" (00:18:31). Mihalic antwortet: \"Nein, überhaupt nicht, Herr Dobrindt, wir haben gar keine Zeit. Eben nicht, ich möchte es nicht schieben\" (00:18:45).",
+        "question_intent": "Dobrindt unterstellt Mihalic Verzögerungstaktik; er möchte wissen, ob sie die Dringlichkeit anerkennt.",
+        "position": "Mihalic bejaht Dringlichkeit: \"Nein, überhaupt nicht, Herr Dobrindt, wir haben gar keine Zeit. Eben nicht, ich möchte es nicht schieben, ich möchte, dass wir jetzt zu Lösungen kommen.\" Sie präzisiert jedoch ihre Lösung: \"ich möchte, dass wir jetzt die Gedanken und konkrete Konzepte umsetzen, wie wir die Menschen in der Truppe halten, die schon ausgebildet sind, und wie viel mehr Leute rekrutieren können, dass es die Aufgabe, vor der wir stehen.\" Sie warnt: \"In der Zwischenzeit sind viele Strukturen abgebaut worden, wir haben jetzt nicht die Zeit zu warten, bis alles funktioniert, müssen jetzt etwas dafür tun, damit die Truppe jetzt verteidigungsfähig ist.\" Das ist die andere Art von Dringlichkeit—nicht schnelle Gesetzgebung, sondern schnelle Personalmaßnahmen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt auf Dobrintds Untstellung (nein, kein Schieben) und übernimmt dessen Dringlichkeitsrahmen—aber redefiniert, wo diese Dringlichkeit liegt (Retention und Rekrutierung, nicht Gesetzgebung).",
+        "quotes": [
+          {
+            "text": "Nein, überhaupt nicht, Herr Dobrindt, wir haben gar keine Zeit. Eben nicht, ich möchte es nicht schieben, ich möchte, dass wir jetzt zu Lösungen kommen, ich möchte, dass wir uns jetzt die Gedanken und konkrete Konzepte umsetzen, wie wir die Menschen in der Truppe halten, die schon ausgebildet sind, und wie viel mehr Leute rekrutieren können, dass es die Aufgabe, vor der wir stehen.",
+            "timestamp": "00:18:45",
+            "context": "Direkter Widerspruch zu Dobrintds Vorwurf mit Umdefition von Dringlichkeit."
+          },
+          {
+            "text": "In der Zwischenzeit sind viele Strukturen abgebaut worden, wir haben jetzt nicht die Zeit zu warten, bis alles funktioniert, müssen jetzt etwas dafür tun, damit die Truppe jetzt verteidigungsfähig ist.",
+            "timestamp": "00:18:45",
+            "context": "Fokus auf schnelle operative Maßnahmen statt prozeduraler Verzögerungen."
+          }
+        ],
+        "concrete_statements": [
+          "Keine Zeit für Verzögerung, aber auch keine Zeit für langsame Gesetzgebung",
+          "Priorität: Retention von ausgebildetem Personal",
+          "Priorität: Rekrutierung zusätzlicher Soldaten",
+          "Abgebaute Strukturen müssen sofort wieder aufgebaut werden"
+        ],
+        "related_bundestag_topics": [
+          "Wehrdienst",
+          "Bundeswehrreform",
+          "Personalgewinnung",
+          "Rüstungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Innere Sicherheit: Mehrbedarfe über Wehrdienst hinaus",
+        "timestamp_range": "00:27:23 - 00:28:38",
+        "theme_description": "Kritik an Fokus auf militärischen Wehrdienst; Warnung, dass Personalbedarf auch Blaulichtorganisationen, THW und andere Dienste betrifft.",
+        "question_asked": "Maybrit Illner und Alexander Dobrindt diskutieren die militärische Komponente der Sicherheit. Mihalic unterbricht: \"An der Stelle, das ist aus meiner Sicht ein ganz elementarer Punkt, wir verkürzen die Diskussion aufs militärische. Das ist was aktuell passiert\" (00:27:23). Dobrindt entgegnet, die Diskussion sei diese Woche davon geprägt. Mihalic antwortet: \"Nein, das meine ich nicht. Deswegen, ich weiß, was wir eingefordert haben. Friedrich Merz hat damals gesagt, nur für die Bundeswehr\" (00:27:56).",
+        "question_intent": "Mihalic möchte klarmachen, dass die Debatte sich zu sehr auf militärischen Wehrdienst verengt und andere Bereiche (THW, Blaulicht, Rotes Kreuz) vernachlässigt werden, wo ebenfalls dringend Personal fehlt.",
+        "position": "Mihalic warnt, dass \"beim Personalbedarf, immer noch kein schlüssiges Konzept gibt.\" Sie sagt: \"Wir reden sehr viel über den Wehrdienst, den anderen Bereich, den klammern wir noch aus. Aber der liegt auch in ihrem Verantwortungsbereich\" (zu Dobrindt). Sie hebt hervor: \"Der Punkt ist der, sie brauchen noch mehr Personal, nicht nur Truppen, sondern auch bei den Blaulichtorganisationen, beim Roten Kreuz, usw.\" Sie argumentiert, dass man \"junge Leute überzeugen\" muss zu diesen Diensten. Sie kritisiert auch Merz' Ausgrenzung anderer Dienste (\"nur für die Bundeswehr\")—das sei nicht ihr Punkt.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet substanziell auf die implizite Frage, warum sie die Debatte \"verengt\" sieht: Sie liefert konkrete Alternative (THW, Blaulicht, Rotes Kreuz) und räumt ein, dass Merz nur Bundeswehr fokussiert hatte, sie aber umfassendere Lösung fordert.",
+        "quotes": [
+          {
+            "text": "An der Stelle, das ist aus meiner Sicht ein ganz elementarer Punkt, wir verkürzen die Diskussion aufs militärische. Das ist was aktuell passiert, [...] Mein Punkt ist, dass beim Personalbedarf, immer noch kein schlüssiges Konzept gibt. Wir reden sehr viel über den Wehrdienst, den anderen Bereich, den klammern wir noch aus. Aber der liegt auch in ihrem Verantwortungsbereich.",
+            "timestamp": "00:27:23",
+            "context": "Kritik an Fokus auf militärisches Wehrdienst-Modell ohne ganzheitliches Personalkonzept."
+          },
+          {
+            "text": "Der Punkt ist der, sie brauchen noch mehr Personal, nicht nur Truppen, sondern auch bei den Blaulichtorganisationen, beim Roten Kreuz, usw. Ich denke, dass man junge Leute überzeugen muss, diesen Dienst auch leisten zu wollen.",
+            "timestamp": "00:17:06",
+            "context": "Forderung nach breiterer Personalstrategie über Bundeswehr hinaus."
+          }
+        ],
+        "concrete_statements": [
+          "Personalbedarf betrifft Blaulichtorganisationen, THW, Rotes Kreuz, nicht nur Bundeswehr",
+          "Kein schlüssiges Gesamtkonzept für innere Sicherheit vorhanden",
+          "Militärische Fokussierung zu eng",
+          "Junge Menschen müssen für alle Dienste überzeugt werden"
+        ],
+        "related_bundestag_topics": [
+          "Innere Sicherheit",
+          "Katastrophenschutz",
+          "THW",
+          "Personalbedarf",
+          "Zivilschutz"
+        ]
+      },
+      {
+        "title": "Nationale Sicherheit: Umfassendes Lagebild erforderlich",
+        "timestamp_range": "00:33:17 - 00:34:21",
+        "theme_description": "Forderung nach einem vollständigen Situationsbild zu hybriden Bedrohungen und deren institutionelle Verwirklichung durch einen nationalen Sicherheitsrat.",
+        "question_asked": "Maybrit Illner fragt Irene Mihalic: \"Wichtige Frage an Sie als Grüne. Ist es korrekt und eigentlich schon zu spät, dass wir jetzt einen nationalen Sicherheitsrat gründen? Ist es nicht fast schon zu spät? Was sagen die Grünen?\" (00:33:17).",
+        "question_intent": "Illner möchte wissen, ob die Grünen einen Nationalen Sicherheitsrat befürworten und ob der Zeitpunkt (\"zu spät\") kritisch ist.",
+        "position": "Mihalic bestätigt: Die Grünen fordern einen Nationalen Sicherheitsrat schon lange. Das Ziel ist, \"uns vor allem auch erst mal einen Lageüberblick zu verschaffen, was alltäglich an Hybridenangriffen stattfindet.\" Sie zählt auf: Sabotage, Spionage, kritische Infrastruktur, Drohnenüberflüge. Sie warnt jedoch: \"momentan fehlt das umfassende Lagebild.\" Dieses Lagebild ist essentiell, \"die Bevölkerung muss auch wissen, was los ist. Vor allem aber auch die Sicherheitsbehörden.\" Sie verweist auch darauf, dass bereits zu Ampel-Zeiten die Grünen das Kanzleramt aufgefordert hatten, Schritte zu unternehmen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt auf Illners beide Fragen: Sie bestätigt die Befürwortung eines Sicherheitsrats, klärt die eigene Rolle (Grüne fordern dies schon lange) und adressiert die Zeitfrage implizit durch Urgenz-Signale (\"fehlt das umfassende Lagebild\"). Sie räumt auch ein, dass Dobrindt Recht hat, dass die Ampel-Regierung diese Beforderungen nicht umgesetzt hatte.",
+        "quotes": [
+          {
+            "text": "Also, wir fordern das schon seit langem, dass wir uns vor allem auch erst mal einen Lageüberblick verschaffen, was alltäglich an Hybridenangriffen stattfindet. Das ganze wurde ja schon genannt, Sabotage, Spionage, kritische Infrastruktur, es gibt Drohnenüberflüge, wir haben auch schon zu Zeiten der Ampel darauf hingewiesen, müssen auch darauf aufmerksam machen, die Bevölkerung muss auch wissen, was los ist. Vor allem aber auch die Sicherheitsbehörden, momentan fehlt das umfassende Lagebild.",
+            "timestamp": "00:33:17",
+            "context": "Antwort auf Illners Frage zu Grünen-Position zum Sicherheitsrat."
+          },
+          {
+            "text": "Ich hatte auch gesagt, dass wir auch das Kanzleramt aufgefordert haben.",
+            "timestamp": "00:34:16",
+            "context": "Verteidigung gegen Dobrintdts Kritik, dass Ampel-Grüne nicht gehandelt hätten; Mihalic weist nach, dass Forderung bereits gestellt wurde."
+          }
+        ],
+        "concrete_statements": [
+          "Nationalen Sicherheitsrat seit langem fordern",
+          "Umfassendes Lagebild zu hybriden Bedrohungen ist zentral",
+          "Bevölkerung und Sicherheitsbehörden müssen vollständig informiert sein",
+          "Grüne hatten Kanzleramt bereits in Ampel-Zeit aufgefordert"
+        ],
+        "related_bundestag_topics": [
+          "Nationale Sicherheit",
+          "Hybrid Threats",
+          "Geheimdienstaufsicht",
+          "Sicherheitsrat"
+        ]
+      },
+      {
+        "title": "Drohnenabwehr: Klare Zuständigkeiten und Verantwortung",
+        "timestamp_range": "00:45:36 - 00:48:17",
+        "theme_description": "Warnung vor Verantwortungsdiffusion bei Drohnenabwehr zwischen Bundeswehr, Bundespolizei und Ländern; Forderung nach klarer Koordination und Kompetenzzuordnung.",
+        "question_asked": "Maybrit Illner stellt Irene Mihalic fest: \"Wenn Sie die Rahmenbedingungen schaffen, wäre sie nicht dagegen. [...] Würden Sie auch sagen, dass man eben gar nicht mehr zwischen innen und außen so präzise unterscheiden kann?\" (00:48:17). Vorher hatte Mihalic selbst eingeleitet: \"Es ist eine sehr komplizierte rechtliche Debatte, das wissen Sie selbst. Gerade bei der Amtshilfe der Bundeswehr, [...] das Wichtige ist, [...] dass wir uns nicht leisten können, es gibt eine Verantwortungsdiffusion\" (00:45:36).",
+        "question_intent": "Illner möchte Mihalics Sicht klären: Kann man Innen-/Außen-Grenze bei Drohnenabwehr noch aufrechterhalten oder verschwimmt sie? Und implizit: Sollte die Bundeswehr im Inneren tätig werden?",
+        "position": "Mihalic warnt vor \"Verantwortungsdiffusion\"—dass die Aufgabe zwischen Bundeswehr, Bundespolizei und Ländern fragmentiert wird. Sie betont die \"komplizierte rechtliche Debatte\" und fordert Klarheit: \"Ich finde sie müssen das Heft in die Hand nehmen. Sie haben die Gesetzgebungskompetenz, und die Verwaltungskompetenz. D. h. sie können eine Bundesbehörde damit beauftragen.\" Sie stellt fest, dass bereits \"Ankündigungen aus den Bundesländern\" existieren, die \"einer eigenen Drohnenabwehr aufbauen wollen.\" Sie warnt vor psychologischer Verunsicherung durch Drohnen-Überflüge und stellt infrage, ob es wirklich um militärische Bedrohung geht: Satelliten am Himmel werden oft als bedrohlicher wahrgenommen, aber \"Wenn man etwas attackieren will, würde man das nicht einlassen.\" Sie fordert von Dobrindt ein Lagebild, bevor zentrale Kompetenzen geklärt werden.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Mihalic antwortet auf Illners implizite Frage zu Verantwortungsdiffusion (adressiert diese substantiell) und warnt vor Fragmentierung. Zur Innen-/Außen-Grenzfrage antwortet sie indirekt, indem sie Lagebild-Klarheit einfordert—sie weicht nicht aus, aber gibt kein klares Ja/Nein zur Bundeswehr-Amtshilfe. Sie betont stattdessen strukturelle und prozessuale Probleme.",
+        "quotes": [
+          {
+            "text": "Es ist eine sehr komplizierte rechtliche Debatte, das wissen Sie selbst. Gerade bei der Amtshilfe der Bundeswehr, den Hinweis wollte ich einmal machen. So simpel ist es nicht. Was vor allen Dingen wichtig ist, vor allem bei der Drohnenabwehr, ist dass wir uns nicht leisten können, es gibt eine Verantwortungsdiffusion, hier bisschen Bundeswehr, die Bundespolizei, dein bisschen die Länder.",
+            "timestamp": "00:45:36",
+            "context": "Mihalics zentrale Warnung vor fragmentierter Verantwortung bei Drohnenabwehr."
+          },
+          {
+            "text": "Den Eindruck habe ich gewonnen. Es gibt doch Ankündigungen aus den Bundesländern, die einer eigenen Drohnenabwehr aufbauen wollen, ich finde sie müssen das Heft in die Hand nehmen. Sie haben die Gesetzgebungskompetenz, und die Verwaltungskompetenz. D. h. sie können eine Bundesbehörde damit beauftragen.",
+            "timestamp": "00:46:21",
+            "context": "Lösungsangebot: Föderale Koordination über Bundesbehörde."
+          }
+        ],
+        "concrete_statements": [
+          "Verantwortungsdiffusion ist inakzeptabel und unwirtschaftlich",
+          "Länder müssen Heft in Hand nehmen mit Gesetzgebungs- und Verwaltungskompetenz",
+          "Föderale Koordination durch Bundesbehörde notwendig",
+          "Lagebild vor Kompetenzverlagerung klären"
+        ],
+        "related_bundestag_topics": [
+          "Drohnenabwehr",
+          "Bundeswehr-Einsatz im Inland",
+          "Föderalismus",
+          "Hybrid Threats",
+          "Innere Sicherheit"
+        ]
+      },
+      {
+        "title": "Drohnen-Wahrnehmung: Realistische Bedrohungsanalyse",
+        "timestamp_range": "00:47:38 - 00:48:05",
+        "theme_description": "Skepsis gegenüber pauschalen Drohnen-Alarmen; Forderung nach differenzierter Bedrohungsanalyse statt Verunsicherung der Bevölkerung.",
+        "question_asked": "Maybrit Illner fasst zusammen, dass Dobrindt Schleswig-Holstein-Drohnen mit 8 m Spannweite erwähnt hatte. Mihalic erwidert dann: \"Wissen Sie wie viele Drohnen jeden Tag am Himmel sind? Satelliten außen rum. Das nehmen die Leute als besonders bedrohlich wahr.\" Sie fragt dann direkt: \"Haben Sie ein Lagebild?\" (00:47:38).",
+        "question_intent": "Mihalic möchte wissen, ob Dobrindt tatsächlich Daten und ein kohärentes Lagebild zu Drohnen-Bedrohungen hat, oder ob er Angst schürt ohne genaue Informationen.",
+        "position": "Mihalic argumentiert, dass viele Drohnen und Satelliten am Himmel sind und dass die Bevölkerung diese oft überbewertet (\"Das nehmen die Leute als besonders bedrohlich wahr\"). Sie stellt fest, dass die beworbenen Drohnen \"alle Signaleleuchten\" hatten (\"Das wirkt noch bedrohlicher\"), was eher auf harmlose oder Aufklärungs-Drohnen hindeutet. Sie warnt: \"Wenn man etwas attackieren will, würde man das nicht einlassen\"—d. h., sichtbare Drohnen sind typischerweise keine militärischen Angriffsdrohnen. Sie fordert substantiell: \"Haben Sie ein Lagebild?\" um von Dobrindt zu erfahren, ob seine Darstellung auf Daten basiert.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Mihalic antwortet direkt mit Gegenargumenten zu Dobrintds Drohnen-Beispiel und fordert Fakten-Check. Sie liefert differenzierte Analyse (Signalleuchten = harmlos/Aufklärung, nicht militärisch).",
+        "quotes": [
+          {
+            "text": "Wissen Sie wie viele Drohnen jeden Tag am Himmel sind? Satelliten außen rum. Das nehmen die Leute als besonders bedrohlich wahr. Die hatten alle Signaleleuchten. Das wirkt noch bedrohlicher. Wenn man etwas attackieren will, würde man das nicht einlassen. Haben Sie ein Lagebild?",
+            "timestamp": "00:47:38",
+            "context": "Gegenargument zu Dobrintds Drohnen-Beispiel und Forderung nach Daten-Grundlage."
+          }
+        ],
+        "concrete_statements": [
+          "Viele Drohnen und Satelliten am Himmel werden überbewertet",
+          "Sichtbare Drohnen mit Signalleuchten sind typisch nicht-militärisch",
+          "Echte Angriffsdrohnen sind nicht sichtbar/signalisiert",
+          "Lagebild notwendig, um Angst von Fakten zu unterscheiden"
+        ],
+        "related_bundestag_topics": [
+          "Drohnenabwehr",
+          "Hybride Bedrohungen",
+          "Informationsmanagement",
+          "Gesellschaftliche Verunsicherung"
+        ]
+      },
+      {
+        "title": "Republikanisches Pflichtjahr: Skeptik gegenüber Zwangsmodellen",
+        "timestamp_range": "00:59:00 - 00:59:45",
+        "theme_description": "Position zu allgemeinem Servicesystem (republik. Pflichtjahr) für alle Geschlechter; Betonung von Attraktivität statt staatlichem Zwang.",
+        "question_asked": "Maybrit Illner fragt abschließend alle Gäste zu einem \"republikanischen Pflichtjahr\": \"Würde mich interessieren. Damit hätte man im Grunde genommen eine soziale Pflicht für Männer und Frauen und jeden in diesem Land.\" Sie weist hin: \"Herrscher auch der Bundespräsident an. Was sagen Sie?\" (00:58:27).",
+        "question_intent": "Illner möchte Mihalics Position zu einem Universal-Dienst-System klären, das nicht nur Militär betrifft und geschlechtlich inklusiv ist.",
+        "position": "Mihalic antwortet vorsichtig: \"Das wird bei uns diskutiert, auch hier bin ich überzeugt, dass man nur über Attraktivität und Freiwilligkeit am Ende zum Ziel kommt.\" Sie warnt vor Missinterpretation (\"Das klingt nach Work-Life-Balance\") und präzisiert: \"Nein, es geht darum, dass man die Menschen überzeugen muss seinem Beitrag zu leisten. Wir haben viele Freiwillige, die können wir einbinden.\" Sie lehnt damit das Zwangsmodell ab und setzt auf Persuasion und Mobilisierung bestehender Freiwilliger.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Mihalic antwortet auf Illners Frage mit einer Position (Attraktivität statt Zwang), aber nicht zu den substanziellen Details eines republikanischen Pflichtjahres (welche Dienste, Dauer, Ausnahmen). Sie lehnt das Konzept ab, ohne es detailliert zu analysieren.",
+        "quotes": [
+          {
+            "text": "Das wird bei uns diskutiert, auch hier bin ich überzeugt, dass man nur über Attraktivität und Freiwilligkeit am Ende zum Ziel kommt.",
+            "timestamp": "00:59:00",
+            "context": "Antwort auf Illners Frage zu universalem Servicesystem."
+          },
+          {
+            "text": "Nein, es geht darum, dass man die Menschen überzeugen muss seinem Beitrag zu leisten. Wir haben viele Freiwillige, die können wir einbinden.",
+            "timestamp": "00:59:36",
+            "context": "Klarstellung gegen Missverständnis von \"Work-Life-Balance\" und Betonung von Freiwilligenrekrutierung."
+          }
+        ],
+        "concrete_statements": [
+          "Republikanisches Pflichtjahr wird in Fraktion diskutiert",
+          "Attraktivität und Freiwilligkeit sind Erfolgsschlüssel",
+          "Freiwilligen-Engagement sollte mobilisiert, nicht ersetzt werden"
+        ],
+        "related_bundestag_topics": [
+          "Wehrdienst",
+          "Zivilgesellschaft",
+          "Generationengerechigkeit",
+          "Freiwilligenarbeit"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Das RAND-Szenario beschreibt ein mögliches Kriegsszenario im Jahr 2029",
+        "timestamp": "00:16:18"
+      },
+      {
+        "claim": "Es bewerben sich jedes Jahr Menschen bei der Bundeswehr, werden aber nicht alle genommen, weil es nicht genug Kapazitäten gibt",
+        "timestamp": "00:15:46"
+      },
+      {
+        "claim": "Drohnen mit Signalleuchten am Himmel sind typischerweise nicht militärische Angriffsdrohnen",
+        "timestamp": "00:47:38"
+      },
+      {
+        "claim": "Viele Strukturen der Bundeswehr sind in der Zwischenzeit abgebaut worden",
+        "timestamp": "00:18:45"
+      },
+      {
+        "claim": "Die Grünen laden junge Menschen als Sachverständige zu Anhörungen ein, während andere Fraktionen dies nicht tun",
+        "timestamp": "00:17:06"
+      }
+    ]
+  }
+}

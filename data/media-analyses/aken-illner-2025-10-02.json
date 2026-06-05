@@ -1,0 +1,223 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-2-oktober-2025-100",
+    "video_id": "illner-2025-10-02",
+    "politician": "Jan van Aken",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "f1591f4eff537036",
+    "transcript_chars": 51576,
+    "caption_lines": 2590,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21473,
+    "tokens_out": 4824,
+    "cost_usd": 0.018237200000000002,
+    "quote_validation": {
+      "valid_exact": 0,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 1,
+      "pivot_zum_gegenpunkt": 1,
+      "substantielle_position": 1,
+      "gegenfrage": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.183Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Jan van Aken (Die Linke) diskutiert in Maybrit Illners Sendung europäische Sicherheit, die russische Bedrohung durch Drohnen und die Ukraine-Unterstützung. Er argumentiert für de-Eskalation bei der Drohnenabwehr, kritisiert die unzureichenden EU-Sanktionen gegen russische Energieimporte und hinterfragt eine rein militärische Kriegslösung zugunsten von Verhandlungen.",
+    "themes": [
+      {
+        "title": "Drohnenabwehr: Reaktion ohne Eskalation",
+        "timestamp_range": "00:09:43 - 00:10:30",
+        "theme_description": "Jan van Aken wird nach seiner Einschätzung der russischen Drohnenangriffe gefragt und wie Europa darauf antworten sollte.",
+        "question_asked": "Maybrit Illner fragt Jan van Aken: 'Wir sind nicht im Krieg, das sagen Sie. Wie würden Sie das bezeichnen, was Putin macht?'",
+        "question_intent": "Illner möchte wissen, wie van Aken die russischen Aktionen einordnet und ob er sie als Kriegshandlung interpretiert.",
+        "position": "Van Aken bewertet die Drohnenangriffe als Provokationen und Tests Russlands. Er befürwortet eine Abwehr, die ohne Eskalation erfolgt. Der Hintergrund seiner Position ist die Sorge, dass Provokationen schnell zu Eskalationsschritten führen, die innerhalb von Tagen unkontrollierbar werden können. Er setzt sich für eine 'Eskalationsstufe weniger' ein, um zu verhindern, dass die Situation außer Kontrolle gerät.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Van Aken beantwortet die inhaltliche Frage nach seiner Einordnung substantiell (Provokationen und Tests), adressiert aber nicht direkt die Frage nach einer Kriegsdefinition. Stattdessen fokussiert er auf sein eigentliches Anliegen: eine Reaktion, die abwehrt, ohne zu eskalieren.",
+        "concrete_statements": [
+          "Man muss reagieren, ohne zu eskalieren.",
+          "Eine Eskalationsstufe weniger, um zu verhindern, dass es außer Rand und Band gerät."
+        ],
+        "quotes": [
+          {
+            "text": "Auf jeden Fall Provokationen. Und auch Testen. Vielleicht auch beides. Deswegen braucht es auch eine Antwort. Ich bin sehr froh, dass Herr Weber gesagt hat, man muss sie abfangen. Wenn eine Drohne reinfliegt, muss man sich dagegen wehren.",
+            "timestamp": "00:09:43",
+            "context": "Auf die Frage, wie er die russischen Drohnenangriffe bezeichnet, antwortet van Aken mit einer Forderung nach Reaktion."
+          },
+          {
+            "text": "Man muss reagieren, ohne zu eskalieren. Ich bin geprägt davon, dass viele Kriege dadurch entstanden sind: es gibt eine Provokation und dann gibt es einen Eskalationsschritt. Und innerhalb von Tagen kann man es nicht mehr stoppen.",
+            "timestamp": "00:09:43",
+            "context": "Van Aken begründet seine Position zur de-Eskalation mit historischen Erfahrungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "Russland-Sanktionen",
+          "NATO-Artikel-5",
+          "Luftverteidigung"
+        ]
+      },
+      {
+        "title": "Europäische Sanktionen gegen russische Energieimporte",
+        "timestamp_range": "00:20:32 - 00:24:26",
+        "theme_description": "Jan van Aken kritisiert, dass europäische Staaten noch immer russisches Öl kaufen, während sie die Ukraine unterstützen, und argumentiert, dass strengere Sanktionen am 25. Februar 2022 effektiver gewesen wären.",
+        "question_asked": "Maybrit Illner fragt Jan van Aken zunächst allgemein, ob es 'gut und richtig' sei, dass die Ukraine sich verteidigt, aber Van Aken nutzt die Gelegenheit zu einer kritischen Gegenposition zu Waffenlieferungen, worauf Illner folgt mit der Frage, ob van Akens Position bedeutet, dass 'die Linke' zwar die Verteidigung unterstützt, aber nicht so 'viel kosten' soll.",
+        "question_intent": "Illner versucht, van Akens pazifistisches Anliegen als billiges Sparen zu charakterisieren; van Aken möchte dagegen argumentieren, dass alternative Maßnahmen (Sanktionen) effektiver und kostengünstiger gewesen wären.",
+        "position": "Van Aken kritisiert, dass Europa die Ukraine mit Waffenlieferungen unterstützt, während gleichzeitig Staaten wie Frankreich, Spanien, Belgien und Holland weiterhin russisches Flüssiggas kaufen und damit mehr Geld in die 'russische Kriegskasse' fließt als in die Ukraine. Er argumentiert, dass eine komplette Ölembargo am 25. Februar 2022 mit anschließender massiver Sanktionierung effektiver gewesen wäre als später Waffenlieferungen. Seine Position ist, dass Sanktionen vor Waffenlieferungen hätten kommen sollen. Er differenziert zwischen seiner Solidarität mit den Unterdrückten (als Linker) und der Frage, wie man Unterstützung optimal gestaltet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Van Aken adressiert die Frage nach seiner Position zu Waffenlieferungen substantiell, pivotiert aber zur Kritik an europäischen Energieeinkäufen. Er dreht damit die Verantwortungsfrage um: nicht die Ukraine-Unterstützung ist das Problem, sondern dass Europa Russland finanziert.",
+        "concrete_statements": [
+          "Hören Sie erst mal auf, den russischen Krieg zu finanzieren.",
+          "Am 25. Februar 2022 hätten wir sagen können: Wir kaufen keinen Tropfen Öl mehr.",
+          "Wenn Sie am gleichen Tag Öl auf null gesetzt hätten, wäre kein Dollar in die russische Kriegskasse geflossen."
+        ],
+        "quotes": [
+          {
+            "text": "Frankreich, Spanien, Belgien, Holland. Die zahlen mehr Geld in die russische Kriegskasse als in die ukrainische. Jetzt kommen Sie mir mit Waffenlieferungen in die Ukraine. Ich sage, hören sie erst mal auf, den russischen Krieg zu finanzieren.",
+            "timestamp": "00:21:14",
+            "context": "Van Aken konkretisiert seine Kritik an europäischen Energieeinkäufen während der Unterstützung der Ukraine."
+          },
+          {
+            "text": "Wenn Sie am gleichen Tag Öl auf null gesetzt hätten, wäre kein Dollar in die russische Kriegskasse geflossen. Ich sage Ihnen, die Verhandlungen in Istanbul wären ganz anders ausgegangen.",
+            "timestamp": "00:24:26",
+            "context": "Van Aken behauptet, dass radikale Sanktionen den Krieg selbst hätten beeinflussen können."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Energiesicherheit",
+          "Russland-Sanktionen",
+          "Außenpolitik",
+          "EU-Wirtschaftspolitik"
+        ]
+      },
+      {
+        "title": "Eingefrorenes russisches Vermögen für Ukraine-Unterstützung",
+        "timestamp_range": "00:46:34 - 00:47:13",
+        "theme_description": "Jan van Aken wird nach der Haltung der Linken zum Vorschlag gefragt, eingefrorenes russisches Vermögen zur Finanzierung der Ukraine-Hilfe zu nutzen.",
+        "question_asked": "Maybrit Illner fragt: 'Was sagt die linke?' zu dem Vorschlag, eingefrorenes russisches Vermögen als zinslose Kredite für die Ukraine zu verwenden, wobei BSW und Putin dies als 'Diebstahl' charakterisieren.",
+        "question_intent": "Illner möchte wissen, ob die Linke diesen Kreditvorschlag unterstützt oder ob auch sie ihn als problematisch einstuft wie BSW.",
+        "position": "Van Aken bewertet die Nutzung eingefrorenen russischen Vermögens positiv. Er sieht es als richtig an, dass Russlands Vermögen der Ukraine zur Verfügung gestellt wird. Parallel dazu befürwortet er auch konsequente Maßnahmen gegen in Berlin ansässige russische Oligarchen, die ihre Millionen in Deutschland halten, sowie gegen Schattentanker in der Ostsee. Er kritisiert, dass solche Maßnahmen bislang nicht konsequent umgesetzt wurden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Van Aken beantwortet die Frage direkt und substanziell mit einer klaren Zustimmung. Er erweitert die Position logisch auf verwandte Maßnahmen (Oligarchen, Schattentanker), was seine konsistente Haltung unterstreicht.",
+        "concrete_statements": [
+          "Das ist völlig richtig. Wir müssen natürlich an alles ran, was Russland stärkt.",
+          "Wenn der Geld eingefroren ist, natürlich kann man das der Ukraine zur Verfügung stellen.",
+          "Das endlich mal an das Geld angegangen wird, finde ich richtig."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist völlig richtig. Wir müssen natürlich an alles ran, was Russland stärkt. Wenn der Geld eingefroren ist, natürlich kann man das der Ukraine zur Verfügung stellen. Genauso, wie ich es richtig finde, hier in Berlin um die Ecke, viele russische Oligarchen, die hier ihre Millionen haben, da muss man rangehen.",
+            "timestamp": "00:46:34",
+            "context": "Van Aken beantwortet die Frage zur Haltung der Linken gegenüber dem Finanzierungsvorschlag."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russland-Sanktionen",
+          "Finanzielle Unterstützung Ukraine",
+          "Vermögensabschöpfung",
+          "Außenpolitik"
+        ]
+      },
+      {
+        "title": "Verhandlungen vs. rein militärische Kriegslösung",
+        "timestamp_range": "00:52:35 - 00:54:09",
+        "theme_description": "Jan van Aken wird zu seiner Sicht auf die Möglichkeit gefragt, Kriege durch militärische Mittel allein beenden zu können, im Kontext von Hoffnung auf eine Ukraine-Rückkehr.",
+        "question_asked": "Maybrit Illner kritisiert van Akens skeptische Position zu Trump und fragt, warum er nicht sagt 'wir kämpfen für euch' wie Selenskyj, sondern weiterhin Hoffnung für die Ukraine ausdrückt. Van Aken antwortet mit einer Kritik an rein militärischen Lösungen.",
+        "question_intent": "Illner möchte van Aken dazu bringen, die Hoffnung auf militärischen Erfolg der Ukraine zu teilen; van Aken wendet ein, dass Krieg nicht nur militärisch gelöst werden kann.",
+        "position": "Van Aken hält es für naiv, zu glauben, dass man einen Krieg allein durch militärische Mittel beenden kann. Er kritisiert implizit die fehlende Fokussierung auf Verhandlungen und diplomatische Lösungen in der aktuellen Debatte. Seine Position ist, dass ohne Verhandlungsstrategie das Ziel eines Kriegsendes nicht erreicht wird.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "gegenfrage",
+        "match_reasoning": "Van Aken beantwortet die implizite Frage (wie man Hoffnung ausdrückt) nicht direkt, sondern stellt eine Gegenfrage bzw. eine Gegen-These auf: Man kann Krieg nicht nur militärisch lösen. Das ist eine indirekte Kritik an der Prämisse der Illner-Frage.",
+        "concrete_statements": [
+          "Ich halte es für naiv, zu glauben, dass man Krieg beenden kann, indem man nur militärisch draufguckt.",
+          "Wir haben heute nicht einmal darüber geredet, wie wir zu Verhandlungen kommen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich halte es für naiv, zu glauben, dass man Krieg beenden kann, indem man nur militärisch draufguckt. Wir haben heute nicht einmal darüber geredet, wie wir zu Verhandlungen kommen.",
+            "timestamp": "00:52:35",
+            "context": "Van Aken wird nach seiner Position zur militärischen Lösung des Ukraine-Krieges gefragt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kriegsbeendigung",
+          "Diplomatie",
+          "Friedensverhandlungen",
+          "Ukraine-Konflikt"
+        ]
+      },
+      {
+        "title": "Donald Trump und europäische Energieabhängigkeit",
+        "timestamp_range": "01:01:53 - 01:02:39",
+        "theme_description": "Jan van Aken wird zu Trumps Motivation hinsichtlich der europäischen Energiepolitik gefragt und äußert sich zu dessen wirtschaftlichen Interessen.",
+        "question_asked": "Maybrit Illner und Jan van Aken diskutieren über Claudia Majors Aussage zu europäischer Verteidigung. Van Aken unterbricht und äußert sich zu Trumps Motiven für seine Forderung nach einem Ende der europäischen Energieeinkäufe.",
+        "question_intent": "Illner hat gerade erwähnt, dass Trump wirtschaftliche Interessen hat (amerikanisches Gas); van Aken versucht, Trumps Motivationen noch präziser zu charakterisieren.",
+        "position": "Van Aken argumentiert, dass Trump nicht generell europäische Sanktionen unterstützt, sondern ausschließlich sein eigenes wirtschaftliches Interesse verfolgt: den Verkauf von amerikanischem Flüssiggas an Europa. Darüber hinaus behauptet van Aken, dass Trump 'ein einziges Interesse' hat, nämlich sich selbst ('Trump'), und dass er 'bereit' ist, mit Putin zusammenzuarbeiten. Seine Position ist, dass Trumps Forderungen opportunistisch und nicht aus prinzipiellen Gründen erfolgen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Van Aken beantwortet die Frage nach Trumps Motiven, verschiebt sie aber zu einer generellen Charakterisierung von Trump als rücksichtslosen Geschäftsmann ohne Prinzipien. Die Antwort ist polemisch und adressiert die Frage implizit, aber nicht substanziell mit Fakten.",
+        "concrete_statements": [
+          "Donald Trump möchte sein schmutziges Gas verkaufen.",
+          "Donald Trump hat ein einziges Interesse und das heißt Trump.",
+          "Er ist bereit mit Putin zusammenzuarbeiten."
+        ],
+        "quotes": [
+          {
+            "text": "Donald Trump macht das einem einfachen Grund. Er möchte sein schmutziges Gas verkaufen.",
+            "timestamp": "01:01:53",
+            "context": "Van Aken erklärt Trumps Motivation für seine Forderungen zur europäischen Energiepolitik."
+          },
+          {
+            "text": "Donald Trump hat ein einziges Interesse und das heißt Trump. Er ist bereit mit Putin zusammenzuarbeiten.",
+            "timestamp": "01:02:24",
+            "context": "Van Aken präzisiert seine Charakterisierung von Trumps Motiven."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik USA",
+          "Energiepolitik",
+          "Transatlantische Beziehungen",
+          "Russland-Politik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Frankreich, Spanien, Belgien, Holland zahlen mehr Geld in die russische Kriegskasse als in die ukrainische.",
+        "timestamp": "00:21:14"
+      },
+      {
+        "claim": "Am 25. Februar 2022 hätten europäische Staaten keinen Tropfen Öl mehr aus Russland kaufen können.",
+        "timestamp": "00:23:06"
+      },
+      {
+        "claim": "Die Verhandlungen in Istanbul wären ganz anders ausgegangen, wenn am 25. Februar 2022 Ölembargo verhängt worden wäre.",
+        "timestamp": "00:24:26"
+      },
+      {
+        "claim": "In der gleichen Woche des 25. Februar 2022 wurden 100 Milliarden für Aufrüstung beschlossen.",
+        "timestamp": "00:22:33"
+      },
+      {
+        "claim": "Russische Oligarchen halten Millionen in Berlin.",
+        "timestamp": "00:47:10"
+      }
+    ]
+  }
+}

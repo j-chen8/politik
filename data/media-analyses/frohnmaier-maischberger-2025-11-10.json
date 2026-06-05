@@ -1,0 +1,372 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0xMF8yMi0yMC1NRVo",
+    "video_id": "maischberger-2025-11-10",
+    "politician": "Markus Frohnmaier",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "b4b37560b038c906",
+    "transcript_chars": 48776,
+    "caption_lines": 1810,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 20392,
+    "tokens_out": 9322,
+    "cost_usd": 0.0268008,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 9,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 4,
+      "pivot_zum_gegenpunkt": 3,
+      "teilweise_antwort": 4
+    },
+    "generated_at": "2026-06-05T12:36:41.633Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Markus Frohnmaier (AfD, stellvertretender Fraktionsvorsitzender) trat in dieser Maischberger-Sendung gegen Norbert Röttgen (CDU/CSU) zu außenpolitischen Fragen auf. Er verteidigte die AfD-Position zur Russland-Politik und den Parlamentsreisen nach Russland, betonte die Notwendigkeit von Gesprächskanälen statt Moralisierung und lehnte eine starke militärische Unterstützung der Ukraine ab. Der Ton war konfrontativ, wobei Frohnmaier wiederholt Vorwürfe der Parteienstrategie gegen die Union erhob und sich gegen Vorwürfe der Russlandnähe verwahrte.",
+    "themes": [
+      {
+        "title": "Russland als Gefahr für Deutschland",
+        "timestamp_range": "00:18:34 - 00:18:40",
+        "theme_description": "Direkte Frage, ob Putins Russland eine Gefahr für Deutschland darstellt.",
+        "question_asked": "Sandra Maischberger stellt die einfache Frage: ‚Geht von Putins Russland eine Gefahr für Deutschland aus?' Röttgen antwortet ‚Ja', Frohnmaier antwortet ‚Nein'.",
+        "question_intent": "Grundsätzliche Standortbestimmung zur außenpolitischen Risikoeinschätzung.",
+        "position": "Frohnmaier lehnt eine klare ‚Ja'-Antwort ab. Er argumentiert später ausführlich, dass Außenpolitik auf Interessen, nicht auf moralischen Kategorien basieren sollte. Russland habe eigene Interessen, ebenso wie die USA und idealerweise Deutschland. Er kritisiert das Freund-Feind-Schema und wendet sich gegen das von ihm als ‚Hypermoralisieren' charakterisierte Vorgehen der Union.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Frohnmaier gibt eine klare ‚Nein'-Antwort und begründet diese Position anschließend substantiell mit seiner Interessen-basierten Außenpolitik-Theorie.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Man muss sich klarmachen, dass man außenpolitisch keine Freunde hat. Es geht immer um Interessen.",
+          "Dieses Freund-Feind-Schema ist etwas, was wir überwinden müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein.",
+            "timestamp": "00:18:34",
+            "context": "Auf die Frage, ob von Putins Russland eine Gefahr für Deutschland ausgeht"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Russland-Politik",
+          "NATO"
+        ]
+      },
+      {
+        "title": "Ziel von Reisen AfD-Abgeordneter nach Russland",
+        "timestamp_range": "00:19:04 - 00:19:40",
+        "theme_description": "Frage nach dem Zweck der Reisen von AfD-Abgeordneten wie Rainer Rothfuß nach Russland.",
+        "question_asked": "Sandra Maischberger fragt Markus Frohnmaier: ‚Was ist das Ziel dieser Reisen?' nach Russland durch AfD-Kollegen.",
+        "question_intent": "Zu ermitteln, ob die Reisen echten diplomatischen oder anderen legitimen Zwecken dienen oder ob sie Parteiinteressen oder Kremlin-Nähe verfolgen.",
+        "position": "Frohnmaier erklärt, dass außenpolitisch keine Freunde, sondern nur Interessen zählen. Die AfD wolle Gesprächskanäle zu Russland offenhalten, ähnlich wie die Bundesregierung informell tue. Die Reisen seien offiziell über den Bundestag angekündigt worden, was sie von Koalitionspartnern unterscheide, die oft ‚heimlich' handeln würden. Die AfD beanspruche, als stärkste Partei in Umfragen die Gesprächsfähigkeit für eine mögliche Regierungsübernahme zu bewahren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Frohnmaier beantwortet die Frage direkt mit einer Interessen-basierten Logik und unterscheidet die AfD-Praxis der offenen Kommunikation gegenüber der Union.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es geht darum, dass wir Gesprächskanäle offenhalten.",
+          "Wir haben es immer offiziell über den Bundestag angekündigt. Das unterscheidet uns von Koalitionspartnern.",
+          "Da hat man den Anspruch, für eine mögliche Regierungsübernahme offen zu bleiben."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, man muss sich klarmachen, dass man außenpolitisch keine Freunde hat. Es geht immer um Interessen. Russland hat welche, die USA, im Idealfall auch Deutschland. Wenn wir solche Reisen unternehmen, geht es darum, dass wir Gesprächskanäle offenhalten.",
+            "timestamp": "00:18:40",
+            "context": "Auf Frage nach dem Ziel der Russland-Reisen"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik Russland",
+          "Parlamentarische Reisen",
+          "Geheimdiploamtie"
+        ]
+      },
+      {
+        "title": "Moralisches Argumentieren in der Außenpolitik",
+        "timestamp_range": "00:21:48 - 00:22:58",
+        "theme_description": "Debatte, ob Röttgens Bezug auf bombardierte Kindergärten ‚moralisierend' ist oder ob das legitime außenpolitische Argumentation.",
+        "question_asked": "Sandra Maischberger fragt Frohnmaier nach seiner Kritik am ‚Hypermoralisieren': ‚Ganz kurz, der Hinweis auf den Beschuss von Kindergärten, ist das moralisierend?'",
+        "question_intent": "Zu klären, ob Frohnmaier Faktenbeschreibungen (Kindergarten-Bombardements) als moralische Argumentation ablehnt oder nur die daraus gezogenen außenpolitischen Schlussfolgerungen.",
+        "position": "Frohnmaier räumt ein, dass die Bombardierung von Kindergärten eine Tatsache ist, kritisiert aber die Nutzung solcher Fakten als moralisches Argument für eine bestimmte Außenpolitik. Er kontrastiert dies mit der Bereitschaft, mit anderen Führungspersonen (wie Wadephul) zu sprechen, und kritisiert die doppelte Norm: Wenn Röttgen sich mit jemandem trifft, der IS-Kämpfer tötet, würde man dies nicht als ‚Kinder angegriffen' charakterisieren. Er plädiert für ein Beenden des ‚Moralisierens' in der deutschen Außenpolitik.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Frohnmaier gibt zu, dass es eine Tatsache ist, lenkt aber sofort ab auf eine Doppelmoral-Anklage gegen Röttgen/die Union und eine generelle Kritik am ‚Moralisieren', ohne direkt zu beantworten, ob sein kritisiertes ‚Hypermoralisieren' das Faktenargument oder nur dessen Folgerung betrifft.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "concrete_statements": [
+          "Es ist ja eine Tatsache. Was war denn moralisierend?",
+          "Wenn Herrn Wadephul sich nächste Woche dort trifft, würde ich auch nicht sagen Sie haben Kinder angegriffen, sie waren IS-Kämpfer.",
+          "Das finde ich ganz schwierig in der deutschen Außenpolitik mittlerweile, dass wir ein Moralisieren erleben."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist ja eine Tatsache. Was war denn moralisierend? Aber wenn Herrn Wadephul sich nächste Woche dort trifft, würde auch nicht sagen Sie haben Kinder angegriffen, sie waren IS-Kämpfer. Und das finde ich ganz schwierig in der deutschen Außenpolitik mittlerweile, dass wir ein Moralisieren erleben.",
+            "timestamp": "00:22:24",
+            "context": "Frage, ob Röttgens Verweis auf Kindergarten-Bombardements moralisierend ist"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Außenpolitik",
+          "Wertegeleitete vs. interessengeleitete Politik"
+        ]
+      },
+      {
+        "title": "Ukraine-Unterstützung und Friedensinitiative",
+        "timestamp_range": "00:25:38 - 00:27:19",
+        "theme_description": "Frage zur AfD-Position auf Weidels Aussage, dass Russland auch deeskalierend handeln müsse, und zur Forderung der Unterstützung für die Ukraine.",
+        "question_asked": "Sandra Maischberger zitiert Alice Weidel mit der Position, dass auch Russland sich deeskalierend verhalten müsse, und fragt Markus Frohnmaier: ‚Dreht sich da etwas? Muss Putin auch anfangen, seinerseits mehr friedliche Signale zu senden?'",
+        "question_intent": "Zu prüfen, ob die AfD unter Weidel eine neue, ausgewogenere Position zu Russland einnimmt und ob Frohnmaier diese unterstützt.",
+        "position": "Frohnmaier bestätigt, dass Weidel hier ‚völlig recht' hat, betont aber die mangelnde Friedensinitiative der Bundesregierung. Er kritisiert, dass Deutschland Geld und Waffen in die Ukraine schickt, was er für falsch hält. Die Unterstützung der Bundesregierung sinke ohnehin. Sein Vorschlag ist eine ‚seriöse Friedensinitiative', die über die Union-Position hinausgeht, und fragt rhetorisch, wie die Ukraine die Krim zurückgewinnen könne. Er plädiert für Realismus statt der Annahme, dass Versorgung durch westliche Waffen das Problem löse.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Frohnmaier beantwortet die Frage nach Putins Signalen nur indirekt (durch Zustimmung zu Weidel), lenkt aber sofort zu Kritik an der Bundesregierung und zur AfD-Forderung nach Reduzierung der Ukraine-Unterstützung ab.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich glaube, dass Frau Weidel hier völlig recht hat. Beide müssen auf einander zu gehen.",
+          "Dass man weiterhin Geld in die Ukraine schickt und Waffen, das halte ich für falsch.",
+          "Wir brauchen endlich eine seriöse Friedensinitiative.",
+          "Es geht einer Realität vorbei, zu sagen, wie kann sich die Ukraine die Krim zurückholen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, dass Frau Weidel hier völlig recht hat. Beide müssen auf einander zu gehen. Das ist schmerzhaft. Aber dass man weiterhin Geld in die Ukraine schickt uns Waffen, das halte ich für falsch.",
+            "timestamp": "00:26:10",
+            "context": "Auf Frage zur Position von Weidel und ob Putin Deeskalationssignale senden soll"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Friedensinitiative",
+          "Rüstungsunterstützung"
+        ]
+      },
+      {
+        "title": "Fragen zu Infrastruktur und militärischen Systemen",
+        "timestamp_range": "00:29:28 - 00:30:01",
+        "theme_description": "Vorwurf, dass AfD-Abgeordnete Fragen zu kritischer Infrastruktur stellen, die russischen Aggressoren nutzen könnten.",
+        "question_asked": "Sandra Maischberger fragt Markus Frohnmaier: ‚Wenn Sie solche Fragen stellen [zu Infrastruktur, Militärkonvois, Luftabwehrsystemen], was wollen Sie mit solchen Fragen?'",
+        "question_intent": "Zu ergründen, ob die AfD möglicherweise Fragen zu Spionagezwecken oder im Interesse Russlands stellt.",
+        "position": "Frohnmaier betont zunächst, dass es nicht im deutschen Interesse liegt, sich in einem fremden Konflikt zu stark zu involvieren. Er benutzt sein parlamentarisches Fragerecht und bringt beispiele von 45 Einzelfragen vor, die Röttgen selbst in Opposition zu ähnlichen Themen gestellt habe (Patriot-Lieferungen, Unterstützung für Ukraine, Rüstungsgüterbeschaffung). Er wertet dies als Doppelstandard und Strategie der CDU, die an Beliebtheit verloren habe und die AfD nun diskreditieren wolle. Er beschuldigt die Union, mit dem Vorwurf des Rechtsextremismus gegen die AfD zu arbeiten.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Frohnmaier beanwortet die Frage nach seinen Motiven nicht substantiell, sondern dreht sie um und wirft Röttgen/der CDU vor, die gleichen Fragen in Opposition gestellt zu haben. Er nutzt das als Beweis einer Kampagne gegen die AfD.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "CDU-Strategie zur Diskreditierung der AfD",
+        "concrete_statements": [
+          "Es gibt ein parlamentarisches Recht, dass wir in Anspruch nehmen.",
+          "45 Einzelfragen von Herrn Röttgen, die er selbst gestellt hatte genau in diesen Bereichen.",
+          "Das ist eine Strategie, nachdem das mit dem Rechtsextremismus Vorwurf nicht mehr geht, um die AfD zu diskreditieren."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt ein parlamentarisches Recht, dass wir in Anspruch nehmen. Ich habe ihn etwas mitgebracht. 45 Einzelfragen von Herrn Röntgen, die er selbst gestellt hatte genau in diesen Bereichen. Lieferung der Patriot, Unterstützungsleistungen für die Ukrainer, Beschaffung von Rüstungsgütern für die Weitergabe an die Ukraine...",
+            "timestamp": "00:30:01",
+            "context": "Auf Frage, was die AfD mit Fragen zu kritischer Infrastruktur bezweckt"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Kleine Anfragen",
+          "Infrastruktur-Sicherheit",
+          "Spionageabwehr"
+        ]
+      },
+      {
+        "title": "Finanzierung durch Ausland und Parteiverbindungen",
+        "timestamp_range": "00:33:37 - 00:34:42",
+        "theme_description": "Gegenbeschuldigung Frohnmaiers gegenüber Röttgen über Parteienfinanzierung aus dem Ausland.",
+        "question_asked": "Röttgen wirft der AfD vor, dass mehrere Politiker Geld aus dem Ausland erhalten hätten; Frohnmaier kontert mit eigenem Vorwurf gegen die Union (Verbindung mit Aserbaidschan, Vorzugsaktien).",
+        "question_intent": "Klärung der gegenseitigen Korruptionsvorwürfe.",
+        "position": "Frohnmaier lenkt die Diskussion um: Er behauptet, dass es im Bundestag nur eine Partei gibt, bei der ‚gerichtsfest' nachgewiesen worden ist, dass sie von ausländischen Akteuren bezahlt wurde — nämlich Röttgens Partei (CDU/CSU). Er verweist auf Verbindungen zu Aserbaidschan und Fälle wie die Vorzugsaktien von 200.000 Euro von einem Versicherungsunternehmen. Er warnt davor, anderen Parteien leichtfertig ‚Landesverrat' oder ‚Spionage' zu vorwerfen, wenn die eigene Partei solche Vorwürfe gegenüber.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "match_reasoning": "Statt auf Röttgens Vorwurf direkt einzugehen, dreht Frohnmaier die Anklage um und wirft der Union Korruptionsverbindungen vor, die er für schwerwiegender darstellt.",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "deflection_target": "CDU-Verbindungen zu ausländischen Akteuren",
+        "concrete_statements": [
+          "Es gibt im Deutschen Bundestag nur eine Partei, bei der gerichtsfest nachgewiesen worden ist, dass sie von ausländischen Akteuren bezahlt worden ist. Das ist Ihre Partei.",
+          "Mehrere Politiker Ihrer Partei haben aus dem Ausland Geld erhalten, um ihre Interessen zu vertreten."
+        ],
+        "quotes": [
+          {
+            "text": "Es gibt im Deutschen Bundestag nur eine Partei, bei der gerichtsfest nachgewiesen worden ist, dass sie von ausländischen Akteuren bezahlt worden ist. Das ist Ihre Partei. Das ist eine reine Verleumdung. Denken Sie an die Verbindung mit Aserbaidschan.",
+            "timestamp": "00:33:37",
+            "context": "Auf Röttgens Vorwurf ausländischer Parteienfinanzierung gegen die AfD"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parteienfinanzierung",
+          "Korruptionsvorwürfe",
+          "Außenpolitische Verbindungen"
+        ]
+      },
+      {
+        "title": "Besuch der Krim 2018 und Position zur Souveränität",
+        "timestamp_range": "00:35:14 - 00:36:19",
+        "theme_description": "Röttgen konfrontiert Frohnmaier mit seinem Besuch auf der Krim 2018 und einer Aussage, dass die Krim nun russisch ist.",
+        "question_asked": "Röttgen wirft Frohnmaier vor: ‚2018 waren Sie auf der Krim. Und haben gesagt, die Krim es jetzt Russisch, und das ist auch gut.'",
+        "question_intent": "Zu zeigen, dass Frohnmaier in seinen Handlungen und Aussagen Russlands Position zur Krim legitimiert, was im Widerspruch zu seinen Plädoyers für Nicht-Einmischung steht.",
+        "position": "Frohnmaier erklärt, dass er damals in einem Interview von einem Journalisten befragt worden sei, nach dem Prozess der Krim. Er habe erklärt, dass die Krim ‚wohl Russisch bleibt' — als Realität, nicht als Bewertung. Das sei eine Einzelheit und eine nüchterne Einschätzung. Er weist Röttgens Versuch zurück, die AfD als ‚Partei des Auslands' zu framen, und sagt, dass Röttgen versucht, mit taktischen Angriffen von inhaltlicher Diskussion abzulenken. Er deutet an, dass Röttgen alle Beziehungen zu großen relevanten Partnern abgezogen habe (China, Russland, USA).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Frohnmaier erklärt das Zitat im Kontext einer journalistischen Befragung zur Realpolitik, weist aber Röttgens moralische Deutung zurück und lenkt zur Gegenattacke auf Union-Außenpolitik ab.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich habe damals erklärt, dass die Krim wohl Russisch bleibt. Das ist eine Realität, die sich nicht verändern lässt.",
+          "Es geht darum, dass Sie erneut versuchen, die AfD als Partei des Auslands zu framen. Das lasse ich nicht durchgehen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich wurde dazu befragt. Ich habe ein Interview geführt, da hat mich ein Journalist gefragt nach dem Prozess. Da habe ich erklärt, dass die Krim wohl Russisch bleibt. Das ist eine Realität, die sich nicht verändern lässt.",
+            "timestamp": "00:35:47",
+            "context": "Auf Vorwurf, 2018 auf der Krim gewesen zu sein und die russische Souveränität legitimiert zu haben"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Krim",
+          "Territoriale Integrität",
+          "Realpolitik"
+        ]
+      },
+      {
+        "title": "Russisches Strategiepapier und Einflussnahme auf die AfD",
+        "timestamp_range": "00:36:52 - 00:38:57",
+        "theme_description": "Röttgen verweist auf ein Strategiepapier von 2017, das russischem Geheimdienst Interesse an der AfD zeigen soll; Frohnmaier widerlegt dies.",
+        "question_asked": "Röttgen sagt: ‚Sie haben 2017 einer Wahlempfehlung aus Russland bekommen. Das ist rausgekommen... Es gab ein Strategiepapier... Da wurde gesagt: die Quelle ist der Ex-Spionageabwehrbeamte... Wie kommt es dazu?'",
+        "question_intent": "Zu belegen, dass der russische Geheimdienst direkt die AfD unterstützt oder beeinflusst hat.",
+        "position": "Frohnmaier wendet sich gegen das, was er als ‚Lüge' bezeichnet. Er erklärt, dass wenn ein Yandex-Account etwas schreibt, das nicht der Wahrheit entsprechen muss. Der Ex-Spionageabwehrbeamte Sergei Sokolov, nicht Frohnmaier, sei die Quelle des Papiers. Ihm selbst sei ein Papier ohne Absender vorgelegt und gesagt worden, dass diese Zuschreibung an ihn gemacht würde. Er steht nicht unter der Kontrolle eines anderen und vertritt eigene, deutsche Interessen. Die Strategie sei, nicht inhaltlich mit der AfD zu diskutieren.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Frohnmaier beantwortet die Vorwurfsfrage direkt, indem er die Identität der Quelle korrigiert und die Wahrheit des Papiers in Frage stellt. Er bietet eine Gegenerzählung an.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das ist eine reine Verleumdung.",
+          "Wenn ein Yandex Account einem anderen etwas schreibt, dann muss das nicht der Wahrheit entsprechen.",
+          "Ich bin nicht der ehemalige Spionageabwehrbeamte, das war Sergei Sokolov.",
+          "Ich stehe unter niemand des Kontrolle. Ich vertrete ganz klar deutsche Interessen."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde es gut, dass Sie das ansprechen, weil es mir die Gelegenheit gibt, mit dieser Lüge aufzuräumen. Entschuldigen Sie bitte. Wenn ein Yandex Account einem anderen etwas schreibt, dann muss das nicht der Wahrheit entsprechen. Ich bin nicht der ehemalige Spionageabwehrbeamte, das war Sergei Sokolov.",
+            "timestamp": "00:37:52",
+            "context": "Auf Vorwurf, 2017 eine Wahlempfehlung aus Russland erhalten zu haben"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russische Einflussnahme",
+          "Spionage",
+          "Ausländische Wahlbeeinflussung"
+        ]
+      },
+      {
+        "title": "US-Truppenpräsenz und europäische Verteidigungsfähigkeit",
+        "timestamp_range": "00:42:09 - 00:43:13",
+        "theme_description": "Frage, ob der Rückzug von US-Soldaten aus Europa gut oder schlecht ist.",
+        "question_asked": "Sandra Maischberger fragt Markus Frohnmaier: ‚Ist es gut, wenn die USA sich aus Europa zurückziehen? Wenn die Soldaten abgezogen werden? Wenn ihr zum Beispiel keine Raketen stationiert werden?'",
+        "question_intent": "Zu erfahren, wie die AfD die geostrategische Neuausrichtung unter Trump bewertet.",
+        "position": "Frohnmaier hält es für wichtig, dass die Europäer endlich für ihre eigene Sicherheit sorgen. Das sei nicht Trumps Aufgabe, Europa zu verteidigungsfähig zu machen. Insofern könne er Trumps Logik nachvollziehen: Ein Politiker, der die Interessen des eigenen Landes vertreten sollte, handelt wie Trump. Das sei rational.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Frohnmaier antwortet klar auf die Frage mit einer positiven Bewertung von Trumps Rückzugspolitik und begründet sie mit europäischer Eigenverantwortung.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Es ist wichtig, dass die Europäer endlich in der Lage sind, für ihre eigene Sicherheit zu sorgen.",
+          "Das ist nicht die Aufgabe von Trump, dafür zu sorgen, dass Europa verteidigungsfähig ist.",
+          "Ein Politiker, der die Interessen des eigenen Landes vertreten sollte, handelt wie Trump."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, es ist wichtig, dass die Europäer endlich in der Lage sind, für ihre eigene Sicherheit zu sorgen. Das ist nicht die Aufgabe von Trump, dafür zu sorgen, dass Europa verteidigungsfähig ist. Insofern kann ich das logisch nachvollziehen. Ein Politiker, der die Interessen des eigenen Landes vertreten sollte, handelt wie Trump.",
+            "timestamp": "00:42:09",
+            "context": "Auf Frage, ob der Rückzug von US-Soldaten gut ist"
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO",
+          "US-Außenpolitik",
+          "Europäische Sicherheit"
+        ]
+      },
+      {
+        "title": "Rüstungsausgaben und 5%-Forderung",
+        "timestamp_range": "00:42:42 - 00:44:20",
+        "theme_description": "Verhandlung über Weidels Forderung, 5% des BIP für Verteidigung und Infrastruktur auszugeben.",
+        "question_asked": "Sandra Maischberger fragt: ‚5% Bruttoinlandsprodukt für Verteidigung und Infrastruktur, sagt Alice Weidel, dass es realistisch. Wie stehen Sie dazu?' und später: ‚Darf ich fragen, wie sehen Sie das mit... ob Sie es wichtig finden, dass wir 215 Mrd. Euro im Jahr für Verteidigung ausgeben sollen?'",
+        "question_intent": "Zu klären, welche konkreten Rüstungsbudgets die AfD unter Frohnmaier befürwortet.",
+        "position": "Frohnmaier erklärt, dass Weidel gesagt habe, man müsse sich erst ein Bild machen, dann aber erklärt, dass 5% realistisch seien und es wahrscheinlich mehr sein werde. Frohnmaier betont, dass man erst ermitteln müsse, bevor man einen genauen Betrag nennt — es wäre ‚unseriös', ohne Ermittlung eine konkrete Zahl anzugeben. Er weist Röttgens Frage zurück und lenkt auf die Verantwortung der CDU für die ‚Misere' ab.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Frohnmaier weicht einer klaren Antwort zur Zahl aus und verweist auf ‚erste Ermittlung', lenkt dann zur Kritik an der CDU ab statt die Frage zu beantworten.",
+        "answer_type": "teilweise_antwort",
+        "evasion_note": "Frohnmaier vermeidet, eine konkrete Position zu 215 Mrd. Euro oder zur 5%-Forderung einzunehmen.",
+        "concrete_statements": [
+          "Ich glaube, Frau Weidel hat gesagt, dass man sich erst mal ein Bild machen muss.",
+          "Es ist wichtig zu erklären, wer für die Misere verantwortlich ist.",
+          "Es wäre unseriös, einen genauen Betrag zu nennen, bevor wir nicht ermittelt haben."
+        ],
+        "quotes": [
+          {
+            "text": "Ich glaube, Frau Weidel hat gesagt, dass man sich erst mal ein Bild machen muss. Und dann hat sie gesagt, aber das ist realistisch, und wahrscheinlich wird es mehr sein als 5%.",
+            "timestamp": "00:42:42",
+            "context": "Auf Frage zur 5%-Rüstungsausgaben-Forderung"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsausgaben",
+          "Verteidigungsbudget",
+          "Wehrhaftigkeit"
+        ]
+      },
+      {
+        "title": "Gefahren für die Demokratie durch die AfD",
+        "timestamp_range": "00:45:19 - 00:45:56",
+        "theme_description": "Frage, ob sich Frohnmaier von der Bundespräsidenten-Rede zur Verteidigung der Demokratie angesprochen fühlt.",
+        "question_asked": "Sandra Maischberger fragt Markus Frohnmaier, ob er sich von der Steinmeier-Rede angesprochen fühle, obwohl die AfD nicht namentlich erwähnt wurde.",
+        "question_intent": "Zu klären, ob die AfD sich als Zielscheibe der demokratischen Warnung verstanden weiß und wie Frohnmaier darauf reagiert.",
+        "position": "Frohnmaier räumt ein, dass klar ist, wen Steinmeier gemeint hat, warnt aber davor, dass Parteien im Wettbewerb mit der AfD versuchen, diese bei jeder Gelegenheit zu kompromittieren. Er sieht darin eine Strategie, den politischen Wettbewerb zu begrenzen. Die SPD liege in einigen Bundesländern unter 10%, weshalb er solche Versuche als Verzweiflung interpretiert. Er empfiehlt anderen Parteien, nicht die AfD ständig diskreditieren zu wollen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Frohnmaier antwortet auf die direkte Frage, ob er sich angesprochen fühle, mit Ja, verlässt dann aber schnell die konkrete Frage und lenkt auf eine Metadiskussion zur Wahlkampftaktik und Wettbewerbsfähigkeit der anderen Parteien ab.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Es ist klar, wen er damit gemeint hat.",
+          "Ich kann allen Parteien, die im Wettbewerb mit der AfD sind, nur empfehlen, versuchen Sie nicht, die AfD bei jeder Gelegenheit zu kompromittieren."
+        ],
+        "quotes": [
+          {
+            "text": "Es ist klar, wen er damit gemeint hat. Die SPD liegt je nach Bundesland bei unter 10%. Da versucht man alles, um den politischen Wettbewerb kleiner zu kriegen.",
+            "timestamp": "00:45:19",
+            "context": "Auf die Frage, ob sich Frohnmaier von der Bundespräsidenten-Rede angesprochen fühle"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Wehrhaft Demokratie",
+          "Parteiverbot-Debatte",
+          "AfD-Krise"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Röttgen hat 45 Einzelfragen zu Patriot-Lieferungen, Ukraine-Unterstützung und Rüstungsgüterbeschaffung gestellt",
+        "timestamp": "00:30:01"
+      },
+      {
+        "claim": "Frohnmaier war 2018 auf der Krim und hat erklärt, dass die Krim russisch bleibt",
+        "timestamp": "00:35:47"
+      },
+      {
+        "claim": "Es gibt ein gerichtsfest nachgewiesenes Papier, das zeigt, dass ein ausländischer Akteur die Union finanziert hat (Vorzugsaktien von 200.000 Euro, Aserbaidschan-Verbindung)",
+        "timestamp": "00:33:37"
+      },
+      {
+        "claim": "Die Quelle des 2017 Strategiepapiers war Sergei Sokolov, ein Ex-Spionageabwehrbeamte, nicht Frohnmaier",
+        "timestamp": "00:37:52"
+      },
+      {
+        "claim": "Die SPD liegt in manchen Bundesländern unter 10%",
+        "timestamp": "00:45:25"
+      }
+    ]
+  }
+}

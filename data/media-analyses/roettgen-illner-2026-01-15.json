@@ -1,0 +1,305 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-15-januar-2026-100",
+    "video_id": "illner-2026-01-15",
+    "politician": "Norbert Röttgen",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "1d9f33d763bcb929",
+    "transcript_chars": 58286,
+    "caption_lines": 2896,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23693,
+    "tokens_out": 7694,
+    "cost_usd": 0.0248652,
+    "quote_validation": {
+      "valid_exact": 2,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 6,
+      "teilweise_antwort": 2
+    },
+    "generated_at": "2026-06-05T13:37:47.772Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen (CDU/CSU-Außenpolitiker) diskutiert in der Sendung von Maybrit Illner Trumps geopolitische Ambitionen – insbesondere Grönland, Venezuela und Iran. Röttgen argumentiert nüchtern und strategisch: Er lehnt eskalatives Gerede ab, betont Deutschlands mangelnde eigenständige Machtposition und plädiert für einen europäischen Willen zur Macht statt defensiver Reaktionen auf Trumps Rhetorik. Sein Ton ist konziliant gegenüber Trump, aber entschieden in der Forderung nach europäischer Souveränität.",
+    "themes": [
+      {
+        "title": "Deutsche Solidarität mit Dänemark in Grönland-Frage",
+        "timestamp_range": "00:04:51 - 00:06:31",
+        "theme_description": "Maybrit Illner fragt Röttgen, ob die Entsendung deutscher Soldaten nach Grönland eine Drohung an Trump darstellt. Röttgen charakterisiert die Truppenbewegung als politische Solidaritätsbekundung, nicht als militärische Provokation.",
+        "question_asked": "Maybrit Illner fragt Norbert Röttgen, ob die Entsendung von 15 deutschen Soldaten nach Grönland zusammen mit Kameraden aus anderen europäischen Ländern bereits eine Drohung an Donald Trump ist – eine Art Signal, dass man in Europa nicht annektiert, wenn man Sicherheit möchte.",
+        "question_intent": "Illner möchte wissen, ob das europäische Truppenkontingent eine subtile Warnung oder Gegendrohung gegenüber Trump ist.",
+        "position": "Röttgen lehnt ab, dass es eine Drohung gegen Trump ist. Er charakterisiert die Aktion explizit als politische Solidaritätsbekundung mit Dänemark, nicht als militärische Aktion. Er argumentiert, dass Trump bei Grönland sachlich nicht um Sicherheit gehen kann, da es einen dänisch-amerikanischen Vertrag gibt und die NATO alle notwendigen Instrumente für arktische Sicherheit bereitstellt. Daher könne es in Wahrheit nicht um Sicherheit gehen.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen antwortet direkt auf Illners Frage und klärt das Missverständnis: Die Aktion sei politisch, nicht militärisch. Er bietet eine sachliche Analyse, warum Trumps Sicherheitsargument nicht haltbar ist, und adressiert damit sowohl die explizite Frage (Drohung?) als auch deren Hintergrund vollständig.",
+        "concrete_statements": [
+          "Es ist keine Drohung an Trump.",
+          "Es ist aus meiner Sicht gar nicht in erster Linie oder überhaupt eine militärische Aktion, sondern es ist eine politische Solidaritätsbekundung mit Dänemark.",
+          "In Wahrheit kann es also nicht um Sicherheit gehen, das steht fest."
+        ],
+        "quotes": [
+          {
+            "text": "Also es ist keine Drohung an Trump. Es ist aus meiner Sicht gar nicht in erster Linie oder überhaupt eine militärische Aktion, sondern es ist eine politische Solidaritätsbekundung mit Dänemark, die auf diese Weise abgegeben wird.",
+            "timestamp": "00:05:19"
+          },
+          {
+            "text": "In Wahrheit kann es also nicht um Sicherheit gehen, das steht fest.",
+            "timestamp": "00:06:17"
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Bündnissolidarität",
+          "Außenpolitik und Sicherheitspolitik",
+          "Transatlantische Beziehungen"
+        ]
+      },
+      {
+        "title": "Grönland-Souveränität und Verkauf-Szenarien",
+        "timestamp_range": "00:34:06 - 00:37:49",
+        "theme_description": "Maybrit Illner fragt, ob Grönland verkauft werden könnte, wenn die Grönländer und Dänen Trumps Kaufangebot akzeptierten. Röttgen erklärt die rechtliche Machbarkeit und Wahrscheinlichkeit.",
+        "question_asked": "Maybrit Illner fragt Norbert Röttgen, ob Deutschland – falls die Grönländer und Dänen Trumps Kaufangebot (mit jedem Grönländer erhaltenden 100.000 Dollar) akzeptierten – das verhindern könnte, und was es denn verhindern würde, dass so ein Verkauf stattfindet.",
+        "question_intent": "Illner möchte klären, welche praktischen oder rechtsstaatlichen Mechanismen einen Verkauf Grönlands verhindern könnten, falls die lokale Bevölkerung zustimmen würde.",
+        "position": "Röttgen argumentiert, dass falls Grönländer und Dänen ein Kaufangebot akzeptierten, würde dies wie der historische Verkauf Alaskas durch Russland vollzogen – als rechtliche Transaktion. Er hält diesen Fall aber für ausgeschlossen, da die Grönländer und Dänen ihr Land lieben und Patrioten sind, wie Deutsche auch ihr Land nicht verkaufen wollen würden. Röttgen warnt davor, die Situation zu dramatisieren und zu übertreiben: Die zentrale Frage müsse lauten, was Trump konkret tun könne, wenn die Grönländer nein sagen. Trump könne Soldaten nicht einfach dort stationieren, ohne das Territorium rechtlich einzuverleiben – Amerika ist nicht wie Russland, das die Krim annektieren konnte.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen adressiert beide Teile der Frage: Er erklärt das hypothetische Verkaufsszenario rechtlich (würde wie Alaska-Verkauf funktionieren, aber ist ausgeschlossen) und analysiert dann realistisch, was Trump konkret tun könnte. Er warnt vor übertriebener Dramatisierung und betont verfassungsrechtliche Grenzen des US-Präsidenten.",
+        "concrete_statements": [
+          "Wenn die Grönländer und die Dänen sagen, wir nehmen das Kaufangebot an, dann wird Grönland so verkauft wie Alaska von den Russen verkauft wurde.",
+          "Dann halte ich es für ausgeschlossen, dass es so kommt.",
+          "Amerika ist nicht Russland. Putin kann die Krim versetzen und sie annektieren. Das kann der amerikanische Präsident nach dem amerikanischen Verfassungssystem nicht."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn die Grönländer und die Dänen sagen, wir nehmen das Kaufangebot an, dann wird Grönlands so verkauft wie Alaska von den Russen verkauft wurde.",
+            "timestamp": "00:34:06"
+          },
+          {
+            "text": "Amerika ist nicht Russland. Putin kann die Krim versetzen und sie annektieren. Das kann der amerikanische Präsident nach dem amerikanischen Verfassungssystem nicht.",
+            "timestamp": "00:36:35"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Internationale Rechtsordnung",
+          "Souveränität und Völkerrecht",
+          "Verfassungsrecht und Gewaltenteilung"
+        ]
+      },
+      {
+        "title": "Realistische Bewertung von Trumps Machtmöglichkeiten",
+        "timestamp_range": "00:35:08 - 00:37:22",
+        "theme_description": "Maybrit Illner und Röttgen diskutieren, was Trump konkret tun kann, wenn Grönland sich nicht verkaufen lässt. Röttgen plädiert für nüchterne, nicht hysterische Analyse.",
+        "question_asked": "Maybrit Illner fragt implizit: Was hindert Trump daran, Grönland zu nehmen, wenn Grönländer und Dänen nein sagen – und wer kann das verhindern?",
+        "question_intent": "Illner will wissen, ob Trump ein reales militärisches Szenario verfolgen kann oder ob es bloß Bluff ist.",
+        "position": "Röttgen argumentiert, dass die Überzeugung und Einschätzung des Westens ist, dass wir etwas übertreiben und uns insgesamt ‚ins Bockshorn jagen' lassen. Die zentrale Frage sollte sein: Was kann Trump konkret tun, wenn die Grönländer nein sagen? Soll er 10.000 Soldaten ins Eis stellen? Er könnte auch 100 Fahnen aufstellen – dadurch wird Grönland nicht amerikanisch. Röttgen warnt, dass Trump durch Worte keine magische Kraft hat, und plädiert dafür, nüchtern zu bewerten, was er faktisch tun kann. Er betont das amerikanische Verfassungssystem: Anders als Putin kann Trump ohne Kongress Grönland nicht rechtlich einverleiben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen antwortet auf Illners implizite Frage mit einer nüchternen Analyse: Er identifiziert die realistische Grenze von Trumps Macht (Verfassung, Kongress) und kritisiert die europäische Neigung zu Hysterie. Seine Antwort ist strategisch und analytisch klar.",
+        "concrete_statements": [
+          "Übertreiben wir es etwas. Ein bisschen gehen wir dem Trump auf den Leim. Wir lassen uns ins Bockshorn jagen.",
+          "Trump hat keine magische Kraft mit seinen Worten.",
+          "Wir müssen auch mal ganz nüchtern bewerten, was kann er?"
+        ],
+        "quotes": [
+          {
+            "text": "Ein bisschen gehen wir dem Trump auf den Leim. Wir lassen uns ins Bockshorn jagen. Was kann er machen, wenn die Grönländer sagen nein?",
+            "timestamp": "00:35:08"
+          },
+          {
+            "text": "Trump hat keine magische Kraft mit seinen Worten.",
+            "timestamp": "00:37:22"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitische Strategie",
+          "USA-Politik und Realismus",
+          "Geopolitische Analyse"
+        ]
+      },
+      {
+        "title": "Trumps tatsächliche Ziele mit Grönland",
+        "timestamp_range": "00:36:35 - 00:38:10",
+        "theme_description": "Maybrit Illner und Röttgen diskutieren, ob Trump Grönland wirklich as Staatsterritorium einverleiben will oder bloß droht. Röttgen argumentiert, dass Trump die Expansion wirklich anstrebt, aber verfassungsrechtlich gehindert ist.",
+        "question_asked": "Maybrit Illner moderiert zwischen Röttgens Position (Trump könne verfassungsrechtlich nicht viel tun) und Masalas skeptischerem Blick (Trump denke nicht in Grundbuch-Kategorien). Sie fragt implizit: Will Trump es wirklich haben oder ist es Rhetorik?",
+        "question_intent": "Illner möchte klären, ob Trumps Grönland-Anspruch ernst gemeint oder nur ein Negotiation-Tactic ist.",
+        "position": "Röttgen bestätigt: Trump will das Staatsterritorium tatsächlich erweitern – er will auch Kanada als 51. Bundesstaat haben. Röttgen unterstreicht, dass Trump Soldaten dorthin schicken würde und Angebote macht und droht, weil er und seine Umgebung wissen, dass dies der einzige Weg ist, es zu bekommen. Damit beantwortet Röttgen indirekt, dass es nicht nur Rhetorik ist, sondern ein echtes expansionistisches Ziel.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen nimmt klar Position zur Substanz von Trumps Zielen ein: Er will wirklich expandieren. Er verbindet dies mit der verfassungsrechtlichen Realität: Trump bräuchte den Kongress und hat ihn nicht. Die Antwort verbindet Absicht und Machbarkeit in einer nüchternen Analyse.",
+        "concrete_statements": [
+          "Er will das Staatsterritorium erweitern.",
+          "Er will auch Kanada als 51. Bundesstaat haben.",
+          "Er würde auch Soldaten hin tun.",
+          "Er macht Angebote und droht natürlich, weil er weiß und auch seine Umgebung weiß, das ist der einzige Weg, es zu bekommen."
+        ],
+        "quotes": [
+          {
+            "text": "Er will das Staatsterritorium erweitern. Er will auch Kanada als 51. Bundesstaat haben.",
+            "timestamp": "00:36:43"
+          },
+          {
+            "text": "Er macht Angebote und droht natürlich, weil er weiß und auch seine Umgebung weiß, das ist der einzige Weg, es zu bekommen.",
+            "timestamp": "00:37:49"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik und Geopolitik",
+          "USA-Politik und Absichten"
+        ]
+      },
+      {
+        "title": "Europäische Hysterie vs. nüchterne Machtanalyse",
+        "timestamp_range": "00:50:39 - 00:52:29",
+        "theme_description": "Maybrit Illner fragt, ob Deutschland im Ernstfall Artikel 42 der EU-Verträge (Beistandsklausel) anrufen und Dänemark militärisch beistehen würde. Röttgen kritisiert die eskalative Rhetorik und plädiert für europäische Machtpolitik statt Hysterie.",
+        "question_asked": "Maybrit Illner zitiert Kaja Kallas, dass Dänemark im Ernstfall Beistand von Europäern verlangen könnte (Artikel 42 EU-Verträge). Sie fragt Norbert Röttgen direkt: Würde Deutschland das tun?",
+        "question_intent": "Illner will wissen, wie weit Deutschland gehen würde – ob bis zur militärischen Konfrontation mit den USA zur Verteidigung Dänemarks.",
+        "position": "Röttgen lehnt dieses Gerede explizit ab und sagt, dass Europa selbst diese Eskalation betreibe, die für Europa nur ins Elend führen kann. Stattdessen müsse man verhindern, dass es zu dieser Eskalation kommt. Die strategische Richtung sollte sein: Deutschlands und Europas eigene Machtposition stärken statt über jedes Stöckchen zu springen, das Trump auswirft. Röttgen argumentiert, dass man seinen eigenen Willen zur Macht entwickeln müsse und nicht in Hysterie verfallen dürfe. Maybrit Illner protestiert, dass man die Tweets nicht thematisieren darf – Röttgen antwortet mit einer Metaebenen-Kritik: Die Frage ist, ob man alles wörtlich nimmt oder seinen eigenen Willen zur Macht entwickelt.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Röttgen antwortet nicht direkt mit Ja/Nein auf Illners Frage (würde Deutschland Artikel 42 anrufen), sondern verschiebt auf eine Meta-Ebene: Er kritisiert das Framing der Frage selbst als eskalativ. Er adressiert die tiefere Strategie-Frage, vermeidet aber die direkte Zusage oder Ablehnung zur Beistandsfrage.",
+        "concrete_statements": [
+          "All dieses Gerede, dafür habe ich null Verständnis. Dass wir selber diese Eskalation betreiben, die für uns nur ins Elend führen kann.",
+          "Wir müssen genau diesen Fall, der zu Eskalation führt, verhindern.",
+          "Der Punkt ist, springen wir über jedes Stöckchen? Nehmen wir immer alles wörtlich, was gesagt wird, oder entwickeln wir unseren eigenen Willen zur Macht?"
+        ],
+        "quotes": [
+          {
+            "text": "All dieses Gerede, dafür habe ich null Verständnis. Dass wir selber diese Eskalation betreiben, die für uns nur ins Elend führen kann.",
+            "timestamp": "00:50:39"
+          },
+          {
+            "text": "Der Punkt ist, springen wir über jedes Stöckchen? Nehmen wir immer alles wörtlich, was gesagt wird, oder entwickeln wir unseren eigenen Willen zur Macht?",
+            "timestamp": "00:51:27"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Verteidigungspolitik",
+          "NATO und Bündnissolidarität",
+          "Europäische Souveränität und Strategie"
+        ]
+      },
+      {
+        "title": "Europäischer Willen zur Macht als Antwort auf Trump",
+        "timestamp_range": "00:51:57 - 00:52:29",
+        "theme_description": "Maybrit Illner fragt, ob Röttgen für europäischen Patriotismus plädiert. Röttgen erklärt, dass Europa nach 70 Jahren ohne eigenständige Machtposition einen eigenen Willen zur Macht entwickeln muss, weil die USA keine Schutzmacht mehr sind.",
+        "question_asked": "Maybrit Illner fragt Norbert Röttgen, ob er für europäischen Patriotismus plädiert – nachdem er von 70 Jahren Schutzmacht USA gesprochen hatte.",
+        "question_intent": "Illner will konkretisieren, auf welchen Patriotismus oder welche politische Identität Röttgen hinauswill.",
+        "position": "Röttgen präzisiert: Es geht nicht um europäischen Patriotismus im klassischen Sinn, sondern um etwas, das Europa 70 Jahre lang nicht brauchte – einen eigenen europäischen Willen zur Macht. Dies ist notwendig, weil die USA nicht mehr die Schutzmacht sind. Röttgen warnt auch davor, bei jeder Äußerung aus dem Weißen Haus in Hysterie zu verfallen und zu fragen, wann Europa gegen die Amerikaner kämpfen muss.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen klärt präzise auf, was er nicht meint (klassischer Patriotismus) und was er stattdessen meint (europäischer Wille zur Macht). Die Antwort ist konzeptuell klar und strategisch orientiert.",
+        "concrete_statements": [
+          "Wir brauchen etwas anderes, was wir 70 Jahre nicht brauchten, weil es die Amerikaner als Schutzmacht gab. Das sind sie nicht mehr.",
+          "Wir brauchen einen eigenen europäischen Willen zur Macht.",
+          "Es ist nicht klug, wenn wir bei jeder Äußerung aus dem Weißen Haus in Hysterie verfallen."
+        ],
+        "quotes": [
+          {
+            "text": "Nein, wir brauchen etwas anderes, was wir 70 Jahre nicht brauchten, weil es die Amerikaner als Schutzmacht gab. Das sind sie nicht mehr. Wir brauchen einen eigenen europäischen Willen zur Macht.",
+            "timestamp": "00:51:57"
+          },
+          {
+            "text": "Es ist nicht klug, wenn wir bei jeder Äußerung aus dem Weißen Haus in Hysterie verfallen.",
+            "timestamp": "00:52:13"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Sicherheitspolitik",
+          "Europäische Souveränität",
+          "Strategische Autonomie"
+        ]
+      },
+      {
+        "title": "Deutschland und Ukraines Zukunft: Selbstschutz statt USA-Abhängigkeit",
+        "timestamp_range": "00:56:07 - 00:57:09",
+        "theme_description": "Maybrit Illner fragt Röttgen, ob Bundeskanzler Scholz Geld und Truppen verspricht, die er nicht hat. Röttgen unterscheidet zwischen Fortschritt (90 Milliarden für Ukraine) und Versagen (nicht auf russisches Vermögen zugegriffen).",
+        "question_asked": "Maybrit Illner fragt Norbert Röttgen, ob der Bundeskanzler tatsächlich Geld und Truppen verspricht, die Deutschland gar nicht hat – und ob das Versprechen, russisches Vermögen zu beleihen, haltbar ist.",
+        "question_intent": "Illner kritisiert die Glaubwürdigkeit deutscher Sicherheitsversprechen und fragt, worauf diese konkret basieren.",
+        "position": "Röttgen unterscheidet zwei Dinge: (1) Fortschritt: Im Dezember 2024 wurde beschlossen, 90 Milliarden Euro für die Ukraine bereitzustellen – ohne dies wäre die Ukraine im Frühjahr erledigt gewesen. Das zeigt europäischen Willen zur Macht. (2) Versagen: Dass europäische Staaten (nicht nur Belgien, Frankreich, Italien) sich nicht getraut haben, auf das russische Staatsvermögen zuzugreifen, um es zur Finanzierung einzusetzen – das war historisch schwach. Führung bedeutet Risiko. Röttgen kritisiert, dass statt Machtdemonstration einfach weitere Schulden für die nächste Generation aufgebaut wurden.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Röttgen antwortet differenziert auf beide Teile der Frage: Er gibt es nicht pauschal ab, dass Scholz ohne Rückhalt verspricht, sondern unterscheidet zwischen realen Erfolgen (90 Mrd.) und realen Versäumnissen (russisches Vermögen). Seine Antwort ist substantiell und empirisch verankert.",
+        "concrete_statements": [
+          "Der Fortschritt im letzten Dezember war, es gibt jetzt 90 Milliarden Euro für die Ukraine.",
+          "Wenn das nicht gekommen wäre, wäre die Ukraine in diesem Frühjahr erledigt.",
+          "Es waren zu viele Staaten, nicht nur Belgien, Frankreich, Italien und andere, die diesen Willen zur Macht nicht hatten."
+        ],
+        "quotes": [
+          {
+            "text": "Der Fortschritt im letzten Dezember war, es gibt jetzt 90 Milliarden Euro für die Ukraine. Wenn das nicht gekommen wäre, wäre die Ukraine in diesem Frühjahr erledigt.",
+            "timestamp": "00:56:07"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Haushaltspolitik und Verteidigungsausgaben",
+          "Europäische Finanzierung von Sicherheit"
+        ]
+      },
+      {
+        "title": "Iran-Proteste: Sollte Deutschland militärische US-Intervention unterstützen?",
+        "timestamp_range": "01:04:38 - 01:06:33",
+        "theme_description": "Maybrit Illner fragt Röttgen, ob Deutschland eine mögliche US-Militärintervention im Iran gegen die Revolutionsgarden unterstützen würde, wenn dies die Protestbewegung stärken könnte.",
+        "question_asked": "Maybrit Illner fragt Norbert Röttgen: Falls eine Revolution im Iran erfolgreich werden könnte und Trump militärisch gegen die Revolutionsgarden eingreift – würde Deutschland das unterstützen? Sollte der deutsche Bundeskanzler Trump sagen, du hast meine Unterstützung?",
+        "question_intent": "Illner möchte erkunden, ob und unter welchen Bedingungen Röttgen/Deutschland eine US-Militäraktion im Iran für legitim oder unterstützenswert hält.",
+        "position": "Röttgen gibt eine nuancierte Antwort: Trump ist der Einzige, der erwägt, militärisch die Revolutionsgarden in einer Weise einzugreifen, die die Opposition und das Volk als Unterstützung ihres Aufstands wahrnehmen. Er betont, dass die Protestierenden unter Gefahr ihres Lebens demonstrieren, weil sie sehen, dass Trump auf ihrer Seite ist und die Revolutionsgarden empfindlich trifft. Die Frage ist dann, ob der deutsche Bundeskanzler Trump sagen sollte, du hast meine Unterstützung – oder sollte er etwas anderes tun? Röttgen schweigt zu der direkten Endorsement-Frage, aber argumentiert, dass die Brutalität des Regimes seit 50 Jahren das Gegenargument zu Staaten darstellt, die sagen, wir setzen die Revolutionsgarden nicht auf die Terrorliste. Ein geschwächter Iran und geschwächte Mullahs sind doch die bessere Variante.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Röttgen antwortet analytisch auf die Situation im Iran (Trump einziger mit militärischer Option, die Opposition unterstützen könnte), vermeidet aber eine klare Antwort auf Illners Kernfrage (soll Scholz Trump unterstützen). Er leitet stattdessen in eine normative Debatte über (Brutalität des Regimes = Rechtfertigung für Schwächung).",
+        "concrete_statements": [
+          "Trump ist der Einzige, der erwägt, militärisch die Revolutionsgarden in einer Weise einzugreifen, die die Opposition, das Volk, als Unterstützung ihres Aufstandes wahrnimmt.",
+          "Ein geschwächter Iran, diese Mullahs, sind doch die bessere Variante."
+        ],
+        "quotes": [
+          {
+            "text": "Trump ist der Einzige, der erwägt, militärisch die Revolutionsgarden in einer Weise einzugreifen, die die Opposition, das Volk, als Unterstützung ihres Aufstandes wahrnimmt.",
+            "timestamp": "01:04:38"
+          },
+          {
+            "text": "Ein geschwächter Iran, diese Mullahs, sind doch die bessere Variante.",
+            "timestamp": "01:06:17"
+          }
+        ],
+        "related_bundestag_topics": [
+          "Iran-Politik",
+          "Menschenrechte und Protestbewegungen",
+          "Militärische Interventionen und Völkerrecht"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Dänemark-amerikanischer Vertrag existiert und gibt den USA alle Möglichkeiten, sich selbst mit amerikanischen Truppen um Sicherheit auf Grönland zu kümmern",
+        "timestamp": "00:06:10"
+      },
+      {
+        "claim": "NATO seit 2022 explizit arktische Sicherheit im strategischen Konzept adressiert, weil Russland die Arktis remilitarisiert",
+        "timestamp": "00:12:07"
+      },
+      {
+        "claim": "90 Milliarden Euro für die Ukraine wurden im letzten Dezember (2024) beschlossen",
+        "timestamp": "00:56:07"
+      },
+      {
+        "claim": "Alaska wurde von Russland verkauft (historisches Präzedent für Territorialverkauf)",
+        "timestamp": "00:34:06"
+      },
+      {
+        "claim": "Trump hat acht Friedensverträge geschlossen (Aussage aus Omid Nouripours Rede, nicht Röttgen, aber Röttgen kontestiert nicht)",
+        "timestamp": "00:42:51"
+      }
+    ]
+  }
+}

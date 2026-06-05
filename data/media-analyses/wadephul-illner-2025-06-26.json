@@ -1,0 +1,340 @@
+{
+  "_meta": {
+    "url": "https://www.zdf.de/video/talk/maybrit-illner-128/maybrit-illner-vom-26-juni-2025-100",
+    "video_id": "illner-2025-06-26",
+    "politician": "Johann Wadephul",
+    "host": "Maybrit Illner",
+    "publisher": "maybrit illner (ZDF)",
+    "transcript_sha": "b514542b200fa82e",
+    "transcript_chars": 47084,
+    "caption_lines": 2336,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 19949,
+    "tokens_out": 8703,
+    "cost_usd": 0.0253856,
+    "quote_validation": {
+      "valid_exact": 1,
+      "valid_fuzzy": 13,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "substantielle_position": 3,
+      "pivot_zum_gegenpunkt": 1
+    },
+    "generated_at": "2026-06-05T13:37:47.440Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ZDF-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Johann Wadephul, Bundesaußenminister der CDU, diskutiert in dieser Illner-Sendung die US-Politik unter Trump, die iranische Nuklearfrage und Europas Sicherheitsaufgaben. Er tritt als Vermittler auf, der diplomatische Lösungen mit militärischer Notwendigkeit verbindet und eine starke transatlantische Verbindung betont, während er intern zwischen Kanzler Merz und seiner eigenen Bewertung des US-Handelns navigiert.",
+    "themes": [
+      {
+        "title": "Bewertung des iranischen Angriffs und Diplomatie",
+        "timestamp_range": "00:05:20 - 00:13:43",
+        "theme_description": "Johann Wadephul wird zu seiner Einschätzung des US-Luftangriffs auf den Iran befragt, nachdem er zuvor ankündigte, der Angriff werde nicht stattfinden und ihn als bedauerlich bezeichnete.",
+        "question_asked": "Maybrit Illner fragt Wadephul, ob er die US-Luftangriffe auf iranische Atomanlage als bedauerlicherweise notwendig ansehe und ob eine alternative Verhandlungssituation nicht vielversprechender gewesen wäre (Paraphrase: \"Sie haben gesagt, dieser Angriff wird nicht kommen und sie haben gesagt, er ist bedauerlich. War er aus ihrer Sicht also auch nicht notwendig?\").",
+        "question_intent": "Illner will klären, ob Wadephul den US-Angriff kritisiert oder ihm eine Notwendigkeit beimisst, und ob er damit im Widerspruch zu Kanzler Merz steht, der die Angriffe unkritisch bewertete.",
+        "position": "Wadephul erklärt, dass er die militärische Notwendigkeit nicht beurteilen könne, da ihm evtl. US-Geheimdienste fehlen. Er betont, dass die USA keinen \"langfristigen Krieg\" führen wollen und dass eine Verhandlungslösung weiterhin möglich und anzustreben sei — auch nach dem Angriff. Die E3 (Deutschland, Frankreich, Großbritannien) würden dies weiter verfolgen. Er zitiert implizit den früheren US-Außenminister Kerry: \"Man wird nicht alle Menschen und technischen Fähigkeiten wegbekommen können\" und betont kontinuierliche Kontakte zu USA und Iran (sub79–91, sub182–197).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul beantwortet die Frage zur Notwendigkeit defensiv (\"kann ich nicht abschätzen\"), lenkt aber sofort zur fortlaufenden Diplomatie über. Er vermeidet eine direkte Kritik und stellt statt dessen eine Verfügbarkeit von Verhandlungen fest. Die Illner-Frage zur Bewertung wird durch den Fokus auf diplomatische Chancen teilweise umgelenkt — nicht voll adressiert, aber auch nicht ganz verweigert.",
+        "concrete_statements": [
+          "Nur auf dem Verhandlungswege kriegt man dieses Problem gelöst",
+          "Das ist unser Bestreben als E3",
+          "Die USA wollen jetzt verhandeln",
+          "Wir stehen im Kontakt mit den USA und auch dem Iran"
+        ],
+        "quotes": [
+          {
+            "text": "Das kann ich nicht abschätzen, die Amerikaner haben möglicherweise nachrichtendienstliche Erkenntnisse, die ich nicht habe.",
+            "timestamp": "00:05:20",
+            "context": "Wadephul wird gefragt, ob er die US-Angriffe auf den Iran als notwendig einstuft."
+          },
+          {
+            "text": "Es ist klar, man kriegt dieses Problem nur auf dem Verhandlungswege gelöst. Das ist unser Bestreben als E3.",
+            "timestamp": "00:05:20",
+            "context": "Antwort auf die Frage zur Notwendigkeit des US-Angriffs — Wadephul pivotiert zur Diplomatie."
+          }
+        ],
+        "evasion_note": "Wadephul vermeidet die direkte Kritik am US-Angriff (wie Illner sie 'bedauerlich' zu nennen notiert) und rahmt stattdessen die Verhandlungslösung als strategisches Ziel. Er weicht dem direkten Vergleich zu Merz aus, indem er seine Positionen als übereinstimmend darstellt.",
+        "related_bundestag_topics": [
+          "Außenpolitik gegenüber dem Iran",
+          "Nuklearprogramm Iran",
+          "Diplomatie und Rüstungskontrolle",
+          "Transatlantische Beziehungen"
+        ]
+      },
+      {
+        "title": "Differenz zwischen Merz und Wadephul zu US-Angriff",
+        "timestamp_range": "00:11:19 - 00:15:32",
+        "theme_description": "Illner weist auf Unterschiede zwischen Kanzler Merz (der Angriffe unkritisch billigt) und Wadephuls Bewertung (der Angriff sei 'bedauerlich') hin und fragt, ob die deutsche Außenpolitik mit gespaltener Zunge spricht.",
+        "question_asked": "Maybrit Illner befragt Wadephul direkt, ob Kanzler Merz eine andere Einschätzung zur US- und Israel-Politik hat als er, und warnt vor 'Außenpolitik aus einem Guss' nicht gegeben. Sie fragt: 'Dürfen wir uns darauf einstellen, dass Kanzler und Außenminister etwas anderes sagen?'",
+        "question_intent": "Illner will aufdecken, ob es eine innenpolitische Spannungen zwischen Merz (Hardliner) und Wadephul (Diplomat) gibt, was die Glaubwürdigkeit deutscher Außenpolitik gefährde.",
+        "position": "Wadephul behauptet, dass es \"im Kern dasselbe\" sei, was er und Merz gesagt hätten (sub207). Er erläutert dann semantisch, dass die Feststellung, die USA hätten sich \"genötigt\" gesehen zu handeln, keine Kritik darstelle, sondern eine Faktenfeststellung. Er betont das gemeinsame Ziel: Verhandlungslösung auf Basis europäischer Handlungsfähigkeit (Snap-Back-Sanktionen). Die Unterscheidung zwischen \"Kritik\" und \"Kenntnisnahme\" ist sein Kernargument (sub210–216, sub220–223).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul räumt sprachlich ein, dass die beiden Formulierungen unterschiedlich sind, aber versucht, sie inhaltlich zu vereinbaren ('im Kern dasselbe'). Die direkte Antwort auf Illners Sorge vor widersprüchlichen Signalen nach außen wird mittels einer Unterscheidung zwischen Kritik und Faktenfeststellung eher verschärft als geklärt — für den Zuschauer bleibt unklar, ob es tatsächlich eine Einigkeit gibt oder nur semantische Kunstgriffe.",
+        "concrete_statements": [
+          "Es ist im Kern dasselbe",
+          "Das ist keine Kritik, sondern ich stelle fest, dass sie sich aus ihrer Sicht dazu genötigt gesehen haben",
+          "Das ist der entscheidende Punkt, den die USA selber gesagt haben",
+          "Wir haben ein gutes Blatt, wir Europäer. Wir können den Snap Back Mechanismus auslösen"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn ich zur Kenntnis nehme, dass die USA sich dazu genötigt sahen, war das keine Kritik, sondern ich stelle fest, dass sie sich aus ihrer Sicht dazu genötigt gesehen haben.",
+            "timestamp": "00:14:32",
+            "context": "Wadephul distinguishes between criticizing the US action and merely noting the US rationale."
+          },
+          {
+            "text": "Wir haben ein gutes Blatt, wir Europäer. Wir können den Snap Back Mechanismus auslösen.",
+            "timestamp": "00:14:32",
+            "context": "Wadephul emphasizes European leverage in negotiations via sanctions."
+          }
+        ],
+        "evasion_note": "Wadephul nutzt eine spitzfindige Unterscheidung (Kritik vs. Kenntnisnahme), um die Differenz zu Merz zu verharmlosen. Er weicht der direkten Frage nach widersprüchlichen Signalen aus, indem er ein einheitliches Lager konstruiert.",
+        "related_bundestag_topics": [
+          "Regierungskoalition CDU/CSU-SPD",
+          "Außenpolitische Geschlossenheit",
+          "Verhandlungspolitik",
+          "Europäische Handlungsfähigkeit"
+        ]
+      },
+      {
+        "title": "Verlässlichkeit der NATO und Artikel 5 unter Trump",
+        "timestamp_range": "00:23:16 - 00:35:55",
+        "theme_description": "Wadephul wird zur Credibilität der NATO Beistandsverpflichtung (Artikel 5) unter Donald Trump befragt, nachdem Trump die Bedingungen für US-Engagement mehrdeutig formuliert hat.",
+        "question_asked": "Maybrit Illner fragt Wadephul, ob man sich auf die US-Zusicherung verlassen könne, dass die USA zur NATO und Artikel 5 stehen — angesichts von Trumps mehrdeutigen Statements ('Es hängt von der Definition ab'). Sie fragt zudem: 'Darauf wollen wir uns jetzt verlassen?'",
+        "question_intent": "Illner testet, ob Wadephul die Sicherheitsgarantie der USA wirklich als verlässlich einstuft oder ob die Zweideut des Präsidenten auch seinen Vertrauen untergraben.",
+        "position": "Wadephul behauptet unbewaverte Zuverlässigkeit: Die Gipfelerklärung sei 'eindeutig' und 'klar in ihrer Wortwahl', von den USA unterzeichnet. Er stellt ein Anreiz-Argument auf: Trump verlange 5% Verteidigungsausgaben gerade, um die NATO gemeinsam mit den USA zu verteidigen — das zeige Engagement (sub487–496). Die Gipfelerklärung und die politischen Zusagen genügen ihm als Beleg (sub488–493).",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul antwortet direkt und positiv auf die Frage nach Verlässlichkeit ('Darauf können wir uns verlassen') und stützt dies mit konkreten Dokumenten (Gipfelerklärung) und einer logischen Dekodierung von Trumps Forderungen (5%-Ziel als Zeichen der Absicht, gemeinsam zu verteidigen). Er sagt, was er denkt, nicht was er hofft.",
+        "concrete_statements": [
+          "Darauf können wir uns verlassen",
+          "Wir haben eine Gipfelerklärung, die ist eindeutig, die ist klar in ihrer Wortwahl",
+          "Wir haben ja ein klares Bekenntnis der vereinigten Staaten von Amerika",
+          "Trump verlangt 5% Verteidigungsausgaben, weil er mit uns gemeinsam Europa verteidigen will"
+        ],
+        "quotes": [
+          {
+            "text": "Darauf können wir uns verlassen. Wir haben eine Gipfelerklärung, die ist eindeutig, die ist klar in ihrer Wortwahl.",
+            "timestamp": "00:34:59",
+            "context": "Wadephul antwortet auf Illners Skepsis zur US-Verlässlichkeit unter Trump."
+          },
+          {
+            "text": "Der entscheidende Punkt: Trump verlangt für uns 5 %, weil er mit uns gemeinsam Europa verteidigen will. Das zeigt doch, dass er es gemeinsam mit uns machen will.",
+            "timestamp": "00:34:59",
+            "context": "Wadephul interpretiert Trumps 5%-Forderung als Beweis des US-Engagements."
+          }
+        ],
+        "evasion_note": "Keine evasion erkannt — Wadephul antwortet direkt. Sein Optimismus mag unbegründet sein, aber er weicht der Frage nicht aus.",
+        "related_bundestag_topics": [
+          "NATO Artikel 5",
+          "Transatlantische Sicherheit",
+          "Bündnisverpflichtungen",
+          "Verteidigungsausgaben"
+        ]
+      },
+      {
+        "title": "Deutsche Verteidigungsausgaben und Fähigkeitsentwicklung",
+        "timestamp_range": "00:24:21 - 00:30:04",
+        "theme_description": "Wadephul wird zu deutschen Plänen für erhöhte Verteidigungsausgaben (5%-Ziel) und dem Zusammenhang zur Ukraine-Unterstützung befragt.",
+        "question_asked": "Maybrit Illner fragt Wadephul, ob die erhöhten Verteidigungsausgaben (5% des BIP) tatsächlich zu mehr Sicherheit für Deutschland führen und wie dies mit der Ukraine-Unterstützung koordiniert werden soll.",
+        "question_intent": "Illner will verstehen, ob Wadephul eine klare Priorisierung haben und wie die Kosten verteilt werden.",
+        "position": "Wadephul betont, dass ohne US-Unterstützung die europäische Sicherheit auf absehbare Zeit nicht geleistet werden könne. Russlands personelle und materielle Aufrüstung erfordern die 5%-Investition. Der nukleare Schutzschirm bleibe notwendig. Deutschland müsse sich die Gürtel eng schnallen, um sowohl Eigenverteidigung als auch Ukraine-Unterstützung zu finanzieren — es gebe da keine Entweder-Oder-Lösung (sub339–345, sub767–775).",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul beantwortet beide Teilfragen: (1) Ja, 5% sind notwendig angesichts der Russland-Bedrohung; (2) Deutschland kann beides tun — Eigenverteidigung und Ukraine-Unterstützung — braucht aber massives Geldumleitung. Er weicht nicht aus, sondern legt eine Gesamtposition dar.",
+        "concrete_statements": [
+          "Die Verteidigung Europas werden wir auf absehbare Zeit ohne die USA nicht leisten können",
+          "Der nukleare Abwehrschirm ist auf absehbare Zeit weiterhin notwendig",
+          "Deutschland muss bedauerlicherweise eine Menge finanzieller, wirtschaftlicher Kraft darauf verwenden, die eigene Verteidigungsfähigkeit zu stärken und die Ukraine zu unterstützen",
+          "Wir müssen den Gürtel an der einen oder anderen Stelle enger schnallen"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben mit den USA den wichtigsten Verbündeten. Die Verteidigung Europas werden wir auf absehbare Zeit ohne die USA nicht leisten können.",
+            "timestamp": "00:24:29",
+            "context": "Wadephul antwortet auf Frage zu Abhängigkeit von den USA."
+          },
+          {
+            "text": "Wir müssen den Gürtel an der einen oder anderen Stelle enger schnallen.",
+            "timestamp": "00:56:14",
+            "context": "Wadephul zur Doppelbelastung durch Eigenverteidigung und Ukraine-Unterstützung."
+          }
+        ],
+        "evasion_note": "Keine evasion — Wadephul antwortet klare.",
+        "related_bundestag_topics": [
+          "Verteidigungsbudget",
+          "Bundeswehr Modernisierung",
+          "Ukraine-Hilfe",
+          "Haushaltspolitik"
+        ]
+      },
+      {
+        "title": "Umgang mit Rheinmetall-Profitieren und Kriegsgewinnlertum",
+        "timestamp_range": "00:44:27 - 00:45:50",
+        "theme_description": "Jan van Aken kritisiert, dass Rüstungskonzerne wie Rheinmetall von Kriegs- und Aufrüstungsdynamiken profitieren, während Wadephul das als Nebeneffekt einer freien Marktwirtschaft darstellt.",
+        "question_asked": "Jan van Aken berichtet, dass Rheinmetall-Aktien um das 19-fache gestiegen sind und wirft der Regierung vor, dass sich Investoren am Ukraine-Krieg bereichern. Wadephul wird implizit aufgefordert, Stellung zu nehmen.",
+        "question_intent": "Van Aken will Wadephul dazu bringen, Maßnahmen zur Begrenzung von Kriegsgewinnen zu versprechen oder zumindest die ethische Problematik anzuerkennen.",
+        "position": "Wadephul beschreibt das Phänomen als Nebeneffekt, nicht als Skandal. In einer freien Gesellschaft und freien Wirtschaft lasse sich nicht vermeiden, dass Aktien im Kontext von Sicherheitsbedrohungen steigen. Die Kernfrage sei, wie man \"logistisch unterstützte Wirtschaftszweige\" verhindert — aber das sei im System der Marktwirtschaft schwierig. Sein Fokus bleibt auf Verteidigungsfähigkeit zur Eigenverteidigung gegen den russischen Angriff (sub610–623).",
+        "answer_match": "pivot_zum_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Wadephul erkennt die Frage an, rerahmt aber die Debatte: Statt Kriegsgewinne zu thematisieren (Van Akens intention), stellt er die Notwendigkeit der Verteidigungsfähigkeit als höheres Gut hin. Die Rüstungsaktien-Debatte wird als Ablenkung von der Kernfrage (Russlands Aggressionspotenzial) dargestellt.",
+        "concrete_statements": [
+          "Das ist ein Nebeneffekt",
+          "Wir leben in einer freien Gesellschaft in einer freien Wirtschaft — Rüstungsaktien lassen sich nicht vermeiden",
+          "Die Verteidigungsfähigkeit bleibt der Kernpunkt"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist ein Nebeneffekt. [...] Wie vermeidet man, dass daraus ein logistisch unterstützter Wirtschaftszweig wird? Wir leben in einer freien Gesellschaft in einer freien Wirtschaft.",
+            "timestamp": "00:44:27",
+            "context": "Wadephul antwortet auf Van Akens Kritik an Rüstungskonzernen-Profitieren."
+          }
+        ],
+        "evasion_note": "Wadephul stellt die Kriegsgewinne als unvermeidliches Nebenprodukt dar, statt sie zu problematisieren. Er weicht der moralischen Frage aus, indem er systemtheoretisch argumentiert.",
+        "related_bundestag_topics": [
+          "Rüstungsindustrie",
+          "Marktregulierung",
+          "Kriegswirtschaft",
+          "Ethik in der Außenpolitik"
+        ]
+      },
+      {
+        "title": "US-Unterstützung für Ukraine und Sanktionen gegen Russland",
+        "timestamp_range": "00:51:41 - 00:54:48",
+        "theme_description": "Wadephul wird zur Verlässlichkeit der US-Militärhilfe für die Ukraine unter Trump und zur möglichen Rückfahrt dieser Unterstützung befragt.",
+        "question_asked": "Maybrit Illner behauptet, dass Donald Trump keine Patriot-Lieferungen mehr an die Ukraine verspricht und fragt, wie Deutschland diese Lücke füllen könne. Sie fragt: 'Bekommen wir weniger aus den USA?'",
+        "question_intent": "Illner will testen, ob Wadephul eingestehen wird, dass Trump seine Ukraine-Unterstützung reduziert, oder ob er Optimismus bewahren kann.",
+        "position": "Wadephul behauptet, bislang hätten die USA alles geliefert, was erforderlich war ('Bis jetzt haben wir alles, was sie wollten, von den USA bekommen'). Europa müsse entschlossen sein, die Ukraine zu unterstützen — dafür sei Deutschland führend aktiv (Mobilisierung anderer Länder für Luftverteidigungssysteme). Die NATO-Aufnahme der Ukraine sei schon beschlossen und nicht wieder zu diskutieren. Es gebe im US-Kongress über 90 Senatoren, die ein Sanktionsgesetz gegen Russland vorbereitet hätten (sub720–740).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul antwortet ausweichend auf Illners spezifische Frage nach Patriot-Lieferungen: Er leugnet nicht, dass Trump Grenzen setzen könnte, aber weigert sich, das anzuerkennen. Stattdessen rahmt er die EU-Rolle und das Kongress-Sanktionsgesetz als Gegenlösung. Die direkte Frage zur möglichen US-Reduktion wird durch Faktenaussagen (bislang alles geliefert) und Optimismus (Kongress-Gesetz) überlagert.",
+        "concrete_statements": [
+          "Bis jetzt haben wir alles, was sie wollten, von den USA bekommen",
+          "Wir Europäer sind fest entschlossen, die Ukraine weiterhin zu unterstützen",
+          "Die Aufnahme der Ukraine die NATO ist schon beschlossen worden, das muss man nicht heute noch diskutieren",
+          "Wir haben über 90 Senatorinnen und Senatoren im Kongress der vereinigten Staaten — sie haben ein Sanktionsgesetz vorbereitet, das Russland schwer treffen wird"
+        ],
+        "quotes": [
+          {
+            "text": "Bis jetzt haben wir alles, was sie wollten, von den USA bekommen. Wir Europäer sind fest entschlossen, die Ukraine weiterhin zu unterstützen.",
+            "timestamp": "00:52:01",
+            "context": "Wadephul antwortet auf Illners Vorwurf, Trump fahre Ukraine-Hilfe zurück."
+          },
+          {
+            "text": "Die Aufnahme der Ukraine die NATO ist schon beschlossen worden, das muss man nicht heute noch diskutieren.",
+            "timestamp": "00:52:20",
+            "context": "Wadephul weigert sich, über ein bereits beschlossenes Thema erneut zu debattieren."
+          }
+        ],
+        "evasion_note": "Wadephul verweigert implizit, die Realität von Trumps möglicher Ukraine-Unterstützungskürzung anzuerkennen. Er lenkt zur EU-Eigenverantwortung und Kongress-Aktivität um.",
+        "related_bundestag_topics": [
+          "Ukraine-Militärhilfe",
+          "NATO-Erweiterung",
+          "Sanktionsregime gegen Russland",
+          "Europäische Eigenverantwortung"
+        ]
+      },
+      {
+        "title": "Bedenken gegen russische Narrativ-Spiegelung und NATO-Defensivität",
+        "timestamp_range": "01:00:08 - 01:02:52",
+        "theme_description": "Jan van Aken vergleicht europäische Rüstungs- und Bedrohungs-Narrative mit russischen, um eine Rüstungsspirale zu illustrieren. Wadephul widerspricht scharf und warnt vor unbewusster Reproduktion russischer Propaganda.",
+        "question_asked": "Jan van Aken argumentiert, dass in Russland Talkshows die Bombardierung Berlins und Lissabons kalkulieren, während Deutschland auch ständig von Russland-Bedrohung spricht — beide Länder befinden sich in einer wechselseitigen Eskalationslogik. Er warnt vor einer Rüstungsspirale. Wadephul wird implizit aufgefordert, diese Äquivalenz anzunehmen.",
+        "question_intent": "Van Aken will Wadephul dazu bringen, die moralische und faktische Äquivalenz zwischen NATO-Defensivität und russischer Offensivität zu bestreiten oder zu relativieren.",
+        "position": "Wadephul wendet sich scharf gegen diese Äquivalenz. Er warnt van Aken, sich nicht \"zum Sprachrohr Moskaus\" zu machen. Es gebe qualitative Unterschiede: Deutschland und die NATO hätten ein Verfassungsverbot von Angriffskriegen; Russland führe eine Offensive Kriegswirtschaft mit dem Ziel, die NATO anzugreifen. Das Narrativ der NATO-Aggression sei ein russisches Narrativ, dem Scholz schon widersprochen habe, indem er Putin erklärte, es gebe keinen Grund, die Ukraine anzugreifen — trotzdem griff Putin an. Die Defensiv-Erzählung der NATO unterscheide sich fundamental von Putins Offensive (sub825–832, sub839–840).",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Wadephul antwortet direkt und substanziell: Er erkennt Van Akens Punkt an, lehnt die Äquivalenz aber ab und liefert eine rechtsstaatlich und faktisch begründete Gegenposition. Er weigert sich, eine falsche Symmetrie zu akzeptieren.",
+        "concrete_statements": [
+          "Machen Sie sich nicht zum Sprachrohr Moskaus",
+          "Es gibt qualitative Unterschiede zwischen NATO-Defensivität und russischer Offensivität",
+          "Wir haben ein Verfassungsverbot eines Angriffskrieges",
+          "Das gesamte russische Narrativ von Putin-Kritikern, dass es irgendeine Aggression der NATO gegeben hat — und es hat es nicht gegeben",
+          "Wir haben eine ganz andere Erzählung — eine Defensiverzählung — während die [Russen] eine Offensive haben"
+        ],
+        "quotes": [
+          {
+            "text": "Machen Sie sich nicht zum Sprachrohr Moskaus. Sie sollte nicht ungewollt eine Rhetorik übernehmen, die die Sache — Opfer und Täter — umdreht.",
+            "timestamp": "01:00:43",
+            "context": "Wadephul warnt van Aken vor unbewusster Adoption russischer Propaganda."
+          },
+          {
+            "text": "Wir haben eine ganz andere Erzählung, das ist der Punkt, wir haben eine Defensiverzählung während die eine Offensive haben.",
+            "timestamp": "01:02:00",
+            "context": "Wadephul definiert die fundamentale Unterscheidung zwischen NATO und Russland."
+          }
+        ],
+        "evasion_note": "Keine evasion — Wadephul antwortet direkt und wertend (warnt vor Propaganda).",
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "NATO-Verteidigungs-Doktrin",
+          "Russische Desinformation",
+          "Verfassungsrecht Angriffskrieg"
+        ]
+      },
+      {
+        "title": "Türkische Militäreinsätze in Syrien und NATO-Selektivität",
+        "timestamp_range": "01:02:13 - 01:02:52",
+        "theme_description": "Jan van Aken kritisiert, dass die NATO-Türkei einen völkerrechtswidrigen Krieg in Syrien führt, ohne von der NATO kritisiert zu werden — und stellt Wadephuls NATO-Defensivität als selektiv dar.",
+        "question_asked": "Jan van Aken weist darauf hin, dass die Türkei als NATO-Mitglied einen völkerrechtswidrigen Angriffskrieg in Syrien führt und dass Wadephul das stillschweigend duldet. Van Aken fragt: 'Wenn Sie das ernst meinen würden, würden sie die Türkei sofort dazu anhalten?'",
+        "question_intent": "Van Aken will Wadephul der Heuchelei überführen: Die NATO-Defensiv-Rhetorik gelte nur selektiv, nicht für Türkei-Operationen.",
+        "position": "Wadephul stellt klar, dass die Türkei-Operationen in Syrien nicht als NATO-Operation qualifizieren. Die NATO sei ein Defensivbündnis; Artikel 5 könne nur zur Verteidigung ausgelöst werden. Das bedeutet nicht, dass die Türkei unabhängig davon von allen kritik frei ist — aber die Kritik an türkischen Aktionen sei eine separate, bilaterale Angelegenheit, nicht eine NATO-Sache. Die NATO selbst handelt defensiv, auch wenn einzelne Mitglieder bilateral offensiv tätig sind (sub844–846).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Wadephul adressiert die Frage zur türkischen Intervention, unterscheidet aber zwischen NATO-Operationen und bilateralen Aktionen von Mitgliedern. Sein Argument ist logisch konsistent (die NATO bleibt defensiv, auch wenn ein Mitglied bilateral offensiv tätig ist), aber er verweigert implizit, die Kritik an der Türkei als NATO-Problem zu anerkennen. Dadurch adressiert er nur einen Teil von Van Akens Vorwurf (NATO-Defensivität) und umgeht den anderen Teil (moralische Konsistenz und Kritik an Türkei-Einsätzen).",
+        "concrete_statements": [
+          "Die NATO ist ein Defensivbündnis und Art. 5 kann nur zur Verteidigung ausgelöst werden",
+          "Türkei-Operationen sind keine NATO-Operationen",
+          "Das ist eine separate, bilaterale Angelegenheit"
+        ],
+        "quotes": [
+          {
+            "text": "Vorsicht an der Bahnsteigkante, wo ist das eine NATO Operation. Die NATO ist ein Defensivbündnis und Art. 5 kann nur zur Verteidigung ausgelöst werden.",
+            "timestamp": "01:02:26",
+            "context": "Wadephul antwortet auf Van Akens Kritik an türkischen Einsätzen."
+          }
+        ],
+        "evasion_note": "Wadephul weicht aus, indem er die Türkei-Kritik als Non-NATO-Angelegenheit rahmt, statt sich mit der Frage zur moralischen Konsistenz der NATO-Verteidigungsrhetorik auseinanderzusetzen.",
+        "related_bundestag_topics": [
+          "NATO-Bündnis",
+          "Türkei-Politik",
+          "Völkerrecht",
+          "Selektivität in der Außenpolitik"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die USA haben schon alles geliefert, was die Ukraine verlangt",
+        "timestamp": "00:52:01"
+      },
+      {
+        "claim": "Es gibt über 90 Senatoren im US-Kongress, die ein Sanktionsgesetz gegen Russland vorbereitet haben",
+        "timestamp": "00:52:20"
+      },
+      {
+        "claim": "Die NATO-Aufnahme der Ukraine ist schon beschlossen worden",
+        "timestamp": "00:52:20"
+      },
+      {
+        "claim": "Russland stellt monatlich eine neue Division an Streitkräften auf",
+        "timestamp": "00:40:25"
+      },
+      {
+        "claim": "Art. 5 der NATO ist nur einmal in der Geschichte ausgelöst worden — beim Angriff auf die USA am 11. September",
+        "timestamp": "00:34:59"
+      }
+    ]
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtYjg1YjA2OGUtMDJhYS00MDEzLWEzMGYtODc1ZGE5MTZhYWVi",
+    "video_id": "maischberger-2026-01-21",
+    "politician": "Tino Chrupalla",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "84c7d19c701aaaa0",
+    "transcript_chars": 53392,
+    "caption_lines": 2013,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21694,
+    "tokens_out": 10046,
+    "cost_usd": 0.0287696,
+    "quote_validation": {
+      "valid_exact": 6,
+      "valid_fuzzy": 10,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 5,
+      "pivot_zum_gegenpunkt": 2,
+      "themenwechsel": 1,
+      "offene_verweigerung": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.132Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Tino Chrupalla, Bundesvorsitzender der AfD, diskutiert mit SPD-Außenpolitiker Hubertus Heil unter Moderation von Sandra Maischberger über die transatlantischen Beziehungen, Trumps Grönland-Vorstöße und den Ukraine-Krieg. Chrupalla argumentiert für eigenständige deutsche Interessen, lehnt kategorische Urteile über Trump als \"Imperialist\" ab und plädiert für pragmatische Kompromisse zur Beendigung des Ukraine-Kriegs, während Heil ihn kritisch mit Vorwürfen russland-freundlicher Positionen konfrontiert. Der Ton ist konfrontativ, mit häufigen Unterbrechungen und gegenseitigen Vorwürfen.",
+    "themes": [
+      {
+        "title": "Trump als außenpolitisches Vorbild für die AfD",
+        "timestamp_range": "00:24:31 - 00:25:33",
+        "theme_description": "Bewertung, inwiefern Trump für die AfD als Vorbild dient und welche Aspekte seiner Politik die AfD unterstützt.",
+        "question_asked": "Sandra Maischberger fragt Chrupalla, ob Trump – den Alice Weidel als Vorbild genannt hat – weiterhin ein Vorbild für die AfD ist, insbesondere angesichts der Nähe zwischen AfD und Trump-Lager.",
+        "question_intent": "Maischberger will klären, wie stark die AfD sich zu Trump und seinen Methoden bekennt und ob die Partei von der Nähe zum Trump-Lager profitiert oder schadet.",
+        "position": "Chrupalla bekennt sich selektiv zu Trump: Die Migrationspolitik sei lobenswerth und vorbildlich, da sie erfolgreich sei und auch in Europa eine wichtige Rolle spiele. Allerdings lehnt Chrupalla Trumps Methode ab, konkret z.B. die Abschiebung einer Mutter von drei Kindern im Auto (ICE-Fall). Bei Trumps Wirtschaftspolitik betont Chrupalla, dass Trump amerikanische Interessen verfolgt, was für Europa durch Zollpolitik schädlich sein kann. Insgesamt sieht Chrupalla Trump nicht als durchgehendes Vorbild, sondern als selektiv nutzbaren Partner in einzelnen Politikfeldern.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla beantwortet die Frage nach Trump als Vorbild differenziert, adressiert aber nicht direkt die von Maischberger gezielt aufgeworfene Nähe und mögliche Schädigung der AfD durch diese Allianz. Er weicht statt dessen in eine differenzierte Würdigung von Trumps Migrationspolitik aus, ohne auf die implizite Kritik an der parteipolitischen Nähe einzugehen.",
+        "concrete_statements": [
+          "In einigen Punkten ist er [Trump] in der Tat ein Vorbild, zum Beispiel was die Migrationspolitik angeht",
+          "Das sind Dinge, die in Europa eine wichtige Rolle spielt. Die ist für uns als Vorbild zu sehen",
+          "Aber insgesamt, was genau? [...] Das auf alle Fälle. Sein Vorhaben und was er in der Wirtschaftspolitik nach vorne treibt"
+        ],
+        "quotes": [
+          {
+            "text": "In einigen Punkten ist er in der Tat ein Vorbild, zum Beispiel was die Migrationspolitik angeht. Die er auch erfolgreich betreibt. Da kann man ihn loben.",
+            "timestamp": "00:24:31",
+            "context": "Sandra Maischberger fragt, ob Trump weiterhin ein Vorbild für die AfD ist."
+          },
+          {
+            "text": "Er treibt seine eigenen Interessen, die amerikanischen Interessen sind für ihn wichtig. Die kann auch für uns, was die Zollpolitik zum Beispiel angeht, schädlich sein.",
+            "timestamp": "00:25:03",
+            "context": "Nach einer Folgefrage zur Art und Weise von Trumps Politik konkretisiert Chrupalla seine Position zu Trumps Interessenverfolgung."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Migrationspolitik",
+          "Außenpolitik",
+          "Transatlantische Beziehungen",
+          "Zollpolitik"
+        ],
+        "evasion_note": "Chrupalla differenziert stark zwischen einzelnen Politikfeldern, was die klare Beantwortung der Frage nach einer grundsätzlichen Vorbildfunktion Trumps erschwert. Die Ablehnung von Trumps Methoden wird erwähnt, aber nicht mit der Frage nach der Nähe der AfD zu Trump verbunden."
+      },
+      {
+        "title": "Bewertung von Trumps Methoden und imperialistische Tendenzen",
+        "timestamp_range": "00:26:03 - 00:33:06",
+        "theme_description": "Auseinandersetzung über die Frage, ob Trump als Imperialist zu bezeichnen ist und wie man mit ihm diplomatisch umgehen sollte.",
+        "question_asked": "Hubertus Heil fragt Chrupalla direkt: 'Wie nennen wir das, was er versucht hat mit Grönland? Ist das nationale Politik? Imperialistische Politik?' und später: 'Ist er ein Imperialist oder nicht?' und 'Und in Venezuela?'",
+        "question_intent": "Heil will Chrupalla zu einer klaren Verurteilung von Trumps imperialistischen Methoden zwingen und aufzeigen, dass Chrupalla sich contradictorisch verhält, wenn er einzelne Methoden Trumps kritisiert, ihn aber nicht als Imperialisten einordnet.",
+        "position": "Chrupalla lehnt die Kategorisierung Trumps als 'Imperialist' ab. Er sagt, er würde 'nicht von Aggressoren sprechen'. Seine Begründung: Wenn Trump Grönland militärisch eingenommen hätte, würde er das bestätigen. Da dies nicht geschehen ist, lehnt Chrupalla die Etikettierung ab. Bei Venezuela zugibt Chrupalla ein, dass Trump einen 'sicherlich sehr problematischen Diktator dort entführt' hat, hält dies aber für 'kritisch', nicht für imperialistisch. Insgesamt argumentiert Chrupalla, dass Begriffe wie 'Imperialist' oder 'Kriegsverbrecher' nicht hilfreich sind, wenn man sich später 'an den Tisch setzen' muss.",
+        "answer_match": "umgeleitet_gegenpunkt",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Chrupalla adressiert die Frage nach imperialismus nicht substanziell (z.B. durch eine Definition oder konzeptuelle Klarstellung), sondern umleidet sie zum Argument, dass solche Kategorisierungen pragmatisch nicht sinnvoll sind, wenn man mit Trump verhandeln muss. Damit beantwortet er die faktische Frage nach Imperialismus indirekt mit einem diplomatischen Gegenpunkt.",
+        "concrete_statements": [
+          "Ich würde nicht von Aggressoren sprechen. Er hat in der Verhandlungsbasis, wie er agiert, ist gewöhnungsbedürftig",
+          "Wenn er Grönland militärisch eingenommen hätte, hätte ich das bestätigt. Und in Venezuela? [...] Er hat einen sicherlich sehr problematischen Diktator dort entführt. Ich halte das für kritisch. Aber er ist kein Imperialist",
+          "Man muss sich gegebenenfalls mit solchen Leuten an den Tisch setzen. Nutzen dann solche Formulierungen und Vorverurteilungen?"
+        ],
+        "quotes": [
+          {
+            "text": "Wenn er Grönland militärisch eingenommen hätte, hätte ich das bestätigt. Und in Venezuela? [...] Er hat einen sicherlich sehr problematischen Diktator dort entführt. Ich halte das für kritisch. Aber er ist kein Imperialist.",
+            "timestamp": "00:32:34",
+            "context": "Heil insistiert darauf, dass Chrupalla Stellung zu Trumps imperialistischen Tendenzen nimmt."
+          },
+          {
+            "text": "Man muss sich gegebenenfalls mit solchen Leuten an den Tisch setzen. Nutzen dann solche Formulierungen und Vorverurteilungen?",
+            "timestamp": "00:33:06",
+            "context": "Chrupalla erklärt seine Ablehnung von kategorischen Bezeichnungen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Diplomatie",
+          "Internationale Beziehungen",
+          "Trump-Administration"
+        ],
+        "evasion_note": "Chrupalla weicht der direkten Frage nach Imperialismus aus, indem er pragmatische Gründe für die Vermeidung solcher Kategorisierungen angibt, statt inhaltlich auf die Frage einzugehen."
+      },
+      {
+        "title": "Deutschlands Rolle und europäische Interessen in der Grönland-Krise",
+        "timestamp_range": "00:27:05 - 00:28:36",
+        "theme_description": "Chrupallas Position zu deutschen und europäischen Interessen bei Grönland und die Notwendigkeit, eine regelbasierte Ordnung neu zu verhandeln.",
+        "question_asked": "Hubertus Heil fordert Chrupalla auf, konkret zu sagen, was Deutschland bei Grönland zu verteidigen habe, da Grönland geografisch zu Europa und Dänemark gehöre. Heil fragt: 'Was ist denn das deutsche Interesse bei Grönland, um das zu konkretisieren. Gehört Grönland zu Europa oder gehört es zum amerikanischen Kontinent?'",
+        "question_intent": "Heil will Chrupalla zwingen, eine Position zu beziehen, ob Deutschland/Europa Grönland gegen Trumps Ansprüche verteidigen soll, oder ob Chrupalla nur rhetorisch von 'Interessen' spricht, ohne diese zu konkretisieren.",
+        "position": "Chrupalla argumentiert, dass die regelbasierte Ordnung nicht mehr existiert und neu verhandelt werden muss. Er betont, dass Staaten legitime Interessen haben und dass eine multipolare Welt entsteht, in der Interessen Indiens, Chinas und der USA anders berücksichtigt werden müssen. Zur konkreten Frage nach Grönland bejaht Chrupalla, dass es zu Europa und Dänemark gehört, stellt aber die grundsätzliche Debatte über die Neuverhandlung globaler Ordnungen in den Vordergrund. Deutschland und Europa müssten ihre Interessen 'in den Raum werfen', ohne dass europäische und deutsche Interessen automatisch mit amerikanischen deckungsgleich sind.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Chrupalla bejaht zwar, dass Grönland zu Dänemark/Europa gehört, beantwortet die Frage nach dem konkreten deutschen Interesse aber nicht direkt. Statt dessen verschiebt er die Debatte auf eine grundsätzliche Diskussion über die Neuverhandlung der globalen Ordnung, was die konkrete Frage nach Deutschlands Handlungsinteresse bei Grönland umgeht.",
+        "concrete_statements": [
+          "Die regelbasierte Ordnung, die existiert nicht mehr. Das ist die Frage, sie muss neu verhandelt werden",
+          "Wir sind in einer multipolaren Welt kommen. Wo die Interessen Indiens, Chinas, auch der Amerikaner, anders berücksichtigt werden müssen",
+          "Da muss auch Deutschland und auch Europa seine Interessen dort in den Raum werfen. Die europäischen und deutschen Interessen sind nicht deckungsgleich, auch mit den amerikanischen"
+        ],
+        "quotes": [
+          {
+            "text": "Die regelbasierte Ordnung, die existiert nicht mehr. Das ist die Frage, sie muss neu verhandelt werden. Das ist die Form der Außenpolitik, die wir erleben.",
+            "timestamp": "00:27:36",
+            "context": "Heil fragt, was Chrupalla konkret bei der Neuverhandlung der Ordnung verstanden haben will."
+          },
+          {
+            "text": "Da muss auch Deutschland und auch Europa seine Interessen dort in den Raum werfen. Die europäischen und deutschen Interessen sind nicht deckungsgleich, auch mit den amerikanischen.",
+            "timestamp": "00:28:36",
+            "context": "Chrupalla konkretisiert sein Verständnis von deutschen/europäischen Interessen, nachdem Heil nachgehakt hat."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Außenpolitik",
+          "Deutsch-amerikanische Beziehungen",
+          "Europäische Integration",
+          "Multilateralismus"
+        ],
+        "evasion_note": "Chrupalla weicht auf die abstraktere Ebene der 'Neuverhandlung von Ordnung' aus, anstatt auf die konkrete Frage einzugehen, wie Deutschland bei Grönland handeln sollte."
+      },
+      {
+        "title": "Russland und die Krim: Akzeptanz territorialer Veränderungen",
+        "timestamp_range": "00:34:41 - 00:35:44",
+        "theme_description": "Chrupallas Position zur Akzeptanz russischer Annexion der Krim und der notwendigen Kompromisse im Ukraine-Krieg.",
+        "question_asked": "Hubertus Heil wirft Chrupalla vor, dass Russland imperialistische Politik betreibt (analog zu Trump bei Grönland) und fragt: 'Würden Sie sagen, Russland agiert imperialistisch?' Darauf antwortet Chrupalla, dass 'Wir werden akzeptieren müssen, dass die Krim zu Russland gehört, ob uns das gefällt oder nicht.' Heil fragt darauf: 'Wir müssen akzeptieren, dass die Krim Russisch bleibt? Und Sie haben gesagt, dass der Donbass Russisch wird?'",
+        "question_intent": "Heil will aufdecken, dass Chrupalla mit zweierlei Maß misst: Er kritisiert Trump nicht als Imperialisten, aber Russland sollte imperialistische Ansprüche akzeptiert bekommen. Damit will Heil zeigen, dass Chrupalla de facto russische Positionen vertritt.",
+        "position": "Chrupalla argumentiert, dass man sich an die Realität anpassen muss. Die Krim müsse als 'Russisch' akzeptiert werden, 'ob uns das gefällt oder nicht'. Zur Ostukraine betont Chrupalla, dass dort 'eine Einigung' nötig ist und es 'einen Kompromiss geben [wird], der auch schmerzlich für die Ukrainer sein wird'. Chrupalla dementiert, gesagt zu haben, dass der Donbass 'Russisch wird', behauptet aber, dass dort Gespräche laufen und Kompromisse nötig sind. Die zentrale Argumentation ist: Deutschland braucht eine 'Öffnung Richtung Osten' und einen 'Ausgleich mit Russland'.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "pivot_zum_gegenpunkt",
+        "match_reasoning": "Chrupalla beantwortet Heils Frage nach Russlands Imperialismus nicht direkt, sondern reframt die Debatte zu einer Diskussion über notwendige Kompromisse und Realitätsakzeptanz. Damit wendet er Heils Anschuldigung ab, indem er die Notwendigkeit von Kompromissen herausstellt, nicht aber die Frage nach russischem Imperialismus adressiert.",
+        "concrete_statements": [
+          "Wir werden akzeptieren müssen, dass die Krim zu Russland gehört, ob uns das gefällt oder nicht",
+          "Auch dort müssen wir eine Lösung finden. [...] Da wird es auch einen Kompromiss geben müssen, der auch schmerzlich für die Ukrainer sein wird",
+          "Die Öffnung Richtung Osten brauchen wir wieder",
+          "Ich hoffe, dass er [Friedrich Merz] sich daran erinnern wird [dass wir einen Ausgleich mit Russland brauchen]"
+        ],
+        "quotes": [
+          {
+            "text": "Wir werden akzeptieren müssen, dass die Krim zu Russland gehört, ob uns das gefällt oder nicht. Auch was die Ostukraine angeht, das hat auch Trump betont.",
+            "timestamp": "00:34:41",
+            "context": "Heil fragt, ob Russland imperialistisch agiert, nachdem Chrupalla Trump nicht als Imperialisten bezeichnen wollte."
+          },
+          {
+            "text": "Da wird es auch einen Kompromiss geben müssen, der auch schmerzlich für die Ukrainer sein wird.",
+            "timestamp": "00:35:44",
+            "context": "Chrupalla spezifiziert, welche Zugeständnisse die Ukraine machen muss."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Russland-Politik",
+          "Außenpolitik",
+          "Sicherheitspolitik",
+          "Osteuropa"
+        ],
+        "evasion_note": "Chrupalla beantwortet nicht direkt, ob Russland imperialistisch agiert. Statt dessen argumentiert er mit Realitätszwängen und Kompromissnotwendigkeiten, was implizit akzeptiert, dass die Krim russisch bleibt."
+      },
+      {
+        "title": "Ukraine-Kompromisse: Territorium, NATO-Beitritt und Atomwaffen",
+        "timestamp_range": "00:36:45 - 00:37:45",
+        "theme_description": "Chrupallas konkrete Positionen zu den Verhandlungsthemen im Ukraine-Krieg, insbesondere Gebietsabtretungen und Sicherheitsgarantien.",
+        "question_asked": "Hubertus Heil bohrt nach, was Selenskyj konkret akzeptieren soll: 'Was genau müsste er akzeptieren? [...] Damit meine ich Gebietsabtretungen. Auch Gebiete, die noch nicht erobert sind von der russischen Armee?' und später: 'Zu welchem Preis möchte man die Gebiete zurückerobern oder behalten? Was soll er noch akzeptieren? Was liegt da noch auf dem Tisch?'",
+        "question_intent": "Heil will Chrupalla zwingen, konkrete Zugeständnisse zu benennen, die die Ukraine machen soll, um Chrupalla danach mit den russischen Forderungen zu konfrontieren.",
+        "position": "Chrupalla nennt drei zentrale Kompromisse: (1) Gebietsabtretungen, auch bereits unter russischer Kontrolle befindliche Gebiete; (2) Nicht-Eintritt in die NATO (must diskutiert werden'); (3) Einschränkungen bei Atomwaffenstationierung ('auch das muss abgelehnt werden' – hier ist unklar, ob Chrupalla die Ablehnung durch Russland oder durch die Ukraine meint). Chrupalla begründet diese Positionen mit: 'Das sind Kompromisse' und 'Es sind ja Kompromisse', ohne explizit zu sagen, zu wessen Gunsten.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla nennt konkrete Positionen (Territorium, NATO, Atomwaffen), beantwortet aber nicht klar, welche Sicherheitsgarantien die Ukraine als Gegenleistung bekäme oder wie die Souveränität der Ukraine geschützt wird. Heil fragt später explizit nach Sicherheitsgarantien; Chrupalla antwortet nicht darauf.",
+        "concrete_statements": [
+          "Auch Gebiete, die noch nicht erobert sind",
+          "Denn nicht-Eintritt in die NATO muss diskutiert werden müssen",
+          "Und in der Frage, wie sich die Ukraine zukünftig aufstellt, was Atomwaffen angeht. Auch das muss abgelehnt werden"
+        ],
+        "quotes": [
+          {
+            "text": "Auch Gebiete, die noch nicht erobert sind. Zu welchem Preis möchte man die Gebiete zurückerobern oder behalten? Was soll er noch akzeptieren? Was liegt da noch auf dem Tisch? (Chrupalla) Wir haben gerade über die Dinge geredet. Was genau liegt auf dem Tisch? (Chrupalla) Dass der dann was an Russland bzw. in russische Macht geht. Was noch? Es sind ja Kompromisse. (Chrupalla) Denn nicht-Eintritt in die NATO muss diskutiert werden müssen.",
+            "timestamp": "00:37:15",
+            "context": "Heil drängt auf konkrete Details der Kompromisse."
+          },
+          {
+            "text": "Und in der Frage, wie sich die Ukraine zukünftig aufstellt, was Atomwaffen angeht. Auch das muss abgelehnt werden.",
+            "timestamp": "00:37:45",
+            "context": "Chrupalla listet Bedingungen für einen Kompromiss auf."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Sicherheitspolitik",
+          "NATO",
+          "Außenpolitik"
+        ],
+        "evasion_note": "Chrupalla bleibt sehr vage bei der Frage, welche Sicherheitsgarantien die Ukraine im Gegenzug erhält. Er nennt Zugeständnisse, ohne ein Gesamtpaket zu skizzieren."
+      },
+      {
+        "title": "Kriegsverbrechen in der Ukraine: Weigerung zur klaren Einordnung",
+        "timestamp_range": "00:41:26 - 00:43:32",
+        "theme_description": "Chrupallas Haltung zur Klassifizierung von Putins Angriffen auf Zivilbevölkerung als Kriegsverbrechen.",
+        "question_asked": "Hubertus Heil zeigt ein Video von Kiewer Bürgern, die von den Folgen russischer Bombardierung berichten, und fragt Chrupalla: 'Kriegsverbrechen, Herr Chrupalla?' und später insistiert: 'Sie sind nicht in der Lage, heute dazu etwas zu sagen, ob das ein Kriegsverbrechen ist?'",
+        "question_intent": "Heil will Chrupalla zwingen, sich klar zur Frage zu äußern, ob Putins Attacken auf Zivilinfrastruktur Kriegsverbrechen darstellen, um Chrupalla zu demaskieren, wenn er sich weigert.",
+        "position": "Chrupalla weigert sich zunächst, die Bombardierungen als 'Kriegsverbrechen' zu klassifizieren. Seine Begründung: 'Kriegsverbrechen sollen Gerichte verurteilen.' Später modifiziert er diese Position unter Druck: 'Wenn der Strom ausfällt durch Angriffe auf die Infrastruktur, kann ich das nicht als Kriegsverbrechen titulieren.' Aber: 'Ich würde nicht so weit gehen, Menschen erfrieren zu lassen. Wie nennen Sie denn das, was da passiert? (Chrupalla) Ich würde schon sagen, dass es ein Verbrechen ist. Das sind Dinge, die die UN behandeln muss.' Zur Frage, ob es ein 'Krieg oder ein Verbrechen im Krieg' ist, antwortet Chrupalla ausweichend und wirft Heil vor, 'Wortklauberei' zu betreiben.",
+        "answer_match": "verweigert",
+        "answer_type": "offene_verweigerung",
+        "match_reasoning": "Chrupalla beantwortet die direkte Frage nach Kriegsverbrechen nicht. Er differenziert zwischen 'Verbrechen' und 'Kriegsverbrechen', weigert sich aber, eine klare Einordnung vorzunehmen. Unter Druck gesteht er ein, dass es 'ein Verbrechen' ist, beharrt aber darauf, dass 'Gerichte' das beurteilen müssen, obwohl die Fakten (gezielt Zivilbevölkerung ohne Strom, Wärme, Wasser bei minus 20 Grad) dokumentiert sind.",
+        "concrete_statements": [
+          "Das sind Dinge, die man verurteilen muss. Kriegsverbrechen sollen Gerichte verurteilen",
+          "Diese Frage haben Sie mir schon oft gestellt, die werde ich Ihnen nicht beantworten",
+          "Wenn der Strom ausfällt durch Angriffe auf die Infrastruktur, kann ich das nicht als Kriegsverbrechen titulieren",
+          "Ich würde schon sagen, dass es ein Verbrechen ist. Das sind Dinge, die die UN behandeln muss"
+        ],
+        "quotes": [
+          {
+            "text": "Kriegsverbrechen sollen Gerichte verurteilen. Sie sind nicht in der Lage, heute dazu etwas zu sagen, ob das ein Kriegsverbrechen ist? (Chrupalla) Diese Frage haben Sie mir schon oft gestellt, die werde ich Ihnen nicht beantworten.",
+            "timestamp": "00:41:57",
+            "context": "Heil fragt nach einer Stellungnahme zu den Kriegsverbrechen, nachdem Videos von angegriffenen Zivilisten gezeigt wurden."
+          },
+          {
+            "text": "Wenn der Strom ausfällt durch Angriffe auf die Infrastruktur, kann ich das nicht als Kriegsverbrechen titulieren. (Chrupalla) Ich würde nicht so weit gehen, Menschen erfrieren zu lassen. Wie nennen Sie denn das, was da passiert? (Chrupalla) Ich würde schon sagen, dass es ein Verbrechen ist.",
+            "timestamp": "00:42:27",
+            "context": "Chrupalla wird mit der konkreten Frage konfrontiert, ob gezieltes Frieren von Zivilisten ein Kriegsverbrechen ist."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Krieg",
+          "Völkerrecht",
+          "Menschenrechte",
+          "Kriegsverbrechen"
+        ],
+        "evasion_note": "Chrupalla weigert sich mehrfach, die Taten als 'Kriegsverbrechen' zu bezeichnen, obwohl die Fakten dokumentiert sind. Er verwendet unterschiedliche Begriffe ('Verbrechen' vs. 'Kriegsverbrechen') strategisch, um sich nicht festzulegen."
+      },
+      {
+        "title": "AfD-Beitrag zum Frieden und Oppositionsrolle",
+        "timestamp_range": "00:43:32 - 00:44:33",
+        "theme_description": "Chrupallas Verständnis der Oppositionsrolle der AfD und ihr Beitrag zu Friedenspolitik.",
+        "question_asked": "Hubertus Heil fragt Chrupalla, nachdem dieser behauptet hat, er mache 'mehr für den Frieden, als Sie und die SPD': 'Was denn? [...] Was machen Sie für den Frieden?' Chrupalla antwortet, dass man auf die Bundesregierung einwirken müsse und die Opposition die Regierung zu kontrollieren habe.",
+        "question_intent": "Heil will Chrupalla zu einer konkreten Aussage über die politischen Maßnahmen der AfD für Frieden zwingen, um zu zeigen, dass die AfD nichts konkret leistet außer Kritik.",
+        "position": "Chrupalla argumentiert, dass 'man endlich auf die Bundesregierung eingeht'. Die Opposition könne 'keine Politik und Außenpolitik machen, das macht immer noch die Regierung'. Die Rolle der Opposition sei, 'die Regierung zu kontrollieren'. Implizit verweist Chrupalla darauf, dass die AfD durch ihre Kritik an der Bundesregierung (und deren Außenpolitik) einen Beitrag zu einer anderen Friedenspolitik leistet.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla beantwortet, was die Opposition leisten kann (Kontrolle), beantwortet aber nicht konkret die Frage, was die AfD konkret für Frieden tut. Die Antwort ist eher eine Abwehr des Vorwurfs als eine Darstellung von Lösungen.",
+        "concrete_statements": [
+          "Dass man endlich auf die Bundesregierung eingeht. Die Opposition kann keine Politik und Außenpolitik machen, das macht immer noch die Regierung. Wir sind da, um die Regierung zu kontrollieren"
+        ],
+        "quotes": [
+          {
+            "text": "Dass man endlich auf die Bundesregierung eingeht. Die Opposition kann keine Politik und Außenpolitik machen, das macht immer noch die Regierung. Wir sind da, um die Regierung zu kontrollieren.",
+            "timestamp": "00:44:03",
+            "context": "Chrupalla wird nach seinem Beitrag zum Frieden gefragt."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Oppositionsrolle",
+          "Ukraine-Krieg",
+          "Friedenspolitik",
+          "Regierungskritik"
+        ],
+        "evasion_note": "Chrupalla antwortet mit einer generischen Aussage zur Oppositionsrolle, nicht mit konkreten Positionen oder Maßnahmen der AfD für Frieden."
+      },
+      {
+        "title": "Tonalität und persönliche Vorwürfe in der Diskussion",
+        "timestamp_range": "00:44:03 - 00:44:33",
+        "theme_description": "Auseinandersetzung über die Tonalität und Rhetorik in der Debatte zwischen Chrupalla und Heil.",
+        "question_asked": "Hubertus Heil sagt zu Chrupalla: 'Deshalb reisen Sie da auch immer hin mit ihren Spießgesellen' und wirft ihm später vor: 'Sie haben heute ein ganz schönes Glaskinn.' Chrupalla antwortet: 'Können wir die Tonalität runternehmen, wir haben keine Spießgesellen.'",
+        "question_intent": "Heil will Chrupalla rhetorisch in die Defensive treiben und peinliche Reaktion provozieren, um zu zeigen, dass Chrupalla nicht mit Kritik umgehen kann.",
+        "position": "Chrupalla fordert eine Reduktion der Tonalität auf ('Können wir die Tonalität runternehmen') und bestreitet, 'Spießgesellen' zu haben. Er kritisiert Heils Rhetorik als 'ziemlich schlechtes Niveau' und versucht, die Debatte sachlicher zu gestalten. Später beschwert sich Chrupalla, dass Heil bei 'wichtigen Fragen' eher persönlich angreift statt sachlich zu debattieren.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla antwortet auf den Tonalitäts-Vorwurf, indem er seinerseits Heils Stil kritisiert. Er beantwortet aber nicht die implizite Frage, warum er mit 'Spießgesellen' nach Washington reist. Statt dessen appelliert er an mehr Sachlichkeit.",
+        "concrete_statements": [
+          "Können wir die Tonalität runternehmen, wir haben keine Spießgesellen",
+          "Das ist ein ziemlich schlechtes Niveau",
+          "Hätte ich gerne gehört von Herrn Heil. Ein paar Positionen mit Ja oder Nein"
+        ],
+        "quotes": [
+          {
+            "text": "Können wir die Tonalität runternehmen, wir haben keine Spießgesellen. (Heil) Das ist ein ziemlich schlechtes Niveau.",
+            "timestamp": "00:44:33",
+            "context": "Nach Heils persönlichen Angriffen versucht Chrupalla, zu mehr Sachlichkeit überzugehen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Parlamentarische Debatte",
+          "Rhetorik",
+          "Politische Kultur"
+        ],
+        "evasion_note": "Chrupalla weicht dem Vorwurf aus, mit 'Spießgesellen' zu reisen, indem er nur die Tonalität kritisiert."
+      },
+      {
+        "title": "Positionen zu Trumps Friedensrat und G7-Rückkehr Russlands",
+        "timestamp_range": "00:44:33 - 00:45:35",
+        "theme_description": "Chrupallas Einstellung zu Trumps geplanten Friedensrat und zur Frage, ob Russland in die G7 zurückkehren sollte.",
+        "question_asked": "Hubertus Heil fragt mehrfach zu konkreten Ja-oder-Nein-Fragen: 'Soll Deutschland Mitglied in Trumps Friedensrat werden? (Chrupalla) Kann ich nicht mit Ja oder Nein beantworten.' Später: 'Soll Putin wieder in den Kreis der G7 eingeladen werden? (Chrupalla) Unbedingt.'",
+        "question_intent": "Heil will Chrupalla zu klaren Positionen zwingen und aufdecken, dass Chrupalla Russlands Rückkehr in westliche Strukturen unterstützt, während er bei Trumps Friedensrat ausweicht.",
+        "position": "Zum Friedensrat: Chrupalla lehnt eine klare Ja-oder-Nein-Antwort ab. Er sagt: 'Dazu muss man wissen, wer soll alles Mitglied werden' und 'Ich halte Gespräche für generell richtig. Ich würde nicht grundsätzlich sagen, ja oder nein. Dazu weiß ich von den Rahmenbedingungen zu wenig.' Zur G7-Frage antwortet Chrupalla klar: 'Unbedingt' – Russland sollte wiederkehren. Bei der Frage zu deutschen Atomwaffen: 'Nein'. Bei Wehrpflicht: 'Solange der Ukraine-Krieg vorherrscht, nein' (mit der Begründung, dass man der Bundesregierung bezüglich Corona-Maßnahmen nicht traue).",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Chrupalla beantwortet die Frage zum Friedensrat mit Bedingungen und Unsicherheit, was faktisch einer 'Nein, aber'-Antwort entspricht. Bei der G7-Frage antwortet er klar affirmativ. Die Asymmetrie (Ablehnung von Ja/Nein bei Trump, klares Ja für Russland) wird nicht adressiert.",
+        "concrete_statements": [
+          "Soll Deutschland Mitglied in Trumps Friedensrat werden? (Chrupalla) Kann ich nicht mit Ja oder Nein beantworten",
+          "Ich halte Gespräche für generell richtig. Ich würde nicht grundsätzlich sagen, ja oder nein",
+          "Soll Putin wieder in den Kreis der G7 eingeladen werden? (Chrupalla) Unbedingt",
+          "Braucht Deutschland eigene Atomwaffen? [...] (Chrupalla) Nein",
+          "Braucht Deutschland eine Wehrpflicht? (Chrupalla) Solange der Ukraine-Krieg vorherrscht, nein"
+        ],
+        "quotes": [
+          {
+            "text": "Kann ich nicht mit Ja oder Nein beantworten. Nehmen Sie an, Sie sind in der deutschen Regierung. Dazu muss man wissen, wer soll alles Mitglied werden. Ja oder nein? (Chrupalla) Ich halte Gespräche für generell richtig. Ich würde nicht grundsätzlich sagen, ja oder nein.",
+            "timestamp": "00:44:33",
+            "context": "Heil drängt auf Ja-oder-Nein-Antwort zum Friedensrat."
+          },
+          {
+            "text": "Soll Putin wieder in den Kreis der G7 eingeladen werden? (Chrupalla) Unbedingt. (Heil) Solange er sich so verhält, nein.",
+            "timestamp": "00:45:35",
+            "context": "Chrupalla gibt eine klare Antwort zur G7-Frage."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Trump-Administration",
+          "G7",
+          "Russland-Politik",
+          "Außenpolitik",
+          "Sicherheitspolitik"
+        ],
+        "evasion_note": "Chrupalla weigert sich, zur Friedensrat-Frage Ja oder Nein zu sagen, antwortet aber klar bei der Frage zu Putins G7-Rückkehr. Diese Asymmetrie wird nicht thematisiert."
+      }
+    ]
+  }
+}

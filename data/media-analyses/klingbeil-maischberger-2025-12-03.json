@@ -1,0 +1,336 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL3dkci5kZS9CZWl0cmFnLXNvcGhvcmEtOWQxZDljMzMtMzgzZS00MmJiLThhODktMGVlODhhOWY4MWE0",
+    "video_id": "maischberger-2025-12-03",
+    "politician": "Lars Klingbeil",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "b69e882ac92ae547",
+    "transcript_chars": 51928,
+    "caption_lines": 1916,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 21364,
+    "tokens_out": 8594,
+    "cost_usd": 0.0257336,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 3,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 4,
+      "themenwechsel": 1,
+      "substantielle_position": 3
+    },
+    "generated_at": "2026-06-05T12:36:41.414Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Lars Klingbeil trat als Bundesfinanzminister und SPD-Co-Vorsitzender in der Sendung auf und diskutierte die bevorstehende Rentenreformabstimmung, Koalitionsstabilität, Haushaltspolitik und die Ukraine-Krise. Er verteidigte die Regierungspolitik in defensivem bis gemäßigt kämpferischem Ton, konzentrierte sich auf Strukturreformen und betonte die Notwendigkeit europäischer Einheit angesichts russischer Aggressionen.",
+    "themes": [
+      {
+        "title": "Rentenreform und Koalitionsmehrheit am Freitag",
+        "timestamp_range": "00:21:15 - 00:22:51",
+        "theme_description": "Diskussion über die Abstimmung zur Rentenreform und die Frage, ob die Schwarz-Rot-Koalition eine stabile eigene Mehrheit hat oder von der Linken abhängig ist.",
+        "question_asked": "Sandra Maischberger fragte, ob Klingbeil sieht, dass die Koalition die Rentenreform nur durchbekommt, weil die Linke sich enthält, und ob die Regierung dann noch die Kraft für weitere Reformen hat, die später kommen sollen.",
+        "question_intent": "Zu klären, ob die knappe Abhängigkeit von der Linken die Reformfähigkeit der Regierung über die Amtszeit hinweg gefährdet.",
+        "position": "Klingbeil betont, dass der Anspruch ist, eine eigene Mehrheit zu organisieren, nicht sich auf die Hilfe der Linken zu verlassen. Er sagt, die Koalition wird in den nächsten 3,5 Jahren viele Entscheidungen treffen und könne nicht immer davon ausgehen, dass die Linke oder die Grünen ihr zur Seite stehen. Der Koalitionsvertrag ist klar, und es geht darum, für Millionen von Rentnerinnen und Rentnern stabile Rente zu sichern und eine stabile Regierung in einer Phase zu gewährleisten, in der europäisch viel los ist.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert die Frage nach der eigenen Mehrheit und dem Anspruch, diese zu haben, aber er beantwortet nicht konkret, wie viele Abweichler tolerable sind oder was passiert, wenn es keine eigene Mehrheit gibt. Sandra Maischbergers Kernfrage zur Stabilität der Koalition wird mit Verweis auf den Koalitionsvertrag teilweise umgangen.",
+        "concrete_statements": [
+          "Ich habe gerade gesagt, es geht darum, bis Freitag eine eigene Mehrheit zu organisieren.",
+          "Diese Koalition wird in den nächsten 3,5 Jahren sehr viele Entscheidungen zu treffen haben. Wir können nicht immer davon ausgehen, dass die Linken oder die Grünen uns zur Seite stehen.",
+          "Es sind Dinge verabredet im Koalitionsvertrag."
+        ],
+        "quotes": [
+          {
+            "text": "Ich habe gerade gesagt, es geht darum, bis Freitag eine eigene Mehrheit zu organisieren. Ich bin wirklich dankbar, wie verantwortungsvoll die Linke sich da im Parlament verhält. Das ist etwas, wo wir Politik für Millionen von Rentnerinnen und Rentner machen. Aber mein Anspruch ist schon, dass wir eine eigene Mehrheit haben.",
+            "timestamp": "00:21:45",
+            "context": "Sandra Maischberger wies darauf hin, dass die Mehrheit nur wegen der Linken zustande kommt, und fragte nach Koalitionsstabilität."
+          },
+          {
+            "text": "Deswegen müssen wir schon alleine Mehrheiten haben. Den Anspruch habe ich und die Unionsführung sicher auch.",
+            "timestamp": "00:22:20",
+            "context": "Klingbeil unterstreicht den Anspruch auf Unabhängigkeit von Oppositionsparteien für die künftige Reformfähigkeit."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenreform",
+          "Koalitionsvertrag Schwarz-Rot",
+          "Abstimmungsverhalten Linke",
+          "Parlamentarische Mehrheiten"
+        ]
+      },
+      {
+        "title": "Entschließungsantrag zur Rentenreform und Rentenkommission",
+        "timestamp_range": "00:23:53 - 00:25:29",
+        "theme_description": "Klärung, warum der von der SPD geforderte Entschließungsantrag zur Rentenreform möglicherweise nicht in den Bundestag eingebracht wird und wie die künftigen Reformen organisiert werden sollen.",
+        "question_asked": "Sandra Maischberger fragte, warum ein Entschließungsantrag, der viele Punkte enthielt, von denen einige der Union oder SPD nicht passen, nicht miteingebracht werden soll, und wer diesen zurückgezogen hat.",
+        "question_intent": "Zu verstehen, warum die SPD auf einen Antrag verzichtet, der ihre Positionen klären könnte, und ob dies Schwäche oder unzureichende Reformkraft der Koalition signalisiert.",
+        "position": "Klingbeil erklärt, dass es einen geeintein Entschließungsantrag aus dem Koalitionsvertrag gibt, von der SPD sehr klar mitgetragen wird, und dass alle Fragen auf den Tisch kommen. Er betont, dass die Rentenkommission sich um diese Punkte kümmern wird und die Mehrheit so nicht steht wie sie stehen sollte. Allerdings konzediert er nicht, wer den Antrag zurückgezogen hat. Er betont seinen Anspruch, dass das Rentensystem grundlegend überarbeitet werden muss und dass bis Mitte nächsten Jahres damit fertig sein soll.",
+        "answer_match": "verschoben",
+        "answer_type": "themenwechsel",
+        "match_reasoning": "Klingbeil weicht der direkten Frage aus, wer den Entschließungsantrag zurückgezogen hat, und lenkt stattdessen auf die Rentenkommission und seinen eigenen Anspruch für Strukturreformen ab. Die Frage nach der Stabilität und Kraft der Koalition wird auf künftige Prozesse verschoben, nicht direkt beantwortet.",
+        "concrete_statements": [
+          "Von der SPD gibt es sehr klar dieser geeinte Entschließungsantrag, in dem alle Fragen auf den Tisch kommen.",
+          "Die Rentenkommission wird sich genau um diese Punkte kümmern.",
+          "Mein Anspruch ist, dass wir Mitte nächsten Jahres damit fertig sind.",
+          "Wir müssen Veränderungen vorantreiben."
+        ],
+        "quotes": [
+          {
+            "text": "Von der SPD gibt es sehr klar dieser geeinte Entschließungsantrag, in dem alle Fragen auf den Tisch kommen. Alles muss in kürzester Zeit jetzt diskutiert werden.",
+            "timestamp": "00:24:24",
+            "context": "Sandra Maischberger fragte, warum der Antrag nicht miteingebracht wird; Klingbeil antwortet defensiv zu SPD-Position."
+          },
+          {
+            "text": "Mein Anspruch ist, dass wir Mitte nächsten Jahres damit fertig sind. Es darf überhaupt keinen Zweifel daran geben, dass wir in diesem Land grundlegende Strukturreformen brauchen.",
+            "timestamp": "00:25:29",
+            "context": "Klingbeil reagiert auf die Kritik mangelnder Kraft mit Verweis auf seinen persönlichen Anspruch und Zeitrahmen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rentenkommission",
+          "Strukturreformen",
+          "Koalitionsvertrag",
+          "Parlamentarische Abstimmungsverfahren"
+        ]
+      },
+      {
+        "title": "Bürgergeldreform und innerparteilicher Widerstand SPD",
+        "timestamp_range": "00:26:32 - 00:29:06",
+        "theme_description": "Diskussion über die Bürgergeldreform, den Widerstand der Jusos gegen den Entwurf und Klingbeils Überzeugung von der Notwendigkeit dieser Reform.",
+        "question_asked": "Sandra Maischberger wies auf die Rebellion der jungen SPD-Mitglieder bei der Bürgergeldreform hin und fragte, ob Klingbeil die Jusos verteidigen würde, und wie er die Reform rechtfertigt.",
+        "question_intent": "Zu klären, ob Klingbeil innere Parteisolidarität über sachliche Überzeugung stellt und wie er die umstrittene Bürgergeldreform begründet.",
+        "position": "Klingbeil lehnt ab, die Jusos zu verteidigen, und sagt, das sei nicht seine Sprache. Er betont, dass die Bürgergeldreform notwendig ist, weil Menschen, die Geld vom Staat bekommen, Erwartungen erfüllen sollen, sich anstrengen und weiterqualifizieren. Er argumentiert, dass ein funktionierender Sozialstaat notwendig ist, bei dem diejenigen, die arbeiten können, auch arbeiten sollen. Die Reform adressiert ein Problem der wahrgenommenen Ungerechtigkeit, weil viele für 3.000 Euro arbeiten gehen und dies nicht als fair gegenüber Bürgergeldempfängern sehen.",
+        "answer_match": "substantielle_position",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Klingbeil beantwortet die Frage nach seiner Überzeugung zur Bürgergeldreform substantiell: Er erklärt, warum sie notwendig ist, betont die Bedingungen beim Staat und die Fairness gegenüber Erwerbstätigen. Er differenziert klar zwischen seiner Position und der Juso-Kritik.",
+        "concrete_statements": [
+          "Ich bin der Meinung, dass wir die Bürgergeldreform machen müssen.",
+          "Wenn Menschen Geld vom Staat bekommen, können wir die Erwartung haben, dass sie sich anstrengen, dass sie sich weiter qualifizieren.",
+          "Wir brauchen einen Sozialstaat, der funktioniert. Wer arbeiten kann, soll auch arbeiten.",
+          "Die Bürgergeldreform wird kommen."
+        ],
+        "quotes": [
+          {
+            "text": "Das ist nicht meine Sprache. Die Jusos würden es furchtbar finden, wenn ich sie verteidige. Ich bin der Meinung, dass wir die Bürgergeldreform machen müssen. Ich bin davon überzeugt, dass es richtig ist. Wenn Menschen Geld vom Staat bekommen, können wir die Erwartung haben, dass sie sich anstrengen, dass sie sich weiter qualifizieren.",
+            "timestamp": "00:27:02",
+            "context": "Sandra Maischberger zitierte scharfe Jusos-Kritik am Bürgergeld-Entwurf und fragte nach Klingbeils Position."
+          },
+          {
+            "text": "Es gibt eben auch Leute, die dieses System missbraucht haben. Das müssen wir verändern. Viele, die für 3.000 Euro arbeiten gehen das nicht als gerecht empfinden. Das sind die Menschen, um die ich mich kümmern möchte.",
+            "timestamp": "00:28:36",
+            "context": "Klingbeil erklärt die Fairness-Dimension der Reform und verweist auf die Wählergruppe der erwerbstätigen Unterschicht."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bürgergeld",
+          "Sozialpolitik",
+          "Arbeitsförderung",
+          "SPD-Parteieinheit"
+        ]
+      },
+      {
+        "title": "Bärbel Bas und Verhältnis zu Arbeitgebern",
+        "timestamp_range": "00:29:37 - 00:32:47",
+        "theme_description": "Bewertung von Bärbel Bas' Kritik an Arbeitgebern beim Arbeitgebertag und die Koordination mit dem Finanzminister zur Arbeitgeberpolitik.",
+        "question_asked": "Sandra Maischberger fragte, ob Klingbeil und Bas sich absprechen über ihre Arbeitgeberpolitik, und ob Bas durch ihre Aussagen die Polarisierung vorangetrieben hat. Sie wies auch darauf hin, dass Klingbeil morgen die Arbeitgeber treffen wird und fragte, ob dies zum Scherben-Wegkehren dient.",
+        "question_intent": "Zu hinterfragen, ob die SPD-Doppelspitze kohärent ist in ihrer Wirtschaftspolitik und ob eine Konfrontation mit Arbeitgebern die wirtschaftliche Zusammenarbeit gefährdet.",
+        "position": "Klingbeil verteidigt Bärbel Bas, sagt aber, dass er persönlich vorsichtig in der Kommunikation ist. Er betont, dass sowohl Bas als auch er viel in der Regierung tun, um Arbeitsplätze zu sichern und wirtschaftliches Wachstum zu fördern. Er findet es okay, dass Bas sich dagegen verwehrt hat, wie sie behandelt wurde (ausgelacht), betont aber, dass das nicht der Weg unter Demokraten sein sollte. Er erklärt, dass sein regelmäßiger Termin mit Arbeitgebern routinemäßig ist, nicht zur Schadenskontrolle. Seine Grundüberzeugung ist, dass Gewerkschaften, Verwaltung und demokratische Mitte zusammenarbeiten müssen in Zeiten, wo viel ins Wanken gerät.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert die Frage nach seiner Zusammenarbeit mit Bas teilweise: Er verteidigt sie und erklärt die Situation, weicht aber der Frage aus, ob er morgen einen Versöhnungstermin hat. Er betont stattdessen, dass das ein routinemäßiger Termin ist, und lenkt auf die gemeinsame Wachstumsagenda ab.",
+        "concrete_statements": [
+          "Erst mal machen Bärbel Bas und ich viel in der Regierung, um Arbeitsplätze zu sichern.",
+          "Meine Grundüberzeugung ist, dass Gewerkschaften, Verwaltung und die demokratische Mitte zusammenarbeiten müssen.",
+          "Ich werde die Arbeitgeber treffen."
+        ],
+        "quotes": [
+          {
+            "text": "Erst mal machen Bärbel Bas und ich viel in der Regierung, um Arbeitsplätze zu sichern. Da haben wir eine riesige Herausforderung. Muss man da die Arbeitgeber zu Gegnern erklären?",
+            "timestamp": "00:29:37",
+            "context": "Sandra Maischberger fragte, ob Klingbeil und Bas sich absprechen und ob Bas die Polarisierung vorantreibt."
+          },
+          {
+            "text": "Ich schätze Bärbel Bas sehr. Ich bin vorsichtig in der Kommunikation, die haut mal einen raus. Dafür ist eine Doppelspitze da.",
+            "timestamp": "00:32:47",
+            "context": "Klingbeil erklärt seine Zusammenarbeit mit der Co-Vorsitzenden und deutet Komplementarität an."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arbeitgeberverbände",
+          "Industriestrompreis",
+          "Luftverkehrssteuer",
+          "Wirtschaftspolitik",
+          "SPD-Doppelspitze"
+        ]
+      },
+      {
+        "title": "Haushalt, Investitionen und Strukturreformen",
+        "timestamp_range": "00:33:17 - 00:37:13",
+        "theme_description": "Debatte über die Haushaltspolitik der Regierung, Kritik am Etat als Verschiebebahnhof, Investitionsquoten und die künftigen Haushaltslücken.",
+        "question_asked": "Sandra Maischberger fragte, ob Klingbeil die Analyse des BDI-Präsidenten teilt, dass Deutschland in einer historischen Krise ist, und zitierte Vorwürfe, dass die Regierung Geld an der falschen Stelle ausgibt, z.B. wird Infrastruktur-Sondervermögen für Mütterrente und Agrardiesel umgewidmet.",
+        "question_intent": "Zu überprüfen, ob Klingbeil die wirtschaftliche Krise erkennt und wie er die Haushaltspriorisierung und Investitionen rechtfertigt.",
+        "position": "Klingbeil bestätigt, dass Deutschland in einer wahrscheinlich schwierigen Situation ist, nennt das Küchentischgespräch über Arbeitsplätze ein Zeichen der Gesellschaftszermürbung und sagt, das sei der wichtigste Antrieb für ihn. Er widerspricht aber der Kritik der Verschiebebahnhof-Kritik: Die Investitionsquote im Kernhaushalt ist auf 10,5%, im historischen Durchschnitt. Die 500 Mrd. aus Sondervermögen können nicht für Mütterrente verwendet werden. Er müsste tricksen, wenn er das könnte, würde aber als Finanzminister nicht das verschweigen, dass 2027-2028 Haushaltslücken von 60 Mrd. entstehen. Strukturreformen sind notwendig, um den Haushalt in den Griff zu bekommen.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert die Haushaltskritik sachlich, indem er Investitionsquoten erklärt und der Trickser-Vorwurf zurückweist. Er antwortet aber nicht konkret auf die Frage, ob er die tiefe wirtschaftliche Krise vollständig teilt, sondern relativiert die Analyse ('Stagnation statt Fall') und verweist auf strukturelle Übergangszeiten.",
+        "concrete_statements": [
+          "Die Frage von wirtschaftlichen Wachstum ist für mich die wichtigste Aufgabe, die diese Regierung hat.",
+          "Eine Investitionsquote im Kernhaushalt von 10%, das ist im Durchschnitt der letzten Jahre. Wir sind mit dem Haushalt bei 10,5.",
+          "Für die Haushalte 27 und 28 laufenden riesige Lücken rein. Wir werden 28 eine Lücke von 60 Mrd. im Haushalt haben.",
+          "Wir werden zu Strukturreformen kommen müssen."
+        ],
+        "quotes": [
+          {
+            "text": "Wir sind in einer wahnsinnig schwierigen Situation. Das Küchentischgespräch über die Frage, ob der Arbeitsplatz sicher ist, ist zurückgekehrt in die deutschen Familien. Das ist etwas, was die Gesellschaft zermürbt.",
+            "timestamp": "00:33:53",
+            "context": "Sandra Maischberger fragte, ob Klingbeil die tiefe Krise-Analyse des BDI teilt."
+          },
+          {
+            "text": "Aber die Kritik, die sie formuliert haben, kann gar nicht stimmen. Eine Investitionsquote im Kernhaushalt von 10%, das ist im Durchschnitt der letzten Jahre. Wir sind mit dem Haushalt bei 10,5.",
+            "timestamp": "00:34:54",
+            "context": "Klingbeil widerlegt die Vorwürfe zum Verschiebebahnhof konkret durch Haushaltszahlen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeshaushalt",
+          "Infrastruktur-Sondervermögen",
+          "Investitionsquote",
+          "Haushaltslücken",
+          "Finanzpolitik"
+        ]
+      },
+      {
+        "title": "Putins Drohung gegen Europa und ihre Bedeutung",
+        "timestamp_range": "00:38:17 - 00:40:26",
+        "theme_description": "Bewertung von Putins Aussage, dass Russland bereit für Krieg gegen Europa ist, und die Konsequenzen für deutsche Außenpolitik.",
+        "question_asked": "Sandra Maischberger fragte, wie Klingbeil Putins Aussage bewertet, dass Russland bereit für einen Krieg sei, wenn Europa sich für einen Krieg entscheidet.",
+        "question_intent": "Zu verstehen, wie ernst die deutsche Regierung die russischen Drohungen nimmt und wie dies die Verteidigungsausgaben rechtfertigt.",
+        "position": "Klingbeil sagt, wenn er sich etwas vorwirft, ist es, dass die westliche Seite in den Jahren seit 2014 (und davor) nicht ernst genommen hat, was Putin gesagt hat. Diesen Vorwurf müssen sich viele machen, und es wird ihm nicht ein zweites Mal passieren. Er möchte als deutscher Politiker jederzeit vor die eigene Bevölkerung treten und sagen können, dass er alles für die Sicherheit tut. Deswegen ist es notwendig, viel Geld für Verteidigung und Ukraine-Unterstützung auszugeben.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Klingbeil adressiert die Frage direkt: Er bewertet Putins Drohung als ernst, zieht historische Lernlehren (Unterschätzung seit 2014) und erklärt konkret, warum die Verteidigungsausgaben notwendig sind. Das ist eine vollständige Antwort auf die Frage der Bedrohungswahrnehmung.",
+        "concrete_statements": [
+          "Wenn ich mir eins vorwerfe, ist, dass wir den Jahren seit 2014 und davor nicht ernst genommen haben, was Putin gesagt hat.",
+          "Das wird mir nicht ein 2. Mal passieren.",
+          "Deswegen ist es notwendig, dass wir so viel Geld für die Verteidigung und für die Unterstützung der Ukraine ausgeben."
+        ],
+        "quotes": [
+          {
+            "text": "Wenn ich mir eins vorwerfe, ist, dass wir den Jahren seit 2014 und davor nicht ernst genommen haben, was Putin gesagt hat. Diesen Vorwurf müssen sich viele machen. Das wird mir nicht ein 2. Mal passieren.",
+            "timestamp": "00:38:17",
+            "context": "Sandra Maischberger fragte nach der Bedeutung von Putins Kriegsdrohung gegen Europa."
+          },
+          {
+            "text": "Ich möchte als deutscher Politiker jederzeit vor die eigene Bevölkerung treten können und sagen, ich tue alles dafür, dass wir sicher leben. Deswegen ist es notwendig, dass wir so viel Geld für die Verteidigung und für die Unterstützung der Ukraine ausgeben.",
+            "timestamp": "00:38:47",
+            "context": "Klingbeil erklärt die Rechtfertigung der hohen Verteidigungsausgaben."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Russische Aggression",
+          "Verteidigungsausgaben",
+          "Ukraine-Unterstützung",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Rolf Mützenich und Diskurs über Kriegsende-Szenarien",
+        "timestamp_range": "00:39:18 - 00:40:26",
+        "theme_description": "Bewertung der Kritik an Rolf Mützenichs März-2024-Vorschlag, den Krieg einzufrieren, und ob der Diskurs zu restriktiv ist.",
+        "question_asked": "Sandra Maischberger zitierte, dass Rolf Mützenich 2024 hart angegriffen wurde für seinen Vorschlag, den Krieg einzufrieren, und dass die Situation der Ukraine seitdem nicht besser geworden ist. Sie fragte implizit, ob die Debatte zu rigid war.",
+        "question_intent": "Zu hinterfragen, ob die deutsche Öffentlichkeit und Politiklandschaft zu restriktiv bei der Diskussion von Kriegs-Szenarien ist und ob dies strategische Optionen verbaut.",
+        "position": "Klingbeil sagt, dass Mützenich damals zu hart angegriffen wurde und er findet, dass wir insgesamt in der Diskussion nicht die Räume gegeben haben, über unterschiedlichste Szenarien nachzudenken. Aber die Leitlinie muss bleiben: Wir stehen an der Seite der Ukraine. Er kritisiert, dass die Amerikaner und Russland über die Köpfe der Ukraine und der Europäer hinweg entschieden haben, was nicht passieren darf.",
+        "answer_match": "teil_adressiert",
+        "answer_type": "teilweise_antwort",
+        "match_reasoning": "Klingbeil adressiert die Kritik an zu restriktivem Diskurs, indem er Mützenich verteidigt und offenere Debatten fordert. Er weicht aber teilweise ab durch Betonung der Ukraine-Solidarität und der Kritik an US-Russian-Alleingang, was das Kernthema (Diskursfreiheit) etwas verschiebt.",
+        "concrete_statements": [
+          "Ich finde, dass damals zu hart mit ihm umgegangen wurde.",
+          "Wir insgesamt in der Diskussion nicht die Räume gegeben haben, über unterschiedlichste Szenarien nachzudenken.",
+          "Es muss die Leitlinie bleiben, wir stehen an der Seite der Ukraine."
+        ],
+        "quotes": [
+          {
+            "text": "Ich finde, dass damals zu hart mit ihm umgegangen wurde. Ich finde, dass wir insgesamt in der Diskussion nicht die Räume gegeben haben, über unterschiedlichste Szenarien nachzudenken.",
+            "timestamp": "00:39:18",
+            "context": "Sandra Maischberger warf auf, dass Mützenich 2024 hart angegriffen wurde und fragte implizit nach Diskurs-Rigorosität."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Politik",
+          "Friedensverhandlungen",
+          "Kriegsende-Szenarios",
+          "Parlamentarischer Diskurs"
+        ]
+      },
+      {
+        "title": "Trump-Plan und europäische Einflusssphäre in Ukraine-Verhandlungen",
+        "timestamp_range": "00:39:54 - 00:40:26",
+        "theme_description": "Kritik am 28-Punkte-Plan und der Tatsache, dass weder Europäer noch Ukrainer bei den jüngsten US-Russland-Gesprächen beteiligt waren.",
+        "question_asked": "Sandra Maischberger fragte, ob es akzeptabel ist, dass die Amerikaner und Russland über die Köpfe der Ukraine und Europäer hinweg entschieden haben, wie es kurz danach aussah.",
+        "question_intent": "Zu klären, ob die europäische Einflusssphäre im Ukraine-Konflikt verloren geht und wie die Regierung darauf reagiert.",
+        "position": "Klingbeil antwortet, dass gestern kein Europäer und kein Ukrainer mit dabei war, und dass er dem Bundeskanzler sehr dankbar ist, dass dieser organisiert hat, dass die Europäer stark dazwischen gegangen sind. Er betont, dass natürlich die Amerikaner und Russland ein Spiel spielen, aber im 28-Punkte-Plan standen Dinge drin, die überhaupt nicht akzeptabel waren, z.B. dass Europa 100 Mrd. aus eingefrorenen Vermögen geben soll.",
+        "answer_match": "voll_adressiert",
+        "answer_type": "substantielle_position",
+        "match_reasoning": "Klingbeil antwortet direkt auf die Frage: Er bestätigt das Problem des fehlenden europäischen und ukrainischen Inputs, wertet es als inakzeptabel und erklärt konkrete deutsche Reaktionen (Merz' Intervention) sowie Kritik am Plan. Das ist eine volle Antwort.",
+        "concrete_statements": [
+          "Gestern war kein Europäer und kein Ukrainer mit dabei.",
+          "Da gehen wir überhaupt nicht mit.",
+          "Dem Bundeskanzler sehr dankbar, dass er organisiert hat, dass die Europäer stark dazwischen gegangen sind."
+        ],
+        "quotes": [
+          {
+            "text": "Gestern war kein Europäer und kein Ukrainer mit dabei. Da bin ich dem Bundeskanzler sehr dankbar, dass er organisiert hat, dass die Europäer stark dazwischen gegangen sind. Natürlich erleben wir, wie die Amerikaner und Russland dieses Spiel spielen. Aber in diesem 28-Punkte-Plan standen Dinge drin, die überhaupt nicht akzeptabel waren.",
+            "timestamp": "00:39:54",
+            "context": "Sandra Maischberger hinterfragte die Ausschließung von Europa und Ukraine aus US-Russland-Gesprächen."
+          },
+          {
+            "text": "Dass wir 100 Mrd. an die Amerikaner geben aus dem eingefrorenen Vermögen, da gehen wir überhaupt nicht mit.",
+            "timestamp": "00:40:26",
+            "context": "Klingbeil nennt konkrete inakzeptable Punkte des 28-Punkte-Plans."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Verhandlungen",
+          "Trump-Friedensplan",
+          "Europäische Außenpolitik",
+          "Deutsch-amerikanische Beziehungen",
+          "Eingefroren Vermögen Russland"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Die Investitionsquote im Kernhaushalt liegt bei 10,5%, im Durchschnitt der letzten Jahre bei 10%.",
+        "timestamp": "00:34:54"
+      },
+      {
+        "claim": "Für die Haushalte 2027 und 2028 sind riesige Lücken geplant; 2028 wird es eine Lücke von 60 Mrd. Euro geben.",
+        "timestamp": "00:35:58"
+      },
+      {
+        "claim": "Putin hat gesagt, dass Russland bereit für einen Krieg ist, wenn Europa sich für einen Krieg gegen Russland entscheidet.",
+        "timestamp": "00:38:17"
+      },
+      {
+        "claim": "Im 28-Punkte-Plan steht, dass die Ukraine 100 Mrd. Euro aus eingefrorenen Vermögen an die Amerikaner geben soll.",
+        "timestamp": "00:40:26"
+      },
+      {
+        "claim": "Dem Bundeskanzler gelang es, zu organisieren, dass die Europäer bei den jüngsten Verhandlungen stark dazwischen gegangen sind.",
+        "timestamp": "00:39:54"
+      }
+    ]
+  }
+}

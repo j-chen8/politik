@@ -1,0 +1,312 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXIvMjAyNS0xMS0xMl8yMi01MC1NRVo",
+    "video_id": "maischberger-2025-11-12",
+    "politician": "Roderich Kiesewetter",
+    "host": "Sandra Maischberger",
+    "publisher": "maischberger (ARD)",
+    "transcript_sha": "7db3159467dd3f92",
+    "transcript_chars": 58012,
+    "caption_lines": 2148,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 23422,
+    "tokens_out": 8363,
+    "cost_usd": 0.0260948,
+    "quote_validation": {
+      "valid_exact": 12,
+      "valid_fuzzy": 2,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "substantielle_position": 5,
+      "teilweise_antwort": 1,
+      "themenwechsel": 1
+    },
+    "generated_at": "2026-06-05T12:36:41.229Z",
+    "batch_id": "msgbatch_014vyqTDbdH2EX4Czhxor5Gw"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Roderich Kiesewetter (CDU/CSU) diskutiert in der Sendung von Sandra Maischberger mit SPD-Kollege Ralf Stegner zu Außenpolitik und Sicherheit, insbesondere zur Ukraine-Unterstützung und der Taurus-Lieferung. Er tritt als klarer Verfechter einer robusteren Unterstützung der Ukraine auf und kritisiert die Zurückhaltung der Bundesregierung unter Scholz scharf.",
+    "themes": [
+      {
+        "title": "Unterschiedliche Strategien zur Ukraine-Unterstützung",
+        "timestamp_range": "00:17:44 - 00:20:54",
+        "theme_description": "Kontroverse über die richtige Strategie zur Unterstützung der Ukraine: Eskalation von Waffenlieferungen versus Rückgang zu defensiver Luftabwehr.",
+        "question_asked": "Sandra Maischberger wies auf Kiesewetters Aussagen von 2024 hin, in denen er forderte, den Krieg nach Russland zu tragen, Ministerien und Hauptquartiere anzugreifen. Sie fragte Stegner, was er davon halte, und dann Kiesewetter, ob er dazu noch stehe.",
+        "question_intent": "Die Moderatorin wollte die Widersprüche zwischen der restriktiven Linie Stegners (Luftabwehr) und Kiesewetters offensiver Position (Schläge gegen russische Infrastruktur) öffentlich machen.",
+        "position": "Kiesewetter steht zu seiner Position. Er betont, dass es nicht um \"Eskalation\" gehe, sondern darum, die Quellen des Krieges anzugehen: \"Es geht darum, dass man nicht auf die Pfeile schießt, die ungeheuer teuer abgeschossen werden, sondern dass man dahingehend, wo die Pfeile abgeschossen werden.\" Er bestätigt, dass die Ukraine mittlerweile tatsächlich \"Ziele erreichen weit im Hinterland Russlands\" – Ölraffinerien, Fabriken – und kritisiert, dass dies \"zu wenig\" geschehe. Sein Ziel ist, \"den Krieg zu verkürzen\".",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage, ob er zu seinen früheren Aussagen steht. Er begründet seine Position substantiell mit Verweis auf vor Ort besuchte Bunker und Kampfhandlungen und erklärt seine Logik präzise: Angriffe auf Produktionsstätten verkürzen den Krieg.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Ja sicher stehe ich dazu. Weil es ja auch Pistorius im Jahr 2023 gesagt hat. Ich möchte etwas zur Einschätzung sagen. Sie sehen das auch in meinem Gesicht. Ich bin gerade aus einem Bunker gekommen nach einem Angriff.",
+            "timestamp": "00:19:51",
+            "context": "Reaktion auf Stegners Kritik, dass die Strategie nicht funktioniert habe."
+          },
+          {
+            "text": "Es geht darum, dass man nicht auf die Pfeile schießt, die ungeheuer teuer abgeschossen werden. Sondern dass man dahingehend, wo die Pfeile abgeschossen werden. An die Raketen-Abwerfer. Und an die Fabriken.",
+            "timestamp": "00:20:21",
+            "context": "Erklärung seiner Strategie für Kriegsverkürzung."
+          }
+        ],
+        "concrete_statements": [
+          "Die Ukraine muss befähigt werden, den Krieg nach Russland zu tragen",
+          "Es geht darum, Ziele in der Tiefe Russlands zu treffen – Ölraffinerien, Fabriken",
+          "Das wird gemacht, aber zu wenig"
+        ],
+        "related_bundestag_topics": [
+          "Waffenlieferungen Ukraine",
+          "Taurus-Flugkörper",
+          "Außenpolitik Russland",
+          "Verteidigungspolitik"
+        ]
+      },
+      {
+        "title": "Taurus-Lieferung als politischer Fehler Scholz'",
+        "timestamp_range": "00:22:28 - 00:24:30",
+        "theme_description": "Bewertung von Kanzler Scholz' Entscheidung, Taurus-Marschflugkörper nicht zu liefern, obwohl dies vorher versprochen wurde.",
+        "question_asked": "Sandra Maischberger fragte Kiesewetter nach dem Widerspruch: Friedrich Merz hatte als Oppositionsführer die Lieferung von Taurus-Flugkörpern gefordert (mit der Drohung, Putin hätte 24 Stunden Zeit, damit aufzuhören, die Zivilbevölkerung zu bombardieren). Als Kanzler lehnt er jetzt ab. Warum hat er seine Position gewechselt?",
+        "question_intent": "Die Moderatorin wollte klären, ob Merz eine neue Erkenntnis gewonnen hat oder ob sein früheres Versprechen nur Wahlkampftaktik war.",
+        "position": "Kiesewetter wertet Scholz' Entscheidung als klaren politischen Fehler. Er argumentiert: \"Der Bundeskanzler hat einen Fehler gemacht, sein Versprechen nicht einzuhalten.\" Für ihn gibt es keine rechtliche oder sicherheitstechnische Begründung – \"Es gibt keine Notwendigkeit, die Taurus nicht so liefern. Weder die Nachrichtendienste, die Bundeswehr, noch die Firmen sagen, es gibt Einschränkungen. Es ist eine politische Entscheidung des Bundeskanzlers gewesen.\" Kiesewetter sieht dies als Versprechen, das \"durch nichts\" gerechtfertigt ist, und kritisiert, dass der Kanzler damit Erwartungshaltungen erhöht habe, ohne liefern zu können. Russland nutze ähnliche Waffen täglich gegen die Ukraine.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die Frage direkt: Für ihn ist es ein politischer Fehler Scholz', nicht Merz' Wechsel. Er grenzt klar ab zwischen politischen (un)gerechtfertigten Gründen und nennt explizit, wer die Entscheidung trug. Er adressiert auch die Fairness-Frage gegenüber Nachbarländern, die auf das Versprechen vertraut haben.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Der Bundeskanzler hat einen Fehler gemacht, sein Versprechen nicht einzuhalten. Es gibt keine Notwendigkeit, die Taurus nicht so liefern. Weder die Nachrichtendienste, die Bundeswehr, noch die Firmen sagen, es gibt Einschränkungen. Es ist eine politische Entscheidung des Bundeskanzlers gewesen, sein Versprechen nicht einzuhalten.",
+            "timestamp": "00:22:59",
+            "context": "Direkte Bewertung von Scholz' Entscheidung."
+          },
+          {
+            "text": "Der Kanzler hat etwas versprochen, worauf auch Nachbarländer vertraut haben. Er schaut innenpolitisch, er sieht, dass diese Frage schwer in der Bevölkerung zu erklären ist. Er hätte das der Bevölkerung zumuten müssen.",
+            "timestamp": "00:22:28",
+            "context": "Kritik an mangelnder politischer Tapferkeit."
+          }
+        ],
+        "concrete_statements": [
+          "Scholz hat Taurus-Lieferung versprochen und nicht gehalten – das ist ein politischer Fehler",
+          "Es gibt keine rechtlichen oder sicherheitstechnischen Gründe für die Ablehnung",
+          "Der Kanzler hätte die Bevölkerung von der Notwendigkeit überzeugen müssen, statt zu schweigen",
+          "Russland greift täglich mit ähnlichen Systemen an – Taurus ist kein Wundermittel"
+        ],
+        "related_bundestag_topics": [
+          "Waffenlieferungen",
+          "Ukraine-Unterstützung",
+          "Außenpolitik",
+          "Kanzler Scholz",
+          "Sicherheitspolitik"
+        ]
+      },
+      {
+        "title": "Diplomatie statt Verhandlung über Waffenstillstand",
+        "timestamp_range": "00:25:31 - 00:26:31",
+        "theme_description": "Kontroverse über den Weg zur Beendigung des Ukraine-Kriegs: Kiesewetter lehnt das Einfrieren des Konflikts ab, während Stegner Verhandlungen und Waffenstillstand fordert.",
+        "question_asked": "Ralf Stegner wirft Kiesewetter vor, dass dessen Strategie (weitere Waffenlieferungen für 3–5 Jahre) nicht funktioniert habe – Trump habe Verhandlungen versucht und sei gescheitert. Sandra Maischberger fragt Kiesewetter, ob er erkennt, dass auch seine Strategie nicht funktioniert.",
+        "question_intent": "Die Moderatorin wollte Kiesewetter dazu bringen, die Grenzen seiner Position einzugestehen, nachdem Trump gescheitert ist.",
+        "position": "Kiesewetter lehnt Stegners Sicht ab. Er betont, dass Diplomatie nicht in 3 Tagen oder einem Tag funktioniert: \"Die Strategie über 3, 5 Jahre zu sagen, wir liefern Waffen, gehen an einen Verhandlungstisch.\" Vor allem kritisiert er, dass ein \"Einfrieren\" des Kriegs eine Lösung darstellen soll: \"Den Krieg einzufrieren ist keine Lösung. Der Krieg wird nicht eingefroren, weil ein einfrieren Kriegsverbrechen bedeutet. Und Massenflucht.\" Seine Position ist, dass kontinuierliche Waffenlieferungen den militärischen Druck aufrechterhalten müssen, während parallel diplomatische Kanäle offen bleiben – nicht statt Rüstung.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter geht auf die Kritik ein, beantwortet aber nur teilweise die Frage nach dem Scheitern seiner Strategie. Er erklärt, warum Verhandlungen lang dauern, lehnt die Alternative (Waffenstillstand) ab, gibt aber nicht zu, dass Trump-Initiative scheiterte, weil die russische Seite nicht verhandeln wollte. Er weicht insofern aus, als er nicht direkt antwortet, ob *seine* Strategie auch gescheitert ist.",
+        "answer_type": "teilweise_antwort",
+        "quotes": [
+          {
+            "text": "Den Krieg einzufrieren ist keine Lösung. Der Krieg wird nicht eingefroren, weil ein einfrieren Kriegsverbrechen bedeutet. Und Massenflucht.",
+            "timestamp": "00:26:01",
+            "context": "Ablehnung des Waffenstillstands als Lösung."
+          },
+          {
+            "text": "Da will ich widersprechen, Diplomatie fusioniert nicht in 3 Tagen, nicht mit einem Tag. Die Strategie über 3, 5 Jahre zu sagen, wir liefern Waffen, gehen an einen Verhandlungstisch.",
+            "timestamp": "00:25:31",
+            "context": "Verteidigung seiner Strategie gegen Stegners Kritik."
+          }
+        ],
+        "concrete_statements": [
+          "Waffenstillstand/Krieg-Einfrieren führt zu Kriegsverbrechen und Massenflucht",
+          "Diplomatie funktioniert nicht in Tagen oder Wochen, sondern über Jahre",
+          "Rüstung und Diplomatie müssen parallel laufen, nicht alternativ"
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Friedensverhandlungen",
+          "Diplomatie",
+          "Waffenstillstand",
+          "Internationale Sicherheit"
+        ]
+      },
+      {
+        "title": "Russische Bedrohung für NATO und deutsche Sicherheit",
+        "timestamp_range": "00:28:38 - 00:30:43",
+        "theme_description": "Kiesewetter argumentiert, dass Russland eine existenzielle Bedrohung für die NATO darstellt und die Ukraine durch Widerstand Zeit für den Westen gewinnt.",
+        "question_asked": "Gabor Steingart und andere fragten, ob Kiesewetter wie Carsten Breuer glaubt, dass Russland schon im Visier der NATO sei und 2028 angreifen könnte. Sandra Maischberger formulierte: 'Sie sind auch der Meinung ... dass die NATO jetzt schon im Visier ist Russlands. Dass Russland in der Lage wäre, 2028, die NATO anzugreifen?'",
+        "question_intent": "Die Moderatorin wollte klären, wie groß Kiesewetter die Bedrohung wirklich einschätzt – ist es Panikmache oder realistisch?",
+        "position": "Kiesewetter bekräftigt die Bedrohung. Er verweist auf konkrete Eskalationen: \"zivile Zerstörung gegen die Ukraine\", Drohnen-Überflüge über Deutschland, Brände in Vilnius durch russische Sicherheitsapparate – \"Das sind alles Eskalationen.\" Er benennt als Kernaussage: \"Putin sieht uns als Kriegsziel.\" Seine zentrale These ist, dass die Ukraine **Zeit** für den Westen gewinnt: \"das entscheidende ist, dass wir Deutschen, auch wir beide, begreifen, dass die Ukraine uns Zeit gewinnt. Dass die Ukraine einen Krieg geführt, damit sich dieser Krieg nicht ausweitet.\" Er nennt Trumps Forderungen nach NATO-Rückzug und baltischen Ländern außerhalb der NATO als Beweis für Putins Ziele. Kiesewetter kritisiert auch Scholz, der von \"Krieg, aber nicht Krieg\" spricht, während Pistorius richtig sagt, die Bundeswehr müsse \"kriegswichtig\" werden.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter antwortet direkt auf die Frage nach der Bedrohungsgröße. Er konkretisiert durch Beispiele (Vilnius-Brände, Drohnen, Eskalationen), erklärt die strategische Rolle der Ukraine und begründet, warum Rüstung notwendig ist. Er adressiert auch den politischen Widerspruch zwischen Scholz' Rhetoric und der tatsächlichen Sicherheitslage.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Das entscheidende ist, dass wir Deutschen, auch wir beide, begreifen, dass die Ukraine uns Zeit gewinnt. Dass die Ukraine einen Krieg geführt, damit sich dieser Krieg nicht ausweitet. Estland, Lettland und Litauen sollen raus aus der NATO. Die Amerikaner sollen raus aus Europa. Das sind die Forderungen, die Trump nicht hat ändern können. Putin ist brutal in der Ukraine.",
+            "timestamp": "00:28:38",
+            "context": "Kern-These zur strategischen Rolle der Ukraine."
+          },
+          {
+            "text": "Putin sieht uns als Kriegsziel. Und da bin ich, letzter Satz, bei Pistorius, der aus politischen Gründen 2029 gewählt hat. Der gesagt hat, die Bundeswehr muss Kriegs wichtig werden.",
+            "timestamp": "00:30:12",
+            "context": "Verbindung von Bedrohung zu Konsequenzen für die Bundeswehr."
+          }
+        ],
+        "concrete_statements": [
+          "Putin sieht Deutschland als Kriegsziel",
+          "Die Ukraine gewinnt Zeit für den Westen – ist unsere zeitliche Pufferzone",
+          "Konkrete Eskalationen bereits im Gange: Brände in Vilibus, Drohnen-Überflüge, zivile Zerstörung",
+          "Bundeswehr muss \"kriegswichtig\" werden (Pistorius-Position unterstützt)"
+        ],
+        "related_bundestag_topics": [
+          "Sicherheitspolitik",
+          "NATO",
+          "Russland-Sanktionen",
+          "Bundeswehr-Ausstattung",
+          "Verteidigungsfall"
+        ]
+      },
+      {
+        "title": "Spannungsfall versus Verteidigungsfall – militärische Eskalation?",
+        "timestamp_range": "00:31:47 - 00:34:32",
+        "theme_description": "Kontroverse zwischen Kiesewetter, der Spannungsfall gefordert hatte, und Stegner, der dies als zu militärisch einstuft und mehr Diplomatie fordert.",
+        "question_asked": "Sandra Maischberger referenzierte: Ralf Stegner habe gegenüber Kiesewetters Forderung nach Ausruf des Spannungsfalls gesagt, das sei 'brandgefährlich'. Sie fragte Stegner, wie er zu dieser Kritik stehe.",
+        "question_intent": "Die Moderatorin wollte das konkrete Sicherheits-Instrument diskutieren: Ist Spannungsfall eine notwendige oder gefährliche Eskalation?",
+        "position": "Kiesewetter antwortet auf die indirekte Kritik. Er erklärt, dass der Spannungsfall **nicht** der Verteidigungsfall ist: \"Der Spannungsfall ist eine Stufe vor dem Verteidigungsfall. Ich bin nicht so firm wie Sie?\" Er betont den Unterschied: Im Spannungsfall \"kann die Bundeswehr im Inneren eingesetzt werden.\" Warum hatte er es gefordert? Weil \"der Bundeskanzler hat in der Woche, als ich das ansprach, mit Pistorius gesagt, wir sind nicht im Frieden, aber nicht im Krieg.\" Kiesewetter argumentiert, der Spannungsfall sei ein Instrument genau für diese Lage – um zu zeigen, dass Deutschland sich vorbereitet, **ohne** in den Verteidigungsfall zu gehen. Sein echtes Ziel: \"damit man nicht in den Verteidigungsfall gehen muss, sondern den Krieg verhindert, in dem man Abwehrbereitschaft zeigt.\" Aber es gibt ein Problem: \"Jetzt haben wir nicht einmal die Zweidrittelmehrheit im Bundestag ohne die AfD und ohne die linke. Vor allen Dingen will ich keinen Spannungsfall mit der AfD ausrufen.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter erklärt differenziert, warum der Spannungsfall für ihn notwendig ist und adressiert sowohl die strategische Logik als auch die parlamentarische Realität. Er begründet das Instrument gegen den Vorwurf der Eskalation und zeigt, dass er bewusst eine Zwischenstufe sucht, nicht maximale Eskalation.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Man hat das eingeführt, damit man nicht in den Verteidigungsfall gehen muss, sondern den Krieg verhindert, in dem man Abwehrbereitschaft zeigt. Den Spannungsfall habe ich letztes Jahr angesprochen, um klarzumachen, dass wir nicht in der Lage sind, den Spannungsfall auszurufen, weil wir nicht eine Wehrpflicht leisten können.",
+            "timestamp": "00:33:26",
+            "context": "Erklärung der Funktion des Spannungsfalls."
+          },
+          {
+            "text": "Wir sind nicht mehr im Frieden, aber auch nicht im Krieg, Pistorius hat das unterstützt. Wir müssen zeigen, wir haben andere Instrumente für den Verteidigungsfall. Es geht darum, den Krieg zu verhindern.",
+            "timestamp": "00:34:00",
+            "context": "Kern-Position zum strategischen Ziel."
+          }
+        ],
+        "concrete_statements": [
+          "Spannungsfall ist Stufe VOR Verteidigungsfall, kein Kriegserklärung",
+          "Ziel: Abwehrbereitschaft zeigen, ohne in Verteidigungsfall zu gehen",
+          "Problem: keine Zweidrittelmehrheit ohne AfD im Bundestag verfügbar",
+          "Kiesewetter will keinen Spannungsfall mit der AfD ausrufen"
+        ],
+        "related_bundestag_topics": [
+          "Notstandsrecht",
+          "Verteidigungsfall",
+          "Bundestags-Mehrheiten",
+          "Sicherheitspolitik",
+          "Verfassungsrecht"
+        ]
+      },
+      {
+        "title": "Wehrpflicht und Freiwilligenprinzip für Streitkräfte",
+        "timestamp_range": "00:35:04 - 00:38:09",
+        "theme_description": "Position zur Wehrpflicht: Kiesewetter kritisiert, dass nur Männer gemustert werden, und setzt auf Freiwilligkeit mit höheren Standards.",
+        "question_asked": "Sandra Maischberger sagte, dass es einen kleinen Kreis gibt, der darüber redet, was dem Bundestag zur Abstimmung gegeben wird, und es seien junge Männer im Publikum, die es betrifft. Sie fragte beide, worauf sich diese ab 2008 Geborenen vorbereiten müssen.",
+        "question_intent": "Die Moderatorin wollte konkrete Informationen über die geplante Regelung und die Auswirkungen für junge Menschen.",
+        "position": "Kiesewetter gibt eine konkrete, differenzierte Antwort. Zunächst kritisiert er die Halbheit der bisherigen Regelung: \"Ich halte das für einen Fehler, dass er nicht Frauen und Männermustern. Wir haben eine Änderung im Februar gehabt. Wir haben dieses Eisen nicht angepackt.\" Das hätte inklusiv sein sollen. Dann erklärt er, was konkret kommt: \"Es erwartet Sie ab dem Jahr '27 eine Musterung für die Männer, da werden Sie gefragt, ob sie zur Bundeswehr wollen oder sich etwas anderes vorstellen können. Sie werden auch gesundheitlich untersucht, nicht alle können es. Deswegen wird niemand müssen. Und es ist eine geringe Zahl an Monaten. Es geht um 6 Monate Dienst.\" Kiesewetter betont, dass dies **nicht** Wehrpflicht ist, sondern Freiwilligkeit mit Musterung. Das Ziel: Bessere Qualität, attraktive Bedingungen, nicht Zwang. \"Besser wäre es, dass man den Gesellschaftsdienst ausweitet.\"",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Kiesewetter beantwortet die konkrete Frage direkt: Wann, was, wie lange, Optional oder Pflicht. Er differenziert zwischen Musterung und Verpflichtung, kritisiert die Gender-Ungerechtigkeit und setzt Standards für ein freiwilliges System.",
+        "answer_type": "substantielle_position",
+        "quotes": [
+          {
+            "text": "Es erwartet Sie ab dem Jahr '27 eine Musterung für die Männer, da werden Sie gefragt, ob sie zur Bundeswehr wollen oder sich etwas anderes vorstellen können. Sie werden auch gesundheitlich untersucht, nicht alle können es. Deswegen wird niemand müssen.",
+            "timestamp": "00:37:06",
+            "context": "Konkrete Auskunft an die betroffenen jungen Menschen."
+          },
+          {
+            "text": "Ich halte das für einen Fehler, dass er nicht Frauen und Männermustern. Wir haben eine Änderung im Februar gehabt. Wir haben dieses Eisen nicht angepackt. Dass wir sagen, nicht Männer sondern Menschen in Deutschland können einberufen werden.",
+            "timestamp": "00:37:06",
+            "context": "Kritik an unvollständiger Gesetzgebung."
+          }
+        ],
+        "concrete_statements": [
+          "Ab 2027 Musterung für Männer (nicht Frauen – das war ein Fehler)",
+          "Freiwilliges System: Musterung führt nicht zu Verpflichtung",
+          "6 Monate Dienst (Bundeswehr) oder Gesellschaftsdienst-Alternative",
+          "Etwa 5.000 jährlich mehr, nicht 50.000",
+          "Gesellschaftsdienst sollte ausgebaut werden (Bevölkerungsschutz, Katastrophenschutz, Integration)"
+        ],
+        "related_bundestag_topics": [
+          "Wehrpflicht",
+          "Bundeswehr-Rekrutierung",
+          "Gesellschaftsdienst",
+          "Geschlechterparität in der Streitkraft",
+          "Personalstärke Streitkräfte"
+        ]
+      },
+      {
+        "title": "Verantwortung für Deutschland in der Koalition",
+        "timestamp_range": "00:38:39 - 00:40:40",
+        "theme_description": "Frage, ob CDU/CSU und SPD in der Regierungskoalition die Verantwortung für Deutschland verstanden haben, oder ob parteiinterne Widerstände die Regierung gefährden.",
+        "question_asked": "Sandra Maischberger fragte Kiesewetter: 'Haben Sie das Gefühl, Verantwortung für Deutschland haben alle in Ihrer Parteienfamilie begriffen?' Sie bezog sich auf junge CDU-Abgeordnete, die die Rentenreform zu Fall bringen wollen.",
+        "question_intent": "Die Moderatorin wollte Kiesewetter dazu bringen, einzugestehen, ob die eigene Partei die Verantwortung versteht oder ob Partei-Egoismus überwiegt.",
+        "position": "Kiesewetter weicht leicht aus, indem er das Thema reframt. Er sagt nicht direkt \"ja, alle haben es verstanden\", sondern betont stattdessen, was die **echten** Probleme sind: \"Ich glaube, das Thema, was sie ansprechen, ist etwas, was die Bevölkerung im Land betrifft. Wir reden zu wenig über unsere Wirtschaft, über Renten, bezahlbare Mieten, über Wohnungsnot, die wir haben. Das ist das, was die Menschen berührt. Und wir reden über Migration.\" Seine Kritik: Die politische Agenda ist falsch priorisiert. Er attackiert die Fixierung auf Migration statt Kernthemen. Dann spricht er zur Rente: \"Die jungen Menschen haben eine Herausforderung. Wir haben eine große Herausforderung, sie sind diejenigen, die die Rente zahlen müssen.\" Sein Punkt ist: Verantwortung heißt, **bezahlbare Zukunft** für die Jungen, nicht Rentenmaximierung für Alte.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Kiesewetter antwortet auf die Frage nach Partei-Verständnis nicht direkt mit Ja oder Nein. Stattdessen lenkt er um auf die Themen-Prioritäten: Er kritisiert implizit die Koalition, dass sie die falschen Dinge debattiert. Das ist eine subtile \"Umleitung\" – nicht Verweigerung, aber auch nicht Bejahung, dass die eigene Partei das verstanden hätte.",
+        "answer_type": "themenwechsel",
+        "quotes": [
+          {
+            "text": "Ich glaube, das Thema, was sie ansprechen, ist etwas, was die Bevölkerung im Land betrifft. Wir reden zu wenig über unsere Wirtschaft, über Renten, bezahlbare Mieten, über Wohnungsnot, die wir haben. Das ist das, was die Menschen berührt.",
+            "timestamp": "00:39:39",
+            "context": "Umformulierung des Problems weg von Partei-Disziplin hin zu Agenda-Prioritäten."
+          },
+          {
+            "text": "Die jungen Menschen haben eine Herausforderung. Wir haben eine große Herausforderung, sie sind diejenigen, die die Rente zahlen müssen. Wenn sie sehen, die Alten machen sich stark, möglichst viele Renten zu bekommen, müssen wir darüber nachdenken, dass es bezahlbar bleibt.",
+            "timestamp": "00:40:09",
+            "context": "Reframing: Verantwortung = Generationengerechtigkeit, nicht Partei-Loyalität."
+          }
+        ],
+        "concrete_statements": [
+          "Koalition fokussiert zu sehr auf Migration statt Wirtschaft, Renten, Wohnungsnot",
+          "Junge Menschen müssen Rentensystem tragen – Bezahlbarkeit muss gesichert sein",
+          "Wettbewerbsfähige Wirtschaft nötig, damit junge Menschen motiviert sind zu arbeiten"
+        ],
+        "deflection_target": "Von Frage nach Partei-Disziplin zu Frage nach Agenda-Priorisierung.",
+        "related_bundestag_topics": [
+          "Rentenpolitik",
+          "Generationengerechtigkeit",
+          "Wirtschaftspolitik",
+          "Migrationspolitik",
+          "Koalitions-Stabili"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "Pistorius hat 2023 gesagt, die Ukraine muss den Krieg nach Russland tragen.",
+        "timestamp": "00:19:51"
+      },
+      {
+        "claim": "Brände in Vilnius wurden durch russische Sicherheitsapparate verursacht.",
+        "timestamp": "00:30:12"
+      },
+      {
+        "claim": "Die Bundeswehr hatte 2024 18 moderne Schützenpanzer und 4 Raketenwerfer geliefert.",
+        "timestamp": "00:22:28"
+      },
+      {
+        "claim": "Der Spannungsfall erlaubt den Einsatz der Bundeswehr im Inneren.",
+        "timestamp": "00:33:26"
+      },
+      {
+        "claim": "Es sind etwa 5.000 Wehrpflichtige jährlich geplant, nicht 50.000.",
+        "timestamp": "00:37:38"
+      }
+    ]
+  }
+}

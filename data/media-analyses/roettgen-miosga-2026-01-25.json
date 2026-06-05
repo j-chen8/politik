@@ -1,0 +1,448 @@
+{
+  "_meta": {
+    "url": "https://www.ardmediathek.de/video/Y3JpZDovL25kci5kZS8xMzZjMjdmYS1jYzQ1LTQ0ZDgtOWI5MS00ZWE4MjViZjk5ZDdfZ2FuemVTZW5kdW5n",
+    "video_id": "miosga-2026-01-25",
+    "politician": "Norbert Röttgen",
+    "host": "Caren Miosga",
+    "publisher": "Caren Miosga (ARD)",
+    "transcript_sha": "838b87d7c44b150a",
+    "transcript_chars": 37574,
+    "caption_lines": 1400,
+    "model": "claude-haiku-4-5",
+    "tokens_in": 16128,
+    "tokens_out": 10978,
+    "cost_usd": 0.0284072,
+    "quote_validation": {
+      "valid_exact": 9,
+      "valid_fuzzy": 8,
+      "invalid": 0,
+      "valid_pct": "100.0"
+    },
+    "answer_type_distribution": {
+      "teilweise_antwort": 7,
+      "substantielle_position": 4
+    },
+    "generated_at": "2026-06-05T13:37:47.248Z",
+    "batch_id": "msgbatch_01LKtww4AMAuKtKFvevBDqam"
+  },
+  "_methodology": {
+    "transcript_source": "ARD-Mediathek Redaktions-Untertitel (deu)",
+    "transcript_caveat": "Redaktionelle Untertitel (Hörgeschädigten-Fassung), nah am Wortlaut; vereinzelt gekürzt/paraphrasiert.",
+    "classification_caveat": "Antwort-Typ-Klassifikation ist eine LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Keine Inter-Annotator-Agreement-Studie. Ein Symmetrie-Audit über ≥ 20 Politiker:innen verschiedener Fraktionen ist erforderlich, BEVOR die Klassifikation öffentlich angezeigt wird.",
+    "ui_display_hint": "Bis Symmetrie-Audit abgeschlossen ist, sollten answer_type-Klassifikationen nur mit neutralen Begriffen ('Antwort zu anderem Bezugspunkt') angezeigt werden. Original-Zitat + question_asked müssen IMMER mit verlinkt sein.",
+    "methodology_version": "v0.1-phase2"
+  },
+  "analysis": {
+    "overall_summary": "Norbert Röttgen diskutiert in dieser Miosga-Sendung die sicherheitspolitischen Herausforderungen Europas im Kontext von Trumps erratischer Außenpolitik und Putins Krieg gegen die Ukraine. Er wirkt pragmatisch-skeptisch: Während er die Stabilität der NATO-Kernstrukturen betont, kritisiert er gleichzeitig mangelnde europäische Eigenständigkeit und fordern höhere Rüstungsinvestitionen sowie strategische Reformen.",
+    "themes": [
+      {
+        "title": "Bundeswehr-Einsatz Grönland und NATO-Kommunikation",
+        "timestamp_range": "00:05:43 - 00:07:15",
+        "theme_description": "Röttgen verteidigt die Entsendung von Bundeswehrsoldaten nach Grönland als koordinierte NATO-Aktion gegen Vorwürfe der Eskalation.",
+        "question_asked": "Caren Miosga fragt Pistorius, ob die Entsendung von 15 Bundeswehrsoldaten zu einer Erkundungsmission nach Grönland sinnvoll war, da Trump darauf mit Strafzöllen reagierte.",
+        "question_intent": "Miosga will wissen, ob die Grönland-Mission zur Eskalation des Konflikts mit Trump beitrug.",
+        "position": "Röttgen nimmt sich hier Redezeit und verteidigt die Aktion: Die Bundeswehr und andere NATO-Partner hätten die Mission koordiniert durchgeführt und intern kommuniziert. Es habe sich nicht um Provokation gehandelt, sondern um die Unterstreicherung der NATO-Verantwortung für die Arktis. Der Schuh zwischen Einsatz und Strafzöllen sei unangemessen – Trump habe möglicherweise ein Missverständnis gehabt. Die Sicherheit Grönlands und Solidarität mit Dänemark seien die eigentlichen Motive gewesen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen adressiert die Eskalationsfrage, beantwortet sie aber defensiv. Er betont Koordination und legitime NATO-Ziele, weicht aber teilweise aus, indem er der Frage nach kausaler Verbindung zur Zoll-Reaktion ausweicht (\"Missverständnis\"). Die Frage nach Symbolwirkung und möglicher Fehlanreizung wird nicht direkt beantwortet.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir haben nichts zur Eskalation beigetragen",
+          "Es war abgestimmt unter den NATO-Partnern",
+          "Es ging darum zu zeigen: Die NATO trägt Verantwortung auf Grönland"
+        ],
+        "quotes": [
+          {
+            "text": "Wir haben nichts zur Eskalation beigetragen. Im Gegenteil: Wir haben durch unsere Aktion mit anderen NATO-Partnern unterstrichen: Wir sind uns unserer Verantwortung und unserer Pflicht bewusst.",
+            "timestamp": "00:06:14",
+            "context": "Röttgen reagiert auf Miosgas Frage zur Eskalation durch die Erkundungsmission."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Arktis-Sicherheit",
+          "NATO-Einsätze",
+          "Deutsch-dänische Zusammenarbeit"
+        ]
+      },
+      {
+        "title": "Respektlose Trump-Äußerungen zu gefallenen Soldaten",
+        "timestamp_range": "00:07:15 - 00:09:27",
+        "theme_description": "Röttgen bewertet Trumps Kritik am Einsatzverhalten alliierter Truppen im Afghanistan-Krieg und dessen Geringschätzung gefallener Soldaten.",
+        "question_asked": "Caren Miosga fragt, ob es \"richtig gut macht\", dass Trump britische Soldaten lobte, nachdem er alliierte Truppen als \"etwas abseits der Frontlinie\" kritisierte und implizit gefallene Soldaten verunglimpfte.",
+        "question_intent": "Miosga hinterfragt, ob Trumps partielle Rehabilitation durch Lobhudelei gegenüber Alliierten die vorherige Herabwürdigung kompensiert.",
+        "position": "Röttgen lehnt Trumps Äußerungen scharf ab. Er hat sich dazu \"klar geäußert\" und dies nicht als einzelne Äußerung abgetan. Stattdessen unterstreicht er: \"Respekt muss gegenseitig erbracht werden. Den muss man sich verdienen. So über gefallene Verbündete zu reden, ist unanständig und respektlos.\" Er betont, dass der Afghanistan-Einsatz der einzige Bündnisfall der NATO war und alle Staaten, einschließlich Deutschland, ihrer Pflicht nachkamen. Die Äußerung sei \"eine bemerkenswerte Äußerung\", nicht nur eine kleine Trump-Eskapade. Er kündigt an, das Thema mit Pete Hegseth (US-Verteidigungsminister) zu besprechen.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen antwortet direkt auf Miosgas Frage und charakterisiert Trumps Verhalten als unanständig. Er differenziert zwischen Einzeläußerung und grundsätzlichem Verstoß gegen diplomatische Norms und begründet, warum die Kritik berechtigt ist (historische Fakten zum Bündnisfall, gefallene Soldaten).",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Respekt muss gegenseitig erbracht werden",
+          "So über gefallene Verbündete zu reden, ist unanständig und respektlos",
+          "Das war der einzige Bündnisfall der NATO, ausgelöst von den USA",
+          "Da gibt es nichts zurückzunehmen",
+          "Spreche darüber mit Pete Hegseth, sobald ich ihn sehe"
+        ],
+        "quotes": [
+          {
+            "text": "Respekt muss gegenseitig erbracht werden. Den muss man sich verdienen. So über gefallene Verbündete zu reden, ist unanständig und respektlos.",
+            "timestamp": "00:08:20",
+            "context": "Röttgen antwortet auf Frage zu Trumps Kritik an alliiertem Einsatzverhalten."
+          },
+          {
+            "text": "Das war bisher der einzige Bündnisfall der NATO. Er wurde 2001 von den USA ausgelöst. Alle standen an der Seite der USA. Etwas anderes zu behaupten, ist schlicht nicht wahr.",
+            "timestamp": "00:08:50",
+            "context": "Röttgen korrigiert Trumps Darstellung des Afghanistan-Einsatzes faktisch."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Afghanistan-Einsatz",
+          "NATO-Bündnisfall",
+          "Diplomatische Normen",
+          "Gefallene Soldaten"
+        ]
+      },
+      {
+        "title": "NATO-Stabilität trotz Trump-Verhalten",
+        "timestamp_range": "00:16:12 - 00:18:52",
+        "theme_description": "Röttgen bewertet die Haltung des US-Kongresses zur NATO und Trumps Rhetorik gegen das Bündnis.",
+        "question_asked": "Caren Miosga fragt, ob Röttgen den Optimismus des Verteidigungsministers teilt, dass die Amerikaner in der NATO an Bord bleiben.",
+        "question_intent": "Miosga will einschätzen, wie zuverlässig die USA unter Trump als NATO-Partner bleiben.",
+        "position": "Röttgen berichtet aus eigenen Gesprächen im US-Kongress, dass 85% der Kongressabgeordneten eindeutig zur NATO stehen. Er betont, dass Trump zwar durch Verunsicherung und Ego-Fokussierung (wie im Grönland-Fall) eine Vertrauenskrise schafft, aber nicht das grundsätzliche Bündnissystem infrage stellt. Trump stelle die nukleare Verantwortung, Satellitenaufklärung und den Truppenpräsenz-Abzug nicht in Frage. Jedoch warnt Röttgen: \"Eine NATO ohne die amerikanische Beistandsgarantie, darauf müssen wir uns einstellen.\" Er sieht es deutlich kritischer als Pistorius und betont, dass Trump den Kongress nicht umgehen könne, aber die zentrale Frage bleibt: \"Ist er wirklich bereit, für Europa zu kämpfen? Das sehe ich nicht.\"",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf Miosgas Frage zur NATO-Zuverlässigkeit mit einer differenzierten Analyse: Er adressiert die Frage, indem er zwischen Trumps Rhetorik und den institutionellen NATO-Garantien unterscheidet. Allerdings weicht er zur Frage von Trumps persönlicher Bereitschaft aus und betont stattdessen die Notwendigkeit europäischer Eigenständigkeit, was die zentrale Sorge (Zuverlässigkeit des Partners) nur teilweise beantwortet.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "85 Prozent des Kongresses stehen eindeutig zu NATO",
+          "Es gibt nicht nur Donald Trump",
+          "Eine NATO ohne die amerikanische Beistandsgarantie, darauf müssen wir uns einstellen",
+          "Wir müssen mehr für konventionelle Verteidigung tun"
+        ],
+        "quotes": [
+          {
+            "text": "85 Prozent des Kongresses stehen eindeutig zu NATO. Von denen, mit denen ich gesprochen habe, hat keiner gesagt: Wir halten die Außenpolitik von Donald Trump für die richtige.",
+            "timestamp": "00:16:42",
+            "context": "Röttgen berichtet über seine Gespräche mit republikanischen Kongressabgeordneten in Washington."
+          },
+          {
+            "text": "Eine NATO ohne die amerikanische Beistandsgarantie, darauf müssen wir uns einstellen.",
+            "timestamp": "00:18:52",
+            "context": "Röttgen fasst seine skeptische Position zur langfristigen Zuverlässigkeit der USA zusammen."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Reformen",
+          "Transatlantische Beziehungen",
+          "Europäische Sicherheitspolitik",
+          "US-Außenpolitik unter Trump"
+        ]
+      },
+      {
+        "title": "Europäischer Druck und Verhandlungen mit Russland",
+        "timestamp_range": "00:19:22 - 00:22:28",
+        "theme_description": "Röttgen analysiert die Bereitschaft Putins zu Verhandlungen und Bedingungen für einen Waffenstillstand.",
+        "question_asked": "Caren Miosga stellt (implizit über die Gesprächsrunde) die Frage, ob Putins aktuelle Verhandlungsbereitschaft echte Friedenschancen bedeutet oder Taktik ist.",
+        "question_intent": "Miosga will verstehen, wie realistisch die laufenden Verhandlungen in Abu Dhabi sind.",
+        "position": "Röttgen ist skeptisch gegenüber Putins Bereitschaft zu echtem Kriegsende. Putin nutze Verhandlungen, um \"einen Draht zu Donald Trump aufzubauen\", nicht um den Krieg zu beenden. Röttgen sieht drei Signale dafür: (1) Putin führt massive Luftangriffe während Verhandlungen; (2) er hält den Druck im Winter auf; (3) er glaubt an einen Abnutzungskriegssieg. Ein Waffenstillstand sei nur realistisch, wenn \"beide Seiten sagen, die Weiterführung des Krieges bringt uns nichts.\" Röttgen betont: Die Zeit spiele gegen Putin (Inflation, Wirtschaftsschaden), aber „Die Frage ist, womit kann investiert werden?“ und ob Putin sein Wirtschafts-Ruin akzeptiere oder den Krieg als Machtinstrument brauche.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen antwortet substantiell auf die implizite Frage nach Verhandlungschancen. Er bietet konkrete Kriterien für echte Verhandlungsergebnisse und analysiert Putins Verhalten gegen diese Kriterien, um Skeptizismus zu begründen. Seine Position ist differenziert: Verhandlungen sind wichtig, aber realistische Chancen sind niedrig ohne weitere Druckfaktoren.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Putin nutze Verhandlungen, um einen Draht zu Donald Trump aufzubauen",
+          "Er hat nicht die Wahrnehmung, dass er den Krieg beenden will",
+          "Ein Waffenstillstand nur, wenn beide Seiten sagen: der Krieg bringt uns nichts",
+          "Die Zeit spielt gegen Putin",
+          "Putins Wirtschaft ist im Keller"
+        ],
+        "quotes": [
+          {
+            "text": "Putin benutzt die Verhandlungen, um einen Draht zu Donald Trump aufzubauen. Er hat nicht die Wahrnehmung, dass er den Krieg beenden will.",
+            "timestamp": "00:21:26",
+            "context": "Röttgen analysiert Putins Verhandlungsstrategie."
+          },
+          {
+            "text": "Es kann nur einen Waffenstillstand geben, wenn er damit mehr erreichen kann als mit dem Krieg. Während der Verhandlungen fliegt er massive Luftangriffe.",
+            "timestamp": "00:21:57",
+            "context": "Röttgen legt dar, unter welchen Bedingungen ein Waffenstillstand realistisch wäre."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Friedensverhandlungen",
+          "Russische Kriegsstrategie",
+          "Sanktionen gegen Russland",
+          "Diplomatie und Militärdruck"
+        ]
+      },
+      {
+        "title": "Selenskyjs kritische Davos-Rede und europäische Defizite",
+        "timestamp_range": "00:27:41 - 00:29:49",
+        "theme_description": "Röttgen bewertet Präsident Selenskyjs Vorwurf mangelnder europäischer Unterstützung und die Taktik seiner Rede.",
+        "question_asked": "Caren Miosga fragt Röttgen direkt: \"Hat Selenskyj nicht Recht, wenn er den Europäern vorwirft, sie täten zu wenig?\"",
+        "question_intent": "Miosga will Röttgens Bewertung der ukrainischen Kritik am europäischen Engagement.",
+        "position": "Röttgen stimmt Selenskyj zu, dass \"zu wenig und zu spät\" die europäische Reaktion charakterisiert. Er versteht die Verzweiflung angesichts der humanitären Situation in der Ukraine. Allerdings kritisiert er die taktische Wirkung der Rede: \"Eine Verzweiflungsrede, damit war er nicht gut beraten.\" Die Rede habe eine \"gemeinsame Armee\" gefordert – eine \"politisch keine kluge Rede\". Gleichzeitig betont Röttgen: Die Europäer hätten 90 Milliarden Euro beschlossen, während die USA sich aus der Ukraine-Finanzierung zurückgezogen haben. \"Wir sind die Unterstützer.\" Die europäische Unterstützung basiere auf Solidarität UND eigenem Interesse (politisch, militärisch).",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf die Kernfrage (zu Wenig-Vorwurf) mit Zustimmung, lenkt aber schnell zu einer Metakritik der Rede ab: Die Rede sei taktisch unklug gewesen. Er adressiert damit nicht eigentlich Miosgas Substanzfrage zu europäischen Defiziten, sondern evaluiert Selenskyjs Rhetorik-Strategie. Die Antwort ist eine Teilantwort mit Ablenkung zur Frage von Taktik.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Zu wenig und zu spät – das ist auch meine Kritik",
+          "Verzweiflungsrede, damit war er nicht gut beraten",
+          "Eine gemeinsame Armee – das ist politisch keine kluge Rede",
+          "Die Europäer finanzieren das aus Solidarität und eigenem Interesse",
+          "Wir sind die Unterstützer"
+        ],
+        "quotes": [
+          {
+            "text": "Ja. Das ist auch meine Kritik in der Vergangenheit gewesen. Das stimmt. Zu wenig und zu spät.",
+            "timestamp": "00:27:41",
+            "context": "Röttgen bejaht Miosgas Frage, ob Selenskyj recht hat."
+          },
+          {
+            "text": "Gleichzeitig glaube ich: Eine Verzweiflungsrede, damit war er nicht gut beraten. Auch mit einer Rede, die an die Europäer Wünsche adressiert: Eine gemeinsame Armee. Es war politisch keine kluge Rede.",
+            "timestamp": "00:28:15",
+            "context": "Röttgen evaluiert die rhetorische Strategie von Selenskyj kritisch."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Ukraine-Unterstützung",
+          "Europäische Außenpolitik",
+          "Kriegsfinanzierung",
+          "Strategische Kommunikation"
+        ]
+      },
+      {
+        "title": "Nukleares Europa und Verteidigungsunion",
+        "timestamp_range": "00:38:26 - 00:41:08",
+        "theme_description": "Röttgen diskutiert Optionen für europäische Nuklearrüstung und die Rolle von Frankreich und Deutschland in Verteidigungskooperationen.",
+        "question_asked": "Caren Miosga und Daniela Schwarzer fragmentieren hier mehrere Fragen zu europäischer Zusammenarbeit in Verteidigung und nuklearer Rüstung in Reaktion auf Röttgens Appell.",
+        "question_intent": "Die Moderatoren erkunden praktisch, wie europäische militärische Integration konkret aussehen könnte und welche Hürden bestehen.",
+        "position": "Röttgen benennt zentrale Hürde: \"Die Europäer haben sich in den Sechzigern entschieden, keine nuklearen Waffen zu haben. In zehn Jahren wird es eine dritte nukleare Sphäre geben: Mit China. Nuklear können wir nicht mithalten.\" Er deutet an, dass eine Richtungsänderung \"eventuell\" notwendig sein könnte. Zur deutsch-französischen Zusammenarbeit: Es gebe \"nationale Egoismen\" und \"eine Blockade in Europa\". Das Beispiel Kampfjets zeige, dass Abstimmung \"total in die Hose gehen\" könne. Brauche aber Industriekooperationen aus der Privatwirtschaft, Finanzierung innovativer Unternehmen und Staatsbeteiligungen an Unternehmen. Europa müsse \"diese Projekte voranbringen\", aber die Gestaltungsidee fehle – diese sollte ein europäischer Politiker entwickeln.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen adressiert Fragen zu europäischer Verteidigungsintegration, indet aber auf strategische Hürden (nukleare Entscheidung nicht reversibel, französisch-deutsche Rivalität) hin, ohne praktische Lösungswege zu bieten. Er identifiziert die Lücke (fehlende Gestaltungsvision), füllt sie aber selbst nicht.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "In zehn Jahren wird es eine dritte nukleare Sphäre geben: Mit China",
+          "Nuklear können wir nicht mithalten",
+          "Es gibt nationale Egoismen und eine Blockade in Europa",
+          "Industriekooperationen müssen aus der Industrie kommen",
+          "Staatsbeteiligungen in Unternehmen spielen eine große Rolle"
+        ],
+        "quotes": [
+          {
+            "text": "Die Europäer haben sich dazu entschieden in den Sechzigern, keine nuklearen Waffen zu haben. In zehn Jahren wird es eine dritte nukleare Sphäre geben: Mit China. Nuklear können wir nicht mithalten.",
+            "timestamp": "00:38:26",
+            "context": "Röttgen analysiert die nukleare Handlungsunfähigkeit Europas im Kontext des chinesischen Aufstiegs."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Europäische Verteidigungsunion",
+          "Französische Nuklearpolitik",
+          "Deutsch-französische Zusammenarbeit",
+          "Rüstungsindustrie"
+        ]
+      },
+      {
+        "title": "Europäische Aufrüstung und Wettbewerbsfähigkeit",
+        "timestamp_range": "00:43:54 - 00:45:27",
+        "theme_description": "Röttgen fordert beschleunigte europäische Rüstung, Tempo bei Beschaffung und Verbindung mit Technologiestrategie.",
+        "question_asked": "Caren Miosga fragt (implizit): Wie können die Europäer schneller Rüstungskapazitäten aufbauen und gegenüber China konkurrenzfähig bleiben?",
+        "question_intent": "Miosga erkundet praktische europäische Strategien gegen technologische und militärische Überlegenheit Chinas und Russlands.",
+        "position": "Röttgen fordert radicales Tempo: \"Wir können uns unsere Langsamkeit in diesem Bereich nicht mehr leisten.\" Er betont zwei parallel zu lösende Aufgaben: (1) Wettbewerbsfähigkeit und (2) Aufrüstung. In Washington habe er Politikern gesagt: \"In fünf Jahren werden wir euch mehr Konkurrenz machen in der Verteidigung.\" Bislang sei die entscheidende Lücke offen: Die Verbindung öffentlicher Rüstungsinvestitionen mit einer integrierten Technologiestrategie. Ohne diese Kopplung wird es keinen \"Schub\" geben. Deutschland und Europa müssen \"ganz anders vorangehen\" – mit anderem Tempo, weil \"wir schon hinterher\" hängen.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf die implizite Frage mit Forderungen und einer Analyse der Lücke (fehlende Technologiestrategie-Verbindung), nicht aber mit konkreten Lösungswegen. Er diagnostiziert das Problem und fordert Tempo, erklärt aber nicht konkret, wie Europäer die institutionellen/fiskalischen Hürden überwinden.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Wir können uns unsere Langsamkeit nicht mehr leisten",
+          "In fünf Jahren werden wir euch mehr Konkurrenz machen in der Verteidigung",
+          "Das, was noch nicht passiert ist: dass wir das mit einer Technologiestrategie zusammenbringen",
+          "Wir müssen mit einem anderen Tempo machen"
+        ],
+        "quotes": [
+          {
+            "text": "Parallel müssen wir zwei Dinge tun: Wir müssen Tempo, Tempo, Tempo machen. Es geht in die richtige Richtung. Aber bei der Wettbewerbsfähigkeit und bei der Aufrüstung... Wir können uns unsere Langsamkeit in diesem Bereich nicht mehr leisten.",
+            "timestamp": "00:43:54",
+            "context": "Röttgen fordert beschleunigtes europäisches Rüstungstempo."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Rüstungsbeschaffung",
+          "Europäische Technologiepolitik",
+          "Industriekooperation",
+          "Wettbewerb mit China"
+        ]
+      },
+      {
+        "title": "NATO-Generalsekretär Rutte und Verhandlungsstil mit Trump",
+        "timestamp_range": "00:45:59 - 00:49:43",
+        "theme_description": "Röttgen bewertet Mark Ruttes unterwürfigen Ton gegenüber Trump und dessen Effektivität bei der Grönland-Lösung.",
+        "question_asked": "Caren Miosga/Daniela Schwarzer fragen implizit: War Ruttes unterwürfiger Stil gegenüber Trump effektiv? Welche europäische Strategie sollte es sein – Unterordnung oder Selbstbewusstsein?",
+        "question_intent": "Die Moderatoren erkunden, ob Appeasement gegenüber Trump funktioniert oder ob Selbstbewusstsein besser ist.",
+        "position": "Röttgen würdigt Ruttes Taktik als effektiv: Dessen \"unterwürfiger Ton\" habe Trump dazu gebracht, sich auf einen \"Deal\" einzulassen. \"Man kann Donald Trump beim Wort nehmen. Deshalb denke ich, dass wir froh sein können, ihn zu haben.\" (Hinweis: Dies ist ein Zitat aus dem Publikum/Schwarzer, nicht von Röttgen.) Röttgen reflektiert stattdessen: Die europäische Strategie sollte ein \"Spiel mit verteilten Rollen\" sein. Der NATO-Generalsekretär kniet (metaphorisch), während andere Staaten selbstbewusst auftreten. \"Das läuft jetzt anders als in seiner ersten Amtszeit. Andere Leute sind in die Rolle seiner Freunde getreten.\" Das Geheimnis: \"Bei Donald Trump geht es um das Bedienen von Erwartungen. Das machen die Europäer sehr gut.\" Röttgen warnt aber: Das sei ein \"Ritt auf der Rasierklinge\".",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf die implizite Frage nach Strategie mit einer meta-Analyse des europäischen Ansatzes (verteilte Rollen), wertet aber nicht direkt Ruttes Stil. Er erklärt, warum Ruttes Ansatz im Kontext funktioniert (Trump-Psychologie), bleibt aber ambivalent zu dessen langfristiger Effektivität.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Was die Europäer momentan geschickt machen, ist ein Spiel mit verteilten Rollen",
+          "Der NATO-Generalsekretär kniet vor ihm, andere Staaten sind selbstbewusst",
+          "Das läuft jetzt anders als in seiner ersten Amtszeit",
+          "Bei Donald Trump geht es um das Bedienen von Erwartungen"
+        ],
+        "quotes": [
+          {
+            "text": "Was die Europäer momentan geschickt machen, ist ein Spiel mit verteilten Rollen. Der NATO-Generalsekretär kniet vor ihm, andere Staaten sind selbstbewusst vor ihm. Es ist dieses Wechselspiel.",
+            "timestamp": "00:49:12",
+            "context": "Röttgen analysiert die europäische Mehrgleisig-Strategie gegenüber Trump."
+          }
+        ],
+        "related_bundestag_topics": [
+          "NATO-Führung",
+          "Mark Rutte",
+          "Diplomatische Strategie",
+          "Verhandlungen mit Trump"
+        ]
+      },
+      {
+        "title": "Umgang mit Trump: Selbstbewusstsein statt Schwäche",
+        "timestamp_range": "00:46:30 - 00:51:18",
+        "theme_description": "Röttgen skizziert die richtige Taktik gegenüber Trump: Selbstbewusstsein, rote Linien, Einsatz von Druckmitteln, inklusive WM-Boykott.",
+        "question_asked": "Caren Miosga fragt mehrfach: Wie sollen die Europäer mit Trump umgehen? Kann ein Boykott der Fußball-WM sinnvoll sein?",
+        "question_intent": "Miosga erkundet, welche Strategien effektiv gegen Trumps Druck sind und wo europäische rote Linien sind.",
+        "position": "Röttgen empfiehlt ein Gemisch aus Selbstbewusstsein und Druck-Eskalation: \"Was Trump nicht toleriert, ist Schwäche und Schwächlinge. Wir müssen das Selbstbewusstsein mit Können unterlegen.\" Er identifiziert vier Punkte, die Trump zum \"Einlenken\" bei Grönland brachten: (1) Märkte reagierten negativ; (2) Umfragen waren katastrophal; (3) keinerlei Kongress-Unterstützung; (4) die Europäer \"kuschen nicht\". Ein WM-Boykott könnte wirksam sein: \"Die Fußballfrage, das würde ihn an einem sehr wunden Punkt treffen. Das ist eine Selbstdarstellung. Das würde ihn treffen, wenn Staaten boykottieren.\" Allerdings warnt Röttgen: Das könne \"kontraproduktiv\" sein und zu neuen Zoll-Kriegen führen. \"Es ist ein Ritt auf der Rasierklinge.\" Dennoch unterstützt er die Diskussion über Boykottoptionen als Teil des Druckaufbaus.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen antwortet direkt auf Miosgas Fragen mit einer kohärenten Strategie (Selbstbewusstsein + Druckaufbau) und evaluiert konkrete Instrumente (WM-Boykott, Märkte, Zölle) gegen Trumps Psychologie und bekannte Schwachstellen.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Was Trump nicht toleriert, ist Schwäche und Schwächlinge",
+          "Wir müssen das Selbstbewusstsein mit Können unterlegen",
+          "Vier Punkte brachten Trump zum Einlenken: Märkte, Umfragen, Kongress, europäische Geschlossenheit",
+          "Ein WM-Boykott würde ihn an einem sehr wunden Punkt treffen",
+          "Es ist ein Ritt auf der Rasierklinge",
+          "Wir müssen erwachsen werden"
+        ],
+        "quotes": [
+          {
+            "text": "Was Trump nicht toleriert, ist Schwäche und Schwächlinge. Wir müssen das Selbstbewusstsein mit Können unterlegen.",
+            "timestamp": "00:47:35",
+            "context": "Röttgen skizziert die psychologische Strategie gegenüber Trump."
+          },
+          {
+            "text": "Was aus meiner Sicht Trump zum Einlenken gebracht hat, sind vier Punkte: Die Märkte, die signifikant auf Grönland reagiert haben. Die Umfragen, die katastrophal waren. Keinerlei Unterstützung im Kongress. Und viertens die Europäer. Die haben an dieser Stelle nicht gekuscht.",
+            "timestamp": "00:48:09",
+            "context": "Röttgen analysiert die effektiven Druck-Faktoren gegen Trumps Grönland-Initiative."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Trump-Strategie",
+          "Transatlantische Verhandlungen",
+          "Handelskonflikte",
+          "Europäische Souveränität"
+        ]
+      },
+      {
+        "title": "Offene Kanäle zum Kreml und europäische Diplomatie",
+        "timestamp_range": "00:51:55 - 00:52:30",
+        "theme_description": "Röttgen antwortet auf die Frage, ob deutsche Politiker direkt mit dem Kreml reden sollten.",
+        "question_asked": "Caren Miosga fragt: \"Wie sinnvoll wäre es, dass auch deutsche Politiker die Kanäle in den Kreml öffnen?\"",
+        "question_intent": "Miosga erkundet, ob bilaterale diplomatische Kontakte Deutschlands zu Russland dem europäischen Einfluss in Verhandlungen nutzen würden.",
+        "position": "Röttgen lehnt direktes Engagement mit Putin ab. \"Das ist aus meiner Sicht nicht sinnvoll. Aus den Gesprächen mit Putin ist nichts zu erreichen. Wenn etwas zu erreichen wäre, dann ja.\" Er begründet dies damit, dass Putin überzeugt ist, \"auf der Siegesstraße\" zu sein und sich \"sein Glück gar nicht fassen\" kann. Trump gebe Putin permanent positives Feedback. Röttgen schlussfolger: Direkte deutsche Diplomatie zum Kreml ist unter gegenwärtigen Bedingungen sinnlos, da Putin nicht kompromissbereit ist.",
+        "answer_match": "voll_adressiert",
+        "match_reasoning": "Röttgen antwortet direkt auf Miosgas Frage mit einer klaren Ablehnung und begründet diese mit der gegenwärtigen Lage Putins. Er erklärt sein Nein logisch: keine Gesprächsergebnisse möglich bei un-kompromissfreudiger Gegenseite.",
+        "answer_type": "substantielle_position",
+        "concrete_statements": [
+          "Das ist aus meiner Sicht nicht sinnvoll",
+          "Aus den Gesprächen mit Putin ist nichts zu erreichen",
+          "Ich bin ganz sicher: Dass Wladimir Putin diesen Krieg will",
+          "Er glaubt, auf der Siegesstraße zu sein"
+        ],
+        "quotes": [
+          {
+            "text": "Das ist aus meiner Sicht nicht sinnvoll. Aus den Gesprächen mit Putin ist nichts zu erreichen. Wenn etwas zu erreichen wäre, dann ja. Aber ich bin ganz sicher: Dass Wladimir Putin diesen Krieg will.",
+            "timestamp": "00:52:30",
+            "context": "Röttgen antwortet auf Miosgas Frage zu direkter Diplomatie mit Russland."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Deutsch-russische Beziehungen",
+          "Diplomatie und Kriegführung",
+          "Ukraine-Verhandlungen"
+        ]
+      },
+      {
+        "title": "Kriegstüchtigkeit Deutschlands bis 2029",
+        "timestamp_range": "00:58:00 - 00:59:01",
+        "theme_description": "Röttgen evaluiert die deutsche Rüstungsbereitschaft und bekräftigt sein früheres pessimistisches Szenario.",
+        "question_asked": "Caren Miosga erinnert an Röttgens Zitat von 2025, dass es \"der letzte Sommer im Frieden\" sein könnte, und fragt, ob er optimistischer geworden ist.",
+        "question_intent": "Miosga will verstehen, ob die seitdem eingeleiteten Maßnahmen Röttgens Pessimismus gemildert haben.",
+        "position": "Röttgen moderiert seinen früheren Pessimismus: \"Ich bin jetzt optimistischer.\" Das frühere Szenario sei nach der Rede von J.D. Vance gesagt worden, als es Angst gab, dass \"die NATO überlebt\". Inzwischen gebe es positive Signale: Die NATO existiert noch, Atomwaffen sind präsent, Europa investiert 3,5%, die Ukraine existiert noch. Im März 2025 habe er sich nicht sicher gewesen, ob das wahr ist. Aber: \"Wir sind nicht über den Berg. Es kann vor 2029 zu einem Krieg mit Russland kommen.\" Sein Appell: Politiker müssen \"über die Besoldungsgruppe hinaus\" denken, nicht nur \"im System\" handeln. Er will mit Optimismus enden, \"das ist schlecht möglich\", deutet aber an, dass die gegenwärtige Lage fragil bleibt.",
+        "answer_match": "teil_adressiert",
+        "match_reasoning": "Röttgen antwortet auf Miosgas Frage nach Optimismus mit einer differenzierten Antwort: Er ist optimistischer, bleibt aber skeptisch. Er erklärt, warum (NATO-Stabilität, europäische Investitionen), warnt aber vor Selbsttäuschung (2029 bleibt kritisch). Die Antwort adressiert die Frage, aber nicht ohne Ambivalenz.",
+        "answer_type": "teilweise_antwort",
+        "concrete_statements": [
+          "Ich bin jetzt optimistischer",
+          "Die NATO existiert noch",
+          "Noch sind die Atomwaffen hier",
+          "Wir haben 3,5 Prozent investiert",
+          "Wir sind nicht über den Berg",
+          "Es kann vor 2029 zu einem Krieg mit Russland kommen",
+          "Denkt über die Besoldungsgruppe hinaus"
+        ],
+        "quotes": [
+          {
+            "text": "Das habe ich gesagt nach der Rede von J.D. Vance. Da hatten wir Angst, dass die NATO überlebt. Noch gibt es sie. Noch sind die Atomwaffen hier. Wir haben 3,5 Prozent investiert. Die Ukraine gibt es noch.",
+            "timestamp": "00:58:30",
+            "context": "Röttgen moderiert seinen früheren Pessimismus durch positive Signale."
+          },
+          {
+            "text": "Aber wir sind nicht über den Berg. Es kann vor 2029 zu einem Krieg mit Russland kommen. Mein Appell an die Politik: Denkt über die Besoldungsgruppe hinaus.",
+            "timestamp": "00:58:30",
+            "context": "Röttgen bleibt skeptisch trotz gemildertem Pessimismus."
+          }
+        ],
+        "related_bundestag_topics": [
+          "Bundeswehr-Aufrüstung",
+          "Rüstungsausgaben",
+          "Sicherheitspolitische Planung",
+          "Zeithorizonte der Kriegsgefahr"
+        ]
+      }
+    ],
+    "factual_claims_to_verify": [
+      {
+        "claim": "85 Prozent des Kongresses stehen eindeutig zu NATO",
+        "timestamp": "00:16:42"
+      },
+      {
+        "claim": "Der NATO-Generalsekretär hat über die Regierungschefs (die Grönland-Gespräche) gebrieft",
+        "timestamp": "00:04:42"
+      },
+      {
+        "claim": "Die USA könnten bei ausländischen Investitionen auf Grönland mitreden",
+        "timestamp": "00:01:35"
+      },
+      {
+        "claim": "Grönland ist als Teil von Dänemark NATO-Gebiet",
+        "timestamp": "00:04:42"
+      },
+      {
+        "claim": "Trump hat mit NATO-Mitgliedern mit Gewalt gedroht (Grönland)",
+        "timestamp": "00:18:52"
+      },
+      {
+        "claim": "Es gab 90 Milliarden Euro Beschluss der Europäer für Ukraine-Finanzierung",
+        "timestamp": "00:20:55"
+      },
+      {
+        "claim": "Putin führt massive Luftangriffe während Verhandlungen durch",
+        "timestamp": "00:21:57"
+      },
+      {
+        "claim": "In zehn Jahren wird es eine dritte nukleare Sphäre geben: Mit China",
+        "timestamp": "00:38:26"
+      },
+      {
+        "claim": "800.000 Menschen sollen keinen Strom in Kiew haben",
+        "timestamp": "00:25:05"
+      },
+      {
+        "claim": "Merz hat bei Angriffen auf Zivilbevölkerung den Taurus zu liefern versprochen",
+        "timestamp": "00:27:11"
+      }
+    ]
+  }
+}
