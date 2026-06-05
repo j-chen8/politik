@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { Search, LayoutGrid, Newspaper, MapPin, ArrowRight } from "lucide-react";
+import { Search, LayoutGrid, Newspaper, MapPin } from "lucide-react";
 import { getBundestagLandingSnapshot } from "@/lib/db";
 import { CITIZEN_TOPICS } from "@/lib/citizen-topics";
 import { VorschauVoteExplorer, type VorschauVote } from "@/components/VorschauVoteExplorer";
+import { VorschauSearchBox } from "@/components/VorschauSearchBox";
 
 export const metadata = {
   title: "Vorschau — Politik-Radar",
@@ -54,7 +55,7 @@ export default function VorschauPage() {
 
       <div className="mx-auto w-full max-w-xl px-5">
         {/* ───────── HERO: Wert + Catch ganz oben ───────── */}
-        <section className="pt-12 pb-8 fade-in-up">
+        <section className="relative z-30 pt-12 pb-8 fade-in-up">
           <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
             Politik-Radar
           </span>
@@ -65,41 +66,10 @@ export default function VorschauPage() {
             Debatten, Abstimmungen und Gesetze — transparent und lesbar.
           </p>
 
-          {/* Oberste Interaktion = sofortiger persönlicher Treffer, kein Login */}
-          <form action="/wahlkreis" method="get" className="mt-6">
-            <label className="text-[13px] font-medium text-zinc-700 dark:text-zinc-300">
-              Wer vertritt mich?
-            </label>
-            <div className="mt-2 flex gap-2">
-              <div className="relative flex-1">
-                <MapPin className="pointer-events-none absolute left-3.5 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-zinc-400" strokeWidth={2} />
-                <input
-                  type="text"
-                  name="plz"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  maxLength={5}
-                  placeholder="Postleitzahl, z. B. 50667"
-                  aria-label="Postleitzahl"
-                  className="w-full rounded-xl border border-zinc-300 bg-white py-3.5 pl-11 pr-4 text-[16px] tracking-wide outline-none transition focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-900"
-                />
-              </div>
-              <button
-                type="submit"
-                className="rounded-xl bg-zinc-900 px-5 text-[15px] font-medium text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
-              >
-                Finden
-              </button>
-            </div>
-          </form>
-
-          <Link
-            href="/suche"
-            className="mt-3 flex items-center gap-2 rounded-xl border border-zinc-200/80 bg-white/70 px-4 py-3 text-[14px] text-zinc-500 transition hover:border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900/60"
-          >
-            <Search className="h-[18px] w-[18px]" strokeWidth={2} />
-            Reden, Drucksachen, Personen durchsuchen…
-          </Link>
+          {/* Eine Eingabe, Modus wählbar (ChatGPT-artig) — kein Login, sofort nutzbar */}
+          <div className="mt-6">
+            <VorschauSearchBox />
+          </div>
         </section>
 
         {/* ───────── SIGNATUR-WOW: ein interaktives Explorable ───────── */}
