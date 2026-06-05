@@ -1,7 +1,5 @@
-import path from "path";
-import fs from "fs";
 import { MediaAppearanceCard } from "@/components/MediaAppearanceCard";
-import { type MediaAppearanceIndexEntry } from "@/lib/media-appearances";
+import { getVisibleAppearances } from "@/lib/media-appearances";
 
 export const metadata = {
   title: "Medien-Auftritte — Interview-Analysen | Politik-Radar",
@@ -10,18 +8,8 @@ export const metadata = {
 };
 
 export default function MedienOverviewPage() {
-  const indexPath = path.join(process.cwd(), "data", "media-appearances.json");
-  let appearances: MediaAppearanceIndexEntry[] = [];
-  try {
-    const idx = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
-    appearances = (idx.appearances ?? []).filter(
-      (a: MediaAppearanceIndexEntry) => a.analysis_file
-    );
-  } catch {
-    appearances = [];
-  }
-
-  const sorted = appearances.sort((a, b) =>
+  // Nur Auftritte mit sichtbarem Profil (Landtag/EU-Gäste ohne Profilseite ausgeblendet).
+  const sorted = getVisibleAppearances().sort((a, b) =>
     b.published_at.localeCompare(a.published_at)
   );
 

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { getPoliticianDb } from "./db";
 
 /** Index-Eintrag (leicht) — pro Auftritt im Profil. */
 export interface MediaAppearanceIndexEntry {
@@ -79,17 +80,37 @@ export interface MediaAppearanceDetail {
 }
 
 let indexCache: MediaAppearancesFile | null = null;
+let indexCacheMtimeMs = -1;
 const detailCache = new Map<string, MediaAppearanceDetail>();
 
 function loadIndex(): MediaAppearancesFile {
-  if (indexCache) return indexCache;
   const file = path.join(process.cwd(), "data", "media-appearances.json");
+  // mtime-Gate: Daten-Updates an media-appearances.json leben ohne Service-Neustart.
+  // (force-dynamic rendert pro Request, aber der Modul-Cache überlebte sonst prozesslang.)
+  let mtimeMs = -1;
+  try { mtimeMs = fs.statSync(file).mtimeMs; } catch { /* Datei fehlt → unten leer */ }
+  if (indexCache && mtimeMs === indexCacheMtimeMs) return indexCache;
   try {
     indexCache = JSON.parse(fs.readFileSync(file, "utf-8")) as MediaAppearancesFile;
   } catch {
     indexCache = { _meta: {}, appearances: [] };
   }
+  indexCacheMtimeMs = mtimeMs;
   return indexCache;
+}
+
+/**
+ * Auftritte mit Analyse, deren Politiker:in ein SICHTBARES Profil hat (also verlinkbar
+ * ist). Talkshow-Gäste aus Landtagen/EU/ohne Mandat werden gegen den 18-Parlamente-Pool
+ * gematcht, haben aber auf der Bundestag-Seite keine Profilseite — ihre Cards wären
+ * textlos und ihre Detail-Links würden 404en. Strip + /medien nutzen daher diese Quelle.
+ * Die Analyse-Dateien bleiben auf Platte; tauchen automatisch auf, falls je ein Profil
+ * existiert.
+ */
+export function getVisibleAppearances(): MediaAppearanceIndexEntry[] {
+  return loadIndex().appearances.filter(
+    (a) => a.analysis_file && getPoliticianDb(a.politician_id)
+  );
 }
 
 export function getMediaAppearancesForPolitician(politicianId: number): MediaAppearanceIndexEntry[] {

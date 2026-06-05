@@ -1,20 +1,11 @@
 import Link from "next/link";
-import path from "path";
-import fs from "fs";
 import { ArrowRight } from "lucide-react";
 import { MediaAppearanceCard } from "@/components/MediaAppearanceCard";
-import { type MediaAppearanceIndexEntry } from "@/lib/media-appearances";
+import { getVisibleAppearances } from "@/lib/media-appearances";
 
 export function RecentMediaAnalysesStrip() {
-  const indexPath = path.join(process.cwd(), "data", "media-appearances.json");
-  let appearances: MediaAppearanceIndexEntry[] = [];
-  try {
-    const idx = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
-    appearances = (idx.appearances ?? []).filter((a: MediaAppearanceIndexEntry) => a.analysis_file);
-  } catch {
-    return null;
-  }
-  const top = appearances
+  // Nur Auftritte mit sichtbarem Profil (sonst textlose Cards + 404-Links).
+  const top = getVisibleAppearances()
     .sort((a, b) => b.published_at.localeCompare(a.published_at))
     .slice(0, 3);
   if (top.length === 0) return null;
