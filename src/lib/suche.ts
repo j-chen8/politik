@@ -1,6 +1,7 @@
 import { getDb, searchPoliticiansDb, searchBerlinPoliticiansDb } from "@/lib/db";
 import { expandQuery } from "@/lib/synonyms";
 import { ensureSearchFTS, ftsMatchClause, FTS_TABLES } from "@/lib/search-fts";
+import { topicBySlug } from "@/lib/citizen-topics";
 
 export type SearchHitType = "politician" | "speech" | "topic" | "vote" | "drucksache" | "qa";
 
@@ -1237,5 +1238,252 @@ export function searchBerlin(rawQuery: string, expand: boolean = false): SearchR
     totals: expand ? totalsExpanded : totalsOriginal,
     totalsOriginal, totalsExpanded,
     expand, expansions, matchedClusters, directHit: null,
+  };
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// Themen-Facette: alle Inhalte (Reden + Drucksachen + Abstimmungen) eines
+// Citizen-Topics, gemischt und neueste zuerst — optional per Text eingegrenzt.
+// Filtert über item_topics.aw_field (die klassifizierte Einheit), NICHT per
+// Textsuche. Nur Themen MIT aw_field; themaMatch-only-Themen (Rente, Krieg)
+// laufen über die normale Textsuche (Homepage routet sie als ?q=).
+// ───────────────────────────────────────────────────────────────────────────
+
+export interface SearchThemaResult {
+  thema: string;
+  label: string | null;
+  query: string;
+  page: number;
+  pageSize: number;
+  total: number;
+  items: SearchHit[];
+}
+
+/** Wie viele Treffer je Typ maximal geholt werden (newest-first), bevor gemischt wird. */
+const THEMA_FETCH_CAP = 200;
+
+export function searchThema(
+  slug: string,
+  rawQuery: string,
+  page: number = 1,
+  pageSize: number = 50,
+): SearchThemaResult {
+  const query = rawQuery.trim();
+  const safePage = Math.max(1, Math.floor(page));
+  const safePageSize = Math.max(1, Math.min(100, Math.floor(pageSize)));
+  const topic = topicBySlug(slug);
+  const fields = topic?.awFields ?? [];
+
+  const base: SearchThemaResult = {
+    thema: slug,
+    label: topic?.label ?? null,
+    query,
+    page: safePage,
+    pageSize: safePageSize,
+    total: 0,
+    items: [],
+  };
+  if (!topic || fields.length === 0) return base;
+
+  const db = getDb();
+  ensureSearchFTS(db);
+  const fieldPH = fields.map(() => "?").join(",");
+  const hasQuery = query.length >= 2;
+  const fts = hasQuery ? ftsMatchClause([query]) : null;
+  const wordPatterns = hasQuery ? [query.toLowerCase()] : [];
+
+  // ── Reden (item_topics.source = bt_rede, item_id = rede_id) ──
+  const speechRows = (
+    hasQuery && fts
+      ? db
+          .prepare(
+            `SELECT sa.rede_id, ps.speaker, ps.party, sess.datum AS speech_date,
+                    pt.title AS topic_title, sa.zusammenfassung_2_saetze AS snippet, sa.tonalitaet
+             FROM ${FTS_TABLES.speeches} f
+             JOIN speech_analyses_v2 sa ON sa.speech_id = f.speech_id
+             JOIN plenar_speeches ps ON sa.speech_id = ps.id
+             JOIN item_topics it ON it.source='bt_rede' AND it.item_id = ps.rede_id AND it.aw_field IN (${fieldPH})
+             LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
+             LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
+             WHERE f.snippet MATCH ?
+             ORDER BY sess.datum DESC LIMIT ?`,
+          )
+          .all(...fields, fts, THEMA_FETCH_CAP)
+      : db
+          .prepare(
+            `SELECT sa.rede_id, ps.speaker, ps.party, sess.datum AS speech_date,
+                    pt.title AS topic_title, sa.zusammenfassung_2_saetze AS snippet, sa.tonalitaet
+             FROM item_topics it
+             JOIN plenar_speeches ps ON ps.rede_id = it.item_id
+             JOIN speech_analyses_v2 sa ON sa.speech_id = ps.id
+             LEFT JOIN plenar_sessions sess ON ps.session_id = sess.id
+             LEFT JOIN plenar_topics pt ON ps.topic_id = pt.id
+             WHERE it.source='bt_rede' AND it.aw_field IN (${fieldPH})
+             ORDER BY sess.datum DESC LIMIT ?`,
+          )
+          .all(...fields, THEMA_FETCH_CAP)
+  ) as {
+    rede_id: string;
+    speaker: string | null;
+    party: string | null;
+    speech_date: string | null;
+    topic_title: string | null;
+    snippet: string;
+    tonalitaet: string | null;
+  }[];
+
+  // ── Drucksachen (source = bt_drucksache, item_id = drucksache_nr) ──
+  const dsRows = (
+    hasQuery && fts
+      ? db
+          .prepare(
+            `SELECT f.drucksache_nr, f.titel, f.zusammenfassung, an.batch_class,
+                    COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=f.drucksache_nr LIMIT 1)) AS datum
+             FROM ${FTS_TABLES.drucksachen} f
+             JOIN item_topics it ON it.source='bt_drucksache' AND it.item_id = f.drucksache_nr AND it.aw_field IN (${fieldPH})
+             LEFT JOIN drucksache_analyses an ON an.drucksache_nr = f.drucksache_nr
+             LEFT JOIN drucksache_texts t ON t.drucksache_nr = f.drucksache_nr
+             WHERE ${FTS_TABLES.drucksachen} MATCH ?
+             ORDER BY datum DESC LIMIT ?`,
+          )
+          .all(...fields, fts, THEMA_FETCH_CAP)
+      : db
+          .prepare(
+            `SELECT f.drucksache_nr, f.titel, f.zusammenfassung, an.batch_class,
+                    COALESCE(t.publication_date, (SELECT datum FROM activities WHERE drucksache_nr=f.drucksache_nr LIMIT 1)) AS datum
+             FROM item_topics it
+             JOIN ${FTS_TABLES.drucksachen} f ON f.drucksache_nr = it.item_id
+             LEFT JOIN drucksache_analyses an ON an.drucksache_nr = f.drucksache_nr
+             LEFT JOIN drucksache_texts t ON t.drucksache_nr = f.drucksache_nr
+             WHERE it.source='bt_drucksache' AND it.aw_field IN (${fieldPH})
+             ORDER BY datum DESC LIMIT ?`,
+          )
+          .all(...fields, THEMA_FETCH_CAP)
+  ) as {
+    drucksache_nr: string;
+    titel: string;
+    zusammenfassung: string;
+    batch_class: string | null;
+    datum: string | null;
+  }[];
+
+  // ── Abstimmungen (source = bt_vote, item_id = poll_id) ──
+  const voteRows = db
+    .prepare(
+      `SELECT DISTINCT v.poll_id, v.poll_label, v.poll_date
+       FROM votes v
+       JOIN item_topics it ON it.source='bt_vote' AND CAST(v.poll_id AS TEXT) = it.item_id AND it.aw_field IN (${fieldPH})
+       ${hasQuery ? `WHERE ${wordMatchOr("v.poll_label", wordPatterns.length)}` : ""}
+       ORDER BY v.poll_date DESC LIMIT ?`,
+    )
+    .all(...fields, ...wordPatterns, THEMA_FETCH_CAP) as {
+    poll_id: number;
+    poll_label: string;
+    poll_date: string | null;
+  }[];
+
+  // Hits bauen + nach rede_id/nr/poll_id deduplizieren (item_topics kann mehrere
+  // aw_field-Zeilen pro Item haben → Doppel-Treffer bei Mehr-Feld-Themen).
+  const seen = new Set<string>();
+  const speechHits: SpeechHit[] = [];
+  for (const s of speechRows) {
+    const k = `s:${s.rede_id}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    speechHits.push({
+      type: "speech",
+      rede_id: s.rede_id,
+      speaker: s.speaker ?? "Unbekannt",
+      party: s.party,
+      speech_date: s.speech_date,
+      topic_title: s.topic_title,
+      snippet: s.snippet,
+      tonalitaet: s.tonalitaet,
+    });
+  }
+  const dsHits: DrucksacheHit[] = [];
+  for (const d of dsRows) {
+    const k = `d:${d.drucksache_nr}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    const full = d.zusammenfassung ?? "";
+    dsHits.push({
+      type: "drucksache",
+      id: d.drucksache_nr,
+      title: d.titel || `Drucksache ${d.drucksache_nr}`,
+      drucksache_nr: d.drucksache_nr,
+      vorgangstyp: null,
+      date: d.datum,
+      snippet: full.length > 140 ? full.slice(0, 137) + "…" : full || null,
+      batch_class: d.batch_class,
+    });
+  }
+  const voteHits: VoteHit[] = [];
+  for (const v of voteRows) {
+    const k = `v:${v.poll_id}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    voteHits.push({ type: "vote", poll_id: v.poll_id, label: v.poll_label, poll_date: v.poll_date });
+  }
+
+  // Mischen + nach Datum (neueste zuerst, NULL ans Ende) sortieren.
+  const dateOf = (h: SearchHit): string =>
+    h.type === "speech" ? h.speech_date ?? "" : h.type === "drucksache" ? h.date ?? "" : h.type === "vote" ? h.poll_date ?? "" : "";
+  const merged: SearchHit[] = [...speechHits, ...dsHits, ...voteHits].sort((a, b) => dateOf(b).localeCompare(dateOf(a)));
+
+  // Exakte Gesamtzahl je Typ (NICHT aus dem gekappten Fetch — sonst falsche Grundzahl).
+  const cnt = (sql: string, params: unknown[]): number =>
+    (db.prepare(sql).get(...params) as { n: number }).n;
+
+  const speechTotal =
+    hasQuery && fts
+      ? cnt(
+          `SELECT COUNT(*) AS n FROM (SELECT DISTINCT ps.rede_id
+             FROM ${FTS_TABLES.speeches} f
+             JOIN speech_analyses_v2 sa ON sa.speech_id = f.speech_id
+             JOIN plenar_speeches ps ON sa.speech_id = ps.id
+             JOIN item_topics it ON it.source='bt_rede' AND it.item_id = ps.rede_id AND it.aw_field IN (${fieldPH})
+             WHERE f.snippet MATCH ?)`,
+          [...fields, fts],
+        )
+      : cnt(
+          `SELECT COUNT(*) AS n FROM (SELECT DISTINCT ps.rede_id
+             FROM item_topics it
+             JOIN plenar_speeches ps ON ps.rede_id = it.item_id
+             JOIN speech_analyses_v2 sa ON sa.speech_id = ps.id
+             WHERE it.source='bt_rede' AND it.aw_field IN (${fieldPH}))`,
+          [...fields],
+        );
+
+  const dsTotal =
+    hasQuery && fts
+      ? cnt(
+          `SELECT COUNT(*) AS n FROM (SELECT DISTINCT it.item_id
+             FROM ${FTS_TABLES.drucksachen} f
+             JOIN item_topics it ON it.source='bt_drucksache' AND it.item_id = f.drucksache_nr AND it.aw_field IN (${fieldPH})
+             WHERE ${FTS_TABLES.drucksachen} MATCH ?)`,
+          [...fields, fts],
+        )
+      : cnt(
+          `SELECT COUNT(*) AS n FROM (SELECT DISTINCT it.item_id
+             FROM item_topics it
+             JOIN ${FTS_TABLES.drucksachen} f ON f.drucksache_nr = it.item_id
+             WHERE it.source='bt_drucksache' AND it.aw_field IN (${fieldPH}))`,
+          [...fields],
+        );
+
+  const voteTotal = cnt(
+    `SELECT COUNT(*) AS n FROM (SELECT DISTINCT v.poll_id
+       FROM votes v
+       JOIN item_topics it ON it.source='bt_vote' AND CAST(v.poll_id AS TEXT) = it.item_id AND it.aw_field IN (${fieldPH})
+       ${hasQuery ? `WHERE ${wordMatchOr("v.poll_label", wordPatterns.length)}` : ""})`,
+    [...fields, ...wordPatterns],
+  );
+
+  const offset = (safePage - 1) * safePageSize;
+  return {
+    ...base,
+    total: speechTotal + dsTotal + voteTotal,
+    items: merged.slice(offset, offset + safePageSize),
   };
 }

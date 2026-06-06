@@ -25,9 +25,16 @@ function shortParty(label: string): string {
   return label;
 }
 
-export function PolitikerExplorer({ politicians }: { politicians: ExplorerPolitician[] }) {
+export function PolitikerExplorer({
+  politicians,
+  initialParty = null,
+}: {
+  politicians: ExplorerPolitician[];
+  /** Vorausgewählter Partei-Filter (Deep-Link von der Startseite: /politiker?partei=spd). */
+  initialParty?: string | null;
+}) {
   const [search, setSearch] = useState("");
-  const [activeParty, setActiveParty] = useState<string | null>(null);
+  const [activeParty, setActiveParty] = useState<string | null>(initialParty);
 
   // Partei-Verteilung — speist Balken + Filter-Chips
   const parties = useMemo(() => {

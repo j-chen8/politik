@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Search, CornerDownRight } from "lucide-react";
 import { CommandPalette } from "@/components/CommandPalette";
 import { SearchFullList } from "@/components/SearchFullList";
+import { SearchThemaList } from "@/components/SearchThemaList";
 import type { SearchType } from "@/lib/suche";
 
 const VALID_TYPES: SearchType[] = ["politicians", "speeches", "topics", "votes", "drucksachen", "qa"];
@@ -22,6 +23,7 @@ const BEISPIELE: { q: string; hint: string }[] = [
 function SuchePageInner() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q") ?? "";
+  const themaParam = searchParams.get("thema");
   const typeParam = searchParams.get("type");
   const pageParam = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
   const expandParam = searchParams.get("expand") === "1";
@@ -66,6 +68,11 @@ function SuchePageInner() {
   function openWith(q: string) {
     setPaletteQuery(q);
     setOpen(true);
+  }
+
+  // Themen-Facette: ?thema=<slug> → gemischte Treffer eines Citizen-Topics
+  if (themaParam) {
+    return <SearchThemaList slug={themaParam} initialQuery={initialQuery} />;
   }
 
   // Vollliste-Mode: ?q=...&type=... → eigene Page-View statt Hero

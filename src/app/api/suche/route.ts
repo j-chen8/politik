@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import {
   search,
   searchByType,
+  searchThema,
   searchBerlin,
   searchBerlinByType,
   type SearchType,
@@ -29,6 +30,14 @@ export async function GET(request: NextRequest) {
       return Response.json(searchBerlinByType(q, typeParam as BerlinSearchType, page, pageSize, expand, sort, klasse));
     }
     return Response.json(searchBerlin(q, expand));
+  }
+
+  // Themen-Facette: alle Inhalte zu einem Citizen-Topic, gemischt + optional eingegrenzt.
+  const themaParam = sp.get("thema");
+  if (themaParam) {
+    const page = Math.max(1, parseInt(sp.get("page") ?? "1", 10) || 1);
+    const pageSize = Math.max(1, Math.min(100, parseInt(sp.get("pageSize") ?? "50", 10) || 50));
+    return Response.json(searchThema(themaParam, q, page, pageSize));
   }
 
   // Typ-gefilterte Vollliste / Inline-Mehr / Detail-Suche → searchByType, sonst Multi-Typ-Suche.
