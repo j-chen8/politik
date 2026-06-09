@@ -97,6 +97,20 @@ body {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
+/* Themen-Detail: smoothes Aufklappen beim Feld-Klick (Fade + leichtes Wachsen von
+   oben). Wird per React-`key` bei jeder Auswahl neu ausgelöst. */
+@keyframes panel-expand {
+  from { opacity: 0; transform: translateY(6px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.panel-expand {
+  animation: panel-expand 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel-expand { animation: none; }
+}
+
 /* ─────────────────────────────────────────────────────────────
  * Design-Variant Tokens (additive, scoped per .design-* wrapper)
  * Nur aktiv unter /design/* Routes — Default-Design bleibt unverändert.
@@ -154,6 +168,20 @@ body {
 .fade-in-up-3 { animation-delay: 0.2s; }
 .fade-in-up-4 { animation-delay: 0.3s; }
 .fade-in-up-5 { animation-delay: 0.4s; }
+
+/* Scent-Ticker: Inhalt läuft als Endlos-Laufband von rechts nach links (klassischer
+   News-Ticker). Zwei Kopien im Track, Bewegung 0 → -50% = nahtlose Schleife. */
+@keyframes ticker-rtl {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  width: max-content;
+  animation: ticker-rtl 60s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
 
 /* Card hover */
 .card-hover {
