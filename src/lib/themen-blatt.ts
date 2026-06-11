@@ -104,6 +104,23 @@ function parseKern(s: string | null): string | null {
 function cleanParty(s: string | null): string {
   return (s ?? "").replace(/­/g, "").trim();
 }
+// Debatten-Kontexte tragen TOP-Nummern-Präfixe („17\t", „7\ta)\t", „–\t") und teils
+// den formalen Volltext „Beratung des Antrags der Abgeordneten A, B, C, weiterer
+// Abgeordneter und der Fraktion X" → als Karten-Titel kürzen.
+function cleanKontext(s: string | null): string | null {
+  if (!s) return null;
+  // TOP-Nummer/Buchstabe/Spiegelstrich sind TAB-getrennte Präfix-Segmente („17⇥a)⇥–⇥Text")
+  const parts = s.split("\t").map((p) => p.trim()).filter(Boolean);
+  const t = parts[parts.length - 1] ?? "";
+  // „…eingebrachten Entwurfs eines Gesetzes zur X" → das Thema steckt im Genitiv
+  const gesetz = t.match(/Entwurfs eines (.+)$/i);
+  if (gesetz) return `Entwurf eines ${gesetz[1].trim()}`;
+  // „Beratung des Antrags der Abgeordneten A, B, … und der Fraktion X" → kompakt
+  // (der formale String trägt KEIN Thema — die Zusammenfassung darunter schon)
+  const antrag = t.match(/Beratung des Antrags der (?:Abgeordneten .*? und der )?(Fraktion(?:en)? .+)$/i);
+  if (antrag) return `Debatte: Antrag der ${antrag[1].trim()}`;
+  return t || null;
+}
 
 export function getDigitalBlatt(): DigitalBlattEcht {
   const db = getDb();
@@ -238,16 +255,21 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     LEFT JOIN politicians p ON p.id = ss.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
     WHERE it.source = 'bt_rede' AND it.aw_field = ?
+      AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
     GROUP BY ss.rede_id
     ORDER BY ss.datum DESC
     LIMIT 200
   `).all(FELD_AW) as { rede_id: string; speaker: string | null; sitzung: number | null; iso: string | null; kontext: string | null; zusammenfassung: string | null; partei: string }[];
+  // ⚠️ Reden OHNE Zusammenfassung sind ausgefiltert (62/1.899, alle aus den NEUESTEN
+  // Sitzungen 77/78/80 — der Summary-Lauf hinkt hinterher und die Leeren standen
+  // wegen neueste-zuerst ganz oben im Feed, User-Befund 2026-06-11). Sie erscheinen
+  // automatisch, sobald der Backfill läuft.
   for (const r of redeRows) {
     const partei = cleanParty(r.partei);
     docs.push({
       id: `rede-${r.rede_id}`,
       typ: "Rede",
-      titel: r.kontext ? r.kontext : `Rede von ${r.speaker ?? "unbekannt"}`,
+      titel: cleanKontext(r.kontext) ?? `Rede von ${r.speaker ?? "unbekannt"}`,
       iso: r.iso, datum: rel(r.iso),
       einzeiler: r.zusammenfassung ?? "", vorschau: r.zusammenfassung,
       redner: r.speaker ? `${r.speaker}${partei ? ` (${partei})` : ""}` : null,
