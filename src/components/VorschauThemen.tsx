@@ -58,7 +58,7 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 // themen = die häufigsten spezifischen Themen der Feld-Reden dieser Person (derivativ
 // aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
 type KopfRede = { id: string; datum: string; einzeiler: string; href: string; tags?: string[] };
-type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null; letzteReden?: KopfRede[] };
+type Kopf = { politicianId?: number; vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null; letzteReden?: KopfRede[] };
 // voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
 // Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
 // cluster = kanonischer Batch-Name in ds_unterthemen; name = kurzes Anzeige-Label
@@ -690,16 +690,20 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
 
   const renderKopf = (p: Kopf, i: number, clone = false) => {
     const sel = kopfKey(p) === kopfKey(k);
+    // Hover/Fokus wählt fürs Detail-Feld aus (Desktop-Seite); KLICK führt zum
+    // Profil (User 2026-06-11) — Dummy-Köpfe ohne id bleiben reine Auswahl-Buttons.
+    const Tag: any = p.politicianId ? Link : "button";
     return (
-      <button key={`${kopfKey(p)}-${i}`} aria-hidden={clone || undefined}
-        onMouseEnter={() => setActiveKey(kopfKey(p))} onFocus={() => setActiveKey(kopfKey(p))} onClick={() => setActiveKey(kopfKey(p))}
+      <Tag key={`${kopfKey(p)}-${i}`} aria-hidden={clone || undefined}
+        {...(p.politicianId ? { href: `/politiker/${p.politicianId}` } : { onClick: () => setActiveKey(kopfKey(p)) })}
+        onMouseEnter={() => setActiveKey(kopfKey(p))} onFocus={() => setActiveKey(kopfKey(p))}
         className={`flex w-40 shrink-0 snap-start flex-col items-center outline-none ${carousel ? "md:w-[calc((100%-9rem)/5)]" : ""}`}>
         <span className={`rounded-3xl transition-transform duration-300 ${sel ? "scale-[1.06] ring-2 ring-zinc-900/60 ring-offset-2 ring-offset-white dark:ring-zinc-200/70 dark:ring-offset-zinc-950" : "hover:scale-[1.04]"}`}>
           <PoliticianAvatar photoUrl={p.photoUrl ?? null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
         </span>
         <span className={`mt-3 block max-w-full truncate text-[13.5px] font-semibold transition-colors ${sel ? "text-zinc-900 dark:text-zinc-50" : "text-zinc-600 dark:text-zinc-300"}`}>{p.nachname}</span>
         <span className="block max-w-full truncate text-[11.5px] text-zinc-400">{PARTEI_KURZ[p.partei] ?? p.partei}</span>
-      </button>
+      </Tag>
     );
   };
 

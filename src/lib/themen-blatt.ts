@@ -42,7 +42,7 @@ export interface EchtDoc {
 }
 export interface EchtKopfRede { id: string; datum: string; iso: string | null; einzeiler: string; href: string; tags: string[] }
 export interface EchtKopf {
-  vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle: string | null;
+  politicianId: number; vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle: string | null;
   photoUrl: string | null;
   // die letzten Reden zum Thema — Reden hängen an den KÖPFEN, nicht im Feed
   letzteReden: EchtKopfRede[];
@@ -324,7 +324,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       const [role, label] = k.ausschuss.split("§");
       rolle = `${ROLE_DE[role] ?? role} im ${label}`;
     }
-    return { vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null, letzteReden: redenByPid.get(k.pid) ?? [] };
+    return { politicianId: k.pid, vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null, letzteReden: redenByPid.get(k.pid) ?? [] };
   });
 
   // ── 6. Plenarsitzungen mit Feld-Reden ──
