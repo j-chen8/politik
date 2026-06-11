@@ -4138,15 +4138,41 @@ export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
   const dip = db.prepare(
     `SELECT titel, drucksachetyp, vorgangstyp FROM dip_ds_titles WHERE drucksache_nr = ?`
   ).get(nr) as { titel: string | null; drucksachetyp: string | null; vorgangstyp: string | null } | undefined;
-  if (!dip?.titel) return null;
+  if (dip?.titel) {
+    return {
+      drucksache_nr: nr,
+      titel: dip.titel,
+      datum: null,
+      urheber: null,
+      aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
+      drucksache_typ: dip.drucksachetyp,
+      pdf_url: buildDsPdfUrl(nr),
+      herausgeber: "Deutscher Bundestag",
+    };
+  }
+  // Dritter Fallback: DIP-Vorgangsdaten (§2.3b). Greift v. a. für frische
+  // Regierungs-Gesetzentwürfe — die haben weder MdB-Aktivitäten noch einen
+  // dip_ds_titles-Stub, stehen aber als Einbringungs-Position im Vorgang.
+  const vp = db.prepare(`
+    SELECT v.titel, v.initiative_json, p.datum, p.vorgangsposition, p.fundstelle_json
+    FROM dip_vorgang_positionen p
+    JOIN dip_vorgaenge v ON v.id = p.vorgang_id
+    WHERE p.dokumentnummer = ? AND p.dokumentart = 'Drucksache' AND p.herausgeber = 'BT'
+    ORDER BY p.datum LIMIT 1
+  `).get(nr) as {
+    titel: string | null; initiative_json: string | null; datum: string | null;
+    vorgangsposition: string; fundstelle_json: string | null;
+  } | undefined;
+  if (!vp?.titel) return null;
+  const fundstelle = safeJson<{ pdf_url?: string }>(vp.fundstelle_json, {});
   return {
     drucksache_nr: nr,
-    titel: dip.titel,
-    datum: null,
-    urheber: null,
-    aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
-    drucksache_typ: dip.drucksachetyp,
-    pdf_url: buildDsPdfUrl(nr),
+    titel: vp.titel,
+    datum: vp.datum,
+    urheber: safeJson<string[]>(vp.initiative_json, []).join(", ") || null,
+    aktivitaetsart: vp.vorgangsposition,
+    drucksache_typ: null,
+    pdf_url: fundstelle.pdf_url ?? buildDsPdfUrl(nr),
     herausgeber: "Deutscher Bundestag",
   };
 }
@@ -4745,10 +4771,21 @@ export interface LaufenderGesetzentwurf {
  * nicht abschließend abgestimmt hat — d. h. beratungsstand vor der
  * 2./3. Lesung. Post-Vote-Stände (Verabschiedet, Vermittlung, Bundesrat)
  * und Terminal-Stände (Verkündet, Abgelehnt, erledigt, …) sind raus.
+ *
+ * GE-Definition kommt aus den DIP-Positionen selbst (Einbringungs-Position
+ * 'Gesetzentwurf'), NICHT aus drucksache_instrument: die PDF-Klassifikation
+ * hängt Tage bis Wochen hinterher und labelt 18 GE als 'sonstiges' — über
+ * den instrument-Join fehlten 31 laufende (v. a. die frischesten) Entwürfe.
  */
 export function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
   const db = getDb();
   const rows = db.prepare(`
+    WITH dip_ge AS (
+      SELECT DISTINCT p.dokumentnummer AS drucksache_nr, p.vorgang_id
+      FROM dip_vorgang_positionen p
+      WHERE p.vorgangsposition = 'Gesetzentwurf' AND p.zuordnung = 'BT'
+        AND p.dokumentart = 'Drucksache' AND p.herausgeber = 'BT'
+    )
     SELECT dv.drucksache_nr, v.titel, v.beratungsstand, v.initiative_json,
       (SELECT MIN(p.datum) FROM dip_vorgang_positionen p
         WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') AND p.zuordnung='BT') AS einbringung_datum,
@@ -4759,9 +4796,8 @@ export function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
       (SELECT p.ueberweisung_json FROM dip_vorgang_positionen p
         WHERE p.vorgang_id=v.id AND p.ueberweisung_json IS NOT NULL AND p.zuordnung='BT'
         ORDER BY p.datum DESC LIMIT 1) AS ueberweisung_json
-    FROM dip_ds_vorgaenge dv
+    FROM dip_ge dv
     JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
-    JOIN drucksache_instrument di ON di.drucksache_nr = dv.drucksache_nr AND di.instrument = 'gesetzentwurf'
     WHERE v.beratungsstand NOT IN (
       'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
       'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
