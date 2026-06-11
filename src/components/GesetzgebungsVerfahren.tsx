@@ -49,6 +49,130 @@ function schrittHref(s: { dokumentart: string | null; dokumentnummer: string | n
   return null;
 }
 
+// ── 4-Phasen-Makro-Stepper ──────────────────────────────────────────
+// Verfassungslogik (Art. 76/77/78/82 GG): Einbringung (inkl. BR-Erst-
+// befassung bei Regierungsvorlagen!) → Bundestag (1. Lesung, Ausschuss,
+// 2./3. Lesung) → Bundesrat (Durchgang nach Gesetzesbeschluss, ggf.
+// Vermittlung) → Verkündung/Inkrafttreten.
+// Empirie WP21: Abgelehnte GE haben NIE eine 3. Beratung (§ 83 GO-BT),
+// deshalb zählt auch "2. Beratung und Schlussabstimmung" als BT-Abschluss.
+
+type StepState = "done" | "active" | "failed" | "ended" | "pending";
+
+interface MacroStep {
+  label: string;
+  state: StepState;
+  datum: string | null;
+}
+
+function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
+  const stand = vorgang.beratungsstand ?? "";
+  const pos = (names: string[]) =>
+    vorgang.schritte.filter((s) => names.includes(s.position));
+  const lastDatum = (names: string[]) =>
+    pos(names).map((s) => s.datum).filter(Boolean).sort().pop() ?? null;
+
+  const einbringungDatum = lastDatum(["Gesetzentwurf", "Gesetzesantrag"]);
+  const btSchluss = pos(["3. Beratung", "2. Beratung und Schlussabstimmung"]);
+  const btSchlussDatum = btSchluss.map((s) => s.datum).filter(Boolean).sort().pop() ?? null;
+  // BR-Durchgänge VOR dem BT-Gesetzesbeschluss = Einbringungsphase (Art. 76 GG)
+  const brNachBt = vorgang.schritte.filter(
+    (s) => ["2. Durchgang", "Durchgang", "BR-Sitzung"].includes(s.position) &&
+      btSchlussDatum != null && (s.datum ?? "") >= btSchlussDatum
+  );
+  const verkDatum = vorgang.verkuendung.map((v) => v.verkuendungsdatum).filter(Boolean).sort()[0] ?? null;
+
+  // Welche Phase ist "dran" / wo endete das Verfahren?
+  // Index: 0 Eingebracht · 1 Bundestag · 2 Bundesrat · 3 In Kraft
+  let active: number;
+  let terminal: "failed" | "ended" | null = null;
+  if (stand === "Verkündet") {
+    active = 4; // alles fertig
+  } else if (stand === "Bundesrat hat zugestimmt") {
+    active = 3;
+  } else if (stand === "Verabschiedet" || stand === "Im Vermittlungsverfahren") {
+    active = 2;
+  } else if (stand === "Bundesrat hat Zustimmung versagt") {
+    active = 2; terminal = "failed";
+  } else if (stand === "Abgelehnt") {
+    active = 1; terminal = "failed";
+  } else if (stand === "Einbringung abgelehnt") {
+    active = 0; terminal = "failed";
+  } else if (stand === "Für erledigt erklärt" || stand === "Zurückgezogen") {
+    active = btSchluss.length > 0 ? 2 : pos(["1. Beratung"]).length > 0 ? 1 : 0;
+    terminal = "ended";
+  } else if (stand === "Dem Bundesrat zugeleitet - Noch nicht beraten" || stand === "Den Ausschüssen zugewiesen") {
+    active = 0; // BR-Erstbefassung / BR-Initiative — noch nicht beim BT
+  } else {
+    // Überwiesen, Beschlussempfehlung liegt vor, Dem Bundestag zugeleitet,
+    // Noch nicht beraten + unbekannte künftige DIP-Stände → BT-Phase als
+    // konservativer Default (Positions-Daten korrigieren done-Zustände).
+    active = 1;
+  }
+
+  const stateFor = (idx: number): StepState => {
+    if (idx < active) return "done";
+    if (idx === active) return terminal ?? "active";
+    return "pending";
+  };
+
+  return [
+    { label: "Eingebracht", state: stateFor(0), datum: einbringungDatum },
+    { label: "Bundestag", state: stateFor(1), datum: btSchlussDatum },
+    { label: "Bundesrat", state: stateFor(2), datum: brNachBt.map((s) => s.datum).filter(Boolean).sort().pop() ?? null },
+    { label: "In Kraft", state: stateFor(3), datum: verkDatum ?? null },
+  ];
+}
+
+const STEP_DOT: Record<StepState, string> = {
+  done: "bg-zinc-900 border-zinc-900 text-zinc-50",
+  active: "bg-[#1a3e72] border-[#1a3e72] text-zinc-50",
+  failed: "bg-rose-600 border-rose-600 text-zinc-50",
+  ended: "bg-zinc-400 border-zinc-400 text-zinc-50",
+  pending: "bg-white border-zinc-300 text-zinc-300",
+};
+
+const STEP_LABEL: Record<StepState, string> = {
+  done: "text-zinc-950",
+  active: "text-[#1a3e72] font-semibold",
+  failed: "text-rose-700 font-semibold",
+  ended: "text-zinc-500",
+  pending: "text-zinc-400",
+};
+
+function MacroStepper({ steps }: { steps: MacroStep[] }) {
+  return (
+    <ol className="flex items-start mb-2">
+      {steps.map((s, i) => (
+        <li key={s.label} className={`flex-1 flex flex-col items-center relative ${i === 0 ? "" : ""}`}>
+          {/* Verbindungslinie zum vorherigen Schritt */}
+          {i > 0 && (
+            <span
+              aria-hidden
+              className={`absolute top-[11px] right-1/2 w-full h-[2px] -translate-y-1/2 ${
+                s.state === "done" || s.state === "active" || s.state === "failed" || s.state === "ended"
+                  ? "bg-zinc-900"
+                  : "bg-zinc-200"
+              }`}
+            />
+          )}
+          <span
+            className={`relative z-10 w-[22px] h-[22px] rounded-full border-2 inline-flex items-center justify-center text-[11px] font-bold ${STEP_DOT[s.state]}`}
+          >
+            {s.state === "done" ? "✓" : s.state === "failed" ? "✕" : s.state === "ended" ? "–" : i + 1}
+          </span>
+          <span className={`mt-1.5 text-[11.5px] text-center leading-tight ${STEP_LABEL[s.state]}`}>
+            {s.label}
+          </span>
+          {s.datum && s.state !== "pending" && (
+            <span className="num text-[10.5px] text-zinc-400 mt-0.5">{fmtDate(s.datum)}</span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 interface Props {
   vorgang: GesetzgebungsVorgangDetail;
   currentDsNr: string;
@@ -56,6 +180,9 @@ interface Props {
 
 export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
   const standFmt = fmtDate(vorgang.aktualisiert);
+  const macroSteps = deriveMacroSteps(vorgang);
+  const detailCount =
+    vorgang.schritte.length + vorgang.verkuendung.length + vorgang.inkrafttreten.length;
 
   return (
     <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
@@ -75,7 +202,18 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
         </p>
       )}
 
-      {/* Schritt-Timeline */}
+      <MacroStepper steps={macroSteps} />
+
+      {/* Amtliche Schritt-Timeline, eingeklappt — der Stepper trägt die
+          Kernaussage, die DIP-Schritte bleiben vollständig nachlesbar */}
+      {detailCount > 0 && (
+        <details className="group mt-4">
+          <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1 w-fit">
+            <span className="text-zinc-400 group-open:hidden">▶</span>
+            <span className="text-zinc-400 hidden group-open:inline">▼</span>
+            Alle {detailCount} amtlichen Verfahrensschritte
+          </summary>
+          <div className="mt-4">
       {vorgang.schritte.length > 0 && (
         <ol className="relative border-l border-zinc-200 ml-1.5 space-y-4">
           {vorgang.schritte.map((s, i) => {
@@ -170,6 +308,9 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
             </li>
           ))}
         </ol>
+      )}
+          </div>
+        </details>
       )}
 
       <div className="mt-6 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400 leading-relaxed">
