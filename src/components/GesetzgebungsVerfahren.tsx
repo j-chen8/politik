@@ -26,6 +26,15 @@ function standClasses(stand: string | null): string {
   return "bg-[#1a3e72]/5 text-[#1a3e72] border-[#1a3e72]/25";
 }
 
+// Tage seit einem Datum — Seiten sind force-dynamic, wird also pro Request
+// frisch berechnet
+function daysSince(s: string | null | undefined): number | null {
+  if (!s) return null;
+  const t = new Date(s.slice(0, 10) + "T00:00:00").getTime();
+  if (Number.isNaN(t)) return null;
+  return Math.max(0, Math.floor((Date.now() - t) / 86_400_000));
+}
+
 function fmtDate(s: string | null | undefined): string | null {
   if (!s) return null;
   try {
@@ -66,6 +75,8 @@ interface MacroStep {
   // Binnenphase des aktiven Schritts, z. B. "im Ausschuss" — die meisten
   // laufenden Verfahren stecken innerhalb der Bundestag-Phase
   subLabel?: string;
+  // Beginn der Binnenphase → "seit <Datum> · <N> Tage"
+  seit?: string | null;
 }
 
 function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
@@ -121,21 +132,28 @@ function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
 
   // Binnenphase im Bundestag: 1. Lesung → Ausschuss → 2./3. Lesung.
   // Aus Positions-Fakten abgeleitet, nicht aus beratungsstand-Strings.
+  // "seit" = Datum des Ereignisses, das die Binnenphase eröffnet hat.
   let btSub: string | undefined;
+  let btSeit: string | null = null;
   if (active === 1 && !terminal) {
-    const hatErsteBeratung = pos(["1. Beratung", "1. Beratung (Gesetzentwurf)"]).length > 0;
-    const hatBeschlussempfehlung = pos(["Beschlussempfehlung und Bericht", "Beschlussempfehlung", "Bericht"]).length > 0;
-    btSub = !hatErsteBeratung
-      ? "vor der 1. Lesung"
-      : hatBeschlussempfehlung
-        ? "Beschlussempfehlung liegt vor"
-        : "im Ausschuss";
+    const ersteBeratungDatum = lastDatum(["1. Beratung", "1. Beratung (Gesetzentwurf)"]);
+    const beschlussempfehlungDatum = lastDatum(["Beschlussempfehlung und Bericht", "Beschlussempfehlung", "Bericht"]);
+    if (!ersteBeratungDatum && pos(["1. Beratung", "1. Beratung (Gesetzentwurf)"]).length === 0) {
+      btSub = "vor der 1. Lesung";
+      btSeit = einbringungDatum;
+    } else if (beschlussempfehlungDatum || pos(["Beschlussempfehlung und Bericht", "Beschlussempfehlung", "Bericht"]).length > 0) {
+      btSub = "Beschlussempfehlung liegt vor";
+      btSeit = beschlussempfehlungDatum;
+    } else {
+      btSub = "im Ausschuss";
+      btSeit = ersteBeratungDatum; // Überweisung erfolgt in der 1. Beratung
+    }
   }
   const brSub = active === 2 && stand === "Im Vermittlungsverfahren" ? "Vermittlungsausschuss" : undefined;
 
   return [
     { label: "Eingebracht", state: stateFor(0), datum: einbringungDatum },
-    { label: "Bundestag", state: stateFor(1), datum: btSchlussDatum, subLabel: btSub },
+    { label: "Bundestag", state: stateFor(1), datum: btSchlussDatum, subLabel: btSub, seit: btSeit },
     { label: "Bundesrat", state: stateFor(2), datum: brNachBt.map((s) => s.datum).filter(Boolean).sort().pop() ?? null, subLabel: brSub },
     { label: "In Kraft", state: stateFor(3), datum: verkDatum ?? null },
   ];
@@ -187,6 +205,11 @@ function MacroStepper({ steps }: { steps: MacroStep[] }) {
           {s.subLabel && (
             <span className="text-[10.5px] text-[#1a3e72] mt-0.5 text-center leading-tight px-1">
               {s.subLabel}
+            </span>
+          )}
+          {s.subLabel && s.seit && (
+            <span className="num text-[10px] text-zinc-400 mt-0.5 text-center leading-tight">
+              seit {fmtDate(s.seit)}{daysSince(s.seit) !== null && <> · {daysSince(s.seit)} {daysSince(s.seit) === 1 ? "Tag" : "Tage"}</>}
             </span>
           )}
         </li>
