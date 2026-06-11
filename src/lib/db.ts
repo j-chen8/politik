@@ -4728,6 +4728,73 @@ export function getGesetzgebungsVorgang(dsNr: string): GesetzgebungsVorgangDetai
   };
 }
 
+export interface LaufenderGesetzentwurf {
+  drucksache_nr: string;
+  titel: string | null;
+  beratungsstand: string | null;
+  initiative: string[];
+  // Binnenphase aus Positions-Fakten (wie der Stepper auf der Detail-Seite)
+  phase: "vor_erster_lesung" | "im_ausschuss" | "beschlussempfehlung";
+  seitDatum: string | null;          // Beginn der aktuellen Binnenphase
+  einbringungDatum: string | null;
+  federfuehrenderAusschuss: string | null;
+}
+
+/**
+ * Alle Gesetzentwürfe (BT-Drucksachen, WP21), über die der Bundestag noch
+ * nicht abschließend abgestimmt hat — d. h. beratungsstand vor der
+ * 2./3. Lesung. Post-Vote-Stände (Verabschiedet, Vermittlung, Bundesrat)
+ * und Terminal-Stände (Verkündet, Abgelehnt, erledigt, …) sind raus.
+ */
+export function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT dv.drucksache_nr, v.titel, v.beratungsstand, v.initiative_json,
+      (SELECT MIN(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') AND p.zuordnung='BT') AS einbringung_datum,
+      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('1. Beratung','1. Beratung (Gesetzentwurf)')) AS erste_beratung_datum,
+      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Beschlussempfehlung und Bericht','Beschlussempfehlung','Bericht')) AS be_datum,
+      (SELECT p.ueberweisung_json FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.ueberweisung_json IS NOT NULL AND p.zuordnung='BT'
+        ORDER BY p.datum DESC LIMIT 1) AS ueberweisung_json
+    FROM dip_ds_vorgaenge dv
+    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
+    JOIN drucksache_instrument di ON di.drucksache_nr = dv.drucksache_nr AND di.instrument = 'gesetzentwurf'
+    WHERE v.beratungsstand NOT IN (
+      'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+      'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+      'Im Vermittlungsverfahren','Einbringung abgelehnt'
+    )
+    GROUP BY dv.drucksache_nr
+  `).all() as {
+    drucksache_nr: string; titel: string | null; beratungsstand: string | null;
+    initiative_json: string | null; einbringung_datum: string | null;
+    erste_beratung_datum: string | null; be_datum: string | null;
+    ueberweisung_json: string | null;
+  }[];
+
+  return rows.map((r) => {
+    const phase = r.be_datum
+      ? ("beschlussempfehlung" as const)
+      : r.erste_beratung_datum
+        ? ("im_ausschuss" as const)
+        : ("vor_erster_lesung" as const);
+    const ueberweisung = safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []);
+    return {
+      drucksache_nr: r.drucksache_nr,
+      titel: r.titel,
+      beratungsstand: r.beratungsstand,
+      initiative: safeJson<string[]>(r.initiative_json, []),
+      phase,
+      seitDatum: r.be_datum ?? r.erste_beratung_datum ?? r.einbringung_datum,
+      einbringungDatum: r.einbringung_datum,
+      federfuehrenderAusschuss: ueberweisung.find((a) => a.federfuehrung)?.ausschuss ?? null,
+    };
+  });
+}
+
 export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
   const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
   if (themas.length === 0) return [];
