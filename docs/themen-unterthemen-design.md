@@ -348,3 +348,43 @@ Kern-Risikofrage: *Kann Haiku ein Item sauber in {Unterthema (geschlossen) + spe
   brauchbar (nicht 1-Item-Erfindungen) · Stichprobe-20 präzise.
 - Besteht der Spike → voller Wirtschaft-Batch (~2.000 Items, Batch API). Fällt er → ehrlich
   stoppen bzw. Taxonomie patchen.
+
+## Spike-Ergebnis Lauf 1 (2026-06-10, 40 Items, Haiku 4.5 live, $0,088)
+
+Skript `scripts/spike-wirtschaft-unterthemen.ts` (Fix: Top-level-await → main()-Wrapper).
+Sample = neueste 40 Wirtschaft-DS (`ORDER BY drucksache_nr DESC`), Log in
+`spike-wirtschaft-run1.log` (untracked).
+
+**Kriterien-Scorecard:**
+
+| Kriterium | Ziel | Ergebnis | Urteil |
+|---|---|---|---|
+| Sonstiges-Quote | < 15 % | **0 %** | ✓ formal — aber siehe Befund 1 |
+| Größter Cluster | < 40 % | **25 %** (Industrie- & Standortpolitik, 10/40) | ✓ |
+| Verteilung | gefüllte Knoten | 10/10/9/9/9/7/5/5/3/1 über alle 10 Cluster | ✓ sehr gesund |
+| Tags brauchbar | keine 1-Item-Erfindungen | 147 unique/40 Items, überwiegend entity-artig (Strommarkt, Cloud-Computing, Geothermie, Fluggastrechteverordnung); wenige Phrasen-Ausreißer | ✓ mit Politur-Bedarf |
+| Stichproben-Präzision (Hand, n≈25) | präzise | **~85 %** — ca. 5–6 Force-Fits | ⚠ |
+
+**Befund 1 — Das Sonstiges-Ventil wird nicht benutzt (Kern-Schwäche):** 0 % Sonstiges ist
+zu schön. Cross-Feld-Items, deren KERN in einem anderen Feld liegt (Impfschäden→Gesundheit,
+Wohnungsbau-GE→Wohnen, Bahnbrücken→Verkehr, Dürre/Tourismus, Starlink-Zahlungen), werden in
+das nächstklingende Wirtschaft-Cluster GEZWUNGEN statt als Sonstiges markiert (z.B.
+Dürre/Tourismus → „Energiewirtschaft & Energiekosten" — klar falsch). Alle ~5–6 Präzisions-
+Fehler sind dieses eine Muster; die Kern-Wirtschaft-Items sind praktisch fehlerfrei.
+→ **Patch-Kandidat (Prompt, kein Taxonomie-Problem):** Sonstiges-Regel schärfen: „Wenn der
+KERN des Dokuments in einem anderen Politikfeld liegt und Wirtschaft nur Randbezug ist →
+Sonstiges." Optional ein Feld `kern_im_feld: bool`, das Sekundär-Feld-Items explizit markiert.
+
+**Befund 2 — Taxonomie-Lücke Wettbewerb/Kartellrecht:** Fusionskontrolle (DMK/Arla),
+Monopolkommission/Unternehmenskonzentration landen verstreut in Außenhandel bzw. Konjunktur.
+Discovery #1 hatte „Kartellrecht" (5 Roh-Vorkommen) als zu dünn verworfen — im Sample sind es
+aber 2/40 = 5 %. Entscheidung offen: 11. Cluster „Wettbewerb & Kartellrecht" vs. explizit bei
+„Konjunktur, Wachstum & Gesamtsteuerung" andocken (Umbenennung/Definition).
+
+**Befund 3 — Kosten-Realität:** Doc-Schätzung „< 3 Cent" war 3× zu optimistisch (real
+$0,088 für 40, weil Input = thema+zusammenfassung+kerninhalt ≈ 1.600 Token/Item). Voller
+Wirtschaft-Lauf (~2.083 Items): ~$4,60 live / **~$2,30 Batch-API** — nicht $0,30.
+
+**Zwischen-Urteil:** Die Methode TRÄGT (Verteilung gesund, kein Mega-Cluster, Tags brauchbar,
+Kern-Items präzise). Vor dem vollen Batch: Sonstiges-Prompt-Patch (+ ggf. Wettbewerbs-Cluster-
+Entscheidung), dann 1 Validierungs-Lauf (~$0,09) auf denselben 40 Items zum Vergleich.

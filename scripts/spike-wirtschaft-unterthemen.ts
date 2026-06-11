@@ -91,6 +91,7 @@ const unterCount = new Map<string, number>();
 const tagCount = new Map<string, number>();
 let sonstiges = 0, inTok = 0, outTok = 0;
 
+async function main() {
 for (const r of rows) {
   const text = `THEMA-FELD (Alt-Klassifikation): ${r.thema}\n\nZUSAMMENFASSUNG: ${r.zusammenfassung}\n\nKERNINHALT: ${r.kerninhalt ?? "—"}`;
   const resp = await client.messages.create({
@@ -129,3 +130,6 @@ console.log(`  Größter Cluster:        ${(100 * maxCluster / rows.length).toFi
 console.log(`  Distinkte Tags:         ${tagCount.size} bei ${rows.length} Items`);
 console.log(`  1-Vorkommen-Tags:       ${[...tagCount.values()].filter((n) => n === 1).length} (hohe Zahl = Erfindungs-Risiko)`);
 console.log(`\n  Tokens: ${inTok} in / ${outTok} out  (~$${((inTok / 1e6) * 1 + (outTok / 1e6) * 5).toFixed(3)} grob, Haiku-Live)`);
+}
+
+main();
