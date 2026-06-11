@@ -40,7 +40,7 @@ export interface EchtDoc {
   id: string; typ: "Drucksache" | "Rede"; titel: string; iso: string | null; datum: string;
   einzeiler: string; vorschau: string | null; redner: string | null; tags: string[]; href: string;
 }
-export interface EchtKopfRede { id: string; datum: string; iso: string | null; einzeiler: string; href: string }
+export interface EchtKopfRede { id: string; datum: string; iso: string | null; einzeiler: string; href: string; tags: string[] }
 export interface EchtKopf {
   vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle: string | null;
   photoUrl: string | null;
@@ -291,14 +291,20 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     GROUP BY ss.rede_id
     ORDER BY ss.datum DESC
   `).all(FELD_AW, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
+  // Tag-Scent per TEXTMATCH gegen das Cluster-Tag-Vokabular (deterministisch,
+  // kein LLM) — Platzhalter, bis Reden echte Tags tragen (Erben-Lauf am
+  // Reden↔DS-Paar). „wenn getagt": nur zeigen, was wörtlich vorkommt.
+  const tagVokabular = [...new Set(dsRows.flatMap((d) => d.tags))];
   const redenByPid = new Map<number, EchtKopfRede[]>();
   for (const r of redenRows) {
     const list = redenByPid.get(r.pid) ?? [];
-    if (list.length >= 2) { continue; }
+    if (list.length >= 1) { continue; } // genau EINE Rede je Kopf (User 2026-06-11)
+    const text = (r.zusammenfassung ?? "").toLowerCase();
     list.push({
       id: r.rede_id, datum: rel(r.iso), iso: r.iso,
       einzeiler: r.zusammenfassung ?? "",
       href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}` : "#",
+      tags: tagVokabular.filter((t) => t.length >= 4 && text.includes(t.toLowerCase())).slice(0, 3),
     });
     redenByPid.set(r.pid, list);
   }
