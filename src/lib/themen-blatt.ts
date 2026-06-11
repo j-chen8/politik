@@ -308,7 +308,9 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     voll = voll.charAt(0).toUpperCase() + voll.slice(1);
     list.push({
       id: r.rede_id, datum: rel(r.iso), iso: r.iso,
-      einzeiler: voll.length > 460 ? voll.slice(0, 457).trimEnd() + "…" : voll,
+      // KEIN eigenes „…" mehr: das UI-line-clamp setzt die Ellipse exakt ans
+      // Zeilenende (Server-Cap nur noch Payload-Hygiene, greift nie sichtbar)
+      einzeiler: voll.length > 800 ? voll.slice(0, 800) : voll,
       href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}#rede-${encodeURIComponent(r.rede_id)}` : "#",
       tags: tagVokabular.filter((t) => t.length >= 4 && text.includes(t.toLowerCase())).slice(0, 3),
     });

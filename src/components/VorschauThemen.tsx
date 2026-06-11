@@ -773,7 +773,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
                   <span className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">
                     <Mic className="h-3 w-3 shrink-0" strokeWidth={2.25} />{r.datum}
                   </span>
-                  <span className="mt-0.5 block min-h-[8.15em] line-clamp-5 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
+                  <span className="mt-0.5 min-h-[8.15em] line-clamp-5 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
                   <span className="mt-1.5 flex min-h-[22px] flex-wrap gap-1.5">
                     {r.tags?.map((t) => (
                       <span key={t} className="rounded-full bg-zinc-900/[0.05] px-2 py-0.5 text-[10.5px] font-medium text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">{t}</span>
