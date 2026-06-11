@@ -40,42 +40,10 @@ if (!process.env.ANTHROPIC_API_KEY) { console.error("ANTHROPIC_API_KEY fehlt"); 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const db = new Database(path.join(process.cwd(), "politik.db"), { readonly: true });
 
-// Geschlossene Unterthemen-Liste Wirtschaft (10 Cluster aus Discovery #1) + Sonstiges.
-const UNTERTHEMEN = [
-  "Industrie- & Standortpolitik",
-  "Außenhandel, Zölle & Rohstoffe",
-  "Digital- & KI-Wirtschaft",
-  "Energiewirtschaft & Energiekosten",
-  "Lieferketten & Unternehmensverantwortung",
-  "Wirtschaftsförderung & Subventionen",
-  "Mittelstand, Handwerk & Gründung",
-  "Fachkräfte & Arbeitsmarkt-Wirtschaft",
-  "Verbraucherschutz",
-  "Konjunktur, Wachstum & Gesamtsteuerung",
-  "Sonstiges",
-];
-
-const SYSTEM = `Du klassifizierst Drucksachen des Deutschen Bundestags, die dem Politikfeld WIRTSCHAFT zugeordnet sind, in Unterthemen.
-
-Regeln:
-- Vergib EIN bis DREI Unterthemen aus der vorgegebenen Liste (multi-label — die meisten Vorlagen berühren mehrere). Wähle nur, was der Text wirklich trägt, nicht was entfernt anklingt.
-- Nutze "Sonstiges" NUR, wenn wirklich kein Listen-Unterthema passt.
-- Vergib zusätzlich 1–4 SPEZIFISCHE Tags: konkrete, wiederverwendbare Schlagwörter (z.B. "Künstliche Intelligenz", "Krypto-Assets", "Lieferkettengesetz", "Halbleiter", "Strompreis"). KEINE Einmal-Erfindungen, keine ganzen Sätze, keine Feldnamen. Wenn es kein sinnvolles spezifisches Tag gibt: leeres Array.
-- Strikt neutral: beschreibe den Gegenstand, bewerte nicht.
-- Grounde dich NUR im gegebenen Text.`;
-
-const TOOL: Anthropic.Tool = {
-  name: "klassifiziere",
-  description: "Gib Unterthemen und spezifische Tags für die Drucksache zurück.",
-  input_schema: {
-    type: "object",
-    properties: {
-      unterthemen: { type: "array", items: { type: "string", enum: UNTERTHEMEN }, minItems: 1, maxItems: 3 },
-      spezifische_tags: { type: "array", items: { type: "string" }, maxItems: 4 },
-    },
-    required: ["unterthemen", "spezifische_tags"],
-  },
-};
+// Taxonomie + Prompt + Tool geteilt mit dem Batch-Skript (eine Quelle der Wahrheit):
+// scripts/_lib/unterthemen-wirtschaft.ts — Stand Lauf-2-Patch (11. Cluster
+// „Wettbewerb & Kartellrecht", geschärfte Sonstiges-Regel, kern_im_feld-Flag).
+import { SYSTEM, TOOL } from "./_lib/unterthemen-wirtschaft";
 
 const rows = db.prepare(`
   SELECT da.drucksache_nr, da.thema, da.zusammenfassung, da.kerninhalt
@@ -89,7 +57,7 @@ console.log(`SPIKE Wirtschaft-Unterthemen — ${rows.length} Items, Modell ${MOD
 
 const unterCount = new Map<string, number>();
 const tagCount = new Map<string, number>();
-let sonstiges = 0, inTok = 0, outTok = 0;
+let sonstiges = 0, fremdkern = 0, inTok = 0, outTok = 0;
 
 async function main() {
 for (const r of rows) {
@@ -101,13 +69,14 @@ for (const r of rows) {
   });
   inTok += resp.usage.input_tokens; outTok += resp.usage.output_tokens;
   const block = resp.content.find((b) => b.type === "tool_use") as Anthropic.ToolUseBlock | undefined;
-  const out = (block?.input ?? {}) as { unterthemen: string[]; spezifische_tags: string[] };
+  const out = (block?.input ?? {}) as { unterthemen: string[]; spezifische_tags: string[]; kern_im_feld?: boolean };
   const unter = out.unterthemen ?? [], tags = out.spezifische_tags ?? [];
 
   for (const u of unter) { unterCount.set(u, (unterCount.get(u) ?? 0) + 1); if (u === "Sonstiges") sonstiges++; }
+  if (out.kern_im_feld === false) fremdkern++;
   for (const t of tags) tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
 
-  console.log(`DS ${r.drucksache_nr}`);
+  console.log(`DS ${r.drucksache_nr}${out.kern_im_feld === false ? "  ⟵ KERN IN ANDEREM FELD" : ""}`);
   console.log(`  alt(thema): ${r.thema}`);
   console.log(`  → unterthemen: ${unter.join(" · ")}`);
   console.log(`  → tags: ${tags.join(" · ") || "—"}`);
@@ -125,7 +94,8 @@ for (const [t, n] of [...tagCount.entries()].sort((a, b) => b[1] - a[1]))
 const maxCluster = Math.max(...[...unterCount.values()]);
 const maxClusterName = [...unterCount.entries()].find(([, n]) => n === maxCluster)?.[0];
 console.log("\n─ ERFOLGSKRITERIEN ─");
-console.log(`  Sonstiges-Quote:        ${(100 * sonstiges / rows.length).toFixed(0)} %   (Ziel < 15 %)`);
+console.log(`  Sonstiges-Quote:        ${(100 * sonstiges / rows.length).toFixed(0)} %   (Ziel < 15 %, Lauf 1: 0 % = Ventil unbenutzt)`);
+console.log(`  kern_im_feld=false:     ${fremdkern} von ${rows.length}   (Lauf-1-Erwartung: ~5–6 Cross-Feld-Items)`);
 console.log(`  Größter Cluster:        ${(100 * maxCluster / rows.length).toFixed(0)} % (${maxClusterName})   (Ziel < 40 %)`);
 console.log(`  Distinkte Tags:         ${tagCount.size} bei ${rows.length} Items`);
 console.log(`  1-Vorkommen-Tags:       ${[...tagCount.values()].filter((n) => n === 1).length} (hohe Zahl = Erfindungs-Risiko)`);

@@ -388,3 +388,29 @@ Wirtschaft-Lauf (~2.083 Items): ~$4,60 live / **~$2,30 Batch-API** — nicht $0,
 **Zwischen-Urteil:** Die Methode TRÄGT (Verteilung gesund, kein Mega-Cluster, Tags brauchbar,
 Kern-Items präzise). Vor dem vollen Batch: Sonstiges-Prompt-Patch (+ ggf. Wettbewerbs-Cluster-
 Entscheidung), dann 1 Validierungs-Lauf (~$0,09) auf denselben 40 Items zum Vergleich.
+
+## Spike-Ergebnis Lauf 2 / Validierung (2026-06-11, dieselben 40 Items, $0,10) — BESTANDEN
+
+Patch umgesetzt (jetzt geteilt in `scripts/_lib/unterthemen-wirtschaft.ts`): geschärfte
+Sonstiges-Regel (Kern-in-anderem-Feld → Sonstiges, nicht zwingen) + explizites
+`kern_im_feld`-Flag + **11. Cluster „Wettbewerb & Kartellrecht"**. Log: `spike-wirtschaft-run2.log`.
+
+| Kriterium | Lauf 1 | Lauf 2 | Urteil |
+|---|---|---|---|
+| Lauf-1-Force-Fits (Impfschäden, Bahnbrücken, Wohnungsbau, Starlink, Dürre) | alle falsch einsortiert | **alle korrekt geflaggt** (Sonstiges + kern=false) | ✓ Patch wirkt |
+| Sonstiges bei kern_im_feld=true-Items | — | **0 %** | ✓ Taxonomie deckt echte Wirtschafts-Items |
+| Größter Kern-Cluster | 25 % | Energiewirtschaft 8/21 ≈ 38 % | ✓ < 40 % |
+| Wettbewerb & Kartellrecht | verstreut | **3 Treffer** | ✓ 11. Cluster angenommen |
+| kern_im_feld=false | — | **19/40 (48 %)** | ✓ plausibel — Sample ist Feld-ROLLUP (überzählt ~3×, [[project_themenfelder_rollup_bug]]); das Flag ist die Putzliste |
+| Enum-Drift | — | 2× „&amp;" statt „&" | beim Apply normalisiert (`normalizeUnterthema`) |
+
+**Wichtige Re-Interpretation:** Die Sonstiges-Quote misst am Rollup-Sample auch die
+Rollup-Verschmutzung mit — das Erfolgskriterium gilt für KERN-Items (dort 0 %).
+`kern_im_feld=false`-Items werden später vom Lauf ihres echten Feldes klassifiziert.
+
+**VOLLER BATCH SUBMITTED 2026-06-11:** `msgbatch_014rmgoQWEz9JMbD43N2vrB4`,
+1.031 Wirtschaft-Rollup-DS (nicht ~2.083 — das war inkl. Reden), Haiku 4.5, Batch API
+(~$1,15). Skript `scripts/batch-wirtschaft-unterthemen.ts` (--submit/--status/--apply);
+Apply schreibt nach **`ds_unterthemen`** (PK drucksache_nr+feld, multi-feld-fähig),
+normalisiert Enum-Drift, zählt kern=false als Rollup-Putzliste. Reden erben die Tags
+später über die `inherited_ds`-Mechanik (item_topics origin existiert bereits).
