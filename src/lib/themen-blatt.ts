@@ -318,9 +318,15 @@ export function getDigitalBlatt(): DigitalBlattEcht {
   }
 
   const ROLE_DE: Record<string, string> = { member: "Mitglied", chairperson: "Vorsitz", alternate_member: "stellv. Mitglied" };
+  // Regierungsämter fehlen in den Stammdaten (occupation = stale Vorberuf) —
+  // kuratierte Mini-Liste als Brücke, bis eine echte Kabinettsliste beschafft ist
+  // (Beschaffungsliste 2026-06-11). Amt schlägt Ausschuss-Rolle.
+  const REGIERUNGSAMT: Record<number, string> = {
+    900003: "Bundesminister für Digitales und Staatsmodernisierung",
+  };
   const koepfe: EchtKopf[] = kopfRows.map((k) => {
-    let rolle: string | null = null;
-    if (k.ausschuss) {
+    let rolle: string | null = REGIERUNGSAMT[k.pid] ?? null;
+    if (!rolle && k.ausschuss) {
       const [role, label] = k.ausschuss.split("§");
       rolle = `${ROLE_DE[role] ?? role} im ${label}`;
     }
