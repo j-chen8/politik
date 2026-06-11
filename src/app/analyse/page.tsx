@@ -369,8 +369,13 @@ export default function AnalysePage() {
             </h2>
             <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
               Der Trichter vom eingebrachten Entwurf bis zum Beschluss, getrennt nach Einbringer
-              (Art. 76 GG kennt drei Wege: Bundesregierung, Fraktionen, Bundesrat). Regierungs-
-              und Koalitionsentwürfe laufen durch und werden nie abgelehnt. Oppositionsentwürfe
+              (Art. 76 GG kennt drei Wege: Bundesregierung, Fraktionen, Bundesrat).
+              Bundesregierung und Koalitionsfraktionen sind politisch dasselbe Lager, aber
+              verschiedene Organe mit verschiedenen Verfahren: Regierungsentwürfe müssen vor der
+              1. Lesung sechs Wochen zum Bundesrat und durch die Verbände-Anhörung —
+              Fraktionsentwürfe gehen direkt ins Plenum, weshalb Koalitionen eilige Vorhaben
+              oft als Fraktionsentwurf einbringen. Regierungs- und Koalitionsentwürfe laufen
+              durch und werden nie abgelehnt. Oppositionsentwürfe
               bekommen meist ihre 1. Lesung — aber jede Schlussabstimmung endete bisher mit
               Ablehnung. Länder-Initiativen erreichen das Plenum praktisch gar nicht:{" "}
               <strong className="text-zinc-950">
