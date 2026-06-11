@@ -173,6 +173,12 @@ body {
 .fade-in-up-3 { animation-delay: 0.2s; }
 .fade-in-up-4 { animation-delay: 0.3s; }
 .fade-in-up-5 { animation-delay: 0.4s; }
+.fade-in-up-6 { animation-delay: 0.5s; }
+
+/* Sanftes Sektions-Einrasten (Themen-Blatt): proximity = zieht nur in der Nähe einer
+   Sektionsgrenze nach, freies Scrollen bleibt frei (kein Scroll-Hijacking). Die Klasse
+   wird vom Blatt per Effect auf <html> gesetzt und beim Verlassen wieder entfernt. */
+html.snap-proximity-y { scroll-snap-type: y proximity; }
 
 /* Scent-Ticker: Inhalt läuft als Endlos-Laufband von rechts nach links (klassischer
    News-Ticker). Zwei Kopien im Track, Bewegung 0 → -50% = nahtlose Schleife. */

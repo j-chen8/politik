@@ -1,8 +1,10 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { type LucideIcon, FileText, Mic, Vote, Landmark } from "lucide-react";
+import { PoliticianAvatar } from "@/components/PoliticianAvatar";
+import { partyColor } from "@/lib/party-colors";
 
 /**
  * DUMMY-VORSCHAU der Themen-Browse-Logik, um die Klick-Belohnung zu prüfen BEVOR
@@ -14,19 +16,39 @@ import { type LucideIcon, FileText, Mic, Vote, Landmark } from "lucide-react";
  * aufklappend (Mobile = Akkordeon) die Unterthemen des gewählten Felds. Beide bleiben
  * STILL — nur Namen, kein Inhalt. Auswahl ≠ Inhalt; „Menge"/Volumen NICHT foregrounded.
  *
- * Blatt = Unterthema. Erst HIER: „Gerade aktiv" + „Verbindet sich mit". Spezifische
+ * Blatt = Unterthema. Erst HIER: Sitzungen + Abstimmungen + „Gerade aktiv". Spezifische
  * Themen sind FILTER darauf (keine eigenen Seiten): nur ~Anker sichtbar, Rest über
- * Eingrenzen-Suche / "mehr"; Tag-Klick re-fokussiert Inhalt + Verbindungen.
+ * Eingrenzen-Suche / "mehr"; Tag-Klick re-fokussiert den Inhalt.
+ *
+ * Das NETZ (Querverbindungen) lebt NICHT am Blatt (User 2026-06-10 — eine
+ * „Verbindet sich mit"-Sektion hier passte nicht): Es gehört auf die DOKUMENT-
+ * Detailseite — eine Drucksache zeigt dort ihre spezifischen Themen X·Y·Z als
+ * Chips, und DIE sind die Brücken zwischen den Feldern.
  */
 
 // ── Datenmodell (= Daten-Spec) ──────────────────────────────────────────────
-type CatchItem = { titel: string; typ: "Drucksache" | "Rede" | "Abstimmung"; datum: string; einzeiler: string };
+// worum/ergebnis nur bei Abstimmungen: „Worum geht es?" existiert als Feature (Vote-
+// Kontext live seit 2026-05-15), das Ergebnis kommt aus den Vote-Daten — beides gratis.
+// tags = die spezifischen Themen-Tags des Items (aus der geplanten Tag-Klassifikation).
+type CatchItem = {
+  titel: string; typ: "Drucksache" | "Rede" | "Abstimmung"; datum: string; einzeiler: string;
+  worum?: string; ergebnis?: { ja: number; nein: number; enthaltung: number }; tags?: string[];
+};
 // Eine Kante ist eine TÜR, kein Label: `brücke` = das real verbindende Dokument
-// (das Mit-Vorkommen, das die Verbindung trägt) — gibt dem Klick „Scent".
+// (das Mit-Vorkommen, das die Verbindung trägt). Kanten werden im Themen-Browse
+// NICHT gerendert (User-Entscheidung 2026-06-10) — sie surfen auf der Dokument-
+// Detailseite als Tag-Chips. Typen bleiben hier als Daten-Spec-Dokumentation.
 type Brücke = { titel: string; typ: CatchItem["typ"]; datum: string };
 type Edge = { ziel: string; brücke?: Brücke };
 type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] };
-type Unterthema = { name: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; ausgebaut?: boolean };
+// Wer das Thema im Plenum trägt — rein deskriptiv: Reden zum Feld / Reden gesamt
+// (Spezialisierung zeigt sich, wird aber nicht etikettiert) + Ausschuss-Rolle als
+// Kontext. Methodik existiert: scripts/analyse-themenfeld.ts (landtag-Branch) —
+// Reden-Klassifikation × Stammdaten × committee_memberships, alles ID-Join, kein LLM.
+// themen = die häufigsten spezifischen Themen der Feld-Reden dieser Person (derivativ
+// aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
+type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[] };
+type Unterthema = { name: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
 type Oberthema = { name: string; teaser: string[]; unter: Unterthema[]; catch: CatchItem[]; edges: Edge[] };
 
 // ── Dummy-Daten ─────────────────────────────────────────────────────────────
@@ -74,6 +96,23 @@ const DIGITAL_TAGS: Tag[] = [
   { name: "Digitale Souveränität" }, { name: "Gigafactory & Batterien" },
 ];
 
+// ECHTE Zahlen (kein Platzhalter): Top-Redner:innen des aw_fields „Medien, Kommunikation
+// und Informationstechnik" aus analyse-themenfeld.ts (Lauf 2026-06-10, Lautstärke-Sicht,
+// parteiübergreifend wie im echten Ergebnis). Dummy nur insofern, als das Feld hier als
+// Proxy für das Unterthema Digital steht.
+const DIGITAL_KOEPFE: Kopf[] = [
+  { vorname: "Karsten", nachname: "Wildberger", partei: "CDU", reden: 45, gesamt: 61, rolle: "Bundesminister für Digitales", themen: ["KI", "Rechenzentren", "Digitale Verwaltung"] },
+  { vorname: "Konrad", nachname: "Körner", partei: "CSU", reden: 26, gesamt: 60, rolle: "Mitglied im Digitalausschuss", themen: ["Plattform-Regulierung", "Digitale Identität"] },
+  { vorname: "Ruben", nachname: "Rupp", partei: "AfD", reden: 24, gesamt: 25, rolle: "Mitglied im Digitalausschuss", themen: ["Breitband & Netzausbau", "Funkversorgung"] },
+  { vorname: "Rebecca", nachname: "Lenhard", partei: "BÜNDNIS 90/DIE GRÜNEN", reden: 20, gesamt: 22, rolle: "Mitglied im Digitalausschuss", themen: ["KI", "Open Source", "Digitale Souveränität"] },
+  { vorname: "Sonja", nachname: "Lemke", partei: "Die Linke", reden: 19, gesamt: 29, rolle: "Mitglied im Digitalausschuss", themen: ["Cybersicherheit", "Plattform-Regulierung"] },
+  { vorname: "Johannes", nachname: "Schätzl", partei: "SPD", reden: 18, gesamt: 19, rolle: "Obmann im Digitalausschuss", themen: ["Breitband & Netzausbau", "Digitale Verwaltung"] },
+  { vorname: "Carolin", nachname: "Wagner", partei: "SPD", reden: 17, gesamt: 32, rolle: "Mitglied im Digitalausschuss", themen: ["Plattform-Regulierung", "Jugendmedienschutz"] },
+  { vorname: "Anna", nachname: "Lührmann", partei: "BÜNDNIS 90/DIE GRÜNEN", reden: 14, gesamt: 18, rolle: "Mitglied im Digitalausschuss", themen: ["Digitale Verwaltung", "Digitale Souveränität"] },
+  { vorname: "Sascha", nachname: "Wagner", partei: "Die Linke", reden: 14, gesamt: 26, rolle: "Mitglied im Haushaltsausschuss", themen: ["Breitband & Netzausbau", "Gigabit-Förderung"] },
+  { vorname: "Kay", nachname: "Gottschalk", partei: "AfD", reden: 13, gesamt: 40, rolle: "Obmann im Finanzausschuss", themen: ["Krypto-Assets", "Datenökonomie"] },
+];
+
 const WIRTSCHAFT: Oberthema = {
   name: "Wirtschaft",
   teaser: ["Energie", "Industrie", "Digital", "Außenhandel", "Verbraucherschutz"],
@@ -89,7 +128,7 @@ const WIRTSCHAFT: Oberthema = {
     { titel: "Lieferkettengesetz — Bürokratie-Entlastung", typ: "Drucksache", datum: "vor 2 Wochen", einzeiler: "Antrag zur Vereinfachung der Sorgfaltspflichten." },
   ],
   unter: [
-    { name: "Digital", ausgebaut: true, tags: DIGITAL_TAGS,
+    { name: "Digital", ausgebaut: true, tags: DIGITAL_TAGS, koepfe: DIGITAL_KOEPFE,
       beschreibung: "Netzpolitik des Bundestags — von künstlicher Intelligenz und Cybersicherheit über Rechenzentren und Breitbandausbau bis zu Krypto-Aufsicht und Plattform-Regulierung.",
       edges: [
         { ziel: "Forschung", brücke: { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen" } },
@@ -106,7 +145,9 @@ const WIRTSCHAFT: Oberthema = {
         { titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen", einzeiler: "Nationale Umsetzung der EU-Kryptomärkte-Verordnung." },
         { titel: "Breitbandausbau im ländlichen Raum — Sachstand", typ: "Rede", datum: "vor 2 Wochen", einzeiler: "Aktuelle Stunde zum Stand des Gigabit-Ausbaus." },
         { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen", einzeiler: "Debatte über die Abhängigkeit von US-Cloud-Anbietern." },
-        { titel: "Plattform-Regulierung: DSA-Durchsetzung", typ: "Abstimmung", datum: "vor 3 Wochen", einzeiler: "Namentliche Abstimmung zur nationalen DSA-Durchsetzungsstelle." },
+        { titel: "Plattform-Regulierung: DSA-Durchsetzung", typ: "Abstimmung", datum: "vor 3 Wochen", einzeiler: "Namentliche Abstimmung zur nationalen DSA-Durchsetzungsstelle.",
+          worum: "Der Gesetzentwurf richtet die nationale Durchsetzungsstelle für den Digital Services Act ein: Sie soll Plattform-Pflichten wie Meldewege, Transparenzberichte und Risikoprüfungen gegenüber den Anbietern durchsetzen und bei Verstößen Bußgelder verhängen können.",
+          ergebnis: { ja: 372, nein: 247, enthaltung: 11 }, tags: ["Plattform-Regulierung"] },
         { titel: "KI-Verordnung — nationale Begleitgesetzgebung", typ: "Drucksache", datum: "vor 3 Wochen", einzeiler: "Anpassung des nationalen Rechts an den EU AI Act." },
         { titel: "Gigabit-Förderung 2.0 — Mittelabfluss", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Kleine Anfrage zum Abruf der Breitband-Fördermittel." },
         { titel: "Digitale Identität: eID-Wallet-Pilot", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Sachstand zur staatlichen Identitäts-Wallet." },
@@ -115,11 +156,18 @@ const WIRTSCHAFT: Oberthema = {
         { titel: "Quantentechnologie — Forschungsförderung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Antrag zum Ausbau der nationalen Quanten-Forschung." },
         { titel: "Halbleiter-Resilienz — EU Chips Act Umsetzung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Nationale Maßnahmen zur Chip-Versorgungssicherheit." },
         { titel: "Online-Plattformen — Haftung bei Manipulation", typ: "Rede", datum: "vor 7 Wochen", einzeiler: "Debatte über Verantwortung für manipulierte Inhalte." },
-        { titel: "Vorratsdatenspeicherung — Quick Freeze", typ: "Abstimmung", datum: "vor 2 Monaten", einzeiler: "Abstimmung über das anlassbezogene Einfrieren von Daten." },
+        { titel: "Vorratsdatenspeicherung — Quick Freeze", typ: "Abstimmung", datum: "vor 2 Monaten", einzeiler: "Abstimmung über das anlassbezogene Einfrieren von Daten.",
+          worum: "Statt anlassloser Vorratsdatenspeicherung sollen Verkehrsdaten erst bei konkretem Verdacht „eingefroren“ werden — auf richterliche Anordnung, befristet und zweckgebunden.",
+          ergebnis: { ja: 351, nein: 269, enthaltung: 10 }, tags: ["Datenschutz", "Telekommunikation"] },
         { titel: "Startups — Wagniskapital-Dachfonds", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Aufstockung der staatlichen Beteiligung an VC-Fonds." },
         { titel: "Smart-City-Förderprogramm — Sachstand", typ: "Rede", datum: "vor 2 Monaten", einzeiler: "Bericht zum Stand der kommunalen Digitalprojekte." },
         { titel: "Autonomes Fahren — Zulassungsrahmen", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Verordnung zum Regelbetrieb fahrerloser Fahrzeuge." },
-        { titel: "Cyberabwehr — Befugnisse für aktive Maßnahmen", typ: "Abstimmung", datum: "vor 3 Monaten", einzeiler: "Kontroverse Abstimmung über sogenannte Hackbacks." },
+        { titel: "Cyberabwehr — Befugnisse für aktive Maßnahmen", typ: "Abstimmung", datum: "vor 3 Monaten", einzeiler: "Kontroverse Abstimmung über sogenannte Hackbacks.",
+          worum: "Der Antrag wollte Sicherheitsbehörden erlauben, Server, von denen laufende Angriffe ausgehen, aktiv zu stören („Hackback“). Strittig waren Völkerrecht, Attributionsrisiken und mögliche Eskalation.",
+          ergebnis: { ja: 298, nein: 322, enthaltung: 10 }, tags: ["Cybersicherheit"] },
+        { titel: "Biometrische Gesichtserkennung — Einsatzgrenzen", typ: "Abstimmung", datum: "vor 4 Monaten", einzeiler: "Abstimmung über Grenzen biometrischer Auswertung im öffentlichen Raum.",
+          worum: "Festgelegt wurde, in welchen engen Fällen Behörden biometrische Gesichtserkennung einsetzen dürfen — und wo sie ausgeschlossen bleibt.",
+          ergebnis: { ja: 401, nein: 210, enthaltung: 9 }, tags: ["KI", "Biometrie"] },
         { titel: "Telekommunikation — Routerfreiheit", typ: "Drucksache", datum: "vor 3 Monaten", einzeiler: "Antrag zur Sicherung der freien Endgerätewahl." },
       ],
     },
@@ -147,6 +195,26 @@ const DIGITAL_SITZUNGEN: Sitzung[] = [
   { nr: 180, datum: "2. April 2026", tops: "Rechenzentren · Energieeffizienz" },
   { nr: 176, datum: "19. März 2026", tops: "Quantentechnologie · Halbleiter" },
   { nr: 172, datum: "5. März 2026", tops: "Open Source · Digitale Verwaltung" },
+];
+
+// Gesetzentwürfe im Verfahren (Dummy). Im echten Bau: dokumenttyp-Klassifikation
+// (existiert) + Verfahrensstand aus der Drucksachen-Latenz-Pipeline (existiert:
+// Antrag→Ausschuss→Plenum-Timeline pro DS). stand: 0=eingebracht · 1=im Ausschuss ·
+// 2=vor Schlussabstimmung. Rein faktischer Verfahrensstand, keine Wertung.
+// ⚠️ DATEN-EHRLICHKEIT (geprüft 2026-06-11): Der Verfahrensstand-Stepper braucht für
+// den BUNDESTAG eine NEUE Datenquelle — im Bestand gibt es kaum typisierte Gesetz-
+// entwürfe (3) und keine Überweisungs-/Beschlussempfehlungs-Daten; nur DS↔Abstimmung-
+// Links (121, drucksache_polls) existieren. Saubere Quelle wäre die DIP-API des
+// Bundestags (Vorgangsschritte: Überweisung, Beschlussempfehlung, Lesungen). Berlin
+// hätte die Stationen heute schon (935 Beschlussempfehlungen + TOP-Daten). Der
+// Stepper bleibt im Dummy als ZIEL-Spec — er ist der erste identifizierte Neu-Daten-
+// Bedarf dieser Seite.
+type Gesetz = { titel: string; datum: string; stand: 0 | 1 | 2; detail?: string; tags?: string[] };
+const GESETZ_STUFEN = ["Eingebracht", "Im Ausschuss", "Schlussabstimmung"] as const;
+const DIGITAL_GESETZE: Gesetz[] = [
+  { titel: "NIS-2-Umsetzungsgesetz — Meldepflichten für KRITIS", datum: "eingebracht vor 5 Wochen", stand: 1, detail: "federführend: Innenausschuss", tags: ["Cybersicherheit"] },
+  { titel: "KI-Begleitgesetz — Anpassung an den EU AI Act", datum: "eingebracht vor 3 Wochen", stand: 0, detail: "1. Lesung angesetzt", tags: ["KI", "Plattform-Regulierung"] },
+  { titel: "Gesetz zur staatlichen eID-Wallet", datum: "eingebracht vor 4 Monaten", stand: 2, detail: "Beschlussempfehlung liegt vor", tags: ["Digitale Identität"] },
 ];
 
 const ANDERE_OBERTHEMEN: { name: string; teaser: string[] }[] = [
@@ -224,17 +292,70 @@ function CatchCard({ c }: { c: CatchItem }) {
   );
 }
 
+// Spezifische Themen-Tags eines Items als leise Chips (gleiche Form wie im Köpfe-
+// Detail-Feld) — zeigen, in welchem Themen-Korn Abstimmung/Gesetzentwurf hängen.
+function TagChips({ tags, className = "" }: { tags?: string[]; className?: string }) {
+  if (!tags?.length) return null;
+  return (
+    <span className={`flex flex-wrap gap-1.5 ${className}`}>
+      {tags.map((t) => (
+        <span key={t} className="rounded-full bg-zinc-900/[0.04] px-2.5 py-1 text-[11.5px] font-medium text-zinc-500 dark:bg-white/[0.06] dark:text-zinc-400">{t}</span>
+      ))}
+    </span>
+  );
+}
+
+// Abstimmungs-Ergebnis als gestapelter Balken + Zahlen-Legende. Reine Fakten (Ja/Nein/
+// Enthaltung), konventionelle Signalfarben, kein Framing. `slim` = Mini-Variante für Zeilen.
+function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]>; slim?: boolean }) {
+  const total = e.ja + e.nein + e.enthaltung;
+  const pct = (n: number) => `${(100 * n) / total}%`;
+  return (
+    <div>
+      <div className={`flex overflow-hidden rounded-full ${slim ? "h-1.5" : "h-2.5"}`}>
+        <span style={{ width: pct(e.ja) }} className="bg-emerald-500" />
+        <span style={{ width: pct(e.nein) }} className="bg-rose-400" />
+        <span style={{ width: pct(e.enthaltung) }} className="bg-zinc-300 dark:bg-zinc-600" />
+      </div>
+      {!slim && (
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-zinc-500 dark:text-zinc-400">
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-emerald-500" /><b className="font-semibold text-zinc-700 dark:text-zinc-200">{e.ja}</b> Ja</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-rose-400" /><b className="font-semibold text-zinc-700 dark:text-zinc-200">{e.nein}</b> Nein</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-600" /><b className="font-semibold text-zinc-700 dark:text-zinc-200">{e.enthaltung}</b> Enthaltungen</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Featured = die AKTUELLE Abstimmung zum Thema, prominent oben (Blog-Form). Wird nur
-// gerendert, wenn es überhaupt eine Abstimmung gibt — sonst weggelassen.
+// gerendert, wenn es überhaupt eine Abstimmung gibt — sonst weggelassen. Trägt als
+// einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className={`group block overflow-hidden p-7 ring-1 ring-emerald-500/15 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] ${SOFT_CARD}`}>
+    <a href="#" className={`group flex flex-col overflow-hidden p-8 ring-1 ring-emerald-500/15 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
         <Vote className="h-4 w-4 shrink-0" strokeWidth={2.25} />Aktuelle Abstimmung · {c.datum}
       </p>
-      <p className={`${DISPLAY} mt-2.5 text-[1.35rem] font-bold leading-[1.15] tracking-[-0.02em] text-zinc-900 dark:text-zinc-50`}>{c.titel}</p>
-      <p className="mt-2.5 max-w-2xl text-[14.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
-      <span className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-emerald-600 dark:text-emerald-400">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
+      <p className={`${DISPLAY} mt-3 text-[1.45rem] font-bold leading-[1.12] tracking-[-0.02em] text-zinc-900 md:text-[1.7rem] dark:text-zinc-50`}>{c.titel}</p>
+      {c.worum ? (
+        <>
+          <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Worum geht es?</p>
+          <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.worum}</p>
+        </>
+      ) : (
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      )}
+      {c.ergebnis && (
+        <div className="mt-auto pt-6">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Ergebnis</p>
+          <ErgebnisBar e={c.ergebnis} />
+        </div>
+      )}
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-emerald-600 dark:text-emerald-400">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
+        <TagChips tags={c.tags} />
+      </div>
     </a>
   );
 }
@@ -243,12 +364,48 @@ function FeaturedVote({ c }: { c: CatchItem }) {
 // getrennt (divide-y am Container), grüner Vote-Akzent wie die Featured-Karte.
 function VoteRow({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className="group block py-4">
+    <a href="#" className="group block py-5">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
         <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />Abstimmung · {c.datum}
       </p>
       <p className="mt-1.5 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-emerald-700 dark:text-zinc-50 dark:group-hover:text-emerald-300">{c.titel}</p>
       <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      {c.ergebnis && <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>}
+      <TagChips tags={c.tags} className="mt-2.5" />
+    </a>
+  );
+}
+
+// Verfahrensstand als Mini-Stepper: 3 Punkte (eingebracht → Ausschuss → Schluss-
+// abstimmung), gefüllt bis zum aktuellen Stand. Daneben benennt der Text die Stufe.
+function StandDots({ stand }: { stand: number }) {
+  return (
+    <span className="flex items-center" aria-hidden>
+      {[0, 1, 2].map((i) => (
+        <Fragment key={i}>
+          {i > 0 && <span className={`h-[2px] w-4 ${i <= stand ? "bg-violet-400" : "bg-zinc-200 dark:bg-zinc-700"}`} />}
+          <span className={`h-2 w-2 rounded-full ${i <= stand ? "bg-violet-500" : "bg-zinc-300 dark:bg-zinc-600"}`} />
+        </Fragment>
+      ))}
+    </span>
+  );
+}
+
+// Gesetzentwurf-Karte: Eyebrow (Typ + Einbringung), Titel, unten bündig der
+// Verfahrensstand-Stepper. Karten-Form für die volle Reihe unter den Abstimmungen.
+function GesetzCard({ g }: { g: Gesetz }) {
+  return (
+    <a href="#" className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
+        <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />Gesetzentwurf · {g.datum}
+      </p>
+      <p className="mt-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-violet-700 dark:text-zinc-50 dark:group-hover:text-violet-300">{g.titel}</p>
+      <TagChips tags={g.tags} className="mt-2.5" />
+      <p className="mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1 pt-3">
+        <StandDots stand={g.stand} />
+        <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[g.stand]}</span>
+        {g.detail && <span className="text-[12px] text-zinc-400">· {g.detail}</span>}
+      </p>
     </a>
   );
 }
@@ -259,12 +416,26 @@ function VoteRow({ c }: { c: CatchItem }) {
 // driftet sie in eine Außenkopie, springt sie nach dem Scroll-Ende um exakt eine Kopie-Breite
 // zurück (identische Pixel → unsichtbar). So läuft es in beide Richtungen endlos. Mobile:
 // natives Wischen (Karten 260px), gleicher Loop.
-function SitzungenShelf({ sitzungen }: { sitzungen: Sitzung[] }) {
+// perView 3 (Default) = volle Breite mit Edge-Sliver-Teasern; perView 2 = kompakte
+// Variante für die halbe Reihe (keine Sliver — die Pfeile sind dort der „mehr"-Hinweis,
+// und das Landmark-Icon wandert auf die Titel-Karte daneben statt auf jede Karte).
+function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perView?: 2 | 3 }) {
+  const compact = perView === 2;
   const scrollRef = useRef<HTMLDivElement>(null);
   const copyW = useRef(0);       // Breite EINER Kopie (n Karten + Lücken), exakt gemessen
   const stride = useRef(0);      // Breite einer Karte + Lücke
   const settle = useRef<ReturnType<typeof setTimeout> | null>(null);
   const n = sitzungen.length;
+  // Seiten-Indikator (–1– / –2– …): Seite = führende Karte / perView, aus der
+  // Scroll-Position abgeleitet (Loop-fest via mod n).
+  const [page, setPage] = useState(0);
+  const pages = Math.ceil(n / perView);
+  const updatePage = () => {
+    const el = scrollRef.current;
+    if (!el || !stride.current) return;
+    const lead = Math.round((el.scrollLeft + (compact ? 0 : 28)) / stride.current);
+    setPage(Math.min(pages - 1, Math.floor((((lead % n) + n) % n) / perView)));
+  };
 
   const measure = () => {
     const el = scrollRef.current;
@@ -287,9 +458,9 @@ function SitzungenShelf({ sitzungen }: { sitzungen: Sitzung[] }) {
     const el = scrollRef.current;
     if (!el) return;
     measure();
-    // Start in der mittleren Kopie, um die Sliver-Breite (scroll-pl, 28px) versetzt → snap
-    // rastet jede Position so, dass immer 3 volle Karten + je ein schmaler Sliver stehen
-    el.scrollLeft = copyW.current - 28;
+    // Start in der mittleren Kopie; bei perView 3 um die Sliver-Breite (scroll-pl, 28px)
+    // versetzt → snap rastet so, dass immer 3 volle Karten + je ein Sliver stehen
+    el.scrollLeft = copyW.current - (compact ? 0 : 28);
     const onResize = () => measure();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -297,6 +468,7 @@ function SitzungenShelf({ sitzungen }: { sitzungen: Sitzung[] }) {
   }, [n]);
 
   const onScroll = () => {
+    updatePage();
     if (settle.current) clearTimeout(settle.current);
     settle.current = setTimeout(recenter, 120);
   };
@@ -313,21 +485,24 @@ function SitzungenShelf({ sitzungen }: { sitzungen: Sitzung[] }) {
   const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-violet-600 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-violet-300";
 
   return (
+    <div>
     <div className="group/shelf flex items-center gap-3 md:gap-4">
       <button onClick={() => step(-1)} aria-label="nach links" className={arrowBtn}>
         <IconArrow className="h-4 w-4 rotate-180" />
       </button>
       <div ref={scrollRef} onScroll={onScroll}
-        className="flex min-w-0 flex-1 snap-x snap-mandatory scroll-pl-7 gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        className={`flex min-w-0 flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${compact ? "" : "scroll-pl-7"}`}>
         {[...sitzungen, ...sitzungen, ...sitzungen].map((s, i) => (
           <a key={`${s.nr}-${i}`} href="#" aria-hidden={i < n || i >= n * 2 ? true : undefined}
-            className={`group flex w-[260px] shrink-0 snap-start items-start gap-3.5 p-5 transition duration-300 hover:shadow-[0_16px_36px_-18px_rgba(20,20,45,0.3)] md:w-[calc((100%-5rem)/3)] ${SOFT_CARD}`}>
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-900/[0.05] text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">
-              <Landmark className="h-[18px] w-[18px]" strokeWidth={2} />
-            </span>
+            className={`group flex w-[260px] shrink-0 snap-start items-start gap-3.5 transition duration-300 hover:shadow-[0_16px_36px_-18px_rgba(20,20,45,0.3)] ${compact ? "p-4 md:w-[calc((100%-0.75rem)/2)]" : "p-5 md:w-[calc((100%-5rem)/3)]"} ${SOFT_CARD}`}>
+            {!compact && (
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-900/[0.05] text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">
+                <Landmark className="h-[18px] w-[18px]" strokeWidth={2} />
+              </span>
+            )}
             <span className="min-w-0">
-              <span className="flex items-center gap-1.5 text-[14.5px] font-semibold text-zinc-900 dark:text-zinc-50">
-                Sitzung {s.nr}<IconArrow className="h-4 w-4 text-violet-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+              <span className="flex items-center gap-1.5 whitespace-nowrap text-[14.5px] font-semibold text-zinc-900 dark:text-zinc-50">
+                Sitzung {s.nr}<IconArrow className="h-4 w-4 shrink-0 text-violet-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
               </span>
               <span className="block text-[12px] text-zinc-400">{s.datum}</span>
               <span className="mt-1.5 block truncate text-[12.5px] leading-snug text-zinc-500 dark:text-zinc-400">{s.tops}</span>
@@ -338,6 +513,166 @@ function SitzungenShelf({ sitzungen }: { sitzungen: Sitzung[] }) {
       <button onClick={() => step(1)} aria-label="nach rechts" className={arrowBtn}>
         <IconArrow className="h-4 w-4" />
       </button>
+    </div>
+    {pages > 1 && (
+      <p className="mt-3 text-center text-[12px] tracking-[0.2em] text-zinc-300 dark:text-zinc-600" aria-hidden>
+        –<span className="mx-1 font-semibold text-zinc-500 dark:text-zinc-300">{page + 1}</span>–
+      </p>
+    )}
+    </div>
+  );
+}
+
+// Personen, die das Thema im Plenum tragen — als zentrierte Avatar-Reihe (User 2026-06-10):
+// nur die Bilder, Hover/Fokus vergrößert + blendet den Nachnamen ein und schaltet das
+// Detail-Feld darunter um (Partei · Reden · Rolle). Default = Person mit den meisten
+// Reden, damit das Feld nie leer ist; Klick/Tap übernimmt auf Touch. KEIN „Experten"-
+// Etikett, nur Fakten. Avatar = App-Konvention (Foto, sonst Partei-Farb-Initialen).
+// Kurzformen für Partei-Chips + Bildunterschriften (voller Name sprengt die Breite).
+const PARTEI_KURZ: Record<string, string> = { "BÜNDNIS 90/DIE GRÜNEN": "Grüne" };
+
+const kopfKey = (p: Kopf) => `${p.vorname} ${p.nachname}`;
+
+function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
+  // Partei-Filter: rein deskriptive Eingrenzung (Gleichbehandlung — Chips entstehen
+  // aus den Daten, Reihenfolge = Reihenfolge des Auftretens in der Lautstärke-Liste).
+  const [partei, setPartei] = useState<string | null>(null);
+  // EINZEILIG, kein Umbruch (User; „alle anzeigen"-Toggle wieder VERWORFEN — zerschoss
+  // die Sektion): Endlos-Karussell wie die Sitzungs-Reihe. IMMER GENAU 5 volle Karten —
+  // Kartenbreite = calc((100% − 2 Sliver − 4 Lücken)/5), dadurch sind die Edge-Teaser
+  // links und rechts IMMER exakt gleich breit (symmetrisch, minimal). Gefilterte
+  // Kurz-Listen (≤5) brauchen kein Karussell und stehen statisch zentriert.
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const parteien = [...new Set(koepfe.map((p) => p.partei))];
+  const shown = partei ? koepfe.filter((p) => p.partei === partei) : koepfe;
+  const k = shown.find((p) => kopfKey(p) === activeKey) ?? shown[0];
+  const n = shown.length;
+  const carousel = n > 5;
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const copyW = useRef(0);
+  const settle = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const measure = () => {
+    const el = scrollRef.current;
+    if (!el || el.children.length < n + 1) return;
+    const kids = el.children as HTMLCollectionOf<HTMLElement>;
+    copyW.current = kids[n].offsetLeft - kids[0].offsetLeft;
+  };
+  const recenter = () => {
+    const el = scrollRef.current;
+    const w = copyW.current;
+    if (!el || !w) return;
+    if (el.scrollLeft > w * 1.5) el.scrollLeft -= w;
+    else if (el.scrollLeft < w * 0.5) el.scrollLeft += w;
+  };
+  useEffect(() => {
+    if (!carousel) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    measure();
+    el.scrollLeft = copyW.current - 32;
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [n, carousel]);
+  const onScroll = () => {
+    if (settle.current) clearTimeout(settle.current);
+    settle.current = setTimeout(recenter, 120);
+  };
+  const step = (dir: 1 | -1) => scrollRef.current?.scrollBy({ left: dir * scrollRef.current.clientWidth, behavior: "smooth" });
+  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-violet-600 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-violet-300";
+
+  const chip = (sel: boolean) =>
+    `flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${sel
+      ? "bg-violet-600 text-white shadow-md shadow-violet-600/25"
+      : "bg-zinc-900/[0.05] text-zinc-600 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`;
+
+  const renderKopf = (p: Kopf, i: number, clone = false) => {
+    const sel = kopfKey(p) === kopfKey(k);
+    return (
+      <button key={`${kopfKey(p)}-${i}`} aria-hidden={clone || undefined}
+        onMouseEnter={() => setActiveKey(kopfKey(p))} onFocus={() => setActiveKey(kopfKey(p))} onClick={() => setActiveKey(kopfKey(p))}
+        className={`flex w-40 shrink-0 snap-start flex-col items-center outline-none ${carousel ? "md:w-[calc((100%-9rem)/5)]" : ""}`}>
+        <span className={`rounded-3xl transition-transform duration-300 ${sel ? "scale-[1.06] ring-2 ring-violet-400/70 ring-offset-2 ring-offset-white dark:ring-offset-zinc-950" : "hover:scale-[1.04]"}`}>
+          <PoliticianAvatar photoUrl={null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
+        </span>
+        <span className={`mt-3 block max-w-full truncate text-[13.5px] font-semibold transition-colors ${sel ? "text-zinc-900 dark:text-zinc-50" : "text-zinc-600 dark:text-zinc-300"}`}>{p.nachname}</span>
+        <span className="block max-w-full truncate text-[11.5px] text-zinc-400">{PARTEI_KURZ[p.partei] ?? p.partei}</span>
+      </button>
+    );
+  };
+
+  return (
+    <div>
+      <div className="mb-7 flex flex-wrap items-center justify-center gap-2">
+        <button onClick={() => { setPartei(null); setActiveKey(null); }} className={chip(!partei)}>Alle</button>
+        {parteien.map((p) => (
+          <button key={p} onClick={() => { setPartei(p === partei ? null : p); setActiveKey(null); }} className={chip(partei === p)}>
+            <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: partyColor(p) }} />
+            {PARTEI_KURZ[p] ?? p}
+          </button>
+        ))}
+      </div>
+      {carousel ? (
+        <div className="group/shelf flex items-center gap-3 md:gap-4">
+          <button onClick={() => step(-1)} aria-label="nach links" className={arrowBtn}>
+            <IconArrow className="h-4 w-4 rotate-180" />
+          </button>
+          {/* Rand-Fade exakt auf die 32px-Sliver abgestimmt (transparent → voll bei
+              2.5rem): die Teaser-Köpfe lösen sich zum Rand hin auf, die 5 vollen Karten
+              bleiben unberührt. (Sitzungs-Lehre: Maske breiter als der Sliver
+              verschluckt ihn — hier ist der Sliver 32px, die Maske endet bei 40px.) */}
+          <div ref={scrollRef} onScroll={onScroll}
+            className="flex min-w-0 flex-1 snap-x snap-mandatory scroll-pl-8 gap-5 overflow-x-auto py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_2.5rem,black_calc(100%-2.5rem),transparent)]">
+            {[...shown, ...shown, ...shown].map((p, i) => renderKopf(p, i, i < n || i >= n * 2))}
+          </div>
+          <button onClick={() => step(1)} aria-label="nach rechts" className={arrowBtn}>
+            <IconArrow className="h-4 w-4" />
+          </button>
+        </div>
+      ) : (
+        // py-4 identisch zum Karussell-Scroller → der Abstand Filter↔Bilder springt
+        // beim Wechsel Karussell ⇄ gefilterte Kurzreihe nicht (User-Befund).
+        <div className="flex flex-wrap items-start justify-center gap-5 py-4 md:gap-8">
+          {shown.map((p, i) => renderKopf(p, i))}
+        </div>
+      )}
+      {/* Detail-Feld: die KARTE bleibt stehen, nur der INHALT crossfaded beim
+          Personen-Wechsel (key auf dem inneren Wrapper — Karte mit key remountete
+          sichtbar mit, das irritierte). min-h fängt Höhen-Differenzen ab. */}
+      <div className={`mx-auto mt-7 min-h-[170px] max-w-2xl p-6 text-center ${SOFT_CARD}`}>
+      <div key={kopfKey(k)} className="fade-quick">
+        <p className="text-[15.5px] font-semibold text-zinc-900 dark:text-zinc-50">{k.vorname} {k.nachname}</p>
+        <p className="mt-1 text-[12.5px] text-zinc-400">{k.partei}{k.rolle ? ` · ${k.rolle}` : ""}</p>
+        <p className="mt-1.5 text-[13px] text-zinc-500 dark:text-zinc-400">
+          Thema in <span className="font-semibold text-zinc-700 dark:text-zinc-200">{k.reden}</span> von {k.gesamt} Reden
+        </p>
+        {(k.themen?.length ?? 0) > 0 && (
+          <>
+            <p className="mt-3.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">Spricht vor allem zu</p>
+            <p className="mt-1.5 flex flex-wrap justify-center gap-1.5">
+              {k.themen!.map((t) => (
+                <span key={t} className="rounded-full bg-zinc-900/[0.04] px-2.5 py-1 text-[11.5px] font-medium text-zinc-500 dark:bg-white/[0.06] dark:text-zinc-400">{t}</span>
+              ))}
+            </p>
+          </>
+        )}
+      </div>
+      </div>
+    </div>
+  );
+}
+
+// Dezente Sektions-Leiste am rechten Rand (nur am Blatt): drei Striche = drei Scroll-
+// Stufen, der aktive ist länger + violett. Klick springt sanft zur Sektion.
+function SectionRail({ active, labels, onJump }: { active: number; labels: string[]; onJump: (i: number) => void }) {
+  return (
+    <div className="fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2.5 md:flex" aria-hidden>
+      {labels.map((l, i) => (
+        <button key={l} title={l} onClick={() => onJump(i)}
+          className={`w-[3px] rounded-full transition-all duration-300 ${i === active ? "h-9 bg-violet-400" : "h-5 bg-zinc-300/70 hover:bg-zinc-400 dark:bg-zinc-700"}`} />
+      ))}
     </div>
   );
 }
@@ -357,6 +692,17 @@ function SectionLabel({ children, hint }: { children: React.ReactNode; hint?: st
 // Server-Roundtrip (Next synct pushState mit useSearchParams). Im echten Bau werden
 // diese drei Parameter 1:1 zu Pfad-Segmenten /themen/<feld>/<unter>?thema=…
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+// Dummy-Behelf: Tag-Name in Wortanfänge zerlegen (≥4 Buchstaben, auf 6 gekappt = grobes
+// Stemming: „Rechenzentren"→„rechen" trifft „Rechenzentren — Energieeffizienz") und damit
+// den Dokumenten-Pool des Unterthemas filtern. Ersetzt im Dummy die echte Tag-Klassifikation.
+function tagCatchFallback(tagName: string, pool: CatchItem[]): CatchItem[] {
+  const tokens = tagName.toLowerCase().split(/[^a-zäöüß0-9]+/).filter((w) => w.length >= 4).map((w) => w.slice(0, 6));
+  return pool.filter((c) => {
+    const hay = `${c.titel} ${c.einzeiler}`.toLowerCase();
+    return tokens.some((t) => hay.includes(t));
+  });
+}
 
 // Eine vereinte Oberthemen-Liste fürs Master-Detail: Wirtschaft ist ausgebaut (echte
 // Unterthemen-Objekte), die übrigen tragen nur ihre Teaser-Namen als Picker.
@@ -471,6 +817,52 @@ export function VorschauThemen() {
   // beim Wechsel von Feld/Unterthema die ephemeren UI-Zustände zurücksetzen
   useEffect(() => { setQuery(""); setShowAll(false); }, [feld, unterSlug]);
 
+  // Scroll-Anker für den Tag-Wechsel: über der Themen-Leiste kommen/gehen Sektionen
+  // (z. B. Abstimmungen, wenn ein Tag keine hat) → die Seite wird kürzer/länger und
+  // alles rutscht — fühlt sich wie Auto-Scroll an, obwohl scrollY gleich bleibt.
+  // Deshalb: vor dem Wechsel die Viewport-Position der Leiste merken (pickTag), nach
+  // dem Re-Render die Differenz wegscrollen → die Leiste bleibt optisch exakt stehen.
+  const themenRef = useRef<HTMLDivElement>(null);
+  const anchorTopRef = useRef<number | null>(null);
+  function pickTag(next: string | null, replace = false) {
+    anchorTopRef.current = themenRef.current?.getBoundingClientRect().top ?? null;
+    nav({ thema: next }, replace);
+  }
+  useLayoutEffect(() => {
+    if (anchorTopRef.current == null) return;
+    const now = themenRef.current?.getBoundingClientRect().top;
+    if (now != null) window.scrollBy(0, now - anchorTopRef.current);
+    anchorTopRef.current = null;
+  }, [activeTag]);
+
+  // 3-Screen-Mechanik (nur am Blatt): <html> bekommt proximity-Snap (zieht NUR nahe
+  // einer Sektionsgrenze nach — freies Scrollen bleibt frei), und ein Scroll-Listener
+  // bestimmt die aktive Sektion für die dezente Rand-Leiste. Screen 1 ist bewusst
+  // KEIN Snap-Ziel (sein natürlicher Stand ist der Seitenanfang).
+  const screen1Ref = useRef<HTMLDivElement>(null);
+  const screen2Ref = useRef<HTMLDivElement>(null);
+  const screen3Ref = useRef<HTMLDivElement>(null);
+  const screenRefs = [screen1Ref, screen2Ref, screen3Ref];
+  const [activeScreen, setActiveScreen] = useState(0);
+  useEffect(() => {
+    if (!isLeaf) return;
+    document.documentElement.classList.add("snap-proximity-y");
+    const refs = [screen1Ref, screen2Ref, screen3Ref];
+    const onScroll = () => {
+      const mid = window.scrollY + window.innerHeight / 2;
+      let a = 0;
+      refs.forEach((r, i) => { if (r.current && r.current.offsetTop <= mid) a = i; });
+      setActiveScreen(a);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      document.documentElement.classList.remove("snap-proximity-y");
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isLeaf]);
+
+
   // URL setzen, ohne neu zu laden; push = neuer History-Eintrag, replace = ersetzt
   function nav(patch: Record<string, string | null>, replace = false) {
     const p = new URLSearchParams(searchParams.toString());
@@ -485,6 +877,14 @@ export function VorschauThemen() {
 
   return (
     <div>
+      {/* Sektions-Leiste MUSS außerhalb der fade-in-up-Sektion leben: deren Animations-
+          Transform (fill forwards) macht sie sonst zum Containing Block und `fixed`
+          klebt an der Sektion statt am Viewport. */}
+      {isLeaf && (
+        <SectionRail active={activeScreen} labels={["Abstimmungen", "Plenum", "Spezifische Themen"]}
+          onJump={(i) => screenRefs[i].current?.scrollIntoView({ behavior: "smooth", block: "start" })} />
+      )}
+
       {/* Breadcrumb — nur am Blatt nötig; im Picker ist die linke Spalte die Navigation */}
       {isLeaf && (
         <nav className="mb-7 flex items-center gap-2 text-[13px] text-zinc-400">
@@ -559,7 +959,12 @@ export function VorschauThemen() {
         const visible = q ? allTags.filter((t) => t.name.toLowerCase().includes(q)) : showAll ? allTags : (anchors.length ? anchors : allTags);
 
         const activeObj = activeTag ? allTags.find((t) => t.name === activeTag) : null;
-        const shownCatch = activeTag ? (activeObj?.catch ?? []) : u.catch;
+        // Tags ohne handgepflegte Dummy-Liste filtern den Unterthema-Pool per Wortanfang-
+        // Match — genau das, was echte Daten tun (Tag-Filter auf klassifizierte Items).
+        // Im echten Bau existiert ein Tag überhaupt nur, wenn Items ihn tragen → nie leer.
+        const shownCatch = activeTag
+          ? (activeObj?.catch?.length ? activeObj.catch : tagCatchFallback(activeTag, u.catch))
+          : u.catch;
 
         // Alle Abstimmungen zum Thema (shownCatch ist neueste-zuerst): die erste ist die
         // aktuellste → links als Featured, die übrigen rechts als kompakte Liste älterer
@@ -576,27 +981,27 @@ export function VorschauThemen() {
         const pageItems = rest.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
         return (
-          <section className="fade-in-up space-y-10">
+          // ── 3 Scroll-Stufen (User 2026-06-10): Screen 1 = Kopf + Abstimmungen (füllt
+          // den ersten Viewport), Screen 2 = Köpfe + Sitzungen, Screen 3 = Spezifische
+          // Themen + Feed. min-h statt scroll-snap — Scrollen bleibt frei (kein Hijack).
+          <section className="fade-in-up">
+            {/* justify-start, NICHT center: der Breadcrumb steht außerhalb darüber —
+                Zentrierung riss eine komische Lücke zwischen Breadcrumb und Titel auf.
+                Restluft sammelt sich stattdessen unten (liest sich als „mehr beim Scrollen"). */}
+            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-180px)] flex-col justify-start gap-9">
             <header>
-              <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 dark:text-zinc-50`}>{u.name}</h2>
+              <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 md:text-[3.6rem] dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}
               {shownCatch[0] && <p className="mt-2.5 text-[12.5px] text-zinc-400">Zuletzt aktiv {shownCatch[0].datum}</p>}
             </header>
 
-            {/* Plenarsitzungen, die das Thema auf der Tagesordnung hatten → Link auf die Sitzung */}
-            <div className="fade-in-up fade-in-up-2">
-              <SectionLabel hint={`${DIGITAL_SITZUNGEN.length} Sitzungen`}>Plenarsitzungen mit Digital-Bezug</SectionLabel>
-              <SitzungenShelf sitzungen={DIGITAL_SITZUNGEN} />
-            </div>
-
-            {/* Zuletzt abgestimmt = die NEUESTE Abstimmung zum Thema (Recency, keine Wertung).
-                Eigene ruhige Sektion: Entscheidung getrennt von Dokumenten. Fehlt eine
-                Abstimmung (z. B. unter einem Tag-Filter ohne Vote), fällt nur sie weg. */}
+            {/* Screen-1-Inhalt, Reihe 1 — Abstimmungen als bewährtes Paar: links die
+                Featured-Abstimmung („Worum geht es?" + Ergebnis-Balken), rechts die
+                älteren als Liste mit Slim-Balken. */}
             {featuredVote && (
-              <div className="fade-in-up fade-in-up-3">
+              <div className="fade-in-up fade-in-up-2">
                 <SectionLabel hint={`${votes.length} ${votes.length === 1 ? "Abstimmung" : "Abstimmungen"}`}>Abstimmungen zum Thema</SectionLabel>
                 {olderVotes.length > 0 ? (
-                  // Links die aktuellste Abstimmung groß, rechts die älteren als kompakte Liste
                   <div className="grid gap-5 md:grid-cols-[3fr_2fr] md:gap-6">
                     <FeaturedVote c={featuredVote} />
                     <div className={`flex flex-col px-6 [&>*]:border-zinc-900/[0.06] dark:[&>*]:border-white/[0.07] [&>*+*]:border-t ${SOFT_CARD}`}>
@@ -609,26 +1014,57 @@ export function VorschauThemen() {
               </div>
             )}
 
-            <div className="fade-in-up fade-in-up-4">
+            {/* Reihe 2 — Gesetzentwürfe als volle Karten-Reihe mit Verfahrensstand-
+                Stepper: gleiches Gewicht für „was im Verfahren ist". */}
+            {DIGITAL_GESETZE.length > 0 && (
+              <div className="fade-in-up fade-in-up-3">
+                <SectionLabel hint={`${DIGITAL_GESETZE.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {DIGITAL_GESETZE.map((g) => <GesetzCard key={g.titel} g={g} />)}
+                </div>
+              </div>
+            )}
+            </div>
+
+            {/* ── Screen 2: Sprecher + Sitzungen untereinander, vertikal zentriert (User:
+                „da wir jetzt Platz haben") — Köpfe groß (xl) mit Name/Partei-Unterschrift
+                + Detail-Feld inkl. Themen-Chips, Sitzungen wieder als volles 3er-Karussell. */}
+            {/* pb > pt: gewichtet den Inhalt nach OBEN statt exakt mittig (User) */}
+            <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] snap-start scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
+              {(u.koepfe?.length ?? 0) > 0 && (
+                <div>
+                  <SectionLabel hint="nach Anzahl der Reden">Wer dazu im Plenum spricht</SectionLabel>
+                  <KoepfeStrip koepfe={u.koepfe!} />
+                </div>
+              )}
+              <div>
+                <SectionLabel hint={`${DIGITAL_SITZUNGEN.length} Sitzungen`}>Plenarsitzungen mit Digital-Bezug</SectionLabel>
+                <SitzungenShelf sitzungen={DIGITAL_SITZUNGEN} />
+              </div>
+            </div>
+
+            {/* ── Screen 3: Spezifische Themen + Feed (zweite Scroll-Stufe) ── */}
+            <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] snap-start scroll-mt-24 space-y-10 py-8">
+            <div ref={themenRef} className="fade-in-up fade-in-up-4">
               <SectionLabel hint={`${allTags.length} Themen`}>Spezifische Themen</SectionLabel>
               {/* Eingrenzen-Suche — macht den ganzen Schwanz erreichbar, ohne ihn zu zeigen */}
               <div className="relative mb-3.5">
                 <IconSearch className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
                 <input
-                  value={query} onChange={(e) => { setQuery(e.target.value); if (activeTag) nav({ thema: null }, true); }}
+                  value={query} onChange={(e) => { setQuery(e.target.value); if (activeTag) pickTag(null, true); }}
                   placeholder="eingrenzen — z. B. Krypto, Halbleiter, Drohnen…"
                   className="w-full rounded-2xl bg-zinc-900/[0.04] py-3 pl-11 pr-4 text-[14px] text-zinc-800 placeholder:text-zinc-400 transition focus:bg-white focus:shadow-[0_2px_20px_-8px_rgba(20,20,45,0.25)] focus:outline-none focus:ring-2 focus:ring-violet-300/70 dark:bg-white/[0.06] dark:text-zinc-100 dark:focus:bg-zinc-900"
                 />
               </div>
               <div className="flex flex-wrap gap-2">
-                <button onClick={() => nav({ thema: null })}
+                <button onClick={() => pickTag(null)}
                   className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${!activeTag ? "bg-violet-600 text-white shadow-md shadow-violet-600/25" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
                   Alle
                 </button>
                 {visible.map((t) => {
                   const sel = activeTag === t.name;
                   return (
-                    <button key={t.name} onClick={() => nav({ thema: sel ? null : t.name })}
+                    <button key={t.name} onClick={() => pickTag(sel ? null : t.name)}
                       className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${sel ? "bg-violet-600 text-white shadow-md shadow-violet-600/25" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
                       {t.name}
                     </button>
@@ -652,9 +1088,15 @@ export function VorschauThemen() {
                       (via rest = shownCatch ohne featuredVote) NICHT doppelt; ältere Votes
                       mischen sich nach Datum normal in den Feed. */}
                   {pageItems.length > 0 && (
-                    // key = Filter+Seite → bei Seitenwechsel remountet das Grid und fadet schnell rein
+                    // key = Filter+Seite → bei Seitenwechsel remountet das Grid und fadet schnell rein.
+                    // Leere Slots werden mit Ghost-Zellen auf PAGE_SIZE aufgefüllt (gestrichelt,
+                    // kaum sichtbar) → das 4×3-Raster und damit die Seiten-Höhe bleiben beim
+                    // Filtern/Blättern konstant, egal ob 2 oder 12 Treffer (User 2026-06-10).
                     <div key={`${activeTag ?? ""}-${safePage}`} className="fade-quick mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                       {pageItems.map((c) => <CatchCard key={c.titel} c={c} />)}
+                      {Array.from({ length: PAGE_SIZE - pageItems.length }, (_, i) => (
+                        <div key={`ghost-${i}`} aria-hidden className="min-h-[180px] rounded-3xl border-2 border-dashed border-zinc-900/[0.05] dark:border-white/[0.05]" />
+                      ))}
                     </div>
                   )}
                   {/* Pagination 1..X — Klick auf die Zahl zeigt die jeweilige Seite; Seite steht in der URL (&page=) */}
@@ -682,10 +1124,19 @@ export function VorschauThemen() {
                   )}
                 </>
               ) : (
-                <p className={`px-5 py-8 text-center text-[13px] leading-relaxed text-zinc-400 ${SOFT_CARD}`}>
-                  Vorschau: Inhalt nur für KI · Cybersicherheit · Krypto befüllt.<br />Mit echten Daten käme hier die auf „{activeTag}" gefilterte Liste.
-                </p>
+                // Nur noch Dummy-Artefakt (Long-Tail-Tag ohne Pool-Treffer): mit echten
+                // Daten existiert ein Tag nur, wenn Items ihn tragen — nie leer. Hinweis
+                // belegt den ersten Slot, Ghosts halten die 4×3-Form.
+                <div className="mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  <p className={`flex min-h-[180px] items-center justify-center p-6 text-center text-[12.5px] leading-relaxed text-zinc-400 ${SOFT_CARD}`}>
+                    Im Dummy keine Beispiel-Einträge für „{activeTag}".<br />Mit echten Daten gibt es ein Tag nur, wenn Dokumente es tragen — diese Ansicht wäre nie leer.
+                  </p>
+                  {Array.from({ length: PAGE_SIZE - 1 }, (_, i) => (
+                    <div key={`ghost-${i}`} aria-hidden className="min-h-[180px] rounded-3xl border-2 border-dashed border-zinc-900/[0.05] dark:border-white/[0.05]" />
+                  ))}
+                </div>
               )}
+            </div>
             </div>
           </section>
         );

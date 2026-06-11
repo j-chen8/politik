@@ -6,7 +6,7 @@ interface Props {
   firstName: string;
   lastName: string;
   party: string | null;
-  size?: "sm" | "md" | "lg" | "xl" | "card";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "card";
   /** No-Foto-Fallback: "party" = Partei-Farbblock, "muted" = ruhiges Grau. */
   fallback?: "party" | "muted";
 }
@@ -16,6 +16,7 @@ const SIZES = {
   md: { wrap: "w-12 h-12 text-sm", img: 48, rounded: "rounded-xl" },
   lg: { wrap: "w-20 h-20 text-xl", img: 80, rounded: "rounded-2xl" },
   xl: { wrap: "w-28 h-28 text-2xl", img: 112, rounded: "rounded-2xl" },
+  "2xl": { wrap: "w-40 h-40 text-4xl", img: 160, rounded: "rounded-3xl" },
   // Responsive Karten-Größe: klein auf Handy, groß ab Desktop.
   card: {
     wrap: "w-16 h-16 text-base lg:w-28 lg:h-28 lg:text-2xl",
