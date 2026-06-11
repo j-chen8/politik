@@ -2,7 +2,8 @@
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { type LucideIcon, FileText, Mic, Vote, Landmark } from "lucide-react";
+import Link from "next/link";
+import { type LucideIcon, FileText, Mic, Vote, Landmark, X } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { partyColor } from "@/lib/party-colors";
 
@@ -33,6 +34,11 @@ import { partyColor } from "@/lib/party-colors";
 type CatchItem = {
   titel: string; typ: "Drucksache" | "Rede" | "Abstimmung"; datum: string; einzeiler: string;
   worum?: string; ergebnis?: { ja: number; nein: number; enthaltung: number }; tags?: string[];
+  // Für die In-Place-Vorschau (Karte expandiert aufs Grid, User 2026-06-11):
+  // vorschau = längerer Abriss (echter Bau: LLM-Zusammenfassung, liegt für 4.811 BT-DS
+  // vor); redner = wer die Rede hielt; stand/standDetail = DIP-Verfahrensstand
+  // (echter Bau: dip_ds_vorgaenge, seit 2026-06-11 in der DB).
+  vorschau?: string; redner?: string; stand?: 0 | 1 | 2 | 3; standDetail?: string;
 };
 // Eine Kante ist eine TÜR, kein Label: `brücke` = das real verbindende Dokument
 // (das Mit-Vorkommen, das die Verbindung trägt). Kanten werden im Themen-Browse
@@ -48,7 +54,9 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 // themen = die häufigsten spezifischen Themen der Feld-Reden dieser Person (derivativ
 // aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
 type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[] };
-type Unterthema = { name: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
+// voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
+// Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
+type Unterthema = { name: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
 type Oberthema = { name: string; teaser: string[]; unter: Unterthema[]; catch: CatchItem[]; edges: Edge[] };
 
 // ── Dummy-Daten ─────────────────────────────────────────────────────────────
@@ -128,7 +136,7 @@ const WIRTSCHAFT: Oberthema = {
     { titel: "Lieferkettengesetz — Bürokratie-Entlastung", typ: "Drucksache", datum: "vor 2 Wochen", einzeiler: "Antrag zur Vereinfachung der Sorgfaltspflichten." },
   ],
   unter: [
-    { name: "Digital", ausgebaut: true, tags: DIGITAL_TAGS, koepfe: DIGITAL_KOEPFE,
+    { name: "Digital", voteThema: "Digitalisierung", ausgebaut: true, tags: DIGITAL_TAGS, koepfe: DIGITAL_KOEPFE,
       beschreibung: "Netzpolitik des Bundestags — von künstlicher Intelligenz und Cybersicherheit über Rechenzentren und Breitbandausbau bis zu Krypto-Aufsicht und Plattform-Regulierung.",
       edges: [
         { ziel: "Forschung", brücke: { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen" } },
@@ -139,29 +147,44 @@ const WIRTSCHAFT: Oberthema = {
         { ziel: "Bildung", brücke: { titel: "KI an Schulen — Pilotprogramm der Länder", typ: "Rede", datum: "vor 1 Monat" } },
       ],
       catch: [
-        { titel: "Deepfakes im Wahlkampf — Kennzeichnungspflicht", typ: "Drucksache", datum: "vor 4 Tagen", einzeiler: "Antrag zur Pflicht-Kennzeichnung KI-generierter Medien im politischen Wettbewerb." },
-        { titel: "NIS-2-Umsetzung: Meldepflichten für KRITIS", typ: "Drucksache", datum: "vor 5 Tagen", einzeiler: "Nationale Umsetzung der EU-Cybersicherheitsrichtlinie für kritische Infrastruktur." },
-        { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 1 Woche", einzeiler: "Bundesmittel für den Aufbau europäischer KI-Recheninfrastruktur." },
-        { titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen", einzeiler: "Nationale Umsetzung der EU-Kryptomärkte-Verordnung." },
-        { titel: "Breitbandausbau im ländlichen Raum — Sachstand", typ: "Rede", datum: "vor 2 Wochen", einzeiler: "Aktuelle Stunde zum Stand des Gigabit-Ausbaus." },
-        { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen", einzeiler: "Debatte über die Abhängigkeit von US-Cloud-Anbietern." },
+        { titel: "Deepfakes im Wahlkampf — Kennzeichnungspflicht", typ: "Drucksache", datum: "vor 4 Tagen", einzeiler: "Antrag zur Pflicht-Kennzeichnung KI-generierter Medien im politischen Wettbewerb.",
+          vorschau: "Der Antrag fordert eine Kennzeichnungspflicht für KI-generierte oder KI-manipulierte Bild-, Ton- und Videoinhalte in der politischen Werbung. Plattformen sollen unmarkierte Deepfakes im Wahlkampf-Kontext als Verstoß behandeln; für Parteien ist eine Selbstverpflichtung mit Sanktionsstufe vorgesehen. Strittig ist die Abgrenzung zu Satire und legitimer Bildbearbeitung.",
+          tags: ["KI", "Plattform-Regulierung"], stand: 1, standDetail: "vor der 1. Lesung" },
+        { titel: "NIS-2-Umsetzung: Meldepflichten für KRITIS", typ: "Drucksache", datum: "vor 5 Tagen", einzeiler: "Nationale Umsetzung der EU-Cybersicherheitsrichtlinie für kritische Infrastruktur.",
+          vorschau: "Der Gesetzentwurf setzt die EU-Richtlinie NIS-2 um: Betreiber kritischer Infrastruktur müssen erhebliche Sicherheitsvorfälle künftig binnen 24 Stunden melden, ein Risikomanagement nachweisen und Lieferketten-Risiken adressieren. Der Kreis der erfassten Unternehmen wächst deutlich; das BSI erhält erweiterte Aufsichts- und Durchsetzungsbefugnisse.",
+          tags: ["Cybersicherheit"], stand: 1, standDetail: "im Ausschuss · seit 09.06.2026 · 2 Tage" },
+        { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 1 Woche", einzeiler: "Bundesmittel für den Aufbau europäischer KI-Recheninfrastruktur.",
+          vorschau: "Der Antrag skizziert einen Förderrahmen für große KI-Rechenzentren („Gigafactories“) in Deutschland: Investitionszuschüsse, beschleunigte Genehmigungen und Strompreis-Konditionen für Ansiedlungen. Bedingung sind Abwärme-Nutzung und ein europäischer Betreiber-Anteil. Die Mittel sollen aus dem Sondervermögen Infrastruktur kommen.",
+          tags: ["KI", "Rechenzentren & Cloud"], stand: 1, standDetail: "im Ausschuss · seit 06.06.2026 · 5 Tage" },
+        { titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen", einzeiler: "Nationale Umsetzung der EU-Kryptomärkte-Verordnung.",
+          vorschau: "Das Gesetz überführt die EU-Verordnung über Märkte für Kryptowerte (MiCAR) in nationales Aufsichtsrecht: Die BaFin wird zentrale Zulassungs- und Aufsichtsbehörde für Krypto-Dienstleister, bestehende nationale Lizenzen werden übergeleitet, und für Stablecoin-Emittenten gelten Eigenmittel- und Transparenzpflichten.",
+          tags: ["Krypto-Assets"], stand: 1, standDetail: "Beschlussempfehlung liegt vor" },
+        { titel: "Breitbandausbau im ländlichen Raum — Sachstand", typ: "Rede", datum: "vor 2 Wochen", einzeiler: "Aktuelle Stunde zum Stand des Gigabit-Ausbaus.",
+          vorschau: "In der Aktuellen Stunde verteidigt der Redner den Stand des geförderten Gigabit-Ausbaus gegen den Vorwurf des Stillstands: Die Anschlusszahlen im ländlichen Raum stiegen, der Engpass liege bei Tiefbau-Kapazitäten und kommunalen Verfahren, nicht bei den Fördermitteln. Er kündigt eine Vereinfachung des Förderantrags an.",
+          redner: "Johannes Schätzl (SPD)", tags: ["Breitband & Netzausbau"] },
+        { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen", einzeiler: "Debatte über die Abhängigkeit von US-Cloud-Anbietern.",
+          vorschau: "Die Rednerin problematisiert die Abhängigkeit der Bundesverwaltung von US-Cloud-Anbietern: Vergaben sollten Souveränitäts-Kriterien (Datenstandort, Exit-Fähigkeit, Open-Source-Anteil) verbindlich gewichten. Sie verweist auf laufende Projekte mit europäischen Anbietern und fordert ein Ausstiegs-Szenario für kritische Fachverfahren.",
+          redner: "Anna Lührmann (BÜNDNIS 90/DIE GRÜNEN)", tags: ["Digitale Souveränität", "Rechenzentren & Cloud"] },
         { titel: "Plattform-Regulierung: DSA-Durchsetzung", typ: "Abstimmung", datum: "vor 3 Wochen", einzeiler: "Namentliche Abstimmung zur nationalen DSA-Durchsetzungsstelle.",
           worum: "Der Gesetzentwurf richtet die nationale Durchsetzungsstelle für den Digital Services Act ein: Sie soll Plattform-Pflichten wie Meldewege, Transparenzberichte und Risikoprüfungen gegenüber den Anbietern durchsetzen und bei Verstößen Bußgelder verhängen können.",
           ergebnis: { ja: 372, nein: 247, enthaltung: 11 }, tags: ["Plattform-Regulierung"] },
-        { titel: "KI-Verordnung — nationale Begleitgesetzgebung", typ: "Drucksache", datum: "vor 3 Wochen", einzeiler: "Anpassung des nationalen Rechts an den EU AI Act." },
+        { titel: "KI-Verordnung — nationale Begleitgesetzgebung", typ: "Drucksache", datum: "vor 3 Wochen", einzeiler: "Anpassung des nationalen Rechts an den EU AI Act.",
+          tags: ["KI"], stand: 1, standDetail: "im Ausschuss · seit 26.05.2026 · 16 Tage" },
         { titel: "Gigabit-Förderung 2.0 — Mittelabfluss", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Kleine Anfrage zum Abruf der Breitband-Fördermittel." },
         { titel: "Digitale Identität: eID-Wallet-Pilot", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Sachstand zur staatlichen Identitäts-Wallet." },
         { titel: "Rechenzentren — Energieeffizienz-Auflagen", typ: "Rede", datum: "vor 1 Monat", einzeiler: "Debatte über Abwärme-Nutzung und Effizienzpflichten." },
         { titel: "Open-Source-Strategie der Verwaltung", typ: "Rede", datum: "vor 5 Wochen", einzeiler: "Aussprache zur Reduzierung von Software-Abhängigkeiten." },
         { titel: "Quantentechnologie — Forschungsförderung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Antrag zum Ausbau der nationalen Quanten-Forschung." },
-        { titel: "Halbleiter-Resilienz — EU Chips Act Umsetzung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Nationale Maßnahmen zur Chip-Versorgungssicherheit." },
+        { titel: "Halbleiter-Resilienz — EU Chips Act Umsetzung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Nationale Maßnahmen zur Chip-Versorgungssicherheit.",
+          tags: ["Halbleiter"], stand: 1, standDetail: "im Ausschuss · seit 05.05.2026 · 37 Tage" },
         { titel: "Online-Plattformen — Haftung bei Manipulation", typ: "Rede", datum: "vor 7 Wochen", einzeiler: "Debatte über Verantwortung für manipulierte Inhalte." },
         { titel: "Vorratsdatenspeicherung — Quick Freeze", typ: "Abstimmung", datum: "vor 2 Monaten", einzeiler: "Abstimmung über das anlassbezogene Einfrieren von Daten.",
           worum: "Statt anlassloser Vorratsdatenspeicherung sollen Verkehrsdaten erst bei konkretem Verdacht „eingefroren“ werden — auf richterliche Anordnung, befristet und zweckgebunden.",
           ergebnis: { ja: 351, nein: 269, enthaltung: 10 }, tags: ["Datenschutz", "Telekommunikation"] },
         { titel: "Startups — Wagniskapital-Dachfonds", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Aufstockung der staatlichen Beteiligung an VC-Fonds." },
         { titel: "Smart-City-Förderprogramm — Sachstand", typ: "Rede", datum: "vor 2 Monaten", einzeiler: "Bericht zum Stand der kommunalen Digitalprojekte." },
-        { titel: "Autonomes Fahren — Zulassungsrahmen", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Verordnung zum Regelbetrieb fahrerloser Fahrzeuge." },
+        { titel: "Autonomes Fahren — Zulassungsrahmen", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Verordnung zum Regelbetrieb fahrerloser Fahrzeuge.",
+          tags: ["Autonomes Fahren"], stand: 2, standDetail: "dem Bundesrat zugeleitet · seit 28.05.2026 · 14 Tage" },
         { titel: "Cyberabwehr — Befugnisse für aktive Maßnahmen", typ: "Abstimmung", datum: "vor 3 Monaten", einzeiler: "Kontroverse Abstimmung über sogenannte Hackbacks.",
           worum: "Der Antrag wollte Sicherheitsbehörden erlauben, Server, von denen laufende Angriffe ausgehen, aktiv zu stören („Hackback“). Strittig waren Völkerrecht, Attributionsrisiken und mögliche Eskalation.",
           ergebnis: { ja: 298, nein: 322, enthaltung: 10 }, tags: ["Cybersicherheit"] },
@@ -169,6 +192,15 @@ const WIRTSCHAFT: Oberthema = {
           worum: "Festgelegt wurde, in welchen engen Fällen Behörden biometrische Gesichtserkennung einsetzen dürfen — und wo sie ausgeschlossen bleibt.",
           ergebnis: { ja: 401, nein: 210, enthaltung: 9 }, tags: ["KI", "Biometrie"] },
         { titel: "Telekommunikation — Routerfreiheit", typ: "Drucksache", datum: "vor 3 Monaten", einzeiler: "Antrag zur Sicherung der freien Endgerätewahl." },
+        { titel: "Digitale Verwaltung — OZG-Änderungsgesetz", typ: "Abstimmung", datum: "vor 4 Monaten", einzeiler: "Abstimmung über verbindliche Standards für digitale Verwaltungsleistungen.",
+          worum: "Das Änderungsgesetz macht zentrale Verwaltungsleistungen digital verpflichtend, legt einheitliche Schnittstellen-Standards fest und gibt Ländern und Kommunen Umsetzungsfristen mit Bundes-Unterstützung.",
+          ergebnis: { ja: 388, nein: 221, enthaltung: 14 }, tags: ["Digitale Verwaltung"] },
+        { titel: "Chatkontrolle — Haltung der Bundesregierung", typ: "Abstimmung", datum: "vor 5 Monaten", einzeiler: "Abstimmung über die deutsche Position zur EU-CSA-Verordnung.",
+          worum: "Der Antrag wollte die Bundesregierung festlegen, der anlasslosen Durchleuchtung privater Kommunikation („Chatkontrolle“) auf EU-Ebene nicht zuzustimmen und Ende-zu-Ende-Verschlüsselung gesetzlich zu schützen.",
+          ergebnis: { ja: 285, nein: 330, enthaltung: 12 }, tags: ["Datenschutz", "Plattform-Regulierung"] },
+        { titel: "Funkloch-Ausbau — Versorgungsauflagen", typ: "Abstimmung", datum: "vor 6 Monaten", einzeiler: "Abstimmung über strengere Ausbauauflagen für Mobilfunkbetreiber.",
+          worum: "Beschlossen wurden verschärfte Versorgungsauflagen für die Mobilfunk-Netzbetreiber entlang von Verkehrswegen und in ländlichen Räumen, kontrolliert über die Bundesnetzagentur mit Sanktionsstufen.",
+          ergebnis: { ja: 412, nein: 198, enthaltung: 8 }, tags: ["Breitband & Netzausbau", "Funkversorgung"] },
       ],
     },
     { name: "Energie", tags: [{ name: "Strompreis" }, { name: "Gasversorgung" }, { name: "Netzentgelte" }], edges: [], catch: [] },
@@ -209,13 +241,12 @@ const DIGITAL_SITZUNGEN: Sitzung[] = [
 // hätte die Stationen heute schon (935 Beschlussempfehlungen + TOP-Daten). Der
 // Stepper bleibt im Dummy als ZIEL-Spec — er ist der erste identifizierte Neu-Daten-
 // Bedarf dieser Seite.
-type Gesetz = { titel: string; datum: string; stand: 0 | 1 | 2; detail?: string; tags?: string[] };
-const GESETZ_STUFEN = ["Eingebracht", "Im Ausschuss", "Schlussabstimmung"] as const;
-const DIGITAL_GESETZE: Gesetz[] = [
-  { titel: "NIS-2-Umsetzungsgesetz — Meldepflichten für KRITIS", datum: "eingebracht vor 5 Wochen", stand: 1, detail: "federführend: Innenausschuss", tags: ["Cybersicherheit"] },
-  { titel: "KI-Begleitgesetz — Anpassung an den EU AI Act", datum: "eingebracht vor 3 Wochen", stand: 0, detail: "1. Lesung angesetzt", tags: ["KI", "Plattform-Regulierung"] },
-  { titel: "Gesetz zur staatlichen eID-Wallet", datum: "eingebracht vor 4 Monaten", stand: 2, detail: "Beschlussempfehlung liegt vor", tags: ["Digitale Identität"] },
-];
+// Die Gesetzentwürfe-Reihe speist sich aus dem Dokumenten-Pool: Drucksachen mit
+// `stand` (DIP-Verfahrensstand) = „im Verfahren". 4 Phasen wie der echte Stepper
+// auf /aktivitaeten/[ds-nr] und die /gesetzentwuerfe-Seite (DIP-Vorgangsdaten):
+// Eingebracht → Bundestag → Bundesrat → In Kraft; die Binnenphase („im Ausschuss",
+// „Beschlussempfehlung liegt vor") + Wartezeit steht als standDetail am Punkt.
+const GESETZ_STUFEN = ["Eingebracht", "Bundestag", "Bundesrat", "In Kraft"] as const;
 
 const ANDERE_OBERTHEMEN: { name: string; teaser: string[] }[] = [
   { name: "Innere Sicherheit & Recht", teaser: ["Polizei", "Extremismus", "Justiz", "Datenschutz"] },
@@ -266,9 +297,9 @@ function Teaser({ items }: { items: string[] }) {
 // Typ-Unterscheidung: icon-geführt + EIN dezenter Farbakzent (kein voller bunter Badge —
 // volle Badges fand der User früher „überladen"). Icon trägt die Farbe, Text bleibt grau.
 const TYP_META: Record<CatchItem["typ"], { Icon: LucideIcon; color: string }> = {
-  Drucksache: { Icon: FileText, color: "text-violet-500 dark:text-violet-400" },
-  Rede: { Icon: Mic, color: "text-sky-500 dark:text-sky-400" },
-  Abstimmung: { Icon: Vote, color: "text-emerald-500 dark:text-emerald-400" },
+  Drucksache: { Icon: FileText, color: "text-zinc-500 dark:text-zinc-400" },
+  Rede: { Icon: Mic, color: "text-zinc-500 dark:text-zinc-400" },
+  Abstimmung: { Icon: Vote, color: "text-zinc-500 dark:text-zinc-400" },
 };
 
 function TypEyebrow({ c, className = "" }: { c: CatchItem; className?: string }) {
@@ -282,12 +313,67 @@ function TypEyebrow({ c, className = "" }: { c: CatchItem; className?: string })
 }
 
 // Weiche Karte: viel Radius, sanfter Schatten, hebt beim Hover an. Typ als Icon+Farbe.
-function CatchCard({ c }: { c: CatchItem }) {
+// Klick öffnet die In-Place-Vorschau (kein Seitenwechsel) — Bleib-auf-der-Seite-Regel.
+function CatchCard({ c, onOpen }: { c: CatchItem; onOpen?: () => void }) {
   return (
-    <div className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+    <div role="button" tabIndex={0} onClick={onOpen}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen?.(); } }}
+      className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       <TypEyebrow c={c} />
       <p className="mt-2.5 text-[15px] font-semibold leading-snug text-zinc-900 dark:text-zinc-50">{c.titel}</p>
       <p className="mt-2 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+    </div>
+  );
+}
+
+// In-Place-Vorschau (User 2026-06-11): Klick auf eine Karte expandiert sie auf die
+// Fläche des 3×4-Grids — man bleibt auf der Seite, die Sektionshöhe bleibt stabil
+// (gleiche Logik wie die Ghost-Zellen). Erst der bewusste CTA-Klick führt auf die
+// Detailseite. Schließen: X, Esc oder Browser-Back (Zustand lebt als &doc= in der
+// URL → teilbar). ‹ › blättert durch die Einträge der aktuellen Liste (Scan-Flow,
+// ersetzt schließen-suchen-klicken). Inhalt rechnet sich aus Bestand: LLM-Zusammen-
+// fassung (vorschau), Tag-Klassifikation (tags), DIP-Verfahrensstand (stand), Redner.
+function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
+  c: CatchItem; pos: number; total: number; onClose: () => void; onPrev: () => void; onNext: () => void;
+}) {
+  const navBtn = "flex h-8 w-8 items-center justify-center rounded-full text-zinc-400 ring-1 ring-zinc-900/10 transition hover:bg-zinc-900/[0.05] hover:text-zinc-700 dark:ring-white/15 dark:hover:bg-white/[0.06] dark:hover:text-zinc-200";
+  return (
+    <div key={c.titel} className={`fade-quick relative mt-6 flex min-h-[780px] flex-col p-8 md:p-10 ${SOFT_CARD}`}>
+      <div className="flex items-start justify-between gap-4">
+        <TypEyebrow c={c} />
+        <button onClick={onClose} aria-label="Vorschau schließen"
+          className="-mr-2 -mt-2 rounded-full p-2 text-zinc-400 transition hover:bg-zinc-900/[0.06] hover:text-zinc-700 dark:hover:bg-white/[0.08] dark:hover:text-zinc-200">
+          <X className="h-5 w-5" strokeWidth={2.25} />
+        </button>
+      </div>
+      <h3 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-[1.65rem] font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">{c.titel}</h3>
+      {c.redner && (
+        <p className="mt-2.5 text-[13.5px] text-zinc-500 dark:text-zinc-400">
+          Rede von <span className="font-semibold text-zinc-700 dark:text-zinc-200">{c.redner}</span>
+        </p>
+      )}
+      <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">{c.vorschau ?? c.worum ?? c.einzeiler}</p>
+      {c.ergebnis && <div className="mt-7 max-w-md"><ErgebnisBar e={c.ergebnis} /></div>}
+      {c.stand != null && (
+        <div className="mt-7">
+          <p className="flex items-center gap-2.5">
+            <StandDots stand={c.stand} />
+            <span className="text-[12.5px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[c.stand]}</span>
+          </p>
+          {c.standDetail && <p className="mt-1.5 text-[12.5px] text-zinc-400">{c.standDetail}</p>}
+        </div>
+      )}
+      <TagChips tags={c.tags} className="mt-5" />
+      <div className="mt-auto flex items-center justify-between gap-4 pt-10">
+        <a href="#" className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-900 transition hover:gap-2.5 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
+          Zur {c.typ}<IconArrow className="h-4 w-4" />
+        </a>
+        <div className="flex items-center gap-2.5">
+          <button onClick={onPrev} aria-label="vorheriger Eintrag" className={navBtn}><IconArrow className="h-4 w-4 rotate-180" /></button>
+          <span className="text-[12px] tabular-nums text-zinc-400">{pos} / {total}</span>
+          <button onClick={onNext} aria-label="nächster Eintrag" className={navBtn}><IconArrow className="h-4 w-4" /></button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -333,9 +419,11 @@ function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]
 // einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className={`group flex flex-col overflow-hidden p-8 ring-1 ring-emerald-500/15 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
-      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-        <Vote className="h-4 w-4 shrink-0" strokeWidth={2.25} />Aktuelle Abstimmung · {c.datum}
+    <a href="#" className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+        {/* Typ-Wort raus — die Sektions-Überschrift sagt schon „Abstimmungen"; „Aktuell"
+            begründet nur, warum DIESE Karte groß ist (die neueste). Icon trägt den Typ. */}
+        <Vote className="h-4 w-4 shrink-0" strokeWidth={2.25} />Aktuell · {c.datum}
       </p>
       <p className={`${DISPLAY} mt-3 text-[1.45rem] font-bold leading-[1.12] tracking-[-0.02em] text-zinc-900 md:text-[1.7rem] dark:text-zinc-50`}>{c.titel}</p>
       {c.worum ? (
@@ -353,7 +441,7 @@ function FeaturedVote({ c }: { c: CatchItem }) {
         </div>
       )}
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-        <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-emerald-600 dark:text-emerald-400">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
+        <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-zinc-900 dark:text-zinc-100">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
         <TagChips tags={c.tags} />
       </div>
     </a>
@@ -365,10 +453,10 @@ function FeaturedVote({ c }: { c: CatchItem }) {
 function VoteRow({ c }: { c: CatchItem }) {
   return (
     <a href="#" className="group block py-5">
-      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-        <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />Abstimmung · {c.datum}
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+        <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
       </p>
-      <p className="mt-1.5 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-emerald-700 dark:text-zinc-50 dark:group-hover:text-emerald-300">{c.titel}</p>
+      <p className="mt-1.5 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
       <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
       {c.ergebnis && <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>}
       <TagChips tags={c.tags} className="mt-2.5" />
@@ -381,31 +469,39 @@ function VoteRow({ c }: { c: CatchItem }) {
 function StandDots({ stand }: { stand: number }) {
   return (
     <span className="flex items-center" aria-hidden>
-      {[0, 1, 2].map((i) => (
+      {[0, 1, 2, 3].map((i) => (
         <Fragment key={i}>
-          {i > 0 && <span className={`h-[2px] w-4 ${i <= stand ? "bg-violet-400" : "bg-zinc-200 dark:bg-zinc-700"}`} />}
-          <span className={`h-2 w-2 rounded-full ${i <= stand ? "bg-violet-500" : "bg-zinc-300 dark:bg-zinc-600"}`} />
+          {i > 0 && <span className={`h-[2px] w-4 ${i <= stand ? "bg-zinc-500 dark:bg-zinc-400" : "bg-zinc-200 dark:bg-zinc-700"}`} />}
+          <span className={`h-2 w-2 rounded-full ${i <= stand ? "bg-zinc-800 dark:bg-zinc-200" : "bg-zinc-300 dark:bg-zinc-600"}`} />
         </Fragment>
       ))}
     </span>
   );
 }
 
-// Gesetzentwurf-Karte: Eyebrow (Typ + Einbringung), Titel, unten bündig der
-// Verfahrensstand-Stepper. Karten-Form für die volle Reihe unter den Abstimmungen.
-function GesetzCard({ g }: { g: Gesetz }) {
+// Gesetzentwurf-Karte: Eyebrow (Typ + Datum), Titel, unten bündig der Verfahrens-
+// stand-Stepper. Nimmt ein Pool-Item (Drucksache mit `stand`) — gleiche Datenquelle
+// wie der Feed.
+function GesetzCard({ c }: { c: CatchItem }) {
   return (
     <a href="#" className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
-      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-        <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />Gesetzentwurf · {g.datum}
+      {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+        <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
       </p>
-      <p className="mt-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-violet-700 dark:text-zinc-50 dark:group-hover:text-violet-300">{g.titel}</p>
-      <TagChips tags={g.tags} className="mt-2.5" />
-      <p className="mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1 pt-3">
-        <StandDots stand={g.stand} />
-        <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[g.stand]}</span>
-        {g.detail && <span className="text-[12px] text-zinc-400">· {g.detail}</span>}
-      </p>
+      {/* feste 2-Zeilen-Höhe: kurze Titel reservieren die zweite Zeile, lange werden
+          gekappt → Tags + Stepper liegen in allen Karten auf derselben Ebene */}
+      <p className="mt-2 min-h-[2.75em] text-[14.5px] font-semibold leading-snug text-zinc-900 transition line-clamp-2 group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
+      <TagChips tags={c.tags} className="mt-2.5" />
+      {/* Fest zweizeilig (einheitlich über alle Karten): Zeile 1 = Stepper + Phase,
+          Zeile 2 = Binnenphase/Wartezeit — reserviert auch ohne Detail, kein Umbruch-Flackern. */}
+      <div className="mt-auto pt-3">
+        <p className="flex items-center gap-2.5">
+          <StandDots stand={c.stand ?? 0} />
+          <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[c.stand ?? 0]}</span>
+        </p>
+        <p className="mt-1.5 min-h-[17px] text-[12px] leading-snug text-zinc-400">{c.standDetail ?? ""}</p>
+      </div>
     </a>
   );
 }
@@ -482,7 +578,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
   // Flankierender Pfeil — Desktop only, neben den Karten. Loopt (nie ausgegraut).
   // Standardmäßig extrem transparent; voll sichtbar, sobald man über die Reihe hovert
   // (group/shelf) — der direkte Pfeil-Hover gibt zusätzlich Scale + Farbe.
-  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-violet-600 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-violet-300";
+  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
 
   return (
     <div>
@@ -491,7 +587,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
         <IconArrow className="h-4 w-4 rotate-180" />
       </button>
       <div ref={scrollRef} onScroll={onScroll}
-        className={`flex min-w-0 flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${compact ? "" : "scroll-pl-7"}`}>
+        className={`flex min-w-0 flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${compact ? "" : "scroll-pl-7 [mask-image:linear-gradient(to_right,transparent,black_2.25rem,black_calc(100%-2.25rem),transparent)]"}`}>
         {[...sitzungen, ...sitzungen, ...sitzungen].map((s, i) => (
           <a key={`${s.nr}-${i}`} href="#" aria-hidden={i < n || i >= n * 2 ? true : undefined}
             className={`group flex w-[260px] shrink-0 snap-start items-start gap-3.5 transition duration-300 hover:shadow-[0_16px_36px_-18px_rgba(20,20,45,0.3)] ${compact ? "p-4 md:w-[calc((100%-0.75rem)/2)]" : "p-5 md:w-[calc((100%-5rem)/3)]"} ${SOFT_CARD}`}>
@@ -502,7 +598,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
             )}
             <span className="min-w-0">
               <span className="flex items-center gap-1.5 whitespace-nowrap text-[14.5px] font-semibold text-zinc-900 dark:text-zinc-50">
-                Sitzung {s.nr}<IconArrow className="h-4 w-4 shrink-0 text-violet-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+                Sitzung {s.nr}<IconArrow className="h-4 w-4 shrink-0 text-zinc-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
               </span>
               <span className="block text-[12px] text-zinc-400">{s.datum}</span>
               <span className="mt-1.5 block truncate text-[12.5px] leading-snug text-zinc-500 dark:text-zinc-400">{s.tops}</span>
@@ -581,11 +677,11 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
     settle.current = setTimeout(recenter, 120);
   };
   const step = (dir: 1 | -1) => scrollRef.current?.scrollBy({ left: dir * scrollRef.current.clientWidth, behavior: "smooth" });
-  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-violet-600 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-violet-300";
+  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
 
   const chip = (sel: boolean) =>
     `flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${sel
-      ? "bg-violet-600 text-white shadow-md shadow-violet-600/25"
+      ? "bg-zinc-900 text-white shadow-md shadow-zinc-900/20"
       : "bg-zinc-900/[0.05] text-zinc-600 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`;
 
   const renderKopf = (p: Kopf, i: number, clone = false) => {
@@ -594,7 +690,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
       <button key={`${kopfKey(p)}-${i}`} aria-hidden={clone || undefined}
         onMouseEnter={() => setActiveKey(kopfKey(p))} onFocus={() => setActiveKey(kopfKey(p))} onClick={() => setActiveKey(kopfKey(p))}
         className={`flex w-40 shrink-0 snap-start flex-col items-center outline-none ${carousel ? "md:w-[calc((100%-9rem)/5)]" : ""}`}>
-        <span className={`rounded-3xl transition-transform duration-300 ${sel ? "scale-[1.06] ring-2 ring-violet-400/70 ring-offset-2 ring-offset-white dark:ring-offset-zinc-950" : "hover:scale-[1.04]"}`}>
+        <span className={`rounded-3xl transition-transform duration-300 ${sel ? "scale-[1.06] ring-2 ring-zinc-900/60 ring-offset-2 ring-offset-white dark:ring-zinc-200/70 dark:ring-offset-zinc-950" : "hover:scale-[1.04]"}`}>
           <PoliticianAvatar photoUrl={null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
         </span>
         <span className={`mt-3 block max-w-full truncate text-[13.5px] font-semibold transition-colors ${sel ? "text-zinc-900 dark:text-zinc-50" : "text-zinc-600 dark:text-zinc-300"}`}>{p.nachname}</span>
@@ -665,19 +761,19 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
 }
 
 // Dezente Sektions-Leiste am rechten Rand (nur am Blatt): drei Striche = drei Scroll-
-// Stufen, der aktive ist länger + violett. Klick springt sanft zur Sektion.
+// Stufen, der aktive ist länger + dunkel. Klick springt sanft zur Sektion.
 function SectionRail({ active, labels, onJump }: { active: number; labels: string[]; onJump: (i: number) => void }) {
   return (
     <div className="fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2.5 md:flex" aria-hidden>
       {labels.map((l, i) => (
         <button key={l} title={l} onClick={() => onJump(i)}
-          className={`w-[3px] rounded-full transition-all duration-300 ${i === active ? "h-9 bg-violet-400" : "h-5 bg-zinc-300/70 hover:bg-zinc-400 dark:bg-zinc-700"}`} />
+          className={`w-[3px] rounded-full transition-all duration-300 ${i === active ? "h-9 bg-zinc-900 dark:bg-zinc-100" : "h-5 bg-zinc-300/70 hover:bg-zinc-400 dark:bg-zinc-700"}`} />
       ))}
     </div>
   );
 }
 
-function SectionLabel({ children, hint }: { children: React.ReactNode; hint?: string }) {
+function SectionLabel({ children, hint }: { children: React.ReactNode; hint?: React.ReactNode }) {
   return (
     <div className="mb-3.5 flex items-baseline justify-between">
       <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-zinc-700 dark:text-zinc-200">{children}</h3>
@@ -742,12 +838,12 @@ function BuiltUnterCard({ u, onPick }: { u: Unterthema; onPick: (unterSlug: stri
   return (
     <button onClick={() => onPick(slugify(u.name))}
       onMouseEnter={() => setPaused(false)} onMouseLeave={() => setPaused(true)}
-      className={`group flex items-center justify-between gap-3 p-5 text-left transition duration-300 ring-2 ring-violet-300/60 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(124,58,237,0.42)] ${SOFT_CARD}`}>
+      className={`group flex items-center justify-between gap-3 p-5 text-left transition duration-300 ring-2 ring-zinc-900/15 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] dark:ring-white/20 ${SOFT_CARD}`}>
       <span className="flex min-w-0 flex-1 flex-col">
         <span className="text-[16px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
         {scent.length > 0 && <ScentTicker items={scent} paused={paused} />}
       </span>
-      <IconArrow className="h-5 w-5 shrink-0 text-violet-500 transition group-hover:translate-x-0.5" />
+      <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 transition group-hover:translate-x-0.5" />
     </button>
   );
 }
@@ -774,7 +870,7 @@ function DetailPane({ feld, onPick, className = "" }: { feld: Feld; onPick: (unt
     <div className={className}>
       {feld.ausgebaut ? (
         // Alle Unterthemen als Karten; das ausgebaute (Digital) ist die aktive Tür
-        // (violetter Ring + Pfeil, hebt beim Hover), die übrigen gedämpft & noch tot.
+        // (dunkler Ring + Pfeil, hebt beim Hover), die übrigen gedämpft & noch tot.
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {WIRTSCHAFT.unter.map((u) =>
             u.ausgebaut
@@ -807,6 +903,7 @@ export function VorschauThemen() {
   // ephemere UI-Zustände bleiben lokal (gehören nicht in eine teilbare URL)
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [searchFocus, setSearchFocus] = useState(false);
 
   // Ansicht aus der URL ableiten: Blatt nur, wenn Wirtschaft + ausgebautes Unterthema.
   // Sonst = Master-Detail-Picker (Feld evtl. vorausgewählt).
@@ -835,10 +932,28 @@ export function VorschauThemen() {
     anchorTopRef.current = null;
   }, [activeTag]);
 
-  // 3-Screen-Mechanik (nur am Blatt): <html> bekommt proximity-Snap (zieht NUR nahe
-  // einer Sektionsgrenze nach — freies Scrollen bleibt frei), und ein Scroll-Listener
-  // bestimmt die aktive Sektion für die dezente Rand-Leiste. Screen 1 ist bewusst
-  // KEIN Snap-Ziel (sein natürlicher Stand ist der Seitenanfang).
+  // Dokument-Vorschau: Zustand lebt als &doc= in der URL (teilbar, Back schließt);
+  // Esc schließt zusätzlich zu X und Browser-Back
+  const docParam = searchParams.get("doc");
+  useEffect(() => {
+    if (!docParam) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") nav({ doc: null, page: searchParams.get("page") }); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [docParam, searchParams]);
+
+  // 3-Screen-Mechanik (nur am Blatt): Paging am Sektionsende statt Stop-dann-Snap.
+  // Das Mausrad wird NUR am Ende des Freibereichs einer Sektion abgefangen
+  // (preventDefault): Die Seite bleibt stehen, das Rad-Delta zählt als Intent —
+  // ab einer Raste (WHEEL_COMMIT) startet direkt die smooth-Fahrt zur nächsten/
+  // vorigen Kante. Der Zwischenraum wird nie nativ gescrollt (User 2026-06-11:
+  // „das Scrolling soll gar nicht stattfinden"). Innerhalb über-viewport-hoher
+  // Sektionen und hinter der letzten Kante (Feed, Footer) bleibt Scrollen nativ.
+  // Hochscrollen pagt symmetrisch an der Oberkante jeder Sektion. Nach jeder Fahrt
+  // schluckt ein kurzer Cooldown den Trackpad-Nachlauf (sonst kettet Momentum
+  // mehrere Sektionen aneinander). Scrollbar/Tastatur lösen kein wheel aus → für
+  // sie bleibt der debounced Settle-Assist als Fallback. Derselbe Scroll-Listener
+  // bestimmt die aktive Sektion für die Rand-Leiste.
   const screen1Ref = useRef<HTMLDivElement>(null);
   const screen2Ref = useRef<HTMLDivElement>(null);
   const screen3Ref = useRef<HTMLDivElement>(null);
@@ -846,19 +961,117 @@ export function VorschauThemen() {
   const [activeScreen, setActiveScreen] = useState(0);
   useEffect(() => {
     if (!isLeaf) return;
-    document.documentElement.classList.add("snap-proximity-y");
     const refs = [screen1Ref, screen2Ref, screen3Ref];
+    const OFFSET = 96;        // = scroll-mt-24 der Sektionen (Kante ruht unter der Navbar)
+    const COMMIT_PX = 80;     // Fallback-Assist: so viel Rest-Position heißt „weiter"
+    const WHEEL_COMMIT = 60;  // so viel Rad-Delta heißt „weiter" (1 Maus-Raste ≈ 100–120)
+    const COOLDOWN_MS = 300;  // schluckt Trackpad-Momentum nach einer Fahrt
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastY = window.scrollY;
+    let dir = 1;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let animating = false;
+    let animTarget = 0;
+    let animStart = 0;
+    let acc = 0;             // akkumuliertes Rad-Delta der laufenden Geste
+    let lastWheelT = 0;
+    let cooldownUntil = 0;
+
+    // Kanten live messen — Layout ändert sich durch Filter/Pagination
+    const measureStops = (y: number) => [0, ...[screen2Ref, screen3Ref].map((r) =>
+      r.current ? Math.round(r.current.getBoundingClientRect().top + y - OFFSET) : Infinity)];
+    const freeOf = (i: number) =>
+      Math.max(0, (refs[i].current?.offsetHeight ?? 0) - (window.innerHeight - OFFSET));
+    const go = (target: number) => {
+      animating = true;
+      animTarget = target;
+      animStart = performance.now();
+      window.scrollTo({ top: target, behavior: "smooth" });
+    };
+
+    // Paging direkt am Rad: greift, BEVOR gescrollt wird
+    const onWheel = (e: WheelEvent) => {
+      if (reduced || e.ctrlKey) return; // ctrl+Rad = Browser-Zoom, nie anfassen
+      const now = performance.now();
+      if (animating) {
+        // Fahrt läuft → Rad schlucken (deterministisch ankommen); Notausstieg falls
+        // die Animation still gestorben ist (z. B. Tab-Wechsel)
+        if (now - animStart > 1200) { animating = false; cooldownUntil = now + COOLDOWN_MS; }
+        else { e.preventDefault(); return; }
+      }
+      if (now < cooldownUntil) { e.preventDefault(); return; }
+      const y = window.scrollY;
+      const stops = measureStops(y);
+      let i = 0;
+      while (i + 1 < stops.length && y >= stops[i + 1] - 2) i++;
+      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY; // Zeilen-Modus (Firefox) normalisieren
+      // Gesten-Pause oder Richtungswechsel resettet den Akkumulator
+      if (now - lastWheelT > 250 || (acc !== 0 && Math.sign(delta) !== Math.sign(acc))) acc = 0;
+      lastWheelT = now;
+      if (delta > 0) {
+        // runter: ab dem Ende des Freibereichs übernimmt die Fahrt
+        const next = stops[i + 1];
+        if (next != null && isFinite(next) && y >= stops[i] + freeOf(i) - 2) {
+          e.preventDefault();
+          acc += delta;
+          if (acc >= WHEEL_COMMIT) { acc = 0; go(next); }
+        }
+      } else if (delta < 0) {
+        // hoch: an der Oberkante einer Sektion übernimmt die Fahrt zur vorigen Ruhelage
+        if (i > 0 && y <= stops[i] + 2) {
+          e.preventDefault();
+          acc += delta;
+          if (-acc >= WHEEL_COMMIT) { acc = 0; go(stops[i - 1] + freeOf(i - 1)); }
+        }
+      }
+    };
+
+    // Fallback für Eingaben ohne wheel-Event (Scrollbar-Drag, Tastatur): erst wenn
+    // die Bewegung vorbei ist (debounced), in der Übergangszone nachziehen
+    const settle = () => {
+      if (animating) return;
+      const y = window.scrollY;
+      const stops = measureStops(y);
+      let i = 0;
+      while (i + 1 < stops.length && y >= stops[i + 1]) i++;
+      const next = stops[i + 1];
+      if (next == null || !isFinite(next)) return; // hinter der letzten Kante = frei
+      const free = freeOf(i);
+      const into = y - stops[i];
+      if (into <= free + 2) return; // Sektion wird noch gelesen → nicht eingreifen
+      const back = stops[i] + free; // Ruhelage der aktuellen Sektion
+      const target = dir >= 0
+        ? (into - free >= COMMIT_PX ? next : back)
+        : (next - y >= COMMIT_PX ? back : next);
+      if (Math.abs(target - y) <= 2) return;
+      go(target);
+    };
+
     const onScroll = () => {
-      const mid = window.scrollY + window.innerHeight / 2;
+      const yNow = window.scrollY;
+      if (yNow !== lastY) dir = yNow > lastY ? 1 : -1;
+      lastY = yNow;
+      const mid = yNow + window.innerHeight / 2;
       let a = 0;
       refs.forEach((r, i) => { if (r.current && r.current.offsetTop <= mid) a = i; });
       setActiveScreen(a);
+      if (animating && Math.abs(yNow - animTarget) <= 2) {
+        // angekommen → Cooldown gegen nachlaufendes Momentum
+        animating = false;
+        cooldownUntil = performance.now() + COOLDOWN_MS;
+        return;
+      }
+      if (reduced || animating) return;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(settle, 140);
     };
     onScroll();
+    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      document.documentElement.classList.remove("snap-proximity-y");
+      window.removeEventListener("wheel", onWheel);
       window.removeEventListener("scroll", onScroll);
+      if (timer) clearTimeout(timer);
     };
   }, [isLeaf]);
 
@@ -888,9 +1101,9 @@ export function VorschauThemen() {
       {/* Breadcrumb — nur am Blatt nötig; im Picker ist die linke Spalte die Navigation */}
       {isLeaf && (
         <nav className="mb-7 flex items-center gap-2 text-[13px] text-zinc-400">
-          <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-violet-500">Themen</button>
+          <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Themen</button>
           <span className="text-zinc-300">/</span>
-          <button onClick={() => nav({ feld: "wirtschaft", unter: null, thema: null })} className="transition hover:text-violet-500">Wirtschaft</button>
+          <button onClick={() => nav({ feld: "wirtschaft", unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Wirtschaft</button>
           <span className="text-zinc-300">/</span>
           <span className="font-medium text-zinc-700 dark:text-zinc-200">{WIRTSCHAFT.unter[unterIdx].name}</span>
         </nav>
@@ -918,14 +1131,14 @@ export function VorschauThemen() {
                     <Fragment key={f.slug}>
                       <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
                         className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${sel
-                          ? "bg-violet-100/70 text-violet-950 dark:bg-violet-500/15 dark:text-violet-100"
+                          ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
                           : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
                         <span className="flex min-w-0 flex-col">
                           <span className={`text-[15px] ${sel ? "font-semibold" : "font-medium"}`}>{f.name}</span>
                           <Teaser items={f.teaser} />
                         </span>
-                        <IconChevron open={sel} className="h-4 w-4 shrink-0 text-violet-400 md:hidden" />
-                        <IconArrow className={`hidden h-4 w-4 shrink-0 text-violet-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                        <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
+                        <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                       </button>
                       {/* Mobile = Akkordeon: Detail klappt unter dem gewählten Feld auf */}
                       {sel && selFeld && <DetailPane key={f.slug} feld={selFeld} onPick={(u) => nav({ feld: f.slug, unter: u, thema: null })} className="panel-expand mb-2 mt-1 px-1 md:hidden" />}
@@ -956,29 +1169,80 @@ export function VorschauThemen() {
         const anchors = allTags.filter((t) => t.anker);
         const hiddenCount = allTags.length - anchors.length;
         const q = query.trim().toLowerCase();
-        const visible = q ? allTags.filter((t) => t.name.toLowerCase().includes(q)) : showAll ? allTags : (anchors.length ? anchors : allTags);
+        // Chips zeigen Anker (Toggle = alle): Die Suche filtert die Chip-Liste NICHT mehr —
+        // Themen findet man über die Vervollständigung im Suchfeld.
+        const visible = showAll ? allTags : (anchors.length ? anchors : allTags);
+
+        // Vervollständigung: ähnelt das Suchwort einem spezifischen Thema, wird es als
+        // Option angeboten (Klick = Chip setzen = exakter Filter). Wer sie ignoriert,
+        // sucht einfach im Volltext weiter — keine Vorab-Entscheidung nötig.
+        const tagSuggestions = q.length >= 2
+          ? allTags.filter((t) => t.name.toLowerCase().includes(q) && t.name !== activeTag).slice(0, 5)
+          : [];
 
         const activeObj = activeTag ? allTags.find((t) => t.name === activeTag) : null;
         // Tags ohne handgepflegte Dummy-Liste filtern den Unterthema-Pool per Wortanfang-
         // Match — genau das, was echte Daten tun (Tag-Filter auf klassifizierte Items).
         // Im echten Bau existiert ein Tag überhaupt nur, wenn Items ihn tragen → nie leer.
-        const shownCatch = activeTag
+        const baseCatch = activeTag
           ? (activeObj?.catch?.length ? activeObj.catch : tagCatchFallback(activeTag, u.catch))
           : u.catch;
 
-        // Alle Abstimmungen zum Thema (shownCatch ist neueste-zuerst): die erste ist die
-        // aktuellste → links als Featured, die übrigen rechts als kompakte Liste älterer
-        // Abstimmungen. Reine Recency, keine Brisanz-Wertung.
+        // Volltextsuche mit Tag-Vorrang: Einträge, die ein zum Suchwort passendes Thema
+        // als Tag TRAGEN, stehen als Block VOR reinen Text-Treffern; innerhalb beider
+        // Blöcke bleibt neueste-zuerst. Klassifikation = präziseres Signal, Datum =
+        // Ordnung — keine Relevanz-Wertung. Echte Engine: searchThema(slug, q) in
+        // suche.ts (geparkt, filtert item_topics + Textmatch).
+        const tagHitTitles = new Set<string>();
+        if (q) for (const t of allTags) {
+          if (!t.name.toLowerCase().includes(q)) continue;
+          (t.catch?.length ? t.catch : tagCatchFallback(t.name, u.catch)).forEach((c) => tagHitTitles.add(c.titel));
+        }
+        const tagHits = q ? baseCatch.filter((c) => tagHitTitles.has(c.titel)) : [];
+        const textHits = q ? baseCatch.filter((c) => !tagHitTitles.has(c.titel) && `${c.titel} ${c.einzeiler}`.toLowerCase().includes(q)) : [];
+        const shownCatch = q ? [...tagHits, ...textHits] : baseCatch;
+
+        // Screen 1 hat FESTE Kapazität (User 2026-06-11), der Überlauf lebt im jeweiligen
+        // Spezial-Werkzeug — der Feed mischt ihn NICHT (ein Klick entfernt = redundant):
+        // Abstimmungen: Featured (neueste) + max 3 ältere rechts, alle weiteren auf
+        // /abstimmungen?thema=… (Themen-Filter existiert dort). Gesetzentwürfe:
+        // neueste 3 in der Reihe, alle auf /gesetzentwuerfe (DIP-Liste mit Binnenphase
+        // + Wartezeit). Reine Recency, keine Brisanz-Wertung.
         const votes = shownCatch.filter((c) => c.typ === "Abstimmung");
         const featuredVote = votes[0] ?? null;
-        const olderVotes = votes.slice(1);
-        // Votes leben komplett in der eigenen Sektion → „Gerade aktiv" zeigt nur Dokumente
-        // (Drucksachen/Reden), keine Dopplung.
-        const rest = shownCatch.filter((c) => c.typ !== "Abstimmung");
+        const olderVotes = votes.slice(1, 4);
+        const voteOverflow = Math.max(0, votes.length - 4);
+        const imVerfahren = shownCatch.filter((c) => c.typ === "Drucksache" && c.stand != null);
+        const gesetzRow = imVerfahren.slice(0, 3);
+        const gesetzOverflow = imVerfahren.length - gesetzRow.length;
+        const rest = shownCatch.filter((c) => c.typ !== "Abstimmung" && c.stand == null);
+        // Heute schon mit echten Treffern: Handzeichen-Votes tragen das Drucksachen-
+        // Roh-Thema („Digitalisierung", 46 Votes); der Tag-Batch vereinheitlicht später
+        const alleVotesHref = `/abstimmungen?thema=${encodeURIComponent(u.voteThema ?? u.name)}`;
         const PAGE_SIZE = 12;
         const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
         const safePage = Math.min(page, totalPages);
         const pageItems = rest.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+        // Transparenz statt unsichtbarer Magie: der Hint sagt, WARUM die Liste so
+        // sortiert ist (Tag-Träger vorn, Text-Treffer dahinter).
+        const feedHint = q
+          ? (tagHits.length
+              ? `${tagHits.length} mit passendem Thema vorn · ${textHits.length} im Text`
+              : `${shownCatch.length} Treffer im Text`)
+          : activeTag ? `gefiltert: ${activeTag}` : `${allTags.length} Themen · neueste zuerst`;
+
+        // In-Place-Vorschau: &doc= (Titel-Slug) gegen die aktuelle Dokumentliste auflösen.
+        // page wird beim Öffnen/Schließen/Blättern explizit durchgereicht, damit nav()
+        // sie nicht auf Seite 1 zurückwirft.
+        const openDoc = docParam ? rest.find((c) => slugify(c.titel) === docParam) ?? null : null;
+        const openIdx = openDoc ? rest.indexOf(openDoc) : -1;
+        const keepPage = searchParams.get("page");
+        const stepDoc = (d: 1 | -1) => {
+          if (openIdx < 0) return;
+          const n = rest[(openIdx + d + rest.length) % rest.length];
+          nav({ doc: slugify(n.titel), page: keepPage }, true); // replace: Blättern spammt die History nicht
+        };
 
         return (
           // ── 3 Scroll-Stufen (User 2026-06-10): Screen 1 = Kopf + Abstimmungen (füllt
@@ -1000,7 +1264,12 @@ export function VorschauThemen() {
                 älteren als Liste mit Slim-Balken. */}
             {featuredVote && (
               <div className="fade-in-up fade-in-up-2">
-                <SectionLabel hint={`${votes.length} ${votes.length === 1 ? "Abstimmung" : "Abstimmungen"}`}>Abstimmungen zum Thema</SectionLabel>
+                {/* next/link, NICHT <a>: harte Navigation + Browser-Back lieferte eine
+                    un-hydratisierte Seite (tote Klicks, kein Paging) — Soft-Navigation
+                    hält die React-App am Leben, Back ist ein Router-Schritt. */}
+                <SectionLabel hint={voteOverflow > 0
+                  ? <Link href={alleVotesHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 4 neuesten · alle {votes.length} ansehen →</Link>
+                  : `${votes.length} ${votes.length === 1 ? "Abstimmung" : "Abstimmungen"}`}>Abstimmungen zum Thema</SectionLabel>
                 {olderVotes.length > 0 ? (
                   <div className="grid gap-5 md:grid-cols-[3fr_2fr] md:gap-6">
                     <FeaturedVote c={featuredVote} />
@@ -1016,11 +1285,13 @@ export function VorschauThemen() {
 
             {/* Reihe 2 — Gesetzentwürfe als volle Karten-Reihe mit Verfahrensstand-
                 Stepper: gleiches Gewicht für „was im Verfahren ist". */}
-            {DIGITAL_GESETZE.length > 0 && (
+            {gesetzRow.length > 0 && (
               <div className="fade-in-up fade-in-up-3">
-                <SectionLabel hint={`${DIGITAL_GESETZE.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
+                <SectionLabel hint={gesetzOverflow > 0
+                  ? <Link href="/gesetzentwuerfe" className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
+                  : `${imVerfahren.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {DIGITAL_GESETZE.map((g) => <GesetzCard key={g.titel} g={g} />)}
+                  {gesetzRow.map((c) => <GesetzCard key={c.titel} c={c} />)}
                 </div>
               </div>
             )}
@@ -1030,7 +1301,7 @@ export function VorschauThemen() {
                 „da wir jetzt Platz haben") — Köpfe groß (xl) mit Name/Partei-Unterschrift
                 + Detail-Feld inkl. Themen-Chips, Sitzungen wieder als volles 3er-Karussell. */}
             {/* pb > pt: gewichtet den Inhalt nach OBEN statt exakt mittig (User) */}
-            <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] snap-start scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
+            <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
               {(u.koepfe?.length ?? 0) > 0 && (
                 <div>
                   <SectionLabel hint="nach Anzahl der Reden">Wer dazu im Plenum spricht</SectionLabel>
@@ -1043,46 +1314,70 @@ export function VorschauThemen() {
               </div>
             </div>
 
-            {/* ── Screen 3: Spezifische Themen + Feed (zweite Scroll-Stufe) ── */}
-            <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] snap-start scroll-mt-24 space-y-10 py-8">
+            {/* ── Screen 3: Gerade aktiv mit Themen-Filterleiste — EIN Block (zweite Scroll-Stufe) ── */}
+            <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] scroll-mt-24 py-8">
             <div ref={themenRef} className="fade-in-up fade-in-up-4">
-              <SectionLabel hint={`${allTags.length} Themen`}>Spezifische Themen</SectionLabel>
-              {/* Eingrenzen-Suche — macht den ganzen Schwanz erreichbar, ohne ihn zu zeigen */}
-              <div className="relative mb-3.5">
+              <SectionLabel hint={feedHint}>Gerade aktiv</SectionLabel>
+              {/* EIN Suchfeld für beides: Volltext im Feed; ähnelt das Wort einem
+                  spezifischen Thema, bietet das Dropdown die Vervollständigung an
+                  (Klick = Chip setzen). Freitext ohne Auswahl rankt Tag-Träger vorn. */}
+              <div className="relative z-20 mb-3.5">
                 <IconSearch className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
                 <input
-                  value={query} onChange={(e) => { setQuery(e.target.value); if (activeTag) pickTag(null, true); }}
-                  placeholder="eingrenzen — z. B. Krypto, Halbleiter, Drohnen…"
-                  className="w-full rounded-2xl bg-zinc-900/[0.04] py-3 pl-11 pr-4 text-[14px] text-zinc-800 placeholder:text-zinc-400 transition focus:bg-white focus:shadow-[0_2px_20px_-8px_rgba(20,20,45,0.25)] focus:outline-none focus:ring-2 focus:ring-violet-300/70 dark:bg-white/[0.06] dark:text-zinc-100 dark:focus:bg-zinc-900"
+                  value={query}
+                  onChange={(e) => { setQuery(e.target.value); if (page > 1) nav({ page: null }, true); }}
+                  onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)}
+                  placeholder={`in ${u.name} suchen — Wort oder spezifisches Thema…`}
+                  className="w-full rounded-2xl bg-zinc-900/[0.04] py-3 pl-11 pr-4 text-[14px] text-zinc-800 placeholder:text-zinc-400 transition focus:bg-white focus:shadow-[0_2px_20px_-8px_rgba(20,20,45,0.25)] focus:outline-none focus:ring-2 focus:ring-zinc-400/60 dark:bg-white/[0.06] dark:text-zinc-100 dark:focus:bg-zinc-900"
                 />
+                {searchFocus && tagSuggestions.length > 0 && (
+                  <div className="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-2xl bg-white shadow-[0_18px_44px_-16px_rgba(20,20,45,0.3)] ring-1 ring-zinc-900/10 dark:bg-zinc-900 dark:ring-white/15">
+                    {tagSuggestions.map((t) => {
+                      const count = (t.catch?.length ? t.catch : tagCatchFallback(t.name, u.catch)).length;
+                      return (
+                        // onMouseDown verhindert den Input-Blur, damit der Klick noch ankommt
+                        <button key={t.name} onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => { pickTag(t.name); setQuery(""); setSearchFocus(false); }}
+                          className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition hover:bg-zinc-50 dark:hover:bg-white/[0.06]">
+                          <span className="flex items-center gap-2.5">
+                            <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-zinc-600 dark:bg-white/[0.1] dark:text-zinc-300">Thema</span>
+                            <span className="text-[13.5px] font-medium text-zinc-800 dark:text-zinc-100">{t.name}</span>
+                          </span>
+                          <span className="text-[12px] text-zinc-400">{count} Einträge</span>
+                        </button>
+                      );
+                    })}
+                    <p className="border-t border-zinc-900/[0.06] px-4 py-2 text-[11.5px] text-zinc-400 dark:border-white/[0.08]">weitertippen = Volltextsuche nach „{query.trim()}“</p>
+                  </div>
+                )}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <button onClick={() => pickTag(null)}
-                  className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${!activeTag ? "bg-violet-600 text-white shadow-md shadow-violet-600/25" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
+                  className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${!activeTag ? "bg-zinc-900 text-white shadow-md shadow-zinc-900/20" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
                   Alle
                 </button>
                 {visible.map((t) => {
                   const sel = activeTag === t.name;
                   return (
                     <button key={t.name} onClick={() => pickTag(sel ? null : t.name)}
-                      className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${sel ? "bg-violet-600 text-white shadow-md shadow-violet-600/25" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
+                      className={`rounded-full px-4 py-2 text-[13.5px] font-medium transition ${sel ? "bg-zinc-900 text-white shadow-md shadow-zinc-900/20" : "bg-zinc-900/[0.05] text-zinc-700 hover:bg-zinc-900/[0.09] dark:bg-white/[0.07] dark:text-zinc-300 dark:hover:bg-white/[0.12]"}`}>
                       {t.name}
                     </button>
                   );
                 })}
-                {!q && hiddenCount > 0 && (
+                {hiddenCount > 0 && (
                   <button onClick={() => setShowAll((v) => !v)}
-                    className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13.5px] font-semibold text-violet-600 transition hover:bg-violet-50 dark:text-violet-400 dark:hover:bg-violet-950/30">
+                    className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13.5px] font-semibold text-zinc-700 transition hover:bg-zinc-900/[0.05] dark:text-zinc-300 dark:hover:bg-white/[0.08]">
                     {showAll ? "weniger" : `${hiddenCount} weitere`}<IconChevron open={showAll} className="h-3.5 w-3.5" />
                   </button>
                 )}
-                {q && !visible.length && <span className="px-1 py-2 text-[13.5px] text-zinc-400">kein Thema passt zu „{query}"</span>}
               </div>
-            </div>
 
-            <div className="fade-in-up fade-in-up-5">
-              <SectionLabel hint={activeTag ? `gefiltert: ${activeTag}` : "neueste zuerst"}>Gerade aktiv</SectionLabel>
-              {shownCatch.length ? (
+              {openDoc ? (
+                <DocPreview c={openDoc} pos={openIdx + 1} total={rest.length}
+                  onClose={() => nav({ doc: null, page: keepPage })}
+                  onPrev={() => stepDoc(-1)} onNext={() => stepDoc(1)} />
+              ) : shownCatch.length ? (
                 <>
                   {/* Die neueste Abstimmung steht oben in „Zuletzt abgestimmt" und ist hier
                       (via rest = shownCatch ohne featuredVote) NICHT doppelt; ältere Votes
@@ -1092,8 +1387,8 @@ export function VorschauThemen() {
                     // Leere Slots werden mit Ghost-Zellen auf PAGE_SIZE aufgefüllt (gestrichelt,
                     // kaum sichtbar) → das 4×3-Raster und damit die Seiten-Höhe bleiben beim
                     // Filtern/Blättern konstant, egal ob 2 oder 12 Treffer (User 2026-06-10).
-                    <div key={`${activeTag ?? ""}-${safePage}`} className="fade-quick mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                      {pageItems.map((c) => <CatchCard key={c.titel} c={c} />)}
+                    <div key={`${activeTag ?? ""}-${safePage}`} className="fade-quick mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                      {pageItems.map((c) => <CatchCard key={c.titel} c={c} onOpen={() => nav({ doc: slugify(c.titel), page: keepPage })} />)}
                       {Array.from({ length: PAGE_SIZE - pageItems.length }, (_, i) => (
                         <div key={`ghost-${i}`} aria-hidden className="min-h-[180px] rounded-3xl border-2 border-dashed border-zinc-900/[0.05] dark:border-white/[0.05]" />
                       ))}
@@ -1110,7 +1405,7 @@ export function VorschauThemen() {
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                           <button key={n} onClick={() => nav({ page: n === 1 ? null : String(n) })}
                             className={`h-9 w-9 rounded-lg text-[13px] transition ${n === safePage
-                              ? "bg-violet-600 font-semibold text-white shadow-md shadow-violet-600/25"
+                              ? "bg-zinc-900 font-semibold text-white shadow-md shadow-zinc-900/20"
                               : "text-zinc-600 ring-1 ring-zinc-900/10 hover:bg-zinc-900/[0.05] dark:text-zinc-300 dark:ring-white/15 dark:hover:bg-white/[0.06]"}`}>
                             {n}
                           </button>
@@ -1127,9 +1422,11 @@ export function VorschauThemen() {
                 // Nur noch Dummy-Artefakt (Long-Tail-Tag ohne Pool-Treffer): mit echten
                 // Daten existiert ein Tag nur, wenn Items ihn tragen — nie leer. Hinweis
                 // belegt den ersten Slot, Ghosts halten die 4×3-Form.
-                <div className="mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   <p className={`flex min-h-[180px] items-center justify-center p-6 text-center text-[12.5px] leading-relaxed text-zinc-400 ${SOFT_CARD}`}>
-                    Im Dummy keine Beispiel-Einträge für „{activeTag}".<br />Mit echten Daten gibt es ein Tag nur, wenn Dokumente es tragen — diese Ansicht wäre nie leer.
+                    {q
+                      ? <>Keine Treffer für „{query.trim()}" — weder als Thema noch im Text.</>
+                      : <>Im Dummy keine Beispiel-Einträge für „{activeTag}".<br />Mit echten Daten gibt es ein Tag nur, wenn Dokumente es tragen — diese Ansicht wäre nie leer.</>}
                   </p>
                   {Array.from({ length: PAGE_SIZE - 1 }, (_, i) => (
                     <div key={`ghost-${i}`} aria-hidden className="min-h-[180px] rounded-3xl border-2 border-dashed border-zinc-900/[0.05] dark:border-white/[0.05]" />

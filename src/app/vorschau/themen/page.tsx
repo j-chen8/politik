@@ -25,10 +25,6 @@ export const metadata = {
 export default function VorschauThemenPage() {
   return (
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>
-      <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-[12px] text-amber-800">
-        Dummy-Vorschau · Platzhalter-Daten · prüft nur die Klick-Logik
-      </div>
-
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-24 pt-10">
         <Suspense fallback={<div className="h-64" />}>
           <VorschauThemen />
