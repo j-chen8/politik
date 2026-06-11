@@ -4,13 +4,15 @@ import {
   getRedenTonalitaetByFraktion,
   getDrucksacheTonalitaetByFraktion,
   getDrucksacheMonthlyTrend,
+  getGesetzgebungsFunnel,
+  type GesetzgebungsFunnelRow,
 } from "@/lib/db";
 import { partyColor } from "@/lib/party-colors";
 
 export const metadata = {
   title: "Analyse — Was die Daten zeigen | Politik-Radar",
   description:
-    "Drei empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie und Trend.",
+    "Vier empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie und der Gesetzgebungs-Trichter nach Einbringer.",
 };
 
 const FRAKTION_ORDER = ["CDU/CSU", "SPD", "Grüne", "Linke", "AfD"];
@@ -35,6 +37,7 @@ export default function AnalysePage() {
   const reden = getRedenTonalitaetByFraktion();
   const ka = getDrucksacheTonalitaetByFraktion();
   const trend = getDrucksacheMonthlyTrend();
+  const funnel = getGesetzgebungsFunnel();
 
   // === BEFUND 1: Reden-Stil-Profile ===
   // Jede Fraktion hat ein dominantes Stil-Profil — wir zeigen die Anteile
@@ -129,12 +132,13 @@ export default function AnalysePage() {
             Was die Daten zeigen
           </h1>
           <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
-            Drei empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
+            Vier empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
           <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
-            Alle Zahlen kommen aus der LLM-Klassifikation der Plenarreden und der Kleinen Anfragen
-            (WP21, Stand{" "}
+            Die Befunde 1–3 kommen aus der LLM-Klassifikation der Plenarreden und der Kleinen
+            Anfragen, Befund 4 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
+            keine KI im Spiel (WP21, Stand{" "}
             <span className="num">{trend[trend.length - 1]?.monat ?? "—"}</span>). Methodische
             Grenzen — Themen-Confound, Speaker-Identity-Confound, fehlende
             Inter-Annotator-Studie — siehe{" "}
@@ -354,6 +358,63 @@ export default function AnalysePage() {
           </CaveatBox>
         </section>
 
+        {/* === BEFUND 4: Gesetzgebungs-Trichter === */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              Befund 4 · Gesetzgebung
+            </div>
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+              Ob ein Gesetzentwurf je zur Abstimmung kommt, entscheidet vor allem der Absender.
+            </h2>
+            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Der Trichter vom eingebrachten Entwurf bis zum Beschluss, getrennt nach Einbringer
+              (Art. 76 GG kennt drei Wege: Bundesregierung, Fraktionen, Bundesrat). Regierungs-
+              und Koalitionsentwürfe laufen durch und werden nie abgelehnt. Oppositionsentwürfe
+              bekommen meist ihre 1. Lesung — aber jede Schlussabstimmung endete bisher mit
+              Ablehnung. Länder-Initiativen erreichen das Plenum praktisch gar nicht:{" "}
+              <strong className="text-zinc-950">
+                eine einzige 1. Lesung, null Abstimmungen.
+              </strong>
+            </p>
+            <p className="mt-3 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Sichtbar wird das auch an der Wartezeit auf die 1. Lesung: Koalitionsentwürfe
+              kommen binnen Tagen auf die Tagesordnung, wartende Länder-Entwürfe liegen im
+              Schnitt seit{" "}
+              <span className="num font-semibold text-zinc-950">
+                {funnel.find((r) => r.einbringer.startsWith("Länder"))?.wartendSchnittTage ?? "—"}
+              </span>{" "}
+              Tagen ungelesen — die Mehrheit bestimmt die Tagesordnung, und Nichtbefassung ist
+              die stillste Form der Ablehnung.
+            </p>
+          </div>
+
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
+            <div className="space-y-5">
+              {funnel.map((row) => (
+                <FunnelRow key={row.einbringer} row={row} />
+              ))}
+            </div>
+            <Legend
+              items={[
+                { label: "eingebracht", color: "#e4e4e7" },
+                { label: "1. Lesung erreicht", color: "#a1a1aa" },
+                { label: "zur Abstimmung gekommen", color: "#1a3e72" },
+                { label: "beschlossen", color: "#18181b" },
+              ]}
+            />
+          </div>
+
+          <CaveatBox>
+            Schnappschuss einer laufenden Wahlperiode (14 Monate) — wartende Entwürfe können
+            ihre Lesung noch bekommen, die Quoten sind kein Endstand. „Zur Abstimmung" umfasst
+            auch Ablehnungen in der 2. Lesung (danach entfällt die 3., § 83 GO-BT).
+            Länder-Initiativen, die schon im Bundesrat scheitern oder dort liegen, sind in
+            „eingebracht" enthalten, erreichen aber nie die Spalte „im Bundestag". Historische
+            Vergleichswerte über frühere Wahlperioden: Datenhandbuch des Deutschen Bundestages.
+          </CaveatBox>
+        </section>
+
         <div className="mt-16 border-t border-zinc-200/70 pt-8">
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
             Wie ist das alles entstanden?
@@ -551,6 +612,51 @@ function KaCompositionBar({
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function FunnelRow({ row }: { row: GesetzgebungsFunnelRow }) {
+  // Geschachtelte Anteils-Balken: jede Stufe ist Teilmenge der vorherigen.
+  const pct = (n: number) => (row.gesamt > 0 ? (n / row.gesamt) * 100 : 0);
+  const stufen = [
+    { key: "eingebracht", value: 100, color: "#e4e4e7" },
+    { key: "1. Lesung", value: pct(row.ersteLesung), color: "#a1a1aa" },
+    { key: "zur Abstimmung", value: pct(row.zurAbstimmung), color: "#1a3e72" },
+    { key: "beschlossen", value: pct(row.beschlossen), color: "#18181b" },
+  ];
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-1.5 gap-3 flex-wrap">
+        <div className="text-[13px] font-semibold text-zinc-950">{row.einbringer}</div>
+        <div className="text-[11px] text-zinc-500 num">
+          {fmtNum(row.gesamt)} eingebracht · {fmtNum(row.ersteLesung)} in 1. Lesung ·{" "}
+          {fmtNum(row.zurAbstimmung)} abgestimmt ·{" "}
+          <span className="font-semibold text-zinc-950">{fmtNum(row.beschlossen)} beschlossen</span>
+          {row.abgelehnt > 0 && (
+            <>
+              {" "}· <span className="font-semibold text-rose-700">{fmtNum(row.abgelehnt)} abgelehnt</span>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="relative h-6 w-full rounded-md overflow-hidden bg-zinc-100">
+        {stufen.map((s) => (
+          <div
+            key={s.key}
+            className="absolute inset-y-0 left-0 rounded-r-sm"
+            style={{ width: `${s.value}%`, backgroundColor: s.color }}
+            title={`${s.key}: ${fmtNum(Math.round((s.value / 100) * row.gesamt))} von ${fmtNum(row.gesamt)}`}
+          />
+        ))}
+      </div>
+      {row.wartendVorLesung > 0 && (
+        <div className="mt-1 text-[11px] text-zinc-400 num">
+          {fmtNum(row.wartendVorLesung)} {row.wartendVorLesung === 1 ? "wartet" : "warten"} auf die 1. Lesung
+          {row.wartendSchnittTage != null && <> — {row.wartendVorLesung === 1 ? "seit" : "im Schnitt seit"} {fmtNum(row.wartendSchnittTage)} Tagen</>}
+        </div>
+      )}
     </div>
   );
 }

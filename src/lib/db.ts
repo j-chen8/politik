@@ -4831,6 +4831,73 @@ export function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
   });
 }
 
+export interface GesetzgebungsFunnelRow {
+  einbringer: string;            // "Bundesregierung" | "Koalitionsfraktionen" | …
+  gesamt: number;                // alle Gesetzgebungsvorgänge WP21
+  imBundestag: number;           // BT-Drucksache existiert
+  ersteLesung: number;
+  zurAbstimmung: number;         // 3. Lesung/Schlussabstimmung ODER abgelehnt (2. Lesung)
+  beschlossen: number;
+  abgelehnt: number;
+  wartendVorLesung: number;      // laufend, BT-DS da, noch keine 1. Lesung
+  wartendSchnittTage: number | null;
+}
+
+/**
+ * Gesetzgebungs-Trichter pro Einbringer (WP21, amtliche DIP-Vorgangsdaten):
+ * Wer bringt ein, was erreicht die 1. Lesung, was kommt zur Abstimmung,
+ * was wird beschlossen. "Zur Abstimmung" zählt auch Ablehnungen in der
+ * 2. Lesung mit (danach entfällt die 3. Lesung, § 83 GO-BT).
+ */
+export function getGesetzgebungsFunnel(): GesetzgebungsFunnelRow[] {
+  const db = getDb();
+  return db.prepare(`
+    WITH klass AS (
+      SELECT v.id, v.beratungsstand,
+        CASE
+          WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 'Bundesregierung'
+          WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 'Koalitionsfraktionen'
+          WHEN v.initiative_json LIKE '%Fraktion%' THEN 'Oppositionsfraktionen'
+          ELSE 'Länder (über den Bundesrat)'
+        END AS einbringer,
+        CASE
+          WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 1
+          WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 2
+          WHEN v.initiative_json LIKE '%Fraktion%' THEN 3
+          ELSE 4
+        END AS sortier,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition='Gesetzentwurf' AND p.zuordnung='BT' AND p.herausgeber='BT') AS im_bt,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition LIKE '1. Beratung%') AS lesung1,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition IN ('3. Beratung','2. Beratung und Schlussabstimmung')) AS schlussvote,
+        (SELECT MIN(p.datum) FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition='Gesetzentwurf' AND p.zuordnung='BT') AS bt_datum
+      FROM dip_vorgaenge v
+    )
+    SELECT einbringer,
+      COUNT(*) AS gesamt,
+      SUM(im_bt) AS imBundestag,
+      SUM(lesung1) AS ersteLesung,
+      SUM(schlussvote OR beratungsstand='Abgelehnt') AS zurAbstimmung,
+      SUM(beratungsstand IN ('Verkündet','Verabschiedet','Bundesrat hat zugestimmt','Im Vermittlungsverfahren')) AS beschlossen,
+      SUM(beratungsstand='Abgelehnt') AS abgelehnt,
+      SUM(im_bt AND NOT lesung1 AND beratungsstand NOT IN (
+        'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+        'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+        'Im Vermittlungsverfahren','Einbringung abgelehnt')) AS wartendVorLesung,
+      CAST(AVG(CASE WHEN im_bt AND NOT lesung1 AND beratungsstand NOT IN (
+        'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+        'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+        'Im Vermittlungsverfahren','Einbringung abgelehnt')
+        THEN julianday('now') - julianday(bt_datum) END) AS INT) AS wartendSchnittTage
+    FROM klass
+    GROUP BY einbringer
+    ORDER BY MIN(sortier)
+  `).all() as GesetzgebungsFunnelRow[];
+}
+
 export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
   const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
   if (themas.length === 0) return [];
