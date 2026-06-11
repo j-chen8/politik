@@ -281,24 +281,21 @@ Konjunktur, Wachstum & Gesamtsteuerung · Wettbewerb & Kartellrecht
 - Grenzfälle: Gesundheits-Anträge mit Forschungs-Anteil (±5 Pp.); KI ↔ Medien/IT; Weltraumsicherheit ↔ Verteidigung.
 
 ## Kultur (n=95 Vollerhebung, Fremd ~15 %)
-1. Erinnerungskultur, Gedenkstätten & Aufarbeitung — ~27 % — 21/2910, 21/3032
+1. Erinnerungskultur, Gedenkstätten & Kriegsgräber — inkl. Volksbund/Gedenken an Kriegstote (gemergt, Trim 2026-06-11) — ~34 % — 21/2910, 21/569
 2. Medien- & Plattformpolitik — Rundfunkbeitrag, Medienförderung & Staatsferne — ~16 % — 21/953, 21/6027
 3. Kulturförderung & Kulturpreise — ~15 % — 21/2539, 21/5090
 4. Kulturgutschutz, Restitution & Kolonialerbe — ~13 % — 21/219, 21/1290
 5. Film, Musik & Kreativwirtschaft — Filmförderung, Streaming — ~10 % — 21/2808, 21/3608
 6. Kultureinrichtungen, Museen & Bibliotheken — ~9 % — 21/1412, 21/5151
-7. Kriegsgräber & Gedenken an Kriegstote — Volksbund — ~7 % — 21/569, 21/560
-8. Auswärtige Kulturpolitik & internationaler Austausch — AKBP — ~6 % — 21/3230, 21/5517
-- Grenzfälle: 7 evtl. in 1 mergen (dann ~34 %); Medienpolitik-Anfragen oft Demokratie-motiviert.
+7. Auswärtige Kulturpolitik & internationaler Austausch — AKBP — ~6 % — 21/3230, 21/5517
+- Grenzfälle: Medienpolitik-Anfragen oft Demokratie-motiviert (multi-label).
 
 ## Sport, Freizeit und Tourismus (n=34 Vollerhebung, Fremd ~5 %)
 1. Olympiabewerbungen & Sportgroßveranstaltungen — ~22 % — 21/3029, 21/4917
-2. Soziale Absicherung von Athlet:innen & Trainer:innen — ~22 % — 21/3616, 21/6009
-3. Spitzensportförderung & Reform — NADA, Strukturreform — ~18 % — 21/2306, 21/4292
-4. Sportstätten & Bäder — Sanierungsstau — ~16 % — 21/5065, 21/4831
-5. Gleichstellung, Inklusion & Teilhabe im Sport — ~12 % — 21/790, 21/607
-6. Gewalt, Diskriminierung & Fankultur — ~12 % — 21/4218, 21/4213
-- ⚠️ Befund: Tourismus/Freizeit kommen praktisch nicht vor — Feld ist de facto „Sport"; kein Tourismus-Cluster erfinden.
+2. Spitzensport: Förderung, Reform & Athlet:innen — Förderung/NADA + soziale Absicherung/Arbeitsbedingungen (gemergt, Trim 2026-06-11) — ~40 % — 21/2306, 21/3616
+3. Sportstätten & Bäder — Sanierungsstau — ~16 % — 21/5065, 21/4831
+4. Teilhabe, Fairness & Schutz im Sport — Gleichstellung/Inklusion + Gewalt/Diskriminierung/Fankultur (gemergt) — ~24 % — 21/790, 21/4218
+- ⚠️ Befund: Tourismus/Freizeit kommen praktisch nicht vor — Feld ist de facto „Sport"; kein Tourismus-Cluster erfinden. Cluster 2 bei 40 % toleriert (Mini-Feld).
 
 ---
 
