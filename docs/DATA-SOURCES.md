@@ -175,6 +175,7 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
   (Mapping = `rede_id` + `segment_index`, **nicht** `speech_id`)
 - **Pre-Flight ($0, read-only):** `npx tsx scripts/batch-submit-reden.ts` (ohne `--confirm`)
 - **Pipeline ($$):** State sichern (`mv .batch-state.json .batch-state.json.alt-$(date +%Y%m%d)`) → `batch-submit-reden.ts --confirm` → warten → `batch-retrieve-reden.ts --apply`
+- **⚠️ Pflicht-Schritt danach (v2→speech_summaries-Kopie, $0):** Die UI liest `speech_summaries` — neue Reden bleiben dort LEER, bis die `zusammenfassung` aus `speech_analyses_v2` kopiert ist (segment-geordnet je `rede_id` joinen, `model='backfill-from-v2-<datum>'`). Am 2026-06-11 entdeckt: Sitzungen 76–80 waren analysiert, aber 737 Summaries leer → Reden fehlten still auf Themen-Blatt/Profilen. Einzeiler siehe Commit-Historie (tsx-Inline) — bei Bedarf als Skript ausgliedern.
 - **Caveat:** liest `docs/summarization-methodology.md` — muss **v2.1** sein (H10 + `neutralitaets_self_check`); bekannte Tonalitäts-Drift ~0,3 %
 
 ### 2.3 Activities (DIP-API)
