@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import type { DigitalBlattEcht } from "@/lib/themen-blatt";
 import { type LucideIcon, FileText, Mic, Vote, Landmark, X } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { partyColor } from "@/lib/party-colors";
@@ -39,6 +40,9 @@ type CatchItem = {
   // vor); redner = wer die Rede hielt; stand/standDetail = DIP-Verfahrensstand
   // (echter Bau: dip_ds_vorgaenge, seit 2026-06-11 in der DB).
   vorschau?: string; redner?: string; stand?: 0 | 1 | 2 | 3; standDetail?: string;
+  // echte Daten: stabile ID (Keys + &doc=-Param), ISO-Datum (Sortierung), Detail-Link,
+  // Handzeichen-Fraktionsvoten + Ausgang
+  id?: string; iso?: string; href?: string; fraktionen?: Record<string, string>; outcome?: string;
 };
 // Eine Kante ist eine TÜR, kein Label: `brücke` = das real verbindende Dokument
 // (das Mit-Vorkommen, das die Verbindung trägt). Kanten werden im Themen-Browse
@@ -217,7 +221,7 @@ const WIRTSCHAFT: Oberthema = {
 
 // Plenarsitzungen mit Bezug zum Unterthema (Dummy). Im echten Bau: Sitzungen, deren
 // Tagesordnungspunkte das Thema tragen → Link auf /protokolle/sitzung/<nr>.
-type Sitzung = { nr: number; datum: string; tops: string };
+type Sitzung = { nr: number; datum: string; tops: string; href?: string };
 const DIGITAL_SITZUNGEN: Sitzung[] = [
   { nr: 198, datum: "12. Juni 2026", tops: "KI-Verordnung · NIS-2 · Deepfakes" },
   { nr: 195, datum: "28. Mai 2026", tops: "Breitbandausbau · Gigabit-Förderung" },
@@ -320,8 +324,8 @@ function CatchCard({ c, onOpen }: { c: CatchItem; onOpen?: () => void }) {
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen?.(); } }}
       className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       <TypEyebrow c={c} />
-      <p className="mt-2.5 text-[15px] font-semibold leading-snug text-zinc-900 dark:text-zinc-50">{c.titel}</p>
-      <p className="mt-2 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      <p className="mt-2.5 line-clamp-2 text-[15px] font-semibold leading-snug text-zinc-900 dark:text-zinc-50">{c.titel}</p>
+      <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
     </div>
   );
 }
@@ -365,7 +369,7 @@ function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
       )}
       <TagChips tags={c.tags} className="mt-5" />
       <div className="mt-auto flex items-center justify-between gap-4 pt-10">
-        <a href="#" className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-900 transition hover:gap-2.5 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
+        <a href={c.href ?? "#"} className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-900 transition hover:gap-2.5 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
           Zur {c.typ}<IconArrow className="h-4 w-4" />
         </a>
         <div className="flex items-center gap-2.5">
@@ -419,7 +423,7 @@ function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]
 // einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
+    <a href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         {/* Typ-Wort raus — die Sektions-Überschrift sagt schon „Abstimmungen"; „Aktuell"
             begründet nur, warum DIESE Karte groß ist (die neueste). Icon trägt den Typ. */}
@@ -434,10 +438,10 @@ function FeaturedVote({ c }: { c: CatchItem }) {
       ) : (
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
       )}
-      {c.ergebnis && (
+      {(c.ergebnis || c.fraktionen) && (
         <div className="mt-auto pt-6">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Ergebnis</p>
-          <ErgebnisBar e={c.ergebnis} />
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Ergebnis{c.outcome ? ` · ${c.outcome}` : ""}</p>
+          {c.ergebnis ? <ErgebnisBar e={c.ergebnis} /> : <FraktionRow f={c.fraktionen!} />}
         </div>
       )}
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
@@ -452,15 +456,40 @@ function FeaturedVote({ c }: { c: CatchItem }) {
 // getrennt (divide-y am Container), grüner Vote-Akzent wie die Featured-Karte.
 function VoteRow({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className="group block py-5">
+    <a href={c.href ?? "#"} className="group block py-5">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-        <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
+        <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}{c.outcome ? ` · ${c.outcome}` : ""}
       </p>
-      <p className="mt-1.5 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
+      <p className="mt-1.5 line-clamp-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
       <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
-      {c.ergebnis && <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>}
+      {c.ergebnis ? <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>
+        : c.fraktionen ? <div className="mt-2.5"><FraktionRow f={c.fraktionen} slim /></div> : null}
       <TagChips tags={c.tags} className="mt-2.5" />
     </a>
+  );
+}
+
+// Handzeichen-Votes haben keine Ja/Nein-Zahlen — nur Fraktionsvoten (Daten-Lücke:
+// individuelle Stimmen gibt es nur bei namentlichen Abstimmungen). Daten-Farben
+// wie auf /abstimmungen: grün = ja, rot = nein, amber = enthaltung.
+const FRAKTIONS_ORDER = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"];
+function FraktionRow({ f, slim = false }: { f: Record<string, string>; slim?: boolean }) {
+  const pill = (vt: string) =>
+    vt === "ja" ? "bg-emerald-50 text-emerald-800 ring-emerald-200"
+    : vt === "nein" ? "bg-rose-50 text-rose-800 ring-rose-200"
+    : vt === "enthaltung" ? "bg-amber-50 text-amber-800 ring-amber-200"
+    : "bg-zinc-50 text-zinc-500 ring-zinc-200";
+  const icon = (vt: string) => (vt === "ja" ? "✓" : vt === "nein" ? "✗" : vt === "enthaltung" ? "—" : "?");
+  const keys = [...FRAKTIONS_ORDER.filter((k) => f[k]), ...Object.keys(f).filter((k) => !FRAKTIONS_ORDER.includes(k))];
+  return (
+    <span className={`flex flex-wrap ${slim ? "gap-1" : "gap-1.5"}`}>
+      {keys.map((k) => (
+        <span key={k} title={`${k}: ${f[k]}`}
+          className={`inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ring-1 ${slim ? "text-[10px]" : "text-[10.5px]"} ${pill(f[k])}`}>
+          <span className="font-semibold">{k}</span><span>{icon(f[k])}</span>
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -484,7 +513,7 @@ function StandDots({ stand }: { stand: number }) {
 // wie der Feed.
 function GesetzCard({ c }: { c: CatchItem }) {
   return (
-    <a href="#" className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+    <a href={c.href ?? "#"} className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
@@ -589,7 +618,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
       <div ref={scrollRef} onScroll={onScroll}
         className={`flex min-w-0 flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${compact ? "" : "scroll-pl-7 [mask-image:linear-gradient(to_right,transparent,black_2.25rem,black_calc(100%-2.25rem),transparent)]"}`}>
         {[...sitzungen, ...sitzungen, ...sitzungen].map((s, i) => (
-          <a key={`${s.nr}-${i}`} href="#" aria-hidden={i < n || i >= n * 2 ? true : undefined}
+          <a key={`${s.nr}-${i}`} href={s.href ?? "#"} aria-hidden={i < n || i >= n * 2 ? true : undefined}
             className={`group flex w-[260px] shrink-0 snap-start items-start gap-3.5 transition duration-300 hover:shadow-[0_16px_36px_-18px_rgba(20,20,45,0.3)] ${compact ? "p-4 md:w-[calc((100%-0.75rem)/2)]" : "p-5 md:w-[calc((100%-5rem)/3)]"} ${SOFT_CARD}`}>
             {!compact && (
               <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-900/[0.05] text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">
@@ -812,6 +841,29 @@ const FELDER: Feld[] = [
 // volle Name bleibt überall sonst (Filter-Chip am Blatt etc.).
 const KURZ: Record<string, string> = { "Künstliche Intelligenz": "KI" };
 
+// Echte Digital-Daten (Server-Loader src/lib/themen-blatt.ts) → ein gemischter,
+// datums-sortierter CatchItem-Pool: Votes + laufende GE (mit Stand) + Dokumente.
+function echtToCatch(e: DigitalBlattEcht): CatchItem[] {
+  const items: CatchItem[] = [
+    ...e.votes.map((v): CatchItem => ({
+      id: v.id, titel: v.titel, typ: "Abstimmung", datum: v.datum, einzeiler: v.einzeiler,
+      worum: v.worum ?? undefined, tags: v.tags, iso: v.iso ?? undefined, href: v.href,
+      fraktionen: v.fraktionen ?? undefined, outcome: v.outcome,
+    })),
+    ...e.gesetze.map((g): CatchItem => ({
+      id: g.id, titel: g.titel, typ: "Drucksache", datum: g.datum, einzeiler: g.einzeiler,
+      vorschau: g.vorschau ?? undefined, tags: g.tags, iso: g.iso ?? undefined, href: g.href,
+      stand: g.stand, standDetail: g.standDetail,
+    })),
+    ...e.docs.map((d): CatchItem => ({
+      id: d.id, titel: d.titel, typ: d.typ, datum: d.datum, einzeiler: d.einzeiler,
+      vorschau: d.vorschau ?? undefined, redner: d.redner ?? undefined, tags: d.tags,
+      iso: d.iso ?? undefined, href: d.href,
+    })),
+  ];
+  return items.sort((a, b) => (b.iso ?? "").localeCompare(a.iso ?? ""));
+}
+
 // Passiver Vorschau-Ticker: alle spezifischen Themen laufen als Laufband durch (reine
 // Scent-Vorschau, NICHT klickbar → kein Moving-Target-Problem). Zwei Kopien für die
 // nahtlose Schleife; Rand-Fade via mask-image, damit es weich ausläuft statt hart
@@ -892,7 +944,7 @@ function DetailPane({ feld, onPick, className = "" }: { feld: Feld; onPick: (unt
   );
 }
 
-export function VorschauThemen() {
+export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht }) {
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
   const unterSlug = searchParams.get("unter");
@@ -1164,7 +1216,19 @@ export function VorschauThemen() {
 
       {/* ── BLATT: Unterthema (mit Tag-Filter) ── */}
       {isLeaf && (() => {
-        const u = WIRTSCHAFT.unter[unterIdx];
+        const uBase = WIRTSCHAFT.unter[unterIdx];
+        // Digital läuft auf ECHTEN Daten (Server-Loader), die übrigen Unterthemen
+        // bleiben Dummy — genau der Vergleich, der die Daten-Lücken sichtbar macht.
+        const echt = uBase.name === "Digital" ? digitalEcht : undefined;
+        const u = echt
+          ? {
+              ...uBase,
+              catch: echtToCatch(echt),
+              tags: echt.tags.map((t, i): Tag => ({ name: t.name, anker: i < 8 })),
+              koepfe: echt.koepfe.map((k) => ({ ...k, rolle: k.rolle ?? undefined })),
+            }
+          : uBase;
+        const sitzungen = echt ? echt.sitzungen : DIGITAL_SITZUNGEN;
         const allTags = u.tags ?? [];
         const anchors = allTags.filter((t) => t.anker);
         const hiddenCount = allTags.length - anchors.length;
@@ -1180,13 +1244,17 @@ export function VorschauThemen() {
           ? allTags.filter((t) => t.name.toLowerCase().includes(q) && t.name !== activeTag).slice(0, 5)
           : [];
 
-        const activeObj = activeTag ? allTags.find((t) => t.name === activeTag) : null;
-        // Tags ohne handgepflegte Dummy-Liste filtern den Unterthema-Pool per Wortanfang-
-        // Match — genau das, was echte Daten tun (Tag-Filter auf klassifizierte Items).
-        // Im echten Bau existiert ein Tag überhaupt nur, wenn Items ihn tragen → nie leer.
-        const baseCatch = activeTag
-          ? (activeObj?.catch?.length ? activeObj.catch : tagCatchFallback(activeTag, u.catch))
-          : u.catch;
+        // Items eines Tags: 1) kuratierte Dummy-Liste, 2) ECHTE Klassifikation
+        // (item.tags-Mitgliedschaft — der Normalfall mit echten Daten), 3) Wortanfang-
+        // Fallback für Dummy-Tags ohne Liste. Reden tragen (noch) keine Tags und
+        // fallen beim Tag-Filter raus — bekannte Lücke bis zum Tag-Batch.
+        const tagItems = (name: string): CatchItem[] => {
+          const t = allTags.find((x) => x.name === name);
+          if (t?.catch?.length) return t.catch;
+          const byTag = u.catch.filter((c) => c.tags?.includes(name));
+          return byTag.length ? byTag : tagCatchFallback(name, u.catch);
+        };
+        const baseCatch = activeTag ? tagItems(activeTag) : u.catch;
 
         // Volltextsuche mit Tag-Vorrang: Einträge, die ein zum Suchwort passendes Thema
         // als Tag TRAGEN, stehen als Block VOR reinen Text-Treffern; innerhalb beider
@@ -1196,7 +1264,7 @@ export function VorschauThemen() {
         const tagHitTitles = new Set<string>();
         if (q) for (const t of allTags) {
           if (!t.name.toLowerCase().includes(q)) continue;
-          (t.catch?.length ? t.catch : tagCatchFallback(t.name, u.catch)).forEach((c) => tagHitTitles.add(c.titel));
+          tagItems(t.name).forEach((c) => tagHitTitles.add(c.titel));
         }
         const tagHits = q ? baseCatch.filter((c) => tagHitTitles.has(c.titel)) : [];
         const textHits = q ? baseCatch.filter((c) => !tagHitTitles.has(c.titel) && `${c.titel} ${c.einzeiler}`.toLowerCase().includes(q)) : [];
@@ -1235,13 +1303,13 @@ export function VorschauThemen() {
         // In-Place-Vorschau: &doc= (Titel-Slug) gegen die aktuelle Dokumentliste auflösen.
         // page wird beim Öffnen/Schließen/Blättern explizit durchgereicht, damit nav()
         // sie nicht auf Seite 1 zurückwirft.
-        const openDoc = docParam ? rest.find((c) => slugify(c.titel) === docParam) ?? null : null;
+        const openDoc = docParam ? rest.find((c) => (c.id ?? slugify(c.titel)) === docParam) ?? null : null;
         const openIdx = openDoc ? rest.indexOf(openDoc) : -1;
         const keepPage = searchParams.get("page");
         const stepDoc = (d: 1 | -1) => {
           if (openIdx < 0) return;
           const n = rest[(openIdx + d + rest.length) % rest.length];
-          nav({ doc: slugify(n.titel), page: keepPage }, true); // replace: Blättern spammt die History nicht
+          nav({ doc: n.id ?? slugify(n.titel), page: keepPage }, true); // replace: Blättern spammt die History nicht
         };
 
         return (
@@ -1274,7 +1342,7 @@ export function VorschauThemen() {
                   <div className="grid gap-5 md:grid-cols-[3fr_2fr] md:gap-6">
                     <FeaturedVote c={featuredVote} />
                     <div className={`flex flex-col px-6 [&>*]:border-zinc-900/[0.06] dark:[&>*]:border-white/[0.07] [&>*+*]:border-t ${SOFT_CARD}`}>
-                      {olderVotes.map((v) => <VoteRow key={v.titel} c={v} />)}
+                      {olderVotes.map((v) => <VoteRow key={v.id ?? v.titel} c={v} />)}
                     </div>
                   </div>
                 ) : (
@@ -1291,7 +1359,7 @@ export function VorschauThemen() {
                   ? <Link href="/gesetzentwuerfe" className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
                   : `${imVerfahren.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {gesetzRow.map((c) => <GesetzCard key={c.titel} c={c} />)}
+                  {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} />)}
                 </div>
               </div>
             )}
@@ -1310,7 +1378,7 @@ export function VorschauThemen() {
               )}
               <div>
                 <SectionLabel hint={`${DIGITAL_SITZUNGEN.length} Sitzungen`}>Plenarsitzungen mit Digital-Bezug</SectionLabel>
-                <SitzungenShelf sitzungen={DIGITAL_SITZUNGEN} />
+                <SitzungenShelf sitzungen={sitzungen} />
               </div>
             </div>
 
@@ -1333,7 +1401,7 @@ export function VorschauThemen() {
                 {searchFocus && tagSuggestions.length > 0 && (
                   <div className="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-2xl bg-white shadow-[0_18px_44px_-16px_rgba(20,20,45,0.3)] ring-1 ring-zinc-900/10 dark:bg-zinc-900 dark:ring-white/15">
                     {tagSuggestions.map((t) => {
-                      const count = (t.catch?.length ? t.catch : tagCatchFallback(t.name, u.catch)).length;
+                      const count = tagItems(t.name).length;
                       return (
                         // onMouseDown verhindert den Input-Blur, damit der Klick noch ankommt
                         <button key={t.name} onMouseDown={(e) => e.preventDefault()}
@@ -1388,7 +1456,7 @@ export function VorschauThemen() {
                     // kaum sichtbar) → das 4×3-Raster und damit die Seiten-Höhe bleiben beim
                     // Filtern/Blättern konstant, egal ob 2 oder 12 Treffer (User 2026-06-10).
                     <div key={`${activeTag ?? ""}-${safePage}`} className="fade-quick mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                      {pageItems.map((c) => <CatchCard key={c.titel} c={c} onOpen={() => nav({ doc: slugify(c.titel), page: keepPage })} />)}
+                      {pageItems.map((c) => <CatchCard key={c.id ?? c.titel} c={c} onOpen={() => nav({ doc: c.id ?? slugify(c.titel), page: keepPage })} />)}
                       {Array.from({ length: PAGE_SIZE - pageItems.length }, (_, i) => (
                         <div key={`ghost-${i}`} aria-hidden className="min-h-[180px] rounded-3xl border-2 border-dashed border-zinc-900/[0.05] dark:border-white/[0.05]" />
                       ))}

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Bricolage_Grotesque } from "next/font/google";
 import { VorschauThemen } from "@/components/VorschauThemen";
+import { getDigitalBlatt } from "@/lib/themen-blatt";
 
 // Charaktervolle Display-Schrift nur für diese Seite (Headlines) — gibt dem
 // weichen Look ein modernes Gesicht statt des techy Geist. Body bleibt Geist.
@@ -23,11 +24,14 @@ export const metadata = {
  * sind Platzhalter (Volumina teils echt aus DB-Scans).
  */
 export default function VorschauThemenPage() {
+  // Digital läuft auf echten Daten (Roh-Tag/aw-Feld/DIP als Korn-Proxy bis zum
+  // Tag-Batch — Lücken-Inventar in src/lib/themen-blatt.ts), Rest bleibt Dummy.
+  const digital = getDigitalBlatt();
   return (
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-24 pt-10">
         <Suspense fallback={<div className="h-64" />}>
-          <VorschauThemen />
+          <VorschauThemen digitalEcht={digital} />
         </Suspense>
         {/* Daten-Spec-<details> entfernt (User 2026-06-11) — die Spec lebt in
             docs/themen-unterthemen-design.md + den Code-Kommentaren der Komponente. */}
