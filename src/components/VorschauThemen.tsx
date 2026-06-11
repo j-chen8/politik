@@ -60,53 +60,12 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null };
 // voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
 // Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
-type Unterthema = { name: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
+// cluster = kanonischer Batch-Name in ds_unterthemen; name = kurzes Anzeige-Label
+// (Research-Befund „Labels sind der Hebel" — Anzeige kurz, Klassifikation exakt)
+type Unterthema = { name: string; cluster?: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
 type Oberthema = { name: string; teaser: string[]; unter: Unterthema[]; catch: CatchItem[]; edges: Edge[] };
 
 // ── Dummy-Daten ─────────────────────────────────────────────────────────────
-const DIGITAL_TAGS: Tag[] = [
-  {
-    name: "Künstliche Intelligenz", anker: true,
-    edges: [
-      { ziel: "Forschung", brücke: { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen" } },
-      { ziel: "Gesundheit", brücke: { titel: "KI in der Pflegedokumentation — Entlastung oder Risiko?", typ: "Rede", datum: "vor 2 Wochen" } },
-      { ziel: "Verteidigung", brücke: { titel: "KI-gestützte Aufklärung — ethische Leitplanken", typ: "Drucksache", datum: "vor 3 Wochen" } },
-      { ziel: "Bildung", brücke: { titel: "KI an Schulen — Pilotprogramm der Länder", typ: "Rede", datum: "vor 1 Monat" } },
-      { ziel: "Innere Sicherheit", brücke: { titel: "Biometrische Gesichtserkennung — Einsatzgrenzen", typ: "Abstimmung", datum: "vor 2 Wochen" } },
-    ],
-    catch: [
-      { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen", einzeiler: "Bundesmittel für europäische KI-Recheninfrastruktur." },
-      { titel: "Einsatz von KI in der Bundesverwaltung", typ: "Rede", datum: "vor 1 Woche", einzeiler: "Debatte über Chancen und Leitplanken." },
-    ],
-  },
-  {
-    name: "Cybersicherheit", anker: true,
-    edges: [
-      { ziel: "Innere Sicherheit", brücke: { titel: "NIS-2-Umsetzung: Meldepflichten für KRITIS", typ: "Drucksache", datum: "vor 5 Tagen" } },
-      { ziel: "Verteidigung", brücke: { titel: "Cyber-Abwehr der Bundeswehr — Aufwuchs", typ: "Rede", datum: "vor 2 Wochen" } },
-      { ziel: "Datenschutz", brücke: { titel: "Vorratsdatenspeicherung — Cyber-Bezug", typ: "Abstimmung", datum: "vor 3 Wochen" } },
-    ],
-    catch: [{ titel: "NIS-2-Umsetzung: Meldepflichten für KRITIS", typ: "Drucksache", datum: "vor 5 Tagen", einzeiler: "Nationale Umsetzung der EU-Cybersicherheitsrichtlinie." }],
-  },
-  {
-    name: "Krypto-Assets", anker: true,
-    edges: [
-      { ziel: "Finanzen", brücke: { titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen" } },
-      { ziel: "Innere Sicherheit", brücke: { titel: "Geldwäsche über Krypto-Assets — Ermittlungsbefugnisse", typ: "Drucksache", datum: "vor 3 Wochen" } },
-    ],
-    catch: [{ titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen", einzeiler: "Nationale Umsetzung der EU-Kryptomärkte-Verordnung." }],
-  },
-  { name: "Rechenzentren & Cloud", anker: true },
-  { name: "Startups & Wagniskapital", anker: true },
-  { name: "Breitband & Netzausbau", anker: true },
-  { name: "Plattform-Regulierung", anker: true },
-  { name: "Halbleiter", anker: true },
-  // ── langer Schwanz (nur über Suche / „mehr" erreichbar) ──
-  { name: "Deepfakes" }, { name: "Digitale Identität" }, { name: "Drohnen" }, { name: "Quantentechnologie" },
-  { name: "Open Source" }, { name: "Datenökonomie" }, { name: "E-Commerce" }, { name: "Digitale Verwaltung" },
-  { name: "Telekommunikation" }, { name: "Smart City" }, { name: "Autonomes Fahren" }, { name: "Gaming" },
-  { name: "Digitale Souveränität" }, { name: "Gigafactory & Batterien" },
-];
 
 // ECHTE Zahlen (kein Platzhalter): Top-Redner:innen des aw_fields „Medien, Kommunikation
 // und Informationstechnik" aus analyse-themenfeld.ts (Lauf 2026-06-10, Lautstärke-Sicht,
@@ -127,7 +86,7 @@ const DIGITAL_KOEPFE: Kopf[] = [
 
 const WIRTSCHAFT: Oberthema = {
   name: "Wirtschaft",
-  teaser: ["Energie", "Industrie", "Digital", "Außenhandel", "Verbraucherschutz"],
+  teaser: ["Energie", "Industrie & Standort", "Digital & KI", "Außenhandel & Zölle", "Wettbewerb"],
   edges: [
     { ziel: "Energie", brücke: { titel: "Strompreis-Entlastung für die Industrie", typ: "Abstimmung", datum: "vor 1 Woche" } },
     { ziel: "Finanzen", brücke: { titel: "Sondervermögen Infrastruktur — Mittelabfluss", typ: "Drucksache", datum: "vor 2 Wochen" } },
@@ -140,8 +99,17 @@ const WIRTSCHAFT: Oberthema = {
     { titel: "Lieferkettengesetz — Bürokratie-Entlastung", typ: "Drucksache", datum: "vor 2 Wochen", einzeiler: "Antrag zur Vereinfachung der Sorgfaltspflichten." },
   ],
   unter: [
-    { name: "Digital", voteThema: "Digitalisierung", ausgebaut: true, tags: DIGITAL_TAGS, koepfe: DIGITAL_KOEPFE,
-      beschreibung: "Netzpolitik des Bundestags — von künstlicher Intelligenz und Cybersicherheit über Rechenzentren und Breitbandausbau bis zu Krypto-Aufsicht und Plattform-Regulierung.",
+    // Picker-Scent = echte Top-Tags des Clusters (Stand Batch 2026-06-11); am Blatt
+    // werden die Tags eh live aus ds_unterthemen geladen (digitalEcht überschreibt).
+    { name: "Digital & KI", cluster: "Digital- & KI-Wirtschaft", voteThema: "Digitalisierung", ausgebaut: true, koepfe: DIGITAL_KOEPFE,
+      tags: [
+        { name: "Künstliche Intelligenz", anker: true }, { name: "Technologische Souveränität", anker: true },
+        { name: "Halbleiter", anker: true }, { name: "Rechenzentren", anker: true },
+        { name: "Digitale Souveränität", anker: true }, { name: "Startup-Finanzierung", anker: true },
+        { name: "Wagniskapital", anker: true }, { name: "Mikroelektronik", anker: true },
+        { name: "SPRIND" }, { name: "Innovationsförderung" }, { name: "Bundesnetzagentur" },
+      ],
+      beschreibung: "Die digitale Wirtschaft im Bundestag — von KI-Förderung, Rechenzentren und Halbleitern über technologische Souveränität bis zu Startups und Wagniskapital.",
       edges: [
         { ziel: "Forschung", brücke: { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen" } },
         { ziel: "Datenschutz", brücke: { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen" } },
@@ -207,15 +175,19 @@ const WIRTSCHAFT: Oberthema = {
           ergebnis: { ja: 412, nein: 198, enthaltung: 8 }, tags: ["Breitband & Netzausbau", "Funkversorgung"] },
       ],
     },
-    { name: "Energie", tags: [{ name: "Strompreis" }, { name: "Gasversorgung" }, { name: "Netzentgelte" }], edges: [], catch: [] },
-    { name: "Industrie", tags: [{ name: "Stahl" }, { name: "Automobil" }, { name: "Ansiedlung" }], edges: [], catch: [] },
-    { name: "Außenhandel", tags: [{ name: "Zölle" }, { name: "Kritische Rohstoffe" }, { name: "China" }], edges: [], catch: [] },
-    { name: "Verbraucherschutz", tags: [{ name: "Produktsicherheit" }, { name: "Verbraucherrechte" }], edges: [], catch: [] },
-    { name: "Förderung", tags: [{ name: "Bürgschaften" }, { name: "Sondervermögen" }], edges: [], catch: [] },
-    { name: "Mittelstand", tags: [{ name: "Handwerk" }, { name: "Gründung" }], edges: [], catch: [] },
-    { name: "Fachkräfte", tags: [{ name: "Fachkräftemangel" }, { name: "Zuwanderung" }], edges: [], catch: [] },
-    { name: "Lieferketten", tags: [{ name: "Lieferkettengesetz" }, { name: "Sorgfaltspflicht" }], edges: [], catch: [] },
-    { name: "Konjunktur", tags: [{ name: "Wachstum" }, { name: "Jahreswirtschaftsbericht" }], edges: [], catch: [] },
+    // Die 10 übrigen kanonischen Wirtschaft-Cluster (Batch 2026-06-11), Größen-
+    // Reihenfolge; Scent = echte Top-3-Tags aus ds_unterthemen (Stand Batch-Lauf —
+    // im echten Bau live geladen). Anzeige-Name kurz, cluster = Klassifikations-Name.
+    { name: "Energie", cluster: "Energiewirtschaft & Energiekosten", tags: [{ name: "Energiewende" }, { name: "Erneuerbare Energien" }, { name: "Stromsteuer" }], edges: [], catch: [] },
+    { name: "Industrie & Standort", cluster: "Industrie- & Standortpolitik", tags: [{ name: "Bürokratieabbau" }, { name: "Genehmigungsverfahren" }, { name: "Künstliche Intelligenz" }], edges: [], catch: [] },
+    { name: "Förderung & Subventionen", cluster: "Wirtschaftsförderung & Subventionen", tags: [{ name: "Bürokratieabbau" }, { name: "Energiewende" }], edges: [], catch: [] },
+    { name: "Fachkräfte & Arbeitsmarkt", cluster: "Fachkräfte & Arbeitsmarkt-Wirtschaft", tags: [{ name: "Mindestlohn" }, { name: "Tarifbindung" }, { name: "Schwarzarbeit" }], edges: [], catch: [] },
+    { name: "Außenhandel & Zölle", cluster: "Außenhandel, Zölle & Rohstoffe", tags: [{ name: "US-Zölle" }, { name: "Seltene Erden" }, { name: "Zollabbau" }], edges: [], catch: [] },
+    { name: "Wettbewerb & Kartellrecht", cluster: "Wettbewerb & Kartellrecht", tags: [{ name: "Vergaberecht" }, { name: "Kartellamt" }], edges: [], catch: [] },
+    { name: "Mittelstand & Gründung", cluster: "Mittelstand, Handwerk & Gründung", tags: [{ name: "Öffentliche Beschaffung" }, { name: "Fachkräftemangel" }], edges: [], catch: [] },
+    { name: "Konjunktur & Wachstum", cluster: "Konjunktur, Wachstum & Gesamtsteuerung", tags: [{ name: "Energiepreise" }, { name: "US-Zölle" }, { name: "Stromsteuer" }], edges: [], catch: [] },
+    { name: "Verbraucherschutz", cluster: "Verbraucherschutz", tags: [{ name: "Lebensmittelpreise" }, { name: "Kreditwürdigkeitsprüfung" }], edges: [], catch: [] },
+    { name: "Lieferketten", cluster: "Lieferketten & Unternehmensverantwortung", tags: [{ name: "Lieferkettengesetz (LkSG)" }, { name: "Unternehmensverantwortung" }], edges: [], catch: [] },
   ],
 };
 
@@ -1221,7 +1193,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
         const uBase = WIRTSCHAFT.unter[unterIdx];
         // Digital läuft auf ECHTEN Daten (Server-Loader), die übrigen Unterthemen
         // bleiben Dummy — genau der Vergleich, der die Daten-Lücken sichtbar macht.
-        const echt = uBase.name === "Digital" ? digitalEcht : undefined;
+        const echt = uBase.cluster === "Digital- & KI-Wirtschaft" ? digitalEcht : undefined;
         const u = echt
           ? {
               ...uBase,
