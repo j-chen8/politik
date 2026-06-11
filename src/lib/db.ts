@@ -4630,6 +4630,104 @@ export function getDrucksacheVerfahren(nr: string): {
   return { parent, children };
 }
 
+// ============================================================
+// Gesetzgebungs-Verfahren (DIP-Vorgangsdaten, DATA-SOURCES.md §2.3b)
+// ============================================================
+
+export interface GesetzgebungsSchritt {
+  position: string;                  // amtliche Bezeichnung, z. B. "1. Beratung"
+  zuordnung: string | null;          // "BT" | "BR"
+  datum: string | null;
+  dokumentart: string | null;        // "Drucksache" | "Plenarprotokoll"
+  dokumentnummer: string | null;
+  herausgeber: string | null;        // "BT" | "BR"
+  ausschuesse: { ausschuss: string; federfuehrung: boolean }[];
+  beschluesse: string[];             // beschlusstenor, z. B. "Annahme in Ausschussfassung"
+}
+
+export interface GesetzgebungsVorgangDetail {
+  vorgangId: string;
+  titel: string | null;
+  beratungsstand: string | null;     // amtliches DIP-Vokabular, roh
+  initiative: string[];
+  zustimmungsbeduerftigkeit: string[];
+  verkuendung: { fundstelle?: string; verkuendungsdatum?: string; pdf_url?: string }[];
+  inkrafttreten: { datum: string; erlaeuterung?: string }[];
+  aktualisiert: string | null;
+  schritte: GesetzgebungsSchritt[];
+}
+
+function safeJson<T>(s: string | null, fallback: T): T {
+  if (!s) return fallback;
+  try { return JSON.parse(s) as T; } catch { return fallback; }
+}
+
+export function getGesetzgebungsVorgang(dsNr: string): GesetzgebungsVorgangDetail | null {
+  const db = getDb();
+  // Praktisch 1:1 (Stand Seed 2026-06-11: kein GE mit >1 Vorgang); bei
+  // Mehrfach-Zuordnung (z. B. Beschlussempfehlung über mehrere Vorgänge)
+  // deterministisch den jüngsten Vorgang nehmen.
+  const vg = db.prepare(`
+    SELECT v.id, v.titel, v.beratungsstand, v.initiative_json,
+           v.zustimmungsbeduerftigkeit_json, v.verkuendung_json,
+           v.inkrafttreten_json, v.aktualisiert
+    FROM dip_ds_vorgaenge dv
+    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
+    WHERE dv.drucksache_nr = ?
+    ORDER BY v.datum DESC, v.id DESC
+    LIMIT 1
+  `).get(dsNr) as {
+    id: string; titel: string | null; beratungsstand: string | null;
+    initiative_json: string | null; zustimmungsbeduerftigkeit_json: string | null;
+    verkuendung_json: string | null; inkrafttreten_json: string | null;
+    aktualisiert: string | null;
+  } | undefined;
+  if (!vg) return null;
+
+  // gang=1 ist DIPs eigener Marker für den "Gang der Gesetzgebung";
+  // nachträgliche/geänderte Ausschuss-Überweisungen (gang=0) gehören
+  // inhaltlich dazu — BR-Unterrichtungen mit Überweisung dagegen nicht.
+  const rows = db.prepare(`
+    SELECT vorgangsposition, zuordnung, datum, dokumentart, dokumentnummer,
+           herausgeber, ueberweisung_json,
+           json_extract(raw_json, '$.beschlussfassung') AS beschlussfassung_json
+    FROM dip_vorgang_positionen
+    WHERE vorgang_id = ?
+      AND (gang = 1 OR (ueberweisung_json IS NOT NULL AND vorgangsposition LIKE '%Überweisung%'))
+    ORDER BY datum, id
+  `).all(vg.id) as {
+    vorgangsposition: string; zuordnung: string | null; datum: string | null;
+    dokumentart: string | null; dokumentnummer: string | null;
+    herausgeber: string | null; ueberweisung_json: string | null;
+    beschlussfassung_json: string | null;
+  }[];
+
+  const schritte: GesetzgebungsSchritt[] = rows.map((r) => ({
+    position: r.vorgangsposition,
+    zuordnung: r.zuordnung,
+    datum: r.datum,
+    dokumentart: r.dokumentart,
+    dokumentnummer: r.dokumentnummer,
+    herausgeber: r.herausgeber,
+    ausschuesse: safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []),
+    beschluesse: safeJson<{ beschlusstenor?: string }[]>(r.beschlussfassung_json, [])
+      .map((b) => b.beschlusstenor)
+      .filter((t): t is string => Boolean(t)),
+  }));
+
+  return {
+    vorgangId: vg.id,
+    titel: vg.titel,
+    beratungsstand: vg.beratungsstand,
+    initiative: safeJson<string[]>(vg.initiative_json, []),
+    zustimmungsbeduerftigkeit: safeJson<string[]>(vg.zustimmungsbeduerftigkeit_json, []),
+    verkuendung: safeJson<{ fundstelle?: string; verkuendungsdatum?: string; pdf_url?: string }[]>(vg.verkuendung_json, []),
+    inkrafttreten: safeJson<{ datum: string; erlaeuterung?: string }[]>(vg.inkrafttreten_json, []),
+    aktualisiert: vg.aktualisiert,
+    schritte,
+  };
+}
+
 export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
   const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
   if (themas.length === 0) return [];
