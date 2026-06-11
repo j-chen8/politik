@@ -15,27 +15,32 @@ export const metadata = {
     "Alle Gesetzentwürfe der 21. Wahlperiode, über die der Bundestag noch nicht abgestimmt hat — mit Verfahrensphase und Wartezeit.",
 };
 
+// Prozess-Reihenfolge (wie der Stepper auf der Detail-Seite); slug = URL-Param
 const PHASEN: {
   key: LaufenderGesetzentwurf["phase"];
+  slug: string;
   titel: string;
   beschreibung: string;
 }[] = [
   {
-    key: "beschlussempfehlung",
-    titel: "Beschlussempfehlung liegt vor",
-    beschreibung:
-      "Der Ausschuss ist fertig — die Abstimmung in der 2./3. Lesung kann angesetzt werden.",
+    key: "vor_erster_lesung",
+    slug: "vor-der-lesung",
+    titel: "Vor der 1. Lesung",
+    beschreibung: "Eingebracht, aber noch nicht im Plenum beraten.",
   },
   {
     key: "im_ausschuss",
+    slug: "im-ausschuss",
     titel: "Im Ausschuss",
     beschreibung:
       "Nach der 1. Lesung an die Ausschüsse überwiesen. Eine Frist für die Beratung gibt es nicht.",
   },
   {
-    key: "vor_erster_lesung",
-    titel: "Vor der 1. Lesung",
-    beschreibung: "Eingebracht, aber noch nicht im Plenum beraten.",
+    key: "beschlussempfehlung",
+    slug: "abstimmung-offen",
+    titel: "Beschlussempfehlung liegt vor",
+    beschreibung:
+      "Der Ausschuss ist fertig — die Abstimmung in der 2./3. Lesung kann angesetzt werden.",
   },
 ];
 
@@ -84,7 +89,13 @@ function initiativeLabel(initiative: string[]): string {
     .join(", ");
 }
 
-export default function GesetzentwuerfePage() {
+interface Props {
+  searchParams: Promise<{ phase?: string }>;
+}
+
+export default async function GesetzentwuerfePage({ searchParams }: Props) {
+  const { phase: phaseParam } = await searchParams;
+  const aktivePhase = PHASEN.find((p) => p.slug === phaseParam) ?? null;
   const alle = getLaufendeGesetzentwuerfe();
 
   return (
@@ -109,20 +120,57 @@ export default function GesetzentwuerfePage() {
           </p>
         </div>
 
-        {/* Phasen-Übersicht */}
-        <div className="mb-10 flex flex-wrap gap-x-5 gap-y-2 text-[12px]">
-          {PHASEN.map((p) => {
+        {/* Phasen-Filter: anklickbare Karten in Prozess-Reihenfolge */}
+        <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <Link
+            href="/gesetzentwuerfe"
+            className={`rounded-xl border p-3.5 transition-colors ${
+              !aktivePhase
+                ? "bg-zinc-900 border-zinc-900 text-zinc-50"
+                : "bg-white border-zinc-200/70 hover:border-zinc-400 text-zinc-950"
+            }`}
+          >
+            <div className="num text-[22px] font-semibold leading-none mb-1.5">
+              {alle.length}
+            </div>
+            <div className={`text-[11.5px] leading-tight ${!aktivePhase ? "text-zinc-300" : "text-zinc-500"}`}>
+              Alle Phasen
+            </div>
+          </Link>
+          {PHASEN.map((p, i) => {
             const n = alle.filter((g) => g.phase === p.key).length;
+            const istAktiv = aktivePhase?.key === p.key;
             return (
-              <div key={p.key} className="inline-flex items-baseline gap-1.5">
-                <span className="num font-semibold text-zinc-950">{n}</span>
-                <span className="text-zinc-500">{p.titel}</span>
-              </div>
+              <Link
+                key={p.key}
+                href={`/gesetzentwuerfe?phase=${p.slug}`}
+                className={`rounded-xl border p-3.5 transition-colors ${
+                  istAktiv
+                    ? "bg-zinc-900 border-zinc-900 text-zinc-50"
+                    : "bg-white border-zinc-200/70 hover:border-zinc-400 text-zinc-950"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="num text-[22px] font-semibold leading-none">{n}</span>
+                  <span
+                    className={`w-[18px] h-[18px] rounded-full border-2 inline-flex items-center justify-center text-[10px] font-bold ${
+                      istAktiv
+                        ? "border-zinc-50 text-zinc-50"
+                        : "border-zinc-300 text-zinc-400"
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                </div>
+                <div className={`text-[11.5px] leading-tight ${istAktiv ? "text-zinc-300" : "text-zinc-500"}`}>
+                  {p.titel}
+                </div>
+              </Link>
             );
           })}
         </div>
 
-        {PHASEN.map((phase) => {
+        {PHASEN.filter((p) => !aktivePhase || p.key === aktivePhase.key).map((phase) => {
           const gruppe = alle
             .filter((g) => g.phase === phase.key)
             .sort((a, b) => (a.seitDatum ?? "9999") < (b.seitDatum ?? "9999") ? -1 : 1);
