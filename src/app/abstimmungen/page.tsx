@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function AbstimmungenIndex({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; year?: string; type?: string; show?: string }>;
+  searchParams: Promise<{ q?: string; year?: string; type?: string; show?: string; thema?: string }>;
 }) {
   return <AbstimmungenIndexInner searchParams={searchParams} />;
 }
@@ -13,10 +13,15 @@ export default function AbstimmungenIndex({
 async function AbstimmungenIndexInner({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; year?: string; type?: string; show?: string }>;
+  searchParams: Promise<{ q?: string; year?: string; type?: string; show?: string; thema?: string }>;
 }) {
-  const { q = "", year = "", type = "", show = "" } = await searchParams;
+  const { q = "", year = "", type = "", show = "", thema = "" } = await searchParams;
   const all = listAllVotesForIndex();
+  // Themen-Deep-Link (?thema=…): Filter auf die Topic-Labels der Votes — Einstieg
+  // von den Themenseiten („alle Abstimmungen zum Thema X"), gleiches Muster wie
+  // /politiker?partei=. Exaktes Label, case-insensitiv. Bleibt beim Weiterfiltern
+  // (Typ/Jahr/Suche) aktiv, ✕ am Kontext-Chip hebt ihn auf.
+  const themaQS = thema ? `thema=${encodeURIComponent(thema)}&` : "";
 
   // Default-View: nur Gesetze/Anträge. Petitions-Sammelübersichten + Personen-
   // Wahlen sind formal Handzeichen-Votes, aber inhaltlich Routine-Vorgänge —
@@ -24,11 +29,20 @@ async function AbstimmungenIndexInner({
   const showPetitionen = show === "petitionen" || show === "alle";
   const showPersonenwahl = show === "personenwahl" || show === "alle";
 
-  const baseFiltered = all.filter((v) => {
+  const subtypeFiltered = all.filter((v) => {
     if (v.subtype === "petition" && !showPetitionen) return false;
     if (v.subtype === "personenwahl" && !showPersonenwahl) return false;
     return true;
   });
+  const baseFiltered = subtypeFiltered.filter(
+    (v) => !thema || v.topics.some((t) => t.toLowerCase() === thema.toLowerCase())
+  );
+
+  // Themen-Dropdown: alle Topic-Labels der (subtype-gefilterten) Votes mit Anzahl,
+  // alphabetisch — Quelle sind dieselben Labels wie die Chips auf den Karten.
+  const themenCounts = new Map<string, number>();
+  for (const v of subtypeFiltered) for (const t of v.topics) themenCounts.set(t, (themenCounts.get(t) ?? 0) + 1);
+  const themen = Array.from(themenCounts.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
 
   const years = Array.from(
     new Set(baseFiltered.map((v) => v.date?.slice(0, 4)).filter(Boolean) as string[])
@@ -71,15 +85,26 @@ async function AbstimmungenIndexInner({
           </p>
         </div>
 
+        {/* Themen-Kontext (Deep-Link von Themenseiten) */}
+        {thema && (
+          <div className="mb-4 fade-in-up fade-in-up-2 flex flex-wrap items-center gap-2 text-[12px]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-3 py-1 font-medium text-violet-700 ring-1 ring-violet-200">
+              Thema: {thema}
+              <Link href={`?${type ? `type=${type}&` : ""}${show ? `show=${show}` : ""}`}
+                className="text-violet-400 transition-colors hover:text-violet-700" aria-label="Themen-Filter aufheben">✕</Link>
+            </span>
+          </div>
+        )}
+
         {/* Type-Filter */}
         <div className="mb-3 fade-in-up fade-in-up-2 flex flex-wrap gap-2 text-[12px]">
-          <FilterPill href={`?${show ? `show=${show}` : ""}`} active={!type}>
+          <FilterPill href={`?${themaQS}${show ? `show=${show}` : ""}`} active={!type}>
             Alle ({baseFiltered.length})
           </FilterPill>
-          <FilterPill href={`?type=namentlich${show ? `&show=${show}` : ""}`} active={type === "namentlich"}>
+          <FilterPill href={`?${themaQS}type=namentlich${show ? `&show=${show}` : ""}`} active={type === "namentlich"}>
             Namentlich ({counts.namentlich})
           </FilterPill>
-          <FilterPill href={`?type=handzeichen${show ? `&show=${show}` : ""}`} active={type === "handzeichen"}>
+          <FilterPill href={`?${themaQS}type=handzeichen${show ? `&show=${show}` : ""}`} active={type === "handzeichen"}>
             Handzeichen ({counts.handzeichen})
           </FilterPill>
         </div>
@@ -88,7 +113,7 @@ async function AbstimmungenIndexInner({
         <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
           <span className="text-zinc-400 self-center mr-1">Auch zeigen:</span>
           <FilterPill
-            href={`?${type ? `type=${type}&` : ""}${
+            href={`?${themaQS}${type ? `type=${type}&` : ""}${
               show === "petitionen" ? "" : "show=petitionen"
             }`}
             active={showPetitionen}
@@ -96,7 +121,7 @@ async function AbstimmungenIndexInner({
             Petitions-Sammelübersichten ({counts.petitionen})
           </FilterPill>
           <FilterPill
-            href={`?${type ? `type=${type}&` : ""}${
+            href={`?${themaQS}${type ? `type=${type}&` : ""}${
               show === "personenwahl" ? "" : "show=personenwahl"
             }`}
             active={showPersonenwahl}
@@ -104,7 +129,7 @@ async function AbstimmungenIndexInner({
             Personen-Wahlen ({counts.personenwahl})
           </FilterPill>
           <FilterPill
-            href={`?${type ? `type=${type}&` : ""}show=alle`}
+            href={`?${themaQS}${type ? `type=${type}&` : ""}show=alle`}
             active={show === "alle"}
           >
             beides
@@ -130,6 +155,18 @@ async function AbstimmungenIndexInner({
               />
             </div>
             <select
+              name="thema"
+              defaultValue={thema}
+              className="max-w-[260px] text-[13px] py-2 px-3 border border-zinc-200/80 rounded-xl bg-white focus:outline-none focus:border-zinc-400 transition-colors"
+            >
+              <option value="">alle Themen</option>
+              {themen.map(([t, n]) => (
+                <option key={t} value={t}>
+                  {t} ({n})
+                </option>
+              ))}
+            </select>
+            <select
               name="year"
               defaultValue={year}
               className="text-[13px] py-2 px-3 border border-zinc-200/80 rounded-xl bg-white focus:outline-none focus:border-zinc-400 transition-colors"
@@ -149,7 +186,7 @@ async function AbstimmungenIndexInner({
             </button>
             {(q || year) && (
               <Link
-                href={`?${type ? `type=${type}&` : ""}${show ? `show=${show}` : ""}`}
+                href={`?${themaQS}${type ? `type=${type}&` : ""}${show ? `show=${show}` : ""}`}
                 className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
               >
                 Zurücksetzen
