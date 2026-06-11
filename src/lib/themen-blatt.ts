@@ -301,11 +301,14 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     if (list.length >= 1) { continue; } // genau EINE Rede je Kopf (User 2026-06-11)
     const text = (r.zusammenfassung ?? "").toLowerCase();
     // Hard-Cap als zweite Verteidigung neben dem UI-line-clamp (echte Summaries
-    // können lang sein); Link zielt auf den rede_id-Anker der Sitzungsseite
-    const voll = (r.zusammenfassung ?? "").trim();
+    // können lang sein); Link zielt auf den rede_id-Anker der Sitzungsseite.
+    // Führenden „Name (Partei) "-Vorspann strippen — die Karte zeigt die Person
+    // schon (Avatar + Name), der Platz gehört dem Inhalt (User 2026-06-11).
+    let voll = (r.zusammenfassung ?? "").trim().replace(/^[A-ZÄÖÜ][^()]{1,60}?\s*\([^)]{2,40}\)\s*/, "");
+    voll = voll.charAt(0).toUpperCase() + voll.slice(1);
     list.push({
       id: r.rede_id, datum: rel(r.iso), iso: r.iso,
-      einzeiler: voll.length > 300 ? voll.slice(0, 297).trimEnd() + "…" : voll,
+      einzeiler: voll.length > 460 ? voll.slice(0, 457).trimEnd() + "…" : voll,
       href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}#rede-${encodeURIComponent(r.rede_id)}` : "#",
       tags: tagVokabular.filter((t) => t.length >= 4 && text.includes(t.toLowerCase())).slice(0, 3),
     });

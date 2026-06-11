@@ -742,8 +742,8 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
           Personen-Wechsel (key auf dem inneren Wrapper — Karte mit key remountete
           sichtbar mit, das irritierte). min-h fängt Höhen-Differenzen ab. */}
       {/* feste Höhe: Text auf exakt 3 Zeilen geklemmt + Tag-Zeile immer reserviert →
-          die Karte atmet beim Personenwechsel nicht (User 2026-06-11; 330px = höchster Fall: 2-zeilige Ausschuss-Rolle) */}
-      <div className={`mx-auto mt-7 min-h-[330px] max-w-2xl p-6 text-center ${SOFT_CARD}`}>
+          die Karte atmet beim Personenwechsel nicht (User 2026-06-11; 370px = 5 Text-Zeilen + 2-zeilige Ausschuss-Rolle) */}
+      <div className={`mx-auto mt-7 min-h-[370px] max-w-2xl p-6 text-center ${SOFT_CARD}`}>
       <div key={kopfKey(k)} className="fade-quick">
         <p className="text-[15.5px] font-semibold text-zinc-900 dark:text-zinc-50">{k.vorname} {k.nachname}</p>
         <p className="mt-1 text-[12.5px] text-zinc-400">{k.partei}{k.rolle ? ` · ${k.rolle}` : ""}</p>
@@ -773,7 +773,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
                   <span className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">
                     <Mic className="h-3 w-3 shrink-0" strokeWidth={2.25} />{r.datum}
                   </span>
-                  <span className="mt-0.5 block min-h-[3.95em] line-clamp-3 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
+                  <span className="mt-0.5 block min-h-[8.15em] line-clamp-5 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
                   <span className="mt-1.5 flex min-h-[22px] flex-wrap gap-1.5">
                     {r.tags?.map((t) => (
                       <span key={t} className="rounded-full bg-zinc-900/[0.05] px-2 py-0.5 text-[10.5px] font-medium text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">{t}</span>
