@@ -206,9 +206,12 @@ export default function GesetzentwuerfePage() {
         <p className="text-[11.5px] text-zinc-400 leading-relaxed max-w-2xl">
           Ausschüsse haben keine Frist, eine Vorlage abzuschließen — Entwürfe
           können dort beliebig lange liegen. Die Wartezeit ist eine reine
-          Tageszählung ohne Wertung. Sobald der Bundestag abstimmt, wandert der
-          Entwurf von dieser Liste auf die jeweilige Drucksachen-Seite mit
-          Ergebnis und weiterem Verfahren (Bundesrat, Verkündung).
+          Tageszählung ohne Wertung. Von dieser Liste verschwindet ein Entwurf,
+          wenn der Bundestag über ihn abstimmt — oder ohne Abstimmung, wenn er
+          zurückgezogen oder für erledigt erklärt wird (etwa weil ein
+          inhaltsgleicher Entwurf beschlossen wurde). Alle übrigen Vorlagen
+          verfallen am Ende der Wahlperiode automatisch (Diskontinuität). Das
+          jeweilige Ergebnis steht auf der Drucksachen-Seite des Entwurfs.
         </p>
       </div>
     </div>
