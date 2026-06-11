@@ -11,8 +11,11 @@
 //   - Gesetzentwürfe: DIP-Vorgangsdaten (dip_vorgaenge/positionen)
 //
 // VERBLEIBENDE LÜCKEN:
-//   1. Reden tragen noch keine Unterthemen/Tags (Erben-Lauf via inherited_ds offen)
-//      → fallen beim Tag-Filter raus; Reden-Korn = Feld, nicht Cluster.
+//   1. Reden tragen noch keine Unterthemen/Tags; Reden-Korn = Feld, nicht Cluster.
+//      NUR eigen-klassifizierte Reden (origin rede_summary/title_llm, 248 von 1.901):
+//      inherited_ds vererbt am DEBATTEN-Korn pauschal alle Felder aller debattierten
+//      DS (bis zu 11 Felder/Rede — Energiesteuer-Reden landeten auf Digital, User-
+//      Fund 2026-06-11). Ein künftiger Erben-Lauf muss am Reden↔DS-Paar ansetzen.
 //   2. Digital-Votes sind ALLE Handzeichen → keine Ja/Nein-Zahlen (nur Fraktions-
 //      voten) und kein „Worum geht es?" (Ersatz = DS-Kerninhalt).
 //   3. Feed lädt die neuesten 120 — voller Bestand braucht die server-seitige
@@ -255,6 +258,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     LEFT JOIN politicians p ON p.id = ss.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
     WHERE it.source = 'bt_rede' AND it.aw_field = ?
+      AND it.origin IN ('rede_summary','title_llm')
       AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
     GROUP BY ss.rede_id
     ORDER BY ss.datum DESC
@@ -293,7 +297,8 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     JOIN speech_summaries ss ON ss.rede_id = it.item_id
     JOIN politicians p ON p.id = ss.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ? AND ss.politician_id IS NOT NULL
+    WHERE it.source = 'bt_rede' AND it.aw_field = ?
+      AND it.origin IN ('rede_summary','title_llm') AND ss.politician_id IS NOT NULL
     GROUP BY ss.politician_id
     ORDER BY reden DESC
     LIMIT 10
@@ -313,7 +318,8 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     SELECT ss.sitzung AS nr, MAX(ss.datum) AS iso, COUNT(DISTINCT ss.rede_id) AS n
     FROM item_topics it
     JOIN speech_summaries ss ON ss.rede_id = it.item_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ? AND ss.sitzung IS NOT NULL
+    WHERE it.source = 'bt_rede' AND it.aw_field = ?
+      AND it.origin IN ('rede_summary','title_llm') AND ss.sitzung IS NOT NULL
     GROUP BY ss.sitzung
     ORDER BY iso DESC
     LIMIT 8
@@ -336,7 +342,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
   const zuletztIso = [dsRows.map((d) => d.iso), redeRows.map((r) => r.iso), votes.map((v) => v.iso)]
     .flat().filter(Boolean).sort().pop() ?? null;
   const totalReden = (db.prepare(
-    `SELECT COUNT(DISTINCT item_id) AS c FROM item_topics WHERE source = 'bt_rede' AND aw_field = ?`
+    `SELECT COUNT(DISTINCT item_id) AS c FROM item_topics WHERE source = 'bt_rede' AND aw_field = ? AND origin IN ('rede_summary','title_llm')`
   ).get(FELD_AW) as { c: number }).c;
 
   return {
