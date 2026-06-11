@@ -300,10 +300,13 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     const list = redenByPid.get(r.pid) ?? [];
     if (list.length >= 1) { continue; } // genau EINE Rede je Kopf (User 2026-06-11)
     const text = (r.zusammenfassung ?? "").toLowerCase();
+    // Hard-Cap als zweite Verteidigung neben dem UI-line-clamp (echte Summaries
+    // können lang sein); Link zielt auf den rede_id-Anker der Sitzungsseite
+    const voll = (r.zusammenfassung ?? "").trim();
     list.push({
       id: r.rede_id, datum: rel(r.iso), iso: r.iso,
-      einzeiler: r.zusammenfassung ?? "",
-      href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}` : "#",
+      einzeiler: voll.length > 300 ? voll.slice(0, 297).trimEnd() + "…" : voll,
+      href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}#rede-${encodeURIComponent(r.rede_id)}` : "#",
       tags: tagVokabular.filter((t) => t.length >= 4 && text.includes(t.toLowerCase())).slice(0, 3),
     });
     redenByPid.set(r.pid, list);

@@ -7,6 +7,7 @@ import {
 import { TonalityBadge } from "@/components/TonalityBadge";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { HashOpener } from "./HashOpener";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, ListTree, PlayCircle } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -400,6 +401,8 @@ function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; ind
   const partyLabel = PARTY_LABEL_SHORT[speech.partyLabel] ?? speech.partyLabel;
   return (
     <li id={`rede-${topicId}-${index}`} className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 transition-colors">
+      {/* stabiler Deep-Link-Anker je Rede (rede_id) — z. B. vom Themen-Blatt aus */}
+      {speech.redeId && speech.segmentIndex === 0 && <span id={`rede-${speech.redeId}`} className="block scroll-mt-12" />}
       <div className="flex items-baseline gap-2 flex-wrap mb-1">
         <span className="num text-[10px] text-zinc-400 shrink-0">{index}</span>
         <Link
@@ -467,6 +470,7 @@ export default async function BundestagSitzungPage({ params }: Props) {
 
   return (
     <div className="page-wash">
+      <HashOpener />
       <div className="w-full max-w-6xl mx-auto px-5 pt-10 pb-24">
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
