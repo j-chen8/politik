@@ -57,7 +57,7 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 // Reden-Klassifikation × Stammdaten × committee_memberships, alles ID-Join, kein LLM.
 // themen = die häufigsten spezifischen Themen der Feld-Reden dieser Person (derivativ
 // aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
-type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[] };
+type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null };
 // voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
 // Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
 type Unterthema = { name: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
@@ -722,7 +722,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
         onMouseEnter={() => setActiveKey(kopfKey(p))} onFocus={() => setActiveKey(kopfKey(p))} onClick={() => setActiveKey(kopfKey(p))}
         className={`flex w-40 shrink-0 snap-start flex-col items-center outline-none ${carousel ? "md:w-[calc((100%-9rem)/5)]" : ""}`}>
         <span className={`rounded-3xl transition-transform duration-300 ${sel ? "scale-[1.06] ring-2 ring-zinc-900/60 ring-offset-2 ring-offset-white dark:ring-zinc-200/70 dark:ring-offset-zinc-950" : "hover:scale-[1.04]"}`}>
-          <PoliticianAvatar photoUrl={null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
+          <PoliticianAvatar photoUrl={p.photoUrl ?? null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
         </span>
         <span className={`mt-3 block max-w-full truncate text-[13.5px] font-semibold transition-colors ${sel ? "text-zinc-900 dark:text-zinc-50" : "text-zinc-600 dark:text-zinc-300"}`}>{p.nachname}</span>
         <span className="block max-w-full truncate text-[11.5px] text-zinc-400">{PARTEI_KURZ[p.partei] ?? p.partei}</span>
@@ -1154,7 +1154,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
 
       {/* Breadcrumb — nur am Blatt nötig; im Picker ist die linke Spalte die Navigation */}
       {isLeaf && (
-        <nav className="mb-7 flex items-center gap-2 text-[13px] text-zinc-400">
+        <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
           <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Themen</button>
           <span className="text-zinc-300">/</span>
           <button onClick={() => nav({ feld: "wirtschaft", unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Wirtschaft</button>
@@ -1324,7 +1324,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
             {/* justify-start, NICHT center: der Breadcrumb steht außerhalb darüber —
                 Zentrierung riss eine komische Lücke zwischen Breadcrumb und Titel auf.
                 Restluft sammelt sich stattdessen unten (liest sich als „mehr beim Scrollen"). */}
-            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-180px)] flex-col justify-start gap-9">
+            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-180px)] flex-col justify-start gap-6">
             <header>
               <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 md:text-[3.6rem] dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}

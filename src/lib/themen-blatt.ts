@@ -39,6 +39,7 @@ export interface EchtDoc {
 }
 export interface EchtKopf {
   vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle: string | null;
+  photoUrl: string | null;
 }
 export interface EchtSitzung { nr: number; datum: string; tops: string; href: string }
 export interface DigitalBlattEcht {
@@ -261,7 +262,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
   // ── 5. Köpfe: Top-Redner:innen im Feld (Lautstärke-Sicht, parteiübergreifend) ──
   const kopfRows = db.prepare(`
     SELECT p.first_name AS vorname, p.last_name AS nachname,
-           COALESCE(pa.label, '') AS partei,
+           COALESCE(pa.label, '') AS partei, p.photo_url,
            COUNT(DISTINCT ss.rede_id) AS reden,
            (SELECT COUNT(DISTINCT s2.rede_id) FROM speech_summaries s2 WHERE s2.politician_id = ss.politician_id) AS gesamt,
            (SELECT cm.committee_role || '§' || cm.committee_label FROM committee_memberships cm
@@ -274,7 +275,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     GROUP BY ss.politician_id
     ORDER BY reden DESC
     LIMIT 10
-  `).all(FELD_AW) as { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; ausschuss: string | null }[];
+  `).all(FELD_AW) as { vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
   const ROLE_DE: Record<string, string> = { member: "Mitglied", chairperson: "Vorsitz", alternate_member: "stellv. Mitglied" };
   const koepfe: EchtKopf[] = kopfRows.map((k) => {
     let rolle: string | null = null;
@@ -282,7 +283,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       const [role, label] = k.ausschuss.split("§");
       rolle = `${ROLE_DE[role] ?? role} im ${label}`;
     }
-    return { vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle };
+    return { vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null };
   });
 
   // ── 6. Plenarsitzungen mit Feld-Reden ──

@@ -29,7 +29,7 @@ export default function VorschauThemenPage() {
   const digital = getDigitalBlatt();
   return (
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-24 pt-10">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-24 pt-6">
         <Suspense fallback={<div className="h-64" />}>
           <VorschauThemen digitalEcht={digital} />
         </Suspense>
