@@ -57,7 +57,8 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 // Reden-Klassifikation × Stammdaten × committee_memberships, alles ID-Join, kein LLM.
 // themen = die häufigsten spezifischen Themen der Feld-Reden dieser Person (derivativ
 // aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
-type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null };
+type KopfRede = { id: string; datum: string; einzeiler: string; href: string };
+type Kopf = { vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null; letzteReden?: KopfRede[] };
 // voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
 // Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
 // cluster = kanonischer Batch-Name in ds_unterthemen; name = kurzes Anzeige-Label
@@ -755,6 +756,25 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
                 <span key={t} className="rounded-full bg-zinc-900/[0.04] px-2.5 py-1 text-[11.5px] font-medium text-zinc-500 dark:bg-white/[0.06] dark:text-zinc-400">{t}</span>
               ))}
             </p>
+          </>
+        )}
+        {/* Reden leben HIER bei der Person, nicht im Feed — Debatten-Kontexte taugen
+            nicht als Karten-Titel (User 2026-06-11); die Person rahmt, die Zusammen-
+            fassung trägt den Inhalt, der Link führt in die Sitzung. */}
+        {(k.letzteReden?.length ?? 0) > 0 && (
+          <>
+            <p className="mt-4 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">Letzte Reden zum Thema</p>
+            <div className="mt-2 space-y-1.5 text-left">
+              {k.letzteReden!.map((r) => (
+                <Link key={r.id} href={r.href}
+                  className="group/rede block rounded-xl bg-zinc-900/[0.03] px-3.5 py-2.5 transition hover:bg-zinc-900/[0.06] dark:bg-white/[0.04] dark:hover:bg-white/[0.08]">
+                  <span className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">
+                    <Mic className="h-3 w-3 shrink-0" strokeWidth={2.25} />{r.datum}
+                  </span>
+                  <span className="mt-0.5 block line-clamp-2 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
+                </Link>
+              ))}
+            </div>
           </>
         )}
       </div>

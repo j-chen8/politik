@@ -40,9 +40,12 @@ export interface EchtDoc {
   id: string; typ: "Drucksache" | "Rede"; titel: string; iso: string | null; datum: string;
   einzeiler: string; vorschau: string | null; redner: string | null; tags: string[]; href: string;
 }
+export interface EchtKopfRede { id: string; datum: string; iso: string | null; einzeiler: string; href: string }
 export interface EchtKopf {
   vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle: string | null;
   photoUrl: string | null;
+  // die letzten Reden zum Thema — Reden hängen an den KÖPFEN, nicht im Feed
+  letzteReden: EchtKopfRede[];
 }
 export interface EchtSitzung { nr: number; datum: string; tops: string; href: string }
 export interface DigitalBlattEcht {
@@ -250,44 +253,15 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       redner: null, tags: ds.tags, href: `/aktivitaeten/${ds.nr.replace("/", "-")}`,
     });
   }
-  const redeRows = db.prepare(`
-    SELECT ss.rede_id, ss.speaker, ss.sitzung, ss.datum AS iso, ss.kontext, ss.zusammenfassung,
-           COALESCE(pa.label, '') AS partei
-    FROM item_topics it
-    JOIN speech_summaries ss ON ss.rede_id = it.item_id
-    LEFT JOIN politicians p ON p.id = ss.politician_id
-    LEFT JOIN parties pa ON pa.id = p.party_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ?
-      AND it.origin IN ('rede_summary','title_llm')
-      AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
-    GROUP BY ss.rede_id
-    ORDER BY ss.datum DESC
-    LIMIT 200
-  `).all(FELD_AW) as { rede_id: string; speaker: string | null; sitzung: number | null; iso: string | null; kontext: string | null; zusammenfassung: string | null; partei: string }[];
-  // ⚠️ Reden OHNE Zusammenfassung sind ausgefiltert (62/1.899, alle aus den NEUESTEN
-  // Sitzungen 77/78/80 — der Summary-Lauf hinkt hinterher und die Leeren standen
-  // wegen neueste-zuerst ganz oben im Feed, User-Befund 2026-06-11). Sie erscheinen
-  // automatisch, sobald der Backfill läuft.
-  for (const r of redeRows) {
-    const partei = cleanParty(r.partei);
-    docs.push({
-      id: `rede-${r.rede_id}`,
-      typ: "Rede",
-      titel: cleanKontext(r.kontext) ?? `Rede von ${r.speaker ?? "unbekannt"}`,
-      iso: r.iso, datum: rel(r.iso),
-      einzeiler: r.zusammenfassung ?? "", vorschau: r.zusammenfassung,
-      redner: r.speaker ? `${r.speaker}${partei ? ` (${partei})` : ""}` : null,
-      // LÜCKE: Reden tragen keine spezifischen Tags (kommt mit dem Tag-Batch)
-      tags: [],
-      href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}` : "#",
-    });
-  }
+  // Reden sind NICHT im Feed: Debatten-Kontexte taugen nicht als Karten-Titel
+  // („Nun komme ich zu Tagesordnungspunkt 1“, User 2026-06-11) — sie hängen
+  // stattdessen als „letzte Reden zum Thema“ an den Köpfen (Screen 2).
   docs.sort((a, b) => (b.iso ?? "").localeCompare(a.iso ?? ""));
   const feed = docs.slice(0, FEED_LIMIT);
 
   // ── 5. Köpfe: Top-Redner:innen im Feld (Lautstärke-Sicht, parteiübergreifend) ──
   const kopfRows = db.prepare(`
-    SELECT p.first_name AS vorname, p.last_name AS nachname,
+    SELECT ss.politician_id AS pid, p.first_name AS vorname, p.last_name AS nachname,
            COALESCE(pa.label, '') AS partei, p.photo_url,
            COUNT(DISTINCT ss.rede_id) AS reden,
            (SELECT COUNT(DISTINCT s2.rede_id) FROM speech_summaries s2 WHERE s2.politician_id = ss.politician_id) AS gesamt,
@@ -302,7 +276,33 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     GROUP BY ss.politician_id
     ORDER BY reden DESC
     LIMIT 10
-  `).all(FELD_AW) as { vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
+  `).all(FELD_AW) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
+  // Die letzten 2 eigen-klassifizierten Reden je Top-Kopf (Datum + Zusammenfassung
+  // + Link zur Sitzung) — hier braucht es keinen Debatten-Titel, die Person rahmt.
+  const pids = kopfRows.map((k) => k.pid);
+  const redenRows = pids.length ? db.prepare(`
+    SELECT ss.politician_id AS pid, ss.rede_id, ss.datum AS iso, ss.zusammenfassung, ss.sitzung
+    FROM item_topics it
+    JOIN speech_summaries ss ON ss.rede_id = it.item_id
+    WHERE it.source = 'bt_rede' AND it.aw_field = ?
+      AND it.origin IN ('rede_summary','title_llm')
+      AND ss.politician_id IN (${pids.map(() => "?").join(",")})
+      AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
+    GROUP BY ss.rede_id
+    ORDER BY ss.datum DESC
+  `).all(FELD_AW, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
+  const redenByPid = new Map<number, EchtKopfRede[]>();
+  for (const r of redenRows) {
+    const list = redenByPid.get(r.pid) ?? [];
+    if (list.length >= 2) { continue; }
+    list.push({
+      id: r.rede_id, datum: rel(r.iso), iso: r.iso,
+      einzeiler: r.zusammenfassung ?? "",
+      href: r.sitzung != null ? `/protokolle/sitzung/${r.sitzung}` : "#",
+    });
+    redenByPid.set(r.pid, list);
+  }
+
   const ROLE_DE: Record<string, string> = { member: "Mitglied", chairperson: "Vorsitz", alternate_member: "stellv. Mitglied" };
   const koepfe: EchtKopf[] = kopfRows.map((k) => {
     let rolle: string | null = null;
@@ -310,7 +310,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       const [role, label] = k.ausschuss.split("§");
       rolle = `${ROLE_DE[role] ?? role} im ${label}`;
     }
-    return { vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null };
+    return { vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null, letzteReden: redenByPid.get(k.pid) ?? [] };
   });
 
   // ── 6. Plenarsitzungen mit Feld-Reden ──
@@ -339,7 +339,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     .sort((a, b) => b.count - a.count)
     .slice(0, 20);
 
-  const zuletztIso = [dsRows.map((d) => d.iso), redeRows.map((r) => r.iso), votes.map((v) => v.iso)]
+  const zuletztIso = [dsRows.map((d) => d.iso), redenRows.map((r) => r.iso), votes.map((v) => v.iso)]
     .flat().filter(Boolean).sort().pop() ?? null;
   const totalReden = (db.prepare(
     `SELECT COUNT(DISTINCT item_id) AS c FROM item_topics WHERE source = 'bt_rede' AND aw_field = ? AND origin IN ('rede_summary','title_llm')`
