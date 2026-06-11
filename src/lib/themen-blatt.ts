@@ -2,26 +2,26 @@
 // Dummy-Daten der Vorschau, um sichtbar zu machen, welche Daten REICHEN und
 // welche noch fehlen (Stand 2026-06-11).
 //
-// Korn-Proxy, solange die Unterthema/Tag-Klassifikation (Batch) nicht gelaufen ist:
-//   - Drucksachen:  Roh-Tag `Digitalisierung` in drucksache_analyses.thema (588 DS)
-//   - Reden:        item_topics aw_field „Medien, Kommunikation und Informationstechnik" (1.901)
-//   - Abstimmungen: Handzeichen-Votes, deren Drucksachen den Roh-Tag tragen (54)
-//   - Gesetzentwürfe: DIP-Vorgangsdaten (dip_vorgaenge/positionen, seit 2026-06-11)
+// Korn seit dem Unterthemen-Batch (msgbatch_014rmgoQWEz9JMbD43N2vrB4, 2026-06-11):
+//   - Drucksachen:  ds_unterthemen, Cluster „Digital- & KI-Wirtschaft", kern_im_feld=1
+//                   (66 DS) — Item-Tags = die offenen spezifische_tags[] des Batches
+//   - Reden:        noch item_topics aw_field „Medien, Kommunikation und Informations-
+//                   technik" (1.901) — erben die Unterthemen später via inherited_ds
+//   - Abstimmungen: Handzeichen-Votes, deren Drucksachen im Cluster liegen
+//   - Gesetzentwürfe: DIP-Vorgangsdaten (dip_vorgaenge/positionen)
 //
-// BEKANNTE LÜCKEN (bewusst sichtbar gelassen, das ist der Zweck der Übung):
-//   1. Spezifische Themen = Co-Occurrence der Roh-Tags → feld-grob („Verwaltung",
-//      „Datenschutz"), nicht KI/Krypto-fein → braucht den Tag-Batch.
-//   2. Reden tragen keine Tags → fallen beim Tag-Filter raus.
-//   3. Digital-Votes sind ALLE Handzeichen → keine Ja/Nein-Zahlen (nur Fraktions-
-//      voten) und kein „Worum geht es?" (vote_context ist poll_id-/namentlich-only;
-//      Ersatz = DS-Kerninhalt).
-//   4. Feed lädt die neuesten 120 von ~2.500 — voller Bestand braucht die
-//      server-seitige searchThema-Integration statt Client-Filterung.
-//   5. Köpfe: „Spricht vor allem zu"-Chips fehlen (bräuchten Tag-Korn × redner_id).
+// VERBLEIBENDE LÜCKEN:
+//   1. Reden tragen noch keine Unterthemen/Tags (Erben-Lauf via inherited_ds offen)
+//      → fallen beim Tag-Filter raus; Reden-Korn = Feld, nicht Cluster.
+//   2. Digital-Votes sind ALLE Handzeichen → keine Ja/Nein-Zahlen (nur Fraktions-
+//      voten) und kein „Worum geht es?" (Ersatz = DS-Kerninhalt).
+//   3. Feed lädt die neuesten 120 — voller Bestand braucht die server-seitige
+//      searchThema-Integration statt Client-Filterung.
+//   4. Köpfe: „Spricht vor allem zu"-Chips fehlen (Tag-Korn × redner_id, nach Erben-Lauf).
 import { getDb } from "@/lib/db";
 
 const FELD_AW = "Medien, Kommunikation und Informationstechnik";
-const ROH_TAG = "Digitalisierung";
+const UNTERTHEMA_CLUSTER = "Digital- & KI-Wirtschaft";
 const FEED_LIMIT = 120;
 
 export interface EchtVote {
@@ -80,8 +80,12 @@ function daysSince(iso: string | null): number {
   if (!iso) return 0;
   return Math.max(0, Math.floor((Date.now() - new Date(iso.slice(0, 10) + "T00:00:00").getTime()) / 86_400_000));
 }
-function splitTags(thema: string | null): string[] {
-  return (thema ?? "").split(",").map((s) => s.trim()).filter((s) => s && s !== ROH_TAG);
+function parseTags(json: string | null): string[] {
+  if (!json) return [];
+  try {
+    const arr = JSON.parse(json);
+    return Array.isArray(arr) ? arr.map((t) => String(t).trim()).filter(Boolean) : [];
+  } catch { return []; }
 }
 // kerninhalt ist teils als JSON-Array (Stichpunkte) gespeichert → lesbarer Fließtext
 function parseKern(s: string | null): string | null {
@@ -103,25 +107,29 @@ function cleanParty(s: string | null): string {
 export function getDigitalBlatt(): DigitalBlattEcht {
   const db = getDb();
 
-  // ── 1. Digital-Drucksachen mit Titel/Datum/Zusammenfassung ──
-  // PRIMÄR-Tag (Digitalisierung an ERSTER Stelle, 197 DS): Die LLM-Tag-Reihenfolge
-  // trägt Bedeutung — irgendwo-im-String (588 DS) holte auch Drittrang-Erwähnungen
-  // aufs Blatt („Wirtschaft 2045" mit thema=Wirtschaft,Klimaschutz,Digitalisierung
-  // als Featured-Vote, User-Befund 2026-06-11). Der Tag-Batch ersetzt den Proxy
-  // durch kuratierte unterthema[]-Zuordnung (1–3, Multi-Feld bleibt möglich).
-  const dsRows = db.prepare(`
-    SELECT da.drucksache_nr AS nr, da.zusammenfassung, da.kerninhalt, da.thema, da.dokumenttyp,
+  // ── 1. Digital-Drucksachen = Batch-Klassifikation (ds_unterthemen) ──
+  // Cluster „Digital- & KI-Wirtschaft" + kern_im_feld=1 (Items, deren KERN im Feld
+  // liegt — kern=0 ist die Rollup-Putzliste). Item-Tags = spezifische_tags[] des
+  // Batches (KI, Halbleiter, Rechenzentren …) statt der groben Roh-Tag-Felder.
+  const dsRowsRaw = db.prepare(`
+    SELECT da.drucksache_nr AS nr, da.zusammenfassung, da.kerninhalt, da.dokumenttyp,
+      du.spezifische_tags_json,
       (SELECT COALESCE(a.thema, a.titel) FROM activities a WHERE a.drucksache_nr = da.drucksache_nr LIMIT 1) AS titel,
       COALESCE(
         (SELECT MIN(a.datum) FROM activities a WHERE a.drucksache_nr = da.drucksache_nr AND a.datum IS NOT NULL),
         (SELECT dt.publication_date FROM drucksache_texts dt WHERE dt.drucksache_nr = da.drucksache_nr)
       ) AS iso
-    FROM drucksache_analyses da
-    WHERE da.thema LIKE ? || '%' AND da.analyze_error IS NULL
-  `).all(ROH_TAG) as {
-    nr: string; zusammenfassung: string | null; kerninhalt: string | null; thema: string | null;
-    dokumenttyp: string | null; titel: string | null; iso: string | null;
+    FROM ds_unterthemen du
+    JOIN drucksache_analyses da ON da.drucksache_nr = du.drucksache_nr
+    WHERE du.feld = 'Wirtschaft' AND du.kern_im_feld = 1
+      AND EXISTS (SELECT 1 FROM json_each(du.unterthemen_json) je WHERE je.value = ?)
+      AND da.analyze_error IS NULL
+  `).all(UNTERTHEMA_CLUSTER) as {
+    nr: string; zusammenfassung: string | null; kerninhalt: string | null;
+    dokumenttyp: string | null; spezifische_tags_json: string | null;
+    titel: string | null; iso: string | null;
   }[];
+  const dsRows = dsRowsRaw.map((r) => ({ ...r, tags: parseTags(r.spezifische_tags_json) }));
   const dsMap = new Map(dsRows.map((r) => [r.nr, r]));
   // Titel-Lücke in activities: DIP führt für alle Gesetzgebungs-DS den amtlichen
   // Titel → bester Fallback (traf z. B. den neuesten Primär-Vote 21/1934)
@@ -159,7 +167,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       einzeiler: ds.zusammenfassung ?? "",
       worum: ds.kerninhalt ?? ds.zusammenfassung,
       outcome: v.outcome === "annahme" ? "angenommen" : "abgelehnt",
-      fraktionen, tags: splitTags(ds.thema), href: `/aktivitaeten/${encodeURIComponent(dsNr)}`,
+      fraktionen, tags: ds.tags, href: `/aktivitaeten/${dsNr.replace("/", "-")}`,
     });
   }
   // worum lesbar machen (kerninhalt kann JSON-Stichpunkte enthalten)
@@ -202,7 +210,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       iso: ds.iso, datum: rel(ds.iso),
       stand: inBr ? 2 : 1, standDetail,
       einzeiler: ds.zusammenfassung ?? "", vorschau: parseKern(ds.kerninhalt) ?? ds.zusammenfassung,
-      tags: splitTags(ds.thema), href: `/aktivitaeten/${encodeURIComponent(g.nr)}`,
+      tags: ds.tags, href: `/aktivitaeten/${g.nr.replace("/", "-")}`,
     });
   }
   gesetze.sort((a, b) => (b.iso ?? "").localeCompare(a.iso ?? ""));
@@ -218,7 +226,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       titel: dsTitel(ds.nr) ?? `Drucksache ${ds.nr}`,
       iso: ds.iso, datum: rel(ds.iso),
       einzeiler: ds.zusammenfassung ?? "", vorschau: parseKern(ds.kerninhalt) ?? ds.zusammenfassung,
-      redner: null, tags: splitTags(ds.thema), href: `/aktivitaeten/${encodeURIComponent(ds.nr)}`,
+      redner: null, tags: ds.tags, href: `/aktivitaeten/${ds.nr.replace("/", "-")}`,
     });
   }
   const redeRows = db.prepare(`
@@ -293,10 +301,10 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     href: `/protokolle/sitzung/${s.nr}`,
   }));
 
-  // ── 7. Spezifische Themen: Co-Occurrence der Roh-Tags auf den Digital-DS ──
-  // LÜCKE: feld-grob (Verwaltung/Datenschutz/…), nicht KI/Krypto-fein → Tag-Batch.
+  // ── 7. Spezifische Themen = die offenen Batch-Tags der Cluster-Items ──
+  // (KI, Halbleiter, Rechenzentren, Digitale Souveränität … — das feine Korn)
   const tagCounts = new Map<string, number>();
-  for (const ds of dsRows) for (const t of splitTags(ds.thema)) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  for (const ds of dsRows) for (const t of ds.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
   const tags = Array.from(tagCounts.entries())
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count)

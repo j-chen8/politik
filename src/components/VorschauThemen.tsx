@@ -369,9 +369,9 @@ function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
       )}
       <TagChips tags={c.tags} className="mt-5" />
       <div className="mt-auto flex items-center justify-between gap-4 pt-10">
-        <a href={c.href ?? "#"} className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-900 transition hover:gap-2.5 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
+        <Link href={c.href ?? "#"} className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-zinc-900 transition hover:gap-2.5 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300">
           Zur {c.typ}<IconArrow className="h-4 w-4" />
-        </a>
+        </Link>
         <div className="flex items-center gap-2.5">
           <button onClick={onPrev} aria-label="vorheriger Eintrag" className={navBtn}><IconArrow className="h-4 w-4 rotate-180" /></button>
           <span className="text-[12px] tabular-nums text-zinc-400">{pos} / {total}</span>
@@ -423,7 +423,7 @@ function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]
 // einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <a href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         {/* Typ-Wort raus — die Sektions-Überschrift sagt schon „Abstimmungen"; „Aktuell"
             begründet nur, warum DIESE Karte groß ist (die neueste). Icon trägt den Typ. */}
@@ -448,7 +448,7 @@ function FeaturedVote({ c }: { c: CatchItem }) {
         <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-zinc-900 dark:text-zinc-100">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
         <TagChips tags={c.tags} />
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -456,16 +456,18 @@ function FeaturedVote({ c }: { c: CatchItem }) {
 // getrennt (divide-y am Container), grüner Vote-Akzent wie die Featured-Karte.
 function VoteRow({ c }: { c: CatchItem }) {
   return (
-    <a href={c.href ?? "#"} className="group block py-5">
+    // flex-1: die (zwei) Zeilen teilen sich die Spaltenhöhe — die rechte Liste füllt
+    // damit immer exakt die Höhe der Featured-Karte, egal wie lang die Texte sind
+    <Link href={c.href ?? "#"} className="group flex flex-1 flex-col justify-center py-5">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}{c.outcome ? ` · ${c.outcome}` : ""}
       </p>
       <p className="mt-1.5 line-clamp-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
-      <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
-      {c.ergebnis ? <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>
-        : c.fraktionen ? <div className="mt-2.5"><FraktionRow f={c.fraktionen} slim /></div> : null}
-      <TagChips tags={c.tags} className="mt-2.5" />
-    </a>
+      <p className="mt-1.5 line-clamp-4 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      {c.ergebnis ? <div className="mt-3"><ErgebnisBar e={c.ergebnis} slim /></div>
+        : c.fraktionen ? <div className="mt-3"><FraktionRow f={c.fraktionen} slim /></div> : null}
+      <TagChips tags={c.tags} className="mt-3" />
+    </Link>
   );
 }
 
@@ -513,7 +515,7 @@ function StandDots({ stand }: { stand: number }) {
 // wie der Feed.
 function GesetzCard({ c }: { c: CatchItem }) {
   return (
-    <a href={c.href ?? "#"} className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
@@ -531,7 +533,7 @@ function GesetzCard({ c }: { c: CatchItem }) {
         </p>
         <p className="mt-1.5 min-h-[17px] text-[12px] leading-snug text-zinc-400">{c.standDetail ?? ""}</p>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -618,7 +620,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
       <div ref={scrollRef} onScroll={onScroll}
         className={`flex min-w-0 flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${compact ? "" : "scroll-pl-7 [mask-image:linear-gradient(to_right,transparent,black_2.25rem,black_calc(100%-2.25rem),transparent)]"}`}>
         {[...sitzungen, ...sitzungen, ...sitzungen].map((s, i) => (
-          <a key={`${s.nr}-${i}`} href={s.href ?? "#"} aria-hidden={i < n || i >= n * 2 ? true : undefined}
+          <Link key={`${s.nr}-${i}`} href={s.href ?? "#"} aria-hidden={i < n || i >= n * 2 ? true : undefined}
             className={`group flex w-[260px] shrink-0 snap-start items-start gap-3.5 transition duration-300 hover:shadow-[0_16px_36px_-18px_rgba(20,20,45,0.3)] ${compact ? "p-4 md:w-[calc((100%-0.75rem)/2)]" : "p-5 md:w-[calc((100%-5rem)/3)]"} ${SOFT_CARD}`}>
             {!compact && (
               <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-900/[0.05] text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400">
@@ -632,7 +634,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
               <span className="block text-[12px] text-zinc-400">{s.datum}</span>
               <span className="mt-1.5 block truncate text-[12.5px] leading-snug text-zinc-500 dark:text-zinc-400">{s.tops}</span>
             </span>
-          </a>
+          </Link>
         ))}
       </div>
       <button onClick={() => step(1)} aria-label="nach rechts" className={arrowBtn}>
@@ -1278,8 +1280,10 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
         // + Wartezeit). Reine Recency, keine Brisanz-Wertung.
         const votes = shownCatch.filter((c) => c.typ === "Abstimmung");
         const featuredVote = votes[0] ?? null;
-        const olderVotes = votes.slice(1, 4);
-        const voteOverflow = Math.max(0, votes.length - 4);
+        // 2 ältere rechts (User 2026-06-11: echte Inhalte sind höher als die Dummies —
+        // 3 Zeilen streckten Screen 1 weit über den Viewport)
+        const olderVotes = votes.slice(1, 3);
+        const voteOverflow = Math.max(0, votes.length - 3);
         const imVerfahren = shownCatch.filter((c) => c.typ === "Drucksache" && c.stand != null);
         const gesetzRow = imVerfahren.slice(0, 3);
         const gesetzOverflow = imVerfahren.length - gesetzRow.length;
@@ -1336,7 +1340,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
                     un-hydratisierte Seite (tote Klicks, kein Paging) — Soft-Navigation
                     hält die React-App am Leben, Back ist ein Router-Schritt. */}
                 <SectionLabel hint={voteOverflow > 0
-                  ? <Link href={alleVotesHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 4 neuesten · alle {votes.length} ansehen →</Link>
+                  ? <Link href={alleVotesHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {votes.length} ansehen →</Link>
                   : `${votes.length} ${votes.length === 1 ? "Abstimmung" : "Abstimmungen"}`}>Abstimmungen zum Thema</SectionLabel>
                 {olderVotes.length > 0 ? (
                   <div className="grid gap-5 md:grid-cols-[3fr_2fr] md:gap-6">

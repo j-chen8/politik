@@ -115,7 +115,7 @@ async function apply() {
 
   let ok = 0, drift = 0, errored = 0, leer = 0, fremd = 0;
   const unterCount = new Map<string, number>();
-  for await (const result of client.messages.batches.results(batch_id)) {
+  for await (const result of await client.messages.batches.results(batch_id)) {
     if (result.result.type !== "succeeded") { errored++; console.error(`  ✗ ${result.custom_id}: ${result.result.type}`); continue; }
     const msg = result.result.message;
     const block = msg.content.find((c) => c.type === "tool_use") as Anthropic.ToolUseBlock | undefined;
