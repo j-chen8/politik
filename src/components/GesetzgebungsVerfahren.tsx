@@ -63,6 +63,9 @@ interface MacroStep {
   label: string;
   state: StepState;
   datum: string | null;
+  // Binnenphase des aktiven Schritts, z. B. "im Ausschuss" — die meisten
+  // laufenden Verfahren stecken innerhalb der Bundestag-Phase
+  subLabel?: string;
 }
 
 function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
@@ -116,10 +119,24 @@ function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
     return "pending";
   };
 
+  // Binnenphase im Bundestag: 1. Lesung → Ausschuss → 2./3. Lesung.
+  // Aus Positions-Fakten abgeleitet, nicht aus beratungsstand-Strings.
+  let btSub: string | undefined;
+  if (active === 1 && !terminal) {
+    const hatErsteBeratung = pos(["1. Beratung", "1. Beratung (Gesetzentwurf)"]).length > 0;
+    const hatBeschlussempfehlung = pos(["Beschlussempfehlung und Bericht", "Beschlussempfehlung", "Bericht"]).length > 0;
+    btSub = !hatErsteBeratung
+      ? "vor der 1. Lesung"
+      : hatBeschlussempfehlung
+        ? "Beschlussempfehlung liegt vor"
+        : "im Ausschuss";
+  }
+  const brSub = active === 2 && stand === "Im Vermittlungsverfahren" ? "Vermittlungsausschuss" : undefined;
+
   return [
     { label: "Eingebracht", state: stateFor(0), datum: einbringungDatum },
-    { label: "Bundestag", state: stateFor(1), datum: btSchlussDatum },
-    { label: "Bundesrat", state: stateFor(2), datum: brNachBt.map((s) => s.datum).filter(Boolean).sort().pop() ?? null },
+    { label: "Bundestag", state: stateFor(1), datum: btSchlussDatum, subLabel: btSub },
+    { label: "Bundesrat", state: stateFor(2), datum: brNachBt.map((s) => s.datum).filter(Boolean).sort().pop() ?? null, subLabel: brSub },
     { label: "In Kraft", state: stateFor(3), datum: verkDatum ?? null },
   ];
 }
@@ -166,6 +183,11 @@ function MacroStepper({ steps }: { steps: MacroStep[] }) {
           </span>
           {s.datum && s.state !== "pending" && (
             <span className="num text-[10.5px] text-zinc-400 mt-0.5">{fmtDate(s.datum)}</span>
+          )}
+          {s.subLabel && (
+            <span className="text-[10.5px] text-[#1a3e72] mt-0.5 text-center leading-tight px-1">
+              {s.subLabel}
+            </span>
           )}
         </li>
       ))}
