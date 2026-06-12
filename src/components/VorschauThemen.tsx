@@ -254,14 +254,15 @@ function FeaturedVote({ c }: { c: CatchItem }) {
       <p className={`${DISPLAY} mt-3 text-[1.45rem] font-bold leading-[1.12] tracking-[-0.02em] text-zinc-900 line-clamp-2 md:text-[1.7rem] dark:text-zinc-50`}>{c.titel}</p>
       {/* Text-Klemmen (User 2026-06-12): echte Kerninhalte sind bis ~500 Zeichen lang
           und streckten Screen 1 weit über den Viewport — die Karte teasert, der
-          CTA führt zur Abstimmung mit dem vollen Text. */}
+          CTA führt zur Abstimmung mit dem vollen Text. 6 Zeilen seit die Blatt-
+          Überschrift auf 2.3rem geschrumpft ist (Budget wandert in den Inhalt). */}
       {c.worum ? (
         <>
           <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Worum geht es?</p>
-          <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-3 dark:text-zinc-400">{c.worum}</p>
+          <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-6 dark:text-zinc-400">{c.worum}</p>
         </>
       ) : (
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-3 dark:text-zinc-400">{c.einzeiler}</p>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-6 dark:text-zinc-400">{c.einzeiler}</p>
       )}
       {(c.ergebnis || c.fraktionen) && (
         <div className="mt-auto pt-6">
@@ -289,7 +290,7 @@ function VoteRow({ c }: { c: CatchItem }) {
         <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}{c.outcome ? ` · ${c.outcome}` : ""}
       </p>
       <p className="mt-1.5 line-clamp-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
-      <p className="mt-1.5 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      <p className="mt-1.5 line-clamp-4 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
       {/* keine Tag-Zeile in den Kompakt-Zeilen (Höhen-Budget Screen 1) — Tags leben
           in der Featured-Karte und im Feed */}
       {c.ergebnis ? <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>
