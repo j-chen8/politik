@@ -92,6 +92,14 @@
    `dip_vorgaenge`/`dip_vorgang_positionen`, Upsert per id. Druckt eigenen
    Verifikations-Report (beratungsstand-Verteilung + GE-Coverage, Soll: 100 %).
    Details + Join-Caveats: §2.3b.
+4b5. **Drucksachen-Titel-Backfill** (gratis, idempotent):
+   `npx tsx scripts/seed-dip-ds-titles-all.ts` — Voll-Sweep ALLER WP21-BT-
+   Drucksachen aus der DIP-API (~66 Cursor-Seiten) in `dip_ds_titles`;
+   amtlicher Titel unter beiden Nummern-Schreibweisen (padded + unpadded).
+   Schließt die Titel-Lücke für Antworten/Unterrichtungen/Beschluss-
+   empfehlungen, die kein abgeordnetenwatch-Thema haben (sonst „Drucksache
+   21/XXXX" im UI). Soll nach Lauf: `drucksache_texts` 100 % mit Titel
+   (Check: activities.thema ODER dip_ds_titles.titel vorhanden).
 4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
    Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
    wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
