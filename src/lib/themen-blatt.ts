@@ -22,10 +22,45 @@
 //      searchThema-Integration statt Client-Filterung.
 //   4. Köpfe: „Spricht vor allem zu"-Chips fehlen (Tag-Korn × redner_id, nach Erben-Lauf).
 import { getDb } from "@/lib/db";
+import { OBERTHEMEN, TAXONOMIE, unterSlug } from "@/lib/themen-struktur";
 
-const FELD_AW = "Medien, Kommunikation und Informationstechnik";
-const UNTERTHEMA_CLUSTER = "Digital- & KI-Wirtschaft";
 const FEED_LIMIT = 120;
+
+// Vote-Topic-Label je Cluster für den /abstimmungen?thema=-Deep-Link (Roh-Label-
+// Welt der Abstimmungsseite; wächst kuratiert, fehlt = kein Link, nur Zählung)
+const VOTE_THEMA: Record<string, string> = {
+  "Digital- & KI-Wirtschaft": "Digitalisierung",
+};
+
+// Ausschuss-Stichwort je Feld für die Rollen-Zeile der Köpfe (LIKE-Match auf
+// committee_label; fehlt = keine Ausschuss-Rolle angezeigt)
+const AUSSCHUSS_KEYWORD: Record<string, string> = {
+  "Wirtschaft": "%Wirtschaft%",
+  "Medien, Kommunikation und Informationstechnik": "%Digital%",
+  "Gesundheit": "%Gesundheit%",
+  "Verteidigung": "%Verteidigung%",
+  "Innere Sicherheit": "%Inneres%",
+  "Recht": "%Recht%",
+  "Öffentliche Finanzen, Steuern und Abgaben": "%Finanz%",
+  "Verkehr": "%Verkehr%",
+  "Umwelt": "%Umwelt%",
+  "Energie": "%Energie%",
+  "Arbeit und Beschäftigung": "%Arbeit%",
+  "Soziale Sicherung": "%Arbeit%",
+  "Bildung und Erziehung": "%Bildung%",
+  "Wissenschaft, Forschung und Technologie": "%Forschung%",
+  "Migration und Aufenthaltsrecht": "%Inneres%",
+  "Außenpolitik und internationale Beziehungen": "%Auswärtig%",
+  "Europapolitik und Europäische Union": "%Europäische Union%",
+  "Entwicklungspolitik": "%wirtschaftliche Zusammenarbeit%",
+  "Landwirtschaft und Ernährung": "%Landwirtschaft%",
+  "Kultur": "%Kultur%",
+  "Sport, Freizeit und Tourismus": "%Sport%",
+  "Raumordnung, Bau- und Wohnungswesen": "%Wohnen%",
+  "Staat und Verwaltung": "%Inneres%",
+  "Gesellschaftspolitik, soziale Gruppen": "%Familie%",
+  "Politisches Leben, Parteien": "%Wahlprüfung%",
+};
 
 export interface EchtVote {
   id: string; titel: string; iso: string | null; datum: string; einzeiler: string;
@@ -49,6 +84,8 @@ export interface EchtKopf {
 }
 export interface EchtSitzung { nr: number; datum: string; tops: string; href: string }
 export interface DigitalBlattEcht {
+  feld: string; unterthema: string;
+  beschreibung: string; voteThema: string | null;
   zuletztAktiv: string | null;
   votes: EchtVote[];
   gesetze: EchtGesetz[];
@@ -98,6 +135,8 @@ function parseTags(json: string | null): string[] {
 function parseKern(s: string | null): string | null {
   if (!s) return null;
   const t = s.trim();
+  // Literal-"null"/Platzhalter aus der LLM-Analyse nicht als Text durchreichen
+  if (t === "" || t.toLowerCase() === "null" || t === "—" || t === "-") return null;
   if (t.startsWith("[")) {
     try {
       const arr = JSON.parse(t);
@@ -128,7 +167,9 @@ function cleanKontext(s: string | null): string | null {
   return t || null;
 }
 
-export function getDigitalBlatt(): DigitalBlattEcht {
+export type ThemenBlattEcht = DigitalBlattEcht;
+
+export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalBlattEcht {
   const db = getDb();
 
   // ── 1. Digital-Drucksachen = Batch-Klassifikation (ds_unterthemen) ──
@@ -145,10 +186,10 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       ) AS iso
     FROM ds_unterthemen du
     JOIN drucksache_analyses da ON da.drucksache_nr = du.drucksache_nr
-    WHERE du.feld = 'Wirtschaft' AND du.kern_im_feld = 1
+    WHERE du.feld = ?
       AND EXISTS (SELECT 1 FROM json_each(du.unterthemen_json) je WHERE je.value = ?)
       AND da.analyze_error IS NULL
-  `).all(UNTERTHEMA_CLUSTER) as {
+  `).all(feldAw, unterthemaName) as {
     nr: string; zusammenfassung: string | null; kerninhalt: string | null;
     dokumenttyp: string | null; spezifische_tags_json: string | null;
     titel: string | null; iso: string | null;
@@ -266,17 +307,17 @@ export function getDigitalBlatt(): DigitalBlattEcht {
            COUNT(DISTINCT ss.rede_id) AS reden,
            (SELECT COUNT(DISTINCT s2.rede_id) FROM speech_summaries s2 WHERE s2.politician_id = ss.politician_id) AS gesamt,
            (SELECT cm.committee_role || '§' || cm.committee_label FROM committee_memberships cm
-             WHERE cm.politician_id = ss.politician_id AND cm.committee_label LIKE '%Digital%' LIMIT 1) AS ausschuss
+             WHERE cm.politician_id = ss.politician_id AND cm.committee_label LIKE @like LIMIT 1) AS ausschuss
     FROM item_topics it
     JOIN speech_summaries ss ON ss.rede_id = it.item_id
     JOIN politicians p ON p.id = ss.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ?
+    WHERE it.source = 'bt_rede' AND it.aw_field = @feld
       AND it.origin IN ('rede_summary','title_llm') AND ss.politician_id IS NOT NULL
     GROUP BY ss.politician_id
     ORDER BY reden DESC
     LIMIT 10
-  `).all(FELD_AW) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
+  `).all({ feld: feldAw, like: AUSSCHUSS_KEYWORD[feldAw] ?? "\u0000kein-match" }) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
   // Die letzten 2 eigen-klassifizierten Reden je Top-Kopf (Datum + Zusammenfassung
   // + Link zur Sitzung) — hier braucht es keinen Debatten-Titel, die Person rahmt.
   const pids = kopfRows.map((k) => k.pid);
@@ -290,7 +331,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
       AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
     GROUP BY ss.rede_id
     ORDER BY ss.datum DESC
-  `).all(FELD_AW, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
+  `).all(feldAw, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
   // Tag-Scent per TEXTMATCH gegen das Cluster-Tag-Vokabular (deterministisch,
   // kein LLM) — Platzhalter, bis Reden echte Tags tragen (Erben-Lauf am
   // Reden↔DS-Paar). „wenn getagt": nur zeigen, was wörtlich vorkommt.
@@ -343,7 +384,7 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     GROUP BY ss.sitzung
     ORDER BY iso DESC
     LIMIT 8
-  `).all(FELD_AW) as { nr: number; iso: string | null; n: number }[];
+  `).all(feldAw) as { nr: number; iso: string | null; n: number }[];
   const sitzungen: EchtSitzung[] = sitzungRows.map((s) => ({
     nr: s.nr, datum: fmtLang(s.iso),
     tops: `${s.n} ${s.n === 1 ? "Rede" : "Reden"} zum Thema`,
@@ -363,11 +404,53 @@ export function getDigitalBlatt(): DigitalBlattEcht {
     .flat().filter(Boolean).sort().pop() ?? null;
   const totalReden = (db.prepare(
     `SELECT COUNT(DISTINCT item_id) AS c FROM item_topics WHERE source = 'bt_rede' AND aw_field = ? AND origin IN ('rede_summary','title_llm')`
-  ).get(FELD_AW) as { c: number }).c;
+  ).get(feldAw) as { c: number }).c;
+
+  // Neutral abgeleitete Kopf-Zeile (kuratierte Beschreibungen sind eine bekannte
+  // Lücke — bis dahin: reine Bestandsbeschreibung, keine Wertung)
+  const topTags = tags.slice(0, 3).map((t) => t.name);
+  const beschreibung = `${dsRows.length} ${dsRows.length === 1 ? "Vorgang" : "Vorgänge"} der 21. Wahlperiode im Bundestag${topTags.length ? ` — am häufigsten: ${topTags.join(", ")}.` : "."}`;
 
   return {
+    feld: feldAw, unterthema: unterthemaName,
+    beschreibung, voteThema: VOTE_THEMA[unterthemaName] ?? null,
     zuletztAktiv: rel(zuletztIso),
     votes, gesetze, docs: feed, koepfe, sitzungen, tags,
     totalDs: dsRows.length, totalReden,
   };
+}
+
+// ── Picker-Struktur: 14 Oberthemen → Unterthemen mit Live-Bestand + Tag-Scent ──
+export interface StrukturUnter { name: string; slug: string; feld: string; count: number; topTags: string[] }
+export interface StrukturOber { name: string; slug: string; unterthemen: StrukturUnter[] }
+
+export function getThemenStruktur(): StrukturOber[] {
+  const db = getDb();
+  // Eine Abfrage, Aggregation in JS (~11k Zeilen, schnell genug pro Request)
+  const rows = db.prepare(
+    "SELECT feld, unterthemen_json, spezifische_tags_json FROM ds_unterthemen"
+  ).all() as { feld: string; unterthemen_json: string; spezifische_tags_json: string }[];
+  const count = new Map<string, number>();
+  const tagCount = new Map<string, Map<string, number>>();
+  for (const r of rows) {
+    const tags = parseTags(r.spezifische_tags_json);
+    for (const u of parseTags(r.unterthemen_json)) {
+      const key = `${r.feld}\u0000${u}`;
+      count.set(key, (count.get(key) ?? 0) + 1);
+      let tc = tagCount.get(key);
+      if (!tc) { tc = new Map(); tagCount.set(key, tc); }
+      for (const t of tags) tc.set(t, (tc.get(t) ?? 0) + 1);
+    }
+  }
+  return OBERTHEMEN.map((o) => ({
+    name: o.name, slug: o.slug,
+    unterthemen: o.felder.flatMap((feld) =>
+      (TAXONOMIE[feld] ?? []).map((u) => {
+        const key = `${feld}\u0000${u}`;
+        const topTags = [...(tagCount.get(key) ?? new Map<string, number>()).entries()]
+          .sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => t);
+        return { name: u, slug: unterSlug(u), feld, count: count.get(key) ?? 0, topTags };
+      })
+    ).sort((a, b) => b.count - a.count),
+  }));
 }

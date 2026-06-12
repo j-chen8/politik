@@ -1,9 +1,10 @@
 "use client";
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import type { DigitalBlattEcht } from "@/lib/themen-blatt";
+import type { DigitalBlattEcht, StrukturOber, StrukturUnter } from "@/lib/themen-blatt";
+import { unterSlug as mkUnterSlug } from "@/lib/themen-struktur";
 import { type LucideIcon, FileText, Mic, Vote, Landmark, X } from "lucide-react";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { partyColor } from "@/lib/party-colors";
@@ -44,13 +45,7 @@ type CatchItem = {
   // Handzeichen-Fraktionsvoten + Ausgang
   id?: string; iso?: string; href?: string; fraktionen?: Record<string, string>; outcome?: string;
 };
-// Eine Kante ist eine TÜR, kein Label: `brücke` = das real verbindende Dokument
-// (das Mit-Vorkommen, das die Verbindung trägt). Kanten werden im Themen-Browse
-// NICHT gerendert (User-Entscheidung 2026-06-10) — sie surfen auf der Dokument-
-// Detailseite als Tag-Chips. Typen bleiben hier als Daten-Spec-Dokumentation.
-type Brücke = { titel: string; typ: CatchItem["typ"]; datum: string };
-type Edge = { ziel: string; brücke?: Brücke };
-type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] };
+type Tag = { name: string; anker?: boolean; catch?: CatchItem[] };
 // Wer das Thema im Plenum trägt — rein deskriptiv: Reden zum Feld / Reden gesamt
 // (Spezialisierung zeigt sich, wird aber nicht etikettiert) + Ausschuss-Rolle als
 // Kontext. Methodik existiert: scripts/analyse-themenfeld.ts (landtag-Branch) —
@@ -59,152 +54,11 @@ type Tag = { name: string; anker?: boolean; catch?: CatchItem[]; edges?: Edge[] 
 // aus der Tag-Klassifikation × redner_id — kein eigener LLM-Lauf).
 type KopfRede = { id: string; datum: string; einzeiler: string; href: string; tags?: string[] };
 type Kopf = { politicianId?: number; vorname: string; nachname: string; partei: string; reden: number; gesamt: number; rolle?: string; themen?: string[]; photoUrl?: string | null; letzteReden?: KopfRede[] };
-// voteThema = Topic-Label für den Deep-Link auf /abstimmungen?thema=… (kann vom
-// Anzeige-Namen abweichen: „Digital" heißt in den Vote-Topics „Digitalisierung")
-// cluster = kanonischer Batch-Name in ds_unterthemen; name = kurzes Anzeige-Label
-// (Research-Befund „Labels sind der Hebel" — Anzeige kurz, Klassifikation exakt)
-type Unterthema = { name: string; cluster?: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; edges: Edge[]; koepfe?: Kopf[]; ausgebaut?: boolean };
-type Oberthema = { name: string; teaser: string[]; unter: Unterthema[]; catch: CatchItem[]; edges: Edge[] };
+// Blatt-Daten (aus dem Server-Loader, ad hoc zusammengesetzt)
+type Unterthema = { name: string; voteThema?: string; beschreibung?: string; tags?: Tag[]; catch: CatchItem[]; koepfe?: Kopf[] };
 
-// ── Dummy-Daten ─────────────────────────────────────────────────────────────
-
-// ECHTE Zahlen (kein Platzhalter): Top-Redner:innen des aw_fields „Medien, Kommunikation
-// und Informationstechnik" aus analyse-themenfeld.ts (Lauf 2026-06-10, Lautstärke-Sicht,
-// parteiübergreifend wie im echten Ergebnis). Dummy nur insofern, als das Feld hier als
-// Proxy für das Unterthema Digital steht.
-const DIGITAL_KOEPFE: Kopf[] = [
-  { vorname: "Karsten", nachname: "Wildberger", partei: "CDU", reden: 45, gesamt: 61, rolle: "Bundesminister für Digitales", themen: ["KI", "Rechenzentren", "Digitale Verwaltung"] },
-  { vorname: "Konrad", nachname: "Körner", partei: "CSU", reden: 26, gesamt: 60, rolle: "Mitglied im Digitalausschuss", themen: ["Plattform-Regulierung", "Digitale Identität"] },
-  { vorname: "Ruben", nachname: "Rupp", partei: "AfD", reden: 24, gesamt: 25, rolle: "Mitglied im Digitalausschuss", themen: ["Breitband & Netzausbau", "Funkversorgung"] },
-  { vorname: "Rebecca", nachname: "Lenhard", partei: "BÜNDNIS 90/DIE GRÜNEN", reden: 20, gesamt: 22, rolle: "Mitglied im Digitalausschuss", themen: ["KI", "Open Source", "Digitale Souveränität"] },
-  { vorname: "Sonja", nachname: "Lemke", partei: "Die Linke", reden: 19, gesamt: 29, rolle: "Mitglied im Digitalausschuss", themen: ["Cybersicherheit", "Plattform-Regulierung"] },
-  { vorname: "Johannes", nachname: "Schätzl", partei: "SPD", reden: 18, gesamt: 19, rolle: "Obmann im Digitalausschuss", themen: ["Breitband & Netzausbau", "Digitale Verwaltung"] },
-  { vorname: "Carolin", nachname: "Wagner", partei: "SPD", reden: 17, gesamt: 32, rolle: "Mitglied im Digitalausschuss", themen: ["Plattform-Regulierung", "Jugendmedienschutz"] },
-  { vorname: "Anna", nachname: "Lührmann", partei: "BÜNDNIS 90/DIE GRÜNEN", reden: 14, gesamt: 18, rolle: "Mitglied im Digitalausschuss", themen: ["Digitale Verwaltung", "Digitale Souveränität"] },
-  { vorname: "Sascha", nachname: "Wagner", partei: "Die Linke", reden: 14, gesamt: 26, rolle: "Mitglied im Haushaltsausschuss", themen: ["Breitband & Netzausbau", "Gigabit-Förderung"] },
-  { vorname: "Kay", nachname: "Gottschalk", partei: "AfD", reden: 13, gesamt: 40, rolle: "Obmann im Finanzausschuss", themen: ["Krypto-Assets", "Datenökonomie"] },
-];
-
-const WIRTSCHAFT: Oberthema = {
-  name: "Wirtschaft",
-  teaser: ["Energie", "Industrie & Standort", "Digital & KI", "Außenhandel & Zölle", "Wettbewerb"],
-  edges: [
-    { ziel: "Energie", brücke: { titel: "Strompreis-Entlastung für die Industrie", typ: "Abstimmung", datum: "vor 1 Woche" } },
-    { ziel: "Finanzen", brücke: { titel: "Sondervermögen Infrastruktur — Mittelabfluss", typ: "Drucksache", datum: "vor 2 Wochen" } },
-    { ziel: "Arbeitsmarkt", brücke: { titel: "Fachkräfteeinwanderung — Punktesystem", typ: "Rede", datum: "vor 3 Wochen" } },
-    { ziel: "Außenpolitik", brücke: { titel: "Lieferkettengesetz — Bürokratie-Entlastung", typ: "Drucksache", datum: "vor 2 Wochen" } },
-  ],
-  catch: [
-    { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen", einzeiler: "Bundesmittel für den Aufbau europäischer KI-Recheninfrastruktur." },
-    { titel: "Strompreis-Entlastung für die Industrie", typ: "Abstimmung", datum: "vor 1 Woche", einzeiler: "Namentliche Abstimmung über den Industriestrompreis." },
-    { titel: "Lieferkettengesetz — Bürokratie-Entlastung", typ: "Drucksache", datum: "vor 2 Wochen", einzeiler: "Antrag zur Vereinfachung der Sorgfaltspflichten." },
-  ],
-  unter: [
-    // Picker-Scent = echte Top-Tags des Clusters (Stand Batch 2026-06-11); am Blatt
-    // werden die Tags eh live aus ds_unterthemen geladen (digitalEcht überschreibt).
-    { name: "Digital & KI", cluster: "Digital- & KI-Wirtschaft", voteThema: "Digitalisierung", ausgebaut: true, koepfe: DIGITAL_KOEPFE,
-      tags: [
-        { name: "Künstliche Intelligenz", anker: true }, { name: "Technologische Souveränität", anker: true },
-        { name: "Halbleiter", anker: true }, { name: "Rechenzentren", anker: true },
-        { name: "Digitale Souveränität", anker: true }, { name: "Startup-Finanzierung", anker: true },
-        { name: "Wagniskapital", anker: true }, { name: "Mikroelektronik", anker: true },
-        { name: "SPRIND" }, { name: "Innovationsförderung" }, { name: "Bundesnetzagentur" },
-      ],
-      beschreibung: "Die digitale Wirtschaft im Bundestag — von KI-Förderung, Rechenzentren und Halbleitern über technologische Souveränität bis zu Startups und Wagniskapital.",
-      edges: [
-        { ziel: "Forschung", brücke: { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 3 Tagen" } },
-        { ziel: "Datenschutz", brücke: { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen" } },
-        { ziel: "Innere Sicherheit", brücke: { titel: "Deepfakes im Wahlkampf — Kennzeichnungspflicht", typ: "Drucksache", datum: "vor 4 Tagen" } },
-        { ziel: "Gesundheit", brücke: { titel: "KI in der Pflegedokumentation — Entlastung oder Risiko?", typ: "Rede", datum: "vor 2 Wochen" } },
-        { ziel: "Verteidigung", brücke: { titel: "Cyber-Abwehr der Bundeswehr — Aufwuchs", typ: "Rede", datum: "vor 2 Wochen" } },
-        { ziel: "Bildung", brücke: { titel: "KI an Schulen — Pilotprogramm der Länder", typ: "Rede", datum: "vor 1 Monat" } },
-      ],
-      catch: [
-        { titel: "Deepfakes im Wahlkampf — Kennzeichnungspflicht", typ: "Drucksache", datum: "vor 4 Tagen", einzeiler: "Antrag zur Pflicht-Kennzeichnung KI-generierter Medien im politischen Wettbewerb.",
-          vorschau: "Der Antrag fordert eine Kennzeichnungspflicht für KI-generierte oder KI-manipulierte Bild-, Ton- und Videoinhalte in der politischen Werbung. Plattformen sollen unmarkierte Deepfakes im Wahlkampf-Kontext als Verstoß behandeln; für Parteien ist eine Selbstverpflichtung mit Sanktionsstufe vorgesehen. Strittig ist die Abgrenzung zu Satire und legitimer Bildbearbeitung.",
-          tags: ["KI", "Plattform-Regulierung"], stand: 1, standDetail: "vor der 1. Lesung" },
-        { titel: "NIS-2-Umsetzung: Meldepflichten für KRITIS", typ: "Drucksache", datum: "vor 5 Tagen", einzeiler: "Nationale Umsetzung der EU-Cybersicherheitsrichtlinie für kritische Infrastruktur.",
-          vorschau: "Der Gesetzentwurf setzt die EU-Richtlinie NIS-2 um: Betreiber kritischer Infrastruktur müssen erhebliche Sicherheitsvorfälle künftig binnen 24 Stunden melden, ein Risikomanagement nachweisen und Lieferketten-Risiken adressieren. Der Kreis der erfassten Unternehmen wächst deutlich; das BSI erhält erweiterte Aufsichts- und Durchsetzungsbefugnisse.",
-          tags: ["Cybersicherheit"], stand: 1, standDetail: "im Ausschuss · seit 09.06.2026 · 2 Tage" },
-        { titel: "KI-Gigafactory: Förderrahmen für Rechenzentren", typ: "Drucksache", datum: "vor 1 Woche", einzeiler: "Bundesmittel für den Aufbau europäischer KI-Recheninfrastruktur.",
-          vorschau: "Der Antrag skizziert einen Förderrahmen für große KI-Rechenzentren („Gigafactories“) in Deutschland: Investitionszuschüsse, beschleunigte Genehmigungen und Strompreis-Konditionen für Ansiedlungen. Bedingung sind Abwärme-Nutzung und ein europäischer Betreiber-Anteil. Die Mittel sollen aus dem Sondervermögen Infrastruktur kommen.",
-          tags: ["KI", "Rechenzentren & Cloud"], stand: 1, standDetail: "im Ausschuss · seit 06.06.2026 · 5 Tage" },
-        { titel: "MiCAR-Umsetzung: Krypto-Aufsicht", typ: "Drucksache", datum: "vor 10 Tagen", einzeiler: "Nationale Umsetzung der EU-Kryptomärkte-Verordnung.",
-          vorschau: "Das Gesetz überführt die EU-Verordnung über Märkte für Kryptowerte (MiCAR) in nationales Aufsichtsrecht: Die BaFin wird zentrale Zulassungs- und Aufsichtsbehörde für Krypto-Dienstleister, bestehende nationale Lizenzen werden übergeleitet, und für Stablecoin-Emittenten gelten Eigenmittel- und Transparenzpflichten.",
-          tags: ["Krypto-Assets"], stand: 1, standDetail: "Beschlussempfehlung liegt vor" },
-        { titel: "Breitbandausbau im ländlichen Raum — Sachstand", typ: "Rede", datum: "vor 2 Wochen", einzeiler: "Aktuelle Stunde zum Stand des Gigabit-Ausbaus.",
-          vorschau: "In der Aktuellen Stunde verteidigt der Redner den Stand des geförderten Gigabit-Ausbaus gegen den Vorwurf des Stillstands: Die Anschlusszahlen im ländlichen Raum stiegen, der Engpass liege bei Tiefbau-Kapazitäten und kommunalen Verfahren, nicht bei den Fördermitteln. Er kündigt eine Vereinfachung des Förderantrags an.",
-          redner: "Johannes Schätzl (SPD)", tags: ["Breitband & Netzausbau"] },
-        { titel: "Cloud-Souveränität für die Verwaltung", typ: "Rede", datum: "vor 3 Wochen", einzeiler: "Debatte über die Abhängigkeit von US-Cloud-Anbietern.",
-          vorschau: "Die Rednerin problematisiert die Abhängigkeit der Bundesverwaltung von US-Cloud-Anbietern: Vergaben sollten Souveränitäts-Kriterien (Datenstandort, Exit-Fähigkeit, Open-Source-Anteil) verbindlich gewichten. Sie verweist auf laufende Projekte mit europäischen Anbietern und fordert ein Ausstiegs-Szenario für kritische Fachverfahren.",
-          redner: "Anna Lührmann (BÜNDNIS 90/DIE GRÜNEN)", tags: ["Digitale Souveränität", "Rechenzentren & Cloud"] },
-        { titel: "Plattform-Regulierung: DSA-Durchsetzung", typ: "Abstimmung", datum: "vor 3 Wochen", einzeiler: "Namentliche Abstimmung zur nationalen DSA-Durchsetzungsstelle.",
-          worum: "Der Gesetzentwurf richtet die nationale Durchsetzungsstelle für den Digital Services Act ein: Sie soll Plattform-Pflichten wie Meldewege, Transparenzberichte und Risikoprüfungen gegenüber den Anbietern durchsetzen und bei Verstößen Bußgelder verhängen können.",
-          ergebnis: { ja: 372, nein: 247, enthaltung: 11 }, tags: ["Plattform-Regulierung"] },
-        { titel: "KI-Verordnung — nationale Begleitgesetzgebung", typ: "Drucksache", datum: "vor 3 Wochen", einzeiler: "Anpassung des nationalen Rechts an den EU AI Act.",
-          tags: ["KI"], stand: 1, standDetail: "im Ausschuss · seit 26.05.2026 · 16 Tage" },
-        { titel: "Gigabit-Förderung 2.0 — Mittelabfluss", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Kleine Anfrage zum Abruf der Breitband-Fördermittel." },
-        { titel: "Digitale Identität: eID-Wallet-Pilot", typ: "Drucksache", datum: "vor 1 Monat", einzeiler: "Sachstand zur staatlichen Identitäts-Wallet." },
-        { titel: "Rechenzentren — Energieeffizienz-Auflagen", typ: "Rede", datum: "vor 1 Monat", einzeiler: "Debatte über Abwärme-Nutzung und Effizienzpflichten." },
-        { titel: "Open-Source-Strategie der Verwaltung", typ: "Rede", datum: "vor 5 Wochen", einzeiler: "Aussprache zur Reduzierung von Software-Abhängigkeiten." },
-        { titel: "Quantentechnologie — Forschungsförderung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Antrag zum Ausbau der nationalen Quanten-Forschung." },
-        { titel: "Halbleiter-Resilienz — EU Chips Act Umsetzung", typ: "Drucksache", datum: "vor 6 Wochen", einzeiler: "Nationale Maßnahmen zur Chip-Versorgungssicherheit.",
-          tags: ["Halbleiter"], stand: 1, standDetail: "im Ausschuss · seit 05.05.2026 · 37 Tage" },
-        { titel: "Online-Plattformen — Haftung bei Manipulation", typ: "Rede", datum: "vor 7 Wochen", einzeiler: "Debatte über Verantwortung für manipulierte Inhalte." },
-        { titel: "Vorratsdatenspeicherung — Quick Freeze", typ: "Abstimmung", datum: "vor 2 Monaten", einzeiler: "Abstimmung über das anlassbezogene Einfrieren von Daten.",
-          worum: "Statt anlassloser Vorratsdatenspeicherung sollen Verkehrsdaten erst bei konkretem Verdacht „eingefroren“ werden — auf richterliche Anordnung, befristet und zweckgebunden.",
-          ergebnis: { ja: 351, nein: 269, enthaltung: 10 }, tags: ["Datenschutz", "Telekommunikation"] },
-        { titel: "Startups — Wagniskapital-Dachfonds", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Aufstockung der staatlichen Beteiligung an VC-Fonds." },
-        { titel: "Smart-City-Förderprogramm — Sachstand", typ: "Rede", datum: "vor 2 Monaten", einzeiler: "Bericht zum Stand der kommunalen Digitalprojekte." },
-        { titel: "Autonomes Fahren — Zulassungsrahmen", typ: "Drucksache", datum: "vor 2 Monaten", einzeiler: "Verordnung zum Regelbetrieb fahrerloser Fahrzeuge.",
-          tags: ["Autonomes Fahren"], stand: 2, standDetail: "dem Bundesrat zugeleitet · seit 28.05.2026 · 14 Tage" },
-        { titel: "Cyberabwehr — Befugnisse für aktive Maßnahmen", typ: "Abstimmung", datum: "vor 3 Monaten", einzeiler: "Kontroverse Abstimmung über sogenannte Hackbacks.",
-          worum: "Der Antrag wollte Sicherheitsbehörden erlauben, Server, von denen laufende Angriffe ausgehen, aktiv zu stören („Hackback“). Strittig waren Völkerrecht, Attributionsrisiken und mögliche Eskalation.",
-          ergebnis: { ja: 298, nein: 322, enthaltung: 10 }, tags: ["Cybersicherheit"] },
-        { titel: "Biometrische Gesichtserkennung — Einsatzgrenzen", typ: "Abstimmung", datum: "vor 4 Monaten", einzeiler: "Abstimmung über Grenzen biometrischer Auswertung im öffentlichen Raum.",
-          worum: "Festgelegt wurde, in welchen engen Fällen Behörden biometrische Gesichtserkennung einsetzen dürfen — und wo sie ausgeschlossen bleibt.",
-          ergebnis: { ja: 401, nein: 210, enthaltung: 9 }, tags: ["KI", "Biometrie"] },
-        { titel: "Telekommunikation — Routerfreiheit", typ: "Drucksache", datum: "vor 3 Monaten", einzeiler: "Antrag zur Sicherung der freien Endgerätewahl." },
-        { titel: "Digitale Verwaltung — OZG-Änderungsgesetz", typ: "Abstimmung", datum: "vor 4 Monaten", einzeiler: "Abstimmung über verbindliche Standards für digitale Verwaltungsleistungen.",
-          worum: "Das Änderungsgesetz macht zentrale Verwaltungsleistungen digital verpflichtend, legt einheitliche Schnittstellen-Standards fest und gibt Ländern und Kommunen Umsetzungsfristen mit Bundes-Unterstützung.",
-          ergebnis: { ja: 388, nein: 221, enthaltung: 14 }, tags: ["Digitale Verwaltung"] },
-        { titel: "Chatkontrolle — Haltung der Bundesregierung", typ: "Abstimmung", datum: "vor 5 Monaten", einzeiler: "Abstimmung über die deutsche Position zur EU-CSA-Verordnung.",
-          worum: "Der Antrag wollte die Bundesregierung festlegen, der anlasslosen Durchleuchtung privater Kommunikation („Chatkontrolle“) auf EU-Ebene nicht zuzustimmen und Ende-zu-Ende-Verschlüsselung gesetzlich zu schützen.",
-          ergebnis: { ja: 285, nein: 330, enthaltung: 12 }, tags: ["Datenschutz", "Plattform-Regulierung"] },
-        { titel: "Funkloch-Ausbau — Versorgungsauflagen", typ: "Abstimmung", datum: "vor 6 Monaten", einzeiler: "Abstimmung über strengere Ausbauauflagen für Mobilfunkbetreiber.",
-          worum: "Beschlossen wurden verschärfte Versorgungsauflagen für die Mobilfunk-Netzbetreiber entlang von Verkehrswegen und in ländlichen Räumen, kontrolliert über die Bundesnetzagentur mit Sanktionsstufen.",
-          ergebnis: { ja: 412, nein: 198, enthaltung: 8 }, tags: ["Breitband & Netzausbau", "Funkversorgung"] },
-      ],
-    },
-    // Die 10 übrigen kanonischen Wirtschaft-Cluster (Batch 2026-06-11), Größen-
-    // Reihenfolge; Scent = echte Top-3-Tags aus ds_unterthemen (Stand Batch-Lauf —
-    // im echten Bau live geladen). Anzeige-Name kurz, cluster = Klassifikations-Name.
-    { name: "Energie", cluster: "Energiewirtschaft & Energiekosten", tags: [{ name: "Energiewende" }, { name: "Erneuerbare Energien" }, { name: "Stromsteuer" }], edges: [], catch: [] },
-    { name: "Industrie & Standort", cluster: "Industrie- & Standortpolitik", tags: [{ name: "Bürokratieabbau" }, { name: "Genehmigungsverfahren" }, { name: "Künstliche Intelligenz" }], edges: [], catch: [] },
-    { name: "Förderung & Subventionen", cluster: "Wirtschaftsförderung & Subventionen", tags: [{ name: "Bürokratieabbau" }, { name: "Energiewende" }], edges: [], catch: [] },
-    { name: "Fachkräfte & Arbeitsmarkt", cluster: "Fachkräfte & Arbeitsmarkt-Wirtschaft", tags: [{ name: "Mindestlohn" }, { name: "Tarifbindung" }, { name: "Schwarzarbeit" }], edges: [], catch: [] },
-    { name: "Außenhandel & Zölle", cluster: "Außenhandel, Zölle & Rohstoffe", tags: [{ name: "US-Zölle" }, { name: "Seltene Erden" }, { name: "Zollabbau" }], edges: [], catch: [] },
-    { name: "Wettbewerb & Kartellrecht", cluster: "Wettbewerb & Kartellrecht", tags: [{ name: "Vergaberecht" }, { name: "Kartellamt" }], edges: [], catch: [] },
-    { name: "Mittelstand & Gründung", cluster: "Mittelstand, Handwerk & Gründung", tags: [{ name: "Öffentliche Beschaffung" }, { name: "Fachkräftemangel" }], edges: [], catch: [] },
-    { name: "Konjunktur & Wachstum", cluster: "Konjunktur, Wachstum & Gesamtsteuerung", tags: [{ name: "Energiepreise" }, { name: "US-Zölle" }, { name: "Stromsteuer" }], edges: [], catch: [] },
-    { name: "Verbraucherschutz", cluster: "Verbraucherschutz", tags: [{ name: "Lebensmittelpreise" }, { name: "Kreditwürdigkeitsprüfung" }], edges: [], catch: [] },
-    { name: "Lieferketten", cluster: "Lieferketten & Unternehmensverantwortung", tags: [{ name: "Lieferkettengesetz (LkSG)" }, { name: "Unternehmensverantwortung" }], edges: [], catch: [] },
-  ],
-};
-
-// Plenarsitzungen mit Bezug zum Unterthema (Dummy). Im echten Bau: Sitzungen, deren
-// Tagesordnungspunkte das Thema tragen → Link auf /protokolle/sitzung/<nr>.
+// Plenarsitzungen mit Bezug zum Unterthema (echt: Sitzungen mit Feld-Reden)
 type Sitzung = { nr: number; datum: string; tops: string; href?: string };
-const DIGITAL_SITZUNGEN: Sitzung[] = [
-  { nr: 198, datum: "12. Juni 2026", tops: "KI-Verordnung · NIS-2 · Deepfakes" },
-  { nr: 195, datum: "28. Mai 2026", tops: "Breitbandausbau · Gigabit-Förderung" },
-  { nr: 191, datum: "14. Mai 2026", tops: "MiCAR · Krypto-Aufsicht" },
-  { nr: 188, datum: "30. April 2026", tops: "Plattform-Regulierung · DSA" },
-  { nr: 184, datum: "16. April 2026", tops: "Cyberabwehr · KRITIS-Schutz" },
-  { nr: 180, datum: "2. April 2026", tops: "Rechenzentren · Energieeffizienz" },
-  { nr: 176, datum: "19. März 2026", tops: "Quantentechnologie · Halbleiter" },
-  { nr: 172, datum: "5. März 2026", tops: "Open Source · Digitale Verwaltung" },
-];
 
 // Gesetzentwürfe im Verfahren (Dummy). Im echten Bau: dokumenttyp-Klassifikation
 // (existiert) + Verfahrensstand aus der Drucksachen-Latenz-Pipeline (existiert:
@@ -836,12 +690,6 @@ function tagCatchFallback(tagName: string, pool: CatchItem[]): CatchItem[] {
 
 // Eine vereinte Oberthemen-Liste fürs Master-Detail: Wirtschaft ist ausgebaut (echte
 // Unterthemen-Objekte), die übrigen tragen nur ihre Teaser-Namen als Picker.
-type Feld = { name: string; slug: string; ausgebaut: boolean; teaser: string[] };
-const FELDER: Feld[] = [
-  { name: WIRTSCHAFT.name, slug: slugify(WIRTSCHAFT.name), ausgebaut: true, teaser: WIRTSCHAFT.teaser },
-  ...ANDERE_OBERTHEMEN.map((o) => ({ name: o.name, slug: slugify(o.name), ausgebaut: false, teaser: o.teaser })),
-];
-
 // Kurzformen nur für den Kachel-Scent (sonst sprengen lange Namen die Karte). Der
 // volle Name bleibt überall sonst (Filter-Chip am Blatt etc.).
 const KURZ: Record<string, string> = { "Künstliche Intelligenz": "KI" };
@@ -887,69 +735,42 @@ function ScentTicker({ items, paused }: { items: string[]; paused: boolean }) {
   );
 }
 
-// Ausgebaute Karte (Digital): eigener Hover-State → pausiert den Vorschau-Ticker.
-function BuiltUnterCard({ u, onPick }: { u: Unterthema; onPick: (unterSlug: string) => void }) {
-  // Standard: still — erst beim Hovern läuft der Vorschau-Ticker los.
+// Unterthema-Karte: alle klickbar (echte Daten überall seit dem globalen Lauf).
+// Scent-Ticker = Top-Tags des Clusters, Count-Badge = Live-Bestand.
+function UnterCard({ u, onPick }: { u: StrukturUnter; onPick: (slug: string) => void }) {
   const [paused, setPaused] = useState(true);
-  const scent = (u.tags ?? []).map((t) => KURZ[t.name] ?? t.name);
+  const scent = u.topTags.map((t) => KURZ[t] ?? t);
+  const leer = u.count === 0;
   return (
-    <button onClick={() => onPick(slugify(u.name))}
+    <button onClick={() => onPick(u.slug)}
       onMouseEnter={() => setPaused(false)} onMouseLeave={() => setPaused(true)}
-      className={`group flex items-center justify-between gap-3 p-5 text-left transition duration-300 ring-2 ring-zinc-900/15 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] dark:ring-white/20 ${SOFT_CARD}`}>
+      className={`group flex items-center justify-between gap-3 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] ${leer ? "opacity-55" : "ring-2 ring-zinc-900/10 dark:ring-white/15"} ${SOFT_CARD}`}>
       <span className="flex min-w-0 flex-1 flex-col">
-        <span className="text-[16px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
+        <span className="flex items-baseline gap-2">
+          <span className="min-w-0 truncate text-[15px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
+          <span className="shrink-0 text-[11px] font-medium tabular-nums text-zinc-400">{u.count}</span>
+        </span>
         {scent.length > 0 && <ScentTicker items={scent} paused={paused} />}
       </span>
-      <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 transition group-hover:translate-x-0.5" />
+      <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
     </button>
   );
 }
 
-// Noch nicht ausgebautes Unterthema: gedämpfte, nicht klickbare Karte mit stillem Scent.
-function StubUnterCard({ u }: { u: Unterthema }) {
-  const tags = u.tags ?? [];
-  const ankers = tags.filter((t) => t.anker);
-  const scent = (ankers.length ? ankers : tags).slice(0, 2).map((t) => KURZ[t.name] ?? t.name);
-  return (
-    <div className={`flex items-center justify-between gap-3 p-5 text-left opacity-55 ${SOFT_CARD}`}>
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="text-[16px] font-semibold text-zinc-400 dark:text-zinc-500">{u.name}</span>
-        {scent.length > 0 && <span className="mt-0.5 truncate text-[12.5px] text-zinc-400 dark:text-zinc-500">{scent.join(" · ")}</span>}
-      </span>
-    </div>
-  );
-}
-
-// Detail-Spalte: die Unterthemen des gewählten Felds. STILL — nur Namen, kein Inhalt.
-// Nur Wirtschaft hat echte (klickbare) Unterthemen; sonst Teaser-Namen als Vorschau.
-function DetailPane({ feld, onPick, className = "" }: { feld: Feld; onPick: (unterSlug: string) => void; className?: string }) {
+// Detail-Spalte: die Unterthemen des gewählten Oberthemas — STILL (Namen + Scent),
+// alle klickbar, sortiert nach Bestand (neutral: Volumen).
+function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPick: (slug: string) => void; className?: string }) {
   return (
     <div className={className}>
-      {feld.ausgebaut ? (
-        // Alle Unterthemen als Karten; das ausgebaute (Digital) ist die aktive Tür
-        // (dunkler Ring + Pfeil, hebt beim Hover), die übrigen gedämpft & noch tot.
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {WIRTSCHAFT.unter.map((u) =>
-            u.ausgebaut
-              ? <BuiltUnterCard key={u.name} u={u} onPick={onPick} />
-              : <StubUnterCard key={u.name} u={u} />
-          )}
-        </div>
-      ) : (
-        // Light-Feld: Teaser-Namen als gedämpfte Karten (im echten Bau echte Unterthemen)
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {feld.teaser.map((t) => (
-            <div key={t} className={`flex items-center p-5 text-left opacity-55 ${SOFT_CARD}`}>
-              <span className="text-[16px] font-semibold text-zinc-400 dark:text-zinc-500">{t}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {ober.unterthemen.map((u) => <UnterCard key={`${u.feld}-${u.slug}`} u={u} onPick={onPick} />)}
+      </div>
     </div>
   );
 }
 
-export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht }) {
+export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
   const unterSlug = searchParams.get("unter");
@@ -962,10 +783,10 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
   const [showAll, setShowAll] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
 
-  // Ansicht aus der URL ableiten: Blatt nur, wenn Wirtschaft + ausgebautes Unterthema.
-  // Sonst = Master-Detail-Picker (Feld evtl. vorausgewählt).
-  const unterIdx = unterSlug ? WIRTSCHAFT.unter.findIndex((u) => slugify(u.name) === unterSlug) : -1;
-  const isLeaf = feld === "wirtschaft" && unterIdx >= 0 && !!WIRTSCHAFT.unter[unterIdx]?.ausgebaut;
+  // Ansicht aus der URL ableiten: Blatt, wenn der Server für ?feld=&unter= Daten
+  // aufgelöst hat (Picker-Klicks aufs Blatt navigieren via Router → Server lädt).
+  const isLeaf = !!blatt && !!unterSlug && mkUnterSlug(blatt.unterthema) === unterSlug;
+  const FELDER = struktur.map((o) => ({ name: o.name, slug: o.slug, teaser: o.unterthemen.slice(0, 4).map((u) => KURZ[u.name] ?? u.name), ober: o }));
   const selFeld = feld ? FELDER.find((f) => f.slug === feld) ?? null : null;
 
   // beim Wechsel von Feld/Unterthema die ephemeren UI-Zustände zurücksetzen
@@ -1133,7 +954,9 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
   }, [isLeaf]);
 
 
-  // URL setzen, ohne neu zu laden; push = neuer History-Eintrag, replace = ersetzt
+  // URL setzen: Blatt-Wechsel (neues ?unter=) braucht Server-Daten → Router-Soft-
+  // Navigation (Page lädt das Blatt); alles andere (Tag/Seite/Doc, Picker-Feld,
+  // Blatt→Picker) bleibt reines pushState ohne Roundtrip.
   function nav(patch: Record<string, string | null>, replace = false) {
     const p = new URLSearchParams(searchParams.toString());
     for (const [k, v] of Object.entries(patch)) { if (v === null) p.delete(k); else p.set(k, v); }
@@ -1141,6 +964,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
     if (!("page" in patch)) p.delete("page");
     const qs = p.toString();
     const url = qs ? `?${qs}` : window.location.pathname;
+    if (typeof patch.unter === "string" && patch.unter !== unterSlug) { router.push(url); return; }
     if (replace) window.history.replaceState(null, "", url);
     else window.history.pushState(null, "", url);
   }
@@ -1160,9 +984,9 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
         <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
           <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Themen</button>
           <span className="text-zinc-300">/</span>
-          <button onClick={() => nav({ feld: "wirtschaft", unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Wirtschaft</button>
+          <button onClick={() => nav({ feld, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">{selFeld?.name ?? "Oberthema"}</button>
           <span className="text-zinc-300">/</span>
-          <span className="font-medium text-zinc-700 dark:text-zinc-200">{WIRTSCHAFT.unter[unterIdx].name}</span>
+          <span className="font-medium text-zinc-700 dark:text-zinc-200">{blatt?.unterthema}</span>
         </nav>
       )}
 
@@ -1198,7 +1022,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
                         <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                       </button>
                       {/* Mobile = Akkordeon: Detail klappt unter dem gewählten Feld auf */}
-                      {sel && selFeld && <DetailPane key={f.slug} feld={selFeld} onPick={(u) => nav({ feld: f.slug, unter: u, thema: null })} className="panel-expand mb-2 mt-1 px-1 md:hidden" />}
+                      {sel && selFeld && <DetailPane key={f.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: f.slug, unter: u, thema: null })} className="panel-expand mb-2 mt-1 px-1 md:hidden" />}
                     </Fragment>
                   );
                 })}
@@ -1208,7 +1032,7 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
             {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf */}
             <div className="hidden min-w-0 flex-1 md:block">
               {selFeld ? (
-                <DetailPane key={selFeld.slug} feld={selFeld} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand" />
+                <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand" />
               ) : (
                 <div className={`panel-expand flex h-full min-h-[180px] items-center justify-center p-8 text-center text-[13.5px] text-zinc-400 ${SOFT_CARD}`}>
                   Wähl links ein Feld — hier erscheinen seine Unterthemen.
@@ -1221,19 +1045,16 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
 
       {/* ── BLATT: Unterthema (mit Tag-Filter) ── */}
       {isLeaf && (() => {
-        const uBase = WIRTSCHAFT.unter[unterIdx];
-        // Digital läuft auf ECHTEN Daten (Server-Loader), die übrigen Unterthemen
-        // bleiben Dummy — genau der Vergleich, der die Daten-Lücken sichtbar macht.
-        const echt = uBase.cluster === "Digital- & KI-Wirtschaft" ? digitalEcht : undefined;
-        const u = echt
-          ? {
-              ...uBase,
-              catch: echtToCatch(echt),
-              tags: echt.tags.map((t, i): Tag => ({ name: t.name, anker: i < 8 })),
-              koepfe: echt.koepfe.map((k) => ({ ...k, rolle: k.rolle ?? undefined })),
-            }
-          : uBase;
-        const sitzungen = echt ? echt.sitzungen : DIGITAL_SITZUNGEN;
+        // Blatt vollständig aus den Server-Daten (globaler Klassifikations-Lauf)
+        const u: Unterthema = {
+          name: blatt!.unterthema,
+          voteThema: blatt!.voteThema ?? undefined,
+          beschreibung: blatt!.beschreibung,
+          catch: echtToCatch(blatt!),
+          tags: blatt!.tags.map((t, i): Tag => ({ name: t.name, anker: i < 8 })),
+          koepfe: blatt!.koepfe.map((k) => ({ ...k, rolle: k.rolle ?? undefined })),
+        };
+        const sitzungen = blatt!.sitzungen;
         const allTags = u.tags ?? [];
         const anchors = allTags.filter((t) => t.anker);
         const hiddenCount = allTags.length - anchors.length;
@@ -1383,10 +1204,12 @@ export function VorschauThemen({ digitalEcht }: { digitalEcht?: DigitalBlattEcht
                   <KoepfeStrip koepfe={u.koepfe!} />
                 </div>
               )}
-              <div>
-                <SectionLabel hint={`${DIGITAL_SITZUNGEN.length} Sitzungen`}>Plenarsitzungen mit Digital-Bezug</SectionLabel>
-                <SitzungenShelf sitzungen={sitzungen} />
-              </div>
+              {sitzungen.length > 0 && (
+                <div>
+                  <SectionLabel hint={`${sitzungen.length} Sitzungen`}>Plenarsitzungen zum Thema</SectionLabel>
+                  <SitzungenShelf sitzungen={sitzungen} />
+                </div>
+              )}
             </div>
 
             {/* ── Screen 3: Gerade aktiv mit Themen-Filterleiste — EIN Block (zweite Scroll-Stufe) ── */}
