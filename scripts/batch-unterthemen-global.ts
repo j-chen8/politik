@@ -11,9 +11,17 @@
  *
  * Usage:
  *   npx tsx scripts/batch-unterthemen-global.ts --validate [N]   (live, Default 50, kein DB-Write)
- *   npx tsx scripts/batch-unterthemen-global.ts --submit
+ *   npx tsx scripts/batch-unterthemen-global.ts --submit         (NUR unklassifizierte DS — der »update«-Pfad)
+ *   npx tsx scripts/batch-unterthemen-global.ts --submit --all   (Voll-Lauf, ~$6,30 — nur bei Taxonomie-Änderung)
  *   npx tsx scripts/batch-unterthemen-global.ts --status
  *   npx tsx scripts/batch-unterthemen-global.ts --apply
+ *
+ * ⚠️ Taxonomie-Kanonik: Dieser Lauf schreibt die ORIGINAL-Namen aus
+ * scripts/_lib/themen-taxonomie.ts (SoT docs/themen-taxonomie-bt.md). Die
+ * Anzeige-Merges + Kurz-Labels (2026-06-12) leben NUR in src/lib/
+ * themen-struktur.ts (UNTERTHEMA_MERGES/ANZEIGE_NAME) — hier nichts umbenennen,
+ * sonst reißt der Join zwischen Bestand und Neu-Klassifikation.
+ * Nach jedem --apply: scripts/seed-rede-unterthemen.ts (Reden-Erben) neu laufen.
  */
 import Anthropic from "@anthropic-ai/sdk";
 import Database from "better-sqlite3";
@@ -73,12 +81,13 @@ const TOOL: Anthropic.Tool = {
 };
 
 interface Row { drucksache_nr: string; thema: string | null; zusammenfassung: string | null; kerninhalt: string | null }
-function loadRows(limit?: number, random = false): Row[] {
+function loadRows(limit?: number, random = false, missingOnly = false): Row[] {
   const db = new Database(path.join(process.cwd(), "politik.db"), { readonly: true });
   const rows = db.prepare(`
     SELECT drucksache_nr, thema, zusammenfassung, kerninhalt
-    FROM drucksache_analyses
+    FROM drucksache_analyses da
     WHERE zusammenfassung IS NOT NULL AND analyze_error IS NULL
+    ${missingOnly ? "AND NOT EXISTS (SELECT 1 FROM ds_unterthemen du WHERE du.drucksache_nr = da.drucksache_nr)" : ""}
     ORDER BY ${random ? "RANDOM()" : "drucksache_nr"}
     ${limit ? `LIMIT ${limit}` : ""}
   `).all() as Row[];
@@ -149,8 +158,11 @@ async function validate(n: number) {
 }
 
 async function submit() {
-  const rows = loadRows();
-  console.log(`Submit: ${rows.length} Drucksachen (GLOBAL, alle Felder), Modell ${MODEL}, Batch API`);
+  // Default: NUR unklassifizierte DS (inkrementell, »update«-sicher) — --all für Voll-Lauf
+  const all = process.argv.includes("--all");
+  const rows = loadRows(undefined, false, !all);
+  if (rows.length === 0) { console.log("Nichts zu tun: alle analysierten DS sind klassifiziert."); return; }
+  console.log(`Submit: ${rows.length} Drucksachen (${all ? "VOLL-LAUF" : "nur unklassifizierte"}), Modell ${MODEL}, Batch API`);
   const requests: Anthropic.Messages.Batches.BatchCreateParams.Request[] = rows.map((r) => ({
     custom_id: toCustomId(r.drucksache_nr),
     params: {

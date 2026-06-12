@@ -95,6 +95,20 @@
    - Submit (≤ 15 € Freigabe gilt): `... --confirm` → `batch_id` notieren
    - Retrieve: `npx tsx scripts/batch-retrieve-bundestag-votes.ts` (wartet auf Abschluss + apply)
    - Idempotenz: per `(xml_source, snippet_offset)` — neuer Run überspringt bereits Analysiertes
+4d. **Themen-Klassifikation + Reden-Erben** (¢ + $0, seit 2026-06-12):
+   Ohne diesen Schritt sind neue Drucksachen/Reden auf den Themen-Seiten
+   (/vorschau/themen: Picker-Counts, Blätter, Frische-Stempel) UNSICHTBAR.
+   - **MUSS nach Schritt 4 laufen** (braucht frische `drucksache_analyses`).
+   - `npx tsx scripts/batch-unterthemen-global.ts --submit` — Default klassifiziert
+     NUR unklassifizierte DS (~0,12 ¢/DS, fällt unter die ≤-15-€-Freigabe) →
+     `--status` → `--apply`. `--all` NIE im update-Pfad (Voll-Lauf ~$6,30, nur
+     bei Taxonomie-Änderung). Prompt/Taxonomie NICHT anfassen (Schritt-5-Regel
+     gilt auch hier; Anzeige-Merges leben separat in `src/lib/themen-struktur.ts`).
+   - Danach IMMER `npx tsx scripts/seed-rede-unterthemen.ts` ($0, DROP+Rebuild) —
+     auch wenn es keine neuen DS gab: neue Protokolle aus Schritt 2 erben sonst nicht.
+   - Watermark: `SELECT COUNT(*) FROM drucksache_analyses da WHERE zusammenfassung
+     IS NOT NULL AND analyze_error IS NULL AND NOT EXISTS (SELECT 1 FROM
+     ds_unterthemen du WHERE du.drucksache_nr = da.drucksache_nr)` → muss 0 sein.
 5. **Neutralitäts-Disziplin (NICHT verhandelbar):** NIE Prompt/Methodik/Modell
    ändern — nur die identische validierte Pipeline auf neuen Daten. Nach dem
    Apply **Neutralitäts-Spotcheck**: Sample neuer `speech_analyses_v2` +
@@ -204,6 +218,7 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
 - **Voraussetzung:** `classify-drucksachen.ts` muss gelaufen sein (§2.4) — nur `batch_class IN ('klein','mittel','gross','antwort','regierung')` ist LLM-eligible. Der echte Watermark ist die `selectTodos()`-Query von `run-drucksachen-batch.ts` (gültige Analyse = `raw_llm_response IS NOT NULL AND analyze_error IS NULL`, versionsunabhängig) — **nicht** naives `raw_llm_response IS NULL` (zählt Regex-Labels mit → falsch zu hoch)
 - **Pre-Flight ($0):** `npx tsx scripts/run-drucksachen-batch.ts --dry-run`
 - **Pipeline ($$):** `run-drucksachen-batch.ts --submit` → `--poll <id>`. Idempotent (gültige Analyse v1/v1.1 zählt als erledigt; `--force` für Re-Run)
+- **⚠️ Pflicht-Schritt danach: Unterthemen-Klassifikation (`ds_unterthemen`, ¢):** Neue Analysen sind sonst auf den Themen-Seiten UNSICHTBAR (Picker/Blätter lesen nur `ds_unterthemen`). `batch-unterthemen-global.ts --submit` (Default = NUR unklassifizierte DS, ~0,12 ¢/DS) → `--status` → `--apply`; danach `seed-rede-unterthemen.ts` (Reden-Erben, $0, s. §2.1). Voll-Lauf nur mit `--submit --all` (~$6,30, nur bei Taxonomie-Änderung). Klassifiziert wird in die ORIGINAL-Taxonomie (`scripts/_lib/themen-taxonomie.ts`) — Anzeige-Merges/Kurz-Labels leben separat in `src/lib/themen-struktur.ts` und brauchen KEINE Prompt-Änderung.
 
 ### 2.6 Votes / namentliche Abstimmungen + 2.7 Sidejobs + 2.8 Committee-Memberships
 - **Domain:** `abgeordnetenwatch.de/api/v2`
