@@ -245,20 +245,23 @@ function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]
 // einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <Link href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-8 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-9 ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-6 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-7 ${SOFT_CARD}`}>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         {/* Typ-Wort raus — die Sektions-Überschrift sagt schon „Abstimmungen"; „Aktuell"
             begründet nur, warum DIESE Karte groß ist (die neueste). Icon trägt den Typ. */}
         <Vote className="h-4 w-4 shrink-0" strokeWidth={2.25} />Aktuell · {c.datum}
       </p>
-      <p className={`${DISPLAY} mt-3 text-[1.45rem] font-bold leading-[1.12] tracking-[-0.02em] text-zinc-900 md:text-[1.7rem] dark:text-zinc-50`}>{c.titel}</p>
+      <p className={`${DISPLAY} mt-3 text-[1.45rem] font-bold leading-[1.12] tracking-[-0.02em] text-zinc-900 line-clamp-2 md:text-[1.7rem] dark:text-zinc-50`}>{c.titel}</p>
+      {/* Text-Klemmen (User 2026-06-12): echte Kerninhalte sind bis ~500 Zeichen lang
+          und streckten Screen 1 weit über den Viewport — die Karte teasert, der
+          CTA führt zur Abstimmung mit dem vollen Text. */}
       {c.worum ? (
         <>
           <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Worum geht es?</p>
-          <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.worum}</p>
+          <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-3 dark:text-zinc-400">{c.worum}</p>
         </>
       ) : (
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-3 dark:text-zinc-400">{c.einzeiler}</p>
       )}
       {(c.ergebnis || c.fraktionen) && (
         <div className="mt-auto pt-6">
@@ -266,9 +269,10 @@ function FeaturedVote({ c }: { c: CatchItem }) {
           {c.ergebnis ? <ErgebnisBar e={c.ergebnis} /> : <FraktionRow f={c.fraktionen!} />}
         </div>
       )}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <span className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-zinc-900 dark:text-zinc-100">Zur Abstimmung<IconArrow className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
-        <TagChips tags={c.tags} />
+        {/* max 3 Tags: mehr ließ die CTA-Zeile zweizeilig umbrechen (Höhen-Budget Screen 1) */}
+        <TagChips tags={c.tags?.slice(0, 3)} />
       </div>
     </Link>
   );
@@ -280,15 +284,16 @@ function VoteRow({ c }: { c: CatchItem }) {
   return (
     // flex-1: die (zwei) Zeilen teilen sich die Spaltenhöhe — die rechte Liste füllt
     // damit immer exakt die Höhe der Featured-Karte, egal wie lang die Texte sind
-    <Link href={c.href ?? "#"} className="group flex flex-1 flex-col justify-center py-5">
+    <Link href={c.href ?? "#"} className="group flex flex-1 flex-col justify-center py-4">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <Vote className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}{c.outcome ? ` · ${c.outcome}` : ""}
       </p>
       <p className="mt-1.5 line-clamp-2 text-[14.5px] font-semibold leading-snug text-zinc-900 transition group-hover:text-zinc-600 dark:text-zinc-50 dark:group-hover:text-zinc-300">{c.titel}</p>
-      <p className="mt-1.5 line-clamp-4 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
-      {c.ergebnis ? <div className="mt-3"><ErgebnisBar e={c.ergebnis} slim /></div>
-        : c.fraktionen ? <div className="mt-3"><FraktionRow f={c.fraktionen} slim /></div> : null}
-      <TagChips tags={c.tags} className="mt-3" />
+      <p className="mt-1.5 line-clamp-2 text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
+      {/* keine Tag-Zeile in den Kompakt-Zeilen (Höhen-Budget Screen 1) — Tags leben
+          in der Featured-Karte und im Feed */}
+      {c.ergebnis ? <div className="mt-2.5"><ErgebnisBar e={c.ergebnis} slim /></div>
+        : c.fraktionen ? <div className="mt-2.5"><FraktionRow f={c.fraktionen} slim /></div> : null}
     </Link>
   );
 }
@@ -337,7 +342,7 @@ function StandDots({ stand }: { stand: number }) {
 // wie der Feed.
 function GesetzCard({ c }: { c: CatchItem }) {
   return (
-    <Link href={c.href ?? "#"} className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex min-h-[160px] cursor-pointer flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
@@ -1160,8 +1165,10 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           <section className="fade-in-up">
             {/* justify-start, NICHT center: der Breadcrumb steht außerhalb darüber —
                 Zentrierung riss eine komische Lücke zwischen Breadcrumb und Titel auf.
-                Restluft sammelt sich stattdessen unten (liest sich als „mehr beim Scrollen"). */}
-            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-236px)] flex-col justify-start gap-6">
+                Restluft sammelt sich stattdessen unten (liest sich als „mehr beim Scrollen").
+                min-h (= Viewport reservieren) nur, wenn Screen 1 auch Inhalt hat — ohne
+                Votes/Gesetzentwürfe wäre es eine leere Geister-Fläche (User 2026-06-12). */}
+            <div ref={screen1Ref} className={`flex flex-col justify-start gap-5 ${featuredVote || gesetzRow.length > 0 ? "min-h-[calc(100dvh-236px)]" : ""}`}>
             <header>
               <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 md:text-[3.6rem] dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}
