@@ -140,7 +140,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-3xl mx-auto px-5 pt-10 pb-24 fade-in-up">
+      <div className="max-w-3xl mx-auto px-5 pt-20 pb-24 fade-in-up">
         {/* Breadcrumb + Back (in Detail-Suche ausgeblendet — Seite hat eigene Navigation) */}
         {!embedded && (
           <button
