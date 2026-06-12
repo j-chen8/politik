@@ -1250,7 +1250,11 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                 Ganz weg, wenn das Blatt weder Köpfe noch Sitzungen hat (keine erbenden
                 Reden) — sonst stünde eine leere Geister-Scrollstufe zwischen 1 und 3. */}
             {((u.koepfe?.length ?? 0) > 0 || sitzungen.length > 0) && (
-            <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
+            // Alternierender Sektions-Rhythmus (User 2026-06-12): Screen 1 hell →
+            // Screen 2 getönt → Screen 3 hell. Voll-Breite-Band bricht per Negativ-
+            // Margin aus der page-shell aus; Tönung minimal (3 %), Hairline-Kanten.
+            <div ref={screen2Ref} className="relative flex min-h-[calc(100dvh-120px)] scroll-mt-24 flex-col justify-center gap-12 pt-6 pb-24">
+              <div aria-hidden className="absolute inset-y-0 left-[calc(50%-50vw)] -z-10 w-screen border-y border-zinc-900/[0.04] bg-zinc-900/[0.03] dark:border-white/[0.05] dark:bg-white/[0.025]" />
               {(u.koepfe?.length ?? 0) > 0 && (
                 <div>
                   <SectionLabel hint={`${u.koepfe!.length} ${u.koepfe!.length === 1 ? "Person" : "Personen"} · nach Anzahl der Reden`}>Wer dazu im Plenum spricht</SectionLabel>
@@ -1267,12 +1271,8 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             )}
 
             {/* ── Screen 3: Gerade aktiv mit Themen-Filterleiste — EIN Block (zweite Scroll-Stufe) ── */}
-            {/* Voll-Breite-Tönung (User 2026-06-12): markiert „Spezifische Themen" als
-                eigene Sektion — Band bricht per Negativ-Margin aus der page-shell aus
-                (left 50%−50vw), Tönung bewusst minimal (~3 %), Karten poppen darauf. */}
-            <div ref={screen3Ref} className="relative min-h-[calc(100dvh-120px)] scroll-mt-24 py-10">
-            <div aria-hidden className="absolute inset-y-0 left-[calc(50%-50vw)] w-screen border-y border-zinc-900/[0.04] bg-zinc-900/[0.03] dark:border-white/[0.05] dark:bg-white/[0.025]" />
-            <div ref={themenRef} className="fade-in-up fade-in-up-4 relative">
+            <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] scroll-mt-24 py-8">
+            <div ref={themenRef} className="fade-in-up fade-in-up-4">
               <SectionLabel hint={feedHint}>Gerade aktiv</SectionLabel>
               {/* EIN Suchfeld für beides: Volltext im Feed; ähnelt das Wort einem
                   spezifischen Thema, bietet das Dropdown die Vervollständigung an
