@@ -1267,8 +1267,12 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             )}
 
             {/* ── Screen 3: Gerade aktiv mit Themen-Filterleiste — EIN Block (zweite Scroll-Stufe) ── */}
-            <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] scroll-mt-24 py-8">
-            <div ref={themenRef} className="fade-in-up fade-in-up-4">
+            {/* Voll-Breite-Tönung (User 2026-06-12): markiert „Spezifische Themen" als
+                eigene Sektion — Band bricht per Negativ-Margin aus der page-shell aus
+                (left 50%−50vw), Tönung bewusst minimal (~3 %), Karten poppen darauf. */}
+            <div ref={screen3Ref} className="relative min-h-[calc(100dvh-120px)] scroll-mt-24 py-10">
+            <div aria-hidden className="absolute inset-y-0 left-[calc(50%-50vw)] w-screen border-y border-zinc-900/[0.04] bg-zinc-900/[0.03] dark:border-white/[0.05] dark:bg-white/[0.025]" />
+            <div ref={themenRef} className="fade-in-up fade-in-up-4 relative">
               <SectionLabel hint={feedHint}>Gerade aktiv</SectionLabel>
               {/* EIN Suchfeld für beides: Volltext im Feed; ähnelt das Wort einem
                   spezifischen Thema, bietet das Dropdown die Vervollständigung an
