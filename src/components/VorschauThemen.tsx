@@ -1002,42 +1002,45 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
       )}
 
       {/* ── PICKER: Oberthemen ⇄ Unterthemen als Stack auf DERSELBEN Fläche (User
-          2026-06-12, ersetzt die Sidebar-Variante): Feld-Klick tauscht das Themen-Grid
-          gegen die Unterthemen des Felds, „Alle Themen" (oder Browser-Back — die
-          Auswahl lebt als ?feld= in der History) führt zurück zur Übersicht. */}
+          2026-06-12): Der Kopf STEHT — nur die Wörter tauschen („Themen"→Feld-Name,
+          „Thema"→„Unterthema") und das Grid darunter wechselt; kein Seitenwechsel
+          (pushState), kein Layout-Sprung. „Alle Themen" sitzt deshalb IN der Kopf-
+          zeile rechts neben der Überschrift (Browser-Back tut dasselbe — die Auswahl
+          lebt als ?feld= in der History). */}
       {!isLeaf && (
         <section className="fade-in-up">
-          {selFeld ? (
-            // key = Feld-Slug: beim (Back-)Wechsel remountet das Panel und spielt die
-            // Aufklapp-Animation — derselbe Trick wie vorher in der Detail-Spalte.
-            <div key={selFeld.slug} className="panel-expand">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            {/* key = Feld-Slug: der Titel-TEXT crossfaded beim Wechsel, die Zeile selbst bleibt */}
+            <h2 key={selFeld?.slug ?? "alle"} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
+              {selFeld?.name ?? "Themen"}
+            </h2>
+            {selFeld && (
               <button onClick={() => nav({ feld: null, unter: null, thema: null })}
-                className="group -ml-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[13.5px] font-medium text-zinc-500 transition hover:bg-zinc-900/[0.05] hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-zinc-100">
+                className="group inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 text-[13.5px] font-medium text-zinc-500 transition hover:bg-zinc-900/[0.05] hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-zinc-100">
                 <IconArrow className="h-4 w-4 rotate-180 transition group-hover:-translate-x-0.5" />Alle Themen
               </button>
-              <h2 className={`${DISPLAY} mt-3 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>{selFeld.name}</h2>
-              <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Unterthema.</p>
-              <DetailPane ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="mt-6" />
-            </div>
+            )}
+          </div>
+          <p className="mt-3 text-[15px] text-zinc-500">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
+
+          {selFeld ? (
+            // key = Feld-Slug: das Panel remountet beim Wechsel und spielt die Aufklapp-Animation
+            <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand mt-5" />
           ) : (
-            <>
-              <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>Was beschäftigt<br />den Bundestag?</h2>
-              <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Feld — dann erscheinen die Unterthemen.</p>
-              {/* Die 14 Felder als 2-spaltiges Karten-Grid über die volle Breite (mobil
-                  einspaltig als Liste) — Klick öffnet die Unterthemen auf dieser Fläche. */}
-              <div className="mt-5 flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5">
-                {FELDER.map((f) => (
-                  <button key={f.slug} onClick={() => nav({ feld: f.slug, unter: null, thema: null })}
-                    className="group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left text-zinc-600 transition hover:bg-zinc-900/[0.045] md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:bg-white/60 md:hover:ring-zinc-900/[0.12] dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:bg-zinc-900/40 dark:md:hover:ring-white/[0.14]">
-                    <span className="flex min-w-0 flex-col">
-                      <span className="truncate text-[15px] font-medium leading-snug md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100">{f.name}</span>
-                      <Teaser items={f.teaser} />
-                    </span>
-                    <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
-                  </button>
-                ))}
-              </div>
-            </>
+            /* Die 14 Felder als 2-spaltiges Karten-Grid über die volle Breite (mobil
+               einspaltig als Liste) — Klick öffnet die Unterthemen auf dieser Fläche. */
+            <div className="panel-expand mt-5 flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5">
+              {FELDER.map((f) => (
+                <button key={f.slug} onClick={() => nav({ feld: f.slug, unter: null, thema: null })}
+                  className="group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left text-zinc-600 transition hover:bg-zinc-900/[0.045] md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:bg-white/60 md:hover:ring-zinc-900/[0.12] dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:bg-zinc-900/40 dark:md:hover:ring-white/[0.14]">
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate text-[15px] font-medium leading-snug md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100">{f.name}</span>
+                    <Teaser items={f.teaser} />
+                  </span>
+                  <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
+                </button>
+              ))}
+            </div>
           )}
         </section>
       )}
