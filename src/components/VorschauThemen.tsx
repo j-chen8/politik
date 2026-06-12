@@ -109,11 +109,11 @@ const DISPLAY = "font-[family-name:var(--font-display)]";
 // Weiche Flächen-Grammatik: Schatten + Radius statt Rahmen.
 const SOFT_CARD = "rounded-3xl bg-white/90 shadow-[0_2px_24px_-14px_rgba(20,20,45,0.22)] ring-1 ring-zinc-900/[0.05] backdrop-blur-sm dark:bg-zinc-900/60 dark:ring-white/[0.06]";
 
-function Teaser({ items, roomy = true }: { items: string[]; roomy?: boolean }) {
+function Teaser({ items, roomy = true, className = "" }: { items: string[]; roomy?: boolean; className?: string }) {
   // Einzeilig + truncate → jede Karte hat dieselbe Untertitel-Höhe (kein 2-Zeilen-Umbruch).
-  // roomy = Picker-Grid (2-spaltig, viel Platz); kompakt = Ghost-Rail neben offenem Feld.
+  // roomy = Picker-Grid (2-spaltig, viel Platz); kompakt = mobile Akkordeon-Liste.
   return (
-    <p className={`truncate text-zinc-400 dark:text-zinc-500 ${roomy ? "mt-1.5 text-[13px] leading-snug" : "mt-0.5 text-[11.5px] leading-tight"}`}>
+    <p className={`truncate text-zinc-400 dark:text-zinc-500 ${roomy ? "mt-1.5 text-[13px] leading-snug" : "mt-0.5 text-[11.5px] leading-tight"} ${className}`}>
       {items.join(" · ")}
     </p>
   );
@@ -1007,32 +1007,29 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Feld — die Unterthemen erscheinen daneben.</p>
 
           <div className="mt-5 md:flex md:items-start md:gap-6">
-            {/* Linke Spalte: alle Oberthemen. Ist ein Feld gewählt, klappt die Spalte nach LINKS
-                weg (Breite → schmaler Streifen), und die Unterthemen rechts klappen in den Platz
-                auf. Hover über den Streifen (group/rail + eigenes :hover) öffnet die Liste wieder. */}
-            <div className={`rail group/rail relative shrink-0 overflow-hidden transition-[width] duration-500 ease-out ${feld ? "w-full md:w-9 md:hover:w-[280px]" : "w-full"}`}>
+            {/* Linke Spalte: alle Oberthemen. Ist ein Feld gewählt, wird sie zur 280px-Sidebar
+                (Feld-Wechsler), und die Unterthemen klappen rechts daneben auf. */}
+            <div className={`rail relative shrink-0 ${feld ? "w-full md:w-[280px]" : "w-full"}`}>
               {/* Ohne Auswahl: die 14 Felder als 2-spaltiges Grid über die VOLLE Breite (die
                   rechte Hälfte wäre sonst nur ein toter Platzhalter) → 7 Zeilen, viel Luft.
-                  Mit Auswahl: kollabiert zum schmalen Ghost-Streifen (feste 280px-Innenbreite →
-                  beim Wegklappen reflowt der Text nicht, der Streifen clippt ihn nur). Weggeklappt
-                  schimmert die Liste schwach durch; Hover holt sie zurück. Nur Desktop — mobil
-                  bleibt es die volle Akkordeon-Liste. */}
-              <div className={`opacity-100 transition-opacity duration-300 ${feld
-                ? "flex w-full shrink-0 flex-col gap-2 md:w-[280px] md:gap-1 md:opacity-[0.14] md:group-hover/rail:opacity-100"
-                : "flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5"}`}>
+                  Mit Auswahl: immer sichtbare Sidebar (280px) als Feld-Wechsler — nur Namen
+                  (Teaser wären neben dem offenen Unterthemen-Panel redundant), luftige Zeilen,
+                  gewähltes Feld markiert. Mobil bleibt es die volle Akkordeon-Liste. */}
+              <div className={`flex w-full flex-col gap-2 ${feld ? "md:gap-1.5" : "md:grid md:grid-cols-2 md:gap-3.5"}`}>
                 {FELDER.map((f) => {
                   const sel = feld === f.slug;
                   return (
                     <Fragment key={f.slug}>
                       <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
                         className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${feld
-                          ? "md:py-1"
+                          ? "md:py-2"
                           : "md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:ring-zinc-900/[0.12] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:ring-white/[0.14]"} ${sel
                           ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
                           : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
                         <span className="flex min-w-0 flex-col">
                           <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"} ${feld ? "" : "md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100"}`}>{f.name}</span>
-                          <Teaser items={f.teaser} roomy={!feld} />
+                          {/* Teaser: im Grid immer; in der Sidebar nur mobil (Akkordeon) */}
+                          <Teaser items={f.teaser} roomy={!feld} className={feld ? "md:hidden" : ""} />
                         </span>
                         <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
                         <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
