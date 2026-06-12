@@ -1,8 +1,9 @@
 import { Suspense } from "react";
+import { redirect } from "next/navigation";
 import { Bricolage_Grotesque } from "next/font/google";
 import { VorschauThemen } from "@/components/VorschauThemen";
 import { getThemenBlatt, getThemenStruktur } from "@/lib/themen-blatt";
-import { resolveUnter } from "@/lib/themen-struktur";
+import { anzeigeName, resolveUnter, unterSlug } from "@/lib/themen-struktur";
 
 // Charaktervolle Display-Schrift nur für diese Seite (Headlines) — gibt dem
 // weichen Look ein modernes Gesicht statt des techy Geist. Body bleibt Geist.
@@ -31,6 +32,12 @@ export default async function VorschauThemenPage({ searchParams }: { searchParam
   const { feld = "", unter = "" } = await searchParams;
   const struktur = getThemenStruktur();
   const ziel = feld && unter ? resolveUnter(feld, unter) : null;
+  // Gemergte/umbenannte Cluster: alte Slugs lösen aufs Ziel auf — kanonische URL
+  // erzwingen, damit der Client-Slug-Check (isLeaf) und Teil-Links konsistent sind.
+  if (ziel) {
+    const kanon = unterSlug(anzeigeName(ziel.unterthema));
+    if (kanon !== unter) redirect(`/vorschau/themen?feld=${encodeURIComponent(feld)}&unter=${kanon}`);
+  }
   const blatt = ziel ? getThemenBlatt(ziel.feld, ziel.unterthema) : null;
   return (
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>

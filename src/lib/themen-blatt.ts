@@ -22,7 +22,7 @@
 //      searchThema-Integration statt Client-Filterung.
 //   4. Köpfe: „Spricht vor allem zu"-Chips fehlen (Tag-Korn × redner_id, nach Erben-Lauf).
 import { getDb } from "@/lib/db";
-import { OBERTHEMEN, TAXONOMIE, unterSlug } from "@/lib/themen-struktur";
+import { OBERTHEMEN, TAXONOMIE, unterSlug, anzeigeName, istGemergt, mergeKey, mergeQuellen, mergeZiel } from "@/lib/themen-struktur";
 
 const FEED_LIMIT = 120;
 
@@ -176,9 +176,13 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
   // Cluster „Digital- & KI-Wirtschaft" + kern_im_feld=1 (Items, deren KERN im Feld
   // liegt — kern=0 ist die Rollup-Putzliste). Item-Tags = spezifische_tags[] des
   // Batches (KI, Halbleiter, Rechenzentren …) statt der groben Roh-Tag-Felder.
-  const dsRowsRaw = db.prepare(`
+  // Merge-Gruppe: das Ziel-Paar + alle hineingemergten Quell-Cluster (Anzeige-
+  // Merges, themen-struktur.ts) — Pool = Vereinigung, dedupliziert nach DS-Nr,
+  // bei Doppel-Klassifikation gewinnt die Zeile des Ziel-Felds (Reihenfolge).
+  const paare = [{ feld: feldAw, unterthema: unterthemaName }, ...mergeQuellen(feldAw, unterthemaName)];
+  const dsRowsAll = db.prepare(`
     SELECT da.drucksache_nr AS nr, da.zusammenfassung, da.kerninhalt, da.dokumenttyp,
-      du.spezifische_tags_json,
+      du.feld AS du_feld, du.spezifische_tags_json,
       (SELECT COALESCE(a.thema, a.titel) FROM activities a WHERE a.drucksache_nr = da.drucksache_nr LIMIT 1) AS titel,
       COALESCE(
         (SELECT MIN(a.datum) FROM activities a WHERE a.drucksache_nr = da.drucksache_nr AND a.datum IS NOT NULL),
@@ -186,14 +190,17 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
       ) AS iso
     FROM ds_unterthemen du
     JOIN drucksache_analyses da ON da.drucksache_nr = du.drucksache_nr
-    WHERE du.feld = ?
-      AND EXISTS (SELECT 1 FROM json_each(du.unterthemen_json) je WHERE je.value = ?)
+    WHERE (${paare.map(() => "(du.feld = ? AND EXISTS (SELECT 1 FROM json_each(du.unterthemen_json) je WHERE je.value = ?))").join(" OR ")})
       AND da.analyze_error IS NULL
-  `).all(feldAw, unterthemaName) as {
+  `).all(...paare.flatMap((p) => [p.feld, p.unterthema])) as {
     nr: string; zusammenfassung: string | null; kerninhalt: string | null;
-    dokumenttyp: string | null; spezifische_tags_json: string | null;
+    dokumenttyp: string | null; du_feld: string; spezifische_tags_json: string | null;
     titel: string | null; iso: string | null;
   }[];
+  const feldRang = new Map(paare.map((p, i) => [p.feld, i]));
+  const dsRowsRaw = [...dsRowsAll]
+    .sort((a, b) => (feldRang.get(a.du_feld) ?? 99) - (feldRang.get(b.du_feld) ?? 99))
+    .filter(((seen) => (r: { nr: string }) => !seen.has(r.nr) && !!seen.add(r.nr))(new Set<string>()));
   const dsRows = dsRowsRaw.map((r) => ({ ...r, tags: parseTags(r.spezifische_tags_json) }));
   const dsMap = new Map(dsRows.map((r) => [r.nr, r]));
   // Titel-Lücke in activities: DIP führt für alle Gesetzgebungs-DS den amtlichen
@@ -412,7 +419,9 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
   const beschreibung = `${dsRows.length} ${dsRows.length === 1 ? "Vorgang" : "Vorgänge"} der 21. Wahlperiode im Bundestag${topTags.length ? ` — am häufigsten: ${topTags.join(", ")}.` : "."}`;
 
   return {
-    feld: feldAw, unterthema: unterthemaName,
+    // Anzeige-Name (nach Merge ggf. umbenannt) — Slug-Checks im Client laufen
+    // gegen genau diesen Namen, resolveUnter akzeptiert beide Slug-Formen.
+    feld: feldAw, unterthema: anzeigeName(unterthemaName),
     beschreibung, voteThema: VOTE_THEMA[unterthemaName] ?? null,
     zuletztAktiv: rel(zuletztIso),
     votes, gesetze, docs: feed, koepfe, sitzungen, tags,
@@ -426,17 +435,24 @@ export interface StrukturOber { name: string; slug: string; unterthemen: Struktu
 
 export function getThemenStruktur(): StrukturOber[] {
   const db = getDb();
-  // Eine Abfrage, Aggregation in JS (~11k Zeilen, schnell genug pro Request)
+  // Eine Abfrage, Aggregation in JS (~11k Zeilen, schnell genug pro Request).
+  // Anzeige-Merges: Quell-Cluster zählen aufs Ziel (kanonischer mergeKey); Counts
+  // sind DS-dedupliziert (eine DS, die in Quelle UND Ziel klassifiziert ist,
+  // zählt einmal) — deshalb Sets statt Zähler.
   const rows = db.prepare(
-    "SELECT feld, unterthemen_json, spezifische_tags_json FROM ds_unterthemen"
-  ).all() as { feld: string; unterthemen_json: string; spezifische_tags_json: string }[];
-  const count = new Map<string, number>();
+    "SELECT drucksache_nr AS nr, feld, unterthemen_json, spezifische_tags_json FROM ds_unterthemen"
+  ).all() as { nr: string; feld: string; unterthemen_json: string; spezifische_tags_json: string }[];
+  const docs = new Map<string, Set<string>>();
   const tagCount = new Map<string, Map<string, number>>();
   for (const r of rows) {
     const tags = parseTags(r.spezifische_tags_json);
     for (const u of parseTags(r.unterthemen_json)) {
-      const key = `${r.feld}\u0000${u}`;
-      count.set(key, (count.get(key) ?? 0) + 1);
+      const ziel = mergeZiel(r.feld, u);
+      const key = ziel ? mergeKey(ziel.feld, ziel.unterthema) : mergeKey(r.feld, u);
+      let set = docs.get(key);
+      if (!set) { set = new Set(); docs.set(key, set); }
+      if (set.has(r.nr)) continue; // DS schon über die andere Merge-Hälfte gezählt
+      set.add(r.nr);
       let tc = tagCount.get(key);
       if (!tc) { tc = new Map(); tagCount.set(key, tc); }
       for (const t of tags) tc.set(t, (tc.get(t) ?? 0) + 1);
@@ -445,11 +461,11 @@ export function getThemenStruktur(): StrukturOber[] {
   return OBERTHEMEN.map((o) => ({
     name: o.name, slug: o.slug,
     unterthemen: o.felder.flatMap((feld) =>
-      (TAXONOMIE[feld] ?? []).map((u) => {
-        const key = `${feld}\u0000${u}`;
+      (TAXONOMIE[feld] ?? []).filter((u) => !istGemergt(feld, u)).map((u) => {
+        const key = mergeKey(feld, u);
         const topTags = [...(tagCount.get(key) ?? new Map<string, number>()).entries()]
           .sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => t);
-        return { name: u, slug: unterSlug(u), feld, count: count.get(key) ?? 0, topTags };
+        return { name: anzeigeName(u), slug: unterSlug(anzeigeName(u)), feld, count: docs.get(key)?.size ?? 0, topTags };
       })
     ).sort((a, b) => b.count - a.count),
   }));

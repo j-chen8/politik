@@ -279,6 +279,48 @@ export const OBERTHEMEN: readonly Oberthema[] = [
   { name: "Landwirtschaft & Ernährung", slug: "landwirtschaft-ernaehrung", felder: ["Landwirtschaft und Ernährung"] },
 ];
 
+// ── Anzeige-Merges (User 2026-06-12): Dubletten aus der Pro-Feld-Clusterung ──
+// Die Unterthemen entstanden je Politikfeld; die Anzeige-Oberthemen bündeln mehrere
+// Felder und stellten dadurch Doppelgänger nebeneinander (zweimal Auslandseinsätze,
+// zweimal Rüstungsexporte, wortgleich Lobbyismus …). Merge = reine Anzeige-Schicht:
+// die Quelle verschwindet aus dem Picker, ihre Drucksachen fließen dedupliziert ins
+// Ziel, alte Quell-Slugs lösen aufs Ziel auf. ds_unterthemen bleibt unangetastet
+// (kein LLM-Lauf). Sweep-Methodik: scripts/check-unterthemen-dupes.ts.
+export const UNTERTHEMA_MERGES: ReadonlyArray<{
+  von: { feld: string; unterthema: string };
+  nach: { feld: string; unterthema: string };
+}> = [
+  { von: { feld: "Außenpolitik und internationale Beziehungen", unterthema: "Bundeswehr-Auslandseinsätze & Missionsmandate" }, nach: { feld: "Verteidigung", unterthema: "Auslandseinsätze & Mandate" } },
+  { von: { feld: "Außenpolitik und internationale Beziehungen", unterthema: "Rüstungsexporte & Waffenexportkontrolle" }, nach: { feld: "Verteidigung", unterthema: "Rüstungsexporte & Exportkontrolle" } },
+  { von: { feld: "Politisches Leben, Parteien", unterthema: "Lobbyismus & Interessenkonflikte" }, nach: { feld: "Staat und Verwaltung", unterthema: "Lobbyismus & Interessenkonflikte" } },
+  { von: { feld: "Staat und Verwaltung", unterthema: "Parlament, Wahlen & Geschäftsordnung" }, nach: { feld: "Politisches Leben, Parteien", unterthema: "Parlament: Geschäftsordnung, Gremien & Abgeordnetenrecht" } },
+  { von: { feld: "Innere Sicherheit", unterthema: "Gewaltschutz & Sexualdelikte" }, nach: { feld: "Recht", unterthema: "Opferschutz & Gewaltschutz" } },
+  { von: { feld: "Entwicklungspolitik", unterthema: "Handel, Wirtschaftspartnerschaften & Rohstoffe" }, nach: { feld: "Außenpolitik und internationale Beziehungen", unterthema: "Außenwirtschaft, Handel & Rohstoffe" } },
+  { von: { feld: "Arbeit und Beschäftigung", unterthema: "Grundsicherung, Jobcenter & Arbeitsvermittlung" }, nach: { feld: "Soziale Sicherung", unterthema: "Grundsicherung & Bürgergeld (Leistungsseite)" } },
+  { von: { feld: "Verteidigung", unterthema: "Ukraine-Unterstützung & Militärhilfe" }, nach: { feld: "Außenpolitik und internationale Beziehungen", unterthema: "Ukraine, Russland & Sanktionen" } },
+  { von: { feld: "Verteidigung", unterthema: "NATO, Bündnis & Stationierung" }, nach: { feld: "Außenpolitik und internationale Beziehungen", unterthema: "UN, NATO & internationale Organisationen" } },
+  { von: { feld: "Umwelt", unterthema: "Atommüll, Endlager & nukleare Sicherheit" }, nach: { feld: "Energie", unterthema: "Kernenergie & nukleare Brennstoffkette" } },
+  { von: { feld: "Recht", unterthema: "Strafverfolgung, Kriminalstatistik & Wirtschaftskriminalität" }, nach: { feld: "Innere Sicherheit", unterthema: "Kriminalitätslage & Kriminalstatistik" } },
+];
+
+// Anzeige-Umbenennung nach Merge: Qualifizierer, die durch den Merge falsch werden.
+// („Leistungsseite" stimmt nicht mehr, sobald die Jobcenter-Seite mit drinsteckt.)
+const ANZEIGE_NAME: Record<string, string> = {
+  "Grundsicherung & Bürgergeld (Leistungsseite)": "Grundsicherung & Bürgergeld",
+};
+export const anzeigeName = (u: string): string => ANZEIGE_NAME[u] ?? u;
+
+export const mergeKey = (feld: string, unterthema: string) => `${feld} ${unterthema}`;
+const MERGE_VON = new Map(UNTERTHEMA_MERGES.map((m) => [mergeKey(m.von.feld, m.von.unterthema), m.nach]));
+/** Ist (feld, unterthema) eine gemergte Quelle (= nicht mehr eigenständig anzeigen)? */
+export const istGemergt = (feld: string, unterthema: string): boolean => MERGE_VON.has(mergeKey(feld, unterthema));
+/** Merge-Ziel einer Quelle (oder null). */
+export const mergeZiel = (feld: string, unterthema: string) => MERGE_VON.get(mergeKey(feld, unterthema)) ?? null;
+/** Alle Quellen, die in dieses Ziel gemergt wurden. */
+export function mergeQuellen(feld: string, unterthema: string): { feld: string; unterthema: string }[] {
+  return UNTERTHEMA_MERGES.filter((m) => m.nach.feld === feld && m.nach.unterthema === unterthema).map((m) => m.von);
+}
+
 // Unterthema-Slug (URL) — deterministisch aus dem Cluster-Namen
 export function unterSlug(s: string): string {
   return s.toLowerCase()
@@ -286,13 +328,17 @@ export function unterSlug(s: string): string {
     .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-// Slug → (feld, unterthema) auflösen (über alle Felder eines Oberthemas)
+// Slug → (feld, unterthema) auflösen (über alle Felder eines Oberthemas).
+// Akzeptiert Taxonomie- UND Anzeige-Namen-Slugs; gemergte Quellen lösen aufs
+// Ziel auf (alte/geteilte URLs bleiben gültig — die Page leitet kanonisch um).
 export function resolveUnter(oberSlug: string, slug: string): { feld: string; unterthema: string } | null {
   const ot = OBERTHEMEN.find((o) => o.slug === oberSlug);
   if (!ot) return null;
   for (const feld of ot.felder) {
     for (const u of TAXONOMIE[feld] ?? []) {
-      if (unterSlug(u) === slug) return { feld, unterthema: u };
+      if (unterSlug(u) === slug || unterSlug(anzeigeName(u)) === slug) {
+        return mergeZiel(feld, u) ?? { feld, unterthema: u };
+      }
     }
   }
   return null;
