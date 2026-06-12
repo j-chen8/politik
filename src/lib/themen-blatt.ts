@@ -307,38 +307,42 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
   docs.sort((a, b) => (b.iso ?? "").localeCompare(a.iso ?? ""));
   const feed = docs.slice(0, FEED_LIMIT);
 
-  // ── 5. Köpfe: Top-Redner:innen im Feld (Lautstärke-Sicht, parteiübergreifend) ──
+  // ── 5. Köpfe: Top-Redner:innen ZUM UNTERTHEMA (Lautstärke-Sicht, parteiübergreifend) ──
+  // Korn = rede_unterthemen (Reden-Erben über die Debatte, scripts/seed-rede-
+  // unterthemen.ts): vorher lief die Sektion auf FELD-Ebene und zeigte auf jedem
+  // Blatt eines Felds dieselben Leute mit themenfremden Reden (User-Befund
+  // 2026-06-12). leafCond deckt die Merge-Gruppe (Ziel + Quellen) ab.
+  const leafCond = paare.map(() => "(ru.feld = ? AND ru.unterthema = ?)").join(" OR ");
+  const leafParams = paare.flatMap((p) => [p.feld, p.unterthema]);
   const kopfRows = db.prepare(`
     SELECT ss.politician_id AS pid, p.first_name AS vorname, p.last_name AS nachname,
            COALESCE(pa.label, '') AS partei, p.photo_url,
            COUNT(DISTINCT ss.rede_id) AS reden,
            (SELECT COUNT(DISTINCT s2.rede_id) FROM speech_summaries s2 WHERE s2.politician_id = ss.politician_id) AS gesamt,
            (SELECT cm.committee_role || '§' || cm.committee_label FROM committee_memberships cm
-             WHERE cm.politician_id = ss.politician_id AND cm.committee_label LIKE @like LIMIT 1) AS ausschuss
-    FROM item_topics it
-    JOIN speech_summaries ss ON ss.rede_id = it.item_id
+             WHERE cm.politician_id = ss.politician_id AND cm.committee_label LIKE ? LIMIT 1) AS ausschuss
+    FROM rede_unterthemen ru
+    JOIN speech_summaries ss ON ss.rede_id = ru.rede_id
     JOIN politicians p ON p.id = ss.politician_id
     LEFT JOIN parties pa ON pa.id = p.party_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = @feld
-      AND it.origin IN ('rede_summary','title_llm') AND ss.politician_id IS NOT NULL
+    WHERE (${leafCond}) AND ss.politician_id IS NOT NULL
     GROUP BY ss.politician_id
     ORDER BY reden DESC
     LIMIT 10
-  `).all({ feld: feldAw, like: AUSSCHUSS_KEYWORD[feldAw] ?? "\u0000kein-match" }) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
+  `).all(AUSSCHUSS_KEYWORD[feldAw] ?? "\u0000kein-match", ...leafParams) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
   // Die letzten 2 eigen-klassifizierten Reden je Top-Kopf (Datum + Zusammenfassung
   // + Link zur Sitzung) — hier braucht es keinen Debatten-Titel, die Person rahmt.
   const pids = kopfRows.map((k) => k.pid);
   const redenRows = pids.length ? db.prepare(`
     SELECT ss.politician_id AS pid, ss.rede_id, ss.datum AS iso, ss.zusammenfassung, ss.sitzung
-    FROM item_topics it
-    JOIN speech_summaries ss ON ss.rede_id = it.item_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ?
-      AND it.origin IN ('rede_summary','title_llm')
+    FROM rede_unterthemen ru
+    JOIN speech_summaries ss ON ss.rede_id = ru.rede_id
+    WHERE (${leafCond})
       AND ss.politician_id IN (${pids.map(() => "?").join(",")})
       AND ss.zusammenfassung IS NOT NULL AND ss.zusammenfassung != ''
     GROUP BY ss.rede_id
     ORDER BY ss.datum DESC
-  `).all(feldAw, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
+  `).all(...leafParams, ...pids) as { pid: number; rede_id: string; iso: string | null; zusammenfassung: string | null; sitzung: number | null }[] : [];
   // Tag-Scent per TEXTMATCH gegen das Cluster-Tag-Vokabular (deterministisch,
   // kein LLM) — Platzhalter, bis Reden echte Tags tragen (Erben-Lauf am
   // Reden↔DS-Paar). „wenn getagt": nur zeigen, was wörtlich vorkommt.
@@ -381,17 +385,16 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
     return { politicianId: k.pid, vorname: k.vorname, nachname: k.nachname, partei: cleanParty(k.partei), reden: k.reden, gesamt: k.gesamt, rolle, photoUrl: k.photo_url || null, letzteReden: redenByPid.get(k.pid) ?? [] };
   });
 
-  // ── 6. Plenarsitzungen mit Feld-Reden ──
+  // ── 6. Plenarsitzungen mit Reden zum Unterthema ──
   const sitzungRows = db.prepare(`
     SELECT ss.sitzung AS nr, MAX(ss.datum) AS iso, COUNT(DISTINCT ss.rede_id) AS n
-    FROM item_topics it
-    JOIN speech_summaries ss ON ss.rede_id = it.item_id
-    WHERE it.source = 'bt_rede' AND it.aw_field = ?
-      AND it.origin IN ('rede_summary','title_llm') AND ss.sitzung IS NOT NULL
+    FROM rede_unterthemen ru
+    JOIN speech_summaries ss ON ss.rede_id = ru.rede_id
+    WHERE (${leafCond}) AND ss.sitzung IS NOT NULL
     GROUP BY ss.sitzung
     ORDER BY iso DESC
     LIMIT 8
-  `).all(feldAw) as { nr: number; iso: string | null; n: number }[];
+  `).all(...leafParams) as { nr: number; iso: string | null; n: number }[];
   const sitzungen: EchtSitzung[] = sitzungRows.map((s) => ({
     nr: s.nr, datum: fmtLang(s.iso),
     tops: `${s.n} ${s.n === 1 ? "Rede" : "Reden"} zum Thema`,
@@ -410,8 +413,8 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
   const zuletztIso = [dsRows.map((d) => d.iso), redenRows.map((r) => r.iso), votes.map((v) => v.iso)]
     .flat().filter(Boolean).sort().pop() ?? null;
   const totalReden = (db.prepare(
-    `SELECT COUNT(DISTINCT item_id) AS c FROM item_topics WHERE source = 'bt_rede' AND aw_field = ? AND origin IN ('rede_summary','title_llm')`
-  ).get(feldAw) as { c: number }).c;
+    `SELECT COUNT(DISTINCT ru.rede_id) AS c FROM rede_unterthemen ru WHERE (${leafCond})`
+  ).get(...leafParams) as { c: number }).c;
 
   // Neutral abgeleitete Kopf-Zeile (kuratierte Beschreibungen sind eine bekannte
   // Lücke — bis dahin: reine Bestandsbeschreibung, keine Wertung)

@@ -984,11 +984,22 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
     <div>
       {/* Sektions-Leiste MUSS außerhalb der fade-in-up-Sektion leben: deren Animations-
           Transform (fill forwards) macht sie sonst zum Containing Block und `fixed`
-          klebt an der Sektion statt am Viewport. */}
-      {isLeaf && (
-        <SectionRail active={activeScreen} labels={["Abstimmungen", "Plenum", "Spezifische Themen"]}
-          onJump={(i) => screenRefs[i].current?.scrollIntoView({ behavior: "smooth", block: "start" })} />
-      )}
+          klebt an der Sektion statt am Viewport. Blätter ohne erbende Reden (kein
+          Screen 2) zeigen nur zwei Striche — die Paging-Logik überspringt fehlende
+          Refs ohnehin (Infinity-Stop). */}
+      {isLeaf && (() => {
+        const hatPlenum = (blatt!.koepfe.length > 0) || (blatt!.sitzungen.length > 0);
+        const screens = [
+          { label: "Abstimmungen", ref: screen1Ref },
+          ...(hatPlenum ? [{ label: "Plenum", ref: screen2Ref }] : []),
+          { label: "Spezifische Themen", ref: screen3Ref },
+        ];
+        const railActive = Math.max(0, screens.findIndex((s) => s.ref === screenRefs[activeScreen]));
+        return (
+          <SectionRail active={railActive} labels={screens.map((s) => s.label)}
+            onJump={(i) => screens[i].ref.current?.scrollIntoView({ behavior: "smooth", block: "start" })} />
+        );
+      })()}
 
       {/* Breadcrumb — nur am Blatt nötig; im Picker ist die linke Spalte die Navigation */}
       {isLeaf && (
@@ -1198,7 +1209,10 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             {/* ── Screen 2: Sprecher + Sitzungen untereinander, vertikal zentriert (User:
                 „da wir jetzt Platz haben") — Köpfe groß (xl) mit Name/Partei-Unterschrift
                 + Detail-Feld inkl. Themen-Chips, Sitzungen wieder als volles 3er-Karussell. */}
-            {/* pb > pt: gewichtet den Inhalt nach OBEN statt exakt mittig (User) */}
+            {/* pb > pt: gewichtet den Inhalt nach OBEN statt exakt mittig (User).
+                Ganz weg, wenn das Blatt weder Köpfe noch Sitzungen hat (keine erbenden
+                Reden) — sonst stünde eine leere Geister-Scrollstufe zwischen 1 und 3. */}
+            {((u.koepfe?.length ?? 0) > 0 || sitzungen.length > 0) && (
             <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
               {(u.koepfe?.length ?? 0) > 0 && (
                 <div>
@@ -1213,6 +1227,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                 </div>
               )}
             </div>
+            )}
 
             {/* ── Screen 3: Gerade aktiv mit Themen-Filterleiste — EIN Block (zweite Scroll-Stufe) ── */}
             <div ref={screen3Ref} className="min-h-[calc(100dvh-120px)] scroll-mt-24 py-8">
