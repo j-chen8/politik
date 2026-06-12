@@ -134,16 +134,25 @@ function parseTags(json: string | null): string[] {
 // kerninhalt ist teils als JSON-Array (Stichpunkte) gespeichert → lesbarer Fließtext
 function parseKern(s: string | null): string | null {
   if (!s) return null;
-  const t = s.trim();
+  let t = s.trim();
   // Literal-"null"/Platzhalter aus der LLM-Analyse nicht als Text durchreichen
   if (t === "" || t.toLowerCase() === "null" || t === "—" || t === "-") return null;
+  // Doppelt encodete Werte (JSON-String, der den Array-Text enthält — Haiku-Array-
+  // Drift; 60 Alt-Zeilen am 2026-06-12 in der DB entpackt) defensiv eine String-
+  // Schicht auspacken, falls künftige Batch-Läufe das Muster wieder einschleppen.
+  if (t.startsWith('"')) {
+    try {
+      const inner = JSON.parse(t);
+      if (typeof inner === "string") t = inner.trim();
+    } catch { /* roh lassen */ }
+  }
   if (t.startsWith("[")) {
     try {
       const arr = JSON.parse(t);
       if (Array.isArray(arr)) return arr.filter(Boolean).join(" · ");
     } catch { /* roh lassen */ }
   }
-  return s;
+  return t;
 }
 // Partei-Labels tragen teils Soft-Hyphens (BÜNDNIS 90/­DIE GRÜNEN) → säubern
 function cleanParty(s: string | null): string {
