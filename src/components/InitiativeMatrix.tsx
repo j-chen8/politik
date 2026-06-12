@@ -37,7 +37,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
 
   return (
     <div>
-      <div className="flex items-center gap-1 mb-3 text-[11.5px]">
+      <div className="flex items-center justify-center gap-1 mb-3 text-[11.5px]">
         {([false, true] as const).map((mode) => (
           <button
             key={String(mode)}
@@ -53,7 +53,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
         ))}
       </div>
       <div className="overflow-x-auto">
-        <table className="border-collapse text-[12px]">
+        <table className="border-collapse text-[12px] mx-auto">
           <thead>
             <tr>
               <th className="text-left font-medium text-zinc-400 pb-2 pr-3 align-bottom">Themenfeld</th>

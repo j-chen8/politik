@@ -1,5 +1,5 @@
 import { ContextualLink as Link } from "@/components/ContextualLink";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ListTree } from "lucide-react";
 import {
   getRedenTonalitaetByFraktion,
   getDrucksacheTonalitaetByFraktion,
@@ -118,6 +118,15 @@ export default function AnalysePage() {
   const monthLabels = trend.map((t) => t.monat);
   const trendFraktionen = ["AfD", "Grüne", "Linke"];
 
+  const tocItems = [
+    { id: "befund-1", label: "1 · Plenarreden", sub: "Drei Stil-Profile in der Opposition" },
+    { id: "befund-2", label: "2 · Kleine Anfragen", sub: "AfD nicht konfrontativer als Linke und Grüne" },
+    { id: "befund-3", label: "3 · Volumen und Verlauf", sub: "Mehr Masse, nicht mehr Schärfe" },
+    { id: "befund-4", label: "4 · Themen", sub: "Wer treibt welche Themen" },
+    { id: "befund-5", label: "5 · Gesetzgebung", sub: "Der Absender entscheidet über die Abstimmung" },
+    { id: "befund-6", label: "6 · Tempo", sub: `Im Median ${dauer.medianTotal} Tage bis zur Verkündung` },
+  ];
+
   return (
     <div className="page-wash min-h-screen">
       <div className="max-w-6xl mx-auto px-5 py-12 fade-in-up">
@@ -128,6 +137,20 @@ export default function AnalysePage() {
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zur Startseite
         </Link>
+
+        {/* Mobile: TOC als ausklappbares Detail-Element (Methodik-Muster) */}
+        <details className="lg:hidden mb-8 rounded-2xl border border-zinc-200/70 bg-white">
+          <summary className="cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700">
+            <ListTree className="w-3.5 h-3.5" strokeWidth={2.25} />
+            Inhaltsverzeichnis
+          </summary>
+          <div className="px-4 pb-4">
+            <AnalyseToc items={tocItems} />
+          </div>
+        </details>
+
+        <div className="lg:flex lg:gap-12">
+          <main className="lg:flex-1 min-w-0">
 
         <div className="mb-12">
           <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
@@ -156,36 +179,8 @@ export default function AnalysePage() {
           </p>
         </div>
 
-        {/* Inhaltsverzeichnis */}
-        <nav className="mb-14 border border-zinc-200/70 rounded-2xl bg-white px-5 py-4">
-          <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2.5">
-            Inhalt
-          </div>
-          <ol className="space-y-1.5 text-[13.5px]">
-            {[
-              ["befund-1", "Plenarreden", "Drei Stil-Profile in der Opposition"],
-              ["befund-2", "Kleine Anfragen", "AfD nicht konfrontativer als Linke und Grüne"],
-              ["befund-3", "Volumen und Verlauf", "Mehr Masse, nicht mehr Schärfe"],
-              ["befund-4", "Themen", "Wer treibt welche Themen"],
-              ["befund-5", "Gesetzgebung", "Der Absender entscheidet über die Abstimmung"],
-              ["befund-6", "Tempo", `Im Median ${dauer.medianTotal} Tage bis zur Verkündung`],
-            ].map(([id, label, titel], i) => (
-              <li key={id}>
-                <a href={`#${id}`} className="group flex items-baseline gap-2.5 hover:text-zinc-950">
-                  <span className="num text-[11px] text-zinc-400 shrink-0">{i + 1}</span>
-                  <span className="text-zinc-700 group-hover:text-zinc-950 transition-colors">
-                    <span className="font-medium text-zinc-950">{label}</span>
-                    <span className="text-zinc-400 mx-1.5">·</span>
-                    {titel}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
         {/* === BEFUND 1: Reden-Stil-Profile === */}
-        <section id="befund-1" className="mb-16 scroll-mt-6">
+        <section id="befund-1" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 1 · Plenarreden
@@ -257,7 +252,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 2: KA-Tonalität === */}
-        <section id="befund-2" className="mb-16 scroll-mt-6">
+        <section id="befund-2" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 2 · Kleine Anfragen
@@ -323,7 +318,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 3: Volumen + Trend === */}
-        <section id="befund-3" className="mb-16 scroll-mt-6">
+        <section id="befund-3" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 3 · Volumen und Verlauf
@@ -384,7 +379,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 4: Themen-Profil pro Fraktion === */}
-        <section id="befund-4" className="mb-16 scroll-mt-6">
+        <section id="befund-4" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 4 · Wer treibt welche Themen
@@ -418,7 +413,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 5: Gesetzgebungs-Trichter === */}
-        <section id="befund-5" className="mb-16 scroll-mt-6">
+        <section id="befund-5" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 5 · Gesetzgebung
@@ -471,7 +466,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 6: Gesetzes-Tempo === */}
-        <section id="befund-6" className="mb-16 scroll-mt-6">
+        <section id="befund-6" className="mb-16 scroll-mt-20">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 6 · Tempo
@@ -542,8 +537,42 @@ export default function AnalysePage() {
             <em>wie zuverlässig</em> diese Funde sind.
           </p>
         </div>
+
+          </main>
+
+          {/* Desktop: Sticky-Sidebar TOC (Methodik-Muster) */}
+          <aside className="hidden lg:block w-64 shrink-0">
+            <div className="sticky top-20">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+                <ListTree className="w-3 h-3" strokeWidth={2.25} />
+                Auf dieser Seite
+              </div>
+              <AnalyseToc items={tocItems} />
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
+  );
+}
+
+function AnalyseToc({ items }: { items: { id: string; label: string; sub: string }[] }) {
+  return (
+    <nav className="text-[12.5px]">
+      <ul className="space-y-0.5 border-l border-zinc-200">
+        {items.map((item) => (
+          <li key={item.id}>
+            <a
+              href={`#${item.id}`}
+              className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-1 leading-snug transition-colors"
+            >
+              <span className="block font-medium">{item.label}</span>
+              <span className="block text-[11px] text-zinc-400">{item.sub}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
