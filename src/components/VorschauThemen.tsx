@@ -109,10 +109,14 @@ const DISPLAY = "font-[family-name:var(--font-display)]";
 // Weiche Flächen-Grammatik: Schatten + Radius statt Rahmen.
 const SOFT_CARD = "rounded-3xl bg-white/90 shadow-[0_2px_24px_-14px_rgba(20,20,45,0.22)] ring-1 ring-zinc-900/[0.05] backdrop-blur-sm dark:bg-zinc-900/60 dark:ring-white/[0.06]";
 
-function Teaser({ items, className = "" }: { items: string[]; className?: string }) {
+function Teaser({ items, roomy = true }: { items: string[]; roomy?: boolean }) {
   // Einzeilig + truncate → jede Karte hat dieselbe Untertitel-Höhe (kein 2-Zeilen-Umbruch).
-  // Kompakt (11.5px/tight), damit 14 zweizeilige Rail-Einträge über den Fold passen.
-  return <p className={`mt-0.5 truncate text-[11.5px] leading-tight text-zinc-400 dark:text-zinc-500 ${className}`}>{items.join(" · ")}</p>;
+  // roomy = Picker-Grid (2-spaltig, viel Platz); kompakt = Ghost-Rail neben offenem Feld.
+  return (
+    <p className={`truncate text-zinc-400 dark:text-zinc-500 ${roomy ? "mt-1 text-[12.5px] leading-snug" : "mt-0.5 text-[11.5px] leading-tight"}`}>
+      {items.join(" · ")}
+    </p>
+  );
 }
 
 // Typ-Unterscheidung: icon-geführt + EIN dezenter Farbakzent (kein voller bunter Badge —
@@ -1006,25 +1010,29 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             {/* Linke Spalte: alle Oberthemen. Ist ein Feld gewählt, klappt die Spalte nach LINKS
                 weg (Breite → schmaler Streifen), und die Unterthemen rechts klappen in den Platz
                 auf. Hover über den Streifen (group/rail + eigenes :hover) öffnet die Liste wieder. */}
-            <div className={`rail group/rail relative shrink-0 overflow-hidden transition-[width] duration-500 ease-out ${feld ? "w-full md:w-9 md:hover:w-[280px]" : "w-full md:w-[280px]"}`}>
-              {/* feste Breite → beim Wegklappen reflowt/bricht der Text NICHT; der Streifen
-                  clippt ihn nur (overflow-hidden). Weggeklappt schimmert die Liste GANZ schwach
-                  durch (Geist der Anfangsbuchstaben) → teasert „hier sind noch Felder"; Hover holt
-                  sie voll zurück. Nur Desktop — mobil bleibt die Liste immer voll sichtbar.
-                  Einzeilig auf Desktop (Teaser nur mobil), damit alle 14 Felder ohne Scrollen
-                  über den Fold passen — der Scent kommt stattdessen per Hover-Vorschau rechts. */}
-              <div className={`flex w-full shrink-0 flex-col gap-2 opacity-100 transition-opacity duration-300 md:w-[280px] md:gap-1 ${feld ? "md:opacity-[0.14] md:group-hover/rail:opacity-100" : ""}`}>
+            <div className={`rail group/rail relative shrink-0 overflow-hidden transition-[width] duration-500 ease-out ${feld ? "w-full md:w-9 md:hover:w-[280px]" : "w-full"}`}>
+              {/* Ohne Auswahl: die 14 Felder als 2-spaltiges Grid über die VOLLE Breite (die
+                  rechte Hälfte wäre sonst nur ein toter Platzhalter) → 7 Zeilen, viel Luft.
+                  Mit Auswahl: kollabiert zum schmalen Ghost-Streifen (feste 280px-Innenbreite →
+                  beim Wegklappen reflowt der Text nicht, der Streifen clippt ihn nur). Weggeklappt
+                  schimmert die Liste schwach durch; Hover holt sie zurück. Nur Desktop — mobil
+                  bleibt es die volle Akkordeon-Liste. */}
+              <div className={`opacity-100 transition-opacity duration-300 ${feld
+                ? "flex w-full shrink-0 flex-col gap-2 md:w-[280px] md:gap-1 md:opacity-[0.14] md:group-hover/rail:opacity-100"
+                : "flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-2.5"}`}>
                 {FELDER.map((f) => {
                   const sel = feld === f.slug;
                   return (
                     <Fragment key={f.slug}>
                       <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
-                        className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition md:py-1 ${sel
+                        className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${feld
+                          ? "md:py-1"
+                          : "md:bg-white/60 md:py-3 md:ring-1 md:ring-zinc-900/[0.05] md:hover:ring-zinc-900/[0.12] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:ring-white/[0.14]"} ${sel
                           ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
                           : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
                         <span className="flex min-w-0 flex-col">
-                          <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"}`}>{f.name}</span>
-                          <Teaser items={f.teaser} />
+                          <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"} ${feld ? "" : "md:text-zinc-900 dark:md:text-zinc-100"}`}>{f.name}</span>
+                          <Teaser items={f.teaser} roomy={!feld} />
                         </span>
                         <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
                         <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
@@ -1037,16 +1045,13 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
               </div>
             </div>
 
-            {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf */}
-            <div className="hidden min-w-0 flex-1 md:block">
-              {selFeld ? (
+            {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf.
+                Ohne Auswahl gibt es keine rechte Spalte — das Feld-Grid nutzt die volle Breite. */}
+            {selFeld && (
+              <div className="hidden min-w-0 flex-1 md:block">
                 <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand" />
-              ) : (
-                <div className={`panel-expand flex h-full min-h-[180px] items-center justify-center p-8 text-center text-[13.5px] text-zinc-400 ${SOFT_CARD}`}>
-                  Wähl links ein Feld — hier erscheinen seine Unterthemen.
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </section>
       )}
