@@ -773,7 +773,12 @@ function UnterCard({ u, onPick }: { u: StrukturUnter; onPick: (slug: string) => 
           <span className="min-w-0 truncate text-[15px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
           <span className="shrink-0 text-[11px] font-medium tabular-nums text-zinc-400">{u.count}</span>
         </span>
-        {scent.length > 0 && <ScentTicker items={scent} paused={paused} />}
+        {/* Zeile 2: Tag-Ticker links, Frische-Stempel rechts (User 2026-06-12) —
+            in der Namenszeile quetschte der Stempel lange Cluster-Namen ins Truncate */}
+        <span className="flex items-baseline gap-2.5">
+          <span className="min-w-0 flex-1">{scent.length > 0 && <ScentTicker items={scent} paused={paused} />}</span>
+          {u.zuletzt && <span className={`shrink-0 text-[11px] ${u.zuletzt === "heute" || u.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400"}`}>{u.zuletzt}</span>}
+        </span>
       </span>
       <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
     </button>
@@ -809,7 +814,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
   // Ansicht aus der URL ableiten: Blatt, wenn der Server für ?feld=&unter= Daten
   // aufgelöst hat (Picker-Klicks aufs Blatt navigieren via Router → Server lädt).
   const isLeaf = !!blatt && !!unterSlug && mkUnterSlug(blatt.unterthema) === unterSlug;
-  const FELDER = struktur.map((o) => ({ name: o.name, slug: o.slug, teaser: o.unterthemen.slice(0, 4).map((u) => kurzName(u.name)), ober: o }));
+  const FELDER = struktur.map((o) => ({ name: o.name, slug: o.slug, zuletzt: o.zuletzt, teaser: o.unterthemen.slice(0, 4).map((u) => kurzName(u.name)), ober: o }));
   const selFeld = feld ? FELDER.find((f) => f.slug === feld) ?? null : null;
 
   // beim Wechsel von Feld/Unterthema die ephemeren UI-Zustände zurücksetzen
@@ -1070,7 +1075,10 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                     <span className="truncate text-[15px] font-medium leading-snug md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100">{f.name}</span>
                     <Teaser items={f.teaser} />
                   </span>
-                  <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
+                  <span className="flex shrink-0 items-center gap-2">
+                    {f.zuletzt && <span className={`text-[11.5px] ${f.zuletzt === "heute" || f.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400"}`}>{f.zuletzt}</span>}
+                    <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
+                  </span>
                 </button>
               ))}
             </div>

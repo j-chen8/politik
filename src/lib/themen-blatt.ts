@@ -455,8 +455,10 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
 }
 
 // ── Picker-Struktur: 14 Oberthemen → Unterthemen mit Live-Bestand + Tag-Scent ──
-export interface StrukturUnter { name: string; slug: string; feld: string; count: number; topTags: string[] }
-export interface StrukturOber { name: string; slug: string; unterthemen: StrukturUnter[] }
+// zuletzt = relativer Frische-Stempel ("heute", "vor 3 Tagen") der jüngsten
+// Aktivität (Drucksache ODER Rede) im Cluster (User 2026-06-12).
+export interface StrukturUnter { name: string; slug: string; feld: string; count: number; topTags: string[]; zuletzt: string | null }
+export interface StrukturOber { name: string; slug: string; unterthemen: StrukturUnter[]; zuletzt: string | null }
 
 export function getThemenStruktur(): StrukturOber[] {
   const db = getDb();
@@ -467,8 +469,28 @@ export function getThemenStruktur(): StrukturOber[] {
   const rows = db.prepare(
     "SELECT drucksache_nr AS nr, feld, unterthemen_json, spezifische_tags_json FROM ds_unterthemen"
   ).all() as { nr: string; feld: string; unterthemen_json: string; spezifische_tags_json: string }[];
+  // Datum je DS (gleiche Quelle wie am Blatt: erstes activities-Datum, sonst
+  // Veröffentlichungsdatum) + jüngste Rede je Cluster — für den Frische-Stempel.
+  const dsIso = new Map(
+    (db.prepare(`
+      SELECT du.drucksache_nr AS nr, COALESCE(
+        (SELECT MIN(a.datum) FROM activities a WHERE a.drucksache_nr = du.drucksache_nr AND a.datum IS NOT NULL),
+        (SELECT dt.publication_date FROM drucksache_texts dt WHERE dt.drucksache_nr = du.drucksache_nr)
+      ) AS iso
+      FROM (SELECT DISTINCT drucksache_nr FROM ds_unterthemen) du
+    `).all() as { nr: string; iso: string | null }[]).map((r) => [r.nr, r.iso])
+  );
+  const redeIso = db.prepare(`
+    SELECT ru.feld, ru.unterthema, MAX(ss.datum) AS iso
+    FROM rede_unterthemen ru JOIN speech_summaries ss ON ss.rede_id = ru.rede_id
+    GROUP BY ru.feld, ru.unterthema
+  `).all() as { feld: string; unterthema: string; iso: string | null }[];
   const docs = new Map<string, Set<string>>();
   const tagCount = new Map<string, Map<string, number>>();
+  const maxIso = new Map<string, string>();
+  const bump = (key: string, iso: string | null | undefined) => {
+    if (iso && iso > (maxIso.get(key) ?? "")) maxIso.set(key, iso);
+  };
   for (const r of rows) {
     const tags = parseTags(r.spezifische_tags_json);
     for (const u of parseTags(r.unterthemen_json)) {
@@ -478,20 +500,28 @@ export function getThemenStruktur(): StrukturOber[] {
       if (!set) { set = new Set(); docs.set(key, set); }
       if (set.has(r.nr)) continue; // DS schon über die andere Merge-Hälfte gezählt
       set.add(r.nr);
+      bump(key, dsIso.get(r.nr));
       let tc = tagCount.get(key);
       if (!tc) { tc = new Map(); tagCount.set(key, tc); }
       for (const t of tags) tc.set(t, (tc.get(t) ?? 0) + 1);
     }
   }
-  return OBERTHEMEN.map((o) => ({
-    name: o.name, slug: o.slug,
-    unterthemen: o.felder.flatMap((feld) =>
+  for (const r of redeIso) {
+    const ziel = mergeZiel(r.feld, r.unterthema);
+    bump(ziel ? mergeKey(ziel.feld, ziel.unterthema) : mergeKey(r.feld, r.unterthema), r.iso);
+  }
+  return OBERTHEMEN.map((o) => {
+    const unterthemen = o.felder.flatMap((feld) =>
       (TAXONOMIE[feld] ?? []).filter((u) => !istGemergt(feld, u)).map((u) => {
         const key = mergeKey(feld, u);
         const topTags = [...(tagCount.get(key) ?? new Map<string, number>()).entries()]
           .sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => t);
-        return { name: anzeigeName(u), slug: unterSlug(anzeigeName(u)), feld, count: docs.get(key)?.size ?? 0, topTags };
+        const iso = maxIso.get(key) ?? null;
+        return { name: anzeigeName(u), slug: unterSlug(anzeigeName(u)), feld, count: docs.get(key)?.size ?? 0, topTags, zuletzt: iso ? rel(iso) : null, _iso: iso };
       })
-    ).sort((a, b) => b.count - a.count),
-  }));
+    ).sort((a, b) => b.count - a.count);
+    // Feld-Frische = jüngstes Unterthema des Felds
+    const oberIso = unterthemen.reduce<string | null>((m, u) => (u._iso && u._iso > (m ?? "") ? u._iso : m), null);
+    return { name: o.name, slug: o.slug, zuletzt: oberIso ? rel(oberIso) : null, unterthemen: unterthemen.map(({ _iso, ...u }) => u) };
+  });
 }
