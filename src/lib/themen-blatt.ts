@@ -150,7 +150,13 @@ function parseKern(s: string | null): string | null {
     try {
       const arr = JSON.parse(t);
       if (Array.isArray(arr)) return arr.filter(Boolean).join(" · ");
-    } catch { /* roh lassen */ }
+    } catch {
+      // INVALIDES Array (LLM-Drift: deutsche „…"-Zitate brechen das Escaping —
+      // 58 Alt-Zeilen am 2026-06-12 in der DB repariert): heuristisch an den
+      // "-Komma-"-Stichpunkt-Grenzen splitten statt rohes JSON anzuzeigen.
+      const body = t.slice(1, t.endsWith("]") ? -1 : undefined).trim().replace(/^"|"$/g, "");
+      return body.split(/"\s*,\s*"/).map((p) => p.trim().replace(/\\"/g, '"')).filter(Boolean).join(" · ");
+    }
   }
   return t;
 }
