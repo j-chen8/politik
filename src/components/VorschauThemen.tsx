@@ -79,17 +79,6 @@ type Sitzung = { nr: number; datum: string; tops: string; href?: string };
 // „Beschlussempfehlung liegt vor") + Wartezeit steht als standDetail am Punkt.
 const GESETZ_STUFEN = ["Eingebracht", "Bundestag", "Bundesrat", "In Kraft"] as const;
 
-const ANDERE_OBERTHEMEN: { name: string; teaser: string[] }[] = [
-  { name: "Innere Sicherheit & Recht", teaser: ["Polizei", "Extremismus", "Justiz", "Datenschutz"] },
-  { name: "Bauen & Wohnen", teaser: ["Mieten", "Wohnungsbau", "Bodenrecht"] },
-  { name: "Verkehr & Infrastruktur", teaser: ["Bahn", "Straße", "E-Mobilität"] },
-  { name: "Soziales & Gesundheit", teaser: ["Pflege", "Rente", "Krankenversicherung"] },
-  { name: "Umwelt & Energie", teaser: ["Klimaschutz", "Energiewende", "Artenschutz"] },
-  { name: "Migration & Integration", teaser: ["Asyl", "Aufenthaltsrecht", "Einbürgerung"] },
-  { name: "Außen & Verteidigung", teaser: ["Bundeswehr", "NATO", "Ukraine"] },
-  { name: "Bildung & Forschung", teaser: ["Schule", "Hochschule", "Wissenschaft"] },
-];
-
 // ── Bausteine ───────────────────────────────────────────────────────────────
 // Inline-SVGs statt Emoji/Unicode-Glyphen (🔍/▾ rendern auf vielen Systemen als
 // Tofu-Kästchen — sah billig aus).
@@ -120,9 +109,9 @@ const DISPLAY = "font-[family-name:var(--font-display)]";
 // Weiche Flächen-Grammatik: Schatten + Radius statt Rahmen.
 const SOFT_CARD = "rounded-3xl bg-white/90 shadow-[0_2px_24px_-14px_rgba(20,20,45,0.22)] ring-1 ring-zinc-900/[0.05] backdrop-blur-sm dark:bg-zinc-900/60 dark:ring-white/[0.06]";
 
-function Teaser({ items }: { items: string[] }) {
+function Teaser({ items, className = "" }: { items: string[]; className?: string }) {
   // Einzeilig + truncate → jede Karte hat dieselbe Untertitel-Höhe (kein 2-Zeilen-Umbruch).
-  return <p className="mt-1.5 truncate text-[12.5px] leading-snug text-zinc-400 dark:text-zinc-500">{items.join(" · ")}</p>;
+  return <p className={`mt-1.5 truncate text-[12.5px] leading-snug text-zinc-400 dark:text-zinc-500 ${className}`}>{items.join(" · ")}</p>;
 }
 
 // Typ-Unterscheidung: icon-geführt + EIN dezenter Farbakzent (kein voller bunter Badge —
@@ -788,6 +777,11 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
   const isLeaf = !!blatt && !!unterSlug && mkUnterSlug(blatt.unterthema) === unterSlug;
   const FELDER = struktur.map((o) => ({ name: o.name, slug: o.slug, teaser: o.unterthemen.slice(0, 4).map((u) => KURZ[u.name] ?? u.name), ober: o }));
   const selFeld = feld ? FELDER.find((f) => f.slug === feld) ?? null : null;
+  // Desktop-Rail ist einzeilig (kein Teaser) → der Scent kommt per Hover: Überfahren
+  // zeigt die Unterthemen sofort rechts als Vorschau (gleiche Sprache wie Köpfe-Strip).
+  // Vorschau bleibt stehen (kein Clear on leave), damit die Maus rüberwandern kann.
+  const [previewSlug, setPreviewSlug] = useState<string | null>(null);
+  const shownFeld = (previewSlug ? FELDER.find((f) => f.slug === previewSlug) ?? null : null) ?? selFeld;
 
   // beim Wechsel von Feld/Unterthema die ephemeren UI-Zustände zurücksetzen
   useEffect(() => { setQuery(""); setShowAll(false); }, [feld, unterSlug]);
@@ -994,29 +988,35 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
       {!isLeaf && (
         <section className="fade-in-up">
           <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>Was beschäftigt<br />den Bundestag?</h2>
-          <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Feld — die Unterthemen erscheinen daneben.</p>
+          <p className="mt-3 text-[15px] text-zinc-500">Fahr über ein Feld — die Unterthemen erscheinen daneben.</p>
 
           <div className="mt-8 md:flex md:items-start md:gap-6">
             {/* Linke Spalte: alle Oberthemen. Ist ein Feld gewählt, klappt die Spalte nach LINKS
                 weg (Breite → schmaler Streifen), und die Unterthemen rechts klappen in den Platz
                 auf. Hover über den Streifen (group/rail + eigenes :hover) öffnet die Liste wieder. */}
-            <div className={`rail group/rail relative shrink-0 overflow-hidden transition-[width] duration-500 ease-out ${feld ? "w-full md:w-9 md:hover:w-[240px]" : "w-full md:w-[240px]"}`}>
+            <div className={`rail group/rail relative shrink-0 overflow-hidden transition-[width] duration-500 ease-out ${feld ? "w-full md:w-9 md:hover:w-[280px]" : "w-full md:w-[280px]"}`}>
               {/* feste Breite → beim Wegklappen reflowt/bricht der Text NICHT; der Streifen
                   clippt ihn nur (overflow-hidden). Weggeklappt schimmert die Liste GANZ schwach
                   durch (Geist der Anfangsbuchstaben) → teasert „hier sind noch Felder"; Hover holt
-                  sie voll zurück. Nur Desktop — mobil bleibt die Liste immer voll sichtbar. */}
-              <div className={`flex w-full shrink-0 flex-col gap-2 opacity-100 transition-opacity duration-300 md:w-[240px] ${feld ? "md:opacity-[0.14] md:group-hover/rail:opacity-100" : ""}`}>
+                  sie voll zurück. Nur Desktop — mobil bleibt die Liste immer voll sichtbar.
+                  Einzeilig auf Desktop (Teaser nur mobil), damit alle 14 Felder ohne Scrollen
+                  über den Fold passen — der Scent kommt stattdessen per Hover-Vorschau rechts. */}
+              <div className={`flex w-full shrink-0 flex-col gap-2 opacity-100 transition-opacity duration-300 md:w-[280px] md:gap-1 ${feld ? "md:opacity-[0.14] md:group-hover/rail:opacity-100" : ""}`}>
                 {FELDER.map((f) => {
                   const sel = feld === f.slug;
+                  const peek = !sel && shownFeld?.slug === f.slug;
                   return (
                     <Fragment key={f.slug}>
                       <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
-                        className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${sel
+                        onMouseEnter={() => setPreviewSlug(f.slug)}
+                        className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition md:py-1.5 ${sel
                           ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
-                          : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
+                          : peek
+                            ? "bg-zinc-900/[0.045] text-zinc-900 dark:bg-white/[0.06] dark:text-zinc-200"
+                            : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
                         <span className="flex min-w-0 flex-col">
-                          <span className={`text-[15px] ${sel ? "font-semibold" : "font-medium"}`}>{f.name}</span>
-                          <Teaser items={f.teaser} />
+                          <span className={`truncate text-[15px] ${sel ? "font-semibold" : "font-medium"}`}>{f.name}</span>
+                          <Teaser items={f.teaser} className="md:hidden" />
                         </span>
                         <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
                         <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
@@ -1029,13 +1029,14 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
               </div>
             </div>
 
-            {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf */}
+            {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf.
+                Zeigt die Hover-Vorschau (previewSlug) oder die geklickte Auswahl. */}
             <div className="hidden min-w-0 flex-1 md:block">
-              {selFeld ? (
-                <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand" />
+              {shownFeld ? (
+                <DetailPane key={shownFeld.slug} ober={shownFeld.ober} onPick={(u) => nav({ feld: shownFeld.slug, unter: u, thema: null })} className="panel-expand" />
               ) : (
                 <div className={`panel-expand flex h-full min-h-[180px] items-center justify-center p-8 text-center text-[13.5px] text-zinc-400 ${SOFT_CARD}`}>
-                  Wähl links ein Feld — hier erscheinen seine Unterthemen.
+                  Fahr links über ein Feld — hier erscheinen seine Unterthemen.
                 </div>
               )}
             </div>
