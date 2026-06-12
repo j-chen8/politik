@@ -6,6 +6,7 @@ import {
   getDrucksacheMonthlyTrend,
   getGesetzgebungsFunnel,
   type GesetzgebungsFunnelRow,
+  getGesetzesdauer,
   getTopicInitiativeMatrix,
 } from "@/lib/db";
 import { partyColor } from "@/lib/party-colors";
@@ -14,7 +15,7 @@ import { InitiativeMatrix } from "@/components/InitiativeMatrix";
 export const metadata = {
   title: "Analyse — Was die Daten zeigen | Politik-Radar",
   description:
-    "Fünf empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie, Themen-Profil pro Fraktion und der Gesetzgebungs-Trichter nach Einbringer.",
+    "Sechs empirische Befunde aus dem Plenum: Reden-Stil-Profile, Tonalität Kleiner Anfragen, Volumen-Asymmetrie, Themen-Profil pro Fraktion, Gesetzgebungs-Trichter und Gesetzes-Tempo.",
 };
 
 const FRAKTION_ORDER = ["CDU/CSU", "SPD", "Grüne", "Linke", "AfD"];
@@ -41,6 +42,7 @@ export default function AnalysePage() {
   const trend = getDrucksacheMonthlyTrend();
   const funnel = getGesetzgebungsFunnel();
   const initiativeMatrix = getTopicInitiativeMatrix();
+  const dauer = getGesetzesdauer();
 
   // === BEFUND 1: Reden-Stil-Profile ===
   // Jede Fraktion hat ein dominantes Stil-Profil — wir zeigen die Anteile
@@ -135,12 +137,12 @@ export default function AnalysePage() {
             Was die Daten zeigen
           </h1>
           <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
-            Fünf empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
+            Sechs empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
           <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
             Die Befunde 1–4 kommen aus der LLM-Klassifikation der Plenarreden, der Kleinen
-            Anfragen und der Drucksachen, Befund 5 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
+            Anfragen und der Drucksachen, die Befunde 5 und 6 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
             keine KI im Spiel (WP21, Stand{" "}
             <span className="num">{trend[trend.length - 1]?.monat ?? "—"}</span>). Methodische
             Grenzen — Themen-Confound, Speaker-Identity-Confound, fehlende
@@ -453,6 +455,60 @@ export default function AnalysePage() {
             Länder-Initiativen, die schon im Bundesrat scheitern oder dort liegen, sind in
             „eingebracht" enthalten, erreichen aber nie die Spalte „im Bundestag". Historische
             Vergleichswerte über frühere Wahlperioden: Datenhandbuch des Deutschen Bundestages.
+          </CaveatBox>
+        </section>
+
+        {/* === BEFUND 6: Gesetzes-Tempo === */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              Befund 6 · Tempo
+            </div>
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+              Vom Entwurf zum Bundesgesetzblatt: im Median{" "}
+              <span className="num">{dauer.medianTotal}</span> Tage.
+            </h2>
+            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Alle <span className="num">{dauer.n}</span> bisher verkündeten Gesetze der
+              Wahlperiode, gemessen von der ersten formalen Vorlage des Entwurfs bis zur
+              Verkündung im Bundesgesetzblatt. Die Zeit verteilt sich auf drei etwa gleich
+              lange Etappen: bis zur 1. Lesung, die Parlamentsphase (Ausschüsse bis
+              Schlussabstimmung) und der Weg danach (Bundesrat, Ausfertigung, Verkündung).
+            </p>
+            <p className="mt-3 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+              Der Einbringungsweg macht einen deutlichen Unterschied:{" "}
+              {dauer.perEinbringer.map((e, i) => (
+                <span key={e.name}>
+                  {i > 0 && " · "}
+                  <strong className="text-zinc-950">{e.name}</strong> im Median{" "}
+                  <span className="num font-semibold">{e.median}</span> Tage (
+                  <span className="num">{e.n}</span> Gesetze)
+                </span>
+              ))}
+              . Das ist der in Befund 5 beschriebene Verfahrens-Unterschied in Zahlen:
+              Regierungsentwürfe durchlaufen vor der 1. Lesung den sechswöchigen
+              Bundesrats-Vorlauf, Fraktionsentwürfe nicht.
+            </p>
+          </div>
+
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-2xl">
+            <EtappenBar etappen={dauer.etappen} />
+            <DauerHistogramm bins={dauer.histogramm} />
+          </div>
+
+          <div className="mt-4 grid sm:grid-cols-2 gap-3 max-w-2xl">
+            <DauerBeispiele titel="Die schnellsten" beispiele={dauer.schnellste} />
+            <DauerBeispiele titel="Die langsamsten" beispiele={dauer.langsamste} />
+          </div>
+
+          <CaveatBox>
+            Schnappschuss einer laufenden Wahlperiode: Gezählt werden nur bereits{" "}
+            <strong>verkündete</strong> Gesetze — langsame Verfahren sind noch unterwegs und
+            fehlen, die Werte sind daher eher eine Untergrenze. Startpunkt ist die erste
+            formale Vorlage (bei Regierungsentwürfen die Zuleitung an den Bundesrat, nicht der
+            Kabinettsbeschluss oder Referentenentwurf — die Vorarbeit in den Ministerien ist
+            hier unsichtbar). Median statt Durchschnitt, damit einzelne Ausreißer das Bild
+            nicht verzerren.
           </CaveatBox>
         </section>
 
@@ -820,5 +876,97 @@ function TrendChart({ trend, fraktionen, monthLabels }: TrendChartProps) {
         );
       })}
     </svg>
+  );
+}
+
+function EtappenBar({
+  etappen,
+}: {
+  etappen: { bisLesung: number; parlament: number; bisVerkuendung: number };
+}) {
+  const segs = [
+    { label: "Vorlage → 1. Lesung", tage: etappen.bisLesung, color: "#a1a1aa" },
+    { label: "1. Lesung → Schlussabstimmung", tage: etappen.parlament, color: "#1a3e72" },
+    { label: "Schlussabstimmung → Verkündung", tage: etappen.bisVerkuendung, color: "#18181b" },
+  ];
+  const sum = segs.reduce((s, x) => s + x.tage, 0) || 1;
+  return (
+    <div>
+      <div className="text-[12px] font-medium text-zinc-700 mb-2">
+        Median-Etappen (Tage)
+      </div>
+      <div className="h-7 w-full flex rounded-md overflow-hidden">
+        {segs.map((s) => (
+          <div
+            key={s.label}
+            className="flex items-center justify-center text-[11px] font-semibold text-white num"
+            style={{ width: `${(s.tage / sum) * 100}%`, backgroundColor: s.color }}
+            title={`${s.label}: ${s.tage} Tage`}
+          >
+            {s.tage}
+          </div>
+        ))}
+      </div>
+      <Legend items={segs.map((s) => ({ label: s.label, color: s.color }))} />
+    </div>
+  );
+}
+
+function DauerHistogramm({ bins }: { bins: { vonTage: number; n: number }[] }) {
+  const max = Math.max(1, ...bins.map((b) => b.n));
+  return (
+    <div className="mt-6">
+      <div className="text-[12px] font-medium text-zinc-700 mb-2">
+        Verteilung der Gesamtdauer (30-Tage-Schritte)
+      </div>
+      <div className="flex items-end gap-[3px] h-20">
+        {bins.map((b) => (
+          <div key={b.vonTage} className="flex-1 flex flex-col items-center gap-1" title={`${b.vonTage}–${b.vonTage + 29} Tage: ${b.n} Gesetze`}>
+            <span className="num text-[10px] text-zinc-500 leading-none">{b.n || ""}</span>
+            <div
+              className="w-full rounded-t-sm bg-[#1a3e72]"
+              style={{ height: `${(b.n / max) * 56}px`, opacity: b.n ? 1 : 0 }}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-between text-[10px] text-zinc-400 num mt-1 border-t border-zinc-100 pt-1">
+        <span>0</span>
+        <span>{bins.length * 30} Tage</span>
+      </div>
+    </div>
+  );
+}
+
+function DauerBeispiele({
+  titel,
+  beispiele,
+}: {
+  titel: string;
+  beispiele: { titel: string; tage: number; dsNr: string | null }[];
+}) {
+  return (
+    <div className="border border-zinc-200/70 rounded-xl p-4 bg-zinc-50/40">
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+        {titel}
+      </div>
+      <ul className="space-y-2">
+        {beispiele.map((b) => (
+          <li key={b.titel} className="text-[12.5px] leading-snug flex gap-2">
+            <span className="num font-semibold text-zinc-950 whitespace-nowrap">{b.tage} T.</span>
+            {b.dsNr ? (
+              <Link
+                href={`/aktivitaeten/${b.dsNr.replace("/", "-")}`}
+                className="text-zinc-600 hover:text-zinc-950 hover:underline"
+              >
+                {b.titel.length > 110 ? `${b.titel.slice(0, 110)}…` : b.titel}
+              </Link>
+            ) : (
+              <span className="text-zinc-600">{b.titel.length > 110 ? `${b.titel.slice(0, 110)}…` : b.titel}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

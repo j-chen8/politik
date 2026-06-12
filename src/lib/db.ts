@@ -4898,6 +4898,97 @@ export function getGesetzgebungsFunnel(): GesetzgebungsFunnelRow[] {
   `).all() as GesetzgebungsFunnelRow[];
 }
 
+export interface GesetzesdauerBeispiel {
+  titel: string;
+  tage: number;
+  dsNr: string | null;
+}
+
+export interface Gesetzesdauer {
+  n: number;
+  medianTotal: number;
+  // Median-Etappen in Tagen: Vorlage→1. Lesung, 1. Lesung→Schlussabstimmung, Schlussabstimmung→Verkündung
+  etappen: { bisLesung: number; parlament: number; bisVerkuendung: number };
+  perEinbringer: { name: string; n: number; median: number }[];
+  histogramm: { vonTage: number; n: number }[]; // 30-Tage-Bins über die Gesamtdauer
+  schnellste: GesetzesdauerBeispiel[];
+  langsamste: GesetzesdauerBeispiel[];
+}
+
+/**
+ * Dauer verkündeter Gesetze (WP21, amtliche DIP-Vorgangsdaten):
+ * von der ersten formalen Vorlage des Entwurfs (bei Regierungsentwürfen die
+ * Zuleitung an den Bundesrat) bis zur Verkündung im Bundesgesetzblatt.
+ * Schlussabstimmung = 3. Beratung bzw. "2. Beratung und Schlussabstimmung"
+ * (Vertragsgesetze, § 78 GO-BT).
+ */
+export function getGesetzesdauer(): Gesetzesdauer {
+  const rows = getDb().prepare(`
+    WITH v AS (
+      SELECT id, titel, initiative_json,
+        json_extract(verkuendung_json, '$[0].verkuendungsdatum') AS verk
+      FROM dip_vorgaenge WHERE beratungsstand = 'Verkündet'
+    )
+    SELECT v.titel,
+      CASE WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 'Bundesregierung'
+           WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 'Koalitionsfraktionen'
+           WHEN v.initiative_json LIKE '%Fraktion%' THEN 'Oppositionsfraktionen'
+           ELSE 'Länder (über den Bundesrat)' END AS einbringer,
+      MIN(CASE WHEN p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') THEN p.datum END) AS vorlage,
+      MIN(CASE WHEN p.vorgangsposition LIKE '1. Beratung%' THEN p.datum END) AS lesung1,
+      MAX(CASE WHEN p.vorgangsposition IN ('2. Beratung','3. Beratung','2. Beratung und Schlussabstimmung') THEN p.datum END) AS schluss,
+      v.verk,
+      MIN(CASE WHEN p.vorgangsposition = 'Gesetzentwurf' AND p.zuordnung = 'BT' THEN p.dokumentnummer END) AS dsNr
+    FROM v JOIN dip_vorgang_positionen p ON p.vorgang_id = v.id
+    GROUP BY v.id
+    HAVING vorlage IS NOT NULL AND verk IS NOT NULL
+  `).all() as {
+    titel: string; einbringer: string; vorlage: string;
+    lesung1: string | null; schluss: string | null; verk: string; dsNr: string | null;
+  }[];
+
+  const days = (a: string, b: string) =>
+    Math.round((new Date(b).getTime() - new Date(a).getTime()) / 86_400_000);
+  const median = (xs: number[]) => {
+    const s = [...xs].sort((a, b) => a - b);
+    return s.length ? s[Math.floor((s.length - 1) / 2)] : 0;
+  };
+
+  const items = rows.map((r) => ({ ...r, total: days(r.vorlage, r.verk) }));
+
+  const perEinbringer = [...new Set(items.map((i) => i.einbringer))]
+    .map((name) => {
+      const xs = items.filter((i) => i.einbringer === name);
+      return { name, n: xs.length, median: median(xs.map((i) => i.total)) };
+    })
+    .sort((a, b) => b.n - a.n);
+
+  const maxTotal = Math.max(0, ...items.map((i) => i.total));
+  const histogramm = Array.from({ length: Math.floor(maxTotal / 30) + 1 }, (_, b) => ({
+    vonTage: b * 30,
+    n: items.filter((i) => Math.floor(i.total / 30) === b).length,
+  }));
+
+  const sorted = [...items].sort((a, b) => a.total - b.total);
+  const beispiel = (i: (typeof items)[number]): GesetzesdauerBeispiel => ({
+    titel: i.titel, tage: i.total, dsNr: i.dsNr,
+  });
+
+  return {
+    n: items.length,
+    medianTotal: median(items.map((i) => i.total)),
+    etappen: {
+      bisLesung: median(items.filter((i) => i.lesung1).map((i) => days(i.vorlage, i.lesung1!))),
+      parlament: median(items.filter((i) => i.lesung1 && i.schluss).map((i) => days(i.lesung1!, i.schluss!))),
+      bisVerkuendung: median(items.filter((i) => i.schluss).map((i) => days(i.schluss!, i.verk))),
+    },
+    perEinbringer,
+    histogramm,
+    schnellste: sorted.slice(0, 3).map(beispiel),
+    langsamste: sorted.slice(-3).reverse().map(beispiel),
+  };
+}
+
 export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
   const themas = themaCsv.split(",").map((s) => s.trim()).filter(Boolean);
   if (themas.length === 0) return [];
