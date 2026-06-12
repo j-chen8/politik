@@ -1216,7 +1216,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             <div ref={screen2Ref} className="flex min-h-[calc(100dvh-120px)] scroll-mt-24 flex-col justify-center gap-12 pt-4 pb-24">
               {(u.koepfe?.length ?? 0) > 0 && (
                 <div>
-                  <SectionLabel hint="nach Anzahl der Reden">Wer dazu im Plenum spricht</SectionLabel>
+                  <SectionLabel hint={`${u.koepfe!.length} ${u.koepfe!.length === 1 ? "Person" : "Personen"} · nach Anzahl der Reden`}>Wer dazu im Plenum spricht</SectionLabel>
                   <KoepfeStrip koepfe={u.koepfe!} />
                 </div>
               )}

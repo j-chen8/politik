@@ -314,7 +314,7 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
   // 2026-06-12). leafCond deckt die Merge-Gruppe (Ziel + Quellen) ab.
   const leafCond = paare.map(() => "(ru.feld = ? AND ru.unterthema = ?)").join(" OR ");
   const leafParams = paare.flatMap((p) => [p.feld, p.unterthema]);
-  const kopfRows = db.prepare(`
+  const kopfRowsAlle = db.prepare(`
     SELECT ss.politician_id AS pid, p.first_name AS vorname, p.last_name AS nachname,
            COALESCE(pa.label, '') AS partei, p.photo_url,
            COUNT(DISTINCT ss.rede_id) AS reden,
@@ -327,9 +327,16 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
     LEFT JOIN parties pa ON pa.id = p.party_id
     WHERE (${leafCond}) AND ss.politician_id IS NOT NULL
     GROUP BY ss.politician_id
-    ORDER BY reden DESC
-    LIMIT 10
+    ORDER BY reden DESC, nachname
   `).all(AUSSCHUSS_KEYWORD[feldAw] ?? "\u0000kein-match", ...leafParams) as { pid: number; vorname: string; nachname: string; partei: string; photo_url: string | null; reden: number; gesamt: number; ausschuss: string | null }[];
+  // KEIN hartes Top-10 mehr (User 2026-06-12): die Liste skaliert mit dem Blatt.
+  // Regel: alle Mehrfach-Redner:innen (>=2 Reden zum Thema = erkennbares Muster);
+  // nur wenn das weniger als 10 sind, fuellen Einmal-Redner:innen auf (kleine
+  // Blaetter = eine Debatte zeigen sonst niemanden). Deckel 100 ist reine
+  // Payload-Versicherung fuer Haushalts-Blaetter (dort redet fast das ganze
+  // Haus je 1-2x) - rein deskriptive Volumen-Sortierung, keine Wertung.
+  const mehrfach = kopfRowsAlle.filter((k) => k.reden >= 2);
+  const kopfRows = (mehrfach.length >= 10 ? mehrfach : kopfRowsAlle).slice(0, 100);
   // Die letzten 2 eigen-klassifizierten Reden je Top-Kopf (Datum + Zusammenfassung
   // + Link zur Sitzung) — hier braucht es keinen Debatten-Titel, die Person rahmt.
   const pids = kopfRows.map((k) => k.pid);
