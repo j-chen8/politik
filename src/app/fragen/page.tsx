@@ -35,7 +35,7 @@ export default async function FragenPage({ searchParams }: Props) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-5 pt-6 pb-24">
+    <div className="max-w-3xl mx-auto px-5 pt-10 pb-24">
       <div className="flex items-center gap-2 mb-1">
         <MessageSquareQuote className="w-5 h-5 text-[#1a3e72]" strokeWidth={2} />
         <h1 className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950">Fragen &amp; Antworten</h1>

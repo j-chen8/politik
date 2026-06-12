@@ -9,7 +9,7 @@ export const metadata = {
 export default function DatenschutzPage() {
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-2xl mx-auto px-5 pt-6 pb-24 fade-in-up">
+      <div className="max-w-2xl mx-auto px-5 pt-10 pb-24 fade-in-up">
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-4">
           Datenschutzerklärung
         </h1>

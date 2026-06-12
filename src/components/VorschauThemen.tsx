@@ -1150,7 +1150,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             {/* justify-start, NICHT center: der Breadcrumb steht außerhalb darüber —
                 Zentrierung riss eine komische Lücke zwischen Breadcrumb und Titel auf.
                 Restluft sammelt sich stattdessen unten (liest sich als „mehr beim Scrollen"). */}
-            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-180px)] flex-col justify-start gap-6">
+            <div ref={screen1Ref} className="flex min-h-[calc(100dvh-196px)] flex-col justify-start gap-6">
             <header>
               <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 md:text-[3.6rem] dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}

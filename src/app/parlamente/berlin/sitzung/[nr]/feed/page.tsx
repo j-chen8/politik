@@ -37,7 +37,7 @@ export default async function BerlinSitzungFeedPage({ params }: Props) {
 
   return (
     <div className="page-wash">
-      <div className="w-full max-w-3xl mx-auto px-5 pt-6 pb-24">
+      <div className="w-full max-w-3xl mx-auto px-5 pt-10 pb-24">
         <Link
           href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
