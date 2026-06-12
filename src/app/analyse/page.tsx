@@ -389,9 +389,11 @@ export default function AnalysePage() {
             </h2>
             <p className="text-[14px] text-zinc-700 leading-relaxed">
               {initiativeMatrix.fields.length} Politikfelder × 5 Fraktionen: Wer bringt wie viele
-              eigene Initiativen (Anträge und Gesetzentwürfe) wozu ein? Die Schwerpunkte
-              unterscheiden sich deutlich — und die Opposition bringt ein Vielfaches der
-              Koalition ein (die regiert über Gesetze). Klassifikation auf die{" "}
+              eigene Anträge und Gesetzentwürfe wozu ein? Die Schwerpunkte unterscheiden sich
+              deutlich — und die Opposition bringt ein Vielfaches der Koalition ein (die regiert
+              über Gesetze). Umschaltbar auf die Kleinen Anfragen — das Kontrollinstrument, das
+              fast nur die Opposition nutzt, weil die Koalition ihre Regierung direkt fragen
+              kann. Klassifikation auf die{" "}
               <Link href="/methodik" className="text-[#1a3e72] hover:underline underline-offset-2">
                 abgeordnetenwatch-Politikfelder
               </Link>.
@@ -403,11 +405,13 @@ export default function AnalysePage() {
           </div>
 
           <CaveatBox>
-            Gezählt werden <strong>eingebrachte</strong> Initiativen, nicht beschlossene — die meisten
-            Oppositionsanträge werden abgelehnt. Ein Politikfeld kann aus gegensätzlichen Richtungen
-            bespielt werden: „Innere Sicherheit" umfasst sowohl Law-and-Order-Anträge als auch
-            Grundrechts- und Polizei-Kritik — gleiches Feld, verschiedene Haltung. Die Themen-Zuordnung
-            ist eine LLM-Klassifikation der Drucksachen-Inhalte; die verlinkte Drucksache ist immer die
+            Gezählt werden <strong>eingebrachte</strong> Drucksachen, nicht beschlossene — die meisten
+            Oppositionsanträge werden abgelehnt. Anträge/Gesetzentwürfe (Gestaltung) und Kleine
+            Anfragen (Kontrolle) sind getrennte Modi, weil der KA-Vergleich mit der Koalition
+            strukturell hinkt; „alle Drucksachen" enthält zusätzlich Unterrichtungen und Sonstiges.
+            Ein Politikfeld kann aus gegensätzlichen Richtungen bespielt werden: „Innere Sicherheit"
+            umfasst sowohl Law-and-Order-Anträge als auch Grundrechts- und Polizei-Kritik. Die
+            Themen-Zuordnung ist eine LLM-Klassifikation; die verlinkte Drucksache ist immer die
             Quelle.
           </CaveatBox>
         </section>
@@ -453,6 +457,14 @@ export default function AnalysePage() {
                 { label: "beschlossen", color: "#18181b" },
               ]}
             />
+            <p className="mt-3 pt-3 border-t border-zinc-100 text-[12.5px]">
+              <Link
+                href="/gesetzentwuerfe"
+                className="text-[#1a3e72] hover:underline underline-offset-2 font-medium"
+              >
+                → Alle laufenden Gesetzentwürfe mit Verfahrensstand
+              </Link>
+            </p>
           </div>
 
           <CaveatBox>
@@ -508,7 +520,8 @@ export default function AnalysePage() {
             formale Vorlage (bei Regierungsentwürfen die Zuleitung an den Bundesrat, nicht der
             Kabinettsbeschluss oder Referentenentwurf — die Vorarbeit in den Ministerien ist
             hier unsichtbar). Median statt Durchschnitt, damit einzelne Ausreißer das Bild
-            nicht verzerren.
+            nicht verzerren; die Etappen-Mediane sind unabhängig berechnet und summieren
+            deshalb nicht exakt zur Gesamtdauer.
           </CaveatBox>
         </section>
 

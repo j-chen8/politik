@@ -3,9 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { partyColors } from "@/lib/party-colors";
-import type { InitiativeMatrix as MatrixData } from "@/lib/db";
+import type { InitiativeMatrix as MatrixData, InitiativeArt } from "@/lib/db";
 
 const shortField = (f: string) => f.split(",")[0].replace(" und Aufenthaltsrecht", "").replace(" und internationale Beziehungen", "");
+
+const ART_LABEL: Record<InitiativeArt, string> = {
+  ini: "Anträge + Gesetzentwürfe",
+  ka: "Kleine Anfragen",
+  alle: "alle Drucksachen",
+};
 
 function hexToRgba(hex: string, a: number): string {
   const h = hex.replace("#", "");
@@ -20,36 +26,51 @@ function fmtPct(count: number, total: number): string {
   return `${pct.toFixed(1).replace(".", ",")} %`;
 }
 
+function Pill({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`px-2 py-0.5 rounded-full border transition-colors ${
+        active ? "border-zinc-900 bg-zinc-900 text-white" : "border-zinc-200 text-zinc-500 hover:border-zinc-400"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
 export function InitiativeMatrix({ data }: { data: MatrixData }) {
   const [sel, setSel] = useState<{ field: string; frak: string } | null>(null);
+  const [art, setArt] = useState<InitiativeArt>("ini");
   const [relativ, setRelativ] = useState(false);
   const { fraktionen, fields, cells } = data;
-  // Nenner für die %-Sicht: Summe aller Themen-Nennungen der Fraktion (Spalte = 100 %)
+
+  // Nenner für die %-Sicht: Summe aller Themen-Nennungen der Fraktion im Modus (Spalte = 100 %)
   const totals: Record<string, number> = {};
   for (const fr of fraktionen)
-    totals[fr.name] = fields.reduce((s, f) => s + (cells[fr.name]?.[f]?.count ?? 0), 0);
+    totals[fr.name] = fields.reduce((s, f) => s + (cells[fr.name]?.[f]?.counts[art] ?? 0), 0);
 
   // Intensität pro Spalte (Fraktion): eigenes Schwerpunkt-Profil sichtbar machen
   const colMax: Record<string, number> = {};
-  for (const fr of fraktionen) colMax[fr.name] = Math.max(1, ...fields.map((f) => cells[fr.name]?.[f]?.count ?? 0));
+  for (const fr of fraktionen)
+    colMax[fr.name] = Math.max(1, ...fields.map((f) => cells[fr.name]?.[f]?.counts[art] ?? 0));
 
   const selCell = sel ? cells[sel.frak]?.[sel.field] : null;
+  const selItems = (selCell?.items ?? []).filter((it) => art === "alle" || it.art === art);
+  const selCount = selCell?.counts[art] ?? 0;
 
   return (
     <div>
+      <div className="flex items-center justify-center gap-1 mb-2 text-[11.5px] flex-wrap">
+        {(Object.keys(ART_LABEL) as InitiativeArt[]).map((a) => (
+          <Pill key={a} active={art === a} onClick={() => setArt(a)}>{ART_LABEL[a]}</Pill>
+        ))}
+      </div>
       <div className="flex items-center justify-center gap-1 mb-3 text-[11.5px]">
         {([false, true] as const).map((mode) => (
-          <button
-            key={String(mode)}
-            onClick={() => setRelativ(mode)}
-            className={`px-2 py-0.5 rounded-full border transition-colors ${
-              relativ === mode
-                ? "border-zinc-900 bg-zinc-900 text-white"
-                : "border-zinc-200 text-zinc-500 hover:border-zinc-400"
-            }`}
-          >
+          <Pill key={String(mode)} active={relativ === mode} onClick={() => setRelativ(mode)}>
             {mode ? "in % der Fraktion" : "absolut"}
-          </button>
+          </Pill>
         ))}
       </div>
       <div className="overflow-x-auto">
@@ -60,11 +81,11 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
               {fraktionen.map((fr) => {
                 const c = partyColors(fr.name);
                 return (
-                  <th key={fr.name} className="px-1 pb-2 align-bottom" title={`${fr.name}: ${fr.total} Initiativen`}>
+                  <th key={fr.name} className="px-1 pb-2 align-bottom" title={`${fr.name}: ${fr.totals[art]} Drucksachen (${ART_LABEL[art]})`}>
                     <div className="flex flex-col items-center gap-1">
                       <span className="inline-block px-1.5 py-0.5 rounded text-[10.5px] font-semibold whitespace-nowrap"
                         style={{ background: c.bg, color: c.fg }}>{fr.name}</span>
-                      <span className="num text-[11px] text-zinc-500">{fr.total.toLocaleString("de-DE")}</span>
+                      <span className="num text-[11px] text-zinc-500">{fr.totals[art].toLocaleString("de-DE")}</span>
                     </div>
                   </th>
                 );
@@ -76,8 +97,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
               <tr key={field} className="border-t border-zinc-100">
                 <td className="py-1 pr-3 text-zinc-700 whitespace-nowrap" title={field}>{shortField(field)}</td>
                 {fraktionen.map((fr) => {
-                  const cell = cells[fr.name]?.[field];
-                  const count = cell?.count ?? 0;
+                  const count = cells[fr.name]?.[field]?.counts[art] ?? 0;
                   const c = partyColors(fr.name);
                   const intensity = count / colMax[fr.name];
                   const isSel = sel?.field === field && sel?.frak === fr.name;
@@ -98,32 +118,32 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
         </table>
       </div>
 
-      {sel && selCell && (
+      {sel && selCell && selCount > 0 && (
         <div className="mt-4 border border-zinc-200 rounded-xl p-4 bg-zinc-50/60">
           <div className="flex items-center justify-between mb-2.5">
             <p className="text-[13px] font-medium text-zinc-900">
               <span style={{ color: partyColors(sel.frak).bg }}>{sel.frak}</span> · {sel.field}
-              <span className="text-zinc-400 font-normal"> — {selCell.count} Initiativen</span>
+              <span className="text-zinc-400 font-normal"> — {selCount} {ART_LABEL[art]}</span>
             </p>
             <button onClick={() => setSel(null)} className="text-zinc-400 hover:text-zinc-900 text-[12px]">schließen ✕</button>
           </div>
           <ul className="space-y-1.5">
-            {selCell.items.map((it) => (
-              <li key={it.nr} className="text-[12.5px] leading-snug">
+            {selItems.map((it) => (
+              <li key={it.nr + it.titel} className="text-[12.5px] leading-snug">
                 <Link href={`/aktivitaeten/${it.nr.replace("/", "-")}`} className="text-zinc-600 hover:text-zinc-950 hover:underline">
                   {it.titel}
                 </Link>
               </li>
             ))}
           </ul>
-          {selCell.count > selCell.items.length && (
-            <p className="text-[11.5px] text-zinc-400 mt-2">+{selCell.count - selCell.items.length} weitere</p>
+          {selCount > selItems.length && (
+            <p className="text-[11.5px] text-zinc-400 mt-2">+{selCount - selItems.length} weitere</p>
           )}
         </div>
       )}
-      <p className="text-[11px] text-zinc-400 mt-3">
+      <p className="text-[11px] text-zinc-400 mt-3 text-center">
         {relativ
-          ? "Prozent = Anteil des Themenfelds an allen Themen-Nennungen der Fraktion (Spalte summiert auf 100 %; eine Initiative kann mehrere Felder tragen)."
+          ? "Prozent = Anteil des Themenfelds an allen Themen-Nennungen der Fraktion im gewählten Modus (Spalte summiert auf 100 %; eine Drucksache kann mehrere Felder tragen)."
           : "Farbintensität = Schwerpunkt innerhalb der Fraktion (Spalte)."}{" "}
         Zelle anklicken für die Drucksachen.
       </p>

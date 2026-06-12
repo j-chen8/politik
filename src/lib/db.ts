@@ -7237,9 +7237,17 @@ export function normalizeFraktion(raw: string | null): string | null {
   return null;
 }
 
-export interface InitiativeCell { count: number; items: { nr: string; titel: string }[] }
+/** Instrument-Modus der Initiativ-Matrix: echte Initiativen (Anträge + GE),
+ *  Kleine Anfragen (Kontrollinstrument) oder alle Drucksachen. */
+export type InitiativeArt = "ini" | "ka" | "alle";
+
+export interface InitiativeItem { nr: string; titel: string; art: Exclude<InitiativeArt, "alle"> | "sonst" }
+export interface InitiativeCell {
+  counts: Record<InitiativeArt, number>;
+  items: InitiativeItem[];
+}
 export interface InitiativeMatrix {
-  fraktionen: { name: string; total: number }[];
+  fraktionen: { name: string; totals: Record<InitiativeArt, number> }[];
   fields: string[];
   cells: Record<string, Record<string, InitiativeCell>>;
 }
@@ -7247,29 +7255,43 @@ export interface InitiativeMatrix {
 export function getTopicInitiativeMatrix(): InitiativeMatrix {
   const rows = getDb().prepare(`
     SELECT it.item_id AS nr, it.aw_field AS field, da.fraktion AS fraktion,
+      di.instrument AS instrument,
       COALESCE((SELECT titel FROM dip_ds_titles WHERE drucksache_nr=it.item_id AND titel IS NOT NULL),
                da.zusammenfassung, da.thema) AS titel
     FROM item_topics it
     JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+    LEFT JOIN drucksache_instrument di ON di.drucksache_nr = it.item_id
     WHERE it.source='bt_drucksache' AND da.batch_class != 'antwort' AND da.thema IS NOT NULL
-  `).all() as { nr: string; field: string; fraktion: string | null; titel: string | null }[];
+  `).all() as { nr: string; field: string; fraktion: string | null; instrument: string | null; titel: string | null }[];
+
+  const artOf = (instrument: string | null): InitiativeItem["art"] =>
+    instrument === "kleine_anfrage" ? "ka"
+    : instrument === "antrag" || instrument === "gesetzentwurf" ? "ini"
+    : "sonst";
 
   const cells: Record<string, Record<string, InitiativeCell>> = {};
-  const fraktionTotalsDs: Record<string, Set<string>> = {};
+  const fraktionTotalsDs: Record<string, Record<InitiativeArt, Set<string>>> = {};
   const fieldTotals: Record<string, number> = {};
   for (const r of rows) {
     const fr = normalizeFraktion(r.fraktion);
     if (!fr) continue;
-    (fraktionTotalsDs[fr] ??= new Set()).add(r.nr);
+    const art = artOf(r.instrument);
+    const tot = (fraktionTotalsDs[fr] ??= { alle: new Set(), ini: new Set(), ka: new Set() });
+    tot.alle.add(r.nr);
+    if (art !== "sonst") tot[art].add(r.nr);
     fieldTotals[r.field] = (fieldTotals[r.field] ?? 0) + 1;
     const cf = (cells[fr] ??= {});
-    const cell = (cf[r.field] ??= { count: 0, items: [] });
-    cell.count++;
-    if (cell.items.length < 12 && r.titel) cell.items.push({ nr: r.nr, titel: r.titel.slice(0, 140) });
+    const cell = (cf[r.field] ??= { counts: { alle: 0, ini: 0, ka: 0 }, items: [] });
+    cell.counts.alle++;
+    if (art !== "sonst") cell.counts[art]++;
+    // Drill-down: pro Instrument-Art bis zu 8 Titel, damit jeder Modus Beispiele hat.
+    if (r.titel && cell.items.filter((it) => it.art === art).length < 8) {
+      cell.items.push({ nr: r.nr, titel: r.titel.slice(0, 140), art });
+    }
   }
   const fraktionen = Object.entries(fraktionTotalsDs)
-    .map(([name, s]) => ({ name, total: s.size }))
-    .sort((a, b) => b.total - a.total);
+    .map(([name, s]) => ({ name, totals: { alle: s.alle.size, ini: s.ini.size, ka: s.ka.size } }))
+    .sort((a, b) => b.totals.alle - a.totals.alle);
   const fields = Object.entries(fieldTotals).sort((a, b) => b[1] - a[1]).map(([f]) => f);
   return { fraktionen, fields, cells };
 }
