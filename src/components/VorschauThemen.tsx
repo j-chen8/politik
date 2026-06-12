@@ -113,7 +113,7 @@ function Teaser({ items, roomy = true }: { items: string[]; roomy?: boolean }) {
   // Einzeilig + truncate → jede Karte hat dieselbe Untertitel-Höhe (kein 2-Zeilen-Umbruch).
   // roomy = Picker-Grid (2-spaltig, viel Platz); kompakt = Ghost-Rail neben offenem Feld.
   return (
-    <p className={`truncate text-zinc-400 dark:text-zinc-500 ${roomy ? "mt-1 text-[12.5px] leading-snug" : "mt-0.5 text-[11.5px] leading-tight"}`}>
+    <p className={`truncate text-zinc-400 dark:text-zinc-500 ${roomy ? "mt-1.5 text-[13px] leading-snug" : "mt-0.5 text-[11.5px] leading-tight"}`}>
       {items.join(" · ")}
     </p>
   );
@@ -1019,7 +1019,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                   bleibt es die volle Akkordeon-Liste. */}
               <div className={`opacity-100 transition-opacity duration-300 ${feld
                 ? "flex w-full shrink-0 flex-col gap-2 md:w-[280px] md:gap-1 md:opacity-[0.14] md:group-hover/rail:opacity-100"
-                : "flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-2.5"}`}>
+                : "flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5"}`}>
                 {FELDER.map((f) => {
                   const sel = feld === f.slug;
                   return (
@@ -1027,11 +1027,11 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                       <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
                         className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${feld
                           ? "md:py-1"
-                          : "md:bg-white/60 md:py-3 md:ring-1 md:ring-zinc-900/[0.05] md:hover:ring-zinc-900/[0.12] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:ring-white/[0.14]"} ${sel
+                          : "md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:ring-zinc-900/[0.12] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:ring-white/[0.14]"} ${sel
                           ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
                           : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
                         <span className="flex min-w-0 flex-col">
-                          <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"} ${feld ? "" : "md:text-zinc-900 dark:md:text-zinc-100"}`}>{f.name}</span>
+                          <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"} ${feld ? "" : "md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100"}`}>{f.name}</span>
                           <Teaser items={f.teaser} roomy={!feld} />
                         </span>
                         <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
