@@ -218,7 +218,7 @@ export default function AnalysePage() {
             </ul>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-4">
               {redenByFraktion.map((row) => (
                 <RedenStackedBar
@@ -285,7 +285,7 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-5">
               {kaByFraktion.map((row) => (
                 <KaCompositionBar
@@ -339,7 +339,7 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
             <div className="bg-white border border-zinc-200/70 rounded-2xl p-5">
               <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
                 Anzahl Kleine Anfragen (WP21)
@@ -403,7 +403,9 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <InitiativeMatrix data={initiativeMatrix} />
+          <div className="max-w-4xl mx-auto">
+            <InitiativeMatrix data={initiativeMatrix} />
+          </div>
 
           <CaveatBox>
             Gezählt werden <strong>eingebrachte</strong> Initiativen, nicht beschlossene — die meisten
@@ -442,7 +444,7 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-5">
               {funnel.map((row) => (
                 <FunnelRow key={row.einbringer} row={row} />
@@ -494,12 +496,12 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <EtappenBar etappen={dauer.etappen} />
             <DauerHistogramm bins={dauer.histogramm} />
           </div>
 
-          <div className="mt-4 grid sm:grid-cols-2 gap-3">
+          <div className="mt-4 grid sm:grid-cols-2 gap-3 max-w-4xl mx-auto">
             <DauerBeispiele titel="Die schnellsten" beispiele={dauer.schnellste} />
             <DauerBeispiele titel="Die langsamsten" beispiele={dauer.langsamste} />
           </div>
@@ -551,7 +553,7 @@ export default function AnalysePage() {
 
 function CaveatBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-amber-50/50 border border-amber-200 rounded-xl px-4 py-3 mt-4">
+    <div className="bg-amber-50/50 border border-amber-200 rounded-xl px-4 py-3 mt-4 max-w-4xl mx-auto">
       <p className="text-[12.5px] text-amber-900 leading-relaxed">{children}</p>
     </div>
   );
