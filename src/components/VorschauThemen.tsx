@@ -1180,7 +1180,9 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                 Votes/Gesetzentwürfe wäre es eine leere Geister-Fläche (User 2026-06-12). */}
             <div ref={screen1Ref} className={`flex flex-col justify-start gap-5 ${featuredVote || gesetzRow.length > 0 ? "min-h-[calc(100dvh-236px)]" : ""}`}>
             <header>
-              <h2 className={`${DISPLAY} text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-zinc-950 md:text-[3.6rem] dark:text-zinc-50`}>{u.name}</h2>
+              {/* gleiche Größe wie die Picker-Überschriften (2.3rem) — das Blatt stach
+                  vorher mit 2.6/3.6rem heraus (User 2026-06-12) */}
+              <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}
               {shownCatch[0] && <p className="mt-2.5 text-[12.5px] text-zinc-400">Zuletzt aktiv {shownCatch[0].datum}</p>}
             </header>
