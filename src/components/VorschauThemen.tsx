@@ -800,7 +800,12 @@ function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPi
   );
 }
 
-export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null }) {
+export function VorschauThemen({ struktur, blatt, heroTitle, heroSubtitle, searchSlot, themeToggle }: {
+  struktur: StrukturOber[]; blatt: DigitalBlattEcht | null;
+  /** Landing-Modus (User 2026-06-13, Picker = Startseite): Überschrift/Untertitel
+      der Themen-Übersicht ersetzen + Suchfeld unter dem Untertitel einhängen. */
+  heroTitle?: string; heroSubtitle?: string; searchSlot?: React.ReactNode; themeToggle?: React.ReactNode;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
@@ -1026,6 +1031,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           · Blatt „Themen / Feld / Unterthema". Die aktuelle Ebene steht still, alles
           davor ist klickbar — ersetzt den alten „Alle Themen"-Zurück-Button. */}
       <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
+        {themeToggle && <span className="order-last ml-auto">{themeToggle}</span>}
         {selFeld ? (
           <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="underline decoration-zinc-300 decoration-[1.5px] underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-500 dark:decoration-zinc-600 dark:hover:text-zinc-100 dark:hover:decoration-zinc-400">Themen</button>
         ) : (
@@ -1060,9 +1066,11 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
               nackte Slug als Key auf beiden ließ React Kinder DUPLIZIEREN, User-Bug
               2026-06-12): der Titel-TEXT crossfaded beim Wechsel, die Zeile bleibt */}
           <h2 key={`titel-${selFeld?.slug ?? "alle"}`} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
-            {selFeld?.name ?? "Themen"}
+            {selFeld?.name ?? heroTitle ?? "Themen"}
           </h2>
-          <p className="mt-3 text-[15px] text-zinc-500">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
+          <p className="mt-3 text-[15px] text-zinc-500">{selFeld ? "Wähle ein Unterthema." : heroSubtitle ?? "Wähle ein Thema."}</p>
+          {/* Suchfeld nur auf der Übersicht — im offenen Feld gehört der Fokus den Unterthemen */}
+          {searchSlot && !selFeld && <div className="mt-6 max-w-xl">{searchSlot}</div>}
 
           {selFeld ? (
             // key = Feld-Slug (Präfix, s. o.): das Panel remountet beim Wechsel und spielt die Aufklapp-Animation
