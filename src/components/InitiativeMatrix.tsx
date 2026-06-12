@@ -14,9 +14,18 @@ function hexToRgba(hex: string, a: number): string {
   return `rgba(${r},${g},${b},${a})`;
 }
 
+function fmtPct(count: number, total: number): string {
+  const pct = (count / Math.max(1, total)) * 100;
+  if (pct >= 10) return `${Math.round(pct)} %`;
+  return `${pct.toFixed(1).replace(".", ",")} %`;
+}
+
 export function InitiativeMatrix({ data }: { data: MatrixData }) {
   const [sel, setSel] = useState<{ field: string; frak: string } | null>(null);
+  const [relativ, setRelativ] = useState(false);
   const { fraktionen, fields, cells } = data;
+  const totals: Record<string, number> = {};
+  for (const fr of fraktionen) totals[fr.name] = fr.total;
 
   // Intensität pro Spalte (Fraktion): eigenes Schwerpunkt-Profil sichtbar machen
   const colMax: Record<string, number> = {};
@@ -26,6 +35,21 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
 
   return (
     <div className="max-w-3xl">
+      <div className="flex items-center gap-1 mb-3 text-[11.5px]">
+        {([false, true] as const).map((mode) => (
+          <button
+            key={String(mode)}
+            onClick={() => setRelativ(mode)}
+            className={`px-2 py-0.5 rounded-full border transition-colors ${
+              relativ === mode
+                ? "border-zinc-900 bg-zinc-900 text-white"
+                : "border-zinc-200 text-zinc-500 hover:border-zinc-400"
+            }`}
+          >
+            {mode ? "in % der Fraktion" : "absolut"}
+          </button>
+        ))}
+      </div>
       <div className="overflow-x-auto">
         <table className="border-collapse text-[12px]">
           <thead>
@@ -60,9 +84,9 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
                       <button
                         disabled={!count}
                         onClick={() => setSel(isSel ? null : { field, frak: fr.name })}
-                        className={`w-full min-w-[44px] rounded py-1 num tabular-nums transition-all ${count ? "cursor-pointer hover:ring-2 hover:ring-zinc-900/20" : "cursor-default text-zinc-300"} ${isSel ? "ring-2 ring-zinc-900" : ""}`}
+                        className={`w-full min-w-[52px] rounded py-1 num tabular-nums transition-all ${count ? "cursor-pointer hover:ring-2 hover:ring-zinc-900/20" : "cursor-default text-zinc-300"} ${isSel ? "ring-2 ring-zinc-900" : ""}`}
                         style={count ? { background: hexToRgba(c.bg, 0.12 + intensity * 0.85), color: intensity > 0.5 ? c.fg : "#27272a" } : undefined}
-                      >{count || "·"}</button>
+                      >{count ? (relativ ? fmtPct(count, totals[fr.name]) : count) : "·"}</button>
                     </td>
                   );
                 })}
@@ -95,7 +119,12 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
           )}
         </div>
       )}
-      <p className="text-[11px] text-zinc-400 mt-3">Farbintensität = Schwerpunkt innerhalb der Fraktion (Spalte). Zelle anklicken für die Drucksachen.</p>
+      <p className="text-[11px] text-zinc-400 mt-3">
+        {relativ
+          ? "Prozent = Anteil der Initiativen der Fraktion, die das Themenfeld berühren. Eine Initiative kann mehrere Felder tragen — die Spalte summiert daher auf über 100 %."
+          : "Farbintensität = Schwerpunkt innerhalb der Fraktion (Spalte)."}{" "}
+        Zelle anklicken für die Drucksachen.
+      </p>
     </div>
   );
 }
