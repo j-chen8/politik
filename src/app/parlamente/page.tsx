@@ -93,7 +93,7 @@ export default function ParlamenteHub() {
   return (
     <div className="page-wash min-h-screen">
       {/* Hero */}
-      <section className="w-full max-w-3xl mx-auto px-5 pt-20 pb-12 fade-in-up">
+      <section className="w-full max-w-3xl mx-auto px-5 pt-6 pb-24 fade-in-up">
         <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] leading-[0.97] text-zinc-950 mb-5">
           Wer vertritt Sie —
           <br />
@@ -109,7 +109,7 @@ export default function ParlamenteHub() {
         </div>
       </section>
 
-      <div className="w-full max-w-5xl mx-auto px-5 pb-24 space-y-12 fade-in-up fade-in-up-2">
+      <div className="w-full max-w-6xl mx-auto px-5 pb-24 space-y-12 fade-in-up fade-in-up-2">
         {/* Bund */}
         <section>
           <SectionLabel>Bund</SectionLabel>

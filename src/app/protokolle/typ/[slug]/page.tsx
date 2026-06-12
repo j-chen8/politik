@@ -38,7 +38,7 @@ export default async function PlenarTypeListPage({
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         <Link
           href="/protokolle"
           className="inline-flex items-center gap-1.5 text-[12px] font-medium text-zinc-500 hover:text-zinc-900 transition-colors mb-8"

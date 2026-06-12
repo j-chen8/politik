@@ -46,7 +46,7 @@ export default function PlenarAktuellPage() {
   if (!week) {
     return (
       <div className="page-wash min-h-screen">
-        <div className="max-w-4xl mx-auto px-5 py-24 text-center">
+        <div className="page-shell text-center">
           <p className="text-zinc-500">Keine Plenardaten gefunden.</p>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function PlenarAktuellPage() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         {/* Status-Badge */}
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-amber-200 bg-amber-50 text-[11px] font-medium text-amber-800 mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />

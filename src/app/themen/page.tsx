@@ -20,7 +20,7 @@ export default function ThemenPage() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         <header className="max-w-2xl mb-9">
           <h1 className="text-[26px] sm:text-[30px] font-semibold text-zinc-950 leading-tight">
             Was bewegt Deutschland?

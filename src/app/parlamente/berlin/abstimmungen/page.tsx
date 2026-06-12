@@ -40,7 +40,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ year?: string; 
 
   return (
     <div className="page-wash">
-      <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
+      <div className="w-full page-shell">
         <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin

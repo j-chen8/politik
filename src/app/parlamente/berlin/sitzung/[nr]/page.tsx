@@ -655,7 +655,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
   return (
     <div className="page-wash">
       <HashDetailsScroller />
-      <div className="w-full max-w-6xl mx-auto px-5 pt-10 pb-24">
+      <div className="w-full page-shell">
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
             href="/parlamente/berlin"

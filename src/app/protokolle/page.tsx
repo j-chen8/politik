@@ -58,7 +58,7 @@ export default function ProtokollePage() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-6xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         {/* Header */}
         <div className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-2">

@@ -68,7 +68,7 @@ async function AbstimmungenIndexInner({
 
   return (
     <div className="page-wash">
-      <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
+      <div className="w-full page-shell">
         {/* Header */}
         <div className="mb-10 fade-in-up">
           <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">

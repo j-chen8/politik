@@ -34,7 +34,7 @@ export default async function VorschauThemenPage({ searchParams }: { searchParam
   const blatt = ziel ? getThemenBlatt(ziel.feld, ziel.unterthema) : null;
   return (
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-24 pt-6">
+      <main className="page-shell flex-1">
         <Suspense fallback={<div className="h-64" />}>
           <VorschauThemen struktur={struktur} blatt={blatt} />
         </Suspense>

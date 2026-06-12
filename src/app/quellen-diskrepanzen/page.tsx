@@ -21,7 +21,7 @@ export default function LinearQuellenDiskrepanzen() {
 
   return (
     <div className="page-wash">
-      <div className="max-w-5xl mx-auto px-5 py-12">
+      <div className="page-shell">
         <Link
           href="/"
           className="inline-flex items-center gap-1 text-[12px] text-zinc-500 hover:text-zinc-950 mb-6 transition-colors"

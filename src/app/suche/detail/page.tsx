@@ -67,7 +67,7 @@ function DetailInner() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-3xl mx-auto px-5 py-8 fade-in-up">
+      <div className="max-w-3xl mx-auto px-5 pt-6 pb-24 fade-in-up">
         <Link
           href="/suche"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"

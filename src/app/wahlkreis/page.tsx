@@ -210,7 +210,7 @@ export default async function WahlkreisPage({
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-4xl mx-auto px-5 py-16 fade-in-up">
+      <div className="page-shell fade-in-up">
         <div className="max-w-2xl">
         <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
           Wer vertritt mich?

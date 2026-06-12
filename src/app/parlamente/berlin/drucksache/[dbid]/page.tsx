@@ -146,7 +146,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
   return (
     <main className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-8">
+      <div className="page-shell">
         {/* Back-Link */}
         <Link
           href="/parlamente/berlin/drucksachen"

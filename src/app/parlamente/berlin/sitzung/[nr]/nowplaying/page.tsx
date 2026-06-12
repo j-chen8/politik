@@ -100,7 +100,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
   if (!hero) {
     return (
       <div className="page-wash">
-        <div className="w-full max-w-4xl mx-auto px-5 pt-10">
+        <div className="page-shell">
           <BerlinSitzungVariantBar sitzungNr={sit.sitzungNr} current="nowplaying" />
           <p className="text-zinc-500">Keine Tagesordnungspunkte mit Aussprache.</p>
         </div>
@@ -110,7 +110,7 @@ export default async function BerlinSitzungNowPlayingPage({ params }: Props) {
 
   return (
     <div className="page-wash">
-      <div className="w-full max-w-4xl mx-auto px-5 pt-10 pb-24">
+      <div className="page-shell">
         <Link
           href="/parlamente/berlin"
           className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"

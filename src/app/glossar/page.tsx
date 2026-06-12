@@ -69,7 +69,7 @@ export const metadata = {
 export default function GlossarPage() {
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-6xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8"

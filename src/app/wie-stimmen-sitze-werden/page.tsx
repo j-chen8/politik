@@ -46,7 +46,7 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
 export default function WieStimmenSitzeWerdenPage() {
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-xl mx-auto px-5 py-16 fade-in-up">
+      <div className="max-w-xl mx-auto px-5 pt-6 pb-24 fade-in-up">
         <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
           Bundestag · einfach erklärt
         </span>

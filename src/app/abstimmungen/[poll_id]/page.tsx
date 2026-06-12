@@ -62,7 +62,7 @@ export default async function VoteDetailPage({
 
   return (
     <div className="page-wash">
-      <div className="w-full max-w-5xl mx-auto px-5 pt-12 pb-24">
+      <div className="w-full page-shell">
         {/* Back-Nav */}
         <Link
           href="/"

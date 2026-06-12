@@ -89,7 +89,7 @@ export function PolitikerExplorer({
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         <div className="mb-5">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-1">
             Politiker

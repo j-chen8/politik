@@ -69,7 +69,7 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
       {/* fade-in-up bewusst nicht verwendet: dessen `transform` würde
           position:sticky der ToC-Bar brechen (sticky degeneriert dann zu
           relative, weil ein transformed-Ancestor der containing block wird). */}
-      <div className="max-w-6xl mx-auto px-5 py-12">
+      <div className="page-shell">
         {/* Breadcrumb */}
         <Link
           href={`/politiker/${politicianId}`}

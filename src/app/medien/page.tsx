@@ -18,7 +18,7 @@ export default function MedienOverviewPage() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-5xl mx-auto px-5 py-12 fade-in-up">
+      <div className="page-shell fade-in-up">
         {/* Header */}
         <div className="mb-8">
           <div className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider mb-2">
