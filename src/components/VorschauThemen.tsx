@@ -1006,37 +1006,45 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         );
       })()}
 
-      {/* Breadcrumb — nur am Blatt nötig; im Picker ist die linke Spalte die Navigation */}
-      {isLeaf && (
-        <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
+      {/* Breadcrumb — auf ALLEN drei Ebenen (User 2026-06-12: gleicher Kopf wie am
+          Blatt, alles rückt etwas runter): Übersicht „Themen" · Feld „Themen / Feld"
+          · Blatt „Themen / Feld / Unterthema". Die aktuelle Ebene steht still, alles
+          davor ist klickbar — ersetzt den alten „Alle Themen"-Zurück-Button. */}
+      <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
+        {selFeld ? (
           <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Themen</button>
-          <span className="text-zinc-300">/</span>
-          <button onClick={() => nav({ feld, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">{selFeld?.name ?? "Oberthema"}</button>
-          <span className="text-zinc-300">/</span>
-          <span className="font-medium text-zinc-700 dark:text-zinc-200">{blatt?.unterthema}</span>
-        </nav>
-      )}
+        ) : (
+          <span className="font-medium text-zinc-700 dark:text-zinc-200">Themen</span>
+        )}
+        {selFeld && (
+          <>
+            <span className="text-zinc-300">/</span>
+            {isLeaf ? (
+              <button onClick={() => nav({ feld, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">{selFeld.name}</button>
+            ) : (
+              <span className="font-medium text-zinc-700 dark:text-zinc-200">{selFeld.name}</span>
+            )}
+          </>
+        )}
+        {isLeaf && (
+          <>
+            <span className="text-zinc-300">/</span>
+            <span className="font-medium text-zinc-700 dark:text-zinc-200">{blatt?.unterthema}</span>
+          </>
+        )}
+      </nav>
 
       {/* ── PICKER: Oberthemen ⇄ Unterthemen als Stack auf DERSELBEN Fläche (User
           2026-06-12): Der Kopf STEHT — nur die Wörter tauschen („Themen"→Feld-Name,
           „Thema"→„Unterthema") und das Grid darunter wechselt; kein Seitenwechsel
-          (pushState), kein Layout-Sprung. „Alle Themen" sitzt deshalb IN der Kopf-
-          zeile rechts neben der Überschrift (Browser-Back tut dasselbe — die Auswahl
-          lebt als ?feld= in der History). */}
+          (pushState), kein Layout-Sprung. Zurück = Breadcrumb oder Browser-Back
+          (die Auswahl lebt als ?feld= in der History). */}
       {!isLeaf && (
         <section className="fade-in-up">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-            {/* key = Feld-Slug: der Titel-TEXT crossfaded beim Wechsel, die Zeile selbst bleibt */}
-            <h2 key={selFeld?.slug ?? "alle"} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
-              {selFeld?.name ?? "Themen"}
-            </h2>
-            {selFeld && (
-              <button onClick={() => nav({ feld: null, unter: null, thema: null })}
-                className="group inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 text-[13.5px] font-medium text-zinc-500 transition hover:bg-zinc-900/[0.05] hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-zinc-100">
-                <IconArrow className="h-4 w-4 rotate-180 transition group-hover:-translate-x-0.5" />Alle Themen
-              </button>
-            )}
-          </div>
+          {/* key = Feld-Slug: der Titel-TEXT crossfaded beim Wechsel, die Zeile selbst bleibt */}
+          <h2 key={selFeld?.slug ?? "alle"} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
+            {selFeld?.name ?? "Themen"}
+          </h2>
           <p className="mt-3 text-[15px] text-zinc-500">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
 
           {selFeld ? (
