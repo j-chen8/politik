@@ -120,7 +120,7 @@ export default function AnalysePage() {
 
   return (
     <div className="page-wash min-h-screen">
-      <div className="max-w-4xl mx-auto px-5 py-12 fade-in-up">
+      <div className="max-w-3xl mx-auto px-5 py-12 fade-in-up">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8"
@@ -136,17 +136,16 @@ export default function AnalysePage() {
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mt-2 mb-4">
             Was die Daten zeigen
           </h1>
-          <p className="text-[16px] text-zinc-600 leading-relaxed max-w-2xl">
+          <p className="text-[16px] text-zinc-600 leading-relaxed">
             Sechs empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
-          <p className="text-[14px] text-zinc-500 leading-relaxed max-w-2xl mt-3">
-            Die Befunde 1–4 kommen aus der LLM-Klassifikation der Plenarreden, der Kleinen
-            Anfragen und der Drucksachen, die Befunde 5 und 6 aus den amtlichen DIP-Vorgangsdaten des Bundestags — dort ist
-            keine KI im Spiel (WP21, Stand{" "}
+          <p className="text-[14px] text-zinc-500 leading-relaxed mt-3">
+            Befunde 1–4 beruhen auf der LLM-Klassifikation von Plenarreden, Kleinen Anfragen
+            und Drucksachen, Befunde 5–6 auf den amtlichen DIP-Vorgangsdaten — dort ist keine
+            KI im Spiel (WP21, Stand{" "}
             <span className="num">{trend[trend.length - 1]?.monat ?? "—"}</span>). Methodische
-            Grenzen — Themen-Confound, Speaker-Identity-Confound, fehlende
-            Inter-Annotator-Studie — siehe{" "}
+            Grenzen: siehe{" "}
             <Link
               href="/methodik"
               className="text-[#1a3e72] hover:underline underline-offset-2"
@@ -157,8 +156,36 @@ export default function AnalysePage() {
           </p>
         </div>
 
+        {/* Inhaltsverzeichnis */}
+        <nav className="mb-14 border border-zinc-200/70 rounded-2xl bg-white px-5 py-4">
+          <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2.5">
+            Inhalt
+          </div>
+          <ol className="space-y-1.5 text-[13.5px]">
+            {[
+              ["befund-1", "Plenarreden", "Drei Stil-Profile in der Opposition"],
+              ["befund-2", "Kleine Anfragen", "AfD nicht konfrontativer als Linke und Grüne"],
+              ["befund-3", "Volumen und Verlauf", "Mehr Masse, nicht mehr Schärfe"],
+              ["befund-4", "Themen", "Wer treibt welche Themen"],
+              ["befund-5", "Gesetzgebung", "Der Absender entscheidet über die Abstimmung"],
+              ["befund-6", "Tempo", `Im Median ${dauer.medianTotal} Tage bis zur Verkündung`],
+            ].map(([id, label, titel], i) => (
+              <li key={id}>
+                <a href={`#${id}`} className="group flex items-baseline gap-2.5 hover:text-zinc-950">
+                  <span className="num text-[11px] text-zinc-400 shrink-0">{i + 1}</span>
+                  <span className="text-zinc-700 group-hover:text-zinc-950 transition-colors">
+                    <span className="font-medium text-zinc-950">{label}</span>
+                    <span className="text-zinc-400 mx-1.5">·</span>
+                    {titel}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
         {/* === BEFUND 1: Reden-Stil-Profile === */}
-        <section className="mb-16">
+        <section id="befund-1" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 1 · Plenarreden
@@ -166,11 +193,11 @@ export default function AnalysePage() {
             <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
               Drei sehr unterschiedliche Stil-Profile in der Opposition.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Statt „die Opposition ist konfrontativ" zeigen die Daten drei klar verschiedene
-              rhetorische Profile. Jede Fraktion hat ihren eigenen dominanten Stil-Modus:
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
+              Statt „die Opposition ist konfrontativ" zeigen die Daten drei verschiedene
+              rhetorische Profile:
             </p>
-            <ul className="mt-3 space-y-1.5 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+            <ul className="mt-3 space-y-1.5 text-[14px] text-zinc-700 leading-relaxed">
               <li>
                 · <strong className="text-zinc-950">AfD</strong> dominiert über{" "}
                 <GlossarLink slug="polemisch">polemisch</GlossarLink> — direkte Schärfe, oft ohne
@@ -189,11 +216,6 @@ export default function AnalysePage() {
                 Verhältnissen, weniger gegen einzelne Akteure.
               </li>
             </ul>
-            <p className="mt-3 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Der einfache „AfD wie Linke gleich konfrontativ"-Reflex stimmt nur, wenn man
-              verschiedene Stil-Modi vermengt. Trennt man sie, hat jede Oppositions-Fraktion ihr
-              eigenes rhetorisches Profil.
-            </p>
           </div>
 
           <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
@@ -235,7 +257,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 2: KA-Tonalität === */}
-        <section className="mb-16">
+        <section id="befund-2" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 2 · Kleine Anfragen
@@ -244,7 +266,7 @@ export default function AnalysePage() {
               Bei den Kleinen Anfragen ist die AfD <em className="not-italic">nicht</em>{" "}
               konfrontativer als Linke oder Grüne.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
               Anteil der vom Modell als{" "}
               <GlossarLink slug="fordernd" variant="drucksachen">
                 fordernd
@@ -253,8 +275,8 @@ export default function AnalysePage() {
               <GlossarLink slug="kritisch" variant="drucksachen">
                 kritisch
               </GlossarLink>{" "}
-              klassifizierten Kleinen Anfragen, je Hauptsteller-Fraktion. Der konfrontative
-              Anteil liegt für AfD, Linke und Grüne im selben Korridor. Auffällig: der{" "}
+              klassifizierten Kleinen Anfragen je Hauptsteller-Fraktion: AfD, Linke und Grüne
+              liegen im selben Korridor. Auffällig: der{" "}
               <GlossarLink slug="sachlich" variant="drucksachen">
                 sachlich
               </GlossarLink>
@@ -301,7 +323,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 3: Volumen + Trend === */}
-        <section className="mb-16">
+        <section id="befund-3" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 3 · Volumen und Verlauf
@@ -310,12 +332,10 @@ export default function AnalysePage() {
               Der Unterschied liegt im Volumen, nicht im Stil — und einen klaren Trend gibt es
               (noch) nicht.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Die AfD stellt im Beobachtungszeitraum deutlich mehr Kleine Anfragen als Linke oder
-              Grüne. Wer am sichtbarsten wirkt, schreibt nicht den schärfsten Ton — sondern den
-              meisten. Der monatliche Konfrontativ-Anteil schwankt für alle drei
-              Oppositions-Fraktionen ähnlich; ein belastbarer Trend (steigend / fallend) lässt
-              sich aus 14 Monaten WP21 nicht ableiten.
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
+              Die AfD stellt deutlich mehr Kleine Anfragen als Linke oder Grüne — wer am
+              sichtbarsten wirkt, schreibt nicht den schärfsten Ton, sondern den meisten. Ein
+              belastbarer Trend lässt sich aus 14 Monaten WP21 nicht ableiten.
             </p>
           </div>
 
@@ -364,7 +384,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 4: Themen-Profil pro Fraktion === */}
-        <section className="mb-16">
+        <section id="befund-4" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 4 · Wer treibt welche Themen
@@ -372,12 +392,11 @@ export default function AnalysePage() {
             <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
               Jede Fraktion hat ein Themen-Profil — und die Opposition bringt die meisten Initiativen ein.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Jede der {initiativeMatrix.fields.length} Politikfelder-Zeilen zeigt, welche Fraktion wie
-              viele eigene Initiativen (Anträge und Gesetzentwürfe) dazu eingebracht hat. Die Schwerpunkte
-              unterscheiden sich deutlich — und die Zahlen pro Fraktion auch: Die Opposition bringt ein
-              Vielfaches dessen ein, was die Regierungskoalition über Anträge einbringt (die regiert über
-              Gesetze). Klassifikation auf die{" "}
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
+              {initiativeMatrix.fields.length} Politikfelder × 5 Fraktionen: Wer bringt wie viele
+              eigene Initiativen (Anträge und Gesetzentwürfe) wozu ein? Die Schwerpunkte
+              unterscheiden sich deutlich — und die Opposition bringt ein Vielfaches der
+              Koalition ein (die regiert über Gesetze). Klassifikation auf die{" "}
               <Link href="/methodik" className="text-[#1a3e72] hover:underline underline-offset-2">
                 abgeordnetenwatch-Politikfelder
               </Link>.
@@ -397,7 +416,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 5: Gesetzgebungs-Trichter === */}
-        <section className="mb-16">
+        <section id="befund-5" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 5 · Gesetzgebung
@@ -405,30 +424,21 @@ export default function AnalysePage() {
             <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
               Ob ein Gesetzentwurf je zur Abstimmung kommt, entscheidet vor allem der Absender.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Der Trichter vom eingebrachten Entwurf bis zum Beschluss, getrennt nach Einbringer
-              (Art. 76 GG kennt drei Wege: Bundesregierung, Fraktionen, Bundesrat).
-              Bundesregierung und Koalitionsfraktionen sind politisch dasselbe Lager, aber
-              verschiedene Organe mit verschiedenen Verfahren: Regierungsentwürfe müssen vor der
-              1. Lesung sechs Wochen zum Bundesrat und durch die Verbände-Anhörung —
-              Fraktionsentwürfe gehen direkt ins Plenum, weshalb Koalitionen eilige Vorhaben
-              oft als Fraktionsentwurf einbringen. Regierungs- und Koalitionsentwürfe laufen
-              durch und werden nie abgelehnt. Oppositionsentwürfe
-              bekommen meist ihre 1. Lesung — aber jede Schlussabstimmung endete bisher mit
-              Ablehnung. Länder-Initiativen erreichen das Plenum praktisch gar nicht:{" "}
-              <strong className="text-zinc-950">
-                eine einzige 1. Lesung, null Abstimmungen.
-              </strong>
-            </p>
-            <p className="mt-3 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Sichtbar wird das auch an der Wartezeit auf die 1. Lesung: Koalitionsentwürfe
-              kommen binnen Tagen auf die Tagesordnung, wartende Länder-Entwürfe liegen im
-              Schnitt seit{" "}
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
+              Der Trichter vom Entwurf bis zum Beschluss, getrennt nach Einbringer (Art. 76 GG:
+              Bundesregierung, Fraktionen, Bundesrat). Bundesregierung und Koalitionsfraktionen
+              sind dasselbe Lager auf zwei Wegen: Regierungsentwürfe müssen vor der 1. Lesung
+              sechs Wochen zum Bundesrat, Fraktionsentwürfe gehen direkt ins Plenum — Eiliges
+              läuft deshalb oft als Fraktionsentwurf. Regierungs- und Koalitionsentwürfe werden
+              nie abgelehnt; Oppositionsentwürfe bekommen meist ihre 1. Lesung, aber jede
+              Schlussabstimmung endete mit Ablehnung. Länder-Initiativen erreichen das Plenum
+              praktisch gar nicht:{" "}
+              <strong className="text-zinc-950">eine einzige 1. Lesung, null Abstimmungen</strong>
+              {" "}— wartende Länder-Entwürfe liegen im Schnitt seit{" "}
               <span className="num font-semibold text-zinc-950">
                 {funnel.find((r) => r.einbringer.startsWith("Länder"))?.wartendSchnittTage ?? "—"}
               </span>{" "}
-              Tagen ungelesen — die Mehrheit bestimmt die Tagesordnung, und Nichtbefassung ist
-              die stillste Form der Ablehnung.
+              Tagen ungelesen. Nichtbefassung ist die stillste Form der Ablehnung.
             </p>
           </div>
 
@@ -459,7 +469,7 @@ export default function AnalysePage() {
         </section>
 
         {/* === BEFUND 6: Gesetzes-Tempo === */}
-        <section className="mb-16">
+        <section id="befund-6" className="mb-16 scroll-mt-6">
           <div className="mb-6">
             <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
               Befund 6 · Tempo
@@ -468,15 +478,10 @@ export default function AnalysePage() {
               Vom Entwurf zum Bundesgesetzblatt: im Median{" "}
               <span className="num">{dauer.medianTotal}</span> Tage.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Alle <span className="num">{dauer.n}</span> bisher verkündeten Gesetze der
-              Wahlperiode, gemessen von der ersten formalen Vorlage des Entwurfs bis zur
-              Verkündung im Bundesgesetzblatt. Die Zeit verteilt sich auf drei etwa gleich
-              lange Etappen: bis zur 1. Lesung, die Parlamentsphase (Ausschüsse bis
-              Schlussabstimmung) und der Weg danach (Bundesrat, Ausfertigung, Verkündung).
-            </p>
-            <p className="mt-3 text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
-              Der Einbringungsweg macht einen deutlichen Unterschied:{" "}
+            <p className="text-[14px] text-zinc-700 leading-relaxed">
+              Alle <span className="num">{dauer.n}</span> bisher verkündeten Gesetze, gemessen
+              von der ersten formalen Vorlage bis zur Verkündung — in drei etwa gleich langen
+              Etappen. Der Einbringungsweg macht den Unterschied:{" "}
               {dauer.perEinbringer.map((e, i) => (
                 <span key={e.name}>
                   {i > 0 && " · "}
@@ -485,18 +490,16 @@ export default function AnalysePage() {
                   <span className="num">{e.n}</span> Gesetze)
                 </span>
               ))}
-              . Das ist der in Befund 5 beschriebene Verfahrens-Unterschied in Zahlen:
-              Regierungsentwürfe durchlaufen vor der 1. Lesung den sechswöchigen
-              Bundesrats-Vorlauf, Fraktionsentwürfe nicht.
+              {" "}— der Bundesrats-Vorlauf aus Befund 5 in Zahlen.
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-2xl">
+          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6">
             <EtappenBar etappen={dauer.etappen} />
             <DauerHistogramm bins={dauer.histogramm} />
           </div>
 
-          <div className="mt-4 grid sm:grid-cols-2 gap-3 max-w-2xl">
+          <div className="mt-4 grid sm:grid-cols-2 gap-3">
             <DauerBeispiele titel="Die schnellsten" beispiele={dauer.schnellste} />
             <DauerBeispiele titel="Die langsamsten" beispiele={dauer.langsamste} />
           </div>
@@ -516,7 +519,7 @@ export default function AnalysePage() {
           <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
             Wie ist das alles entstanden?
           </h2>
-          <p className="text-[14px] text-zinc-700 leading-relaxed max-w-2xl">
+          <p className="text-[14px] text-zinc-700 leading-relaxed">
             Die{" "}
             <Link
               href="/methodik"
@@ -548,7 +551,7 @@ export default function AnalysePage() {
 
 function CaveatBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-amber-50/50 border border-amber-200 rounded-xl px-4 py-3 mt-4 max-w-2xl">
+    <div className="bg-amber-50/50 border border-amber-200 rounded-xl px-4 py-3 mt-4">
       <p className="text-[12.5px] text-amber-900 leading-relaxed">{children}</p>
     </div>
   );

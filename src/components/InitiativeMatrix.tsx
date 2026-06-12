@@ -36,7 +36,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
   const selCell = sel ? cells[sel.frak]?.[sel.field] : null;
 
   return (
-    <div className="max-w-3xl">
+    <div>
       <div className="flex items-center gap-1 mb-3 text-[11.5px]">
         {([false, true] as const).map((mode) => (
           <button
@@ -99,7 +99,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
       </div>
 
       {sel && selCell && (
-        <div className="mt-4 border border-zinc-200 rounded-xl p-4 bg-zinc-50/60 max-w-2xl">
+        <div className="mt-4 border border-zinc-200 rounded-xl p-4 bg-zinc-50/60">
           <div className="flex items-center justify-between mb-2.5">
             <p className="text-[13px] font-medium text-zinc-900">
               <span style={{ color: partyColors(sel.frak).bg }}>{sel.frak}</span> · {sel.field}
