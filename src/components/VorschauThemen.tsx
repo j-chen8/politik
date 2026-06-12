@@ -1041,15 +1041,17 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           (die Auswahl lebt als ?feld= in der History). */}
       {!isLeaf && (
         <section className="fade-in-up">
-          {/* key = Feld-Slug: der Titel-TEXT crossfaded beim Wechsel, die Zeile selbst bleibt */}
-          <h2 key={selFeld?.slug ?? "alle"} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
+          {/* key = Feld-Slug (mit Präfix! h2 und DetailPane sind Geschwister — derselbe
+              nackte Slug als Key auf beiden ließ React Kinder DUPLIZIEREN, User-Bug
+              2026-06-12): der Titel-TEXT crossfaded beim Wechsel, die Zeile bleibt */}
+          <h2 key={`titel-${selFeld?.slug ?? "alle"}`} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
             {selFeld?.name ?? "Themen"}
           </h2>
           <p className="mt-3 text-[15px] text-zinc-500">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
 
           {selFeld ? (
-            // key = Feld-Slug: das Panel remountet beim Wechsel und spielt die Aufklapp-Animation
-            <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand mt-5" />
+            // key = Feld-Slug (Präfix, s. o.): das Panel remountet beim Wechsel und spielt die Aufklapp-Animation
+            <DetailPane key={`panel-${selFeld.slug}`} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand mt-5" />
           ) : (
             /* Die 14 Felder als 2-spaltiges Karten-Grid über die volle Breite (mobil
                einspaltig als Liste) — Klick öffnet die Unterthemen auf dieser Fläche. */
