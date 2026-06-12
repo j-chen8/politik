@@ -14,10 +14,11 @@ import { partyColor } from "@/lib/party-colors";
  * die LLM-Klassifikation läuft. Die Datenform hier IST die Spec.
  *
  * Leitlogik (User 2026-06-09, REVIDIERT): NUR NOCH 2 KLICK-FLÄCHEN statt 3 Ebenen —
- * die drei Ebenen waren das Durchklick-Problem. Auswahl (Feld → Unterthema) ist EIN
- * Master-Detail-Bildschirm: links die Oberthemen, rechts (Desktop) bzw. darunter
- * aufklappend (Mobile = Akkordeon) die Unterthemen des gewählten Felds. Beide bleiben
- * STILL — nur Namen, kein Inhalt. Auswahl ≠ Inhalt; „Menge"/Volumen NICHT foregrounded.
+ * die drei Ebenen waren das Durchklick-Problem. Auswahl (Feld → Unterthema) ist ein
+ * STACK auf derselben Fläche (User 2026-06-12, ersetzt Master-Detail/Sidebar):
+ * Feld-Klick tauscht das Themen-Grid gegen die Unterthemen, „Alle Themen"/Back führt
+ * zurück. Beide Ebenen bleiben STILL — nur Namen, kein Inhalt. Auswahl ≠ Inhalt;
+ * „Menge"/Volumen NICHT foregrounded.
  *
  * Blatt = Unterthema. Erst HIER: Sitzungen + Abstimmungen + „Gerade aktiv". Spezifische
  * Themen sind FILTER darauf (keine eigenen Seiten): nur ~Anker sichtbar, Rest über
@@ -1000,56 +1001,44 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         </nav>
       )}
 
-      {/* ── PICKER: Oberthemen (links) + Unterthemen (rechts/Akkordeon) in EINEM Schritt ── */}
+      {/* ── PICKER: Oberthemen ⇄ Unterthemen als Stack auf DERSELBEN Fläche (User
+          2026-06-12, ersetzt die Sidebar-Variante): Feld-Klick tauscht das Themen-Grid
+          gegen die Unterthemen des Felds, „Alle Themen" (oder Browser-Back — die
+          Auswahl lebt als ?feld= in der History) führt zurück zur Übersicht. */}
       {!isLeaf && (
         <section className="fade-in-up">
-          <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>Was beschäftigt<br />den Bundestag?</h2>
-          <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Feld — die Unterthemen erscheinen daneben.</p>
-
-          <div className="mt-5 md:flex md:items-start md:gap-6">
-            {/* Linke Spalte: alle Oberthemen. Ist ein Feld gewählt, wird sie zur 280px-Sidebar
-                (Feld-Wechsler), und die Unterthemen klappen rechts daneben auf. */}
-            <div className={`rail relative shrink-0 ${feld ? "w-full md:w-[280px]" : "w-full"}`}>
-              {/* Ohne Auswahl: die 14 Felder als 2-spaltiges Grid über die VOLLE Breite (die
-                  rechte Hälfte wäre sonst nur ein toter Platzhalter) → 7 Zeilen, viel Luft.
-                  Mit Auswahl: immer sichtbare Sidebar (280px) als Feld-Wechsler — nur Namen
-                  (Teaser wären neben dem offenen Unterthemen-Panel redundant), luftige Zeilen,
-                  gewähltes Feld markiert. Mobil bleibt es die volle Akkordeon-Liste. */}
-              <div className={`flex w-full flex-col gap-2 ${feld ? "md:gap-1.5" : "md:grid md:grid-cols-2 md:gap-3.5"}`}>
-                {FELDER.map((f) => {
-                  const sel = feld === f.slug;
-                  return (
-                    <Fragment key={f.slug}>
-                      <button onClick={() => nav({ feld: sel ? null : f.slug, unter: null, thema: null })}
-                        className={`group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition ${feld
-                          ? "md:py-2"
-                          : "md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:ring-zinc-900/[0.12] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:ring-white/[0.14]"} ${sel
-                          ? "bg-zinc-900/[0.07] text-zinc-950 dark:bg-white/[0.12] dark:text-zinc-50"
-                          : "text-zinc-600 hover:bg-zinc-900/[0.045] dark:text-zinc-400 dark:hover:bg-white/[0.06]"}`}>
-                        <span className="flex min-w-0 flex-col">
-                          <span className={`truncate text-[15px] leading-snug ${sel ? "font-semibold" : "font-medium"} ${feld ? "" : "md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100"}`}>{f.name}</span>
-                          {/* Teaser: im Grid immer; in der Sidebar nur mobil (Akkordeon) */}
-                          <Teaser items={f.teaser} roomy={!feld} className={feld ? "md:hidden" : ""} />
-                        </span>
-                        <IconChevron open={sel} className="h-4 w-4 shrink-0 text-zinc-400 md:hidden" />
-                        <IconArrow className={`hidden h-4 w-4 shrink-0 text-zinc-500 transition md:block ${sel ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                      </button>
-                      {/* Mobile = Akkordeon: Detail klappt unter dem gewählten Feld auf */}
-                      {sel && selFeld && <DetailPane key={f.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: f.slug, unter: u, thema: null })} className="panel-expand mb-2 mt-1 px-1 md:hidden" />}
-                    </Fragment>
-                  );
-                })}
-              </div>
+          {selFeld ? (
+            // key = Feld-Slug: beim (Back-)Wechsel remountet das Panel und spielt die
+            // Aufklapp-Animation — derselbe Trick wie vorher in der Detail-Spalte.
+            <div key={selFeld.slug} className="panel-expand">
+              <button onClick={() => nav({ feld: null, unter: null, thema: null })}
+                className="group -ml-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[13.5px] font-medium text-zinc-500 transition hover:bg-zinc-900/[0.05] hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-zinc-100">
+                <IconArrow className="h-4 w-4 rotate-180 transition group-hover:-translate-x-0.5" />Alle Themen
+              </button>
+              <h2 className={`${DISPLAY} mt-3 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>{selFeld.name}</h2>
+              <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Unterthema.</p>
+              <DetailPane ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="mt-6" />
             </div>
-
-            {/* Rechte Spalte (Desktop): Unterthemen klappen in den frei werdenden Platz auf.
-                Ohne Auswahl gibt es keine rechte Spalte — das Feld-Grid nutzt die volle Breite. */}
-            {selFeld && (
-              <div className="hidden min-w-0 flex-1 md:block">
-                <DetailPane key={selFeld.slug} ober={selFeld.ober} onPick={(u) => nav({ feld: selFeld.slug, unter: u, thema: null })} className="panel-expand" />
+          ) : (
+            <>
+              <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>Was beschäftigt<br />den Bundestag?</h2>
+              <p className="mt-3 text-[15px] text-zinc-500">Wähl ein Feld — dann erscheinen die Unterthemen.</p>
+              {/* Die 14 Felder als 2-spaltiges Karten-Grid über die volle Breite (mobil
+                  einspaltig als Liste) — Klick öffnet die Unterthemen auf dieser Fläche. */}
+              <div className="mt-5 flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5">
+                {FELDER.map((f) => (
+                  <button key={f.slug} onClick={() => nav({ feld: f.slug, unter: null, thema: null })}
+                    className="group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left text-zinc-600 transition hover:bg-zinc-900/[0.045] md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:bg-white/60 md:hover:ring-zinc-900/[0.12] dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:bg-zinc-900/40 dark:md:hover:ring-white/[0.14]">
+                    <span className="flex min-w-0 flex-col">
+                      <span className="truncate text-[15px] font-medium leading-snug md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100">{f.name}</span>
+                      <Teaser items={f.teaser} />
+                    </span>
+                    <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
+                  </button>
+                ))}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </section>
       )}
 
