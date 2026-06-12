@@ -607,7 +607,10 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
         <p className="text-[15.5px] font-semibold text-zinc-900 dark:text-zinc-50">{k.vorname} {k.nachname}</p>
         <p className="mt-1 text-[12.5px] text-zinc-400">{k.partei}{k.rolle ? ` · ${k.rolle}` : ""}</p>
         <p className="mt-1.5 text-[13px] text-zinc-500 dark:text-zinc-400">
-          Thema in <span className="font-semibold text-zinc-700 dark:text-zinc-200">{k.reden}</span> von {k.gesamt} Reden
+          {/* „Plenarbeiträgen", nicht „Reden" (User 2026-06-12): Korn = einzigartige
+              Protokoll-Beiträge (alle Typen) — die Profil-Rubrik „Reden" zählt anders
+              (DIP ∪ Protokoll-Segmente), die Zahlen sollen nicht vergleichbar aussehen. */}
+          Thema in <span className="font-semibold text-zinc-700 dark:text-zinc-200">{k.reden}</span> von {k.gesamt} Plenarbeiträgen
         </p>
         {(k.themen?.length ?? 0) > 0 && (
           <>
