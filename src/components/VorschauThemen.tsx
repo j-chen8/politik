@@ -1013,7 +1013,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           davor ist klickbar — ersetzt den alten „Alle Themen"-Zurück-Button. */}
       <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
         {selFeld ? (
-          <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">Themen</button>
+          <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="underline decoration-zinc-300 decoration-[1.5px] underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-500 dark:decoration-zinc-600 dark:hover:text-zinc-100 dark:hover:decoration-zinc-400">Themen</button>
         ) : (
           <span className="font-medium text-zinc-700 dark:text-zinc-200">Themen</span>
         )}
@@ -1021,7 +1021,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           <>
             <span className="text-zinc-300">/</span>
             {isLeaf ? (
-              <button onClick={() => nav({ feld, unter: null, thema: null })} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">{selFeld.name}</button>
+              <button onClick={() => nav({ feld, unter: null, thema: null })} className="underline decoration-zinc-300 decoration-[1.5px] underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-500 dark:decoration-zinc-600 dark:hover:text-zinc-100 dark:hover:decoration-zinc-400">{selFeld.name}</button>
             ) : (
               <span className="font-medium text-zinc-700 dark:text-zinc-200">{selFeld.name}</span>
             )}
