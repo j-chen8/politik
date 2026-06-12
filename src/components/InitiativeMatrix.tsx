@@ -24,8 +24,10 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
   const [sel, setSel] = useState<{ field: string; frak: string } | null>(null);
   const [relativ, setRelativ] = useState(false);
   const { fraktionen, fields, cells } = data;
+  // Nenner für die %-Sicht: Summe aller Themen-Nennungen der Fraktion (Spalte = 100 %)
   const totals: Record<string, number> = {};
-  for (const fr of fraktionen) totals[fr.name] = fr.total;
+  for (const fr of fraktionen)
+    totals[fr.name] = fields.reduce((s, f) => s + (cells[fr.name]?.[f]?.count ?? 0), 0);
 
   // Intensität pro Spalte (Fraktion): eigenes Schwerpunkt-Profil sichtbar machen
   const colMax: Record<string, number> = {};
@@ -121,7 +123,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
       )}
       <p className="text-[11px] text-zinc-400 mt-3">
         {relativ
-          ? "Prozent = Anteil der Initiativen der Fraktion, die das Themenfeld berühren. Eine Initiative kann mehrere Felder tragen — die Spalte summiert daher auf über 100 %."
+          ? "Prozent = Anteil des Themenfelds an allen Themen-Nennungen der Fraktion (Spalte summiert auf 100 %; eine Initiative kann mehrere Felder tragen)."
           : "Farbintensität = Schwerpunkt innerhalb der Fraktion (Spalte)."}{" "}
         Zelle anklicken für die Drucksachen.
       </p>
