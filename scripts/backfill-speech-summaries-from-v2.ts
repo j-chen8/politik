@@ -18,12 +18,12 @@ const leer = db.prepare(`
   WHERE (s.zusammenfassung IS NULL OR s.zusammenfassung = '')
     AND s.rede_id IS NOT NULL
     AND EXISTS (SELECT 1 FROM speech_analyses_v2 v WHERE v.rede_id = s.rede_id
-                  AND v.zusammenfassung IS NOT NULL AND v.zusammenfassung != '')
+                  AND v.zusammenfassung_2_saetze IS NOT NULL AND v.zusammenfassung_2_saetze != '')
 `).all() as { id: number; rede_id: string }[];
 
 const teile = db.prepare(`
-  SELECT zusammenfassung FROM speech_analyses_v2
-  WHERE rede_id = ? AND zusammenfassung IS NOT NULL AND zusammenfassung != ''
+  SELECT zusammenfassung_2_saetze AS zusammenfassung FROM speech_analyses_v2
+  WHERE rede_id = ? AND zusammenfassung_2_saetze IS NOT NULL AND zusammenfassung_2_saetze != ''
   ORDER BY segment_index
 `);
 const upd = db.prepare("UPDATE speech_summaries SET zusammenfassung = ?, model = ? WHERE id = ?");
