@@ -741,7 +741,13 @@ function echtToCatch(e: DigitalBlattEcht): CatchItem[] {
 function ScentTicker({ items, paused }: { items: string[]; paused: boolean }) {
   const text = items.join("  ·  ");
   return (
-    <div className="mt-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]" aria-hidden>
+    // Links-Fade NUR, wenn der Ticker läuft (Hover): im Ruhezustand schnitt die
+    // Maske das erste Wort halbtransparent an (User 2026-06-12) — im Stand bleibt
+    // links voll lesbar, nur rechts läuft es weich aus.
+    <div className="mt-1 overflow-hidden" aria-hidden
+      style={{ maskImage: paused
+        ? "linear-gradient(to right, black, black 92%, transparent)"
+        : "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
       {/* Pause beim Hovern per Inline-Style — Tailwind v4/Lightning CSS verschluckt
           eine `.group:hover .ticker-track`-Regel, also steuern wir es aus React. */}
       <div className="ticker-track flex whitespace-nowrap text-[12.5px] text-zinc-400 dark:text-zinc-500" style={{ animationPlayState: paused ? "paused" : "running" }}>
