@@ -173,7 +173,7 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
 - **Domain:** bundestag.de Open Data (kein Key)
 - **Upstream:** `https://www.bundestag.de/ajax/filterlist/de/services/opendata/1058442-1058442?limit=N&offset=O&noFilterSet=true` → HTML, Regex `21\d{3}\.xml`, max nehmen
 - **DB-Watermark:** `SELECT MAX(sitzung), MAX(datum) FROM plenar_sessions;`
-- **Pipeline ($0):** `fetch-plenar-xmls.ts` → `ingest-plenarprotokoll-xmls.ts` → `extract-all-speeches.ts` → `seed-non-mdb-speakers.ts` → `backfill-speaker-politician-links.ts`
+- **Pipeline ($0):** `fetch-plenar-xmls.ts` → `ingest-plenarprotokoll-xmls.ts` → `extract-all-speeches.ts` → `seed-non-mdb-speakers.ts` → `backfill-speaker-politician-links.ts` → **`backfill-plenar-topic-drucksachen.ts --write`** (TOP→DS-Links; ohne ihn erben neue Reden keine Unterthemen und Vote→TOP-Mapping verhungert — am 2026-06-12 beim Download-Lauf übersehen)
 - **Pflicht-Schritt danach ($0):** `seed-rede-unterthemen.ts` — Reden erben Unterthemen über plenar_topic_drucksachen × ds_unterthemen (DROP+Rebuild, idempotent); speist Köpfe/Sitzungen der Themen-Blätter. Auch nach jedem ds_unterthemen-Batch neu laufen lassen.
 - **Kadenz:** wöchentlich nach Sitzungswoche (XMLs ~Tage nach Sitzung)
 - **Caveat:** Filterlist-ID `1058442-1058442` ändert sich bei neuer Wahlperiode → im Browser-Network-Tab auf bundestag.de/services/opendata neu ermitteln

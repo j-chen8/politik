@@ -225,11 +225,18 @@ async function main() {
 
       const thema = a.vorgangsbezug?.[0]?.titel || null;
       const f = a.fundstelle;
+      const dokumentart = f?.dokumentart || a.dokumentart || null;
+      // drucksache_nr NUR für echte Drucksachen-Fundstellen: bei Plenarprotokoll-
+      // Auftritten ist dokumentnummer die PROTOKOLL-Nummer (21/82 = 82. Sitzung) —
+      // die kollidierte mit der gleichnamigen Drucksache und hängte Fragestunden-
+      // Themen an fremde DS-Seiten (User-Fund 2026-06-12, DS 21/82; 13.573
+      // Alt-Zeilen am selben Tag genullt).
+      const dsNr = dokumentart === "Drucksache" ? f?.dokumentnummer || null : null;
 
       insertActivity.run(
         a.id, politicianId, a.aktivitaetsart, a.typ, a.wahlperiode,
-        a.titel, thema, a.datum, f?.dokumentart || a.dokumentart || null,
-        a.vorgangstyp || null, f?.dokumentnummer || null,
+        a.titel, thema, a.datum, dokumentart,
+        a.vorgangstyp || null, dsNr,
         f?.drucksachetyp || null, f?.pdf_url || null,
         f?.herausgeber || null, f?.urheber?.join(", ") || null
       );
