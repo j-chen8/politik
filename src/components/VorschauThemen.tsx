@@ -691,10 +691,10 @@ const KURZ: Record<string, string> = {
   "Künstliche Intelligenz": "KI",
   // Teaser-Overrides: Bindestrich-Komposita, bei denen das erste Segment allein
   // sinnlos wäre („Arbeits-") — die Auto-Kürzung greift hier nicht.
+  // (Liste geschrumpft 2026-06-12: die kuratierten Kurz-Labels in ANZEIGE_NAME
+  // erledigen das jetzt größtenteils an der Quelle.)
   "Arbeits- & Bildungsmigration": "Arbeitsmigration",
   "Industrie- & Standortpolitik": "Industriepolitik",
-  "Kinder- & Jugendhilfe & Freiwilligendienste": "Jugendhilfe",
-  "Demokratie- & Antidiskriminierungs-Förderung": "Demokratieförderung",
 };
 
 // Unterthemen-Namen sind Aufzählungs-Komposita („Klimapolitik, Klimaziele & CO₂-
