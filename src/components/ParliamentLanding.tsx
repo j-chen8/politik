@@ -89,7 +89,7 @@ export function ParliamentLanding({
     <div className="page-wash">
       {topics ? (
         /* Zweispaltiger Hero (Bundestag): Inhalt links, Themen rechts */
-        <section className="w-full max-w-6xl mx-auto px-5 pt-20 lg:pt-24 pb-10 fade-in-up">
+        <section className="w-full max-w-6xl mx-auto px-5 pt-24 lg:pt-28 pb-10 fade-in-up">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             <div>
               <h1 className={`${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.98] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
@@ -115,7 +115,7 @@ export function ParliamentLanding({
         /* Zentrierter Hero (Bundestag & Berlin). relative z-20: fade-in-up macht
            jede Section zum Stacking-Context — ohne Hebung läge das Wortfüll-
            Dropdown der Suche HINTER dem Spalten-Grid. */
-        <section className="relative z-20 w-full max-w-3xl mx-auto px-5 pt-24 pb-12 fade-in-up">
+        <section className="relative z-20 w-full max-w-3xl mx-auto px-5 pt-28 pb-12 fade-in-up">
           <h1 className={`text-center ${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
             {headline}
           </h1>
