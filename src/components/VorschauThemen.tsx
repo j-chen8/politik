@@ -144,7 +144,7 @@ function CatchCard({ c, onOpen }: { c: CatchItem; onOpen?: () => void }) {
   return (
     <div role="button" tabIndex={0} onClick={onOpen}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen?.(); } }}
-      className={`group flex min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+      className={`group flex min-w-0 min-h-[180px] cursor-pointer flex-col p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       <TypEyebrow c={c} />
       <p className="mt-2.5 line-clamp-2 text-[15px] font-semibold leading-snug text-zinc-900 dark:text-zinc-50">{c.titel}</p>
       <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">{c.einzeiler}</p>
@@ -343,7 +343,7 @@ function StandDots({ stand }: { stand: number }) {
 // wie der Feed.
 function GesetzCard({ c }: { c: CatchItem }) {
   return (
-    <Link href={c.href ?? "#"} className={`group flex min-h-[160px] cursor-pointer flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex min-w-0 min-h-[160px] cursor-pointer flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />{c.datum}
@@ -770,7 +770,9 @@ function UnterCard({ u, onPick }: { u: StrukturUnter; onPick: (slug: string) => 
   return (
     <button onClick={() => onPick(u.slug)}
       onMouseEnter={() => setPaused(false)} onMouseLeave={() => setPaused(true)}
-      className={`group flex items-center justify-between gap-3 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] ${leer ? "opacity-55" : "ring-2 ring-zinc-900/10 dark:ring-white/15"} ${SOFT_CARD}`}>
+      // min-w-0: als Grid-Item diktiert sonst der nowrap-Inhalt (Ticker/Truncate)
+      // die Spur-Mindestbreite → 909px-Karten auf 390px-Mobile (User 2026-06-13)
+      className={`group flex min-w-0 items-center justify-between gap-3 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] ${leer ? "opacity-55" : "ring-2 ring-zinc-900/10 dark:ring-white/15"} ${SOFT_CARD}`}>
       <span className="flex min-w-0 flex-1 flex-col">
         <span className="flex items-baseline gap-2">
           <span className="min-w-0 truncate text-[15px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
@@ -1357,7 +1359,10 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                         className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13px] text-zinc-500 transition hover:bg-zinc-900/[0.05] disabled:opacity-40 disabled:hover:bg-transparent dark:hover:bg-white/[0.06]">
                         <IconArrow className="h-4 w-4 rotate-180" />Zurück
                       </button>
-                      <div className="flex items-center gap-1.5">
+                      {/* Mobile: die Zahlenreihe sprengt bei vielen Seiten den Viewport
+                          (10×36px ≈ 600px) → kompakt „Seite X von Y" (User 2026-06-13) */}
+                      <span className="text-[13px] text-zinc-500 sm:hidden">Seite {safePage} von {totalPages}</span>
+                      <div className="hidden items-center gap-1.5 sm:flex">
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                           <button key={n} onClick={() => nav({ page: n === 1 ? null : String(n) })}
                             className={`h-9 w-9 rounded-lg text-[13px] transition ${n === safePage
