@@ -134,7 +134,9 @@ export function ParliamentLanding({
 
       {/* 3-Spalten-Grid */}
       <section className={`w-full max-w-6xl mx-auto px-5 ${footer ? "pb-12" : "pb-24"} fade-in-up fade-in-up-3`}>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Spaltenzahl folgt dem Inhalt — Bundestag hat seit 2026-06-13 nur noch
+            2 Spalten (GE + Kleine Anfragen), Berlin weiter 3. */}
+        <div className={`grid grid-cols-1 gap-5 ${columns.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
           {columns.map((col) => (
             <div key={col.title} className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col dark:border-zinc-800 dark:bg-zinc-900/70">
               <h3 className={`text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 dark:text-zinc-100 ${col.subtitle ? "mb-1" : "mb-4"}`}>

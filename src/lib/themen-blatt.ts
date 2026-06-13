@@ -525,3 +525,56 @@ export function getThemenStruktur(): StrukturOber[] {
     return { name: o.name, slug: o.slug, zuletzt: oberIso ? rel(oberIso) : null, unterthemen: unterthemen.map(({ _iso, ...u }) => u) };
   });
 }
+
+// ── Landing-Teaser: welche Oberthemen hatten zuletzt die meisten neuen Vorgänge ──
+// CTA der Startseite (User 2026-06-13): statt Themen-Kacheln drei Felder mit
+// echter Bewegung. Neutral = Volumen + Aktualität, kein inhaltliches Ranking.
+export interface ThemenAktivitaet {
+  /** Zeitfenster in Tagen — 7, in ruhigen Wochen (Sitzungspause) Fallback 30. */
+  tage: number;
+  top: { name: string; slug: string; count: number }[];
+  oberCount: number;
+  unterCount: number;
+}
+
+export function getThemenAktivitaet(): ThemenAktivitaet {
+  const db = getDb();
+  const feldZuOber = new Map<string, { name: string; slug: string }>();
+  for (const o of OBERTHEMEN) for (const f of o.felder) feldZuOber.set(f, { name: o.name, slug: o.slug });
+  // DS-Datum wie überall im Themensystem: erstes activities-Datum, sonst
+  // Veröffentlichungsdatum. Erst je DS berechnen, dann auf die Paare joinen.
+  const stmt = db.prepare(`
+    WITH d AS (
+      SELECT du.drucksache_nr AS nr, COALESCE(
+        (SELECT MIN(a.datum) FROM activities a WHERE a.drucksache_nr = du.drucksache_nr AND a.datum IS NOT NULL),
+        (SELECT dt.publication_date FROM drucksache_texts dt WHERE dt.drucksache_nr = du.drucksache_nr)
+      ) AS iso
+      FROM (SELECT DISTINCT drucksache_nr FROM ds_unterthemen) du
+    )
+    SELECT DISTINCT du.drucksache_nr AS nr, du.feld
+    FROM ds_unterthemen du JOIN d ON d.nr = du.drucksache_nr
+    WHERE d.iso >= date('now', ?)
+  `);
+  const zaehle = (tage: number) => {
+    const proOber = new Map<string, { name: string; slug: string; docs: Set<string> }>();
+    for (const r of stmt.all(`-${tage} days`) as { nr: string; feld: string }[]) {
+      const ober = feldZuOber.get(r.feld);
+      if (!ober) continue;
+      let e = proOber.get(ober.slug);
+      if (!e) { e = { ...ober, docs: new Set() }; proOber.set(ober.slug, e); }
+      e.docs.add(r.nr); // Set = DS-dedupliziert über mehrere Felder eines Oberthemas
+    }
+    return [...proOber.values()]
+      .map((e) => ({ name: e.name, slug: e.slug, count: e.docs.size }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3);
+  };
+  let tage = 7;
+  let top = zaehle(tage);
+  if (top.length < 3) { tage = 30; top = zaehle(tage); }
+  const unterCount = OBERTHEMEN.reduce(
+    (n, o) => n + o.felder.reduce((m, f) => m + (TAXONOMIE[f] ?? []).filter((u) => !istGemergt(f, u)).length, 0),
+    0
+  );
+  return { tage, top, oberCount: OBERTHEMEN.length, unterCount };
+}
