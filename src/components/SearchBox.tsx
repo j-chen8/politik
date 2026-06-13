@@ -1,51 +1,52 @@
 "use client";
 
-import { useMemo, useRef, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Loader2 } from "lucide-react";
 import type { SuchVorschlag } from "@/lib/such-vorschlaege";
 
-// Umlaut-/Akzent-tolerantes Matching („muller" findet „Müller")
-function norm(s: string): string {
-  return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
-}
-
 export function SearchBox({
   searchPath = "/suche",
   placeholder = 'Name, Thema oder deine PLZ – z.B. „10115"',
-  vorschlaege,
+  vorschlaegeUrl,
 }: {
   /** Zielseite der Suche — z.B. "/parlamente/berlin/suche" für Berlin-Scope. */
   searchPath?: string;
   placeholder?: string;
-  /** Wortfüll-Vorschläge (Namen + Themen): Auswahl füllt das Feld, Enter sucht. */
-  vorschlaege?: SuchVorschlag[];
+  /** API für Wortfüll-Vorschläge (Namen + Themen + Tags): Auswahl füllt das
+      Feld, Enter sucht. Serverseitig gefiltert — das Tag-Vokabular (~12k)
+      wäre inline zu schwer. */
+  vorschlaegeUrl?: string;
 } = {}) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
+  const [treffer, setTreffer] = useState<SuchVorschlag[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  // Ranking: Präfix vor Wortanfang vor Teilstring — bei Gleichstand Originalreihenfolge
-  const treffer = useMemo(() => {
-    if (!vorschlaege || norm(query.trim()).length < 2) return [];
-    const q = norm(query.trim());
-    const rang = (v: string): number => {
-      const n = norm(v);
-      if (n.startsWith(q)) return 0;
-      if (n.includes(` ${q}`) || n.includes(`-${q}`)) return 1;
-      if (n.includes(q)) return 2;
-      return 3;
+  // Debounced Server-Filterung; AbortController verwirft überholte Antworten
+  useEffect(() => {
+    if (!vorschlaegeUrl || query.trim().length < 2) {
+      setTreffer([]);
+      return;
+    }
+    const ctrl = new AbortController();
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`${vorschlaegeUrl}?q=${encodeURIComponent(query.trim())}`, { signal: ctrl.signal });
+        if (res.ok) {
+          setTreffer((await res.json()) as SuchVorschlag[]);
+          setActive(-1); // Markierung nicht auf die neue Liste übertragen
+        }
+      } catch { /* abgebrochen oder offline — Liste einfach nicht zeigen */ }
+    }, 120);
+    return () => {
+      ctrl.abort();
+      clearTimeout(timer);
     };
-    return vorschlaege
-      .map((s) => ({ s, r: rang(s.v) }))
-      .filter((x) => x.r < 3)
-      .sort((a, b) => a.r - b.r)
-      .slice(0, 8)
-      .map((x) => x.s);
-  }, [vorschlaege, query]);
+  }, [vorschlaegeUrl, query]);
 
   const zeigeListe = open && treffer.length > 0;
 

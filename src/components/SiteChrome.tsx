@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote, MapPin } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
+import { HomeThemeToggle } from "./HomeThemeToggle";
 import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
@@ -189,10 +190,15 @@ function LinearHeader({ parliaments }: { parliaments: ParliamentOverview[] }) {
               <Search className="w-3.5 h-3.5" strokeWidth={2.25} />
               <span>{searchLink.label}</span>
             </Link>
+            {/* Dark-Toggle nur auf der Landing — HomeThemeToggle ist homepage-
+                gescoped (räumt .dark beim Unmount weg), der Rest der Seite ist
+                noch nicht durchgehend dark-fähig. */}
+            {pathname === "/" && <HomeThemeToggle />}
           </nav>
 
           {/* Mobile-Steuerung (< sm) */}
           <div className="flex sm:hidden items-center gap-0.5">
+            {pathname === "/" && <HomeThemeToggle />}
             <Link
               href={searchLink.href}
               aria-label="Suche"

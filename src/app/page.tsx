@@ -1,9 +1,8 @@
 import { SearchBox } from "@/components/SearchBox";
 import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip";
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
-import { HomeThemeToggle } from "@/components/HomeThemeToggle";
 import { getBundestagLandingSnapshot } from "@/lib/db";
-import { getDatenstand, getSuchVorschlaege } from "@/lib/such-vorschlaege";
+import { getDatenstand } from "@/lib/such-vorschlaege";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -116,12 +115,13 @@ export default function LinearLanding() {
       subtitle="Debatten, Drucksachen, Abstimmungen, Interviews — transparent und lesbar."
       methodikHref="/methodik"
       search={
-        <div>
+        <div className="mb-14">
           {/* Suche + Themen-Einstieg nebeneinander (User 2026-06-13): das Suchfeld
-              füllt Worte aus Namen/Themen, der Button ist die Erkunden-Tür. */}
+              füllt Worte aus Namen/Themen/Tags, der Button ist die Erkunden-Tür.
+              mb-14 = Luft fürs Wortfüll-Dropdown über den Spalten. */}
           <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
             <div className="w-full sm:max-w-lg">
-              <SearchBox vorschlaege={getSuchVorschlaege()} />
+              <SearchBox vorschlaegeUrl="/api/suche/vorschlaege" />
             </div>
             <Link
               href="/themen"
@@ -131,9 +131,8 @@ export default function LinearLanding() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} />
             </Link>
           </div>
-          <div className="mt-5 flex items-center justify-center gap-3 text-[12px] text-zinc-400 num">
+          <div className="mt-5 flex items-center justify-center text-[12px] text-zinc-400 num">
             <span>Daten zuletzt aktualisiert: {getDatenstand()}</span>
-            <HomeThemeToggle />
           </div>
         </div>
       }

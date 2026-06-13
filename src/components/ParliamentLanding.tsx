@@ -112,8 +112,10 @@ export function ParliamentLanding({
           </div>
         </section>
       ) : (
-        /* Zentrierter Hero (Bundestag & Berlin) */
-        <section className="w-full max-w-3xl mx-auto px-5 pt-24 pb-12 fade-in-up">
+        /* Zentrierter Hero (Bundestag & Berlin). relative z-20: fade-in-up macht
+           jede Section zum Stacking-Context — ohne Hebung läge das Wortfüll-
+           Dropdown der Suche HINTER dem Spalten-Grid. */
+        <section className="relative z-20 w-full max-w-3xl mx-auto px-5 pt-24 pb-12 fade-in-up">
           <h1 className={`text-center ${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
             {headline}
           </h1>
