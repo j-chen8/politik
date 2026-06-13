@@ -13,6 +13,7 @@ import {
   getPlenarContextForDs,
   getDsParsedDetails,
   getDrucksacheQaPaare,
+  getGesetzgebungsVorgang,
   type DrucksacheDetail,
   type MitzeichnerRow,
   type RelatedSpeechRow,
@@ -27,6 +28,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, FileText, Mic, MessageSquare } from "lucide-react";
 import { DrucksacheTonalityBadge } from "@/components/TonalityBadge";
+import { GesetzgebungsVerfahren } from "@/components/GesetzgebungsVerfahren";
 
 interface Props {
   params: Promise<{ "ds-nr": string }>;
@@ -161,7 +163,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
     const referencingVotes = getVotesReferencingDs(dsNr);
     const plenarContext = getPlenarContextForDs(dsNr, skeleton.titel);
     const parsedDetails = getDsParsedDetails(dsNr);
-    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes, plenarContext, parsedDetails);
+    const gesetzgebung = getGesetzgebungsVorgang(dsNr);
+    return renderSkeletonPage(skeleton, mitzeichner, berichterstatter, referencingVotes, plenarContext, parsedDetails, gesetzgebung);
   }
 
   const mitzeichner = getMitzeichnerForDrucksache(dsNr);
@@ -184,6 +187,9 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   // ist der PDF-Parser-Output deutlich aussagekräftiger als die existierende
   // zusammenfassung — wir zeigen ihn deshalb auch auf der vollen Detail-Seite.
   const parsedDetails = getDsParsedDetails(dsNr);
+  // Gesetzgebungs-Verfahren (DIP): greift für Gesetzentwürfe UND alle weiteren
+  // DS eines Gesetzgebungsvorgangs (Beschlussempfehlung, Bericht, …)
+  const gesetzgebung = getGesetzgebungsVorgang(dsNr);
   // Nur Parteien zählen — "Bundesregierung" und null ausschließen, sonst macht "andere DS der Fraktion" keinen Sinn
   const isParty = ds.fraktion && ds.fraktion !== "Bundesregierung";
   const sameFraktion = isParty
@@ -320,6 +326,12 @@ export default async function DrucksacheDetailPage({ params }: Props) {
             )}
           </div>
         </div>
+
+        {/* GESETZGEBUNGS-VERFAHREN: amtlicher Beratungsstand + Schritt-Timeline
+            aus DIP-Vorgangsdaten — beantwortet "in welcher Phase ist das?" */}
+        {gesetzgebung && (
+          <GesetzgebungsVerfahren vorgang={gesetzgebung} currentDsNr={dsNr} />
+        )}
 
         {/* ZUSAMMENFASSUNG (verstecke, wenn parsed_details eine reichere
             Sammelübersicht-Struktur liefert — sonst sieht der User nur
@@ -920,6 +932,7 @@ function renderSkeletonPage(
   referencingVotes: DsVoteSummary[] = [],
   plenarContext: DsPlenarContext[] = [],
   parsedDetails: DsParsedDetails | null = null,
+  gesetzgebung: import("@/lib/db").GesetzgebungsVorgangDetail | null = null,
 ) {
   const datumFormatted = formatDate(skeleton.datum);
   const fraktionCounts = new Map<string, number>();
@@ -986,6 +999,10 @@ function renderSkeletonPage(
             )}
           </p>
         </section>
+
+        {gesetzgebung && (
+          <GesetzgebungsVerfahren vorgang={gesetzgebung} currentDsNr={skeleton.drucksache_nr} />
+        )}
 
         {referencingVotes.length > 0 && (
           <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">

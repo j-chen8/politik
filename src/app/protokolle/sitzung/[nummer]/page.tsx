@@ -5,6 +5,7 @@ import {
   type SitzungHandzeichenVote,
 } from "@/lib/db";
 import { TonalityBadge } from "@/components/TonalityBadge";
+import { splitTopTitle } from "@/lib/top-title";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { HashOpener } from "./HashOpener";
@@ -187,7 +188,7 @@ function TopsTOC({ tops }: { tops: SitzungStoryTop[] }) {
                     <div className="flex items-baseline gap-1.5">
                       <span className="num text-[10px] text-zinc-400 shrink-0 min-w-[20px]">{t.topicNumber}</span>
                       <span className="font-medium line-clamp-1" title={t.title}>
-                        {t.title}
+                        {splitTopTitle(t.title, t.drucksachen[0]?.titel).kern}
                       </span>
                     </div>
                   </a>
@@ -590,7 +591,21 @@ export default async function BundestagSitzungPage({ params }: Props) {
                     <div className="px-5 py-4 border-b border-zinc-100">
                       <div className="flex items-baseline gap-3 flex-wrap mb-2">
                         <span className="num text-[11px] font-semibold text-zinc-500">TOP {t.topicNumber}</span>
-                        <h2 className="text-[16px] font-semibold text-zinc-950 leading-snug flex-1">{t.title}</h2>
+                        {(() => {
+                          const sp = splitTopTitle(t.title, t.drucksachen[0]?.titel);
+                          return (
+                            <>
+                              {sp.stufe && (
+                                <span className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 shrink-0">
+                                  {sp.stufe}
+                                </span>
+                              )}
+                              <h2 className="text-[16px] font-semibold text-zinc-950 leading-snug flex-1" title={t.title}>
+                                {sp.kern}
+                              </h2>
+                            </>
+                          );
+                        })()}
                         <span className="text-[11px] text-zinc-400 num shrink-0">{reden.length} Reden</span>
                       </div>
                       {t.voteRefs.length > 0 && (

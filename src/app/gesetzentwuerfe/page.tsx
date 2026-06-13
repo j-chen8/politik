@@ -1,73 +1,6 @@
-import { getDb } from "@/lib/db";
+import { getLaufendeGesetzentwuerfe, type LaufenderGesetzentwurf } from "@/lib/db";
 import Link from "next/link";
 import { Scale } from "lucide-react";
-
-// ── Lokale Kopie von getLaufendeGesetzentwuerfe (Original: landtag-Branch db.ts) ──
-// Bewusst INLINE statt in db.ts: der landtag-Branch trägt dieselbe Funktion in
-// db.ts — beim Merge gewinnt dessen Version, dieser Block fliegt raus und der
-// Import wird wieder `from "@/lib/db"`. Hält den Konflikt auf genau 1 Datei.
-interface LaufenderGesetzentwurf {
-  drucksache_nr: string;
-  titel: string | null;
-  beratungsstand: string | null;
-  initiative: string[];
-  phase: "vor_erster_lesung" | "im_ausschuss" | "beschlussempfehlung";
-  seitDatum: string | null;
-  einbringungDatum: string | null;
-  federfuehrenderAusschuss: string | null;
-}
-function safeJson<T>(s: string | null, fallback: T): T {
-  if (!s) return fallback;
-  try { return JSON.parse(s) as T; } catch { return fallback; }
-}
-function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
-  const db = getDb();
-  const rows = db.prepare(`
-    SELECT dv.drucksache_nr, v.titel, v.beratungsstand, v.initiative_json,
-      (SELECT MIN(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') AND p.zuordnung='BT') AS einbringung_datum,
-      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('1. Beratung','1. Beratung (Gesetzentwurf)')) AS erste_beratung_datum,
-      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Beschlussempfehlung und Bericht','Beschlussempfehlung','Bericht')) AS be_datum,
-      (SELECT p.ueberweisung_json FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.ueberweisung_json IS NOT NULL AND p.zuordnung='BT'
-        ORDER BY p.datum DESC LIMIT 1) AS ueberweisung_json
-    FROM dip_ds_vorgaenge dv
-    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
-    JOIN drucksache_instrument di ON di.drucksache_nr = dv.drucksache_nr AND di.instrument = 'gesetzentwurf'
-    WHERE v.beratungsstand NOT IN (
-      'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
-      'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
-      'Im Vermittlungsverfahren','Einbringung abgelehnt'
-    )
-    GROUP BY dv.drucksache_nr
-  `).all() as {
-    drucksache_nr: string; titel: string | null; beratungsstand: string | null;
-    initiative_json: string | null; einbringung_datum: string | null;
-    erste_beratung_datum: string | null; be_datum: string | null;
-    ueberweisung_json: string | null;
-  }[];
-
-  return rows.map((r) => {
-    const phase = r.be_datum
-      ? ("beschlussempfehlung" as const)
-      : r.erste_beratung_datum
-        ? ("im_ausschuss" as const)
-        : ("vor_erster_lesung" as const);
-    const ueberweisung = safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []);
-    return {
-      drucksache_nr: r.drucksache_nr,
-      titel: r.titel,
-      beratungsstand: r.beratungsstand,
-      initiative: safeJson<string[]>(r.initiative_json, []),
-      phase,
-      seitDatum: r.be_datum ?? r.erste_beratung_datum ?? r.einbringung_datum,
-      einbringungDatum: r.einbringung_datum,
-      federfuehrenderAusschuss: ueberweisung.find((a) => a.federfuehrung)?.ausschuss ?? null,
-    };
-  });
-}
 
 /**
  * Alle Gesetzentwürfe, über die der Bundestag noch nicht abgestimmt hat —
@@ -168,6 +101,7 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
   return (
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
+
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-2">
             Gesetzentwürfe in Beratung

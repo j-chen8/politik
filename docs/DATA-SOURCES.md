@@ -86,6 +86,20 @@
     AND NOT EXISTS (SELECT 1 FROM dip_ds_titles WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))`.
    Bei einstelligem Rest-Count: das sind LLM-Extraktions-Fehler (DS-Ref leer
    oder halluziniert) — separater Track.
+4b4. **Gesetzgebungs-Vorgänge / Verfahrensstand** (gratis, idempotent):
+   `npx tsx scripts/seed-dip-vorgaenge.ts` — Voll-Sweep aller Gesetzgebungs-
+   Vorgänge WP21 aus der DIP-API (`beratungsstand` + Schritt-Timeline) in
+   `dip_vorgaenge`/`dip_vorgang_positionen`, Upsert per id. Druckt eigenen
+   Verifikations-Report (beratungsstand-Verteilung + GE-Coverage, Soll: 100 %).
+   Details + Join-Caveats: §2.3b.
+4b5. **Drucksachen-Titel-Backfill** (gratis, idempotent):
+   `npx tsx scripts/seed-dip-ds-titles-all.ts` — Voll-Sweep ALLER WP21-BT-
+   Drucksachen aus der DIP-API (~66 Cursor-Seiten) in `dip_ds_titles`;
+   amtlicher Titel unter beiden Nummern-Schreibweisen (padded + unpadded).
+   Schließt die Titel-Lücke für Antworten/Unterrichtungen/Beschluss-
+   empfehlungen, die kein abgeordnetenwatch-Thema haben (sonst „Drucksache
+   21/XXXX" im UI). Soll nach Lauf: `drucksache_texts` 100 % mit Titel
+   (Check: activities.thema ODER dip_ds_titles.titel vorhanden).
 4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
    Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
    wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
@@ -202,6 +216,14 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
 - **Pipeline ($0):** `npx tsx scripts/seed-activities.ts` — idempotent (`INSERT OR IGNORE` per activity-id), splittet nach Monat (umgeht 10k-offset-Limit der API)
 - **Kadenz:** DIP ist täglich aktuell → wöchentlich reicht; speist Drucksachen-Referenzen
 - **Caveat:** `numFound` ist obere Schranke (`datum` ≠ `basisdatum`); echtes Netto-Delta erst nach Lauf
+
+### 2.3b Gesetzgebungs-Vorgänge (DIP-API, `dip_vorgaenge` + `dip_vorgang_positionen`)
+- **Zweck:** amtlicher Verfahrensstand pro Gesetzentwurf (`beratungsstand`: „Überwiesen", „Verkündet", „Abgelehnt" …) + Schritt-Timeline (1. Beratung, Überweisung inkl. Ausschüsse, Beschlussempfehlung, 2./3. Beratung, BR-Durchgänge, Verkündung/Inkrafttreten)
+- **Upstream:** `https://search.dip.bundestag.de/api/v1/vorgang` + `/vorgangsposition` mit `f.vorgangstyp=Gesetzgebung&f.wahlperiode=21`, Cursor-Pagination (100/Seite), gleiche PFLICHT-Header wie §2.3
+- **Pipeline ($0):** `npx tsx scripts/seed-dip-vorgaenge.ts` — idempotent (Upsert per id), Voll-Sweep ~33 Requests, druckt Verifikations-Report (beratungsstand-Verteilung + GE-Coverage)
+- **Join:** View `dip_ds_vorgaenge` (drucksache_nr ↔ vorgang_id, n:m). ⚠️ Direkt-Joins auf `dip_vorgang_positionen` IMMER mit `dokumentart='Drucksache' AND herausgeber='BT'` — Plenarprotokolle teilen den Nummernraum („21/15"). Nummern ungepaddet wie `drucksache_instrument`/`bundestag_votes` (NICHT wie `dip_ds_details`, das paddet)
+- **Caveat:** ~60 Positionen pro Sweep gehören zu WP19/20-Vorgängen mit BR-Sitzung in WP21 → bewusst übersprungen (Guard im Skript). `beratungsstand` ist DIP-Vokabular, kein festes Enum — roh speichern, UI-Mapping separat
+- **Kadenz:** wie §2.3 (DIP täglich aktuell, wöchentlich reicht); Stand 2026-06-11: 354 Vorgänge, 2.814 Positionen, GE-Coverage 258/258
 
 ### 2.4 Drucksachen-PDF (Volltext-Quelle)
 - **Domain:** `https://dserver.bundestag.de/btd/21/<3-stellig>/21<5-stellig>.pdf`

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:staging": "NEXT_DIST_DIR=.next-staging-landtag next build --webpack",
+    "build:staging": "NEXT_DIST_DIR=.next-staging-landtag next build",
     "start": "next start",
     "start:staging": "NEXT_DIST_DIR=.next-staging-landtag next start -p 3002",
     "lint": "eslint",
