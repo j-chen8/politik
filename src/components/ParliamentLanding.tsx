@@ -112,21 +112,23 @@ export function ParliamentLanding({
           </div>
         </section>
       ) : (
-        /* Zentrierter Hero (Berlin & Default) */
-        <section className="w-full max-w-3xl mx-auto px-5 pt-28 pb-12 fade-in-up">
-          <h1 className={`text-center ${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 mb-3 text-balance`}>
+        /* Zentrierter Hero (Bundestag & Berlin) */
+        <section className="w-full max-w-3xl mx-auto px-5 pt-24 pb-12 fade-in-up">
+          <h1 className={`text-center ${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
             {headline}
           </h1>
-          <p className="text-center text-xl text-zinc-500 mx-auto mb-2 leading-relaxed">{subtitle}</p>
+          <p className="text-center text-xl text-zinc-500 dark:text-zinc-400 mx-auto mb-2 leading-relaxed">{subtitle}</p>
           <div className="text-center mb-10">
             <Link
               href={methodikHref}
-              className="text-[13px] text-zinc-500 hover:text-zinc-900 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2 transition-colors"
+              className="text-[13px] text-zinc-500 hover:text-zinc-900 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2 transition-colors dark:text-zinc-400 dark:hover:text-zinc-100 dark:decoration-zinc-600"
             >
               zur Methodik →
             </Link>
           </div>
-          <div className="max-w-xl mx-auto">{search}</div>
+          {/* max-w-3xl statt xl: Bundestag hängt den „Zur Themenauswahl"-Button neben
+              die Suche — Berlins schmale SearchBox zentriert sich darin unverändert. */}
+          <div className="max-w-3xl mx-auto">{search}</div>
           {examples}
           {pill && <div className="mt-7 flex justify-center fade-in-up fade-in-up-2">{pill}</div>}
         </section>

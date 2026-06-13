@@ -1,9 +1,11 @@
 import { SearchBox } from "@/components/SearchBox";
 import { RecentMediaAnalysesStrip } from "@/components/RecentMediaAnalysesStrip";
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
-import { ThemenAktivitaetTeaser } from "@/components/ThemenAktivitaetTeaser";
+import { HomeThemeToggle } from "@/components/HomeThemeToggle";
 import { getBundestagLandingSnapshot } from "@/lib/db";
+import { getDatenstand, getSuchVorschlaege } from "@/lib/such-vorschlaege";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 
 // Mehrzeiliges Ellipsis-Clamp per Inline-Style — Tailwinds line-clamp-Utility
@@ -64,33 +66,43 @@ export default function LinearLanding() {
     });
   }
 
-  if (s.latestAnfragen.length > 0) {
+  if (s.latestVotes.length > 0) {
     columns.push({
-      title: "Kleine Anfragen",
-      footer: { href: "/aktivitaeten?typ=fragen", label: "Alle Kleinen Anfragen ansehen" },
-      cards: s.latestAnfragen.map((a) => (
-        <article key={a.drucksacheNr} className="h-[150px] flex flex-col gap-2.5 overflow-hidden">
-          <Link
-            href={dsHref(a.drucksacheNr)}
-            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors dark:text-zinc-100 dark:hover:text-blue-400"
-            style={lineClamp(2)}
-          >
-            {a.titel}
-          </Link>
-          {a.zusammenfassung && (
+      title: "Aktuelle Abstimmungen",
+      footer: { href: "/abstimmungen", label: "Alle Abstimmungen ansehen" },
+      cards: s.latestVotes.map((v) => (
+        <article key={v.id} className="h-[150px] flex flex-col gap-2.5 overflow-hidden">
+          {v.label && (
+            <Link
+              href={v.detail_url}
+              className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors dark:text-zinc-100 dark:hover:text-blue-400"
+              style={lineClamp(2)}
+            >
+              {v.label}
+            </Link>
+          )}
+          {s.voteSummaries[v.id] && (
             <p className="text-[12.5px] text-zinc-600 leading-relaxed dark:text-zinc-300" style={lineClamp(3)}>
-              {a.zusammenfassung}
+              {s.voteSummaries[v.id]}
             </p>
           )}
-          <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
-            {a.datum && <span>{formatDate(a.datum)}</span>}
-            <span className="text-zinc-300">·</span>
-            <span>Drs. {a.drucksacheNr}</span>
-            {a.fraktion && (
-              <>
-                <span className="text-zinc-300">·</span>
-                <span className="normal-case">{a.fraktion}</span>
-              </>
+          <div className="mt-auto flex items-center gap-2 flex-wrap pt-1">
+            <span
+              className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                v.outcome === "angenommen"
+                  ? "text-emerald-700 bg-emerald-50"
+                  : v.outcome === "abgelehnt"
+                  ? "text-red-700 bg-red-50"
+                  : "text-zinc-600 bg-zinc-100"
+              }`}
+            >
+              {v.outcome_label}
+            </span>
+            <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500">
+              {v.type === "namentlich" ? "Namentlich" : "Handzeichen"}
+            </span>
+            {v.date && (
+              <span className="text-[10.5px] text-zinc-400 num ml-auto">{formatDate(v.date)}</span>
             )}
           </div>
         </article>
@@ -101,11 +113,30 @@ export default function LinearLanding() {
   return (
     <ParliamentLanding
       headline="Woran arbeitet der Bundestag?"
-      headlineClassName="text-4xl sm:text-5xl lg:text-[3.4rem]"
       subtitle="Debatten, Drucksachen, Abstimmungen, Interviews — transparent und lesbar."
       methodikHref="/methodik"
-      search={<SearchBox />}
-      topics={<ThemenAktivitaetTeaser />}
+      search={
+        <div>
+          {/* Suche + Themen-Einstieg nebeneinander (User 2026-06-13): das Suchfeld
+              füllt Worte aus Namen/Themen, der Button ist die Erkunden-Tür. */}
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
+            <div className="w-full sm:max-w-lg">
+              <SearchBox vorschlaege={getSuchVorschlaege()} />
+            </div>
+            <Link
+              href="/themen"
+              className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white px-5 py-4 text-sm font-semibold text-zinc-900 shadow-sm transition-all hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+            >
+              Zur Themenauswahl
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} />
+            </Link>
+          </div>
+          <div className="mt-5 flex items-center justify-center gap-3 text-[12px] text-zinc-400 num">
+            <span>Daten zuletzt aktualisiert: {getDatenstand()}</span>
+            <HomeThemeToggle />
+          </div>
+        </div>
+      }
       columns={columns}
       footer={<RecentMediaAnalysesStrip />}
     />
