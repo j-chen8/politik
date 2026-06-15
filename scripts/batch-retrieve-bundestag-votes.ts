@@ -109,7 +109,11 @@ async function main() {
     const analysis = toolUse?.input as Record<string, unknown> | undefined;
     if (!analysis) { nErrored++; continue; }
 
-    const drucksache_nrn = Array.isArray(analysis.drucksache_nrn) ? (analysis.drucksache_nrn as unknown[]).filter((x): x is string => typeof x === "string") : [];
+    // Nur echte DS-Nummern speichern: der Platzhalter "21/XXXX" (LLM-Extraktion
+    // fehlgeschlagen) und malformte Einträge dürfen NICHT in die Spalte — sie
+    // erzeugen sonst Phantom-Links (s. check-vote-drucksache-consistency.ts).
+    const drucksache_nrn = (Array.isArray(analysis.drucksache_nrn) ? (analysis.drucksache_nrn as unknown[]).filter((x): x is string => typeof x === "string") : [])
+      .filter((ds) => /^\d{1,2}\/\d{1,6}$/.test(ds));
     const outcome = typeof analysis.outcome === "string" ? analysis.outcome : "kein_vote";
     outcomeTally.set(outcome, (outcomeTally.get(outcome) ?? 0) + 1);
 
