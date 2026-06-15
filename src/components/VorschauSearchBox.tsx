@@ -115,7 +115,7 @@ export function VorschauSearchBox() {
 
   return (
     <div ref={wrapRef} className="relative">
-      <div className="rounded-[28px] border border-zinc-300 bg-white p-2.5 shadow-sm transition focus-within:border-zinc-900 focus-within:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-400">
+      <div className="rounded-[28px] border border-zinc-300 bg-card p-2.5 shadow-sm transition focus-within:border-zinc-900 focus-within:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-400">
         {/* Eingabezeile */}
         <input
           ref={inputRef}
@@ -141,11 +141,11 @@ export function VorschauSearchBox() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-haspopup="listbox"
             aria-expanded={menuOpen}
-            className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 py-1.5 pl-2.5 pr-2 text-[13px] font-medium text-zinc-700 transition hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
+            className="flex items-center gap-1.5 rounded-full border border-border bg-zinc-50 py-1.5 pl-2.5 pr-2 text-[13px] font-medium text-zinc-700 transition hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
           >
             <mode.Icon className="h-[15px] w-[15px] text-zinc-500 dark:text-zinc-400" strokeWidth={2} />
             {mode.label}
-            <ChevronDown className={`h-[14px] w-[14px] text-zinc-400 transition ${menuOpen ? "rotate-180" : ""}`} strokeWidth={2.5} />
+            <ChevronDown className={`h-[14px] w-[14px] text-zinc-400 dark:text-zinc-500 transition ${menuOpen ? "rotate-180" : ""}`} strokeWidth={2.5} />
           </button>
 
           <button
@@ -164,7 +164,7 @@ export function VorschauSearchBox() {
       {menuOpen && (
         <div
           role="listbox"
-          className="absolute left-0 top-full z-50 mt-2 w-[15rem] overflow-hidden rounded-2xl border border-zinc-200 bg-white p-1.5 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+          className="absolute left-0 top-full z-50 mt-2 w-[15rem] overflow-hidden rounded-2xl border border-border bg-card p-1.5 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
         >
           {MODES.map((m) => {
             const active = m.key === modeKey;

@@ -18,12 +18,12 @@ import type { GesetzgebungsVorgangDetail } from "@/lib/db";
 function standClasses(stand: string | null): string {
   const s = (stand ?? "").toLowerCase();
   if (s.includes("verkündet") || s.includes("verabschiedet") || s === "bundesrat hat zugestimmt")
-    return "bg-emerald-50 text-emerald-800 border-emerald-200";
+    return "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50";
   if (s.includes("abgelehnt") || s.includes("zustimmung versagt"))
-    return "bg-rose-50 text-rose-800 border-rose-200";
+    return "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50";
   if (s.includes("erledigt") || s.includes("zurückgezogen"))
-    return "bg-zinc-100 text-zinc-700 border-zinc-300";
-  return "bg-[#1a3e72]/5 text-[#1a3e72] border-[#1a3e72]/25";
+    return "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600";
+  return "bg-[#1a3e72]/5 dark:bg-[#8fb3e6]/5 text-[#1a3e72] dark:text-[#8fb3e6] border-[#1a3e72]/25 dark:border-[#8fb3e6]/25";
 }
 
 // Tage seit einem Datum — Seiten sind force-dynamic, wird also pro Request
@@ -160,19 +160,19 @@ function deriveMacroSteps(vorgang: GesetzgebungsVorgangDetail): MacroStep[] {
 }
 
 const STEP_DOT: Record<StepState, string> = {
-  done: "bg-zinc-900 border-zinc-900 text-zinc-50",
-  active: "bg-[#1a3e72] border-[#1a3e72] text-zinc-50",
+  done: "bg-zinc-900 border-zinc-900 dark:border-zinc-100 text-zinc-50",
+  active: "bg-[#1a3e72] dark:bg-[#8fb3e6] border-[#1a3e72] dark:border-[#8fb3e6] text-zinc-50",
   failed: "bg-rose-600 border-rose-600 text-zinc-50",
-  ended: "bg-zinc-400 border-zinc-400 text-zinc-50",
-  pending: "bg-white border-zinc-300 text-zinc-300",
+  ended: "bg-zinc-400 border-zinc-400 dark:border-zinc-500 text-zinc-50",
+  pending: "bg-card border-zinc-300 dark:border-zinc-600 text-zinc-300 dark:text-zinc-600",
 };
 
 const STEP_LABEL: Record<StepState, string> = {
-  done: "text-zinc-950",
-  active: "text-[#1a3e72] font-semibold",
-  failed: "text-rose-700 font-semibold",
-  ended: "text-zinc-500",
-  pending: "text-zinc-400",
+  done: "text-zinc-950 dark:text-zinc-50",
+  active: "text-[#1a3e72] dark:text-[#8fb3e6] font-semibold",
+  failed: "text-rose-700 dark:text-rose-400 font-semibold",
+  ended: "text-zinc-500 dark:text-zinc-400",
+  pending: "text-zinc-400 dark:text-zinc-500",
 };
 
 function MacroStepper({ steps }: { steps: MacroStep[] }) {
@@ -187,7 +187,7 @@ function MacroStepper({ steps }: { steps: MacroStep[] }) {
               className={`absolute top-[11px] right-1/2 w-full h-[2px] -translate-y-1/2 ${
                 s.state === "done" || s.state === "active" || s.state === "failed" || s.state === "ended"
                   ? "bg-zinc-900"
-                  : "bg-zinc-200"
+                  : "bg-zinc-200 dark:bg-zinc-700"
               }`}
             />
           )}
@@ -200,15 +200,15 @@ function MacroStepper({ steps }: { steps: MacroStep[] }) {
             {s.label}
           </span>
           {s.datum && s.state !== "pending" && (
-            <span className="num text-[10.5px] text-zinc-400 mt-0.5">{fmtDate(s.datum)}</span>
+            <span className="num text-[10.5px] text-zinc-400 dark:text-zinc-500 mt-0.5">{fmtDate(s.datum)}</span>
           )}
           {s.subLabel && (
-            <span className="text-[10.5px] text-[#1a3e72] mt-0.5 text-center leading-tight px-1">
+            <span className="text-[10.5px] text-[#1a3e72] dark:text-[#8fb3e6] mt-0.5 text-center leading-tight px-1">
               {s.subLabel}
             </span>
           )}
           {s.subLabel && s.seit && (
-            <span className="num text-[10px] text-zinc-400 mt-0.5 text-center leading-tight">
+            <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 mt-0.5 text-center leading-tight">
               seit {fmtDate(s.seit)}{daysSince(s.seit) !== null && <> · {daysSince(s.seit)} {daysSince(s.seit) === 1 ? "Tag" : "Tage"}</>}
             </span>
           )}
@@ -230,9 +230,9 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
     vorgang.schritte.length + vorgang.verkuendung.length + vorgang.inkrafttreten.length;
 
   return (
-    <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+    <section className="fade-in-up-2 bg-card rounded-2xl border border-border p-7 mb-6">
       <div className="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
-        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           Gesetzgebungs-Verfahren
         </h2>
         {vorgang.beratungsstand && (
@@ -242,7 +242,7 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
         )}
       </div>
       {vorgang.initiative.length > 0 && (
-        <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+        <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mb-5">
           Initiative: {vorgang.initiative.join(", ")}
         </p>
       )}
@@ -253,36 +253,36 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
           Kernaussage, die DIP-Schritte bleiben vollständig nachlesbar */}
       {detailCount > 0 && (
         <details className="group mt-4">
-          <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1 w-fit">
-            <span className="text-zinc-400 group-open:hidden">▶</span>
-            <span className="text-zinc-400 hidden group-open:inline">▼</span>
+          <summary className="cursor-pointer text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 list-none flex items-center gap-1 w-fit">
+            <span className="text-zinc-400 dark:text-zinc-500 group-open:hidden">▶</span>
+            <span className="text-zinc-400 dark:text-zinc-500 hidden group-open:inline">▼</span>
             Alle {detailCount} amtlichen Verfahrensschritte
           </summary>
           <div className="mt-4">
       {vorgang.schritte.length > 0 && (
-        <ol className="relative border-l border-zinc-200 ml-1.5 space-y-4">
+        <ol className="relative border-l border-border ml-1.5 space-y-4">
           {vorgang.schritte.map((s, i) => {
             const href = schrittHref(s, currentDsNr);
             const datum = fmtDate(s.datum);
             return (
               <li key={i} className="pl-4 relative">
-                <span className="absolute -left-[5px] top-[5px] w-2.5 h-2.5 rounded-full bg-white border-2 border-zinc-400" />
+                <span className="absolute -left-[5px] top-[5px] w-2.5 h-2.5 rounded-full bg-card border-2 border-zinc-400 dark:border-zinc-500" />
                 <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-[13.5px] font-medium text-zinc-950">{s.position}</span>
+                  <span className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50">{s.position}</span>
                   {s.zuordnung && (
                     <span
-                      className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-600"
+                      className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300"
                       title={s.zuordnung === "BR" ? "Bundesrat" : s.zuordnung === "BT" ? "Bundestag" : s.zuordnung}
                     >
                       {s.zuordnung}
                     </span>
                   )}
-                  {datum && <span className="num text-[11.5px] text-zinc-400 ml-auto">{datum}</span>}
+                  {datum && <span className="num text-[11.5px] text-zinc-400 dark:text-zinc-500 ml-auto">{datum}</span>}
                 </div>
                 {(href || s.dokumentnummer) && (
-                  <div className="text-[12px] text-zinc-500 mt-0.5">
+                  <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
                     {href ? (
-                      <Link href={href} className="text-[#1a3e72] hover:text-[#0f2a52] hover:underline underline-offset-2">
+                      <Link href={href} className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] hover:underline underline-offset-2">
                         {s.dokumentart} <span className="num">{s.dokumentnummer}</span>
                       </Link>
                     ) : (
@@ -298,7 +298,7 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
                     {s.ausschuesse.map((a) => (
                       <span
                         key={a.ausschuss}
-                        className={`text-[11px] px-2 py-0.5 rounded-full ${a.federfuehrung ? "bg-zinc-900 text-zinc-50" : "bg-zinc-100 text-zinc-700"}`}
+                        className={`text-[11px] px-2 py-0.5 rounded-full ${a.federfuehrung ? "bg-zinc-900 text-zinc-50" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"}`}
                         title={a.federfuehrung ? "federführender Ausschuss" : "mitberatender Ausschuss"}
                       >
                         {a.ausschuss}
@@ -308,7 +308,7 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
                   </div>
                 )}
                 {s.beschluesse.length > 0 && (
-                  <p className="text-[12px] text-zinc-600 mt-1">
+                  <p className="text-[12px] text-zinc-600 dark:text-zinc-300 mt-1">
                     Beschluss: {s.beschluesse.join(" · ")}
                   </p>
                 )}
@@ -321,15 +321,15 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
             <li key={`vk-${i}`} className="pl-4 relative">
               <span className="absolute -left-[5px] top-[5px] w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-emerald-500" />
               <div className="flex items-baseline gap-2 flex-wrap">
-                <span className="text-[13.5px] font-medium text-zinc-950">Verkündung</span>
+                <span className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50">Verkündung</span>
                 {fmtDate(v.verkuendungsdatum) && (
-                  <span className="num text-[11.5px] text-zinc-400 ml-auto">{fmtDate(v.verkuendungsdatum)}</span>
+                  <span className="num text-[11.5px] text-zinc-400 dark:text-zinc-500 ml-auto">{fmtDate(v.verkuendungsdatum)}</span>
                 )}
               </div>
               {v.fundstelle && (
-                <div className="text-[12px] text-zinc-500 mt-0.5">
+                <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
                   {v.pdf_url ? (
-                    <a href={v.pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1a3e72] hover:text-[#0f2a52] hover:underline underline-offset-2 inline-flex items-center gap-1">
+                    <a href={v.pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] hover:underline underline-offset-2 inline-flex items-center gap-1">
                       {v.fundstelle}
                       <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     </a>
@@ -344,11 +344,11 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
             <li key={`ik-${i}`} className="pl-4 relative">
               <span className="absolute -left-[5px] top-[5px] w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-emerald-500" />
               <div className="flex items-baseline gap-2 flex-wrap">
-                <span className="text-[13.5px] font-medium text-zinc-950">Inkrafttreten</span>
-                <span className="num text-[11.5px] text-zinc-400 ml-auto">{fmtDate(ik.datum)}</span>
+                <span className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50">Inkrafttreten</span>
+                <span className="num text-[11.5px] text-zinc-400 dark:text-zinc-500 ml-auto">{fmtDate(ik.datum)}</span>
               </div>
               {ik.erlaeuterung && (
-                <p className="text-[12px] text-zinc-500 mt-0.5">{ik.erlaeuterung}</p>
+                <p className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">{ik.erlaeuterung}</p>
               )}
             </li>
           ))}
@@ -358,7 +358,7 @@ export function GesetzgebungsVerfahren({ vorgang, currentDsNr }: Props) {
         </details>
       )}
 
-      <div className="mt-6 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400 leading-relaxed">
+      <div className="mt-6 pt-4 border-t border-border text-[11px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
         {vorgang.zustimmungsbeduerftigkeit.length > 0 && (
           <p className="mb-1">Zustimmungsbedürftigkeit (Bundesrat): {vorgang.zustimmungsbeduerftigkeit.join(" · ")}</p>
         )}

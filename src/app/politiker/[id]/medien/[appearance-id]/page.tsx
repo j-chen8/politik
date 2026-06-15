@@ -73,7 +73,7 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
         {/* Breadcrumb */}
         <Link
           href={`/politiker/${politicianId}`}
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zu {politicianName || "Profil"}
@@ -86,16 +86,16 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <FormatIcon className="w-4 h-4 text-zinc-500" strokeWidth={2.25} />
-            <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+            <FormatIcon className="w-4 h-4 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
+            <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
               Medien-Auftritt · Detail-Analyse
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] mb-3">
             {entry.title}
           </h1>
-          <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1 text-[13px] text-zinc-600">
-            <span className="font-medium text-zinc-950">{entry.publisher}</span>
+          <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1 text-[13px] text-zinc-600 dark:text-zinc-300">
+            <span className="font-medium text-zinc-950 dark:text-zinc-50">{entry.publisher}</span>
             {entry.host && <span>· mit {entry.host}</span>}
             {entry.episode_label && <span>· {entry.episode_label}</span>}
             {entry.duration_label && <span>· {entry.duration_label}</span>}
@@ -104,7 +104,7 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
             href={entry.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[13px] text-zinc-950 underline decoration-zinc-300 hover:decoration-zinc-950 mt-3"
+            className="inline-flex items-center gap-1 text-[13px] text-zinc-950 dark:text-zinc-50 underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 mt-3"
           >
             Original-Audio / Video beim Anbieter
             <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -119,41 +119,41 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
         )}
 
         {/* Kompakter Methodik-Hinweis — Volltext am Footer */}
-        <div className="mb-6 flex items-center gap-1.5 text-[11.5px] text-zinc-500">
+        <div className="mb-6 flex items-center gap-1.5 text-[11.5px] text-zinc-500 dark:text-zinc-400">
           <Info className="w-3.5 h-3.5" strokeWidth={2.25} />
           <span>KI-gestützte Analyse · </span>
-          <a href="#methodik" className="underline decoration-zinc-300 hover:decoration-zinc-950 hover:text-zinc-950">
+          <a href="#methodik" className="underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 hover:text-zinc-950 dark:hover:text-zinc-50">
             Methodik &amp; Caveats unten
           </a>
         </div>
 
         {/* Overall Summary */}
         <section id="ueberblick" className="mb-8 scroll-mt-28">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
             Überblick
           </h2>
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5">
-            <p className="text-[14.5px] text-zinc-700 leading-relaxed">
+          <div className="bg-card border border-border rounded-2xl p-5">
+            <p className="text-[14.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               {detail.analysis.overall_summary}
             </p>
           </div>
         </section>
 
         {/* Statistik — kompakte Einzeile statt Big-Boxes (n ist meist klein) */}
-        <div className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[12.5px] text-zinc-600 pb-4 border-b border-zinc-200/70">
-          <span><strong className="text-zinc-950 num">{themes.length}</strong> Themen</span>
-          <span className="text-zinc-300">·</span>
-          <span><strong className="text-zinc-950 num">{substantielle}</strong> substantiell</span>
+        <div className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[12.5px] text-zinc-600 dark:text-zinc-300 pb-4 border-b border-border">
+          <span><strong className="text-zinc-950 dark:text-zinc-50 num">{themes.length}</strong> Themen</span>
+          <span className="text-zinc-300 dark:text-zinc-600">·</span>
+          <span><strong className="text-zinc-950 dark:text-zinc-50 num">{substantielle}</strong> substantiell</span>
           {ausweichend > 0 && (
             <>
-              <span className="text-zinc-300">·</span>
-              <span><strong className="text-amber-800 num">{ausweichend}</strong> ausweichend / pivotierend</span>
+              <span className="text-zinc-300 dark:text-zinc-600">·</span>
+              <span><strong className="text-amber-800 dark:text-amber-400 num">{ausweichend}</strong> ausweichend / pivotierend</span>
             </>
           )}
           {factualClaims.length > 0 && (
             <>
-              <span className="text-zinc-300">·</span>
-              <span><strong className="text-zinc-950 num">{factualClaims.length}</strong> Faktenbehauptungen</span>
+              <span className="text-zinc-300 dark:text-zinc-600">·</span>
+              <span><strong className="text-zinc-950 dark:text-zinc-50 num">{factualClaims.length}</strong> Faktenbehauptungen</span>
             </>
           )}
         </div>
@@ -170,26 +170,26 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
         {/* Fakten-Behauptungen */}
         {factualClaims.length > 0 && (
           <section id="fakten" className="mb-10 scroll-mt-28">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Überprüfbare Fakten-Behauptungen
             </h2>
-            <p className="text-[12.5px] text-zinc-500 mb-3 leading-relaxed">
+            <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 mb-3 leading-relaxed">
               Konkrete Sachaussagen, die {politicianName} im Gespräch als Tatsachen
               darstellte. Nicht von dieser Plattform verifiziert — Material für
               eigene Recherche.
             </p>
-            <div className="bg-white border border-zinc-200/70 rounded-2xl divide-y divide-zinc-100">
+            <div className="bg-card border border-border rounded-2xl divide-y divide-border">
               {factualClaims.map((claim, ci) => (
                 <div key={ci} className="p-4 flex items-start gap-3 text-[13.5px]">
                   <a
                     href={youtubeUrlWithTimestamp(entry.url, claim.timestamp)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 text-[11.5px] text-zinc-950 underline decoration-zinc-300 hover:decoration-zinc-950 num pt-0.5"
+                    className="shrink-0 text-[11.5px] text-zinc-950 dark:text-zinc-50 underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 num pt-0.5"
                   >
                     {claim.timestamp}
                   </a>
-                  <span className="text-zinc-700 leading-relaxed">{claim.claim}</span>
+                  <span className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{claim.claim}</span>
                 </div>
               ))}
             </div>
@@ -197,29 +197,29 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
         )}
 
         {/* Methodik & Caveats — am Footer, prominent sichtbar */}
-        <section id="methodik" className="border-t border-zinc-200 pt-6 mt-10 scroll-mt-28">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+        <section id="methodik" className="border-t border-border pt-6 mt-10 scroll-mt-28">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
             Wie diese Analyse zustande kommt
           </h2>
-          <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-5 text-[13px] text-zinc-700 leading-relaxed space-y-3">
+          <div className="bg-amber-50/60 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 rounded-xl p-5 text-[13px] text-zinc-700 dark:text-zinc-300 leading-relaxed space-y-3">
             <p>
-              <strong className="text-amber-900">Quelle:</strong> {detail._methodology.transcript_source}. {detail._methodology.transcript_caveat}
+              <strong className="text-amber-900 dark:text-amber-300">Quelle:</strong> {detail._methodology.transcript_source}. {detail._methodology.transcript_caveat}
             </p>
             <p>
-              <strong className="text-amber-900">Klassifikation:</strong> Die Antwort-Typen
+              <strong className="text-amber-900 dark:text-amber-300">Klassifikation:</strong> Die Antwort-Typen
               („Substantielle Antwort", „Antwort zu anderem Bezugspunkt" usw.) sind eine
               LLM-Auslegung, kein etabliertes politikwissenschaftliches Coding-Schema. Ohne
               Inter-Annotator-Agreement-Studie. Bei jeder Bewertung sind Frage, Position
               und Begründung sichtbar — bilde dir selbst ein Urteil.
             </p>
             <p>
-              <strong className="text-amber-900">Zitate:</strong> Wortgenaue Übereinstimmung
+              <strong className="text-amber-900 dark:text-amber-300">Zitate:</strong> Wortgenaue Übereinstimmung
               wird per Substring-Match validiert (Quote-Validation: {detail._meta.quote_validation.valid_pct} % gültig).
               Trotzdem: bei wichtigen Aussagen immer Original beim Anbieter prüfen — Auto-
               Captions enthalten gelegentlich Übertragungs-Fehler.
             </p>
             <p>
-              <strong className="text-amber-900">Neutralität:</strong> Wir behandeln alle
+              <strong className="text-amber-900 dark:text-amber-300">Neutralität:</strong> Wir behandeln alle
               Politiker:innen unabhängig von Partei mit demselben Prompt. Unterschiede in den
               Daten reflektieren Politiker-Stil + Format der Sendung, nicht eine Bewertung
               durch die Plattform.
@@ -227,8 +227,8 @@ export default async function MediaAppearanceDetailPage({ params }: PageProps) {
           </div>
 
           {/* Tech-Audit collapsible */}
-          <details className="text-[12px] text-zinc-500 mt-4">
-            <summary className="cursor-pointer hover:text-zinc-700 transition-colors">
+          <details className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-4">
+            <summary className="cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
               Technische Audit-Informationen
             </summary>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-1.5 mt-3 max-w-2xl">

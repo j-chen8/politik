@@ -57,6 +57,23 @@ export function SearchBox({
     inputRef.current?.focus();
   }
 
+  // Themen-Vorschläge tragen einen Direkt-Link → sofort dorthin navigieren
+  // (nicht in die Volltextsuche). Personen-Vorschläge füllen nur das Feld.
+  function waehlen(t: SuchVorschlag) {
+    if (t.href) {
+      setOpen(false);
+      setActive(-1);
+      // Tag-Links (…&thema=) lassen Next NICHT nach oben scrollen — das Blatt
+      // positioniert sich selbst (useLayoutEffect) vor dem Paint auf die 3. Sektion,
+      // sonst überschriebe Nexts Scroll-to-Top den Sprung (sichtbares Hüpfen).
+      const href = t.href;
+      const scrollFalse = href.includes("thema=");
+      startTransition(() => router.push(href, scrollFalse ? { scroll: false } : undefined));
+      return;
+    }
+    uebernehmen(t.v);
+  }
+
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (!zeigeListe) return;
     if (e.key === "ArrowDown") {
@@ -66,9 +83,9 @@ export function SearchBox({
       e.preventDefault();
       setActive((a) => (a <= 0 ? treffer.length - 1 : a - 1));
     } else if (e.key === "Enter" && active >= 0) {
-      // Wortfüllung: erster Enter übernimmt, zweiter sucht
+      // Themen-Vorschlag → direkt zur Seite; Person → übernehmen (zweiter Enter sucht)
       e.preventDefault();
-      uebernehmen(treffer[active].v);
+      waehlen(treffer[active]);
     } else if (e.key === "Escape") {
       setOpen(false);
       setActive(-1);
@@ -129,7 +146,7 @@ export function SearchBox({
           role="combobox"
           aria-expanded={zeigeListe}
           aria-autocomplete="list"
-          className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-white text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all text-base shadow-sm dark:bg-zinc-900 dark:focus:ring-white/10 dark:focus:border-zinc-500"
+          className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-card text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-400 transition-all text-base shadow-sm dark:bg-zinc-900 dark:focus:ring-white/10 dark:focus:border-zinc-500"
         />
         <button
           type="submit"
@@ -141,7 +158,7 @@ export function SearchBox({
       {zeigeListe && (
         <ul
           role="listbox"
-          className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-2xl border border-zinc-200 bg-white py-1.5 text-left shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+          className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-2xl border border-border bg-card py-1.5 text-left shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
         >
           {treffer.map((t, i) => (
             <li key={`${t.typ}:${t.v}`} role="option" aria-selected={i === active}>
@@ -150,7 +167,7 @@ export function SearchBox({
                 // mousedown statt click: feuert vor dem Input-Blur, der die Liste schließt
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  uebernehmen(t.v);
+                  waehlen(t);
                 }}
                 onMouseEnter={() => setActive(i)}
                 className={`flex w-full items-baseline justify-between gap-3 px-4 py-2 text-[14px] transition-colors ${
@@ -158,7 +175,7 @@ export function SearchBox({
                 } text-zinc-900 dark:text-zinc-100`}
               >
                 <span className="truncate">{t.v}</span>
-                <span className="shrink-0 text-[11px] uppercase tracking-wider text-zinc-400">
+                <span className="shrink-0 text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                   {t.typ}
                 </span>
               </button>

@@ -32,7 +32,7 @@ function AbgCard({ a, primary = false }: { a: WahlkreisAbgeordnete; primary?: bo
   return (
     <Link
       href={`/politiker/${a.id}`}
-      className={`flex items-center gap-3 rounded-xl border border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-sm transition ${
+      className={`flex items-center gap-3 rounded-xl border border-border bg-card hover:border-zinc-300 dark:hover:border-zinc-600 hover:shadow-sm transition ${
         primary ? "p-4" : "p-3"
       }`}
     >
@@ -45,14 +45,14 @@ function AbgCard({ a, primary = false }: { a: WahlkreisAbgeordnete; primary?: bo
       />
       <div className="min-w-0">
         <div
-          className={`font-semibold tracking-[-0.01em] text-zinc-950 truncate ${
+          className={`font-semibold tracking-[-0.01em] text-zinc-950 dark:text-zinc-50 truncate ${
             primary ? "text-lg" : "text-[15px]"
           }`}
         >
           {a.title ? `${a.title} ` : ""}
           {a.firstName} {a.lastName}
         </div>
-        {a.party && <div className="text-[13px] text-zinc-500 truncate">{a.party}</div>}
+        {a.party && <div className="text-[13px] text-zinc-500 dark:text-zinc-400 truncate">{a.party}</div>}
       </div>
     </Link>
   );
@@ -62,11 +62,11 @@ function WahlkreisBlock({ t, showShare }: { t: WahlkreisTreffer; showShare: bool
   return (
     <section className="mb-10">
       <div className="flex items-baseline justify-between gap-3 mb-4">
-        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           Wahlkreis {t.wkrNr} · {t.wkrName}
         </h2>
         {showShare && (
-          <span className="shrink-0 text-[11px] text-zinc-500">
+          <span className="shrink-0 text-[11px] text-zinc-500 dark:text-zinc-400">
             {Math.round(t.flaechenanteil * 100)} % deiner PLZ
           </span>
         )}
@@ -74,14 +74,14 @@ function WahlkreisBlock({ t, showShare }: { t: WahlkreisTreffer; showShare: bool
 
       {t.direkt ? (
         <div className="mb-4">
-          <div className="text-[13px] text-zinc-600 mb-2">Direkt gewählt im Wahlkreis</div>
+          <div className="text-[13px] text-zinc-600 dark:text-zinc-300 mb-2">Direkt gewählt im Wahlkreis</div>
           <AbgCard a={t.direkt} primary />
         </div>
       ) : t.formerDirekt ? (
         <div className="mb-4">
-          <div className="text-[13px] text-zinc-600 mb-2">Direkt gewählt im Wahlkreis</div>
+          <div className="text-[13px] text-zinc-600 dark:text-zinc-300 mb-2">Direkt gewählt im Wahlkreis</div>
           <AbgCard a={t.formerDirekt.abg} primary />
-          <div className="mt-2 bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 text-[13.5px] text-zinc-700 leading-relaxed">
+          <div className="mt-2 bg-amber-50/60 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 rounded-xl px-4 py-3 text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
             Diese Person hat ihr Mandat
             {formatMonthYear(t.formerDirekt.endDate) ? ` (${formatMonthYear(t.formerDirekt.endDate)})` : ""}{" "}
             niedergelegt — der frei gewordene Sitz wird über die Landesliste nachbesetzt
@@ -89,16 +89,16 @@ function WahlkreisBlock({ t, showShare }: { t: WahlkreisTreffer; showShare: bool
           </div>
         </div>
       ) : (
-        <div className="bg-amber-50/60 border border-amber-200 rounded-xl px-4 py-3 mb-4 text-[13.5px] text-zinc-700 leading-relaxed">
+        <div className="bg-amber-50/60 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 rounded-xl px-4 py-3 mb-4 text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
           In diesem Wahlkreis hat die Person mit den meisten Erststimmen durch die
-          Wahlrechtsreform <strong className="text-zinc-950">keinen Sitz</strong> erhalten.
+          Wahlrechtsreform <strong className="text-zinc-950 dark:text-zinc-50">keinen Sitz</strong> erhalten.
           Deine Region wird über die Landesliste vertreten.
         </div>
       )}
 
       {t.liste.length > 0 && (
         <div>
-          <div className="text-[13px] text-zinc-600 mb-2">
+          <div className="text-[13px] text-zinc-600 dark:text-zinc-300 mb-2">
             Weitere Abgeordnete aus dem Wahlkreis (über die Landesliste)
           </div>
           <div className="grid gap-2">
@@ -110,7 +110,7 @@ function WahlkreisBlock({ t, showShare }: { t: WahlkreisTreffer; showShare: bool
       )}
 
       {!t.direkt && t.liste.length === 0 && (
-        <div className="text-[14px] text-zinc-500">
+        <div className="text-[14px] text-zinc-500 dark:text-zinc-400">
           Für diesen Wahlkreis liegen aktuell keine sitzenden Abgeordneten vor.
         </div>
       )}
@@ -130,9 +130,9 @@ function ResultBlocks({ result }: { result: PlzLookupResult }) {
   return (
     <div>
       {multi && (
-        <div className="bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 mb-8 text-[13.5px] text-zinc-600 leading-relaxed">
-          Deine Postleitzahl <strong className="text-zinc-950">{result.plz}</strong> liegt in{" "}
-          <strong className="text-zinc-950">{result.treffer.length} Wahlkreisen</strong>.
+        <div className="bg-zinc-50 dark:bg-zinc-800 border border-border rounded-xl px-4 py-3 mb-8 text-[13.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          Deine Postleitzahl <strong className="text-zinc-950 dark:text-zinc-50">{result.plz}</strong> liegt in{" "}
+          <strong className="text-zinc-950 dark:text-zinc-50">{result.treffer.length} Wahlkreisen</strong>.
           PLZ- und Wahlkreis-Grenzen verlaufen nicht deckungsgleich — wir zeigen alle,
           sortiert nach dem Flächenanteil deiner PLZ.
         </div>
@@ -142,13 +142,13 @@ function ResultBlocks({ result }: { result: PlzLookupResult }) {
       ))}
       {randed.length > 0 && (
         <details className="group mb-4 -mt-2">
-          <summary className="cursor-pointer list-none text-[13px] text-zinc-500 hover:text-zinc-800 transition-colors select-none">
-            <span className="underline decoration-zinc-300 underline-offset-2">
+          <summary className="cursor-pointer list-none text-[13px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors select-none">
+            <span className="underline decoration-zinc-300 dark:decoration-zinc-600 underline-offset-2">
               {randed.length === 1
                 ? "1 weiterer Wahlkreis mit kleinem Flächenanteil"
                 : `${randed.length} weitere Wahlkreise mit kleinem Flächenanteil`}
             </span>
-            <span className="text-zinc-400 group-open:hidden"> anzeigen</span>
+            <span className="text-zinc-400 dark:text-zinc-500 group-open:hidden"> anzeigen</span>
           </summary>
           <div className="mt-6">
             {randed.map((t) => (
@@ -164,8 +164,8 @@ function ResultBlocks({ result }: { result: PlzLookupResult }) {
 // Institutionelle Akzentfarben zur Ebenen-Unterscheidung — bewusst NICHT
 // partei-assoziiert (Indigo/Teal nutzt keine im Bundestag/AGH vertretene Partei).
 const LEVEL_STYLES = {
-  bt: { card: "border-indigo-200", header: "bg-indigo-50/70 border-indigo-200 text-indigo-900", dot: "bg-indigo-500" },
-  berlin: { card: "border-teal-200", header: "bg-teal-50/70 border-teal-200 text-teal-900", dot: "bg-teal-500" },
+  bt: { card: "border-indigo-200 dark:border-indigo-900/50", header: "bg-indigo-50/70 dark:bg-indigo-950/40 border-indigo-200 dark:border-indigo-900/50 text-indigo-900 dark:text-indigo-300", dot: "bg-indigo-500" },
+  berlin: { card: "border-teal-200 dark:border-teal-900/50", header: "bg-teal-50/70 dark:bg-teal-950/40 border-teal-200 dark:border-teal-900/50 text-teal-900 dark:text-teal-300", dot: "bg-teal-500" },
 } as const;
 
 /** Eine Parlaments-Ebene als farblich abgesetzte Karte (für das Nebeneinander-Layout). */
@@ -180,7 +180,7 @@ function LevelCard({
 }) {
   const s = LEVEL_STYLES[accent];
   return (
-    <section className={`rounded-2xl border ${s.card} bg-white overflow-hidden`}>
+    <section className={`rounded-2xl border ${s.card} bg-card overflow-hidden`}>
       <div
         className={`flex items-center gap-2 px-5 py-3 border-b ${s.header} text-[12px] font-semibold uppercase tracking-wider`}
       >
@@ -212,13 +212,13 @@ export default async function WahlkreisPage({
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
         <div className="max-w-2xl">
-        <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+        <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
           Wer vertritt mich?
         </span>
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mt-2 mb-4 leading-[1.05]">
           Mein Abgeordneter
         </h1>
-        <p className="text-[17px] text-zinc-600 leading-relaxed mb-8 max-w-xl">
+        <p className="text-[17px] text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8 max-w-xl">
           Postleitzahl eingeben und sehen, wer dich im Bundestag vertritt — und, wenn du
           in Berlin wohnst, auch im Abgeordnetenhaus. Mit Link zu Reden, Abstimmungen und Anfragen.
         </p>
@@ -233,7 +233,7 @@ export default async function WahlkreisPage({
             defaultValue={raw ?? ""}
             placeholder="z. B. 50667"
             aria-label="Postleitzahl"
-            className="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-3 text-[16px] tracking-wide outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
+            className="flex-1 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-card px-4 py-3 text-[16px] tracking-wide outline-none focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100"
           />
           <button
             type="submit"
@@ -244,14 +244,14 @@ export default async function WahlkreisPage({
         </form>
 
         {invalid && (
-          <p className="text-[14px] text-zinc-500 mb-8">
+          <p className="text-[14px] text-zinc-500 dark:text-zinc-400 mb-8">
             Bitte eine 5-stellige deutsche Postleitzahl eingeben.
           </p>
         )}
 
         {notFound && (
-          <p className="text-[15px] text-zinc-600 mb-8">
-            Für die Postleitzahl <strong className="text-zinc-950">{bt!.plz}</strong> konnten
+          <p className="text-[15px] text-zinc-600 dark:text-zinc-300 mb-8">
+            Für die Postleitzahl <strong className="text-zinc-950 dark:text-zinc-50">{bt!.plz}</strong> konnten
             wir keinen Wahlkreis zuordnen. Bitte prüfe die Eingabe.
           </p>
         )}
@@ -276,18 +276,18 @@ export default async function WahlkreisPage({
         <div className="max-w-2xl">
         <Link
           href="/wie-stimmen-sitze-werden"
-          className="mt-2 flex items-center justify-between rounded-xl border border-zinc-200/70 bg-white px-4 py-3.5 hover:border-zinc-300 transition-colors group"
+          className="mt-2 flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors group"
         >
           <div>
-            <div className="text-[14.5px] font-medium text-zinc-950">
+            <div className="text-[14.5px] font-medium text-zinc-950 dark:text-zinc-50">
               Wie funktioniert der Bundestag?
             </div>
-            <div className="text-[12.5px] text-zinc-500">
+            <div className="text-[12.5px] text-zinc-500 dark:text-zinc-400">
               Wie aus deiner Stimme ein Sitz wird — einfach erklärt
             </div>
           </div>
           <ArrowRight
-            className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-950 transition-colors"
+            className="w-4 h-4 shrink-0 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 transition-colors"
             strokeWidth={2.25}
           />
         </Link>
@@ -295,24 +295,24 @@ export default async function WahlkreisPage({
         {hasBerlin && (
           <Link
             href="/wie-stimmen-sitze-werden/berlin"
-            className="mt-3 flex items-center justify-between rounded-xl border border-zinc-200/70 bg-white px-4 py-3.5 hover:border-zinc-300 transition-colors group"
+            className="mt-3 flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors group"
           >
             <div>
-              <div className="text-[14.5px] font-medium text-zinc-950">
+              <div className="text-[14.5px] font-medium text-zinc-950 dark:text-zinc-50">
                 Wie funktioniert das Abgeordnetenhaus von Berlin?
               </div>
-              <div className="text-[12.5px] text-zinc-500">
+              <div className="text-[12.5px] text-zinc-500 dark:text-zinc-400">
                 Wie aus deiner Stimme ein Sitz wird — einfach erklärt
               </div>
             </div>
             <ArrowRight
-              className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-950 transition-colors"
+              className="w-4 h-4 shrink-0 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 transition-colors"
               strokeWidth={2.25}
             />
           </Link>
         )}
 
-        <p className="text-[12px] text-zinc-400 leading-relaxed mt-12 border-t border-zinc-200 pt-6">
+        <p className="text-[12px] text-zinc-400 dark:text-zinc-500 leading-relaxed mt-12 border-t border-border pt-6">
           PLZ→Wahlkreis-Zuordnung durch geometrischen Verschnitt der PLZ-Gebiete mit den
           Wahlkreis-Grenzen. Quellen: Bundestags-Wahlkreis-Geometrien © Die Bundeswahlleiterin,
           Statistisches Bundesamt, Wiesbaden 2024 (dl-de/by-2-0); Abgeordnetenhaus-Wahlkreise

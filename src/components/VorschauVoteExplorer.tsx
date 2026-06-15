@@ -40,7 +40,7 @@ export function VorschauVoteExplorer({ votes }: { votes: VorschauVote[] }) {
   const [open, setOpen] = useState<string | null>(votes[0]?.id ?? null);
 
   return (
-    <div className="rounded-3xl border border-zinc-200/80 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
+    <div className="rounded-3xl border border-border bg-card shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
       <div className="px-5 pt-5 pb-3 sm:px-6">
         <h2 className="text-[19px] sm:text-[21px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50">
           Wie hat der Bundestag zuletzt entschieden?
@@ -50,7 +50,7 @@ export function VorschauVoteExplorer({ votes }: { votes: VorschauVote[] }) {
         </p>
       </div>
 
-      <ul className="divide-y divide-zinc-100 dark:divide-zinc-800">
+      <ul className="divide-y divide-border dark:divide-zinc-800">
         {votes.map((v) => {
           const isOpen = open === v.id;
           return (
@@ -72,7 +72,7 @@ export function VorschauVoteExplorer({ votes }: { votes: VorschauVote[] }) {
                   {v.label ?? "Abstimmung"}
                 </span>
                 <ChevronDown
-                  className={`mt-0.5 h-4 w-4 shrink-0 text-zinc-400 transition-transform duration-300 ${
+                  className={`mt-0.5 h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500 transition-transform duration-300 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                   strokeWidth={2.25}
@@ -91,14 +91,14 @@ export function VorschauVoteExplorer({ votes }: { votes: VorschauVote[] }) {
                       {v.summary}
                     </p>
                   )}
-                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-zinc-400">
+                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500">
                     <span className="rounded bg-zinc-100 px-1.5 py-0.5 font-medium text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
                       {v.type === "namentlich" ? "Namentliche Abstimmung" : "Handzeichen"}
                     </span>
                     {v.date && <span className="num">{formatDate(v.date)}</span>}
                     <Link
                       href={v.href}
-                      className="ml-auto font-medium text-[#1a3e72] hover:underline dark:text-blue-400"
+                      className="ml-auto font-medium text-[#1a3e72] dark:text-[#8fb3e6] hover:underline dark:text-blue-400"
                     >
                       Zur Abstimmung →
                     </Link>

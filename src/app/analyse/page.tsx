@@ -132,15 +132,15 @@ export default function AnalysePage() {
       <div className="page-shell fade-in-up">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zur Startseite
         </Link>
 
         {/* Mobile: TOC als ausklappbares Detail-Element (Methodik-Muster) */}
-        <details className="lg:hidden mb-8 rounded-2xl border border-zinc-200/70 bg-white">
-          <summary className="cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700">
+        <details className="lg:hidden mb-8 rounded-2xl border border-border bg-card">
+          <summary className="cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700 dark:text-zinc-300">
             <ListTree className="w-3.5 h-3.5" strokeWidth={2.25} />
             Inhaltsverzeichnis
           </summary>
@@ -153,17 +153,17 @@ export default function AnalysePage() {
           <main className="lg:flex-1 min-w-0">
 
         <div className="mb-12">
-          <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+          <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
             Analyse
           </span>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mt-2 mb-4">
             Was die Daten zeigen
           </h1>
-          <p className="text-[16px] text-zinc-600 leading-relaxed">
+          <p className="text-[16px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
             Sechs empirische Befunde aus dem aktuellen Datenbestand — nüchtern dokumentiert.
             Manche bestätigen, manche widersprechen dem ersten politischen Reflex.
           </p>
-          <p className="text-[14px] text-zinc-500 leading-relaxed mt-3">
+          <p className="text-[14px] text-zinc-500 dark:text-zinc-400 leading-relaxed mt-3">
             Befunde 1–4 beruhen auf der LLM-Klassifikation von Plenarreden, Kleinen Anfragen
             und Drucksachen, Befunde 5–6 auf den amtlichen DIP-Vorgangsdaten — dort ist keine
             KI im Spiel (WP21, Stand{" "}
@@ -171,7 +171,7 @@ export default function AnalysePage() {
             Grenzen: siehe{" "}
             <Link
               href="/methodik"
-              className="text-[#1a3e72] hover:underline underline-offset-2"
+              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2"
             >
               Methodik
             </Link>
@@ -182,38 +182,38 @@ export default function AnalysePage() {
         {/* === BEFUND 1: Reden-Stil-Profile === */}
         <section id="befund-1" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 1 · Plenarreden
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Drei sehr unterschiedliche Stil-Profile in der Opposition.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               Statt „die Opposition ist konfrontativ" zeigen die Daten drei verschiedene
               rhetorische Profile:
             </p>
-            <ul className="mt-3 space-y-1.5 text-[14px] text-zinc-700 leading-relaxed">
+            <ul className="mt-3 space-y-1.5 text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               <li>
-                · <strong className="text-zinc-950">AfD</strong> dominiert über{" "}
+                · <strong className="text-zinc-950 dark:text-zinc-50">AfD</strong> dominiert über{" "}
                 <GlossarLink slug="polemisch">polemisch</GlossarLink> — direkte Schärfe, oft ohne
                 Belege.
               </li>
               <li>
-                · <strong className="text-zinc-950">Grüne</strong> dominieren über{" "}
+                · <strong className="text-zinc-950 dark:text-zinc-50">Grüne</strong> dominieren über{" "}
                 <GlossarLink slug="konfrontativ-faktenrhetorisch">
                   konfrontativ-faktenrhetorisch
                 </GlossarLink>{" "}
                 — Schärfe gegen Personen, mit nachprüfbaren Belegen.
               </li>
               <li>
-                · <strong className="text-zinc-950">Linke</strong> dominiert über{" "}
+                · <strong className="text-zinc-950 dark:text-zinc-50">Linke</strong> dominiert über{" "}
                 <GlossarLink slug="sozial-anklagend">sozial-anklagend</GlossarLink> — Anklage von
                 Verhältnissen, weniger gegen einzelne Akteure.
               </li>
             </ul>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-4">
               {redenByFraktion.map((row) => (
                 <RedenStackedBar
@@ -243,7 +243,7 @@ export default function AnalysePage() {
             offene Folgearbeit auf der{" "}
             <Link
               href="/methodik#tonalitaet-caveats"
-              className="text-[#1a3e72] hover:underline underline-offset-2"
+              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2"
             >
               Methodik-Seite
             </Link>
@@ -254,14 +254,14 @@ export default function AnalysePage() {
         {/* === BEFUND 2: KA-Tonalität === */}
         <section id="befund-2" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 2 · Kleine Anfragen
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Bei den Kleinen Anfragen ist die AfD <em className="not-italic">nicht</em>{" "}
               konfrontativer als Linke oder Grüne.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               Anteil der vom Modell als{" "}
               <GlossarLink slug="fordernd" variant="drucksachen">
                 fordernd
@@ -275,12 +275,12 @@ export default function AnalysePage() {
               <GlossarLink slug="sachlich" variant="drucksachen">
                 sachlich
               </GlossarLink>
-              -Anteil ist bei der AfD am <strong className="text-zinc-950">höchsten</strong> —
+              -Anteil ist bei der AfD am <strong className="text-zinc-950 dark:text-zinc-50">höchsten</strong> —
               anders als beim Reden-Stil.
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-5">
               {kaByFraktion.map((row) => (
                 <KaCompositionBar
@@ -308,7 +308,7 @@ export default function AnalysePage() {
             Drucksachen-Schema (vier Tonalitäten — Definitionen im{" "}
             <Link
               href="/glossar#tonalitaeten-drucksachen"
-              className="text-[#1a3e72] hover:underline underline-offset-2"
+              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2"
             >
               Glossar
             </Link>
@@ -320,14 +320,14 @@ export default function AnalysePage() {
         {/* === BEFUND 3: Volumen + Trend === */}
         <section id="befund-3" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 3 · Volumen und Verlauf
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Der Unterschied liegt im Volumen, nicht im Stil — und einen klaren Trend gibt es
               (noch) nicht.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               Die AfD stellt deutlich mehr Kleine Anfragen als Linke oder Grüne — wer am
               sichtbarsten wirkt, schreibt nicht den schärfsten Ton, sondern den meisten. Ein
               belastbarer Trend lässt sich aus 14 Monaten WP21 nicht ableiten.
@@ -335,8 +335,8 @@ export default function AnalysePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
-            <div className="bg-white border border-zinc-200/70 rounded-2xl p-5">
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+            <div className="bg-card border border-border rounded-2xl p-5">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
                 Anzahl Kleine Anfragen (WP21)
               </div>
               <div className="space-y-3">
@@ -351,12 +351,12 @@ export default function AnalysePage() {
               </div>
             </div>
 
-            <div className="bg-white border border-zinc-200/70 rounded-2xl p-5">
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+            <div className="bg-card border border-border rounded-2xl p-5">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
                 Konfrontativ-Anteil je Monat
               </div>
               <TrendChart trend={trend} fraktionen={trendFraktionen} monthLabels={monthLabels} />
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-zinc-600">
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-zinc-600 dark:text-zinc-300">
                 {trendFraktionen.map((f) => (
                   <span key={f} className="inline-flex items-center gap-1.5">
                     <span
@@ -381,20 +381,20 @@ export default function AnalysePage() {
         {/* === BEFUND 4: Themen-Profil pro Fraktion === */}
         <section id="befund-4" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 4 · Wer treibt welche Themen
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Jede Fraktion hat ein Themen-Profil — und die Opposition bringt die meisten Initiativen ein.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               {initiativeMatrix.fields.length} Politikfelder × 5 Fraktionen: Wer bringt wie viele
               eigene Anträge und Gesetzentwürfe wozu ein? Die Schwerpunkte unterscheiden sich
               deutlich — und die Opposition bringt ein Vielfaches der Koalition ein (die regiert
               über Gesetze). Umschaltbar auf die Kleinen Anfragen — das Kontrollinstrument, das
               fast nur die Opposition nutzt, weil die Koalition ihre Regierung direkt fragen
               kann. Klassifikation auf die{" "}
-              <Link href="/methodik" className="text-[#1a3e72] hover:underline underline-offset-2">
+              <Link href="/methodik" className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2">
                 abgeordnetenwatch-Politikfelder
               </Link>.
             </p>
@@ -410,8 +410,10 @@ export default function AnalysePage() {
             Anfragen (Kontrolle) sind getrennte Modi, weil der KA-Vergleich mit der Koalition
             strukturell hinkt; „alle Drucksachen" enthält zusätzlich Unterrichtungen und Sonstiges.
             Ein Politikfeld kann aus gegensätzlichen Richtungen bespielt werden: „Innere Sicherheit"
-            umfasst sowohl Law-and-Order-Anträge als auch Grundrechts- und Polizei-Kritik. Die
-            Themen-Zuordnung ist eine LLM-Klassifikation; die verlinkte Drucksache ist immer die
+            umfasst sowohl Law-and-Order-Anträge als auch Grundrechts- und Polizei-Kritik. Eine
+            Drucksache kann mehrere Sachgebiete berühren (im Schnitt rund 2,6) und zählt dann in
+            jedem mit — die Spaltensummen sind also Themen-Nennungen, nicht Drucksachen-Stückzahlen.
+            Die Themen-Zuordnung ist eine LLM-Klassifikation; die verlinkte Drucksache ist immer die
             Quelle.
           </CaveatBox>
         </section>
@@ -419,13 +421,13 @@ export default function AnalysePage() {
         {/* === BEFUND 5: Gesetzgebungs-Trichter === */}
         <section id="befund-5" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 5 · Gesetzgebung
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Ob ein Gesetzentwurf je zur Abstimmung kommt, entscheidet vor allem der Absender.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               Der Trichter vom Entwurf bis zum Beschluss, getrennt nach Einbringer (Art. 76 GG:
               Bundesregierung, Fraktionen, Bundesrat). Bundesregierung und Koalitionsfraktionen
               sind dasselbe Lager auf zwei Wegen: Regierungsentwürfe müssen vor der 1. Lesung
@@ -434,16 +436,16 @@ export default function AnalysePage() {
               nie abgelehnt; Oppositionsentwürfe bekommen meist ihre 1. Lesung, aber jede
               Schlussabstimmung endete mit Ablehnung. Länder-Initiativen erreichen das Plenum
               praktisch gar nicht:{" "}
-              <strong className="text-zinc-950">eine einzige 1. Lesung, null Abstimmungen</strong>
+              <strong className="text-zinc-950 dark:text-zinc-50">eine einzige 1. Lesung, null Abstimmungen</strong>
               {" "}— wartende Länder-Entwürfe liegen im Schnitt seit{" "}
-              <span className="num font-semibold text-zinc-950">
+              <span className="num font-semibold text-zinc-950 dark:text-zinc-50">
                 {funnel.find((r) => r.einbringer.startsWith("Länder"))?.wartendSchnittTage ?? "—"}
               </span>{" "}
               Tagen ungelesen. Nichtbefassung ist die stillste Form der Ablehnung.
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <div className="space-y-5">
               {funnel.map((row) => (
                 <FunnelRow key={row.einbringer} row={row} />
@@ -457,10 +459,10 @@ export default function AnalysePage() {
                 { label: "beschlossen", color: "#18181b" },
               ]}
             />
-            <p className="mt-3 pt-3 border-t border-zinc-100 text-[12.5px]">
+            <p className="mt-3 pt-3 border-t border-border text-[12.5px]">
               <Link
                 href="/gesetzentwuerfe"
-                className="text-[#1a3e72] hover:underline underline-offset-2 font-medium"
+                className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2 font-medium"
               >
                 → Alle laufenden Gesetzentwürfe mit Verfahrensstand
               </Link>
@@ -480,21 +482,21 @@ export default function AnalysePage() {
         {/* === BEFUND 6: Gesetzes-Tempo === */}
         <section id="befund-6" className="mb-16 scroll-mt-20">
           <div className="mb-6">
-            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Befund 6 · Tempo
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 mb-3 leading-tight">
+            <h2 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-3 leading-tight">
               Vom Entwurf zum Bundesgesetzblatt: im Median{" "}
               <span className="num">{dauer.medianTotal}</span> Tage.
             </h2>
-            <p className="text-[14px] text-zinc-700 leading-relaxed">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
               Alle <span className="num">{dauer.n}</span> bisher verkündeten Gesetze, gemessen
               von der ersten formalen Vorlage bis zur Verkündung — in drei etwa gleich langen
               Etappen. Der Einbringungsweg macht den Unterschied:{" "}
               {dauer.perEinbringer.map((e, i) => (
                 <span key={e.name}>
                   {i > 0 && " · "}
-                  <strong className="text-zinc-950">{e.name}</strong> im Median{" "}
+                  <strong className="text-zinc-950 dark:text-zinc-50">{e.name}</strong> im Median{" "}
                   <span className="num font-semibold">{e.median}</span> Tage (
                   <span className="num">{e.n}</span> Gesetze)
                 </span>
@@ -503,7 +505,7 @@ export default function AnalysePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200/70 rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto">
             <EtappenBar etappen={dauer.etappen} />
             <DauerHistogramm bins={dauer.histogramm} />
           </div>
@@ -525,15 +527,15 @@ export default function AnalysePage() {
           </CaveatBox>
         </section>
 
-        <div className="mt-16 border-t border-zinc-200/70 pt-8">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+        <div className="mt-16 border-t border-border pt-8">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
             Wie ist das alles entstanden?
           </h2>
-          <p className="text-[14px] text-zinc-700 leading-relaxed">
+          <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
             Die{" "}
             <Link
               href="/methodik"
-              className="text-[#1a3e72] hover:underline underline-offset-2"
+              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2"
             >
               Methodik-Seite
             </Link>{" "}
@@ -541,7 +543,7 @@ export default function AnalysePage() {
             Limitationen und Audit-Trail. Im{" "}
             <Link
               href="/glossar"
-              className="text-[#1a3e72] hover:underline underline-offset-2"
+              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline underline-offset-2"
             >
               Glossar
             </Link>{" "}
@@ -556,7 +558,7 @@ export default function AnalysePage() {
           {/* Desktop: Sticky-Sidebar TOC (Methodik-Muster) */}
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-20">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3 flex items-center gap-1.5">
                 <ListTree className="w-3 h-3" strokeWidth={2.25} />
                 Auf dieser Seite
               </div>
@@ -572,15 +574,15 @@ export default function AnalysePage() {
 function AnalyseToc({ items }: { items: { id: string; label: string; sub: string }[] }) {
   return (
     <nav className="text-[12.5px]">
-      <ul className="space-y-0.5 border-l border-zinc-200">
+      <ul className="space-y-0.5 border-l border-border">
         {items.map((item) => (
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-1 leading-snug transition-colors"
+              className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-zinc-950 dark:hover:text-zinc-50 text-zinc-600 dark:text-zinc-300 py-1 leading-snug transition-colors"
             >
               <span className="block font-medium">{item.label}</span>
-              <span className="block text-[11px] text-zinc-400">{item.sub}</span>
+              <span className="block text-[11px] text-zinc-400 dark:text-zinc-500">{item.sub}</span>
             </a>
           </li>
         ))}
@@ -595,8 +597,8 @@ function AnalyseToc({ items }: { items: { id: string; label: string; sub: string
 
 function CaveatBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-amber-50/50 border border-amber-200 rounded-xl px-4 py-3 mt-4 max-w-4xl mx-auto">
-      <p className="text-[12.5px] text-amber-900 leading-relaxed">{children}</p>
+    <div className="bg-amber-50/50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 rounded-xl px-4 py-3 mt-4 max-w-4xl mx-auto">
+      <p className="text-[12.5px] text-amber-900 dark:text-amber-300 leading-relaxed">{children}</p>
     </div>
   );
 }
@@ -615,7 +617,7 @@ function GlossarLink({ slug, variant = "reden", children }: GlossarLinkProps) {
   return (
     <Link
       href={`/glossar#${anchor}`}
-      className="font-semibold text-zinc-950 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2"
+      className="font-semibold text-zinc-950 dark:text-zinc-50 underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-700 underline-offset-2"
     >
       {children}
     </Link>
@@ -624,7 +626,7 @@ function GlossarLink({ slug, variant = "reden", children }: GlossarLinkProps) {
 
 function Legend({ items }: { items: { label: string; color: string }[] }) {
   return (
-    <div className="mt-4 pt-3 border-t border-zinc-100 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-zinc-600">
+    <div className="mt-4 pt-3 border-t border-border flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-zinc-600 dark:text-zinc-300">
       {items.map((it) => (
         <span key={it.label} className="inline-flex items-center gap-1.5">
           <span
@@ -676,15 +678,15 @@ function RedenStackedBar({
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1.5 gap-3 flex-wrap">
-        <div className="text-[13px] font-semibold text-zinc-950">{fraktion}</div>
-        <div className="text-[11px] text-zinc-500 num">
+        <div className="text-[13px] font-semibold text-zinc-950 dark:text-zinc-50">{fraktion}</div>
+        <div className="text-[11px] text-zinc-500 dark:text-zinc-400 num">
           {fmtNum(total)} Segmente · dominant{" "}
-          <span className="font-semibold text-zinc-700">
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">
             {DOMINANT_LABEL[dominantSlug] ?? dominantSlug} {fmtPct(dominantPct)}
           </span>
         </div>
       </div>
-      <div className="h-6 w-full flex rounded-md overflow-hidden bg-zinc-100">
+      <div className="h-6 w-full flex rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {segments.map((seg) => (
           <div
             key={seg.key}
@@ -728,19 +730,19 @@ function KaCompositionBar({
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1.5">
-        <div className="text-[13px] font-semibold text-zinc-950">{fraktion}</div>
-        <div className="text-[11px] text-zinc-500 num">
+        <div className="text-[13px] font-semibold text-zinc-950 dark:text-zinc-50">{fraktion}</div>
+        <div className="text-[11px] text-zinc-500 dark:text-zinc-400 num">
           {fmtNum(total)} Anfragen ·{" "}
-          <span className="font-semibold text-emerald-700">
+          <span className="font-semibold text-emerald-700 dark:text-emerald-400">
             sachlich {fmtPct(sachlichPct)}
           </span>{" "}
           ·{" "}
-          <span className="font-semibold text-purple-700">
+          <span className="font-semibold text-purple-700 dark:text-purple-400">
             konfrontativ {fmtPct(konfrontPct)}
           </span>
         </div>
       </div>
-      <div className="h-6 w-full flex rounded-md overflow-hidden bg-zinc-100">
+      <div className="h-6 w-full flex rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {segments.map((seg) => (
           <div
             key={seg.key}
@@ -773,19 +775,19 @@ function FunnelRow({ row }: { row: GesetzgebungsFunnelRow }) {
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1.5 gap-3 flex-wrap">
-        <div className="text-[13px] font-semibold text-zinc-950">{row.einbringer}</div>
-        <div className="text-[11px] text-zinc-500 num">
+        <div className="text-[13px] font-semibold text-zinc-950 dark:text-zinc-50">{row.einbringer}</div>
+        <div className="text-[11px] text-zinc-500 dark:text-zinc-400 num">
           {fmtNum(row.gesamt)} eingebracht · {fmtNum(row.ersteLesung)} in 1. Lesung ·{" "}
           {fmtNum(row.zurAbstimmung)} abgestimmt ·{" "}
-          <span className="font-semibold text-zinc-950">{fmtNum(row.beschlossen)} beschlossen</span>
+          <span className="font-semibold text-zinc-950 dark:text-zinc-50">{fmtNum(row.beschlossen)} beschlossen</span>
           {row.abgelehnt > 0 && (
             <>
-              {" "}· <span className="font-semibold text-rose-700">{fmtNum(row.abgelehnt)} abgelehnt</span>
+              {" "}· <span className="font-semibold text-rose-700 dark:text-rose-400">{fmtNum(row.abgelehnt)} abgelehnt</span>
             </>
           )}
         </div>
       </div>
-      <div className="relative h-6 w-full rounded-md overflow-hidden bg-zinc-100">
+      <div className="relative h-6 w-full rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         {stufen.map((s) => (
           <div
             key={s.key}
@@ -796,7 +798,7 @@ function FunnelRow({ row }: { row: GesetzgebungsFunnelRow }) {
         ))}
       </div>
       {row.wartendVorLesung > 0 && (
-        <div className="mt-1 text-[11px] text-zinc-400 num">
+        <div className="mt-1 text-[11px] text-zinc-400 dark:text-zinc-500 num">
           {fmtNum(row.wartendVorLesung)} {row.wartendVorLesung === 1 ? "wartet" : "warten"} auf die 1. Lesung
           {row.wartendSchnittTage != null && <> — {row.wartendVorLesung === 1 ? "seit" : "im Schnitt seit"} {fmtNum(row.wartendSchnittTage)} Tagen</>}
         </div>
@@ -818,10 +820,10 @@ function VolumeRow({
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1">
-        <div className="text-[13px] font-medium text-zinc-800">{fraktion}</div>
-        <div className="text-[12px] font-semibold text-zinc-950 num">{fmtNum(total)}</div>
+        <div className="text-[13px] font-medium text-zinc-800 dark:text-zinc-200">{fraktion}</div>
+        <div className="text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 num">{fmtNum(total)}</div>
       </div>
-      <div className="h-3 w-full rounded-sm bg-zinc-100 overflow-hidden">
+      <div className="h-3 w-full rounded-sm bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
         <div
           className="h-full rounded-sm"
           style={{
@@ -939,7 +941,7 @@ function EtappenBar({
   const sum = segs.reduce((s, x) => s + x.tage, 0) || 1;
   return (
     <div>
-      <div className="text-[12px] font-medium text-zinc-700 mb-2">
+      <div className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300 mb-2">
         Median-Etappen (Tage)
       </div>
       <div className="h-7 w-full flex rounded-md overflow-hidden">
@@ -963,21 +965,21 @@ function DauerHistogramm({ bins }: { bins: { vonTage: number; n: number }[] }) {
   const max = Math.max(1, ...bins.map((b) => b.n));
   return (
     <div className="mt-6">
-      <div className="text-[12px] font-medium text-zinc-700 mb-2">
+      <div className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300 mb-2">
         Verteilung der Gesamtdauer (30-Tage-Schritte)
       </div>
       <div className="flex items-end gap-[3px] h-20">
         {bins.map((b) => (
           <div key={b.vonTage} className="flex-1 flex flex-col items-center gap-1" title={`${b.vonTage}–${b.vonTage + 29} Tage: ${b.n} Gesetze`}>
-            <span className="num text-[10px] text-zinc-500 leading-none">{b.n || ""}</span>
+            <span className="num text-[10px] text-zinc-500 dark:text-zinc-400 leading-none">{b.n || ""}</span>
             <div
-              className="w-full rounded-t-sm bg-[#1a3e72]"
+              className="w-full rounded-t-sm bg-[#1a3e72] dark:bg-[#8fb3e6]"
               style={{ height: `${(b.n / max) * 56}px`, opacity: b.n ? 1 : 0 }}
             />
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-[10px] text-zinc-400 num mt-1 border-t border-zinc-100 pt-1">
+      <div className="flex justify-between text-[10px] text-zinc-400 dark:text-zinc-500 num mt-1 border-t border-border pt-1">
         <span>0</span>
         <span>{bins.length * 30} Tage</span>
       </div>
@@ -993,23 +995,23 @@ function DauerBeispiele({
   beispiele: { titel: string; tage: number; dsNr: string | null }[];
 }) {
   return (
-    <div className="border border-zinc-200/70 rounded-xl p-4 bg-zinc-50/40">
-      <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+    <div className="border border-border rounded-xl p-4 bg-zinc-50/40 dark:bg-zinc-800/40">
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
         {titel}
       </div>
       <ul className="space-y-2">
         {beispiele.map((b) => (
           <li key={b.titel} className="text-[12.5px] leading-snug flex gap-2">
-            <span className="num font-semibold text-zinc-950 whitespace-nowrap">{b.tage} T.</span>
+            <span className="num font-semibold text-zinc-950 dark:text-zinc-50 whitespace-nowrap">{b.tage} T.</span>
             {b.dsNr ? (
               <Link
                 href={`/aktivitaeten/${b.dsNr.replace("/", "-")}`}
-                className="text-zinc-600 hover:text-zinc-950 hover:underline"
+                className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 hover:underline"
               >
                 {b.titel.length > 110 ? `${b.titel.slice(0, 110)}…` : b.titel}
               </Link>
             ) : (
-              <span className="text-zinc-600">{b.titel.length > 110 ? `${b.titel.slice(0, 110)}…` : b.titel}</span>
+              <span className="text-zinc-600 dark:text-zinc-300">{b.titel.length > 110 ? `${b.titel.slice(0, 110)}…` : b.titel}</span>
             )}
           </li>
         ))}

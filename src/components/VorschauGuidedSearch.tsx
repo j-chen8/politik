@@ -121,7 +121,7 @@ export function VorschauGuidedSearch() {
   return (
     <div className="relative">
       {/* Eingabefeld */}
-      <div className="rounded-[28px] border border-zinc-300 bg-white p-2.5 shadow-sm transition focus-within:border-zinc-900 focus-within:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-400">
+      <div className="rounded-[28px] border border-zinc-300 bg-card p-2.5 shadow-sm transition focus-within:border-zinc-900 focus-within:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:focus-within:border-zinc-400">
         <div className="flex items-center gap-2">
           <input
             ref={inputRef}
@@ -158,7 +158,7 @@ export function VorschauGuidedSearch() {
           <button
             type="button"
             onClick={clearCategory}
-            className="flex items-center gap-1.5 rounded-full bg-[#1a3e72] py-1.5 pl-3 pr-2 text-[13.5px] font-medium text-white transition hover:bg-[#16335f]"
+            className="flex items-center gap-1.5 rounded-full bg-[#1a3e72] dark:bg-[#8fb3e6] py-1.5 pl-3 pr-2 text-[13.5px] font-medium text-white transition hover:bg-[#16335f]"
           >
             <cat.Icon className="h-[15px] w-[15px]" strokeWidth={2} />
             {cat.label}
@@ -173,7 +173,7 @@ export function VorschauGuidedSearch() {
                 key={c.key}
                 type="button"
                 onClick={() => pickCategory(c.key)}
-                className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white py-1.5 pl-2.5 pr-3 text-[13.5px] font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                className="flex items-center gap-1.5 rounded-full border border-border bg-card py-1.5 pl-2.5 pr-3 text-[13.5px] font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
               >
                 <c.Icon className="h-[15px] w-[15px] text-zinc-400 dark:text-zinc-500" strokeWidth={2} />
                 {c.label}
@@ -184,7 +184,7 @@ export function VorschauGuidedSearch() {
                 key={s.key}
                 type="button"
                 onClick={() => router.push(s.href)}
-                className="rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 text-[13.5px] font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                className="rounded-full border border-border bg-card px-3.5 py-1.5 text-[13.5px] font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800"
               >
                 {s.label}
               </button>

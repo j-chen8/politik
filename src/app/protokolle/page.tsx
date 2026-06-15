@@ -64,15 +64,15 @@ export default function ProtokollePage() {
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-2">
             Protokolle
           </h1>
-          <p className="text-[14px] text-zinc-500">
-            <span className="num text-zinc-700 font-medium">{overview.plenarSessions}</span> Plenar- und{" "}
-            <span className="num text-zinc-700 font-medium">{overview.ausschussSessions}</span> Ausschuss-Sitzungen der 21. Wahlperiode
+          <p className="text-[14px] text-zinc-500 dark:text-zinc-400">
+            <span className="num text-zinc-700 dark:text-zinc-300 font-medium">{overview.plenarSessions}</span> Plenar- und{" "}
+            <span className="num text-zinc-700 dark:text-zinc-300 font-medium">{overview.ausschussSessions}</span> Ausschuss-Sitzungen der 21. Wahlperiode
           </p>
         </div>
 
         {/* Overview strip */}
         <section className="mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-zinc-200/70 border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-border border border-border rounded-2xl bg-card overflow-hidden">
             <Stat
               label="Plenar-Sitzungen"
               value={overview.plenarSessions.toString()}
@@ -88,10 +88,10 @@ export default function ProtokollePage() {
               value={overview.ausschussTopics.toLocaleString("de-DE")}
             />
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="mt-2 text-[11px] text-zinc-400 dark:text-zinc-500">
             Ausschuss-Zahlen: nur veröffentlichte Protokolle — nicht jede Sitzung wird publiziert.{" "}
             <span className="hidden sm:inline">·</span>{" "}
-            <span className="text-zinc-500">Tagesordnungspunkt (TOP)</span>: einzelnes Thema einer Sitzung.
+            <span className="text-zinc-500 dark:text-zinc-400">Tagesordnungspunkt (TOP)</span>: einzelnes Thema einer Sitzung.
           </p>
         </section>
 
@@ -100,10 +100,10 @@ export default function ProtokollePage() {
           <Card className="mb-12">
             <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
               <SectionLabel className="mb-0">Plenarbeiträge nach Typ</SectionLabel>
-              <span className="text-[11px] text-zinc-400">
+              <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
                 <Link
                   href="/methodik#plenarbeitrag-typen"
-                  className="hover:text-zinc-700 underline underline-offset-2 decoration-zinc-200 hover:decoration-zinc-400 transition-colors"
+                  className="hover:text-zinc-700 dark:hover:text-zinc-300 underline underline-offset-2 decoration-zinc-200 dark:decoration-zinc-700 hover:decoration-zinc-400 dark:hover:decoration-zinc-500 transition-colors"
                 >
                   Was ist was?
                 </Link>
@@ -114,21 +114,21 @@ export default function ProtokollePage() {
                 <Link
                   key={t.slug}
                   href={`/protokolle/typ/${t.slug}`}
-                  className="group rounded-xl border border-zinc-200/70 bg-white px-3 py-3 hover:border-zinc-400 hover:bg-zinc-50/50 transition-colors flex flex-col gap-0.5"
+                  className="group rounded-xl border border-border bg-card px-3 py-3 hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/50 transition-colors flex flex-col gap-0.5"
                 >
-                  <span className="num text-2xl font-semibold tracking-tight text-zinc-950">
+                  <span className="num text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
                     {t.count.toLocaleString("de-DE")}
                   </span>
                   <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-medium text-zinc-700 group-hover:text-zinc-950 transition-colors">
+                    <span className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 transition-colors">
                       {t.label}
                     </span>
-                    <ArrowRight className="w-3 h-3 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all" strokeWidth={2.25} />
+                    <ArrowRight className="w-3 h-3 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 transition-all" strokeWidth={2.25} />
                   </div>
                 </Link>
               ))}
             </div>
-            <p className="mt-3 text-[11.5px] text-zinc-400">
+            <p className="mt-3 text-[11.5px] text-zinc-400 dark:text-zinc-500">
               <span className="num">{typeStatsTotal.toLocaleString("de-DE")}</span> Plenarbeiträge insgesamt — eine Antwort in der Fragestunde ist keine Rede, eine Zwischenfrage erst recht nicht.
             </p>
           </Card>
@@ -139,7 +139,7 @@ export default function ProtokollePage() {
           <Card className="mb-12">
             <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
               <SectionLabel className="mb-0">Beiträge nach Fraktion</SectionLabel>
-              <span className="text-[11px] text-zinc-400">
+              <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
                 Nicht nur Reden — alle 6 Plenarbeitrag-Typen
               </span>
             </div>
@@ -163,7 +163,7 @@ export default function ProtokollePage() {
         <Card className="mb-12">
           <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
             <SectionLabel className="mb-0">Sitzungen je Ausschuss</SectionLabel>
-            <span className="text-[11px] text-zinc-400">
+            <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
               Nur veröffentlichte Protokolle — nicht jede Sitzung wird publiziert
             </span>
           </div>
@@ -181,13 +181,13 @@ export default function ProtokollePage() {
 
         {/* Top Ausschuss Attendees */}
         {/* Coverage-Disclaimer: ehrliche Aufklärung wie viele MdBs überhaupt erfasst sind */}
-        <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 px-5 py-4">
+        <div className="mb-6 rounded-2xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/40 px-5 py-4">
           <div className="flex items-baseline gap-2 flex-wrap mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-800">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-800 dark:text-amber-400">
               Datenabdeckung — was du hier siehst und was nicht
             </span>
           </div>
-          <p className="text-[13px] text-amber-900 leading-relaxed">
+          <p className="text-[13px] text-amber-900 dark:text-amber-300 leading-relaxed">
             <span className="num font-semibold">{coverage.mdbsLinked}</span> von{" "}
             <span className="num font-semibold">{coverage.mdbsTotal}</span> MdBs der 21. Wahlperiode tauchen in unseren Ausschuss-Daten auf{" "}
             (<span className="num">{coverage.ausschuesseCovered}</span> Ausschüsse mit publizierten Protokollen).{" "}
@@ -201,7 +201,7 @@ export default function ProtokollePage() {
         <Card className="mb-12">
           <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
             <SectionLabel className="mb-0">Fleißigste Ausschuss-Teilnehmer</SectionLabel>
-            <span className="text-[11px] text-zinc-400">
+            <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
               {topAttendees.filter((a) => a.politician_id).length} verifizierte MdBs ·{" "}
               {topAttendees.filter((a) => !a.politician_id).length} Sachverständige/Gäste ausgeblendet · scrollbar
             </span>
@@ -212,7 +212,7 @@ export default function ProtokollePage() {
                 a.politician_id ? (
                   <Link
                     href={`/politiker/${a.politician_id}`}
-                    className="flex items-start gap-3 py-1 px-1 hover:bg-zinc-50 rounded-md group transition-colors"
+                    className="flex items-start gap-3 py-1 px-1 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-md group transition-colors"
                   >
                     {children}
                   </Link>
@@ -221,7 +221,7 @@ export default function ProtokollePage() {
                 );
               return (
                 <Row key={a.name}>
-                  <span className="num w-6 text-right text-[12px] font-medium text-zinc-400 shrink-0 mt-1">
+                  <span className="num w-6 text-right text-[12px] font-medium text-zinc-400 dark:text-zinc-500 shrink-0 mt-1">
                     {i + 1}
                   </span>
                   <div className="flex-1 min-w-0 grid grid-cols-[minmax(0,1fr)_1fr_3rem] items-center gap-3">
@@ -233,7 +233,7 @@ export default function ProtokollePage() {
                       />
                       <span
                         className={
-                          "text-[13px] font-medium text-zinc-950 truncate " +
+                          "text-[13px] font-medium text-zinc-950 dark:text-zinc-50 truncate " +
                           (a.politician_id ? "group-hover:underline" : "")
                         }
                         title={a.name}
@@ -241,18 +241,18 @@ export default function ProtokollePage() {
                         {a.name}
                       </span>
                       {a.fraktion && (
-                        <span className="text-[10.5px] text-zinc-500 shrink-0 uppercase tracking-wider font-medium">
+                        <span className="text-[10.5px] text-zinc-500 dark:text-zinc-400 shrink-0 uppercase tracking-wider font-medium">
                           {shortPartyName(a.fraktion)}
                         </span>
                       )}
                     </div>
-                    <div className="h-5 bg-zinc-50 rounded-md overflow-hidden">
+                    <div className="h-5 bg-zinc-50 dark:bg-zinc-800 rounded-md overflow-hidden">
                       <div
                         className="h-full bg-zinc-900/[0.08] rounded-md"
                         style={{ width: `${Math.max((a.sitzungen / maxAttendance) * 100, 8)}%` }}
                       />
                     </div>
-                    <span className="num text-[13px] font-semibold text-zinc-950 text-right">
+                    <span className="num text-[13px] font-semibold text-zinc-950 dark:text-zinc-50 text-right">
                       {a.sitzungen}
                     </span>
                   </div>
@@ -265,20 +265,20 @@ export default function ProtokollePage() {
         {/* Link to dedicated sessions list */}
         <Link
           href="/protokolle/sitzungen"
-          className="card-hover group block mb-12 rounded-2xl border border-zinc-200/70 bg-white p-5 hover:border-zinc-300 transition-colors"
+          className="card-hover group block mb-12 rounded-2xl border border-border bg-card p-5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
         >
           <div className="flex items-center justify-between gap-4">
             <div className="min-w-0">
               <SectionLabel className="mb-1">Plenar-Sitzungen</SectionLabel>
-              <div className="text-[15px] font-semibold text-zinc-950">
+              <div className="text-[15px] font-semibold text-zinc-950 dark:text-zinc-50">
                 Alle <span className="num">{sessions.length}</span> Sitzungen der 21. WP
               </div>
-              <div className="mt-1 text-[12.5px] text-zinc-500">
+              <div className="mt-1 text-[12.5px] text-zinc-500 dark:text-zinc-400">
                 Übersicht aller Sitzungen mit Reden, TOPs, Abstimmungen und PDF-Protokollen
               </div>
             </div>
             <ArrowRight
-              className="w-5 h-5 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all shrink-0"
+              className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 transition-all shrink-0"
               strokeWidth={2.25}
             />
           </div>
@@ -291,20 +291,20 @@ export default function ProtokollePage() {
 function FraktionCard({ fraktion, total, byTyp }: { fraktion: string; total: number; byTyp: Record<string, number> }) {
   const colors = PARTY_COLOR[fraktion] || PARTY_COLOR["fraktionslos"];
   return (
-    <div className="rounded-xl border border-zinc-200/70 bg-white px-4 py-3.5">
+    <div className="rounded-xl border border-border bg-card px-4 py-3.5">
       <div className="flex items-baseline justify-between mb-2">
         <div className="flex items-center gap-2 min-w-0">
           <span className={`w-2 h-2 rounded-full shrink-0 ${colors.dot}`} />
-          <span className="text-[13px] font-semibold text-zinc-950 truncate" title={fraktion}>
+          <span className="text-[13px] font-semibold text-zinc-950 dark:text-zinc-50 truncate" title={fraktion}>
             {shortPartyName(fraktion)}
           </span>
         </div>
-        <span className="num text-[15px] font-semibold tracking-tight text-zinc-950">
+        <span className="num text-[15px] font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
           {total.toLocaleString("de-DE")}
         </span>
       </div>
       {/* Stacked typ bar */}
-      <div className="h-2 w-full rounded-full overflow-hidden flex bg-zinc-100">
+      <div className="h-2 w-full rounded-full overflow-hidden flex bg-zinc-100 dark:bg-zinc-800">
         {TYP_ORDER.map((slug, i) => {
           const v = byTyp[slug] || 0;
           if (!v) return null;
@@ -320,13 +320,13 @@ function FraktionCard({ fraktion, total, byTyp }: { fraktion: string; total: num
         })}
       </div>
       {/* Numeric breakdown */}
-      <div className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 text-[10.5px] text-zinc-500">
+      <div className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 text-[10.5px] text-zinc-500 dark:text-zinc-400">
         {TYP_ORDER.map((slug) => {
           const v = byTyp[slug] || 0;
           if (!v) return null;
           return (
             <span key={slug} className="whitespace-nowrap">
-              <span className="num font-medium text-zinc-700">{v.toLocaleString("de-DE")}</span>{" "}
+              <span className="num font-medium text-zinc-700 dark:text-zinc-300">{v.toLocaleString("de-DE")}</span>{" "}
               {PLENAR_TYPE_SLUG_LABEL[slug]}
             </span>
           );
@@ -338,12 +338,12 @@ function FraktionCard({ fraktion, total, byTyp }: { fraktion: string; total: num
 
 function TypLegend({ className = "" }: { className?: string }) {
   return (
-    <p className={`text-[10.5px] text-zinc-500 ${className}`}>
+    <p className={`text-[10.5px] text-zinc-500 dark:text-zinc-400 ${className}`}>
       Reihenfolge der Bar-Segmente (dunkel → hell):{" "}
       {TYP_ORDER.map((slug, i) => (
         <span key={slug}>
           {i > 0 && " · "}
-          <span className="text-zinc-700 font-medium">{PLENAR_TYPE_SLUG_LABEL[slug]}</span>
+          <span className="text-zinc-700 dark:text-zinc-300 font-medium">{PLENAR_TYPE_SLUG_LABEL[slug]}</span>
         </span>
       ))}
       . Hover für Detail.
@@ -354,18 +354,18 @@ function TypLegend({ className = "" }: { className?: string }) {
 function Stat({ label, value, hint, href }: { label: string; value: string; hint?: string; href?: string }) {
   const inner = (
     <>
-      <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 leading-tight inline-flex items-center gap-1">
+      <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 leading-tight inline-flex items-center gap-1">
         {label}
         {href && <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" strokeWidth={2.25} />}
       </span>
-      <span className="num text-xl font-semibold tracking-tight text-zinc-950">{value}</span>
+      <span className="num text-xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">{value}</span>
     </>
   );
   if (href) {
     return (
       <Link
         href={href}
-        className="group px-4 py-5 flex flex-col gap-0.5 hover:bg-zinc-50 transition-colors"
+        className="group px-4 py-5 flex flex-col gap-0.5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
         title={hint}
       >
         {inner}
@@ -381,7 +381,7 @@ function Stat({ label, value, hint, href }: { label: string; value: string; hint
 
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={`bg-white rounded-2xl border border-zinc-200/70 p-6 ${className}`}>
+    <section className={`bg-card rounded-2xl border border-border p-6 ${className}`}>
       {children}
     </section>
   );
@@ -389,7 +389,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 
 function SectionLabel({ children, className = "mb-5" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={`text-[11px] font-medium uppercase tracking-wider text-zinc-500 ${className}`}>
+    <h2 className={`text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 ${className}`}>
       {children}
     </h2>
   );
@@ -401,18 +401,18 @@ function BarRow({ label, value, max }: { label: string; value: number; max: numb
   return (
     <div className="grid grid-cols-[minmax(8rem,14rem)_1fr_3rem] items-center gap-3 py-0.5">
       <span
-        className="text-[12px] font-medium text-zinc-700 truncate"
+        className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300 truncate"
         title={label}
       >
         {label}
       </span>
-      <div className="h-5 bg-zinc-50 rounded-md overflow-hidden">
+      <div className="h-5 bg-zinc-50 dark:bg-zinc-800 rounded-md overflow-hidden">
         <div
           className="h-full bg-zinc-900/[0.08] rounded-md"
           style={{ width: `${Math.max((value / max) * 100, 3)}%` }}
         />
       </div>
-      <span className="num text-[12px] font-semibold text-zinc-950 text-right">
+      <span className="num text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 text-right">
         {value.toLocaleString("de-DE")}
       </span>
     </div>

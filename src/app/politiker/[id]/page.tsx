@@ -15,9 +15,13 @@ import {
   getBerlinParlamentarischeArbeit,
   getBerlinSpeechesByPolitician,
   getQaPaareForPolitician,
+  getPoliticianKompakt,
   type PoliticianDrucksacheRow,
   type BerlinParlItem,
 } from "@/lib/db";
+import { cookies } from "next/headers";
+import { KompaktKarte } from "@/components/KompaktKarte";
+import { AnsichtToggle } from "@/components/AnsichtToggle";
 import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 import { PoliticianCV, type CV, type SourceConflict } from "@/components/PoliticianCV";
 import { resolveBerlinTonality } from "@/lib/berlin-reden-tonality";
@@ -32,6 +36,7 @@ import {
   AlertCircle,
   ChevronDown,
   PlayCircle,
+  ArrowLeft,
 } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
@@ -143,6 +148,35 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
     redirect(`/politiker/${politicianId}?${qs.toString()}`);
   }
 
+  // === Globaler Ansichts-Modus (Cookie, Default Kompakt) ===
+  // Kompakt = scan-first Steckbrief; Detailliert = volles Dossier (unten).
+  // Vor den schweren Gettern: im Kompakt-Modus sparen wir uns die Volllast.
+  const ansicht =
+    (await cookies()).get("ansicht")?.value === "detailliert" ? "detailliert" : "kompakt";
+  if (ansicht === "kompakt") {
+    const kompakt = getPoliticianKompakt(politicianId);
+    if (kompakt) {
+      return (
+        <div className="page-wash min-h-screen">
+          <div className="page-shell fade-in-up">
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <Link
+                href="/politiker"
+                className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
+                Alle Abgeordneten
+              </Link>
+              <AnsichtToggle current="kompakt" />
+            </div>
+            <KompaktKarte k={kompakt} />
+          </div>
+        </div>
+      );
+    }
+    // Fallback: kein Kompakt-Datensatz (z. B. Spezialfall) → Detailliert rendern.
+  }
+
   const notes = getNotesForPolitician(politicianId);
   const qaPaare = getQaPaareForPolitician(politicianId);
   const speechInfo = getSpeechSummaryInfo(politicianId);
@@ -241,6 +275,9 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   return (
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
+        <div className="flex justify-end mb-4">
+          <AnsichtToggle current="detailliert" />
+        </div>
         {/* Profile Header */}
         <div className="mb-12">
           <div className="flex flex-col sm:flex-row gap-6 items-start">
@@ -276,12 +313,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 ) : avatar;
               })()}
               {!politician.photo_url && (
-                <p className="text-[10px] leading-tight text-zinc-500 max-w-[128px] text-center sm:text-left">
+                <p className="text-[10px] leading-tight text-zinc-500 dark:text-zinc-400 max-w-[128px] text-center sm:text-left">
                   Kein Foto – keine eindeutige Bildlizenz
                 </p>
               )}
               {politician.photo_url && (politician.photo_author || politician.photo_license) && (
-                <p className="text-[10px] leading-tight text-zinc-400 max-w-[140px] text-center sm:text-left">
+                <p className="text-[10px] leading-tight text-zinc-400 dark:text-zinc-500 max-w-[140px] text-center sm:text-left">
                   © {(() => {
                     if (!politician.photo_author) return "unbekannt";
                     const t = truncateAuthor(politician.photo_author);
@@ -295,7 +332,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           href={politician.photo_license_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-zinc-700 hover:underline transition-colors"
+                          className="hover:text-zinc-700 dark:hover:text-zinc-300 hover:underline transition-colors"
                         >
                           {politician.photo_license}
                         </a>
@@ -309,21 +346,21 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-baseline gap-3 mb-1 flex-wrap">
-                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+                <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   {partyLabel}
                 </span>
                 {hasVoteData && (
                   <>
-                    <span className="text-zinc-300">·</span>
+                    <span className="text-zinc-300 dark:text-zinc-600">·</span>
                     <span
-                      className="text-[12px] text-zinc-500 cursor-help underline decoration-dotted decoration-zinc-300 underline-offset-4"
+                      className="text-[12px] text-zinc-500 dark:text-zinc-400 cursor-help underline decoration-dotted decoration-zinc-300 dark:decoration-zinc-600 underline-offset-4"
                       title="Anteil an namentlichen Bundestags-Abstimmungen, bei denen Stimme abgegeben wurde (Ja/Nein/Enthaltung). Plenaranwesenheit allgemein wird nicht erfasst."
                     >
                       Namentliche Abstimmungen{" "}
-                      <span className="num font-semibold text-zinc-950">
+                      <span className="num font-semibold text-zinc-950 dark:text-zinc-50">
                         {voteStats.attendanceRate.toFixed(0)} %
                       </span>{" "}
-                      <span className="num text-zinc-400">
+                      <span className="num text-zinc-400 dark:text-zinc-500">
                         · {voteStats.attended} / {voteStats.totalPolls}
                       </span>
                     </span>
@@ -361,7 +398,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 </div>
               )}
 
-              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-zinc-500 mb-4">
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-zinc-500 dark:text-zinc-400 mb-4">
                 {politician.occupation && <span>{politician.occupation}</span>}
                 {politician.residence && <span>{politician.residence}</span>}
                 {politician.year_of_birth && <span className="num">*{politician.year_of_birth}</span>}
@@ -374,7 +411,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 {speechInfo && (
                   <Link
                     href={`/protokolle/redner/${encodeURIComponent(speechInfo.speaker)}`}
-                    className="inline-flex items-center gap-1 text-zinc-700 hover:text-zinc-950 transition-colors font-medium"
+                    className="inline-flex items-center gap-1 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium"
                   >
                     <Mic className="w-3 h-3" strokeWidth={2.25} />
                     <span className="num">{speechInfo.count}</span> Plenarbeiträge
@@ -385,7 +422,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.homepage_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     {new URL(politician.homepage_url).hostname.replace(/^www\./, "")}
@@ -396,7 +433,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.bio_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                     title="Wikipedia (deutsch) · CC BY-SA"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -408,7 +445,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.bundestag_bio_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                    className="inline-flex items-center gap-1 text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     bundestag.de
@@ -419,7 +456,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.bundesregierung_bio_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     bundesregierung.de
@@ -430,7 +467,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={`https://twitter.com/${politician.twitter_handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     @{politician.twitter_handle}
@@ -441,7 +478,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={`https://instagram.com/${politician.instagram_handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     Instagram
@@ -452,7 +489,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={`https://facebook.com/${politician.facebook_handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     Facebook
@@ -463,7 +500,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={`https://tiktok.com/@${politician.tiktok_handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     TikTok
@@ -474,7 +511,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                     href={politician.abgeordnetenwatch_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-950 transition-colors"
+                    className="inline-flex items-center gap-1 text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                     abgeordnetenwatch
@@ -543,22 +580,22 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
 
         {/* Prominente Notes (rolle / sonderfall) — oben mit Amber-Highlight */}
         {notes.filter((n) => n.kategorie !== "sonstiges" && n.kategorie !== "funktion").length > 0 && (
-          <Card className="mb-6 border-amber-200/70 bg-amber-50/40">
+          <Card className="mb-6 border-amber-200/70 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/40">
             {notes
               .filter((n) => n.kategorie !== "sonstiges" && n.kategorie !== "funktion")
               .map((note) => (
                 <div key={note.id}>
                   <div className="flex items-center gap-2 mb-2">
-                    <AlertCircle className="w-4 h-4 text-amber-600" strokeWidth={2.25} />
-                    <h2 className="text-[13px] font-semibold text-amber-900 uppercase tracking-wider">
+                    <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" strokeWidth={2.25} />
+                    <h2 className="text-[13px] font-semibold text-amber-900 dark:text-amber-300 uppercase tracking-wider">
                       {note.titel}
                     </h2>
                   </div>
-                  <div className="text-[14px] text-amber-900 leading-relaxed whitespace-pre-line">
+                  <div className="text-[14px] text-amber-900 dark:text-amber-300 leading-relaxed whitespace-pre-line">
                     {note.inhalt}
                   </div>
                   {(note.datum_von || note.datum_bis) && (
-                    <p className="text-[11px] text-amber-700/70 mt-2 num">
+                    <p className="text-[11px] text-amber-700/70 dark:text-amber-400/70 mt-2 num">
                       {note.datum_von && `Seit ${new Date(note.datum_von + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
                       {note.datum_von && note.datum_bis && " — "}
                       {note.datum_bis && `bis ${new Date(note.datum_bis + "T00:00:00").toLocaleDateString("de-DE", { month: "long", year: "numeric" })}`}
@@ -600,19 +637,19 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               {parlArbeit.map((item) => (
                 <article
                   key={item.id}
-                  className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                  className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-3 px-3 py-2.5 rounded-lg border border-border hover:border-border transition-colors"
                 >
-                  <span className="shrink-0 sm:w-24 text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                  <span className="shrink-0 sm:w-24 text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                     {shortenTyp(item.typ)}
                   </span>
                   <div className="flex-1 min-w-0">
                     {item.thema && (
-                      <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
+                      <p className="text-[13.5px] text-zinc-950 dark:text-zinc-50 line-clamp-2 mb-1 leading-snug">
                         {item.thema}
                       </p>
                     )}
                     {item.zusammenfassung && (
-                      <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-1.5">
+                      <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-1.5">
                         {item.zusammenfassung}
                       </p>
                     )}
@@ -621,7 +658,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         <TonalityBadge slug={item.tonalitaet} />
                         {item.has_correction && (
                           <span
-                            className="text-[9px] uppercase tracking-wider text-zinc-400 font-semibold"
+                            className="text-[9px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold"
                             title="Bias-Audit: korrigiert (siehe Methodik)"
                           >
                             v2.1
@@ -636,7 +673,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         {item.rede_id && item.speaker_variant && (
                           <a
                             href={`/protokolle/redner/${encodeURIComponent(item.speaker_variant)}#speech-${item.rede_id}`}
-                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                            className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] underline decoration-[#1a3e72]/30 dark:decoration-[#8fb3e6]/30 hover:decoration-[#1a3e72] dark:hover:decoration-[#8fb3e6] underline-offset-2 transition-colors"
                           >
                             Volle Analyse →
                           </a>
@@ -646,7 +683,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                             href={`https://www.bundestag.de/mediathek?videoid=${item.mediathek_fvid}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                            className="inline-flex items-center gap-1 text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
                           >
                             <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
                             Video
@@ -655,7 +692,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         )}
                       </p>
                     )}
-                    <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
+                    <div className="flex items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                       {item.datum && (
                         <span>
                           {new Date(item.datum + "T00:00:00").toLocaleDateString("de-DE", {
@@ -670,7 +707,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           <span className="text-zinc-200">·</span>
                           <Link
                             href={`/protokolle/sitzung/${item.sitzung}`}
-                            className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/30 hover:decoration-[#1a3e72] underline-offset-2 transition-colors"
+                            className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] underline decoration-[#1a3e72]/30 dark:decoration-[#8fb3e6]/30 hover:decoration-[#1a3e72] dark:hover:decoration-[#8fb3e6] underline-offset-2 transition-colors"
                           >
                             Sitzung {item.sitzung}
                           </Link>
@@ -692,7 +729,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                               daneben "PDF" → direkter Original-PDF-Link. */}
                           <Link
                             href={`/aktivitaeten/${item.drucksache_nr.replace(/\//g, "-")}`}
-                            className="text-zinc-700 hover:text-zinc-950 transition-colors"
+                            className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                           >
                             Drucksache {item.drucksache_nr}
                           </Link>
@@ -701,7 +738,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                               href={item.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                              className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                             >
                               PDF
                               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -716,7 +753,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                             href={item.source_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                            className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                           >
                             PDF
                             <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -743,20 +780,20 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
             {/* Stats-Strip */}
             <div className="flex flex-wrap gap-x-5 gap-y-1.5 mb-3 text-[12px]">
               {berlinReden.stats.debatte > 0 && (
-                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.debatte}</span> Debatten</span>
+                <span className="text-zinc-600 dark:text-zinc-300"><span className="num font-semibold text-zinc-950 dark:text-zinc-50">{berlinReden.stats.debatte}</span> Debatten</span>
               )}
               {berlinReden.stats.fragestunde_frage > 0 && (
-                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.fragestunde_frage}</span> Fragen</span>
+                <span className="text-zinc-600 dark:text-zinc-300"><span className="num font-semibold text-zinc-950 dark:text-zinc-50">{berlinReden.stats.fragestunde_frage}</span> Fragen</span>
               )}
               {berlinReden.stats.fragestunde_antwort > 0 && (
-                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.fragestunde_antwort}</span> Antworten</span>
+                <span className="text-zinc-600 dark:text-zinc-300"><span className="num font-semibold text-zinc-950 dark:text-zinc-50">{berlinReden.stats.fragestunde_antwort}</span> Antworten</span>
               )}
               {berlinReden.stats.persoenliche_erklaerung > 0 && (
-                <span className="text-zinc-600"><span className="num font-semibold text-zinc-950">{berlinReden.stats.persoenliche_erklaerung}</span> Pers. Erkl.</span>
+                <span className="text-zinc-600 dark:text-zinc-300"><span className="num font-semibold text-zinc-950 dark:text-zinc-50">{berlinReden.stats.persoenliche_erklaerung}</span> Pers. Erkl.</span>
               )}
             </div>
             {/* Transparenz-Hinweis: KI-Analyse-Status */}
-            <p className="text-[11px] text-zinc-500 mb-4 italic">
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mb-4 italic">
               KI-Zusammenfassung + Tonalität via Haiku 4.5 (Methodologie Berlin-v1, Stand 2026-05-23).
               Wo Analyse fehlt: Volltext-Vorschau aus dem PDF.
             </p>
@@ -767,29 +804,29 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 return (
                   <article
                     key={it.speech_id}
-                    className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                    className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-border hover:border-border transition-colors"
                   >
                     <div className="flex flex-col items-start gap-0.5 shrink-0 w-24">
-                      <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                      <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                         {berlinSpeechTypeLabel(it.speech_type)}
                       </span>
-                      <span className="text-[10px] text-zinc-400">
+                      <span className="text-[10px] text-zinc-400 dark:text-zinc-500">
                         Plenarprotokoll
                       </span>
                     </div>
                     <div className="flex-1 min-w-0">
                       {it.top_titel && (
-                        <p className="text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug">
+                        <p className="text-[13.5px] text-zinc-950 dark:text-zinc-50 line-clamp-2 mb-1 leading-snug">
                           {it.top_marker ? `${it.top_marker} ` : ""}{it.top_titel}
                         </p>
                       )}
                       {/* Bevorzugt KI-Zusammenfassung; Fallback Volltext-Preview */}
                       {it.analysis?.zusammenfassung ? (
-                        <p className="text-[12.5px] text-zinc-700 leading-relaxed mb-1.5 line-clamp-3">
+                        <p className="text-[12.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed mb-1.5 line-clamp-3">
                           {stripBerlinSpeakerLead(it.analysis.zusammenfassung)}
                         </p>
                       ) : it.text_preview ? (
-                        <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-1.5 line-clamp-2">
+                        <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-1.5 line-clamp-2">
                           {it.text_preview}
                         </p>
                       ) : null}
@@ -808,13 +845,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                               {cfg.label}
                             </span>
                             {it.analysis.forderungen_count > 0 && (
-                              <span className="text-[10px] text-zinc-500" title="Anzahl der vom LLM erfassten Forderungen / Positionen">
+                              <span className="text-[10px] text-zinc-500 dark:text-zinc-400" title="Anzahl der vom LLM erfassten Forderungen / Positionen">
                                 {`${it.analysis.forderungen_count} Forderung${it.analysis.forderungen_count === 1 ? "" : "en"}`}
                               </span>
                             )}
                             {it.analysis.self_check_konfidenz && it.analysis.self_check_konfidenz !== "hoch" && (
                               <span
-                                className="text-[9px] uppercase tracking-wider text-zinc-400 font-semibold"
+                                className="text-[9px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold"
                                 title={`LLM-Selbst-Konfidenz: ${it.analysis.self_check_konfidenz}`}
                               >
                                 {it.analysis.self_check_konfidenz}-Konfidenz
@@ -823,7 +860,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           </div>
                         );
                       })()}
-                      <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
+                      <div className="flex items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                         {it.datum && (
                           <>
                             <span>
@@ -838,7 +875,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                         )}
                         <Link
                           href={`/parlamente/berlin/sitzung/${it.sitzung_nr}#rede-s-${it.speech_id}`}
-                          className="text-blue-700 hover:underline underline-offset-2 transition-colors"
+                          className="text-blue-700 dark:text-blue-400 hover:underline underline-offset-2 transition-colors"
                         >
                           Sitzung {it.sitzung_nr}
                         </Link>
@@ -855,7 +892,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                           href={it.lok_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                          className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                         >
                           PDF
                           <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -866,7 +903,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 );
               })}
               {berlinReden.stats.total > berlinReden.items.length && (
-                <p className="text-[11px] text-zinc-400 italic px-3 py-2">
+                <p className="text-[11px] text-zinc-400 dark:text-zinc-500 italic px-3 py-2">
                   + {berlinReden.stats.total - berlinReden.items.length} weitere Reden (nicht angezeigt)
                 </p>
               )}
@@ -905,14 +942,14 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 {items.map((it, i) => (
                   <article
                     key={`${it.dbid}-${i}`}
-                    className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors"
+                    className="flex items-start gap-3 px-3 py-2.5 rounded-lg border border-border hover:border-border transition-colors"
                   >
                     <div className="flex flex-col items-start gap-0.5 shrink-0 w-24">
-                      <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                      <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                         {berlinKatLabel(it)}
                       </span>
                       {it.datum && (
-                        <span className="num text-[10px] text-zinc-400">
+                        <span className="num text-[10px] text-zinc-400 dark:text-zinc-500">
                           {new Date(it.datum + "T00:00:00").toLocaleDateString("de-DE", {
                             day: "2-digit",
                             month: "2-digit",
@@ -925,12 +962,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {it.titel && (
                         <Link
                           href={`/parlamente/berlin/drucksache/${it.dbid}`}
-                          className="block text-[13.5px] text-zinc-950 line-clamp-2 mb-1 leading-snug hover:text-blue-700 transition-colors"
+                          className="block text-[13.5px] text-zinc-950 dark:text-zinc-50 line-clamp-2 mb-1 leading-snug hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                         >
                           {it.titel}
                         </Link>
                       )}
-                      <div className="flex items-center gap-2 text-[11px] text-zinc-400 flex-wrap num">
+                      <div className="flex items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                         {it.dokNr && <span>Drucksache {it.dokNr}</span>}
                         {it.sachgebiet && (
                           <>
@@ -945,7 +982,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                               href={it.lokUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                              className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                             >
                               PDF
                               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -957,7 +994,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                   </article>
                 ))}
                 {remaining > 0 && (
-                  <p className="text-[11px] text-zinc-400 italic px-3 py-2">
+                  <p className="text-[11px] text-zinc-400 dark:text-zinc-500 italic px-3 py-2">
                     + {remaining.toLocaleString("de-DE")} weitere
                   </p>
                 )}
@@ -969,23 +1006,23 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
         {/* Schriftliche Fragen (Einzelfragen + Antworten der Bundesregierung) */}
         {qaPaare.length > 0 && (
           <CollapsibleCard title="Schriftliche Fragen" count={qaPaare.length} className="mb-6">
-            <ul className="space-y-3">
+            <ul className="space-y-3 max-h-[640px] overflow-y-auto pr-1">
               {qaPaare.map((qa) => (
-                <li key={`${qa.drucksacheNr}-${qa.paarIndex}`} className="border-l-2 border-zinc-200 pl-3">
-                  {qa.frageText && <p className="text-[13px] text-zinc-800 leading-snug">{qa.frageText}</p>}
-                  <div className="flex items-center gap-2 text-[11px] text-zinc-400 mt-0.5 flex-wrap">
-                    <Link href={`/aktivitaeten/${qa.drucksacheNr.replace(/\//g, "-")}`} className="text-[#1a3e72] hover:text-[#0f2a52] transition-colors">
+                <li key={`${qa.drucksacheNr}-${qa.paarIndex}`} className="border-l-2 border-border pl-3">
+                  {qa.frageText && <p className="text-[13px] text-zinc-800 dark:text-zinc-200 leading-snug">{qa.frageText}</p>}
+                  <div className="flex items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 mt-0.5 flex-wrap">
+                    <Link href={`/aktivitaeten/${qa.drucksacheNr.replace(/\//g, "-")}`} className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors">
                       {qa.drucksacheNr}
                     </Link>
                     {qa.datum && <><span className="text-zinc-200">·</span><span className="num">{qa.datum}</span></>}
                   </div>
                   {qa.antwortText && (
                     <details className="group mt-1">
-                      <summary className="cursor-pointer text-[11px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
+                      <summary className="cursor-pointer text-[11px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] select-none list-none">
                         <span className="group-open:hidden">▶ Antwort der Bundesregierung</span>
                         <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
                       </summary>
-                      <p className="mt-1 text-[12px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">{qa.antwortText}</p>
+                      <p className="mt-1 text-[12px] text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line border-l-2 border-border pl-3">{qa.antwortText}</p>
                     </details>
                   )}
                 </li>
@@ -1024,12 +1061,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 {sidejobs.map((s) => (
                   <div
                     key={s.id}
-                    className="px-3 py-2.5 rounded-lg border border-zinc-100"
+                    className="px-3 py-2.5 rounded-lg border border-border"
                   >
-                    <p className="text-[13px] font-medium text-zinc-950 mb-1">
+                    <p className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50 mb-1">
                       {s.label}
                     </p>
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-zinc-500">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
                       {s.organization && <span>{s.organization}</span>}
                       {s.income_level && (
                         <>
@@ -1040,7 +1077,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       {s.income && s.income > 0 && (
                         <>
                           <span className="text-zinc-200">·</span>
-                          <span className="num font-medium text-zinc-700">
+                          <span className="num font-medium text-zinc-700 dark:text-zinc-300">
                             {s.income.toLocaleString("de-DE")} €
                           </span>
                         </>
@@ -1050,7 +1087,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 ))}
               </div>
             ) : (
-              <p className="text-[13px] text-zinc-400 py-6 text-center">
+              <p className="text-[13px] text-zinc-400 dark:text-zinc-500 py-6 text-center">
                 Keine Nebeneinkünfte gemeldet.
               </p>
             )}
@@ -1062,12 +1099,12 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 {committees.map((c) => (
                   <div
                     key={c.id}
-                    className="flex items-baseline gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 transition-colors"
+                    className="flex items-baseline gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                   >
-                    <span className="text-[13px] font-medium text-zinc-950">
+                    <span className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50">
                       {c.committee_label}
                     </span>
-                    <span className="text-[11px] text-zinc-400 uppercase tracking-wider">
+                    <span className="text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
                       {c.committee_role === "chairperson" ? "Vorsitz"
                         : c.committee_role === "deputy_chairperson" ? "Stv. Vorsitz"
                         : c.committee_role === "regular_member" ? "Ord. Mitglied"
@@ -1078,7 +1115,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 ))}
               </div>
             ) : (
-              <p className="text-[13px] text-zinc-400 py-6 text-center">
+              <p className="text-[13px] text-zinc-400 dark:text-zinc-500 py-6 text-center">
                 {hasAnyFunktion
                   ? "Keine Ausschuss-Mitgliedschaften — Schwerpunkt liegt auf der oben genannten Funktion."
                   : "Keine Ausschuss-Mitgliedschaften gefunden."}
@@ -1094,15 +1131,15 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
               {votes.slice(0, 20).map((v) => (
                 <div
                   key={v.id}
-                  className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 transition-colors"
+                  className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                 >
                   <span
                     className={
                       "text-[10px] font-medium uppercase tracking-wider w-16 shrink-0 " +
-                      (v.vote === "yes" ? "text-emerald-700"
-                        : v.vote === "no" ? "text-red-700"
-                        : v.vote === "abstain" ? "text-amber-700"
-                        : "text-zinc-400")
+                      (v.vote === "yes" ? "text-emerald-700 dark:text-emerald-400"
+                        : v.vote === "no" ? "text-red-700 dark:text-red-400"
+                        : v.vote === "abstain" ? "text-amber-700 dark:text-amber-400"
+                        : "text-zinc-400 dark:text-zinc-500")
                     }
                   >
                     {v.vote === "yes" ? "Ja"
@@ -1112,7 +1149,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                   </span>
                   <Link
                     href={`/abstimmungen/${v.poll_id}`}
-                    className="text-[13px] text-zinc-700 flex-1 truncate hover:text-zinc-950 hover:underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                    className="text-[13px] text-zinc-700 dark:text-zinc-300 flex-1 truncate hover:text-zinc-950 dark:hover:text-zinc-50 hover:underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
                   >
                     {v.poll_label}
                   </Link>
@@ -1122,7 +1159,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Quelle (Bundestag.de)"
-                      className="text-zinc-400 hover:text-zinc-950 transition-colors shrink-0"
+                      className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors shrink-0"
                     >
                       <ExternalLink className="w-3.5 h-3.5" strokeWidth={2.25} />
                     </a>
@@ -1140,15 +1177,15 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
 function Stat2({ label, value }: { label: string; value: number }) {
   return (
     <span className="inline-flex items-baseline gap-1.5">
-      <span className="num font-semibold text-zinc-950">{value}</span>
-      <span className="text-zinc-500">{label}</span>
+      <span className="num font-semibold text-zinc-950 dark:text-zinc-50">{value}</span>
+      <span className="text-zinc-500 dark:text-zinc-400">{label}</span>
     </span>
   );
 }
 
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={`bg-white rounded-2xl border border-zinc-200/70 p-6 ${className}`}>
+    <section className={`bg-card rounded-2xl border border-border p-6 ${className}`}>
       {children}
     </section>
   );
@@ -1157,11 +1194,11 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 function SectionHeader({ label, count }: { label: string; count?: number }) {
   return (
     <div className="flex items-baseline justify-between mb-5">
-      <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+      <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         {label}
       </h2>
       {count !== undefined && (
-        <span className="num text-[11px] text-zinc-400">{count}</span>
+        <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{count}</span>
       )}
     </div>
   );
@@ -1183,17 +1220,17 @@ function CollapsibleCard({
   className?: string;
 }) {
   return (
-    <section className={`bg-white rounded-2xl border border-zinc-200/70 ${className}`}>
+    <section className={`bg-card rounded-2xl border border-border ${className}`}>
       <details open className="group/details">
-        <summary className="list-none cursor-pointer flex items-baseline justify-between px-6 pt-6 pb-5 hover:bg-zinc-50/40 rounded-2xl transition-colors select-none">
+        <summary className="list-none cursor-pointer flex items-baseline justify-between px-6 pt-6 pb-5 hover:bg-zinc-50/40 dark:hover:bg-zinc-800/40 rounded-2xl transition-colors select-none">
           <div className="flex items-baseline gap-3">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{title}</h2>
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">{title}</h2>
             {count !== undefined && (
-              <span className="num text-[11px] text-zinc-400">{count}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{count}</span>
             )}
           </div>
           <ChevronDown
-            className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/details:rotate-0 -rotate-90"
+            className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 transition-transform group-open/details:rotate-0 -rotate-90"
             strokeWidth={2.5}
             aria-hidden
           />
@@ -1211,15 +1248,15 @@ const voteLabel: Record<string, string> = {
 };
 
 const voteColor: Record<string, string> = {
-  yes: "text-emerald-700 bg-emerald-50 border-emerald-200",
-  no: "text-rose-700 bg-rose-50 border-rose-200",
-  abstain: "text-amber-700 bg-amber-50 border-amber-200",
+  yes: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/50",
+  no: "text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900/50",
+  abstain: "text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-900/50",
 };
 
 function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviationResult }) {
   if (data.is_fractionless) {
     return (
-      <p className="text-[13.5px] text-zinc-600 leading-relaxed">
+      <p className="text-[13.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
         Fraktionslos — Abweichungen vom Fraktionskonsens nicht messbar.
       </p>
     );
@@ -1229,8 +1266,8 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
 
   if (data.deviations.length === 0) {
     return (
-      <p className="text-[13.5px] text-zinc-700 leading-relaxed">
-        Folgte in <span className="font-medium text-zinc-950">allen {N}</span>{" "}
+      <p className="text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
+        Folgte in <span className="font-medium text-zinc-950 dark:text-zinc-50">allen {N}</span>{" "}
         aktiven namentlichen Abstimmungen der Fraktionslinie.
       </p>
     );
@@ -1238,23 +1275,23 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
 
   return (
     <div>
-      <p className="text-[13.5px] text-zinc-700 leading-relaxed mb-4">
-        In <span className="num font-medium text-zinc-950">{data.deviations.length}</span> von{" "}
-        <span className="num font-medium text-zinc-950">{N}</span> aktiven namentlichen Abstimmungen
+      <p className="text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+        In <span className="num font-medium text-zinc-950 dark:text-zinc-50">{data.deviations.length}</span> von{" "}
+        <span className="num font-medium text-zinc-950 dark:text-zinc-50">{N}</span> aktiven namentlichen Abstimmungen
         anders als die <span className="font-medium">{data.fraction_label?.replace(/\s*\(Bundestag\s+\d{4}\s*-\s*\d{4}\)\s*$/, "").trim()}</span>-Fraktion gestimmt:
       </p>
       <ul className="space-y-1.5 max-h-[480px] overflow-y-auto pr-1">
         {data.deviations.map((d) => (
-          <li key={d.poll_id} className="flex items-start gap-3 px-3 py-2 rounded-lg border border-zinc-100 hover:border-zinc-200 transition-colors">
+          <li key={d.poll_id} className="flex items-start gap-3 px-3 py-2 rounded-lg border border-border hover:border-border transition-colors">
             <div className="flex-1 min-w-0">
               <Link
                 href={`/abstimmungen/${d.poll_id}`}
-                className="block text-[13px] font-medium text-zinc-950 hover:underline underline-offset-2 leading-snug line-clamp-2"
+                className="block text-[13px] font-medium text-zinc-950 dark:text-zinc-50 hover:underline underline-offset-2 leading-snug line-clamp-2"
               >
                 {d.poll_label ?? `Abstimmung #${d.poll_id}`}
               </Link>
               {d.poll_date && (
-                <p className="text-[11px] text-zinc-400 num mt-0.5">
+                <p className="text-[11px] text-zinc-400 dark:text-zinc-500 num mt-0.5">
                   {new Date(d.poll_date + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
                 </p>
               )}
@@ -1263,7 +1300,7 @@ function FractionDeviations({ data }: { data: import("@/lib/db").FractionDeviati
               <span className={`inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded border ${voteColor[d.majority_vote] ?? ""}`} title={`Fraktions-Mehrheit: ${voteLabel[d.majority_vote]}`}>
                 Frakt. {voteLabel[d.majority_vote]}
               </span>
-              <span className="text-zinc-300 text-[10px]">→</span>
+              <span className="text-zinc-300 dark:text-zinc-600 text-[10px]">→</span>
               <span className={`inline-flex items-center text-[10px] font-semibold px-1.5 py-0.5 rounded border ${voteColor[d.personal_vote] ?? ""}`} title={`Persönlicher Vote: ${voteLabel[d.personal_vote]}`}>
                 MdB {voteLabel[d.personal_vote]}
               </span>
@@ -1299,23 +1336,23 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
           <li key={`${it.drucksache_nr}-${it.aktivitaetsart}`}>
             <a
               href={`/aktivitaeten/${slug}`}
-              className="block rounded-lg border border-zinc-200/70 bg-white hover:bg-zinc-50/50 hover:border-zinc-300 transition-colors px-4 py-3 group"
+              className="block rounded-lg border border-border bg-card hover:bg-zinc-50/50 dark:hover:bg-zinc-800/50 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors px-4 py-3 group"
             >
-              <div className="flex items-baseline gap-2 mb-1 flex-wrap text-[10.5px] uppercase tracking-wider font-medium text-zinc-500">
-                <span className="font-mono text-zinc-950 num">{it.drucksache_nr}</span>
-                <span className="text-zinc-300">·</span>
+              <div className="flex items-baseline gap-2 mb-1 flex-wrap text-[10.5px] uppercase tracking-wider font-medium text-zinc-500 dark:text-zinc-400">
+                <span className="font-mono text-zinc-950 dark:text-zinc-50 num">{it.drucksache_nr}</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
                 <span>{klasseShort}</span>
                 {datumF && (
                   <>
-                    <span className="text-zinc-300">·</span>
-                    <span className="num normal-case font-normal tracking-normal text-zinc-500">{datumF}</span>
+                    <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                    <span className="num normal-case font-normal tracking-normal text-zinc-500 dark:text-zinc-400">{datumF}</span>
                   </>
                 )}
                 {it.total_mitzeichner > 1 && (
                   <>
-                    <span className="text-zinc-300">·</span>
-                    <span className="normal-case font-normal tracking-normal text-zinc-500">
-                      mit <span className="num font-medium text-zinc-700">{it.total_mitzeichner - 1}</span> weiteren
+                    <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                    <span className="normal-case font-normal tracking-normal text-zinc-500 dark:text-zinc-400">
+                      mit <span className="num font-medium text-zinc-700 dark:text-zinc-300">{it.total_mitzeichner - 1}</span> weiteren
                     </span>
                   </>
                 )}
@@ -1326,25 +1363,25 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
                 )}
               </div>
               {it.titel && (
-                <p className="text-[13.5px] text-zinc-950 leading-snug font-medium line-clamp-2 mb-1 group-hover:underline underline-offset-2">
+                <p className="text-[13.5px] text-zinc-950 dark:text-zinc-50 leading-snug font-medium line-clamp-2 mb-1 group-hover:underline underline-offset-2">
                   {it.titel}
                 </p>
               )}
               {it.zusammenfassung && (
-                <p className="text-[12.5px] text-zinc-500 leading-relaxed line-clamp-2 mb-1.5">
+                <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-2 mb-1.5">
                   {it.zusammenfassung}
                 </p>
               )}
               {(themen.length > 0 || it.answer_drucksache_nr) && (
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {themen.map((t) => (
-                    <span key={t} className="text-[10.5px] text-zinc-500 bg-zinc-100 px-1.5 py-0.5 rounded">
+                    <span key={t} className="text-[10.5px] text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">
                       {t}
                     </span>
                   ))}
                   {it.answer_drucksache_nr && (
                     <span
-                      className="text-[10.5px] text-emerald-800 bg-emerald-50 border border-emerald-200/70 px-1.5 py-0.5 rounded font-medium normal-case tracking-normal"
+                      className="text-[10.5px] text-emerald-800 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/70 dark:border-emerald-900/50 px-1.5 py-0.5 rounded font-medium normal-case tracking-normal"
                       title="Antwort der Bundesregierung in unserer DB — siehe Detail-Seite"
                     >
                       ✓ Antwort <span className="font-mono num">{it.answer_drucksache_nr}</span>

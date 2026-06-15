@@ -83,15 +83,15 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
             Aktivitäten
           </h1>
           <div className="flex items-baseline gap-2">
-            <span className="num text-[15px] text-zinc-950 font-medium">
+            <span className="num text-[15px] text-zinc-950 dark:text-zinc-50 font-medium">
               {total.toLocaleString("de-DE")}
             </span>
-            <span className="text-[13px] text-zinc-500">
+            <span className="text-[13px] text-zinc-500 dark:text-zinc-400">
               Aktivitäten{artFilter ? ` · ${artFilter}` : ""} · 21. Wahlperiode
             </span>
           </div>
-          <p className="mt-1.5 text-[11.5px] text-zinc-400">
-            Datenstand: 21. Wahlperiode (ab 31.03.2025) — frühere Wahlperioden (WP18–20) noch nicht eingespielt, keine wahlperioden-übergreifenden Trends. Mehr in der <a href="/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
+          <p className="mt-1.5 text-[11.5px] text-zinc-400 dark:text-zinc-500">
+            Datenstand: 21. Wahlperiode (ab 31.03.2025) — frühere Wahlperioden (WP18–20) noch nicht eingespielt, keine wahlperioden-übergreifenden Trends. Mehr in der <a href="/methodik" className="underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-700 dark:hover:decoration-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Methodik</a>.
           </p>
         </div>
 
@@ -101,10 +101,10 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
         <div className="mt-6 mb-8 flex flex-wrap gap-x-5 gap-y-2 text-[12px]">
           {activityTypes.slice(0, 8).map((t) => (
             <div key={t.art} className="inline-flex items-baseline gap-1.5">
-              <span className="num font-semibold text-zinc-950">
+              <span className="num font-semibold text-zinc-950 dark:text-zinc-50">
                 {t.count.toLocaleString("de-DE")}
               </span>
-              <span className="text-zinc-500">{t.art}</span>
+              <span className="text-zinc-500 dark:text-zinc-400">{t.art}</span>
             </div>
           ))}
         </div>
@@ -130,43 +130,43 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
               const fraktionLabel = a.party_set.length === 1
                 ? `(${a.party_set[0]})`
                 : `aus ${a.party_set.length} Fraktionen (${a.party_set.join(", ")})`;
-              const cardClass = "card-hover bg-white rounded-xl border border-zinc-200/70 p-4 block";
+              const cardClass = "card-hover bg-card rounded-xl border border-border p-4 block";
               const cardInner = (
                 <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-200/70 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon className="w-3.5 h-3.5 text-zinc-700" strokeWidth={2.25} />
+                    <div className="w-8 h-8 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-border flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" strokeWidth={2.25} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                        <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                        <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                           {a.aktivitaetsart}
                         </span>
                         {a.urheber && (
                           <>
-                            <span className="text-[11px] text-zinc-400">·</span>
-                            <span className="text-[11px] font-medium text-zinc-500">
+                            <span className="text-[11px] text-zinc-400 dark:text-zinc-500">·</span>
+                            <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
                               {a.urheber}
                             </span>
                           </>
                         )}
                       </div>
                       {a.thema && (
-                        <p className="text-[14px] font-semibold text-zinc-950 leading-snug mb-1.5 line-clamp-2">
+                        <p className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug mb-1.5 line-clamp-2">
                           {a.thema}
                         </p>
                       )}
-                      <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 flex-wrap num">
+                      <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                         {dateStr && <span>{dateStr}</span>}
                         {a.drucksache_nr && (
                           <>
                             <span className="text-zinc-200">·</span>
-                            <span className="text-zinc-700">
+                            <span className="text-zinc-700 dark:text-zinc-300">
                               {a.herausgeber}-Drucksache {a.drucksache_nr}
                             </span>
                           </>
                         )}
                         <span className="text-zinc-200">·</span>
-                        <span className="text-zinc-600">
+                        <span className="text-zinc-600 dark:text-zinc-300">
                           {personLabel} {fraktionLabel}
                         </span>
                       </div>
@@ -189,42 +189,42 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
             return (
               <article
                 key={a.key}
-                className="card-hover bg-white rounded-xl border border-zinc-200/70 p-4"
+                className="card-hover bg-card rounded-xl border border-border p-4"
               >
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-200/70 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon className="w-3.5 h-3.5 text-zinc-700" strokeWidth={2.25} />
+                  <div className="w-8 h-8 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-border flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" strokeWidth={2.25} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-2 flex-wrap mb-1">
                       {hasPolitician ? (
                         <Link
                           href={`/politiker/${a.politician_id}`}
-                          className="font-semibold text-[14px] text-zinc-950 hover:underline"
+                          className="font-semibold text-[14px] text-zinc-950 dark:text-zinc-50 hover:underline"
                         >
                           {a.pol_first_name} {a.pol_last_name}
                         </Link>
                       ) : (
-                        <span className="font-semibold text-[14px] text-zinc-950">
+                        <span className="font-semibold text-[14px] text-zinc-950 dark:text-zinc-50">
                           {a.titel.split(",")[0]}
                         </span>
                       )}
                       {a.pol_party && (
-                        <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+                        <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                           {a.pol_party}
                         </span>
                       )}
-                      <span className="text-[11px] text-zinc-400">·</span>
-                      <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                      <span className="text-[11px] text-zinc-400 dark:text-zinc-500">·</span>
+                      <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                         {a.aktivitaetsart}
                       </span>
                     </div>
                     {a.thema && (
-                      <p className="text-[13px] text-zinc-600 mb-1.5 line-clamp-2 leading-relaxed">
+                      <p className="text-[13px] text-zinc-600 dark:text-zinc-300 mb-1.5 line-clamp-2 leading-relaxed">
                         {a.thema}
                       </p>
                     )}
-                    <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 flex-wrap num">
+                    <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                       {dateStr && <span>{dateStr}</span>}
                       {a.drucksache_nr && (
                         <>
@@ -234,7 +234,7 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
                               href={a.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#1a3e72] hover:text-[#0f2a52] inline-flex items-center gap-1 transition-colors"
+                              className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] inline-flex items-center gap-1 transition-colors"
                             >
                               {a.herausgeber}-Drucksache {a.drucksache_nr}
                               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -266,30 +266,30 @@ export default async function AktivitaetenPage({ searchParams }: Props) {
             {page > 1 ? (
               <Link
                 href={`/aktivitaeten?${baseParams.toString()}&seite=${page - 1}`}
-                className="flex items-center gap-1 text-[13px] font-medium text-zinc-700 hover:text-zinc-950 px-3 py-1.5 rounded-md hover:bg-zinc-100 transition-colors"
+                className="flex items-center gap-1 text-[13px] font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100 px-3 py-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <ChevronLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
                 Zurück
               </Link>
             ) : (
-              <span className="flex items-center gap-1 text-[13px] text-zinc-300 px-3 py-1.5">
+              <span className="flex items-center gap-1 text-[13px] text-zinc-300 dark:text-zinc-600 px-3 py-1.5">
                 <ChevronLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
                 Zurück
               </span>
             )}
-            <span className="text-[12px] text-zinc-500 num">
+            <span className="text-[12px] text-zinc-500 dark:text-zinc-400 num">
               Seite {page} von {totalPages.toLocaleString("de-DE")}
             </span>
             {page < totalPages ? (
               <Link
                 href={`/aktivitaeten?${baseParams.toString()}&seite=${page + 1}`}
-                className="flex items-center gap-1 text-[13px] font-medium text-zinc-700 hover:text-zinc-950 px-3 py-1.5 rounded-md hover:bg-zinc-100 transition-colors"
+                className="flex items-center gap-1 text-[13px] font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100 px-3 py-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 Weiter
                 <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
               </Link>
             ) : (
-              <span className="flex items-center gap-1 text-[13px] text-zinc-300 px-3 py-1.5">
+              <span className="flex items-center gap-1 text-[13px] text-zinc-300 dark:text-zinc-600 px-3 py-1.5">
                 Weiter
                 <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
               </span>

@@ -11,13 +11,13 @@ export function RecentMediaAnalysesStrip() {
   if (top.length === 0) return null;
 
   return (
-    <section className="w-full border-y border-zinc-200/70 bg-[#1a3e72]/[0.025] py-14 dark:border-zinc-800 dark:bg-white/[0.02]">
+    <section className="w-full border-y border-border bg-[#1a3e72]/[0.025] dark:bg-[#8fb3e6]/[0.025] py-14 dark:border-zinc-800 dark:bg-white/[0.02]">
       <div className="max-w-6xl mx-auto px-5">
         <div className="flex items-end justify-between mb-6 flex-wrap gap-3">
           <div className="pl-5">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#1a3e72]" />
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1a3e72]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1a3e72] dark:bg-[#8fb3e6]" />
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#1a3e72] dark:text-[#8fb3e6]">
                 Medien-Analyse
               </span>
             </div>
@@ -31,7 +31,7 @@ export function RecentMediaAnalysesStrip() {
           </div>
           <Link
             href="/medien"
-            className="shrink-0 text-[12.5px] font-medium text-zinc-500 hover:text-zinc-950 transition-colors inline-flex items-center gap-1"
+            className="shrink-0 text-[12.5px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors inline-flex items-center gap-1"
           >
             Alle Auftritte
             <ArrowRight className="w-3 h-3" strokeWidth={2.25} />

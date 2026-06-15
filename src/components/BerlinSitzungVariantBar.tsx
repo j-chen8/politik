@@ -21,8 +21,8 @@ interface Props {
 
 export function BerlinSitzungVariantBar({ sitzungNr, current }: Props) {
   return (
-    <div className="flex flex-wrap gap-1.5 mb-5 p-1 rounded-xl border border-amber-200 bg-amber-50/60">
-      <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-800 px-2 py-1 shrink-0">
+    <div className="flex flex-wrap gap-1.5 mb-5 p-1 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/40">
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-800 dark:text-amber-400 px-2 py-1 shrink-0">
         Layout-Vergleich
       </span>
       {VARIANTS.map((v) => {
@@ -33,14 +33,14 @@ export function BerlinSitzungVariantBar({ sitzungNr, current }: Props) {
             href={pathFor(sitzungNr, v.key)}
             className={`flex flex-col items-start px-2.5 py-1 rounded-lg text-[11.5px] leading-tight transition-colors ${
               active
-                ? "bg-white border border-amber-300 shadow-sm"
-                : "border border-transparent hover:bg-amber-100/40"
+                ? "bg-card border border-amber-300 dark:border-amber-800/50 shadow-sm"
+                : "border border-transparent hover:bg-amber-100/40 dark:hover:bg-amber-900/40"
             }`}
           >
-            <span className={`font-semibold ${active ? "text-zinc-950" : "text-zinc-700"}`}>
+            <span className={`font-semibold ${active ? "text-zinc-950 dark:text-zinc-50" : "text-zinc-700 dark:text-zinc-300"}`}>
               {v.label}
             </span>
-            <span className="text-[10px] text-zinc-500">{v.sub}</span>
+            <span className="text-[10px] text-zinc-500 dark:text-zinc-400">{v.sub}</span>
           </Link>
         );
       })}

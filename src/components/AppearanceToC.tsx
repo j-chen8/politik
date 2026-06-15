@@ -265,7 +265,7 @@ export function AppearanceToC({ themes }: {
       {/* Mobile: Top-Drawer (lg:hidden) — Hide-on-scroll-down / Show-on-scroll-up.
           top-14 = unter der globalen Nav (h-14). */}
       <div
-        className={`lg:hidden mb-6 sticky top-14 z-30 bg-white/95 backdrop-blur-sm -mx-5 px-5 py-2 border-b border-zinc-200 transition-transform duration-200 ease-out will-change-transform ${
+        className={`lg:hidden mb-6 sticky top-14 z-30 bg-card/95 backdrop-blur-sm -mx-5 px-5 py-2 border-b border-border transition-transform duration-200 ease-out will-change-transform ${
           mobileBarHidden ? "-translate-y-[200%]" : "translate-y-0"
         }`}
       >
@@ -281,14 +281,14 @@ export function AppearanceToC({ themes }: {
               downAccRef.current = 0;
             }
           }}
-          className="w-full flex items-center justify-between text-[13px] font-medium text-zinc-700 hover:text-zinc-950 transition-colors py-1.5"
+          className="w-full flex items-center justify-between text-[13px] font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors py-1.5"
           aria-expanded={mobileOpen}
         >
           <span className="flex items-center gap-2">
             <ListTree className="w-4 h-4" strokeWidth={2.25} />
             Inhalt · {items.length} Abschnitte
           </span>
-          <span className={`transition-transform text-zinc-400 ${mobileOpen ? "rotate-180" : ""}`}>▾</span>
+          <span className={`transition-transform text-zinc-400 dark:text-zinc-500 ${mobileOpen ? "rotate-180" : ""}`}>▾</span>
         </button>
         {mobileOpen && (
           <nav className="mt-2 max-h-[60vh] overflow-y-auto pb-2">
@@ -300,7 +300,7 @@ export function AppearanceToC({ themes }: {
       {/* Desktop: Sticky Side-Rail (hidden on <lg) — top-20 = unter der globalen Nav (h-14 + Abstand) */}
       <aside className="hidden lg:block">
         <nav className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
-          <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400 mb-3 flex items-center gap-1.5">
+          <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-1.5">
             <ListTree className="w-3.5 h-3.5" strokeWidth={2.25} />
             Inhalt
           </div>
@@ -334,18 +334,18 @@ function ToCList({
               className={`block w-full text-left py-1.5 px-2 rounded-md transition-colors leading-snug ${
                 isActive
                   ? "bg-zinc-950 text-white font-medium"
-                  : "text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100"
+                  : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               }`}
             >
               <div className="flex items-baseline gap-1.5">
                 {item.sub && (
                   <span className={`text-[10.5px] num shrink-0 ${
-                    isActive ? "text-zinc-300" : "text-zinc-400"
+                    isActive ? "text-zinc-300 dark:text-zinc-600" : "text-zinc-400 dark:text-zinc-500"
                   }`}>
                     {item.sub}
                   </span>
                 )}
-                <span className={`flex-1 ${isAmber && !isActive ? "text-amber-800" : ""}`}>
+                <span className={`flex-1 ${isAmber && !isActive ? "text-amber-800 dark:text-amber-400" : ""}`}>
                   {item.label}
                 </span>
                 {isAmber && (

@@ -90,7 +90,7 @@ export default async function TopicDetailPage({
         {/* Breadcrumb */}
         <Link
           href="/protokolle"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Protokolle
@@ -98,16 +98,16 @@ export default async function TopicDetailPage({
 
         {/* Header */}
         <div className="mb-8">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             TOP {topic.topic_number}
             {topic.session_datum && ` · ${formatGermanDate(topic.session_datum)}`}
-            <span className="text-zinc-300"> · </span>
+            <span className="text-zinc-300 dark:text-zinc-600"> · </span>
             Sitzung {topic.session_id}
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950 leading-tight">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 leading-tight">
             {topic.title}
           </h1>
-          <div className="mt-3 text-[13px] text-zinc-500">
+          <div className="mt-3 text-[13px] text-zinc-500 dark:text-zinc-400">
             <span className="tabular-nums">{speeches.length}</span>{" "}
             {speeches.length === 1 ? "Rede" : "Reden"}
           </div>
@@ -115,11 +115,11 @@ export default async function TopicDetailPage({
 
         {/* Speeches */}
         {speeches.length === 0 ? (
-          <div className="py-12 text-center text-[13px] text-zinc-400">
+          <div className="py-12 text-center text-[13px] text-zinc-400 dark:text-zinc-500">
             Keine Reden zu diesem TOP erfasst.
           </div>
         ) : (
-          <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <div className="rounded-xl border border-border bg-card overflow-hidden">
             {speeches.map((s) => (
               <SpeechRow key={`${s.speech_id}-${s.segment_index}`} speech={s} />
             ))}
@@ -133,10 +133,10 @@ export default async function TopicDetailPage({
 function SpeechRow({ speech }: { speech: SpeechInTop }) {
   const ton = formatTonalitaet(speech.tonalitaet);
   return (
-    <details className="group border-b border-zinc-100 last:border-0 [&_summary::-webkit-details-marker]:hidden">
-      <summary className="px-4 py-2.5 flex items-center gap-2 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
+    <details className="group border-b border-border last:border-0 [&_summary::-webkit-details-marker]:hidden">
+      <summary className="px-4 py-2.5 flex items-center gap-2 cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors list-none">
         <ChevronRight
-          className="w-3.5 h-3.5 text-zinc-400 shrink-0 transition-transform group-open:rotate-90"
+          className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 shrink-0 transition-transform group-open:rotate-90"
           strokeWidth={2.25}
         />
         {speech.party && (
@@ -146,15 +146,15 @@ function SpeechRow({ speech }: { speech: SpeechInTop }) {
             }`}
           />
         )}
-        <span className="text-[13px] font-medium text-zinc-900 truncate">{speech.speaker}</span>
+        <span className="text-[13px] font-medium text-zinc-900 dark:text-zinc-100 truncate">{speech.speaker}</span>
         {speech.party && (
-          <span className="text-[11.5px] text-zinc-500 truncate shrink min-w-0">
+          <span className="text-[11.5px] text-zinc-500 dark:text-zinc-400 truncate shrink min-w-0">
             · {speech.party}
           </span>
         )}
         {ton && (
           <span
-            className="ml-auto shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
+            className="ml-auto shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 border border-border rounded"
             title="Tonalität — KI-eingeschätzt"
           >
             {ton}
@@ -163,15 +163,15 @@ function SpeechRow({ speech }: { speech: SpeechInTop }) {
       </summary>
       <div className="px-4 pb-3 pl-[2.25rem]">
         {speech.snippet ? (
-          <p className="text-[13px] text-zinc-700 leading-snug">{speech.snippet}</p>
+          <p className="text-[13px] text-zinc-700 dark:text-zinc-300 leading-snug">{speech.snippet}</p>
         ) : (
-          <p className="text-[12px] text-zinc-400 italic">
+          <p className="text-[12px] text-zinc-400 dark:text-zinc-500 italic">
             (keine Zusammenfassung für diese Rede)
           </p>
         )}
         <Link
           href={`/protokolle/redner/${encodeURIComponent(speech.speaker)}`}
-          className="inline-flex items-center gap-1 mt-2 text-[11.5px] text-zinc-500 hover:text-zinc-900 transition-colors"
+          className="inline-flex items-center gap-1 mt-2 text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
         >
           Alle Reden von {speech.speaker} →
         </Link>

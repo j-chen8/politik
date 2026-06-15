@@ -50,11 +50,11 @@ function bulletType(s: string, klasse: string, frageOderAntwort?: "frage" | "ant
 }
 
 const BULLET_COLOR: Record<string, string> = {
-  FRAGE:     "text-blue-700 bg-blue-50",
-  FORDERUNG: "text-orange-800 bg-orange-50",
-  BEFUND:    "text-emerald-700 bg-emerald-50",
-  REGELUNG:  "text-violet-700 bg-violet-50",
-  PUNKT:     "text-zinc-600 bg-zinc-100",
+  FRAGE:     "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40",
+  FORDERUNG: "text-orange-800 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/40",
+  BEFUND:    "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40",
+  REGELUNG:  "text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/40",
+  PUNKT:     "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800",
 };
 
 function formatDate(s: string | null): string | null {
@@ -66,10 +66,10 @@ function formatDate(s: string | null): string | null {
 
 // Vote-Pill-Styles für die 6 Fraktionen
 const VOTE_PILL_STYLES: Record<string, { bg: string; text: string; icon: typeof Check }> = {
-  ja:         { bg: "bg-emerald-50 border-emerald-200", text: "text-emerald-800", icon: Check },
-  nein:       { bg: "bg-red-50 border-red-200",         text: "text-red-800",     icon: X },
-  enthaltung: { bg: "bg-yellow-50 border-yellow-200",   text: "text-yellow-800",  icon: Minus },
-  unbekannt:  { bg: "bg-zinc-50 border-zinc-200",       text: "text-zinc-500",    icon: HelpCircle },
+  ja:         { bg: "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/50", text: "text-emerald-800 dark:text-emerald-400", icon: Check },
+  nein:       { bg: "bg-red-50 dark:bg-red-950/40 border-red-200 dark:border-red-900/50",         text: "text-red-800 dark:text-red-400",     icon: X },
+  enthaltung: { bg: "bg-yellow-50 dark:bg-yellow-950/40 border-yellow-200 dark:border-yellow-900/50",   text: "text-yellow-800 dark:text-yellow-400",  icon: Minus },
+  unbekannt:  { bg: "bg-zinc-50 dark:bg-zinc-800 border-border",       text: "text-zinc-500 dark:text-zinc-400",    icon: HelpCircle },
 };
 
 const VOTE_LABEL: Record<string, string> = {
@@ -77,25 +77,25 @@ const VOTE_LABEL: Record<string, string> = {
 };
 
 const OUTCOME_LABEL: Record<string, { label: string; tone: string }> = {
-  annahme:           { label: "angenommen",           tone: "text-emerald-700" },
-  annahme_geaendert: { label: "in geänderter Fassung angenommen", tone: "text-emerald-700" },
-  ablehnung:         { label: "abgelehnt",            tone: "text-red-700" },
-  vertagung:         { label: "vertagt",              tone: "text-amber-700" },
-  ueberweisung:      { label: "an Ausschuss überwiesen", tone: "text-blue-700" },
-  kein_vote:         { label: "kein Vote",            tone: "text-zinc-500" },
+  annahme:           { label: "angenommen",           tone: "text-emerald-700 dark:text-emerald-400" },
+  annahme_geaendert: { label: "in geänderter Fassung angenommen", tone: "text-emerald-700 dark:text-emerald-400" },
+  ablehnung:         { label: "abgelehnt",            tone: "text-red-700 dark:text-red-400" },
+  vertagung:         { label: "vertagt",              tone: "text-amber-700 dark:text-amber-400" },
+  ueberweisung:      { label: "an Ausschuss überwiesen", tone: "text-blue-700 dark:text-blue-400" },
+  kein_vote:         { label: "kein Vote",            tone: "text-zinc-500 dark:text-zinc-400" },
 };
 
 const FRAKTIONS_ORDER = ["CDU", "SPD", "GRÜNE", "LINKE", "AfD", "FDP"] as const;
 
 function fraktionColor(f: string | null): string {
-  if (!f) return "bg-zinc-100 text-zinc-700";
-  if (f.includes("CDU")) return "bg-zinc-100 text-zinc-900";
-  if (f.includes("SPD")) return "bg-red-50 text-red-900";
-  if (f.includes("GRÜNE")) return "bg-green-50 text-green-900";
-  if (f.includes("LINKE")) return "bg-pink-50 text-pink-900";
-  if (f.includes("AfD")) return "bg-blue-50 text-blue-900";
-  if (f.includes("FDP")) return "bg-yellow-50 text-yellow-900";
-  return "bg-zinc-100 text-zinc-700";
+  if (!f) return "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300";
+  if (f.includes("CDU")) return "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100";
+  if (f.includes("SPD")) return "bg-red-50 dark:bg-red-950/40 text-red-900 dark:text-red-300";
+  if (f.includes("GRÜNE")) return "bg-green-50 dark:bg-green-950/40 text-green-900 dark:text-green-300";
+  if (f.includes("LINKE")) return "bg-pink-50 dark:bg-pink-950/40 text-pink-900 dark:text-pink-300";
+  if (f.includes("AfD")) return "bg-blue-50 dark:bg-blue-950/40 text-blue-900 dark:text-blue-300";
+  if (f.includes("FDP")) return "bg-yellow-50 dark:bg-yellow-950/40 text-yellow-900 dark:text-yellow-300";
+  return "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300";
 }
 
 // Dunkle Hex-Farbe je Fraktion für den Dokument-Kachel-Gradienten (weiße Schrift lesbar).
@@ -150,7 +150,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
         {/* Back-Link */}
         <Link
           href="/parlamente/berlin/drucksachen"
-          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-zinc-950 mb-6 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Aktivitäten
@@ -160,7 +160,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
         <div className="fade-in-up flex flex-col sm:grid sm:grid-cols-[170px_1fr] gap-6 sm:gap-8 mb-10">
           {/* Stilisierte Dokument-Kachel */}
           <div
-            className="rounded-xl border-2 border-zinc-900 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
+            className="rounded-xl border-2 border-zinc-900 dark:border-zinc-100 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
             style={{ background: `linear-gradient(135deg, ${coverColor} 0%, ${coverColor}cc 60%, #18181b 100%)` }}
           >
             <div className="font-bold uppercase tracking-tight leading-[0.95]">
@@ -182,31 +182,31 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
           {/* Titel + Eigenschaften */}
           <div className="flex flex-col min-w-0">
-            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2 flex items-baseline gap-1.5 flex-wrap">
+            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2 flex items-baseline gap-1.5 flex-wrap">
               Abgeordnetenhaus Berlin
-              <span className="text-zinc-300">·</span>
+              <span className="text-zinc-300 dark:text-zinc-600">·</span>
               <span>19. Wahlperiode</span>
-              <span className="text-zinc-300">·</span>
-              <span className="text-zinc-700 normal-case font-normal tracking-normal">{klasseLabel}</span>
+              <span className="text-zinc-300 dark:text-zinc-600">·</span>
+              <span className="text-zinc-700 dark:text-zinc-300 normal-case font-normal tracking-normal">{klasseLabel}</span>
               {datumFormatted && (
                 <>
-                  <span className="text-zinc-300">·</span>
-                  <span className="text-zinc-700 normal-case font-normal tracking-normal num">{datumFormatted}</span>
+                  <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                  <span className="text-zinc-700 dark:text-zinc-300 normal-case font-normal tracking-normal num">{datumFormatted}</span>
                 </>
               )}
             </div>
 
-            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 leading-[1.15] mb-4 break-words hyphens-auto">
+            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 dark:text-zinc-50 leading-[1.15] mb-4 break-words hyphens-auto">
               {ds.titel ?? klasseLabel}
             </h1>
 
             {/* Träger */}
             {(ds.fraktion || ds.einbringer) && (
               <div className="flex items-center gap-3 text-[13px] mb-4 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 text-zinc-700">
+                <span className="inline-flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
                   <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: coverColor }} />
                   <span className="font-medium">{ds.fraktion ?? ds.einbringer}</span>
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 dark:text-zinc-500">
                     {ds.klasse === "anfrage_antwort" ? "fragt" : ds.klasse === "vorlage_senat" ? "vorgelegt" : "eingebracht"}
                   </span>
                 </span>
@@ -225,16 +225,16 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 </span>
               )}
               {ds.senatsverwaltung && (
-                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">SenV {ds.senatsverwaltung}</span>
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 border border-border">SenV {ds.senatsverwaltung}</span>
               )}
               {ds.bezirkBezug && (
-                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">Bezirk: {ds.bezirkBezug}</span>
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 border border-border">Bezirk: {ds.bezirkBezug}</span>
               )}
               {ds.adressat && (
-                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 bg-zinc-50 border border-zinc-200">Adressat: {ds.adressat}</span>
+                <span className="px-2 py-1 rounded text-[11px] text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 border border-border">Adressat: {ds.adressat}</span>
               )}
               {ds.thema.map((t) => (
-                <span key={t} className="px-2 py-1 rounded text-[11px] font-medium text-zinc-700 bg-zinc-100">{t}</span>
+                <span key={t} className="px-2 py-1 rounded text-[11px] font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800">{t}</span>
               ))}
             </div>
 
@@ -244,7 +244,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 href={ds.lokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-blue-700 hover:text-blue-900 px-2.5 py-1 rounded-md border border-blue-200 hover:border-blue-300 bg-blue-50 hover:bg-blue-100 transition-colors w-fit"
+                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 px-2.5 py-1 rounded-md border border-blue-200 dark:border-blue-900/50 hover:border-blue-300 dark:hover:border-blue-800/50 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors w-fit"
               >
                 <FileText className="w-3.5 h-3.5" strokeWidth={2.25} />
                 Original-PDF{ds.pages ? ` (${ds.pages} S.)` : ""}
@@ -256,11 +256,11 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Zusammenfassung */}
         {ds.zusammenfassung && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Zusammenfassung
             </h2>
-            <p className="text-[14.5px] text-zinc-800 leading-relaxed whitespace-pre-wrap">
+            <p className="text-[14.5px] text-zinc-800 dark:text-zinc-200 leading-relaxed whitespace-pre-wrap">
               {ds.zusammenfassung}
             </p>
           </section>
@@ -268,10 +268,10 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Kerninhalt — anfrage_antwort */}
         {ds.klasse === "anfrage_antwort" && (ds.kerninhaltFrage || ds.kerninhaltAntwort) && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             {ds.kerninhaltFrage && ds.kerninhaltFrage.length > 0 && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
                   Was wurde gefragt?
                 </h2>
                 <ul className="space-y-2.5">
@@ -280,7 +280,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                       <span className={`shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider ${BULLET_COLOR[bulletType(b, ds.klasse, "frage")]}`}>
                         {bulletType(b, ds.klasse, "frage")}
                       </span>
-                      <span className="text-[13.5px] text-zinc-800 leading-snug">{b}</span>
+                      <span className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug">{b}</span>
                     </li>
                   ))}
                 </ul>
@@ -288,7 +288,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
             )}
             {ds.kerninhaltAntwort && ds.kerninhaltAntwort.length > 0 && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
                   Was hat der Senat geantwortet?
                 </h2>
                 <ul className="space-y-2.5">
@@ -297,7 +297,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                       <span className={`shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider ${BULLET_COLOR[bulletType(b, ds.klasse, "antwort")]}`}>
                         {bulletType(b, ds.klasse, "antwort")}
                       </span>
-                      <span className="text-[13.5px] text-zinc-800 leading-snug">{b}</span>
+                      <span className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug">{b}</span>
                     </li>
                   ))}
                 </ul>
@@ -308,8 +308,8 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Kerninhalt — antrag / vorlage_senat / beschlussempfehlung */}
         {ds.klasse !== "anfrage_antwort" && ds.kerninhalt && ds.kerninhalt.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               {ds.klasse === "antrag" ? "Konkrete Forderungen"
                 : ds.klasse === "beschlussempfehlung" ? "Empfohlene Änderungen / Auflagen"
                 : "Kerninhalt"}
@@ -320,7 +320,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                   <span className={`shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider ${BULLET_COLOR[bulletType(b, ds.klasse)]}`}>
                     {bulletType(b, ds.klasse)}
                   </span>
-                  <span className="text-[13.5px] text-zinc-800 leading-snug">{b}</span>
+                  <span className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug">{b}</span>
                 </li>
               ))}
             </ul>
@@ -329,29 +329,29 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Gesetzentwurf-spezifisch: regelung / begruendung / auswirkung / betroffene */}
         {ds.klasse === "gesetzentwurf" && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6 space-y-6">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6 space-y-6">
             {ds.regelung && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">Was wird geregelt?</h2>
-                <p className="text-[14px] text-zinc-800 leading-relaxed">{ds.regelung}</p>
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">Was wird geregelt?</h2>
+                <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.regelung}</p>
               </div>
             )}
             {ds.begruendung && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">Begründung</h2>
-                <p className="text-[14px] text-zinc-800 leading-relaxed">{ds.begruendung}</p>
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">Begründung</h2>
+                <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.begruendung}</p>
               </div>
             )}
             {ds.auswirkung && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">Auswirkungen</h2>
-                <p className="text-[14px] text-zinc-800 leading-relaxed">{ds.auswirkung}</p>
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">Auswirkungen</h2>
+                <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.auswirkung}</p>
               </div>
             )}
             {ds.betroffeneGruppen && (
               <div>
-                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">Betroffene Gruppen</h2>
-                <p className="text-[14px] text-zinc-800 leading-relaxed">{ds.betroffeneGruppen}</p>
+                <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">Betroffene Gruppen</h2>
+                <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.betroffeneGruppen}</p>
               </div>
             )}
           </section>
@@ -359,36 +359,36 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Plenarbehandlungen — wann + wo wurde diese Drucksache debattiert? */}
         {plenarbehandlungen.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3 flex items-center gap-1.5">
               <MessageCircle className="w-3 h-3" strokeWidth={2.25} />
               Plenarbehandlung{plenarbehandlungen.length > 1 ? "en" : ""}
             </h2>
             <ul className="space-y-2">
               {plenarbehandlungen.map((p) => (
-                <li key={`${p.sitzungNr}-${p.topMarker}`} className="border border-zinc-100 rounded-lg p-3 bg-white">
+                <li key={`${p.sitzungNr}-${p.topMarker}`} className="border border-border rounded-lg p-3 bg-card">
                   <div className="flex items-baseline gap-2 flex-wrap text-[12px]">
                     <Link
                       href={`/parlamente/berlin/sitzung/${p.sitzungNr}#top-${p.topMarker}`}
-                      className="font-medium text-zinc-950 hover:text-blue-700 transition-colors"
+                      className="font-medium text-zinc-950 dark:text-zinc-50 hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                     >
                       Sitzung {p.sitzungNr}
                     </Link>
-                    <span className="text-zinc-400 num">·</span>
-                    <span className="text-zinc-600 num">
+                    <span className="text-zinc-400 dark:text-zinc-500 num">·</span>
+                    <span className="text-zinc-600 dark:text-zinc-300 num">
                       {new Date(p.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}
                     </span>
-                    <span className="text-zinc-400">·</span>
-                    <span className="num text-zinc-500">TOP {p.topMarker}</span>
-                    <span className="text-zinc-400">·</span>
-                    <span className="text-zinc-500">{p.redenCount} Reden</span>
+                    <span className="text-zinc-400 dark:text-zinc-500">·</span>
+                    <span className="num text-zinc-500 dark:text-zinc-400">TOP {p.topMarker}</span>
+                    <span className="text-zinc-400 dark:text-zinc-500">·</span>
+                    <span className="text-zinc-500 dark:text-zinc-400">{p.redenCount} Reden</span>
                     {p.phase === "priorität" && (
-                      <span className="ml-auto text-[10px] font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">
+                      <span className="ml-auto text-[10px] font-medium text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-1.5 py-0.5 rounded">
                         Priorität
                       </span>
                     )}
                   </div>
-                  <p className="text-[12.5px] text-zinc-600 leading-snug mt-1">
+                  <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-snug mt-1">
                     {p.topTitel}
                   </p>
                 </li>
@@ -399,18 +399,18 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Plenum-Abstimmungen */}
         {votes.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Abstimmung{votes.length > 1 ? "en" : ""} im Plenum
             </h2>
             <div className="space-y-4">
               {votes.map((v) => {
-                const outcomeCfg = OUTCOME_LABEL[v.outcome] ?? { label: v.outcome, tone: "text-zinc-700" };
+                const outcomeCfg = OUTCOME_LABEL[v.outcome] ?? { label: v.outcome, tone: "text-zinc-700 dark:text-zinc-300" };
                 const datumLabel = formatDate(v.datum);
                 return (
-                  <div key={v.voteId} className="border border-zinc-100 rounded-lg p-4">
+                  <div key={v.voteId} className="border border-border rounded-lg p-4">
                     {v.voteLabel && (
-                      <div className="mb-1.5 text-[12.5px] font-medium text-zinc-900">
+                      <div className="mb-1.5 text-[12.5px] font-medium text-zinc-900 dark:text-zinc-100">
                         {v.voteLabel}
                       </div>
                     )}
@@ -420,24 +420,24 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                       </span>
                       {v.modus && (
                         <>
-                          <span className="text-zinc-300">·</span>
-                          <span className="text-zinc-500">{v.modus}</span>
+                          <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                          <span className="text-zinc-500 dark:text-zinc-400">{v.modus}</span>
                         </>
                       )}
                       {v.voteType !== "handzeichen" && v.voteType !== "unklar" && (
                         <>
-                          <span className="text-zinc-300">·</span>
-                          <span className="text-zinc-500">{v.voteType === "namentlich" ? "namentliche Abstimmung" : "Hammelsprung"}</span>
+                          <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                          <span className="text-zinc-500 dark:text-zinc-400">{v.voteType === "namentlich" ? "namentliche Abstimmung" : "Hammelsprung"}</span>
                         </>
                       )}
                       {datumLabel && (
                         <>
-                          <span className="text-zinc-300">·</span>
-                          <span className="text-zinc-400 num">{datumLabel}</span>
+                          <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                          <span className="text-zinc-400 dark:text-zinc-500 num">{datumLabel}</span>
                         </>
                       )}
                       {v.sitzungNr && (
-                        <span className="text-zinc-400 num">Sitzung {v.sitzungNr}</span>
+                        <span className="text-zinc-400 dark:text-zinc-500 num">Sitzung {v.sitzungNr}</span>
                       )}
                     </div>
 
@@ -465,27 +465,27 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
                     {/* Bei namentlicher Abstimmung: aggregierte Zahlen */}
                     {v.stimmenZahlen && (
-                      <div className="mt-3 flex gap-4 text-[11px] text-zinc-600 num">
-                        <span>Ja: <span className="font-semibold text-emerald-700">{v.stimmenZahlen.ja}</span></span>
-                        <span>Nein: <span className="font-semibold text-red-700">{v.stimmenZahlen.nein}</span></span>
-                        <span>Enthaltung: <span className="font-semibold text-yellow-700">{v.stimmenZahlen.enthaltungen}</span></span>
+                      <div className="mt-3 flex gap-4 text-[11px] text-zinc-600 dark:text-zinc-300 num">
+                        <span>Ja: <span className="font-semibold text-emerald-700 dark:text-emerald-400">{v.stimmenZahlen.ja}</span></span>
+                        <span>Nein: <span className="font-semibold text-red-700 dark:text-red-400">{v.stimmenZahlen.nein}</span></span>
+                        <span>Enthaltung: <span className="font-semibold text-yellow-700 dark:text-yellow-400">{v.stimmenZahlen.enthaltungen}</span></span>
                       </div>
                     )}
 
                     {/* Block-Vote-Hinweis: alle DS klickbar verlinkt */}
                     {v.drucksacheNrn.length > 1 && (
-                      <div className="mt-3 text-[11px] text-zinc-500 flex flex-wrap items-baseline gap-1.5">
+                      <div className="mt-3 text-[11px] text-zinc-500 dark:text-zinc-400 flex flex-wrap items-baseline gap-1.5">
                         <span>Block-Abstimmung über {v.drucksacheNrn.length} Drucksachen:</span>
                         {v.drucksacheNrn.map((nr, i) => {
                           const linkedDbid = v.drucksacheDbids[i] ?? null;
                           if (!linkedDbid) {
-                            return <span key={nr} className="font-mono text-zinc-700">{nr}</span>;
+                            return <span key={nr} className="font-mono text-zinc-700 dark:text-zinc-300">{nr}</span>;
                           }
                           return (
                             <Link
                               key={nr}
                               href={`/parlamente/berlin/drucksache/${linkedDbid}`}
-                              className="font-mono text-blue-700 hover:text-blue-900 transition-colors"
+                              className="font-mono text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors"
                             >
                               {nr}
                             </Link>
@@ -502,12 +502,12 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Mitzeichner */}
         {mitzeichner.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Beteiligte Abgeordnete ({mitzeichner.length})
             </h2>
             {fraktionList.length > 1 && (
-              <div className="flex flex-wrap items-center gap-2 mb-3 text-[11px] text-zinc-500">
+              <div className="flex flex-wrap items-center gap-2 mb-3 text-[11px] text-zinc-500 dark:text-zinc-400">
                 {fraktionList.map(([f, c]) => (
                   <span key={f}>
                     <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium ${fraktionColor(f)}`}>{f}</span>
@@ -521,18 +521,18 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 <li key={`${m.politicianId}-${m.role}`} className="flex items-baseline gap-2 text-[13px]">
                   <Link
                     href={`/politiker/${m.politicianId}`}
-                    className="text-zinc-900 hover:text-blue-700 transition-colors"
+                    className="text-zinc-900 dark:text-zinc-100 hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                   >
                     {m.firstName} {m.lastName}
                   </Link>
                   {m.partyLabel && (
-                    <span className="text-[10.5px] text-zinc-400">({m.partyLabel})</span>
+                    <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500">({m.partyLabel})</span>
                   )}
-                  <span className="text-[10.5px] text-zinc-400 uppercase tracking-wider">{m.role}</span>
+                  <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{m.role}</span>
                 </li>
               ))}
               {mitzeichner.length > 25 && (
-                <li className="text-[11px] text-zinc-400 italic mt-1">
+                <li className="text-[11px] text-zinc-400 dark:text-zinc-500 italic mt-1">
                   + {mitzeichner.length - 25} weitere
                 </li>
               )}
@@ -542,13 +542,13 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Beschlussempfehlung — LLM-Klasse mit Ausschuss-Haltung-Pill */}
         {ds.klasse === "beschlussempfehlung" && ds.tonalitaet && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Ausschuss-Empfehlung
             </h2>
             {(() => {
               const h = HALTUNG_MAP[ds.tonalitaet];
-              if (!h) return <span className="text-[14px] text-zinc-700">{ds.tonalitaet}</span>;
+              if (!h) return <span className="text-[14px] text-zinc-700 dark:text-zinc-300">{ds.tonalitaet}</span>;
               return (
                 <div>
                   <span
@@ -558,12 +558,12 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                   >
                     {h.label}
                   </span>
-                  <p className="mt-1.5 text-[11.5px] text-zinc-500">{h.desc}</p>
+                  <p className="mt-1.5 text-[11.5px] text-zinc-500 dark:text-zinc-400">{h.desc}</p>
                 </div>
               );
             })()}
             {ds.regexLabel && (
-              <p className="mt-3 text-[11px] text-zinc-400">
+              <p className="mt-3 text-[11px] text-zinc-400 dark:text-zinc-500">
                 Outcome aus Plenum (Regex): <span className="font-mono">{ds.regexLabel}</span>
               </p>
             )}
@@ -572,21 +572,21 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
 
         {/* Beschlussempfehlung-Regex Legacy (kein LLM-Output) — Fallback bis Batch durch ist */}
         {ds.klasse === "beschlussempfehlung_regex" && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Outcome (Regex-Label)
             </h2>
-            <span className="inline-flex items-center px-3 py-1.5 rounded text-[14px] font-medium bg-zinc-100 text-zinc-900">
+            <span className="inline-flex items-center px-3 py-1.5 rounded text-[14px] font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">
               {ds.regexLabel ?? "—"}
             </span>
             {ds.zusammenfassung && (
-              <p className="mt-2 text-[12.5px] text-zinc-600">{ds.zusammenfassung}</p>
+              <p className="mt-2 text-[12.5px] text-zinc-600 dark:text-zinc-300">{ds.zusammenfassung}</p>
             )}
           </section>
         )}
 
         {/* Audit-Footer (klein, methodisch) */}
-        <section className="mt-12 pt-6 border-t border-zinc-100 text-[11px] text-zinc-400">
+        <section className="mt-12 pt-6 border-t border-border text-[11px] text-zinc-400 dark:text-zinc-500">
           <div className="flex items-center gap-3 flex-wrap">
             <span>Analysiert mit {ds.model ?? "—"}</span>
             <span>·</span>

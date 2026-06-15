@@ -26,16 +26,16 @@ export function BerlinOriginalSpeech({ speechId }: { speechId: string }) {
 
   return (
     <details className="mt-2 group/orig" onToggle={onToggle}>
-      <summary className="list-none cursor-pointer text-[11px] text-zinc-500 hover:text-zinc-950 transition-colors select-none">
+      <summary className="list-none cursor-pointer text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors select-none">
         <span className="inline-flex items-center gap-1">
-          <span className="text-zinc-400 group-open/orig:rotate-90 transition-transform inline-block">▶</span>
+          <span className="text-zinc-400 dark:text-zinc-500 group-open/orig:rotate-90 transition-transform inline-block">▶</span>
           <span className="group-open/orig:hidden">Originalrede einblenden</span>
           <span className="hidden group-open/orig:inline">Originalrede ausblenden</span>
         </span>
       </summary>
-      <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-zinc-50 border border-zinc-200 px-4 py-3 text-[12.5px] leading-[1.65] text-zinc-800 font-serif">
-        {loading && <p className="text-zinc-400">Lädt…</p>}
-        {error && <p className="text-zinc-400">Originalrede konnte nicht geladen werden.</p>}
+      <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border px-4 py-3 text-[12.5px] leading-[1.65] text-zinc-800 dark:text-zinc-200 font-serif">
+        {loading && <p className="text-zinc-400 dark:text-zinc-500">Lädt…</p>}
+        {error && <p className="text-zinc-400 dark:text-zinc-500">Originalrede konnte nicht geladen werden.</p>}
         {text != null &&
           text
             .split(/\n+/)

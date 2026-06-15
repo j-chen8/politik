@@ -21,7 +21,7 @@ export function TonalityBadge({ slug }: TonalityBadgeProps) {
   const colors = TONALITY_COLORS[slug];
   if (!def || !colors) {
     return (
-      <span className="px-2 py-0.5 rounded-md text-[11px] font-medium text-zinc-600 bg-zinc-100">
+      <span className="px-2 py-0.5 rounded-md text-[11px] font-medium text-zinc-600 bg-zinc-100 dark:text-zinc-300 dark:bg-zinc-800">
         {slug}
       </span>
     );
@@ -91,7 +91,7 @@ export function DrucksacheTonalityBadge({ slug }: DrucksacheTonalityBadgeProps) 
   const colors = DRUCKSACHEN_TONALITAET_COLORS[slug];
   if (!def || !colors) {
     return (
-      <span className="px-2 py-0.5 rounded-md text-[11px] font-medium text-zinc-600 bg-zinc-100">
+      <span className="px-2 py-0.5 rounded-md text-[11px] font-medium text-zinc-600 bg-zinc-100 dark:text-zinc-300 dark:bg-zinc-800">
         {slug}
       </span>
     );

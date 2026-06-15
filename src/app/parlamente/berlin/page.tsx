@@ -48,19 +48,19 @@ export default function BerlinOverview() {
             v.primaryDbid ? (
               <Link
                 href={`/parlamente/berlin/drucksache/${v.primaryDbid}`}
-                className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+                className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors"
                 style={lineClamp(2)}
               >
                 {v.primaryTitel}
               </Link>
             ) : (
-              <p className="text-[14px] font-semibold text-zinc-950 leading-snug" style={lineClamp(2)}>
+              <p className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug" style={lineClamp(2)}>
                 {v.primaryTitel}
               </p>
             )
           )}
           {v.primaryZusammenfassung && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed" style={lineClamp(3)}>
               {v.primaryZusammenfassung}
             </p>
           )}
@@ -68,10 +68,10 @@ export default function BerlinOverview() {
             <span
               className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
                 v.outcome === "annahme" || v.outcome === "annahme_geaendert"
-                  ? "text-emerald-700 bg-emerald-50"
+                  ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40"
                   : v.outcome === "ablehnung"
-                  ? "text-red-700 bg-red-50"
-                  : "text-zinc-600 bg-zinc-100"
+                  ? "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40"
+                  : "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800"
               }`}
             >
               {(v.outcome === "annahme" || v.outcome === "annahme_geaendert") ? "Angenommen"
@@ -81,11 +81,11 @@ export default function BerlinOverview() {
                 : v.outcome}
             </span>
             {v.modus && (
-              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500">
+              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
                 {v.modus}
               </span>
             )}
-            <span className="text-[10.5px] text-zinc-400 num ml-auto">{formatDate(v.datum)}</span>
+            <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500 num ml-auto">{formatDate(v.datum)}</span>
           </div>
         </article>
       )),
@@ -101,28 +101,28 @@ export default function BerlinOverview() {
           {g.titel && (
             <Link
               href={`/parlamente/berlin/drucksache/${g.dbid}`}
-              className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+              className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors"
               style={lineClamp(2)}
             >
               {g.titel}
             </Link>
           )}
           {g.zusammenfassung && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed" style={lineClamp(3)}>
               {g.zusammenfassung}
             </p>
           )}
-          <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+          <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 dark:text-zinc-500 num pt-1">
             <span>{formatDate(g.datum)}</span>
             {g.dokNr && (
               <>
-                <span className="text-zinc-300">·</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
                 <span>Drs. {g.dokNr}</span>
               </>
             )}
             {g.einbringer && (
               <>
-                <span className="text-zinc-300">·</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
                 <span className="normal-case">{g.einbringer}</span>
               </>
             )}
@@ -140,23 +140,23 @@ export default function BerlinOverview() {
         <article key={a.dokNr} className="h-[150px] flex flex-col gap-2.5 overflow-hidden">
           <Link
             href={`/parlamente/berlin/drucksache/${a.dbid}`}
-            className="text-[14px] font-semibold text-zinc-950 leading-snug hover:text-[#1a3e72] transition-colors"
+            className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors"
             style={lineClamp(2)}
           >
             {a.titel}
           </Link>
           {a.zusammenfassung && (
-            <p className="text-[12.5px] text-zinc-600 leading-relaxed" style={lineClamp(3)}>
+            <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed" style={lineClamp(3)}>
               {a.zusammenfassung}
             </p>
           )}
-          <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 num pt-1">
+          <div className="mt-auto flex items-center gap-2 flex-wrap text-[10.5px] text-zinc-400 dark:text-zinc-500 num pt-1">
             <span>{formatDate(a.datum)}</span>
-            <span className="text-zinc-300">·</span>
+            <span className="text-zinc-300 dark:text-zinc-600">·</span>
             <span>Drs. {a.dokNr}</span>
             {a.fraktion && (
               <>
-                <span className="text-zinc-300">·</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
                 <span className="normal-case">{a.fraktion}</span>
               </>
             )}
@@ -184,7 +184,7 @@ export default function BerlinOverview() {
             <Link
               key={term}
               href={`/parlamente/berlin/suche?q=${encodeURIComponent(term)}`}
-              className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-[12.5px] text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 hover:bg-white transition-colors"
+              className="rounded-full border border-border bg-card/70 px-3 py-1.5 text-[12.5px] text-zinc-600 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-card transition-colors"
             >
               {term}
             </Link>
@@ -197,7 +197,7 @@ export default function BerlinOverview() {
               href: `/parlamente/berlin/sitzung/${s.latestSitzung.sitzungNr}`,
               primary: `Plenarprotokoll ${s.latestSitzung.plprDokNr} · ${formatDate(s.latestSitzung.datum)}`,
               secondary: `${s.latestSitzung.debattenCount} Debattenbeiträge`,
-              dotClass: "bg-[#1a3e72]",
+              dotClass: "bg-[#1a3e72] dark:bg-[#8fb3e6]",
             }
           : null
       }

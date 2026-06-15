@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { getDb } from "@/lib/db";
-import { OBERTHEMEN, TAXONOMIE, anzeigeName, istGemergt } from "@/lib/themen-struktur";
+import { OBERTHEMEN, TAXONOMIE, anzeigeName, istGemergt, unterSlug, mergeZiel } from "@/lib/themen-struktur";
 
 /**
  * Wortfüll-Vorschläge fürs Landing-Suchfeld (User 2026-06-13): alle aktiven
@@ -13,6 +13,10 @@ import { OBERTHEMEN, TAXONOMIE, anzeigeName, istGemergt } from "@/lib/themen-str
 export interface SuchVorschlag {
   v: string;
   typ: "Person" | "Themenfeld" | "Unterthema" | "Spezifisches Thema";
+  /** Direkt-Ziel im Themensystem. Gesetzt für Themenfeld/Unterthema/Spezifisches
+   *  Thema → Auswahl navigiert sofort dorthin (nicht in die Volltextsuche).
+   *  Fehlt bei Person: füllt nur das Feld, Enter sucht. */
+  href?: string;
 }
 
 // Umlaut-/Akzent-tolerantes Matching („muller" findet „Müller")
@@ -48,12 +52,45 @@ function baueListe(): SuchVorschlag[] {
     GROUP BY je.value ORDER BY c DESC
   `).all() as { v: string; c: number }[];
 
+  // Dominante (feld, unterthema)-Verortung je Tag (Tag↔Unterthema ist Ko-Okkurrenz,
+  // nicht 1:1 — unterthemen_json ist ein Array). Häufigstes Paar gewinnt; daraus
+  // baut sich der Themen-Deep-Link mit Tag-Filter (?thema=). Einmal gecacht.
+  const tagOrt = db.prepare(`
+    SELECT tag, feld, unterthema FROM (
+      SELECT je.value AS tag, du.feld AS feld, ju.value AS unterthema,
+        ROW_NUMBER() OVER (PARTITION BY je.value ORDER BY COUNT(DISTINCT du.drucksache_nr) DESC) AS rn
+      FROM ds_unterthemen du,
+           json_each(du.spezifische_tags_json) je,
+           json_each(du.unterthemen_json) ju
+      GROUP BY je.value, du.feld, ju.value
+    ) WHERE rn = 1
+  `).all() as { tag: string; feld: string; unterthema: string }[];
+  const tagOrtMap = new Map(tagOrt.map((r) => [r.tag, { feld: r.feld, unterthema: r.unterthema }]));
+
+  // Feld (Klassifikations-Politikfeld) → Anzeige-Oberthema-Slug fürs ?feld=
+  const feldToOber = new Map<string, string>();
+  for (const o of OBERTHEMEN) for (const f of o.felder) feldToOber.set(f, o.slug);
+
+  // Tag → Themen-Deep-Link (kanonisches Merge-Ziel, sonst leitet die Seite um).
+  function tagHref(tag: string): string | undefined {
+    const ort = tagOrtMap.get(tag);
+    if (!ort) return undefined;
+    const ziel = mergeZiel(ort.feld, ort.unterthema) ?? ort;
+    const ober = feldToOber.get(ziel.feld);
+    if (!ober) return undefined;
+    return `/themen?feld=${ober}&unter=${unterSlug(anzeigeName(ziel.unterthema))}&thema=${encodeURIComponent(tag)}`;
+  }
+
   const liste: SuchVorschlag[] = namen.map((n) => ({ v: n.name, typ: "Person" as const }));
   for (const o of OBERTHEMEN) {
-    liste.push({ v: o.name, typ: "Themenfeld" });
+    liste.push({ v: o.name, typ: "Themenfeld", href: `/themen?feld=${o.slug}` });
     for (const feld of o.felder)
       for (const u of (TAXONOMIE[feld] ?? []).filter((x) => !istGemergt(feld, x)))
-        liste.push({ v: anzeigeName(u), typ: "Unterthema" });
+        liste.push({
+          v: anzeigeName(u),
+          typ: "Unterthema",
+          href: `/themen?feld=${o.slug}&unter=${unterSlug(anzeigeName(u))}`,
+        });
   }
   // Tags zuletzt + Dedupe: heißt ein Tag wie ein Unterthema/Feld, gewinnt die Ebene
   const gesehen = new Set(liste.map((s) => norm(s.v)));
@@ -61,7 +98,7 @@ function baueListe(): SuchVorschlag[] {
     const n = norm(t.v);
     if (gesehen.has(n)) continue;
     gesehen.add(n);
-    liste.push({ v: t.v, typ: "Spezifisches Thema" });
+    liste.push({ v: t.v, typ: "Spezifisches Thema", href: tagHref(t.v) });
   }
   return liste;
 }
@@ -75,23 +112,42 @@ export function getSuchVorschlaege(): SuchVorschlag[] {
   return cache.liste;
 }
 
+// Synonym-Gruppen: ein Treffer auf EINE Schreibweise zählt für alle. Bidirektional —
+// „ki" findet die „Künstliche Intelligenz"-Tags, „intelligenz"/„künstliche" findet die
+// „KI &…"-Felder. `test` läuft auf dem Roh-Wert (mit Umlaut), `alias` ist bereits
+// normalisiert (ohne Diakritika) und wird an den Match-Text gehängt.
+const SYNONYME: { test: RegExp; alias: string }[] = [
+  { test: /\bki\b|künstliche\s+intelligenz/i, alias: "ki kunstliche intelligenz" },
+];
+function matchText(v: string): string {
+  let t = norm(v);
+  for (const g of SYNONYME) if (g.test.test(v)) t += " " + g.alias;
+  return t;
+}
+
 /** Ranking: Präfix vor Wortanfang vor Teilstring — bei Gleichstand Listenreihenfolge. */
 export function filterVorschlaege(query: string, limit = 8): SuchVorschlag[] {
   const q = norm(query.trim());
   if (q.length < 2) return [];
-  const rang = (v: string): number => {
-    const n = norm(v);
-    if (n.startsWith(q)) return 0;
-    if (n.includes(` ${q}`) || n.includes(`-${q}`)) return 1;
-    if (n.includes(q)) return 2;
+  const rang = (text: string): number => {
+    if (text.startsWith(q)) return 0;
+    if (text.includes(` ${q}`) || text.includes(`-${q}`)) return 1;
+    if (text.includes(q)) return 2;
     return 3;
   };
-  const treffer: { s: SuchVorschlag; r: number }[] = [];
+  // Strukturierte Entitäten (Personen, Themenfelder, Unterthemen) vor den offenen
+  // Tags: wer „merz" tippt, will Friedrich Merz, nicht „Merz-Besuch China". Und bei
+  // Tags KEINE mittigen Teilstring-Treffer (Rang 2) — sonst sammelt „merz" auch
+  // „Sommerzeit", „Commerzbank", „kommerzielle …" ein. Nur Wortanfänge zählen.
+  const istTag = (typ: SuchVorschlag["typ"]) => typ === "Spezifisches Thema";
+  const treffer: { s: SuchVorschlag; r: number; t: number }[] = [];
   for (const s of getSuchVorschlaege()) {
-    const r = rang(s.v);
-    if (r < 3) treffer.push({ s, r });
+    const r = rang(matchText(s.v));
+    if (r >= 3) continue;
+    if (istTag(s.typ) && r === 2) continue;
+    treffer.push({ s, r, t: istTag(s.typ) ? 1 : 0 });
   }
-  return treffer.sort((a, b) => a.r - b.r).slice(0, limit).map((x) => x.s);
+  return treffer.sort((a, b) => a.t - b.t || a.r - b.r).slice(0, limit).map((x) => x.s);
 }
 
 /**

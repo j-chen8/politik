@@ -61,38 +61,35 @@ const klasseLabelMap: Record<string, string> = {
  *   mittel + "Unterrichtung" → "UNTER- / RICHTUNG"
  */
 function coverHeadline(batchClass: string, dokumenttyp: string | null, fraktion: string | null): { line1: string; line2: string } {
-  // Wenn dokumenttyp da ist, nutze ihn als Basis
   const t = (dokumenttyp ?? "").trim().toLowerCase();
 
-  if (batchClass === "antwort") return { line1: "ANTWORT der", line2: "BUNDESREGIERUNG" };
-
-  if (batchClass === "klein") {
+  // Amtlicher DIP-Typ (dokumenttyp) ist maßgeblich; batch_class ist nur ein
+  // Längen-/Verarbeitungs-Tier (klein/mittel/gross/…) und dient bloß als Fallback,
+  // falls dokumenttyp fehlt. Reihenfolge wichtig: Entschließungs-/Änderungsantrag
+  // VOR dem generischen "antrag", Beschlussempfehlung VOR "bericht".
+  if (t) {
+    if (t.includes("kleine anfrage")) return { line1: "KLEINE", line2: "ANFRAGE" };
+    if (t.includes("große anfrage") || t.includes("grosse anfrage")) return { line1: "GROSSE", line2: "ANFRAGE" };
+    if (t.includes("entschließung") || t.includes("entschliessung")) return { line1: "ENTSCHLIESSUNGS-", line2: "ANTRAG" };
+    if (t.includes("änderung") || t.includes("aenderung")) return { line1: "ÄNDERUNGS-", line2: "ANTRAG" };
     if (t.includes("antrag")) return { line1: "ANTRAG", line2: "" };
-    if (t.includes("entschließung")) return { line1: "ENTSCHLIESSUNGS-", line2: "ANTRAG" };
-    if (t.includes("änderung")) return { line1: "ÄNDERUNGS-", line2: "ANTRAG" };
-    return { line1: "KLEINE", line2: "ANFRAGE" };
-  }
-
-  if (batchClass === "gross") {
-    if (t.includes("große anfrage")) return { line1: "GROSSE", line2: "ANFRAGE" };
     if (t.includes("gesetz")) return { line1: "GESETZ-", line2: "ENTWURF" };
-    return { line1: "GESETZ-", line2: "ENTWURF" };
-  }
-
-  if (batchClass === "mittel") {
-    if (t.includes("unterrichtung")) return { line1: "UNTER-", line2: "RICHTUNG" };
-    if (t.includes("bericht")) return { line1: "BERICHT", line2: "" };
-    if (t.includes("empfehlung") || t.includes("beschluss")) return { line1: "BESCHLUSS-", line2: "EMPFEHLUNG" };
-    return { line1: "BERICHT", line2: "" };
-  }
-
-  if (batchClass === "regierung") {
-    if (t.includes("fragestunde") || t.includes("schriftlich")) return { line1: "SCHRIFTL.", line2: "FRAGEN" };
     if (t.includes("verordnung")) return { line1: "VER-", line2: "ORDNUNG" };
-    if (t.includes("eu") || t.includes("vorlage")) return { line1: "EU-", line2: "VORLAGE" };
-    return { line1: "REGIERUNGS-", line2: "DOKUMENT" };
+    if (t.includes("unterrichtung")) return { line1: "UNTER-", line2: "RICHTUNG" };
+    if (t.includes("beschlussempfehlung") || t.includes("empfehlung")) return { line1: "BESCHLUSS-", line2: "EMPFEHLUNG" };
+    if (t.includes("bericht")) return { line1: "BERICHT", line2: "" };
+    if (t.includes("wahlvorschlag")) return { line1: "WAHL-", line2: "VORSCHLAG" };
+    if (t.includes("antwort")) return { line1: "ANTWORT der", line2: "BUNDESREGIERUNG" };
+    if (t.includes("schriftlich") || t.includes("fragestunde") || t === "fragen") return { line1: "SCHRIFTL.", line2: "FRAGEN" };
   }
 
+  // Fallback: kein/unbekannter dokumenttyp → batch_class-Tier
+  if (batchClass === "antwort") return { line1: "ANTWORT der", line2: "BUNDESREGIERUNG" };
+  if (batchClass === "klein") return { line1: "KLEINE", line2: "ANFRAGE" };
+  if (batchClass === "gross") return { line1: "GESETZ-", line2: "ENTWURF" };
+  if (batchClass === "mittel") return { line1: "BERICHT", line2: "" };
+  if (batchClass === "administrativ") return { line1: "BESCHLUSS-", line2: "EMPFEHLUNG" };
+  if (batchClass === "regierung") return { line1: "REGIERUNGS-", line2: "DOKUMENT" };
   return { line1: "DRUCK-", line2: "SACHE" };
 }
 
@@ -134,11 +131,11 @@ function bulletType(s: string, batchClass: string): string {
 }
 
 const bulletTypeColor: Record<string, string> = {
-  FRAGE:     "text-blue-700 bg-blue-50",
-  FORDERUNG: "text-orange-800 bg-orange-50",
-  BEFUND:    "text-emerald-700 bg-emerald-50",
-  REGELUNG:  "text-violet-700 bg-violet-50",
-  PUNKT:     "text-zinc-600 bg-zinc-100",
+  FRAGE:     "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40",
+  FORDERUNG: "text-orange-800 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30",
+  BEFUND:    "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40",
+  REGELUNG:  "text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/40",
+  PUNKT:     "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800",
 };
 
 function formatDate(s: string | null): string | null {
@@ -205,7 +202,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
   const fraktionList = Array.from(fraktionCounts.entries()).sort((a, b) => b[1] - a[1]);
   const mitzTotal = mitzeichner.length;
 
-  const klasseLabel = klasseLabelMap[ds.batch_class] ?? ds.batch_class;
+  // Amtlicher DIP-Typ (dokumenttyp) zuerst; klasseLabelMap[batch_class] nur Fallback.
+  const klasseLabel = (ds.dokumenttyp?.trim() || klasseLabelMap[ds.batch_class]) ?? ds.batch_class;
   const datumFormatted = formatDate(ds.datum);
   const dsNrPart1 = dsNr.split("/")[0];
   const dsNrPart2 = dsNr.split("/")[1];
@@ -219,7 +217,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         {/* Breadcrumb */}
         <Link
           href="/aktivitaeten"
-          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-zinc-950 transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Aktivitäten
@@ -232,7 +230,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
             const cover = coverHeadline(ds.batch_class, ds.dokumenttyp, tragendeFraktion);
             return (
               <div
-                className="rounded-xl border-2 border-zinc-900 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
+                className="rounded-xl border-2 border-zinc-900 dark:border-zinc-100 flex flex-col justify-between p-4 aspect-[2/2.7] text-zinc-50 w-[140px] sm:w-auto self-start"
                 style={{
                   background: `linear-gradient(135deg, ${partyColor(tragendeFraktion)} 0%, ${partyColor(tragendeFraktion)}cc 60%, #18181b 100%)`,
                 }}
@@ -258,40 +256,40 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
           {/* Title + Properties */}
           <div className="flex flex-col min-w-0">
-            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2 flex items-baseline gap-1.5 flex-wrap">
+            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2 flex items-baseline gap-1.5 flex-wrap">
               Bundestag
-              <span className="text-zinc-300">·</span>
+              <span className="text-zinc-300 dark:text-zinc-600">·</span>
               <span>Wahlperiode {dsNrPart1}</span>
               {ds.dokumenttyp && (
                 <>
-                  <span className="text-zinc-300">·</span>
-                  <span className="text-zinc-700 normal-case font-normal tracking-normal">
+                  <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                  <span className="text-zinc-700 dark:text-zinc-300 normal-case font-normal tracking-normal">
                     {ds.dokumenttyp}
                   </span>
                 </>
               )}
               {datumFormatted && (
                 <>
-                  <span className="text-zinc-300">·</span>
-                  <span className="text-zinc-700 normal-case font-normal tracking-normal num">{datumFormatted}</span>
+                  <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                  <span className="text-zinc-700 dark:text-zinc-300 normal-case font-normal tracking-normal num">{datumFormatted}</span>
                 </>
               )}
             </div>
 
-            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 leading-[1.15] mb-4 break-words hyphens-auto">
+            <h1 className="text-[22px] sm:text-[28px] lg:text-[32px] font-semibold tracking-[-0.025em] text-zinc-950 dark:text-zinc-50 leading-[1.15] mb-4 break-words hyphens-auto">
               {ds.titel ?? klasseLabel}
             </h1>
 
             {/* Träger */}
             {tragendeFraktion && (
               <div className="flex items-center gap-3 text-[13px] mb-5 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 text-zinc-700">
+                <span className="inline-flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
                   <span
                     className="inline-block w-2.5 h-2.5 rounded-full"
                     style={{ background: partyColor(tragendeFraktion) }}
                   />
                   <span className="font-medium">{tragendeFraktion}</span>
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 dark:text-zinc-500">
                     {ds.batch_class === "antwort" ? "antwortet" : "eingebracht"}
                   </span>
                 </span>
@@ -304,7 +302,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               {ds.thema.map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-1 rounded text-[11px] font-medium text-zinc-700 bg-zinc-100"
+                  className="px-2 py-1 rounded text-[11px] font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800"
                 >
                   {t}
                 </span>
@@ -317,7 +315,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 href={ds.pdf_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-[#1a3e72] hover:text-[#0f2a52] px-2.5 py-1 rounded-md border border-[#1a3e72]/25 hover:border-[#1a3e72]/40 bg-[#1a3e72]/5 hover:bg-[#1a3e72]/10 transition-colors w-fit"
+                className="mt-5 inline-flex items-center gap-1.5 text-[12.5px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] px-2.5 py-1 rounded-md border border-[#1a3e72]/25 dark:border-[#8fb3e6]/25 hover:border-[#1a3e72]/40 dark:hover:border-[#8fb3e6]/40 bg-[#1a3e72]/5 dark:bg-[#8fb3e6]/10 hover:bg-[#1a3e72]/10 dark:hover:bg-[#8fb3e6]/20 transition-colors w-fit"
               >
                 <FileText className="w-3.5 h-3.5" strokeWidth={2.25} />
                 Original-PDF auf bundestag.de
@@ -338,17 +336,17 @@ export default async function DrucksacheDetailPage({ params }: Props) {
             "Sammelübersicht N mit X behandelten Petitionen"-Boilerplate). */}
         {ds.zusammenfassung &&
           !(parsedDetails?.pattern === "sammeluebersicht" && parsedDetails.total_petitionen > 0) && (
-          <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+          <section className="fade-in-up-2 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
               Was die Drucksache sagt
             </h2>
             <div className="prose-zinc max-w-none">
-              <p className="text-[15px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">
+              <p className="text-[15px] text-zinc-800 dark:text-zinc-200 leading-relaxed whitespace-pre-wrap break-words">
                 {ds.zusammenfassung}
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400">
-              <Link href="/methodik" className="hover:text-zinc-950 underline-offset-2 hover:underline">
+            <div className="mt-6 pt-4 border-t border-border text-[11px] text-zinc-400 dark:text-zinc-500">
+              <Link href="/methodik" className="hover:text-zinc-950 dark:hover:text-zinc-100 underline-offset-2 hover:underline">
                 Methodik öffnen →
               </Link>
             </div>
@@ -358,28 +356,28 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         {/* PARSED-DETAILS: strukturierte PDF-Parser-Ausgabe für Sammel-
             übersichten, Verfahrens-Anträge, Wahlvorschläge. */}
         {parsedDetails?.pattern === "sammeluebersicht" && parsedDetails.total_petitionen > 0 && (
-          <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+          <section className="fade-in-up-2 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
               Petitions-Sammelübersicht {parsedDetails.nummer}
             </h2>
-            <p className="text-[15px] text-zinc-800 leading-relaxed mb-5">
-              <span className="num font-medium text-zinc-950">{parsedDetails.total_petitionen}</span>{" "}
+            <p className="text-[15px] text-zinc-800 dark:text-zinc-200 leading-relaxed mb-5">
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.total_petitionen}</span>{" "}
               Bürger-Petitionen — vom Petitionsausschuss in dieser Sammelübersicht behandelt.
             </p>
 
             {parsedDetails.top_themen.length > 0 && (
               <div className="mb-5">
-                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Top-Themen
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {parsedDetails.top_themen.map((t) => (
                     <span
                       key={t.thema}
-                      className="inline-flex items-center gap-1 text-[12.5px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-700"
+                      className="inline-flex items-center gap-1 text-[12.5px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
                     >
                       <span>{t.thema}</span>
-                      <span className="num text-zinc-500">×{t.count}</span>
+                      <span className="num text-zinc-500 dark:text-zinc-400">×{t.count}</span>
                     </span>
                   ))}
                 </div>
@@ -387,41 +385,41 @@ export default async function DrucksacheDetailPage({ params }: Props) {
             )}
 
             <div>
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                 Beschlussempfehlungen
               </div>
               <ul className="space-y-4">
                 {parsedDetails.beschlussempfehlungen.map((be) => (
-                  <li key={be.nummer} className="border-l-2 border-zinc-200 pl-3 py-1">
-                    <div className="text-[13px] text-zinc-700 leading-relaxed mb-1.5">
-                      <span className="font-semibold text-zinc-950">BE {be.nummer}:</span> {be.aktion}
+                  <li key={be.nummer} className="border-l-2 border-border pl-3 py-1">
+                    <div className="text-[13px] text-zinc-700 dark:text-zinc-300 leading-relaxed mb-1.5">
+                      <span className="font-semibold text-zinc-950 dark:text-zinc-50">BE {be.nummer}:</span> {be.aktion}
                     </div>
                     <div className="flex flex-wrap items-center gap-1.5 text-[11.5px] mb-2">
-                      <span className="text-zinc-500 num">
+                      <span className="text-zinc-500 dark:text-zinc-400 num">
                         {be.petitionen_count}{" "}
                         {be.petitionen_count === 1 ? "Petition" : "Petitionen"}
                       </span>
                       {be.themen.slice(0, 4).map((t) => (
-                        <span key={t.thema} className="inline-flex items-center gap-0.5 text-zinc-600">
+                        <span key={t.thema} className="inline-flex items-center gap-0.5 text-zinc-600 dark:text-zinc-300">
                           · <span>{t.thema}</span>
-                          {t.count > 1 && <span className="num text-zinc-400">×{t.count}</span>}
+                          {t.count > 1 && <span className="num text-zinc-400 dark:text-zinc-500">×{t.count}</span>}
                         </span>
                       ))}
                       {be.themen.length > 4 && (
-                        <span className="text-zinc-400">+ {be.themen.length - 4}</span>
+                        <span className="text-zinc-400 dark:text-zinc-500">+ {be.themen.length - 4}</span>
                       )}
                     </div>
                     {be.petitionen && be.petitionen.length > 0 && (
                       <details className="group mt-1">
-                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1">
-                          <span className="text-zinc-400 group-open:hidden">▶</span>
-                          <span className="text-zinc-400 hidden group-open:inline">▼</span>
+                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 list-none flex items-center gap-1">
+                          <span className="text-zinc-400 dark:text-zinc-500 group-open:hidden">▶</span>
+                          <span className="text-zinc-400 dark:text-zinc-500 hidden group-open:inline">▼</span>
                           Einzelne Petitionen anzeigen
                         </summary>
                         <div className="mt-2 overflow-x-auto">
-                          <table className="w-full text-[12px] text-zinc-700">
+                          <table className="w-full text-[12px] text-zinc-700 dark:text-zinc-300">
                             <thead>
-                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 border-b border-zinc-100">
+                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 border-b border-border">
                                 <th className="text-left py-1 pr-2 font-medium">Nr</th>
                                 <th className="text-left py-1 pr-2 font-medium">Aktenzeichen</th>
                                 <th className="text-left py-1 pr-2 font-medium">Wohnort</th>
@@ -430,14 +428,14 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                             </thead>
                             <tbody>
                               {be.petitionen.map((p) => (
-                                <tr key={p.lfd_nr} className="border-b border-zinc-50 last:border-0">
-                                  <td className="py-1.5 pr-2 num text-zinc-500">{p.lfd_nr}</td>
-                                  <td className="py-1.5 pr-2 num text-zinc-600 whitespace-nowrap">{p.aktenzeichen}</td>
-                                  <td className="py-1.5 pr-2 text-zinc-700">
-                                    {p.plz && <span className="num text-zinc-500 mr-1">{p.plz}</span>}
+                                <tr key={p.lfd_nr} className="border-b border-border last:border-0">
+                                  <td className="py-1.5 pr-2 num text-zinc-500 dark:text-zinc-400">{p.lfd_nr}</td>
+                                  <td className="py-1.5 pr-2 num text-zinc-600 dark:text-zinc-300 whitespace-nowrap">{p.aktenzeichen}</td>
+                                  <td className="py-1.5 pr-2 text-zinc-700 dark:text-zinc-300">
+                                    {p.plz && <span className="num text-zinc-500 dark:text-zinc-400 mr-1">{p.plz}</span>}
                                     {p.ort}
                                   </td>
-                                  <td className="py-1.5 text-zinc-800">{p.sachgebiet || "—"}</td>
+                                  <td className="py-1.5 text-zinc-800 dark:text-zinc-200">{p.sachgebiet || "—"}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -449,7 +447,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 ))}
               </ul>
             </div>
-            <p className="text-[11.5px] text-zinc-400 mt-5 leading-relaxed">
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-5 leading-relaxed">
               Aktenzeichen, Wohnort und Sachgebiet werden deterministisch aus
               der PDF-Tabelle des Petitionsausschusses extrahiert. Der
               Petitions-Volltext einzelner Bürger:innen-Eingaben ist aus
@@ -459,21 +457,21 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         )}
 
         {parsedDetails?.pattern === "verfahren" && (parsedDetails.beschluss_klausel || parsedDetails.antragsteller.length > 0) && (
-          <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+          <section className="fade-in-up-2 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
               Beschluss-Vorschlag
             </h2>
             {parsedDetails.beschluss_klausel && (
-              <blockquote className="text-[15px] text-zinc-800 leading-relaxed border-l-2 border-zinc-300 pl-4 mb-4">
+              <blockquote className="text-[15px] text-zinc-800 dark:text-zinc-200 leading-relaxed border-l-2 border-zinc-300 dark:border-zinc-600 pl-4 mb-4">
                 {parsedDetails.beschluss_klausel}
               </blockquote>
             )}
             {parsedDetails.antragsteller.length > 0 && (
               <div>
-                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                   Eingebracht von
                 </div>
-                <ul className="space-y-0.5 text-[13.5px] text-zinc-700">
+                <ul className="space-y-0.5 text-[13.5px] text-zinc-700 dark:text-zinc-300">
                   {parsedDetails.antragsteller.map((a) => (
                     <li key={a}>· {a}</li>
                   ))}
@@ -484,21 +482,21 @@ export default async function DrucksacheDetailPage({ params }: Props) {
         )}
 
         {parsedDetails?.pattern === "wahlvorschlag" && parsedDetails.total_mitglieder > 0 && (
-          <section className="fade-in-up-2 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+          <section className="fade-in-up-2 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
               Vorgeschlagene Sitzverteilung
             </h2>
-            <p className="text-[13.5px] text-zinc-700 mb-3">
-              <span className="num font-medium text-zinc-950">{parsedDetails.total_mitglieder}</span>{" "}
+            <p className="text-[13.5px] text-zinc-700 dark:text-zinc-300 mb-3">
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.total_mitglieder}</span>{" "}
               Personen über{" "}
-              <span className="num font-medium text-zinc-950">{parsedDetails.fraktion_sitze.length}</span>{" "}
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.fraktion_sitze.length}</span>{" "}
               Fraktion{parsedDetails.fraktion_sitze.length === 1 ? "" : "en"}.
             </p>
             <ul className="space-y-1.5">
               {parsedDetails.fraktion_sitze.map((f) => (
                 <li key={f.fraktion} className="flex items-baseline justify-between gap-3 text-[13.5px]">
-                  <span className="text-zinc-800">{f.fraktion}</span>
-                  <span className="num font-medium text-zinc-950">{f.mitglieder}</span>
+                  <span className="text-zinc-800 dark:text-zinc-200">{f.fraktion}</span>
+                  <span className="num font-medium text-zinc-950 dark:text-zinc-50">{f.mitglieder}</span>
                 </li>
               ))}
             </ul>
@@ -507,19 +505,19 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* FRAGE & ANTWORT (Phase C: Kleine/Große Anfrage — getrennte Kerninhalte) */}
         {((ds.kerninhaltFrage?.length ?? 0) > 0 || (ds.kerninhaltAntwort?.length ?? 0) > 0) && qaPaare.length === 0 && (
-          <section className="fade-in-up-3 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-3 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline gap-3 mb-5 flex-wrap">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Frage &amp; Antwort</h2>
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Frage &amp; Antwort</h2>
               {ds.antwortCharakter && <DrucksacheTonalityBadge slug={ds.antwortCharakter} />}
             </div>
             {(ds.kerninhaltQaPaare?.length ?? 0) > 0 ? (
               /* Gepaart: jede Frage mit ihrer zugeordneten Antwort */
               <ul className="space-y-3.5">
                 {ds.kerninhaltQaPaare!.map((p, i) => (
-                  <li key={`p-${i}`} className="border-l-2 border-zinc-200 pl-4">
-                    <p className="text-[13.5px] text-zinc-900 leading-snug font-medium">{p.frage}</p>
-                    <p className="text-[13px] text-zinc-600 leading-snug mt-0.5">
-                      <span className="text-zinc-400">↳ </span>{p.antwort || <span className="italic text-zinc-400">keine Antwort zugeordnet</span>}
+                  <li key={`p-${i}`} className="border-l-2 border-border pl-4">
+                    <p className="text-[13.5px] text-zinc-900 dark:text-zinc-100 leading-snug font-medium">{p.frage}</p>
+                    <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-snug mt-0.5">
+                      <span className="text-zinc-400 dark:text-zinc-500">↳ </span>{p.antwort || <span className="italic text-zinc-400 dark:text-zinc-500">keine Antwort zugeordnet</span>}
                     </p>
                   </li>
                 ))}
@@ -529,20 +527,20 @@ export default async function DrucksacheDetailPage({ params }: Props) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {(ds.kerninhaltFrage?.length ?? 0) > 0 && (
                   <div>
-                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Was wurde gefragt?</h3>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">Was wurde gefragt?</h3>
                     <ul className="space-y-2.5">
                       {ds.kerninhaltFrage!.map((b, i) => (
-                        <li key={`f-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
+                        <li key={`f-${i}`} className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug">{b}</li>
                       ))}
                     </ul>
                   </div>
                 )}
                 {(ds.kerninhaltAntwort?.length ?? 0) > 0 && (
                   <div>
-                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-3">Wie hat die Bundesregierung geantwortet?</h3>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">Wie hat die Bundesregierung geantwortet?</h3>
                     <ul className="space-y-2.5">
                       {ds.kerninhaltAntwort!.map((b, i) => (
-                        <li key={`a-${i}`} className="text-[13.5px] text-zinc-800 leading-snug">{b}</li>
+                        <li key={`a-${i}`} className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug">{b}</li>
                       ))}
                     </ul>
                   </div>
@@ -554,22 +552,22 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* KERNINHALT mit Bullet-Type-Tags (Blob — entfällt, wenn Frage/Antwort getrennt vorliegt) */}
         {ds.kerninhalt && ds.kerninhalt.length > 0 && !((ds.kerninhaltFrage?.length ?? 0) > 0) && (
-          <section className="fade-in-up-3 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-3 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Kerninhalt
               </h2>
-              <span className="num text-[11px] text-zinc-400">{ds.kerninhalt.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{ds.kerninhalt.length}</span>
             </div>
             <ul className="space-y-3">
               {ds.kerninhalt.map((b, i) => {
                 const typ = bulletType(b, ds.batch_class);
                 return (
                   <li key={i} className="flex gap-3 items-start text-[13.5px] leading-relaxed">
-                    <span className={`shrink-0 inline-block px-1.5 py-0.5 rounded text-[9.5px] font-semibold tracking-wider uppercase ${bulletTypeColor[typ] ?? "text-zinc-600 bg-zinc-100"} mt-0.5`}>
+                    <span className={`shrink-0 inline-block px-1.5 py-0.5 rounded text-[9.5px] font-semibold tracking-wider uppercase ${bulletTypeColor[typ] ?? "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800"} mt-0.5`}>
                       {typ}
                     </span>
-                    <span className="text-zinc-800">{b}</span>
+                    <span className="text-zinc-800 dark:text-zinc-200">{b}</span>
                   </li>
                 );
               })}
@@ -579,41 +577,41 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* GROSS-SPEZIFISCH: Regelung / Begründung / Auswirkung */}
         {(ds.regelung || ds.begruendung || ds.auswirkung) && (
-          <section className="fade-in-up-3 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-5">
+          <section className="fade-in-up-3 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-5">
               Details
             </h2>
             <div className="space-y-5">
               {ds.regelung && (
                 <div>
-                  <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
+                  <h3 className="text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 uppercase tracking-wide mb-2">
                     Regelung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.regelung}</p>
+                  <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed whitespace-pre-wrap break-words">{ds.regelung}</p>
                 </div>
               )}
               {ds.begruendung && (
                 <div>
-                  <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
+                  <h3 className="text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 uppercase tracking-wide mb-2">
                     Begründung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.begruendung}</p>
+                  <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed whitespace-pre-wrap break-words">{ds.begruendung}</p>
                 </div>
               )}
               {ds.auswirkung && (
                 <div>
-                  <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
+                  <h3 className="text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 uppercase tracking-wide mb-2">
                     Auswirkung
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed whitespace-pre-wrap break-words">{ds.auswirkung}</p>
+                  <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed whitespace-pre-wrap break-words">{ds.auswirkung}</p>
                 </div>
               )}
               {ds.betroffene_gruppen && (
                 <div>
-                  <h3 className="text-[12px] font-semibold text-zinc-950 uppercase tracking-wide mb-2">
+                  <h3 className="text-[12px] font-semibold text-zinc-950 dark:text-zinc-50 uppercase tracking-wide mb-2">
                     Betroffene Gruppen
                   </h3>
-                  <p className="text-[14px] text-zinc-800 leading-relaxed">{ds.betroffene_gruppen}</p>
+                  <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.betroffene_gruppen}</p>
                 </div>
               )}
             </div>
@@ -622,18 +620,18 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* MITZEICHNER mit Fraktionsverteilung */}
         {mitzTotal > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Mitgezeichnet
               </h2>
-              <span className="num text-[11px] text-zinc-400">{mitzTotal}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{mitzTotal}</span>
             </div>
 
             {/* Fraktionsverteilung-Bar (nur bei >1 Fraktion) */}
             {fraktionList.length > 1 && (
               <div className="mb-5">
-                <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 mb-2.5">
+                <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-2.5">
                   {fraktionList.map(([party, n]) => (
                     <div
                       key={party}
@@ -647,10 +645,10 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 </div>
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] num">
                   {fraktionList.map(([party, n]) => (
-                    <span key={party} className="inline-flex items-center gap-1.5 text-zinc-600">
+                    <span key={party} className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                       <span className="w-1.5 h-1.5 rounded-full" style={{ background: partyColor(party) }} />
                       <span>{party}</span>
-                      <span className="text-zinc-950 font-medium">{n}</span>
+                      <span className="text-zinc-950 dark:text-zinc-50 font-medium">{n}</span>
                     </span>
                   ))}
                 </div>
@@ -664,14 +662,14 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* BERICHTERSTATTER:INNEN — formale Ausschuss-Rolle, KEINE inhaltliche Mit-Trägerschaft */}
         {berichterstatter.length > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-2">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Berichterstatter:innen
               </h2>
-              <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{berichterstatter.length}</span>
             </div>
-            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+            <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mb-5">
               Vom Ausschuss benannt — typischerweise 1 pro Fraktion. Diese Liste zeigt KEINE inhaltliche Zustimmung; die genannten Fraktionen können in der namentlichen Abstimmung sehr wohl dagegen stimmen.
             </p>
             <MitzeichnerGrid mitz={berichterstatter} />
@@ -680,39 +678,39 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* FRAGEN & ANTWORTEN — extrahierte Einzel-Q&A aus Sammeldrucksachen */}
         {qaPaare.length > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline gap-3 mb-1 flex-wrap">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">Fragen & Antworten</h2>
-              <span className="num text-[11px] text-zinc-400">{qaPaare.length}</span>
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Fragen & Antworten</h2>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{qaPaare.length}</span>
               {ds.antwortCharakter && <DrucksacheTonalityBadge slug={ds.antwortCharakter} />}
             </div>
-            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+            <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mb-5">
               Jede Einzelfrage mit der zugeordneten Antwort der Bundesregierung, aus der Drucksache extrahiert.
             </p>
             <ul className="space-y-4">
               {qaPaare.map((qa) => (
-                <li key={qa.paarIndex} className="border-l-2 border-zinc-200 pl-4">
+                <li key={qa.paarIndex} className="border-l-2 border-border pl-4">
                   <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                    <span className="num text-[10px] text-zinc-400 shrink-0">{qa.paarIndex}</span>
+                    <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 shrink-0">{qa.paarIndex}</span>
                     {qa.fragestellerName && (qa.fragestellerPoliticianId ? (
-                      <Link href={`/politiker/${qa.fragestellerPoliticianId}`} className="text-[13px] font-medium text-zinc-950 hover:text-[#1a3e72] transition-colors">
+                      <Link href={`/politiker/${qa.fragestellerPoliticianId}`} className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50 hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors">
                         {qa.fragestellerName}
                       </Link>
                     ) : (
-                      <span className="text-[13px] font-medium text-zinc-700">{qa.fragestellerName}</span>
+                      <span className="text-[13px] font-medium text-zinc-700 dark:text-zinc-300">{qa.fragestellerName}</span>
                     ))}
-                    {qa.fragestellerParty && <span className="text-[11px] text-zinc-400">{qa.fragestellerParty}</span>}
+                    {qa.fragestellerParty && <span className="text-[11px] text-zinc-400 dark:text-zinc-500">{qa.fragestellerParty}</span>}
                   </div>
-                  {qa.frageText && <p className="text-[13.5px] text-zinc-800 leading-snug mb-1.5">{qa.frageText}</p>}
+                  {qa.frageText && <p className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug mb-1.5">{qa.frageText}</p>}
                   {qa.antwortText && (
                     <details className="group">
-                      <summary className="cursor-pointer text-[11.5px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
+                      <summary className="cursor-pointer text-[11.5px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] select-none list-none">
                         <span className="group-open:hidden">▶ Antwort{qa.antwortSteller ? ` (${qa.antwortSteller})` : ""} anzeigen</span>
                         <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
                       </summary>
-                      <div className="mt-1.5 text-[12.5px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">
+                      <div className="mt-1.5 text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line border-l-2 border-border pl-3">
                         {(qa.antwortSteller || qa.antwortDatum) && (
-                          <p className="text-[11px] text-zinc-400 mb-1">
+                          <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mb-1">
                             Antwort{qa.antwortSteller ? ` von ${qa.antwortSteller}` : ""}{qa.antwortDatum ? `, ${qa.antwortDatum}` : ""}
                           </p>
                         )}
@@ -728,18 +726,18 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* BETEILIGTE BEITRÄGE / FRAGEN — schriftliche Fragen sind NICHT "im Plenum" */}
         {relatedSpeeches.length > 0 && qaPaare.length === 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 {relatedAllSchriftlich ? "Enthaltene Fragen" : "Im Plenum"}
               </h2>
-              <span className="num text-[11px] text-zinc-400">{relatedSpeeches.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{relatedSpeeches.length}</span>
             </div>
             {relatedAllSchriftlich && (
-              <p className="text-[12px] text-zinc-500 leading-snug mb-5 -mt-2">
+              <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mb-5 -mt-2">
                 Die Antworten der Bundesregierung stehen im{" "}
                 {ds.pdf_url ? (
-                  <a href={ds.pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1a3e72] hover:text-[#0f2a52] underline decoration-[#1a3e72]/40 underline-offset-2">Original-PDF</a>
+                  <a href={ds.pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] underline decoration-[#1a3e72]/40 dark:decoration-[#8fb3e6]/40 underline-offset-2">Original-PDF</a>
                 ) : "Original-PDF"}
                 {["substantiell", "teilantwortend", "ausweichend"].includes(ds.tonalitaet ?? "")
                   ? <>; ihre Substanz ist oben als „{ds.tonalitaet}" eingeordnet.</>
@@ -752,26 +750,26 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 return (
                   <li key={`${r.politician_id}-${i}`} className="text-[13px]">
                     <div className="flex items-baseline gap-2 flex-wrap">
-                      <Icon className="w-3.5 h-3.5 text-zinc-400 shrink-0 self-center" strokeWidth={2} />
+                      <Icon className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 shrink-0 self-center" strokeWidth={2} />
                       <Link
                         href={`/politiker/${r.politician_id}`}
-                        className="text-zinc-950 hover:underline underline-offset-2 font-medium"
+                        className="text-zinc-950 dark:text-zinc-50 hover:underline underline-offset-2 font-medium"
                       >
                         {r.first_name} {r.last_name}
                       </Link>
-                      <span className="text-zinc-400">·</span>
-                      <span className="text-zinc-500 text-[12px]">{r.typLabel}</span>
+                      <span className="text-zinc-400 dark:text-zinc-500">·</span>
+                      <span className="text-zinc-500 dark:text-zinc-400 text-[12px]">{r.typLabel}</span>
                       {r.party_label && (
-                        <span className="text-zinc-400 text-[11px]">{r.party_label}</span>
+                        <span className="text-zinc-400 dark:text-zinc-500 text-[11px]">{r.party_label}</span>
                       )}
                       {r.datum && (
-                        <span className="text-zinc-400 text-[11px] num ml-auto">
+                        <span className="text-zinc-400 dark:text-zinc-500 text-[11px] num ml-auto">
                           {new Date(r.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })}
                         </span>
                       )}
                     </div>
                     {r.thema && (
-                      <p className="text-[12.5px] text-zinc-700 leading-snug mt-0.5 pl-[22px] line-clamp-2">
+                      <p className="text-[12.5px] text-zinc-700 dark:text-zinc-300 leading-snug mt-0.5 pl-[22px] line-clamp-2">
                         {r.thema}
                       </p>
                     )}
@@ -779,7 +777,7 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                 );
               })}
               {relatedSpeeches.length > 12 && (
-                <li className="text-[11.5px] text-zinc-400 pl-6 pt-1">
+                <li className="text-[11.5px] text-zinc-400 dark:text-zinc-500 pl-6 pt-1">
                   + {relatedSpeeches.length - 12} weitere
                 </li>
               )}
@@ -789,8 +787,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* NAMENTLICHE ABSTIMMUNG (wenn vorhanden) */}
         {polls.length > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-5">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-5">
               Namentliche Abstimmung{polls.length > 1 ? "en" : ""}
             </h2>
             <div className="space-y-5">
@@ -801,40 +799,40 @@ export default async function DrucksacheDetailPage({ params }: Props) {
                     <div className="flex items-baseline justify-between gap-3 mb-2 flex-wrap">
                       <Link
                         href={`/abstimmungen/${p.poll_id}`}
-                        className="text-[13.5px] font-medium text-zinc-950 hover:underline underline-offset-2"
+                        className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50 hover:underline underline-offset-2"
                       >
                         {p.poll_label}
                       </Link>
-                      <span className="text-[11px] text-zinc-400 num">
+                      <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                         {new Date(p.poll_date + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}
                       </span>
                     </div>
-                    <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 mb-2.5">
+                    <div className="flex h-2 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-2.5">
                       <div className="bg-emerald-500" style={{ width: pct(p.yes) }} title={`Ja: ${p.yes}`} />
                       <div className="bg-red-500" style={{ width: pct(p.no) }} title={`Nein: ${p.no}`} />
                       <div className="bg-amber-500" style={{ width: pct(p.abstain) }} title={`Enthaltung: ${p.abstain}`} />
                       <div className="bg-zinc-400" style={{ width: pct(p.noShow) }} title={`Abwesend: ${p.noShow}`} />
                     </div>
                     <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[11.5px] num">
-                      <span className="inline-flex items-center gap-1.5 text-zinc-600">
+                      <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Ja <span className="text-zinc-950 font-medium">{p.yes}</span>
+                        Ja <span className="text-zinc-950 dark:text-zinc-50 font-medium">{p.yes}</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 text-zinc-600">
+                      <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                        Nein <span className="text-zinc-950 font-medium">{p.no}</span>
+                        Nein <span className="text-zinc-950 dark:text-zinc-50 font-medium">{p.no}</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 text-zinc-600">
+                      <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        Enthaltung <span className="text-zinc-950 font-medium">{p.abstain}</span>
+                        Enthaltung <span className="text-zinc-950 dark:text-zinc-50 font-medium">{p.abstain}</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 text-zinc-600">
+                      <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-                        Abwesend <span className="text-zinc-950 font-medium">{p.noShow}</span>
+                        Abwesend <span className="text-zinc-950 dark:text-zinc-50 font-medium">{p.noShow}</span>
                       </span>
                     </div>
                     {p.match_score < 0.5 && (
-                      <p className="text-[10.5px] text-zinc-400 mt-2">
+                      <p className="text-[10.5px] text-zinc-400 dark:text-zinc-500 mt-2">
                         Verknüpfung automatisch erkannt (Confidence niedrig — bitte prüfen)
                       </p>
                     )}
@@ -852,8 +850,8 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* VERFAHRENS-ZUSAMMENHANG (Antwort↔Anfrage) */}
         {(verfahren.parent || verfahren.children.length > 0) && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-5">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-5">
               Verfahrens-Zusammenhang
             </h2>
             <div className="space-y-3">
@@ -878,13 +876,13 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* ANDERE DS DER FRAKTION */}
         {sameFraktion.length > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 inline-flex items-center gap-2">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 inline-flex items-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full" style={{ background: partyColor(ds.fraktion) }} />
                 Weitere Drucksachen der {ds.fraktion}
               </h2>
-              <span className="num text-[11px] text-zinc-400">{sameFraktion.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{sameFraktion.length}</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {sameFraktion.map((c) => (
@@ -896,12 +894,12 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* THEMEN-ÄHNLICHE DRUCKSACHEN */}
         {themenAehnliche.length > 0 && (
-          <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Ähnliche Themen
               </h2>
-              <span className="text-[11px] text-zinc-400">
+              <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
                 {ds.thema.slice(0, 3).join(" · ")}
               </span>
             </div>
@@ -915,9 +913,9 @@ export default async function DrucksacheDetailPage({ params }: Props) {
 
         {/* Drift-Audit (wenn vorhanden) */}
         {ds.topic_drift_audit && ds.topic_drift_audit.length > 0 && (
-          <div className="text-[11px] text-zinc-400 px-2 mb-4">
+          <div className="text-[11px] text-zinc-400 dark:text-zinc-500 px-2 mb-4">
             Weitere unaufgenommene Themen-Tags (Audit):{" "}
-            <span className="text-zinc-500">{ds.topic_drift_audit.join(" · ")}</span>
+            <span className="text-zinc-500 dark:text-zinc-400">{ds.topic_drift_audit.join(" · ")}</span>
           </div>
         )}
       </div>
@@ -947,37 +945,37 @@ function renderSkeletonPage(
       <div className="page-shell">
         <Link
           href="/aktivitaeten"
-          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-zinc-950 transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Alle Aktivitäten
         </Link>
 
         <header className="mb-7">
-          <div className="flex items-baseline gap-2 flex-wrap mb-2 text-[11px] uppercase tracking-wider font-medium text-zinc-500">
+          <div className="flex items-baseline gap-2 flex-wrap mb-2 text-[11px] uppercase tracking-wider font-medium text-zinc-500 dark:text-zinc-400">
             <span>{skeleton.aktivitaetsart}</span>
             {skeleton.urheber && (
               <>
-                <span className="text-zinc-300">·</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
                 <span>{skeleton.urheber}</span>
               </>
             )}
-            <span className="text-zinc-300">·</span>
+            <span className="text-zinc-300 dark:text-zinc-600">·</span>
             <span className="num">{skeleton.drucksache_nr}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-950 tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight leading-tight">
             {skeleton.titel}
           </h1>
           {datumFormatted && (
-            <p className="mt-2 text-[13px] text-zinc-500 num">{datumFormatted}</p>
+            <p className="mt-2 text-[13px] text-zinc-500 dark:text-zinc-400 num">{datumFormatted}</p>
           )}
         </header>
 
-        <section className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-6">
-          <h2 className="text-[12px] font-semibold text-amber-900 uppercase tracking-wide mb-2">
+        <section className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 rounded-2xl p-5 mb-6">
+          <h2 className="text-[12px] font-semibold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-2">
             Analyse pending
           </h2>
-          <p className="text-[14px] text-amber-900 leading-relaxed">
+          <p className="text-[14px] text-amber-900 dark:text-amber-300 leading-relaxed">
             Diese Drucksache ist aus der DIP-Aktivitätsliste bekannt, aber das offizielle
             PDF auf dserver.bundestag.de wurde noch nicht durch unsere Analyse-Pipeline
             verarbeitet. Beim nächsten Daten-Refresh wird die KI-Zusammenfassung,
@@ -989,7 +987,7 @@ function renderSkeletonPage(
                   href={skeleton.pdf_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline decoration-amber-400 hover:decoration-amber-900 font-medium inline-flex items-center gap-1"
+                  className="underline decoration-amber-400 dark:decoration-amber-600 hover:decoration-amber-900 dark:hover:decoration-amber-300 font-medium inline-flex items-center gap-1"
                 >
                   Original-PDF
                   <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -1005,8 +1003,8 @@ function renderSkeletonPage(
         )}
 
         {referencingVotes.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Wo diese Drucksache abgestimmt wurde
             </h2>
             <ul className="space-y-3">
@@ -1030,10 +1028,10 @@ function renderSkeletonPage(
                             : v.outcome;
                 const outcomeClasses =
                   v.outcome === "annahme" || v.outcome === "annahme_geaendert"
-                    ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                    ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50"
                     : v.outcome === "ablehnung"
-                      ? "bg-rose-50 text-rose-800 border-rose-200"
-                      : "bg-zinc-100 text-zinc-700 border-zinc-300";
+                      ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50"
+                      : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600";
                 return (
                   <li key={v.voteId} className="flex items-baseline gap-3 flex-wrap">
                     <span
@@ -1041,7 +1039,7 @@ function renderSkeletonPage(
                     >
                       {outcomeLabel}
                     </span>
-                    <span className="text-[13px] text-zinc-700">
+                    <span className="text-[13px] text-zinc-700 dark:text-zinc-300">
                       {v.voteType === "handzeichen" ? "Handzeichen" : v.voteType} ·{" "}
                       <span className="num">{dateStr}</span>
                       {v.sitzungNr && (
@@ -1056,7 +1054,7 @@ function renderSkeletonPage(
                 );
               })}
             </ul>
-            <p className="text-[11.5px] text-zinc-400 mt-3 leading-relaxed">
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-3 leading-relaxed">
               Diese Verbindung kommt aus dem Plenarprotokoll der Sitzung — wir scannen
               alle PlPr-XMLs auf Abstimmungs-Snippets und ordnen sie der Drucksache zu.
             </p>
@@ -1064,28 +1062,28 @@ function renderSkeletonPage(
         )}
 
         {parsedDetails?.pattern === "sammeluebersicht" && parsedDetails.total_petitionen > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Petitions-Sammelübersicht {parsedDetails.nummer}
             </h2>
-            <p className="text-[14px] text-zinc-800 leading-relaxed mb-4">
-              <span className="num font-medium text-zinc-950">{parsedDetails.total_petitionen}</span>{" "}
+            <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed mb-4">
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.total_petitionen}</span>{" "}
               Bürger-Petitionen — vom Petitionsausschuss in dieser Sammelübersicht behandelt.
             </p>
 
             {parsedDetails.top_themen.length > 0 && (
               <div className="mb-5">
-                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Top-Themen
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {parsedDetails.top_themen.map((t) => (
                     <span
                       key={t.thema}
-                      className="inline-flex items-center gap-1 text-[12px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-700"
+                      className="inline-flex items-center gap-1 text-[12px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
                     >
                       <span>{t.thema}</span>
-                      <span className="num text-zinc-500">×{t.count}</span>
+                      <span className="num text-zinc-500 dark:text-zinc-400">×{t.count}</span>
                     </span>
                   ))}
                 </div>
@@ -1093,53 +1091,53 @@ function renderSkeletonPage(
             )}
 
             <div>
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                 Beschlussempfehlungen
               </div>
               <ul className="space-y-4">
                 {parsedDetails.beschlussempfehlungen.map((be) => (
                   <li
                     key={be.nummer}
-                    className="border-l-2 border-zinc-200 pl-3 py-1"
+                    className="border-l-2 border-border pl-3 py-1"
                   >
-                    <div className="text-[12.5px] text-zinc-700 leading-relaxed mb-1.5">
-                      <span className="font-semibold text-zinc-950">BE {be.nummer}:</span>{" "}
+                    <div className="text-[12.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed mb-1.5">
+                      <span className="font-semibold text-zinc-950 dark:text-zinc-50">BE {be.nummer}:</span>{" "}
                       {be.aktion}
                     </div>
                     <div className="flex flex-wrap items-center gap-1.5 text-[11px] mb-2">
-                      <span className="text-zinc-500 num">
+                      <span className="text-zinc-500 dark:text-zinc-400 num">
                         {be.petitionen_count}{" "}
                         {be.petitionen_count === 1 ? "Petition" : "Petitionen"}
                       </span>
                       {be.themen.slice(0, 4).map((t) => (
                         <span
                           key={t.thema}
-                          className="inline-flex items-center gap-0.5 text-[11px] text-zinc-600"
+                          className="inline-flex items-center gap-0.5 text-[11px] text-zinc-600 dark:text-zinc-300"
                         >
                           ·{" "}
                           <span>{t.thema}</span>
                           {t.count > 1 && (
-                            <span className="num text-zinc-400">×{t.count}</span>
+                            <span className="num text-zinc-400 dark:text-zinc-500">×{t.count}</span>
                           )}
                         </span>
                       ))}
                       {be.themen.length > 4 && (
-                        <span className="text-[11px] text-zinc-400">
+                        <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
                           + {be.themen.length - 4}
                         </span>
                       )}
                     </div>
                     {be.petitionen && be.petitionen.length > 0 && (
                       <details className="group mt-1">
-                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 hover:text-zinc-700 list-none flex items-center gap-1">
-                          <span className="text-zinc-400 group-open:hidden">▶</span>
-                          <span className="text-zinc-400 hidden group-open:inline">▼</span>
+                        <summary className="cursor-pointer text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 list-none flex items-center gap-1">
+                          <span className="text-zinc-400 dark:text-zinc-500 group-open:hidden">▶</span>
+                          <span className="text-zinc-400 dark:text-zinc-500 hidden group-open:inline">▼</span>
                           Einzelne Petitionen anzeigen
                         </summary>
                         <div className="mt-2 overflow-x-auto">
-                          <table className="w-full text-[12px] text-zinc-700">
+                          <table className="w-full text-[12px] text-zinc-700 dark:text-zinc-300">
                             <thead>
-                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 border-b border-zinc-100">
+                              <tr className="text-[10.5px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 border-b border-border">
                                 <th className="text-left py-1 pr-2 font-medium">Nr</th>
                                 <th className="text-left py-1 pr-2 font-medium">Aktenzeichen</th>
                                 <th className="text-left py-1 pr-2 font-medium">Wohnort</th>
@@ -1148,14 +1146,14 @@ function renderSkeletonPage(
                             </thead>
                             <tbody>
                               {be.petitionen.map((p) => (
-                                <tr key={p.lfd_nr} className="border-b border-zinc-50 last:border-0">
-                                  <td className="py-1.5 pr-2 num text-zinc-500">{p.lfd_nr}</td>
-                                  <td className="py-1.5 pr-2 num text-zinc-600 whitespace-nowrap">{p.aktenzeichen}</td>
-                                  <td className="py-1.5 pr-2 text-zinc-700">
-                                    {p.plz && <span className="num text-zinc-500 mr-1">{p.plz}</span>}
+                                <tr key={p.lfd_nr} className="border-b border-border last:border-0">
+                                  <td className="py-1.5 pr-2 num text-zinc-500 dark:text-zinc-400">{p.lfd_nr}</td>
+                                  <td className="py-1.5 pr-2 num text-zinc-600 dark:text-zinc-300 whitespace-nowrap">{p.aktenzeichen}</td>
+                                  <td className="py-1.5 pr-2 text-zinc-700 dark:text-zinc-300">
+                                    {p.plz && <span className="num text-zinc-500 dark:text-zinc-400 mr-1">{p.plz}</span>}
                                     {p.ort}
                                   </td>
-                                  <td className="py-1.5 text-zinc-800">{p.sachgebiet || "—"}</td>
+                                  <td className="py-1.5 text-zinc-800 dark:text-zinc-200">{p.sachgebiet || "—"}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1167,7 +1165,7 @@ function renderSkeletonPage(
                 ))}
               </ul>
             </div>
-            <p className="text-[11.5px] text-zinc-400 mt-5 leading-relaxed">
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-5 leading-relaxed">
               Aktenzeichen, Wohnort und Sachgebiet werden deterministisch aus
               der PDF-Tabelle des Petitionsausschusses extrahiert. Der
               Petitions-Volltext einzelner Bürger:innen-Eingaben ist aus
@@ -1177,21 +1175,21 @@ function renderSkeletonPage(
         )}
 
         {parsedDetails?.pattern === "verfahren" && (parsedDetails.beschluss_klausel || parsedDetails.antragsteller.length > 0) && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Beschluss-Vorschlag
             </h2>
             {parsedDetails.beschluss_klausel && (
-              <blockquote className="text-[14px] text-zinc-800 leading-relaxed border-l-2 border-zinc-300 pl-4 mb-4">
+              <blockquote className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed border-l-2 border-zinc-300 dark:border-zinc-600 pl-4 mb-4">
                 {parsedDetails.beschluss_klausel}
               </blockquote>
             )}
             {parsedDetails.antragsteller.length > 0 && (
               <div>
-                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">
+                <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                   Eingebracht von
                 </div>
-                <ul className="space-y-0.5 text-[13px] text-zinc-700">
+                <ul className="space-y-0.5 text-[13px] text-zinc-700 dark:text-zinc-300">
                   {parsedDetails.antragsteller.map((a) => (
                     <li key={a}>· {a}</li>
                   ))}
@@ -1202,14 +1200,14 @@ function renderSkeletonPage(
         )}
 
         {parsedDetails?.pattern === "wahlvorschlag" && parsedDetails.total_mitglieder > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Vorgeschlagene Sitzverteilung
             </h2>
-            <p className="text-[13px] text-zinc-700 mb-3">
-              <span className="num font-medium text-zinc-950">{parsedDetails.total_mitglieder}</span>{" "}
+            <p className="text-[13px] text-zinc-700 dark:text-zinc-300 mb-3">
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.total_mitglieder}</span>{" "}
               Personen über{" "}
-              <span className="num font-medium text-zinc-950">{parsedDetails.fraktion_sitze.length}</span>{" "}
+              <span className="num font-medium text-zinc-950 dark:text-zinc-50">{parsedDetails.fraktion_sitze.length}</span>{" "}
               Fraktion{parsedDetails.fraktion_sitze.length === 1 ? "" : "en"}.
             </p>
             <ul className="space-y-1.5">
@@ -1218,8 +1216,8 @@ function renderSkeletonPage(
                   key={f.fraktion}
                   className="flex items-baseline justify-between gap-3 text-[13px]"
                 >
-                  <span className="text-zinc-800">{f.fraktion}</span>
-                  <span className="num font-medium text-zinc-950">{f.mitglieder}</span>
+                  <span className="text-zinc-800 dark:text-zinc-200">{f.fraktion}</span>
+                  <span className="num font-medium text-zinc-950 dark:text-zinc-50">{f.mitglieder}</span>
                 </li>
               ))}
             </ul>
@@ -1227,58 +1225,58 @@ function renderSkeletonPage(
         )}
 
         {plenarContext.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-6 mb-6">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <section className="bg-card rounded-2xl border border-border p-6 mb-6">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
               Aussprache zu dieser Drucksache
             </h2>
             <div className="space-y-5">
               {plenarContext.map((ctx) => (
                 <div key={`${ctx.sitzungNr}-${ctx.topNumber}`}>
                   <div className="flex items-baseline gap-2 flex-wrap mb-3">
-                    <span className="num text-[11px] font-semibold text-zinc-500">
+                    <span className="num text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">
                       TOP {ctx.topNumber}
                     </span>
                     {ctx.sitzungNr && (
-                      <span className="text-[11px] text-zinc-400 num">
+                      <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                         · {ctx.sitzungNr}. Sitzung
                       </span>
                     )}
                     {ctx.datum && (
-                      <span className="text-[11px] text-zinc-400 num">
+                      <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                         · {new Date(ctx.datum + "T00:00:00").toLocaleDateString("de-DE", {
                           day: "2-digit", month: "long", year: "numeric",
                         })}
                       </span>
                     )}
                   </div>
-                  <p className="text-[13.5px] text-zinc-800 leading-relaxed mb-3">
+                  <p className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-relaxed mb-3">
                     {ctx.topTitle}
                   </p>
                   <ul className="space-y-1.5">
                     {ctx.speeches.slice(0, 12).map((sp) => (
                       <li
                         key={sp.speechId}
-                        className="flex items-baseline gap-2 text-[13px] text-zinc-700"
+                        className="flex items-baseline gap-2 text-[13px] text-zinc-700 dark:text-zinc-300"
                       >
-                        <span className="num text-[11px] text-zinc-400 shrink-0 w-6">
+                        <span className="num text-[11px] text-zinc-400 dark:text-zinc-500 shrink-0 w-6">
                           {sp.speechIndex ?? ""}
                         </span>
-                        <span className="font-medium text-zinc-950">{sp.speaker}</span>
+                        <span className="font-medium text-zinc-950 dark:text-zinc-50">{sp.speaker}</span>
                         {sp.party && (
-                          <span className="text-[11px] text-zinc-500">({sp.party})</span>
+                          <span className="text-[11px] text-zinc-500 dark:text-zinc-400">({sp.party})</span>
                         )}
                       </li>
                     ))}
                   </ul>
                   {ctx.speeches.length > 12 && (
-                    <p className="text-[11.5px] text-zinc-400 mt-2">
+                    <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-2">
                       + {ctx.speeches.length - 12} weitere Reden
                     </p>
                   )}
                 </div>
               ))}
             </div>
-            <p className="text-[11.5px] text-zinc-400 mt-4 leading-relaxed">
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-4 leading-relaxed">
               Aussprache automatisch gefunden via Volltext-Match auf Schlüsselbegriffen aus
               dem Drucksachen-Titel gegen das Plenarprotokoll. Bei Verfahrens-Anträgen
               (z.B. Wahlvorschläge, Petitions-Sammelübersichten) gibt es oft keine Aussprache —
@@ -1288,20 +1286,20 @@ function renderSkeletonPage(
         )}
 
         {mitzeichner.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-5">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Mitgezeichnet
               </h2>
-              <span className="num text-[11px] text-zinc-400">{mitzeichner.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{mitzeichner.length}</span>
             </div>
             {fraktionList.length > 1 && (
               <div className="mb-5">
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] num">
                   {fraktionList.map(([party, n]) => (
-                    <span key={party} className="inline-flex items-center gap-1.5 text-zinc-600">
+                    <span key={party} className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300">
                       <span>{party}</span>
-                      <span className="text-zinc-950 font-medium">{n}</span>
+                      <span className="text-zinc-950 dark:text-zinc-50 font-medium">{n}</span>
                     </span>
                   ))}
                 </div>
@@ -1312,14 +1310,14 @@ function renderSkeletonPage(
         )}
 
         {berichterstatter.length > 0 && (
-          <section className="bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
             <div className="flex items-baseline justify-between mb-2">
-              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+              <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 Berichterstatter:innen
               </h2>
-              <span className="num text-[11px] text-zinc-400">{berichterstatter.length}</span>
+              <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">{berichterstatter.length}</span>
             </div>
-            <p className="text-[12px] text-zinc-500 leading-snug mb-5">
+            <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mb-5">
               Vom Ausschuss benannt — typischerweise 1 pro Fraktion. Diese Liste zeigt KEINE inhaltliche Zustimmung; die genannten Fraktionen können in der namentlichen Abstimmung sehr wohl dagegen stimmen.
             </p>
             <MitzeichnerGrid mitz={berichterstatter} />
@@ -1351,36 +1349,37 @@ function RelatedDsCard({
   ownDatum?: string | null;     // Datum der "Quelldrucksache" für Diff-Anzeige
 }) {
   const slug = ds.drucksache_nr.replace("/", "-");
-  const klasseLabel = klasseLabelMap[ds.batch_class] ?? ds.batch_class;
+  // Amtlicher DIP-Typ (dokumenttyp) zuerst; klasseLabelMap[batch_class] nur Fallback.
+  const klasseLabel = (ds.dokumenttyp?.trim() || klasseLabelMap[ds.batch_class]) ?? ds.batch_class;
   const datumF = formatDate(ds.datum);
   const dayDiff = ownDatum ? daysBetween(ownDatum, ds.datum) : null;
 
   return (
     <Link
       href={`/aktivitaeten/${slug}`}
-      className="block rounded-xl border border-zinc-200/70 bg-white hover:bg-zinc-50/50 hover:border-zinc-300 transition-colors p-4 group"
+      className="block rounded-xl border border-border bg-card hover:bg-zinc-50/50 dark:hover:bg-zinc-800/40 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors p-4 group"
     >
       {prefix && (
-        <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 mb-1.5 flex items-baseline justify-between gap-2">
+        <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5 flex items-baseline justify-between gap-2">
           <span>{prefix}</span>
           {dayDiff !== null && dayDiff > 0 && (
-            <span className="text-zinc-400 normal-case font-normal tracking-normal num">
+            <span className="text-zinc-400 dark:text-zinc-500 normal-case font-normal tracking-normal num">
               nach {dayDiff === 1 ? "1 Tag" : `${dayDiff} Tagen`}
             </span>
           )}
         </div>
       )}
       <div className="flex items-baseline gap-2 mb-1 flex-wrap">
-        <span className="text-[11px] font-mono font-semibold text-zinc-950 num">
+        <span className="text-[11px] font-mono font-semibold text-zinc-950 dark:text-zinc-50 num">
           {ds.drucksache_nr}
         </span>
-        <span className="text-[10.5px] uppercase tracking-wider text-zinc-500">
+        <span className="text-[10.5px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           {klasseLabel}
         </span>
         {datumF && (
           <>
-            <span className="text-zinc-300">·</span>
-            <span className="text-[10.5px] text-zinc-400 num">{datumF}</span>
+            <span className="text-zinc-300 dark:text-zinc-600">·</span>
+            <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500 num">{datumF}</span>
           </>
         )}
         {ds.tonalitaet && (
@@ -1390,12 +1389,12 @@ function RelatedDsCard({
         )}
       </div>
       {ds.titel && (
-        <div className={`text-[13.5px] font-medium text-zinc-950 ${compact ? "line-clamp-2" : "line-clamp-3"} leading-snug group-hover:underline underline-offset-2`}>
+        <div className={`text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50 ${compact ? "line-clamp-2" : "line-clamp-3"} leading-snug group-hover:underline underline-offset-2`}>
           {ds.titel}
         </div>
       )}
       {!compact && ds.zusammenfassung && (
-        <p className="text-[12.5px] text-zinc-500 line-clamp-2 mt-1.5 leading-relaxed">
+        <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 line-clamp-2 mt-1.5 leading-relaxed">
           {ds.zusammenfassung}
         </p>
       )}
@@ -1415,18 +1414,18 @@ function MitzeichnerGrid({ mitz }: { mitz: MitzeichnerRow[] }) {
           className="flex items-center gap-2.5 group min-w-0"
         >
           <span
-            className="shrink-0 w-7 h-7 rounded-full bg-zinc-100 border border-zinc-200 inline-flex items-center justify-center text-[9.5px] font-semibold text-zinc-600"
+            className="shrink-0 w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-border inline-flex items-center justify-center text-[9.5px] font-semibold text-zinc-600 dark:text-zinc-300"
             style={m.party_label ? { boxShadow: `0 0 0 1.5px ${partyColor(m.party_label)}` } : undefined}
           >
             {m.first_name.charAt(0)}{m.last_name.charAt(0)}
           </span>
-          <span className="text-[12.5px] text-zinc-700 group-hover:text-zinc-950 transition-colors truncate">
+          <span className="text-[12.5px] text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-100 transition-colors truncate">
             {m.first_name} {m.last_name}
           </span>
         </Link>
       ))}
       {mitz.length > 24 && (
-        <div className="text-[12px] text-zinc-400 col-span-full mt-2">
+        <div className="text-[12px] text-zinc-400 dark:text-zinc-500 col-span-full mt-2">
           + {mitz.length - 24} weitere Mitzeichner:innen
         </div>
       )}
@@ -1437,26 +1436,26 @@ function MitzeichnerGrid({ mitz }: { mitz: MitzeichnerRow[] }) {
 const HZ_FRAKTIONS_ORDER = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"] as const;
 
 const HZ_OUTCOME_META: Record<string, { label: string; classes: string }> = {
-  annahme: { label: "angenommen", classes: "bg-emerald-50 text-emerald-800 border-emerald-200" },
+  annahme: { label: "angenommen", classes: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50" },
   annahme_geaendert: {
     label: "in geänderter Fassung angenommen",
-    classes: "bg-emerald-50 text-emerald-800 border-emerald-200",
+    classes: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50",
   },
-  ablehnung: { label: "abgelehnt", classes: "bg-rose-50 text-rose-800 border-rose-200" },
-  vertagung: { label: "vertagt", classes: "bg-amber-50 text-amber-800 border-amber-200" },
-  ueberweisung: { label: "an Ausschuss überwiesen", classes: "bg-zinc-100 text-zinc-700 border-zinc-300" },
+  ablehnung: { label: "abgelehnt", classes: "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50" },
+  vertagung: { label: "vertagt", classes: "bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50" },
+  ueberweisung: { label: "an Ausschuss überwiesen", classes: "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600" },
 };
 
 function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[] }) {
   return (
-    <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
-      <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+    <section className="fade-in-up-4 bg-card rounded-2xl border border-border p-7 mb-6">
+      <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
         Abstimmung{votes.length > 1 ? "en" : ""} im Plenum{" "}
-        <span className="text-zinc-400 normal-case font-normal tracking-normal">
+        <span className="text-zinc-400 dark:text-zinc-500 normal-case font-normal tracking-normal">
           · Handzeichen, Fraktions-Ebene
         </span>
       </h2>
-      <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-5 max-w-2xl">
+      <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5 max-w-2xl">
         Diese Abstimmung wurde nicht namentlich durchgeführt; das Plenum hat per Handzeichen
         entschieden. Es liegen daher keine individuellen MdB-Stimmen vor, nur das Abstimmungs-Verhalten
         je Fraktion.
@@ -1465,7 +1464,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
         {votes.map((v) => {
           const oc = HZ_OUTCOME_META[v.outcome] ?? {
             label: v.outcome,
-            classes: "bg-zinc-100 text-zinc-700 border-zinc-300",
+            classes: "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600",
           };
           return (
             <div key={v.voteId}>
@@ -1477,7 +1476,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                     {oc.label}
                   </span>
                   {v.modus && (
-                    <span className="text-[11px] text-zinc-500">
+                    <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
                       {v.modus === "einstimmig"
                         ? "einstimmig"
                         : v.modus === "knapp"
@@ -1488,13 +1487,13 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                     </span>
                   )}
                   {v.sitzungNr && (
-                    <span className="text-[11px] text-zinc-400 num">
+                    <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                       {v.wahlperiode ? `WP ${v.wahlperiode} · ` : ""}Sitzung {v.sitzungNr}
                     </span>
                   )}
                 </div>
                 {v.datum && (
-                  <span className="text-[11px] text-zinc-400 num">
+                  <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                     {new Date(v.datum + "T00:00:00").toLocaleDateString("de-DE", {
                       day: "2-digit",
                       month: "long",
@@ -1509,12 +1508,12 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                     const vote = v.fraktionVotes?.[f] ?? "unbekannt";
                     const cls =
                       vote === "ja"
-                        ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                        ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50"
                         : vote === "nein"
-                          ? "bg-rose-50 text-rose-800 border-rose-200"
+                          ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50"
                           : vote === "enthaltung"
-                            ? "bg-amber-50 text-amber-800 border-amber-200"
-                            : "bg-zinc-50 text-zinc-500 border-zinc-200";
+                            ? "bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50"
+                            : "bg-zinc-50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-400 border-border";
                     const icon =
                       vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
                     return (
@@ -1530,7 +1529,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                   })}
                 </div>
               ) : (
-                <div className="text-[11.5px] text-zinc-400 italic">
+                <div className="text-[11.5px] text-zinc-400 dark:text-zinc-500 italic">
                   Fraktions-Voten nicht erfasst
                 </div>
               )}

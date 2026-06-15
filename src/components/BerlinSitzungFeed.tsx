@@ -150,22 +150,22 @@ export function BerlinSitzungFeed({ sit }: Props) {
   return (
     <>
       {/* Filter-Chips */}
-      <div className="sticky top-0 z-10 bg-[color:var(--page-wash)] backdrop-blur supports-[backdrop-filter]:bg-opacity-80 py-3 -mx-5 px-5 mb-4 border-b border-zinc-200/70">
+      <div className="sticky top-0 z-10 bg-[color:var(--page-wash)] backdrop-blur supports-[backdrop-filter]:bg-opacity-80 py-3 -mx-5 px-5 mb-4 border-b border-border">
         <div className="space-y-2">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500 mr-1">Typ</span>
+            <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mr-1">Typ</span>
             <Chip active={activeType === "all"} onClick={() => setActiveType("all")}>
-              Alle <span className="num text-zinc-400">{typeCounts.all}</span>
+              Alle <span className="num text-zinc-400 dark:text-zinc-500">{typeCounts.all}</span>
             </Chip>
             <Chip active={activeType === "vote"} onClick={() => setActiveType("vote")}>
-              Abstimmungen <span className="num text-zinc-400">{typeCounts.vote}</span>
+              Abstimmungen <span className="num text-zinc-400 dark:text-zinc-500">{typeCounts.vote}</span>
             </Chip>
             <Chip active={activeType === "speech"} onClick={() => setActiveType("speech")}>
-              Reden <span className="num text-zinc-400">{typeCounts.speech}</span>
+              Reden <span className="num text-zinc-400 dark:text-zinc-500">{typeCounts.speech}</span>
             </Chip>
           </div>
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500 mr-1">Fraktion</span>
+            <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mr-1">Fraktion</span>
             <Chip active={!activeParty} onClick={() => setActiveParty(null)}>Alle</Chip>
             {partiesSorted.map((p) => (
               <Chip
@@ -174,12 +174,12 @@ export function BerlinSitzungFeed({ sit }: Props) {
                 onClick={() => setActiveParty(activeParty === p ? null : p)}
               >
                 <span className={`w-1.5 h-1.5 rounded-full ${PARTY_COLOR[p] ?? "bg-zinc-400"}`} />
-                {p} <span className="num text-zinc-400">{partyCounts[p]}</span>
+                {p} <span className="num text-zinc-400 dark:text-zinc-500">{partyCounts[p]}</span>
               </Chip>
             ))}
           </div>
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500 mr-1">Tonalität</span>
+            <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mr-1">Tonalität</span>
             <Chip active={!activeTon} onClick={() => setActiveTon(null)}>Alle</Chip>
             {tonsSorted.map((t) => {
               const cfg = TONALITAET_CONFIG[t];
@@ -190,13 +190,13 @@ export function BerlinSitzungFeed({ sit }: Props) {
                   onClick={() => setActiveTon(activeTon === t ? null : t)}
                 >
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cfg?.color ?? "#a1a1aa" }} />
-                  {cfg?.label ?? t} <span className="num text-zinc-400">{tonCounts[t]}</span>
+                  {cfg?.label ?? t} <span className="num text-zinc-400 dark:text-zinc-500">{tonCounts[t]}</span>
                 </Chip>
               );
             })}
           </div>
         </div>
-        <p className="text-[11px] text-zinc-500 num mt-2">
+        <p className="text-[11px] text-zinc-500 dark:text-zinc-400 num mt-2">
           {finalItems.filter((i) => i.type !== "topheader").length} Items sichtbar
         </p>
       </div>
@@ -208,12 +208,12 @@ export function BerlinSitzungFeed({ sit }: Props) {
             return (
               <li
                 key={it.id}
-                className="px-3 py-2 mt-4 first:mt-0 sticky top-[180px] z-[5] bg-zinc-50/95 backdrop-blur rounded-md"
+                className="px-3 py-2 mt-4 first:mt-0 sticky top-[180px] z-[5] bg-zinc-50/95 dark:bg-zinc-800/95 backdrop-blur rounded-md"
               >
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 num">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 num">
                   TOP {it.topMarker}
                 </span>
-                <span className="ml-2 text-[13px] font-medium text-zinc-700">{it.topTitel}</span>
+                <span className="ml-2 text-[13px] font-medium text-zinc-700 dark:text-zinc-300">{it.topTitel}</span>
               </li>
             );
           }
@@ -222,19 +222,19 @@ export function BerlinSitzungFeed({ sit }: Props) {
             return (
               <li
                 key={it.id}
-                className="rounded-lg border border-zinc-100 bg-white px-3 py-2.5"
+                className="rounded-lg border border-border bg-card px-3 py-2.5"
               >
                 <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                     🗳 Abstimmung
                   </span>
                   <span
                     className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
                       v.outcome === "annahme" || v.outcome === "annahme_geaendert"
-                        ? "text-emerald-700 bg-emerald-50"
+                        ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40"
                         : v.outcome === "ablehnung"
-                        ? "text-red-700 bg-red-50"
-                        : "text-zinc-600 bg-zinc-100"
+                        ? "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40"
+                        : "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800"
                     }`}
                   >
                     {(v.outcome === "annahme" || v.outcome === "annahme_geaendert") ? "Angenommen"
@@ -243,17 +243,17 @@ export function BerlinSitzungFeed({ sit }: Props) {
                       : v.outcome === "ueberweisung" ? "Überwiesen"
                       : v.outcome}
                   </span>
-                  {v.modus && <span className="text-[10px] text-zinc-400 italic">{v.modus}</span>}
+                  {v.modus && <span className="text-[10px] text-zinc-400 dark:text-zinc-500 italic">{v.modus}</span>}
                 </div>
                 {v.primaryTitel && v.primaryDbid ? (
                   <Link
                     href={`/parlamente/berlin/drucksache/${v.primaryDbid}`}
-                    className="block text-[13.5px] text-zinc-950 leading-snug hover:text-blue-700 transition-colors mb-1.5"
+                    className="block text-[13.5px] text-zinc-950 dark:text-zinc-50 leading-snug hover:text-blue-700 dark:hover:text-blue-400 transition-colors mb-1.5"
                   >
                     {v.primaryTitel}
                   </Link>
                 ) : (
-                  <p className="text-[13.5px] text-zinc-950 leading-snug mb-1.5">{v.primaryTitel}</p>
+                  <p className="text-[13.5px] text-zinc-950 dark:text-zinc-50 leading-snug mb-1.5">{v.primaryTitel}</p>
                 )}
                 <div className="flex flex-wrap gap-0.5">
                   {Object.entries(v.fraktionVotes).map(([frak, vote]) => (
@@ -261,12 +261,12 @@ export function BerlinSitzungFeed({ sit }: Props) {
                       key={frak}
                       className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded ${
                         vote === "ja"
-                          ? "text-emerald-800 bg-emerald-100"
+                          ? "text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40"
                           : vote === "nein"
-                          ? "text-red-800 bg-red-100"
+                          ? "text-red-800 dark:text-red-400 bg-red-100 dark:bg-red-900/40"
                           : vote === "enthaltung"
-                          ? "text-amber-800 bg-amber-100"
-                          : "text-zinc-500 bg-zinc-100"
+                          ? "text-amber-800 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40"
+                          : "text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800"
                       }`}
                     >
                       {frak} {vote}
@@ -282,24 +282,24 @@ export function BerlinSitzungFeed({ sit }: Props) {
           return (
             <li
               key={it.id}
-              className="rounded-lg border border-zinc-100 bg-white px-3 py-2.5"
+              className="rounded-lg border border-border bg-card px-3 py-2.5"
             >
               <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                   💬 Rede
                 </span>
                 {sp.politicianId ? (
                   <Link
                     href={`/politiker/${sp.politicianId}`}
-                    className="text-[13px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
+                    className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50 hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                   >
                     {sp.speakerName}
                   </Link>
                 ) : (
-                  <span className="text-[13px] font-medium text-zinc-950">{sp.speakerName}</span>
+                  <span className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50">{sp.speakerName}</span>
                 )}
                 {sp.speakerParty && (
-                  <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700 dark:text-zinc-300">
                     <span className={`w-1.5 h-1.5 rounded-full ${PARTY_COLOR[sp.speakerParty] ?? "bg-zinc-400"}`} />
                     {sp.speakerParty}
                   </span>
@@ -313,14 +313,14 @@ export function BerlinSitzungFeed({ sit }: Props) {
                   </span>
                 )}
               </div>
-              <p className="text-[12.5px] text-zinc-600 leading-relaxed">{sp.zusammenfassung}</p>
+              <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">{sp.zusammenfassung}</p>
             </li>
           );
         })}
       </ul>
 
       {finalItems.filter((i) => i.type !== "topheader").length === 0 && (
-        <p className="text-center text-[13px] text-zinc-500 py-12">
+        <p className="text-center text-[13px] text-zinc-500 dark:text-zinc-400 py-12">
           Keine Items passen zu den Filtern.
         </p>
       )}
@@ -341,8 +341,8 @@ function Chip({ active, onClick, children }: ChipProps) {
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-[11.5px] font-medium border transition-colors ${
         active
-          ? "bg-zinc-900 text-white border-zinc-900"
-          : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400"
+          ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100"
+          : "bg-card text-zinc-700 dark:text-zinc-300 border-border hover:border-zinc-400 dark:hover:border-zinc-500"
       }`}
     >
       {children}

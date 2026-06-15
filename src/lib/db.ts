@@ -571,7 +571,9 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
     voteSummaries[v.id] = summ;
   }
 
-  // 3+4. Drucksachen pro Klasse (gross = Gesetzentwurf, klein = Kleine Anfrage)
+  // 3+4. Drucksachen nach amtlichem DIP-Typ (dokumenttyp) — NICHT batch_class:
+  // batch_class ist ein Längen-Tier ('klein' enthält ~694 Anträge, 'gross' enthält
+  // Unterrichtungen/Große Anfragen). dokumenttyp ist der amtliche Typ.
   const drucksByKlasse = (klasse: string) =>
     (db
       .prepare(
@@ -582,7 +584,7 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
                 ) AS titel,
                 (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
          FROM drucksache_analyses da
-         WHERE da.batch_class = ? AND da.analyze_error IS NULL
+         WHERE da.dokumenttyp = ? AND da.analyze_error IS NULL
          ORDER BY datum DESC LIMIT 5`
       )
       .all(klasse) as {
@@ -602,14 +604,14 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
         einbringer: r.fraktion,
       }));
 
-  const latestGesetzentwuerfe = drucksByKlasse("gross").map((r) => ({
+  const latestGesetzentwuerfe = drucksByKlasse("Gesetzentwurf").map((r) => ({
     drucksacheNr: r.drucksacheNr,
     titel: r.titel,
     zusammenfassung: r.zusammenfassung,
     datum: r.datum,
     einbringer: r.einbringer,
   }));
-  const latestAnfragen = drucksByKlasse("klein").map((r) => ({
+  const latestAnfragen = drucksByKlasse("Kleine Anfrage").map((r) => ({
     drucksacheNr: r.drucksacheNr,
     titel: r.titel,
     zusammenfassung: r.zusammenfassung,
@@ -1425,6 +1427,306 @@ export function getCommitteeMembershipsForPoliticianDb(politicianId: number): Co
   ).all(politicianId) as CommitteeMembershipRow[];
 }
 
+// ============================================================
+// KOMPAKT-PROFIL — scan-first Steckbrief (eine Karte, ein Viewport).
+// Komponiert bestehende Helfer + zwei eigene Ableitungen (Schwerpunkte,
+// Nebeneinkünfte-Untergrenze). Reine Label:Wert/Chip-Daten, keine Sätze.
+// Mindset: [[feedback_consumer_scan_first]] / [[reference_ux_text_budget]].
+// ============================================================
+
+// Bundestags-Vergütungsstufen (Verhaltensregeln WP20+): Untergrenze je Stufe.
+// Index = Stufe (1–10); Stufe 10 = „über 250.000" → konservativ 250.000.
+const SIDEJOB_STUFE_FLOOR = [0, 1000, 3500, 7000, 15000, 30000, 50000, 75000, 100000, 150000, 250000];
+
+// Reine Mandats-Bezeichnungen sind KEIN Beruf — Feld dann weglassen statt „Beruf: MdB".
+const MANDAT_NUR = /^(mdb|mdep|mda|mdl|abgeordnete[r]?|mitglied des (deutschen )?bundestage?s|mitglied des abgeordnetenhauses|bundesminister(in)?|staatsminister(in)?|senator(in)?|regierende[r]? bürgermeister(in)?|parlamentarische[r]? staatssekretär(in)?)\b/i;
+
+function cleanBeruf(occupation: string | null): string | null {
+  if (!occupation) return null;
+  const o = occupation.replace(/\s*\n\s*/g, ", ").trim();
+  if (!o || MANDAT_NUR.test(o)) return null;
+  return o.length > 75 ? o.slice(0, 74).replace(/[\s,;]+\S*$/, "") + "…" : o;
+}
+
+function cleanAusbildung(education: string | null): string | null {
+  if (!education) return null;
+  const e = education.replace(/\s*\n\s*/g, ", ").trim();
+  if (!e) return null;
+  // Ausbildung darf zweizeilig umbrechen → großzügigere Grenze (~2 Zeilen).
+  return e.length > 150 ? e.slice(0, 149).replace(/[\s,;]+\S*$/, "") + "…" : e;
+}
+
+// "269 - Backnang – Schwäbisch Gmünd (Bundestag 2025 - 2029)" → "Backnang – Schwäbisch Gmünd"
+function cleanWahlkreis(c: string | null | undefined): string | null {
+  if (!c) return null;
+  const w = c.replace(/^\s*\d+\s*[-–]\s*/, "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+  return w || null;
+}
+
+// cv_json-Fallback: wenn das abgeordnetenwatch-Feld leer ist oder nur das Mandat
+// nennt, ziehen wir Ausbildung/Beruf aus dem strukturierten Lebenslauf nach.
+// Beruf = letzter (= jüngster) Eintrag aus `beruflicher_werdegang` — das ist die
+// nicht-politische Berufstätigkeit (politische Stationen stehen separat). Ist
+// dort nichts, hat die Person keinen erfassten Nicht-Politik-Beruf → bleibt leer.
+function parseCvLebenslauf(
+  cvJson: string | null,
+): { ausbildung: string | null; doktorgrad: string | null; beruf: string | null } {
+  const empty = { ausbildung: null, doktorgrad: null, beruf: null };
+  if (!cvJson) return empty;
+  const cap = (t: string | null | undefined, max = 75): string | null => {
+    if (!t) return null;
+    const s = t.replace(/\s*\n\s*/g, ", ").trim();
+    if (!s) return null;
+    return s.length > max ? s.slice(0, max - 1).replace(/[\s,;]+\S*$/, "") + "…" : s;
+  };
+  try {
+    const o = JSON.parse(cvJson) as {
+      ausbildung?: { text?: string }[];
+      beruflicher_werdegang?: { text?: string }[];
+    };
+    const ausEntries = (o.ausbildung ?? [])
+      .map((e) => e?.text?.trim())
+      .filter((t): t is string => !!t);
+
+    // Höchster Grad als kurzer Marker (z. B. "Dr. phil."); sonst "promoviert".
+    let doktorgrad: string | null = null;
+    for (const t of ausEntries) {
+      const m = t.match(/\bDr\.?\s?(?:phil|med|jur|rer\.?\s?nat|rer\.?\s?pol|theol|-?Ing|h\.?\s?c|paed|oec|mult)\.?/i);
+      if (m) { doktorgrad = m[0].replace(/\s+/g, " ").trim(); break; }
+      if (!doktorgrad && /\bpromotion|\bdissertation|\bhabilitation/i.test(t)) doktorgrad = "promoviert";
+    }
+
+    // Beste Studien-Zeile als Basis: Studienfach + Abschluss bevorzugt; Schule/
+    // Volontariat und die reine Promotions-Erzählung NICHT (Grad kommt als Marker).
+    const baseRank = (s: string): number => {
+      if (/promotion|dissertation|habilitation/i.test(s)) return -1;
+      if (/abitur|gymnasium|\bschule|realschule|volontariat|\blehre\b|ausbildung zur|ausbildung zum/i.test(s)) return -1;
+      if (/magister|master|diplom|staatsexamen|lizentiat/i.test(s)) return 3;
+      if (/studium|bachelor|hochschul|universit/i.test(s)) return 2;
+      return 1;
+    };
+    let best: string | null = null;
+    let bestR = 0;
+    for (const t of ausEntries) {
+      const r = baseRank(t);
+      if (r > bestR) { bestR = r; best = t; }
+    }
+
+    // Beruf = ERSTER (= ursprünglicher) Nicht-Politik-Werdegang.
+    const wd = (o.beruflicher_werdegang ?? [])
+      .map((e) => e?.text?.trim())
+      .filter((t): t is string => !!t && !MANDAT_NUR.test(t));
+
+    return { ausbildung: cap(best, 150), doktorgrad, beruf: wd.length ? cap(wd[0]) : null };
+  } catch {
+    return empty;
+  }
+}
+
+export interface KompaktSchwerpunkt { feld: string; count: number }
+export interface KompaktNebeneinkuenfte {
+  kind: "betrag" | "unbeziffert" | "keine";
+  minEuro: number;      // Summe der Stufen-Untergrenzen (nur kind='betrag')
+  anzahl: number;       // gemeldete Nebentätigkeiten
+}
+export interface KompaktAbstimmung {
+  verfuegbar: boolean;  // false = keine namentlichen Abstimmungen (z. B. Berlin = Fraktionsebene)
+  teilgenommen: number;
+  gesamt: number;
+  abweichungen: number;
+  fraktionslos: boolean;
+}
+export interface PoliticianKompakt {
+  id: number;
+  name: string;
+  party_label: string | null;
+  rolle: string | null;
+  wahlkreis: string | null;
+  parliament_label: string | null;
+  year_of_birth: number | null;
+  photo_url: string | null;
+  ausbildung: string | null;
+  beruf: string | null;
+  // "vorhanden" = beruf gesetzt; "keiner" = CV vorhanden, kein Nicht-Politik-Beruf
+  // (→ ehrlich „kein Beruf vor dem Mandat"); "unbekannt" = keine CV-Daten (Zeile weg).
+  berufStatus: "vorhanden" | "keiner" | "unbekannt";
+  berufKategorie: string | null; // Sektor-Enum (aus cv_kompakt) — für Aggregat-Analysen
+  ausschuesse: { label: string; rolle: string | null }[];
+  schwerpunkte: KompaktSchwerpunkt[];
+  nebeneinkuenfte: KompaktNebeneinkuenfte;
+  abstimmung: KompaktAbstimmung;
+  social: { label: string; url: string }[]; // offizielle Online-Präsenz (Handles aus Stammdaten)
+  // Pilot: schriftliche Fragen an die Bundesregierung (drucksache_qa_paare). null = keine.
+  fragen: { anzahl: number; query: string } | null;
+}
+
+export function getPoliticianKompakt(id: number): PoliticianKompakt | undefined {
+  const p = getPoliticianDb(id);
+  if (!p) return undefined;
+  const db = getDb();
+
+  // Aktuellstes Mandat → Wahlkreis + Parlament-Label
+  const mandate = db.prepare(
+    `SELECT constituency, label, type FROM mandates WHERE politician_id = ?
+     ORDER BY COALESCE(end_date,'9999-12-31') DESC, COALESCE(start_date,'') DESC LIMIT 1`,
+  ).get(id) as { constituency: string | null; label: string | null; type: string | null } | undefined;
+
+  // Schwerpunkte: distinkte Reden (rede_unterthemen.feld, sauber) + distinkte
+  // Drucksachen (item_topics.aw_field) je Politikfeld, zusammengezählt, Top 5.
+  const schwerpunkte = db.prepare(
+    `SELECT feld, SUM(n) AS count FROM (
+       SELECT ru.feld AS feld, COUNT(DISTINCT s.rede_id) AS n
+         FROM plenar_speeches s
+         JOIN politicians pp ON pp.bt_redner_id = s.redner_id
+         JOIN rede_unterthemen ru ON ru.rede_id = s.rede_id
+         WHERE pp.id = ? GROUP BY ru.feld
+       UNION ALL
+       SELECT it.aw_field AS feld, COUNT(DISTINCT a.drucksache_nr) AS n
+         FROM activities a
+         JOIN item_topics it ON it.item_id = a.drucksache_nr AND it.source = 'bt_drucksache'
+         WHERE a.politician_id = ? GROUP BY it.aw_field
+     )
+     WHERE feld IS NOT NULL AND feld != ''
+     GROUP BY feld ORDER BY count DESC, feld LIMIT 5`,
+  ).all(id, id) as KompaktSchwerpunkt[];
+
+  // Ausschüsse: Leitungsrollen zuerst, dann alphabetisch
+  const ausschuesse = getCommitteeMembershipsForPoliticianDb(id).map((c) => ({
+    label: c.committee_label,
+    rolle: c.committee_role,
+  }));
+
+  // Nebeneinkünfte: Untergrenze aus Stufen (ehrliches „mindestens").
+  const sidejobs = getSidejobsForPoliticianDb(id);
+  let minEuro = 0;
+  let hasBracket = false;
+  for (const s of sidejobs) {
+    const lvl = s.income_level ? parseInt(s.income_level, 10) : NaN;
+    if (!Number.isNaN(lvl) && lvl >= 1 && lvl <= 10) {
+      minEuro += SIDEJOB_STUFE_FLOOR[lvl];
+      hasBracket = true;
+    } else if (s.income && s.income > 0) {
+      minEuro += s.income;
+      hasBracket = true;
+    }
+  }
+  const nebeneinkuenfte: KompaktNebeneinkuenfte = {
+    kind: sidejobs.length === 0 ? "keine" : hasBracket ? "betrag" : "unbeziffert",
+    minEuro: Math.floor(minEuro),
+    anzahl: sidejobs.length,
+  };
+
+  // Abstimmungen: xx/xx teilgenommen + Abweichungen (nur wo namentliche Polls existieren)
+  const dev = getFractionDeviationsForPolitician(id);
+  const abstimmung: KompaktAbstimmung = {
+    verfuegbar: dev.total_namentlich > 0,
+    teilgenommen: dev.active_polls,
+    gesamt: dev.total_namentlich,
+    abweichungen: dev.deviations.length,
+    fraktionslos: dev.is_fractionless,
+  };
+
+  // Fallback-Lebenslauf aus dem strukturierten CV (dedup bevorzugt)
+  const cvJson = p.cv_json_dedup ?? p.cv_json;
+  const cvLebenslauf = parseCvLebenslauf(cvJson);
+
+  // Ausbildung: aw-Studienfach bevorzugt (sauber), sonst beste CV-Studienzeile.
+  // Höchsten Grad (Promotion) als Marker anhängen, falls nicht schon enthalten —
+  // Titel "Dr." reicht als Promotions-Signal, wenn der CV den Grad nicht nennt.
+  let ausbildung = cleanAusbildung(p.education) ?? cvLebenslauf.ausbildung;
+  const doktor = cvLebenslauf.doktorgrad ?? (/\bDr\b\.?/.test(p.title ?? "") ? "promoviert" : null);
+  if (ausbildung && doktor && !/\b(dr\.|promo|doktor|ph\.?\s?d)/i.test(ausbildung)) {
+    ausbildung = `${ausbildung} · ${doktor}`;
+  }
+
+  let beruf = cleanBeruf(p.occupation) ?? cvLebenslauf.beruf;
+  let berufStatus: PoliticianKompakt["berufStatus"] = beruf
+    ? "vorhanden"
+    : cvJson
+      ? "keiner" // CV vorhanden, aber kein Nicht-Politik-Beruf erfasst
+      : "unbekannt"; // keine CV-Daten → keine Aussage möglich
+  let berufKategorie: string | null = null;
+
+  // LLM-Extraktion (cv_kompakt) bevorzugen — sauberer als die Heuristik oben.
+  // Tabelle existiert evtl. noch nicht (vor erstem Extraktions-Lauf) → try/catch.
+  try {
+    const x = db
+      .prepare(
+        `SELECT hoechster_abschluss, praegender_beruf, beruf_status, beruf_kategorie
+         FROM cv_kompakt WHERE politician_id = ? AND error IS NULL`,
+      )
+      .get(id) as
+      | { hoechster_abschluss: string | null; praegender_beruf: string | null; beruf_status: string | null; beruf_kategorie: string | null }
+      | undefined;
+    if (x) {
+      if (x.hoechster_abschluss) ausbildung = x.hoechster_abschluss;
+      if (x.praegender_beruf) {
+        beruf = x.praegender_beruf;
+        berufStatus = "vorhanden";
+      } else if (x.beruf_status === "keiner") {
+        beruf = null;
+        berufStatus = "keiner";
+      }
+      // sonst (LLM ohne klare Aussage / Feld bereinigt) → Heuristik behalten
+      berufKategorie = x.beruf_kategorie;
+    }
+  } catch {
+    /* cv_kompakt noch nicht vorhanden — Heuristik bleibt */
+  }
+
+  // Online-Präsenz: bare Handles aus Stammdaten → Plattform-URLs. Homepage + offizielle
+  // Profile zeigen, neutral, ohne Wertung. Reihenfolge = höchste Abdeckung zuerst.
+  const handleUrl = (raw: string | null, build: (h: string) => string): string | null => {
+    const h = raw?.trim().replace(/^@/, "");
+    if (!h) return null;
+    return /^https?:\/\//.test(h) ? h : build(h);
+  };
+  const social = (
+    [
+      { label: "Homepage", url: p.homepage_url?.trim() || null },
+      { label: "Instagram", url: handleUrl(p.instagram_handle, (h) => `https://instagram.com/${h}`) },
+      { label: "Facebook", url: handleUrl(p.facebook_handle, (h) => `https://facebook.com/${h}`) },
+      { label: "X", url: handleUrl(p.twitter_handle, (h) => `https://x.com/${h}`) },
+      { label: "TikTok", url: handleUrl(p.tiktok_handle, (h) => `https://www.tiktok.com/@${h}`) },
+    ] as { label: string; url: string | null }[]
+  ).filter((s): s is { label: string; url: string } => !!s.url);
+
+  // Pilot: Anzahl schriftlicher Fragen an die Bundesregierung. Tabelle existiert evtl.
+  // noch nicht (vor Q&A-Pipeline) → try/catch. Link sucht /fragen nach dem Namen.
+  let fragen: PoliticianKompakt["fragen"] = null;
+  try {
+    const fr = db
+      .prepare(`SELECT COUNT(*) AS n FROM drucksache_qa_paare WHERE fragesteller_politician_id = ?`)
+      .get(id) as { n: number } | undefined;
+    if (fr && fr.n > 0) {
+      fragen = { anzahl: fr.n, query: `${p.first_name ?? ""} ${p.last_name ?? ""}`.trim() };
+    }
+  } catch {
+    /* drucksache_qa_paare noch nicht vorhanden */
+  }
+
+  return {
+    id: p.id,
+    name: [p.title, p.first_name, p.last_name].filter(Boolean).join(" "),
+    party_label: p.party_label,
+    rolle: p.rolle,
+    wahlkreis: cleanWahlkreis(mandate?.constituency),
+    parliament_label: mandate?.type ?? null,
+    year_of_birth: p.year_of_birth,
+    photo_url: p.photo_url,
+    ausbildung,
+    beruf,
+    berufStatus,
+    berufKategorie,
+    ausschuesse,
+    schwerpunkte,
+    nebeneinkuenfte,
+    abstimmung,
+    social,
+    fragen,
+  };
+}
+
 export interface CVMergeDropRow {
   section: string;
   dropped_source: "wikipedia" | "homepage";
@@ -2164,7 +2466,8 @@ export function getRedenTonalitaetByFraktion(): {
 }
 
 // Tonalitäts-Verteilung der Kleinen Anfragen pro Fraktion. Filter:
-// nur batch_class='klein' (separate Tonalitäts-Skala als für Anträge/Gesetze),
+// dokumenttyp='Kleine Anfrage' (amtlicher DIP-Typ — separate Tonalitäts-Skala als
+// für Anträge/Gesetze; batch_class='klein' wäre falsch, enthält ~694 Anträge),
 // nur Einzel-Fraktionen mit ≥10 Anfragen (joint/Bundesregierung ausgeschlossen).
 export function getDrucksacheTonalitaetByFraktion(): {
   fraktion: string;
@@ -2178,7 +2481,7 @@ export function getDrucksacheTonalitaetByFraktion(): {
       TRIM(REPLACE(REPLACE(tonalitaet, char(10), ''), char(13), '')) AS tonalitaet,
       COUNT(*) AS c
     FROM drucksache_analyses
-    WHERE batch_class = 'klein'
+    WHERE dokumenttyp = 'Kleine Anfrage'
       AND tonalitaet IS NOT NULL
       AND fraktion IS NOT NULL
       AND fraktion != ''
@@ -2240,7 +2543,7 @@ export function getDrucksacheMonthlyTrend(): {
       COUNT(*) AS ka_n
     FROM drucksache_analyses da
     JOIN first_dates fd ON fd.drucksache_nr = da.drucksache_nr
-    WHERE da.batch_class = 'klein' AND da.tonalitaet IS NOT NULL
+    WHERE da.dokumenttyp = 'Kleine Anfrage' AND da.tonalitaet IS NOT NULL
       AND da.fraktion IS NOT NULL AND da.fraktion != ''
     GROUP BY monat, fraktion
     ORDER BY monat
@@ -4717,6 +5020,7 @@ export interface RelatedDsRow {
   drucksache_nr: string;
   titel: string | null;
   batch_class: string;
+  dokumenttyp: string | null;
   datum: string | null;
   tonalitaet: string | null;
   zusammenfassung: string | null;
@@ -4737,7 +5041,7 @@ export function getDrucksacheVerfahren(nr: string): {
   let parent: RelatedDsRow | null = null;
   if (parentNr) {
     parent = (db.prepare(`
-      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+      SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
              COALESCE(
         (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
         (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
@@ -4752,7 +5056,7 @@ export function getDrucksacheVerfahren(nr: string): {
 
   // Children: welche DS referenzieren DIESE?
   const children = db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            COALESCE(
         (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
         (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
@@ -5113,7 +5417,7 @@ export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit
   params.push(limit);
 
   return db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            COALESCE(
         (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
         (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
@@ -5275,7 +5579,7 @@ export function getDrucksachenSameFraktion(
   if (themas.length === 0) {
     // Ohne Thema-Filter: einfach letzte DS der Fraktion
     return db.prepare(`
-      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+      SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
              COALESCE(
         (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
         (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
@@ -5295,7 +5599,7 @@ export function getDrucksachenSameFraktion(
   // Mit Thema-Overlap-Scoring
   const likeClauses = themas.map(() => `(a.thema LIKE '%' || ? || '%')`).join(" + ");
   return db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
            COALESCE(
         (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
         (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),

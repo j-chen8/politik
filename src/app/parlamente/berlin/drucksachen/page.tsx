@@ -22,12 +22,12 @@ const KLASSE_LABEL: Record<string, string> = {
 };
 
 const KLASSE_BADGE: Record<string, string> = {
-  anfrage_antwort: "bg-blue-50 text-blue-700",
-  antrag: "bg-orange-50 text-orange-700",
-  gesetzentwurf: "bg-violet-50 text-violet-700",
-  vorlage_senat: "bg-slate-100 text-slate-700",
-  beschlussempfehlung: "bg-emerald-50 text-emerald-700",
-  beschlussempfehlung_regex: "bg-emerald-50 text-emerald-700",
+  anfrage_antwort: "bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400",
+  antrag: "bg-orange-50 dark:bg-orange-950/40 text-orange-700 dark:text-orange-400",
+  gesetzentwurf: "bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400",
+  vorlage_senat: "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
+  beschlussempfehlung: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400",
+  beschlussempfehlung_regex: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400",
 };
 
 export default function BerlinDrucksachenPage({
@@ -73,25 +73,25 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
   return (
     <div className="page-wash">
       <div className="w-full page-shell">
-        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8">
+        <Link href="/parlamente/berlin" className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors mb-8">
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus Berlin
         </Link>
 
         <div className="mb-8 fade-in-up">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">Abgeordnetenhaus Berlin · 19. Wahlperiode</div>
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">Abgeordnetenhaus Berlin · 19. Wahlperiode</div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-3">Drucksachen</h1>
-          <p className="text-[15px] text-zinc-600 leading-relaxed max-w-2xl">
-            <span className="num font-medium text-zinc-900">{allKlassenTotal.toLocaleString("de-DE")}</span> analysierte Drucksachen —
+          <p className="text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <span className="num font-medium text-zinc-900 dark:text-zinc-100">{allKlassenTotal.toLocaleString("de-DE")}</span> analysierte Drucksachen —
             Schriftliche Anfragen, Anträge, Gesetzentwürfe, Senats-Vorlagen und Beschlussempfehlungen. Jede mit LLM-Zusammenfassung
-            und Themen-Einordnung (siehe <Link href="/parlamente/berlin/methodik" className="text-blue-700 hover:text-blue-900 underline">Methodik</Link>).
-            Volltext-Suche über die <Link href="/parlamente/berlin/suche" className="text-blue-700 hover:text-blue-900 underline">Berlin-Suche</Link>.
+            und Themen-Einordnung (siehe <Link href="/parlamente/berlin/methodik" className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 underline">Methodik</Link>).
+            Volltext-Suche über die <Link href="/parlamente/berlin/suche" className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 underline">Berlin-Suche</Link>.
           </p>
         </div>
 
         {/* Klassen-Filter */}
         <div className="mb-3 flex flex-wrap gap-1.5 text-[11px]">
-          <span className="text-zinc-400 self-center mr-1">Typ:</span>
+          <span className="text-zinc-400 dark:text-zinc-500 self-center mr-1">Typ:</span>
           <FilterPill href={qs({ klasse: "", page: "" })} active={!klasse}>alle ({allKlassenTotal.toLocaleString("de-DE")})</FilterPill>
           {klasseFacets.filter((f) => f.klasse !== "beschlussempfehlung_regex").map((f) => {
             const count = f.klasse === "beschlussempfehlung"
@@ -108,7 +108,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
         {/* Jahr-Filter */}
         {years.length > 1 && (
           <div className="mb-3 flex flex-wrap gap-1.5 text-[11px]">
-            <span className="text-zinc-400 self-center mr-1">Jahr:</span>
+            <span className="text-zinc-400 dark:text-zinc-500 self-center mr-1">Jahr:</span>
             <FilterPill href={qs({ year: "", page: "" })} active={!year}>alle</FilterPill>
             {years.map((y) => (
               <FilterPill key={y} href={qs({ year: y, page: "" })} active={year === y}>{y}</FilterPill>
@@ -118,7 +118,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
 
         {/* Fraktions-Filter (einbringende Fraktion) */}
         <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
-          <span className="text-zinc-400 self-center mr-1">Fraktion:</span>
+          <span className="text-zinc-400 dark:text-zinc-500 self-center mr-1">Fraktion:</span>
           <FilterPill href={qs({ fraktion: "", page: "" })} active={!fraktion}>alle</FilterPill>
           {FRAKTIONEN.map((f) => (
             <FilterPill key={f} href={qs({ fraktion: f, page: "" })} active={fraktion === f}>{f}</FilterPill>
@@ -129,14 +129,14 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
           )}
         </div>
 
-        <div className="text-[12px] text-zinc-500 mb-4 num">
+        <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mb-4 num">
           {total.toLocaleString("de-DE")} Treffer{totalPages > 1 && ` · Seite ${page} / ${totalPages}`}
         </div>
 
         <div className="space-y-2 fade-in-up fade-in-up-3">
           {rows.map((d) => <DsCard key={d.dbid} d={d} />)}
           {rows.length === 0 && (
-            <div className="text-center text-[13px] text-zinc-500 py-12 border border-dashed border-zinc-200 rounded-2xl">
+            <div className="text-center text-[13px] text-zinc-500 dark:text-zinc-400 py-12 border border-dashed border-border rounded-2xl">
               Keine Drucksache passt zu diesem Filter.
             </div>
           )}
@@ -145,13 +145,13 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-8 text-[12px]">
             {page > 1 ? (
-              <Link href={qs({ page: String(page - 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400 transition-colors">
+              <Link href={qs({ page: String(page - 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-border bg-card text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors">
                 <ChevronLeft className="w-3.5 h-3.5" strokeWidth={2.25} /> Zurück
               </Link>
             ) : <span />}
-            <span className="text-zinc-400 num">Seite {page} / {totalPages}</span>
+            <span className="text-zinc-400 dark:text-zinc-500 num">Seite {page} / {totalPages}</span>
             {page < totalPages ? (
-              <Link href={qs({ page: String(page + 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400 transition-colors">
+              <Link href={qs({ page: String(page + 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-border bg-card text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors">
                 Weiter <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
               </Link>
             ) : <span />}
@@ -164,7 +164,7 @@ async function Inner({ searchParams }: { searchParams: Promise<{ klasse?: string
 
 function FilterPill({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
   return (
-    <Link href={href} className={`px-2.5 py-1 rounded-md border transition-colors ${active ? "bg-zinc-900 text-white border-zinc-900" : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400"}`}>
+    <Link href={href} className={`px-2.5 py-1 rounded-md border transition-colors ${active ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100" : "bg-card text-zinc-700 dark:text-zinc-300 border-border hover:border-zinc-400 dark:hover:border-zinc-500"}`}>
       {children}
     </Link>
   );
@@ -178,27 +178,27 @@ function formatDate(iso: string | null): string {
 
 function DsCard({ d }: { d: import("@/lib/db").BerlinDsIndexEntry }) {
   const label = KLASSE_LABEL[d.klasse] ?? d.klasse;
-  const badge = KLASSE_BADGE[d.klasse] ?? "bg-zinc-100 text-zinc-600";
+  const badge = KLASSE_BADGE[d.klasse] ?? "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300";
   const title = (d.titel && d.titel.trim()) || `Drucksache ${d.dokNr ?? d.dbid}`;
   const urheber = d.fraktion || d.einbringer;
   const snippet = d.zusammenfassung?.replace(/\s+/g, " ").trim();
   return (
-    <Link href={`/parlamente/berlin/drucksache/${encodeURIComponent(d.dbid)}`} className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group">
+    <Link href={`/parlamente/berlin/drucksache/${encodeURIComponent(d.dbid)}`} className="block border border-border rounded-2xl bg-card px-5 py-4 hover:bg-zinc-50/60 dark:hover:bg-zinc-800/60 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors group">
       <div className="flex items-start gap-4">
-        <FileText className="w-4 h-4 text-zinc-300 group-hover:text-zinc-500 transition-colors shrink-0 mt-0.5" strokeWidth={2} />
+        <FileText className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors shrink-0 mt-0.5" strokeWidth={2} />
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-1.5 text-[10px] uppercase tracking-wider">
             <span className={`px-1.5 py-0.5 rounded font-medium ${badge}`}>{label}</span>
-            {d.dokNr && <span className="num text-zinc-400">Drs. {d.dokNr}</span>}
-            <span className="num text-zinc-400 normal-case">{formatDate(d.datum)}</span>
-            {urheber && <span className="text-zinc-400 normal-case truncate max-w-[200px]">· {urheber}</span>}
+            {d.dokNr && <span className="num text-zinc-400 dark:text-zinc-500">Drs. {d.dokNr}</span>}
+            <span className="num text-zinc-400 dark:text-zinc-500 normal-case">{formatDate(d.datum)}</span>
+            {urheber && <span className="text-zinc-400 dark:text-zinc-500 normal-case truncate max-w-[200px]">· {urheber}</span>}
           </div>
-          <div className="text-[14px] font-medium text-zinc-950 leading-snug mb-1 group-hover:text-zinc-700 transition-colors line-clamp-2">
+          <div className="text-[14px] font-medium text-zinc-950 dark:text-zinc-50 leading-snug mb-1 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors line-clamp-2">
             {title}
           </div>
-          {snippet && <div className="text-[12.5px] text-zinc-500 leading-relaxed line-clamp-2">{snippet}</div>}
+          {snippet && <div className="text-[12.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-2">{snippet}</div>}
         </div>
-        <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all shrink-0 mt-0.5" strokeWidth={2.25} />
+        <ArrowRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 transition-all shrink-0 mt-0.5" strokeWidth={2.25} />
       </div>
     </Link>
   );

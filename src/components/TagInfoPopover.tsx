@@ -99,18 +99,18 @@ export function TagInfoPopover({
         width: POPOVER_WIDTH,
         zIndex: 50,
       }}
-      className="rounded-lg border border-zinc-200 bg-white shadow-lg p-3 text-[12px] text-zinc-700 leading-relaxed"
+      className="rounded-lg border border-border bg-card shadow-lg p-3 text-[12px] text-zinc-700 dark:text-zinc-300 leading-relaxed"
     >
-      <p className="font-semibold text-zinc-950 mb-1.5 text-[12.5px]">
+      <p className="font-semibold text-zinc-950 dark:text-zinc-50 mb-1.5 text-[12.5px]">
         {label}
       </p>
       <p>{definition}</p>
       {notMeaning && (
-        <div className="mt-2 pt-2 border-t border-zinc-100">
-          <p className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 mb-0.5">
+        <div className="mt-2 pt-2 border-t border-border">
+          <p className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-0.5">
             Was es nicht bedeutet
           </p>
-          <p className="text-[11.5px] text-zinc-600 leading-relaxed">
+          <p className="text-[11.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
             {notMeaning}
           </p>
         </div>
@@ -118,7 +118,7 @@ export function TagInfoPopover({
       {glossarAnchor && (
         <Link
           href={glossarAnchor}
-          className="mt-2 inline-block text-[11px] font-medium text-zinc-700 hover:text-zinc-950 underline underline-offset-2 decoration-zinc-300 hover:decoration-zinc-700"
+          className="mt-2 inline-block text-[11px] font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-2 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-700"
           onClick={() => setOpen(false)}
         >
           Methodik-Glossar →
@@ -136,8 +136,8 @@ export function TagInfoPopover({
         aria-expanded={open}
         aria-label={`${label} — Definition anzeigen`}
         className={
-          "px-2 py-0.5 rounded-md text-[11px] font-semibold inline-flex items-center gap-1 transition-shadow hover:ring-1 hover:ring-zinc-300 " +
-          (isTonalitaet ? "" : "bg-gray-100 text-zinc-600 font-medium")
+          "px-2 py-0.5 rounded-md text-[11px] font-semibold inline-flex items-center gap-1 transition-shadow hover:ring-1 hover:ring-zinc-300 dark:hover:ring-zinc-600 " +
+          (isTonalitaet ? "" : "bg-gray-100 dark:bg-gray-800 text-zinc-600 dark:text-zinc-300 font-medium")
         }
         style={isTonalitaet ? { color, backgroundColor: bg } : undefined}
       >
@@ -145,7 +145,7 @@ export function TagInfoPopover({
         <span
           className={
             "inline-flex items-center justify-center w-3 h-3 rounded-full text-[8px] font-bold leading-none " +
-            (isTonalitaet ? "bg-white/80" : "bg-white text-zinc-500")
+            (isTonalitaet ? "bg-card/80" : "bg-card text-zinc-500 dark:text-zinc-400")
           }
           style={isTonalitaet ? { color } : undefined}
           aria-hidden="true"

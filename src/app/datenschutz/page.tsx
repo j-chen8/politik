@@ -13,16 +13,16 @@ export default function DatenschutzPage() {
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-4">
           Datenschutzerklärung
         </h1>
-        <p className="text-[14.5px] text-zinc-500 mb-12 leading-relaxed">
+        <p className="text-[14.5px] text-zinc-500 dark:text-zinc-400 mb-12 leading-relaxed">
           Diese Seite verarbeitet personenbezogene Daten nur in dem Umfang, der für den Betrieb
           des Angebots technisch erforderlich ist. Es werden keine Tracking-, Analyse- oder
           Werbe-Tools eingesetzt.
         </p>
 
-        <div className="space-y-10 text-[15px] leading-relaxed text-zinc-700">
+        <div className="space-y-10 text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               1. Verantwortliche Stelle
             </h2>
             <address className="not-italic">
@@ -36,7 +36,7 @@ export default function DatenschutzPage() {
               E-Mail:{" "}
               <a
                 href="mailto:hallo@jinsheng-chen.de"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 hallo@jinsheng-chen.de
               </a>
@@ -44,12 +44,12 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               2. Welche Daten verarbeitet werden
             </h2>
             <div className="space-y-3">
               <div>
-                <h3 className="text-zinc-950 font-medium mb-1">Server-Logs / Hosting</h3>
+                <h3 className="text-zinc-950 dark:text-zinc-50 font-medium mb-1">Server-Logs / Hosting</h3>
                 <p>
                   Beim Aufruf dieser Webseite werden durch den Hosting-Anbieter
                   (Cloudflare über einen Tunnel zu meinem System) technisch
@@ -64,7 +64,7 @@ export default function DatenschutzPage() {
                 </p>
               </div>
               <div>
-                <h3 className="text-zinc-950 font-medium mb-1">E-Mail-Kommunikation</h3>
+                <h3 className="text-zinc-950 dark:text-zinc-50 font-medium mb-1">E-Mail-Kommunikation</h3>
                 <p>
                   Wenn du mir per E-Mail eine Korrekturanfrage, Feedback oder
                   sonstige Nachricht schickst, verarbeite ich die mitgeteilten
@@ -76,7 +76,7 @@ export default function DatenschutzPage() {
                 </p>
               </div>
               <div>
-                <h3 className="text-zinc-950 font-medium mb-1">
+                <h3 className="text-zinc-950 dark:text-zinc-50 font-medium mb-1">
                   Dargestellte Politiker:innen-Daten
                 </h3>
                 <p>
@@ -92,7 +92,7 @@ export default function DatenschutzPage() {
                   Quellen- und Lizenzangaben:{" "}
                   <Link
                     href="/datenquellen"
-                    className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                    className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
                   >
                     Datenquellen
                   </Link>
@@ -103,20 +103,20 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               3. Was nicht passiert
             </h2>
             <ul className="space-y-1.5 ml-1">
-              <li>· <strong className="text-zinc-950">Keine Cookies</strong> außer technisch zwingend erforderliche Session-Cookies — derzeit setzt das Angebot keine Cookies.</li>
-              <li>· <strong className="text-zinc-950">Kein Tracking, keine Analytics</strong> (kein Google Analytics, Matomo, Plausible o. ä.).</li>
-              <li>· <strong className="text-zinc-950">Keine Werbung, kein Retargeting</strong>, keine Drittanbieter-Skripte für Marketing-Zwecke.</li>
-              <li>· <strong className="text-zinc-950">Keine Weitergabe</strong> personenbezogener Daten an Dritte, außer wenn gesetzlich erforderlich.</li>
-              <li>· <strong className="text-zinc-950">Keine automatisierte Entscheidungsfindung</strong> einschließlich Profiling im Sinne des Art. 22 DSGVO.</li>
+              <li>· <strong className="text-zinc-950 dark:text-zinc-50">Keine Cookies</strong> außer technisch zwingend erforderliche Session-Cookies — derzeit setzt das Angebot keine Cookies.</li>
+              <li>· <strong className="text-zinc-950 dark:text-zinc-50">Kein Tracking, keine Analytics</strong> (kein Google Analytics, Matomo, Plausible o. ä.).</li>
+              <li>· <strong className="text-zinc-950 dark:text-zinc-50">Keine Werbung, kein Retargeting</strong>, keine Drittanbieter-Skripte für Marketing-Zwecke.</li>
+              <li>· <strong className="text-zinc-950 dark:text-zinc-50">Keine Weitergabe</strong> personenbezogener Daten an Dritte, außer wenn gesetzlich erforderlich.</li>
+              <li>· <strong className="text-zinc-950 dark:text-zinc-50">Keine automatisierte Entscheidungsfindung</strong> einschließlich Profiling im Sinne des Art. 22 DSGVO.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               4. Deine Rechte
             </h2>
             <p className="mb-3">
@@ -124,18 +124,18 @@ export default function DatenschutzPage() {
               verantwortlichen Stelle:
             </p>
             <ul className="space-y-1.5 ml-1">
-              <li>· Recht auf <strong className="text-zinc-950">Auskunft</strong> (Art. 15 DSGVO)</li>
-              <li>· Recht auf <strong className="text-zinc-950">Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
-              <li>· Recht auf <strong className="text-zinc-950">Löschung</strong> (Art. 17 DSGVO)</li>
-              <li>· Recht auf <strong className="text-zinc-950">Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
-              <li>· Recht auf <strong className="text-zinc-950">Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
-              <li>· Recht auf <strong className="text-zinc-950">Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Auskunft</strong> (Art. 15 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Löschung</strong> (Art. 17 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+              <li>· Recht auf <strong className="text-zinc-950 dark:text-zinc-50">Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
             </ul>
             <p className="mt-3">
               Anfragen bitte per E-Mail an{" "}
               <a
                 href="mailto:hallo@jinsheng-chen.de?subject=Datenschutz-Anfrage"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 hallo@jinsheng-chen.de
               </a>
@@ -145,7 +145,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               5. Beschwerderecht bei der Aufsichtsbehörde
             </h2>
             <p>
@@ -160,7 +160,7 @@ export default function DatenschutzPage() {
                 href="https://www.datenschutz-berlin.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 www.datenschutz-berlin.de
               </a>
@@ -168,7 +168,7 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               6. Stand und Änderungen
             </h2>
             <p>

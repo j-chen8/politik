@@ -40,7 +40,7 @@ export default async function BerlinSitzungFeedPage({ params }: Props) {
       <div className="w-full max-w-3xl mx-auto px-5 pt-24 pb-24">
         <Link
           href="/parlamente/berlin"
-          className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Abgeordnetenhaus Berlin
@@ -49,13 +49,13 @@ export default async function BerlinSitzungFeedPage({ params }: Props) {
         <BerlinSitzungVariantBar sitzungNr={sit.sitzungNr} current="feed" />
 
         <header className="mb-6">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             Plenarprotokoll {sit.plprDokNr}
           </p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950 mb-1.5">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-1.5">
             {sit.sitzungNr}. Sitzung
           </h1>
-          <p className="text-[13px] text-zinc-600 num">
+          <p className="text-[13px] text-zinc-600 dark:text-zinc-300 num">
             {formatDate(sit.datum)} · {fmt(sit.redenTotal)} Wortbeiträge
             {sit.plprLokUrl && (
               <>
@@ -64,7 +64,7 @@ export default async function BerlinSitzungFeedPage({ params }: Props) {
                   href={sit.plprLokUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                  className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                 >
                   PDF
                   <ExternalLink className="w-3 h-3" strokeWidth={2.25} />

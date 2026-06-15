@@ -361,33 +361,33 @@ export function CommandPalette({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-zinc-200 overflow-hidden"
+        className="w-full max-w-2xl bg-card rounded-2xl shadow-2xl border border-border overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-label="Suche"
       >
         {/* Input row */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-zinc-100">
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
           {loading ? (
-            <Loader2 className="w-4 h-4 text-zinc-400 animate-spin shrink-0" strokeWidth={2.25} />
+            <Loader2 className="w-4 h-4 text-zinc-400 dark:text-zinc-500 animate-spin shrink-0" strokeWidth={2.25} />
           ) : (
-            <Search className="w-4 h-4 text-zinc-400 shrink-0" strokeWidth={2.25} />
+            <Search className="w-4 h-4 text-zinc-400 dark:text-zinc-500 shrink-0" strokeWidth={2.25} />
           )}
           <input
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="MdB, Thema, Rede, Vote…"
-            className="flex-1 bg-transparent border-0 outline-none text-base sm:text-[15px] text-zinc-900 placeholder:text-zinc-400"
+            className="flex-1 bg-transparent border-0 outline-none text-base sm:text-[15px] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
           />
-          <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 border border-zinc-200 rounded">
+          <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 border border-border rounded">
             ESC
           </kbd>
         </div>
 
         {/* Steuerleiste: Typ-Filter + Exakt/Erweitern */}
         {query.trim().length >= 2 && results.total > 0 && (
-          <div className="border-b border-zinc-100 bg-zinc-50/60 px-4 py-2 space-y-2">
+          <div className="border-b border-border bg-zinc-50/60 dark:bg-zinc-800/60 px-4 py-2 space-y-2">
             {/* Typ-Filter-Chips */}
             <div className="flex flex-wrap items-center gap-1.5">
               <FilterChip
@@ -426,23 +426,23 @@ export function CommandPalette({
 
             {/* Exakt-Default vs. Erweitern */}
             {results.expand ? (
-              <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] text-zinc-500">
-                <span className="text-zinc-400">verwandte Begriffe:</span>
+              <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] text-zinc-500 dark:text-zinc-400">
+                <span className="text-zinc-400 dark:text-zinc-500">verwandte Begriffe:</span>
                 {results.expansions.slice(0, 10).map((term) => (
                   <span
                     key={term}
-                    className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600"
+                    className="px-1.5 py-0.5 bg-card border border-border rounded text-zinc-600 dark:text-zinc-300"
                   >
                     {term}
                   </span>
                 ))}
                 {results.expansions.length > 10 && (
-                  <span className="text-zinc-400">+{results.expansions.length - 10}</span>
+                  <span className="text-zinc-400 dark:text-zinc-500">+{results.expansions.length - 10}</span>
                 )}
                 <button
                   type="button"
                   onClick={() => setExpand(false)}
-                  className="ml-auto shrink-0 text-zinc-600 hover:text-zinc-950 underline underline-offset-2"
+                  className="ml-auto shrink-0 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-2"
                 >
                   nur exakte Treffer
                 </button>
@@ -451,16 +451,16 @@ export function CommandPalette({
               <button
                 type="button"
                 onClick={() => setExpand(true)}
-                className="w-full flex items-center gap-2 text-[12px] text-left text-zinc-600 hover:text-zinc-950 transition-colors"
+                className="w-full flex items-center gap-2 text-[12px] text-left text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                 title="Verwandte Themen über Synonym-Cluster einbeziehen"
               >
                 <Plus className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} />
                 <span>
                   Verwandte Themen einbeziehen
                   {results.matchedClusters.length > 0 && (
-                    <span className="text-zinc-400"> ({results.matchedClusters.join(", ")})</span>
+                    <span className="text-zinc-400 dark:text-zinc-500"> ({results.matchedClusters.join(", ")})</span>
                   )}{" "}
-                  — <span className="tabular-nums font-medium text-zinc-900">+{relatedExtra}</span>{" "}
+                  — <span className="tabular-nums font-medium text-zinc-900 dark:text-zinc-100">+{relatedExtra}</span>{" "}
                   Treffer
                 </span>
               </button>
@@ -474,28 +474,28 @@ export function CommandPalette({
             <button
               type="button"
               onClick={() => navigateTo(plzHref)}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-zinc-50 transition-colors border-b border-zinc-100"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors border-b border-border"
             >
-              <div className="w-7 h-7 rounded-md bg-[#1a3e72]/10 flex items-center justify-center shrink-0">
-                <MapPin className="w-3.5 h-3.5 text-[#1a3e72]" strokeWidth={2.25} />
+              <div className="w-7 h-7 rounded-md bg-[#1a3e72]/10 dark:bg-[#8fb3e6]/10 flex items-center justify-center shrink-0">
+                <MapPin className="w-3.5 h-3.5 text-[#1a3e72] dark:text-[#8fb3e6]" strokeWidth={2.25} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[13.5px] text-zinc-900">
+                <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100">
                   Abgeordnete für PLZ <span className="font-medium">{plzMatch}</span> anzeigen
                 </div>
-                <div className="text-[11.5px] text-zinc-500">Wer dich im Bundestag vertritt — mit ↵</div>
+                <div className="text-[11.5px] text-zinc-500 dark:text-zinc-400">Wer dich im Bundestag vertritt — mit ↵</div>
               </div>
             </button>
           )}
           {query.trim().length < 2 && (
-            <div className="px-4 py-12 text-center text-[13px] text-zinc-400">
+            <div className="px-4 py-12 text-center text-[13px] text-zinc-400 dark:text-zinc-500">
               Tippe mindestens 2 Zeichen, um zu suchen.
               <div className="mt-3 flex flex-wrap justify-center gap-1.5">
                 {["Asyl", "Stromsteuer", "Bundeswehr", "Klima", "Bürgergeld"].map((q) => (
                   <button
                     key={q}
                     onClick={() => setQuery(q)}
-                    className="px-2 py-0.5 text-[11px] text-zinc-500 border border-zinc-200 rounded hover:border-zinc-400 hover:text-zinc-900 transition-colors"
+                    className="px-2 py-0.5 text-[11px] text-zinc-500 dark:text-zinc-400 border border-border rounded hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                   >
                     {q}
                   </button>
@@ -504,7 +504,7 @@ export function CommandPalette({
             </div>
           )}
           {query.trim().length >= 2 && results.total === 0 && !loading && !plzHref && (
-            <div className="px-4 py-12 text-center text-[13px] text-zinc-400">
+            <div className="px-4 py-12 text-center text-[13px] text-zinc-400 dark:text-zinc-500">
               Keine Treffer für „{query}".
             </div>
           )}
@@ -513,13 +513,13 @@ export function CommandPalette({
             const total = totalKey ? results.totals[totalKey] : section.items.length;
             return (
             <div key={section.label} className="mb-1">
-              <div className="px-4 pt-2 pb-1 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-zinc-400">
+              <div className="px-4 pt-2 pb-1 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 <span>{section.label}</span>
-                <span className="text-zinc-400 tabular-nums normal-case tracking-normal">
+                <span className="text-zinc-400 dark:text-zinc-500 tabular-nums normal-case tracking-normal">
                   {total > section.items.length ? (
                     <>
-                      <span className="text-zinc-900">{section.items.length}</span>
-                      <span className="text-zinc-300"> / </span>
+                      <span className="text-zinc-900 dark:text-zinc-100">{section.items.length}</span>
+                      <span className="text-zinc-300 dark:text-zinc-600"> / </span>
                       <span>{total}</span>
                     </>
                   ) : (
@@ -541,13 +541,13 @@ export function CommandPalette({
               {totalKey && total > section.items.length && (() => {
                 const useInline = total <= INLINE_THRESHOLD && !expandedItems[totalKey];
                 return (
-                  <div className="px-4 pt-1.5 pb-2 flex items-center text-[11.5px] border-t border-zinc-100 mt-1">
+                  <div className="px-4 pt-1.5 pb-2 flex items-center text-[11.5px] border-t border-border mt-1">
                     {useInline ? (
                       <button
                         type="button"
                         onClick={() => loadMore(totalKey)}
                         disabled={expandingType === totalKey}
-                        className="inline-flex items-center gap-1.5 text-zinc-600 hover:text-zinc-950 disabled:text-zinc-400 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:text-zinc-400 dark:disabled:text-zinc-500 transition-colors"
                       >
                         {expandingType === totalKey ? (
                           <>
@@ -562,7 +562,7 @@ export function CommandPalette({
                       <button
                         type="button"
                         onClick={() => goToFullList(totalKey)}
-                        className="inline-flex items-center gap-1 text-zinc-600 hover:text-zinc-950 transition-colors"
+                        className="inline-flex items-center gap-1 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                       >
                         Alle <span className="tabular-nums">{total}</span> anzeigen →
                       </button>
@@ -576,17 +576,17 @@ export function CommandPalette({
         </div>
 
         {/* Footer */}
-        <div className="hidden sm:flex px-4 py-2 border-t border-zinc-100 items-center gap-4 text-[11px] text-zinc-400">
+        <div className="hidden sm:flex px-4 py-2 border-t border-border items-center gap-4 text-[11px] text-zinc-400 dark:text-zinc-500">
           <span className="flex items-center gap-1">
-            <kbd className="font-mono px-1 py-0.5 border border-zinc-200 rounded text-[10px]">↑↓</kbd>
+            <kbd className="font-mono px-1 py-0.5 border border-border rounded text-[10px]">↑↓</kbd>
             navigieren
           </span>
           <span className="flex items-center gap-1">
-            <kbd className="font-mono px-1 py-0.5 border border-zinc-200 rounded text-[10px]">↵</kbd>
+            <kbd className="font-mono px-1 py-0.5 border border-border rounded text-[10px]">↵</kbd>
             öffnen
           </span>
           <span className="flex items-center gap-1">
-            <kbd className="font-mono px-1 py-0.5 border border-zinc-200 rounded text-[10px]">esc</kbd>
+            <kbd className="font-mono px-1 py-0.5 border border-border rounded text-[10px]">esc</kbd>
             schließen
           </span>
         </div>
@@ -612,11 +612,11 @@ function FilterChip({
       onClick={onClick}
       className={`px-2 py-0.5 rounded-full text-[11.5px] border transition-colors ${
         active
-          ? "bg-zinc-900 text-white border-zinc-900"
-          : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-400 hover:text-zinc-900"
+          ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100"
+          : "bg-card text-zinc-600 dark:text-zinc-300 border-border hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
       }`}
     >
-      {label} <span className={`tabular-nums ${active ? "opacity-70" : "text-zinc-400"}`}>{count}</span>
+      {label} <span className={`tabular-nums ${active ? "opacity-70" : "text-zinc-400 dark:text-zinc-500"}`}>{count}</span>
     </button>
   );
 }
@@ -637,7 +637,7 @@ function ResultRow({
   terms: string[];
 }) {
   const cls = `flex items-center gap-3 px-4 py-2 cursor-pointer ${
-    selected ? "bg-zinc-100" : ""
+    selected ? "bg-zinc-100 dark:bg-zinc-800" : ""
   }`;
 
   return (
@@ -676,15 +676,15 @@ function PoliticianRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) 
       />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 min-w-0">
-          <span className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.name, terms)}</span>
+          <span className="text-[13.5px] text-zinc-900 dark:text-zinc-100 truncate">{highlight(hit.name, terms)}</span>
           {hit.isFormer && (
-            <span className="shrink-0 rounded-sm bg-zinc-100 px-1 py-px text-[10px] font-medium uppercase tracking-wide text-zinc-500 ring-1 ring-inset ring-zinc-200">
+            <span className="shrink-0 rounded-sm bg-zinc-100 dark:bg-zinc-800 px-1 py-px text-[10px] font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700">
               ehem.
             </span>
           )}
         </div>
         {hit.subtitle && (
-          <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 truncate">
+          <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 dark:text-zinc-400 truncate">
             {hit.party && (
               <span
                 className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.party] ?? "bg-zinc-300"}`}
@@ -701,12 +701,12 @@ function PoliticianRow({ hit, terms }: { hit: PoliticianHit; terms: string[] }) 
 function TopicRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   return (
     <>
-      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-        <ListTree className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      <div className="w-7 h-7 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+        <ListTree className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.title, terms)}</div>
-        <div className="text-[11.5px] text-zinc-500 truncate">
+        <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 truncate">{highlight(hit.title, terms)}</div>
+        <div className="text-[11.5px] text-zinc-500 dark:text-zinc-400 truncate">
           TOP {hit.topic_number} · {hit.speech_count} Reden
           {hit.session_date && ` · ${formatGermanDate(hit.session_date)}`}
         </div>
@@ -724,22 +724,22 @@ function SpeechRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
   const ton = formatTonalitaet(hit.tonalitaet);
   return (
     <>
-      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-        <MessageSquare className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      <div className="w-7 h-7 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+        <MessageSquare className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <div className="text-[13.5px] text-zinc-900 truncate flex-1 min-w-0">{highlight(hit.snippet, terms)}</div>
+          <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 truncate flex-1 min-w-0">{highlight(hit.snippet, terms)}</div>
           {ton && (
             <span
-              className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
+              className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 border border-border rounded"
               title="Tonalität — KI-eingeschätzt aus dem Redetext (Methodik in /methodik)"
             >
               {ton}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 truncate">
+        <div className="flex items-center gap-1.5 text-[11.5px] text-zinc-500 dark:text-zinc-400 truncate">
           {hit.party && (
             <span
               className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.party] ?? "bg-zinc-300"}`}
@@ -758,13 +758,13 @@ function SpeechRow({ hit, terms }: { hit: SpeechHit; terms: string[] }) {
 function VoteRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   return (
     <>
-      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-        <VoteIcon className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      <div className="w-7 h-7 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+        <VoteIcon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate">{highlight(hit.label, terms)}</div>
+        <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 truncate">{highlight(hit.label, terms)}</div>
         {hit.poll_date && (
-          <div className="text-[11.5px] text-zinc-500">
+          <div className="text-[11.5px] text-zinc-500 dark:text-zinc-400">
             Abstimmung · {formatGermanDate(hit.poll_date)}
           </div>
         )}
@@ -786,17 +786,17 @@ function DrucksacheRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) 
   const klasseLabel = hit.batch_class ? dsKlasseShort[hit.batch_class] ?? hit.batch_class : "Drucksache";
   return (
     <>
-      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-        <FileText className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      <div className="w-7 h-7 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+        <FileText className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-[13.5px] text-zinc-900 truncate font-medium">{highlight(hit.title, terms)}</div>
+        <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 truncate font-medium">{highlight(hit.title, terms)}</div>
         {hit.snippet && (
-          <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
+          <div className="text-[12px] text-zinc-600 dark:text-zinc-300 line-clamp-2 leading-snug mt-0.5">
             {highlight(hit.snippet, terms)}
           </div>
         )}
-        <div className="text-[10.5px] text-zinc-500 truncate mt-0.5">
+        <div className="text-[10.5px] text-zinc-500 dark:text-zinc-400 truncate mt-0.5">
           {klasseLabel}
           {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
           {hit.date && ` · ${formatGermanDate(hit.date)}`}
@@ -809,19 +809,19 @@ function DrucksacheRow({ hit, terms }: { hit: DrucksacheHit; terms: string[] }) 
 function QaRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
   return (
     <>
-      <div className="w-7 h-7 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-        <MessageSquareQuote className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.25} />
+      <div className="w-7 h-7 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+        <MessageSquareQuote className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" strokeWidth={2.25} />
       </div>
       <div className="flex-1 min-w-0">
         {hit.frage && (
-          <div className="text-[13.5px] text-zinc-900 line-clamp-2 leading-snug">{highlight(hit.frage, terms)}</div>
+          <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug">{highlight(hit.frage, terms)}</div>
         )}
         {hit.antwort_snippet && (
-          <div className="text-[12px] text-zinc-600 truncate leading-snug mt-0.5">
-            <span className="text-zinc-400">↳ </span>{highlight(hit.antwort_snippet, terms)}
+          <div className="text-[12px] text-zinc-600 dark:text-zinc-300 truncate leading-snug mt-0.5">
+            <span className="text-zinc-400 dark:text-zinc-500">↳ </span>{highlight(hit.antwort_snippet, terms)}
           </div>
         )}
-        <div className="flex items-center gap-1.5 text-[10.5px] text-zinc-500 truncate mt-0.5">
+        <div className="flex items-center gap-1.5 text-[10.5px] text-zinc-500 dark:text-zinc-400 truncate mt-0.5">
           {hit.fragesteller_party && (
             <span
               className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.fragesteller_party] ?? "bg-zinc-300"}`}

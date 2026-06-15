@@ -47,7 +47,7 @@ export default function SitzungenListPage() {
         {/* Breadcrumb */}
         <Link
           href="/protokolle"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Protokolle
@@ -55,13 +55,13 @@ export default function SitzungenListPage() {
 
         {/* Hero */}
         <div className="mb-8">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             Plenarsitzungen · WP {wahlperioden.join(", ")}
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 leading-tight">
             Alle Sitzungen
           </h1>
-          <p className="mt-4 text-[14px] text-zinc-700 leading-relaxed">
+          <p className="mt-4 text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
             {sessions.length} Sitzungen · {totalTopics.toLocaleString("de-DE")} Tagesordnungspunkte · {totalSpeeches.toLocaleString("de-DE")} Reden · {totalVotes} namentliche {totalVotes === 1 ? "Abstimmung" : "Abstimmungen"}
           </p>
         </div>
@@ -71,15 +71,15 @@ export default function SitzungenListPage() {
           {groups.map((group) => (
             <section key={group.month}>
               <div className="flex items-baseline justify-between mb-3 px-1">
-                <h2 className="text-[13px] font-semibold uppercase tracking-wider text-zinc-600">
+                <h2 className="text-[13px] font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-300">
                   {group.month}
                 </h2>
-                <span className="text-[11px] text-zinc-400 num">
+                <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">
                   {group.sessions.length} {group.sessions.length === 1 ? "Sitzung" : "Sitzungen"}
                 </span>
               </div>
 
-              <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+              <div className="rounded-xl border border-border bg-card overflow-hidden">
                 {group.sessions.map((s) => (
                   <SessionRow key={s.sitzung} session={s} />
                 ))}
@@ -96,24 +96,24 @@ function SessionRow({ session }: { session: ReturnType<typeof getPlenarSessions>
   const detailHref = `/protokolle/sitzung/${session.sitzung}`;
 
   return (
-    <div className="group flex items-stretch border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors">
+    <div className="group flex items-stretch border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
       <Link href={detailHref} className="flex-1 flex items-center gap-4 px-4 py-3 min-w-0">
         {/* Sitzungsnummer */}
         <div className="shrink-0 w-12 text-center">
-          <div className="text-xl font-semibold text-zinc-950 num leading-none">
+          <div className="text-xl font-semibold text-zinc-950 dark:text-zinc-50 num leading-none">
             {session.sitzung}
           </div>
-          <div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-0.5">
+          <div className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-0.5">
             Nr.
           </div>
         </div>
 
         {/* Datum + Mini-Stats */}
         <div className="flex-1 min-w-0">
-          <div className="text-[13.5px] text-zinc-900 font-medium num">
+          <div className="text-[13.5px] text-zinc-900 dark:text-zinc-100 font-medium num">
             {formatGermanDate(session.datum)}
           </div>
-          <div className="mt-1 flex items-center gap-3 text-[11.5px] text-zinc-500">
+          <div className="mt-1 flex items-center gap-3 text-[11.5px] text-zinc-500 dark:text-zinc-400">
             <span className="inline-flex items-center gap-1 num">
               <Gavel className="w-3 h-3" strokeWidth={2.25} />
               {session.speech_count}
@@ -128,13 +128,13 @@ function SessionRow({ session }: { session: ReturnType<typeof getPlenarSessions>
                 {session.vote_count}
               </span>
             )}
-            <span className="num text-zinc-400">·</span>
-            <span className="num text-zinc-400">{session.speaker_count} Sprecher</span>
+            <span className="num text-zinc-400 dark:text-zinc-500">·</span>
+            <span className="num text-zinc-400 dark:text-zinc-500">{session.speaker_count} Sprecher</span>
           </div>
         </div>
 
         <ChevronRight
-          className="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 shrink-0 transition-colors"
+          className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 shrink-0 transition-colors"
           strokeWidth={2.25}
         />
       </Link>
@@ -145,7 +145,7 @@ function SessionRow({ session }: { session: ReturnType<typeof getPlenarSessions>
           href={session.source_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 flex items-center px-3 text-[11px] text-[#1a3e72] hover:text-[#0f2a52] hover:bg-[#1a3e72]/10 border-l border-zinc-100 transition-colors"
+          className="shrink-0 flex items-center px-3 text-[11px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] hover:bg-[#1a3e72]/10 dark:hover:bg-[#8fb3e6]/10 border-l border-border transition-colors"
           title="Offizielles PDF-Protokoll"
         >
           PDF

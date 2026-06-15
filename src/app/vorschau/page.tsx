@@ -17,7 +17,7 @@ export default function VorschauPage() {
   return (
     <div className="page-wash flex min-h-screen flex-col">
       {/* Vorschau-Hinweis */}
-      <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-[12px] text-amber-800">
+      <div className="border-b border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/40 px-4 py-2 text-center text-[12px] text-amber-800 dark:text-amber-400">
         Design-Vorschau · deine echte Startseite bleibt unter <code className="font-mono">/</code>
       </div>
 

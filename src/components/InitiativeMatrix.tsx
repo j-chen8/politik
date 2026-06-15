@@ -31,7 +31,7 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
     <button
       onClick={onClick}
       className={`px-2 py-0.5 rounded-full border transition-colors ${
-        active ? "border-zinc-900 bg-zinc-900 text-white" : "border-zinc-200 text-zinc-500 hover:border-zinc-400"
+        active ? "border-zinc-900 dark:border-zinc-100 bg-zinc-900 text-white" : "border-border text-zinc-500 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-500"
       }`}
     >
       {children}
@@ -77,7 +77,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
         <table className="border-collapse text-[12px] mx-auto">
           <thead>
             <tr>
-              <th className="text-left font-medium text-zinc-400 pb-2 pr-3 align-bottom">Themenfeld</th>
+              <th className="text-left font-medium text-zinc-400 dark:text-zinc-500 pb-2 pr-3 align-bottom">Themenfeld</th>
               {fraktionen.map((fr) => {
                 const c = partyColors(fr.name);
                 return (
@@ -85,7 +85,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
                     <div className="flex flex-col items-center gap-1">
                       <span className="inline-block px-1.5 py-0.5 rounded text-[10.5px] font-semibold whitespace-nowrap"
                         style={{ background: c.bg, color: c.fg }}>{fr.name}</span>
-                      <span className="num text-[11px] text-zinc-500">{fr.totals[art].toLocaleString("de-DE")}</span>
+                      <span className="num text-[11px] text-zinc-500 dark:text-zinc-400">{fr.totals[art].toLocaleString("de-DE")}</span>
                     </div>
                   </th>
                 );
@@ -94,8 +94,8 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
           </thead>
           <tbody>
             {fields.map((field) => (
-              <tr key={field} className="border-t border-zinc-100">
-                <td className="py-1 pr-3 text-zinc-700 whitespace-nowrap" title={field}>{shortField(field)}</td>
+              <tr key={field} className="border-t border-border">
+                <td className="py-1 pr-3 text-zinc-700 dark:text-zinc-300 whitespace-nowrap" title={field}>{shortField(field)}</td>
                 {fraktionen.map((fr) => {
                   const count = cells[fr.name]?.[field]?.counts[art] ?? 0;
                   const c = partyColors(fr.name);
@@ -106,7 +106,7 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
                       <button
                         disabled={!count}
                         onClick={() => setSel(isSel ? null : { field, frak: fr.name })}
-                        className={`w-full min-w-[52px] rounded py-1 num tabular-nums transition-all ${count ? "cursor-pointer hover:ring-2 hover:ring-zinc-900/20" : "cursor-default text-zinc-300"} ${isSel ? "ring-2 ring-zinc-900" : ""}`}
+                        className={`w-full min-w-[52px] rounded py-1 num tabular-nums transition-all ${count ? "cursor-pointer hover:ring-2 hover:ring-zinc-900/20 dark:hover:ring-zinc-100/20" : "cursor-default text-zinc-300 dark:text-zinc-600"} ${isSel ? "ring-2 ring-zinc-900 dark:ring-zinc-100" : ""}`}
                         style={count ? { background: hexToRgba(c.bg, 0.12 + intensity * 0.85), color: intensity > 0.5 ? c.fg : "#27272a" } : undefined}
                       >{count ? (relativ ? fmtPct(count, totals[fr.name]) : count) : "·"}</button>
                     </td>
@@ -119,29 +119,29 @@ export function InitiativeMatrix({ data }: { data: MatrixData }) {
       </div>
 
       {sel && selCell && selCount > 0 && (
-        <div className="mt-4 border border-zinc-200 rounded-xl p-4 bg-zinc-50/60">
+        <div className="mt-4 border border-border rounded-xl p-4 bg-zinc-50/60 dark:bg-zinc-800/60">
           <div className="flex items-center justify-between mb-2.5">
-            <p className="text-[13px] font-medium text-zinc-900">
+            <p className="text-[13px] font-medium text-zinc-900 dark:text-zinc-100">
               <span style={{ color: partyColors(sel.frak).bg }}>{sel.frak}</span> · {sel.field}
-              <span className="text-zinc-400 font-normal"> — {selCount} {ART_LABEL[art]}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 font-normal"> — {selCount} {ART_LABEL[art]}</span>
             </p>
-            <button onClick={() => setSel(null)} className="text-zinc-400 hover:text-zinc-900 text-[12px]">schließen ✕</button>
+            <button onClick={() => setSel(null)} className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 text-[12px]">schließen ✕</button>
           </div>
           <ul className="space-y-1.5">
             {selItems.map((it) => (
               <li key={it.nr + it.titel} className="text-[12.5px] leading-snug">
-                <Link href={`/aktivitaeten/${it.nr.replace("/", "-")}`} className="text-zinc-600 hover:text-zinc-950 hover:underline">
+                <Link href={`/aktivitaeten/${it.nr.replace("/", "-")}`} className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 hover:underline">
                   {it.titel}
                 </Link>
               </li>
             ))}
           </ul>
           {selCount > selItems.length && (
-            <p className="text-[11.5px] text-zinc-400 mt-2">+{selCount - selItems.length} weitere</p>
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 mt-2">+{selCount - selItems.length} weitere</p>
           )}
         </div>
       )}
-      <p className="text-[11px] text-zinc-400 mt-3 text-center">
+      <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-3 text-center">
         {relativ
           ? "Prozent = Anteil des Themenfelds an allen Themen-Nennungen der Fraktion im gewählten Modus (Spalte summiert auf 100 %; eine Drucksache kann mehrere Felder tragen)."
           : "Farbintensität = Schwerpunkt innerhalb der Fraktion (Spalte)."}{" "}

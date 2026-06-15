@@ -65,7 +65,7 @@ export default async function RednerPage({
       <div className="max-w-3xl mx-auto px-5 pt-24 pb-24 fade-in-up">
         <Link
           href="/protokolle"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zur Übersicht
@@ -75,14 +75,14 @@ export default async function RednerPage({
         <div className="mb-12">
           <div className="flex items-baseline gap-3 mb-3 flex-wrap">
             {detail.party && (
-              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+              <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                 {detail.party}
               </span>
             )}
             {detail.role && (
               <>
-                <span className="text-zinc-300">·</span>
-                <span className="text-[12px] text-zinc-500">{detail.role}</span>
+                <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                <span className="text-[12px] text-zinc-500 dark:text-zinc-400">{detail.role}</span>
               </>
             )}
           </div>
@@ -92,7 +92,7 @@ export default async function RednerPage({
           {speakerPoliticianId && (
             <Link
               href={`/politiker/${speakerPoliticianId}`}
-              className="inline-flex items-center gap-1 text-[13px] text-zinc-600 hover:text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors mb-6"
+              className="inline-flex items-center gap-1 text-[13px] text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors mb-6"
             >
               Profil ansehen
               <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -100,26 +100,26 @@ export default async function RednerPage({
           )}
 
           {/* Stats */}
-          <div className="flex items-baseline gap-8 text-zinc-500 text-[13px]">
+          <div className="flex items-baseline gap-8 text-zinc-500 dark:text-zinc-400 text-[13px]">
             <div>
-              <span className="num text-3xl font-semibold text-zinc-950 align-baseline">
+              <span className="num text-3xl font-semibold text-zinc-950 dark:text-zinc-50 align-baseline">
                 {detail.totalSpeeches}
               </span>{" "}
               Reden
             </div>
-            <div className="text-zinc-300">·</div>
+            <div className="text-zinc-300 dark:text-zinc-600">·</div>
             <div>
-              <span className="num text-zinc-950 font-medium">{detail.sessions.length}</span> Sitzungen
+              <span className="num text-zinc-950 dark:text-zinc-50 font-medium">{detail.sessions.length}</span> Sitzungen
             </div>
             {summaries.length > 0 && (
               <>
-                <div className="text-zinc-300">·</div>
+                <div className="text-zinc-300 dark:text-zinc-600">·</div>
                 <div>
-                  <span className="num text-zinc-950 font-medium">{debattenReden}</span> Debatten
+                  <span className="num text-zinc-950 dark:text-zinc-50 font-medium">{debattenReden}</span> Debatten
                 </div>
-                <div className="text-zinc-300">·</div>
+                <div className="text-zinc-300 dark:text-zinc-600">·</div>
                 <div>
-                  <span className="num text-zinc-950 font-medium">{fragestunden}</span> Fragestunden
+                  <span className="num text-zinc-950 dark:text-zinc-50 font-medium">{fragestunden}</span> Fragestunden
                 </div>
               </>
             )}
@@ -128,7 +128,7 @@ export default async function RednerPage({
 
         {/* Sessions list */}
         <section>
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-5">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-5">
             Sitzungen mit Redebeiträgen
           </h2>
           <div className="space-y-2">
@@ -138,17 +138,17 @@ export default async function RednerPage({
               return (
                 <article
                   key={s.sitzung}
-                  className="bg-white rounded-2xl border border-zinc-200/70 overflow-hidden"
+                  className="bg-card rounded-2xl border border-border overflow-hidden"
                 >
                   {/* Session header */}
-                  <div className="px-5 py-4 flex items-center gap-4 border-b border-zinc-100">
-                    <div className="w-12 text-center shrink-0 border-r border-zinc-200 pr-3">
-                      <span className="num text-xl font-semibold text-zinc-950">
+                  <div className="px-5 py-4 flex items-center gap-4 border-b border-border">
+                    <div className="w-12 text-center shrink-0 border-r border-border pr-3">
+                      <span className="num text-xl font-semibold text-zinc-950 dark:text-zinc-50">
                         {s.sitzung}
                       </span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-medium text-zinc-950">
+                      <p className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50">
                         {s.datum
                           ? new Date(s.datum + "T00:00:00").toLocaleDateString("de-DE", {
                               weekday: "long",
@@ -158,7 +158,7 @@ export default async function RednerPage({
                             })
                           : "Datum unbekannt"}
                       </p>
-                      <p className="text-[12px] text-zinc-500">
+                      <p className="text-[12px] text-zinc-500 dark:text-zinc-400">
                         <span className="num">{s.count}</span>{" "}
                         {s.count === 1 ? "Redebeitrag" : "Redebeiträge"}
                       </p>
@@ -169,7 +169,7 @@ export default async function RednerPage({
                           <div key={i} className="w-1.5 h-4 rounded-sm bg-zinc-300" />
                         ))}
                         {s.count > 10 && (
-                          <span className="num text-[11px] text-zinc-500 ml-1">
+                          <span className="num text-[11px] text-zinc-500 dark:text-zinc-400 ml-1">
                             +{s.count - 10}
                           </span>
                         )}
@@ -179,7 +179,7 @@ export default async function RednerPage({
                           href={s.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] text-[#1a3e72] hover:text-[#0f2a52] px-2 py-1 rounded-md border border-[#1a3e72]/25 hover:border-[#1a3e72]/40 bg-[#1a3e72]/5 hover:bg-[#1a3e72]/10 transition-colors"
+                          className="inline-flex items-center gap-1 text-[11px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] px-2 py-1 rounded-md border border-[#1a3e72]/25 dark:border-[#8fb3e6]/25 hover:border-[#1a3e72]/40 dark:hover:border-[#8fb3e6]/40 bg-[#1a3e72]/5 dark:bg-[#8fb3e6]/5 hover:bg-[#1a3e72]/10 dark:hover:bg-[#8fb3e6]/10 transition-colors"
                         >
                           PDF
                           <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -190,7 +190,7 @@ export default async function RednerPage({
 
                   {/* Summaries */}
                   {sessionSummaries.length > 0 && (
-                    <div className="divide-y divide-zinc-100">
+                    <div className="divide-y divide-border">
                       {sessionSummaries.map((sum, idx) => {
                         const pdfDeepLink =
                           sum.source_url && sum.page_start
@@ -207,19 +207,19 @@ export default async function RednerPage({
                             className="px-5 py-4 scroll-mt-24 [&:target]:bg-amber-100/70 [&:target]:ring-2 [&:target]:ring-amber-400 [&:target]:rounded-lg transition-all"
                           >
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span className="text-[11px] font-medium text-zinc-700 uppercase tracking-wider">
+                              <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">
                                 {TYP_LABEL[sum.typ] || sum.typ}
                               </span>
                               {sum.kontext && (
                                 <>
-                                  <span className="text-zinc-300 text-[11px]">·</span>
-                                  <span className="text-[12px] text-zinc-500 truncate">
+                                  <span className="text-zinc-300 dark:text-zinc-600 text-[11px]">·</span>
+                                  <span className="text-[12px] text-zinc-500 dark:text-zinc-400 truncate">
                                     {sum.kontext}
                                   </span>
                                 </>
                               )}
                               <span
-                                className="ml-auto text-[10px] uppercase tracking-wider text-zinc-400 font-medium"
+                                className="ml-auto text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-medium"
                                 title={sum.model ? `Generiert mit ${sum.model}` : "KI-Zusammenfassung"}
                               >
                                 KI · überprüfbar
@@ -244,7 +244,7 @@ export default async function RednerPage({
                               return (
                                 <>
                                   {displayText && (
-                                    <p className="text-[14px] text-zinc-700 leading-relaxed">
+                                    <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
                                       {displayText}
                                     </p>
                                   )}
@@ -254,14 +254,14 @@ export default async function RednerPage({
                             })()}
 
                             {(sum.original_text || pdfDeepLink || sum.mediathek_fvid) && (
-                              <div className="mt-3 pt-3 border-t border-zinc-100">
+                              <div className="mt-3 pt-3 border-t border-border">
                                 <div className="flex items-center gap-3 flex-wrap text-[11.5px]">
                                   {sum.mediathek_fvid && (
                                     <a
                                       href={`https://www.bundestag.de/mediathek?videoid=${sum.mediathek_fvid}`}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                                      className="inline-flex items-center gap-1 text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
                                     >
                                       <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
                                       Video in der Mediathek
@@ -273,14 +273,14 @@ export default async function RednerPage({
                                       href={pdfDeepLink}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+                                      className="inline-flex items-center gap-1 text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
                                     >
                                       Im PDF nachlesen{pageLabel && ` (${pageLabel})`}
                                       <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
                                     </a>
                                   )}
                                   {sum.rede_id && (
-                                    <span className="text-[10px] text-zinc-400 font-mono">
+                                    <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">
                                       {sum.rede_id}
                                     </span>
                                   )}
@@ -288,7 +288,7 @@ export default async function RednerPage({
 
                                 {sum.original_text && (
                                   <details className="mt-2 group">
-                                    <summary className="cursor-pointer text-[11px] text-zinc-500 hover:text-zinc-950 transition-colors select-none list-none">
+                                    <summary className="cursor-pointer text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors select-none list-none">
                                       <span className="inline-flex items-center gap-1">
                                         <span className="group-open:hidden">▶</span>
                                         <span className="hidden group-open:inline">▼</span>
@@ -296,7 +296,7 @@ export default async function RednerPage({
                                         <span className="hidden group-open:inline">Originalrede ausblenden</span>
                                       </span>
                                     </summary>
-                                    <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-zinc-50 border border-zinc-200 px-4 py-3 text-[13px] leading-[1.65] text-zinc-800 font-serif">
+                                    <div className="mt-2 max-h-[28rem] overflow-y-auto rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border px-4 py-3 text-[13px] leading-[1.65] text-zinc-800 dark:text-zinc-200 font-serif">
                                       {sum.original_text
                                         .split("\n")
                                         .map((p) => p.trim())
@@ -304,13 +304,13 @@ export default async function RednerPage({
                                         .map((para, i) => {
                                           if (/^\[ID\d+\]$/.test(para)) {
                                             return (
-                                              <div key={i} className="mt-4 mb-1 text-[10px] font-mono text-zinc-400 first:mt-0">
+                                              <div key={i} className="mt-4 mb-1 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 first:mt-0">
                                                 {para}
                                               </div>
                                             );
                                           }
                                           if (para === "---") {
-                                            return <hr key={i} className="my-3 border-zinc-200" />;
+                                            return <hr key={i} className="my-3 border-border" />;
                                           }
                                           return (
                                             <p key={i} className="mb-3 last:mb-0 hyphens-auto text-justify" lang="de">
@@ -320,7 +320,7 @@ export default async function RednerPage({
                                         })}
                                     </div>
                                     {sum.model && (
-                                      <p className="mt-1.5 text-[10px] text-zinc-400">
+                                      <p className="mt-1.5 text-[10px] text-zinc-400 dark:text-zinc-500">
                                         Methode: KI-Modell <span className="font-mono">{sum.model}</span>
                                         {sum.prompt_version && (
                                           <> · Prompt-Version <span className="font-mono">{sum.prompt_version}</span></>

@@ -4,32 +4,29 @@ import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 /**
- * Dark-Mode-Toggle für die Homepage. Bewusst homepage-scoped: setzt `.dark` auf
- * <html> beim Mount (gemäß gespeicherter Präferenz/System), entfernt es beim
- * Unmount (= Navigation weg von der Homepage) — so bleibt der Rest der Seite
- * unangetastet hell, bis Dark Mode site-weit ausgerollt ist. Präferenz in
- * localStorage('theme-home'). Kein Flackern dank Inline-Script im Layout.
+ * Site-weiter Dark-Mode-Toggle in der Nav: setzt/entfernt `.dark` auf <html>,
+ * Präferenz in localStorage('theme'). Beim Mount wird der gespeicherte (bzw.
+ * System-)Zustand gespiegelt; das No-Flash-Inline-Script im Layout hat `.dark`
+ * schon vor dem Paint gesetzt. Kein Unmount-Cleanup mehr — der Modus gilt
+ * überall und über Navigationen hinweg.
  */
-export function HomeThemeToggle() {
+export function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme-home");
+    const stored = localStorage.getItem("theme");
     const isDark =
       stored === "dark" ||
       (stored === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
     document.documentElement.classList.toggle("dark", isDark);
     setDark(isDark);
-    return () => {
-      document.documentElement.classList.remove("dark");
-    };
   }, []);
 
   const toggle = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme-home", next ? "dark" : "light");
+    localStorage.setItem("theme", next ? "dark" : "light");
   };
 
   return (
