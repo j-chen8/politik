@@ -55,6 +55,8 @@ politik.db.snapshot-*
 *.partial.*.jsonl
 *.partial.jsonl.backup-*
 .batch-state*.json
+.batch-state*.json.done-*
+__pycache__/
 /data/plenarprotokolle_xml/*.xml
 /data/stammdaten/
 scripts/state/
