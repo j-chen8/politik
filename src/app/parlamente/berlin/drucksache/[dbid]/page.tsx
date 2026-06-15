@@ -128,7 +128,11 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
   const mitzeichner = getBerlinDsMitzeichner(dbid);
   const votes = getBerlinDsVotes(dbid);
   const plenarbehandlungen = getBerlinDsPlenarbehandlungen(dbid);
-  const klasseLabel = KLASSE_LABEL[ds.klasse] ?? ds.klasse;
+  // Amtlicher PARDOK-Typ (dok_typ_label) zuerst — präziser als die 5-Bucket-klasse
+  // (z.B. Verordnung/Änderungsantrag/Mitteilung zur Kenntnisnahme statt nur
+  // "Senats-Vorlage"/"Antrag"). klasse bleibt für die Render-Logik. KLASSE_LABEL
+  // nur Fallback, falls dok_typ_label fehlt.
+  const klasseLabel = (ds.dokTypLabel?.trim() || KLASSE_LABEL[ds.klasse]) ?? ds.klasse;
   const tonValue = ds.antwortCharakter ?? ds.tonalitaet;
   const tonCfg = tonValue ? TON_MAP[tonValue] : null;
   const datumFormatted = formatDate(ds.datum);
