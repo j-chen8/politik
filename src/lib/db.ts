@@ -7617,6 +7617,111 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// Berlin Themen-Aktivitätsprofil (Regierungsbilanz Produkt 1, rollenbasiert)
+// Pro Roh-Tag (thema_json) × Partei, Instrumente GETRENNT (nie summiert — andere
+// Rollen: Antrag=Gestaltung / Anfrage=Kontrolle / Rede=Debatte / Gesetzentwurf).
+// Scope: Wegner-Ära (dok_datum/datum >= 2023-04-27). Roh-Tag, NICHT aw_field-Rollup
+// (der überzählt, siehe project_themenfelder_rollup_bug). Deskriptiv, keine Noten.
+// ─────────────────────────────────────────────────────────────────────────
+const BERLIN_WEGNER_VON = "2023-04-27";
+const BERLIN_REGIERUNG = ["CDU", "SPD"];
+
+// Berlin-Partei-Normalisierung: splittet Koalitions-Urheber ("GRÜNE + LINKE",
+// "CDU + SPD") auf die Einzelparteien — jede bekommt die Initiative gutgeschrieben.
+function splitBerlinParteien(raw: string | null): string[] {
+  if (!raw) return [];
+  const out: string[] = [];
+  for (const part of raw.split(/\s*\+\s*|\s*,\s*|\s+und\s+/)) {
+    const u = part.trim().toUpperCase();
+    if (!u) continue;
+    if (u.includes("GRÜN") || u.includes("GRUEN")) out.push("Grüne");
+    else if (u.includes("LINKE")) out.push("Linke");
+    else if (u.includes("AFD")) out.push("AfD");
+    else if (u.startsWith("CDU")) out.push("CDU");
+    else if (u === "SPD") out.push("SPD");
+    else if (u.includes("FDP")) out.push("FDP");
+    else if (u.includes("SENAT")) out.push("Senat");
+    else if (u.includes("FRAKTIONSLOS")) out.push("fraktionslos");
+  }
+  return [...new Set(out)];
+}
+
+export interface BerlinThemenInstrument {
+  key: string;            // antrag | anfrage | gesetzentwurf | rede
+  label: string;
+  rolle: string;          // Gestaltung | Kontrolle | Debatte | Regierungs-Gestaltung
+  total: number;
+  byPartei: { partei: string; n: number; regierung: boolean }[];   // desc
+}
+export interface BerlinThemenAktivitaet {
+  thema: string;
+  vonDatum: string;
+  regierung: string[];
+  instrumente: BerlinThemenInstrument[];
+}
+
+export function getBerlinThemenAktivitaet(thema: string): BerlinThemenAktivitaet {
+  const db = getDb();
+  const pat = `%"${thema}"%`;
+  // Akkumulator: instrument-key → partei → count
+  const acc: Record<string, Map<string, number>> = {
+    antrag: new Map(), anfrage: new Map(), gesetzentwurf: new Map(), rede: new Map(),
+  };
+  const bump = (key: string, parteien: string[]) => {
+    for (const p of parteien) acc[key].set(p, (acc[key].get(p) ?? 0) + 1);
+  };
+
+  // 1. Drucksachen (Antrag / Anfrage / Gesetzentwurf) — Roh-Tag, Wegner-Scope
+  const dsRows = db.prepare(`
+    SELECT a.klasse, a.fraktion, a.einbringer
+    FROM berlin_drucksachen_analyses a
+    JOIN berlin_documents d ON d.dbid = a.dbid
+    WHERE a.error_type IS NULL AND a.thema_json LIKE ? AND d.dok_datum >= ?
+  `).all(pat, BERLIN_WEGNER_VON) as { klasse: string; fraktion: string | null; einbringer: string | null }[];
+  for (const r of dsRows) {
+    const parteien = splitBerlinParteien(r.fraktion ?? r.einbringer);
+    if (!parteien.length) continue;
+    if (r.klasse === "antrag") bump("antrag", parteien);
+    else if (r.klasse === "anfrage_antwort") bump("anfrage", parteien);
+    else if (r.klasse === "gesetzentwurf") bump("gesetzentwurf", parteien);
+  }
+
+  // 2. Reden — kein direktes Thema-Feld → über die debattierte Drucksache
+  //    (berlin_speeches.drucksache_nrn → dok_nr → thema_json), Redner-Partei zählt.
+  const redeRows = db.prepare(`
+    WITH thema_dok AS (
+      SELECT DISTINCT d.dok_nr
+      FROM berlin_drucksachen_analyses a JOIN berlin_documents d ON d.dbid = a.dbid
+      WHERE a.error_type IS NULL AND a.thema_json LIKE ?
+    )
+    SELECT s.speaker_party AS partei, COUNT(DISTINCT s.speech_id) AS n
+    FROM berlin_speeches s, json_each(s.drucksache_nrn) je
+    WHERE s.datum >= ? AND s.drucksache_nrn LIKE '[%'
+      AND je.value IN (SELECT dok_nr FROM thema_dok)
+      AND s.speaker_party IS NOT NULL AND s.speaker_party <> ''
+    GROUP BY s.speaker_party
+  `).all(pat, BERLIN_WEGNER_VON) as { partei: string; n: number }[];
+  for (const r of redeRows) {
+    const p = splitBerlinParteien(r.partei)[0];
+    if (p) acc.rede.set(p, (acc.rede.get(p) ?? 0) + r.n);
+  }
+
+  const META: { key: string; label: string; rolle: string }[] = [
+    { key: "antrag", label: "Anträge", rolle: "Gestaltung" },
+    { key: "anfrage", label: "Anfragen", rolle: "Kontrolle" },
+    { key: "gesetzentwurf", label: "Gesetzentwürfe", rolle: "Regierungs-Gestaltung" },
+    { key: "rede", label: "Reden", rolle: "Debatte" },
+  ];
+  const instrumente: BerlinThemenInstrument[] = META.map((m) => {
+    const byPartei = [...acc[m.key].entries()]
+      .map(([partei, n]) => ({ partei, n, regierung: BERLIN_REGIERUNG.includes(partei) || partei === "Senat" }))
+      .sort((a, b) => b.n - a.n);
+    return { ...m, total: byPartei.reduce((s, x) => s + x.n, 0), byPartei };
+  });
+  return { thema, vonDatum: BERLIN_WEGNER_VON, regierung: BERLIN_REGIERUNG, instrumente };
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // Themenfelder: Initiativ-Profil pro Fraktion (Bundestag)
 // Kreuzt item_topics (AW-Politikfeld-Klassifikation) × Einbringer-Fraktion.
 // Nur Initiativen (Anträge/Gesetzentwürfe), keine Regierungs-Antworten.
