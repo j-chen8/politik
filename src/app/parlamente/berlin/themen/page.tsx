@@ -39,6 +39,7 @@ export default async function BerlinThemenPage({ searchParams }: { searchParams:
             blatt={blatt}
             abstimmungenBasis="/parlamente/berlin/abstimmungen"
             gesetzeAlleHref="/parlamente/berlin/drucksachen?klasse=gesetzentwurf"
+            gesetzStufen={["Eingebracht", "In Beratung", "Beschlussempfehlung", "Beschlossen"]}
           />
         </Suspense>
       </main>

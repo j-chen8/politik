@@ -341,7 +341,7 @@ function StandDots({ stand }: { stand: number }) {
 // Gesetzentwurf-Karte: Eyebrow (Typ + Datum), Titel, unten bündig der Verfahrens-
 // stand-Stepper. Nimmt ein Pool-Item (Drucksache mit `stand`) — gleiche Datenquelle
 // wie der Feed.
-function GesetzCard({ c }: { c: CatchItem }) {
+function GesetzCard({ c, stufen = GESETZ_STUFEN }: { c: CatchItem; stufen?: readonly string[] }) {
   return (
     <Link href={c.href ?? "#"} className={`group flex min-w-0 min-h-[160px] cursor-pointer flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
@@ -357,7 +357,7 @@ function GesetzCard({ c }: { c: CatchItem }) {
       <div className="mt-auto pt-3">
         <p className="flex items-center gap-2.5">
           <StandDots stand={c.stand ?? 0} />
-          <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[c.stand ?? 0]}</span>
+          <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{stufen[c.stand ?? 0]}</span>
         </p>
         <p className="mt-1.5 min-h-[17px] text-[12px] leading-snug text-zinc-400 dark:text-zinc-500">{c.standDetail ?? ""}</p>
       </div>
@@ -802,7 +802,7 @@ function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPi
   );
 }
 
-export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen", gesetzeAlleHref = "/gesetzentwuerfe" }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string; gesetzeAlleHref?: string }) {
+export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen", gesetzeAlleHref = "/gesetzentwuerfe", gesetzStufen = GESETZ_STUFEN }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string; gesetzeAlleHref?: string; gesetzStufen?: readonly string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
@@ -1158,7 +1158,7 @@ export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmu
                   ? <Link href={gesetzeAlleHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
                   : `${imVerfahren.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} />)}
+                  {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} stufen={gesetzStufen} />)}
                 </div>
               </div>
             )}
