@@ -39,8 +39,11 @@ for (const r of utRows) {
   utByDbid.set(r.dbid, list);
 }
 
-// Reden mit DS-Bezug
-const speeches = db.prepare(`SELECT speech_id, drucksache_nrn FROM berlin_speeches WHERE drucksache_nrn IS NOT NULL AND drucksache_nrn != '' AND drucksache_nrn != '[]'`)
+// Reden mit DS-Bezug — OHNE Präsidiumsreden (TOP-Aufrufe, Sitzungsleitung): die
+// nennen beim Aufruf die Drucksache und würden sonst das Unterthema erben, obwohl
+// die Person inhaltlich NICHT zum Thema spricht (Präsident:in/Vizepräsident:in).
+// is_praesidium=1 macht ~48 % der Roh-Treffer aus und verfälscht die Köpfe-Liste.
+const speeches = db.prepare(`SELECT speech_id, drucksache_nrn FROM berlin_speeches WHERE drucksache_nrn IS NOT NULL AND drucksache_nrn != '' AND drucksache_nrn != '[]' AND is_praesidium = 0`)
   .all() as { speech_id: string; drucksache_nrn: string }[];
 
 const pairs = new Set<string>();

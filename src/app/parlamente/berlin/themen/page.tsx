@@ -34,7 +34,12 @@ export default async function BerlinThemenPage({ searchParams }: { searchParams:
     <div className={`${display.variable} page-wash flex min-h-screen flex-col`}>
       <main className="page-shell flex-1">
         <Suspense fallback={<div className="h-64" />}>
-          <VorschauThemen struktur={struktur} blatt={blatt} abstimmungenBasis="/parlamente/berlin/abstimmungen" />
+          <VorschauThemen
+            struktur={struktur}
+            blatt={blatt}
+            abstimmungenBasis="/parlamente/berlin/abstimmungen"
+            gesetzeAlleHref="/parlamente/berlin/drucksachen?klasse=gesetzentwurf"
+          />
         </Suspense>
       </main>
     </div>

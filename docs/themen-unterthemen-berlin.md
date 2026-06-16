@@ -235,8 +235,17 @@ den Wert, bevor global Geld fließt.
 `scripts/seed-berlin-rede-unterthemen.ts` → Tabelle `berlin_rede_unterthemen(speech_id, feld, unterthema)`.
 Erben über die debattierte DS: `berlin_speeches.drucksache_nrn` (dok_nr) → `berlin_documents` → `dbid` →
 `berlin_ds_unterthemen`. **dok_nr-Zero-Pad-Drift** („19/0025" vs „19/2") über Normalisierung gejoint
-(führende Nullen strippen) → 0 verfehlte Dokumente. Ergebnis: **1.518 Reden** erben Wohnen-Unterthemen,
-**2.478 (Rede×Feld×Unterthema)-Paare**. Sonstiges wird nicht vererbt.
+(führende Nullen strippen) → 0 verfehlte Dokumente. Sonstiges wird nicht vererbt. **Präsidiumsreden
+ausgeschlossen** (`is_praesidium=0`): TOP-Aufrufe/Sitzungsleitung nennen die Drucksache, sprechen aber
+inhaltlich nicht zum Thema — ~48 % der Roh-Treffer, verfälschten die Köpfe-Liste (Präsident:in/Vize ohne
+echte Rede, User-Fund 2026-06-16). Ergebnis: **1.279 (Rede×Feld×Unterthema)-Paare**.
+
+**Gesetze-Verfahrensstand (Stufe 9 nachgezogen, 2026-06-16):** Berlin hat doch ein DIP-Pendant — am selben
+`berlin_documents.vorgang_id` hängen die Schritt-Dokumente (`dok_typ_label`: I. Lesung → Ausschussberatung →
+Beschlussempfehlung → II. Lesung → Gesetz- und Verordnungsblatt). `getBerlinThemenBlatt` leitet daraus den
+Stand ab und zeigt nur LAUFENDE (vor II. Lesung) in der „Aktuelle Gesetzentwürfe"-Reihe; beschlossene/
+verkündete bleiben im Feed (keine Falsch-Etikettierung als „im Verfahren"). Zweite rückwärtskompat. Prop
+`gesetzeAlleHref` (BT-Default `/gesetzentwuerfe`, Berlin → `/parlamente/berlin/drucksachen?klasse=gesetzentwurf`).
 
 ## Stufe 9 — UI: 1:1 die Bundestag-`VorschauThemen` ✅ (2026-06-16, gratis)
 

@@ -802,7 +802,7 @@ function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPi
   );
 }
 
-export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen" }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string }) {
+export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen", gesetzeAlleHref = "/gesetzentwuerfe" }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string; gesetzeAlleHref?: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
@@ -1155,7 +1155,7 @@ export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmu
             {gesetzRow.length > 0 && (
               <div className="fade-in-up fade-in-up-3">
                 <SectionLabel hint={gesetzOverflow > 0
-                  ? <Link href="/gesetzentwuerfe" className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
+                  ? <Link href={gesetzeAlleHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
                   : `${imVerfahren.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} />)}

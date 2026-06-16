@@ -9,12 +9,16 @@
 //                   × berlin_speeches × berlin_speech_analyses.
 //   - Abstimmungen: berlin_votes (Fraktions-Handzeichen), DS-Link über drucksache_dbids_json.
 //
+//   - Gesetze:      Verfahrensstand aus den Vorgangs-Schritten (berlin_documents am
+//                   selben vorgang_id: I. Lesung → Ausschuss → Beschlussempfehlung →
+//                   II. Lesung → Gesetz- und Verordnungsblatt) — Berlin-Pendant zu DIP.
+//
 // BEKANNTE LÜCKEN (Berlin ≠ Bund, „dünnere Blatt-Stellen" laut SoP):
-//   1. KEIN Gesetz-Verfahrensstand: Berlin hat keine DIP-Vorgänge → gesetze = []
-//      (die Sektion blendet sich in VorschauThemen aus).
-//   2. Votes = Handzeichen → keine Ja/Nein-Zahlen, nur Fraktionsvoten (wie BT-Digital).
-//   3. Nur das Feld „Stadtentwicklung, Bauen & Wohnen" ist klassifiziert (Pilot) →
+//   1. Votes = Handzeichen → keine Ja/Nein-Zahlen, nur Fraktionsvoten (wie BT-Digital).
+//   2. Nur das Feld „Stadtentwicklung, Bauen & Wohnen" ist klassifiziert (Pilot) →
 //      der Picker zeigt vorerst nur dieses Oberthema (wächst mit dem Global-Batch).
+//   3. Reden ohne Präsidiumsreden (is_praesidium=0) — Sitzungsleitung erbt sonst
+//      fälschlich das Thema (Stufe-8-Fix).
 import { getDb } from "@/lib/db";
 import { unterSlug } from "@/lib/themen-struktur";
 import { TAXONOMIE_BERLIN } from "../../scripts/_lib/themen-taxonomie-berlin";
@@ -96,8 +100,15 @@ function kernText(r: { klasse: string; kerninhalt_json: string | null; kerninhal
 interface DsRow {
   dbid: string; klasse: string; zusammenfassung: string | null;
   kerninhalt_json: string | null; kerninhalt_frage_json: string | null; kerninhalt_antwort_json: string | null;
-  spezifische_tags_json: string | null; titel: string | null; iso: string | null;
+  spezifische_tags_json: string | null; titel: string | null; iso: string | null; vorgang_id: string | null;
 }
+
+// Verfahrensstand aus den Vorgangs-Dokumenten (Berlin-Pendant zu DIP): am selben
+// vorgang_id hängen die Schritt-Dokumente. Rang = wie weit das Verfahren ist.
+const STUFE_RANG: Record<string, number> = {
+  "I. Lesung": 1, "Ausschussberatung": 2, "Beschlussempfehlung": 3,
+  "II. Lesung": 4, "Gesetz- und Verordnungsblatt": 5,
+};
 
 export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalBlattEcht {
   const db = getDb();
@@ -108,7 +119,7 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
            a.kerninhalt_json, a.kerninhalt_frage_json, a.kerninhalt_antwort_json,
            u.spezifische_tags_json,
            COALESCE(NULLIF(TRIM(d.titel),''), NULLIF(TRIM(d.abstract),''), a.derived_titel) AS titel,
-           d.dok_datum AS iso
+           d.dok_datum AS iso, d.vorgang_id
     FROM berlin_ds_unterthemen u
     JOIN berlin_drucksachen_analyses a ON a.dbid = u.dbid
     JOIN berlin_documents d ON d.dbid = u.dbid
@@ -143,8 +154,48 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
     });
   }
 
-  // ── 3. Feed: Drucksachen (Berlin hat keinen DIP-Verfahrensstand → keine Gesetz-Reihe) ──
-  const docs: EchtDoc[] = dsRows.map((ds) => ({
+  // ── 3. Gesetzentwürfe IM VERFAHREN (Verfahrensstand aus den Vorgangs-Schritten) ──
+  // Nur laufende: alles, was die II. Lesung / das Gesetz- und Verordnungsblatt erreicht
+  // hat, ist ENTSCHIEDEN und gehört nicht in „im Verfahren" (bleibt im Feed).
+  const geRows = dsRows.filter((r) => r.klasse === "gesetzentwurf" && r.vorgang_id);
+  const vorgangIds = [...new Set(geRows.map((r) => r.vorgang_id!))];
+  const stufen = new Map<string, { rang: number; label: string; datum: string | null }>();
+  if (vorgangIds.length) {
+    const rows = db.prepare(`
+      SELECT vorgang_id, dok_typ_label, MAX(dok_datum) AS datum
+      FROM berlin_documents
+      WHERE vorgang_id IN (${vorgangIds.map(() => "?").join(",")}) AND dok_typ_label IS NOT NULL
+      GROUP BY vorgang_id, dok_typ_label
+    `).all(...vorgangIds) as { vorgang_id: string; dok_typ_label: string; datum: string | null }[];
+    for (const r of rows) {
+      const rang = STUFE_RANG[r.dok_typ_label] ?? 0;
+      const cur = stufen.get(r.vorgang_id);
+      if (!cur || rang > cur.rang) stufen.set(r.vorgang_id, { rang, label: r.dok_typ_label, datum: r.datum });
+    }
+  }
+  const gesetze: import("@/lib/themen-blatt").EchtGesetz[] = [];
+  const geImVerfahren = new Set<string>();
+  for (const r of geRows) {
+    const st = stufen.get(r.vorgang_id!);
+    const rang = st?.rang ?? 0;
+    if (rang >= 4) continue; // II. Lesung / verkündet = entschieden → bleibt im Feed
+    geImVerfahren.add(r.dbid);
+    const standDetail =
+      rang === 3 ? "Beschlussempfehlung liegt vor" :
+      rang === 2 ? "in der Ausschussberatung" :
+      rang === 1 ? "nach der 1. Lesung" : "eingebracht";
+    gesetze.push({
+      id: `ge-${r.dbid}`, titel: r.titel ?? `Gesetzentwurf ${r.dbid}`,
+      iso: r.iso, datum: rel(r.iso),
+      stand: rang >= 3 ? 2 : 1, standDetail,
+      einzeiler: r.zusammenfassung ?? "", vorschau: kernText(r) ?? r.zusammenfassung,
+      tags: r.tags, href: dsHref(r.dbid),
+    });
+  }
+  gesetze.sort((a, b) => (b.iso ?? "").localeCompare(a.iso ?? ""));
+
+  // ── 4. Feed: Drucksachen (ohne die laufenden GE — die leben in der Gesetz-Reihe) ──
+  const docs: EchtDoc[] = dsRows.filter((ds) => !geImVerfahren.has(ds.dbid)).map((ds) => ({
     id: `ds-${ds.dbid}`,
     typ: "Drucksache" as const,
     titel: ds.titel ?? `Drucksache ${ds.dbid}`,
@@ -244,7 +295,7 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
     feld, unterthema: kurzUnter(unterthema),
     beschreibung, voteThema: null,
     zuletztAktiv: rel(zuletztIso),
-    votes, gesetze: [], docs: feed, koepfe, sitzungen, tags,
+    votes, gesetze, docs: feed, koepfe, sitzungen, tags,
     totalDs: dsRows.length, totalReden,
   };
 }
