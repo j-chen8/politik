@@ -53,8 +53,30 @@ function parseArr(json: string | null): string[] {
 function cleanParty(s: string | null): string {
   return (s ?? "").replace(/­/g, "").trim();
 }
-// Feld-Label → URL-Slug (Achse-A/B-Felder)
-const SLUG_BY_FELD = new Map(BERLIN_THEMENFELDER_ALLE.map((f) => [f.label, f.key]));
+// ── Anzeige-Kürzungen (Pendant zu anzeigeName/ANZEIGE_NAME im Bund) ──
+// Der kanonische Name bleibt der DB-Schlüssel (berlin_ds_unterthemen, Joins, alte
+// Slugs); hier nur kurze, scanbare Labels fürs UI. Regel wie BT: EIN starkes Wort,
+// zweites nur wenn es wirklich ein zweites Ding ist; innerhalb des Felds eindeutig.
+const UNTER_KURZ: Record<string, string> = {
+  "Mietregulierung & Mieterschutz": "Mietregulierung",
+  "Sozialer & landeseigener Wohnungsbau": "Sozialer Wohnungsbau",
+  "Vergesellschaftung & Enteignung": "Vergesellschaftung",
+  "Wohneigentum & Eigentumsförderung": "Wohneigentum",
+  "Bauleitplanung & Bebauungspläne": "Bauleitplanung",
+  "Landeseigene Liegenschaften & Grundstückspolitik": "Liegenschaften",
+  "Stadtteilentwicklung & Quartiersmanagement": "Stadtteilentwicklung",
+  "Kleingärten & Laubenkolonien": "Kleingärten",
+  "Wohnungslosigkeit & Obdachlosenhilfe": "Wohnungslosigkeit",
+  "Leerstand & Gebäudeverwahrlosung": "Leerstand",
+  "Denkmalschutz & Baukultur": "Denkmalschutz",
+  "Große Stadtentwicklungsprojekte": "Großprojekte",
+};
+const kurzUnter = (u: string): string => UNTER_KURZ[u] ?? u;
+// Feld-Anzeige (Oberthema-Header): kurz statt des amtlichen Langnamens.
+const FELD_KURZ: Record<string, string> = {
+  "Stadtentwicklung, Bauen & Wohnen": "Bauen & Wohnen",
+};
+const kurzFeld = (label: string): string => FELD_KURZ[label] ?? label;
 
 // Drucksache-Detail-Link
 const dsHref = (dbid: string) => `/parlamente/berlin/drucksache/${encodeURIComponent(dbid)}`;
@@ -219,7 +241,7 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
   const beschreibung = `${dsRows.length} ${dsRows.length === 1 ? "Vorgang" : "Vorgänge"} im Abgeordnetenhaus Berlin${topTags.length ? ` — am häufigsten: ${topTags.join(", ")}.` : "."}`;
 
   return {
-    feld, unterthema,
+    feld, unterthema: kurzUnter(unterthema),
     beschreibung, voteThema: null,
     zuletztAktiv: rel(zuletztIso),
     votes, gesetze: [], docs: feed, koepfe, sitzungen, tags,
@@ -271,11 +293,11 @@ export function getBerlinThemenStruktur(): StrukturOber[] {
       const topTags = [...(tagCount.get(k) ?? new Map<string, number>()).entries()]
         .sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => t);
       const iso = maxIso.get(k) ?? null;
-      return { name: u, slug: unterSlug(u), feld: f.label, count: docs.get(k)?.size ?? 0, topTags, zuletzt: iso ? rel(iso) : null, _iso: iso };
+      return { name: kurzUnter(u), slug: unterSlug(kurzUnter(u)), feld: f.label, count: docs.get(k)?.size ?? 0, topTags, zuletzt: iso ? rel(iso) : null, _iso: iso };
     }).sort((a, b) => b.count - a.count);
     const oberIso = unterthemen.reduce<string | null>((m, u) => (u._iso && u._iso > (m ?? "") ? u._iso : m), null);
     return {
-      name: f.label, slug: f.key, zuletzt: oberIso ? rel(oberIso) : null,
+      name: kurzFeld(f.label), slug: f.key, zuletzt: oberIso ? rel(oberIso) : null,
       unterthemen: unterthemen.map(({ _iso, ...u }) => u),
       _hasData: unterthemen.some((u) => u.count > 0),
     };
@@ -289,6 +311,7 @@ export function resolveBerlinUnter(oberSlug: string, slug: string): { feld: stri
   const f = BERLIN_THEMENFELDER_ALLE.find((x) => x.key === oberSlug);
   if (!f) return null;
   for (const u of TAXONOMIE_BERLIN[f.label] ?? [])
-    if (unterSlug(u) === slug) return { feld: f.label, unterthema: u };
+    // Kurz-Slug (neu) ODER kanonischer Lang-Slug (alte/geteilte URLs bleiben gültig)
+    if (unterSlug(kurzUnter(u)) === slug || unterSlug(u) === slug) return { feld: f.label, unterthema: u };
   return null;
 }
