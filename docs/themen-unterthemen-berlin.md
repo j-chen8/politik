@@ -243,9 +243,13 @@ echte Rede, User-Fund 2026-06-16). Ergebnis: **1.279 (Rede×Feld×Unterthema)-Pa
 **Gesetze-Verfahrensstand (Stufe 9 nachgezogen, 2026-06-16):** Berlin hat doch ein DIP-Pendant — am selben
 `berlin_documents.vorgang_id` hängen die Schritt-Dokumente (`dok_typ_label`: I. Lesung → Ausschussberatung →
 Beschlussempfehlung → II. Lesung → Gesetz- und Verordnungsblatt). `getBerlinThemenBlatt` leitet daraus den
-Stand ab und zeigt nur LAUFENDE (vor II. Lesung) in der „Aktuelle Gesetzentwürfe"-Reihe; beschlossene/
-verkündete bleiben im Feed (keine Falsch-Etikettierung als „im Verfahren"). Zweite rückwärtskompat. Prop
-`gesetzeAlleHref` (BT-Default `/gesetzentwuerfe`, Berlin → `/parlamente/berlin/drucksachen?klasse=gesetzentwurf`).
+Stand ab. **Erledigt-Erkennung (gehärtet 2026-06-16, User-Fund):** ein GE ist NICHT „im Verfahren", wenn
+(a) II. Lesung/Gesetz- und Verordnungsblatt erreicht, ODER (b) ≥2× „Behandlung im Plenum" (= 1.+2. Lesung —
+das generische Label das die naive 5-Stufen-Logik verfehlte), ODER (c) kein Vorgangsschritt seit 18 Monaten
+(ruhend/tot). Ohne die Riegel waren ~16 von 20 fälschlich „laufend" (Bsp. ein 2022er-Entwurf). Beschlossene/
+ruhende bleiben im Feed. Verfahrensstand-Stepper-Stufen via Prop `gesetzStufen` (Berlin: Eingebracht → In
+Beratung → Beschlussempfehlung → Beschlossen, KEIN Bundestag/Bundesrat). Zwei rückwärtskompat. Props
+`gesetzeAlleHref` + `gesetzStufen` (BT-Defaults unverändert), Berlin-Link → `/parlamente/berlin/drucksachen?klasse=gesetzentwurf`.
 
 ## Stufe 9 — UI: 1:1 die Bundestag-`VorschauThemen` ✅ (2026-06-16, gratis)
 

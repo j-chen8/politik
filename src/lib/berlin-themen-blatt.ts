@@ -103,13 +103,6 @@ interface DsRow {
   spezifische_tags_json: string | null; titel: string | null; iso: string | null; vorgang_id: string | null;
 }
 
-// Verfahrensstand aus den Vorgangs-Dokumenten (Berlin-Pendant zu DIP): am selben
-// vorgang_id hängen die Schritt-Dokumente. Rang = wie weit das Verfahren ist.
-const STUFE_RANG: Record<string, number> = {
-  "I. Lesung": 1, "Ausschussberatung": 2, "Beschlussempfehlung": 3,
-  "II. Lesung": 4, "Gesetz- und Verordnungsblatt": 5,
-};
-
 export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalBlattEcht {
   const db = getDb();
 
@@ -155,39 +148,48 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
   }
 
   // ── 3. Gesetzentwürfe IM VERFAHREN (Verfahrensstand aus den Vorgangs-Schritten) ──
-  // Nur laufende: alles, was die II. Lesung / das Gesetz- und Verordnungsblatt erreicht
-  // hat, ist ENTSCHIEDEN und gehört nicht in „im Verfahren" (bleibt im Feed).
+  // Berlin hat kein Status-Feld → aus den Schritt-Dokumenten am vorgang_id abgeleitet.
+  // ENTSCHIEDEN (raus aus „im Verfahren", bleibt im Feed), wenn EINES gilt:
+  //   (a) II. Lesung oder Gesetz- und Verordnungsblatt erreicht (verkündet),
+  //   (b) ≥2 × „Behandlung im Plenum" (= 1. UND 2. Lesung durchlaufen),
+  //   (c) RUHEND: kein Vorgangsschritt in den letzten 18 Monaten (effektiv tot).
+  // Ohne diese Riegel wären ~16 von 20 fälschlich „laufend" (User-Fund 2026-06-16).
   const geRows = dsRows.filter((r) => r.klasse === "gesetzentwurf" && r.vorgang_id);
   const vorgangIds = [...new Set(geRows.map((r) => r.vorgang_id!))];
-  const stufen = new Map<string, { rang: number; label: string; datum: string | null }>();
+  const vinfo = new Map<string, { labels: Set<string>; nPlenum: number; letzte: string | null }>();
   if (vorgangIds.length) {
     const rows = db.prepare(`
-      SELECT vorgang_id, dok_typ_label, MAX(dok_datum) AS datum
+      SELECT vorgang_id, dok_typ_label, dok_datum
       FROM berlin_documents
       WHERE vorgang_id IN (${vorgangIds.map(() => "?").join(",")}) AND dok_typ_label IS NOT NULL
-      GROUP BY vorgang_id, dok_typ_label
-    `).all(...vorgangIds) as { vorgang_id: string; dok_typ_label: string; datum: string | null }[];
+    `).all(...vorgangIds) as { vorgang_id: string; dok_typ_label: string; dok_datum: string | null }[];
     for (const r of rows) {
-      const rang = STUFE_RANG[r.dok_typ_label] ?? 0;
-      const cur = stufen.get(r.vorgang_id);
-      if (!cur || rang > cur.rang) stufen.set(r.vorgang_id, { rang, label: r.dok_typ_label, datum: r.datum });
+      let v = vinfo.get(r.vorgang_id);
+      if (!v) { v = { labels: new Set(), nPlenum: 0, letzte: null }; vinfo.set(r.vorgang_id, v); }
+      v.labels.add(r.dok_typ_label);
+      if (r.dok_typ_label === "Behandlung im Plenum") v.nPlenum++;
+      if (r.dok_datum && (!v.letzte || r.dok_datum > v.letzte)) v.letzte = r.dok_datum;
     }
   }
+  // Inaktivitäts-Riegel: 18 Monate vor heute (Daten sind force-dynamic, also tagesaktuell)
+  const cutoff = (() => { const d = new Date(); d.setMonth(d.getMonth() - 18); return d.toISOString().slice(0, 10); })();
   const gesetze: import("@/lib/themen-blatt").EchtGesetz[] = [];
   const geImVerfahren = new Set<string>();
   for (const r of geRows) {
-    const st = stufen.get(r.vorgang_id!);
-    const rang = st?.rang ?? 0;
-    if (rang >= 4) continue; // II. Lesung / verkündet = entschieden → bleibt im Feed
+    const v = vinfo.get(r.vorgang_id!);
+    if (!v) continue;
+    const entschieden = v.labels.has("II. Lesung") || v.labels.has("Gesetz- und Verordnungsblatt") || v.nPlenum >= 2;
+    const ruhend = !v.letzte || v.letzte < cutoff;
+    if (entschieden || ruhend) continue; // gehört nicht in „im Verfahren"
     geImVerfahren.add(r.dbid);
-    const standDetail =
-      rang === 3 ? "Beschlussempfehlung liegt vor" :
-      rang === 2 ? "in der Ausschussberatung" :
-      rang === 1 ? "nach der 1. Lesung" : "eingebracht";
+    let stand: 1 | 2; let standDetail: string;
+    if (v.labels.has("Beschlussempfehlung")) { stand = 2; standDetail = "Beschlussempfehlung liegt vor"; }
+    else if (v.labels.has("Ausschussberatung")) { stand = 1; standDetail = "in der Ausschussberatung"; }
+    else if (v.labels.has("I. Lesung") || v.nPlenum >= 1) { stand = 1; standDetail = "nach der 1. Lesung"; }
+    else { stand = 1; standDetail = "eingebracht"; }
     gesetze.push({
       id: `ge-${r.dbid}`, titel: r.titel ?? `Gesetzentwurf ${r.dbid}`,
-      iso: r.iso, datum: rel(r.iso),
-      stand: rang >= 3 ? 2 : 1, standDetail,
+      iso: r.iso, datum: rel(r.iso), stand, standDetail,
       einzeiler: r.zusammenfassung ?? "", vorschau: kernText(r) ?? r.zusammenfassung,
       tags: r.tags, href: dsHref(r.dbid),
     });
