@@ -230,17 +230,47 @@ Global-Lauf via `--submit` (nur Unklassifizierte) nach. Härtung hilft auch dem 
 ODER **Stufe 7 Global** (~$8–12, restliche 15 Felder) — Reihenfolge ist Produktentscheidung. UI-zuerst zeigt
 den Wert, bevor global Geld fließt.
 
-## Stufen 7–9
+## Stufe 8 — Reden erben das Unterthema ✅ (2026-06-16, gratis)
 
-Noch offen. Folgen der allgemeinen Prozedur. Zwischenstand UI: ein **kostenloses Level-1-Feld-Grid**
-(`/parlamente/berlin/themen`) ist gebaut (Wegwerf-/Interim-Stand, beweist den sauberen Rollup) — wird
-durch die echte `VorschauThemen`-Komponente ersetzt, sobald die Sub-Ebene steht.
+`scripts/seed-berlin-rede-unterthemen.ts` → Tabelle `berlin_rede_unterthemen(speech_id, feld, unterthema)`.
+Erben über die debattierte DS: `berlin_speeches.drucksache_nrn` (dok_nr) → `berlin_documents` → `dbid` →
+`berlin_ds_unterthemen`. **dok_nr-Zero-Pad-Drift** („19/0025" vs „19/2") über Normalisierung gejoint
+(führende Nullen strippen) → 0 verfehlte Dokumente. Ergebnis: **1.518 Reden** erben Wohnen-Unterthemen,
+**2.478 (Rede×Feld×Unterthema)-Paare**. Sonstiges wird nicht vererbt.
+
+## Stufe 9 — UI: 1:1 die Bundestag-`VorschauThemen` ✅ (2026-06-16, gratis)
+
+**Kein Berlin-Sonderdesign** (erster Anlauf mit Bespoke-Sub-Nav verworfen — User: „muss genau dasselbe UI
+sein wie Bundestag", `git revert`). Stattdessen die **unveränderte `VorschauThemen`-Komponente** mit einem
+Berlin-Datenschicht-Klon gefüttert:
+- `src/lib/berlin-themen-blatt.ts` = Pendant zu `themen-blatt.ts`, liefert dieselben Typen
+  (`DigitalBlattEcht`, `StrukturOber`). Joins auf Berlin-Tabellen umverdrahtet:
+  Drucksachen `berlin_ds_unterthemen × berlin_drucksachen_analyses × berlin_documents` · Reden
+  `berlin_rede_unterthemen × berlin_speeches × berlin_speech_analyses` (Köpfe + Sitzungen) · Abstimmungen
+  `berlin_votes` (DS-Link via `drucksache_dbids_json`, Fraktions-Handzeichen).
+- `src/app/parlamente/berlin/themen/page.tsx` = Klon der Bund-`/themen/page.tsx` (gleiche Display-Schrift),
+  `getBerlinThemenStruktur` + `resolveBerlinUnter` + `getBerlinThemenBlatt` → `<VorschauThemen>`.
+- **Eine** rückwärtskompatible Prop an `VorschauThemen` (`abstimmungenBasis`, Default `/abstimmungen`) —
+  BT bleibt byte-identisch, Berlin überschreibt auf `/parlamente/berlin/abstimmungen`. Sonst Komponente
+  unangetastet.
+- **Berlin-Lücken** (laut SoP „dünnere Blatt-Stellen"): `gesetze = []` (kein DIP-Verfahrensstand → Sektion
+  blendet sich aus); Votes = Handzeichen (keine Ja/Nein-Zahlen). Picker zeigt vorerst **nur „Stadtentwicklung,
+  Bauen & Wohnen"** (einziges klassifiziertes Feld) — wächst automatisch mit dem Global-Batch.
+
+Verifiziert: tsc 0, Picker + Blatt 200, Screenshot identisch zum Bund-Design (Abstimmungen-Reihe, „Wer dazu
+im Plenum spricht" mit Fotos, Plenarsitzungen, Drucksachen-Feed). Cross-Boundary-Import von `TAXONOMIE_BERLIN`
+(`scripts/_lib`) in `src` baut sauber.
+
+## Stufe 7 — Globaler Vollbatch (offen)
+
+~$8–12, restliche 15 Felder klassifizieren → der Picker zeigt dann alle Felder. `D-440054` (Pilot-
+Halluzination) wird vom `--submit` (nur Unklassifizierte) mitgenommen.
 
 ## Stand-Tabelle
 
 | Stufe | 0 | 1 Discovery | 2 Taxonomie | 3 Kriterien | 4 Spike | 5 Patch | 6 Pilot | 7 Global | 8 Reden | 9 UI |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Berlin | ✅ | ✅ (Batch JA, Achse B) | DRAFT+B (Wohnen 12) | ✅ | ✅ bestanden | entfällt | ✅ Wohnen | ⬜ | ⬜ | Interim-Grid |
+| Berlin | ✅ | ✅ (Batch JA, Achse B) | DRAFT+B (Wohnen 12) | ✅ | ✅ bestanden | entfällt | ✅ Wohnen | ⬜ | ✅ (1.518 Reden) | ✅ VorschauThemen 1:1 |
 
 **Verdikt Stufe 1 (2026-06-16):** Vollbatch JA auf Achse B, gestaffelt (Spike→Pilot→Global). Belegt: der
 Gratis-Tag-Split kollabiert die saliantesten Wohnungspolitik-Achsen im 2414-DS-Mega-Tag „Wohnen". Nächster

@@ -802,7 +802,7 @@ function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPi
   );
 }
 
-export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null }) {
+export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen" }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
@@ -1081,7 +1081,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         const rest = shownCatch.filter((c) => c.typ !== "Abstimmung" && c.stand == null);
         // Heute schon mit echten Treffern: Handzeichen-Votes tragen das Drucksachen-
         // Roh-Thema („Digitalisierung", 46 Votes); der Tag-Batch vereinheitlicht später
-        const alleVotesHref = `/abstimmungen?thema=${encodeURIComponent(u.voteThema ?? u.name)}`;
+        const alleVotesHref = `${abstimmungenBasis}?thema=${encodeURIComponent(u.voteThema ?? u.name)}`;
         const PAGE_SIZE = 12;
         const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
         const safePage = Math.min(page, totalPages);
