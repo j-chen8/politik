@@ -37,12 +37,15 @@ LLM-vergebene 2. Ebene darin. Klassifikation: jede DS bekommt 1–3
 
 ### Achse A — Politikfelder (12)
 
-**Stadtentwicklung, Bauen & Wohnen**
+**Stadtentwicklung, Bauen & Wohnen** _(Phase B 2026-06-16: 9 → 12 nach Discovery-Tiefenlauf)_
 - Mietregulierung & Mieterschutz
 - Sozialer & landeseigener Wohnungsbau
+- Vergesellschaftung & Enteignung _(neu B: Volksentscheid DW&Co, 30+ DS)_
+- Wohneigentum & Eigentumsförderung _(neu B: Selbstnutzer/Einfamilienhaus/Grunderwerbsteuer, 15+ DS)_
 - Bauleitplanung & Bebauungspläne
 - Landeseigene Liegenschaften & Grundstückspolitik
 - Stadtteilentwicklung & Quartiersmanagement
+- Kleingärten & Laubenkolonien _(neu B: Sicherungsgesetz/Moratorium, 52+ DS)_
 - Wohnungslosigkeit & Obdachlosenhilfe
 - Leerstand & Gebäudeverwahrlosung
 - Denkmalschutz & Baukultur

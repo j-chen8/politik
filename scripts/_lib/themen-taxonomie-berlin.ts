@@ -11,6 +11,9 @@
  * (thema_json) bleiben als grobe Achse-A-Hülle bestehen; diese Unterthemen sind
  * die feine, LLM-vergebene 2. Ebene DARIN.
  *
+ * Stand 2026-06-16 (DRAFT, Phase B): Wohnen-Feld nach Discovery-Tiefenlauf von 9
+ * auf 12 Unterthemen erweitert (+ Vergesellschaftung/Enteignung, Wohneigentum,
+ * Kleingärten) — siehe docs/themen-unterthemen-berlin.md Befund B3.
  * Stand 2026-06-15 (DRAFT, Phase A): 16 Felder, 104 Unterthemen (+ "Sonstiges"
  * je Feld). Berlin-spezifisch geerdet an 19.449 berlin_drucksachen_analyses
  * (Stadtstaat: Bezirke/Senatsverwaltungen, Schule+Kita+Polizei+Justiz =
@@ -21,9 +24,12 @@ export const TAXONOMIE_BERLIN: Record<string, readonly string[]> = {
   "Stadtentwicklung, Bauen & Wohnen": [
     "Mietregulierung & Mieterschutz",
     "Sozialer & landeseigener Wohnungsbau",
+    "Vergesellschaftung & Enteignung", // Phase B (2026-06-16): Volksentscheid DW&Co, 30+ DS, Berlin-Spezifikum
+    "Wohneigentum & Eigentumsförderung", // Phase B: Selbstnutzer/Einfamilienhaus/Grunderwerbsteuer, 15+ DS
     "Bauleitplanung & Bebauungspläne",
     "Landeseigene Liegenschaften & Grundstückspolitik",
     "Stadtteilentwicklung & Quartiersmanagement",
+    "Kleingärten & Laubenkolonien", // Phase B: Sicherungsgesetz/Moratorium, 52+ DS (Schnittmenge Umwelt/Grün)
     "Wohnungslosigkeit & Obdachlosenhilfe",
     "Leerstand & Gebäudeverwahrlosung",
     "Denkmalschutz & Baukultur",
