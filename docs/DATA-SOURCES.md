@@ -3,8 +3,16 @@
 > **Zweck:** Schluss mit Raten. Pro Datenquelle: woher, wie man auf Neues prüft,
 > was unser DB-Stand ist, welche Pipeline neue Daten ingestiert+analysiert, Kosten, Kadenz.
 >
-> **Operativ:** `npx tsx scripts/check-data-freshness.ts` prüft alle maschinell
-> prüfbaren Quellen (DB-Watermark vs. Upstream) und gibt einen Gap-Report aus.
+> **⚠️ Operativ (Stand 2026-06-15): `scripts/check-data-freshness.ts` existiert
+> derzeit NICHT** (uncommittet → bei Track-Reset verloren, nur ggf. in git-Historie).
+> Der unten beschriebene Komfort-Pfad ist die **Soll-Automatik**; bis das Skript
+> restauriert/neu gebaut ist, läuft der Freshness-Check **manuell** über die
+> Batch-Pre-Flights (Schritt 3) + Stage-Watermarks. Naives `NOT EXISTS` überzählt
+> stark (1202 vs. real 0) — nicht als Lücken-Maß verwenden. Siehe Memory
+> `project_freshness_script_missing`.
+>
+> **Soll (wenn Skript existiert):** `npx tsx scripts/check-data-freshness.ts` prüft alle
+> maschinell prüfbaren Quellen (DB-Watermark vs. Upstream) und gibt einen Gap-Report aus.
 > `--fetch` zieht zusätzlich die **gratis/idempotenten** neuen Daten (NICHT die
 > LLM-Schritte — die kosten Geld und werden bewusst manuell ausgelöst).
 >
@@ -28,8 +36,13 @@
 **Ablauf, autonom:**
 
 1. **Lage prüfen (read-only):** `npx tsx scripts/check-data-freshness.ts`
+   *(⚠️ Skript fehlt aktuell — bis Restore: Stage-Watermarks + Pre-Flights aus Schritt 3 als Lage-Check.)*
 2. **Gratis-Gaps ziehen (autonom, $0, idempotent):**
    `npx tsx scripts/check-data-freshness.ts --fetch`
+   *(⚠️ Skript fehlt aktuell — bis Restore: die Gratis-Sync-Schritte einzeln laufen.
+   Reden: `fetch-plenar-xmls.ts`. Drucksachen-PDF→Text→classify→label + Votes-Seed:
+   exakte Skriptkette siehe `docs/PIPELINE.md` (Command-Liste §14) bzw. `docs/drucksachen-pipeline.md`
+   — nicht aus dem Gedächtnis raten, dort ist der aktuelle Stand.)*
    Zieht Plenar-XML, Activities (DIP), Drucksachen-PDF→Text→**classify→label**,
    Votes (abgeordnetenwatch). Danach prüfen: `batch_class IS NULL` muss 0 sein.
    *Hintergrund-Läufe (aw-Seed ist langsam/rate-limited) sind ok — Orchestrator

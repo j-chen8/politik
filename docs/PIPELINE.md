@@ -814,14 +814,17 @@ Poll-Objekt ohne `field_poll_date` — pro distinct `poll_id` einmal `/polls/{id
 
 ### V.2 — Vote → Plenar-Topic Mapping
 
-**Skript:** `scripts/map-votes-to-topics.ts`
-**Modell:** `claude-haiku-4-5`
-**Modell-Slot:** **Vote-Topic-Mapping-Slot** — Upgrade auf Sonnet/Opus möglich, aber
-Aufgabe ist Schema-Match (kein offenes Reasoning)
-**Voraussetzung:** `votes` (V.1) + `plenar_topics` (aus R.2)
-**Output:** `vote_topic_links(poll_id, topic_id, is_primary, confidence, reasoning)`
-**Methodik:** dokumentiert in `docs/vote-topic-mapping-methodology.md`
-**Run:** `npx tsx scripts/map-votes-to-topics.ts`
+> ⚠️ **Status 2026-06-15: einmalig erledigt, Skript + Methodik-Doc entfernt.**
+> `vote_topic_links` ist gefüllt (50/50, 88 % HIGH, gelaufen 2026-05-06). Sowohl
+> `scripts/map-votes-to-topics.ts` als auch `docs/vote-topic-mapping-methodology.md`
+> existieren **nicht mehr** (bei einem Track-Reset verloren, nur in der git-Historie).
+> Zum Neuaufsetzen/Re-Run müsste das Skript aus der Historie restauriert werden.
+> Aktuelles, gepflegtes Pendant für Vote↔**Drucksache** (anderer Zweck):
+> `scripts/map-vote-drucksache-bundestag.ts` + `docs/vote-drucksache-mapping-methodology.md`.
+
+**Modell (war):** `claude-haiku-4-5`
+**Voraussetzung (war):** `votes` (V.1) + `plenar_topics` (aus R.2)
+**Output:** `vote_topic_links(poll_id, topic_id, is_primary, confidence, reasoning)` — bereits befüllt
 
 ---
 
@@ -1143,7 +1146,7 @@ npx tsx scripts/fix-tonalitaet-drift.ts          # R.7: Tonalitäts-Drift-Fix
 
 # === Phase 6: Voting + Topics ===
 npx tsx scripts/backfill-vote-dates.ts           # V.1: Vote-Daten
-npx tsx scripts/map-votes-to-topics.ts           # V.2: Topic-Mapping (Haiku)
+# V.2: Vote→Topic-Mapping — einmalig erledigt, Skript entfernt (vote_topic_links voll); siehe V.2-Block
 
 # === Phase 7: Health-Check ===
 npx tsx scripts/health-check.ts                  # W.7
@@ -1478,7 +1481,7 @@ extrahierten Outputs.
 | `health-check.ts` | ✅ | W.7 | — | DB-Health-Übersicht |
 | `ingest-plenarprotokoll-xmls.ts` | ✅ | R.2 | — | XMLs in DB |
 | `inspect-dates.ts` | ✅ | A.7 | Mistral Small | Datums-Inspektor |
-| `map-votes-to-topics.ts` | ✅ | V.2 | Haiku 4.5 | Vote → Plenar-Topic |
+| `map-votes-to-topics.ts` | 🗑️ entfernt | V.2 | Haiku 4.5 | Vote → Plenar-Topic (einmalig erledigt, nur git-Historie) |
 | `patch-missing-bundestag-bios.ts` | ✅ | S.14 | — | BT-Bios-Patches |
 | `persist-source-coherence-verdicts.ts` | ✅ | B.3 | — | Verdicts persistieren |
 | `refetch-broken-homepage-text.ts` | ✅ | W.3 | — | Kaputte Homepage-Texts |
