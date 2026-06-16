@@ -6817,13 +6817,11 @@ export function listBerlinDrucksachenForIndex(opts: {
   year?: string;
   fraktion?: string;
   tags?: readonly string[];
-  unterthema?: string;       // Achse-B-Sub-Filter (berlin_ds_unterthemen)
-  unterthemaFeld?: string;   // Feld-Label, gegen das das Unterthema joint
   offset?: number;
   limit?: number;
 }): BerlinDsIndexResult {
   const db = getDb();
-  const { klasse, year, fraktion, tags, unterthema, unterthemaFeld, offset = 0, limit = 50 } = opts;
+  const { klasse, year, fraktion, tags, offset = 0, limit = 50 } = opts;
   try {
     const yearCond = year ? "AND substr(d.dok_datum,1,4) = @year" : "";
     const klasseCond = klasse ? "AND a.klasse = @klasse" : "";
@@ -6833,13 +6831,7 @@ export function listBerlinDrucksachenForIndex(opts: {
     const tagsCond = tagList.length
       ? `AND (${tagList.map((_, i) => `a.thema_json LIKE @tag${i}`).join(" OR ")})`
       : "";
-    // Unterthema-Filter (Achse B): DS hat im Feld-Label ein passendes Unterthema.
-    const unterCond = unterthema && unterthemaFeld
-      ? `AND EXISTS (SELECT 1 FROM berlin_ds_unterthemen u WHERE u.dbid = d.dbid AND u.feld = @uFeld AND u.unterthemen_json LIKE @unter)`
-      : "";
-    const unterParams: Record<string, string> = (unterthema && unterthemaFeld)
-      ? { uFeld: unterthemaFeld, unter: `%"${unterthema}"%` } : {};
-    const whereParams: Record<string, string> = { ...unterParams };
+    const whereParams: Record<string, string> = {};
     if (year) whereParams.year = year;
     if (klasse) whereParams.klasse = klasse;
     if (fraktion) whereParams.fraktion = fraktion;
@@ -6853,7 +6845,7 @@ export function listBerlinDrucksachenForIndex(opts: {
              a.tonalitaet, a.antwort_charakter AS antwortCharakter
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond} ${unterCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY d.dok_datum DESC, d.dbid DESC
       LIMIT @limit OFFSET @offset
     `).all({ ...whereParams, offset, limit }) as BerlinDsIndexEntry[];
@@ -6862,17 +6854,17 @@ export function listBerlinDrucksachenForIndex(opts: {
       SELECT COUNT(*) c
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond} ${unterCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
     `).get(whereParams) as { c: number }).c;
 
-    const tagParams: Record<string, string> = { ...unterParams };
+    const tagParams: Record<string, string> = {};
     tagList.forEach((t, i) => { tagParams[`tag${i}`] = `%"${t}"%`; });
 
     const klasseFacets = db.prepare(`
       SELECT a.klasse, COUNT(*) count
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond} ${tagsCond} ${unterCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond} ${tagsCond}
       GROUP BY a.klasse ORDER BY count DESC
     `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { klasse: string; count: number }[];
 
@@ -6880,7 +6872,7 @@ export function listBerlinDrucksachenForIndex(opts: {
       SELECT DISTINCT substr(d.dok_datum,1,4) y
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond} ${tagsCond} ${unterCond}
+      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY y DESC
     `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { y: string }[])
       .map((r) => r.y)
@@ -6923,52 +6915,6 @@ export function getBerlinThemenfelderCounts(): BerlinThemenfelderCounts {
   const querschnitt = BERLIN_QUERSCHNITT.map(tally).sort((a, b) => b.count - a.count);
   const gesamtDs = (db.prepare(`SELECT COUNT(*) c FROM berlin_drucksachen_analyses WHERE klasse IS NOT NULL`).get() as { c: number }).c;
   return { felder, querschnitt, gesamtDs };
-}
-
-export interface BerlinUnterthemaCount { unterthema: string; count: number }
-
-/**
- * Achse-B-Sub-Ebene eines Felds: pro Unterthema die Anzahl DISTINCT Drucksachen
- * (aus berlin_ds_unterthemen, LLM-klassifiziert). Liefert nur dort etwas, wo der
- * Unterthemen-Batch lief (derzeit Feld "Stadtentwicklung, Bauen & Wohnen"); sonst
- * leeres Array → die UI blendet die Sub-Navigation dann einfach aus.
- * `feldLabel` = das Feld-LABEL aus berlin-themen-struktur.ts (nicht der Slug).
- */
-export function getBerlinUnterthemenForFeld(feldLabel: string): BerlinUnterthemaCount[] {
-  const db = getDb();
-  try {
-    return db.prepare(`
-      SELECT je.value AS unterthema, COUNT(DISTINCT u.dbid) AS count
-      FROM berlin_ds_unterthemen u, json_each(u.unterthemen_json) je
-      WHERE u.feld = ?
-      GROUP BY je.value
-      ORDER BY count DESC
-    `).all(feldLabel) as BerlinUnterthemaCount[];
-  } catch {
-    return [];
-  }
-}
-
-/**
- * Häufige spezifische Tags (offene Achse) innerhalb eines Feld-Unterthemas —
- * die feinere Ebene unter dem Unterthema. Nur Tags mit ≥2 Vorkommen (der
- * Eigennamen-Schwanz aus Adressen/Projektnamen wird ausgeblendet).
- */
-export function getBerlinTopTagsForUnterthema(feldLabel: string, unterthema: string, limit = 12): { tag: string; count: number }[] {
-  const db = getDb();
-  try {
-    return db.prepare(`
-      SELECT je.value AS tag, COUNT(DISTINCT u.dbid) AS count
-      FROM berlin_ds_unterthemen u, json_each(u.spezifische_tags_json) je
-      WHERE u.feld = ? AND u.unterthemen_json LIKE ?
-      GROUP BY je.value
-      HAVING count >= 2
-      ORDER BY count DESC, tag
-      LIMIT ?
-    `).all(feldLabel, `%"${unterthema}"%`, limit) as { tag: string; count: number }[];
-  } catch {
-    return [];
-  }
 }
 
 export interface BerlinQaItem {

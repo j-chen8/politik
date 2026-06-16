@@ -230,34 +230,17 @@ Global-Lauf via `--submit` (nur Unklassifizierte) nach. Härtung hilft auch dem 
 ODER **Stufe 7 Global** (~$8–12, restliche 15 Felder) — Reihenfolge ist Produktentscheidung. UI-zuerst zeigt
 den Wert, bevor global Geld fließt.
 
-## Stufe 9 — UI Sub-Ebene (Teil 1) ✅ (2026-06-16, gratis)
+## Stufen 7–9
 
-**Pragmatischer erster Increment statt 1.900-Zeilen-`VorschauThemen`-Klon:** Die bestehende Berlin-
-`/themen`-Feld-Detailseite (`src/app/parlamente/berlin/themen/page.tsx`) um eine **Unterthema-
-Subnavigation** erweitert — kein neues Wegwerf-UI, sondern Ausbau der vorhandenen sauberen, dark-mode-
-fertigen Seite. Daten aus `berlin_ds_unterthemen` über 3 neue Helfer in `src/lib/db.ts`:
-- `getBerlinUnterthemenForFeld(feldLabel)` → Pills mit DS-Count (nur befüllt wo der Batch lief = Wohnen).
-- `getBerlinTopTagsForUnterthema(feldLabel, unterthema)` → „Häufige Schlagwörter"-Zeile (Tags ≥2×).
-- `listBerlinDrucksachenForIndex` um `unterthema`/`unterthemaFeld`-Filter (EXISTS-Join) erweitert.
-
-`?feld=wohnen-bau&unter=<Unterthema>` filtert die DS-Liste auf das Unterthema + zeigt die feinen Tags.
-Felder ohne Batch (15 von 16) blenden die Sub-Nav automatisch aus. tsc 0, alle Routen 200, visuell
-verifiziert (Screenshot). **Bewusst NICHT** die volle `VorschauThemen`-Parität — die braucht Reden
-(Stufe 8) + Berlin-Votes-Verdrahtung + `berlin-themen-blatt.ts`-Klon und bleibt der dokumentierte
-Folgeschritt (User-Wunsch „überall das gleiche Design").
-
-## Stufe 7 (Global) + Stufe 8 (Reden) — offen
-
-- **Stufe 7 Global** (~$8–12): restliche 15 Felder klassifizieren. `D-440054` (Halluzination) wird vom
-  `--submit` (nur Unklassifizierte) mitgenommen.
-- **Stufe 8 Reden-Erben** (gratis): `berlin_speeches.drucksache_nrn` → `berlin_ds_unterthemen` (via
-  `drucksache_nr↔dbid`-Mapping) → `berlin_rede_unterthemen`. Vorbedingung für die volle `VorschauThemen`-UI.
+Noch offen. Folgen der allgemeinen Prozedur. Zwischenstand UI: ein **kostenloses Level-1-Feld-Grid**
+(`/parlamente/berlin/themen`) ist gebaut (Wegwerf-/Interim-Stand, beweist den sauberen Rollup) — wird
+durch die echte `VorschauThemen`-Komponente ersetzt, sobald die Sub-Ebene steht.
 
 ## Stand-Tabelle
 
 | Stufe | 0 | 1 Discovery | 2 Taxonomie | 3 Kriterien | 4 Spike | 5 Patch | 6 Pilot | 7 Global | 8 Reden | 9 UI |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Berlin | ✅ | ✅ (Batch JA, Achse B) | DRAFT+B (Wohnen 12) | ✅ | ✅ bestanden | entfällt | ✅ Wohnen | ⬜ global | ⬜ Reden | ✅ Sub-Nav (Teil 1) |
+| Berlin | ✅ | ✅ (Batch JA, Achse B) | DRAFT+B (Wohnen 12) | ✅ | ✅ bestanden | entfällt | ✅ Wohnen | ⬜ | ⬜ | Interim-Grid |
 
 **Verdikt Stufe 1 (2026-06-16):** Vollbatch JA auf Achse B, gestaffelt (Spike→Pilot→Global). Belegt: der
 Gratis-Tag-Split kollabiert die saliantesten Wohnungspolitik-Achsen im 2414-DS-Mega-Tag „Wohnen". Nächster
