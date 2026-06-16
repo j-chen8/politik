@@ -1,4 +1,4 @@
-import { getBerlinThemenfelderCounts, listBerlinDrucksachenForIndex } from "@/lib/db";
+import { getBerlinThemenfelderCounts, listBerlinDrucksachenForIndex, getBerlinUnterthemenForFeld, getBerlinTopTagsForUnterthema } from "@/lib/db";
 import { berlinFeldBySlug } from "@/lib/berlin-themen-struktur";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, FileText, Layers } from "lucide-react";
 import Link from "next/link";
@@ -37,7 +37,7 @@ const FRAKTIONEN = ["CDU", "SPD", "GRÜNE", "LINKE", "AfD", "FDP"];
 export default function BerlinThemenPage({
   searchParams,
 }: {
-  searchParams: Promise<{ feld?: string; klasse?: string; fraktion?: string; page?: string }>;
+  searchParams: Promise<{ feld?: string; unter?: string; klasse?: string; fraktion?: string; page?: string }>;
 }) {
   return <Inner searchParams={searchParams} />;
 }
@@ -45,7 +45,7 @@ export default function BerlinThemenPage({
 async function Inner({
   searchParams,
 }: {
-  searchParams: Promise<{ feld?: string; klasse?: string; fraktion?: string; page?: string }>;
+  searchParams: Promise<{ feld?: string; unter?: string; klasse?: string; fraktion?: string; page?: string }>;
 }) {
   const sp = await searchParams;
   const feld = sp.feld ? berlinFeldBySlug(sp.feld) : null;
@@ -142,17 +142,25 @@ function FeldDetail({
   sp,
 }: {
   feld: { key: string; label: string; tags: readonly string[] };
-  sp: { klasse?: string; fraktion?: string; page?: string };
+  sp: { unter?: string; klasse?: string; fraktion?: string; page?: string };
 }) {
   const klasse = sp.klasse ?? "";
   const fraktion = sp.fraktion ?? "";
   const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
   const offset = (page - 1) * PAGE_SIZE;
 
+  // Achse-B-Sub-Ebene: Unterthemen dieses Felds (nur befüllt, wo der Batch lief).
+  const unterthemen = getBerlinUnterthemenForFeld(feld.label);
+  const unterNames = new Set(unterthemen.map((u) => u.unterthema));
+  const unter = sp.unter && unterNames.has(sp.unter) ? sp.unter : "";
+  const topTags = unter ? getBerlinTopTagsForUnterthema(feld.label, unter) : [];
+
   const { rows, total, klasseFacets } = listBerlinDrucksachenForIndex({
     tags: feld.tags,
     klasse: klasse || undefined,
     fraktion: fraktion || undefined,
+    unterthema: unter || undefined,
+    unterthemaFeld: unter ? feld.label : undefined,
     offset,
     limit: PAGE_SIZE,
   });
@@ -161,6 +169,7 @@ function FeldDetail({
 
   const qs = (extra: Record<string, string>) => {
     const params = new URLSearchParams({ feld: feld.key });
+    if (unter && !("unter" in extra)) params.set("unter", unter);
     if (klasse && !("klasse" in extra)) params.set("klasse", klasse);
     if (fraktion && !("fraktion" in extra)) params.set("fraktion", fraktion);
     for (const [k, v] of Object.entries(extra)) if (v) params.set(k, v);
@@ -184,6 +193,37 @@ function FeldDetail({
             <span className="text-zinc-500 dark:text-zinc-400">{feld.tags.join(" · ")}</span>.
           </p>
         </div>
+
+        {/* Achse-B-Sub-Navigation: Unterthemen (nur wo der LLM-Batch lief) */}
+        {unterthemen.length > 0 && (
+          <div className="mb-6 fade-in-up fade-in-up-2">
+            <div className="flex flex-wrap gap-1.5 text-[11px]">
+              <span className="text-zinc-400 dark:text-zinc-500 self-center mr-1">Unterthema:</span>
+              <FilterPill href={qs({ unter: "", page: "" })} active={!unter}>
+                alle
+              </FilterPill>
+              {unterthemen.map((u) => (
+                <FilterPill key={u.unterthema} href={qs({ unter: u.unterthema, page: "" })} active={unter === u.unterthema}>
+                  {u.unterthema} ({u.count.toLocaleString("de-DE")})
+                </FilterPill>
+              ))}
+            </div>
+            {unter && topTags.length > 0 && (
+              <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[11px]">
+                <span className="text-zinc-400 dark:text-zinc-500 self-center mr-0.5">Häufige Schlagwörter:</span>
+                {topTags.map((t) => (
+                  <span key={t.tag} className="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+                    {t.tag} <span className="num text-zinc-400 dark:text-zinc-500">{t.count}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+            <p className="mt-2 text-[11px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-2xl">
+              Feinere Ebene: jede Drucksache wurde per LLM einem oder mehreren Unterthemen zugeordnet
+              (eine DS kann in mehreren liegen). Reine Zuordnung, keine Bewertung.
+            </p>
+          </div>
+        )}
 
         {/* Klassen-Filter */}
         <div className="mb-3 flex flex-wrap gap-1.5 text-[11px]">
