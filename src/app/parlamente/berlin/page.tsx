@@ -1,4 +1,5 @@
 import { getBerlinSnapshot } from "@/lib/db";
+import { Layers } from "lucide-react";
 import Link from "next/link";
 import { SearchBox } from "@/components/SearchBox";
 import { ParliamentLanding, type LandingColumn } from "@/components/ParliamentLanding";
@@ -179,16 +180,25 @@ export default function BerlinOverview() {
         />
       }
       examples={
-        <div className="mt-4 flex flex-wrap justify-center gap-2">
-          {SUCH_BEISPIELE.map((term) => (
-            <Link
-              key={term}
-              href={`/parlamente/berlin/suche?q=${encodeURIComponent(term)}`}
-              className="rounded-full border border-border bg-card/70 px-3 py-1.5 text-[12.5px] text-zinc-600 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-card transition-colors"
-            >
-              {term}
-            </Link>
-          ))}
+        <div className="mt-4 flex flex-col items-center gap-3">
+          <Link
+            href="/parlamente/berlin/themen"
+            className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 dark:border-zinc-600 bg-card px-4 py-1.5 text-[13px] font-medium text-zinc-800 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <Layers className="w-3.5 h-3.5" strokeWidth={2.25} />
+            Themen erkunden
+          </Link>
+          <div className="flex flex-wrap justify-center gap-2">
+            {SUCH_BEISPIELE.map((term) => (
+              <Link
+                key={term}
+                href={`/parlamente/berlin/suche?q=${encodeURIComponent(term)}`}
+                className="rounded-full border border-border bg-card/70 px-3 py-1.5 text-[12.5px] text-zinc-600 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-card transition-colors"
+              >
+                {term}
+              </Link>
+            ))}
+          </div>
         </div>
       }
       plenarPill={

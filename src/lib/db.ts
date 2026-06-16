@@ -1,5 +1,6 @@
 import Database from "better-sqlite3";
 import path from "path";
+import { BERLIN_POLITIKFELDER, BERLIN_QUERSCHNITT } from "./berlin-themen-struktur";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 
@@ -6809,24 +6810,32 @@ export interface BerlinDsIndexResult {
   years: string[];
 }
 
-/** Berlin-Drucksachen-Index: paginierte Liste + Klassen-/Jahr-Facetten (Pendant zu /aktivitaeten). */
+/** Berlin-Drucksachen-Index: paginierte Liste + Klassen-/Jahr-Facetten (Pendant zu /aktivitaeten).
+ *  `tags`: OR-Filter auf thema_json (≥1 der Roh-Tags) — trägt die /themen-Feld-Detailansicht. */
 export function listBerlinDrucksachenForIndex(opts: {
   klasse?: string;
   year?: string;
   fraktion?: string;
+  tags?: readonly string[];
   offset?: number;
   limit?: number;
 }): BerlinDsIndexResult {
   const db = getDb();
-  const { klasse, year, fraktion, offset = 0, limit = 50 } = opts;
+  const { klasse, year, fraktion, tags, offset = 0, limit = 50 } = opts;
   try {
     const yearCond = year ? "AND substr(d.dok_datum,1,4) = @year" : "";
     const klasseCond = klasse ? "AND a.klasse = @klasse" : "";
     const fraktionCond = fraktion ? "AND a.fraktion = @fraktion" : "";
+    // Tag-Filter: a.thema_json enthält ≥1 der Feld-Tags (entdoppelt pro DS durch den JOIN-1:1).
+    const tagList = (tags ?? []).filter(Boolean);
+    const tagsCond = tagList.length
+      ? `AND (${tagList.map((_, i) => `a.thema_json LIKE @tag${i}`).join(" OR ")})`
+      : "";
     const whereParams: Record<string, string> = {};
     if (year) whereParams.year = year;
     if (klasse) whereParams.klasse = klasse;
     if (fraktion) whereParams.fraktion = fraktion;
+    tagList.forEach((t, i) => { whereParams[`tag${i}`] = `%"${t}"%`; });
 
     const rows = db.prepare(`
       SELECT d.dbid, d.dok_nr AS dokNr,
@@ -6836,7 +6845,7 @@ export function listBerlinDrucksachenForIndex(opts: {
              a.tonalitaet, a.antwort_charakter AS antwortCharakter
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY d.dok_datum DESC, d.dbid DESC
       LIMIT @limit OFFSET @offset
     `).all({ ...whereParams, offset, limit }) as BerlinDsIndexEntry[];
@@ -6845,24 +6854,27 @@ export function listBerlinDrucksachenForIndex(opts: {
       SELECT COUNT(*) c
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
     `).get(whereParams) as { c: number }).c;
+
+    const tagParams: Record<string, string> = {};
+    tagList.forEach((t, i) => { tagParams[`tag${i}`] = `%"${t}"%`; });
 
     const klasseFacets = db.prepare(`
       SELECT a.klasse, COUNT(*) count
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond} ${tagsCond}
       GROUP BY a.klasse ORDER BY count DESC
-    `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}) }) as { klasse: string; count: number }[];
+    `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { klasse: string; count: number }[];
 
     const years = (db.prepare(`
       SELECT DISTINCT substr(d.dok_datum,1,4) y
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY y DESC
-    `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}) }) as { y: string }[])
+    `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { y: string }[])
       .map((r) => r.y)
       .filter((y) => y && y.length === 4);
 
@@ -6870,6 +6882,39 @@ export function listBerlinDrucksachenForIndex(opts: {
   } catch {
     return { rows: [], total: 0, klasseFacets: [], years: [] };
   }
+}
+
+export interface BerlinThemenfeldCount {
+  key: string;     // Feld-Slug (berlin-themen-struktur.ts)
+  label: string;
+  count: number;   // distinct DS mit ≥1 Tag des Felds
+}
+export interface BerlinThemenfelderCounts {
+  felder: BerlinThemenfeldCount[];     // Achse A (Politikfelder), desc
+  querschnitt: BerlinThemenfeldCount[];// Achse B, desc
+  gesamtDs: number;                    // alle analysierten DS (entdoppelt)
+}
+
+/**
+ * Level-1-Themenbrowse: pro Feld die Anzahl DISTINCT Drucksachen mit ≥1 Roh-Tag
+ * des Felds (Aggregationsregel aus berlin-themen-struktur.ts — pro DS entdoppelt,
+ * multi-Feld erlaubt, Querschnitt additiv). Grundlage der /themen-Berlin-Seite.
+ * Frei aus thema_json — KEIN LLM (Level 2 wäre Phase B).
+ */
+export function getBerlinThemenfelderCounts(): BerlinThemenfelderCounts {
+  const db = getDb();
+  const tally = (feld: { key: string; label: string; tags: readonly string[] }): BerlinThemenfeldCount => {
+    const cond = feld.tags.map(() => "a.thema_json LIKE ?").join(" OR ") || "0";
+    const c = (db.prepare(`
+      SELECT COUNT(*) c FROM berlin_drucksachen_analyses a
+      WHERE a.klasse IS NOT NULL AND (${cond})
+    `).get(...feld.tags.map((t) => `%"${t}"%`)) as { c: number }).c;
+    return { key: feld.key, label: feld.label, count: c };
+  };
+  const felder = BERLIN_POLITIKFELDER.map(tally).sort((a, b) => b.count - a.count);
+  const querschnitt = BERLIN_QUERSCHNITT.map(tally).sort((a, b) => b.count - a.count);
+  const gesamtDs = (db.prepare(`SELECT COUNT(*) c FROM berlin_drucksachen_analyses WHERE klasse IS NOT NULL`).get() as { c: number }).c;
+  return { felder, querschnitt, gesamtDs };
 }
 
 export interface BerlinQaItem {
