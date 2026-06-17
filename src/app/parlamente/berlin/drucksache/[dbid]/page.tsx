@@ -1,7 +1,7 @@
-import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner, getBerlinDsVotes, getBerlinDsPlenarbehandlungen } from "@/lib/db";
+import { getBerlinDrucksacheDetail, getBerlinDsMitzeichner, getBerlinDsVotes, getBerlinDsPlenarbehandlungen, getBerlinDsVorgang } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, FileText, Check, X, Minus, HelpCircle, MessageCircle } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Check, X, Minus, HelpCircle, MessageCircle, GitBranch } from "lucide-react";
 
 interface Props {
   params: Promise<{ dbid: string }>;
@@ -128,6 +128,7 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
   const mitzeichner = getBerlinDsMitzeichner(dbid);
   const votes = getBerlinDsVotes(dbid);
   const plenarbehandlungen = getBerlinDsPlenarbehandlungen(dbid);
+  const vorgang = getBerlinDsVorgang(dbid);
   // Amtlicher PARDOK-Typ (dok_typ_label) zuerst — präziser als die 5-Bucket-klasse
   // (z.B. Verordnung/Änderungsantrag/Mitteilung zur Kenntnisnahme statt nur
   // "Senats-Vorlage"/"Antrag"). klasse bleibt für die Render-Logik. KLASSE_LABEL
@@ -358,6 +359,53 @@ export default async function BerlinDrucksacheDetailPage({ params }: Props) {
                 <p className="text-[14px] text-zinc-800 dark:text-zinc-200 leading-relaxed">{ds.betroffeneGruppen}</p>
               </div>
             )}
+          </section>
+        )}
+
+        {/* Vorgang — die ganze Verfahrenskette (Antrag → … → Beschlussempfehlung → Beschluss) */}
+        {vorgang && (
+          <section className="bg-card rounded-2xl border border-border p-7 mb-6">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1 flex items-center gap-1.5">
+              <GitBranch className="w-3 h-3" strokeWidth={2.25} />
+              Vorgang
+            </h2>
+            {vorgang.titel && (
+              <p className="text-[13px] text-zinc-700 dark:text-zinc-200 mb-3 leading-snug">{vorgang.titel}</p>
+            )}
+            <ol className="relative border-l border-border ml-1.5 space-y-1">
+              {vorgang.schritte.map((s, i) => {
+                const dateStr = s.datum
+                  ? new Date(s.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" })
+                  : null;
+                const inner = (
+                  <div className={`flex items-baseline gap-2 flex-wrap text-[12px] ${s.isSelf ? "font-medium text-zinc-950 dark:text-zinc-50" : ""}`}>
+                    <span className={`${s.linkable ? "text-blue-700 dark:text-blue-400 group-hover:underline" : s.isSelf ? "" : "text-zinc-600 dark:text-zinc-300"}`}>
+                      {s.dokTypLabel ?? "Dokument"}
+                    </span>
+                    {s.dokNr && /\/\d/.test(s.dokNr) && <span className="num text-zinc-400 dark:text-zinc-500">Drs. {s.dokNr}</span>}
+                    {dateStr && <span className="num text-zinc-400 dark:text-zinc-500">· {dateStr}</span>}
+                    {s.isSelf && (
+                      <span className="ml-auto text-[10px] font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">
+                        diese Drucksache
+                      </span>
+                    )}
+                  </div>
+                );
+                return (
+                  <li key={`${s.dbid}-${i}`} className="relative pl-4 py-1">
+                    <span className={`absolute -left-[5px] top-2.5 w-2 h-2 rounded-full ${s.isSelf ? "bg-blue-600 dark:bg-blue-400" : s.linkable ? "bg-zinc-400 dark:bg-zinc-500" : "bg-zinc-200 dark:bg-zinc-700"}`} />
+                    {s.linkable ? (
+                      <Link href={`/parlamente/berlin/drucksache/${s.dbid}`} className="group block">
+                        {inner}
+                        {s.titel && <p className="text-[12px] text-zinc-500 dark:text-zinc-400 leading-snug mt-0.5">{s.titel}</p>}
+                      </Link>
+                    ) : (
+                      inner
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
           </section>
         )}
 

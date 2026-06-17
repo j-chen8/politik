@@ -7118,6 +7118,67 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
   };
 }
 
+// ============================================================
+// Berlin-Vorgang: die ganze Verfahrenskette einer Drucksache
+// (Antrag → Lesungen → Ausschuss → Beschlussempfehlung → Beschluss)
+// ============================================================
+
+export interface BerlinVorgangSchritt {
+  dbid: string;
+  dokNr: string | null;
+  dokTypLabel: string | null;
+  datum: string | null;
+  titel: string | null;     // derived_titel aus Analyse, falls vorhanden
+  linkable: boolean;        // hat eigene Detailseite (in analyses) und ist nicht das aktuelle Dok
+  isSelf: boolean;
+}
+
+export interface BerlinDsVorgang {
+  vid: string;
+  vtypLabel: string | null;
+  titel: string | null;
+  schritte: BerlinVorgangSchritt[];
+}
+
+/** Liefert die komplette Vorgangskette der Drucksache (alle Dokumente mit gleicher
+ *  vorgang_id, chronologisch). Dok ohne Analyse (Lesungen/Plenum-Behandlungen) erscheinen
+ *  als Verfahrensschritt ohne Link; echte Drucksachen (Antrag/Beschlussempfehlung) sind
+ *  verlinkbar. null, wenn kein Vorgang oder Kette nur aus sich selbst besteht. */
+export function getBerlinDsVorgang(dbid: string): BerlinDsVorgang | null {
+  const db = getDb();
+  try {
+    const self = db.prepare(`SELECT vorgang_id FROM berlin_documents WHERE dbid = ?`).get(dbid) as { vorgang_id: string | null } | undefined;
+    if (!self?.vorgang_id) return null;
+    const vid = self.vorgang_id;
+    const v = db.prepare(`SELECT vtyp_label, titel FROM berlin_vorgaenge WHERE vid = ?`).get(vid) as { vtyp_label: string | null; titel: string | null } | undefined;
+    const rows = db.prepare(`
+      SELECT d.dbid, d.dok_nr, d.dok_typ_label, d.dok_datum AS dok_datum,
+             a.dbid AS a_dbid, a.derived_titel
+      FROM berlin_documents d
+      LEFT JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE d.vorgang_id = ?
+      ORDER BY (d.dok_datum IS NULL), d.dok_datum ASC, d.dok_nr ASC
+    `).all(vid) as Array<{ dbid: string; dok_nr: string | null; dok_typ_label: string | null; dok_datum: string | null; a_dbid: string | null; derived_titel: string | null }>;
+    if (rows.length <= 1) return null;
+    return {
+      vid,
+      vtypLabel: v?.vtyp_label ?? null,
+      titel: v?.titel ?? null,
+      schritte: rows.map((r) => ({
+        dbid: r.dbid,
+        dokNr: r.dok_nr,
+        dokTypLabel: r.dok_typ_label,
+        datum: r.dok_datum,
+        titel: r.derived_titel,
+        linkable: !!r.a_dbid && r.dbid !== dbid,
+        isSelf: r.dbid === dbid,
+      })),
+    };
+  } catch {
+    return null;
+  }
+}
+
 
 // ============================================================
 // Berlin-Votes: Plenum-Abstimmungs-Events pro DS
