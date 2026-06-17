@@ -30,7 +30,7 @@ const LEX: Record<string, RegExp> = {
   "E-Government & digitale Verwaltungsleistungen": /e-?government|onlinezugangsgesetz|\bOZG\b|digitale verwaltungsleistung|online-(antrag|dienst|portal|verfahren)|verwaltungsportal/i,
   "IT-Infrastruktur & digitale Souveränität": /it-(infrastruktur|sicherheit|system)|rechenzentrum|\bserver\b|software|digitale souveränität|\bITDZ\b|fachverfahren/i,
   "Datenschutz & Informationssicherheit": /datenschutz|\bDSGVO\b|datensicherheit|informationssicherheit|personenbezogene daten|datenpanne|datenleck|cyber/i,
-  "Verwaltungsorganisation & Zuständigkeiten": /zuständigkeit|verwaltungsorganisation|geschäftsverteilung|behördenstruktur|aufgabenübertragung|ressortzuschnitt|verwaltungsverfahren/i,
+  "Verwaltungsorganisation & Zuständigkeiten": /zuständig|verwaltungsorganisation|geschäftsverteilung|behördenstruktur|aufgabenübertragung|ressortzuschnitt|verwaltungsverfahren|bearbeitungsfrist|antragsbearbeitung|genehmigungsverfahren|gesetzliche frist/i,
   "Landeshaushalt & Haushaltsführung": /haushalt|\betat\b|haushaltsmittel|haushaltsplan|nachtragshaushalt|mittelabfluss|haushaltsführung/i,
   "Förderungen, Zuwendungen & Projektfinanzierung": /förder|zuwendung|projektfinanzierung|zuschuss|zuschüsse|fördermittel/i,
   "Steuern & Abgaben": /steuer|\babgabe|grundsteuer|gewerbesteuer/i,
