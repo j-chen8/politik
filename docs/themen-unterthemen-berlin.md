@@ -289,3 +289,32 @@ Halluzination) wird vom `--submit` (nur Unklassifizierte) mitgenommen.
 Gratis-Tag-Split kollabiert die saliantesten Wohnungspolitik-Achsen im 2414-DS-Mega-Tag „Wohnen". Nächster
 gratis Schritt = Stufe 3 (Erfolgskriterien); erster kostenpflichtiger = Stufe 4 Spike Wohnen ~$0,10
 (braucht Kosten-OK).
+
+## Bekannte Limitation — ~1 % Recall-Lücke (Tag-Miss in Stufe 1)
+
+**Befund (2026-06-17, manuell gelesen):** ~185 DS (≈1 % des Korpus) haben ein `thema_json` mit einem Tag, der
+über `TAG2FELD` auf ein Feld mappt, bekommen aber **keine** `berlin_ds_unterthemen`-Zeile. Sie wurden im
+Global-Batch gesendet, das LLM gab „Sonstiges"/kein Feld zurück. Watermark-Query:
+```sql
+SELECT COUNT(*) FROM berlin_drucksachen_analyses a
+WHERE thema_json IS NOT NULL AND thema_json!='[]'
+  AND NOT EXISTS (SELECT 1 FROM berlin_ds_unterthemen u WHERE u.dbid=a.dbid);
+-- ~207, davon ~185 mit mappbarem Tag (Rest = thema_json nur "Sonstiges")
+```
+
+**Drei Ursachen (4er-Handstichprobe, grob je ~1/3):**
+1. **Tag-Miss in Stufe 1 (eigentliches Feld nie angeboten):** z.B. D-358701 (kooperative Leitstelle Polizei/
+   Feuerwehr) ist getaggt „Verwaltung/Digitalisierung/Finanzen", das wahre Feld *Innere Sicherheit & Justiz*
+   stand nie zur Wahl. Wurzel = die `thema_json`-Verschlagwortung in `berlin_drucksachen_analyses`, NICHT der
+   Unterthemen-Klassifikator.
+2. **Echt nischig — korrekte Ablehnung:** z.B. D-385940 (Fehlbetankungen in Dienstwagen). Kein Unterthema
+   deckt das ab → „Sonstiges" ist richtig.
+3. **Über-konservativ:** z.B. D-379780 (Verwaltungs**gebühren**ordnung → „Steuern & Abgaben" wäre vertretbar),
+   D-438744 (Vermessungswesen → „Bauleitplanung"). Vertretbares Unterthema vorhanden, LLM lehnte trotzdem ab.
+
+**Warum NICHT gefixt (Entscheidung 2026-06-17):** Der naheliegende Quickfix „alle 16 Felder anbieten statt nur
+tag-gemappte" entfernt die **Präzisions-Leitplanke** (Tags constrainen den Feld-Raum bewusst) und würde genau
+den Querschnitt-Lärm reimportieren, den der Prune (`prune-unterthemen-querschnitt.ts`) entfernt — tauscht Recall
+gegen Präzision, gegen die Achsen-Linie. Der saubere Fix sitzt in Stufe 1 (Tag-Anreicherung/Re-Analyse) und
+lohnt für ~90 echt-fehlende DS nicht ad-hoc; fällt als Nebeneffekt mit ab, falls wir mal Stufe-1-Tags nachschärfen.
+**Impact gering:** betroffene DS bleiben in Drucksachen-Listen + Suche sichtbar, fehlen nur in der Themen-Facette.
