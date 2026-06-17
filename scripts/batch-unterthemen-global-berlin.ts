@@ -90,12 +90,18 @@ function userMsg(felder: string[], zusammenfassung: string): string {
   return `FELDER DIESER DRUCKSACHE (nur hieraus wählen): ${felder.join(" · ")}\n\nZUSAMMENFASSUNG: ${zusammenfassung}`;
 }
 
+// --incremental: NUR DS klassifizieren, die noch keine Unterthemen-Zeile haben
+// (laufender Nachschub). Ohne Flag = Voll-Lauf (Single-Pass reklassifiziert ALLES
+// mit DELETE-Reset, nur bei Taxonomie-Änderung). Inkrementell appendet stattdessen.
+const INCREMENTAL = process.argv.includes("--incremental");
+
 interface Row { dbid: string; thema_json: string; zusammenfassung: string; felder: string[] }
 function loadRows(): Row[] {
   const db = new Database(path.join(process.cwd(), "politik.db"), { readonly: true });
   const raw = db.prepare(`
     SELECT dbid, thema_json, zusammenfassung FROM berlin_drucksachen_analyses
     WHERE klasse IS NOT NULL AND zusammenfassung IS NOT NULL AND thema_json IS NOT NULL
+    ${INCREMENTAL ? "AND dbid NOT IN (SELECT DISTINCT dbid FROM berlin_ds_unterthemen)" : ""}
     ORDER BY dbid
   `).all() as { dbid: string; thema_json: string; zusammenfassung: string }[];
   db.close();
@@ -244,7 +250,7 @@ async function apply() {
       unterthemen_json=excluded.unterthemen_json, spezifische_tags_json=excluded.spezifische_tags_json,
       kern_im_feld=1, model=excluded.model, batch_id=excluded.batch_id, created_at=datetime('now')`);
   const tx = db.transaction(() => {
-    db.exec("DELETE FROM berlin_ds_unterthemen"); // Single-Pass reklassifiziert ALLES → sauberer Reset
+    if (!INCREMENTAL) db.exec("DELETE FROM berlin_ds_unterthemen"); // Voll-Lauf: sauberer Reset · --incremental: append (Upsert)
     const batchTag = batch_ids.join(",");
     for (const w of writes) ins.run(w.dbid, w.feld, JSON.stringify(w.unter), JSON.stringify(w.tags), MODEL, batchTag);
   });
