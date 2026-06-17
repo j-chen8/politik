@@ -28,6 +28,20 @@ import type {
   StrukturOber, StrukturUnter,
 } from "@/lib/themen-blatt";
 
+// Reine Geo-Namen taugen nicht als Themen-Facette (es gibt dafür die Bezirks-Achse) und
+// verstopfen sonst die Tag-Wolke (Marzahn-Hellersdorf/Lichtenberg sind die häufigsten Tags
+// überhaupt). Aus der THEMEN-Aggregation ausfiltern; legitime Orts-Themen (Görlitzer Park,
+// Tempelhofer Feld …) bleiben, weil hier nur reine Bezirks-/Ortsteil-Verwaltungsnamen stehen.
+const GEO_STOPP = new Set<string>([
+  // 12 Bezirke
+  "Mitte", "Friedrichshain-Kreuzberg", "Pankow", "Charlottenburg-Wilmersdorf", "Spandau",
+  "Steglitz-Zehlendorf", "Tempelhof-Schöneberg", "Neukölln", "Treptow-Köpenick",
+  "Marzahn-Hellersdorf", "Lichtenberg", "Reinickendorf",
+  // häufige reine Ortsteil-Verwaltungsnamen ohne Sachbezug
+  "Hohenschönhausen", "Hellersdorf", "Marzahn", "Köpenick", "Treptow", "Zehlendorf",
+  "Wilmersdorf", "Charlottenburg", "Schöneberg", "Tempelhof", "Wedding", "Tiergarten",
+]);
+
 const FEED_LIMIT = 120;
 
 // ── kleine Formatter (Spiegel der Bund-Helfer in themen-blatt.ts) ──
@@ -280,7 +294,7 @@ export function getBerlinThemenBlatt(feld: string, unterthema: string): DigitalB
 
   // ── 6. Spezifische Themen = die offenen Batch-Tags ──
   const tagCounts = new Map<string, number>();
-  for (const ds of dsRows) for (const t of ds.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  for (const ds of dsRows) for (const t of ds.tags) { if (GEO_STOPP.has(t)) continue; tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1); }
   const tags = [...tagCounts.entries()].map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count).slice(0, 20);
 
@@ -335,7 +349,7 @@ export function getBerlinThemenStruktur(): StrukturOber[] {
       set.add(r.dbid);
       bump(k, dsIso.get(r.dbid));
       let tc = tagCount.get(k); if (!tc) { tc = new Map(); tagCount.set(k, tc); }
-      for (const t of tags) tc.set(t, (tc.get(t) ?? 0) + 1);
+      for (const t of tags) { if (GEO_STOPP.has(t)) continue; tc.set(t, (tc.get(t) ?? 0) + 1); }
     }
   }
   for (const r of redeIso) bump(key(r.feld, r.unterthema), r.iso);
