@@ -72,18 +72,41 @@ const upsertQ = db.prepare(`
     @status, @antwort_text, @antwort_volltext, @antwort_datum, @antwort_steller, @fetched_at)
   ON CONFLICT(frage_url) DO UPDATE SET
     frage_text=@frage_text, asker=@asker, frage_datum=@frage_datum, status=@status,
-    antwort_text=COALESCE(NULLIF(@antwort_text,''), antwort_text),
+    -- Volltext NIE mit Listen-Vorschau überschreiben: war die Ursache der 40k-Truncation
+    -- (06-15-Re-Scrape ohne --resume lief über die Listen-Phase, downgradete Volltexte auf
+    -- Vorschau, volltext blieb via MAX auf 1 → Detail-Phase übersprang sie). 2026-06-16.
+    antwort_text=CASE WHEN antwort_volltext=1 THEN antwort_text
+                      ELSE COALESCE(NULLIF(@antwort_text,''), antwort_text) END,
     antwort_volltext=MAX(antwort_volltext,@antwort_volltext),
     antwort_datum=@antwort_datum, antwort_steller=@antwort_steller, fetched_at=@fetched_at
 `);
 const upsertTopic = db.prepare(`INSERT OR IGNORE INTO aw_question_topics (frage_url, tid, label) VALUES (?,?,?)`);
 const setAnswer = db.prepare(`UPDATE aw_questions SET antwort_text=?, antwort_volltext=1, fetched_at=? WHERE frage_url=?`);
+// Detail-Fetch aktualisiert Frage UND Antwort: frage_text aus .question__question .body
+// (echter Wortlaut statt Listen-Titel "Frage an X bezüglich Y"); leer → alten Wert behalten.
+const setQA = db.prepare(`UPDATE aw_questions SET frage_text=COALESCE(NULLIF(?,''),frage_text), antwort_text=?, antwort_volltext=1, fetched_at=? WHERE frage_url=?`);
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const toISO = (d: string | null) => {
   const m = d?.match(/(\d{2})\.(\d{2})\.(\d{4})/);
   return m ? `${m[3]}-${m[2]}-${m[1]}` : null;
 };
+// Block-bewusste Textextraktion: cheerios .text() klebt Block-Elemente ohne Leerzeichen
+// zusammen ("GrüßenPaula", "zu.Mit") → Leerzeichen um Blöcke einsetzen, &nbsp; dekodieren.
+// War die Ursache der pervasiven Run-together-Texte (2026-06-16).
+function blockText($: cheerio.CheerioAPI, el: cheerio.Cheerio<any>): string {
+  if (!el || el.length === 0) return "";
+  const cl = el.clone();
+  cl.find("p, div, br, li, tr, h1, h2, h3, h4, blockquote").each((_, b) => { $(b).before(" "); $(b).append(" "); });
+  return cl.text().replace(/ |&nbsp;/g, " ")
+    // AW-Quelle teils doppelt-encodiert (&amp;hellip;) → cheerio dekodiert nur eine Ebene,
+    // die zweite bleibt Literal → nachdekodieren (&amp; zuletzt):
+    .replace(/&hellip;/g, "…").replace(/&ldquo;/g, "„").replace(/&rdquo;/g, "“")
+    .replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&bull;/g, "•")
+    .replace(/&(?:lrm|shy);/g, "").replace(/&gt;/g, ">").replace(/&lt;/g, "<")
+    .replace(/&quot;/g, "\"").replace(/&#0?39;/g, "'").replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ").trim();
+}
 
 // Adaptiver Delay: startet bei DELAY, steigt dauerhaft bei Rate-Limit-Treffern.
 let curDelay = DELAY;
@@ -172,10 +195,28 @@ async function main() {
       const last = db.prepare(`SELECT MAX(fetched_at) f FROM aw_questions WHERE politician_id=?`).get(pol.id) as { f: string | null };
       if (last.f && last.f.slice(0, 10) === today) { profilesDone++; return; }
     }
+    // Listing-Slug auflösen: AW nutzt für manche Profile einen ABWEICHENDEN Fragen-Slug
+    // (z.B. Profil `anna-luehrmann` ü→ue, Fragen-Liste `anna-luhrmann` ü→u). Der Profil-Slug
+    // 404t dann auf /fragen-antworten → Profil würde als "0 Fragen" übersprungen (Bug 2026-06-16).
+    // Profil-Slug zuerst probieren; bei 404 echten Slug aus dem "Alle Fragen"-Link holen.
+    let listingSlug = pol.slug;
+    let firstHtml = await get(`${BASE}/profile/${pol.slug}/fragen-antworten?page=0`);
+    await sleep(curDelay);
+    if (firstHtml === null) {
+      const base = await get(`${BASE}/profile/${pol.slug}`);
+      await sleep(curDelay);
+      const m = base?.match(/href="\/profile\/([a-z0-9-]+)\/fragen-antworten"/);
+      if (m && m[1] !== pol.slug) {
+        listingSlug = m[1];
+        firstHtml = await get(`${BASE}/profile/${listingSlug}/fragen-antworten?page=0`);
+        await sleep(curDelay);
+        if (firstHtml) console.log(`  ↳ ${pol.slug}: Fragen-Slug-Alias → ${listingSlug}`);
+      }
+    }
     let page = 0, pq = 0, headerTotal: number | null = null;
     while (page < 400) {
-      const html = await get(`${BASE}/profile/${pol.slug}/fragen-antworten?page=${page}`);
-      await sleep(curDelay);
+      const html = page === 0 ? firstHtml : await get(`${BASE}/profile/${listingSlug}/fragen-antworten?page=${page}`);
+      if (page > 0) await sleep(curDelay);
       if (!html) break;
       const { items, headerTotal: ht } = parseList(html, pol.slug, pol.id);
       if (page === 0) headerTotal = ht;
@@ -214,9 +255,13 @@ async function main() {
       const html = await get(frage_url);
       if (!html) return;
       const $ = cheerio.load(html);
-      const full = $("article.question").first().find(".answer__body").first().text().replace(/\s+/g, " ").trim()
-        || $(".answer__body").first().text().replace(/\s+/g, " ").trim();
-      if (full) setAnswer.run(full, new Date().toISOString(), frage_url);
+      const art = $("article.question").first();
+      const full = blockText($, art.find(".answer__body").first())
+        || blockText($, $(".answer__body").first());
+      // Echten Fragewortlaut aus .question__question .body; leer → h1-Titel als Fallback.
+      const qq = $(".question__question").first();
+      const frage = blockText($, qq.find(".body").first()) || blockText($, qq.find("h1").first());
+      if (full) setQA.run(frage, full, new Date().toISOString(), frage_url);
     };
     let done = 0, emptyPasses = 0;
     console.log(`\n--- Phase 2 (Volltexte, ${CONCURRENCY} parallel${LOOP_DETAILS ? ", Poll-Modus" : ""}) ---`);
