@@ -175,47 +175,61 @@ async function spike() {
   console.log(`  → Projektion Voll-Batch (${all} DS, Batch+Cache): ~$${proj.toFixed(2)}`);
 }
 
+const CHUNK = 8000; // ~13 KB/Request × 8000 ≈ 104 MB < 256-MB-Batch-Limit
+
 async function submit() {
   if (!process.env.ANTHROPIC_API_KEY) { console.error("ANTHROPIC_API_KEY fehlt"); process.exit(1); }
   const rows = loadRows();
-  console.log(`Submit: ${rows.length} DS, ${MODEL}, Batch API + Caching`);
-  const requests = rows.map((r) => ({ custom_id: r.dbid, params: reqParams(r) }));
-  const batch = await client.messages.batches.create({ requests });
-  fs.writeFileSync(STATE_FILE, JSON.stringify({ batch_id: batch.id, count: rows.length }, null, 2));
-  console.log(`Batch: ${batch.id} (${rows.length}) — --status / --apply`);
+  console.log(`Submit: ${rows.length} DS in Chunks à ${CHUNK}, ${MODEL}, Batch API + Caching`);
+  const reqs = rows.map((r) => ({ custom_id: r.dbid, params: reqParams(r) }));
+  const batch_ids: string[] = [];
+  for (let i = 0; i < reqs.length; i += CHUNK) {
+    const slice = reqs.slice(i, i + CHUNK);
+    const batch = await client.messages.batches.create({ requests: slice });
+    batch_ids.push(batch.id);
+    console.log(`  Batch ${batch_ids.length}: ${batch.id} (${slice.length} Requests)`);
+  }
+  fs.writeFileSync(STATE_FILE, JSON.stringify({ batch_ids, count: rows.length }, null, 2));
+  console.log(`${batch_ids.length} Batches submitted — --status / --apply`);
 }
 
-function readState(): { batch_id: string } {
+function readState(): { batch_ids: string[] } {
   if (!fs.existsSync(STATE_FILE)) { console.error("Kein State — erst --submit."); process.exit(1); }
-  return JSON.parse(fs.readFileSync(STATE_FILE, "utf-8"));
+  const s = JSON.parse(fs.readFileSync(STATE_FILE, "utf-8"));
+  return { batch_ids: s.batch_ids ?? (s.batch_id ? [s.batch_id] : []) }; // abwärtskompat
 }
 async function status() {
-  const b = await client.messages.batches.retrieve(readState().batch_id);
-  console.log(`${b.id}: ${b.processing_status} — ${JSON.stringify(b.request_counts)}`);
+  for (const id of readState().batch_ids) {
+    const b = await client.messages.batches.retrieve(id);
+    console.log(`${b.id}: ${b.processing_status} — ${JSON.stringify(b.request_counts)}`);
+  }
 }
 
 async function apply() {
-  const { batch_id } = readState();
-  const b = await client.messages.batches.retrieve(batch_id);
-  if (b.processing_status !== "ended") { console.log(`Noch nicht fertig: ${b.processing_status} ${JSON.stringify(b.request_counts)}`); return; }
+  const { batch_ids } = readState();
+  const batches = await Promise.all(batch_ids.map((id) => client.messages.batches.retrieve(id)));
+  const notEnded = batches.filter((b) => b.processing_status !== "ended");
+  if (notEnded.length) { console.log(`Noch nicht fertig: ${notEnded.map((b) => `${b.id}=${b.processing_status}`).join(", ")}`); return; }
   const felderByDbid = new Map(loadRows().map((r) => [r.dbid, new Set(r.felder)]));
 
   const writes: { dbid: string; feld: string; unter: string[]; tags: string[] }[] = [];
   let ok = 0, errored = 0, leer = 0;
   const unterCount = new Map<string, number>();
-  for await (const res of await client.messages.batches.results(batch_id)) {
-    if (res.result.type !== "succeeded") { errored++; continue; }
-    const block = res.result.message.content.find((c) => c.type === "tool_use") as Anthropic.ToolUseBlock | undefined;
-    const out = (block?.input ?? {}) as { unterthemen?: string[]; spezifische_tags?: string[] };
-    const felder = felderByDbid.get(res.custom_id) ?? new Set<string>();
-    const byFeld = parsePicks(out.unterthemen ?? [], felder);
-    const tags = (out.spezifische_tags ?? []).map((t) => String(t).trim()).filter(Boolean);
-    if (![...byFeld.keys()].length) { leer++; ok++; continue; } // alles Sonstiges → keine Feld-Zeile
-    for (const [feld, unter] of byFeld) {
-      writes.push({ dbid: res.custom_id, feld, unter, tags });
-      for (const u of unter) unterCount.set(`${feld}${SEP}${u}`, (unterCount.get(`${feld}${SEP}${u}`) ?? 0) + 1);
+  for (const id of batch_ids) {
+    for await (const res of await client.messages.batches.results(id)) {
+      if (res.result.type !== "succeeded") { errored++; continue; }
+      const block = res.result.message.content.find((c) => c.type === "tool_use") as Anthropic.ToolUseBlock | undefined;
+      const out = (block?.input ?? {}) as { unterthemen?: string[]; spezifische_tags?: string[] };
+      const felder = felderByDbid.get(res.custom_id) ?? new Set<string>();
+      const byFeld = parsePicks(out.unterthemen ?? [], felder);
+      const tags = (out.spezifische_tags ?? []).map((t) => String(t).trim()).filter(Boolean);
+      if (![...byFeld.keys()].length) { leer++; ok++; continue; } // alles Sonstiges → keine Feld-Zeile
+      for (const [feld, unter] of byFeld) {
+        writes.push({ dbid: res.custom_id, feld, unter, tags });
+        for (const u of unter) unterCount.set(`${feld}${SEP}${u}`, (unterCount.get(`${feld}${SEP}${u}`) ?? 0) + 1);
+      }
+      ok++;
     }
-    ok++;
   }
   console.log(`Ergebnisse: ${ok} ok · ${errored} Fehler · ${leer} nur-Sonstiges`);
   if (errored > ok * 0.02) { console.error(`ABBRUCH: ${errored} Fehler (>2 %). Erst klären, kein DB-Write.`); return; }
@@ -231,7 +245,8 @@ async function apply() {
       kern_im_feld=1, model=excluded.model, batch_id=excluded.batch_id, created_at=datetime('now')`);
   const tx = db.transaction(() => {
     db.exec("DELETE FROM berlin_ds_unterthemen"); // Single-Pass reklassifiziert ALLES → sauberer Reset
-    for (const w of writes) ins.run(w.dbid, w.feld, JSON.stringify(w.unter), JSON.stringify(w.tags), MODEL, batch_id);
+    const batchTag = batch_ids.join(",");
+    for (const w of writes) ins.run(w.dbid, w.feld, JSON.stringify(w.unter), JSON.stringify(w.tags), MODEL, batchTag);
   });
   tx();
   db.close();
