@@ -20,7 +20,7 @@ export function SiteChrome({
   parliaments: ParliamentOverview[];
 }) {
   return (
-    <div className="design-linear flex flex-col min-h-full">
+    <div className="design-linear flex flex-col min-h-screen">
       <LinearHeader parliaments={parliaments} />
       <main className="flex-1">{children}</main>
       <LinearFooter />
