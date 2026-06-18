@@ -69,6 +69,9 @@ scripts/state/
 # scratch: throwaway debug/inspection scripts + editor backups
 scripts/_*.ts
 *.bak
+# manuelle DB-Snapshots (z.B. politik.db.preberlin-…, 1.8 GB) + Scratch-TSV-Backups
+politik.db.pre*
+_*.tsv
 
 # CSV-Exports (reproduzierbar via scripts/export-tables-csv.ts)
 /data/exports/

@@ -4606,6 +4606,131 @@ export interface QaPaarListItem {
   antwortText: string | null;
 }
 
+// ── Bürgerfragen (abgeordnetenwatch) ─────────────────────────────────────────
+// Bürger:innen stellen öffentlich Fragen an Abgeordnete; diese antworten im
+// Freitext. Quelle: aw_questions / aw_question_topics (HTML-Scrape, kein LLM).
+// Anders als drucksache_qa_paare (MdB→Regierung) ist das die Bürger→MdB-Achse.
+
+export interface BuergerfrageItem {
+  frageUrl: string;
+  frageText: string | null;
+  asker: string | null;
+  frageDatum: string | null;
+  antwortText: string | null;
+  antwortDatum: string | null;
+  topics: string[];
+}
+
+export interface BuergerfragenData {
+  total: number;          // alle an diese:n MdB gestellten Fragen
+  beantwortet: number;
+  ausstehend: number;
+  quotePct: number;       // beantwortet / total
+  baselineMedianPct: number; // Median-Antwortquote aller MdB (neutraler Vergleich)
+  topics: { label: string; count: number }[]; // Verteilung über die geladenen (beantworteten) Fragen
+  items: BuergerfrageItem[]; // beantwortete Fragen, neueste zuerst, gedeckelt
+  itemsCapped: boolean;   // true, wenn mehr beantwortete Fragen existieren als geladen
+  awUrl: string | null;   // Profil auf abgeordnetenwatch.de
+}
+
+// Modul-Cache: Median ist über alle Requests stabil (force-dynamic re-rendert,
+// aber der Wert ändert sich nur bei Daten-Refresh / Prozess-Neustart).
+let _awAnswerRateMedian: number | null = null;
+function getAwAnswerRateMedian(): number {
+  if (_awAnswerRateMedian !== null) return _awAnswerRateMedian;
+  const db = getDb();
+  try {
+    const row = db.prepare(`
+      WITH q AS (
+        SELECT ROUND(100.0 * SUM(status = 'beantwortet') / COUNT(*)) AS pct
+        FROM aw_questions GROUP BY politician_id HAVING COUNT(*) >= 5
+      )
+      SELECT pct FROM q ORDER BY pct LIMIT 1 OFFSET (SELECT COUNT(*) / 2 FROM q)
+    `).get() as { pct: number } | undefined;
+    _awAnswerRateMedian = row?.pct ?? 0;
+  } catch {
+    _awAnswerRateMedian = 0;
+  }
+  return _awAnswerRateMedian;
+}
+
+/**
+ * Bürgerfragen-Archiv DIESER Abgeordneten: Aggregat (Antwortquote als Fakt +
+ * Median-Baseline) plus die beantworteten Frage-Antwort-Paare (neueste zuerst,
+ * gedeckelt). Liefert null, wenn keine Fragen vorliegen.
+ */
+export function getBuergerfragenForPolitician(
+  politicianId: number,
+  limit = 400
+): BuergerfragenData | null {
+  const db = getDb();
+  try {
+    const agg = db.prepare(`
+      SELECT COUNT(*) AS total,
+             SUM(status = 'beantwortet') AS beantwortet
+      FROM aw_questions WHERE politician_id = ?
+    `).get(politicianId) as { total: number; beantwortet: number | null } | undefined;
+    if (!agg || agg.total === 0) return null;
+
+    const total = agg.total;
+    const beantwortet = agg.beantwortet ?? 0;
+    const ausstehend = total - beantwortet;
+    const quotePct = Math.round((100 * beantwortet) / total);
+
+    const rows = db.prepare(`
+      SELECT frage_url, frage_text, asker, frage_datum, antwort_text, antwort_datum
+      FROM aw_questions
+      WHERE politician_id = ? AND status = 'beantwortet'
+      ORDER BY COALESCE(antwort_datum, frage_datum) DESC, frage_url
+      LIMIT ?
+    `).all(politicianId, limit) as Array<{
+      frage_url: string;
+      frage_text: string | null;
+      asker: string | null;
+      frage_datum: string | null;
+      antwort_text: string | null;
+      antwort_datum: string | null;
+    }>;
+
+    const topicStmt = db.prepare(
+      // DISTINCT: ein Label kann über mehrere tids an derselben Frage hängen
+      `SELECT DISTINCT label FROM aw_question_topics WHERE frage_url = ? ORDER BY label`
+    );
+    const items: BuergerfrageItem[] = rows.map((r) => ({
+      frageUrl: r.frage_url,
+      frageText: r.frage_text,
+      asker: r.asker,
+      frageDatum: r.frage_datum,
+      antwortText: r.antwort_text,
+      antwortDatum: r.antwort_datum,
+      topics: (topicStmt.all(r.frage_url) as Array<{ label: string }>).map((t) => t.label),
+    }));
+
+    const topicCount = new Map<string, number>();
+    for (const it of items) for (const t of it.topics) topicCount.set(t, (topicCount.get(t) ?? 0) + 1);
+    const topics = [...topicCount.entries()]
+      .map(([label, count]) => ({ label, count }))
+      .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "de"));
+
+    const aw = db.prepare(`SELECT abgeordnetenwatch_url FROM politicians WHERE id = ?`)
+      .get(politicianId) as { abgeordnetenwatch_url: string | null } | undefined;
+
+    return {
+      total,
+      beantwortet,
+      ausstehend,
+      quotePct,
+      baselineMedianPct: getAwAnswerRateMedian(),
+      topics,
+      items,
+      itemsCapped: beantwortet > items.length,
+      awUrl: aw?.abgeordnetenwatch_url ?? null,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /** Fraktionen mit nennenswerter Fragezahl — für den Partei-Filter auf /fragen (Rauschen <20 ausgeblendet). */
 export function getQaPaareParties(): { party: string; count: number }[] {
   const db = getDb();
@@ -7168,4 +7293,60 @@ export function listDrucksachenForThema(
     )
     .all(...kp, limit, offset) as TopicDrucksache[];
   return { items, total };
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// Partei-Themenfeld-Positionen ("Sagt"-Schicht aus den BTW-2025-Wahlprogrammen)
+// Extraktiv, neutral, mit verifizierten Beleg-Zitaten (Seiten-Anker).
+// ───────────────────────────────────────────────────────────────────────────
+export interface ParteiBeleg {
+  zitat: string;
+  seite: number | null;
+  verifiziert: boolean;
+}
+export interface ParteiPositionRow {
+  feld: string;
+  position: string;
+  leer: number;
+  belege: ParteiBeleg[];
+}
+
+export function getParteiPositionen(partei: string): ParteiPositionRow[] {
+  const db = getDb();
+  const rows = db
+    .prepare(
+      `SELECT feld, position, leer, belege_json
+       FROM partei_themenfeld_position
+       WHERE partei = ?
+       ORDER BY feld COLLATE NOCASE`,
+    )
+    .all(partei) as {
+    feld: string;
+    position: string;
+    leer: number;
+    belege_json: string | null;
+  }[];
+  return rows.map((r) => ({
+    feld: r.feld,
+    position: r.position,
+    leer: r.leer,
+    belege: (JSON.parse(r.belege_json || "[]") as ParteiBeleg[]).map((b) => ({
+      zitat: b.zitat,
+      seite: b.seite ?? null,
+      verifiziert: !!b.verifiziert,
+    })),
+  }));
+}
+
+export function listParteienMitPositionen(): { partei: string; felder: number }[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT partei, COUNT(*) AS felder
+       FROM partei_themenfeld_position
+       WHERE leer = 0
+       GROUP BY partei
+       ORDER BY partei`,
+    )
+    .all() as { partei: string; felder: number }[];
 }
