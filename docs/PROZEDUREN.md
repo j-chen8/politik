@@ -15,7 +15,7 @@ ergänzen. `[[…]]` = Memory-Datei, `docs/…` = Doc.
 
 | Auslöser | Prozedur | Wo |
 |---|---|---|
-| Daten-Refresh (User schreibt nur »update«) | Daten-Update-Runbook — **§0 = Bundestag · §0-B = Berlin/PARDOK** | `docs/DATA-SOURCES.md` · [[feedback_update_trigger_runbook]] · [[reference_data_sources]] |
+| Daten-Refresh (User schreibt nur »update«) | Update-Runbook — **Bundestag:** `docs/DATA-SOURCES.md §0` · **Berlin:** `docs/berlin-update-runbook.md` | [[feedback_update_trigger_runbook]] · [[reference_data_sources]] |
 | Plattform von Null aufbauen / Modell-Slot upgraden / Sitzung nachziehen | Master-Pipeline-Runbook | `docs/PIPELINE.md` · [[reference_pipeline_runbook]] |
 | **Neues Parlament** onboarden (Hamburg, Bayern, NRW…) | 8-Phasen-Playbook (Pre-Conditions → Discovery → Stammdaten → PDF → Reden → Backfill → UI → LLM) | `docs/parlament-pilot-playbook.md` · [[project_parallel_worktree_landtag]] |
 | Themen-Unterthemen für ein Parlament | risk-first SoP (Discovery → Spike → Pilot → Global) | `docs/PROZEDUR-themen-unterthemen.md` · [[reference_prozedur_themen_unterthemen]] |
