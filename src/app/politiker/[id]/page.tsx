@@ -15,6 +15,7 @@ import {
   getBerlinParlamentarischeArbeit,
   getBerlinSpeechesByPolitician,
   getQaPaareForPolitician,
+  getBuergerfragenForPolitician,
   type PoliticianDrucksacheRow,
   type BerlinParlItem,
 } from "@/lib/db";
@@ -26,6 +27,7 @@ import { TagInfoPopover } from "@/components/TagInfoPopover";
 import { TonalityBadge, DrucksacheTonalityBadge } from "@/components/TonalityBadge";
 import { MediaAppearancesList } from "@/components/MediaAppearancesList";
 import { getMediaAppearancesForPolitician } from "@/lib/media-appearances";
+import { Buergerfragen } from "@/components/Buergerfragen";
 import {
   ExternalLink,
   Mic,
@@ -145,6 +147,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
 
   const notes = getNotesForPolitician(politicianId);
   const qaPaare = getQaPaareForPolitician(politicianId);
+  const buergerfragen = getBuergerfragenForPolitician(politicianId);
   const speechInfo = getSpeechSummaryInfo(politicianId);
   const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
     politicianId,
@@ -994,6 +997,13 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
           </CollapsibleCard>
         )}
 
+        {/* Bürgerfragen (abgeordnetenwatch — Bürger:innen fragen, MdB antwortet) */}
+        {buergerfragen && (
+          <CollapsibleCard title="Bürgerfragen" count={buergerfragen.total} className="mb-6">
+            <Buergerfragen data={buergerfragen} />
+          </CollapsibleCard>
+        )}
+
         {/* Drucksachen */}
         {drucksachen.length > 0 && (
           <CollapsibleCard title="Drucksachen" count={drucksachen.length} className="mb-6">
@@ -1290,7 +1300,7 @@ function DrucksachenList({ items }: { items: PoliticianDrucksacheRow[] }) {
       {items.map((it) => {
         const slug = it.drucksache_nr.replace("/", "-");
         const klasseShort = dsKlasseShort[it.batch_class] ?? it.batch_class.toUpperCase();
-        const themen = it.thema.split(",").map((s) => s.trim()).filter(Boolean).slice(0, 3);
+        const themen = [...new Set(it.thema.split(",").map((s) => s.trim()).filter(Boolean))].slice(0, 3);
         const datumF = it.datum
           ? new Date(it.datum + "T00:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" })
           : null;

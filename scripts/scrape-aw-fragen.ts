@@ -30,7 +30,8 @@ const BASE = "https://www.abgeordnetenwatch.de";
 
 const argv = process.argv.slice(2);
 const LIMIT = argv.includes("--limit") ? parseInt(argv[argv.indexOf("--limit") + 1], 10) : null;
-const RUN = argv.includes("--run") || LIMIT !== null || argv.includes("--details-only");
+const REEXTRACT = argv.includes("--reextract"); // Detailseiten erneut holen + frage_text (h1+Body) reparieren
+const RUN = argv.includes("--run") || LIMIT !== null || argv.includes("--details-only") || REEXTRACT;
 const DETAILS = argv.includes("--details");
 const DETAILS_ONLY = argv.includes("--details-only"); // nur Phase 2 (paralleler Prozess)
 const LOOP_DETAILS = argv.includes("--loop-details"); // pollt nachkommende Fragen, bis Backlog leer bleibt
@@ -85,6 +86,8 @@ const setAnswer = db.prepare(`UPDATE aw_questions SET antwort_text=?, antwort_vo
 // Detail-Fetch aktualisiert Frage UND Antwort: frage_text aus .question__question .body
 // (echter Wortlaut statt Listen-Titel "Frage an X bezüglich Y"); leer → alten Wert behalten.
 const setQA = db.prepare(`UPDATE aw_questions SET frage_text=COALESCE(NULLIF(?,''),frage_text), antwort_text=?, antwort_volltext=1, fetched_at=? WHERE frage_url=?`);
+// Re-Extraktion: nur frage_text reparieren (Antwort unangetastet — auch für unbeantwortete Fragen).
+const setFrage = db.prepare(`UPDATE aw_questions SET frage_text=COALESCE(NULLIF(?,''),frage_text), fetched_at=? WHERE frage_url=?`);
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const toISO = (d: string | null) => {
@@ -106,6 +109,20 @@ function blockText($: cheerio.CheerioAPI, el: cheerio.Cheerio<any>): string {
     .replace(/&(?:lrm|shy);/g, "").replace(/&gt;/g, ">").replace(/&lt;/g, "<")
     .replace(/&quot;/g, "\"").replace(/&#0?39;/g, "'").replace(/&amp;/g, "&")
     .replace(/\s+/g, " ").trim();
+}
+
+// Echter Fragewortlaut aus der Detailseite. schema.org/Question hat h1 (itemprop=name)
+// + Body (itemprop=text). Zwei Fälle:
+//   • Moderne Frage: h1 = die eigentliche Frage, Body = Ergänzung → h1 + Body.
+//   • Legacy-Frage: h1 = generischer Template-Titel "Frage an X von Y bezüglich Z",
+//     Body = echte Frage → nur Body (Template weglassen; Asker/Thema stehen separat).
+// Body-only verwarf früher die moderne Frage; h1-immer-voran verschmutzte Legacy-Fragen.
+function extractFrage($: cheerio.CheerioAPI): string {
+  const qq = $(".question__question").first();
+  const titel = blockText($, qq.find("h1").first());
+  const body = blockText($, qq.find(".body").first());
+  if (/^Frage an .+ von .+ bezüglich /i.test(titel)) return body || titel;
+  return [titel, body].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
 }
 
 // Adaptiver Delay: startet bei DELAY, steigt dauerhaft bei Rate-Limit-Treffern.
@@ -177,6 +194,50 @@ function parseList(html: string, slug: string, politicianId: number) {
 
 async function main() {
   if (!RUN) { console.log("Nichts zu tun. --limit N (Test) oder --run."); return; }
+
+  // --reextract: vorhandene Detailseiten erneut holen und frage_text reparieren
+  // (h1-Überschrift + Body statt nur Body). Antwort bleibt unangetastet, außer bei
+  // beantworteten Fragen wird der Volltext gleich mitaufgefrischt. --limit N = nur N Fragen
+  // (Test), --only <slug> = nur ein Profil.
+  if (REEXTRACT) {
+    const polFilter = ONLY ? ` AND slug = '${ONLY.replace(/'/g, "''")}'` : "";
+    // --since <iso>: Resume — Zeilen überspringen, die in diesem Lauf schon (>= iso) gefrischt
+    // wurden. fetched_at wird pro Zeile auf jetzt gesetzt → Neustart macht nur den Rest.
+    const SINCE = argv.includes("--since") ? argv[argv.indexOf("--since") + 1] : null;
+    const sinceFilter = SINCE ? ` AND (fetched_at IS NULL OR fetched_at < '${SINCE.replace(/'/g, "''")}')` : "";
+    const rows = db.prepare(
+      `SELECT frage_url, status FROM aw_questions WHERE 1=1${polFilter}${sinceFilter} ORDER BY frage_url${LIMIT ? ` LIMIT ${LIMIT}` : ""}`
+    ).all() as { frage_url: string; status: string }[];
+    console.log(`\n--- Re-Extraktion frage_text (${rows.length} Fragen, ${CONCURRENCY} parallel, Delay ${curDelay}ms) ---`);
+    let done = 0, fixed = 0, fail = 0, idx = 0;
+    await Promise.all(
+      Array.from({ length: Math.max(1, CONCURRENCY) }, async () => {
+        while (idx < rows.length) {
+          const { frage_url, status } = rows[idx++];
+          const html = await get(frage_url);
+          await sleep(curDelay);
+          if (!html) { fail++; continue; }
+          const $ = cheerio.load(html);
+          const frage = extractFrage($);
+          if (frage) {
+            if (status === "beantwortet") {
+              const art = $("article.question").first();
+              const full = blockText($, art.find(".answer__body").first()) || blockText($, $(".answer__body").first());
+              if (full) setQA.run(frage, full, new Date().toISOString(), frage_url);
+              else setFrage.run(frage, new Date().toISOString(), frage_url);
+            } else {
+              setFrage.run(frage, new Date().toISOString(), frage_url);
+            }
+            fixed++;
+          }
+          if (++done % 100 === 0) console.log(`  re-extract: ${done}/${rows.length} (fixed ${fixed}, fail ${fail}, Delay ${curDelay}ms, Limits ${rateLimitHits})`);
+        }
+      })
+    );
+    console.log(`\n=== RE-EXTRAKTION FERTIG === ${done} verarbeitet · ${fixed} frage_text aktualisiert · ${fail} Fetch-Fehler.`);
+    return;
+  }
+
   let pols = db.prepare(
     `SELECT id, replace(abgeordnetenwatch_url,'${BASE}/profile/','') AS slug
      FROM politicians WHERE abgeordnetenwatch_url LIKE '${BASE}/profile/%'
@@ -258,9 +319,7 @@ async function main() {
       const art = $("article.question").first();
       const full = blockText($, art.find(".answer__body").first())
         || blockText($, $(".answer__body").first());
-      // Echten Fragewortlaut aus .question__question .body; leer → h1-Titel als Fallback.
-      const qq = $(".question__question").first();
-      const frage = blockText($, qq.find(".body").first()) || blockText($, qq.find("h1").first());
+      const frage = extractFrage($);
       if (full) setQA.run(frage, full, new Date().toISOString(), frage_url);
     };
     let done = 0, emptyPasses = 0;
