@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { listParteienMitPositionen } from "@/lib/db";
 import { partyColors } from "@/lib/party-colors";
 import { PARTEIEN } from "@/lib/partei-slug";
+import { THEMENFELDER } from "@/lib/themenfeld-slug";
 
 export default function ParteienIndex() {
   const counts = new Map(
@@ -59,7 +60,29 @@ export default function ParteienIndex() {
           })}
         </div>
 
-        <p className="mt-8 text-[12px] leading-relaxed text-zinc-400">
+        {/* Nach Thema vergleichen */}
+        <section className="mt-12">
+          <h2 className="text-[15px] font-semibold tracking-tight text-zinc-900">
+            Nach Thema vergleichen
+          </h2>
+          <p className="mt-1.5 max-w-2xl text-[13px] leading-relaxed text-zinc-600">
+            Ein Themenfeld wählen und sehen, was alle Parteien dazu wollen — direkt
+            nebeneinander.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {THEMENFELDER.map((t) => (
+              <Link
+                key={t.slug}
+                href={`/parteien/feld/${t.slug}`}
+                className="rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 text-[12.5px] font-medium text-zinc-600 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+              >
+                {t.kurz}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <p className="mt-12 text-[12px] leading-relaxed text-zinc-400">
           Quelle: offizielle Wahlprogramme zur Bundestagswahl 2025. Extraktiv und
           ohne Wertung, Belege mit geprüfter Fundstelle.
         </p>

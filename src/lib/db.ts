@@ -7309,24 +7309,19 @@ export interface ParteiPositionRow {
   position: string;
   leer: number;
   belege: ParteiBeleg[];
+  kompakt: string[];
 }
 
-export function getParteiPositionen(partei: string): ParteiPositionRow[] {
-  const db = getDb();
-  const rows = db
-    .prepare(
-      `SELECT feld, position, leer, belege_json
-       FROM partei_themenfeld_position
-       WHERE partei = ?
-       ORDER BY feld COLLATE NOCASE`,
-    )
-    .all(partei) as {
-    feld: string;
-    position: string;
-    leer: number;
-    belege_json: string | null;
-  }[];
-  return rows.map((r) => ({
+type ParteiPositionDbRow = {
+  feld: string;
+  position: string;
+  leer: number;
+  belege_json: string | null;
+  kompakt_json: string | null;
+};
+
+function mapParteiPositionRow(r: ParteiPositionDbRow): ParteiPositionRow {
+  return {
     feld: r.feld,
     position: r.position,
     leer: r.leer,
@@ -7335,7 +7330,49 @@ export function getParteiPositionen(partei: string): ParteiPositionRow[] {
       seite: b.seite ?? null,
       verifiziert: !!b.verifiziert,
     })),
-  }));
+    kompakt: JSON.parse(r.kompakt_json || "[]") as string[],
+  };
+}
+
+export function getParteiPositionen(partei: string): ParteiPositionRow[] {
+  const db = getDb();
+  const rows = db
+    .prepare(
+      `SELECT feld, position, leer, belege_json, kompakt_json
+       FROM partei_themenfeld_position
+       WHERE partei = ?
+       ORDER BY feld COLLATE NOCASE`,
+    )
+    .all(partei) as ParteiPositionDbRow[];
+  return rows.map(mapParteiPositionRow);
+}
+
+/** Alle Parteien für EIN Themenfeld (Themenfeld-zuerst-Vergleich). */
+export function getFeldVergleich(
+  feld: string,
+): { partei: string; pos: ParteiPositionRow }[] {
+  const db = getDb();
+  const rows = db
+    .prepare(
+      `SELECT partei, feld, position, leer, belege_json, kompakt_json
+       FROM partei_themenfeld_position
+       WHERE feld = ? AND leer = 0
+       ORDER BY partei`,
+    )
+    .all(feld) as (ParteiPositionDbRow & { partei: string })[];
+  return rows.map((r) => ({ partei: r.partei, pos: mapParteiPositionRow(r) }));
+}
+
+/** Liste der Themenfelder, die mind. eine Partei-Position haben (für Vergleichs-Nav). */
+export function listThemenfelderMitPositionen(): string[] {
+  const db = getDb();
+  return (
+    db
+      .prepare(
+        `SELECT DISTINCT feld FROM partei_themenfeld_position WHERE leer = 0 ORDER BY feld COLLATE NOCASE`,
+      )
+      .all() as { feld: string }[]
+  ).map((r) => r.feld);
 }
 
 export function listParteienMitPositionen(): { partei: string; felder: number }[] {
