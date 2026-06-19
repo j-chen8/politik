@@ -41,3 +41,36 @@ export function feldToSlug(feld: string): string | null {
 export function feldKurz(feld: string): string {
   return THEMENFELDER.find((t) => t.feld === feld)?.kurz ?? feld;
 }
+
+/** Emoji je amtlichem Themenfeld — rein dekorativ, neutral (Sachfeld, keine Wertung). */
+export const FELD_EMOJI: Record<string, string> = {
+  "Arbeit und Beschäftigung": "💼",
+  "Außenpolitik und internationale Beziehungen": "🌍",
+  "Bildung und Erziehung": "🎓",
+  Energie: "⚡",
+  Entwicklungspolitik: "🤝",
+  "Europapolitik und Europäische Union": "🇪🇺",
+  "Gesellschaftspolitik, soziale Gruppen": "👥",
+  Gesundheit: "🩺",
+  "Innere Sicherheit": "🛡️",
+  Kultur: "🎭",
+  "Landwirtschaft und Ernährung": "🌾",
+  "Medien, Kommunikation und Informationstechnik": "📱",
+  "Migration und Aufenthaltsrecht": "🛂",
+  "Politisches Leben, Parteien": "🏛️",
+  "Raumordnung, Bau- und Wohnungswesen": "🏠",
+  Recht: "⚖️",
+  "Soziale Sicherung": "🫶",
+  "Sport, Freizeit und Tourismus": "⚽",
+  "Staat und Verwaltung": "📋",
+  Umwelt: "🌳",
+  Verkehr: "🚗",
+  Verteidigung: "🪖",
+  Wirtschaft: "📈",
+  "Wissenschaft, Forschung und Technologie": "🔬",
+  "Öffentliche Finanzen, Steuern und Abgaben": "💶",
+};
+
+export function feldEmoji(feld: string): string {
+  return FELD_EMOJI[feld] ?? "•";
+}

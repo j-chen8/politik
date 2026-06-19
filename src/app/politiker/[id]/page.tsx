@@ -16,6 +16,7 @@ import {
   getBerlinSpeechesByPolitician,
   getQaPaareForPolitician,
   getBuergerfragenForPolitician,
+  getAwThemenfeldSynthesen,
   type PoliticianDrucksacheRow,
   type BerlinParlItem,
 } from "@/lib/db";
@@ -28,6 +29,7 @@ import { TonalityBadge, DrucksacheTonalityBadge } from "@/components/TonalityBad
 import { MediaAppearancesList } from "@/components/MediaAppearancesList";
 import { getMediaAppearancesForPolitician } from "@/lib/media-appearances";
 import { Buergerfragen } from "@/components/Buergerfragen";
+import { ThemenSynthesen } from "@/components/ThemenSynthesen";
 import {
   ExternalLink,
   Mic,
@@ -148,6 +150,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
   const notes = getNotesForPolitician(politicianId);
   const qaPaare = getQaPaareForPolitician(politicianId);
   const buergerfragen = getBuergerfragenForPolitician(politicianId);
+  const themenSynthesen = getAwThemenfeldSynthesen(politicianId);
   const speechInfo = getSpeechSummaryInfo(politicianId);
   const { items: parlArbeit, stats: parlStats } = getParlamentarischeArbeit(
     politicianId,
@@ -994,6 +997,17 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
                 </li>
               ))}
             </ul>
+          </CollapsibleCard>
+        )}
+
+        {/* Themen aus den Bürgerfragen — neutrale Synthese je Themenfeld (Frage-Muster + Antwortverhalten) */}
+        {themenSynthesen.length > 0 && (
+          <CollapsibleCard
+            title="Themen aus den Bürgerfragen"
+            count={themenSynthesen.length}
+            className="mb-6"
+          >
+            <ThemenSynthesen items={themenSynthesen} name={politician.last_name} />
           </CollapsibleCard>
         )}
 

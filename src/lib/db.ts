@@ -4731,6 +4731,143 @@ export function getBuergerfragenForPolitician(
   }
 }
 
+/* ── Themenfeld-Synthese aus Bürgerfragen ──────────────────────────────────
+ * Pro Abgeordnete:r × Themenfeld eine neutrale Zusammenfassung der öffentlichen
+ * Bürgerfragen: WORUM gefragt wird + WIE geantwortet wird (inkl. wo keine
+ * Position bezogen wird). Quelle: aw_themenfeld_synthese (Mistral, aus den
+ * Original-Q&A). n_fragen flaggt dünne Synthesen (1-Frage-Fälle). */
+export type ThemenfeldSynthese = {
+  feld: string;
+  synthese: string;
+  nFragen: number;
+  nKontext: number;
+  createdAt: string | null;
+};
+
+/**
+ * Themenfeld-Synthesen dieser/dieses Abgeordneten, meistgefragtes Feld zuerst.
+ * Phantom-Felder ausgeblendet: n=1-Synthesen, deren Frage primär zu einem ANDEREN
+ * Feld gehört (z. B. eine LGBT/EU-Frage, die über einen Neben-Tag „Schulen" unter
+ * „Bildung" landete), markiert durch aw_n1_hauptfeld.is_phantom=1.
+ */
+export function getAwThemenfeldSynthesen(politicianId: number): ThemenfeldSynthese[] {
+  const db = getDb();
+  try {
+    return db.prepare(`
+      SELECT s.feld, s.synthese, s.n_fragen AS nFragen, s.n_kontext AS nKontext, s.created_at AS createdAt
+      FROM aw_themenfeld_synthese s
+      WHERE s.politician_id = ?
+        AND NOT EXISTS (
+          SELECT 1 FROM aw_n1_hauptfeld h
+          WHERE h.politician_id = s.politician_id AND h.feld = s.feld AND h.is_phantom = 1
+        )
+      ORDER BY s.n_fragen DESC, s.feld
+    `).all(politicianId) as ThemenfeldSynthese[];
+  } catch {
+    return [];
+  }
+}
+
+/* ── Bürgerfragen-Feed („Durchklicken") ─────────────────────────────────────
+ * Gemischter, endlos blätterbarer Strom EINZELNER beantworteter Bürgerfragen
+ * über ALLE Abgeordneten (nicht pro Person). Eine Karte = eine echte Frage +
+ * der TL;DR der Antwort. Reihenfolge bewusst pseudo-zufällig (deterministischer
+ * Seed-Shuffle), NICHT nach „Brisanz" gerankt — neutral-by-format, Parteien
+ * gleichbehandelt. Nur Fragen mit TL;DR + Politiker-Foto (visuelle Karte). */
+export type FrageFeedCard = {
+  frageUrl: string;
+  frageText: string;
+  asker: string | null;
+  frageDatum: string | null;
+  tldr: string;
+  antwortText: string | null;
+  antwortDatum: string | null;
+  politicianId: number;
+  name: string;
+  party: string | null;
+  photoUrl: string | null;
+  feld: string | null; // amtliches Themenfeld (eines, fürs Chip), null wenn ungetaggt
+};
+
+/**
+ * Eine Seite des gemischten Bürgerfragen-Feeds. `seed` hält die Reihenfolge über
+ * die Seiten EINER Session stabil (LCG-Scramble über rowid → kein Repeat, keine
+ * seen-Liste nötig), `page` ist 0-basiert. Optional auf ein Themenfeld eingrenzbar.
+ */
+export function getFrageFeed(opts: {
+  seed: number;
+  page: number;
+  perPage?: number;
+  feld?: string | null;
+}): FrageFeedCard[] {
+  const db = getDb();
+  const perPage = Math.max(1, Math.min(40, opts.perPage ?? 12));
+  const offset = Math.max(0, opts.page) * perPage;
+  // Seed in den positiven int32-Bereich normalisieren (deterministisch pro Session).
+  const seed = (((opts.seed | 0) % 1000000007) + 1000000007) % 1000000007;
+  const feld = opts.feld?.trim() || null;
+  try {
+    const feldFilter = feld
+      ? `AND EXISTS (SELECT 1 FROM aw_question_topics qt
+                     JOIN aw_tag_themenfeld tf ON tf.label = qt.label
+                     WHERE qt.frage_url = q.frage_url AND tf.feld = @feld)`
+      : "";
+    const params: Record<string, unknown> = { seed, limit: perPage, offset };
+    if (feld) params.feld = feld;
+    return db.prepare(`
+      SELECT
+        q.frage_url      AS frageUrl,
+        q.frage_text     AS frageText,
+        q.asker          AS asker,
+        q.frage_datum    AS frageDatum,
+        t.tldr           AS tldr,
+        q.antwort_text   AS antwortText,
+        q.antwort_datum  AS antwortDatum,
+        p.id             AS politicianId,
+        p.first_name || ' ' || p.last_name AS name,
+        pa.label         AS party,
+        p.photo_url      AS photoUrl,
+        (SELECT tf.feld FROM aw_question_topics qt
+           JOIN aw_tag_themenfeld tf ON tf.label = qt.label
+           WHERE qt.frage_url = q.frage_url AND tf.feld IS NOT NULL
+           LIMIT 1) AS feld
+      FROM aw_questions q
+      JOIN aw_qa_tldr t   ON t.frage_url = q.frage_url
+      JOIN politicians p  ON p.id = q.politician_id
+      LEFT JOIN parties pa ON pa.id = p.party_id
+      WHERE q.status = 'beantwortet'
+        AND q.frage_text IS NOT NULL AND TRIM(q.frage_text) <> ''
+        AND p.photo_url IS NOT NULL
+        ${feldFilter}
+      ORDER BY ((q.rowid * 2654435761 + @seed) % 1000000007), q.frage_url
+      LIMIT @limit OFFSET @offset
+    `).all(params) as FrageFeedCard[];
+  } catch {
+    return [];
+  }
+}
+
+/** Themenfelder, die im Bürgerfragen-Feed tatsächlich vorkommen (+ Karten-Anzahl) — für die Filterleiste. */
+export function getFrageFeedFelder(): { feld: string; count: number }[] {
+  const db = getDb();
+  try {
+    return db.prepare(`
+      SELECT tf.feld AS feld, COUNT(DISTINCT q.frage_url) AS count
+      FROM aw_questions q
+      JOIN aw_qa_tldr t       ON t.frage_url = q.frage_url
+      JOIN politicians p      ON p.id = q.politician_id
+      JOIN aw_question_topics qt ON qt.frage_url = q.frage_url
+      JOIN aw_tag_themenfeld tf  ON tf.label = qt.label AND tf.feld IS NOT NULL
+      WHERE q.status = 'beantwortet' AND p.photo_url IS NOT NULL
+      GROUP BY tf.feld
+      HAVING count >= 20
+      ORDER BY count DESC
+    `).all() as { feld: string; count: number }[];
+  } catch {
+    return [];
+  }
+}
+
 /** Fraktionen mit nennenswerter Fragezahl — für den Partei-Filter auf /fragen (Rauschen <20 ausgeblendet). */
 export function getQaPaareParties(): { party: string; count: number }[] {
   const db = getDb();
