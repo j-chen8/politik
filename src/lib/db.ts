@@ -7500,6 +7500,225 @@ export function getFeldVergleich(
   return rows.map((r) => ({ partei: r.partei, pos: mapParteiPositionRow(r) }));
 }
 
+/** "Tut"-Schicht (Pilot): synthetisierte Aspekt-Positionen aus Reden/Q&A + Votes,
+ *  geschachtelt als aspekt -> partei -> Material. Nur Felder mit Pilot-Daten. */
+export type AspektVerhalten = {
+  gesagt: string | null;
+  punkte: { text: string; refs: string[] }[];
+  belege: {
+    zitat: string;
+    quelle: string;
+    quelleId: string;
+    quelleUrl: string | null;
+    quelleLabel: string | null;
+    person: string | null;
+    verifiziert: boolean;
+  }[];
+  votes: { voteId: number; richtung: string; betreff: string; kurz: string | null; url: string | null }[];
+  nVotes: number;
+  nReden: number;
+  nQa: number;
+};
+
+export function getFeldVerhalten(
+  feld: string,
+): Record<string, Record<string, AspektVerhalten>> {
+  const db = getDb();
+  // vote_id -> Sitzungsnummer, für Deep-Link auf den Vote-Anker im Protokoll.
+  const voteSitzung = new Map<number, number>();
+  for (const v of db
+    .prepare(`SELECT vote_id, sitzung_nr FROM bundestag_votes WHERE sitzung_nr IS NOT NULL`)
+    .all() as { vote_id: number; sitzung_nr: number }[]) {
+    voteSitzung.set(v.vote_id, v.sitzung_nr);
+  }
+  // vote_id -> Kurzlabel (manuell, Tabelle vote_kurz)
+  const voteKurz = new Map<number, string>();
+  for (const v of db.prepare(`SELECT vote_id, kurz FROM vote_kurz`).all() as {
+    vote_id: number;
+    kurz: string;
+  }[]) {
+    voteKurz.set(v.vote_id, v.kurz);
+  }
+  const rows = db
+    .prepare(
+      `SELECT aspekt, partei, gesagt, gesagt_punkte_json, gesagt_belege_json, abgestimmt_json,
+              n_votes, n_reden, n_qa
+       FROM partei_aspekt_verhalten
+       WHERE feld = ?`,
+    )
+    .all(feld) as {
+    aspekt: string;
+    partei: string;
+    gesagt: string | null;
+    gesagt_punkte_json: string | null;
+    gesagt_belege_json: string | null;
+    abgestimmt_json: string | null;
+    n_votes: number;
+    n_reden: number;
+    n_qa: number;
+  }[];
+
+  const out: Record<string, Record<string, AspektVerhalten>> = {};
+  for (const r of rows) {
+    const belege = (
+      JSON.parse(r.gesagt_belege_json || "[]") as {
+        zitat: string;
+        quelle: string;
+        quelle_id: string;
+        quelle_url?: string | null;
+        quelle_label?: string | null;
+        quelle_person?: string | null;
+        verifiziert?: boolean;
+      }[]
+    ).map((b) => ({
+      zitat: b.zitat,
+      quelle: b.quelle,
+      quelleId: b.quelle_id,
+      quelleUrl: b.quelle_url ?? null,
+      quelleLabel: b.quelle_label ?? null,
+      person: b.quelle_person ?? null,
+      verifiziert: !!b.verifiziert,
+    }));
+    const votes = (
+      JSON.parse(r.abgestimmt_json || "[]") as {
+        vote_id: number;
+        richtung: string;
+        betreff: string;
+      }[]
+    ).map((v) => {
+      const sn = voteSitzung.get(v.vote_id);
+      return {
+        voteId: v.vote_id,
+        richtung: v.richtung,
+        betreff: v.betreff,
+        kurz: voteKurz.get(v.vote_id) ?? null,
+        url: sn != null ? `/protokolle/sitzung/${sn}#vote-h-${v.vote_id}` : null,
+      };
+    });
+    const punkte = (() => {
+      try {
+        const arr = JSON.parse(r.gesagt_punkte_json || "[]");
+        if (Array.isArray(arr) && arr.length) {
+          if (typeof arr[0] === "string")
+            return arr.map((x) => ({ text: String(x), refs: [] as string[] }));
+          return arr.map((o) => ({
+            text: String(o?.punkt ?? o?.text ?? ""),
+            refs: Array.isArray(o?.refs) ? o.refs.map((x: unknown) => String(x)) : [],
+          }));
+        }
+      } catch {
+        /* fallback unten */
+      }
+      return r.gesagt ? [{ text: r.gesagt, refs: [] as string[] }] : [];
+    })();
+    (out[r.aspekt] ??= {})[r.partei] = {
+      gesagt: r.gesagt,
+      punkte,
+      belege,
+      votes,
+      nVotes: r.n_votes,
+      nReden: r.n_reden,
+      nQa: r.n_qa,
+    };
+  }
+  return out;
+}
+
+/** Abstimmungen je Aspekt mit VOLLSTÄNDIGEM Fraktions-Roll-Call (aus
+ *  bundestag_votes.fraktion_votes_json) — nicht der lückenhaften Pilot-Zuordnung.
+ *  Welche Vorlage zu welchem Aspekt gehört, kommt aus der Vereinigung der im Pilot
+ *  getaggten vote_ids (über alle Parteien). */
+export type FeldVorlage = {
+  voteId: number;
+  kurz: string | null;
+  betreff: string;
+  url: string | null;
+  fraktionen: Record<string, string>; // partei -> ja|nein|enthaltung|unbekannt
+};
+
+export function getFeldAbstimmungen(feld: string): Record<string, FeldVorlage[]> {
+  const db = getDb();
+  const rows = db
+    .prepare(`SELECT aspekt, abgestimmt_json FROM partei_aspekt_verhalten WHERE feld = ?`)
+    .all(feld) as { aspekt: string; abgestimmt_json: string | null }[];
+
+  // aspekt -> Liste der vote_ids; vote_id -> betreff (aus Pilot-Daten)
+  const aspektVotes = new Map<string, number[]>();
+  const betreffById = new Map<number, string>();
+  for (const r of rows) {
+    const ids = aspektVotes.get(r.aspekt) ?? [];
+    for (const v of JSON.parse(r.abgestimmt_json || "[]") as { vote_id: number; betreff: string }[]) {
+      if (!ids.includes(v.vote_id)) ids.push(v.vote_id);
+      if (!betreffById.has(v.vote_id)) betreffById.set(v.vote_id, v.betreff);
+    }
+    aspektVotes.set(r.aspekt, ids);
+  }
+
+  const alleIds = [...betreffById.keys()];
+  if (alleIds.length === 0) return {};
+
+  const ph = alleIds.map(() => "?").join(",");
+  const rc = new Map<
+    number,
+    { fraktionen: Record<string, string>; sitzung: number | null; ds: string[] }
+  >();
+  for (const v of db
+    .prepare(
+      `SELECT vote_id, sitzung_nr, fraktion_votes_json, drucksache_nrn_json
+       FROM bundestag_votes WHERE vote_id IN (${ph})`,
+    )
+    .all(...alleIds) as {
+    vote_id: number;
+    sitzung_nr: number | null;
+    fraktion_votes_json: string | null;
+    drucksache_nrn_json: string | null;
+  }[]) {
+    rc.set(v.vote_id, {
+      fraktionen: JSON.parse(v.fraktion_votes_json || "{}"),
+      sitzung: v.sitzung_nr,
+      ds: JSON.parse(v.drucksache_nrn_json || "[]") as string[],
+    });
+  }
+  // DS-Nummer "21/0589" -> Aktivitäten-Slug "21-589" (führende Nullen strippen).
+  const dsToSlug = (nr: string): string | null => {
+    const [wp, n] = nr.split("/");
+    if (!wp || !n) return null;
+    const num = parseInt(n, 10);
+    return Number.isNaN(num) ? null : `${wp}-${num}`;
+  };
+  const voteKurz = new Map<number, string>();
+  for (const v of db.prepare(`SELECT vote_id, kurz FROM vote_kurz`).all() as {
+    vote_id: number;
+    kurz: string;
+  }[])
+    voteKurz.set(v.vote_id, v.kurz);
+
+  const out: Record<string, FeldVorlage[]> = {};
+  for (const [aspekt, ids] of aspektVotes) {
+    out[aspekt] = ids
+      .map((id) => {
+        const r = rc.get(id);
+        if (!r) return null;
+        // Link bevorzugt zur Drucksache (Inhalt), erste DS; sonst Plenar-Anker.
+        const slug = r.ds.map(dsToSlug).find((s) => s != null) ?? null;
+        const url = slug
+          ? `/aktivitaeten/${slug}`
+          : r.sitzung != null
+            ? `/protokolle/sitzung/${r.sitzung}#vote-h-${id}`
+            : null;
+        return {
+          voteId: id,
+          kurz: voteKurz.get(id) ?? null,
+          betreff: betreffById.get(id) ?? "",
+          url,
+          fraktionen: r.fraktionen,
+        } as FeldVorlage;
+      })
+      .filter((x): x is FeldVorlage => x !== null);
+  }
+  return out;
+}
+
 /** Liste der Themenfelder, die mind. eine Partei-Position haben (für Vergleichs-Nav). */
 export function listThemenfelderMitPositionen(): string[] {
   const db = getDb();
