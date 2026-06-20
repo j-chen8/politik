@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { getFeldVergleich, getFeldVerhalten, getFeldAbstimmungen } from "@/lib/db";
+import { hasGold, getFeldVerhaltenGold } from "@/lib/gold-verhalten";
 import { partyColors } from "@/lib/party-colors";
 import { PARTEIEN } from "@/lib/partei-slug";
 import { THEMENFELDER, slugToFeld } from "@/lib/themenfeld-slug";
@@ -101,8 +102,9 @@ export default async function FeldVergleichPage({ params }: Props) {
   const matrix = getFeldMatrix(feld);
   const parteien = eintraege.map((e) => e.partei);
 
-  // "Tut"-Schicht (Pilot): aspekt -> partei -> Material aus Reden/Q&A + Votes.
-  const verhalten = getFeldVerhalten(feld);
+  // "Tut"-Schicht: Gold-Volltext-Extraktion (wörtliche Belege, korrigiertes
+  // Primär-Feld) sobald für dieses Feld vorhanden, sonst die alte Synthese.
+  const verhalten = hasGold(feld) ? getFeldVerhaltenGold(feld) : getFeldVerhalten(feld);
 
   // Referenz-Apparat: EINE Nummer PRO PUNKT (nicht pro Einzelbeleg) — sonst stehen
   // bis zu 50 Fußnoten in einer Zelle. Der Quellen-Eintrag listet ALLE Reden des

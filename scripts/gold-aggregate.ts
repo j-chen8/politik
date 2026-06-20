@@ -8,10 +8,30 @@
  *   npx tsx scripts/gold-aggregate.ts --feld "Wirtschaft"
  */
 import Database from "better-sqlite3";
+import { VERGLEICH_MATRIX } from "../src/lib/partei-vergleich-matrix";
 
 const argv = process.argv.slice(2);
 const FELD = argv.includes("--feld") ? argv[argv.indexOf("--feld") + 1] : "Wirtschaft";
 const db = new Database("politik.db");
+
+// Aspekt-Labels gegen die Matrix normalisieren: LLM driftet gelegentlich (Tippfehler,
+// Feld-Name statt Aspekt). Exakt → normalisiert → Fuzzy-Prefix(≥14); sonst verwerfen.
+const MATRIX_ASP: string[] = (VERGLEICH_MATRIX[FELD]?.aspekte ?? []).map((a: any) => a.label);
+const normA = (s: string) => s.toLowerCase().replace(/[^a-z0-9äöüß]/g, "");
+const aspByNorm = new Map(MATRIX_ASP.map((l) => [normA(l), l]));
+function canonAspekt(a: string): string | null {
+  if (MATRIX_ASP.includes(a)) return a;
+  const n = normA(a);
+  if (aspByNorm.has(n)) return aspByNorm.get(n)!;
+  let best: string | null = null, bestLen = 0;
+  for (const l of MATRIX_ASP) {
+    const ln = normA(l);
+    let i = 0;
+    while (i < n.length && i < ln.length && n[i] === ln[i]) i++;
+    if (i > bestLen) { bestLen = i; best = l; }
+  }
+  return bestLen >= 14 ? best : null;
+}
 
 function kanon(p: string | null): string | null {
   const s = (p ?? "").toLowerCase();
@@ -38,11 +58,13 @@ const rows = db
   .all(FELD) as any[];
 
 const cells: Record<string, any[]> = {};
-let skipped = 0;
+let skipped = 0, droppedAsp = 0;
 for (const r of rows) {
   const p = kanon(r.partei);
   if (!p) { skipped++; continue; }
-  (cells[`${r.aspekt}||${p}`] ??= []).push({
+  const asp = canonAspekt(r.aspekt);
+  if (!asp) { droppedAsp++; continue; }
+  (cells[`${asp}||${p}`] ??= []).push({
     position: r.position, zitat: r.zitat, rede_id: r.rede_id,
     speaker: r.speaker, verifiziert: !!r.verif,
   });
@@ -61,6 +83,6 @@ const verif = rows.filter((r) => r.verif).length;
 console.log(
   `✓ Feld „${FELD}": ${Object.keys(cells).length} Zellen aus ${rows.length} Gold-Punkten ` +
     `(${verif}/${rows.length} = ${Math.round((verif / Math.max(rows.length, 1)) * 100)}% wörtlich; ` +
-    `${skipped} ohne Fraktion übersprungen)`,
+    `${skipped} ohne Fraktion, ${droppedAsp} Nicht-Matrix-Aspekt verworfen)`,
 );
 db.close();
