@@ -65,6 +65,28 @@ const richtungMark = (r: string) =>
       ? { glyph: "✗", cls: "text-rose-600" }
       : { glyph: "•", cls: "text-zinc-400" };
 
+// Datum (YYYY-MM-DD) aus einem Quellen-Label ziehen — fürs Ranking (jüngste zuerst).
+const redeDatum = (label: string | null): string =>
+  label?.match(/(\d{4}-\d{2}-\d{2})/)?.[1] ?? "";
+
+// Eine Quellen-Rede als Link (extern = Protokoll-Deeplink, intern = Next-Link).
+function RedeLink({ url, label }: { url: string; label: string }) {
+  return url.startsWith("http") ? (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-700 hover:underline"
+    >
+      {label}
+    </a>
+  ) : (
+    <Link href={url} className="text-blue-700 hover:underline">
+      {label}
+    </Link>
+  );
+}
+
 export default async function FeldVergleichPage({ params }: Props) {
   const { slug } = await params;
   const feld = slugToFeld(slug);
@@ -85,19 +107,38 @@ export default async function FeldVergleichPage({ params }: Props) {
   // Referenz-Apparat: EINE Nummer PRO PUNKT (nicht pro Einzelbeleg) — sonst stehen
   // bis zu 50 Fußnoten in einer Zelle. Der Quellen-Eintrag listet ALLE Reden des
   // Punkts. ref (rede_id/frage_url) -> {url, label} aus den aufgelösten Belegen.
-  const refInfo = new Map<string, { url: string | null; label: string | null }>();
+  const refInfo = new Map<
+    string,
+    { url: string | null; label: string | null; zitat: string | null; verifiziert: boolean }
+  >();
   if (matrix)
     for (const asp of matrix.aspekte)
       for (const p of parteien)
-        for (const b of verhalten[asp.label]?.[p]?.belege ?? [])
-          if (b.quelleId && !refInfo.has(b.quelleId))
-            refInfo.set(b.quelleId, { url: b.quelleUrl, label: b.quelleLabel });
+        for (const b of verhalten[asp.label]?.[p]?.belege ?? []) {
+          if (!b.quelleId) continue;
+          const prev = refInfo.get(b.quelleId);
+          // Erststand gewinnt — außer ein späterer Beleg ist wörtlich verifiziert,
+          // dann zeigen wir lieber dessen geprüftes Zitat.
+          if (!prev || (!prev.verifiziert && b.verifiziert))
+            refInfo.set(b.quelleId, {
+              url: b.quelleUrl,
+              label: b.quelleLabel,
+              zitat: b.zitat || null,
+              verifiziert: b.verifiziert,
+            });
+        }
 
+  type QuellRede = {
+    url: string;
+    label: string;
+    zitat: string | null;
+    verifiziert: boolean;
+  };
   type QuellEintrag = {
     n: number;
     partei: string;
     punkt: string;
-    reden: { url: string; label: string }[];
+    reden: QuellRede[];
   };
   const quellen: QuellEintrag[] = [];
   const punktNum = new Map<string, number>(); // "aspekt|partei|index" -> n
@@ -105,10 +146,21 @@ export default async function FeldVergleichPage({ params }: Props) {
     for (const asp of matrix.aspekte)
       for (const p of parteien)
         (verhalten[asp.label]?.[p]?.punkte ?? []).forEach((pt, idx) => {
-          const reden = pt.refs
+          const reden: QuellRede[] = pt.refs
             .map((r) => refInfo.get(r))
-            .filter((x): x is { url: string | null; label: string | null } => !!x && !!x.url)
-            .map((x) => ({ url: x.url as string, label: x.label || x.url! }));
+            .filter((x): x is NonNullable<typeof x> => !!x && !!x.url)
+            .map((x) => ({
+              url: x.url as string,
+              label: x.label || x.url!,
+              zitat: x.zitat,
+              verifiziert: x.verifiziert,
+            }))
+            // Wörtlich belegte zuerst, dann die jüngsten Reden oben.
+            .sort(
+              (a, b) =>
+                Number(b.verifiziert) - Number(a.verifiziert) ||
+                redeDatum(b.label).localeCompare(redeDatum(a.label)),
+            );
           if (!reden.length) return;
           const n = quellen.length + 1;
           punktNum.set(`${asp.label}|${p}|${idx}`, n);
@@ -161,7 +213,12 @@ export default async function FeldVergleichPage({ params }: Props) {
                   Bundestag: Reden geben meist die intern abgestimmte Fraktionslinie
                   wieder, Bürgerfragen beantworten einzelne Abgeordnete. Ein starkes
                   Signal für die Position — aber Fraktion und Partei sind nicht dasselbe
-                  und nicht gleichzusetzen.
+                  und nicht gleichzusetzen.{" "}
+                  <span className="text-zinc-400">
+                    „keine Aussage" in der Reden-Zeile heißt: in den ausgewerteten Reden
+                    keine klare Aussage gefunden — nicht zwingend, dass die Fraktion dazu
+                    keine Position hat.
+                  </span>
                 </span>
               </>
             ) : (
@@ -278,7 +335,7 @@ export default async function FeldVergleichPage({ params }: Props) {
                               key={p}
                               className="border-l border-t border-zinc-100 px-3 py-1.5 align-top"
                             >
-                              {beh && beh.punkte.length > 0 && (
+                              {beh && beh.punkte.length > 0 ? (
                                 <span className="block border-l-2 border-amber-300 pl-2">
                                   {beh.punkte.map((pt, pi) => {
                                     const n = punktNum.get(`${asp.label}|${p}|${pi}`);
@@ -302,6 +359,13 @@ export default async function FeldVergleichPage({ params }: Props) {
                                       </span>
                                     );
                                   })}
+                                </span>
+                              ) : (
+                                <span
+                                  className="text-[11px] text-zinc-300"
+                                  title="Keine klare Aussage in den ausgewerteten Reden gefunden — nicht zwingend, dass die Fraktion dazu keine Position hat."
+                                >
+                                  keine Aussage
                                 </span>
                               )}
                             </td>
@@ -502,43 +566,63 @@ export default async function FeldVergleichPage({ params }: Props) {
             </summary>
             <p className="mb-3 mt-2 max-w-2xl text-[12px] leading-relaxed text-zinc-400">
               Pro <span className="text-amber-700">braunem</span> Punkt ein Eintrag mit
-              allen belegenden Reden (Protokoll-Deeplink) bzw. Bürgerfragen. Synthetisiert,
-              sinngemäß, nicht wortgleich.
+              allen belegenden Reden (Protokoll-Deeplink) bzw. Bürgerfragen. Die Punkte sind
+              synthetisiert, sinngemäß; mit{" "}
+              <span className="font-medium text-emerald-700">wörtlich</span> markierte Stellen
+              sind im Protokoll wortgleich geprüft.
             </p>
             <ol className="space-y-2">
-              {quellen.map((q) => (
-                <li
-                  key={q.n}
-                  id={`q${q.n}`}
-                  className="scroll-mt-20 text-[12px] leading-relaxed target:bg-blue-50"
-                >
-                  <span className="num mr-1.5 text-zinc-400">{q.n}.</span>
-                  <span className="text-zinc-500">
-                    {PARTEI_KURZ.get(q.partei) ?? q.partei}: „{q.punkt}“
-                  </span>
-                  <span className="mt-0.5 block pl-5">
-                    {q.reden.map((r, i) => (
-                      <span key={i}>
-                        {i > 0 && <span className="text-zinc-300"> · </span>}
-                        {r.url.startsWith("http") ? (
-                          <a
-                            href={r.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-700 hover:underline"
-                          >
-                            {r.label}
-                          </a>
-                        ) : (
-                          <Link href={r.url} className="text-blue-700 hover:underline">
-                            {r.label}
-                          </Link>
-                        )}
+              {quellen.map((q) => {
+                const zitate = q.reden
+                  .filter((r) => r.verifiziert && r.zitat)
+                  .slice(0, 2);
+                return (
+                  <li
+                    key={q.n}
+                    id={`q${q.n}`}
+                    className="scroll-mt-20 text-[12px] leading-relaxed target:bg-blue-50"
+                  >
+                    <span className="num mr-1.5 text-zinc-400">{q.n}.</span>
+                    <span className="text-zinc-500">
+                      {PARTEI_KURZ.get(q.partei) ?? q.partei}: „{q.punkt}“
+                    </span>
+                    {/* Wörtlich verifizierte Zitate zuerst — im Protokoll geprüft */}
+                    {zitate.map((r, i) => (
+                      <span key={`z${i}`} className="mt-1 block pl-5 text-zinc-600">
+                        <span className="mr-1 rounded bg-emerald-50 px-1 py-px text-[10px] font-medium text-emerald-700">
+                          wörtlich
+                        </span>
+                        „{r.zitat}“ — <RedeLink url={r.url} label={r.label} />
                       </span>
                     ))}
-                  </span>
-                </li>
-              ))}
+                    {/* Alle Fundstellen: Top-8 sichtbar, Rest aufklappbar (nichts entfällt) */}
+                    <span className="mt-0.5 block pl-5">
+                      <span className="text-zinc-400">Fundstellen: </span>
+                      {q.reden.slice(0, 8).map((r, i) => (
+                        <span key={i}>
+                          {i > 0 && <span className="text-zinc-300"> · </span>}
+                          <RedeLink url={r.url} label={r.label} />
+                        </span>
+                      ))}
+                      {q.reden.length > 8 && (
+                        <details className="mt-1">
+                          <summary className="cursor-pointer list-none text-blue-600 hover:underline">
+                            +{q.reden.length - 8} weitere Fundstellen
+                          </summary>
+                          <span className="mt-0.5 block">
+                            {q.reden.slice(8).map((r, i) => (
+                              <span key={i}>
+                                {i > 0 && <span className="text-zinc-300"> · </span>}
+                                <RedeLink url={r.url} label={r.label} />
+                              </span>
+                            ))}
+                          </span>
+                        </details>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
             </ol>
           </details>
         )}
