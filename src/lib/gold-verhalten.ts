@@ -12,6 +12,7 @@ export function hasGold(feld: string): boolean {
 
 export function getFeldVerhaltenGold(
   feld: string,
+  kurz = false,
 ): Record<string, Record<string, AspektVerhalten>> {
   const db = getDb();
   const meta = new Map<string, { sitzung: number; wp: number; datum: string }>();
@@ -26,15 +27,30 @@ export function getFeldVerhaltenGold(
   }
 
   const rows = db
-    .prepare(`SELECT aspekt, partei, punkte_json, n_reden FROM partei_aspekt_gold WHERE feld=?`)
-    .all(feld) as { aspekt: string; partei: string; punkte_json: string; n_reden: number }[];
+    .prepare(
+      `SELECT aspekt, partei, punkte_json, synthese_json, synthese_kurz_json, n_reden FROM partei_aspekt_gold WHERE feld=?`,
+    )
+    .all(feld) as {
+    aspekt: string; partei: string; punkte_json: string;
+    synthese_json: string | null; synthese_kurz_json: string | null; n_reden: number;
+  }[];
 
   const out: Record<string, Record<string, AspektVerhalten>> = {};
   for (const r of rows) {
     const pts = JSON.parse(r.punkte_json || "[]") as {
       position: string; zitat: string; rede_id: string; speaker: string; verifiziert: boolean;
     }[];
-    const punkte = pts.map((p) => ({ text: p.position, refs: [p.rede_id] }));
+    // Manuelle Synthese (wenige verdichtete Stichpunkte, je mit den rede_ids der
+    // zusammengefassten Reden) hat Vorrang vor dem rohen Ein-Punkt-pro-Rede-Dump.
+    // Die Belege/Quellen bleiben aus den Roh-Punkten — refs lösen darüber auf.
+    const synthRaw = kurz ? r.synthese_kurz_json ?? r.synthese_json : r.synthese_json;
+    const synth = synthRaw
+      ? (JSON.parse(synthRaw) as { text: string; refs: string[] }[])
+      : null;
+    const punkte =
+      synth && synth.length
+        ? synth.map((s) => ({ text: s.text, refs: s.refs }))
+        : pts.map((p) => ({ text: p.position, refs: [p.rede_id] }));
     const belege = pts.map((p) => {
       const m = meta.get(p.rede_id);
       const wann = m ? `${m.sitzung}. Sitzung (${m.wp}. WP)${m.datum ? ", " + m.datum : ""}` : "";

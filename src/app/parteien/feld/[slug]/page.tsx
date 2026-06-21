@@ -11,6 +11,7 @@ import { getFeldMatrix } from "@/lib/partei-vergleich-matrix";
 
 interface Props {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ v?: string }>;
 }
 
 const PARTEI_ORDER = new Map(PARTEIEN.map((p, i) => [p.partei, i]));
@@ -88,8 +89,10 @@ function RedeLink({ url, label }: { url: string; label: string }) {
   );
 }
 
-export default async function FeldVergleichPage({ params }: Props) {
+export default async function FeldVergleichPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { v } = await searchParams;
+  const kurz = v !== "full"; // Default kompakt; ?v=full zeigt die ausführliche Synthese
   const feld = slugToFeld(slug);
   if (!feld) notFound();
 
@@ -104,7 +107,7 @@ export default async function FeldVergleichPage({ params }: Props) {
 
   // "Tut"-Schicht: Gold-Volltext-Extraktion (wörtliche Belege, korrigiertes
   // Primär-Feld) sobald für dieses Feld vorhanden, sonst die alte Synthese.
-  const verhalten = hasGold(feld) ? getFeldVerhaltenGold(feld) : getFeldVerhalten(feld);
+  const verhalten = hasGold(feld) ? getFeldVerhaltenGold(feld, kurz) : getFeldVerhalten(feld);
 
   // Referenz-Apparat: EINE Nummer PRO PUNKT (nicht pro Einzelbeleg) — sonst stehen
   // bis zu 50 Fußnoten in einer Zelle. Der Quellen-Eintrag listet ALLE Reden des
@@ -249,6 +252,33 @@ export default async function FeldVergleichPage({ params }: Props) {
             );
           })}
         </nav>
+
+        {/* Synthese-Detailgrad umschalten (nur wo Gold-Synthese vorliegt) */}
+        {matrix && hasGold(feld) && (
+          <div className="mb-4 flex items-center gap-2 text-[12px]">
+            <span className="text-zinc-400">„aus Reden“-Stichpunkte:</span>
+            <span className="inline-flex overflow-hidden rounded-full border border-zinc-200/80">
+              <Link
+                href={`/parteien/feld/${slug}`}
+                aria-current={kurz ? "page" : undefined}
+                className={`px-3 py-1 font-medium transition-colors ${
+                  kurz ? "bg-zinc-900 text-white" : "bg-white text-zinc-600 hover:bg-zinc-50"
+                }`}
+              >
+                Kompakt
+              </Link>
+              <Link
+                href={`/parteien/feld/${slug}?v=full`}
+                aria-current={!kurz ? "page" : undefined}
+                className={`px-3 py-1 font-medium transition-colors ${
+                  !kurz ? "bg-zinc-900 text-white" : "bg-white text-zinc-600 hover:bg-zinc-50"
+                }`}
+              >
+                Ausführlich
+              </Link>
+            </span>
+          </div>
+        )}
 
         {matrix ? (
           /* ---- Aspekt-Matrix: bricht zentriert auf max. 88rem aus, Rest der Seite
