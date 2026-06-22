@@ -1,0 +1,183 @@
+/** MANUELLE Gold-Synthese (Claude Code, kein LLM) — Feld "Wissenschaft, Forschung und Technologie" (42 Zellen). */
+import { applySynthese, Cell, r } from "./_lib/gold-synthese-apply";
+
+const CELLS: Cell[] = [
+  // ===== Forschungsinvestitionen =====
+  { aspekt: "Forschungsinvestitionen", partei: "AfD",
+    lang: [
+      { text: "Kritik an unzureichender und ineffizienter Förderung; Bürokratieabbau und marktfähige Wertschöpfung statt bloßer Förderprogramme", idx: r(0,1,2,3,4,5,6) },
+      { text: "Gegen staatliche Förderung von Forschung mit rassistischem Inhalt (Critical Whiteness)", idx: r(7) },
+    ],
+    kurz: [{ text: "Kritik an ineffizienter Förderung; Bürokratieabbau und marktfähige Wertschöpfung statt Förderprogramme", idx: r(0,1,2,3,4,5,6,7) }] },
+  { aspekt: "Forschungsinvestitionen", partei: "CDU/CSU",
+    lang: [{ text: "Entschlossene Investitionen in Forschung (Hightech Agenda, Exzellenzstrategie, sechs Schlüsselbereiche) mit Hebelwirkung privater Mittel; gegen Einsparungen, Bürokratie und Abwanderung", idx: r(0,2,3,4,6,7,9,1,8,5) }],
+    kurz: [{ text: "Entschlossene Investitionen (Hightech Agenda, Exzellenzstrategie); gegen Einsparungen und Abwanderung", idx: r(0,2,3,4,6,7,9,1,8,5) }] },
+  { aspekt: "Forschungsinvestitionen", partei: "GRÜNE",
+    lang: [{ text: "Auskömmliche, verlässliche Finanzierung des Wissenschaftssystems über 2030 hinaus; Kritik an fragmentierter Förderstruktur und Kürzungen (DAAD, Mikroelektronik, Start-up-Strategie)", idx: r(0,1,2,3,4,5) }],
+    kurz: [{ text: "Auskömmliche, verlässliche Finanzierung; Kritik an fragmentierter Struktur und Kürzungen", idx: r(0,1,2,3,4,5) }] },
+  { aspekt: "Forschungsinvestitionen", partei: "LINKE",
+    lang: [{ text: "Mehr öffentliche Investitionen für gesellschaftlichen Nutzen; breite Grundfinanzierung statt Konzentration auf Exzellenzzentren und Spitzenpersonal", idx: r(0,1,2) }],
+    kurz: [{ text: "Mehr öffentliche Investitionen; breite Grundfinanzierung statt Exzellenzzentren", idx: r(0,1,2) }] },
+  { aspekt: "Forschungsinvestitionen", partei: "SPD",
+    lang: [{ text: "Starke Investitionen in Forschung (18 Mrd. €, Hightech Agenda) als Wohlstandsgrundlage; europäische Ebene (Horizon Europe) und Bund-Länder-Förderung", idx: r(0,1,2,3,4,5,6) }],
+    kurz: [{ text: "Starke Investitionen (18 Mrd. €, Hightech Agenda); europäische Ebene und Bund-Länder-Förderung", idx: r(0,1,2,3,4,5,6) }] },
+
+  // ===== Arbeitsbedingungen Wissenschaft =====
+  { aspekt: "Arbeitsbedingungen Wissenschaft", partei: "AfD",
+    lang: [
+      { text: "Prekäre Beschäftigung und Befristungen führen zu Selbstzensur; Bürokratieabbau und Entlastung der Forschungseinrichtungen", idx: r(0,4,1,6) },
+      { text: "Kritik an Abwanderung und unattraktiven Bedingungen für (internationale) Forscher", idx: r(2,3,5) },
+    ],
+    kurz: [
+      { text: "Prekäre Beschäftigung führt zu Selbstzensur; Bürokratieabbau und Entlastung", idx: r(0,4,1,6) },
+      { text: "Kritik an Abwanderung und unattraktiven Bedingungen für Forscher", idx: r(2,3,5) },
+    ] },
+  { aspekt: "Arbeitsbedingungen Wissenschaft", partei: "CDU/CSU",
+    lang: [{ text: "Entbürokratisierung und Vertrauenskultur gegen Abwanderung; übertarifliche Bezahlung aus Drittmitteln; Rechtssicherheit bei Tierversuchen", idx: r(0,3,1,2) }],
+    kurz: [{ text: "Entbürokratisierung und Vertrauenskultur; übertarifliche Bezahlung aus Drittmitteln", idx: r(0,3,1,2) }] },
+  { aspekt: "Arbeitsbedingungen Wissenschaft", partei: "GRÜNE",
+    lang: [{ text: "Gute Arbeitsbedingungen sind Voraussetzung für Spitzenforschung; weniger administrativer Aufwand", idx: r(0,1) }],
+    kurz: [{ text: "Gute Arbeitsbedingungen für Spitzenforschung; weniger administrativer Aufwand", idx: r(0,1) }] },
+  { aspekt: "Arbeitsbedingungen Wissenschaft", partei: "LINKE",
+    lang: [{ text: "Dauerstellen statt Kettenbefristungen; Schutz vor Diskriminierung und Mobbing; gegen prekäre Beschäftigung und Sanierungsstau", idx: r(0,3,5,2,1,4) }],
+    kurz: [{ text: "Dauerstellen statt Kettenbefristungen; Schutz vor Diskriminierung; gegen prekäre Beschäftigung", idx: r(0,3,5,2,1,4) }] },
+  { aspekt: "Arbeitsbedingungen Wissenschaft", partei: "SPD",
+    lang: [{ text: "Bessere Vergütung über Tarifverträge statt pauschaler Aufweichung des Besserstellungsverbots, mit Blick auf untere und mittlere Einkommensgruppen", idx: r(0,1) }],
+    kurz: [{ text: "Bessere Vergütung über Tarifverträge statt Aufweichung des Besserstellungsverbots", idx: r(0,1) }] },
+
+  // ===== Grundfinanzierung vs. Drittmittel =====
+  { aspekt: "Grundfinanzierung vs. Drittmittel", partei: "CDU/CSU",
+    lang: [{ text: "Solide Grundfinanzierung plus Drittmittel als Ergänzung (Wettbewerb fördert Innovation); übertarifliche Bezahlung nur aus Drittmitteln", idx: r(0,1) }],
+    kurz: [{ text: "Solide Grundfinanzierung plus Drittmittel als Ergänzung", idx: r(0,1) }] },
+  { aspekt: "Grundfinanzierung vs. Drittmittel", partei: "GRÜNE",
+    lang: [{ text: "Verlässliche Grundfinanzierung als Basis und Schutz vor politischem Druck; globale Budgets statt kleinteiliger Programme (Jährlichkeitsprinzip)", idx: r(0,1,2) }],
+    kurz: [{ text: "Verlässliche Grundfinanzierung als Basis; globale Budgets statt kleinteiliger Programme", idx: r(0,1,2) }] },
+  { aspekt: "Grundfinanzierung vs. Drittmittel", partei: "LINKE",
+    lang: [{ text: "Verlässliche Grundfinanzierung statt Wettbewerb um Projektmittel (Kritik an Übergewicht der Exzellenzstrategie)", idx: r(0,1,2,3) }],
+    kurz: [{ text: "Verlässliche Grundfinanzierung statt Projektwettbewerb", idx: r(0,1,2,3) }] },
+  { aspekt: "Grundfinanzierung vs. Drittmittel", partei: "SPD",
+    lang: [{ text: "Verlässliche Finanzierungsbasis; Grundfinanzierung und Studierendenförderung neben Exzellenz nicht vergessen; Tarifverträge unabhängig vom Finanzierungsmodell", idx: r(0,1,2) }],
+    kurz: [{ text: "Verlässliche Finanzierungsbasis; Grundfinanzierung neben Exzellenz nicht vergessen", idx: r(0,1,2) }] },
+
+  // ===== Zukunftstechnologien =====
+  { aspekt: "Zukunftstechnologien", partei: "AfD",
+    lang: [{ text: "Sorge um Wettbewerbsfähigkeit und Deindustrialisierung; gegen ideologische Hightech Agenda und KI-Regulierung, für Kernkraft, freien Markt und Tier-Alternativen; Reallabore mit demokratischer Kontrolle", idx: r(0,1,2,4,3) }],
+    kurz: [{ text: "Sorge um Wettbewerbsfähigkeit; gegen ideologische Hightech Agenda und KI-Regulierung, für freien Markt", idx: r(0,1,2,4,3) }] },
+  { aspekt: "Zukunftstechnologien", partei: "CDU/CSU",
+    lang: [
+      { text: "Investitionen in Schlüsseltechnologien (18 Mrd. € — KI, Quanten, Fusion, Biotech, Raumfahrt); gegen ESG-Ausschluss von Zukunftsbranchen", idx: r(0,1,3,4,5,7,8,10) },
+      { text: "Alternativmethoden zu Tierversuchen, aber Tiermodelle weiterhin nötig; Neue Genomische Techniken (CRISPR)", idx: r(2,6,9) },
+    ],
+    kurz: [
+      { text: "Investitionen in Schlüsseltechnologien (KI, Quanten, Fusion, Biotech); gegen ESG-Ausschluss", idx: r(0,1,3,4,5,7,8,10) },
+      { text: "Alternativmethoden zu Tierversuchen; Neue Genomische Techniken (CRISPR)", idx: r(2,6,9) },
+    ] },
+  { aspekt: "Zukunftstechnologien", partei: "GRÜNE",
+    lang: [{ text: "Investitionen in Zukunftstechnologien (KI, Bioökonomie, klimaneutrale Energie) mit gezielter Priorisierung statt breiter Verteilung; Kritik an mangelnder Umsetzung der Hightech Agenda", idx: r(0,1,2,3) }],
+    kurz: [{ text: "Investitionen in Zukunftstechnologien mit gezielter Priorisierung; Kritik an mangelnder Umsetzung", idx: r(0,1,2,3) }] },
+  { aspekt: "Zukunftstechnologien", partei: "LINKE",
+    lang: [{ text: "Kritik an unkritischer Priorisierung von Schlüsseltechnologien ohne gesellschaftliche Sinnhaftigkeit; Warnung vor einer überbewerteten KI-Blase", idx: r(0) }],
+    kurz: [{ text: "Kritik an Priorisierung ohne gesellschaftliche Sinnhaftigkeit; Warnung vor KI-Blase", idx: r(0) }] },
+  { aspekt: "Zukunftstechnologien", partei: "SPD",
+    lang: [{ text: "Investitionen in sechs Schlüsseltechnologien (KI, Quanten, Mikroelektronik, Biotech, Fusion, klimaneutrale Mobilität) mit europäischer Zusammenarbeit; Reallabore und Raumfahrt", idx: r(0,1,2,3,4,5,6,7,8) }],
+    kurz: [{ text: "Investitionen in sechs Schlüsseltechnologien mit europäischer Zusammenarbeit; Reallabore", idx: r(0,1,2,3,4,5,6,7,8) }] },
+
+  // ===== Transfer / Start-ups =====
+  { aspekt: "Transfer / Start-ups", partei: "AfD",
+    lang: [{ text: "Kritik an mangelnder Umsetzung von Forschungsergebnissen in Anwendung; deutsche Patente werden überwiegend im Ausland angemeldet", idx: r(0,1) }],
+    kurz: [{ text: "Kritik an mangelnder Umsetzung in Anwendung; Patente im Ausland", idx: r(0,1) }] },
+  { aspekt: "Transfer / Start-ups", partei: "CDU/CSU",
+    lang: [{ text: "Transfer von Wissenschaft in Wirtschaft über Start-ups, Industrie-Kooperationen und Technologietransferstellen stärken (Ausgründungen erleichtern); gegen ESG-Ausschluss", idx: r(0,1,2,4,5,6,3) }],
+    kurz: [{ text: "Transfer in Wirtschaft über Start-ups und Technologietransfer stärken; Ausgründungen erleichtern", idx: r(0,1,2,4,5,6,3) }] },
+  { aspekt: "Transfer / Start-ups", partei: "GRÜNE",
+    lang: [{ text: "Start-up-/Scale-up-Strategie umsetzen und Wissenschaft mit Wirtschaft verzahnen; Innovationslabore und bessere Finanzierung, um Wertschöpfung im Land zu halten", idx: r(0,1,2,4,3) }],
+    kurz: [{ text: "Start-up-/Scale-up-Strategie umsetzen; Innovationslabore und bessere Finanzierung", idx: r(0,1,2,4,3) }] },
+  { aspekt: "Transfer / Start-ups", partei: "LINKE",
+    lang: [{ text: "Gegen reine Marktorientierung und Wagniskapital; öffentliche Förderung nachhaltiger und sozialökonomischer Innovationen", idx: r(0,1) }],
+    kurz: [{ text: "Gegen reine Marktorientierung; öffentliche Förderung nachhaltiger Innovationen", idx: r(0,1) }] },
+  { aspekt: "Transfer / Start-ups", partei: "SPD",
+    lang: [{ text: "Transfer in marktfähige Produkte über Reallabore und Bürokratieabbau (EXIST, Gründerschutzzonen); Staat als Ankerkunde", idx: r(0,1,3,4,5,6,7,2) }],
+    kurz: [{ text: "Transfer in marktfähige Produkte über Reallabore und Bürokratieabbau; Staat als Ankerkunde", idx: r(0,1,3,4,5,6,7,2) }] },
+
+  // ===== Forschungsfreiheit / Entpolitisierung =====
+  { aspekt: "Forschungsfreiheit / Entpolitisierung", partei: "AfD",
+    lang: [
+      { text: "Wissenschaftsfreiheit gegen Unterdrückung abweichender Meinungen und Selbstzensur schützen", idx: r(0,2,4,8) },
+      { text: "Gegen ideologische und politische Steuerung der Forschung (Klimaforschung); ergebnisoffene Wissenschaft", idx: r(1,3,5,6,7,9,10) },
+    ],
+    kurz: [
+      { text: "Wissenschaftsfreiheit gegen Unterdrückung abweichender Meinungen schützen", idx: r(0,2,4,8) },
+      { text: "Gegen ideologische und politische Steuerung der Forschung; ergebnisoffene Wissenschaft", idx: r(1,3,5,6,7,9,10) },
+    ] },
+  { aspekt: "Forschungsfreiheit / Entpolitisierung", partei: "CDU/CSU",
+    lang: [
+      { text: "Wissenschaftsfreiheit als Verfassungsprinzip und Standortvorteil gegen Politisierung und Ideologisierung verteidigen (auch gegen AfD-Politisierung)", idx: r(0,1,2,3,5,6,8,9,10) },
+      { text: "Vertrauenskultur und Bürokratieabbau; gegen Diversitäts-/CO₂-Audits; wissenschaftsbasierte statt ideologischer Regulierung", idx: r(4,12,7,11) },
+    ],
+    kurz: [
+      { text: "Wissenschaftsfreiheit als Verfassungsprinzip gegen Politisierung verteidigen", idx: r(0,1,2,3,5,6,8,9,10) },
+      { text: "Vertrauenskultur und Bürokratieabbau; gegen Diversitäts-/CO₂-Audits", idx: r(4,12,7,11) },
+    ] },
+  { aspekt: "Forschungsfreiheit / Entpolitisierung", partei: "GRÜNE",
+    lang: [{ text: "Wissenschaftsfreiheit gegen ideologische Gängelung und staatlich verordnete Neutralität; mehr Autonomie und Bürokratieabbau; Schutz vor geopolitischem Druck; Entpolitisierung der Vergabeverfahren", idx: r(0,1,2,3,4) }],
+    kurz: [{ text: "Wissenschaftsfreiheit gegen ideologische Gängelung; mehr Autonomie; Entpolitisierung der Vergabe", idx: r(0,1,2,3,4) }] },
+  { aspekt: "Forschungsfreiheit / Entpolitisierung", partei: "LINKE",
+    lang: [{ text: "Wissenschaftliche Standards gegen politische Instrumentalisierung verteidigen; Kritik am Wissenschaftsfreiheitsgesetz und an wirtschaftsnaher Kommissionsbesetzung", idx: r(2,0,1) }],
+    kurz: [{ text: "Wissenschaftliche Standards verteidigen; Kritik am Wissenschaftsfreiheitsgesetz", idx: r(2,0,1) }] },
+  { aspekt: "Forschungsfreiheit / Entpolitisierung", partei: "SPD",
+    lang: [
+      { text: "Wissenschaftsfreiheit gegen AfD-Politisierung und Zensur verteidigen; unabhängige Bewertungsprozesse und Vertrauensrahmen", idx: r(0,1,2,4,6,8) },
+      { text: "Forschungssicherheit durch Einbindung von Sicherheitsbehörden; Attraktivitätsfaktor; gegen unkontrollierte Lohngestaltung", idx: r(5,3,7) },
+    ],
+    kurz: [
+      { text: "Wissenschaftsfreiheit gegen AfD-Politisierung verteidigen; unabhängige Bewertung", idx: r(0,1,2,4,6,8) },
+      { text: "Forschungssicherheit durch Sicherheitsbehörden; Attraktivitätsfaktor", idx: r(5,3,7) },
+    ] },
+
+  // ===== Offener Datenzugang / Transparenz =====
+  { aspekt: "Offener Datenzugang / Transparenz", partei: "AfD",
+    lang: [{ text: "Evaluation und Transparenz der Exzellenzstrategie (Berichtspflicht, unabhängige Kontrolle); transparente Darstellung wissenschaftlicher Unsicherheiten", idx: r(0,1,2) }],
+    kurz: [{ text: "Evaluation und Transparenz der Exzellenzstrategie; transparente Darstellung von Unsicherheiten", idx: r(0,1,2) }] },
+  { aspekt: "Offener Datenzugang / Transparenz", partei: "CDU/CSU",
+    lang: [{ text: "Forschungsdatengesetz und bessere Regeln für Datenzugang; europäische Open-Access-Datenbanken; gegen Forschungsüberwachungsdatenbank", idx: r(3,2,0,1) }],
+    kurz: [{ text: "Forschungsdatengesetz und europäische Open-Access-Datenbanken; gegen Forschungsüberwachung", idx: r(3,2,0,1) }] },
+  { aspekt: "Offener Datenzugang / Transparenz", partei: "GRÜNE",
+    lang: [{ text: "Forschungsdatengesetz zur besseren Datennutzbarkeit; Kritik an intransparenten Vergabeverfahren", idx: r(0) }],
+    kurz: [{ text: "Forschungsdatengesetz; gegen intransparente Vergabeverfahren", idx: r(0) }] },
+  { aspekt: "Offener Datenzugang / Transparenz", partei: "LINKE",
+    lang: [{ text: "Mehr Transparenz bei der Hightech Agenda und wissenschaftliche Evaluation von Reallaboren; Transparenz bei KI-Training und Datenschutz", idx: r(0,2,1) }],
+    kurz: [{ text: "Mehr Transparenz bei der Hightech Agenda und Evaluation von Reallaboren", idx: r(0,2,1) }] },
+  { aspekt: "Offener Datenzugang / Transparenz", partei: "SPD",
+    lang: [{ text: "Datenschutz und Grundrechte auch bei KI schützen; mehr Transparenz bei Roadmaps und Finanzvolumina der Hightech Agenda", idx: r(0,1) }],
+    kurz: [{ text: "Datenschutz auch bei KI; mehr Transparenz bei der Hightech Agenda", idx: r(0,1) }] },
+
+  // ===== Internationaler Austausch =====
+  { aspekt: "Internationaler Austausch", partei: "AfD",
+    lang: [{ text: "Strengere Kontrolle internationaler Kooperationen, insbesondere mit China, im Sinne nationaler Interessen", idx: r(0) }],
+    kurz: [{ text: "Strengere Kontrolle internationaler Kooperationen, besonders mit China", idx: r(0) }] },
+  { aspekt: "Internationaler Austausch", partei: "CDU/CSU",
+    lang: [{ text: "Internationale Wissenschaftskooperation als Grundlage für Wohlstand und Innovation (1000-Köpfe-Plus-Programm, IPCC, transnationale Projekte)", idx: r(0,1,2,3) }],
+    kurz: [{ text: "Internationale Wissenschaftskooperation als Grundlage für Wohlstand und Innovation", idx: r(0,1,2,3) }] },
+  { aspekt: "Internationaler Austausch", partei: "GRÜNE",
+    lang: [{ text: "Internationale Offenheit und europäische Zusammenarbeit (gemeinsame Exzellenzstrategie); gegen Kürzungen; Unabhängigkeit ohne vollständige Isolation", idx: r(0,1,2,3) }],
+    kurz: [{ text: "Internationale Offenheit und europäische Zusammenarbeit; gegen Kürzungen", idx: r(0,1,2,3) }] },
+  { aspekt: "Internationaler Austausch", partei: "LINKE",
+    lang: [{ text: "Hürden und fehlende soziale Unterstützung für internationale Studierende und Forschende abbauen", idx: r(0) }],
+    kurz: [{ text: "Hürden für internationale Studierende und Forschende abbauen", idx: r(0) }] },
+  { aspekt: "Internationaler Austausch", partei: "SPD",
+    lang: [{ text: "Internationale Kooperation und Science Diplomacy (auch mit China, Weltklimarat, Norwegen/Frankreich) als essenziell für Fortschritt", idx: r(0,1,2,3) }],
+    kurz: [{ text: "Internationale Kooperation und Science Diplomacy als essenziell für Fortschritt", idx: r(0,1,2,3) }] },
+
+  // ===== Studiengänge (Bologna) =====
+  { aspekt: "Studiengänge (Bologna)", partei: "AfD",
+    lang: [{ text: "Kritische Bewertung des Bachelor-Master-Systems; Kritik an sinkenden MINT-Leistungen und Forderung nach mehr Fachkräfteausbildung", idx: r(0,1) }],
+    kurz: [{ text: "Bachelor-Master-System kritisch; mehr Fachkräfteausbildung", idx: r(0,1) }] },
+  { aspekt: "Studiengänge (Bologna)", partei: "CDU/CSU",
+    lang: [{ text: "Bologna-Prozess befürworten; Ablehnung einer Rückabwicklung", idx: r(0) }],
+    kurz: [{ text: "Bologna-Prozess befürworten; gegen Rückabwicklung", idx: r(0) }] },
+  { aspekt: "Studiengänge (Bologna)", partei: "SPD",
+    lang: [{ text: "Verteidigung des Bachelor-Master-Systems gegen eine Rückkehr zu Diplom und Magister", idx: r(0) }],
+    kurz: [{ text: "Bachelor-Master-System verteidigen gegen Rückkehr zu Diplom/Magister", idx: r(0) }] },
+];
+
+applySynthese("Wissenschaft, Forschung und Technologie", CELLS);
