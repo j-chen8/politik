@@ -4561,20 +4561,28 @@ export function getDrucksacheQaPaare(nr: string): DrucksacheQaPaar[] {
 }
 
 export interface PoliticianQaPaar {
+  pairId: number;
   drucksacheNr: string;
   paarIndex: number;
   frageText: string | null;
   antwortText: string | null;
   antwortSteller: string | null;
+  ministerium: string | null;
+  themenfeld: string | null;
+  tldr: string | null;
   datum: string | null;
 }
 
-/** Schriftliche Einzelfragen + Antworten DIESER Abgeordneten (Rückwärts-Link). */
+/** Schriftliche Einzelfragen + Antworten DIESER Abgeordneten (Rückwärts-Link).
+ *  Angereichert um Themenfeld (Primär-Tag), neutrale Antwort-TL;DR und antwortendes Ministerium. */
 export function getQaPaareForPolitician(politicianId: number, limit = 200): PoliticianQaPaar[] {
   const db = getDb();
   try {
     const rows = db.prepare(`
-      SELECT qa.drucksache_nr, qa.paar_index, qa.frage_text, qa.antwort_text, qa.antwort_steller,
+      SELECT qa.id, qa.drucksache_nr, qa.paar_index, qa.frage_text, qa.antwort_text, qa.antwort_steller,
+             qa.antwort_ministerium,
+             (SELECT themenfeld FROM drucksache_qa_themenfeld WHERE pair_id = qa.id AND ist_primaer = 1 LIMIT 1) AS themenfeld,
+             (SELECT tldr FROM drucksache_qa_tldr WHERE pair_id = qa.id) AS tldr,
              (SELECT publication_date FROM drucksache_texts WHERE drucksache_nr = qa.drucksache_nr) AS datum
       FROM drucksache_qa_paare qa
       WHERE qa.fragesteller_politician_id = ?
@@ -4582,11 +4590,15 @@ export function getQaPaareForPolitician(politicianId: number, limit = 200): Poli
       LIMIT ?
     `).all(politicianId, limit) as any[];
     return rows.map((r) => ({
+      pairId: r.id,
       drucksacheNr: r.drucksache_nr,
       paarIndex: r.paar_index,
       frageText: r.frage_text,
       antwortText: r.antwort_text,
       antwortSteller: r.antwort_steller,
+      ministerium: r.antwort_ministerium,
+      themenfeld: r.themenfeld,
+      tldr: r.tldr,
       datum: r.datum,
     }));
   } catch {

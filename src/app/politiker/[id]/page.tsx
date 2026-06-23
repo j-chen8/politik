@@ -30,6 +30,7 @@ import { MediaAppearancesList } from "@/components/MediaAppearancesList";
 import { getMediaAppearancesForPolitician } from "@/lib/media-appearances";
 import { Buergerfragen } from "@/components/Buergerfragen";
 import { ThemenSynthesen } from "@/components/ThemenSynthesen";
+import { SchriftlicheFragen } from "@/components/SchriftlicheFragen";
 import {
   ExternalLink,
   Mic,
@@ -975,28 +976,7 @@ export default async function PolitikerPage({ params, searchParams }: Props) {
         {/* Schriftliche Fragen (Einzelfragen + Antworten der Bundesregierung) */}
         {qaPaare.length > 0 && (
           <CollapsibleCard title="Schriftliche Fragen" count={qaPaare.length} className="mb-6">
-            <ul className="space-y-3">
-              {qaPaare.map((qa) => (
-                <li key={`${qa.drucksacheNr}-${qa.paarIndex}`} className="border-l-2 border-zinc-200 pl-3">
-                  {qa.frageText && <p className="text-[13px] text-zinc-800 leading-snug">{qa.frageText}</p>}
-                  <div className="flex items-center gap-2 text-[11px] text-zinc-400 mt-0.5 flex-wrap">
-                    <Link href={`/aktivitaeten/${qa.drucksacheNr.replace(/\//g, "-")}`} className="text-[#1a3e72] hover:text-[#0f2a52] transition-colors">
-                      {qa.drucksacheNr}
-                    </Link>
-                    {qa.datum && <><span className="text-zinc-200">·</span><span className="num">{qa.datum}</span></>}
-                  </div>
-                  {qa.antwortText && (
-                    <details className="group mt-1">
-                      <summary className="cursor-pointer text-[11px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
-                        <span className="group-open:hidden">▶ Antwort der Bundesregierung</span>
-                        <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
-                      </summary>
-                      <p className="mt-1 text-[12px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">{qa.antwortText}</p>
-                    </details>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <SchriftlicheFragen items={qaPaare} />
           </CollapsibleCard>
         )}
 
