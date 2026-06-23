@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { getFeldVergleich, getFeldVerhalten, getFeldAbstimmungen } from "@/lib/db";
+import { getFeldVergleich, getFeldVerhalten, getFeldAbstimmungen, type FeldVorlage } from "@/lib/db";
 import { hasGold, getFeldVerhaltenGold } from "@/lib/gold-verhalten";
 import { partyColors } from "@/lib/party-colors";
 import { PARTEIEN } from "@/lib/partei-slug";
@@ -171,16 +171,57 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
           punktNum.set(`${asp.label}|${p}|${idx}`, n);
           quellen.push({ n, partei: p, punkt: pt.text, reden });
         });
-  // Abstimmungen mit VOLLSTÄNDIGEM Roll-Call je Aspekt (nicht die lückenhafte
-  // Pilot-Zuordnung) — so zeigt jede Partei-Spalte ihre echte Stimme.
-  const abstimmungen = getFeldAbstimmungen(feld);
-  const hatVotes = Object.values(abstimmungen).some((vl) => vl.length > 0);
+  // Abstimmungen aus der manuell verifizierten Klassifikation: vote_aspekt koppelt
+  // jeden Sach-Vote (verfahren=0) an einen Gold-Aspekt; feldweite Votes ohne Aspekt
+  // (Haushalt/Immunität …) zeigen wir separat. Voller Fraktions-Roll-Call je Vote.
+  const { proAspekt, feldweit } = getFeldAbstimmungen(feld);
+  const hatVotes =
+    Object.values(proAspekt).some((vl) => vl.length > 0) || feldweit.length > 0;
   const KNOWN = new Set(["ja", "nein", "enthaltung", "enthalten"]);
   // Vorlagen eines Aspekts, zu denen Partei p tatsächlich eine Stimme abgegeben hat.
   const zellenVotes = (aspLabel: string, p: string) =>
-    (abstimmungen[aspLabel] ?? [])
+    (proAspekt[aspLabel] ?? [])
       .map((vl) => ({ ...vl, richtung: vl.fraktionen[p] }))
       .filter((vl) => vl.richtung && KNOWN.has(vl.richtung.toLowerCase()));
+
+  // Eine Vorlage als Listeneintrag mit vollständigem Fraktions-Roll-Call (für die
+  // „Wie die Fraktionen abgestimmt haben"-Sektion, je Aspekt und feldweit gleich).
+  const voteLi = (g: FeldVorlage) => (
+    <li key={g.voteId} className="text-[12.5px] leading-snug">
+      <span className="text-zinc-700">
+        {g.url ? (
+          <Link href={g.url} className="hover:text-zinc-900 hover:underline">
+            {cleanBetreff(g.betreff)}
+          </Link>
+        ) : (
+          cleanBetreff(g.betreff)
+        )}
+      </span>
+      <span className="mt-1 flex flex-wrap gap-1.5">
+        {parteien
+          .filter((p) => g.fraktionen[p] && KNOWN.has(g.fraktionen[p].toLowerCase()))
+          .map((p) => {
+            const { bg, fg } = partyColors(p);
+            const r = g.fraktionen[p];
+            return (
+              <span key={p} className="inline-flex items-center overflow-hidden rounded">
+                <span
+                  className="px-1.5 py-px text-[10.5px] font-semibold"
+                  style={{ backgroundColor: bg, color: fg }}
+                >
+                  {PARTEI_KURZ.get(p) ?? p}
+                </span>
+                <span
+                  className={`num px-1.5 py-px text-[10.5px] font-semibold ${richtungChip(r)}`}
+                >
+                  {r}
+                </span>
+              </span>
+            );
+          })}
+      </span>
+    </li>
+  );
 
   return (
     <div className="page-wash min-h-screen">
@@ -526,64 +567,25 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
             </p>
             <div className="space-y-5">
               {matrix.aspekte
-                .filter((asp) => (abstimmungen[asp.label]?.length ?? 0) > 0)
+                .filter((asp) => (proAspekt[asp.label]?.length ?? 0) > 0)
                 .map((asp) => (
                   <div key={asp.label}>
                     <div className="mb-2 text-[12.5px] font-semibold text-zinc-800">
                       {asp.label}
                     </div>
-                    <ul className="space-y-2.5">
-                      {abstimmungen[asp.label].map((g) => (
-                        <li key={g.voteId} className="text-[12.5px] leading-snug">
-                          <span className="text-zinc-700">
-                            {g.url ? (
-                              <Link
-                                href={g.url}
-                                className="hover:text-zinc-900 hover:underline"
-                              >
-                                {cleanBetreff(g.betreff)}
-                              </Link>
-                            ) : (
-                              cleanBetreff(g.betreff)
-                            )}
-                          </span>
-                          <span className="mt-1 flex flex-wrap gap-1.5">
-                            {parteien
-                              .filter(
-                                (p) =>
-                                  g.fraktionen[p] &&
-                                  ["ja", "nein", "enthaltung", "enthalten"].includes(
-                                    g.fraktionen[p].toLowerCase(),
-                                  ),
-                              )
-                              .map((p) => {
-                                const { bg, fg } = partyColors(p);
-                                const r = g.fraktionen[p];
-                                return (
-                                  <span
-                                    key={p}
-                                    className="inline-flex items-center overflow-hidden rounded"
-                                  >
-                                    <span
-                                      className="px-1.5 py-px text-[10.5px] font-semibold"
-                                      style={{ backgroundColor: bg, color: fg }}
-                                    >
-                                      {PARTEI_KURZ.get(p) ?? p}
-                                    </span>
-                                    <span
-                                      className={`num px-1.5 py-px text-[10.5px] font-semibold ${richtungChip(r)}`}
-                                    >
-                                      {r}
-                                    </span>
-                                  </span>
-                                );
-                              })}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    <ul className="space-y-2.5">{proAspekt[asp.label].map(voteLi)}</ul>
                   </div>
                 ))}
+              {/* Sach-Votes des Feldes ohne kuratierten Aspekt (Haushalt, Immunität,
+                  Verfahren ohne Synthese-Anknüpfung) — separat, nicht unterschlagen. */}
+              {feldweit.length > 0 && (
+                <div>
+                  <div className="mb-2 text-[12.5px] font-semibold text-zinc-800">
+                    Weitere Abstimmungen im Feld
+                  </div>
+                  <ul className="space-y-2.5">{feldweit.map(voteLi)}</ul>
+                </div>
+              )}
             </div>
           </section>
         )}

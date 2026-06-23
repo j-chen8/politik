@@ -7636,10 +7636,14 @@ export function getFeldVerhalten(
   return out;
 }
 
-/** Abstimmungen je Aspekt mit VOLLSTÄNDIGEM Fraktions-Roll-Call (aus
- *  bundestag_votes.fraktion_votes_json) — nicht der lückenhaften Pilot-Zuordnung.
- *  Welche Vorlage zu welchem Aspekt gehört, kommt aus der Vereinigung der im Pilot
- *  getaggten vote_ids (über alle Parteien). */
+/** Abstimmungen eines Feldes aus der MANUELL verifizierten Klassifikation:
+ *  - vote_aspekt = Gold-Aspekt je Sach-Vote (koppelt „Tut" an die Aspekt-Achse der Synthese)
+ *  - vote_themenfeld = Feld-Zuordnung; nur Primärfeld + Sach-Votes (verfahren = 0).
+ *  Ersetzt die alte lückenhafte Pilot-Zuordnung (partei_aspekt_verhalten.abgestimmt_json).
+ *  Verfahrens-Votes (Petition/Personenwahl) bleiben aussen vor. Betreff = DIP-Drucksachentitel
+ *  (dip_ds_titles), Kurzlabel aus vote_kurz wenn vorhanden, Roll-Call aus fraktion_votes_json.
+ *  proAspekt[label] = Sach-Votes mit Gold-Aspekt (Schlüssel = Matrix-Aspekt-Label);
+ *  feldweit = Sach-Votes des Feldes ohne kuratierten Aspekt (Haushalt/Immunität etc.). */
 export type FeldVorlage = {
   voteId: number;
   kurz: string | null;
@@ -7647,50 +7651,40 @@ export type FeldVorlage = {
   url: string | null;
   fraktionen: Record<string, string>; // partei -> ja|nein|enthaltung|unbekannt
 };
+export type FeldAbstimmungen = {
+  proAspekt: Record<string, FeldVorlage[]>;
+  feldweit: FeldVorlage[];
+};
 
-export function getFeldAbstimmungen(feld: string): Record<string, FeldVorlage[]> {
+export function getFeldAbstimmungen(feld: string): FeldAbstimmungen {
   const db = getDb();
   const rows = db
-    .prepare(`SELECT aspekt, abgestimmt_json FROM partei_aspekt_verhalten WHERE feld = ?`)
-    .all(feld) as { aspekt: string; abgestimmt_json: string | null }[];
-
-  // aspekt -> Liste der vote_ids; vote_id -> betreff (aus Pilot-Daten)
-  const aspektVotes = new Map<string, number[]>();
-  const betreffById = new Map<number, string>();
-  for (const r of rows) {
-    const ids = aspektVotes.get(r.aspekt) ?? [];
-    for (const v of JSON.parse(r.abgestimmt_json || "[]") as { vote_id: number; betreff: string }[]) {
-      if (!ids.includes(v.vote_id)) ids.push(v.vote_id);
-      if (!betreffById.has(v.vote_id)) betreffById.set(v.vote_id, v.betreff);
-    }
-    aspektVotes.set(r.aspekt, ids);
-  }
-
-  const alleIds = [...betreffById.keys()];
-  if (alleIds.length === 0) return {};
-
-  const ph = alleIds.map(() => "?").join(",");
-  const rc = new Map<
-    number,
-    { fraktionen: Record<string, string>; sitzung: number | null; ds: string[] }
-  >();
-  for (const v of db
     .prepare(
-      `SELECT vote_id, sitzung_nr, fraktion_votes_json, drucksache_nrn_json
-       FROM bundestag_votes WHERE vote_id IN (${ph})`,
+      `SELECT vt.vote_id              AS voteId,
+              va.aspekt               AS aspekt,
+              bv.sitzung_nr           AS sitzung,
+              bv.fraktion_votes_json  AS frakJson,
+              bv.drucksache_nrn_json  AS dsJson,
+              dt.titel                AS titel,
+              vk.kurz                 AS kurz
+       FROM vote_themenfeld vt
+       JOIN bundestag_votes bv    ON bv.vote_id = vt.vote_id
+       LEFT JOIN vote_aspekt va   ON va.vote_id = vt.vote_id
+       LEFT JOIN dip_ds_titles dt ON dt.drucksache_nr = vt.via_drucksache
+       LEFT JOIN vote_kurz vk     ON vk.vote_id = vt.vote_id
+       WHERE vt.feld = ? AND vt.primaer = 1 AND vt.verfahren = 0
+       ORDER BY bv.datum DESC, vt.vote_id DESC`,
     )
-    .all(...alleIds) as {
-    vote_id: number;
-    sitzung_nr: number | null;
-    fraktion_votes_json: string | null;
-    drucksache_nrn_json: string | null;
-  }[]) {
-    rc.set(v.vote_id, {
-      fraktionen: JSON.parse(v.fraktion_votes_json || "{}"),
-      sitzung: v.sitzung_nr,
-      ds: JSON.parse(v.drucksache_nrn_json || "[]") as string[],
-    });
-  }
+    .all(feld) as {
+    voteId: number;
+    aspekt: string | null;
+    sitzung: number | null;
+    frakJson: string | null;
+    dsJson: string | null;
+    titel: string | null;
+    kurz: string | null;
+  }[];
+
   // DS-Nummer "21/0589" -> Aktivitäten-Slug "21-589" (führende Nullen strippen).
   const dsToSlug = (nr: string): string | null => {
     const [wp, n] = nr.split("/");
@@ -7698,37 +7692,33 @@ export function getFeldAbstimmungen(feld: string): Record<string, FeldVorlage[]>
     const num = parseInt(n, 10);
     return Number.isNaN(num) ? null : `${wp}-${num}`;
   };
-  const voteKurz = new Map<number, string>();
-  for (const v of db.prepare(`SELECT vote_id, kurz FROM vote_kurz`).all() as {
-    vote_id: number;
-    kurz: string;
-  }[])
-    voteKurz.set(v.vote_id, v.kurz);
 
-  const out: Record<string, FeldVorlage[]> = {};
-  for (const [aspekt, ids] of aspektVotes) {
-    out[aspekt] = ids
-      .map((id) => {
-        const r = rc.get(id);
-        if (!r) return null;
-        // Link bevorzugt zur Drucksache (Inhalt), erste DS; sonst Plenar-Anker.
-        const slug = r.ds.map(dsToSlug).find((s) => s != null) ?? null;
-        const url = slug
-          ? `/aktivitaeten/${slug}`
-          : r.sitzung != null
-            ? `/protokolle/sitzung/${r.sitzung}#vote-h-${id}`
-            : null;
-        return {
-          voteId: id,
-          kurz: voteKurz.get(id) ?? null,
-          betreff: betreffById.get(id) ?? "",
-          url,
-          fraktionen: r.fraktionen,
-        } as FeldVorlage;
-      })
-      .filter((x): x is FeldVorlage => x !== null);
+  const toVorlage = (r: (typeof rows)[number]): FeldVorlage => {
+    const ds = JSON.parse(r.dsJson || "[]") as string[];
+    // Link bevorzugt zur Drucksache (Inhalt), erste auflösbare DS; sonst Plenar-Anker.
+    const slug = ds.map(dsToSlug).find((s) => s != null) ?? null;
+    const url = slug
+      ? `/aktivitaeten/${slug}`
+      : r.sitzung != null
+        ? `/protokolle/sitzung/${r.sitzung}#vote-h-${r.voteId}`
+        : null;
+    return {
+      voteId: r.voteId,
+      kurz: r.kurz ?? null,
+      betreff: r.titel || (ds.length ? `Drucksache ${ds.join(", ")}` : ""),
+      url,
+      fraktionen: JSON.parse(r.frakJson || "{}"),
+    };
+  };
+
+  const proAspekt: Record<string, FeldVorlage[]> = {};
+  const feldweit: FeldVorlage[] = [];
+  for (const r of rows) {
+    const v = toVorlage(r);
+    if (r.aspekt) (proAspekt[r.aspekt] ??= []).push(v);
+    else feldweit.push(v);
   }
-  return out;
+  return { proAspekt, feldweit };
 }
 
 /** Liste der Themenfelder, die mind. eine Partei-Position haben (für Vergleichs-Nav). */
