@@ -8,6 +8,7 @@ import { partyColors } from "@/lib/party-colors";
 import { PARTEIEN } from "@/lib/partei-slug";
 import { THEMENFELDER, slugToFeld } from "@/lib/themenfeld-slug";
 import { getFeldMatrix } from "@/lib/partei-vergleich-matrix";
+import { positionZumAntrag, POSITION_META } from "@/lib/vote-position";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -186,6 +187,8 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
 
   // Eine Vorlage als Listeneintrag mit vollständigem Fraktions-Roll-Call (für die
   // „Wie die Fraktionen abgestimmt haben"-Sektion, je Aspekt und feldweit gleich).
+  // Bei Beschlussempfehlung-auf-Ablehnung zeigen wir die Sachposition (dafür/dagegen)
+  // statt der gegenläufigen Rohstimme und benennen das Verfahren.
   const voteLi = (g: FeldVorlage) => (
     <li key={g.voteId} className="text-[12.5px] leading-snug">
       <span className="text-zinc-700">
@@ -197,24 +200,40 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
           cleanBetreff(g.betreff)
         )}
       </span>
+      {g.beschlussAblehnung && (
+        <span className="ml-1.5 text-[10.5px] font-medium text-amber-700">
+          · über Beschlussempfehlung (Ablehnung empfohlen) → Position zum Antrag
+        </span>
+      )}
       <span className="mt-1 flex flex-wrap gap-1.5">
         {parteien
           .filter((p) => g.fraktionen[p] && KNOWN.has(g.fraktionen[p].toLowerCase()))
           .map((p) => {
             const { bg, fg } = partyColors(p);
             const r = g.fraktionen[p];
+            const pos = g.beschlussAblehnung ? positionZumAntrag(r, true) : null;
+            const label = pos ? POSITION_META[pos].label : r;
+            const chipCls = pos
+              ? pos === "dafuer"
+                ? "bg-emerald-100 text-emerald-700"
+                : pos === "dagegen"
+                  ? "bg-rose-100 text-rose-700"
+                  : "bg-zinc-100 text-zinc-600"
+              : richtungChip(r);
             return (
-              <span key={p} className="inline-flex items-center overflow-hidden rounded">
+              <span
+                key={p}
+                className="inline-flex items-center overflow-hidden rounded"
+                title={g.beschlussAblehnung ? `${p}: ${label} (Rohstimme zur Empfehlung: ${r})` : undefined}
+              >
                 <span
                   className="px-1.5 py-px text-[10.5px] font-semibold"
                   style={{ backgroundColor: bg, color: fg }}
                 >
                   {PARTEI_KURZ.get(p) ?? p}
                 </span>
-                <span
-                  className={`num px-1.5 py-px text-[10.5px] font-semibold ${richtungChip(r)}`}
-                >
-                  {r}
+                <span className={`num px-1.5 py-px text-[10.5px] font-semibold ${chipCls}`}>
+                  {label}
                 </span>
               </span>
             );
@@ -463,7 +482,18 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                               {zv.length > 0 && (
                                 <span className="block space-y-0.5">
                                   {zv.slice(0, 5).map((vt, i) => {
-                                    const m = richtungMark(vt.richtung);
+                                    // Bei Beschlussempfehlung-auf-Ablehnung die Sachposition
+                                    // markieren (Rohstimme ist gegenläufig), sonst die Rohstimme.
+                                    const m = vt.beschlussAblehnung
+                                      ? (() => {
+                                          const pos = positionZumAntrag(vt.richtung, true);
+                                          return pos === "dafuer"
+                                            ? { glyph: "✓", cls: "text-emerald-600" }
+                                            : pos === "dagegen"
+                                              ? { glyph: "✗", cls: "text-rose-600" }
+                                              : { glyph: "•", cls: "text-zinc-400" };
+                                        })()
+                                      : richtungMark(vt.richtung);
                                     const inner = (
                                       <>
                                         <span className={`mr-1 font-semibold ${m.cls}`}>

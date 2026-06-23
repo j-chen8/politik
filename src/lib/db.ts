@@ -3799,6 +3799,9 @@ export interface BundestagDsHandzeichenVote {
   fraktionVotes: Record<string, string> | null;
   drucksacheNrn: string[];
   xmlSource: string;
+  // true = abgestimmt wurde über eine Beschlussempfehlung, die die Ablehnung DIESES
+  // Antrags empfiehlt → die rohe Stimme ist gegenläufig zur Position zum Antrag.
+  beschlussAblehnung: boolean;
 }
 
 export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzeichenVote[] {
@@ -3807,14 +3810,17 @@ export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzei
     const rows = db.prepare(`
       SELECT bv.vote_id, bv.sitzung_nr, bv.wahlperiode, bv.datum, bv.vote_type, bv.outcome, bv.modus,
              bv.fraktion_votes_json,
-             bv.drucksache_nrn_json, bv.xml_source
+             bv.drucksache_nrn_json, bv.xml_source,
+             vbk.empfiehlt AS beschluss_empfiehlt
       FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
+      LEFT JOIN vote_beschluss_kontext vbk ON vbk.vote_id = bv.vote_id AND vbk.ds_nr = ?
       WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
       ORDER BY bv.datum DESC, bv.snippet_offset ASC
-    `).all(dsNr) as Array<{
+    `).all(dsNr, dsNr) as Array<{
       vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
       datum: string | null; vote_type: string; outcome: string; modus: string | null;
       fraktion_votes_json: string | null; drucksache_nrn_json: string | null; xml_source: string;
+      beschluss_empfiehlt: string | null;
     }>;
     const parseObj = <T,>(s: string | null): T | null => {
       if (!s) return null;
@@ -3831,6 +3837,7 @@ export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzei
       fraktionVotes: parseObj<Record<string, string>>(r.fraktion_votes_json),
       drucksacheNrn: parseObj<string[]>(r.drucksache_nrn_json) ?? [],
       xmlSource: r.xml_source,
+      beschlussAblehnung: r.beschluss_empfiehlt === "ablehnen",
     }));
   } catch {
     return [];
@@ -7650,6 +7657,8 @@ export type FeldVorlage = {
   betreff: string;
   url: string | null;
   fraktionen: Record<string, string>; // partei -> ja|nein|enthaltung|unbekannt
+  // true = Beschlussempfehlung, die Ablehnung des Antrags empfiehlt → Stimme gegenläufig.
+  beschlussAblehnung: boolean;
 };
 export type FeldAbstimmungen = {
   proAspekt: Record<string, FeldVorlage[]>;
@@ -7666,12 +7675,14 @@ export function getFeldAbstimmungen(feld: string): FeldAbstimmungen {
               bv.fraktion_votes_json  AS frakJson,
               bv.drucksache_nrn_json  AS dsJson,
               dt.titel                AS titel,
-              vk.kurz                 AS kurz
+              vk.kurz                 AS kurz,
+              vbk.empfiehlt           AS beschlussEmpfiehlt
        FROM vote_themenfeld vt
        JOIN bundestag_votes bv    ON bv.vote_id = vt.vote_id
        LEFT JOIN vote_aspekt va   ON va.vote_id = vt.vote_id
        LEFT JOIN dip_ds_titles dt ON dt.drucksache_nr = vt.via_drucksache
        LEFT JOIN vote_kurz vk     ON vk.vote_id = vt.vote_id
+       LEFT JOIN vote_beschluss_kontext vbk ON vbk.vote_id = vt.vote_id
        WHERE vt.feld = ? AND vt.primaer = 1 AND vt.verfahren = 0
        ORDER BY bv.datum DESC, vt.vote_id DESC`,
     )
@@ -7683,6 +7694,7 @@ export function getFeldAbstimmungen(feld: string): FeldAbstimmungen {
     dsJson: string | null;
     titel: string | null;
     kurz: string | null;
+    beschlussEmpfiehlt: string | null;
   }[];
 
   // DS-Nummer "21/0589" -> Aktivitäten-Slug "21-589" (führende Nullen strippen).
@@ -7708,6 +7720,7 @@ export function getFeldAbstimmungen(feld: string): FeldAbstimmungen {
       betreff: r.titel || (ds.length ? `Drucksache ${ds.join(", ")}` : ""),
       url,
       fraktionen: JSON.parse(r.frakJson || "{}"),
+      beschlussAblehnung: r.beschlussEmpfiehlt === "ablehnen",
     };
   };
 

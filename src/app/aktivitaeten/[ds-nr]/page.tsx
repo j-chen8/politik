@@ -27,6 +27,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, FileText, Mic, MessageSquare } from "lucide-react";
 import { DrucksacheTonalityBadge } from "@/components/TonalityBadge";
+import { positionZumAntrag, POSITION_META } from "@/lib/vote-position";
 
 interface Props {
   params: Promise<{ "ds-nr": string }>;
@@ -1430,7 +1431,52 @@ const HZ_OUTCOME_META: Record<string, { label: string; classes: string }> = {
   ueberweisung: { label: "an Ausschuss überwiesen", classes: "bg-zinc-100 text-zinc-700 border-zinc-300" },
 };
 
+// Rohe Fraktions-Stimme als Chip (ja/nein/Enthaltung).
+function RohstimmeChip({ fraktion, vote }: { fraktion: string; vote: string }) {
+  const cls =
+    vote === "ja"
+      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      : vote === "nein"
+        ? "bg-rose-50 text-rose-800 border-rose-200"
+        : vote === "enthaltung"
+          ? "bg-amber-50 text-amber-800 border-amber-200"
+          : "bg-zinc-50 text-zinc-500 border-zinc-200";
+  const icon = vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-medium ${cls}`}
+      title={`${fraktion}: ${vote}`}
+    >
+      <span className="font-semibold">{fraktion}</span>
+      <span>{icon}</span>
+    </span>
+  );
+}
+
+// Umgerechnete Sachposition zum Antrag als Chip (dafür/dagegen/Enthaltung).
+function PositionChip({ fraktion, raw }: { fraktion: string; raw: string }) {
+  const pos = positionZumAntrag(raw, true);
+  const cls =
+    pos === "dafuer"
+      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      : pos === "dagegen"
+        ? "bg-rose-50 text-rose-800 border-rose-200"
+        : pos === "enthaltung"
+          ? "bg-amber-50 text-amber-800 border-amber-200"
+          : "bg-zinc-50 text-zinc-500 border-zinc-200";
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-medium ${cls}`}
+      title={`${fraktion}: ${POSITION_META[pos].label} (Rohstimme: ${raw})`}
+    >
+      <span className="font-semibold">{fraktion}</span>
+      <span>{POSITION_META[pos].icon}</span>
+    </span>
+  );
+}
+
 function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[] }) {
+  const hatFlip = votes.some((v) => v.beschlussAblehnung);
   return (
     <section className="fade-in-up-4 bg-white rounded-2xl border border-zinc-200/70 p-7 mb-6">
       <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
@@ -1439,6 +1485,19 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
           · Handzeichen, Fraktions-Ebene
         </span>
       </h2>
+      {/* "Oben": Beschlussempfehlungs-Hinweis vor den Stimmen — sonst liest sich die rohe
+          Stimme als "Einbringer stimmt gegen den eigenen Antrag". */}
+      {hatFlip && (
+        <div className="mb-5 rounded-xl border border-amber-300/70 bg-amber-50 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900">
+          <span className="font-semibold">Wichtig zum Verständnis:</span> Abgestimmt wurde nicht über
+          den Antrag selbst, sondern über die{" "}
+          <span className="font-medium">Beschlussempfehlung des Ausschusses, die die Ablehnung dieses
+          Antrags empfiehlt</span>. Ein „Nein“ zur Empfehlung bedeutet daher{" "}
+          <span className="font-medium">Zustimmung zum Antrag</span>. Die Stimmen unten sind als{" "}
+          <span className="font-medium">Position zum Antrag</span> dargestellt; die Rohstimme über die
+          Beschlussempfehlung steht jeweils darunter.
+        </div>
+      )}
       <p className="text-[12.5px] text-zinc-500 leading-relaxed mb-5 max-w-2xl">
         Diese Abstimmung wurde nicht namentlich durchgeführt; das Plenum hat per Handzeichen
         entschieden. Es liegen daher keine individuellen MdB-Stimmen vor, nur das Abstimmungs-Verhalten
@@ -1446,10 +1505,15 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
       </p>
       <div className="space-y-5">
         {votes.map((v) => {
-          const oc = HZ_OUTCOME_META[v.outcome] ?? {
-            label: v.outcome,
-            classes: "bg-zinc-100 text-zinc-700 border-zinc-300",
-          };
+          const flip = v.beschlussAblehnung;
+          // Bei Flip steht das Outcome für die Beschlussempfehlung; annahme = Antrag abgelehnt.
+          const oc =
+            flip && v.outcome === "annahme"
+              ? { label: "Antrag abgelehnt", classes: "bg-rose-50 text-rose-800 border-rose-300" }
+              : HZ_OUTCOME_META[v.outcome] ?? {
+                  label: v.outcome,
+                  classes: "bg-zinc-100 text-zinc-700 border-zinc-300",
+                };
           return (
             <div key={v.voteId}>
               <div className="flex items-baseline justify-between gap-3 mb-2 flex-wrap">
@@ -1459,6 +1523,11 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                   >
                     {oc.label}
                   </span>
+                  {flip && (
+                    <span className="text-[11px] font-medium text-amber-700">
+                      über Beschlussempfehlung (Ablehnung empfohlen)
+                    </span>
+                  )}
                   {v.modus && (
                     <span className="text-[11px] text-zinc-500">
                       {v.modus === "einstimmig"
@@ -1486,35 +1555,37 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                   </span>
                 )}
               </div>
-              {v.fraktionVotes ? (
-                <div className="flex flex-wrap gap-1.5">
-                  {HZ_FRAKTIONS_ORDER.map((f) => {
-                    const vote = v.fraktionVotes?.[f] ?? "unbekannt";
-                    const cls =
-                      vote === "ja"
-                        ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                        : vote === "nein"
-                          ? "bg-rose-50 text-rose-800 border-rose-200"
-                          : vote === "enthaltung"
-                            ? "bg-amber-50 text-amber-800 border-amber-200"
-                            : "bg-zinc-50 text-zinc-500 border-zinc-200";
-                    const icon =
-                      vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
-                    return (
-                      <span
-                        key={f}
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-medium ${cls}`}
-                        title={`${f}: ${vote}`}
-                      >
-                        <span className="font-semibold">{f}</span>
-                        <span>{icon}</span>
-                      </span>
-                    );
-                  })}
-                </div>
-              ) : (
+              {!v.fraktionVotes ? (
                 <div className="text-[11.5px] text-zinc-400 italic">
                   Fraktions-Voten nicht erfasst
+                </div>
+              ) : flip ? (
+                <>
+                  <div className="text-[10px] font-medium uppercase tracking-wide text-zinc-400 mb-1">
+                    Position zum Antrag
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {HZ_FRAKTIONS_ORDER.map((f) => (
+                      <PositionChip key={f} fraktion={f} raw={v.fraktionVotes?.[f] ?? "unbekannt"} />
+                    ))}
+                  </div>
+                  <details className="group mt-2">
+                    <summary className="cursor-pointer list-none text-[11px] text-zinc-400 hover:text-zinc-600 select-none">
+                      <span className="group-open:hidden">▶ Rohstimme über die Beschlussempfehlung</span>
+                      <span className="hidden group-open:inline">▼ Rohstimme ausblenden</span>
+                    </summary>
+                    <div className="mt-1.5 flex flex-wrap gap-1.5">
+                      {HZ_FRAKTIONS_ORDER.map((f) => (
+                        <RohstimmeChip key={f} fraktion={f} vote={v.fraktionVotes?.[f] ?? "unbekannt"} />
+                      ))}
+                    </div>
+                  </details>
+                </>
+              ) : (
+                <div className="flex flex-wrap gap-1.5">
+                  {HZ_FRAKTIONS_ORDER.map((f) => (
+                    <RohstimmeChip key={f} fraktion={f} vote={v.fraktionVotes?.[f] ?? "unbekannt"} />
+                  ))}
                 </div>
               )}
             </div>
