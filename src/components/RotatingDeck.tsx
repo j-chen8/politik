@@ -100,7 +100,7 @@ export function RotatingDeck({ children, intervalMs = 5000 }: Props) {
             }`}
           />
         ))}
-        <span className="text-[10px] text-zinc-400 num ml-1.5">
+        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 num ml-1.5">
           {idx + 1} / {items.length}
         </span>
       </div>

@@ -30,7 +30,7 @@ export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = 
 
   if (photoUrl) {
     return (
-      <div className={`${s.wrap} ${s.rounded} overflow-hidden shrink-0 bg-zinc-100`}>
+      <div className={`${s.wrap} ${s.rounded} overflow-hidden shrink-0 bg-zinc-100 dark:bg-zinc-800`}>
         <Image
           src={photoUrl}
           alt={`${firstName} ${lastName}`}
@@ -49,7 +49,7 @@ export function PoliticianAvatar({ photoUrl, firstName, lastName, party, size = 
   if (fallback === "muted") {
     return (
       <div
-        className={`${s.wrap} ${s.rounded} flex items-center justify-center shrink-0 font-semibold tracking-tight bg-zinc-100 text-zinc-400`}
+        className={`${s.wrap} ${s.rounded} flex items-center justify-center shrink-0 font-semibold tracking-tight bg-zinc-100 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-500`}
         aria-label={noPhotoLabel}
         title="Kein Foto verfügbar – keine eindeutige Bildlizenz"
       >

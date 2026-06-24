@@ -108,7 +108,7 @@ function IconArrow({ className = "" }: { className?: string }) {
 // Display-Schrift (Bricolage Grotesque, in page.tsx geladen) für Headlines.
 const DISPLAY = "font-[family-name:var(--font-display)]";
 // Weiche Flächen-Grammatik: Schatten + Radius statt Rahmen.
-const SOFT_CARD = "rounded-3xl bg-white/90 shadow-[0_2px_24px_-14px_rgba(20,20,45,0.22)] ring-1 ring-zinc-900/[0.05] backdrop-blur-sm dark:bg-zinc-900/60 dark:ring-white/[0.06]";
+const SOFT_CARD = "rounded-3xl bg-card/90 shadow-[0_2px_24px_-14px_rgba(20,20,45,0.22)] ring-1 ring-zinc-900/[0.05] backdrop-blur-sm dark:bg-zinc-900/60 dark:ring-white/[0.06]";
 
 function Teaser({ items, roomy = true, className = "" }: { items: string[]; roomy?: boolean; className?: string }) {
   // Einzeilig + truncate → jede Karte hat dieselbe Untertitel-Höhe (kein 2-Zeilen-Umbruch).
@@ -131,7 +131,7 @@ const TYP_META: Record<CatchItem["typ"], { Icon: LucideIcon; color: string }> = 
 function TypEyebrow({ c, className = "" }: { c: CatchItem; className?: string }) {
   const m = TYP_META[c.typ];
   return (
-    <p className={`flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 ${className}`}>
+    <p className={`flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 ${className}`}>
       <m.Icon className={`h-3.5 w-3.5 shrink-0 ${m.color}`} strokeWidth={2.25} />
       <span>{c.typ} · {c.datum}</span>
     </p>
@@ -162,7 +162,7 @@ function CatchCard({ c, onOpen }: { c: CatchItem; onOpen?: () => void }) {
 function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
   c: CatchItem; pos: number; total: number; onClose: () => void; onPrev: () => void; onNext: () => void;
 }) {
-  const navBtn = "flex h-8 w-8 items-center justify-center rounded-full text-zinc-400 ring-1 ring-zinc-900/10 transition hover:bg-zinc-900/[0.05] hover:text-zinc-700 dark:ring-white/15 dark:hover:bg-white/[0.06] dark:hover:text-zinc-200";
+  const navBtn = "flex h-8 w-8 items-center justify-center rounded-full text-zinc-400 ring-1 ring-zinc-900/10 dark:ring-zinc-100/10 transition hover:bg-zinc-900/[0.05] hover:text-zinc-700 dark:ring-white/15 dark:hover:bg-white/[0.06] dark:hover:text-zinc-200";
   return (
     <div key={c.titel} className={`fade-quick relative mt-6 flex min-h-[780px] flex-col p-8 md:p-10 ${SOFT_CARD}`}>
       <div className="flex items-start justify-between gap-4">
@@ -186,7 +186,7 @@ function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
             <StandDots stand={c.stand} />
             <span className="text-[12.5px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[c.stand]}</span>
           </p>
-          {c.standDetail && <p className="mt-1.5 text-[12.5px] text-zinc-400">{c.standDetail}</p>}
+          {c.standDetail && <p className="mt-1.5 text-[12.5px] text-zinc-400 dark:text-zinc-500">{c.standDetail}</p>}
         </div>
       )}
       <TagChips tags={c.tags} className="mt-5" />
@@ -196,7 +196,7 @@ function DocPreview({ c, pos, total, onClose, onPrev, onNext }: {
         </Link>
         <div className="flex items-center gap-2.5">
           <button onClick={onPrev} aria-label="vorheriger Eintrag" className={navBtn}><IconArrow className="h-4 w-4 rotate-180" /></button>
-          <span className="text-[12px] tabular-nums text-zinc-400">{pos} / {total}</span>
+          <span className="text-[12px] tabular-nums text-zinc-400 dark:text-zinc-500">{pos} / {total}</span>
           <button onClick={onNext} aria-label="nächster Eintrag" className={navBtn}><IconArrow className="h-4 w-4" /></button>
         </div>
       </div>
@@ -245,7 +245,7 @@ function ErgebnisBar({ e, slim = false }: { e: NonNullable<CatchItem["ergebnis"]
 // einzige Karte volle Tiefe: „Worum geht es?" + Ergebnis-Balken (beide aus Bestand).
 function FeaturedVote({ c }: { c: CatchItem }) {
   return (
-    <Link href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-6 ring-1 ring-zinc-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-7 ${SOFT_CARD}`}>
+    <Link href={c.href ?? "#"} className={`group flex flex-col overflow-hidden p-6 ring-1 ring-zinc-900/10 dark:ring-zinc-100/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_56px_-20px_rgba(20,20,45,0.34)] md:p-7 ${SOFT_CARD}`}>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
         {/* Typ-Wort raus — die Sektions-Überschrift sagt schon „Abstimmungen"; „Aktuell"
             begründet nur, warum DIESE Karte groß ist (die neueste). Icon trägt den Typ. */}
@@ -258,7 +258,7 @@ function FeaturedVote({ c }: { c: CatchItem }) {
           Überschrift auf 2.3rem geschrumpft ist (Budget wandert in den Inhalt). */}
       {c.worum ? (
         <>
-          <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Worum geht es?</p>
+          <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Worum geht es?</p>
           <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-500 line-clamp-6 dark:text-zinc-400">{c.worum}</p>
         </>
       ) : (
@@ -266,7 +266,7 @@ function FeaturedVote({ c }: { c: CatchItem }) {
       )}
       {(c.ergebnis || c.fraktionen) && (
         <div className="mt-auto pt-6">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Ergebnis{c.outcome ? ` · ${c.outcome}` : ""}</p>
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Ergebnis{c.outcome ? ` · ${c.outcome}` : ""}</p>
           {c.ergebnis ? <ErgebnisBar e={c.ergebnis} /> : <FraktionRow f={c.fraktionen!} />}
         </div>
       )}
@@ -305,10 +305,10 @@ function VoteRow({ c }: { c: CatchItem }) {
 const FRAKTIONS_ORDER = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"];
 function FraktionRow({ f, slim = false }: { f: Record<string, string>; slim?: boolean }) {
   const pill = (vt: string) =>
-    vt === "ja" ? "bg-emerald-50 text-emerald-800 ring-emerald-200"
-    : vt === "nein" ? "bg-rose-50 text-rose-800 ring-rose-200"
-    : vt === "enthaltung" ? "bg-amber-50 text-amber-800 ring-amber-200"
-    : "bg-zinc-50 text-zinc-500 ring-zinc-200";
+    vt === "ja" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 ring-emerald-200 dark:ring-emerald-900/50"
+    : vt === "nein" ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 ring-rose-200 dark:ring-rose-900/50"
+    : vt === "enthaltung" ? "bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-400 ring-amber-200 dark:ring-amber-900/50"
+    : "bg-zinc-50 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 ring-zinc-200 dark:ring-zinc-700";
   const icon = (vt: string) => (vt === "ja" ? "✓" : vt === "nein" ? "✗" : vt === "enthaltung" ? "—" : "?");
   const keys = [...FRAKTIONS_ORDER.filter((k) => f[k]), ...Object.keys(f).filter((k) => !FRAKTIONS_ORDER.includes(k))];
   return (
@@ -341,7 +341,7 @@ function StandDots({ stand }: { stand: number }) {
 // Gesetzentwurf-Karte: Eyebrow (Typ + Datum), Titel, unten bündig der Verfahrens-
 // stand-Stepper. Nimmt ein Pool-Item (Drucksache mit `stand`) — gleiche Datenquelle
 // wie der Feed.
-function GesetzCard({ c }: { c: CatchItem }) {
+function GesetzCard({ c, stufen = GESETZ_STUFEN }: { c: CatchItem; stufen?: readonly string[] }) {
   return (
     <Link href={c.href ?? "#"} className={`group flex min-w-0 min-h-[160px] cursor-pointer flex-col p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_-18px_rgba(20,20,45,0.32)] ${SOFT_CARD}`}>
       {/* Typ-Wort raus — die Reihen-Überschrift sagt schon „Gesetzentwürfe"; Icon + Datum reichen */}
@@ -357,9 +357,9 @@ function GesetzCard({ c }: { c: CatchItem }) {
       <div className="mt-auto pt-3">
         <p className="flex items-center gap-2.5">
           <StandDots stand={c.stand ?? 0} />
-          <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{GESETZ_STUFEN[c.stand ?? 0]}</span>
+          <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-300">{stufen[c.stand ?? 0]}</span>
         </p>
-        <p className="mt-1.5 min-h-[17px] text-[12px] leading-snug text-zinc-400">{c.standDetail ?? ""}</p>
+        <p className="mt-1.5 min-h-[17px] text-[12px] leading-snug text-zinc-400 dark:text-zinc-500">{c.standDetail ?? ""}</p>
       </div>
     </Link>
   );
@@ -437,7 +437,7 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
   // Flankierender Pfeil — Desktop only, neben den Karten. Loopt (nie ausgegraut).
   // Standardmäßig extrem transparent; voll sichtbar, sobald man über die Reihe hovert
   // (group/shelf) — der direkte Pfeil-Hover gibt zusätzlich Scale + Farbe.
-  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
+  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-card/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
 
   return (
     <div>
@@ -457,9 +457,9 @@ function SitzungenShelf({ sitzungen, perView = 3 }: { sitzungen: Sitzung[]; perV
             )}
             <span className="min-w-0">
               <span className="flex items-center gap-1.5 whitespace-nowrap text-[14.5px] font-semibold text-zinc-900 dark:text-zinc-50">
-                Sitzung {s.nr}<IconArrow className="h-4 w-4 shrink-0 text-zinc-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+                Sitzung {s.nr}<IconArrow className="h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
               </span>
-              <span className="block text-[12px] text-zinc-400">{s.datum}</span>
+              <span className="block text-[12px] text-zinc-400 dark:text-zinc-500">{s.datum}</span>
               <span className="mt-1.5 block truncate text-[12.5px] leading-snug text-zinc-500 dark:text-zinc-400">{s.tops}</span>
             </span>
           </Link>
@@ -536,7 +536,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
     settle.current = setTimeout(recenter, 120);
   };
   const step = (dir: 1 | -1) => scrollRef.current?.scrollBy({ left: dir * scrollRef.current.clientWidth, behavior: "smooth" });
-  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
+  const arrowBtn = "hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-card/95 text-zinc-700 shadow-[0_6px_22px_-6px_rgba(20,20,45,0.4)] ring-1 ring-zinc-900/[0.06] backdrop-blur-sm opacity-15 transition duration-200 group-hover/shelf:opacity-100 hover:scale-105 hover:text-zinc-900 md:flex dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:text-zinc-50";
 
   const chip = (sel: boolean) =>
     `flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${sel
@@ -557,7 +557,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
           <PoliticianAvatar photoUrl={p.photoUrl ?? null} firstName={p.vorname} lastName={p.nachname} party={p.partei} size="2xl" />
         </span>
         <span className={`mt-3 block max-w-full truncate text-[13.5px] font-semibold transition-colors ${sel ? "text-zinc-900 dark:text-zinc-50" : "text-zinc-600 dark:text-zinc-300"}`}>{p.nachname}</span>
-        <span className="block max-w-full truncate text-[11.5px] text-zinc-400">{PARTEI_KURZ[p.partei] ?? p.partei}</span>
+        <span className="block max-w-full truncate text-[11.5px] text-zinc-400 dark:text-zinc-500">{PARTEI_KURZ[p.partei] ?? p.partei}</span>
       </Tag>
     );
   };
@@ -605,7 +605,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
       <div className={`mx-auto mt-7 min-h-[370px] max-w-2xl p-6 text-center ${SOFT_CARD}`}>
       <div key={kopfKey(k)} className="fade-quick">
         <p className="text-[15.5px] font-semibold text-zinc-900 dark:text-zinc-50">{k.vorname} {k.nachname}</p>
-        <p className="mt-1 text-[12.5px] text-zinc-400">{k.partei}{k.rolle ? ` · ${k.rolle}` : ""}</p>
+        <p className="mt-1 text-[12.5px] text-zinc-400 dark:text-zinc-500">{k.partei}{k.rolle ? ` · ${k.rolle}` : ""}</p>
         <p className="mt-1.5 text-[13px] text-zinc-500 dark:text-zinc-400">
           {/* „Plenarbeiträgen", nicht „Reden" (User 2026-06-12): Korn = einzigartige
               Protokoll-Beiträge (alle Typen) — die Profil-Rubrik „Reden" zählt anders
@@ -614,7 +614,7 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
         </p>
         {(k.themen?.length ?? 0) > 0 && (
           <>
-            <p className="mt-3.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">Spricht vor allem zu</p>
+            <p className="mt-3.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Spricht vor allem zu</p>
             <p className="mt-1.5 flex flex-wrap justify-center gap-1.5">
               {k.themen!.map((t) => (
                 <span key={t} className="rounded-full bg-zinc-900/[0.04] px-2.5 py-1 text-[11.5px] font-medium text-zinc-500 dark:bg-white/[0.06] dark:text-zinc-400">{t}</span>
@@ -627,12 +627,12 @@ function KoepfeStrip({ koepfe }: { koepfe: Kopf[] }) {
             fassung trägt den Inhalt, der Link führt in die Sitzung. */}
         {(k.letzteReden?.length ?? 0) > 0 && (
           <>
-            <p className="mt-4 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">Letzte Reden zum Thema</p>
+            <p className="mt-4 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Letzte Reden zum Thema</p>
             <div className="mt-2 space-y-1.5 text-left">
               {k.letzteReden!.map((r) => (
                 <Link key={r.id} href={r.href}
                   className="group/rede block rounded-xl bg-zinc-900/[0.03] px-3.5 py-2.5 transition hover:bg-zinc-900/[0.06] dark:bg-white/[0.04] dark:hover:bg-white/[0.08]">
-                  <span className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400">
+                  <span className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                     <Mic className="h-3 w-3 shrink-0" strokeWidth={2.25} />{r.datum}
                   </span>
                   <span className="mt-0.5 min-h-[8.15em] line-clamp-5 text-[12.5px] leading-relaxed text-zinc-600 transition group-hover/rede:text-zinc-900 dark:text-zinc-300 dark:group-hover/rede:text-zinc-100">{r.einzeiler}</span>
@@ -772,20 +772,20 @@ function UnterCard({ u, onPick }: { u: StrukturUnter; onPick: (slug: string) => 
       onMouseEnter={() => setPaused(false)} onMouseLeave={() => setPaused(true)}
       // min-w-0: als Grid-Item diktiert sonst der nowrap-Inhalt (Ticker/Truncate)
       // die Spur-Mindestbreite → 909px-Karten auf 390px-Mobile (User 2026-06-13)
-      className={`group flex min-w-0 items-center justify-between gap-3 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] ${leer ? "opacity-55" : "ring-2 ring-zinc-900/10 dark:ring-white/15"} ${SOFT_CARD}`}>
+      className={`group flex min-w-0 items-center justify-between gap-3 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-18px_rgba(20,20,45,0.34)] ${leer ? "opacity-55" : "ring-2 ring-zinc-900/10 dark:ring-zinc-100/10 dark:ring-white/15"} ${SOFT_CARD}`}>
       <span className="flex min-w-0 flex-1 flex-col">
         <span className="flex items-baseline gap-2">
           <span className="min-w-0 truncate text-[15px] font-semibold text-zinc-900 dark:text-zinc-50">{u.name}</span>
-          <span className="shrink-0 text-[11px] font-medium tabular-nums text-zinc-400">{u.count}</span>
+          <span className="shrink-0 text-[11px] font-medium tabular-nums text-zinc-400 dark:text-zinc-500">{u.count}</span>
         </span>
         {/* Zeile 2: Tag-Ticker links, Frische-Stempel rechts (User 2026-06-12) —
             in der Namenszeile quetschte der Stempel lange Cluster-Namen ins Truncate */}
         <span className="flex items-baseline gap-2.5">
           <span className="min-w-0 flex-1">{scent.length > 0 && <ScentTicker items={scent} paused={paused} />}</span>
-          {u.zuletzt && <span className={`shrink-0 text-[11px] ${u.zuletzt === "heute" || u.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400"}`}>{u.zuletzt}</span>}
+          {u.zuletzt && <span className={`shrink-0 text-[11px] ${u.zuletzt === "heute" || u.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400 dark:text-zinc-500"}`}>{u.zuletzt}</span>}
         </span>
       </span>
-      <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+      <IconArrow className="h-5 w-5 shrink-0 text-zinc-500 dark:text-zinc-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
     </button>
   );
 }
@@ -802,7 +802,7 @@ function DetailPane({ ober, onPick, className = "" }: { ober: StrukturOber; onPi
   );
 }
 
-export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null }) {
+export function VorschauThemen({ struktur, blatt, abstimmungenBasis = "/abstimmungen", gesetzeAlleHref = "/gesetzentwuerfe", gesetzStufen = GESETZ_STUFEN }: { struktur: StrukturOber[]; blatt: DigitalBlattEcht | null; abstimmungenBasis?: string; gesetzeAlleHref?: string; gesetzStufen?: readonly string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const feld = searchParams.get("feld");
@@ -870,120 +870,39 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
   const screen3Ref = useRef<HTMLDivElement>(null);
   const screenRefs = [screen1Ref, screen2Ref, screen3Ref];
   const [activeScreen, setActiveScreen] = useState(0);
+
+  // Kommt man über einen „Spezifisches Thema"-Link aus der Suche an, ist ?thema=
+  // schon gesetzt → direkt zur 3. Sektion „Spezifische Themen" (Tag-gefilterter
+  // Dokument-Feed) springen, statt oben bei den Abstimmungen zu starten. Einmal pro
+  // Blatt-Eintritt (didTagJump); Tag-Wechsel INNERHALB des Blatts behalten ihren
+  // eigenen Steh-Anker (pickTag) und lösen das hier nicht aus.
+  const didTagJump = useRef(false);
+  // useLayoutEffect (synchron, VOR dem Paint) statt useEffect+rAF: sonst malt der
+  // Browser erst die Oberkante und springt einen Frame später runter → sichtbares
+  // Hüpfen. So ist schon der erste sichtbare Frame an der 3. Sektion.
+  useLayoutEffect(() => {
+    if (!isLeaf) { didTagJump.current = false; return; }
+    if (didTagJump.current || !activeTag) return;
+    didTagJump.current = true;
+    screen3Ref.current?.scrollIntoView({ block: "start" });
+  }, [isLeaf, activeTag]);
+
+  // Section-Snapping (Wheel-Paging) testweise AUS (User 2026-06-15: „will mal sehen
+  // wie es ohne ist"). Es bleibt nur das Mitführen der aktiven Sektion fürs
+  // SectionRail-Highlight — kein automatisches Reinziehen in die nächste Sektion mehr.
+  // Die alte go()/onWheel()/settle()-Fahrlogik lebt in der git-Historie (vor 2026-06-15).
   useEffect(() => {
     if (!isLeaf) return;
     const refs = [screen1Ref, screen2Ref, screen3Ref];
-    const OFFSET = 96;        // = scroll-mt-24 der Sektionen (Kante ruht unter der Navbar)
-    const COMMIT_PX = 80;     // Fallback-Assist: so viel Rest-Position heißt „weiter"
-    const WHEEL_COMMIT = 60;  // so viel Rad-Delta heißt „weiter" (1 Maus-Raste ≈ 100–120)
-    const COOLDOWN_MS = 300;  // schluckt Trackpad-Momentum nach einer Fahrt
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let lastY = window.scrollY;
-    let dir = 1;
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    let animating = false;
-    let animTarget = 0;
-    let animStart = 0;
-    let acc = 0;             // akkumuliertes Rad-Delta der laufenden Geste
-    let lastWheelT = 0;
-    let cooldownUntil = 0;
-
-    // Kanten live messen — Layout ändert sich durch Filter/Pagination
-    const measureStops = (y: number) => [0, ...[screen2Ref, screen3Ref].map((r) =>
-      r.current ? Math.round(r.current.getBoundingClientRect().top + y - OFFSET) : Infinity)];
-    const freeOf = (i: number) =>
-      Math.max(0, (refs[i].current?.offsetHeight ?? 0) - (window.innerHeight - OFFSET));
-    const go = (target: number) => {
-      animating = true;
-      animTarget = target;
-      animStart = performance.now();
-      window.scrollTo({ top: target, behavior: "smooth" });
-    };
-
-    // Paging direkt am Rad: greift, BEVOR gescrollt wird
-    const onWheel = (e: WheelEvent) => {
-      if (reduced || e.ctrlKey) return; // ctrl+Rad = Browser-Zoom, nie anfassen
-      const now = performance.now();
-      if (animating) {
-        // Fahrt läuft → Rad schlucken (deterministisch ankommen); Notausstieg falls
-        // die Animation still gestorben ist (z. B. Tab-Wechsel)
-        if (now - animStart > 1200) { animating = false; cooldownUntil = now + COOLDOWN_MS; }
-        else { e.preventDefault(); return; }
-      }
-      if (now < cooldownUntil) { e.preventDefault(); return; }
-      const y = window.scrollY;
-      const stops = measureStops(y);
-      let i = 0;
-      while (i + 1 < stops.length && y >= stops[i + 1] - 2) i++;
-      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY; // Zeilen-Modus (Firefox) normalisieren
-      // Gesten-Pause oder Richtungswechsel resettet den Akkumulator
-      if (now - lastWheelT > 250 || (acc !== 0 && Math.sign(delta) !== Math.sign(acc))) acc = 0;
-      lastWheelT = now;
-      if (delta > 0) {
-        // runter: ab dem Ende des Freibereichs übernimmt die Fahrt
-        const next = stops[i + 1];
-        if (next != null && isFinite(next) && y >= stops[i] + freeOf(i) - 2) {
-          e.preventDefault();
-          acc += delta;
-          if (acc >= WHEEL_COMMIT) { acc = 0; go(next); }
-        }
-      } else if (delta < 0) {
-        // hoch: an der Oberkante einer Sektion übernimmt die Fahrt zur vorigen Ruhelage
-        if (i > 0 && y <= stops[i] + 2) {
-          e.preventDefault();
-          acc += delta;
-          if (-acc >= WHEEL_COMMIT) { acc = 0; go(stops[i - 1] + freeOf(i - 1)); }
-        }
-      }
-    };
-
-    // Fallback für Eingaben ohne wheel-Event (Scrollbar-Drag, Tastatur): erst wenn
-    // die Bewegung vorbei ist (debounced), in der Übergangszone nachziehen
-    const settle = () => {
-      if (animating) return;
-      const y = window.scrollY;
-      const stops = measureStops(y);
-      let i = 0;
-      while (i + 1 < stops.length && y >= stops[i + 1]) i++;
-      const next = stops[i + 1];
-      if (next == null || !isFinite(next)) return; // hinter der letzten Kante = frei
-      const free = freeOf(i);
-      const into = y - stops[i];
-      if (into <= free + 2) return; // Sektion wird noch gelesen → nicht eingreifen
-      const back = stops[i] + free; // Ruhelage der aktuellen Sektion
-      const target = dir >= 0
-        ? (into - free >= COMMIT_PX ? next : back)
-        : (next - y >= COMMIT_PX ? back : next);
-      if (Math.abs(target - y) <= 2) return;
-      go(target);
-    };
-
     const onScroll = () => {
-      const yNow = window.scrollY;
-      if (yNow !== lastY) dir = yNow > lastY ? 1 : -1;
-      lastY = yNow;
-      const mid = yNow + window.innerHeight / 2;
+      const mid = window.scrollY + window.innerHeight / 2;
       let a = 0;
       refs.forEach((r, i) => { if (r.current && r.current.offsetTop <= mid) a = i; });
       setActiveScreen(a);
-      if (animating && Math.abs(yNow - animTarget) <= 2) {
-        // angekommen → Cooldown gegen nachlaufendes Momentum
-        animating = false;
-        cooldownUntil = performance.now() + COOLDOWN_MS;
-        return;
-      }
-      if (reduced || animating) return;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(settle, 140);
     };
     onScroll();
-    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("scroll", onScroll);
-      if (timer) clearTimeout(timer);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, [isLeaf]);
 
 
@@ -1027,7 +946,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           Blatt, alles rückt etwas runter): Übersicht „Themen" · Feld „Themen / Feld"
           · Blatt „Themen / Feld / Unterthema". Die aktuelle Ebene steht still, alles
           davor ist klickbar — ersetzt den alten „Alle Themen"-Zurück-Button. */}
-      <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400">
+      <nav className="mb-5 flex items-center gap-2 text-[13px] text-zinc-400 dark:text-zinc-500">
         {selFeld ? (
           <button onClick={() => nav({ feld: null, unter: null, thema: null })} className="underline decoration-zinc-300 decoration-[1.5px] underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-500 dark:decoration-zinc-600 dark:hover:text-zinc-100 dark:hover:decoration-zinc-400">Themen</button>
         ) : (
@@ -1035,7 +954,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         )}
         {selFeld && (
           <>
-            <span className="text-zinc-300">/</span>
+            <span className="text-zinc-300 dark:text-zinc-600">/</span>
             {isLeaf ? (
               <button onClick={() => nav({ feld, unter: null, thema: null })} className="underline decoration-zinc-300 decoration-[1.5px] underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-500 dark:decoration-zinc-600 dark:hover:text-zinc-100 dark:hover:decoration-zinc-400">{selFeld.name}</button>
             ) : (
@@ -1045,7 +964,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         )}
         {isLeaf && (
           <>
-            <span className="text-zinc-300">/</span>
+            <span className="text-zinc-300 dark:text-zinc-600">/</span>
             <span className="font-medium text-zinc-700 dark:text-zinc-200">{blatt?.unterthema}</span>
           </>
         )}
@@ -1064,7 +983,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
           <h2 key={`titel-${selFeld?.slug ?? "alle"}`} className={`${DISPLAY} fade-quick min-w-0 text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>
             {selFeld?.name ?? "Themen"}
           </h2>
-          <p className="mt-3 text-[15px] text-zinc-500">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
+          <p className="mt-3 text-[15px] text-zinc-500 dark:text-zinc-400">Wähle ein {selFeld ? "Unterthema" : "Thema"}.</p>
 
           {selFeld ? (
             // key = Feld-Slug (Präfix, s. o.): das Panel remountet beim Wechsel und spielt die Aufklapp-Animation
@@ -1075,14 +994,14 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             <div className="panel-expand mt-5 flex w-full flex-col gap-2 md:grid md:grid-cols-2 md:gap-3.5">
               {FELDER.map((f) => (
                 <button key={f.slug} onClick={() => nav({ feld: f.slug, unter: null, thema: null })}
-                  className="group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left text-zinc-600 transition hover:bg-zinc-900/[0.045] md:bg-white/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:bg-white/60 md:hover:ring-zinc-900/[0.12] dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:bg-zinc-900/40 dark:md:hover:ring-white/[0.14]">
+                  className="group flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left text-zinc-600 transition hover:bg-zinc-900/[0.045] md:bg-card/60 md:px-6 md:py-[18px] md:ring-1 md:ring-zinc-900/[0.05] md:hover:bg-card/60 md:hover:ring-zinc-900/[0.12] dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:md:bg-zinc-900/40 dark:md:ring-white/[0.06] dark:md:hover:bg-zinc-900/40 dark:md:hover:ring-white/[0.14]">
                   <span className="flex min-w-0 flex-col">
                     <span className="truncate text-[15px] font-medium leading-snug md:text-[16.5px] md:font-semibold md:text-zinc-900 dark:md:text-zinc-100">{f.name}</span>
                     <Teaser items={f.teaser} />
                   </span>
                   <span className="flex shrink-0 items-center gap-2">
-                    {f.zuletzt && <span className={`text-[11.5px] ${f.zuletzt === "heute" || f.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400"}`}>{f.zuletzt}</span>}
-                    <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
+                    {f.zuletzt && <span className={`text-[11.5px] ${f.zuletzt === "heute" || f.zuletzt === "gestern" ? "font-medium text-emerald-600 dark:text-emerald-400" : "text-zinc-400 dark:text-zinc-500"}`}>{f.zuletzt}</span>}
+                    <IconArrow className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400 opacity-40 transition md:opacity-0 md:group-hover:translate-x-0.5 md:group-hover:opacity-100" />
                   </span>
                 </button>
               ))}
@@ -1162,7 +1081,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
         const rest = shownCatch.filter((c) => c.typ !== "Abstimmung" && c.stand == null);
         // Heute schon mit echten Treffern: Handzeichen-Votes tragen das Drucksachen-
         // Roh-Thema („Digitalisierung", 46 Votes); der Tag-Batch vereinheitlicht später
-        const alleVotesHref = `/abstimmungen?thema=${encodeURIComponent(u.voteThema ?? u.name)}`;
+        const alleVotesHref = `${abstimmungenBasis}?thema=${encodeURIComponent(u.voteThema ?? u.name)}`;
         const PAGE_SIZE = 12;
         const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
         const safePage = Math.min(page, totalPages);
@@ -1204,7 +1123,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                   vorher mit 2.6/3.6rem heraus (User 2026-06-12) */}
               <h2 className={`${DISPLAY} text-[2.3rem] font-bold leading-[1.05] tracking-[-0.025em] text-zinc-950 dark:text-zinc-50`}>{u.name}</h2>
               {u.beschreibung && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-zinc-500 dark:text-zinc-400">{u.beschreibung}</p>}
-              {shownCatch[0] && <p className="mt-2.5 text-[12.5px] text-zinc-400">Zuletzt aktiv {shownCatch[0].datum}</p>}
+              {shownCatch[0] && <p className="mt-2.5 text-[12.5px] text-zinc-400 dark:text-zinc-500">Zuletzt aktiv {shownCatch[0].datum}</p>}
             </header>
 
             {/* Screen-1-Inhalt, Reihe 1 — Abstimmungen als bewährtes Paar: links die
@@ -1236,10 +1155,10 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
             {gesetzRow.length > 0 && (
               <div className="fade-in-up fade-in-up-3">
                 <SectionLabel hint={gesetzOverflow > 0
-                  ? <Link href="/gesetzentwuerfe" className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
+                  ? <Link href={gesetzeAlleHref} className="transition hover:text-zinc-900 dark:hover:text-zinc-100">die 3 neuesten · alle {imVerfahren.length} ansehen →</Link>
                   : `${imVerfahren.length} im Verfahren`}>Aktuelle Gesetzentwürfe</SectionLabel>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} />)}
+                  {gesetzRow.map((c) => <GesetzCard key={c.id ?? c.titel} c={c} stufen={gesetzStufen} />)}
                 </div>
               </div>
             )}
@@ -1280,32 +1199,32 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                   spezifischen Thema, bietet das Dropdown die Vervollständigung an
                   (Klick = Chip setzen). Freitext ohne Auswahl rankt Tag-Träger vorn. */}
               <div className="relative z-20 mb-3.5">
-                <IconSearch className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                <IconSearch className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
                 <input
                   value={query}
                   onChange={(e) => { setQuery(e.target.value); if (page > 1) nav({ page: null }, true); }}
                   onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)}
                   placeholder={`in ${u.name} suchen — Wort oder spezifisches Thema…`}
-                  className="w-full rounded-2xl bg-zinc-900/[0.04] py-3 pl-11 pr-4 text-[14px] text-zinc-800 placeholder:text-zinc-400 transition focus:bg-white focus:shadow-[0_2px_20px_-8px_rgba(20,20,45,0.25)] focus:outline-none focus:ring-2 focus:ring-zinc-400/60 dark:bg-white/[0.06] dark:text-zinc-100 dark:focus:bg-zinc-900"
+                  className="w-full rounded-2xl bg-zinc-900/[0.04] py-3 pl-11 pr-4 text-[14px] text-zinc-800 placeholder:text-zinc-400 transition focus:bg-card focus:shadow-[0_2px_20px_-8px_rgba(20,20,45,0.25)] focus:outline-none focus:ring-2 focus:ring-zinc-400/60 dark:bg-white/[0.06] dark:text-zinc-100 dark:focus:bg-zinc-900"
                 />
                 {searchFocus && tagSuggestions.length > 0 && (
-                  <div className="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-2xl bg-white shadow-[0_18px_44px_-16px_rgba(20,20,45,0.3)] ring-1 ring-zinc-900/10 dark:bg-zinc-900 dark:ring-white/15">
+                  <div className="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-2xl bg-card shadow-[0_18px_44px_-16px_rgba(20,20,45,0.3)] ring-1 ring-zinc-900/10 dark:ring-zinc-100/10 dark:bg-zinc-900 dark:ring-white/15">
                     {tagSuggestions.map((t) => {
                       const count = tagItems(t.name).length;
                       return (
                         // onMouseDown verhindert den Input-Blur, damit der Klick noch ankommt
                         <button key={t.name} onMouseDown={(e) => e.preventDefault()}
                           onClick={() => { pickTag(t.name); setQuery(""); setSearchFocus(false); }}
-                          className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition hover:bg-zinc-50 dark:hover:bg-white/[0.06]">
+                          className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left transition hover:bg-zinc-50 dark:hover:bg-zinc-800 dark:hover:bg-white/[0.06]">
                           <span className="flex items-center gap-2.5">
-                            <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-zinc-600 dark:bg-white/[0.1] dark:text-zinc-300">Thema</span>
+                            <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-zinc-600 dark:bg-white/[0.1] dark:text-zinc-300">Thema</span>
                             <span className="text-[13.5px] font-medium text-zinc-800 dark:text-zinc-100">{t.name}</span>
                           </span>
-                          <span className="text-[12px] text-zinc-400">{count} Einträge</span>
+                          <span className="text-[12px] text-zinc-400 dark:text-zinc-500">{count} Einträge</span>
                         </button>
                       );
                     })}
-                    <p className="border-t border-zinc-900/[0.06] px-4 py-2 text-[11.5px] text-zinc-400 dark:border-white/[0.08]">weitertippen = Volltextsuche nach „{query.trim()}“</p>
+                    <p className="border-t border-zinc-900/[0.06] px-4 py-2 text-[11.5px] text-zinc-400 dark:text-zinc-500 dark:border-white/[0.08]">weitertippen = Volltextsuche nach „{query.trim()}“</p>
                   </div>
                 )}
               </div>
@@ -1356,24 +1275,24 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                   {totalPages > 1 && (
                     <div className="mt-8 flex items-center justify-between">
                       <button onClick={() => nav({ page: safePage - 1 <= 1 ? null : String(safePage - 1) })} disabled={safePage === 1}
-                        className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13px] text-zinc-500 transition hover:bg-zinc-900/[0.05] disabled:opacity-40 disabled:hover:bg-transparent dark:hover:bg-white/[0.06]">
+                        className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13px] text-zinc-500 dark:text-zinc-400 transition hover:bg-zinc-900/[0.05] disabled:opacity-40 disabled:hover:bg-transparent dark:hover:bg-white/[0.06]">
                         <IconArrow className="h-4 w-4 rotate-180" />Zurück
                       </button>
                       {/* Mobile: die Zahlenreihe sprengt bei vielen Seiten den Viewport
                           (10×36px ≈ 600px) → kompakt „Seite X von Y" (User 2026-06-13) */}
-                      <span className="text-[13px] text-zinc-500 sm:hidden">Seite {safePage} von {totalPages}</span>
+                      <span className="text-[13px] text-zinc-500 dark:text-zinc-400 sm:hidden">Seite {safePage} von {totalPages}</span>
                       <div className="hidden items-center gap-1.5 sm:flex">
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                           <button key={n} onClick={() => nav({ page: n === 1 ? null : String(n) })}
                             className={`h-9 w-9 rounded-lg text-[13px] transition ${n === safePage
                               ? "bg-zinc-900 font-semibold text-white shadow-md shadow-zinc-900/20"
-                              : "text-zinc-600 ring-1 ring-zinc-900/10 hover:bg-zinc-900/[0.05] dark:text-zinc-300 dark:ring-white/15 dark:hover:bg-white/[0.06]"}`}>
+                              : "text-zinc-600 ring-1 ring-zinc-900/10 dark:ring-zinc-100/10 hover:bg-zinc-900/[0.05] dark:text-zinc-300 dark:ring-white/15 dark:hover:bg-white/[0.06]"}`}>
                             {n}
                           </button>
                         ))}
                       </div>
                       <button onClick={() => nav({ page: String(safePage + 1) })} disabled={safePage === totalPages}
-                        className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13px] text-zinc-500 transition hover:bg-zinc-900/[0.05] disabled:opacity-40 disabled:hover:bg-transparent dark:hover:bg-white/[0.06]">
+                        className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13px] text-zinc-500 dark:text-zinc-400 transition hover:bg-zinc-900/[0.05] disabled:opacity-40 disabled:hover:bg-transparent dark:hover:bg-white/[0.06]">
                         Weiter<IconArrow className="h-4 w-4" />
                       </button>
                     </div>
@@ -1384,7 +1303,7 @@ export function VorschauThemen({ struktur, blatt }: { struktur: StrukturOber[]; 
                 // Daten existiert ein Tag nur, wenn Items ihn tragen — nie leer. Hinweis
                 // belegt den ersten Slot, Ghosts halten die 4×3-Form.
                 <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <p className={`flex min-h-[180px] items-center justify-center p-6 text-center text-[12.5px] leading-relaxed text-zinc-400 ${SOFT_CARD}`}>
+                  <p className={`flex min-h-[180px] items-center justify-center p-6 text-center text-[12.5px] leading-relaxed text-zinc-400 dark:text-zinc-500 ${SOFT_CARD}`}>
                     {q
                       ? <>Keine Treffer für „{query.trim()}" — weder als Thema noch im Text.</>
                       : <>Im Dummy keine Beispiel-Einträge für „{activeTag}".<br />Mit echten Daten gibt es ein Tag nur, wenn Dokumente es tragen — diese Ansicht wäre nie leer.</>}

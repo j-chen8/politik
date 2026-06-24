@@ -46,7 +46,7 @@ export function ActivityFilters({ activeTyp, query, basePath = "/aktivitaeten" }
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Suche nach Politiker oder Thema..."
-          className="w-full pl-10 pr-24 py-3 rounded-xl border border-border bg-white text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
+          className="w-full pl-10 pr-24 py-3 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-400 dark:focus:border-zinc-500 transition-all"
         />
         <button
           type="submit"
@@ -68,7 +68,7 @@ export function ActivityFilters({ activeTyp, query, basePath = "/aktivitaeten" }
               className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                 isActive
                   ? "bg-zinc-900 text-white shadow-sm"
-                  : "bg-white text-muted border border-border hover:border-zinc-400 hover:text-foreground"
+                  : "bg-card text-muted border border-border hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-foreground"
               }`}
             >
               {Icon && <Icon className="w-3.5 h-3.5" />}

@@ -104,6 +104,26 @@ const TOOL = {
 };
 
 const TAXSET = new Set([...TAXONOMY, "UNKLAR"]);
+
+// Manuelle Overrides — gewinnen über die LLM-Zuordnung und überleben jeden Re-Run.
+// Korrigieren systematische Fehl-Mappings, die der LLM wiederholt produziert.
+// 2026-06-15: generische "Infrastruktur"-Tags landeten fälschlich im Sachgebiet
+// "Raumordnung, Bau- und Wohnungswesen" → 184 Fremd-Items im /analyse-Topic-Matrix
+// (Infrastruktur ist zu generisch für Raumordnung; Investitionen = Finanzthema).
+const OVERRIDES: Record<string, string> = {
+  // Bund: generische Infrastruktur-Tags gehören nicht ins Raumordnungs-Sachgebiet.
+  "Infrastruktur": "UNKLAR",
+  "Infrastrukturpolitik": "UNKLAR",
+  "Infrastruktur-Unterschiede": "UNKLAR",
+  "Infrastrukturinvestitionen": "Öffentliche Finanzen, Steuern und Abgaben",
+  "Infrastruktur-Investitionen": "Öffentliche Finanzen, Steuern und Abgaben",
+  "Kommunale Infrastruktur": "Staat und Verwaltung",
+  // Berlin: "Bezirke" ist ein reiner Orts-Marker (klebt an fast jeder lokalen Anfrage:
+  // Bäume, Ampeln, Gesundheit, Verkehr) — KEIN Politikfeld. Mappte fälschlich auf
+  // Raumordnung → 2431 Fremd-Items im Wohn/Raumordnung-Feld (2026-06-15).
+  "Bezirke": "UNKLAR",
+};
+
 const ins = db.prepare("INSERT OR REPLACE INTO topic_tag_map (tag,aw_field,querschnitt,occurrences,confidence,model) VALUES (?,?,?,?,?,?)");
 const CHUNK = 50;
 
@@ -124,6 +144,7 @@ async function main() {
       const m = got.get(tag);
       let field = m?.aw_field ?? "UNKLAR";
       if (!TAXSET.has(field)) { badField++; field = "UNKLAR"; }
+      if (OVERRIDES[tag]) field = OVERRIDES[tag];   // manueller Override gewinnt
       if (field === "UNKLAR") unklar++;
       fieldCount[field] = (fieldCount[field] ?? 0) + 1;
       if (!DRY) ins.run(tag, field, m?.querschnitt ?? null, occ, m?.confidence ?? "low", "claude-haiku-4-5");

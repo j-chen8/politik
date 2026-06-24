@@ -227,7 +227,16 @@ export function getThemenBlatt(feldAw: string, unterthemaName: string): DigitalB
       WHERE v.titel IS NOT NULL
     `).all() as { nr: string; titel: string }[]).map((r) => [r.nr, r.titel])
   );
-  const dsTitel = (nr: string): string | null => dsMap.get(nr)?.titel ?? dipTitel.get(nr) ?? null;
+  // dip_ds_titles = amtlicher Per-Drucksache-Titel aus der DIP-Voll-Enumeration
+  // (Discovery-Fix 2026-06-13). Schließt die activities-Lücke der neu gezogenen
+  // Regierungs-/Antwort-DS, die nicht in activities stehen (z. B. 21/6192).
+  const dipDsTitel = new Map(
+    (db.prepare(`
+      SELECT drucksache_nr AS nr, titel FROM dip_ds_titles WHERE titel IS NOT NULL
+    `).all() as { nr: string; titel: string }[]).map((r) => [r.nr, r.titel])
+  );
+  const dsTitel = (nr: string): string | null =>
+    dsMap.get(nr)?.titel ?? dipDsTitel.get(nr) ?? dipTitel.get(nr) ?? null;
 
   // ── 2. Abstimmungen: Handzeichen-Votes, deren DS den Roh-Tag trägt ──
   // LÜCKE: alle Digital-Votes sind Handzeichen → keine Ja/Nein-Zahlen, kein

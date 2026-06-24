@@ -71,16 +71,16 @@ async function AbstimmungenIndexInner({
       <div className="w-full page-shell">
         {/* Header */}
         <div className="mb-10 fade-in-up">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
             Abstimmungen · Bundestag · Wahlperiode 21
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-zinc-950 leading-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-zinc-950 dark:text-zinc-50 leading-tight mb-3">
             Wer hat wann wie abgestimmt — und was wurde gesagt?
           </h1>
-          <p className="text-[14px] text-zinc-600 leading-relaxed max-w-2xl">
-            <span className="num font-medium text-zinc-900">{counts.namentlich.toLocaleString("de-DE")}</span>{" "}
+          <p className="text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+            <span className="num font-medium text-zinc-900 dark:text-zinc-100">{counts.namentlich.toLocaleString("de-DE")}</span>{" "}
             namentliche Abstimmungen mit individuellen MdB-Stimmen plus{" "}
-            <span className="num font-medium text-zinc-900">{counts.handzeichen}</span>{" "}
+            <span className="num font-medium text-zinc-900 dark:text-zinc-100">{counts.handzeichen}</span>{" "}
             Handzeichen-Votes auf Fraktions-Ebene — alle seit Beginn der Wahlperiode.
           </p>
         </div>
@@ -88,10 +88,10 @@ async function AbstimmungenIndexInner({
         {/* Themen-Kontext (Deep-Link von Themenseiten) */}
         {thema && (
           <div className="mb-4 fade-in-up fade-in-up-2 flex flex-wrap items-center gap-2 text-[12px]">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-3 py-1 font-medium text-violet-700 ring-1 ring-violet-200">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 dark:bg-violet-950/40 px-3 py-1 font-medium text-violet-700 dark:text-violet-400 ring-1 ring-violet-200 dark:ring-violet-900/50">
               Thema: {thema}
               <Link href={`?${type ? `type=${type}&` : ""}${show ? `show=${show}` : ""}`}
-                className="text-violet-400 transition-colors hover:text-violet-700" aria-label="Themen-Filter aufheben">✕</Link>
+                className="text-violet-400 transition-colors hover:text-violet-700 dark:hover:text-violet-400" aria-label="Themen-Filter aufheben">✕</Link>
             </span>
           </div>
         )}
@@ -111,7 +111,7 @@ async function AbstimmungenIndexInner({
 
         {/* Subtype-Filter (Petitionen + Personenwahlen sind per default ausgeblendet) */}
         <div className="mb-6 flex flex-wrap gap-1.5 text-[11px]">
-          <span className="text-zinc-400 self-center mr-1">Auch zeigen:</span>
+          <span className="text-zinc-400 dark:text-zinc-500 self-center mr-1">Auch zeigen:</span>
           <FilterPill
             href={`?${themaQS}${type ? `type=${type}&` : ""}${
               show === "petitionen" ? "" : "show=petitionen"
@@ -143,7 +143,7 @@ async function AbstimmungenIndexInner({
           <div className="flex flex-wrap gap-2 items-center">
             <div className="relative flex-1 min-w-[260px]">
               <Search
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500"
                 strokeWidth={2.25}
               />
               <input
@@ -151,13 +151,13 @@ async function AbstimmungenIndexInner({
                 name="q"
                 defaultValue={q}
                 placeholder={`Suche im Vote-Titel — z.B. „Familie", „Bundeswehr", „Steuer"…`}
-                className="w-full pl-9 pr-3 py-2 text-[13.5px] border border-zinc-200/80 rounded-xl bg-white focus:outline-none focus:border-zinc-400 transition-colors"
+                className="w-full pl-9 pr-3 py-2 text-[13.5px] border border-border rounded-xl bg-card focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-500 transition-colors"
               />
             </div>
             <select
               name="thema"
               defaultValue={thema}
-              className="max-w-[260px] text-[13px] py-2 px-3 border border-zinc-200/80 rounded-xl bg-white focus:outline-none focus:border-zinc-400 transition-colors"
+              className="max-w-[260px] text-[13px] py-2 px-3 border border-border rounded-xl bg-card focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-500 transition-colors"
             >
               <option value="">alle Themen</option>
               {themen.map(([t, n]) => (
@@ -169,7 +169,7 @@ async function AbstimmungenIndexInner({
             <select
               name="year"
               defaultValue={year}
-              className="text-[13px] py-2 px-3 border border-zinc-200/80 rounded-xl bg-white focus:outline-none focus:border-zinc-400 transition-colors"
+              className="text-[13px] py-2 px-3 border border-border rounded-xl bg-card focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-500 transition-colors"
             >
               <option value="">alle Jahre</option>
               {years.map((y) => (
@@ -187,13 +187,13 @@ async function AbstimmungenIndexInner({
             {(q || year) && (
               <Link
                 href={`?${themaQS}${type ? `type=${type}&` : ""}${show ? `show=${show}` : ""}`}
-                className="text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors"
+                className="text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               >
                 Zurücksetzen
               </Link>
             )}
           </div>
-          <div className="text-[11.5px] text-zinc-500 mt-2 num">
+          <div className="text-[11.5px] text-zinc-500 dark:text-zinc-400 mt-2 num">
             {filtered.length} von {baseFiltered.length} angezeigt
           </div>
         </form>
@@ -204,7 +204,7 @@ async function AbstimmungenIndexInner({
             <VoteCard key={v.id} v={v} />
           ))}
           {filtered.length === 0 && (
-            <div className="text-center text-[13px] text-zinc-500 py-12 border border-dashed border-zinc-200 rounded-2xl">
+            <div className="text-center text-[13px] text-zinc-500 dark:text-zinc-400 py-12 border border-dashed border-border rounded-2xl">
               Keine Abstimmung passt zu diesem Filter.
             </div>
           )}
@@ -228,8 +228,8 @@ function FilterPill({
       href={href}
       className={`px-2.5 py-1 rounded-md border transition-colors ${
         active
-          ? "bg-zinc-900 text-white border-zinc-900"
-          : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400"
+          ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100"
+          : "bg-card text-zinc-700 dark:text-zinc-300 border-border hover:border-zinc-400 dark:hover:border-zinc-500"
       }`}
     >
       {children}
@@ -240,10 +240,10 @@ function FilterPill({
 const FRAKTIONS_ORDER = ["CDU/CSU", "SPD", "GRÜNE", "LINKE", "AfD"] as const;
 
 function votePillColor(vote: string): string {
-  if (vote === "ja") return "bg-emerald-50 text-emerald-800 border-emerald-200";
-  if (vote === "nein") return "bg-rose-50 text-rose-800 border-rose-200";
-  if (vote === "enthaltung") return "bg-amber-50 text-amber-800 border-amber-200";
-  return "bg-zinc-50 text-zinc-500 border-zinc-200";
+  if (vote === "ja") return "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50";
+  if (vote === "nein") return "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50";
+  if (vote === "enthaltung") return "bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50";
+  return "bg-zinc-50 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border-border";
 }
 
 function voteIcon(vote: string): string {
@@ -256,19 +256,19 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
   return (
     <Link
       href={v.detail_url}
-      className="block border border-zinc-200/70 rounded-2xl bg-white px-5 py-4 hover:bg-zinc-50/60 hover:border-zinc-300 transition-colors group"
+      className="block border border-border rounded-2xl bg-card px-5 py-4 hover:bg-zinc-50/60 dark:hover:bg-zinc-800/60 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors group"
     >
       <div className="flex items-start gap-4">
         {/* Datum + Outcome */}
         <div className="shrink-0 w-[90px]">
-          <div className="text-[11.5px] font-mono text-zinc-500 num">{formatDate(v.date)}</div>
+          <div className="text-[11.5px] font-mono text-zinc-500 dark:text-zinc-400 num">{formatDate(v.date)}</div>
           <div
             className={`mt-1 inline-flex items-center text-[10.5px] font-semibold px-1.5 py-0.5 rounded border ${
               passed
-                ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50"
                 : v.outcome === "abgelehnt"
-                  ? "bg-rose-50 text-rose-800 border-rose-200"
-                  : "bg-amber-50 text-amber-800 border-amber-200"
+                  ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50"
+                  : "bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50"
             }`}
           >
             {v.outcome_label}
@@ -282,19 +282,19 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
             <span
               className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium ${
                 v.type === "namentlich"
-                  ? "bg-violet-50 text-violet-700"
-                  : "bg-blue-50 text-blue-700"
+                  ? "bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-400"
+                  : "bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400"
               }`}
             >
               {v.type === "namentlich" ? "Namentlich" : "Handzeichen"}
             </span>
             {v.subtype === "petition" && (
-              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
                 Petition
               </span>
             )}
             {v.subtype === "personenwahl" && (
-              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
                 Personenwahl
               </span>
             )}
@@ -302,16 +302,16 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
             {v.topics.slice(0, 4).map((t) => (
               <span
                 key={t}
-                className="text-[11px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 font-medium"
+                className="text-[11px] px-1.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium"
               >
                 {t}
               </span>
             ))}
             {v.topics.length > 4 && (
-              <span className="text-[11px] text-zinc-400">+{v.topics.length - 4}</span>
+              <span className="text-[11px] text-zinc-400 dark:text-zinc-500">+{v.topics.length - 4}</span>
             )}
             {v.drucksache_nrn.length > 0 && !labelMentionsDs(v.label, v.drucksache_nrn) && (
-              <span className="text-[10.5px] num text-zinc-400 normal-case tracking-normal ml-auto">
+              <span className="text-[10.5px] num text-zinc-400 dark:text-zinc-500 normal-case tracking-normal ml-auto">
                 Drs.{" "}
                 {v.drucksache_nrn.slice(0, 3).join(", ")}
                 {v.drucksache_nrn.length > 3 && ` +${v.drucksache_nrn.length - 3}`}
@@ -319,7 +319,7 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
             )}
           </div>
 
-          <div className="text-[14px] font-medium text-zinc-950 leading-snug mb-2 group-hover:text-zinc-700 transition-colors line-clamp-2">
+          <div className="text-[14px] font-medium text-zinc-950 dark:text-zinc-50 leading-snug mb-2 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors line-clamp-2">
             {v.label ?? `Abstimmung #${v.id}`}
           </div>
 
@@ -328,23 +328,23 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
           {v.type === "namentlich" ? (
             <>
               <NamentlichStats yes={v.yes} no={v.no} abstain={v.abstain} />
-              <div className="mt-2 flex items-center gap-3 text-[11px] text-zinc-500">
+              <div className="mt-2 flex items-center gap-3 text-[11px] text-zinc-500 dark:text-zinc-400">
                 {v.has_topic_match === 1 ? (
                   <span className="inline-flex items-center gap-1">
                     <span className="w-1 h-1 rounded-full bg-emerald-500" />
                     <span className="num">{v.speech_count}</span> Reden verknüpft
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 text-zinc-400">
+                  <span className="inline-flex items-center gap-1 text-zinc-400 dark:text-zinc-500">
                     <span className="w-1 h-1 rounded-full bg-zinc-300" />
                     ohne Reden-Verknüpfung
                   </span>
                 )}
                 {v.match_confidence === "high" && (
-                  <span className="text-emerald-700">Match: hoch</span>
+                  <span className="text-emerald-700 dark:text-emerald-400">Match: hoch</span>
                 )}
                 {v.match_confidence === "medium" && (
-                  <span className="text-amber-700">Match: mittel</span>
+                  <span className="text-amber-700 dark:text-amber-400">Match: mittel</span>
                 )}
               </div>
             </>
@@ -365,14 +365,14 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
               })}
             </div>
           ) : (
-            <div className="text-[11px] text-zinc-400 italic">
+            <div className="text-[11px] text-zinc-400 dark:text-zinc-500 italic">
               Fraktions-Voten nicht erfasst
             </div>
           )}
         </div>
 
         <ArrowRight
-          className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 group-hover:translate-x-0.5 transition-all shrink-0 mt-0.5"
+          className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 transition-all shrink-0 mt-0.5"
           strokeWidth={2.25}
         />
       </div>
@@ -387,19 +387,19 @@ function NamentlichStats({ yes, no, abstain }: { yes: number; no: number; abstai
   const abstainPct = total > 0 ? (abstain / total) * 100 : 0;
   return (
     <div className="flex items-center gap-2">
-      <div className="flex-1 h-1.5 bg-zinc-100 rounded-full overflow-hidden flex">
+      <div className="flex-1 h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden flex">
         <div className="bg-emerald-500/80" style={{ width: `${yesPct}%` }} />
         <div className="bg-rose-500/80" style={{ width: `${noPct}%` }} />
         <div className="bg-amber-400/70" style={{ width: `${abstainPct}%` }} />
       </div>
-      <div className="text-[11px] num text-zinc-500 shrink-0">
-        <span className="text-emerald-700">{yes}</span>
-        <span className="text-zinc-300 mx-1">·</span>
-        <span className="text-rose-700">{no}</span>
+      <div className="text-[11px] num text-zinc-500 dark:text-zinc-400 shrink-0">
+        <span className="text-emerald-700 dark:text-emerald-400">{yes}</span>
+        <span className="text-zinc-300 dark:text-zinc-600 mx-1">·</span>
+        <span className="text-rose-700 dark:text-rose-400">{no}</span>
         {abstain > 0 && (
           <>
-            <span className="text-zinc-300 mx-1">·</span>
-            <span className="text-amber-700">{abstain}</span>
+            <span className="text-zinc-300 dark:text-zinc-600 mx-1">·</span>
+            <span className="text-amber-700 dark:text-amber-400">{abstain}</span>
           </>
         )}
       </div>

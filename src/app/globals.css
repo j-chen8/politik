@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /* Dark Mode via .dark-Klasse (statt prefers-color-scheme) → toggelbar.
-   Wird homepage-scoped gesetzt (HomeThemeToggle), beim Verlassen entfernt. */
+   Site-weit: ThemeToggle in der Nav setzt `.dark` auf <html>, Präferenz in
+   localStorage('theme'), No-Flash-Inline-Script im Layout. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
@@ -28,9 +29,20 @@
   --background: #0f1115;
   --foreground: #e8eaef;
   --card: #181b22;
-  --primary-light: #1e2a44;
   --muted: #8b93a1;
   --border: #2a2f3a;
+  /* Akzente fürs Dark-Theme: Solids leicht aufgehellt für Kontrast auf dunklem
+     Grund; die `-light`-Töne werden dunkle, entsättigte Tints, damit
+     Badge-Paarungen (bg-*-light + text-*) lesbar bleiben. */
+  --primary: #3b82f6;
+  --primary-light: #1e2a44;
+  --accent: #a78bfa;
+  --green: #34d399;
+  --green-light: #10311f;
+  --yellow: #fbbf24;
+  --yellow-light: #362c12;
+  --red: #f87171;
+  --red-light: #3a1d1d;
 }
 
 @theme inline {

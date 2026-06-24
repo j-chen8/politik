@@ -50,12 +50,12 @@ function Row({ hit, terms }: { hit: SearchHit; terms: string[] }) {
   return (
     <Link
       href={hitHref(hit)}
-      className="block border-b border-zinc-100 px-4 py-3 transition-colors last:border-0 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/40"
+      className="block border-b border-border px-4 py-3 transition-colors last:border-0 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-800/40"
     >
-      <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-zinc-400">
+      <div className="mb-1 flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 dark:text-zinc-500">
         <meta.Icon className="h-3.5 w-3.5" strokeWidth={2} />
         <span className="uppercase tracking-wider">{meta.label}</span>
-        {date && <span className="text-zinc-300">· {fmtDate(date)}</span>}
+        {date && <span className="text-zinc-300 dark:text-zinc-600">· {fmtDate(date)}</span>}
       </div>
       <div className="text-[14px] leading-snug text-zinc-900 dark:text-zinc-100">
         {highlight(title ?? "", terms)}
@@ -110,7 +110,7 @@ export function SearchThemaList({ slug, initialQuery }: { slug: string; initialQ
           <span className="text-[13px] text-zinc-500 dark:text-zinc-400">Thema</span>
           <Link
             href="/suche"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#1a3e72] py-1.5 pl-3 pr-2 text-[13.5px] font-medium text-white transition hover:bg-[#16335f]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#1a3e72] dark:bg-[#8fb3e6] py-1.5 pl-3 pr-2 text-[13.5px] font-medium text-white transition hover:bg-[#16335f]"
           >
             {label ?? slug}
             <X className="h-[15px] w-[15px] opacity-80" strokeWidth={2.5} />
@@ -118,8 +118,8 @@ export function SearchThemaList({ slug, initialQuery }: { slug: string; initialQ
         </div>
 
         {/* Eingrenzen innerhalb des Themas */}
-        <div className="mb-5 flex items-center gap-2 rounded-2xl border border-zinc-300 bg-white px-3.5 py-2.5 focus-within:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-900">
-          <Search className="h-4 w-4 shrink-0 text-zinc-400" strokeWidth={2.25} />
+        <div className="mb-5 flex items-center gap-2 rounded-2xl border border-zinc-300 bg-card px-3.5 py-2.5 focus-within:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-900">
+          <Search className="h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500" strokeWidth={2.25} />
           <input
             type="text"
             value={q}
@@ -129,7 +129,7 @@ export function SearchThemaList({ slug, initialQuery }: { slug: string; initialQ
           />
           {q && (
             <button type="button" onClick={() => setQ("")} aria-label="Eingrenzung löschen">
-              <X className="h-4 w-4 text-zinc-400 hover:text-zinc-700" strokeWidth={2.25} />
+              <X className="h-4 w-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300" strokeWidth={2.25} />
             </button>
           )}
         </div>
@@ -151,15 +151,15 @@ export function SearchThemaList({ slug, initialQuery }: { slug: string; initialQ
         </div>
 
         {/* Liste */}
-        <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="overflow-hidden rounded-2xl border border-border bg-card dark:border-zinc-800 dark:bg-zinc-900">
           {data && data.items.length > 0 ? (
             data.items.map((h) => <Row key={hitKey(h)} hit={h} terms={terms} />)
           ) : !loading ? (
-            <div className="px-4 py-10 text-center text-[14px] text-zinc-400">
+            <div className="px-4 py-10 text-center text-[14px] text-zinc-400 dark:text-zinc-500">
               Keine Treffer{q.trim().length >= 2 ? " — Eingrenzung lockern?" : ""}.
             </div>
           ) : (
-            <div className="px-4 py-10 text-center text-zinc-300">
+            <div className="px-4 py-10 text-center text-zinc-300 dark:text-zinc-600">
               <Loader2 className="mx-auto h-5 w-5 animate-spin" />
             </div>
           )}

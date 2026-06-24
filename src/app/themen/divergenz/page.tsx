@@ -41,17 +41,17 @@ export default function DivergenzPage() {
       <div className="max-w-3xl mx-auto px-5 pt-24 pb-24 fade-in-up">
         <Link
           href="/themen"
-          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 hover:text-[#1a3e72] transition-colors mb-5"
+          className="inline-flex items-center gap-1.5 text-[12.5px] text-zinc-500 dark:text-zinc-400 hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors mb-5"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Zurück zu den Themen
         </Link>
 
         <header className="mb-7 max-w-2xl">
-          <h1 className="text-[24px] sm:text-[28px] font-semibold text-zinc-950 leading-tight">
+          <h1 className="text-[24px] sm:text-[28px] font-semibold text-zinc-950 dark:text-zinc-50 leading-tight">
             Wo Aufmerksamkeit und Sorge auseinanderlaufen
           </h1>
-          <p className="mt-3 text-[14px] text-zinc-600 leading-relaxed">
+          <p className="mt-3 text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
             Wie sehr ein Thema die <strong>Menschen umtreibt</strong> (Umfragen, Durchschnitt über die
             Wahlperiode) gegenüber dem, was der Bundestag dazu <strong>tatsächlich beschließt</strong>{" "}
             — gemessen an Gesetzgebung (Gesetzentwürfe + Beschlüsse), nicht an bloßen Anfragen. Denn
@@ -66,19 +66,19 @@ export default function DivergenzPage() {
             const heavy = t.gap <= -2; // mehr Gesetzgebung als Sorge
             const Icon = blindspot ? ArrowUp : heavy ? ArrowDown : Minus;
             const tone = blindspot
-              ? "text-amber-700 bg-amber-50 ring-amber-200"
+              ? "text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 ring-amber-200 dark:ring-amber-900/50"
               : heavy
-                ? "text-[#1a3e72] bg-[#1a3e72]/8 ring-[#1a3e72]/20"
-                : "text-zinc-500 bg-zinc-50 ring-zinc-200";
+                ? "text-[#1a3e72] dark:text-[#8fb3e6] bg-[#1a3e72]/8 dark:bg-[#8fb3e6]/8 ring-[#1a3e72]/20 dark:ring-[#8fb3e6]/20"
+                : "text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800 ring-zinc-200 dark:ring-zinc-700";
             // Kontroll-Kontext: viel Aufmerksamkeit (Anfragen) trotz wenig Gesetzgebung
             const kontrollLastig = blindspot && t.kontrolle >= t.handeln * 3 && t.kontrolle >= 100;
             return (
-              <div key={t.slug} className="rounded-2xl border border-zinc-200/70 bg-white px-5 py-4">
+              <div key={t.slug} className="rounded-2xl border border-border bg-card px-5 py-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2 min-w-0">
                     <Link
                       href={`/themen/${t.slug}`}
-                      className="text-[14.5px] font-semibold text-zinc-950 hover:text-[#1a3e72] transition-colors truncate"
+                      className="text-[14.5px] font-semibold text-zinc-950 dark:text-zinc-50 hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors truncate"
                     >
                       {t.label}
                     </Link>
@@ -97,27 +97,27 @@ export default function DivergenzPage() {
                 </div>
 
                 <div className="mt-3 grid grid-cols-3 gap-2 text-[12px]">
-                  <div className="rounded-lg bg-zinc-50 px-3 py-2">
-                    <div className="text-zinc-400 text-[10px] uppercase tracking-wide">Bürger-Sorge</div>
-                    <div className="text-zinc-700 mt-0.5">
-                      {t.tier} <span className="text-zinc-400">· #{t.salienceRank}</span>
+                  <div className="rounded-lg bg-zinc-50 dark:bg-zinc-800 px-3 py-2">
+                    <div className="text-zinc-400 dark:text-zinc-500 text-[10px] uppercase tracking-wide">Bürger-Sorge</div>
+                    <div className="text-zinc-700 dark:text-zinc-300 mt-0.5">
+                      {t.tier} <span className="text-zinc-400 dark:text-zinc-500">· #{t.salienceRank}</span>
                     </div>
                   </div>
-                  <div className="rounded-lg bg-zinc-50 px-3 py-2">
-                    <div className="text-zinc-400 text-[10px] uppercase tracking-wide">Gesetzgebung</div>
-                    <div className="text-zinc-700 mt-0.5">
-                      {fmtNum(t.handeln)} <span className="text-zinc-400">· #{t.handelnRank}</span>
+                  <div className="rounded-lg bg-zinc-50 dark:bg-zinc-800 px-3 py-2">
+                    <div className="text-zinc-400 dark:text-zinc-500 text-[10px] uppercase tracking-wide">Gesetzgebung</div>
+                    <div className="text-zinc-700 dark:text-zinc-300 mt-0.5">
+                      {fmtNum(t.handeln)} <span className="text-zinc-400 dark:text-zinc-500">· #{t.handelnRank}</span>
                     </div>
                   </div>
-                  <div className="rounded-lg bg-zinc-50 px-3 py-2">
-                    <div className="text-zinc-400 text-[10px] uppercase tracking-wide">Anfragen</div>
-                    <div className="text-zinc-700 mt-0.5">{fmtNum(t.kontrolle)}</div>
+                  <div className="rounded-lg bg-zinc-50 dark:bg-zinc-800 px-3 py-2">
+                    <div className="text-zinc-400 dark:text-zinc-500 text-[10px] uppercase tracking-wide">Anfragen</div>
+                    <div className="text-zinc-700 dark:text-zinc-300 mt-0.5">{fmtNum(t.kontrolle)}</div>
                   </div>
                 </div>
 
                 {kontrollLastig && (
-                  <p className="mt-2 text-[11.5px] text-zinc-500">
-                    <span className="font-medium text-zinc-600">Einordnung:</span> Viel Aufmerksamkeit
+                  <p className="mt-2 text-[11.5px] text-zinc-500 dark:text-zinc-400">
+                    <span className="font-medium text-zinc-600 dark:text-zinc-300">Einordnung:</span> Viel Aufmerksamkeit
                     ({fmtNum(t.kontrolle)} Anfragen), aber wenig Gesetzgebung ({fmtNum(t.handeln)}) —
                     das Thema wird stark hinterfragt, kaum in Gesetze überführt.
                   </p>
@@ -128,9 +128,9 @@ export default function DivergenzPage() {
         </div>
 
         {/* Schärfster Einzelfall: Rente */}
-        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 px-5 py-4">
-          <h2 className="text-[14.5px] font-semibold text-zinc-950">Der schärfste Einzelfall: die Rente</h2>
-          <p className="mt-1.5 text-[12.5px] text-zinc-600 leading-relaxed">
+        <div className="mt-6 rounded-2xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/40 px-5 py-4">
+          <h2 className="text-[14.5px] font-semibold text-zinc-950 dark:text-zinc-50">Der schärfste Einzelfall: die Rente</h2>
+          <p className="mt-1.5 text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
             Im Schnitt der Wahlperiode nennen rund jede:r Zehnte (Ø&nbsp;10,8&nbsp;%) die Rente als
             wichtigstes Problem. Im Bundestag berühren sie aber nur <strong>{rente.hits}</strong> von{" "}
             {fmtNum(rente.total)} Drucksachen (<strong>{rentePct}&nbsp;%</strong>) — und davon ist nur
@@ -140,16 +140,16 @@ export default function DivergenzPage() {
           </p>
         </div>
 
-        <footer className="mt-8 max-w-2xl space-y-2 text-[11.5px] text-zinc-400 leading-relaxed">
+        <footer className="mt-8 max-w-2xl space-y-2 text-[11.5px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
           <p>
-            <span className="font-medium text-zinc-500">Warum Gesetzgebung statt Volumen?</span> Rund
+            <span className="font-medium text-zinc-500 dark:text-zinc-400">Warum Gesetzgebung statt Volumen?</span> Rund
             zwei Drittel aller Drucksachen sind Kleine Anfragen — ein Kontroll-Werkzeug, das fast nur
             die Opposition nutzt. Sie zu zählen würde „Handeln" mit „Nachfragen" verwechseln. Deshalb
             vergleichen wir die Sorge mit der <em>Gesetzgebung</em> (Gesetzentwürfe + Beschlüsse) und
             weisen Anfragen getrennt als Aufmerksamkeit aus.
           </p>
           <p>
-            <span className="font-medium text-zinc-500">Vorbehalte.</span> Politik reagiert mit Verzug
+            <span className="font-medium text-zinc-500 dark:text-zinc-400">Vorbehalte.</span> Politik reagiert mit Verzug
             — wenig Gesetzgebung heute kann morgen kommen. Nicht jede Sorge ist Bundessache (Wohnen =
             Länder, Inflation = EZB/global). Und „Sorge" (Umfrage-Anteil) und „Gesetzgebung" (Anzahl)
             sind zwei verschiedene Maße — der Vergleich zeigt Tendenzen, kein Urteil. Salienz-Methodik:{" "}

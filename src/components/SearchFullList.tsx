@@ -145,7 +145,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
         {!embedded && (
           <button
             onClick={backToModal}
-            className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
+            className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
             Zurück zur Suche
@@ -155,16 +155,16 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
         {/* Header */}
         <div className="mb-8 flex items-baseline justify-between gap-4 flex-wrap">
           <div className="min-w-0">
-            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-1">
+            <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">
               {typeLabel} · „{query}"
             </div>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950">
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50">
               {loading && !data ? (
-                <span className="text-zinc-400">…</span>
+                <span className="text-zinc-400 dark:text-zinc-500">…</span>
               ) : (
                 <>
                   <span className="tabular-nums">{data?.total ?? 0}</span>{" "}
-                  <span className="text-zinc-500 font-normal">
+                  <span className="text-zinc-500 dark:text-zinc-400 font-normal">
                     {(data?.total ?? 0) === 1 ? "Treffer" : "Treffer"}
                   </span>
                 </>
@@ -172,7 +172,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
             </h1>
           </div>
           {data && data.total > 0 && (
-            <div className="text-[12px] text-zinc-500 tabular-nums">
+            <div className="text-[12px] text-zinc-500 dark:text-zinc-400 tabular-nums">
               Seite {data.page} / {totalPages}
             </div>
           )}
@@ -180,21 +180,21 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
 
         {/* Exakt-Default vs. Erweitern */}
         {data && data.matchedClusters.length > 0 && (
-          <div className="mb-6 p-3 rounded-lg border border-zinc-200 bg-zinc-50/60 text-[12px] text-zinc-500">
+          <div className="mb-6 p-3 rounded-lg border border-border bg-zinc-50/60 dark:bg-zinc-800/60 text-[12px] text-zinc-500 dark:text-zinc-400">
             {data.expand ? (
               <>
                 <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
-                  <span className="text-zinc-400">verwandte Begriffe mitgesucht:</span>
+                  <span className="text-zinc-400 dark:text-zinc-500">verwandte Begriffe mitgesucht:</span>
                   {data.expansions.map((term) => (
                     <span
                       key={term}
-                      className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded text-zinc-600"
+                      className="px-1.5 py-0.5 bg-card border border-border rounded text-zinc-600 dark:text-zinc-300"
                     >
                       {term}
                     </span>
                   ))}
                 </div>
-                <div className="mt-1.5 flex items-center justify-between gap-3 text-[11px] text-zinc-400 leading-snug">
+                <div className="mt-1.5 flex items-center justify-between gap-3 text-[11px] text-zinc-400 dark:text-zinc-500 leading-snug">
                   <span>
                     direkt „{data.query}": <span className="tabular-nums">{data.totalOriginal}</span>{" "}
                     · via Synonymen{" "}
@@ -203,7 +203,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
                   <button
                     type="button"
                     onClick={() => toggleExpand(false)}
-                    className="shrink-0 text-zinc-600 hover:text-zinc-950 underline underline-offset-2"
+                    className="shrink-0 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-2"
                   >
                     nur exakte Treffer
                   </button>
@@ -213,14 +213,14 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
               <button
                 type="button"
                 onClick={() => toggleExpand(true)}
-                className="w-full flex items-center gap-2 text-left text-zinc-600 hover:text-zinc-950 transition-colors"
+                className="w-full flex items-center gap-2 text-left text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
                 title="Verwandte Themen über Synonym-Cluster einbeziehen"
               >
                 <Plus className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} />
                 <span>
                   Verwandte Themen einbeziehen{" "}
-                  <span className="text-zinc-400">({data.matchedClusters.join(", ")})</span> —{" "}
-                  <span className="tabular-nums font-medium text-zinc-900">
+                  <span className="text-zinc-400 dark:text-zinc-500">({data.matchedClusters.join(", ")})</span> —{" "}
+                  <span className="tabular-nums font-medium text-zinc-900 dark:text-zinc-100">
                     +{data.totalExpanded - data.totalOriginal}
                   </span>{" "}
                   Treffer
@@ -232,22 +232,22 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
 
         {/* Loading / Error / Empty */}
         {loading && !data && (
-          <div className="flex items-center justify-center py-20 text-zinc-400">
+          <div className="flex items-center justify-center py-20 text-zinc-400 dark:text-zinc-500">
             <Loader2 className="w-5 h-5 animate-spin" />
           </div>
         )}
         {error && (
-          <div className="py-12 text-center text-[13px] text-rose-600">{error}</div>
+          <div className="py-12 text-center text-[13px] text-rose-600 dark:text-rose-400">{error}</div>
         )}
         {data && data.total === 0 && !loading && (
-          <div className="py-12 text-center text-[13px] text-zinc-400">
+          <div className="py-12 text-center text-[13px] text-zinc-400 dark:text-zinc-500">
             Keine {typeLabel.toLowerCase()} für „{query}" gefunden.
           </div>
         )}
 
         {/* Result-List */}
         {data && data.items.length > 0 && (
-          <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <div className="rounded-xl border border-border bg-card overflow-hidden">
             {data.items.map((hit, i) => (
               <ResultRow
                 key={`${hit.type}-${i}`}
@@ -265,7 +265,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
             <button
               onClick={() => gotoPage(Math.max(1, data.page - 1))}
               disabled={data.page <= 1}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] text-zinc-700 hover:text-zinc-950 disabled:text-zinc-300 disabled:cursor-not-allowed transition-colors"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:text-zinc-300 dark:disabled:text-zinc-600 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
               Zurück
@@ -278,7 +278,7 @@ export function SearchFullList({ query, type, page, expand, sort = "date", klass
             <button
               onClick={() => gotoPage(Math.min(totalPages, data.page + 1))}
               disabled={data.page >= totalPages}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] text-zinc-700 hover:text-zinc-950 disabled:text-zinc-300 disabled:cursor-not-allowed transition-colors"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[13px] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 disabled:text-zinc-300 dark:disabled:text-zinc-600 disabled:cursor-not-allowed transition-colors"
             >
               Weiter
               <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -318,7 +318,7 @@ function PageNumbers({
     <div className="flex items-center gap-0.5 tabular-nums">
       {pages.map((p, i) =>
         p === "…" ? (
-          <span key={i} className="px-1.5 text-zinc-300 text-[12px]">
+          <span key={i} className="px-1.5 text-zinc-300 dark:text-zinc-600 text-[12px]">
             …
           </span>
         ) : (
@@ -328,7 +328,7 @@ function PageNumbers({
             className={`min-w-[28px] px-2 py-1 text-[12.5px] rounded ${
               p === current
                 ? "bg-zinc-900 text-white font-medium"
-                : "text-zinc-600 hover:bg-zinc-100"
+                : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             }`}
           >
             {p}
@@ -360,7 +360,7 @@ function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[]
   return (
     <Link
       href={`/politiker/${hit.id}`}
-      className="flex items-center gap-3 px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="flex items-center gap-3 px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
       <PoliticianAvatar
         photoUrl={hit.photo_url}
@@ -371,15 +371,15 @@ function PoliticianFullRow({ hit, terms }: { hit: PoliticianHit; terms: string[]
       />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 min-w-0">
-          <span className="text-[14px] text-zinc-900 truncate">{highlight(hit.name, terms)}</span>
+          <span className="text-[14px] text-zinc-900 dark:text-zinc-100 truncate">{highlight(hit.name, terms)}</span>
           {hit.isFormer && (
-            <span className="shrink-0 rounded-sm bg-zinc-100 px-1 py-px text-[10px] font-medium uppercase tracking-wide text-zinc-500 ring-1 ring-inset ring-zinc-200">
+            <span className="shrink-0 rounded-sm bg-zinc-100 dark:bg-zinc-800 px-1 py-px text-[10px] font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700">
               ehem.
             </span>
           )}
         </div>
         {hit.subtitle && (
-          <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 truncate">
+          <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 truncate">
             {hit.party && (
               <span
                 className={`w-1.5 h-1.5 rounded-full shrink-0 ${
@@ -399,10 +399,10 @@ function TopicFullRow({ hit, terms }: { hit: TopicHit; terms: string[] }) {
   return (
     <Link
       href={`/protokolle/top/${hit.topic_id}`}
-      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="block px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
-      <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.title, terms)}</div>
-      <div className="text-[12px] text-zinc-500 mt-0.5">
+      <div className="text-[14px] text-zinc-900 dark:text-zinc-100 leading-snug">{highlight(hit.title, terms)}</div>
+      <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
         TOP {hit.topic_number} · {hit.speech_count} Reden
         {hit.session_date && ` · ${formatGermanDate(hit.session_date)}`}
       </div>
@@ -420,22 +420,22 @@ function SpeechFullRow({ hit, terms, scope }: { hit: SpeechHit; terms: string[];
   return (
     <Link
       href={href}
-      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="block px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
       <div className="flex items-start gap-2">
-        <div className="flex-1 min-w-0 text-[14px] text-zinc-900 leading-snug">
+        <div className="flex-1 min-w-0 text-[14px] text-zinc-900 dark:text-zinc-100 leading-snug">
           {highlight(hit.snippet, terms)}
         </div>
         {ton && (
           <span
-            className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 bg-zinc-100 border border-zinc-200 rounded"
+            className="shrink-0 px-1.5 py-0.5 text-[10.5px] font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 border border-border rounded"
             title="Tonalität — KI-eingeschätzt"
           >
             {ton}
           </span>
         )}
       </div>
-      <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 mt-1">
+      <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 mt-1">
         {hit.party && (
           <span
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${
@@ -456,11 +456,11 @@ function VoteFullRow({ hit, terms }: { hit: VoteHit; terms: string[] }) {
   return (
     <Link
       href={`/abstimmungen/${hit.poll_id}`}
-      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="block px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
-      <div className="text-[14px] text-zinc-900 leading-snug">{highlight(hit.label, terms)}</div>
+      <div className="text-[14px] text-zinc-900 dark:text-zinc-100 leading-snug">{highlight(hit.label, terms)}</div>
       {hit.poll_date && (
-        <div className="text-[12px] text-zinc-500 mt-0.5">
+        <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
           Abstimmung · {formatGermanDate(hit.poll_date)}
         </div>
       )}
@@ -481,15 +481,15 @@ function DrucksacheFullRow({ hit, terms, scope }: { hit: DrucksacheHit; terms: s
   return (
     <Link
       href={href}
-      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="block px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
-      <div className="text-[14px] text-zinc-900 leading-snug font-medium">{highlight(hit.title, terms)}</div>
+      <div className="text-[14px] text-zinc-900 dark:text-zinc-100 leading-snug font-medium">{highlight(hit.title, terms)}</div>
       {hit.snippet && (
-        <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
+        <div className="text-[12px] text-zinc-600 dark:text-zinc-300 line-clamp-2 leading-snug mt-0.5">
           {highlight(hit.snippet, terms)}
         </div>
       )}
-      <div className="text-[12px] text-zinc-500 mt-0.5">
+      <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
         {klasseLabel}
         {hit.drucksache_nr && ` · ${hit.drucksache_nr}`}
         {hit.date && ` · ${formatGermanDate(hit.date)}`}
@@ -502,17 +502,17 @@ function QaFullRow({ hit, terms }: { hit: QaHit; terms: string[] }) {
   return (
     <Link
       href={hit.detail_url ?? `/aktivitaeten/${hit.drucksache_nr.replace("/", "-")}`}
-      className="block px-4 py-3 border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors"
+      className="block px-4 py-3 border-b border-border last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
     >
       {hit.frage && (
-        <div className="text-[14px] text-zinc-900 leading-snug font-medium">{highlight(hit.frage, terms)}</div>
+        <div className="text-[14px] text-zinc-900 dark:text-zinc-100 leading-snug font-medium">{highlight(hit.frage, terms)}</div>
       )}
       {hit.antwort_snippet && (
-        <div className="text-[12px] text-zinc-600 line-clamp-2 leading-snug mt-0.5">
-          <span className="text-zinc-400">↳ </span>{highlight(hit.antwort_snippet, terms)}
+        <div className="text-[12px] text-zinc-600 dark:text-zinc-300 line-clamp-2 leading-snug mt-0.5">
+          <span className="text-zinc-400 dark:text-zinc-500">↳ </span>{highlight(hit.antwort_snippet, terms)}
         </div>
       )}
-      <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 mt-1">
+      <div className="flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 mt-1">
         {hit.fragesteller_party && (
           <span
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${PARTY_DOT[hit.fragesteller_party] ?? "bg-zinc-300"}`}

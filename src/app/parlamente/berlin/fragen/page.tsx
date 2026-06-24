@@ -43,36 +43,36 @@ export default async function BerlinFragenPage({ searchParams }: Props) {
       <div className="max-w-3xl mx-auto px-5 pt-24 pb-24">
         <Link
           href="/parlamente/berlin"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-950 mb-6 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Abgeordnetenhaus Berlin
         </Link>
 
         <div className="flex items-center gap-2 mb-1">
-          <MessageSquareQuote className="w-5 h-5 text-blue-700" strokeWidth={2} />
-          <h1 className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950">Fragen &amp; Antworten</h1>
+          <MessageSquareQuote className="w-5 h-5 text-blue-700 dark:text-blue-400" strokeWidth={2} />
+          <h1 className="text-2xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50">Fragen &amp; Antworten</h1>
         </div>
-        <p className="text-[13px] text-zinc-500 mb-6 leading-relaxed">
+        <p className="text-[13px] text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed">
           Schriftliche Anfragen der Berliner Abgeordneten und die Antworten des Senats — jede Anfrage
           mit Frage und Antwort, KI-zusammengefasst (Methodik in{" "}
-          <Link href="/parlamente/berlin/methodik" className="text-blue-700 hover:underline">/methodik</Link>).
+          <Link href="/parlamente/berlin/methodik" className="text-blue-700 dark:text-blue-400 hover:underline">/methodik</Link>).
         </p>
 
         <form action="/parlamente/berlin/fragen" method="get" className="mb-6 space-y-2">
           <div className="flex gap-2">
             <input
               type="search" name="q" defaultValue={q} placeholder="In Fragen & Antworten suchen…"
-              className="flex-1 border border-zinc-300 rounded-lg px-3 py-2 text-[13.5px] focus:outline-none focus:border-blue-600"
+              className="flex-1 border border-zinc-300 dark:border-zinc-600 rounded-lg px-3 py-2 text-[13.5px] focus:outline-none focus:border-blue-600"
             />
             <button type="submit" className="px-4 py-2 rounded-lg bg-blue-700 text-white text-[13px] font-medium hover:bg-blue-800 transition-colors">Suchen</button>
           </div>
           <div className="flex flex-wrap items-center gap-2 text-[12.5px]">
-            <label className="flex items-center gap-1.5 text-zinc-500">
+            <label className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
               Partei
               <select
                 name="partei" defaultValue={partei ?? ""}
-                className="border border-zinc-300 rounded-lg px-2 py-1.5 text-[12.5px] text-zinc-800 focus:outline-none focus:border-blue-600 bg-white"
+                className="border border-zinc-300 dark:border-zinc-600 rounded-lg px-2 py-1.5 text-[12.5px] text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-blue-600 bg-card"
               >
                 <option value="">Alle</option>
                 {parties.map((p) => (
@@ -80,87 +80,87 @@ export default async function BerlinFragenPage({ searchParams }: Props) {
                 ))}
               </select>
             </label>
-            <label className="flex items-center gap-1.5 text-zinc-500">
+            <label className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
               Sortierung
               <select
                 name="sort" defaultValue={sort}
-                className="border border-zinc-300 rounded-lg px-2 py-1.5 text-[12.5px] text-zinc-800 focus:outline-none focus:border-blue-600 bg-white"
+                className="border border-zinc-300 dark:border-zinc-600 rounded-lg px-2 py-1.5 text-[12.5px] text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-blue-600 bg-card"
               >
                 <option value="neu">Neueste zuerst</option>
                 <option value="alt">Älteste zuerst</option>
               </select>
             </label>
-            <button type="submit" className="px-3 py-1.5 rounded-lg border border-zinc-300 text-zinc-700 text-[12.5px] font-medium hover:bg-zinc-50 transition-colors">Anwenden</button>
+            <button type="submit" className="px-3 py-1.5 rounded-lg border border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 text-[12.5px] font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">Anwenden</button>
             {(q || partei || sort !== "neu") && (
-              <Link href="/parlamente/berlin/fragen" className="text-zinc-400 hover:text-zinc-700 transition-colors">Zurücksetzen</Link>
+              <Link href="/parlamente/berlin/fragen" className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Zurücksetzen</Link>
             )}
           </div>
         </form>
 
-        <p className="text-[12px] text-zinc-400 mb-4 num">
+        <p className="text-[12px] text-zinc-400 dark:text-zinc-500 mb-4 num">
           {total.toLocaleString("de-DE")} Treffer{q && <> für „{q}"</>}
         </p>
 
         <ul className="space-y-5">
           {items.map((qa) => (
-            <li key={qa.dbid} className="border border-zinc-200/70 rounded-xl bg-white px-5 py-4">
+            <li key={qa.dbid} className="border border-border rounded-xl bg-card px-5 py-4">
               <div className="flex items-baseline gap-2 flex-wrap mb-1.5 text-[11.5px]">
                 {qa.askerPoliticianId ? (
-                  <Link href={`/politiker/${qa.askerPoliticianId}`} className="font-medium text-zinc-950 hover:text-blue-700 transition-colors">
+                  <Link href={`/politiker/${qa.askerPoliticianId}`} className="font-medium text-zinc-950 dark:text-zinc-50 hover:text-blue-700 dark:hover:text-blue-400 transition-colors">
                     {qa.askerName}
                   </Link>
                 ) : (
-                  <span className="font-medium text-zinc-700">{qa.askerName ?? "—"}</span>
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{qa.askerName ?? "—"}</span>
                 )}
-                {qa.askerParty && <span className="text-zinc-400">{qa.askerParty}</span>}
-                {qa.askerMore > 0 && <span className="text-zinc-400">+{qa.askerMore}</span>}
+                {qa.askerParty && <span className="text-zinc-400 dark:text-zinc-500">{qa.askerParty}</span>}
+                {qa.askerMore > 0 && <span className="text-zinc-400 dark:text-zinc-500">+{qa.askerMore}</span>}
                 <span className="text-zinc-200">·</span>
                 {qa.dokNr && (
-                  <Link href={`/parlamente/berlin/drucksache/${qa.dbid}`} className="text-blue-700 hover:text-blue-900 num transition-colors">
+                  <Link href={`/parlamente/berlin/drucksache/${qa.dbid}`} className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 num transition-colors">
                     {qa.dokNr}
                   </Link>
                 )}
-                {qa.datum && <span className="text-zinc-400 num">{fmtDate(qa.datum)}</span>}
+                {qa.datum && <span className="text-zinc-400 dark:text-zinc-500 num">{fmtDate(qa.datum)}</span>}
               </div>
 
               {qa.titel && (
-                <p className="text-[14px] font-medium text-zinc-950 leading-snug mb-2">{qa.titel}</p>
+                <p className="text-[14px] font-medium text-zinc-950 dark:text-zinc-50 leading-snug mb-2">{qa.titel}</p>
               )}
 
               {/* Frage */}
               {qa.frage.length > 0 ? (
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 mb-1">Frage</div>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-400 mb-1">Frage</div>
               ) : null}
               {qa.frage.length > 0 ? (
-                <ul className="space-y-1 mb-1.5 text-[13.5px] text-zinc-800 leading-snug list-disc pl-4">
+                <ul className="space-y-1 mb-1.5 text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug list-disc pl-4">
                   {qa.frage.slice(0, 6).map((f, i) => <li key={i}>{f}</li>)}
                 </ul>
               ) : (
-                qa.zusammenfassung && <p className="text-[13.5px] text-zinc-800 leading-snug mb-1.5">{qa.zusammenfassung}</p>
+                qa.zusammenfassung && <p className="text-[13.5px] text-zinc-800 dark:text-zinc-200 leading-snug mb-1.5">{qa.zusammenfassung}</p>
               )}
 
               {/* Antwort des Senats — ausklappbar */}
               {qa.antwort.length > 0 && (
                 <details className="group mt-1">
-                  <summary className="cursor-pointer text-[11.5px] text-blue-700 hover:text-blue-900 select-none list-none">
+                  <summary className="cursor-pointer text-[11.5px] text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 select-none list-none">
                     <span className="group-open:hidden">▶ Antwort des Senats anzeigen</span>
                     <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
                   </summary>
-                  <ul className="mt-1.5 space-y-1 text-[12.5px] text-zinc-600 leading-relaxed border-l-2 border-zinc-100 pl-3 list-disc list-inside">
+                  <ul className="mt-1.5 space-y-1 text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed border-l-2 border-border pl-3 list-disc list-inside">
                     {qa.antwort.map((a, i) => <li key={i}>{a}</li>)}
                   </ul>
                 </details>
               )}
             </li>
           ))}
-          {items.length === 0 && <li className="text-[13px] text-zinc-400 py-8 text-center">Keine Treffer.</li>}
+          {items.length === 0 && <li className="text-[13px] text-zinc-400 dark:text-zinc-500 py-8 text-center">Keine Treffer.</li>}
         </ul>
 
         {lastPage > 1 && (
           <div className="flex items-center justify-between mt-8 text-[12.5px]">
-            {page > 1 ? <Link href={mkHref(page - 1)} className="text-blue-700 hover:text-blue-900">← Zurück</Link> : <span />}
-            <span className="text-zinc-400 num">Seite {page} / {lastPage}</span>
-            {page < lastPage ? <Link href={mkHref(page + 1)} className="text-blue-700 hover:text-blue-900">Weiter →</Link> : <span />}
+            {page > 1 ? <Link href={mkHref(page - 1)} className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300">← Zurück</Link> : <span />}
+            <span className="text-zinc-400 dark:text-zinc-500 num">Seite {page} / {lastPage}</span>
+            {page < lastPage ? <Link href={mkHref(page + 1)} className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300">Weiter →</Link> : <span />}
           </div>
         )}
       </div>

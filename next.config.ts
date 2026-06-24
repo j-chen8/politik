@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   // werden ohne sie zu überschreiben.
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
   serverExternalPackages: ["better-sqlite3"],
+  // Build-Peak lag bei ~6 GB RSS → OOM-Kill auf der 7-GB-Maschine (2026-06-11).
+  // Laut next/dist/docs/01-app/02-guides/memory-usage.md low-risk, kostet
+  // etwas Build-Zeit.
+  experimental: {
+    webpackMemoryOptimizations: true,
+  },
   // LAN-/SSH-Zugriff auf den Dev-Server: ohne die erlaubte Origin lädt die
   // Seite zwar, aber React hydratisiert nicht (Next-Dev Cross-Origin-Schutz).
   allowedDevOrigins: ["192.168.178.170"],

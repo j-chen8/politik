@@ -325,14 +325,14 @@ export function PoliticianCV(props: PoliticianCVProps) {
   const sourceCount = [hasHomepage, hasWikipedia, hasAgh].filter(Boolean).length;
 
   return (
-    <div className="bg-white rounded-2xl border border-border mb-6">
+    <div className="bg-card rounded-2xl border border-border mb-6">
       <details open className="group/details">
-        <summary className="list-none cursor-pointer flex items-baseline justify-between gap-3 flex-wrap px-6 pt-6 pb-4 hover:bg-zinc-50/40 rounded-2xl transition-colors select-none">
+        <summary className="list-none cursor-pointer flex items-baseline justify-between gap-3 flex-wrap px-6 pt-6 pb-4 hover:bg-zinc-50/40 dark:hover:bg-zinc-800/40 rounded-2xl transition-colors select-none">
           <div className="flex items-baseline gap-3">
             <h2 className="text-lg font-bold">Lebenslauf</h2>
           </div>
           <ChevronDown
-            className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/details:rotate-0 -rotate-90"
+            className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 transition-transform group-open/details:rotate-0 -rotate-90"
             strokeWidth={2.5}
             aria-hidden
           />
@@ -348,8 +348,8 @@ export function PoliticianCV(props: PoliticianCVProps) {
 
       {/* Quellen-Diskrepanz-Banner: rein faktischer Hinweis, keine Wertung */}
       {conflictCount > 0 && (
-        <div className="mb-5 flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50/70 px-4 py-2.5 text-[13px] leading-relaxed text-amber-900">
-          <Info className="w-4 h-4 mt-0.5 shrink-0 text-amber-600" aria-hidden />
+        <div className="mb-5 flex items-start gap-2.5 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/70 dark:bg-amber-950/40 px-4 py-2.5 text-[13px] leading-relaxed text-amber-900 dark:text-amber-300">
+          <Info className="w-4 h-4 mt-0.5 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden />
           <span>
             <strong>{conflictCount === 1 ? "1 Stelle" : `${conflictCount} Stellen`}</strong>{" "}
             {conflictCount === 1 ? "weicht" : "weichen"} zwischen den Quellen voneinander ab. Markiert in der Liste unten.
@@ -364,11 +364,11 @@ export function PoliticianCV(props: PoliticianCVProps) {
             const sectionDrops = dropsBySection.get(key) ?? [];
             return (
               <details key={key} className="group/sec rounded-xl border border-border-soft">
-                <summary className="list-none cursor-pointer flex items-center gap-2.5 px-4 py-3 select-none rounded-xl hover:bg-zinc-50 transition-colors">
-                  <Icon className="w-4 h-4 text-zinc-400 shrink-0" strokeWidth={2} aria-hidden />
-                  <span className="flex-1 text-sm font-semibold text-zinc-700">{label}</span>
+                <summary className="list-none cursor-pointer flex items-center gap-2.5 px-4 py-3 select-none rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+                  <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-500 shrink-0" strokeWidth={2} aria-hidden />
+                  <span className="flex-1 text-sm font-semibold text-zinc-700 dark:text-zinc-300">{label}</span>
                   <ChevronDown
-                    className="w-3.5 h-3.5 text-zinc-400 transition-transform group-open/sec:rotate-180"
+                    className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 transition-transform group-open/sec:rotate-180"
                     strokeWidth={2.25}
                     aria-hidden
                   />
@@ -389,19 +389,19 @@ export function PoliticianCV(props: PoliticianCVProps) {
                             {entry.text}
                             {entry.sources.length >= 2 && !conflict && (
                               <span
-                                className="ml-1.5 text-[10px] text-emerald-600 font-semibold"
+                                className="ml-1.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold"
                                 title={`In ${entry.sources.length} unabhängigen Quellen übereinstimmend belegt`}
                               >
                                 {"✓".repeat(entry.sources.length)}
                               </span>
                             )}
                             {conflict && (
-                              <details className="mt-1.5 text-[12px] rounded-md border border-amber-200 bg-amber-50/60 px-2.5 py-1.5">
-                                <summary className="cursor-pointer text-amber-800 font-medium select-none list-none flex items-center gap-1">
+                              <details className="mt-1.5 text-[12px] rounded-md border border-amber-200 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/40 px-2.5 py-1.5">
+                                <summary className="cursor-pointer text-amber-800 dark:text-amber-400 font-medium select-none list-none flex items-center gap-1">
                                   <Info className="w-3 h-3" aria-hidden />
                                   Quellen-Diskrepanz · zum Aufklappen
                                 </summary>
-                                <div className="mt-2 space-y-1.5 text-amber-900/90 leading-snug">
+                                <div className="mt-2 space-y-1.5 text-amber-900/90 dark:text-amber-300/90 leading-snug">
                                   {conflictPair(conflict).map((p, pi) => (
                                     <div key={pi}>
                                       <span className="font-semibold">{p.label}:</span>{" "}
@@ -409,7 +409,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
                                     </div>
                                   ))}
                                   {(conflict.final_reason || conflict.reason) && (
-                                    <div className="text-[11px] text-amber-800/80 italic pt-1 border-t border-amber-200/60">
+                                    <div className="text-[11px] text-amber-800/80 dark:text-amber-400/80 italic pt-1 border-t border-amber-200/60 dark:border-amber-900/50">
                                       Hinweis der Prüfung: {conflict.final_reason ?? conflict.reason}
                                     </div>
                                   )}
@@ -422,7 +422,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
                     })}
                   </ul>
                   {sectionDrops.length > 0 && (
-                    <details className="mt-3 text-[12px] rounded-md border border-gray-200 bg-gray-50/70 px-2.5 py-2">
+                    <details className="mt-3 text-[12px] rounded-md border border-border bg-gray-50/70 dark:bg-gray-800/70 px-2.5 py-2">
                       <summary className="cursor-pointer text-muted hover:text-foreground font-medium select-none list-none flex items-center gap-1">
                         <Info className="w-3 h-3" aria-hidden />
                         {sectionDrops.length === 1
@@ -434,18 +434,18 @@ export function PoliticianCV(props: PoliticianCVProps) {
                           const droppedSrc = d.dropped_source === "wikipedia" ? "Wikipedia" : "Homepage";
                           const keptSrc = d.dropped_source === "wikipedia" ? "Homepage" : "Wikipedia";
                           return (
-                            <li key={di} className="border-l-2 border-gray-300 pl-2.5 space-y-1 leading-snug">
+                            <li key={di} className="border-l-2 border-gray-300 dark:border-gray-600 pl-2.5 space-y-1 leading-snug">
                               <div className="flex gap-2">
                                 <span className="text-[10px] uppercase tracking-wider text-muted/70 shrink-0 w-20 pt-0.5">
                                   {droppedSrc} (weg)
                                 </span>
-                                <span className="flex-1 text-muted line-through decoration-gray-400/50">
+                                <span className="flex-1 text-muted line-through decoration-gray-400/50 dark:decoration-gray-500/50">
                                   <span className="font-mono text-[11px] mr-1.5">[{d.dropped_jahr || "—"}]</span>
                                   {d.dropped_text}
                                 </span>
                               </div>
                               <div className="flex gap-2">
-                                <span className="text-[10px] uppercase tracking-wider text-emerald-700/70 shrink-0 w-20 pt-0.5">
+                                <span className="text-[10px] uppercase tracking-wider text-emerald-700/70 dark:text-emerald-400/70 shrink-0 w-20 pt-0.5">
                                   {keptSrc} (bleibt)
                                 </span>
                                 <span className="flex-1">
@@ -467,7 +467,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
       )}
 
       {/* Quellen-Footer */}
-      <details className="mt-6 pt-4 border-t border-gray-200 group">
+      <details className="mt-6 pt-4 border-t border-border group">
         <summary className="cursor-pointer text-xs text-muted hover:text-foreground transition-colors select-none list-none">
           <span className="inline-flex items-center gap-1">
             <span className="group-open:hidden">▶</span>
@@ -588,7 +588,7 @@ export function PoliticianCV(props: PoliticianCVProps) {
               )}
             </div>
           )}
-          <div className="mt-2 pt-3 border-t border-gray-200/70">
+          <div className="mt-2 pt-3 border-t border-border">
             <strong className="text-foreground/80">Mehrfach-Verifikation für mehr Verlässlichkeit:</strong>
             <p className="mt-1">
               Jeder strukturierte Eintrag wird aus{" "}

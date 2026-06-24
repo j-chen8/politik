@@ -54,7 +54,7 @@ function RefAnchors({ refs, topMarker }: { refs: number[]; topMarker: string }) 
         <a
           key={r}
           href={`#rede-${topMarker}-${r}`}
-          className="text-blue-700 hover:text-blue-900 transition-colors"
+          className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors"
         >
           [{r}]
         </a>
@@ -107,37 +107,37 @@ function VoteCard({ vote, compact = false, additionalVotes = 0 }: { vote: VoteFo
     : vote.outcome === "ueberweisung" ? "Überwiesen"
     : vote.outcome;
   const titel = enrichTitle(vote.primaryTitel, vote.drucksacheNrn);
-  const outcomeClass = isAcceptance ? "text-emerald-700 bg-emerald-50"
-    : isRejection ? "text-red-700 bg-red-50"
-    : "text-zinc-600 bg-zinc-100";
+  const outcomeClass = isAcceptance ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40"
+    : isRejection ? "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40"
+    : "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800";
   return (
-    <div className={`flex items-baseline gap-3 ${compact ? "px-3 py-2" : "px-3 py-2.5"} rounded-lg border border-zinc-100 bg-white`}>
+    <div className={`flex items-baseline gap-3 ${compact ? "px-3 py-2" : "px-3 py-2.5"} rounded-lg border border-border bg-card`}>
       <span className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 text-center min-w-[5.75rem] ${outcomeClass}`}>
         {outcomeLabel}
       </span>
       <div className="flex-1 min-w-0 flex items-baseline gap-2">
         <div className="flex-1 min-w-0">
           {vote.voteLabel && (
-            <div className="text-[10.5px] font-medium text-zinc-500 uppercase tracking-wider leading-tight mb-0.5 line-clamp-1">
+            <div className="text-[10.5px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider leading-tight mb-0.5 line-clamp-1">
               {vote.voteLabel}
             </div>
           )}
           {vote.primaryDbid ? (
             <Link
               href={`/parlamente/berlin/drucksache/${vote.primaryDbid}`}
-              className="block text-[13px] text-zinc-950 leading-snug hover:text-blue-700 line-clamp-1 transition-colors"
+              className="block text-[13px] text-zinc-950 dark:text-zinc-50 leading-snug hover:text-blue-700 dark:hover:text-blue-400 line-clamp-1 transition-colors"
             >
               {titel}
             </Link>
           ) : (
-            <span className="block text-[13px] text-zinc-950 leading-snug line-clamp-1">
+            <span className="block text-[13px] text-zinc-950 dark:text-zinc-50 leading-snug line-clamp-1">
               {titel}
             </span>
           )}
         </div>
         {additionalVotes > 0 && (
           <span
-            className="text-[10px] text-zinc-500 bg-zinc-100 px-1.5 py-0.5 rounded shrink-0 num"
+            className="text-[10px] text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded shrink-0 num"
             title={`Zu dieser Drucksache gab es ${additionalVotes + 1} Abstimmungen (Schlussabstimmung wird gezeigt; Detail-Verlauf auf der DS-Seite)`}
           >
             +{additionalVotes} weitere
@@ -149,10 +149,10 @@ function VoteCard({ vote, compact = false, additionalVotes = 0 }: { vote: VoteFo
           <span
             key={frak}
             className={`text-[9px] font-bold px-1 py-0.5 rounded ${
-              voteKind === "ja" ? "text-emerald-800 bg-emerald-100"
-                : voteKind === "nein" ? "text-red-800 bg-red-100"
-                : voteKind === "enthaltung" ? "text-amber-800 bg-amber-100"
-                : "text-zinc-500 bg-zinc-100"
+              voteKind === "ja" ? "text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40"
+                : voteKind === "nein" ? "text-red-800 dark:text-red-400 bg-red-100 dark:bg-red-900/40"
+                : voteKind === "enthaltung" ? "text-amber-800 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40"
+                : "text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800"
             }`}
             title={`${frak}: ${voteKind}`}
           >
@@ -205,21 +205,21 @@ function TopsTOC({ insights }: { insights: TopInsight[] }) {
         const meta = CATEGORY_META[cat];
         return (
           <div key={cat}>
-            <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 mb-1">
+            <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1">
               {meta.label}
-              <span className="text-zinc-300 num ml-1.5">({items.length})</span>
+              <span className="text-zinc-300 dark:text-zinc-600 num ml-1.5">({items.length})</span>
             </div>
-            <ul className="border-l border-zinc-200">
+            <ul className="border-l border-border">
               {items.map((ins) => {
                 const t = ins.top;
                 return (
                   <li key={`${t.marker}-${t.titel}`}>
                     <a
                       href={`#top-${t.marker}`}
-                      className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-0.5 leading-snug transition-colors"
+                      className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-zinc-950 dark:hover:text-zinc-50 text-zinc-600 dark:text-zinc-300 py-0.5 leading-snug transition-colors"
                     >
                       <div className="flex items-baseline gap-1.5">
-                        <span className="num text-[10px] text-zinc-400 shrink-0 min-w-[20px]">{t.marker}</span>
+                        <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 shrink-0 min-w-[20px]">{t.marker}</span>
                         <span className="font-medium line-clamp-1" title={t.titel}>{t.titel}</span>
                       </div>
                     </a>
@@ -242,7 +242,7 @@ function DsPill({ nr, dbid, className = "" }: { nr: string; dbid: string | null;
     return (
       <Link
         href={`/parlamente/berlin/drucksache/${dbid}`}
-        className={`${baseCls} text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors ${className}`}
+        className={`${baseCls} text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors ${className}`}
         title={`Drucksache ${nr} öffnen`}
       >
         {nr}
@@ -251,7 +251,7 @@ function DsPill({ nr, dbid, className = "" }: { nr: string; dbid: string | null;
   }
   return (
     <span
-      className={`${baseCls} text-zinc-500 bg-zinc-100 ${className}`}
+      className={`${baseCls} text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 ${className}`}
       title={`Drucksache ${nr} (nicht in der Datenbank gefunden)`}
     >
       {nr}
@@ -263,8 +263,8 @@ function KeyFactsList({ facts, topMarker }: { facts: KeyFact[]; topMarker: strin
   return (
     <ul className="space-y-1.5">
       {facts.map((f, i) => (
-        <li key={i} className="text-[12.5px] text-zinc-800 leading-relaxed flex items-baseline gap-2">
-          <span className="text-zinc-400 shrink-0 num text-[10px]">{i + 1}</span>
+        <li key={i} className="text-[12.5px] text-zinc-800 dark:text-zinc-200 leading-relaxed flex items-baseline gap-2">
+          <span className="text-zinc-400 dark:text-zinc-500 shrink-0 num text-[10px]">{i + 1}</span>
           <span className="flex-1">
             {f.text}
             <RefAnchors refs={f.refs} topMarker={topMarker} />
@@ -289,15 +289,15 @@ function SyntheseCard({
   topMarker: string;
 }) {
   return (
-    <div className="px-3 py-2.5 rounded-lg bg-zinc-50 border border-zinc-100">
+    <div className="px-3 py-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border">
       <div className="flex items-baseline gap-1.5 mb-2">
-        <span className="text-[11px] font-semibold text-zinc-700">
+        <span className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">
           {label}
         </span>
-        <span className="text-[10px] text-zinc-400">·</span>
-        <span className="text-[10px] text-zinc-400">{source}</span>
+        <span className="text-[10px] text-zinc-400 dark:text-zinc-500">·</span>
+        <span className="text-[10px] text-zinc-400 dark:text-zinc-500">{source}</span>
         {badge && (
-          <span className="ml-auto text-[9.5px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded text-zinc-500 bg-white border border-zinc-200">
+          <span className="ml-auto text-[9.5px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded text-zinc-500 dark:text-zinc-400 bg-card border border-border">
             {badge}
           </span>
         )}
@@ -305,7 +305,7 @@ function SyntheseCard({
       {facts && facts.length > 0 ? (
         <KeyFactsList facts={facts} topMarker={topMarker} />
       ) : (
-        <p className="text-[12px] italic text-zinc-400">
+        <p className="text-[12px] italic text-zinc-400 dark:text-zinc-500">
           (noch nicht generiert)
         </p>
       )}
@@ -361,31 +361,31 @@ function SyntheseRender({
     const zahlenBullets = aggregateBullets(top.speeches.map((s) => s.konkreteZahlen));
     const forderungBullets = aggregateBullets(top.speeches.map((s) => s.forderungen));
     return (
-      <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 border border-zinc-100">
+      <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border">
         <div className="flex items-baseline gap-1.5 mb-2">
-          <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500">Aggregation</span>
-          <span className="text-[9.5px] text-zinc-400">·</span>
-          <span className="text-[9.5px] text-zinc-400">rohe Sub-Achsen aus {redenCount} Reden</span>
+          <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Aggregation</span>
+          <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">·</span>
+          <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">rohe Sub-Achsen aus {redenCount} Reden</span>
         </div>
         <div className="grid sm:grid-cols-2 gap-3">
           <div>
-            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1">Zahlen</p>
+            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Zahlen</p>
             <ul className="space-y-0.5">
               {zahlenBullets.map((b) => (
-                <li key={b.text} className="text-[12px] text-zinc-800 leading-snug flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 shrink-0">•</span>
-                  <span className="flex-1">{b.text}{b.count > 1 && <span className="text-zinc-400 text-[10.5px] num ml-1.5">×{b.count}</span>}</span>
+                <li key={b.text} className="text-[12px] text-zinc-800 dark:text-zinc-200 leading-snug flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
+                  <span className="flex-1">{b.text}{b.count > 1 && <span className="text-zinc-400 dark:text-zinc-500 text-[10.5px] num ml-1.5">×{b.count}</span>}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1">Forderungen</p>
+            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Forderungen</p>
             <ul className="space-y-0.5">
               {forderungBullets.map((b) => (
-                <li key={b.text} className="text-[12px] text-zinc-800 leading-snug flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 shrink-0">•</span>
-                  <span className="flex-1">{b.text}{b.count > 1 && <span className="text-zinc-400 text-[10.5px] num ml-1.5">×{b.count}</span>}</span>
+                <li key={b.text} className="text-[12px] text-zinc-800 dark:text-zinc-200 leading-snug flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
+                  <span className="flex-1">{b.text}{b.count > 1 && <span className="text-zinc-400 dark:text-zinc-500 text-[10.5px] num ml-1.5">×{b.count}</span>}</span>
                 </li>
               ))}
             </ul>
@@ -409,15 +409,15 @@ function SyntheseRender({
   }
   if (top.summaryLead) {
     return (
-      <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 border border-zinc-100">
+      <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border">
         <div className="flex items-baseline gap-1.5 mb-1.5">
-          <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500">KI-Synthese (v3, Legacy)</span>
-          <span className="text-[9.5px] text-zinc-400">·</span>
-          <span className="text-[9.5px] text-zinc-400">aus {redenCount} Reden</span>
+          <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">KI-Synthese (v3, Legacy)</span>
+          <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">·</span>
+          <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">aus {redenCount} Reden</span>
         </div>
-        <p className="text-[13px] text-zinc-800 leading-relaxed font-medium">{top.summaryLead}</p>
+        <p className="text-[13px] text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">{top.summaryLead}</p>
         {top.summaryBody && (
-          <p className="text-[12.5px] text-zinc-600 leading-relaxed mt-2">{top.summaryBody}</p>
+          <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">{top.summaryBody}</p>
         )}
       </div>
     );
@@ -499,8 +499,8 @@ function SitzungNav({
   const cls = size === "lg"
     ? "text-[13px] px-4 py-2.5"
     : "text-[12px] px-2.5 py-1.5";
-  const disabledCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-zinc-100 text-zinc-300 cursor-not-allowed`;
-  const linkCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:text-zinc-950 transition-colors`;
+  const disabledCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-border text-zinc-300 dark:text-zinc-600 cursor-not-allowed`;
+  const linkCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-border text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors`;
   return (
     <div className="flex items-center gap-1.5">
       {neighbors.prev ? (
@@ -513,7 +513,7 @@ function SitzungNav({
           <span>
             <span className="num">Sitzung {neighbors.prev.nr}</span>
             {neighbors.prev.datum && (
-              <span className="text-zinc-400 ml-1.5 num">{shortDate(neighbors.prev.datum)}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 ml-1.5 num">{shortDate(neighbors.prev.datum)}</span>
             )}
           </span>
         </Link>
@@ -532,7 +532,7 @@ function SitzungNav({
           <span>
             <span className="num">Sitzung {neighbors.next.nr}</span>
             {neighbors.next.datum && (
-              <span className="text-zinc-400 ml-1.5 num">{shortDate(neighbors.next.datum)}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 ml-1.5 num">{shortDate(neighbors.next.datum)}</span>
             )}
           </span>
           <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -659,7 +659,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
             href="/parlamente/berlin"
-            className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors"
+            className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
             Abgeordnetenhaus Berlin
@@ -670,18 +670,18 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
 
         {/* Header */}
         <header className="mb-6">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             Plenarprotokoll {sit.plprDokNr}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-2">
             {sit.sitzungNr}. Sitzung des Abgeordnetenhauses
           </h1>
-          <p className="text-[14px] text-zinc-600 num">
+          <p className="text-[14px] text-zinc-600 dark:text-zinc-300 num">
             {formatDate(sit.datum)}
             {" · "}
-            <span className="font-medium text-zinc-950">{fmt(sit.redenTotal)}</span> Wortbeiträge
+            <span className="font-medium text-zinc-950 dark:text-zinc-50">{fmt(sit.redenTotal)}</span> Wortbeiträge
             {" · "}
-            <span className="font-medium text-zinc-950">{displayVotes.length}</span> Abstimmungen
+            <span className="font-medium text-zinc-950 dark:text-zinc-50">{displayVotes.length}</span> Abstimmungen
             {sit.plprLokUrl && (
               <>
                 {" · "}
@@ -689,7 +689,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                   href={sit.plprLokUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                  className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                 >
                   PDF
                   <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -699,7 +699,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
           </p>
           {sitzungDrucksachen.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1 items-center">
-              <span className="text-[10px] uppercase tracking-wider text-zinc-500 mr-1">Drucksachen:</span>
+              <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mr-1">Drucksachen:</span>
               {sitzungDrucksachen.map((d) => (
                 <DsPill key={d.nr} nr={d.nr} dbid={d.dbid} />
               ))}
@@ -708,8 +708,8 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
         </header>
 
         {/* Mobile: Inhaltsverzeichnis als ausklappbares Detail-Element */}
-        <details className="lg:hidden mb-6 rounded-xl border border-zinc-200/70 bg-white">
-          <summary className="list-none cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700 select-none">
+        <details className="lg:hidden mb-6 rounded-xl border border-border bg-card">
+          <summary className="list-none cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700 dark:text-zinc-300 select-none">
             <ListTree className="w-3.5 h-3.5" strokeWidth={2.25} />
             Inhaltsverzeichnis ({insights.length} Themen)
           </summary>
@@ -726,16 +726,16 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
             Orphans (ohne Debatte) sind visuell als solche markiert. */}
         {displayVotes.length > 0 && (
           <section className="mb-8">
-            <h2 className="text-lg font-semibold tracking-[-0.01em] text-zinc-950 mb-3">
+            <h2 className="text-lg font-semibold tracking-[-0.01em] text-zinc-950 dark:text-zinc-50 mb-3">
               Abstimmungen
-              <span className="text-zinc-400 num text-base font-normal ml-2">({displayVotes.length})</span>
+              <span className="text-zinc-400 dark:text-zinc-500 num text-base font-normal ml-2">({displayVotes.length})</span>
             </h2>
             <ul className="space-y-1.5">
               {displayVotes.map((v) => (
                 <li
                   key={v.voteId}
                   id={`vote-${v.voteId}`}
-                  className="scroll-mt-12 target:bg-amber-50/60 transition-colors rounded-lg"
+                  className="scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors rounded-lg"
                 >
                   <VoteCard vote={v} compact additionalVotes={additionalVotesCount.get(v.voteId) ?? 0} />
                 </li>
@@ -755,14 +755,14 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
               id={`top-${t.marker}`}
               className="mb-8 scroll-mt-6"
             >
-              <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-                <div className="px-5 py-4 border-b border-zinc-100">
+              <div className="border border-border rounded-2xl bg-card overflow-hidden">
+                <div className="px-5 py-4 border-b border-border">
                   <div className="flex items-baseline gap-3 flex-wrap mb-2">
-                    <span className="num text-[11px] font-semibold text-zinc-500">TOP {t.marker}</span>
-                    <h2 className="text-[16px] font-semibold text-zinc-950 leading-snug flex-1">
+                    <span className="num text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">TOP {t.marker}</span>
+                    <h2 className="text-[16px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug flex-1">
                       {t.titel}
                     </h2>
-                    <span className="text-[11px] text-zinc-400 num">{filteredSpeeches.length} Reden</span>
+                    <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num">{filteredSpeeches.length} Reden</span>
                   </div>
                   {(votesByTopMarker.get(t.marker) ?? []).length > 0 && (
                     <div className="flex items-center gap-1.5 mb-2">
@@ -774,9 +774,9 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                           : v.outcome === "vertagung" ? "Vertagt"
                           : v.outcome === "ueberweisung" ? "Überwiesen"
                           : v.outcome;
-                        const cls = isAcc ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200"
-                          : isRej ? "text-red-700 bg-red-50 hover:bg-red-100 border-red-200"
-                          : "text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border-zinc-200";
+                        const cls = isAcc ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 border-emerald-200 dark:border-emerald-900/50"
+                          : isRej ? "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/40 border-red-200 dark:border-red-900/50"
+                          : "text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 border-border";
                         return (
                           <a
                             key={v.voteId}
@@ -805,33 +805,33 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                   />
                 </div>
                 <details className="group/reden">
-                  <summary className="list-none cursor-pointer px-5 py-2.5 text-[11.5px] text-zinc-500 hover:text-zinc-950 border-t border-zinc-100 transition-colors select-none flex items-center gap-1.5">
-                    <span className="text-zinc-400 group-open/reden:rotate-90 transition-transform">▶</span>
+                  <summary className="list-none cursor-pointer px-5 py-2.5 text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 border-t border-border transition-colors select-none flex items-center gap-1.5">
+                    <span className="text-zinc-400 dark:text-zinc-500 group-open/reden:rotate-90 transition-transform">▶</span>
                     <span className="group-open/reden:hidden">Reden einblenden ({filteredSpeeches.length})</span>
                     <span className="hidden group-open/reden:inline">Reden ausblenden</span>
                   </summary>
-                  <ul className="divide-y divide-zinc-100 border-t border-zinc-100">
+                  <ul className="divide-y divide-border border-t border-border">
                     {filteredSpeeches.map((sp, idx) => (
                       <li
                         key={sp.speechId}
                         id={`rede-${t.marker}-${idx + 1}`}
-                        className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 transition-colors"
+                        className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors"
                       >
                         {/* Stabiler speech_id-Anker für Deep-Links aus der Suche (zusätzlich zum
                             positionsbasierten li-Anker, den die RefAnchors-Superscripts nutzen). */}
                         <span id={`rede-s-${sp.speechId}`} className="block scroll-mt-16" aria-hidden="true" />
                         <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                          <span className="num text-[10px] text-zinc-400 shrink-0">{idx + 1}</span>
+                          <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 shrink-0">{idx + 1}</span>
                           {/* Alle Redner → namensbasierte Redner-Seite (auch Senator:innen ohne
                               Profil); konsistent mit der Bundestag-Sitzungsseite. */}
                           <Link
                             href={`/parlamente/berlin/redner/${encodeURIComponent(sp.speakerName)}`}
-                            className="text-[13.5px] font-medium text-zinc-950 hover:text-blue-700 transition-colors"
+                            className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50 hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                           >
                             {sp.speakerName}
                           </Link>
                           {sp.speakerParty && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700 dark:text-zinc-300">
                               <span className={`w-1.5 h-1.5 rounded-full ${PARTY_COLOR[sp.speakerParty] ?? "bg-zinc-400"}`} />
                               {sp.speakerParty}
                             </span>
@@ -855,7 +855,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
                           ))}
                         </div>
                         {sp.zusammenfassung && (
-                          <p className="text-[12.5px] text-zinc-600 leading-relaxed">
+                          <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
                             {stripBerlinSpeakerLead(sp.zusammenfassung)}
                           </p>
                         )}
@@ -873,8 +873,8 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
 
         {/* Footer-Navigation: dieselbe Sitzungs-Navigation am Ende, damit der
             Leser nach 17 TOPs direkt zur nächsten/vorherigen Sitzung springen kann. */}
-        <div className="mt-8 pt-6 border-t border-zinc-100 flex items-center justify-between gap-3 flex-wrap">
-          <span className="text-[11px] uppercase tracking-wider text-zinc-500">Weiter zu</span>
+        <div className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-3 flex-wrap">
+          <span className="text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Weiter zu</span>
           <SitzungNav neighbors={neighbors} size="lg" />
         </div>
           </main>
@@ -883,7 +883,7 @@ export default async function BerlinSitzungStoriesPage({ params, searchParams }:
               Sticky von top-20, mit pb-6 unten für visuellen Rand. */}
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-20 pb-6">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3 flex items-center gap-1.5">
                 <ListTree className="w-3 h-3" strokeWidth={2.25} />
                 Auf dieser Seite
               </div>

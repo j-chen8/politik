@@ -85,7 +85,7 @@ interface DSMeta {
   klasse: BerlinBatchClass;
 }
 
-function selectCandidatesStratified(db: Database.Database, batchStage: number): DSCandidate[] {
+function selectCandidatesStratified(db: Database.Database, batchStage: number, rest = false): DSCandidate[] {
   // Skip bereits analysierte DS (ohne beschlussempfehlung_regex — die werden anderweitig erzeugt)
   const alreadyDone = new Set(
     (db.prepare(`
@@ -118,44 +118,50 @@ function selectCandidatesStratified(db: Database.Database, batchStage: number): 
   console.log(`  ${metaRows.length} DS gesamt eligible (≥${MIN_CHARS} Z.)`);
   console.log(`  ${alreadyDone.size} bereits analysiert, ${eligible.length} verbleibend`);
 
-  const targetSize = BATCH_SIZES[batchStage];
-  const numToAdd = Math.max(0, targetSize - alreadyDone.size);
-  if (numToAdd === 0) {
-    console.log(`  Stage-${batchStage}-Ziel (${targetSize}) bereits erreicht.`);
-    return [];
-  }
-
-  // Stratifiziert wählen
+  // Auswahl → pickedMeta (fließt danach in die Phase-2-full_text-Hydration).
   let pickedMeta: DSMeta[];
-  if (numToAdd >= eligible.length) {
-    console.log(`  Wähle alle ${eligible.length} verbleibenden (Ziel: +${numToAdd})`);
+  if (rest) {
+    // Inkrementeller Refresh: ALLE noch nicht analysierten DS, unabhängig von den
+    // kumulativen Initial-Rollout-Targets (längst überschritten → --batch=N = 0).
+    console.log(`  --rest: alle ${eligible.length} noch nicht analysierten DS (inkrementeller Refresh)`);
     pickedMeta = eligible;
   } else {
-    const buckets = new Map<string, DSMeta[]>();
-    for (const c of eligible) {
-      const key = `${c.klasse}__${bucketKey(c.titel)}`;
-      if (!buckets.has(key)) buckets.set(key, []);
-      buckets.get(key)!.push(c);
+    const targetSize = BATCH_SIZES[batchStage];
+    const numToAdd = Math.max(0, targetSize - alreadyDone.size);
+    if (numToAdd === 0) {
+      console.log(`  Stage-${batchStage}-Ziel (${targetSize}) bereits erreicht.`);
+      return [];
     }
-    const rng = mulberry32(42 + batchStage);
-    for (const arr of buckets.values()) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(rng() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+    if (numToAdd >= eligible.length) {
+      console.log(`  Wähle alle ${eligible.length} verbleibenden (Ziel: +${numToAdd})`);
+      pickedMeta = eligible;
+    } else {
+      const buckets = new Map<string, DSMeta[]>();
+      for (const c of eligible) {
+        const key = `${c.klasse}__${bucketKey(c.titel)}`;
+        if (!buckets.has(key)) buckets.set(key, []);
+        buckets.get(key)!.push(c);
       }
-    }
-    pickedMeta = [];
-    const bucketKeys = [...buckets.keys()];
-    while (pickedMeta.length < numToAdd) {
-      let added = false;
-      for (const k of bucketKeys) {
-        if (pickedMeta.length >= numToAdd) break;
-        const arr = buckets.get(k)!;
-        if (arr.length > 0) { pickedMeta.push(arr.pop()!); added = true; }
+      const rng = mulberry32(42 + batchStage);
+      for (const arr of buckets.values()) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(rng() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
       }
-      if (!added) break;
+      pickedMeta = [];
+      const bucketKeys = [...buckets.keys()];
+      while (pickedMeta.length < numToAdd) {
+        let added = false;
+        for (const k of bucketKeys) {
+          if (pickedMeta.length >= numToAdd) break;
+          const arr = buckets.get(k)!;
+          if (arr.length > 0) { pickedMeta.push(arr.pop()!); added = true; }
+        }
+        if (!added) break;
+      }
+      console.log(`  Stratifiziert: ${pickedMeta.length} DS über ${bucketKeys.length} Buckets`);
     }
-    console.log(`  Stratifiziert: ${pickedMeta.length} DS über ${bucketKeys.length} Buckets`);
   }
 
   // Phase 2: full_text NUR für ausgewählte DS laden (Heap-Sparsam)
@@ -205,26 +211,28 @@ function mulberry32(seed: number): () => number {
 
 async function main() {
   const args = process.argv.slice(2);
+  const rest = args.includes("--rest");
   const batchArg = args.find((a) => a.startsWith("--batch="));
-  if (!batchArg) {
-    console.error("Usage: --batch=1|2|3|4 [--confirm]");
+  if (!batchArg && !rest) {
+    console.error("Usage: --batch=1|2|3|4 [--confirm]  |  --rest [--confirm]  (alle noch nicht analysierten DS)");
     process.exit(1);
   }
-  const batchStage = parseInt(batchArg.split("=")[1], 10);
-  if (!(batchStage in BATCH_SIZES)) {
+  const batchStage = batchArg ? parseInt(batchArg.split("=")[1], 10) : 4; // --rest: nur für rng/Naming
+  if (!rest && !(batchStage in BATCH_SIZES)) {
     console.error(`Stage muss 1, 2, 3 oder 4 sein (war: ${batchStage})`);
     process.exit(1);
   }
   const doSubmit = args.includes("--confirm");
+  const stageLabel = rest ? "rest" : String(batchStage);
 
-  console.log(`=== Berlin-DS Batch-Submit (Stage ${batchStage}, kumuliert ${BATCH_SIZES[batchStage]}) ===\n`);
+  console.log(`=== Berlin-DS Batch-Submit (${rest ? "REST = alle verbleibenden" : `Stage ${batchStage}, kumuliert ${BATCH_SIZES[batchStage]}`}) ===\n`);
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY fehlt in .env");
   if (!fs.existsSync(METHOD_PATH)) throw new Error(`Methodology missing: ${METHOD_PATH}`);
 
   fs.mkdirSync(STATE_DIR, { recursive: true });
-  const stateFile = path.join(STATE_DIR, `batch-${batchStage}.json`);
+  const stateFile = path.join(STATE_DIR, `batch-${stageLabel}.json`);
   if (fs.existsSync(stateFile)) {
     const existing = JSON.parse(fs.readFileSync(stateFile, "utf-8"));
     console.log(`⚠ Bestehender Batch für Stage ${batchStage}: ${existing.batch_id} (${existing.submitted_at})`);
@@ -242,7 +250,7 @@ async function main() {
   db.pragma("journal_mode = WAL");
   db.pragma("busy_timeout = 30000");
 
-  const candidates = selectCandidatesStratified(db, batchStage);
+  const candidates = selectCandidatesStratified(db, batchStage, rest);
   db.close();
 
   if (candidates.length === 0) return;

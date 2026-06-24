@@ -37,7 +37,9 @@ export interface ParliamentLandingProps {
   headlineClassName?: string;
   /** Komma-Liste + „— transparent und lesbar". */
   subtitle: string;
-  methodikHref: string;
+  /** @deprecated Hero-Methodik-Link entfernt (User 2026-06-13); Methodik bleibt
+   *  über Footer + „Mehr"-Nav erreichbar. Prop bleibt für Aufrufer-Kompatibilität. */
+  methodikHref?: string;
   /** Suchfeld — je Parlament eigenes (Volltext vs. Namenssuche). */
   search: ReactNode;
   /** Optionale Beispiel-Chips unter der Suche (Bundestag). */
@@ -57,21 +59,20 @@ export function ParliamentLanding({
   headline,
   headlineClassName = "text-5xl sm:text-6xl lg:text-7xl",
   subtitle,
-  methodikHref,
   search,
   examples,
   plenarPill,
   columns,
   footer,
-  accentClass = "text-[#1a3e72]",
+  accentClass = "text-[#1a3e72] dark:text-[#8fb3e6]",
   topics,
 }: ParliamentLandingProps) {
   const pill = plenarPill && (
     <Link
       href={plenarPill.href}
-      className="group inline-flex items-center gap-2 max-w-full rounded-full border border-zinc-200/80 bg-white/70 py-1.5 pl-3 pr-3 text-[12.5px] hover:border-zinc-300 hover:bg-white transition-colors dark:border-zinc-700 dark:bg-zinc-800/60 dark:hover:border-zinc-600 dark:hover:bg-zinc-800"
+      className="group inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-card/70 py-1.5 pl-3 pr-3 text-[12.5px] hover:border-zinc-300 hover:bg-card transition-colors dark:border-zinc-700 dark:bg-zinc-800/60 dark:hover:border-zinc-600 dark:hover:bg-zinc-800"
     >
-      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${plenarPill.dotClass ?? "bg-[#1a3e72]"}`} />
+      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${plenarPill.dotClass ?? "bg-[#1a3e72] dark:bg-[#8fb3e6]"}`} />
       <span className="font-medium text-zinc-700 shrink-0 dark:text-zinc-200">Letzte Plenarsitzung</span>
       <span className="text-zinc-300 shrink-0 dark:text-zinc-600">·</span>
       <span className="num text-zinc-500 truncate dark:text-zinc-400">
@@ -79,7 +80,7 @@ export function ParliamentLanding({
         {plenarPill.secondary && <span className="hidden sm:inline">{" "}· {plenarPill.secondary}</span>}
       </span>
       <ArrowRight
-        className="w-3.5 h-3.5 shrink-0 text-zinc-400 group-hover:text-zinc-700 group-hover:translate-x-0.5 transition-all"
+        className="w-3.5 h-3.5 shrink-0 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 group-hover:translate-x-0.5 transition-all"
         strokeWidth={2.25}
       />
     </Link>
@@ -95,15 +96,7 @@ export function ParliamentLanding({
               <h1 className={`${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.98] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
                 {headline}
               </h1>
-              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-2 leading-relaxed">{subtitle}</p>
-              <div className="mb-7">
-                <Link
-                  href={methodikHref}
-                  className="text-[13px] text-zinc-500 hover:text-zinc-900 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2 transition-colors dark:text-zinc-400 dark:hover:text-zinc-100 dark:decoration-zinc-600"
-                >
-                  zur Methodik →
-                </Link>
-              </div>
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-7 leading-relaxed">{subtitle}</p>
               <div className="max-w-xl">{search}</div>
               {examples}
               {pill && <div className="mt-6 flex fade-in-up fade-in-up-2">{pill}</div>}
@@ -121,15 +114,7 @@ export function ParliamentLanding({
           <h1 className={`text-center ${headlineClassName} font-semibold tracking-[-0.04em] leading-[0.95] text-zinc-950 dark:text-zinc-50 mb-3 text-balance`}>
             {headline}
           </h1>
-          <p className="text-center text-xl text-zinc-500 dark:text-zinc-400 mx-auto mb-2 leading-relaxed">{subtitle}</p>
-          <div className="text-center mb-10">
-            <Link
-              href={methodikHref}
-              className="text-[13px] text-zinc-500 hover:text-zinc-900 underline decoration-zinc-300 hover:decoration-zinc-700 underline-offset-2 transition-colors dark:text-zinc-400 dark:hover:text-zinc-100 dark:decoration-zinc-600"
-            >
-              zur Methodik →
-            </Link>
-          </div>
+          <p className="text-center text-xl text-zinc-500 dark:text-zinc-400 mx-auto mb-10 leading-relaxed">{subtitle}</p>
           {/* max-w-3xl statt xl: Bundestag hängt den „Zur Themenauswahl"-Button neben
               die Suche — Berlins schmale SearchBox zentriert sich darin unverändert. */}
           <div className="max-w-3xl mx-auto">{search}</div>
@@ -144,7 +129,7 @@ export function ParliamentLanding({
             2 Spalten (GE + Kleine Anfragen), Berlin weiter 3. */}
         <div className={`grid grid-cols-1 gap-5 ${columns.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
           {columns.map((col) => (
-            <div key={col.title} className="border border-zinc-200/70 rounded-2xl bg-white px-5 py-5 flex flex-col dark:border-zinc-800 dark:bg-zinc-900/70">
+            <div key={col.title} className="border border-border rounded-2xl bg-card px-5 py-5 flex flex-col dark:border-zinc-800 dark:bg-zinc-900/70">
               <h3 className={`text-[15px] font-semibold tracking-[-0.01em] text-zinc-950 dark:text-zinc-100 ${col.subtitle ? "mb-1" : "mb-4"}`}>
                 {col.title}
               </h3>
@@ -157,7 +142,7 @@ export function ParliamentLanding({
               {col.footer && (
                 <Link
                   href={col.footer.href}
-                  className={`mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 inline-flex items-center gap-1.5 text-[12.5px] font-medium ${accentClass} dark:text-blue-400 hover:gap-2 transition-all`}
+                  className={`mt-4 pt-3 border-t border-border dark:border-zinc-800 inline-flex items-center gap-1.5 text-[12.5px] font-medium ${accentClass} dark:text-blue-400 hover:gap-2 transition-all`}
                 >
                   {col.footer.label}
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />

@@ -535,6 +535,17 @@ function main() {
 
   console.log(`\n${allPdfs.length} Wortprotokolle zu verarbeiten\n`);
 
+  // Nur NEUE Sitzungen verarbeiten. berlin_speech_analyses hat einen FK auf
+  // berlin_speeches.speech_id — ein INSERT OR REPLACE über bereits analysierte
+  // Sitzungen würde beim Replace (delete→insert) den FK verletzen. Inkrementell
+  // ist ohnehin das gewünschte Verhalten. --force erzwingt Re-Extraktion (dann
+  // muss FK-Handling separat bedacht werden).
+  const FORCE_RESEED = process.argv.includes("--force");
+  const seededSessions = new Set(
+    (db.prepare(`SELECT DISTINCT sitzung_nr FROM berlin_speeches`).all() as { sitzung_nr: number }[])
+      .map((r) => r.sitzung_nr)
+  );
+
   const insertStmt = db.prepare(`
     INSERT OR REPLACE INTO berlin_speeches (
       speech_id, wp, sitzung_nr, datum, pdf_filename, lok_url,
@@ -573,6 +584,10 @@ function main() {
       continue;
     }
     const { wp, sitzung } = wpSitz;
+
+    if (!FORCE_RESEED && seededSessions.has(sitzung)) {
+      continue; // Sitzung bereits geseedet (Reden evtl. analysiert → FK) — überspringen
+    }
 
     // Cutoff: erster Body-Marker
     let firstBody = -1;

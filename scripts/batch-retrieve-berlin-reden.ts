@@ -58,14 +58,16 @@ function decodeCustomId(c: string): string {
 
 async function main() {
   const args = process.argv.slice(2);
+  const rest = args.includes("--rest");
   const batchArg = args.find((a) => a.startsWith("--batch="));
-  if (!batchArg) {
-    console.error("Usage: --batch=1|2|3|4");
+  if (!batchArg && !rest) {
+    console.error("Usage: --batch=1|2|3|4  |  --rest");
     process.exit(1);
   }
-  const batchStage = parseInt(batchArg.split("=")[1], 10);
+  const stageLabel = rest ? "rest" : batchArg!.split("=")[1];
+  const batchStage = rest ? 4 : parseInt(stageLabel, 10); // batch_stage-Spalte: 4 als Sammel-Marker
 
-  const stateFile = path.join(STATE_DIR, `batch-${batchStage}.json`);
+  const stateFile = path.join(STATE_DIR, `batch-${stageLabel}.json`);
   if (!fs.existsSync(stateFile)) {
     console.error(`State-Datei fehlt: ${stateFile}`);
     process.exit(1);

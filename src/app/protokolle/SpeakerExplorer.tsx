@@ -105,10 +105,10 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
   return (
     <>
       <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
-        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+        <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           Aktivste im Plenum
         </h2>
-        <span className="text-[11px] text-zinc-400">
+        <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
           Basis: {totalAnalyzed.toLocaleString("de-DE")} KI-analysierte Beiträge · {speakers.length} Sprecher
         </span>
       </div>
@@ -116,7 +116,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
       {/* Filter row: Typ-Toggles */}
       <div className="mb-3">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[10.5px] text-zinc-500 uppercase tracking-wider font-medium">
+          <span className="text-[10.5px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-medium">
             Zähle:
           </span>
           {TYP_ORDER.map((t) => {
@@ -131,7 +131,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
                   "text-[11px] px-2.5 py-1 rounded-md font-medium transition-colors " +
                   (active
                     ? "bg-zinc-900 text-white"
-                    : "text-zinc-400 hover:text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 line-through")
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-border line-through")
                 }
               >
                 {TYP_LABEL[t]}
@@ -140,7 +140,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
           })}
         </div>
         {!allTypsActive && (
-          <p className="text-[10.5px] text-amber-700 mt-2">
+          <p className="text-[10.5px] text-amber-700 dark:text-amber-400 mt-2">
             ⚠ Ranking ist gefiltert — Counts und Reihenfolge zählen nur die aktiven Typen.
           </p>
         )}
@@ -149,7 +149,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
       {/* Sort + Suche */}
       <div className="flex items-center gap-3 flex-wrap mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-[10.5px] text-zinc-500 uppercase tracking-wider font-medium">
+          <span className="text-[10.5px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-medium">
             Sortieren:
           </span>
           {(Object.keys(SORT_LABEL) as Sort[]).map((s) => (
@@ -161,7 +161,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
                 "text-[11px] px-2.5 py-1 rounded-md font-medium transition-colors " +
                 (sort === s
                   ? "bg-zinc-900 text-white"
-                  : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 border border-zinc-200")
+                  : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-border")
               }
             >
               {SORT_LABEL[s]}
@@ -169,7 +169,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
           ))}
         </div>
         <div className="relative flex-1 min-w-[14rem]">
-          <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" strokeWidth={2.25} />
+          <Search className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" strokeWidth={2.25} />
           <input
             type="text"
             value={query}
@@ -180,16 +180,16 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
               }
             }}
             placeholder="Sprecher suchen — Enter springt zum ersten Treffer"
-            className="w-full text-[12px] pl-8 pr-7 py-1.5 rounded-md border border-zinc-200 bg-white placeholder-zinc-400 focus:outline-none focus:border-zinc-400 focus:ring-1 focus:ring-zinc-200"
+            className="w-full text-[12px] pl-8 pr-7 py-1.5 rounded-md border border-border bg-card placeholder-zinc-400 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-500 focus:ring-1 focus:ring-zinc-200 dark:focus:ring-zinc-700"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
               aria-label="Suche löschen"
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-zinc-100"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
-              <X className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-700" strokeWidth={2.25} />
+              <X className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300" strokeWidth={2.25} />
             </button>
           )}
         </div>
@@ -198,7 +198,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
       {/* Speakers list, scrollable */}
       <div className="max-h-[680px] overflow-y-auto pr-1 space-y-1">
         {view.length === 0 && (
-          <p className="text-[12px] text-zinc-500 py-4 px-1">
+          <p className="text-[12px] text-zinc-500 dark:text-zinc-400 py-4 px-1">
             Keine Treffer für „{query}".
           </p>
         )}
@@ -210,27 +210,27 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
             <Link
               key={s.speaker}
               href={`/protokolle/redner/${encodeURIComponent(s.speaker)}`}
-              className={`grid grid-cols-[1.75rem_minmax(11rem,15rem)_1fr_2.75rem] items-center gap-3 hover:bg-zinc-50 rounded-md py-1 px-1 group transition-colors ${isSilent ? "opacity-60" : ""}`}
+              className={`grid grid-cols-[1.75rem_minmax(11rem,15rem)_1fr_2.75rem] items-center gap-3 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-md py-1 px-1 group transition-colors ${isSilent ? "opacity-60" : ""}`}
               title={isSilent ? "Bisher keine Plenarbeiträge in unseren Daten" : undefined}
             >
-              <span className="num text-right text-[12px] font-medium text-zinc-400">
+              <span className="num text-right text-[12px] font-medium text-zinc-400 dark:text-zinc-500">
                 {i + 1}
               </span>
               <div className="flex items-center gap-2 min-w-0">
                 <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${colors.dot}`} />
                 <span
-                  className={`text-[13px] font-medium group-hover:underline truncate ${isSilent ? "text-zinc-600" : "text-zinc-950"}`}
+                  className={`text-[13px] font-medium group-hover:underline truncate ${isSilent ? "text-zinc-600 dark:text-zinc-300" : "text-zinc-950 dark:text-zinc-50"}`}
                   title={s.speaker}
                 >
                   {s.speaker}
                 </span>
                 {s.fraktion && (
-                  <span className="text-[10.5px] text-zinc-500 shrink-0 uppercase tracking-wider font-medium">
+                  <span className="text-[10.5px] text-zinc-500 dark:text-zinc-400 shrink-0 uppercase tracking-wider font-medium">
                     {shortPartyName(s.fraktion)}
                   </span>
                 )}
               </div>
-              <div className="h-5 bg-zinc-50 rounded-md overflow-hidden">
+              <div className="h-5 bg-zinc-50 dark:bg-zinc-800 rounded-md overflow-hidden">
                 {!isSilent && (
                   <div
                     className="h-full flex transition-[width] duration-200"
@@ -253,7 +253,7 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
                   </div>
                 )}
               </div>
-              <span className={`num text-[13px] font-semibold text-right ${isSilent ? "text-zinc-400" : "text-zinc-950"}`}>
+              <span className={`num text-[13px] font-semibold text-right ${isSilent ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-950 dark:text-zinc-50"}`}>
                 {isSilent ? "—" : s.filteredTotal.toLocaleString("de-DE")}
               </span>
             </Link>
@@ -264,14 +264,14 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
             <button
               type="button"
               onClick={() => setPageSize((p) => p + PAGE_SIZE_STEP)}
-              className="inline-flex items-center gap-1 text-[12.5px] text-zinc-600 hover:text-zinc-950 transition-colors px-1"
+              className="inline-flex items-center gap-1 text-[12.5px] text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors px-1"
             >
               Weitere {Math.min(PAGE_SIZE_STEP, view.length - pageSize)} anzeigen
             </button>
             <button
               type="button"
               onClick={() => setPageSize(view.length)}
-              className="text-[11.5px] text-zinc-400 hover:text-zinc-700 transition-colors px-1"
+              className="text-[11.5px] text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors px-1"
             >
               Alle {view.length} laden
             </button>
@@ -279,12 +279,12 @@ export function SpeakerExplorer({ speakers, totalAnalyzed }: { speakers: Speaker
         )}
       </div>
 
-      <p className="text-[10.5px] text-zinc-400 mt-3">
+      <p className="text-[10.5px] text-zinc-400 dark:text-zinc-500 mt-3">
         Reihenfolge der Bar-Segmente (dunkel → hell):{" "}
         {TYP_ORDER.map((slug, i) => (
           <span key={slug}>
             {i > 0 && " · "}
-            <span className={enabledTyps.has(slug) ? "text-zinc-700 font-medium" : "text-zinc-400 line-through"}>
+            <span className={enabledTyps.has(slug) ? "text-zinc-700 dark:text-zinc-300 font-medium" : "text-zinc-400 dark:text-zinc-500 line-through"}>
               {TYP_LABEL[slug]}
             </span>
           </span>

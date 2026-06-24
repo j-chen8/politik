@@ -1,73 +1,6 @@
-import { getDb } from "@/lib/db";
+import { getLaufendeGesetzentwuerfe, type LaufenderGesetzentwurf } from "@/lib/db";
 import Link from "next/link";
 import { Scale } from "lucide-react";
-
-// ── Lokale Kopie von getLaufendeGesetzentwuerfe (Original: landtag-Branch db.ts) ──
-// Bewusst INLINE statt in db.ts: der landtag-Branch trägt dieselbe Funktion in
-// db.ts — beim Merge gewinnt dessen Version, dieser Block fliegt raus und der
-// Import wird wieder `from "@/lib/db"`. Hält den Konflikt auf genau 1 Datei.
-interface LaufenderGesetzentwurf {
-  drucksache_nr: string;
-  titel: string | null;
-  beratungsstand: string | null;
-  initiative: string[];
-  phase: "vor_erster_lesung" | "im_ausschuss" | "beschlussempfehlung";
-  seitDatum: string | null;
-  einbringungDatum: string | null;
-  federfuehrenderAusschuss: string | null;
-}
-function safeJson<T>(s: string | null, fallback: T): T {
-  if (!s) return fallback;
-  try { return JSON.parse(s) as T; } catch { return fallback; }
-}
-function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
-  const db = getDb();
-  const rows = db.prepare(`
-    SELECT dv.drucksache_nr, v.titel, v.beratungsstand, v.initiative_json,
-      (SELECT MIN(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') AND p.zuordnung='BT') AS einbringung_datum,
-      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('1. Beratung','1. Beratung (Gesetzentwurf)')) AS erste_beratung_datum,
-      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Beschlussempfehlung und Bericht','Beschlussempfehlung','Bericht')) AS be_datum,
-      (SELECT p.ueberweisung_json FROM dip_vorgang_positionen p
-        WHERE p.vorgang_id=v.id AND p.ueberweisung_json IS NOT NULL AND p.zuordnung='BT'
-        ORDER BY p.datum DESC LIMIT 1) AS ueberweisung_json
-    FROM dip_ds_vorgaenge dv
-    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
-    JOIN drucksache_instrument di ON di.drucksache_nr = dv.drucksache_nr AND di.instrument = 'gesetzentwurf'
-    WHERE v.beratungsstand NOT IN (
-      'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
-      'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
-      'Im Vermittlungsverfahren','Einbringung abgelehnt'
-    )
-    GROUP BY dv.drucksache_nr
-  `).all() as {
-    drucksache_nr: string; titel: string | null; beratungsstand: string | null;
-    initiative_json: string | null; einbringung_datum: string | null;
-    erste_beratung_datum: string | null; be_datum: string | null;
-    ueberweisung_json: string | null;
-  }[];
-
-  return rows.map((r) => {
-    const phase = r.be_datum
-      ? ("beschlussempfehlung" as const)
-      : r.erste_beratung_datum
-        ? ("im_ausschuss" as const)
-        : ("vor_erster_lesung" as const);
-    const ueberweisung = safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []);
-    return {
-      drucksache_nr: r.drucksache_nr,
-      titel: r.titel,
-      beratungsstand: r.beratungsstand,
-      initiative: safeJson<string[]>(r.initiative_json, []),
-      phase,
-      seitDatum: r.be_datum ?? r.erste_beratung_datum ?? r.einbringung_datum,
-      einbringungDatum: r.einbringung_datum,
-      federfuehrenderAusschuss: ueberweisung.find((a) => a.federfuehrung)?.ausschuss ?? null,
-    };
-  });
-}
 
 /**
  * Alle Gesetzentwürfe, über die der Bundestag noch nicht abgestimmt hat —
@@ -168,19 +101,20 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
   return (
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
+
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-2">
             Gesetzentwürfe in Beratung
           </h1>
           <div className="flex items-baseline gap-2">
-            <span className="num text-[15px] text-zinc-950 font-medium">
+            <span className="num text-[15px] text-zinc-950 dark:text-zinc-50 font-medium">
               {alle.length.toLocaleString("de-DE")}
             </span>
-            <span className="text-[13px] text-zinc-500">
+            <span className="text-[13px] text-zinc-500 dark:text-zinc-400">
               Gesetzentwürfe, über die der Bundestag noch nicht abgestimmt hat · 21. Wahlperiode
             </span>
           </div>
-          <p className="mt-1.5 text-[11.5px] text-zinc-400">
+          <p className="mt-1.5 text-[11.5px] text-zinc-400 dark:text-zinc-500">
             Amtliche Verfahrensdaten aus dem Dokumentations- und Informationssystem
             des Bundestags (DIP). Wartezeit = Tage seit dem Ereignis, das die
             aktuelle Phase eröffnet hat.
@@ -193,14 +127,14 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
             href="/gesetzentwuerfe"
             className={`rounded-xl border p-3.5 transition-colors ${
               !aktivePhase
-                ? "bg-zinc-900 border-zinc-900 text-zinc-50"
-                : "bg-white border-zinc-200/70 hover:border-zinc-400 text-zinc-950"
+                ? "bg-zinc-900 border-zinc-900 dark:border-zinc-100 text-zinc-50"
+                : "bg-card border-border hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-950 dark:text-zinc-50"
             }`}
           >
             <div className="num text-[22px] font-semibold leading-none mb-1.5">
               {alle.length}
             </div>
-            <div className={`text-[11.5px] leading-tight ${!aktivePhase ? "text-zinc-300" : "text-zinc-500"}`}>
+            <div className={`text-[11.5px] leading-tight ${!aktivePhase ? "text-zinc-300 dark:text-zinc-600" : "text-zinc-500 dark:text-zinc-400"}`}>
               Alle Phasen
             </div>
           </Link>
@@ -213,8 +147,8 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
                 href={`/gesetzentwuerfe?phase=${p.slug}`}
                 className={`rounded-xl border p-3.5 transition-colors ${
                   istAktiv
-                    ? "bg-zinc-900 border-zinc-900 text-zinc-50"
-                    : "bg-white border-zinc-200/70 hover:border-zinc-400 text-zinc-950"
+                    ? "bg-zinc-900 border-zinc-900 dark:border-zinc-100 text-zinc-50"
+                    : "bg-card border-border hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-950 dark:text-zinc-50"
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
@@ -222,14 +156,14 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
                   <span
                     className={`w-[18px] h-[18px] rounded-full border-2 inline-flex items-center justify-center text-[10px] font-bold ${
                       istAktiv
-                        ? "border-zinc-50 text-zinc-50"
-                        : "border-zinc-300 text-zinc-400"
+                        ? "border-border text-zinc-50"
+                        : "border-zinc-300 dark:border-zinc-600 text-zinc-400 dark:text-zinc-500"
                     }`}
                   >
                     {i + 1}
                   </span>
                 </div>
-                <div className={`text-[11.5px] leading-tight ${istAktiv ? "text-zinc-300" : "text-zinc-500"}`}>
+                <div className={`text-[11.5px] leading-tight ${istAktiv ? "text-zinc-300 dark:text-zinc-600" : "text-zinc-500 dark:text-zinc-400"}`}>
                   {p.titel}
                 </div>
               </Link>
@@ -246,12 +180,12 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
           return (
             <section key={phase.key} className="mb-10">
               <div className="flex items-baseline justify-between mb-1">
-                <h2 className="text-[15px] font-semibold text-zinc-950 tracking-tight">
+                <h2 className="text-[15px] font-semibold text-zinc-950 dark:text-zinc-50 tracking-tight">
                   {phase.titel}
                 </h2>
-                <span className="num text-[12px] text-zinc-400">{gruppe.length}</span>
+                <span className="num text-[12px] text-zinc-400 dark:text-zinc-500">{gruppe.length}</span>
               </div>
-              <p className="text-[12px] text-zinc-500 mb-4">{phase.beschreibung}</p>
+              <p className="text-[12px] text-zinc-500 dark:text-zinc-400 mb-4">{phase.beschreibung}</p>
 
               <div className="space-y-1.5">
                 {gruppe.map((g) => {
@@ -261,19 +195,19 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
                     <Link
                       key={g.drucksache_nr}
                       href={`/aktivitaeten/${g.drucksache_nr.replace("/", "-")}`}
-                      className="card-hover bg-white rounded-xl border border-zinc-200/70 p-4 block"
+                      className="card-hover bg-card rounded-xl border border-border p-4 block"
                     >
                       <div className="flex gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-200/70 flex items-center justify-center shrink-0 mt-0.5">
-                          <Scale className="w-3.5 h-3.5 text-zinc-700" strokeWidth={2.25} />
+                        <div className="w-8 h-8 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border flex items-center justify-center shrink-0 mt-0.5">
+                          <Scale className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" strokeWidth={2.25} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                            <span className="num text-[11px] font-mono font-semibold text-zinc-950">
+                            <span className="num text-[11px] font-mono font-semibold text-zinc-950 dark:text-zinc-50">
                               {g.drucksache_nr}
                             </span>
                             {label && (
-                              <span className="inline-flex items-center gap-1.5 text-[11px] text-zinc-500">
+                              <span className="inline-flex items-center gap-1.5 text-[11px] text-zinc-500 dark:text-zinc-400">
                                 <span
                                   className="inline-block w-2 h-2 rounded-full"
                                   style={{ background: initiativeColor(g.initiative) }}
@@ -282,17 +216,17 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
                               </span>
                             )}
                           </div>
-                          <p className="text-[14px] font-semibold text-zinc-950 leading-snug mb-1.5 line-clamp-2">
+                          <p className="text-[14px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug mb-1.5 line-clamp-2">
                             {g.titel ?? "Gesetzentwurf"}
                           </p>
-                          <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 flex-wrap num">
+                          <div className="flex items-center gap-2 text-[11.5px] text-zinc-400 dark:text-zinc-500 flex-wrap num">
                             {g.einbringungDatum && (
                               <span>eingebracht {fmtDate(g.einbringungDatum)}</span>
                             )}
                             {g.federfuehrenderAusschuss && phase.key !== "vor_erster_lesung" && (
                               <>
                                 <span className="text-zinc-200">·</span>
-                                <span className="text-zinc-600">
+                                <span className="text-zinc-600 dark:text-zinc-300">
                                   federführend: {g.federfuehrenderAusschuss}
                                 </span>
                               </>
@@ -301,10 +235,10 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
                         </div>
                         {tage !== null && (
                           <div className="shrink-0 text-right self-center pl-2">
-                            <div className="num text-[20px] font-semibold text-zinc-950 leading-none">
+                            <div className="num text-[20px] font-semibold text-zinc-950 dark:text-zinc-50 leading-none">
                               {tage}
                             </div>
-                            <div className="text-[10.5px] text-zinc-400 mt-0.5">
+                            <div className="text-[10.5px] text-zinc-400 dark:text-zinc-500 mt-0.5">
                               {tage === 1 ? "Tag" : "Tage"}
                             </div>
                           </div>
@@ -318,7 +252,7 @@ export default async function GesetzentwuerfePage({ searchParams }: Props) {
           );
         })}
 
-        <p className="text-[11.5px] text-zinc-400 leading-relaxed max-w-2xl">
+        <p className="text-[11.5px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-2xl">
           Ausschüsse haben keine Frist, eine Vorlage abzuschließen — Entwürfe
           können dort beliebig lange liegen. Die Wartezeit ist eine reine
           Tageszählung ohne Wertung. Von dieser Liste verschwindet ein Entwurf,

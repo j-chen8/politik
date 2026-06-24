@@ -68,7 +68,7 @@ export default async function BerlinRednerPage({ params }: Props) {
       <div className="w-full max-w-3xl mx-auto px-5 pt-24 pb-24">
         <Link
           href="/parlamente/berlin/suche"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zur Berlin-Suche
@@ -76,29 +76,29 @@ export default async function BerlinRednerPage({ params }: Props) {
 
         {/* Kopf */}
         <div className="mb-8">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-blue-700 mb-1">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-blue-700 dark:text-blue-400 mb-1">
             Reden im Abgeordnetenhaus
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 dark:text-zinc-50 mb-2">
             {speaker}
           </h1>
-          <p className="text-[14px] text-zinc-500">
+          <p className="text-[14px] text-zinc-500 dark:text-zinc-400">
             {roleLine}
-            {meta.party && roleLine !== meta.party && <span className="text-zinc-400"> · {meta.party}</span>}
-            <span className="text-zinc-300"> · </span>
-            <span className="num text-zinc-700 font-medium">{stats.total}</span> Redebeiträge
-            <span className="text-zinc-400 num"> · Ø {stats.total ? Math.round(total_chars / stats.total).toLocaleString("de-DE") : 0} Z.</span>
+            {meta.party && roleLine !== meta.party && <span className="text-zinc-400 dark:text-zinc-500"> · {meta.party}</span>}
+            <span className="text-zinc-300 dark:text-zinc-600"> · </span>
+            <span className="num text-zinc-700 dark:text-zinc-300 font-medium">{stats.total}</span> Redebeiträge
+            <span className="text-zinc-400 dark:text-zinc-500 num"> · Ø {stats.total ? Math.round(total_chars / stats.total).toLocaleString("de-DE") : 0} Z.</span>
           </p>
           {meta.politicianId && (
             <Link
               href={`/politiker/${meta.politicianId}`}
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-blue-200 bg-blue-50 px-3 py-1.5 text-[13px] font-medium text-blue-700 hover:border-blue-300 hover:bg-blue-100 transition-colors"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-blue-200 dark:border-blue-900/50 bg-blue-50 dark:bg-blue-950/40 px-3 py-1.5 text-[13px] font-medium text-blue-700 dark:text-blue-400 hover:border-blue-300 dark:hover:border-blue-800/50 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
             >
               <User className="w-3.5 h-3.5" strokeWidth={2.25} />
               Zum vollständigen Profil
             </Link>
           )}
-          <p className="text-[11px] text-zinc-500 mt-3 italic">
+          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-3 italic">
             KI-Zusammenfassung + Tonalität via Haiku 4.5 (Methodologie Berlin-v1). Präsidiale Verfahrens-Wortmeldungen sind ausgenommen.
           </p>
         </div>
@@ -112,22 +112,22 @@ export default async function BerlinRednerPage({ params }: Props) {
             const forderungen = it.analysis?.forderungen ?? [];
             const zitate = it.analysis?.woertliche_zitate ?? [];
             return (
-              <article key={it.speech_id} className="rounded-xl border border-zinc-200 bg-white px-5 py-4">
+              <article key={it.speech_id} className="rounded-xl border border-border bg-card px-5 py-4">
                 <div className="flex items-baseline gap-2 flex-wrap mb-1.5 text-[11.5px]">
                   {typeLabel && (
-                    <span className="font-medium text-zinc-700">{typeLabel}</span>
+                    <span className="font-medium text-zinc-700 dark:text-zinc-300">{typeLabel}</span>
                   )}
                   {it.top_marker && (
-                    <span className="num text-zinc-400">TOP {it.top_marker}</span>
+                    <span className="num text-zinc-400 dark:text-zinc-500">TOP {it.top_marker}</span>
                   )}
-                  <span className="num text-zinc-400 ml-auto">
+                  <span className="num text-zinc-400 dark:text-zinc-500 ml-auto">
                     Sitzung {it.sitzung_nr} · {fmtDate(it.datum)}
                   </span>
                 </div>
                 {it.top_titel && (
-                  <div className="text-[12px] text-zinc-500 mb-1.5 leading-snug">{it.top_titel}</div>
+                  <div className="text-[12px] text-zinc-500 dark:text-zinc-400 mb-1.5 leading-snug">{it.top_titel}</div>
                 )}
-                <p className="text-[14px] text-zinc-900 leading-relaxed">
+                <p className="text-[14px] text-zinc-900 dark:text-zinc-100 leading-relaxed">
                   {it.analysis?.zusammenfassung ? stripBerlinSpeakerLead(it.analysis.zusammenfassung) : it.text_preview}
                 </p>
                 <div className="mt-2.5 flex items-center gap-2 flex-wrap">
@@ -144,22 +144,22 @@ export default async function BerlinRednerPage({ params }: Props) {
                       <Link
                         key={nr}
                         href={`/parlamente/berlin/drucksache/${dbidByNr[nr]}`}
-                        className="num text-[10.5px] text-blue-700 bg-blue-50 hover:bg-blue-100 rounded px-1.5 py-0.5 transition-colors"
+                        className="num text-[10.5px] text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded px-1.5 py-0.5 transition-colors"
                       >
                         Drs. {nr}
                       </Link>
                     ) : (
-                      <span key={nr} className="num text-[10.5px] text-zinc-500 bg-zinc-100 rounded px-1.5 py-0.5">
+                      <span key={nr} className="num text-[10.5px] text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 rounded px-1.5 py-0.5">
                         Drs. {nr}
                       </span>
                     )
                   )}
                   {it.interruption_count > 0 && (
-                    <span className="text-[10.5px] text-zinc-400">{it.interruption_count} Zwischenrufe</span>
+                    <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500">{it.interruption_count} Zwischenrufe</span>
                   )}
                   <Link
                     href={`/parlamente/berlin/sitzung/${it.sitzung_nr}#rede-s-${it.speech_id}`}
-                    className="ml-auto inline-flex items-center gap-1 text-[11.5px] text-blue-700 hover:underline underline-offset-2"
+                    className="ml-auto inline-flex items-center gap-1 text-[11.5px] text-blue-700 dark:text-blue-400 hover:underline underline-offset-2"
                   >
                     In der Sitzung ansehen
                     <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -169,12 +169,12 @@ export default async function BerlinRednerPage({ params }: Props) {
                 {/* Forderungen & wörtliche Zitate — einklappbar */}
                 {(forderungen.length > 0 || zitate.length > 0) && (
                   <details className="mt-2 group/an">
-                    <summary className="list-none cursor-pointer text-[11px] text-zinc-500 hover:text-zinc-950 transition-colors select-none">
+                    <summary className="list-none cursor-pointer text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors select-none">
                       <span className="inline-flex items-center gap-1">
-                        <span className="text-zinc-400 group-open/an:rotate-90 transition-transform inline-block">▶</span>
+                        <span className="text-zinc-400 dark:text-zinc-500 group-open/an:rotate-90 transition-transform inline-block">▶</span>
                         <span>
                           Forderungen &amp; Zitate
-                          <span className="text-zinc-400">
+                          <span className="text-zinc-400 dark:text-zinc-500">
                             {" "}({[
                               forderungen.length > 0 ? `${forderungen.length} Forderung${forderungen.length === 1 ? "" : "en"}` : null,
                               zitate.length > 0 ? `${zitate.length} Zitat${zitate.length === 1 ? "" : "e"}` : null,
@@ -183,22 +183,22 @@ export default async function BerlinRednerPage({ params }: Props) {
                         </span>
                       </span>
                     </summary>
-                    <div className="mt-2 space-y-3 rounded-lg bg-zinc-50 border border-zinc-200 px-4 py-3">
+                    <div className="mt-2 space-y-3 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border px-4 py-3">
                       {forderungen.length > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wider text-zinc-400 mb-1">Forderungen / Positionen</div>
-                          <ul className="space-y-1 text-[12.5px] text-zinc-700 list-disc pl-4">
+                          <div className="text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1">Forderungen / Positionen</div>
+                          <ul className="space-y-1 text-[12.5px] text-zinc-700 dark:text-zinc-300 list-disc pl-4">
                             {forderungen.map((f, i) => <li key={i}>{f}</li>)}
                           </ul>
                         </div>
                       )}
                       {zitate.length > 0 && (
                         <div>
-                          <div className="text-[10px] uppercase tracking-wider text-zinc-400 mb-1 flex items-center gap-1.5">
+                          <div className="text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1 flex items-center gap-1.5">
                             Wörtliche Zitate
                             {(it.analysis?.quote_total ?? 0) > 0 && (
                               <span
-                                className="normal-case tracking-normal text-zinc-400"
+                                className="normal-case tracking-normal text-zinc-400 dark:text-zinc-500"
                                 title={`${it.analysis?.quote_valid ?? 0} von ${it.analysis?.quote_total ?? 0} Zitaten als exakter Substring im Originaltext bestätigt`}
                               >
                                 ({it.analysis?.quote_valid ?? 0}/{it.analysis?.quote_total ?? 0} bestätigt)
@@ -207,7 +207,7 @@ export default async function BerlinRednerPage({ params }: Props) {
                           </div>
                           <ul className="space-y-1.5">
                             {zitate.map((q, i) => (
-                              <li key={i} className="text-[12.5px] text-zinc-700 border-l-2 border-zinc-200 pl-2.5 italic">„{q}"</li>
+                              <li key={i} className="text-[12.5px] text-zinc-700 dark:text-zinc-300 border-l-2 border-border pl-2.5 italic">„{q}"</li>
                             ))}
                           </ul>
                         </div>

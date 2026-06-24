@@ -71,11 +71,11 @@ export function SpeechAnalysisDetails({ analysis }: Props) {
             </span>
           </summary>
 
-          <div className="mt-2 rounded-lg bg-white border border-gray-200 px-4 py-3 space-y-4 text-[13px]">
+          <div className="mt-2 rounded-lg bg-card border border-border px-4 py-3 space-y-4 text-[13px]">
             {/* Sektion A: Evidenz aus dem Text — Transparenz-Anker */}
             {evidenceCount > 0 && (
               <div className="space-y-3">
-                <div className="text-[10.5px] font-bold uppercase tracking-wider text-zinc-500 border-b border-zinc-100 pb-1">
+                <div className="text-[10.5px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border-b border-border pb-1">
                   Evidenz aus dem Text
                 </div>
 
@@ -141,10 +141,10 @@ export function SpeechAnalysisDetails({ analysis }: Props) {
             {/* Sektion B: Modell-Lesart — pro Rede individuell, nicht aggregierbar */}
             {modelCount > 0 && (
               <div className="space-y-2">
-                <div className="text-[10.5px] font-bold uppercase tracking-wider text-zinc-500 border-b border-zinc-100 pb-1">
+                <div className="text-[10.5px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border-b border-border pb-1">
                   Modell-Lesart
                 </div>
-                <p className="text-[11.5px] text-zinc-500 leading-relaxed italic">
+                <p className="text-[11.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed italic">
                   Wie das Klassifizier-Modell die Rede strukturiert. Pro Rede individuell ausgewählt — nicht statistisch über Reden aggregierbar.
                 </p>
 
@@ -157,7 +157,7 @@ export function SpeechAnalysisDetails({ analysis }: Props) {
                       {analysis.framing_marker.map((f, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[11px] bg-gray-100 text-muted font-mono"
+                          className="px-2 py-0.5 rounded text-[11px] bg-gray-100 dark:bg-gray-800 text-muted font-mono"
                         >
                           {f}
                         </span>
@@ -175,7 +175,7 @@ export function SpeechAnalysisDetails({ analysis }: Props) {
                       {analysis.rhetorische_mittel.map((m, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[11px] bg-gray-100 text-muted"
+                          className="px-2 py-0.5 rounded text-[11px] bg-gray-100 dark:bg-gray-800 text-muted"
                         >
                           {m}
                         </span>

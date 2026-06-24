@@ -247,19 +247,37 @@ function main() {
   console.log(`  (${skippedDelete} delete-Marker übersprungen)`);
 
   const tx = db.transaction(() => {
-    db.exec(`DELETE FROM berlin_document_persons; DELETE FROM berlin_documents; DELETE FROM berlin_vorgaenge;`);
+    // Personen werden voll neu aufgebaut (kein eingehender FK). Vorgaenge/Documents
+    // dagegen NICHT mehr wipen: berlin_drucksachen_analyses hat einen FK auf
+    // berlin_documents.dbid (kam nach dem ersten Seed dazu) — ein DELETE wuerde
+    // analysierte Dokumente nicht loeschen koennen (FK RESTRICT). Stattdessen UPSERT:
+    // bestehende Zeilen in-place aktualisieren (FK-sicher, schont auch pdf_path/
+    // full_text, die der Wipe sonst genullt haette), neue einfuegen, upstream-
+    // entfernte (delete-Marker) bleiben samt ihrer Analysen erhalten.
+    db.exec(`DELETE FROM berlin_document_persons;`);
     const iv = db.prepare(
-      `INSERT OR REPLACE INTO berlin_vorgaenge (vid, vtyp, vtyp_label, vsys, vsys_label, titel)
-       VALUES (@vid, @vtyp, @vtyp_label, @vsys, @vsys_label, @titel)`
+      `INSERT INTO berlin_vorgaenge (vid, vtyp, vtyp_label, vsys, vsys_label, titel)
+       VALUES (@vid, @vtyp, @vtyp_label, @vsys, @vsys_label, @titel)
+       ON CONFLICT(vid) DO UPDATE SET
+         vtyp=excluded.vtyp, vtyp_label=excluded.vtyp_label,
+         vsys=excluded.vsys, vsys_label=excluded.vsys_label, titel=excluded.titel`
     );
     for (const v of vorgaenge) iv.run(v);
     const idoc = db.prepare(
-      `INSERT OR REPLACE INTO berlin_documents
+      `INSERT INTO berlin_documents
         (dbid, vorgang_id, wp, dok_art, dok_art_label, dok_typ, dok_typ_label,
          dok_nr, nr_in_typ, titel, desk, abstract, dok_datum, seitenbereich, lok_url)
        VALUES
         (@dbid, @vorgang_id, @wp, @dok_art, @dok_art_label, @dok_typ, @dok_typ_label,
-         @dok_nr, @nr_in_typ, @titel, @desk, @abstract, @dok_datum, @seitenbereich, @lok_url)`
+         @dok_nr, @nr_in_typ, @titel, @desk, @abstract, @dok_datum, @seitenbereich, @lok_url)
+       ON CONFLICT(dbid) DO UPDATE SET
+         vorgang_id=excluded.vorgang_id, wp=excluded.wp,
+         dok_art=excluded.dok_art, dok_art_label=excluded.dok_art_label,
+         dok_typ=excluded.dok_typ, dok_typ_label=excluded.dok_typ_label,
+         dok_nr=excluded.dok_nr, nr_in_typ=excluded.nr_in_typ,
+         titel=excluded.titel, desk=excluded.desk, abstract=excluded.abstract,
+         dok_datum=excluded.dok_datum, seitenbereich=excluded.seitenbereich,
+         lok_url=excluded.lok_url`
     );
     for (const d of documents) idoc.run(d);
     const ip = db.prepare(

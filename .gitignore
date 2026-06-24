@@ -63,6 +63,8 @@ politik.db.snapshot-*
 *.partial.*.jsonl
 *.partial.jsonl.backup-*
 .batch-state*.json
+.batch-state*.json.done-*
+__pycache__/
 /data/plenarprotokolle_xml/*.xml
 /data/stammdaten/
 scripts/state/
@@ -109,3 +111,15 @@ berlin-cv-konflikte-manuell.md
 
 # Laufzeit-Log QA-TL;DR-Runner (nicht committen)
 qa-tldr.log.firstrun-*
+
+# Themen-Unterthemen Scratch (Spike-Logs + Batch-State)
+aw-spike-*.log
+scripts/.batch-wohnen-unterthemen.json
+berlin-wohnen-unterthemen.png
+.playwright-mcp/
+berlin-fixes.png
+berlin-gesetze-stepper.png
+scripts/.batch-unterthemen-global-berlin.json
+berlin-picker-voll.png
+audit-unterthemen-300ds-seed0.json
+audit-unterthemen-300ds-seed1.json

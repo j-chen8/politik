@@ -3,8 +3,16 @@
 > **Zweck:** Schluss mit Raten. Pro Datenquelle: woher, wie man auf Neues prüft,
 > was unser DB-Stand ist, welche Pipeline neue Daten ingestiert+analysiert, Kosten, Kadenz.
 >
-> **Operativ:** `npx tsx scripts/check-data-freshness.ts` prüft alle maschinell
-> prüfbaren Quellen (DB-Watermark vs. Upstream) und gibt einen Gap-Report aus.
+> **⚠️ Operativ (Stand 2026-06-15): `scripts/check-data-freshness.ts` existiert
+> derzeit NICHT** (uncommittet → bei Track-Reset verloren, nur ggf. in git-Historie).
+> Der unten beschriebene Komfort-Pfad ist die **Soll-Automatik**; bis das Skript
+> restauriert/neu gebaut ist, läuft der Freshness-Check **manuell** über die
+> Batch-Pre-Flights (Schritt 3) + Stage-Watermarks. Naives `NOT EXISTS` überzählt
+> stark (1202 vs. real 0) — nicht als Lücken-Maß verwenden. Siehe Memory
+> `project_freshness_script_missing`.
+>
+> **Soll (wenn Skript existiert):** `npx tsx scripts/check-data-freshness.ts` prüft alle
+> maschinell prüfbaren Quellen (DB-Watermark vs. Upstream) und gibt einen Gap-Report aus.
 > `--fetch` zieht zusätzlich die **gratis/idempotenten** neuen Daten (NICHT die
 > LLM-Schritte — die kosten Geld und werden bewusst manuell ausgelöst).
 >
@@ -20,6 +28,10 @@
 
 ## 0. »update«-Runbook (Trigger: der User schreibt nur „update")
 
+> **Vermerk (Parlament):** Dieses §0 ist das **Bundestag**-Runbook. Das **Berlin-PARDOK-
+> Pendant** hat eine **eigene Datei: `docs/berlin-update-runbook.md`** (eigene Skripte/Stränge) —
+> bei einem Berlin-Refresh dort nachsehen. Kurz-Verweis auch in §0-B unten.
+
 > **Vertrag:** Der User schreibt **„update"** (oder „daten update" / „update data")
 > und sonst nichts. Diese Sektion ist die vollständige Anweisung — **keine
 > Rückfragen stellen**, außer der eine definierte Kosten-Anomalie-Fall (Schritt 3).
@@ -28,8 +40,13 @@
 **Ablauf, autonom:**
 
 1. **Lage prüfen (read-only):** `npx tsx scripts/check-data-freshness.ts`
+   *(⚠️ Skript fehlt aktuell — bis Restore: Stage-Watermarks + Pre-Flights aus Schritt 3 als Lage-Check.)*
 2. **Gratis-Gaps ziehen (autonom, $0, idempotent):**
    `npx tsx scripts/check-data-freshness.ts --fetch`
+   *(⚠️ Skript fehlt aktuell — bis Restore: die Gratis-Sync-Schritte einzeln laufen.
+   Reden: `fetch-plenar-xmls.ts`. Drucksachen-PDF→Text→classify→label + Votes-Seed:
+   exakte Skriptkette siehe `docs/PIPELINE.md` (Command-Liste §14) bzw. `docs/drucksachen-pipeline.md`
+   — nicht aus dem Gedächtnis raten, dort ist der aktuelle Stand.)*
    Zieht Plenar-XML, Activities (DIP), Drucksachen-PDF→Text→**classify→label**,
    Votes (abgeordnetenwatch). Danach prüfen: `batch_class IS NULL` muss 0 sein.
    *Hintergrund-Läufe (aw-Seed ist langsam/rate-limited) sind ok — Orchestrator
@@ -86,6 +103,20 @@
     AND NOT EXISTS (SELECT 1 FROM dip_ds_titles WHERE drucksache_nr = json_extract(drucksache_nrn_json,'$[0]'))`.
    Bei einstelligem Rest-Count: das sind LLM-Extraktions-Fehler (DS-Ref leer
    oder halluziniert) — separater Track.
+4b4. **Gesetzgebungs-Vorgänge / Verfahrensstand** (gratis, idempotent):
+   `npx tsx scripts/seed-dip-vorgaenge.ts` — Voll-Sweep aller Gesetzgebungs-
+   Vorgänge WP21 aus der DIP-API (`beratungsstand` + Schritt-Timeline) in
+   `dip_vorgaenge`/`dip_vorgang_positionen`, Upsert per id. Druckt eigenen
+   Verifikations-Report (beratungsstand-Verteilung + GE-Coverage, Soll: 100 %).
+   Details + Join-Caveats: §2.3b.
+4b5. **Drucksachen-Titel-Backfill** (gratis, idempotent):
+   `npx tsx scripts/seed-dip-ds-titles-all.ts` — Voll-Sweep ALLER WP21-BT-
+   Drucksachen aus der DIP-API (~66 Cursor-Seiten) in `dip_ds_titles`;
+   amtlicher Titel unter beiden Nummern-Schreibweisen (padded + unpadded).
+   Schließt die Titel-Lücke für Antworten/Unterrichtungen/Beschluss-
+   empfehlungen, die kein abgeordnetenwatch-Thema haben (sonst „Drucksache
+   21/XXXX" im UI). Soll nach Lauf: `drucksache_texts` 100 % mit Titel
+   (Check: activities.thema ODER dip_ds_titles.titel vorhanden).
 4c. **Bundestag-Handzeichen-Votes-Backfill** (Pre-Flight + Submit + Retrieve, ~$0,01–0,10/Refresh):
    Plenum-Abstimmungen die NICHT namentlich (sondern per Handzeichen) durchgeführt
    wurden — Fraktions-Ebene, keine per-MdB-Daten. Pipeline lebt im **landtag-Worktree**.
@@ -139,6 +170,14 @@ nur Drift melden), CV/Wikipedia/Fotos (roster-getrieben, nur bei neuen MdBs).
 **Vote-Kontext für alle neuen Polls geschrieben** (Schritt 4b) · Neutralitäts-
 Spotcheck bestanden · §1 + NEXT-SESSION aktualisiert · ehrlicher Bericht inkl.
 Caveats.
+
+---
+
+## 0-B. »update«-Runbook BERLIN (PARDOK) → eigene Datei
+
+> **Berlin hat ein eigenes Playbook:** **`docs/berlin-update-runbook.md`** (Lage → Phase 0 →
+> Welle A → Welle B → Abschluss → DoD, mit allen ⚠️-Pflicht-Vermerken). Pro Parlament eine
+> eigene Datei ([[feedback_procedures_additive]]); dieses §0 hier bleibt **Bundestag**.
 
 ---
 
@@ -203,6 +242,14 @@ Legende Pipeline-Kosten: `$0` = gratis/idempotent · `$$` = LLM-Batch (Checkpoin
 - **Pipeline ($0):** `npx tsx scripts/seed-activities.ts` — idempotent (`INSERT OR IGNORE` per activity-id), splittet nach Monat (umgeht 10k-offset-Limit der API)
 - **Kadenz:** DIP ist täglich aktuell → wöchentlich reicht; speist Drucksachen-Referenzen
 - **Caveat:** `numFound` ist obere Schranke (`datum` ≠ `basisdatum`); echtes Netto-Delta erst nach Lauf
+
+### 2.3b Gesetzgebungs-Vorgänge (DIP-API, `dip_vorgaenge` + `dip_vorgang_positionen`)
+- **Zweck:** amtlicher Verfahrensstand pro Gesetzentwurf (`beratungsstand`: „Überwiesen", „Verkündet", „Abgelehnt" …) + Schritt-Timeline (1. Beratung, Überweisung inkl. Ausschüsse, Beschlussempfehlung, 2./3. Beratung, BR-Durchgänge, Verkündung/Inkrafttreten)
+- **Upstream:** `https://search.dip.bundestag.de/api/v1/vorgang` + `/vorgangsposition` mit `f.vorgangstyp=Gesetzgebung&f.wahlperiode=21`, Cursor-Pagination (100/Seite), gleiche PFLICHT-Header wie §2.3
+- **Pipeline ($0):** `npx tsx scripts/seed-dip-vorgaenge.ts` — idempotent (Upsert per id), Voll-Sweep ~33 Requests, druckt Verifikations-Report (beratungsstand-Verteilung + GE-Coverage)
+- **Join:** View `dip_ds_vorgaenge` (drucksache_nr ↔ vorgang_id, n:m). ⚠️ Direkt-Joins auf `dip_vorgang_positionen` IMMER mit `dokumentart='Drucksache' AND herausgeber='BT'` — Plenarprotokolle teilen den Nummernraum („21/15"). Nummern ungepaddet wie `drucksache_instrument`/`bundestag_votes` (NICHT wie `dip_ds_details`, das paddet)
+- **Caveat:** ~60 Positionen pro Sweep gehören zu WP19/20-Vorgängen mit BR-Sitzung in WP21 → bewusst übersprungen (Guard im Skript). `beratungsstand` ist DIP-Vokabular, kein festes Enum — roh speichern, UI-Mapping separat
+- **Kadenz:** wie §2.3 (DIP täglich aktuell, wöchentlich reicht); Stand 2026-06-11: 354 Vorgänge, 2.814 Positionen, GE-Coverage 258/258
 
 ### 2.4 Drucksachen-PDF (Volltext-Quelle)
 - **Domain:** `https://dserver.bundestag.de/btd/21/<3-stellig>/21<5-stellig>.pdf`

@@ -1,5 +1,6 @@
 import Database from "better-sqlite3";
 import path from "path";
+import { BERLIN_POLITIKFELDER, BERLIN_QUERSCHNITT } from "./berlin-themen-struktur";
 
 const DB_PATH = path.join(process.cwd(), "politik.db");
 
@@ -571,7 +572,9 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
     voteSummaries[v.id] = summ;
   }
 
-  // 3+4. Drucksachen pro Klasse (gross = Gesetzentwurf, klein = Kleine Anfrage)
+  // 3+4. Drucksachen nach amtlichem DIP-Typ (dokumenttyp) — NICHT batch_class:
+  // batch_class ist ein Längen-Tier ('klein' enthält ~694 Anträge, 'gross' enthält
+  // Unterrichtungen/Große Anfragen). dokumenttyp ist der amtliche Typ.
   const drucksByKlasse = (klasse: string) =>
     (db
       .prepare(
@@ -582,7 +585,7 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
                 ) AS titel,
                 (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
          FROM drucksache_analyses da
-         WHERE da.batch_class = ? AND da.analyze_error IS NULL
+         WHERE da.dokumenttyp = ? AND da.analyze_error IS NULL
          ORDER BY datum DESC LIMIT 5`
       )
       .all(klasse) as {
@@ -602,14 +605,14 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
         einbringer: r.fraktion,
       }));
 
-  const latestGesetzentwuerfe = drucksByKlasse("gross").map((r) => ({
+  const latestGesetzentwuerfe = drucksByKlasse("Gesetzentwurf").map((r) => ({
     drucksacheNr: r.drucksacheNr,
     titel: r.titel,
     zusammenfassung: r.zusammenfassung,
     datum: r.datum,
     einbringer: r.einbringer,
   }));
-  const latestAnfragen = drucksByKlasse("klein").map((r) => ({
+  const latestAnfragen = drucksByKlasse("Kleine Anfrage").map((r) => ({
     drucksacheNr: r.drucksacheNr,
     titel: r.titel,
     zusammenfassung: r.zusammenfassung,
@@ -1425,6 +1428,306 @@ export function getCommitteeMembershipsForPoliticianDb(politicianId: number): Co
   ).all(politicianId) as CommitteeMembershipRow[];
 }
 
+// ============================================================
+// KOMPAKT-PROFIL — scan-first Steckbrief (eine Karte, ein Viewport).
+// Komponiert bestehende Helfer + zwei eigene Ableitungen (Schwerpunkte,
+// Nebeneinkünfte-Untergrenze). Reine Label:Wert/Chip-Daten, keine Sätze.
+// Mindset: [[feedback_consumer_scan_first]] / [[reference_ux_text_budget]].
+// ============================================================
+
+// Bundestags-Vergütungsstufen (Verhaltensregeln WP20+): Untergrenze je Stufe.
+// Index = Stufe (1–10); Stufe 10 = „über 250.000" → konservativ 250.000.
+const SIDEJOB_STUFE_FLOOR = [0, 1000, 3500, 7000, 15000, 30000, 50000, 75000, 100000, 150000, 250000];
+
+// Reine Mandats-Bezeichnungen sind KEIN Beruf — Feld dann weglassen statt „Beruf: MdB".
+const MANDAT_NUR = /^(mdb|mdep|mda|mdl|abgeordnete[r]?|mitglied des (deutschen )?bundestage?s|mitglied des abgeordnetenhauses|bundesminister(in)?|staatsminister(in)?|senator(in)?|regierende[r]? bürgermeister(in)?|parlamentarische[r]? staatssekretär(in)?)\b/i;
+
+function cleanBeruf(occupation: string | null): string | null {
+  if (!occupation) return null;
+  const o = occupation.replace(/\s*\n\s*/g, ", ").trim();
+  if (!o || MANDAT_NUR.test(o)) return null;
+  return o.length > 75 ? o.slice(0, 74).replace(/[\s,;]+\S*$/, "") + "…" : o;
+}
+
+function cleanAusbildung(education: string | null): string | null {
+  if (!education) return null;
+  const e = education.replace(/\s*\n\s*/g, ", ").trim();
+  if (!e) return null;
+  // Ausbildung darf zweizeilig umbrechen → großzügigere Grenze (~2 Zeilen).
+  return e.length > 150 ? e.slice(0, 149).replace(/[\s,;]+\S*$/, "") + "…" : e;
+}
+
+// "269 - Backnang – Schwäbisch Gmünd (Bundestag 2025 - 2029)" → "Backnang – Schwäbisch Gmünd"
+function cleanWahlkreis(c: string | null | undefined): string | null {
+  if (!c) return null;
+  const w = c.replace(/^\s*\d+\s*[-–]\s*/, "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+  return w || null;
+}
+
+// cv_json-Fallback: wenn das abgeordnetenwatch-Feld leer ist oder nur das Mandat
+// nennt, ziehen wir Ausbildung/Beruf aus dem strukturierten Lebenslauf nach.
+// Beruf = letzter (= jüngster) Eintrag aus `beruflicher_werdegang` — das ist die
+// nicht-politische Berufstätigkeit (politische Stationen stehen separat). Ist
+// dort nichts, hat die Person keinen erfassten Nicht-Politik-Beruf → bleibt leer.
+function parseCvLebenslauf(
+  cvJson: string | null,
+): { ausbildung: string | null; doktorgrad: string | null; beruf: string | null } {
+  const empty = { ausbildung: null, doktorgrad: null, beruf: null };
+  if (!cvJson) return empty;
+  const cap = (t: string | null | undefined, max = 75): string | null => {
+    if (!t) return null;
+    const s = t.replace(/\s*\n\s*/g, ", ").trim();
+    if (!s) return null;
+    return s.length > max ? s.slice(0, max - 1).replace(/[\s,;]+\S*$/, "") + "…" : s;
+  };
+  try {
+    const o = JSON.parse(cvJson) as {
+      ausbildung?: { text?: string }[];
+      beruflicher_werdegang?: { text?: string }[];
+    };
+    const ausEntries = (o.ausbildung ?? [])
+      .map((e) => e?.text?.trim())
+      .filter((t): t is string => !!t);
+
+    // Höchster Grad als kurzer Marker (z. B. "Dr. phil."); sonst "promoviert".
+    let doktorgrad: string | null = null;
+    for (const t of ausEntries) {
+      const m = t.match(/\bDr\.?\s?(?:phil|med|jur|rer\.?\s?nat|rer\.?\s?pol|theol|-?Ing|h\.?\s?c|paed|oec|mult)\.?/i);
+      if (m) { doktorgrad = m[0].replace(/\s+/g, " ").trim(); break; }
+      if (!doktorgrad && /\bpromotion|\bdissertation|\bhabilitation/i.test(t)) doktorgrad = "promoviert";
+    }
+
+    // Beste Studien-Zeile als Basis: Studienfach + Abschluss bevorzugt; Schule/
+    // Volontariat und die reine Promotions-Erzählung NICHT (Grad kommt als Marker).
+    const baseRank = (s: string): number => {
+      if (/promotion|dissertation|habilitation/i.test(s)) return -1;
+      if (/abitur|gymnasium|\bschule|realschule|volontariat|\blehre\b|ausbildung zur|ausbildung zum/i.test(s)) return -1;
+      if (/magister|master|diplom|staatsexamen|lizentiat/i.test(s)) return 3;
+      if (/studium|bachelor|hochschul|universit/i.test(s)) return 2;
+      return 1;
+    };
+    let best: string | null = null;
+    let bestR = 0;
+    for (const t of ausEntries) {
+      const r = baseRank(t);
+      if (r > bestR) { bestR = r; best = t; }
+    }
+
+    // Beruf = ERSTER (= ursprünglicher) Nicht-Politik-Werdegang.
+    const wd = (o.beruflicher_werdegang ?? [])
+      .map((e) => e?.text?.trim())
+      .filter((t): t is string => !!t && !MANDAT_NUR.test(t));
+
+    return { ausbildung: cap(best, 150), doktorgrad, beruf: wd.length ? cap(wd[0]) : null };
+  } catch {
+    return empty;
+  }
+}
+
+export interface KompaktSchwerpunkt { feld: string; count: number }
+export interface KompaktNebeneinkuenfte {
+  kind: "betrag" | "unbeziffert" | "keine";
+  minEuro: number;      // Summe der Stufen-Untergrenzen (nur kind='betrag')
+  anzahl: number;       // gemeldete Nebentätigkeiten
+}
+export interface KompaktAbstimmung {
+  verfuegbar: boolean;  // false = keine namentlichen Abstimmungen (z. B. Berlin = Fraktionsebene)
+  teilgenommen: number;
+  gesamt: number;
+  abweichungen: number;
+  fraktionslos: boolean;
+}
+export interface PoliticianKompakt {
+  id: number;
+  name: string;
+  party_label: string | null;
+  rolle: string | null;
+  wahlkreis: string | null;
+  parliament_label: string | null;
+  year_of_birth: number | null;
+  photo_url: string | null;
+  ausbildung: string | null;
+  beruf: string | null;
+  // "vorhanden" = beruf gesetzt; "keiner" = CV vorhanden, kein Nicht-Politik-Beruf
+  // (→ ehrlich „kein Beruf vor dem Mandat"); "unbekannt" = keine CV-Daten (Zeile weg).
+  berufStatus: "vorhanden" | "keiner" | "unbekannt";
+  berufKategorie: string | null; // Sektor-Enum (aus cv_kompakt) — für Aggregat-Analysen
+  ausschuesse: { label: string; rolle: string | null }[];
+  schwerpunkte: KompaktSchwerpunkt[];
+  nebeneinkuenfte: KompaktNebeneinkuenfte;
+  abstimmung: KompaktAbstimmung;
+  social: { label: string; url: string }[]; // offizielle Online-Präsenz (Handles aus Stammdaten)
+  // Pilot: schriftliche Fragen an die Bundesregierung (drucksache_qa_paare). null = keine.
+  fragen: { anzahl: number; query: string } | null;
+}
+
+export function getPoliticianKompakt(id: number): PoliticianKompakt | undefined {
+  const p = getPoliticianDb(id);
+  if (!p) return undefined;
+  const db = getDb();
+
+  // Aktuellstes Mandat → Wahlkreis + Parlament-Label
+  const mandate = db.prepare(
+    `SELECT constituency, label, type FROM mandates WHERE politician_id = ?
+     ORDER BY COALESCE(end_date,'9999-12-31') DESC, COALESCE(start_date,'') DESC LIMIT 1`,
+  ).get(id) as { constituency: string | null; label: string | null; type: string | null } | undefined;
+
+  // Schwerpunkte: distinkte Reden (rede_unterthemen.feld, sauber) + distinkte
+  // Drucksachen (item_topics.aw_field) je Politikfeld, zusammengezählt, Top 5.
+  const schwerpunkte = db.prepare(
+    `SELECT feld, SUM(n) AS count FROM (
+       SELECT ru.feld AS feld, COUNT(DISTINCT s.rede_id) AS n
+         FROM plenar_speeches s
+         JOIN politicians pp ON pp.bt_redner_id = s.redner_id
+         JOIN rede_unterthemen ru ON ru.rede_id = s.rede_id
+         WHERE pp.id = ? GROUP BY ru.feld
+       UNION ALL
+       SELECT it.aw_field AS feld, COUNT(DISTINCT a.drucksache_nr) AS n
+         FROM activities a
+         JOIN item_topics it ON it.item_id = a.drucksache_nr AND it.source = 'bt_drucksache'
+         WHERE a.politician_id = ? GROUP BY it.aw_field
+     )
+     WHERE feld IS NOT NULL AND feld != ''
+     GROUP BY feld ORDER BY count DESC, feld LIMIT 5`,
+  ).all(id, id) as KompaktSchwerpunkt[];
+
+  // Ausschüsse: Leitungsrollen zuerst, dann alphabetisch
+  const ausschuesse = getCommitteeMembershipsForPoliticianDb(id).map((c) => ({
+    label: c.committee_label,
+    rolle: c.committee_role,
+  }));
+
+  // Nebeneinkünfte: Untergrenze aus Stufen (ehrliches „mindestens").
+  const sidejobs = getSidejobsForPoliticianDb(id);
+  let minEuro = 0;
+  let hasBracket = false;
+  for (const s of sidejobs) {
+    const lvl = s.income_level ? parseInt(s.income_level, 10) : NaN;
+    if (!Number.isNaN(lvl) && lvl >= 1 && lvl <= 10) {
+      minEuro += SIDEJOB_STUFE_FLOOR[lvl];
+      hasBracket = true;
+    } else if (s.income && s.income > 0) {
+      minEuro += s.income;
+      hasBracket = true;
+    }
+  }
+  const nebeneinkuenfte: KompaktNebeneinkuenfte = {
+    kind: sidejobs.length === 0 ? "keine" : hasBracket ? "betrag" : "unbeziffert",
+    minEuro: Math.floor(minEuro),
+    anzahl: sidejobs.length,
+  };
+
+  // Abstimmungen: xx/xx teilgenommen + Abweichungen (nur wo namentliche Polls existieren)
+  const dev = getFractionDeviationsForPolitician(id);
+  const abstimmung: KompaktAbstimmung = {
+    verfuegbar: dev.total_namentlich > 0,
+    teilgenommen: dev.active_polls,
+    gesamt: dev.total_namentlich,
+    abweichungen: dev.deviations.length,
+    fraktionslos: dev.is_fractionless,
+  };
+
+  // Fallback-Lebenslauf aus dem strukturierten CV (dedup bevorzugt)
+  const cvJson = p.cv_json_dedup ?? p.cv_json;
+  const cvLebenslauf = parseCvLebenslauf(cvJson);
+
+  // Ausbildung: aw-Studienfach bevorzugt (sauber), sonst beste CV-Studienzeile.
+  // Höchsten Grad (Promotion) als Marker anhängen, falls nicht schon enthalten —
+  // Titel "Dr." reicht als Promotions-Signal, wenn der CV den Grad nicht nennt.
+  let ausbildung = cleanAusbildung(p.education) ?? cvLebenslauf.ausbildung;
+  const doktor = cvLebenslauf.doktorgrad ?? (/\bDr\b\.?/.test(p.title ?? "") ? "promoviert" : null);
+  if (ausbildung && doktor && !/\b(dr\.|promo|doktor|ph\.?\s?d)/i.test(ausbildung)) {
+    ausbildung = `${ausbildung} · ${doktor}`;
+  }
+
+  let beruf = cleanBeruf(p.occupation) ?? cvLebenslauf.beruf;
+  let berufStatus: PoliticianKompakt["berufStatus"] = beruf
+    ? "vorhanden"
+    : cvJson
+      ? "keiner" // CV vorhanden, aber kein Nicht-Politik-Beruf erfasst
+      : "unbekannt"; // keine CV-Daten → keine Aussage möglich
+  let berufKategorie: string | null = null;
+
+  // LLM-Extraktion (cv_kompakt) bevorzugen — sauberer als die Heuristik oben.
+  // Tabelle existiert evtl. noch nicht (vor erstem Extraktions-Lauf) → try/catch.
+  try {
+    const x = db
+      .prepare(
+        `SELECT hoechster_abschluss, praegender_beruf, beruf_status, beruf_kategorie
+         FROM cv_kompakt WHERE politician_id = ? AND error IS NULL`,
+      )
+      .get(id) as
+      | { hoechster_abschluss: string | null; praegender_beruf: string | null; beruf_status: string | null; beruf_kategorie: string | null }
+      | undefined;
+    if (x) {
+      if (x.hoechster_abschluss) ausbildung = x.hoechster_abschluss;
+      if (x.praegender_beruf) {
+        beruf = x.praegender_beruf;
+        berufStatus = "vorhanden";
+      } else if (x.beruf_status === "keiner") {
+        beruf = null;
+        berufStatus = "keiner";
+      }
+      // sonst (LLM ohne klare Aussage / Feld bereinigt) → Heuristik behalten
+      berufKategorie = x.beruf_kategorie;
+    }
+  } catch {
+    /* cv_kompakt noch nicht vorhanden — Heuristik bleibt */
+  }
+
+  // Online-Präsenz: bare Handles aus Stammdaten → Plattform-URLs. Homepage + offizielle
+  // Profile zeigen, neutral, ohne Wertung. Reihenfolge = höchste Abdeckung zuerst.
+  const handleUrl = (raw: string | null, build: (h: string) => string): string | null => {
+    const h = raw?.trim().replace(/^@/, "");
+    if (!h) return null;
+    return /^https?:\/\//.test(h) ? h : build(h);
+  };
+  const social = (
+    [
+      { label: "Homepage", url: p.homepage_url?.trim() || null },
+      { label: "Instagram", url: handleUrl(p.instagram_handle, (h) => `https://instagram.com/${h}`) },
+      { label: "Facebook", url: handleUrl(p.facebook_handle, (h) => `https://facebook.com/${h}`) },
+      { label: "X", url: handleUrl(p.twitter_handle, (h) => `https://x.com/${h}`) },
+      { label: "TikTok", url: handleUrl(p.tiktok_handle, (h) => `https://www.tiktok.com/@${h}`) },
+    ] as { label: string; url: string | null }[]
+  ).filter((s): s is { label: string; url: string } => !!s.url);
+
+  // Pilot: Anzahl schriftlicher Fragen an die Bundesregierung. Tabelle existiert evtl.
+  // noch nicht (vor Q&A-Pipeline) → try/catch. Link sucht /fragen nach dem Namen.
+  let fragen: PoliticianKompakt["fragen"] = null;
+  try {
+    const fr = db
+      .prepare(`SELECT COUNT(*) AS n FROM drucksache_qa_paare WHERE fragesteller_politician_id = ?`)
+      .get(id) as { n: number } | undefined;
+    if (fr && fr.n > 0) {
+      fragen = { anzahl: fr.n, query: `${p.first_name ?? ""} ${p.last_name ?? ""}`.trim() };
+    }
+  } catch {
+    /* drucksache_qa_paare noch nicht vorhanden */
+  }
+
+  return {
+    id: p.id,
+    name: [p.title, p.first_name, p.last_name].filter(Boolean).join(" "),
+    party_label: p.party_label,
+    rolle: p.rolle,
+    wahlkreis: cleanWahlkreis(mandate?.constituency),
+    parliament_label: mandate?.type ?? null,
+    year_of_birth: p.year_of_birth,
+    photo_url: p.photo_url,
+    ausbildung,
+    beruf,
+    berufStatus,
+    berufKategorie,
+    ausschuesse,
+    schwerpunkte,
+    nebeneinkuenfte,
+    abstimmung,
+    social,
+    fragen,
+  };
+}
+
 export interface CVMergeDropRow {
   section: string;
   dropped_source: "wikipedia" | "homepage";
@@ -2164,7 +2467,8 @@ export function getRedenTonalitaetByFraktion(): {
 }
 
 // Tonalitäts-Verteilung der Kleinen Anfragen pro Fraktion. Filter:
-// nur batch_class='klein' (separate Tonalitäts-Skala als für Anträge/Gesetze),
+// dokumenttyp='Kleine Anfrage' (amtlicher DIP-Typ — separate Tonalitäts-Skala als
+// für Anträge/Gesetze; batch_class='klein' wäre falsch, enthält ~694 Anträge),
 // nur Einzel-Fraktionen mit ≥10 Anfragen (joint/Bundesregierung ausgeschlossen).
 export function getDrucksacheTonalitaetByFraktion(): {
   fraktion: string;
@@ -2178,7 +2482,7 @@ export function getDrucksacheTonalitaetByFraktion(): {
       TRIM(REPLACE(REPLACE(tonalitaet, char(10), ''), char(13), '')) AS tonalitaet,
       COUNT(*) AS c
     FROM drucksache_analyses
-    WHERE batch_class = 'klein'
+    WHERE dokumenttyp = 'Kleine Anfrage'
       AND tonalitaet IS NOT NULL
       AND fraktion IS NOT NULL
       AND fraktion != ''
@@ -2240,7 +2544,7 @@ export function getDrucksacheMonthlyTrend(): {
       COUNT(*) AS ka_n
     FROM drucksache_analyses da
     JOIN first_dates fd ON fd.drucksache_nr = da.drucksache_nr
-    WHERE da.batch_class = 'klein' AND da.tonalitaet IS NOT NULL
+    WHERE da.dokumenttyp = 'Kleine Anfrage' AND da.tonalitaet IS NOT NULL
       AND da.fraktion IS NOT NULL AND da.fraktion != ''
     GROUP BY monat, fraktion
     ORDER BY monat
@@ -4104,7 +4408,11 @@ export function getDrucksacheDetail(nr: string): DrucksacheDetail | null {
       a.betroffene_gruppen, a.fraktion, a.dokumenttyp,
       a.regelung, a.begruendung, a.auswirkung, a.topic_drift_audit,
       a.model, a.prompt_version, a.generated_at,
-      (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
       COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
       (SELECT drucksache_typ FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS drucksache_typ,
       (SELECT pdf_url FROM activities WHERE drucksache_nr=a.drucksache_nr AND pdf_url IS NOT NULL LIMIT 1) AS pdf_url
@@ -4221,7 +4529,11 @@ export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
   const row = db.prepare(`
     SELECT
       drucksache_nr,
-      COALESCE(MAX(thema), MAX(titel)) AS titel,
+      COALESCE(
+        MAX(thema),
+        (SELECT titel FROM dip_ds_titles t WHERE t.drucksache_nr = activities.drucksache_nr AND t.titel IS NOT NULL),
+        MAX(titel)
+      ) AS titel,
       MAX(datum) AS datum,
       MAX(urheber) AS urheber,
       MIN(aktivitaetsart) AS aktivitaetsart,
@@ -4241,15 +4553,41 @@ export function getDrucksacheSkeleton(nr: string): DrucksacheSkeleton | null {
   const dip = db.prepare(
     `SELECT titel, drucksachetyp, vorgangstyp FROM dip_ds_titles WHERE drucksache_nr = ?`
   ).get(nr) as { titel: string | null; drucksachetyp: string | null; vorgangstyp: string | null } | undefined;
-  if (!dip?.titel) return null;
+  if (dip?.titel) {
+    return {
+      drucksache_nr: nr,
+      titel: dip.titel,
+      datum: null,
+      urheber: null,
+      aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
+      drucksache_typ: dip.drucksachetyp,
+      pdf_url: buildDsPdfUrl(nr),
+      herausgeber: "Deutscher Bundestag",
+    };
+  }
+  // Dritter Fallback: DIP-Vorgangsdaten (§2.3b). Greift v. a. für frische
+  // Regierungs-Gesetzentwürfe — die haben weder MdB-Aktivitäten noch einen
+  // dip_ds_titles-Stub, stehen aber als Einbringungs-Position im Vorgang.
+  const vp = db.prepare(`
+    SELECT v.titel, v.initiative_json, p.datum, p.vorgangsposition, p.fundstelle_json
+    FROM dip_vorgang_positionen p
+    JOIN dip_vorgaenge v ON v.id = p.vorgang_id
+    WHERE p.dokumentnummer = ? AND p.dokumentart = 'Drucksache' AND p.herausgeber = 'BT'
+    ORDER BY p.datum LIMIT 1
+  `).get(nr) as {
+    titel: string | null; initiative_json: string | null; datum: string | null;
+    vorgangsposition: string; fundstelle_json: string | null;
+  } | undefined;
+  if (!vp?.titel) return null;
+  const fundstelle = safeJson<{ pdf_url?: string }>(vp.fundstelle_json, {});
   return {
     drucksache_nr: nr,
-    titel: dip.titel,
-    datum: null,
-    urheber: null,
-    aktivitaetsart: dip.vorgangstyp ?? dip.drucksachetyp ?? "Drucksache",
-    drucksache_typ: dip.drucksachetyp,
-    pdf_url: buildDsPdfUrl(nr),
+    titel: vp.titel,
+    datum: vp.datum,
+    urheber: safeJson<string[]>(vp.initiative_json, []).join(", ") || null,
+    aktivitaetsart: vp.vorgangsposition,
+    drucksache_typ: null,
+    pdf_url: fundstelle.pdf_url ?? buildDsPdfUrl(nr),
     herausgeber: "Deutscher Bundestag",
   };
 }
@@ -4964,6 +5302,7 @@ export interface RelatedDsRow {
   drucksache_nr: string;
   titel: string | null;
   batch_class: string;
+  dokumenttyp: string | null;
   datum: string | null;
   tonalitaet: string | null;
   zusammenfassung: string | null;
@@ -4984,8 +5323,12 @@ export function getDrucksacheVerfahren(nr: string): {
   let parent: RelatedDsRow | null = null;
   if (parentNr) {
     parent = (db.prepare(`
-      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
-             (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+             COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
              COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
       FROM drucksache_analyses a
       JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
@@ -4995,8 +5338,12 @@ export function getDrucksacheVerfahren(nr: string): {
 
   // Children: welche DS referenzieren DIESE?
   const children = db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
-           (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
            COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
     FROM drucksache_analyses a
     JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
@@ -5005,6 +5352,339 @@ export function getDrucksacheVerfahren(nr: string): {
   `).all(nr) as RelatedDsRow[];
 
   return { parent, children };
+}
+
+// ============================================================
+// Gesetzgebungs-Verfahren (DIP-Vorgangsdaten, DATA-SOURCES.md §2.3b)
+// ============================================================
+
+export interface GesetzgebungsSchritt {
+  position: string;                  // amtliche Bezeichnung, z. B. "1. Beratung"
+  zuordnung: string | null;          // "BT" | "BR"
+  datum: string | null;
+  dokumentart: string | null;        // "Drucksache" | "Plenarprotokoll"
+  dokumentnummer: string | null;
+  herausgeber: string | null;        // "BT" | "BR"
+  ausschuesse: { ausschuss: string; federfuehrung: boolean }[];
+  beschluesse: string[];             // beschlusstenor, z. B. "Annahme in Ausschussfassung"
+}
+
+export interface GesetzgebungsVorgangDetail {
+  vorgangId: string;
+  titel: string | null;
+  beratungsstand: string | null;     // amtliches DIP-Vokabular, roh
+  initiative: string[];
+  zustimmungsbeduerftigkeit: string[];
+  verkuendung: { fundstelle?: string; verkuendungsdatum?: string; pdf_url?: string }[];
+  inkrafttreten: { datum: string; erlaeuterung?: string }[];
+  aktualisiert: string | null;
+  schritte: GesetzgebungsSchritt[];
+}
+
+function safeJson<T>(s: string | null, fallback: T): T {
+  if (!s) return fallback;
+  try { return JSON.parse(s) as T; } catch { return fallback; }
+}
+
+export function getGesetzgebungsVorgang(dsNr: string): GesetzgebungsVorgangDetail | null {
+  const db = getDb();
+  // Praktisch 1:1 (Stand Seed 2026-06-11: kein GE mit >1 Vorgang); bei
+  // Mehrfach-Zuordnung (z. B. Beschlussempfehlung über mehrere Vorgänge)
+  // deterministisch den jüngsten Vorgang nehmen.
+  const vg = db.prepare(`
+    SELECT v.id, v.titel, v.beratungsstand, v.initiative_json,
+           v.zustimmungsbeduerftigkeit_json, v.verkuendung_json,
+           v.inkrafttreten_json, v.aktualisiert
+    FROM dip_ds_vorgaenge dv
+    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
+    WHERE dv.drucksache_nr = ?
+    ORDER BY v.datum DESC, v.id DESC
+    LIMIT 1
+  `).get(dsNr) as {
+    id: string; titel: string | null; beratungsstand: string | null;
+    initiative_json: string | null; zustimmungsbeduerftigkeit_json: string | null;
+    verkuendung_json: string | null; inkrafttreten_json: string | null;
+    aktualisiert: string | null;
+  } | undefined;
+  if (!vg) return null;
+
+  // gang=1 ist DIPs eigener Marker für den "Gang der Gesetzgebung";
+  // nachträgliche/geänderte Ausschuss-Überweisungen (gang=0) gehören
+  // inhaltlich dazu — BR-Unterrichtungen mit Überweisung dagegen nicht.
+  const rows = db.prepare(`
+    SELECT vorgangsposition, zuordnung, datum, dokumentart, dokumentnummer,
+           herausgeber, ueberweisung_json,
+           json_extract(raw_json, '$.beschlussfassung') AS beschlussfassung_json
+    FROM dip_vorgang_positionen
+    WHERE vorgang_id = ?
+      AND (gang = 1 OR (ueberweisung_json IS NOT NULL AND vorgangsposition LIKE '%Überweisung%'))
+    ORDER BY datum, id
+  `).all(vg.id) as {
+    vorgangsposition: string; zuordnung: string | null; datum: string | null;
+    dokumentart: string | null; dokumentnummer: string | null;
+    herausgeber: string | null; ueberweisung_json: string | null;
+    beschlussfassung_json: string | null;
+  }[];
+
+  const schritte: GesetzgebungsSchritt[] = rows.map((r) => ({
+    position: r.vorgangsposition,
+    zuordnung: r.zuordnung,
+    datum: r.datum,
+    dokumentart: r.dokumentart,
+    dokumentnummer: r.dokumentnummer,
+    herausgeber: r.herausgeber,
+    ausschuesse: safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []),
+    beschluesse: safeJson<{ beschlusstenor?: string }[]>(r.beschlussfassung_json, [])
+      .map((b) => b.beschlusstenor)
+      .filter((t): t is string => Boolean(t)),
+  }));
+
+  return {
+    vorgangId: vg.id,
+    titel: vg.titel,
+    beratungsstand: vg.beratungsstand,
+    initiative: safeJson<string[]>(vg.initiative_json, []),
+    zustimmungsbeduerftigkeit: safeJson<string[]>(vg.zustimmungsbeduerftigkeit_json, []),
+    verkuendung: safeJson<{ fundstelle?: string; verkuendungsdatum?: string; pdf_url?: string }[]>(vg.verkuendung_json, []),
+    inkrafttreten: safeJson<{ datum: string; erlaeuterung?: string }[]>(vg.inkrafttreten_json, []),
+    aktualisiert: vg.aktualisiert,
+    schritte,
+  };
+}
+
+export interface LaufenderGesetzentwurf {
+  drucksache_nr: string;
+  titel: string | null;
+  beratungsstand: string | null;
+  initiative: string[];
+  // Binnenphase aus Positions-Fakten (wie der Stepper auf der Detail-Seite)
+  phase: "vor_erster_lesung" | "im_ausschuss" | "beschlussempfehlung";
+  seitDatum: string | null;          // Beginn der aktuellen Binnenphase
+  einbringungDatum: string | null;
+  federfuehrenderAusschuss: string | null;
+}
+
+/**
+ * Alle Gesetzentwürfe (BT-Drucksachen, WP21), über die der Bundestag noch
+ * nicht abschließend abgestimmt hat — d. h. beratungsstand vor der
+ * 2./3. Lesung. Post-Vote-Stände (Verabschiedet, Vermittlung, Bundesrat)
+ * und Terminal-Stände (Verkündet, Abgelehnt, erledigt, …) sind raus.
+ *
+ * GE-Definition kommt aus den DIP-Positionen selbst (Einbringungs-Position
+ * 'Gesetzentwurf'), NICHT aus drucksache_instrument: die PDF-Klassifikation
+ * hängt Tage bis Wochen hinterher und labelt 18 GE als 'sonstiges' — über
+ * den instrument-Join fehlten 31 laufende (v. a. die frischesten) Entwürfe.
+ */
+export function getLaufendeGesetzentwuerfe(): LaufenderGesetzentwurf[] {
+  const db = getDb();
+  const rows = db.prepare(`
+    WITH dip_ge AS (
+      SELECT DISTINCT p.dokumentnummer AS drucksache_nr, p.vorgang_id
+      FROM dip_vorgang_positionen p
+      WHERE p.vorgangsposition = 'Gesetzentwurf' AND p.zuordnung = 'BT'
+        AND p.dokumentart = 'Drucksache' AND p.herausgeber = 'BT'
+    )
+    SELECT dv.drucksache_nr, v.titel, v.beratungsstand, v.initiative_json,
+      (SELECT MIN(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') AND p.zuordnung='BT') AS einbringung_datum,
+      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('1. Beratung','1. Beratung (Gesetzentwurf)')) AS erste_beratung_datum,
+      (SELECT MAX(p.datum) FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.vorgangsposition IN ('Beschlussempfehlung und Bericht','Beschlussempfehlung','Bericht')) AS be_datum,
+      (SELECT p.ueberweisung_json FROM dip_vorgang_positionen p
+        WHERE p.vorgang_id=v.id AND p.ueberweisung_json IS NOT NULL AND p.zuordnung='BT'
+        ORDER BY p.datum DESC LIMIT 1) AS ueberweisung_json
+    FROM dip_ge dv
+    JOIN dip_vorgaenge v ON v.id = dv.vorgang_id
+    WHERE v.beratungsstand NOT IN (
+      'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+      'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+      'Im Vermittlungsverfahren','Einbringung abgelehnt'
+    )
+    GROUP BY dv.drucksache_nr
+  `).all() as {
+    drucksache_nr: string; titel: string | null; beratungsstand: string | null;
+    initiative_json: string | null; einbringung_datum: string | null;
+    erste_beratung_datum: string | null; be_datum: string | null;
+    ueberweisung_json: string | null;
+  }[];
+
+  return rows.map((r) => {
+    const phase = r.be_datum
+      ? ("beschlussempfehlung" as const)
+      : r.erste_beratung_datum
+        ? ("im_ausschuss" as const)
+        : ("vor_erster_lesung" as const);
+    const ueberweisung = safeJson<{ ausschuss: string; federfuehrung: boolean }[]>(r.ueberweisung_json, []);
+    return {
+      drucksache_nr: r.drucksache_nr,
+      titel: r.titel,
+      beratungsstand: r.beratungsstand,
+      initiative: safeJson<string[]>(r.initiative_json, []),
+      phase,
+      seitDatum: r.be_datum ?? r.erste_beratung_datum ?? r.einbringung_datum,
+      einbringungDatum: r.einbringung_datum,
+      federfuehrenderAusschuss: ueberweisung.find((a) => a.federfuehrung)?.ausschuss ?? null,
+    };
+  });
+}
+
+export interface GesetzgebungsFunnelRow {
+  einbringer: string;            // "Bundesregierung" | "Koalitionsfraktionen" | …
+  gesamt: number;                // alle Gesetzgebungsvorgänge WP21
+  imBundestag: number;           // BT-Drucksache existiert
+  ersteLesung: number;
+  zurAbstimmung: number;         // 3. Lesung/Schlussabstimmung ODER abgelehnt (2. Lesung)
+  beschlossen: number;
+  abgelehnt: number;
+  wartendVorLesung: number;      // laufend, BT-DS da, noch keine 1. Lesung
+  wartendSchnittTage: number | null;
+}
+
+/**
+ * Gesetzgebungs-Trichter pro Einbringer (WP21, amtliche DIP-Vorgangsdaten):
+ * Wer bringt ein, was erreicht die 1. Lesung, was kommt zur Abstimmung,
+ * was wird beschlossen. "Zur Abstimmung" zählt auch Ablehnungen in der
+ * 2. Lesung mit (danach entfällt die 3. Lesung, § 83 GO-BT).
+ */
+export function getGesetzgebungsFunnel(): GesetzgebungsFunnelRow[] {
+  const db = getDb();
+  return db.prepare(`
+    WITH klass AS (
+      SELECT v.id, v.beratungsstand,
+        CASE
+          WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 'Bundesregierung'
+          WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 'Koalitionsfraktionen'
+          WHEN v.initiative_json LIKE '%Fraktion%' THEN 'Oppositionsfraktionen'
+          ELSE 'Länder (über den Bundesrat)'
+        END AS einbringer,
+        CASE
+          WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 1
+          WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 2
+          WHEN v.initiative_json LIKE '%Fraktion%' THEN 3
+          ELSE 4
+        END AS sortier,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition='Gesetzentwurf' AND p.zuordnung='BT' AND p.herausgeber='BT') AS im_bt,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition LIKE '1. Beratung%') AS lesung1,
+        EXISTS(SELECT 1 FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition IN ('3. Beratung','2. Beratung und Schlussabstimmung')) AS schlussvote,
+        (SELECT MIN(p.datum) FROM dip_vorgang_positionen p WHERE p.vorgang_id=v.id
+          AND p.vorgangsposition='Gesetzentwurf' AND p.zuordnung='BT') AS bt_datum
+      FROM dip_vorgaenge v
+    )
+    SELECT einbringer,
+      COUNT(*) AS gesamt,
+      SUM(im_bt) AS imBundestag,
+      SUM(lesung1) AS ersteLesung,
+      SUM(schlussvote OR beratungsstand='Abgelehnt') AS zurAbstimmung,
+      SUM(beratungsstand IN ('Verkündet','Verabschiedet','Bundesrat hat zugestimmt','Im Vermittlungsverfahren')) AS beschlossen,
+      SUM(beratungsstand='Abgelehnt') AS abgelehnt,
+      SUM(im_bt AND NOT lesung1 AND beratungsstand NOT IN (
+        'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+        'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+        'Im Vermittlungsverfahren','Einbringung abgelehnt')) AS wartendVorLesung,
+      CAST(AVG(CASE WHEN im_bt AND NOT lesung1 AND beratungsstand NOT IN (
+        'Verkündet','Verabschiedet','Abgelehnt','Für erledigt erklärt','Zurückgezogen',
+        'Bundesrat hat zugestimmt','Bundesrat hat Zustimmung versagt',
+        'Im Vermittlungsverfahren','Einbringung abgelehnt')
+        THEN julianday('now') - julianday(bt_datum) END) AS INT) AS wartendSchnittTage
+    FROM klass
+    GROUP BY einbringer
+    ORDER BY MIN(sortier)
+  `).all() as GesetzgebungsFunnelRow[];
+}
+
+export interface GesetzesdauerBeispiel {
+  titel: string;
+  tage: number;
+  dsNr: string | null;
+}
+
+export interface Gesetzesdauer {
+  n: number;
+  medianTotal: number;
+  // Median-Etappen in Tagen: Vorlage→1. Lesung, 1. Lesung→Schlussabstimmung, Schlussabstimmung→Verkündung
+  etappen: { bisLesung: number; parlament: number; bisVerkuendung: number };
+  perEinbringer: { name: string; n: number; median: number }[];
+  histogramm: { vonTage: number; n: number }[]; // 30-Tage-Bins über die Gesamtdauer
+  schnellste: GesetzesdauerBeispiel[];
+  langsamste: GesetzesdauerBeispiel[];
+}
+
+/**
+ * Dauer verkündeter Gesetze (WP21, amtliche DIP-Vorgangsdaten):
+ * von der ersten formalen Vorlage des Entwurfs (bei Regierungsentwürfen die
+ * Zuleitung an den Bundesrat) bis zur Verkündung im Bundesgesetzblatt.
+ * Schlussabstimmung = 3. Beratung bzw. "2. Beratung und Schlussabstimmung"
+ * (Vertragsgesetze, § 78 GO-BT).
+ */
+export function getGesetzesdauer(): Gesetzesdauer {
+  const rows = getDb().prepare(`
+    WITH v AS (
+      SELECT id, titel, initiative_json,
+        json_extract(verkuendung_json, '$[0].verkuendungsdatum') AS verk
+      FROM dip_vorgaenge WHERE beratungsstand = 'Verkündet'
+    )
+    SELECT v.titel,
+      CASE WHEN v.initiative_json LIKE '%Bundesregierung%' THEN 'Bundesregierung'
+           WHEN v.initiative_json LIKE '%CDU/CSU%' AND v.initiative_json LIKE '%SPD%' THEN 'Koalitionsfraktionen'
+           WHEN v.initiative_json LIKE '%Fraktion%' THEN 'Oppositionsfraktionen'
+           ELSE 'Länder (über den Bundesrat)' END AS einbringer,
+      MIN(CASE WHEN p.vorgangsposition IN ('Gesetzentwurf','Gesetzesantrag') THEN p.datum END) AS vorlage,
+      MIN(CASE WHEN p.vorgangsposition LIKE '1. Beratung%' THEN p.datum END) AS lesung1,
+      MAX(CASE WHEN p.vorgangsposition IN ('2. Beratung','3. Beratung','2. Beratung und Schlussabstimmung') THEN p.datum END) AS schluss,
+      v.verk,
+      MIN(CASE WHEN p.vorgangsposition = 'Gesetzentwurf' AND p.zuordnung = 'BT' THEN p.dokumentnummer END) AS dsNr
+    FROM v JOIN dip_vorgang_positionen p ON p.vorgang_id = v.id
+    GROUP BY v.id
+    HAVING vorlage IS NOT NULL AND verk IS NOT NULL
+  `).all() as {
+    titel: string; einbringer: string; vorlage: string;
+    lesung1: string | null; schluss: string | null; verk: string; dsNr: string | null;
+  }[];
+
+  const days = (a: string, b: string) =>
+    Math.round((new Date(b).getTime() - new Date(a).getTime()) / 86_400_000);
+  const median = (xs: number[]) => {
+    const s = [...xs].sort((a, b) => a - b);
+    return s.length ? s[Math.floor((s.length - 1) / 2)] : 0;
+  };
+
+  const items = rows.map((r) => ({ ...r, total: days(r.vorlage, r.verk) }));
+
+  const perEinbringer = [...new Set(items.map((i) => i.einbringer))]
+    .map((name) => {
+      const xs = items.filter((i) => i.einbringer === name);
+      return { name, n: xs.length, median: median(xs.map((i) => i.total)) };
+    })
+    .sort((a, b) => b.n - a.n);
+
+  const maxTotal = Math.max(0, ...items.map((i) => i.total));
+  const histogramm = Array.from({ length: Math.floor(maxTotal / 30) + 1 }, (_, b) => ({
+    vonTage: b * 30,
+    n: items.filter((i) => Math.floor(i.total / 30) === b).length,
+  }));
+
+  const sorted = [...items].sort((a, b) => a.total - b.total);
+  const beispiel = (i: (typeof items)[number]): GesetzesdauerBeispiel => ({
+    titel: i.titel, tage: i.total, dsNr: i.dsNr,
+  });
+
+  return {
+    n: items.length,
+    medianTotal: median(items.map((i) => i.total)),
+    etappen: {
+      bisLesung: median(items.filter((i) => i.lesung1).map((i) => days(i.vorlage, i.lesung1!))),
+      parlament: median(items.filter((i) => i.lesung1 && i.schluss).map((i) => days(i.lesung1!, i.schluss!))),
+      bisVerkuendung: median(items.filter((i) => i.schluss).map((i) => days(i.schluss!, i.verk))),
+    },
+    perEinbringer,
+    histogramm,
+    schnellste: sorted.slice(0, 3).map(beispiel),
+    langsamste: sorted.slice(-3).reverse().map(beispiel),
+  };
 }
 
 export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit: number = 6): RelatedDsRow[] {
@@ -5019,8 +5699,12 @@ export function getDrucksacheThemenAehnliche(nr: string, themaCsv: string, limit
   params.push(limit);
 
   return db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
-           (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
            COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
            (${likeClauses}) AS overlap_score
     FROM drucksache_analyses a
@@ -5073,7 +5757,11 @@ export function getDrucksachenForPolitician(politicianId: number, limit: number 
     SELECT DISTINCT
       a.drucksache_nr,
       an.batch_class,
-      (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
       an.zusammenfassung,
       an.thema,
       an.tonalitaet,
@@ -5173,8 +5861,12 @@ export function getDrucksachenSameFraktion(
   if (themas.length === 0) {
     // Ohne Thema-Filter: einfach letzte DS der Fraktion
     return db.prepare(`
-      SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
-             (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+      SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+             COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
              COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum
       FROM drucksache_analyses a
       JOIN drucksache_texts t ON t.drucksache_nr = a.drucksache_nr
@@ -5189,8 +5881,12 @@ export function getDrucksachenSameFraktion(
   // Mit Thema-Overlap-Scoring
   const likeClauses = themas.map(() => `(a.thema LIKE '%' || ? || '%')`).join(" + ");
   return db.prepare(`
-    SELECT a.drucksache_nr, a.batch_class, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
-           (SELECT COALESCE(thema, titel) FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1) AS titel,
+    SELECT a.drucksache_nr, a.batch_class, a.dokumenttyp, a.tonalitaet, a.zusammenfassung, a.fraktion, a.thema,
+           COALESCE(
+        (SELECT thema FROM activities WHERE drucksache_nr=a.drucksache_nr AND thema IS NOT NULL AND thema != '' LIMIT 1),
+        (SELECT titel FROM dip_ds_titles WHERE drucksache_nr=a.drucksache_nr AND titel IS NOT NULL),
+        (SELECT titel FROM activities WHERE drucksache_nr=a.drucksache_nr LIMIT 1)
+      ) AS titel,
            COALESCE((SELECT datum FROM activities WHERE drucksache_nr=a.drucksache_nr AND datum IS NOT NULL ORDER BY datum LIMIT 1), t.publication_date) AS datum,
            (${likeClauses}) AS overlap_score
     FROM drucksache_analyses a
@@ -6395,24 +7091,32 @@ export interface BerlinDsIndexResult {
   years: string[];
 }
 
-/** Berlin-Drucksachen-Index: paginierte Liste + Klassen-/Jahr-Facetten (Pendant zu /aktivitaeten). */
+/** Berlin-Drucksachen-Index: paginierte Liste + Klassen-/Jahr-Facetten (Pendant zu /aktivitaeten).
+ *  `tags`: OR-Filter auf thema_json (≥1 der Roh-Tags) — trägt die /themen-Feld-Detailansicht. */
 export function listBerlinDrucksachenForIndex(opts: {
   klasse?: string;
   year?: string;
   fraktion?: string;
+  tags?: readonly string[];
   offset?: number;
   limit?: number;
 }): BerlinDsIndexResult {
   const db = getDb();
-  const { klasse, year, fraktion, offset = 0, limit = 50 } = opts;
+  const { klasse, year, fraktion, tags, offset = 0, limit = 50 } = opts;
   try {
     const yearCond = year ? "AND substr(d.dok_datum,1,4) = @year" : "";
     const klasseCond = klasse ? "AND a.klasse = @klasse" : "";
     const fraktionCond = fraktion ? "AND a.fraktion = @fraktion" : "";
+    // Tag-Filter: a.thema_json enthält ≥1 der Feld-Tags (entdoppelt pro DS durch den JOIN-1:1).
+    const tagList = (tags ?? []).filter(Boolean);
+    const tagsCond = tagList.length
+      ? `AND (${tagList.map((_, i) => `a.thema_json LIKE @tag${i}`).join(" OR ")})`
+      : "";
     const whereParams: Record<string, string> = {};
     if (year) whereParams.year = year;
     if (klasse) whereParams.klasse = klasse;
     if (fraktion) whereParams.fraktion = fraktion;
+    tagList.forEach((t, i) => { whereParams[`tag${i}`] = `%"${t}"%`; });
 
     const rows = db.prepare(`
       SELECT d.dbid, d.dok_nr AS dokNr,
@@ -6422,7 +7126,7 @@ export function listBerlinDrucksachenForIndex(opts: {
              a.tonalitaet, a.antwort_charakter AS antwortCharakter
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY d.dok_datum DESC, d.dbid DESC
       LIMIT @limit OFFSET @offset
     `).all({ ...whereParams, offset, limit }) as BerlinDsIndexEntry[];
@@ -6431,24 +7135,27 @@ export function listBerlinDrucksachenForIndex(opts: {
       SELECT COUNT(*) c
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${klasseCond} ${fraktionCond} ${tagsCond}
     `).get(whereParams) as { c: number }).c;
+
+    const tagParams: Record<string, string> = {};
+    tagList.forEach((t, i) => { tagParams[`tag${i}`] = `%"${t}"%`; });
 
     const klasseFacets = db.prepare(`
       SELECT a.klasse, COUNT(*) count
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL ${yearCond} ${fraktionCond} ${tagsCond}
       GROUP BY a.klasse ORDER BY count DESC
-    `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}) }) as { klasse: string; count: number }[];
+    `).all({ ...(year ? { year } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { klasse: string; count: number }[];
 
     const years = (db.prepare(`
       SELECT DISTINCT substr(d.dok_datum,1,4) y
       FROM berlin_documents d
       JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
-      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond}
+      WHERE a.klasse IS NOT NULL AND d.dok_datum IS NOT NULL ${klasseCond} ${fraktionCond} ${tagsCond}
       ORDER BY y DESC
-    `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}) }) as { y: string }[])
+    `).all({ ...(klasse ? { klasse } : {}), ...(fraktion ? { fraktion } : {}), ...tagParams }) as { y: string }[])
       .map((r) => r.y)
       .filter((y) => y && y.length === 4);
 
@@ -6456,6 +7163,39 @@ export function listBerlinDrucksachenForIndex(opts: {
   } catch {
     return { rows: [], total: 0, klasseFacets: [], years: [] };
   }
+}
+
+export interface BerlinThemenfeldCount {
+  key: string;     // Feld-Slug (berlin-themen-struktur.ts)
+  label: string;
+  count: number;   // distinct DS mit ≥1 Tag des Felds
+}
+export interface BerlinThemenfelderCounts {
+  felder: BerlinThemenfeldCount[];     // Achse A (Politikfelder), desc
+  querschnitt: BerlinThemenfeldCount[];// Achse B, desc
+  gesamtDs: number;                    // alle analysierten DS (entdoppelt)
+}
+
+/**
+ * Level-1-Themenbrowse: pro Feld die Anzahl DISTINCT Drucksachen mit ≥1 Roh-Tag
+ * des Felds (Aggregationsregel aus berlin-themen-struktur.ts — pro DS entdoppelt,
+ * multi-Feld erlaubt, Querschnitt additiv). Grundlage der /themen-Berlin-Seite.
+ * Frei aus thema_json — KEIN LLM (Level 2 wäre Phase B).
+ */
+export function getBerlinThemenfelderCounts(): BerlinThemenfelderCounts {
+  const db = getDb();
+  const tally = (feld: { key: string; label: string; tags: readonly string[] }): BerlinThemenfeldCount => {
+    const cond = feld.tags.map(() => "a.thema_json LIKE ?").join(" OR ") || "0";
+    const c = (db.prepare(`
+      SELECT COUNT(*) c FROM berlin_drucksachen_analyses a
+      WHERE a.klasse IS NOT NULL AND (${cond})
+    `).get(...feld.tags.map((t) => `%"${t}"%`)) as { c: number }).c;
+    return { key: feld.key, label: feld.label, count: c };
+  };
+  const felder = BERLIN_POLITIKFELDER.map(tally).sort((a, b) => b.count - a.count);
+  const querschnitt = BERLIN_QUERSCHNITT.map(tally).sort((a, b) => b.count - a.count);
+  const gesamtDs = (db.prepare(`SELECT COUNT(*) c FROM berlin_drucksachen_analyses WHERE klasse IS NOT NULL`).get() as { c: number }).c;
+  return { felder, querschnitt, gesamtDs };
 }
 
 export interface BerlinQaItem {
@@ -6657,6 +7397,67 @@ export function getBerlinDrucksacheDetail(dbid: string): BerlinDrucksacheDetail 
     promptVersion: row.prompt_version,
     model: row.model,
   };
+}
+
+// ============================================================
+// Berlin-Vorgang: die ganze Verfahrenskette einer Drucksache
+// (Antrag → Lesungen → Ausschuss → Beschlussempfehlung → Beschluss)
+// ============================================================
+
+export interface BerlinVorgangSchritt {
+  dbid: string;
+  dokNr: string | null;
+  dokTypLabel: string | null;
+  datum: string | null;
+  titel: string | null;     // derived_titel aus Analyse, falls vorhanden
+  linkable: boolean;        // hat eigene Detailseite (in analyses) und ist nicht das aktuelle Dok
+  isSelf: boolean;
+}
+
+export interface BerlinDsVorgang {
+  vid: string;
+  vtypLabel: string | null;
+  titel: string | null;
+  schritte: BerlinVorgangSchritt[];
+}
+
+/** Liefert die komplette Vorgangskette der Drucksache (alle Dokumente mit gleicher
+ *  vorgang_id, chronologisch). Dok ohne Analyse (Lesungen/Plenum-Behandlungen) erscheinen
+ *  als Verfahrensschritt ohne Link; echte Drucksachen (Antrag/Beschlussempfehlung) sind
+ *  verlinkbar. null, wenn kein Vorgang oder Kette nur aus sich selbst besteht. */
+export function getBerlinDsVorgang(dbid: string): BerlinDsVorgang | null {
+  const db = getDb();
+  try {
+    const self = db.prepare(`SELECT vorgang_id FROM berlin_documents WHERE dbid = ?`).get(dbid) as { vorgang_id: string | null } | undefined;
+    if (!self?.vorgang_id) return null;
+    const vid = self.vorgang_id;
+    const v = db.prepare(`SELECT vtyp_label, titel FROM berlin_vorgaenge WHERE vid = ?`).get(vid) as { vtyp_label: string | null; titel: string | null } | undefined;
+    const rows = db.prepare(`
+      SELECT d.dbid, d.dok_nr, d.dok_typ_label, d.dok_datum AS dok_datum,
+             a.dbid AS a_dbid, a.derived_titel
+      FROM berlin_documents d
+      LEFT JOIN berlin_drucksachen_analyses a ON a.dbid = d.dbid
+      WHERE d.vorgang_id = ?
+      ORDER BY (d.dok_datum IS NULL), d.dok_datum ASC, d.dok_nr ASC
+    `).all(vid) as Array<{ dbid: string; dok_nr: string | null; dok_typ_label: string | null; dok_datum: string | null; a_dbid: string | null; derived_titel: string | null }>;
+    if (rows.length <= 1) return null;
+    return {
+      vid,
+      vtypLabel: v?.vtyp_label ?? null,
+      titel: v?.titel ?? null,
+      schritte: rows.map((r) => ({
+        dbid: r.dbid,
+        dokNr: r.dok_nr,
+        dokTypLabel: r.dok_typ_label,
+        datum: r.dok_datum,
+        titel: r.derived_titel,
+        linkable: !!r.a_dbid && r.dbid !== dbid,
+        isSelf: r.dbid === dbid,
+      })),
+    };
+  } catch {
+    return null;
+  }
 }
 
 
@@ -7203,6 +8004,111 @@ export function getSitzungStories(sitzungNr: number): SitzungStories | null {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
+// Berlin Themen-Aktivitätsprofil (Regierungsbilanz Produkt 1, rollenbasiert)
+// Pro Roh-Tag (thema_json) × Partei, Instrumente GETRENNT (nie summiert — andere
+// Rollen: Antrag=Gestaltung / Anfrage=Kontrolle / Rede=Debatte / Gesetzentwurf).
+// Scope: Wegner-Ära (dok_datum/datum >= 2023-04-27). Roh-Tag, NICHT aw_field-Rollup
+// (der überzählt, siehe project_themenfelder_rollup_bug). Deskriptiv, keine Noten.
+// ─────────────────────────────────────────────────────────────────────────
+const BERLIN_WEGNER_VON = "2023-04-27";
+const BERLIN_REGIERUNG = ["CDU", "SPD"];
+
+// Berlin-Partei-Normalisierung: splittet Koalitions-Urheber ("GRÜNE + LINKE",
+// "CDU + SPD") auf die Einzelparteien — jede bekommt die Initiative gutgeschrieben.
+function splitBerlinParteien(raw: string | null): string[] {
+  if (!raw) return [];
+  const out: string[] = [];
+  for (const part of raw.split(/\s*\+\s*|\s*,\s*|\s+und\s+/)) {
+    const u = part.trim().toUpperCase();
+    if (!u) continue;
+    if (u.includes("GRÜN") || u.includes("GRUEN")) out.push("Grüne");
+    else if (u.includes("LINKE")) out.push("Linke");
+    else if (u.includes("AFD")) out.push("AfD");
+    else if (u.startsWith("CDU")) out.push("CDU");
+    else if (u === "SPD") out.push("SPD");
+    else if (u.includes("FDP")) out.push("FDP");
+    else if (u.includes("SENAT")) out.push("Senat");
+    else if (u.includes("FRAKTIONSLOS")) out.push("fraktionslos");
+  }
+  return [...new Set(out)];
+}
+
+export interface BerlinThemenInstrument {
+  key: string;            // antrag | anfrage | gesetzentwurf | rede
+  label: string;
+  rolle: string;          // Gestaltung | Kontrolle | Debatte | Regierungs-Gestaltung
+  total: number;
+  byPartei: { partei: string; n: number; regierung: boolean }[];   // desc
+}
+export interface BerlinThemenAktivitaet {
+  thema: string;
+  vonDatum: string;
+  regierung: string[];
+  instrumente: BerlinThemenInstrument[];
+}
+
+export function getBerlinThemenAktivitaet(thema: string): BerlinThemenAktivitaet {
+  const db = getDb();
+  const pat = `%"${thema}"%`;
+  // Akkumulator: instrument-key → partei → count
+  const acc: Record<string, Map<string, number>> = {
+    antrag: new Map(), anfrage: new Map(), gesetzentwurf: new Map(), rede: new Map(),
+  };
+  const bump = (key: string, parteien: string[]) => {
+    for (const p of parteien) acc[key].set(p, (acc[key].get(p) ?? 0) + 1);
+  };
+
+  // 1. Drucksachen (Antrag / Anfrage / Gesetzentwurf) — Roh-Tag, Wegner-Scope
+  const dsRows = db.prepare(`
+    SELECT a.klasse, a.fraktion, a.einbringer
+    FROM berlin_drucksachen_analyses a
+    JOIN berlin_documents d ON d.dbid = a.dbid
+    WHERE a.error_type IS NULL AND a.thema_json LIKE ? AND d.dok_datum >= ?
+  `).all(pat, BERLIN_WEGNER_VON) as { klasse: string; fraktion: string | null; einbringer: string | null }[];
+  for (const r of dsRows) {
+    const parteien = splitBerlinParteien(r.fraktion ?? r.einbringer);
+    if (!parteien.length) continue;
+    if (r.klasse === "antrag") bump("antrag", parteien);
+    else if (r.klasse === "anfrage_antwort") bump("anfrage", parteien);
+    else if (r.klasse === "gesetzentwurf") bump("gesetzentwurf", parteien);
+  }
+
+  // 2. Reden — kein direktes Thema-Feld → über die debattierte Drucksache
+  //    (berlin_speeches.drucksache_nrn → dok_nr → thema_json), Redner-Partei zählt.
+  const redeRows = db.prepare(`
+    WITH thema_dok AS (
+      SELECT DISTINCT d.dok_nr
+      FROM berlin_drucksachen_analyses a JOIN berlin_documents d ON d.dbid = a.dbid
+      WHERE a.error_type IS NULL AND a.thema_json LIKE ?
+    )
+    SELECT s.speaker_party AS partei, COUNT(DISTINCT s.speech_id) AS n
+    FROM berlin_speeches s, json_each(s.drucksache_nrn) je
+    WHERE s.datum >= ? AND s.drucksache_nrn LIKE '[%'
+      AND je.value IN (SELECT dok_nr FROM thema_dok)
+      AND s.speaker_party IS NOT NULL AND s.speaker_party <> ''
+    GROUP BY s.speaker_party
+  `).all(pat, BERLIN_WEGNER_VON) as { partei: string; n: number }[];
+  for (const r of redeRows) {
+    const p = splitBerlinParteien(r.partei)[0];
+    if (p) acc.rede.set(p, (acc.rede.get(p) ?? 0) + r.n);
+  }
+
+  const META: { key: string; label: string; rolle: string }[] = [
+    { key: "antrag", label: "Anträge", rolle: "Gestaltung" },
+    { key: "anfrage", label: "Anfragen", rolle: "Kontrolle" },
+    { key: "gesetzentwurf", label: "Gesetzentwürfe", rolle: "Regierungs-Gestaltung" },
+    { key: "rede", label: "Reden", rolle: "Debatte" },
+  ];
+  const instrumente: BerlinThemenInstrument[] = META.map((m) => {
+    const byPartei = [...acc[m.key].entries()]
+      .map(([partei, n]) => ({ partei, n, regierung: BERLIN_REGIERUNG.includes(partei) || partei === "Senat" }))
+      .sort((a, b) => b.n - a.n);
+    return { ...m, total: byPartei.reduce((s, x) => s + x.n, 0), byPartei };
+  });
+  return { thema, vonDatum: BERLIN_WEGNER_VON, regierung: BERLIN_REGIERUNG, instrumente };
+}
+
+// ─────────────────────────────────────────────────────────────────────────
 // Themenfelder: Initiativ-Profil pro Fraktion (Bundestag)
 // Kreuzt item_topics (AW-Politikfeld-Klassifikation) × Einbringer-Fraktion.
 // Nur Initiativen (Anträge/Gesetzentwürfe), keine Regierungs-Antworten.
@@ -7223,9 +8129,17 @@ export function normalizeFraktion(raw: string | null): string | null {
   return null;
 }
 
-export interface InitiativeCell { count: number; items: { nr: string; titel: string }[] }
+/** Instrument-Modus der Initiativ-Matrix: echte Initiativen (Anträge + GE),
+ *  Kleine Anfragen (Kontrollinstrument) oder alle Drucksachen. */
+export type InitiativeArt = "ini" | "ka" | "alle";
+
+export interface InitiativeItem { nr: string; titel: string; art: Exclude<InitiativeArt, "alle"> | "sonst" }
+export interface InitiativeCell {
+  counts: Record<InitiativeArt, number>;
+  items: InitiativeItem[];
+}
 export interface InitiativeMatrix {
-  fraktionen: { name: string; total: number }[];
+  fraktionen: { name: string; totals: Record<InitiativeArt, number> }[];
   fields: string[];
   cells: Record<string, Record<string, InitiativeCell>>;
 }
@@ -7233,29 +8147,43 @@ export interface InitiativeMatrix {
 export function getTopicInitiativeMatrix(): InitiativeMatrix {
   const rows = getDb().prepare(`
     SELECT it.item_id AS nr, it.aw_field AS field, da.fraktion AS fraktion,
+      di.instrument AS instrument,
       COALESCE((SELECT titel FROM dip_ds_titles WHERE drucksache_nr=it.item_id AND titel IS NOT NULL),
                da.zusammenfassung, da.thema) AS titel
     FROM item_topics it
     JOIN drucksache_analyses da ON da.drucksache_nr = it.item_id
+    LEFT JOIN drucksache_instrument di ON di.drucksache_nr = it.item_id
     WHERE it.source='bt_drucksache' AND da.batch_class != 'antwort' AND da.thema IS NOT NULL
-  `).all() as { nr: string; field: string; fraktion: string | null; titel: string | null }[];
+  `).all() as { nr: string; field: string; fraktion: string | null; instrument: string | null; titel: string | null }[];
+
+  const artOf = (instrument: string | null): InitiativeItem["art"] =>
+    instrument === "kleine_anfrage" ? "ka"
+    : instrument === "antrag" || instrument === "gesetzentwurf" ? "ini"
+    : "sonst";
 
   const cells: Record<string, Record<string, InitiativeCell>> = {};
-  const fraktionTotalsDs: Record<string, Set<string>> = {};
+  const fraktionTotalsDs: Record<string, Record<InitiativeArt, Set<string>>> = {};
   const fieldTotals: Record<string, number> = {};
   for (const r of rows) {
     const fr = normalizeFraktion(r.fraktion);
     if (!fr) continue;
-    (fraktionTotalsDs[fr] ??= new Set()).add(r.nr);
+    const art = artOf(r.instrument);
+    const tot = (fraktionTotalsDs[fr] ??= { alle: new Set(), ini: new Set(), ka: new Set() });
+    tot.alle.add(r.nr);
+    if (art !== "sonst") tot[art].add(r.nr);
     fieldTotals[r.field] = (fieldTotals[r.field] ?? 0) + 1;
     const cf = (cells[fr] ??= {});
-    const cell = (cf[r.field] ??= { count: 0, items: [] });
-    cell.count++;
-    if (cell.items.length < 12 && r.titel) cell.items.push({ nr: r.nr, titel: r.titel.slice(0, 140) });
+    const cell = (cf[r.field] ??= { counts: { alle: 0, ini: 0, ka: 0 }, items: [] });
+    cell.counts.alle++;
+    if (art !== "sonst") cell.counts[art]++;
+    // Drill-down: pro Instrument-Art bis zu 8 Titel, damit jeder Modus Beispiele hat.
+    if (r.titel && cell.items.filter((it) => it.art === art).length < 8) {
+      cell.items.push({ nr: r.nr, titel: r.titel.slice(0, 140), art });
+    }
   }
   const fraktionen = Object.entries(fraktionTotalsDs)
-    .map(([name, s]) => ({ name, total: s.size }))
-    .sort((a, b) => b.total - a.total);
+    .map(([name, s]) => ({ name, totals: { alle: s.alle.size, ini: s.ini.size, ka: s.ka.size } }))
+    .sort((a, b) => b.totals.alle - a.totals.alle);
   const fields = Object.entries(fieldTotals).sort((a, b) => b[1] - a[1]).map(([f]) => f);
   return { fraktionen, fields, cells };
 }

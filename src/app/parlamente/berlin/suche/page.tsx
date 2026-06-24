@@ -84,17 +84,17 @@ function BerlinSuchePageInner() {
       <div className="max-w-3xl mx-auto px-5 pt-24 pb-24 fade-in-up">
         <Link
           href="/parlamente/berlin"
-          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-6 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
           Zurück zum Abgeordnetenhaus
         </Link>
 
         <div className="mb-12">
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-zinc-950 dark:text-zinc-50 mb-3">
             Eine Suche für alles.
           </h1>
-          <p className="text-[15px] text-zinc-500 leading-relaxed max-w-xl">
+          <p className="text-[15px] text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
             Personen, Reden, Drucksachen und Fragen &amp; Antworten des Abgeordnetenhauses von Berlin — in einer Palette.
             Standardmäßig wird exakt gesucht; verwandte Begriffe lassen sich auf Wunsch einbeziehen
             („Wohnen" → auch Mieten und Wohnungsbau).
@@ -103,30 +103,30 @@ function BerlinSuchePageInner() {
 
         <button
           onClick={() => openWith("")}
-          className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-zinc-200 rounded-xl text-left hover:border-zinc-400 transition-colors mb-4 group"
+          className="w-full flex items-center gap-3 px-4 py-3 bg-card border border-border rounded-xl text-left hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors mb-4 group"
         >
           <Search
-            className="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 transition-colors"
+            className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors"
             strokeWidth={2.25}
           />
-          <span className="flex-1 text-[14px] text-zinc-400 group-hover:text-zinc-700 transition-colors">
+          <span className="flex-1 text-[14px] text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
             Suche öffnen…
           </span>
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-mono text-zinc-500 border border-zinc-200 rounded">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[11px] font-mono text-zinc-500 dark:text-zinc-400 border border-border rounded">
             <span className="text-[10px]">⌘</span>K
           </kbd>
         </button>
 
         <Link
           href="/parlamente/berlin/suche/detail"
-          className="inline-flex items-center gap-2 ml-1 text-[14px] font-medium text-blue-700 hover:underline underline-offset-4 decoration-blue-700/40 mb-8"
+          className="inline-flex items-center gap-2 ml-1 text-[14px] font-medium text-blue-700 dark:text-blue-400 hover:underline underline-offset-4 decoration-blue-700/40 dark:decoration-blue-400/40 mb-8"
         >
-          <CornerDownRight className="w-4 h-4 shrink-0 -mt-1 text-blue-700/70" strokeWidth={2.25} />
+          <CornerDownRight className="w-4 h-4 shrink-0 -mt-1 text-blue-700/70 dark:text-blue-400/70" strokeWidth={2.25} />
           Detaillierte Suche — nach Typ filtern, sortieren, eingrenzen
         </Link>
 
         <div className="mb-12">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
             Probier mal
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -134,26 +134,26 @@ function BerlinSuchePageInner() {
               <button
                 key={item.q}
                 onClick={() => openWith(item.q)}
-                className="px-3 py-2 bg-white border border-zinc-200 rounded-lg text-left hover:border-zinc-400 transition-colors"
+                className="px-3 py-2 bg-card border border-border rounded-lg text-left hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors"
               >
-                <div className="text-[13px] font-medium text-zinc-900">{item.q}</div>
-                <div className="text-[11px] text-zinc-500">{item.hint}</div>
+                <div className="text-[13px] font-medium text-zinc-900 dark:text-zinc-100">{item.q}</div>
+                <div className="text-[11px] text-zinc-500 dark:text-zinc-400">{item.hint}</div>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="border border-zinc-200 rounded-xl p-5 bg-white">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+        <div className="border border-border rounded-xl p-5 bg-card">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             Was passiert hier
           </div>
-          <p className="text-[13px] text-zinc-600 leading-relaxed mb-3">
+          <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mb-3">
             Volltextsuche über drei Berliner Datenquellen gleichzeitig: Abgeordneten-Namen,
             Reden-Zusammenfassungen und Drucksachen-Titel. Nach Typ filterbar; Treffer mit dem
             Original-Begriff zuerst.
           </p>
-          <p className="text-[13px] text-zinc-600 leading-relaxed">
-            <span className="font-medium text-zinc-700">Exakt zuerst, Synonyme optional:</span>{" "}
+          <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <span className="font-medium text-zinc-700 dark:text-zinc-300">Exakt zuerst, Synonyme optional:</span>{" "}
             standardmäßig wird genau der eingegebene Begriff gesucht. Auf Wunsch lassen sich
             Themen-Cluster (Migration, Klima &amp; Energie, Wohnen, …) als verwandte Begriffe
             einbeziehen — sichtbar über den „Verwandte Themen einbeziehen"-Schalter.

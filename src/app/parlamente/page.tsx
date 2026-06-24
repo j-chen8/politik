@@ -14,24 +14,24 @@ import Link from "next/link";
 const TIER: Record<ParliamentOverview["tier"], { label: string; cls: string; legende: string }> = {
   voll: {
     label: "Voll-Analyse",
-    cls: "text-emerald-700 bg-emerald-50 border-emerald-200",
+    cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/50",
     legende: "Reden-, Drucksachen- & Abstimmungs-Analyse",
   },
   pilot: {
     label: "Pilot",
-    cls: "text-blue-700 bg-blue-50 border-blue-200",
+    cls: "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-900/50",
     legende: "Stammdaten, Lebensläufe, parlamentarische Arbeit",
   },
   stammdaten: {
     label: "In Vorbereitung",
-    cls: "text-zinc-400 bg-zinc-100 border-zinc-200",
+    cls: "text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800 border-border",
     legende: "nur Stammdaten — noch nicht aufrufbar",
   },
 };
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-3">
+    <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
       {children}
     </h2>
   );
@@ -44,7 +44,7 @@ function ParliamentTile({ p, featured = false }: { p: ParliamentOverview; featur
     <>
       <div className="flex items-start justify-between gap-2">
         <h3
-          className={`font-semibold tracking-[-0.02em] text-zinc-950 ${
+          className={`font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 ${
             featured ? "text-xl" : "text-[15px]"
           }`}
         >
@@ -56,8 +56,8 @@ function ParliamentTile({ p, featured = false }: { p: ParliamentOverview; featur
           {tier.label}
         </span>
       </div>
-      <p className="text-[12.5px] text-zinc-500 mt-1.5">
-        <span className="num font-medium text-zinc-700">
+      <p className="text-[12.5px] text-zinc-500 dark:text-zinc-400 mt-1.5">
+        <span className="num font-medium text-zinc-700 dark:text-zinc-300">
           {p.memberCount.toLocaleString("de-DE")}
         </span>{" "}
         {p.type === "eu" ? "Abgeordnete (DE)" : "Abgeordnete"}
@@ -68,13 +68,13 @@ function ParliamentTile({ p, featured = false }: { p: ParliamentOverview; featur
   return active ? (
     <Link
       href={`/politiker?parlament=${p.id}`}
-      className={`${base} block border-zinc-200/70 bg-white hover:border-zinc-300 hover:shadow-sm transition-all`}
+      className={`${base} block border-border bg-card hover:border-zinc-300 dark:hover:border-zinc-600 hover:shadow-sm transition-all`}
     >
       {body}
     </Link>
   ) : (
     <div
-      className={`${base} border-zinc-200/60 bg-zinc-50/60 cursor-default`}
+      className={`${base} border-border bg-zinc-50/60 dark:bg-zinc-800/60 cursor-default`}
       title="Noch keine Detaildaten — in Vorbereitung"
     >
       {body}
@@ -94,14 +94,14 @@ export default function ParlamenteHub() {
     <div className="page-wash min-h-screen">
       {/* Hero */}
       <section className="w-full max-w-3xl mx-auto px-5 pt-24 pb-24 fade-in-up">
-        <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] leading-[0.97] text-zinc-950 mb-5">
+        <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] leading-[0.97] text-zinc-950 dark:text-zinc-50 mb-5">
           Wer vertritt Sie —
           <br />
           <span className="bg-gradient-to-br from-zinc-900 via-zinc-700 to-zinc-400 bg-clip-text text-transparent">
             auf jeder Ebene?
           </span>
         </h1>
-        <p className="text-center text-[16px] text-zinc-500 max-w-lg mx-auto mb-8 leading-relaxed">
+        <p className="text-center text-[16px] text-zinc-500 dark:text-zinc-400 max-w-lg mx-auto mb-8 leading-relaxed">
           Bundestag, 16 Landesparlamente und das Europaparlament — eine Plattform.
         </p>
         <div className="max-w-xl mx-auto">
@@ -126,7 +126,7 @@ export default function ParlamenteHub() {
               <ParliamentTile key={p.id} p={p} />
             ))}
           </div>
-          <p className="text-[11px] text-zinc-400 mt-3">
+          <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-3">
             MVP-Kachel-Grid — Platzhalter für die geplante interaktive Deutschland-Karte.
           </p>
         </section>
@@ -142,8 +142,8 @@ export default function ParlamenteHub() {
         </section>
 
         {/* Legende */}
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-zinc-500 border-t border-zinc-200/70 pt-5">
-          <span className="font-medium uppercase tracking-wider text-zinc-400">Abdeckung</span>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-zinc-500 dark:text-zinc-400 border-t border-border pt-5">
+          <span className="font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Abdeckung</span>
           {(["voll", "pilot", "stammdaten"] as const).map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <span
@@ -151,7 +151,7 @@ export default function ParlamenteHub() {
               >
                 {TIER[t].label}
               </span>
-              <span className="text-zinc-500">{TIER[t].legende}</span>
+              <span className="text-zinc-500 dark:text-zinc-400">{TIER[t].legende}</span>
             </span>
           ))}
         </div>

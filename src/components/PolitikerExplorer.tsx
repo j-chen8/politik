@@ -94,8 +94,8 @@ export function PolitikerExplorer({
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-1">
             Politiker
           </h1>
-          <p className="text-[13px] text-zinc-500">
-            <span className="num font-medium text-zinc-950">{filtered.length}</span>
+          <p className="text-[13px] text-zinc-500 dark:text-zinc-400">
+            <span className="num font-medium text-zinc-950 dark:text-zinc-50">{filtered.length}</span>
             {filtered.length !== total && (
               <>
                 {" "}von <span className="num">{total}</span>
@@ -103,8 +103,8 @@ export function PolitikerExplorer({
             )}{" "}
             Politiker:innen
           </p>
-          <p className="mt-1.5 text-[11.5px] text-zinc-400">
-            Datenstand: 21. Wahlperiode (ab 31.03.2025) — Aktivitäten, Reden, Lebensläufe und Mediathek-Auftritte aggregieren ausschließlich diese Periode. Mehr in der <a href="/methodik" className="underline decoration-zinc-300 hover:decoration-zinc-700 hover:text-zinc-600 transition-colors">Methodik</a>.
+          <p className="mt-1.5 text-[11.5px] text-zinc-400 dark:text-zinc-500">
+            Datenstand: 21. Wahlperiode (ab 31.03.2025) — Aktivitäten, Reden, Lebensläufe und Mediathek-Auftritte aggregieren ausschließlich diese Periode. Mehr in der <a href="/methodik" className="underline decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-700 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">Methodik</a>.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export function PolitikerExplorer({
         <div className="sticky top-14 z-20 -mx-5 px-5 py-3 bg-background/80 backdrop-blur-xl border-b border-border-soft">
           <div className="relative">
             <Search
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 dark:text-zinc-500"
               strokeWidth={2.25}
             />
             <input
@@ -120,7 +120,7 @@ export function PolitikerExplorer({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Politiker:in suchen …"
-              className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-zinc-200 bg-white text-[14px] text-foreground placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-400 transition-all"
+              className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-border bg-card text-[14px] text-foreground placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-400 dark:focus:border-zinc-500 transition-all"
             />
           </div>
         </div>
@@ -154,7 +154,7 @@ export function PolitikerExplorer({
               <Link
                 key={p.id}
                 href={`/politiker/${p.id}`}
-                className="group flex flex-col items-center text-center p-3 lg:p-4 rounded-xl border border-zinc-200/70 bg-white hover:border-zinc-300 hover:shadow-sm transition-all"
+                className="group flex flex-col items-center text-center p-3 lg:p-4 rounded-xl border border-border bg-card hover:border-zinc-300 dark:hover:border-zinc-600 hover:shadow-sm transition-all"
               >
                 <PoliticianAvatar
                   photoUrl={p.photoUrl}
@@ -165,12 +165,12 @@ export function PolitikerExplorer({
                   fallback="muted"
                 />
                 <div className="mt-2.5 lg:mt-3 min-h-[30px] lg:min-h-[36px] flex items-center">
-                  <span className="text-[12px] lg:text-[13.5px] font-medium text-zinc-950 leading-snug line-clamp-2 group-hover:underline">
+                  <span className="text-[12px] lg:text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50 leading-snug line-clamp-2 group-hover:underline">
                     {p.title ? `${p.title} ` : ""}
                     {p.firstName} {p.lastName}
                   </span>
                 </div>
-                <div className="mt-1 flex items-center gap-1.5 text-[10px] lg:text-[11px] text-zinc-500">
+                <div className="mt-1 flex items-center gap-1.5 text-[10px] lg:text-[11px] text-zinc-500 dark:text-zinc-400">
                   <span
                     className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full shrink-0"
                     style={{ backgroundColor: partyColor(p.party) }}
@@ -184,7 +184,7 @@ export function PolitikerExplorer({
             )}
           </div>
         ) : (
-          <div className="mt-6 py-16 text-center text-[13px] text-zinc-400">
+          <div className="mt-6 py-16 text-center text-[13px] text-zinc-400 dark:text-zinc-500">
             Keine Politiker:innen gefunden.
           </div>
         )}
@@ -212,8 +212,8 @@ function FilterChip({
       onClick={onClick}
       className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-medium transition-colors cursor-pointer ${
         active
-          ? "border-zinc-900 bg-zinc-900 text-white"
-          : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:text-zinc-900"
+          ? "border-zinc-900 dark:border-zinc-100 bg-zinc-900 text-white"
+          : "border-border bg-card text-zinc-600 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
       }`}
     >
       {color && (
@@ -223,7 +223,7 @@ function FilterChip({
         />
       )}
       <span>{label}</span>
-      <span className={`num ${active ? "text-zinc-300" : "text-zinc-400"}`}>
+      <span className={`num ${active ? "text-zinc-300 dark:text-zinc-600" : "text-zinc-400 dark:text-zinc-500"}`}>
         {count}
       </span>
     </button>

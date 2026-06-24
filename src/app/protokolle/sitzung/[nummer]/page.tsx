@@ -5,6 +5,7 @@ import {
   type SitzungHandzeichenVote,
 } from "@/lib/db";
 import { TonalityBadge } from "@/components/TonalityBadge";
+import { splitTopTitle } from "@/lib/top-title";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { HashOpener } from "./HashOpener";
@@ -118,8 +119,8 @@ function SitzungNav({
   size?: "sm" | "lg";
 }) {
   const cls = size === "lg" ? "text-[13px] px-4 py-2.5" : "text-[12px] px-2.5 py-1.5";
-  const disabledCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-zinc-100 text-zinc-300 cursor-not-allowed`;
-  const linkCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:text-zinc-950 transition-colors`;
+  const disabledCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-border text-zinc-300 dark:text-zinc-600 cursor-not-allowed`;
+  const linkCls = `inline-flex items-center gap-1.5 ${cls} rounded-lg border border-border text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors`;
   return (
     <div className="flex items-center gap-1.5">
       {neighbors.prev ? (
@@ -128,7 +129,7 @@ function SitzungNav({
           <span>
             <span className="num">Sitzung {neighbors.prev.sitzung}</span>
             {neighbors.prev.datum && (
-              <span className="text-zinc-400 ml-1.5 num">{shortDate(neighbors.prev.datum)}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 ml-1.5 num">{shortDate(neighbors.prev.datum)}</span>
             )}
           </span>
         </Link>
@@ -143,7 +144,7 @@ function SitzungNav({
           <span>
             <span className="num">Sitzung {neighbors.next.sitzung}</span>
             {neighbors.next.datum && (
-              <span className="text-zinc-400 ml-1.5 num">{shortDate(neighbors.next.datum)}</span>
+              <span className="text-zinc-400 dark:text-zinc-500 ml-1.5 num">{shortDate(neighbors.next.datum)}</span>
             )}
           </span>
           <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.25} />
@@ -173,21 +174,21 @@ function TopsTOC({ tops }: { tops: SitzungStoryTop[] }) {
         if (!items || items.length === 0) return null;
         return (
           <div key={cat}>
-            <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 mb-1">
+            <div className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1">
               {CATEGORY_META[cat].label}
-              <span className="text-zinc-300 num ml-1.5">({items.length})</span>
+              <span className="text-zinc-300 dark:text-zinc-600 num ml-1.5">({items.length})</span>
             </div>
-            <ul className="border-l border-zinc-200">
+            <ul className="border-l border-border">
               {items.map((t) => (
                 <li key={t.topicId}>
                   <a
                     href={`#top-${t.topicId}`}
-                    className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 hover:text-zinc-950 text-zinc-600 py-0.5 leading-snug transition-colors"
+                    className="block pl-3 -ml-px border-l border-transparent hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-zinc-950 dark:hover:text-zinc-50 text-zinc-600 dark:text-zinc-300 py-0.5 leading-snug transition-colors"
                   >
                     <div className="flex items-baseline gap-1.5">
-                      <span className="num text-[10px] text-zinc-400 shrink-0 min-w-[20px]">{t.topicNumber}</span>
+                      <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 shrink-0 min-w-[20px]">{t.topicNumber}</span>
                       <span className="font-medium line-clamp-1" title={t.title}>
-                        {t.title}
+                        {splitTopTitle(t.title, t.drucksachen[0]?.titel).kern}
                       </span>
                     </div>
                   </a>
@@ -211,27 +212,27 @@ function VoteCard({
   const total = vote.yes + vote.no + vote.abstain;
   const pct = (n: number) => (total > 0 ? (n / total) * 100 : 0);
   return (
-    <div className="px-3 py-2.5 rounded-lg border border-zinc-100 bg-white">
+    <div className="px-3 py-2.5 rounded-lg border border-border bg-card">
       <div className="flex items-baseline gap-3">
         <span
           className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 text-center min-w-[5.75rem] ${
-            accepted ? "text-emerald-700 bg-emerald-50" : "text-red-700 bg-red-50"
+            accepted ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40" : "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40"
           }`}
         >
           {accepted ? "Angenommen" : "Abgelehnt"}
         </span>
         <Link
           href={`/abstimmungen/${vote.pollId}`}
-          className="flex-1 min-w-0 text-[13px] text-zinc-950 leading-snug hover:text-[#1a3e72] line-clamp-1 transition-colors"
+          className="flex-1 min-w-0 text-[13px] text-zinc-950 dark:text-zinc-50 leading-snug hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] line-clamp-1 transition-colors"
         >
           {vote.label}
         </Link>
-        <span className="shrink-0 num text-[11px] text-zinc-500">
+        <span className="shrink-0 num text-[11px] text-zinc-500 dark:text-zinc-400">
           {fmt(vote.yes)}:{fmt(vote.no)}
-          {vote.abstain > 0 && <span className="text-zinc-400"> · {fmt(vote.abstain)} Enth.</span>}
+          {vote.abstain > 0 && <span className="text-zinc-400 dark:text-zinc-500"> · {fmt(vote.abstain)} Enth.</span>}
         </span>
       </div>
-      <div className="mt-2 flex h-1.5 rounded-full overflow-hidden bg-zinc-100">
+      <div className="mt-2 flex h-1.5 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
         <span className="bg-emerald-500" style={{ width: `${pct(vote.yes)}%` }} />
         <span className="bg-red-400" style={{ width: `${pct(vote.no)}%` }} />
         <span className="bg-zinc-300" style={{ width: `${pct(vote.abstain)}%` }} />
@@ -242,15 +243,15 @@ function VoteCard({
 
 /* ── Handzeichen-Abstimmung (Fraktionsebene) ────────────────────────────── */
 const HZ_OUTCOME: Record<string, { label: string; cls: string }> = {
-  annahme: { label: "Angenommen", cls: "text-emerald-700 bg-emerald-50" },
-  annahme_geaendert: { label: "Angenommen", cls: "text-emerald-700 bg-emerald-50" },
-  ablehnung: { label: "Abgelehnt", cls: "text-red-700 bg-red-50" },
-  vertagung: { label: "Vertagt", cls: "text-zinc-600 bg-zinc-100" },
-  ueberweisung: { label: "Überwiesen", cls: "text-zinc-600 bg-zinc-100" },
+  annahme: { label: "Angenommen", cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40" },
+  annahme_geaendert: { label: "Angenommen", cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40" },
+  ablehnung: { label: "Abgelehnt", cls: "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40" },
+  vertagung: { label: "Vertagt", cls: "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800" },
+  ueberweisung: { label: "Überwiesen", cls: "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800" },
 };
 
 function HandzeichenCard({ vote, compact = false }: { vote: SitzungHandzeichenVote; compact?: boolean }) {
-  const oc = HZ_OUTCOME[vote.outcome] ?? { label: vote.outcome, cls: "text-zinc-600 bg-zinc-100" };
+  const oc = HZ_OUTCOME[vote.outcome] ?? { label: vote.outcome, cls: "text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800" };
   const primaryNr = vote.drucksacheNrn[0];
   const titel =
     vote.titel ??
@@ -259,7 +260,7 @@ function HandzeichenCard({ vote, compact = false }: { vote: SitzungHandzeichenVo
       : "Abstimmung ohne Drucksache");
   return (
     <div
-      className={`flex items-baseline gap-3 ${compact ? "px-3 py-2" : "px-3 py-2.5"} rounded-lg border border-zinc-100 bg-white`}
+      className={`flex items-baseline gap-3 ${compact ? "px-3 py-2" : "px-3 py-2.5"} rounded-lg border border-border bg-card`}
     >
       <span
         className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 text-center min-w-[5.75rem] ${oc.cls}`}
@@ -270,12 +271,12 @@ function HandzeichenCard({ vote, compact = false }: { vote: SitzungHandzeichenVo
         {primaryNr ? (
           <Link
             href={`/aktivitaeten/${primaryNr.replace("/", "-")}`}
-            className="block text-[13px] text-zinc-950 leading-snug hover:text-[#1a3e72] line-clamp-1 transition-colors"
+            className="block text-[13px] text-zinc-950 dark:text-zinc-50 leading-snug hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] line-clamp-1 transition-colors"
           >
             {titel}
           </Link>
         ) : (
-          <span className="block text-[13px] text-zinc-950 leading-snug line-clamp-1">{titel}</span>
+          <span className="block text-[13px] text-zinc-950 dark:text-zinc-50 leading-snug line-clamp-1">{titel}</span>
         )}
       </div>
       <div className="flex gap-0.5 shrink-0">
@@ -284,12 +285,12 @@ function HandzeichenCard({ vote, compact = false }: { vote: SitzungHandzeichenVo
             key={frak}
             className={`text-[9px] font-bold px-1 py-0.5 rounded ${
               kind === "ja"
-                ? "text-emerald-800 bg-emerald-100"
+                ? "text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40"
                 : kind === "nein"
-                ? "text-red-800 bg-red-100"
+                ? "text-red-800 dark:text-red-400 bg-red-100 dark:bg-red-900/40"
                 : kind === "enthaltung"
-                ? "text-amber-800 bg-amber-100"
-                : "text-zinc-500 bg-zinc-100"
+                ? "text-amber-800 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40"
+                : "text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800"
             }`}
             title={`${frak}: ${kind}`}
           >
@@ -307,23 +308,23 @@ function RedenSynthese({ speeches }: { speeches: SitzungStorySpeech[] }) {
   const zahlen = aggregateBullets(speeches.map((s) => s.konkreteZahlen));
   if (forderungen.length === 0 && zahlen.length === 0) return null;
   return (
-    <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 border border-zinc-100">
+    <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border">
       <div className="flex items-baseline gap-1.5 mb-2">
-        <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500">Aus den Reden</span>
-        <span className="text-[9.5px] text-zinc-400">·</span>
-        <span className="text-[9.5px] text-zinc-400">maschinell zusammengetragen, nach Häufigkeit</span>
+        <span className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Aus den Reden</span>
+        <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">·</span>
+        <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">maschinell zusammengetragen, nach Häufigkeit</span>
       </div>
       <div className="grid sm:grid-cols-2 gap-3">
         {forderungen.length > 0 && (
           <div>
-            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1">Forderungen</p>
+            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Forderungen</p>
             <ul className="space-y-0.5">
               {forderungen.map((b) => (
-                <li key={b.text} className="text-[12px] text-zinc-800 leading-snug flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 shrink-0">•</span>
+                <li key={b.text} className="text-[12px] text-zinc-800 dark:text-zinc-200 leading-snug flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
                   <span className="flex-1">
                     {b.text}
-                    {b.count > 1 && <span className="text-zinc-400 text-[10.5px] num ml-1.5">×{b.count}</span>}
+                    {b.count > 1 && <span className="text-zinc-400 dark:text-zinc-500 text-[10.5px] num ml-1.5">×{b.count}</span>}
                   </span>
                 </li>
               ))}
@@ -332,14 +333,14 @@ function RedenSynthese({ speeches }: { speeches: SitzungStorySpeech[] }) {
         )}
         {zahlen.length > 0 && (
           <div>
-            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-1">Zahlen</p>
+            <p className="text-[9.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Zahlen</p>
             <ul className="space-y-0.5">
               {zahlen.map((b) => (
-                <li key={b.text} className="text-[12px] text-zinc-800 leading-snug flex items-baseline gap-1.5">
-                  <span className="text-zinc-400 shrink-0">•</span>
+                <li key={b.text} className="text-[12px] text-zinc-800 dark:text-zinc-200 leading-snug flex items-baseline gap-1.5">
+                  <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
                   <span className="flex-1">
                     {b.text}
-                    {b.count > 1 && <span className="text-zinc-400 text-[10.5px] num ml-1.5">×{b.count}</span>}
+                    {b.count > 1 && <span className="text-zinc-400 dark:text-zinc-500 text-[10.5px] num ml-1.5">×{b.count}</span>}
                   </span>
                 </li>
               ))}
@@ -357,7 +358,7 @@ function RefAnchors({ refs, topicId }: { refs: number[]; topicId: number }) {
   return (
     <sup className="ml-0.5 num text-[10px]">
       {refs.map((r) => (
-        <a key={r} href={`#rede-${topicId}-${r}`} className="text-[#1a3e72] hover:underline transition-colors">
+        <a key={r} href={`#rede-${topicId}-${r}`} className="text-[#1a3e72] dark:text-[#8fb3e6] hover:underline transition-colors">
           [{r}]
         </a>
       ))}
@@ -375,16 +376,16 @@ function KeyFactsCard({
   redenCount: number;
 }) {
   return (
-    <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 border border-zinc-100">
+    <div className="mt-2 px-3 py-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-border">
       <div className="flex items-baseline gap-1.5 mb-2">
-        <span className="text-[9.5px] font-semibold uppercase tracking-wider text-[#1a3e72]">Das Wichtigste</span>
-        <span className="text-[9.5px] text-zinc-400">·</span>
-        <span className="text-[9.5px] text-zinc-400">KI-Synthese aus {redenCount} Reden</span>
+        <span className="text-[9.5px] font-semibold uppercase tracking-wider text-[#1a3e72] dark:text-[#8fb3e6]">Das Wichtigste</span>
+        <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">·</span>
+        <span className="text-[9.5px] text-zinc-400 dark:text-zinc-500">KI-Synthese aus {redenCount} Reden</span>
       </div>
       <ul className="space-y-1.5">
         {facts.map((f, i) => (
-          <li key={i} className="text-[12.5px] text-zinc-800 leading-relaxed flex items-baseline gap-2">
-            <span className="text-zinc-400 shrink-0 num text-[10px]">{i + 1}</span>
+          <li key={i} className="text-[12.5px] text-zinc-800 dark:text-zinc-200 leading-relaxed flex items-baseline gap-2">
+            <span className="text-zinc-400 dark:text-zinc-500 shrink-0 num text-[10px]">{i + 1}</span>
             <span className="flex-1">
               {f.text}
               <RefAnchors refs={f.refs} topicId={topicId} />
@@ -400,19 +401,19 @@ function KeyFactsCard({
 function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; index: number; topicId: number }) {
   const partyLabel = PARTY_LABEL_SHORT[speech.partyLabel] ?? speech.partyLabel;
   return (
-    <li id={`rede-${topicId}-${index}`} className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 transition-colors">
+    <li id={`rede-${topicId}-${index}`} className="px-5 py-3 scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors">
       {/* stabiler Deep-Link-Anker je Rede (rede_id) — z. B. vom Themen-Blatt aus */}
       {speech.redeId && speech.segmentIndex === 0 && <span id={`rede-${speech.redeId}`} className="block scroll-mt-12" />}
       <div className="flex items-baseline gap-2 flex-wrap mb-1">
-        <span className="num text-[10px] text-zinc-400 shrink-0">{index}</span>
+        <span className="num text-[10px] text-zinc-400 dark:text-zinc-500 shrink-0">{index}</span>
         <Link
           href={`/protokolle/redner/${encodeURIComponent(speech.speaker)}`}
-          className="text-[13.5px] font-medium text-zinc-950 hover:text-[#1a3e72] transition-colors"
+          className="text-[13.5px] font-medium text-zinc-950 dark:text-zinc-50 hover:text-[#1a3e72] dark:hover:text-[#8fb3e6] transition-colors"
         >
           {speech.speaker}
         </Link>
         {speech.partyLabel && (
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700">
+          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-zinc-700 dark:text-zinc-300">
             <span className={`w-1.5 h-1.5 rounded-full ${PARTY_DOT[speech.partyLabel] ?? "bg-zinc-400"}`} />
             {partyLabel}
           </span>
@@ -420,21 +421,21 @@ function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; ind
         <TonalityBadge slug={speech.tonalitaet} />
       </div>
       {speech.antwortAufSpeaker && (
-        <p className="text-[11px] text-zinc-400 mb-1">↳ Antwort auf die Frage von {speech.antwortAufSpeaker}</p>
+        <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mb-1">↳ Antwort auf die Frage von {speech.antwortAufSpeaker}</p>
       )}
       {speech.zusammenfassung ? (
-        <p className="text-[12.5px] text-zinc-600 leading-relaxed">{speech.zusammenfassung}</p>
+        <p className="text-[12.5px] text-zinc-600 dark:text-zinc-300 leading-relaxed">{speech.zusammenfassung}</p>
       ) : (
-        <p className="text-[12px] italic text-zinc-400">(keine Zusammenfassung für diese Rede)</p>
+        <p className="text-[12px] italic text-zinc-400 dark:text-zinc-500">(keine Zusammenfassung für diese Rede)</p>
       )}
       {speech.originalText && speech.originalText.length > 50 && (
         <details className="group/orig mt-1.5">
-          <summary className="list-none cursor-pointer text-[11px] text-zinc-500 hover:text-zinc-900 transition-colors select-none inline-flex items-center gap-1">
-            <span className="text-zinc-400 group-open/orig:rotate-90 transition-transform">▶</span>
+          <summary className="list-none cursor-pointer text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors select-none inline-flex items-center gap-1">
+            <span className="text-zinc-400 dark:text-zinc-500 group-open/orig:rotate-90 transition-transform">▶</span>
             <span className="group-open/orig:hidden">Originalrede einblenden</span>
             <span className="hidden group-open/orig:inline">Originalrede ausblenden</span>
           </summary>
-          <p className="mt-2 text-[12px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-200 pl-3">
+          <p className="mt-2 text-[12px] text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line border-l-2 border-border pl-3">
             {speech.originalText}
           </p>
         </details>
@@ -444,7 +445,7 @@ function SpeechRow({ speech, index, topicId }: { speech: SitzungStorySpeech; ind
           href={`https://www.bundestag.de/mediathek?videoid=${speech.mediathekFvid}`}
           target="_blank"
           rel="noopener"
-          className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+          className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
         >
           <PlayCircle className="w-3.5 h-3.5" strokeWidth={2} />
           Video in der Mediathek
@@ -475,7 +476,7 @@ export default async function BundestagSitzungPage({ params }: Props) {
         <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
           <Link
             href="/protokolle/sitzungen"
-            className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors"
+            className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
             Alle Sitzungen
@@ -485,18 +486,18 @@ export default async function BundestagSitzungPage({ params }: Props) {
 
         {/* Header */}
         <header className="mb-6">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 mb-2 num">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2 num">
             Plenarprotokoll {sit.wahlperiode}/{sit.sitzung}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-zinc-950 dark:text-zinc-50 mb-2">
             {sit.sitzung}. Sitzung des Deutschen Bundestages
           </h1>
-          <p className="text-[14px] text-zinc-600 num">
+          <p className="text-[14px] text-zinc-600 dark:text-zinc-300 num">
             {formatDate(sit.datum)}
             {" · "}
-            <span className="font-medium text-zinc-950">{fmt(sit.stats.speechCount)}</span> Redebeiträge
+            <span className="font-medium text-zinc-950 dark:text-zinc-50">{fmt(sit.stats.speechCount)}</span> Redebeiträge
             {" · "}
-            <span className="font-medium text-zinc-950">{fmt(totalVotes)}</span> Abstimmungen
+            <span className="font-medium text-zinc-950 dark:text-zinc-50">{fmt(totalVotes)}</span> Abstimmungen
             {sit.sourceUrl && (
               <>
                 {" · "}
@@ -504,7 +505,7 @@ export default async function BundestagSitzungPage({ params }: Props) {
                   href={sit.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-700 hover:text-zinc-950 inline-flex items-center gap-1 transition-colors"
+                  className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 inline-flex items-center gap-1 transition-colors"
                 >
                   Protokoll
                   <ExternalLink className="w-3 h-3" strokeWidth={2.25} />
@@ -514,12 +515,12 @@ export default async function BundestagSitzungPage({ params }: Props) {
           </p>
           {sit.drucksachen.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1 items-center">
-              <span className="text-[10px] uppercase tracking-wider text-zinc-500 mr-1">Drucksachen:</span>
+              <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mr-1">Drucksachen:</span>
               {sit.drucksachen.map((d) => (
                 <Link
                   key={d.drucksacheNr}
                   href={`/aktivitaeten/${d.drucksacheNr.replace("/", "-")}`}
-                  className="inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded num text-[#1a3e72] bg-blue-50 hover:bg-blue-100 transition-colors"
+                  className="inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded num text-[#1a3e72] dark:text-[#8fb3e6] bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
                   title={d.thema ?? `Drucksache ${d.drucksacheNr}`}
                 >
                   {d.drucksacheNr}
@@ -530,8 +531,8 @@ export default async function BundestagSitzungPage({ params }: Props) {
         </header>
 
         {/* Mobile: Inhaltsverzeichnis */}
-        <details className="lg:hidden mb-6 rounded-xl border border-zinc-200/70 bg-white">
-          <summary className="list-none cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700 select-none">
+        <details className="lg:hidden mb-6 rounded-xl border border-border bg-card">
+          <summary className="list-none cursor-pointer px-4 py-3 flex items-center gap-2 text-[12px] font-medium text-zinc-700 dark:text-zinc-300 select-none">
             <ListTree className="w-3.5 h-3.5" strokeWidth={2.25} />
             Inhaltsverzeichnis ({sit.tops.length} Themen)
           </summary>
@@ -545,31 +546,31 @@ export default async function BundestagSitzungPage({ params }: Props) {
             {/* Abstimmungs-Überblick — namentliche + Handzeichen, Petitionen gebündelt */}
             {totalVotes > 0 && (
               <section className="mb-8">
-                <h2 className="text-lg font-semibold tracking-[-0.01em] text-zinc-950 mb-3">
+                <h2 className="text-lg font-semibold tracking-[-0.01em] text-zinc-950 dark:text-zinc-50 mb-3">
                   Abstimmungen
-                  <span className="text-zinc-400 num text-base font-normal ml-2">({totalVotes})</span>
+                  <span className="text-zinc-400 dark:text-zinc-500 num text-base font-normal ml-2">({totalVotes})</span>
                 </h2>
                 <ul className="space-y-1.5">
                   {sit.votes.map((v) => (
-                    <li key={`n-${v.pollId}`} id={`vote-n-${v.pollId}`} className="scroll-mt-12 target:bg-amber-50/60 transition-colors rounded-lg">
+                    <li key={`n-${v.pollId}`} id={`vote-n-${v.pollId}`} className="scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors rounded-lg">
                       <VoteCard vote={v} />
                     </li>
                   ))}
                   {hzProminent.map((v) => (
-                    <li key={`h-${v.voteId}`} id={`vote-h-${v.voteId}`} className="scroll-mt-12 target:bg-amber-50/60 transition-colors rounded-lg">
+                    <li key={`h-${v.voteId}`} id={`vote-h-${v.voteId}`} className="scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors rounded-lg">
                       <HandzeichenCard vote={v} />
                     </li>
                   ))}
                 </ul>
                 {hzPetitions.length > 0 && (
                   <details className="group/pet mt-1.5">
-                    <summary className="list-none cursor-pointer px-3 py-2 rounded-lg border border-zinc-100 bg-zinc-50/60 text-[12px] text-zinc-600 hover:text-zinc-950 transition-colors select-none flex items-center gap-1.5">
-                      <span className="text-zinc-400 group-open/pet:rotate-90 transition-transform">▶</span>
+                    <summary className="list-none cursor-pointer px-3 py-2 rounded-lg border border-border bg-zinc-50/60 dark:bg-zinc-800/60 text-[12px] text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors select-none flex items-center gap-1.5">
+                      <span className="text-zinc-400 dark:text-zinc-500 group-open/pet:rotate-90 transition-transform">▶</span>
                       <span className="num">{hzPetitions.length}</span> Petitions-Abstimmungen (Sammelübersichten)
                     </summary>
                     <ul className="space-y-1 mt-1.5">
                       {hzPetitions.map((v) => (
-                        <li key={`p-${v.voteId}`} id={`vote-h-${v.voteId}`} className="scroll-mt-12 target:bg-amber-50/60 transition-colors rounded-lg">
+                        <li key={`p-${v.voteId}`} id={`vote-h-${v.voteId}`} className="scroll-mt-12 target:bg-amber-50/60 dark:target:bg-amber-950/40 transition-colors rounded-lg">
                           <HandzeichenCard vote={v} compact />
                         </li>
                       ))}
@@ -586,12 +587,26 @@ export default async function BundestagSitzungPage({ params }: Props) {
               const reden = t.speeches.filter((s) => s.zusammenfassung);
               return (
                 <section key={t.topicId} id={`top-${t.topicId}`} className="mb-8 scroll-mt-6">
-                  <div className="border border-zinc-200/70 rounded-2xl bg-white overflow-hidden">
-                    <div className="px-5 py-4 border-b border-zinc-100">
+                  <div className="border border-border rounded-2xl bg-card overflow-hidden">
+                    <div className="px-5 py-4 border-b border-border">
                       <div className="flex items-baseline gap-3 flex-wrap mb-2">
-                        <span className="num text-[11px] font-semibold text-zinc-500">TOP {t.topicNumber}</span>
-                        <h2 className="text-[16px] font-semibold text-zinc-950 leading-snug flex-1">{t.title}</h2>
-                        <span className="text-[11px] text-zinc-400 num shrink-0">{reden.length} Reden</span>
+                        <span className="num text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">TOP {t.topicNumber}</span>
+                        {(() => {
+                          const sp = splitTopTitle(t.title, t.drucksachen[0]?.titel);
+                          return (
+                            <>
+                              {sp.stufe && (
+                                <span className="text-[10.5px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 shrink-0">
+                                  {sp.stufe}
+                                </span>
+                              )}
+                              <h2 className="text-[16px] font-semibold text-zinc-950 dark:text-zinc-50 leading-snug flex-1" title={t.title}>
+                                {sp.kern}
+                              </h2>
+                            </>
+                          );
+                        })()}
+                        <span className="text-[11px] text-zinc-400 dark:text-zinc-500 num shrink-0">{reden.length} Reden</span>
                       </div>
                       {t.voteRefs.length > 0 && (
                         <div className="flex items-center gap-1.5 flex-wrap mb-2">
@@ -602,10 +617,10 @@ export default async function BundestagSitzungPage({ params }: Props) {
                               title="Zur Abstimmung springen"
                               className={`inline-flex items-center gap-1 text-[10.5px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded border transition-colors ${
                                 vr.accepted === true
-                                  ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200"
+                                  ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 border-emerald-200 dark:border-emerald-900/50"
                                   : vr.accepted === false
-                                  ? "text-red-700 bg-red-50 hover:bg-red-100 border-red-200"
-                                  : "text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border-zinc-200"
+                                  ? "text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/40 border-red-200 dark:border-red-900/50"
+                                  : "text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 border-border"
                               }`}
                             >
                               <span aria-hidden>↑</span> Abstimmung: {vr.label}
@@ -620,7 +635,7 @@ export default async function BundestagSitzungPage({ params }: Props) {
                               key={d.nr}
                               href={`/aktivitaeten/${d.nr.replace("/", "-")}`}
                               title={d.titel ?? `Drucksache ${d.nr}`}
-                              className="inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded num text-[#1a3e72] bg-blue-50 hover:bg-blue-100 transition-colors"
+                              className="inline-flex items-center text-[10px] font-medium px-1.5 py-0.5 rounded num text-[#1a3e72] dark:text-[#8fb3e6] bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
                             >
                               {d.nr}
                             </Link>
@@ -635,12 +650,12 @@ export default async function BundestagSitzungPage({ params }: Props) {
                     </div>
                     {reden.length > 0 && (
                       <details className="group/reden">
-                        <summary className="list-none cursor-pointer px-5 py-2.5 text-[11.5px] text-zinc-500 hover:text-zinc-950 border-t border-zinc-100 transition-colors select-none flex items-center gap-1.5">
-                          <span className="text-zinc-400 group-open/reden:rotate-90 transition-transform">▶</span>
+                        <summary className="list-none cursor-pointer px-5 py-2.5 text-[11.5px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 border-t border-border transition-colors select-none flex items-center gap-1.5">
+                          <span className="text-zinc-400 dark:text-zinc-500 group-open/reden:rotate-90 transition-transform">▶</span>
                           <span className="group-open/reden:hidden">Reden einblenden ({reden.length})</span>
                           <span className="hidden group-open/reden:inline">Reden ausblenden</span>
                         </summary>
-                        <ul className="divide-y divide-zinc-100 border-t border-zinc-100">
+                        <ul className="divide-y divide-border border-t border-border">
                           {reden.map((sp, idx) => (
                             <SpeechRow key={`${sp.speechId}-${sp.segmentIndex}`} speech={sp} index={idx + 1} topicId={t.topicId} />
                           ))}
@@ -653,8 +668,8 @@ export default async function BundestagSitzungPage({ params }: Props) {
             })}
 
             {/* Footer-Navigation */}
-            <div className="mt-8 pt-6 border-t border-zinc-100 flex items-center justify-between gap-3 flex-wrap">
-              <span className="text-[11px] uppercase tracking-wider text-zinc-500">Weiter zu</span>
+            <div className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Weiter zu</span>
               <SitzungNav neighbors={sit.neighbors} size="lg" />
             </div>
           </main>
@@ -662,7 +677,7 @@ export default async function BundestagSitzungPage({ params }: Props) {
           {/* Desktop: Sticky-Sidebar Inhaltsverzeichnis */}
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-20 pb-6">
-              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 mb-3 flex items-center gap-1.5">
+              <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3 flex items-center gap-1.5">
                 <ListTree className="w-3 h-3" strokeWidth={2.25} />
                 Auf dieser Seite
               </div>

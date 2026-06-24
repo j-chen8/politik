@@ -100,10 +100,10 @@ export function MediaAppearanceCard({ appearance: a, politician }: Props) {
   return (
     <Link
       href={detailHref}
-      className="group bg-white border border-zinc-200/70 rounded-2xl p-4 hover:border-zinc-300 hover:shadow-sm transition-all flex flex-col dark:bg-zinc-900/70 dark:border-zinc-800 dark:hover:border-zinc-700"
+      className="group bg-card border border-border rounded-2xl p-4 hover:border-zinc-300 hover:shadow-sm transition-all flex flex-col dark:bg-zinc-900/70 dark:border-zinc-800 dark:hover:border-zinc-700"
     >
       <div className="flex items-baseline gap-2 mb-2 flex-wrap">
-        <Icon className="w-3.5 h-3.5 text-zinc-500 shrink-0" strokeWidth={2.25} />
+        <Icon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" strokeWidth={2.25} />
         <span className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300">{a.publisher}</span>
         <span className="text-[11px] text-zinc-400 dark:text-zinc-500">· {formatMediaDate(a.published_at)}</span>
       </div>

@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "stand": "2026-06-02",
+  "quelle": "berlin_drucksachen_analyses.thema_json — 47 kontrollierte Roh-Tags über 19409 analysierte Drucksachen (Vokabular: docs/summarization-methodology-berlin-drucksachen.md)",
+  "hinweis": "Single Source of Truth fuer die Themenfeld-Zuordnung. Jeder der 47 Roh-Tags ist GENAU einem Eintrag zugeordnet (Politikfeld A / Querschnitt B / sonstiges) — validiert lueckenlos & doppelungsfrei. Eine Drucksache ist multi-label und kann in mehreren Feldern liegen. 'ds' = Anzahl Drucksachen mit >=1 Tag des Feldes (entdoppelt, Nenner 19409). 'gewicht' = Summe der Tag-Nennungen (zaehlt Mehrfach-Tags je DS mit, nur indikativ).",
+  "nenner_ds": 19409,
+  "politikfelder": [
+    { "key": "wohnen-bau",            "label": "Stadtentwicklung, Bauen & Wohnen", "ds": 5641, "ds_anteil": 29.1, "gewicht": 8536, "tags": ["Wohnen", "Stadtentwicklung", "Liegenschaften", "Bauplanung", "Wohnungslosigkeit", "Denkmalschutz"] },
+    { "key": "verwaltung-digitales",  "label": "Verwaltung & Digitales",           "ds": 4507, "ds_anteil": 23.2, "gewicht": 5167, "tags": ["Verwaltung", "Digitalisierung", "Datenschutz", "Bürokratie"] },
+    { "key": "mobilitaet",            "label": "Mobilität & Verkehr",              "ds": 3871, "ds_anteil": 19.9, "gewicht": 6693, "tags": ["Mobilität", "ÖPNV", "Verkehrssicherheit", "Radverkehr"] },
+    { "key": "soziales-arbeit",       "label": "Soziales, Arbeit & Familie",       "ds": 3666, "ds_anteil": 18.9, "gewicht": 4228, "tags": ["Soziale Infrastruktur", "Arbeitsmarkt", "Inklusion", "Familie"] },
+    { "key": "bildung-wissenschaft",  "label": "Bildung & Wissenschaft",           "ds": 3531, "ds_anteil": 18.2, "gewicht": 3768, "tags": ["Bildung", "Hochschulen"] },
+    { "key": "sicherheit-justiz",     "label": "Innere Sicherheit & Justiz",       "ds": 2628, "ds_anteil": 13.5, "gewicht": 3459, "tags": ["Polizei", "Justiz", "Gewaltprävention", "Extremismus"] },
+    { "key": "finanzen-haushalt",     "label": "Finanzen & Haushalt",              "ds": 2581, "ds_anteil": 13.3, "gewicht": 2990, "tags": ["Finanzen", "Haushalt", "Steuern"] },
+    { "key": "umwelt-klima",          "label": "Umwelt, Klima & Energie",          "ds": 2270, "ds_anteil": 11.7, "gewicht": 2775, "tags": ["Klimaschutz", "Energie", "Tierschutz"] },
+    { "key": "gesundheit-pflege",     "label": "Gesundheit & Pflege",              "ds": 1499, "ds_anteil": 7.7,  "gewicht": 1655, "tags": ["Gesundheit", "Pflege"] },
+    { "key": "migration-integration", "label": "Migration & Integration",          "ds": 1346, "ds_anteil": 6.9,  "gewicht": 1885, "tags": ["Geflüchtete", "Integration", "Migration"] },
+    { "key": "kultur-sport",          "label": "Kultur & Sport",                   "ds": 1009, "ds_anteil": 5.2,  "gewicht": 1023, "tags": ["Kultur", "Sport"] },
+    { "key": "wirtschaft",            "label": "Wirtschaft & Tourismus",           "ds": 878,  "ds_anteil": 4.5,  "gewicht": 912,  "tags": ["Wirtschaft", "Tourismus"] }
+  ],
+  "querschnitt": [
+    { "key": "bezirksbezug",                       "label": "Bezirksbezug",                          "ds": 3313, "ds_anteil": 17.1, "tags": ["Bezirke"] },
+    { "key": "transparenz",                        "label": "Transparenz & Open Data",               "ds": 1583, "ds_anteil": 8.2,  "tags": ["Transparenz"] },
+    { "key": "demokratie-teilhabe",                "label": "Demokratie & Teilhabe",                 "ds": 1255, "ds_anteil": 6.5,  "tags": ["Demokratie", "Partizipation", "Wahlrecht"] },
+    { "key": "gleichstellung-antidiskriminierung", "label": "Gleichstellung & Antidiskriminierung",  "ds": 1113, "ds_anteil": 5.7,  "tags": ["Antidiskriminierung", "Geschlechtergerechtigkeit"] }
+  ],
+  "sonstiges": { "key": "sonstiges", "label": "Sonstiges (nicht zugeordnet)", "ds": 267, "ds_anteil": 1.4, "tags": ["Sonstiges"] }
+}

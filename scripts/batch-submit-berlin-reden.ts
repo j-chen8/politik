@@ -172,7 +172,7 @@ function ensureSchema(db: Database.Database) {
   `);
 }
 
-function selectSpeechesStratified(db: Database.Database, batchStage: number): Speech[] {
+function selectSpeechesStratified(db: Database.Database, batchStage: number, rest = false): Speech[] {
   // Bereits analysiert? Skip
   const alreadyDone = new Set(
     (db.prepare(`SELECT speech_id FROM berlin_speech_analyses`).all() as { speech_id: string }[])
@@ -192,6 +192,14 @@ function selectSpeechesStratified(db: Database.Database, batchStage: number): Sp
   const eligible = allEligible.filter((s) => !alreadyDone.has(s.speech_id));
   console.log(`  ${allEligible.length} Reden gesamt eligible (≥${MIN_CHAR_LEN} Z., kein Präsidium)`);
   console.log(`  ${alreadyDone.size} bereits analysiert, ${eligible.length} verbleibend`);
+
+  // Inkrementeller Refresh: ALLE noch nicht analysierten Reden submitten, unabhängig
+  // von den kumulativen Initial-Rollout-Targets (die längst überschritten sind →
+  // jeder --batch=N liefert sonst 0). Der reguläre Weg für laufenden Nachschub.
+  if (rest) {
+    console.log(`  --rest: alle ${eligible.length} noch nicht analysierten Reden (inkrementeller Refresh)`);
+    return eligible;
+  }
 
   const targetSize = BATCH_SIZES[batchStage];
   const numToAdd = Math.max(0, targetSize - alreadyDone.size);
@@ -254,26 +262,28 @@ function mulberry32(seed: number): () => number {
 
 async function main() {
   const args = process.argv.slice(2);
+  const rest = args.includes("--rest");
   const batchArg = args.find((a) => a.startsWith("--batch="));
-  if (!batchArg) {
-    console.error("Usage: --batch=1|2|3|4 [--confirm]");
+  if (!batchArg && !rest) {
+    console.error("Usage: --batch=1|2|3|4 [--confirm]  |  --rest [--confirm]  (alle noch nicht analysierten Reden)");
     process.exit(1);
   }
-  const batchStage = parseInt(batchArg.split("=")[1], 10);
-  if (!(batchStage in BATCH_SIZES)) {
+  const batchStage = batchArg ? parseInt(batchArg.split("=")[1], 10) : 4; // --rest: nur für rng/Naming
+  if (!rest && !(batchStage in BATCH_SIZES)) {
     console.error(`Batch-Stage muss 1, 2, 3, oder 4 sein (war: ${batchStage})`);
     process.exit(1);
   }
   const doSubmit = args.includes("--confirm");
+  const stageLabel = rest ? "rest" : String(batchStage);
 
-  console.log(`=== Berlin-Reden Batch-Submit (Stage ${batchStage}, Ziel kumuliert: ${BATCH_SIZES[batchStage]}) ===\n`);
+  console.log(`=== Berlin-Reden Batch-Submit (${rest ? "REST = alle verbleibenden" : `Stage ${batchStage}, Ziel kumuliert: ${BATCH_SIZES[batchStage]}`}) ===\n`);
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY fehlt in .env");
   if (!fs.existsSync(METHOD_PATH)) throw new Error(`Methodology missing: ${METHOD_PATH}`);
 
   fs.mkdirSync(STATE_DIR, { recursive: true });
-  const stateFile = path.join(STATE_DIR, `batch-${batchStage}.json`);
+  const stateFile = path.join(STATE_DIR, `batch-${stageLabel}.json`);
   if (fs.existsSync(stateFile)) {
     const existing = JSON.parse(fs.readFileSync(stateFile, "utf-8"));
     console.log(`⚠ Bestehender Batch-Submit für Stage ${batchStage}: ${existing.batch_id} (${existing.submitted_at})`);
@@ -306,7 +316,7 @@ WICHTIG:
   db.pragma("busy_timeout = 30000");
   ensureSchema(db);
 
-  const speeches = selectSpeechesStratified(db, batchStage);
+  const speeches = selectSpeechesStratified(db, batchStage, rest);
   db.close();
 
   if (speeches.length === 0) return;

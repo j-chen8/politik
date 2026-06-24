@@ -13,9 +13,9 @@ import type { ParliamentOverview } from "@/lib/db";
  */
 
 const TIER_BADGE: Record<ParliamentOverview["tier"], { label: string; cls: string }> = {
-  voll: { label: "Voll", cls: "text-emerald-700 bg-emerald-50" },
-  pilot: { label: "Pilot", cls: "text-blue-700 bg-blue-50" },
-  stammdaten: { label: "bald", cls: "text-zinc-400 bg-zinc-100" },
+  voll: { label: "Voll", cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40" },
+  pilot: { label: "Pilot", cls: "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40" },
+  stammdaten: { label: "bald", cls: "text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800" },
 };
 
 /** Parlamente, die als „Neu" hervorgehoben werden (rot). Berlin = id 2. Bei Bedarf hier ergänzen/leeren. */
@@ -42,7 +42,7 @@ function Group({
   if (items.length === 0) return null;
   return (
     <div className="mt-1">
-      <div className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+      <div className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
         {label}
       </div>
       {items.map((p) => {
@@ -53,9 +53,9 @@ function Group({
           <div className="flex items-center justify-between gap-2">
             <span className="flex items-center gap-1.5">
               <span className="w-3.5 flex justify-center shrink-0">
-                {isCurrent && <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.5} />}
+                {isCurrent && <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} />}
               </span>
-              <span className={clickable ? (isCurrent ? "text-zinc-950 font-semibold" : "text-zinc-800") : "text-zinc-400"}>
+              <span className={clickable ? (isCurrent ? "text-zinc-950 dark:text-zinc-50 font-semibold" : "text-zinc-800 dark:text-zinc-200") : "text-zinc-400 dark:text-zinc-500"}>
                 {p.label}
               </span>
             </span>
@@ -79,7 +79,7 @@ function Group({
             href={overviewHref(p)}
             role="menuitem"
             onClick={onPick}
-            className={`block px-3 py-1.5 text-[13px] transition-colors ${isCurrent ? "bg-zinc-50" : "hover:bg-zinc-50"}`}
+            className={`block px-3 py-1.5 text-[13px] transition-colors ${isCurrent ? "bg-zinc-50 dark:bg-zinc-800" : "hover:bg-zinc-50 dark:hover:bg-zinc-800"}`}
           >
             {row}
           </Link>
@@ -160,7 +160,7 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
       {open && (
         <div
           role="menu"
-          className="absolute left-0 top-full mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl border border-zinc-200 bg-white shadow-lg py-2 z-50"
+          className="absolute left-0 top-full mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl border border-border bg-card shadow-lg py-2 z-50"
         >
           <Group label="Bund" items={bund} activeId={currentId} onPick={() => setOpen(false)} />
           <Group label="Landesparlamente" items={laender} activeId={currentId} onPick={() => setOpen(false)} />

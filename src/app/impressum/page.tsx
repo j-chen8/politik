@@ -10,10 +10,10 @@ export default function ImpressumPage() {
       <div className="max-w-2xl mx-auto px-5 pt-24 pb-24 fade-in-up">
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-10">Impressum</h1>
 
-        <div className="space-y-10 text-[15px] leading-relaxed text-zinc-700">
+        <div className="space-y-10 text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Angaben gemäß § 5 DDG
             </h2>
             <address className="not-italic">
@@ -27,7 +27,7 @@ export default function ImpressumPage() {
               E-Mail:{" "}
               <a
                 href="mailto:hallo@jinsheng-chen.de"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 hallo@jinsheng-chen.de
               </a>
@@ -35,7 +35,7 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
             <p>
@@ -47,16 +47,16 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Über dieses Angebot
             </h2>
             <p>
               Diese Plattform ist ein nicht-kommerzielles, eigenfinanziertes Transparenz-Projekt
-              und <strong className="text-zinc-950">keine offizielle Regierungs- oder Bundestagsseite</strong>.
+              und <strong className="text-zinc-950 dark:text-zinc-50">keine offizielle Regierungs- oder Bundestagsseite</strong>.
               Die Daten werden aus öffentlichen Quellen aggregiert (siehe{" "}
               <Link
                 href="/datenquellen"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 Datenquellen
               </Link>
@@ -64,7 +64,7 @@ export default function ImpressumPage() {
               bereitgestellt. Wer dahintersteht und warum diese Seite gebaut wurde, ist auf der{" "}
               <Link
                 href="/ueber"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 Über-Seite
               </Link>
@@ -73,19 +73,19 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Korrektur- und Löschungsanfragen
             </h2>
             <p className="mb-3">
               Wenn dir ein Fehler auffällt oder du als dargestellte Person eine
               Korrektur, Präzisierung oder Löschung anfragen willst, melde dich bitte
               per E-Mail. Jeder Hinweis wird ernst genommen und in der Regel innerhalb
-              von <strong className="text-zinc-950">14 Tagen</strong> bearbeitet.
+              von <strong className="text-zinc-950 dark:text-zinc-50">14 Tagen</strong> bearbeitet.
             </p>
             <p>
               <a
                 href="mailto:hallo@jinsheng-chen.de?subject=Korrekturanfrage%20Politik-Plattform"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 hallo@jinsheng-chen.de
               </a>
@@ -93,7 +93,7 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Haftung für Inhalte
             </h2>
             <p>
@@ -112,7 +112,7 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Haftung für Links
             </h2>
             <p>
@@ -127,7 +127,7 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Urheberrecht und Datennutzung
             </h2>
             <p className="mb-3">
@@ -141,7 +141,7 @@ export default function ImpressumPage() {
               Quellenlizenzen — Übersicht und Attribution auf der{" "}
               <Link
                 href="/datenquellen"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 Datenquellen-Seite
               </Link>
@@ -150,7 +150,7 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Streitschlichtung
             </h2>
             <p className="mb-2">
@@ -160,7 +160,7 @@ export default function ImpressumPage() {
                 href="https://ec.europa.eu/consumers/odr/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 https://ec.europa.eu/consumers/odr/
               </a>
@@ -173,14 +173,14 @@ export default function ImpressumPage() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Datenschutz
             </h2>
             <p>
               Hinweise zur Verarbeitung personenbezogener Daten findest du in der{" "}
               <Link
                 href="/datenschutz"
-                className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+                className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
               >
                 Datenschutzerklärung
               </Link>

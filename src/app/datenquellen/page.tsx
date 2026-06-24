@@ -42,14 +42,14 @@ export default function DatenquellenPage() {
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] mb-3">
           Datenquellen
         </h1>
-        <p className="text-[15px] text-zinc-500 mb-12 max-w-xl">
+        <p className="text-[15px] text-zinc-500 dark:text-zinc-400 mb-12 max-w-xl">
           Politik-Radar aggregiert öffentlich verfügbare Daten aus mehreren
           Quellen. Alle Quellen, Lizenzen und Foto-Credits stehen hier offen.
         </p>
 
         {/* Datenquellen */}
         <section className="mb-16">
-          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-4">
+          <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-4">
             Quellen
           </h2>
           <div className="space-y-1.5">
@@ -124,18 +124,18 @@ export default function DatenquellenPage() {
 
         {/* Methodik-Verweis */}
         <section className="mb-16">
-          <div className="rounded-2xl border border-zinc-200/70 bg-white p-5">
-            <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Methodik &amp; Wirksamkeit auf eigener Seite
             </h3>
-            <p className="text-[14px] text-zinc-700 leading-relaxed mb-3">
+            <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3">
               Wie die strukturierten Lebenslauf-Daten durch ein Multi-LLM-Konsens-Verfahren
               mit fünf unabhängigen Modell-Familien geprüft werden — inklusive konkreter
               Wirksamkeits-Statistik, Audit-Trail und Reproduzierbarkeits-Anleitung.
             </p>
             <Link
               href="/methodik"
-              className="text-[13px] font-medium text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+              className="text-[13px] font-medium text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
             >
               Zur Methodik-Seite →
             </Link>
@@ -143,11 +143,11 @@ export default function DatenquellenPage() {
         </section>
 
         {/* Hinweis */}
-        <section className="mb-16 rounded-2xl border border-zinc-200/70 bg-white p-6">
-          <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+        <section className="mb-16 rounded-2xl border border-border bg-card p-6">
+          <h3 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
             Eigene Auswertungen
           </h3>
-          <p className="text-[14px] text-zinc-700 leading-relaxed">
+          <p className="text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed">
             Statistiken, Rankings, Aggregationen, Anwesenheitsraten und
             KI-generierte Zusammenfassungen werden aus den oben genannten
             Roh-Daten berechnet bzw. generiert. Sie unterliegen keiner
@@ -158,20 +158,20 @@ export default function DatenquellenPage() {
         {/* Foto-Credits */}
         <section>
           <div className="flex items-baseline justify-between mb-3">
-            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+            <h2 className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               Foto-Credits
             </h2>
-            <span className="num text-[11px] text-zinc-400">
+            <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">
               {credits.length} Fotos
             </span>
           </div>
-          <p className="text-[14px] text-zinc-700 mb-5 leading-relaxed">
+          <p className="text-[14px] text-zinc-700 dark:text-zinc-300 mb-5 leading-relaxed">
             Alle Politiker-Fotos stammen von{" "}
             <a
               href="https://commons.wikimedia.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors"
+              className="text-zinc-950 dark:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 hover:decoration-zinc-950 dark:hover:decoration-zinc-100 transition-colors"
             >
               Wikimedia Commons
             </a>
@@ -179,17 +179,17 @@ export default function DatenquellenPage() {
             Fotografen-Name und Lizenz-Bedingungen.
           </p>
 
-          <div className="rounded-2xl border border-zinc-200/70 bg-white overflow-hidden">
+          <div className="rounded-2xl border border-border bg-card overflow-hidden">
             <div className="max-h-[600px] overflow-y-auto">
-              <ul className="divide-y divide-zinc-100 text-[13px]">
+              <ul className="divide-y divide-border text-[13px]">
                 {credits.map((c) => (
                   <li
                     key={c.id}
-                    className="px-4 py-2.5 flex items-center justify-between gap-3 hover:bg-zinc-50 transition-colors"
+                    className="px-4 py-2.5 flex items-center justify-between gap-3 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                   >
                     <Link
                       href={`/politiker/${c.id}`}
-                      className="font-medium text-zinc-950 hover:underline truncate"
+                      className="font-medium text-zinc-950 dark:text-zinc-50 hover:underline truncate"
                     >
                       {c.first_name} {c.last_name}
                     </Link>
@@ -197,7 +197,7 @@ export default function DatenquellenPage() {
                       href={`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.filename)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-950 truncate max-w-[55%] transition-colors"
+                      className="flex items-center gap-1 text-[11px] text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-50 truncate max-w-[55%] transition-colors"
                       title={c.filename}
                     >
                       <ExternalLink className="w-3 h-3 shrink-0" strokeWidth={2.25} />
@@ -208,7 +208,7 @@ export default function DatenquellenPage() {
               </ul>
             </div>
           </div>
-          <p className="text-[12px] text-zinc-400 mt-3">
+          <p className="text-[12px] text-zinc-400 dark:text-zinc-500 mt-3">
             Politiker ohne Foto werden mit einem Initialen-Avatar dargestellt.
           </p>
         </section>
@@ -229,22 +229,22 @@ function Source({
   description: string;
 }) {
   return (
-    <div className="card-hover bg-white rounded-xl border border-zinc-200/70 p-4">
+    <div className="card-hover bg-card rounded-xl border border-border p-4">
       <div className="flex items-start justify-between gap-4 mb-1">
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-[14.5px] text-zinc-950 inline-flex items-center gap-1.5 hover:underline"
+          className="font-semibold text-[14.5px] text-zinc-950 dark:text-zinc-50 inline-flex items-center gap-1.5 hover:underline"
         >
           {title}
-          <ExternalLink className="w-3 h-3 text-zinc-400" strokeWidth={2.25} />
+          <ExternalLink className="w-3 h-3 text-zinc-400 dark:text-zinc-500" strokeWidth={2.25} />
         </a>
-        <span className="text-[11px] text-zinc-400 font-medium uppercase tracking-wider shrink-0">
+        <span className="text-[11px] text-zinc-400 dark:text-zinc-500 font-medium uppercase tracking-wider shrink-0">
           {license}
         </span>
       </div>
-      <p className="text-[13px] text-zinc-500 leading-relaxed">{description}</p>
+      <p className="text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed">{description}</p>
     </div>
   );
 }
