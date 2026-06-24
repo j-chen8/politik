@@ -28,12 +28,12 @@ export default async function ParteiPage({ params }: Props) {
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
         {/* Brotkrumen */}
-        <div className="mb-6 text-[12px] text-zinc-400">
-          <Link href="/parteien" className="hover:text-zinc-600 transition-colors">
+        <div className="mb-6 text-[12px] text-zinc-400 dark:text-zinc-500">
+          <Link href="/parteien" className="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
             Parteien
           </Link>
           <span className="mx-1.5">/</span>
-          <span className="text-zinc-500">{meta.kurz}</span>
+          <span className="text-zinc-500 dark:text-zinc-400">{meta.kurz}</span>
         </div>
 
         {/* Header */}
@@ -75,7 +75,7 @@ export default async function ParteiPage({ params }: Props) {
                 className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition-colors ${
                   aktiv
                     ? "text-white"
-                    : "bg-white text-zinc-600 border border-zinc-200/80 hover:bg-zinc-50"
+                    : "bg-card text-zinc-600 dark:text-zinc-300 border border-border hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
                 style={aktiv ? { backgroundColor: c.bg, color: c.fg } : undefined}
               >
@@ -87,14 +87,14 @@ export default async function ParteiPage({ params }: Props) {
 
         {/* Sprung-Nav über die Themenfelder */}
         <nav
-          className="mb-8 flex flex-wrap gap-1.5 border-t border-zinc-100 pt-5"
+          className="mb-8 flex flex-wrap gap-1.5 border-t border-border pt-5"
           aria-label="Zu Themenfeld springen"
         >
           {positionen.map((pos) => (
             <a
               key={pos.feld}
               href={`#${anker(pos.feld)}`}
-              className="rounded-full border border-zinc-200/80 bg-white px-3 py-1 text-[12px] font-medium text-zinc-600 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+              className="rounded-full border border-border bg-card px-3 py-1 text-[12px] font-medium text-zinc-600 dark:text-zinc-300 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
             >
               {feldKurz(pos.feld)}
             </a>
@@ -110,7 +110,7 @@ export default async function ParteiPage({ params }: Props) {
               <section
                 key={pos.feld}
                 id={anker(pos.feld)}
-                className="scroll-mt-24 rounded-2xl border border-zinc-200/70 bg-white p-6"
+                className="scroll-mt-24 rounded-2xl border border-border bg-card p-6"
               >
                 <div className="flex items-baseline gap-2.5">
                   <span
@@ -118,7 +118,7 @@ export default async function ParteiPage({ params }: Props) {
                     style={{ backgroundColor: bg }}
                     aria-hidden
                   />
-                  <h2 className="text-[15px] font-semibold tracking-tight text-zinc-900">
+                  <h2 className="text-[15px] font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     {pos.feld}
                   </h2>
                 </div>
@@ -129,7 +129,7 @@ export default async function ParteiPage({ params }: Props) {
                     {pos.kompakt.map((b, i) => (
                       <li
                         key={i}
-                        className="flex gap-2.5 text-[13.5px] leading-snug text-zinc-700"
+                        className="flex gap-2.5 text-[13.5px] leading-snug text-zinc-700 dark:text-zinc-300"
                       >
                         <span
                           className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"
@@ -141,14 +141,14 @@ export default async function ParteiPage({ params }: Props) {
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-2.5 pl-5 text-[13.5px] leading-relaxed text-zinc-700">
+                  <p className="mt-2.5 pl-5 text-[13.5px] leading-relaxed text-zinc-700 dark:text-zinc-300">
                     {pos.position}
                   </p>
                 )}
 
                 {/* Ausführlich + Belege */}
                 <details className="group/b mt-3 pl-5">
-                  <summary className="list-none flex cursor-pointer select-none items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-400 transition-colors hover:text-zinc-600">
+                  <summary className="list-none flex cursor-pointer select-none items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500 transition-colors hover:text-zinc-600 dark:hover:text-zinc-300">
                     <ChevronDown
                       className="h-3 w-3 transition-transform -rotate-90 group-open/b:rotate-0"
                       strokeWidth={2.5}
@@ -160,7 +160,7 @@ export default async function ParteiPage({ params }: Props) {
                     )}
                   </summary>
                   {hatKompakt && (
-                    <p className="mt-3 text-[13px] leading-relaxed text-zinc-600">
+                    <p className="mt-3 text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300">
                       {pos.position}
                     </p>
                   )}
@@ -169,11 +169,11 @@ export default async function ParteiPage({ params }: Props) {
                       {pos.belege.map((b, i) => (
                         <li
                           key={i}
-                          className="border-l-2 border-zinc-200 pl-3.5 text-[13px] leading-relaxed text-zinc-600"
+                          className="border-l-2 border-border pl-3.5 text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300"
                         >
-                          <span className="text-zinc-800">„{b.zitat}“</span>
+                          <span className="text-zinc-800 dark:text-zinc-200">„{b.zitat}“</span>
                           {b.verifiziert && b.seite != null && (
-                            <span className="num ml-2 whitespace-nowrap text-[11px] text-zinc-400">
+                            <span className="num ml-2 whitespace-nowrap text-[11px] text-zinc-400 dark:text-zinc-500">
                               Programm S. {b.seite}
                             </span>
                           )}
@@ -182,7 +182,7 @@ export default async function ParteiPage({ params }: Props) {
                     </ul>
                   )}
                   {verif < pos.belege.length && (
-                    <p className="mt-2.5 text-[11px] text-zinc-400">
+                    <p className="mt-2.5 text-[11px] text-zinc-400 dark:text-zinc-500">
                       Zitate ohne Seitenzahl sind sinngemäß aus dem Programm
                       zusammengefasst, nicht wortgleich.
                     </p>
@@ -194,8 +194,8 @@ export default async function ParteiPage({ params }: Props) {
         </div>
 
         {/* Methodik-Fußnote */}
-        <footer className="mt-10 rounded-2xl border border-zinc-200/70 bg-zinc-50/60 p-6 text-[12px] leading-relaxed text-zinc-500">
-          <p className="font-medium text-zinc-600">Wie diese Seite entsteht</p>
+        <footer className="mt-10 rounded-2xl border border-border bg-zinc-50/60 dark:bg-zinc-800/60 p-6 text-[12px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+          <p className="font-medium text-zinc-600 dark:text-zinc-300">Wie diese Seite entsteht</p>
           <p className="mt-1.5">
             Quelle ist ausschließlich das offizielle Wahlprogramm der Partei zur
             Bundestagswahl 2025. Pro Themenfeld wird extraktiv und ohne Wertung
@@ -206,7 +206,7 @@ export default async function ParteiPage({ params }: Props) {
             steht.
           </p>
           <p className="mt-2.5">
-            <span className="font-medium text-zinc-600">In Arbeit:</span> das
+            <span className="font-medium text-zinc-600 dark:text-zinc-300">In Arbeit:</span> das
             tatsächliche Abstimmungsverhalten der Fraktion je Themenfeld („was die
             Partei tut") neben der Programm-Position.
           </p>

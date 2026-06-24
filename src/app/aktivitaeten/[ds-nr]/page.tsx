@@ -1451,12 +1451,12 @@ const HZ_OUTCOME_META: Record<string, { label: string; classes: string }> = {
 function RohstimmeChip({ fraktion, vote }: { fraktion: string; vote: string }) {
   const cls =
     vote === "ja"
-      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50"
       : vote === "nein"
-        ? "bg-rose-50 text-rose-800 border-rose-200"
+        ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50"
         : vote === "enthaltung"
-          ? "bg-amber-50 text-amber-800 border-amber-200"
-          : "bg-zinc-50 text-zinc-500 border-zinc-200";
+          ? "bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50"
+          : "bg-zinc-50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-400 border-border";
   const icon = vote === "ja" ? "✓" : vote === "nein" ? "✗" : vote === "enthaltung" ? "—" : "?";
   return (
     <span
@@ -1474,12 +1474,12 @@ function PositionChip({ fraktion, raw }: { fraktion: string; raw: string }) {
   const pos = positionZumAntrag(raw, true);
   const cls =
     pos === "dafuer"
-      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/50"
       : pos === "dagegen"
-        ? "bg-rose-50 text-rose-800 border-rose-200"
+        ? "bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400 border-rose-200 dark:border-rose-900/50"
         : pos === "enthaltung"
-          ? "bg-amber-50 text-amber-800 border-amber-200"
-          : "bg-zinc-50 text-zinc-500 border-zinc-200";
+          ? "bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 border-amber-200 dark:border-amber-900/50"
+          : "bg-zinc-50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-400 border-border";
   return (
     <span
       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[11px] font-medium ${cls}`}
@@ -1504,7 +1504,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
       {/* "Oben": Beschlussempfehlungs-Hinweis vor den Stimmen — sonst liest sich die rohe
           Stimme als "Einbringer stimmt gegen den eigenen Antrag". */}
       {hatFlip && (
-        <div className="mb-5 rounded-xl border border-amber-300/70 bg-amber-50 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900">
+        <div className="mb-5 rounded-xl border border-amber-300/70 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900 dark:text-amber-200">
           <span className="font-semibold">Wichtig zum Verständnis:</span> Abgestimmt wurde nicht über
           den Antrag selbst, sondern über die{" "}
           <span className="font-medium">Beschlussempfehlung des Ausschusses, die die Ablehnung dieses
@@ -1546,7 +1546,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                     {oc.label}
                   </span>
                   {flip && (
-                    <span className="text-[11px] font-medium text-amber-700">
+                    <span className="text-[11px] font-medium text-amber-700 dark:text-amber-400">
                       über Beschlussempfehlung (Ablehnung empfohlen)
                     </span>
                   )}
@@ -1592,7 +1592,7 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                     ))}
                   </div>
                   <details className="group mt-2">
-                    <summary className="cursor-pointer list-none text-[11px] text-zinc-400 hover:text-zinc-600 select-none">
+                    <summary className="cursor-pointer list-none text-[11px] text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 select-none">
                       <span className="group-open:hidden">▶ Rohstimme über die Beschlussempfehlung</span>
                       <span className="hidden group-open:inline">▼ Rohstimme ausblenden</span>
                     </summary>

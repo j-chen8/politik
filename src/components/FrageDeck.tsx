@@ -57,13 +57,13 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
   return (
     <section className="snap-start shrink-0 h-full w-full flex items-stretch justify-center px-4 py-3">
       <div
-        className="relative w-full max-w-md h-full flex flex-col rounded-2xl border border-zinc-200 bg-white shadow-sm overflow-hidden"
+        className="relative w-full max-w-md h-full flex flex-col rounded-2xl border border-border bg-card shadow-sm overflow-hidden"
         style={{ borderTopColor: accent, borderTopWidth: 3 }}
       >
         {/* Themenfeld-Chip */}
         <div className="shrink-0 px-5 pt-4">
           {card.feld && (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium text-zinc-600">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-zinc-600 dark:text-zinc-300">
               <span aria-hidden>{emoji}</span>
               {card.feld}
             </span>
@@ -73,13 +73,13 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
         {/* Frage — der Hook */}
         <div className={`px-5 ${open ? "pt-3" : "flex-1 flex flex-col justify-center"}`}>
           <p
-            className={`font-semibold tracking-tight text-zinc-900 leading-snug ${
+            className={`font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug ${
               open ? "text-[15px] line-clamp-3" : "text-[21px] sm:text-[23px] line-clamp-[10]"
             }`}
           >
             {card.frageText}
           </p>
-          <p className="mt-2 text-[12px] text-zinc-400">
+          <p className="mt-2 text-[12px] text-zinc-400 dark:text-zinc-500">
             {card.asker ? card.asker : "Bürgerfrage"}
             {datum && <span className="num"> · {datum}</span>}
           </p>
@@ -98,11 +98,11 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
                 src={card.photoUrl ?? ""}
                 alt={card.name}
                 loading="lazy"
-                className="w-11 h-11 rounded-full object-cover bg-zinc-100"
+                className="w-11 h-11 rounded-full object-cover bg-zinc-100 dark:bg-zinc-800"
                 style={{ boxShadow: `0 0 0 2px ${accent}` }}
               />
               <div className="leading-tight">
-                <div className="text-[14px] font-semibold text-zinc-900 group-hover:underline underline-offset-2">
+                <div className="text-[14px] font-semibold text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-2">
                   {card.name}
                 </div>
                 {card.party && (
@@ -114,16 +114,16 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
             </Link>
 
             {/* TL;DR — Sofort-Payoff */}
-            <p className="mt-3 text-[15px] leading-relaxed text-zinc-800">{card.tldr}</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-zinc-800 dark:text-zinc-200">{card.tldr}</p>
 
             {/* Volltext optional */}
             {card.antwortText && (
               <details className="group mt-3">
-                <summary className="cursor-pointer list-none text-[12px] font-medium text-[#1a3e72] select-none">
+                <summary className="cursor-pointer list-none text-[12px] font-medium text-[#1a3e72] dark:text-[#8fb3e6] select-none">
                   <span className="group-open:hidden">Vollständige Antwort lesen ▾</span>
                   <span className="hidden group-open:inline">Antwort einklappen ▴</span>
                 </summary>
-                <p className="mt-2 whitespace-pre-line border-l-2 border-zinc-100 pl-3 text-[13px] leading-relaxed text-zinc-600">
+                <p className="mt-2 whitespace-pre-line border-l-2 border-border pl-3 text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300">
                   {card.antwortText}
                 </p>
               </details>
@@ -143,7 +143,7 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
                 href={card.frageUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-full border border-zinc-200 px-3 py-2 text-[12px] text-zinc-500 hover:border-zinc-300 hover:text-zinc-700"
+                className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-2 text-[12px] text-zinc-500 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-300"
               >
                 Original <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
@@ -154,11 +154,11 @@ function DeckCard({ card, index }: { card: FrageFeedCard; index: number }) {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="w-full rounded-xl bg-[#1a3e72] py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0f2a52]"
+              className="w-full rounded-xl bg-[#1a3e72] dark:bg-[#8fb3e6] py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0f2a52] dark:hover:bg-[#b7d0f0]"
             >
               👆 Antwort zeigen
             </button>
-            <p className="mt-2 text-center text-[11px] text-zinc-300">
+            <p className="mt-2 text-center text-[11px] text-zinc-300 dark:text-zinc-600">
               {index === 0 ? "↑ nach oben wischen für die nächste Frage" : "↑ wischen"}
             </p>
           </div>
@@ -232,7 +232,7 @@ export function FrageDeck({
   return (
     <div className="flex flex-col h-[calc(100svh-3.5rem)]">
       {/* Themenfeld-Filterleiste */}
-      <div className="shrink-0 border-b border-zinc-100 bg-white/90 backdrop-blur">
+      <div className="shrink-0 border-b border-border bg-card/90 backdrop-blur">
         <div className="flex gap-1.5 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button
             type="button"
@@ -240,7 +240,7 @@ export function FrageDeck({
             className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
               feldSlug === null
                 ? "bg-zinc-900 text-white"
-                : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
             }`}
           >
             Alles
@@ -255,7 +255,7 @@ export function FrageDeck({
                 type="button"
                 onClick={() => pickFeld(slug)}
                 className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
-                  active ? "bg-zinc-900 text-white" : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                  active ? "bg-zinc-900 text-white" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
                 }`}
               >
                 <span aria-hidden className="mr-1">
@@ -271,7 +271,7 @@ export function FrageDeck({
       {/* Karten-Deck — vollbild Wisch */}
       <div
         ref={scrollRef}
-        className="flex-1 min-h-0 snap-y snap-mandatory overflow-y-scroll overscroll-contain bg-zinc-50"
+        className="flex-1 min-h-0 snap-y snap-mandatory overflow-y-scroll overscroll-contain bg-zinc-50 dark:bg-zinc-800"
       >
         {cards.map((card, i) => (
           <DeckCard key={card.frageUrl} card={card} index={i} />
@@ -280,17 +280,17 @@ export function FrageDeck({
         {/* Sentinel / Ende */}
         <div ref={sentinelRef} className="snap-start h-24 flex items-center justify-center">
           {loading ? (
-            <span className="text-[12px] text-zinc-400">lädt …</span>
+            <span className="text-[12px] text-zinc-400 dark:text-zinc-500">lädt …</span>
           ) : exhausted ? (
             <button
               type="button"
               onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })}
-              className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 hover:text-zinc-700"
+              className="inline-flex items-center gap-1.5 text-[12px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
             >
               <ChevronUp className="w-4 h-4" /> Das war alles — nach oben
             </button>
           ) : (
-            <span className="text-[12px] text-zinc-300">↑ weiter wischen</span>
+            <span className="text-[12px] text-zinc-300 dark:text-zinc-600">↑ weiter wischen</span>
           )}
         </div>
       </div>

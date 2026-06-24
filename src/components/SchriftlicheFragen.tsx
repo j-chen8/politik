@@ -18,20 +18,20 @@ function fmtDatum(d: string | null): string | null {
 function QaCard({ item }: { item: PoliticianQaPaar }) {
   const datum = fmtDatum(item.datum);
   return (
-    <li className="border-l-2 border-zinc-200 pl-3">
+    <li className="border-l-2 border-border pl-3">
       {item.frageText && (
-        <p className="text-[13px] text-zinc-800 leading-snug">{item.frageText}</p>
+        <p className="text-[13px] text-zinc-800 dark:text-zinc-200 leading-snug">{item.frageText}</p>
       )}
-      <div className="flex items-center gap-2 text-[11px] text-zinc-400 mt-1 flex-wrap">
+      <div className="flex items-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 mt-1 flex-wrap">
         {item.themenfeld && (
-          <span className="px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-600 text-[10px]">
+          <span className="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px]">
             <span aria-hidden>{feldEmoji(item.themenfeld)}</span> {feldKurz(item.themenfeld)}
           </span>
         )}
-        {item.ministerium && <span className="text-zinc-500">{item.ministerium}</span>}
+        {item.ministerium && <span className="text-zinc-500 dark:text-zinc-400">{item.ministerium}</span>}
         <Link
           href={`/aktivitaeten/${item.drucksacheNr.replace(/\//g, "-")}`}
-          className="text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+          className="text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
         >
           {item.drucksacheNr}
         </Link>
@@ -44,15 +44,15 @@ function QaCard({ item }: { item: PoliticianQaPaar }) {
       </div>
       {/* Neutrale Antwort-Kurzfassung (scan-first) */}
       {item.tldr && (
-        <p className="mt-1.5 text-[12px] text-zinc-700 leading-relaxed">{item.tldr}</p>
+        <p className="mt-1.5 text-[12px] text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.tldr}</p>
       )}
       {item.antwortText && (
         <details className="group mt-1">
-          <summary className="cursor-pointer text-[11px] text-[#1a3e72] hover:text-[#0f2a52] select-none list-none">
+          <summary className="cursor-pointer text-[11px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] select-none list-none">
             <span className="group-open:hidden">▶ {item.tldr ? "Volle Antwort der Bundesregierung" : "Antwort der Bundesregierung"}</span>
             <span className="hidden group-open:inline">▼ Antwort ausblenden</span>
           </summary>
-          <p className="mt-1 text-[12px] text-zinc-600 leading-relaxed whitespace-pre-line border-l-2 border-zinc-100 pl-3">
+          <p className="mt-1 text-[12px] text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line border-l-2 border-border pl-3">
             {item.antwortText}
           </p>
         </details>
@@ -97,8 +97,8 @@ export function SchriftlicheFragen({ items }: { items: PoliticianQaPaar[] }) {
             onClick={() => pickFeld(null)}
             className={`px-2 py-1 rounded-full text-[11px] border transition-colors ${
               feld === null
-                ? "bg-zinc-900 text-white border-zinc-900"
-                : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300"
+                ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100"
+                : "bg-card text-zinc-600 dark:text-zinc-300 border-border hover:border-zinc-300 dark:hover:border-zinc-600"
             }`}
           >
             Alle <span className="num opacity-60">{items.length}</span>
@@ -110,8 +110,8 @@ export function SchriftlicheFragen({ items }: { items: PoliticianQaPaar[] }) {
               onClick={() => pickFeld(f.feld)}
               className={`px-2 py-1 rounded-full text-[11px] border transition-colors ${
                 feld === f.feld
-                  ? "bg-zinc-900 text-white border-zinc-900"
-                  : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300"
+                  ? "bg-zinc-900 text-white border-zinc-900 dark:border-zinc-100"
+                  : "bg-card text-zinc-600 dark:text-zinc-300 border-border hover:border-zinc-300 dark:hover:border-zinc-600"
               }`}
             >
               <span aria-hidden>{feldEmoji(f.feld)}</span> {feldKurz(f.feld)}{" "}
@@ -131,7 +131,7 @@ export function SchriftlicheFragen({ items }: { items: PoliticianQaPaar[] }) {
         <button
           type="button"
           onClick={() => setVisible((v) => v + PAGE_STEP * 2)}
-          className="mt-3 inline-flex items-center gap-1 text-[12px] text-[#1a3e72] hover:text-[#0f2a52] transition-colors"
+          className="mt-3 inline-flex items-center gap-1 text-[12px] text-[#1a3e72] dark:text-[#8fb3e6] hover:text-[#0f2a52] dark:hover:text-[#b7d0f0] transition-colors"
         >
           <ChevronDown className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden />
           {rest.toLocaleString("de-DE")} weitere anzeigen
@@ -139,7 +139,7 @@ export function SchriftlicheFragen({ items }: { items: PoliticianQaPaar[] }) {
       )}
 
       {/* Substrat-Ehrlichkeit: was diese Liste ist (Kontroll-Aktivität des Büros, nicht persönliches Interesse). */}
-      <p className="mt-4 text-[11px] text-zinc-400 leading-relaxed">
+      <p className="mt-4 text-[11px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
         Schriftliche Einzelfragen an die Bundesregierung — eine parlamentarische Kontroll-Aktivität des
         Abgeordnetenbüros. Kurzfassungen der Antworten sind neutral zusammengefasst; die volle Antwort
         steht jeweils darunter.

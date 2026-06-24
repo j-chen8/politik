@@ -14,10 +14,10 @@ export default function ParteienIndex() {
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
         <header className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-3xl">
             Parteien
           </h1>
-          <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-zinc-600">
+          <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-zinc-600 dark:text-zinc-300">
             Was jede Partei laut ihrem Wahlprogramm zur Bundestagswahl 2025 in den
             großen Themenfeldern will — sachlich zusammengefasst, jeder Punkt mit
             wörtlichem Zitat aus dem Programm belegt.
@@ -32,7 +32,7 @@ export default function ParteienIndex() {
               <Link
                 key={p.slug}
                 href={`/parteien/${p.slug}`}
-                className="group flex items-stretch overflow-hidden rounded-2xl border border-zinc-200/70 bg-white transition-colors hover:border-zinc-300"
+                className="group flex items-stretch overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
               >
                 <div
                   className="flex w-28 shrink-0 items-center justify-center px-4 text-center text-[15px] font-semibold leading-tight sm:w-32"
@@ -42,15 +42,15 @@ export default function ParteienIndex() {
                 </div>
                 <div className="flex flex-1 items-center justify-between px-5 py-5">
                   <div>
-                    <div className="text-[14px] font-medium text-zinc-900">
+                    <div className="text-[14px] font-medium text-zinc-900 dark:text-zinc-100">
                       Positionen ansehen
                     </div>
-                    <div className="num mt-0.5 text-[12px] text-zinc-500">
+                    <div className="num mt-0.5 text-[12px] text-zinc-500 dark:text-zinc-400">
                       {felder} Themenfelder
                     </div>
                   </div>
                   <ArrowRight
-                    className="h-4 w-4 text-zinc-300 transition-colors group-hover:text-zinc-500"
+                    className="h-4 w-4 text-zinc-300 dark:text-zinc-600 transition-colors group-hover:text-zinc-500 dark:group-hover:text-zinc-400"
                     strokeWidth={2}
                     aria-hidden
                   />
@@ -62,10 +62,10 @@ export default function ParteienIndex() {
 
         {/* Nach Thema vergleichen */}
         <section className="mt-12">
-          <h2 className="text-[15px] font-semibold tracking-tight text-zinc-900">
+          <h2 className="text-[15px] font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
             Nach Thema vergleichen
           </h2>
-          <p className="mt-1.5 max-w-2xl text-[13px] leading-relaxed text-zinc-600">
+          <p className="mt-1.5 max-w-2xl text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300">
             Ein Themenfeld wählen und sehen, was alle Parteien dazu wollen — direkt
             nebeneinander.
           </p>
@@ -74,7 +74,7 @@ export default function ParteienIndex() {
               <Link
                 key={t.slug}
                 href={`/parteien/feld/${t.slug}`}
-                className="rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 text-[12.5px] font-medium text-zinc-600 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+                className="rounded-full border border-border bg-card px-3.5 py-1.5 text-[12.5px] font-medium text-zinc-600 dark:text-zinc-300 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               >
                 {t.kurz}
               </Link>
@@ -82,7 +82,7 @@ export default function ParteienIndex() {
           </div>
         </section>
 
-        <p className="mt-12 text-[12px] leading-relaxed text-zinc-400">
+        <p className="mt-12 text-[12px] leading-relaxed text-zinc-400 dark:text-zinc-500">
           Quelle: offizielle Wahlprogramme zur Bundestagswahl 2025. Extraktiv und
           ohne Wertung, Belege mit geprüfter Fundstelle.
         </p>

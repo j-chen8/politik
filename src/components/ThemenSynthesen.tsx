@@ -13,11 +13,11 @@ function renderSynthese(text: string) {
     .map((para, pi) => (
       <p
         key={pi}
-        className="text-[13px] leading-relaxed text-zinc-700 [&:not(:first-child)]:mt-2"
+        className="text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300 [&:not(:first-child)]:mt-2"
       >
         {para.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
           part.startsWith("**") && part.endsWith("**") ? (
-            <strong key={i} className="font-semibold text-zinc-900">
+            <strong key={i} className="font-semibold text-zinc-900 dark:text-zinc-100">
               {part.slice(2, -2)}
             </strong>
           ) : (
@@ -50,29 +50,29 @@ export function ThemenSynthesen({
 
   return (
     <div>
-      <p className="text-[12px] text-zinc-500 mb-3 leading-relaxed">
+      <p className="text-[12px] text-zinc-500 dark:text-zinc-400 mb-3 leading-relaxed">
         Neutral zusammengefasst aus den öffentlichen Bürgerfragen: worum es je
         Themenfeld geht — und wie {name} darauf antwortet, auch wo keine Position
         bezogen wird. Aus den Originaltexten, kein Werturteil.
-        {standLabel && <span className="text-zinc-400"> · Stand {standLabel}</span>}
+        {standLabel && <span className="text-zinc-400 dark:text-zinc-500"> · Stand {standLabel}</span>}
       </p>
       <ul className="space-y-2">
         {items.map((it, idx) => (
-          <li key={it.feld} className="rounded-lg border border-zinc-100">
+          <li key={it.feld} className="rounded-lg border border-border">
             <details open={idx < 2} className="group">
               <summary className="flex items-center gap-2 cursor-pointer list-none px-3 py-2.5 select-none">
                 <span aria-hidden>{feldEmoji(it.feld)}</span>
-                <span className="flex-1 text-[13.5px] font-medium text-zinc-900">
+                <span className="flex-1 text-[13.5px] font-medium text-zinc-900 dark:text-zinc-100">
                   {it.feld}
                 </span>
-                <span className="num text-[11px] text-zinc-400">
+                <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">
                   {it.nFragen} {it.nFragen === 1 ? "Frage" : "Fragen"}
                 </span>
-                <ChevronDown className="w-4 h-4 text-zinc-300 transition-transform group-open:rotate-180" />
+                <ChevronDown className="w-4 h-4 text-zinc-300 dark:text-zinc-600 transition-transform group-open:rotate-180" />
               </summary>
               <div className="px-3 pb-3 pt-0.5">
                 {it.nFragen === 1 && (
-                  <p className="mb-1.5 text-[11px] text-amber-600">
+                  <p className="mb-1.5 text-[11px] text-amber-600 dark:text-amber-400">
                     Basiert nur auf einer einzigen Frage — wenig belastbar.
                   </p>
                 )}

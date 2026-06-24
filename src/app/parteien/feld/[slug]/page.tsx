@@ -20,10 +20,10 @@ const PARTEI_KURZ = new Map(PARTEIEN.map((p) => [p.partei, p.kurz]));
 
 const richtungChip = (r: string) =>
   r === "ja"
-    ? "bg-emerald-100 text-emerald-700"
+    ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400"
     : r === "nein"
-      ? "bg-rose-100 text-rose-700"
-      : "bg-zinc-100 text-zinc-600";
+      ? "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400"
+      : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300";
 
 // Betreff entdoppeln ("Titel · Titel") und kürzen.
 function cleanBetreff(s: string): string {
@@ -63,10 +63,10 @@ function herkunftLabel(h: { named: string[]; hasDebate: boolean; onlyQa: boolean
 
 const richtungMark = (r: string) =>
   r === "ja"
-    ? { glyph: "✓", cls: "text-emerald-600" }
+    ? { glyph: "✓", cls: "text-emerald-600 dark:text-emerald-400" }
     : r === "nein"
-      ? { glyph: "✗", cls: "text-rose-600" }
-      : { glyph: "•", cls: "text-zinc-400" };
+      ? { glyph: "✗", cls: "text-rose-600 dark:text-rose-400" }
+      : { glyph: "•", cls: "text-zinc-400 dark:text-zinc-500" };
 
 // Datum (YYYY-MM-DD) aus einem Quellen-Label ziehen — fürs Ranking (jüngste zuerst).
 const redeDatum = (label: string | null): string =>
@@ -79,12 +79,12 @@ function RedeLink({ url, label }: { url: string; label: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-blue-700 hover:underline"
+      className="text-blue-700 dark:text-blue-400 hover:underline"
     >
       {label}
     </a>
   ) : (
-    <Link href={url} className="text-blue-700 hover:underline">
+    <Link href={url} className="text-blue-700 dark:text-blue-400 hover:underline">
       {label}
     </Link>
   );
@@ -191,9 +191,9 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
   // statt der gegenläufigen Rohstimme und benennen das Verfahren.
   const voteLi = (g: FeldVorlage) => (
     <li key={g.voteId} className="text-[12.5px] leading-snug">
-      <span className="text-zinc-700">
+      <span className="text-zinc-700 dark:text-zinc-300">
         {g.url ? (
-          <Link href={g.url} className="hover:text-zinc-900 hover:underline">
+          <Link href={g.url} className="hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline">
             {cleanBetreff(g.betreff)}
           </Link>
         ) : (
@@ -201,7 +201,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
         )}
       </span>
       {g.beschlussAblehnung && (
-        <span className="ml-1.5 text-[10.5px] font-medium text-amber-700">
+        <span className="ml-1.5 text-[10.5px] font-medium text-amber-700 dark:text-amber-400">
           · über Beschlussempfehlung (Ablehnung empfohlen) → Position zum Antrag
         </span>
       )}
@@ -215,10 +215,10 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
             const label = pos ? POSITION_META[pos].label : r;
             const chipCls = pos
               ? pos === "dafuer"
-                ? "bg-emerald-100 text-emerald-700"
+                ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400"
                 : pos === "dagegen"
-                  ? "bg-rose-100 text-rose-700"
-                  : "bg-zinc-100 text-zinc-600"
+                  ? "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400"
+                  : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300"
               : richtungChip(r);
             return (
               <span
@@ -246,40 +246,40 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
     <div className="page-wash min-h-screen">
       <div className="page-shell fade-in-up">
         {/* Brotkrumen */}
-        <div className="mb-6 text-[12px] text-zinc-400">
-          <Link href="/parteien" className="hover:text-zinc-600 transition-colors">
+        <div className="mb-6 text-[12px] text-zinc-400 dark:text-zinc-500">
+          <Link href="/parteien" className="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
             Parteien
           </Link>
           <span className="mx-1.5">/</span>
-          <span className="text-zinc-500">Vergleich</span>
+          <span className="text-zinc-500 dark:text-zinc-400">Vergleich</span>
         </div>
 
         {/* Header */}
         <header className="mb-6">
-          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-400">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
             Was die Parteien wollen
           </div>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-3xl">
             {feld}
           </h1>
-          <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-zinc-600">
+          <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-zinc-600 dark:text-zinc-300">
             {matrix ? (
               <>
                 Verglichen nach einzelnen Aspekten.{" "}
-                <span className="font-medium text-zinc-800">Schwarz</span> = Position
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">Schwarz</span> = Position
                 laut Wahlprogramm 2025.{" "}
-                <span className="font-medium text-amber-700">Braun</span> = ergänzt aus
+                <span className="font-medium text-amber-700 dark:text-amber-400">Braun</span> = ergänzt aus
                 Reden &amp; Bürgerfragen (Pilot, synthetisiert).
-                <span className="mt-2 block text-[12.5px] leading-relaxed text-zinc-500">
-                  <span className="font-medium text-zinc-700">Schwarz</span> ist die{" "}
+                <span className="mt-2 block text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">Schwarz</span> ist die{" "}
                   <span className="font-medium">Partei</span> (Wahlprogramm).{" "}
-                  <span className="font-medium text-amber-700">Braun</span> und die
+                  <span className="font-medium text-amber-700 dark:text-amber-400">Braun</span> und die
                   Abstimmungen zeigen die <span className="font-medium">Fraktion</span> im
                   Bundestag: Reden geben meist die intern abgestimmte Fraktionslinie
                   wieder, Bürgerfragen beantworten einzelne Abgeordnete. Ein starkes
                   Signal für die Position — aber Fraktion und Partei sind nicht dasselbe
                   und nicht gleichzusetzen.{" "}
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 dark:text-zinc-500">
                     „keine Aussage" in der Reden-Zeile heißt: in den ausgewerteten Reden
                     keine klare Aussage gefunden — nicht zwingend, dass die Fraktion dazu
                     keine Position hat.
@@ -304,7 +304,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 className={`rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
                   aktiv
                     ? "bg-zinc-900 text-white"
-                    : "bg-white text-zinc-600 border border-zinc-200/80 hover:bg-zinc-50"
+                    : "bg-card text-zinc-600 dark:text-zinc-300 border border-border hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
                 {t.kurz}
@@ -316,13 +316,13 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
         {/* Synthese-Detailgrad umschalten (nur wo Gold-Synthese vorliegt) */}
         {matrix && hasGold(feld) && (
           <div className="mb-4 flex items-center gap-2 text-[12px]">
-            <span className="text-zinc-400">„aus Reden“-Stichpunkte:</span>
-            <span className="inline-flex overflow-hidden rounded-full border border-zinc-200/80">
+            <span className="text-zinc-400 dark:text-zinc-500">„aus Reden“-Stichpunkte:</span>
+            <span className="inline-flex overflow-hidden rounded-full border border-border">
               <Link
                 href={`/parteien/feld/${slug}`}
                 aria-current={kurz ? "page" : undefined}
                 className={`px-3 py-1 font-medium transition-colors ${
-                  kurz ? "bg-zinc-900 text-white" : "bg-white text-zinc-600 hover:bg-zinc-50"
+                  kurz ? "bg-zinc-900 text-white" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
                 Kompakt
@@ -331,7 +331,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 href={`/parteien/feld/${slug}?v=full`}
                 aria-current={!kurz ? "page" : undefined}
                 className={`px-3 py-1 font-medium transition-colors ${
-                  !kurz ? "bg-zinc-900 text-white" : "bg-white text-zinc-600 hover:bg-zinc-50"
+                  !kurz ? "bg-zinc-900 text-white" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
                 Ausführlich
@@ -344,11 +344,11 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
           /* ---- Aspekt-Matrix: bricht zentriert auf max. 88rem aus, Rest der Seite
              bleibt auf der lesbaren 72rem-Breite (navbar-bündig). ---- */
           <div className="mx-[calc(50%-50vw)] w-screen px-5">
-            <div className="mx-auto max-w-[88rem] overflow-x-auto rounded-2xl border border-zinc-200/70 bg-white">
+            <div className="mx-auto max-w-[88rem] overflow-x-auto rounded-2xl border border-border bg-card">
             <table className="w-full border-collapse text-left">
               <thead>
                 <tr>
-                  <th className="sticky left-0 z-10 bg-white px-4 py-3 text-[11px] font-medium uppercase tracking-wider text-zinc-400">
+                  <th className="sticky left-0 z-10 bg-card px-4 py-3 text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                     Aspekt
                   </th>
                   {parteien.map((p) => {
@@ -372,9 +372,9 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
               <tbody>
                 {matrix.aspekte.map((asp, ri) => {
                   const zebra = ri % 2 === 1;
-                  const rowBg = zebra ? "bg-zinc-50/40" : "";
-                  const thBg = zebra ? "bg-[#fafafa]" : "bg-white";
-                  const sep = "border-t border-zinc-200/80"; // trennt Aspekt-Blöcke
+                  const rowBg = zebra ? "bg-zinc-50/40 dark:bg-zinc-800/40" : "";
+                  const thBg = zebra ? "bg-[#fafafa]" : "bg-card";
+                  const sep = "border-t border-border"; // trennt Aspekt-Blöcke
                   const stick = "sticky left-0 z-10";
                   return (
                     <Fragment key={asp.label}>
@@ -382,7 +382,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           colSpan={parteien.length + 1}
-                          className={`${sep} ${thBg} px-4 pt-4 pb-2 text-left text-[13px] font-semibold leading-snug text-zinc-800`}
+                          className={`${sep} ${thBg} px-4 pt-4 pb-2 text-left text-[13px] font-semibold leading-snug text-zinc-800 dark:text-zinc-200`}
                         >
                           {asp.label}
                         </th>
@@ -391,21 +391,21 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-zinc-100 px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400`}
+                          className={`${stick} ${thBg} border-t border-border px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
                         >
                           Wahlprogramm
                         </th>
                         {parteien.map((p) => (
                           <td
                             key={p}
-                            className="border-l border-t border-zinc-100 px-3 py-1.5 align-top"
+                            className="border-l border-t border-border px-3 py-1.5 align-top"
                           >
                             {asp.zellen[p] ? (
-                              <span className="block text-[12.5px] leading-snug text-zinc-700">
+                              <span className="block text-[12.5px] leading-snug text-zinc-700 dark:text-zinc-300">
                                 {asp.zellen[p]}
                               </span>
                             ) : (
-                              <span className="text-[11px] font-medium uppercase tracking-wide text-zinc-300">
+                              <span className="text-[11px] font-medium uppercase tracking-wide text-zinc-300 dark:text-zinc-600">
                                 n/a
                               </span>
                             )}
@@ -416,7 +416,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-zinc-100 px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-amber-600/80`}
+                          className={`${stick} ${thBg} border-t border-border px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-amber-600/80 dark:text-amber-400/80`}
                         >
                           aus Reden
                         </th>
@@ -425,16 +425,16 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                           return (
                             <td
                               key={p}
-                              className="border-l border-t border-zinc-100 px-3 py-1.5 align-top"
+                              className="border-l border-t border-border px-3 py-1.5 align-top"
                             >
                               {beh && beh.punkte.length > 0 ? (
-                                <span className="block border-l-2 border-amber-300 pl-2">
+                                <span className="block border-l-2 border-amber-300 dark:border-amber-800/50 pl-2">
                                   {beh.punkte.map((pt, pi) => {
                                     const n = punktNum.get(`${asp.label}|${p}|${pi}`);
                                     return (
                                       <span
                                         key={pi}
-                                        className="block text-[12.5px] italic leading-snug text-amber-800"
+                                        className="block text-[12.5px] italic leading-snug text-amber-800 dark:text-amber-400"
                                       >
                                         {beh.punkte.length > 1 && (
                                           <span className="mr-1 not-italic text-amber-400">•</span>
@@ -443,7 +443,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                                         {n != null && (
                                           <a
                                             href={`#q${n}`}
-                                            className="num ml-0.5 align-super text-[9px] not-italic text-blue-600 hover:underline"
+                                            className="num ml-0.5 align-super text-[9px] not-italic text-blue-600 dark:text-blue-400 hover:underline"
                                           >
                                             [{n}]
                                           </a>
@@ -454,7 +454,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                                 </span>
                               ) : (
                                 <span
-                                  className="text-[11px] text-zinc-300"
+                                  className="text-[11px] text-zinc-300 dark:text-zinc-600"
                                   title="Keine klare Aussage in den ausgewerteten Reden gefunden — nicht zwingend, dass die Fraktion dazu keine Position hat."
                                 >
                                   keine Aussage
@@ -468,7 +468,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-zinc-100 px-4 pt-1.5 pb-5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400`}
+                          className={`${stick} ${thBg} border-t border-border px-4 pt-1.5 pb-5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
                         >
                           abgestimmt
                         </th>
@@ -477,7 +477,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                           return (
                             <td
                               key={p}
-                              className="border-l border-t border-zinc-100 px-3 pt-1.5 pb-5 align-top"
+                              className="border-l border-t border-border px-3 pt-1.5 pb-5 align-top"
                             >
                               {zv.length > 0 && (
                                 <span className="block space-y-0.5">
@@ -488,10 +488,10 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                                       ? (() => {
                                           const pos = positionZumAntrag(vt.richtung, true);
                                           return pos === "dafuer"
-                                            ? { glyph: "✓", cls: "text-emerald-600" }
+                                            ? { glyph: "✓", cls: "text-emerald-600 dark:text-emerald-400" }
                                             : pos === "dagegen"
-                                              ? { glyph: "✗", cls: "text-rose-600" }
-                                              : { glyph: "•", cls: "text-zinc-400" };
+                                              ? { glyph: "✗", cls: "text-rose-600 dark:text-rose-400" }
+                                              : { glyph: "•", cls: "text-zinc-400 dark:text-zinc-500" };
                                         })()
                                       : richtungMark(vt.richtung);
                                     const inner = (
@@ -505,13 +505,13 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                                     return (
                                       <span
                                         key={i}
-                                        className="block text-[11px] leading-snug text-zinc-500"
+                                        className="block text-[11px] leading-snug text-zinc-500 dark:text-zinc-400"
                                       >
                                         {vt.url ? (
                                           <Link
                                             href={vt.url}
                                             title={cleanBetreff(vt.betreff)}
-                                            className="hover:text-zinc-800 hover:underline"
+                                            className="hover:text-zinc-800 dark:hover:text-zinc-200 hover:underline"
                                           >
                                             {inner}
                                           </Link>
@@ -522,7 +522,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                                     );
                                   })}
                                   {zv.length > 5 && (
-                                    <span className="block text-[10px] text-zinc-400">
+                                    <span className="block text-[10px] text-zinc-400 dark:text-zinc-500">
                                       +{zv.length - 5} weitere
                                     </span>
                                   )}
@@ -548,7 +548,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
               return (
                 <section
                   key={partei}
-                  className="flex flex-col overflow-hidden rounded-2xl border border-zinc-200/70 bg-white"
+                  className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
                 >
                   <div
                     className="px-4 py-2.5 text-[13px] font-semibold"
@@ -562,7 +562,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                         {pos.kompakt.map((b, i) => (
                           <li
                             key={i}
-                            className="flex gap-2 text-[13px] leading-snug text-zinc-700"
+                            className="flex gap-2 text-[13px] leading-snug text-zinc-700 dark:text-zinc-300"
                           >
                             <span
                               className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full"
@@ -574,7 +574,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-[13px] leading-relaxed text-zinc-700">
+                      <p className="text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
                         {pos.position}
                       </p>
                     )}
@@ -588,10 +588,10 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
         {/* "Tut"-Schicht: tatsächliches Abstimmungsverhalten der Fraktionen */}
         {hatVotes && matrix && (
           <section className="mt-10">
-            <h2 className="mb-1 text-[13px] font-semibold tracking-tight text-zinc-700">
+            <h2 className="mb-1 text-[13px] font-semibold tracking-tight text-zinc-700 dark:text-zinc-300">
               Wie die Fraktionen abgestimmt haben
             </h2>
-            <p className="mb-4 max-w-2xl text-[12px] leading-relaxed text-zinc-400">
+            <p className="mb-4 max-w-2xl text-[12px] leading-relaxed text-zinc-400 dark:text-zinc-500">
               Tatsächliches Abstimmungsverhalten im Bundestag zu Vorlagen dieses Feldes.
               Klick öffnet die namentliche Abstimmung im Plenarprotokoll.
             </p>
@@ -600,7 +600,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 .filter((asp) => (proAspekt[asp.label]?.length ?? 0) > 0)
                 .map((asp) => (
                   <div key={asp.label}>
-                    <div className="mb-2 text-[12.5px] font-semibold text-zinc-800">
+                    <div className="mb-2 text-[12.5px] font-semibold text-zinc-800 dark:text-zinc-200">
                       {asp.label}
                     </div>
                     <ul className="space-y-2.5">{proAspekt[asp.label].map(voteLi)}</ul>
@@ -610,7 +610,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                   Verfahren ohne Synthese-Anknüpfung) — separat, nicht unterschlagen. */}
               {feldweit.length > 0 && (
                 <div>
-                  <div className="mb-2 text-[12.5px] font-semibold text-zinc-800">
+                  <div className="mb-2 text-[12.5px] font-semibold text-zinc-800 dark:text-zinc-200">
                     Weitere Abstimmungen im Feld
                   </div>
                   <ul className="space-y-2.5">{feldweit.map(voteLi)}</ul>
@@ -622,17 +622,17 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
 
         {/* Quellen-Apparat: EINKLAPPBAR, ein Eintrag pro Punkt mit allen seinen Reden */}
         {quellen.length > 0 && (
-          <details className="group mt-10 border-t border-zinc-200/70 pt-5">
-            <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[13px] font-semibold tracking-tight text-zinc-700">
-              <span className="text-zinc-400 transition-transform group-open:rotate-90">›</span>
+          <details className="group mt-10 border-t border-border pt-5">
+            <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[13px] font-semibold tracking-tight text-zinc-700 dark:text-zinc-300">
+              <span className="text-zinc-400 dark:text-zinc-500 transition-transform group-open:rotate-90">›</span>
               Quellen ({quellen.length}) — Reden &amp; Bürgerfragen hinter den braunen
               Punkten
             </summary>
-            <p className="mb-3 mt-2 max-w-2xl text-[12px] leading-relaxed text-zinc-400">
-              Pro <span className="text-amber-700">braunem</span> Punkt ein Eintrag mit
+            <p className="mb-3 mt-2 max-w-2xl text-[12px] leading-relaxed text-zinc-400 dark:text-zinc-500">
+              Pro <span className="text-amber-700 dark:text-amber-400">braunem</span> Punkt ein Eintrag mit
               allen belegenden Reden (Protokoll-Deeplink) bzw. Bürgerfragen. Die Punkte sind
               synthetisiert, sinngemäß; mit{" "}
-              <span className="font-medium text-emerald-700">wörtlich</span> markierte Stellen
+              <span className="font-medium text-emerald-700 dark:text-emerald-400">wörtlich</span> markierte Stellen
               sind im Protokoll wortgleich geprüft.
             </p>
             <ol className="space-y-2">
@@ -644,16 +644,16 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                   <li
                     key={q.n}
                     id={`q${q.n}`}
-                    className="scroll-mt-20 text-[12px] leading-relaxed target:bg-blue-50"
+                    className="scroll-mt-20 text-[12px] leading-relaxed target:bg-blue-50 dark:target:bg-blue-950/40"
                   >
-                    <span className="num mr-1.5 text-zinc-400">{q.n}.</span>
-                    <span className="text-zinc-500">
+                    <span className="num mr-1.5 text-zinc-400 dark:text-zinc-500">{q.n}.</span>
+                    <span className="text-zinc-500 dark:text-zinc-400">
                       {PARTEI_KURZ.get(q.partei) ?? q.partei}: „{q.punkt}“
                     </span>
                     {/* Wörtlich verifizierte Zitate zuerst — im Protokoll geprüft */}
                     {zitate.map((r, i) => (
-                      <span key={`z${i}`} className="mt-1 block pl-5 text-zinc-600">
-                        <span className="mr-1 rounded bg-emerald-50 px-1 py-px text-[10px] font-medium text-emerald-700">
+                      <span key={`z${i}`} className="mt-1 block pl-5 text-zinc-600 dark:text-zinc-300">
+                        <span className="mr-1 rounded bg-emerald-50 dark:bg-emerald-950/40 px-1 py-px text-[10px] font-medium text-emerald-700 dark:text-emerald-400">
                           wörtlich
                         </span>
                         „{r.zitat}“ — <RedeLink url={r.url} label={r.label} />
@@ -661,22 +661,22 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                     ))}
                     {/* Alle Fundstellen: Top-8 sichtbar, Rest aufklappbar (nichts entfällt) */}
                     <span className="mt-0.5 block pl-5">
-                      <span className="text-zinc-400">Fundstellen: </span>
+                      <span className="text-zinc-400 dark:text-zinc-500">Fundstellen: </span>
                       {q.reden.slice(0, 8).map((r, i) => (
                         <span key={i}>
-                          {i > 0 && <span className="text-zinc-300"> · </span>}
+                          {i > 0 && <span className="text-zinc-300 dark:text-zinc-600"> · </span>}
                           <RedeLink url={r.url} label={r.label} />
                         </span>
                       ))}
                       {q.reden.length > 8 && (
                         <details className="mt-1">
-                          <summary className="cursor-pointer list-none text-blue-600 hover:underline">
+                          <summary className="cursor-pointer list-none text-blue-600 dark:text-blue-400 hover:underline">
                             +{q.reden.length - 8} weitere Fundstellen
                           </summary>
                           <span className="mt-0.5 block">
                             {q.reden.slice(8).map((r, i) => (
                               <span key={i}>
-                                {i > 0 && <span className="text-zinc-300"> · </span>}
+                                {i > 0 && <span className="text-zinc-300 dark:text-zinc-600"> · </span>}
                                 <RedeLink url={r.url} label={r.label} />
                               </span>
                             ))}
@@ -692,7 +692,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
         )}
 
         {/* Volltext & Belege je Partei (immer, unter dem Vergleich) */}
-        <h2 className="mb-3 mt-8 text-[13px] font-semibold tracking-tight text-zinc-700">
+        <h2 className="mb-3 mt-8 text-[13px] font-semibold tracking-tight text-zinc-700 dark:text-zinc-300">
           Volltext &amp; Belege je Partei
         </h2>
         <div className="space-y-2">
@@ -702,11 +702,11 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
             return (
               <details
                 key={partei}
-                className="group/b overflow-hidden rounded-xl border border-zinc-200/70 bg-white"
+                className="group/b overflow-hidden rounded-xl border border-border bg-card"
               >
                 <summary className="list-none flex cursor-pointer select-none items-center gap-2.5 px-4 py-3">
                   <ChevronDown
-                    className="h-3.5 w-3.5 text-zinc-400 transition-transform -rotate-90 group-open/b:rotate-0"
+                    className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500 transition-transform -rotate-90 group-open/b:rotate-0"
                     strokeWidth={2.5}
                     aria-hidden
                   />
@@ -717,13 +717,13 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                     {PARTEI_KURZ.get(partei) ?? partei}
                   </span>
                   {pos.belege.length > 0 && (
-                    <span className="num text-[11px] text-zinc-400">
+                    <span className="num text-[11px] text-zinc-400 dark:text-zinc-500">
                       {pos.belege.length} Belege
                     </span>
                   )}
                 </summary>
                 <div className="px-4 pb-4 pl-11">
-                  <p className="text-[13px] leading-relaxed text-zinc-600">
+                  <p className="text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {pos.position}
                   </p>
                   {pos.belege.length > 0 && (
@@ -731,11 +731,11 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       {pos.belege.map((b, i) => (
                         <li
                           key={i}
-                          className="border-l-2 border-zinc-200 pl-3 text-[12.5px] leading-relaxed text-zinc-600"
+                          className="border-l-2 border-border pl-3 text-[12.5px] leading-relaxed text-zinc-600 dark:text-zinc-300"
                         >
-                          <span className="text-zinc-800">„{b.zitat}“</span>
+                          <span className="text-zinc-800 dark:text-zinc-200">„{b.zitat}“</span>
                           {b.verifiziert && b.seite != null && (
-                            <span className="num ml-1.5 whitespace-nowrap text-[11px] text-zinc-400">
+                            <span className="num ml-1.5 whitespace-nowrap text-[11px] text-zinc-400 dark:text-zinc-500">
                               S. {b.seite}
                             </span>
                           )}
@@ -744,7 +744,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                     </ul>
                   )}
                   {verif < pos.belege.length && (
-                    <p className="mt-2.5 text-[11px] text-zinc-400">
+                    <p className="mt-2.5 text-[11px] text-zinc-400 dark:text-zinc-500">
                       Zitate ohne Seitenzahl sind sinngemäß zusammengefasst, nicht
                       wortgleich.
                     </p>
@@ -755,7 +755,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
           })}
         </div>
 
-        <p className="mt-8 text-[12px] leading-relaxed text-zinc-400">
+        <p className="mt-8 text-[12px] leading-relaxed text-zinc-400 dark:text-zinc-500">
           {matrix
             ? "„n/a“ heißt: im Wahlprogramm dieser Partei nicht behandelt — nicht zwingend Ablehnung. Geplant: solche Lücken aus Reden, Bürgerfragen und Abstimmungen ergänzen. Quelle: offizielle Wahlprogramme zur BTW 2025, Belege geprüft."
             : "Quelle: offizielle Wahlprogramme zur Bundestagswahl 2025, extraktiv und ohne Wertung; Belege mit geprüfter Fundstelle."}
