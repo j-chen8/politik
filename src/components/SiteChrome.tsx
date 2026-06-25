@@ -6,11 +6,15 @@ import { useState, useEffect, useRef } from "react";
 import { Search, Radio, Activity, Users, Gavel, Vote, BookOpen, Info, ChevronDown, Menu, X, BarChart3, Library, CalendarDays, MessageSquareQuote, MapPin, Landmark, Layers, Scale } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { AppShell } from "./AppShell";
 import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
 /**
  * SiteChrome wraps every page with the site header & footer.
+ *
+ * Ausnahme: die Startseite `/` läuft im neuen App-Shell-Layout (linke Leiste +
+ * Topbar statt Top-Nav). Inkrementeller Rollout — erst nur `/`, später site-weit.
  */
 export function SiteChrome({
   children,
@@ -19,6 +23,12 @@ export function SiteChrome({
   children: React.ReactNode;
   parliaments: ParliamentOverview[];
 }) {
+  const pathname = usePathname() || "/";
+
+  if (pathname === "/") {
+    return <AppShell parliaments={parliaments}>{children}</AppShell>;
+  }
+
   return (
     <div className="design-linear flex flex-col min-h-screen">
       <LinearHeader parliaments={parliaments} />

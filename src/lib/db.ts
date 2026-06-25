@@ -549,7 +549,7 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
   //    exakt die obersten der Abstimmungs-Liste (Konsistenz Landing ↔ /abstimmungen).
   const latestVotes = listAllVotesForIndex()
     .filter((v) => v.subtype !== "petition" && v.subtype !== "personenwahl")
-    .slice(0, 5);
+    .slice(0, 14);
   // Zusammenfassung je Vote — füllt die Karte. Bevorzugt der Abstimmungs-Kontext
   // „Worum geht es?" (vote_context, nur namentliche Polls), sonst die Zusammenfassung
   // der verknüpften Drucksache (für Handzeichen-Votes).
@@ -586,7 +586,7 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
                 (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
          FROM drucksache_analyses da
          WHERE da.dokumenttyp = ? AND da.analyze_error IS NULL
-         ORDER BY datum DESC LIMIT 5`
+         ORDER BY datum DESC LIMIT 18`
       )
       .all(klasse) as {
       drucksache_nr: string;
@@ -3703,6 +3703,40 @@ export function getVotersForPollByFraktionVote(
       AND v.vote = ?
     ORDER BY p.last_name, p.first_name
   `).all(pollId, fraktion, vote) as VoterRow[];
+}
+
+/** Langes Fraktions-Label (votes.fraction_label) → Kurzname wie in
+ *  bundestag_votes.fraktion_votes_json (CDU/CSU, SPD, GRÜNE, LINKE, AfD). */
+function normFraktionKurz(label: string): string | null {
+  const s = label.toLowerCase();
+  if (s.includes("cdu") || s.includes("csu")) return "CDU/CSU";
+  if (s.includes("spd")) return "SPD";
+  if (s.includes("grüne") || s.includes("bündnis")) return "GRÜNE";
+  if (s.includes("linke")) return "LINKE";
+  if (s.includes("afd")) return "AfD";
+  return null;
+}
+
+/**
+ * Exakte aktuelle Fraktionsgrößen = Anzahl distinct MdB je Fraktion über alle
+ * namentlichen Abstimmungen (votes-Tabelle). Schlüssel = Kurzname wie in den
+ * Handzeichen-Votes (fraktion_votes_json), damit man deren „dafür/dagegen je
+ * Fraktion" nach Sitzen gewichten kann. Live aus der DB, nicht hardcodiert.
+ */
+export function getFraktionSitze(): Record<string, number> {
+  const db = getDb();
+  const rows = db
+    .prepare(
+      `SELECT fraction_label AS f, COUNT(DISTINCT politician_id) AS n
+       FROM votes WHERE fraction_label IS NOT NULL GROUP BY fraction_label`
+    )
+    .all() as { f: string; n: number }[];
+  const out: Record<string, number> = {};
+  for (const r of rows) {
+    const key = normFraktionKurz(r.f);
+    if (key) out[key] = (out[key] ?? 0) + r.n;
+  }
+  return out;
 }
 
 export type VoteSubtype = "gesetz" | "petition" | "personenwahl" | "unbekannt";

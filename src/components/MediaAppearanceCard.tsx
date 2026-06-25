@@ -5,18 +5,20 @@ import {
   type MediaAppearanceIndexEntry,
 } from "@/lib/media-appearances";
 import { getDb } from "@/lib/db";
+import { PoliticianAvatar } from "@/components/PoliticianAvatar";
 
 interface PoliticianInfo {
   first_name: string;
   last_name: string;
   party_label: string | null;
+  photo_url: string | null;
 }
 
 function loadPolitician(id: number): PoliticianInfo | null {
   try {
     const row = getDb()
       .prepare(
-        `SELECT po.first_name, po.last_name, p.label AS party_label
+        `SELECT po.first_name, po.last_name, po.photo_url, p.label AS party_label
          FROM politicians po
          LEFT JOIN parties p ON p.id = po.party_id
          WHERE po.id = ?`
@@ -100,24 +102,34 @@ export function MediaAppearanceCard({ appearance: a, politician }: Props) {
   return (
     <Link
       href={detailHref}
-      className="group bg-card border border-border rounded-2xl p-4 hover:border-zinc-300 hover:shadow-sm transition-all flex flex-col dark:bg-zinc-900/70 dark:border-zinc-800 dark:hover:border-zinc-700"
+      className="group h-full w-full bg-card border border-border rounded-2xl p-5 hover:border-zinc-300 hover:shadow-sm transition-all flex flex-col dark:bg-zinc-900/70 dark:border-zinc-800 dark:hover:border-zinc-700"
     >
-      <div className="flex items-baseline gap-2 mb-2 flex-wrap">
-        <Icon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" strokeWidth={2.25} />
-        <span className="text-[12px] font-medium text-zinc-700 dark:text-zinc-300">{a.publisher}</span>
-        <span className="text-[11px] text-zinc-400 dark:text-zinc-500">· {formatMediaDate(a.published_at)}</span>
-      </div>
-
-      <div className="mb-2.5">
-        <div className="text-[16px] font-semibold text-zinc-950 leading-tight group-hover:text-zinc-700 transition-colors dark:text-zinc-100 dark:group-hover:text-zinc-300">
-          {polName}
+      <div className="mb-2.5 flex items-center gap-2.5">
+        <PoliticianAvatar
+          photoUrl={pol?.photo_url ?? null}
+          firstName={pol?.first_name ?? a.politician_display}
+          lastName={pol?.last_name ?? ""}
+          party={pol?.party_label ?? null}
+          size="lg"
+        />
+        <div className="min-w-0">
+          <div className="text-[19px] font-semibold text-zinc-950 leading-tight group-hover:text-zinc-700 transition-colors dark:text-zinc-100 dark:group-hover:text-zinc-300">
+            {polName}
+          </div>
+          {party && <div className="text-[13.5px] text-zinc-500 mt-0.5 dark:text-zinc-400">{party}</div>}
         </div>
-        {party && <div className="text-[11.5px] text-zinc-500 mt-0.5 dark:text-zinc-400">{party}</div>}
       </div>
 
       {teaser && (
-        <p className="text-[13px] text-zinc-600 leading-relaxed dark:text-zinc-300">{teaser}</p>
+        <p className="text-[15px] text-zinc-600 leading-relaxed dark:text-zinc-300">{teaser}</p>
       )}
+      <div className="mt-auto flex items-center gap-2 pt-2 text-[12.5px] text-zinc-400 dark:text-zinc-500">
+        <span className="num">{formatMediaDate(a.published_at)}</span>
+        <span className="ml-auto inline-flex items-center gap-1 text-zinc-500 dark:text-zinc-400">
+          <Icon className="h-3.5 w-3.5 shrink-0" strokeWidth={2.25} />
+          {a.publisher}
+        </span>
+      </div>
     </Link>
   );
 }
