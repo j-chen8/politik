@@ -2056,7 +2056,8 @@ export function getParlamentarischeArbeit(
 
 export interface ActivityListParams {
   query?: string;
-  art?: string;
+  /** Ein aktivitaetsart-Wert oder mehrere (z.B. Kleine + Große Anfrage). */
+  art?: string | string[];
   limit?: number;
   offset?: number;
 }
@@ -2071,9 +2072,10 @@ export function listActivities(params: ActivityListParams): { rows: ActivityWith
     const term = `%${params.query}%`;
     args.push(term, term);
   }
-  if (params.art) {
-    conditions.push(`a.aktivitaetsart = ?`);
-    args.push(params.art);
+  const arts = params.art == null ? [] : Array.isArray(params.art) ? params.art : [params.art];
+  if (arts.length > 0) {
+    conditions.push(`a.aktivitaetsart IN (${arts.map(() => "?").join(",")})`);
+    args.push(...arts);
   }
 
   const where = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
@@ -2158,9 +2160,10 @@ export function listActivitiesGrouped(params: ActivityListParams): {
     const term = `%${params.query}%`;
     args.push(term, term);
   }
-  if (params.art) {
-    conditions.push(`a.aktivitaetsart = ?`);
-    args.push(params.art);
+  const arts = params.art == null ? [] : Array.isArray(params.art) ? params.art : [params.art];
+  if (arts.length > 0) {
+    conditions.push(`a.aktivitaetsart IN (${arts.map(() => "?").join(",")})`);
+    args.push(...arts);
   }
   const userWhere = conditions.length > 0 ? `AND ${conditions.join(" AND ")}` : "";
 
@@ -2286,6 +2289,83 @@ export function listActivitiesGrouped(params: ActivityListParams): {
   }));
 
   return { rows, total, totalGrouped, totalIndividual };
+}
+
+// ────────────────────────────────────────────────────────────────────────
+// Drucksachen nach amtlichem Dokumenttyp (drucksache_analyses) — die
+// AUTORITATIVE, DIP-voll-enumerierte Quelle. WICHTIG für Gesetzentwürfe:
+// activities ist mitzeichner-getrieben und verfehlt alle Regierungs-/Bundesrats-
+// Entwürfe (58 statt 313). Diese Liste zählt jeden Entwurf, egal ob er namentliche
+// Einbringer hat. Titel aus dip_ds_titles, Datum aus drucksache_texts. Vgl.
+// [[project_drucksachen_discovery_fix]].
+// ────────────────────────────────────────────────────────────────────────
+export interface DrucksacheTypItem {
+  drucksache_nr: string;
+  dokumenttyp: string;
+  titel: string;
+  einbringer: string | null;
+  datum: string | null;
+  zusammenfassung: string | null;
+}
+
+export function listDrucksachenByDokumenttyp(params: {
+  /** Ein Typ oder mehrere Geschwister-Typen (z.B. die Antrags-Familie). */
+  dokumenttyp: string | string[];
+  query?: string;
+  /** Nur eigenständige Dokumente — schließt Verfahrens-Dokumente aus, deren
+   *  Vorgang einen Gesetzentwurf/Antrag enthält (z.B. Ausschuss-Berichte ZUM
+   *  Gesetz, die sonst den Gesetz-Titel doppeln). */
+  nurEigenstaendig?: boolean;
+  limit?: number;
+  offset?: number;
+}): { rows: DrucksacheTypItem[]; total: number } {
+  const db = getDb();
+  const limit = params.limit ?? 30;
+  const offset = params.offset ?? 0;
+  const typen = Array.isArray(params.dokumenttyp) ? params.dokumenttyp : [params.dokumenttyp];
+
+  const conds: string[] = [`da.dokumenttyp IN (${typen.map(() => "?").join(",")})`, "da.analyze_error IS NULL"];
+  const args: (string | number)[] = [...typen];
+  if (params.nurEigenstaendig) {
+    conds.push(
+      `NOT EXISTS (
+         SELECT 1 FROM dip_ds_vorgaenge v1
+         JOIN dip_ds_vorgaenge v2 ON v2.vorgang_id = v1.vorgang_id AND v2.drucksache_nr != da.drucksache_nr
+         JOIN drucksache_analyses g ON g.drucksache_nr = v2.drucksache_nr
+           AND g.dokumenttyp IN ('Gesetzentwurf','Antrag','Entschließungsantrag','Änderungsantrag')
+         WHERE v1.drucksache_nr = da.drucksache_nr
+       )`
+    );
+  }
+  if (params.query) {
+    // Suche über Titel (dip_ds_titles) und Zusammenfassung.
+    conds.push(
+      `(EXISTS (SELECT 1 FROM dip_ds_titles t WHERE t.drucksache_nr = da.drucksache_nr AND t.titel LIKE ?)
+        OR da.zusammenfassung LIKE ?)`
+    );
+    args.push(`%${params.query}%`, `%${params.query}%`);
+  }
+  const where = `WHERE ${conds.join(" AND ")}`;
+
+  const total = (db.prepare(
+    `SELECT COUNT(*) AS c FROM drucksache_analyses da ${where}`
+  ).get(...args) as { c: number }).c;
+
+  const rows = db.prepare(
+    `SELECT
+       da.drucksache_nr AS drucksache_nr,
+       da.dokumenttyp AS dokumenttyp,
+       COALESCE((SELECT titel FROM dip_ds_titles t WHERE t.drucksache_nr = da.drucksache_nr), '') AS titel,
+       da.fraktion AS einbringer,
+       da.zusammenfassung AS zusammenfassung,
+       (SELECT publication_date FROM drucksache_texts dt WHERE dt.drucksache_nr = da.drucksache_nr) AS datum
+     FROM drucksache_analyses da
+     ${where}
+     ORDER BY datum IS NULL, datum DESC, da.drucksache_nr DESC
+     LIMIT ? OFFSET ?`
+  ).all(...args, limit, offset) as DrucksacheTypItem[];
+
+  return { rows, total };
 }
 
 // ── Politician Notes (Sonderfälle) ──
@@ -3917,7 +3997,15 @@ export interface HandzeichenVoteIndexEntry {
   topics: string[];
   vote_id: number;
   modus: string | null;
+  // ACHTUNG: Bei beschlussAblehnung=true sind diese Stimmen bereits zur
+  // „Position zum Antrag" gedreht (ja↔nein), NICHT die Rohstimme über die
+  // Beschlussempfehlung. So passen Balken/Pills zum outcome_label.
   fraktion_votes: Record<string, string> | null;
+  // true = abgestimmt wurde über eine Beschlussempfehlung, die die ABLEHNUNG
+  // dieses Antrags empfiehlt → outcome + fraktion_votes sind auf Antrags-Ebene
+  // gedreht (sonst läse sich „CDU stimmt zu" als Zustimmung zum Antrag, obwohl
+  // sie der Ablehnungs-Empfehlung zugestimmt hat). Vgl. Detailseite.
+  beschlussAblehnung: boolean;
   sitzung_nr: number | null;
   wahlperiode: number | null;
 }
@@ -4012,6 +4100,21 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
       ueberweisung: { o: "ueberwiesen", l: "an Ausschuss überwiesen" },
     };
 
+    // Beschlussempfehlungs-Flip: vote_id+ds_nr, bei denen über eine die ABLEHNUNG
+    // empfehlende Beschlussempfehlung abgestimmt wurde. Für diese Paare drehen wir
+    // outcome + fraktion_votes auf die Antrags-Ebene (sonst widerspricht der grüne
+    // Balken dem „abgelehnt"-Label — die Rohstimme „ja" galt der Ablehnungs-Empfehlung).
+    const ablehnungFlip = new Map<number, Set<string>>();
+    try {
+      const fr = db.prepare(
+        `SELECT vote_id, ds_nr FROM vote_beschluss_kontext WHERE empfiehlt='ablehnen'`
+      ).all() as { vote_id: number; ds_nr: string }[];
+      for (const r of fr) {
+        if (!ablehnungFlip.has(r.vote_id)) ablehnungFlip.set(r.vote_id, new Set());
+        ablehnungFlip.get(r.vote_id)!.add(r.ds_nr);
+      }
+    } catch { /* Tabelle evtl. nicht vorhanden */ }
+
     for (const v of btv) {
       // DS-Refs: invalide Platzhalter (z.B. "21/XXXX") aus LLM-Halluzinationen filtern.
       const dsNrnRaw: string[] = v.drucksache_nrn_json
@@ -4085,7 +4188,13 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
           label = `${docType} vom ${dateStr}`;
         }
       }
-      const oc = outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
+      // Flip greift, wenn die primäre DS dieses Votes eine Ablehnungs-Empfehlung war.
+      const flip = (dsNrn.length > 0 && ablehnungFlip.get(v.vote_id)?.has(dsNrn[0])) ?? false;
+      // outcome auf Antrags-Ebene (identisch zur Detailseite): „ja" zur Ablehnungs-
+      // Empfehlung (annahme) bedeutet, der Antrag wurde abgelehnt.
+      const oc = flip && v.outcome === "annahme"
+        ? { o: "abgelehnt" as const, l: "abgelehnt" }
+        : outcomeMap[v.outcome] ?? { o: "unklar" as const, l: v.outcome };
       const detail_url = dsNrn.length > 0
         ? `/aktivitaeten/${dsNrn[0].replace("/", "-")}`
         : `/abstimmungen`;
@@ -4093,9 +4202,17 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         v.vote_type === "handzeichen" || v.vote_type === "hammelsprung"
           ? v.vote_type
           : "unklar";
-      const fraktion_votes: Record<string, string> | null = v.fraktion_votes_json
+      const fraktion_votes_raw: Record<string, string> | null = v.fraktion_votes_json
         ? (() => { try { return JSON.parse(v.fraktion_votes_json!) as Record<string, string>; } catch { return null; } })()
         : null;
+      // Bei Flip ja↔nein drehen → „Position zum Antrag" (Enthaltung/unbekannt bleiben).
+      const fraktion_votes: Record<string, string> | null = flip && fraktion_votes_raw
+        ? Object.fromEntries(
+            Object.entries(fraktion_votes_raw).map(([k, val]) =>
+              [k, val === "ja" ? "nein" : val === "nein" ? "ja" : val]
+            )
+          )
+        : fraktion_votes_raw;
       const subtype: VoteSubtype =
         v.vote_subtype === "gesetz" || v.vote_subtype === "petition" || v.vote_subtype === "personenwahl"
           ? v.vote_subtype
@@ -4114,6 +4231,7 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
         vote_id: v.vote_id,
         modus: v.modus,
         fraktion_votes,
+        beschlussAblehnung: flip,
         sitzung_nr: v.sitzung_nr,
         wahlperiode: v.wahlperiode,
       });

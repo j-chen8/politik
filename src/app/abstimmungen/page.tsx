@@ -349,7 +349,7 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
               </div>
             </>
           ) : v.fraktion_votes ? (
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap items-center gap-1">
               {FRAKTIONS_ORDER.map((f) => {
                 const vt = v.fraktion_votes?.[f] ?? "unbekannt";
                 return (
@@ -363,6 +363,11 @@ function VoteCard({ v }: { v: VoteIndexEntry }) {
                   </span>
                 );
               })}
+              {v.beschlussAblehnung && (
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 ml-1">
+                  Position zum Antrag
+                </span>
+              )}
             </div>
           ) : (
             <div className="text-[11px] text-zinc-400 dark:text-zinc-500 italic">

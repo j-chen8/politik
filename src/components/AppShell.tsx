@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
-  Home, Layers, Vote, FileText, Mic, Users, Landmark,
-  MessageSquareQuote, BarChart3, BookOpen, Info, Menu, X, Radio,
+  Home, Layers, Vote, Scale, FileText, MessageSquare, Mic, Users, Landmark,
+  MessageSquareQuote, BarChart3, BookOpen, ClipboardList, Info, Menu, X, Radio,
 } from "lucide-react";
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
@@ -20,13 +20,16 @@ import type { ParliamentOverview } from "@/lib/db";
  * schaltet per usePathname um); wird später site-weit ausgerollt.
  */
 
-// Primäre Sektionen (vom User freigegeben): Start · Themen · Abstimmungen ·
-// Drucksachen · Reden · Politiker · Parteien.
+// Primäre Sektionen: Start · Themen · Gesetzentwürfe · Abstimmungen ·
+// Kleine Anfragen · Reden · Politiker · Parteien. Das frühere Sammel-„Drucksachen"
+// (/aktivitaeten) ist in die drei fokussierten Verfahrens-Seiten aufgeteilt.
 const PRIMARY = [
   { href: "/", icon: Home, label: "Start" },
   { href: "/themen", icon: Layers, label: "Themen" },
+  { href: "/gesetze", icon: Scale, label: "Gesetzentwürfe" },
+  { href: "/antraege", icon: FileText, label: "Anträge" },
   { href: "/abstimmungen", icon: Vote, label: "Abstimmungen" },
-  { href: "/aktivitaeten", icon: FileText, label: "Drucksachen" },
+  { href: "/anfragen", icon: MessageSquare, label: "Anfragen" },
   { href: "/protokolle", icon: Mic, label: "Reden" },
   { href: "/politiker", icon: Users, label: "Politiker" },
   { href: "/parteien", icon: Landmark, label: "Parteien" },
@@ -35,6 +38,7 @@ const PRIMARY = [
 // Sekundär (kleiner, unter dem Trenner) — alles Weitere bleibt erreichbar.
 const SECONDARY = [
   { href: "/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
+  { href: "/berichte", icon: ClipboardList, label: "Berichte & Unterrichtungen" },
   { href: "/analyse", icon: BarChart3, label: "Analyse" },
   { href: "/methodik", icon: BookOpen, label: "Methodik" },
   { href: "/ueber", icon: Info, label: "Über" },

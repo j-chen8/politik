@@ -84,8 +84,8 @@ function kuerzeGesetzTitel(titel: string): string {
  *   (gäbe es nicht), nur der Hinweis „≈ nach Fraktionsstärke".
  */
 function VoteBar({
-  yes, no, abstain, real,
-}: { yes: number; no: number; abstain: number; real: boolean }) {
+  yes, no, abstain, real, flip,
+}: { yes: number; no: number; abstain: number; real: boolean; flip?: boolean }) {
   const total = yes + no + abstain || 1;
   const pct = (n: number) => `${(n / total) * 100}%`;
   return (
@@ -102,7 +102,9 @@ function VoteBar({
           {abstain > 0 && <span className="text-muted">{abstain} Enth.</span>}
         </div>
       ) : (
-        <div className="mt-1.5 text-[11px] text-muted">≈ nach Fraktionsstärke</div>
+        <div className="mt-1.5 text-[11px] text-muted">
+          {flip ? "Position zum Antrag · ≈ nach Fraktionsstärke" : "≈ nach Fraktionsstärke"}
+        </div>
       )}
     </div>
   );
@@ -152,12 +154,18 @@ export default function Startseite() {
     const balken = balkenZahlen(v, sitze);
     return (
       <Link key={v.id} href={v.detail_url} className={cardCls}>
-        <p className="text-[16.5px] font-semibold leading-snug text-foreground" style={lineClamp(3)}>
+        <p className="text-[16.5px] font-semibold leading-snug text-foreground">
           {v.label}
         </p>
         <div className="mt-auto flex flex-col gap-2.5 pt-3">
           {balken && (
-            <VoteBar yes={balken.yes} no={balken.no} abstain={balken.abstain} real={balken.real} />
+            <VoteBar
+              yes={balken.yes}
+              no={balken.no}
+              abstain={balken.abstain}
+              real={balken.real}
+              flip={v.type !== "namentlich" && v.beschlussAblehnung}
+            />
           )}
           <div className="flex items-center gap-2 text-[12.5px] text-muted">
             {v.date && <span className="num">{formatDate(v.date)}</span>}
@@ -180,7 +188,9 @@ export default function Startseite() {
 
   const gesetzCards = s.latestGesetzentwuerfe.map((g) => (
     <Link key={g.drucksacheNr} href={dsHref(g.drucksacheNr)} className={cardCls}>
-      <p className="text-[16.5px] font-semibold leading-snug text-foreground" style={lineClamp(3)}>
+      {/* Kein lineClamp: Gesetz-Titel sollen vollständig stehen (User-Wunsch).
+          Karten sind items-stretch → die Reihe wächst auf den längsten Titel. */}
+      <p className="text-[16.5px] font-semibold leading-snug text-foreground">
         {kuerzeGesetzTitel(g.titel)}
       </p>
       <div className="num mt-auto flex flex-wrap items-center gap-1.5 pt-3 text-[12.5px] text-muted">
@@ -199,7 +209,7 @@ export default function Startseite() {
 
   const anfrageCards = s.latestAnfragen.map((a) => (
     <Link key={a.drucksacheNr} href={dsHref(a.drucksacheNr)} className={cardCls}>
-      <p className="text-[16.5px] font-semibold leading-snug text-foreground" style={lineClamp(2)}>
+      <p className="text-[16.5px] font-semibold leading-snug text-foreground">
         {a.titel}
       </p>
       {a.zusammenfassung && (
@@ -263,7 +273,7 @@ export default function Startseite() {
       />
       <Rail
         title="Neue Gesetzentwürfe"
-        href="/aktivitaeten?typ=gesetze"
+        href="/gesetze"
         items={gesetzCards}
         cardWidth="w-[420px]"
       />
@@ -274,7 +284,7 @@ export default function Startseite() {
       />
       <Rail
         title="Neue Kleine Anfragen"
-        href="/aktivitaeten?typ=anfragen"
+        href="/anfragen"
         items={anfrageCards}
       />
 
