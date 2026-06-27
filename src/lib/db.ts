@@ -8929,3 +8929,41 @@ export function getAufmacherPick(): AufmacherPick | null {
   }
   return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote };
 }
+
+// ── Salienz-Trends: was kommt über die Zeit häufig — Fokus Gesetze/Reformen ──
+export interface TrendFeld { themenfeld: string; slug: string | null; tageAktiv: number; tageGesetz: number; gesetzCluster: number; }
+export interface GesetzStory { runDate: string; themenfeld: string; slug: string | null; leitthema: string; outletCount: number; summary: string | null; outlets: string[]; }
+
+export function getSalienzTrends(tage = 30): { tage: number; seit: string; gesetzStories: GesetzStory[]; felder: TrendFeld[] } | null {
+  const db = getDb();
+  const seit = new Date(Date.now() - tage * 86400000).toISOString().slice(0, 10);
+  try {
+    const felder = db.prepare(`
+      SELECT nc.themenfeld AS themenfeld,
+             COUNT(DISTINCT nc.run_date) AS tageAktiv,
+             COUNT(DISTINCT CASE WHEN nc.gesetzbezug=1 THEN nc.run_date END) AS tageGesetz,
+             SUM(nc.gesetzbezug) AS gesetzCluster,
+             (SELECT st.slug FROM salienz_themen st WHERE st.themenfeld = nc.themenfeld LIMIT 1) AS slug
+      FROM news_cluster nc
+      WHERE nc.run_date >= ? AND nc.outlet_count >= 2
+      GROUP BY nc.themenfeld
+      ORDER BY tageGesetz DESC, gesetzCluster DESC, tageAktiv DESC
+    `).all(seit) as { themenfeld: string; tageAktiv: number; tageGesetz: number; gesetzCluster: number; slug: string | null }[];
+
+    const stories = db.prepare(`
+      SELECT nc.run_date AS runDate, nc.themenfeld AS themenfeld, nc.leitthema AS leitthema,
+             nc.outlet_count AS outletCount, nc.summary AS summary, nc.outlets_json AS outlets_json,
+             (SELECT st.slug FROM salienz_themen st WHERE st.themenfeld = nc.themenfeld LIMIT 1) AS slug
+      FROM news_cluster nc
+      WHERE nc.gesetzbezug=1 AND nc.run_date >= ? AND nc.outlet_count >= 2
+      ORDER BY nc.run_date DESC, nc.outlet_count DESC
+      LIMIT 80
+    `).all(seit) as { runDate: string; themenfeld: string; leitthema: string; outletCount: number; summary: string | null; outlets_json: string; slug: string | null }[];
+
+    return {
+      tage, seit,
+      felder: felder.map((f) => ({ themenfeld: f.themenfeld, slug: f.slug, tageAktiv: f.tageAktiv, tageGesetz: f.tageGesetz, gesetzCluster: f.gesetzCluster })),
+      gesetzStories: stories.map((s) => ({ runDate: s.runDate, themenfeld: s.themenfeld, slug: s.slug, leitthema: s.leitthema, outletCount: s.outletCount, summary: s.summary, outlets: safeJson(s.outlets_json, [] as string[]) })),
+    };
+  } catch { return null; } // Tabelle/Spalte fehlt → fail-closed
+}

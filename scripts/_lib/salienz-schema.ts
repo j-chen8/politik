@@ -33,6 +33,7 @@ export function ensureSalienzSchema(db: Database.Database): void {
       outlets_json TEXT,         -- ["ntv","zeit",...]
       titles_json  TEXT,         -- [{outlet,title,link}, ...]
       summary      TEXT,         -- neutrale 1-2-Satz-Zusammenfassung (LLM)
+      gesetzbezug  INTEGER NOT NULL DEFAULT 0,  -- 1 = Gesetz/Reform/parl. Verfahren (Plattform-Kern)
       PRIMARY KEY (run_date, cluster_id)
     );
     CREATE INDEX IF NOT EXISTS idx_cluster_field ON news_cluster(run_date, themenfeld);
@@ -93,4 +94,11 @@ export function ensureSalienzSchema(db: Database.Database): void {
     );
     CREATE INDEX IF NOT EXISTS idx_pick_aktiv ON aufmacher_pick(aktiv, picked_at);
   `);
+
+  // Idempotente Spalten-Migrationen (für bereits angelegte Tabellen ohne die Spalte).
+  for (const sql of [
+    `ALTER TABLE news_cluster ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
+  ]) {
+    try { db.exec(sql); } catch { /* Spalte existiert schon */ }
+  }
 }

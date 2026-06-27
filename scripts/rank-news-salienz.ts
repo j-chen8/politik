@@ -27,7 +27,10 @@ const items = db.prepare(`
   ORDER BY id
 `).all() as { id: number; outlet: string; title: string; link: string }[];
 
-type Cluster = { leitthema: string; themenfeld: string; itemIds: number[] };
+type Cluster = { leitthema: string; themenfeld: string; gesetzbezug: boolean; itemIds: number[] };
+
+// Keyword-Heuristik für „geht es um Gesetz/Reform/parl. Verfahren?" (Fallback + Backstop).
+const GESETZ_RE = /\b(gesetz|gesetzentwurf|reform|novelle|verordnung|beschluss|beschließ|verabschied|ratifizier|grundgesetz|richtlinie)\w*|bundestag (beschließt|stimmt|debattiert|verabschiedet)|im bundestag|abstimmung/i;
 
 async function clusterLlm(): Promise<Cluster[] | null> {
   if (NO_LLM || items.length === 0) return null;
@@ -35,19 +38,21 @@ async function clusterLlm(): Promise<Cluster[] | null> {
   const system = `Du bündelst Nachrichten-Schlagzeilen zu Story-Clustern. Gleiche Story = gleiches Ereignis, auch bei abweichendem Wortlaut.
 WICHTIG: Gib NUR Cluster zurück, deren Schlagzeilen zu MINDESTENS ZWEI VERSCHIEDENEN Outlets gehören (Cross-Outlet-Stories). Einzelmeldungen (nur ein Outlet) komplett WEGLASSEN. Nicht-politische/Service-Meldungen WEGLASSEN.
 Ordne jedem Cluster GENAU EIN Politikfeld aus der Liste zu (wortwörtlich).
-Antworte AUSSCHLIESSLICH als JSON: {"cluster":[{"leitthema":"…","themenfeld":"<exakt aus Liste>","item_ids":[<zahlen>]}]}.
+Setze "gesetzbezug": true, wenn es im Kern um ein Gesetz, eine Reform, einen Gesetzentwurf, eine Verordnung, einen Beschluss/eine Abstimmung oder ein parlamentarisches Verfahren geht — sonst false.
+Antworte AUSSCHLIESSLICH als JSON: {"cluster":[{"leitthema":"…","themenfeld":"<exakt aus Liste>","gesetzbezug":true,"item_ids":[<zahlen>]}]}.
 Nutze NUR die vorgegebenen item-IDs.`;
   const user = `POLITIKFELDER:\n${FELDER.map((f) => `- ${f}`).join("\n")}\n\nSCHLAGZEILEN (id<TAB>[outlet] titel):\n${liste}`;
   try {
     const pool = new MistralPool(300);
     const raw = await pool.chat({ model: "mistral-small-2506", system, user, temperature: 0, maxTokens: 8000 });
     const clean = raw.replace(/^```(?:json)?/i, "").replace(/```\s*$/, "").trim();
-    const parsed = JSON.parse(clean) as { cluster?: { leitthema?: string; themenfeld?: string; item_ids?: unknown[] }[] };
+    const parsed = JSON.parse(clean) as { cluster?: { leitthema?: string; themenfeld?: string; gesetzbezug?: boolean; item_ids?: unknown[] }[] };
     const out: Cluster[] = [];
     for (const c of parsed.cluster ?? []) {
       const ids = (c.item_ids ?? []).map(Number).filter((n) => Number.isFinite(n));
       if (!c.themenfeld || !FELD_SET.has(c.themenfeld) || ids.length === 0) continue;
-      out.push({ leitthema: String(c.leitthema ?? "").slice(0, 200), themenfeld: c.themenfeld, itemIds: ids });
+      const lt = String(c.leitthema ?? "").slice(0, 200);
+      out.push({ leitthema: lt, themenfeld: c.themenfeld, gesetzbezug: !!c.gesetzbezug || GESETZ_RE.test(lt), itemIds: ids });
     }
     return out.length ? out : null;
   } catch (e: unknown) {
@@ -75,7 +80,8 @@ function clusterFallback(): Cluster[] {
       if (!used[j] && jaccard(toks[i], toks[j]) > 0.4) { used[j] = true; member.push(items[j].id); }
     }
     // ohne LLM kein sicheres Feld → Sammelfeld; v2 ergänzt deterministische Keyword-Sets
-    clusters.push({ leitthema: items[i].title.slice(0, 200), themenfeld: "Politisches Leben, Parteien", itemIds: member });
+    const lt = items[i].title.slice(0, 200);
+    clusters.push({ leitthema: lt, themenfeld: "Politisches Leben, Parteien", gesetzbezug: GESETZ_RE.test(lt), itemIds: member });
   }
   return clusters;
 }
@@ -86,11 +92,11 @@ async function main() {
   const clusters = (await clusterLlm()) ?? clusterFallback();
   const byId = new Map(items.map((it) => [it.id, it]));
 
-  type Mat = { clusterId: number; leitthema: string; feld: string; outletCount: number; itemCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; itemIds: number[] };
+  type Mat = { clusterId: number; leitthema: string; feld: string; gesetzbezug: boolean; outletCount: number; itemCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; itemIds: number[] };
   const mats: Mat[] = clusters.map((c, idx) => {
     const its = c.itemIds.map((id) => byId.get(id)).filter(Boolean) as typeof items;
     const outlets = [...new Set(its.map((it) => it.outlet))];
-    return { clusterId: idx + 1, leitthema: c.leitthema, feld: c.themenfeld, outletCount: outlets.length, itemCount: its.length, outlets, titles: its.map((it) => ({ outlet: it.outlet, title: it.title, link: it.link })), itemIds: its.map((it) => it.id) };
+    return { clusterId: idx + 1, leitthema: c.leitthema, feld: c.themenfeld, gesetzbezug: c.gesetzbezug, outletCount: outlets.length, itemCount: its.length, outlets, titles: its.map((it) => ({ outlet: it.outlet, title: it.title, link: it.link })), itemIds: its.map((it) => it.id) };
   }).filter((m) => m.itemCount > 0);
 
   // Rohsignale je Feld
@@ -120,10 +126,10 @@ async function main() {
     db.prepare(`DELETE FROM salienz_themen WHERE run_date=?`).run(RUN_DATE);
     db.prepare(`DELETE FROM news_cluster WHERE run_date=?`).run(RUN_DATE);
     db.prepare(`DELETE FROM news_cluster_items WHERE run_date=?`).run(RUN_DATE);
-    const insCl = db.prepare(`INSERT INTO news_cluster (run_date, cluster_id, leitthema, themenfeld, outlet_count, item_count, outlets_json, titles_json) VALUES (?,?,?,?,?,?,?,?)`);
+    const insCl = db.prepare(`INSERT INTO news_cluster (run_date, cluster_id, leitthema, themenfeld, outlet_count, item_count, outlets_json, titles_json, gesetzbezug) VALUES (?,?,?,?,?,?,?,?,?)`);
     const insNci = db.prepare(`INSERT OR IGNORE INTO news_cluster_items (run_date, cluster_id, news_item_id) VALUES (?,?,?)`);
     for (const m of mats) {
-      insCl.run(RUN_DATE, m.clusterId, m.leitthema, m.feld, m.outletCount, m.itemCount, JSON.stringify(m.outlets), JSON.stringify(m.titles));
+      insCl.run(RUN_DATE, m.clusterId, m.leitthema, m.feld, m.outletCount, m.itemCount, JSON.stringify(m.outlets), JSON.stringify(m.titles), m.gesetzbezug ? 1 : 0);
       for (const id of m.itemIds) insNci.run(RUN_DATE, m.clusterId, id);
     }
     const insS = db.prepare(`INSERT INTO salienz_themen (run_date, themenfeld, slug, rang, news_outlet_count, news_cluster_count, s_news, s_twitter, score, twitter_begriffe, top_cluster_ids, top_titles) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`);
