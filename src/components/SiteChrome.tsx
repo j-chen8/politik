@@ -25,7 +25,7 @@ export function SiteChrome({
 }) {
   const pathname = usePathname() || "/";
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname.startsWith("/entwurf")) {
     return <AppShell parliaments={parliaments}>{children}</AppShell>;
   }
 

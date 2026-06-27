@@ -8815,6 +8815,30 @@ export function getFeldAbstimmungen(feld: string): FeldAbstimmungen {
 }
 
 /** Liste der Themenfelder, die mind. eine Partei-Position haben (für Vergleichs-Nav). */
+/** Themenfeld-„Bewegung": Sach-Votes je Feld (verfahren=0), absteigend. Für die
+ *  Startseiten-Entwürfe (Bewegungsmesser). Volumen, nicht Recency (Datenstand-bedingt). */
+export function getThemenfeldBewegung(limit = 6): { feld: string; count: number }[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT feld, COUNT(*) AS count FROM vote_themenfeld
+       WHERE verfahren = 0 GROUP BY feld ORDER BY count DESC LIMIT ?`,
+    )
+    .all(limit) as { feld: string; count: number }[];
+}
+
+/** vote_id → outcome (bundestag_votes). Für Konsumenten, die Verfahrens-Votes
+ *  (ueberweisung/vertagung) von Sach-Entscheidungen (annahme/ablehnung) trennen müssen. */
+export function getVoteOutcomeMap(): Record<number, string> {
+  const db = getDb();
+  const rows = db
+    .prepare(`SELECT vote_id, outcome FROM bundestag_votes WHERE outcome IS NOT NULL AND error_type IS NULL`)
+    .all() as { vote_id: number; outcome: string }[];
+  const m: Record<number, string> = {};
+  for (const r of rows) m[r.vote_id] = r.outcome;
+  return m;
+}
+
 export function listThemenfelderMitPositionen(): string[] {
   const db = getDb();
   return (
@@ -8837,4 +8861,71 @@ export function listParteienMitPositionen(): { partei: string; felder: number }[
        ORDER BY partei`,
     )
     .all() as { partei: string; felder: number }[];
+}
+
+// ── Salienz / Aufmacher (rein lesend; Schema legt scripts/_lib/salienz-schema.ts an) ──
+export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; }
+export interface SalienzFeld {
+  themenfeld: string; slug: string; rang: number;
+  newsOutletCount: number; newsClusterCount: number; sNews: number; sTwitter: number; score: number | null;
+  twitterBegriffe: string[]; topTitles: { outlet: string; title: string; link: string }[]; topClusterIds: number[];
+  summary: string | null; cluster: SalienzCluster[];
+}
+
+export function getSalienzRanking(runDate?: string): { runDate: string; felder: SalienzFeld[] } | null {
+  const db = getDb();
+  let rd = runDate;
+  try {
+    if (!rd) rd = (db.prepare(`SELECT MAX(run_date) AS d FROM salienz_themen`).get() as { d: string | null } | undefined)?.d ?? undefined;
+  } catch { return null; } // Tabelle fehlt in PROD → fail-closed
+  if (!rd) return null;
+  const rows = db.prepare(`SELECT * FROM salienz_themen WHERE run_date=? ORDER BY rang`).all(rd) as Record<string, unknown>[];
+  const clStmt = db.prepare(`SELECT cluster_id, leitthema, outlet_count, outlets_json, titles_json, summary FROM news_cluster WHERE run_date=? AND themenfeld=? ORDER BY outlet_count DESC, item_count DESC`);
+  const felder: SalienzFeld[] = rows.map((r) => ({
+    themenfeld: r.themenfeld as string, slug: r.slug as string, rang: r.rang as number,
+    newsOutletCount: r.news_outlet_count as number, newsClusterCount: r.news_cluster_count as number,
+    sNews: r.s_news as number, sTwitter: r.s_twitter as number, score: (r.score as number | null) ?? null,
+    twitterBegriffe: safeJson(r.twitter_begriffe as string, [] as string[]),
+    topTitles: safeJson(r.top_titles as string, [] as { outlet: string; title: string; link: string }[]),
+    topClusterIds: safeJson(r.top_cluster_ids as string, [] as number[]),
+    summary: (r.summary as string | null) ?? null,
+    cluster: (clStmt.all(rd, r.themenfeld) as Record<string, unknown>[]).map((c) => ({
+      clusterId: c.cluster_id as number, leitthema: c.leitthema as string, outletCount: c.outlet_count as number,
+      outlets: safeJson(c.outlets_json as string, [] as string[]),
+      titles: safeJson(c.titles_json as string, [] as { outlet: string; title: string; link: string }[]),
+      summary: (c.summary as string | null) ?? null,
+    })),
+  }));
+  return { runDate: rd, felder };
+}
+
+export interface AufmacherPick {
+  runDate: string; themenfeld: string; slug: string; headline: string | null; summary: string | null;
+  ds: { nr: string; titel: string; datum: string | null; url: string | null } | null;
+  vote: { pollId: number; label: string | null; datum: string | null; yes: number; no: number; abstain: number } | null;
+}
+
+export function getAufmacherPick(): AufmacherPick | null {
+  const db = getDb();
+  let row: Record<string, unknown> | undefined;
+  try {
+    row = db.prepare(`SELECT * FROM aufmacher_pick WHERE aktiv=1 ORDER BY picked_at DESC LIMIT 1`).get() as Record<string, unknown> | undefined;
+  } catch { return null; } // Tabelle fehlt in PROD → fail-closed
+  if (!row) return null;
+
+  let ds: AufmacherPick["ds"] = null;
+  if (row.ds_nr) {
+    const sk = getDrucksacheSkeleton(String(row.ds_nr)); // 3-Fallback-Kette (deckt frische DIP-only-GE)
+    if (sk) ds = { nr: sk.drucksache_nr, titel: sk.titel, datum: sk.datum, url: sk.pdf_url };
+  }
+  let vote: AufmacherPick["vote"] = null;
+  if (row.poll_id != null) {
+    const v = db.prepare(`
+      SELECT MIN(poll_label) AS label, MIN(poll_date) AS datum,
+        SUM(vote='yes') AS yes, SUM(vote='no') AS no, SUM(vote='abstain') AS abstain
+      FROM votes WHERE poll_id = ?
+    `).get(Number(row.poll_id)) as { label: string | null; datum: string | null; yes: number; no: number; abstain: number } | undefined;
+    if (v && (v.yes || v.no || v.abstain)) vote = { pollId: Number(row.poll_id), label: v.label, datum: v.datum, yes: v.yes ?? 0, no: v.no ?? 0, abstain: v.abstain ?? 0 };
+  }
+  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote };
 }
