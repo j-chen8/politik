@@ -8864,12 +8864,12 @@ export function listParteienMitPositionen(): { partei: string; felder: number }[
 }
 
 // ── Salienz / Aufmacher (rein lesend; Schema legt scripts/_lib/salienz-schema.ts an) ──
-export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; }
+export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; gesetzbezug: boolean; }
 export interface SalienzFeld {
   themenfeld: string; slug: string; rang: number;
   newsOutletCount: number; newsClusterCount: number; sNews: number; sTwitter: number; score: number | null;
   twitterBegriffe: string[]; topTitles: { outlet: string; title: string; link: string }[]; topClusterIds: number[];
-  summary: string | null; cluster: SalienzCluster[];
+  summary: string | null; gesetzbezug: boolean; cluster: SalienzCluster[];
 }
 
 export function getSalienzRanking(runDate?: string): { runDate: string; felder: SalienzFeld[] } | null {
@@ -8880,7 +8880,7 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
   } catch { return null; } // Tabelle fehlt in PROD → fail-closed
   if (!rd) return null;
   const rows = db.prepare(`SELECT * FROM salienz_themen WHERE run_date=? ORDER BY rang`).all(rd) as Record<string, unknown>[];
-  const clStmt = db.prepare(`SELECT cluster_id, leitthema, outlet_count, outlets_json, titles_json, summary FROM news_cluster WHERE run_date=? AND themenfeld=? ORDER BY outlet_count DESC, item_count DESC`);
+  const clStmt = db.prepare(`SELECT cluster_id, leitthema, outlet_count, outlets_json, titles_json, summary, gesetzbezug FROM news_cluster WHERE run_date=? AND themenfeld=? ORDER BY gesetzbezug DESC, outlet_count DESC, item_count DESC`);
   const felder: SalienzFeld[] = rows.map((r) => ({
     themenfeld: r.themenfeld as string, slug: r.slug as string, rang: r.rang as number,
     newsOutletCount: r.news_outlet_count as number, newsClusterCount: r.news_cluster_count as number,
@@ -8889,11 +8889,13 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
     topTitles: safeJson(r.top_titles as string, [] as { outlet: string; title: string; link: string }[]),
     topClusterIds: safeJson(r.top_cluster_ids as string, [] as number[]),
     summary: (r.summary as string | null) ?? null,
+    gesetzbezug: !!(r.gesetzbezug as number | undefined),
     cluster: (clStmt.all(rd, r.themenfeld) as Record<string, unknown>[]).map((c) => ({
       clusterId: c.cluster_id as number, leitthema: c.leitthema as string, outletCount: c.outlet_count as number,
       outlets: safeJson(c.outlets_json as string, [] as string[]),
       titles: safeJson(c.titles_json as string, [] as { outlet: string; title: string; link: string }[]),
       summary: (c.summary as string | null) ?? null,
+      gesetzbezug: !!(c.gesetzbezug as number | undefined),
     })),
   }));
   return { runDate: rd, felder };

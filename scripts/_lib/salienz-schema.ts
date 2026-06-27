@@ -98,6 +98,8 @@ export function ensureSalienzSchema(db: Database.Database): void {
   // Idempotente Spalten-Migrationen (für bereits angelegte Tabellen ohne die Spalte).
   for (const sql of [
     `ALTER TABLE news_cluster ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
+    // Feld-Ebene: 1 = mind. ein Gesetz/Reform-Cluster im Feld → Substanz-Boost im Ranking + Badge.
+    `ALTER TABLE salienz_themen ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
   ]) {
     try { db.exec(sql); } catch { /* Spalte existiert schon */ }
   }

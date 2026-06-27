@@ -41,6 +41,12 @@ export default async function PickerPage() {
           <div className="flex items-center gap-3">
             <span className="num w-7 text-center text-sm text-muted">#{f.rang}</span>
             <h2 className="font-semibold text-foreground">{f.themenfeld}</h2>
+            {f.gesetzbezug && (
+              <span title="enthält Gesetz/Reform/parl. Verfahren — im Ranking hochgezogen"
+                className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                ⚖ Gesetz/Reform
+              </span>
+            )}
             <span className="ml-auto flex items-center gap-3 text-xs text-muted">
               <span title="distinkte Outlets">{f.newsOutletCount} Outlets</span>
               <span>{f.newsClusterCount} Cluster</span>
@@ -51,7 +57,10 @@ export default async function PickerPage() {
 
           {f.cluster.slice(0, 3).map((cl) => (
             <div key={cl.clusterId} className="rounded-lg bg-background/60 p-3">
-              <p className="text-sm font-medium text-foreground">{cl.leitthema} <span className="text-xs text-muted">({cl.outletCount} Outlets)</span></p>
+              <p className="text-sm font-medium text-foreground">
+                {cl.gesetzbezug && <span title="Gesetz/Reform/parl. Verfahren" className="mr-1 text-emerald-600 dark:text-emerald-400">⚖</span>}
+                {cl.leitthema} <span className="text-xs text-muted">({cl.outletCount} Outlets)</span>
+              </p>
               <ul className="mt-1 flex flex-col gap-0.5">
                 {cl.titles.slice(0, 4).map((t, i) => (
                   <li key={i} className="text-xs text-muted">
