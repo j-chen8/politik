@@ -1491,6 +1491,31 @@ function PositionChip({ fraktion, raw }: { fraktion: string; raw: string }) {
   );
 }
 
+// Fraktions-Haltung zur ÜBERWEISUNG (Verfahrensschritt) — bewusst OHNE
+// Zustimmungs-Semantik (kein grünes ✓ / rotes ✗), damit das Voten nicht als
+// Sachentscheidung über den Antrag missverstanden wird. „Gegen Überweisung" der
+// eigenen Antragsteller-Fraktion heißt nur: sie wollte den Antrag nicht in den
+// Ausschuss geben (sondern direkt entscheiden), nicht „gegen den eigenen Antrag".
+function UeberweisungChip({ fraktion, vote }: { fraktion: string; vote: string }) {
+  const label =
+    vote === "ja"
+      ? "für Überweisung"
+      : vote === "nein"
+        ? "gegen Überweisung"
+        : vote === "enthaltung"
+          ? "Enthaltung"
+          : "—";
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border text-[11px] font-medium bg-zinc-50 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 border-border"
+      title={`${fraktion}: ${label} (Rohstimme: ${vote})`}
+    >
+      <span className="font-semibold text-zinc-700 dark:text-zinc-200">{fraktion}</span>
+      <span>{label}</span>
+    </span>
+  );
+}
+
 function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[] }) {
   const hatFlip = votes.some((v) => v.beschlussAblehnung);
   return (
@@ -1522,6 +1547,9 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
       <div className="space-y-5">
         {votes.map((v) => {
           const flip = v.beschlussAblehnung;
+          // Verfahrensschritt (Überweisung/Vertagung): ja/nein heißt „für/gegen die
+          // Überweisung", NICHT „für/gegen den Antrag" → eigene, neutrale Darstellung.
+          const verfahren = !flip && (v.outcome === "ueberweisung" || v.outcome === "vertagung");
           // Bei Flip steht das Outcome für die Beschlussempfehlung; annahme = Antrag abgelehnt.
           const oc =
             flip && v.outcome === "annahme"
@@ -1602,6 +1630,17 @@ function HandzeichenVotesSection({ votes }: { votes: BundestagDsHandzeichenVote[
                       ))}
                     </div>
                   </details>
+                </>
+              ) : verfahren ? (
+                <>
+                  <div className="text-[10px] font-medium uppercase tracking-wide text-zinc-400 mb-1">
+                    Verfahrensschritt · keine Entscheidung über den Antrag
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {HZ_FRAKTIONS_ORDER.map((f) => (
+                      <UeberweisungChip key={f} fraktion={f} vote={v.fraktionVotes?.[f] ?? "unbekannt"} />
+                    ))}
+                  </div>
                 </>
               ) : (
                 <div className="flex flex-wrap gap-1.5">
