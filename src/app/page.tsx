@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import {
   Shield, Landmark, Globe, Coins, Leaf, Briefcase, Building2, Users,
-  Factory, GraduationCap, HeartPulse, Cpu, Drama, Wheat, Layers,
+  Factory, GraduationCap, HeartPulse, Cpu, Drama, Wheat, Layers, Scale,
   type LucideIcon,
 } from "lucide-react";
 import { Rail } from "@/components/Rail";
@@ -11,6 +11,24 @@ import { getBundestagLandingSnapshot, getFraktionSitze, type VoteIndexEntry } fr
 import { getVisibleAppearances } from "@/lib/media-appearances";
 import { getThemenStruktur } from "@/lib/themen-blatt";
 import { getDatenstand } from "@/lib/such-vorschlaege";
+import Image from "next/image";
+import { PARTEIEN } from "@/lib/partei-slug";
+
+// Intrinsische Logo-Maße (aus der viewBox) — nur fürs Seitenverhältnis; gerendert
+// wird auf fixe Höhe (h-6), die Breite läuft mit dem jeweiligen Logo mit.
+const LOGO_DIMS: Record<string, [number, number]> = {
+  "cdu-csu": [1368, 394],
+  afd: [2678, 1690],
+  spd: [408, 167],
+  gruene: [321, 171],
+  linke: [567, 127],
+};
+
+// Vertikaler Feinversatz pro Logo (px, + = nach unten). Das AfD-Logo hat den Text
+// oben + den Pfeil darunter → beim Zentrieren der Box sitzt der „AfD"-Text höher
+// als die reinen Wortmarken. Etwas runter, damit der Text auf einer Linie mit
+// CDU/SPD/… liegt (der Pfeil ragt dann unten raus — vom User ausdrücklich ok).
+const LOGO_NUDGE_Y: Record<string, number> = { afd: 6 };
 
 // Dezente Line-Icons je gruppiertem Themen-Oberfeld (Slug aus getThemenStruktur).
 // Rein dekorativ + neutral (Sachgebiet, keine Wertung) — als großes, ausgefadetes
@@ -233,6 +251,40 @@ export default function Startseite() {
 
   const interviewCards = interviews.map((a) => <MediaAppearanceCard key={a.id} appearance={a} />);
 
+  // Parteien-Türreihe: echte Partei-Logos (Bundestags-Reihenfolge), direkt
+  // anklickbar → /parteien/<slug>. Alle fünf Logos sind Wortmarken (enthalten
+  // den Parteinamen) → nur Logo, der Name steckt im aria-label/title. Auf
+  // heller Platte, die AUCH im Dark Mode hell bleibt — sonst verschwinden die
+  // schwarzen Logo-Teile (CDU, AfD).
+  // FAIRNESS: jede Kachel exakt GLEICH GROSS (gleiche Breite + Höhe), Logo
+  // mittig zentriert und auf dieselbe optische Höhe normiert (h-7). Schmalere
+  // Logos bekommen seitlich mehr Luft — gleiche Höhe = gleiche Wirkung, gleiche
+  // Box = neutrale Gleichbehandlung (keine Partei kriegt einen größeren Button).
+  const parteienChips = PARTEIEN.map((p) => {
+    const [w, h] = LOGO_DIMS[p.slug];
+    const dy = LOGO_NUDGE_Y[p.slug] ?? 0;
+    return (
+      <Link
+        key={p.slug}
+        href={`/parteien/${p.slug}`}
+        aria-label={p.partei}
+        title={p.partei}
+        className="flex h-16 w-[184px] items-center justify-center rounded-xl bg-white px-4 shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:ring-white/15"
+      >
+        <Image
+          src={`/parties/${p.slug}.svg`}
+          alt=""
+          aria-hidden
+          width={w}
+          height={h}
+          className="block h-auto max-h-11 w-auto max-w-full object-contain"
+          style={dy ? { transform: `translateY(${dy}px)` } : undefined}
+          unoptimized
+        />
+      </Link>
+    );
+  });
+
   // Themenfelder-Regal = die „Beliebtes Radio"-Reihe: Einstieg zum Stöbern.
   // Kein Untertitel mehr — stattdessen ein großes, dezent ausgefadetes Line-Icon
   // unten rechts angeschnitten (overflow-hidden) als grafisches Motiv.
@@ -258,18 +310,53 @@ export default function Startseite() {
 
   return (
     <div className="mx-auto flex w-full max-w-[2400px] flex-col gap-9 px-6 py-8 sm:px-9 lg:px-12">
-      <Rail
-        title="Zuletzt abgestimmt"
-        href="/abstimmungen"
-        items={voteCards}
-        cardWidth="w-[420px]"
-      />
+      {/* Orientierung als EINE Zeile (kein Hero-Block): H1 erklärt den Ort, Inhalt
+          beginnt sofort darunter. Türen (Themen + Parteien) zuerst, direkt klickbar. */}
+      <header className="-mb-1">
+        <h1 className="text-[26px] font-semibold tracking-[-0.02em] text-foreground sm:text-[30px]">
+          Was der Bundestag gerade tut
+        </h1>
+        <p className="mt-1 text-[15px] text-muted">
+          Gesetze, Anträge, Abstimmungen und Reden — transparent und lesbar.
+        </p>
+      </header>
+
       <Rail
         title="Themenfelder"
         href="/themen"
         hrefLabel="Alle Themen"
         items={themenCards}
         cardWidth="w-[270px]"
+      />
+
+      {/* Parteien-Türreihe — zweiter Einstieg neben den Themen. */}
+      <section className="flex flex-col gap-3">
+        <div className="flex items-end justify-between gap-3 px-1">
+          <h2 className="text-[20px] font-semibold tracking-[-0.01em] text-foreground">Parteien</h2>
+        </div>
+        <div className="flex flex-wrap gap-3 px-1">
+          {parteienChips}
+          {/* „Alle vergleichen"-Kachel: KEIN Logo (keine 6. Partei) → bewusst
+              gedämpfte Optik + Icon, damit sie als Aktion statt als Partei liest.
+              Verlinkt DIREKT in eine echte Vergleichsansicht (alle Parteien zum
+              Feld „Arbeit" nebeneinander), statt auf die Hub-Seite — so landet man
+              sofort im Vergleich. Von dort sind die anderen Felder erreichbar. */}
+          <Link
+            href="/parteien/feld/arbeit"
+            aria-label="Alle Parteien vergleichen"
+            className="flex h-16 w-[184px] items-center justify-center gap-2 rounded-xl bg-slate-100 text-[14.5px] font-semibold text-foreground shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800 dark:ring-white/15"
+          >
+            <Scale className="h-[18px] w-[18px] text-muted" aria-hidden />
+            Alle vergleichen
+          </Link>
+        </div>
+      </section>
+
+      <Rail
+        title="Zuletzt abgestimmt"
+        href="/abstimmungen"
+        items={voteCards}
+        cardWidth="w-[420px]"
       />
       <Rail
         title="Neue Gesetzentwürfe"

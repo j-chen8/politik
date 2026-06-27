@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef, useState, useEffect, useCallback, type ReactNode } from "react";
+import { useRef, useState, useEffect, useCallback, useMemo, type ReactNode } from "react";
+
+// Spalten-Abstand zwischen den Karten (Tailwind gap-3 = 0.75rem = 12px).
+const GAP = 12;
 
 /**
  * Rail — eine horizontale „Regal"-Reihe aus Karten (Spotify/Netflix-Muster).
@@ -10,10 +13,11 @@ import { useRef, useState, useEffect, useCallback, type ReactNode } from "react"
  * Karten mit Snap. Neutral: die Reihenfolge der Karten ist CHRONOLOGISCH
  * (neueste zuerst), kein Popularitäts-Ranking.
  *
- * Scroll-bewusst: die Karten laufen über den rechten Rand hinaus (= Scroll-Hinweis),
- * aber statt eines harten Schnitts faded die Kante weich aus — UND zwar nur an der
- * Seite, an der es wirklich noch weitergeht (kein Fehl-Fade, wenn alles reinpasst).
- * Auf dem Desktop erscheinen beim Hover Pfeil-Buttons.
+ * Breite passt sich dem Fenster an: aus der gewünschten Mindestbreite (cardWidth)
+ * wird gemessen, wie viele GANZE Karten reinpassen, und diese werden exakt auf die
+ * volle Reihenbreite verteilt. So gibt es nie eine angeschnittene Teil-Karte am
+ * Rand — der Schnitt ist hart und sauber, kein „Anteasern". Weiteres erreicht man
+ * über die Pfeil-Buttons (Desktop, beim Hover sichtbar) bzw. seitliches Scrollen.
  */
 export function Rail({
   title,
@@ -33,14 +37,27 @@ export function Rail({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(true);
+  // Berechnete Kartenbreite in px (null = vor der ersten Messung → SSR-Fallback
+  // über die cardWidth-Klasse, damit nichts springt).
+  const [cardPx, setCardPx] = useState<number | null>(null);
+
+  // Gewünschte Mindestbreite aus der Tailwind-Klasse (z. B. „w-[420px]" → 420).
+  const minCardPx = useMemo(() => {
+    const m = cardWidth.match(/\[(\d+)px\]/);
+    return m ? parseInt(m[1], 10) : 320;
+  }, [cardWidth]);
 
   const update = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
+    // Wie viele ganze Karten (>= Mindestbreite) passen in die sichtbare Breite?
+    const width = el.clientWidth;
+    const n = Math.max(1, Math.floor((width + GAP) / (minCardPx + GAP)));
+    setCardPx((width - (n - 1) * GAP) / n);
     const max = el.scrollWidth - el.clientWidth;
     setAtStart(el.scrollLeft <= 1);
     setAtEnd(el.scrollLeft >= max - 1);
-  }, []);
+  }, [minCardPx]);
 
   useEffect(() => {
     update();
@@ -48,9 +65,14 @@ export function Rail({
     if (!el) return;
     el.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    // ResizeObserver fängt auch Layout-Änderungen ohne Fenster-Resize (z. B.
+    // Ein-/Ausklappen der linken Leiste).
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
+    ro?.observe(el);
     return () => {
       el.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      ro?.disconnect();
     };
   }, [update]);
 
@@ -60,18 +82,6 @@ export function Rail({
   };
 
   if (items.length === 0) return null;
-
-  // Weiche Kante nur dort, wo es weitergeht.
-  const fadeL = !atStart;
-  const fadeR = !atEnd;
-  const mask =
-    fadeL && fadeR
-      ? "linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent)"
-      : fadeR
-      ? "linear-gradient(to right, #000 calc(100% - 48px), transparent)"
-      : fadeL
-      ? "linear-gradient(to right, transparent, #000 48px)"
-      : undefined;
 
   return (
     <section className="group/rail flex flex-col gap-3">
@@ -94,11 +104,14 @@ export function Rail({
       <div className="relative">
         <div
           ref={scrollerRef}
-          style={mask ? { WebkitMaskImage: mask, maskImage: mask } : undefined}
           className="flex snap-x snap-mandatory items-stretch gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((card, i) => (
-            <div key={i} className={`flex snap-start shrink-0 ${cardWidth}`}>
+            <div
+              key={i}
+              className={`flex snap-start shrink-0 ${cardPx == null ? cardWidth : ""}`}
+              style={cardPx == null ? undefined : { width: cardPx }}
+            >
               {card}
             </div>
           ))}
