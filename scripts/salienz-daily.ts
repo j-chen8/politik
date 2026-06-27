@@ -55,7 +55,7 @@ function buildMail(): { subject: string; text: string } {
 
 async function main() {
   step("News-RSS", "npx tsx scripts/fetch-news-rss.ts");
-  // step("Twitter-Trends", "npx tsx scripts/fetch-twitter-trends.ts"); // Social-Spalte (folgt)
+  step("Twitter-Trends", "npx tsx scripts/fetch-twitter-trends.ts"); // Social-Spalte (trends24 ∩ getdaytrends, €0)
   step("Ranking", "npx tsx scripts/rank-news-salienz.ts");
   step("Summaries", "npx tsx scripts/salienz-cluster-summary.ts");
 
