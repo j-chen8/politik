@@ -21,8 +21,9 @@ import Database from "better-sqlite3";
 const db = new Database("politik.db");
 
 // vote_id -> Antrags-DS, deren Ablehnung die Beschlussempfehlung empfiehlt.
+// Wert ist EINE DS (Normalfall) oder ein Array (Block-Vote über mehrere Anträge).
 // 56 via starker Regex erkannt + 4 manuell ergänzt (Regex verpasst: 555,566,590,600).
-const FLIP_ABLEHNEN: Record<number, string> = {
+const FLIP_ABLEHNEN: Record<number, string | string[]> = {
   394: "21/786", 395: "21/2547", 403: "21/2548", 409: "21/226", 412: "21/318",
   413: "21/2718", 433: "21/2221", 445: "21/3604", 447: "21/4945", 449: "21/356",
   454: "21/1544", 456: "21/2042", 461: "21/1488", 464: "21/2707", 465: "21/584",
@@ -44,6 +45,13 @@ const FLIP_ABLEHNEN: Record<number, string> = {
   812: "21/1756", 820: "21/1572", 827: "21/1542", 831: "21/2221", 833: "21/1564",
   838: "21/1620", 848: "21/3796", 853: "21/2230", 857: "21/2245", 859: "21/1561",
   861: "21/340",
+  // 2026-06-29: vom Wächter (scripts/check-vote-beschluss-kontext.ts) aufgedeckte
+  // ALT-Lücken — Antrags-DS war im Vote zero-padded verlinkt (z.B. 21/0583), daher
+  // vom ursprünglichen Regex übersehen. Rohtext belegt jeweils die Ablehnungs-Empfehlung.
+  407: "21/583", 501: "21/589", 516: "21/334", 538: "21/135", 552: "21/789",
+  621: "21/587", 681: "21/344", 693: "21/351", 834: "21/5",
+  // Block-Vote: 4 AfD-Geschäftsordnungs-Änderungsanträge in EINER Abstimmung abgelehnt.
+  858: ["21/1556", "21/1557", "21/1558", "21/1559"],
 };
 
 const voteRow = db.prepare("SELECT raw_snippet, drucksache_nrn_json FROM bundestag_votes WHERE vote_id=?");
@@ -65,21 +73,23 @@ const ins = db.prepare("INSERT INTO vote_beschluss_kontext (vote_id, ds_nr, empf
 let ok = 0;
 const warn: string[] = [];
 const tx = db.transaction(() => {
-  for (const [vidStr, ds] of Object.entries(FLIP_ABLEHNEN)) {
+  for (const [vidStr, dsVal] of Object.entries(FLIP_ABLEHNEN)) {
     const vid = Number(vidStr);
     const r = voteRow.get(vid) as { raw_snippet: string | null; drucksache_nrn_json: string | null } | undefined;
     if (!r) { warn.push(`vote ${vid}: existiert nicht in bundestag_votes`); continue; }
     const snip = r.raw_snippet || "";
-    const dsNorm = stripPad(ds);
-    // Guardrail 1: DS muss im Vote verlinkt sein
-    const linked = (JSON.parse(r.drucksache_nrn_json || "[]") as string[]).some((x) => stripPad(x) === dsNorm);
-    if (!linked) warn.push(`vote ${vid}: DS ${ds} NICHT in drucksache_nrn_json verlinkt`);
-    // Guardrail 2: Rohtext muss DS + Ablehnungs-Token enthalten
-    const hasDs = snip.includes(dsNorm) || snip.includes(ds);
-    const hasAbl = /abzulehnen|Ablehnung des Antrag(e)?s/i.test(snip);
-    if (!hasDs || !hasAbl) warn.push(`vote ${vid} (${ds}): Guardrail — hasDs=${hasDs} hasAbl=${hasAbl}`);
-    ins.run(vid, ds, "ablehnen");
-    ok++;
+    for (const ds of Array.isArray(dsVal) ? dsVal : [dsVal]) {
+      const dsNorm = stripPad(ds);
+      // Guardrail 1: DS muss im Vote verlinkt sein
+      const linked = (JSON.parse(r.drucksache_nrn_json || "[]") as string[]).some((x) => stripPad(x) === dsNorm);
+      if (!linked) warn.push(`vote ${vid}: DS ${ds} NICHT in drucksache_nrn_json verlinkt`);
+      // Guardrail 2: Rohtext muss DS + Ablehnungs-Token enthalten
+      const hasDs = snip.includes(dsNorm) || snip.includes(ds);
+      const hasAbl = /abzulehnen|Ablehnung des (?:Änderungs)?Antrag(?:e)?s/i.test(snip);
+      if (!hasDs || !hasAbl) warn.push(`vote ${vid} (${ds}): Guardrail — hasDs=${hasDs} hasAbl=${hasAbl}`);
+      ins.run(vid, ds, "ablehnen");
+      ok++;
+    }
   }
 });
 tx();

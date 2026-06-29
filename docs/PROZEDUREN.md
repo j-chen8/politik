@@ -54,6 +54,7 @@ ergänzen. `[[…]]` = Memory-Datei, `docs/…` = Doc.
 - **Grundzahlen müssen 100 % stimmen** (MdB-Total, Fraktionsgrößen): [[feedback_grundzahlen_100_prozent]]
 - Doku-/Methodik-Audit > 500 Zeilen → an Subagent delegieren mit Severity-Schema + DB-Cross-Check: [[feedback_audit_via_subagent]]
 - Vote↔Drucksache-Konsistenz-Check als Runbook-Schritt: `scripts/check-vote-drucksache-consistency.ts` · [[project_vote_phantom_ds_fix]]
+- Beschlussempfehlungs-Flip-Wächter nach jedem Votes-Backfill (deterministisch, Exit 1 = fehlender Flip → UI zeigt fälschlich „angenommen"): `scripts/check-vote-beschluss-kontext.ts` · [[project_ueberweisung_display_fix]]
 - Parität gegen Bund-Bugs prüfen (für jedes neue Parlament): [[project_berlin_parity_audit]]
 - Quellen-Kohärenz (Wiki/Homepage/Bundestag-Konflikte) — Reaktions-Plan, kein Gotcha-Frame: `docs/source-coherence-echt-fehler.md` · [[project_source_coherence]] [[feedback_no_gotcha_framing]]
 

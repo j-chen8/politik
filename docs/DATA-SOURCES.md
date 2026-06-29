@@ -126,6 +126,15 @@
    - Submit (≤ 15 € Freigabe gilt): `... --confirm` → `batch_id` notieren
    - Retrieve: `npx tsx scripts/batch-retrieve-bundestag-votes.ts` (wartet auf Abschluss + apply)
    - Idempotenz: per `(xml_source, snippet_offset)` — neuer Run überspringt bereits Analysiertes
+   - **PFLICHT-Wächter nach jedem Votes-Backfill (Beschlussempfehlungs-Flip):**
+     `cd /home/jinsheng/politik && npx tsx scripts/check-vote-beschluss-kontext.ts`.
+     Deterministisch (kein LLM), liest jeden `raw_snippet`. Findet er FEHLENDE Flips
+     (Exit 1: Ausschuss empfiehlt Ablehnung eines verlinkten Antrags, Vote aber nicht
+     in `vote_beschluss_kontext`), dann zeigte die UI „angenommen" statt „Antrag
+     abgelehnt" → die gemeldeten vote_id/Antrags-DS in `scripts/build-vote-beschluss-kontext.ts`
+     (`FLIP_ABLEHNEN`) ergänzen, `npx tsx scripts/build-vote-beschluss-kontext.ts`
+     neu bauen, Check bis Exit 0 wiederholen. Block-Voten (mehrere Antrags-DS) werden
+     als WARN gelistet → als Array-Wert eintragen. Hintergrund: [[project_ueberweisung_display_fix]].
 4d. **Themen-Klassifikation + Reden-Erben** (¢ + $0, seit 2026-06-12):
    Ohne diesen Schritt sind neue Drucksachen/Reden auf den Themen-Seiten
    (/vorschau/themen: Picker-Counts, Blätter, Frische-Stempel) UNSICHTBAR.
