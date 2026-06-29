@@ -14,6 +14,8 @@
  *    scripts/map-vote-drucksache-dip.ts (DIP-Vorgang: Antrag+Beschlussempf.).
  */
 export const POLL_TO_BT_ID: Record<number, number> = {
+  // 2026-06-26 (aw-Seed nach Sitzungen 84–86; bt_id == poll_id ≥ 6000-Konvention)
+  6566: 6566, 6575: 6575,
   // 2026-06-12 (aw-Seed nach Sitzungen 81–83; bt_id == poll_id ≥ 6000-Konvention)
   6540: 6540, 6541: 6541, 6551: 6551, 6552: 6552,
   // 2026-05-22 (Filterlist-Apply 2026-05-25: 2 Subjekt-DS, eine davon

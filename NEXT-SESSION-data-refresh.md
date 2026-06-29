@@ -1,7 +1,38 @@
-# Next Session — Pickup: Daten-Refresh-Track (Stand: 2026-05-25)
+# Next Session — Pickup: Daten-Refresh-Track (Stand: 2026-06-26)
 
 > Dedizierte Track-Datei (Track-Isolation — `NEXT-SESSION.md` hat fremde Drift).
 > SoT für das ganze Vorgehen: **`docs/DATA-SOURCES.md`** (inkl. §0 »update«-Runbook).
+
+## Refresh 2026-06-26 (autonom, User-Trigger „update")
+
+### Was geholt
+
+| Quelle | Vorher | Nachher | Δ |
+|---|---:|---:|---:|
+| Plenar-XML / Reden-Rohtext | 83 Sitzungen | **86** | +3 (84: 2026-06-12, 85: 2026-06-24, 86: 2026-06-25) |
+| Reden-LLM (`speech_analyses_v2`) | 12.821 | **13.264** | +443 (Batch-Cost $2,13); speech_summaries +378 nachgezogen |
+| Activities (DIP) | 71.666 | **74.814** | +3.148 (bis 2026-06-26) |
+| Drucksachen-PDF (`drucksache_texts`) | 6.379 | **6.563** | +184 |
+| Drucksachen-LLM (`drucksache_analyses`) | 5.977 | **6.161** | +184 (Batch-Cost $3,19, 0 Fehler, 28 Topic-Drift im Audit) |
+| Votes/Polls (abgeordnetenwatch) | 56 Polls | **58 Polls** (+6540/41/51/52/66/75) | neueste Sitzung 86 (2026-06-25); aw-Lag ~11 T |
+| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 686 | **760** | +74 (bis 2026-06-25, $0,23); landtag-Worktree |
+| DIP-Vorgänge (`dip_vorgaenge`) | 354 | **357** | GE-Coverage 262/262 (100%) |
+| DS-Titel (`dip_ds_titles`) | — | **7.756** | Voll-Sweep |
+| ds_unterthemen | — | +184 DS klassifiziert | rede_unterthemen neu gebaut (20.162 Paare) |
+
+### LLM-Kosten gesamt
+≈ **$5,80** (Reden $2,13 + Drucksachen $3,19 + Handzeichen $0,23 + Unterthemen ~$0,02 + Vote-Kontext ~$0,08) — unter der ≤15€-Freigabe.
+
+### Vote-Kontext
+6566 + 6575 neu in `poll-bt-mapping.ts` (≥6000-Konvention). `map-vote-drucksache-bundestag.ts --apply`: 50 EXAKT · 7 DIFF · 1 UNMATCHED (6566 Vaterschaftsanerkennung — keine Subjekt-DS, ehrlicher Fallback-Kontext). Vote-Kontext regeneriert für 6251, 6351, 6540, 6541, 6551, 6552, 6566, 6575.
+
+### Checks (alle grün)
+Polls ohne vote_context = 0 · batch_class NULL = 0 · ds_unterthemen offen = 0 · offene Reden = 0 · Phantom-DS-Votes = 0. Neutralitäts-Spotcheck Reden+Drucksachen+vote_context bestanden (kanonische Tonalitäten, zugeschriebene Sprache).
+
+### Caveat
+abgeordnetenwatch lagt ~11 Tage → Rente-/Minijob-**Gesetzentwürfe** liegen als Drucksachen vor (z.B. Aktivrente 21/685, Rentenfinanzierung 21/686), aber etwaige **namentliche** Abstimmungen dazu sind upstream evtl. noch nicht publiziert. Datenlage-Decke, kein Aufwandsmangel.
+
+---
 
 ## Refresh 2026-05-25 (autonom, User-Trigger „update")
 

@@ -181,24 +181,25 @@ Caveats.
 
 ---
 
-## 1. Gap-Status (Snapshot **nach Refresh 2026-05-25** — via Check-Skript regenerierbar)
+## 1. Gap-Status (Snapshot **nach Refresh 2026-06-26** — via Check-Skript regenerierbar)
 
 | Quelle | Status | Stand nach Refresh | Notiz |
 |---|---|---|---|
-| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 80 (2026-05-21) | 79+80 neu ingestiert (+328 Reden) |
-| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | **11.953** Reden | +343 am 25.05. (Sitzung 79+80 + 15 Drift), Cost $1,54 Batch, Quote-Validation 86,0 % |
-| Activities (DIP) | 🟢 aktuell | 66.759 → **67.863** | +1.104 am 25.05., bis 2026-05-22 |
-| Drucksachen-PDF | 🟢 aktuell | 21/6034 → **21/6127** (53 neu) | +53 PDFs, alle klassifiziert |
-| Drucksachen-LLM | 🟢 erledigt | 5.387 → **5.440** | 53 am 25.05. ($3,06), Spotcheck bestanden (zugeschriebene Sprache, sachlich), 5/53 Topic-Drift (1 davon Tippfehler) |
-| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 51 → **52 Polls** (6528, +636 Votes, datiert 2026-05-22) | aw-Seed durch (631/631); Datum via backfill-vote-dates nachgezogen. **Upstream-Lag ~3 T — neuester Poll 6528 vom 22.05.; spätere Sitzungs-Abstimmungen evtl. noch nicht da** |
-| Sidejobs / Committee-Memberships | 🟢 erledigt | Sidejobs 3.969→**4.008**, Committees ~2.154 | mit aw-Run aktualisiert |
+| Plenar-XML / Reden-Rohtext | 🟢 aktuell | Sitzung 86 (2026-06-25) | 84+85+86 neu ingestiert (+379 Reden) |
+| Reden-LLM (`speech_analyses_v2`) | 🟢 erledigt | 12.821 → **13.264** Reden | +443 am 26.06. (Sitzung 84-86), Cost $2,13 Batch; speech_summaries +378 nachgezogen |
+| Activities (DIP) | 🟢 aktuell | 71.666 → **74.814** | +3.148 am 26.06., bis 2026-06-26 |
+| Drucksachen-PDF | 🟢 aktuell | 6.379 → **6.563** (184 neu) | +184 PDFs, alle klassifiziert |
+| Drucksachen-LLM | 🟢 erledigt | 5.977 → **6.161** | 184 am 26.06. ($3,19), Spotcheck bestanden (zugeschriebene Sprache), 28 Topic-Drift im Audit |
+| Votes/Polls (abgeordnetenwatch) | 🟢 erledigt | 56 → **58 Polls** (+6540/41/51/52/66/75) | aw-Seed durch; Datum via backfill-vote-dates. **Upstream-Lag ~11 T — neuester namentlicher Poll 6575 vom 25.06.; Rente/Minijob-Gesetze als DS da, etwaige namentliche Voten evtl. noch nicht** |
+| Sidejobs / Committee-Memberships | 🟢 erledigt | mit aw-Run aktualisiert | Vollauf 26.06. |
 | Ausschuss-Protokolle | 🟡 Drift | 254 JSON vs 226 DB | nicht Teil von „update" (destruktiver Reimport) |
 | Politiker-Stammdaten (abg.watch) | 🟢 idempotent | — | — |
-| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (25 Tage alt) |
-| Vote↔DS-Cross-Check | 🟢 erledigt | drucksache_polls 52/52 frisch; vote_context **52/52** befüllt, 0 stale | `map-vote-drucksache-bundestag.ts --apply`; Bilanz 25.05.: 49 EXAKT · 3 DIFF · 0 UNMATCHED. 3 DIFF (6528 neu + 6251/6351 mit geänderter DS-Liste) für vote_context re-generated |
-| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 307 → **393** Votes; XMLs 1–80 vollständig analysiert | Backfill 27.05. (msgbatch_01RczW9, 86 neue Events aus Sitzungen 65–80, Batch-Cost $0,34 real / $0,06 estimate). Pipeline lebt im **landtag-Worktree**, XML-Sync zu master ist Pre-Voraussetzung |
-| aw-Poll-Topics (`poll_aw_topics`) | 🟢 erledigt | 52/52 Polls mit `field_topics` + `field_committees` | Gratis (aw-API), 27.05. initial geseedet. Re-Run nur für neue Polls (idempotent per `INSERT NOT IN`-Filter im Script) |
-| DIP-Titel für DS-Stubs (`dip_ds_titles`) | 🟢 erledigt | 74 DS mit DIP-Titel | Gratis (DIP-API), 27.05. zweimal gelaufen (Rate-Limit-Recovery). Coverage 99,3% — 3 LLM-Extraktions-Edge-Cases verbleiben |
+| Politiker-Stammdaten (BT-XML) | ⚙️ manuell | XML vom 2026-04-30 | manueller Download (alt) |
+| Vote↔DS-Cross-Check | 🟢 erledigt | vote_context **58/58** befüllt, 0 offen | `map-vote-drucksache-bundestag.ts --apply` 26.06.: 50 EXAKT · 7 DIFF · 1 UNMATCHED (6566 ohne Subjekt-DS, ehrlicher Fallback). Regen für 6251/6351/6540/6541/6551/6552/6566/6575 |
+| Bundestag-Handzeichen-Votes (`bundestag_votes`) | 🟢 erledigt | 686 → **760** Votes; XMLs 1–86 vollständig analysiert | Backfill 26.06. (msgbatch_01VP9wm52, 74 neue Events aus Sitzungen 84-86, $0,23). Pipeline im **landtag-Worktree**, XML-Sync zu master Pre-Voraussetzung |
+| aw-Poll-Topics (`poll_aw_topics`) | 🟢 erledigt | +6566/6575 | Gratis (aw-API), nur neue Polls (idempotent) |
+| DIP-Titel für DS-Stubs (`dip_ds_titles`) | 🟢 erledigt | **7.756** DS-Titel (Voll-Sweep) | Gratis (DIP-API), `seed-dip-ds-titles-all.ts`. fetch-missing-ds-titles: 0 offen |
+| DIP-Vorgänge (`dip_vorgaenge`) | 🟢 erledigt | **357** Vorgänge, GE-Coverage 262/262 (100%) | `seed-dip-vorgaenge.ts` 26.06. (u.a. 12 „Beschlussempfehlung liegt vor", 76 „Überwiesen") |
 | Bundeskabinett | ⚙️ hardcoded | — | manuell bei Wechsel |
 | CV / Wikipedia / Homepage / Fotos / Bios | 🟢 roster-getrieben | kein „latest" | nur bei neuen MdBs |
 
