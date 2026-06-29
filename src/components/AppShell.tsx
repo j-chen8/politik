@@ -10,14 +10,16 @@ import {
 import { ParliamentSwitcher } from "./ParliamentSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchBox } from "./SearchBox";
+import { SiteFooter } from "./SiteFooter";
+import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
 /**
  * AppShell — Consumer-Layout im „App-Shell"-Muster (linke Leiste + Topbar +
  * Content), wie Spotify/YouTube/Reddit. Linke Leiste = Sektionen (kein Account,
  * also Navigation statt „dein Kram"), Topbar = Suche + Dark-Mode, Content =
- * children (die Regale). Vorerst NUR auf der Startseite `/` aktiv (SiteChrome
- * schaltet per usePathname um); wird später site-weit ausgerollt.
+ * children. Seit 2026-06-29 site-weiter Rahmen (vorher nur `/` + `/entwurf`).
+ * Im Berlin-Kontext (useIsBerlin) spiegelt die Nav die bewährten Berlin-Routen.
  */
 
 // Primäre Sektionen: Start · Themen · Gesetzentwürfe · Abstimmungen ·
@@ -44,7 +46,27 @@ const SECONDARY = [
   { href: "/ueber", icon: Info, label: "Über" },
 ];
 
-function NavList({ onNavigate, pathname }: { onNavigate?: () => void; pathname: string }) {
+// Berlin: KEINE gesetze/antraege/anfragen-Aufteilung — Berlin nutzt das kombinierte
+// /parlamente/berlin/drucksachen. Spiegelt die bewährten Berlin-Routen aus SiteChrome.
+const PRIMARY_BERLIN = [
+  { href: "/parlamente/berlin", icon: Home, label: "Start" },
+  { href: "/parlamente/berlin/themen", icon: Layers, label: "Themen" },
+  { href: "/parlamente/berlin/abstimmungen", icon: Vote, label: "Abstimmungen" },
+  { href: "/parlamente/berlin/drucksachen", icon: FileText, label: "Drucksachen" },
+  { href: "/parlamente/berlin/sitzungen", icon: Mic, label: "Reden & Protokolle" },
+  { href: "/politiker?parlament=2", icon: Users, label: "Politiker" },
+];
+
+const SECONDARY_BERLIN = [
+  { href: "/parlamente/berlin/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
+  { href: "/analyse?parlament=2", icon: BarChart3, label: "Analyse" },
+  { href: "/parlamente/berlin/methodik", icon: BookOpen, label: "Methodik" },
+  { href: "/ueber?parlament=2", icon: Info, label: "Über" },
+];
+
+function NavList({ onNavigate, pathname, isBerlin }: { onNavigate?: () => void; pathname: string; isBerlin: boolean }) {
+  const primary = isBerlin ? PRIMARY_BERLIN : PRIMARY;
+  const secondary = isBerlin ? SECONDARY_BERLIN : SECONDARY;
   const itemCls = (active: boolean) =>
     `flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors ${
       active
@@ -53,14 +75,14 @@ function NavList({ onNavigate, pathname }: { onNavigate?: () => void; pathname: 
     }`;
   return (
     <nav aria-label="Hauptnavigation" className="flex flex-col gap-0.5">
-      {PRIMARY.map((it) => (
+      {primary.map((it) => (
         <Link key={it.href} href={it.href} onClick={onNavigate} className={itemCls(pathname === it.href)}>
           <it.icon className="h-[18px] w-[18px] shrink-0" strokeWidth={2} />
           {it.label}
         </Link>
       ))}
       <div className="my-2 border-t border-border-soft" />
-      {SECONDARY.map((it) => (
+      {secondary.map((it) => (
         <Link
           key={it.href}
           href={it.href}
@@ -75,9 +97,9 @@ function NavList({ onNavigate, pathname }: { onNavigate?: () => void; pathname: 
   );
 }
 
-function Brand() {
+function Brand({ isBerlin }: { isBerlin: boolean }) {
   return (
-    <Link href="/" className="group flex items-center gap-2.5">
+    <Link href={isBerlin ? "/parlamente/berlin" : "/"} className="group flex items-center gap-2.5">
       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground transition-transform group-hover:scale-105">
         <Radio className="h-4 w-4 text-white" strokeWidth={2.5} />
       </div>
@@ -94,6 +116,7 @@ export function AppShell({
   parliaments: ParliamentOverview[];
 }) {
   const pathname = usePathname() || "/";
+  const isBerlin = useIsBerlin();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Drawer bei Navigation schließen + Body-Scroll sperren solange offen.
@@ -117,10 +140,10 @@ export function AppShell({
       {/* ── Linke Leiste (Desktop, persistent) ─────────────────────────── */}
       <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-border-soft bg-background px-4 py-5 lg:flex">
         <div className="px-2">
-          <Brand />
+          <Brand isBerlin={isBerlin} />
         </div>
         <div className="mt-6 flex-1 overflow-y-auto">
-          <NavList pathname={pathname} />
+          <NavList pathname={pathname} isBerlin={isBerlin} />
         </div>
         {/* BT ⇄ Berlin unten */}
         <div className="mt-2 border-t border-border-soft px-3 pt-3">
@@ -145,7 +168,12 @@ export function AppShell({
               </button>
             </div>
             <div className="w-[min(36rem,calc(100vw-6.5rem))]">
-              <SearchBox vorschlaegeUrl="/api/suche/vorschlaege" />
+              {/* Berlin: Suche auf Berlin-Scope; Autocomplete-Vorschläge gibt es
+                  (noch) nur für den Bundestag → im Berlin-Kontext weglassen. */}
+              <SearchBox
+                searchPath={isBerlin ? "/parlamente/berlin/suche" : "/suche"}
+                vorschlaegeUrl={isBerlin ? undefined : "/api/suche/vorschlaege"}
+              />
             </div>
             <div className="flex items-center justify-end">
               {/* Rechts: vorerst nur Dark-Mode (Login-Slot folgt) */}
@@ -155,6 +183,7 @@ export function AppShell({
         </header>
 
         <main className="flex-1">{children}</main>
+        <SiteFooter />
       </div>
 
       {/* ── Mobiler Drawer ─────────────────────────────────────────────── */}
@@ -163,7 +192,7 @@ export function AppShell({
           <div className="absolute inset-0 bg-black/40" onClick={() => setDrawerOpen(false)} />
           <div className="absolute left-0 top-0 flex h-full w-72 max-w-[80vw] flex-col border-r border-border-soft bg-background px-3 py-4 shadow-xl">
             <div className="flex items-center justify-between px-2">
-              <Brand />
+              <Brand isBerlin={isBerlin} />
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
@@ -174,7 +203,7 @@ export function AppShell({
               </button>
             </div>
             <div className="mt-6 flex-1 overflow-y-auto">
-              <NavList pathname={pathname} onNavigate={() => setDrawerOpen(false)} />
+              <NavList pathname={pathname} isBerlin={isBerlin} onNavigate={() => setDrawerOpen(false)} />
             </div>
             <div className="mt-2 border-t border-border-soft px-3 pt-3">
               <ParliamentSwitcher parliaments={parliaments} />
