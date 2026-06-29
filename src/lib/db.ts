@@ -4188,8 +4188,10 @@ export function listAllVotesForIndex(): VoteIndexEntry[] {
           label = `${docType} vom ${dateStr}`;
         }
       }
-      // Flip greift, wenn die primäre DS dieses Votes eine Ablehnungs-Empfehlung war.
-      const flip = (dsNrn.length > 0 && ablehnungFlip.get(v.vote_id)?.has(dsNrn[0])) ?? false;
+      // Flip greift, wenn dieser Vote überhaupt eine Ablehnungs-Beschlussempfehlung war
+      // — unabhängig davon, ob die Antrags-DS an Position 0 oder 1 steht (sonst flippte
+      // nur die Hälfte der Fälle, in denen die Beschlussempfehlungs-DS zuerst gelistet ist).
+      const flip = (ablehnungFlip.get(v.vote_id)?.size ?? 0) > 0;
       // outcome auf Antrags-Ebene (identisch zur Detailseite): „ja" zur Ablehnungs-
       // Empfehlung (annahme) bedeutet, der Antrag wurde abgelehnt.
       const oc = flip && v.outcome === "annahme"
@@ -4269,10 +4271,15 @@ export function getBundestagDsHandzeichenVotes(dsNr: string): BundestagDsHandzei
              bv.drucksache_nrn_json, bv.xml_source,
              vbk.empfiehlt AS beschluss_empfiehlt
       FROM bundestag_votes bv, json_each(bv.drucksache_nrn_json) AS j
-      LEFT JOIN vote_beschluss_kontext vbk ON vbk.vote_id = bv.vote_id AND vbk.ds_nr = ?
+      -- Flip gilt für den GESAMTEN Vote (eine Beschlussempfehlung empfiehlt die
+      -- Ablehnung genau eines Antrags). Join nur auf vote_id, NICHT auf ds_nr —
+      -- sonst flippt nur die Antrags-Seite, nicht die Beschlussempfehlungs-DS-Seite,
+      -- die aus der Abstimmungs-Liste verlinkt wird. (Jeder Vote in der Tabelle hat
+      -- genau eine Antrags-DS, daher keine Über-Flip-Gefahr.)
+      LEFT JOIN vote_beschluss_kontext vbk ON vbk.vote_id = bv.vote_id
       WHERE j.value = ? AND bv.error_type IS NULL AND bv.outcome != 'kein_vote'
       ORDER BY bv.datum DESC, bv.snippet_offset ASC
-    `).all(dsNr, dsNr) as Array<{
+    `).all(dsNr) as Array<{
       vote_id: number; sitzung_nr: number | null; wahlperiode: number | null;
       datum: string | null; vote_type: string; outcome: string; modus: string | null;
       fraktion_votes_json: string | null; drucksache_nrn_json: string | null; xml_source: string;
@@ -8864,7 +8871,9 @@ export function listParteienMitPositionen(): { partei: string; felder: number }[
 }
 
 // ── Salienz / Aufmacher (rein lesend; Schema legt scripts/_lib/salienz-schema.ts an) ──
-export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; gesetzbezug: boolean; }
+/** Ebene 2: Story-Strang über Tage, an dem dieser Cluster hängt (null = nur heute markant). */
+export interface SalienzStory { tageAktiv: number; streak: number; seit: string; }
+export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; gesetzbezug: boolean; story: SalienzStory | null; }
 export interface SalienzFeld {
   themenfeld: string; slug: string; rang: number;
   newsOutletCount: number; newsClusterCount: number; sNews: number; sTwitter: number; score: number | null;
@@ -8880,7 +8889,14 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
   } catch { return null; } // Tabelle fehlt in PROD → fail-closed
   if (!rd) return null;
   const rows = db.prepare(`SELECT * FROM salienz_themen WHERE run_date=? ORDER BY rang`).all(rd) as Record<string, unknown>[];
-  const clStmt = db.prepare(`SELECT cluster_id, leitthema, outlet_count, outlets_json, titles_json, summary, gesetzbezug FROM news_cluster WHERE run_date=? AND themenfeld=? ORDER BY gesetzbezug DESC, outlet_count DESC, item_count DESC`);
+  // LEFT JOIN salienz_story: Ebene-2-Strang (kann fehlen, wenn Threading noch nicht lief).
+  const clStmt = db.prepare(`
+    SELECT c.cluster_id, c.leitthema, c.outlet_count, c.outlets_json, c.titles_json, c.summary, c.gesetzbezug,
+           s.day_count, s.streak_days, s.first_date
+    FROM news_cluster c
+    LEFT JOIN salienz_story s ON s.thread_id = c.thread_id
+    WHERE c.run_date=? AND c.themenfeld=?
+    ORDER BY c.gesetzbezug DESC, c.outlet_count DESC, c.item_count DESC`);
   const felder: SalienzFeld[] = rows.map((r) => ({
     themenfeld: r.themenfeld as string, slug: r.slug as string, rang: r.rang as number,
     newsOutletCount: r.news_outlet_count as number, newsClusterCount: r.news_cluster_count as number,
@@ -8896,6 +8912,9 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
       titles: safeJson(c.titles_json as string, [] as { outlet: string; title: string; link: string }[]),
       summary: (c.summary as string | null) ?? null,
       gesetzbezug: !!(c.gesetzbezug as number | undefined),
+      story: (c.day_count as number | null) && (c.day_count as number) > 1
+        ? { tageAktiv: c.day_count as number, streak: c.streak_days as number, seit: c.first_date as string }
+        : null,
     })),
   }));
   return { runDate: rd, felder };

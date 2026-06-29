@@ -35,6 +35,15 @@ const FLIP_ABLEHNEN: Record<number, string> = {
   645: "21/1565", 649: "21/3605", 653: "21/2724", 669: "21/4748", 672: "21/2244",
   674: "21/4285", 677: "21/2222", 698: "21/2086", 699: "21/1566", 703: "21/1542",
   705: "21/3606", 710: "21/2721", 712: "21/3307", 714: "21/2723", 785: "21/3829",
+  // 2026-06-29: neue/re-extrahierte Votes aus BT-Refresh (Sitzungen 84–86 + von der
+  // verbesserten Extraktion nachgezogene Alt-Sitzungen). Jeder raw_snippet einzeln
+  // gelesen — Ausschuss empfiehlt jeweils explizit die Ablehnung DIESES verlinkten
+  // Antrags. Ausgeschlossen: 804/860 (reine GE-/Entschließungsantrag-Voten, kein Flip),
+  // 834/856 (GO-BT-Änderungsantrag-Blockvoten, Padding-/Verlinkungs-Edge-Cases — vertagt).
+  796: "21/1562", 803: "21/1559", 806: "21/1546", 809: "21/1557", 810: "21/1488",
+  812: "21/1756", 820: "21/1572", 827: "21/1542", 831: "21/2221", 833: "21/1564",
+  838: "21/1620", 848: "21/3796", 853: "21/2230", 857: "21/2245", 859: "21/1561",
+  861: "21/340",
 };
 
 const voteRow = db.prepare("SELECT raw_snippet, drucksache_nrn_json FROM bundestag_votes WHERE vote_id=?");
