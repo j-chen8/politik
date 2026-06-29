@@ -60,6 +60,13 @@ export default async function PickerPage() {
               <p className="text-sm font-medium text-foreground">
                 {cl.gesetzbezug && <span title="Gesetz/Reform/parl. Verfahren" className="mr-1 text-emerald-600 dark:text-emerald-400">⚖</span>}
                 {cl.leitthema} <span className="text-xs text-muted">({cl.outletCount} Outlets)</span>
+                {cl.story && (
+                  <span
+                    title={`an ${cl.story.tageAktiv} Tag(en) markant, seit ${cl.story.seit}${cl.story.streak < cl.story.tageAktiv ? " (mit Pause)" : ""}`}
+                    className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-900 dark:bg-amber-950/50 dark:text-amber-300">
+                    🔥 seit {cl.story.streak} Tagen
+                  </span>
+                )}
               </p>
               <ul className="mt-1 flex flex-col gap-0.5">
                 {cl.titles.slice(0, 4).map((t, i) => (

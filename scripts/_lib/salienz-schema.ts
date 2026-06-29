@@ -77,6 +77,31 @@ export function ensureSalienzSchema(db: Database.Database): void {
     );
     CREATE INDEX IF NOT EXISTS idx_salienz_rang ON salienz_themen(run_date, rang);
 
+    -- 4b) STORY-STRÄNGE über Tage (Ebene 2) — deterministisch aus news_cluster
+    --     gethreadet (€0, Voll-Recompute je Lauf). „Thema X seit N Tagen".
+    CREATE TABLE IF NOT EXISTS salienz_story (
+      thread_id    TEXT PRIMARY KEY,   -- stabil: erstes run_date#cluster_id
+      themenfeld   TEXT,
+      leitthema    TEXT,               -- jüngste repräsentative Schlagzeile
+      first_date   TEXT NOT NULL,
+      last_date    TEXT NOT NULL,
+      day_count    INTEGER NOT NULL,   -- Tage markant (distinkte run_dates, outlet_count>=2)
+      streak_days  INTEGER NOT NULL,   -- am Stück bis last_date (lückenlose Kalendertage)
+      peak_outlets INTEGER NOT NULL,
+      gesetzbezug  INTEGER NOT NULL DEFAULT 0,
+      dates_json   TEXT                 -- ["2026-06-27", ...] alle aktiven Tage
+    );
+    CREATE INDEX IF NOT EXISTS idx_story_last ON salienz_story(last_date);
+
+    -- 4c) WELCHE STORY-STRÄNGE GINGEN SCHON PER MAIL RAUS — damit die nächste Mail
+    --     nur das NEUE auffällig markiert. Pro thread_id genau eine Zeile.
+    CREATE TABLE IF NOT EXISTS salienz_mail_sent (
+      thread_id     TEXT PRIMARY KEY,
+      first_sent_at TEXT NOT NULL DEFAULT (datetime('now')),
+      leitthema     TEXT,
+      themenfeld    TEXT         -- Feld-Gate für den inhaltlichen „schon gesendet?"-Abgleich
+    );
+
     -- 5) MANUELLER AUFMACHER-PICK (jüngste aktive Zeile speist den Hero)
     CREATE TABLE IF NOT EXISTS aufmacher_pick (
       id         INTEGER PRIMARY KEY,
@@ -100,6 +125,9 @@ export function ensureSalienzSchema(db: Database.Database): void {
     `ALTER TABLE news_cluster ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
     // Feld-Ebene: 1 = mind. ein Gesetz/Reform-Cluster im Feld → Substanz-Boost im Ranking + Badge.
     `ALTER TABLE salienz_themen ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
+    // Ebene 2: jeder markante Cluster bekommt seinen Story-Strang zugeordnet.
+    `ALTER TABLE news_cluster ADD COLUMN thread_id TEXT`,
+    `ALTER TABLE salienz_mail_sent ADD COLUMN themenfeld TEXT`,
   ]) {
     try { db.exec(sql); } catch { /* Spalte existiert schon */ }
   }

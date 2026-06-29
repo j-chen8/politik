@@ -86,6 +86,9 @@ _*.tsv
 # Drucksachen-PDFs (reproduzierbar via scripts/download-missing-drucksachen.sh, 1.8 GB)
 /data/drucksachen/
 
+# Kommissions-PDFs (reproduzierbar via scripts/scrape-kommissionsberichte.ts)
+/data/kommissionen_pdfs/
+
 # Berlin-Pilot: PARDOK-XML + PDFs (reproduzierbar via parlament-berlin.de/opendata)
 /data/berlin/
 

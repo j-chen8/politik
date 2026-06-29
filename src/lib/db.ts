@@ -8988,3 +8988,128 @@ export function getSalienzTrends(tage = 30): { tage: number; seit: string; geset
     };
   } catch { return null; } // Tabelle/Spalte fehlt → fail-closed
 }
+
+// ── Kommissionen-Tracker (rein lesend; Schema legt scripts/_lib/kommissionen-schema.ts an) ──
+export interface KommissionBerichtView {
+  titel: string | null; datum: string | null; url: string; quelle: string;
+  typ: string | null; pdfVorhanden: boolean; pages: number | null;
+}
+export interface KommissionNewsSignal { newsItemId: number; title: string; link: string; signal: string | null; runDate: string; }
+export interface KommissionView {
+  slug: string; name: string; kurzname: string | null; ministerium: string | null;
+  tier: number; thema: string | null; quelleUrl: string | null; pollUrl: string | null;
+  cadence: string | null; nextExpected: string | null; status: string | null;
+  letzterBerichtUrl: string | null; notiz: string | null;
+  neuesterBericht: KommissionBerichtView | null;
+  juengsteSignale: KommissionNewsSignal[];
+  hatAnalyse: boolean;
+}
+
+export function getKommissionenTracker(): { tier1: KommissionView[]; tier2: KommissionView[] } | null {
+  const db = getDb();
+  try {
+    const rows = db.prepare(`
+      SELECT slug, name, kurzname, ministerium, tier, thema, quelle_url, poll_url,
+             cadence, next_expected, status, letzter_bericht_url, notiz
+      FROM kommission
+      ORDER BY tier ASC, name COLLATE NOCASE
+    `).all() as Record<string, unknown>[];
+    if (rows.length === 0) return null;
+
+    const berStmt = db.prepare(`
+      SELECT titel, datum, url, quelle, typ, pdf_path, pages FROM kommission_bericht
+      WHERE kommission_slug = ?
+      ORDER BY (datum IS NULL), datum DESC, id DESC LIMIT 1
+    `);
+    const sigStmt = db.prepare(`
+      SELECT n.news_item_id, n.signal, n.run_date, i.title, i.link
+      FROM kommission_news n JOIN news_items i ON i.id = n.news_item_id
+      WHERE n.kommission_slug = ?
+      ORDER BY n.run_date DESC, n.news_item_id DESC LIMIT 5
+    `);
+    const anaStmt = db.prepare(`SELECT 1 FROM kommission_bericht_analyse WHERE kommission_slug = ? LIMIT 1`);
+
+    const map = (r: Record<string, unknown>): KommissionView => {
+      const slug = r.slug as string;
+      const b = berStmt.get(slug) as Record<string, unknown> | undefined;
+      const sigs = sigStmt.all(slug) as Record<string, unknown>[];
+      return {
+        slug,
+        name: r.name as string,
+        kurzname: (r.kurzname as string | null) ?? null,
+        ministerium: (r.ministerium as string | null) ?? null,
+        tier: r.tier as number,
+        thema: (r.thema as string | null) ?? null,
+        quelleUrl: (r.quelle_url as string | null) ?? null,
+        pollUrl: (r.poll_url as string | null) ?? null,
+        cadence: (r.cadence as string | null) ?? null,
+        nextExpected: (r.next_expected as string | null) ?? null,
+        status: (r.status as string | null) ?? null,
+        letzterBerichtUrl: (r.letzter_bericht_url as string | null) ?? null,
+        notiz: (r.notiz as string | null) ?? null,
+        neuesterBericht: b ? {
+          titel: (b.titel as string | null) ?? null,
+          datum: (b.datum as string | null) ?? null,
+          url: b.url as string,
+          quelle: b.quelle as string,
+          typ: (b.typ as string | null) ?? null,
+          pdfVorhanden: !!(b.pdf_path as string | null),
+          pages: (b.pages as number | null) ?? null,
+        } : null,
+        juengsteSignale: sigs.map((s) => ({
+          newsItemId: s.news_item_id as number,
+          title: s.title as string,
+          link: s.link as string,
+          signal: (s.signal as string | null) ?? null,
+          runDate: s.run_date as string,
+        })),
+        hatAnalyse: !!anaStmt.get(slug),
+      };
+    };
+
+    const views = rows.map(map);
+    return {
+      tier1: views.filter((v) => v.tier === 1),
+      tier2: views.filter((v) => v.tier !== 1),
+    };
+  } catch { return null; } // Tabelle/Spalte fehlt → fail-closed
+}
+
+// Detail: manuelle Analyse eines Kommissions-Leitberichts (kommission_bericht_analyse).
+export interface KommissionAnalysePunkt { nr?: number; kapitel?: string; thema?: string; massnahme: string; gruppe?: string; umsetzbarkeit?: string; art?: string; impact?: string; }
+export interface KommissionKennzahl { label: string; wert: string; }
+export interface KommissionAnalyse {
+  slug: string; name: string; kurzname: string | null; ministerium: string | null; thema: string | null; quelleUrl: string | null;
+  bericht: { titel: string | null; datum: string | null; typ: string | null; pages: number | null; url: string; pdfVorhanden: boolean } | null;
+  auftrag: string | null; gesamttenor: string | null; seiten: string | null; analysiertAm: string | null;
+  kennzahlen: KommissionKennzahl[]; eckpunkte: string[];
+  kernpunkte: KommissionAnalysePunkt[];
+}
+
+export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
+  const db = getDb();
+  try {
+    const k = db.prepare(`SELECT slug, name, kurzname, ministerium, thema, quelle_url FROM kommission WHERE slug = ?`).get(slug) as Record<string, unknown> | undefined;
+    if (!k) return null;
+    const a = db.prepare(`
+      SELECT a.auftrag, a.kernpunkte_json, a.gesamttenor, a.seiten, a.analysiert_am,
+             a.kennzahlen_json, a.eckpunkte_json,
+             b.titel, b.datum, b.typ, b.pages, b.url, b.pdf_path
+      FROM kommission_bericht_analyse a JOIN kommission_bericht b ON b.id = a.bericht_id
+      WHERE a.kommission_slug = ? ORDER BY a.analysiert_am DESC LIMIT 1
+    `).get(slug) as Record<string, unknown> | undefined;
+    return {
+      slug: k.slug as string, name: k.name as string, kurzname: (k.kurzname as string | null) ?? null,
+      ministerium: (k.ministerium as string | null) ?? null, thema: (k.thema as string | null) ?? null,
+      quelleUrl: (k.quelle_url as string | null) ?? null,
+      bericht: a ? { titel: (a.titel as string | null) ?? null, datum: (a.datum as string | null) ?? null, typ: (a.typ as string | null) ?? null, pages: (a.pages as number | null) ?? null, url: a.url as string, pdfVorhanden: !!(a.pdf_path as string | null) } : null,
+      auftrag: a ? ((a.auftrag as string | null) ?? null) : null,
+      gesamttenor: a ? ((a.gesamttenor as string | null) ?? null) : null,
+      seiten: a ? ((a.seiten as string | null) ?? null) : null,
+      analysiertAm: a ? ((a.analysiert_am as string | null) ?? null) : null,
+      kennzahlen: a ? safeJson<KommissionKennzahl[]>(a.kennzahlen_json as string, []) : [],
+      eckpunkte: a ? safeJson<string[]>(a.eckpunkte_json as string, []) : [],
+      kernpunkte: a ? safeJson<KommissionAnalysePunkt[]>(a.kernpunkte_json as string, []) : [],
+    };
+  } catch { return null; }
+}
