@@ -77,6 +77,7 @@ export function ensureKommissionenSchema(db: Database.Database): void {
     `ALTER TABLE kommission_bericht ADD COLUMN gemailt_am TEXT`,   // Mail-Tracking; NULL = nie gemailt
     `ALTER TABLE kommission_bericht_analyse ADD COLUMN kennzahlen_json TEXT`, // [{label,wert}] scan-first Kennzahlen
     `ALTER TABLE kommission_bericht_analyse ADD COLUMN eckpunkte_json TEXT`,  // [string] Stichpunkte statt Prosa
+    `ALTER TABLE kommission_bericht_analyse ADD COLUMN mitglieder_json TEXT`, // {anzahl,zusammensetzung,merkmale[],gruppen[{rolle,personen[{name,funktion,partei?}]}],beratend[]}
     // Index muss NACH der gemailt_am-Spalte laufen (Spalte kommt per ALTER, nicht im CREATE-Block).
     `CREATE INDEX IF NOT EXISTS idx_kb_gemailt ON kommission_bericht(gemailt_am)`,
   ]) {

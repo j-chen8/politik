@@ -9078,12 +9078,21 @@ export function getKommissionenTracker(): { tier1: KommissionView[]; tier2: Komm
 // Detail: manuelle Analyse eines Kommissions-Leitberichts (kommission_bericht_analyse).
 export interface KommissionAnalysePunkt { nr?: number; kapitel?: string; thema?: string; massnahme: string; gruppe?: string; umsetzbarkeit?: string; art?: string; impact?: string; }
 export interface KommissionKennzahl { label: string; wert: string; }
+export interface KommissionMitglied { name: string; funktion: string; partei?: string; politikerId?: number; wikipedia?: string; }
+export interface KommissionMitglieder {
+  anzahl: number;            // stimmberechtigte Mitglieder
+  zusammensetzung: string;   // eine Zeile: „8 Wissenschaft · 3 Politik … · 2 Vorsitz"
+  merkmale: string[];        // neutrale Unabhängigkeits-Fakten (weisungsfrei, intern uneinig …)
+  gruppen: { rolle: string; personen: KommissionMitglied[] }[];
+  beratend?: KommissionMitglied[];
+}
 export interface KommissionAnalyse {
   slug: string; name: string; kurzname: string | null; ministerium: string | null; thema: string | null; quelleUrl: string | null;
   bericht: { titel: string | null; datum: string | null; typ: string | null; pages: number | null; url: string; pdfVorhanden: boolean } | null;
   auftrag: string | null; gesamttenor: string | null; seiten: string | null; analysiertAm: string | null;
   kennzahlen: KommissionKennzahl[]; eckpunkte: string[];
   kernpunkte: KommissionAnalysePunkt[];
+  mitglieder: KommissionMitglieder | null;
 }
 
 export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
@@ -9093,7 +9102,7 @@ export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
     if (!k) return null;
     const a = db.prepare(`
       SELECT a.auftrag, a.kernpunkte_json, a.gesamttenor, a.seiten, a.analysiert_am,
-             a.kennzahlen_json, a.eckpunkte_json,
+             a.kennzahlen_json, a.eckpunkte_json, a.mitglieder_json,
              b.titel, b.datum, b.typ, b.pages, b.url, b.pdf_path
       FROM kommission_bericht_analyse a JOIN kommission_bericht b ON b.id = a.bericht_id
       WHERE a.kommission_slug = ? ORDER BY a.analysiert_am DESC LIMIT 1
@@ -9110,6 +9119,7 @@ export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
       kennzahlen: a ? safeJson<KommissionKennzahl[]>(a.kennzahlen_json as string, []) : [],
       eckpunkte: a ? safeJson<string[]>(a.eckpunkte_json as string, []) : [],
       kernpunkte: a ? safeJson<KommissionAnalysePunkt[]>(a.kernpunkte_json as string, []) : [],
+      mitglieder: a && a.mitglieder_json ? safeJson<KommissionMitglieder | null>(a.mitglieder_json as string, null) : null,
     };
   } catch { return null; }
 }
