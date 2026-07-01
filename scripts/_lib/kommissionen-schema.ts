@@ -78,6 +78,8 @@ export function ensureKommissionenSchema(db: Database.Database): void {
     `ALTER TABLE kommission_bericht_analyse ADD COLUMN kennzahlen_json TEXT`, // [{label,wert}] scan-first Kennzahlen
     `ALTER TABLE kommission_bericht_analyse ADD COLUMN eckpunkte_json TEXT`,  // [string] Stichpunkte statt Prosa
     `ALTER TABLE kommission_bericht_analyse ADD COLUMN mitglieder_json TEXT`, // {anzahl,zusammensetzung,merkmale[],gruppen[{rolle,personen[{name,funktion,partei?}]}],beratend[]}
+    `ALTER TABLE kommission_bericht_analyse ADD COLUMN kernbefunde_json TEXT`, // [{titel,text,betrifft?,schwere?}] schema-freie, nach Schwere sortierte Kernbefunde (statt gruppe/art/impact-Raster)
+    `ALTER TABLE kommission_bericht_analyse ADD COLUMN verwendung_json TEXT`,  // {titel?,zeitraum?,gesamt?,posten:[{label,wert,anteil?}]} — Geld-/Mengen-Aufschlüsselung als Balken
     // Index muss NACH der gemailt_am-Spalte laufen (Spalte kommt per ALTER, nicht im CREATE-Block).
     `CREATE INDEX IF NOT EXISTS idx_kb_gemailt ON kommission_bericht(gemailt_am)`,
   ]) {

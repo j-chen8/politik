@@ -34,6 +34,7 @@ ergänzen. `[[…]]` = Memory-Datei, `docs/…` = Doc.
 | Themenfeld-Profil (wer „besitzt" ein Feld) | `scripts/analyse-themenfeld.ts` · [[project_themenfeld_profil_tool]] | [[project_regierungsbilanz_track]] (getBerlinThemenAktivitaet) |
 | Volltext-Suche (FTS5 + Synonyme) | [[project_search_fts5]] · [[project_search_synonym_layer]] · [[project_search_overhaul_2026-05-28]] | [[project_berlin_search_fts5]] |
 | Mediathek-Video-Verlinkung | [[project_mediathek_video_linking]] | — |
+| Kommissionsbericht → Analyse-Schicht | `docs/PROZEDUR-kommissionsbericht.md` · [[project_kommissions_tracker]] (Beschaffung getrennt: Scraper + Tages-Timer) | — |
 
 > **Methodik-Evolution** (Historie, wie sich die Ansätze entwickelt haben): `docs/methodology-evolution.md`.
 

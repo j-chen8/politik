@@ -9075,9 +9075,64 @@ export function getKommissionenTracker(): { tier1: KommissionView[]; tier2: Komm
   } catch { return null; } // Tabelle/Spalte fehlt → fail-closed
 }
 
+// Alle Berichte je Kommission — flache Übersicht für /entwurf/kommissionen/berichte.
+export interface KommissionsberichtItem {
+  id: number; titel: string | null; typ: string | null; datum: string | null;
+  url: string | null; pages: number | null; hatVolltext: boolean; istLeitbericht: boolean;
+}
+export interface KommissionMitBerichten {
+  slug: string; name: string; kurzname: string | null; ministerium: string | null;
+  tier: number; hatAnalyse: boolean; berichte: KommissionsberichtItem[];
+}
+export function getAlleKommissionsberichte(): { gremien: KommissionMitBerichten[]; totalBerichte: number } | null {
+  const db = getDb();
+  try {
+    const kom = db.prepare(`
+      SELECT slug, name, kurzname, ministerium, tier FROM kommission
+      ORDER BY tier ASC, name COLLATE NOCASE
+    `).all() as Record<string, unknown>[];
+    if (kom.length === 0) return null;
+    const berStmt = db.prepare(`
+      SELECT id, titel, typ, datum, url, pages, (full_text IS NOT NULL AND full_text <> '') AS ft
+      FROM kommission_bericht WHERE kommission_slug = ?
+      ORDER BY (datum IS NULL), datum DESC, id DESC
+    `);
+    const leitStmt = db.prepare(`SELECT bericht_id FROM kommission_bericht_analyse WHERE kommission_slug = ?`);
+    let total = 0;
+    const gremien: KommissionMitBerichten[] = kom.map((k) => {
+      const slug = k.slug as string;
+      const leitIds = new Set((leitStmt.all(slug) as Record<string, unknown>[]).map((r) => r.bericht_id as number));
+      const berichte = (berStmt.all(slug) as Record<string, unknown>[]).map((b) => ({
+        id: b.id as number,
+        titel: (b.titel as string | null) ?? null,
+        typ: (b.typ as string | null) ?? null,
+        datum: (b.datum as string | null) ?? null,
+        url: (b.url as string | null) ?? null,
+        pages: (b.pages as number | null) ?? null,
+        hatVolltext: !!(b.ft as number),
+        istLeitbericht: leitIds.has(b.id as number),
+      }));
+      total += berichte.length;
+      return {
+        slug, name: k.name as string,
+        kurzname: (k.kurzname as string | null) ?? null,
+        ministerium: (k.ministerium as string | null) ?? null,
+        tier: k.tier as number,
+        hatAnalyse: leitIds.size > 0,
+        berichte,
+      };
+    }).filter((g) => g.berichte.length > 0);
+    return { gremien, totalBerichte: total };
+  } catch { return null; } // fail-closed
+}
+
 // Detail: manuelle Analyse eines Kommissions-Leitberichts (kommission_bericht_analyse).
 export interface KommissionAnalysePunkt { nr?: number; kapitel?: string; thema?: string; massnahme: string; gruppe?: string; umsetzbarkeit?: string; art?: string; impact?: string; }
 export interface KommissionKennzahl { label: string; wert: string; }
+/** Schema-freier Kernbefund: „wichtigster/schwerwiegendster Punkt + wen es trifft", nach Schwere sortiert. */
+export interface KommissionKernbefund { titel: string; text: string; betrifft?: string; schwere?: "hoch" | "mittel" | "gering"; }
+/** Aufschlüsselung, wofür Geld/Mittel gebraucht werden — als Balken (anteil 0–100). */
+export interface KommissionVerwendung { titel?: string; zeitraum?: string; gesamt?: string; posten: { label: string; wert: string; anteil?: number }[]; }
 export interface KommissionMitglied { name: string; funktion: string; partei?: string; politikerId?: number; wikipedia?: string; }
 export interface KommissionMitglieder {
   anzahl: number;            // stimmberechtigte Mitglieder
@@ -9092,6 +9147,8 @@ export interface KommissionAnalyse {
   auftrag: string | null; gesamttenor: string | null; seiten: string | null; analysiertAm: string | null;
   kennzahlen: KommissionKennzahl[]; eckpunkte: string[];
   kernpunkte: KommissionAnalysePunkt[];
+  kernbefunde: KommissionKernbefund[];
+  verwendung: KommissionVerwendung | null;
   mitglieder: KommissionMitglieder | null;
 }
 
@@ -9102,7 +9159,7 @@ export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
     if (!k) return null;
     const a = db.prepare(`
       SELECT a.auftrag, a.kernpunkte_json, a.gesamttenor, a.seiten, a.analysiert_am,
-             a.kennzahlen_json, a.eckpunkte_json, a.mitglieder_json,
+             a.kennzahlen_json, a.eckpunkte_json, a.mitglieder_json, a.kernbefunde_json, a.verwendung_json,
              b.titel, b.datum, b.typ, b.pages, b.url, b.pdf_path
       FROM kommission_bericht_analyse a JOIN kommission_bericht b ON b.id = a.bericht_id
       WHERE a.kommission_slug = ? ORDER BY a.analysiert_am DESC LIMIT 1
@@ -9119,6 +9176,8 @@ export function getKommissionAnalyse(slug: string): KommissionAnalyse | null {
       kennzahlen: a ? safeJson<KommissionKennzahl[]>(a.kennzahlen_json as string, []) : [],
       eckpunkte: a ? safeJson<string[]>(a.eckpunkte_json as string, []) : [],
       kernpunkte: a ? safeJson<KommissionAnalysePunkt[]>(a.kernpunkte_json as string, []) : [],
+      kernbefunde: a ? safeJson<KommissionKernbefund[]>(a.kernbefunde_json as string, []) : [],
+      verwendung: a && a.verwendung_json ? safeJson<KommissionVerwendung | null>(a.verwendung_json as string, null) : null,
       mitglieder: a && a.mitglieder_json ? safeJson<KommissionMitglieder | null>(a.mitglieder_json as string, null) : null,
     };
   } catch { return null; }

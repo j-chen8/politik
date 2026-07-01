@@ -4,7 +4,7 @@
  * kommission_news rein lesend; Schema legt scripts/_lib/kommissionen-schema.ts an.
  */
 import Link from "next/link";
-import { Scale } from "lucide-react";
+import { Scale, FileText } from "lucide-react";
 import { getKommissionenTracker, type KommissionView } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -94,6 +94,10 @@ export default function KommissionenPage() {
         <p className="mt-1 text-[15px] text-muted">
           Staatliche Kommissionen und Beiräte: erwartete Berichte, zuletzt vorgelegte Gutachten und aktuelle Signale aus den Nachrichten.
         </p>
+        <Link href="/entwurf/kommissionen/berichte"
+              className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-[13px] font-medium text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <FileText className="h-4 w-4 text-muted" /> Alle Berichte ansehen →
+        </Link>
       </header>
 
       <section className="flex flex-col gap-3">

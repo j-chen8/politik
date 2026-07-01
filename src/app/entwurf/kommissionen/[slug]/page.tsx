@@ -16,6 +16,11 @@ const accent = (impact?: string) =>
   impact === "hoch" ? "border-l-2 border-l-red-400 dark:border-l-red-500/60"
   : impact === "mittel" ? "border-l-2 border-l-amber-400 dark:border-l-amber-500/50"
   : "border-l-2 border-l-transparent";
+// Kernbefund-Schwere: linker Akzentrand (hoch=rot, mittel=amber, sonst neutral).
+const schwereAkzent = (s?: string) =>
+  s === "hoch" ? "border-l-[3px] border-l-red-400 dark:border-l-red-500/70"
+  : s === "mittel" ? "border-l-[3px] border-l-amber-400 dark:border-l-amber-500/60"
+  : "border-l-[3px] border-l-border";
 
 // Härte-Achse: nur 2 Stufen — Kürzung (weniger/später) vs. Belastung (mehr/neu zahlen).
 // „Pflicht" (bisher Befreite werden neu pflichtversichert) zählt als Belastung: sie
@@ -69,14 +74,21 @@ export default async function KommissionDetailPage({ params }: { params: Promise
     g.punkte.push(p);
   }
 
-  // Einschnitte: Belastungen/Kürzungen/Pflichten, nach Impact (hoch→gering).
-  const einschnitte = a.kernpunkte
-    .filter((p) => p.art && EINSCHNITT_ARTEN.has(p.art))
-    .sort((x, y) => (IMPACT_RANK[x.impact ?? "gering"] ?? 9) - (IMPACT_RANK[y.impact ?? "gering"] ?? 9));
+  // Reform-Stil (gruppe/art/impact-Raster: Einschnitte + „Wen es trifft"-Hero) nur für
+  // echte Reform-Berichte. Beratende/technische Berichte nutzen „Das Wichtigste" (kernbefunde),
+  // das die Betroffenen je Punkt schon trägt — dann kein Raster erzwingen.
+  const reformStil = a.kernbefunde.length === 0;
 
-  // Betroffenen-Matrix: nur Gruppen mit HOCH-Impact-Maßnahmen (Fallback: alle).
+  // Einschnitte: Belastungen/Kürzungen/Pflichten, nach Impact (hoch→gering).
+  const einschnitte = reformStil
+    ? a.kernpunkte
+        .filter((p) => p.art && EINSCHNITT_ARTEN.has(p.art))
+        .sort((x, y) => (IMPACT_RANK[x.impact ?? "gering"] ?? 9) - (IMPACT_RANK[y.impact ?? "gering"] ?? 9))
+    : [];
+
+  // Betroffenen-Matrix: nur Gruppen mit HOCH-Impact-Maßnahmen (Fallback: alle). Nur Reform-Stil.
   const matrixQuelle = a.kernpunkte.filter((p) => p.impact === "hoch");
-  const matrixPunkte = matrixQuelle.length > 0 ? matrixQuelle : a.kernpunkte;
+  const matrixPunkte = !reformStil ? [] : (matrixQuelle.length > 0 ? matrixQuelle : a.kernpunkte);
   const matrix: { gruppe: string; punkte: KommissionAnalysePunkt[] }[] = [];
   for (const p of matrixPunkte) {
     const g = p.gruppe && p.gruppe !== "—" ? p.gruppe : "Sonstige/allgemein";
@@ -175,6 +187,55 @@ export default async function KommissionDetailPage({ params }: { params: Promise
             ))}
           </section>
 
+          {/* DAS WICHTIGSTE — schema-freie, nach Schwere sortierte Kernbefunde je mit „Betrifft".
+              Für beratende/technische Berichte, die nicht ins Einschnitt/Empfehlungs-Raster passen. */}
+          {a.kernbefunde.length > 0 && (
+            <section className="flex flex-col gap-3">
+              <h2 className="text-[18px] font-semibold text-foreground">Das Wichtigste</h2>
+              <div className="flex flex-col gap-2.5">
+                {a.kernbefunde.map((b, i) => (
+                  <div key={i} className={`flex gap-3 rounded-xl border border-border bg-card p-4 ${schwereAkzent(b.schwere)}`}>
+                    <span className="num shrink-0 text-[15px] font-bold text-muted">{i + 1}</span>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[15px] font-semibold leading-snug text-foreground">{b.titel}</p>
+                      <p className="text-[14px] leading-relaxed text-foreground/80">{b.text}</p>
+                      {b.betrifft && (
+                        <p className="mt-0.5 text-[13px] text-muted">
+                          <span className="font-semibold text-foreground/70">Betrifft:</span> {b.betrifft}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* WOFÜR DAS GELD GEBRAUCHT WIRD — Verwendungs-/Mengen-Aufschlüsselung als Balken. */}
+          {a.verwendung && a.verwendung.posten.length > 0 && (
+            <section className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 className="text-[18px] font-semibold text-foreground">{a.verwendung.titel ?? "Wofür das Geld gebraucht wird"}</h2>
+                <span className="text-[13px] text-muted">{[a.verwendung.gesamt, a.verwendung.zeitraum].filter(Boolean).join(" · ")}</span>
+              </div>
+              <div className="flex flex-col gap-2.5">
+                {a.verwendung.posten.map((p, i) => (
+                  <div key={i} className="flex flex-col gap-1">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <span className="text-[14px] leading-snug text-foreground">{p.label}</span>
+                      <span className="num shrink-0 text-[13px] font-semibold text-foreground">{p.wert}{p.anteil != null ? <span className="ml-1.5 font-normal text-muted">{p.anteil}%</span> : null}</span>
+                    </div>
+                    {p.anteil != null && (
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+                        <div className="h-full rounded-full bg-foreground/70" style={{ width: `${Math.max(1, Math.min(100, p.anteil))}%` }} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* WER DAHINTER STECKT — Zusammensetzung + Köpfe. Bewusst KEIN „neutral/parteiisch"-
               Urteil, sondern Fakten, aus denen der Leser die Unabhängigkeit selbst einschätzt. */}
           {a.mitglieder && (
@@ -251,11 +312,13 @@ export default async function KommissionDetailPage({ params }: { params: Promise
           )}
 
           {/* Alle Empfehlungen — pro Kapitel einklappbar: verdichtet, voller Text auf Klick.
-              (Einschnitte/Betroffene oben sind die Destillation; hier die kanonische Vollliste.) */}
+              (Einschnitte/Betroffene oben sind die Destillation; hier die kanonische Vollliste.)
+              Nur wenn es echte Empfehlungs-Punkte gibt; beratende Berichte nutzen „Das Wichtigste". */}
+          {a.kernpunkte.length > 0 && (
           <section className="flex flex-col gap-3">
             <div className="flex flex-col gap-0.5">
               <h2 className="text-[18px] font-semibold text-foreground">
-                Alle Empfehlungen <span className="text-[14px] font-normal text-muted">({a.kernpunkte.length})</span>
+                {reformStil ? "Alle Empfehlungen" : "Im Detail"} <span className="text-[14px] font-normal text-muted">({a.kernpunkte.length})</span>
               </h2>
               <p className="text-[12px] text-muted">Nach Kapitel gegliedert — zum Aufklappen tippen.</p>
             </div>
@@ -267,7 +330,7 @@ export default async function KommissionDetailPage({ params }: { params: Promise
                         {g.kapitel}
                       </span>
                       <span className="flex shrink-0 items-center gap-2 text-[12px] text-muted">
-                        {g.punkte.length} {g.punkte.length === 1 ? "Empfehlung" : "Empfehlungen"}
+                        {g.punkte.length} {reformStil ? (g.punkte.length === 1 ? "Empfehlung" : "Empfehlungen") : (g.punkte.length === 1 ? "Punkt" : "Punkte")}
                         <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden />
                       </span>
                     </summary>
@@ -290,6 +353,7 @@ export default async function KommissionDetailPage({ params }: { params: Promise
               ))}
             </div>
           </section>
+          )}
 
           {/* Bericht-Quelle / PDF */}
           <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-4">

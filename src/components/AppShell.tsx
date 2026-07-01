@@ -41,6 +41,7 @@ const PRIMARY = [
 const SECONDARY = [
   { href: "/fragen", icon: MessageSquareQuote, label: "Fragen & Antworten" },
   { href: "/berichte", icon: ClipboardList, label: "Berichte & Unterrichtungen" },
+  { href: "/entwurf/kommissionen/berichte", icon: Scale, label: "Kommissionsberichte" },
   { href: "/analyse", icon: BarChart3, label: "Analyse" },
   { href: "/methodik", icon: BookOpen, label: "Methodik" },
   { href: "/ueber", icon: Info, label: "Über" },
