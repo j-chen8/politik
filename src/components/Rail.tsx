@@ -47,17 +47,23 @@ export function Rail({
     return m ? parseInt(m[1], 10) : 320;
   }, [cardWidth]);
 
+  const itemCount = items.length;
+
   const update = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
     // Wie viele ganze Karten (>= Mindestbreite) passen in die sichtbare Breite?
     const width = el.clientWidth;
     const n = Math.max(1, Math.floor((width + GAP) / (minCardPx + GAP)));
-    setCardPx((width - (n - 1) * GAP) / n);
+    // Mobil (nur 1 Karte passt): Karte schmaler als die Reihe, damit die nächste
+    // sichtbar anschneidet — ohne die Desktop-Pfeile ist der Anschnitt der einzige
+    // Hinweis, dass die Reihe seitlich scrollt.
+    const peek = n === 1 && itemCount > 1 ? 36 : 0;
+    setCardPx(peek ? Math.max(220, width - peek) : (width - (n - 1) * GAP) / n);
     const max = el.scrollWidth - el.clientWidth;
     setAtStart(el.scrollLeft <= 1);
     setAtEnd(el.scrollLeft >= max - 1);
-  }, [minCardPx]);
+  }, [minCardPx, itemCount]);
 
   useEffect(() => {
     update();
@@ -109,7 +115,7 @@ export function Rail({
           {items.map((card, i) => (
             <div
               key={i}
-              className={`flex snap-start shrink-0 ${cardPx == null ? cardWidth : ""}`}
+              className={`flex max-w-full snap-start shrink-0 ${cardPx == null ? cardWidth : ""}`}
               style={cardPx == null ? undefined : { width: cardPx }}
             >
               {card}

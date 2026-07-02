@@ -13,9 +13,10 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackMemoryOptimizations: true,
   },
-  // LAN-/SSH-Zugriff auf den Dev-Server: ohne die erlaubte Origin lädt die
-  // Seite zwar, aber React hydratisiert nicht (Next-Dev Cross-Origin-Schutz).
-  allowedDevOrigins: ["192.168.178.170"],
+  // LAN-/Tailscale-Zugriff auf den Dev-Server: ohne die erlaubte Origin lädt
+  // die Seite zwar, aber React hydratisiert nicht (Next-Dev Cross-Origin-
+  // Schutz) — Symptom: alles Interaktive (Drawer, Scroll-Hide) tot.
+  allowedDevOrigins: ["192.168.178.170", "100.119.184.31"],
   // Das frühere /design/linear-Design ist jetzt das Root-Design. Alte Demo-Links
   // (vor der Migration geteilt) per Dauer-Redirect auf die neuen Root-Pfade leiten.
   async redirects() {

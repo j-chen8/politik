@@ -269,7 +269,7 @@ export default function Startseite() {
         href={`/parteien/${p.slug}`}
         aria-label={p.partei}
         title={p.partei}
-        className="flex h-16 w-[184px] items-center justify-center rounded-xl bg-white px-4 shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:ring-white/15"
+        className="flex h-16 w-full items-center justify-center rounded-xl bg-white px-4 shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:ring-white/15 sm:w-[184px]"
       >
         <Image
           src={`/parties/${p.slug}.svg`}
@@ -334,7 +334,9 @@ export default function Startseite() {
         <div className="flex items-end justify-between gap-3 px-1">
           <h2 className="text-[20px] font-semibold tracking-[-0.01em] text-foreground">Parteien</h2>
         </div>
-        <div className="flex flex-wrap gap-3 px-1">
+        {/* Mobil 2-spaltiges Raster (fixe 184px-Kacheln würden einzeln umbrechen
+            → langer Turm), ab sm die Desktop-Reihe mit fixen, fairen Kachelmaßen. */}
+        <div className="grid grid-cols-2 gap-3 px-1 sm:flex sm:flex-wrap">
           {parteienChips}
           {/* „Alle vergleichen"-Kachel: KEIN Logo (keine 6. Partei) → bewusst
               gedämpfte Optik + Icon, damit sie als Aktion statt als Partei liest.
@@ -344,7 +346,7 @@ export default function Startseite() {
           <Link
             href="/parteien/feld/arbeit"
             aria-label="Alle Parteien vergleichen"
-            className="flex h-16 w-[184px] items-center justify-center gap-2 rounded-xl bg-slate-100 text-[14.5px] font-semibold text-foreground shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800 dark:ring-white/15"
+            className="flex h-16 w-full items-center justify-center gap-2 rounded-xl bg-slate-100 text-[14.5px] font-semibold text-foreground shadow-sm ring-1 ring-black/10 transition-all hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800 dark:ring-white/15 sm:w-[184px]"
           >
             <Scale className="h-[18px] w-[18px] text-muted" aria-hidden />
             Alle vergleichen

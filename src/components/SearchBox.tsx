@@ -143,14 +143,18 @@ export function SearchBox({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           autoComplete="off"
+          enterKeyHint="search"
           role="combobox"
           aria-expanded={zeigeListe}
           aria-autocomplete="list"
-          className="w-full pl-12 pr-28 py-4 rounded-2xl border border-border bg-card text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-400 transition-all text-base shadow-sm dark:bg-zinc-900 dark:focus:ring-white/10 dark:focus:border-zinc-500"
+          className="w-full pl-12 pr-4 sm:pr-28 py-4 rounded-2xl border border-border bg-card text-foreground placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-400 transition-all text-base shadow-sm dark:bg-zinc-900 dark:focus:ring-white/10 dark:focus:border-zinc-500"
         />
+        {/* Mobil kein „Suchen"-Button im Feld (frisst die halbe Breite, der
+            Platzhalter wäre abgeschnitten) — die Tastatur-Suchtaste übernimmt
+            (enterKeyHint). Ab sm wieder sichtbar. */}
         <button
           type="submit"
-          className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-sm font-semibold hover:bg-zinc-800 transition-all flex items-center gap-2"
+          className="absolute right-2 top-1/2 hidden -translate-y-1/2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-sm font-semibold hover:bg-zinc-800 transition-all sm:flex items-center gap-2"
         >
           {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : "Suchen"}
         </button>
