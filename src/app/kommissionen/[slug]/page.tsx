@@ -3,9 +3,10 @@
  * (Kennzahlen, Einschnitte, Betroffene, Empfehlungen) + Link zum Original-PDF. Rein lesend.
  */
 import Link from "next/link";
-import { ArrowLeft, FileText, ChevronDown, ExternalLink } from "lucide-react";
+import { ArrowLeft, ChevronDown, ExternalLink } from "lucide-react";
 import { getKommissionAnalyse, type KommissionAnalysePunkt } from "@/lib/db";
 import { EinschnittKarte } from "./EinschnittKarte";
+import { TheseKachel, TheseZahl, WenEsTrifftKachel, KennzahlKachel, QuelleKarte } from "@/components/AnalyseAufmacher";
 
 export const dynamic = "force-dynamic";
 
@@ -27,19 +28,8 @@ const schwereAkzent = (s?: string) =>
 // kostet die Gruppe ab dann Beiträge. Daten bleiben unangetastet, hier nur normalisiert.
 const haerte = (art?: string) => (art === "Pflicht" ? "Belastung" : art);
 const ART_RANG: Record<string, number> = { "Kürzung": 0, "Belastung": 1 };
-const artDot = (art?: string) =>
-  art === "Kürzung" ? "bg-red-400 dark:bg-red-500/80"
-  : art === "Belastung" ? "bg-amber-400 dark:bg-amber-500/75"
-  : art === "Entlastung" || art === "Ausweitung" ? "bg-emerald-400 dark:bg-emerald-500/75"
-  : "bg-zinc-300 dark:bg-zinc-600";
-// Legenden-Text je Härte/Art — dynamisch, nur vorkommende Arten werden gezeigt.
-const ART_LEGENDE: Record<string, string> = {
-  "Kürzung": "Kürzung (weniger / später)",
-  "Belastung": "Belastung (mehr / neu zahlen)",
-  "Entlastung": "Entlastung / mehr Leistung",
-  "Ausweitung": "Ausweitung / mehr Leistung",
-  "strukturell": "struktureller Umbau",
-};
+// Ampel-Farben + Legende + Aufmacher-Kacheln: geteilt mit den anderen
+// Dokument-Analysen (z.B. /analyse/haushalt-2027), s. AnalyseAufmacher.tsx.
 
 // „Die Kommission empfiehlt[,] …" am Satzanfang strippen — in jeder Karte redundant,
 // die Überschrift sagt schon, dass es Empfehlungen sind. Ersten Buchstaben groß.
@@ -110,8 +100,6 @@ export default async function KommissionDetailPage({ params }: { params: Promise
     const label = [...arten].map(([art, n]) => (n > 1 ? `${n}× ` : "") + art).join(" · ");
     return { gruppe: m.gruppe, primaer, label };
   });
-  // Legende dynamisch: nur Arten, die in „Wen es trifft" tatsächlich vorkommen.
-  const legendeArten = [...new Set(betroffene.map((b) => b.primaer))].filter((a): a is string => Boolean(a) && Boolean(ART_LEGENDE[a]));
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-7 px-6 py-8">
@@ -135,55 +123,26 @@ export default async function KommissionDetailPage({ params }: { params: Promise
               Variierte Kachelgrößen statt Gleichraster; folgt der Landingpage-Sprache. */}
           <section className="grid grid-cols-2 gap-3 lg:grid-cols-6 [grid-auto-rows:minmax(92px,auto)]">
             {/* These — große, dunkle Ankerkachel */}
-            <div className="col-span-2 row-span-2 flex flex-col gap-4 rounded-2xl border border-border bg-foreground p-5 text-background lg:col-span-4">
-              <span className="text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">Worum es geht</span>
-              <div className="flex flex-1 flex-col justify-center">
-                {leit ? (
-                  <div className="flex flex-col gap-2">
-                    <span className="num text-[44px] font-bold leading-[0.95] sm:text-[56px]">{leit.wert}</span>
-                    <p className="max-w-xl text-[15px] leading-snug opacity-90 sm:text-[16px]">{leit.label}</p>
-                  </div>
-                ) : a.eckpunkte.length > 0 ? (
-                  <ul className="flex flex-col gap-1.5">
-                    {a.eckpunkte.slice(0, 5).map((e, i) => (
-                      <li key={i} className="flex gap-2 text-[14px] leading-snug opacity-90">
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-background/60" /><span>{e}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : <p className="text-[16px] leading-relaxed opacity-90">{a.gesamttenor}</p>}
-              </div>
-            </div>
+            <TheseKachel>
+              {leit ? (
+                <TheseZahl wert={leit.wert} text={leit.label} />
+              ) : a.eckpunkte.length > 0 ? (
+                <ul className="flex flex-col gap-1.5">
+                  {a.eckpunkte.slice(0, 5).map((e, i) => (
+                    <li key={i} className="flex gap-2 text-[14px] leading-snug opacity-90">
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-background/60" /><span>{e}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p className="text-[16px] leading-relaxed opacity-90">{a.gesamttenor}</p>}
+            </TheseKachel>
 
             {/* Wen es trifft — prominent, farbcodiert nach Härte */}
-            {betroffene.length > 0 && (
-              <div className="col-span-2 row-span-2 flex flex-col gap-3 rounded-2xl border border-border bg-card p-5 lg:col-span-2">
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Wen es trifft</span>
-                <div className="flex flex-1 flex-col justify-center gap-2.5">
-                  {betroffene.map((b) => (
-                    <div key={b.gruppe} className="flex items-baseline gap-2.5">
-                      <span className={`relative top-[3px] h-2.5 w-2.5 shrink-0 rounded-full ${artDot(b.primaer)}`} />
-                      <span className="text-[15px] font-medium leading-snug text-foreground">{b.gruppe}</span>
-                      <span className="ml-auto shrink-0 text-[12px] text-muted">{b.label}</span>
-                    </div>
-                  ))}
-                </div>
-                {legendeArten.length > 0 && (
-                  <div className="flex flex-wrap gap-x-3 gap-y-1 border-t border-border pt-2.5 text-[11px] text-muted">
-                    {legendeArten.map((art) => (
-                      <span key={art} className="flex items-center gap-1"><span className={`h-2 w-2 rounded-full ${artDot(art)}`} /> {ART_LEGENDE[art]}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+            <WenEsTrifftKachel zeilen={betroffene.map((b) => ({ gruppe: b.gruppe, art: b.primaer, label: b.label }))} />
 
             {/* Restliche Kennzahlen — Zahlen-Kacheln, halbe Breite für Lesbarkeit (lange Labels) */}
             {restKennzahlen.map((kz, i) => (
-              <div key={i} className="col-span-2 flex flex-col justify-center gap-1 rounded-2xl border border-border bg-card p-4 lg:col-span-3">
-                <span className="num text-[30px] font-semibold leading-none text-foreground">{kz.wert}</span>
-                <span className="text-[13px] leading-snug text-foreground/80">{kz.label}</span>
-              </div>
+              <KennzahlKachel key={i} wert={kz.wert} label={kz.label} />
             ))}
           </section>
 
@@ -356,18 +315,15 @@ export default async function KommissionDetailPage({ params }: { params: Promise
           )}
 
           {/* Bericht-Quelle / PDF */}
-          <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-4">
-            <FileText className="h-5 w-5 shrink-0 text-muted" />
-            <div className="flex flex-col">
-              <Link href={a.bericht.url} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline">
-                {a.bericht.titel ?? "Original-Bericht (PDF öffnen)"}
-              </Link>
-              <span className="text-[12px] text-muted">
-                {[a.bericht.typ, a.bericht.datum, a.bericht.pages ? `${a.bericht.pages} S.` : null].filter(Boolean).join(" · ")}
-                {a.seiten ? ` · ${a.seiten}` : ""}{a.analysiertAm ? ` · analysiert ${a.analysiertAm.slice(0, 10)}` : ""}
-              </span>
-            </div>
-          </div>
+          <QuelleKarte
+            href={a.bericht.url}
+            titel={a.bericht.titel ?? "Original-Bericht (PDF öffnen)"}
+            meta={[
+              [a.bericht.typ, a.bericht.datum, a.bericht.pages ? `${a.bericht.pages} S.` : null].filter(Boolean).join(" · "),
+              a.seiten,
+              a.analysiertAm ? `analysiert ${a.analysiertAm.slice(0, 10)}` : null,
+            ].filter(Boolean).join(" · ")}
+          />
         </>
       )}
     </div>

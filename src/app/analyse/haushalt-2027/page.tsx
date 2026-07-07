@@ -9,7 +9,8 @@
  * gegen diese Fassung abgeglichen (Wächter: scripts/check-haushalt-2027.ts).
  */
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { TheseKachel, TheseZahl, WenEsTrifftKachel, KennzahlKachel, QuelleKarte } from "@/components/AnalyseAufmacher";
 
 export const metadata = {
   title: "Bundeshaushalt 2027 — der Entwurf im Überblick | Politik-Radar",
@@ -19,15 +20,26 @@ export const metadata = {
 
 /* ── Daten (manuell aus der Kabinettsfassung übernommen) ─────────────────── */
 
-const KERNZAHLEN = [
-  { label: "Ausgaben", wert: "555,4 Mrd. €", detail: "+5,9 % ggü. 2026 (524,5)" },
-  { label: "Steuereinnahmen", wert: "394,7 Mrd. €", detail: "10,1 Mrd. unter der Okt.-Schätzung" },
-  { label: "Neue Schulden gesamt", wert: "203,7 Mrd. €", detail: "Kern 118,7 + SVIK 54,9 + Bundeswehr-SV 30,0" },
-  { label: "Investitionen gesamt", wert: "117,5 Mrd. €", detail: "Kern + SVIK + KTF; leicht unter 2026 (118,2)" },
-  { label: "Zinsausgaben", wert: "41,9 Mrd. €", detail: "steigen bis 2030 auf ~80,7 Mrd." },
-  { label: "Verteidigung (Epl. 14)", wert: "109,7 Mrd. €", detail: "+32,7 % — NATO-Quote 3,5 % des BIP bis 2029" },
-  { label: "Stellen Bund (zivil)", wert: "310.487", detail: "+4.752 trotz 2-%-Abbauregel" },
-  { label: "BIP-Annahme 2027", wert: "+0,9 %", detail: "Frühjahrsprojektion; Risiko: Iran-Krieg/Hormus" },
+// „Wen es trifft" — konkrete Gruppen mit Härte-Ampel (Arten wie bei den
+// Kommissionsberichten: Kürzung/Belastung/Ausweitung).
+const BETROFFENE = [
+  { gruppe: "Verteidigung & Sicherheit", art: "Ausweitung", label: "+32,7 % Etat" },
+  { gruppe: "Sozialer Wohnungsbau", art: "Ausweitung", label: "+1 Mrd. auf 5 Mrd." },
+  { gruppe: "GKV-Versicherte", art: "Kürzung", label: "Zuschuss −2 Mrd." },
+  { gruppe: "Familien im Kinderzuschlag", art: "Kürzung", label: "Sofortzuschlag entfällt" },
+  { gruppe: "Alkohol-Konsum", art: "Belastung", label: "Steuersätze +20 %" },
+  { gruppe: "Krypto-Anleger", art: "Belastung", label: "Jahresfrist entfällt" },
+  { gruppe: "Bundesverwaltung", art: "Kürzung", label: "GMA 1,2 Mrd. · −2 % Stellen" },
+];
+
+// Zahlen-Kacheln unter der These (gleiches Muster wie Kommissions-Kennzahlen).
+const KENNZAHLEN = [
+  { wert: "555,4 Mrd. €", label: "Ausgaben 2027 — +5,9 % gegenüber 2026 (524,5 Mrd.)" },
+  { wert: "33,4 Mrd. €", label: "reguläre Kreditgrenze der Schuldenregel — auf den Euro exakt ausgeschöpft" },
+  { wert: "80,7 Mrd. €", label: "Zinsausgaben pro Jahr bis 2030 — fast doppelt so viel wie 2027 (41,9 Mrd.)" },
+  { wert: "+4.752", label: "Stellen netto (auf 310.487) — trotz 2-%-Abbauregel im Koalitionsvertrag" },
+  { wert: "394,7 Mrd. €", label: "Steuereinnahmen — 10,1 Mrd. unter der Oktober-Schätzung (Iran-Krieg + Steuerreformen)" },
+  { wert: "117,5 Mrd. €", label: "Investitionen gesamt (Kern + SVIK + KTF) — leicht unter 2026 (118,2 Mrd.)" },
 ];
 
 const BEWEGUNGEN: { epl: string; name: string; s2026: string; e2027: string; delta: string; grund: string }[] = [
@@ -82,18 +94,19 @@ export default function Haushalt2027Analyse() {
         Fassung ab. Alle Zahlen sind dem Dokument direkt entnommen.
       </div>
 
-      {/* Kernzahlen scan-first */}
-      <section className="flex flex-col gap-3">
-        <h2 className="text-[20px] font-semibold tracking-[-0.01em] text-foreground">Kernzahlen</h2>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {KERNZAHLEN.map((k) => (
-            <div key={k.label} className="flex flex-col gap-1 rounded-xl border border-border bg-card p-4">
-              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">{k.label}</p>
-              <p className="num text-[20px] font-semibold text-foreground">{k.wert}</p>
-              <p className="text-[12.5px] leading-snug text-muted">{k.detail}</p>
-            </div>
-          ))}
-        </div>
+      {/* AUFMACHER (Bento) — gleiche Bausteine wie die Kommissions-Detailseiten:
+          These + Wen es trifft + Kennzahl-Kacheln auf EINEN Blick. */}
+      <section className="grid grid-cols-2 gap-3 lg:grid-cols-6 [grid-auto-rows:minmax(92px,auto)]">
+        <TheseKachel>
+          <TheseZahl
+            wert="203,7 Mrd. €"
+            text="neue Schulden im Jahr 2027 — 118,7 Mrd. im Kernhaushalt plus 54,9 Mrd. Sondervermögen Infrastruktur/Klima plus 30,0 Mrd. Sondervermögen Bundeswehr. Die Schuldenbremse gilt dabei als eingehalten."
+          />
+        </TheseKachel>
+        <WenEsTrifftKachel zeilen={BETROFFENE} />
+        {KENNZAHLEN.map((kz) => (
+          <KennzahlKachel key={kz.wert} wert={kz.wert} label={kz.label} />
+        ))}
       </section>
 
       {/* Schuldenregel-Mechanik */}
@@ -184,17 +197,27 @@ export default function Haushalt2027Analyse() {
           Die Finanzplanung wies für 2027 ursprünglich einen Fehlbetrag von 34 Mrd. € aus — der
           Entwurf löst ihn vollständig auf. Die wichtigsten Bausteine:
         </p>
-        <div className="flex flex-col gap-2">
-          {KONSOLIDIERUNG.map((k) => (
-            <div key={k.was} className="flex flex-col gap-0.5 rounded-xl border border-border bg-card px-4 py-3 sm:flex-row sm:items-baseline sm:gap-3">
-              <p className="num shrink-0 text-[14px] font-semibold text-foreground sm:w-28">{k.wieviel}</p>
-              <div>
-                <p className="text-[14.5px] font-medium text-foreground">{k.was}</p>
-                <p className="text-[13px] leading-snug text-muted">{k.anmerkung}</p>
+        {/* Eingeklappt wie die Empfehlungskataloge der Kommissionsberichte. */}
+        <details className="group rounded-lg border border-border bg-card">
+          <summary className="flex cursor-pointer list-none select-none items-center justify-between gap-3 px-4 py-3">
+            <span className="text-[13px] font-semibold uppercase tracking-wide text-foreground">Die Bausteine im Einzelnen</span>
+            <span className="flex shrink-0 items-center gap-2 text-[12px] text-muted">
+              {KONSOLIDIERUNG.length} Maßnahmen
+              <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden />
+            </span>
+          </summary>
+          <div className="flex flex-col gap-2 border-t border-border p-3">
+            {KONSOLIDIERUNG.map((k) => (
+              <div key={k.was} className="flex flex-col gap-0.5 rounded-lg border border-border bg-background/40 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-3">
+                <p className="num shrink-0 text-[14px] font-semibold text-foreground sm:w-28">{k.wieviel}</p>
+                <div>
+                  <p className="text-[14.5px] font-medium text-foreground">{k.was}</p>
+                  <p className="text-[13px] leading-snug text-muted">{k.anmerkung}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </details>
       </section>
 
       {/* Was offen bleibt */}
@@ -230,6 +253,13 @@ export default function Haushalt2027Analyse() {
           </li>
         </ul>
       </section>
+
+      {/* Dokument-Quelle — gleiches Muster wie am Ende der Kommissionsberichte. */}
+      <QuelleKarte
+        href="https://table.media/assets/berlin/haushalt_2027.pdf"
+        titel="Regierungsentwurf Bundeshaushalt 2027 + Finanzplan bis 2030 (Kabinettsfassung, PDF)"
+        meta="Kabinettsache 21/08062 · 03.07.2026 · 1.655 S. · veröffentlicht via Table.Media · analysiert 07.07.2026"
+      />
 
       <footer className="flex flex-col gap-2 border-t border-border pt-4 text-[13px] leading-relaxed text-muted">
         <p>
