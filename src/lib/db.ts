@@ -575,15 +575,22 @@ export function getBundestagLandingSnapshot(): BundestagLandingSnapshot {
   // 3+4. Drucksachen nach amtlichem DIP-Typ (dokumenttyp) — NICHT batch_class:
   // batch_class ist ein Längen-Tier ('klein' enthält ~694 Anträge, 'gross' enthält
   // Unterrichtungen/Große Anfragen). dokumenttyp ist der amtliche Typ.
+  // Titel/Datum: activities zuerst (kuratiertes Kurz-Thema), aber mit Fallback
+  // auf dip_ds_titles + drucksache_texts — Regierungs-/Bundesrats-Entwürfe haben
+  // KEINE activities-Zeilen (mitzeichner-getrieben) und fielen sonst komplett raus.
   const drucksByKlasse = (klasse: string) =>
     (db
       .prepare(
         `SELECT da.drucksache_nr, da.zusammenfassung, da.fraktion,
                 COALESCE(
                   (SELECT thema FROM activities WHERE drucksache_nr=da.drucksache_nr AND thema IS NOT NULL LIMIT 1),
-                  (SELECT titel FROM activities WHERE drucksache_nr=da.drucksache_nr AND titel IS NOT NULL LIMIT 1)
+                  (SELECT titel FROM activities WHERE drucksache_nr=da.drucksache_nr AND titel IS NOT NULL LIMIT 1),
+                  (SELECT titel FROM dip_ds_titles t WHERE t.drucksache_nr=da.drucksache_nr)
                 ) AS titel,
-                (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1) AS datum
+                COALESCE(
+                  (SELECT datum FROM activities WHERE drucksache_nr=da.drucksache_nr AND datum IS NOT NULL ORDER BY datum DESC LIMIT 1),
+                  (SELECT publication_date FROM drucksache_texts dt WHERE dt.drucksache_nr=da.drucksache_nr)
+                ) AS datum
          FROM drucksache_analyses da
          WHERE da.dokumenttyp = ? AND da.analyze_error IS NULL
          ORDER BY datum DESC LIMIT 18`
