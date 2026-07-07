@@ -35,9 +35,9 @@ export async function pickAction(formData: FormData): Promise<void> {
   const tx = db.transaction(() => {
     db.prepare(`UPDATE aufmacher_pick SET aktiv=0 WHERE aktiv=1`).run();
     db.prepare(`
-      INSERT INTO aufmacher_pick (run_date, themenfeld, slug, cluster_id, headline, summary, ds_nr, poll_id, notiz, aktiv)
-      VALUES (?,?,?,?,?,?,?,?,?,1)
-    `).run(run_date, themenfeld, slug, cluster_id, f("headline"), f("summary"), f("ds_nr"), poll_id, f("notiz"));
+      INSERT INTO aufmacher_pick (run_date, themenfeld, slug, cluster_id, headline, summary, ds_nr, poll_id, notiz, analyse_url, aktiv)
+      VALUES (?,?,?,?,?,?,?,?,?,?,1)
+    `).run(run_date, themenfeld, slug, cluster_id, f("headline"), f("summary"), f("ds_nr"), poll_id, f("notiz"), f("analyse_url"));
   });
   tx();
   // Caching-Falle: statisch gecachte Seiten zeigen den neuen Pick sonst NICHT.

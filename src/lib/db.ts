@@ -8946,6 +8946,8 @@ export interface AufmacherPick {
   /** Quell-Artikel des gepickten News-Clusters (je Outlet einer) — bei Stories
    *  ohne Bundestags-Dokument der einzige Weg zu „worum geht's" in voller Länge. */
   quellen: { outlet: string; title: string; link: string }[];
+  /** Eigene Analyse-Seite (Vor-Parlaments-Analysen wie /analyse/haushalt-2027). */
+  analyseUrl: string | null;
 }
 
 export function getAufmacherPick(): AufmacherPick | null {
@@ -8990,7 +8992,7 @@ export function getAufmacherPick(): AufmacherPick | null {
     } catch { quellen = []; } // Cluster weg/Tabelle fehlt → Karte einfach ohne Quellen
   }
 
-  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote, quellen };
+  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote, quellen, analyseUrl: (row.analyse_url as string | null) ?? null };
 }
 
 // ── Salienz-Trends: was kommt über die Zeit häufig — Fokus Gesetze/Reformen ──

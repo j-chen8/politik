@@ -376,6 +376,18 @@ export default function Startseite() {
               ))}
             </p>
           )}
+          {pick.analyseUrl && (
+            <Link
+              href={pick.analyseUrl}
+              className="group/an rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+            >
+              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Unsere Analyse</p>
+              <p className="flex items-center gap-1 text-[14px] font-medium leading-snug text-foreground group-hover/an:underline group-hover/an:decoration-zinc-300 group-hover/an:underline-offset-2 dark:group-hover/an:decoration-zinc-600">
+                Zahlen, Hintergrund und offene Punkte im Überblick
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+              </p>
+            </Link>
+          )}
           {pick.ds && (
             <Link
               href={dsHref(pick.ds.nr)}
