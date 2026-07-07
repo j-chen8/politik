@@ -44,7 +44,7 @@ function BerichtZeile({ b, slug }: { b: KommissionsberichtItem; slug: string }) 
           </span>
         )}
         {b.istLeitbericht && (
-          <Link href={`/entwurf/kommissionen/${slug}`}
+          <Link href={`/kommissionen/${slug}`}
                 className="inline-flex items-center gap-1 rounded bg-foreground px-1.5 py-0.5 text-[11px] font-medium text-background hover:opacity-90">
             <BarChart3 className="h-3 w-3" /> Analyse
           </Link>
@@ -101,7 +101,7 @@ export default function KommissionsberichtePage() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-8">
       <header className="flex flex-col gap-2">
-        <Link href="/entwurf/kommissionen" className="inline-flex w-fit items-center gap-1 text-[13px] text-muted hover:underline">
+        <Link href="/kommissionen" className="inline-flex w-fit items-center gap-1 text-[13px] text-muted hover:underline">
           <ArrowLeft className="h-4 w-4" /> Kommissionen-Tracker
         </Link>
         <h1 className="flex items-center gap-2 text-[24px] font-semibold text-foreground sm:text-[28px]">

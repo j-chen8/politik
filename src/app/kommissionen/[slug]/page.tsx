@@ -59,7 +59,7 @@ export default async function KommissionDetailPage({ params }: { params: Promise
   if (!a) {
     return (
       <div className="mx-auto max-w-5xl px-6 py-8">
-        <Link href="/entwurf/kommissionen" className="inline-flex items-center gap-1 text-[13px] text-muted hover:underline"><ArrowLeft className="h-4 w-4" /> Zurück</Link>
+        <Link href="/kommissionen" className="inline-flex items-center gap-1 text-[13px] text-muted hover:underline"><ArrowLeft className="h-4 w-4" /> Zurück</Link>
         <p className="mt-6 text-muted">Keine Kommission „{slug}" gefunden.</p>
       </div>
     );
@@ -115,7 +115,7 @@ export default async function KommissionDetailPage({ params }: { params: Promise
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-7 px-6 py-8">
-      <Link href="/entwurf/kommissionen" className="inline-flex items-center gap-1 text-[13px] text-muted hover:underline"><ArrowLeft className="h-4 w-4" /> Kommissionen</Link>
+      <Link href="/kommissionen" className="inline-flex items-center gap-1 text-[13px] text-muted hover:underline"><ArrowLeft className="h-4 w-4" /> Kommissionen</Link>
 
       <header className="flex flex-col gap-2">
         <h1 className="text-[26px] font-semibold leading-tight text-foreground sm:text-[32px]">{a.name}</h1>

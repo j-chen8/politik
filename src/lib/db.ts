@@ -9082,7 +9082,7 @@ export function getKommissionenTracker(): { tier1: KommissionView[]; tier2: Komm
   } catch { return null; } // Tabelle/Spalte fehlt → fail-closed
 }
 
-// Alle Berichte je Kommission — flache Übersicht für /entwurf/kommissionen/berichte.
+// Alle Berichte je Kommission — flache Übersicht für /kommissionen/berichte.
 export interface KommissionsberichtItem {
   id: number; titel: string | null; typ: string | null; datum: string | null;
   url: string | null; pages: number | null; hatVolltext: boolean; istLeitbericht: boolean;

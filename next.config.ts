@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/design/linear", destination: "/", permanent: true },
       { source: "/design/linear/:path*", destination: "/:path*", permanent: true },
+      // Kommissionen lagen als Provisorium unter /entwurf/… und waren so
+      // kurz öffentlich verlinkt (Nav seit 07.07.).
+      { source: "/entwurf/kommissionen/:path*", destination: "/kommissionen/:path*", permanent: true },
     ];
   },
 };
