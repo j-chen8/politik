@@ -8937,7 +8937,10 @@ export function getAufmacherPick(): AufmacherPick | null {
   const db = getDb();
   let row: Record<string, unknown> | undefined;
   try {
-    row = db.prepare(`SELECT * FROM aufmacher_pick WHERE aktiv=1 ORDER BY picked_at DESC LIMIT 1`).get() as Record<string, unknown> | undefined;
+    // Verfallsregel: ein „Aufmacher des Tages" darf nicht tagelang stehen
+    // bleiben, wenn niemand pickt — nach 48h verschwindet die Karte still,
+    // die Startseite sieht dann aus wie ohne Aufmacher (fail-quiet).
+    row = db.prepare(`SELECT * FROM aufmacher_pick WHERE aktiv=1 AND picked_at >= datetime('now','-2 days') ORDER BY picked_at DESC LIMIT 1`).get() as Record<string, unknown> | undefined;
   } catch { return null; } // Tabelle fehlt in PROD → fail-closed
   if (!row) return null;
 
