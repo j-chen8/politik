@@ -171,6 +171,16 @@ async function main() {
   step("Story-Stränge", "npx tsx scripts/salienz-thread-stories.ts"); // Ebene 2: Tage-übergreifend (€0, deterministisch)
   step("Summaries", "npx tsx scripts/salienz-cluster-summary.ts");
 
+  // Mail nur 1×/Tag (User-Wunsch 07.07.): nur der 06:30-Lauf mailt (Maschine
+  // läuft auf UTC → 08:30 Berlin im Sommer), die übrigen Timer-Läufe halten
+  // nur die Daten frisch (Picker). Die Neu-Markierung bleibt versandgebunden —
+  // was tagsüber aufläuft, steht morgens gesammelt als NEU in der einen Mail.
+  // `--mail` erzwingt den Versand (für manuelle Läufe).
+  if (!process.argv.includes("--mail") && new Date().getUTCHours() !== 6) {
+    console.log("\n○ Kein Mail-Lauf (mailt nur im 06:30-UTC-Slot; --mail erzwingt) — Daten sind aktualisiert.");
+    return;
+  }
+
   const { subject, text, neueThreads, neueBerichte } = buildMail();
   const r = await sendMail(subject, text);
   if (r.sent) {
