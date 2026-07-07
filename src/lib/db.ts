@@ -8943,6 +8943,9 @@ export interface AufmacherPick {
   runDate: string; themenfeld: string; slug: string; headline: string | null; summary: string | null;
   ds: { nr: string; titel: string; datum: string | null; url: string | null } | null;
   vote: { pollId: number; label: string | null; datum: string | null; yes: number; no: number; abstain: number } | null;
+  /** Quell-Artikel des gepickten News-Clusters (je Outlet einer) — bei Stories
+   *  ohne Bundestags-Dokument der einzige Weg zu „worum geht's" in voller Länge. */
+  quellen: { outlet: string; title: string; link: string }[];
 }
 
 export function getAufmacherPick(): AufmacherPick | null {
@@ -8970,7 +8973,24 @@ export function getAufmacherPick(): AufmacherPick | null {
     `).get(Number(row.poll_id)) as { label: string | null; datum: string | null; yes: number; no: number; abstain: number } | undefined;
     if (v && (v.yes || v.no || v.abstain)) vote = { pollId: Number(row.poll_id), label: v.label, datum: v.datum, yes: v.yes ?? 0, no: v.no ?? 0, abstain: v.abstain ?? 0 };
   }
-  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote };
+  // Quell-Artikel des Clusters (ein Artikel je Outlet, Reihenfolge wie gespeichert).
+  let quellen: AufmacherPick["quellen"] = [];
+  if (row.cluster_id != null) {
+    try {
+      const cj = db.prepare(`SELECT titles_json FROM news_cluster WHERE run_date = ? AND cluster_id = ?`)
+        .get(row.run_date, Number(row.cluster_id)) as { titles_json: string | null } | undefined;
+      const alle = JSON.parse(cj?.titles_json ?? "[]") as { outlet: string; title: string; link: string }[];
+      const gesehen = new Set<string>();
+      for (const t of alle) {
+        if (!t.outlet || !t.link || gesehen.has(t.outlet)) continue;
+        gesehen.add(t.outlet);
+        quellen.push(t);
+        if (quellen.length >= 5) break;
+      }
+    } catch { quellen = []; } // Cluster weg/Tabelle fehlt → Karte einfach ohne Quellen
+  }
+
+  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote, quellen };
 }
 
 // ── Salienz-Trends: was kommt über die Zeit häufig — Fokus Gesetze/Reformen ──

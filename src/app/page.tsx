@@ -66,6 +66,12 @@ function dsHref(nr: string): string {
   return `/aktivitaeten/${nr.replace("/", "-")}`;
 }
 
+// Anzeige-Namen der News-Outlets (DB speichert Slugs, s. fetch-news-rss.ts).
+const OUTLET_NAME: Record<string, string> = {
+  faz: "FAZ", ntv: "ntv", spiegel: "Spiegel", tagesschau: "Tagesschau",
+  tagesspiegel: "Tagesspiegel", taz: "taz", welt: "Welt", zeit: "Zeit",
+};
+
 function formatDate(d: string): string {
   return new Date(d + "T00:00:00").toLocaleDateString("de-DE", {
     day: "2-digit",
@@ -351,6 +357,25 @@ export default function Startseite() {
               </p>
             )}
           </Link>
+          {/* Quell-Artikel (je Outlet einer): bei Stories OHNE Bundestags-Dokument
+              (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte. */}
+          {pick.quellen.length > 0 && (
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-muted">
+              <span>Mehr dazu bei:</span>
+              {pick.quellen.map((q) => (
+                <a
+                  key={q.link}
+                  href={q.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={q.title}
+                  className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-2 hover:text-foreground hover:decoration-zinc-400 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
+                >
+                  {OUTLET_NAME[q.outlet] ?? q.outlet}
+                </a>
+              ))}
+            </p>
+          )}
           {pick.ds && (
             <Link
               href={dsHref(pick.ds.nr)}
