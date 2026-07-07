@@ -171,6 +171,7 @@ async function main() {
   step("Story-Stränge", "npx tsx scripts/salienz-thread-stories.ts"); // Ebene 2: Tage-übergreifend (€0, deterministisch)
   step("Summaries", "npx tsx scripts/salienz-cluster-summary.ts");
   step("Anker-Vorschläge", "npx tsx scripts/salienz-anker.ts"); // DS/Vote je Cluster (FTS-Kandidaten + Mistral bounded choice, €0) — nur Picker-VORSCHLAG
+  step("Haushalt-2027-Wächter", "npx tsx scripts/check-haushalt-2027.ts"); // einmalige Mail, sobald der Regierungsentwurf ingestierbar ist (DIP/bundeshaushalt.de); löschen nach Ingestion
 
   // Mail nur 1×/Tag (User-Wunsch 07.07.): nur der 06:30-Lauf mailt (Maschine
   // läuft auf UTC → 08:30 Berlin im Sommer), die übrigen Timer-Läufe halten
