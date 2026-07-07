@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { AppShell } from "./AppShell";
 import type { ParliamentOverview } from "@/lib/db";
 
@@ -18,5 +19,10 @@ export function SiteChrome({
   children: React.ReactNode;
   parliaments: ParliamentOverview[];
 }) {
+  const pathname = usePathname() || "/";
+  // Immersive Vollbild-Erlebnisse (Wisch-Feeds, Now-Playing) laufen ohne
+  // Shell — linke Leiste/Topbar/Tab-Bar würden das Vollbild zerstören.
+  const vollbild = /\/(feed|nowplaying)$/.test(pathname);
+  if (vollbild) return <>{children}</>;
   return <AppShell parliaments={parliaments}>{children}</AppShell>;
 }

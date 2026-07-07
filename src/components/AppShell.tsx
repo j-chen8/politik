@@ -206,6 +206,11 @@ export function AppShell({
 }) {
   const pathname = usePathname() || "/";
   const isBerlin = useIsBerlin();
+  const hatEigeneSuche =
+    pathname === "/politiker" ||
+    pathname === "/suche" ||
+    pathname.startsWith("/suche/") ||
+    pathname === "/parlamente/berlin/suche";
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Drawer bei Navigation schließen + Body-Scroll sperren solange offen.
@@ -260,11 +265,16 @@ export function AppShell({
             </div>
             <div className="w-[min(36rem,calc(100vw-6.5rem))]">
               {/* Berlin: Suche auf Berlin-Scope; Autocomplete-Vorschläge gibt es
-                  (noch) nur für den Bundestag → im Berlin-Kontext weglassen. */}
-              <SearchBox
-                searchPath={isBerlin ? "/parlamente/berlin/suche" : "/suche"}
-                vorschlaegeUrl={isBerlin ? undefined : "/api/suche/vorschlaege"}
-              />
+                  (noch) nur für den Bundestag → im Berlin-Kontext weglassen.
+                  Auf Seiten mit eigener prominenter Suche (Suchseiten,
+                  Politiker-Explorer) wäre die Topbar-Suche ein zweites,
+                  konkurrierendes Suchfeld → dort weglassen. */}
+              {!hatEigeneSuche && (
+                <SearchBox
+                  searchPath={isBerlin ? "/parlamente/berlin/suche" : "/suche"}
+                  vorschlaegeUrl={isBerlin ? undefined : "/api/suche/vorschlaege"}
+                />
+              )}
             </div>
             <div className="flex items-center justify-end">
               {/* Rechts: vorerst nur Dark-Mode (Login-Slot folgt) */}
