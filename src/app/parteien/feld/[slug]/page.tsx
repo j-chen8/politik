@@ -266,12 +266,12 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
             {matrix ? (
               <>
                 Verglichen nach einzelnen Aspekten.{" "}
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">Schwarz</span> = Position
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">Normale Schrift</span> = Position
                 laut Wahlprogramm 2025.{" "}
                 <span className="font-medium text-amber-700 dark:text-amber-400">Braun</span> = ergänzt aus
                 Reden &amp; Bürgerfragen (Pilot, synthetisiert).
                 <span className="mt-2 block text-[12.5px] leading-relaxed text-zinc-500 dark:text-zinc-400">
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300">Schwarz</span> ist die{" "}
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">Normale Schrift</span> ist die{" "}
                   <span className="font-medium">Partei</span> (Wahlprogramm).{" "}
                   <span className="font-medium text-amber-700 dark:text-amber-400">Braun</span> und die
                   Abstimmungen zeigen die <span className="font-medium">Fraktion</span> im
@@ -303,7 +303,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 aria-current={aktiv ? "page" : undefined}
                 className={`rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
                   aktiv
-                    ? "bg-zinc-900 text-white"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
                     : "bg-card text-zinc-600 dark:text-zinc-300 border border-border hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
@@ -322,7 +322,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 href={`/parteien/feld/${slug}`}
                 aria-current={kurz ? "page" : undefined}
                 className={`px-3 py-1 font-medium transition-colors ${
-                  kurz ? "bg-zinc-900 text-white" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  kurz ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
                 Kompakt
@@ -331,7 +331,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 href={`/parteien/feld/${slug}?v=full`}
                 aria-current={!kurz ? "page" : undefined}
                 className={`px-3 py-1 font-medium transition-colors ${
-                  !kurz ? "bg-zinc-900 text-white" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  !kurz ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900" : "bg-card text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 }`}
               >
                 Ausführlich
@@ -341,14 +341,19 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
         )}
 
         {matrix ? (
-          /* ---- Aspekt-Matrix: bricht zentriert auf max. 88rem aus, Rest der Seite
-             bleibt auf der lesbaren 72rem-Breite (navbar-bündig). ---- */
-          <div className="mx-[calc(50%-50vw)] w-screen px-5">
-            <div className="mx-auto max-w-[88rem] overflow-x-auto rounded-2xl border border-border bg-card">
+          /* ---- Aspekt-Matrix. Kein w-screen-Ausbruch mehr: der rechnete mit
+             zentrierter Seite und schnitt seit der App-Shell (linke Leiste)
+             die letzte Partei-Spalte unscrollbar ab. Der Container scrollt
+             selbst horizontal, wenn die Spalten nicht passen. ---- */
+          <div>
+            {/* snap-x: seitliches Wischen rastet an Partei-Spalten ein;
+                scroll-pl-28 = Breite der Sticky-Label-Spalte, damit die
+                eingerastete Spalte nicht unter den Labels verschwindet. */}
+            <div className="mx-auto max-w-[88rem] snap-x snap-mandatory scroll-pl-28 overflow-x-auto rounded-2xl border border-border bg-card">
             <table className="w-full border-collapse text-left">
               <thead>
                 <tr>
-                  <th className="sticky left-0 z-10 bg-card px-4 py-3 text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                  <th className="sticky left-0 z-10 w-28 min-w-28 bg-card px-3 py-3 text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                     Aspekt
                   </th>
                   {parteien.map((p) => {
@@ -356,7 +361,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                     return (
                       <th
                         key={p}
-                        className="min-w-[150px] px-3 py-3 align-bottom"
+                        className="min-w-[240px] snap-start px-3 py-3 align-bottom lg:min-w-[170px]"
                       >
                         <span
                           className="inline-block rounded-md px-2 py-0.5 text-[12px] font-semibold"
@@ -373,9 +378,12 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                 {matrix.aspekte.map((asp, ri) => {
                   const zebra = ri % 2 === 1;
                   const rowBg = zebra ? "bg-zinc-50/40 dark:bg-zinc-800/40" : "";
-                  const thBg = zebra ? "bg-[#fafafa]" : "bg-card";
+                  // Sticky-Zellen brauchen OPAKEN Hintergrund (Inhalt scrollt
+                  // darunter durch) — je Modus, NIE hartkodiert hell (#fafafa
+                  // war der Dark-Mode-Bug: weiße Flecken in der Tabelle).
+                  const thBg = zebra ? "bg-zinc-50 dark:bg-zinc-800" : "bg-card";
                   const sep = "border-t border-border"; // trennt Aspekt-Blöcke
-                  const stick = "sticky left-0 z-10";
+                  const stick = "sticky left-0 z-10 w-28 min-w-28";
                   return (
                     <Fragment key={asp.label}>
                       {/* Themen-Überschrift über den drei Bändern */}
@@ -384,14 +392,18 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                           colSpan={parteien.length + 1}
                           className={`${sep} ${thBg} px-4 pt-4 pb-2 text-left text-[13px] font-semibold leading-snug text-zinc-800 dark:text-zinc-200`}
                         >
-                          {asp.label}
+                          {/* Überschrift spannt die volle Tabellenbreite → würde
+                              horizontal mitscrollen; sticky pinnt den Text links. */}
+                          <span className="sticky left-4 inline-block max-w-[calc(100vw-4rem)]">
+                            {asp.label}
+                          </span>
                         </th>
                       </tr>
                       {/* Band 1 — Wahlprogramm (schwarz) */}
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-border px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
+                          className={`${stick} ${thBg} border-t border-border px-3 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
                         >
                           Wahlprogramm
                         </th>
@@ -416,7 +428,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-border px-4 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-amber-600/80 dark:text-amber-400/80`}
+                          className={`${stick} ${thBg} border-t border-border px-3 py-1.5 align-top text-[10px] font-medium uppercase tracking-wide text-amber-600/80 dark:text-amber-400/80`}
                         >
                           aus Reden
                         </th>
@@ -468,7 +480,7 @@ export default async function FeldVergleichPage({ params, searchParams }: Props)
                       <tr className={rowBg}>
                         <th
                           scope="row"
-                          className={`${stick} ${thBg} border-t border-border px-4 pt-1.5 pb-5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
+                          className={`${stick} ${thBg} border-t border-border px-3 pt-1.5 pb-5 align-top text-[10px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500`}
                         >
                           abgestimmt
                         </th>
