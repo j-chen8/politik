@@ -3,7 +3,7 @@
 **Zweck.** Schritt-für-Schritt, wie wir *einen* Leitbericht einer Regierungs-/Expertenkommission in
 die Analyse-Schicht `kommission_bericht_analyse` überführen — so, dass jeder Bericht (die 19 der
 Watchlist + jeder neu einlaufende) **dieselbe Behandlung** bekommt und die Detailseite
-`/entwurf/kommissionen/[slug]` in gleicher Qualität rendert.
+`/kommissionen/[slug]` in gleicher Qualität rendert.
 
 **Abgrenzung.** Dies ist die **Analyse**-Prozedur. Die **Beschaffung** (PDF-Download → Volltext →
 Neu-Meldung) ist eine getrennte, bereits automatisierte Schicht — siehe [[project_kommissions_tracker]]:
@@ -28,7 +28,7 @@ liegt.
 > · Rente = `alterssicherungskommission` (Reform, gruppe/art/impact) · FKG = `finanzkommission-gesundheit`.
 > Insert-Muster: `scratchpad/*-update.cjs` (better-sqlite3, `UPDATE … WHERE kommission_slug=?`,
 > idempotent). Felder + Reader: `src/lib/db.ts` (`KommissionAnalyse`, `getKommissionAnalyse`). UI:
-> `src/app/entwurf/kommissionen/[slug]/page.tsx`. Schema: `scripts/_lib/kommissionen-schema.ts`.
+> `src/app/kommissionen/[slug]/page.tsx`. Schema: `scripts/_lib/kommissionen-schema.ts`.
 
 ---
 
@@ -94,7 +94,7 @@ Reform: hier gruppe/art/impact setzen. Beratend: nur massnahme + kapitel.
 ## Stufe 5 — Insert + Render-Check + Screenshot
 
 `scratchpad/<slug>-update.cjs` (better-sqlite3, ALTER idempotent + `UPDATE … WHERE kommission_slug=?`),
-JSON.stringify je Feld. Danach: `curl -s localhost:3001/entwurf/kommissionen/<slug>` auf Kern-Strings
+JSON.stringify je Feld. Danach: `curl -s localhost:3001/kommissionen/<slug>` auf Kern-Strings
 prüfen (200 + Sektionen da), Screenshot (Playwright) zur visuellen Abnahme. `npx tsc --noEmit` grün.
 DB-Daten sind **gitignored** → beim Deploy mitnehmen (Prod braucht `ensureKommissionenSchema`-Lauf).
 
