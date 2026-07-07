@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, Check } from "lucide-react";
+import { ChevronUp, Check } from "lucide-react";
 import { useIsBerlin } from "@/lib/parliament-context";
 import type { ParliamentOverview } from "@/lib/db";
 
@@ -18,8 +18,8 @@ const TIER_BADGE: Record<ParliamentOverview["tier"], { label: string; cls: strin
   stammdaten: { label: "bald", cls: "text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800" },
 };
 
-/** Parlamente, die als „Neu" hervorgehoben werden (rot). Berlin = id 2. Bei Bedarf hier ergänzen/leeren. */
-const NEW_PARLIAMENT_IDS = new Set<number>([2]);
+/** Parlamente, die als „Neu" hervorgehoben werden (rot). Aktuell keine; bei Bedarf ids ergänzen. */
+const NEW_PARLIAMENT_IDS = new Set<number>([]);
 
 /** Ziel je Parlament: dessen Übersichtsseite (Bundestag = die Landing). */
 function overviewHref(p: ParliamentOverview): string {
@@ -151,7 +151,7 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
             Neu
           </span>
         )}
-        <ChevronDown
+        <ChevronUp
           className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
           strokeWidth={2.5}
         />
@@ -160,7 +160,7 @@ export function ParliamentSwitcher({ parliaments }: { parliaments: ParliamentOve
       {open && (
         <div
           role="menu"
-          className="absolute left-0 top-full mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl border border-border bg-card shadow-lg py-2 z-50"
+          className="absolute left-0 bottom-full mb-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl border border-border bg-card shadow-lg py-2 z-50"
         >
           <Group label="Bund" items={bund} activeId={currentId} onPick={() => setOpen(false)} />
           <Group label="Landesparlamente" items={laender} activeId={currentId} onPick={() => setOpen(false)} />
