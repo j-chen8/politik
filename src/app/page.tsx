@@ -344,7 +344,14 @@ export default function Startseite() {
         return (
         <section
           className={`-mt-2 rounded-2xl border border-border bg-card p-5 sm:p-6 ${
-            boxen ? "grid gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-8" : "flex max-w-3xl flex-col gap-2.5"
+            boxen
+              ? // max-w-[88rem] = Lesebreiten-Deckel (gleiche Konstante wie die
+                // Aspekt-Matrix): auf Ultrawide dehnt sich die Karte sonst auf
+                // Containerbreite und zwischen Story und Boxen entsteht Leere.
+                // Nur die Regale sind echte Vollbreite — die zeigen dann mehr
+                // Karten statt zu dehnen.
+                "grid max-w-[88rem] gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-8"
+              : "flex max-w-3xl flex-col gap-2.5"
           }`}
         >
           <div className="flex min-w-0 flex-col gap-2.5">
