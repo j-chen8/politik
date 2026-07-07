@@ -332,92 +332,109 @@ export default function Startseite() {
 
       {/* ── Aufmacher des Tages ────────────────────────────────────────────
           Manuell aus dem Salienz-Ranking gepickt (Nachricht des Tages).
+          VOLLE Breite wie die Regale (User-Wunsch 07.07.), innen zweispaltig:
+          links Story (Headline/Summary/Quellen → Parteienvergleich), rechts
+          die Weiterführungs-Boxen (Analyse/Drucksache/Vote) an einer dezenten
+          Trennlinie. Ohne Boxen bleibt die Karte einspaltig-schmal (max-w-3xl).
           ZWEI Klickzonen (verschachtelte <a> sind verboten): Headline/Summary +
-          Fußzeile → Parteienvergleich zum Feld (unsere Substanz); die
-          „Im Bundestag dazu"-Box → Drucksachen-/Abstimmungs-Detailseite.
-          Bewusst kompakt (kein Hero-Block) und ohne Pick/nach 48h einfach weg. */}
-      {pick && (
-        <section className="-mt-2 flex max-w-3xl flex-col gap-2.5 rounded-2xl border border-border bg-card p-5">
-          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] font-bold uppercase tracking-[0.12em]">
-            <span className="flex items-center gap-1.5 text-red-600 dark:text-red-400">
-              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-              Aufmacher des Tages
-            </span>
-            <span className="font-medium normal-case tracking-normal text-muted">· {pick.themenfeld}</span>
-          </p>
-          <Link href={`/parteien/feld/${pick.slug}`} className="group flex flex-col gap-2.5">
-            {pick.headline && (
-              <p className="text-[19px] font-semibold leading-snug tracking-[-0.01em] text-foreground group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600">
-                {pick.headline}
-              </p>
-            )}
-            {pick.summary && (
-              <p className="text-[15px] leading-relaxed text-muted" style={lineClamp(3)}>
-                {pick.summary}
-              </p>
-            )}
-          </Link>
-          {/* Quell-Artikel (je Outlet einer): bei Stories OHNE Bundestags-Dokument
-              (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte. */}
-          {pick.quellen.length > 0 && (
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-muted">
-              <span>Mehr dazu bei:</span>
-              {pick.quellen.map((q) => (
-                <a
-                  key={q.link}
-                  href={q.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={q.title}
-                  className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-2 hover:text-foreground hover:decoration-zinc-400 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
-                >
-                  {OUTLET_NAME[q.outlet] ?? q.outlet}
-                </a>
-              ))}
+          Fußzeile → Parteienvergleich zum Feld; Boxen → jeweilige Detailseite.
+          Ohne Pick/nach 48h entfällt der Block einfach. */}
+      {pick && (() => {
+        const boxen = Boolean(pick.analyseUrl || pick.ds || pick.vote);
+        return (
+        <section
+          className={`-mt-2 rounded-2xl border border-border bg-card p-5 sm:p-6 ${
+            boxen ? "grid gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-8" : "flex max-w-3xl flex-col gap-2.5"
+          }`}
+        >
+          <div className="flex min-w-0 flex-col gap-2.5">
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] font-bold uppercase tracking-[0.12em]">
+              <span className="flex items-center gap-1.5 text-red-600 dark:text-red-400">
+                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+                Aufmacher des Tages
+              </span>
+              <span className="font-medium normal-case tracking-normal text-muted">· {pick.themenfeld}</span>
             </p>
-          )}
-          {pick.analyseUrl && (
-            <Link
-              href={pick.analyseUrl}
-              className="group/an rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
-            >
-              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Unsere Analyse</p>
-              <p className="flex items-center gap-1 text-[14px] font-medium leading-snug text-foreground group-hover/an:underline group-hover/an:decoration-zinc-300 group-hover/an:underline-offset-2 dark:group-hover/an:decoration-zinc-600">
-                Zahlen, Hintergrund und offene Punkte im Überblick
-                <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+            <Link href={`/parteien/feld/${pick.slug}`} className="group flex flex-col gap-2.5">
+              {pick.headline && (
+                <p className={`font-semibold leading-snug tracking-[-0.01em] text-foreground group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600 ${boxen ? "text-[21px] sm:text-[24px]" : "text-[19px]"}`}>
+                  {pick.headline}
+                </p>
+              )}
+              {pick.summary && (
+                <p className="max-w-2xl text-[15px] leading-relaxed text-muted" style={lineClamp(3)}>
+                  {pick.summary}
+                </p>
+              )}
+            </Link>
+            {/* Quell-Artikel (je Outlet einer): bei Stories OHNE Bundestags-Dokument
+                (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte. */}
+            {pick.quellen.length > 0 && (
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-muted">
+                <span>Mehr dazu bei:</span>
+                {pick.quellen.map((q) => (
+                  <a
+                    key={q.link}
+                    href={q.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={q.title}
+                    className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-2 hover:text-foreground hover:decoration-zinc-400 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
+                  >
+                    {OUTLET_NAME[q.outlet] ?? q.outlet}
+                  </a>
+                ))}
               </p>
-            </Link>
-          )}
-          {pick.ds && (
+            )}
             <Link
-              href={dsHref(pick.ds.nr)}
-              className="group/ds rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+              href={`/parteien/feld/${pick.slug}`}
+              className="mt-auto inline-flex w-fit items-center gap-1 pt-1 text-[13.5px] font-medium text-muted transition-colors hover:text-foreground"
             >
-              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Im Bundestag dazu</p>
-              <p className="text-[14px] font-medium leading-snug text-foreground group-hover/ds:underline group-hover/ds:decoration-zinc-300 group-hover/ds:underline-offset-2 dark:group-hover/ds:decoration-zinc-600">{pick.ds.titel}</p>
-              <p className="num flex items-center gap-1 text-[12px] text-muted">
-                Drucksache {pick.ds.nr}{pick.ds.datum ? ` · ${formatDate(pick.ds.datum)}` : ""}
-                <ArrowRight className="h-3 w-3" />
-              </p>
+              Was die Parteien dazu sagen <ArrowRight className="h-3.5 w-3.5" />
             </Link>
+          </div>
+
+          {boxen && (
+            <div className="flex flex-col justify-center gap-2.5 border-t border-border-soft pt-4 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              {pick.analyseUrl && (
+                <Link
+                  href={pick.analyseUrl}
+                  className="group/an rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+                >
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Unsere Analyse</p>
+                  <p className="flex items-center gap-1 text-[14px] font-medium leading-snug text-foreground group-hover/an:underline group-hover/an:decoration-zinc-300 group-hover/an:underline-offset-2 dark:group-hover/an:decoration-zinc-600">
+                    Zahlen, Hintergrund und offene Punkte im Überblick
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+                  </p>
+                </Link>
+              )}
+              {pick.ds && (
+                <Link
+                  href={dsHref(pick.ds.nr)}
+                  className="group/ds rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+                >
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Im Bundestag dazu</p>
+                  <p className="text-[14px] font-medium leading-snug text-foreground group-hover/ds:underline group-hover/ds:decoration-zinc-300 group-hover/ds:underline-offset-2 dark:group-hover/ds:decoration-zinc-600">{pick.ds.titel}</p>
+                  <p className="num flex items-center gap-1 text-[12px] text-muted">
+                    Drucksache {pick.ds.nr}{pick.ds.datum ? ` · ${formatDate(pick.ds.datum)}` : ""}
+                    <ArrowRight className="h-3 w-3" />
+                  </p>
+                </Link>
+              )}
+              {pick.vote && (
+                <Link
+                  href={`/abstimmungen/${pick.vote.pollId}`}
+                  className="group/vote rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+                >
+                  <p className="text-[14px] font-medium leading-snug text-foreground group-hover/vote:underline group-hover/vote:decoration-zinc-300 group-hover/vote:underline-offset-2 dark:group-hover/vote:decoration-zinc-600">{pick.vote.label}</p>
+                  <div className="mt-1.5"><VoteBar yes={pick.vote.yes} no={pick.vote.no} abstain={pick.vote.abstain} real /></div>
+                </Link>
+              )}
+            </div>
           )}
-          {pick.vote && (
-            <Link
-              href={`/abstimmungen/${pick.vote.pollId}`}
-              className="group/vote rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
-            >
-              <p className="text-[14px] font-medium leading-snug text-foreground group-hover/vote:underline group-hover/vote:decoration-zinc-300 group-hover/vote:underline-offset-2 dark:group-hover/vote:decoration-zinc-600">{pick.vote.label}</p>
-              <div className="mt-1.5"><VoteBar yes={pick.vote.yes} no={pick.vote.no} abstain={pick.vote.abstain} real /></div>
-            </Link>
-          )}
-          <Link
-            href={`/parteien/feld/${pick.slug}`}
-            className="inline-flex w-fit items-center gap-1 text-[13.5px] font-medium text-muted transition-colors hover:text-foreground"
-          >
-            Was die Parteien dazu sagen <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
         </section>
-      )}
+        );
+      })()}
 
       <Rail
         title="Themenfelder"
