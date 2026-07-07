@@ -8880,7 +8880,9 @@ export function listParteienMitPositionen(): { partei: string; felder: number }[
 // ── Salienz / Aufmacher (rein lesend; Schema legt scripts/_lib/salienz-schema.ts an) ──
 /** Ebene 2: Story-Strang über Tage, an dem dieser Cluster hängt (null = nur heute markant). */
 export interface SalienzStory { tageAktiv: number; streak: number; seit: string; }
-export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; gesetzbezug: boolean; story: SalienzStory | null; }
+/** Auto-Anker-VORSCHLAG (salienz-anker.ts): DS/Vote, die derselbe Vorgang sein dürften — Picker füllt vor, Mensch gibt OK. */
+export interface SalienzAnker { dsNr: string | null; dsTitel: string | null; pollId: number | null; pollLabel: string | null; begruendung: string | null; }
+export interface SalienzCluster { clusterId: number; leitthema: string; outletCount: number; outlets: string[]; titles: { outlet: string; title: string; link: string }[]; summary: string | null; gesetzbezug: boolean; story: SalienzStory | null; anker: SalienzAnker | null; }
 export interface SalienzFeld {
   themenfeld: string; slug: string; rang: number;
   newsOutletCount: number; newsClusterCount: number; sNews: number; sTwitter: number; score: number | null;
@@ -8899,9 +8901,12 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
   // LEFT JOIN salienz_story: Ebene-2-Strang (kann fehlen, wenn Threading noch nicht lief).
   const clStmt = db.prepare(`
     SELECT c.cluster_id, c.leitthema, c.outlet_count, c.outlets_json, c.titles_json, c.summary, c.gesetzbezug,
-           s.day_count, s.streak_days, s.first_date
+           s.day_count, s.streak_days, s.first_date,
+           a.ds_nr AS anker_ds_nr, a.ds_titel AS anker_ds_titel, a.poll_id AS anker_poll_id,
+           a.poll_label AS anker_poll_label, a.begruendung AS anker_begruendung
     FROM news_cluster c
     LEFT JOIN salienz_story s ON s.thread_id = c.thread_id
+    LEFT JOIN salienz_anker a ON a.run_date = c.run_date AND a.cluster_id = c.cluster_id
     WHERE c.run_date=? AND c.themenfeld=?
     ORDER BY c.gesetzbezug DESC, c.outlet_count DESC, c.item_count DESC`);
   const felder: SalienzFeld[] = rows.map((r) => ({
@@ -8921,6 +8926,13 @@ export function getSalienzRanking(runDate?: string): { runDate: string; felder: 
       gesetzbezug: !!(c.gesetzbezug as number | undefined),
       story: (c.day_count as number | null) && (c.day_count as number) > 1
         ? { tageAktiv: c.day_count as number, streak: c.streak_days as number, seit: c.first_date as string }
+        : null,
+      anker: c.anker_ds_nr || c.anker_poll_id != null
+        ? {
+            dsNr: (c.anker_ds_nr as string | null) ?? null, dsTitel: (c.anker_ds_titel as string | null) ?? null,
+            pollId: (c.anker_poll_id as number | null) ?? null, pollLabel: (c.anker_poll_label as string | null) ?? null,
+            begruendung: (c.anker_begruendung as string | null) ?? null,
+          }
         : null,
     })),
   }));

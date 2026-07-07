@@ -75,6 +75,21 @@ export default async function PickerPage() {
                   </li>
                 ))}
               </ul>
+              {/* Auto-Anker-Vorschlag (FTS-Kandidaten + Mistral, salienz-anker.ts):
+                  Felder unten sind damit VORAUSGEFÜLLT — prüfen, ggf. leeren, dann OK. */}
+              {cl.anker && (
+                <p className="mt-2 rounded bg-sky-50 px-2 py-1.5 text-xs text-sky-900 dark:bg-sky-950/40 dark:text-sky-200">
+                  ⚙ Anker-Vorschlag (auto, prüfen!):{" "}
+                  {cl.anker.dsNr && (
+                    <a href={`/aktivitaeten/${cl.anker.dsNr.replace("/", "-")}`} target="_blank" rel="noopener" className="font-semibold underline">
+                      {cl.anker.dsNr}
+                    </a>
+                  )}
+                  {cl.anker.dsTitel && <> {cl.anker.dsTitel}</>}
+                  {cl.anker.pollId != null && <> · Abstimmung {cl.anker.pollId} {cl.anker.pollLabel}</>}
+                  {cl.anker.begruendung && <span className="text-sky-700 dark:text-sky-300"> — {cl.anker.begruendung}</span>}
+                </p>
+              )}
               <form action={pickAction} className="mt-2 flex flex-wrap items-end gap-2">
                 <input type="hidden" name="run_date" value={runDate} />
                 <input type="hidden" name="themenfeld" value={f.themenfeld} />
@@ -82,8 +97,8 @@ export default async function PickerPage() {
                 <input type="hidden" name="cluster_id" value={cl.clusterId} />
                 <input type="hidden" name="headline" value={cl.leitthema} />
                 <input type="hidden" name="summary" value={cl.summary ?? f.summary ?? ""} />
-                <input name="ds_nr" placeholder="Drucksache z.B. 21/623" className="w-40 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
-                <input name="poll_id" placeholder="poll_id" className="w-24 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
+                <input name="ds_nr" placeholder="Drucksache z.B. 21/623" defaultValue={cl.anker?.dsNr ?? ""} className="w-40 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
+                <input name="poll_id" placeholder="poll_id" defaultValue={cl.anker?.pollId != null ? String(cl.anker.pollId) : ""} className="w-24 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="notiz" placeholder="Notiz" className="flex-1 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <button className="rounded bg-foreground px-3 py-1 text-sm font-medium text-background">Als Aufmacher setzen</button>
               </form>

@@ -118,6 +118,23 @@ export function ensureSalienzSchema(db: Database.Database): void {
       aktiv      INTEGER NOT NULL DEFAULT 1
     );
     CREATE INDEX IF NOT EXISTS idx_pick_aktiv ON aufmacher_pick(aktiv, picked_at);
+
+    -- Auto-Anker: pro Cluster der Mistral-Vorschlag „welche Drucksache/Abstimmung
+    -- ist DERSELBE Vorgang?" aus deterministischen FTS-Kandidaten (salienz-anker.ts).
+    -- Nur VORSCHLAG (Picker füllt vor, Mensch gibt OK) — nie ungeprüft auf die Seite.
+    -- Zeile mit ds_nr=poll_id=NULL heißt: geprüft, kein Kandidat passt (fail-quiet).
+    CREATE TABLE IF NOT EXISTS salienz_anker (
+      run_date   TEXT NOT NULL,
+      cluster_id INTEGER NOT NULL,
+      ds_nr      TEXT,
+      ds_titel   TEXT,           -- denormalisiert für Picker-Anzeige
+      poll_id    INTEGER,
+      poll_label TEXT,
+      begruendung TEXT,          -- 1 Satz vom Modell (Audit-Spur)
+      model      TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (run_date, cluster_id)
+    );
   `);
 
   // Idempotente Spalten-Migrationen (für bereits angelegte Tabellen ohne die Spalte).

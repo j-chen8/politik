@@ -170,6 +170,7 @@ async function main() {
   step("Ranking", "npx tsx scripts/rank-news-salienz.ts");
   step("Story-Stränge", "npx tsx scripts/salienz-thread-stories.ts"); // Ebene 2: Tage-übergreifend (€0, deterministisch)
   step("Summaries", "npx tsx scripts/salienz-cluster-summary.ts");
+  step("Anker-Vorschläge", "npx tsx scripts/salienz-anker.ts"); // DS/Vote je Cluster (FTS-Kandidaten + Mistral bounded choice, €0) — nur Picker-VORSCHLAG
 
   // Mail nur 1×/Tag (User-Wunsch 07.07.): nur der 06:30-Lauf mailt (Maschine
   // läuft auf UTC → 08:30 Berlin im Sommer), die übrigen Timer-Läufe halten
