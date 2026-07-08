@@ -30,10 +30,12 @@ export const ART_LEGENDE: Record<string, string> = {
 /** Dunkle Anker-Kachel „Worum es geht" — Inhalt kommt vom Aufrufer
  *  (typisch: <TheseZahl/>, alternativ Eckpunkte-Liste oder Fließtext).
  *  `className` überschreibt die Layout-Klassen (Default = Bento-Grid-Spans);
- *  die Optik (dunkle Platte + Label) bleibt überall identisch. */
-export function TheseKachel({ children, className }: { children: ReactNode; className?: string }) {
+ *  `rahmen={false}` lässt Radius+Rand weg (randlos in eine Eltern-Karte
+ *  eingepasst, z.B. linke Hälfte der Startseiten-Aufmacher-Karte).
+ *  Die Optik (dunkle Platte + Label) bleibt überall identisch. */
+export function TheseKachel({ children, className, rahmen = true }: { children: ReactNode; className?: string; rahmen?: boolean }) {
   return (
-    <div className={`flex flex-col gap-4 rounded-2xl border border-border bg-foreground p-5 text-background ${className ?? "col-span-2 row-span-2 lg:col-span-4"}`}>
+    <div className={`flex flex-col gap-4 bg-foreground p-5 text-background ${rahmen ? "rounded-2xl border border-border" : ""} ${className ?? "col-span-2 row-span-2 lg:col-span-4"}`}>
       <span className="text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">Worum es geht</span>
       <div className="flex flex-1 flex-col justify-center">{children}</div>
     </div>

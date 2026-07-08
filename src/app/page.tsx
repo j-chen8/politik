@@ -347,31 +347,32 @@ export default function Startseite() {
         const zeile = Boolean(pick.these) || boxen;
         return (
         <section
-          className={`-mt-2 rounded-2xl border border-border bg-card p-5 sm:p-6 ${
+          className={`-mt-2 overflow-hidden rounded-2xl border border-border bg-card ${
             zeile
               ? // Bento-Prinzip statt Breiten-Deckel (Ultrawide-Lehre): die Zeile
-                // wird mit Kacheln GEFÜLLT, nichts dehnt. Auf sehr breiten Screens
-                // wächst die dunkle These-Kachel (der Catcher), die Story bleibt
-                // auf Lesebreite gedeckelt.
-                "flex flex-col gap-5 lg:flex-row lg:gap-7"
-              : "flex max-w-3xl flex-col gap-2.5"
+                // wird mit Kacheln GEFÜLLT, nichts dehnt. Kein Section-Padding —
+                // die These-Kachel füllt die linke Hälfte randlos (volle Höhe),
+                // die übrigen Zonen bringen ihr Padding selbst mit.
+                "flex flex-col lg:flex-row"
+              : "flex max-w-3xl flex-col gap-2.5 p-5"
           }`}
         >
           {/* „Worum es geht" — Catcher (gleiche Kachel wie Analyse-/Kommissions-
-              Seiten), klickt zur Analyse (Fallback: Parteienvergleich). */}
+              Seiten, randlos eingepasst), klickt zur Analyse (Fallback:
+              Parteienvergleich). */}
           {pick.these && (
             <Link
               href={pick.analyseUrl ?? `/parteien/feld/${pick.slug}`}
-              className="group/th flex lg:min-w-[300px] lg:grow-0 lg:basis-[340px]"
+              className="group/th flex lg:min-w-[300px] lg:grow-0 lg:basis-[360px]"
             >
-              <TheseKachel className="flex-1 transition-colors group-hover/th:border-zinc-400 dark:group-hover/th:border-zinc-500">
+              <TheseKachel rahmen={false} className="flex-1 p-5 sm:p-6">
                 <TheseZahl
                   wert={pick.these.wert}
                   text={pick.these.text}
                   zahlClass="text-[34px] sm:text-[38px]"
                 />
                 {pick.analyseUrl && (
-                  <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium opacity-80 transition-opacity group-hover/th:opacity-100">
+                  <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium opacity-80 transition-opacity group-hover/th:opacity-100 group-hover/th:underline">
                     Unsere Analyse <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 )}
@@ -379,14 +380,8 @@ export default function Startseite() {
             </Link>
           )}
 
-          <div className={`flex min-w-0 flex-col gap-2.5 ${zeile ? "flex-1 min-[1920px]:max-w-3xl" : ""}`}>
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] font-bold uppercase tracking-[0.12em]">
-              <span className="flex items-center gap-1.5 text-red-600 dark:text-red-400">
-                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                Aufmacher des Tages
-              </span>
-              <span className="font-medium normal-case tracking-normal text-muted">· {pick.themenfeld}</span>
-            </p>
+          <div className={`flex min-w-0 flex-col gap-2.5 ${zeile ? "flex-1 p-5 sm:p-6 min-[1920px]:max-w-3xl" : ""}`}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{pick.themenfeld}</p>
             <Link href={`/parteien/feld/${pick.slug}`} className="group flex flex-col gap-2.5">
               {pick.headline && (
                 <p className={`font-semibold leading-snug tracking-[-0.01em] text-foreground group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600 ${boxen ? "text-[21px] sm:text-[24px]" : "text-[19px]"}`}>
@@ -428,7 +423,7 @@ export default function Startseite() {
           </div>
 
           {boxen && (
-            <div className="flex flex-col justify-center gap-2.5 border-t border-border-soft pt-4 lg:w-[400px] lg:shrink-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <div className="flex flex-col justify-center gap-2.5 border-t border-border-soft p-5 sm:p-6 lg:w-[400px] lg:shrink-0 lg:border-l lg:border-t-0">
               {!pick.these && pick.analyseUrl && (
                 <Link
                   href={pick.analyseUrl}
@@ -470,7 +465,7 @@ export default function Startseite() {
               gepickten Clusters in voller Länge — füllt die Breite mit
               story-verbundenem Inhalt statt Leerstand (Bento-Lehre). */}
           {zeile && pick.quellen.length > 0 && (
-            <div className="hidden min-w-0 flex-1 flex-col justify-center gap-2.5 border-l border-border-soft pl-7 min-[1920px]:flex">
+            <div className="hidden min-w-0 flex-1 flex-col justify-center gap-2.5 border-l border-border-soft p-5 sm:p-6 min-[1920px]:flex">
               <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Pressespiegel</p>
               {pick.quellen.slice(0, 4).map((q) => (
                 <a
@@ -480,7 +475,11 @@ export default function Startseite() {
                   rel="noopener noreferrer"
                   className="group/pq flex min-w-0 flex-col"
                 >
-                  <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted">{OUTLET_NAME[q.outlet] ?? q.outlet}</span>
+                  <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted">
+                    {OUTLET_NAME[q.outlet] ?? q.outlet}
+                    {/* pubdate ist voll-ISO (mit Uhrzeit) — formatDate erwartet nur den Datumsteil */}
+                    {q.datum && <span className="num ml-1.5 font-normal normal-case tracking-normal">· {formatDate(q.datum.slice(0, 10))}</span>}
+                  </span>
                   <span
                     className="text-[13.5px] font-medium leading-snug text-foreground group-hover/pq:underline group-hover/pq:decoration-zinc-300 group-hover/pq:underline-offset-2 dark:group-hover/pq:decoration-zinc-600"
                     style={lineClamp(2)}

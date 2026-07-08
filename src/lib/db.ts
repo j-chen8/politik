@@ -8944,8 +8944,9 @@ export interface AufmacherPick {
   ds: { nr: string; titel: string; datum: string | null; url: string | null } | null;
   vote: { pollId: number; label: string | null; datum: string | null; yes: number; no: number; abstain: number } | null;
   /** Quell-Artikel des gepickten News-Clusters (je Outlet einer) — bei Stories
-   *  ohne Bundestags-Dokument der einzige Weg zu „worum geht's" in voller Länge. */
-  quellen: { outlet: string; title: string; link: string }[];
+   *  ohne Bundestags-Dokument der einzige Weg zu „worum geht's" in voller Länge.
+   *  `datum` = pubdate des Artikels (ISO), per Link aus news_items nachgeschlagen. */
+  quellen: { outlet: string; title: string; link: string; datum: string | null }[];
   /** Eigene Analyse-Seite (Vor-Parlaments-Analysen wie /analyse/haushalt-2027). */
   analyseUrl: string | null;
   /** „Worum es geht"-Catcher: EINE große Zahl + ein Satz (manuell kuratiert). */
@@ -8992,11 +8993,16 @@ export function getAufmacherPick(): AufmacherPick | null {
         .get(row.run_date, Number(row.cluster_id)) as { titles_json: string | null } | undefined;
       alle = JSON.parse(cj?.titles_json ?? "[]") as typeof alle;
     }
+    // Artikel-Datum per Link nachschlagen (Link ist UNIQUE in news_items und
+    // driftet — anders als cluster_id — nicht).
+    const datumStmt = db.prepare(`SELECT pubdate FROM news_items WHERE link = ?`);
     const gesehen = new Set<string>();
     for (const t of alle) {
       if (!t.outlet || !t.link || gesehen.has(t.outlet)) continue;
       gesehen.add(t.outlet);
-      quellen.push(t);
+      let datum: string | null = null;
+      try { datum = (datumStmt.get(t.link) as { pubdate: string | null } | undefined)?.pubdate ?? null; } catch { /* Tabelle fehlt */ }
+      quellen.push({ outlet: t.outlet, title: t.title, link: t.link, datum });
       if (quellen.length >= 5) break;
     }
   } catch { quellen = []; } // kaputtes JSON/Tabelle fehlt → Karte ohne Quellen
