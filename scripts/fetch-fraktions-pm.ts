@@ -181,12 +181,49 @@ async function cdu(): Promise<number> {
   return neu;
 }
 
+/* ── Volltext-Anreicherung: Grüne/SPD/Linke liefern in Feed/Liste nur Teaser —
+      die Detailseiten tragen die komplette PM (Grüne Dienstag-Statements z.B.
+      ~10.000 Zeichen mit Thema-für-Thema-Gliederung). AfD/CDU sind ab Fetch
+      Volltext. Läuft inkrementell über volltext=0. ── */
+async function volltexte(): Promise<number> {
+  db.prepare(`UPDATE fraktion_pm SET volltext = 1 WHERE fraktion IN ('AfD','CDU/CSU') AND volltext = 0`).run();
+  const NUR_FRAKTION: Record<string, string> = { gruene: "GRÜNE", spd: "SPD", linke: "LINKE" };
+  const rows = db.prepare(
+    `SELECT id, fraktion, link, length(COALESCE(text,'')) AS len FROM fraktion_pm
+     WHERE volltext = 0 ${NUR ? "AND fraktion = ?" : ""} ORDER BY datum DESC`
+  ).all(...(NUR ? [NUR_FRAKTION[NUR] ?? NUR] : [])) as { id: number; fraktion: string; link: string; len: number }[];
+  const upd = db.prepare(`UPDATE fraktion_pm SET text = ?, volltext = 1 WHERE id = ?`);
+  const flag = db.prepare(`UPDATE fraktion_pm SET volltext = 1 WHERE id = ?`);
+  let ok = 0;
+  for (const r of rows) {
+    let text = "";
+    try {
+      const $ = cheerio.load(await hole(r.link));
+      if (r.link.includes("gruene-bundestag.de")) {
+        text = strip($("main p").map((_, p) => $(p).text()).get().join(" "));
+      } else if (r.link.includes("dielinkebt.de")) {
+        text = strip($('[itemprop="articleBody"]').text());
+      } else if (r.link.includes("spdfraktion.de")) {
+        const art = $("article").first().length ? $("article").first() : $("main").first();
+        art.find("header, nav, form, h1, .share, .social").remove();
+        text = strip(art.find("p").map((_, p) => $(p).text()).get().join(" "));
+      }
+    } catch { /* Seite weg/Timeout → Teaser behalten, nicht erneut versuchen */ }
+    if (text.length > 200 && text.length > r.len) { upd.run(text.slice(0, 12000), r.id); ok++; }
+    else flag.run(r.id); // nichts Besseres gefunden → Teaser bleibt, aber abgehakt
+    await sleep(150);
+  }
+  return ok;
+}
+
 async function main() {
   const quellen: [string, () => Promise<number>][] = [
     ["gruene", gruene], ["spd", spd], ["linke", linke], ["afd", afd], ["cdu", cdu],
   ];
-  console.log(`Fraktions-PM-Fetch ${BACKFILL ? `(BACKFILL ab ${CUTOFF})` : "(nur Neues)"}${NUR ? ` — nur ${NUR}` : ""}`);
+  const NUR_VOLLTEXT = process.argv.includes("--volltext");
+  console.log(`Fraktions-PM-Fetch ${NUR_VOLLTEXT ? "(nur Volltext-Anreicherung)" : BACKFILL ? `(BACKFILL ab ${CUTOFF})` : "(nur Neues)"}${NUR ? ` — nur ${NUR}` : ""}`);
   for (const [name, fn] of quellen) {
+    if (NUR_VOLLTEXT) break;
     if (NUR && NUR !== name) continue;
     try {
       const neu = await fn();
@@ -194,6 +231,12 @@ async function main() {
     } catch (e) {
       console.log(`  ${name.padEnd(6)} FEHLER: ${(e as Error).message} — andere Quellen laufen weiter`);
     }
+  }
+  try {
+    const angereichert = await volltexte();
+    console.log(`  volltext +${angereichert} angereichert`);
+  } catch (e) {
+    console.log(`  volltext FEHLER: ${(e as Error).message}`);
   }
   const stat = db.prepare(`SELECT fraktion, COUNT(*) n, MIN(datum) von, MAX(datum) bis FROM fraktion_pm GROUP BY fraktion ORDER BY fraktion`).all() as { fraktion: string; n: number; von: string; bis: string }[];
   console.log("\nBestand:");

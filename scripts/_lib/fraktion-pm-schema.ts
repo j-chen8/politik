@@ -21,4 +21,12 @@ export function ensureFraktionPmSchema(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_fraktion_pm_datum ON fraktion_pm(datum DESC);
     CREATE INDEX IF NOT EXISTS idx_fraktion_pm_fraktion ON fraktion_pm(fraktion, datum DESC);
   `);
+  // Idempotente Migrationen.
+  for (const sql of [
+    // 1 = text ist der Volltext der PM (AfD/CDU ab Fetch; Grüne/SPD/Linke nach
+    // Detailseiten-Anreicherung — deren Feeds/Listen liefern nur Teaser).
+    `ALTER TABLE fraktion_pm ADD COLUMN volltext INTEGER NOT NULL DEFAULT 0`,
+  ]) {
+    try { db.exec(sql); } catch { /* Spalte existiert schon */ }
+  }
 }
