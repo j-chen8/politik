@@ -8951,6 +8951,9 @@ export interface AufmacherPick {
   analyseUrl: string | null;
   /** „Worum es geht"-Catcher: EINE große Zahl + ein Satz (manuell kuratiert). */
   these: { wert: string; text: string } | null;
+  /** Reaktionen der Fraktionen: PMs (Erstquelle, fraktion_pm), die im Zeitfenster
+   *  ab Vortag des Picks Kern-Tokens der Headline tragen — max. 1 je Fraktion. */
+  reaktionen: { fraktion: string; titel: string; link: string; datum: string | null }[];
 }
 
 export function getAufmacherPick(): AufmacherPick | null {
@@ -9007,11 +9010,44 @@ export function getAufmacherPick(): AufmacherPick | null {
     }
   } catch { quellen = []; } // kaputtes JSON/Tabelle fehlt → Karte ohne Quellen
 
+  // Reaktionen der Fraktionen — deterministisch, kein LLM: Kern-Tokens aus
+  // Headline+Summary (≥5 Zeichen, plus 8-Zeichen-Stamm gegen deutsche Komposita:
+  // „Haushaltsentwurf"→„haushalt" matcht „Haushalt 2027"/„Haushaltspolitik").
+  // Zeitfenster ab Vortag des Picks; beste PM je Fraktion (Titel-Treffer vor
+  // Text-Treffer, dann neueste). Fail-quiet: keine Treffer → leere Liste.
+  let reaktionen: AufmacherPick["reaktionen"] = [];
+  try {
+    const STOP = new Set(["einer", "eines", "einem", "gegen", "nach", "wegen", "durch", "sowie", "sollen", "wollen", "werden", "wurde", "haben", "nicht", "trotzdem", "rund", "mehr", "viele", "unter", "über", "beim", "fokus"]);
+    const basis = `${(row.headline as string | null) ?? ""} ${(row.summary as string | null) ?? ""}`.toLowerCase();
+    const toks = [...new Set((basis.match(/[a-zäöüß][a-zäöüß-]{4,}/g) ?? []).filter((w) => !STOP.has(w)))].slice(0, 12);
+    const staemme = [...new Set(toks.flatMap((t) => (t.length > 8 ? [t, t.slice(0, 8)] : [t])))];
+    if (staemme.length) {
+      const rows2 = db.prepare(
+        `SELECT fraktion, titel, link, datum, substr(COALESCE(text,''),1,4000) AS text
+         FROM fraktion_pm WHERE datum >= date(?, '-1 day') ORDER BY datum DESC`
+      ).all(row.run_date) as { fraktion: string; titel: string; link: string; datum: string | null; text: string }[];
+      const beste = new Map<string, { score: number; pm: (typeof rows2)[0] }>();
+      for (const pm of rows2) {
+        const t = pm.titel.toLowerCase(), x = pm.text.toLowerCase();
+        const score = staemme.some((s) => t.includes(s)) ? 2 : staemme.some((s) => x.includes(s)) ? 1 : 0;
+        if (!score) continue;
+        const cur = beste.get(pm.fraktion);
+        if (!cur || score > cur.score) beste.set(pm.fraktion, { score, pm });
+      }
+      const REIHENFOLGE = ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE"]; // Fraktionsstärke
+      reaktionen = REIHENFOLGE.filter((f) => beste.has(f)).map((f) => {
+        const { pm } = beste.get(f)!;
+        return { fraktion: f, titel: pm.titel, link: pm.link, datum: pm.datum };
+      });
+    }
+  } catch { reaktionen = []; } // Tabelle fehlt → Karte ohne Reaktions-Band
+
   return {
     runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string,
     headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null,
     ds, vote, quellen, analyseUrl: (row.analyse_url as string | null) ?? null,
     these: row.these_wert && row.these_text ? { wert: row.these_wert as string, text: row.these_text as string } : null,
+    reaktionen,
   };
 }
 
