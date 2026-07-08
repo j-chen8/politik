@@ -159,12 +159,20 @@ async function afd(): Promise<number> {
   return neu;
 }
 
-/* ── CDU/CSU: kein RSS — sitemap.xml als Voll-Enumeration + Detailseiten ── */
+/* ── CDU/CSU: kein RSS — /presse-Liste (aktuell; die sitemap.xml hinkt Tage
+      hinterher!) + sitemap.xml als Voll-Enumeration, dann Detailseiten. ── */
 async function cdu(): Promise<number> {
+  const urlSet = new Set<string>();
+  // Aktuelle Listen-Seiten zuerst — Fund 08.07.: PMs vom 07.07. standen auf
+  // /presse, aber noch NICHT in der Sitemap.
+  for (let page = 0; page <= (BACKFILL ? 4 : 1); page++) {
+    const $ = cheerio.load(await hole(`https://www.cducsu.de/presse?page=${page}`));
+    $("article a[href^='/presse/']").each((_, a) => { const h = $(a).attr("href"); if (h) urlSet.add(new URL(h, "https://www.cducsu.de").href); });
+    await sleep(150);
+  }
   const sm = await hole("https://www.cducsu.de/sitemap.xml");
-  const urls = [...sm.matchAll(/<loc>(https:\/\/www\.cducsu\.de\/presse\/[^<]+)<\/loc>/g)]
-    .map((m) => m[1])
-    .filter((u) => !/\/presse\/(kontakt|presse-abo|fotos|akkreditierung)/.test(u));
+  for (const m of sm.matchAll(/<loc>(https:\/\/www\.cducsu\.de\/presse\/[^<]+)<\/loc>/g)) urlSet.add(m[1]);
+  const urls = [...urlSet].filter((u) => !/\/presse\/(kontakt|presse-abo|fotos|akkreditierung)/.test(u)).map(normLink);
   let neu = 0;
   for (const url of urls) {
     if (kennt.get(url)) continue; // Detailseiten nur für Unbekanntes holen
