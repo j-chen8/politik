@@ -74,8 +74,10 @@ export function WenEsTrifftKachel({ zeilen }: { zeilen: BetroffenZeile[] }) {
         {zeilen.map((z) => (
           <div key={z.gruppe} className="flex items-baseline gap-2.5">
             <span className={`relative top-[3px] h-2.5 w-2.5 shrink-0 rounded-full ${artDot(z.art)}`} />
-            <span className="text-[15px] font-medium leading-snug text-foreground">{z.gruppe}</span>
-            {z.label && <span className="ml-auto shrink-0 text-[12px] text-muted">{z.label}</span>}
+            <span className="min-w-0 text-[15px] font-medium leading-snug text-foreground">{z.gruppe}</span>
+            {/* Label darf umbrechen (kein shrink-0) — lange Werte wie
+                „GMA 1,2 Mrd. · −2 % Stellen" liefen sonst aus der Kachel. */}
+            {z.label && <span className="ml-auto text-right text-[12px] leading-snug text-muted">{z.label}</span>}
           </div>
         ))}
       </div>

@@ -68,7 +68,9 @@ const KONSOLIDIERUNG: { was: string; wieviel: string; anmerkung: string }[] = [
 
 export default function Haushalt2027Analyse() {
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 py-8 sm:px-9">
+    // max-w-6xl wie die Kommissions-Detailseite — 4xl ließ links/rechts viel
+    // Platz ungenutzt und quetschte die „Wen es trifft"-Kachel.
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-8 sm:px-9">
       <header className="flex flex-col gap-2">
         <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-muted">
           <Link href="/analyse" className="hover:underline">Analyse</Link> · Vor-Parlaments-Analyse
