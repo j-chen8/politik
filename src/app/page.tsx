@@ -512,8 +512,12 @@ export default function Startseite() {
         {pick.reaktionen.length > 0 && (
           <div className="flex flex-col gap-2.5 border-t border-border-soft p-5 sm:px-6 sm:py-4">
             <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Reaktionen der Fraktionen</p>
-            <div className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2 min-[1920px]:grid-cols-4">
-              {pick.reaktionen.map((r) => (
+            {/* Zwei Spalten nach Rolle (User-Wunsch): links die handelnde Seite
+                (Regierung + Koalitionsfraktionen der 21. WP), rechts die
+                Opposition — faktische Zuordnung, keine Wertung. */}
+            {(() => {
+              const KOALITION = new Set(["Bundesregierung", "CDU/CSU", "SPD"]);
+              const eintrag = (r: (typeof pick.reaktionen)[0]) => (
                 <a
                   key={r.link}
                   href={r.link}
@@ -535,8 +539,22 @@ export default function Startseite() {
                     {r.zitat ? <>„{r.zitat}“</> : r.titel}
                   </span>
                 </a>
-              ))}
-            </div>
+              );
+              const seiten: [string, typeof pick.reaktionen][] = [
+                ["Regierung & Koalition", pick.reaktionen.filter((r) => KOALITION.has(r.fraktion))],
+                ["Opposition", pick.reaktionen.filter((r) => !KOALITION.has(r.fraktion))],
+              ];
+              return (
+                <div className="grid gap-x-10 gap-y-4 lg:grid-cols-2">
+                  {seiten.filter(([, rs]) => rs.length > 0).map(([label, rs]) => (
+                    <div key={label} className="flex min-w-0 flex-col gap-2.5 lg:first:border-r lg:first:border-border-soft lg:first:pr-10">
+                      <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">{label}</p>
+                      {rs.map(eintrag)}
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         )}
         </section>
