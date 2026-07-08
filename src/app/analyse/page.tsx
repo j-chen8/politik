@@ -12,6 +12,19 @@ import {
 import { partyColor } from "@/lib/party-colors";
 import { InitiativeMatrix } from "@/components/InitiativeMatrix";
 
+// Dokument-Analysen (Vor-Parlaments-Analysen u.ä.): eigene Unterseiten von
+// /analyse — hier ist ihre dauerhafte Heimat, damit sie nicht verwaisen, wenn
+// der Startseiten-Aufmacher weiterzieht. Bei neuer Analyse: Eintrag ergänzen.
+const DOKUMENT_ANALYSEN = [
+  {
+    href: "/analyse/haushalt-2027",
+    art: "Vor-Parlaments-Analyse",
+    titel: "Bundeshaushalt 2027 — der Entwurf im Überblick",
+    teaser: "203,7 Mrd. € neue Schulden, die Schuldenregel-Mechanik, die größten Verschiebungen je Einzelplan — aus der Kabinettsfassung, vor der Drucksache.",
+    stand: "08. Juli 2026",
+  },
+];
+
 export const metadata = {
   title: "Analyse — Was die Daten zeigen | Politik-Radar",
   description:
@@ -178,6 +191,32 @@ export default function AnalysePage() {
             .
           </p>
         </div>
+
+        {/* === DOKUMENT-ANALYSEN: Unterseiten von /analyse (dauerhafte Heimat) === */}
+        {DOKUMENT_ANALYSEN.length > 0 && (
+          <section className="mb-16">
+            <div className="text-[10.5px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
+              Dokument-Analysen
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {DOKUMENT_ANALYSEN.map((a) => (
+                <Link
+                  key={a.href}
+                  href={a.href}
+                  className="group flex flex-col gap-1.5 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
+                >
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-muted">
+                    {a.art} · Stand {a.stand}
+                  </span>
+                  <span className="text-[17px] font-semibold leading-snug text-foreground group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600">
+                    {a.titel}
+                  </span>
+                  <span className="text-[13.5px] leading-relaxed text-muted">{a.teaser}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* === BEFUND 1: Reden-Stil-Profile === */}
         <section id="befund-1" className="mb-16 scroll-mt-20">

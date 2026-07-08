@@ -73,6 +73,9 @@ Für Zahlenwerke gilt über die Kommissions-Prinzipien hinaus:
 ## Stufe 4 — Seite bauen
 
 - Route: `/analyse/<slug>` (z.B. `/analyse/haushalt-2027`).
+- **Dauerhafte Heimat:** Eintrag in `DOKUMENT_ANALYSEN` in `src/app/analyse/page.tsx`
+  ergänzen (Karte auf der /analyse-Übersicht) — sonst verwaist die Seite, sobald der
+  Startseiten-Aufmacher weiterzieht.
 - **Bausteine aus `AnalyseAufmacher.tsx` verwenden, nie nachbauen** [[feedback_reuse_real_component]]:
   TheseKachel + TheseZahl (EINE Hero-Zahl), WenEsTrifftKachel, KennzahlKacheln (4–6),
   QuelleKarte am Ende. Grid des Aufrufers wie in der Komponenten-Doku.
