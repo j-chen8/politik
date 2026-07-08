@@ -525,11 +525,14 @@ export default function Startseite() {
                     {r.fraktion}
                     {r.datum && <span className="num ml-1.5 font-normal normal-case tracking-normal">· {formatDate(r.datum.slice(0, 10))}</span>}
                   </span>
+                  {/* Wörtliches Kern-Zitat (kuratiert) vor Titel — der Titel trägt
+                      den Kern bei manchen Häusern selbst (dann kein Zitat nötig). */}
                   <span
                     className="text-[13.5px] font-medium leading-snug text-foreground group-hover/re:underline group-hover/re:decoration-zinc-300 group-hover/re:underline-offset-2 dark:group-hover/re:decoration-zinc-600"
                     style={lineClamp(2)}
+                    title={r.zitat ? r.titel : undefined}
                   >
-                    {r.titel}
+                    {r.zitat ? <>„{r.zitat}“</> : r.titel}
                   </span>
                 </a>
               ))}

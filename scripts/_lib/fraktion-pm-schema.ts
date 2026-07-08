@@ -26,6 +26,10 @@ export function ensureFraktionPmSchema(db: Database.Database): void {
     // 1 = text ist der Volltext der PM (AfD/CDU ab Fetch; Grüne/SPD/Linke nach
     // Detailseiten-Anreicherung — deren Feeds/Listen liefern nur Teaser).
     `ALTER TABLE fraktion_pm ADD COLUMN volltext INTEGER NOT NULL DEFAULT 0`,
+    // Manuell kuratiertes WÖRTLICHES Kern-Zitat (Reaktions-Band zeigt es in
+    // „Anführungszeichen" statt des Titels; NULL → Titel als Fallback).
+    // Pflicht: verbatim aus text, gegen die Quelle verifiziert — nie paraphrasieren.
+    `ALTER TABLE fraktion_pm ADD COLUMN kernzitat TEXT`,
   ]) {
     try { db.exec(sql); } catch { /* Spalte existiert schon */ }
   }
@@ -46,4 +50,7 @@ export function ensureFraktionPmSchema(db: Database.Database): void {
     );
     CREATE INDEX IF NOT EXISTS idx_regierung_pk_datum ON regierung_pk(datum DESC);
   `);
+  // Nach dem CREATE (sonst schlüge der ALTER auf frischer DB fehl und würde
+  // vom try/catch verschluckt).
+  try { db.exec(`ALTER TABLE regierung_pk ADD COLUMN kernzitat TEXT`); } catch { /* existiert */ }
 }

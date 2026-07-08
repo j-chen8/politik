@@ -8952,8 +8952,10 @@ export interface AufmacherPick {
   /** „Worum es geht"-Catcher: EINE große Zahl + ein Satz (manuell kuratiert). */
   these: { wert: string; text: string } | null;
   /** Reaktionen der Fraktionen: PMs (Erstquelle, fraktion_pm), die im Zeitfenster
-   *  ab Vortag des Picks Kern-Tokens der Headline tragen — max. 1 je Fraktion. */
-  reaktionen: { fraktion: string; titel: string; link: string; datum: string | null }[];
+   *  ab Vortag des Picks Kern-Tokens der Headline tragen — max. 1 je Fraktion.
+   *  `zitat` = manuell kuratiertes WÖRTLICHES Kern-Zitat (kernzitat-Spalte);
+   *  ohne Zitat zeigt das Band den Titel (der trägt den Kern oft selbst). */
+  reaktionen: { fraktion: string; titel: string; link: string; datum: string | null; zitat: string | null }[];
 }
 
 export function getAufmacherPick(): AufmacherPick | null {
@@ -9024,15 +9026,19 @@ export function getAufmacherPick(): AufmacherPick | null {
       // 8er-Stämme über-matchen („bundeska" träfe Bundeskanzler/Bundeskasse …).
       "bundesregierung", "bundeskabinett", "bundeskanzler", "bundestag", "regierung", "kabinett",
       "koalition", "deutschland", "deutsche", "deutschen", "milliarden", "millionen", "prozent", "beschlossen",
+      // Füllwörter, die in fast jedem deutschen Text stehen („unter anderem"
+      // zog eine Polizeibeauftragten-PM in die Haushalts-Reaktionen).
+      "anderem", "anderen", "andere", "damit", "dafür", "dazu", "daran", "dabei", "zudem",
+      "bereits", "jedoch", "deutlich", "insbesondere", "vorsieht", "erklärt", "erklären",
     ]);
     const basis = `${(row.headline as string | null) ?? ""} ${(row.summary as string | null) ?? ""}`.toLowerCase();
     const toks = [...new Set((basis.match(/[a-zäöüß][a-zäöüß-]{4,}/g) ?? []).filter((w) => !STOP.has(w)))].slice(0, 12);
     const staemme = [...new Set(toks.flatMap((t) => (t.length > 8 ? [t, t.slice(0, 8)] : [t])))];
     if (staemme.length) {
       const rows2 = db.prepare(
-        `SELECT fraktion, titel, link, datum, substr(COALESCE(text,''),1,4000) AS text
+        `SELECT fraktion, titel, link, datum, kernzitat, substr(COALESCE(text,''),1,12000) AS text
          FROM fraktion_pm WHERE datum >= date(?, '-1 day') ORDER BY datum DESC`
-      ).all(row.run_date) as { fraktion: string; titel: string; link: string; datum: string | null; text: string }[];
+      ).all(row.run_date) as { fraktion: string; titel: string; link: string; datum: string | null; kernzitat: string | null; text: string }[];
       const beste = new Map<string, { score: number; pm: (typeof rows2)[0] }>();
       for (const pm of rows2) {
         const t = pm.titel.toLowerCase(), x = pm.text.toLowerCase();
@@ -9044,7 +9050,7 @@ export function getAufmacherPick(): AufmacherPick | null {
       const REIHENFOLGE = ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE"]; // Fraktionsstärke
       reaktionen = REIHENFOLGE.filter((f) => beste.has(f)).map((f) => {
         const { pm } = beste.get(f)!;
-        return { fraktion: f, titel: pm.titel, link: pm.link, datum: pm.datum };
+        return { fraktion: f, titel: pm.titel, link: pm.link, datum: pm.datum, zitat: pm.kernzitat ?? null };
       });
 
       // Regierungs-Seite (Rechtfertigung): jüngste Pressekonferenz, deren
@@ -9052,9 +9058,9 @@ export function getAufmacherPick(): AufmacherPick | null {
       // handelnde Seite, auf die die Fraktionen reagieren.
       try {
         const pks = db.prepare(
-          `SELECT titel, link, datum, COALESCE(themen_json,'[]') AS themen, substr(COALESCE(text,''),1,6000) AS kopf
+          `SELECT titel, link, datum, kernzitat, COALESCE(themen_json,'[]') AS themen, substr(COALESCE(text,''),1,6000) AS kopf
            FROM regierung_pk WHERE datum >= date(?, '-1 day') ORDER BY datum DESC`
-        ).all(row.run_date) as { titel: string; link: string; datum: string | null; themen: string; kopf: string }[];
+        ).all(row.run_date) as { titel: string; link: string; datum: string | null; kernzitat: string | null; themen: string; kopf: string }[];
         for (const pk of pks) {
           const themen = (JSON.parse(pk.themen) as string[]);
           // Fürs BENENNEN des Themas nur Voll-Tokens (Stämme sind zum Finden ok,
@@ -9065,7 +9071,7 @@ export function getAufmacherPick(): AufmacherPick | null {
           reaktionen.unshift({
             fraktion: "Bundesregierung",
             titel: thema ? `${pk.titel} — u.a. „${thema}"` : pk.titel,
-            link: pk.link, datum: pk.datum,
+            link: pk.link, datum: pk.datum, zitat: pk.kernzitat ?? null,
           });
           break; // nur die jüngste passende PK
         }
