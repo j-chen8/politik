@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Rail } from "@/components/Rail";
 import { MediaAppearanceCard } from "@/components/MediaAppearanceCard";
+import { TheseKachel, TheseZahl } from "@/components/AnalyseAufmacher";
 import { getAufmacherPick, getBundestagLandingSnapshot, getFraktionSitze, type VoteIndexEntry } from "@/lib/db";
 import { getVisibleAppearances } from "@/lib/media-appearances";
 import { getThemenStruktur } from "@/lib/themen-blatt";
@@ -340,26 +341,45 @@ export default function Startseite() {
           Fußzeile → Parteienvergleich zum Feld; Boxen → jeweilige Detailseite.
           Ohne Pick/nach 48h entfällt der Block einfach. */}
       {pick && (() => {
-        const boxen = Boolean(pick.analyseUrl || pick.ds || pick.vote);
-        // Schlaglicht-Kachel (Bento-Idee aus /entwurf/aufmacher): füllt auf sehr
-        // breiten Screens die dritte Spalte mit Inhalt statt Leerstand.
-        const namentlich = s.latestVotes.filter((v) => v.type === "namentlich");
-        const knappste = namentlich.length
-          ? namentlich.reduce((a, b) => (Math.abs(a.yes - a.no) <= Math.abs(b.yes - b.no) ? a : b))
-          : null;
+        // „Unsere Analyse" wandert in die These-Kachel, wenn es beide gibt —
+        // die Box-Spalte trägt dann nur noch Drucksache/Vote.
+        const boxen = Boolean(pick.ds || pick.vote || (!pick.these && pick.analyseUrl));
+        const zeile = Boolean(pick.these) || boxen;
         return (
         <section
           className={`-mt-2 rounded-2xl border border-border bg-card p-5 sm:p-6 ${
-            boxen
+            zeile
               ? // Bento-Prinzip statt Breiten-Deckel (Ultrawide-Lehre): die Zeile
-                // wird mit Kacheln GEFÜLLT, nichts dehnt. Flex statt Grid, weil
-                // responsive Grid-Template-Overrides (lg vs min-[1920px]) an der
-                // CSS-Reihenfolge scheitern. ≥1920px kommt das Schlaglicht dazu.
-                "flex flex-col gap-5 lg:flex-row lg:gap-8"
+                // wird mit Kacheln GEFÜLLT, nichts dehnt. Auf sehr breiten Screens
+                // wächst die dunkle These-Kachel (der Catcher), die Story bleibt
+                // auf Lesebreite gedeckelt.
+                "flex flex-col gap-5 lg:flex-row lg:gap-7"
               : "flex max-w-3xl flex-col gap-2.5"
           }`}
         >
-          <div className={`flex min-w-0 flex-col gap-2.5 ${boxen ? "lg:flex-[1.5]" : ""}`}>
+          {/* „Worum es geht" — Catcher (gleiche Kachel wie Analyse-/Kommissions-
+              Seiten), klickt zur Analyse (Fallback: Parteienvergleich). */}
+          {pick.these && (
+            <Link
+              href={pick.analyseUrl ?? `/parteien/feld/${pick.slug}`}
+              className="group/th flex lg:min-w-[300px] lg:grow-0 lg:basis-[340px]"
+            >
+              <TheseKachel className="flex-1 transition-colors group-hover/th:border-zinc-400 dark:group-hover/th:border-zinc-500">
+                <TheseZahl
+                  wert={pick.these.wert}
+                  text={pick.these.text}
+                  zahlClass="text-[34px] sm:text-[38px]"
+                />
+                {pick.analyseUrl && (
+                  <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium opacity-80 transition-opacity group-hover/th:opacity-100">
+                    Unsere Analyse <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                )}
+              </TheseKachel>
+            </Link>
+          )}
+
+          <div className={`flex min-w-0 flex-col gap-2.5 ${zeile ? "flex-1 min-[1920px]:max-w-3xl" : ""}`}>
             <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] font-bold uppercase tracking-[0.12em]">
               <span className="flex items-center gap-1.5 text-red-600 dark:text-red-400">
                 <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
@@ -380,9 +400,10 @@ export default function Startseite() {
               )}
             </Link>
             {/* Quell-Artikel (je Outlet einer): bei Stories OHNE Bundestags-Dokument
-                (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte. */}
+                (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte.
+                ≥1920px übernimmt der Pressespiegel rechts diese Rolle. */}
             {pick.quellen.length > 0 && (
-              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-muted">
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12.5px] text-muted min-[1920px]:hidden">
                 <span>Mehr dazu bei:</span>
                 {pick.quellen.map((q) => (
                   <a
@@ -408,7 +429,7 @@ export default function Startseite() {
 
           {boxen && (
             <div className="flex flex-col justify-center gap-2.5 border-t border-border-soft pt-4 lg:w-[400px] lg:shrink-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              {pick.analyseUrl && (
+              {!pick.these && pick.analyseUrl && (
                 <Link
                   href={pick.analyseUrl}
                   className="group/an rounded-xl border border-border bg-background/60 px-3.5 py-2.5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-600"
@@ -445,25 +466,30 @@ export default function Startseite() {
             </div>
           )}
 
-          {/* Schlaglicht (nur sehr breite Screens): knappste namentliche
-              Abstimmung — echte Roll-Call-Zahlen, daher kein Flip-Thema. */}
-          {boxen && knappste && (
-            <Link
-              href={knappste.detail_url}
-              className="group/kn hidden min-w-0 flex-1 flex-col justify-center gap-2 border-l border-border-soft pl-8 min-[1920px]:flex"
-            >
-              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Schlaglicht · Knappste Abstimmung</p>
-              <p
-                className="text-[14.5px] font-medium leading-snug text-foreground group-hover/kn:underline group-hover/kn:decoration-zinc-300 group-hover/kn:underline-offset-2 dark:group-hover/kn:decoration-zinc-600"
-                style={lineClamp(3)}
-              >
-                {knappste.label}
-              </p>
-              <VoteBar yes={knappste.yes} no={knappste.no} abstain={knappste.abstain} real />
-              <p className="num text-[12px] text-muted">
-                Abstand: {Math.abs(knappste.yes - knappste.no)} Stimmen{knappste.date ? ` · ${formatDate(knappste.date)}` : ""}
-              </p>
-            </Link>
+          {/* Pressespiegel (nur sehr breite Screens): die Schlagzeilen des
+              gepickten Clusters in voller Länge — füllt die Breite mit
+              story-verbundenem Inhalt statt Leerstand (Bento-Lehre). */}
+          {zeile && pick.quellen.length > 0 && (
+            <div className="hidden min-w-0 flex-1 flex-col justify-center gap-2.5 border-l border-border-soft pl-7 min-[1920px]:flex">
+              <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Pressespiegel</p>
+              {pick.quellen.slice(0, 4).map((q) => (
+                <a
+                  key={q.link}
+                  href={q.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/pq flex min-w-0 flex-col"
+                >
+                  <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted">{OUTLET_NAME[q.outlet] ?? q.outlet}</span>
+                  <span
+                    className="text-[13.5px] font-medium leading-snug text-foreground group-hover/pq:underline group-hover/pq:decoration-zinc-300 group-hover/pq:underline-offset-2 dark:group-hover/pq:decoration-zinc-600"
+                    style={lineClamp(2)}
+                  >
+                    {q.title}
+                  </span>
+                </a>
+              ))}
+            </div>
           )}
         </section>
         );

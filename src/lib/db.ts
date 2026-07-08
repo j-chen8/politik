@@ -8948,6 +8948,8 @@ export interface AufmacherPick {
   quellen: { outlet: string; title: string; link: string }[];
   /** Eigene Analyse-Seite (Vor-Parlaments-Analysen wie /analyse/haushalt-2027). */
   analyseUrl: string | null;
+  /** „Worum es geht"-Catcher: EINE große Zahl + ein Satz (manuell kuratiert). */
+  these: { wert: string; text: string } | null;
 }
 
 export function getAufmacherPick(): AufmacherPick | null {
@@ -8975,24 +8977,36 @@ export function getAufmacherPick(): AufmacherPick | null {
     `).get(Number(row.poll_id)) as { label: string | null; datum: string | null; yes: number; no: number; abstain: number } | undefined;
     if (v && (v.yes || v.no || v.abstain)) vote = { pollId: Number(row.poll_id), label: v.label, datum: v.datum, yes: v.yes ?? 0, no: v.no ?? 0, abstain: v.abstain ?? 0 };
   }
-  // Quell-Artikel des Clusters (ein Artikel je Outlet, Reihenfolge wie gespeichert).
+  // Quell-Artikel: bevorzugt der BEIM PICK eingefrorene Stand (quellen_json) —
+  // der Live-Join über (run_date, cluster_id) driftet, weil der 6h-Lauf die
+  // Cluster neu schreibt und dieselbe ID danach eine andere Story sein kann.
   let quellen: AufmacherPick["quellen"] = [];
-  if (row.cluster_id != null) {
-    try {
+  try {
+    let alle: { outlet: string; title: string; link: string }[] = [];
+    if (row.quellen_json) {
+      alle = JSON.parse(row.quellen_json as string) as typeof alle;
+    } else if (row.cluster_id != null) {
+      // Fallback für Alt-Picks ohne Snapshot (nur korrekt, solange der Lauf
+      // des Pick-Tages nicht überschrieben wurde).
       const cj = db.prepare(`SELECT titles_json FROM news_cluster WHERE run_date = ? AND cluster_id = ?`)
         .get(row.run_date, Number(row.cluster_id)) as { titles_json: string | null } | undefined;
-      const alle = JSON.parse(cj?.titles_json ?? "[]") as { outlet: string; title: string; link: string }[];
-      const gesehen = new Set<string>();
-      for (const t of alle) {
-        if (!t.outlet || !t.link || gesehen.has(t.outlet)) continue;
-        gesehen.add(t.outlet);
-        quellen.push(t);
-        if (quellen.length >= 5) break;
-      }
-    } catch { quellen = []; } // Cluster weg/Tabelle fehlt → Karte einfach ohne Quellen
-  }
+      alle = JSON.parse(cj?.titles_json ?? "[]") as typeof alle;
+    }
+    const gesehen = new Set<string>();
+    for (const t of alle) {
+      if (!t.outlet || !t.link || gesehen.has(t.outlet)) continue;
+      gesehen.add(t.outlet);
+      quellen.push(t);
+      if (quellen.length >= 5) break;
+    }
+  } catch { quellen = []; } // kaputtes JSON/Tabelle fehlt → Karte ohne Quellen
 
-  return { runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string, headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null, ds, vote, quellen, analyseUrl: (row.analyse_url as string | null) ?? null };
+  return {
+    runDate: row.run_date as string, themenfeld: row.themenfeld as string, slug: row.slug as string,
+    headline: (row.headline as string | null) ?? null, summary: (row.summary as string | null) ?? null,
+    ds, vote, quellen, analyseUrl: (row.analyse_url as string | null) ?? null,
+    these: row.these_wert && row.these_text ? { wert: row.these_wert as string, text: row.these_text as string } : null,
+  };
 }
 
 // ── Salienz-Trends: was kommt über die Zeit häufig — Fokus Gesetze/Reformen ──

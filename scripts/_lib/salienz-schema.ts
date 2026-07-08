@@ -142,6 +142,16 @@ export function ensureSalienzSchema(db: Database.Database): void {
     // Eigene Analyse-Seite zum Aufmacher (z.B. /analyse/haushalt-2027), wenn es
     // zum Thema (noch) keine Drucksache gibt — Vor-Parlaments-Analysen.
     `ALTER TABLE aufmacher_pick ADD COLUMN analyse_url TEXT`,
+    // „Worum es geht"-Catcher auf der Startseiten-Karte: EINE große Zahl + ein
+    // Satz (These-Kachel wie auf den Analyse-/Kommissions-Seiten). Manuell
+    // kuratiert — die beste Zahl kennt nur, wer die Analyse geschrieben hat.
+    `ALTER TABLE aufmacher_pick ADD COLUMN these_wert TEXT`,
+    `ALTER TABLE aufmacher_pick ADD COLUMN these_text TEXT`,
+    // Quell-Schlagzeilen des Clusters BEIM PICK eingefroren ([{outlet,title,link}]).
+    // Live-Join über (run_date, cluster_id) drifte: der 6h-Lauf schreibt die
+    // Cluster neu, dieselbe cluster_id kann danach eine ANDERE Story sein
+    // (Fund 08.07.: Haushalts-Pick zeigte GKV-Schlagzeilen).
+    `ALTER TABLE aufmacher_pick ADD COLUMN quellen_json TEXT`,
     `ALTER TABLE news_cluster ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
     // Feld-Ebene: 1 = mind. ein Gesetz/Reform-Cluster im Feld → Substanz-Boost im Ranking + Badge.
     `ALTER TABLE salienz_themen ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,

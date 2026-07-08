@@ -28,21 +28,24 @@ export const ART_LEGENDE: Record<string, string> = {
 };
 
 /** Dunkle Anker-Kachel „Worum es geht" — Inhalt kommt vom Aufrufer
- *  (typisch: <TheseZahl/>, alternativ Eckpunkte-Liste oder Fließtext). */
-export function TheseKachel({ children }: { children: ReactNode }) {
+ *  (typisch: <TheseZahl/>, alternativ Eckpunkte-Liste oder Fließtext).
+ *  `className` überschreibt die Layout-Klassen (Default = Bento-Grid-Spans);
+ *  die Optik (dunkle Platte + Label) bleibt überall identisch. */
+export function TheseKachel({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="col-span-2 row-span-2 flex flex-col gap-4 rounded-2xl border border-border bg-foreground p-5 text-background lg:col-span-4">
+    <div className={`flex flex-col gap-4 rounded-2xl border border-border bg-foreground p-5 text-background ${className ?? "col-span-2 row-span-2 lg:col-span-4"}`}>
       <span className="text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">Worum es geht</span>
       <div className="flex flex-1 flex-col justify-center">{children}</div>
     </div>
   );
 }
 
-/** Leit-Kennzahl in der These-Kachel: eine große Zahl + ein Satz. */
-export function TheseZahl({ wert, text }: { wert: string; text: string }) {
+/** Leit-Kennzahl in der These-Kachel: eine große Zahl + ein Satz.
+ *  `zahlClass` skaliert die Zahl für schmalere Container (Default = Bento-Größe). */
+export function TheseZahl({ wert, text, zahlClass }: { wert: string; text: string; zahlClass?: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="num text-[44px] font-bold leading-[0.95] sm:text-[56px]">{wert}</span>
+      <span className={`num font-bold leading-[0.95] ${zahlClass ?? "text-[44px] sm:text-[56px]"}`}>{wert}</span>
       <p className="max-w-xl text-[15px] leading-snug opacity-90 sm:text-[16px]">{text}</p>
     </div>
   );

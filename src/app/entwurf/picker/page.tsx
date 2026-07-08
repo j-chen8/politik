@@ -97,9 +97,13 @@ export default async function PickerPage() {
                 <input type="hidden" name="cluster_id" value={cl.clusterId} />
                 <input type="hidden" name="headline" value={cl.leitthema} />
                 <input type="hidden" name="summary" value={cl.summary ?? f.summary ?? ""} />
+                {/* Quellen einfrieren: cluster_id ist nach dem nächsten 6h-Lauf eine andere Story */}
+                <input type="hidden" name="quellen_json" value={JSON.stringify(cl.titles)} />
                 <input name="ds_nr" placeholder="Drucksache z.B. 21/623" defaultValue={cl.anker?.dsNr ?? ""} className="w-40 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="poll_id" placeholder="poll_id" defaultValue={cl.anker?.pollId != null ? String(cl.anker.pollId) : ""} className="w-24 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="analyse_url" placeholder="Analyse-Pfad z.B. /analyse/haushalt-2027" className="w-64 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
+                <input name="these_wert" placeholder="These-Zahl z.B. 203,7 Mrd. €" className="w-44 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
+                <input name="these_text" placeholder="These-Satz (Worum es geht)" className="w-72 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="notiz" placeholder="Notiz" className="flex-1 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <button className="rounded bg-foreground px-3 py-1 text-sm font-medium text-background">Als Aufmacher setzen</button>
               </form>
