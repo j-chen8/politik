@@ -509,54 +509,60 @@ export default function Startseite() {
             Fraktion, Reihenfolge = Fraktionsstärke). Fehlt eine Fraktion, hat
             sie (noch) keine passende PM — auch das ist Information, aber wir
             zeigen nur Belegbares. Ohne Treffer entfällt das Band. ── */}
-        {pick.reaktionen.length > 0 && (
-          <div className="flex flex-col gap-2.5 border-t border-border-soft p-5 sm:px-6 sm:py-4">
-            <p className="text-[11px] font-medium uppercase tracking-wider text-muted">Reaktionen der Fraktionen</p>
-            {/* Zwei Spalten nach Rolle (User-Wunsch): links die handelnde Seite
-                (Regierung + Koalitionsfraktionen der 21. WP), rechts die
-                Opposition — faktische Zuordnung, keine Wertung. */}
-            {(() => {
-              const KOALITION = new Set(["Bundesregierung", "CDU/CSU", "SPD"]);
-              const eintrag = (r: (typeof pick.reaktionen)[0]) => (
-                <a
-                  key={r.link}
-                  href={r.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/re flex min-w-0 flex-col"
-                >
-                  <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted">
-                    {r.fraktion}
-                    {r.datum && <span className="num ml-1.5 font-normal normal-case tracking-normal">· {formatDate(r.datum.slice(0, 10))}</span>}
-                  </span>
-                  {/* Wörtliches Kern-Zitat (kuratiert) vor Titel — der Titel trägt
-                      den Kern bei manchen Häusern selbst (dann kein Zitat nötig). */}
-                  <span
-                    className="text-[13.5px] font-medium leading-snug text-foreground group-hover/re:underline group-hover/re:decoration-zinc-300 group-hover/re:underline-offset-2 dark:group-hover/re:decoration-zinc-600"
-                    style={lineClamp(2)}
-                    title={r.zitat ? r.titel : undefined}
-                  >
-                    {r.zitat ? <>„{r.zitat}“</> : r.titel}
-                  </span>
-                </a>
-              );
-              const seiten: [string, typeof pick.reaktionen][] = [
-                ["Regierung & Koalition", pick.reaktionen.filter((r) => KOALITION.has(r.fraktion))],
-                ["Opposition", pick.reaktionen.filter((r) => !KOALITION.has(r.fraktion))],
-              ];
-              return (
-                <div className="grid gap-x-10 gap-y-4 lg:grid-cols-2">
-                  {seiten.filter(([, rs]) => rs.length > 0).map(([label, rs]) => (
-                    <div key={label} className="flex min-w-0 flex-col gap-2.5 lg:first:border-r lg:first:border-border-soft lg:first:pr-10">
-                      <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">{label}</p>
-                      {rs.map(eintrag)}
-                    </div>
-                  ))}
-                </div>
-              );
-            })()}
-          </div>
-        )}
+        {pick.reaktionen.length > 0 && (() => {
+          {/* Gegenüberstellung nach Rolle (User-Wunsch, ohne Band-Überschrift):
+              links Regierung + Koalitionsfraktionen der 21. WP, rechts die
+              Opposition — ZEILENWEISE gepaart, damit sich die Stimmen auf
+              gleicher Höhe gegenüberstehen. Faktische Zuordnung, keine Wertung. */}
+          const KOALITION = new Set(["Bundesregierung", "CDU/CSU", "SPD"]);
+          const koal = pick.reaktionen.filter((r) => KOALITION.has(r.fraktion));
+          const opp = pick.reaktionen.filter((r) => !KOALITION.has(r.fraktion));
+          const eintrag = (r: (typeof pick.reaktionen)[0]) => (
+            <a
+              key={r.link}
+              href={r.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/re flex min-w-0 flex-col"
+            >
+              <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted">
+                {r.fraktion}
+                {r.datum && <span className="num ml-1.5 font-normal normal-case tracking-normal">· {formatDate(r.datum.slice(0, 10))}</span>}
+              </span>
+              {/* Wörtliches Kern-Zitat (kuratiert) vor Titel — der Titel trägt
+                  den Kern bei manchen Häusern selbst (dann kein Zitat nötig). */}
+              <span
+                className="text-[13.5px] font-medium leading-snug text-foreground group-hover/re:underline group-hover/re:decoration-zinc-300 group-hover/re:underline-offset-2 dark:group-hover/re:decoration-zinc-600"
+                title={r.zitat ? r.titel : undefined}
+              >
+                {r.zitat ? <>„{r.zitat}“</> : r.titel}
+              </span>
+            </a>
+          );
+          const zeilen = Math.max(koal.length, opp.length);
+          return (
+            <div className="border-t border-border-soft p-5 sm:px-6 sm:py-4">
+              {/* Desktop: Zeilen-Paare auf gleicher Höhe (Grid-Rows gleichen aus) */}
+              <div className="hidden gap-x-10 gap-y-4 lg:grid lg:grid-cols-2">
+                <p className="border-r border-border-soft pr-10 text-[10.5px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">Regierung &amp; Koalition</p>
+                <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">Opposition</p>
+                {Array.from({ length: zeilen }).flatMap((_, i) => [
+                  <div key={`k${i}`} className="min-w-0 border-r border-border-soft pr-10">{koal[i] ? eintrag(koal[i]) : null}</div>,
+                  <div key={`o${i}`} className="min-w-0">{opp[i] ? eintrag(opp[i]) : null}</div>,
+                ])}
+              </div>
+              {/* Mobil: nach Gruppe gestapelt */}
+              <div className="flex flex-col gap-4 lg:hidden">
+                {([["Regierung & Koalition", koal], ["Opposition", opp]] as const).filter(([, rs]) => rs.length > 0).map(([label, rs]) => (
+                  <div key={label} className="flex min-w-0 flex-col gap-2.5">
+                    <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">{label}</p>
+                    {rs.map(eintrag)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
         </section>
         );
       })()}
