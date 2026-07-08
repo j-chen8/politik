@@ -363,16 +363,14 @@ export default function Startseite() {
           {pick.these && (() => {
             const kachel = (
               <TheseKachel rahmen={false} className="flex-1 p-5 sm:p-6">
+                {/* Kein eigener „Unsere Analyse"-Text hier — die Fußzeile der
+                    Story trägt ihn schon (User: nicht doppelt). Die Kachel
+                    selbst bleibt klickbar. */}
                 <TheseZahl
                   wert={pick.these.wert}
                   text={pick.these.text}
                   zahlClass="text-[34px] sm:text-[38px]"
                 />
-                {pick.analyseUrl && (
-                  <span className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium opacity-80 transition-opacity group-hover/th:opacity-100 group-hover/th:underline">
-                    Unsere Analyse <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                )}
               </TheseKachel>
             );
             const zone = "flex lg:min-w-[300px] lg:grow-0 lg:basis-[360px]";
