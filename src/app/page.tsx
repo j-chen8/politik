@@ -358,13 +358,10 @@ export default function Startseite() {
           }`}
         >
           {/* „Worum es geht" — Catcher (gleiche Kachel wie Analyse-/Kommissions-
-              Seiten, randlos eingepasst), klickt zur Analyse (Fallback:
-              Parteienvergleich). */}
-          {pick.these && (
-            <Link
-              href={pick.analyseUrl ?? `/parteien/feld/${pick.slug}`}
-              className="group/th flex lg:min-w-[300px] lg:grow-0 lg:basis-[360px]"
-            >
+              Seiten, randlos eingepasst), klickt zur Analyse. Ohne Analyse-Seite
+              ist die Kachel bewusst KEIN Link — es gibt kein ehrliches Ziel. */}
+          {pick.these && (() => {
+            const kachel = (
               <TheseKachel rahmen={false} className="flex-1 p-5 sm:p-6">
                 <TheseZahl
                   wert={pick.these.wert}
@@ -377,23 +374,37 @@ export default function Startseite() {
                   </span>
                 )}
               </TheseKachel>
-            </Link>
-          )}
+            );
+            const zone = "flex lg:min-w-[300px] lg:grow-0 lg:basis-[360px]";
+            return pick.analyseUrl
+              ? <Link href={pick.analyseUrl} className={`group/th ${zone}`}>{kachel}</Link>
+              : <div className={zone}>{kachel}</div>;
+          })()}
 
           <div className={`flex min-w-0 flex-col gap-2.5 ${zeile ? "flex-1 p-5 sm:p-6 min-[1920px]:max-w-3xl" : ""}`}>
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{pick.themenfeld}</p>
-            <Link href={`/parteien/feld/${pick.slug}`} className="group flex flex-col gap-2.5">
-              {pick.headline && (
-                <p className={`font-semibold leading-snug tracking-[-0.01em] text-foreground group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600 ${boxen ? "text-[21px] sm:text-[24px]" : "text-[19px]"}`}>
-                  {pick.headline}
-                </p>
-              )}
-              {pick.summary && (
-                <p className="max-w-2xl text-[15px] leading-relaxed text-muted" style={lineClamp(3)}>
-                  {pick.summary}
-                </p>
-              )}
-            </Link>
+            {/* Headline → Analyse (falls vorhanden). Der frühere Parteienvergleichs-
+                Link versprach „was die Parteien DAZU sagen" — das wissen wir für
+                eine Tages-Story nicht (Feld-Vergleich ≠ Reaktion auf die Story). */}
+            {(() => {
+              const inner = (
+                <>
+                  {pick.headline && (
+                    <p className={`font-semibold leading-snug tracking-[-0.01em] text-foreground ${pick.analyseUrl ? "group-hover:underline group-hover:decoration-zinc-300 group-hover:underline-offset-4 dark:group-hover:decoration-zinc-600" : ""} ${boxen ? "text-[21px] sm:text-[24px]" : "text-[19px]"}`}>
+                      {pick.headline}
+                    </p>
+                  )}
+                  {pick.summary && (
+                    <p className="max-w-2xl text-[15px] leading-relaxed text-muted" style={lineClamp(3)}>
+                      {pick.summary}
+                    </p>
+                  )}
+                </>
+              );
+              return pick.analyseUrl
+                ? <Link href={pick.analyseUrl} className="group flex flex-col gap-2.5">{inner}</Link>
+                : <div className="flex flex-col gap-2.5">{inner}</div>;
+            })()}
             {/* Quell-Artikel (je Outlet einer): bei Stories OHNE Bundestags-Dokument
                 (z.B. Kabinettsphase) der einzige Weg zur vollen Geschichte.
                 ≥1920px übernimmt der Pressespiegel rechts diese Rolle. */}
@@ -414,12 +425,14 @@ export default function Startseite() {
                 ))}
               </p>
             )}
-            <Link
-              href={`/parteien/feld/${pick.slug}`}
-              className="mt-auto inline-flex w-fit items-center gap-1 pt-1 text-[13.5px] font-medium text-muted transition-colors hover:text-foreground"
-            >
-              Was die Parteien dazu sagen <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            {pick.analyseUrl && (
+              <Link
+                href={pick.analyseUrl}
+                className="mt-auto inline-flex w-fit items-center gap-1 pt-1 text-[13.5px] font-medium text-muted transition-colors hover:text-foreground"
+              >
+                Unsere Analyse <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            )}
           </div>
 
           {boxen && (
