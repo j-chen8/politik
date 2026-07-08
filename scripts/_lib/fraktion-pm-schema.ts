@@ -29,4 +29,21 @@ export function ensureFraktionPmSchema(db: Database.Database): void {
   ]) {
     try { db.exec(sql); } catch { /* Spalte existiert schon */ }
   }
+
+  db.exec(`
+    -- Pressekonferenzen der Bundesregierung (Regierungspressekonferenz + Kanzler-/
+    -- Sonder-PKs): komplette Wortlaut-Mitschriften von bundesregierung.de.
+    -- Die Themenliste (•-separiert im Kopf jeder Mitschrift) macht das Matching
+    -- zum Aufmacher trivial. Quelle: scripts/fetch-regierung-pk.ts.
+    CREATE TABLE IF NOT EXISTS regierung_pk (
+      id          INTEGER PRIMARY KEY,
+      titel       TEXT NOT NULL,
+      link        TEXT NOT NULL UNIQUE,
+      datum       TEXT,                 -- ISO YYYY-MM-DD (aus Titel/Text geparst)
+      themen_json TEXT,                 -- ["Haushaltsentwurf 2027", …]
+      text        TEXT,                 -- volle Mitschrift (RPK ~40.000 Zeichen)
+      fetched_at  TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_regierung_pk_datum ON regierung_pk(datum DESC);
+  `);
 }

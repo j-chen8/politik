@@ -172,6 +172,7 @@ async function main() {
   step("Summaries", "npx tsx scripts/salienz-cluster-summary.ts");
   step("Anker-Vorschläge", "npx tsx scripts/salienz-anker.ts"); // DS/Vote je Cluster (FTS-Kandidaten + Mistral bounded choice, €0) — nur Picker-VORSCHLAG
   step("Fraktions-PMs", "npx tsx scripts/fetch-fraktions-pm.ts"); // Erstquelle „was die Fraktionen sagen" (5 Fraktionen, €0, deterministisch)
+  step("Regierungs-PKs", "npx tsx scripts/fetch-regierung-pk.ts"); // Wortlaut-Mitschriften (RPK 3×/Woche) — die Rechtfertigungs-Seite (€0)
   step("Haushalt-2027-Wächter", "npx tsx scripts/check-haushalt-2027.ts"); // einmalige Mail, sobald der Regierungsentwurf ingestierbar ist (DIP/bundeshaushalt.de); löschen nach Ingestion
 
   // Mail nur 1×/Tag (User-Wunsch 07.07.): nur der 06:30-Lauf mailt (Maschine

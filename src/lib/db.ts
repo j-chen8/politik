@@ -9017,7 +9017,14 @@ export function getAufmacherPick(): AufmacherPick | null {
   // Text-Treffer, dann neueste). Fail-quiet: keine Treffer → leere Liste.
   let reaktionen: AufmacherPick["reaktionen"] = [];
   try {
-    const STOP = new Set(["einer", "eines", "einem", "gegen", "nach", "wegen", "durch", "sowie", "sollen", "wollen", "werden", "wurde", "haben", "nicht", "trotzdem", "rund", "mehr", "viele", "unter", "über", "beim", "fokus"]);
+    const STOP = new Set([
+      "einer", "eines", "einem", "gegen", "nach", "wegen", "durch", "sowie", "sollen", "wollen",
+      "werden", "wurde", "haben", "nicht", "trotzdem", "rund", "mehr", "viele", "unter", "über", "beim", "fokus",
+      // Strukturwörter jeder Politik-Story — nie story-distinktiv, und ihre
+      // 8er-Stämme über-matchen („bundeska" träfe Bundeskanzler/Bundeskasse …).
+      "bundesregierung", "bundeskabinett", "bundeskanzler", "bundestag", "regierung", "kabinett",
+      "koalition", "deutschland", "deutsche", "deutschen", "milliarden", "millionen", "prozent", "beschlossen",
+    ]);
     const basis = `${(row.headline as string | null) ?? ""} ${(row.summary as string | null) ?? ""}`.toLowerCase();
     const toks = [...new Set((basis.match(/[a-zäöüß][a-zäöüß-]{4,}/g) ?? []).filter((w) => !STOP.has(w)))].slice(0, 12);
     const staemme = [...new Set(toks.flatMap((t) => (t.length > 8 ? [t, t.slice(0, 8)] : [t])))];
@@ -9039,6 +9046,30 @@ export function getAufmacherPick(): AufmacherPick | null {
         const { pm } = beste.get(f)!;
         return { fraktion: f, titel: pm.titel, link: pm.link, datum: pm.datum };
       });
+
+      // Regierungs-Seite (Rechtfertigung): jüngste Pressekonferenz, deren
+      // Themenliste einen Kern-Token trägt — vorangestellt, denn sie ist die
+      // handelnde Seite, auf die die Fraktionen reagieren.
+      try {
+        const pks = db.prepare(
+          `SELECT titel, link, datum, COALESCE(themen_json,'[]') AS themen, substr(COALESCE(text,''),1,6000) AS kopf
+           FROM regierung_pk WHERE datum >= date(?, '-1 day') ORDER BY datum DESC`
+        ).all(row.run_date) as { titel: string; link: string; datum: string | null; themen: string; kopf: string }[];
+        for (const pk of pks) {
+          const themen = (JSON.parse(pk.themen) as string[]);
+          // Fürs BENENNEN des Themas nur Voll-Tokens (Stämme sind zum Finden ok,
+          // aber zu grob, um ein Thema auszuweisen).
+          const thema = themen.find((t) => toks.some((tok) => t.toLowerCase().includes(tok)))
+            ?? themen.find((t) => staemme.some((s) => t.toLowerCase().includes(s)));
+          if (!thema && !staemme.some((s) => pk.kopf.toLowerCase().includes(s))) continue;
+          reaktionen.unshift({
+            fraktion: "Bundesregierung",
+            titel: thema ? `${pk.titel} — u.a. „${thema}"` : pk.titel,
+            link: pk.link, datum: pk.datum,
+          });
+          break; // nur die jüngste passende PK
+        }
+      } catch { /* regierung_pk fehlt → nur Fraktionen */ }
     }
   } catch { reaktionen = []; } // Tabelle fehlt → Karte ohne Reaktions-Band
 
