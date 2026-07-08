@@ -104,6 +104,7 @@ export default async function PickerPage() {
                 <input name="analyse_url" placeholder="Analyse-Pfad z.B. /analyse/haushalt-2027" className="w-64 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="these_wert" placeholder="These-Zahl z.B. 203,7 Mrd. €" className="w-44 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="these_text" placeholder="These-Satz (Worum es geht)" className="w-72 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
+                <input name="reaktionen_extra" placeholder="Reaktions-PM-Links ergänzen (Komma-getrennt)" className="w-96 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <input name="notiz" placeholder="Notiz" className="flex-1 rounded border border-border bg-card px-2 py-1 text-sm text-foreground" />
                 <button className="rounded bg-foreground px-3 py-1 text-sm font-medium text-background">Als Aufmacher setzen</button>
               </form>

@@ -9048,6 +9048,19 @@ export function getAufmacherPick(): AufmacherPick | null {
         if (!cur || score > cur.score) beste.set(pm.fraktion, { score, pm });
       }
       const REIHENFOLGE = ["CDU/CSU", "AfD", "SPD", "GRÜNE", "LINKE"]; // Fraktionsstärke
+
+      // Manuell ergänzte PMs (reaktionen_extra am Pick): Kuration schlägt
+      // Algorithmus — für Reaktionen zweiter Ordnung ohne belegbaren Token
+      // (SPD-Elterngeld-Fall). Ersetzt den Auto-Treffer derselben Fraktion.
+      try {
+        const extras = JSON.parse((row.reaktionen_extra as string | null) ?? "[]") as string[];
+        const holePm = db.prepare(`SELECT fraktion, titel, link, datum, kernzitat FROM fraktion_pm WHERE link = ?`);
+        for (const link of extras) {
+          const pm = holePm.get(link) as { fraktion: string; titel: string; link: string; datum: string | null; kernzitat: string | null } | undefined;
+          if (pm) beste.set(pm.fraktion, { score: 3, pm: { ...pm, text: "" } });
+        }
+      } catch { /* kaputtes JSON → nur Auto-Treffer */ }
+
       reaktionen = REIHENFOLGE.filter((f) => beste.has(f)).map((f) => {
         const { pm } = beste.get(f)!;
         return { fraktion: f, titel: pm.titel, link: pm.link, datum: pm.datum, zitat: pm.kernzitat ?? null };

@@ -35,9 +35,11 @@ export async function pickAction(formData: FormData): Promise<void> {
   const tx = db.transaction(() => {
     db.prepare(`UPDATE aufmacher_pick SET aktiv=0 WHERE aktiv=1`).run();
     db.prepare(`
-      INSERT INTO aufmacher_pick (run_date, themenfeld, slug, cluster_id, headline, summary, ds_nr, poll_id, notiz, analyse_url, these_wert, these_text, quellen_json, aktiv)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,1)
-    `).run(run_date, themenfeld, slug, cluster_id, f("headline"), f("summary"), f("ds_nr"), poll_id, f("notiz"), f("analyse_url"), f("these_wert"), f("these_text"), f("quellen_json"));
+      INSERT INTO aufmacher_pick (run_date, themenfeld, slug, cluster_id, headline, summary, ds_nr, poll_id, notiz, analyse_url, these_wert, these_text, quellen_json, reaktionen_extra, aktiv)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+    `).run(run_date, themenfeld, slug, cluster_id, f("headline"), f("summary"), f("ds_nr"), poll_id, f("notiz"), f("analyse_url"), f("these_wert"), f("these_text"), f("quellen_json"),
+      // Eingabe: Links durch Zeilenumbruch/Komma getrennt → als JSON-Array speichern
+      (() => { const roh = f("reaktionen_extra"); if (!roh) return null; const links = roh.split(/[\n,]+/).map((l) => l.trim()).filter(Boolean); return links.length ? JSON.stringify(links) : null; })());
   });
   tx();
   // Caching-Falle: statisch gecachte Seiten zeigen den neuen Pick sonst NICHT.

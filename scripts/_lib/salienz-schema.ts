@@ -152,6 +152,11 @@ export function ensureSalienzSchema(db: Database.Database): void {
     // Cluster neu, dieselbe cluster_id kann danach eine ANDERE Story sein
     // (Fund 08.07.: Haushalts-Pick zeigte GKV-Schlagzeilen).
     `ALTER TABLE aufmacher_pick ADD COLUMN quellen_json TEXT`,
+    // Manuell ergänzte Reaktions-PMs (JSON-Array von fraktion_pm-Links):
+    // für Reaktionen zweiter Ordnung, die kein Token-Matching belegen kann
+    // (z.B. SPD-Elterngeld-Kritik ohne das Wort „Haushalt"). Ersetzt den
+    // Auto-Treffer derselben Fraktion.
+    `ALTER TABLE aufmacher_pick ADD COLUMN reaktionen_extra TEXT`,
     `ALTER TABLE news_cluster ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
     // Feld-Ebene: 1 = mind. ein Gesetz/Reform-Cluster im Feld → Substanz-Boost im Ranking + Badge.
     `ALTER TABLE salienz_themen ADD COLUMN gesetzbezug INTEGER NOT NULL DEFAULT 0`,
