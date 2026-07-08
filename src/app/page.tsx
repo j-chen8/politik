@@ -67,6 +67,17 @@ function dsHref(nr: string): string {
   return `/aktivitaeten/${nr.replace("/", "-")}`;
 }
 
+// Presseleistungsschutzrecht (§§ 87f ff. UrhG): von Verlags-Schlagzeilen sind
+// nur „einzelne Wörter oder sehr kurze Auszüge" frei — wir zeigen deshalb
+// einen kurzen Anriss, der Klick führt zum Original. (Fraktions-/Regierungs-
+// Texte sind davon nicht betroffen — die wollen zitiert werden.)
+function kurzAuszug(s: string, max = 45): string {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const brk = cut.lastIndexOf(" ");
+  return (brk > 20 ? cut.slice(0, brk) : cut).trimEnd() + " …";
+}
+
 // Anzeige-Namen der News-Outlets (DB speichert Slugs, s. fetch-news-rss.ts).
 const OUTLET_NAME: Record<string, string> = {
   faz: "FAZ", ntv: "ntv", spiegel: "Spiegel", tagesschau: "Tagesschau",
@@ -381,7 +392,10 @@ export default function Startseite() {
           })()}
 
           <div className={`flex min-w-0 flex-col gap-2.5 ${zeile ? "flex-1 p-5 sm:p-6 min-[1920px]:max-w-3xl" : ""}`}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{pick.themenfeld}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
+              {pick.themenfeld}
+              <span className="num ml-2 font-medium normal-case tracking-normal">· Stand {formatDate(pick.runDate)}</span>
+            </p>
             {/* Headline → Analyse (falls vorhanden). Der frühere Parteienvergleichs-
                 Link versprach „was die Parteien DAZU sagen" — das wissen wir für
                 eine Tages-Story nicht (Feld-Vergleich ≠ Reaktion auf die Story). */}
@@ -416,7 +430,7 @@ export default function Startseite() {
                     href={q.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title={q.title}
+                    title={kurzAuszug(q.title)}
                     className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-2 hover:text-foreground hover:decoration-zinc-400 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
                   >
                     {OUTLET_NAME[q.outlet] ?? q.outlet}
@@ -496,7 +510,7 @@ export default function Startseite() {
                     className="text-[13.5px] font-medium leading-snug text-foreground group-hover/pq:underline group-hover/pq:decoration-zinc-300 group-hover/pq:underline-offset-2 dark:group-hover/pq:decoration-zinc-600"
                     style={lineClamp(2)}
                   >
-                    {q.title}
+                    {kurzAuszug(q.title)}
                   </span>
                 </a>
               ))}
