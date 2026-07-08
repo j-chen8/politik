@@ -61,11 +61,15 @@ function rssItems(xml: string): { titel: string; link: string; datum: string | n
   })).filter((i) => i.titel && i.link);
 }
 
+// Link-Normalisierung als Dedupe-Anker: dieselbe PM erscheint sonst doppelt,
+// weil z.B. der Linke-RSS www.dielinkebt.de nutzt, die Liste dielinkebt.de.
+const normLink = (u: string) => u.replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
+
 function speichere(fraktion: string, quelle: string, items: { titel: string; link: string; datum: string | null; text: string; kategorien?: string[] }[]): number {
   let neu = 0;
   for (const i of items) {
     if (BACKFILL && i.datum && i.datum < CUTOFF) continue;
-    const r = ins.run(fraktion, i.titel, i.link, i.datum, i.text || null, i.kategorien?.length ? JSON.stringify(i.kategorien) : null, quelle);
+    const r = ins.run(fraktion, i.titel, normLink(i.link), i.datum, i.text || null, i.kategorien?.length ? JSON.stringify(i.kategorien) : null, quelle);
     neu += r.changes;
   }
   return neu;
